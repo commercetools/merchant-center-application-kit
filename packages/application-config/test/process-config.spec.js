@@ -1,10 +1,15 @@
+import os from 'os';
+import path from 'path';
+import shelljs from 'shelljs';
 import { processConfig } from '../src';
 import loadConfig from '../src/load-config';
-const fixtureConfigSimple = require('./fixtures/config-simple.json');
-const fixtureConfigFull = require('./fixtures/config-full.json');
-const fixtureConfigEnvVariables = require('./fixtures/config-env-variables.json');
+import fixtureConfigSimple from './fixtures/config-simple.json';
+import fixtureConfigFull from './fixtures/config-full.json';
+import fixtureConfigEnvVariables from './fixtures/config-env-variables.json';
 
 jest.mock('../src/load-config');
+
+const tmpFolder = os.tmpdir();
 
 const createTestOptions = (options) => ({
   disableCache: true,
@@ -14,9 +19,12 @@ const createTestOptions = (options) => ({
   ...options,
 });
 
+beforeEach(() => {
+  loadConfig.mockClear();
+});
+
 describe('processing a simple config', () => {
   beforeEach(() => {
-    loadConfig.mockClear();
     loadConfig.mockReturnValue(fixtureConfigSimple);
   });
   it('should process the config and prepare the application environment and headers', () => {
@@ -112,7 +120,6 @@ describe('processing a simple config', () => {
 
 describe('processing a full config', () => {
   beforeEach(() => {
-    loadConfig.mockClear();
     loadConfig.mockReturnValue(fixtureConfigFull);
   });
   it('should process the config and prepare the application environment and headers', () => {
@@ -227,7 +234,6 @@ describe('processing a full config', () => {
 
 describe('processing a config with environment variable placeholders', () => {
   beforeEach(() => {
-    loadConfig.mockClear();
     loadConfig.mockReturnValue(fixtureConfigEnvVariables);
   });
   it('should process the config and prepare the application environment and headers', () => {
@@ -335,7 +341,6 @@ describe('processing a config with environment variable placeholders', () => {
 
 describe('when app URL is malformed', () => {
   beforeEach(() => {
-    loadConfig.mockClear();
     loadConfig.mockReturnValue({
       ...fixtureConfigSimple,
       env: {
@@ -361,7 +366,6 @@ describe('when app URL is malformed', () => {
 });
 describe('when CDN URL is malformed', () => {
   beforeEach(() => {
-    loadConfig.mockClear();
     loadConfig.mockReturnValue({
       ...fixtureConfigSimple,
       env: {
@@ -388,7 +392,6 @@ describe('when CDN URL is malformed', () => {
 });
 describe('when MC API URL is malformed', () => {
   beforeEach(() => {
-    loadConfig.mockClear();
     loadConfig.mockReturnValue({
       ...fixtureConfigSimple,
       mcApiUrl: 'wrong url',
@@ -400,5 +403,73 @@ describe('when MC API URL is malformed', () => {
     ).toThrowErrorMatchingInlineSnapshot(
       `"Invalid MC API URL: \\"wrong url\\""`
     );
+  });
+});
+
+describe('processing the legacy config files', () => {
+  const envPath = path.join(tmpFolder, 'deprecated-config-env-json.json');
+  const headersPath = path.join(
+    tmpFolder,
+    'deprecated-config-headers-json.json'
+  );
+  beforeEach(() => {
+    loadConfig.mockReturnValue(undefined);
+    console.warn = jest.fn();
+
+    shelljs.cp(
+      path.join(__dirname, 'fixtures/deprecated-config-env-json.json'),
+      envPath
+    );
+    shelljs.cp(
+      path.join(__dirname, 'fixtures/deprecated-config-headers-json.json'),
+      headersPath
+    );
+  });
+  it('should process the deprecated config files and prepare the application environment and headers', () => {
+    const result = processConfig(
+      createTestOptions({
+        deprecatedOptions: {
+          envPath,
+          headersPath,
+        },
+      })
+    );
+    expect(result).toEqual({
+      env: {
+        applicationName: 'avengers-app',
+        cdnUrl: 'http://localhost:3001',
+        env: 'development',
+        frontendHost: 'localhost:3001',
+        location: 'gcp-eu',
+        mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
+        servedByProxy: false,
+      },
+      headers: {
+        csp: {
+          'connect-src': ['mc-api.europe-west1.gcp.commercetools.com'],
+          'script-src': [],
+          'style-src': [],
+        },
+      },
+    });
+    expect(console.warn).toHaveBeenCalledWith(
+      `No custom application config found, attempting to load the config from env.json and headers.json.`
+    );
+  });
+  describe('when no deprecated config files are found', () => {
+    it('should abort the process and throw an error', () => {
+      expect(() =>
+        processConfig(
+          createTestOptions({
+            deprecatedOptions: {
+              envPath: path.join(tmpFolder, 'foo.json'),
+              headersPath: path.join(tmpFolder, 'foo.json'),
+            },
+          })
+        )
+      ).toThrowErrorMatchingInlineSnapshot(
+        `"No configuration for the Custom Application found."`
+      );
+    });
   });
 });

@@ -1,3 +1,4 @@
+import fs from 'fs';
 import uniq from 'lodash/uniq';
 import { CLOUD_IDENTIFIERS, MC_API_URLS } from './constants';
 
@@ -44,4 +45,22 @@ const getOrThrow = <T>(fn: () => T, errorMessage: string): T => {
   }
 };
 
-export { mapCloudIdentifierToApiUrl, getUniqueValues, getIsProd, getOrThrow };
+const parseJsonFile = <T>(filePath: string): T => {
+  let rawData;
+  try {
+    rawData = fs.readFileSync(filePath, {
+      encoding: 'utf8',
+    });
+  } catch (error) {
+    // Ignore
+  }
+  return rawData ? JSON.parse(rawData) : {};
+};
+
+export {
+  mapCloudIdentifierToApiUrl,
+  getUniqueValues,
+  getIsProd,
+  getOrThrow,
+  parseJsonFile,
+};

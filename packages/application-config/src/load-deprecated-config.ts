@@ -1,7 +1,9 @@
+import type { CspDirective } from './schema';
 import type { ApplicationConfig } from './types';
 
 import fs from 'fs';
 import substituteEnvVariablePlaceholders from './substitute-env-variable-placeholders';
+import { parseJsonFile } from './utils';
 
 export type DeprecatedOptions = {
   envPath: string;
@@ -19,18 +21,6 @@ const requiredEnvJsonFields = [
   'cdnUrl',
 ];
 
-const parseJsonFile = (filePath: string) => {
-  let rawData;
-  try {
-    rawData = fs.readFileSync(filePath, {
-      encoding: 'utf8',
-    });
-  } catch (error) {
-    // Ignore
-  }
-  return rawData ? JSON.parse(rawData) : {};
-};
-
 // For backwards compatibility, we still support the `env.json` and `headers.json` files.
 // TODO: remove in `v17`.
 const loadDeprecatedConfig = (
@@ -43,7 +33,9 @@ const loadDeprecatedConfig = (
 
   if (!hasEnvJson) return;
 
-  const loadedEnvJson = parseJsonFile(options.envPath);
+  const loadedEnvJson = parseJsonFile<ApplicationConfig['env']>(
+    options.envPath
+  );
   // Validate required fields
   requiredEnvJsonFields.forEach((key) => {
     const hasKey = Object.prototype.hasOwnProperty.call(loadedEnvJson, key);
@@ -56,11 +48,22 @@ const loadDeprecatedConfig = (
   const env = substituteEnvVariablePlaceholders(loadedEnvJson);
 
   // Parse headers from `headers.json` (or the already deprecated `csp.json`).
-  const loadedHeadersOrCspJson = shouldUseDeprecatedCspJson
-    ? parseJsonFile(options.cspPath as string)
-    : parseJsonFile(options.headersPath);
-  const headers = substituteEnvVariablePlaceholders(loadedHeadersOrCspJson);
+  if (shouldUseDeprecatedCspJson) {
+    const loadedCspJson = parseJsonFile<{
+      'connect-src': CspDirective;
+      'font-src'?: CspDirective;
+      'img-src'?: CspDirective;
+      'script-src'?: CspDirective;
+      'style-src'?: CspDirective;
+    }>(options.cspPath as string);
+    const cspHeaders = substituteEnvVariablePlaceholders(loadedCspJson);
+    return { env, headers: { csp: cspHeaders } };
+  }
 
+  const loadedHeadersJson = parseJsonFile<ApplicationConfig['headers']>(
+    options.headersPath
+  );
+  const headers = substituteEnvVariablePlaceholders(loadedHeadersJson);
   return { env, headers };
 };
 
