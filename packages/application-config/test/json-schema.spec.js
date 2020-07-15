@@ -1,4 +1,4 @@
-const { validateConfig } = require('../src');
+const validateConfig = require('../src/validate-config');
 const fixtureConfigSimple = require('./fixtures/config-simple.json');
 const fixtureConfigFull = require('./fixtures/config-full.json');
 const fixtureConfigEnvVariables = require('./fixtures/config-env-variables.json');
