@@ -5,10 +5,10 @@
   "private": true,
   "scripts": {
     "build": "mc-scripts build",
-    "start": "mc-scripts start",
-    "compile-html:gcp-eu": "mc-scripts compile-html --headers=$(pwd)/vercel-deployments/state-machines-gcp-eu/production-gcp-eu.headers.json --config=$(pwd)/vercel-deployments/state-machines-gcp-eu/production-gcp-eu.env.json --use-local-assets --transformer $(pwd)/config/transformer-vercel.js",
-    "compile-html:gcp-us": "mc-scripts compile-html --headers=$(pwd)/vercel-deployments/state-machines-gcp-us/production-gcp-us.headers.json --config=$(pwd)/vercel-deployments/state-machines-gcp-us/production-gcp-us.env.json --use-local-assets --transformer $(pwd)/config/transformer-vercel.js",
-    "start:prod:local": "NODE_ENV=production mc-http-server --headers=$(pwd)/headers.json --config=$(pwd)/env.json --use-local-assets",
+    "start": "dotenv -- mc-scripts start",
+    "compile-html:gcp-eu": "dotenv -e vercel-deployments/state-machines-gcp-eu/.env -- mc-scripts compile-html --use-local-assets --transformer $(pwd)/vercel-deployments/transformer-vercel.js",
+    "compile-html:gcp-us": "dotenv -e vercel-deployments/state-machines-gcp-us/.env -- mc-scripts compile-html --use-local-assets --transformer $(pwd)/vercel-deployments/transformer-vercel.js",
+    "start:prod:local": "NODE_ENV=production MC_APP_ENV=development dotenv -- mc-http-server --use-local-assets",
     "i18n:build": "mc-scripts extract-intl --output-path=$(pwd)/src/i18n/data 'src/**/!(*.spec).js' --build-translations"
   },
   "dependencies": {
@@ -47,6 +47,7 @@
     "redux": "4.0.5"
   },
   "devDependencies": {
-    "@commercetools-frontend/mc-scripts": "16.14.0"
+    "@commercetools-frontend/mc-scripts": "16.14.0",
+    "dotenv-cli": "3.2.0"
   }
 }

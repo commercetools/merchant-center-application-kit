@@ -4,7 +4,7 @@
   "cloudIdentifier": "gcp-eu",
   "env": {
     "production": {
-      "url": "${env:APP_URL}"
+      "url": "https://<your_app_hostname>"
     }
   }
 }

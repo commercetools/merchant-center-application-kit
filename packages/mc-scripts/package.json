@@ -35,7 +35,8 @@
   },
   "scripts": {
     "prebuild": "rimraf build/**",
-    "build": "babel src --out-dir build"
+    "build": "babel src --out-dir build",
+    "build:bundles:watch": "yarn build -w"
   },
   "browserslist": {
     "production": [

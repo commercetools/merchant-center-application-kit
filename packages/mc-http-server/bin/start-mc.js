@@ -23,8 +23,8 @@ if (flags.help) {
 
   Deprecated options:
   --config=<path>           (optional) The path to the environment config (defined as a JSON file, e.g. "env.json").
-  --csp=<path>              (optional) the path to the custom CSP directives config (defined as a JSON file, e.g. "csp.json").
   --headers=<path>          (optional) The path to the headers containing CSP and feature policy configs (defined as a JSON file, e.g. "headers.json").
+  --csp=<path>              (optional) the path to the custom CSP directives config (defined as a JSON file, e.g. "csp.json").
   `);
 }
 
