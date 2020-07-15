@@ -1,7 +1,0 @@
-{
-  "csp": {
-    "script-src": [],
-    "connect-src": ["${env:MC_API_HOSTNAME}"],
-    "style-src": []
-  }
-}

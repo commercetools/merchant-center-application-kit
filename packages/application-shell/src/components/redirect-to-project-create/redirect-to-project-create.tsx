@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Spacings from '@commercetools-uikit/spacings';
-import FlatButton from '@commercetools-uikit/flat-button';
+import { ContentNotification } from '@commercetools-uikit/notifications';
 import Text from '@commercetools-uikit/text';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { location } from '../../utils/location';
@@ -29,16 +28,19 @@ export const RedirectToProjectCreate = () => {
   return (
     <Spacings.Stack>
       <Text.Headline as="h3">Please create a project!</Text.Headline>
+      <ContentNotification type="warning">
+        You are running in development mode
+      </ContentNotification>
       <Text.Body>
-        You are using the Merchant Center in development mode - it is not served
-        by a proxy (`env.json`). Moreover, you do not have any projects yet. As
-        a result we did not redirect you anywhere (e.g. another application).
+        The Custom Application is not running behind the Merchant Center Proxy.
+        Therefore, you are not being redirected to the account section to create
+        a new project.
       </Text.Body>
       <Text.Body>
-        Please go to the `application-accounts` while having it running to
-        create a project first. Note, that you can do the same on staging.
+        If you do need to create a project, we recommend to go to the Merchant
+        Center production URL and create a project there. After that, you can
+        access your new project from your local environment.
       </Text.Body>
-      <FlatButton as={Link} to="account/projects/new" label="Create project" />
     </Spacings.Stack>
   );
 };

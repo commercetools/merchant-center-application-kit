@@ -1823,6 +1823,19 @@
     react-required-if "1.0.3"
     react-textarea-autosize "8.2.0"
 
+"@commercetools-uikit/notifications@^10.24.0":
+  version "10.24.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-uikit/notifications/-/notifications-10.24.0.tgz#418b161a88753e622b5196aed87610e4897b9952"
+  integrity sha512-akFFZpKnhb2wX3ic1naulCEgGEwYl2vA/NlStyPwz+1puY2NNX18yqKwASwzugh7lgn96MFqGqad7xuekzlDsQ==
+  dependencies:
+    "@commercetools-uikit/design-system" "10.18.4"
+    "@commercetools-uikit/icons" "10.24.0"
+    "@commercetools-uikit/utils" "10.21.0"
+    "@emotion/core" "10.0.28"
+    common-tags "1.8.0"
+    prop-types "15.7.2"
+    react-required-if "1.0.3"
+
 "@commercetools-uikit/primary-button@10.24.0", "@commercetools-uikit/primary-button@^10.21.0":
   version "10.24.0"
   resolved "https://registry.yarnpkg.com/@commercetools-uikit/primary-button/-/primary-button-10.24.0.tgz#85ca0137535337fc18534f8fa544c82bcdfdb845"

@@ -1,21 +1,7 @@
-const fs = require('fs');
 const createAssetHash = require('./utils/create-asset-hash');
 const sanitizeAppEnvironment = require('./utils/sanitize-app-environment');
-const substituteEnvVariablePlaceholders = require('./utils/substitute-env-variable-placeholders');
 const htmlScripts = require('./load-html-scripts');
 // const htmlStyles = require('./load-html-styles');
-
-const loadCustomConfiguration = (pathToConfiguration) => {
-  let rawConfiguration;
-  try {
-    rawConfiguration = fs.readFileSync(pathToConfiguration, {
-      encoding: 'utf8',
-    });
-  } catch (error) {
-    // Ignore
-  }
-  return rawConfiguration ? JSON.parse(rawConfiguration) : {};
-};
 
 const toArray = (value) => (Array.isArray(value) ? value : [value]);
 const mergeCspDirectives = (...csps) =>
@@ -46,15 +32,17 @@ const toHeaderString = (directives = {}) =>
     )
     .join('; ');
 
-module.exports = (envConfig, options) => {
-  const isMcDevEnv = envConfig.env === 'development';
+const processHeaders = (applicationConfig) => {
+  const isMcDevEnv = applicationConfig.env === 'development';
 
   // List hashes for injected inline scripts.
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src
   const htmlScriptsHashes = [
     createAssetHash(htmlScripts.dataLayer),
     createAssetHash(htmlScripts.loadingScreen),
-    createAssetHash(`window.app = ${sanitizeAppEnvironment(envConfig)};`),
+    createAssetHash(
+      `window.app = ${sanitizeAppEnvironment(applicationConfig.env)};`
+    ),
   ];
 
   // // List hashes for injected inline styles.
@@ -130,26 +118,10 @@ module.exports = (envConfig, options) => {
     //   GTM and Intercom scripts are apparently not meant for this)
   );
 
-  // Attempt to load the JSON config for custom CSP and feature policy headers provided by each application
-  // For backwards compatibilty the `cspPath` can still be used but the `headerPath` takes precedence.
-
-  const shouldUseDeprecatedCspPath = Boolean(
-    options.cspPath && !options.headersPath
-  );
-
-  const customHeaders = loadCustomConfiguration(options.headersPath);
-
-  const customCspDirectives = shouldUseDeprecatedCspPath
-    ? loadCustomConfiguration(options.cspPath)
-    : customHeaders.csp;
-  const substitutedCspDirectivesConfig = substituteEnvVariablePlaceholders(
-    customCspDirectives
-  );
-
   // Recursively merge the directives
   const mergedCsp = mergeCspDirectives(
     cspDirectives,
-    substitutedCspDirectivesConfig
+    applicationConfig.headers.csp ?? {}
   );
 
   return {
@@ -159,10 +131,12 @@ module.exports = (envConfig, options) => {
     'X-Frame-Options': 'DENY',
     'Referrer-Policy': 'same-origin',
     'Content-Security-Policy': toHeaderString(mergedCsp),
-    ...(customHeaders.featurePolicies && {
+    ...(applicationConfig.headers.featurePolicies && {
       'Feature-Policy': toHeaderString(
-        substituteEnvVariablePlaceholders(customHeaders.featurePolicies)
+        applicationConfig.headers.featurePolicies
       ),
     }),
   };
 };
+
+module.exports = processHeaders;
