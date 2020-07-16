@@ -100,10 +100,6 @@ jobs:
           CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
           CYPRESS_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
 
-      - name: Preparing Starter template application environment
-        run: cp .env.template .env
-        working-directory: application-templates/starter
-
       - name: Building Starter template application
         run: yarn template-starter:build
 

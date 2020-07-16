@@ -13,6 +13,7 @@
       "@commercetools-backend/loggers",
       "@commercetools-frontend/actions-global",
       "@commercetools-frontend/application-components",
+      "@commercetools-frontend/application-config",
       "@commercetools-frontend/application-shell",
       "@commercetools-frontend/application-shell-connectors",
       "@commercetools-frontend/assets",

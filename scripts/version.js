@@ -18,7 +18,7 @@ if (commands.length === 0 || (flags.help && commands.length === 0)) {
     Usage: version [command] [options]
     Commands:
       print        Prints the version and package name
-      replace        Replaces the version to the built files
+      replace      Replaces the version to the built files
   `);
   process.exit(0);
 }
@@ -37,7 +37,10 @@ switch (command) {
     const resolvePkg = (relativePath) =>
       path.resolve(pkgDirectory, relativePath);
 
-    const paths = [resolvePkg('dist')];
+    const paths = [
+      resolvePkg('build'),
+      resolvePkg('dist'),
+    ].filter((targetPath) => fs.existsSync(targetPath));
 
     replace({
       regex: '__@APPLICATION_KIT_PACKAGE/VERSION_OF_RELEASE__',

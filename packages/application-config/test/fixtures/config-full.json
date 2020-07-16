@@ -1,0 +1,30 @@
+{
+  "name": "avengers-app",
+  "cloudIdentifier": "gcp-eu",
+  "entryPointUriPath": "avengers",
+  "env": {
+    "production": {
+      "url": "https://avengers.app",
+      "cdnUrl": "https://cdn.avengers.app"
+    }
+  },
+  "additionalEnv": {
+    "numberOfMovies": 4
+  },
+  "headers": {
+    "csp": {
+      "script-src": [
+        "cdn.avengers.app"
+      ],
+      "connect-src": [
+        "cdn.avengers.app"
+      ],
+      "style-src": [
+        "cdn.avengers.app"
+      ]
+    },
+    "featurePolicies": {
+      "microphone": "none"
+    }
+  }
+}

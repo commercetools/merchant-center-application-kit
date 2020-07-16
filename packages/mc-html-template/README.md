@@ -22,49 +22,28 @@ This method will return the compiled HTML document with the CSS/JS scripts injec
 
 #### `replaceHtmlPlaceholders(html: String, env: Object): String`
 
-This method will replace the **placeholders** defined in the HTML document based on the values in the `env.json`. To load the `env.json` config, you can use the `loadEnv` method.
+This method will replace the **placeholders** defined in the HTML document based on the application config.
 
 This method should be used as the final step to get the fully compiled `index.html`.
 
 At the moment we define the following placeholders:
 
-- `__CDN_URL__`: the `cdnUrl` value defined in the `env.json`
-- `__MC_API_URL__`: the `mcApiUrl` value defined in the `env.json`
+- `__CDN_URL__`: the `cdnUrl` value defined in the application config
+- `__MC_API_URL__`: the `mcApiUrl` value defined in the application config
 - `__LOADING_SCREEN_CSS__`: (_defined internally_) the CSS for the loading animation in case the page takes longer to load
 - `__LOADING_SCREEN_JS__`: (_defined internally_) the JS for the loading animation in case the page takes longer to load
-- `__APP_ENVIRONMENT__`: the sanitized `env.json`, which will be available at the global variable `window.app`
-- `__DATALAYER_JS__`: the initial configuration for GTM, in case the `trackingGtm` is defined in the `env.json`
-- `__GTM_SCRIPT__`: the actual GTM script, in case the `trackingGtm` is defined in the `env.json`
+- `__APP_ENVIRONMENT__`: the sanitized application config environment, which will be available at the global variable `window.app`
+- `__DATALAYER_JS__`: the initial configuration for GTM, in case the `trackingGtm` is defined in the `additionalEnv` property of the application config
+- `__GTM_SCRIPT__`: the actual GTM script, in case the `trackingGtm` is defined in the `additionalEnv` property of the application config
 
-#### `loadEnv(configPath: String): Object`
-
-This method will attempt to load and parse the `env.json` file, performing some validation and returning the parsed JSON.
-
-More information about required values and references can be found in the [Runtime Configuration
-](https://docs.commercetools.com/custom-applications/deployment/runtime-configuration) documentation of Custom Applications.
-
-#### `loadHeaders(env: Object, { headersPath: String, cspPath?: String }): Object`
+#### `processHeaders(applicationConfig: Object, { env: Object, headers: Object }): Object`
 
 This method will return the security headers to be used on the server response, serving the `index.html`.
 
-The `env` argument, is the parsed `env.json` file (see `loadEnv`).
+The `applicationConfig.env` is the processed application environment that would be injected as the `window.app`.
+The `applicationConfig.headers` is the processed application headers provided by the user.
 
-Optionally, you can pass the path to a `headers.json` that contains custom CSP and feature directives such as:
-
-```json
-{
-  "csp": {
-    "script-src": ["storage.googleapis.com/my-bucket-path/"]
-  },
-  "featurePolicies": {
-    "microphone": "none"
-  }
-}
-```
-
-The `cspPath` has been **deprecated** in favour of the `headerpath` option. You can migrate to the new option by creating a `headers.json` (previously `csp.json`) and assigning the content of the `csp.json` into the `csp` field in the `headers.json` file.
-
-The final headers object contains the following headers:
+The return value of the `processHeaders` function contains the following ready-to-use HTTP headers:
 
 ```json
 {

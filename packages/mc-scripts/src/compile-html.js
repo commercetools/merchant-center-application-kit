@@ -29,17 +29,15 @@ if (flags.help) {
   Usage: mc-scripts compile-html [options]
 
   Options:
-  --config=<path>           (required) The path to the environment config (defined as a JSON file, e.g. "env.json").
-  --csp=<path>              (optional) Deprecated: the path to the custom CSP directives config (defined as a JSON file, e.g. "csp.json").
-  --headers=<path>          (optional) The path to the headers containing CSP and feature policy configs (defined as a JSON file, e.g. "headers.json").
   --use-local-assets        (optional) If this option is enabled, the index.html.template will be taken from the local "dist/assets" folder, otherwise it will be downloaded from the remove URL provided in "cdnUrl" in the "env.json" file (requires "mc-scripts build" to run before) [default "false"]
   --transformer=<path>      (optional) The path to a JS module that can be used to generate a configuration for a specific cloud provider (e.g. Netlify, Vercel, Firebase).
+
+  Deprecated options:
+  --config=<path>           (optional) Deprecated: The path to the environment config (defined as a JSON file, e.g. "env.json").
+  --headers=<path>          (optional) Deprecated: The path to the headers containing CSP and feature policy configs (defined as a JSON file, e.g. "headers.json").
+  --csp=<path>              (optional) Deprecated: The path to the custom CSP directives config (defined as a JSON file, e.g. "csp.json").
   `);
   process.exit(0);
-}
-
-if (!flags.config) {
-  throw new Error('Missing required option "--config"');
 }
 
 const useLocalAssets = flags['use-local-assets'];

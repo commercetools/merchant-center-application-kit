@@ -6,7 +6,7 @@
   "scripts": {
     "prebuild": "rimraf dist/**",
     "build": "mc-scripts build",
-    "postbuild": "mc-scripts compile-html --use-local-assets --config $(pwd)/env.json",
+    "postbuild": "MC_APP_ENV=development mc-scripts compile-html --use-local-assets",
     "start": "mc-scripts start",
     "serve": "serve public --no-clipboard --single --listen 3001"
   },

@@ -1,0 +1,10 @@
+{
+  "name": "avengers-app",
+  "entryPointUriPath": "avengers",
+  "cloudIdentifier": "gcp-eu",
+  "env": {
+    "production": {
+      "url": "https://avengers.app"
+    }
+  }
+}

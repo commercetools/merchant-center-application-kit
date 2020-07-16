@@ -1,16 +1,20 @@
 /* eslint-disable class-methods-use-this,no-param-reassign */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { processConfig } = require('@commercetools-frontend/application-config');
 const {
-  loadEnv,
   replaceHtmlPlaceholders,
 } = require('@commercetools-frontend/mc-html-template');
 
 const sourcePath = process.cwd();
-const localEnv = loadEnv(path.join(sourcePath, 'env.json'));
+const applicationConfig = processConfig({
+  deprecatedOptions: {
+    envPath: path.join(sourcePath, 'env.json'),
+  },
+});
 const enhancedLocalEnv = Object.assign(
   {},
-  localEnv,
+  applicationConfig.env,
   // Now that the app config is defined as a `env.json`, when we start the FE app
   // to point to the local backend API by passing the `MC_API_URL` env does not
   // work anymore). To make it work again, we can override the `env.json` config

@@ -1,0 +1,10 @@
+{
+  "name": "Application Kit Visual Testing App",
+  "entryPointUriPath": "<not_important>",
+  "cloudIdentifier": "gcp-eu",
+  "env": {
+    "production": {
+      "url": "https://<not_important>"
+    }
+  }
+}

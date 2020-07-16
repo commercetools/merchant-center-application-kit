@@ -1,0 +1,10 @@
+{
+  "name": "avengers-app",
+  "entryPointUriPath": "avengers",
+  "cloudIdentifier": "${env:CLOUD_IDENTIFIER}",
+  "env": {
+    "production": {
+      "url": "${env:APP_URL}"
+    }
+  }
+}
