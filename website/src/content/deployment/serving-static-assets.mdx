@@ -17,13 +17,17 @@ If the static assets are uploaded to a remote CDN or Cloud Storage instead, uplo
 
 # Serving assets on a remote CDN or Cloud Storage
 
-First, upload the assets from `dist/assets` directory to a CDN or Cloud Storage. Then define the location URL of the storage directory in the `cdnUrl` in the `env.json`.
+First, upload the assets from `dist/assets` directory to a CDN or Cloud Storage. Then define the location URL of the storage directory in the `env.production.cdnUrl` in the [application config](/development/application-config).
 
-For example, Merchant Center static assets are uploaded to a Google Cloud Storage bucket named `mc-production-eu` for the `eu` region's production assets. Then simply reference the URL in `cdnUrl` in the `env.json.`
+For example, Merchant Center static assets are uploaded to a Google Cloud Storage bucket named `mc-production-eu` for the `eu` region's production assets.
 
-```json
+```json title="custom-application-config.json"
 {
-  "cdnUrl": "https://storage.googleapis.com/mc-production-eu"
+  "env": {
+    "production": {
+      "cdnUrl": "https://storage.googleapis.com/mc-production-eu"
+    }
+  }
 }
 ```
 
@@ -39,4 +43,4 @@ To serve static assets in using the HTTP server, do the following:
 
 - Include the `/dist` directory in the project or in the Docker container.
 - Explicitly enable this option when running the `mc-http-server` by passing the `--use-local-assets` flag.
-- In the `env.json` file, set the `cdnUrl` to the root domain where the server is hosted. For example, if the application is hosted at `https://my-custom-app.com`, the `cdnUrl` should be `https://my-custom-app.com`.
+- Omit the `env.production.cdnUrl` property in the [application config](/development/application-config) file (the `env.production.url` is used instead).

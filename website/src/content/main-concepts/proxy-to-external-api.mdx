@@ -45,8 +45,8 @@ import { createApolloContextForProxyForwardTo } from '@commercetools-frontend/ap
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 
 const Fetcher = () => {
-  // Assuming that the `env.json` contains the custom value:
-  // `{ externalApiUrl: 'https://my-custom-app.com/graphql'}`
+  // Assuming that the `custom-application-config.json` contains the custom value:
+  // `{ additionalEnv: { externalApiUrl: 'https://my-custom-app.com/graphql'} }`
   const externalApiUrl = useApplicationContext(
     context => context.environment.externalApiUrl
   );
@@ -88,8 +88,8 @@ import { actions, useAsyncDispatch } from '@commercetools-frontend/sdk';
 
 const Fetcher = () => {
   const dispatch = useAsyncDispatch();
-  // Assuming that the `env.json` contains the custom value:
-  // `{ externalApiUrl: 'https://my-custom-app.com/graphql'}`
+  // Assuming that the `custom-application-config.json` contains the custom value:
+  // `{ additionalEnv: { externalApiUrl: 'https://my-custom-app.com/graphql'} }`
   const externalApiUrl = useApplicationContext(
     context => context.environment.externalApiUrl
   );

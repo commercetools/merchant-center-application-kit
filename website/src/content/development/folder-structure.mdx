@@ -7,7 +7,7 @@ After bootstrapping a new application, your project should look like this:
 ```
 .
 ├── README.md
-├── env.json
+├── custom-application-config.json
 ├── jest.test.config.js
 ├── menu.json
 ├── package.json
@@ -60,7 +60,7 @@ Note: In this documentation, React components are referred as `<MyComponentName>
   - `src/components/entry-point`: Contains the `<EntryPoint>` component which **must**:
     - Use the `<ApplicationShell>` component to load the core logic of the application (including layout elements like the left hand and top navigation).
     - Define a `<Route>` component to handle requests matching the **main application route path**.
-- `env.json`: See [Runtime Configuration](/deployment/runtime-configuration)
+- `custom-application-config.json`: See [Application config](/development/application-config)
 - `webpack.config.<env>.js`: Contains the setup for getting the webpack configurations for `development` and `production`.
 - `jest.test.config.js`: Contains configurations for running tests using a Jest runner.
 - `dist/`: Contains the production bundles (created once you run `yarn build`).
