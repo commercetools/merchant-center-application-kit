@@ -27,11 +27,12 @@ const loadDeprecatedConfig = (
   options: DeprecatedOptions
 ): ApplicationConfig | undefined => {
   const hasEnvJson = fs.existsSync(options.envPath);
+
+  if (!hasEnvJson) return;
+
   const hasHeadersJson = fs.existsSync(options.headersPath);
   const hasCspJson = Boolean(options.cspPath && fs.existsSync(options.cspPath));
   const shouldUseDeprecatedCspJson = hasCspJson && !hasHeadersJson;
-
-  if (!hasEnvJson) return;
 
   const loadedEnvJson = parseJsonFile<ApplicationConfig['env']>(
     options.envPath

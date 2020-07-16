@@ -453,7 +453,7 @@ describe('processing the legacy config files', () => {
       },
     });
     expect(console.warn).toHaveBeenCalledWith(
-      `No custom application config found, attempting to load the config from env.json and headers.json.`
+      'No custom application config found, attempting to load the config from env.json and headers.json.'
     );
   });
   describe('when no deprecated config files are found', () => {
