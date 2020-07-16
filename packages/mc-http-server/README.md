@@ -4,7 +4,7 @@
   <a href="https://www.npmjs.com/package/@commercetools-frontend/mc-http-server"><img src="https://badgen.net/npm/v/@commercetools-frontend/mc-http-server" alt="Latest release (latest dist-tag)" /></a> <a href="https://www.npmjs.com/package/@commercetools-frontend/mc-http-server"><img src="https://badgen.net/npm/v/@commercetools-frontend/mc-http-server/next" alt="Latest release (next dist-tag)" /></a> <a href="https://bundlephobia.com/result?p=@commercetools-frontend/mc-http-server"><img src="https://badgen.net/bundlephobia/minzip/@commercetools-frontend/mc-http-server" alt="Minified + GZipped size" /></a> <a href="https://github.com/commercetools/merchant-center-application-kit/blob/master/LICENSE"><img src="https://badgen.net/github/license/commercetools/merchant-center-application-kit" alt="GitHub license" /></a>
 </p>
 
-This package contains the HTTP server to run a MC application in production.
+This package contains the HTTP server to run a Custom Application in production.
 
 > This server should **only be used for production**, for development we use `@commercetools-frontend/mc-scripts` to start a development server.
 
@@ -19,18 +19,19 @@ $ npm install --save @commercetools-frontend/mc-http-server
 We also provide a docker image to run the server:
 
 ```bash
-$ docker run -p 3001:3001 eu.gcr.io/ct-images/mc-http-server:v0.0.0 mc-http-server --config="$(pwd)/env.json"
+$ docker run -p 3001:3001 eu.gcr.io/ct-images/mc-http-server:v0.0.0 mc-http-server
 ```
 
 ## Why do we need an HTTP Server?
 
-Since a SPA consists of mainly JS bundles and CSS, it's usually not necessary to have an actual HTTP server running.
-In theory it's enough to serve a _static HTML page_ from e.g. a CDN.
+Since a Single Page Application consists of mainly JavaScript bundles and CSS, it's usually not necessary to have an actual HTTP server running.
+In theory it's enough to serve a _static HTML page_, for example from a Content Delivery Network (CDN).
 
-However our MC SPA requires certain information and configuration which cannot be provided on compile time ([\*][#inject-variables-at-compile-time]).
-This information is available at **runtime through environment variables**, which needs to by dynamically injected into the `index.html`.
+However, the Custom Application requires certain information and configuration which cannot be provided on build time.
+This information is available at **runtime through environment variables**, which needs to be dynamically injected into the `index.html`.
 
-For that reason, before the server starts, we pull the `index.html.template` generated on build time (containing references to the JS bundles and placeholders for runtime variables to be injected) and generate the final `index.html`.
+For that reason, before the server starts, we process the `index.html.template` that was previously generated on build time, containing references to the JavaScript bundles.
+Additionally, there are some placeholders variables that are replaced with the values from the application config. After that, the final `index.html` file is written on disk and ready to be served by the HTTP server.
 
 > All static assets are served from the `public` folder.
 

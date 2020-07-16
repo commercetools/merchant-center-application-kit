@@ -1,18 +1,18 @@
 const fs = require('fs');
 const path = require('path');
 const fetch = require('node-fetch');
-const loadEnv = require('./load-env');
-const loadHeaders = require('./load-headers');
+const { processConfig } = require('@commercetools-frontend/application-config');
+const processHeaders = require('./process-headers');
 const replaceHtmlPlaceholders = require('./utils/replace-html-placeholders');
 
-const requiredOptions = ['envPath', 'publicAssetsPath'];
-const deprecatedOptions = ['cspPath'];
+const requiredOptions = ['publicAssetsPath'];
+const deprecatedOptions = ['envPath', 'cspPath', 'headersPath'];
 
 /**
  * Options:
- * - envPath
+ * - envPath (deprecated)
  * - cspPath (deprecated)
- * - headersPath
+ * - headersPath (deprecated)
  * - publicAssetsPath
  * - useLocalAssets
  */
@@ -26,16 +26,20 @@ module.exports = async function compileHtml(options) {
   deprecatedOptions.forEach((key) => {
     if (options[key]) {
       console.warn(
-        '⚠️ [@commercetools-frontend/mc-html-template]: `cspPath` has been deprecated. Please use `headerPath`. More info here: https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/mc-html-template/README.md.'
+        `⚠️ [@commercetools-frontend/mc-html-template]: "${key}" has been deprecated. Please use the "custom-application-config" file. More info here: https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-config/README.md.`
       );
     }
   });
 
-  const env = loadEnv(options.envPath);
-  const headers = loadHeaders(env, {
-    cspPath: options.cspPath,
-    headersPath: options.headersPath,
+  const applicationConfig = processConfig({
+    // TODO: Remove in `v17`
+    deprecatedOptions: {
+      envPath: options.envPath,
+      headersPath: options.headersPath,
+      cspPath: options.cspPath,
+    },
   });
+  const compiledHeaders = processHeaders(applicationConfig);
 
   if (options.useLocalAssets) {
     const indexHtmlContent = fs.readFileSync(
@@ -44,11 +48,11 @@ module.exports = async function compileHtml(options) {
     );
     const interpolatedIndexHtmlContent = replaceHtmlPlaceholders(
       indexHtmlContent,
-      env
+      applicationConfig.env
     );
     return {
-      env,
-      headers,
+      env: applicationConfig.env,
+      headers: compiledHeaders,
       indexHtmlContent: interpolatedIndexHtmlContent,
     };
   }
@@ -58,7 +62,7 @@ module.exports = async function compileHtml(options) {
   const randomQueryParam = Date.now();
   // Fetch `index.html.template` from remote CDN
   const remoteIndexHtmlResponse = await fetch(
-    `${env.cdnUrl}/index.html.template?${randomQueryParam}`
+    `${applicationConfig.env.cdnUrl}/index.html.template?${randomQueryParam}`
   );
   if (!remoteIndexHtmlResponse.ok) {
     const rawResponseError = await remoteIndexHtmlResponse.text();
@@ -68,11 +72,11 @@ module.exports = async function compileHtml(options) {
   const remoteIndexHtmlContent = await remoteIndexHtmlResponse.text();
   const interpolatedIndexHtmlContent = replaceHtmlPlaceholders(
     remoteIndexHtmlContent,
-    env
+    applicationConfig.env
   );
   return {
-    env,
-    headers,
+    env: applicationConfig.env,
+    headers: compiledHeaders,
     indexHtmlContent: interpolatedIndexHtmlContent,
   };
 };

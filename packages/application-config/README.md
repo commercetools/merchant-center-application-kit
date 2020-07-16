@@ -48,5 +48,3 @@ In the VSCode settings (either user settings or workspace settings), reference t
   }
 ]
 ```
-
-## API

@@ -44,7 +44,7 @@ module.exports = ({ env, headers }) => {
   fs.writeFileSync(
     path.join(
       __dirname,
-      `../vercel-deployments/state-machines-${env.location}/${environmentKey}.vercel.json`
+      `state-machines-${env.location}/${environmentKey}.vercel.json`
     ),
     JSON.stringify(config, null, 2),
     { encoding: 'utf8' }

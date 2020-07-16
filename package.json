@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "auth": "npm_config_registry=https://registry.npmjs.org npm whoami",
-    "clean": "lerna exec 'rm -rf dist'",
+    "clean": "lerna exec 'rm -rf build dist'",
     "i18n:build": "./packages/mc-scripts/bin/mc-scripts.js extract-intl --output-path=$(pwd)/packages/i18n/data 'packages/**/!(*.spec|*.d).{js,ts,tsx}'",
     "l10n:build": "pushd packages/l10n; yarn generate-data",
     "lint": "jest --projects jest.eslint.config.js jest.stylelint.config.js jest.text.config.js",

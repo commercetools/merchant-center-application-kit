@@ -1,17 +1,19 @@
 const path = require('path');
-const {
-  loadEnv,
-  loadHeaders,
-} = require('@commercetools-frontend/mc-html-template');
+const { processConfig } = require('@commercetools-frontend/application-config');
+const { processHeaders } = require('@commercetools-frontend/mc-html-template');
 const devAuthentication = require('@commercetools-frontend/mc-dev-authentication');
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 
 const sourcePath = process.cwd();
-const localEnv = loadEnv(path.join(sourcePath, 'env.json'));
-const headers = loadHeaders(localEnv, {
-  cspPath: path.join(sourcePath, 'csp.json'),
-  headersPath: path.join(sourcePath, 'headers.json'),
+const applicationConfig = processConfig({
+  // TODO: Remove in `v17`
+  deprecatedOptions: {
+    envPath: path.join(sourcePath, 'env.json'),
+    headersPath: path.join(sourcePath, 'headers.json'),
+    cspPath: path.join(sourcePath, 'csp.json'),
+  },
 });
+const compiledHeaders = processHeaders(applicationConfig);
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
@@ -90,7 +92,7 @@ module.exports = ({ proxy, allowedHost, contentBase, publicPath }) => ({
     // See https://github.com/facebookincubator/create-react-app/issues/387.
     disableDotRule: true,
   },
-  headers,
+  headers: compiledHeaders,
   public: allowedHost,
   proxy,
   before(app) {
@@ -101,7 +103,7 @@ module.exports = ({ proxy, allowedHost, contentBase, publicPath }) => ({
     app.use('/api/graphql', (request, response) => {
       response.statusCode = 400;
       response.setHeader('Content-Type', 'application/json');
-      const errorMessage = `This GraphQL endpoint is not available in ${process.env.NODE_ENV} mode as it's not necessary. The menu configuration is loaded from the file "menu.json" (more info at https://www.npmjs.com/package/@commercetools-frontend/application-shell). In case you do need to test things out, you can pass a "mcProxyApiUrl" to your "env.json" and point it to e.g. "https://mc.europe-west1.gcp.commercetools.com/api/graphql"`;
+      const errorMessage = `This GraphQL endpoint is not available in ${process.env.NODE_ENV} mode, as it's not necessary. The menu configuration is loaded from the file "menu.json" (more info at https://www.npmjs.com/package/@commercetools-frontend/application-shell). In case you do need to test things out, you can pass a "mcProxyApiUrl" to your application config (in the "additionalEnv" properties) and point it to the production environment, for example for GCP-EU use "https://mc.europe-west1.gcp.commercetools.com/api/graphql".`;
       const fakeApolloError = new Error(errorMessage);
       response.end(
         JSON.stringify({
@@ -111,20 +113,20 @@ module.exports = ({ proxy, allowedHost, contentBase, publicPath }) => ({
       );
     });
     app.use('/login', (request, response, next) => {
-      if (localEnv.disableAuthRoutesOfDevServer) {
+      if (applicationConfig.env.disableAuthRoutesOfDevServer) {
         next();
       } else {
-        response.render('login', { env: localEnv });
+        response.render('login', { env: applicationConfig.env });
       }
     });
     // Intercept the /logout page and "remove" the auth cookie value
     app.use('/logout', (request, response, next) => {
       devAuthentication.routes.logout(response);
 
-      if (localEnv.disableAuthRoutesOfDevServer) {
+      if (applicationConfig.env.disableAuthRoutesOfDevServer) {
         next();
       } else {
-        response.render('logout', { env: localEnv });
+        response.render('logout', { env: applicationConfig.env });
       }
     });
   },

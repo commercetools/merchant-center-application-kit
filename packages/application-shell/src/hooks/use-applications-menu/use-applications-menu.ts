@@ -56,7 +56,7 @@ function useApplicationsMenu<Key extends MenuKey>(
     ...queryOptions,
     fetchPolicy: queryOptions.fetchPolicy || 'cache-first',
     context: {
-      // Allow to overwrite the API url from `env.json`
+      // Allow to overwrite the API url from application config
       uri: `${mcProxyApiUrl || defaultApiUrl}/api/graphql`,
       skipGraphQlTargetCheck: true,
     },

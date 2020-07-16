@@ -64,6 +64,7 @@
     "@commercetools-uikit/flat-button": "^10.21.0",
     "@commercetools-uikit/icons": "^10.22.0",
     "@commercetools-uikit/loading-spinner": "^10.21.0",
+    "@commercetools-uikit/notifications": "^10.24.0",
     "@commercetools-uikit/select-input": "^10.22.0",
     "@commercetools-uikit/spacings": "^10.18.5",
     "@commercetools-uikit/text": "^10.21.0",

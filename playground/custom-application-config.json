@@ -1,0 +1,15 @@
+{
+  "name": "Application Kit Playground",
+  "entryPointUriPath": "state-machines",
+  "cloudIdentifier": "${env:CLOUD_IDENTIFIER}",
+  "env": {
+    "production": {
+      "url": "${env:APP_URL}"
+    }
+  },
+  "additionalEnv": {
+    "trackingGtm": "${env:TRACKING_GTM}",
+    "trackingSentry": "https://327619347ab84c8e9702a1dc16460198@sentry.io/1549825",
+    "echoServerApiUrl": "${env:ECHO_SERVER_URL}"
+  }
+}

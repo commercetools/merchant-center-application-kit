@@ -1,7 +1,7 @@
-const { validateConfig } = require('../src');
-const fixtureConfigSimple = require('./fixtures/config-simple.json');
-const fixtureConfigFull = require('./fixtures/config-full.json');
-const fixtureConfigEnvVariables = require('./fixtures/config-env-variables.json');
+import validateConfig from '../src/validate-config';
+import fixtureConfigSimple from './fixtures/config-simple.json';
+import fixtureConfigFull from './fixtures/config-full.json';
+import fixtureConfigEnvVariables from './fixtures/config-env-variables.json';
 
 describe.each`
   name               | config
