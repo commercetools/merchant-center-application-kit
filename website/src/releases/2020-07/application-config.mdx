@@ -17,10 +17,10 @@ The `env.json` and `headers.json` files will still keep working but they will be
 
 </Info>
 
-The new configuration format aims to drastically simplify how to configure the Custom Application, as well as to make the configuration process less error prone.
-In fact, the new configuration file is backed by a JSON schema that is shipped together with the [new package](https://www.npmjs.com/package/@commercetools-frontend/application-config). The configuration file is then validated against the JSON schema.
+The new configuration format aims to drastically simplify the configuration of a Custom Application. In addition, it also strives to make the configuration process less error prone.
+To achieve this, the new configuration file is backed by a JSON schema that is shipped together with the [new package](https://www.npmjs.com/package/@commercetools-frontend/application-config). The configuration file is then validated against the JSON schema.
 
-Furthermore, the new configuration file tries to infer as many required information as possible.
+Furthermore, the new configuration process tries to infer as much information as possible to reduce the amount of required fields.
 
 <!--more-->
 
@@ -32,10 +32,10 @@ The new configuration file is a JSON file with one of the following names:
 - `.custom-application-config.json`
 - `custom-application-config.json`
 
-The file is automatically loaded by the other packages, so you don't need to explicitly specify it in, for example, the `mc-scripts` commands.
+The file is automatically loaded by the packages depending on it, so you don't need to explicitly specify it anywhere. This applies for instance to the `mc-scripts` commands.
 
 <Info>
-The file needs to be located in the project root folder.
+The file needs to be present in the project root folder.
 </Info>
 
 For example, given the following `env.json` and `headers.json` files:
@@ -110,13 +110,13 @@ That's it! All other values are inferred from the config, like the Content-Secur
 
 <Info>
 
-Note that the environment placeholder values `${env:VALUE}` are still working.
+Additionally, note that the environment placeholder syntax `${env:VALUE}` continues to work.
 
 </Info>
 
 # Migrating `mc-scripts` commands
 
-The new configuration file is automatically loaded and therefore there is no need to explicitly pass the file path to the `mc-scripts` commands in the `package.json`
+The new configuration file is automatically loaded. Therefore, there is no need to explicitly pass the file path to the `mc-scripts` commands in the `package.json`
 
 ```diff title="Updating the start command for testing the application locally in production mode"
 {
