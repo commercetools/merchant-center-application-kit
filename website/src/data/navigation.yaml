@@ -16,6 +16,8 @@
       path: '/development/folder-structure'
     - title: Available Scripts
       path: '/development/available-scripts'
+    - title: Application Config
+      path: '/development/application-config'
     - title: Menu Links
       path: '/development/menu-links'
     - title: Styling
