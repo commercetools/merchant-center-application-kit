@@ -44,7 +44,7 @@ In the VSCode settings (either user settings or workspace settings), reference t
       "/.custom-application-config.json",
       "/custom-application-config.json"
     ],
-    "url": "https://unpkg.com/@commercetools-frontend/application-config/schema.json"
+    "url": "https://docs.commercetools.com/custom-applications/schema.json"
   }
 ]
 ```
