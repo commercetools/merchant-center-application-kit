@@ -147,6 +147,7 @@ export interface ApplicationWindow extends Window {
     mcApiUrl: string;
     frontendHost: string;
     servedByProxy: boolean;
+    // Optional properties. To use them, pass them to the `additionalEnv` object of the application config.
     mcProxyApiUrl?: string;
     trackingSentry?: string;
     trackingGtm?: string;
