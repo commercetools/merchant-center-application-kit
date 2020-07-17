@@ -15,7 +15,7 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
    */
   name: string;
   /**
-   * The unique route path of the Custom Application. This is the identifier that the Merchant Center Proxy uses to match the HTTP request and forward the request to the Custom Application. This value also needs to be used in the application client side routes. The value must be the same as the `navbarMenu.uriPath` value.
+   * The unique route path of the Custom Application. This is the identifier that the Merchant Center Proxy uses to match the HTTP request and to forward it to the Custom Application URL. This value also needs to be used in the application client side routes. The value must be the same as the `navbarMenu.uriPath` in the `menu.json` and the application route path when registering the Custom Application. For example, if the Custom Application should be served at the route `/:projectKey/avengers`, the `entryPointUriPath` must be set to `avengers` and the same for the application routes.
    */
   entryPointUriPath: string;
   /**
@@ -27,7 +27,7 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
    */
   mcApiUrl?: string;
   /**
-   * This is an object of keys that represent different environments (for example `production`). The environment used depends on the environment variable MC_APP_ENV. If MC_APP_ENV isn't set then NODE_ENV will be used, if it's not set then it defaults to "development"
+   * This is an object of keys that represent different environments (for example `production`). The environment used depends on the environment variable `MC_APP_ENV`. If `MC_APP_ENV` isn't set then `NODE_ENV` will be used. If neither is set, it defaults to `development`
    */
   env: {
     /**
@@ -45,7 +45,7 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
     };
   };
   /**
-   * Additional environment values that are injected in the application context
+   * Additional environment values unique to your Custom Application that are injected in the application context.
    */
   additionalEnv?: {
     [k: string]: unknown;
