@@ -1,5 +1,15 @@
 # @commercetools-website/custom-applications
 
+## 16.9.4
+
+### Patch Changes
+
+- [`cc8b37b`](https://github.com/commercetools/merchant-center-application-kit/commit/cc8b37bf85d4683a605a6c3233100627e670ebe7) [#1627](https://github.com/commercetools/merchant-center-application-kit/pull/1627) Thanks [@renovate](https://github.com/apps/renovate)! - chore: update dependencies
+
+* [`33baf25`](https://github.com/commercetools/merchant-center-application-kit/commit/33baf25a5990d7bb292e88e4040e11bff4669b2c) [#1634](https://github.com/commercetools/merchant-center-application-kit/pull/1634) Thanks [@emmenko](https://github.com/emmenko)! - Update description of schema properties of the application config
+
+- [`394380d`](https://github.com/commercetools/merchant-center-application-kit/commit/394380dd25321c2f8f1e6b1e60b998620f2c1e02) [#1635](https://github.com/commercetools/merchant-center-application-kit/pull/1635) Thanks [@emmenko](https://github.com/emmenko)! - Get JSON schema from docs website URL
+
 ## 16.9.3
 
 ### Patch Changes
