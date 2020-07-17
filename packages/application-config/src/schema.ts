@@ -27,7 +27,7 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
    */
   mcApiUrl?: string;
   /**
-   * This is an object of keys that represent different environments (for example `production`). The environment used depends on the environment variable `MC_APP_ENV`. If `MC_APP_ENV` isn't set then `NODE_ENV` will be used. If neither is set, it defaults to `development`
+   * This is an object of keys that represents different environments (for example `production`). The environment used depends on the environment variable `MC_APP_ENV`. If `MC_APP_ENV` isn't set then `NODE_ENV` will be used. If neither is set, it defaults to `development`
    */
   env: {
     /**
