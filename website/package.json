@@ -5,7 +5,7 @@
   "scripts": {
     "build": "gatsby build --prefix-paths",
     "prebuild": "rm -rf public/custom-applications",
-    "postbuild": "mv public custom-applications && mkdir public && mv custom-applications public/",
+    "postbuild": "./scripts/postbuild.sh",
     "start": "gatsby develop"
   },
   "dependencies": {
