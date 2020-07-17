@@ -1,5 +1,11 @@
 # @commercetools-frontend/babel-preset-mc-app
 
+## 16.15.0
+
+### Minor Changes
+
+- [`72c42f4`](https://github.com/commercetools/merchant-center-application-kit/commit/72c42f4eb05f690914372281f2361630e2184687) [#1631](https://github.com/commercetools/merchant-center-application-kit/pull/1631) Thanks [@tdeekens](https://github.com/tdeekens)! - feat(babel-preset-mc-app): add logical assignment operator
+
 ## 16.14.0
 
 ### Patch Changes

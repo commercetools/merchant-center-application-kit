@@ -1,5 +1,17 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 16.15.0
+
+### Patch Changes
+
+- [`cc8b37b`](https://github.com/commercetools/merchant-center-application-kit/commit/cc8b37bf85d4683a605a6c3233100627e670ebe7) [#1627](https://github.com/commercetools/merchant-center-application-kit/pull/1627) Thanks [@renovate](https://github.com/apps/renovate)! - chore: update dependencies
+
+* [`33baf25`](https://github.com/commercetools/merchant-center-application-kit/commit/33baf25a5990d7bb292e88e4040e11bff4669b2c) [#1634](https://github.com/commercetools/merchant-center-application-kit/pull/1634) Thanks [@emmenko](https://github.com/emmenko)! - Update description of schema properties of the application config
+
+* Updated dependencies [[`cc8b37b`](https://github.com/commercetools/merchant-center-application-kit/commit/cc8b37bf85d4683a605a6c3233100627e670ebe7), [`33baf25`](https://github.com/commercetools/merchant-center-application-kit/commit/33baf25a5990d7bb292e88e4040e11bff4669b2c)]:
+  - @commercetools-frontend/sentry@16.15.0
+  - @commercetools-frontend/constants@16.15.0
+
 ## 16.14.0
 
 ### Patch Changes

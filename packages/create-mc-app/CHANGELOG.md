@@ -1,5 +1,11 @@
 # @commercetools-frontend/create-mc-app
 
+## 16.15.0
+
+### Patch Changes
+
+- [`cc8b37b`](https://github.com/commercetools/merchant-center-application-kit/commit/cc8b37bf85d4683a605a6c3233100627e670ebe7) [#1627](https://github.com/commercetools/merchant-center-application-kit/pull/1627) Thanks [@renovate](https://github.com/apps/renovate)! - chore: update dependencies
+
 ## 16.9.1
 
 ### Patch Changes

@@ -1,5 +1,18 @@
 # @commercetools-frontend/mc-http-server
 
+## 16.15.0
+
+### Minor Changes
+
+- [`728024c`](https://github.com/commercetools/merchant-center-application-kit/commit/728024c57666d67e997b7342df74cceba511d182) [#1626](https://github.com/commercetools/merchant-center-application-kit/pull/1626) Thanks [@emmenko](https://github.com/emmenko)! - This release introduces the usage of a new configuration file format and marks the deprecation of the `env.json` and `headers.json` files.
+
+  For all the necessary information about migrating to the new configuration file, please [read the release notes](https://docs.commercetools.com/custom-applications/releases/2020-07-16-introducing-a-new-and-simpler-application-config).
+
+### Patch Changes
+
+- Updated dependencies [[`728024c`](https://github.com/commercetools/merchant-center-application-kit/commit/728024c57666d67e997b7342df74cceba511d182)]:
+  - @commercetools-frontend/mc-html-template@16.15.0
+
 ## 16.14.0
 
 ### Patch Changes

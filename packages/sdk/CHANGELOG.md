@@ -1,5 +1,12 @@
 # @commercetools-frontend/sdk
 
+## 16.15.0
+
+### Patch Changes
+
+- Updated dependencies [[`33baf25`](https://github.com/commercetools/merchant-center-application-kit/commit/33baf25a5990d7bb292e88e4040e11bff4669b2c)]:
+  - @commercetools-frontend/constants@16.15.0
+
 ## 16.14.0
 
 ### Patch Changes
