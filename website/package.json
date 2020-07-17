@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "gatsby build --prefix-paths",
-    "prebuild": "rm -rf public/custom-applications",
+    "prebuild": "./scripts/prebuild.sh",
     "postbuild": "./scripts/postbuild.sh",
     "start": "gatsby develop"
   },
