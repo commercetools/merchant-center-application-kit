@@ -9,7 +9,8 @@
     }
   },
   "additionalEnv": {
-    "numberOfMovies": 4
+    "numberOfMovies": 4,
+    "empty": ""
   },
   "headers": {
     "csp": {

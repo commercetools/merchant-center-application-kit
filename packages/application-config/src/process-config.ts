@@ -4,6 +4,7 @@ import type { DeprecatedOptions } from './load-deprecated-config';
 
 // Loads the configuration file and parse the environment and header values.
 // Most of the resulting values are inferred from the config.
+import omitEmpty from 'omit-empty-es';
 import loadConfig from './load-config';
 import loadDeprecatedConfig from './load-deprecated-config';
 import validateConfig from './validate-config';
@@ -89,7 +90,7 @@ const processConfig = ({
 
   cachedConfig = {
     env: {
-      ...additionalAppEnv,
+      ...omitEmpty(additionalAppEnv),
       applicationId: appConfig.id,
       applicationName: appConfig.name,
       cdnUrl: cdnUrl.href,
