@@ -33,7 +33,7 @@ describe('processing a simple config', () => {
       env: {
         applicationId: undefined,
         applicationName: 'avengers-app',
-        cdnUrl: 'http://localhost:3001',
+        cdnUrl: 'http://localhost:3001/',
         env: 'test',
         frontendHost: 'localhost:3001',
         location: 'gcp-eu',
@@ -43,7 +43,7 @@ describe('processing a simple config', () => {
       },
       headers: {
         csp: {
-          'connect-src': ['mc-api.europe-west1.gcp.commercetools.com'],
+          'connect-src': ['https://mc-api.europe-west1.gcp.commercetools.com'],
           'script-src': [],
           'style-src': [],
         },
@@ -63,7 +63,7 @@ describe('processing a simple config', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
-          cdnUrl: 'https://avengers.app',
+          cdnUrl: 'https://avengers.app/',
           env: 'production',
           frontendHost: 'avengers.app',
           location: 'gcp-eu',
@@ -74,11 +74,11 @@ describe('processing a simple config', () => {
         headers: {
           csp: {
             'connect-src': [
-              'mc-api.europe-west1.gcp.commercetools.com',
-              'avengers.app',
+              'https://mc-api.europe-west1.gcp.commercetools.com',
+              'https://avengers.app/',
             ],
-            'script-src': ['avengers.app'],
-            'style-src': ['avengers.app'],
+            'script-src': ['https://avengers.app/'],
+            'style-src': ['https://avengers.app/'],
           },
         },
       });
@@ -98,7 +98,7 @@ describe('processing a simple config', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
-          cdnUrl: 'http://localhost:3001',
+          cdnUrl: 'http://localhost:3001/',
           env: 'development',
           frontendHost: 'localhost:3001',
           location: 'gcp-eu',
@@ -108,7 +108,9 @@ describe('processing a simple config', () => {
         },
         headers: {
           csp: {
-            'connect-src': ['mc-api.europe-west1.gcp.commercetools.com'],
+            'connect-src': [
+              'https://mc-api.europe-west1.gcp.commercetools.com',
+            ],
             'script-src': [],
             'style-src': [],
           },
@@ -128,7 +130,7 @@ describe('processing a full config', () => {
       env: {
         applicationId: undefined,
         applicationName: 'avengers-app',
-        cdnUrl: 'http://localhost:3001',
+        cdnUrl: 'http://localhost:3001/',
         env: 'test',
         frontendHost: 'localhost:3001',
         location: 'gcp-eu',
@@ -140,11 +142,11 @@ describe('processing a full config', () => {
       headers: {
         csp: {
           'connect-src': [
-            'cdn.avengers.app',
-            'mc-api.europe-west1.gcp.commercetools.com',
+            'https://track.avengers.app',
+            'https://mc-api.europe-west1.gcp.commercetools.com',
           ],
-          'script-src': ['cdn.avengers.app'],
-          'style-src': ['cdn.avengers.app'],
+          'script-src': ['https://track.avengers.app'],
+          'style-src': [],
         },
         featurePolicies: {
           microphone: 'none',
@@ -165,7 +167,7 @@ describe('processing a full config', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
-          cdnUrl: 'https://cdn.avengers.app',
+          cdnUrl: 'https://cdn.avengers.app/',
           env: 'production',
           frontendHost: 'avengers.app',
           location: 'gcp-eu',
@@ -177,12 +179,16 @@ describe('processing a full config', () => {
         headers: {
           csp: {
             'connect-src': [
-              'cdn.avengers.app',
-              'mc-api.europe-west1.gcp.commercetools.com',
-              'avengers.app',
+              'https://track.avengers.app',
+              'https://mc-api.europe-west1.gcp.commercetools.com',
+              'https://avengers.app/',
             ],
-            'script-src': ['cdn.avengers.app', 'avengers.app'],
-            'style-src': ['cdn.avengers.app', 'avengers.app'],
+            'script-src': [
+              'https://track.avengers.app',
+              'https://avengers.app/',
+              'https://cdn.avengers.app/',
+            ],
+            'style-src': ['https://avengers.app/', 'https://cdn.avengers.app/'],
           },
           featurePolicies: {
             microphone: 'none',
@@ -205,7 +211,7 @@ describe('processing a full config', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
-          cdnUrl: 'http://localhost:3001',
+          cdnUrl: 'http://localhost:3001/',
           env: 'development',
           frontendHost: 'localhost:3001',
           location: 'gcp-eu',
@@ -217,11 +223,11 @@ describe('processing a full config', () => {
         headers: {
           csp: {
             'connect-src': [
-              'cdn.avengers.app',
-              'mc-api.europe-west1.gcp.commercetools.com',
+              'https://track.avengers.app',
+              'https://mc-api.europe-west1.gcp.commercetools.com',
             ],
-            'script-src': ['cdn.avengers.app'],
-            'style-src': ['cdn.avengers.app'],
+            'script-src': ['https://track.avengers.app'],
+            'style-src': [],
           },
           featurePolicies: {
             microphone: 'none',
@@ -250,7 +256,7 @@ describe('processing a config with environment variable placeholders', () => {
       env: {
         applicationId: undefined,
         applicationName: 'avengers-app',
-        cdnUrl: 'http://localhost:3001',
+        cdnUrl: 'http://localhost:3001/',
         env: 'test',
         frontendHost: 'localhost:3001',
         location: 'gcp-eu',
@@ -260,7 +266,7 @@ describe('processing a config with environment variable placeholders', () => {
       },
       headers: {
         csp: {
-          'connect-src': ['mc-api.europe-west1.gcp.commercetools.com'],
+          'connect-src': ['https://mc-api.europe-west1.gcp.commercetools.com'],
           'script-src': [],
           'style-src': [],
         },
@@ -282,7 +288,7 @@ describe('processing a config with environment variable placeholders', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
-          cdnUrl: 'https://avengers.app',
+          cdnUrl: 'https://avengers.app/',
           env: 'production',
           frontendHost: 'avengers.app',
           location: 'gcp-eu',
@@ -293,11 +299,11 @@ describe('processing a config with environment variable placeholders', () => {
         headers: {
           csp: {
             'connect-src': [
-              'mc-api.europe-west1.gcp.commercetools.com',
-              'avengers.app',
+              'https://mc-api.europe-west1.gcp.commercetools.com',
+              'https://avengers.app/',
             ],
-            'script-src': ['avengers.app'],
-            'style-src': ['avengers.app'],
+            'script-src': ['https://avengers.app/'],
+            'style-src': ['https://avengers.app/'],
           },
         },
       });
@@ -319,7 +325,7 @@ describe('processing a config with environment variable placeholders', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
-          cdnUrl: 'http://localhost:3001',
+          cdnUrl: 'http://localhost:3001/',
           env: 'development',
           frontendHost: 'localhost:3001',
           location: 'gcp-eu',
@@ -329,7 +335,9 @@ describe('processing a config with environment variable placeholders', () => {
         },
         headers: {
           csp: {
-            'connect-src': ['mc-api.europe-west1.gcp.commercetools.com'],
+            'connect-src': [
+              'https://mc-api.europe-west1.gcp.commercetools.com',
+            ],
             'script-src': [],
             'style-src': [],
           },

@@ -14,13 +14,10 @@
   "headers": {
     "csp": {
       "script-src": [
-        "cdn.avengers.app"
+        "https://track.avengers.app"
       ],
       "connect-src": [
-        "cdn.avengers.app"
-      ],
-      "style-src": [
-        "cdn.avengers.app"
+        "https://track.avengers.app"
       ]
     },
     "featurePolicies": {

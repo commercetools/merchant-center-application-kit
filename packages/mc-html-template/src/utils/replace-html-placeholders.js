@@ -2,6 +2,8 @@ const htmlScripts = require('../load-html-scripts');
 const htmlStyles = require('../load-html-styles');
 const sanitizeAppEnvironment = require('./sanitize-app-environment');
 
+const trimTrailingSlash = (value) => value.replace(/\/$/, '');
+
 const getGtmTrackingScript = (gtmId) => {
   if (!gtmId) return '';
   const url = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
@@ -16,10 +18,13 @@ const replaceHtmlPlaceholders = (indexHtmlContent, config) =>
       new RegExp('__CDN_URL__', 'g'),
       config.cdnUrl
         ? // Ensure there is a trailing slash
-          `${config.cdnUrl.replace(/\/$/, '')}/`
+          `${trimTrailingSlash(config.cdnUrl)}/`
         : ''
     )
-    .replace(new RegExp('__MC_API_URL__', 'g'), config.mcApiUrl)
+    .replace(
+      new RegExp('__MC_API_URL__', 'g'),
+      trimTrailingSlash(config.mcApiUrl)
+    )
     .replace(
       new RegExp('__APP_ENVIRONMENT__', 'g'),
       sanitizeAppEnvironment(config)
