@@ -1,5 +1,14 @@
 # @commercetools-frontend/mc-html-template
 
+## 16.15.1
+
+### Patch Changes
+
+- [`96b3af7`](https://github.com/commercetools/merchant-center-application-kit/commit/96b3af7c3e8276e7a136e48c3d313fe6d504099d) [#1636](https://github.com/commercetools/merchant-center-application-kit/pull/1636) Thanks [@emmenko](https://github.com/emmenko)! - Fix parsing of application config to preserve full URLs when inferring CSP directives.
+  Furthermore, every environment variable referenced within the application config that has an empty value will be parsed as-is and it will not be rejected. Additionally, the fields passed to the `additionalEnv` object that are empty will be removed from the resulting environment and `window.app`.
+- Updated dependencies [[`96b3af7`](https://github.com/commercetools/merchant-center-application-kit/commit/96b3af7c3e8276e7a136e48c3d313fe6d504099d)]:
+  - @commercetools-frontend/application-config@16.15.1
+
 ## 16.15.0
 
 ### Minor Changes
