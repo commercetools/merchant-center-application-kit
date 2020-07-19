@@ -6,6 +6,7 @@ const regions = {
   'gcp-us': ['sfo'],
 };
 const headersStaticFiles = { 'cache-control': 's-maxage=31536000,immutable' };
+const trimTrailingSlash = (value) => value.replace(/\/$/, '');
 
 // This transformer will generate a `vercel.json` config file, based on the application
 // environment config and custom headers.
@@ -18,7 +19,7 @@ module.exports = ({ env, headers }) => {
     env: {
       // Use the `cdnUrl` vale as it happens to be the exact value that we
       // need for the audience.
-      PLAYGROUND_API_AUDIENCE: env.cdnUrl,
+      PLAYGROUND_API_AUDIENCE: trimTrailingSlash(env.cdnUrl),
     },
     builds: [
       { src: 'public/**', use: '@vercel/static' },

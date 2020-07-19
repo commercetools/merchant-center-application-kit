@@ -8,6 +8,7 @@ describe('providing a config with env variable placeholders', () => {
       CDN_REGION: 'eu',
       CDN_ID: 'cdn-id',
       STATUS: '200',
+      EMPTY: '',
     };
     const result = substituteEnvVariablePlaceholders({
       title: 'The title is ${env:TITLE}',
@@ -26,6 +27,7 @@ describe('providing a config with env variable placeholders', () => {
           },
         },
       },
+      empty: '${env:EMPTY}',
     });
     expect(result).toEqual({
       title: 'The title is Awesome',
@@ -44,6 +46,7 @@ describe('providing a config with env variable placeholders', () => {
           },
         },
       },
+      empty: '',
     });
   });
 });

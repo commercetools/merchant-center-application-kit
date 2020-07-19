@@ -4,6 +4,7 @@ import type { DeprecatedOptions } from './load-deprecated-config';
 
 // Loads the configuration file and parse the environment and header values.
 // Most of the resulting values are inferred from the config.
+import omitEmpty from 'omit-empty-es';
 import loadConfig from './load-config';
 import loadDeprecatedConfig from './load-deprecated-config';
 import validateConfig from './validate-config';
@@ -73,8 +74,8 @@ const processConfig = ({
     `Invalid application URL: "${appEnvConfig.url}"`
   );
   const cdnUrl = getOrThrow(
-    () => new URL(appEnvConfig.cdnUrl || appUrl.origin),
-    `Invalid application CDN URL: "${appEnvConfig.cdnUrl || appUrl.origin}"`
+    () => new URL(appEnvConfig.cdnUrl || appUrl.href),
+    `Invalid application CDN URL: "${appEnvConfig.cdnUrl || appUrl.href}"`
   );
   const mcApiUrl = getOrThrow(
     () =>
@@ -89,10 +90,10 @@ const processConfig = ({
 
   cachedConfig = {
     env: {
-      ...additionalAppEnv,
+      ...omitEmpty(additionalAppEnv),
       applicationId: appConfig.id,
       applicationName: appConfig.name,
-      cdnUrl: cdnUrl.origin,
+      cdnUrl: cdnUrl.href,
       env: appEnvKey,
       frontendHost: appUrl.host,
       location: appConfig.cloudIdentifier,
@@ -106,15 +107,15 @@ const processConfig = ({
         ...appConfig.headers?.csp,
         'connect-src': getUniqueValues(
           appConfig.headers?.csp['connect-src'],
-          [mcApiUrl.hostname].concat(isProd ? appUrl.hostname : [])
+          [mcApiUrl.origin].concat(isProd ? [appUrl.href] : [])
         ),
         'script-src': getUniqueValues(
           appConfig.headers?.csp['script-src'],
-          isProd ? [appUrl.hostname] : []
+          isProd ? [appUrl.href, cdnUrl.href] : []
         ),
         'style-src': getUniqueValues(
           appConfig.headers?.csp['style-src'],
-          isProd ? [appUrl.hostname] : []
+          isProd ? [appUrl.href, cdnUrl.href] : []
         ),
       },
     },

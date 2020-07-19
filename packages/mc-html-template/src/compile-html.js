@@ -8,6 +8,8 @@ const replaceHtmlPlaceholders = require('./utils/replace-html-placeholders');
 const requiredOptions = ['publicAssetsPath'];
 const deprecatedOptions = ['envPath', 'cspPath', 'headersPath'];
 
+const trimTrailingSlash = (value) => value.replace(/\/$/, '');
+
 /**
  * Options:
  * - envPath (deprecated)
@@ -62,7 +64,9 @@ module.exports = async function compileHtml(options) {
   const randomQueryParam = Date.now();
   // Fetch `index.html.template` from remote CDN
   const remoteIndexHtmlResponse = await fetch(
-    `${applicationConfig.env.cdnUrl}/index.html.template?${randomQueryParam}`
+    `${trimTrailingSlash(
+      applicationConfig.env.cdnUrl
+    )}/index.html.template?${randomQueryParam}`
   );
   if (!remoteIndexHtmlResponse.ok) {
     const rawResponseError = await remoteIndexHtmlResponse.text();

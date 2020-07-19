@@ -25,9 +25,9 @@ const substituteEnvVariablePlaceholder = (
   meta: { processEnv: NodeJS.ProcessEnv } = { processEnv: process.env }
 ) => {
   const [, requestedEnvVar] = valueOfPlaceholder.split(':');
-  const valueOfEnv = meta.processEnv[requestedEnvVar];
+  const hasEnvField = meta.processEnv.hasOwnProperty(requestedEnvVar);
 
-  if (!valueOfEnv) {
+  if (!hasEnvField) {
     throw new Error(
       `Missing '${requestedEnvVar}' specified in config as 'env:${requestedEnvVar}'.`
     );
@@ -36,7 +36,7 @@ const substituteEnvVariablePlaceholder = (
   const escapedMatchedString = matchedString.replace(/[${}:]/g, '\\$&');
   return valueOfEnvConfig.replace(
     new RegExp(`(${escapedMatchedString})+`, 'g'),
-    valueOfEnv
+    meta.processEnv[requestedEnvVar] as string
   );
 };
 
