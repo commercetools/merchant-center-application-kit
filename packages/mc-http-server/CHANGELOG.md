@@ -1,5 +1,12 @@
 # @commercetools-frontend/mc-http-server
 
+## 16.15.1
+
+### Patch Changes
+
+- Updated dependencies [[`96b3af7`](https://github.com/commercetools/merchant-center-application-kit/commit/96b3af7c3e8276e7a136e48c3d313fe6d504099d)]:
+  - @commercetools-frontend/mc-html-template@16.15.1
+
 ## 16.15.0
 
 ### Minor Changes
