@@ -1,5 +1,8 @@
 const createLoginMiddleware = (env) => (request, response, next) => {
-  if (Boolean(env.disableAuthRoutesOfDevServer) || env.servedByProxy) {
+  if (
+    String(env.disableAuthRoutesOfDevServer) === 'true' ||
+    env.servedByProxy
+  ) {
     next();
   } else {
     response.render('login', { env });
