@@ -16,7 +16,6 @@ const {
 const compression = require('compression');
 const devAuthentication = require('@commercetools-frontend/mc-dev-authentication');
 const express = require('express');
-const { createLogoutHandler, createLoginHandler } = require('./routes');
 
 // Config
 const lightshipServerPort = 9000;
@@ -138,9 +137,15 @@ const configureApplication = (options) => {
     })
     // Request access logs
     .use(morgan('combined', { stream: process.stdout }))
+    .get(
+      '/login',
+      devAuthentication.middlewares.createLoginMiddleware(options.env)
+    )
     // Intercept the /logout page and "remove" the auth cookie value
-    .get('/logout', createLogoutHandler(options.env))
-    .get('/login', createLoginHandler(options.env))
+    .get(
+      '/logout',
+      devAuthentication.middlewares.createLogoutMiddleware(options.env)
+    )
     // Keep this after the scraping endpoint `/metrics`
     .use(prometheusMetricsMiddleware)
     // From here on, compress all responses

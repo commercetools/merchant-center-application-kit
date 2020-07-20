@@ -112,22 +112,16 @@ module.exports = ({ proxy, allowedHost, contentBase, publicPath }) => ({
         })
       );
     });
-    app.use('/login', (request, response, next) => {
-      if (applicationConfig.env.disableAuthRoutesOfDevServer) {
-        next();
-      } else {
-        response.render('login', { env: applicationConfig.env });
-      }
-    });
+    app.use(
+      '/login',
+      devAuthentication.middlewares.createLoginMiddleware(applicationConfig.env)
+    );
     // Intercept the /logout page and "remove" the auth cookie value
-    app.use('/logout', (request, response, next) => {
-      devAuthentication.routes.logout(response);
-
-      if (applicationConfig.env.disableAuthRoutesOfDevServer) {
-        next();
-      } else {
-        response.render('logout', { env: applicationConfig.env });
-      }
-    });
+    app.use(
+      '/logout',
+      devAuthentication.middlewares.createLogoutMiddleware(
+        applicationConfig.env
+      )
+    );
   },
 });
