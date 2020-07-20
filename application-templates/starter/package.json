@@ -30,7 +30,7 @@
     "react": "16.13.1",
     "react-apollo": "3.1.5",
     "react-dom": "16.13.1",
-    "react-intl": "5.0.2",
+    "react-intl": "5.3.2",
     "react-redux": "7.2.0",
     "react-router-dom": "5.2.0",
     "redux": "4.0.5"
@@ -38,7 +38,7 @@
   "devDependencies": {
     "@commercetools-frontend/jest-preset-mc-app": "16.15.0",
     "@commercetools-frontend/mc-scripts": "16.15.1",
-    "@testing-library/react": "10.4.6",
+    "@testing-library/react": "10.4.7",
     "dotenv-cli": "3.2.0",
     "enzyme": "3.11.0",
     "jest": "26.1.0"

@@ -26,7 +26,7 @@
   "dependencies": {
     "execa": "4.0.3",
     "listr": "0.14.3",
-    "mri": "1.1.5",
+    "mri": "1.1.6",
     "semver": "7.3.2"
   },
   "engines": {

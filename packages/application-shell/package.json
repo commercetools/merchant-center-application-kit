@@ -43,8 +43,8 @@
   },
   "dependencies": {
     "@apollo/react-testing": "3.1.4",
-    "@babel/runtime": "7.10.4",
-    "@babel/runtime-corejs3": "7.10.4",
+    "@babel/runtime": "7.10.5",
+    "@babel/runtime-corejs3": "7.10.5",
     "@commercetools-frontend/actions-global": "16.15.0",
     "@commercetools-frontend/application-components": "16.15.0",
     "@commercetools-frontend/application-shell-connectors": "16.15.0",
@@ -117,11 +117,11 @@
     "uuid": "8.2.0"
   },
   "devDependencies": {
-    "@testing-library/react": "10.4.6",
+    "@testing-library/react": "10.4.7",
     "react": "16.13.1",
     "react-apollo": "3.1.5",
     "react-dom": "16.13.1",
-    "react-intl": "5.0.2",
+    "react-intl": "5.3.2",
     "react-redux": "7.2.0",
     "react-router-dom": "5.2.0",
     "redux": "4.0.5",
