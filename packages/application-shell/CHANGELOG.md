@@ -1,5 +1,26 @@
 # @commercetools-frontend/application-shell
 
+## 16.15.2
+
+### Patch Changes
+
+- [`0f3dcc3`](https://github.com/commercetools/merchant-center-application-kit/commit/0f3dcc38c81a5fb3c668faecce9a13057f66a66b) [#1638](https://github.com/commercetools/merchant-center-application-kit/pull/1638) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+- Updated dependencies [[`0f3dcc3`](https://github.com/commercetools/merchant-center-application-kit/commit/0f3dcc38c81a5fb3c668faecce9a13057f66a66b)]:
+  - @commercetools-frontend/actions-global@16.15.2
+  - @commercetools-frontend/application-components@16.15.2
+  - @commercetools-frontend/application-shell-connectors@16.15.2
+  - @commercetools-frontend/browser-history@16.15.2
+  - @commercetools-frontend/constants@16.15.2
+  - @commercetools-frontend/i18n@16.15.2
+  - @commercetools-frontend/l10n@16.15.2
+  - @commercetools-frontend/notifications@16.15.2
+  - @commercetools-frontend/permissions@16.15.2
+  - @commercetools-frontend/react-notifications@16.15.2
+  - @commercetools-frontend/sdk@16.15.2
+  - @commercetools-frontend/sentry@16.15.2
+  - @commercetools-frontend/url-utils@16.15.2
+
 ## 16.15.0
 
 ### Minor Changes

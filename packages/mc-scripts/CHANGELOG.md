@@ -1,5 +1,19 @@
 # @commercetools-frontend/mc-scripts
 
+## 16.15.2
+
+### Patch Changes
+
+- [`0f3dcc3`](https://github.com/commercetools/merchant-center-application-kit/commit/0f3dcc38c81a5fb3c668faecce9a13057f66a66b) [#1638](https://github.com/commercetools/merchant-center-application-kit/pull/1638) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+* [`77eb38a`](https://github.com/commercetools/merchant-center-application-kit/commit/77eb38ace68e7f519dea9deda487ed4c612091a5) [#1641](https://github.com/commercetools/merchant-center-application-kit/pull/1641) Thanks [@emmenko](https://github.com/emmenko)! - Unify login/logout dev routes for http servers
+
+* Updated dependencies [[`0f3dcc3`](https://github.com/commercetools/merchant-center-application-kit/commit/0f3dcc38c81a5fb3c668faecce9a13057f66a66b), [`77eb38a`](https://github.com/commercetools/merchant-center-application-kit/commit/77eb38ace68e7f519dea9deda487ed4c612091a5)]:
+  - @commercetools-frontend/application-config@16.15.2
+  - @commercetools-frontend/babel-preset-mc-app@16.15.2
+  - @commercetools-frontend/mc-html-template@16.15.2
+  - @commercetools-frontend/mc-dev-authentication@16.15.2
+
 ## 16.15.1
 
 ### Patch Changes

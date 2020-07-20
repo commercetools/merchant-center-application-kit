@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/i18n",
-  "version": "16.15.0",
+  "version": "16.15.2",
   "description": "MC i18n messages",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -41,7 +41,7 @@
   "dependencies": {
     "@babel/runtime": "7.10.5",
     "@babel/runtime-corejs3": "7.10.5",
-    "@commercetools-frontend/sentry": "16.15.0",
+    "@commercetools-frontend/sentry": "16.15.2",
     "@commercetools-uikit/i18n": "^10.13.0",
     "@types/prop-types": "^15.7.3",
     "moment": "^2.24.0",
