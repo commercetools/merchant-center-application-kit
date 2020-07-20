@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-dev-authentication
 
+## 16.15.2
+
+### Patch Changes
+
+- [`77eb38a`](https://github.com/commercetools/merchant-center-application-kit/commit/77eb38ace68e7f519dea9deda487ed4c612091a5) [#1641](https://github.com/commercetools/merchant-center-application-kit/pull/1641) Thanks [@emmenko](https://github.com/emmenko)! - Unify login/logout dev routes for http servers
+
 ## 16.9.1
 
 ### Patch Changes
