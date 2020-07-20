@@ -34,7 +34,7 @@
     "hide-powered-by": "1.1.0",
     "lightship": "6.1.0",
     "morgan": "1.10.0",
-    "mri": "1.1.5",
+    "mri": "1.1.6",
     "prom-client": "12.0.0",
     "shelljs": "0.8.4"
   },

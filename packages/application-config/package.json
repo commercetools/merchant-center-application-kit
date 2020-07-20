@@ -42,8 +42,8 @@
     "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir build/typings"
   },
   "dependencies": {
-    "@babel/runtime": "7.10.4",
-    "@babel/runtime-corejs3": "7.10.4",
+    "@babel/runtime": "7.10.5",
+    "@babel/runtime-corejs3": "7.10.5",
     "ajv": "6.12.3",
     "core-js": "3.6.5",
     "cosmiconfig": "6.0.0",
@@ -51,7 +51,7 @@
     "omit-empty-es": "1.0.3"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "7.10.4",
+    "@babel/plugin-transform-runtime": "7.10.5",
     "@babel/preset-env": "7.10.4",
     "@babel/preset-typescript": "7.10.4",
     "json-schema-to-typescript": "9.1.1",
