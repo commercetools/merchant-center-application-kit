@@ -71,7 +71,7 @@ jobs:
         with:
           publish: yarn changeset publish
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
 
       # Publish canary releases only if the packages weren't published already
       - name: Publishing canary releases to npm registry
@@ -81,4 +81,4 @@ jobs:
           yarn changeset version --snapshot canary
           yarn changeset publish --tag canary
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
