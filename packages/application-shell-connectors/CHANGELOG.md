@@ -1,5 +1,15 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 16.15.3
+
+### Patch Changes
+
+- [`6d98245`](https://github.com/commercetools/merchant-center-application-kit/commit/6d98245615ddb83e805e5cc2cc0620920b4a71c7) [#1643](https://github.com/commercetools/merchant-center-application-kit/pull/1643) Thanks [@emmenko](https://github.com/emmenko)! - Update copyright date to 2020 in LICENSE files
+
+- Updated dependencies [[`6d98245`](https://github.com/commercetools/merchant-center-application-kit/commit/6d98245615ddb83e805e5cc2cc0620920b4a71c7)]:
+  - @commercetools-frontend/constants@16.15.3
+  - @commercetools-frontend/sentry@16.15.3
+
 ## 16.15.2
 
 ### Patch Changes
