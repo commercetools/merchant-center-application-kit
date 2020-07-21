@@ -7,18 +7,25 @@ describe('given a JSON with stringified values', () => {
     expect(result).toMatchInlineSnapshot(`
       Object {
         "array": Array [
+          "hello",
+          "world",
+        ],
+        "arrayAsString": Array [
           "1",
           "2",
         ],
-        "arrayWithDoubleEscapedQuotes": Array [
+        "arrayAsStringWithDoubleEscapedQuotes": Array [
           "1",
           "2",
         ],
         "bool": true,
+        "boolAsString": true,
         "empty": "",
-        "emptyArray": Array [],
+        "emptyArrayAsString": Array [],
         "null": null,
+        "nullAsString": null,
         "number": 1,
+        "numberAsString": 1,
         "string": "foo",
       }
     `);
