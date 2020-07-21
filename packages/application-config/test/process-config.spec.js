@@ -118,6 +118,41 @@ describe('processing a simple config', () => {
       });
     });
   });
+  describe('with MC_APP_ENV=staging and NODE_ENV=production', () => {
+    it('should process the config in production mode', () => {
+      const result = processConfig(
+        createTestOptions({
+          processEnv: {
+            NODE_ENV: 'production',
+            MC_APP_ENV: 'staging',
+          },
+        })
+      );
+      expect(result).toEqual({
+        env: {
+          applicationId: undefined,
+          applicationName: 'avengers-app',
+          cdnUrl: 'https://avengers.app/',
+          env: 'staging',
+          frontendHost: 'avengers.app',
+          location: 'gcp-eu',
+          mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
+          revision: '',
+          servedByProxy: true,
+        },
+        headers: {
+          csp: {
+            'connect-src': [
+              'https://mc-api.europe-west1.gcp.commercetools.com',
+              'https://avengers.app/',
+            ],
+            'script-src': ['https://avengers.app/'],
+            'style-src': ['https://avengers.app/'],
+          },
+        },
+      });
+    });
+  });
 });
 
 describe('processing a full config', () => {
@@ -236,6 +271,50 @@ describe('processing a full config', () => {
       });
     });
   });
+  describe('with MC_APP_ENV=staging and NODE_ENV=production', () => {
+    it('should process the config in production mode', () => {
+      const result = processConfig(
+        createTestOptions({
+          processEnv: {
+            NODE_ENV: 'production',
+            MC_APP_ENV: 'staging',
+          },
+        })
+      );
+      expect(result).toEqual({
+        env: {
+          applicationId: undefined,
+          applicationName: 'avengers-app',
+          cdnUrl: 'https://cdn.avengers.app/',
+          env: 'staging',
+          frontendHost: 'avengers.app',
+          location: 'gcp-eu',
+          mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
+          numberOfMovies: 4,
+          revision: '',
+          servedByProxy: true,
+        },
+        headers: {
+          csp: {
+            'connect-src': [
+              'https://track.avengers.app',
+              'https://mc-api.europe-west1.gcp.commercetools.com',
+              'https://avengers.app/',
+            ],
+            'script-src': [
+              'https://track.avengers.app',
+              'https://avengers.app/',
+              'https://cdn.avengers.app/',
+            ],
+            'style-src': ['https://avengers.app/', 'https://cdn.avengers.app/'],
+          },
+          featurePolicies: {
+            microphone: 'none',
+          },
+        },
+      });
+    });
+  });
 });
 
 describe('processing a config with environment variable placeholders', () => {
@@ -340,6 +419,43 @@ describe('processing a config with environment variable placeholders', () => {
             ],
             'script-src': [],
             'style-src': [],
+          },
+        },
+      });
+    });
+  });
+  describe('with MC_APP_ENV=staging and NODE_ENV=production', () => {
+    it('should process the config in production mode', () => {
+      const result = processConfig(
+        createTestOptions({
+          processEnv: {
+            APP_URL: 'https://avengers.app',
+            CLOUD_IDENTIFIER: 'gcp-eu',
+            NODE_ENV: 'production',
+            MC_APP_ENV: 'staging',
+          },
+        })
+      );
+      expect(result).toEqual({
+        env: {
+          applicationId: undefined,
+          applicationName: 'avengers-app',
+          cdnUrl: 'https://avengers.app/',
+          env: 'staging',
+          frontendHost: 'avengers.app',
+          location: 'gcp-eu',
+          mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
+          revision: '',
+          servedByProxy: true,
+        },
+        headers: {
+          csp: {
+            'connect-src': [
+              'https://mc-api.europe-west1.gcp.commercetools.com',
+              'https://avengers.app/',
+            ],
+            'script-src': ['https://avengers.app/'],
+            'style-src': ['https://avengers.app/'],
           },
         },
       });

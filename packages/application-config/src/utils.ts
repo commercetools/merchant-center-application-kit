@@ -32,9 +32,14 @@ const getUniqueValues = (
   additionalValues: string[] = []
 ): string[] => uniq([...initialValues, ...additionalValues]);
 
+const nonProductionEnvironment = ['development', 'test'];
 const getIsProd = (env: NodeJS.ProcessEnv): boolean =>
+  // TL;DR: in case the `MC_APP_ENV` is defined, we consider that it's
+  // a production environment unless it's one of `development` or `test`.
+  // This allows to use for example the `staging` value, which from the
+  // application perspective is still considered a production environment.
   env.MC_APP_ENV
-    ? env.MC_APP_ENV === 'production'
+    ? !nonProductionEnvironment.includes(env.MC_APP_ENV)
     : env.NODE_ENV === 'production';
 
 const getOrThrow = <T>(fn: () => T, errorMessage: string): T => {
