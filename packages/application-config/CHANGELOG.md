@@ -1,5 +1,13 @@
 # @commercetools-frontend/application-config
 
+## 16.15.4
+
+### Patch Changes
+
+- [`0182cd3`](https://github.com/commercetools/merchant-center-application-kit/commit/0182cd32f12a6ca8d1966bfaf260f4db256beca0) [#1645](https://github.com/commercetools/merchant-center-application-kit/pull/1645) Thanks [@emmenko](https://github.com/emmenko)! - refactor(application-config): be more strict on deriving the prod env based on the MC_APP_ENV.
+
+  TL;DR: in case the `MC_APP_ENV` is defined, we consider that it's a production environment unless it's one of `development` or `test`. This allows to use for example the `staging` value, which from the application perspective is still considered a production environment.
+
 ## 16.15.2
 
 ### Patch Changes

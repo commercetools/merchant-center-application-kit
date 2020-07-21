@@ -1,5 +1,12 @@
 # merchant-center-application-template-starter
 
+## 16.10.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/mc-http-server@16.15.4
+
 ## 16.10.3
 
 ### Patch Changes
