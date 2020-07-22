@@ -7,9 +7,14 @@
   "nullAsString": "null",
   "numberAsString": "1",
   "string": "foo",
-  "array": [
+  "arrayOfStrings": [
     "hello",
     "world"
+  ],
+  "arrayOfNumbers": [
+    1,
+    2,
+    3
   ],
   "null": null,
   "number": 1,
