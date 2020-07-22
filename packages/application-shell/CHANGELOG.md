@@ -1,5 +1,13 @@
 # @commercetools-frontend/application-shell
 
+## 16.15.5
+
+### Patch Changes
+
+- [`9800911`](https://github.com/commercetools/merchant-center-application-kit/commit/9800911fe0523a2a02271950490c4ed15b2c2765) [#1650](https://github.com/commercetools/merchant-center-application-kit/pull/1650) Thanks [@emmenko](https://github.com/emmenko)! - Make coercing environment values a React hook, bail out if the value is not a string.
+
+* [`cd800cd`](https://github.com/commercetools/merchant-center-application-kit/commit/cd800cd4b88729f087ebcb0a13ce32c2ddbbc58b) [#1648](https://github.com/commercetools/merchant-center-application-kit/pull/1648) Thanks [@emmenko](https://github.com/emmenko)! - fix(app-shell): coercing values for stringified array with double escaped quotes
+
 ## 16.15.3
 
 ### Patch Changes
