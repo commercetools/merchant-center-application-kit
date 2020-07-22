@@ -1,0 +1,17 @@
+{
+  "empty": "",
+  "boolAsString": "true",
+  "arrayAsString": "[\"1\", \"2\"]",
+  "arrayAsStringWithDoubleEscapedQuotes": "[\\\"1\\\", \\\"2\\\"]",
+  "emptyArrayAsString": "[]",
+  "nullAsString": "null",
+  "numberAsString": "1",
+  "string": "foo",
+  "array": [
+    "hello",
+    "world"
+  ],
+  "null": null,
+  "number": 1,
+  "bool": true
+}

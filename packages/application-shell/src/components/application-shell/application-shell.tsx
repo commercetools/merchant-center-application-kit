@@ -46,6 +46,7 @@ import version from '../../version';
 import RedirectToProjectCreate from '../redirect-to-project-create';
 import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
 import QuickAccess from '../quick-access';
+import shallowlyCoerceValues from './coerce-values';
 
 type Props<AdditionalEnvironmentProperties extends {}> = {
   /**
@@ -487,38 +488,6 @@ export const RestrictedApplication = <
   );
 };
 RestrictedApplication.displayName = 'RestrictedApplication';
-
-/**
- * NOTE:
- *   This function try-catches around a `JSON.parse` and return
- *   the parsed value whenever possible.
- *
- *   This allows parsing most primitive values.
- *
- *   - `JSON.parse('null')` => `null`
- *   - `JSON.parse('1')` => `1`
- *   - `JSON.parse('["a", "b"]')` => `['a', 'b']`
- */
-const getCoerceEnvironmentValue = (environmentValueAsString: unknown) => {
-  try {
-    return JSON.parse(String(environmentValueAsString));
-  } catch (e) {
-    return environmentValueAsString;
-  }
-};
-
-type ShallowJson = { [key: string]: unknown };
-const shallowlyCoerceValues = (uncoercedEnvironmentValues: ShallowJson) =>
-  Object.keys(uncoercedEnvironmentValues).reduce(
-    (coercedEnvironmentValues, key) => {
-      const uncoercedEnvironmentValue = uncoercedEnvironmentValues[key];
-      return {
-        ...coercedEnvironmentValues,
-        [key]: getCoerceEnvironmentValue(uncoercedEnvironmentValue),
-      };
-    },
-    {}
-  );
 
 const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
   props: Props<AdditionalEnvironmentProperties>
