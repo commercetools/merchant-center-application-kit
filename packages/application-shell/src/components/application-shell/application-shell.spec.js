@@ -28,7 +28,6 @@ import {
 } from '../../../../../graphql-test-utils';
 import { createApolloClient } from '../../configure-apollo';
 import { STORAGE_KEYS } from '../../constants';
-import { PROJECT_EXTENSIONS } from '../../feature-toggles';
 import { location } from '../../utils/location';
 import ApplicationShellProvider from '../application-shell-provider';
 import ApplicationShell from './application-shell';
@@ -733,9 +732,6 @@ describe('navbar menu links interactions', () => {
         submenu: [navbarSubmenuMock],
       });
       const rendered = renderApp(null, {
-        featureFlags: {
-          [PROJECT_EXTENSIONS]: false,
-        },
         DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
       });
 
@@ -765,9 +761,6 @@ describe('navbar menu links interactions', () => {
     });
     it('should render links with all the correct state attributes', async () => {
       const rendered = renderApp(null, {
-        featureFlags: {
-          [PROJECT_EXTENSIONS]: false,
-        },
         environment: {
           servedByProxy: 'true',
         },
@@ -804,9 +797,6 @@ describe('navbar menu links interactions', () => {
     });
     it('should render links with all the correct state attributes', async () => {
       const rendered = renderApp(null, {
-        featureFlags: {
-          [PROJECT_EXTENSIONS]: true,
-        },
         environment: {
           servedByProxy: 'true',
         },
@@ -840,9 +830,6 @@ describe('when navbar menu items are disabled', () => {
       submenu: [navbarSubmenuMock],
     });
     const rendered = renderApp(null, {
-      featureFlags: {
-        [PROJECT_EXTENSIONS]: false,
-      },
       environment: { disabledMenuItems: [navbarMock.key] },
       DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
     });
@@ -884,9 +871,6 @@ describe('when navbar menu items are hidden', () => {
       submenu: [navbarSubmenuMock],
     });
     const rendered = renderApp(null, {
-      featureFlags: {
-        [PROJECT_EXTENSIONS]: false,
-      },
       DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
     });
     // Get the nav container, to narrow down the search area
@@ -923,9 +907,6 @@ describe('when navbar menu items match given permissions', () => {
       permissions: ['ManageOrders'],
     });
     const rendered = renderApp(null, {
-      featureFlags: {
-        [PROJECT_EXTENSIONS]: false,
-      },
       DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
     });
     // Wait the nav container
@@ -959,9 +940,6 @@ describe('when navbar menu items do not match given permissions', () => {
       permissions: ['ViewOrders'],
     });
     const rendered = renderApp(null, {
-      featureFlags: {
-        [PROJECT_EXTENSIONS]: false,
-      },
       DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
     });
     // Get the nav container, to narrow down the search area
@@ -1006,9 +984,6 @@ describe('when navbar menu items match given action rights', () => {
       actionRights: [{ group: 'orders', name: 'AddOrders' }],
     });
     const rendered = renderApp(null, {
-      featureFlags: {
-        [PROJECT_EXTENSIONS]: false,
-      },
       DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
     });
     // Wait for the nav container
@@ -1050,9 +1025,6 @@ describe('when navbar menu items do not match given action rights', () => {
       actionRights: [{ group: 'orders', name: 'AddOrders' }],
     });
     const rendered = renderApp(null, {
-      featureFlags: {
-        [PROJECT_EXTENSIONS]: false,
-      },
       DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
     });
     // Get the nav container, to narrow down the search area
@@ -1105,9 +1077,6 @@ describe('when navbar menu items match given data fences', () => {
       ],
     });
     const rendered = renderApp(null, {
-      featureFlags: {
-        [PROJECT_EXTENSIONS]: false,
-      },
       DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
     });
     // Wait the nav container
@@ -1157,9 +1126,6 @@ describe('when navbar menu items do not match given data fences', () => {
       ],
     });
     const rendered = renderApp(null, {
-      featureFlags: {
-        [PROJECT_EXTENSIONS]: false,
-      },
       DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
     });
     // Wait for the nav container
