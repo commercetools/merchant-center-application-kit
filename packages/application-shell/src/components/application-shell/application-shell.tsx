@@ -46,7 +46,7 @@ import version from '../../version';
 import RedirectToProjectCreate from '../redirect-to-project-create';
 import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
 import QuickAccess from '../quick-access';
-import shallowlyCoerceValues from './coerce-values';
+import useCoercedEnvironmentValues from './use-coerced-environment-values';
 
 type Props<AdditionalEnvironmentProperties extends {}> = {
   /**
@@ -499,13 +499,9 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // <-- run only once, when component mounts
 
-  const coercedEnvironmentValues = React.useMemo(
-    () =>
-      shallowlyCoerceValues(props.environment) as Props<
-        AdditionalEnvironmentProperties
-      >['environment'],
-    [props.environment]
-  );
+  const coercedEnvironmentValues = useCoercedEnvironmentValues<
+    AdditionalEnvironmentProperties
+  >(props.environment);
 
   return (
     <>

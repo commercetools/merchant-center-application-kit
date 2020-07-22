@@ -1,15 +1,14 @@
-import shallowlyCoerceValues from './coerce-values';
+import { renderHook } from '@testing-library/react-hooks';
+import useCoercedEnvironmentValues from './use-coerced-environment-values';
 import coerceValuesJson from './fixtures/coerce-values.json';
 
 describe('given a JSON with stringified values', () => {
   it('should coerce values into their primitives', () => {
-    const result = shallowlyCoerceValues(coerceValuesJson);
-    expect(result).toMatchInlineSnapshot(`
+    const { result } = renderHook(() =>
+      useCoercedEnvironmentValues(coerceValuesJson)
+    );
+    expect(result.current).toMatchInlineSnapshot(`
       Object {
-        "array": Array [
-          "hello",
-          "world",
-        ],
         "arrayAsString": Array [
           "1",
           "2",
@@ -17,6 +16,15 @@ describe('given a JSON with stringified values', () => {
         "arrayAsStringWithDoubleEscapedQuotes": Array [
           "1",
           "2",
+        ],
+        "arrayOfNumbers": Array [
+          1,
+          2,
+          3,
+        ],
+        "arrayOfStrings": Array [
+          "hello",
+          "world",
         ],
         "bool": true,
         "boolAsString": true,
