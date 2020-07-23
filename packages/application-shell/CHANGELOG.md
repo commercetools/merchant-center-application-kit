@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 16.15.6
+
+### Patch Changes
+
+- [`2f6ef4a`](https://github.com/commercetools/merchant-center-application-kit/commit/2f6ef4ae637d9e1de78d8358322be5dd2f87868b) [#1651](https://github.com/commercetools/merchant-center-application-kit/pull/1651) Thanks [@emmenko](https://github.com/emmenko)! - Remove unused feature toggle for fetching project extensions.
+
 ## 16.15.5
 
 ### Patch Changes
