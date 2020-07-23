@@ -12,10 +12,8 @@ import React from 'react';
 import isNil from 'lodash/isNil';
 import throttle from 'lodash/throttle';
 import { useQuery } from 'react-apollo';
-import { useFeatureToggle } from '@flopflip/react-broadcast';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { PROJECT_EXTENSIONS } from '../../feature-toggles';
 import { STORAGE_KEYS } from '../../constants';
 import useApplicationsMenu from '../../hooks/use-applications-menu';
 import FetchProjectExtensionsNavbar from './fetch-project-extensions-navbar.settings.graphql';
@@ -67,7 +65,6 @@ const reducer = (state: State, action: Action): State => {
 
 const useNavbarStateManager = (props: HookProps) => {
   const navBarNode = React.useRef<HTMLElement>(null);
-  const areProjectExtensionsEnabled = useFeatureToggle(PROJECT_EXTENSIONS);
   const applicationsNavBarMenu = useApplicationsMenu<'navBar'>('navBar', {
     queryOptions: {
       onError: reportErrorToSentry,
@@ -79,7 +76,7 @@ const useNavbarStateManager = (props: HookProps) => {
     TFetchProjectExtensionsNavbarQuery,
     TFetchProjectExtensionsNavbarQueryVariables
   >(FetchProjectExtensionsNavbar, {
-    skip: !props.environment.servedByProxy || !areProjectExtensionsEnabled,
+    skip: !props.environment.servedByProxy,
     variables: {
       target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
     },
