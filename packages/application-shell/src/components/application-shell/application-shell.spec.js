@@ -749,37 +749,7 @@ describe('navbar menu links interactions', () => {
       });
     });
   });
-  describe('when rendering navbar menu links from remote config', () => {
-    let mcOperations;
-    let proxyOperations;
-    beforeEach(() => {
-      mcOperations = mocksForMc.createMockOperations();
-      proxyOperations = mocksForProxy.createMockOperations();
-      createGraphqlMockServer(xhrMock, {
-        operationsByTarget: { mc: mcOperations, proxy: proxyOperations },
-      });
-    });
-    it('should render links with all the correct state attributes', async () => {
-      const rendered = renderApp(null, {
-        environment: {
-          servedByProxy: 'true',
-        },
-      });
-      const applicationLocale = mcOperations.FetchLoggedInUser.me.language;
-      const mainMenuLabel = proxyOperations.FetchApplicationsMenu.applicationsMenu.navBar[0].labelAllLocales.find(
-        (localized) => localized.locale === applicationLocale
-      );
-      const mainSubmenuLabel = proxyOperations.FetchApplicationsMenu.applicationsMenu.navBar[0].submenu[0].labelAllLocales.find(
-        (localized) => localized.locale === applicationLocale
-      );
-
-      await checkLinksInteractions(rendered, {
-        mainMenuLabel,
-        mainSubmenuLabel,
-      });
-    });
-  });
-  describe('when rendering navbar menu links for custom applications', () => {
+  describe('when rendering navbar menu links from remote config and custom applications', () => {
     let mcOperations;
     let proxyOperations;
     let settingsOperations;
@@ -802,16 +772,30 @@ describe('navbar menu links interactions', () => {
         },
       });
       const applicationLocale = mcOperations.FetchLoggedInUser.me.language;
-      const mainMenuLabel = settingsOperations.FetchProjectExtensionsNavbar.projectExtension.applications[0].navbarMenu.labelAllLocales.find(
+
+      // Check links from internal applications menu
+      const mainMenuLabel = proxyOperations.FetchApplicationsMenu.applicationsMenu.navBar[0].labelAllLocales.find(
         (localized) => localized.locale === applicationLocale
       );
-      const mainSubmenuLabel = settingsOperations.FetchProjectExtensionsNavbar.projectExtension.applications[0].navbarMenu.submenu[0].labelAllLocales.find(
+      const mainSubmenuLabel = proxyOperations.FetchApplicationsMenu.applicationsMenu.navBar[0].submenu[0].labelAllLocales.find(
+        (localized) => localized.locale === applicationLocale
+      );
+      await checkLinksInteractions(rendered, {
+        mainMenuLabel,
+        mainSubmenuLabel,
+      });
+
+      // Check links from custom applications menu
+      const customApplicationMainMenuLabel = settingsOperations.FetchProjectExtensionsNavbar.projectExtension.applications[0].navbarMenu.labelAllLocales.find(
+        (localized) => localized.locale === applicationLocale
+      );
+      const customApplicationMainSubmenuLabel = settingsOperations.FetchProjectExtensionsNavbar.projectExtension.applications[0].navbarMenu.submenu[0].labelAllLocales.find(
         (localized) => localized.locale === applicationLocale
       );
 
       await checkLinksInteractions(rendered, {
-        mainMenuLabel,
-        mainSubmenuLabel,
+        mainMenuLabel: customApplicationMainMenuLabel,
+        mainSubmenuLabel: customApplicationMainSubmenuLabel,
       });
     });
   });
