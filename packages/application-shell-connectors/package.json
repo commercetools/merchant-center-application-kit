@@ -60,7 +60,7 @@
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "@apollo/react-testing": "3.1.4",
+    "@apollo/react-testing": "4.0.0",
     "@testing-library/react": "10.4.7",
     "react": "16.13.1",
     "react-apollo": "3.1.5"

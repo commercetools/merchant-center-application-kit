@@ -42,7 +42,7 @@
     "postbuild:typings": "echo \"export * from '../dist/typings/test-utils';\" > test-utils/index.d.ts"
   },
   "dependencies": {
-    "@apollo/react-testing": "3.1.4",
+    "@apollo/react-testing": "4.0.0",
     "@babel/runtime": "7.10.5",
     "@babel/runtime-corejs3": "7.10.5",
     "@commercetools-frontend/actions-global": "16.15.3",
