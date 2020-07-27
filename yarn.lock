@@ -10843,7 +10843,7 @@ downshift@5.4.5:
     prop-types "^15.7.2"
     react-is "^16.13.1"
 
-downshift@^6.0.0:
+downshift@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/downshift/-/downshift-6.0.2.tgz#72df65d74cc8414757c5686478e5cfddb09dffd8"
   integrity sha512-vQgd00VPOpXIgyq0AcaXKMPip+QRL/9kngiVfc1aZU1fWk9vnoJ0pcI2wYO4fxDx+6aNWPaQKcToxg0X+CUAjw==

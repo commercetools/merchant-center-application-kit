@@ -93,7 +93,7 @@
     "classnames": "^2.2.6",
     "common-tags": "1.8.0",
     "debounce-async": "0.0.2",
-    "downshift": "^6.0.0",
+    "downshift": "^6.0.2",
     "fuse.js": "6.4.0",
     "graphql": "14.7.0",
     "graphql-tag": "^2.10.4",
