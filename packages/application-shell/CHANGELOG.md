@@ -1,5 +1,13 @@
 # @commercetools-frontend/application-shell
 
+## 16.15.7
+
+### Patch Changes
+
+- [`302e0b8`](https://github.com/commercetools/merchant-center-application-kit/commit/302e0b87ae2e496f23d231ad572c60914699ff85) [#1660](https://github.com/commercetools/merchant-center-application-kit/pull/1660) Thanks [@emmenko](https://github.com/emmenko)! - When using the `<ApplicationShellProvider>` (for **internal usage**, you probably only need the `<ApplicationShell>`), the `environment` prop is not being coerced, when passing it as `environment={window.app}`, causing possible values to be strings (for example `"false"`).
+
+* [`7638609`](https://github.com/commercetools/merchant-center-application-kit/commit/76386095d2097b738b395ec54bb363426002bbff) [#1656](https://github.com/commercetools/merchant-center-application-kit/pull/1656) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency downshift to v6
+
 ## 16.15.6
 
 ### Patch Changes
