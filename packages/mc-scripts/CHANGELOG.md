@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-scripts
 
+## 16.15.7
+
+### Patch Changes
+
+- [`ba30472`](https://github.com/commercetools/merchant-center-application-kit/commit/ba3047236e481af3f62864b24b33175de33757ad) [#1655](https://github.com/commercetools/merchant-center-application-kit/pull/1655) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency css-loader to v4
+
 ## 16.15.4
 
 ### Patch Changes

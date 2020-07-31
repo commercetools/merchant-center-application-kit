@@ -1,5 +1,12 @@
 # playground
 
+## 16.10.7
+
+### Patch Changes
+
+- Updated dependencies [[`302e0b8`](https://github.com/commercetools/merchant-center-application-kit/commit/302e0b87ae2e496f23d231ad572c60914699ff85), [`7638609`](https://github.com/commercetools/merchant-center-application-kit/commit/76386095d2097b738b395ec54bb363426002bbff)]:
+  - @commercetools-frontend/application-shell@16.15.7
+
 ## 16.10.6
 
 ### Patch Changes
