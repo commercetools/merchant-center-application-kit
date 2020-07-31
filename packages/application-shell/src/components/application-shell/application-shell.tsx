@@ -20,7 +20,10 @@ import {
   reportErrorToSentry,
   SentryUserTracker,
 } from '@commercetools-frontend/sentry';
-import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
+import {
+  ApplicationContextProvider,
+  useApplicationContext,
+} from '@commercetools-frontend/application-shell-connectors';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import internalReduxStore from '../../configure-store';
@@ -46,7 +49,7 @@ import version from '../../version';
 import RedirectToProjectCreate from '../redirect-to-project-create';
 import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
 import QuickAccess from '../quick-access';
-import useCoercedEnvironmentValues from './use-coerced-environment-values';
+import RedirectToLogout from './redirect-to-logout';
 
 type Props<AdditionalEnvironmentProperties extends {}> = {
   /**
@@ -141,9 +144,12 @@ export const RestrictedApplication = <
 >(
   props: Omit<
     Props<AdditionalEnvironmentProperties>,
-    'onRegisterErrorListeners'
+    'environment' | 'onRegisterErrorListeners'
   >
 ) => {
+  const applicationEnvironment = useApplicationContext(
+    (context) => context.environment
+  ) as TApplicationContext<AdditionalEnvironmentProperties>['environment'];
   // TODO: using this hook will subscribe the component to route updates.
   // This is currently useful for detecting a change in the project key
   // from URL ("/" --> "/:projectKey").
@@ -203,7 +209,7 @@ export const RestrictedApplication = <
         return (
           <ApplicationContextProvider<AdditionalEnvironmentProperties>
             user={user}
-            environment={props.environment}
+            environment={applicationEnvironment}
           >
             {/*
             NOTE: we do not want to load the locale data as long as we do not
@@ -225,7 +231,7 @@ export const RestrictedApplication = <
                   <SetupFlopFlipProvider
                     user={user}
                     projectKey={projectKeyFromUrl}
-                    appEnv={props.environment.env}
+                    appEnv={applicationEnvironment.env}
                     flags={props.featureFlags}
                     defaultFlags={props.defaultFeatureFlags}
                   >
@@ -237,7 +243,7 @@ export const RestrictedApplication = <
                       <SentryUserTracker user={user} />
                       <GtmUserTracker user={user} />
                       <GtmApplicationTracker
-                        applicationName={props.environment.applicationName}
+                        applicationName={applicationEnvironment.applicationName}
                         projectKey={projectKeyFromUrl}
                       />
                       <div
@@ -292,7 +298,7 @@ export const RestrictedApplication = <
                                           user={user}
                                           project={project}
                                           projectDataLocale={dataLocale}
-                                          environment={props.environment}
+                                          environment={applicationEnvironment}
                                         >
                                           <QuickAccess
                                             onChangeProjectDataLocale={
@@ -366,12 +372,12 @@ export const RestrictedApplication = <
                                     >
                                       user={user}
                                       project={project}
-                                      environment={props.environment}
+                                      environment={applicationEnvironment}
                                     >
                                       <NavBar<AdditionalEnvironmentProperties>
                                         applicationLocale={locale}
                                         projectKey={projectKeyFromUrl}
-                                        environment={props.environment}
+                                        environment={applicationEnvironment}
                                         DEV_ONLY__loadNavbarMenuConfig={
                                           props.DEV_ONLY__loadNavbarMenuConfig
                                         }
@@ -462,7 +468,7 @@ export const RestrictedApplication = <
                                         user={user}
                                         match={routerProps.match}
                                         location={routerProps.location}
-                                        environment={props.environment}
+                                        environment={applicationEnvironment}
                                         // This effectively renders the
                                         // children, which is the application
                                         // specific part
@@ -499,10 +505,6 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // <-- run only once, when component mounts
 
-  const coercedEnvironmentValues = useCoercedEnvironmentValues<
-    AdditionalEnvironmentProperties
-  >(props.environment);
-
   return (
     <>
       <Global
@@ -517,7 +519,7 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
         `}
       />
       <ApplicationShellProvider<AdditionalEnvironmentProperties>
-        environment={coercedEnvironmentValues}
+        environment={props.environment}
         trackingEventList={
           props.trackingEventList || props.trackingEventWhitelist
         }
@@ -527,30 +529,9 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
           if (isAuthenticated)
             return (
               <Switch>
-                {/* When the application redirects to this route,
-                we always force a hard redirect to the logout route of
-                the authentication service. */}
-                <Route
-                  path="/logout"
-                  render={({ location }) => (
-                    <Redirector
-                      to="logout"
-                      location={location}
-                      queryParams={{
-                        reason: LOGOUT_REASONS.USER,
-                        ...(coercedEnvironmentValues.servedByProxy
-                          ? {}
-                          : {
-                              // This will be used after being logged in, to redirect to this location.
-                              redirectTo: window.location.origin,
-                            }),
-                      }}
-                    />
-                  )}
-                />
+                <Route path="/logout" component={RedirectToLogout} />
                 <Route>
                   <RestrictedApplication<AdditionalEnvironmentProperties>
-                    environment={coercedEnvironmentValues}
                     defaultFeatureFlags={props.defaultFeatureFlags}
                     featureFlags={props.featureFlags}
                     render={props.render}

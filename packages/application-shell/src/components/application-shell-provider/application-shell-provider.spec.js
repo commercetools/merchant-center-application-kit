@@ -27,7 +27,7 @@ const createTestProps = (props) => ({
     location: 'eu',
     env: 'development',
     cdnUrl: 'http://localhost:3001',
-    servedByProxy: false,
+    servedByProxy: 'false',
   },
   trackingEventList: {},
   children: jest.fn(),

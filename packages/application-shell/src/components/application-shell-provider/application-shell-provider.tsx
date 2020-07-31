@@ -19,6 +19,7 @@ import GtmBooter from '../gtm-booter';
 import ApplicationLoader from '../application-loader';
 import ErrorBoundary from '../error-boundary';
 import { getBrowserLocale } from './utils';
+import useCoercedEnvironmentValues from './use-coerced-environment-values';
 
 type Props<AdditionalEnvironmentProperties extends {}> = {
   environment: TApplicationContext<
@@ -31,47 +32,52 @@ type Props<AdditionalEnvironmentProperties extends {}> = {
 
 const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
   props: Props<AdditionalEnvironmentProperties>
-) => (
-  <ErrorBoundary>
-    <ApplicationContextProvider<AdditionalEnvironmentProperties>
-      environment={props.environment}
-    >
-      <ReduxProvider store={internalReduxStore}>
-        <ApolloProvider client={ApplicationShellProvider.apolloClient}>
-          <React.Suspense fallback={<ApplicationLoader />}>
-            <Router history={ApplicationShellProvider.history}>
-              <GtmBooter trackingEventList={props.trackingEventList || {}}>
-                <Authenticated
-                  render={({ isAuthenticated }) => {
-                    if (isAuthenticated)
-                      return props.children({ isAuthenticated });
+) => {
+  const coercedEnvironmentValues = useCoercedEnvironmentValues<
+    AdditionalEnvironmentProperties
+  >(props.environment);
+  return (
+    <ErrorBoundary>
+      <ApplicationContextProvider<AdditionalEnvironmentProperties>
+        environment={coercedEnvironmentValues}
+      >
+        <ReduxProvider store={internalReduxStore}>
+          <ApolloProvider client={ApplicationShellProvider.apolloClient}>
+            <React.Suspense fallback={<ApplicationLoader />}>
+              <Router history={ApplicationShellProvider.history}>
+                <GtmBooter trackingEventList={props.trackingEventList || {}}>
+                  <Authenticated
+                    render={({ isAuthenticated }) => {
+                      if (isAuthenticated)
+                        return props.children({ isAuthenticated });
 
-                    const browserLocale = getBrowserLocale(window);
-                    return (
-                      <AsyncLocaleData
-                        locale={browserLocale}
-                        applicationMessages={props.applicationMessages}
-                      >
-                        {({ locale, messages }) => (
-                          <ConfigureIntlProvider
-                            locale={locale}
-                            messages={messages}
-                          >
-                            {props.children({ isAuthenticated })}
-                          </ConfigureIntlProvider>
-                        )}
-                      </AsyncLocaleData>
-                    );
-                  }}
-                />
-              </GtmBooter>
-            </Router>
-          </React.Suspense>
-        </ApolloProvider>
-      </ReduxProvider>
-    </ApplicationContextProvider>
-  </ErrorBoundary>
-);
+                      const browserLocale = getBrowserLocale(window);
+                      return (
+                        <AsyncLocaleData
+                          locale={browserLocale}
+                          applicationMessages={props.applicationMessages}
+                        >
+                          {({ locale, messages }) => (
+                            <ConfigureIntlProvider
+                              locale={locale}
+                              messages={messages}
+                            >
+                              {props.children({ isAuthenticated })}
+                            </ConfigureIntlProvider>
+                          )}
+                        </AsyncLocaleData>
+                      );
+                    }}
+                  />
+                </GtmBooter>
+              </Router>
+            </React.Suspense>
+          </ApolloProvider>
+        </ReduxProvider>
+      </ApplicationContextProvider>
+    </ErrorBoundary>
+  );
+};
 
 ApplicationShellProvider.displayName = 'ApplicationShellProvider';
 // This is useful to inject a custom history object during tests
