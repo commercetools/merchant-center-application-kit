@@ -30,7 +30,7 @@
     "@testing-library/jest-dom": "5.11.1",
     "babel-jest": "26.1.0",
     "colors": "1.4.0",
-    "cosmiconfig": "6.0.0",
+    "cosmiconfig": "7.0.0",
     "enzyme-adapter-react-16": "1.15.2",
     "enzyme-matchers": "7.1.2",
     "enzyme-to-json": "3.5.0",
