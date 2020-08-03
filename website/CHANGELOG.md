@@ -1,5 +1,15 @@
 # @commercetools-website/custom-applications
 
+## 16.9.7
+
+### Patch Changes
+
+- [`c62261f`](https://github.com/commercetools/merchant-center-application-kit/commit/c62261f80e17fb63467eed6328e41764d3e9a50e) [#1653](https://github.com/commercetools/merchant-center-application-kit/pull/1653) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies and regenerate l10n data based on CLDR v37
+
+* [`20c3165`](https://github.com/commercetools/merchant-center-application-kit/commit/20c316570c31685b56d16d19200f569f0220afc4) [#1662](https://github.com/commercetools/merchant-center-application-kit/pull/1662) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency @commercetools-docs/ui-kit to v7
+
+- [`040136b`](https://github.com/commercetools/merchant-center-application-kit/commit/040136bdf9e8468d72455cab2f17fb42e561be87) [#1661](https://github.com/commercetools/merchant-center-application-kit/pull/1661) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency @commercetools-docs/gatsby-theme-docs to v7
+
 ## 16.9.6
 
 ### Patch Changes

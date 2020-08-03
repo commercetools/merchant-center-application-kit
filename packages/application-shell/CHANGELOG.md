@@ -1,5 +1,22 @@
 # @commercetools-frontend/application-shell
 
+## 16.15.8
+
+### Patch Changes
+
+- [`c62261f`](https://github.com/commercetools/merchant-center-application-kit/commit/c62261f80e17fb63467eed6328e41764d3e9a50e) [#1653](https://github.com/commercetools/merchant-center-application-kit/pull/1653) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies and regenerate l10n data based on CLDR v37
+
+- Updated dependencies [[`c62261f`](https://github.com/commercetools/merchant-center-application-kit/commit/c62261f80e17fb63467eed6328e41764d3e9a50e), [`bb95246`](https://github.com/commercetools/merchant-center-application-kit/commit/bb95246be446aa0431b3b7d3e48979159e5cbd5c)]:
+  - @commercetools-frontend/actions-global@16.15.8
+  - @commercetools-frontend/application-components@16.15.8
+  - @commercetools-frontend/l10n@16.15.8
+  - @commercetools-frontend/react-notifications@16.15.8
+  - @commercetools-frontend/sdk@16.15.8
+  - @commercetools-frontend/sentry@16.15.8
+  - @commercetools-frontend/application-shell-connectors@16.15.8
+  - @commercetools-frontend/i18n@16.15.8
+  - @commercetools-frontend/permissions@16.15.8
+
 ## 16.15.7
 
 ### Patch Changes

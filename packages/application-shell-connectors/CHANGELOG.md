@@ -1,5 +1,14 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 16.15.8
+
+### Patch Changes
+
+- [`bb95246`](https://github.com/commercetools/merchant-center-application-kit/commit/bb95246be446aa0431b3b7d3e48979159e5cbd5c) [#1665](https://github.com/commercetools/merchant-center-application-kit/pull/1665) Thanks [@emmenko](https://github.com/emmenko)! - Fix image regex settings connector to set `isLoading` to `false` by default. Additionally, you can now pass a `skip` option to the `<ProjectExtensionProviderForImageRegex>` component, to skip fetching the image regex settings.
+
+- Updated dependencies [[`c62261f`](https://github.com/commercetools/merchant-center-application-kit/commit/c62261f80e17fb63467eed6328e41764d3e9a50e)]:
+  - @commercetools-frontend/sentry@16.15.8
+
 ## 16.15.3
 
 ### Patch Changes
