@@ -16,10 +16,10 @@
     "@commercetools-uikit/spacings-stack": "10.21.0",
     "@emotion/core": "10.0.28",
     "@emotion/styled": "10.0.27",
-    "gatsby": "2.24.4",
-    "gatsby-cli": "2.12.62",
+    "gatsby": "2.24.11",
+    "gatsby-cli": "2.12.66",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-intl": "5.3.2"
+    "react-intl": "5.4.2"
   }
 }

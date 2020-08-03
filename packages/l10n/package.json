@@ -48,9 +48,9 @@
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "3.3.0",
+    "@testing-library/react-hooks": "3.4.1",
     "chalk": "4.1.0",
-    "cldr": "5.6.0",
+    "cldr": "5.7.0",
     "deep-diff": "1.0.2",
     "moment-timezone": "0.5.31",
     "node-fetch": "2.6.0",
