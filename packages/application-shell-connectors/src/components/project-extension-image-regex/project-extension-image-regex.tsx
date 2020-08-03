@@ -18,6 +18,7 @@ export type TImageRegexContext = {
   };
 };
 type ProviderProps = {
+  skip?: boolean;
   children: React.ReactNode;
 };
 type ConsumerProps = {
@@ -25,13 +26,14 @@ type ConsumerProps = {
   children?: never;
 };
 
-const Context = React.createContext<TImageRegexContext>({ isLoading: true });
+const Context = React.createContext<TImageRegexContext>({ isLoading: false });
 
 const ProjectExtensionProviderForImageRegex = (props: ProviderProps) => {
   const { loading, data } = useQuery<
     TFetchProjectExtensionImageRegexQuery,
     { target: typeof GRAPHQL_TARGETS.SETTINGS_SERVICE }
   >(FetchProjectExtensionImageRegex, {
+    skip: props.skip,
     onError: reportErrorToSentry,
     variables: { target: GRAPHQL_TARGETS.SETTINGS_SERVICE },
   });
