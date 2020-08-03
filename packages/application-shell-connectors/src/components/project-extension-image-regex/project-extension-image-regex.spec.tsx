@@ -32,10 +32,13 @@ const TestComponent = (props: TestProps) => (
   </>
 );
 
-const renderComponent = (mocks: MockedProviderProps['mocks']) =>
+const renderComponent = (
+  mocks: MockedProviderProps['mocks'],
+  skipQuery?: boolean
+) =>
   render(
     <ApolloMockProvider mocks={mocks} addTypename={true}>
-      <ProjectExtensionProviderForImageRegex>
+      <ProjectExtensionProviderForImageRegex skip={skipQuery}>
         <div>
           <GetProjectExtensionImageRegex
             render={(imageRegexContext) => {
@@ -53,6 +56,22 @@ const renderComponent = (mocks: MockedProviderProps['mocks']) =>
         </div>
       </ProjectExtensionProviderForImageRegex>
     </ApolloMockProvider>
+  );
+const renderComponentWithoutProvider = () =>
+  render(
+    <div>
+      <GetProjectExtensionImageRegex
+        render={(imageRegexContext) => {
+          if (imageRegexContext.isLoading) {
+            return <div>{'Loading...'}</div>;
+          }
+          if (!imageRegexContext.imageRegex) {
+            return <div>{'Not found'}</div>;
+          }
+          return <TestComponent imageRegex={imageRegexContext.imageRegex} />;
+        }}
+      />
+    </div>
   );
 
 describe('rendering', () => {
@@ -118,6 +137,22 @@ describe('rendering', () => {
     });
     it('should not render regex info', async () => {
       await waitForElementToBeRemoved(() => rendered.queryByText('Loading...'));
+      expect(rendered.getByText('Not found')).toBeInTheDocument();
+    });
+  });
+  describe('when fetching regex settings is skipped', () => {
+    beforeEach(() => {
+      rendered = renderComponent([], true);
+    });
+    it('should not render regex info', () => {
+      expect(rendered.getByText('Not found')).toBeInTheDocument();
+    });
+  });
+  describe('when context provider is not defined', () => {
+    beforeEach(() => {
+      rendered = renderComponentWithoutProvider();
+    });
+    it('should not render regex info', () => {
       expect(rendered.getByText('Not found')).toBeInTheDocument();
     });
   });
