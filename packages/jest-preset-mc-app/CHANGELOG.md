@@ -1,5 +1,11 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 16.15.8
+
+### Patch Changes
+
+- [`43fdb3d`](https://github.com/commercetools/merchant-center-application-kit/commit/43fdb3d6465911c99a3abcfedd8e96ea54b4941c) [#1663](https://github.com/commercetools/merchant-center-application-kit/pull/1663) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency cosmiconfig to v7
+
 ## 16.15.3
 
 ### Patch Changes

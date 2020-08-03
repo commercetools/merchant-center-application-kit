@@ -1,5 +1,12 @@
 # @commercetools-frontend/mc-http-server
 
+## 16.15.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/mc-html-template@16.15.8
+
 ## 16.15.4
 
 ### Patch Changes
