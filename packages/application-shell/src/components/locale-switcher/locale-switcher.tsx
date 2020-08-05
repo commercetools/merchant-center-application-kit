@@ -1,7 +1,8 @@
+import type { SingleValueProps } from 'react-select';
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import { SingleValueProps } from 'react-select';
 import SelectInput from '@commercetools-uikit/select-input';
 import { WorldIcon } from '@commercetools-uikit/icons';
 import { customProperties } from '@commercetools-uikit/design-system';
