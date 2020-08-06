@@ -1,6 +1,6 @@
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import ApiErrorMessage from './api-error-message';
@@ -13,9 +13,9 @@ const renderMessage = (ui: React.ReactElement) =>
 describe('render', () => {
   it('should show message for InvalidInput', () => {
     const error = { code: 'InvalidInput', message: 'message-content' };
-    const rendered = renderMessage(<ApiErrorMessage error={error} />);
+    renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.getByText(/Sorry, but there seems to be something wrong/i)
+      screen.getByText(/Sorry, but there seems to be something wrong/i)
     ).toBeInTheDocument();
   });
   it('should show message for OverlappingPrices', () => {
@@ -24,11 +24,9 @@ describe('render', () => {
       message: 'message-content',
       invalidValue: { overlappingPrices: 'overlappingPricesContent' },
     };
-    const rendered = renderMessage(<ApiErrorMessage error={error} />);
+    renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.getByText(
-        /Sorry, but a price with these details already exists/i
-      )
+      screen.getByText(/Sorry, but a price with these details already exists/i)
     ).toBeInTheDocument();
   });
   it('should show message for InvalidOperation', () => {
@@ -36,10 +34,8 @@ describe('render', () => {
       code: 'InvalidOperation',
       message: "Required attribute 'foo' cannot be removed",
     };
-    const rendered = renderMessage(<ApiErrorMessage error={error} />);
-    expect(
-      rendered.getByText(/"foo" is a required field/i)
-    ).toBeInTheDocument();
+    renderMessage(<ApiErrorMessage error={error} />);
+    expect(screen.getByText(/"foo" is a required field/i)).toBeInTheDocument();
   });
   it('should show message for InvalidDateRange', () => {
     const error = {
@@ -51,9 +47,9 @@ describe('render', () => {
         validUntil: 'bar',
       },
     };
-    const rendered = renderMessage(<ApiErrorMessage error={error} />);
+    renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.getByText(/The value entered for the field price is invalid/i)
+      screen.getByText(/The value entered for the field price is invalid/i)
     ).toBeInTheDocument();
   });
   it('should show message for unmapped error and report to sentry', async () => {
@@ -63,9 +59,9 @@ describe('render', () => {
       message: 'message-content',
       detailedErrorMessage: 'detailed-error-message-content',
     };
-    const rendered = renderMessage(<ApiErrorMessage error={error} />);
+    renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.getByText('message-content (detailed-error-message-content)')
+      screen.getByText('message-content (detailed-error-message-content)')
     ).toBeInTheDocument();
     await waitFor(() => {
       expect(reportErrorToSentry).toHaveBeenCalledTimes(1);
@@ -77,8 +73,8 @@ describe('render', () => {
       code: 'invalid_scope',
       message: 'has expired',
     };
-    const rendered = renderMessage(<ApiErrorMessage error={error} />);
-    expect(rendered.getByText('has expired')).toBeInTheDocument();
+    renderMessage(<ApiErrorMessage error={error} />);
+    expect(screen.getByText('has expired')).toBeInTheDocument();
     await waitFor(() => {
       expect(reportErrorToSentry).not.toHaveBeenCalled();
     });
@@ -90,9 +86,9 @@ describe('render', () => {
       field: 'slug',
       duplicateValue: 'duplicateValueContent',
     };
-    const rendered = renderMessage(<ApiErrorMessage error={error} />);
+    renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.getByText(/"duplicateValueContent" is already in use/i)
+      screen.getByText(/"duplicateValueContent" is already in use/i)
     ).toBeInTheDocument();
   });
   it('should show message for DuplicateAttributeValue', () => {
@@ -103,9 +99,9 @@ describe('render', () => {
         name: 'attribute-name',
       },
     };
-    const rendered = renderMessage(<ApiErrorMessage error={error} />);
+    renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.getByText(
+      screen.getByText(
         /The "attribute-name" value must be unique for all variants for this product/i
       )
     ).toBeInTheDocument();
@@ -115,9 +111,9 @@ describe('render', () => {
       code: 'Unauthorized',
       message: 'message-content',
     };
-    const rendered = renderMessage(<ApiErrorMessage error={error} />);
+    renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.getByText(
+      screen.getByText(
         /Sorry, but you are not authorized to access this feature/i
       )
     ).toBeInTheDocument();
@@ -127,9 +123,9 @@ describe('render', () => {
       code: 'insufficient_scope',
       message: 'message-content',
     };
-    const rendered = renderMessage(<ApiErrorMessage error={error} />);
+    renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.getByText(
+      screen.getByText(
         /You are not authorized to access this feature\. Please contact your system administrator with any further questions/i
       )
     ).toBeInTheDocument();
@@ -146,8 +142,8 @@ describe('render', () => {
         es: 'Mensaje personal',
       },
     };
-    const rendered = renderMessage(<ApiErrorMessage error={error} />);
-    expect(rendered.getByText(/Custom Message/i)).toBeInTheDocument();
+    renderMessage(<ApiErrorMessage error={error} />);
+    expect(screen.getByText(/Custom Message/i)).toBeInTheDocument();
   });
   it('should show "untranslated" message for API Error extensions', () => {
     const error = {
@@ -160,17 +156,17 @@ describe('render', () => {
         es: 'Mensaje personal',
       },
     };
-    const rendered = renderMessage(<ApiErrorMessage error={error} />);
-    expect(rendered.getByText(/Default message/i)).toBeInTheDocument();
+    renderMessage(<ApiErrorMessage error={error} />);
+    expect(screen.getByText(/Default message/i)).toBeInTheDocument();
   });
   it('should show message for ExtensionNoResponse', () => {
     const error = {
       code: 'ExtensionNoResponse',
       message: 'message-content',
     };
-    const rendered = renderMessage(<ApiErrorMessage error={error} />);
+    renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.getByText(
+      screen.getByText(
         /Sorry, we could not perform the requested action due to an API extension not responding/i
       )
     ).toBeInTheDocument();
@@ -180,9 +176,9 @@ describe('render', () => {
       code: 'ExtensionBadResponse',
       message: 'message-content',
     };
-    const rendered = renderMessage(<ApiErrorMessage error={error} />);
+    renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.getByText(
+      screen.getByText(
         /Sorry, we could not perform the requested action due to failed processing of an API extension response/i
       )
     ).toBeInTheDocument();
@@ -192,9 +188,9 @@ describe('render', () => {
       code: 'ExtensionUpdateActionsFailed',
       message: 'message-content',
     };
-    const rendered = renderMessage(<ApiErrorMessage error={error} />);
+    renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.getByText(
+      screen.getByText(
         /Sorry, we could not perform the requested action\. It is not possible to perform the update actions as instructed by the API extension/i
       )
     ).toBeInTheDocument();
@@ -204,9 +200,9 @@ describe('render', () => {
       code: 'MaxResourceLimitExceeded',
       message: 'message-content',
     };
-    const rendered = renderMessage(<ApiErrorMessage error={error} />);
+    renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.getByText(
+      screen.getByText(
         /The project reached the limit for the resource. To add more resources delete existing ones or reach out to the administrator or contact customer support./i
       )
     ).toBeInTheDocument();
