@@ -197,5 +197,11 @@ function getSpecialFormattedMessageByErrorCode(
     });
   }
 
+  if (
+    error.code === 'MaxResourceLimitExceeded'
+  ) {
+    return intl.formatMessage(messages.TaxCategoryDuplicateCountry);
+  }
+
   return;
 }
