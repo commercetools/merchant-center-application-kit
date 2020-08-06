@@ -130,7 +130,7 @@
     "eslint-plugin-testing-library": "3.3.2",
     "faker": "4.1.0",
     "gatsby-plugin-emotion": "4.3.10",
-    "gatsby-plugin-mdx": "1.2.29",
+    "gatsby-plugin-mdx": "1.2.34",
     "graphql-cli": "3.0.14",
     "husky": "4.2.5",
     "jest": "26.1.0",

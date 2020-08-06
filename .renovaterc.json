@@ -19,9 +19,5 @@
     "enabled": true
   },
   "labels": ["🤖 Type: Dependencies"],
-  "ignoreDeps": [
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
-    "sharp"
-  ]
+  "ignoreDeps": []
 }
