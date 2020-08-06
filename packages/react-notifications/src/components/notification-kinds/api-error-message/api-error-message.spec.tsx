@@ -199,4 +199,16 @@ describe('render', () => {
       )
     ).toBeInTheDocument();
   });
+  it('should show message for MaxResourceLimitExceeded', () => {
+    const error = {
+      code: 'MaxResourceLimitExceeded',
+      message: 'message-content',
+    };
+    const rendered = renderMessage(<ApiErrorMessage error={error} />);
+    expect(
+      rendered.getByText(
+        /The project reached the limit for the resource. To add more resources delete existing ones or reach out to the administrator or contact customer support./i
+      )
+    ).toBeInTheDocument();
+  });
 });
