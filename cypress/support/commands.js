@@ -41,9 +41,6 @@ Cypress.Commands.add(
   'login',
   ({ redirectToUri, isForcedMenuOpen = false } = {}) => {
     cy.setDesktopViewport();
-    cy.window().then((win) =>
-      win.localStorage.setItem('isForcedMenuOpen', isForcedMenuOpen)
-    );
     cy.visit('/logout');
     // Wait to be in the "/login" route, then redirect to "/login" again
     // to ensure we clear all query parameters, as they seem to interfer
@@ -52,6 +49,9 @@ Cypress.Commands.add(
       cy.url().should('include', '/login');
     }
     cy.visit(`/login`);
+    cy.window().then((win) =>
+      win.localStorage.setItem('isForcedMenuOpen', isForcedMenuOpen)
+    );
     cy.findByText('Email').should('exist');
     cy.findByText('Password').should('exist');
     cy.findByLabelText(/email/i).type(Cypress.env('LOGIN_USER'));
