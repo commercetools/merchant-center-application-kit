@@ -46,7 +46,7 @@ export const SetupFlopFlipProvider = (props: Props) => {
     () => ({
       // Allow to overwrite the client ID, passed via the `additionalEnv` properties
       // of the application config.
-      // This is monstly useful for internal usage on our staging environments.
+      // This is mostly useful for internal usage on our staging environments.
       clientSideId: props.ldClientSideId ?? ldClientSideIdProduction,
       flags,
       user: {
