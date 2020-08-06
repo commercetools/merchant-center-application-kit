@@ -1,5 +1,16 @@
 # @commercetools-frontend/react-notifications
 
+## 16.15.9
+
+### Patch Changes
+
+- [`a0ae954`](https://github.com/commercetools/merchant-center-application-kit/commit/a0ae9543c139bfa4cde619153082b400d953dfa5) [#1672](https://github.com/commercetools/merchant-center-application-kit/pull/1672) Thanks [@tdeekens](https://github.com/tdeekens)! - feat(react-notifications) add max resource limit exceeded error translation
+
+- Updated dependencies [[`564cd91`](https://github.com/commercetools/merchant-center-application-kit/commit/564cd9186d23ea34886d1c41718486e16d3ca90e)]:
+  - @commercetools-frontend/constants@16.15.9
+  - @commercetools-frontend/actions-global@16.15.9
+  - @commercetools-frontend/sentry@16.15.9
+
 ## 16.15.8
 
 ### Patch Changes

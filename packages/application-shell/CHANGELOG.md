@@ -1,5 +1,27 @@
 # @commercetools-frontend/application-shell
 
+## 16.15.9
+
+### Patch Changes
+
+- [`564cd91`](https://github.com/commercetools/merchant-center-application-kit/commit/564cd9186d23ea34886d1c41718486e16d3ca90e) [#1671](https://github.com/commercetools/merchant-center-application-kit/pull/1671) Thanks [@emmenko](https://github.com/emmenko)! - Allow to overwrite LD client ID via application config.
+
+  > This is mostly useful for internal usage on our staging environments.
+
+* [`9f861cd`](https://github.com/commercetools/merchant-center-application-kit/commit/9f861cdf31017d394f7738c80aa377d977a5460f) [#1667](https://github.com/commercetools/merchant-center-application-kit/pull/1667) Thanks [@emmenko](https://github.com/emmenko)! - Import types using 'import type' syntax
+
+* Updated dependencies [[`a0ae954`](https://github.com/commercetools/merchant-center-application-kit/commit/a0ae9543c139bfa4cde619153082b400d953dfa5), [`564cd91`](https://github.com/commercetools/merchant-center-application-kit/commit/564cd9186d23ea34886d1c41718486e16d3ca90e)]:
+  - @commercetools-frontend/i18n@16.15.9
+  - @commercetools-frontend/react-notifications@16.15.9
+  - @commercetools-frontend/constants@16.15.9
+  - @commercetools-frontend/application-components@16.15.9
+  - @commercetools-frontend/actions-global@16.15.9
+  - @commercetools-frontend/application-shell-connectors@16.15.9
+  - @commercetools-frontend/sdk@16.15.9
+  - @commercetools-frontend/sentry@16.15.9
+  - @commercetools-frontend/permissions@16.15.9
+  - @commercetools-frontend/l10n@16.15.9
+
 ## 16.15.8
 
 ### Patch Changes

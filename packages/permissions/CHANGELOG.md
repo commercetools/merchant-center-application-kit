@@ -1,5 +1,12 @@
 # @commercetools-frontend/permissions
 
+## 16.15.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell-connectors@16.15.9
+
 ## 16.15.8
 
 ### Patch Changes
