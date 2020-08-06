@@ -231,7 +231,7 @@ export const RestrictedApplication = <
                   <SetupFlopFlipProvider
                     user={user}
                     projectKey={projectKeyFromUrl}
-                    appEnv={applicationEnvironment.env}
+                    ldClientSideId={applicationEnvironment.ldClientSideId}
                     flags={props.featureFlags}
                     defaultFlags={props.defaultFeatureFlags}
                   >

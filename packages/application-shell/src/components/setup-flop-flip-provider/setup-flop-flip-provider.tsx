@@ -12,7 +12,7 @@ type Props = {
   user?: TFetchLoggedInUserQuery['user'];
   flags?: TFlags;
   defaultFlags?: TFlags;
-  appEnv: string;
+  ldClientSideId?: string;
   children: React.ReactNode;
   shouldDeferAdapterConfiguration?: boolean;
 };
@@ -21,9 +21,6 @@ type Props = {
 // app uses our account of LD. The value is meant to be public, so there
 // is no need to be concerned about security.
 const ldClientSideIdProduction = '5979d95f6040390cd07b5e01';
-// On our staging env we use a different ID, therefore we need to use the
-// one above only for `production` environment.
-const ldClientSideIdStaging = '5979d95f6040390cd07b5e00';
 
 export const SetupFlopFlipProvider = (props: Props) => {
   const allMenuFeatureToggles = useAllMenuFeatureToggles();
@@ -47,10 +44,10 @@ export const SetupFlopFlipProvider = (props: Props) => {
 
   const adapterArgs = React.useMemo(
     () => ({
-      clientSideId:
-        props.appEnv === 'production'
-          ? ldClientSideIdProduction
-          : ldClientSideIdStaging,
+      // Allow to overwrite the client ID, passed via the `additionalEnv` properties
+      // of the application config.
+      // This is mostly useful for internal usage on our staging environments.
+      clientSideId: props.ldClientSideId ?? ldClientSideIdProduction,
       flags,
       user: {
         key: props.user && props.user.id,
@@ -64,7 +61,7 @@ export const SetupFlopFlipProvider = (props: Props) => {
         },
       },
     }),
-    [flags, props.appEnv, props.projectKey, props.user]
+    [flags, props.ldClientSideId, props.projectKey, props.user]
   );
 
   return (

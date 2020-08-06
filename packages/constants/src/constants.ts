@@ -149,6 +149,7 @@ export interface ApplicationWindow extends Window {
     servedByProxy: boolean;
     // Optional properties. To use them, pass them to the `additionalEnv` object of the application config.
     mcProxyApiUrl?: string;
+    ldClientSideId?: string;
     trackingSentry?: string;
     trackingGtm?: string;
     enableSignUp?: boolean;
