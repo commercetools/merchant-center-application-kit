@@ -178,4 +178,11 @@ export default defineMessages({
     defaultMessage:
       'Duplicate tax rates submitted. Please remove the duplicates.',
   },
+  MaxResourceLimitExceeded: {
+    id: 'ApiError.MaxResourceLimitExceeded',
+    description:
+      'User attempts to create a resource while having already reached the limit',
+    defaultMessage:
+      'The project reached the limit for the resource. To add more resources delete existing ones or reach out to the administrator or contact customer support.',
+  },
 });

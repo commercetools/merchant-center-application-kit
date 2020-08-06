@@ -15,6 +15,7 @@
   "ApiError.InvalidDateRange": "The value entered for the field {field} is invalid. The start date must be before the end date",
   "ApiError.InvalidField": "The value entered is not valid for the field \"{field}\".",
   "ApiError.InvalidSlug": "Slugs may only contain alphanumeric (0-9A-Z) characters, underscores and hyphens and must have a length between 2 and 256 characters.",
+  "ApiError.MaxResourceLimitExceeded": "The project reached the limit for the resource. To add more resources delete existing ones or reach out to the administrator or contact customer support.",
   "ApiError.OverlappingPrices": "Sorry, but a price with these details already exists. Please amend the price details so that they do not overlap with another price before saving.",
   "ApiError.PendingOperation": "Sorry, but we are still processing the previous request. Please try again once it is complete.",
   "ApiError.ReferenceExists": "Can not delete a source while it is referenced from at least one \"{referencedBy}\".",
