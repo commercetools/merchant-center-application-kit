@@ -7,7 +7,7 @@ import {
   createHttpLink,
   InMemoryCache,
 } from '@apollo/client';
-import { version as apolloVersion } from '@apollo/client/version';
+// import * as apolloVersion from '@apollo/client/version';
 import createHttpUserAgent from '@commercetools/http-user-agent';
 import {
   errorLink,
@@ -27,11 +27,11 @@ type CustomIdGetterObj = IdGetterObj & {
 
 const userAgent = createHttpUserAgent({
   name: 'apollo-client',
-  version: apolloVersion,
+  // version: apolloVersion.version,
   libraryName: [window.app.applicationName, 'application-shell'].join('/'),
   libraryVersion: version,
   contactUrl: 'https://git.io/fjuyC', // points to the appkit repo issues
-  contactEmail: 'mc@commercetools.com',
+  contactEmail: 'support@commercetools.com',
 });
 
 const httpLink = createHttpLink({
