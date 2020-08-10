@@ -58,10 +58,6 @@ const processHeaders = (applicationConfig) => {
       'default-src': "'none'",
       'script-src': [
         "'self'",
-        // NOTE: trailing slash is important for partial URLs!
-        'storage.googleapis.com/mc-production-eu/',
-        'storage.googleapis.com/mc-production-us/',
-        'storage.googleapis.com/mc-production-asia/',
         'www.googletagmanager.com/gtm.js',
         'www.google-analytics.com/analytics.js',
       ].concat(
@@ -85,14 +81,7 @@ const processHeaders = (applicationConfig) => {
         isMcDevEnv ? ['ws:', 'localhost:8080', 'webpack-internal:'] : []
       ),
       'img-src': ['*', 'data:'],
-      'style-src': [
-        "'self'",
-        'fonts.googleapis.com',
-        'data:',
-        'storage.googleapis.com/mc-production-eu/',
-        'storage.googleapis.com/mc-production-us/',
-        'storage.googleapis.com/mc-production-asia/',
-      ].concat(
+      'style-src': ["'self'", 'fonts.googleapis.com', 'data:'].concat(
         // TODO: investigate what needs to be done to avoid unsafe-inline styles
         // https://github.com/commercetools/merchant-center-frontend/pull/5223#discussion_r210367636
         ["'unsafe-inline'"]
