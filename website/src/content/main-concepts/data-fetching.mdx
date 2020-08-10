@@ -40,7 +40,7 @@ Then we use the `Query` component of Apollo to send the query and render the res
 ```jsx
 // channel-details.js
 import React from 'react';
-import { Query } from 'react-apollo';
+import { Query } from '@apollo/client/react';
 import Text from '@commercetools-uikit/text';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { FetchChannelQuery } from './channels.graphql';
@@ -81,7 +81,7 @@ The `@commercetools-frontend/application-shell` package now exposes a `createApo
 
 ```jsx
 import React from 'react';
-import { useQuery } from 'react-apollo';
+import { useQuery } from '@apollo/client/react';
 import { createApolloContextForProxyForwardTo } from '@commercetools-frontend/application-shell';
 import Text from '@commercetools-uikit/text';
 import HelloWorldQuery from './hello-world.graphql';

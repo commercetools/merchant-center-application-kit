@@ -1,4 +1,4 @@
-import type { MockedProviderProps } from '@apollo/react-testing';
+import type { MockedResponse } from '@apollo/client/testing';
 import type { TFlags } from '@flopflip/types';
 import type { TProviderProps } from '@commercetools-frontend/application-shell-connectors';
 import type { TMapNotificationToComponentProps } from '@commercetools-frontend/react-notifications';
@@ -8,12 +8,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Router } from 'react-router-dom';
 import invariant from 'tiny-invariant';
-import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider } from '@apollo/client/react';
+import { MockedProvider as ApolloMockProvider } from '@apollo/client/testing';
 import * as rtl from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
-import { MockedProvider as ApolloMockProvider } from '@apollo/react-testing';
 import memoryAdapter from '@flopflip/memory-adapter';
 import { Provider as StoreProvider } from 'react-redux';
 import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
@@ -274,8 +274,8 @@ const wrapIfNeeded = (
 
 type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   locale: string;
-  mocks: MockedProviderProps['mocks'];
-  addTypename: MockedProviderProps['addTypename'];
+  mocks: ReadonlyArray<MockedResponse>;
+  addTypename: boolean;
   route: string;
   history: ReturnType<typeof createEnhancedHistory>;
   adapter: typeof memoryAdapter;

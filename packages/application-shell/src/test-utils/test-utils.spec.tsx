@@ -6,13 +6,15 @@
 // tools here instead of actual components.
 import React from 'react';
 import PropTypes from 'prop-types';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloClient } from 'apollo-client';
-import { HttpLink } from 'apollo-link-http';
+import {
+  InMemoryCache,
+  ApolloClient,
+  HttpLink,
+  gql,
+  useQuery,
+} from '@apollo/client';
 import { useIntl } from 'react-intl';
-import { Query } from 'react-apollo';
 import { useSelector } from 'react-redux';
-import gql from 'graphql-tag';
 import { useFeatureToggle } from '@flopflip/react-broadcast';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
@@ -23,6 +25,7 @@ import {
   experimentalRenderAppWithRedux,
   waitFor,
 } from './test-utils';
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 
 describe('Intl', () => {
   const TestComponent = () => {
@@ -49,18 +52,13 @@ describe('ApolloMockProvider', () => {
       }
     }
   `;
-  const TestComponent = () => (
-    <Query<{ foo?: { name: string } }>
-      query={SomeQuery}
-      variables={{ target: 'ctp' }}
-    >
-      {(payload) => {
-        if (!payload || !payload.data || !payload.data.foo)
-          return <>{'loading'}</>;
-        return <>{payload.data.foo.name}</>;
-      }}
-    </Query>
-  );
+  const TestComponent = () => {
+    const { data } = useQuery<{ foo?: { name: string } }>(SomeQuery, {
+      variables: { target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM },
+    });
+    if (!data || !data.foo) return <>{'loading'}</>;
+    return <>{data.foo.name}</>;
+  };
   it('should be possible to fake GraphQL requests', async () => {
     const rendered = renderApp(<TestComponent />, {
       mocks: [

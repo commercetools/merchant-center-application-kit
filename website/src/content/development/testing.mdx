@@ -40,7 +40,7 @@ The `@commercetools-frontend/application-shell` package contains `test-utils` to
 When writing tests, you want to focus on testing the application specific logic. The `test-utils` abstract away the necessary setup logic of the Application Shell and provide different options to influence the behavior of the application context, including:
 
 - `<IntlProvider>`: for Internationalization and Localization via the[`react-intl`](https://github.com/yahoo/react-intl).
-- `<ApolloProvider>`: for GraphQL requests via the [`react-apollo`](https://github.com/apollographql/react-apollo).
+- `<ApolloProvider>`: for GraphQL requests via the [`@apollo/client`](https://www.apollographql.com/docs/react/).
 - `<ConfigureFlopFlip>`: for feature toggling via the [`flopflip`](https://github.com/tdeekens/flopflip).
 - `<ApplicationContextProvider>`: for holding context information about the Merchant Center application, like `user`, `project`, `environment`, `dataLocale`, and `permissions` via the [`application-shell-connectors`](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell-connectors/src/components/application-context/README.md).
 - `<Router>`: for routing via the [`react-router`](https://github.com/ReactTraining/react-router).

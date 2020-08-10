@@ -1,11 +1,11 @@
-import type { QueryFunctionOptions } from 'react-apollo';
+import type { QueryFunctionOptions } from '@apollo/client/react';
 import type {
   TFetchApplicationsMenuQuery,
   TFetchApplicationsMenuQueryVariables,
 } from '../../types/generated/proxy';
 
 import React from 'react';
-import { useLazyQuery } from 'react-apollo';
+import { useLazyQuery } from '@apollo/client/react';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import FetchApplicationsMenu from './fetch-applications-menu.proxy.graphql';
 

@@ -4,7 +4,7 @@ import type { ExecGraphQlQuery, Command, HistoryEntry } from './types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useFeatureToggles } from '@flopflip/react-broadcast';
-import { useApolloClient } from 'react-apollo';
+import { useApolloClient } from '@apollo/client/react';
 import { useHistory } from 'react-router-dom';
 import {
   actions as sdkActions,

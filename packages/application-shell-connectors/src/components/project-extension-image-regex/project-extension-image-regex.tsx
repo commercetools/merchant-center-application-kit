@@ -4,7 +4,7 @@ import type {
 } from '../../types/generated/settings';
 
 import React from 'react';
-import { useQuery } from 'react-apollo';
+import { useQuery } from '@apollo/client/react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import getDisplayName from '../../utils/get-display-name';

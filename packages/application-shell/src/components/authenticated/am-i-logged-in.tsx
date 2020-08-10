@@ -4,7 +4,7 @@ import type {
 } from '../../types/generated/mc';
 
 import React from 'react';
-import { useQuery } from 'react-apollo';
+import { useQuery } from '@apollo/client/react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { STORAGE_KEYS } from '../../constants';
 import AmILoggedInQuery from './authenticated.mc.graphql';

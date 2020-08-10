@@ -1,9 +1,8 @@
-import type { NormalizedCacheObject } from 'apollo-cache-inmemory';
+import type { NormalizedCacheObject } from '@apollo/client';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type { TApolloContext } from '../utils/apollo-context';
 
-import ApolloClient from 'apollo-client';
-import { ApolloLink } from 'apollo-link';
+import { ApolloClient, ApolloLink } from '@apollo/client';
 import omitEmpty from 'omit-empty-es';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { SUPPORTED_HEADERS } from '../constants';

@@ -65,9 +65,6 @@
       "visual-testing-app",
       "website",
       "website-components-playground"
-    ],
-    "nohoist": [
-      "**/react-apollo"
     ]
   },
   "devDependencies": {

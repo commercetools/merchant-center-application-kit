@@ -1,4 +1,4 @@
-import type { ApolloError } from 'apollo-client';
+import type { ApolloError } from '@apollo/client/errors';
 import type { TGraphQLTargets } from '@commercetools-frontend/constants';
 import type {
   TFetchProjectQuery,
@@ -6,7 +6,7 @@ import type {
 } from '../../types/generated/mc';
 
 import React from 'react';
-import { useQuery } from 'react-apollo';
+import { useQuery } from '@apollo/client/react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import ProjectQuery from './fetch-project.mc.graphql';

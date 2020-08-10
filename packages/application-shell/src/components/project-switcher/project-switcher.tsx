@@ -7,7 +7,7 @@ import type {
 
 import React from 'react';
 import memoize from 'memoize-one';
-import { useQuery } from 'react-apollo';
+import { useQuery } from '@apollo/client/react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { css } from '@emotion/core';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';

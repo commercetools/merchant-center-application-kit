@@ -6,7 +6,7 @@ import './global-style-imports';
 import '../../track-performance';
 import React from 'react';
 import { Router } from 'react-router-dom';
-import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider } from '@apollo/client/react';
 import { Provider as ReduxProvider } from 'react-redux';
 import history from '@commercetools-frontend/browser-history';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';

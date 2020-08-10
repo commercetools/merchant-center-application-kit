@@ -11,7 +11,7 @@ import type {
 import React from 'react';
 import isNil from 'lodash/isNil';
 import throttle from 'lodash/throttle';
-import { useQuery } from 'react-apollo';
+import { useQuery } from '@apollo/client/react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { STORAGE_KEYS } from '../../constants';

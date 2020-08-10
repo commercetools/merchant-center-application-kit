@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { STORAGE_KEYS } from '../../constants';
 import ProjectDataLocale from './project-data-locale';
-import { wait } from '@apollo/react-testing';
+import { wait } from '@apollo/client/testing';
 
 beforeEach(() => {
   window.localStorage.setItem.mockClear();

@@ -1,7 +1,7 @@
 import type { SyntheticEvent } from 'react';
 import type { Dispatch } from 'redux';
 import type { TFlags } from '@flopflip/types';
-import type { ApolloError } from 'apollo-client';
+import type { ApolloError } from '@apollo/client/errors';
 import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import type { TApplicationsMenu } from '../../types/generated/proxy';

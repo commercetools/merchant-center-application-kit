@@ -3,7 +3,7 @@ import type {
   TFetchAllMenuFeatureTogglesQueryVariables,
 } from '../../types/generated/proxy';
 
-import { useQuery } from 'react-apollo';
+import { useQuery } from '@apollo/client/react';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { FetchAllMenuFeatureToggles } from './fetch-all-menu-feature-toggles.proxy.graphql';

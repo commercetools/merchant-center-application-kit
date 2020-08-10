@@ -1,10 +1,10 @@
 import type { RenderResult } from '@testing-library/react';
-import type { MockedProviderProps } from '@apollo/react-testing';
+import type { MockedResponse } from '@apollo/client/testing';
 import type { TImageRegexContext } from './project-extension-image-regex';
 
 import React from 'react';
 import { render, waitForElementToBeRemoved } from '@testing-library/react';
-import { MockedProvider as ApolloMockProvider } from '@apollo/react-testing';
+import { MockedProvider as ApolloMockProvider } from '@apollo/client/testing';
 import {
   ProjectExtensionProviderForImageRegex,
   GetProjectExtensionImageRegex,
@@ -33,7 +33,7 @@ const TestComponent = (props: TestProps) => (
 );
 
 const renderComponent = (
-  mocks: MockedProviderProps['mocks'],
+  mocks: ReadonlyArray<MockedResponse>,
   skipQuery?: boolean
 ) =>
   render(
