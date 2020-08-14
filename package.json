@@ -185,7 +185,13 @@
     "**/react-intl": "5.6.0",
     "**/sharp": "0.25.4",
     "cypress": "4.12.1",
-    "pretty-format": "26.4.0"
+    "pretty-format": "26.4.0",
+    "@emotion/core": "10.0.34",
+    "@emotion/styled": "10.0.27",
+    "@emotion/styled-base": "10.0.31",
+    "**/@emotion/core": "10.0.34",
+    "**/@emotion/styled": "10.0.27",
+    "**/@emotion/styled-base": "10.0.31"
   },
   "engines": {
     "node": ">=12",
