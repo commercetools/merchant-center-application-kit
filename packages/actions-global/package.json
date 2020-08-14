@@ -39,13 +39,13 @@
     "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings"
   },
   "dependencies": {
-    "@babel/runtime": "7.10.5",
-    "@babel/runtime-corejs3": "7.10.5",
+    "@babel/runtime": "7.11.2",
+    "@babel/runtime-corejs3": "7.11.2",
     "@commercetools-frontend/browser-history": "16.15.3",
     "@commercetools-frontend/constants": "16.15.9",
     "@commercetools-frontend/notifications": "16.15.3",
     "@types/lodash": "^4.14.155",
-    "lodash": "4.17.19",
+    "lodash": "4.17.20",
     "lodash-es": "4.17.15",
     "redux-thunk": "2.3.0"
   },

@@ -42,8 +42,8 @@
     "postbuild:typings": "echo \"export * from '../dist/typings/test-utils';\" > test-utils/index.d.ts"
   },
   "dependencies": {
-    "@babel/runtime": "7.10.5",
-    "@babel/runtime-corejs3": "7.10.5",
+    "@babel/runtime": "7.11.2",
+    "@babel/runtime-corejs3": "7.11.2",
     "@commercetools-frontend/constants": "16.15.9",
     "@commercetools/api-request-builder": "5.6.2",
     "@commercetools/http-user-agent": "2.1.2",
@@ -58,12 +58,12 @@
     "unfetch": "4.1.0"
   },
   "devDependencies": {
-    "@types/uuid": "8.0.0",
+    "@types/uuid": "8.3.0",
     "react": "16.13.1",
     "react-redux": "7.2.1",
     "redux": "4.0.5",
     "redux-thunk": "2.3.0",
-    "uuid": "8.2.0"
+    "uuid": "8.3.0"
   },
   "peerDependencies": {
     "@types/react": "16.x",
