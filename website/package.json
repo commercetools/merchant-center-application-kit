@@ -12,14 +12,15 @@
     "@commercetools-docs/gatsby-theme-docs": "7.0.2",
     "@commercetools-docs/ui-kit": "7.0.2",
     "@commercetools-uikit/card": "10.21.0",
-    "@commercetools-uikit/spacings-inline": "10.21.0",
-    "@commercetools-uikit/spacings-stack": "10.21.0",
-    "@emotion/core": "10.0.28",
+    "@commercetools-uikit/spacings-inline": "10.27.1",
+    "@commercetools-uikit/spacings-stack": "10.27.1",
+    "@emotion/core": "10.0.34",
     "@emotion/styled": "10.0.27",
-    "gatsby": "2.24.29",
-    "gatsby-cli": "2.12.74",
+    "@emotion/styled-base": "10.0.31",
+    "gatsby": "2.24.47",
+    "gatsby-cli": "2.12.87",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-intl": "5.4.2"
+    "react-intl": "5.6.0"
   }
 }

@@ -7,6 +7,7 @@ const defaultConfig = {
   silenceConsoleWarnings: [
     /.*Warning: componentWillReceiveProps has been renamed.*/,
     /.*CellMeasurerCache should only measure a cell's width or height.*/,
+    /.*\[React Intl\] "defaultRichTextElements" was specified but "message" was not pre-compiled.*/,
   ],
   notThrowWarnings: [
     /.*@commercetools-frontend\/permissions.*/,
