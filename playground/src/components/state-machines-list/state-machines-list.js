@@ -5,10 +5,9 @@ import { useSelector } from 'react-redux';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { DotIcon } from '@commercetools-uikit/icons';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
-import { Table } from '@commercetools-uikit/table';
+import DataTable from '@commercetools-uikit/data-table';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import Constraints from '@commercetools-uikit/constraints';
 import { NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
 import PageBottomSpacer from '../page-bottom-spacer';
 import { selectStateMachinesFromCache } from '../../reducers/cache';
@@ -20,12 +19,10 @@ export const columnsDefinition = [
   {
     key: 'key',
     label: <FormattedMessage {...messages.columnStateMachineKey} />,
-    flexGrow: 1,
   },
   {
     key: 'name',
     label: <FormattedMessage {...messages.columnStateMachineName} />,
-    flexGrow: 1,
   },
 ];
 
@@ -70,34 +67,25 @@ const StateMachinesList = (props) => {
                     </Text.Detail>
                   </Spacings.Inline>
                 )}
-                <Table
+                <DataTable
                   columns={columnsDefinition}
-                  itemRenderer={(item) => {
-                    const value = result.results[item.rowIndex][item.columnKey];
-
-                    switch (item.columnKey) {
+                  rows={result.results}
+                  onRowClick={({ id }) => {
+                    props.goToStateMachineDetail(id);
+                  }}
+                  itemRenderer={(row, column) => {
+                    const value = row[column.key];
+                    if (!value) return <span />;
+                    switch (column.key) {
                       case 'name':
-                        return value ? (
-                          <Constraints.Horizontal constraint="m">
-                            <Text.Wrap>
-                              {value[dataLocale] || NO_VALUE_FALLBACK}
-                            </Text.Wrap>
-                          </Constraints.Horizontal>
-                        ) : null;
+                        return (
+                          <span>{value[dataLocale] || NO_VALUE_FALLBACK}</span>
+                        );
                       default:
-                        return value;
+                        return <span>{value}</span>;
                     }
                   }}
-                  rowCount={result.count}
-                  onRowClick={(_, rowIndex) => {
-                    props.goToStateMachineDetail(result.results[rowIndex].id);
-                  }}
-                  shouldFillRemainingVerticalSpace={true}
-                  items={result.results}
-                >
-                  {/* TODO: add <Pagination> component */}
-                  <PageBottomSpacer />
-                </Table>
+                />
               </Spacings.Stack>
             );
           }}

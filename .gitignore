@@ -69,6 +69,7 @@ typings/
 .public
 
 # Build
+compiled-data
 dist
 dist-tarballs
 public

@@ -1,3 +1,5 @@
+import type { MessageFormatElement } from 'intl-messageformat-parser';
+
 import moment from 'moment';
 import {
   mergeMessages,
@@ -9,18 +11,14 @@ type MomentImportData = {
   default: moment.Locale;
 };
 type UIKitImportData = {
-  default: {
-    [key: string]: string;
-  };
+  default: Record<string, string> | Record<string, MessageFormatElement[]>;
 };
 type AppKitImportData = {
-  default: {
-    [key: string]: string;
-  };
+  default: Record<string, string> | Record<string, MessageFormatElement[]>;
 };
-type MergedMessages = {
-  [key: string]: string;
-};
+type MergedMessages =
+  | Record<string, string>
+  | Record<string, MessageFormatElement[]>;
 
 const getMomentChunkImport = (locale: string): Promise<MomentImportData> => {
   const momentLocale = mapLocaleToMomentLocale(locale);
@@ -57,27 +55,27 @@ const getUiKitChunkImport = (locale: string): Promise<UIKitImportData> => {
   switch (intlLocale) {
     case 'de':
       return import(
-        /* webpackChunkName: "i18n-ui-kit-locale-de" */ '@commercetools-uikit/i18n/data/de.json'
+        /* webpackChunkName: "i18n-ui-kit-locale-de" */ '@commercetools-uikit/i18n/compiled-data/de.json'
       );
     case 'es':
       return import(
-        /* webpackChunkName: "i18n-ui-kit-locale-es" */ '@commercetools-uikit/i18n/data/es.json'
+        /* webpackChunkName: "i18n-ui-kit-locale-es" */ '@commercetools-uikit/i18n/compiled-data/es.json'
       );
     case 'fr-FR':
       return import(
-        /* webpackChunkName: "i18n-ui-kit-locale-fr-FR" */ '@commercetools-uikit/i18n/data/fr-FR.json'
+        /* webpackChunkName: "i18n-ui-kit-locale-fr-FR" */ '@commercetools-uikit/i18n/compiled-data/fr-FR.json'
       );
     case 'zh-CN':
       return import(
-        /* webpackChunkName: "i18n-ui-kit-locale-zh-CN" */ '@commercetools-uikit/i18n/data/zh-CN.json'
+        /* webpackChunkName: "i18n-ui-kit-locale-zh-CN" */ '@commercetools-uikit/i18n/compiled-data/zh-CN.json'
       );
     case 'ja':
       return import(
-        /* webpackChunkName: "i18n-ui-kit-locale-ja" */ '@commercetools-uikit/i18n/data/ja.json'
+        /* webpackChunkName: "i18n-ui-kit-locale-ja" */ '@commercetools-uikit/i18n/compiled-data/ja.json'
       );
     default:
       return import(
-        /* webpackChunkName: "i18n-ui-kit-locale-en" */ '@commercetools-uikit/i18n/data/en.json'
+        /* webpackChunkName: "i18n-ui-kit-locale-en" */ '@commercetools-uikit/i18n/compiled-data/en.json'
       );
   }
 };

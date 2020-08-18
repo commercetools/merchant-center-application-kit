@@ -25,6 +25,7 @@
   "typings": "./dist/typings/src/index.d.ts",
   "types": "./dist/typings/src/index.d.ts",
   "files": [
+    "compiled-data",
     "dist",
     "package.json",
     "LICENSE",
@@ -32,26 +33,27 @@
   ],
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
-    "prebuild": "rimraf dist/**",
+    "prebuild": "rimraf dist/** && yarn compile-data",
     "build": "yarn build:bundles && yarn build:typings",
     "build:bundles": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js -i ./src/index.ts --dir dist",
     "build:bundles:watch": "yarn build:bundles -w",
-    "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings"
+    "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings",
+    "compile-data": "formatjs compile-folder --format=$(pwd)/transifex-transformer.js --ast data compiled-data"
   },
   "dependencies": {
     "@babel/runtime": "7.11.2",
     "@babel/runtime-corejs3": "7.11.2",
     "@commercetools-frontend/sentry": "16.15.9",
-    "@commercetools-uikit/i18n": "^10.13.0",
+    "@commercetools-uikit/i18n": "^10.30.1",
     "@types/prop-types": "^15.7.3",
     "moment": "^2.24.0",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
+    "intl-messageformat-parser": "^5.4.2",
     "react": "16.13.1"
   },
   "peerDependencies": {
-    "@commercetools-uikit/i18n": "10.x",
     "@types/react": "16.x",
     "react": ">=16.8.0"
   }
