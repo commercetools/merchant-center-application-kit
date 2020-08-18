@@ -9,7 +9,6 @@ import DataTable from '@commercetools-uikit/data-table';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import { NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
-import PageBottomSpacer from '../page-bottom-spacer';
 import { selectStateMachinesFromCache } from '../../reducers/cache';
 import StateMachinesListConnector from '../state-machines-list-connector';
 import messages from './messages';

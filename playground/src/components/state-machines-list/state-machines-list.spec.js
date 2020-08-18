@@ -6,7 +6,6 @@ import {
   fireEvent,
 } from '@commercetools-frontend/application-shell/test-utils';
 import { GtmContext } from '@commercetools-frontend/application-shell';
-import { applyUiKitMocks } from '../../mocks';
 import { ApplicationStateMachines } from '../entry-point';
 
 const createStateMachinesListSdkMock = () => ({
