@@ -100,9 +100,6 @@ const renderApp = (options = {}) => {
 
 describe('list view', () => {
   let rendered;
-  beforeAll(() => {
-    applyUiKitMocks();
-  });
   it('the user can see a list of state machines', async () => {
     rendered = renderApp({
       sdkMocks: [createStateMachinesListSdkMock()],
@@ -140,9 +137,6 @@ describe('list view', () => {
 
 describe('details view', () => {
   let rendered;
-  beforeAll(() => {
-    applyUiKitMocks();
-  });
   describe('when request is successful', () => {
     it('should render data on page', async () => {
       rendered = renderApp({
