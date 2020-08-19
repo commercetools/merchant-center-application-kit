@@ -101,7 +101,7 @@ describe('rendering', () => {
       });
       it('should render the ApiErrorNotification notification component', async () => {
         await rendered.findByText(
-          /we were unable to save your changes as someone else made changes to this same resource while you were editing/
+          /we were unable to save your changes as someone else made changes to this same source while you were editing/
         );
       });
     });

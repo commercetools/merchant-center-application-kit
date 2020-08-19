@@ -21,7 +21,7 @@ export default defineMessages({
     description:
       'User does a bulk update but someone else has saved changes for that element',
     defaultMessage:
-      'Sorry, but we were unable to save your changes as someone else made changes to this same resource while you were editing.',
+      'Sorry, but we were unable to save your changes as someone else made changes to this same source while you were editing.',
   },
 
   // API errors
@@ -30,7 +30,7 @@ export default defineMessages({
     description:
       'User edits form and clicks Save but someone else has saved changes for this element while they were editing',
     defaultMessage:
-      'Sorry, but we were unable to save your changes as someone else made changes to this same resource while you were editing. Please refresh the page and re-enter your changes.',
+      'Sorry, but we were unable to save your changes as someone else made changes to this same source while you were editing. Please refresh the page and re-enter your changes.',
   },
   DuplicateAttributeValue: {
     id: 'ApiError.DuplicateAttributeValue',
@@ -64,7 +64,7 @@ export default defineMessages({
     description:
       'User tries to create a price with the exact same values as for an already existing price',
     defaultMessage:
-      'The same price already exists for this product variant. Please enter different values for the price fields.',
+      'A price with the same scope already exists for this product variant. Make sure that the combination of currency, country, customer group, channel and valid dates is unique per price.',
   },
   DuplicateVariantValues: {
     id: 'ApiError.DuplicateVariantValues',
@@ -108,7 +108,7 @@ export default defineMessages({
     description:
       'User tries to delete an element that has an existing reference to it from another element',
     defaultMessage:
-      'Can not delete a resource while it is referenced from at least one "{referencedBy}".',
+      'Can not delete a source while it is referenced from at least one "{referencedBy}".',
   },
   RequiredField: {
     id: 'ApiError.RequiredField',

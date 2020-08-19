@@ -30,6 +30,18 @@ const flags = mri(process.argv.slice(2), {
 });
 const commands = flags._;
 
+console.warning(`
+This command has been deprecated. To extract React Intl message please refer to the "@formatjs/cli" message extraction.
+https://formatjs.io/docs/getting-started/message-extraction
+
+For example:
+
+formatjs extract \
+  --format=transifex \
+  --out-file=$(pwd)/i18n/data/core.json \
+  'src/**/messages.js'
+`);
+
 if (commands.length === 0 || (flags.help && commands.length === 0)) {
   console.log(`
   Usage: mc-scripts extract-intl [options] <glob-pattern>..

@@ -25,6 +25,7 @@
   "typings": "./dist/typings/src/index.d.ts",
   "types": "./dist/typings/src/index.d.ts",
   "files": [
+    "data",
     "dist",
     "package.json",
     "LICENSE",

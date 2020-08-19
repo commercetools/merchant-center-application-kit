@@ -1,7 +1,4 @@
-import type {
-  TMessagesAsync,
-  TMessageTranslations,
-} from './use-async-intl-messages';
+import type { MessageFormatElement } from 'intl-messageformat-parser';
 
 import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
@@ -9,9 +6,12 @@ import { extractLanguageTagFromLocale, mergeMessages } from '../utils';
 import loadI18n from '../load-i18n';
 import useAsyncIntlMessages from './use-async-intl-messages';
 
-export type TMessages = {
-  [key: string]: TMessageTranslations;
-};
+export type TMessageTranslations =
+  | Record<string, string>
+  | Record<string, MessageFormatElement[]>;
+export type TMessageTranslationsAsync = (
+  locale: string
+) => Promise<TMessageTranslations>;
 export type TRenderFunctionResult = {
   isLoading: boolean;
   locale?: string;
@@ -23,11 +23,16 @@ export type Props = {
   // This is important in order to avoid loading different locales and
   // therefore causing flashing of translated content on subsequent re-renders.
   locale?: string;
-  applicationMessages: TMessages | TMessagesAsync;
+  applicationMessages:
+    | { [locale: string]: TMessageTranslations }
+    | TMessageTranslationsAsync;
   children: (state: TRenderFunctionResult) => React.ReactNode;
 };
 
-const getMessagesForLocale = (data?: TMessages, locale?: string) => {
+const getMessagesForLocale = (
+  data?: { [locale: string]: TMessageTranslations },
+  locale?: string
+) => {
   if (!data || !locale) return {};
   if (data[locale]) return data[locale];
   const fallbackLanguage = extractLanguageTagFromLocale(locale);

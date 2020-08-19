@@ -1,9 +1,13 @@
+import type { MessageFormatElement } from 'intl-messageformat-parser';
+
 import React from 'react';
 
-export type TMessageTranslations = {
-  [key: string]: string;
-};
-export type TMessagesAsync = (locale: string) => Promise<TMessageTranslations>;
+export type TMessageTranslations =
+  | Record<string, string>
+  | Record<string, MessageFormatElement[]>;
+export type TMessageTranslationsAsync = (
+  locale: string
+) => Promise<TMessageTranslations>;
 export type TState = {
   isLoading: boolean;
   messages?: TMessageTranslations;
@@ -11,7 +15,7 @@ export type TState = {
 };
 export type THookOptions = {
   locale?: string;
-  loader: TMessagesAsync;
+  loader: TMessageTranslationsAsync;
 };
 
 const initialState: TState = {
