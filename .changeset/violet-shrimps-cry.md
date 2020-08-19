@@ -3,6 +3,7 @@
 '@commercetools-frontend/application-components': minor
 '@commercetools-frontend/application-shell': minor
 '@commercetools-frontend/i18n': minor
+'@commercetools-frontend/l10n': patch
 '@commercetools-frontend/mc-scripts': minor
 '@commercetools-frontend/react-notifications': minor
 'playground': minor
