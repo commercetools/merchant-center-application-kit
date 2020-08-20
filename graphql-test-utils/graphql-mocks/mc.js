@@ -12,6 +12,7 @@ const createMockOperations = (customOperations = {}) => {
       me: UserMock.build({
         defaultProjectKey: defaultProject.key,
         projects: {
+          __typename: 'ProjectQueryResult',
           total: 2,
           results: [defaultProject, ProjectMock.build()],
         },
@@ -24,6 +25,7 @@ const createMockOperations = (customOperations = {}) => {
       me: UserMock.build({
         defaultProjectKey: defaultProject.key,
         projects: {
+          __typename: 'ProjectQueryResult',
           total: 2,
           results: [defaultProject, ProjectMock.build()],
         },
