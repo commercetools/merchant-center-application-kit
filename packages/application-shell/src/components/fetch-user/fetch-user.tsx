@@ -1,5 +1,4 @@
 import type { ApolloError } from '@apollo/client/errors';
-import type { TGraphQLTargets } from '@commercetools-frontend/constants';
 import type {
   TFetchLoggedInUserQuery,
   TFetchLoggedInUserQueryVariables,
