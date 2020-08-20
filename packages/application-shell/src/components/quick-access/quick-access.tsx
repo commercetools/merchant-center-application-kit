@@ -408,7 +408,7 @@ const QuickAccess = (props: Props) => {
         commands.push({
           id: `go/product-by-key/product(${productId})`,
           text: intl.formatMessage(messages.showProduct, {
-            productName: data.productByKey.key,
+            productName: searchText,
           }),
           action: {
             type: actionTypes.go,

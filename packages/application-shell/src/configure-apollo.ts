@@ -1,4 +1,3 @@
-import type { IdGetterObj } from '@apollo/client/cache';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
 import {
@@ -20,10 +19,6 @@ import { isLoggerEnabled } from './utils/logger';
 import version from './version';
 
 declare let window: ApplicationWindow;
-
-type CustomIdGetterObj = IdGetterObj & {
-  key?: string;
-};
 
 const userAgent = createHttpUserAgent({
   name: 'apollo-client',
@@ -56,42 +51,28 @@ const link = from([
   httpLink,
 ]);
 
-const typeNamesWithoutIdAsIdentifier = [
-  'Project',
-  'BaseMenu',
-  'NavbarMenu',
-  'Store',
-];
-
-const referenceTypes = ['Reference', 'ChannelReferenceIdentifier'];
-
 export const createApolloClient = () =>
   new ApolloClient({
     link,
+    // https://www.apollographql.com/docs/react/caching/cache-configuration/
     cache: new InMemoryCache({
-      // https://www.apollographql.com/docs/react/data/fragments/#defining-possibletypes-manually
-      // possibleTypes: [],
-      dataIdFromObject: (result) => {
-        const customResult = result as CustomIdGetterObj;
-        if (
-          !customResult.id &&
-          customResult.key &&
-          customResult.__typename &&
-          typeNamesWithoutIdAsIdentifier.includes(customResult.__typename)
-        )
-          return `${customResult.__typename}:${customResult.key}`;
-        // Generally all id's are unique across the platform, so we don't need to
-        // include the type name in the cache key.
-        // However, a reference has the shape { typeId, id } where the id is the
-        // id of the referenced entity. If we didn't prefix ids of References
-        // they would clash with the referenced resource.
-        if (
-          customResult.__typename &&
-          referenceTypes.includes(customResult.__typename)
-        )
-          return `${customResult.__typename}:${customResult.id}`;
-
-        return customResult.id;
+      // https://www.apollographql.com/docs/react/caching/cache-configuration/#generating-unique-identifiers
+      typePolicies: {
+        // CTP types with `key` as identifier
+        Project: {
+          keyFields: ['key'],
+        },
+        Store: {
+          keyFields: ['key'],
+        },
+        // Internal apps menu links representations
+        BaseMenu: {
+          keyFields: ['key'],
+        },
+        // Legacy custom applications
+        NavbarMenu: {
+          keyFields: ['key'],
+        },
       },
     }),
   });
