@@ -1,0 +1,83 @@
+---
+date: 2020-08-25
+title: Migrating to the new Apollo Client 3.0
+description: |
+  With the new release of Apollo Client 3.0, certain breaking changes have been introduced which require some migration steps.\
+  As a consequence, the Application Kit packages have also been released as a new major version v17.\
+  In this release note we go through the important migration steps.
+type: feature
+topics:
+  - Breaking Changes
+  - Dependencies
+published: false
+---
+
+With the new release of Apollo Client `3.0`, there have been introduced certain breaking changes which require some migration steps. See official migration guide https://www.apollographql.com/docs/react/migrating/apollo-client-3-migration/.
+
+As a consequence, the Application Kit packages have also been released as a new major version `v17`.
+
+## Migrating Apollo imports
+
+Apollo ships now with a single package `@apollo/client` instead of multiple ones.
+
+For Custom Applications this means that the peer dependencies `apollo-client` and `react-apollo` are now replaced with the new peer dependency of `@apollo/client`.
+
+This is all you need to do to migrate to the latest version of Apollo, including of course [updating the Apollo imports](https://www.apollographql.com/docs/react/migrating/apollo-client-3-migration/#updating-imports).
+
+## About the new Apollo Cache
+
+With Apollo version `3.0`, the cache got some improvements as well, resulting in some breaking changes. Please make sure to [read this document](https://www.apollographql.com/docs/react/migrating/apollo-client-3-migration/#cache-improvements) to understand the changes.
+
+For Custom Applications this also might require some migration steps, depending on how you've been using the queries and cache in your application.
+
+The `@commercetools-frontend/application-shell` now exposes an option to allow users to configure the Apollo cache behavior according to the needs of their application.
+
+> FIXME: this is not implemented yet!!!
+
+## Changes about Apollo query variables and context
+
+Previously, to perform GraphQL requests to the Merchant Center API Gateway, you would need to specify at least the _GraphQL Target_: https://docs.commercetools.com/custom-applications/main-concepts/graphql#request-format
+
+This value had to be specified in the query `variables` object, which the built-in Merchant Center Apollo HTTP Link would parse and assign it to the request as an HTTP header.
+
+Now that Apollo has a more stable support for the `context` option, it is time that we make use of that instead of "spamming" the query `variables` object with request metadata.
+
+Therefore, all the **metadata options** that you previously would pass to the `variables` object **can now be defined** in the `context` object.
+
+```diff
+const { loading, data, error } = useQuery(MyQuery, {
+- variables: {
++ context: {
+    target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+  },
+});
+```
+
+The options include:
+
+- `target`
+- `projectKey`
+
+> Passing the metadata to the `variables` object still works for backwards compatibility but it is recommended to use the `context` object instead.
+
+## Enforcing a valid context object
+
+Now that the recommended and preferred way of passing request metadata options is to use the `context` object, to take advantage of the TypeScript declarations and therefore to have possible validation and autocompletion (even if you're not using TypeScript), we expose some React Hook wrappers around the Apollo Hooks.
+
+- `useMcQuery`
+- `useMcLazyQuery`
+- `useMcMutation`
+
+Those work exactly the same as the original Apollo Hooks, except that the `context` object is properly typed in regards to the Merchant Center metadata options instead of be typed as `any`.
+
+```diff
+-import { useQuery } from '@apollo/client/react';
++import { useMcQuery } from '@commercetools-frontend/application-shell';
+
+-const { loading, data, error } = useQuery(MyQuery, {
++const { loading, data, error } = useMcQuery(MyQuery, {
+  context: {
+    target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+  },
+});
+```
