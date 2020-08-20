@@ -2,7 +2,6 @@
 'merchant-center-application-template-starter': major
 '@commercetools-frontend/application-shell': major
 '@commercetools-frontend/application-shell-connectors': major
-'@commercetools-frontend/constants': minor
 '@commercetools-website/custom-applications': major
 ---
 

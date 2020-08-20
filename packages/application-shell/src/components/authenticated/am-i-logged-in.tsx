@@ -1,4 +1,3 @@
-import type { TQueryVariablesWithTarget } from '@commercetools-frontend/constants';
 import type {
   TAmILoggedInQuery,
   TAmILoggedInQueryVariables,
@@ -23,7 +22,7 @@ const AmILoggedIn = (props: Props) => {
   // is valid. We return null while the query is loading.
   const { data, loading, error } = useMcQuery<
     TAmILoggedInQuery,
-    TQueryVariablesWithTarget<TAmILoggedInQueryVariables>
+    TAmILoggedInQueryVariables
   >(AmILoggedInQuery, {
     context: {
       target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
