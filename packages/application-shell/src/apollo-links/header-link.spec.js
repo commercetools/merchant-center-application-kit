@@ -49,7 +49,7 @@ describe('with valid target', () => {
     await waitFor(
       execute(link, {
         query,
-        variables: {
+        context: {
           target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
           featureFlag: 'test-feature-a',
         },
@@ -123,7 +123,7 @@ describe('with valid target', () => {
       await waitFor(
         execute(link, {
           query,
-          variables: {
+          context: {
             target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
             projectKey,
           },
@@ -161,7 +161,7 @@ describe('with valid target', () => {
       await waitFor(
         execute(link, {
           query,
-          variables: {
+          context: {
             target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
             teamId,
           },
@@ -199,7 +199,7 @@ describe('with valid target', () => {
       await waitFor(
         execute(link, {
           query,
-          variables: {
+          context: {
             target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
             featureFlag,
           },
@@ -242,7 +242,7 @@ describe('with valid target', () => {
       await waitFor(
         execute(link, {
           query,
-          variables: {
+          context: {
             target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
             teamId,
             projectKey,

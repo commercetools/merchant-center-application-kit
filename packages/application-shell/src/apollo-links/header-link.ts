@@ -1,5 +1,8 @@
 import type { NormalizedCacheObject } from '@apollo/client';
-import type { ApplicationWindow } from '@commercetools-frontend/constants';
+import type {
+  ApplicationWindow,
+  TGraphQLTargets,
+} from '@commercetools-frontend/constants';
 import type { TApolloContext } from '../utils/apollo-context';
 
 import { ApolloClient, ApolloLink } from '@apollo/client';
@@ -15,35 +18,36 @@ import {
 
 declare let window: ApplicationWindow;
 
-type GraphQlTarget = typeof GRAPHQL_TARGETS[keyof typeof GRAPHQL_TARGETS];
-
 type ApolloContextWithInMemoryCache = TApolloContext & {
   cache: ApolloClient<NormalizedCacheObject>;
 };
 
 type QueryVariables = {
-  target: GraphQlTarget;
+  // Deprecated, use `{ context: { target } }`
+  target?: TGraphQLTargets;
+  // Deprecated, use `{ context: { projectKey } }`
   projectKey?: string;
+  // Deprecated, use `{ context: { teamId } }`
   teamId?: string;
+  // Deprecated, use `{ context: { featureFlag } }`
   featureFlag?: string;
 };
 
-const isKnownGraphQlTarget = (target: GraphQlTarget) =>
-  Object.values(GRAPHQL_TARGETS).includes(target);
+const isKnownGraphQlTarget = (target?: TGraphQLTargets) =>
+  target ? Object.values(GRAPHQL_TARGETS).includes(target) : false;
 
 /* eslint-disable import/prefer-default-export */
 // Use a middleware to update the request headers with the correct params.
 const headerLink = new ApolloLink((operation, forward) => {
-  const {
-    skipGraphQlTargetCheck = false,
-    cache,
-    forwardToConfig,
-  } = operation.getContext() as ApolloContextWithInMemoryCache;
+  const apolloContext = operation.getContext() as ApolloContextWithInMemoryCache;
 
   const variables = operation.variables as QueryVariables;
 
-  const graphQlTarget = variables.target;
-  if (!skipGraphQlTargetCheck && !isKnownGraphQlTarget(graphQlTarget))
+  const graphQlTarget = apolloContext.target || variables.target;
+  if (
+    !apolloContext.skipGraphQlTargetCheck &&
+    !isKnownGraphQlTarget(graphQlTarget)
+  )
     throw new Error(
       `GraphQL target "${graphQlTarget}" is missing or is not supported`
     );
@@ -56,10 +60,14 @@ const headerLink = new ApolloLink((operation, forward) => {
    *   As a result we allow passing the project key as a variable on the operation allowing
    *   it to be the fallback.
    */
-  const projectKey = variables.projectKey || selectProjectKeyFromUrl();
-  const teamId = variables.teamId || selectTeamIdFromLocalStorage();
-  const userId = selectUserId({ apolloCache: cache });
-  const featureFlag = variables.featureFlag;
+  const projectKey =
+    apolloContext.projectKey ||
+    variables.projectKey ||
+    selectProjectKeyFromUrl();
+  const teamId =
+    apolloContext.teamId || variables.teamId || selectTeamIdFromLocalStorage();
+  const userId = selectUserId({ apolloCache: apolloContext.cache });
+  const featureFlag = apolloContext.featureFlag || variables.featureFlag;
 
   operation.setContext({
     credentials: 'include',
@@ -72,11 +80,11 @@ const headerLink = new ApolloLink((operation, forward) => {
       [SUPPORTED_HEADERS.X_APPLICATION_ID]: window.app.applicationId,
       [SUPPORTED_HEADERS.X_FEATURE_FLAG]: featureFlag,
       // Additional headers for the forward-to feature.
-      [SUPPORTED_HEADERS.ACCEPT_VERSION]: forwardToConfig
-        ? forwardToConfig.version
+      [SUPPORTED_HEADERS.ACCEPT_VERSION]: apolloContext.forwardToConfig
+        ? apolloContext.forwardToConfig.version
         : undefined,
-      [SUPPORTED_HEADERS.X_FORWARD_TO]: forwardToConfig
-        ? forwardToConfig.uri
+      [SUPPORTED_HEADERS.X_FORWARD_TO]: apolloContext.forwardToConfig
+        ? apolloContext.forwardToConfig.uri
         : undefined,
     }),
   });

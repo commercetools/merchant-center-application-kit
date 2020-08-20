@@ -133,6 +133,10 @@ export const MC_API_PROXY_TARGETS = {
 } as const;
 export type TMcApiProxyTargets = typeof MC_API_PROXY_TARGETS[keyof typeof MC_API_PROXY_TARGETS];
 
+export type TQueryVariablesWithTarget<QueryVariables> = QueryVariables & {
+  target: TGraphQLTargets;
+};
+
 // Global application environment on window object
 export interface ApplicationWindow extends Window {
   dataLayer: unknown[];

@@ -40,8 +40,10 @@ We can leverage the `context` option for Apollo queries to adjust how request is
 
 ```js
 import React from 'react';
-import { useQuery } from '@apollo/client/react';
-import { createApolloContextForProxyForwardTo } from '@commercetools-frontend/application-shell';
+import {
+  createApolloContextForProxyForwardTo,
+  useMcQuery,
+} from '@commercetools-frontend/application-shell';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 
 const Fetcher = () => {
@@ -50,7 +52,7 @@ const Fetcher = () => {
   const externalApiUrl = useApplicationContext(
     context => context.environment.externalApiUrl
   );
-  const { loading, data, error } = useQuery(MyQuery, {
+  const { loading, data, error } = useMcQuery(MyQuery, {
     context: createApolloContextForProxyForwardTo({
       // The URL to your external API
       uri: externalApiUrl,

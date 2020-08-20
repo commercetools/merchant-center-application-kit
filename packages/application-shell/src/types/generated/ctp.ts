@@ -10488,7 +10488,7 @@ export type TQuickAccessQuery = (
     )> }
   ), productById: Maybe<(
     { __typename?: 'Product' }
-    & Pick<TProduct, 'key' | 'id'>
+    & Pick<TProduct, 'id'>
     & { masterData: (
       { __typename?: 'ProductCatalogData' }
       & { staged: Maybe<(
@@ -10501,7 +10501,7 @@ export type TQuickAccessQuery = (
     ) }
   )>, productByKey: Maybe<(
     { __typename?: 'Product' }
-    & Pick<TProduct, 'key' | 'id'>
+    & Pick<TProduct, 'id'>
     & { masterData: (
       { __typename?: 'ProductCatalogData' }
       & { staged: Maybe<(

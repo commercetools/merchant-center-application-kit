@@ -1,11 +1,17 @@
+import type { TGraphQLTargets } from '@commercetools-frontend/constants';
+
 import getMcApiUrl from './get-mc-api-url';
 
 export type TApolloContext = {
   uri?: string;
+  headers?: { [key: string]: string };
   forwardToConfig?: { version: string; uri: string };
   skipGraphQlTargetCheck?: boolean;
-  headers?: { [key: string]: string };
   skipTokenRetry?: boolean;
+  target?: TGraphQLTargets;
+  projectKey?: string;
+  teamId?: string;
+  featureFlag?: string;
 };
 
 type TApolloContextProxyForwardTo = {

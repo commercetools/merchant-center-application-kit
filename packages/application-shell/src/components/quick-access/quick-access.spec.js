@@ -18,11 +18,13 @@ const createMatchlessSearchMock = ({ variables = {}, resultData = {} }) => ({
     query: QuickAccessQuery,
     variables: {
       searchText: '',
-      target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
       canViewProducts: true,
       productsWhereClause: 'id in ()',
       includeProductsByIds: false,
       ...variables,
+    },
+    context: {
+      target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
     },
   },
   result: {
@@ -45,8 +47,10 @@ const createAccessProductVariantsQueryMock = ({
     query: QuickAccessProductQuery,
     variables: {
       productId: '',
-      target: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
       ...variables,
+    },
+    context: {
+      target: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
     },
   },
   result: {

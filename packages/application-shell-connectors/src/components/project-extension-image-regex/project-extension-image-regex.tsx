@@ -1,5 +1,6 @@
 import type {
   TFetchProjectExtensionImageRegexQuery,
+  TFetchProjectExtensionImageRegexQueryVariables,
   TImageRegexOptions,
 } from '../../types/generated/settings';
 
@@ -31,11 +32,11 @@ const Context = React.createContext<TImageRegexContext>({ isLoading: false });
 const ProjectExtensionProviderForImageRegex = (props: ProviderProps) => {
   const { loading, data } = useQuery<
     TFetchProjectExtensionImageRegexQuery,
-    { target: typeof GRAPHQL_TARGETS.SETTINGS_SERVICE }
+    TFetchProjectExtensionImageRegexQueryVariables
   >(FetchProjectExtensionImageRegex, {
     skip: props.skip,
     onError: reportErrorToSentry,
-    variables: { target: GRAPHQL_TARGETS.SETTINGS_SERVICE },
+    context: { target: GRAPHQL_TARGETS.SETTINGS_SERVICE },
   });
 
   return (

@@ -11,10 +11,10 @@ import type {
 import React from 'react';
 import isNil from 'lodash/isNil';
 import throttle from 'lodash/throttle';
-import { useQuery } from '@apollo/client/react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { STORAGE_KEYS } from '../../constants';
+import { useMcQuery } from '../../hooks/apollo-hooks';
 import useApplicationsMenu from '../../hooks/use-applications-menu';
 import FetchProjectExtensionsNavbar from './fetch-project-extensions-navbar.settings.graphql';
 import nonNullable from './non-nullable';
@@ -72,12 +72,12 @@ const useNavbarStateManager = (props: HookProps) => {
     skipRemoteQuery: !props.environment.servedByProxy,
     loadMenuConfig: props.DEV_ONLY__loadNavbarMenuConfig,
   });
-  const { data: projectExtensionsQuery } = useQuery<
+  const { data: projectExtensionsQuery } = useMcQuery<
     TFetchProjectExtensionsNavbarQuery,
     TFetchProjectExtensionsNavbarQueryVariables
   >(FetchProjectExtensionsNavbar, {
     skip: !props.environment.servedByProxy,
-    variables: {
+    context: {
       target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
     },
     fetchPolicy: 'cache-and-network',

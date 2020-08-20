@@ -129,10 +129,8 @@ const createProductVariantListSubCommands = async ({
   if (!canViewProducts) return [];
   const data = await execQuery<TQuickAccessProductQuery>(
     QuickAccessProductQuery,
-    {
-      productId,
-      target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
-    }
+    { productId },
+    { target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM }
   );
   if (
     data &&

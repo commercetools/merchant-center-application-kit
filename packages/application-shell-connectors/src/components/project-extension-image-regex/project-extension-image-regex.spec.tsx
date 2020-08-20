@@ -83,7 +83,7 @@ describe('rendering', () => {
         {
           request: {
             query: FetchProjectExtensionImageRegex,
-            variables: {
+            context: {
               target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
             },
           },
@@ -119,7 +119,7 @@ describe('rendering', () => {
         {
           request: {
             query: FetchProjectExtensionImageRegex,
-            variables: {
+            context: {
               target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
             },
           },

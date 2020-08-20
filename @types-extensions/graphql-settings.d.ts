@@ -5,10 +5,11 @@ declare module '*/fetch-project-extension-image-regex.settings.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const FetchProjectExtensionImageRegex: DocumentNode;
-  export const ImageRegex: DocumentNode;
+export const ImageRegex: DocumentNode;
 
   export default defaultDocument;
 }
+    
 
 declare module '*/fetch-project-extensions-navbar.settings.graphql' {
   import { DocumentNode } from 'graphql';
@@ -17,3 +18,4 @@ declare module '*/fetch-project-extensions-navbar.settings.graphql' {
 
   export default defaultDocument;
 }
+    

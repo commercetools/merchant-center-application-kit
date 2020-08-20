@@ -6,9 +6,9 @@ import type {
 } from '../../types/generated/mc';
 
 import React from 'react';
-import { useQuery } from '@apollo/client/react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import { useMcQuery } from '../../hooks/apollo-hooks';
 import LoggedInUserQuery from './fetch-user.mc.graphql';
 
 type RenderFnArgs = {
@@ -21,12 +21,12 @@ type Props = {
 };
 
 const FetchUser = (props: Props) => {
-  const { loading, data, error } = useQuery<
+  const { loading, data, error } = useMcQuery<
     TFetchLoggedInUserQuery,
     TFetchLoggedInUserQueryVariables & { target: TGraphQLTargets }
   >(LoggedInUserQuery, {
     onError: reportErrorToSentry,
-    variables: { target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND },
+    context: { target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND },
   });
   return (
     <>

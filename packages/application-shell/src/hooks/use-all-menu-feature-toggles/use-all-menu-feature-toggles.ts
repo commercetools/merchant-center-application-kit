@@ -3,9 +3,9 @@ import type {
   TFetchAllMenuFeatureTogglesQueryVariables,
 } from '../../types/generated/proxy';
 
-import { useQuery } from '@apollo/client/react';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import { useMcQuery } from '../../hooks/apollo-hooks';
 import { FetchAllMenuFeatureToggles } from './fetch-all-menu-feature-toggles.proxy.graphql';
 
 const defaultApiUrl = window.location.origin;
@@ -26,7 +26,7 @@ const useAllMenuFeatureToggles = () => {
     (applicationContext) => applicationContext.environment.mcProxyApiUrl
   );
 
-  const { data, refetch, loading } = useQuery<
+  const { data, refetch, loading } = useMcQuery<
     TFetchAllMenuFeatureTogglesQuery,
     TFetchAllMenuFeatureTogglesQueryVariables
   >(FetchAllMenuFeatureToggles, {

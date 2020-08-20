@@ -7,7 +7,6 @@ import type {
 
 import React from 'react';
 import memoize from 'memoize-one';
-import { useQuery } from '@apollo/client/react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { css } from '@emotion/core';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
@@ -15,6 +14,7 @@ import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import SelectInput from '@commercetools-uikit/select-input';
 import { ErrorIcon } from '@commercetools-uikit/icons';
 import { customProperties } from '@commercetools-uikit/design-system';
+import { useMcQuery } from '../../hooks/apollo-hooks';
 import { location } from '../../utils/location';
 import ProjectsQuery from './project-switcher.mc.graphql';
 import messages from './messages';
@@ -142,12 +142,12 @@ const redirectTo = (targetUrl: string) => location.replace(targetUrl);
 
 const ProjectSwitcher = (props: Props) => {
   const intl = useIntl();
-  const { loading, data } = useQuery<
+  const { loading, data } = useMcQuery<
     TFetchUserProjectsQuery,
     TFetchUserProjectsQueryVariables
   >(ProjectsQuery, {
     onError: reportErrorToSentry,
-    variables: {
+    context: {
       target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
     },
   });

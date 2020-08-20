@@ -45,17 +45,16 @@ import Text from '@commercetools-uikit/text';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { FetchChannelQuery } from './channels.graphql';
 
-const createQueryVariables = custom => ({
-  target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
-  ...custom,
-});
 const ChannelDetails = props => (
   <Query
     query={FetchChannelQuery}
-    variables={createQueryVariables({
+    variables={{
       id: props.channelId,
       locale: props.locale,
-    })}
+    }}
+    context={{
+      target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+    }}
   >
     {({ loading, error, data }) => {
       if (loading) return 'Loading...';
@@ -81,13 +80,15 @@ The `@commercetools-frontend/application-shell` package now exposes a `createApo
 
 ```jsx
 import React from 'react';
-import { useQuery } from '@apollo/client/react';
-import { createApolloContextForProxyForwardTo } from '@commercetools-frontend/application-shell';
+import {
+  createApolloContextForProxyForwardTo,
+  useMcQuery,
+} from '@commercetools-frontend/application-shell';
 import Text from '@commercetools-uikit/text';
 import HelloWorldQuery from './hello-world.graphql';
 
 const HelloWorld = () => {
-  const { loading, data, error } = useQuery(HelloWorldQuery, {
+  const { loading, data, error } = useMcQuery(HelloWorldQuery, {
     context: createApolloContextForProxyForwardTo({
       uri: 'https://my-custom-app.com/graphql',
     }),

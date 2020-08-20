@@ -6,26 +6,21 @@
 // tools here instead of actual components.
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  InMemoryCache,
-  ApolloClient,
-  HttpLink,
-  gql,
-  useQuery,
-} from '@apollo/client';
+import { InMemoryCache, ApolloClient, HttpLink, gql } from '@apollo/client';
 import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
 import { useFeatureToggle } from '@flopflip/react-broadcast';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
-import { Switch, Route } from 'react-router-dom';
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import { useMcQuery } from '../hooks/apollo-hooks';
 import {
   renderApp,
   renderAppWithRedux,
   experimentalRenderAppWithRedux,
   waitFor,
 } from './test-utils';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 
 describe('Intl', () => {
   const TestComponent = () => {
@@ -53,8 +48,8 @@ describe('ApolloMockProvider', () => {
     }
   `;
   const TestComponent = () => {
-    const { data } = useQuery<{ foo?: { name: string } }>(SomeQuery, {
-      variables: { target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM },
+    const { data } = useMcQuery<{ foo?: { name: string } }>(SomeQuery, {
+      context: { target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM },
     });
     if (!data || !data.foo) return <>{'loading'}</>;
     return <>{data.foo.name}</>;
@@ -65,7 +60,7 @@ describe('ApolloMockProvider', () => {
         {
           request: {
             query: SomeQuery,
-            variables: { target: 'ctp' },
+            context: { target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM },
           },
           result: { data: { foo: { name: 'Snoop Dogg' } } },
         },

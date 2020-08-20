@@ -5,8 +5,8 @@ import type {
 } from '../../types/generated/proxy';
 
 import React from 'react';
-import { useLazyQuery } from '@apollo/client/react';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { useMcLazyQuery } from '../../hooks/apollo-hooks';
 import FetchApplicationsMenu from './fetch-applications-menu.proxy.graphql';
 
 export type MenuKey = 'appBar' | 'navBar';
@@ -49,12 +49,13 @@ function useApplicationsMenu<Key extends MenuKey>(
   const [
     loadMenuData,
     { called: hasApplicationsMenuQueryBeenCalled, data: menuQueryResult },
-  ] = useLazyQuery<
+  ] = useMcLazyQuery<
     TFetchApplicationsMenuQuery,
     TFetchApplicationsMenuQueryVariables
   >(FetchApplicationsMenu, {
     ...queryOptions,
     fetchPolicy: queryOptions.fetchPolicy || 'cache-first',
+    variables: {},
     context: {
       // Allow to overwrite the API url from application config
       uri: `${mcProxyApiUrl || defaultApiUrl}/api/graphql`,
