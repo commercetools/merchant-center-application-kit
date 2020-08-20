@@ -296,7 +296,7 @@ Some examples:
         ],
       });
       await rendered.findByText('Loading...');
-      await wait(() => {
+      await waitFor(() => {
         expect(rendered.queryByText('Your balance is 300€')).toBeInTheDocument();
       });
     });
@@ -385,7 +385,7 @@ Some examples:
         }
       );
       await rendered.findByText('Loading...');
-      await wait(() => {
+      await waitFor(() => {
         expect(rendered.queryByText('Your balance is 300€')).toBeInTheDocument();
       });
     });
@@ -416,7 +416,7 @@ Some examples:
         flags: { experimentalAgeOnProfileFlag: false },
       });
       await rendered.findByText('Penny');
-      await wait(() => {
+      await waitFor(() => {
         expect(rendered.queryByText('32')).not.toBeInTheDocument();
       });
     });
@@ -514,7 +514,7 @@ describe('DeleteProductButton', () => {
     const rendered = renderApp(<DeleteProductButton />, {
       permissions: { canManageProducts: false },
     });
-    await wait(() => {
+    await waitFor(() => {
       expect(rendered.queryByText('Delete Product')).toBeDisabled();
     });
   });
@@ -522,7 +522,7 @@ describe('DeleteProductButton', () => {
     const rendered = renderApp(<DeleteProductButton />, {
       permissions: { canManageProducts: true },
     });
-    await wait(() => {
+    await waitFor(() => {
       expect(rendered.queryByText('Delete Product')).not.toBeDisabled();
     });
   });

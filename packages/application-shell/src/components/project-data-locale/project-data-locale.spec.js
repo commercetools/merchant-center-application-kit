@@ -1,8 +1,7 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import { STORAGE_KEYS } from '../../constants';
 import ProjectDataLocale from './project-data-locale';
-import { wait } from '@apollo/client/testing';
 
 beforeEach(() => {
   window.localStorage.setItem.mockClear();
@@ -32,7 +31,7 @@ describe('rendering', () => {
           </ProjectDataLocale>
         );
         await rendered.findByText('Locale: en');
-        await wait(() => {
+        await waitFor(() => {
           expect(window.localStorage.setItem).toHaveBeenCalledWith(
             STORAGE_KEYS.SELECTED_DATA_LOCALE,
             'en'
@@ -50,7 +49,7 @@ describe('rendering', () => {
         </ProjectDataLocale>
       );
       await rendered.findByText('Locale: en');
-      await wait(() => {
+      await waitFor(() => {
         expect(window.localStorage.setItem).toHaveBeenCalledWith(
           STORAGE_KEYS.SELECTED_DATA_LOCALE,
           'en'
