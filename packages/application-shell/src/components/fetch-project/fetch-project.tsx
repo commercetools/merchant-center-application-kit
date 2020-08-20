@@ -25,12 +25,14 @@ type Props = {
 const FetchProject = (props: Props) => {
   const { loading, data, error } = useMcQuery<
     TFetchProjectQuery,
-    TFetchProjectQueryVariables & { target: TGraphQLTargets }
+    TFetchProjectQueryVariables
   >(ProjectQuery, {
     onError: reportErrorToSentry,
+    variables: {
+      projectKey: props.projectKey,
+    },
     context: {
       target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
-      projectKey: props.projectKey,
     },
     skip: props.skip === true,
   });

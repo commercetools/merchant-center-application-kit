@@ -23,7 +23,7 @@ type Props = {
 const FetchUser = (props: Props) => {
   const { loading, data, error } = useMcQuery<
     TFetchLoggedInUserQuery,
-    TFetchLoggedInUserQueryVariables & { target: TGraphQLTargets }
+    TFetchLoggedInUserQueryVariables
   >(LoggedInUserQuery, {
     onError: reportErrorToSentry,
     context: { target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND },
