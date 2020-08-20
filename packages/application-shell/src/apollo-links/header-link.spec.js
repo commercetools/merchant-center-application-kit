@@ -39,6 +39,12 @@ describe('with valid target', () => {
     debugLink = new ApolloLink((operation, forward) => {
       context = operation.getContext();
 
+      // Remove request metadata to avoid having it in the snapshots
+      delete context.target;
+      delete context.featureFlag;
+      delete context.projectKey;
+      delete context.teamId;
+
       return forward(operation);
     });
 
