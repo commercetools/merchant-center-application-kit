@@ -1,5 +1,5 @@
 import { graphql, buildClientSchema } from 'graphql';
-import { addMockFunctionsToSchema } from 'graphql-tools';
+import { addMocksToSchema } from 'graphql-tools';
 import { formatApolloErrors } from 'apollo-server-errors';
 import resolveAndCacheSchema from './resolve-and-cache-schema';
 
@@ -27,10 +27,7 @@ const createGraphqlMockServer = (
     const schema = buildClientSchema(resolveAndCacheSchema(targetName));
     const mocks = mocksByTarget[targetName] || {};
     const operations = operationsByTarget[targetName] || {};
-    addMockFunctionsToSchema({
-      schema,
-      mocks,
-    });
+    addMocksToSchema({ schema, mocks });
     const { query, variables, operationName } = JSON.parse(req.body());
     const rootValue = getRootValue(operations, operationName, variables);
     let response;
