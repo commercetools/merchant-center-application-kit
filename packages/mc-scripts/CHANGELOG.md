@@ -1,5 +1,23 @@
 # @commercetools-frontend/mc-scripts
 
+## 16.16.0
+
+### Minor Changes
+
+- [`4216b92`](https://github.com/commercetools/merchant-center-application-kit/commit/4216b922fbb39e74ce35f8647d1c4e9ae77909c8) [#1685](https://github.com/commercetools/merchant-center-application-kit/pull/1685) Thanks [@emmenko](https://github.com/emmenko)! - Refactor i18n package to consume compiled data from ui-kit translation messages. Furthermore, the `@commercetools-frontend/i18n` now exposes a `compiled-data` folder as well: `@commercetools-frontend/i18n/compiled-data`.
+  This can be used the load pre-compiled messages and thus improving the runtime performance.
+
+  Furthermore, the `mc-scripts extract-intl` command has been deprecated in favor of the more official message extraction with the `@formatjs/cli`: https://formatjs.io/docs/getting-started/message-extraction.
+
+### Patch Changes
+
+- [`f144292`](https://github.com/commercetools/merchant-center-application-kit/commit/f1442921650ca4e6c9bf61ce31bda2b63e72038a) [#1673](https://github.com/commercetools/merchant-center-application-kit/pull/1673) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+- Updated dependencies [[`879b4d6`](https://github.com/commercetools/merchant-center-application-kit/commit/879b4d618569659335945cab4a5ad28c0d19f5c8), [`f144292`](https://github.com/commercetools/merchant-center-application-kit/commit/f1442921650ca4e6c9bf61ce31bda2b63e72038a)]:
+  - @commercetools-frontend/mc-html-template@16.16.0
+  - @commercetools-frontend/application-config@16.16.0
+  - @commercetools-frontend/babel-preset-mc-app@16.16.0
+
 ## 16.15.8
 
 ### Patch Changes
