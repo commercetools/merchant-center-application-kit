@@ -117,6 +117,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "10.4.8",
+    "msw": "0.20.5",
     "react": "16.13.1",
     "react-apollo": "3.1.5",
     "react-dom": "16.13.1",

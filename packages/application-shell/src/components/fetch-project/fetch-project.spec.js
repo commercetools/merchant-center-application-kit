@@ -1,14 +1,37 @@
+import { graphql } from 'msw';
+import { setupServer } from 'msw/node';
 import React from 'react';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { renderApp } from '../../test-utils';
-import ProjectQuery from './fetch-project.mc.graphql';
-import FetchProject from './fetch-project';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import { ProjectMock } from '../../../../../graphql-test-utils';
+import {
+  experimentalRenderAppWithRedux,
+  screen,
+  waitForElementToBeRemoved,
+} from '../../test-utils';
+import FetchProject from './fetch-project';
 
 jest.mock('@commercetools-frontend/sentry');
 
+const mockServer = setupServer(
+  graphql.query('FetchProject', (req, res, ctx) =>
+    res(
+      ctx.data({
+        project: ProjectMock.build({
+          key: 'test-1',
+          name: 'Test 1',
+        }),
+      })
+    )
+  )
+);
+afterEach(() => {
+  mockServer.resetHandlers();
+});
+beforeAll(() => mockServer.listen());
+afterAll(() => mockServer.close());
+
 const renderProject = (options) =>
-  renderApp(
+  experimentalRenderAppWithRedux(
     <FetchProject projectKey="test-1">
       {({ isLoading, error, project }) => {
         if (isLoading) return <div>{'loading...'}</div>;
@@ -20,132 +43,21 @@ const renderProject = (options) =>
     options
   );
 
-const createGraphqlResponseForProjectQuery = (custom) => ({
-  loading: false,
-  project: {
-    __typename: 'Project',
-    key: 'test-1',
-    version: 1,
-    name: 'Test 1',
-    countries: ['de'],
-    currencies: ['EUR'],
-    languages: ['de'],
-    initialized: true,
-    expiry: {
-      __typename: 'ProjectExpiry',
-      isActive: true,
-      daysLeft: null,
-    },
-    suspension: {
-      __typename: 'ProjectSuspension',
-      isActive: false,
-      reason: null,
-    },
-    allAppliedPermissions: [
-      {
-        __typename: 'AppliedPermission',
-        name: 'canManageProjectSettings',
-        value: true,
-      },
-    ],
-    allAppliedDataFences: [
-      {
-        __typename: 'StoreDataFence',
-        value: 'usa',
-        group: 'orders',
-        name: 'canManageOrders',
-        type: 'store',
-      },
-    ],
-    allAppliedActionRights: [
-      {
-        __typename: 'AppliedActionRight',
-        group: 'products',
-        name: 'canEditPrices',
-        value: true,
-      },
-    ],
-    allAppliedMenuVisibilities: [
-      {
-        __typename: 'AppliedMenuVisibilities',
-        name: 'hideDashboard',
-        value: false,
-      },
-    ],
-    owner: {
-      __typename: 'Organization',
-      id: 'owner-id',
-      name: 'commercetools',
-      createdAt: '2019-01-01T00:00:00.000Z',
-    },
-    settings: {
-      __typename: 'ProjectSetting',
-      id: 'settings-id',
-      productSettings: ['product-settings-id-1'],
-      currentProductSettings: 'product-settings-id-1',
-    },
-  },
-  ...custom,
-});
-
 describe('rendering', () => {
   it('should fetch project and pass data to children function', async () => {
-    const rendered = renderProject({
-      mocks: [
-        {
-          request: {
-            query: ProjectQuery,
-            variables: {
-              target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
-              projectKey: 'test-1',
-            },
-          },
-          result: {
-            data: createGraphqlResponseForProjectQuery(),
-          },
-        },
-      ],
-    });
-    await rendered.findByText(/Test 1/i);
-  });
-  it('should render loading state', async () => {
-    const rendered = renderProject({
-      mocks: [
-        {
-          request: {
-            query: ProjectQuery,
-            variables: {
-              target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
-              projectKey: 'test-1',
-            },
-          },
-          result: {
-            data: createGraphqlResponseForProjectQuery({
-              loading: true,
-              project: null,
-            }),
-          },
-        },
-      ],
-    });
-    await rendered.findByText(/Loading/i);
+    renderProject();
+    await waitForElementToBeRemoved(() => screen.getByText('loading...'));
+    expect(screen.getByText(/Test 1/i)).toBeInTheDocument();
   });
   it('should render error state', async () => {
-    const rendered = renderProject({
-      mocks: [
-        {
-          request: {
-            query: ProjectQuery,
-            variables: {
-              target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
-              projectKey: 'test-1',
-            },
-          },
-          error: new Error('Oops'),
-        },
-      ],
-    });
-    await rendered.findByText(/Error: Oops/i);
+    mockServer.use(
+      graphql.query('FetchProject', (req, res, ctx) => {
+        return res.once(ctx.status(401));
+      })
+    );
+    renderProject();
+    await waitForElementToBeRemoved(() => screen.getByText('loading...'));
+    expect(screen.getByText(/Error: Network error(.*)/i)).toBeInTheDocument();
     expect(reportErrorToSentry).toHaveBeenCalled();
   });
 });

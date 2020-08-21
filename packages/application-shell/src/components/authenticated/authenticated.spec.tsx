@@ -1,12 +1,15 @@
 import type { TProps } from './authenticated';
+import type {
+  TAmILoggedInQuery,
+  TAmILoggedInQueryVariables,
+} from '../../types/generated/mc';
 
 import { mocked } from 'ts-jest/utils';
+import { graphql } from 'msw';
+import { setupServer } from 'msw/node';
 import React from 'react';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { GraphQLError } from 'graphql';
-import { renderApp, waitFor } from '../../test-utils';
+import { experimentalRenderAppWithRedux, waitFor } from '../../test-utils';
 import { STORAGE_KEYS } from '../../constants';
-import AmILoggedInQuery from './authenticated.mc.graphql';
 import Authenticated from './authenticated';
 
 const createTestProps = (custom: Partial<TProps> = {}) => ({
@@ -14,18 +17,30 @@ const createTestProps = (custom: Partial<TProps> = {}) => ({
   ...custom,
 });
 
+const mockServer = setupServer(
+  graphql.query<TAmILoggedInQuery, TAmILoggedInQueryVariables>(
+    'AmILoggedIn',
+    (_req, res, ctx) => res(ctx.data({ amILoggedIn: true }))
+  )
+);
+
 beforeEach(() => {
   mocked(window.localStorage.setItem).mockClear();
   mocked(window.localStorage.getItem).mockClear();
   mocked(window.localStorage.removeItem).mockClear();
 });
+afterEach(() => {
+  mockServer.resetHandlers();
+});
+beforeAll(() => mockServer.listen());
+afterAll(() => mockServer.close());
 
 describe('rendering', () => {
   describe('when authenticated state was cached in local storage', () => {
     it('should call render with `isAuthenticated` set to true', async () => {
       mocked(window.localStorage.getItem).mockReturnValue('true');
       const props = createTestProps();
-      renderApp(<Authenticated {...props} />);
+      experimentalRenderAppWithRedux(<Authenticated {...props} />);
       await waitFor(() => {
         expect(props.render).toHaveBeenCalledWith({ isAuthenticated: true });
       });
@@ -36,21 +51,7 @@ describe('rendering', () => {
       it('should call render with `isAuthenticated` set to true', async () => {
         mocked(window.localStorage.getItem).mockReturnValue(null);
         const props = createTestProps();
-        renderApp(<Authenticated {...props} />, {
-          mocks: [
-            {
-              request: {
-                query: AmILoggedInQuery,
-                variables: {
-                  target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
-                },
-              },
-              result: {
-                data: { loading: false, amILoggedIn: true },
-              },
-            },
-          ],
-        });
+        experimentalRenderAppWithRedux(<Authenticated {...props} />);
         await waitFor(() => {
           expect(props.render).toHaveBeenCalledWith({ isAuthenticated: true });
         });
@@ -62,58 +63,23 @@ describe('rendering', () => {
     });
     describe('when authentication request fails', () => {
       it('should call render with `isAuthenticated` set to false', async () => {
+        mockServer.use(
+          graphql.query<TAmILoggedInQuery, TAmILoggedInQueryVariables>(
+            'AmILoggedIn',
+            (_req, res, ctx) =>
+              res.once(ctx.errors([{ message: 'Unauthorized' }]))
+          )
+        );
         console.error = jest.fn();
         mocked(window.localStorage.getItem).mockReturnValue(null);
         const props = createTestProps();
-        renderApp(<Authenticated {...props} />, {
-          mocks: [
-            {
-              request: {
-                query: AmILoggedInQuery,
-                variables: {
-                  target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
-                },
-              },
-              result: {
-                data: null,
-                errors: [new GraphQLError('Unauthorized')],
-              },
-            },
-          ],
-        });
+        experimentalRenderAppWithRedux(<Authenticated {...props} />);
         await waitFor(() => {
           expect(props.render).toHaveBeenCalledWith({ isAuthenticated: false });
         });
         expect(mocked(window.localStorage.setItem)).not.toHaveBeenCalled();
         expect(mocked(window.localStorage.removeItem)).toHaveBeenCalledWith(
           STORAGE_KEYS.IS_AUTHENTICATED
-        );
-      });
-    });
-    describe('when authentication request is loading', () => {
-      it('should not call render', async () => {
-        mocked(window.localStorage.getItem).mockReturnValue(null);
-        const props = createTestProps();
-        renderApp(<Authenticated {...props} />, {
-          mocks: [
-            {
-              request: {
-                query: AmILoggedInQuery,
-                variables: {
-                  target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
-                },
-              },
-              result: {
-                data: { loading: true, amILoggedIn: null },
-              },
-            },
-          ],
-        });
-        await waitFor(
-          () => {
-            expect(props.render).not.toHaveBeenCalled();
-          },
-          { timeout: 1000 }
         );
       });
     });

@@ -3,6 +3,7 @@ import faker from 'faker';
 
 const User = new Factory()
   .sequence('sequenceId')
+  .attr('__typename', 'User')
   .attr('id', () => faker.random.uuid())
   .attr('email', () => faker.internet.email())
   .attr('gravatarHash', () => faker.random.alphaNumeric(16))
@@ -20,6 +21,7 @@ const User = new Factory()
   .attr('launchdarklyTrackingTenant', 'gcp-eu')
   .attr('defaultProjectKey', () => null)
   .attr('projects', () => ({
+    __typename: 'ProjectQueryResult',
     total: 0,
     results: [],
   }));
