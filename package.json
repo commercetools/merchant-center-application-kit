@@ -190,6 +190,7 @@
     "@types/react-router": "5.1.8",
     "**/sharp": "0.25.4",
     "cypress": "5.0.0",
+    "graphql": "14.7.0",
     "pretty-format": "26.4.0"
   },
   "engines": {

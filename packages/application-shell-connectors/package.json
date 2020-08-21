@@ -52,7 +52,7 @@
     "apollo-client": "2.6.10",
     "apollo-link-http": "1.5.17",
     "graphql": "14.7.0",
-    "graphql-tag": "^2.10.4",
+    "graphql-tag": "^2.11.0",
     "lodash": "4.17.20",
     "lodash-es": "4.17.15",
     "moment-timezone": "^0.5.26",
