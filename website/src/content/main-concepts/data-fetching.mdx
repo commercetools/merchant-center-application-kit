@@ -45,6 +45,7 @@ import Text from '@commercetools-uikit/text';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { FetchChannelQuery } from './channels.graphql';
 
+const target = GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM;
 const ChannelDetails = props => (
   <Query
     query={FetchChannelQuery}
@@ -52,9 +53,7 @@ const ChannelDetails = props => (
       id: props.channelId,
       locale: props.locale,
     }}
-    context={{
-      target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
-    }}
+    context={{ target }}
   >
     {({ loading, error, data }) => {
       if (loading) return 'Loading...';
