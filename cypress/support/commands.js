@@ -1,6 +1,5 @@
 import '@percy/cypress';
 import '@testing-library/cypress/add-commands';
-import '../../graphql-test-utils/cypress/add-commands';
 
 function isLocalhost() {
   const url = new URL(Cypress.config('baseUrl'));
