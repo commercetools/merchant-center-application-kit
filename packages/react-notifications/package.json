@@ -50,7 +50,6 @@
     "@commercetools-uikit/spacings": "^10.18.7",
     "@emotion/core": "10.0.34",
     "@emotion/styled": "10.0.27",
-    "@emotion/styled-base": "10.0.31",
     "@types/history": "^4.7.6",
     "@types/lodash": "^4.14.155",
     "@types/prop-types": "^15.7.3",
