@@ -1,3 +1,5 @@
 {
-  "baseUrl": "http://localhost:3001"
+  "baseUrl": "http://localhost:3001",
+  "browser": "chrome",
+  "retries": 1
 }
