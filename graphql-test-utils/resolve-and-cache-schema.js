@@ -10,8 +10,8 @@ const resolveAndCacheSchema = (targetName) => {
   const schemaPath = path.resolve(__dirname, `../schemas/${targetName}.json`);
   if (fs.existsSync(schemaPath)) {
     const schema = JSON.parse(fs.readFileSync(schemaPath, 'utf8'));
-    schemas.set(targetName, schema.data);
-    return schema.data;
+    schemas.set(targetName, schema);
+    return schema;
   }
   throw new Error(`Unknown schema target ${targetName}`);
 };
