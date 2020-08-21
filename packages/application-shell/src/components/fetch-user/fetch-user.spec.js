@@ -3,7 +3,11 @@ import { setupServer } from 'msw/node';
 import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { UserMock } from '../../../../../graphql-test-utils';
-import { experimentalRenderAppWithRedux, screen } from '../../test-utils';
+import {
+  experimentalRenderAppWithRedux,
+  screen,
+  waitForElementToBeRemoved,
+} from '../../test-utils';
 import FetchUser from './fetch-user';
 
 jest.mock('@commercetools-frontend/sentry');
@@ -41,7 +45,8 @@ const renderUser = (options) =>
 describe('rendering', () => {
   it('should fetch user and pass data to children function', async () => {
     renderUser();
-    await screen.findByText(/John/i);
+    await waitForElementToBeRemoved(() => screen.getByText('loading...'));
+    expect(screen.getByText(/John/i)).toBeInTheDocument();
   });
   it('should render error state', async () => {
     mockServer.use(
@@ -50,7 +55,8 @@ describe('rendering', () => {
       })
     );
     renderUser();
-    await screen.findByText(/Error: Network error(.*)/i);
+    await waitForElementToBeRemoved(() => screen.getByText('loading...'));
+    expect(screen.getByText(/Error: Network error(.*)/i)).toBeInTheDocument();
     expect(reportErrorToSentry).toHaveBeenCalled();
   });
 });
