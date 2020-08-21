@@ -15325,11 +15325,6 @@ highlight.js@^9.6.0:
   resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.18.3.tgz#a1a0a2028d5e3149e2380f8a865ee8516703d634"
   integrity sha512-zBZAmhSupHIl5sITeMqIJnYCDfAEc3Gdkqj65wC1lpI468MMQeeQkhcIAvk+RylAkxrCcI9xy9piHiXeQ1BdzQ==
 
-history-query-enhancer@1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/history-query-enhancer/-/history-query-enhancer-1.0.4.tgz#c72eb021193d47f2cb032963e0c5c5f57573c6ae"
-  integrity sha512-zs3zt64jspt9RGS5hLarIkeC9/omIkMjU4KkC2windSqD04KGQY84sDZWfnFS5qeJ07Ig8Y1t9jjBffQ9ZHdpw==
-
 history@5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/history/-/history-5.0.0.tgz#0cabbb6c4bbf835addb874f8259f6d25101efd08"

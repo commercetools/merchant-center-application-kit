@@ -1,6 +1,6 @@
 import { createBrowserHistory } from 'history';
-import withQuery from 'history-query-enhancer';
 import { encode, decode } from 'qss';
+import withQuery from './with-query';
 
 function parse<Q extends {}>(search: string): Q {
   // Note: the "?" needs to be removed.

@@ -76,7 +76,6 @@
     "@flopflip/react-broadcast": "10.2.6",
     "@types/classnames": "^2.2.9",
     "@types/common-tags": "^1.8.0",
-    "@types/history": "^4.7.6",
     "@types/lodash": "^4.14.155",
     "@types/react-select": "^3.0.13",
     "@types/redux-logger": "^3.0.8",
