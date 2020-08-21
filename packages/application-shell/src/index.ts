@@ -46,4 +46,7 @@ export {
   useAdapterReconfiguration,
 } from '@flopflip/react-broadcast';
 
-export { adapter, updateFlags } from '@flopflip/launchdarkly-adapter';
+export {
+  default as ldAdapter,
+  updateFlags,
+} from '@flopflip/launchdarkly-adapter';
