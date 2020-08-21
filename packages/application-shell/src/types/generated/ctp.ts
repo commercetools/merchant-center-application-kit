@@ -1,4 +1,5 @@
 export type Maybe<T> = T | undefined;
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -10437,9 +10438,9 @@ export type TZoneUpdateAction = {
   setKey: Maybe<TSetZoneKey>;
 };
 
-export type TQuickAccessProductQueryVariables = {
+export type TQuickAccessProductQueryVariables = Exact<{
   productId: Scalars['String'];
-};
+}>;
 
 
 export type TQuickAccessProductQuery = (
@@ -10460,12 +10461,12 @@ export type TQuickAccessProductQuery = (
   )> }
 );
 
-export type TQuickAccessQueryVariables = {
+export type TQuickAccessQueryVariables = Exact<{
   searchText: Scalars['String'];
   canViewProducts: Scalars['Boolean'];
   productsWhereClause: Maybe<Scalars['String']>;
   includeProductsByIds: Scalars['Boolean'];
-};
+}>;
 
 
 export type TQuickAccessQuery = (
