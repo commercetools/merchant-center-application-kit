@@ -1,5 +1,16 @@
 # @commercetools-frontend/mc-html-template
 
+## 16.16.0
+
+### Patch Changes
+
+- [`879b4d6`](https://github.com/commercetools/merchant-center-application-kit/commit/879b4d618569659335945cab4a5ad28c0d19f5c8) [#1676](https://github.com/commercetools/merchant-center-application-kit/pull/1676) Thanks [@emmenko](https://github.com/emmenko)! - Remove legacy Google Storage Buckets from default CSP directives
+
+* [`f144292`](https://github.com/commercetools/merchant-center-application-kit/commit/f1442921650ca4e6c9bf61ce31bda2b63e72038a) [#1673](https://github.com/commercetools/merchant-center-application-kit/pull/1673) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+* Updated dependencies [[`f144292`](https://github.com/commercetools/merchant-center-application-kit/commit/f1442921650ca4e6c9bf61ce31bda2b63e72038a)]:
+  - @commercetools-frontend/application-config@16.16.0
+
 ## 16.15.8
 
 ### Patch Changes
