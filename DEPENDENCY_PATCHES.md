@@ -11,3 +11,7 @@ We use a document to give context around the patches, to link to possible issues
 **`graphql`**
 
 We can't upgrade the `graphql` dependency to `>=15`, as there are still packages that haven't upgraded yet (for example Gatsby).
+
+**`intl-messageformat-parser`**
+
+Due to different transitive versions, we need to resolve the package to the same version, otherwise types might not match with each other.

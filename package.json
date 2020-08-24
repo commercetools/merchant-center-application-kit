@@ -191,7 +191,9 @@
     "**/sharp": "0.25.4",
     "cypress": "5.0.0",
     "graphql": "14.7.0",
-    "pretty-format": "26.4.2"
+    "pretty-format": "26.4.2",
+    "intl-messageformat-parser": "6.0.3",
+    "**/intl-messageformat-parser": "6.0.3"
   },
   "engines": {
     "node": ">=12",
