@@ -1,5 +1,16 @@
 # @commercetools-frontend/mc-scripts
 
+## 16.16.1
+
+### Patch Changes
+
+- [`f23655a`](https://github.com/commercetools/merchant-center-application-kit/commit/f23655a681fd54fca9757e0b62727c38aaa813ad) [#1552](https://github.com/commercetools/merchant-center-application-kit/pull/1552) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency graphql-cli to v4
+
+- Updated dependencies [[`bc15ac2`](https://github.com/commercetools/merchant-center-application-kit/commit/bc15ac2f6d53d4c8e0d53ceb6c1a0e5ba0f5353e)]:
+  - @commercetools-frontend/application-config@16.16.1
+  - @commercetools-frontend/babel-preset-mc-app@16.16.1
+  - @commercetools-frontend/mc-html-template@16.16.1
+
 ## 16.16.0
 
 ### Minor Changes
