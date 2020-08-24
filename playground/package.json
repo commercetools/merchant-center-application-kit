@@ -12,7 +12,7 @@
     "i18n:build": "mc-scripts extract-intl --output-path=$(pwd)/src/i18n/data 'src/**/!(*.spec).js' --build-translations"
   },
   "dependencies": {
-    "@commercetools-docs/ui-kit": "7.0.4",
+    "@commercetools-docs/ui-kit": "7.0.5",
     "@commercetools-frontend/actions-global": "16.16.0",
     "@commercetools-frontend/application-components": "16.16.0",
     "@commercetools-frontend/application-shell": "16.16.0",
