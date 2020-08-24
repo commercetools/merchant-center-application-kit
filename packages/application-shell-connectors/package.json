@@ -60,7 +60,7 @@
   },
   "devDependencies": {
     "@apollo/react-testing": "3.1.4",
-    "@testing-library/react": "10.4.8",
+    "@testing-library/react": "10.4.9",
     "react": "16.13.1",
     "react-apollo": "3.1.5"
   },
