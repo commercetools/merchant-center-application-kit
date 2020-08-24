@@ -94,7 +94,7 @@
     "@rollup/plugin-babel": "5.2.0",
     "@rollup/plugin-commonjs": "15.0.0",
     "@rollup/plugin-json": "4.1.0",
-    "@rollup/plugin-node-resolve": "8.4.0",
+    "@rollup/plugin-node-resolve": "9.0.0",
     "@testing-library/cypress": "6.0.0",
     "@testing-library/react": "10.4.8",
     "@types/enzyme": "3.10.5",
