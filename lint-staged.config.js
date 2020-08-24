@@ -1,7 +1,11 @@
 module.exports = {
   '*.md': ['prettier --write --parser markdown'],
   '*.yaml': ['prettier --write --parser yaml'],
-  '*.graphql': ['prettier --write --parser graphql', 'yarn generate:types'],
+  '*.graphql': ['prettier --write --parser graphql'],
+  '*.mc.graphql': () => 'yarn generate-types:mc',
+  '*.ctp.graphql': () => 'yarn generate-types:ctp',
+  '*.settings.graphql': () => 'yarn generate-types:settings',
+  '*.proxy.graphql': () => 'yarn generate-types:proxy',
   '*.{js,ts,tsx}': [
     'prettier --write',
     // NOTE: apparently if you pass some argument that is not a flag AFTER the `reporters`
@@ -26,7 +30,6 @@ module.exports = {
     // For that reason, we move the `--onlyChanged` flag next to it.
     'yarn lint:css --reporters=jest-silent-reporter --onlyChanged',
   ],
-  'packages/application-config/schema.json': [
-    'bash -c "yarn --cwd packages/application-config build:schema"',
-  ],
+  'packages/application-config/schema.json': () =>
+    'yarn --cwd packages/application-config build:schema',
 };
