@@ -1,5 +1,15 @@
 # @commercetools-frontend/application-shell
 
+## 16.16.2
+
+### Patch Changes
+
+- [`b4f2bfd`](https://github.com/commercetools/merchant-center-application-kit/commit/b4f2bfd34579f7a24615171aeedb47afd6fbc16f) [#1699](https://github.com/commercetools/merchant-center-application-kit/pull/1699) Thanks [@tdeekens](https://github.com/tdeekens)! - chore: update flopflip adapters
+
+- Updated dependencies [[`4290f63`](https://github.com/commercetools/merchant-center-application-kit/commit/4290f63f89e0d394176ed36c9bb436ac7228d66d)]:
+  - @commercetools-frontend/i18n@16.16.2
+  - @commercetools-frontend/application-components@16.16.2
+
 ## 16.16.1
 
 ### Patch Changes
