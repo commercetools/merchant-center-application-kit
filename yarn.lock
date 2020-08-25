@@ -2505,10 +2505,10 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@flopflip/launchdarkly-adapter@2.15.1":
-  version "2.15.1"
-  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.15.1.tgz#b71ebf63b553b504b4958de02314e18096fb0332"
-  integrity sha512-k0JsUjcbKt2QFz90u91Hh20i6w5+ncYFqIe9MdER82AhwIx6KzMWYbOhwM29rHQSXBWfco4VyTIAasJSm2tHag==
+"@flopflip/launchdarkly-adapter@2.15.2":
+  version "2.15.2"
+  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.15.2.tgz#3b7022adf555d4890ad7bc9a892904805e52b7ad"
+  integrity sha512-WykNP6vY/EngQYX3DZtx3DyLe9flsIYp+5R4gWAqHbSLu/WmVguF752AzWYoqzOexOGq5JR9hNgoOZSXccKA7g==
   dependencies:
     "@babel/runtime" "7.11.2"
     "@flopflip/types" "2.5.6"
@@ -2521,10 +2521,10 @@
     tiny-warning "1.0.3"
     ts-essentials "7.0.0"
 
-"@flopflip/memory-adapter@1.9.1":
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/@flopflip/memory-adapter/-/memory-adapter-1.9.1.tgz#479392a4e8e9a9ebe4ad173155be8df91c2ccda4"
-  integrity sha512-96tr+FA3T0T4ADqlGrtPIo/NR04y46JctHUGK66It3tWImC2R2J9G9pSvAGUpC3/2H10/sdLJsL3uPc5n3HHuQ==
+"@flopflip/memory-adapter@1.9.2":
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/@flopflip/memory-adapter/-/memory-adapter-1.9.2.tgz#07da789ff5eebc174017ad09b662cf11a0b8fc8f"
+  integrity sha512-shkTA6Wc4CGlEZ9hsxLEvhb9Hxe+/EYlcr1eKVInfCPiXx5Ip8LGCJlrZ0r8pOYO2OwvKMqQhDsTNJ28OybB3w==
   dependencies:
     "@babel/runtime" "7.11.2"
     "@flopflip/types" "2.5.6"
