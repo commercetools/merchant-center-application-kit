@@ -50,7 +50,7 @@
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "intl-messageformat-parser": "^5.4.2",
+    "intl-messageformat-parser": "6.0.3",
     "react": "16.13.1"
   },
   "peerDependencies": {
