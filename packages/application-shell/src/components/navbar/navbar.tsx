@@ -654,7 +654,10 @@ export const LoadingNavBar = () => {
               isActive={false}
               onClick={() => undefined}
             >
-              <div className={styles['loading-dot-container']}>
+              <div
+                className={styles['loading-dot-container']}
+                data-testid={`dot-container-${index}`}
+              >
                 <LoadingPlaceholder shape="dot" size="m" />
               </div>
             </MenuItem>

@@ -64,6 +64,24 @@ export const SetupFlopFlipProvider = (props: Props) => {
     [flags, props.ldClientSideId, props.projectKey, props.user]
   );
 
+  if (process.env.NODE_ENV === 'test') {
+    const memoryAdapter = require('@flopflip/memory-adapter').default;
+    return (
+      <ConfigureFlopFlip<typeof memoryAdapter>
+        adapter={memoryAdapter}
+        adapterArgs={adapterArgs}
+        defaultFlags={defaultFlags}
+        shouldDeferAdapterConfiguration={
+          typeof props.shouldDeferAdapterConfiguration === 'boolean'
+            ? props.shouldDeferAdapterConfiguration
+            : !props.user || allMenuFeatureToggles.isLoading
+        }
+      >
+        {props.children}
+      </ConfigureFlopFlip>
+    );
+  }
+
   return (
     <ConfigureFlopFlip<typeof ldAdapter>
       adapter={ldAdapter}
