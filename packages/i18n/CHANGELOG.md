@@ -1,5 +1,11 @@
 # @commercetools-frontend/i18n
 
+## 16.16.2
+
+### Patch Changes
+
+- [`4290f63`](https://github.com/commercetools/merchant-center-application-kit/commit/4290f63f89e0d394176ed36c9bb436ac7228d66d) [#1691](https://github.com/commercetools/merchant-center-application-kit/pull/1691) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): pin dependency intl-messageformat-parser
+
 ## 16.16.1
 
 ### Patch Changes
