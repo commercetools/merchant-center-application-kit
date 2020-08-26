@@ -86,9 +86,10 @@ const renderApp = (ui, options = {}) => {
   const queryByLeftNavigation = () => rendered.queryByTestId('left-navigation');
   const waitForLeftNavigationToBeLoaded = async () => {
     await findByLeftNavigation();
-    await waitForElementToBeRemoved(() =>
-      rendered.getByTestId('dot-container-0')
-    );
+    // Wait for the loading navbar to disappear. Instead of using `waitForElementToBeRemoved`,
+    // which seems not stable enough, we wait to find the "Support" link, which is present
+    // when the navbar is loaded.
+    await rendered.findByText('Support');
   };
 
   return {
