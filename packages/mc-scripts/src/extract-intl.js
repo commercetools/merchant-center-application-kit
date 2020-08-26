@@ -30,7 +30,7 @@ const flags = mri(process.argv.slice(2), {
 });
 const commands = flags._;
 
-console.warning(`
+console.warn(`
 This command has been deprecated. To extract React Intl message please refer to the "@formatjs/cli" message extraction.
 https://formatjs.io/docs/getting-started/message-extraction
 
