@@ -85,7 +85,6 @@ const ProjectContainer = <AdditionalEnvironmentProperties extends {}>(
   // }
 
   const hasNoProjects = props.user && props.user.projects.total === 0;
-
   /**
    * Given the user does not have any projects and account creation (sign up) is not yet
    * enabled the user will be logged out.

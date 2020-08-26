@@ -4,11 +4,15 @@ import ApplicationSubmenu from './application-navbar-submenu';
 
 const ApplicationNavbarMenu = new Factory()
   .sequence('sequenceId')
+  .attr('__typename', 'NavbarMenu')
   .attr('shouldRenderDivider', false)
+  .attr('id', () => faker.random.uuid())
   .attr('key', () => faker.lorem.slug(1))
   .attr('uriPath', () => faker.lorem.slug(1))
   .attr('icon', 'UserFilledIcon')
-  .attr('labelAllLocales', () => [{ locale: 'en', value: faker.random.word() }])
+  .attr('labelAllLocales', () => [
+    { __typename: 'LocalizedField', locale: 'en', value: faker.random.word() },
+  ])
   .attr('featureToggle', null)
   .attr('menuVisibility', null)
   .attr('permissions', [])
