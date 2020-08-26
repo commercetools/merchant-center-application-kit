@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-scripts
 
+## 16.16.3
+
+### Patch Changes
+
+- [`9d62b85`](https://github.com/commercetools/merchant-center-application-kit/commit/9d62b856c9c642b7993ecf266bc33bca696de7a7) [#1703](https://github.com/commercetools/merchant-center-application-kit/pull/1703) Thanks [@mohib0306](https://github.com/mohib0306)! - Fix console warning. Replaced `console.warning` with `console.warn`
+
 ## 16.16.1
 
 ### Patch Changes
