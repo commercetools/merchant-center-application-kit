@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 16.16.3
+
+### Patch Changes
+
+- [`67e5e2c`](https://github.com/commercetools/merchant-center-application-kit/commit/67e5e2ccbddfc3df5fe2cea23f02c83d2bdcc73b) [#1698](https://github.com/commercetools/merchant-center-application-kit/pull/1698) Thanks [@emmenko](https://github.com/emmenko)! - test(app-shell): migrate tests to use msw, instead of custom graphql mock server
+
 ## 16.16.2
 
 ### Patch Changes
