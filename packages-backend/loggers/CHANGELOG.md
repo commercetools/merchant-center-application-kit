@@ -1,5 +1,11 @@
 # @commercetools-backend/loggers
 
+## 16.16.4
+
+### Patch Changes
+
+- [`4fff00c`](https://github.com/commercetools/merchant-center-application-kit/commit/4fff00c24bf74d853170400951cfb1892567f313) [#1717](https://github.com/commercetools/merchant-center-application-kit/pull/1717) Thanks [@emmenko](https://github.com/emmenko)! - Update Sentry packages and fix wrong configuration option (`allowUrls` instead of `denyUrls`)
+
 ## 16.16.1
 
 ### Patch Changes

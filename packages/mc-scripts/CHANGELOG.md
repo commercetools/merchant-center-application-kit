@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-scripts
 
+## 16.16.4
+
+### Patch Changes
+
+- [`a907746`](https://github.com/commercetools/merchant-center-application-kit/commit/a907746f1cf20e86bb4481f810d1296778906fd9) [#1706](https://github.com/commercetools/merchant-center-application-kit/pull/1706) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency terser-webpack-plugin to v4
+
 ## 16.16.3
 
 ### Patch Changes
