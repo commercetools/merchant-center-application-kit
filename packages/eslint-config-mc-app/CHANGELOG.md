@@ -1,5 +1,13 @@
 # @commercetools-frontend/eslint-config-mc-app
 
+## 16.16.4
+
+### Patch Changes
+
+- [`5b9ca52`](https://github.com/commercetools/merchant-center-application-kit/commit/5b9ca52bf521332151c2771b80514542bf47c0a3) [#1714](https://github.com/commercetools/merchant-center-application-kit/pull/1714) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint-plugin-jest to v24
+
+  Add support for using both eslint-plugin-jest to v24 and v23.
+
 ## 16.15.3
 
 ### Patch Changes

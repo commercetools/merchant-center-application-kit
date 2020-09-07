@@ -1,5 +1,12 @@
 # @commercetools-frontend/application-components
 
+## 16.16.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/i18n@16.16.4
+
 ## 16.16.2
 
 ### Patch Changes

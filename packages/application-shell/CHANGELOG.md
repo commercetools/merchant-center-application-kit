@@ -1,5 +1,24 @@
 # @commercetools-frontend/application-shell
 
+## 16.16.4
+
+### Patch Changes
+
+- [`d8915a8`](https://github.com/commercetools/merchant-center-application-kit/commit/d8915a8b29ac940839720d5912a1ef0050b9ada5) [#1713](https://github.com/commercetools/merchant-center-application-kit/pull/1713) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @testing-library/react to v11
+
+  Added support for both @testing-library/react to v11 and v10.
+
+* [`4fff00c`](https://github.com/commercetools/merchant-center-application-kit/commit/4fff00c24bf74d853170400951cfb1892567f313) [#1717](https://github.com/commercetools/merchant-center-application-kit/pull/1717) Thanks [@emmenko](https://github.com/emmenko)! - Update Sentry packages and fix wrong configuration option (`allowUrls` instead of `denyUrls`)
+
+* Updated dependencies [[`d8915a8`](https://github.com/commercetools/merchant-center-application-kit/commit/d8915a8b29ac940839720d5912a1ef0050b9ada5), [`4fff00c`](https://github.com/commercetools/merchant-center-application-kit/commit/4fff00c24bf74d853170400951cfb1892567f313)]:
+  - @commercetools-frontend/application-shell-connectors@16.16.4
+  - @commercetools-frontend/react-notifications@16.16.4
+  - @commercetools-frontend/sentry@16.16.4
+  - @commercetools-frontend/permissions@16.16.4
+  - @commercetools-frontend/i18n@16.16.4
+  - @commercetools-frontend/l10n@16.16.4
+  - @commercetools-frontend/application-components@16.16.4
+
 ## 16.16.3
 
 ### Patch Changes

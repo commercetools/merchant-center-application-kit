@@ -1,5 +1,13 @@
 # @commercetools-website/components-playground
 
+## 16.10.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/i18n@16.16.4
+  - @commercetools-frontend/application-components@16.16.4
+
 ## 16.10.2
 
 ### Patch Changes
