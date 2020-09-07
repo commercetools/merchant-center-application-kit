@@ -85,27 +85,27 @@ const getAppKitChunkImport = (locale: string): Promise<AppKitImportData> => {
   switch (intlLocale) {
     case 'de':
       return import(
-        /* webpackChunkName: "i18n-app-kit-locale-de" */ '../data/de.json'
+        /* webpackChunkName: "i18n-app-kit-locale-de" */ '../compiled-data/de.json'
       );
     case 'es':
       return import(
-        /* webpackChunkName: "i18n-app-kit-locale-es" */ '../data/es.json'
+        /* webpackChunkName: "i18n-app-kit-locale-es" */ '../compiled-data/es.json'
       );
     case 'fr-FR':
       return import(
-        /* webpackChunkName: "i18n-app-kit-locale-fr-FR" */ '../data/fr-FR.json'
+        /* webpackChunkName: "i18n-app-kit-locale-fr-FR" */ '../compiled-data/fr-FR.json'
       );
     case 'zh-CN':
       return import(
-        /* webpackChunkName: "i18n-app-kit-locale-zh-CN" */ '../data/zh-CN.json'
+        /* webpackChunkName: "i18n-app-kit-locale-zh-CN" */ '../compiled-data/zh-CN.json'
       );
     case 'ja':
       return import(
-        /* webpackChunkName: "i18n-app-kit-locale-ja" */ '../data/ja.json'
+        /* webpackChunkName: "i18n-app-kit-locale-ja" */ '../compiled-data/ja.json'
       );
     default:
       return import(
-        /* webpackChunkName: "i18n-app-kit-locale-en" */ '../data/en.json'
+        /* webpackChunkName: "i18n-app-kit-locale-en" */ '../compiled-data/en.json'
       );
   }
 };
