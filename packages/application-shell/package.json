@@ -74,7 +74,6 @@
     "@flopflip/types": "2.5.6",
     "@flopflip/memory-adapter": "1.9.2",
     "@flopflip/react-broadcast": "10.2.3",
-    "@sentry/browser": "5.21.3",
     "@types/classnames": "^2.2.9",
     "@types/common-tags": "^1.8.0",
     "@types/history": "^4.7.6",
