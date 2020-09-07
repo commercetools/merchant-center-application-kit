@@ -61,7 +61,7 @@
     "reselect": "4.0.0"
   },
   "devDependencies": {
-    "@testing-library/react": "10.4.9",
+    "@testing-library/react": "11.0.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-intl": "5.7.0",

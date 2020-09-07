@@ -116,7 +116,7 @@
     "uuid": "8.3.0"
   },
   "devDependencies": {
-    "@testing-library/react": "10.4.9",
+    "@testing-library/react": "11.0.2",
     "msw": "0.20.5",
     "react": "16.13.1",
     "react-apollo": "3.1.5",
@@ -129,7 +129,7 @@
   },
   "peerDependencies": {
     "@commercetools-frontend/ui-kit": "10.x",
-    "@testing-library/react": "9.x || 10.x",
+    "@testing-library/react": "9.x || 10.x || 11.x",
     "@types/prop-types": "15.x",
     "@types/react": "16.x",
     "@types/react-dom": "16.x",
