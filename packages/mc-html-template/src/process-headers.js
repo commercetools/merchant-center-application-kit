@@ -69,6 +69,8 @@ const processHeaders = (applicationConfig) => {
       ),
       'connect-src': [
         "'self'",
+        '*.aws.commercetools.com',
+        '*.gcp.commercetools.com',
         'mc-api.commercetools.com', // TODO: deprecated, to be removed when we switch-off the legacy hostnames
         'mc-api.commercetools.co', // TODO: deprecated, to be removed when we switch-off the legacy hostnames
         'app.launchdarkly.com',
