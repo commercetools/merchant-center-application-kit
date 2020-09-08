@@ -80,9 +80,7 @@ const getStylesForContent = (props: StyleProps) => {
       : 'inherit'};
 
     color: ${fontColor};
-
-    p,
-    a {
+    p {
       color: ${fontColor};
     }
     ul {
@@ -97,7 +95,7 @@ const getStylesForNotification = (props: StyleProps) => {
   const baseStyles = css`
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     padding: ${customProperties.spacingM};
     color: ${customProperties.colorSurface};
   `;
