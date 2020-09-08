@@ -1,5 +1,11 @@
 # @commercetools-website/custom-applications
 
+## 16.10.2
+
+### Patch Changes
+
+- [`4d2faba`](https://github.com/commercetools/merchant-center-application-kit/commit/4d2fabafafa0d6ec93a63fc086bd1e21c05b4aa3) [#1722](https://github.com/commercetools/merchant-center-application-kit/pull/1722) Thanks [@adnasa](https://github.com/adnasa)! - consistent naming of `examples-starter`
+
 ## 16.10.1
 
 ### Patch Changes

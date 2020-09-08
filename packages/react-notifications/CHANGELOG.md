@@ -1,5 +1,11 @@
 # @commercetools-frontend/react-notifications
 
+## 16.16.5
+
+### Patch Changes
+
+- [`3d38e5e`](https://github.com/commercetools/merchant-center-application-kit/commit/3d38e5e536b2ef410f796752b6f9926479cd7017) [#1723](https://github.com/commercetools/merchant-center-application-kit/pull/1723) Thanks [@islam3zzat](https://github.com/islam3zzat)! - Align **close** button, do not override link color
+
 ## 16.16.4
 
 ### Patch Changes

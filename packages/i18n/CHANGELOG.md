@@ -1,5 +1,11 @@
 # @commercetools-frontend/i18n
 
+## 16.16.5
+
+### Patch Changes
+
+- [`4c54f6d`](https://github.com/commercetools/merchant-center-application-kit/commit/4c54f6d88bc7a9107d721afd1e38d66a3eb4577d) [#1718](https://github.com/commercetools/merchant-center-application-kit/pull/1718) Thanks [@emmenko](https://github.com/emmenko)! - Use i18n compiled data
+
 ## 16.16.4
 
 ### Patch Changes
