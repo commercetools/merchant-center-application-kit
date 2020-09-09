@@ -44,9 +44,10 @@ Previously, to perform GraphQL requests to the Merchant Center API Gateway, you 
 
 This value had to be specified in the query `variables` object, which the built-in Merchant Center Apollo HTTP Link would parse and assign it to the request as an HTTP header.
 
-Now that Apollo has a more stable support for the `context` option, it is time that we make use of that instead of "spamming" the query `variables` object with request metadata.
+With more stable support for `context` option in Apollo, this suits our use case better than `variables` object for request metadata.
 
-Therefore, all the **metadata options** that you previously would pass to the `variables` object **can now be defined** in the `context` object.
+This means that metadata you previously passed into `variables` object which were intended for request headers, can now move to the `context` object.
+We call these metadata options **request context**.
 
 ```diff
 const { loading, data, error } = useQuery(MyQuery, {
@@ -57,7 +58,7 @@ const { loading, data, error } = useQuery(MyQuery, {
 });
 ```
 
-The options include:
+The **request context** options include:
 
 - `target`
 - `projectKey`
@@ -66,13 +67,14 @@ The options include:
 
 ## Enforcing a valid context object
 
-Now that the recommended and preferred way of passing request metadata options is to use the `context` object, to take advantage of the TypeScript declarations and therefore to have possible validation and autocompletion (even if you're not using TypeScript), we expose some React Hook wrappers around the Apollo Hooks.
+The recommended and preferred way of passing request context is to use the `context` object.
+We expose new React hook wrappers around Apollo hooks, leveraging TypeScript declaration, which will help you with validation and autocompletion as you author your custom application. Note that autocompletion is possible, even if you are not using TypeScript.
 
 - `useMcQuery`
 - `useMcLazyQuery`
 - `useMcMutation`
 
-Those work exactly the same as the original Apollo Hooks, except that the `context` object is properly typed in regards to the Merchant Center metadata options instead of be typed as `any`.
+These hooks work exactly the same as the original Apollo Hooks, with a minor difference. Namely, the `context` object is properly typed to conform with the Merchant Center request context instead of `any`.
 
 ```diff
 -import { useQuery } from '@apollo/client/react';
