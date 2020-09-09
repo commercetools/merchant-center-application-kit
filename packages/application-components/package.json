@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-components",
-  "version": "16.16.4",
+  "version": "16.16.5",
   "description": "Generic components for building Merchant Center applications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -44,7 +44,7 @@
     "@babel/runtime-corejs3": "7.11.2",
     "@commercetools-frontend/assets": "16.15.3",
     "@commercetools-frontend/constants": "16.16.0",
-    "@commercetools-frontend/i18n": "16.16.4",
+    "@commercetools-frontend/i18n": "16.16.5",
     "@commercetools-uikit/card": "^10.30.1",
     "@commercetools-uikit/constraints": "^10.30.1",
     "@commercetools-uikit/design-system": "^10.18.4",
