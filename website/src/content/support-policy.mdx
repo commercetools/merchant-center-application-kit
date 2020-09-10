@@ -27,21 +27,22 @@ Tooling and packages related to Custom Applications are released and published t
 
 Releases are documented in both a `CHANGELOG.md` file and in the GitHub release pages in the following repositories:
 
-- Changelog
-  - [Merchant Center Application Kit](https://github.com/commercetools/merchant-center-application-kit/blob/master/CHANGELOG.md)
-  - [UIKit](https://github.com/commercetools/ui-kit/blob/master/CHANGELOG.md)
-- Release notes
-  - [Merchant Center Application Kit](https://github.com/commercetools/merchant-center-application-kit/releases)
-  - [UIKit](https://github.com/commercetools/ui-kit/releases)
+- [Merchant Center Application Kit](https://github.com/commercetools/merchant-center-application-kit)
+  - [`CHANGELOG.md`](https://github.com/commercetools/merchant-center-application-kit/blob/master/CHANGELOG.md)
+  - [Release notes](https://github.com/commercetools/merchant-center-application-kit/releases)
+
+- [UIKit](https://github.com/commercetools/ui-kit)
+  - [`CHANGELOG.md`](https://github.com/commercetools/ui-kit/blob/master/CHANGELOG.md)
+  - [Release notes](https://github.com/commercetools/ui-kit/releases)
 
 All published packages to NPM are listed in the following scoped packages:
 
-- [`@commercetools-frontend`](https://www.npmjs.com/org/commercetools-frontend)
-- [`@commercetools-uikit`](https://www.npmjs.com/org/commercetools-uikit)
+- Merchant Center Application Kit [`@commercetools-frontend`](https://www.npmjs.com/org/commercetools-frontend)
+- UIKit [`@commercetools-uikit`](https://www.npmjs.com/org/commercetools-uikit)
 
 ## Release cadence
 
-commercetools strives to improve tooling and packages around Custom Applications continuously. This means that we do not follow a strict release cycle but instead publish releases in meaningful intervals, potentially multiple times a week. Minor and patch versions are likely to be released more frequently than major versions.
+commercetools strives to improve tooling and packages around Custom Applications continuously. We do not follow a strict release cycle. Instead, we publish releases in meaningful intervals, potentially multiple times a week. Minor and patch versions are likely released more frequently than major versions.
 
 <Info>
 
@@ -70,7 +71,7 @@ How a breaking change can impact a Custom Application:
 
 A new major release does not always mean that breaking changes directly affect consumers of the packages. Some examples are:
 
-- A dependency package drops support for an "old" Node.js version, thus releasing a major version. As a consequence, commercetools could release a new major version as well for dropping support to a specific Node.js version. However, this unlikely affects consumers of Custom Application packages.
+- A dependency package drops support for an "old" Node.js version, thus releasing a major version. As a consequence, commercetools could release a new major version as well for dropping support of a given Node.js version. However, this unlikely affects consumers of Custom Application packages.
 - React releases some new feature that requires a specific minimal version of React. Therefore, commercetools could release a new major version that requires Custom Applications to run to a minimal React version.
 
 </Info>
