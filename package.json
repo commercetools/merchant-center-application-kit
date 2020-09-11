@@ -192,7 +192,8 @@
     "graphql": "14.7.0",
     "pretty-format": "26.4.2",
     "intl-messageformat-parser": "6.0.6",
-    "**/intl-messageformat-parser": "6.0.6"
+    "**/intl-messageformat-parser": "6.0.6",
+    "**/@commercetools-docs/gatsby-theme-docs/react-intl": "5.8.1"
   },
   "engines": {
     "node": ">=12",

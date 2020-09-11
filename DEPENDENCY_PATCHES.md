@@ -15,3 +15,7 @@ We can't upgrade the `graphql` dependency to `>=15`, as there are still packages
 **`intl-messageformat-parser`**
 
 Due to different transitive versions, we need to resolve the package to the same version, otherwise types might not match with each other.
+
+**`@commercetools-docs/gatsby-theme-docs/react-intl`**
+
+Due to different transitive versions, we need to resolve the package to the same version to avoid build errors.
