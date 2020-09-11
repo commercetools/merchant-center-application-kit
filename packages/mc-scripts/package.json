@@ -60,21 +60,21 @@
     "@svgr/webpack": "5.4.0",
     "babel-loader": "8.1.0",
     "babel-plugin-react-intl": "7.9.4",
-    "browserslist": "4.14.0",
+    "browserslist": "4.14.2",
     "clean-webpack-plugin": "3.0.0",
     "core-js": "3.6.5",
-    "css-loader": "4.2.1",
+    "css-loader": "4.3.0",
     "cssnano": "4.1.10",
-    "file-loader": "6.0.0",
+    "file-loader": "6.1.0",
     "fs-extra": "9.0.1",
     "glob": "7.1.6",
     "graphql-tag": "^2.11.0",
-    "html-webpack-plugin": "4.3.0",
+    "html-webpack-plugin": "4.4.1",
     "json-loader": "0.5.7",
-    "mini-css-extract-plugin": "0.10.0",
+    "mini-css-extract-plugin": "0.11.1",
     "moment-locales-webpack-plugin": "1.2.0",
     "mri": "1.1.6",
-    "optimize-css-assets-webpack-plugin": "5.0.3",
+    "optimize-css-assets-webpack-plugin": "5.0.4",
     "postcss": "7.0.32",
     "postcss-color-mod-function": "3.0.3",
     "postcss-custom-media": "7.0.8",
@@ -97,8 +97,8 @@
     "webpackbar": "4.0.0"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "7.11.0",
-    "@babel/preset-env": "7.11.0"
+    "@babel/plugin-transform-runtime": "7.11.5",
+    "@babel/preset-env": "7.11.5"
   },
   "engines": {
     "node": ">=10",
