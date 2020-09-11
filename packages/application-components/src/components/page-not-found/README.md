@@ -7,14 +7,14 @@ The PageNotFound component can be used as a `404` or page not found route for Me
 ## Usage
 
 ```js
-import { Switch, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { PageNotFound } from '@commercetools-frontend/application-components';
 
 const Routes = () => (
-  <Switch>
-    <Route exact path="/" component={Home} />
-    <Route path="/user" component={User} />
-    <Route path="*" component={PageNotFound} />
-  </Switch>
+  <Routes>
+    <Route path="/"><Home /></Route>
+    <Route path="/user/*"><User /></Route>
+    <Route path="*"><PageNotFound /></Route>
+  </Routes>
 );
 ```

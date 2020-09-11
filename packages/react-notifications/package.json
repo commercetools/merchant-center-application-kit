@@ -50,7 +50,6 @@
     "@commercetools-uikit/spacings": "^10.18.7",
     "@emotion/core": "10.0.35",
     "@emotion/styled": "10.0.27",
-    "@types/history": "^4.7.6",
     "@types/lodash": "^4.14.155",
     "@types/prop-types": "^15.7.3",
     "lodash": "4.17.20",
@@ -65,20 +64,16 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-intl": "5.8.2",
-    "react-redux": "7.2.1",
-    "react-router-dom": "5.2.0"
+    "react-redux": "7.2.1"
   },
   "peerDependencies": {
     "@commercetools-frontend/ui-kit": "10.x",
     "@types/react": "16.x",
     "@types/react-dom": "16.x",
     "@types/react-redux": "7.x",
-    "@types/react-router": "5.x",
-    "@types/react-router-dom": "5.x",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
     "react-intl": "3.x || 4.x || 5.x",
-    "react-redux": "7.x",
-    "react-router-dom": "5.x"
+    "react-redux": "7.x"
   }
 }

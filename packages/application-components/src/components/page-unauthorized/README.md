@@ -7,14 +7,14 @@ The PageUnauthorized component can be used to inform a user that certain permiss
 ## Usage
 
 ```js
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
 
 const Routes = () => (
-  <Switch>
-    <Route exact path="/" component={Home} />
-    <Route path="/user" component={User} />
-    <Route path="/unauthorized" component={PageUnauthorized} />
-  </Switch>
+  <Routes>
+    <Route path="/"><Home /></Route>
+    <Route path="/user/*"><User /></Route>
+    <Route path="/unauthorized/*"><PageUnauthorized /></Route>
+  </Routes>
 );
 ```

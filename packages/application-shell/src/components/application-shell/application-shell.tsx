@@ -8,7 +8,7 @@ import type { TApplicationsMenu } from '../../types/generated/proxy';
 import type { TrackingList } from '../../utils/gtm';
 
 import React from 'react';
-import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
+import { Redirect, Route, Routes, useLocation } from 'react-router-dom';
 import { Global, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import {
@@ -266,7 +266,7 @@ export const RestrictedApplication = <
                         </div>
 
                         <Route>
-                          {() => {
+                          {(() => {
                             if (!projectKeyFromUrl) return <QuickAccess />;
                             return (
                               <FetchProject projectKey={projectKeyFromUrl}>
@@ -312,7 +312,7 @@ export const RestrictedApplication = <
                                 }}
                               </FetchProject>
                             );
-                          }}
+                          })()}
                         </Route>
 
                         <header
@@ -528,9 +528,11 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
         {({ isAuthenticated }) => {
           if (isAuthenticated)
             return (
-              <Switch>
-                <Route path="/logout" component={RedirectToLogout} />
-                <Route>
+              <Routes>
+                <Route path="/logout">
+                  <RedirectToLogout />
+                </Route>
+                <Route path="*">
                   <RestrictedApplication<AdditionalEnvironmentProperties>
                     defaultFeatureFlags={props.defaultFeatureFlags}
                     featureFlags={props.featureFlags}
@@ -545,23 +547,18 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
                     }
                   />
                 </Route>
-              </Switch>
+              </Routes>
             );
 
           return (
-            <Route
-              render={({ location }) => (
-                <Redirector
-                  to="login"
-                  location={location}
-                  queryParams={{
-                    reason: LOGOUT_REASONS.UNAUTHORIZED,
-                    redirectTo: trimLeadingAndTrailingSlashes(
-                      joinPaths(window.location.origin, location.pathname)
-                    ),
-                  }}
-                />
-              )}
+            <Redirector
+              to="login"
+              queryParams={{
+                reason: LOGOUT_REASONS.UNAUTHORIZED,
+                redirectTo: trimLeadingAndTrailingSlashes(
+                  joinPaths(window.location.origin, location.pathname)
+                ),
+              }}
             />
           );
         }}
