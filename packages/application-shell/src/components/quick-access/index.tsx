@@ -9,8 +9,8 @@ type Props = {
   onChangeProjectDataLocale?: (locale: string) => void;
 };
 
-const QuickAccess = React.lazy(() =>
-  import('./quick-access' /* webpackChunkName: "quick-access" */)
+const QuickAccess = React.lazy(
+  () => import('./quick-access' /* webpackChunkName: "quick-access" */)
 );
 
 const QuickAccessTrigger = (props: Props) => {
