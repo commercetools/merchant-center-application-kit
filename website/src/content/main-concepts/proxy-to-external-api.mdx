@@ -214,6 +214,32 @@ exports.handler = async function (request, response) {
 };
 ```
 
+### Decoding the token
+
+You can decode the JWT token with [JWT.io](https://jwt.io/). In the decoded version, you will see the following fields.
+
+```json
+{
+  "exp": 1600092401,
+  "sub": "<subject>",
+  "iss": "<hostname>",
+  "aud": "<audience-url>",
+  "type": "exchange",
+  "<hostname>/claims/project_key": "<project-key>",
+  "iat": 1600092341
+}
+```
+
+These fields are according to specification **Register Claim Names** and consist of the following:
+
+- `exp`: This claim identifies the **expiration time**. The claims requires to be before the current time in order to accepted for processing.
+- `sub`: This claim identifies the **subject**. The value of `sub` issued by the API Gateway for Custom Applications is the user-ID for Merchant Center.
+- `iss`: This claim identifies the **issuer**. The value of `iss` is the hostname to the API Gateway itself. This value differs depending on the region the JWT was issued. These are listed under API Gateway under **Hostnames**.
+- `aud`: This claim identifies the **audience**. The value of **audience** is the exact URL to the External API.
+- `type`: This is public claim identified by the API Gateway. The decoded JWT in the example above is a result of authorization exchange between API Gateway and the External API, hence the name.
+- `iat`: This claim identifies **issued at**. The value of **issued at** is the time that JWT was issued.
+- `<hostname>/claims/project_key`: This is a public claim identified by the API Gateway. This identifies the project key that the JWT was issued.
+
 ## Using JSON Web Key Set endpoint
 
 The Merchant Center API Gateway exposes a `/.well-known/jwks.json` endpoint that can be used to validate JWTs, as defined in Open ID Connect (OIDC) specification. The endpoint provides a rotating public key used to verify the JWT signature.
