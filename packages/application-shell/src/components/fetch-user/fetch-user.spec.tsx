@@ -1,8 +1,10 @@
+import type { TUserGraphql } from '../../../../../test-data/user';
+
 import { graphql } from 'msw';
 import { setupServer } from 'msw/node';
 import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { UserMock } from '../../../../../graphql-test-utils';
+import * as UserMock from '../../../../../test-data/user';
 import {
   experimentalRenderAppWithRedux,
   screen,
@@ -13,12 +15,10 @@ import FetchUser from './fetch-user';
 jest.mock('@commercetools-frontend/sentry');
 
 const mockServer = setupServer(
-  graphql.query('FetchLoggedInUser', (req, res, ctx) =>
+  graphql.query('FetchLoggedInUser', (_req, res, ctx) =>
     res.once(
       ctx.data({
-        user: UserMock.build({
-          firstName: 'John',
-        }),
+        user: UserMock.random().firstName('John').buildGraphql<TUserGraphql>(),
       })
     )
   )
@@ -29,7 +29,7 @@ afterEach(() => {
 beforeAll(() => mockServer.listen());
 afterAll(() => mockServer.close());
 
-const renderUser = (options) =>
+const renderUser = () =>
   experimentalRenderAppWithRedux(
     <FetchUser>
       {({ isLoading, error, user }) => {
@@ -38,8 +38,7 @@ const renderUser = (options) =>
         if (user) return <div>{`User: ${user.firstName}`}</div>;
         return null;
       }}
-    </FetchUser>,
-    options
+    </FetchUser>
   );
 
 describe('rendering', () => {
@@ -56,7 +55,7 @@ describe('rendering', () => {
   describe('when fetching user fails with a graphql error', () => {
     it('should render error state', async () => {
       mockServer.use(
-        graphql.query('FetchLoggedInUser', (req, res, ctx) =>
+        graphql.query('FetchLoggedInUser', (_req, res, ctx) =>
           res(ctx.errors([{ message: 'Something went wrong' }]))
         )
       );
@@ -75,8 +74,8 @@ describe('rendering', () => {
   describe('when fetching user fails with a network error', () => {
     it('should render error state', async () => {
       mockServer.use(
-        graphql.query('FetchLoggedInUser', (req, res, ctx) =>
-          res(ctx.status(401), ctx.json({ message: 'Invalid token' }))
+        graphql.query('FetchLoggedInUser', (_req, res, ctx) =>
+          res(ctx.status(401), ctx.data({ message: 'Invalid token' }))
         )
       );
 
