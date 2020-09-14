@@ -42,7 +42,7 @@
     "jwks-rsa": "1.9.0"
   },
   "devDependencies": {
-    "jose": "1.28.0",
+    "jose": "2.0.2",
     "nock": "13.0.4"
   }
 }
