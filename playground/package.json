@@ -48,6 +48,6 @@
   },
   "devDependencies": {
     "@commercetools-frontend/mc-scripts": "16.16.4",
-    "dotenv-cli": "3.2.0"
+    "dotenv-cli": "4.0.0"
   }
 }
