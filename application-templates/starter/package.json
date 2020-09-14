@@ -39,7 +39,7 @@
     "@commercetools-frontend/jest-preset-mc-app": "16.16.4",
     "@commercetools-frontend/mc-scripts": "16.16.4",
     "@testing-library/react": "11.0.2",
-    "dotenv-cli": "3.2.0",
+    "dotenv-cli": "4.0.0",
     "enzyme": "3.11.0",
     "jest": "26.4.2"
   }
