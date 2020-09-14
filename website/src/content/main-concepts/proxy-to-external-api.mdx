@@ -121,6 +121,32 @@ It's imperative that the external API is securely protected and that only users 
 
 </Warning>
 
+### Decoding the token
+
+You can decode the JWT token with [JWT.io](https://jwt.io/). In the decoded version, you will see the following fields.
+
+```json
+{
+  "exp": 1600092401,
+  "sub": "<subject>",
+  "iss": "<hostname>",
+  "aud": "<audience-url>",
+  "type": "exchange",
+  "<hostname>/claims/project_key": "<project-key>",
+  "iat": 1600092341
+}
+```
+
+These decoded JWT token consist of **Register Claim Names** and **Private claims** and have the following fields:
+
+
+- `exp`: This claim identifies the **expiration time**. The value of this claim requires to be the time before the current time to be valid and accepted.
+- `sub`: This claim identifies the **subject**. The value of `sub` issued by the Merchant Center API Gateway for Custom Applications is the user-ID for Merchant Center.
+- `iss`: This claim identifies the **issuer**. The value of `iss` is either a cloud identifier or a valid URL to the Merchant Center API Gateway. The value differs depending on the region as outlined above.
+- `aud`: This claim identifies the **audience**. The value of **audience** is the exact URL to the External API.
+- `type`: This is public claim identified by the Merchant Center API Gateway. The decoded JWT in the example above is a result of authorization exchange between Merchant Center API Gateway and the External API, hence the name.
+- `<hostname>/claims/project_key`: This is a claim identified by the Merchant Center API Gateway. This identifies the project key that the JWT was issued for.
+- `iat`: This claim identifies **issued at**. The value of **issued at** is the time that JWT was issued.
 
 ## Validating the JSON Web Token
 
@@ -213,32 +239,6 @@ exports.handler = async function (request, response) {
   // `request.session` contains the useful information
 };
 ```
-
-### Decoding the token
-
-You can decode the JWT token with [JWT.io](https://jwt.io/). In the decoded version, you will see the following fields.
-
-```json
-{
-  "exp": 1600092401,
-  "sub": "<subject>",
-  "iss": "<hostname>",
-  "aud": "<audience-url>",
-  "type": "exchange",
-  "<hostname>/claims/project_key": "<project-key>",
-  "iat": 1600092341
-}
-```
-
-These fields are according to specification **Register Claim Names** and consist of the following:
-
-- `exp`: This claim identifies the **expiration time**. The claims requires to be before the current time in order to accepted for processing.
-- `sub`: This claim identifies the **subject**. The value of `sub` issued by the API Gateway for Custom Applications is the user-ID for Merchant Center.
-- `iss`: This claim identifies the **issuer**. The value of `iss` is either a cloud identifier or a valid URL to the Merchant Center API Gateway. The value differs depending on the region as outlined above.
-- `aud`: This claim identifies the **audience**. The value of **audience** is the exact URL to the External API.
-- `type`: This is public claim identified by the API Gateway. The decoded JWT in the example above is a result of authorization exchange between API Gateway and the External API, hence the name.
-- `iat`: This claim identifies **issued at**. The value of **issued at** is the time that JWT was issued.
-- `<hostname>/claims/project_key`: This is a public claim identified by the API Gateway. This identifies the project key that the JWT was issued.
 
 ## Using JSON Web Key Set endpoint
 
