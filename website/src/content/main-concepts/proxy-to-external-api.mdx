@@ -234,7 +234,7 @@ These fields are according to specification **Register Claim Names** and consist
 
 - `exp`: This claim identifies the **expiration time**. The claims requires to be before the current time in order to accepted for processing.
 - `sub`: This claim identifies the **subject**. The value of `sub` issued by the API Gateway for Custom Applications is the user-ID for Merchant Center.
-- `iss`: This claim identifies the **issuer**. The value of `iss` is the hostname to the API Gateway itself. This value differs depending on the region the JWT was issued. These are listed under API Gateway under **Hostnames**.
+- `iss`: This claim identifies the **issuer**. The value of `iss` is either a cloud identifier or a valid URL to the Merchant Center API Gateway. The value differs depending on the region as outlined above.
 - `aud`: This claim identifies the **audience**. The value of **audience** is the exact URL to the External API.
 - `type`: This is public claim identified by the API Gateway. The decoded JWT in the example above is a result of authorization exchange between API Gateway and the External API, hence the name.
 - `iat`: This claim identifies **issued at**. The value of **issued at** is the time that JWT was issued.
