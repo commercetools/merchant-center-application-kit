@@ -121,6 +121,32 @@ It's imperative that the external API is securely protected and that only users 
 
 </Warning>
 
+### Exchange token structure
+
+The Exchange token follows the [JWT structure](https://auth0.com/docs/tokens/json-web-tokens/json-web-token-structure), specified by the [JWT specification](https://tools.ietf.org/html/rfc7519).
+This means that the Exchange token contains claims, which are statements about the token and is used to assert the token itself.
+
+The Exchange token structure consist of **Registered Claim Names** and **Private claims**:
+
+```json
+{
+  "exp": 1600092401,
+  "sub": "<subject>",
+  "iss": "<hostname>",
+  "aud": "<audience-url>",
+  "type": "exchange",
+  "<hostname>/claims/project_key": "<project-key>",
+  "iat": 1600092341
+}
+```
+
+- `exp`: The **expiration time** on or after which the exchange token must not be accepted for processing.
+- `sub`: The **subject identifier** is the unique user identifier of a Merchant Center account, specifically the ID of the logged in user.
+- `iss`: The **issuer identifier** is the URL identifier of the server that issued the JWT. In this particular case is the URL of the [Merchant Center API Gateway](/main-concepts/api-gateway).
+- `aud`: The **audience** is the value that the exchange token is intended for. In this particular case is the exact URL passed to the `X-Forward-To` HTTP header.
+- `iat`: This value represents the time at which the JWT was issued.
+- `type`: This value is a **private claim** and is always set to `exchange`.
+- `<iss>/claims/project_key`: This value represents the project key that the request is associated to. The claim is a **public claim** prefixed by a collision-resistant namespace, as per the JWT specification.
 
 ## Validating the JSON Web Token
 
