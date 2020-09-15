@@ -123,7 +123,10 @@ It's imperative that the external API is securely protected and that only users 
 
 ### Exchange token structure
 
-You can decode the JWT token with [JWT.io](https://jwt.io/). In the decoded version, you will see the following fields.
+The Exchange token follows the [JWT structure](https://auth0.com/docs/tokens/json-web-tokens/json-web-token-structure), specified by the [JWT specification](https://tools.ietf.org/html/rfc7519).
+This means that the Exchange token contains claims, which are statements about the token and is used to assert the token itself.
+
+The Exchange token structure consist of **Registered Claim Names** and **Private claims**:
 
 ```json
 {
@@ -136,9 +139,6 @@ You can decode the JWT token with [JWT.io](https://jwt.io/). In the decoded vers
   "iat": 1600092341
 }
 ```
-
-These decoded JWT token consist of **Register Claim Names** and **Private claims** and have the following fields:
-
 
 - `exp`: The **expiration time** on or after which the exchange token must not be accepted for processing.
 - `sub`: The **subject identifier** is the unique user identifier of a Merchant Center account, specifically the ID of the logged in user.
