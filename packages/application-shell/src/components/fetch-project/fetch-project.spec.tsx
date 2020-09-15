@@ -1,8 +1,10 @@
+import type { TProjectGraphql } from '../../../../../test-data/project';
+
 import { graphql } from 'msw';
 import { setupServer } from 'msw/node';
 import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { ProjectMock } from '../../../../../graphql-test-utils';
+import * as ProjectMock from '../../../../../test-data/project';
 import {
   experimentalRenderAppWithRedux,
   screen,
@@ -13,13 +15,12 @@ import FetchProject from './fetch-project';
 jest.mock('@commercetools-frontend/sentry');
 
 const mockServer = setupServer(
-  graphql.query('FetchProject', (req, res, ctx) =>
+  graphql.query('FetchProject', (_req, res, ctx) =>
     res.once(
       ctx.data({
-        project: ProjectMock.build({
-          key: 'test-1',
-          name: 'Test 1',
-        }),
+        project: ProjectMock.random()
+          .name('Test 1')
+          .buildGraphql<TProjectGraphql>(),
       })
     )
   )
@@ -30,7 +31,7 @@ afterEach(() => {
 beforeAll(() => mockServer.listen());
 afterAll(() => mockServer.close());
 
-const renderProject = (options) =>
+const renderProject = () =>
   experimentalRenderAppWithRedux(
     <FetchProject projectKey="test-1">
       {({ isLoading, error, project }) => {
@@ -39,8 +40,7 @@ const renderProject = (options) =>
         if (project) return <div>{`Project: ${project.name}`}</div>;
         return null;
       }}
-    </FetchProject>,
-    options
+    </FetchProject>
   );
 
 describe('rendering', () => {
@@ -57,7 +57,7 @@ describe('rendering', () => {
   describe('when fetching project fails with a graphql error', () => {
     it('should render error state', async () => {
       mockServer.use(
-        graphql.query('FetchProject', (req, res, ctx) =>
+        graphql.query('FetchProject', (_req, res, ctx) =>
           res(ctx.errors([{ message: 'Something went wrong' }]))
         )
       );
@@ -76,9 +76,7 @@ describe('rendering', () => {
   describe('when fetching project fails with a network error', () => {
     it('should render error state', async () => {
       mockServer.use(
-        graphql.query('FetchProject', (req, res, ctx) =>
-          res(ctx.status(401), ctx.json({ message: 'Invalid token' }))
-        )
+        graphql.query('FetchProject', (_req, res, ctx) => res(ctx.status(401)))
       );
 
       renderProject();

@@ -12,6 +12,10 @@ const generator = Generator<TProject>({
     lastModifiedAt: fake((f) => f.date.recent(1)),
     name: fake((f) => f.company.companyName()),
     key: '',
+    owner: null,
+    countries: ['de'],
+    currencies: ['EUR'],
+    languages: ['de'],
   },
   postBuild: (project) => {
     project.key = slugify(project.name);
