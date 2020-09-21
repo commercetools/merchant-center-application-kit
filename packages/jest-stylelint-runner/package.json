@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "postcss": "7.0.32",
-    "postcss-custom-properties": "9.1.1",
+    "postcss-custom-properties": "10.0.0",
     "postcss-import": "12.0.1"
   },
   "dependencies": {
