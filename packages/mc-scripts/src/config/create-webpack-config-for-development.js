@@ -239,28 +239,30 @@ module.exports = ({
             loader: require.resolve('postcss-loader'),
             options: {
               ident: 'postcss',
-              plugins: () => [
-                postcssImport({ path: sourceFolders }),
-                postcssPresetEnv({
-                  autoprefixer: {
-                    grid: true,
-                    overrideBrowserslist: browserslist.development,
-                  },
-                }),
-                postcssCustomMediaQueries({
-                  importFrom: require.resolve(
-                    '@commercetools-frontend/application-components/materials/media-queries.css'
-                  ),
-                }),
-                postcssCustomProperties({
-                  preserve: false,
-                  importFrom: require.resolve(
-                    '@commercetools-uikit/design-system/materials/custom-properties.css'
-                  ),
-                }),
-                postcssColorModFunction(),
-                postcssReporter(),
-              ],
+              postcssOptions: {
+                plugins: () => [
+                  postcssImport({ path: sourceFolders }),
+                  postcssPresetEnv({
+                    autoprefixer: {
+                      grid: true,
+                      overrideBrowserslist: browserslist.development,
+                    },
+                  }),
+                  postcssCustomMediaQueries({
+                    importFrom: require.resolve(
+                      '@commercetools-frontend/application-components/materials/media-queries.css'
+                    ),
+                  }),
+                  postcssCustomProperties({
+                    preserve: false,
+                    importFrom: require.resolve(
+                      '@commercetools-uikit/design-system/materials/custom-properties.css'
+                    ),
+                  }),
+                  postcssColorModFunction(),
+                  postcssReporter(),
+                ],
+              },
             },
           },
         ],
@@ -287,28 +289,30 @@ module.exports = ({
                 loader: require.resolve('postcss-loader'),
                 options: {
                   ident: 'postcss',
-                  plugins: () => [
-                    postcssImport(),
-                    postcssPresetEnv({
-                      autoprefixer: {
-                        grid: true,
-                        overrideBrowserslist: browserslist.development,
-                      },
-                    }),
-                    postcssCustomMediaQueries({
-                      importFrom: require.resolve(
-                        '@commercetools-frontend/application-components/materials/media-queries.css'
-                      ),
-                    }),
-                    postcssCustomProperties({
-                      preserve: false,
-                      importFrom: require.resolve(
-                        '@commercetools-uikit/design-system/materials/custom-properties.css'
-                      ),
-                    }),
-                    postcssColorModFunction(),
-                    postcssReporter(),
-                  ],
+                  postcssOptions: {
+                    plugins: () => [
+                      postcssImport(),
+                      postcssPresetEnv({
+                        autoprefixer: {
+                          grid: true,
+                          overrideBrowserslist: browserslist.development,
+                        },
+                      }),
+                      postcssCustomMediaQueries({
+                        importFrom: require.resolve(
+                          '@commercetools-frontend/application-components/materials/media-queries.css'
+                        ),
+                      }),
+                      postcssCustomProperties({
+                        preserve: false,
+                        importFrom: require.resolve(
+                          '@commercetools-uikit/design-system/materials/custom-properties.css'
+                        ),
+                      }),
+                      postcssColorModFunction(),
+                      postcssReporter(),
+                    ],
+                  },
                 },
               },
             ],
