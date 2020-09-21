@@ -238,7 +238,6 @@ module.exports = ({
           {
             loader: require.resolve('postcss-loader'),
             options: {
-              ident: 'postcss',
               postcssOptions: {
                 plugins: () => [
                   postcssImport({ path: sourceFolders }),
@@ -288,7 +287,6 @@ module.exports = ({
               {
                 loader: require.resolve('postcss-loader'),
                 options: {
-                  ident: 'postcss',
                   postcssOptions: {
                     plugins: () => [
                       postcssImport(),
