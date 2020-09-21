@@ -1,0 +1,48 @@
+---
+title: Compiling Custom Application
+---
+
+One of the necessary steps to prepare your Custom Application for a deployment is to create a [production build](/deployment/production-build). If you decide to host you Custom Application statically and not use `mc-http-server`, you need to compile your Custom Application.
+
+This section helps prepare your Custom Application for deployment by compiling it.
+
+# Why compile?
+
+When creating a [production build](/deployment/production-build), `mc-scripts build` takes your Custom Application code and generates assets that can be served statically.
+
+One of these assets is a file `index.html.template`. This file contains references to bundles (your code and other assets) and placeholders that needs to be replaced with values of your [Custom Application configuration](/development/application-config) as runtime application values. In this step is where compiling is needed.
+
+Once your Custom Application is compiled, it is ready for deployment.
+
+# Prerequisites
+
+Before you get started, you need to do the following:
+
+- [Configure your Custom Application](/development/application-config).
+- Create a [production build](/deployment/production-build) of your Custom Application.
+
+# Compiling your Custom Application
+
+To compile your Custom Application, you run the following:
+
+```console noPromptLines="2,4-6"
+yarn compile-html --use-local-assets
+```
+
+<Info>
+
+The `--use-local-assets` option is required for the sake of this example. We also strongly recommend that you host static assets to a CDN or Cloud Storage. See [Serving static assets](/deployment/serving-static-assets).
+
+</Info>
+
+The command above does what we need: it compiles the `index.html` using the JavaScript bundle references (after running `mc-scripts build`) and the runtime configuration. At this point the `index.html` file is ready for production usage.
+
+# Deployment
+
+Deploying your Custom Application can be done by uploading it to a Cloud Storage (recommended).
+
+You can also deploy your Custom Application with:
+
+- Vercel serverless deployment (formerly ZEIT Now): [Example Deployment with Vercel](/deployment/example-deployment-vercel)
+- Firebase: [Example Deployment with Firebase](/deployment/example-deployment-firebase)
+- AWS: [Example Deployment with AWS, S3 and CloudFront](/deployment/example-deployment-aws-s3-cloudfront)
