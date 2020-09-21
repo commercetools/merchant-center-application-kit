@@ -34,7 +34,7 @@
     "stylelint": ">= 9.5"
   },
   "devDependencies": {
-    "postcss": "7.0.34",
+    "postcss": "8.0.6",
     "postcss-custom-properties": "10.0.0",
     "postcss-import": "12.0.1"
   },
