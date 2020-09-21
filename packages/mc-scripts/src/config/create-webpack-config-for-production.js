@@ -329,29 +329,30 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
             {
               loader: require.resolve('postcss-loader'),
               options: {
-                ident: 'postcss',
-                plugins: () => [
-                  postcssImport({ path: sourceFolders }),
-                  postcssPresetEnv({
-                    autoprefixer: {
-                      grid: true,
-                      overrideBrowserslist: browserslist.production,
-                    },
-                  }),
-                  postcssCustomProperties({
-                    preserve: false,
-                    importFrom: require.resolve(
-                      '@commercetools-uikit/design-system/materials/custom-properties.css'
-                    ),
-                  }),
-                  postcssCustomMediaQueries({
-                    importFrom: require.resolve(
-                      '@commercetools-frontend/application-components/materials/media-queries.css'
-                    ),
-                  }),
-                  postcssColorModFunction(),
-                  postcssReporter(),
-                ],
+                postcssOptions: {
+                  plugins: () => [
+                    postcssImport({ path: sourceFolders }),
+                    postcssPresetEnv({
+                      autoprefixer: {
+                        grid: true,
+                        overrideBrowserslist: browserslist.production,
+                      },
+                    }),
+                    postcssCustomProperties({
+                      preserve: false,
+                      importFrom: require.resolve(
+                        '@commercetools-uikit/design-system/materials/custom-properties.css'
+                      ),
+                    }),
+                    postcssCustomMediaQueries({
+                      importFrom: require.resolve(
+                        '@commercetools-frontend/application-components/materials/media-queries.css'
+                      ),
+                    }),
+                    postcssColorModFunction(),
+                    postcssReporter(),
+                  ],
+                },
               },
             },
           ],
@@ -379,29 +380,30 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
                 {
                   loader: require.resolve('postcss-loader'),
                   options: {
-                    ident: 'postcss',
-                    plugins: () => [
-                      postcssImport(),
-                      postcssPresetEnv({
-                        autoprefixer: {
-                          grid: true,
-                          overrideBrowserslist: browserslist.production,
-                        },
-                      }),
-                      postcssCustomMediaQueries({
-                        importFrom: require.resolve(
-                          '@commercetools-frontend/application-components/materials/media-queries.css'
-                        ),
-                      }),
-                      postcssCustomProperties({
-                        preserve: false,
-                        importFrom: require.resolve(
-                          '@commercetools-uikit/design-system/materials/custom-properties.css'
-                        ),
-                      }),
-                      postcssColorModFunction(),
-                      postcssReporter(),
-                    ],
+                    postcssOptions: {
+                      plugins: () => [
+                        postcssImport(),
+                        postcssPresetEnv({
+                          autoprefixer: {
+                            grid: true,
+                            overrideBrowserslist: browserslist.production,
+                          },
+                        }),
+                        postcssCustomMediaQueries({
+                          importFrom: require.resolve(
+                            '@commercetools-frontend/application-components/materials/media-queries.css'
+                          ),
+                        }),
+                        postcssCustomProperties({
+                          preserve: false,
+                          importFrom: require.resolve(
+                            '@commercetools-uikit/design-system/materials/custom-properties.css'
+                          ),
+                        }),
+                        postcssColorModFunction(),
+                        postcssReporter(),
+                      ],
+                    },
                   },
                 },
               ],
