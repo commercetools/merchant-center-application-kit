@@ -18025,6 +18025,11 @@ kleur@^3.0.3:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
 
+klona@^2.0.3:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.4.tgz#7bb1e3affb0cb8624547ef7e8f6708ea2e39dfc0"
+  integrity sha512-ZRbnvdg/NxqzC7L9Uyqzf4psi1OM4Cuc+sJAkQPjO6XkQIJTNbfK2Rsmbw8fx1p2mkZdp2FZYo2+LwXYY/uwIA==
+
 known-css-properties@^0.19.0:
   version "0.19.0"
   resolved "https://registry.yarnpkg.com/known-css-properties/-/known-css-properties-0.19.0.tgz#5d92b7fa16c72d971bda9b7fe295bdf61836ee5b"
@@ -22072,7 +22077,18 @@ postcss-load-config@2.1.0, postcss-load-config@^2.0.0, postcss-load-config@^2.1.
     cosmiconfig "^5.0.0"
     import-cwd "^2.0.0"
 
-postcss-loader@3.0.0, postcss-loader@^3.0.0:
+postcss-loader@4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/postcss-loader/-/postcss-loader-4.0.2.tgz#b9e55a6126ee67bb7b94bbfcbf1aa24c69f11229"
+  integrity sha512-u7Qoa6GSPIeg9/hHbNnXspzuD5jjCIWKgk1fJ/gGJPS0uaj6Whk2zjXhDAiHZyYSrDmIzUQk7GgwRF22eRIQGQ==
+  dependencies:
+    cosmiconfig "^7.0.0"
+    klona "^2.0.3"
+    loader-utils "^2.0.0"
+    schema-utils "^2.7.1"
+    semver "^7.3.2"
+
+postcss-loader@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/postcss-loader/-/postcss-loader-3.0.0.tgz#6b97943e47c72d845fa9e03f273773d4e8dd6c2d"
   integrity sha512-cLWoDEY5OwHcAjDnkyRQzAXfs2jrKjXpO/HQFcc5b5u/r7aa471wdmChmwfnv7x2u840iat/wi0lQ5nbRgSkUA==
