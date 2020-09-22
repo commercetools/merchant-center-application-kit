@@ -2,15 +2,17 @@
 title: Compiling Custom Application
 ---
 
-One of the necessary steps to prepare your Custom Application for a deployment is to create a [production build](/deployment/production-build). If you decide to host your Custom Application statically and do not intend to use the `mc-http-server`, you need to compile your Custom Application.
+One of the necessary steps to prepare your Custom Application for a deployment is to create a [production build](/deployment/production-build). If you decide to host your Custom Application statically and do not intend to use the [provided HTTP server](/deployment/http-server), you need to compile your Custom Application.
 
-This section helps prepare your Custom Application for deployment by compiling it.
+This section helps prepare your Custom Application for static hosting by going through the compilation step.
 
 # Why compile?
 
 When creating a [production build](/deployment/production-build), `mc-scripts build` takes your Custom Application code and generates assets that can be served statically.
 
-One of these assets is a file `index.html.template`. This file contains references to bundles (your code and other assets) and placeholders that needs to be replaced with values specific to your [Custom Application configuration](/development/application-config). In this step compilation is needed.
+One of these assets is a file named `index.html.template`. This file contains references to bundles (your code and other assets) and placeholders that needs to be replaced with values specific to your [Custom Application configuration](/development/application-config).
+
+Therefore, compiling the application simply results in having a final `index.html` with all the correct runtime values in place.
 
 Once your Custom Application is compiled, it is ready for deployment.
 
@@ -25,7 +27,7 @@ Before you get started, you need to do the following:
 
 Run the following to compile your Custom Application:
 
-```console noPromptLines="2,4-6"
+```console
 yarn compile-html --use-local-assets
 ```
 
@@ -39,10 +41,7 @@ The command above does what we need: it compiles a `index.html` using the refere
 
 # Deployment
 
-Deploying your Custom Application can be done by uploading it to a Cloud Storage (recommended).
-
-You can also deploy your Custom Application with Vercel (formerly ZEIT Now), Firebase and AWS.
-We offer examples for them:
+We provide some step-by-step tutorial examples for hosting a Custom Application statically to popular hosting providers:
 
 - [Example Deployment with Vercel](/deployment/example-deployment-vercel)
 - [Example Deployment with Firebase](/deployment/example-deployment-firebase)
