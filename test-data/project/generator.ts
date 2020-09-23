@@ -16,6 +16,13 @@ const generator = Generator<TProject>({
     countries: ['de'],
     currencies: ['EUR'],
     languages: ['de'],
+    initialized: fake(() => true),
+    suspension: null,
+    expiry: null,
+    allAppliedPermissions: [],
+    allAppliedActionRights: [],
+    allAppliedDataFences: [],
+    allAppliedMenuVisibilities: [],
   },
   postBuild: (project) => {
     project.key = slugify(project.name);

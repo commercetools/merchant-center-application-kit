@@ -1,46 +1,59 @@
 import type { TBuilder } from '@commercetools-test-data/core';
+import type { TOrganization, TOrganizationGraphql } from '../organization';
 
 export type TCreateProjectBuilder = (args?: {
   defaults?: Partial<TProject>;
 }) => TBuilder<TProject>;
 
-export type TProjectSuspensionGraphql = {
-  __typename: 'ProjectSuspension';
+export type TProjectSuspension = {
   isActive: boolean;
   reason?: string;
 };
+export type TProjectSuspensionGraphql = TProjectSuspension & {
+  __typename: 'ProjectSuspension';
+};
 
-export type TProjectExpiryGraphql = {
-  __typename: 'ProjectExpiry';
+export type TProjectExpiry = {
   isActive: boolean;
   daysLeft?: number;
 };
+export type TProjectExpiryGraphql = TProjectExpiry & {
+  __typename: 'ProjectExpiry';
+};
 
-export type TAppliedPermissionGraphql = {
-  __typename: 'AppliedPermission';
+export type TAppliedPermission = {
   name: string;
   value: boolean;
 };
+export type TAppliedPermissionGraphql = TAppliedPermission & {
+  __typename: 'AppliedPermission';
+};
 
-export type TAppliedActionRightGraphql = {
-  __typename: 'AppliedActionRight';
+export type TAppliedActionRight = {
   name: string;
   value: boolean;
   group: string;
 };
+export type TAppliedActionRightGraphql = TAppliedActionRight & {
+  __typename: 'AppliedActionRight';
+};
 
-export type TAppliedMenuVisibilitiesGraphql = {
-  __typename: 'AppliedMenuVisibilities';
+export type TAppliedMenuVisibilities = {
   name: string;
   value: boolean;
 };
+export type TAppliedMenuVisibilitiesGraphql = TAppliedMenuVisibilities & {
+  __typename: 'AppliedMenuVisibilities';
+};
 
-export type TAppliedStoreDataFenceGraphql = {
-  __typename: 'StoreDataFence';
+export type TAppliedStoreDataFence = {
   name: string;
   value: string;
   group: string;
   type: string;
+};
+export type TAppliedStoreDataFenceGraphql = TAppliedStoreDataFence & {
+  __typename: 'StoreDataFence';
 };
 
 export type TProject = {
@@ -50,31 +63,26 @@ export type TProject = {
   lastModifiedAt: string;
   name: string;
   key: string;
-  owner: TProjectOwner;
+  owner: TOrganization;
   countries: string[];
   currencies: string[];
   languages: string[];
-};
-
-// TODO: move to `Organization`
-export type TProjectOwner = {
-  id: string;
-  name: string;
-};
-export type TProjectOwnerGraphql = {
-  __typename: 'Organization';
-  id: string;
-  name: string;
+  initialized: boolean;
+  suspension: TProjectSuspension;
+  expiry: TProjectExpiry;
+  allAppliedPermissions: TAppliedPermission[];
+  allAppliedActionRights: TAppliedActionRight[];
+  allAppliedMenuVisibilities: TAppliedMenuVisibilities[];
+  allAppliedDataFences: TAppliedStoreDataFence[];
 };
 
 export type TProjectGraphql = TProject & {
   __typename: 'Project';
-  initialized: boolean;
   suspension: TProjectSuspensionGraphql;
   expiry: TProjectExpiryGraphql;
   allAppliedPermissions: TAppliedPermissionGraphql[];
   allAppliedActionRights: TAppliedActionRightGraphql[];
   allAppliedMenuVisibilities: TAppliedMenuVisibilitiesGraphql[];
   allAppliedDataFences: TAppliedStoreDataFenceGraphql[];
-  owner: TProjectOwnerGraphql;
+  owner: TOrganizationGraphql;
 };

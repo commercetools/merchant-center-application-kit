@@ -15,6 +15,14 @@ const generator = Generator<TUser>({
     language: 'en',
     numberFormat: 'en',
     timeZone: 'Europe/Berlin',
+    defaultProjectKey: null,
+    gravatarHash: fake((f) => f.internet.avatar()),
+    launchdarklyTrackingId: '',
+    launchdarklyTrackingGroup: '',
+    launchdarklyTrackingSubgroup: '',
+    launchdarklyTrackingTeam: '',
+    launchdarklyTrackingTenant: '',
+    projects: null,
   },
 });
 
