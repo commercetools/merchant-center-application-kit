@@ -1,13 +1,14 @@
-import type { TAppliedActionRight } from '../../types';
+import type { TActionRights } from './types';
 
 import { fake, Generator } from '@commercetools-test-data/core';
 
-const generator = Generator<TAppliedActionRight>({
-  name: 'AppliedActionRight',
+const generator = Generator<TActionRights>({
+  name: 'ActionRight',
   fields: {
-    name: 'PublishProducts',
-    group: 'products',
-    value: fake(() => true),
+    products: {
+      canEditPrices: fake(() => true),
+    },
+    // ...
   },
 });
 

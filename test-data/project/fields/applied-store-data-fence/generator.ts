@@ -1,14 +1,21 @@
-import type { TAppliedStoreDataFence } from '../../types';
+import type { TStoreDataFences } from './types';
 
 import { Generator } from '@commercetools-test-data/core';
 
-const generator = Generator<TAppliedStoreDataFence>({
-  name: 'AppliedMenuVisibilities',
+const generator = Generator<TStoreDataFences>({
+  name: 'StoreDataFence',
   fields: {
-    value: 'usa',
-    type: 'store',
-    group: 'orders',
-    name: 'canManageOrders',
+    store: {
+      orders: {
+        canManageOrders: {
+          values: ['usa', 'germany'],
+        },
+        canViewOrders: {
+          values: ['canada'],
+        },
+      },
+      // ...
+    },
   },
 });
 

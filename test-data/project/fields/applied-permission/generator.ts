@@ -1,12 +1,12 @@
-import type { TAppliedPermission } from '../../types';
+import type { TPermissions } from './types';
 
 import { fake, Generator } from '@commercetools-test-data/core';
 
-const generator = Generator<TAppliedPermission>({
-  name: 'AppliedPermission',
+const generator = Generator<TPermissions>({
+  name: 'Permission',
   fields: {
-    name: 'ViewProducts',
-    value: fake(() => true),
+    canViewProducts: fake(() => true),
+    // ...
   },
 });
 

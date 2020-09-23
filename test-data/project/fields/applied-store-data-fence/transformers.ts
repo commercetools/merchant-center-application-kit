@@ -1,17 +1,34 @@
-import type {
-  TAppliedStoreDataFence,
-  TAppliedStoreDataFenceGraphql,
-} from '../../types';
+import type { TStoreDataFences, TAppliedStoreDataFencesGraphql } from './types';
 
 import { Transformer } from '@commercetools-test-data/core';
 
+const upperFirst = (value: string): string =>
+  value.charAt(0).toUpperCase() + value.slice(1);
+
 const transformers = {
-  graphql: Transformer<TAppliedStoreDataFence, TAppliedStoreDataFenceGraphql>(
+  graphql: Transformer<TStoreDataFences, TAppliedStoreDataFencesGraphql>(
     'graphql',
     {
-      addFields: () => ({
-        __typename: 'StoreDataFence',
-      }),
+      replaceFields: ({ fields }) =>
+        Object.entries(fields).reduce(
+          (allAppliedStoreDataFences, [type, groupByResource]) => [
+            ...allAppliedStoreDataFences,
+            ...Object.entries(groupByResource).reduce(
+              (allGroupsByResource, [group, dataFence]) => [
+                ...allGroupsByResource,
+                ...Object.entries(dataFence).map(([canKey, value]) => ({
+                  __typename: 'StoreDataFence',
+                  name: upperFirst(canKey.replace('can', '')),
+                  value,
+                  group,
+                  type,
+                })),
+              ],
+              []
+            ),
+          ],
+          []
+        ),
     }
   ),
 };

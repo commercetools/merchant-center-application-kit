@@ -1,12 +1,12 @@
-import type { TAppliedStoreDataFence } from '../../types';
+import type { TStoreDataFences } from './types';
 import type { TBuilder } from '@commercetools-test-data/core';
 
 import { Builder } from '@commercetools-test-data/core';
 import generator from './generator';
 import transformers from './transformers';
 
-const AppliedStoreDataFence = (): TBuilder<TAppliedStoreDataFence> =>
-  Builder<TAppliedStoreDataFence>({
+const AppliedStoreDataFence = (): TBuilder<TStoreDataFences> =>
+  Builder<TStoreDataFences>({
     generator,
     transformers,
   });

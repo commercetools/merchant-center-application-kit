@@ -4,15 +4,7 @@ import { Transformer } from '@commercetools-test-data/core';
 
 const transformers = {
   graphql: Transformer<TProject, TProjectGraphql>('graphql', {
-    buildFields: [
-      'suspension',
-      'expiry',
-      'allAppliedPermissions',
-      'allAppliedActionRights',
-      'allAppliedMenuVisibilities',
-      'allAppliedDataFences',
-      'owner',
-    ],
+    buildFields: ['suspension', 'expiry', 'owner'],
     addFields: () => ({
       __typename: 'Project',
     }),
