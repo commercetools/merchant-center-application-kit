@@ -1,5 +1,5 @@
 ---
-title: Compiling Custom Application
+title: Compile Custom Application
 ---
 
 One of the necessary steps to prepare your Custom Application for a deployment is to create a [production build](/deployment/production-build). If you decide to host your Custom Application statically and do not intend to use the [provided HTTP server](/deployment/http-server), you need to compile your Custom Application.
@@ -31,13 +31,13 @@ Run the following to compile your Custom Application:
 yarn compile-html --use-local-assets
 ```
 
+The command above does what we need: it compiles a `index.html` using the references to the JavaScript bundle (created by running `mc-scripts build`). It also replaces the needed runtime configuration. At this point the `index.html` file is ready for production usage.
+
 <Info>
 
 The `--use-local-assets` option is only needed in this example. Generally we recommend that you do not use local assets but serve static assets from a CDN or Cloud Storage, according to your hosting provider. See [Serving static assets](/deployment/serving-static-assets) for more information.
 
 </Info>
-
-The command above does what we need: it compiles a `index.html` using the references to the JavaScript bundle (created by running `mc-scripts build`). It also replaces the needed runtime configuration. At this point the `index.html` file is ready for production usage.
 
 # Deployment
 

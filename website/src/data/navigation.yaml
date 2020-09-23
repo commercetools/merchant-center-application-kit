@@ -56,7 +56,7 @@
       path: '/deployment/runtime-configuration'
     - title: HTTP Server
       path: '/deployment/http-server'
-    - title: Compiling Custom Application
+    - title: Compile Custom Application
       path: '/deployment/compile-custom-application'
     - title: Serving Static Assets
       path: '/deployment/serving-static-assets'
