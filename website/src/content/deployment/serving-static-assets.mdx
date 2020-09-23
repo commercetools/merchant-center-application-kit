@@ -17,7 +17,7 @@ If the static assets are uploaded to a remote CDN or Cloud Storage instead, uplo
 
 # Serving assets on a remote CDN or Cloud Storage
 
-First, define the location URL of the storage directory in the `env.production.cdnUrl` in the [application config](/development/application-config).
+First, upload the assets from `dist/assets` directory to a CDN or Cloud Storage. Then define the location URL of the storage directory in the `env.production.cdnUrl` in the [application config](/development/application-config).
 
 For example, Merchant Center static assets are uploaded to a Google Cloud Storage bucket named `mc-production-eu` for the `eu` region's production assets.
 
@@ -31,13 +31,6 @@ For example, Merchant Center static assets are uploaded to a Google Cloud Storag
 }
 ```
 
-To serve static assets on a remote CDN or Cloud Storage, do the following:
-
-- Create a [production build](/deployment/production-build) of your Custom Application.
-- [Compile](/deployment/compile-custom-application) your Custom Application.
-- Upload the assets from `dist/assets` directory to a CDN or Cloud Storage.
-
-
 # Serving assets using the HTTP server
 
 <Warning>
@@ -46,7 +39,7 @@ We do not recommend serving assets using the HTTP server for production use.
 
 </Warning>
 
-To serve static assets using the HTTP server, do the following:
+To serve static assets in using the HTTP server, do the following:
 
 - Include the `/dist` directory in the project or in the Docker container.
 - Explicitly enable this option when running the `mc-http-server` by passing the `--use-local-assets` flag.
