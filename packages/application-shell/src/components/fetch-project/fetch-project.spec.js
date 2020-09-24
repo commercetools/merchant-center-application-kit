@@ -52,7 +52,7 @@ describe('rendering', () => {
   it('should render error state', async () => {
     mockServer.use(
       graphql.query('FetchProject', (req, res, ctx) => {
-        return res.once(ctx.status(401));
+        return res.data(ctx.status(401));
       })
     );
     renderProject();

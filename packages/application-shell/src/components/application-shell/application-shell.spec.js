@@ -2,13 +2,7 @@ import React from 'react';
 import { encode } from 'qss';
 import { graphql, rest } from 'msw';
 import { setupServer } from 'msw/node';
-import {
-  render,
-  waitFor,
-  fireEvent,
-  within,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
+import { render, waitFor, fireEvent, within } from '@testing-library/react';
 import { AuthenticationError, ApolloError } from 'apollo-server-errors';
 import { useDispatch } from 'react-redux';
 import { createMemoryHistory } from 'history';
