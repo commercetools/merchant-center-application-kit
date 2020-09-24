@@ -1,4 +1,4 @@
-import type { TProjectExpiry } from '../../types';
+import type { TProjectExpiry } from './types';
 
 import { fake, Generator } from '@commercetools-test-data/core';
 

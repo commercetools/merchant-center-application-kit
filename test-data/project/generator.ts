@@ -12,17 +12,18 @@ const generator = Generator<TProject>({
     lastModifiedAt: fake((f) => f.date.recent(1)),
     name: fake((f) => f.company.companyName()),
     key: '',
-    owner: null,
     countries: ['de'],
     currencies: ['EUR'],
     languages: ['de'],
     initialized: fake(() => true),
+    // The following fields are built in the builder
+    owner: null,
     suspension: null,
     expiry: null,
-    allAppliedPermissions: [],
-    allAppliedActionRights: [],
-    allAppliedDataFences: [],
-    allAppliedMenuVisibilities: [],
+    permissions: null,
+    actionRights: null,
+    menuVisibilities: null,
+    dataFences: null,
   },
   postBuild: (project) => {
     project.key = slugify(project.name);

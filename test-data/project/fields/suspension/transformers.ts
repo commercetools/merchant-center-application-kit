@@ -1,7 +1,4 @@
-import type {
-  TProjectSuspension,
-  TProjectSuspensionGraphql,
-} from '../../types';
+import type { TProjectSuspension, TProjectSuspensionGraphql } from './types';
 
 import { Transformer } from '@commercetools-test-data/core';
 

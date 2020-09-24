@@ -1,5 +1,5 @@
-import type { TPermissions } from './types';
 import type { TBuilder } from '@commercetools-test-data/core';
+import type { TPermissions } from './types';
 
 import { Builder } from '@commercetools-test-data/core';
 import generator from './generator';

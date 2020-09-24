@@ -1,11 +1,11 @@
 import type { TBuilder } from '@commercetools-test-data/core';
-import type { TProject } from '../project';
+import type { TProject, TProjectGraphql } from '../project';
 
 export type TCreateUserBuilder = (args?: {
   defaults?: Partial<TUser>;
 }) => TBuilder<TUser>;
 
-export type TUser = {
+type TBaseUser = {
   id: string;
   version: string;
   createdAt: string;
@@ -23,6 +23,9 @@ export type TUser = {
   launchdarklyTrackingTeam: string;
   launchdarklyTrackingTenant: string;
   defaultProjectKey: string;
+};
+
+export type TUser = TBaseUser & {
   projects: {
     __typename: string;
     count: number;
@@ -32,6 +35,13 @@ export type TUser = {
   };
 };
 
-export type TUserGraphql = TUser & {
+export type TUserGraphql = TBaseUser & {
   __typename: 'User';
+  projects: {
+    __typename: string;
+    count: number;
+    offset: number;
+    total: number;
+    results: TProjectGraphql[];
+  };
 };

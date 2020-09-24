@@ -8,16 +8,18 @@ const upperFirst = (value: string): string =>
 const transformers = {
   graphql: Transformer<TActionRights, TAppliedActionRightsGraphql>('graphql', {
     replaceFields: ({ fields }) =>
-      Object.entries(fields).reduce(
-        (allAppliedActionRights, [group, actionRight]) => [
-          ...allAppliedActionRights,
-          ...Object.entries(actionRight).map(([canKey, value]) => ({
+      Object.entries(fields).reduce<TAppliedActionRightsGraphql>(
+        (allAppliedActionRights, [group, actionRight]) => {
+          const transformedActionRight: TAppliedActionRightsGraphql = Object.entries(
+            actionRight
+          ).map(([canKey, value]) => ({
             __typename: 'AppliedActionRight',
             name: upperFirst(canKey.replace('can', '')),
             value,
             group,
-          })),
-        ],
+          }));
+          return [...allAppliedActionRights, ...transformedActionRight];
+        },
         []
       ),
   }),

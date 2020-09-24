@@ -1,4 +1,4 @@
-import type { TProjectExpiry, TProjectExpiryGraphql } from '../../types';
+import type { TProjectExpiry, TProjectExpiryGraphql } from './types';
 
 import { Transformer } from '@commercetools-test-data/core';
 

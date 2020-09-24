@@ -24,5 +24,7 @@ export type TStoreDataFences = Partial<
 export type TAppliedStoreDataFencesGraphql = {
   __typename: 'StoreDataFence';
   name: string;
-  value: boolean;
+  value: string;
+  group: string;
+  type: string;
 }[];

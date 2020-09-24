@@ -7,7 +7,7 @@ import * as ExpiryMock from './fields/expiry';
 import generator from './generator';
 import transformers from './transformers';
 
-const User: TCreateProjectBuilder = ({ defaults } = {}) =>
+const Project: TCreateProjectBuilder = ({ defaults } = {}) =>
   Builder<TProject>({
     generator,
     transformers,
@@ -17,4 +17,4 @@ const User: TCreateProjectBuilder = ({ defaults } = {}) =>
     .suspension(SuspensionMock.random())
     .expiry(ExpiryMock.random());
 
-export default User;
+export default Project;

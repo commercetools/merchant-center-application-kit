@@ -1,4 +1,4 @@
-import type { TProjectSuspension } from '../../types';
+import type { TProjectSuspension } from './types';
 
 import { fake, Generator } from '@commercetools-test-data/core';
 
