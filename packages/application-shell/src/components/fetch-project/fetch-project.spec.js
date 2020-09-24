@@ -12,18 +12,7 @@ import FetchProject from './fetch-project';
 
 jest.mock('@commercetools-frontend/sentry');
 
-const mockServer = setupServer(
-  graphql.query('FetchProject', (req, res, ctx) =>
-    res(
-      ctx.data({
-        project: ProjectMock.build({
-          key: 'test-1',
-          name: 'Test 1',
-        }),
-      })
-    )
-  )
-);
+const mockServer = setupServer();
 afterEach(() => {
   mockServer.resetHandlers();
 });
@@ -44,20 +33,71 @@ const renderProject = (options) =>
   );
 
 describe('rendering', () => {
-  it('should fetch project and pass data to children function', async () => {
-    renderProject();
-    await waitForElementToBeRemoved(() => screen.getByText('loading...'));
-    expect(screen.getByText(/Test 1/i)).toBeInTheDocument();
+  describe('when fetching project succeeds', () => {
+    it('should fetch project and pass data to children function', async () => {
+      mockServer.use(
+        graphql.query('FetchProject', (req, res, ctx) =>
+          res.once(
+            ctx.data({
+              project: ProjectMock.build({
+                key: 'test-1',
+                name: 'Test 1',
+              }),
+            })
+          )
+        )
+      );
+      renderProject();
+
+      await waitForElementToBeRemoved(() => screen.getByText('loading...'));
+
+      expect(screen.getByText(/Test 1/i)).toBeInTheDocument();
+    });
   });
-  it('should render error state', async () => {
-    mockServer.use(
-      graphql.query('FetchProject', (req, res, ctx) => {
-        return res.data(ctx.status(401));
-      })
-    );
-    renderProject();
-    await waitForElementToBeRemoved(() => screen.getByText('loading...'));
-    expect(screen.getByText(/Error: Network error(.*)/i)).toBeInTheDocument();
-    expect(reportErrorToSentry).toHaveBeenCalled();
+
+  describe('when fetching project fails with a 401', () => {
+    describe('when failing once', () => {
+      it('should fetch project and pass data to children function', async () => {
+        mockServer.use(
+          graphql.query('FetchProject', (req, res, ctx) => {
+            return res.once(ctx.status(401));
+          }),
+          graphql.query('FetchProject', (req, res, ctx) =>
+            res.once(
+              ctx.data({
+                project: ProjectMock.build({
+                  key: 'test-1',
+                  name: 'Test 1',
+                }),
+              })
+            )
+          )
+        );
+        renderProject();
+
+        await waitForElementToBeRemoved(() => screen.getByText('loading...'));
+
+        expect(screen.getByText(/Test 1/i)).toBeInTheDocument();
+      });
+    });
+
+    describe('when failing multiple times', () => {
+      it('should render error state', async () => {
+        mockServer.use(
+          graphql.query('FetchProject', (req, res, ctx) => {
+            return res.data(ctx.status(401));
+          })
+        );
+
+        renderProject();
+
+        await waitForElementToBeRemoved(() => screen.getByText('loading...'));
+
+        expect(
+          screen.getByText(/Error: Network error(.*)/i)
+        ).toBeInTheDocument();
+        expect(reportErrorToSentry).toHaveBeenCalled();
+      });
+    });
   });
 });
