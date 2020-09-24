@@ -12,7 +12,17 @@ import FetchUser from './fetch-user';
 
 jest.mock('@commercetools-frontend/sentry');
 
-const mockServer = setupServer();
+const mockServer = setupServer(
+  graphql.query('FetchLoggedInUser', (req, res, ctx) =>
+    res.once(
+      ctx.data({
+        user: UserMock.build({
+          firstName: 'John',
+        }),
+      })
+    )
+  )
+);
 afterEach(() => {
   mockServer.resetHandlers();
 });
@@ -35,18 +45,6 @@ const renderUser = (options) =>
 describe('rendering', () => {
   describe('when fetching user succeeds', () => {
     it('should fetch user and pass data to children function', async () => {
-      mockServer.use(
-        graphql.query('FetchLoggedInUser', (req, res, ctx) =>
-          res.once(
-            ctx.data({
-              user: UserMock.build({
-                firstName: 'John',
-              }),
-            })
-          )
-        )
-      );
-
       renderUser();
 
       await waitForElementToBeRemoved(() => screen.getByText('loading...'));
@@ -55,47 +53,39 @@ describe('rendering', () => {
     });
   });
 
-  describe('when fetching user fails with a 401', () => {
-    describe('when failing once', () => {
-      it('should fetch user and pass data to children function', async () => {
-        mockServer.use(
-          graphql.query('FetchLoggedInUser', (req, res, ctx) => {
-            return res.once(ctx.status(401));
-          }),
-          graphql.query('FetchLoggedInUser', (req, res, ctx) =>
-            res.once(
-              ctx.data({
-                user: UserMock.build({
-                  firstName: 'John',
-                }),
-              })
-            )
-          )
-        );
+  describe('when fetching user fails with a graphql error', () => {
+    it('should render error state', async () => {
+      mockServer.use(
+        graphql.query('FetchLoggedInUser', (req, res, ctx) =>
+          res(ctx.errors([{ message: 'Something went wrong' }]))
+        )
+      );
 
-        renderUser();
+      renderUser();
 
-        await waitForElementToBeRemoved(() => screen.getByText('loading...'));
+      await waitForElementToBeRemoved(() => screen.getByText('loading...'));
 
-        expect(screen.getByText(/John/i)).toBeInTheDocument();
-      });
+      expect(
+        screen.getByText(/Error: Something went wrong(.*)/i)
+      ).toBeInTheDocument();
+      expect(reportErrorToSentry).toHaveBeenCalled();
     });
-    describe('when failing multiple times', () => {
-      it('should render error state', async () => {
-        mockServer.use(
-          graphql.query('FetchLoggedInUser', (req, res, ctx) => {
-            return res.data(ctx.status(401));
-          })
-        );
-        renderUser();
+  });
 
-        await waitForElementToBeRemoved(() => screen.getByText('loading...'));
+  describe('when fetching user fails with a network error', () => {
+    it('should render error state', async () => {
+      mockServer.use(
+        graphql.query('FetchLoggedInUser', (req, res, ctx) =>
+          res(ctx.status(401), ctx.json({ message: 'Invalid token' }))
+        )
+      );
 
-        expect(
-          screen.getByText(/Error: Network error(.*)/i)
-        ).toBeInTheDocument();
-        expect(reportErrorToSentry).toHaveBeenCalled();
-      });
+      renderUser();
+
+      await waitForElementToBeRemoved(() => screen.getByText('loading...'));
+
+      expect(screen.getByText(/Error: Network error(.*)/i)).toBeInTheDocument();
+      expect(reportErrorToSentry).toHaveBeenCalled();
     });
   });
 });
