@@ -1,13 +1,11 @@
+import type { TTokenRetryGraphQlTarget } from '@commercetools-frontend/constants';
+
 import { RetryLink } from 'apollo-link-retry';
 import {
   STATUS_CODES,
   GRAPHQL_TARGETS,
   MC_API_SUPPORTED_HEADERS,
 } from '@commercetools-frontend/constants';
-
-type TokenRetryGraphQlTarget =
-  | typeof GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM
-  | typeof GRAPHQL_TARGETS.ADMINISTRATION_SERVICE;
 
 type ApolloContext = {
   headers: { [key: string]: string };
@@ -24,7 +22,7 @@ export const getDoesGraphQLTargetSupportTokenRetry = (
   context: ApolloContext
 ): boolean => {
   const target = (context.headers['X-Graphql-Target'] ||
-    context.headers['x-graphql-target']) as TokenRetryGraphQlTarget;
+    context.headers['x-graphql-target']) as TTokenRetryGraphQlTarget;
 
   return [
     GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,

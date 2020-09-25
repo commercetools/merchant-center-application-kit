@@ -133,6 +133,12 @@ export const MC_API_PROXY_TARGETS = {
 } as const;
 export type TMcApiProxyTargets = typeof MC_API_PROXY_TARGETS[keyof typeof MC_API_PROXY_TARGETS];
 
+export type TTokenRetryGraphQlTarget =
+  | typeof GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM
+  | typeof GRAPHQL_TARGETS.SETTINGS_SERVICE
+  | typeof GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND
+  | typeof GRAPHQL_TARGETS.ADMINISTRATION_SERVICE;
+
 export const MC_API_SUPPORTED_HEADERS = {
   TOKEN_RETRY: 'X-Force-Token',
 } as const;
