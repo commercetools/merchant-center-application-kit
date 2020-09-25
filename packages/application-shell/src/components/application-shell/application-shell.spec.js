@@ -529,7 +529,7 @@ describe('when user is not authenticated', () => {
   beforeEach(() => {
     window.localStorage.getItem.mockReturnValue(null);
     mockServer.use(
-      graphql.query('AmILoggedIn', (req, res, ctx) => res(ctx.status(401)))
+      graphql.query('AmILoggedIn', (req, res, ctx) => res.once(ctx.status(401)))
     );
   });
   it('should redirect to /login with reason "unauthorized"', async () => {
