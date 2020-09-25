@@ -2,6 +2,7 @@ import { RetryLink } from 'apollo-link-retry';
 import {
   STATUS_CODES,
   GRAPHQL_TARGETS,
+  MC_API_SUPPORTED_HEADERS,
 } from '@commercetools-frontend/constants';
 
 type TokenRetryGraphQlTarget =
@@ -18,8 +19,6 @@ type ApolloContext = {
 // To do so, we resend the request with the header "X-Force-Token: true"
 // so that the MC BE can issue a new token.
 // NOTE: the retry is not meant to work for the MC access token.
-
-const TOKEN_RETRY_HEADER_NAME = 'X-Force-Token';
 
 export const getDoesGraphQLTargetSupportTokenRetry = (
   context: ApolloContext
@@ -44,7 +43,7 @@ const forwardTokenRetryHeader = (
   headers: ApolloContext['headers']
 ): ApolloContext['headers'] => ({
   ...headers,
-  [TOKEN_RETRY_HEADER_NAME]: 'true',
+  [MC_API_SUPPORTED_HEADERS.TOKEN_RETRY]: 'true',
 });
 
 const tokenRetryLink = new RetryLink({

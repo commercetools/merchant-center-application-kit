@@ -133,6 +133,11 @@ export const MC_API_PROXY_TARGETS = {
 } as const;
 export type TMcApiProxyTargets = typeof MC_API_PROXY_TARGETS[keyof typeof MC_API_PROXY_TARGETS];
 
+export const MC_API_SUPPORTED_HEADERS = {
+  TOKEN_RETRY: 'X-Force-Token',
+} as const;
+export type TMcApiSupportedHeaders = typeof MC_API_SUPPORTED_HEADERS[keyof typeof MC_API_SUPPORTED_HEADERS];
+
 // Global application environment on window object
 export interface ApplicationWindow extends Window {
   dataLayer: unknown[];
