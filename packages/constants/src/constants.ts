@@ -141,6 +141,7 @@ export type TTokenRetryGraphQlTarget =
 
 export const MC_API_SUPPORTED_HEADERS = {
   TOKEN_RETRY: 'X-Force-Token',
+  GRAPHQL_TARGET: 'X-Graphql-Target',
 } as const;
 export type TMcApiSupportedHeaders = typeof MC_API_SUPPORTED_HEADERS[keyof typeof MC_API_SUPPORTED_HEADERS];
 

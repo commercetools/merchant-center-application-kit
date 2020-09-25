@@ -17,9 +17,9 @@ import {
 export const getDoesGraphQLTargetSupportTokenRetry = (
   context: TApolloContext
 ): boolean => {
-  const target = (context.headers?.[MC_API_SUPPORTED_HEADERS.TOKEN_RETRY] ||
+  const target = (context.headers?.[MC_API_SUPPORTED_HEADERS.GRAPHQL_TARGET] ||
     context.headers?.[
-      MC_API_SUPPORTED_HEADERS.TOKEN_RETRY.toLowerCase()
+      MC_API_SUPPORTED_HEADERS.GRAPHQL_TARGET.toLowerCase()
     ]) as TTokenRetryGraphQlTarget;
 
   return [
