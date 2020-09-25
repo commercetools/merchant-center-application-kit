@@ -27,7 +27,7 @@ const errorLink = onError(
       return;
     }
 
-    // In case of graphql errors, we wfant to retry unauthenticated requests by
+    // In case of graphql errors, we want to retry unauthenticated requests by
     // forcing our API to fetch a new token, using the `X-Force-Token` header.
     // https://www.apollographql.com/docs/link/links/error/#retrying-failed-requests
     // We need to do this as the `token-retry-link` only works for network errors.
