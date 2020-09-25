@@ -1,4 +1,3 @@
-import type { TTokenRetryGraphQlTarget } from '@commercetools-frontend/constants';
 import type { TApolloContext } from '../utils/apollo-context';
 
 import { RetryLink } from 'apollo-link-retry';
@@ -7,6 +6,12 @@ import {
   GRAPHQL_TARGETS,
 } from '@commercetools-frontend/constants';
 import { SUPPORTED_HEADERS } from '../constants';
+
+type TTokenRetryGraphQlTarget =
+  | typeof GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM
+  | typeof GRAPHQL_TARGETS.SETTINGS_SERVICE
+  | typeof GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND
+  | typeof GRAPHQL_TARGETS.ADMINISTRATION_SERVICE;
 
 // This link retries requests to the CTP API that have been rejected
 // because of an invalid/expired oauth token.
