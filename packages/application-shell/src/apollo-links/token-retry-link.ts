@@ -1,4 +1,5 @@
 import type { TTokenRetryGraphQlTarget } from '@commercetools-frontend/constants';
+import type { TApolloContext } from '../utils/apollo-context';
 
 import { RetryLink } from 'apollo-link-retry';
 import {
@@ -7,11 +8,6 @@ import {
   MC_API_SUPPORTED_HEADERS,
 } from '@commercetools-frontend/constants';
 
-type ApolloContext = {
-  headers: { [key: string]: string };
-  skipTokenRetry?: boolean;
-};
-
 // This link retries requests to the CTP API that have been rejected
 // because of an invalid/expired oauth token.
 // To do so, we resend the request with the header "X-Force-Token: true"
@@ -19,10 +15,10 @@ type ApolloContext = {
 // NOTE: the retry is not meant to work for the MC access token.
 
 export const getDoesGraphQLTargetSupportTokenRetry = (
-  context: ApolloContext
+  context: TApolloContext
 ): boolean => {
-  const target = (context.headers[MC_API_SUPPORTED_HEADERS.TOKEN_RETRY] ||
-    context.headers[
+  const target = (context.headers?.[MC_API_SUPPORTED_HEADERS.TOKEN_RETRY] ||
+    context.headers?.[
       MC_API_SUPPORTED_HEADERS.TOKEN_RETRY.toLowerCase()
     ]) as TTokenRetryGraphQlTarget;
 
@@ -33,22 +29,22 @@ export const getDoesGraphQLTargetSupportTokenRetry = (
     GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
   ].includes(target);
 };
-export const getSkipTokenRetry = (context: ApolloContext): boolean => {
+export const getSkipTokenRetry = (context: TApolloContext): boolean => {
   const skipTokenRetry = Boolean(context.skipTokenRetry);
 
   return skipTokenRetry;
 };
 
 const forwardTokenRetryHeader = (
-  headers: ApolloContext['headers']
-): ApolloContext['headers'] => ({
+  headers: TApolloContext['headers']
+): TApolloContext['headers'] => ({
   ...headers,
   [MC_API_SUPPORTED_HEADERS.TOKEN_RETRY]: 'true',
 });
 
 const tokenRetryLink = new RetryLink({
   attempts: (count, operation, error) => {
-    const context = operation.getContext() as ApolloContext;
+    const context = operation.getContext() as TApolloContext;
 
     if (
       error?.statusCode === STATUS_CODES.UNAUTHORIZED &&
@@ -56,7 +52,7 @@ const tokenRetryLink = new RetryLink({
       getDoesGraphQLTargetSupportTokenRetry(context) &&
       !getSkipTokenRetry(context)
     ) {
-      operation.setContext(({ headers }: ApolloContext) => ({
+      operation.setContext(({ headers }: TApolloContext) => ({
         headers: forwardTokenRetryHeader(headers),
       }));
 

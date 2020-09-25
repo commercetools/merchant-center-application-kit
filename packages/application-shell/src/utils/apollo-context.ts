@@ -4,6 +4,8 @@ export type TApolloContext = {
   uri?: string;
   forwardToConfig?: { version: string; uri: string };
   skipGraphQlTargetCheck?: boolean;
+  headers?: { [key: string]: string };
+  skipTokenRetry?: boolean;
 };
 
 type TApolloContextProxyForwardTo = {
