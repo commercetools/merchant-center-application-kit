@@ -1,16 +1,17 @@
+import type { TApolloContext } from '../utils/apollo-context';
+
 import { RetryLink } from 'apollo-link-retry';
 import {
   STATUS_CODES,
   GRAPHQL_TARGETS,
 } from '@commercetools-frontend/constants';
+import { SUPPORTED_HEADERS } from '../constants';
 
-type TokenRetryGraphQlTarget =
+type TTokenRetryGraphQlTarget =
   | typeof GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM
+  | typeof GRAPHQL_TARGETS.SETTINGS_SERVICE
+  | typeof GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND
   | typeof GRAPHQL_TARGETS.ADMINISTRATION_SERVICE;
-
-type ApolloContext = {
-  headers: { [key: string]: string };
-};
 
 // This link retries requests to the CTP API that have been rejected
 // because of an invalid/expired oauth token.
@@ -19,33 +20,49 @@ type ApolloContext = {
 // NOTE: the retry is not meant to work for the MC access token.
 
 export const getDoesGraphQLTargetSupportTokenRetry = (
-  requestHeaders: ApolloContext['headers']
-) => {
-  const target = (requestHeaders['X-Graphql-Target'] ||
-    requestHeaders['x-graphql-target']) as TokenRetryGraphQlTarget;
-  return [
-    GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
-    GRAPHQL_TARGETS.ADMINISTRATION_SERVICE,
-    GRAPHQL_TARGETS.SETTINGS_SERVICE,
-    GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
-  ].includes(target);
+  context: TApolloContext
+): boolean => {
+  const graphQLTarget = (context.headers?.[
+    SUPPORTED_HEADERS.X_GRAPHQL_TARGET
+  ] || context.headers?.[SUPPORTED_HEADERS.X_GRAPHQL_TARGET.toLowerCase()]) as
+    | TTokenRetryGraphQlTarget
+    | undefined;
+
+  return Boolean(
+    graphQLTarget &&
+      [
+        GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+        GRAPHQL_TARGETS.ADMINISTRATION_SERVICE,
+        GRAPHQL_TARGETS.SETTINGS_SERVICE,
+        GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+      ].includes(graphQLTarget)
+  );
 };
+export const getSkipTokenRetry = (context: TApolloContext): boolean => {
+  const skipTokenRetry = Boolean(context.skipTokenRetry);
+
+  return skipTokenRetry;
+};
+
+const forwardTokenRetryHeader = (
+  headers: TApolloContext['headers']
+): TApolloContext['headers'] => ({
+  ...headers,
+  [SUPPORTED_HEADERS.X_TOKEN_RETRY]: 'true',
+});
 
 const tokenRetryLink = new RetryLink({
   attempts: (count, operation, error) => {
-    const { headers: requestHeaders } = operation.getContext() as ApolloContext;
+    const context = operation.getContext() as TApolloContext;
+
     if (
-      error &&
-      error.statusCode &&
-      error.statusCode === STATUS_CODES.UNAUTHORIZED &&
-      getDoesGraphQLTargetSupportTokenRetry(requestHeaders) &&
-      count === 1
+      error?.statusCode === STATUS_CODES.UNAUTHORIZED &&
+      count === 1 &&
+      getDoesGraphQLTargetSupportTokenRetry(context) &&
+      !getSkipTokenRetry(context)
     ) {
-      operation.setContext(({ headers }: ApolloContext) => ({
-        headers: {
-          ...headers,
-          'X-Force-Token': true,
-        },
+      operation.setContext(({ headers }: TApolloContext) => ({
+        headers: forwardTokenRetryHeader(headers),
       }));
 
       return true;

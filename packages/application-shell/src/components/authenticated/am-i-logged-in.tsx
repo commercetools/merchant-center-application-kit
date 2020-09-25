@@ -24,7 +24,12 @@ const AmILoggedIn = (props: Props) => {
     TAmILoggedInQuery,
     TAmILoggedInQueryVariables
   >(AmILoggedInQuery, {
-    variables: { target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND },
+    variables: {
+      target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+    },
+    context: {
+      skipTokenRetry: true,
+    },
     // NOTE: With `no-cache` the `useQuery` will not trigger a
     // re-render of the `AmILoggedIn` component. Relying on a default
     // fetch policy results in rendering the component without refetching the data

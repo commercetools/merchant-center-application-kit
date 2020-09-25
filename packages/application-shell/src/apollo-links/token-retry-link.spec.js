@@ -81,7 +81,7 @@ describe('tokenRetryLink', () => {
       it('should set `x-force-token`-header on retry', () => {
         expect(context.headers).toEqual(
           expect.objectContaining({
-            'X-Force-Token': true,
+            'X-Force-Token': 'true',
           })
         );
       });
@@ -94,55 +94,101 @@ describe('tokenRetryLink', () => {
     });
 
     describe('with unsuccessful retry', () => {
-      beforeEach(async () => {
-        const headerLink = new ApolloLink((operation, forward) => {
-          operation.setContext({
-            headers: {
-              'X-Graphql-Target': GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
-            },
+      describe('when token retry is not skipped', () => {
+        beforeEach(async () => {
+          const headerLink = new ApolloLink((operation, forward) => {
+            operation.setContext({
+              headers: {
+                'X-Graphql-Target': GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+              },
+            });
+            return forward(operation);
           });
-          return forward(operation);
+          debugLink = new ApolloLink((operation, forward) => {
+            context = operation.getContext();
+
+            return forward(operation);
+          });
+
+          terminatingLinkStub = jest.fn(
+            () => new Observable((o) => o.error(unauthenticatedError))
+          );
+
+          link = ApolloLink.from([
+            headerLink,
+            tokenRetryLink,
+            debugLink,
+            terminatingLinkStub,
+          ]);
+
+          resolvedResponse = await waitFor(execute(link, { query }));
         });
-        debugLink = new ApolloLink((operation, forward) => {
-          context = operation.getContext();
 
-          return forward(operation);
+        afterEach(() => {
+          context = undefined;
         });
 
-        terminatingLinkStub = jest.fn(
-          () => new Observable((o) => o.error(unauthenticatedError))
-        );
+        it('should retry the request', () => {
+          expect(terminatingLinkStub).toHaveBeenCalledTimes(2);
+        });
 
-        link = ApolloLink.from([
-          headerLink,
-          tokenRetryLink,
-          debugLink,
-          terminatingLinkStub,
-        ]);
+        it('should set `x-force-token`-header on retry', () => {
+          expect(context.headers).toEqual(
+            expect.objectContaining({
+              'X-Force-Token': 'true',
+            })
+          );
+        });
 
-        resolvedResponse = await waitFor(execute(link, { query }));
+        it('should propagate `unauthenticatedError`', () => {
+          const [{ error }] = resolvedResponse;
+
+          expect(error).toEqual(unauthenticatedError);
+        });
       });
 
-      afterEach(() => {
-        context = undefined;
-      });
+      describe('when token retry is skipped', () => {
+        beforeEach(async () => {
+          const headerLink = new ApolloLink((operation, forward) => {
+            operation.setContext({
+              skipTokenRetry: true,
+              headers: {
+                'X-Graphql-Target': GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+              },
+            });
+            return forward(operation);
+          });
+          debugLink = new ApolloLink((operation, forward) => {
+            context = operation.getContext();
 
-      it('should retry the request', () => {
-        expect(terminatingLinkStub).toHaveBeenCalledTimes(2);
-      });
+            return forward(operation);
+          });
 
-      it('should set `x-force-token`-header on retry', () => {
-        expect(context.headers).toEqual(
-          expect.objectContaining({
-            'X-Force-Token': true,
-          })
-        );
-      });
+          terminatingLinkStub = jest.fn(
+            () => new Observable((o) => o.error(unauthenticatedError))
+          );
 
-      it('should propagate `unauthenticatedError`', () => {
-        const [{ error }] = resolvedResponse;
+          link = ApolloLink.from([
+            headerLink,
+            tokenRetryLink,
+            debugLink,
+            terminatingLinkStub,
+          ]);
 
-        expect(error).toEqual(unauthenticatedError);
+          resolvedResponse = await waitFor(execute(link, { query }));
+        });
+
+        afterEach(() => {
+          context = undefined;
+        });
+
+        it('should not set `x-force-token`-header on retry', () => {
+          expect(context.headers).toEqual(
+            expect.not.objectContaining({
+              'X-Force-Token': true,
+            })
+          );
+        });
       });
     });
   });
@@ -186,7 +232,7 @@ describe('supported GraphQL targets', () => {
   it('should support the `ctp` GraphQL target', () => {
     expect(
       getDoesGraphQLTargetSupportTokenRetry({
-        'X-Graphql-Target': GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+        headers: { 'X-Graphql-Target': GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM },
       })
     ).toBe(true);
   });
@@ -194,7 +240,7 @@ describe('supported GraphQL targets', () => {
   it('should support the `administration` GraphQL target', () => {
     expect(
       getDoesGraphQLTargetSupportTokenRetry({
-        'X-Graphql-Target': GRAPHQL_TARGETS.ADMINISTRATION_SERVICE,
+        headers: { 'X-Graphql-Target': GRAPHQL_TARGETS.ADMINISTRATION_SERVICE },
       })
     ).toBe(true);
   });
@@ -202,7 +248,7 @@ describe('supported GraphQL targets', () => {
   it('should not support the `dashboard service` GraphQL target', () => {
     expect(
       getDoesGraphQLTargetSupportTokenRetry({
-        'X-Graphql-Target': GRAPHQL_TARGETS.DASHBOARD_SERVICE,
+        headers: { 'X-Graphql-Target': GRAPHQL_TARGETS.DASHBOARD_SERVICE },
       })
     ).toBe(false);
   });
@@ -210,7 +256,7 @@ describe('supported GraphQL targets', () => {
   it('should not support the `settings service` GraphQL target', () => {
     expect(
       getDoesGraphQLTargetSupportTokenRetry({
-        'X-Graphql-Target': GRAPHQL_TARGETS.SETTINGS_SERVICE,
+        headers: { 'X-Graphql-Target': GRAPHQL_TARGETS.SETTINGS_SERVICE },
       })
     ).toBe(true);
   });
@@ -218,7 +264,9 @@ describe('supported GraphQL targets', () => {
   it('should support the `merchant center backend service` GraphQL target', () => {
     expect(
       getDoesGraphQLTargetSupportTokenRetry({
-        'X-Graphql-Target': GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+        headers: {
+          'X-Graphql-Target': GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+        },
       })
     ).toBe(true);
   });
