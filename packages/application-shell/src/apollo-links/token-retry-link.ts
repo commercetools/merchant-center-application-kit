@@ -1,5 +1,3 @@
-import type { Operation } from 'apollo-link';
-
 import { RetryLink } from 'apollo-link-retry';
 import {
   STATUS_CODES,
@@ -12,6 +10,7 @@ type TokenRetryGraphQlTarget =
 
 type ApolloContext = {
   headers: { [key: string]: string };
+  skipTokenRetry?: boolean;
 };
 
 // This link retries requests to the CTP API that have been rejected
@@ -23,10 +22,10 @@ type ApolloContext = {
 const TOKEN_RETRY_HEADER_NAME = 'X-Force-Token';
 
 export const getDoesGraphQLTargetSupportTokenRetry = (
-  requestHeaders: ApolloContext['headers']
+  context: ApolloContext
 ): boolean => {
-  const target = (requestHeaders['X-Graphql-Target'] ||
-    requestHeaders['x-graphql-target']) as TokenRetryGraphQlTarget;
+  const target = (context.headers['X-Graphql-Target'] ||
+    context.headers['x-graphql-target']) as TokenRetryGraphQlTarget;
 
   return [
     GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
@@ -35,10 +34,8 @@ export const getDoesGraphQLTargetSupportTokenRetry = (
     GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
   ].includes(target);
 };
-export const getSkipTokenRetry = (
-  variables: Operation['variables']
-): boolean => {
-  const skipTokenRetry = Boolean(variables.skipTokenRetry);
+export const getSkipTokenRetry = (context: ApolloContext): boolean => {
+  const skipTokenRetry = Boolean(context.skipTokenRetry);
 
   return skipTokenRetry;
 };
@@ -52,13 +49,13 @@ const forwardTokenRetryHeader = (
 
 const tokenRetryLink = new RetryLink({
   attempts: (count, operation, error) => {
-    const { headers: requestHeaders } = operation.getContext() as ApolloContext;
+    const context = operation.getContext() as ApolloContext;
 
     if (
       error?.statusCode === STATUS_CODES.UNAUTHORIZED &&
       count === 1 &&
-      getDoesGraphQLTargetSupportTokenRetry(requestHeaders) &&
-      !getSkipTokenRetry(operation.variables)
+      getDoesGraphQLTargetSupportTokenRetry(context) &&
+      !getSkipTokenRetry(context)
     ) {
       operation.setContext(({ headers }: ApolloContext) => ({
         headers: forwardTokenRetryHeader(headers),

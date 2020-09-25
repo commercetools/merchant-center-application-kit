@@ -81,7 +81,7 @@ describe('tokenRetryLink', () => {
       it('should set `x-force-token`-header on retry', () => {
         expect(context.headers).toEqual(
           expect.objectContaining({
-            'X-Force-Token': true,
+            'X-Force-Token': 'true',
           })
         );
       });
@@ -135,7 +135,7 @@ describe('tokenRetryLink', () => {
         it('should set `x-force-token`-header on retry', () => {
           expect(context.headers).toEqual(
             expect.objectContaining({
-              'X-Force-Token': true,
+              'X-Force-Token': 'true',
             })
           );
         });
@@ -150,9 +150,8 @@ describe('tokenRetryLink', () => {
       describe('when token retry is skipped', () => {
         beforeEach(async () => {
           const headerLink = new ApolloLink((operation, forward) => {
-            operation.variables.skipTokenRetry = true;
-
             operation.setContext({
+              skipTokenRetry: true,
               headers: {
                 'X-Graphql-Target': GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
               },
@@ -233,7 +232,7 @@ describe('supported GraphQL targets', () => {
   it('should support the `ctp` GraphQL target', () => {
     expect(
       getDoesGraphQLTargetSupportTokenRetry({
-        'X-Graphql-Target': GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+        headers: { 'X-Graphql-Target': GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM },
       })
     ).toBe(true);
   });
@@ -241,7 +240,7 @@ describe('supported GraphQL targets', () => {
   it('should support the `administration` GraphQL target', () => {
     expect(
       getDoesGraphQLTargetSupportTokenRetry({
-        'X-Graphql-Target': GRAPHQL_TARGETS.ADMINISTRATION_SERVICE,
+        headers: { 'X-Graphql-Target': GRAPHQL_TARGETS.ADMINISTRATION_SERVICE },
       })
     ).toBe(true);
   });
@@ -249,7 +248,7 @@ describe('supported GraphQL targets', () => {
   it('should not support the `dashboard service` GraphQL target', () => {
     expect(
       getDoesGraphQLTargetSupportTokenRetry({
-        'X-Graphql-Target': GRAPHQL_TARGETS.DASHBOARD_SERVICE,
+        headers: { 'X-Graphql-Target': GRAPHQL_TARGETS.DASHBOARD_SERVICE },
       })
     ).toBe(false);
   });
@@ -257,7 +256,7 @@ describe('supported GraphQL targets', () => {
   it('should not support the `settings service` GraphQL target', () => {
     expect(
       getDoesGraphQLTargetSupportTokenRetry({
-        'X-Graphql-Target': GRAPHQL_TARGETS.SETTINGS_SERVICE,
+        headers: { 'X-Graphql-Target': GRAPHQL_TARGETS.SETTINGS_SERVICE },
       })
     ).toBe(true);
   });
@@ -265,7 +264,9 @@ describe('supported GraphQL targets', () => {
   it('should support the `merchant center backend service` GraphQL target', () => {
     expect(
       getDoesGraphQLTargetSupportTokenRetry({
-        'X-Graphql-Target': GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+        headers: {
+          'X-Graphql-Target': GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+        },
       })
     ).toBe(true);
   });

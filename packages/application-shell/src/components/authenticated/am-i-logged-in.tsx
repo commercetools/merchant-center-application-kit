@@ -26,6 +26,8 @@ const AmILoggedIn = (props: Props) => {
   >(AmILoggedInQuery, {
     variables: {
       target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+    },
+    context: {
       skipTokenRetry: true,
     },
     // NOTE: With `no-cache` the `useQuery` will not trigger a
