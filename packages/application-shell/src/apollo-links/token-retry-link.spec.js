@@ -214,4 +214,12 @@ describe('supported GraphQL targets', () => {
       })
     ).toBe(true);
   });
+
+  it('should support the `merchant center backend service` GraphQL target', () => {
+    expect(
+      getDoesGraphQLTargetSupportTokenRetry({
+        'X-Graphql-Target': GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+      })
+    ).toBe(true);
+  });
 });

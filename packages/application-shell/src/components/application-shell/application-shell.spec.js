@@ -2,13 +2,7 @@ import React from 'react';
 import { encode } from 'qss';
 import { graphql, rest } from 'msw';
 import { setupServer } from 'msw/node';
-import {
-  render,
-  waitFor,
-  fireEvent,
-  within,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
+import { render, waitFor, fireEvent, within } from '@testing-library/react';
 import { AuthenticationError, ApolloError } from 'apollo-server-errors';
 import { useDispatch } from 'react-redux';
 import { createMemoryHistory } from 'history';
@@ -535,7 +529,7 @@ describe('when user is not authenticated', () => {
   beforeEach(() => {
     window.localStorage.getItem.mockReturnValue(null);
     mockServer.use(
-      graphql.query('AmILoggedIn', (req, res, ctx) => res.once(ctx.status(401)))
+      graphql.query('AmILoggedIn', (req, res, ctx) => res(ctx.status(401)))
     );
   });
   it('should redirect to /login with reason "unauthorized"', async () => {
