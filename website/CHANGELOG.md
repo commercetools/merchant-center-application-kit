@@ -1,5 +1,21 @@
 # @commercetools-website/custom-applications
 
+## 16.10.3
+
+### Patch Changes
+
+- [`786c697`](https://github.com/commercetools/merchant-center-application-kit/commit/786c6978c1febf927db6b45c758498b72e8e48be) [#1745](https://github.com/commercetools/merchant-center-application-kit/pull/1745) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+* [`178ff31`](https://github.com/commercetools/merchant-center-application-kit/commit/178ff317426e0cfcfe1c0adf42a9eada3b134642) [#1734](https://github.com/commercetools/merchant-center-application-kit/pull/1734) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+- [`955f3b6`](https://github.com/commercetools/merchant-center-application-kit/commit/955f3b6c1699b4255d10af499a0fd51960bf8243) [#1725](https://github.com/commercetools/merchant-center-application-kit/pull/1725) Thanks [@adnasa](https://github.com/adnasa)! - add `account` to entry-point not used by external custom application
+
+* [`ad08479`](https://github.com/commercetools/merchant-center-application-kit/commit/ad08479df75aaddeac8b3b80f7933f601ca6d69e) [#1730](https://github.com/commercetools/merchant-center-application-kit/pull/1730) Thanks [@adnasa](https://github.com/adnasa)! - improve wording on support policy
+
+- [`9bc8558`](https://github.com/commercetools/merchant-center-application-kit/commit/9bc85581d336c7d75fda5dc82a1c02f32f16c1fb) [#1704](https://github.com/commercetools/merchant-center-application-kit/pull/1704) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+* [`09fa757`](https://github.com/commercetools/merchant-center-application-kit/commit/09fa757b197b067af258d70b9272aad944e3675e) [#1742](https://github.com/commercetools/merchant-center-application-kit/pull/1742) Thanks [@adnasa](https://github.com/adnasa)! - add description for decoded JWT and their claims
+
 ## 16.10.2
 
 ### Patch Changes

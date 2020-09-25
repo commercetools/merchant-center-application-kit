@@ -1,5 +1,43 @@
 # @commercetools-frontend/application-shell
 
+## 16.17.0
+
+### Minor Changes
+
+- [`2c0bd66`](https://github.com/commercetools/merchant-center-application-kit/commit/2c0bd66c90fe64ad15397029e05146c0a04ef331) [#1755](https://github.com/commercetools/merchant-center-application-kit/pull/1755) Thanks [@tdeekens](https://github.com/tdeekens)! - feat(app-shell): add ability to `skipTokenRetry` for Apollo queries.
+
+  The Merchant Center API Gateway assigns a commercetools platform API token in order to access the commercetools HTTP APIs. The access token eventually expires, causing requests to fail with HTTP `401`.
+  A Custom Application comes with a built-in mechanism to automatically retries unauthorized requests by forcing the Merchant Center API Gateway to assign a new valid API token. This retry mechanism is configured for Apollo queries for certain GraphQL APIs.
+
+  However, it is useful for some requests to disable this mechanism to avoid uncalled-for network requests. This is done by specifying a `skipTokenRetry` property on the Apollo query `context` object.
+
+  You can skip the process of token refetching as follows:
+
+  ```js
+  const query = useQuery(MyGraphQLQuery, {
+    context: { skipTokenRetry: true },
+  });
+  ```
+
+### Patch Changes
+
+- [`786c697`](https://github.com/commercetools/merchant-center-application-kit/commit/786c6978c1febf927db6b45c758498b72e8e48be) [#1745](https://github.com/commercetools/merchant-center-application-kit/pull/1745) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+* [`ebb2441`](https://github.com/commercetools/merchant-center-application-kit/commit/ebb2441cfb5ee126a1be0ea0add017ec53aefbba) [#1754](https://github.com/commercetools/merchant-center-application-kit/pull/1754) Thanks [@tdeekens](https://github.com/tdeekens)! - fix(application-shell): to support token retry on mc backend graphql …
+
+- [`178ff31`](https://github.com/commercetools/merchant-center-application-kit/commit/178ff317426e0cfcfe1c0adf42a9eada3b134642) [#1734](https://github.com/commercetools/merchant-center-application-kit/pull/1734) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+* [`9bc8558`](https://github.com/commercetools/merchant-center-application-kit/commit/9bc85581d336c7d75fda5dc82a1c02f32f16c1fb) [#1704](https://github.com/commercetools/merchant-center-application-kit/pull/1704) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+* Updated dependencies [[`786c697`](https://github.com/commercetools/merchant-center-application-kit/commit/786c6978c1febf927db6b45c758498b72e8e48be), [`178ff31`](https://github.com/commercetools/merchant-center-application-kit/commit/178ff317426e0cfcfe1c0adf42a9eada3b134642), [`9bc8558`](https://github.com/commercetools/merchant-center-application-kit/commit/9bc85581d336c7d75fda5dc82a1c02f32f16c1fb), [`1fdde03`](https://github.com/commercetools/merchant-center-application-kit/commit/1fdde039f36a0290bfc1c179002cfe6d535f35c0)]:
+  - @commercetools-frontend/application-components@16.17.0
+  - @commercetools-frontend/i18n@16.17.0
+  - @commercetools-frontend/react-notifications@16.17.0
+  - @commercetools-frontend/sentry@16.17.0
+  - @commercetools-frontend/application-shell-connectors@16.17.0
+  - @commercetools-frontend/l10n@16.17.0
+  - @commercetools-frontend/permissions@16.17.0
+
 ## 16.16.5
 
 ### Patch Changes
