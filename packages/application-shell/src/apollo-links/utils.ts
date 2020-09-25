@@ -1,3 +1,6 @@
+import type { GraphQLError } from 'graphql';
+import type { ErrorResponse } from 'apollo-link-error';
+import type { ServerError, ServerParseError } from 'apollo-link-http-common';
 import type { TApolloContext } from '../utils/apollo-context';
 
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
@@ -47,8 +50,22 @@ const getDoesGraphQLTargetSupportTokenRetry = (
   );
 };
 
+const isHttpError = (
+  error: ErrorResponse['networkError']
+): error is ServerError | ServerParseError =>
+  (error as ServerError).statusCode !== undefined ||
+  (error as ServerParseError).statusCode !== undefined;
+
+const isGraphQLError = (
+  error: ErrorResponse['graphQLErrors']
+): error is GraphQLError[] =>
+  Array.isArray(error) &&
+  error.some((err) => (err as GraphQLError).extensions !== undefined);
+
 export {
   getSkipTokenRetry,
   forwardTokenRetryHeader,
   getDoesGraphQLTargetSupportTokenRetry,
+  isHttpError,
+  isGraphQLError,
 };

@@ -1,6 +1,3 @@
-import type { GraphQLError } from 'graphql';
-import type { ErrorResponse } from 'apollo-link-error';
-import type { ServerError, ServerParseError } from 'apollo-link-http-common';
 import type { TApolloContext } from '../utils/apollo-context';
 
 import { onError } from 'apollo-link-error';
@@ -9,19 +6,12 @@ import {
   LOGOUT_REASONS,
 } from '@commercetools-frontend/constants';
 import history from '@commercetools-frontend/browser-history';
-import { forwardTokenRetryHeader, getSkipTokenRetry } from './utils';
-
-const isHttpError = (
-  error: ErrorResponse['networkError']
-): error is ServerError | ServerParseError =>
-  (error as ServerError).statusCode !== undefined ||
-  (error as ServerParseError).statusCode !== undefined;
-
-const isGraphQLError = (
-  error: ErrorResponse['graphQLErrors']
-): error is GraphQLError[] =>
-  Array.isArray(error) &&
-  error.some((err) => (err as GraphQLError).extensions !== undefined);
+import {
+  forwardTokenRetryHeader,
+  getSkipTokenRetry,
+  isHttpError,
+  isGraphQLError,
+} from './utils';
 
 // Checks response from GraphQL in order to scan 401 errors and redirect the
 // user to the login page resetting the store and showing the proper message
