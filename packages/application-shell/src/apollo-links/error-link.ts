@@ -1,6 +1,7 @@
 import type { GraphQLError } from 'graphql';
 import type { ErrorResponse } from 'apollo-link-error';
 import type { ServerError, ServerParseError } from 'apollo-link-http-common';
+import type { TApolloContext } from '../utils/apollo-context';
 
 import { onError } from 'apollo-link-error';
 import {
@@ -8,10 +9,7 @@ import {
   LOGOUT_REASONS,
 } from '@commercetools-frontend/constants';
 import history from '@commercetools-frontend/browser-history';
-
-type ApolloContext = {
-  headers: { [key: string]: string };
-};
+import { forwardTokenRetryHeader, getSkipTokenRetry } from './utils';
 
 const isHttpError = (
   error: ErrorResponse['networkError']
@@ -38,19 +36,21 @@ const errorLink = onError(
       return;
     }
 
-    // In case of graphql errors, we want to retry unauthenticated requests by
+    // In case of graphql errors, we wfant to retry unauthenticated requests by
     // forcing our API to fetch a new token, using the `X-Force-Token` header.
     // https://www.apollographql.com/docs/link/links/error/#retrying-failed-requests
     // We need to do this as the `token-retry-link` only works for network errors.
     // https://www.apollographql.com/docs/link/links/retry/
     if (graphQLErrors && isGraphQLError(graphQLErrors)) {
+      const context = operation.getContext() as TApolloContext;
+
       for (const err of graphQLErrors) {
-        if (err.extensions && err.extensions.code === 'UNAUTHENTICATED') {
-          operation.setContext(({ headers }: ApolloContext) => ({
-            headers: {
-              ...headers,
-              'X-Force-Token': true,
-            },
+        if (
+          err?.extensions?.code === 'UNAUTHENTICATED' &&
+          !getSkipTokenRetry(context)
+        ) {
+          operation.setContext(({ headers }: TApolloContext) => ({
+            headers: forwardTokenRetryHeader(headers),
           }));
           // retry the request, returning the new observable
           return forward(operation);

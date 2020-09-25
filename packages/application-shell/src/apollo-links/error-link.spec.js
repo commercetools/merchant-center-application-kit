@@ -64,38 +64,78 @@ describe('with unauthenticated error', () => {
         ],
       },
     };
-    beforeEach(async () => {
-      const debugLink = new ApolloLink((operation, forward) => {
-        context = operation.getContext();
-        return forward(operation);
+    describe('when token retry is not skipped', () => {
+      beforeEach(async () => {
+        const debugLink = new ApolloLink((operation, forward) => {
+          context = operation.getContext();
+          return forward(operation);
+        });
+        terminatingLinkStub = jest.fn();
+        terminatingLinkStub.mockReturnValueOnce(
+          Observable.of(responses.unauthenticated)
+        );
+        terminatingLinkStub.mockReturnValueOnce(
+          Observable.of(responses.success)
+        );
+
+        link = ApolloLink.from([errorLink, debugLink, terminatingLinkStub]);
+
+        resolvedResponse = await waitFor(execute(link, { query }));
       });
-      terminatingLinkStub = jest.fn();
-      terminatingLinkStub.mockReturnValueOnce(
-        Observable.of(responses.unauthenticated)
-      );
-      terminatingLinkStub.mockReturnValueOnce(Observable.of(responses.success));
+      afterEach(() => {
+        context = undefined;
+      });
 
-      link = ApolloLink.from([errorLink, debugLink, terminatingLinkStub]);
+      it('should retry the request', () => {
+        expect(terminatingLinkStub).toHaveBeenCalledTimes(2);
+      });
+      it('should set `x-force-token`-header on retry', () => {
+        expect(context.headers).toEqual(
+          expect.objectContaining({
+            'X-Force-Token': 'true',
+          })
+        );
+      });
+      it('should eventually resolve with data', () => {
+        const [{ values }] = resolvedResponse;
+        expect(values).toEqual([responses.success]);
+      });
+    });
+    describe('when token retry is skipped', () => {
+      beforeEach(async () => {
+        const debugLink = new ApolloLink((operation, forward) => {
+          operation.setContext({
+            skipTokenRetry: true,
+          });
+          context = operation.getContext();
+          return forward(operation);
+        });
+        terminatingLinkStub = jest.fn();
+        terminatingLinkStub.mockReturnValueOnce(
+          Observable.of(responses.unauthenticated)
+        );
+        terminatingLinkStub.mockReturnValueOnce(
+          Observable.of(responses.success)
+        );
 
-      resolvedResponse = await waitFor(execute(link, { query }));
-    });
-    afterEach(() => {
-      context = undefined;
-    });
+        link = ApolloLink.from([errorLink, debugLink, terminatingLinkStub]);
 
-    it('should retry the request', () => {
-      expect(terminatingLinkStub).toHaveBeenCalledTimes(2);
-    });
-    it('should set `x-force-token`-header on retry', () => {
-      expect(context.headers).toEqual(
-        expect.objectContaining({
-          'X-Force-Token': true,
-        })
-      );
-    });
-    it('should eventually resolve with data', () => {
-      const [{ values }] = resolvedResponse;
-      expect(values).toEqual([responses.success]);
+        resolvedResponse = await waitFor(execute(link, { query }));
+      });
+      afterEach(() => {
+        context = undefined;
+      });
+
+      it('should not retry the request', () => {
+        expect(terminatingLinkStub).toHaveBeenCalledTimes(1);
+      });
+      it('should not set `x-force-token`-header on retry', () => {
+        expect(context.headers).toEqual(
+          expect.not.objectContaining({
+            'X-Force-Token': 'true',
+          })
+        );
+      });
     });
   });
 });
