@@ -1,5 +1,24 @@
 # merchant-center-application-template-starter
 
+## 16.11.6
+
+### Patch Changes
+
+- [`8eb85a0`](https://github.com/commercetools/merchant-center-application-kit/commit/8eb85a0c79774d3ae1eea73460233c1fcb36c855) [#1736](https://github.com/commercetools/merchant-center-application-kit/pull/1736) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency dotenv-cli to v4
+
+* [`786c697`](https://github.com/commercetools/merchant-center-application-kit/commit/786c6978c1febf927db6b45c758498b72e8e48be) [#1745](https://github.com/commercetools/merchant-center-application-kit/pull/1745) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+- [`178ff31`](https://github.com/commercetools/merchant-center-application-kit/commit/178ff317426e0cfcfe1c0adf42a9eada3b134642) [#1734](https://github.com/commercetools/merchant-center-application-kit/pull/1734) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+* [`9bc8558`](https://github.com/commercetools/merchant-center-application-kit/commit/9bc85581d336c7d75fda5dc82a1c02f32f16c1fb) [#1704](https://github.com/commercetools/merchant-center-application-kit/pull/1704) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+* Updated dependencies [[`2c0bd66`](https://github.com/commercetools/merchant-center-application-kit/commit/2c0bd66c90fe64ad15397029e05146c0a04ef331), [`786c697`](https://github.com/commercetools/merchant-center-application-kit/commit/786c6978c1febf927db6b45c758498b72e8e48be), [`ebb2441`](https://github.com/commercetools/merchant-center-application-kit/commit/ebb2441cfb5ee126a1be0ea0add017ec53aefbba), [`178ff31`](https://github.com/commercetools/merchant-center-application-kit/commit/178ff317426e0cfcfe1c0adf42a9eada3b134642), [`9bc8558`](https://github.com/commercetools/merchant-center-application-kit/commit/9bc85581d336c7d75fda5dc82a1c02f32f16c1fb)]:
+  - @commercetools-frontend/application-shell@16.17.0
+  - @commercetools-frontend/application-components@16.17.0
+  - @commercetools-frontend/i18n@16.17.0
+  - @commercetools-frontend/mc-http-server@16.17.0
+  - @commercetools-frontend/permissions@16.17.0
+
 ## 16.11.5
 
 ### Patch Changes

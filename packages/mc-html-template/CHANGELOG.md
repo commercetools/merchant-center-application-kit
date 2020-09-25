@@ -1,5 +1,16 @@
 # @commercetools-frontend/mc-html-template
 
+## 16.17.0
+
+### Patch Changes
+
+- [`9bc8558`](https://github.com/commercetools/merchant-center-application-kit/commit/9bc85581d336c7d75fda5dc82a1c02f32f16c1fb) [#1704](https://github.com/commercetools/merchant-center-application-kit/pull/1704) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+* [`1fdde03`](https://github.com/commercetools/merchant-center-application-kit/commit/1fdde039f36a0290bfc1c179002cfe6d535f35c0) [#1732](https://github.com/commercetools/merchant-center-application-kit/pull/1732) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency node-fetch to v2.6.1 [security]
+
+* Updated dependencies [[`178ff31`](https://github.com/commercetools/merchant-center-application-kit/commit/178ff317426e0cfcfe1c0adf42a9eada3b134642), [`9bc8558`](https://github.com/commercetools/merchant-center-application-kit/commit/9bc85581d336c7d75fda5dc82a1c02f32f16c1fb)]:
+  - @commercetools-frontend/application-config@16.17.0
+
 ## 16.16.1
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @commercetools-frontend/jest-stylelint-runner
 
+## 16.17.0
+
+### Patch Changes
+
+- [`786c697`](https://github.com/commercetools/merchant-center-application-kit/commit/786c6978c1febf927db6b45c758498b72e8e48be) [#1745](https://github.com/commercetools/merchant-center-application-kit/pull/1745) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+* [`81dda84`](https://github.com/commercetools/merchant-center-application-kit/commit/81dda8482323ec2f2154c33ba32dc8627bb5a984) [#1748](https://github.com/commercetools/merchant-center-application-kit/pull/1748) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency postcss-custom-properties to v10
+
 ## 16.9.1
 
 ### Patch Changes
