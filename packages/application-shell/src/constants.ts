@@ -7,6 +7,7 @@ export const SUPPORTED_HEADERS = {
   X_GRAPHQL_TARGET: 'X-Graphql-Target',
   X_PROJECT_KEY: 'X-Project-Key',
   X_TEAM_ID: 'X-Team-Id',
+  X_TOKEN_RETRY: 'X-Force-Token',
 } as const;
 
 export const CONTAINERS = {

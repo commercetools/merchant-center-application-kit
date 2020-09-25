@@ -139,12 +139,6 @@ export type TTokenRetryGraphQlTarget =
   | typeof GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND
   | typeof GRAPHQL_TARGETS.ADMINISTRATION_SERVICE;
 
-export const MC_API_SUPPORTED_HEADERS = {
-  TOKEN_RETRY: 'X-Force-Token',
-  GRAPHQL_TARGET: 'X-Graphql-Target',
-} as const;
-export type TMcApiSupportedHeaders = typeof MC_API_SUPPORTED_HEADERS[keyof typeof MC_API_SUPPORTED_HEADERS];
-
 // Global application environment on window object
 export interface ApplicationWindow extends Window {
   dataLayer: unknown[];
