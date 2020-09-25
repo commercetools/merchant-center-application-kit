@@ -2,9 +2,7 @@ import { ApolloLink, execute, Observable } from 'apollo-link';
 import gql from 'graphql-tag';
 import waitFor from 'wait-for-observables';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import tokenRetryLink, {
-  getDoesGraphQLTargetSupportTokenRetry,
-} from './token-retry-link';
+import tokenRetryLink from './token-retry-link';
 
 const query = gql`
   {

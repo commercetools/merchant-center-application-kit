@@ -8,6 +8,7 @@ import {
 import history from '@commercetools-frontend/browser-history';
 import {
   forwardTokenRetryHeader,
+  getDoesGraphQLTargetSupportTokenRetry,
   getSkipTokenRetry,
   isHttpError,
   isGraphQLError,
@@ -37,6 +38,7 @@ const errorLink = onError(
       for (const err of graphQLErrors) {
         if (
           err?.extensions?.code === 'UNAUTHENTICATED' &&
+          getDoesGraphQLTargetSupportTokenRetry(context) &&
           !getSkipTokenRetry(context)
         ) {
           operation.setContext(({ headers }: TApolloContext) => ({

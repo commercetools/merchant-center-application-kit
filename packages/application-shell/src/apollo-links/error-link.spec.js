@@ -1,7 +1,10 @@
 import { ApolloLink, execute, Observable } from 'apollo-link';
 import gql from 'graphql-tag';
 import waitFor from 'wait-for-observables';
-import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
+import {
+  LOGOUT_REASONS,
+  GRAPHQL_TARGETS,
+} from '@commercetools-frontend/constants';
 import history from '@commercetools-frontend/browser-history';
 import errorLink from './error-link';
 
@@ -68,6 +71,12 @@ describe('with unauthenticated error', () => {
       beforeEach(async () => {
         const debugLink = new ApolloLink((operation, forward) => {
           context = operation.getContext();
+          operation.setContext({
+            headers: {
+              'X-Graphql-Target': GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+            },
+          });
+
           return forward(operation);
         });
         terminatingLinkStub = jest.fn();
