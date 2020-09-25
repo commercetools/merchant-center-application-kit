@@ -1,3 +1,5 @@
+import type { Operation } from 'apollo-link';
+
 import { RetryLink } from 'apollo-link-retry';
 import {
   STATUS_CODES,
@@ -18,11 +20,14 @@ type ApolloContext = {
 // so that the MC BE can issue a new token.
 // NOTE: the retry is not meant to work for the MC access token.
 
+const TOKEN_RETRY_HEADER_NAME = 'X-Force-Token';
+
 export const getDoesGraphQLTargetSupportTokenRetry = (
   requestHeaders: ApolloContext['headers']
-) => {
+): boolean => {
   const target = (requestHeaders['X-Graphql-Target'] ||
     requestHeaders['x-graphql-target']) as TokenRetryGraphQlTarget;
+
   return [
     GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
     GRAPHQL_TARGETS.ADMINISTRATION_SERVICE,
@@ -30,22 +35,33 @@ export const getDoesGraphQLTargetSupportTokenRetry = (
     GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
   ].includes(target);
 };
+export const getSkipTokenRetry = (
+  variables: Operation['variables']
+): boolean => {
+  const skipTokenRetry = Boolean(variables.skipTokenRetry);
+
+  return skipTokenRetry;
+};
+
+const forwardTokenRetryHeader = (
+  headers: ApolloContext['headers']
+): ApolloContext['headers'] => ({
+  ...headers,
+  [TOKEN_RETRY_HEADER_NAME]: 'true',
+});
 
 const tokenRetryLink = new RetryLink({
   attempts: (count, operation, error) => {
     const { headers: requestHeaders } = operation.getContext() as ApolloContext;
+
     if (
-      error &&
-      error.statusCode &&
-      error.statusCode === STATUS_CODES.UNAUTHORIZED &&
+      error?.statusCode === STATUS_CODES.UNAUTHORIZED &&
+      count === 1 &&
       getDoesGraphQLTargetSupportTokenRetry(requestHeaders) &&
-      count === 1
+      !getSkipTokenRetry(operation.variables)
     ) {
       operation.setContext(({ headers }: ApolloContext) => ({
-        headers: {
-          ...headers,
-          'X-Force-Token': true,
-        },
+        headers: forwardTokenRetryHeader(headers),
       }));
 
       return true;

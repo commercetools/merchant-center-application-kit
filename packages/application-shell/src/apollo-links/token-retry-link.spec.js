@@ -94,55 +94,102 @@ describe('tokenRetryLink', () => {
     });
 
     describe('with unsuccessful retry', () => {
-      beforeEach(async () => {
-        const headerLink = new ApolloLink((operation, forward) => {
-          operation.setContext({
-            headers: {
-              'X-Graphql-Target': GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
-            },
+      describe('when token retry is not skipped', () => {
+        beforeEach(async () => {
+          const headerLink = new ApolloLink((operation, forward) => {
+            operation.setContext({
+              headers: {
+                'X-Graphql-Target': GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+              },
+            });
+            return forward(operation);
           });
-          return forward(operation);
+          debugLink = new ApolloLink((operation, forward) => {
+            context = operation.getContext();
+
+            return forward(operation);
+          });
+
+          terminatingLinkStub = jest.fn(
+            () => new Observable((o) => o.error(unauthenticatedError))
+          );
+
+          link = ApolloLink.from([
+            headerLink,
+            tokenRetryLink,
+            debugLink,
+            terminatingLinkStub,
+          ]);
+
+          resolvedResponse = await waitFor(execute(link, { query }));
         });
-        debugLink = new ApolloLink((operation, forward) => {
-          context = operation.getContext();
 
-          return forward(operation);
+        afterEach(() => {
+          context = undefined;
         });
 
-        terminatingLinkStub = jest.fn(
-          () => new Observable((o) => o.error(unauthenticatedError))
-        );
+        it('should retry the request', () => {
+          expect(terminatingLinkStub).toHaveBeenCalledTimes(2);
+        });
 
-        link = ApolloLink.from([
-          headerLink,
-          tokenRetryLink,
-          debugLink,
-          terminatingLinkStub,
-        ]);
+        it('should set `x-force-token`-header on retry', () => {
+          expect(context.headers).toEqual(
+            expect.objectContaining({
+              'X-Force-Token': true,
+            })
+          );
+        });
 
-        resolvedResponse = await waitFor(execute(link, { query }));
+        it('should propagate `unauthenticatedError`', () => {
+          const [{ error }] = resolvedResponse;
+
+          expect(error).toEqual(unauthenticatedError);
+        });
       });
 
-      afterEach(() => {
-        context = undefined;
-      });
+      describe('when token retry is skipped', () => {
+        beforeEach(async () => {
+          const headerLink = new ApolloLink((operation, forward) => {
+            operation.variables.skipTokenRetry = true;
 
-      it('should retry the request', () => {
-        expect(terminatingLinkStub).toHaveBeenCalledTimes(2);
-      });
+            operation.setContext({
+              headers: {
+                'X-Graphql-Target': GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+              },
+            });
+            return forward(operation);
+          });
+          debugLink = new ApolloLink((operation, forward) => {
+            context = operation.getContext();
 
-      it('should set `x-force-token`-header on retry', () => {
-        expect(context.headers).toEqual(
-          expect.objectContaining({
-            'X-Force-Token': true,
-          })
-        );
-      });
+            return forward(operation);
+          });
 
-      it('should propagate `unauthenticatedError`', () => {
-        const [{ error }] = resolvedResponse;
+          terminatingLinkStub = jest.fn(
+            () => new Observable((o) => o.error(unauthenticatedError))
+          );
 
-        expect(error).toEqual(unauthenticatedError);
+          link = ApolloLink.from([
+            headerLink,
+            tokenRetryLink,
+            debugLink,
+            terminatingLinkStub,
+          ]);
+
+          resolvedResponse = await waitFor(execute(link, { query }));
+        });
+
+        afterEach(() => {
+          context = undefined;
+        });
+
+        it('should not set `x-force-token`-header on retry', () => {
+          expect(context.headers).toEqual(
+            expect.not.objectContaining({
+              'X-Force-Token': true,
+            })
+          );
+        });
       });
     });
   });
