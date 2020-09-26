@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 16.17.1
+
+### Patch Changes
+
+- [`0c4cc95`](https://github.com/commercetools/merchant-center-application-kit/commit/0c4cc9524747fe43ec4768fdaebe1acc4959f1a8) [#1756](https://github.com/commercetools/merchant-center-application-kit/pull/1756) Thanks [@tdeekens](https://github.com/tdeekens)! - fix(app-shell): error link to support opting out of token retry
+
 ## 16.17.0
 
 ### Minor Changes
