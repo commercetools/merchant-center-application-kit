@@ -1,6 +1,4 @@
-import type { GraphQLError } from 'graphql';
-import type { ErrorResponse } from 'apollo-link-error';
-import type { ServerError, ServerParseError } from 'apollo-link-http-common';
+import type { TApolloContext } from '../utils/apollo-context';
 
 import { onError } from 'apollo-link-error';
 import {
@@ -8,22 +6,13 @@ import {
   LOGOUT_REASONS,
 } from '@commercetools-frontend/constants';
 import history from '@commercetools-frontend/browser-history';
-
-type ApolloContext = {
-  headers: { [key: string]: string };
-};
-
-const isHttpError = (
-  error: ErrorResponse['networkError']
-): error is ServerError | ServerParseError =>
-  (error as ServerError).statusCode !== undefined ||
-  (error as ServerParseError).statusCode !== undefined;
-
-const isGraphQLError = (
-  error: ErrorResponse['graphQLErrors']
-): error is GraphQLError[] =>
-  Array.isArray(error) &&
-  error.some((err) => (err as GraphQLError).extensions !== undefined);
+import {
+  forwardTokenRetryHeader,
+  getDoesGraphQLTargetSupportTokenRetry,
+  getSkipTokenRetry,
+  isHttpError,
+  isGraphQLError,
+} from './utils';
 
 // Checks response from GraphQL in order to scan 401 errors and redirect the
 // user to the login page resetting the store and showing the proper message
@@ -44,13 +33,16 @@ const errorLink = onError(
     // We need to do this as the `token-retry-link` only works for network errors.
     // https://www.apollographql.com/docs/link/links/retry/
     if (graphQLErrors && isGraphQLError(graphQLErrors)) {
+      const context = operation.getContext() as TApolloContext;
+
       for (const err of graphQLErrors) {
-        if (err.extensions && err.extensions.code === 'UNAUTHENTICATED') {
-          operation.setContext(({ headers }: ApolloContext) => ({
-            headers: {
-              ...headers,
-              'X-Force-Token': true,
-            },
+        if (
+          err?.extensions?.code === 'UNAUTHENTICATED' &&
+          getDoesGraphQLTargetSupportTokenRetry(context) &&
+          !getSkipTokenRetry(context)
+        ) {
+          operation.setContext(({ headers }: TApolloContext) => ({
+            headers: forwardTokenRetryHeader(headers),
           }));
           // retry the request, returning the new observable
           return forward(operation);
