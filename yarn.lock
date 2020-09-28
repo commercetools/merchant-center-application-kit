@@ -1466,6 +1466,23 @@
     swr "0.3.1"
     tiny-invariant "1.1.0"
 
+"@commercetools-docs/ui-kit@8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-8.0.0.tgz#def53a42f0594c22625a0d6afbbf74cddef7ce78"
+  integrity sha512-jic9Qh7dH5FLAUQ9/FxNdlmVbuxO/8vGingFtcohbYvNs9RIEOrpVd6LRsVzQ5M/RMJMUHVPa97ogE03IViaMQ==
+  dependencies:
+    "@commercetools-uikit/loading-spinner" "^10.30.1"
+    "@commercetools-uikit/tooltip" "^10.30.1"
+    lodash.escape "4.0.1"
+    lodash.throttle "4.1.1"
+    moment "2.29.0"
+    parse5 "6.0.1"
+    prism-react-renderer "1.1.1"
+    prop-types "15.7.2"
+    rss-parser "3.9.0"
+    swr "0.3.3"
+    tiny-invariant "1.1.0"
+
 "@commercetools-docs/writing-style@3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@commercetools-docs/writing-style/-/writing-style-3.0.0.tgz#83f5236c06b88051542e0bf7a6d8a218de0685ea"
@@ -19957,6 +19974,11 @@ moment@2.28.0, "moment@>= 2.9.0", moment@^2.24.0, moment@^2.27.0:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.28.0.tgz#cdfe73ce01327cee6537b0fafac2e0f21a237d75"
   integrity sha512-Z5KOjYmnHyd/ukynmFd/WwyXHd7L4J9vTI/nn5Ap9AVUgaAE15VvQ9MOGmJJygEUklupqIrFnor/tjTwRU+tQw==
 
+moment@2.29.0:
+  version "2.29.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.0.tgz#fcbef955844d91deb55438613ddcec56e86a3425"
+  integrity sha512-z6IJ5HXYiuxvFTI6eiQ9dm77uE0gyy1yXNApVHqTcnIKfY9tIwEjlzsZ6u1LQXvVgKeTnv9Xm7NDvJ7lso3MtA==
+
 moo@^0.5.0:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/moo/-/moo-0.5.1.tgz#7aae7f384b9b09f620b6abf6f74ebbcd1b65dbc4"
@@ -26702,6 +26724,13 @@ swr@0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/swr/-/swr-0.3.1.tgz#b673f32a470418a785d962c86bd96ec555986dd0"
   integrity sha512-g9JrXXMo54CSc+DU+KS0S8+5r6cpeBmBmVLhCu23ifQL9u0KKirkJpNX3Za3eOttmUuRQLXA8N1YPpoc8ejdpA==
+  dependencies:
+    fast-deep-equal "2.0.1"
+
+swr@0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/swr/-/swr-0.3.3.tgz#8e820360e3fece26df6f30ca09c478f70bf1f880"
+  integrity sha512-UxjfbvLdk4CzdchQBKmthUc1rO7KaCXdNL69oW7V/I2BOMv905rsL+kJdpO19OYwOPOpWZPvffTEE7yACwXc8w==
   dependencies:
     fast-deep-equal "2.0.1"
 
