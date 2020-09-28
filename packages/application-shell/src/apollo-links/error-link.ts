@@ -38,6 +38,13 @@ const errorLink = onError(
       for (const err of graphQLErrors) {
         const isNonAuthenticatedViaExtensionCode =
           err?.extensions?.code === 'UNAUTHENTICATED';
+        /**
+         * NOTE:
+         *   Not not all GraphQL APIs expose an `extensions` field in
+         *   each error. For those we have to use the `message`
+         *   property until they introduced support for the `extensions`
+         *   field.
+         */
         const isNonAuthenticatedViaCode = err?.message === 'invalid_token';
 
         if (

@@ -68,7 +68,6 @@ describe('with unauthenticated error', () => {
       },
       unauthenticatedWithStatusCode: {
         data: null,
-        statusCode: 401,
         errors: [
           {
             message: 'invalid_token',
