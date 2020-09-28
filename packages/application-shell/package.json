@@ -86,7 +86,7 @@
     "apollo-link": "^1.2.13",
     "apollo-link-error": "^1.1.12",
     "apollo-link-http": "^1.5.16",
-    "apollo-link-logger": "^1.2.3",
+    "apollo-link-logger": "^2.0.0",
     "apollo-link-retry": "^2.2.15",
     "classnames": "^2.2.6",
     "common-tags": "1.8.0",
