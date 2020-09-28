@@ -60,7 +60,11 @@ const isGraphQLError = (
   error: ErrorResponse['graphQLErrors']
 ): error is GraphQLError[] =>
   Array.isArray(error) &&
-  error.some((err) => (err as GraphQLError).extensions !== undefined);
+  error.some(
+    (err) =>
+      (err as GraphQLError).message !== undefined ||
+      (err as GraphQLError).extensions !== undefined
+  );
 
 export {
   getSkipTokenRetry,

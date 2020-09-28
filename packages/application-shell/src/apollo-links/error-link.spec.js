@@ -56,7 +56,7 @@ describe('with unauthenticated error', () => {
     let resolvedResponse;
     const responses = {
       success: { data: { sample: { id: 'sample-id' } } },
-      unauthenticated: {
+      unauthenticatedWithExtensionCode: {
         data: null,
         errors: [
           {
@@ -66,48 +66,102 @@ describe('with unauthenticated error', () => {
           },
         ],
       },
+      unauthenticatedWithStatusCode: {
+        data: null,
+        statusCode: 401,
+        errors: [
+          {
+            message: 'invalid_token',
+          },
+        ],
+      },
     };
     describe('when token retry is not skipped', () => {
-      beforeEach(async () => {
-        const debugLink = new ApolloLink((operation, forward) => {
-          context = operation.getContext();
-          operation.setContext({
-            headers: {
-              'X-Graphql-Target': GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
-            },
+      describe('when unauthorized via extension code', () => {
+        beforeEach(async () => {
+          const debugLink = new ApolloLink((operation, forward) => {
+            context = operation.getContext();
+            operation.setContext({
+              headers: {
+                'X-Graphql-Target': GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+              },
+            });
+
+            return forward(operation);
           });
+          terminatingLinkStub = jest.fn();
+          terminatingLinkStub.mockReturnValueOnce(
+            Observable.of(responses.unauthenticatedWithExtensionCode)
+          );
+          terminatingLinkStub.mockReturnValueOnce(
+            Observable.of(responses.success)
+          );
 
-          return forward(operation);
+          link = ApolloLink.from([errorLink, debugLink, terminatingLinkStub]);
+
+          resolvedResponse = await waitFor(execute(link, { query }));
         });
-        terminatingLinkStub = jest.fn();
-        terminatingLinkStub.mockReturnValueOnce(
-          Observable.of(responses.unauthenticated)
-        );
-        terminatingLinkStub.mockReturnValueOnce(
-          Observable.of(responses.success)
-        );
+        afterEach(() => {
+          context = undefined;
+        });
 
-        link = ApolloLink.from([errorLink, debugLink, terminatingLinkStub]);
+        it('should retry the request', () => {
+          expect(terminatingLinkStub).toHaveBeenCalledTimes(2);
+        });
+        it('should set `x-force-token`-header on retry', () => {
+          expect(context.headers).toEqual(
+            expect.objectContaining({
+              'X-Force-Token': 'true',
+            })
+          );
+        });
+        it('should eventually resolve with data', () => {
+          const [{ values }] = resolvedResponse;
+          expect(values).toEqual([responses.success]);
+        });
+      });
+      describe('when unauthorized via status code', () => {
+        beforeEach(async () => {
+          const debugLink = new ApolloLink((operation, forward) => {
+            context = operation.getContext();
+            operation.setContext({
+              headers: {
+                'X-Graphql-Target': GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+              },
+            });
 
-        resolvedResponse = await waitFor(execute(link, { query }));
-      });
-      afterEach(() => {
-        context = undefined;
-      });
+            return forward(operation);
+          });
+          terminatingLinkStub = jest.fn();
+          terminatingLinkStub.mockReturnValueOnce(
+            Observable.of(responses.unauthenticatedWithStatusCode)
+          );
+          terminatingLinkStub.mockReturnValueOnce(
+            Observable.of(responses.success)
+          );
 
-      it('should retry the request', () => {
-        expect(terminatingLinkStub).toHaveBeenCalledTimes(2);
-      });
-      it('should set `x-force-token`-header on retry', () => {
-        expect(context.headers).toEqual(
-          expect.objectContaining({
-            'X-Force-Token': 'true',
-          })
-        );
-      });
-      it('should eventually resolve with data', () => {
-        const [{ values }] = resolvedResponse;
-        expect(values).toEqual([responses.success]);
+          link = ApolloLink.from([errorLink, debugLink, terminatingLinkStub]);
+
+          resolvedResponse = await waitFor(execute(link, { query }));
+        });
+        afterEach(() => {
+          context = undefined;
+        });
+
+        it('should retry the request', () => {
+          expect(terminatingLinkStub).toHaveBeenCalledTimes(2);
+        });
+        it('should set `x-force-token`-header on retry', () => {
+          expect(context.headers).toEqual(
+            expect.objectContaining({
+              'X-Force-Token': 'true',
+            })
+          );
+        });
+        it('should eventually resolve with data', () => {
+          const [{ values }] = resolvedResponse;
+          expect(values).toEqual([responses.success]);
+        });
       });
     });
     describe('when token retry is skipped', () => {

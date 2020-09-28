@@ -36,8 +36,12 @@ const errorLink = onError(
       const context = operation.getContext() as TApolloContext;
 
       for (const err of graphQLErrors) {
+        const isNonAuthenticatedViaExtensionCode =
+          err?.extensions?.code === 'UNAUTHENTICATED';
+        const isNonAuthenticatedViaCode = err?.message === 'invalid_token';
+
         if (
-          err?.extensions?.code === 'UNAUTHENTICATED' &&
+          (isNonAuthenticatedViaExtensionCode || isNonAuthenticatedViaCode) &&
           getDoesGraphQLTargetSupportTokenRetry(context) &&
           !getSkipTokenRetry(context)
         ) {
