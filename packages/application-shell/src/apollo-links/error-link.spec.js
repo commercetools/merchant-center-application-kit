@@ -120,7 +120,7 @@ describe('with unauthenticated error', () => {
           expect(values).toEqual([responses.success]);
         });
       });
-      describe('when unauthorized via status code', () => {
+      describe('when unauthorized via message', () => {
         beforeEach(async () => {
           const debugLink = new ApolloLink((operation, forward) => {
             context = operation.getContext();
