@@ -13,6 +13,11 @@
     },
     {
       "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "status": 404,
+      "dest": "/custom-applications/404"
     }
   ]
 }
