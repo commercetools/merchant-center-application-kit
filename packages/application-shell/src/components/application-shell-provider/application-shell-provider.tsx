@@ -44,7 +44,11 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
         <ReduxProvider store={internalReduxStore}>
           <ApolloProvider client={ApplicationShellProvider.apolloClient}>
             <React.Suspense fallback={<ApplicationLoader />}>
-              <Router history={ApplicationShellProvider.history}>
+              <Router
+                action={history.action}
+                location={history.location}
+                navigator={ApplicationShellProvider.history}
+              >
                 <GtmBooter trackingEventList={props.trackingEventList || {}}>
                   <Authenticated
                     render={({ isAuthenticated }) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import {
   ApplicationShell,
   setupGlobalErrorListener,
@@ -18,11 +18,13 @@ const AsyncApplicationRoutes = React.lazy(
 );
 
 export const ApplicationStarter = () => (
-  <Switch>
+  <Routes>
     {
       /* For development, it's useful to redirect to the actual
       application routes when you open the browser at http://localhost:3001 */
       process.env.NODE_ENV === 'production' ? null : (
+        // FIXME: the `Redirect` component does not exist anymore. We should do the
+        // redirect/navigation using a React component effect.
         <Redirect
           exact={true}
           from="/:projectKey"
@@ -30,13 +32,12 @@ export const ApplicationStarter = () => (
         />
       )
     }
-    <Route
-      path="/:projectKey/examples-starter"
-      component={AsyncApplicationRoutes}
-    />
+    <Route path="/:projectKey/examples-starter/*">
+      <AsyncApplicationRoutes />
+    </Route>
     {/* Catch-all route */}
     <RouteCatchAll />
-  </Switch>
+  </Routes>
 );
 ApplicationStarter.displayName = 'ApplicationStarter';
 

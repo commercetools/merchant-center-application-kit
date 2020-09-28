@@ -67,7 +67,10 @@
       "website-components-playground"
     ],
     "nohoist": [
-      "**/react-apollo"
+      "**/react-apollo",
+      "**/@commercetools-docs/gatsby-theme-docs/react-router/**",
+      "**/@commercetools-docs/gatsby-theme-docs/react-router-dom/**",
+      "**/@types/reach__router/**"
     ]
   },
   "devDependencies": {
@@ -104,8 +107,6 @@
     "@types/react": "16.9.49",
     "@types/react-dom": "16.9.8",
     "@types/react-redux": "7.1.9",
-    "@types/react-router": "5.1.8",
-    "@types/react-router-dom": "5.1.5",
     "@types/uuid": "8.3.0",
     "@types/webpack": "4.41.22",
     "@types/webpack-env": "1.15.3",
@@ -142,6 +143,7 @@
     "gatsby-plugin-emotion": "4.3.11",
     "gatsby-plugin-mdx": "1.2.40",
     "graphql-cli": "4.0.0",
+    "history": "5.0.0",
     "husky": "4.3.0",
     "jest": "26.4.2",
     "jest-each": "26.4.2",
@@ -186,7 +188,6 @@
     "@sentry/types": "5.24.2",
     "**/@sentry/types": "5.24.2",
     "@types/react": "16.9.49",
-    "@types/react-router": "5.1.8",
     "**/sharp": "0.26.1",
     "cypress": "5.2.0",
     "graphql": "14.7.0",

@@ -26,13 +26,14 @@
     "@commercetools-uikit/text": "10.30.1",
     "apollo-client": "2.6.10",
     "bulk-update-versions": "1.1.0",
+    "history": "5.0.0",
     "prop-types": "15.7.2",
     "react": "16.13.1",
     "react-apollo": "3.1.5",
     "react-dom": "16.13.1",
     "react-intl": "5.8.2",
     "react-redux": "7.2.1",
-    "react-router-dom": "5.2.0",
+    "react-router-dom": "6.0.0-beta.0",
     "redux": "4.0.5"
   },
   "devDependencies": {
