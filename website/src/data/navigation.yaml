@@ -56,8 +56,8 @@
       path: '/deployment/runtime-configuration'
     - title: HTTP Server
       path: '/deployment/http-server'
-    - title: Compile Custom Application
-      path: '/deployment/compile-custom-application'
+    - title: Compiling a Custom Application
+      path: '/deployment/compiling-a-custom-application'
     - title: Serving Static Assets
       path: '/deployment/serving-static-assets'
     - title: 'Example Deployment with Vercel'

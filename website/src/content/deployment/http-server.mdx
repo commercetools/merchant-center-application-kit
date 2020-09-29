@@ -2,18 +2,37 @@
 title: HTTP Server
 ---
 
-We recommend using our [`@commercetools-frontend/mc-http-server`](https://www.npmjs.com/package/@commercetools-frontend/mc-http-server) package to run the application in `production` mode.
+One of the necessary steps to prepare your Custom Application for a deployment is to create a [production build](/deployment/production-build). If you decide to host your Custom Application in a Node.js runtime environment and do not intend to [host your Custom Application statically](/deployment/compiling-a-custom-application), you can use our pre-configured HTTP server.
 
-The [`@commercetools-frontend/mc-http-server`](https://www.npmjs.com/package/@commercetools-frontend/mc-http-server) has built-in functionality that is necessary for the application to work. Most importantly:
+This section helps prepare your Custom Application for running it in an HTTP server.
 
-- Compiling the `index.html.template` into `index.html` to inject the runtime configuration specified in the [application config](/development/application-config).
-- Preparing the HTTP response headers, including the [custom headers](/development/application-config#headers) provided in the application config.
+# Prerequisites
 
-The package comes with a binary `mc-http-server` that sets up all the necessary configurations and starts a small Node.js server.
+Before you get started, you need to do the following:
+
+- [Configure your Custom Application](/development/application-config).
+- Create a [production build](/deployment/production-build) of your Custom Application.
+
+# NPM package
+
+A pre-configured NPM package [`@commercetools-frontend/mc-http-server`](https://www.npmjs.com/package/@commercetools-frontend/mc-http-server) is available for running the Custom Application as a Node.js HTTP server.
+
+The server handles the necessary requests to serve the Custom Application. When the server starts it:
+
+- [Compiles the `index.html.template` into the `index.html`](/deployment/compiling-a-custom-application).
+- Prepares the HTTP response headers, including the [custom headers](/development/application-config#headers) provided in the [Custom Application config](/development/application-config).
+
+To start the HTTP server simply run:
 
 ```console
-mc-http-server
+mc-http-server --use-local-assets
 ```
+
+<Info>
+
+The `--use-local-assets` option might not be necessary, depending on how and where your Custom Application is hosted. See [Serving static assets](/deployment/serving-static-assets) for more information.
+
+</Info>
 
 # Docker image
 
