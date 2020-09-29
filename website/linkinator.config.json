@@ -1,0 +1,28 @@
+{
+  "recurse": true,
+  "silent": true,
+  "skip": [
+    ".(json|js|png|jpg|svg|css)(\\?(.*)+)?$",
+    "https://docs.commercetools.com/",
+    "https://commercetools.com/",
+    "https://support.commercetools.com",
+    "/api",
+    "/cli-overview",
+    "/faqs",
+    "/getting-started",
+    "/graphql-api",
+    "/http-api",
+    "/import-api",
+    "/imprint",
+    "/login",
+    "/merchant-center",
+    "/merchant-center-releases",
+    "/playground",
+    "/privacy",
+    "/release-notes",
+    "/software-development-kits",
+    "/sunrise",
+    "/tutorials",
+    "/tutorials-overview"
+  ]
+}
