@@ -12,11 +12,11 @@ To handle requests to the [GraphQL APIs](/main-concepts/graphql) we use the buil
 
 <Info>
 
-The Apollo Client is already pre-configured within the [`<ApplicationShell>`](/main-concepts/application-shell) to connect to the `/graphql` endpoint of the [Merchant Center API Gateway](/main-concepts/api-gatway). You don't need to configure it on your own, unless you need to connect to an **external** GraphQL API (see [Connecting to an external GraphQL API](#connecting-to-an-external-graphql-api)).
+The Apollo Client is already pre-configured within the [`<ApplicationShell>`](/components/application-shell) to connect to the `/graphql` endpoint of the [Merchant Center API Gateway](/main-concepts/api-gateway). You don't need to configure it on your own, unless you need to connect to an **external** GraphQL API (see [Connecting to an external GraphQL API](#connecting-to-an-external-graphql-api)).
 
 </Info>
 
-In the example below, we query for a [Channel](https://docs.commercetools.com/http-api-projects-channels).
+In the example below, we query for a [Channel](https://docs.commercetools.com/api/projects/channels).
 First we define the GraphQL query in a `.graphql` file:
 
 ```graphql
@@ -115,7 +115,7 @@ The SDK library is already pre-configured within the [`<ApplicationShell>`](/mai
 
 ## Fetching using the built-in SDK library
 
-In the example below, we fetch a [Channel](https://docs.commercetools.com/http-api-projects-channels) from the commercetools platform HTTP API.
+In the example below, we fetch a [Channel](https://docs.commercetools.com/api/projects/channels) from the commercetools platform HTTP API.
 
 First we define the action creator:
 
