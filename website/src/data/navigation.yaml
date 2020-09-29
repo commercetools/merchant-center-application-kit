@@ -52,8 +52,6 @@
   pages:
     - title: Production Build
       path: '/deployment/production-build'
-    - title: Runtime Configuration
-      path: '/deployment/runtime-configuration'
     - title: HTTP Server
       path: '/deployment/http-server'
     - title: Compiling a Custom Application
