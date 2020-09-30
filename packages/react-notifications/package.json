@@ -64,7 +64,7 @@
     "@testing-library/react": "11.0.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-intl": "5.8.2",
+    "react-intl": "5.8.3",
     "react-redux": "7.2.1",
     "react-router-dom": "5.2.0"
   },

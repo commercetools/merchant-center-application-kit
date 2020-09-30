@@ -31,9 +31,9 @@
     "babel-jest": "26.3.0",
     "colors": "1.4.0",
     "cosmiconfig": "7.0.0",
-    "enzyme-adapter-react-16": "1.15.4",
+    "enzyme-adapter-react-16": "1.15.5",
     "enzyme-matchers": "7.1.2",
-    "enzyme-to-json": "3.5.0",
+    "enzyme-to-json": "3.6.1",
     "identity-obj-proxy": "3.0.0",
     "intl": "1.2.5",
     "jest-environment-jsdom-sixteen": "1.0.3",
@@ -46,7 +46,7 @@
     "make-plural": "6.2.2",
     "pkg-dir": "4.2.0",
     "raf": "3.4.1",
-    "ts-jest": "26.4.0",
+    "ts-jest": "26.4.1",
     "unfetch": "4.1.0"
   },
   "devDependencies": {
