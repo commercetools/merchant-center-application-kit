@@ -1,6 +1,6 @@
 {
   "name": "merchant-center-application-template-starter",
-  "version": "16.11.7",
+  "version": "16.11.8",
   "description": "A starter example for the bare minimum setup to develop a Merchant Center Application",
   "private": true,
   "scripts": {
@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "@commercetools-frontend/actions-global": "16.16.0",
-    "@commercetools-frontend/application-components": "16.17.0",
-    "@commercetools-frontend/application-shell": "16.17.1",
+    "@commercetools-frontend/application-components": "16.17.2",
+    "@commercetools-frontend/application-shell": "16.17.2",
     "@commercetools-frontend/assets": "16.15.3",
     "@commercetools-frontend/i18n": "16.17.0",
     "@commercetools-frontend/mc-http-server": "16.17.0",
@@ -36,8 +36,8 @@
     "redux": "4.0.5"
   },
   "devDependencies": {
-    "@commercetools-frontend/jest-preset-mc-app": "16.17.0",
-    "@commercetools-frontend/mc-scripts": "16.17.0",
+    "@commercetools-frontend/jest-preset-mc-app": "16.17.2",
+    "@commercetools-frontend/mc-scripts": "16.17.2",
     "@testing-library/react": "11.0.4",
     "dotenv-cli": "4.0.0",
     "enzyme": "3.11.0",
