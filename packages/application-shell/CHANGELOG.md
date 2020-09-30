@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 16.17.3
+
+### Patch Changes
+
+- [`9c957e7`](https://github.com/commercetools/merchant-center-application-kit/commit/9c957e797ef55786c8d8c678a663338be58b694a) [#1771](https://github.com/commercetools/merchant-center-application-kit/pull/1771) Thanks [@stephsprinkle](https://github.com/stephsprinkle)! - fix(navbar): timing of updating menu open local storage to eliminate navbar state change during window resize
+
 ## 16.17.2
 
 ### Patch Changes
