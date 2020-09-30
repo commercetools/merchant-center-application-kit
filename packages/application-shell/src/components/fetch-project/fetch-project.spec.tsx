@@ -1,24 +1,26 @@
+import type { TProjectGraphql } from '../../../../../test-data/project';
+
 import { graphql } from 'msw';
 import { setupServer } from 'msw/node';
 import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { UserMock } from '../../../../../graphql-test-utils';
+import * as ProjectMock from '../../../../../test-data/project';
 import {
   experimentalRenderAppWithRedux,
   screen,
   waitForElementToBeRemoved,
 } from '../../test-utils';
-import FetchUser from './fetch-user';
+import FetchProject from './fetch-project';
 
 jest.mock('@commercetools-frontend/sentry');
 
 const mockServer = setupServer(
-  graphql.query('FetchLoggedInUser', (req, res, ctx) =>
+  graphql.query('FetchProject', (_req, res, ctx) =>
     res.once(
       ctx.data({
-        user: UserMock.build({
-          firstName: 'John',
-        }),
+        project: ProjectMock.random()
+          .name('Test 1')
+          .buildGraphql<TProjectGraphql>(),
       })
     )
   )
@@ -29,39 +31,38 @@ afterEach(() => {
 beforeAll(() => mockServer.listen());
 afterAll(() => mockServer.close());
 
-const renderUser = (options) =>
+const renderProject = () =>
   experimentalRenderAppWithRedux(
-    <FetchUser>
-      {({ isLoading, error, user }) => {
+    <FetchProject projectKey="test-1">
+      {({ isLoading, error, project }) => {
         if (isLoading) return <div>{'loading...'}</div>;
         if (error) return <div>{`Error: ${error.message}`}</div>;
-        if (user) return <div>{`User: ${user.firstName}`}</div>;
+        if (project) return <div>{`Project: ${project.name}`}</div>;
         return null;
       }}
-    </FetchUser>,
-    options
+    </FetchProject>
   );
 
 describe('rendering', () => {
-  describe('when fetching user succeeds', () => {
-    it('should fetch user and pass data to children function', async () => {
-      renderUser();
+  describe('when fetching project succeeds', () => {
+    it('should fetch project and pass data to children function', async () => {
+      renderProject();
 
       await waitForElementToBeRemoved(() => screen.getByText('loading...'));
 
-      expect(screen.getByText(/John/i)).toBeInTheDocument();
+      expect(screen.getByText(/Test 1/i)).toBeInTheDocument();
     });
   });
 
-  describe('when fetching user fails with a graphql error', () => {
+  describe('when fetching project fails with a graphql error', () => {
     it('should render error state', async () => {
       mockServer.use(
-        graphql.query('FetchLoggedInUser', (req, res, ctx) =>
+        graphql.query('FetchProject', (_req, res, ctx) =>
           res(ctx.errors([{ message: 'Something went wrong' }]))
         )
       );
 
-      renderUser();
+      renderProject();
 
       await waitForElementToBeRemoved(() => screen.getByText('loading...'));
 
@@ -72,15 +73,13 @@ describe('rendering', () => {
     });
   });
 
-  describe('when fetching user fails with a network error', () => {
+  describe('when fetching project fails with a network error', () => {
     it('should render error state', async () => {
       mockServer.use(
-        graphql.query('FetchLoggedInUser', (req, res, ctx) =>
-          res(ctx.status(401), ctx.json({ message: 'Invalid token' }))
-        )
+        graphql.query('FetchProject', (_req, res, ctx) => res(ctx.status(401)))
       );
 
-      renderUser();
+      renderProject();
 
       await waitForElementToBeRemoved(() => screen.getByText('loading...'));
 
