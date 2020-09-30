@@ -221,15 +221,12 @@ const useNavbarStateManager = (props: HookProps) => {
       dispatch({ type: 'unsetActiveItemIndex' });
     }
     dispatch({ type: 'toggleIsMenuOpen' });
-  }, [state.activeItemIndex, state.isMenuOpen]);
-
-  // Synchronize the menu state with local storage.
-  React.useEffect(() => {
+    // Synchronize the menu state with local storage.
     window.localStorage.setItem(
       STORAGE_KEYS.IS_FORCED_MENU_OPEN,
-      String(state.isMenuOpen)
+      String(!state.isMenuOpen)
     );
-  }, [state.isMenuOpen]);
+  }, [state.activeItemIndex, state.isMenuOpen]);
 
   const allApplicationNavbarMenu = (applicationsNavBarMenu || []).concat(
     customAppsMenu
