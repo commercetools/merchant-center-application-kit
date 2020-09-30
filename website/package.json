@@ -5,8 +5,10 @@
   "scripts": {
     "build": "gatsby build --prefix-paths",
     "prebuild": "./scripts/prebuild.sh",
-    "postbuild": "./scripts/postbuild.sh",
-    "start": "gatsby develop"
+    "postbuild": "./scripts/postbuild.sh && yarn check-links",
+    "start": "gatsby develop",
+    "precheck-links": "cp -f linkchecker.index.html ./public/index.html",
+    "check-links": "yarn linkinator ./public"
   },
   "dependencies": {
     "@commercetools-docs/gatsby-theme-docs": "8.0.1",
@@ -21,5 +23,8 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-intl": "5.8.2"
+  },
+  "devDependencies": {
+    "linkinator": "2.1.2"
   }
 }
