@@ -1,5 +1,11 @@
 # @commercetools-website/custom-applications
 
+## 16.10.5
+
+### Patch Changes
+
+- [`f5be51f`](https://github.com/commercetools/merchant-center-application-kit/commit/f5be51fd5ed9085648b3f0ef0b2ae355151d333b) [#1751](https://github.com/commercetools/merchant-center-application-kit/pull/1751) Thanks [@adnasa](https://github.com/adnasa)! - add `compile-html` documentation
+
 ## 16.10.4
 
 ### Patch Changes
