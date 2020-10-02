@@ -75,7 +75,8 @@ const processHeaders = (applicationConfig) => {
         'clientstream.launchdarkly.com',
         'events.launchdarkly.com',
         'app.getsentry.com',
-        'sentry.io',
+        // Match all attempts to load from any subdomain of `sentry.io`
+        '*.sentry.io',
         'www.google-analytics.com',
       ].concat(
         isMcDevEnv ? ['ws:', 'localhost:8080', 'webpack-internal:'] : []
