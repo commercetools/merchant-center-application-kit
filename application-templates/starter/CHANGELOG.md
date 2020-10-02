@@ -1,5 +1,14 @@
 # merchant-center-application-template-starter
 
+## 16.11.10
+
+### Patch Changes
+
+- [`08f79ff`](https://github.com/commercetools/merchant-center-application-kit/commit/08f79ffbd8c1be30c18dabda62d73a0756661a71) [#1772](https://github.com/commercetools/merchant-center-application-kit/pull/1772) Thanks [@adnasa](https://github.com/adnasa)! - remove use of `enzyme`
+
+- Updated dependencies []:
+  - @commercetools-frontend/mc-http-server@16.17.4
+
 ## 16.11.9
 
 ### Patch Changes
