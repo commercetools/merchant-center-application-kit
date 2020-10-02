@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-html-template
 
+## 16.17.4
+
+### Patch Changes
+
+- [`57be02b`](https://github.com/commercetools/merchant-center-application-kit/commit/57be02b331ad44c72678eebbb65c64c73f031e18) [#1775](https://github.com/commercetools/merchant-center-application-kit/pull/1775) Thanks [@emmenko](https://github.com/emmenko)! - Fix default CSP `connect-src` directive to match all attempts to load from any subdomain of `sentry.io`
+
 ## 16.17.0
 
 ### Patch Changes
