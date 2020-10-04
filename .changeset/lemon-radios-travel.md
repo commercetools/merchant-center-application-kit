@@ -7,4 +7,4 @@
 
 Migrate Apollo dependencies to `@apollo/client` package.
 
-See full release notes: https://docs.commercetools.com/custom-applications/releases/2020-08-25-migrating-to-the-new-apollo-client-3.0
+See full release notes: https://docs.commercetools.com/custom-applications/releases/2020-10-12-migrating-to-the-new-apollo-client-30
