@@ -3,7 +3,7 @@
  */
 export { default as ApplicationShell } from './components/application-shell';
 export { default as ApplicationShellProvider } from './components/application-shell-provider';
-export { default as apolloClient } from './configure-apollo';
+export { default as createApolloClient } from './configure-apollo';
 export { applyDefaultMiddlewares } from './configure-store';
 export { default as InjectReducers } from './components/inject-reducers';
 export { default as RouteCatchAll } from './components/route-catch-all';

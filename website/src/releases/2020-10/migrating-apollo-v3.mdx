@@ -1,5 +1,5 @@
 ---
-date: 2020-09-25
+date: 2020-10-12
 title: Migrating to the new Apollo Client 3.0
 description: |
   With the new release of Apollo Client 3.0, certain breaking changes have been introduced which require some migration steps.\
@@ -12,7 +12,7 @@ topics:
 published: false
 ---
 
-With the new release of Apollo Client `3.0`, there have been introduced certain breaking changes which require some migration steps. See official migration guide https://www.apollographql.com/docs/react/migrating/apollo-client-3-migration/.
+With the new release of Apollo Client `3.0`, there are some important breaking changes which require some migration steps. See official migration guide https://www.apollographql.com/docs/react/migrating/apollo-client-3-migration/.
 
 As a consequence, the Application Kit packages have also been released as a new major version `v17`.
 
@@ -32,11 +32,29 @@ This is all you need to do to migrate to the latest version of Apollo, including
 
 With Apollo version `3.0`, the cache got some improvements as well, resulting in some breaking changes. Please make sure to [read this document](https://www.apollographql.com/docs/react/migrating/apollo-client-3-migration/#cache-improvements) to understand the changes.
 
-For Custom Applications this also might require some migration steps, depending on how you've been using the queries and cache in your application.
+Depending on the GraphQL queries and mutations used by your Custom Application, it might be that the caching behavior of those queries needs to be adjusted. If that is the case, you need to create your own Apollo client instance with the correct Apollo cache configuration, and pass it to the `<ApplicationShell>` component.
 
-The `@commercetools-frontend/application-shell` now exposes an option to allow users to configure the Apollo cache behavior according to the needs of their application.
+The `@commercetools-frontend/application-shell` package exposes a `createApolloClient` function to create a new Apollo client with some important defaults (for example Apollo links, some pre-configured cache policies).
 
-> FIXME: this is not implemented yet!!!
+```jsx
+import { createApolloClient, ApplicationShell } from '@commercetools-frontend/application-shell';
+
+const apolloClient = createApolloClient({
+  cache: {
+    // Your custom configuration, according to the Apollo cache documentation.
+    // https://www.apollographql.com/docs/react/caching/cache-configuration/
+  },
+});
+
+const Application = () => {
+  return (
+    <ApplicationShell
+      apolloClient={apolloClient}
+      // ...other props
+    />
+  );
+};
+```
 
 ## Changes about Apollo query variables and context
 

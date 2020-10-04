@@ -1,3 +1,7 @@
+import type {
+  NormalizedCacheObject,
+  InMemoryCacheConfig,
+} from '@apollo/client';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
 import {
@@ -19,6 +23,10 @@ import { isLoggerEnabled } from './utils/logger';
 import version from './version';
 
 declare let window: ApplicationWindow;
+
+type TApolloClientOptions = {
+  cache?: InMemoryCacheConfig;
+};
 
 const userAgent = createHttpUserAgent({
   name: 'apollo-client',
@@ -51,11 +59,15 @@ const link = from([
   httpLink,
 ]);
 
-export const createApolloClient = () =>
-  new ApolloClient({
+const createApolloClient = (
+  options: TApolloClientOptions = {}
+): ApolloClient<NormalizedCacheObject> => {
+  const customCacheConfig = options?.cache ?? {};
+  return new ApolloClient({
     link,
     // https://www.apollographql.com/docs/react/caching/cache-configuration/
     cache: new InMemoryCache({
+      ...customCacheConfig,
       // https://www.apollographql.com/docs/react/caching/cache-configuration/#generating-unique-identifiers
       typePolicies: {
         // CTP types with `key` as identifier
@@ -73,8 +85,10 @@ export const createApolloClient = () =>
         NavbarMenu: {
           keyFields: ['key'],
         },
+        ...(customCacheConfig.typePolicies ?? {}),
       },
     }),
   });
+};
 
-export default createApolloClient();
+export default createApolloClient;

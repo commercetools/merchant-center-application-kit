@@ -66,7 +66,7 @@ const headerLink = new ApolloLink((operation, forward) => {
     selectProjectKeyFromUrl();
   const teamId =
     apolloContext.teamId || variables.teamId || selectTeamIdFromLocalStorage();
-  const userId = selectUserId({ apolloCache: apolloContext.cache });
+  const userId = selectUserId();
   const featureFlag = apolloContext.featureFlag || variables.featureFlag;
 
   operation.setContext({

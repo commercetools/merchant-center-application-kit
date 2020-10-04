@@ -9,7 +9,7 @@ const skipMalformedPart = (part?: string | null) =>
 
 export default function getCorrelationId({
   userId,
-}: { userId?: string | null } = {}) {
+}: { userId?: string | null } = {}): string {
   return ['mc', selectProjectKeyFromUrl(), userId, uuid()]
     .filter(skipMalformedPart)
     .join('/');

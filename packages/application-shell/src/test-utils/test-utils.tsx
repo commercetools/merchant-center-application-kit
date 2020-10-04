@@ -25,7 +25,7 @@ import {
 import { DOMAINS } from '@commercetools-frontend/constants';
 import { createTestMiddleware as createSdkTestMiddleware } from '@commercetools-frontend/sdk/test-utils';
 import { createReduxStore } from '../configure-store';
-import { createApolloClient } from '../configure-apollo';
+import createApolloClient from '../configure-apollo';
 
 // Reset memoryAdapter after each test, so that the next test accepts the
 // defaultFlags param.
@@ -558,9 +558,9 @@ function experimentalRenderAppWithRedux<
   AdditionalEnvironmentProperties,
   StoreState
 > {
-  const client = createApolloClient();
+  const apolloClient = createApolloClient();
   const RealApolloProvider = ({ children }: { children: React.ReactNode }) => (
-    <ApolloProvider client={client}>{children}</ApolloProvider>
+    <ApolloProvider client={apolloClient}>{children}</ApolloProvider>
   );
   RealApolloProvider.displayName = 'RealApolloProvider';
   RealApolloProvider.propTypes = {

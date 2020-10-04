@@ -1,6 +1,7 @@
 import type { SyntheticEvent } from 'react';
 import type { Dispatch } from 'redux';
 import type { TFlags } from '@flopflip/types';
+import type { NormalizedCacheObject } from '@apollo/client';
 import type { ApolloError } from '@apollo/client/errors';
 import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
@@ -9,6 +10,7 @@ import type { TrackingList } from '../../utils/gtm';
 
 import React from 'react';
 import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
+import { ApolloClient } from '@apollo/client';
 import { Global, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import {
@@ -52,6 +54,7 @@ import QuickAccess from '../quick-access';
 import RedirectToLogout from './redirect-to-logout';
 
 type Props<AdditionalEnvironmentProperties extends {}> = {
+  apolloClient?: ApolloClient<NormalizedCacheObject>;
   /**
    * NOTE: the environment value passed here is usually `window.app`.
    * This object usually contains values as string and will be "transformed"
@@ -516,6 +519,7 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
         `}
       />
       <ApplicationShellProvider<AdditionalEnvironmentProperties>
+        apolloClient={props.apolloClient}
         environment={props.environment}
         trackingEventList={props.trackingEventList}
         applicationMessages={props.applicationMessages}
