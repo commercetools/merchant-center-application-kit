@@ -111,8 +111,8 @@
     "redux-logger": "3.0.6",
     "redux-thunk": "2.3.0",
     "tiny-invariant": "1.1.0",
-    "unfetch": "4.1.0",
-    "uuid": "8.3.0"
+    "unfetch": "4.2.0",
+    "uuid": "8.3.1"
   },
   "devDependencies": {
     "@testing-library/react": "11.0.4",
@@ -120,7 +120,7 @@
     "react": "16.13.1",
     "react-apollo": "3.1.5",
     "react-dom": "16.13.1",
-    "react-intl": "5.8.3",
+    "react-intl": "5.8.4",
     "react-redux": "7.2.1",
     "react-router-dom": "5.2.0",
     "redux": "4.0.5",
