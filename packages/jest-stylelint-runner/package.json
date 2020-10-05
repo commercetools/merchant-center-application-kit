@@ -39,6 +39,6 @@
     "postcss-import": "12.0.1"
   },
   "dependencies": {
-    "postcss-load-config": "2.1.2"
+    "postcss-load-config": "3.0.0"
   }
 }
