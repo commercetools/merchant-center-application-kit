@@ -74,9 +74,6 @@ type Props<AdditionalEnvironmentProperties extends {}> = {
   >['environment'];
   featureFlags?: TFlags;
   defaultFeatureFlags?: TFlags;
-  // This is deprecated, to avoid usage of oppressive language!
-  // Use `trackingEventList` instead.
-  trackingEventWhitelist?: TrackingList;
   trackingEventList?: TrackingList;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   onRegisterErrorListeners: (args: { dispatch: Dispatch }) => void;
@@ -520,9 +517,7 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
       />
       <ApplicationShellProvider<AdditionalEnvironmentProperties>
         environment={props.environment}
-        trackingEventList={
-          props.trackingEventList || props.trackingEventWhitelist
-        }
+        trackingEventList={props.trackingEventList}
         applicationMessages={props.applicationMessages}
       >
         {({ isAuthenticated }) => {
