@@ -18,10 +18,6 @@ export { default as GtmUserLogoutTracker } from './components/gtm-user-logout-tr
 export { default as SetupFlopFlipProvider } from './components/setup-flop-flip-provider';
 export { default as version } from './version';
 
-// Deprecated
-export { default as AsyncChunkLoader } from './components/async-chunk-loader';
-export { default as handleApolloErrors } from './components/handle-apollo-errors';
-
 /**
  * NOTE:
  *    These are library re-exports which are shared between app-kit and
