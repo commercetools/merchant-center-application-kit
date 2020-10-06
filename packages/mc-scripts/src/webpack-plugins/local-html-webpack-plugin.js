@@ -1,17 +1,11 @@
 /* eslint-disable class-methods-use-this,no-param-reassign */
-const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { processConfig } = require('@commercetools-frontend/application-config');
 const {
   replaceHtmlPlaceholders,
 } = require('@commercetools-frontend/mc-html-template');
 
-const sourcePath = process.cwd();
-const applicationConfig = processConfig({
-  deprecatedOptions: {
-    envPath: path.join(sourcePath, 'env.json'),
-  },
-});
+const applicationConfig = processConfig();
 const enhancedLocalEnv = Object.assign(
   {},
   applicationConfig.env,
