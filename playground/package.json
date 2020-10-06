@@ -9,7 +9,7 @@
     "compile-html": "NODE_ENV=production dotenv -- mc-scripts compile-html",
     "compile-html:gcp-eu": "dotenv -e vercel-deployments/state-machines-gcp-eu/.env -- mc-scripts compile-html --transformer $(pwd)/vercel-deployments/transformer-vercel.js",
     "compile-html:gcp-us": "dotenv -e vercel-deployments/state-machines-gcp-us/.env -- mc-scripts compile-html --transformer $(pwd)/vercel-deployments/transformer-vercel.js",
-    "start:prod:local": "NODE_ENV=production MC_APP_ENV=development dotenv -- mc-scripts compile-html && NODE_ENV=production serve public",
+    "start:prod:local": "NODE_ENV=production MC_APP_ENV=development dotenv -- mc-scripts compile-html && NODE_ENV=production npx serve -l 3001 public",
     "i18n:build": "mc-scripts extract-intl --output-path=$(pwd)/src/i18n/data 'src/**/!(*.spec).js' --build-translations"
   },
   "dependencies": {

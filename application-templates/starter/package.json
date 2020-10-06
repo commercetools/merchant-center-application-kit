@@ -7,7 +7,7 @@
     "build": "mc-scripts build",
     "start": "dotenv -- mc-scripts start",
     "compile-html": "NODE_ENV=production dotenv -- mc-scripts compile-html",
-    "start:prod:local": "NODE_ENV=production MC_APP_ENV=development dotenv -- mc-scripts compile-html && NODE_ENV=production npx serve public",
+    "start:prod:local": "NODE_ENV=production MC_APP_ENV=development dotenv -- mc-scripts compile-html && NODE_ENV=production npx serve -l 3001 public",
     "i18n:build": "mc-scripts extract-intl --output-path=$(pwd)/src/i18n/data 'src/**/!(*.spec).js' --build-translations",
     "test": "jest --config jest.test.config.js",
     "test:watch": "jest --config jest.test.config.js --watch",
