@@ -1,18 +1,9 @@
-const path = require('path');
 const { processConfig } = require('@commercetools-frontend/application-config');
 const { processHeaders } = require('@commercetools-frontend/mc-html-template');
 const devAuthentication = require('@commercetools-frontend/mc-dev-authentication');
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 
-const sourcePath = process.cwd();
-const applicationConfig = processConfig({
-  // TODO: Remove in `v17`
-  deprecatedOptions: {
-    envPath: path.join(sourcePath, 'env.json'),
-    headersPath: path.join(sourcePath, 'headers.json'),
-    cspPath: path.join(sourcePath, 'csp.json'),
-  },
-});
+const applicationConfig = processConfig();
 const compiledHeaders = processHeaders(applicationConfig);
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';

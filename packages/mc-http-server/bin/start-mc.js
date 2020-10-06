@@ -39,9 +39,6 @@ const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
 const paths = {
-  envPath: flags.config,
-  cspPath: flags.csp,
-  headersPath: flags.headers,
   publicAssetsPath: path.join(__dirname, '../public'),
   // NOTE: previously, for running the prod server locally, we were copying
   // assets into public/assets and compiling the index.html into public folder.
@@ -86,9 +83,6 @@ if (useLocalAssets) {
 
 const start = async () => {
   const compiled = await compileHtml({
-    envPath: paths.envPath,
-    cspPath: paths.cspPath,
-    headersPath: paths.headersPath,
     publicAssetsPath: paths.publicAssetsPath,
     useLocalAssets,
   });

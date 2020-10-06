@@ -31,11 +31,6 @@ if (flags.help) {
   Options:
   --use-local-assets        (optional) If this option is enabled, the index.html.template will be taken from the local "dist/assets" folder, otherwise it will be downloaded from the remove URL provided in "cdnUrl" in the "env.json" file (requires "mc-scripts build" to run before) [default "false"]
   --transformer=<path>      (optional) The path to a JS module that can be used to generate a configuration for a specific cloud provider (e.g. Netlify, Vercel, Firebase).
-
-  Deprecated options:
-  --config=<path>           (optional) Deprecated: The path to the environment config (defined as a JSON file, e.g. "env.json").
-  --headers=<path>          (optional) Deprecated: The path to the headers containing CSP and feature policy configs (defined as a JSON file, e.g. "headers.json").
-  --csp=<path>              (optional) Deprecated: The path to the custom CSP directives config (defined as a JSON file, e.g. "csp.json").
   `);
   process.exit(0);
 }
@@ -46,10 +41,7 @@ const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
 const paths = {
-  envPath: flags.config,
   featurePoliciesPath: flags.featurePolicies,
-  cspPath: flags.csp,
-  headersPath: flags.headers,
   publicAssetsPath: resolveApp('public'),
   // NOTE: previously, for running the prod server locally, we were copying
   // assets into public/assets and compiling the index.html into public folder.
@@ -94,9 +86,6 @@ if (useLocalAssets) {
 
 const generateStatic = async () => {
   const compiled = await compileHtml({
-    envPath: paths.envPath,
-    cspPath: paths.cspPath,
-    headersPath: paths.headersPath,
     publicAssetsPath: paths.publicAssetsPath,
     useLocalAssets,
   });
