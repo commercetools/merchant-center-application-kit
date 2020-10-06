@@ -1,12 +1,10 @@
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 import type { ApplicationConfig, CloudIdentifier } from './types';
-import type { DeprecatedOptions } from './load-deprecated-config';
 
 // Loads the configuration file and parse the environment and header values.
 // Most of the resulting values are inferred from the config.
 import omitEmpty from 'omit-empty-es';
 import loadConfig from './load-config';
-import loadDeprecatedConfig from './load-deprecated-config';
 import validateConfig from './validate-config';
 import {
   mapCloudIdentifierToApiUrl,
@@ -17,8 +15,6 @@ import {
 import substituteEnvVariablePlaceholders from './substitute-env-variable-placeholders';
 
 type ProcessConfigOptions = {
-  // Options for backwards compatibility
-  deprecatedOptions?: DeprecatedOptions;
   // Options useful for testing
   disableCache?: boolean;
   processEnv?: NodeJS.ProcessEnv;
@@ -33,7 +29,6 @@ const developmentConfig: JSONSchemaForCustomApplicationConfigurationFiles['env']
 let cachedConfig: ApplicationConfig;
 
 const processConfig = ({
-  deprecatedOptions,
   disableCache = false,
   processEnv = process.env,
 }: ProcessConfigOptions = {}): ApplicationConfig => {
@@ -43,21 +38,7 @@ const processConfig = ({
     processEnv.MC_APP_ENV ?? processEnv.NODE_ENV ?? 'development';
   const isProd = getIsProd(processEnv);
 
-  // Read first the new config file. If none is found, attempt to load
-  // the config from the `env.json` and `headers.json` files.
   const loadedAppConfig = loadConfig();
-  if (!loadedAppConfig && deprecatedOptions) {
-    console.warn(
-      `No custom application config found, attempting to load the config from env.json and headers.json.`
-    );
-    const loadedDeprecatedAppConfig = loadDeprecatedConfig(deprecatedOptions);
-    if (!loadedDeprecatedAppConfig) {
-      throw new Error(`No configuration for the Custom Application found.`);
-    }
-    // Return the legacy config as-is, no need to transform it.
-    return loadedDeprecatedAppConfig;
-  }
-
   validateConfig(loadedAppConfig);
   const validatedLoadedAppConfig = loadedAppConfig as JSONSchemaForCustomApplicationConfigurationFiles;
 
