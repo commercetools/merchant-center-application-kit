@@ -44,7 +44,7 @@ export const createFetchProjectExtensionImageRegexMock = (
 ) => ({
   request: {
     query: FetchProjectExtensionImageRegex,
-    variables: {
+    context: {
       target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
     },
   },

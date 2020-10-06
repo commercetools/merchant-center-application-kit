@@ -1,0 +1,103 @@
+---
+date: 2020-10-12
+title: Migrating to the new Apollo Client 3.0
+description: |
+  With the new release of Apollo Client 3.0, certain breaking changes have been introduced which require some migration steps.\
+  As a consequence, the Application Kit packages have also been released as a new major version v17.\
+  In this release note we go through the important migration steps.
+type: feature
+topics:
+  - Breaking Changes
+  - Dependencies
+---
+
+With the new release of Apollo Client `3.0`, there are some important breaking changes which require some migration steps. See official migration guide https://www.apollographql.com/docs/react/migrating/apollo-client-3-migration/.
+
+As a consequence, the Application Kit packages have also been released as a new major version `v17`.
+
+Follow the steps below to migrate your Custom Application to the new versions.
+
+<!--more-->
+
+## Migrating Apollo imports
+
+Apollo ships now with a single package `@apollo/client` instead of multiple ones.
+
+For Custom Applications this means that the peer dependencies `apollo-client` and `react-apollo` are now replaced with the new peer dependency of `@apollo/client`.
+
+This is all you need to do to migrate to the latest version of Apollo, including of course [updating the Apollo imports](https://www.apollographql.com/docs/react/migrating/apollo-client-3-migration/#updating-imports).
+
+## About the new Apollo Cache
+
+With Apollo version `3.0`, the cache got some improvements as well, resulting in some breaking changes. Please make sure to [read this document](https://www.apollographql.com/docs/react/migrating/apollo-client-3-migration/#cache-improvements) to understand the changes.
+
+Depending on the GraphQL queries and mutations used by your Custom Application, it might be that the caching behavior of those queries needs to be adjusted. If that is the case, you need to create your own Apollo client instance with the correct Apollo cache configuration, and pass it to the `<ApplicationShell>` component.
+
+The `@commercetools-frontend/application-shell` package exposes a `createApolloClient` function to create a new Apollo client with some important defaults (for example Apollo links, some pre-configured cache policies).
+
+```jsx
+import { createApolloClient, ApplicationShell } from '@commercetools-frontend/application-shell';
+
+const apolloClient = createApolloClient({
+  cache: {
+    // Your custom configuration, according to the Apollo cache documentation.
+    // https://www.apollographql.com/docs/react/caching/cache-configuration/
+  },
+});
+
+const Application = () => {
+  return (
+    <ApplicationShell
+      apolloClient={apolloClient}
+      // ...other props
+    />
+  );
+};
+```
+
+## Changes about Apollo query variables and context
+
+Previously, to perform GraphQL requests to the Merchant Center API Gateway, you would need to specify request metadata options such as the [GraphQL Target](https://docs.commercetools.com/custom-applications/main-concepts/graphql#request-format).
+
+These values had to be specified in the query `variables` object, which the built-in Merchant Center Apollo HTTP Link would parse and assign it to the request as HTTP headers. We call these options **request context**.
+
+However, with a more stable support for the `context` option in Apollo Client, we can pass the request metadata options to the `context` object instead of the `variables` object.
+
+```diff
+const { loading, data, error } = useQuery(MyQuery, {
+- variables: {
++ context: {
+    target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+  },
+});
+```
+
+The **request context** options include:
+
+- `target`
+- `projectKey`
+
+> Passing the request metadata to the `variables` object still works for backwards compatibility but it is recommended to use the `context` object instead.
+
+## Enforcing a valid context object
+
+The recommended and preferred way of passing request context is to use the `context` object.
+To improve the TypeScript support and auto-completion for the **request context** options, the `@commercetools-frontend/application-shell` package now exports new React hooks. Note that autocompletion is possible, even if you are not using TypeScript.
+
+- `useMcQuery`
+- `useMcLazyQuery`
+- `useMcMutation`
+
+These hooks are thin wrappers around the original Apollo hooks and have the same API, with a minor difference. Namely, the `context` object is properly typed to conform with the Merchant Center **request context** instead of `any`.
+
+```diff
+-import { useQuery } from '@apollo/client/react';
++import { useMcQuery } from '@commercetools-frontend/application-shell';
+
+-const { loading, data, error } = useQuery(MyQuery, {
++const { loading, data, error } = useMcQuery(MyQuery, {
+  context: {
+    target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+  },
+});
+```

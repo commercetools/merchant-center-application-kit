@@ -13,8 +13,10 @@ projects:
               - introspection
           '@types-extensions/graphql-mc.d.ts':
             plugins:
-              - add: /* THIS IS A GENERATED FILE */
-              - add: /* eslint-disable import/no-duplicates */
+              - add:
+                  content: /* THIS IS A GENERATED FILE */
+              - add:
+                  content: /* eslint-disable import/no-duplicates */
               - typescript-graphql-files-modules
           packages/application-shell-connectors/src/types/generated/mc.ts:
             config:
@@ -55,8 +57,10 @@ projects:
             schema: schemas/ctp.json
             documents: packages/**/src/**/*.ctp.graphql
             plugins:
-              - add: '/* THIS IS A GENERATED FILE */'
-              - add: '/* eslint-disable import/no-duplicates */'
+              - add:
+                  content: '/* THIS IS A GENERATED FILE */'
+              - add:
+                  content: '/* eslint-disable import/no-duplicates */'
               - typescript-graphql-files-modules
           packages/application-shell/src/types/generated/ctp.ts:
             schema: schemas/ctp.json
@@ -104,8 +108,10 @@ projects:
             schema: schemas/settings.json
             documents: packages/**/src/**/*.settings.graphql
             plugins:
-              - add: '/* THIS IS A GENERATED FILE */'
-              - add: '/* eslint-disable import/no-duplicates */'
+              - add:
+                  content: '/* THIS IS A GENERATED FILE */'
+              - add:
+                  content: '/* eslint-disable import/no-duplicates */'
               - typescript-graphql-files-modules
           packages/application-shell/src/types/generated/settings.ts:
             schema: schemas/settings.json
@@ -148,8 +154,10 @@ projects:
             schema: schemas/proxy.json
             documents: packages/**/src/**/*.proxy.graphql
             plugins:
-              - add: '/* THIS IS A GENERATED FILE */'
-              - add: '/* eslint-disable import/no-duplicates */'
+              - add:
+                  content: '/* THIS IS A GENERATED FILE */'
+              - add:
+                  content: '/* eslint-disable import/no-duplicates */'
               - typescript-graphql-files-modules
           packages/application-shell/src/types/generated/proxy.ts:
             schema: schemas/proxy.json

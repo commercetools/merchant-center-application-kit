@@ -75,7 +75,7 @@ describe('rendering', () => {
     it('should render error state', async () => {
       mockServer.use(
         graphql.query('FetchLoggedInUser', (_req, res, ctx) =>
-          res(ctx.status(401), ctx.data({ message: 'Invalid token' }))
+          res(ctx.status(401), ctx.data({ message: 'Unauthorized' }))
         )
       );
 
@@ -83,7 +83,9 @@ describe('rendering', () => {
 
       await waitForElementToBeRemoved(() => screen.getByText('loading...'));
 
-      expect(screen.getByText(/Error: Network error(.*)/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/Error: Response not successful(.*)/i)
+      ).toBeInTheDocument();
       expect(reportErrorToSentry).toHaveBeenCalled();
     });
   });

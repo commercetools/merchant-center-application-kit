@@ -4,8 +4,8 @@ import type {
 } from '../../types/generated/mc';
 
 import React from 'react';
-import { useQuery } from 'react-apollo';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import { useMcQuery } from '../../hooks/apollo-hooks';
 import { STORAGE_KEYS } from '../../constants';
 import AmILoggedInQuery from './authenticated.mc.graphql';
 
@@ -20,14 +20,12 @@ const AmILoggedIn = (props: Props) => {
   // a valid access token. If we get an error, we assume that the user is not
   // authenticated. If we don't get any error, the access token sent with the cookie
   // is valid. We return null while the query is loading.
-  const { data, loading, error } = useQuery<
+  const { data, loading, error } = useMcQuery<
     TAmILoggedInQuery,
     TAmILoggedInQueryVariables
   >(AmILoggedInQuery, {
-    variables: {
-      target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
-    },
     context: {
+      target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
       skipTokenRetry: true,
     },
     // NOTE: With `no-cache` the `useQuery` will not trigger a

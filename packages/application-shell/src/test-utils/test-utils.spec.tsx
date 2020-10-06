@@ -6,17 +6,15 @@
 // tools here instead of actual components.
 import React from 'react';
 import PropTypes from 'prop-types';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloClient } from 'apollo-client';
-import { HttpLink } from 'apollo-link-http';
+import { InMemoryCache, ApolloClient, HttpLink, gql } from '@apollo/client';
 import { useIntl } from 'react-intl';
-import { Query } from 'react-apollo';
 import { useSelector } from 'react-redux';
-import gql from 'graphql-tag';
+import { Switch, Route } from 'react-router-dom';
 import { useFeatureToggle } from '@flopflip/react-broadcast';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
-import { Switch, Route } from 'react-router-dom';
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import { useMcQuery } from '../hooks/apollo-hooks';
 import {
   renderApp,
   renderAppWithRedux,
@@ -49,25 +47,20 @@ describe('ApolloMockProvider', () => {
       }
     }
   `;
-  const TestComponent = () => (
-    <Query<{ foo?: { name: string } }>
-      query={SomeQuery}
-      variables={{ target: 'ctp' }}
-    >
-      {(payload) => {
-        if (!payload || !payload.data || !payload.data.foo)
-          return <>{'loading'}</>;
-        return <>{payload.data.foo.name}</>;
-      }}
-    </Query>
-  );
+  const TestComponent = () => {
+    const { data } = useMcQuery<{ foo?: { name: string } }>(SomeQuery, {
+      context: { target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM },
+    });
+    if (!data || !data.foo) return <>{'loading'}</>;
+    return <>{data.foo.name}</>;
+  };
   it('should be possible to fake GraphQL requests', async () => {
     const rendered = renderApp(<TestComponent />, {
       mocks: [
         {
           request: {
             query: SomeQuery,
-            variables: { target: 'ctp' },
+            context: { target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM },
           },
           result: { data: { foo: { name: 'Snoop Dogg' } } },
         },

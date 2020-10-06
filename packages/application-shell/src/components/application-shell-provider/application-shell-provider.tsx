@@ -1,3 +1,4 @@
+import type { NormalizedCacheObject } from '@apollo/client';
 import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import type { TrackingList } from '../../utils/gtm';
@@ -6,13 +7,15 @@ import './global-style-imports';
 import '../../track-performance';
 import React from 'react';
 import { Router } from 'react-router-dom';
-import { ApolloProvider } from 'react-apollo';
+import { ApolloClient } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client/react';
 import { Provider as ReduxProvider } from 'react-redux';
 import history from '@commercetools-frontend/browser-history';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
+import { setCachedApolloClient } from '../../utils/apollo-client-runtime-cache';
+import createApolloClient from '../../configure-apollo';
 import internalReduxStore from '../../configure-store';
-import apolloClient from '../../configure-apollo';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import Authenticated from '../authenticated';
 import GtmBooter from '../gtm-booter';
@@ -22,6 +25,7 @@ import { getBrowserLocale } from './utils';
 import useCoercedEnvironmentValues from './use-coerced-environment-values';
 
 type Props<AdditionalEnvironmentProperties extends {}> = {
+  apolloClient?: ApolloClient<NormalizedCacheObject>;
   environment: TApplicationContext<
     AdditionalEnvironmentProperties
   >['environment'];
@@ -33,6 +37,13 @@ type Props<AdditionalEnvironmentProperties extends {}> = {
 const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
   props: Props<AdditionalEnvironmentProperties>
 ) => {
+  const apolloClient = React.useMemo(
+    () => props.apolloClient ?? createApolloClient(),
+    [props.apolloClient]
+  );
+  React.useEffect(() => {
+    setCachedApolloClient(apolloClient);
+  }, [apolloClient]);
   const coercedEnvironmentValues = useCoercedEnvironmentValues<
     AdditionalEnvironmentProperties
   >(props.environment);
@@ -42,7 +53,7 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
         environment={coercedEnvironmentValues}
       >
         <ReduxProvider store={internalReduxStore}>
-          <ApolloProvider client={ApplicationShellProvider.apolloClient}>
+          <ApolloProvider client={apolloClient}>
             <React.Suspense fallback={<ApplicationLoader />}>
               <Router history={ApplicationShellProvider.history}>
                 <GtmBooter trackingEventList={props.trackingEventList || {}}>
@@ -82,6 +93,5 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
 ApplicationShellProvider.displayName = 'ApplicationShellProvider';
 // This is useful to inject a custom history object during tests
 ApplicationShellProvider.history = history;
-ApplicationShellProvider.apolloClient = apolloClient;
 
 export default ApplicationShellProvider;
