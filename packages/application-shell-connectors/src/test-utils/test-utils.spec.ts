@@ -29,7 +29,7 @@ describe('createFetchProjectExtensionImageRegexMock', () => {
     expect(mock).toEqual(
       expect.objectContaining({
         request: expect.objectContaining({
-          variables: expect.objectContaining({
+          context: expect.objectContaining({
             target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
           }),
         }),

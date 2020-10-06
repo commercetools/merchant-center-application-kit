@@ -1,6 +1,6 @@
 import type { TApolloContext } from '../utils/apollo-context';
 
-import { RetryLink } from 'apollo-link-retry';
+import { RetryLink } from '@apollo/client/link/retry';
 import { STATUS_CODES } from '@commercetools-frontend/constants';
 import {
   getSkipTokenRetry,

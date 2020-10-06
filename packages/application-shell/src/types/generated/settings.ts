@@ -1,4 +1,5 @@
 export type Maybe<T> = T | undefined;
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -3159,7 +3160,7 @@ export type TVariantPricesListViewInput = {
   visibleColumns: Array<Scalars['String']>;
 };
 
-export type TFetchProjectExtensionImageRegexQueryVariables = {};
+export type TFetchProjectExtensionImageRegexQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type TFetchProjectExtensionImageRegexQuery = (
@@ -3185,7 +3186,7 @@ export type TImageRegexFragment = (
   & Pick<TImageRegexOptions, 'flag' | 'search' | 'replace'>
 );
 
-export type TFetchProjectExtensionsNavbarQueryVariables = {};
+export type TFetchProjectExtensionsNavbarQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type TFetchProjectExtensionsNavbarQuery = (
