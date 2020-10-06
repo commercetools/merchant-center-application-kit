@@ -1,6 +1,6 @@
 import type { TApolloContext } from '../utils/apollo-context';
 
-import { onError } from 'apollo-link-error';
+import { onError } from '@apollo/client/link/error';
 import {
   STATUS_CODES,
   LOGOUT_REASONS,

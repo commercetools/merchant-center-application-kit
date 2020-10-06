@@ -1,17 +1,16 @@
-import type { NormalizedCacheObject } from 'apollo-cache-inmemory';
 import type { TFetchUserIdQuery } from '../../types/generated/mc';
 
-import ApolloClient from 'apollo-client';
-import FetchUserIdQuery from './select-user-id.mc.graphql';
+import { getCachedApolloClient } from '../apollo-client-runtime-cache';
+import { FetchUserId } from './select-user-id.mc.graphql';
 
-export default function selectUserId({
-  apolloCache,
-}: {
-  apolloCache: ApolloClient<NormalizedCacheObject>;
-}) {
+export default function selectUserId(): string | null {
+  const apolloClient = getCachedApolloClient();
+  if (!apolloClient) {
+    return null;
+  }
   try {
-    const queryResult = apolloCache.readQuery<TFetchUserIdQuery>({
-      query: FetchUserIdQuery,
+    const queryResult = apolloClient.readQuery<TFetchUserIdQuery>({
+      query: FetchUserId,
     });
 
     if (queryResult && queryResult.user) {

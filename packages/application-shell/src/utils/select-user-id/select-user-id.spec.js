@@ -1,16 +1,29 @@
+import createApolloClient from '../../configure-apollo';
+import { setCachedApolloClient } from '../apollo-client-runtime-cache';
 import selectUserId from './select-user-id';
+import { FetchUserId } from './select-user-id.mc.graphql';
 
-const apolloCache = {
-  readQuery: jest.fn(),
-};
+afterEach(() => {
+  // Unset cached client
+  setCachedApolloClient();
+});
 
 describe('selectUserId', () => {
   describe('when `readQuery` throws', () => {
     beforeEach(() => {
-      apolloCache.readQuery.mockReturnValueOnce(new Error('Test Error'));
+      const apolloClient = createApolloClient();
+      apolloClient.writeQuery({
+        query: FetchUserId,
+        data: {
+          // Omit the `id` field, which causes the readQuery to throw
+          // an error.
+          user: { language: 'en' },
+        },
+      });
+      setCachedApolloClient(apolloClient);
     });
     it('should return `null`', () => {
-      expect(selectUserId({ apolloCache })).toBeNull();
+      expect(selectUserId()).toBeNull();
     });
   });
 
@@ -23,19 +36,29 @@ describe('selectUserId', () => {
 
     describe('with `user`', () => {
       beforeEach(() => {
-        apolloCache.readQuery.mockReturnValueOnce(queryResult);
+        const apolloClient = createApolloClient();
+        apolloClient.writeQuery({
+          query: FetchUserId,
+          data: queryResult,
+        });
+        setCachedApolloClient(apolloClient);
       });
       it('should return the `id`', () => {
-        expect(selectUserId({ apolloCache })).toEqual(queryResult.user.id);
+        expect(selectUserId()).toEqual(queryResult.user.id);
       });
     });
 
     describe('without `user`', () => {
       beforeEach(() => {
-        apolloCache.readQuery.mockReturnValueOnce({});
+        const apolloClient = createApolloClient();
+        apolloClient.writeQuery({
+          query: FetchUserId,
+          data: { user: null },
+        });
+        setCachedApolloClient(apolloClient);
       });
       it('should return `null`', () => {
-        expect(selectUserId({ apolloCache })).toBeNull();
+        expect(selectUserId()).toBeNull();
       });
     });
   });

@@ -16,7 +16,7 @@ export const createGraphqlResponseForProjectsQuery = ({
 }: CreateGraphqlResponseForProjectsQueryOptions = {}) => ({
   request: {
     query: ProjectsQuery,
-    variables: { target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND },
+    context: { target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND },
   },
   result: {
     data: {

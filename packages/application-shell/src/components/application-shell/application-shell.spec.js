@@ -25,7 +25,6 @@ import {
   ProjectExtensionMock,
   CustomApplicationMock,
 } from '../../../../../graphql-test-utils';
-import { createApolloClient } from '../../configure-apollo';
 import { STORAGE_KEYS } from '../../constants';
 import { location } from '../../utils/location';
 import ApplicationShellProvider from '../application-shell-provider';
@@ -65,8 +64,6 @@ const renderApp = (ui, options = {}) => {
     createMemoryHistory({ initialEntries: [initialRoute] })
   );
   ApplicationShellProvider.history = testHistory;
-  const testApolloClient = createApolloClient();
-  ApplicationShellProvider.apolloClient = testApolloClient;
   const defaultProps = createTestProps();
   const props = {
     ...defaultProps,

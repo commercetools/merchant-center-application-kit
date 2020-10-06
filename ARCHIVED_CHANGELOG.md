@@ -127,7 +127,7 @@ To facilitate the usage of the built-in Apollo client and the SDK actions, we pr
 We can leverage the `context` option for Apollo queries to change a bit how the request is configured. The `@commercetools-frontend/application-shell` package now exposes an utility function to configure the Apollo context for the `/proxy/forward-to` usage.
 
 ```js
-import { useQuery } from 'react-apollo';
+import { useQuery } from '@apollo/client/react';
 import { createApolloContextForProxyForwardTo } from '@commercetools-frontend/application-shell';
 
 const Fetcher = () => {
