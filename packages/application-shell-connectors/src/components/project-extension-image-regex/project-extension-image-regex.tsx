@@ -1,10 +1,11 @@
 import type {
   TFetchProjectExtensionImageRegexQuery,
+  TFetchProjectExtensionImageRegexQueryVariables,
   TImageRegexOptions,
 } from '../../types/generated/settings';
 
 import React from 'react';
-import { useQuery } from 'react-apollo';
+import { useQuery } from '@apollo/client/react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import getDisplayName from '../../utils/get-display-name';
@@ -31,11 +32,11 @@ const Context = React.createContext<TImageRegexContext>({ isLoading: false });
 const ProjectExtensionProviderForImageRegex = (props: ProviderProps) => {
   const { loading, data } = useQuery<
     TFetchProjectExtensionImageRegexQuery,
-    { target: typeof GRAPHQL_TARGETS.SETTINGS_SERVICE }
+    TFetchProjectExtensionImageRegexQueryVariables
   >(FetchProjectExtensionImageRegex, {
     skip: props.skip,
     onError: reportErrorToSentry,
-    variables: { target: GRAPHQL_TARGETS.SETTINGS_SERVICE },
+    context: { target: GRAPHQL_TARGETS.SETTINGS_SERVICE },
   });
 
   return (

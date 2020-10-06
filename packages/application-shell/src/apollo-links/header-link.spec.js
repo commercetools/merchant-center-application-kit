@@ -1,12 +1,10 @@
-import { ApolloLink, execute, Observable } from 'apollo-link';
-import gql from 'graphql-tag';
+import { ApolloLink, execute, Observable, gql } from '@apollo/client';
 import waitFor from 'wait-for-observables';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import {
   getCorrelationId,
   selectProjectKeyFromUrl,
   selectTeamIdFromLocalStorage,
-  selectUserId,
 } from '../utils';
 import headerLink from './header-link';
 
@@ -41,6 +39,12 @@ describe('with valid target', () => {
     debugLink = new ApolloLink((operation, forward) => {
       context = operation.getContext();
 
+      // Remove request metadata to avoid having it in the snapshots
+      delete context.target;
+      delete context.featureFlag;
+      delete context.projectKey;
+      delete context.teamId;
+
       return forward(operation);
     });
 
@@ -51,7 +55,7 @@ describe('with valid target', () => {
     await waitFor(
       execute(link, {
         query,
-        variables: {
+        context: {
           target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
           featureFlag: 'test-feature-a',
         },
@@ -125,7 +129,7 @@ describe('with valid target', () => {
       await waitFor(
         execute(link, {
           query,
-          variables: {
+          context: {
             target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
             projectKey,
           },
@@ -163,7 +167,7 @@ describe('with valid target', () => {
       await waitFor(
         execute(link, {
           query,
-          variables: {
+          context: {
             target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
             teamId,
           },
@@ -201,7 +205,7 @@ describe('with valid target', () => {
       await waitFor(
         execute(link, {
           query,
-          variables: {
+          context: {
             target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
             featureFlag,
           },
@@ -244,7 +248,7 @@ describe('with valid target', () => {
       await waitFor(
         execute(link, {
           query,
-          variables: {
+          context: {
             target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
             teamId,
             projectKey,

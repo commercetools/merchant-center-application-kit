@@ -1,6 +1,6 @@
 import type { GraphQLError } from 'graphql';
-import type { ErrorResponse } from 'apollo-link-error';
-import type { ServerError, ServerParseError } from 'apollo-link-http-common';
+import type { ErrorResponse } from '@apollo/client/link/error';
+import type { ServerError, ServerParseError } from '@apollo/client';
 import type { TApolloContext } from '../utils/apollo-context';
 
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';

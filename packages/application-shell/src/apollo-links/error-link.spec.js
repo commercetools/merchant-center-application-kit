@@ -1,5 +1,4 @@
-import { ApolloLink, execute, Observable } from 'apollo-link';
-import gql from 'graphql-tag';
+import { ApolloLink, execute, Observable, gql } from '@apollo/client';
 import waitFor from 'wait-for-observables';
 import {
   LOGOUT_REASONS,

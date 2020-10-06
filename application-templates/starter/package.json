@@ -13,6 +13,7 @@
     "update-versions": "bulk-update-versions --match '^@commercetools-frontend/(?!ui-kit)(.*)'"
   },
   "dependencies": {
+    "@apollo/client": "3.1.3",
     "@commercetools-frontend/actions-global": "16.16.0",
     "@commercetools-frontend/application-components": "16.18.0",
     "@commercetools-frontend/application-shell": "16.18.0",
@@ -24,11 +25,9 @@
     "@commercetools-uikit/icons": "10.33.0",
     "@commercetools-uikit/spacings": "10.18.7",
     "@commercetools-uikit/text": "10.36.0",
-    "apollo-client": "2.6.10",
     "bulk-update-versions": "1.1.0",
     "prop-types": "15.7.2",
     "react": "16.13.1",
-    "react-apollo": "3.1.5",
     "react-dom": "16.13.1",
     "react-intl": "5.8.4",
     "react-redux": "7.2.1",

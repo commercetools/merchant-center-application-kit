@@ -17,7 +17,6 @@ import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-frontend/constants';
 import hideNotificationsMiddleware from './middleware/hide-notifications';
 import loggerMiddleware from './middleware/logger';
 import { requestsInFlightReducer } from './components/requests-in-flight-loader';
-import apolloClient from './configure-apollo';
 import {
   getCorrelationId,
   selectProjectKeyFromUrl,
@@ -50,9 +49,7 @@ const mergeObjectValues = <T>(object: { [key: string]: T }) =>
   );
 
 const patchedGetCorrelationId = () =>
-  getCorrelationId({
-    userId: selectUserId({ apolloCache: apolloClient }),
-  });
+  getCorrelationId({ userId: selectUserId() });
 
 const createInternalReducer = (injectedReducers: ReducersMapObject = {}) =>
   // NOTE: since we don't know in advance which reducers will be injected,
