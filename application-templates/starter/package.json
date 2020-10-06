@@ -6,7 +6,8 @@
   "scripts": {
     "build": "mc-scripts build",
     "start": "dotenv -- mc-scripts start",
-    "start:prod:local": "NODE_ENV=production MC_APP_ENV=development dotenv -- mc-http-server --use-local-assets",
+    "compile-html": "NODE_ENV=production dotenv -- mc-scripts compile-html",
+    "start:prod:local": "NODE_ENV=production MC_APP_ENV=development dotenv -- mc-scripts compile-html && NODE_ENV=production npx serve public",
     "i18n:build": "mc-scripts extract-intl --output-path=$(pwd)/src/i18n/data 'src/**/!(*.spec).js' --build-translations",
     "test": "jest --config jest.test.config.js",
     "test:watch": "jest --config jest.test.config.js --watch",
@@ -19,7 +20,6 @@
     "@commercetools-frontend/application-shell": "16.17.3",
     "@commercetools-frontend/assets": "16.15.3",
     "@commercetools-frontend/i18n": "16.17.0",
-    "@commercetools-frontend/mc-http-server": "16.17.4",
     "@commercetools-frontend/permissions": "16.17.0",
     "@commercetools-uikit/flat-button": "10.36.0",
     "@commercetools-uikit/icons": "10.33.0",
@@ -40,6 +40,7 @@
     "@testing-library/react": "11.0.4",
     "dotenv-cli": "4.0.0",
     "enzyme": "3.11.0",
-    "jest": "26.5.0"
+    "jest": "26.5.0",
+    "serve": "11.3.2"
   }
 }

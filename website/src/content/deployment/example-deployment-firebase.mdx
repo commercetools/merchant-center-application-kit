@@ -142,14 +142,8 @@ To be able to deploy the Custom Application to Firebase, the application needs t
 This is possible using the [`compile-html` command](/development/available-scripts).
 
 ```console
-mc-scripts compile-html --use-local-assets
+mc-scripts compile-html
 ```
-
-<Info>
-
-The `--use-local-assets` option is required for the sake of this example. See [Serving static assets](/deployment/serving-static-assets).
-
-</Info>
 
 The command above does what we need: it compiles the `index.html` using the JavaScript bundle references (after running `mc-scripts build`) and the runtime configuration. At this point the `index.html` file is ready for production usage.
 
@@ -168,9 +162,8 @@ We assume that the transformer function is defined at the following location: `.
 
 </Info>
 
-```console highlightLines="5" noPromptLines="2-3"
+```console noPromptLines="2"
 mc-scripts compile-html \
-  --use-local-assets \
   --transformer $(pwd)/config/transformer-firebase.js
 ```
 
@@ -359,11 +352,10 @@ The assets compiled into the `public` directory will be deployed to Firebase.
 
 Finally, we can trigger the deployment using the [Firebase CLI](https://firebase.google.com/docs/hosting/quickstart#install-cli):
 
-```console noPromptLines="2,4-6"
+```console noPromptLines="2,4-5"
 yarn build
 
 mc-scripts compile-html \
-  --use-local-assets \
   --transformer $(pwd)/config/transformer-firebase.js
 
 firebase deploy
