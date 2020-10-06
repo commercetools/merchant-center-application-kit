@@ -20,11 +20,6 @@ if (flags.help) {
 
   Options:
   --use-local-assets        (optional) If this option is enabled, the "dist/assets" will be used to start the http-server package. This requires that the assets have been built before running this script.
-
-  Deprecated options:
-  --config=<path>           (optional) The path to the environment config (defined as a JSON file, e.g. "env.json").
-  --headers=<path>          (optional) The path to the headers containing CSP and feature policy configs (defined as a JSON file, e.g. "headers.json").
-  --csp=<path>              (optional) the path to the custom CSP directives config (defined as a JSON file, e.g. "csp.json").
   `);
 }
 
