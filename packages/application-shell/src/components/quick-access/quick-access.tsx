@@ -4,7 +4,7 @@ import type { ExecGraphQlQuery, Command, HistoryEntry } from './types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useFeatureToggles } from '@flopflip/react-broadcast';
-import { useApolloClient } from 'react-apollo';
+import { useApolloClient } from '@apollo/client/react';
 import { useHistory } from 'react-router-dom';
 import {
   actions as sdkActions,
@@ -215,12 +215,13 @@ const QuickAccess = (props: Props) => {
   }, []); // <-- run only once, when component mounts
 
   const execQuery = React.useCallback<ExecGraphQlQuery>(
-    (Query, variables) =>
+    (Query, variables, context) =>
       apolloClient
         .query({
           query: Query,
           errorPolicy: 'ignore',
           variables,
+          context,
         })
         .then((response) => response.data),
     [apolloClient]
@@ -250,18 +251,23 @@ const QuickAccess = (props: Props) => {
         [permissions.ViewProducts],
         applicationContext.permissions
       );
-      const data = await execQuery<TQuickAccessQuery>(QuickAccessQuery, {
-        searchText: sanitize(searchText),
-        target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
-        // Pass conditional arguments to disable some of the queries
-        canViewProducts,
-        productsWhereClause: `id in (${idsOfProductsMatchingSearchText
-          .map((id) => JSON.stringify(id))
-          .join(', ')})`,
-        includeProductsByIds: Boolean(
-          canViewProducts && idsOfProductsMatchingSearchText.length > 0
-        ),
-      });
+      const data = await execQuery<TQuickAccessQuery>(
+        QuickAccessQuery,
+        {
+          searchText: sanitize(searchText),
+          // Pass conditional arguments to disable some of the queries
+          canViewProducts,
+          productsWhereClause: `id in (${idsOfProductsMatchingSearchText
+            .map((id) => JSON.stringify(id))
+            .join(', ')})`,
+          includeProductsByIds: Boolean(
+            canViewProducts && idsOfProductsMatchingSearchText.length > 0
+          ),
+        },
+        {
+          target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+        }
+      );
 
       const commands = [];
 
@@ -408,7 +414,7 @@ const QuickAccess = (props: Props) => {
         commands.push({
           id: `go/product-by-key/product(${productId})`,
           text: intl.formatMessage(messages.showProduct, {
-            productName: data.productByKey.key,
+            productName: searchText,
           }),
           action: {
             type: actionTypes.go,

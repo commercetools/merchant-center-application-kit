@@ -1,14 +1,13 @@
-import type { ApolloError } from 'apollo-client';
-import type { TGraphQLTargets } from '@commercetools-frontend/constants';
+import type { ApolloError } from '@apollo/client/errors';
 import type {
   TFetchProjectQuery,
   TFetchProjectQueryVariables,
 } from '../../types/generated/mc';
 
 import React from 'react';
-import { useQuery } from 'react-apollo';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import { useMcQuery } from '../../hooks/apollo-hooks';
 import ProjectQuery from './fetch-project.mc.graphql';
 
 type RenderFnArgs = {
@@ -23,14 +22,16 @@ type Props = {
 };
 
 const FetchProject = (props: Props) => {
-  const { loading, data, error } = useQuery<
+  const { loading, data, error } = useMcQuery<
     TFetchProjectQuery,
-    TFetchProjectQueryVariables & { target: TGraphQLTargets }
+    TFetchProjectQueryVariables
   >(ProjectQuery, {
     onError: reportErrorToSentry,
     variables: {
-      target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
       projectKey: props.projectKey,
+    },
+    context: {
+      target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
     },
     skip: props.skip === true,
   });

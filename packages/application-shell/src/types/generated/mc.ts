@@ -1,4 +1,5 @@
 export type Maybe<T> = T | undefined;
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -687,7 +688,7 @@ export type TUserUpdateAction = {
   changeBusinessRole: Maybe<TChangeUserBusinessRole>;
 };
 
-export type TAmILoggedInQueryVariables = {};
+export type TAmILoggedInQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type TAmILoggedInQuery = (
@@ -695,9 +696,9 @@ export type TAmILoggedInQuery = (
   & Pick<TQuery, 'amILoggedIn'>
 );
 
-export type TFetchProjectQueryVariables = {
+export type TFetchProjectQueryVariables = Exact<{
   projectKey: Scalars['String'];
-};
+}>;
 
 
 export type TFetchProjectQuery = (
@@ -730,7 +731,7 @@ export type TFetchProjectQuery = (
   )> }
 );
 
-export type TFetchLoggedInUserQueryVariables = {};
+export type TFetchLoggedInUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type TFetchLoggedInUserQuery = (
@@ -756,7 +757,7 @@ export type TFetchLoggedInUserQuery = (
   )> }
 );
 
-export type TFetchUserProjectsQueryVariables = {};
+export type TFetchUserProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type TFetchUserProjectsQuery = (
@@ -781,7 +782,7 @@ export type TFetchUserProjectsQuery = (
   )> }
 );
 
-export type TFetchUserIdQueryVariables = {};
+export type TFetchUserIdQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type TFetchUserIdQuery = (

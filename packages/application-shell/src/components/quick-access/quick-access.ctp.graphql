@@ -20,7 +20,6 @@ query QuickAccess(
   }
 
   productById: product(id: $searchText) @include(if: $canViewProducts) {
-    key
     id
     masterData {
       staged {
@@ -33,7 +32,6 @@ query QuickAccess(
   }
 
   productByKey: product(key: $searchText) @include(if: $canViewProducts) {
-    key
     id
     masterData {
       staged {

@@ -1,6 +1,6 @@
 import type { DocumentNode } from 'graphql';
-import type { ApolloQueryResult } from 'apollo-client';
-import type { OperationVariables } from '@apollo/react-common';
+import type { OperationVariables, ApolloQueryResult } from '@apollo/client';
+import type { TApolloContext } from '../../utils/apollo-context';
 
 export const actionTypes = {
   go: 'go',
@@ -34,5 +34,6 @@ export type HistoryEntry = {
 };
 export type ExecGraphQlQuery = <T>(
   document: DocumentNode,
-  variables: OperationVariables
+  variables: OperationVariables,
+  context?: TApolloContext
 ) => Promise<ApolloQueryResult<T>['data']>;
