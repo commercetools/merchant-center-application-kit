@@ -6,15 +6,11 @@ const processHeaders = require('./process-headers');
 const replaceHtmlPlaceholders = require('./utils/replace-html-placeholders');
 
 const requiredOptions = ['publicAssetsPath'];
-const deprecatedOptions = ['envPath', 'cspPath', 'headersPath'];
 
 const trimTrailingSlash = (value) => value.replace(/\/$/, '');
 
 /**
  * Options:
- * - envPath (deprecated)
- * - cspPath (deprecated)
- * - headersPath (deprecated)
  * - publicAssetsPath
  * - useLocalAssets
  */
@@ -24,23 +20,7 @@ module.exports = async function compileHtml(options) {
       throw new Error(`Missing required option ${key}.`);
     }
   });
-
-  deprecatedOptions.forEach((key) => {
-    if (options[key]) {
-      console.warn(
-        `⚠️ [@commercetools-frontend/mc-html-template]: "${key}" has been deprecated. Please use the "custom-application-config" file. More info here: https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-config/README.md.`
-      );
-    }
-  });
-
-  const applicationConfig = processConfig({
-    // TODO: Remove in `v17`
-    deprecatedOptions: {
-      envPath: options.envPath,
-      headersPath: options.headersPath,
-      cspPath: options.cspPath,
-    },
-  });
+  const applicationConfig = processConfig();
   const compiledHeaders = processHeaders(applicationConfig);
 
   if (options.useLocalAssets) {
