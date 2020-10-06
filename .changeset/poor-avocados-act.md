@@ -19,10 +19,12 @@ With the `compile-html` command there is no need to have a pre-configured HTTP s
 When running the `mc-scripts compile-html` command, the `index.html` is compiled for production usage and it lives in the `public` folder, together with the other static assets. This is all you need to deploy your application.
 You can decide to [deploy the Custom Application statically to one of the popular cloud providers](https://docs.commercetools.com/custom-applications/deployment/compiling-a-custom-application#deployment), or serve the files on your own using a static server like [serve](https://www.npmjs.com/package/serve), or any other static server (it does not even have to be Node.js).
 
-For example:
+For example, to start the Custom Application locally in production mode:
 
 ```console
-NODE_ENV=production MC_APP_ENV=development dotenv -- mc-scripts compile-html
+NODE_ENV=production MC_APP_ENV=development dotenv -- \
+  mc-scripts compile-html \
+  --transformer @commercetools-frontend/mc-dev-authentication/transformer-local.js
 
 NODE_ENV=production npx serve -l 3001 public
 ```
