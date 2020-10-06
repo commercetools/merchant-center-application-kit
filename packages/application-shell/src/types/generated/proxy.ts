@@ -1,5 +1,4 @@
 export type Maybe<T> = T | undefined;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -67,7 +66,7 @@ export type TQuery = {
   allFeatureToggles: Array<Scalars['String']>;
 };
 
-export type TFetchAllMenuFeatureTogglesQueryVariables = Exact<{ [key: string]: never; }>;
+export type TFetchAllMenuFeatureTogglesQueryVariables = {};
 
 
 export type TFetchAllMenuFeatureTogglesQuery = (
@@ -75,7 +74,7 @@ export type TFetchAllMenuFeatureTogglesQuery = (
   & Pick<TQuery, 'allFeatureToggles'>
 );
 
-export type TFetchApplicationsMenuQueryVariables = Exact<{ [key: string]: never; }>;
+export type TFetchApplicationsMenuQueryVariables = {};
 
 
 export type TFetchApplicationsMenuQuery = (

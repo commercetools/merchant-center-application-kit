@@ -1,5 +1,4 @@
 export type Maybe<T> = T | undefined;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -30,7 +29,7 @@ export type Scalars = {
   /** YearMonth is a scalar value that represents an ISO8601 formatted year and month. */
   YearMonth: string;
   /** A set. */
-  Set: any;
+  Set: unknown[];
   /** The `BigDecimal` scalar type represents signed fractional values with arbitrary precision. */
   BigDecimal: string;
   /** Time is a scalar value that represents an ISO8601 formatted time. */
@@ -564,18 +563,6 @@ export type TApplyCartDeltaToLineItemShippingDetailsTargets = {
   targetsDelta: Array<TShippingTargetDraft>;
 };
 
-/** asd */
-export type TAsdProductType = TProductType & {
-  __typename?: 'asdProductType';
-  productTypeId: Scalars['String'];
-};
-
-/** as */
-export type TAsProductType = TProductType & {
-  __typename?: 'asProductType';
-  productTypeId: Scalars['String'];
-};
-
 export type TAsset = {
   __typename?: 'Asset';
   id: Scalars['String'];
@@ -843,21 +830,6 @@ export type TBooleanType = TFieldType & {
   name: Scalars['String'];
 };
 
-/** wwwww */
-export type TBusinessProductType = TProductType & {
-  __typename?: 'BusinessProductType';
-  productTypeId: Scalars['String'];
-  methodValue: Maybe<TEnumAttribute>;
-  abc: Maybe<Array<TEnumAttribute>>;
-  channel_ref: Maybe<TReferenceAttribute>;
-  prod_ref: Maybe<TReferenceAttribute>;
-  key_required: Maybe<TStringAttribute>;
-  mandatory_enum: Maybe<TEnumAttribute>;
-  testw: Maybe<TNumberAttribute>;
-  reference_description: Maybe<TReferenceAttribute>;
-  attribute_just_created: Maybe<Array<TEnumAttribute>>;
-};
-
 /**
  * A shopping cart holds product variants and can be ordered. Each cart either
  * belongs to a registered customer or is an anonymous cart.
@@ -935,20 +907,6 @@ export type TCart_CustomFieldsRawArgs = {
 export type TCart_CustomFieldListArgs = {
   includeNames: Maybe<Array<Scalars['String']>>;
   excludeNames: Maybe<Array<Scalars['String']>>;
-};
-
-export type TCart_Discount_IdType = TType & {
-  __typename?: 'cart_discount_idType';
-  typeRef: TReference;
-  type: TTypeDefinition;
-  cartDiscountID: Maybe<TStringField>;
-};
-
-export type TCart_Discount_UidType = TType & {
-  __typename?: 'cart_discount_uidType';
-  typeRef: TReference;
-  type: TTypeDefinition;
-  cartDiscountUID: Maybe<TStringField>;
 };
 
 export type TCartClassificationInput = {
@@ -2219,61 +2177,6 @@ export type TCloudEventsSubscriptionsFormatInput = {
 };
 
 
-/**
- * 1914 translation by H. Rackham
- * "But I must explain to you how all this mistaken idea of denouncing pleasure and
- * praising pain was born and I will give you a complete account of the system, and
- * expound the actual teachings of the great explorer of the truth, the
- * master-builder of human happiness. No one rejects, dislikes, or avoids pleasure
- * itself, because it is pleasure, but because those who do not know how to pursue
- * pleasure rationally encounter consequences that are extremely painful. Nor again
- * is there anyone who loves or pursues or desires to obtain pain of itself,
- * because it is pain, but because occasionally circumstances occur in which toil
- * and pain can procure him some great pleasure. To take a trivial example, which
- * of us ever undertakes laborious physical exercise, except to obtain some
- * advantage from it? But who has any right to find fault with a man who chooses to
- * enjoy a pleasure that has no annoying consequences, or one who avoids a pain
- * that produces no resultant pleasure?"
- * 
- * Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
- * "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
- * praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias
- * excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui
- * officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem
- * rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis
- * est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere
- * possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus
- * autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet
- * ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum
- * rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores
- * alias consequatur aut perferendis doloribus asperiores repellat."
- * 
- * 1914 translation by H. Rackham
- * "On the other hand, we denounce with righteous indignation and dislike men who
- * are so beguiled and demoralized by the charms of pleasure of the moment, so
- * blinded by desire, that they cannot foresee the pain and trouble that are bound
- * to ensue; and equal blame belongs to those who fail in their duty through
- * weakness of will, which is the same as saying through shrinking from toil and
- * pain. These cases are perfectly simple and easy to distinguish. In a free hour,
- * when our power of choice is untrammelled and when nothing prevents our being
- * able to do what we like best, every pleasure is to be welcomed and every pain
- * avoided. But in certain circumstances and owing to the claims of duty or the
- * obligations of business it will frequently occur that pleasures have to be
- * repudiated and annoyances accepted. The wise man therefore always holds in these
- * matters to this principle of selection: he rejects pleasures to secure other
- * greater pleasures, or else he endures pains to avoid worse pains."
- */
-export type TCras_MattisProductType = TProductType & {
-  __typename?: 'Cras_mattisProductType';
-  productTypeId: Scalars['String'];
-  test_test: Maybe<TStringAttribute>;
-  combi_unique: Maybe<TNumberAttribute>;
-  enum_beyond_pagination: Maybe<TEnumAttribute>;
-  plain_with_duplicate_enum_key: Maybe<TEnumAttribute>;
-  test_validation: Maybe<TDateAttribute>;
-  required_text: Maybe<TStringAttribute>;
-};
-
 export type TCreateApiClient = {
   name: Scalars['String'];
   scope: Scalars['String'];
@@ -2362,13 +2265,6 @@ export type TCustomer_CustomFieldsRawArgs = {
 export type TCustomer_CustomFieldListArgs = {
   includeNames: Maybe<Array<Scalars['String']>>;
   excludeNames: Maybe<Array<Scalars['String']>>;
-};
-
-export type TCustomer_KeyType = TType & {
-  __typename?: 'customer_keyType';
-  typeRef: TReference;
-  type: TTypeDefinition;
-  testing_string_reference: Maybe<TStringField>;
 };
 
 /** A field to access a customer's active cart. */
@@ -2728,18 +2624,10 @@ export type TCustomFieldsType = {
    * @deprecated Typed custom fields are no longer supported, please use customFieldsRaw instead.
    */
   customFields: TType;
-  /** Custom fields are returned as a list instead of an object structure. */
-  customFieldList: Maybe<Array<TCustomField>>;
 };
 
 
 export type TCustomFieldsType_CustomFieldsRawArgs = {
-  includeNames: Maybe<Array<Scalars['String']>>;
-  excludeNames: Maybe<Array<Scalars['String']>>;
-};
-
-
-export type TCustomFieldsType_CustomFieldListArgs = {
   includeNames: Maybe<Array<Scalars['String']>>;
   excludeNames: Maybe<Array<Scalars['String']>>;
 };
@@ -2907,12 +2795,6 @@ export type TCustomSuggestTokenizerInput = {
   suggestTokenizer: Maybe<TBaseSearchKeywordInput>;
 };
 
-/** dasd */
-export type TDadProductType = TProductType & {
-  __typename?: 'dadProductType';
-  productTypeId: Scalars['String'];
-};
-
 
 export type TDateAttribute = TAttribute & {
   __typename?: 'DateAttribute';
@@ -3000,22 +2882,6 @@ export type TDimensions = {
 export type TDimensionsInput = {
   width: Scalars['Int'];
   height: Scalars['Int'];
-};
-
-/** Test description */
-export type TDiscount_Custom_FieldsType = TType & {
-  __typename?: 'discount_custom_fieldsType';
-  typeRef: TReference;
-  type: TTypeDefinition;
-  Eyecolor: Maybe<TStringField>;
-};
-
-export type TDiscount_Line_Item_CountType = TType & {
-  __typename?: 'discount_line_item_countType';
-  typeRef: TReference;
-  type: TTypeDefinition;
-  lineItemOrder: Maybe<TNumberField>;
-  cartIdentifier: Maybe<TStringField>;
 };
 
 /**
@@ -3220,12 +3086,6 @@ export type TDiscountedProductPriceValueInput = {
   discount: TReferenceInput;
 };
 
-/** Empty product type */
-export type TEmpty_Product_TypeProductType = TProductType & {
-  __typename?: 'empty_product_typeProductType';
-  productTypeId: Scalars['String'];
-};
-
 export type TEnumAttribute = TAttribute & {
   __typename?: 'EnumAttribute';
   key: Scalars['String'];
@@ -3285,12 +3145,6 @@ export type TEventGridDestination = TDestination & {
 export type TEventGridDestinationInput = {
   uri: Scalars['String'];
   accessKey: Scalars['String'];
-};
-
-/** nested stuff */
-export type TExperimental_NestProductType = TProductType & {
-  __typename?: 'Experimental_nestProductType';
-  productTypeId: Scalars['String'];
 };
 
 export type TExtension = TVersioned & {
@@ -3404,36 +3258,6 @@ export type TExternalTaxRateDraftOutput = {
   includedInPrice: Scalars['Boolean'];
 };
 
-/** That is my product type, dont' mess with it! */
-export type TFedor_Product_TypeProductType = TProductType & {
-  __typename?: 'fedor_product_typeProductType';
-  productTypeId: Scalars['String'];
-  fedor_date_attribute: Maybe<TDateAttribute>;
-  fedor_date_attrbute_2: Maybe<TDateAttribute>;
-  fedor_kv_reference: Maybe<TReferenceAttribute>;
-  boolean_set: Maybe<Array<TBooleanAttribute>>;
-  fedor_category_reference: Maybe<TReferenceAttribute>;
-  fedor_money_attr: Maybe<TMoneyAttribute>;
-  fedor_ltext_attr: Maybe<TLocalizedStringAttribute>;
-  fedor_money_set_attr: Maybe<Array<TMoneyAttribute>>;
-  fedor_empty_key_enum_attr: Maybe<TEnumAttribute>;
-  fedor_empty_key_lenum_attr: Maybe<TLocalizedEnumAttribute>;
-  fedor_test_attr: Maybe<TEnumAttribute>;
-  fedor_multiline_ltext_attr: Maybe<TLocalizedStringAttribute>;
-  fedor_text_set: Maybe<Array<TStringAttribute>>;
-  fedor_localized_text_set: Maybe<Array<TLocalizedStringAttribute>>;
-  fedor_product_ref: Maybe<TReferenceAttribute>;
-  fedor_datetime_set_attr: Maybe<Array<TDateTimeAttribute>>;
-  fedor_time_attr: Maybe<TTimeAttribute>;
-  fedor_required_time_attr: Maybe<TTimeAttribute>;
-};
-
-/** Fedor Product Type */
-export type TFedorProductType = TProductType & {
-  __typename?: 'fedorProductType';
-  productTypeId: Scalars['String'];
-};
-
 /** Field definitions describe custom fields and allow you to define some meta-information associated with the field. */
 export type TFieldDefinition = {
   __typename?: 'FieldDefinition';
@@ -3507,27 +3331,6 @@ export type TFieldTypeSetElementTypeDraft = {
 
 export type TFieldTypeSetTypeDraft = {
   elementType: TFieldTypeSetElementTypeDraft;
-};
-
-/** dde */
-export type TFilip_Pobocik_TestProductType = TProductType & {
-  __typename?: 'Filip_Pobocik_testProductType';
-  productTypeId: Scalars['String'];
-  test_emojis_bold: Maybe<TStringAttribute>;
-  test_multi: Maybe<Array<TLocalizedStringAttribute>>;
-  cat_ref: Maybe<TReferenceAttribute>;
-  ryte: Maybe<TStringAttribute>;
-  enum_attr: Maybe<TEnumAttribute>;
-  lenum_attr: Maybe<TLocalizedEnumAttribute>;
-  another_test_delete: Maybe<TNumberAttribute>;
-  test_number_2: Maybe<TDateAttribute>;
-  Tag: Maybe<TNumberAttribute>;
-};
-
-/** Furniture */
-export type TFurnitureProductType = TProductType & {
-  __typename?: 'FurnitureProductType';
-  productTypeId: Scalars['String'];
 };
 
 export type TGeometry = {
@@ -3615,195 +3418,6 @@ export type TImageInput = {
   url: Scalars['String'];
   label: Maybe<Scalars['String']>;
   dimensions: TDimensionsInput;
-};
-
-/** A generic type with all attributes */
-export type TImpex_With_All_TypesProductType = TProductType & {
-  __typename?: 'Impex_with_all_typesProductType';
-  productTypeId: Scalars['String'];
-  attr_text_n: Maybe<TStringAttribute>;
-  attr_ltext_n: Maybe<TLocalizedStringAttribute>;
-  attr_enum_n: Maybe<TEnumAttribute>;
-  attr_lenum_n: Maybe<TLocalizedEnumAttribute>;
-  attr_number_n: Maybe<TNumberAttribute>;
-  attr_boolean_n: Maybe<TBooleanAttribute>;
-  attr_money_n: Maybe<TMoneyAttribute>;
-  attr_date_n: Maybe<TDateAttribute>;
-  attr_time_n: Maybe<TTimeAttribute>;
-  attr_datetime_n: Maybe<TDateTimeAttribute>;
-  attr_ref_product_n: Maybe<TReferenceAttribute>;
-  attr_ref_product_type_n: Maybe<TReferenceAttribute>;
-  attr_ref_channel_n: Maybe<TReferenceAttribute>;
-  attr_ref_state_n: Maybe<TReferenceAttribute>;
-  attr_ref_zone_n: Maybe<TReferenceAttribute>;
-  attr_ref_shipping_method_n: Maybe<TReferenceAttribute>;
-  attr_ref_category_n: Maybe<TReferenceAttribute>;
-  attr_ref_review_n: Maybe<TReferenceAttribute>;
-  attr_ref_key_value_n: Maybe<TReferenceAttribute>;
-  attr_set_text_n: Maybe<Array<TStringAttribute>>;
-  attr_set_ltext_n: Maybe<Array<TLocalizedStringAttribute>>;
-  attr_set_enum_n: Maybe<Array<TEnumAttribute>>;
-  attr_set_lenum_n: Maybe<Array<TLocalizedEnumAttribute>>;
-  attr_set_number_n: Maybe<Array<TNumberAttribute>>;
-  attr_set_boolean_n: Maybe<Array<TBooleanAttribute>>;
-  attr_set_money_n: Maybe<Array<TMoneyAttribute>>;
-  attr_set_date_n: Maybe<Array<TDateAttribute>>;
-  attr_set_time_n: Maybe<Array<TTimeAttribute>>;
-  attr_set_datetime_n: Maybe<Array<TDateTimeAttribute>>;
-  attr_set_ref_product_n: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_product_type_n: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_channel_n: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_state_n: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_zone_n: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_shipping_method_n: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_category_n: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_review_n: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_key_value_n: Maybe<Array<TReferenceAttribute>>;
-  attr_text_u: Maybe<TStringAttribute>;
-  attr_ltext_u: Maybe<TLocalizedStringAttribute>;
-  attr_enum_u: Maybe<TEnumAttribute>;
-  attr_lenum_u: Maybe<TLocalizedEnumAttribute>;
-  attr_number_u: Maybe<TNumberAttribute>;
-  attr_boolean_u: Maybe<TBooleanAttribute>;
-  attr_money_u: Maybe<TMoneyAttribute>;
-  attr_date_u: Maybe<TDateAttribute>;
-  attr_time_u: Maybe<TTimeAttribute>;
-  attr_datetime_u: Maybe<TDateTimeAttribute>;
-  attr_ref_product_u: Maybe<TReferenceAttribute>;
-  attr_ref_product_type_u: Maybe<TReferenceAttribute>;
-  attr_ref_channel_u: Maybe<TReferenceAttribute>;
-  attr_ref_state_u: Maybe<TReferenceAttribute>;
-  attr_ref_zone_u: Maybe<TReferenceAttribute>;
-  attr_ref_shipping_method_u: Maybe<TReferenceAttribute>;
-  attr_ref_category_u: Maybe<TReferenceAttribute>;
-  attr_ref_review_u: Maybe<TReferenceAttribute>;
-  attr_ref_key_value_u: Maybe<TReferenceAttribute>;
-  attr_set_text_u: Maybe<Array<TStringAttribute>>;
-  attr_set_ltext_u: Maybe<Array<TLocalizedStringAttribute>>;
-  attr_set_enum_u: Maybe<Array<TEnumAttribute>>;
-  attr_set_lenum_u: Maybe<Array<TLocalizedEnumAttribute>>;
-  attr_set_number_u: Maybe<Array<TNumberAttribute>>;
-  attr_set_boolean_u: Maybe<Array<TBooleanAttribute>>;
-  attr_set_money_u: Maybe<Array<TMoneyAttribute>>;
-  attr_set_date_u: Maybe<Array<TDateAttribute>>;
-  attr_set_time_u: Maybe<Array<TTimeAttribute>>;
-  attr_set_datetime_u: Maybe<Array<TDateTimeAttribute>>;
-  attr_set_ref_product_u: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_product_type_u: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_channel_u: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_state_u: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_zone_u: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_shipping_method_u: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_category_u: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_review_u: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_key_value_u: Maybe<Array<TReferenceAttribute>>;
-  attr_text_cu: Maybe<TStringAttribute>;
-  attr_ltext_cu: Maybe<TLocalizedStringAttribute>;
-  attr_enum_cu: Maybe<TEnumAttribute>;
-  attr_lenum_cu: Maybe<TLocalizedEnumAttribute>;
-  attr_number_cu: Maybe<TNumberAttribute>;
-  attr_boolean_cu: Maybe<TBooleanAttribute>;
-  attr_money_cu: Maybe<TMoneyAttribute>;
-  attr_date_cu: Maybe<TDateAttribute>;
-  attr_time_cu: Maybe<TTimeAttribute>;
-  attr_datetime_cu: Maybe<TDateTimeAttribute>;
-  attr_ref_product_cu: Maybe<TReferenceAttribute>;
-  attr_ref_product_type_cu: Maybe<TReferenceAttribute>;
-  attr_ref_channel_cu: Maybe<TReferenceAttribute>;
-  attr_ref_state_cu: Maybe<TReferenceAttribute>;
-  attr_ref_zone_cu: Maybe<TReferenceAttribute>;
-  attr_ref_shipping_method_cu: Maybe<TReferenceAttribute>;
-  attr_ref_category_cu: Maybe<TReferenceAttribute>;
-  attr_ref_review_cu: Maybe<TReferenceAttribute>;
-  attr_ref_key_value_cu: Maybe<TReferenceAttribute>;
-  attr_set_text_cu: Maybe<Array<TStringAttribute>>;
-  attr_set_ltext_cu: Maybe<Array<TLocalizedStringAttribute>>;
-  attr_set_enum_cu: Maybe<Array<TEnumAttribute>>;
-  attr_set_lenum_cu: Maybe<Array<TLocalizedEnumAttribute>>;
-  attr_set_number_cu: Maybe<Array<TNumberAttribute>>;
-  attr_set_boolean_cu: Maybe<Array<TBooleanAttribute>>;
-  attr_set_money_cu: Maybe<Array<TMoneyAttribute>>;
-  attr_set_date_cu: Maybe<Array<TDateAttribute>>;
-  attr_set_time_cu: Maybe<Array<TTimeAttribute>>;
-  attr_set_datetime_cu: Maybe<Array<TDateTimeAttribute>>;
-  attr_set_ref_product_cu: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_product_type_cu: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_channel_cu: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_state_cu: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_zone_cu: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_shipping_method_cu: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_category_cu: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_review_cu: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_key_value_cu: Maybe<Array<TReferenceAttribute>>;
-  attr_ltext_sfa: Maybe<TLocalizedStringAttribute>;
-  attr_enum_sfa: Maybe<TEnumAttribute>;
-  attr_lenum_sfa: Maybe<TLocalizedEnumAttribute>;
-  attr_number_sfa: Maybe<TNumberAttribute>;
-  attr_boolean_sfa: Maybe<TBooleanAttribute>;
-  attr_money_sfa: Maybe<TMoneyAttribute>;
-  attr_date_sfa: Maybe<TDateAttribute>;
-  attr_time_sfa: Maybe<TTimeAttribute>;
-  attr_datetime_sfa: Maybe<TDateTimeAttribute>;
-  attr_ref_product_sfa: Maybe<TReferenceAttribute>;
-  attr_ref_product_type_sfa: Maybe<TReferenceAttribute>;
-  attr_ref_channel_sfa: Maybe<TReferenceAttribute>;
-  attr_ref_state_sfa: Maybe<TReferenceAttribute>;
-  attr_ref_zone_sfa: Maybe<TReferenceAttribute>;
-  attr_ref_shipping_method_sfa: Maybe<TReferenceAttribute>;
-  attr_ref_category_sfa: Maybe<TReferenceAttribute>;
-  attr_ref_review_sfa: Maybe<TReferenceAttribute>;
-  attr_ref_key_value_sfa: Maybe<TReferenceAttribute>;
-  attr_set_ltext_sfa: Maybe<Array<TLocalizedStringAttribute>>;
-  attr_set_enum_sfa: Maybe<Array<TEnumAttribute>>;
-  attr_set_lenum_sfa: Maybe<Array<TLocalizedEnumAttribute>>;
-  attr_set_number_sfa: Maybe<Array<TNumberAttribute>>;
-  attr_set_boolean_sfa: Maybe<Array<TBooleanAttribute>>;
-  attr_set_money_sfa: Maybe<Array<TMoneyAttribute>>;
-  attr_set_date_sfa: Maybe<Array<TDateAttribute>>;
-  attr_set_time_sfa: Maybe<Array<TTimeAttribute>>;
-  attr_set_datetime_sfa: Maybe<Array<TDateTimeAttribute>>;
-  attr_set_ref_product_sfa: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_product_type_sfa: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_channel_sfa: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_state_sfa: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_zone_sfa: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_shipping_method_sfa: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_category_sfa: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_review_sfa: Maybe<Array<TReferenceAttribute>>;
-  attr_set_ref_key_value_sfa: Maybe<Array<TReferenceAttribute>>;
-  SameForAll_LTEXT_ML: Maybe<TLocalizedStringAttribute>;
-  SameForAll_LTEXT_MultiLine_SET: Maybe<Array<TLocalizedStringAttribute>>;
-  attr_enum_sfa_2: Maybe<TEnumAttribute>;
-  random_datetime: Maybe<TDateTimeAttribute>;
-  random_date: Maybe<TDateAttribute>;
-  random_time: Maybe<TTimeAttribute>;
-  random_date_n: Maybe<TDateAttribute>;
-  random_time_n: Maybe<TTimeAttribute>;
-  random_datetime_n: Maybe<TDateTimeAttribute>;
-  attr_date_combination_unique: Maybe<TDateAttribute>;
-  attr_time_combination_unique: Maybe<TTimeAttribute>;
-  attr_datetime_combination_unique: Maybe<TDateTimeAttribute>;
-  sad: Maybe<TStringAttribute>;
-  adcasdc: Maybe<TEnumAttribute>;
-  asdcasdc: Maybe<TEnumAttribute>;
-  asdf: Maybe<TEnumAttribute>;
-  _76547654764: Maybe<TEnumAttribute>;
-  _1231: Maybe<TEnumAttribute>;
-  asd: Maybe<TEnumAttribute>;
-  asdfa23e23e23e: Maybe<TEnumAttribute>;
-  _123412341234: Maybe<TEnumAttribute>;
-  _12341234123412341234: Maybe<TEnumAttribute>;
-  _4tv5t345dr4: Maybe<TEnumAttribute>;
-  _1234: Maybe<TBooleanAttribute>;
-  _5243tregfd: Maybe<TStringAttribute>;
-  buildRequest: Maybe<TEnumAttribute>;
-  aaaa_aaaa: Maybe<TStringAttribute>;
-  aaaa_aaaa_sfa: Maybe<TStringAttribute>;
-  enum_required_sfa_single: Maybe<TEnumAttribute>;
-  attr_ltext_: Maybe<TStringAttribute>;
-  attribute_brandnl: Maybe<TEnumAttribute>;
-  attribute_brand_loc: Maybe<TLocalizedEnumAttribute>;
-  attr_type_of_paper: Maybe<TReferenceAttribute>;
 };
 
 export type TImportOrderCustomLineItemState = {
@@ -4092,20 +3706,6 @@ export enum TInventoryMode {
   TrackOnly = 'TrackOnly'
 }
 
-/** test */
-export type TIs_A_Nested_Reference_Do_Not_DeleteProductType = TProductType & {
-  __typename?: 'Is_a_Nested_reference_do_not_deleteProductType';
-  productTypeId: Scalars['String'];
-  attr_boolean_n: Maybe<TBooleanAttribute>;
-  any_random_time: Maybe<TTimeAttribute>;
-  text_multiline_set: Maybe<Array<TStringAttribute>>;
-  multiline_loc_set: Maybe<Array<TLocalizedStringAttribute>>;
-  another_test: Maybe<TNumberAttribute>;
-  att1: Maybe<TEnumAttribute>;
-  att: Maybe<TEnumAttribute>;
-  boolean_required_in_nested_reference: Maybe<TBooleanAttribute>;
-};
-
 export type TItemShippingDetails = {
   __typename?: 'ItemShippingDetails';
   targets: Array<TItemShippingTarget>;
@@ -4141,21 +3741,6 @@ export type TItemState = {
 export type TItemStateDraftType = {
   quantity: Scalars['Long'];
   state: TReferenceInput;
-};
-
-/** A t-shirt product */
-export type TJeansProductType = TProductType & {
-  __typename?: 'jeansProductType';
-  productTypeId: Scalars['String'];
-};
-
-/** Attributes only for jeans */
-export type TJeansProductType = TProductType & {
-  __typename?: 'JeansProductType';
-  productTypeId: Scalars['String'];
-  inseam: Maybe<TNumberAttribute>;
-  length: Maybe<TNumberAttribute>;
-  style: Maybe<TEnumAttribute>;
 };
 
 
@@ -5794,25 +5379,12 @@ export type TMyTransactionDraft = {
   interactionId: Maybe<Scalars['String']>;
 };
 
-/** Nested attributes description */
-export type TNested_AttributesProductType = TProductType & {
-  __typename?: 'Nested_attributesProductType';
-  productTypeId: Scalars['String'];
-  qwwq: Maybe<TBooleanAttribute>;
-};
-
 export type TNestedAttributeDefinitionType = TAttributeDefinitionType & {
   __typename?: 'NestedAttributeDefinitionType';
   /** @deprecated Use 'typeReferenceRef' to fetch the reference. */
   typeReference: TReference;
   typeRef: TReference;
   name: Scalars['String'];
-};
-
-/** new product type */
-export type TNew_Product_TypeProductType = TProductType & {
-  __typename?: 'new_product_typeProductType';
-  productTypeId: Scalars['String'];
 };
 
 export type TNotificationFormat = {
@@ -6290,57 +5862,6 @@ export type TPaymentUpdateAction = {
   transitionState: Maybe<TTransitionPaymentState>;
 };
 
-/**
- * 1914 translation by H. Rackham
- * "But I must explain to you how all this mistaken idea of denouncing pleasure and
- * praising pain was born and I will give you a complete account of the system, and
- * expound the actual teachings of the great explorer of the truth, the
- * master-builder of human happiness. No one rejects, dislikes, or avoids pleasure
- * itself, because it is pleasure, but because those who do not know how to pursue
- * pleasure rationally encounter consequences that are extremely painful. Nor again
- * is there anyone who loves or pursues or desires to obtain pain of itself,
- * because it is pain, but because occasionally circumstances occur in which toil
- * and pain can procure him some great pleasure. To take a trivial example, which
- * of us ever undertakes laborious physical exercise, except to obtain some
- * advantage from it? But who has any right to find fault with a man who chooses to
- * enjoy a pleasure that has no annoying consequences, or one who avoids a pain
- * that produces no resultant pleasure?"
- * 
- * Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
- * "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
- * praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias
- * excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui
- * officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem
- * rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis
- * est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere
- * possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus
- * autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet
- * ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum
- * rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores
- * alias consequatur aut perferendis doloribus asperiores repellat."
- * 
- * 1914 translation by H. Rackham
- * "On the other hand, we denounce with righteous indignation and dislike men who
- * are so beguiled and demoralized by the charms of pleasure of the moment, so
- * blinded by desire, that they cannot foresee the pain and trouble that are bound
- * to ensue; and equal blame belongs to those who fail in their duty through
- * weakness of will, which is the same as saying through shrinking from toil and
- * pain. These cases are perfectly simple and easy to distinguish. In a free hour,
- * when our power of choice is untrammelled and when nothing prevents our being
- * able to do what we like best, every pleasure is to be welcomed and every pain
- * avoided. But in certain circumstances and owing to the claims of duty or the
- * obligations of business it will frequently occur that pleasures have to be
- * repudiated and annoyances accepted. The wise man therefore always holds in these
- * matters to this principle of selection: he rejects pleasures to secure other
- * greater pleasures, or else he endures pains to avoid worse pains."
- */
-export type TPermission_Test_ProductType = TProductType & {
-  __typename?: 'Permission_test_ProductType';
-  productTypeId: Scalars['String'];
-  this_is_another_test_to_change_name: Maybe<TStringAttribute>;
-  numeric_attribute_test_filters: Maybe<TNumberAttribute>;
-};
-
 export type TPlainEnumValue = {
   __typename?: 'PlainEnumValue';
   key: Scalars['String'];
@@ -6423,108 +5944,6 @@ export type TProduct = TVersioned & TReviewTarget & {
 
 export type TProduct_CatalogDataArgs = {
   id: Scalars['String'];
-};
-
-/** Product Type Level 0. */
-export type TProduct_Type_Level_0ProductType = TProductType & {
-  __typename?: 'product_type_level_0ProductType';
-  productTypeId: Scalars['String'];
-  taste: Maybe<TStringAttribute>;
-  nutrients: Maybe<Array<TProduct_Type_Level_1ProductType>>;
-};
-
-/** Product Type Level -1. */
-export type TProduct_Type_Level_1ProductType = TProductType & {
-  __typename?: 'product_type_level_1ProductType';
-  productTypeId: Scalars['String'];
-  other_taste: Maybe<TStringAttribute>;
-  other_nutrients: Maybe<Array<TProduct_Type_Level_0ProductType>>;
-};
-
-/** d5d6487650ff0b2203d125354a355f3ba91b968b */
-export type TProduct_Type_Level_1ProductType = TProductType & {
-  __typename?: 'Product_Type_Level_1ProductType';
-  productTypeId: Scalars['String'];
-  channel_reference_in_nested: Maybe<Array<TReferenceAttribute>>;
-  set_localised_multiline_in_nested: Maybe<Array<TLocalizedStringAttribute>>;
-  nested_attribute_referencing_product_type_level_2: Maybe<Array<TProduct_Type_Level_2ProductType>>;
-};
-
-/** Product Type Level -2. */
-export type TProduct_Type_Level_2ProductType = TProductType & {
-  __typename?: 'product_type_level_2ProductType';
-  productTypeId: Scalars['String'];
-  other_other_taste: Maybe<TStringAttribute>;
-  other_other_nutrients: Maybe<Array<TProduct_Type_Level_1ProductType>>;
-};
-
-/** ea23977a01db7278d2f5cf62b98eb238cf478b18 */
-export type TProduct_Type_Level_2ProductType = TProductType & {
-  __typename?: 'Product_Type_Level_2ProductType';
-  productTypeId: Scalars['String'];
-  attr_name: Maybe<TStringAttribute>;
-  second_attt: Maybe<TNumberAttribute>;
-  circular: Maybe<TWith_Nested_Type_Do_Not_Delete_ThisProductType>;
-};
-
-/** Product Type Level -3. */
-export type TProduct_Type_Level_3ProductType = TProductType & {
-  __typename?: 'product_type_level_3ProductType';
-  productTypeId: Scalars['String'];
-  other_other_other_taste: Maybe<TStringAttribute>;
-  other_other_other_nutrients: Maybe<Array<TProduct_Type_Level_2ProductType>>;
-};
-
-/** Product Type Level -3. */
-export type TProduct_Type_Level_4_12331822_6ec5_411a_Bd50_8292d5088d4fProductType = TProductType & {
-  __typename?: 'product_type_level_4_12331822_6ec5_411a_bd50_8292d5088d4fProductType';
-  productTypeId: Scalars['String'];
-  other_other_other_other_taste: Maybe<TStringAttribute>;
-  other_other_other_other_nutrients: Maybe<Array<TProduct_Type_Level_3ProductType>>;
-};
-
-/** Product Type Level -3. */
-export type TProduct_Type_Level_4_76fff9a5_C90d_418b_850d_457227a1df71ProductType = TProductType & {
-  __typename?: 'product_type_level_4_76fff9a5_c90d_418b_850d_457227a1df71ProductType';
-  productTypeId: Scalars['String'];
-  other_other_other_other_taste: Maybe<TStringAttribute>;
-  other_other_other_other_nutrients: Maybe<Array<TProduct_Type_Level_3ProductType>>;
-};
-
-/** Don't touch this product type, please */
-export type TProduct_Type_With_Single_Required_Attribute_On_Sfa_And_None_Don_T_Touch_This_Product_Type_PleaseProductType = TProductType & {
-  __typename?: 'product_type_with_single_required_attribute_on_SFA_and_NONE_Don_t_touch_this_product_type_pleaseProductType';
-  productTypeId: Scalars['String'];
-  enum_value_sfa_single: Maybe<TEnumAttribute>;
-  lenum_value_sfa_single: Maybe<TLocalizedEnumAttribute>;
-  any_enum: Maybe<TEnumAttribute>;
-  any_lenum: Maybe<Array<TLocalizedEnumAttribute>>;
-  any_other_lenum: Maybe<Array<TEnumAttribute>>;
-  another_goddamn_enum: Maybe<TEnumAttribute>;
-};
-
-/** product type with some attributes */
-export type TProduct_Type_Without_Any_AttributesProductType = TProductType & {
-  __typename?: 'product_type_without_any_attributesProductType';
-  productTypeId: Scalars['String'];
-  attr_boolean_n: Maybe<TBooleanAttribute>;
-  set_attr_text_sfa: Maybe<Array<TStringAttribute>>;
-  set_attr_boolean_n: Maybe<Array<TBooleanAttribute>>;
-  attr_text_sfa: Maybe<TStringAttribute>;
-  attr_number_sfa: Maybe<TNumberAttribute>;
-  set_attr_number_sfa: Maybe<Array<TNumberAttribute>>;
-  attr_money_sfa: Maybe<TMoneyAttribute>;
-  set_attr_money_sfa: Maybe<Array<TMoneyAttribute>>;
-  attr_money_n: Maybe<TMoneyAttribute>;
-  attr_money_combination_unique: Maybe<TMoneyAttribute>;
-  attr_date_n: Maybe<TDateAttribute>;
-  set_attr_date_n: Maybe<Array<TDateAttribute>>;
-  attr_time_sfa: Maybe<TTimeAttribute>;
-  set_attr_time_sfa: Maybe<Array<TTimeAttribute>>;
-  attr_datetime_sfa: Maybe<TDateTimeAttribute>;
-  set_attr_datetime_sfa: Maybe<Array<TDateTimeAttribute>>;
-  attr_reference_category_sfa: Maybe<TReferenceAttribute>;
-  set_attr_reference_category_sfa: Maybe<Array<TReferenceAttribute>>;
 };
 
 export type TProductAttributeInput = {
@@ -7005,15 +6424,9 @@ export type TProductVariant = {
   availability: Maybe<TProductVariantAvailabilityWithChannels>;
   /** This field contains non-typed data. Consider using `attributes` as a typed alternative. */
   attributesRaw: Array<TRawProductAttribute>;
-  /**
-   * Product attributes
-   * @deprecated Typed attributes are no longer supported, please use attributesRaw instead.
-   */
+  /** Product attributes */
   attributes: TProductType;
-  /**
-   * Product attributes are returned as a list instead of an object structure.
-   * @deprecated Typed attributes are no longer supported, please use attributesRaw instead.
-   */
+  /** Product attributes are returned as a list instead of an object structure. */
   attributeList: Array<TAttribute>;
 };
 
@@ -8119,17 +7532,6 @@ export enum TRoundingMode {
    */
   HalfEven = 'HalfEven'
 }
-
-/** A demo product type */
-export type TSample_Product_TypeProductType = TProductType & {
-  __typename?: 'Sample_Product_TypeProductType';
-  productTypeId: Scalars['String'];
-  attr_money_sfa: Maybe<TMoneyAttribute>;
-  set_attr_text_sfa: Maybe<Array<TStringAttribute>>;
-  loc: Maybe<TLocalizedStringAttribute>;
-  enum_sfa: Maybe<TEnumAttribute>;
-  key_required: Maybe<TStringAttribute>;
-};
 
 export type TScoreShippingRateInput = TShippingRateInput & {
   __typename?: 'ScoreShippingRateInput';
@@ -9959,12 +9361,6 @@ export type TShippingTargetInput = {
   dummy: Maybe<Scalars['String']>;
 };
 
-/** Shoes */
-export type TShoesProductType = TProductType & {
-  __typename?: 'ShoesProductType';
-  productTypeId: Scalars['String'];
-};
-
 export type TShoppingList = TVersioned & {
   __typename?: 'ShoppingList';
   key: Maybe<Scalars['String']>;
@@ -10128,13 +9524,6 @@ export type TShoppingListUpdateAction = {
   setTextLineItemCustomField: Maybe<TSetShoppingListTextLineItemCustomField>;
   setTextLineItemCustomType: Maybe<TSetShoppingListTextLineItemCustomType>;
   setTextLineItemDescription: Maybe<TSetShoppingListTextLineItemDescription>;
-};
-
-/** Simple product type */
-export type TSimple_Product_TypeProductType = TProductType & {
-  __typename?: 'simple_product_typeProductType';
-  productTypeId: Scalars['String'];
-  text: Maybe<TStringAttribute>;
 };
 
 export type TSimpleAttributeTypeDraft = {
@@ -10645,18 +10034,6 @@ export type TTaxRateDraft = {
   subRates: Maybe<Array<TSubRateDraft>>;
 };
 
-/** this is a test product type */
-export type TTest_TypeProductType = TProductType & {
-  __typename?: 'test_typeProductType';
-  productTypeId: Scalars['String'];
-};
-
-/** test */
-export type TTestProductType = TProductType & {
-  __typename?: 'testProductType';
-  productTypeId: Scalars['String'];
-};
-
 export type TTextAttributeDefinitionType = TAttributeDefinitionType & {
   __typename?: 'TextAttributeDefinitionType';
   name: Scalars['String'];
@@ -10698,12 +10075,6 @@ export type TTextLineItemDraft = {
   quantity: Maybe<Scalars['Int']>;
   custom: Maybe<TCustomFieldsDraft>;
   addedAt: Maybe<Scalars['DateTime']>;
-};
-
-/** This is my first product type */
-export type TThis_Is_My_First_Product_TypeProductType = TProductType & {
-  __typename?: 'This_is_my_first_product_typeProductType';
-  productTypeId: Scalars['String'];
 };
 
 
@@ -10879,16 +10250,6 @@ export type TType = {
   type: Maybe<TTypeDefinition>;
 };
 
-/** Sample Product Type with a Set of Nested Attributes. */
-export type TType_With_Nested_Set_AttributeProductType = TProductType & {
-  __typename?: 'type_with_nested_set_attributeProductType';
-  productTypeId: Scalars['String'];
-  simple_text: Maybe<TStringAttribute>;
-  set_nested_attribute: Maybe<Array<TWith_Nested_Type_Do_Not_Delete_ThisProductType>>;
-  empty: Maybe<TEmpty_Product_TypeProductType>;
-  simple_nested: Maybe<Array<TSimple_Product_TypeProductType>>;
-};
-
 /** Types define the structure of custom fields which can be attached to different entities throughout the platform. */
 export type TTypeDefinition = TVersioned & {
   __typename?: 'TypeDefinition';
@@ -11003,12 +10364,6 @@ export type TUpdateStagedOrderSyncInfoOutput = TStagedOrderUpdateActionOutput & 
   externalId: Maybe<Scalars['String']>;
 };
 
-/** ffg */
-export type TVcvProductType = TProductType & {
-  __typename?: 'vcvProductType';
-  productTypeId: Scalars['String'];
-};
-
 /** Versioned object have an ID and version and modification. Every update of this object changes it's version. */
 export type TVersioned = {
   id: Scalars['String'];
@@ -11026,40 +10381,6 @@ export type TWhitespaceSuggestTokenizer = TSuggestTokenizer & {
 
 export type TWhitespaceSuggestTokenizerInput = {
   dummy: Maybe<Scalars['String']>;
-};
-
-/** A generic type with all attributes */
-export type TWith_Nested_Type_Do_Not_Delete_ThisProductType = TProductType & {
-  __typename?: 'With_Nested_Type_do_not_delete_thisProductType';
-  productTypeId: Scalars['String'];
-  localized_multi_SFA_required: Maybe<TLocalizedStringAttribute>;
-  localized_single_SFA_required: Maybe<TLocalizedStringAttribute>;
-  text_multi_SFA_required: Maybe<TStringAttribute>;
-  text_single_SFA_required: Maybe<TStringAttribute>;
-  SET_localized_multi_SFA_required: Maybe<Array<TLocalizedStringAttribute>>;
-  required_lenum: Maybe<TLocalizedEnumAttribute>;
-  required_boolean: Maybe<TBooleanAttribute>;
-  time_sfa_required: Maybe<TTimeAttribute>;
-  datetime_sfa_required: Maybe<TDateTimeAttribute>;
-  numeric_sfa_required: Maybe<TNumberAttribute>;
-  money_sfa_required: Maybe<TMoneyAttribute>;
-  attr_boolean_n: Maybe<TBooleanAttribute>;
-  ColorMaterial: Maybe<TStringAttribute>;
-  is_a_nested_attribute_type: Maybe<TIs_A_Nested_Reference_Do_Not_DeleteProductType>;
-  nested_attribute_referencing_product_type_level_1: Maybe<Array<TProduct_Type_Level_1ProductType>>;
-  non_required_lenum: Maybe<TLocalizedEnumAttribute>;
-  non_required_enum: Maybe<TEnumAttribute>;
-};
-
-/** with single required attribute */
-export type TWith_Single_Required_AttributeProductType = TProductType & {
-  __typename?: 'with_single_required_attributeProductType';
-  productTypeId: Scalars['String'];
-  attr_sfa_text_non_required: Maybe<TStringAttribute>;
-  attr_sfa_text_required: Maybe<TStringAttribute>;
-  attribute_unique_sfa_text_required: Maybe<TStringAttribute>;
-  attribute_unique_sfa_text_non_required: Maybe<TStringAttribute>;
-  enum_required_sfa_single: Maybe<TEnumAttribute>;
 };
 
 
@@ -11116,9 +10437,9 @@ export type TZoneUpdateAction = {
   setKey: Maybe<TSetZoneKey>;
 };
 
-export type TQuickAccessProductQueryVariables = Exact<{
+export type TQuickAccessProductQueryVariables = {
   productId: Scalars['String'];
-}>;
+};
 
 
 export type TQuickAccessProductQuery = (
@@ -11139,12 +10460,12 @@ export type TQuickAccessProductQuery = (
   )> }
 );
 
-export type TQuickAccessQueryVariables = Exact<{
+export type TQuickAccessQueryVariables = {
   searchText: Scalars['String'];
   canViewProducts: Scalars['Boolean'];
   productsWhereClause: Maybe<Scalars['String']>;
   includeProductsByIds: Scalars['Boolean'];
-}>;
+};
 
 
 export type TQuickAccessQuery = (
