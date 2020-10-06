@@ -20,6 +20,7 @@ const User = new Factory()
   .attr('launchdarklyTrackingTeam', () => [faker.random.word()])
   .attr('launchdarklyTrackingTenant', 'gcp-eu')
   .attr('defaultProjectKey', () => null)
+  .attr('businessRole', () => faker.name.jobDescriptor())
   .attr('projects', () => ({
     __typename: 'ProjectQueryResult',
     total: 0,

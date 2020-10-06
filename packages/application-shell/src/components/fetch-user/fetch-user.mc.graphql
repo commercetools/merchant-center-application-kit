@@ -14,6 +14,7 @@ query FetchLoggedInUser {
     launchdarklyTrackingTeam
     launchdarklyTrackingTenant
     defaultProjectKey
+    businessRole
     projects {
       total
       results {

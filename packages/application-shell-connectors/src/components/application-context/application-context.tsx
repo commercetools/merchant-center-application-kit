@@ -67,6 +67,7 @@ export const mapUserToApplicationContextUser = (user?: TFetchedUser) => {
     email: user.email,
     firstName: user.firstName,
     lastName: user.lastName,
+    businessRole: user.businessRole,
     // NOTE: this is an alias for the original field `user.language` but it's actually
     // a locale (language + country).
     locale: user.language,

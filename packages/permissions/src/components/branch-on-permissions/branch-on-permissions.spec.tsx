@@ -22,6 +22,7 @@ const renderWithPermissions = (demandedPermissions: string[]) => {
         numberFormat: 'en',
         defaultProjectKey: undefined,
         timeZone: undefined,
+        businessRole: undefined,
         projects: {
           total: 1,
           results: [

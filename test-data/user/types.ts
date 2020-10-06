@@ -23,6 +23,7 @@ type TBaseUser = {
   launchdarklyTrackingTeam: string;
   launchdarklyTrackingTenant: string;
   defaultProjectKey: string;
+  businessRole?: string;
 };
 
 export type TUser = TBaseUser & {

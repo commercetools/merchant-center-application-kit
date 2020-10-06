@@ -83,6 +83,7 @@ projects:
                 YearMonth: string
                 BigDecimal: string
                 Time: string
+                Set: 'unknown[]'
         hooks:
           afterAllFileWrite:
             - prettier --write

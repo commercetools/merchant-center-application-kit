@@ -21,6 +21,7 @@ const createTestUser = (custom = {}) => ({
   lastName: 'bar',
   language: 'en',
   timeZone: undefined,
+  businessRole: undefined,
   // Fields that should not be exposed
   numberFormat: 'en',
   gravatarHash: 'aaa',
