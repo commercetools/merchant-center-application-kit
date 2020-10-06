@@ -1,5 +1,11 @@
 # @commercetools-backend/loggers
 
+## 16.18.0
+
+### Patch Changes
+
+- [`8cdb025`](https://github.com/commercetools/merchant-center-application-kit/commit/8cdb02591b718406c910a2c4128d4be3dfe24785) [#1776](https://github.com/commercetools/merchant-center-application-kit/pull/1776) Thanks [@renovate](https://github.com/apps/renovate)! - update deps
+
 ## 16.17.0
 
 ### Patch Changes
