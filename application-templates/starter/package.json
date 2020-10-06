@@ -20,17 +20,17 @@
     "@commercetools-frontend/i18n": "16.17.0",
     "@commercetools-frontend/mc-http-server": "16.17.4",
     "@commercetools-frontend/permissions": "16.17.0",
-    "@commercetools-uikit/flat-button": "10.35.1",
+    "@commercetools-uikit/flat-button": "10.36.0",
     "@commercetools-uikit/icons": "10.33.0",
     "@commercetools-uikit/spacings": "10.18.7",
-    "@commercetools-uikit/text": "10.35.1",
+    "@commercetools-uikit/text": "10.36.0",
     "apollo-client": "2.6.10",
     "bulk-update-versions": "1.1.0",
     "prop-types": "15.7.2",
     "react": "16.13.1",
     "react-apollo": "3.1.5",
     "react-dom": "16.13.1",
-    "react-intl": "5.8.3",
+    "react-intl": "5.8.4",
     "react-redux": "7.2.1",
     "react-router-dom": "5.2.0",
     "redux": "4.0.5"
@@ -41,6 +41,6 @@
     "@testing-library/react": "11.0.4",
     "dotenv-cli": "4.0.0",
     "enzyme": "3.11.0",
-    "jest": "26.4.2"
+    "jest": "26.5.0"
   }
 }

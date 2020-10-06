@@ -49,13 +49,13 @@
     "@commercetools/http-user-agent": "2.1.2",
     "@commercetools/sdk-client": "2.1.2",
     "@commercetools/sdk-middleware-correlation-id": "2.1.4",
-    "@commercetools/sdk-middleware-http": "6.0.8",
+    "@commercetools/sdk-middleware-http": "6.0.9",
     "@types/node-fetch": "^2.5.7",
     "@types/prop-types": "^15.7.3",
     "fast-equals": "2.0.0",
     "prop-types": "15.7.2",
     "qss": "2.0.3",
-    "unfetch": "4.1.0"
+    "unfetch": "4.2.0"
   },
   "devDependencies": {
     "@types/uuid": "8.3.0",
@@ -63,7 +63,7 @@
     "react-redux": "7.2.1",
     "redux": "4.0.5",
     "redux-thunk": "2.3.0",
-    "uuid": "8.3.0"
+    "uuid": "8.3.1"
   },
   "peerDependencies": {
     "@types/react": "16.x",
