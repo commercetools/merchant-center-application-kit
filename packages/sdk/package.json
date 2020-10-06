@@ -58,6 +58,7 @@
     "unfetch": "4.2.0"
   },
   "devDependencies": {
+    "@types/enzyme": "3.10.7",
     "@types/uuid": "8.3.0",
     "react": "16.13.1",
     "react-redux": "7.2.1",
