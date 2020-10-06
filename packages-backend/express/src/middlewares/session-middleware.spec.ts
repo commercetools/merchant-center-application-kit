@@ -1,8 +1,17 @@
-import nock from 'nock';
+import { rest } from 'msw';
+import { setupServer } from 'msw/node';
 import createSessionMiddleware from './session-middleware';
 import * as fixtureJWTToken from './fixtures/jwt-token';
 import { createSessionAuthVerifier } from '../auth';
 import { CLOUD_IDENTIFIERS } from '../constants';
+
+const mockServer = setupServer();
+
+afterEach(() => {
+  mockServer.resetHandlers();
+});
+beforeAll(() => mockServer.listen());
+afterAll(() => mockServer.close());
 
 describe.each`
   cloudIdentifier                 | issuer
@@ -16,10 +25,11 @@ describe.each`
   'when the middleware uses as "issuer": "$cloudIdentifier"',
   ({ cloudIdentifier, issuer }) => {
     beforeEach(() => {
-      nock(issuer)
-        .defaultReplyHeaders({ 'access-control-allow-origin': '*' })
-        .get('/.well-known/jwks.json')
-        .reply(200, fixtureJWTToken.jwksStore.toJWKS());
+      mockServer.use(
+        rest.get(`${issuer}/.well-known/jwks.json`, (_req, res, ctx) =>
+          res(ctx.json(fixtureJWTToken.jwksStore.toJWKS()))
+        )
+      );
     });
     it('should verify the token and attach the session info to the request', async () => {
       const sessionMiddleware = createSessionMiddleware({
