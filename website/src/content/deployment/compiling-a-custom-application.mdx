@@ -2,9 +2,9 @@
 title: Compiling a Custom Application
 ---
 
-One of the necessary steps to prepare your Custom Application for a deployment is to create a [production build](/deployment/production-build). If you decide to host your Custom Application statically and do not intend to use the [provided HTTP server](/deployment/http-server), you need to compile your Custom Application.
+One of the necessary steps to prepare your Custom Application for a deployment is to create a [production build](/deployment/production-build). The production build contains a `index.html.template` file that needs to be compiled into a `index.html` file to serve the Custom Application.
 
-This section helps prepare your Custom Application for static hosting by going through the compilation step.
+This section describes what compiling the Custom Application means and what are the steps to do that.
 
 # Why compile?
 
@@ -12,7 +12,7 @@ When creating a [production build](/deployment/production-build), `mc-scripts bu
 
 One of these assets is a file named `index.html.template`. This file contains references to bundles (your code and other assets) and placeholders that needs to be replaced with values specific to your [Custom Application configuration](/development/application-config).
 
-Therefore, compiling the application simply results in having a final `index.html` with all the correct runtime values in place.
+Therefore, by compiling a Custom Application the final `index.html` file is created with all the correct runtime values in place.
 
 Once your Custom Application is compiled, it is ready for deployment.
 
@@ -40,3 +40,9 @@ We provide some step-by-step tutorial examples for hosting a Custom Application 
 - [Example Deployment with Vercel](/deployment/example-deployment-vercel)
 - [Example Deployment with Firebase](/deployment/example-deployment-firebase)
 - [Example Deployment with AWS, S3 and CloudFront](/deployment/example-deployment-aws-s3-cloudfront)
+
+<Info>
+
+Want to deploy to a specific cloud provider? [Let us know](https://github.com/commercetools/merchant-center-application-kit/issues/new/choose), and we can provide you with an example.
+
+</Info>
