@@ -15,6 +15,7 @@ const generator = Generator<TUser>({
     language: 'en',
     numberFormat: 'en',
     timeZone: 'Europe/Berlin',
+    businessRole: fake((f) => f.name.jobDescriptor()),
     defaultProjectKey: null,
     gravatarHash: fake((f) => f.internet.avatar()),
     launchdarklyTrackingId: '',
