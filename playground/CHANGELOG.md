@@ -1,5 +1,21 @@
 # playground
 
+## 16.11.11
+
+### Patch Changes
+
+- [`8cdb025`](https://github.com/commercetools/merchant-center-application-kit/commit/8cdb02591b718406c910a2c4128d4be3dfe24785) [#1776](https://github.com/commercetools/merchant-center-application-kit/pull/1776) Thanks [@renovate](https://github.com/apps/renovate)! - update deps
+
+- Updated dependencies [[`78418b9`](https://github.com/commercetools/merchant-center-application-kit/commit/78418b9db14014c7d9c03c8e754ee9d2adb7ffb7), [`8cdb025`](https://github.com/commercetools/merchant-center-application-kit/commit/8cdb02591b718406c910a2c4128d4be3dfe24785), [`290ed48`](https://github.com/commercetools/merchant-center-application-kit/commit/290ed483e9a93adf1cf7863d766ad8237735dfca)]:
+  - @commercetools-frontend/application-shell@16.18.0
+  - @commercetools-frontend/application-shell-connectors@16.18.0
+  - @commercetools-frontend/permissions@16.18.0
+  - @commercetools-frontend/application-components@16.18.0
+  - @commercetools-frontend/i18n@16.18.0
+  - @commercetools-frontend/mc-http-server@16.18.0
+  - @commercetools-frontend/sdk@16.18.0
+  - @commercetools-frontend/l10n@16.18.0
+
 ## 16.11.10
 
 ### Patch Changes

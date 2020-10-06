@@ -1,5 +1,16 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 16.18.0
+
+### Minor Changes
+
+- [`78418b9`](https://github.com/commercetools/merchant-center-application-kit/commit/78418b9db14014c7d9c03c8e754ee9d2adb7ffb7) [#1784](https://github.com/commercetools/merchant-center-application-kit/pull/1784) Thanks [@fuchodeveloper](https://github.com/fuchodeveloper)! - Expose `user.businessRole` to application context
+
+### Patch Changes
+
+- Updated dependencies [[`8cdb025`](https://github.com/commercetools/merchant-center-application-kit/commit/8cdb02591b718406c910a2c4128d4be3dfe24785)]:
+  - @commercetools-frontend/sentry@16.18.0
+
 ## 16.17.0
 
 ### Patch Changes

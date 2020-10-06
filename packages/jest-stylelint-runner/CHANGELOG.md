@@ -1,5 +1,11 @@
 # @commercetools-frontend/jest-stylelint-runner
 
+## 16.18.0
+
+### Patch Changes
+
+- [`6287637`](https://github.com/commercetools/merchant-center-application-kit/commit/62876379ab69976042878072f30fc11af4f3d734) [#1778](https://github.com/commercetools/merchant-center-application-kit/pull/1778) Thanks [@renovate](https://github.com/apps/renovate)! - upgrade postcss-load-config
+
 ## 16.17.2
 
 ### Patch Changes
