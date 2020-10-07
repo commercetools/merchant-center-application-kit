@@ -6,9 +6,11 @@
   "scripts": {
     "build": "mc-scripts build",
     "start": "dotenv -- mc-scripts start",
-    "compile-html:gcp-eu": "dotenv -e vercel-deployments/state-machines-gcp-eu/.env -- mc-scripts compile-html --use-local-assets --transformer $(pwd)/vercel-deployments/transformer-vercel.js",
-    "compile-html:gcp-us": "dotenv -e vercel-deployments/state-machines-gcp-us/.env -- mc-scripts compile-html --use-local-assets --transformer $(pwd)/vercel-deployments/transformer-vercel.js",
-    "start:prod:local": "NODE_ENV=production MC_APP_ENV=development dotenv -- mc-http-server --use-local-assets",
+    "compile-html": "NODE_ENV=production dotenv -- mc-scripts compile-html",
+    "compile-html:local": "NODE_ENV=production MC_APP_ENV=development dotenv -- mc-scripts compile-html --transformer @commercetools-frontend/mc-dev-authentication/transformer-local.js",
+    "compile-html:gcp-eu": "dotenv -e vercel-deployments/state-machines-gcp-eu/.env -- mc-scripts compile-html --transformer $(pwd)/vercel-deployments/transformer-vercel.js",
+    "compile-html:gcp-us": "dotenv -e vercel-deployments/state-machines-gcp-us/.env -- mc-scripts compile-html --transformer $(pwd)/vercel-deployments/transformer-vercel.js",
+    "start:prod:local": "yarn compile-html:local && mc-scripts serve",
     "i18n:build": "mc-scripts extract-intl --output-path=$(pwd)/src/i18n/data 'src/**/!(*.spec).js' --build-translations"
   },
   "dependencies": {
@@ -21,7 +23,6 @@
     "@commercetools-frontend/constants": "16.16.0",
     "@commercetools-frontend/i18n": "16.18.0",
     "@commercetools-frontend/l10n": "16.18.0",
-    "@commercetools-frontend/mc-http-server": "16.18.0",
     "@commercetools-frontend/permissions": "16.18.0",
     "@commercetools-frontend/sdk": "16.18.0",
     "@commercetools-uikit/constraints": "10.30.1",
@@ -47,6 +48,7 @@
     "redux": "4.0.5"
   },
   "devDependencies": {
+    "@commercetools-frontend/mc-dev-authentication": "16.15.2",
     "@commercetools-frontend/mc-scripts": "16.18.0",
     "dotenv-cli": "4.0.0"
   }

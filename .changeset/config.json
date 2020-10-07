@@ -28,7 +28,6 @@
       "@commercetools-frontend/l10n",
       "@commercetools-frontend/mc-dev-authentication",
       "@commercetools-frontend/mc-html-template",
-      "@commercetools-frontend/mc-http-server",
       "@commercetools-frontend/mc-scripts",
       "@commercetools-frontend/notifications",
       "@commercetools-frontend/permissions",

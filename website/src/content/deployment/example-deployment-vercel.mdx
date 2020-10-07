@@ -89,20 +89,11 @@ To make it work, we need to **compile** the application first.
 
 # Compile the application
 
-The Merchant Center Custom Applications are available by default with a built-in [HTTP server](/deployment/http-server), which takes care of preparing the `index.html` according to the [application config](/development/application-config).
-
-To be able to deploy the Custom Application to the Vercel platform, the application needs to be configured and built statically.
-This is possible using the [`compile-html` command](/development/available-scripts).
+To be able to deploy the Custom Application to the Vercel platform, the Custom Application needs to be [compiled](/deployment/compiling-a-custom-application).
 
 ```console
-mc-scripts compile-html --use-local-assets
+mc-scripts compile-html
 ```
-
-<Info>
-
-The `--use-local-assets` option is required for the sake of this example. See [Serving static assets](/deployment/serving-static-assets).
-
-</Info>
 
 The command above does what we need: it compiles the `index.html` using the JavaScript bundle references (after running `mc-scripts build`) and the runtime configuration. At this point the `index.html` file is ready for production usage.
 
@@ -121,9 +112,8 @@ We assume that the transformer function is defined at the following location: `.
 
 </Info>
 
-```console highlightLines="5" noPromptLines="2-3"
+```console noPromptLines="2"
 mc-scripts compile-html \
-  --use-local-assets \
   --transformer $(pwd)/config/transformer-vercel.js
 ```
 
@@ -258,11 +248,10 @@ module.exports =  function transformer({ headers }) {
 
 Finally, we can trigger the deployment using the [Vercel CLI](https://vercel.com/download):
 
-```console noPromptLines="2,4-6"
+```console noPromptLines="2,4-5"
 yarn build
 
 mc-scripts compile-html \
-  --use-local-assets \
   --transformer $(pwd)/config/transformer-vercel.js
 
 vercel

@@ -6,9 +6,9 @@
   "scripts": {
     "prebuild": "rimraf dist/**",
     "build": "mc-scripts build",
-    "postbuild": "MC_APP_ENV=development mc-scripts compile-html --use-local-assets",
+    "postbuild": "MC_APP_ENV=development mc-scripts compile-html",
     "start": "mc-scripts start",
-    "serve": "serve public --no-clipboard --single --listen 3001"
+    "serve": "mc-scripts serve"
   },
   "dependencies": {
     "@commercetools-frontend/application-components": "16.18.0",
@@ -31,7 +31,6 @@
     "react-router-dom": "5.2.0"
   },
   "devDependencies": {
-    "@commercetools-frontend/mc-scripts": "16.18.0",
-    "serve": "11.3.2"
+    "@commercetools-frontend/mc-scripts": "16.18.0"
   }
 }

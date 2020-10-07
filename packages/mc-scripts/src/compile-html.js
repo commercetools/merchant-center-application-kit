@@ -21,7 +21,6 @@ const { compileHtml } = require('@commercetools-frontend/mc-html-template');
 
 const flags = mri(process.argv.slice(2), {
   alias: { help: ['h'] },
-  default: { 'use-local-assets': false },
 });
 
 if (flags.help) {
@@ -29,20 +28,19 @@ if (flags.help) {
   Usage: mc-scripts compile-html [options]
 
   Options:
-  --use-local-assets        (optional) If this option is enabled, the index.html.template will be taken from the local "dist/assets" folder, otherwise it will be downloaded from the remove URL provided in "cdnUrl" in the "env.json" file (requires "mc-scripts build" to run before) [default "false"]
   --transformer=<path>      (optional) The path to a JS module that can be used to generate a configuration for a specific cloud provider (e.g. Netlify, Vercel, Firebase).
   `);
   process.exit(0);
 }
 
-const useLocalAssets = flags['use-local-assets'];
-
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
+const publicAssetsPath = resolveApp('public');
+
 const paths = {
   featurePoliciesPath: flags.featurePolicies,
-  publicAssetsPath: resolveApp('public'),
+  publicAssetsPath,
   // NOTE: previously, for running the prod server locally, we were copying
   // assets into public/assets and compiling the index.html into public folder.
   // To run the app then we would define the cdnUrl as http://localhost:3001/assets,
@@ -57,44 +55,35 @@ const paths = {
   // Which means that the 3 static files (favicon, google**.html, robots.txt)
   // need to be put somewhere else (public-assets) and copy into the public
   // folder when the server starts.
-  publicAssetsFolderPath: path.join(
-    `${applicationStaticAssetsPath}/html-page/*`
-  ),
+  publicAssetsFolderPath: path.join(applicationStaticAssetsPath, 'html-page/*'),
+  indexHtmlTemplatePath: path.join(publicAssetsPath, 'index.html.template'),
+  indexHtmlPath: path.join(publicAssetsPath, 'index.html'),
 };
 
-shelljs.rm('-rf', paths.publicAssetsPath);
-shelljs.mkdir('-p', paths.publicAssetsPath);
-shelljs.cp('-R', paths.publicAssetsFolderPath, paths.publicAssetsPath);
+shelljs.rm('-rf', publicAssetsPath);
+shelljs.mkdir('-p', publicAssetsPath);
+shelljs.cp('-R', paths.publicAssetsFolderPath, publicAssetsPath);
 
-// This should only be used locally, as we're relying on relative paths
-// outside of this package.
-if (useLocalAssets) {
-  // Resolve the absolute path of the caller location. This is necessary
-  // to point to files within that folder.
-  const assetsFrom = resolveApp('dist/assets');
-  // Make sure that the `dist/assets` folder is available.
-  try {
-    fs.accessSync(assetsFrom, fs.F_OK);
-  } catch (error) {
-    throw new Error(
-      'Could not find "dist/assets" folder. Did you run `mc-scripts build` first?'
-    );
-  }
-  // Copy the `dist/assets` folder into the `public` folder.
-  shelljs.cp('-R', path.join(assetsFrom, '/*'), paths.publicAssetsPath);
+// Resolve the absolute path of the caller location. This is necessary
+// to point to files within that folder.
+const assetsFrom = resolveApp('dist/assets');
+// Make sure that the `dist/assets` folder is available.
+try {
+  fs.accessSync(assetsFrom, fs.F_OK);
+} catch (error) {
+  throw new Error(
+    'Could not find "dist/assets" folder. Did you run `mc-scripts build` first?'
+  );
 }
+// Copy the `dist/assets` folder into the `public` folder.
+shelljs.cp('-R', path.join(assetsFrom, '/*'), publicAssetsPath);
 
 const generateStatic = async () => {
-  const compiled = await compileHtml({
-    publicAssetsPath: paths.publicAssetsPath,
-    useLocalAssets,
-  });
+  const compiled = await compileHtml(paths.indexHtmlTemplatePath);
 
-  fs.writeFileSync(
-    path.join(paths.publicAssetsPath, 'index.html'),
-    compiled.indexHtmlContent,
-    { encoding: 'utf8' }
-  );
+  fs.writeFileSync(paths.indexHtmlPath, compiled.indexHtmlContent, {
+    encoding: 'utf8',
+  });
 
   if (flags.transformer) {
     try {
