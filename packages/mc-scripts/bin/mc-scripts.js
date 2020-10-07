@@ -17,6 +17,7 @@ if (commands.length === 0 || (flags.help && commands.length === 0)) {
   compile-html     Compiles index.html.template into index.html, with all the related runtime configuration applied as well as the properly security headers (requires "mc-scripts build" to run before)
   extract-intl     Extracts intl messages into JSON files
   start            Starts the application using webpack dev server
+  serve            Serves previously built and compiled application from the public folder
   `);
   process.exit(0);
 }
@@ -27,7 +28,8 @@ switch (command) {
   case 'build':
   case 'compile-html':
   case 'extract-intl':
-  case 'start': {
+  case 'start':
+  case 'serve': {
     const commandArgs = process.argv.slice(2).filter((arg) => command !== arg);
     const result = spawn.sync(
       'node',

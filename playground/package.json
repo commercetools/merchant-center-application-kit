@@ -10,7 +10,7 @@
     "compile-html:local": "NODE_ENV=production MC_APP_ENV=development dotenv -- mc-scripts compile-html --transformer @commercetools-frontend/mc-dev-authentication/transformer-local.js",
     "compile-html:gcp-eu": "dotenv -e vercel-deployments/state-machines-gcp-eu/.env -- mc-scripts compile-html --transformer $(pwd)/vercel-deployments/transformer-vercel.js",
     "compile-html:gcp-us": "dotenv -e vercel-deployments/state-machines-gcp-us/.env -- mc-scripts compile-html --transformer $(pwd)/vercel-deployments/transformer-vercel.js",
-    "start:prod:local": "yarn compile-html:local && NODE_ENV=production npx serve -l 3001 public",
+    "start:prod:local": "yarn compile-html:local && mc-scripts serve",
     "i18n:build": "mc-scripts extract-intl --output-path=$(pwd)/src/i18n/data 'src/**/!(*.spec).js' --build-translations"
   },
   "dependencies": {
@@ -50,7 +50,6 @@
   "devDependencies": {
     "@commercetools-frontend/mc-dev-authentication": "16.15.2",
     "@commercetools-frontend/mc-scripts": "16.17.4",
-    "dotenv-cli": "4.0.0",
-    "serve": "11.3.2"
+    "dotenv-cli": "4.0.0"
   }
 }

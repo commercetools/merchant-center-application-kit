@@ -8,7 +8,7 @@
     "start": "dotenv -- mc-scripts start",
     "compile-html": "NODE_ENV=production dotenv -- mc-scripts compile-html",
     "compile-html:local": "NODE_ENV=production MC_APP_ENV=development dotenv -- mc-scripts compile-html --transformer @commercetools-frontend/mc-dev-authentication/transformer-local.js",
-    "start:prod:local": "yarn compile-html:local && NODE_ENV=production npx serve -l 3001 public",
+    "start:prod:local": "yarn compile-html:local && mc-scripts serve",
     "i18n:build": "mc-scripts extract-intl --output-path=$(pwd)/src/i18n/data 'src/**/!(*.spec).js' --build-translations",
     "test": "jest --config jest.test.config.js",
     "test:watch": "jest --config jest.test.config.js --watch",
@@ -42,7 +42,6 @@
     "@testing-library/react": "11.0.4",
     "dotenv-cli": "4.0.0",
     "enzyme": "3.11.0",
-    "jest": "26.5.0",
-    "serve": "11.3.2"
+    "jest": "26.5.0"
   }
 }
