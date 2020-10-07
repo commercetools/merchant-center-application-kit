@@ -159,7 +159,10 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
   return (
     <div
       onKeyDown={(event) => {
-        if (event.key === 'Tab' && !getIsFocusedElementInMenu()) {
+        if (
+          event.key === 'Esc' ||
+          (event.key === 'Tab' && !getIsFocusedElementInMenu())
+        ) {
           props.downshiftProps.closeMenu();
         }
       }}
