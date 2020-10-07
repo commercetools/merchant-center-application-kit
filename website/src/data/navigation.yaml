@@ -56,8 +56,6 @@
       path: '/deployment/compiling-a-custom-application'
     - title: Serving Static Assets
       path: '/deployment/serving-static-assets'
-    - title: HTTP Server
-      path: '/deployment/http-server'
     - title: 'Example Deployment with Vercel'
       path: '/deployment/example-deployment-vercel'
     - title: 'Example Deployment with Firebase'
