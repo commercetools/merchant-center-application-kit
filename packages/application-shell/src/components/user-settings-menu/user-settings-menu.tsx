@@ -137,7 +137,7 @@ const getUserSettingsMenuItemLinkStyles = () => css`
 
 const UserSettingsMenuBody = (props: MenuBodyProps) => {
   // Focus on a menu item when it's opened through keyboard
-  const menuElementRef = React.useRef<HTMLElement>(null);
+  const menuElementRef = React.useRef<HTMLAnchorElement>(null);
   React.useEffect(() => {
     menuElementRef.current?.focus();
   }, []);
