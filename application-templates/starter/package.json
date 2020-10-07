@@ -6,7 +6,9 @@
   "scripts": {
     "build": "mc-scripts build",
     "start": "dotenv -- mc-scripts start",
-    "start:prod:local": "NODE_ENV=production MC_APP_ENV=development dotenv -- mc-http-server --use-local-assets",
+    "compile-html": "NODE_ENV=production dotenv -- mc-scripts compile-html",
+    "compile-html:local": "NODE_ENV=production MC_APP_ENV=development dotenv -- mc-scripts compile-html --transformer @commercetools-frontend/mc-dev-authentication/transformer-local.js",
+    "start:prod:local": "yarn compile-html:local && mc-scripts serve",
     "i18n:build": "mc-scripts extract-intl --output-path=$(pwd)/src/i18n/data 'src/**/!(*.spec).js' --build-translations",
     "test": "jest --config jest.test.config.js",
     "test:watch": "jest --config jest.test.config.js --watch",
@@ -19,7 +21,6 @@
     "@commercetools-frontend/application-shell": "16.18.2",
     "@commercetools-frontend/assets": "16.15.3",
     "@commercetools-frontend/i18n": "16.18.0",
-    "@commercetools-frontend/mc-http-server": "16.18.0",
     "@commercetools-frontend/permissions": "16.18.0",
     "@commercetools-uikit/flat-button": "10.36.0",
     "@commercetools-uikit/icons": "10.33.0",
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "@commercetools-frontend/jest-preset-mc-app": "16.18.0",
+    "@commercetools-frontend/mc-dev-authentication": "16.15.2",
     "@commercetools-frontend/mc-scripts": "16.18.0",
     "@testing-library/react": "11.0.4",
     "dotenv-cli": "4.0.0",
