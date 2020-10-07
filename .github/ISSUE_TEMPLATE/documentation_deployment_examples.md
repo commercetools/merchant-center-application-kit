@@ -8,7 +8,7 @@ labels:
 assignees: ''
 ---
 
-**Where would you like to deploy your custom application?**
+**Where would you like to deploy your Custom Application?**
 List one of the cloud providers that you would be interested to use, that are not listed in the examples.
 
 **Additional context**
