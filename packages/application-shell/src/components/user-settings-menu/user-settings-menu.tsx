@@ -143,7 +143,7 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
   };
   React.useEffect(() => {
     setFocus();
-  });
+  }, []);
 
   const servedByProxy = useApplicationContext(
     (context) => context.environment.servedByProxy
