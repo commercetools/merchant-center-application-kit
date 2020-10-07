@@ -87,7 +87,7 @@ const stateReducer: DownshiftProps<{}>['stateReducer'] = (state, changes) => {
     case Downshift.stateChangeTypes.blurButton:
       return {
         ...changes,
-        isOpen: state.isOpen && getIsFocusedElementInMenu() ? true : false,
+        isOpen: state.isOpen && getIsFocusedElementInMenu() ?? false,
       };
     default:
       return changes;
@@ -138,11 +138,8 @@ const getUserSettingsMenuItemLinkStyles = () => css`
 const UserSettingsMenuBody = (props: MenuBodyProps) => {
   // Focus on a menu item when it's opened through keyboard
   const menuElementRef = React.useRef(null);
-  const setFocus = () => {
-    menuElementRef.current?.focus();
-  };
   React.useEffect(() => {
-    setFocus();
+    menuElementRef.current?.focus();
   }, []);
 
   const servedByProxy = useApplicationContext(
@@ -223,7 +220,7 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
           rel="noopener noreferrer"
           onClick={() => props.downshiftProps.toggleMenu()}
           data-user-settings-menu
-          ref={applicationsAppBarMenu ? undefined : menuElementRef}
+          ref={!applicationsAppBarMenu ? menuElementRef : undefined}
         >
           <MenuItem>
             <Spacings.Inset scale="s">
