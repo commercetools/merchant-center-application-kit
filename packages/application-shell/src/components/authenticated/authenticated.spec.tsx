@@ -8,7 +8,7 @@ import { mocked } from 'ts-jest/utils';
 import { graphql } from 'msw';
 import { setupServer } from 'msw/node';
 import React from 'react';
-import { experimentalRenderAppWithRedux, waitFor } from '../../test-utils';
+import { renderApp, waitFor } from '../../test-utils';
 import { STORAGE_KEYS } from '../../constants';
 import Authenticated from './authenticated';
 
@@ -40,7 +40,7 @@ describe('rendering', () => {
     it('should call render with `isAuthenticated` set to true', async () => {
       mocked(window.localStorage.getItem).mockReturnValue('true');
       const props = createTestProps();
-      experimentalRenderAppWithRedux(<Authenticated {...props} />);
+      renderApp(<Authenticated {...props} />);
       await waitFor(() => {
         expect(props.render).toHaveBeenCalledWith({ isAuthenticated: true });
       });
@@ -51,7 +51,7 @@ describe('rendering', () => {
       it('should call render with `isAuthenticated` set to true', async () => {
         mocked(window.localStorage.getItem).mockReturnValue(null);
         const props = createTestProps();
-        experimentalRenderAppWithRedux(<Authenticated {...props} />);
+        renderApp(<Authenticated {...props} />, { disableApolloMocks: true });
         await waitFor(() => {
           expect(props.render).toHaveBeenCalledWith({ isAuthenticated: true });
         });
@@ -73,7 +73,7 @@ describe('rendering', () => {
         console.error = jest.fn();
         mocked(window.localStorage.getItem).mockReturnValue(null);
         const props = createTestProps();
-        experimentalRenderAppWithRedux(<Authenticated {...props} />);
+        renderApp(<Authenticated {...props} />, { disableApolloMocks: true });
         await waitFor(() => {
           expect(props.render).toHaveBeenCalledWith({ isAuthenticated: false });
         });
