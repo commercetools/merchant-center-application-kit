@@ -75,9 +75,7 @@ const UserAvatar = (
 UserAvatar.displayName = 'UserAvatar';
 
 function getIsFocusedElementInMenu() {
-  return Boolean(
-    document.activeElement?.attributes['data-user-settings-menu']
-  );
+  return Boolean(document.activeElement?.attributes['data-user-settings-menu']);
 }
 
 const stateReducer: DownshiftProps<{}>['stateReducer'] = (state, changes) => {
@@ -87,7 +85,7 @@ const stateReducer: DownshiftProps<{}>['stateReducer'] = (state, changes) => {
     case Downshift.stateChangeTypes.blurButton:
       return {
         ...changes,
-        isOpen: state.isOpen && getIsFocusedElementInMenu() ?? false,
+        isOpen: (state.isOpen && getIsFocusedElementInMenu()) ?? false,
       };
     default:
       return changes;
