@@ -76,7 +76,7 @@ UserAvatar.displayName = 'UserAvatar';
 
 function getIsFocusedElementInMenu() {
   return Boolean(
-    document?.activeElement?.attributes['data-user-settings-menu']
+    document.activeElement?.attributes['data-user-settings-menu']
   );
 }
 
