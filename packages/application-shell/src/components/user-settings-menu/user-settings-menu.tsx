@@ -74,14 +74,20 @@ const UserAvatar = (
 };
 UserAvatar.displayName = 'UserAvatar';
 
-const stateReducer: DownshiftProps<{}>['stateReducer'] = (_state, changes) => {
+function getIsFocusedElementInMenu() {
+  return Boolean(
+    document?.activeElement?.attributes['data-user-settings-menu']
+  );
+}
+
+const stateReducer: DownshiftProps<{}>['stateReducer'] = (state, changes) => {
   switch (changes.type) {
     // So in case the user wants to navigate with the tab button
     // we need to make sure that the menu does not close
     case Downshift.stateChangeTypes.blurButton:
       return {
         ...changes,
-        isOpen: true,
+        isOpen: state.isOpen && getIsFocusedElementInMenu() ? true : false,
       };
     default:
       return changes;
@@ -130,6 +136,15 @@ const getUserSettingsMenuItemLinkStyles = () => css`
 `;
 
 const UserSettingsMenuBody = (props: MenuBodyProps) => {
+  // Focus on a menu item when it's opened through keyboard
+  const menuElementRef = React.useRef(null);
+  const setFocus = () => {
+    menuElementRef.current?.focus();
+  };
+  React.useEffect(() => {
+    setFocus();
+  });
+
   const servedByProxy = useApplicationContext(
     (context) => context.environment.servedByProxy
   );
@@ -143,6 +158,11 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
 
   return (
     <div
+      onKeyDown={(event) => {
+        if (event.key === 'Tab' && !getIsFocusedElementInMenu()) {
+          props.downshiftProps.closeMenu();
+        }
+      }}
       css={css`
         position: absolute;
         background: ${customProperties.colorSurface};
@@ -181,6 +201,8 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
               css={getUserSettingsMenuItemLinkStyles()}
               to={`/account/${menu.uriPath}`}
               onClick={() => props.downshiftProps.toggleMenu()}
+              data-user-settings-menu
+              ref={menuElementRef}
             >
               <MenuItem>
                 <Spacings.Inset scale="s">
@@ -197,6 +219,8 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => props.downshiftProps.toggleMenu()}
+          data-user-settings-menu
+          ref={applicationsAppBarMenu ? undefined : menuElementRef}
         >
           <MenuItem>
             <Spacings.Inset scale="s">
@@ -213,6 +237,7 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
           data-track-event="click"
           data-track-label="support_textlink"
           onClick={() => props.downshiftProps.toggleMenu()}
+          data-user-settings-menu
         >
           <MenuItem>
             <Spacings.Inset scale="s">
@@ -227,12 +252,14 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
           // server can remove things like cookie for access token.
           href={`/logout?reason=${LOGOUT_REASONS.USER}`}
           data-test="logout-button"
+          data-user-settings-menu
         >
-          <MenuItem tabIndex={0}>
+          <MenuItem>
             <Spacings.Inset scale="s">
               <FormattedMessage {...messages.logout} />
             </Spacings.Inset>
           </MenuItem>
+          <div tabIndex={0} onFocus={() => props.downshiftProps.closeMenu()} />
         </a>
       </div>
     </div>
