@@ -75,7 +75,9 @@ const UserAvatar = (
 UserAvatar.displayName = 'UserAvatar';
 
 function getIsFocusedElementInMenu() {
-  return Boolean(document.activeElement?.attributes['data-user-settings-menu']);
+  return Boolean(
+    document.activeElement?.getAttribute('data-user-settings-menu')
+  );
 }
 
 const stateReducer: DownshiftProps<{}>['stateReducer'] = (state, changes) => {
@@ -135,7 +137,7 @@ const getUserSettingsMenuItemLinkStyles = () => css`
 
 const UserSettingsMenuBody = (props: MenuBodyProps) => {
   // Focus on a menu item when it's opened through keyboard
-  const menuElementRef = React.useRef(null);
+  const menuElementRef = React.useRef<HTMLElement>(null);
   React.useEffect(() => {
     menuElementRef.current?.focus();
   }, []);
