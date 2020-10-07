@@ -5,7 +5,6 @@
 '@commercetools-frontend/application-shell': patch
 '@commercetools-frontend/i18n': patch
 '@commercetools-frontend/jest-preset-mc-app': patch
-'@commercetools-frontend/mc-http-server': patch
 '@commercetools-frontend/mc-scripts': patch
 '@commercetools-frontend/react-notifications': patch
 '@commercetools-frontend/sdk': patch
