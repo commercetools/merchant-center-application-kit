@@ -5,11 +5,7 @@ import { setupServer } from 'msw/node';
 import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import * as ProjectMock from '../../../../../test-data/project';
-import {
-  experimentalRenderAppWithRedux,
-  screen,
-  waitForElementToBeRemoved,
-} from '../../test-utils';
+import { renderApp, screen, waitForElementToBeRemoved } from '../../test-utils';
 import FetchProject from './fetch-project';
 
 jest.mock('@commercetools-frontend/sentry');
@@ -32,7 +28,7 @@ beforeAll(() => mockServer.listen());
 afterAll(() => mockServer.close());
 
 const renderProject = () =>
-  experimentalRenderAppWithRedux(
+  renderApp(
     <FetchProject projectKey="test-1">
       {({ isLoading, error, project }) => {
         if (isLoading) return <div>{'loading...'}</div>;
@@ -40,7 +36,8 @@ const renderProject = () =>
         if (project) return <div>{`Project: ${project.name}`}</div>;
         return null;
       }}
-    </FetchProject>
+    </FetchProject>,
+    { disableApolloMocks: true }
   );
 
 describe('rendering', () => {
