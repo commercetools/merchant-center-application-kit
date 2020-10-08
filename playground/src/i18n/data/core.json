@@ -2,5 +2,6 @@
   "StateMachines.ListView.column.stateMachineKey": "Key",
   "StateMachines.ListView.column.stateMachineName": "Name",
   "StateMachines.ListView.noResults": "There are no results matching your search criteria.",
+  "StateMachines.ListView.objectsInCache": "There are {count} objects in the cache.",
   "StateMachines.ListView.title": "State Machines"
 }

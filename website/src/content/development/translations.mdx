@@ -24,7 +24,24 @@ This is the default message, which will be used in case there is no translation 
 
 # Extracting messages for translations
 
-To generate translation files, we provide a `mc-scripts extract-intl` script, which will aggregate all react Intl messages into a `core.json` file:
+To generate translation files, you can use the official `@formatjs/cli` package to [extract message from React Intl messages files](https://formatjs.io/docs/tooling/cli#extraction). For example:
+
+```console noPromptLines="2-3"
+formatjs extract \
+  --out-file=$(pwd)/src/i18n/data/core.json \
+  'src/**/messages.js'
+```
+
+Based on your translation tool, you may need to transform the extracted messages to the appropriate format. For that you can write a [formatter file](https://formatjs.io/docs/tooling/cli#--format-path) and pass it as the `--format` option to the script.
+
+```console noPromptLines="2-3" highlightLines="2"
+formatjs extract \
+  --format=$(pwd)/intl-transformer.js
+  --out-file=$(pwd)/src/i18n/data/core.json \
+  'src/**/messages.js'
+```
+
+At commercetools we use [Transifex](https://www.transifex.com/) as our translation tool. Therefore, in our applications we generate a `core.json` file with the key being the message id and the value being the default Intl message.
 
 ```json
 {
@@ -34,11 +51,16 @@ To generate translation files, we provide a `mc-scripts extract-intl` script, wh
 
 The `core.json` is the so-called source file, which should be used as reference file for the translations in the other locales.
 
-Depending on your translation process, you can decide to manage the translations in a separate service (at commercetools we use [Transifex](https://www.transifex.com/)) or to manually provide the translations.
+As a convention, we store the translation files in a `i18n` folder:
 
-The `mc-scripts extract-intl` command provides some extra options to deal with different scenarios.
-
-![Extract Intl messages](/images/mc-dev-yarn-i18n-build.png)
+```
+└── src
+    └── i18n
+        └── data
+            ├── core.json
+            ├── en.json
+            └── de.json
+```
 
 # Using the messages in the application
 
