@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 16.18.1
+
+### Patch Changes
+
+- [`3fd4aa2`](https://github.com/commercetools/merchant-center-application-kit/commit/3fd4aa2e7ac935bf75daaceacaf1b77dada7afe6) [#1788](https://github.com/commercetools/merchant-center-application-kit/pull/1788) Thanks [@jonnybel](https://github.com/jonnybel)! - Improved keyboard navigation on the user settings menu.
+
 ## 16.18.0
 
 ### Minor Changes
