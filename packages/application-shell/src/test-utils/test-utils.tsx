@@ -8,6 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Router } from 'react-router-dom';
 import invariant from 'tiny-invariant';
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client/react';
 import { MockedProvider as ApolloMockProvider } from '@apollo/client/testing';
 import * as rtl from '@testing-library/react';
@@ -263,6 +264,27 @@ const wrapIfNeeded = (
   wrapper?: React.ComponentType
 ) => (wrapper ? React.createElement(wrapper, null, children) : children);
 
+type TApolloProviderWrapperProps = {
+  apolloClient?: ApolloClient<NormalizedCacheObject>;
+  mocks: ReadonlyArray<MockedResponse>;
+  addTypename: boolean;
+  disableApolloMocks: boolean;
+  children: React.ReactElement;
+};
+const ApolloProviderWrapper = (props: TApolloProviderWrapperProps) => {
+  if (props.disableApolloMocks) {
+    const apolloClient = props.apolloClient ?? createApolloClient();
+    return (
+      <ApolloProvider client={apolloClient}>{props.children}</ApolloProvider>
+    );
+  }
+  return (
+    <ApolloMockProvider mocks={props.mocks} addTypename={props.addTypename}>
+      {props.children}
+    </ApolloMockProvider>
+  );
+};
+
 // This function renders any component within the application context, as if it
 // was rendered inside <ApplicationShell />.
 // The context is not completely set up yet, some things are missing:
@@ -276,6 +298,8 @@ type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   locale: string;
   mocks: ReadonlyArray<MockedResponse>;
   addTypename: boolean;
+  apolloClient?: ApolloClient<NormalizedCacheObject>;
+  disableApolloMocks: boolean;
   route: string;
   history: ReturnType<typeof createEnhancedHistory>;
   adapter: typeof memoryAdapter;
@@ -291,7 +315,6 @@ type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   permissions: TPermissions; // <-- deprecated option, use `{ project: { allAppliedPermissions } }`
   actionRights: TNormalizedActionRights; // <-- deprecated option, use `{ project: { allAppliedActionRights } }`
   dataFences: TNormalizedDataFences; // <-- deprecated option, use `{ project: { allAppliedDataFences } }`
-  ApolloProviderComponent: React.ElementType | typeof ApolloMockProvider;
 } & rtl.RenderOptions;
 type TRenderAppResult<AdditionalEnvironmentProperties = {}> = rtl.RenderResult &
   Pick<
@@ -311,6 +334,8 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
     // Apollo
     mocks = [],
     addTypename = false,
+    apolloClient,
+    disableApolloMocks = false,
     // react-router
     route = '/',
     history = createEnhancedHistory(
@@ -327,7 +352,6 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
     actionRights, // <-- deprecated option, use `{ project: { allAppliedActionRights } }`
     dataFences, // <-- deprecated option, use `{ project: { allAppliedDataFences } }`
     dataLocale = 'en',
-    ApolloProviderComponent = ApolloMockProvider,
     // forwarding to @testing-library/react
     ...renderOptions
   }: Partial<TRenderAppOptions<AdditionalEnvironmentProperties>> = {}
@@ -351,7 +375,12 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
 
   const ApplicationProviders = (props: TApplicationProvidersProps) => (
     <IntlProvider locale={locale}>
-      <ApolloProviderComponent mocks={mocks} addTypename={addTypename}>
+      <ApolloProviderWrapper
+        disableApolloMocks={disableApolloMocks}
+        apolloClient={apolloClient}
+        mocks={mocks}
+        addTypename={addTypename}
+      >
         <ConfigureFlopFlip
           adapter={adapter}
           defaultFlags={flags}
@@ -371,7 +400,7 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
             </Router>
           </ApplicationContextProvider>
         </ConfigureFlopFlip>
-      </ApolloProviderComponent>
+      </ApolloProviderWrapper>
     </IntlProvider>
   );
   ApplicationProviders.propTypes = {
@@ -533,47 +562,7 @@ function renderAppWithRedux<
   };
 }
 
-type TExperimentalRenderAppWithReduxOptions<
-  AdditionalEnvironmentProperties = {},
-  StoreState = {}
-> = TRenderAppWithReduxOptions<AdditionalEnvironmentProperties, StoreState>;
-type TExperimentalRenderAppWithReduxResult<
-  AdditionalEnvironmentProperties = {},
-  StoreState = {}
-> = TRenderAppWithReduxResult<AdditionalEnvironmentProperties, StoreState>;
-
-// Renders UI without mocking ApolloProvider
-function experimentalRenderAppWithRedux<
-  AdditionalEnvironmentProperties = {},
-  StoreState = {}
->(
-  ui: React.ReactElement,
-  renderOptions: Partial<
-    TExperimentalRenderAppWithReduxOptions<
-      AdditionalEnvironmentProperties,
-      StoreState
-    >
-  > = {}
-): TExperimentalRenderAppWithReduxResult<
-  AdditionalEnvironmentProperties,
-  StoreState
-> {
-  const apolloClient = createApolloClient();
-  const RealApolloProvider = ({ children }: { children: React.ReactNode }) => (
-    <ApolloProvider client={apolloClient}>{children}</ApolloProvider>
-  );
-  RealApolloProvider.displayName = 'RealApolloProvider';
-  RealApolloProvider.propTypes = {
-    children: PropTypes.node.isRequired,
-  };
-
-  return renderAppWithRedux<AdditionalEnvironmentProperties, StoreState>(ui, {
-    ...renderOptions,
-    ApolloProviderComponent: RealApolloProvider,
-  });
-}
-
 // re-export everything
 export * from '@testing-library/react';
 
-export { renderApp, renderAppWithRedux, experimentalRenderAppWithRedux };
+export { renderApp, renderAppWithRedux };

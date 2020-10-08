@@ -3,7 +3,7 @@ import { setupServer } from 'msw/node';
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { UserMock, ProjectMock } from '../../../../../graphql-test-utils';
-import { experimentalRenderAppWithRedux, screen } from '../../test-utils';
+import { renderApp, screen } from '../../test-utils';
 import ProjectSuspended from './project-suspended';
 
 const mockServer = setupServer(
@@ -29,12 +29,12 @@ afterAll(() => mockServer.close());
 
 describe('rendering', () => {
   it('when suspension is temporary it should print correct message', async () => {
-    experimentalRenderAppWithRedux(
+    renderApp(
       <Route
         path="/:projectKey"
         render={() => <ProjectSuspended isTemporary={true} />}
       />,
-      { route: '/my-project' }
+      { route: '/my-project', disableApolloMocks: true }
     );
     await screen.findByText(
       /Your Project is temporarily suspended due to maintenance/

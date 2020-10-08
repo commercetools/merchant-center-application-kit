@@ -4,9 +4,11 @@
 // the `render` method sets up the tests correctly.
 // This is a bit different from our usual tests, as we are testing our testing
 // tools here instead of actual components.
+import { graphql } from 'msw';
+import { setupServer } from 'msw/node';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { InMemoryCache, ApolloClient, HttpLink, gql } from '@apollo/client';
+import { gql } from '@apollo/client';
 import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
@@ -15,12 +17,14 @@ import { ApplicationContext } from '@commercetools-frontend/application-shell-co
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { useMcQuery } from '../hooks/apollo-hooks';
-import {
-  renderApp,
-  renderAppWithRedux,
-  experimentalRenderAppWithRedux,
-  waitFor,
-} from './test-utils';
+import { renderApp, renderAppWithRedux, waitFor } from './test-utils';
+
+const mockServer = setupServer();
+afterEach(() => {
+  mockServer.resetHandlers();
+});
+beforeAll(() => mockServer.listen());
+afterAll(() => mockServer.close());
 
 describe('Intl', () => {
   const TestComponent = () => {
@@ -65,6 +69,34 @@ describe('ApolloMockProvider', () => {
           result: { data: { foo: { name: 'Snoop Dogg' } } },
         },
       ],
+    });
+    await rendered.findByText('Snoop Dogg');
+  });
+});
+
+describe('Real ApolloProvider', () => {
+  const SomeQuery = gql`
+    query Wow {
+      foo {
+        name
+      }
+    }
+  `;
+  const TestComponent = () => {
+    const { data } = useMcQuery<{ foo?: { name: string } }>(SomeQuery, {
+      context: { target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM },
+    });
+    if (!data || !data.foo) return <>{'loading'}</>;
+    return <>{data.foo.name}</>;
+  };
+  it('should be possible to fake GraphQL requests', async () => {
+    mockServer.use(
+      graphql.query('Wow', (_req, res, ctx) =>
+        res(ctx.data({ foo: { name: 'Snoop Dogg' } }))
+      )
+    );
+    const rendered = renderApp(<TestComponent />, {
+      disableApolloMocks: true,
     });
     await rendered.findByText('Snoop Dogg');
   });
@@ -362,28 +394,6 @@ describe('custom render functions', () => {
       };
 
       const rendered = renderAppWithRedux(
-        <TestComponent>{'one'}</TestComponent>
-      );
-      await rendered.findByText('one');
-
-      rendered.rerender(<TestComponent>{'two'}</TestComponent>);
-      await rendered.findByText('two');
-      expect(rendered.queryByText('one')).not.toBeInTheDocument();
-    });
-
-    it('should work with experimentalRenderAppWithRedux', async () => {
-      const TestComponent = (props: { children: React.ReactNode }) => {
-        // the error won't be triggered unless one of the providers is used
-        new ApolloClient({
-          link: new HttpLink({
-            uri: 'http://localhost:4000/',
-          }),
-          cache: new InMemoryCache(),
-        });
-        return <>{props.children}</>;
-      };
-
-      const rendered = experimentalRenderAppWithRedux(
         <TestComponent>{'one'}</TestComponent>
       );
       await rendered.findByText('one');
