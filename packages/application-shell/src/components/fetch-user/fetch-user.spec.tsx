@@ -5,11 +5,7 @@ import { setupServer } from 'msw/node';
 import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import * as UserMock from '../../../../../test-data/user';
-import {
-  experimentalRenderAppWithRedux,
-  screen,
-  waitForElementToBeRemoved,
-} from '../../test-utils';
+import { renderApp, screen, waitForElementToBeRemoved } from '../../test-utils';
 import FetchUser from './fetch-user';
 
 jest.mock('@commercetools-frontend/sentry');
@@ -30,7 +26,7 @@ beforeAll(() => mockServer.listen());
 afterAll(() => mockServer.close());
 
 const renderUser = () =>
-  experimentalRenderAppWithRedux(
+  renderApp(
     <FetchUser>
       {({ isLoading, error, user }) => {
         if (isLoading) return <div>{'loading...'}</div>;
@@ -38,7 +34,8 @@ const renderUser = () =>
         if (user) return <div>{`User: ${user.firstName}`}</div>;
         return null;
       }}
-    </FetchUser>
+    </FetchUser>,
+    { disableApolloMocks: true }
   );
 
 describe('rendering', () => {
