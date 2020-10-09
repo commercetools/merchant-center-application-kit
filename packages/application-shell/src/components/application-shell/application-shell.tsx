@@ -78,6 +78,7 @@ type Props<AdditionalEnvironmentProperties extends {}> = {
   // Use `trackingEventList` instead.
   trackingEventWhitelist?: TrackingList;
   trackingEventList?: TrackingList;
+  hideMenuItems?: string[];
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   onRegisterErrorListeners: (args: { dispatch: Dispatch }) => void;
   onMenuItemClick?: <TrackFn>(
@@ -378,6 +379,7 @@ export const RestrictedApplication = <
                                         applicationLocale={locale}
                                         projectKey={projectKeyFromUrl}
                                         environment={applicationEnvironment}
+                                        hideMenuItems={props.hideMenuItems}
                                         DEV_ONLY__loadNavbarMenuConfig={
                                           props.DEV_ONLY__loadNavbarMenuConfig
                                         }
@@ -537,6 +539,7 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
                     render={props.render}
                     applicationMessages={props.applicationMessages}
                     onMenuItemClick={props.onMenuItemClick}
+                    hideMenuItems={props.hideMenuItems}
                     DEV_ONLY__loadAppbarMenuConfig={
                       props.DEV_ONLY__loadAppbarMenuConfig
                     }
