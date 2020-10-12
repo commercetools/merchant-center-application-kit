@@ -281,16 +281,11 @@ const isEveryMenuVisibilitySetToHidden = (
     (nameOfMenuVisibility) =>
       menuVisibilities && menuVisibilities[nameOfMenuVisibility] === true
   );
-const isMenuItemDisabledForEnvironment = (
-  keyOfMenuItem: string,
-  disabledMenuItems?: string[]
-) => disabledMenuItems && disabledMenuItems.includes(keyOfMenuItem);
 
 type RestrictedMenuItemProps = {
   featureToggle?: string;
   namesOfMenuVisibilities?: string[];
   menuVisibilities?: TApplicationContext<{}>['menuVisibilities'];
-  disabledMenuItems?: string[];
   keyOfMenuItem: string;
   permissions: string[];
   actionRights?: TActionRight[];
@@ -310,10 +305,6 @@ const RestrictedMenuItem = (props: RestrictedMenuItemProps) => {
     isEveryMenuVisibilitySetToHidden(
       props.menuVisibilities,
       props.namesOfMenuVisibilities
-    ) ||
-    isMenuItemDisabledForEnvironment(
-      props.keyOfMenuItem,
-      props.disabledMenuItems
     )
   )
     return null;
@@ -389,7 +380,6 @@ type ApplicationMenuProps = {
   handleToggleItem: () => void;
   applicationLocale: string;
   projectKey: string;
-  disabledMenuItems?: string[];
   useFullRedirectsForLinks: boolean;
   onMenuItemClick?: MenuItemLinkProps['onClick'];
 };
@@ -422,7 +412,6 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
         dataFences={props.menu.dataFences}
         menuVisibilities={props.menuVisibilities}
         namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
-        disabledMenuItems={props.disabledMenuItems}
       >
         <MenuItem
           hasSubmenu={hasSubmenu}
@@ -484,7 +473,6 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
                         ? [submenu.menuVisibility]
                         : undefined
                     }
-                    disabledMenuItems={props.disabledMenuItems}
                   >
                     <li className={styles['sublist-item']}>
                       <div className={styles.text}>
@@ -557,7 +545,6 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
     environment: props.environment,
     DEV_ONLY__loadNavbarMenuConfig: props.DEV_ONLY__loadNavbarMenuConfig,
   });
-  const disabledMenuItems = props.environment.disabledMenuItems;
   const useFullRedirectsForLinks = Boolean(
     props.environment.useFullRedirectsForLinks
   );
@@ -586,7 +573,6 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
                 menuVisibilities={menuVisibilities}
                 applicationLocale={props.applicationLocale}
                 projectKey={props.projectKey}
-                disabledMenuItems={disabledMenuItems}
                 useFullRedirectsForLinks={useFullRedirectsForLinks}
               />
             );

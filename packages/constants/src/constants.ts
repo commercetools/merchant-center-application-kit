@@ -153,7 +153,6 @@ export interface ApplicationWindow extends Window {
     trackingSentry?: string;
     trackingGtm?: string;
     enableSignUp?: boolean;
-    disabledMenuItems?: string[];
     useFullRedirectsForLinks?: boolean;
     disableInferringOfMcApiUrlOnProduction?: boolean;
   };
