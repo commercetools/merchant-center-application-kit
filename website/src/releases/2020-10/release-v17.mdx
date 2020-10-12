@@ -34,7 +34,7 @@ With Apollo `v3`, the Apollo in-memory cache got some improvements as well, resu
 
 Depending on the GraphQL queries and mutations used by your Custom Application, it might be that the caching behavior of those queries needs to be adjusted. For example if objects do not have an `id` field as identifier, or if Apollo cannot automatically merge two objects that have different fields shape, and so on.
 
-If that is the case, you need to configure the Apollo cache according to your needs, as only you and your Custom Application can decide what is the best caching strategy.
+If that is the case, you need to configure the Apollo cache according to your needs, as only you know what the best caching strategy for your Custom Application is.
 
 To enable you to do so, the `<ApplicationShell>` component now accepts an `apolloClient` prop, that allows you to configure your own instance of the Apollo client with the custom cache configuration.
 
@@ -117,7 +117,7 @@ These hooks are thin wrappers around the original Apollo hooks and have the same
 
 Previously deprecated CLI options such as `--env`, `--csp`, `--headers`, have been removed.
 
-Additionally, the CLI flag `--use-local-assets` has been removed as well. The default behavior of `mc-scripts compile-html` now is to compile the assets locally, which is the only reasonable thing to do.
+Additionally, the CLI flag `--use-local-assets` has been removed as well. As such the default behavior of `mc-scripts compile-html` changed to compile the assets locally.
 
 When running the `mc-scripts compile-html` command, the `index.html` is compiled for production usage and it lives in the `public` folder, together with the other static assets. This is all you need to deploy your application.
 You can decide to [deploy the Custom Application statically to one of the popular cloud providers](/deployment/compiling-a-custom-application#deployment), or serve the files on your own using a static server.
@@ -134,7 +134,7 @@ mc-scripts serve
 
 ## Removing the `mc-http-server` package
 
-The `@commercetools-frontend/mc-http-server` package has been deprecated and won't be published anymore.
+The `@commercetools-frontend/mc-http-server` package has been deprecated and will not receive any updates.
 
 With the usage of the `compile-html` command there is no need to have a pre-configured HTTP server anymore. If you are using this package, we recommend to use any other HTTP server package to serve your static files.
 
@@ -146,13 +146,13 @@ Remember that after building your production bundles you need to [compile the Cu
 
 ## New command `serve`
 
-We added a new command `mc-scripts serve` that can be used to start your Custom Application **locally** in `production` mode, after having it compiled.
+We added a new command `mc-scripts serve` that can be used to start your Custom Application **locally** in `production` mode after it has been compiled.
 
 The command starts an HTTP server to serve the static assets from the `public` folder.
 
 <Warning>
 
-This command should only be used locally to test the Custom Application in production mode, as it contains the development routes for `/login` and `/logout`.
+This command should only be used locally to test the Custom Application in production mode, as it contains the development routes for `/login` and `/logout`. Do not use this command to serve your Custom Application in production.
 
 </Warning>
 
@@ -195,7 +195,7 @@ After:
 }
 ```
 
-where the `intl-formatter.js` is something like this (depending on your translation tool):
+where the `intl-formatter.js` should be defined as something like this, depending on your translation tool's needs:
 
 ```js title="intl-formatter.js"
 // https://formatjs.io/docs/tooling/cli#extraction
@@ -224,7 +224,7 @@ Instead, you should pass the `disableApolloMocks` option to the `renderApp` and 
 
 This is useful if you want to mock requests at the network level, for example when using [Mock Service Worker](https://mswjs.io/).
 
-Additionally, you can also pass a custom `apolloClient` instance together with the `disableApolloMocks` option. This is only useful when your Custom Application uses a custom `apolloClient`, for example for configuring the cache policies.
+Additionally, you can also pass a custom `apolloClient` instance together with the `disableApolloMocks` option. This is only needed when your Custom Application uses a custom `apolloClient`, for example for configuring the cache policies.
 
 # Removing the deprecated options from `application-shell`
 
