@@ -5,6 +5,7 @@ export const SUPPORTED_HEADERS = {
   X_FEATURE_FLAG: 'X-Feature-Flag',
   X_FORWARD_TO: 'X-Forward-To',
   X_GRAPHQL_TARGET: 'X-Graphql-Target',
+  X_GRAPHQL_OPERATION_NAME: 'X-Graphql-Operation-Name',
   X_PROJECT_KEY: 'X-Project-Key',
   X_TEAM_ID: 'X-Team-Id',
   X_TOKEN_RETRY: 'X-Force-Token',

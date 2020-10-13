@@ -68,6 +68,8 @@ const headerLink = new ApolloLink((operation, forward) => {
       [SUPPORTED_HEADERS.X_PROJECT_KEY]: projectKey,
       [SUPPORTED_HEADERS.X_CORRELATION_ID]: getCorrelationId({ userId }),
       [SUPPORTED_HEADERS.X_GRAPHQL_TARGET]: graphQlTarget,
+      // For logging/debugging purposes
+      [SUPPORTED_HEADERS.X_GRAPHQL_OPERATION_NAME]: operation.operationName,
       // Experimental features, use with caution.
       [SUPPORTED_HEADERS.X_TEAM_ID]: teamId,
       [SUPPORTED_HEADERS.X_APPLICATION_ID]: window.app.applicationId,
