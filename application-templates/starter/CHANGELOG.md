@@ -1,5 +1,47 @@
 # merchant-center-application-template-starter
 
+## 17.0.0
+
+### Major Changes
+
+- [`e706232`](https://github.com/commercetools/merchant-center-application-kit/commit/e706232c152f3fed9cf44c10a0c4f25b27448a16) [#1805](https://github.com/commercetools/merchant-center-application-kit/pull/1805) Thanks [@emmenko](https://github.com/emmenko)! - Remove `mc-scripts extract-intl` command in favor of the official `@formatjs/cli` package.
+  We recommend to update your script to extract Intl messages to use the `formatjs extract` command.
+
+  See full release notes: https://docs.commercetools.com/custom-applications/releases/2020-10-14-custom-applications-v17
+
+* [`873048b`](https://github.com/commercetools/merchant-center-application-kit/commit/873048b1c288ca85a37cf26f7d5d2b10879cfd64) [#1805](https://github.com/commercetools/merchant-center-application-kit/pull/1805) Thanks [@emmenko](https://github.com/emmenko)! - Migrate Apollo dependencies to `@apollo/client` package.
+
+  See full release notes: https://docs.commercetools.com/custom-applications/releases/2020-10-14-custom-applications-v17
+
+- [`633d8c7`](https://github.com/commercetools/merchant-center-application-kit/commit/633d8c7b8ddc2f25128d8249579b7bb287a62e30) [#1805](https://github.com/commercetools/merchant-center-application-kit/pull/1805) Thanks [@emmenko](https://github.com/emmenko)! - Remove the CLI flag `--use-local-assets`. The default behavior of `mc-scripts compile-html` now is to compile the assets locally, which is the only reasonable thing to do.
+
+  Furthermore, the `@commercetools-frontend/mc-http-server` package has been deprecated and won't be published anymore.
+  With the `compile-html` command there is no need to have a pre-configured HTTP server anymore.
+
+  When running the `mc-scripts compile-html` command, the `index.html` is compiled for production usage and it lives in the `public` folder, together with the other static assets. This is all you need to deploy your application.
+  You can decide to [deploy the Custom Application statically to one of the popular cloud providers](https://docs.commercetools.com/custom-applications/deployment/compiling-a-custom-application#deployment), or serve the files on your own using a static server.
+
+  For example, to run locally the Custom Application using the production bundles:
+
+  ```console
+  NODE_ENV=production MC_APP_ENV=development dotenv -- \
+    mc-scripts compile-html \
+    --transformer @commercetools-frontend/mc-dev-authentication/transformer-local.js
+
+  mc-scripts serve
+  ```
+
+### Patch Changes
+
+- [`633d8c7`](https://github.com/commercetools/merchant-center-application-kit/commit/633d8c7b8ddc2f25128d8249579b7bb287a62e30) [#1805](https://github.com/commercetools/merchant-center-application-kit/pull/1805) Thanks [@emmenko](https://github.com/emmenko)! - update deps
+
+- Updated dependencies [[`0e0efc6`](https://github.com/commercetools/merchant-center-application-kit/commit/0e0efc68e93621209f8ee84ebc920b79431c704a), [`80b7936`](https://github.com/commercetools/merchant-center-application-kit/commit/80b793610027fc6c1708f457d030354265beabca), [`e706232`](https://github.com/commercetools/merchant-center-application-kit/commit/e706232c152f3fed9cf44c10a0c4f25b27448a16), [`873048b`](https://github.com/commercetools/merchant-center-application-kit/commit/873048b1c288ca85a37cf26f7d5d2b10879cfd64), [`65f21a1`](https://github.com/commercetools/merchant-center-application-kit/commit/65f21a158d32f5759f109035b02aa78569fcad13), [`d883e96`](https://github.com/commercetools/merchant-center-application-kit/commit/d883e96ffd076788256d33d833e7f69ffc39f3ac), [`633d8c7`](https://github.com/commercetools/merchant-center-application-kit/commit/633d8c7b8ddc2f25128d8249579b7bb287a62e30), [`6e86c36`](https://github.com/commercetools/merchant-center-application-kit/commit/6e86c36a20a597cca81d121ce80cc1c47f8a961f), [`633d8c7`](https://github.com/commercetools/merchant-center-application-kit/commit/633d8c7b8ddc2f25128d8249579b7bb287a62e30)]:
+  - @commercetools-frontend/application-shell@17.0.0
+  - @commercetools-frontend/application-components@17.0.0
+  - @commercetools-frontend/i18n@17.0.0
+  - @commercetools-frontend/permissions@17.0.0
+  - @commercetools-frontend/actions-global@17.0.0
+
 ## 16.11.13
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 17.0.0
+
+### Patch Changes
+
+- [`d883e96`](https://github.com/commercetools/merchant-center-application-kit/commit/d883e96ffd076788256d33d833e7f69ffc39f3ac) [#1802](https://github.com/commercetools/merchant-center-application-kit/pull/1802) Thanks [@tdeekens](https://github.com/tdeekens)! - refactor(app-shell): to remove disabbledMenuItems support
+
 ## 16.16.0
 
 ### Patch Changes
