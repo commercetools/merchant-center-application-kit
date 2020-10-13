@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 16.18.2
+
+### Patch Changes
+
+- [`3de5acc`](https://github.com/commercetools/merchant-center-application-kit/commit/3de5accab54a565a74fbfbdf5cd2a71482b3026e) [#1801](https://github.com/commercetools/merchant-center-application-kit/pull/1801) Thanks [@emmenko](https://github.com/emmenko)! - Send graphql operation name as HTTP header, for debugging purposes
+
 ## 16.18.1
 
 ### Patch Changes
