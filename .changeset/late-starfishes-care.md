@@ -14,4 +14,4 @@
 Remove `mc-scripts extract-intl` command in favor of the official `@formatjs/cli` package.
 We recommend to update your script to extract Intl messages to use the `formatjs extract` command.
 
-See full release notes: https://docs.commercetools.com/custom-applications/releases/2020-10-12-migrating-to-v17
+See full release notes: https://docs.commercetools.com/custom-applications/releases/2020-10-14-custom-applications-v17
