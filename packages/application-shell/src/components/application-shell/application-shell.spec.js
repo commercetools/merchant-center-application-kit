@@ -812,32 +812,6 @@ describe('navbar menu links interactions', () => {
     });
   });
 });
-describe('when navbar menu items are disabled', () => {
-  it('should not render disabled menu items', async () => {
-    const navbarSubmenuMock = ApplicationNavbarSubmenuMock.build();
-    const navbarMock = ApplicationNavbarMenuMock.build({
-      submenu: [navbarSubmenuMock],
-    });
-    const rendered = renderApp(null, {
-      environment: { disabledMenuItems: [navbarMock.key] },
-      DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
-    });
-    await rendered.waitForLeftNavigationToBeLoaded();
-    // Get the nav container, to narrow down the search area
-    const container = await rendered.findByLeftNavigation();
-    const navbarRendered = within(container);
-
-    const applicationLocale = 'en';
-    const mainMenuLabel = navbarMock.labelAllLocales.find(
-      (localized) => localized.locale === applicationLocale
-    );
-    await waitFor(() => {
-      expect(
-        navbarRendered.queryByText(mainMenuLabel.value)
-      ).not.toBeInTheDocument();
-    });
-  });
-});
 describe('when navbar menu items are hidden', () => {
   beforeEach(() => {
     mockServer.resetHandlers();
