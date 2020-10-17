@@ -1,5 +1,43 @@
 # @commercetools-frontend/mc-scripts
 
+## 17.0.0
+
+### Major Changes
+
+- [`0e0efc6`](https://github.com/commercetools/merchant-center-application-kit/commit/0e0efc68e93621209f8ee84ebc920b79431c704a) [#1805](https://github.com/commercetools/merchant-center-application-kit/pull/1805) Thanks [@emmenko](https://github.com/emmenko)! - remove deprecated `compile-html` options
+
+* [`e706232`](https://github.com/commercetools/merchant-center-application-kit/commit/e706232c152f3fed9cf44c10a0c4f25b27448a16) [#1805](https://github.com/commercetools/merchant-center-application-kit/pull/1805) Thanks [@emmenko](https://github.com/emmenko)! - Remove `mc-scripts extract-intl` command in favor of the official `@formatjs/cli` package.
+  We recommend to update your script to extract Intl messages to use the `formatjs extract` command.
+
+  See full release notes: https://docs.commercetools.com/custom-applications/releases/2020-10-14-custom-applications-v17
+
+- [`633d8c7`](https://github.com/commercetools/merchant-center-application-kit/commit/633d8c7b8ddc2f25128d8249579b7bb287a62e30) [#1805](https://github.com/commercetools/merchant-center-application-kit/pull/1805) Thanks [@emmenko](https://github.com/emmenko)! - Remove the CLI flag `--use-local-assets`. The default behavior of `mc-scripts compile-html` now is to compile the assets locally, which is the only reasonable thing to do.
+
+  Furthermore, the `@commercetools-frontend/mc-http-server` package has been deprecated and won't be published anymore.
+  With the `compile-html` command there is no need to have a pre-configured HTTP server anymore.
+
+  When running the `mc-scripts compile-html` command, the `index.html` is compiled for production usage and it lives in the `public` folder, together with the other static assets. This is all you need to deploy your application.
+  You can decide to [deploy the Custom Application statically to one of the popular cloud providers](https://docs.commercetools.com/custom-applications/deployment/compiling-a-custom-application#deployment), or serve the files on your own using a static server.
+
+  For example, to run locally the Custom Application using the production bundles:
+
+  ```console
+  NODE_ENV=production MC_APP_ENV=development dotenv -- \
+    mc-scripts compile-html \
+    --transformer @commercetools-frontend/mc-dev-authentication/transformer-local.js
+
+  mc-scripts serve
+  ```
+
+### Patch Changes
+
+- [`633d8c7`](https://github.com/commercetools/merchant-center-application-kit/commit/633d8c7b8ddc2f25128d8249579b7bb287a62e30) [#1805](https://github.com/commercetools/merchant-center-application-kit/pull/1805) Thanks [@emmenko](https://github.com/emmenko)! - update deps
+
+- Updated dependencies [[`0e0efc6`](https://github.com/commercetools/merchant-center-application-kit/commit/0e0efc68e93621209f8ee84ebc920b79431c704a), [`e706232`](https://github.com/commercetools/merchant-center-application-kit/commit/e706232c152f3fed9cf44c10a0c4f25b27448a16), [`633d8c7`](https://github.com/commercetools/merchant-center-application-kit/commit/633d8c7b8ddc2f25128d8249579b7bb287a62e30)]:
+  - @commercetools-frontend/application-config@17.0.0
+  - @commercetools-frontend/mc-html-template@17.0.0
+  - @commercetools-frontend/mc-dev-authentication@17.0.0
+
 ## 16.18.0
 
 ### Patch Changes
