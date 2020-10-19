@@ -1,6 +1,8 @@
 import type {
   NormalizedCacheObject,
   InMemoryCacheConfig,
+  FieldMergeFunction,
+  Reference,
 } from '@apollo/client';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
@@ -59,6 +61,27 @@ const link = from([
   httpLink,
 ]);
 
+// This custom merge function allows to merge two arrays of objects.
+// The incoming list is what we need to update to, but we still need
+// to ensure that existing cache elements are not removed but updated.
+// This is usually the case when elements get removed.
+const mergeArraysObjects: FieldMergeFunction = (
+  existing: Reference[] = [],
+  incoming: Reference[],
+  { mergeObjects }
+) => {
+  return incoming.reduce<Reference[]>((mergedElements, elem) => {
+    const existingElem = existing.find((el) => el.__ref === elem.__ref);
+    if (existingElem) {
+      const updatedElem = mergeObjects<Reference>(existingElem, elem);
+      if (updatedElem) {
+        return [...mergedElements, updatedElem];
+      }
+    }
+    return [...mergedElements, elem];
+  }, []);
+};
+
 const createApolloClient = (
   options: TApolloClientOptions = {}
 ): ApolloClient<NormalizedCacheObject> => {
@@ -78,12 +101,15 @@ const createApolloClient = (
           keyFields: ['key'],
         },
         // Internal apps menu links representations
-        BaseMenu: {
-          keyFields: ['key'],
-        },
-        // Legacy custom applications
-        NavbarMenu: {
-          keyFields: ['key'],
+        ApplicationsMenu: {
+          fields: {
+            appBar: {
+              merge: mergeArraysObjects,
+            },
+            navBar: {
+              merge: mergeArraysObjects,
+            },
+          },
         },
         ...(customCacheConfig.typePolicies ?? {}),
       },
