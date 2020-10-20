@@ -2,6 +2,8 @@ import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type { Extra, Extras } from '@sentry/types';
 
 import * as Sentry from '@sentry/browser';
+import omitDeep from 'omit-deep-lodash';
+
 declare let window: ApplicationWindow;
 
 type ReportableEvent = ErrorEvent | PromiseRejectionEvent;
@@ -38,6 +40,10 @@ export const boot = () => {
           onerror: false,
         }),
       ],
+      beforeSend(event) {
+        // @ts-expect-error
+        return omitDeep(event, 'firstName', 'lastName', 'email');
+      },
     });
     Sentry.configureScope((scope) => {
       scope.setTag('role', 'frontend');
