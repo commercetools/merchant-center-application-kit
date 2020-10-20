@@ -44,14 +44,12 @@
     "@commercetools-frontend/constants": "17.0.0",
     "@sentry/browser": "5.26.0",
     "@types/prop-types": "^15.7.3",
-    "prop-types": "15.7.2",
-    "omit-deep-lodash": "1.1.5"
+    "prop-types": "15.7.2"
   },
   "devDependencies": {
     "react": "16.14.0",
     "sentry-testkit": "3.2.1",
-    "wait-for-expect": "3.0.2",
-    "@types/omit-deep-lodash": "1.1.0"
+    "wait-for-expect": "3.0.2"
   },
   "peerDependencies": {
     "@types/react": "16.x",

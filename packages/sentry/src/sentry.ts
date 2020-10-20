@@ -1,8 +1,7 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
-import type { Extra, Extras } from '@sentry/types';
+import type { Extra, Extras, Event } from '@sentry/types';
 
 import * as Sentry from '@sentry/browser';
-import omitDeep from 'omit-deep-lodash';
 
 declare let window: ApplicationWindow;
 
@@ -23,6 +22,38 @@ const sendErrorToSentry = (error: Reportable) => {
   return Sentry.captureException(errorToCapture);
 };
 
+type TReplacements = {
+  [name: keyof Event]: string;
+};
+
+const replaceEventValues = (
+  event: Event,
+  replacements: TReplacements
+): Event => {
+  for (const prop in event) {
+    if (event.hasOwnProperty(prop)) {
+      const hasPropReplacement = Object.keys(replacements).includes(prop);
+
+      switch (typeof event[prop]) {
+        case 'string':
+          if (hasPropReplacement) {
+            event[prop] = replacements[prop];
+          }
+
+          break;
+        case 'object':
+          if (hasPropReplacement) {
+            event[prop] = replacements[prop];
+          } else {
+            replaceEventValues(event[prop], replacements);
+          }
+
+          break;
+      }
+    }
+  }
+};
+
 export const boot = () => {
   if (window.app.trackingSentry) {
     Sentry.init({
@@ -41,8 +72,11 @@ export const boot = () => {
         }),
       ],
       beforeSend(event) {
-        // @ts-expect-error
-        return omitDeep(event, 'firstName', 'lastName', 'email');
+        return replaceEventValues(event, {
+          firstName: '[Redacted]',
+          lastName: '[Redacted]',
+          email: '[Redacted]',
+        });
       },
     });
     Sentry.configureScope((scope) => {

@@ -5928,11 +5928,6 @@
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
   integrity sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==
 
-"@types/omit-deep-lodash@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@types/omit-deep-lodash/-/omit-deep-lodash-1.1.0.tgz#fad8e1a79d5a777f42f0f6f2e08ff3ce0e3e3bc7"
-  integrity sha512-kFMg1Y5o7tb51Dix7oOk/zsrEnt6XMPtsTfcvLemnY4tKZyUP+8FUBl4fuDMsMdl07M3cVj4MYjvWHSsus/j3g==
-
 "@types/parse-json@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@types/parse-json/-/parse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
@@ -20520,13 +20515,6 @@ omggif@^1.0.10, omggif@^1.0.9:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/omggif/-/omggif-1.0.10.tgz#ddaaf90d4a42f532e9e7cb3a95ecdd47f17c7b19"
   integrity sha512-LMJTtvgc/nugXj0Vcrrs68Mn2D1r0zf630VNtqtpI1FEO7e+O9FP4gqs9AcnBaSEeoHIPm28u6qgPR0oyEpGSw==
-
-omit-deep-lodash@1.1.5:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/omit-deep-lodash/-/omit-deep-lodash-1.1.5.tgz#12dfc0dbd5a00e73d8a28175e2b5f40fedeffb2b"
-  integrity sha512-WtPD4SLmyas/ETFeU5j8chvh0LY5dN2q3s056aMZyV+thDMx+pFJ1DLenm7fShnHpmEMQ97Nez7j+FLtGSdgKQ==
-  dependencies:
-    lodash "~4.17.20"
 
 omit-empty-es@1.0.3:
   version "1.0.3"
