@@ -23,35 +23,47 @@ const sendErrorToSentry = (error: Reportable) => {
 };
 
 type TReplacements = {
-  [name: keyof Event]: string;
+  [name: string]: string;
 };
 
-const replaceEventValues = (
-  event: Event,
-  replacements: TReplacements
-): Event => {
-  for (const prop in event) {
-    if (event.hasOwnProperty(prop)) {
+const replaceValues = <T>(source: T, replacements: TReplacements): T => {
+  const replaceValue = (prop: string) => {
+    // @ts-expect-error
+    source[prop] = replacements[prop];
+  };
+
+  for (const prop in source) {
+    if (Object.prototype.hasOwnProperty.call(source, prop)) {
       const hasPropReplacement = Object.keys(replacements).includes(prop);
 
-      switch (typeof event[prop]) {
+      switch (typeof source[prop]) {
         case 'string':
           if (hasPropReplacement) {
-            event[prop] = replacements[prop];
+            replaceValue(prop);
           }
 
           break;
         case 'object':
           if (hasPropReplacement) {
-            event[prop] = replacements[prop];
+            replaceValue(prop);
           } else {
-            replaceEventValues(event[prop], replacements);
+            replaceValues(source[prop], replacements);
           }
 
           break;
       }
     }
   }
+
+  return source;
+};
+
+export const removeUnsafeFields = (event: Event) => {
+  return replaceValues<Event>(event, {
+    firstName: '[Redacted]',
+    lastName: '[Redacted]',
+    email: '[Redacted]',
+  });
 };
 
 export const boot = () => {
@@ -72,11 +84,7 @@ export const boot = () => {
         }),
       ],
       beforeSend(event) {
-        return replaceEventValues(event, {
-          firstName: '[Redacted]',
-          lastName: '[Redacted]',
-          email: '[Redacted]',
-        });
+        return removeUnsafeFields(event);
       },
     });
     Sentry.configureScope((scope) => {

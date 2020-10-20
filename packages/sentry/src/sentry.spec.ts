@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/browser';
 import sentryTestkit from 'sentry-testkit';
 import waitForExpect from 'wait-for-expect';
-import { reportErrorToSentry } from './sentry';
+import { reportErrorToSentry, removeUnsafeFields } from './sentry';
 
 const { testkit, sentryTransport } = sentryTestkit();
 
@@ -29,7 +29,7 @@ class PromiseRejectionEvent extends Event {
   }
 }
 
-describe('reportErrorToSentry', () => {
+describe('reporting to sentry', () => {
   let error;
 
   beforeAll(() => {
@@ -159,5 +159,39 @@ describe('reportErrorToSentry', () => {
         message: '{"message":"something went wrong"}',
       });
     });
+  });
+});
+
+describe('when using unsafe fields', () => {
+  it('should redact unsafe fields', () => {
+    let safeFields = removeUnsafeFields({
+      user: {
+        email: 'john@doeland.com',
+      },
+    });
+
+    expect(safeFields.user?.email).toEqual('[Redacted]');
+
+    safeFields = removeUnsafeFields({
+      extra: {
+        action: {
+          payload: {
+            firstName: 'John',
+          },
+        },
+      },
+    });
+
+    // @ts-expect-error
+    expect(safeFields.extra?.action.payload.firstName).toEqual('[Redacted]');
+
+    safeFields = removeUnsafeFields({
+      extra: {
+        actions: [{ lastName: 'Doe' }],
+      },
+    });
+
+    // @ts-expect-error
+    expect(safeFields.extra?.actions[0].lastName).toEqual('[Redacted]');
   });
 });
