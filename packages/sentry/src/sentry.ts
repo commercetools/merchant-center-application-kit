@@ -1,7 +1,8 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
-import type { Extra, Extras } from '@sentry/types';
+import type { Extra, Extras, Event } from '@sentry/types';
 
 import * as Sentry from '@sentry/browser';
+
 declare let window: ApplicationWindow;
 
 type ReportableEvent = ErrorEvent | PromiseRejectionEvent;
@@ -21,6 +22,55 @@ const sendErrorToSentry = (error: Reportable) => {
   return Sentry.captureException(errorToCapture);
 };
 
+type TReplacements = {
+  [name: string]: string;
+};
+type TSource = {
+  [name: string]: unknown;
+};
+
+const replaceEventValues = (
+  source: TSource,
+  replacements: TReplacements
+): Event => {
+  const replaceEventValue = (prop: string) => {
+    source[prop] = replacements[prop];
+  };
+
+  for (const prop in source) {
+    if (Object.prototype.hasOwnProperty.call(source, prop)) {
+      const hasPropReplacement = Object.keys(replacements).includes(prop);
+
+      switch (typeof source[prop]) {
+        case 'string':
+          if (hasPropReplacement) {
+            replaceEventValue(prop);
+          }
+
+          break;
+        case 'object':
+          if (hasPropReplacement) {
+            replaceEventValue(prop);
+          } else {
+            replaceEventValues(source[prop] as TSource, replacements);
+          }
+
+          break;
+      }
+    }
+  }
+
+  return source;
+};
+
+export const redactUnsafeEventFields = (event: Event) => {
+  return replaceEventValues(event as TSource, {
+    firstName: '[Redacted]',
+    lastName: '[Redacted]',
+    email: '[Redacted]',
+  });
+};
+
 export const boot = () => {
   if (window.app.trackingSentry) {
     Sentry.init({
@@ -38,6 +88,9 @@ export const boot = () => {
           onerror: false,
         }),
       ],
+      beforeSend(event) {
+        return redactUnsafeEventFields(event);
+      },
     });
     Sentry.configureScope((scope) => {
       scope.setTag('role', 'frontend');
