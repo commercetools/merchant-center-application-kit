@@ -37,8 +37,8 @@
     "build:bundles:watch": "yarn build -w"
   },
   "dependencies": {
-    "@babel/runtime": "7.11.2",
-    "@babel/runtime-corejs3": "7.11.2",
+    "@babel/runtime": "7.12.1",
+    "@babel/runtime-corejs3": "7.12.1",
     "@commercetools-frontend/application-config": "17.0.0",
     "core-js": "3.6.5",
     "serialize-javascript": "4.0.0",
@@ -46,8 +46,8 @@
     "uglifycss": "0.0.29"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "7.11.5",
-    "@babel/preset-env": "7.11.5"
+    "@babel/plugin-transform-runtime": "7.12.1",
+    "@babel/preset-env": "7.12.1"
   },
   "engines": {
     "node": ">=10",

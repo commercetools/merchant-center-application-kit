@@ -3,7 +3,6 @@ import type { TUser } from './types';
 import { fake, sequence, Generator } from '@commercetools-test-data/core';
 
 const generator = Generator<TUser>({
-  name: 'User',
   fields: {
     id: fake((f) => f.random.uuid()),
     version: sequence(),

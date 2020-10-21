@@ -39,15 +39,15 @@
     "build:bundles:watch": "yarn build:bundles -w"
   },
   "dependencies": {
-    "@babel/runtime": "7.11.2",
-    "@babel/runtime-corejs3": "7.11.2",
+    "@babel/runtime": "7.12.1",
+    "@babel/runtime-corejs3": "7.12.1",
     "@commercetools-frontend/constants": "17.0.0",
-    "@sentry/browser": "5.25.0",
+    "@sentry/browser": "5.26.0",
     "@types/prop-types": "^15.7.3",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "react": "16.13.1",
+    "react": "16.14.0",
     "sentry-testkit": "3.2.1",
     "wait-for-expect": "3.0.2"
   },
