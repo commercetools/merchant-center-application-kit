@@ -25,13 +25,15 @@ const sendErrorToSentry = (error: Reportable) => {
 type TReplacements = {
   [name: string]: string;
 };
+type TSource = {
+  [name: string]: unknown;
+};
 
 const replaceEventValues = (
-  source: Event,
+  source: TSource,
   replacements: TReplacements
 ): Event => {
   const replaceEventValue = (prop: string) => {
-    // @ts-expect-error
     source[prop] = replacements[prop];
   };
 
@@ -50,7 +52,7 @@ const replaceEventValues = (
           if (hasPropReplacement) {
             replaceEventValue(prop);
           } else {
-            replaceEventValues(source[prop], replacements);
+            replaceEventValues(source[prop] as TSource, replacements);
           }
 
           break;
@@ -62,7 +64,7 @@ const replaceEventValues = (
 };
 
 export const redactUnsafeEventFields = (event: Event) => {
-  return replaceEventValues(event, {
+  return replaceEventValues(event as TSource, {
     firstName: '[Redacted]',
     lastName: '[Redacted]',
     email: '[Redacted]',
