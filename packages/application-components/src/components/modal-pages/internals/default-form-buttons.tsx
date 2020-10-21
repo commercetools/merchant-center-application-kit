@@ -20,6 +20,7 @@ type Props = {
   label: Label;
   onClick: (event: React.SyntheticEvent) => void;
   isDisabled: boolean;
+  iconLeft?: React.ReactNode;
   dataAttributes: { [key: string]: string };
   children?: never;
 };
@@ -57,10 +58,11 @@ FormPrimaryButton.defaultProps = primaryDefaultProps;
 
 const secondaryDefaultProps: Pick<
   Props,
-  'label' | 'isDisabled' | 'dataAttributes'
+  'label' | 'isDisabled' | 'iconLeft' | 'dataAttributes'
 > = {
   label: sharedMessages.cancel,
   isDisabled: false,
+  iconLeft: undefined,
   dataAttributes: {},
 };
 
@@ -72,6 +74,7 @@ const FormSecondaryButton = (props: Props) => {
       label={label}
       onClick={props.onClick}
       isDisabled={props.isDisabled}
+      iconLeft={props.iconLeft}
       {...filterDataAttributes(props.dataAttributes)}
     />
   );
