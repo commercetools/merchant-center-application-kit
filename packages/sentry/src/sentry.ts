@@ -26,8 +26,11 @@ type TReplacements = {
   [name: string]: string;
 };
 
-const replaceValues = <T>(source: T, replacements: TReplacements): T => {
-  const replaceValue = (prop: string) => {
+const replaceEventValues = (
+  source: Event,
+  replacements: TReplacements
+): Event => {
+  const replaceEventValue = (prop: string) => {
     // @ts-expect-error
     source[prop] = replacements[prop];
   };
@@ -39,15 +42,15 @@ const replaceValues = <T>(source: T, replacements: TReplacements): T => {
       switch (typeof source[prop]) {
         case 'string':
           if (hasPropReplacement) {
-            replaceValue(prop);
+            replaceEventValue(prop);
           }
 
           break;
         case 'object':
           if (hasPropReplacement) {
-            replaceValue(prop);
+            replaceEventValue(prop);
           } else {
-            replaceValues(source[prop], replacements);
+            replaceEventValues(source[prop], replacements);
           }
 
           break;
@@ -58,8 +61,8 @@ const replaceValues = <T>(source: T, replacements: TReplacements): T => {
   return source;
 };
 
-export const removeUnsafeFields = (event: Event) => {
-  return replaceValues<Event>(event, {
+export const redactUnsafeEventFields = (event: Event) => {
+  return replaceEventValues(event, {
     firstName: '[Redacted]',
     lastName: '[Redacted]',
     email: '[Redacted]',
@@ -84,7 +87,7 @@ export const boot = () => {
         }),
       ],
       beforeSend(event) {
-        return removeUnsafeFields(event);
+        return redactUnsafeEventFields(event);
       },
     });
     Sentry.configureScope((scope) => {

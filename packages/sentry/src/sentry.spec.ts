@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/browser';
 import sentryTestkit from 'sentry-testkit';
 import waitForExpect from 'wait-for-expect';
-import { reportErrorToSentry, removeUnsafeFields } from './sentry';
+import { reportErrorToSentry, redactUnsafeEventFields } from './sentry';
 
 const { testkit, sentryTransport } = sentryTestkit();
 
@@ -164,7 +164,15 @@ describe('reporting to sentry', () => {
 
 describe('when using unsafe fields', () => {
   it('should redact unsafe fields', () => {
-    let safeFields = removeUnsafeFields({
+    type EventExtra = {
+      payload?: {
+        firstName: string;
+      };
+      actions?: Array<{
+        lastName: string;
+      }>;
+    };
+    let safeFields = redactUnsafeEventFields({
       user: {
         email: 'john@doeland.com',
       },
@@ -172,26 +180,26 @@ describe('when using unsafe fields', () => {
 
     expect(safeFields.user?.email).toEqual('[Redacted]');
 
-    safeFields = removeUnsafeFields({
+    safeFields = redactUnsafeEventFields({
       extra: {
-        action: {
-          payload: {
-            firstName: 'John',
-          },
+        payload: {
+          firstName: 'John',
         },
       },
     });
 
-    // @ts-expect-error
-    expect(safeFields.extra?.action.payload.firstName).toEqual('[Redacted]');
+    expect((safeFields.extra as EventExtra).payload?.firstName).toEqual(
+      '[Redacted]'
+    );
 
-    safeFields = removeUnsafeFields({
+    safeFields = redactUnsafeEventFields({
       extra: {
         actions: [{ lastName: 'Doe' }],
       },
     });
 
-    // @ts-expect-error
-    expect(safeFields.extra?.actions[0].lastName).toEqual('[Redacted]');
+    expect((safeFields.extra as EventExtra).actions?.[0].lastName).toEqual(
+      '[Redacted]'
+    );
   });
 });
