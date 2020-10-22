@@ -1,5 +1,44 @@
 # @commercetools-frontend/application-shell
 
+## 17.0.1
+
+### Patch Changes
+
+- [`bea3005`](https://github.com/commercetools/merchant-center-application-kit/commit/bea30056b43fdb782251956acb5829abcd91e836) [#1815](https://github.com/commercetools/merchant-center-application-kit/pull/1815) Thanks [@emmenko](https://github.com/emmenko)! - In `test-utils` of the ApplicationShell, passing a custom instance of `apolloClient` now correctly passes the `cache` object to the Apollo `MockedProvider`. See https://www.apollographql.com/docs/react/development-testing/testing/#a-note-on-fragment-usage-typepolicies-and-possibletypes.
+
+  Furthermore, the `addTypename` option is no longer available in the `test-utils`, as the value is derived by the Apollo cache object. This is important to ensure that the `addTypename` behavior is the same between the Apollo cache and the Apollo `MockedProvider`.
+
+  If you wish to disable adding `__typename` fields to the query, you must specify `addTypename: false` to your custom instance of the Apollo client.
+
+  ```js
+  import { createApolloClient } from '@commercetools-frontend/application-shell';
+
+  createApolloClient({
+    cache: {
+      addTypename: false,
+    },
+  });
+  ```
+
+* [`71c5f78`](https://github.com/commercetools/merchant-center-application-kit/commit/71c5f7875c7476e34b65d37046d48ca47e96f12e) [#1795](https://github.com/commercetools/merchant-center-application-kit/pull/1795) Thanks [@renovate](https://github.com/apps/renovate)! - update dependencies
+
+- [`8111543`](https://github.com/commercetools/merchant-center-application-kit/commit/8111543a5d3e923c9c754b34290c899698910825) [#1809](https://github.com/commercetools/merchant-center-application-kit/pull/1809) Thanks [@emmenko](https://github.com/emmenko)! - Fix default cache policies for applications menu items
+
+- Updated dependencies [[`f5125b8`](https://github.com/commercetools/merchant-center-application-kit/commit/f5125b8061cb624f950916909e4cb7b0f35594ad), [`71c5f78`](https://github.com/commercetools/merchant-center-application-kit/commit/71c5f7875c7476e34b65d37046d48ca47e96f12e)]:
+  - @commercetools-frontend/sentry@17.0.1
+  - @commercetools-frontend/actions-global@17.0.1
+  - @commercetools-frontend/application-components@17.0.1
+  - @commercetools-frontend/application-shell-connectors@17.0.1
+  - @commercetools-frontend/browser-history@17.0.1
+  - @commercetools-frontend/constants@17.0.1
+  - @commercetools-frontend/i18n@17.0.1
+  - @commercetools-frontend/l10n@17.0.1
+  - @commercetools-frontend/notifications@17.0.1
+  - @commercetools-frontend/permissions@17.0.1
+  - @commercetools-frontend/react-notifications@17.0.1
+  - @commercetools-frontend/sdk@17.0.1
+  - @commercetools-frontend/url-utils@17.0.1
+
 ## 17.0.0
 
 ### Major Changes
