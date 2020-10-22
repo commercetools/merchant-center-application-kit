@@ -139,7 +139,6 @@ const createProductVariantListSubCommands = async ({
     data.product.masterData.staged &&
     applicationContext.project
   ) {
-    const projectKey = applicationContext.project;
     return data.product.masterData.staged.allVariants.map((variant) => ({
       id: `go/product(${productId})/variant(${variant.id})`,
       text: formatVariantMessage(variant, intl),
@@ -152,7 +151,7 @@ const createProductVariantListSubCommands = async ({
       action: {
         type: actionTypes.go,
         to: oneLineTrim`
-          /${projectKey}
+          /${applicationContext.project.key}
           /products
           /${productId}
           /variants
