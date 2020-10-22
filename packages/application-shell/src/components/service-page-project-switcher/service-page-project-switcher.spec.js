@@ -47,7 +47,6 @@ describe('rendering', () => {
               ],
             },
           },
-          addTypename: true,
           mocks: mockedRequest,
         }
       );

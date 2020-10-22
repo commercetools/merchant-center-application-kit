@@ -267,19 +267,27 @@ const wrapIfNeeded = (
 type TApolloProviderWrapperProps = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;
   mocks: ReadonlyArray<MockedResponse>;
-  addTypename: boolean;
   disableApolloMocks: boolean;
   children: React.ReactElement;
 };
 const ApolloProviderWrapper = (props: TApolloProviderWrapperProps) => {
+  const apolloClient = props.apolloClient ?? createApolloClient();
   if (props.disableApolloMocks) {
-    const apolloClient = props.apolloClient ?? createApolloClient();
     return (
       <ApolloProvider client={apolloClient}>{props.children}</ApolloProvider>
     );
   }
   return (
-    <ApolloMockProvider mocks={props.mocks} addTypename={props.addTypename}>
+    <ApolloMockProvider
+      mocks={props.mocks}
+      // The `addTypename` field is a private field of the cache in TS
+      // but we should be able to still access it.
+      // This is to ensure the `addTypename` behavior is the same between the
+      // Apollo cache and the mocked provider.
+      // @ts-expect-error
+      addTypename={apolloClient.cache.addTypename ?? true}
+      cache={apolloClient.cache}
+    >
       {props.children}
     </ApolloMockProvider>
   );
@@ -297,7 +305,6 @@ const ApolloProviderWrapper = (props: TApolloProviderWrapperProps) => {
 type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   locale: string;
   mocks: ReadonlyArray<MockedResponse>;
-  addTypename: boolean;
   apolloClient?: ApolloClient<NormalizedCacheObject>;
   disableApolloMocks: boolean;
   route: string;
@@ -333,7 +340,6 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
     locale = 'en',
     // Apollo
     mocks = [],
-    addTypename = false,
     apolloClient,
     disableApolloMocks = false,
     // react-router
@@ -379,7 +385,6 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
         disableApolloMocks={disableApolloMocks}
         apolloClient={apolloClient}
         mocks={mocks}
-        addTypename={addTypename}
       >
         <ConfigureFlopFlip
           adapter={adapter}

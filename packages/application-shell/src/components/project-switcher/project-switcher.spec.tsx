@@ -20,7 +20,6 @@ const render = () => {
       <ProjectSwitcher projectKey="key-0" />
     </>,
     {
-      addTypename: true,
       mocks: mockedRequest,
     }
   );
