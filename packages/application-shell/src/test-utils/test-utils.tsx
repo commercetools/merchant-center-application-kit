@@ -272,14 +272,18 @@ type TApolloProviderWrapperProps = {
   children: React.ReactElement;
 };
 const ApolloProviderWrapper = (props: TApolloProviderWrapperProps) => {
+  const apolloClient = props.apolloClient ?? createApolloClient();
   if (props.disableApolloMocks) {
-    const apolloClient = props.apolloClient ?? createApolloClient();
     return (
       <ApolloProvider client={apolloClient}>{props.children}</ApolloProvider>
     );
   }
   return (
-    <ApolloMockProvider mocks={props.mocks} addTypename={props.addTypename}>
+    <ApolloMockProvider
+      mocks={props.mocks}
+      addTypename={props.addTypename}
+      cache={apolloClient.cache}
+    >
       {props.children}
     </ApolloMockProvider>
   );
