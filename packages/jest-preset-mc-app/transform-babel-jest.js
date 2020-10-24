@@ -4,7 +4,7 @@ const babelJest = require('babel-jest');
 const hasJsxRuntime = require('./has-jsx-runtime');
 
 const mcAppBabelConfig = getBabePresetConfigForMcApp(null, {
-  runtime: hasJsxRuntime(),
+  runtime: hasJsxRuntime() ? 'automatic' : 'classic',
 });
 
 const jestBabelConfig = {
