@@ -9,6 +9,7 @@ module.exports = function getBabePresetConfigForMcApp() {
   const env = process.env.BABEL_ENV || process.env.NODE_ENV;
   const isEnvDevelopment = env === 'development';
   const isEnvProduction = env === 'production';
+  const jsxRuntime = process.env.JSX_RUNTIME || 'classic';
   const isEnvTest = env === 'test';
   const isRollup = process.env.BUILD_ROLLUP === true;
 
@@ -60,6 +61,9 @@ module.exports = function getBabePresetConfigForMcApp() {
           // Will use the native built-in instead of trying to polyfill
           // behavior for any plugins that require one.
           useBuiltIns: true,
+          // Allows changing the JSX runtime.
+          // https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
+          runtime: jsxRuntime,
         },
       ],
       [
