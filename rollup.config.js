@@ -29,7 +29,7 @@ const { packageJson: pkg } = readPkgUp.sync({
 const [, packageName] = pkg.name.split('@commercetools-frontend/');
 const extensions = ['.js', '.ts', '.tsx'];
 const babelOptions = getBabelPreset(null, {
-  runtime: 'automatic',
+  runtime: 'classic',
 });
 
 const createPlugins = (format) => {
