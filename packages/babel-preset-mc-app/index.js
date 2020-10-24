@@ -60,7 +60,7 @@ module.exports = function getBabePresetConfigForMcApp() {
           development: isEnvDevelopment || isEnvTest,
           // Will use the native built-in instead of trying to polyfill
           // behavior for any plugins that require one.
-          useBuiltIns: true,
+          ...(jsxRuntime !== 'automatic' ? { useBuiltIns: true } : {}),
           // Allows changing the JSX runtime.
           // https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
           runtime: jsxRuntime,
