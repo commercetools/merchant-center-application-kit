@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-module.exports = function getBabePresetConfigForMcApp() {
+module.exports = function getBabePresetConfigForMcApp(api, opts) {
   // This is similar to how `env` works in Babel:
   // https://babeljs.io/docs/usage/babelrc/#env-option
   // We are not using `env` because it’s ignored in versions > babel-core@6.10.4:
@@ -9,7 +9,6 @@ module.exports = function getBabePresetConfigForMcApp() {
   const env = process.env.BABEL_ENV || process.env.NODE_ENV;
   const isEnvDevelopment = env === 'development';
   const isEnvProduction = env === 'production';
-  const jsxRuntime = process.env.JSX_RUNTIME || 'classic';
   const isEnvTest = env === 'test';
   const isRollup = process.env.BUILD_ROLLUP === true;
 
@@ -60,10 +59,8 @@ module.exports = function getBabePresetConfigForMcApp() {
           development: isEnvDevelopment || isEnvTest,
           // Will use the native built-in instead of trying to polyfill
           // behavior for any plugins that require one.
-          ...(jsxRuntime !== 'automatic' ? { useBuiltIns: true } : {}),
-          // Allows changing the JSX runtime.
-          // https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
-          runtime: jsxRuntime,
+          ...(opts.runtime !== 'automatic' ? { useBuiltIns: true } : {}),
+          runtime: opts.runtime || 'classic',
         },
       ],
       [

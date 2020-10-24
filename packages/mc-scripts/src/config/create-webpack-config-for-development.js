@@ -12,6 +12,7 @@ const postcssCustomMediaQueries = require('postcss-custom-media');
 const postcssColorModFunction = require('postcss-color-mod-function');
 const { browserslist } = require('../../package.json');
 const vendorsToTranspile = require('./vendors-to-transpile');
+const hasJsxRuntime = require('./has-jsx-runtime');
 
 const defaultToggleFlags = {
   // Allow to disable index.html generation in case it's not necessary (e.g. for Storybook)
@@ -168,6 +169,9 @@ module.exports = ({
               babelrc: false,
               presets: [
                 require.resolve('@commercetools-frontend/babel-preset-mc-app'),
+                {
+                  runtime: hasJsxRuntime() ? 'automatic' : 'classic',
+                },
               ],
               // This is a feature of `babel-loader` for webpack (not Babel itself).
               // It enables caching results in ./node_modules/.cache/babel-loader/
