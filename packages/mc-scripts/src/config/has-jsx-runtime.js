@@ -1,5 +1,5 @@
 function hasJsxRuntime() {
-  if (process.env.DISABLE_NEW_JSX_TRANSFORM === 'true') {
+  if (process.env.ENABLE_NEW_JSX_TRANSFORM !== 'true') {
     return false;
   }
 
