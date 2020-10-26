@@ -8,6 +8,9 @@ const compiledHeaders = processHeaders(applicationConfig);
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
+const sockHost = process.env.WDS_SOCKET_HOST;
+const sockPath = process.env.WDS_SOCKET_PATH; // default: '/sockjs-node'
+const sockPort = process.env.WDS_SOCKET_PORT;
 
 module.exports = ({ proxy, allowedHost, contentBase, publicPath }) => ({
   // WebpackDevServer 2.4.3 introduced a security fix that prevents remote
@@ -16,8 +19,8 @@ module.exports = ({ proxy, allowedHost, contentBase, publicPath }) => ({
   // https://medium.com/webpack/webpack-dev-server-middleware-security-issues-1489d950874a
   // However, it made several existing use cases such as development in cloud
   // environment or subdomains in development significantly more complicated:
-  // https://github.com/facebookincubator/create-react-app/issues/2271
-  // https://github.com/facebookincubator/create-react-app/issues/2233
+  // https://github.com/facebook/create-react-app/issues/2271
+  // https://github.com/facebook/create-react-app/issues/2233
   // While we're investigating better solutions, for now we will take a
   // compromise. Since our WDS configuration only serves files in the `public`
   // folder we won't consider accessing them a vulnerability. However, if you
@@ -41,19 +44,19 @@ module.exports = ({ proxy, allowedHost, contentBase, publicPath }) => ({
   // Instead, we establish a convention that only files in `public` directory
   // get served. Our build script will copy `public` into the `build` folder.
   // In `index.html`, you can get URL of `public` folder with %PUBLIC_URL%:
-  // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  // <link rel="icon" href="%PUBLIC_URL%/favicon.ico">
   // In JavaScript code, you can access it with `process.env.PUBLIC_URL`.
   // Note that we only recommend to use `public` folder as an escape hatch
   // for files like `favicon.ico`, `manifest.json`, and libraries that are
-  // for some reason broken when imported through Webpack. If you just want to
+  // for some reason broken when imported through webpack. If you just want to
   // use an image, put it in `src` and `import` it from JavaScript instead.
   contentBase,
   // By default files from `contentBase` will not trigger a page reload.
-  watchContentBase: false,
-  // Enable hot reloading server. It will provide /sockjs-node/ endpoint
+  watchContentBase: true,
+  // Enable hot reloading server. It will provide WDS_SOCKET_PATH endpoint
   // for the WebpackDevServer client so it can learn when the files were
   // updated. The WebpackDevServer client is included as an entry point
-  // in the Webpack development configuration. Note that only changes
+  // in the webpack development configuration. Note that only changes
   // to CSS are currently hot reloaded. JS changes will refresh the browser.
   hot: true,
   // Use 'ws' instead of 'sockjs-node' on server since we're using native
@@ -62,15 +65,23 @@ module.exports = ({ proxy, allowedHost, contentBase, publicPath }) => ({
   // Prevent a WS client from getting injected as we're already including
   // `webpackHotDevClient`.
   injectClient: false,
+  // Enable custom sockjs pathname for websocket connection to hot reloading server.
+  // Enable custom sockjs hostname, pathname and port for websocket connection
+  // to hot reloading server.
+  sockHost,
+  sockPath,
+  sockPort,
+  // It is important to tell WebpackDevServer to use the same "publicPath" path as
+  // we specified in the webpack config. When homepage is '.', default to serving
+  // from the root.
   publicPath,
   // WebpackDevServer is noisy by default so we emit custom message instead
-  // by listening to the compiler events with `compiler.hooks[...].tap` calls
-  // above.
+  // by listening to the compiler events with `compiler.hooks[...].tap` calls above.
   quiet: true,
   // Reportedly, this avoids CPU overload on some systems.
-  // https://github.com/facebookincubator/create-react-app/issues/293
+  // https://github.com/facebook/create-react-app/issues/293
   // src/node_modules is not ignored to support absolute imports
-  // https://github.com/facebookincubator/create-react-app/issues/1065
+  // https://github.com/facebook/create-react-app/issues/1065
   watchOptions: {
     // ignored: '',
   },
@@ -85,6 +96,7 @@ module.exports = ({ proxy, allowedHost, contentBase, publicPath }) => ({
   },
   headers: compiledHeaders,
   public: allowedHost,
+  // `proxy` is run between `before` and `after` `webpack-dev-server` hooks
   proxy,
   before(app) {
     app.set('views', devAuthentication.views);

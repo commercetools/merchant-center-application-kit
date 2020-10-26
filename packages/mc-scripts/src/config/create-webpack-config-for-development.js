@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const postcssImport = require('postcss-import');
 const postcssPresetEnv = require('postcss-preset-env');
 const postcssReporter = require('postcss-reporter');
@@ -17,6 +18,16 @@ const defaultToggleFlags = {
   // Allow to disable index.html generation in case it's not necessary (e.g. for Storybook)
   generateIndexHtml: true,
 };
+
+// Whether or not `react-refresh` is enabled, `react-refresh` is not 100% stable at this time,
+// which is why it's disabled by default.
+const hasReactRefresh = process.env.FAST_REFRESH !== 'false';
+const webpackDevClientEntry = require.resolve(
+  'react-dev-utils/webpackHotDevClient'
+);
+const reactRefreshOverlayEntry = require.resolve(
+  'react-dev-utils/refreshOverlayInterop'
+);
 
 /**
  * This is a factory function to create the default webpack config
@@ -70,23 +81,27 @@ module.exports = ({
     app: [
       require.resolve('./application-runtime'),
       require.resolve('core-js/stable'),
-      // Include an alternative client for WebpackDevServer. A client's job is to
-      // connect to WebpackDevServer by a socket and get notified about changes.
-      // When you save a file, the client will either apply hot updates (in case
-      // of CSS changes), or refresh the page (in case of JS changes). When you
-      // make a syntax error, this client will display a syntax error overlay.
-      // Note: instead of the default WebpackDevServer client, we use a custom one
-      // to bring better experience for Create React App users. You can replace
-      // the line below with these two lines if you prefer the stock client:
-      // require.resolve('webpack-dev-server/client') + '?/',
-      // require.resolve('webpack/hot/dev-server'),
-      require.resolve('react-dev-utils/webpackHotDevClient'),
+      // When using the experimental `react-refresh` integration,
+      // the webpack plugin takes care of injecting the dev client for us.
+      !hasReactRefresh &&
+        // Include an alternative client for WebpackDevServer. A client's job is to
+        // connect to WebpackDevServer by a socket and get notified about changes.
+        // When you save a file, the client will either apply hot updates (in case
+        // of CSS changes), or refresh the page (in case of JS changes). When you
+        // make a syntax error, this client will display a syntax error overlay.
+        // Note: instead of the default WebpackDevServer client, we use a custom one
+        // to bring better experience for Create React App users. You can replace
+        // the line below with these two lines if you prefer the stock client:
+        //
+        // require.resolve('webpack-dev-server/client') + '?/',
+        // require.resolve('webpack/hot/dev-server'),
+        webpackDevClientEntry,
       // Finally, this is your app's code
       entryPoint,
       // We include the app code last so that if there is a runtime error during
       // initialization, it doesn't blow up the WebpackDevServer client, and
       // changing JS code would still trigger a refresh.
-    ],
+    ].filter(Boolean),
   },
 
   output: {
@@ -146,8 +161,22 @@ module.exports = ({
     new MomentLocalesPlugin({
       localesToKeep: ['de', 'es', 'fr', 'zh-cn', 'ja'],
     }),
-    // This is necessary to emit hot updates (currently CSS only).
+    // This is necessary to emit hot updates (CSS and Fast Refresh):
     new webpack.HotModuleReplacementPlugin(),
+    // Experimental hot reloading for React .
+    // https://github.com/facebook/react/tree/master/packages/react-refresh
+    hasReactRefresh &&
+      new ReactRefreshWebpackPlugin({
+        overlay: {
+          entry: webpackDevClientEntry,
+          // The expected exports are slightly different from what the overlay exports,
+          // so an interop is included here to enable feedback on module-level errors.
+          module: reactRefreshOverlayEntry,
+          // Since we ship a custom dev client and overlay integration,
+          // the bundled socket handling logic can be eliminated.
+          sockIntegration: false,
+        },
+      }),
   ].filter(Boolean),
 
   module: {
@@ -350,8 +379,12 @@ module.exports = ({
               configFile: false,
               compact: false,
               presets: [
+                // TODO: add support for JSX runtime (https://github.com/facebook/create-react-app/blob/e63de79cc4530efc7402e38923d875f27cdef0c3/packages/react-scripts/config/webpack.config.js#L415-L417)
                 require.resolve('@commercetools-frontend/babel-preset-mc-app'),
               ],
+              plugins: [
+                hasReactRefresh && require.resolve('react-refresh/babel'),
+              ].filter(Boolean),
               // This is a feature of `babel-loader` for webpack (not Babel itself).
               // It enables caching results in ./node_modules/.cache/babel-loader/
               // directory for faster rebuilds.
