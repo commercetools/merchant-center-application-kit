@@ -1,4 +1,3 @@
-import React from 'react';
 import { MC_API_PROXY_TARGETS } from '@commercetools-frontend/constants';
 import { renderAppWithRedux } from '@commercetools-frontend/application-shell/test-utils';
 import { ApplicationStateMachines } from './entry-point';

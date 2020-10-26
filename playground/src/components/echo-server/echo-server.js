@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback } from 'react';
+import { useReducer, useCallback } from 'react';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { useAsyncDispatch, actions } from '@commercetools-frontend/sdk';
 import { useOnActionError } from '@commercetools-frontend/actions-global';

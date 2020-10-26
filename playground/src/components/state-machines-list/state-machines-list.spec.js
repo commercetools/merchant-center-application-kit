@@ -1,4 +1,3 @@
-import React from 'react';
 import { MC_API_PROXY_TARGETS } from '@commercetools-frontend/constants';
 import {
   renderAppWithRedux,
