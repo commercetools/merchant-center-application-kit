@@ -11,7 +11,7 @@
     "check-links": "yarn linkinator ./public"
   },
   "dependencies": {
-    "@commercetools-docs/gatsby-theme-docs": "8.0.1",
+    "@commercetools-docs/gatsby-theme-docs": "9.0.0",
     "@commercetools-docs/ui-kit": "9.0.0",
     "@commercetools-uikit/card": "10.30.2",
     "@commercetools-uikit/spacings-inline": "10.30.1",
