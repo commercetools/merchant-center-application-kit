@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, useCallback, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -24,7 +24,7 @@ const initialState = {
 // the component, has currently a limitation when testing the component, as it throws
 // a warning about `act`. This will be fixed in react@16.9.
 // In the meantime we can use a plain old stateful class component.
-class StateMachinesDetailsFetcher extends React.Component {
+class StateMachinesDetailsFetcher extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
     dataLocale: PropTypes.string.isRequired,
@@ -69,15 +69,15 @@ class StateMachinesDetailsFetcher extends React.Component {
 const StateMachinesDetails = (props) => {
   const dataLocale = useApplicationContext((context) => context.dataLocale);
   const dispatch = useDispatch();
-  const fetcher = React.useCallback(
+  const fetcher = useCallback(
     (...args) => dispatch(fetchStateMachine(...args)),
     [dispatch]
   );
   const showApiErrorNotification = useShowApiErrorNotification();
 
   // This tracking is just testing purposes
-  const { track } = React.useContext(GtmContext);
-  React.useEffect(() => {
+  const { track } = useContext(GtmContext);
+  useEffect(() => {
     track('rendered', 'State machine details');
   }, [track]);
 
