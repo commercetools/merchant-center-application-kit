@@ -114,7 +114,7 @@ jobs:
           CYPRESS_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
 
       - name: Uploading Cypress artifacts
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         if: failure()
         with:
           name: cypress-videos
