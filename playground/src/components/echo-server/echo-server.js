@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer, useCallback } from 'react';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { useAsyncDispatch, actions } from '@commercetools-frontend/sdk';
 import { useOnActionError } from '@commercetools-frontend/actions-global';
@@ -24,13 +24,13 @@ const reducer = (state, action) => {
 };
 
 const EchoServer = () => {
-  const [state, dispatchState] = React.useReducer(reducer, initialState);
+  const [state, dispatchState] = useReducer(reducer, initialState);
   const dispatch = useAsyncDispatch();
   const dispatchError = useOnActionError();
   const echoServerApiUrl = useApplicationContext(
     (context) => context.environment.echoServerApiUrl
   );
-  const handleSendRequest = React.useCallback(() => {
+  const handleSendRequest = useCallback(() => {
     async function ping() {
       try {
         const result = await dispatch(

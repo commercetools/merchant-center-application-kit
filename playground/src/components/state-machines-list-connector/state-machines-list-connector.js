@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Sdk } from '@commercetools-frontend/sdk';
 import * as actions from './actions';
 
-class StateMachinesListConnector extends React.Component {
+class StateMachinesListConnector extends Component {
   static displayName = 'StateMachinesListConnector';
   static propTypes = {
     children: PropTypes.func.isRequired,
