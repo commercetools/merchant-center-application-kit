@@ -20,6 +20,19 @@ describe.each`
   });
 });
 
+describe('when the location pathname is long', () => {
+  it('should render page title, but with parts of the breadcrumb truncated', async () => {
+    renderApp(<ApplicationHelmet>Hello</ApplicationHelmet>, {
+      route: `/account/organizations/1234567890/teams/1234567890/permissions/a-long-project-key-value/menu-configuration/1234567890`,
+    });
+    await waitFor(() => {
+      expect(document.title).toBe(
+        'organizations > ... > menu-configuration > 1234567890 - Account'
+      );
+    });
+  });
+});
+
 describe('when using the custom "renderPageTitle" function', () => {
   it('should render the custom value', async () => {
     renderApp(
