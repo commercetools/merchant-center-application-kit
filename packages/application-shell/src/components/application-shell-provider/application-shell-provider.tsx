@@ -20,6 +20,7 @@ import ConfigureIntlProvider from '../configure-intl-provider';
 import Authenticated from '../authenticated';
 import GtmBooter from '../gtm-booter';
 import ApplicationLoader from '../application-loader';
+import ApplicationHelmet from '../application-helmet';
 import ErrorBoundary from '../error-boundary';
 import { getBrowserLocale } from './utils';
 import useCoercedEnvironmentValues from './use-coerced-environment-values';
@@ -57,29 +58,31 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
             <React.Suspense fallback={<ApplicationLoader />}>
               <Router history={ApplicationShellProvider.history}>
                 <GtmBooter trackingEventList={props.trackingEventList || {}}>
-                  <Authenticated
-                    render={({ isAuthenticated }) => {
-                      if (isAuthenticated)
-                        return props.children({ isAuthenticated });
+                  <ApplicationHelmet>
+                    <Authenticated
+                      render={({ isAuthenticated }) => {
+                        if (isAuthenticated)
+                          return props.children({ isAuthenticated });
 
-                      const browserLocale = getBrowserLocale(window);
-                      return (
-                        <AsyncLocaleData
-                          locale={browserLocale}
-                          applicationMessages={props.applicationMessages}
-                        >
-                          {({ locale, messages }) => (
-                            <ConfigureIntlProvider
-                              locale={locale}
-                              messages={messages}
-                            >
-                              {props.children({ isAuthenticated })}
-                            </ConfigureIntlProvider>
-                          )}
-                        </AsyncLocaleData>
-                      );
-                    }}
-                  />
+                        const browserLocale = getBrowserLocale(window);
+                        return (
+                          <AsyncLocaleData
+                            locale={browserLocale}
+                            applicationMessages={props.applicationMessages}
+                          >
+                            {({ locale, messages }) => (
+                              <ConfigureIntlProvider
+                                locale={locale}
+                                messages={messages}
+                              >
+                                {props.children({ isAuthenticated })}
+                              </ConfigureIntlProvider>
+                            )}
+                          </AsyncLocaleData>
+                        );
+                      }}
+                    />
+                  </ApplicationHelmet>
                 </GtmBooter>
               </Router>
             </React.Suspense>
