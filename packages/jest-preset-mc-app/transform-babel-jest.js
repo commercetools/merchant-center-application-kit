@@ -1,11 +1,17 @@
 const getBabePresetConfigForMcApp = require('@commercetools-frontend/babel-preset-mc-app');
 const getJestBabelPreset = require('babel-preset-jest');
+const babelJest = require('babel-jest');
+const hasJsxRuntime = require('./has-jsx-runtime');
 
-const mcAppBabelConfig = getBabePresetConfigForMcApp();
+const mcAppBabelConfig = getBabePresetConfigForMcApp(null, {
+  runtime: hasJsxRuntime() ? 'automatic' : 'classic',
+});
 
 const jestBabelConfig = {
   ...mcAppBabelConfig,
   plugins: [...mcAppBabelConfig.plugins, ...getJestBabelPreset().plugins],
 };
 
-module.exports = require('babel-jest').createTransformer(jestBabelConfig);
+const transformer = babelJest.createTransformer(jestBabelConfig);
+
+module.exports = transformer;

@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-module.exports = function getBabePresetConfigForMcApp() {
+module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
   // This is similar to how `env` works in Babel:
   // https://babeljs.io/docs/usage/babelrc/#env-option
   // We are not using `env` because it’s ignored in versions > babel-core@6.10.4:
@@ -59,7 +59,8 @@ module.exports = function getBabePresetConfigForMcApp() {
           development: isEnvDevelopment || isEnvTest,
           // Will use the native built-in instead of trying to polyfill
           // behavior for any plugins that require one.
-          useBuiltIns: true,
+          ...(opts.runtime !== 'automatic' ? { useBuiltIns: true } : {}),
+          runtime: opts.runtime || 'classic',
         },
       ],
       [

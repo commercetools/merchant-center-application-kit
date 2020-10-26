@@ -1,3 +1,5 @@
+const hasJsxRuntime = require('./has-jsx-runtime');
+
 module.exports = {
   parser: 'babel-eslint',
   parserOptions: {
@@ -94,6 +96,10 @@ module.exports = {
     'lines-between-class-members': 0,
     // NOTE: The regular rule does not support do-expressions. The equivalent rule of babel does.
     'no-unused-expressions': 0,
+    ...(hasJsxRuntime() && {
+      'react/jsx-uses-react': 'off',
+      'react/react-in-jsx-scope': 'off',
+    }),
   },
   overrides: [
     {

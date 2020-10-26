@@ -28,7 +28,9 @@ const { packageJson: pkg } = readPkgUp.sync({
 });
 const [, packageName] = pkg.name.split('@commercetools-frontend/');
 const extensions = ['.js', '.ts', '.tsx'];
-const babelOptions = getBabelPreset();
+const babelOptions = getBabelPreset(null, {
+  runtime: 'classic',
+});
 
 const createPlugins = (format) => {
   const isFormatEs = format === 'es';

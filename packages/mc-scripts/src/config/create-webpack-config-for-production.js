@@ -22,6 +22,7 @@ const postcssColorModFunction = require('postcss-color-mod-function');
 const FinalStatsWriterPlugin = require('../webpack-plugins/final-stats-writer-plugin');
 const { browserslist } = require('../../package.json');
 const vendorsToTranspile = require('./vendors-to-transpile');
+const hasJsxRuntime = require('./has-jsx-runtime');
 
 const optimizeCSSConfig = {
   // Since css-loader uses cssnano v3.1.0, it's best to stick with the
@@ -257,6 +258,9 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
                   require.resolve(
                     '@commercetools-frontend/babel-preset-mc-app'
                   ),
+                  {
+                    runtime: hasJsxRuntime() ? 'automatic' : 'classic',
+                  },
                 ],
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
