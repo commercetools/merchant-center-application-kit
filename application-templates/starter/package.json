@@ -23,7 +23,7 @@
     "@commercetools-frontend/i18n": "17.0.1",
     "@commercetools-frontend/permissions": "17.0.1",
     "@commercetools-uikit/flat-button": "10.36.0",
-    "@commercetools-uikit/icons": "10.33.0",
+    "@commercetools-uikit/icons": "10.38.0",
     "@commercetools-uikit/spacings": "10.18.7",
     "@commercetools-uikit/text": "10.36.0",
     "bulk-update-versions": "1.1.0",
@@ -43,6 +43,6 @@
     "@testing-library/react": "11.1.0",
     "dotenv-cli": "4.0.0",
     "enzyme": "3.11.0",
-    "jest": "26.6.0"
+    "jest": "26.6.1"
   }
 }
