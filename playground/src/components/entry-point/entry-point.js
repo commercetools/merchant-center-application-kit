@@ -1,4 +1,4 @@
-import React, { lazy, Component } from 'react';
+import { lazy, Component } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import {
   ApplicationShell,

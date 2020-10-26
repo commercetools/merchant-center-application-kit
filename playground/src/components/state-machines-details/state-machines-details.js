@@ -1,4 +1,4 @@
-import React, { Component, useCallback, useContext, useEffect } from 'react';
+import { Component, useCallback, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
