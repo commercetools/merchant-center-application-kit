@@ -7,6 +7,18 @@
   "separateMajorMinor": true,
   "packageRules": [
     {
+      "sourceUrlPrefixes": ["https://github.com/commercetools/ui-kit"],
+      "groupName": "all ui-kit packages"
+    },
+    {
+      "sourceUrlPrefixes": ["https://github.com/commercetools/commercetools-docs-kit"],
+      "groupName": "all docs-kit packages"
+    },
+    {
+      "sourceUrlPrefixes": ["https://github.com/commercetools/test-data"],
+      "groupName": "all test-data packages"
+    },
+    {
       "packagePatterns": [
         "*"
       ],
