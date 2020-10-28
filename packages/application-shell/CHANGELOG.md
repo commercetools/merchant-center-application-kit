@@ -1,5 +1,27 @@
 # @commercetools-frontend/application-shell
 
+## 17.1.0
+
+### Minor Changes
+
+- [`323cf6b`](https://github.com/commercetools/merchant-center-application-kit/commit/323cf6bb0fba41510947287dd18b346cda6f0833) [#1816](https://github.com/commercetools/merchant-center-application-kit/pull/1816) Thanks [@ahmehri](https://github.com/ahmehri)! - Fix wrong navigation when using Quick Access Product commands
+
+### Patch Changes
+
+- [`6059b9a`](https://github.com/commercetools/merchant-center-application-kit/commit/6059b9af35fbee646d008c393578c83795f10b4f) [#1835](https://github.com/commercetools/merchant-center-application-kit/pull/1835) Thanks [@nbryant-commercetools](https://github.com/nbryant-commercetools)! - Addition of new change history GraphQL Target
+
+- Updated dependencies [[`5d9d5da`](https://github.com/commercetools/merchant-center-application-kit/commit/5d9d5da44364fe5590b67be21ac3630e177326e3), [`6059b9a`](https://github.com/commercetools/merchant-center-application-kit/commit/6059b9af35fbee646d008c393578c83795f10b4f)]:
+  - @commercetools-frontend/i18n@17.1.0
+  - @commercetools-frontend/sentry@17.1.0
+  - @commercetools-frontend/constants@17.1.0
+  - @commercetools-frontend/application-components@17.1.0
+  - @commercetools-frontend/application-shell-connectors@17.1.0
+  - @commercetools-frontend/l10n@17.1.0
+  - @commercetools-frontend/react-notifications@17.1.0
+  - @commercetools-frontend/actions-global@17.1.0
+  - @commercetools-frontend/sdk@17.1.0
+  - @commercetools-frontend/permissions@17.1.0
+
 ## 17.0.1
 
 ### Patch Changes

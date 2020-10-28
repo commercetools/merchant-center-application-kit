@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-html-template
 
+## 17.1.0
+
+### Patch Changes
+
+- [`05672a2`](https://github.com/commercetools/merchant-center-application-kit/commit/05672a244f86b5db3aeab610c10f1747501b695a) [#1798](https://github.com/commercetools/merchant-center-application-kit/pull/1798) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency serialize-javascript to v5
+
 ## 17.0.1
 
 ### Patch Changes

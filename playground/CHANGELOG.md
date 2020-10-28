@@ -1,5 +1,26 @@
 # playground
 
+## 17.0.2
+
+### Patch Changes
+
+- [`5d9d5da`](https://github.com/commercetools/merchant-center-application-kit/commit/5d9d5da44364fe5590b67be21ac3630e177326e3) [#1820](https://github.com/commercetools/merchant-center-application-kit/pull/1820) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+* [`8537a38`](https://github.com/commercetools/merchant-center-application-kit/commit/8537a38431c428b245a8d178651d1d90efcbb0e9) [#1828](https://github.com/commercetools/merchant-center-application-kit/pull/1828) Thanks [@tdeekens](https://github.com/tdeekens)! - refactor(playground): to use new automatic jsx runtime
+
+- [`f4f37af`](https://github.com/commercetools/merchant-center-application-kit/commit/f4f37af1f2680f426e30734a16c87543453a236a) [#1827](https://github.com/commercetools/merchant-center-application-kit/pull/1827) Thanks [@tdeekens](https://github.com/tdeekens)! - refactor(playground): to use explicit imports of React
+
+- Updated dependencies [[`5d9d5da`](https://github.com/commercetools/merchant-center-application-kit/commit/5d9d5da44364fe5590b67be21ac3630e177326e3), [`323cf6b`](https://github.com/commercetools/merchant-center-application-kit/commit/323cf6bb0fba41510947287dd18b346cda6f0833), [`6059b9a`](https://github.com/commercetools/merchant-center-application-kit/commit/6059b9af35fbee646d008c393578c83795f10b4f)]:
+  - @commercetools-frontend/i18n@17.1.0
+  - @commercetools-frontend/application-shell@17.1.0
+  - @commercetools-frontend/constants@17.1.0
+  - @commercetools-frontend/application-components@17.1.0
+  - @commercetools-frontend/application-shell-connectors@17.1.0
+  - @commercetools-frontend/l10n@17.1.0
+  - @commercetools-frontend/actions-global@17.1.0
+  - @commercetools-frontend/sdk@17.1.0
+  - @commercetools-frontend/permissions@17.1.0
+
 ## 17.0.1
 
 ### Patch Changes

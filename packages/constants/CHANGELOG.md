@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 17.1.0
+
+### Patch Changes
+
+- [`6059b9a`](https://github.com/commercetools/merchant-center-application-kit/commit/6059b9af35fbee646d008c393578c83795f10b4f) [#1835](https://github.com/commercetools/merchant-center-application-kit/pull/1835) Thanks [@nbryant-commercetools](https://github.com/nbryant-commercetools)! - Addition of new change history GraphQL Target
+
 ## 17.0.1
 
 ### Patch Changes
