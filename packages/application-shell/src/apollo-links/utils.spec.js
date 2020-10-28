@@ -26,6 +26,14 @@ describe('supported GraphQL targets', () => {
     ).toBe(false);
   });
 
+  it('should not support the `change history` GraphQL target', () => {
+    expect(
+      getDoesGraphQLTargetSupportTokenRetry({
+        headers: { 'X-Graphql-Target': GRAPHQL_TARGETS.CHANGE_HISTORY },
+      })
+    ).toBe(false);
+  });
+
   it('should not support the `settings service` GraphQL target', () => {
     expect(
       getDoesGraphQLTargetSupportTokenRetry({
