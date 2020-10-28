@@ -119,6 +119,7 @@ export const GRAPHQL_TARGETS = {
   MERCHANT_CENTER_BACKEND: 'mc',
   COMMERCETOOLS_PLATFORM: 'ctp',
   DASHBOARD_SERVICE: 'dashboard',
+  CHANGE_HISTORY: 'change-history',
   PIM_INDEXER: 'pim-indexer',
   SETTINGS_SERVICE: 'settings',
   ADMINISTRATION_SERVICE: 'administration',
