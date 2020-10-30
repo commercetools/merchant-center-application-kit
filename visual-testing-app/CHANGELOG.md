@@ -1,5 +1,14 @@
 # @commercetools-local/visual-testing-app
 
+## 17.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`bacc091`](https://github.com/commercetools/merchant-center-application-kit/commit/bacc091506dedb58fadaa4008fc93381a5e9b212)]:
+  - @commercetools-frontend/constants@17.1.1
+  - @commercetools-frontend/application-components@17.1.1
+  - @commercetools-frontend/react-notifications@17.1.1
+
 ## 17.0.2
 
 ### Patch Changes

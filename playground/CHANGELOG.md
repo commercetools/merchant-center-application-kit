@@ -1,5 +1,20 @@
 # playground
 
+## 17.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`bacc091`](https://github.com/commercetools/merchant-center-application-kit/commit/bacc091506dedb58fadaa4008fc93381a5e9b212)]:
+  - @commercetools-frontend/application-shell@17.1.1
+  - @commercetools-frontend/application-shell-connectors@17.1.1
+  - @commercetools-frontend/constants@17.1.1
+  - @commercetools-frontend/sdk@17.1.1
+  - @commercetools-frontend/permissions@17.1.1
+  - @commercetools-frontend/actions-global@17.1.1
+  - @commercetools-frontend/application-components@17.1.1
+  - @commercetools-frontend/i18n@17.1.1
+  - @commercetools-frontend/l10n@17.1.1
+
 ## 17.0.2
 
 ### Patch Changes
