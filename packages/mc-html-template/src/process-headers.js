@@ -33,7 +33,7 @@ const toHeaderString = (directives = {}) =>
     .join('; ');
 
 const processHeaders = (applicationConfig) => {
-  const isMcDevEnv = applicationConfig.env === 'development';
+  const isMcDevEnv = applicationConfig.env.env === 'development';
 
   // List hashes for injected inline scripts.
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src
