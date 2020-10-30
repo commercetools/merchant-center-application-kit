@@ -155,6 +155,5 @@ export interface ApplicationWindow extends Window {
     trackingGtm?: string;
     enableSignUp?: boolean;
     useFullRedirectsForLinks?: boolean;
-    disableInferringOfMcApiUrlOnProduction?: boolean;
   };
 }

@@ -1,12 +1,14 @@
 export interface ApplicationWindow extends Window {
   app: {
-    disableInferringOfMcApiUrlOnProduction: string | boolean;
     servedByProxy: string | boolean;
     mcApiUrl: string;
   };
 }
 
 declare let window: ApplicationWindow;
+
+const removeMcPrefix = (host: string) =>
+  host.replace(/^mc(-(\d){4,})?\.(.*)$/, '$3');
 
 /**
  * NOTE:
@@ -22,7 +24,7 @@ declare let window: ApplicationWindow;
  *
  *    1. MC: mc.commercetools.com with API: mc-api.europe-west1.gcp.commercetools.com
  *       -> Will not work as urls differ
- *    2. MC: mc.europe-west1.gcp.commercetools.com with API: mc-api..commercetools.com
+ *    2. MC: mc.europe-west1.gcp.commercetools.com with API: mc-api.commercetools.com
  *       -> Will not work as urls differ
  *
  *    Using the origin ensures that urls always match with the cookie sent. Otherwise,
@@ -30,25 +32,24 @@ declare let window: ApplicationWindow;
  */
 const getMcApiUrlFromOrigin = (actualWindow: ApplicationWindow) => {
   const url = new URL(actualWindow.origin);
-  const mcApiUrlHost = url.host.replace('mc.', 'mc-api.');
-
-  return `${url.protocol}//${mcApiUrlHost}`;
+  const originTld = removeMcPrefix(url.host);
+  return `${url.protocol}//mc-api.${originTld}`;
 };
 
 const isEnvironmentConfigurationEnabled = (
   environmentConfiguration: string | boolean
 ) => environmentConfiguration === true || environmentConfiguration === 'true';
 
-export default function getMcApiUrl(actualWindow: ApplicationWindow = window) {
+function getMcApiUrl(actualWindow: ApplicationWindow = window): string {
   const isServedByProxy = isEnvironmentConfigurationEnabled(
     actualWindow.app.servedByProxy
   );
-  const isInferringOfMcApiUrlOnProductionDisabled = isEnvironmentConfigurationEnabled(
-    actualWindow.app.disableInferringOfMcApiUrlOnProduction
-  );
 
-  if (isServedByProxy && !isInferringOfMcApiUrlOnProductionDisabled)
+  if (isServedByProxy) {
     return getMcApiUrlFromOrigin(actualWindow);
+  }
 
   return actualWindow.app.mcApiUrl;
 }
+
+export default getMcApiUrl;
