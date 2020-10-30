@@ -1,5 +1,16 @@
 # @commercetools-frontend/mc-scripts
 
+## 17.1.2
+
+### Patch Changes
+
+- [`fe1df5f`](https://github.com/commercetools/merchant-center-application-kit/commit/fe1df5f5427406330591581c4f74e0aed259c4af) [#1839](https://github.com/commercetools/merchant-center-application-kit/pull/1839) Thanks [@emmenko](https://github.com/emmenko)! - Fix `FAST_REFRESH` variable evaluation
+
+* [`909a410`](https://github.com/commercetools/merchant-center-application-kit/commit/909a410d8e9c00dff390551818e88b76664cdce0) [#1838](https://github.com/commercetools/merchant-center-application-kit/pull/1838) Thanks [@emmenko](https://github.com/emmenko)! - Fix babel preset syntax
+
+* Updated dependencies [[`016f84c`](https://github.com/commercetools/merchant-center-application-kit/commit/016f84c6d368b58e05b7c018f2d8b723814d06b4)]:
+  - @commercetools-frontend/mc-html-template@17.1.2
+
 ## 17.1.0
 
 ### Minor Changes

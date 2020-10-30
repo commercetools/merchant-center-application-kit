@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-html-template
 
+## 17.1.2
+
+### Patch Changes
+
+- [`016f84c`](https://github.com/commercetools/merchant-center-application-kit/commit/016f84c6d368b58e05b7c018f2d8b723814d06b4) [#1841](https://github.com/commercetools/merchant-center-application-kit/pull/1841) Thanks [@emmenko](https://github.com/emmenko)! - Evaluation of `env` flag from the application config, to set certain CSP directives for local development
+
 ## 17.1.0
 
 ### Patch Changes

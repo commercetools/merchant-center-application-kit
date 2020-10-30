@@ -1,5 +1,11 @@
 # playground
 
+## 17.0.4
+
+### Patch Changes
+
+- [`fe1df5f`](https://github.com/commercetools/merchant-center-application-kit/commit/fe1df5f5427406330591581c4f74e0aed259c4af) [#1839](https://github.com/commercetools/merchant-center-application-kit/pull/1839) Thanks [@emmenko](https://github.com/emmenko)! - Fix `FAST_REFRESH` variable evaluation
+
 ## 17.0.3
 
 ### Patch Changes
