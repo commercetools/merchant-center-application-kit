@@ -22,7 +22,7 @@ const defaultToggleFlags = {
 
 // Whether or not `react-refresh` is enabled, `react-refresh` is not 100% stable at this time,
 // which is why it's disabled by default.
-const hasReactRefresh = process.env.FAST_REFRESH !== 'false';
+const hasReactRefresh = process.env.FAST_REFRESH === 'true';
 const webpackDevClientEntry = require.resolve(
   'react-dev-utils/webpackHotDevClient'
 );
