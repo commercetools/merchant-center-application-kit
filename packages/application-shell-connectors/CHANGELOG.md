@@ -1,5 +1,15 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 17.1.1
+
+### Patch Changes
+
+- [`bacc091`](https://github.com/commercetools/merchant-center-application-kit/commit/bacc091506dedb58fadaa4008fc93381a5e9b212) [#1836](https://github.com/commercetools/merchant-center-application-kit/pull/1836) Thanks [@emmenko](https://github.com/emmenko)! - Always infer MC API URL from origin when running behind the MC Proxy.
+
+- Updated dependencies [[`bacc091`](https://github.com/commercetools/merchant-center-application-kit/commit/bacc091506dedb58fadaa4008fc93381a5e9b212)]:
+  - @commercetools-frontend/constants@17.1.1
+  - @commercetools-frontend/sentry@17.1.1
+
 ## 17.1.0
 
 ### Patch Changes
