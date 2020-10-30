@@ -29,22 +29,5 @@ describe('getMcApiUrl', () => {
         'https://mc-api.europe-west1.gcp.commercetools.com'
       );
     });
-
-    describe('when inferring of `mcApiUrl` from origin is disabled', () => {
-      it('should return the configured `mcApiUrl`', () => {
-        const actualWindow = {
-          app: {
-            mcApiUrl: 'https://mc-api.commercetools.com',
-            servedByProxy: 'true',
-            disableInferringOfMcApiUrlOnProduction: 'true',
-          },
-          origin: 'https://mc.europe-west1.gcp.commercetools.com',
-        };
-
-        expect(getMcApiUrl(actualWindow)).toEqual(
-          'https://mc-api.commercetools.com'
-        );
-      });
-    });
   });
 });

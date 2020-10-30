@@ -84,7 +84,7 @@ export const mapEnvironmentToApplicationContextEnvironment = <
   partialWindow: Pick<Window, 'origin'> = window
 ) => ({
   ...environment,
-  // NOTE: The `mcApiUrl` depends on `servedByProxy` and `disableInferringOfMcApiUrlOnProduction`.
+  // NOTE: The `mcApiUrl` depends on `servedByProxy`
   mcApiUrl: getMcApiUrl(environment, partialWindow),
 });
 
