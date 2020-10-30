@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "17.0.1",
+  "version": "17.0.2",
   "description": "A playground application to get started developing Merchant Center Applications",
   "private": true,
   "scripts": {
@@ -15,16 +15,16 @@
   },
   "dependencies": {
     "@commercetools-docs/ui-kit": "9.0.0",
-    "@commercetools-frontend/actions-global": "17.0.1",
-    "@commercetools-frontend/application-components": "17.0.1",
-    "@commercetools-frontend/application-shell": "17.0.1",
-    "@commercetools-frontend/application-shell-connectors": "17.0.1",
+    "@commercetools-frontend/actions-global": "17.1.0",
+    "@commercetools-frontend/application-components": "17.1.0",
+    "@commercetools-frontend/application-shell": "17.1.0",
+    "@commercetools-frontend/application-shell-connectors": "17.1.0",
     "@commercetools-frontend/assets": "16.15.3",
-    "@commercetools-frontend/constants": "17.0.1",
-    "@commercetools-frontend/i18n": "17.0.1",
-    "@commercetools-frontend/l10n": "17.0.1",
-    "@commercetools-frontend/permissions": "17.0.1",
-    "@commercetools-frontend/sdk": "17.0.1",
+    "@commercetools-frontend/constants": "17.1.0",
+    "@commercetools-frontend/i18n": "17.1.0",
+    "@commercetools-frontend/l10n": "17.1.0",
+    "@commercetools-frontend/permissions": "17.1.0",
+    "@commercetools-frontend/sdk": "17.1.0",
     "@commercetools-uikit/constraints": "10.30.1",
     "@commercetools-uikit/data-table": "10.38.0",
     "@commercetools-uikit/flat-button": "10.36.0",
@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@commercetools-frontend/mc-dev-authentication": "17.0.0",
-    "@commercetools-frontend/mc-scripts": "17.0.1",
+    "@commercetools-frontend/mc-scripts": "17.1.0",
     "@formatjs/cli": "2.13.2",
     "dotenv-cli": "4.0.0"
   }

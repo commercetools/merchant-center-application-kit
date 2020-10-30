@@ -1,5 +1,32 @@
 # @commercetools-frontend/mc-scripts
 
+## 17.1.0
+
+### Minor Changes
+
+- [`eb545e0`](https://github.com/commercetools/merchant-center-application-kit/commit/eb545e088af38af86611a2c0b7b69a16a5318b4b) [#1819](https://github.com/commercetools/merchant-center-application-kit/pull/1819) Thanks [@tdeekens](https://github.com/tdeekens)! - feat: adds the ability to opt into the new `automatic` JSX runtime
+
+  Recent React versions support a new JSX runtime. Read more about it [here](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html).
+
+  You may opt into the new runtime in `automatic` mode by setting the `ENABLE_NEW_JSX_TRANSFORM` environment variable to `true`. Please note you need at least React v17 or v16.14 in your application.
+  Opting into the new JSX transform automatically also changes the Babel, Jest and ESLint configurations. As a consequence ESLint will warn whenever it discovers React being in scope by importing it as `import React from 'react`'. You have to remove those imports using the respective codemod by running `npx react-codemod update-react-imports`.
+
+  Lastly, all code of the Merchant Center Application Kit will continue to be bundled in `classic` mode to support older versions of React.
+
+* [`da0b4aa`](https://github.com/commercetools/merchant-center-application-kit/commit/da0b4aab95ea40d5f8492097cb88e3ae79a71d78) [#1818](https://github.com/commercetools/merchant-center-application-kit/pull/1818) Thanks [@emmenko](https://github.com/emmenko)! - Add support for experimental Fast Refresh for React. To enable it, set the enviornment variable `FAST_REFRESH=true`. More info [here](https://github.com/facebook/create-react-app/pull/8582).
+
+### Patch Changes
+
+- [`5d9d5da`](https://github.com/commercetools/merchant-center-application-kit/commit/5d9d5da44364fe5590b67be21ac3630e177326e3) [#1820](https://github.com/commercetools/merchant-center-application-kit/pull/1820) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+* [`e824e89`](https://github.com/commercetools/merchant-center-application-kit/commit/e824e891e1dabf9913e768037d12cedc3f943b80) [#1797](https://github.com/commercetools/merchant-center-application-kit/pull/1797) Thanks [@renovate](https://github.com/apps/renovate)! - update dependency mini-css-extract-plugin to v1
+
+- [`e824e89`](https://github.com/commercetools/merchant-center-application-kit/commit/e824e891e1dabf9913e768037d12cedc3f943b80) [#1797](https://github.com/commercetools/merchant-center-application-kit/pull/1797) Thanks [@renovate](https://github.com/apps/renovate)! - update dependency postcss-safe-parser to v5
+
+- Updated dependencies [[`05672a2`](https://github.com/commercetools/merchant-center-application-kit/commit/05672a244f86b5db3aeab610c10f1747501b695a), [`eb545e0`](https://github.com/commercetools/merchant-center-application-kit/commit/eb545e088af38af86611a2c0b7b69a16a5318b4b)]:
+  - @commercetools-frontend/mc-html-template@17.1.0
+  - @commercetools-frontend/babel-preset-mc-app@17.1.0
+
 ## 17.0.1
 
 ### Patch Changes

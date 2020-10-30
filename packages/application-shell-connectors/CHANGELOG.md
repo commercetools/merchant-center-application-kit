@@ -1,5 +1,13 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 17.1.0
+
+### Patch Changes
+
+- Updated dependencies [[`5d9d5da`](https://github.com/commercetools/merchant-center-application-kit/commit/5d9d5da44364fe5590b67be21ac3630e177326e3), [`6059b9a`](https://github.com/commercetools/merchant-center-application-kit/commit/6059b9af35fbee646d008c393578c83795f10b4f)]:
+  - @commercetools-frontend/sentry@17.1.0
+  - @commercetools-frontend/constants@17.1.0
+
 ## 17.0.1
 
 ### Patch Changes
