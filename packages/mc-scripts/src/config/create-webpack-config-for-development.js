@@ -387,10 +387,14 @@ module.exports = ({
               configFile: false,
               compact: false,
               presets: [
-                require.resolve('@commercetools-frontend/babel-preset-mc-app'),
-                {
-                  runtime: hasJsxRuntime() ? 'automatic' : 'classic',
-                },
+                [
+                  require.resolve(
+                    '@commercetools-frontend/babel-preset-mc-app'
+                  ),
+                  {
+                    runtime: hasJsxRuntime() ? 'automatic' : 'classic',
+                  },
+                ],
               ],
               plugins: [
                 hasReactRefresh && require.resolve('react-refresh/babel'),
