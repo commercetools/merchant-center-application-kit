@@ -387,8 +387,10 @@ module.exports = ({
               configFile: false,
               compact: false,
               presets: [
-                // TODO: add support for JSX runtime (https://github.com/facebook/create-react-app/blob/e63de79cc4530efc7402e38923d875f27cdef0c3/packages/react-scripts/config/webpack.config.js#L415-L417)
                 require.resolve('@commercetools-frontend/babel-preset-mc-app'),
+                {
+                  runtime: hasJsxRuntime() ? 'automatic' : 'classic',
+                },
               ],
               plugins: [
                 hasReactRefresh && require.resolve('react-refresh/babel'),

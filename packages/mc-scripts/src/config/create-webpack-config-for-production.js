@@ -450,6 +450,9 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
                   require.resolve(
                     '@commercetools-frontend/babel-preset-mc-app'
                   ),
+                  {
+                    runtime: hasJsxRuntime() ? 'automatic' : 'classic',
+                  },
                 ],
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
