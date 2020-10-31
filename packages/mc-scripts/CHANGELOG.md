@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-scripts
 
+## 17.1.3
+
+### Patch Changes
+
+- [`f6df7d8`](https://github.com/commercetools/merchant-center-application-kit/commit/f6df7d8a53855e4b2093080a6187e54426553262) [#1842](https://github.com/commercetools/merchant-center-application-kit/pull/1842) Thanks [@tdeekens](https://github.com/tdeekens)! - fix(mc-scripts): to add jsx runtime for js files not only svg
+
 ## 17.1.2
 
 ### Patch Changes
