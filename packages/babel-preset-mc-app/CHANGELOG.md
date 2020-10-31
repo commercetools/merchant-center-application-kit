@@ -1,5 +1,11 @@
 # @commercetools-frontend/babel-preset-mc-app
 
+## 17.1.4
+
+### Patch Changes
+
+- [`56d4361`](https://github.com/commercetools/merchant-center-application-kit/commit/56d43616ca78623530a89b912bc5501f47faa54e) [#1844](https://github.com/commercetools/merchant-center-application-kit/pull/1844) Thanks [@tdeekens](https://github.com/tdeekens)! - fix(babel): pragma frag to be Fragment not React.Fragment
+
 ## 17.1.0
 
 ### Minor Changes
