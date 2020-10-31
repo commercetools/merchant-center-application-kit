@@ -59,7 +59,9 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
           development: isEnvDevelopment || isEnvTest,
           // Will use the native built-in instead of trying to polyfill
           // behavior for any plugins that require one.
-          ...(opts.runtime !== 'automatic' ? { useBuiltIns: true } : {}),
+          ...(opts.runtime !== 'automatic'
+            ? { useBuiltIns: true, pragmaFrag: 'Fragment' }
+            : {}),
           runtime: opts.runtime || 'classic',
         },
       ],
