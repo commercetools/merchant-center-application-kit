@@ -22,9 +22,7 @@ import type {
   TAppliedStoreDataFencesGraphql,
 } from './fields/applied-store-data-fence';
 
-export type TCreateProjectBuilder = (args?: {
-  defaults?: Partial<TProject>;
-}) => TBuilder<TProject>;
+export type TCreateProjectBuilder = () => TBuilder<TProject>;
 
 type TBaseProject = {
   id: string;

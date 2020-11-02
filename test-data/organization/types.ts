@@ -1,8 +1,6 @@
 import type { TBuilder } from '@commercetools-test-data/core';
 
-export type TCreateOrganizationBuilder = (args?: {
-  defaults?: Partial<TOrganization>;
-}) => TBuilder<TOrganization>;
+export type TCreateOrganizationBuilder = () => TBuilder<TOrganization>;
 
 export type TOrganization = {
   id: string;
