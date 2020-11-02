@@ -8,6 +8,7 @@ declare module '*/fetch-all-menu-feature-toggles.proxy.graphql' {
 
   export default defaultDocument;
 }
+    
 
 declare module '*/fetch-applications-menu.proxy.graphql' {
   import { DocumentNode } from 'graphql';
@@ -16,3 +17,4 @@ declare module '*/fetch-applications-menu.proxy.graphql' {
 
   export default defaultDocument;
 }
+    

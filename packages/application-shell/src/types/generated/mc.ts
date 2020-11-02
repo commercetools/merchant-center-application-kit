@@ -81,6 +81,7 @@ export type TFeature = {
   __typename?: 'Feature';
   name: Scalars['String'];
   value: Scalars['Boolean'];
+  reason: Maybe<Scalars['String']>;
 };
 
 export type TInvitationInput = {
