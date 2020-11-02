@@ -36,13 +36,13 @@
     "build": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "@types/node": "14.14.3",
+    "@types/node": "14.14.6",
     "express": "4.17.1",
     "express-jwt": "6.0.0",
     "jwks-rsa": "1.11.0"
   },
   "devDependencies": {
-    "jose": "2.0.2",
+    "jose": "2.0.3",
     "msw": "0.21.3"
   }
 }

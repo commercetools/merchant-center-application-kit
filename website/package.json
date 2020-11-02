@@ -16,15 +16,15 @@
     "@commercetools-uikit/card": "10.30.2",
     "@commercetools-uikit/spacings-inline": "10.30.1",
     "@commercetools-uikit/spacings-stack": "10.30.1",
-    "@emotion/core": "10.0.35",
+    "@emotion/core": "10.1.0",
     "@emotion/styled": "10.0.27",
-    "gatsby": "2.24.85",
-    "gatsby-cli": "2.12.111",
+    "gatsby": "2.24.92",
+    "gatsby-cli": "2.12.113",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.8.6"
+    "react-intl": "5.8.8"
   },
   "devDependencies": {
-    "linkinator": "2.2.0"
+    "linkinator": "2.2.2"
   }
 }
