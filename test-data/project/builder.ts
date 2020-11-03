@@ -7,11 +7,10 @@ import * as ExpiryMock from './fields/expiry';
 import generator from './generator';
 import transformers from './transformers';
 
-const Project: TCreateProjectBuilder = ({ defaults } = {}) =>
+const Project: TCreateProjectBuilder = () =>
   Builder<TProject>({
     generator,
     transformers,
-    defaults,
   })
     .owner(OrganizationMock.random())
     .suspension(SuspensionMock.random())

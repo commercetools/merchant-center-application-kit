@@ -1503,10 +1503,10 @@
     node-fetch "2.6.1"
     shelljs "0.8.4"
 
-"@commercetools-test-data/core@1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@commercetools-test-data/core/-/core-1.1.2.tgz#e38da397d5311a2b2e4ef0bdef59c8ee156c35d1"
-  integrity sha512-NUP69q8s3jCQHtQgjTPICFL8gPo6K3gWmiRdQybRnuehlHPTOtkcHFASIP5QNFavfmmxHnTrAJBztqPUNiOfWg==
+"@commercetools-test-data/core@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-test-data/core/-/core-2.0.0.tgz#ea543e03f5e415086a8830d96bb5b294e98def6f"
+  integrity sha512-A5yWBa9DDFRGaRs95v4MYig0VE5Is6dpI7e4xdOR/JJMqcgmiZL1SY5/Tm+CF7H1J3Xh4kbDE41gg6PiqBLHZA==
   dependencies:
     "@babel/runtime" "7.11.2"
     "@babel/runtime-corejs3" "7.11.2"

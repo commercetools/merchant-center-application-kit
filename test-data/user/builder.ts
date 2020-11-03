@@ -4,11 +4,10 @@ import { Builder } from '@commercetools-test-data/core';
 import generator from './generator';
 import transformers from './transformers';
 
-const User: TCreateUserBuilder = ({ defaults } = {}) =>
+const User: TCreateUserBuilder = () =>
   Builder<TUser>({
     generator,
     transformers,
-    defaults,
   });
 
 export default User;

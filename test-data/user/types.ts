@@ -1,9 +1,7 @@
 import type { TBuilder } from '@commercetools-test-data/core';
 import type { TProject, TProjectGraphql } from '../project';
 
-export type TCreateUserBuilder = (args?: {
-  defaults?: Partial<TUser>;
-}) => TBuilder<TUser>;
+export type TCreateUserBuilder = () => TBuilder<TUser>;
 
 type TBaseUser = {
   id: string;
