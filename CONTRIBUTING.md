@@ -5,9 +5,17 @@ Please _read_ before contributing to Merchant Center Application Kit in order to
 ## Core Ideas
 
 The [Merchant Center](https://docs.commercetools.com/merchant-center/) is a _Multi Single-Page-Application_ where effectively multiple applications are running within the same domain, giving it a look and feel of being one big application. In fact, sections of the Merchant Center such as Dashboard, Orders, Products, etc are all different applications.
-You can read more about the architecture here (_coming soon_).
+You can read more about the architecture [here](https://docs.commercetools.com/custom-applications/main-concepts/architecture).
 
-With that in mind, developing a Merchant Center Application requires a set of tools and components that should be used across the different applications, as they share some common logic. This repository contains all the minimal packages that are necessary to do that. Some of them do not need to be used directly but are instead required by other packages. Let's have a deeper look.
+With that in mind, developing a Custom Application for the Merchant Center requires a set of tools and components that should be used across the different applications, as they share some common logic. This repository contains all the minimal packages that are necessary to do that. Some of them do not need to be used directly but are instead required by other packages. Let's have a deeper look.
+
+If you are developing Custom Application please make sure refer to the documentation: https://docs.commercetools.com/custom-applications.
+
+## Submitting a Pull Request
+
+Good pull requests, such as patches, improvements, and new features, are a fantastic help. They should remain focused in scope and avoid containing unrelated commits.
+
+If possible, please try to provide a related issue first, where the topic is discussed and agreed upon before starting to work on that. This is helpful for both you and the maintainers to be familiar with the changes beforehand.
 
 ## Folder Structure
 
@@ -17,6 +25,7 @@ This repository is managed as a monorepo, meaning it contains multiple (sub)pack
 packages/
   actions-global/
   application-components/
+  application-config/  
   application-shell/
   application-shell-connectors/
   assets/
@@ -48,6 +57,10 @@ Below a short description of the most import packages:
 #### [application-components](./packages/application-components)
 
 This package contains React components for developing Merchant Center applications, similarly to what the [UiKit](https://github.com/commercetools/ui-kit) implements.
+
+#### [application-config](./packages/application-config)
+
+This package contains utilities for configuring Custom Applications. It also defines the JSON schema for the Custom Application configuration file.
 
 #### [application-shell](./packages/application-shell)
 
@@ -106,12 +119,12 @@ This package contains React components to render notification (e.g. error messag
 
 This package contains React components to perform requests in a declarative way. Underneath it uses our [js-sdk](https://commercetools.github.io/nodejs/sdk/) to perform the network requests.
 
-## Getting started
+## Setting up a local copy
 
 1. Clone the repository
 2. Run `yarn` in the root folder
 
-Once it's done, you can run `yarn start` or `yarn test` (`yarn test:watch`) to develop the packages.
+Once it's done, you can run `yarn test` (`yarn test:watch`) to test your changes.
 
 ## Developing locally
 
@@ -130,23 +143,11 @@ When opening a Pull Request, a `changeset-bot` checks that the Pull Request cont
 
 ## Releasing packages
 
-> By default, all releases go to the `next` distribution channel and should be considered **prereleases**. This gives us a chance to test out a release before marking it **stable** in the `latest` distribution channel.
-
 commercetools application-kit uses [changesets](https://github.com/atlassian/changesets) to do versioning and publishing a release.
 
 A [Changesets release GitHub Action](https://github.com/changesets/action) opens a `Version Packages` Pull Request whenever there are some changesets that have not been released yet.
 
 When the `Version Packages` Pull Request gets merged, the Changesets release GitHub Action will automatically trigger the release.
-
-## Moving packges to the `latest` dist-tag:
-
-After testing the `next` release on a production project, if the version is **stable** it can be finally movede to the `latest` distribution channel.
-
-```bash
-$ yarn release:from-next-to-latest
-```
-
-The command will promote the version published on `next` to the `latest` npm dist-tag, for each package.
 
 ## Canary releases
 
