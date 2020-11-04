@@ -25,12 +25,7 @@
   "main": "./build/index.js",
   "typings": "./build/index.d.ts",
   "types": "./build/index.d.ts",
-  "files": [
-    "build",
-    "package.json",
-    "LICENSE",
-    "README.md"
-  ],
+  "files": ["build", "package.json", "LICENSE", "README.md"],
   "scripts": {
     "prebuild": "rimraf build/**",
     "build": "tsc -p tsconfig.build.json"

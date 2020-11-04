@@ -9,12 +9,7 @@
     "directory": "packages/i18n"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": [
-    "javascript",
-    "frontend",
-    "react",
-    "toolkit"
-  ],
+  "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -24,13 +19,7 @@
   "module": "./dist/i18n-index.es.js",
   "typings": "./dist/typings/src/index.d.ts",
   "types": "./dist/typings/src/index.d.ts",
-  "files": [
-    "compiled-data",
-    "dist",
-    "package.json",
-    "LICENSE",
-    "README.md"
-  ],
+  "files": ["compiled-data", "dist", "package.json", "LICENSE", "README.md"],
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/** && yarn compile-data",
@@ -44,7 +33,7 @@
     "@babel/runtime": "7.12.1",
     "@babel/runtime-corejs3": "7.12.1",
     "@commercetools-frontend/sentry": "17.1.1",
-    "@commercetools-uikit/i18n": "^10.30.1",
+    "@commercetools-uikit/i18n": "^10.39.2",
     "@types/prop-types": "^15.7.3",
     "moment": "^2.24.0",
     "prop-types": "15.7.2"
