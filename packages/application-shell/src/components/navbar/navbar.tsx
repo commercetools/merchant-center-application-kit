@@ -360,6 +360,7 @@ const getMenuVisibilityOfMainmenu = (menu: TNavbarMenu) =>
 
 type MenuLabelProps = {
   labelAllLocales: TLocalizedField[];
+  defaultLabel?: string;
   applicationLocale: string;
 };
 const MenuLabel = (props: MenuLabelProps) => {
@@ -367,12 +368,16 @@ const MenuLabel = (props: MenuLabelProps) => {
     props.applicationLocale.startsWith(loc.locale)
   );
   if (localizedLabel) return <>{localizedLabel.value}</>;
+  if (props.defaultLabel) return <>{props.defaultLabel}</>;
   return <>{NO_VALUE_FALLBACK}</>;
 };
 
 type ApplicationMenuProps = {
   location: RouteComponentProps['location'];
-  menu: TNavbarMenu;
+  menu: TNavbarMenu & {
+    // derives from `projectExtensionsQuery.installedApplications.application.menu`
+    defaultLabel?: string;
+  };
   isActive: boolean;
   isMenuOpen: boolean;
   shouldCloseMenuFly: MouseEventHandler<HTMLElement>;
@@ -447,6 +452,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
               >
                 <MenuLabel
                   labelAllLocales={props.menu.labelAllLocales}
+                  defaultLabel={props.menu.defaultLabel}
                   applicationLocale={props.applicationLocale}
                 />
               </div>
