@@ -33,7 +33,7 @@
     "@babel/runtime": "7.12.1",
     "@babel/runtime-corejs3": "7.12.1",
     "@commercetools-frontend/sentry": "17.1.1",
-    "@commercetools-uikit/i18n": "^10.39.2",
+    "@commercetools-uikit/i18n": "^10.39.4",
     "@types/prop-types": "^15.7.3",
     "moment": "^2.24.0",
     "prop-types": "15.7.2"
