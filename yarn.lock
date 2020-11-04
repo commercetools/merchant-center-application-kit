@@ -1397,12 +1397,12 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@commercetools-docs/gatsby-theme-docs@10.0.0":
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-10.0.0.tgz#a13a1e3065e13c58f68d7e38d5b77a6e63b2a4fd"
-  integrity sha512-JJlaZZnTAyOtEUIKQOasBPfgwxYytGmeSMvGtUqMTSApILsuCggfUG3wzNLxDFrvyyUT/UTvfEF0+WbLF0czUg==
+"@commercetools-docs/gatsby-theme-docs@10.0.1":
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-10.0.1.tgz#10af3bcc4f52b84deff1fbc0738b7bef4780bb27"
+  integrity sha512-BETfl55GO5fyfPIDhopOwHbUt13SxefCpog0UfxLkHmMnt2+vyhSlb9R45wmyWG3x5a7f6cRMcoBjKPlkNVU4w==
   dependencies:
-    "@commercetools-docs/ui-kit" "10.0.0"
+    "@commercetools-docs/ui-kit" "10.0.1"
     "@commercetools-uikit/card" "^10.30.2"
     "@commercetools-uikit/checkbox-input" "^10.30.1"
     "@commercetools-uikit/date-input" "^10.30.1"
@@ -1419,7 +1419,7 @@
     "@svgr/webpack" "5.4.0"
     create-emotion-server "10.0.27"
     docsearch.js "2.6.3"
-    emotion-theming "10.0.27"
+    emotion-theming "^10.0.27"
     gatsby-image "2.4.21"
     gatsby-plugin-emotion "4.3.14"
     gatsby-plugin-feed "2.5.20"
@@ -1463,10 +1463,10 @@
     unified "9.2.0"
     unist-util-filter "2.0.2"
 
-"@commercetools-docs/ui-kit@10.0.0":
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-10.0.0.tgz#2a6ca747bc5a020c352bacad38007e3caa68d758"
-  integrity sha512-FgrYxEQ3SR8HGCUtt0IEZ0K78QhqzK4LsLJHGTdVUAxqf7JEqP0E4uKrZNCtK0YKmQ30iSdFhgKvZTeZG5h7LQ==
+"@commercetools-docs/ui-kit@10.0.1":
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-10.0.1.tgz#5594c9ead828877ef303734e6195ab3019dcc4d6"
+  integrity sha512-tTf1JweetFgLDb1NwGEprCTAduEKYFAOCJi4XSxEIuFzOf5mCew9sNIDHorJo2dzbGkAWgab2LQIRCzYkUVVwA==
   dependencies:
     "@commercetools-uikit/loading-spinner" "^10.30.1"
     "@commercetools-uikit/tooltip" "^10.30.1"
@@ -11355,7 +11355,7 @@ emoticon@^3.2.0:
   resolved "https://registry.yarnpkg.com/emoticon/-/emoticon-3.2.0.tgz#c008ca7d7620fac742fe1bf4af8ff8fed154ae7f"
   integrity sha512-SNujglcLTTg+lDAcApPNgEdudaqQFiAbJCqzjNxJkvN9vAwCGi0uu8IUVvx+f16h+V44KCY6Y2yboroc9pilHg==
 
-emotion-theming@10.0.27:
+emotion-theming@^10.0.27:
   version "10.0.27"
   resolved "https://registry.yarnpkg.com/emotion-theming/-/emotion-theming-10.0.27.tgz#1887baaec15199862c89b1b984b79806f2b9ab10"
   integrity sha512-MlF1yu/gYh8u+sLUqA0YuA9JX0P4Hb69WlKc/9OLo+WCXuX6sy/KoIa+qJimgmr2dWqnypYKYPX37esjDBbhdw==
