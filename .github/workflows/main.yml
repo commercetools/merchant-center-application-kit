@@ -99,6 +99,7 @@ jobs:
           CYPRESS_LOGIN_USER: ${{ secrets.CYPRESS_LOGIN_USER }}
           CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
           CYPRESS_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
+          HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
 
       - name: Building Starter template application
         run: yarn template-starter:build
@@ -112,6 +113,7 @@ jobs:
           CYPRESS_LOGIN_USER: ${{ secrets.CYPRESS_LOGIN_USER }}
           CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
           CYPRESS_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
+          HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
 
       - name: Uploading Cypress artifacts
         uses: actions/upload-artifact@v2
@@ -125,6 +127,7 @@ jobs:
         run: ./scripts/deploy_playground.sh
         env:
           VERCEL_TOKEN_PLAYGROUND: ${{ secrets.VERCEL_TOKEN_PLAYGROUND }}
+          HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
 
       - name: Preparing tarballs of packages for testing templates installation
         if: github.ref != 'refs/heads/master'

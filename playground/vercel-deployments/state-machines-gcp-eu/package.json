@@ -1,7 +1,7 @@
 {
   "name": "state-machines-gcp-eu",
   "scripts": {
-    "deploy": "npx now --prod --scope=commercetools-playground --local-config=production-gcp-eu.vercel.json --confirm --no-clipboard"
+    "deploy": "npx vercel --prod --scope=commercetools-playground --local-config=production-gcp-eu.vercel.json --confirm --no-clipboard"
   },
   "dependencies": {
     "@commercetools-backend/express": "canary",
