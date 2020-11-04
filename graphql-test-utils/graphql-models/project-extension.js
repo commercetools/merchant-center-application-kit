@@ -6,6 +6,7 @@ const ProjectExtension = new Factory()
   .sequence('sequenceId')
   .attr('__typename', 'ProjectExtension')
   .attr('id', () => faker.random.uuid())
-  .attr('applications', () => CustomApplication.buildList(1));
+  .attr('applications', () => CustomApplication.buildList(1))
+  .attr('installedApplications', []);
 
 export default ProjectExtension;
