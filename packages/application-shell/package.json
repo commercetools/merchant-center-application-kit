@@ -56,7 +56,7 @@
     "@commercetools-uikit/select-input": "^10.39.6",
     "@commercetools-uikit/spacings": "^10.39.6",
     "@commercetools-uikit/text": "^10.39.6",
-    "@emotion/core": "10.0.35",
+    "@emotion/core": "10.1.1",
     "@emotion/styled": "10.0.27",
     "@flopflip/launchdarkly-adapter": "2.15.7",
     "@flopflip/types": "2.5.10",

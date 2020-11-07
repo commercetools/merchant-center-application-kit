@@ -38,7 +38,7 @@
     "@commercetools-uikit/icon-button": "^10.39.6",
     "@commercetools-uikit/icons": "^10.39.6",
     "@commercetools-uikit/spacings": "^10.39.6",
-    "@emotion/core": "10.0.35",
+    "@emotion/core": "10.1.1",
     "@emotion/styled": "10.0.27",
     "@types/history": "^4.7.6",
     "@types/lodash": "^4.14.155",
