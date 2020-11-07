@@ -1100,27 +1100,12 @@
     "@babel/helper-plugin-utils" "^7.10.4"
     "@babel/plugin-transform-typescript" "^7.12.1"
 
-"@babel/runtime-corejs3@7.11.2":
-  version "7.11.2"
-  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.11.2.tgz#02c3029743150188edeb66541195f54600278419"
-  integrity sha512-qh5IR+8VgFz83VBa6OkaET6uN/mJOhHONuy3m1sgF0CV6mXdPSEBdA7e1eUbVvyNtANjMbg22JUv71BaDXLY6A==
-  dependencies:
-    core-js-pure "^3.0.0"
-    regenerator-runtime "^0.13.4"
-
 "@babel/runtime-corejs3@7.12.1", "@babel/runtime-corejs3@^7.10.2":
   version "7.12.1"
   resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.12.1.tgz#51b9092befbeeed938335a109dbe0df51451e9dc"
   integrity sha512-umhPIcMrlBZ2aTWlWjUseW9LjQKxi1dpFlQS8DzsxB//5K+u6GLTC/JliPKHsd5kJVPIU6X/Hy0YvWOYPcMxBw==
   dependencies:
     core-js-pure "^3.0.0"
-    regenerator-runtime "^0.13.4"
-
-"@babel/runtime@7.11.2":
-  version "7.11.2"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.11.2.tgz#f549c13c754cc40b87644b9fa9f09a6a95fe0736"
-  integrity sha512-TeWkU52so0mPtDcaCTxNBI/IHiz0pZgr8VEFqXFtZWpYD08ZB6FaSwVAS8MKRQAP3bYKiVjwysOJgMFY28o6Tw==
-  dependencies:
     regenerator-runtime "^0.13.4"
 
 "@babel/runtime@7.12.0":
@@ -1503,13 +1488,13 @@
     node-fetch "2.6.1"
     shelljs "0.8.4"
 
-"@commercetools-test-data/core@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-test-data/core/-/core-2.0.0.tgz#ea543e03f5e415086a8830d96bb5b294e98def6f"
-  integrity sha512-A5yWBa9DDFRGaRs95v4MYig0VE5Is6dpI7e4xdOR/JJMqcgmiZL1SY5/Tm+CF7H1J3Xh4kbDE41gg6PiqBLHZA==
+"@commercetools-test-data/core@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@commercetools-test-data/core/-/core-2.0.1.tgz#78ee9d886d401c4c1b5b0ee8518f941002e12ffd"
+  integrity sha512-V0z7hZ9QW8vvTZmrEmyhLNi78tdKiT+RIEQfX4aBRIUEN2fduSuudAhZ/jo9OxN2RCtes4zBY782a5jF85ku3g==
   dependencies:
-    "@babel/runtime" "7.11.2"
-    "@babel/runtime-corejs3" "7.11.2"
+    "@babel/runtime" "7.12.1"
+    "@babel/runtime-corejs3" "7.12.1"
     "@jackfranklin/test-data-bot" "1.3.0"
 
 "@commercetools-uikit/accessible-button@10.30.1":
