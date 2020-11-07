@@ -9,13 +9,7 @@
     "directory": "packages/application-config"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": [
-    "javascript",
-    "frontend",
-    "react",
-    "toolkit",
-    "config"
-  ],
+  "keywords": ["javascript", "frontend", "react", "toolkit", "config"],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -25,13 +19,7 @@
   "module": "./build/index.js",
   "typings": "./build/typings/src/index.d.ts",
   "types": "./build/typings/src/index.d.ts",
-  "files": [
-    "build",
-    "schema.json",
-    "package.json",
-    "LICENSE",
-    "README.md"
-  ],
+  "files": ["build", "schema.json", "package.json", "LICENSE", "README.md"],
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf build/**",
