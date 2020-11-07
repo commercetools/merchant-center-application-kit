@@ -1228,10 +1228,10 @@
     "@changesets/types" "^3.0.0"
     dotenv "^8.1.0"
 
-"@changesets/cli@2.11.1":
-  version "2.11.1"
-  resolved "https://registry.yarnpkg.com/@changesets/cli/-/cli-2.11.1.tgz#cefaa656b9d829ec55e08daf986f56c616ce5ea8"
-  integrity sha512-Msjz1Kb1VYf9P0zPvbQ3g/+0BsPpu/9ReZ8o08CFQb3FvYmHaG5KIOcZd2I+kaWF4TWiLeL26fkMQxFn5+KiAA==
+"@changesets/cli@2.11.2":
+  version "2.11.2"
+  resolved "https://registry.yarnpkg.com/@changesets/cli/-/cli-2.11.2.tgz#6c2d9470a9c89e7389db5ac80069a77072079413"
+  integrity sha512-Lfw4MWj46H7dgPzgYmRJ8QbpDxi02dK+21zuWzBjVtsf3AqJgy7oVdXl4Yga/JhBq8eeoxBS9NoCVw8/JOZBcg==
   dependencies:
     "@babel/runtime" "^7.10.4"
     "@changesets/apply-release-plan" "^4.0.0"
@@ -8574,6 +8574,20 @@ bulk-update-versions@1.1.0:
     prettier "^2.0.4"
     rcfile "^1.0.3"
     semver "~7.3.2"
+
+bulk-update-versions@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/bulk-update-versions/-/bulk-update-versions-1.1.1.tgz#e71e1931dab3d57e3d7c01a06af0164bc0036fa7"
+  integrity sha512-U0wcoqgXKLvQ+mElxINh00o0BR1qEuI+ukCZATU1oOwO+UULRM0GwW5QBHP9daNuCZzzYc2WwuMn6LPuAsF3Xw==
+  dependencies:
+    execa "^4.0.0"
+    globby "^11.0.0"
+    listr "~0.14.3"
+    mri "^1.1.5"
+    p-map "^4.0.0"
+    prettier "^2.0.4"
+    rcfile "^1.0.3"
+    semver "^7.3.2"
 
 byline@^5.0.0:
   version "5.0.0"
