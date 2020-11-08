@@ -68,13 +68,6 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
           runtime: opts.runtime || 'classic',
         },
       ],
-      [
-        '@emotion/babel-preset-css-prop',
-        {
-          sourceMap: isEnvDevelopment,
-          autoLabel: !isEnvProduction,
-        },
-      ],
       require('@babel/preset-typescript').default,
     ].filter(Boolean),
     plugins: [
@@ -136,6 +129,7 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
       ],
       require('@babel/plugin-proposal-do-expressions').default,
       require('@babel/plugin-proposal-logical-assignment-operators').default,
+      require('babel-plugin-emotion').default,
     ].filter(Boolean),
   };
 };

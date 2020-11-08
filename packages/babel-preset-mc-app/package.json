@@ -40,7 +40,7 @@
     "@babel/preset-typescript": "7.12.1",
     "@babel/runtime": "7.12.1",
     "@babel/runtime-corejs3": "7.12.1",
-    "@emotion/babel-preset-css-prop": "10.1.0",
+    "babel-plugin-emotion": "10.0.33",
     "babel-plugin-dev-expression": "0.2.2",
     "babel-plugin-macros": "2.8.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
