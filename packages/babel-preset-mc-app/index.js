@@ -60,7 +60,10 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
           // Will use the native built-in instead of trying to polyfill
           // behavior for any plugins that require one.
           ...(opts.runtime !== 'automatic'
-            ? { useBuiltIns: true, pragmaFrag: 'Fragment' }
+            ? {
+                useBuiltIns: true,
+                importSource: '@emotion/core',
+              }
             : {}),
           runtime: opts.runtime || 'classic',
         },
