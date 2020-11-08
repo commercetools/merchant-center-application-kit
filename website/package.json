@@ -11,20 +11,20 @@
     "check-links": "yarn linkinator ./public"
   },
   "dependencies": {
-    "@commercetools-docs/gatsby-theme-docs": "9.0.0",
-    "@commercetools-docs/ui-kit": "9.0.0",
-    "@commercetools-uikit/card": "10.30.2",
-    "@commercetools-uikit/spacings-inline": "10.30.1",
-    "@commercetools-uikit/spacings-stack": "10.30.1",
-    "@emotion/core": "10.0.35",
+    "@commercetools-docs/gatsby-theme-docs": "10.0.1",
+    "@commercetools-docs/ui-kit": "10.0.1",
+    "@commercetools-uikit/card": "10.39.6",
+    "@commercetools-uikit/spacings-inline": "10.39.6",
+    "@commercetools-uikit/spacings-stack": "10.39.6",
+    "@emotion/core": "10.1.1",
     "@emotion/styled": "10.0.27",
-    "gatsby": "2.24.85",
-    "gatsby-cli": "2.12.111",
+    "gatsby": "2.25.3",
+    "gatsby-cli": "2.12.117",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-intl": "5.8.6"
   },
   "devDependencies": {
-    "linkinator": "2.2.0"
+    "linkinator": "2.2.2"
   }
 }
