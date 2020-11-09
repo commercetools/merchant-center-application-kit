@@ -83,7 +83,7 @@ const useNavbarStateManager = (props: HookProps) => {
     fetchPolicy: 'cache-and-network',
     onError: reportErrorToSentry,
   });
-  const customAppsMenu =
+  const legacyCustomAppsMenu =
     projectExtensionsQuery &&
     projectExtensionsQuery.projectExtension &&
     projectExtensionsQuery.projectExtension.applications
@@ -115,6 +115,47 @@ const useNavbarStateManager = (props: HookProps) => {
               actionRights: undefined,
               dataFences: undefined,
               shouldRenderDivider: false,
+            };
+          })
+          .filter(nonNullable)
+      : [];
+  const organizationCustomAppsMenu =
+    projectExtensionsQuery &&
+    projectExtensionsQuery.projectExtension &&
+    projectExtensionsQuery.projectExtension.installedApplications
+      ? projectExtensionsQuery.projectExtension.installedApplications
+          .map<TNavbarMenu | undefined>((installedApplication) => {
+            const application = installedApplication.application;
+            // Map the menu properties to match the one from the proxy schema.
+            // This is to ensure that the menu object is the same from the proxy
+            // config and the custom apps config, thus allowing them to be
+            // concatenated and rendered the same way.
+            if (!application.menuLinks) return;
+            return {
+              key: application.id,
+              uriPath: application.entryPointUriPath,
+              labelAllLocales: application.menuLinks.labelAllLocales || [],
+              icon: application.menuLinks.iconName,
+              permissions: application.menuLinks.permissions as string[],
+              defaultLabel: application.menuLinks.defaultLabel,
+              featureToggle: undefined,
+              menuVisibility: undefined,
+              actionRights: undefined,
+              dataFences: undefined,
+              shouldRenderDivider: false,
+              submenu: (application.menuLinks.submenuLinks || []).map(
+                (submenuLink) => ({
+                  key: submenuLink.id,
+                  uriPath: submenuLink.uriPath,
+                  labelAllLocales: submenuLink.labelAllLocales || [],
+                  permissions: submenuLink.permissions as string[],
+                  defaultLabel: submenuLink.defaultLabel,
+                  featureToggle: undefined,
+                  menuVisibility: undefined,
+                  actionRights: undefined,
+                  dataFences: undefined,
+                })
+              ),
             };
           })
           .filter(nonNullable)
@@ -228,9 +269,9 @@ const useNavbarStateManager = (props: HookProps) => {
     );
   }, [state.activeItemIndex, state.isMenuOpen]);
 
-  const allApplicationNavbarMenu = (applicationsNavBarMenu || []).concat(
-    customAppsMenu
-  );
+  const allApplicationNavbarMenu = (applicationsNavBarMenu || [])
+    .concat(legacyCustomAppsMenu)
+    .concat(organizationCustomAppsMenu);
 
   return {
     ...state,

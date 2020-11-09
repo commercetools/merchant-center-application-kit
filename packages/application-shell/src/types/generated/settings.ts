@@ -940,6 +940,15 @@ export type TDashboardViewInput = {
   layout: Array<TLayoutCardInput>;
 };
 
+export enum TDateFilterType {
+  Day = 'DAY',
+  Week = 'WEEK',
+  Month = 'MONTH',
+  Quarter = 'QUARTER',
+  Year = 'YEAR',
+  Custom = 'CUSTOM'
+}
+
 
 export type TDiscountCodesListView = {
   __typename?: 'DiscountCodesListView';
@@ -1543,6 +1552,7 @@ export type TMutation = {
   changeCustomApplicationStatus: Maybe<TCustomApplication>;
   deleteCustomApplication: Maybe<TCustomApplication>;
   installCustomApplication: Maybe<TCustomApplicationInstallation>;
+  uninstallCustomApplication: Maybe<TCustomApplicationInstallation>;
   updateCustomApplicationProjectsInstallation: Maybe<TCustomApplicationInstallation>;
   setOrganizationExtensionOidcSsoConfig: Maybe<TOrganizationExtension>;
   activateOrganizationExtensionOidcSsoConfig: Maybe<TOrganizationExtension>;
@@ -1670,6 +1680,12 @@ export type TMutation_InstallCustomApplicationArgs = {
   organizationId: Scalars['String'];
   applicationId: Scalars['ID'];
   projectKeys: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type TMutation_UninstallCustomApplicationArgs = {
+  organizationId: Scalars['String'];
+  installedApplicationId: Scalars['ID'];
 };
 
 
@@ -2960,10 +2976,16 @@ export type TSalesPerformanceConfiguration = {
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
   showPreviousTimeframe: Scalars['Boolean'];
+  dateFrom: Maybe<Scalars['DateTime']>;
+  dateTo: Maybe<Scalars['DateTime']>;
+  dateFilterType: TDateFilterType;
 };
 
 export type TSalesPerformanceConfigurationInput = {
   showPreviousTimeframe: Scalars['Boolean'];
+  dateFrom: Maybe<Scalars['DateTime']>;
+  dateTo: Maybe<Scalars['DateTime']>;
+  dateFilterType: TDateFilterType;
 };
 
 export type TSalesPerformanceConfigurationWhereInput = {
@@ -2999,6 +3021,26 @@ export type TSalesPerformanceConfigurationWhereInput = {
   updatedAt_gte: Maybe<Scalars['DateTime']>;
   showPreviousTimeframe: Maybe<Scalars['Boolean']>;
   showPreviousTimeframe_not: Maybe<Scalars['Boolean']>;
+  dateFrom: Maybe<Scalars['DateTime']>;
+  dateFrom_not: Maybe<Scalars['DateTime']>;
+  dateFrom_in: Maybe<Array<Scalars['DateTime']>>;
+  dateFrom_not_in: Maybe<Array<Scalars['DateTime']>>;
+  dateFrom_lt: Maybe<Scalars['DateTime']>;
+  dateFrom_lte: Maybe<Scalars['DateTime']>;
+  dateFrom_gt: Maybe<Scalars['DateTime']>;
+  dateFrom_gte: Maybe<Scalars['DateTime']>;
+  dateTo: Maybe<Scalars['DateTime']>;
+  dateTo_not: Maybe<Scalars['DateTime']>;
+  dateTo_in: Maybe<Array<Scalars['DateTime']>>;
+  dateTo_not_in: Maybe<Array<Scalars['DateTime']>>;
+  dateTo_lt: Maybe<Scalars['DateTime']>;
+  dateTo_lte: Maybe<Scalars['DateTime']>;
+  dateTo_gt: Maybe<Scalars['DateTime']>;
+  dateTo_gte: Maybe<Scalars['DateTime']>;
+  dateFilterType: Maybe<TDateFilterType>;
+  dateFilterType_not: Maybe<TDateFilterType>;
+  dateFilterType_in: Maybe<Array<TDateFilterType>>;
+  dateFilterType_not_in: Maybe<Array<TDateFilterType>>;
   AND: Maybe<Array<TSalesPerformanceConfigurationWhereInput>>;
   OR: Maybe<Array<TSalesPerformanceConfigurationWhereInput>>;
   NOT: Maybe<Array<TSalesPerformanceConfigurationWhereInput>>;
@@ -3212,6 +3254,27 @@ export type TFetchProjectExtensionsNavbarQuery = (
           )>> }
         )>> }
       )> }
+    )>>, installedApplications: Maybe<Array<(
+      { __typename?: 'RestrictedCustomApplicationInstallationForProject' }
+      & { application: (
+        { __typename?: 'RestrictedCustomApplicationForProject' }
+        & Pick<TRestrictedCustomApplicationForProject, 'id' | 'entryPointUriPath'>
+        & { menuLinks: Maybe<(
+          { __typename?: 'CustomApplicationMenuLink' }
+          & Pick<TCustomApplicationMenuLink, 'id' | 'iconName' | 'permissions' | 'defaultLabel'>
+          & { labelAllLocales: Maybe<Array<(
+            { __typename?: 'LocalizedField' }
+            & Pick<TLocalizedField, 'locale' | 'value'>
+          )>>, submenuLinks: Maybe<Array<(
+            { __typename?: 'CustomApplicationSubmenuLink' }
+            & Pick<TCustomApplicationSubmenuLink, 'id' | 'uriPath' | 'permissions' | 'defaultLabel'>
+            & { labelAllLocales: Maybe<Array<(
+              { __typename?: 'LocalizedField' }
+              & Pick<TLocalizedField, 'locale' | 'value'>
+            )>> }
+          )>> }
+        )> }
+      ) }
     )>> }
   )> }
 );

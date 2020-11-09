@@ -10,6 +10,7 @@ const ApplicationNavbarSubmenu = new Factory()
   .attr('labelAllLocales', () => [
     { __typename: 'LocalizedField', locale: 'en', value: faker.random.word() },
   ])
+  .attr('defaultLabel', null)
   .attr('featureToggle', null)
   .attr('menuVisibility', null)
   .attr('permissions', [])

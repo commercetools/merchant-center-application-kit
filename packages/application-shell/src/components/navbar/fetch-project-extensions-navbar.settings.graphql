@@ -27,5 +27,31 @@ query FetchProjectExtensionsNavbar {
         }
       }
     }
+    installedApplications {
+      application {
+        id
+        entryPointUriPath
+        menuLinks {
+          id
+          iconName
+          permissions
+          defaultLabel
+          labelAllLocales {
+            locale
+            value
+          }
+          submenuLinks {
+            id
+            uriPath
+            permissions
+            defaultLabel
+            labelAllLocales {
+              locale
+              value
+            }
+          }
+        }
+      }
+    }
   }
 }
