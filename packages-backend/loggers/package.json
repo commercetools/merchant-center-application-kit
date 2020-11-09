@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-backend/loggers",
-  "version": "17.1.0",
+  "version": "17.2.0",
   "description": "Opinionated JSON loggers for HTTP server applications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -25,7 +25,12 @@
   "main": "./build/index.js",
   "typings": "./build/index.d.ts",
   "types": "./build/index.d.ts",
-  "files": ["build", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "build",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prebuild": "rimraf build/**",
     "build": "tsc -p tsconfig.build.json"

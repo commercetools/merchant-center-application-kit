@@ -1,5 +1,22 @@
 # @commercetools-frontend/mc-scripts
 
+## 17.2.0
+
+### Patch Changes
+
+- [`f4f4a8a`](https://github.com/commercetools/merchant-center-application-kit/commit/f4f4a8ad58d0e61ab6750740ae038723ea6e5e17) [#1860](https://github.com/commercetools/merchant-center-application-kit/pull/1860) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency thread-loader to v3
+
+* [`4503f9a`](https://github.com/commercetools/merchant-center-application-kit/commit/4503f9a31fe7eedfebced20ac968e35c74d2ccee) [#1858](https://github.com/commercetools/merchant-center-application-kit/pull/1858) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency style-loader to v2
+
+- [`e0ec004`](https://github.com/commercetools/merchant-center-application-kit/commit/e0ec004d611f93b24f015120d09f6f18389b219f) [#1854](https://github.com/commercetools/merchant-center-application-kit/pull/1854) Thanks [@emmenko](https://github.com/emmenko)! - chore: update deps
+
+- Updated dependencies [[`e0ec004`](https://github.com/commercetools/merchant-center-application-kit/commit/e0ec004d611f93b24f015120d09f6f18389b219f)]:
+  - @commercetools-frontend/application-config@17.2.0
+  - @commercetools-frontend/assets@17.2.0
+  - @commercetools-frontend/babel-preset-mc-app@17.2.0
+  - @commercetools-frontend/mc-dev-authentication@17.2.0
+  - @commercetools-frontend/mc-html-template@17.2.0
+
 ## 17.1.4
 
 ### Patch Changes

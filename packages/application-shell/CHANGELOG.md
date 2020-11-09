@@ -1,5 +1,31 @@
 # @commercetools-frontend/application-shell
 
+## 17.2.0
+
+### Minor Changes
+
+- [`5967db7`](https://github.com/commercetools/merchant-center-application-kit/commit/5967db7fe27c0b322de96067ae19de7225a9aaec) [#1850](https://github.com/commercetools/merchant-center-application-kit/pull/1850) Thanks [@adnasa](https://github.com/adnasa)! - expand `FetchProjectExtensionsNavbar` to query `installedApplications`
+
+### Patch Changes
+
+- [`e0ec004`](https://github.com/commercetools/merchant-center-application-kit/commit/e0ec004d611f93b24f015120d09f6f18389b219f) [#1854](https://github.com/commercetools/merchant-center-application-kit/pull/1854) Thanks [@emmenko](https://github.com/emmenko)! - chore: update deps
+
+- Updated dependencies [[`5967db7`](https://github.com/commercetools/merchant-center-application-kit/commit/5967db7fe27c0b322de96067ae19de7225a9aaec), [`e0ec004`](https://github.com/commercetools/merchant-center-application-kit/commit/e0ec004d611f93b24f015120d09f6f18389b219f), [`e519929`](https://github.com/commercetools/merchant-center-application-kit/commit/e519929415f225ff28731f068bebb8facad868f8)]:
+  - @commercetools-frontend/application-shell-connectors@17.2.0
+  - @commercetools-frontend/actions-global@17.2.0
+  - @commercetools-frontend/application-components@17.2.0
+  - @commercetools-frontend/assets@17.2.0
+  - @commercetools-frontend/browser-history@17.2.0
+  - @commercetools-frontend/constants@17.2.0
+  - @commercetools-frontend/i18n@17.2.0
+  - @commercetools-frontend/l10n@17.2.0
+  - @commercetools-frontend/notifications@17.2.0
+  - @commercetools-frontend/permissions@17.2.0
+  - @commercetools-frontend/react-notifications@17.2.0
+  - @commercetools-frontend/sdk@17.2.0
+  - @commercetools-frontend/sentry@17.2.0
+  - @commercetools-frontend/url-utils@17.2.0
+
 ## 17.1.1
 
 ### Patch Changes
