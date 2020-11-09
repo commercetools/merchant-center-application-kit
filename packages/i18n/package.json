@@ -41,8 +41,8 @@
     "compile-data": "formatjs compile-folder --format=$(pwd)/transifex-transformer.js --ast data compiled-data"
   },
   "dependencies": {
-    "@babel/runtime": "7.12.1",
-    "@babel/runtime-corejs3": "7.12.1",
+    "@babel/runtime": "7.12.5",
+    "@babel/runtime-corejs3": "7.12.5",
     "@commercetools-frontend/sentry": "17.2.0",
     "@commercetools-uikit/i18n": "^10.39.6",
     "@types/prop-types": "^15.7.3",
@@ -50,7 +50,7 @@
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "intl-messageformat-parser": "6.0.11",
+    "intl-messageformat-parser": "6.0.15",
     "react": "16.14.0"
   },
   "peerDependencies": {
