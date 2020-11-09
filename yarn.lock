@@ -13788,10 +13788,10 @@ gatsby-plugin-manifest@2.4.37:
     semver "^7.3.2"
     sharp "^0.25.4"
 
-gatsby-plugin-mdx@1.2.52:
-  version "1.2.52"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-mdx/-/gatsby-plugin-mdx-1.2.52.tgz#b41788a4c5fffb168b79de49b5fd7cdc8efaab92"
-  integrity sha512-F4fuKzfnwvYO/6A7dxpYEoOEk0daE7+EAeYeD1s/LH5XmO/1ENTBqq7WWpDYXy+j/W17TcyUKUczspH5P1B+VQ==
+gatsby-plugin-mdx@1.2.51:
+  version "1.2.51"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-mdx/-/gatsby-plugin-mdx-1.2.51.tgz#d1285505026011bc3d75ae26d32cde9cab03d106"
+  integrity sha512-wddtB88h4aHhS+tjNWYKT848S7LHuh2/svMg+7qdl0nL4D0tvNua76OUZxGUZDtkf0y8ajcAufps4qGeYA9mVQ==
   dependencies:
     "@babel/core" "^7.11.6"
     "@babel/generator" "^7.11.6"
@@ -13830,10 +13830,10 @@ gatsby-plugin-mdx@1.2.52:
     unist-util-remove "^1.0.3"
     unist-util-visit "^1.4.1"
 
-gatsby-plugin-mdx@1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-mdx/-/gatsby-plugin-mdx-1.3.1.tgz#18e571d5bb60ea35adf2ea127cdf044fc86f056a"
-  integrity sha512-orPBGGf0VOaaNm40mQqiRt8SLZecpmX+yop3HmL8ZaroKBQzV2OdKFUV7ZVRc4gDCyWR8qdHkI86yC1qA760/w==
+gatsby-plugin-mdx@1.2.52:
+  version "1.2.52"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-mdx/-/gatsby-plugin-mdx-1.2.52.tgz#b41788a4c5fffb168b79de49b5fd7cdc8efaab92"
+  integrity sha512-F4fuKzfnwvYO/6A7dxpYEoOEk0daE7+EAeYeD1s/LH5XmO/1ENTBqq7WWpDYXy+j/W17TcyUKUczspH5P1B+VQ==
   dependencies:
     "@babel/core" "^7.11.6"
     "@babel/generator" "^7.11.6"
@@ -13850,7 +13850,7 @@ gatsby-plugin-mdx@1.3.1:
     escape-string-regexp "^1.0.5"
     eval "^0.1.4"
     fs-extra "^8.1.0"
-    gatsby-core-utils "^1.3.24"
+    gatsby-core-utils "^1.3.23"
     gray-matter "^4.0.2"
     json5 "^2.1.3"
     loader-utils "^1.4.0"
@@ -13858,7 +13858,7 @@ gatsby-plugin-mdx@1.3.1:
     mdast-util-to-string "^1.1.0"
     mdast-util-toc "^3.1.0"
     mime "^2.4.6"
-    p-queue "^6.6.2"
+    p-queue "^5.0.0"
     pretty-bytes "^5.3.0"
     remark "^10.0.1"
     remark-retext "^3.1.3"
@@ -21306,7 +21306,7 @@ p-queue@^5.0.0:
   dependencies:
     eventemitter3 "^3.1.0"
 
-p-queue@^6.2.1, p-queue@^6.3.0, p-queue@^6.6.2:
+p-queue@^6.2.1, p-queue@^6.3.0:
   version "6.6.2"
   resolved "https://registry.yarnpkg.com/p-queue/-/p-queue-6.6.2.tgz#2068a9dcf8e67dd0ec3e7a2bcb76810faa85e426"
   integrity sha512-RwFpb72c/BhQLEXIZ5K2e+AhgNVmIejGlTgiB9MzZ0e93GRvqZ7uSi0dvRF7/XIXDeNkra2fNHBxTyPDGySpjQ==
