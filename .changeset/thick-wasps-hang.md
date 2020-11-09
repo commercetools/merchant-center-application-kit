@@ -2,4 +2,4 @@
 "@commercetools-frontend/constants": patch
 ---
 
-chore: add import export api target
+chore: add import api target

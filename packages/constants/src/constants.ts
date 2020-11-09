@@ -131,7 +131,7 @@ export const MC_API_PROXY_TARGETS = {
   MACHINE_LEARNING: 'ml',
   PIM_SEARCH: 'pim-search',
   MC_METRICS: 'mc-metrics',
-  IMPORT_EXPORT: 'import-export',
+  IMPORT: 'import',
 } as const;
 export type TMcApiProxyTargets = typeof MC_API_PROXY_TARGETS[keyof typeof MC_API_PROXY_TARGETS];
 
