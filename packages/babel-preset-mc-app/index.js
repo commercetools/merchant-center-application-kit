@@ -59,13 +59,17 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
           development: isEnvDevelopment || isEnvTest,
           // Will use the native built-in instead of trying to polyfill
           // behavior for any plugins that require one.
-          ...(opts.runtime !== 'automatic'
-            ? { useBuiltIns: true, pragmaFrag: 'Fragment' }
-            : {}),
+          ...(opts.runtime === 'automatic'
+            ? // https://emotion.sh/docs/css-prop#babel-preset
+              { importSource: '@emotion/core' }
+            : { useBuiltIns: true }),
           runtime: opts.runtime || 'classic',
         },
       ],
-      [
+      // Use this preset only with the JSX runtime `classic`, otherwise
+      // use the `babel-plugin-emotion` plugin.
+      // https://emotion.sh/docs/@emotion/babel-preset-css-prop
+      opts.runtime !== 'automatic' && [
         '@emotion/babel-preset-css-prop',
         {
           sourceMap: isEnvDevelopment,
@@ -133,6 +137,10 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
       ],
       require('@babel/plugin-proposal-do-expressions').default,
       require('@babel/plugin-proposal-logical-assignment-operators').default,
+      // Use this plugin only with the JSX runtime `automatic`, otherwise
+      // use the `@emotion/babel-preset-css-prop` preset.
+      // https://emotion.sh/docs/@emotion/babel-preset-css-prop
+      opts.runtime === 'automatic' && require('babel-plugin-emotion').default,
     ].filter(Boolean),
   };
 };
