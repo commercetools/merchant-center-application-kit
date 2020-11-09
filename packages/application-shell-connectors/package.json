@@ -42,8 +42,8 @@
     "postbuild:typings": "echo \"export * from '../dist/typings/test-utils';\" > test-utils/index.d.ts"
   },
   "dependencies": {
-    "@babel/runtime": "7.12.1",
-    "@babel/runtime-corejs3": "7.12.1",
+    "@babel/runtime": "7.12.5",
+    "@babel/runtime-corejs3": "7.12.5",
     "@commercetools-frontend/constants": "17.2.0",
     "@commercetools-frontend/sentry": "17.2.0",
     "@types/lodash": "^4.14.155",
@@ -56,7 +56,7 @@
   },
   "devDependencies": {
     "@apollo/client": "3.2.5",
-    "@testing-library/react": "11.1.0",
+    "@testing-library/react": "11.1.1",
     "react": "16.14.0"
   },
   "peerDependencies": {

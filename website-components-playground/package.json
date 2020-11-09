@@ -24,8 +24,8 @@
     "@commercetools-uikit/text-input": "10.39.6",
     "@emotion/core": "10.1.1",
     "@emotion/styled": "10.0.27",
-    "core-js": "3.6.5",
-    "formik": "2.2.1",
+    "core-js": "3.7.0",
+    "formik": "2.2.3",
     "gatsby": "2.25.3",
     "gatsby-cli": "2.12.117",
     "gatsby-plugin-emotion": "4.3.15",
@@ -36,7 +36,7 @@
     "prop-types": "15.7.2",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.8.6",
+    "react-intl": "5.9.4",
     "react-router-dom": "5.2.0"
   }
 }

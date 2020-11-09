@@ -28,7 +28,7 @@
     "@commercetools/jest-enzyme-matchers": "1.1.2",
     "@sheerun/mutationobserver-shim": "0.3.3",
     "@testing-library/jest-dom": "5.11.5",
-    "babel-jest": "26.6.1",
+    "babel-jest": "26.6.3",
     "colors": "1.4.0",
     "cosmiconfig": "7.0.0",
     "enzyme-adapter-react-16": "1.15.5",
@@ -46,11 +46,11 @@
     "make-plural": "6.2.2",
     "pkg-dir": "5.0.0",
     "raf": "3.4.1",
-    "ts-jest": "26.4.3",
+    "ts-jest": "26.4.4",
     "unfetch": "4.2.0"
   },
   "devDependencies": {
-    "@testing-library/react": "11.1.0"
+    "@testing-library/react": "11.1.1"
   },
   "peerDependencies": {
     "@testing-library/react": "9.x || 10.x || 11.x",

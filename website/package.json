@@ -22,7 +22,7 @@
     "gatsby-cli": "2.12.117",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.8.6"
+    "react-intl": "5.9.4"
   },
   "devDependencies": {
     "linkinator": "2.2.2"

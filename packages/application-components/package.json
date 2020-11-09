@@ -40,8 +40,8 @@
     "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings"
   },
   "dependencies": {
-    "@babel/runtime": "7.12.1",
-    "@babel/runtime-corejs3": "7.12.1",
+    "@babel/runtime": "7.12.5",
+    "@babel/runtime-corejs3": "7.12.5",
     "@commercetools-frontend/assets": "17.2.0",
     "@commercetools-frontend/constants": "17.2.0",
     "@commercetools-frontend/i18n": "17.2.0",
@@ -67,7 +67,7 @@
   "devDependencies": {
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.8.6"
+    "react-intl": "5.9.4"
   },
   "peerDependencies": {
     "@commercetools-frontend/ui-kit": "10.x",
