@@ -190,8 +190,7 @@
     "pretty-format": "26.6.1",
     "intl-messageformat-parser": "6.0.11",
     "**/intl-messageformat-parser": "6.0.11",
-    "**/@commercetools-docs/gatsby-theme-docs/react-intl": "5.8.6",
-    "@emotion/core": "10.1.1"
+    "**/@commercetools-docs/gatsby-theme-docs/react-intl": "5.8.6"
   },
   "engines": {
     "node": ">=12",
