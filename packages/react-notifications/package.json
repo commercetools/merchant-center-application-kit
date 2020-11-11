@@ -9,12 +9,7 @@
     "directory": "packages/react-notifications"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": [
-    "javascript",
-    "frontend",
-    "react",
-    "toolkit"
-  ],
+  "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -24,12 +19,7 @@
   "module": "./dist/react-notifications.es.js",
   "typings": "./dist/typings/index.d.ts",
   "types": "./dist/typings/index.d.ts",
-  "files": [
-    "dist",
-    "package.json",
-    "LICENSE",
-    "README.md"
-  ],
+  "files": ["dist", "package.json", "LICENSE", "README.md"],
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/**",
@@ -45,9 +35,9 @@
     "@commercetools-frontend/constants": "17.2.1",
     "@commercetools-frontend/notifications": "17.2.1",
     "@commercetools-frontend/sentry": "17.2.1",
-    "@commercetools-uikit/icon-button": "^10.39.6",
-    "@commercetools-uikit/icons": "^10.39.6",
-    "@commercetools-uikit/spacings": "^10.39.6",
+    "@commercetools-uikit/icon-button": "^10.39.8",
+    "@commercetools-uikit/icons": "^10.39.8",
+    "@commercetools-uikit/spacings": "^10.39.8",
     "@emotion/core": "10.1.1",
     "@emotion/styled": "10.0.27",
     "@types/history": "^4.7.6",
