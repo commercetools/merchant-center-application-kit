@@ -1,5 +1,13 @@
 # @commercetools-frontend/babel-preset-mc-app
 
+## 17.2.1
+
+### Patch Changes
+
+- [`310e98c`](https://github.com/commercetools/merchant-center-application-kit/commit/310e98c39c0b6479175b7685b3f29ea0a5baa22b) Thanks [@emmenko](https://github.com/emmenko)! - Update dependencies (https://github.com/commercetools/merchant-center-application-kit/pull/1857)
+
+* [`9003354`](https://github.com/commercetools/merchant-center-application-kit/commit/9003354080a08f8423e9689cdf49657dca4edaf0) [#1856](https://github.com/commercetools/merchant-center-application-kit/pull/1856) Thanks [@tdeekens](https://github.com/tdeekens)! - fix(babel): enable new JSX runtime for Emotion.
+
 ## 17.2.0
 
 ### Patch Changes
