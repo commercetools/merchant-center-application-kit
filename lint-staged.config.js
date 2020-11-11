@@ -2,6 +2,7 @@ module.exports = {
   '*.md': ['prettier --write --parser markdown'],
   '*.yaml': ['prettier --write --parser yaml'],
   '*.graphql': ['prettier --write --parser graphql'],
+  '*.json': ['prettier --write --parser json'],
   '*.mc.graphql': () => 'yarn generate-types:mc',
   '*.ctp.graphql': () => 'yarn generate-types:ctp',
   '*.settings.graphql': () => 'yarn generate-types:settings',

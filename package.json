@@ -23,6 +23,7 @@
     "format:graphql": "prettier --write --parser graphql '**/*.graphql'",
     "start": "yarn playground:start",
     "changeset": "changeset",
+    "changeset:version-and-format": "changeset version && prettier --write --parser json '**/package.json'",
     "release:from-next-to-latest": "lerna exec --no-bail --no-private --no-sort --stream -- '[ -n \"$(npm v . dist-tags.next)\" ] && npm dist-tag add ${LERNA_PACKAGE_NAME}@$(npm v . dist-tags.next) latest'",
     "pretest": "yarn compile-intl",
     "pretest:watch": "yarn compile-intl",
