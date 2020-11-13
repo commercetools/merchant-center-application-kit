@@ -10,6 +10,7 @@ describe('rendering', () => {
       <GtmApplicationTracker
         applicationName="playground"
         projectKey="project-key"
+        userBusinessRole="Other"
       />
     );
     await waitFor(() => {
@@ -17,6 +18,7 @@ describe('rendering', () => {
         expect.arrayContaining([
           { applicationName: 'playground' },
           { projectKey: 'project-key' },
+          { userBusinessRole: 'Other' },
         ])
       );
     });
