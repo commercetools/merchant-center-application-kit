@@ -245,6 +245,7 @@ export const RestrictedApplication = <
                       <GtmApplicationTracker
                         applicationName={applicationEnvironment.applicationName}
                         projectKey={projectKeyFromUrl}
+                        userBusinessRole={user?.businessRole}
                       />
                       <div
                         role="application-layout"
