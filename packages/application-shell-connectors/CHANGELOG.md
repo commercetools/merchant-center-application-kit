@@ -1,5 +1,19 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 17.3.0
+
+### Minor Changes
+
+- [`cefef43`](https://github.com/commercetools/merchant-center-application-kit/commit/cefef435e646e7c91dcf41c0f8ff7b94b5a7f3c8) [#1869](https://github.com/commercetools/merchant-center-application-kit/pull/1869) Thanks [@fuchodeveloper](https://github.com/fuchodeveloper)! - add user business role custom dimension tracking
+
+### Patch Changes
+
+- [`71c9111`](https://github.com/commercetools/merchant-center-application-kit/commit/71c9111308832009d1a27e91e4f2d2da4c53367c) [#1866](https://github.com/commercetools/merchant-center-application-kit/pull/1866) Thanks [@emmenko](https://github.com/emmenko)! - Update to uikit v10.39.8
+
+- Updated dependencies [[`71c9111`](https://github.com/commercetools/merchant-center-application-kit/commit/71c9111308832009d1a27e91e4f2d2da4c53367c)]:
+  - @commercetools-frontend/constants@17.3.0
+  - @commercetools-frontend/sentry@17.3.0
+
 ## 17.2.1
 
 ### Patch Changes

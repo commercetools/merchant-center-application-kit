@@ -1,5 +1,18 @@
 # @commercetools-frontend/mc-scripts
 
+## 17.3.0
+
+### Patch Changes
+
+- [`71c9111`](https://github.com/commercetools/merchant-center-application-kit/commit/71c9111308832009d1a27e91e4f2d2da4c53367c) [#1866](https://github.com/commercetools/merchant-center-application-kit/pull/1866) Thanks [@emmenko](https://github.com/emmenko)! - Update to uikit v10.39.8
+
+- Updated dependencies [[`71c9111`](https://github.com/commercetools/merchant-center-application-kit/commit/71c9111308832009d1a27e91e4f2d2da4c53367c)]:
+  - @commercetools-frontend/application-config@17.3.0
+  - @commercetools-frontend/assets@17.3.0
+  - @commercetools-frontend/babel-preset-mc-app@17.3.0
+  - @commercetools-frontend/mc-dev-authentication@17.3.0
+  - @commercetools-frontend/mc-html-template@17.3.0
+
 ## 17.2.1
 
 ### Patch Changes

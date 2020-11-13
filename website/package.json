@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-website/custom-applications",
-  "version": "17.0.3",
+  "version": "17.0.4",
   "private": true,
   "scripts": {
     "build": "gatsby build --prefix-paths",

@@ -1,5 +1,16 @@
 # @commercetools-local/visual-testing-app
 
+## 17.0.6
+
+### Patch Changes
+
+- [`71c9111`](https://github.com/commercetools/merchant-center-application-kit/commit/71c9111308832009d1a27e91e4f2d2da4c53367c) [#1866](https://github.com/commercetools/merchant-center-application-kit/pull/1866) Thanks [@emmenko](https://github.com/emmenko)! - Update to uikit v10.39.8
+
+- Updated dependencies [[`71c9111`](https://github.com/commercetools/merchant-center-application-kit/commit/71c9111308832009d1a27e91e4f2d2da4c53367c)]:
+  - @commercetools-frontend/application-components@17.3.0
+  - @commercetools-frontend/constants@17.3.0
+  - @commercetools-frontend/react-notifications@17.3.0
+
 ## 17.0.5
 
 ### Patch Changes
