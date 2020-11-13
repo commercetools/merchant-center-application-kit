@@ -7227,6 +7227,7 @@ export type TProjectCustomLimitsProjection = {
   shippingMethods: TShippingMethodLimitsProjection;
   carts: TCartLimitsProjection;
   customObjects: TCustomObjectLimitsProjection;
+  search: TSearchLimitsProjection;
 };
 
 /** Project contains information about project. */
@@ -8334,6 +8335,11 @@ export type TSearchKeywords = {
   __typename?: 'SearchKeywords';
   locale: Scalars['Locale'];
   searchKeywords: Array<TSearchKeyword>;
+};
+
+export type TSearchLimitsProjection = {
+  __typename?: 'SearchLimitsProjection';
+  maxTextSize: TLimit;
 };
 
 

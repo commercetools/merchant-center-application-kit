@@ -360,7 +360,8 @@ export enum TPermissionScope {
   ViewShippingMethods = 'view_shipping_methods',
   ViewTaxCategories = 'view_tax_categories',
   ManageCategories = 'manage_categories',
-  ViewCategories = 'view_categories'
+  ViewCategories = 'view_categories',
+  ViewChangeHistory = 'view_change_history'
 }
 
 export type TProject = TMetaData & {

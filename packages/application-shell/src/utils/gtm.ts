@@ -144,6 +144,11 @@ export const trackProjectKey = (projectKey?: string) => {
   if (window.dataLayer && window.app.trackingGtm && projectKey)
     window.dataLayer.push({ projectKey });
 };
+export const trackUserBusinessRole = (userBusinessRole?: string) => {
+  if (window.dataLayer && window.app.trackingGtm && userBusinessRole) {
+    window.dataLayer.push({ userBusinessRole });
+  }
+};
 
 // Sometimes necessary to manually get the hierarchy.
 export const getHierarchy = (node: Node | null) => {

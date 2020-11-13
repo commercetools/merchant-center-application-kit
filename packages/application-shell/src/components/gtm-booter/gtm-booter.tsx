@@ -23,6 +23,7 @@ export type Props = {
 export const GtmContext = React.createContext({
   track: gtm.track,
   getHierarchy: gtm.getHierarchy,
+  trackUserBusinessRole: gtm.trackUserBusinessRole,
 });
 
 const GtmBooter = (props: Props) => {
