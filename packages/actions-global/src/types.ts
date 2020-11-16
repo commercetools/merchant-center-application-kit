@@ -11,6 +11,7 @@ import type {
 export type TShowNotification = TNotification & {
   domain: TAppNotificationDomain;
   kind: TAppNotificationKind;
+  text?: string;
 };
 
 export type TApiErrorNotification = TNotification &
