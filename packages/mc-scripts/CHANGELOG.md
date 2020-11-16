@@ -1,5 +1,16 @@
 # @commercetools-frontend/mc-scripts
 
+## 17.3.1
+
+### Patch Changes
+
+- [`88ec5dc`](https://github.com/commercetools/merchant-center-application-kit/commit/88ec5dcf64892674ff9d8de83636673e67bc685a) [#1875](https://github.com/commercetools/merchant-center-application-kit/pull/1875) Thanks [@renovate](https://github.com/apps/renovate)! - upgrade `webpack-bundle-analyzer` to v4.1.0
+
+* [`89c4464`](https://github.com/commercetools/merchant-center-application-kit/commit/89c4464c334dd6c3922d031872286ad3bea8cf67) [#1872](https://github.com/commercetools/merchant-center-application-kit/pull/1872) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+* Updated dependencies [[`89c4464`](https://github.com/commercetools/merchant-center-application-kit/commit/89c4464c334dd6c3922d031872286ad3bea8cf67)]:
+  - @commercetools-frontend/babel-preset-mc-app@17.3.1
+
 ## 17.3.0
 
 ### Patch Changes
