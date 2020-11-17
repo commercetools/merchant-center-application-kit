@@ -68,11 +68,16 @@ const processConfig = ({
       ),
     `Invalid MC API URL: "${appConfig.mcApiUrl}"`
   );
+  // TODO: make the `id` required once we release the new model.
+  const applicationId =
+    appConfig.id && appConfig.entryPointUriPath
+      ? `${appConfig.id}:${appConfig.entryPointUriPath}`
+      : undefined;
 
   cachedConfig = {
     env: {
       ...omitEmpty(additionalAppEnv),
-      applicationId: appConfig.id,
+      ...(applicationId ? { applicationId } : {}),
       applicationName: appConfig.name,
       cdnUrl: cdnUrl.href,
       env: appEnvKey,
