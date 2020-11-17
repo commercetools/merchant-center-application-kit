@@ -1,5 +1,11 @@
 # @commercetools-frontend/actions-global
 
+## 17.3.1
+
+### Patch Changes
+
+- [`bb492fd`](https://github.com/commercetools/merchant-center-application-kit/commit/bb492fd5e79642d6ddf2501b8f62dd3e3f09a538) [#1879](https://github.com/commercetools/merchant-center-application-kit/pull/1879) Thanks [@adnasa](https://github.com/adnasa)! - extend `TShowNotification` with optional `text`
+
 ## 17.3.0
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/l10n",
-  "version": "17.3.0",
+  "version": "17.3.1",
   "description": "React bindings to load l10n data",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -32,7 +32,7 @@
   "dependencies": {
     "@babel/runtime": "7.12.5",
     "@babel/runtime-corejs3": "7.12.5",
-    "@commercetools-frontend/sentry": "17.3.0",
+    "@commercetools-frontend/sentry": "17.3.1",
     "@types/prop-types": "^15.7.3",
     "moment": "^2.24.0",
     "prop-types": "15.7.2"
