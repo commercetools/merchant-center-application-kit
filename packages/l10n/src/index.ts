@@ -18,3 +18,8 @@ export {
   withTimeZones,
   timeZonesShape,
 } from './time-zone-information';
+
+export {
+  transformLocalizedFieldToString,
+  injectTransformedLocalizedFields,
+} from './localize';
