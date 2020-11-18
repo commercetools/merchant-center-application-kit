@@ -1,5 +1,5 @@
 import {
-  transformLocalizedFieldToString,
+  transformLocalizedFieldToLocalizedString,
   injectTransformedLocalizedFields,
 } from './localize';
 
@@ -39,21 +39,21 @@ describe('injectTransformedLocalizedFields', () => {
   });
 });
 
-describe('transformLocalizedFieldToString', () => {
+describe('transformLocalizedFieldToLocalizedString', () => {
   describe('when array is not defined', () => {
     it('should return null', () => {
-      expect(transformLocalizedFieldToString()).toBe(null);
+      expect(transformLocalizedFieldToLocalizedString()).toBe(null);
     });
   });
   describe('when array is empty', () => {
     it('should return null', () => {
-      expect(transformLocalizedFieldToString([])).toBe(null);
+      expect(transformLocalizedFieldToLocalizedString([])).toBe(null);
     });
   });
   describe('when array is defined', () => {
     it('should return LocalizedString object', () => {
       expect(
-        transformLocalizedFieldToString([
+        transformLocalizedFieldToLocalizedString([
           { locale: 'en', value: 'Hello' },
           { locale: 'it', value: 'Ciao' },
         ])

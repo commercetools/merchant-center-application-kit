@@ -20,6 +20,6 @@ export {
 } from './time-zone-information';
 
 export {
-  transformLocalizedFieldToString,
+  transformLocalizedFieldToLocalizedString,
   injectTransformedLocalizedFields,
 } from './localize';

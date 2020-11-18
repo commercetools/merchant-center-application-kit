@@ -39,7 +39,7 @@ const { isLoading, data, error } = useCountries('en');
 ```js
 import { withCountries } from '@commercetools-frontend/l10n';
 
-withCountries(ownProps => ownProps.locale)(Component);
+withCountries((ownProps) => ownProps.locale)(Component);
 
 // format: { countryCode: countryLabel }
 // { "de":"Germany" }
@@ -48,7 +48,7 @@ withCountries(ownProps => ownProps.locale)(Component);
 ```js
 import { withCurrencies } from '@commercetools-frontend/l10n';
 
-withCurrencies(ownProps => ownProps.locale)(Component);
+withCurrencies((ownProps) => ownProps.locale)(Component);
 
 // format: { currencyCode: { label, symbol } }
 // { "EUR": { "label": "Euro", "symbol": "€" } }
@@ -57,7 +57,7 @@ withCurrencies(ownProps => ownProps.locale)(Component);
 ```js
 import { withLanguages } from '@commercetools-frontend/l10n';
 
-withLanguages(ownProps => ownProps.locale)(Component);
+withLanguages((ownProps) => ownProps.locale)(Component);
 
 // format: { languageCode: { language, country? } }
 // Case with main language
@@ -69,7 +69,7 @@ withLanguages(ownProps => ownProps.locale)(Component);
 ```js
 import { withTimeZones } from '@commercetools-frontend/l10n';
 
-withTimeZones(ownProps => ownProps.locale)(Component);
+withTimeZones((ownProps) => ownProps.locale)(Component);
 
 // format: { timezone: { name, abbr, offset } }
 // Case with main language
@@ -100,7 +100,7 @@ Run the script, which uses the new data.
 
 ## Utils
 
-### `transformLocalizedFieldToString`
+### `transformLocalizedFieldToLocalizedString`
 
 > Transforms a `LocalizedField` to a `LocalizedString`
 
@@ -135,7 +135,7 @@ In our `graphql` API, we also find `LocalizedString` value takes a different sha
 }
 ```
 
-To distinguish these in the source code of the Merchant Center, we name the graphql shaped value `LocalizedField`. When executing `transformLocalizedFieldToString`, we transform the graphql shaped value to the HTTP API shape.
+To distinguish these in the source code of the Merchant Center, we name the graphql shaped value `LocalizedField`. When executing `transformLocalizedFieldToLocalizedString`, we transform the graphql shaped value to the HTTP API shape.
 
 #### Example usage
 
@@ -148,7 +148,9 @@ const product = {
     },
   ],
 };
-const transformedName = transformLocalizedFieldToString(product.nameAllLocales);
+const transformedName = transformLocalizedFieldToLocalizedString(
+  product.nameAllLocales
+);
 console.log(transformedName);
 // { en: 'Milk' }
 ```
@@ -176,7 +178,7 @@ const transformedProduct = {
   ...fetchedProduct.data,
   // so we transform the LocalizedField to a LocalizedString
   // [{ locale: 'en', value: 'Milk' }] -> { en: 'Milk' }
-  name: transformLocalizedFieldToString(fetchedProduct.nameAllLocales),
+  name: transformLocalizedFieldToLocalizedString(fetchedProduct.nameAllLocales),
 };
 
 // finally, we are ready to render out LocalizedTextInput with a correctly transformed `name` value.
@@ -227,7 +229,7 @@ console.log(transformedProduct);
 // { name: { en: 'Milk' }, description: { en:  'This is milk' } }
 ```
 
-#### Slight difference to `transformLocalizedFieldToString`
+#### Slight difference to `transformLocalizedFieldToLocalizedString`
 
-Unlike `transformLocalizedFieldToString` where you pass in the `LocalizedField` value,
+Unlike `transformLocalizedFieldToLocalizedString` where you pass in the `LocalizedField` value,
 we need to pass the entire Resource and the `fieldTransformDefinitions`.

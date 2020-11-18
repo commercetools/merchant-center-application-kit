@@ -18,7 +18,7 @@ type TFieldNameTranformationMapping = {
  * Transforms a list of `LocalizedField` into a `LocalizedString` object
  * [{ locale: 'sv', value: 'Hej' }] -> { sv: 'Hej' }
  */
-export const transformLocalizedFieldToString = (
+export const transformLocalizedFieldToLocalizedString = (
   localizedFields?: TLocalizedField[]
 ): TLocalizedString | null => {
   if (!localizedFields || localizedFields.length === 0) return null;
@@ -54,7 +54,7 @@ export const injectTransformedLocalizedFields = <
   const transformedFieldDefinitions = fieldNames.reduce(
     (nextTransformed, fieldName) => ({
       ...nextTransformed,
-      [fieldName.to]: transformLocalizedFieldToString(
+      [fieldName.to]: transformLocalizedFieldToLocalizedString(
         objectWithLocalizedFields[fieldName.from] as
           | TLocalizedField[]
           | undefined
