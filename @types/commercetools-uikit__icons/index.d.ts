@@ -187,6 +187,11 @@ declare module '@commercetools-uikit/icons' {
     displayName: string;
     defaultProps: Pick<IconProps, 'size'>;
   };
+  export const ClockWithArrowIcon: {
+    (props: IconProps): JSX.Element;
+    displayName: string;
+    defaultProps: Pick<IconProps, 'size'>;
+  };
   export const CloseBoldIcon: {
     (props: IconProps): JSX.Element;
     displayName: string;

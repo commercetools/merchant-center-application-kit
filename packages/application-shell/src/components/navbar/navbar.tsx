@@ -31,6 +31,7 @@ import {
   RocketIcon,
   StarIcon,
   ConnectedSquareIcon,
+  ClockWithArrowIcon,
   // Types
   IconProps,
 } from '@commercetools-uikit/icons';
@@ -93,6 +94,8 @@ const IconSwitcher = ({ iconName, ...iconProps }: IconSwitcherProps) => {
       return <BoxIcon {...iconProps} />;
     case 'GearIcon':
       return <GearIcon {...iconProps} />;
+    case 'ClockWithArrowIcon':
+      return <ClockWithArrowIcon {...iconProps} />;
     // Custom application icons set
     case 'HeartIcon':
       return <HeartIcon {...iconProps} />;
