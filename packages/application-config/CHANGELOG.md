@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-config
 
+## 17.4.0
+
+### Patch Changes
+
+- [`09cc4b4`](https://github.com/commercetools/merchant-center-application-kit/commit/09cc4b410916f755be751533e566215d8df0e1cf) [#1880](https://github.com/commercetools/merchant-center-application-kit/pull/1880) Thanks [@emmenko](https://github.com/emmenko)! - Make the `applicationId` a combination of the Custom Application `id` and `entryPointUriPath`.
+
 ## 17.3.0
 
 ### Patch Changes

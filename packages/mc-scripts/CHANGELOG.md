@@ -1,5 +1,13 @@
 # @commercetools-frontend/mc-scripts
 
+## 17.4.0
+
+### Patch Changes
+
+- Updated dependencies [[`09cc4b4`](https://github.com/commercetools/merchant-center-application-kit/commit/09cc4b410916f755be751533e566215d8df0e1cf)]:
+  - @commercetools-frontend/application-config@17.4.0
+  - @commercetools-frontend/mc-html-template@17.4.0
+
 ## 17.3.1
 
 ### Patch Changes

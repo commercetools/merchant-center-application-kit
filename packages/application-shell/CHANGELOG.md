@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 17.4.0
+
+### Minor Changes
+
+- [`b742780`](https://github.com/commercetools/merchant-center-application-kit/commit/b742780a8b0b2d165b49a30cf93aaac3047a93c8) [#1881](https://github.com/commercetools/merchant-center-application-kit/pull/1881) Thanks [@stephsprinkle](https://github.com/stephsprinkle)! - feat(navbar): add clock with arrow icon to available application icons
+
 ## 17.3.1
 
 ### Patch Changes
