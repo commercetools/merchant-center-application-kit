@@ -39,7 +39,7 @@ const { isLoading, data, error } = useCountries('en');
 ```js
 import { withCountries } from '@commercetools-frontend/l10n';
 
-withCountries((ownProps) => ownProps.locale)(Component);
+withCountries(ownProps => ownProps.locale)(Component);
 
 // format: { countryCode: countryLabel }
 // { "de":"Germany" }
@@ -48,7 +48,7 @@ withCountries((ownProps) => ownProps.locale)(Component);
 ```js
 import { withCurrencies } from '@commercetools-frontend/l10n';
 
-withCurrencies((ownProps) => ownProps.locale)(Component);
+withCurrencies(ownProps => ownProps.locale)(Component);
 
 // format: { currencyCode: { label, symbol } }
 // { "EUR": { "label": "Euro", "symbol": "€" } }
@@ -57,7 +57,7 @@ withCurrencies((ownProps) => ownProps.locale)(Component);
 ```js
 import { withLanguages } from '@commercetools-frontend/l10n';
 
-withLanguages((ownProps) => ownProps.locale)(Component);
+withLanguages(ownProps => ownProps.locale)(Component);
 
 // format: { languageCode: { language, country? } }
 // Case with main language
@@ -69,7 +69,7 @@ withLanguages((ownProps) => ownProps.locale)(Component);
 ```js
 import { withTimeZones } from '@commercetools-frontend/l10n';
 
-withTimeZones((ownProps) => ownProps.locale)(Component);
+withTimeZones(ownProps => ownProps.locale)(Component);
 
 // format: { timezone: { name, abbr, offset } }
 // Case with main language
@@ -97,3 +97,137 @@ First, download the data (`core.zip`) for a specific version from the [downloads
 Then extract the data and copy the `core` folder to this package, and rename it to e.g. `cldr-v35`. Then point the `cldr` library to the folder location.
 
 Run the script, which uses the new data.
+
+## Utils
+
+### `transformLocalizedFieldToString`
+
+> Transforms a `LocalizedField` to a `LocalizedString`
+
+#### Context
+
+Amongst [Common Types](https://docs.commercetools.com/api/types) in the commercetools platform API, we find [`LocalizedString`](https://docs.commercetools.com/api/types#localizedstring) type.
+
+The `LocalizedString` is a value type found in a [Resource](https://docs.commercetools.com/api/types#referencetype), for example `Product`:
+
+```js
+// Product
+{
+  name: {
+    en: 'Milk';
+  }
+}
+```
+
+The documented `LocalizedString` in [https://docs.commercetools.com](https://docs.commercetools.com/) is a specification of the HTTP API.
+
+In our `graphql` API, we also find `LocalizedString` value takes a different shape.
+
+```js
+// Product, returned from the `graphql` API of commercetools platform
+{
+  nameAllLocales: [
+    {
+      locale: 'en',
+      value: 'Milk',
+    },
+  ];
+}
+```
+
+To distinguish these in the source code of the Merchant Center, we name the graphql shaped value `LocalizedField`. When executing `transformLocalizedFieldToString`, we transform the graphql shaped value to the HTTP API shape.
+
+#### Example usage
+
+```js
+const product = {
+  nameAllLocales: [
+    {
+      locale: 'en',
+      value: 'Milk',
+    },
+  ],
+};
+const transformedName = transformLocalizedFieldToString(product.nameAllLocales);
+console.log(transformedName);
+// { en: 'Milk' }
+```
+
+#### When to use it
+
+This transformation tool will be helpful when you consume the commercetools platform `/graphql` in conjunction with `apollo` and build form views consuming `@commercetools-frontend/ui-kit`.
+
+Given that you consume:
+
+- commercetools platform `/graphql` API
+- [`LocalizedTextInput`](https://github.com/commercetools/ui-kit/blob/master/packages/components/inputs/localized-text-input/src/localized-text-input.js)
+
+This will be helpful transforming data from `response -> view`.
+
+```js
+// fetching product from commercetools platform graphql API
+// returns a product with a `nameAllLocales`
+const fetchedProduct = useQuery(ProductQuery, {
+  context: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+});
+
+// Next, when we are aware that LocalizedTextInput accepts a value of `{ [key: string]: string }`
+const transformedProduct = {
+  ...fetchedProduct.data,
+  // so we transform the LocalizedField to a LocalizedString
+  // [{ locale: 'en', value: 'Milk' }] -> { en: 'Milk' }
+  name: transformLocalizedFieldToString(fetchedProduct.nameAllLocales),
+};
+
+// finally, we are ready to render out LocalizedTextInput with a correctly transformed `name` value.
+return <LocalizedTextInput name="name" value={transformedProduct.name} />;
+```
+
+### `injectTransformedLocalizedFields`
+
+In the example above, we demonstrated that you can transform `LocalizedField -> LocalizedString` for a field returned by the commercetools platform `/graphql` API.
+
+However, given that a Resource can have multiple values of the type `LocalizedField`, this can a cumbersome task to do.
+
+So we offer `injectTransformedLocalizedFields` that is meant to transform multiple values.
+
+#### Example usage
+
+```js
+const product = {
+  nameAllLocales: [
+    {
+      locale: 'en',
+      value: 'Milk',
+    },
+  ],
+  descriptionAllLocales: [
+    {
+      locale: 'en',
+      value: 'This is milk',
+    },
+  ],
+};
+const fieldTransformDefinitions = [
+  {
+    from: 'nameAllLocales',
+    to: 'name',
+  },
+  {
+    from: 'descriptionAllLocales',
+    to: 'description',
+  },
+];
+const transformedProduct = injectTransformedLocalizedFields(
+  fetchedProduct,
+  fieldTransformDefinitions
+);
+
+console.log(transformedProduct);
+// { name: { en: 'Milk' }, description: { en:  'This is milk' } }
+```
+
+#### Slight difference to `transformLocalizedFieldToString`
+
+Unlike `transformLocalizedFieldToString` where you pass in the `LocalizedField` value,
+we need to pass the entire Resource and the `fieldTransformDefinitions`.
