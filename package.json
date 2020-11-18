@@ -19,7 +19,7 @@
     "format:js": "prettier --write '**/*.{js,ts,tsx}'",
     "format:css": "prettier --write --parser css '**/*.css'",
     "format:md": "prettier --write --parser markdown '**/*.md'",
-    "format:yaml": "prettier --write --parser yaml '**/*.{yaml, yml}'",
+    "format:yaml": "prettier --write --parser yaml '**/*.{yaml,yml}'",
     "format:graphql": "prettier --write --parser graphql '**/*.graphql'",
     "start": "yarn playground:start",
     "changeset": "changeset",
