@@ -9,20 +9,17 @@ type TLocalizedString = {
   [key: string]: string;
 };
 
-type TFieldNameTranformationDefinition = {
+type TFieldNameTranformationMapping = {
   from: string;
   to: string;
 };
-
-type TRecordOfLocalizedString = Record<string, TLocalizedString | null>;
-type TObjectContainsLocalizedString = Partial<TRecordOfLocalizedString>;
 
 /**
  * Transforms a list of `LocalizedField` into a `LocalizedString` object
  * [{ locale: 'sv', value: 'Hej' }] -> { sv: 'Hej' }
  */
 export const transformLocalizedFieldToString = (
-  localizedFields?: TLocalizedField[] | null
+  localizedFields?: TLocalizedField[]
 ): TLocalizedString | null => {
   if (!localizedFields || localizedFields.length === 0) return null;
   return localizedFields.reduce(
@@ -48,26 +45,36 @@ export const transformLocalizedFieldToString = (
  *   * `to`: the target field to write the transformed shape
  */
 export const injectTransformedLocalizedFields = <
-  T extends Record<string, TLocalizedField[] | unknown>
+  Input extends Record<string, unknown>,
+  Output extends Record<string, unknown>
 >(
-  objectWithLocalizedFields: T,
-  fieldNames: TFieldNameTranformationDefinition[]
-): TObjectContainsLocalizedString => {
-  const transformedFieldDefinitions: TRecordOfLocalizedString = fieldNames.reduce(
-    (nextTransformed, fieldName): TRecordOfLocalizedString => ({
+  objectWithLocalizedFields: Input,
+  fieldNames: TFieldNameTranformationMapping[]
+): Output => {
+  const transformedFieldDefinitions = fieldNames.reduce(
+    (nextTransformed, fieldName) => ({
       ...nextTransformed,
       [fieldName.to]: transformLocalizedFieldToString(
-        objectWithLocalizedFields[fieldName.from] as TLocalizedField[]
+        objectWithLocalizedFields[fieldName.from] as
+          | TLocalizedField[]
+          | undefined
       ),
     }),
     {}
   );
-  const objectWithoutLocalizedFields: Partial<Record<keyof T, unknown>> = omit(
+  const namesToOmit = fieldNames.reduce<{ [key: string]: string }>(
+    (nextKeysToOmit, field) => ({
+      ...nextKeysToOmit,
+      [field.from]: field.from,
+    }),
+    {}
+  );
+  const objectWithoutLocalizedFields = omit<Input>(
     objectWithLocalizedFields,
-    fieldNames.map((field) => field.from)
+    Object.keys(namesToOmit)
   );
   return {
     ...objectWithoutLocalizedFields,
     ...transformedFieldDefinitions,
-  };
+  } as Output;
 };
