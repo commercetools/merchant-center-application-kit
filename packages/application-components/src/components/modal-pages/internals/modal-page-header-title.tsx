@@ -1,7 +1,7 @@
 import React from 'react';
 import { customProperties } from '@commercetools-uikit/design-system';
 import Text from '@commercetools-uikit/text';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 type Props = {

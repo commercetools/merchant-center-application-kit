@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { ClassNames } from '@emotion/core';
+import { ClassNames } from '@emotion/react';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import {
   TRANSITION_DURATION,

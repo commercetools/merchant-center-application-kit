@@ -8,7 +8,7 @@ import type {
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useIntl, FormattedMessage } from 'react-intl';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import Downshift from 'downshift';
 import { ToggleFeature } from '@flopflip/react-broadcast';

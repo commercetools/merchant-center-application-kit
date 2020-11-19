@@ -8,7 +8,7 @@ import type {
 import React from 'react';
 import memoize from 'memoize-one';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import SelectInput from '@commercetools-uikit/select-input';

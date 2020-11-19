@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { CloseIcon } from '@commercetools-uikit/icons';
 import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';
 import Text from '@commercetools-uikit/text';

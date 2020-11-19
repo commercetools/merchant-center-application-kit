@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
