@@ -10,5 +10,4 @@
  *
  * TODO: remove this once we use upgrade to TS >4.1
  */
-
 /// <reference types="@emotion/react/types/css-prop" />
