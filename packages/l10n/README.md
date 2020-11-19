@@ -187,6 +187,8 @@ return <LocalizedTextInput name="name" value={transformedProduct.name} />;
 
 ### `injectTransformedLocalizedFields`
 
+> Transforms multiple `LocalizedField` -> `LocalizedString`, given `fieldNameTransformationMappings`
+
 In the example above, we demonstrated that you can transform `LocalizedField -> LocalizedString` for a field returned by the commercetools platform `/graphql` API.
 
 However, given that a Resource can have multiple values of the type `LocalizedField`, this can a cumbersome task to do.
@@ -210,7 +212,7 @@ const product = {
     },
   ],
 };
-const fieldTransformDefinitions = [
+const fieldNameTransformationMappings = [
   {
     from: 'nameAllLocales',
     to: 'name',
@@ -222,7 +224,7 @@ const fieldTransformDefinitions = [
 ];
 const transformedProduct = injectTransformedLocalizedFields(
   fetchedProduct,
-  fieldTransformDefinitions
+  fieldNameTransformationMappings
 );
 
 console.log(transformedProduct);
@@ -232,4 +234,4 @@ console.log(transformedProduct);
 #### Slight difference to `transformLocalizedFieldToLocalizedString`
 
 Unlike `transformLocalizedFieldToLocalizedString` where you pass in the `LocalizedField` value,
-we need to pass the entire Resource and the `fieldTransformDefinitions`.
+we need to pass the entire Resource and the `fieldNameTransformationMappings`.
