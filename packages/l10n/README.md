@@ -108,11 +108,13 @@ Run the script, which uses the new data.
 
 Amongst [Common Types](https://docs.commercetools.com/api/types) in the commercetools platform API, we find [`LocalizedString`](https://docs.commercetools.com/api/types#localizedstring) type.
 
-The `LocalizedString` is a value type found in a [Resource](https://docs.commercetools.com/api/types#referencetype), for example `Product`:
+The `LocalizedString` is a type reserved for values found in a [Resource](https://docs.commercetools.com/api/types#referencetype), for example `Product`:
 
 ```js
 // Product
 {
+  // `name` is a `LocalizedString`
+  // as defined by https://docs.commercetools.com/api/projects/products#productdata
   name: {
     en: 'Milk';
   }
@@ -121,7 +123,7 @@ The `LocalizedString` is a value type found in a [Resource](https://docs.commerc
 
 The documented `LocalizedString` in [https://docs.commercetools.com](https://docs.commercetools.com/) is a specification of the HTTP API.
 
-In our `graphql` API, we also find `LocalizedString` value takes a different shape.
+In the commercetools platform `/graphql` API, we also find `LocalizedString` value takes a different shape of the same name.
 
 ```js
 // Product, returned from the `graphql` API of commercetools platform
@@ -135,7 +137,7 @@ In our `graphql` API, we also find `LocalizedString` value takes a different sha
 }
 ```
 
-To distinguish these in the source code of the Merchant Center, we name the graphql shaped value `LocalizedField`. When executing `transformLocalizedFieldToLocalizedString`, we transform the graphql shaped value to the HTTP API shape.
+To distinguish these in source code of the Merchant Center, we name the graphql shaped value `LocalizedField`. When executing `transformLocalizedFieldToLocalizedString`, we transform the graphql shaped value to the HTTP API shape.
 
 #### Example usage
 
@@ -157,28 +159,28 @@ console.log(transformedName);
 
 #### When to use it
 
-This transformation tool will be helpful when you consume the commercetools platform `/graphql` in conjunction with `apollo` and build form views consuming `@commercetools-frontend/ui-kit`.
+This transformation tool will be helpful when you consume the commercetools platform `/graphql` API in conjunction with authoring views consuming `@commercetools-frontend/ui-kit`.
 
 Given that you consume:
 
-- commercetools platform `/graphql` API
+- The commercetools platform `/graphql` API
 - [`LocalizedTextInput`](https://github.com/commercetools/ui-kit/blob/master/packages/components/inputs/localized-text-input/src/localized-text-input.js)
 
 This will be helpful transforming data from `response -> view`.
 
 ```js
-// fetching product from commercetools platform graphql API
+// fetching product from the commercetools platform graphql API
 // returns a product with a `nameAllLocales`
-const fetchedProduct = useQuery(ProductQuery, {
+const product = useMcQuery(ProductQuery, {
   context: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
 });
 
 // Next, when we are aware that LocalizedTextInput accepts a value of `{ [key: string]: string }`
 const transformedProduct = {
-  ...fetchedProduct.data,
+  ...product.data,
   // so we transform the LocalizedField to a LocalizedString
   // [{ locale: 'en', value: 'Milk' }] -> { en: 'Milk' }
-  name: transformLocalizedFieldToLocalizedString(fetchedProduct.nameAllLocales),
+  name: transformLocalizedFieldToLocalizedString(product.nameAllLocales),
 };
 
 // finally, we are ready to render out LocalizedTextInput with a correctly transformed `name` value.
@@ -189,11 +191,11 @@ return <LocalizedTextInput name="name" value={transformedProduct.name} />;
 
 > Transforms multiple `LocalizedField` -> `LocalizedString`, given `fieldNameTransformationMappings`
 
-In the example above, we demonstrated that you can transform `LocalizedField -> LocalizedString` for a field returned by the commercetools platform `/graphql` API.
+In the example above, we demonstrated that we can transform `LocalizedField -> LocalizedString` of a `LocalizedString` value returned commercetools platform `/graphql` API.
 
-However, given that a Resource can have multiple values of the type `LocalizedField`, this can a cumbersome task to do.
+However, given that a Resource can have multiple values of the type `LocalizedField`, this can be a cumbersome task to do.
 
-So we offer `injectTransformedLocalizedFields` that is meant to transform multiple values.
+We offer `injectTransformedLocalizedFields` that is meant to transform multiple values.
 
 #### Example usage
 
@@ -233,5 +235,4 @@ console.log(transformedProduct);
 
 #### Slight difference to `transformLocalizedFieldToLocalizedString`
 
-Unlike `transformLocalizedFieldToLocalizedString` where you pass in the `LocalizedField` value,
-we need to pass the entire Resource and the `fieldNameTransformationMappings`.
+Unlike `transformLocalizedFieldToLocalizedString` where we pass in the `LocalizedField` value, we need to pass the entire Resource and the `fieldNameTransformationMappings`.
