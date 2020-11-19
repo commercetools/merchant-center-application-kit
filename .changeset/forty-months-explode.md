@@ -10,4 +10,4 @@
 '@commercetools-website/components-playground': patch
 ---
 
-upgrade ui-kit
+upgrade ui-kit, which includes the new [horizontal constraint changes](https://github.com/commercetools/ui-kit/pull/1632).
