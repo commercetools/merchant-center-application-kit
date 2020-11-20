@@ -1,30 +1,21 @@
 import omit from 'lodash/omit';
-
-type TLocalizedField = {
-  locale: string;
-  value: string;
-};
-
-type TLocalizedString = {
-  [key: string]: string;
-};
-
-type TFieldNameTranformationMapping = {
-  from: string;
-  to: string;
-};
+import {
+  LocalizedString,
+  LocalizedField,
+  FieldNameTranformationMapping,
+} from './types';
 
 /**
  * Transforms a list of `LocalizedField` into a `LocalizedString` object
  * [{ locale: 'sv', value: 'Hej' }] -> { sv: 'Hej' }
  */
 export const transformLocalizedFieldToLocalizedString = (
-  localizedFields?: TLocalizedField[]
-): TLocalizedString | null => {
+  localizedFields?: LocalizedField[]
+): LocalizedString | null => {
   if (!localizedFields || localizedFields.length === 0) return null;
   return localizedFields.reduce(
-    (nextLocalizedString, field) => ({
-      ...nextLocalizedString,
+    (nexLocalizedString, field) => ({
+      ...nexLocalizedString,
       [field.locale]: field.value,
     }),
     {}
@@ -49,14 +40,14 @@ export const applyTransformedLocalizedFields = <
   Output extends Record<string, unknown>
 >(
   objectWithLocalizedFields: Input,
-  fieldNames: TFieldNameTranformationMapping[]
+  fieldNames: FieldNameTranformationMapping[]
 ): Output => {
   const transformedFieldDefinitions = fieldNames.reduce(
     (nextTransformed, fieldName) => ({
       ...nextTransformed,
       [fieldName.to]: transformLocalizedFieldToLocalizedString(
         objectWithLocalizedFields[fieldName.from] as
-          | TLocalizedField[]
+          | LocalizedField[]
           | undefined
       ),
     }),
@@ -69,12 +60,12 @@ export const applyTransformedLocalizedFields = <
     }),
     {}
   );
-  const objectWithoutLocalizedFields = omit<Input>(
+  const objectWithouLocalizedFields = omit<Input>(
     objectWithLocalizedFields,
     Object.keys(namesToOmit)
   );
   return {
-    ...objectWithoutLocalizedFields,
+    ...objectWithouLocalizedFields,
     ...transformedFieldDefinitions,
   } as Output;
 };
