@@ -21,5 +21,5 @@ export {
 
 export {
   transformLocalizedFieldToLocalizedString,
-  injectTransformedLocalizedFields,
+  applyTransformedLocalizedFields,
 } from './localize';

@@ -44,7 +44,7 @@ export const transformLocalizedFieldToLocalizedString = (
  *   * `from`: the field to transform and to remove after
  *   * `to`: the target field to write the transformed shape
  */
-export const injectTransformedLocalizedFields = <
+export const applyTransformedLocalizedFields = <
   Input extends Record<string, unknown>,
   Output extends Record<string, unknown>
 >(

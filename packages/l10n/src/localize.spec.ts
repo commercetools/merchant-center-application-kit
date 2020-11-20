@@ -1,13 +1,13 @@
 import {
   transformLocalizedFieldToLocalizedString,
-  injectTransformedLocalizedFields,
+  applyTransformedLocalizedFields,
 } from './localize';
 
-describe('injectTransformedLocalizedFields', () => {
+describe('applyTransformedLocalizedFields', () => {
   describe('when entity contains list of locale fields', () => {
     it('should inject localized string object field and remove outdated key', () => {
       expect(
-        injectTransformedLocalizedFields(
+        applyTransformedLocalizedFields(
           {
             id: '1',
             nameAllLocales: [
@@ -23,7 +23,7 @@ describe('injectTransformedLocalizedFields', () => {
   describe('when entity does not contain list of locale fields', () => {
     it('should inject localized string object field as null and remove outdated key', () => {
       expect(
-        injectTransformedLocalizedFields({ id: '1' }, [
+        applyTransformedLocalizedFields({ id: '1' }, [
           { from: 'nameAllLocales', to: 'name' },
         ])
       ).toEqual({ id: '1', name: null });
@@ -33,7 +33,7 @@ describe('injectTransformedLocalizedFields', () => {
   describe('when array of locale fields is empty', () => {
     it('should not change entity shape', () => {
       expect(
-        injectTransformedLocalizedFields({ id: '1', version: 2 }, [])
+        applyTransformedLocalizedFields({ id: '1', version: 2 }, [])
       ).toEqual({ id: '1', version: 2 });
     });
   });

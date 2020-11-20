@@ -123,7 +123,7 @@ The `LocalizedString` is a type reserved for values found in a [Resource](https:
 
 The documented `LocalizedString` in [https://docs.commercetools.com](https://docs.commercetools.com/) is a specification of the HTTP API.
 
-In the commercetools platform `/graphql` API, we also find `LocalizedString` value takes a different shape of the same name.
+However, the commercetools platform `/graphql` API represents the `LocalizedString` in a different format as a list, for technical reasons.
 
 ```js
 // Product, returned from the `graphql` API of commercetools platform
@@ -187,7 +187,7 @@ const transformedProduct = {
 return <LocalizedTextInput name="name" value={transformedProduct.name} />;
 ```
 
-### `injectTransformedLocalizedFields`
+### `applyTransformedLocalizedFields`
 
 > Transforms multiple `LocalizedField` -> `LocalizedString`, given `fieldNameTransformationMappings`
 
@@ -195,7 +195,7 @@ In the example above, we demonstrated that we can transform `LocalizedField -> L
 
 However, given that a Resource can have multiple values of the type `LocalizedField`, this can be a cumbersome task to do.
 
-We offer `injectTransformedLocalizedFields` that is meant to transform multiple values.
+We offer `applyTransformedLocalizedFields` that is authored to transform multiple values.
 
 #### Example usage
 
@@ -224,7 +224,7 @@ const fieldNameTransformationMappings = [
     to: 'description',
   },
 ];
-const transformedProduct = injectTransformedLocalizedFields(
+const transformedProduct = applyTransformedLocalizedFields(
   fetchedProduct,
   fieldNameTransformationMappings
 );
