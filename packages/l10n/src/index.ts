@@ -19,7 +19,4 @@ export {
   timeZonesShape,
 } from './time-zone-information';
 
-export {
-  transformLocalizedFieldToLocalizedString,
-  applyTransformedLocalizedFields,
-} from './localize';
+export { applyTransformedLocalizedFields } from './localize';

@@ -100,9 +100,9 @@ Run the script, which uses the new data.
 
 ## Utils
 
-### `transformLocalizedFieldToLocalizedString`
+### `applyTransformedLocalizedFields`
 
-> Transforms a `LocalizedField` to a `LocalizedString`
+> Transforms multiple `LocalizedField` -> `LocalizedString`, given `fieldNameTransformationMappings`
 
 #### Context
 
@@ -126,7 +126,7 @@ The documented `LocalizedString` in [https://docs.commercetools.com](https://doc
 However, the commercetools platform `/graphql` API represents the `LocalizedString` in a different format as a list, for technical reasons.
 
 ```js
-// Product, returned from the `graphql` API of commercetools platform
+// Product, returned from the `/graphql` API of commercetools platform
 {
   nameAllLocales: [
     {
@@ -137,65 +137,7 @@ However, the commercetools platform `/graphql` API represents the `LocalizedStri
 }
 ```
 
-To distinguish these in source code of the Merchant Center, we name the graphql shaped value `LocalizedField`. When executing `transformLocalizedFieldToLocalizedString`, we transform the graphql shaped value to the HTTP API shape.
-
-#### Example usage
-
-```js
-const product = {
-  nameAllLocales: [
-    {
-      locale: 'en',
-      value: 'Milk',
-    },
-  ],
-};
-const transformedName = transformLocalizedFieldToLocalizedString(
-  product.nameAllLocales
-);
-console.log(transformedName);
-// { en: 'Milk' }
-```
-
-#### When to use it
-
-This transformation tool will be helpful when you consume the commercetools platform `/graphql` API in conjunction with authoring views consuming `@commercetools-frontend/ui-kit`.
-
-Given that you consume:
-
-- The commercetools platform `/graphql` API
-- [`LocalizedTextInput`](https://github.com/commercetools/ui-kit/blob/master/packages/components/inputs/localized-text-input/src/localized-text-input.js)
-
-This will be helpful transforming data from `response -> view`.
-
-```js
-// fetching product from the commercetools platform graphql API
-// returns a product with a `nameAllLocales`
-const product = useMcQuery(ProductQuery, {
-  context: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
-});
-
-// Next, when we are aware that LocalizedTextInput accepts a value of `{ [key: string]: string }`
-const transformedProduct = {
-  ...product.data,
-  // so we transform the LocalizedField to a LocalizedString
-  // [{ locale: 'en', value: 'Milk' }] -> { en: 'Milk' }
-  name: transformLocalizedFieldToLocalizedString(product.nameAllLocales),
-};
-
-// finally, we are ready to render out LocalizedTextInput with a correctly transformed `name` value.
-return <LocalizedTextInput name="name" value={transformedProduct.name} />;
-```
-
-### `applyTransformedLocalizedFields`
-
-> Transforms multiple `LocalizedField` -> `LocalizedString`, given `fieldNameTransformationMappings`
-
-In the example above, we demonstrated that we can transform `LocalizedField -> LocalizedString` of a `LocalizedString` value returned commercetools platform `/graphql` API.
-
-However, given that a Resource can have multiple values of the type `LocalizedField`, this can be a cumbersome task to do.
-
-We offer `applyTransformedLocalizedFields` that is authored to transform multiple values.
+To distinguish these in source code of the Merchant Center, we name the graphql shaped value `LocalizedField`. We offer `applyTransformedLocalizedFields` that is authored to transform these values from one to the other.
 
 #### Example usage
 
@@ -233,6 +175,39 @@ console.log(transformedProduct);
 // { name: { en: 'Milk' }, description: { en:  'This is milk' } }
 ```
 
-#### Slight difference to `transformLocalizedFieldToLocalizedString`
+#### When to use it
 
-Unlike `transformLocalizedFieldToLocalizedString` where we pass in the `LocalizedField` value, we need to pass the entire Resource and the `fieldNameTransformationMappings`.
+This transformation tool will be helpful when you consume the commercetools platform `/graphql` API in conjunction with authoring views consuming `@commercetools-frontend/ui-kit`.
+
+Given that you consume:
+
+- The commercetools platform `/graphql` API
+- [`LocalizedTextInput`](https://github.com/commercetools/ui-kit/blob/master/packages/components/inputs/localized-text-input/src/localized-text-input.js)
+
+This will be helpful transforming data from `response -> view`.
+
+```js
+// fetching product from the commercetools platform `/graphql` API
+// returns a product with a `nameAllLocales` and `descriptionAllLocales`
+const product = useMcQuery(ProductQuery, {
+  context: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+});
+
+// Given that LocalizedTextInput accepts a value of `{ [key: string]: string }`,
+// we tranform our product to match the required shape
+const transformedProduct = applyTransformedLocalizedFields(
+  product,
+  fieldNameTransformMappings
+);
+
+// Finally, we are ready to render our form with the correctly shaped `name` and `description`
+return (
+  <>
+    <LocalizedTextInput name="name" value={transformedProduct.name} />
+    <LocalizedTextInput
+      name="description"
+      value={transformedProduct.description}
+    />
+  </>
+);
+```
