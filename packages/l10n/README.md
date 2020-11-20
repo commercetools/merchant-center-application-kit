@@ -211,3 +211,159 @@ return (
   </>
 );
 ```
+
+### `localize` (DRAFT)
+
+> Transforms a `LocalizedString` to a String
+
+The `localize` util is a util we use internally inside the Merchant Center.
+This util is at the moment subject to change, hence marked as Draft. Use with caution in your Custom Application.
+
+#### Context
+
+As discussed under `applyTransformedLocalizedFields`, a `LocalizedString` is a value type reserved for a `Resource`, e.g a `Product`.
+
+```js
+const product = {
+  name: {
+    en: 'Milk',
+    de: 'Milsch,
+  }
+}
+```
+
+When rendering a Product in a view, we would like to render the value of `name` given the `language` of the UI.
+The `language` is a value controlled by the Merchant Center User (MC User) by updating the language switcher on the Application Bar of the Merchant Center.
+
+The language switcher emits a value that is intended to help us Application Developers display the Resource data (`Product` in our example) in the specified language. Given that the `product.name` has a value of the specified `language`, we can easily pick the value from the `product.name`.
+
+However there are scenarios where the MC User updates the language switcher to a value that our Product example has no matching value. What then? This is where `localize` plays its role.
+
+The `localize` util is authored with a couple of things in mind:
+
+1. Help us Application Developers remain resilient as we attempt to derive a value of `LocalizedString` given a specified language.
+2. Help us Application Developers remain consistent when rendering a value derived from `LocalizedString`
+
+Let's take a look at the examples below to put this to action.
+
+#### Example usage
+
+All examples below will use the following `Product`:
+
+```
+const product = {
+  name: {
+    en: 'Milk',
+    de: 'Milsch,
+  }
+}
+```
+
+##### Scenario 1
+
+Given that specified `language=de`
+
+```js
+const translatedName = localize({
+  obj: product,
+  key: 'name',
+  language: 'de',
+});
+
+console.log(translatedName);
+// 'Milsch'
+```
+
+##### Scenario 2
+
+Given that specified `language=sv`
+
+```js
+const translatedName = localize({
+  obj: product,
+  key: 'name',
+  language: 'sv',
+});
+
+console.log(translatedName);
+// 'Milk (EN)'
+```
+
+**What happened?**
+
+Our product has no value for the specified language `sv`, what `localize` will do for us as Application Developers is _pick the next available value_ from `product.name`.
+
+##### Scenario 3
+
+Given that specified `language=de-AT`
+
+```js
+const translatedName = localize({
+  obj: product,
+  key: 'name',
+  language: 'de-AT',
+});
+
+console.log(translatedName);
+// 'Milsch'
+```
+
+**What happened?**
+
+Our product has no value for the specified language `de-AT` so there is no match, but we still got `"Milsch"`.
+This is because `localize` attempts to determine a **primary language** on the input `language` and match that to the available values. Given that `de` is a [primary](https://en.wikipedia.org/wiki/IETF_language_tag) of `de-AT`, it determines that this is the _closest available value_ from `product.name`
+
+#### Fallback
+
+Given that `localize` can not handle all scenario exemplified above, we can specify a `fallback` as a last resort:
+
+```js
+const translatedName = localize({
+  obj: product,
+  key: 'name',
+  language: 'sv',
+  fallback: '-',
+});
+```
+
+The default value of `fallback` is a `""`.
+
+#### Fallback order
+
+In **Scenario 2** above, we discussed that `localize` will pick the _next available value_ from `product.name` when there is matching value. In our case, the next available value was `en`.
+As Application Developers, it is possible for us to take over control of the next "lookup" of the value, when there is no match (before `localize` proceeds to rendering `fallback` ).
+
+`localize` accepts `fallbackOrder`, and this [test exemplifies the use case and resolve](./src/localize.spec.ts#L151:L170).
+
+#### When to use it
+
+Given that we want to render `LocalizedString` of a given `Resource`, it is sensible to rely on `localize` in conjunction with the Application Context.
+
+```js
+import { Text } from '@commercetools-frontend/ui-kit';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+
+const { language, projectLanguages } = useApplicationContext(
+  (applicationContext) => ({
+    // The Application Context exposes the value emitted from the language switcher
+    // as `dataLocale`. We map that to `language` in our source code to make it readable.
+    language: applicationContext.dataLocale,
+    // The Application Context also exposes the languages that are defined on the Project settings
+    // we can rely on this to determine the fallback order.
+    // This helps with consistency, although you can specify the fallback order however you want
+    projectLanguages: context.project.languages,
+  })
+);
+
+return (
+  <Text.Headline>
+    {localize({
+      obj: product,
+      key: 'name',
+      fallback: '<MY_CUSTOM_FALLBACK>',
+      fallbackOrder: projectLanguages,
+      language,
+    })}
+  </Text.Headline>
+);
+```

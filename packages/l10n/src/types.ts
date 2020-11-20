@@ -32,3 +32,11 @@ export type FieldNameTranformationMapping = {
   from: string;
   to: string;
 };
+
+export type LocalizeSignatureOptions<T> = {
+  obj?: T | null;
+  key: keyof T;
+  language: string;
+  fallbackOrder?: string[];
+  fallback?: string;
+};
