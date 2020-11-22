@@ -49,7 +49,7 @@ describe.each`
         originalUrl: '/foo/bar',
       };
       const fakeResponse = {};
-      await new Promise((resolve, reject) => {
+      await new Promise<void>((resolve, reject) => {
         // @ts-ignore
         sessionMiddleware(fakeRequest, fakeResponse, (error) => {
           if (error) reject(error);
@@ -83,7 +83,7 @@ describe.each`
           originalUrl: '/foo/bar',
         };
         const fakeResponse = {};
-        await new Promise((resolve, reject) => {
+        await new Promise<void>((resolve, reject) => {
           // @ts-ignore
           sessionMiddleware(fakeRequest, fakeResponse, (error) => {
             if (error) reject(error);

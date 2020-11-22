@@ -28,7 +28,7 @@ const defaultApiUrl = window.location.origin;
 function useApplicationsMenu<Key extends MenuKey>(
   menuKey: Key,
   config: Config<Key> = {}
-) {
+): MenuLoaderResult<Key> | undefined {
   const [menu, setMenu] = React.useState<MenuLoaderResult<Key>>();
 
   // Trigger loading the menu from local file, for local development
@@ -65,12 +65,11 @@ function useApplicationsMenu<Key extends MenuKey>(
 
   // Return the local config
   if (config.skipRemoteQuery === true) {
-    const fakeGraphqlResponse = menu
-      ? Array.isArray(menu)
-        ? menu
-        : [menu]
-      : undefined;
-    return fakeGraphqlResponse;
+    if (menu) {
+      const fakeGraphqlResponse = Array.isArray(menu) ? menu : [menu];
+      return fakeGraphqlResponse as MenuLoaderResult<Key>;
+    }
+    return;
   }
 
   // Fetch the query remotely
@@ -80,7 +79,7 @@ function useApplicationsMenu<Key extends MenuKey>(
   }
 
   if (menuQueryResult && menuQueryResult.applicationsMenu) {
-    return menuQueryResult.applicationsMenu[menuKey];
+    return menuQueryResult.applicationsMenu[menuKey] as MenuLoaderResult<Key>;
   }
 
   return;

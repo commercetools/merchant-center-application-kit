@@ -85,7 +85,7 @@ const defaultUser = {
   launchdarklyTrackingTenant: 'gcp-eu',
 };
 
-const defaultEnvironment = {
+const defaultEnvironment: Partial<TProviderProps<{}>['environment']> = {
   applicationName: 'my-app',
   frontendHost: 'localhost:3001',
   mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
