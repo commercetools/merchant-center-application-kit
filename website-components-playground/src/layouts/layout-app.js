@@ -4,7 +4,7 @@ import 'fontsource-open-sans/latin-600.css';
 import 'fontsource-open-sans/latin-700.css';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { css, Global } from '@emotion/core';
+import { css, Global } from '@emotion/react';
 import { customProperties } from '@commercetools-uikit/design-system';
 import useWindowHeight from '../hooks/use-window-height';
 

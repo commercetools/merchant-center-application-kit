@@ -17,7 +17,7 @@ import React from 'react';
 import Fuse from 'fuse.js';
 import { FormattedMessage, useIntl } from 'react-intl';
 import last from 'lodash/last';
-import { css, keyframes, ClassNames } from '@emotion/core';
+import { css, keyframes, ClassNames } from '@emotion/react';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import { SearchIcon } from '@commercetools-uikit/icons';
 import { customProperties } from '@commercetools-uikit/design-system';

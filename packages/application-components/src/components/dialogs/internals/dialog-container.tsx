@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { css, ClassNames } from '@emotion/core';
+import { css, ClassNames } from '@emotion/react';
 import styled from '@emotion/styled';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import { customProperties } from '@commercetools-uikit/design-system';

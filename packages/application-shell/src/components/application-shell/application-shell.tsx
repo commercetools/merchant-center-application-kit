@@ -11,7 +11,7 @@ import type { TrackingList } from '../../utils/gtm';
 import React from 'react';
 import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import { ApolloClient } from '@apollo/client';
-import { Global, css } from '@emotion/core';
+import { Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
 import {
   joinPaths,

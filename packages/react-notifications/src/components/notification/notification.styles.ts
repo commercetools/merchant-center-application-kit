@@ -3,7 +3,7 @@ import type {
   TAppNotificationDomain,
 } from '@commercetools-frontend/constants';
 
-import { css, keyframes } from '@emotion/core';
+import { css, keyframes } from '@emotion/react';
 import { customProperties } from '@commercetools-uikit/design-system';
 import {
   NOTIFICATION_DOMAINS,

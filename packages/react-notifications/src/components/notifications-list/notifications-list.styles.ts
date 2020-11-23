@@ -1,6 +1,6 @@
 import type { TAppNotificationDomain } from '@commercetools-frontend/constants';
 
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { customProperties } from '@commercetools-uikit/design-system';
 import { NOTIFICATION_DOMAINS } from '@commercetools-frontend/constants';
 

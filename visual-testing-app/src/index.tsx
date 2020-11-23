@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { css, Global } from '@emotion/core';
+import { css, Global } from '@emotion/react';
 import Application from './application';
 
 ReactDOM.render(
