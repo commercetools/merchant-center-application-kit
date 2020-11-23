@@ -8,7 +8,7 @@
  * For those cases we have added a special file that can be imported once
  * to add support for the `css` prop globally, for all components.
  *
- * TODO: remove this once we use upgrade to TS >4.1
+ * TODO: remove this once we switch to automatic jsx runtime
  */
 /// <reference types="@emotion/react/types/css-prop" />
 
