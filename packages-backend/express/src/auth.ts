@@ -19,15 +19,18 @@ type TDecodedJWT = {
 const decodedTokenKey = 'decoded_token';
 // Assign a session object to the request object.
 const writeSessionContext = <Request extends IncomingMessage>(
-  request: Request & { decoded_token: TDecodedJWT; session?: TSession }
+  request: Request & { decoded_token?: TDecodedJWT; session?: TSession }
 ) => {
   const decodedToken = request[decodedTokenKey];
-  const publicClaimForProjectKey = `${decodedToken.iss}/claims/project_key`;
 
-  request.session = {
-    userId: decodedToken.sub,
-    projectKey: decodedToken[publicClaimForProjectKey],
-  };
+  if (decodedToken) {
+    const publicClaimForProjectKey = `${decodedToken.iss}/claims/project_key`;
+
+    request.session = {
+      userId: decodedToken.sub,
+      projectKey: decodedToken[publicClaimForProjectKey],
+    };
+  }
 
   // Remove the field used by the JWT middleware.
   delete request.decoded_token;
@@ -149,7 +152,7 @@ function createSessionAuthVerifier<
     const requestUrlPath = request.originalUrl ?? request.url;
     const audience = getConfiguredAudience(options, requestUrlPath);
 
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       expressJwtMiddleware({
         // Dynamically provide a signing key based on the kid in the header
         // and the singing keys provided by the JWKS endpoint
