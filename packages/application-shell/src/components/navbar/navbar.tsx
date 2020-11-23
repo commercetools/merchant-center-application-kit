@@ -532,9 +532,7 @@ NavBarLayout.displayName = 'NavBarLayout';
 type NavbarProps<AdditionalEnvironmentProperties extends {}> = {
   applicationLocale: string;
   projectKey: string;
-  environment: TApplicationContext<
-    AdditionalEnvironmentProperties
-  >['environment'];
+  environment: TApplicationContext<AdditionalEnvironmentProperties>['environment'];
   onMenuItemClick?: MenuItemLinkProps['onClick'];
   DEV_ONLY__loadNavbarMenuConfig?: () => Promise<TApplicationsMenu['navBar']>;
 };

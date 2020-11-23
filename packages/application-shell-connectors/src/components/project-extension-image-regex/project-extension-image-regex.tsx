@@ -72,9 +72,9 @@ function withProjectExtensionImageRegex<Props extends {}>(
         )}
       />
     );
-    WrappedComponent.displayName = `withProjectExtensionImageRegex(${getDisplayName<
-      Props
-    >(Component)})`;
+    WrappedComponent.displayName = `withProjectExtensionImageRegex(${getDisplayName<Props>(
+      Component
+    )})`;
     return WrappedComponent;
   };
 }

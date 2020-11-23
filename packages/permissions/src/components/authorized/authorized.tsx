@@ -85,9 +85,9 @@ const injectAuthorized = <
       )}
     />
   );
-  WrappedComponent.displayName = `withUserPermissions(${getDisplayName<
-    OwnProps
-  >(Component)})`;
+  WrappedComponent.displayName = `withUserPermissions(${getDisplayName<OwnProps>(
+    Component
+  )})`;
   return WrappedComponent;
 };
 

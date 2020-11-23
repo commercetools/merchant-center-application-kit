@@ -59,9 +59,9 @@ const branchOnPermissions = <OwnProps extends {}>(
       }}
     />
   );
-  WrappedComponent.displayName = `branchOnPermissions(${getDisplayName<
-    OwnProps
-  >(Component)})`;
+  WrappedComponent.displayName = `branchOnPermissions(${getDisplayName<OwnProps>(
+    Component
+  )})`;
   return WrappedComponent;
 };
 

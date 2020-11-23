@@ -235,9 +235,9 @@ const denormalizeDataFences = (dataFences?: TNormalizedDataFences) => {
                 >(
                   (allPermissions, permissionKey) => [
                     ...allPermissions,
-                    ...dataFences.store[resourceType][permissionKey].values.map<
-                      TAllAppliedDataFence
-                    >((value) => ({
+                    ...dataFences.store[resourceType][
+                      permissionKey
+                    ].values.map<TAllAppliedDataFence>((value) => ({
                       __typename: 'StoreDataFence',
                       type: 'store',
                       value,
@@ -316,9 +316,7 @@ type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   >;
   user: Partial<TProviderProps<AdditionalEnvironmentProperties>['user']>;
   project: Partial<TProviderProps<AdditionalEnvironmentProperties>['project']>;
-  dataLocale: TProviderProps<
-    AdditionalEnvironmentProperties
-  >['projectDataLocale'];
+  dataLocale: TProviderProps<AdditionalEnvironmentProperties>['projectDataLocale'];
   permissions: TPermissions; // <-- deprecated option, use `{ project: { allAppliedPermissions } }`
   actionRights: TNormalizedActionRights; // <-- deprecated option, use `{ project: { allAppliedActionRights } }`
   dataFences: TNormalizedDataFences; // <-- deprecated option, use `{ project: { allAppliedDataFences } }`
