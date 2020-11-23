@@ -79,7 +79,7 @@ export const applyTransformedLocalizedFields = <
  * Arguments
  *  - `obj`: that entity
  *  - `key`: the field within `obj` that might contain a localized strings
- *  - `language`: the language key that should be the first choice to show
+ *  - `locale`: the language key that should be the first choice to show
  *  - `fallbackOrder`: an array of language keys which will be tried in the
  *     provided order for any set value
  *  - `fallback`: the final fallback that should be displayed as a last resort.
@@ -87,7 +87,7 @@ export const applyTransformedLocalizedFields = <
  *     provided object.
  *
  * Before `fallback` kicks in, the following is tried to display a meaningful value:
- *  - if `language` is `<language>-<extlang>`, eg. `de-AT`, try if `de` is set
+ *  - if `locale` is `<language>-<extlang>`, eg. `de-AT`, try if `de` is set
  *  - if not, iterate through all languages of project-settings
  *    (passed as `fallbackOrder`) and pick the first one with a value
  *  - if nothing is found, go through all the languages in provided localized
@@ -98,9 +98,9 @@ export const applyTransformedLocalizedFields = <
  *       languages within the same page. This is an accepted downside.
  *
  * NOTE: A missing field is treated like a localied string with no translations:
- *       let a = localize({ obj: { name: { en: '', de: '' } }, language: 'en' })
- *       let b = localize({ obj: {}, language: 'en' })
- *       let c = localize({ obj: undefined, language: 'en' })
+ *       let a = localize({ obj: { name: { en: '', de: '' } }, locale: 'en' })
+ *       let b = localize({ obj: {}, locale: 'en' })
+ *       let c = localize({ obj: undefined, locale: 'en' })
  *       a === b && a === c -> true
  */
 export const localize = <Input extends Record<string, unknown>>({
