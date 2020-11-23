@@ -51,8 +51,10 @@ export const getDisplayName = <Props extends {}>(
 export const getPrimaryLocale = (locale: string): string =>
   locale.split('-')[0];
 
-export const addFallbackHint = (value: string, locale: string): string =>
-  `${value} (${locale.toUpperCase()})`;
+export const formatLocalizedFallbackHint = (
+  value: string,
+  locale: string
+): string => `${value} (${locale.toUpperCase()})`;
 
 export const findFallbackLocale = (
   localizedString: LocalizedString,

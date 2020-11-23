@@ -5,7 +5,11 @@ import {
   FieldNameTranformationMapping,
   LocalizeSignatureOptions,
 } from './types';
-import { getPrimaryLocale, findFallbackLocale, addFallbackHint } from './utils';
+import {
+  getPrimaryLocale,
+  findFallbackLocale,
+  formatLocalizedFallbackHint,
+} from './utils';
 
 /**
  * Transforms a list of `LocalizedField` into a `LocalizedString` object
@@ -119,6 +123,9 @@ export const localize = <Input extends Record<string, unknown>>({
 
   const fallbackLanguage = findFallbackLocale(localizedString, fallbackOrder);
   return fallbackLanguage
-    ? addFallbackHint(localizedString[fallbackLanguage], fallbackLanguage)
+    ? formatLocalizedFallbackHint(
+        localizedString[fallbackLanguage],
+        fallbackLanguage
+      )
     : fallback;
 };
