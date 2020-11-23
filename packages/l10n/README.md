@@ -330,7 +330,7 @@ The default value of `fallback` is a `""`.
 
 #### Fallback order
 
-In **Scenario 2** above, we discussed that `localize` will pick the _next available value_ from `product.name` when there is matching value. In our case, the next available value was `en`.
+In **Scenario 2** above, we discussed that `localize` will pick the _next available value_ from `product.name` when there is no matching value. In our case, the next available value was `en`.
 As Application Developers, it is possible for us to take over control of the next "lookup" of the value, when there is no match (before `localize` proceeds to rendering `fallback` ).
 
 `localize` accepts `fallbackOrder`, and this [test exemplifies the use case and resolve](./src/localize.spec.ts#L151:L170).
