@@ -48,13 +48,13 @@ export const getDisplayName = <Props extends {}>(
   return Component.displayName || Component.name || 'Component';
 };
 
-export const getPrimaryLanguage = (language: string): string =>
-  language.split('-')[0];
+export const getPrimaryLocale = (locale: string): string =>
+  locale.split('-')[0];
 
-export const addFallbackHint = (value: string, language: string): string =>
-  `${value} (${language.toUpperCase()})`;
+export const addFallbackHint = (value: string, locale: string): string =>
+  `${value} (${locale.toUpperCase()})`;
 
-export const findFallbackLanguage = (
+export const findFallbackLocale = (
   localizedString: LocalizedString,
   fallbackOrder: string[]
 ) =>

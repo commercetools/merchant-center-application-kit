@@ -5,11 +5,7 @@ import {
   FieldNameTranformationMapping,
   LocalizeSignatureOptions,
 } from './types';
-import {
-  getPrimaryLanguage,
-  findFallbackLanguage,
-  addFallbackHint,
-} from './utils';
+import { getPrimaryLocale, findFallbackLocale, addFallbackHint } from './utils';
 
 /**
  * Transforms a list of `LocalizedField` into a `LocalizedString` object
@@ -112,7 +108,7 @@ export const applyTransformedLocalizedFields = <
 export const localize = <Input extends Record<string, unknown>>({
   obj: entity,
   key = '',
-  language,
+  locale,
   fallbackOrder = [],
   fallback = '',
 }: LocalizeSignatureOptions<Input>): string => {
@@ -121,13 +117,13 @@ export const localize = <Input extends Record<string, unknown>>({
   if (!entity || !entity[key]) return fallback;
   const localizedString = entity[key] as LocalizedString;
 
-  if (localizedString[language]) return localizedString[language];
+  if (localizedString[locale]) return localizedString[locale];
 
-  // see if we can fallback to the primary language, eg. de for de-AT
-  const primaryLanguage = language && getPrimaryLanguage(language);
-  if (localizedString[primaryLanguage]) return localizedString[primaryLanguage];
+  // see if we can fallback to the primary locale, eg. de for de-AT
+  const primaryLocale = locale && getPrimaryLocale(locale);
+  if (localizedString[primaryLocale]) return localizedString[primaryLocale];
 
-  const fallbackLanguage = findFallbackLanguage(localizedString, fallbackOrder);
+  const fallbackLanguage = findFallbackLocale(localizedString, fallbackOrder);
   return fallbackLanguage
     ? addFallbackHint(localizedString[fallbackLanguage], fallbackLanguage)
     : fallback;

@@ -68,7 +68,7 @@ describe('localize', () => {
     it('should return empty string', () => {
       expect(
         localize({
-          language: 'en',
+          locale: 'en',
           key: 'name',
           obj: undefined,
         })
@@ -80,7 +80,7 @@ describe('localize', () => {
       expect(
         localize({
           obj: { name: undefined },
-          language: 'en',
+          locale: 'en',
           key: 'name',
         })
       ).toBe('');
@@ -96,7 +96,7 @@ describe('localize', () => {
             },
           },
           key: 'localizedStringKey',
-          language: 'de',
+          locale: 'de',
         })
       ).toBe('');
     });
@@ -109,14 +109,14 @@ describe('localize', () => {
             },
           },
           key: 'localizedStringKey',
-          language: 'de',
+          locale: 'de',
           fallback: 'custom fallback',
         })
       ).toBe('custom fallback');
     });
   });
 
-  describe('when localized string has prefered language', () => {
+  describe('when localized string has prefered locale', () => {
     it('should return translation', () => {
       expect(
         localize({
@@ -126,13 +126,13 @@ describe('localize', () => {
             },
           },
           key: 'localizedStringKey',
-          language: 'de-AT',
+          locale: 'de-AT',
         })
       ).toBe('a translation');
     });
   });
 
-  describe('when localized sring has primary language matching preferred (extended) langauge', () => {
+  describe('when localized sring has primary locale matching preferred (extended) langauge', () => {
     it('should return translation', () => {
       expect(
         localize({
@@ -141,15 +141,15 @@ describe('localize', () => {
               de: 'a primary translation',
             },
           },
-          language: 'de-AT',
+          locale: 'de-AT',
           key: 'localizedStringKey',
         })
       ).toBe('a primary translation');
     });
   });
 
-  describe('when preferred language was not provided', () => {
-    it('should fallback to the first language according to fallback order', () => {
+  describe('when preferred locale was not provided', () => {
+    it('should fallback to the first locale according to fallback order', () => {
       expect(
         localize({
           obj: {
@@ -162,15 +162,15 @@ describe('localize', () => {
           },
           key: 'localizedStringKey',
           // @ts-ignore
-          language: undefined,
+          locale: undefined,
           fallbackOrder: ['it', 'fr'],
         })
       ).toBe('it translation (IT)');
     });
   });
 
-  describe('when localized string does not have languages related to preferred language', () => {
-    it('should fallback to the first non-empty language', () => {
+  describe('when localized string does not have locales related to preferred locale', () => {
+    it('should fallback to the first non-empty locale', () => {
       expect(
         localize({
           obj: {
@@ -182,13 +182,13 @@ describe('localize', () => {
             },
           },
           key: 'localizedStringKey',
-          language: 'jp',
+          locale: 'jp',
         })
       ).toBe('fr translation (FR)');
     });
   });
 
-  describe('when localized string has language from provided desired fallback languages order', () => {
+  describe('when localized string has locale from provided desired fallback locales order', () => {
     it('should return first non-empty translation', () => {
       expect(
         localize({
@@ -202,14 +202,14 @@ describe('localize', () => {
           },
           key: 'localizedStringKey',
           fallbackOrder: ['ru', 'it'],
-          language: 'de-AT',
+          locale: 'de-AT',
         })
       ).toBe('it translation (IT)');
     });
   });
 
-  describe('when localized string is missing languages from provided desired fallback languages order', () => {
-    it('should fallback to first present language', () => {
+  describe('when localized string is missing locales from provided desired fallback locales order', () => {
+    it('should fallback to first present locale', () => {
       expect(
         localize({
           obj: {
@@ -221,7 +221,7 @@ describe('localize', () => {
             },
           },
           key: 'localizedStringKey',
-          language: 'de-AT',
+          locale: 'de-AT',
           fallbackOrder: ['ru', 'pl'],
         })
       ).toBe('fr translation (FR)');
