@@ -343,11 +343,9 @@ Given that we want to render `LocalizedString` of a given `Resource`, it is sens
 import { Text } from '@commercetools-frontend/ui-kit';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 
-const { language, projectLanguages } = useApplicationContext(
+const { dataLocale, projectLanguages } = useApplicationContext(
   (applicationContext) => ({
-    // The Application Context exposes the value emitted from the language switcher
-    // as `dataLocale`. We map that to `language` in our source code to make it readable.
-    language: applicationContext.dataLocale,
+    dataLocale: applicationContext.dataLocale,
     // The Application Context also exposes the languages that are defined on the Project settings
     // we can rely on this to determine the fallback order.
     // This helps with consistency, although you can specify the fallback order however you want
@@ -360,9 +358,9 @@ return (
     {localize({
       obj: product,
       key: 'name',
+      locale: dataLocale,
       fallback: '<MY_CUSTOM_FALLBACK>',
       fallbackOrder: projectLanguages,
-      language,
     })}
   </Text.Headline>
 );
