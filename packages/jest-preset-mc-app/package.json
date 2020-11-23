@@ -45,7 +45,7 @@
     "unfetch": "4.2.0"
   },
   "devDependencies": {
-    "@testing-library/react": "11.1.2"
+    "@testing-library/react": "11.2.2"
   },
   "peerDependencies": {
     "@testing-library/react": "9.x || 10.x || 11.x",
