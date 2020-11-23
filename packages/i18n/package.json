@@ -43,7 +43,7 @@
     "react": "16.14.0"
   },
   "peerDependencies": {
-    "@types/react": "16.x",
+    "@types/react": "16.x || 17.x",
     "react": ">=16.8.0"
   }
 }

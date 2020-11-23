@@ -50,7 +50,7 @@
   },
   "peerDependencies": {
     "@apollo/client": "3.x",
-    "@types/react": "16.x",
+    "@types/react": "16.x || 17.x",
     "react": ">=16.8.0"
   },
   "engines": {
