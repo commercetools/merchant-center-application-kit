@@ -55,16 +55,10 @@ export const applyTransformedLocalizedFields = <
     }),
     {}
   );
-  const namesToOmit = fieldNames.reduce<{ [key: string]: string }>(
-    (nextKeysToOmit, field) => ({
-      ...nextKeysToOmit,
-      [field.from]: field.from,
-    }),
-    {}
-  );
+  const namesToOmit = fieldNames.map((fieldName) => fieldName.from);
   const objectWithouLocalizedFields = omit<Input>(
     objectWithLocalizedFields,
-    Object.keys(namesToOmit)
+    namesToOmit
   );
   return {
     ...objectWithouLocalizedFields,
