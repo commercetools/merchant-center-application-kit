@@ -67,7 +67,7 @@
   "peerDependencies": {
     "@commercetools-frontend/ui-kit": "10.x",
     "@types/react": "16.x",
-    "@types/react-dom": "16.x",
+    "@types/react-dom": "16.x || 17.x",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
     "react-intl": "3.x || 4.x || 5.x"

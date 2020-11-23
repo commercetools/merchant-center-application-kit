@@ -112,7 +112,7 @@
     "@testing-library/react": "9.x || 10.x || 11.x",
     "@types/prop-types": "15.x",
     "@types/react": "16.x",
-    "@types/react-dom": "16.x",
+    "@types/react-dom": "16.x || 17.x",
     "@types/react-redux": "7.x",
     "@types/react-router": "5.x",
     "@types/react-router-dom": "5.x",
