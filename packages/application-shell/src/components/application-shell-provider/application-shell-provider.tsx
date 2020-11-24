@@ -26,9 +26,7 @@ import useCoercedEnvironmentValues from './use-coerced-environment-values';
 
 type Props<AdditionalEnvironmentProperties extends {}> = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;
-  environment: TApplicationContext<
-    AdditionalEnvironmentProperties
-  >['environment'];
+  environment: TApplicationContext<AdditionalEnvironmentProperties>['environment'];
   trackingEventList?: TrackingList;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   children: (args: { isAuthenticated: boolean }) => JSX.Element;
@@ -44,9 +42,9 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
   React.useEffect(() => {
     setCachedApolloClient(apolloClient);
   }, [apolloClient]);
-  const coercedEnvironmentValues = useCoercedEnvironmentValues<
-    AdditionalEnvironmentProperties
-  >(props.environment);
+  const coercedEnvironmentValues = useCoercedEnvironmentValues<AdditionalEnvironmentProperties>(
+    props.environment
+  );
   return (
     <ErrorBoundary>
       <ApplicationContextProvider<AdditionalEnvironmentProperties>

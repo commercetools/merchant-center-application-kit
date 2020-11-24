@@ -52,9 +52,9 @@ const useCoercedEnvironmentValues = <
 ): TApplicationContext<AdditionalEnvironmentProperties>['environment'] => {
   const coercedEnvironmentValues = React.useMemo(
     () =>
-      shallowlyCoerceValues(environment) as TApplicationContext<
-        AdditionalEnvironmentProperties
-      >['environment'],
+      shallowlyCoerceValues(
+        environment
+      ) as TApplicationContext<AdditionalEnvironmentProperties>['environment'],
     [environment]
   );
   return coercedEnvironmentValues;

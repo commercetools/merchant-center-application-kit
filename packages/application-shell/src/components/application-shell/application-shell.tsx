@@ -72,9 +72,7 @@ type Props<AdditionalEnvironmentProperties extends {}> = {
    * <ApplicationShell environment={window.app} />
    * ```
    */
-  environment: TApplicationContext<
-    AdditionalEnvironmentProperties
-  >['environment'];
+  environment: TApplicationContext<AdditionalEnvironmentProperties>['environment'];
   featureFlags?: TFlags;
   defaultFeatureFlags?: TFlags;
   trackingEventList?: TrackingList;
@@ -293,9 +291,7 @@ export const RestrictedApplication = <
                                         locale: dataLocale,
                                         setProjectDataLocale,
                                       }) => (
-                                        <ApplicationContextProvider<
-                                          AdditionalEnvironmentProperties
-                                        >
+                                        <ApplicationContextProvider<AdditionalEnvironmentProperties>
                                           user={user}
                                           project={project}
                                           projectDataLocale={dataLocale}
@@ -368,9 +364,7 @@ export const RestrictedApplication = <
                                     return <LoadingNavBar />;
 
                                   return (
-                                    <ApplicationContextProvider<
-                                      AdditionalEnvironmentProperties
-                                    >
+                                    <ApplicationContextProvider<AdditionalEnvironmentProperties>
                                       user={user}
                                       project={project}
                                       environment={applicationEnvironment}
@@ -463,9 +457,7 @@ export const RestrictedApplication = <
                                   path="/:projectKey"
                                   render={(routerProps) => (
                                     <React.Fragment>
-                                      <ProjectContainer<
-                                        AdditionalEnvironmentProperties
-                                      >
+                                      <ProjectContainer<AdditionalEnvironmentProperties>
                                         user={user}
                                         match={routerProps.match}
                                         location={routerProps.location}

@@ -106,38 +106,43 @@ type NormalizedStoresGroupByResourceType = {
 const normalizeAppliedDataFencesForStoresByResourceType = (
   dataFences: Maybe<TStoreDataFence>[]
 ) => {
-  const groupedByResourceType = dataFences.reduce<
-    NormalizedStoresGroupByResourceType
-  >((previousGroupsOfSameType, appliedDataFence) => {
-    if (!appliedDataFence) return previousGroupsOfSameType;
-    const previousGroup = previousGroupsOfSameType[appliedDataFence.group];
-    return {
-      ...previousGroupsOfSameType,
-      [appliedDataFence.group]: [...(previousGroup || []), appliedDataFence],
-    };
-  }, {});
-  return Object.entries(groupedByResourceType).reduce<
-    NormalizedGroupedByResourceType
-  >((previousGroupedByResourceType, [resourceType, dataFences]) => {
-    const groupByDataFenceName = dataFences.reduce<
-      NormalizedGroupedByPermission
-    >((nextDataFenceValues, dataFence) => {
-      const dataFenceByName = nextDataFenceValues[dataFence.name] || {
-        values: [],
-      };
+  const groupedByResourceType = dataFences.reduce<NormalizedStoresGroupByResourceType>(
+    (previousGroupsOfSameType, appliedDataFence) => {
+      if (!appliedDataFence) return previousGroupsOfSameType;
+      const previousGroup = previousGroupsOfSameType[appliedDataFence.group];
       return {
-        ...nextDataFenceValues,
-        [dataFence.name]: {
-          ...dataFenceByName,
-          values: [...dataFenceByName.values, dataFence.value],
-        },
+        ...previousGroupsOfSameType,
+        [appliedDataFence.group]: [...(previousGroup || []), appliedDataFence],
       };
-    }, {});
-    return {
-      ...previousGroupedByResourceType,
-      [resourceType]: groupByDataFenceName,
-    };
-  }, {});
+    },
+    {}
+  );
+  return Object.entries(
+    groupedByResourceType
+  ).reduce<NormalizedGroupedByResourceType>(
+    (previousGroupedByResourceType, [resourceType, dataFences]) => {
+      const groupByDataFenceName = dataFences.reduce<NormalizedGroupedByPermission>(
+        (nextDataFenceValues, dataFence) => {
+          const dataFenceByName = nextDataFenceValues[dataFence.name] || {
+            values: [],
+          };
+          return {
+            ...nextDataFenceValues,
+            [dataFence.name]: {
+              ...dataFenceByName,
+              values: [...dataFenceByName.values, dataFence.value],
+            },
+          };
+        },
+        {}
+      );
+      return {
+        ...previousGroupedByResourceType,
+        [resourceType]: groupByDataFenceName,
+      };
+    },
+    {}
+  );
 };
 
 // input:
