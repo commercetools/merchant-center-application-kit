@@ -1,5 +1,14 @@
 # @commercetools-frontend/permissions
 
+## 17.4.1
+
+### Patch Changes
+
+- [`ec9e10f`](https://github.com/commercetools/merchant-center-application-kit/commit/ec9e10fde15351cc7cb825aaebb53cdb6e00e0d9) [#1889](https://github.com/commercetools/merchant-center-application-kit/pull/1889) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies [[`ec9e10f`](https://github.com/commercetools/merchant-center-application-kit/commit/ec9e10fde15351cc7cb825aaebb53cdb6e00e0d9)]:
+  - @commercetools-frontend/application-shell-connectors@17.4.1
+
 ## 17.3.1
 
 ### Patch Changes

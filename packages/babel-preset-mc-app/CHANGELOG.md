@@ -1,5 +1,13 @@
 # @commercetools-frontend/babel-preset-mc-app
 
+## 17.4.1
+
+### Patch Changes
+
+- [`d832bd4`](https://github.com/commercetools/merchant-center-application-kit/commit/d832bd44c354aaf2374c0c75c9050c673998ff32) [#1876](https://github.com/commercetools/merchant-center-application-kit/pull/1876) Thanks [@renovate](https://github.com/apps/renovate)! - Migrate to emotion v11. https://emotion.sh/docs/emotion-11
+
+* [`ec9e10f`](https://github.com/commercetools/merchant-center-application-kit/commit/ec9e10fde15351cc7cb825aaebb53cdb6e00e0d9) [#1889](https://github.com/commercetools/merchant-center-application-kit/pull/1889) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
 ## 17.3.1
 
 ### Patch Changes
