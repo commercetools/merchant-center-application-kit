@@ -3,7 +3,7 @@ import {
   LocalizedString,
   LocalizedField,
   FieldNameTranformationMapping,
-  LocalizeSignatureOptions,
+  FormatLocalizedStringOptions,
 } from './types';
 import {
   getPrimaryLocale,
@@ -110,7 +110,7 @@ export const formatLocalizedString = <Input extends Record<string, unknown>>(
     locale,
     fallbackOrder = [],
     fallback = '',
-  }: LocalizeSignatureOptions<Input>
+  }: FormatLocalizedStringOptions<Input>
 ): string => {
   // if there is no entity to be localized or the field does not exist on the
   // entity, then return the fallback

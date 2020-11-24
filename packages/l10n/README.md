@@ -227,9 +227,9 @@ As discussed under `applyTransformedLocalizedFields`, a `LocalizedString` is a v
 const product = {
   name: {
     en: 'Milk',
-    de: 'Milsch,
-  }
-}
+    de: 'Milch',
+  },
+};
 ```
 
 When rendering a Product in a view, we would like to render the value of a localized string field, such as `name`, given the selected **data locale** of the UI.
