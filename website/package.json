@@ -13,9 +13,9 @@
   "dependencies": {
     "@commercetools-docs/gatsby-theme-docs": "10.0.2",
     "@commercetools-docs/ui-kit": "10.0.2",
-    "@commercetools-uikit/card": "10.42.1",
-    "@commercetools-uikit/spacings-inline": "10.42.1",
-    "@commercetools-uikit/spacings-stack": "10.42.1",
+    "@commercetools-uikit/card": "10.42.2",
+    "@commercetools-uikit/spacings-inline": "10.42.2",
+    "@commercetools-uikit/spacings-stack": "10.42.2",
     "@emotion/react": "11.1.1",
     "@emotion/styled": "11.0.0",
     "gatsby": "2.27.0",
