@@ -212,11 +212,11 @@ return (
 );
 ```
 
-### `localize` (DRAFT)
+### `formatLocalizedString` (DRAFT)
 
 > Transforms a `LocalizedString` to a String
 
-The `localize` util is a util we use internally inside the Merchant Center.
+The `formatLocalizedString` util is a util we use internally inside the Merchant Center.
 This util is at the moment subject to change, hence marked as Draft. Use with caution in your Custom Application.
 
 #### Context
@@ -235,9 +235,9 @@ const product = {
 When rendering a Product in a view, we would like to render the value of a localized string field, such as `name`, given the selected **data locale** of the UI.
 The **data locale** is a value controlled by the Merchant Center User (MC User) by changing the **data locale switcher** in the top bar of the Merchant Center. The list of available options is derived by the list of languages specified in the project. The selected value can be read from the **application context**.
 
-However, there might be a case where the selected **data locale** does not match any of the localized string values. In this case, it would be helpful to display a "fallback" value using the `localize` function.
+However, there might be a case where the selected **data locale** does not match any of the localized string values. In this case, it would be helpful to display a "fallback" value using the `formatLocalizedString` function.
 
-The `localize` util is authored with a couple of things in mind:
+The `formatLocalizedString` util is authored with a couple of things in mind:
 
 1. Help us Custom Application developers remain resilient as we attempt to derive a value of `LocalizedString` given a specified locale.
 2. Help us Custom Application developers remain consistent when rendering a value derived from `LocalizedString`.
@@ -262,8 +262,7 @@ const product = {
 Given that selected **data locale** of `de`
 
 ```js
-const translatedName = localize({
-  obj: product,
+const translatedName = formatLocalizedString(product, {
   key: 'name',
   locale: 'de',
 });
@@ -277,8 +276,7 @@ console.log(translatedName);
 Given that selected **data locale** of `sv`
 
 ```js
-const translatedName = localize({
-  obj: product,
+const translatedName = formatLocalizedString(product, {
   key: 'name',
   locale: 'sv',
 });
@@ -289,15 +287,14 @@ console.log(translatedName);
 
 **What happened?**
 
-Our product has no value for the selected **data locale** `sv`. The `localize` function selects the "next available value" from `product.name`, in this case `en`, and returns it with a hint `(EN)` that this value refers to another locale.
+Our product has no value for the selected **data locale** `sv`. The `formatLocalizedString` function selects the "next available value" from `product.name`, in this case `en`, and returns it with a hint `(EN)` that this value refers to another locale.
 
 ##### Scenario 3
 
 Given that selected **data locale** of `de-AT`
 
 ```js
-const translatedName = localize({
-  obj: product,
+const translatedName = formatLocalizedString(product, {
   key: 'name',
   locale: 'de-AT',
 });
@@ -309,14 +306,14 @@ console.log(translatedName);
 **What happened?**
 
 Our product has no matching value for the selected **data locale** `de-AT` but we still got `"Milch"`.
-This is because `localize` attempts to determine a **primary language tag** on the option `locale` and match that to the available values. Given that `de` is a [primary](https://en.wikipedia.org/wiki/IETF_language_tag) of `de-AT`, it determines that this is the _closest available value_ from `product.name`
+This is because `formatLocalizedString` attempts to determine a **primary language tag** on the option `locale` and match that to the available values. Given that `de` is a [primary](https://en.wikipedia.org/wiki/IETF_language_tag) of `de-AT`, it determines that this is the _closest available value_ from `product.name`
 
 #### Fallback
 
-Given that `localize` can not handle all scenario exemplified above, we can specify a `fallback` as a last resort:
+Given that `formatLocalizedString` can not handle all scenario exemplified above, we can specify a `fallback` as a last resort:
 
 ```js
-const translatedName = localize({
+const translatedName = formatLocalizedString(product, {
   obj: product,
   key: 'name',
   locale: 'sv',
@@ -328,14 +325,14 @@ The default value of `fallback` is a `""`.
 
 #### Fallback order
 
-In **Scenario 2** above, we discussed that `localize` will pick the "next available value" from `product.name` when there is no matching value. In our case, the next available value was the locale `en`.
-As Custom Application developers, it is possible for us to take control of the "next lookup" of the value, when there is no match (before `localize` proceeds to rendering  what is specified as `fallback`).
+In **Scenario 2** above, we discussed that `formatLocalizedString` will pick the "next available value" from `product.name` when there is no matching value. In our case, the next available value was the locale `en`.
+As Custom Application developers, it is possible for us to take control of the "next lookup" of the value, when there is no match (before `formatLocalizedString` proceeds to rendering what is specified as `fallback`).
 
-`localize` accepts `fallbackOrder`, and this [test exemplifies the use case and resolve](./src/localize.spec.ts#L151:L170).
+`formatLocalizedString` accepts `fallbackOrder`, and this [test exemplifies the use case and resolve](./src/localize.spec.ts#L151:L170).
 
 #### When to use it
 
-Given that we want to render `LocalizedString` of a given `Resource`, it is sensible to rely on `localize` in conjunction with the Application Context.
+Given that we want to render `LocalizedString` of a given `Resource`, it is sensible to rely on `formatLocalizedString` in conjunction with the Application Context.
 
 ```js
 import Text from '@commercetools-uikit/text';
@@ -353,8 +350,7 @@ const { dataLocale, projectLanguages } = useApplicationContext(
 
 return (
   <Text.Headline>
-    {localize({
-      obj: product,
+    {formatLocalizedString(product, {
       key: 'name',
       locale: dataLocale,
       fallback: '<MY_CUSTOM_FALLBACK>',

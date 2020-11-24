@@ -98,18 +98,20 @@ export const applyTransformedLocalizedFields = <
  *       languages within the same page. This is an accepted downside.
  *
  * NOTE: A missing field is treated like a localied string with no translations:
- *       let a = localize({ obj: { name: { en: '', de: '' } }, locale: 'en' })
- *       let b = localize({ obj: {}, locale: 'en' })
- *       let c = localize({ obj: undefined, locale: 'en' })
+ *       let a = formatLocalizedString({ name: { en: '', de: '' } }, { locale: 'en' })
+ *       let b = formatLocalizedString({}, { locale: 'en' })
+ *       let c = formatLocalizedString(undefined, { locale: 'en' })
  *       a === b && a === c -> true
  */
-export const localize = <Input extends Record<string, unknown>>({
-  obj: entity,
-  key = '',
-  locale,
-  fallbackOrder = [],
-  fallback = '',
-}: LocalizeSignatureOptions<Input>): string => {
+export const formatLocalizedString = <Input extends Record<string, unknown>>(
+  entity: Input | null,
+  {
+    key = '',
+    locale,
+    fallbackOrder = [],
+    fallback = '',
+  }: LocalizeSignatureOptions<Input>
+): string => {
   // if there is no entity to be localized or the field does not exist on the
   // entity, then return the fallback
   if (!entity || !entity[key]) return fallback;
