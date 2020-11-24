@@ -232,17 +232,15 @@ const product = {
 }
 ```
 
-When rendering a Product in a view, we would like to render the value of `name` given the `language` of the UI.
-The `language` is a value controlled by the Merchant Center User (MC User) by updating the language switcher on the Application Bar of the Merchant Center.
+When rendering a Product in a view, we would like to render the value of a localized string field, such as `name`, given the selected **data locale** of the UI.
+The **data locale** is a value controlled by the Merchant Center User (MC User) by changing the **data locale switcher** in the top bar of the Merchant Center. The list of available options is derived by the list of languages specified in the project. The selected value can be read from the **application context**.
 
-The language switcher emits a value that is intended to help us Application Developers display the Resource data (`Product` in our example) in the specified language. Given that the `product.name` has a value of the specified `language`, we can easily pick the value from the `product.name`.
-
-However there are scenarios where the MC User updates the language switcher to a value that our Product example has no matching value. What then? This is where `localize` plays its role.
+However, there might be a case where the selected **data locale** does not match any of the localized string values. In this case, it would be helpful to display a "fallback" value using the `localize` function.
 
 The `localize` util is authored with a couple of things in mind:
 
-1. Help us Application Developers remain resilient as we attempt to derive a value of `LocalizedString` given a specified language.
-2. Help us Application Developers remain consistent when rendering a value derived from `LocalizedString`
+1. Help us Custom Application developers remain resilient as we attempt to derive a value of `LocalizedString` given a specified locale.
+2. Help us Custom Application developers remain consistent when rendering a value derived from `LocalizedString`.
 
 Let's take a look at the examples below to put this to action.
 
