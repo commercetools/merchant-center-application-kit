@@ -252,35 +252,35 @@ All examples below will use the following `Product`:
 const product = {
   name: {
     en: 'Milk',
-    de: 'Milsch,
+    de: 'Milch,
   }
 }
 ```
 
 ##### Scenario 1
 
-Given that specified `language=de`
+Given that selected **data locale** of `de`
 
 ```js
 const translatedName = localize({
   obj: product,
   key: 'name',
-  language: 'de',
+  locale: 'de',
 });
 
 console.log(translatedName);
-// 'Milsch'
+// 'Milch'
 ```
 
 ##### Scenario 2
 
-Given that specified `language=sv`
+Given that selected **data locale** of `sv`
 
 ```js
 const translatedName = localize({
   obj: product,
   key: 'name',
-  language: 'sv',
+  locale: 'sv',
 });
 
 console.log(translatedName);
@@ -289,27 +289,27 @@ console.log(translatedName);
 
 **What happened?**
 
-Our product has no value for the specified language `sv`, what `localize` will do for us as Application Developers is _pick the next available value_ from `product.name`.
+Our product has no value for the selected **data locale** `sv`. The `localize` function selects the "next available value" from `product.name`, in this case `en`, and returns it with a hint `(EN)` that this value refers to another locale.
 
 ##### Scenario 3
 
-Given that specified `language=de-AT`
+Given that selected **data locale** of `de-AT`
 
 ```js
 const translatedName = localize({
   obj: product,
   key: 'name',
-  language: 'de-AT',
+  locale: 'de-AT',
 });
 
 console.log(translatedName);
-// 'Milsch'
+// 'Milch'
 ```
 
 **What happened?**
 
-Our product has no value for the specified language `de-AT` so there is no match, but we still got `"Milsch"`.
-This is because `localize` attempts to determine a **primary language** on the input `language` and match that to the available values. Given that `de` is a [primary](https://en.wikipedia.org/wiki/IETF_language_tag) of `de-AT`, it determines that this is the _closest available value_ from `product.name`
+Our product has no matching value for the selected **data locale** `de-AT` but we still got `"Milch"`.
+This is because `localize` attempts to determine a **primary language tag** on the option `locale` and match that to the available values. Given that `de` is a [primary](https://en.wikipedia.org/wiki/IETF_language_tag) of `de-AT`, it determines that this is the _closest available value_ from `product.name`
 
 #### Fallback
 
@@ -319,7 +319,7 @@ Given that `localize` can not handle all scenario exemplified above, we can spec
 const translatedName = localize({
   obj: product,
   key: 'name',
-  language: 'sv',
+  locale: 'sv',
   fallback: '-',
 });
 ```
@@ -328,8 +328,8 @@ The default value of `fallback` is a `""`.
 
 #### Fallback order
 
-In **Scenario 2** above, we discussed that `localize` will pick the _next available value_ from `product.name` when there is no matching value. In our case, the next available value was `en`.
-As Application Developers, it is possible for us to take over control of the next "lookup" of the value, when there is no match (before `localize` proceeds to rendering `fallback` ).
+In **Scenario 2** above, we discussed that `localize` will pick the "next available value" from `product.name` when there is no matching value. In our case, the next available value was the locale `en`.
+As Custom Application developers, it is possible for us to take control of the "next lookup" of the value, when there is no match (before `localize` proceeds to rendering  what is specified as `fallback`).
 
 `localize` accepts `fallbackOrder`, and this [test exemplifies the use case and resolve](./src/localize.spec.ts#L151:L170).
 
@@ -338,7 +338,7 @@ As Application Developers, it is possible for us to take over control of the nex
 Given that we want to render `LocalizedString` of a given `Resource`, it is sensible to rely on `localize` in conjunction with the Application Context.
 
 ```js
-import { Text } from '@commercetools-frontend/ui-kit';
+import Text from '@commercetools-uikit/text';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 
 const { dataLocale, projectLanguages } = useApplicationContext(
