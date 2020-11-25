@@ -2,10 +2,34 @@ import { css } from '@emotion/react';
 import { customProperties } from '@commercetools-uikit/design-system';
 
 type StyleProps = {
-  size: 'm' | 'l' | 'scale';
+  size: 'm' | 'l' | 7 | 8 | 9 | 10 | 'scale';
+};
+
+const getConstraintForGridStyle = (size: StyleProps['size']) => {
+  switch (size) {
+    case 7 || 'm':
+      return customProperties.constraint7;
+    case 8:
+      return customProperties.constraint8;
+    case 9:
+      return customProperties.constraint9;
+    case 10 || 'l':
+      return customProperties.constraint10;
+    case 'scale':
+      return customProperties.constraintScale;
+    default:
+      return customProperties.constraintScale;
+  }
 };
 
 export const getModalContentStyles = (props: StyleProps) => {
+  const gridContentStyles = () =>
+    props.size === 'scale'
+      ? `[row3-end] / ${customProperties.spacingXl} 1fr ${customProperties.spacingXl}`
+      : `[row3-end] / minmax(${customProperties.spacingXl}, 1fr)
+      ${getConstraintForGridStyle(props.size)}
+      minmax(${customProperties.spacingXl}, 1fr)`;
+
   // To ensure that the mouse click on the overlay surface goes "through"
   // and triggers the modal to close, we need to turn off the pointer events.
   const baseStyles = css`
@@ -14,76 +38,18 @@ export const getModalContentStyles = (props: StyleProps) => {
     width: 100%;
     outline: none;
     pointer-events: none;
-  `;
-  switch (props.size) {
-    case 'm':
-      return [
-        baseStyles,
-        css`
-          grid:
-            [row1-start] 'top top top' minmax(
-              ${customProperties.spacingXl},
-              1fr
-            )
-            [row1-end]
-            [row2-start] 'left main right' minmax(0, 100%) [row2-end]
-            [row3-start] 'bottom bottom bottom' minmax(
-              ${customProperties.spacingXl},
-              1fr
-            )
-            [row3-end]
-            / minmax(${customProperties.spacingXl}, 1fr)
-            ${customProperties.constraintM} minmax(
-              ${customProperties.spacingXl},
-              1fr
-            );
-        `,
-      ];
-    case 'scale':
-      return [
-        baseStyles,
-        css`
-          grid:
-            [row1-start] 'top top top' minmax(
-              ${customProperties.spacingXl},
-              1fr
-            )
-            [row1-end]
-            [row2-start] 'left main right' minmax(0, 100%) [row2-end]
-            [row3-start] 'bottom bottom bottom' minmax(
-              ${customProperties.spacingXl},
-              1fr
-            )
-            [row3-end]
-            / ${customProperties.spacingXl} 1fr ${customProperties.spacingXl};
-        `,
-      ];
 
-    default:
-      // size: l
-      return [
-        baseStyles,
-        css`
-          grid:
-            [row1-start] 'top top top' minmax(
-              ${customProperties.spacingXl},
-              1fr
-            )
-            [row1-end]
-            [row2-start] 'left main right' minmax(0, 100%) [row2-end]
-            [row3-start] 'bottom bottom bottom' minmax(
-              ${customProperties.spacingXl},
-              1fr
-            )
-            [row3-end]
-            / minmax(${customProperties.spacingXl}, 1fr)
-            ${customProperties.constraintL} minmax(
-              ${customProperties.spacingXl},
-              1fr
-            );
-        `,
-      ];
-  }
+    grid:
+      [row1-start] 'top top top' minmax(${customProperties.spacingXl}, 1fr)
+      [row1-end]
+      [row2-start] 'left main right' minmax(0, 100%) [row2-end]
+      [row3-start] 'bottom bottom bottom' minmax(
+        ${customProperties.spacingXl},
+        1fr
+      )
+      ${gridContentStyles()};
+  `;
+  return baseStyles;
 };
 
 export const getModalOverlayStyles = () => css`
