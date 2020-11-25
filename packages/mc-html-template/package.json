@@ -15,10 +15,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/commercetools-frontend-mc-html-template.cjs.js",
-  "module": "dist/commercetools-frontend-mc-html-template.esm.js",
+  "main": "./build/index.js",
   "files": [
-    "dist",
+    "build",
     "html-scripts",
     "html-styles",
     "webpack.js",
@@ -26,6 +25,11 @@
     "LICENSE",
     "README.md"
   ],
+  "scripts": {
+    "prebuild": "rimraf build/**",
+    "build": "babel src --out-dir build",
+    "build:bundles:watch": "yarn build -w"
+  },
   "dependencies": {
     "@babel/runtime": "7.12.5",
     "@babel/runtime-corejs3": "7.12.5",
@@ -35,8 +39,35 @@
     "uglify-es": "3.3.9",
     "uglifycss": "0.0.29"
   },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "7.12.1",
+    "@babel/preset-env": "7.12.7"
+  },
   "engines": {
     "node": ">=10",
     "npm": ">=5"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "10"
+          },
+          "modules": "commonjs",
+          "useBuiltIns": "usage",
+          "corejs": 3
+        }
+      ]
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-transform-runtime",
+        {
+          "corejs": 3
+        }
+      ]
+    ]
   }
 }
