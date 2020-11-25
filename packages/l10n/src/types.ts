@@ -24,9 +24,7 @@ export type LocalizedField = {
   value: string;
 };
 
-export type LocalizedString = {
-  [key: string]: string;
-};
+export type LocalizedString = Record<string, string>;
 
 export type FieldNameTranformationMapping = {
   from: string;
