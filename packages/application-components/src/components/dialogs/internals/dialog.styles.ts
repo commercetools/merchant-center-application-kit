@@ -23,11 +23,11 @@ const getConstraintForGridStyle = (size: StyleProps['size']) => {
 };
 
 export const getModalContentStyles = (props: StyleProps) => {
-  const gridContentStyles = () =>
-    props.size === 'scale'
-      ? `[row3-end] / ${customProperties.spacingXl} 1fr ${customProperties.spacingXl}`
-      : `[row3-end] / minmax(${customProperties.spacingXl}, 1fr)
-      ${getConstraintForGridStyle(props.size)}
+  const sizeConstraint = getConstraintForGridStyle(props.size)
+  const gridSize = props.size === 'scale'
+      ? css`[row3-end] / ${customProperties.spacingXl} 1fr ${customProperties.spacingXl}`
+      : css`[row3-end] / minmax(${customProperties.spacingXl}, 1fr)
+      ${sizeConstraint}
       minmax(${customProperties.spacingXl}, 1fr)`;
 
   // To ensure that the mouse click on the overlay surface goes "through"
@@ -47,7 +47,7 @@ export const getModalContentStyles = (props: StyleProps) => {
         ${customProperties.spacingXl},
         1fr
       )
-      ${gridContentStyles()};
+      ${gridSize};
   `;
   return baseStyles;
 };
