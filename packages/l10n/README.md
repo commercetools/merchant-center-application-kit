@@ -123,7 +123,7 @@ The `LocalizedString` is a type reserved for values found in a [Resource](https:
 
 The documented `LocalizedString` in [https://docs.commercetools.com](https://docs.commercetools.com/) is a specification of the HTTP API.
 
-However, the commercetools platform `/graphql` API represents the `LocalizedString` in a different format as a list, for technical reasons.
+However, the commercetools platform `/graphql` API represents the `LocalizedString` as a list of the same name.
 
 ```js
 // Product, returned from the `/graphql` API of commercetools platform
@@ -216,8 +216,7 @@ return (
 
 > Transforms a `LocalizedString` to a String
 
-The `formatLocalizedString` util is a util we use internally inside the Merchant Center.
-This util is at the moment subject to change, hence marked as Draft. Use with caution in your Custom Application.
+The `formatLocalizedString` util is a util we use internally inside the Merchant Center. This util is at the moment subject to change, hence marked as `Draft`.
 
 #### Context
 
@@ -332,7 +331,7 @@ Custom Application developers can take full control over the order of attempted 
 
 #### When to use it
 
-Given that we want to render `LocalizedString` of a given `Resource`, it is sensible to rely on `formatLocalizedString` in conjunction with the Application Context. A user usually has a defined preference of languages we can use. 
+Given that we want to render `LocalizedString` of a given `Resource`, it is sensible to rely on `formatLocalizedString` in conjunction with the Application Context. A user usually has a defined preference of languages we can use.
 
 ```js
 import Text from '@commercetools-uikit/text';
