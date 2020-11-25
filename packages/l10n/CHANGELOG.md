@@ -1,5 +1,11 @@
 # @commercetools-frontend/l10n
 
+## 17.5.0
+
+### Minor Changes
+
+- [`a8e2202`](https://github.com/commercetools/merchant-center-application-kit/commit/a8e2202d74bb28cc90bbf51e8c46a2128229599a) [#1885](https://github.com/commercetools/merchant-center-application-kit/pull/1885) Thanks [@adnasa](https://github.com/adnasa)! - feature: add `applyTransformedLocalizedFields` to `l10n`
+
 ## 17.4.1
 
 ### Patch Changes
