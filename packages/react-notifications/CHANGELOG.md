@@ -1,5 +1,11 @@
 # @commercetools-frontend/react-notifications
 
+## 17.5.0
+
+### Patch Changes
+
+- [`bf5f71e`](https://github.com/commercetools/merchant-center-application-kit/commit/bf5f71e663a91d68d777d26ed3145bc96bbf2aa4) [#1896](https://github.com/commercetools/merchant-center-application-kit/pull/1896) Thanks [@emmenko](https://github.com/emmenko)! - Update docs-kit dependencies to v11, which supports emotion v11. As a result, the appkit bundles are using the correct emotion dependencies.
+
 ## 17.4.1
 
 ### Patch Changes
