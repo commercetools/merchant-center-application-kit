@@ -73,6 +73,8 @@
       "**/@commercetools-docs/gatsby-theme-docs/@commercetools-uikit/**",
       "**/@commercetools-docs/gatsby-theme-docs/@commercetools-uikit/select-utils",
       "**/@commercetools-docs/gatsby-theme-docs/@commercetools-uikit/select-utils/**",
+      "**/@commercetools-docs/ui-kit",
+      "**/@commercetools-docs/ui-kit/**",
       "**/@emotion/core",
       "**/@emotion/core/**",
       "**/gatsby-plugin-emotion",
