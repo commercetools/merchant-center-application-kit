@@ -1,4 +1,4 @@
-import type { Currencies } from './types';
+import type { Currencies, LocalizedString } from './types';
 
 export const mapLocaleToIntlLocale = (locale: string) => {
   if (locale.startsWith('de')) return 'de';
@@ -47,3 +47,19 @@ export const getDisplayName = <Props extends {}>(
 
   return Component.displayName || Component.name || 'Component';
 };
+
+export const getPrimaryLocale = (locale: string): string =>
+  locale.split('-')[0];
+
+export const formatLocalizedFallbackHint = (
+  value: string,
+  locale: string
+): string => `${value} (${locale.toUpperCase()})`;
+
+export const findFallbackLocale = (
+  localizedString: LocalizedString,
+  fallbackOrder: string[]
+) =>
+  fallbackOrder
+    .concat(Object.keys(localizedString))
+    .find((lang) => Boolean(localizedString[lang]));

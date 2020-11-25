@@ -34,6 +34,8 @@
     "@babel/runtime-corejs3": "7.12.5",
     "@commercetools-frontend/sentry": "17.4.1",
     "@types/prop-types": "^15.7.3",
+    "lodash": "4.17.20",
+    "lodash-es": "4.17.15",
     "moment": "^2.24.0",
     "prop-types": "15.7.2"
   },

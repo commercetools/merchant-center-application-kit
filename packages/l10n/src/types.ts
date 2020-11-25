@@ -18,3 +18,22 @@ export type TimeZone = {
   offset: string;
 };
 export type TimeZones = Record<string, TimeZone>;
+
+export type LocalizedField = {
+  locale: string;
+  value: string;
+};
+
+export type LocalizedString = Record<string, string>;
+
+export type FieldNameTranformationMapping = {
+  from: string;
+  to: string;
+};
+
+export type FormatLocalizedStringOptions<T> = {
+  key: keyof T;
+  locale: string;
+  fallbackOrder?: string[];
+  fallback?: string;
+};
