@@ -1,2 +1,5 @@
 // For backwards compatibilty
-module.exports = require('../build/config/create-webpack-config-for-development');
+const {
+  createWebpackConfigForDevelopment,
+} = require('../dist/commercetools-frontend-mc-scripts.cjs');
+module.exports = createWebpackConfigForDevelopment;

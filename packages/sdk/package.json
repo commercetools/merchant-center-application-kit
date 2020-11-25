@@ -15,20 +15,14 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./dist/sdk.cjs.js",
-  "module": "./dist/sdk.es.js",
-  "typings": "./dist/typings/index.d.ts",
-  "types": "./dist/typings/index.d.ts",
+  "preconstruct": {
+    "entrypoints": ["./index.ts", "./test-utils/index.ts"]
+  },
+  "main": "dist/commercetools-frontend-sdk.cjs.js",
+  "module": "dist/commercetools-frontend-sdk.esm.js",
   "files": ["dist", "test-utils", "package.json", "LICENSE", "README.md"],
   "scripts": {
-    "prepare": "./../../scripts/version.js replace",
-    "prebuild": "rimraf dist/** test-utils/**",
-    "build": "yarn build:bundles && yarn build:test-utils && yarn build:typings",
-    "build:bundles": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js -i ./src/index.ts",
-    "build:bundles:watch": "yarn build:bundles -w",
-    "build:test-utils": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js -i ./src/test-utils/index.ts",
-    "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings",
-    "postbuild:typings": "echo \"export * from '../dist/typings/test-utils';\" > test-utils/index.d.ts"
+    "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
     "@babel/runtime": "7.12.5",
@@ -44,7 +38,8 @@
     "fast-equals": "2.0.0",
     "prop-types": "15.7.2",
     "qss": "2.0.3",
-    "unfetch": "4.2.0"
+    "unfetch": "4.2.0",
+    "uuid": "8.3.1"
   },
   "devDependencies": {
     "@types/enzyme": "3.10.8",
@@ -52,8 +47,7 @@
     "react": "16.14.0",
     "react-redux": "7.2.2",
     "redux": "4.0.5",
-    "redux-thunk": "2.3.0",
-    "uuid": "8.3.1"
+    "redux-thunk": "2.3.0"
   },
   "peerDependencies": {
     "@types/react": "16.x",

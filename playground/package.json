@@ -35,7 +35,6 @@
     "@commercetools-uikit/spacings": "10.42.2",
     "@commercetools-uikit/text": "10.42.2",
     "lodash": "4.17.20",
-    "lodash-es": "4.17.15",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.26",
     "normalizr": "3.6.1",

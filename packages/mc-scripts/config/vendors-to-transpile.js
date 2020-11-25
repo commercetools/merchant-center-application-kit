@@ -1,2 +1,5 @@
 // For backwards compatibilty
-module.exports = require('../build/config/vendors-to-transpile');
+const {
+  vendorsToCompile,
+} = require('../dist/commercetools-frontend-mc-scripts.cjs');
+module.exports = vendorsToCompile;

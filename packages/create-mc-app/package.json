@@ -15,6 +15,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "main": "dist/commercetools-frontend-create-mc-app.cjs.js",
+  "module": "dist/commercetools-frontend-create-mc-app.esm.js",
+  "files": ["bin", "dist", "package.json", "LICENSE", "README.md"],
   "bin": {
     "create-mc-app": "./bin/create-mc-app.js"
   },

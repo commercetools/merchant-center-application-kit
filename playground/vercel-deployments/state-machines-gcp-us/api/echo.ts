@@ -8,7 +8,8 @@ import {
 } from '@commercetools-backend/express';
 
 const sessionAuthVerifier = createSessionAuthVerifier({
-  audience: process.env.PLAYGROUND_API_AUDIENCE,
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  audience: process.env.PLAYGROUND_API_AUDIENCE!,
   issuer: CLOUD_IDENTIFIERS.GCP_EU,
   inferIssuer: true,
 });

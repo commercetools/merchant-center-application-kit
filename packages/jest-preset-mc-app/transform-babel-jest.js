@@ -8,6 +8,8 @@ const mcAppBabelConfig = getBabePresetConfigForMcApp(null, {
 });
 
 const jestBabelConfig = {
+  // Avoid to look for the `babel.config.js`.
+  configFile: false,
   ...mcAppBabelConfig,
   plugins: [...mcAppBabelConfig.plugins, ...getJestBabelPreset().plugins],
 };
