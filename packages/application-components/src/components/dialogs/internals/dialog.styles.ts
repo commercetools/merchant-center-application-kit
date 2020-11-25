@@ -23,12 +23,39 @@ const getConstraintForGridStyle = (size: StyleProps['size']) => {
 };
 
 export const getModalContentStyles = (props: StyleProps) => {
-  const sizeConstraint = getConstraintForGridStyle(props.size)
-  const gridSize = props.size === 'scale'
-      ? css`[row3-end] / ${customProperties.spacingXl} 1fr ${customProperties.spacingXl}`
-      : css`[row3-end] / minmax(${customProperties.spacingXl}, 1fr)
-      ${sizeConstraint}
-      minmax(${customProperties.spacingXl}, 1fr)`;
+  const sizeConstraint = getConstraintForGridStyle(props.size);
+  const gridStyle =
+    props.size === 'scale'
+      ? css`
+          grid:
+            [row1-start] 'top top top' minmax(
+              ${customProperties.spacingXl},
+              1fr
+            )
+            [row1-end]
+            [row2-start] 'left main right' minmax(0, 100%) [row2-end]
+            [row3-start] 'bottom bottom bottom' minmax(
+              ${customProperties.spacingXl},
+              1fr
+            )
+            [row3-end] / ${customProperties.spacingXl} 1fr ${customProperties.spacingXl};
+        `
+      : css`
+          grid:
+            [row1-start] 'top top top' minmax(
+              ${customProperties.spacingXl},
+              1fr
+            )
+            [row1-end]
+            [row2-start] 'left main right' minmax(0, 100%) [row2-end]
+            [row3-start] 'bottom bottom bottom' minmax(
+              ${customProperties.spacingXl},
+              1fr
+            )
+            [row3-end] / minmax(${customProperties.spacingXl}, 1fr)
+            ${sizeConstraint}
+            minmax(${customProperties.spacingXl}, 1fr);
+        `;
 
   // To ensure that the mouse click on the overlay surface goes "through"
   // and triggers the modal to close, we need to turn off the pointer events.
@@ -39,15 +66,7 @@ export const getModalContentStyles = (props: StyleProps) => {
     outline: none;
     pointer-events: none;
 
-    grid:
-      [row1-start] 'top top top' minmax(${customProperties.spacingXl}, 1fr)
-      [row1-end]
-      [row2-start] 'left main right' minmax(0, 100%) [row2-end]
-      [row3-start] 'bottom bottom bottom' minmax(
-        ${customProperties.spacingXl},
-        1fr
-      )
-      ${gridSize};
+    ${gridStyle};
   `;
   return baseStyles;
 };
