@@ -235,14 +235,14 @@ const product = {
 When rendering a Product in a view, we would like to render the value of a localized string field, such as `name`, given the selected **data locale** of the UI.
 The **data locale** is a value controlled by the Merchant Center User (MC User) by changing the **data locale switcher** in the top bar of the Merchant Center. The list of available options is derived by the list of languages specified in the project. The selected value can be read from the **application context**.
 
-However, there might be a case where the selected **data locale** does not match any of the localized string values. In this case, it would be helpful to display a "fallback" value using the `formatLocalizedString` function.
+However, there might be a case where the selected **data locale** does not match any of the localized string values. In this case, it is recommended to display a "fallback" value using the `formatLocalizedString` function.
 
-The `formatLocalizedString` util is authored with a couple of things in mind:
+The `formatLocalizedString` util is authored with the following in mind:
 
 1. Help us Custom Application developers remain resilient as we attempt to derive a value of `LocalizedString` given a specified locale.
 2. Help us Custom Application developers remain consistent when rendering a value derived from `LocalizedString`.
 
-Let's take a look at the examples below to put this to action.
+Let us take a look at the examples below putting this to action.
 
 #### Example usage
 
@@ -287,7 +287,7 @@ console.log(translatedName);
 
 **What happened?**
 
-Our product has no value for the selected **data locale** `sv`. The `formatLocalizedString` function selects the "next available value" from `product.name`, in this case `en`, and returns it with a hint `(EN)` that this value refers to another locale.
+Our product has no value for the selected **data locale** `sv`. The `formatLocalizedString` function selects the "next available value" (more details on the order below) from `product.name`. In this case it's `en`, and returns it with a hint `(EN)` that this value refers to another locale.
 
 ##### Scenario 3
 
@@ -310,7 +310,7 @@ This is because `formatLocalizedString` attempts to determine a **primary langua
 
 #### Fallback
 
-Given that `formatLocalizedString` can not handle all scenario exemplified above, we can specify a `fallback` as a last resort:
+To provide even more freedom beyond cases mentioned above the `formatLocalizedString` allows specifying a `fallback` as a last resort:
 
 ```js
 const translatedName = formatLocalizedString(product, {
@@ -326,13 +326,13 @@ The default value of `fallback` is a `""`.
 #### Fallback order
 
 In **Scenario 2** above, we discussed that `formatLocalizedString` will pick the "next available value" from `product.name` when there is no matching value. In our case, the next available value was the locale `en`.
-As Custom Application developers, it is possible for us to take control of the "next lookup" of the value, when there is no match (before `formatLocalizedString` proceeds to rendering what is specified as `fallback`).
+Custom Application developers can take full control over the order of attempted lookups of the value while there is no match. Before `formatLocalizedString` eventually proceeds to rendering what is specified as `fallback`.
 
 `formatLocalizedString` accepts `fallbackOrder`, and this [test exemplifies the use case and resolve](./src/localize.spec.ts#L151:L170).
 
 #### When to use it
 
-Given that we want to render `LocalizedString` of a given `Resource`, it is sensible to rely on `formatLocalizedString` in conjunction with the Application Context.
+Given that we want to render `LocalizedString` of a given `Resource`, it is sensible to rely on `formatLocalizedString` in conjunction with the Application Context. A user usually has a defined preference of languages we can use. 
 
 ```js
 import Text from '@commercetools-uikit/text';
