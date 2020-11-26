@@ -7,13 +7,15 @@ type StyleProps = {
 
 const getConstraintForGridStyle = (size: StyleProps['size']) => {
   switch (size) {
-    case 7 || 'm':
+    case 7:
+    case 'm':
       return customProperties.constraint7;
     case 8:
       return customProperties.constraint8;
     case 9:
       return customProperties.constraint9;
-    case 10 || 'l':
+    case 10:
+    case 'l':
       return customProperties.constraint10;
     case 'scale':
       return customProperties.constraintScale;
