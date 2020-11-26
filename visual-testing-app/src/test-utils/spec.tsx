@@ -129,7 +129,7 @@ PropsLogger.displayName = 'PropsLogger';
 
 type SpecProps = {
   label: string;
-  size: 'm' | 'l' | 7 | 8 | 9 | 10 | 'scale';
+  size: 'm' | 'l' | 'xl' | 7 | 8 | 9 | 10 | 'scale';
   contentAlignment: 'default' | 'center';
   children: React.ReactElement;
   tone: 'normal' | 'secondary' | 'inverted';
