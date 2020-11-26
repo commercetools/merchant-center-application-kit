@@ -5,7 +5,7 @@ import type {
   StoreEnhancer,
 } from 'redux';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
-import { mapValues } from 'lodash';
+import mapValues from 'lodash/mapValues';
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import {
