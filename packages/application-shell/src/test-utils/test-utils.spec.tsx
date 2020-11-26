@@ -12,13 +12,13 @@ import { gql } from '@apollo/client';
 import { useIntl } from 'react-intl';
 import { useSelector, useStore } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
+import { screen } from '@testing-library/react';
 import { useFeatureToggle } from '@flopflip/react-broadcast';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { useMcQuery } from '../hooks/apollo-hooks';
 import { renderApp, renderAppWithRedux, waitFor } from './test-utils';
-import { screen } from '@testing-library/react';
 
 const mockServer = setupServer();
 afterEach(() => {
