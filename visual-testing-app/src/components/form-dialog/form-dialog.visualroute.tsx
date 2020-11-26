@@ -60,6 +60,18 @@ export const Component = () => (
     <Spec label="FormDialog - Size L" size="l" contentAlignment="center">
       <FormDialogExample size="l" portalId="dialog-l" />
     </Spec>
+    <Spec label="FormDialog - Size 7" size={7} contentAlignment="center">
+      <FormDialogExample size={7} portalId="dialog-7" />
+    </Spec>
+    <Spec label="FormDialog - Size 8" size={8} contentAlignment="center">
+      <FormDialogExample size={7} portalId="dialog-8" />
+    </Spec>
+    <Spec label="FormDialog - Size 9" size={9} contentAlignment="center">
+      <FormDialogExample size={9} portalId="dialog-9" />
+    </Spec>
+    <Spec label="FormDialog - Size 10" size={10} contentAlignment="center">
+      <FormDialogExample size={10} portalId="dialog-10" />
+    </Spec>
     <Spec label="FormDialog - Size Scale" size="l" contentAlignment="center">
       <FormDialogExample size="scale" portalId="dialog-scale" />
     </Spec>
