@@ -15,31 +15,25 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./dist/application-shell-connectors.cjs.js",
-  "module": "./dist/application-shell-connectors.es.js",
-  "typings": "./dist/typings/index.d.ts",
-  "types": "./dist/typings/index.d.ts",
+  "main": "dist/commercetools-frontend-application-shell-connectors.cjs.js",
+  "module": "dist/commercetools-frontend-application-shell-connectors.esm.js",
   "files": ["dist", "test-utils", "package.json", "LICENSE", "README.md"],
+  "preconstruct": {
+    "entrypoints": ["./index.ts", "./test-utils/index.ts"]
+  },
   "scripts": {
-    "prepare": "./../../scripts/version.js replace",
-    "prebuild": "rimraf dist/** test-utils/**",
-    "build": "yarn build:bundles && yarn build:test-utils && yarn build:typings",
-    "build:bundles": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js -i ./src/index.ts",
-    "build:bundles:watch": "yarn build:bundles -w",
-    "build:test-utils": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js -i ./src/test-utils/index.ts",
-    "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings",
-    "postbuild:typings": "echo \"export * from '../dist/typings/test-utils';\" > test-utils/index.d.ts"
+    "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
     "@babel/runtime": "7.12.5",
     "@babel/runtime-corejs3": "7.12.5",
     "@commercetools-frontend/constants": "17.3.0",
     "@commercetools-frontend/sentry": "17.4.1",
+    "@emotion/react": "11.1.1",
     "@types/lodash": "^4.14.155",
     "@types/prop-types": "^15.7.3",
     "graphql": "14.7.0",
     "lodash": "4.17.20",
-    "lodash-es": "4.17.15",
     "moment-timezone": "^0.5.26",
     "prop-types": "15.7.2"
   },

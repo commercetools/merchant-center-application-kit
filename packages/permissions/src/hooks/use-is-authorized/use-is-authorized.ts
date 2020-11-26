@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 import warning from 'tiny-warning';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
@@ -52,10 +52,12 @@ type TSelectDataFenceData = (
   }
 ) => string[] | null;
 
+// Log a warning only once, and not on each render.
 const useWarning = (condition: boolean, message: string) => {
-  React.useEffect(() => {
+  useEffect(() => {
     warning(condition, message);
-  }, [condition, message]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 };
 
 const useIsAuthorized = ({
@@ -70,7 +72,7 @@ const useIsAuthorized = ({
   demandedDataFences?: TDemandedDataFence[];
   selectDataFenceData?: TSelectDataFenceData;
   shouldMatchSomePermissions?: boolean;
-}) => {
+}): boolean => {
   const impliedPermissions = getImpliedPermissions(demandedPermissions);
 
   useWarning(

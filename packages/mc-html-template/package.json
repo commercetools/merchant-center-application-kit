@@ -16,7 +16,6 @@
     "access": "public"
   },
   "main": "./build/index.js",
-  "module": "./build/index.js",
   "files": [
     "build",
     "html-scripts",

@@ -15,27 +15,20 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./dist/l10n-index.cjs.js",
-  "module": "./dist/l10n-index.es.js",
-  "typings": "./dist/typings/src/index.d.ts",
-  "types": "./dist/typings/src/index.d.ts",
+  "main": "dist/commercetools-frontend-l10n.cjs.js",
+  "module": "dist/commercetools-frontend-l10n.esm.js",
   "files": ["data", "dist", "package.json", "LICENSE", "README.md"],
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
-    "prebuild": "rimraf dist/**",
-    "build": "yarn build:bundles && yarn build:typings",
-    "build:bundles": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js -i ./src/index.ts -d dist",
-    "build:bundles:watch": "yarn build:bundles -w",
-    "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings",
     "generate-data": "node ./scripts/generate-l10n-data.js"
   },
   "dependencies": {
     "@babel/runtime": "7.12.5",
     "@babel/runtime-corejs3": "7.12.5",
     "@commercetools-frontend/sentry": "17.4.1",
+    "@emotion/react": "11.1.1",
     "@types/prop-types": "^15.7.3",
     "lodash": "4.17.20",
-    "lodash-es": "4.17.15",
     "moment": "^2.24.0",
     "prop-types": "15.7.2"
   },

@@ -2,10 +2,12 @@
 
 const mri = require('mri');
 const Listr = require('listr');
-const { shouldUseYarn } = require('../src/utils');
-const tasks = require('../src/tasks');
-const hintOutdatedVersion = require('../src/hint-outdated-version');
-const parseArguments = require('../src/parse-arguments');
+const {
+  shouldUseYarn,
+  tasks,
+  hintOutdatedVersion,
+  parseArguments,
+} = require('../src');
 const pkg = require('../package.json');
 
 const currentVersion = pkg.version;

@@ -16,19 +16,18 @@
     "access": "public"
   },
   "main": "./build/index.js",
-  "module": "./build/index.js",
   "files": ["bin", "build", "config", "package.json", "LICENSE", "README.md"],
   "bin": {
     "mc-scripts": "./bin/mc-scripts.js"
+  },
+  "browserslist": {
+    "production": [">1%", "not op_mini all", "not dead"],
+    "development": ["last 2 firefox versions", "last 2 chrome versions"]
   },
   "scripts": {
     "prebuild": "rimraf build/**",
     "build": "babel src --out-dir build",
     "build:bundles:watch": "yarn build -w"
-  },
-  "browserslist": {
-    "production": [">1%", "not op_mini all", "not dead"],
-    "development": ["last 2 firefox versions", "last 2 chrome versions"]
   },
   "dependencies": {
     "@babel/runtime": "7.12.5",

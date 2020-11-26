@@ -15,10 +15,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./dist/application-components.cjs.js",
-  "module": "./dist/application-components.es.js",
-  "typings": "./dist/typings/index.d.ts",
-  "types": "./dist/typings/index.d.ts",
+  "main": "dist/commercetools-frontend-application-components.cjs.js",
+  "module": "dist/commercetools-frontend-application-components.esm.js",
   "files": [
     "dist",
     "materials/media-queries.css",
@@ -27,12 +25,7 @@
     "README.md"
   ],
   "scripts": {
-    "prepare": "./../../scripts/version.js replace",
-    "prebuild": "rimraf dist/**",
-    "build": "yarn build:bundles && yarn build:typings",
-    "build:bundles": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js -i ./src/index.ts",
-    "build:bundles:watch": "yarn build:bundles -w",
-    "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings"
+    "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
     "@babel/runtime": "7.12.5",
@@ -42,7 +35,10 @@
     "@commercetools-frontend/i18n": "17.4.1",
     "@commercetools-uikit/card": "^10.42.2",
     "@commercetools-uikit/constraints": "^10.42.2",
+    "@commercetools-uikit/flat-button": "^10.42.2",
     "@commercetools-uikit/design-system": "^10.42.2",
+    "@commercetools-uikit/icon-button": "^10.42.2",
+    "@commercetools-uikit/icons": "^10.42.2",
     "@commercetools-uikit/primary-button": "^10.42.2",
     "@commercetools-uikit/secondary-button": "^10.42.2",
     "@commercetools-uikit/secondary-icon-button": "^10.42.2",
@@ -54,7 +50,6 @@
     "@types/prop-types": "^15.7.3",
     "@types/react-modal": "^3.10.4",
     "lodash": "4.17.20",
-    "lodash-es": "4.17.15",
     "prop-types": "15.7.2",
     "react-modal": "3.12.1",
     "react-required-if": "1.0.3"

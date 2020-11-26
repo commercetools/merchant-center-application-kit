@@ -46,13 +46,7 @@ const createPlugins = (format) => {
         babelPluginImportGraphQL.default,
         ...babelOptions.plugins,
         'babel-plugin-typescript-to-proptypes',
-        isFormatEs && [
-          'transform-rename-import',
-          {
-            replacements: [{ original: 'lodash', replacement: 'lodash-es' }],
-          },
-        ],
-      ].filter(Boolean),
+      ],
     }),
     // To convert CJS modules to ES6
     commonjs({
