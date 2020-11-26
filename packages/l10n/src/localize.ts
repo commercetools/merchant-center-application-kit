@@ -112,17 +112,12 @@ export const formatLocalizedString = <Input extends Record<string, unknown>>(
     fallback = '',
   }: FormatLocalizedStringOptions<Input>
 ): string => {
-  // if there is no entity to be localized or the field does not exist on the
-  // entity, then return the fallback
-  if (!entity || !entity[key]) return fallback;
+  if (!entity || !entity[key] || !locale) return fallback;
   const localizedString = entity[key] as LocalizedString;
-
   if (localizedString[locale]) return localizedString[locale];
-
   // see if we can fallback to the primary locale, eg. de for de-AT
   const primaryLocale = locale && getPrimaryLocale(locale);
   if (localizedString[primaryLocale]) return localizedString[primaryLocale];
-
   const fallbackLanguage = findFallbackLocale(localizedString, fallbackOrder);
   return fallbackLanguage
     ? formatLocalizedFallbackHint(
