@@ -5,7 +5,7 @@ import type {
   StoreEnhancer,
 } from 'redux';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
-
+import { mapValues } from 'lodash';
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import {
@@ -51,14 +51,28 @@ const mergeObjectValues = <T>(object: { [key: string]: T }) =>
 const patchedGetCorrelationId = () =>
   getCorrelationId({ userId: selectUserId() });
 
-const createInternalReducer = (injectedReducers: ReducersMapObject = {}) =>
+const createInternalReducer = (
+  injectedReducers: ReducersMapObject = {},
+  preloadedState = {}
+) => {
+  // not providing preloadedStateReducers to combineReducers will cause an error
+  // when preloadedState contains keys other than requestsInFlight and
+  // notifications:
+  // Unexpected key "new Key" found in preloadedState argument passed to createStore. Expected to find one of the known reducer keys instead: "requestsInFlight", "notifications". Unexpected keys will be ignored.
+  // https://redux.js.org/api/createstore#createstorereducer-preloadedstate-enhancer
+  const preloadedStateReducers = mapValues(preloadedState, (value) => () =>
+    value
+  );
+
   // NOTE: since we don't know in advance which reducers will be injected,
   // we pass an `unknown` type to express this uncertainty and make the compiler happy.
-  combineReducers<unknown>({
+  return combineReducers<unknown>({
     requestsInFlight: requestsInFlightReducer,
     notifications: notificationsReducer,
     ...injectedReducers,
+    ...preloadedStateReducers,
   });
+};
 
 const sdkMiddleware = createSdkMiddleware({
   getCorrelationId: patchedGetCorrelationId,
@@ -77,7 +91,7 @@ export const createReduxStore = (
   additionalMiddlewares: Middleware[] = []
 ): TEnhancedStore => {
   const store = createStore(
-    createInternalReducer(),
+    createInternalReducer(undefined, preloadedState),
     preloadedState,
     compose(
       applyDefaultMiddlewares(

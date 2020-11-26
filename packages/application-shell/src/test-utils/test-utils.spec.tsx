@@ -10,7 +10,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { gql } from '@apollo/client';
 import { useIntl } from 'react-intl';
-import { useSelector } from 'react-redux';
+import { useSelector, useStore } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { useFeatureToggle } from '@flopflip/react-broadcast';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
@@ -18,6 +18,7 @@ import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { useMcQuery } from '../hooks/apollo-hooks';
 import { renderApp, renderAppWithRedux, waitFor } from './test-utils';
+import { screen } from '@testing-library/react';
 
 const mockServer = setupServer();
 afterEach(() => {
@@ -402,5 +403,25 @@ describe('custom render functions', () => {
       await rendered.findByText('two');
       expect(rendered.queryByText('one')).not.toBeInTheDocument();
     });
+  });
+});
+
+describe('renderAppWithRedux', () => {
+  it('should be able to use storeState render option', () => {
+    const TestComponent = () => {
+      const store = useStore();
+      const state = store.getState();
+      return state.products.currentVisible.id;
+    };
+    renderAppWithRedux(<TestComponent />, {
+      storeState: {
+        products: {
+          currentVisible: {
+            id: 'current-visible-product-id',
+          },
+        },
+      },
+    });
+    expect(screen.getByText(/current-visible-product-id/i)).toBeInTheDocument();
   });
 });
