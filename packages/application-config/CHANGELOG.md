@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-config
 
+## 17.6.0
+
+### Patch Changes
+
+- [`2287813`](https://github.com/commercetools/merchant-center-application-kit/commit/2287813c19a54b7edb7005d417c5f6a7b34cad1f) [#1871](https://github.com/commercetools/merchant-center-application-kit/pull/1871) Thanks [@emmenko](https://github.com/emmenko)! - Compile and bundle packages using [preconstruct](https://preconstruct.tools)
+
 ## 17.4.1
 
 ### Patch Changes
