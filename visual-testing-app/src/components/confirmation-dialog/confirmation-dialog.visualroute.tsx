@@ -52,8 +52,36 @@ export const Component = () => (
       <ConfirmationDialogExample size="l" portalId="dialog-l" />
     </Spec>
     <Spec
+      label="ConfirmationDialog - Size 7"
+      size={7}
+      contentAlignment="center"
+    >
+      <ConfirmationDialogExample size={7} portalId="dialog-7" />
+    </Spec>
+    <Spec
+      label="ConfirmationDialog - Size 8"
+      size={8}
+      contentAlignment="center"
+    >
+      <ConfirmationDialogExample size={8} portalId="dialog-8" />
+    </Spec>
+    <Spec
+      label="ConfirmationDialog - Size 9"
+      size={9}
+      contentAlignment="center"
+    >
+      <ConfirmationDialogExample size={9} portalId="dialog-9" />
+    </Spec>
+    <Spec
+      label="ConfirmationDialog - Size 10"
+      size={10}
+      contentAlignment="center"
+    >
+      <ConfirmationDialogExample size={10} portalId="dialog-10" />
+    </Spec>
+    <Spec
       label="ConfirmationDialog - Size Scale"
-      size="l"
+      size={7}
       contentAlignment="center"
     >
       <ConfirmationDialogExample size="scale" portalId="dialog-scale" />
