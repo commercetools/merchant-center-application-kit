@@ -51,6 +51,15 @@ const mergeObjectValues = <T>(object: { [key: string]: T }) =>
 const patchedGetCorrelationId = () =>
   getCorrelationId({ userId: selectUserId() });
 
+const sdkMiddleware = createSdkMiddleware({
+  getCorrelationId: patchedGetCorrelationId,
+  getProjectKey: selectProjectKeyFromUrl,
+  getTeamId: selectTeamIdFromLocalStorage,
+});
+
+export const applyDefaultMiddlewares = (...middlewares: Middleware[]) =>
+  applyMiddleware(...middlewares, thunk, loggerMiddleware);
+
 const createInternalReducer = (
   injectedReducers: ReducersMapObject = {},
   preloadedState = {}
@@ -73,15 +82,6 @@ const createInternalReducer = (
     ...preloadedStateReducers,
   });
 };
-
-const sdkMiddleware = createSdkMiddleware({
-  getCorrelationId: patchedGetCorrelationId,
-  getProjectKey: selectProjectKeyFromUrl,
-  getTeamId: selectTeamIdFromLocalStorage,
-});
-
-export const applyDefaultMiddlewares = (...middlewares: Middleware[]) =>
-  applyMiddleware(...middlewares, thunk, loggerMiddleware);
 
 // We use a factory as it's more practicable for tests
 // The application can import the configured store (the default export)
