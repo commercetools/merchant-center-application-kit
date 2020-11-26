@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "build": "gatsby build --prefix-paths",
-    "prebuild": "./scripts/prebuild.sh",
+    "prebuild": "./scripts/prebuild.sh && yarn generate-icons",
     "postbuild": "./scripts/postbuild.sh && yarn check-links",
+    "prestart": "yarn generate-icons",
     "start": "gatsby develop",
     "precheck-links": "cp -f linkchecker.index.html ./public/index.html",
-    "check-links": "yarn linkinator ./public"
+    "check-links": "yarn linkinator ./public",
+    "generate-icons": "svgr -d src/icons/generated src/icons/svg"
   },
   "dependencies": {
     "@commercetools-docs/gatsby-theme-docs": "11.0.2",

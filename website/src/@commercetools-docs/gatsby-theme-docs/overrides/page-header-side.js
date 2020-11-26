@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { useSiteData, Link } from '@commercetools-docs/gatsby-theme-docs';
 import { designSystem } from '@commercetools-docs/ui-kit';
 import SpacingsInline from '@commercetools-uikit/spacings-inline';
-import GitHubSvg from '../../../icons/github.svg';
+import { GithubSvgIcon } from '../../../icons';
 
 const RepositoryLinks = () => {
   const siteData = useSiteData();
@@ -20,7 +20,7 @@ const RepositoryLinks = () => {
           href={siteData.siteMetadata.repositoryUrl}
           title="Application Kit repository"
         >
-          <GitHubSvg />
+          <GithubSvgIcon />
         </Link>
       </SpacingsInline>
     </div>
