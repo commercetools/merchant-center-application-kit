@@ -1,5 +1,22 @@
 # playground
 
+## 17.0.12
+
+### Patch Changes
+
+- [`2287813`](https://github.com/commercetools/merchant-center-application-kit/commit/2287813c19a54b7edb7005d417c5f6a7b34cad1f) [#1871](https://github.com/commercetools/merchant-center-application-kit/pull/1871) Thanks [@emmenko](https://github.com/emmenko)! - Compile and bundle packages using [preconstruct](https://preconstruct.tools)
+
+- Updated dependencies [[`81a274c`](https://github.com/commercetools/merchant-center-application-kit/commit/81a274c6abd5f3725e7698fa37004b9647549e41), [`2287813`](https://github.com/commercetools/merchant-center-application-kit/commit/2287813c19a54b7edb7005d417c5f6a7b34cad1f)]:
+  - @commercetools-frontend/application-components@17.6.0
+  - @commercetools-frontend/actions-global@17.6.0
+  - @commercetools-frontend/application-shell@17.6.0
+  - @commercetools-frontend/application-shell-connectors@17.6.0
+  - @commercetools-frontend/constants@17.6.0
+  - @commercetools-frontend/i18n@17.6.0
+  - @commercetools-frontend/l10n@17.6.0
+  - @commercetools-frontend/permissions@17.6.0
+  - @commercetools-frontend/sdk@17.6.0
+
 ## 17.0.11
 
 ### Patch Changes
