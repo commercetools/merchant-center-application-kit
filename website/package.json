@@ -10,7 +10,7 @@
     "start": "gatsby develop",
     "precheck-links": "cp -f linkchecker.index.html ./public/index.html",
     "check-links": "yarn linkinator ./public",
-    "generate-icons": "svgr -d src/icons/generated src/icons/svg"
+    "generate-icons": "svgr -d src/icons/generated src/icons/svg && prettier --write '**/generated/*.js'"
   },
   "dependencies": {
     "@commercetools-docs/gatsby-theme-docs": "11.0.2",
