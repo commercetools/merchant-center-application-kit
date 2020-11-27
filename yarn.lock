@@ -2752,13 +2752,13 @@
   resolved "https://registry.yarnpkg.com/@exodus/schemasafe/-/schemasafe-1.0.0-rc.3.tgz#dda2fbf3dafa5ad8c63dadff7e01d3fdf4736025"
   integrity sha512-GoXw0U2Qaa33m3eUcxuHnHpNvHjNlLo0gtV091XBpaRINaB4X6FGCG5XKxSFNFiPpugUDqNruHzaqpTdDm4AOg==
 
-"@flopflip/launchdarkly-adapter@3.0.4":
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-3.0.4.tgz#886397004d30fb647467410866c78aaf65db0eea"
-  integrity sha512-EJQGq/7NHkxUJmlaRFuZ4kR50GG69kicUezmtKFEPTRhn2/QusSU1OWUDeV+ijVVR5tIRqBAeMEU5XCAAoTXgw==
+"@flopflip/launchdarkly-adapter@3.0.5":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-3.0.5.tgz#608c4452148363d02d41f9df3688d0c860ce5c8c"
+  integrity sha512-mU5FDRaKq983RNg3wP779iPThl9PsznVoAZ1kE0ulBBprVaPgS1yekOiFGxIjx/s4luT5mZ9Vi+1LDmbNwsF4g==
   dependencies:
     "@babel/runtime" "7.12.5"
-    "@flopflip/types" "3.0.4"
+    "@flopflip/types" "3.0.5"
     debounce-fn "4.0.0"
     deepmerge "4.2.2"
     globalthis "1.0.1"
@@ -2768,36 +2768,36 @@
     tiny-warning "1.0.3"
     ts-essentials "7.0.1"
 
-"@flopflip/memory-adapter@2.0.4":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@flopflip/memory-adapter/-/memory-adapter-2.0.4.tgz#405bf1910f53c077bfd8b1e1e7dc81a1192fc5d4"
-  integrity sha512-rcZ7bapvOZhDVHLf3QcsAjb9TJE0ld06FNyQ0Kf9lBUr7NRj+QAH31NPSbDL5+MgOVk4Qoy1ZxSTWBww2+LVUA==
+"@flopflip/memory-adapter@2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@flopflip/memory-adapter/-/memory-adapter-2.0.5.tgz#337fb384c0ac2d66009162ba51bce6d2f14a1a2e"
+  integrity sha512-OG7NSnXv+JOCZIxn+3pOSM/fb2XWG52qOvO1hZnXwY9FhwLOTAekTb3QnH3p4yOule49muaZAlMgq9kxbFJkRg==
   dependencies:
     "@babel/runtime" "7.12.5"
-    "@flopflip/types" "3.0.4"
+    "@flopflip/types" "3.0.5"
     globalthis "1.0.1"
     lodash "4.17.20"
     mitt "2.1.0"
     tiny-warning "1.0.3"
     ts-essentials "7.0.1"
 
-"@flopflip/react-broadcast@11.0.4":
-  version "11.0.4"
-  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-11.0.4.tgz#719e0f046ec743a329e0f6168efed7f291a42738"
-  integrity sha512-aj5RHAL5u09qpWud76LLCfVIPF9qrQofwnSg3tLVMP7cT4mCQ4MLvDV509GLv0aEJoTmDxEgk10etXfmMI0Qpw==
+"@flopflip/react-broadcast@11.0.5":
+  version "11.0.5"
+  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-11.0.5.tgz#991b2b99a8faa18ae736cf3f7d3e132b2cd0236c"
+  integrity sha512-EingrPvnxC6iHcAE1F7xeJsspMXcue7ZNYnYXh4OT2SYzHjhvlqkMP+q8qIzNF7bbE0ZcxJQhaAW6PtepsmkJw==
   dependencies:
     "@babel/runtime" "7.12.5"
-    "@flopflip/react" "^10.0.4"
-    "@flopflip/types" "3.0.4"
+    "@flopflip/react" "^10.0.5"
+    "@flopflip/types" "3.0.5"
     lodash "4.17.20"
 
-"@flopflip/react@^10.0.4":
-  version "10.0.4"
-  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-10.0.4.tgz#b5d65038cb5a0a1daa0888c9cd4935fff60d8b95"
-  integrity sha512-mE+VB52vPdeJzjOHs0Oy11orilNCzoDoOMzvcKhWaYmAZ5bIwsbQwitF95ChxzdzyyKkSjRg58YZhUMJ3xw4ig==
+"@flopflip/react@^10.0.5":
+  version "10.0.5"
+  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-10.0.5.tgz#06c431bfcd2e6a3d95ab243ce3dbada4e9788480"
+  integrity sha512-99qlb8WTzS/LKJn1hzwiL1TvMZXI2Joj4S+ilk37wyEZk18b46MjVtwfGG/q5iMoo46Xl5vjRvA5gvHOjJ+rUg==
   dependencies:
     "@babel/runtime" "7.12.5"
-    "@flopflip/types" "3.0.4"
+    "@flopflip/types" "3.0.5"
     "@types/react-is" "17.0.0"
     deepmerge "4.2.2"
     lodash "4.17.20"
@@ -2806,10 +2806,10 @@
     tiny-warning "1.0.3"
     ts-essentials "7.0.1"
 
-"@flopflip/types@3.0.4":
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/@flopflip/types/-/types-3.0.4.tgz#1c418434582a4c032bc11164d5dff74cd13dfe1e"
-  integrity sha512-LJVWsAEt/kW+NHzSrJb4PJkvRjvbUKr5RSWMm7uSBCKKkqNcQOA/R6xuFXznmGhHbtdq/OM7s0MCJr1QKE4esA==
+"@flopflip/types@3.0.5":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@flopflip/types/-/types-3.0.5.tgz#2445299373c0e01b20875e5e848899bf62dba1ff"
+  integrity sha512-m27OcVMrHnkmVyisDfiNlIQ/LCPcGrs9nRoByP+f1ULSayIqaM1KlYVoMIv6hjGbTkjbAUF0M6frrdUw8iAziw==
   dependencies:
     ts-essentials "7.0.1"
 
