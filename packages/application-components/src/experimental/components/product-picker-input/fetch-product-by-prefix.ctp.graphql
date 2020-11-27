@@ -1,0 +1,16 @@
+query FetchProductByPrefix($where: String!) {
+  products(where: $where) {
+    results {
+      id
+      key
+      masterData {
+        current {
+          nameAllLocales {
+            locale
+            value
+          }
+        }
+      }
+    }
+  }
+}

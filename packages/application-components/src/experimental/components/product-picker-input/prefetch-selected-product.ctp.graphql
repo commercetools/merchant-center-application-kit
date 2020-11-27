@@ -1,0 +1,14 @@
+query PrefetchProduct($id: String!) {
+  product(id: $id) {
+    id
+    key
+    masterData {
+      current {
+        nameAllLocales {
+          locale
+          value
+        }
+      }
+    }
+  }
+}
