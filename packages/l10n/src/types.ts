@@ -33,7 +33,7 @@ export type FieldNameTranformationMapping = {
 
 export type FormatLocalizedStringOptions<T> = {
   key: keyof T;
-  locale: string;
+  locale: string | null;
   fallbackOrder?: string[];
   fallback?: string;
 };
