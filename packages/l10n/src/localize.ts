@@ -111,7 +111,7 @@ export const formatLocalizedString = <Input extends Record<string, unknown>>(
     fallbackOrder = [],
     fallback = '',
   }: FormatLocalizedStringOptions<Input>
-) => {
+): string => {
   if (!entity || !entity[key]) return fallback;
   const localizedString = entity[key] as LocalizedString;
   const fallbackLocale = findFallbackLocale(localizedString, fallbackOrder);
