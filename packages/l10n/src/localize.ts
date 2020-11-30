@@ -111,18 +111,33 @@ export const formatLocalizedString = <Input extends Record<string, unknown>>(
     fallbackOrder = [],
     fallback = '',
   }: FormatLocalizedStringOptions<Input>
-): string => {
-  if (!entity || !entity[key] || !locale) return fallback;
+) => {
+  if (!entity || !entity[key]) return fallback;
   const localizedString = entity[key] as LocalizedString;
-  if (localizedString[locale]) return localizedString[locale];
-  // see if we can fallback to the primary locale, eg. de for de-AT
-  const primaryLocale = locale && getPrimaryLocale(locale);
-  if (localizedString[primaryLocale]) return localizedString[primaryLocale];
-  const fallbackLanguage = findFallbackLocale(localizedString, fallbackOrder);
-  return fallbackLanguage
+  const fallbackLocale = findFallbackLocale(localizedString, fallbackOrder);
+
+  const formattedLocalizedFallback = fallbackLocale
     ? formatLocalizedFallbackHint(
-        localizedString[fallbackLanguage],
-        fallbackLanguage
+        localizedString[fallbackLocale],
+        fallbackLocale
       )
     : fallback;
+
+  // GIVEN no `locale`
+  // THEN return formattedFallback by fallbackOrder
+  if (!locale) return formattedLocalizedFallback;
+
+  // GIVEN locale
+  // AND there is a value on `localizedString`
+  // THEN return value
+  if (localizedString[locale]) return localizedString[locale];
+
+  // GIVEN locale
+  // AND there is a value on primary locale
+  // THEN return value on primary locale
+  const primaryLocale = locale && getPrimaryLocale(locale);
+  if (localizedString[primaryLocale]) return localizedString[primaryLocale];
+
+  // use formattedFallback by fallbackOrder as last resort
+  return formattedLocalizedFallback;
 };
