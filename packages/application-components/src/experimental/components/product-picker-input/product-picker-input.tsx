@@ -181,11 +181,9 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
     skip: !props.value,
   });
 
-  const prefetchSelectedProduct = prefetchSelectedProductQuery.data
+  const prefetchSelectedProduct = prefetchSelectedProductQuery.data?.product
     ? convertProductToOption(
-        flattenProduct(
-          prefetchSelectedProductQuery.data as TFetchedProductWithMasterData
-        )
+        flattenProduct(prefetchSelectedProductQuery.data.product)
       )
     : prefetchSelectedProductQuery.data;
 
