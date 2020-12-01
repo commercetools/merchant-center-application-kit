@@ -20,9 +20,7 @@ type ProcessConfigOptions = {
   processEnv?: NodeJS.ProcessEnv;
 };
 
-const developmentConfig: JSONSchemaForCustomApplicationConfigurationFiles['env']['production'] = {
-  url: 'http://localhost:3001',
-};
+const developmentAppUrl = 'http://localhost:3001';
 
 // Keep a reference to the config so that requiring the module
 // again will result in returning the cached value.
@@ -49,15 +47,18 @@ const processConfig = ({
   const additionalAppEnv = appConfig.additionalEnv ?? {};
   const revision = (additionalAppEnv.revision as string) ?? '';
 
-  const appEnvConfig = isProd ? appConfig.env.production : developmentConfig;
   // Parse all the supported URLs, which gets implicitly validated
+
+  const envAppUrl = isProd ? appConfig.env.production.url : developmentAppUrl;
   const appUrl = getOrThrow(
-    () => new URL(appEnvConfig.url),
-    `Invalid application URL: "${appEnvConfig.url}"`
+    () => new URL(envAppUrl),
+    `Invalid application URL: "${envAppUrl}"`
   );
+
+  const envCdnUrl = appConfig.env.production.cdnUrl ?? appUrl.href;
   const cdnUrl = getOrThrow(
-    () => new URL(appEnvConfig.cdnUrl || appUrl.href),
-    `Invalid application CDN URL: "${appEnvConfig.cdnUrl || appUrl.href}"`
+    () => new URL(envCdnUrl),
+    `Invalid application CDN URL: "${envCdnUrl}"`
   );
   const mcApiUrl = getOrThrow(
     () =>
@@ -69,18 +70,44 @@ const processConfig = ({
       ),
     `Invalid MC API URL: "${appConfig.mcApiUrl}"`
   );
-  // TODO: make the `id` required once we release the new model.
-  const applicationId =
-    appConfig.id && appConfig.entryPointUriPath
-      ? `${appConfig.id}:${appConfig.entryPointUriPath}`
-      : undefined;
+
+  // The real application ID is only used in production.
+  // In development, we prefix the entry point with the "__local" prefix.
+  // This is important to determine to which URL the MC should redirect to
+  // after successful login.
+  const applicationId = isProd
+    ? `${appConfig.env.production.applicationId}:${appConfig.entryPointUriPath}`
+    : `__local:${appConfig.entryPointUriPath}`;
 
   cachedConfig = {
     env: {
       ...omitEmpty(additionalAppEnv),
-      ...(applicationId ? { applicationId } : {}),
+      // TODO: how else should we provide the app identifier?
+      applicationId,
       applicationName: appConfig.name,
       entryPointUriPath: appConfig.entryPointUriPath,
+      ...(isProd
+        ? {}
+        : {
+            __DEVELOPMENT__: {
+              // Used in development only
+              authorizeUrl: 'http://localhost:3000',
+              // `${mcApiUrl.protocol}//${mcApiUrl.host.replace(
+              //   'mc-api',
+              //   'mc'
+              // )}`,
+              scope: [
+                // This is required as per OIDC spec.
+                'openid',
+                // Custom claims
+                `projectKey:${appConfig.env.development.projectKey}`,
+                ...appConfig.permissions.view.map((scope) => `view:${scope}`),
+                ...appConfig.permissions.manage.map(
+                  (scope) => `manage:${scope}`
+                ),
+              ].join(' '),
+            },
+          }),
       cdnUrl: cdnUrl.href,
       env: appEnvKey,
       frontendHost: appUrl.host,

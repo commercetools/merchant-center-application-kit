@@ -1,5 +1,6 @@
 export const SUPPORTED_HEADERS = {
   ACCEPT_VERSION: 'Accept-version',
+  AUTHORIZATION: 'Authorization',
   X_APPLICATION_ID: 'X-Application-Id',
   X_CORRELATION_ID: 'X-Correlation-Id',
   X_FEATURE_FLAG: 'X-Feature-Flag',
@@ -17,6 +18,7 @@ export const CONTAINERS = {
 export const STORAGE_KEYS = {
   NONCE: 'nonce',
   IS_AUTHENTICATED: 'isAuthenticated',
+  SESSION_TOKEN: 'sessionToken',
   ACTIVE_PROJECT_KEY: 'activeProjectKey',
   ACTIVE_TEAM_ID: 'activeTeamId',
   SELECTED_DATA_LOCALE: 'selectedDataLocale',
@@ -32,4 +34,5 @@ export const SUSPENSION_REASONS = {
 // SSO
 export const ORGANIZATION_GENERAL_ERROR = 'organizationGeneralError';
 export const LOGIN_STRATEGY_DEFAULT = 'default';
+export const LOGIN_STRATEGY_OIDC = 'oidc';
 export const LOGIN_STRATEGY_SSO = 'sso';

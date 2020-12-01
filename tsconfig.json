@@ -8,7 +8,10 @@
     // See https://devblogs.microsoft.com/typescript/typescript-and-babel-7/
     "isolatedModules": true,
     "jsx": "react",
-    "lib": ["ESNext", "DOM"],
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
     "module": "ESNext",
     "moduleResolution": "Node",
     "noFallthroughCasesInSwitch": true,
@@ -27,6 +30,10 @@
     "stripInternal": true,
     "target": "ES2019",
     "allowJs": false,
-    "typeRoots": ["@types", "@types-extensions/*", "node_modules/@types"]
+    "typeRoots": [
+      "@types",
+      "@types-extensions",
+      "node_modules/@types"
+    ]
   }
 }

@@ -8,7 +8,7 @@ import type { TApolloContext } from '../utils/apollo-context';
 import { ApolloClient, ApolloLink } from '@apollo/client';
 import omitEmpty from 'omit-empty-es';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { SUPPORTED_HEADERS } from '../constants';
+import { STORAGE_KEYS, SUPPORTED_HEADERS } from '../constants';
 import {
   getCorrelationId,
   selectProjectKeyFromUrl,
@@ -72,6 +72,9 @@ const headerLink = new ApolloLink((operation, forward) => {
   operation.setContext({
     credentials: 'include',
     headers: omitEmpty({
+      [SUPPORTED_HEADERS.AUTHORIZATION]: `Bearer ${window.sessionStorage.getItem(
+        STORAGE_KEYS.SESSION_TOKEN
+      )}`,
       [SUPPORTED_HEADERS.X_PROJECT_KEY]: projectKey,
       [SUPPORTED_HEADERS.X_CORRELATION_ID]: getCorrelationId({ userId }),
       [SUPPORTED_HEADERS.X_GRAPHQL_TARGET]: graphQlTarget,

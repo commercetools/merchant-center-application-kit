@@ -115,16 +115,20 @@ module.exports = ({ proxy, allowedHost, contentBase, publicPath }) => ({
         })
       );
     });
-    app.use(
-      '/login',
-      devAuthentication.middlewares.createLoginMiddleware(applicationConfig.env)
-    );
-    // Intercept the /logout page and "remove" the auth cookie value
-    app.use(
-      '/logout',
-      devAuthentication.middlewares.createLogoutMiddleware(
-        applicationConfig.env
-      )
-    );
+    if (!applicationConfig.env.__DEVELOPMENT__) {
+      app.use(
+        '/login',
+        devAuthentication.middlewares.createLoginMiddleware(
+          applicationConfig.env
+        )
+      );
+      // Intercept the /logout page and "remove" the auth cookie value
+      app.use(
+        '/logout',
+        devAuthentication.middlewares.createLogoutMiddleware(
+          applicationConfig.env
+        )
+      );
+    }
   },
 });

@@ -53,11 +53,11 @@ const isSdkError = (error: Error | HttpErrorType): error is HttpErrorType =>
 export default function createSdkMiddleware({
   getCorrelationId,
   getProjectKey,
-  getTeamId,
+  getAdditionalHeaders,
 }: {
   getCorrelationId: () => string;
   getProjectKey: () => string | undefined;
-  getTeamId: () => string | undefined;
+  getAdditionalHeaders: () => { [key: string]: string } | undefined;
 }) {
   const client = createClient({ getCorrelationId });
 
@@ -69,7 +69,6 @@ export default function createSdkMiddleware({
     }
 
     const projectKey = getProjectKey();
-    const teamId = getTeamId();
 
     const uri = [
       action.payload.mcApiProxyTarget &&
@@ -106,16 +105,14 @@ export default function createSdkMiddleware({
     const sendRequest = ({
       shouldRenewToken,
     }: { shouldRenewToken?: boolean } = {}) => {
+      const additionalHeaders = getAdditionalHeaders();
       const headers = {
         Accept: 'application/json',
         ...(action.payload.headers || {}),
         ...(shouldRenewToken ? { 'X-Force-Token': 'true' } : {}),
         ...(projectKey && { 'X-Project-Key': projectKey }),
         // Experimental features, use with caution.
-        ...(teamId && { 'X-Team-Id': teamId }),
-        ...(window.app.applicationId && {
-          'X-Application-Id': window.app.applicationId,
-        }),
+        ...(additionalHeaders ?? {}),
       };
       const body =
         action.payload.method === 'POST' ? action.payload.payload : undefined;

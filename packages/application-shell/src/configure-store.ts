@@ -8,12 +8,14 @@ import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import mapValues from 'lodash/mapValues';
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
+import omitEmpty from 'omit-empty-es';
 import {
   middleware as notificationsMiddleware,
   reducer as notificationsReducer,
 } from '@commercetools-frontend/notifications';
 import { createMiddleware as createSdkMiddleware } from '@commercetools-frontend/sdk';
 import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-frontend/constants';
+import { STORAGE_KEYS, SUPPORTED_HEADERS } from './constants';
 import hideNotificationsMiddleware from './middleware/hide-notifications';
 import loggerMiddleware from './middleware/logger';
 import { requestsInFlightReducer } from './components/requests-in-flight-loader';
@@ -51,10 +53,19 @@ const mergeObjectValues = <T>(object: { [key: string]: T }) =>
 const patchedGetCorrelationId = () =>
   getCorrelationId({ userId: selectUserId() });
 
+const getAdditionalHeaders = () =>
+  omitEmpty({
+    [SUPPORTED_HEADERS.AUTHORIZATION]: `Bearer ${window.sessionStorage.getItem(
+      STORAGE_KEYS.SESSION_TOKEN
+    )}`,
+    [SUPPORTED_HEADERS.X_APPLICATION_ID]: window.app.applicationId,
+    [SUPPORTED_HEADERS.X_TEAM_ID]: selectTeamIdFromLocalStorage(),
+  });
+
 const sdkMiddleware = createSdkMiddleware({
   getCorrelationId: patchedGetCorrelationId,
   getProjectKey: selectProjectKeyFromUrl,
-  getTeamId: selectTeamIdFromLocalStorage,
+  getAdditionalHeaders,
 });
 
 export const applyDefaultMiddlewares = (...middlewares: Middleware[]) =>

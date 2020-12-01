@@ -2,7 +2,15 @@
   "name": "Application Kit Playground",
   "entryPointUriPath": "state-machines",
   "cloudIdentifier": "${env:CLOUD_IDENTIFIER}",
+  "mcApiUrl": "http://localhost:8080",
+  "permissions": {
+    "view": ["view_orders"],
+    "manage": ["manage_orders"]
+  },
   "env": {
+    "development": {
+      "projectKey": "almond-40"
+    },
     "production": {
       "url": "${env:APP_URL}"
     }

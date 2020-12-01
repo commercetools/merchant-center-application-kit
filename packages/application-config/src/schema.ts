@@ -7,10 +7,6 @@ export type CspDirective = string[];
 
 export interface JSONSchemaForCustomApplicationConfigurationFiles {
   /**
-   * The ID of the Custom Application (when you register the application in the Merchant Center)
-   */
-  id?: string;
-  /**
    * The name of the Custom Application
    */
   name: string;
@@ -27,13 +23,39 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
    */
   mcApiUrl?: string;
   /**
+   * The permissions configuration for the required OAuth Scopes for this Custom Application.
+   */
+  permissions: {
+    /**
+     * The list of view-only OAuth Scopes
+     */
+    view: string[];
+    /**
+     * The list of manage-only OAuth Scopes
+     */
+    manage: string[];
+  };
+  /**
    * This is an object of keys that represents different environments (for example `production`). The environment used depends on the environment variable `MC_APP_ENV`. If `MC_APP_ENV` isn't set then `NODE_ENV` will be used. If neither is set, it defaults to `development`
    */
   env: {
     /**
+     * Configuration for development only
+     */
+    development: {
+      /**
+       * The project key that the Custom Application is requesting access for. This is only used in development.
+       */
+      projectKey: string;
+    };
+    /**
      * Configuration for production only
      */
     production: {
+      /**
+       * The ID of the Custom Application (when you register the application in the Merchant Center)
+       */
+      applicationId?: string;
       /**
        * The URL where the Custom Application is hosted
        */

@@ -1,6 +1,8 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import hasCachedAuthenticationState from './has-cached-authentication-state';
 import AmILoggedIn from './am-i-logged-in';
+import AuthCallback from './auth-callback';
 
 type RenderFnArgs = { isAuthenticated: boolean };
 export type TProps = {
@@ -12,6 +14,8 @@ const Authenticated = (props: TProps) => {
   // We attempt to see if the user was already authenticated by looking
   // at the "cached" flag in local storage.
   const cachedAuthenticationState = hasCachedAuthenticationState();
+  console.log('cached is auth', cachedAuthenticationState);
+
   if (cachedAuthenticationState) {
     return <>{props.render({ isAuthenticated: true })}</>;
   }
@@ -20,4 +24,16 @@ const Authenticated = (props: TProps) => {
 };
 Authenticated.displayName = 'Authenticated';
 
-export default Authenticated;
+const AuthenticationRoutes = (props: TProps) => (
+  <Switch>
+    <Route path="/auth/callback">
+      <AuthCallback />
+    </Route>
+    <Route>
+      <Authenticated {...props} />
+    </Route>
+  </Switch>
+);
+AuthenticationRoutes.displayName = 'AuthenticationRoutes';
+
+export default AuthenticationRoutes;
