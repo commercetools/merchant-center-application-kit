@@ -2,6 +2,7 @@ import React, { ChangeEvent } from 'react';
 import { InputActionMeta, FocusEventHandler } from 'react-select';
 import { useQuery } from '@apollo/client/react';
 import { useIntl } from 'react-intl';
+import Text from '@commercetools-uikit/text';
 import AsyncSelectInput from '@commercetools-uikit/async-select-input';
 import Spacings from '@commercetools-uikit/spacings';
 import Constraints from '@commercetools-uikit/constraints';
@@ -34,15 +35,8 @@ type TProps = {
   onInputChange?: (newValue: string, actionMeta: InputActionMeta) => void;
   onChange: (event: ChangeEvent) => void;
   onBlur?: FocusEventHandler;
-  onError?: TOnErrorCallback;
-
-  // errorComponent <-- component to render when there is error...
-
-  // TODO: consider accepting an error message.
-  // or simply children
-  // onErrorComponent: React.ReactNode
-
-  // loadingErrorMessage: string | `fallback`
+  onInitialLoadError?: TOnErrorCallback;
+  onLoadError?: TOnErrorCallback;
 };
 
 type TFlatProduct = {
@@ -97,16 +91,18 @@ const flattenProduct = (
 
 const ProductPickerInput = (props: TProps): JSX.Element => {
   const {
-    name,
-    onError,
-    isReadOnly,
+    hasError,
     isClearable,
     isDisabled,
-    onChange,
+    isReadOnly,
+    name,
     onBlur,
+    onChange,
+    onInitialLoadError,
     onInputChange,
-    hasError,
+    onLoadError,
   } = props;
+  const [loadingError, setLoadingError] = React.useState(false);
   const { formatMessage } = useIntl();
   const { dataLocale, projectLanguages } = useApplicationContext((context) => ({
     dataLocale: context.dataLocale,
@@ -155,13 +151,14 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
           )
           // @ts-ignore
           .catch((graphQlErrors) => {
-            if (onError) {
-              onError(graphQlErrors);
+            if (onLoadError) {
+              setLoadingError(true);
+              onLoadError(graphQlErrors);
             }
           })
       );
     },
-    [loadResourceWithPrefix, convertProductToOption, onError]
+    [loadResourceWithPrefix, convertProductToOption, onLoadError]
   );
 
   // @TODO: handle error for initial load of non-existing product
@@ -180,6 +177,14 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
     context: { target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM },
     skip: !props.value,
   });
+
+  const { error: prefetchError } = prefetchSelectedProductQuery;
+  React.useEffect(() => {
+    setLoadingError(true);
+    if (prefetchError && onInitialLoadError) {
+      onInitialLoadError(prefetchError);
+    }
+  }, [prefetchError, onInitialLoadError, setLoadingError]);
 
   const prefetchSelectedProduct = prefetchSelectedProductQuery.data?.product
     ? convertProductToOption(
@@ -213,6 +218,12 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
             noOptionsMessage={() => formatMessage(messages.noProductsFound)}
             hasError={hasError}
           />
+          {loadingError && (
+            <Text.Detail
+              intlMessage={messages.onResourceLoadError}
+              tone="negative"
+            />
+          )}
         </Spacings.Stack>
       )}
     </Constraints.Horizontal>

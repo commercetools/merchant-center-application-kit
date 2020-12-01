@@ -11,4 +11,10 @@ export default defineMessages({
     description: 'The placeholder of the input',
     defaultMessage: 'Search by product name, key or type an ID',
   },
+  onResourceLoadError: {
+    id: 'AppKit.ProductPickerInput.onResourceLoadError',
+    description: 'Message to show when fetching the initial value failed.',
+    defaultMessage:
+      'Unable to load resource. Check the connection and try again.',
+  },
 });
