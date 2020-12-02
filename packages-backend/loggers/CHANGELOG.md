@@ -1,5 +1,11 @@
 # @commercetools-backend/loggers
 
+## 17.6.1
+
+### Patch Changes
+
+- [`bce0428`](https://github.com/commercetools/merchant-center-application-kit/commit/bce04283ea504fbc4a54f54b333bd6f51aa71dd1) [#1913](https://github.com/commercetools/merchant-center-application-kit/pull/1913) Thanks [@emmenko](https://github.com/emmenko)! - Do not mutate logger meta object.
+
 ## 17.6.0
 
 ### Patch Changes
