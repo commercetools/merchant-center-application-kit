@@ -52,7 +52,15 @@ const RedirectToLogin = () => {
         redirectTo: `/${window.app.__DEVELOPMENT__.projectKey}`,
       },
     });
-    console.log('generating nonce', sessionId);
+    // Store session scopes, to be able to detect if requested scopes changed
+    // in the application config and invalidate the session.
+    // This is only valid for local development.
+    window.sessionStorage.setItem(
+      STORAGE_KEYS.SESSION_SCOPE,
+      // @ts-expect-error
+      window.app.__DEVELOPMENT__.scope
+    );
+
     return (
       <Redirector
         to="login"

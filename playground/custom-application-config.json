@@ -4,7 +4,7 @@
   "cloudIdentifier": "${env:CLOUD_IDENTIFIER}",
   "mcApiUrl": "http://localhost:8080",
   "permissions": {
-    "view": ["view_orders"],
+    "view": ["view_orders", "view_states"],
     "manage": ["manage_orders"]
   },
   "env": {

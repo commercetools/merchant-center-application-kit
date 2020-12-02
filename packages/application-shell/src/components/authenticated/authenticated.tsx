@@ -24,6 +24,12 @@ const Authenticated = (props: TProps) => {
     return <>{props.render({ isAuthenticated: true })}</>;
   }
 
+  // @ts-expect-error
+  if (window.app.__DEVELOPMENT__) {
+    return <>{props.render({ isAuthenticated: false })}</>;
+  }
+
+  // Fall back to check for cookie-based authentication.
   return <AmILoggedIn {...props} />;
 };
 Authenticated.displayName = 'Authenticated';
