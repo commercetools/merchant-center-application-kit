@@ -1,6 +1,7 @@
 import type { TransformableInfo } from 'logform';
 
 import { format } from 'logform';
+import cloneDeep from 'lodash/cloneDeep';
 import getIn from 'lodash/get';
 import setIn from 'lodash/set';
 import unsetIn from 'lodash/unset';
@@ -24,10 +25,11 @@ function rewriteField(info: TransformableInfo, field: TRewriteField) {
 
 function rewriteFieldsFormatter(options: TRewriteFieldsFormatterOption) {
   return format((info) => {
+    const clone = cloneDeep(info);
     options.fields.forEach((field) => {
-      rewriteField(info, field);
+      rewriteField(clone, field);
     });
-    return info;
+    return clone;
   })(options);
 }
 
