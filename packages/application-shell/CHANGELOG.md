@@ -1,5 +1,16 @@
 # @commercetools-frontend/application-shell
 
+## 17.6.1
+
+### Patch Changes
+
+- [`c946eca`](https://github.com/commercetools/merchant-center-application-kit/commit/c946eca9063535f0fe8ae7be99d2097557d588d9) [#1902](https://github.com/commercetools/merchant-center-application-kit/pull/1902) Thanks [@ahmehri](https://github.com/ahmehri)! - fix(test-utils): `storeState` render option of `renderAppWithRedux` is unusable
+
+* [`947a1cf`](https://github.com/commercetools/merchant-center-application-kit/commit/947a1cfeb62d8856a6e60e16df5cc08c53b86fe3) [#1892](https://github.com/commercetools/merchant-center-application-kit/pull/1892) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update flopflip monorepo
+
+* Updated dependencies [[`1ef03e3`](https://github.com/commercetools/merchant-center-application-kit/commit/1ef03e30996e6e83c0f521ba9253fb7a93fed241)]:
+  - @commercetools-frontend/l10n@17.6.1
+
 ## 17.6.0
 
 ### Patch Changes

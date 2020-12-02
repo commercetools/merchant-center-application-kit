@@ -1,5 +1,11 @@
 # @commercetools-frontend/l10n
 
+## 17.6.1
+
+### Patch Changes
+
+- [`1ef03e3`](https://github.com/commercetools/merchant-center-application-kit/commit/1ef03e30996e6e83c0f521ba9253fb7a93fed241) [#1904](https://github.com/commercetools/merchant-center-application-kit/pull/1904) Thanks [@adnasa](https://github.com/adnasa)! - export `transformLocalizedFieldToLocalizedString`, update `localize` to allow `locale` to be `null`
+
 ## 17.6.0
 
 ### Patch Changes

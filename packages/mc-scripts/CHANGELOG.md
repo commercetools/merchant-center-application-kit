@@ -1,5 +1,13 @@
 # @commercetools-frontend/mc-scripts
 
+## 17.6.1
+
+### Patch Changes
+
+- [`15ecd9f`](https://github.com/commercetools/merchant-center-application-kit/commit/15ecd9fa08713a1f132f953b316540d72d3d7a40) [#1912](https://github.com/commercetools/merchant-center-application-kit/pull/1912) Thanks [@emmenko](https://github.com/emmenko)! - Remove `react-intl` from the list of vendors to be transpiled
+
+* [`63a0b9e`](https://github.com/commercetools/merchant-center-application-kit/commit/63a0b9e927e7019074a6603356de874f144cb6e3) [#1909](https://github.com/commercetools/merchant-center-application-kit/pull/1909) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency svg-url-loader to v7
+
 ## 17.6.0
 
 ### Patch Changes
