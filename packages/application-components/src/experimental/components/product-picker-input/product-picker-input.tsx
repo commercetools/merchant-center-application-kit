@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import { InputActionMeta, FocusEventHandler } from 'react-select';
+import { FocusEventHandler } from 'react-select';
 import { useQuery } from '@apollo/client/react';
 import { useIntl } from 'react-intl';
 import Text from '@commercetools-uikit/text';
@@ -32,7 +32,7 @@ type TProps = {
   isClearable?: boolean;
   isDisabled?: boolean;
 
-  onInputChange?: (newValue: string, actionMeta: InputActionMeta) => void;
+  onInputChange?: (newValue: string) => void;
   onChange: (event: ChangeEvent) => void;
   onBlur?: FocusEventHandler;
   onInitialLoadError?: TOnErrorCallback;
@@ -161,6 +161,16 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
     [loadResourceWithPrefix, convertProductToOption, onLoadError]
   );
 
+  const handleInputChange = React.useCallback(
+    (inputValue) => {
+      setLoadingError(false);
+      if (onInputChange) {
+        onInputChange(inputValue);
+      }
+    },
+    [onInputChange, setLoadingError]
+  );
+
   // @TODO: handle error for initial load of non-existing product
   // example scenarios
   // GIVEN Merchant Center Product Details
@@ -212,7 +222,7 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
               DropdownIndicator,
             }}
             onChange={onChange}
-            onInputChange={onInputChange}
+            onInputChange={handleInputChange}
             onBlur={onBlur}
             value={prefetchSelectedProduct}
             noOptionsMessage={() => formatMessage(messages.noProductsFound)}
