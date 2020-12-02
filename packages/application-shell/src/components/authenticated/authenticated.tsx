@@ -1,8 +1,12 @@
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
+
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import hasCachedAuthenticationState from './has-cached-authentication-state';
 import AmILoggedIn from './am-i-logged-in';
 import AuthCallback from './auth-callback';
+
+declare let window: ApplicationWindow;
 
 type RenderFnArgs = { isAuthenticated: boolean };
 export type TProps = {
@@ -26,7 +30,7 @@ Authenticated.displayName = 'Authenticated';
 
 const AuthenticationRoutes = (props: TProps) => (
   <Switch>
-    <Route path="/auth/callback">
+    <Route path={`/:projectKey/${window.app.entryPointUriPath}/auth/callback`}>
       <AuthCallback />
     </Route>
     <Route>

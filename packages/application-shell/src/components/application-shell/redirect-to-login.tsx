@@ -48,12 +48,11 @@ const RedirectToLogin = () => {
       applicationId: window.app.applicationId!,
       // Store query parameters to be used after the callback redirect
       query: {
-        redirectTo: trimLeadingAndTrailingSlashes(
-          joinPaths(window.location.origin, location.pathname)
-        ),
+        // @ts-expect-error
+        redirectTo: `/${window.app.__DEVELOPMENT__.projectKey}`,
       },
     });
-    console.log('generating nonce', sessionId)
+    console.log('generating nonce', sessionId);
     return (
       <Redirector
         to="login"

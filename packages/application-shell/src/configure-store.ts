@@ -33,6 +33,7 @@ interface ApplicationWindowWithDevtools extends ApplicationWindow {
 }
 declare let window: ApplicationWindowWithDevtools;
 
+type Headers = { [key: string]: string };
 export type TEnhancedStore = Store & {
   injectedReducers: { [key: string]: ReducersMapObject };
   injectReducers: (payload: {
@@ -53,8 +54,8 @@ const mergeObjectValues = <T>(object: { [key: string]: T }) =>
 const patchedGetCorrelationId = () =>
   getCorrelationId({ userId: selectUserId() });
 
-const getAdditionalHeaders = () =>
-  omitEmpty({
+const getAdditionalHeaders = (): Headers | undefined =>
+  omitEmpty<Headers>({
     [SUPPORTED_HEADERS.AUTHORIZATION]: `Bearer ${window.sessionStorage.getItem(
       STORAGE_KEYS.SESSION_TOKEN
     )}`,

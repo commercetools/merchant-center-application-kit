@@ -96,6 +96,7 @@ const processConfig = ({
               //   'mc-api',
               //   'mc'
               // )}`,
+              projectKey: appConfig.env.development.projectKey,
               scope: [
                 // This is required as per OIDC spec.
                 'openid',

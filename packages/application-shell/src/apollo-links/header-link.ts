@@ -21,7 +21,7 @@ declare let window: ApplicationWindow;
 type ApolloContextWithInMemoryCache = TApolloContext & {
   cache: ApolloClient<NormalizedCacheObject>;
 };
-
+type Headers = { [key: string]: string };
 type QueryVariables = {
   // Deprecated, use `{ context: { target } }`
   target?: TGraphQLTargets;
@@ -71,7 +71,7 @@ const headerLink = new ApolloLink((operation, forward) => {
 
   operation.setContext({
     credentials: 'include',
-    headers: omitEmpty({
+    headers: omitEmpty<Headers>({
       [SUPPORTED_HEADERS.AUTHORIZATION]: `Bearer ${window.sessionStorage.getItem(
         STORAGE_KEYS.SESSION_TOKEN
       )}`,
