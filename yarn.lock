@@ -2075,7 +2075,7 @@
     "@emotion/react" "^11.1.1"
     prop-types "15.7.2"
 
-"@commercetools-uikit/messages@10.42.2":
+"@commercetools-uikit/messages@10.42.2", "@commercetools-uikit/messages@^10.42.2":
   version "10.42.2"
   resolved "https://registry.yarnpkg.com/@commercetools-uikit/messages/-/messages-10.42.2.tgz#5fdd4e8b6a647e1ac3e2e711884abc63be68ee5e"
   integrity sha512-JCHXbvIrPS25N89GJCG9k30d/mMKDKRbKX5N3ilsagCvElrl/j1nUOUrXMpWeJSqUJHl1Zn4gCrTBhpqxosotQ==

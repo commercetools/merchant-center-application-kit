@@ -2,8 +2,8 @@ import React, { ChangeEvent } from 'react';
 import { FocusEventHandler } from 'react-select';
 import { useQuery } from '@apollo/client/react';
 import { useIntl } from 'react-intl';
-import Text from '@commercetools-uikit/text';
 import AsyncSelectInput from '@commercetools-uikit/async-select-input';
+import { ErrorMessage } from '@commercetools-uikit/messages';
 import Spacings from '@commercetools-uikit/spacings';
 import Constraints from '@commercetools-uikit/constraints';
 import {
@@ -228,10 +228,7 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
             hasError={hasError}
           />
           {loadingError && (
-            <Text.Detail
-              intlMessage={messages.onResourceLoadError}
-              tone="negative"
-            />
+            <ErrorMessage intlMessage={messages.onResourceLoadError} />
           )}
         </Spacings.Stack>
       )}
