@@ -4,7 +4,7 @@ declare module '@commercetools-uikit/async-select-input' {
 
   export const version: string;
 
-  type TAsyncOptions = {
+  type TAsyncOption = {
     label: string;
     value: string;
   };
@@ -21,10 +21,10 @@ declare module '@commercetools-uikit/async-select-input' {
     // Custom mapped props to be forwarded to react-select
     isAutofocussed?: boolean;
     containerId?: string;
-    value: string | string[];
+    value: string | string[] | TAsyncOption;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     loadOptions?: (value: unknown) => void;
-    defaultOptions?: string[] | TAsyncOptions[];
+    defaultOptions?: string[] | TAsyncOption[];
   } & Pick<
     ReactSelectProps<OptionType>,
     | 'aria-label'

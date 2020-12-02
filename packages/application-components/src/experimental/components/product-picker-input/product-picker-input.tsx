@@ -122,8 +122,7 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
   );
 
   const convertProductToOption = React.useCallback(
-    (product: TFlatProduct): TProductOption | null => {
-      if (!product) return null;
+    (product: TFlatProduct): TProductOption => {
       const formattedName = formatLocalizedString(product, {
         key: 'name',
         locale: dataLocale,
@@ -200,7 +199,7 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
     ? convertProductToOption(
         flattenProduct(prefetchSelectedProductQuery.data.product)
       )
-    : prefetchSelectedProductQuery.data;
+    : props.value;
 
   return (
     <Constraints.Horizontal constraint="scale">
