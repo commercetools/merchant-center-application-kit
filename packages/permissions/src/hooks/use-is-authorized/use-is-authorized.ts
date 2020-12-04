@@ -1,3 +1,9 @@
+import type {
+  TNormalizedPermissions,
+  TNormalizedActionRights,
+  TNormalizedDataFences,
+} from '@commercetools-frontend/application-shell-connectors';
+
 import { useEffect } from 'react';
 import warning from 'tiny-warning';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
@@ -12,16 +18,7 @@ import {
 
 // Permissions
 type TPermissionName = string;
-type TPermissions = {
-  [key: string]: boolean;
-};
 // Action rights
-type TActionRight = {
-  [key: string]: boolean;
-};
-type TActionRights = {
-  [key: string]: TActionRight;
-};
 type TActionRightName = string;
 type TActionRightGroup = string;
 type TDemandedActionRight = {
@@ -29,18 +26,6 @@ type TDemandedActionRight = {
   name: TActionRightName;
 };
 // Data fences
-type TDataFenceGroupedByPermission = {
-  // E.g. { canManageOrders: { values: [] } }
-  [key: string]: { values: string[] } | null;
-};
-type TDataFenceGroupedByResourceType = {
-  // E.g. { orders: {...} }
-  [key: string]: TDataFenceGroupedByPermission | null;
-};
-type TDataFenceType = 'store';
-type TDataFences = Partial<
-  Record<TDataFenceType, TDataFenceGroupedByResourceType>
->;
 type TDemandedDataFence = {
   group: string;
   name: string;
@@ -52,9 +37,9 @@ type TSelectDataFenceData = (
   }
 ) => string[] | null;
 type TProjectPermissions = {
-  permissions: TPermissions;
-  actionRights: TActionRights;
-  dataFences: TDataFences;
+  permissions: TNormalizedPermissions | null;
+  actionRights: TNormalizedActionRights | null;
+  dataFences: TNormalizedDataFences | null;
 };
 
 // Log a warning only once, and not on each render.
@@ -101,15 +86,15 @@ const useIsAuthorized = ({
     )}.`
   );
 
-  const actualPermissions = useApplicationContext<TPermissions | null>(
+  const actualPermissions = useApplicationContext<TNormalizedPermissions | null>(
     (applicationContext) =>
       projectPermissions?.permissions ?? applicationContext.permissions
   );
-  const actualActionRights = useApplicationContext<TActionRights | null>(
+  const actualActionRights = useApplicationContext<TNormalizedActionRights | null>(
     (applicationContext) =>
       projectPermissions?.actionRights ?? applicationContext.actionRights
   );
-  const actualDataFences = useApplicationContext<TDataFences | null>(
+  const actualDataFences = useApplicationContext<TNormalizedDataFences | null>(
     (applicationContext) =>
       projectPermissions?.dataFences ?? applicationContext.dataFences
   );

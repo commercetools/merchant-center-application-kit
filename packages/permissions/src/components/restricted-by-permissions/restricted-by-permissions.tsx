@@ -1,3 +1,9 @@
+import type {
+  TNormalizedPermissions,
+  TNormalizedActionRights,
+  TNormalizedDataFences,
+} from '@commercetools-frontend/application-shell-connectors';
+
 import React from 'react';
 import invariant from 'tiny-invariant';
 import isNil from 'lodash/isNil';
@@ -8,16 +14,7 @@ const getHasChildren = (children: React.ReactNode) =>
 
 // Permissions
 type TPermissionName = string;
-type TPermissions = {
-  [key: string]: boolean;
-};
 // Action rights
-type TActionRight = {
-  [key: string]: boolean;
-};
-type TActionRights = {
-  [key: string]: TActionRight;
-};
 type TActionRightName = string;
 type TActionRightGroup = string;
 type TDemandedActionRight = {
@@ -25,18 +22,6 @@ type TDemandedActionRight = {
   name: TActionRightName;
 };
 // Data fences
-type TDataFenceGroupedByPermission = {
-  // E.g. { canManageOrders: { values: [] } }
-  [key: string]: { values: string[] } | null;
-};
-type TDataFenceGroupedByResourceType = {
-  // E.g. { orders: {...} }
-  [key: string]: TDataFenceGroupedByPermission | null;
-};
-type TDataFenceType = 'store';
-type TDataFences = Partial<
-  Record<TDataFenceType, TDataFenceGroupedByResourceType>
->;
 type TDemandedDataFence = {
   group: string;
   name: string;
@@ -48,9 +33,9 @@ type TSelectDataFenceData = (
   }
 ) => string[] | null;
 type TProjectPermissions = {
-  permissions: TPermissions;
-  actionRights: TActionRights;
-  dataFences: TDataFences;
+  permissions: TNormalizedPermissions | null;
+  actionRights: TNormalizedActionRights | null;
+  dataFences: TNormalizedDataFences | null;
 };
 type TRenderProp = (props: { isAuthorized: boolean }) => React.ReactNode;
 

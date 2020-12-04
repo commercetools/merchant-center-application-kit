@@ -26,6 +26,10 @@ export {
   ApplicationContextProvider,
   withApplicationContext,
   useApplicationContext,
+  normalizeAllAppliedActionRights,
+  normalizeAllAppliedDataFences,
+  normalizeAllAppliedMenuVisibilities,
+  normalizeAllAppliedPermissions,
 } from './components/application-context';
 
 export {

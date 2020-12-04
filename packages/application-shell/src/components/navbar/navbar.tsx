@@ -63,6 +63,12 @@ import useLoadingMenuLayoutEffect from './use-loading-menu-layout-effect';
 import useNavbarStateManager from './use-navbar-state-manager';
 import nonNullable from './non-nullable';
 
+type TProjectPermissions = {
+  permissions: TNormalizedPermissions | null;
+  actionRights: TNormalizedActionRights | null;
+  dataFences: TNormalizedDataFences | null;
+};
+
 /*
 <DataMenu data={[]}>
   <MenuGroup>
@@ -129,8 +135,6 @@ const IconSwitcher = ({ iconName, ...iconProps }: IconSwitcherProps) => {
   }
 };
 IconSwitcher.displayName = 'IconSwitcher';
-
-const NavbarContext = React.createContext({});
 
 type MenuExpanderProps = {
   isVisible: boolean;
@@ -289,7 +293,7 @@ MenuItemDivider.displayName = 'MenuItemDivider';
 // prop is defined. This is because `<ToggleFeature>` will not render any
 // children if the flag is missing/not found.
 const isEveryMenuVisibilitySetToHidden = (
-  menuVisibilities?: TApplicationContext<{}>['menuVisibilities'],
+  menuVisibilities?: TNormalizedMenuVisibilities | null,
   namesOfMenuVisibilities?: string[]
 ) =>
   Array.isArray(namesOfMenuVisibilities) &&
@@ -302,11 +306,7 @@ const isEveryMenuVisibilitySetToHidden = (
 type RestrictedMenuItemProps = {
   featureToggle?: string;
   namesOfMenuVisibilities?: string[];
-  projectPermissions: {
-    permissions: TNormalizedPermissions;
-    actionRights: TNormalizedActionRights;
-    dataFences: TNormalizedDataFences;
-  } | null;
+  projectPermissions: TProjectPermissions;
   menuVisibilities: TNormalizedMenuVisibilities | null;
   keyOfMenuItem: string;
   permissions: string[];
@@ -404,11 +404,7 @@ type ApplicationMenuProps = {
   isActive: boolean;
   isMenuOpen: boolean;
   shouldCloseMenuFly: MouseEventHandler<HTMLElement>;
-  projectPermissions: {
-    permissions: TNormalizedPermissions;
-    actionRights: TNormalizedActionRights;
-    dataFences: TNormalizedDataFences;
-  } | null;
+  projectPermissions: TProjectPermissions;
   menuVisibilities: TNormalizedMenuVisibilities | null;
   handleToggleItem: () => void;
   applicationLocale: string;
@@ -502,6 +498,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
                     permissions={submenu.permissions}
                     actionRights={submenu.actionRights}
                     dataFences={submenu.dataFences}
+                    projectPermissions={props.projectPermissions}
                     menuVisibilities={props.menuVisibilities}
                     namesOfMenuVisibilities={
                       submenu.menuVisibility
@@ -584,7 +581,7 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
   );
   const location = useLocation();
 
-  const projectPermissions = React.useMemo(
+  const projectPermissions: TProjectPermissions = React.useMemo(
     () => ({
       permissions: normalizeAllAppliedPermissions(props.project),
       actionRights: normalizeAllAppliedActionRights(props.project),
