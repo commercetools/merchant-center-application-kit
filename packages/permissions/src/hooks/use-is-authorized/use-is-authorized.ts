@@ -51,6 +51,11 @@ type TSelectDataFenceData = (
     actualDataFenceValues: string[];
   }
 ) => string[] | null;
+type TProjectPermissions = {
+  permissions: TPermissions;
+  actionRights: TActionRights;
+  dataFences: TDataFences;
+};
 
 // Log a warning only once, and not on each render.
 const useWarning = (condition: boolean, message: string) => {
@@ -66,12 +71,14 @@ const useIsAuthorized = ({
   demandedDataFences,
   selectDataFenceData,
   shouldMatchSomePermissions = false,
+  projectPermissions,
 }: {
   demandedPermissions: TPermissionName[];
   demandedActionRights?: TDemandedActionRight[];
   demandedDataFences?: TDemandedDataFence[];
   selectDataFenceData?: TSelectDataFenceData;
   shouldMatchSomePermissions?: boolean;
+  projectPermissions?: TProjectPermissions;
 }): boolean => {
   const impliedPermissions = getImpliedPermissions(demandedPermissions);
 
@@ -95,13 +102,16 @@ const useIsAuthorized = ({
   );
 
   const actualPermissions = useApplicationContext<TPermissions | null>(
-    (applicationContext) => applicationContext.permissions
+    (applicationContext) =>
+      projectPermissions?.permissions ?? applicationContext.permissions
   );
   const actualActionRights = useApplicationContext<TActionRights | null>(
-    (applicationContext) => applicationContext.actionRights
+    (applicationContext) =>
+      projectPermissions?.actionRights ?? applicationContext.actionRights
   );
   const actualDataFences = useApplicationContext<TDataFences | null>(
-    (applicationContext) => applicationContext.dataFences
+    (applicationContext) =>
+      projectPermissions?.dataFences ?? applicationContext.dataFences
   );
 
   // if the user has no permissions and no dataFences assigned to them, they are not authorized

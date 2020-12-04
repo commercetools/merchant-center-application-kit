@@ -9,7 +9,6 @@ import moment from 'moment-timezone';
 import getDisplayName from '../../utils/get-display-name';
 import {
   normalizeAllAppliedActionRights,
-  normalizeAllAppliedMenuVisibilities,
   normalizeAllAppliedPermissions,
   normalizeAllAppliedDataFences,
 } from './normalizers';
@@ -19,7 +18,6 @@ type TFetchedUser = TFetchLoggedInUserQuery['user'];
 type TFetchedProject = TFetchProjectQuery['project'];
 
 type TApplicationContextPermissions = { [key: string]: boolean };
-type TApplicationContextMenuVisibilities = { [key: string]: boolean };
 type TActionRight = {
   [key: string]: boolean;
 };
@@ -112,7 +110,6 @@ export type TApplicationContext<AdditionalEnvironmentProperties extends {}> = {
   project: ReturnType<typeof mapProjectToApplicationContextProject>;
   permissions: TApplicationContextPermissions | null;
   actionRights: TApplicationContextActionRights | null;
-  menuVisibilities: TApplicationContextMenuVisibilities | null;
   dataFences: TApplicationContextDataFences | null;
   dataLocale: string | null;
 };
@@ -146,7 +143,6 @@ const createApplicationContext: <AdditionalEnvironmentProperties extends {}>(
   project: mapProjectToApplicationContextProject(project),
   permissions: normalizeAllAppliedPermissions(project),
   actionRights: normalizeAllAppliedActionRights(project),
-  menuVisibilities: normalizeAllAppliedMenuVisibilities(project),
   dataFences: normalizeAllAppliedDataFences(project),
   dataLocale: projectDataLocale || null,
 });

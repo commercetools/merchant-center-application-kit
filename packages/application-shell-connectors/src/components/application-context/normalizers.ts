@@ -4,6 +4,42 @@ import type {
   TStoreDataFence,
 } from '../../types/generated/mc';
 
+// Menu visibilities
+export type TMenuVisibilities = {
+  [key: string]: boolean;
+};
+
+// Permissions
+export type TPermissions = {
+  [key: string]: boolean;
+};
+
+// Action rights
+export type TActionRight = {
+  [key: string]: boolean;
+};
+export type TActionRights = {
+  [key: string]: TActionRight;
+};
+
+// Data fences
+export type TDataFenceGroupedByPermission = {
+  // E.g. { canManageOrders: { values: [] } }
+  [key: string]: { values: string[] } | null;
+};
+export type TDataFenceGroupedByResourceType = {
+  // E.g. { orders: {...} }
+  [key: string]: TDataFenceGroupedByPermission | null;
+};
+export type TDataFenceStoresGroupByResourceType = {
+  // E.g [ { group: 'orders', value: 'us', type: 'store', name: 'canManageOrders' } ]
+  [key: string]: TStoreDataFence[];
+};
+export type TDataFenceType = 'store';
+export type TDataFences = Partial<
+  Record<TDataFenceType, TDataFenceGroupedByResourceType>
+>;
+
 /**
  * NOTE:
  *
@@ -24,30 +60,13 @@ import type {
  */
 export const normalizeAllAppliedPermissions = (
   project: TFetchProjectQuery['project']
-) => {
+): TPermissions | null => {
   if (!project) return null;
   const allAppliedPermissions = project.allAppliedPermissions;
   if (!allAppliedPermissions || allAppliedPermissions.length === 0) {
     return null;
   }
-  return allAppliedPermissions.reduce((transformedAllApplied, allApplied) => {
-    if (!allApplied) return transformedAllApplied;
-    return {
-      ...transformedAllApplied,
-      [allApplied.name]: allApplied.value,
-    };
-  }, {});
-};
-
-export const normalizeAllAppliedMenuVisibilities = (
-  project: TFetchProjectQuery['project']
-) => {
-  if (!project) return null;
-  const allAppliedMenuVisibilities = project.allAppliedMenuVisibilities;
-  if (!allAppliedMenuVisibilities || allAppliedMenuVisibilities.length === 0) {
-    return null;
-  }
-  return allAppliedMenuVisibilities.reduce(
+  return allAppliedPermissions.reduce<TPermissions>(
     (transformedAllApplied, allApplied) => {
       if (!allApplied) return transformedAllApplied;
       return {
@@ -59,22 +78,35 @@ export const normalizeAllAppliedMenuVisibilities = (
   );
 };
 
-type TActionRight = {
-  [key: string]: boolean;
-};
-type NormalizedActionRights = {
-  [key: string]: TActionRight;
+export const normalizeAllAppliedMenuVisibilities = (
+  project: TFetchProjectQuery['project']
+): TMenuVisibilities | null => {
+  if (!project) return null;
+  const allAppliedMenuVisibilities = project.allAppliedMenuVisibilities;
+  if (!allAppliedMenuVisibilities || allAppliedMenuVisibilities.length === 0) {
+    return null;
+  }
+  return allAppliedMenuVisibilities.reduce<TMenuVisibilities>(
+    (transformedAllApplied, allApplied) => {
+      if (!allApplied) return transformedAllApplied;
+      return {
+        ...transformedAllApplied,
+        [allApplied.name]: allApplied.value,
+      };
+    },
+    {}
+  );
 };
 
 export const normalizeAllAppliedActionRights = (
   project: TFetchProjectQuery['project']
-) => {
+): TActionRights | null => {
   if (!project) return null;
   const allAppliedActionRights = project.allAppliedActionRights;
   if (!allAppliedActionRights || allAppliedActionRights.length === 0) {
     return null;
   }
-  return allAppliedActionRights.reduce<NormalizedActionRights>(
+  return allAppliedActionRights.reduce<TActionRights>(
     (transformedAllApplied, allApplied) => {
       if (!allApplied) return transformedAllApplied;
       const previousAllAppliedGroup = transformedAllApplied[allApplied.group];
@@ -90,23 +122,10 @@ export const normalizeAllAppliedActionRights = (
   );
 };
 
-type NormalizedGroupedByPermission = {
-  // E.g. { canManageOrders: { values: [] } }
-  [key: string]: { values: string[] } | null;
-};
-type NormalizedGroupedByResourceType = {
-  // E.g. { orders: {...} }
-  [key: string]: NormalizedGroupedByPermission | null;
-};
-type NormalizedStoresGroupByResourceType = {
-  // E.g [ { group: 'orders', value: 'us', type: 'store', name: 'canManageOrders' } ]
-  [key: string]: TStoreDataFence[];
-};
-
 const normalizeAppliedDataFencesForStoresByResourceType = (
   dataFences: Maybe<TStoreDataFence>[]
-) => {
-  const groupedByResourceType = dataFences.reduce<NormalizedStoresGroupByResourceType>(
+): TDataFenceGroupedByResourceType => {
+  const groupedByResourceType = dataFences.reduce<TDataFenceStoresGroupByResourceType>(
     (previousGroupsOfSameType, appliedDataFence) => {
       if (!appliedDataFence) return previousGroupsOfSameType;
       const previousGroup = previousGroupsOfSameType[appliedDataFence.group];
@@ -119,9 +138,9 @@ const normalizeAppliedDataFencesForStoresByResourceType = (
   );
   return Object.entries(
     groupedByResourceType
-  ).reduce<NormalizedGroupedByResourceType>(
+  ).reduce<TDataFenceGroupedByResourceType>(
     (previousGroupedByResourceType, [resourceType, dataFences]) => {
-      const groupByDataFenceName = dataFences.reduce<NormalizedGroupedByPermission>(
+      const groupByDataFenceName = dataFences.reduce<TDataFenceGroupedByPermission>(
         (nextDataFenceValues, dataFence) => {
           const dataFenceByName = nextDataFenceValues[dataFence.name] || {
             values: [],
@@ -176,24 +195,15 @@ const normalizeAppliedDataFencesForStoresByResourceType = (
 //   }
 // }
 
-type NormalizedGroupByType = {
-  [key: string]: Maybe<TStoreDataFence>[];
-};
-
-type SupportedDataFenceType = 'store';
-type NormalizedDataFences = Partial<
-  Record<SupportedDataFenceType, NormalizedGroupedByResourceType>
->;
-
 export const normalizeAllAppliedDataFences = (
   project: TFetchProjectQuery['project']
-) => {
+): TDataFences | null => {
   if (!project) return null;
   const allAppliedDataFences = project.allAppliedDataFences;
   if (!allAppliedDataFences || allAppliedDataFences.length === 0) {
     return null;
   }
-  const groupedByType = allAppliedDataFences.reduce<NormalizedGroupByType>(
+  const groupedByType = allAppliedDataFences.reduce<TDataFenceStoresGroupByResourceType>(
     (previousGroupsOfSameType, appliedDataFence) => {
       if (!appliedDataFence) return previousGroupsOfSameType;
       const previousGroup = previousGroupsOfSameType[appliedDataFence.type];
@@ -215,7 +225,7 @@ export const normalizeAllAppliedDataFences = (
   };
 
   if (Object.keys(normalizedDataFences).length > 0)
-    return normalizedDataFences as NormalizedDataFences;
+    return normalizedDataFences as TDataFences;
 
   return null;
 };

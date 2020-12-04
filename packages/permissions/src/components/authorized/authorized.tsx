@@ -4,15 +4,35 @@ import getDisplayName from '../../utils/get-display-name';
 
 // Permissions
 type TPermissionName = string;
+type TPermissions = {
+  [key: string]: boolean;
+};
 // Action rights
+type TActionRight = {
+  [key: string]: boolean;
+};
+type TActionRights = {
+  [key: string]: TActionRight;
+};
 type TActionRightName = string;
 type TActionRightGroup = string;
 type TDemandedActionRight = {
   group: TActionRightGroup;
   name: TActionRightName;
 };
-
 // Data fences
+type TDataFenceGroupedByPermission = {
+  // E.g. { canManageOrders: { values: [] } }
+  [key: string]: { values: string[] } | null;
+};
+type TDataFenceGroupedByResourceType = {
+  // E.g. { orders: {...} }
+  [key: string]: TDataFenceGroupedByPermission | null;
+};
+type TDataFenceType = 'store';
+type TDataFences = Partial<
+  Record<TDataFenceType, TDataFenceGroupedByResourceType>
+>;
 type TDemandedDataFence = {
   group: string;
   name: string;
@@ -23,6 +43,11 @@ type TSelectDataFenceData = (
     actualDataFenceValues: string[];
   }
 ) => string[] | null;
+type TProjectPermissions = {
+  permissions: TPermissions;
+  actionRights: TActionRights;
+  dataFences: TDataFences;
+};
 
 type Props = {
   demandedPermissions: TPermissionName[];
@@ -30,6 +55,7 @@ type Props = {
   demandedDataFences?: TDemandedDataFence[];
   shouldMatchSomePermissions?: boolean;
   selectDataFenceData?: TSelectDataFenceData;
+  projectPermissions?: TProjectPermissions;
   render: (isAuthorized: boolean) => React.ReactNode;
   children?: never;
 };
@@ -44,6 +70,7 @@ const Authorized = (props: Props) => {
     demandedDataFences: props.demandedDataFences,
     selectDataFenceData: props.selectDataFenceData,
     shouldMatchSomePermissions: props.shouldMatchSomePermissions,
+    projectPermissions: props.projectPermissions,
   });
 
   return <React.Fragment>{props.render(isAuthorized)}</React.Fragment>;

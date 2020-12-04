@@ -1,6 +1,13 @@
 import type { MouseEventHandler, SyntheticEvent } from 'react';
 import type { RouteComponentProps } from 'react-router-dom';
-import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import type {
+  TApplicationContext,
+  TNormalizedMenuVisibilities,
+  TNormalizedPermissions,
+  TNormalizedActionRights,
+  TNormalizedDataFences,
+} from '@commercetools-frontend/application-shell-connectors';
+import type { TFetchProjectQuery } from '../../types/generated/mc';
 import type {
   TDataFence,
   TActionRight,
@@ -40,7 +47,12 @@ import {
   NO_VALUE_FALLBACK,
   SUPPORT_PORTAL_URL,
 } from '@commercetools-frontend/constants';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import {
+  normalizeAllAppliedActionRights,
+  normalizeAllAppliedDataFences,
+  normalizeAllAppliedMenuVisibilities,
+  normalizeAllAppliedPermissions,
+} from '@commercetools-frontend/application-shell-connectors';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { location } from '../../utils/location';
 import { GtmContext } from '../gtm-booter';
@@ -117,6 +129,8 @@ const IconSwitcher = ({ iconName, ...iconProps }: IconSwitcherProps) => {
   }
 };
 IconSwitcher.displayName = 'IconSwitcher';
+
+const NavbarContext = React.createContext({});
 
 type MenuExpanderProps = {
   isVisible: boolean;
@@ -288,7 +302,12 @@ const isEveryMenuVisibilitySetToHidden = (
 type RestrictedMenuItemProps = {
   featureToggle?: string;
   namesOfMenuVisibilities?: string[];
-  menuVisibilities?: TApplicationContext<{}>['menuVisibilities'];
+  projectPermissions: {
+    permissions: TNormalizedPermissions;
+    actionRights: TNormalizedActionRights;
+    dataFences: TNormalizedDataFences;
+  } | null;
+  menuVisibilities: TNormalizedMenuVisibilities | null;
   keyOfMenuItem: string;
   permissions: string[];
   actionRights?: TActionRight[];
@@ -329,6 +348,7 @@ const RestrictedMenuItem = (props: RestrictedMenuItemProps) => {
         }}
         // Always check that some of the given permissions match.
         shouldMatchSomePermissions={true}
+        projectPermissions={props.projectPermissions}
       >
         {props.children}
       </RestrictedByPermissions>
@@ -384,7 +404,12 @@ type ApplicationMenuProps = {
   isActive: boolean;
   isMenuOpen: boolean;
   shouldCloseMenuFly: MouseEventHandler<HTMLElement>;
-  menuVisibilities?: TApplicationContext<{}>['menuVisibilities'];
+  projectPermissions: {
+    permissions: TNormalizedPermissions;
+    actionRights: TNormalizedActionRights;
+    dataFences: TNormalizedDataFences;
+  } | null;
+  menuVisibilities: TNormalizedMenuVisibilities | null;
   handleToggleItem: () => void;
   applicationLocale: string;
   projectKey: string;
@@ -418,6 +443,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
         permissions={props.menu.permissions}
         actionRights={props.menu.actionRights}
         dataFences={props.menu.dataFences}
+        projectPermissions={props.projectPermissions}
         menuVisibilities={props.menuVisibilities}
         namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
       >
@@ -533,6 +559,7 @@ type NavbarProps<AdditionalEnvironmentProperties extends {}> = {
   applicationLocale: string;
   projectKey: string;
   environment: TApplicationContext<AdditionalEnvironmentProperties>['environment'];
+  project: TFetchProjectQuery['project'];
   onMenuItemClick?: MenuItemLinkProps['onClick'];
   DEV_ONLY__loadNavbarMenuConfig?: () => Promise<TApplicationsMenu['navBar']>;
 };
@@ -555,11 +582,20 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
   const useFullRedirectsForLinks = Boolean(
     props.environment.useFullRedirectsForLinks
   );
-
-  const menuVisibilities = useApplicationContext(
-    (context) => context.menuVisibilities
-  );
   const location = useLocation();
+
+  const projectPermissions = React.useMemo(
+    () => ({
+      permissions: normalizeAllAppliedPermissions(props.project),
+      actionRights: normalizeAllAppliedActionRights(props.project),
+      dataFences: normalizeAllAppliedDataFences(props.project),
+    }),
+    [props.project]
+  );
+  const menuVisibilities = React.useMemo(
+    () => normalizeAllAppliedMenuVisibilities(props.project),
+    [props.project]
+  );
 
   return (
     <NavBarLayout ref={navBarNode}>
@@ -577,6 +613,7 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
                 handleToggleItem={() => handleToggleItem(itemIndex)}
                 isMenuOpen={isMenuOpen}
                 shouldCloseMenuFly={shouldCloseMenuFly}
+                projectPermissions={projectPermissions}
                 menuVisibilities={menuVisibilities}
                 applicationLocale={props.applicationLocale}
                 projectKey={props.projectKey}

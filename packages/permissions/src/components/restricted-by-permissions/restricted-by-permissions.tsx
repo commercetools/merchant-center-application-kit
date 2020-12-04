@@ -8,7 +8,16 @@ const getHasChildren = (children: React.ReactNode) =>
 
 // Permissions
 type TPermissionName = string;
+type TPermissions = {
+  [key: string]: boolean;
+};
 // Action rights
+type TActionRight = {
+  [key: string]: boolean;
+};
+type TActionRights = {
+  [key: string]: TActionRight;
+};
 type TActionRightName = string;
 type TActionRightGroup = string;
 type TDemandedActionRight = {
@@ -16,6 +25,18 @@ type TDemandedActionRight = {
   name: TActionRightName;
 };
 // Data fences
+type TDataFenceGroupedByPermission = {
+  // E.g. { canManageOrders: { values: [] } }
+  [key: string]: { values: string[] } | null;
+};
+type TDataFenceGroupedByResourceType = {
+  // E.g. { orders: {...} }
+  [key: string]: TDataFenceGroupedByPermission | null;
+};
+type TDataFenceType = 'store';
+type TDataFences = Partial<
+  Record<TDataFenceType, TDataFenceGroupedByResourceType>
+>;
 type TDemandedDataFence = {
   group: string;
   name: string;
@@ -26,7 +47,11 @@ type TSelectDataFenceData = (
     actualDataFenceValues: string[];
   }
 ) => string[] | null;
-
+type TProjectPermissions = {
+  permissions: TPermissions;
+  actionRights: TActionRights;
+  dataFences: TDataFences;
+};
 type TRenderProp = (props: { isAuthorized: boolean }) => React.ReactNode;
 
 type Props = {
@@ -36,6 +61,7 @@ type Props = {
   dataFences?: TDemandedDataFence[];
   selectDataFenceData?: TSelectDataFenceData;
   unauthorizedComponent?: React.ComponentType;
+  projectPermissions?: TProjectPermissions;
   render?: TRenderProp;
   children?: TRenderProp | React.ReactNode;
 };
@@ -55,6 +81,7 @@ const RestrictedByPermissions = (props: Props) => {
       demandedActionRights={props.actionRights}
       demandedDataFences={props.dataFences}
       selectDataFenceData={props.selectDataFenceData}
+      projectPermissions={props.projectPermissions}
       render={(isAuthorized: boolean) => {
         if (typeof props.children === 'function')
           return props.children({
