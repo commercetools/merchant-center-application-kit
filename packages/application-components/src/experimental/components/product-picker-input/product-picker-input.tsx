@@ -17,13 +17,13 @@ import {
   formatLocalizedString,
   transformLocalizedFieldToLocalizedString,
 } from '@commercetools-frontend/l10n';
-import messages from './messages';
 import { DropdownIndicator, CenteredLoadingSpinner, Option } from '../shared';
 import useLoadWithPrefixSearchFields from '../../hooks/use-load-with-prefix-search-fields';
 import useDebouncedPromiseCallback from '../../hooks/use-debounced-promise-callback';
 import FetchProductByPrefix from './fetch-product-by-prefix.ctp.graphql';
 import PrefetchProduct from './prefetch-selected-product.ctp.graphql';
 import { TProductQueryResult, TProduct } from '../../../types/generated/ctp';
+import messages from './messages';
 
 type TProps = {
   name: string;
@@ -56,7 +56,7 @@ type TPrefixProductGraphqlProducts = {
   products: TProductQueryResult;
 };
 
-const TIME_TO_WAIT = 300;
+const debounceDelayInMs = 300;
 
 const flattenProduct = (product: TProduct): TFlattenedProduct => {
   const transformedName = transformLocalizedFieldToLocalizedString(
@@ -83,22 +83,18 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
     onLoadError,
   } = props;
   const [loadingError, setLoadingError] = React.useState(false);
-  const { formatMessage } = useIntl();
+  const intl = useIntl();
   const { dataLocale, projectLanguages } = useApplicationContext((context) => ({
     dataLocale: context.dataLocale,
     projectLanguages: context.project?.languages,
   }));
-  const prefixSearchFields = React.useMemo(
-    () => [`masterData.current.name.${dataLocale}`, 'key'],
-    [dataLocale]
-  );
 
   const loadResourceWithPrefix = useDebouncedPromiseCallback(
     useLoadWithPrefixSearchFields<TPrefixProductGraphqlProducts>({
       query: FetchProductByPrefix,
-      prefixSearchFields,
+      prefixSearchFields: [`masterData.current.name.${dataLocale}`, 'key'],
     }),
-    TIME_TO_WAIT
+    debounceDelayInMs
   );
 
   const convertProductToOption = React.useCallback(
@@ -118,7 +114,7 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
     [projectLanguages, dataLocale]
   );
 
-  const loadOptions = React.useCallback(
+  const loadOptionsAsync = React.useCallback(
     (inputValue) => {
       return loadResourceWithPrefix({ inputValue })
         .then(
@@ -185,8 +181,8 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
           <AsyncSelectInput
             name={name}
             id={name}
-            placeholder={formatMessage(messages.placeholder)}
-            loadOptions={loadOptions}
+            placeholder={intl.formatMessage(messages.placeholder)}
+            loadOptions={loadOptionsAsync}
             defaultOptions={[]}
             isClearable={isClearable}
             isReadOnly={isReadOnly}
@@ -199,7 +195,9 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
             onInputChange={handleInputChange}
             onBlur={onBlur}
             value={prefetchSelectedProduct}
-            noOptionsMessage={() => formatMessage(messages.noProductsFound)}
+            noOptionsMessage={() =>
+              intl.formatMessage(messages.noProductsFound)
+            }
             hasError={hasError}
           />
           {loadingError && (
