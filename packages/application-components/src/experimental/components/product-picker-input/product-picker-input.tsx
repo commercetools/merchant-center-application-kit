@@ -23,6 +23,7 @@ import useLoadWithPrefixSearchFields from '../../hooks/use-load-with-prefix-sear
 import useDebouncedPromiseCallback from '../../hooks/use-debounced-promise-callback';
 import FetchProductByPrefix from './fetch-product-by-prefix.ctp.graphql';
 import PrefetchProduct from './prefetch-selected-product.ctp.graphql';
+import { TProductQueryResult, TProduct } from '../../../types/generated/ctp';
 
 type TProps = {
   name: string;
@@ -39,48 +40,27 @@ type TProps = {
   onLoadError?: (errors: GraphQLError[]) => void;
 };
 
-type TFlatProduct = {
+type TFlattenedProduct = {
   id: string;
-  key: string;
+  key?: string;
   name: Record<string, string> | null;
-};
-
-type TProductMasterData = {
-  current: Record<'nameAllLocales', TLocalizedField[]>;
-};
-
-type TFetchedProductWithMasterData = {
-  id: string;
-  key: string;
-  masterData: TProductMasterData;
 };
 
 type TProductOption = {
   value: string;
   label: string;
-  key: string;
-};
-
-type TLocalizedField = {
-  locale: string;
-  value: string;
-};
-
-type TPrefixProductGraphqlResults = {
-  results: TFetchedProductWithMasterData[];
+  key?: string;
 };
 
 type TPrefixProductGraphqlProducts = {
-  products: TPrefixProductGraphqlResults;
+  products: TProductQueryResult;
 };
 
 const TIME_TO_WAIT = 300;
 
-const flattenProduct = (
-  product: TFetchedProductWithMasterData
-): TFlatProduct => {
+const flattenProduct = (product: TProduct): TFlattenedProduct => {
   const transformedName = transformLocalizedFieldToLocalizedString(
-    product.masterData.current.nameAllLocales
+    product.masterData.current?.nameAllLocales
   );
   return {
     id: product.id,
@@ -122,7 +102,7 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
   );
 
   const convertProductToOption = React.useCallback(
-    (product: TFlatProduct): TProductOption => {
+    (product: TFlattenedProduct): TProductOption => {
       const formattedName = formatLocalizedString(product, {
         key: 'name',
         locale: dataLocale,
