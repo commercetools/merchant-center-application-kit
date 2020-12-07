@@ -8,6 +8,7 @@ import AsyncSelectInput from '@commercetools-uikit/async-select-input';
 import { ErrorMessage } from '@commercetools-uikit/messages';
 import Spacings from '@commercetools-uikit/spacings';
 import Constraints from '@commercetools-uikit/constraints';
+import { validate as isUUID } from 'uuid';
 import {
   GRAPHQL_TARGETS,
   NO_VALUE_FALLBACK,
@@ -70,18 +71,7 @@ const flattenProduct = (product: TProduct): TFlattenedProduct => {
 };
 
 const ProductPickerInput = (props: TProps): JSX.Element => {
-  const {
-    hasError,
-    isClearable,
-    isDisabled,
-    isReadOnly,
-    name,
-    onBlur,
-    onChange,
-    onInitialLoadError,
-    onInputChange,
-    onLoadError,
-  } = props;
+  const { onInitialLoadError, onInputChange, onLoadError } = props;
   const [loadingError, setLoadingError] = React.useState(false);
   const intl = useIntl();
   const { dataLocale, projectLanguages } = useApplicationContext((context) => ({
@@ -155,7 +145,7 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
   const prefetchSelectedProductQuery = useQuery(PrefetchProduct, {
     variables: { id: props.value },
     context: { target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM },
-    skip: !props.value,
+    skip: !props.value || !isUUID(props.value),
   });
 
   const { error: prefetchError } = prefetchSelectedProductQuery;
@@ -179,26 +169,26 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
       ) : (
         <Spacings.Stack scale="xs">
           <AsyncSelectInput
-            name={name}
-            id={name}
+            name={props.name}
+            id={props.name}
             placeholder={intl.formatMessage(messages.placeholder)}
             loadOptions={loadOptionsAsync}
             defaultOptions={[]}
-            isClearable={isClearable}
-            isReadOnly={isReadOnly}
-            isDisabled={isDisabled}
             components={{
               Option,
               DropdownIndicator,
             }}
-            onChange={onChange}
             onInputChange={handleInputChange}
-            onBlur={onBlur}
             value={prefetchSelectedProduct}
             noOptionsMessage={() =>
               intl.formatMessage(messages.noProductsFound)
             }
-            hasError={hasError}
+            isClearable={props.isClearable}
+            isReadOnly={props.isReadOnly}
+            isDisabled={props.isDisabled}
+            onBlur={props.onBlur}
+            onChange={props.onChange}
+            hasError={props.hasError}
           />
           {loadingError && (
             <ErrorMessage intlMessage={messages.onResourceLoadError} />
