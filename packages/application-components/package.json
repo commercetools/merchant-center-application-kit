@@ -64,9 +64,11 @@
     "lodash": "4.17.20",
     "prop-types": "15.7.2",
     "react-modal": "3.12.1",
-    "react-required-if": "1.0.3"
+    "react-required-if": "1.0.3",
+    "uuid": "8.3.1"
   },
   "devDependencies": {
+    "@types/uuid": "8.3.0",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-intl": "5.10.6"

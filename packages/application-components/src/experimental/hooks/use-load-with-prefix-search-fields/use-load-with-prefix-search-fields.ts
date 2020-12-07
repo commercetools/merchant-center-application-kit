@@ -3,7 +3,7 @@ import { ApolloQueryResult, OperationVariables } from '@apollo/client';
 import type { DocumentNode } from 'graphql';
 import { useApolloClient } from '@apollo/client/react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import isUUID from '../../../utils/is-uuid';
+import { validate as isUUID } from 'uuid';
 
 type TLoadingWithPrefixSearchFieldsOptions = {
   query: DocumentNode;
