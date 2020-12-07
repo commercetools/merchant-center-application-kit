@@ -13,14 +13,11 @@ declare module '@commercetools-uikit/async-select-input' {
   export type AsyncSelectInputProps<
     OptionType extends OptionTypeBase = { label: string; value: string }
   > = {
-    horizontalConstraint?: 's' | 'm' | 'l' | 'xl' | 'scale';
     hasError?: boolean;
     isReadOnly?: boolean;
     menuPortalZIndex: number;
-    showOptionGroupDivider?: boolean;
-    // Custom mapped props to be forwarded to react-select
-    isAutofocussed?: boolean;
     containerId?: string;
+    name: string;
     value: string | string[] | TAsyncOption;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     loadOptions?: (value: unknown) => void;
