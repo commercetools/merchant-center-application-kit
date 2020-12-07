@@ -114,7 +114,7 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
   );
 
   const loadResourceWithPrefix = useDebouncedPromiseCallback(
-    useLoadWithPrefixSearchFields({
+    useLoadWithPrefixSearchFields<TPrefixProductGraphqlProducts>({
       query: FetchProductByPrefix,
       prefixSearchFields,
     }),
