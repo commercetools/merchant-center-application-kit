@@ -1,6 +1,8 @@
 import React, { ChangeEvent } from 'react';
 import { FocusEventHandler } from 'react-select';
 import { useQuery } from '@apollo/client/react';
+import type { GraphQLError } from 'graphql';
+import { ApolloError } from '@apollo/client';
 import { useIntl } from 'react-intl';
 import AsyncSelectInput from '@commercetools-uikit/async-select-input';
 import { ErrorMessage } from '@commercetools-uikit/messages';
@@ -22,8 +24,6 @@ import useDebouncedPromiseCallback from '../../hooks/use-debounced-promise-callb
 import FetchProductByPrefix from './fetch-product-by-prefix.ctp.graphql';
 import PrefetchProduct from './prefetch-selected-product.ctp.graphql';
 
-type TOnErrorCallback = (error: unknown) => void;
-
 type TProps = {
   name: string;
   value: string;
@@ -32,11 +32,11 @@ type TProps = {
   isClearable?: boolean;
   isDisabled?: boolean;
 
-  onInputChange?: (newValue: string) => void;
+  onInputChange?: (nextInputValue: string) => void;
   onChange: (event: ChangeEvent) => void;
   onBlur?: FocusEventHandler;
-  onInitialLoadError?: TOnErrorCallback;
-  onLoadError?: TOnErrorCallback;
+  onInitialLoadError?: (error: ApolloError) => void;
+  onLoadError?: (errors: GraphQLError[]) => void;
 };
 
 type TFlatProduct = {
@@ -140,22 +140,19 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
 
   const loadOptions = React.useCallback(
     (inputValue) => {
-      return (
-        loadResourceWithPrefix({ inputValue })
-          .then(
-            ({ data }: { data?: TPrefixProductGraphqlProducts }) =>
-              data?.products?.results
-                ?.map(flattenProduct)
-                .map(convertProductToOption) ?? []
-          )
-          // @ts-ignore
-          .catch((graphQlErrors) => {
-            if (onLoadError) {
-              setLoadingError(true);
-              onLoadError(graphQlErrors);
-            }
-          })
-      );
+      return loadResourceWithPrefix({ inputValue })
+        .then(
+          ({ data }: { data?: TPrefixProductGraphqlProducts }) =>
+            data?.products?.results
+              ?.map(flattenProduct)
+              .map(convertProductToOption) ?? []
+        )
+        .catch((graphQlErrors: GraphQLError[]) => {
+          if (onLoadError) {
+            setLoadingError(true);
+            onLoadError(graphQlErrors);
+          }
+        });
     },
     [loadResourceWithPrefix, convertProductToOption, onLoadError]
   );
@@ -170,8 +167,6 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
     [onInputChange, setLoadingError]
   );
 
-  // @TODO: handle error for initial load of non-existing product
-  // example scenarios
   // GIVEN Merchant Center Product Details
   // WITH custom field "product"
   // AND custom field product has value "product-a"
