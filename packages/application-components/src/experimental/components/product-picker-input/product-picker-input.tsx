@@ -154,7 +154,7 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
     if (prefetchError && onInitialLoadError) {
       onInitialLoadError(prefetchError);
     }
-  }, [prefetchError, onInitialLoadError, setLoadingError]);
+  }, [prefetchError, setLoadingError]);
 
   const prefetchSelectedProduct = prefetchSelectedProductQuery.data?.product
     ? convertProductToOption(
