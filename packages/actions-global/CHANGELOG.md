@@ -1,5 +1,12 @@
 # @commercetools-frontend/actions-global
 
+## 17.6.2
+
+### Patch Changes
+
+- Updated dependencies [[`1a96e83`](https://github.com/commercetools/merchant-center-application-kit/commit/1a96e831c94250e10de61dee40e682a77313445f)]:
+  - @commercetools-frontend/sentry@17.6.2
+
 ## 17.6.0
 
 ### Patch Changes

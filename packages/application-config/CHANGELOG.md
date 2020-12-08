@@ -1,5 +1,13 @@
 # @commercetools-frontend/application-config
 
+## 17.6.2
+
+### Patch Changes
+
+- [`1a96e83`](https://github.com/commercetools/merchant-center-application-kit/commit/1a96e831c94250e10de61dee40e682a77313445f) [#1905](https://github.com/commercetools/merchant-center-application-kit/pull/1905) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+* [`c7b321a`](https://github.com/commercetools/merchant-center-application-kit/commit/c7b321aa3eaae6aae803590999179b95b3da2b9a) [#1907](https://github.com/commercetools/merchant-center-application-kit/pull/1907) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency json-schema-to-typescript to v10
+
 ## 17.6.0
 
 ### Patch Changes
