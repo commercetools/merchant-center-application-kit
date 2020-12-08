@@ -20603,13 +20603,10 @@ omggif@^1.0.10, omggif@^1.0.9:
   resolved "https://registry.yarnpkg.com/omggif/-/omggif-1.0.10.tgz#ddaaf90d4a42f532e9e7cb3a95ecdd47f17c7b19"
   integrity sha512-LMJTtvgc/nugXj0Vcrrs68Mn2D1r0zf630VNtqtpI1FEO7e+O9FP4gqs9AcnBaSEeoHIPm28u6qgPR0oyEpGSw==
 
-omit-empty-es@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/omit-empty-es/-/omit-empty-es-1.1.0.tgz#4c0b391b8789994d068c56675bd17dd89186e65f"
-  integrity sha512-uPfDRTCpkL9yT31KfF5oI71T1Jtq6TyaXiRsJxhDIG0LkBrXGGHbf0N9Z+HWROWWGIGDPhtR8UItRbJzZfQJlg==
-  dependencies:
-    "@babel/runtime" "7.12.1"
-    "@babel/runtime-corejs3" "7.12.1"
+omit-empty-es@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/omit-empty-es/-/omit-empty-es-1.0.3.tgz#b6577b40756ff7d8da6e2d0ed4b4c79c883793e1"
+  integrity sha512-SobkOViA9e2sNtw7ebBDEfgy76zKbXx+quKqgCZ17a4Y7FZ6JduHwOlABsjs0Rdz6d/YAf9/bRS0Q+V6idWxOQ==
 
 on-finished@~2.3.0:
   version "2.3.0"
