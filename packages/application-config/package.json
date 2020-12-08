@@ -33,7 +33,7 @@
     "omit-empty-es": "1.0.3"
   },
   "devDependencies": {
-    "json-schema-to-typescript": "9.1.1",
+    "json-schema-to-typescript": "10.0.0",
     "shelljs": "0.8.4"
   },
   "engines": {
