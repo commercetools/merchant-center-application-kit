@@ -18,7 +18,11 @@ import {
   formatLocalizedString,
   transformLocalizedFieldToLocalizedString,
 } from '@commercetools-frontend/l10n';
-import { DropdownIndicator, CenteredLoadingSpinner, Option } from '../shared';
+import {
+  DropdownIndicator,
+  CenteredLoadingSpinner,
+  Option,
+} from '../internals';
 import useLoadWithPrefixSearchFields from '../../hooks/use-load-with-prefix-search-fields';
 import useDebouncedPromiseCallback from '../../hooks/use-debounced-promise-callback';
 import FetchProductByPrefix from './fetch-product-by-prefix.ctp.graphql';
