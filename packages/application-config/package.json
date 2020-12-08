@@ -27,10 +27,10 @@
     "@babel/runtime": "7.12.5",
     "@babel/runtime-corejs3": "7.12.5",
     "ajv": "6.12.6",
-    "core-js": "3.7.0",
+    "core-js": "3.8.1",
     "cosmiconfig": "7.0.0",
     "lodash": "4.17.20",
-    "omit-empty-es": "1.0.3"
+    "omit-empty-es": "1.1.0"
   },
   "devDependencies": {
     "json-schema-to-typescript": "10.0.0",

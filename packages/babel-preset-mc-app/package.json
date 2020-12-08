@@ -18,7 +18,7 @@
   "main": "./index.js",
   "module": "./index.js",
   "dependencies": {
-    "@babel/core": "7.12.7",
+    "@babel/core": "7.12.9",
     "@babel/plugin-proposal-class-properties": "7.12.1",
     "@babel/plugin-proposal-do-expressions": "7.12.1",
     "@babel/plugin-proposal-export-default-from": "7.12.1",
@@ -36,11 +36,11 @@
     "@babel/runtime": "7.12.5",
     "@babel/runtime-corejs3": "7.12.5",
     "@emotion/babel-preset-css-prop": "11.0.0",
-    "@emotion/babel-plugin": "11.0.0",
+    "@emotion/babel-plugin": "11.1.2",
     "babel-plugin-dev-expression": "0.2.2",
     "babel-plugin-lodash": "3.3.4",
     "babel-plugin-macros": "3.0.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
-    "core-js": "3.7.0"
+    "core-js": "3.8.1"
   }
 }
