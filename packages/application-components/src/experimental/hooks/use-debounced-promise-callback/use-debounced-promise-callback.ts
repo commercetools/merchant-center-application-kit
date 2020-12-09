@@ -9,7 +9,7 @@ const useDebouncedPromiseCallback = <T>(
   delayedTimeMS: number
 ): DebouncedCallback<T> => {
   const debounced = debounce(promiseCallback, delayedTimeMS);
-  return useCallback(() => debounced(), [debounced]);
+  return useCallback((...args: unknown[]) => debounced(...args), [debounced]);
 };
 
 export default useDebouncedPromiseCallback;
