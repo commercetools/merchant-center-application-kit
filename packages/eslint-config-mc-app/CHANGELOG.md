@@ -1,5 +1,11 @@
 # @commercetools-frontend/eslint-config-mc-app
 
+## 17.6.2
+
+### Patch Changes
+
+- [`9c44ec6`](https://github.com/commercetools/merchant-center-application-kit/commit/9c44ec68cc35e6d03e815265e5ec4a1041f11a78) [#1917](https://github.com/commercetools/merchant-center-application-kit/pull/1917) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint-config-prettier to v7
+
 ## 17.3.0
 
 ### Patch Changes
