@@ -38,8 +38,8 @@ type TProps = {
   isClearable?: boolean;
   isDisabled?: boolean;
 
-  onInputChange?: (nextInputValue: string) => void;
   onChange: (event: ChangeEvent) => void;
+  onInputChange?: (nextInputValue: string) => void;
   onBlur?: FocusEventHandler;
   onInitialLoadError?: (error: ApolloError) => void;
   onLoadError?: (errors: GraphQLError[]) => void;
@@ -154,9 +154,11 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
 
   const { error: prefetchError } = prefetchSelectedProductQuery;
   React.useEffect(() => {
-    setLoadingError(true);
-    if (prefetchError && onInitialLoadError) {
-      onInitialLoadError(prefetchError);
+    if (prefetchError) {
+      setLoadingError(true);
+      if (onInitialLoadError) {
+        onInitialLoadError(prefetchError);
+      }
     }
   }, [prefetchError, setLoadingError]);
 
@@ -164,7 +166,7 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
     ? convertProductToOption(
         flattenProduct(prefetchSelectedProductQuery.data.product)
       )
-    : props.value;
+    : null;
 
   return (
     <Constraints.Horizontal constraint="scale">
