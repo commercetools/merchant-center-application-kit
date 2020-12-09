@@ -2,7 +2,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 
-const CenteredLoadingSpinner: React.FC = () => (
+const CenteredLoadingSpinner = (): JSX.Element => (
   <div
     data-testid="picker-centered-loading-spinner"
     css={css`
