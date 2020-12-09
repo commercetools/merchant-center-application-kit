@@ -18,7 +18,7 @@ declare module '@commercetools-uikit/async-select-input' {
     menuPortalZIndex: number;
     containerId?: string;
     name: string;
-    value: string | string[] | TAsyncOption;
+    value?: string | string[] | TAsyncOption | null;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     loadOptions?: (value: unknown) => void;
     defaultOptions?: string[] | TAsyncOption[];
