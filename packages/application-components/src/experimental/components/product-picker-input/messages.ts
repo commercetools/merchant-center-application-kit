@@ -17,4 +17,9 @@ export default defineMessages({
     defaultMessage:
       'Unable to load products. Check the connection and try again.',
   },
+  loadingMessage: {
+    id: 'Components.ProductPickerInput.loadingMessage',
+    description: 'Message to show when fetching products on input.',
+    defaultMessage: 'Loading matches',
+  },
 });

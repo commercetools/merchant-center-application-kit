@@ -22,6 +22,7 @@ declare module '@commercetools-uikit/async-select-input' {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     loadOptions?: (value: unknown) => void;
     defaultOptions?: string[] | TAsyncOption[];
+    loadingMessage?: string;
   } & Pick<
     ReactSelectProps<OptionType>,
     | 'aria-label'

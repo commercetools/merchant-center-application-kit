@@ -195,6 +195,7 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
             onBlur={props.onBlur}
             onChange={props.onChange}
             hasError={props.hasError}
+            loadingMessage={intl.formatMessage(messages.loadingMessage)}
           />
           {loadingError && (
             <ErrorMessage intlMessage={messages.onResourceLoadError} />
