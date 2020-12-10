@@ -166,7 +166,7 @@ describe('loading products', () => {
             result: {
               data: {
                 products: {
-                  restuls: [],
+                  results: [],
                 },
               },
             },
