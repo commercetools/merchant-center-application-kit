@@ -1,9 +1,12 @@
-import React, { ChangeEvent } from 'react';
-import { FocusEventHandler } from 'react-select';
-import { useQuery } from '@apollo/client/react';
+import type { ChangeEvent } from 'react';
 import type { GraphQLError } from 'graphql';
+
+import React, { useCallback } from 'react';
+import { FocusEventHandler } from 'react-select';
 import { ApolloError } from '@apollo/client';
+import { useQuery } from '@apollo/client/react';
 import { useIntl } from 'react-intl';
+import debounce from 'debounce-promise';
 import AsyncSelectInput from '@commercetools-uikit/async-select-input';
 import { ErrorMessage } from '@commercetools-uikit/messages';
 import Spacings from '@commercetools-uikit/spacings';
@@ -24,7 +27,6 @@ import {
   Option,
 } from '../internals';
 import useLoadWithPrefixSearchFields from '../../hooks/use-load-with-prefix-search-fields';
-import useDebouncedPromiseCallback from '../../hooks/use-debounced-promise-callback';
 import FetchProductByPrefix from './fetch-product-by-prefix.ctp.graphql';
 import PrefetchProduct from './prefetch-selected-product.ctp.graphql';
 import { TProductQueryResult, TProduct } from '../../../types/generated/ctp';
@@ -83,12 +85,22 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
     projectLanguages: context.project?.languages,
   }));
 
-  const loadResourceWithPrefix = useDebouncedPromiseCallback(
-    useLoadWithPrefixSearchFields<TPrefixProductGraphqlProducts>({
+  const loadWithPrefixSearchFields = useLoadWithPrefixSearchFields<TPrefixProductGraphqlProducts>(
+    {
       query: FetchProductByPrefix,
       prefixSearchFields: [`masterData.current.name.${dataLocale}`, 'key'],
-    }),
-    debounceDelayInMs
+    }
+  );
+  const loadResourceWithPrefix = useCallback<
+    (options: {
+      inputValue: string;
+    }) => ReturnType<typeof loadWithPrefixSearchFields>
+  >(
+    (options) => {
+      const debounced = debounce(loadWithPrefixSearchFields, debounceDelayInMs);
+      return debounced(options);
+    },
+    [loadWithPrefixSearchFields]
   );
 
   const convertProductToOption = React.useCallback(
@@ -160,6 +172,9 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
         onInitialLoadError(prefetchError);
       }
     }
+    // NOTE: do not include variables from `props`, to avoid unwanted side effects
+    // like infinite loops (for example if the reference changes on each render).
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [prefetchError, setLoadingError]);
 
   const prefetchSelectedProduct = prefetchSelectedProductQuery.data?.product

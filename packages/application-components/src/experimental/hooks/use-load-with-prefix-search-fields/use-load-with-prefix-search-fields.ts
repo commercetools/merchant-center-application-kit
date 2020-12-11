@@ -1,6 +1,7 @@
-import React from 'react';
-import { ApolloQueryResult, OperationVariables } from '@apollo/client';
+import type { ApolloQueryResult, OperationVariables } from '@apollo/client';
 import type { DocumentNode } from 'graphql';
+
+import React from 'react';
 import { useApolloClient } from '@apollo/client/react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { validate as isUUID } from 'uuid';
@@ -15,9 +16,9 @@ type TLoadingWithPrefixSearchFieldsRequestOptions = {
   variables?: OperationVariables;
 };
 
-type TLoadingWithPrefixSearchFieldsCallback<T> = (
+type TLoadingWithPrefixSearchFieldsCallback<Result> = (
   options: TLoadingWithPrefixSearchFieldsRequestOptions
-) => Promise<ApolloQueryResult<T>>;
+) => Promise<ApolloQueryResult<Result>>;
 
 const getPrefixSearchBounds = (input: string): [string, string] => {
   const getNextCharacter = (character: string) =>
@@ -64,9 +65,9 @@ export const getPrefixSearchWherePredicate = (
   );
 };
 
-const useLoadWithPrefixSearchFields = <T>(
+const useLoadWithPrefixSearchFields = <Result>(
   options: TLoadingWithPrefixSearchFieldsOptions
-): TLoadingWithPrefixSearchFieldsCallback<T> => {
+): TLoadingWithPrefixSearchFieldsCallback<Result> => {
   const { query, prefixSearchFields } = options;
   const apolloClient = useApolloClient();
   const loadWithPrefixSearchFields = React.useCallback(
@@ -78,7 +79,7 @@ const useLoadWithPrefixSearchFields = <T>(
         ? `id = "${inputValue}"`
         : getPrefixSearchWherePredicate(inputValue, prefixSearchFields);
 
-      return apolloClient.query({
+      return apolloClient.query<Result>({
         query,
         context: { target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM },
         variables: { ...variables, where: wherePredicate },

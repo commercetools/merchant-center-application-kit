@@ -302,7 +302,7 @@ const ApolloProviderWrapper = (props: TApolloProviderWrapperProps) => {
 //
 //  We can add these things as we go and when we need them.
 
-type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
+export type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   locale: string;
   mocks: ReadonlyArray<MockedResponse>;
   apolloClient?: ApolloClient<NormalizedCacheObject>;

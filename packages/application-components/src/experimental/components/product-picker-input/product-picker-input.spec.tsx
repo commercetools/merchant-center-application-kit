@@ -1,8 +1,10 @@
+import type { TRenderAppOptions } from '@commercetools-frontend/application-shell/test-utils';
+
 // import { graphql } from 'msw';
 // import { setupServer } from 'msw/node';
 import React from 'react';
 import {
-  renderAppWithRedux,
+  renderApp,
   fireEvent,
   screen,
 } from '@commercetools-frontend/application-shell/test-utils';
@@ -14,7 +16,7 @@ import PrefetchProduct from './prefetch-selected-product.ctp.graphql';
 const productId = '6f69c022-b894-4deb-b19f-6335547cb5d7';
 const inputName = 'product-picker-input';
 
-const createTestProps = (custom) => ({
+const createTestProps = (custom = {}) => ({
   name: inputName,
   value: productId,
   hasError: false,
@@ -27,7 +29,7 @@ const createTestProps = (custom) => ({
   ...custom,
 });
 
-const createTestProduct = (custom) => ({
+const createTestProduct = (custom = {}) => ({
   id: productId,
   key: 'milk-product',
   masterData: {
@@ -43,7 +45,7 @@ const createTestProduct = (custom) => ({
   ...custom,
 });
 
-const createPrefetchedProductQueryMock = (custom) => ({
+const createPrefetchedProductQueryMock = (custom = {}) => ({
   request: {
     query: PrefetchProduct,
     context: { target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM },
@@ -57,7 +59,7 @@ const createPrefetchedProductQueryMock = (custom) => ({
   ...custom,
 });
 
-const createPrefixedSearchProductQueryMock = (custom) => ({
+const createPrefixedSearchProductQueryMock = (custom = {}) => ({
   request: {
     query: FetchProductByPrefix,
     variables: {
@@ -75,20 +77,20 @@ const createPrefixedSearchProductQueryMock = (custom) => ({
   ...custom,
 });
 
-const render = (ui, renderOptions) => {
-  // eslint-disable-next-line react/prop-types
-  const Wrapper = ({ children }) => (
+const render = (
+  ui: React.ReactElement,
+  renderOptions: Partial<TRenderAppOptions<{}>>
+) => {
+  return renderApp(
     <>
       <label htmlFor={inputName}>Product picker</label>
-      {children}
-    </>
+      {ui}
+    </>,
+    {
+      dataLocale: 'en',
+      ...renderOptions,
+    }
   );
-  return renderAppWithRedux(ui, {
-    addTypename: true,
-    wrapper: Wrapper,
-    dataLocale: 'en',
-    ...renderOptions,
-  });
 };
 
 describe('initial load', () => {
