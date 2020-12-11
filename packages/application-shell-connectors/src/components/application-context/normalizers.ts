@@ -1,6 +1,7 @@
 import type {
-  Maybe,
-  TFetchProjectQuery,
+  TAppliedPermission,
+  TAppliedActionRight,
+  TAppliedMenuVisibilities,
   TStoreDataFence,
 } from '../../types/generated/mc';
 
@@ -59,10 +60,8 @@ export type TDataFences = Partial<
  * to move this over to `permissions` and export it there.
  */
 export const normalizeAllAppliedPermissions = (
-  project: TFetchProjectQuery['project']
+  allAppliedPermissions?: TAppliedPermission[]
 ): TPermissions | null => {
-  if (!project) return null;
-  const allAppliedPermissions = project.allAppliedPermissions;
   if (!allAppliedPermissions || allAppliedPermissions.length === 0) {
     return null;
   }
@@ -79,10 +78,8 @@ export const normalizeAllAppliedPermissions = (
 };
 
 export const normalizeAllAppliedMenuVisibilities = (
-  project: TFetchProjectQuery['project']
+  allAppliedMenuVisibilities?: TAppliedMenuVisibilities[]
 ): TMenuVisibilities | null => {
-  if (!project) return null;
-  const allAppliedMenuVisibilities = project.allAppliedMenuVisibilities;
   if (!allAppliedMenuVisibilities || allAppliedMenuVisibilities.length === 0) {
     return null;
   }
@@ -99,10 +96,8 @@ export const normalizeAllAppliedMenuVisibilities = (
 };
 
 export const normalizeAllAppliedActionRights = (
-  project: TFetchProjectQuery['project']
+  allAppliedActionRights?: TAppliedActionRight[]
 ): TActionRights | null => {
-  if (!project) return null;
-  const allAppliedActionRights = project.allAppliedActionRights;
   if (!allAppliedActionRights || allAppliedActionRights.length === 0) {
     return null;
   }
@@ -123,7 +118,7 @@ export const normalizeAllAppliedActionRights = (
 };
 
 const normalizeAppliedDataFencesForStoresByResourceType = (
-  dataFences: Maybe<TStoreDataFence>[]
+  dataFences: TStoreDataFence[]
 ): TDataFenceGroupedByResourceType => {
   const groupedByResourceType = dataFences.reduce<TDataFenceStoresGroupByResourceType>(
     (previousGroupsOfSameType, appliedDataFence) => {
@@ -196,10 +191,8 @@ const normalizeAppliedDataFencesForStoresByResourceType = (
 // }
 
 export const normalizeAllAppliedDataFences = (
-  project: TFetchProjectQuery['project']
+  allAppliedDataFences?: TStoreDataFence[]
 ): TDataFences | null => {
-  if (!project) return null;
-  const allAppliedDataFences = project.allAppliedDataFences;
   if (!allAppliedDataFences || allAppliedDataFences.length === 0) {
     return null;
   }

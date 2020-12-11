@@ -33,7 +33,7 @@ query FetchProject($projectKey: String!) {
         __typename
       }
     }
-    menuPermissionsForAllApplications {
+    allPermissionsForAllApplications {
       allAppliedPermissions {
         name
         value

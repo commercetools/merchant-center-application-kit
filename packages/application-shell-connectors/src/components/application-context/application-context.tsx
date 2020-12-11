@@ -141,9 +141,11 @@ const createApplicationContext: <AdditionalEnvironmentProperties extends {}>(
   environment: mapEnvironmentToApplicationContextEnvironment(environment),
   user: mapUserToApplicationContextUser(user),
   project: mapProjectToApplicationContextProject(project),
-  permissions: normalizeAllAppliedPermissions(project),
-  actionRights: normalizeAllAppliedActionRights(project),
-  dataFences: normalizeAllAppliedDataFences(project),
+  permissions: normalizeAllAppliedPermissions(project?.allAppliedPermissions),
+  actionRights: normalizeAllAppliedActionRights(
+    project?.allAppliedActionRights
+  ),
+  dataFences: normalizeAllAppliedDataFences(project?.allAppliedDataFences),
   dataLocale: projectDataLocale || null,
 });
 
