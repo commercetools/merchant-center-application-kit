@@ -194,17 +194,6 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
           NODE_ENV: JSON.stringify('production'),
         },
       }),
-      // Add module names to factory functions so they appear in browser profiler.
-      // NOTE: instead of using `HashedModuleIdsPlugin`, we use `NamedModulesPlugin`
-      // for production as well, despite the `HashedModuleIdsPlugin` being the
-      // recommended choice for production.
-      // It appears that using `HashedModuleIdsPlugin` the gzipped bundles are
-      // bigger in size compared to the bundles produces by `NamedModulesPlugin`.
-      // Therefore we go for the choice of having smaller bundles.
-      // Refs:
-      // - https://gitlab.com/gitlab-org/gitlab-ce/issues/32835
-      // - https://medium.com/@schnibl/hashes-are-had-to-zip-pathnames-not-therefore-your-end-result-with-named-modules-is-unintuitively-94baa1a507e
-      new webpack.NamedModulesPlugin(),
       // Strip all locales except `en`, `de`
       // (`en` is built into Moment and can't be removed)
       new MomentLocalesPlugin({
@@ -243,8 +232,6 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
       strictExportPresence: true,
 
       rules: [
-        // Disable require.ensure as it's not a standard language feature.
-        { parser: { requireEnsure: false } },
         // For svg icons, we want to get them transformed into React components
         // when we import them.
         {
@@ -418,7 +405,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
               // For all other vendor CSS, do not use "postcss" loader.
               // But still use MiniCssExtractPlugin :)
               include: /node_modules/,
-              loaders: [
+              use: [
                 mergedToggleFlags.enableExtractCss
                   ? MiniCssExtractPlugin.loader
                   : require.resolve('style-loader'),
@@ -465,6 +452,8 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
             },
           ],
           include: sourceFolders.concat(vendorsToTranspile),
+          // Disable require.ensure as it's not a standard language feature.
+          parser: { requireEnsure: false },
         },
         // Allow to import `*.graphql` SDL files.
         {
@@ -473,18 +462,6 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
           use: [require.resolve('graphql-tag/loader')],
         },
       ].filter(Boolean),
-    },
-    // Some libraries import Node modules but don't use them in the browser.
-    // Tell Webpack to provide empty mocks for them so importing them works.
-    node: {
-      module: 'empty',
-      dgram: 'empty',
-      dns: 'mock',
-      fs: 'empty',
-      http2: 'empty',
-      net: 'empty',
-      tls: 'empty',
-      child_process: 'empty',
     },
     // Turn off performance processing because we utilize
     // our own hints via the FileSizeReporter
