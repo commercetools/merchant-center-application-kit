@@ -816,13 +816,18 @@ describe('when navbar menu items are hidden', () => {
       ...getDefaultMockResolvers({
         projects: [
           ProjectMock.build({
-            allAppliedMenuVisibilities: [
-              {
-                __typename: 'AppliedMenuVisibilities',
-                name: 'hideFoo',
-                value: true,
-              },
-            ],
+            allPermissionsForAllApplications: {
+              allAppliedPermissions: [],
+              allAppliedActionRights: [],
+              allAppliedDataFences: [],
+              allAppliedMenuVisibilities: [
+                {
+                  __typename: 'AppliedMenuVisibilities',
+                  name: 'hideFoo',
+                  value: true,
+                },
+              ],
+            },
           }),
         ],
       })

@@ -32,8 +32,13 @@ const transformers = {
       __typename: 'Project',
       allAppliedPermissions: AppliedPermissionMock.random().buildGraphql<AppliedPermissionMock.TAppliedPermissionGraphql>(),
       allAppliedActionRights: AppliedActionRightMock.random().buildGraphql<AppliedActionRightMock.TAppliedActionRightsGraphql>(),
-      allAppliedMenuVisibilities: AppliedMenuVisibilitiesMock.random().buildGraphql<AppliedMenuVisibilitiesMock.TAppliedMenuVisibilitiesGraphql>(),
       allAppliedDataFences: AppliedStoreDataFenceMock.random().buildGraphql<AppliedStoreDataFenceMock.TAppliedStoreDataFencesGraphql>(),
+      allPermissionsForAllApplications: {
+        allAppliedPermissions: AppliedPermissionMock.random().buildGraphql<AppliedPermissionMock.TAppliedPermissionGraphql>(),
+        allAppliedActionRights: AppliedActionRightMock.random().buildGraphql<AppliedActionRightMock.TAppliedActionRightsGraphql>(),
+        allAppliedDataFences: AppliedStoreDataFenceMock.random().buildGraphql<AppliedStoreDataFenceMock.TAppliedStoreDataFencesGraphql>(),
+        allAppliedMenuVisibilities: AppliedMenuVisibilitiesMock.random().buildGraphql<AppliedMenuVisibilitiesMock.TAppliedMenuVisibilitiesGraphql>(),
+      },
     }),
     removeFields: [
       'permissions',

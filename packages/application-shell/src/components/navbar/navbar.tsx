@@ -584,13 +584,13 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
   const projectPermissions: TProjectPermissions = React.useMemo(
     () => ({
       permissions: normalizeAllAppliedPermissions(
-        props.project.allPermissionsForAllApplications.allAppliedPermissions
+        props.project?.allPermissionsForAllApplications.allAppliedPermissions
       ),
       actionRights: normalizeAllAppliedActionRights(
-        props.project.allPermissionsForAllApplications.allAppliedActionRights
+        props.project?.allPermissionsForAllApplications.allAppliedActionRights
       ),
       dataFences: normalizeAllAppliedDataFences(
-        props.project.allPermissionsForAllApplications.allAppliedDataFences
+        props.project?.allPermissionsForAllApplications.allAppliedDataFences
       ),
     }),
     [props.project]
@@ -598,7 +598,7 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
   const menuVisibilities = React.useMemo(
     () =>
       normalizeAllAppliedMenuVisibilities(
-        props.project.allPermissionsForAllApplications
+        props.project?.allPermissionsForAllApplications
           .allAppliedMenuVisibilities
       ),
     [props.project]

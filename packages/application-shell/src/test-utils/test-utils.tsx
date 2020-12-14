@@ -59,8 +59,15 @@ const defaultProject = {
   },
   allAppliedPermissions: [],
   allAppliedActionRights: [],
-  allAppliedMenuVisibilities: [],
   allAppliedDataFences: [],
+  allPermissionsForAllApplications: {
+    allAppliedPermissions: [],
+    allAppliedActionRights: [],
+    allAppliedDataFences: [],
+    allAppliedMenuVisibilities: [],
+  },
+  // Deprecated!
+  allAppliedMenuVisibilities: [],
 };
 
 const defaultUser = {

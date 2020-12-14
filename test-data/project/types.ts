@@ -54,6 +54,11 @@ export type TProjectGraphql = TBaseProject & {
   expiry: TProjectExpiryGraphql;
   allAppliedPermissions: TAppliedPermissionGraphql;
   allAppliedActionRights: TAppliedActionRightsGraphql;
-  allAppliedMenuVisibilities: TAppliedMenuVisibilitiesGraphql;
   allAppliedDataFences: TAppliedStoreDataFencesGraphql;
+  allPermissionsForAllApplications: {
+    allAppliedPermissions: TAppliedPermissionGraphql;
+    allAppliedActionRights: TAppliedActionRightsGraphql;
+    allAppliedDataFences: TAppliedStoreDataFencesGraphql;
+    allAppliedMenuVisibilities: TAppliedMenuVisibilitiesGraphql;
+  };
 };
