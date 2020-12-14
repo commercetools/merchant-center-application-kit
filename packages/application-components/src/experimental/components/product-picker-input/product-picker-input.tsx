@@ -1,7 +1,6 @@
-import type { ChangeEvent } from 'react';
 import type { GraphQLError } from 'graphql';
 
-import React, { useCallback } from 'react';
+import React, { ChangeEvent } from 'react';
 import { FocusEventHandler } from 'react-select';
 import { ApolloError } from '@apollo/client';
 import { useQuery } from '@apollo/client/react';
@@ -91,7 +90,7 @@ const ProductPickerInput = (props: TProps): JSX.Element => {
       prefixSearchFields: [`masterData.current.name.${dataLocale}`, 'key'],
     }
   );
-  const loadResourceWithPrefix = useCallback<
+  const loadResourceWithPrefix = React.useCallback<
     (options: {
       inputValue: string;
     }) => ReturnType<typeof loadWithPrefixSearchFields>
