@@ -15,7 +15,7 @@
     "update-versions": "bulk-update-versions --match '^@commercetools-frontend/(?!ui-kit)(.*)'"
   },
   "dependencies": {
-    "@apollo/client": "3.3.4",
+    "@apollo/client": "3.3.6",
     "@commercetools-frontend/actions-global": "17.6.2",
     "@commercetools-frontend/application-components": "17.6.2",
     "@commercetools-frontend/application-shell": "17.6.2",

@@ -39,7 +39,7 @@
     "prop-types": "15.7.2",
     "qss": "2.0.3",
     "unfetch": "4.2.0",
-    "uuid": "8.3.1"
+    "uuid": "8.3.2"
   },
   "devDependencies": {
     "@types/enzyme": "3.10.8",
