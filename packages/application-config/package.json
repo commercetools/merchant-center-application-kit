@@ -30,7 +30,7 @@
     "core-js": "3.8.1",
     "cosmiconfig": "7.0.0",
     "lodash": "4.17.20",
-    "omit-empty-es": "1.0.3"
+    "omit-empty-es": "1.1.2"
   },
   "devDependencies": {
     "json-schema-to-typescript": "10.0.0",
