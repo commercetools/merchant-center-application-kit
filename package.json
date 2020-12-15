@@ -216,7 +216,8 @@
     "pretty-format": "26.6.2",
     "intl-messageformat-parser": "6.0.18",
     "**/intl-messageformat-parser": "6.0.18",
-    "**/@commercetools-docs/gatsby-theme-docs/react-intl": "5.10.6"
+    "**/@commercetools-docs/gatsby-theme-docs/react-intl": "5.10.6",
+    "react-select": "3.1.0"
   },
   "engines": {
     "node": ">=12",
