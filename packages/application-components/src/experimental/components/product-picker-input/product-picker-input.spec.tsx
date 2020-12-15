@@ -149,7 +149,6 @@ describe('loading products', () => {
       });
 
       const input = await screen.findByLabelText('Product picker');
-      expect(input).toBeInTheDocument();
       fireEvent.change(input, {
         target: { value: 'H' },
       });
@@ -176,7 +175,6 @@ describe('loading products', () => {
         ],
       });
       const input = await screen.findByLabelText('Product picker');
-      expect(input).toBeInTheDocument();
       fireEvent.change(input, {
         target: { value: 'H' },
       });
@@ -205,7 +203,6 @@ describe('loading products', () => {
         ],
       });
       const input = await screen.findByLabelText('Product picker');
-      expect(input).toBeInTheDocument();
       fireEvent.change(input, {
         target: { value: 'H' },
       });
