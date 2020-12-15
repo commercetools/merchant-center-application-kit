@@ -65,8 +65,13 @@ const testRender = ({
         },
         allAppliedPermissions,
         allAppliedActionRights,
-        allAppliedMenuVisibilities,
         allAppliedDataFences,
+        allPermissionsForAllApplications: {
+          allAppliedPermissions,
+          allAppliedActionRights,
+          allAppliedDataFences,
+          allAppliedMenuVisibilities,
+        },
       }}
       environment={{
         revision: '1',

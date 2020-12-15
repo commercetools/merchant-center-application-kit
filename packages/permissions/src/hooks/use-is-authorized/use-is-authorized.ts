@@ -1,3 +1,9 @@
+import type {
+  TNormalizedPermissions,
+  TNormalizedActionRights,
+  TNormalizedDataFences,
+} from '@commercetools-frontend/application-shell-connectors';
+
 import { useEffect } from 'react';
 import warning from 'tiny-warning';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
@@ -12,16 +18,7 @@ import {
 
 // Permissions
 type TPermissionName = string;
-type TPermissions = {
-  [key: string]: boolean;
-};
 // Action rights
-type TActionRight = {
-  [key: string]: boolean;
-};
-type TActionRights = {
-  [key: string]: TActionRight;
-};
 type TActionRightName = string;
 type TActionRightGroup = string;
 type TDemandedActionRight = {
@@ -29,18 +26,6 @@ type TDemandedActionRight = {
   name: TActionRightName;
 };
 // Data fences
-type TDataFenceGroupedByPermission = {
-  // E.g. { canManageOrders: { values: [] } }
-  [key: string]: { values: string[] } | null;
-};
-type TDataFenceGroupedByResourceType = {
-  // E.g. { orders: {...} }
-  [key: string]: TDataFenceGroupedByPermission | null;
-};
-type TDataFenceType = 'store';
-type TDataFences = Partial<
-  Record<TDataFenceType, TDataFenceGroupedByResourceType>
->;
 type TDemandedDataFence = {
   group: string;
   name: string;
@@ -51,6 +36,11 @@ type TSelectDataFenceData = (
     actualDataFenceValues: string[];
   }
 ) => string[] | null;
+type TProjectPermissions = {
+  permissions: TNormalizedPermissions | null;
+  actionRights: TNormalizedActionRights | null;
+  dataFences: TNormalizedDataFences | null;
+};
 
 // Log a warning only once, and not on each render.
 const useWarning = (condition: boolean, message: string) => {
@@ -66,12 +56,14 @@ const useIsAuthorized = ({
   demandedDataFences,
   selectDataFenceData,
   shouldMatchSomePermissions = false,
+  projectPermissions,
 }: {
   demandedPermissions: TPermissionName[];
   demandedActionRights?: TDemandedActionRight[];
   demandedDataFences?: TDemandedDataFence[];
   selectDataFenceData?: TSelectDataFenceData;
   shouldMatchSomePermissions?: boolean;
+  projectPermissions?: TProjectPermissions;
 }): boolean => {
   const impliedPermissions = getImpliedPermissions(demandedPermissions);
 
@@ -94,14 +86,17 @@ const useIsAuthorized = ({
     )}.`
   );
 
-  const actualPermissions = useApplicationContext<TPermissions | null>(
-    (applicationContext) => applicationContext.permissions
+  const actualPermissions = useApplicationContext<TNormalizedPermissions | null>(
+    (applicationContext) =>
+      projectPermissions?.permissions ?? applicationContext.permissions
   );
-  const actualActionRights = useApplicationContext<TActionRights | null>(
-    (applicationContext) => applicationContext.actionRights
+  const actualActionRights = useApplicationContext<TNormalizedActionRights | null>(
+    (applicationContext) =>
+      projectPermissions?.actionRights ?? applicationContext.actionRights
   );
-  const actualDataFences = useApplicationContext<TDataFences | null>(
-    (applicationContext) => applicationContext.dataFences
+  const actualDataFences = useApplicationContext<TNormalizedDataFences | null>(
+    (applicationContext) =>
+      projectPermissions?.dataFences ?? applicationContext.dataFences
   );
 
   // if the user has no permissions and no dataFences assigned to them, they are not authorized

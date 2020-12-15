@@ -1,5 +1,7 @@
 export type Maybe<T> = T | undefined;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -12,6 +14,15 @@ export type Scalars = {
 export type TAdditionalUserInfo = {
   firstName: Scalars['String'];
   lastName: Scalars['String'];
+};
+
+/** Only used by the navbar menu component in ApplicationShell. */
+export type TAllPermissionsForAllApplications = {
+  __typename?: 'AllPermissionsForAllApplications';
+  allAppliedPermissions: Array<TAppliedPermission>;
+  allAppliedDataFences: Array<TAppliedDataFence>;
+  allAppliedActionRights: Array<TAppliedActionRight>;
+  allAppliedMenuVisibilities: Array<TAppliedMenuVisibilities>;
 };
 
 export type TAppliedActionRight = {
@@ -283,7 +294,6 @@ export type TOrganization = {
   id: Scalars['ID'];
   /** @deprecated This field will be removed in the future. */
   createdAt: Scalars['String'];
-  /** @deprecated This field will be removed in the future. */
   name: Scalars['String'];
 };
 
@@ -339,6 +349,7 @@ export enum TPermissionScope {
   ManageCartDiscounts = 'manage_cart_discounts',
   ManageShippingMethods = 'manage_shipping_methods',
   ManageTaxCategories = 'manage_tax_categories',
+  ManageKeyValueDocuments = 'manage_key_value_documents',
   ViewApiClients = 'view_api_clients',
   ViewCustomers = 'view_customers',
   ViewDiscountCodes = 'view_discount_codes',
@@ -361,7 +372,8 @@ export enum TPermissionScope {
   ViewTaxCategories = 'view_tax_categories',
   ManageCategories = 'manage_categories',
   ViewCategories = 'view_categories',
-  ViewChangeHistory = 'view_change_history'
+  ViewChangeHistory = 'view_change_history',
+  ViewKeyValueDocuments = 'view_key_value_documents'
 }
 
 export type TProject = TMetaData & {
@@ -386,7 +398,9 @@ export type TProject = TMetaData & {
   allAppliedPermissions: Array<TAppliedPermission>;
   allAppliedDataFences: Array<TAppliedDataFence>;
   allAppliedActionRights: Array<TAppliedActionRight>;
+  /** @deprecated This field has been moved into the menuPermissionsForAllApplications field. */
   allAppliedMenuVisibilities: Array<TAppliedMenuVisibilities>;
+  allPermissionsForAllApplications: TAllPermissionsForAllApplications;
 };
 
 export type TProjectDraftType = {
@@ -720,13 +734,25 @@ export type TFetchProjectQuery = (
     )>, allAppliedActionRights: Array<(
       { __typename?: 'AppliedActionRight' }
       & Pick<TAppliedActionRight, 'group' | 'name' | 'value'>
-    )>, allAppliedMenuVisibilities: Array<(
-      { __typename?: 'AppliedMenuVisibilities' }
-      & Pick<TAppliedMenuVisibilities, 'name' | 'value'>
     )>, allAppliedDataFences: Array<(
       { __typename: 'StoreDataFence' }
       & Pick<TStoreDataFence, 'type' | 'name' | 'value' | 'group'>
-    )>, owner: (
+    )>, allPermissionsForAllApplications: (
+      { __typename?: 'AllPermissionsForAllApplications' }
+      & { allAppliedPermissions: Array<(
+        { __typename?: 'AppliedPermission' }
+        & Pick<TAppliedPermission, 'name' | 'value'>
+      )>, allAppliedActionRights: Array<(
+        { __typename?: 'AppliedActionRight' }
+        & Pick<TAppliedActionRight, 'group' | 'name' | 'value'>
+      )>, allAppliedMenuVisibilities: Array<(
+        { __typename?: 'AppliedMenuVisibilities' }
+        & Pick<TAppliedMenuVisibilities, 'name' | 'value'>
+      )>, allAppliedDataFences: Array<(
+        { __typename: 'StoreDataFence' }
+        & Pick<TStoreDataFence, 'type' | 'name' | 'value' | 'group'>
+      )> }
+    ), owner: (
       { __typename?: 'Organization' }
       & Pick<TOrganization, 'id' | 'name'>
     ) }

@@ -1,3 +1,9 @@
+import type {
+  TNormalizedPermissions,
+  TNormalizedActionRights,
+  TNormalizedDataFences,
+} from '@commercetools-frontend/application-shell-connectors';
+
 import React from 'react';
 import invariant from 'tiny-invariant';
 import isNil from 'lodash/isNil';
@@ -26,7 +32,11 @@ type TSelectDataFenceData = (
     actualDataFenceValues: string[];
   }
 ) => string[] | null;
-
+type TProjectPermissions = {
+  permissions: TNormalizedPermissions | null;
+  actionRights: TNormalizedActionRights | null;
+  dataFences: TNormalizedDataFences | null;
+};
 type TRenderProp = (props: { isAuthorized: boolean }) => React.ReactNode;
 
 type Props = {
@@ -36,6 +46,7 @@ type Props = {
   dataFences?: TDemandedDataFence[];
   selectDataFenceData?: TSelectDataFenceData;
   unauthorizedComponent?: React.ComponentType;
+  projectPermissions?: TProjectPermissions;
   render?: TRenderProp;
   children?: TRenderProp | React.ReactNode;
 };
@@ -55,6 +66,7 @@ const RestrictedByPermissions = (props: Props) => {
       demandedActionRights={props.actionRights}
       demandedDataFences={props.dataFences}
       selectDataFenceData={props.selectDataFenceData}
+      projectPermissions={props.projectPermissions}
       render={(isAuthorized: boolean) => {
         if (typeof props.children === 'function')
           return props.children({

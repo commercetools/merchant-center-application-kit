@@ -366,12 +366,15 @@ export const RestrictedApplication = <
                                   return (
                                     <ApplicationContextProvider<AdditionalEnvironmentProperties>
                                       user={user}
-                                      project={project}
                                       environment={applicationEnvironment}
+                                      // NOTE: do not pass the `project` into the application context.
+                                      // The permissions for the Navbar are resolved separately, within
+                                      // a different React context.
                                     >
                                       <NavBar<AdditionalEnvironmentProperties>
                                         applicationLocale={locale}
                                         projectKey={projectKeyFromUrl}
+                                        project={project}
                                         environment={applicationEnvironment}
                                         DEV_ONLY__loadNavbarMenuConfig={
                                           props.DEV_ONLY__loadNavbarMenuConfig

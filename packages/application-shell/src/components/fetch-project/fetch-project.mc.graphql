@@ -24,10 +24,6 @@ query FetchProject($projectKey: String!) {
       name
       value
     }
-    allAppliedMenuVisibilities {
-      name
-      value
-    }
     allAppliedDataFences {
       ... on StoreDataFence {
         type
@@ -36,6 +32,31 @@ query FetchProject($projectKey: String!) {
         group
         __typename
       }
+    }
+    allPermissionsForAllApplications {
+      allAppliedPermissions {
+        name
+        value
+      }
+      allAppliedActionRights {
+        group
+        name
+        value
+      }
+      allAppliedMenuVisibilities {
+        name
+        value
+      }
+      allAppliedDataFences {
+        ... on StoreDataFence {
+          type
+          name
+          value
+          group
+          __typename
+        }
+      }
+
     }
     owner {
       id

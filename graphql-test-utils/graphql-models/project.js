@@ -23,8 +23,13 @@ const Project = new Factory()
   })
   .attr('allAppliedPermissions', [])
   .attr('allAppliedActionRights', [])
-  .attr('allAppliedMenuVisibilities', [])
   .attr('allAppliedDataFences', [])
+  .attr('allPermissionsForAllApplications', () => ({
+    allAppliedPermissions: [],
+    allAppliedActionRights: [],
+    allAppliedDataFences: [],
+    allAppliedMenuVisibilities: [],
+  }))
   .attr('owner', () => ({
     __typename: 'Organization',
     id: faker.random.uuid(),

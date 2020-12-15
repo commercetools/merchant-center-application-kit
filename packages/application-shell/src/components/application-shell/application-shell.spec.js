@@ -56,6 +56,22 @@ const createTestProps = (props) => ({
   },
   ...props,
 });
+const createTestAppliedPermissions = ({
+  allAppliedPermissions = [],
+  allAppliedActionRights = [],
+  allAppliedDataFences = [],
+  allAppliedMenuVisibilities = [],
+} = {}) => ({
+  allAppliedPermissions,
+  allAppliedActionRights,
+  allAppliedDataFences,
+  allPermissionsForAllApplications: {
+    allAppliedPermissions,
+    allAppliedActionRights,
+    allAppliedDataFences,
+    allAppliedMenuVisibilities,
+  },
+});
 
 const renderApp = (ui, options = {}) => {
   const { route, ...customProps } = options;
@@ -479,7 +495,9 @@ describe('when user does not have permissions to access the project', () => {
       ...getDefaultMockResolvers({
         projects: [
           ProjectMock.build({
-            allAppliedPermissions: [],
+            ...createTestAppliedPermissions({
+              allAppliedPermissions: [],
+            }),
           }),
         ],
       })
@@ -816,13 +834,15 @@ describe('when navbar menu items are hidden', () => {
       ...getDefaultMockResolvers({
         projects: [
           ProjectMock.build({
-            allAppliedMenuVisibilities: [
-              {
-                __typename: 'AppliedMenuVisibilities',
-                name: 'hideFoo',
-                value: true,
-              },
-            ],
+            ...createTestAppliedPermissions({
+              allAppliedMenuVisibilities: [
+                {
+                  __typename: 'AppliedMenuVisibilities',
+                  name: 'hideFoo',
+                  value: true,
+                },
+              ],
+            }),
           }),
         ],
       })
@@ -861,13 +881,15 @@ describe('when navbar menu items match given permissions', () => {
       ...getDefaultMockResolvers({
         projects: [
           ProjectMock.build({
-            allAppliedPermissions: [
-              {
-                __typename: 'AppliedPermission',
-                name: 'canManageOrders',
-                value: true,
-              },
-            ],
+            ...createTestAppliedPermissions({
+              allAppliedPermissions: [
+                {
+                  __typename: 'AppliedPermission',
+                  name: 'canManageOrders',
+                  value: true,
+                },
+              ],
+            }),
           }),
         ],
       })
@@ -897,13 +919,15 @@ describe('when navbar menu items do not match given permissions', () => {
       ...getDefaultMockResolvers({
         projects: [
           ProjectMock.build({
-            allAppliedPermissions: [
-              {
-                __typename: 'AppliedPermission',
-                name: 'canManageOrders',
-                value: false,
-              },
-            ],
+            ...createTestAppliedPermissions({
+              allAppliedPermissions: [
+                {
+                  __typename: 'AppliedPermission',
+                  name: 'canManageOrders',
+                  value: false,
+                },
+              ],
+            }),
           }),
         ],
       })
@@ -939,21 +963,23 @@ describe('when navbar menu items match given action rights', () => {
       ...getDefaultMockResolvers({
         projects: [
           ProjectMock.build({
-            allAppliedPermissions: [
-              {
-                __typename: 'AppliedPermission',
-                name: 'canManageOrders',
-                value: true,
-              },
-            ],
-            allAppliedActionRights: [
-              {
-                __typename: 'AppliedActionRight',
-                group: 'orders',
-                name: 'canAddOrders',
-                value: true,
-              },
-            ],
+            ...createTestAppliedPermissions({
+              allAppliedPermissions: [
+                {
+                  __typename: 'AppliedPermission',
+                  name: 'canManageOrders',
+                  value: true,
+                },
+              ],
+              allAppliedActionRights: [
+                {
+                  __typename: 'AppliedActionRight',
+                  group: 'orders',
+                  name: 'canAddOrders',
+                  value: true,
+                },
+              ],
+            }),
           }),
         ],
       })
@@ -984,21 +1010,23 @@ describe('when navbar menu items do not match given action rights', () => {
       ...getDefaultMockResolvers({
         projects: [
           ProjectMock.build({
-            allAppliedPermissions: [
-              {
-                __typename: 'AppliedPermission',
-                name: 'canManageOrders',
-                value: true,
-              },
-            ],
-            allAppliedActionRights: [
-              {
-                __typename: 'AppliedActionRight',
-                group: 'orders',
-                name: 'canAddOrders',
-                value: false,
-              },
-            ],
+            ...createTestAppliedPermissions({
+              allAppliedPermissions: [
+                {
+                  __typename: 'AppliedPermission',
+                  name: 'canManageOrders',
+                  value: true,
+                },
+              ],
+              allAppliedActionRights: [
+                {
+                  __typename: 'AppliedActionRight',
+                  group: 'orders',
+                  name: 'canAddOrders',
+                  value: false,
+                },
+              ],
+            }),
           }),
         ],
       })
@@ -1035,22 +1063,24 @@ describe('when navbar menu items match given data fences', () => {
       ...getDefaultMockResolvers({
         projects: [
           ProjectMock.build({
-            allAppliedPermissions: [
-              {
-                __typename: 'AppliedPermission',
-                name: 'canManageOrders',
-                value: true,
-              },
-            ],
-            allAppliedDataFences: [
-              {
-                __typename: 'StoreDataFence',
-                value: 'usa',
-                type: 'store',
-                group: 'orders',
-                name: 'canManageOrders',
-              },
-            ],
+            ...createTestAppliedPermissions({
+              allAppliedPermissions: [
+                {
+                  __typename: 'AppliedPermission',
+                  name: 'canManageOrders',
+                  value: true,
+                },
+              ],
+              allAppliedDataFences: [
+                {
+                  __typename: 'StoreDataFence',
+                  value: 'usa',
+                  type: 'store',
+                  group: 'orders',
+                  name: 'canManageOrders',
+                },
+              ],
+            }),
           }),
         ],
       })
@@ -1087,22 +1117,24 @@ describe('when navbar menu items do not match given data fences', () => {
       ...getDefaultMockResolvers({
         projects: [
           ProjectMock.build({
-            allAppliedPermissions: [
-              {
-                __typename: 'AppliedPermission',
-                name: 'canViewOrders',
-                value: true,
-              },
-            ],
-            allAppliedDataFences: [
-              {
-                __typename: 'StoreDataFence',
-                value: 'usa',
-                type: 'store',
-                group: 'orders',
-                name: 'canViewOrders',
-              },
-            ],
+            ...createTestAppliedPermissions({
+              allAppliedPermissions: [
+                {
+                  __typename: 'AppliedPermission',
+                  name: 'canViewOrders',
+                  value: true,
+                },
+              ],
+              allAppliedDataFences: [
+                {
+                  __typename: 'StoreDataFence',
+                  value: 'usa',
+                  type: 'store',
+                  group: 'orders',
+                  name: 'canViewOrders',
+                },
+              ],
+            }),
           }),
         ],
       })

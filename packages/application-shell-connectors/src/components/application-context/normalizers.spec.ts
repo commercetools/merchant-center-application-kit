@@ -1,4 +1,9 @@
-import type { TFetchProjectQuery } from '../../types/generated/mc';
+import type {
+  TAppliedPermission,
+  TAppliedActionRight,
+  TAppliedMenuVisibilities,
+  TStoreDataFence,
+} from '../../types/generated/mc';
 
 import {
   normalizeAllAppliedActionRights,
@@ -7,45 +12,15 @@ import {
   normalizeAllAppliedDataFences,
 } from './normalizers';
 
-const createTestProject = (
-  custom: Partial<TFetchProjectQuery['project']> = {}
-): TFetchProjectQuery['project'] => ({
-  key: 'foo-1',
-  version: 1,
-  name: 'Foo 1',
-  countries: ['us'],
-  currencies: ['USD'],
-  languages: ['en'],
-  allAppliedPermissions: [],
-  allAppliedActionRights: [],
-  allAppliedDataFences: [],
-  allAppliedMenuVisibilities: [],
-  // Fields that should not be exposed
-  initialized: true,
-  expiry: {
-    isActive: false,
-    daysLeft: undefined,
-  },
-  suspension: {
-    isActive: false,
-    reason: undefined,
-  },
-  owner: { id: 'o1', name: 'Organization 1' },
-  ...custom,
-});
-
 describe('normalizeAllAppliedPermissions', () => {
-  const project = createTestProject({
-    allAppliedPermissions: [
-      {
-        name: 'canManageProjectSettings',
-        value: true,
-      },
-    ],
-  });
-
+  const allAppliedPermissions: TAppliedPermission[] = [
+    {
+      name: 'canManageProjectSettings',
+      value: true,
+    },
+  ];
   it('should normalize permissions', () => {
-    expect(normalizeAllAppliedPermissions(project)).toEqual(
+    expect(normalizeAllAppliedPermissions(allAppliedPermissions)).toEqual(
       expect.objectContaining({
         canManageProjectSettings: true,
       })
@@ -53,18 +28,15 @@ describe('normalizeAllAppliedPermissions', () => {
   });
 });
 describe('normalizeAllAppliedActionRights', () => {
-  const project = createTestProject({
-    allAppliedActionRights: [
-      {
-        group: 'products',
-        name: 'canEditPrices',
-        value: true,
-      },
-    ],
-  });
-
+  const allAppliedActionRights: TAppliedActionRight[] = [
+    {
+      group: 'products',
+      name: 'canEditPrices',
+      value: true,
+    },
+  ];
   it('should normalize action rights', () => {
-    expect(normalizeAllAppliedActionRights(project)).toEqual(
+    expect(normalizeAllAppliedActionRights(allAppliedActionRights)).toEqual(
       expect.objectContaining({
         products: { canEditPrices: true },
       })
@@ -72,17 +44,16 @@ describe('normalizeAllAppliedActionRights', () => {
   });
 });
 describe('normalizeAllAppliedMenuVisibilities', () => {
-  const project = createTestProject({
-    allAppliedMenuVisibilities: [
-      {
-        name: 'hideDashboard',
-        value: true,
-      },
-    ],
-  });
-
+  const allAppliedMenuVisibilities: TAppliedMenuVisibilities[] = [
+    {
+      name: 'hideDashboard',
+      value: true,
+    },
+  ];
   it('should normalize menu visibilities', () => {
-    expect(normalizeAllAppliedMenuVisibilities(project)).toEqual(
+    expect(
+      normalizeAllAppliedMenuVisibilities(allAppliedMenuVisibilities)
+    ).toEqual(
       expect.objectContaining({
         hideDashboard: true,
       })
@@ -91,33 +62,31 @@ describe('normalizeAllAppliedMenuVisibilities', () => {
 });
 describe('normalizeAllAppliedDataFences', () => {
   describe('with store types', () => {
-    const project = createTestProject({
-      allAppliedDataFences: [
-        {
-          __typename: 'StoreDataFence',
-          value: 'usa',
-          type: 'store',
-          group: 'orders',
-          name: 'canManageOrders',
-        },
-        {
-          __typename: 'StoreDataFence',
-          value: 'germany',
-          type: 'store',
-          group: 'orders',
-          name: 'canManageOrders',
-        },
-        {
-          __typename: 'StoreDataFence',
-          value: 'canada',
-          type: 'store',
-          group: 'orders',
-          name: 'canViewOrders',
-        },
-      ],
-    });
+    const allAppliedDataFences: TStoreDataFence[] = [
+      {
+        __typename: 'StoreDataFence',
+        value: 'usa',
+        type: 'store',
+        group: 'orders',
+        name: 'canManageOrders',
+      },
+      {
+        __typename: 'StoreDataFence',
+        value: 'germany',
+        type: 'store',
+        group: 'orders',
+        name: 'canManageOrders',
+      },
+      {
+        __typename: 'StoreDataFence',
+        value: 'canada',
+        type: 'store',
+        group: 'orders',
+        name: 'canViewOrders',
+      },
+    ];
     it('should normalized the data fences of type "store"', () => {
-      expect(normalizeAllAppliedDataFences(project)).toEqual({
+      expect(normalizeAllAppliedDataFences(allAppliedDataFences)).toEqual({
         store: {
           orders: {
             canManageOrders: {

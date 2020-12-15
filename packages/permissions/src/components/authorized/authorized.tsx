@@ -1,3 +1,9 @@
+import type {
+  TNormalizedPermissions,
+  TNormalizedActionRights,
+  TNormalizedDataFences,
+} from '@commercetools-frontend/application-shell-connectors';
+
 import React from 'react';
 import useIsAuthorized from '../../hooks/use-is-authorized';
 import getDisplayName from '../../utils/get-display-name';
@@ -11,7 +17,6 @@ type TDemandedActionRight = {
   group: TActionRightGroup;
   name: TActionRightName;
 };
-
 // Data fences
 type TDemandedDataFence = {
   group: string;
@@ -23,6 +28,11 @@ type TSelectDataFenceData = (
     actualDataFenceValues: string[];
   }
 ) => string[] | null;
+type TProjectPermissions = {
+  permissions: TNormalizedPermissions | null;
+  actionRights: TNormalizedActionRights | null;
+  dataFences: TNormalizedDataFences | null;
+};
 
 type Props = {
   demandedPermissions: TPermissionName[];
@@ -30,6 +40,7 @@ type Props = {
   demandedDataFences?: TDemandedDataFence[];
   shouldMatchSomePermissions?: boolean;
   selectDataFenceData?: TSelectDataFenceData;
+  projectPermissions?: TProjectPermissions;
   render: (isAuthorized: boolean) => React.ReactNode;
   children?: never;
 };
@@ -44,6 +55,7 @@ const Authorized = (props: Props) => {
     demandedDataFences: props.demandedDataFences,
     selectDataFenceData: props.selectDataFenceData,
     shouldMatchSomePermissions: props.shouldMatchSomePermissions,
+    projectPermissions: props.projectPermissions,
   });
 
   return <React.Fragment>{props.render(isAuthorized)}</React.Fragment>;

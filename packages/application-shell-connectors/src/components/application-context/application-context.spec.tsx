@@ -54,7 +54,12 @@ const createTestProject = (custom = {}) => ({
   allAppliedPermissions: [{ name: 'canManageProjectSettings', value: true }],
   allAppliedActionRights: [],
   allAppliedDataFences: [],
-  allAppliedMenuVisibilities: [],
+  allPermissionsForAllApplications: {
+    allAppliedPermissions: [],
+    allAppliedActionRights: [],
+    allAppliedDataFences: [],
+    allAppliedMenuVisibilities: [],
+  },
   // Fields that should not be exposed
   initialized: true,
   expiry: {
