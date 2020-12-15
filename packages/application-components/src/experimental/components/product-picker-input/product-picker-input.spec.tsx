@@ -135,7 +135,16 @@ describe('initial load', () => {
         ],
       });
       await screen.findByText(/unable to load products/i);
-      expect(props.onInitialLoadError).toHaveBeenCalled();
+      expect(props.onInitialLoadError).toHaveBeenCalledWith(
+        expect.objectContaining({
+          graphQLErrors: expect.arrayContaining([
+            {
+              code: 'InvalidRequest',
+              message: 'invalid request',
+            },
+          ]),
+        })
+      );
     });
   });
 });
