@@ -62,19 +62,13 @@ declare module '@commercetools-uikit/select-input' {
     isTouched: (touched: unknown) => boolean;
     // Aliases from react-select built-in components
     Option: {
-      <
-        OptionType extends OptionTypeBase = { label: string; value: string },
-        IsMulti extends boolean = false
-      >(
-        props: OptionProps<OptionType, IsMulti>
+      <OptionType extends OptionTypeBase = { label: string; value: string }>(
+        props: OptionProps<OptionType>
       ): JSX.Element;
     };
     ValueContainer: {
-      <
-        OptionType extends OptionTypeBase = { label: string; value: string },
-        IsMulti extends boolean = false
-      >(
-        props: ValueContainerProps<OptionType, IsMulti>
+      <OptionType extends OptionTypeBase = { label: string; value: string }>(
+        props: ValueContainerProps<OptionType>
       ): JSX.Element;
     };
   };
