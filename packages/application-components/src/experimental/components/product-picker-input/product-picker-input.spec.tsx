@@ -1,7 +1,5 @@
 import type { TRenderAppOptions } from '@commercetools-frontend/application-shell/test-utils';
 
-// import { graphql } from 'msw';
-// import { setupServer } from 'msw/node';
 import React from 'react';
 import {
   renderApp,
