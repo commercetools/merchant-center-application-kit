@@ -60,7 +60,7 @@
     "@types/lodash": "^4.14.155",
     "@types/prop-types": "^15.7.3",
     "@types/react-modal": "^3.10.4",
-    "debounce-promise": "^3.1.2",
+    "debounce-async": "0.0.2",
     "lodash": "4.17.20",
     "prop-types": "15.7.2",
     "react-modal": "3.12.1",

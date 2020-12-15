@@ -5,7 +5,7 @@ import { FocusEventHandler } from 'react-select';
 import { ApolloError } from '@apollo/client';
 import { useQuery } from '@apollo/client/react';
 import { useIntl } from 'react-intl';
-import debounce from 'debounce-promise';
+import debounce from 'debounce-async';
 import AsyncSelectInput from '@commercetools-uikit/async-select-input';
 import { ErrorMessage } from '@commercetools-uikit/messages';
 import Spacings from '@commercetools-uikit/spacings';
