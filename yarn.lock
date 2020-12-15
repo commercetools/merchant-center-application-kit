@@ -1675,6 +1675,27 @@
     lodash "4.17.20"
     prop-types "15.7.2"
 
+"@commercetools-uikit/async-select-input@^10.42.3":
+  version "10.42.3"
+  resolved "https://registry.yarnpkg.com/@commercetools-uikit/async-select-input/-/async-select-input-10.42.3.tgz#9f1aec0bb790af089b6a08451d67d8f31cee9654"
+  integrity sha512-8xDffFbsJRE2Rla0KZbQnfU8gHpa9XAjuHQmGxT6dXlCwNyhk4r4/av5pFFhZZf1AisN6AAi8to53wEla4UAGw==
+  dependencies:
+    "@babel/runtime" "7.12.5"
+    "@babel/runtime-corejs3" "7.12.5"
+    "@commercetools-uikit/constraints" "10.42.2"
+    "@commercetools-uikit/design-system" "10.42.2"
+    "@commercetools-uikit/icons" "10.42.3"
+    "@commercetools-uikit/loading-spinner" "10.42.2"
+    "@commercetools-uikit/select-utils" "10.42.3"
+    "@commercetools-uikit/spacings" "10.42.2"
+    "@commercetools-uikit/text" "10.42.2"
+    "@commercetools-uikit/utils" "10.42.2"
+    "@emotion/react" "^11.1.1"
+    "@emotion/styled" "^11.0.0"
+    lodash "4.17.20"
+    prop-types "15.7.2"
+    react-select "3.1.1"
+
 "@commercetools-uikit/avatar@^10.42.2":
   version "10.42.2"
   resolved "https://registry.yarnpkg.com/@commercetools-uikit/avatar/-/avatar-10.42.2.tgz#2534bc8ffe198e0820170a7b9231c6ce846706f5"
@@ -1942,7 +1963,7 @@
     prop-types "15.7.2"
     tiny-invariant "1.1.0"
 
-"@commercetools-uikit/icons@10.42.3":
+"@commercetools-uikit/icons@10.42.3", "@commercetools-uikit/icons@^10.42.3":
   version "10.42.3"
   resolved "https://registry.yarnpkg.com/@commercetools-uikit/icons/-/icons-10.42.3.tgz#7a75e43dfb7a6d4f8f1c18ded6cae71d88f99575"
   integrity sha512-vcsZNAPbDp2CejRanNoMpYgzIO/KR2jQvYHHjPphp3vm6cQ+8tZ6Sw68+v1odj26dP9buKX0ZC+a8WaIOjMG2w==
@@ -2035,7 +2056,7 @@
     "@emotion/react" "^11.1.1"
     prop-types "15.7.2"
 
-"@commercetools-uikit/messages@10.42.2":
+"@commercetools-uikit/messages@10.42.2", "@commercetools-uikit/messages@^10.42.2":
   version "10.42.2"
   resolved "https://registry.yarnpkg.com/@commercetools-uikit/messages/-/messages-10.42.2.tgz#5fdd4e8b6a647e1ac3e2e711884abc63be68ee5e"
   integrity sha512-JCHXbvIrPS25N89GJCG9k30d/mMKDKRbKX5N3ilsagCvElrl/j1nUOUrXMpWeJSqUJHl1Zn4gCrTBhpqxosotQ==
@@ -2092,15 +2113,15 @@
     react-required-if "1.0.3"
     react-textarea-autosize "8.3.0"
 
-"@commercetools-uikit/notifications@^10.42.2":
-  version "10.42.2"
-  resolved "https://registry.yarnpkg.com/@commercetools-uikit/notifications/-/notifications-10.42.2.tgz#c6b0c8009a1a16e04f617ac1ff02ac32a76b3519"
-  integrity sha512-66CWKi3zkQ7TINYz2nIbnsvcDgdBeKgeHPIglVCk5FbkTa4qjoSgUvlq7TxwMJk2zIlKZxeALoYmj6R0qBNA0A==
+"@commercetools-uikit/notifications@^10.42.3":
+  version "10.42.3"
+  resolved "https://registry.yarnpkg.com/@commercetools-uikit/notifications/-/notifications-10.42.3.tgz#f32225ab84c8243f9661bd4c99187937be2a955b"
+  integrity sha512-END04v8WP9TH6NTv2M1jHPjK+A7OA45ECO5Tb7EBuA0329o7PjwVKBaQWGrV3XVg3mAG8FWIHuyGqBjMTlDwBw==
   dependencies:
     "@babel/runtime" "7.12.5"
     "@babel/runtime-corejs3" "7.12.5"
     "@commercetools-uikit/design-system" "10.42.2"
-    "@commercetools-uikit/icons" "10.42.2"
+    "@commercetools-uikit/icons" "10.42.3"
     "@commercetools-uikit/utils" "10.42.2"
     "@emotion/react" "^11.1.1"
     common-tags "1.8.0"
@@ -2184,7 +2205,7 @@
     prop-types "15.7.2"
     react-required-if "1.0.3"
 
-"@commercetools-uikit/select-input@10.42.3":
+"@commercetools-uikit/select-input@10.42.3", "@commercetools-uikit/select-input@^10.42.3":
   version "10.42.3"
   resolved "https://registry.yarnpkg.com/@commercetools-uikit/select-input/-/select-input-10.42.3.tgz#bb4eaa3334f6e85f0cb57511bf3b24d115991f08"
   integrity sha512-0+HMzy6/f4V6s7WPGtuqUlyeVcDj5EXTPk9163VSgRiOv8T1uRfKnUrfEHCjNKyjXJOgcw/2dX82ZmOEtmSP7Q==
@@ -2195,25 +2216,6 @@
     "@commercetools-uikit/design-system" "10.42.2"
     "@commercetools-uikit/icons" "10.42.3"
     "@commercetools-uikit/select-utils" "10.42.3"
-    "@commercetools-uikit/utils" "10.42.2"
-    "@emotion/is-prop-valid" "1.0.0"
-    "@emotion/react" "^11.1.1"
-    "@emotion/styled" "^11.0.0"
-    lodash "4.17.20"
-    prop-types "15.7.2"
-    react-select "3.1.1"
-
-"@commercetools-uikit/select-input@^10.42.2":
-  version "10.42.2"
-  resolved "https://registry.yarnpkg.com/@commercetools-uikit/select-input/-/select-input-10.42.2.tgz#4608e985d68e40b7eebca0844c2563c3733f773c"
-  integrity sha512-+mhPYMeKV7gN7ZXOK1OnhlU9ehPAwmKLAxfzFZ/AFGPHDjVLdYEWDDeoAPEiNfTQrDHBhWkgvCgGtziKgb0m7Q==
-  dependencies:
-    "@babel/runtime" "7.12.5"
-    "@babel/runtime-corejs3" "7.12.5"
-    "@commercetools-uikit/constraints" "10.42.2"
-    "@commercetools-uikit/design-system" "10.42.2"
-    "@commercetools-uikit/icons" "10.42.2"
-    "@commercetools-uikit/select-utils" "10.42.2"
     "@commercetools-uikit/utils" "10.42.2"
     "@emotion/is-prop-valid" "1.0.0"
     "@emotion/react" "^11.1.1"
@@ -6038,6 +6040,11 @@
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/@types/cookie/-/cookie-0.4.0.tgz#14f854c0f93d326e39da6e3b6f34f7d37513d108"
   integrity sha512-y7mImlc/rNkvCRmg8gC3/lj87S7pTUIJ6QGjwHR9WQJcFs+ZMTOaoPrkdFA/YdbuqVEmEbb5RdhVxMkAcgOnpg==
+
+"@types/debounce-promise@^3.1.3":
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/@types/debounce-promise/-/debounce-promise-3.1.3.tgz#dd0d6b96ee61da0dd4c413e3ea03a425ffa36b3f"
+  integrity sha512-mjcCf//DAUQ6YLQMhqYJAv/+a4BsE1GQFmy1el5K62wLJJmQwGi3TsnshhOFynPpuBF9Gh2Vvb+5ImPi47KaZw==
 
 "@types/debug@^0.0.30":
   version "0.0.30"
@@ -27821,15 +27828,15 @@ uuid@3.4.0, uuid@^3.0.0, uuid@^3.0.1, uuid@^3.3.2, uuid@^3.4.0:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
 
+uuid@8.3.1, uuid@^8.3.0:
+  version "8.3.1"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.1.tgz#2ba2e6ca000da60fce5a196954ab241131e05a31"
+  integrity sha512-FOmRr+FmWEIG8uhZv6C2bTgEVXsHk08kE7mPlrBbEe+c3r9pjceVPgupIfNIhc4yx55H69OXANrUaSuu9eInKg==
+
 uuid@8.3.2:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
-
-uuid@^8.3.0:
-  version "8.3.1"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.1.tgz#2ba2e6ca000da60fce5a196954ab241131e05a31"
-  integrity sha512-FOmRr+FmWEIG8uhZv6C2bTgEVXsHk08kE7mPlrBbEe+c3r9pjceVPgupIfNIhc4yx55H69OXANrUaSuu9eInKg==
 
 v8-compile-cache@^1.1.2:
   version "1.1.2"

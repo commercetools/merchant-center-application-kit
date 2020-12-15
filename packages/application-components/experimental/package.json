@@ -1,0 +1,4 @@
+{
+  "main": "dist/commercetools-frontend-application-components-experimental.cjs.js",
+  "module": "dist/commercetools-frontend-application-components-experimental.esm.js"
+}

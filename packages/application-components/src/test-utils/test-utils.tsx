@@ -1,5 +1,7 @@
+import type { RenderOptions } from '@testing-library/react';
+
 import React from 'react';
-import { render, RenderOptions } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 
 type CustomRenderOptions = {
