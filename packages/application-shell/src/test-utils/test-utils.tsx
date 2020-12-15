@@ -368,16 +368,27 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
   }: Partial<TRenderAppOptions<AdditionalEnvironmentProperties>> = {}
 ): TRenderAppResult<AdditionalEnvironmentProperties> {
   const mergedUser = user === null ? undefined : { ...defaultUser, ...user };
-  const mergedProject =
-    project === null
-      ? undefined
-      : {
-          ...defaultProject,
-          ...project,
-          allAppliedPermissions: denormalizePermissions(permissions),
-          allAppliedActionRights: denormalizeActionRights(actionRights),
-          allAppliedDataFences: denormalizeDataFences(dataFences),
-        };
+  const mergedProject = (() => {
+    if (project === null) {
+      return undefined;
+    }
+    const allAppliedPermissions = denormalizePermissions(permissions);
+    const allAppliedActionRights = denormalizeActionRights(actionRights);
+    const allAppliedDataFences = denormalizeDataFences(dataFences);
+    return {
+      ...defaultProject,
+      ...project,
+      allAppliedPermissions,
+      allAppliedActionRights,
+      allAppliedDataFences,
+      allPermissionsForAllApplications: {
+        allAppliedPermissions,
+        allAppliedActionRights,
+        allAppliedDataFences,
+        allAppliedMenuVisibilities: [],
+      },
+    };
+  })();
   const mergedEnvironment = {
     ...defaultEnvironment,
     ...environment,
