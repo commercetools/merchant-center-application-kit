@@ -3,6 +3,11 @@ const { processHeaders } = require('@commercetools-frontend/mc-html-template');
 const devAuthentication = require('@commercetools-frontend/mc-dev-authentication');
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 
+// Feature flags
+const isOidcForDevelopmentEnabled =
+  process.env.ENABLE_OIDC_FOR_DEVELOPMENT === 'true' ||
+  process.env.ENABLE_OIDC_FOR_DEVELOPMENT === true;
+
 const applicationConfig = processConfig();
 const compiledHeaders = processHeaders(applicationConfig);
 
@@ -115,7 +120,8 @@ module.exports = ({ proxy, allowedHost, contentBase, publicPath }) => ({
         })
       );
     });
-    if (!applicationConfig.env.__DEVELOPMENT__) {
+
+    if (!isOidcForDevelopmentEnabled) {
       app.use(
         '/login',
         devAuthentication.middlewares.createLoginMiddleware(

@@ -42,7 +42,6 @@ import GtmApplicationTracker from '../gtm-application-tracker';
 import NavBar, { LoadingNavBar } from '../navbar';
 import ApplicationLoader from '../application-loader';
 import ErrorApologizer from '../error-apologizer';
-import Redirector from '../redirector';
 import version from '../../version';
 import RedirectToProjectCreate from '../redirect-to-project-create';
 import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';

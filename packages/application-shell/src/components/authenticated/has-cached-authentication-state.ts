@@ -1,10 +1,13 @@
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
+
 import { STORAGE_KEYS } from '../../constants';
 
-const hasCachedAuthenticationState = () => {
+declare let window: ApplicationWindow;
+
+const hasCachedAuthenticationState = (): boolean => {
   const cachedSessionToken = window.sessionStorage.getItem(
     STORAGE_KEYS.SESSION_TOKEN
   );
-  // @ts-expect-error
   if (cachedSessionToken && window.app.__DEVELOPMENT__) {
     try {
       const cachedScope = window.sessionStorage.getItem(
@@ -15,7 +18,6 @@ const hasCachedAuthenticationState = () => {
         return false;
       }
       // Check that the session scope didn't change.
-      // @ts-expect-error
       if (cachedScope === window.app.__DEVELOPMENT__.scope) {
         return true;
       }

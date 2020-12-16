@@ -32,7 +32,6 @@ const generateAndCacheNonceWithState = (state: AuthorizeSessionState) => {
 const RedirectToLogin = () => {
   const location = useLocation();
 
-  // @ts-expect-error
   if (window.app.__DEVELOPMENT__) {
     // According to the OIDC spec, the `state` parameter is recommended to be sent
     // to the authorization server to help mitigating Cross-Site Request Forgery.
@@ -48,7 +47,6 @@ const RedirectToLogin = () => {
       applicationId: window.app.applicationId!,
       // Store query parameters to be used after the callback redirect
       query: {
-        // @ts-expect-error
         redirectTo: `/${window.app.__DEVELOPMENT__.projectKey}`,
       },
     });
@@ -57,24 +55,19 @@ const RedirectToLogin = () => {
     // This is only valid for local development.
     window.sessionStorage.setItem(
       STORAGE_KEYS.SESSION_SCOPE,
-      // @ts-expect-error
       window.app.__DEVELOPMENT__.scope
     );
 
     return (
       <Redirector
         to="login"
-        origin={
-          // @ts-expect-error
-          window.app.__DEVELOPMENT__.authorizeUrl
-        }
+        origin={window.app.__DEVELOPMENT__.authorizeUrl}
         location={location}
         queryParams={{
           reason: LOGOUT_REASONS.UNAUTHORIZED,
           // Query parameters for OIDC-lik workflow.
           client_id: window.app.applicationId,
           response_type: 'id_token',
-          // @ts-expect-error
           scope: window.app.__DEVELOPMENT__.scope,
           state: sessionId,
           nonce: sessionId,

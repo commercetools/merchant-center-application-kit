@@ -30,13 +30,7 @@
       "type": "string",
       "oneOf": [
         {
-          "enum": [
-            "gcp-au",
-            "gcp-eu",
-            "gcp-us",
-            "aws-fra",
-            "aws-ohio"
-          ]
+          "enum": ["gcp-au", "gcp-eu", "gcp-us", "aws-fra", "aws-ohio"]
         },
         {
           "$ref": "#/definitions/envVariablePlaceholder"
@@ -71,10 +65,7 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "view",
-        "manage"
-      ]
+      "required": ["view", "manage"]
     },
     "env": {
       "description": "This is an object of keys that represents different environments (for example `production`). The environment used depends on the environment variable `MC_APP_ENV`. If `MC_APP_ENV` isn't set then `NODE_ENV` will be used. If neither is set, it defaults to `development`",
@@ -98,9 +89,7 @@
             }
           },
           "additionalProperties": false,
-          "required": [
-            "projectKey"
-          ]
+          "required": ["projectKey"]
         },
         "production": {
           "description": "Configuration for production only",
@@ -120,16 +109,11 @@
             }
           },
           "additionalProperties": false,
-          "required": [
-            "url"
-          ]
+          "required": ["url"]
         }
       },
       "additionalProperties": false,
-      "required": [
-        "development",
-        "production"
-      ]
+      "required": ["production"]
     },
     "additionalEnv": {
       "description": "Additional environment values unique to your Custom Application that are injected in the application context.",
@@ -160,9 +144,7 @@
             }
           },
           "additionalProperties": false,
-          "required": [
-            "connect-src"
-          ]
+          "required": ["connect-src"]
         },
         "featurePolicies": {
           "description": "Configuration for the HTTP Feature-Policy header (https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy/Using_Feature_Policy)",
@@ -170,17 +152,9 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "csp"
-      ]
+      "required": ["csp"]
     }
   },
   "additionalProperties": false,
-  "required": [
-    "name",
-    "entryPointUriPath",
-    "cloudIdentifier",
-    "permissions",
-    "env"
-  ]
+  "required": ["name", "entryPointUriPath", "cloudIdentifier", "env"]
 }

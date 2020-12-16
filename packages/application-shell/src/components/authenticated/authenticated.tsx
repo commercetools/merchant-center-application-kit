@@ -18,13 +18,13 @@ const Authenticated = (props: TProps) => {
   // We attempt to see if the user was already authenticated by looking
   // at the "cached" flag in local storage.
   const cachedAuthenticationState = hasCachedAuthenticationState();
-  console.log('cached is auth', cachedAuthenticationState);
 
   if (cachedAuthenticationState) {
     return <>{props.render({ isAuthenticated: true })}</>;
   }
 
-  // @ts-expect-error
+  // When using the OIDC workflow, we always return false, to trigger
+  // the redirect to the login page.
   if (window.app.__DEVELOPMENT__) {
     return <>{props.render({ isAuthenticated: false })}</>;
   }

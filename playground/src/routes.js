@@ -54,9 +54,9 @@ const ApplicationRoutes = () => {
         />
         <Route
           render={() => {
-            // if (!canViewDeveloperSettings) {
-            //   return <PageUnauthorized />;
-            // }
+            if (!canViewDeveloperSettings) {
+              return <PageUnauthorized />;
+            }
             return (
               <StateMachinesList
                 goToStateMachineDetail={goToStateMachineDetail}

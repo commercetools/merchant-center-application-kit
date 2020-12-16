@@ -1,6 +1,5 @@
 import type { Action, Dispatch, MiddlewareAPI } from 'redux';
 import type { HttpErrorType } from '@commercetools/sdk-client';
-import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type {
   TSdkAction,
   TSdkActionPayload,
@@ -15,8 +14,6 @@ import {
 } from '@commercetools-frontend/constants';
 import { logRequest } from '../utils';
 import createClient from './client';
-
-declare let window: ApplicationWindow;
 
 const isSdkActionForUri = (
   actionPayload: TSdkActionPayload

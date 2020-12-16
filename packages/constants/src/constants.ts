@@ -157,5 +157,11 @@ export interface ApplicationWindow extends Window {
     trackingGtm?: string;
     enableSignUp?: boolean;
     useFullRedirectsForLinks?: boolean;
+    // Properties for OIDC-like workflow for development
+    __DEVELOPMENT__?: {
+      projectKey: string;
+      scope: string;
+      authorizeUrl: string;
+    };
   };
 }

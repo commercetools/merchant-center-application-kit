@@ -25,7 +25,7 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
   /**
    * The permissions configuration for the required OAuth Scopes for this Custom Application.
    */
-  permissions: {
+  permissions?: {
     /**
      * The list of view-only OAuth Scopes
      */
@@ -42,7 +42,7 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
     /**
      * Configuration for development only
      */
-    development: {
+    development?: {
       /**
        * The project key that the Custom Application is requesting access for. This is only used in development.
        */

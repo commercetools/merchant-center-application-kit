@@ -47,6 +47,12 @@ const processConfig = ({
   const additionalAppEnv = appConfig.additionalEnv ?? {};
   const revision = (additionalAppEnv.revision as string) ?? '';
 
+  // Feature flags
+  const isOidcForDevelopmentEnabled =
+    processEnv.ENABLE_OIDC_FOR_DEVELOPMENT === 'true' ||
+    // @ts-expect-error
+    processEnv.ENABLE_OIDC_FOR_DEVELOPMENT === true;
+
   // Parse all the supported URLs, which gets implicitly validated
 
   const envAppUrl = isProd ? appConfig.env.production.url : developmentAppUrl;
@@ -75,9 +81,18 @@ const processConfig = ({
   // In development, we prefix the entry point with the "__local" prefix.
   // This is important to determine to which URL the MC should redirect to
   // after successful login.
-  const applicationId = isProd
-    ? `${appConfig.env.production.applicationId}:${appConfig.entryPointUriPath}`
-    : `__local:${appConfig.entryPointUriPath}`;
+  let applicationId:
+    | string
+    | undefined = `__local:${appConfig.entryPointUriPath}`;
+  if (isProd) {
+    if (appConfig.env.production.applicationId) {
+      applicationId = `${appConfig.env.production.applicationId}:${appConfig.entryPointUriPath}`;
+    } else {
+      // As long as we don't require the applicationId in production, we should
+      // fall back to unset the value.
+      applicationId = undefined;
+    }
+  }
 
   cachedConfig = {
     env: {
@@ -86,29 +101,30 @@ const processConfig = ({
       applicationId,
       applicationName: appConfig.name,
       entryPointUriPath: appConfig.entryPointUriPath,
-      ...(isProd
-        ? {}
-        : {
+      ...(!isProd && isOidcForDevelopmentEnabled
+        ? {
             __DEVELOPMENT__: {
-              // Used in development only
-              authorizeUrl: 'http://localhost:3000',
-              // `${mcApiUrl.protocol}//${mcApiUrl.host.replace(
-              //   'mc-api',
-              //   'mc'
-              // )}`,
-              projectKey: appConfig.env.development.projectKey,
+              authorizeUrl: `${mcApiUrl.protocol}//${mcApiUrl.host.replace(
+                'mc-api',
+                'mc'
+              )}`,
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+              projectKey: appConfig.env.development!.projectKey,
               scope: [
                 // This is required as per OIDC spec.
                 'openid',
                 // Custom claims
-                `projectKey:${appConfig.env.development.projectKey}`,
-                ...appConfig.permissions.view.map((scope) => `view:${scope}`),
-                ...appConfig.permissions.manage.map(
+                `project_key:${appConfig.env.development?.projectKey}`,
+                ...(appConfig.permissions?.view || []).map(
+                  (scope) => `view:${scope}`
+                ),
+                ...(appConfig.permissions?.manage || []).map(
                   (scope) => `manage:${scope}`
                 ),
               ].join(' '),
             },
-          }),
+          }
+        : {}),
       cdnUrl: cdnUrl.href,
       env: appEnvKey,
       frontendHost: appUrl.host,

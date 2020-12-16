@@ -23,7 +23,6 @@ type Props = {
 };
 
 const redirectTo = (targetUrl: string) => {
-  console.log('redirectTo', targetUrl);
   location.replace(targetUrl);
 };
 

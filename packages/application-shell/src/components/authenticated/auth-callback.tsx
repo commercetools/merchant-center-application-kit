@@ -79,7 +79,7 @@ const AuthCallback = () => {
       errorMessage = 'Invalid client session';
     }
   }
-  console.log('errorMessage', errorMessage, decodedSessionToken, sessionState);
+
   if (errorMessage) {
     return (
       <Card>
@@ -101,18 +101,17 @@ const AuthCallback = () => {
   window.localStorage.setItem(STORAGE_KEYS.LOGIN_STRATEGY, LOGIN_STRATEGY_OIDC);
   // Store the sessionToken
   window.sessionStorage.setItem(STORAGE_KEYS.SESSION_TOKEN, sessionToken ?? '');
-  console.log('sessionState', sessionState);
+
   if (sessionState?.query.redirectTo) {
     try {
       const redirectToUrl = new URL(sessionState.query.redirectTo);
-      console.log('callback, redirecting to', redirectToUrl);
       return <Redirector to={redirectToUrl.pathname} />;
     } catch (error) {
       console.warn(`Invalid "redirectTo" URL`, sessionState.query.redirectTo);
       // ignore
     }
   }
-  return <Redirector to="/" />;
+  return <Redirector to={location.pathname.replace('/auth/callback', '')} />;
 };
 AuthCallback.displayName = 'AuthCallback';
 
