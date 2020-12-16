@@ -1,5 +1,5 @@
 ---
-'@commercetools-frontend/l10n': patch
+'@commercetools-frontend/l10n': minor
 ---
 
 Add Northern Ireland country to the available countries list
