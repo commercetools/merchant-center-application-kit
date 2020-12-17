@@ -77,15 +77,7 @@
           "properties": {
             "initialProjectKey": {
               "description": "The initial project key that the Custom Application is requesting access for. This is only used in development.",
-              "oneOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "string",
-                  "$ref": "#/definitions/envVariablePlaceholder"
-                }
-              ]
+              "type": "string"
             }
           },
           "additionalProperties": false,

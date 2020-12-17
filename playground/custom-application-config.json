@@ -8,7 +8,7 @@
   },
   "env": {
     "development": {
-      "initialProjectKey": "almond-40"
+      "initialProjectKey": "${env:CTP_INITIAL_PROJECT_KEY}"
     },
     "production": {
       "url": "${env:APP_URL}"
