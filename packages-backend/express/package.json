@@ -27,7 +27,7 @@
     "jwks-rsa": "1.12.0"
   },
   "devDependencies": {
-    "jose": "2.0.3",
+    "jose": "3.5.0",
     "msw": "0.24.2"
   }
 }
