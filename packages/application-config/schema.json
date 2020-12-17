@@ -75,8 +75,8 @@
           "description": "Configuration for development only",
           "type": "object",
           "properties": {
-            "projectKey": {
-              "description": "The project key that the Custom Application is requesting access for. This is only used in development.",
+            "initialProjectKey": {
+              "description": "The initial project key that the Custom Application is requesting access for. This is only used in development.",
               "oneOf": [
                 {
                   "type": "string"
@@ -89,7 +89,7 @@
             }
           },
           "additionalProperties": false,
-          "required": ["projectKey"]
+          "required": ["initialProjectKey"]
         },
         "production": {
           "description": "Configuration for production only",

@@ -159,9 +159,12 @@ export interface ApplicationWindow extends Window {
     useFullRedirectsForLinks?: boolean;
     // Properties for OIDC-like workflow for development
     __DEVELOPMENT__?: {
-      projectKey: string;
-      scope: string;
       authorizeUrl: string;
+      initialProjectKey: string;
+      permissions?: {
+        view?: string[];
+        manage?: string[];
+      };
     };
   };
 }

@@ -8,7 +8,7 @@
   },
   "env": {
     "development": {
-      "projectKey": "almond-40"
+      "initialProjectKey": "almond-40"
     },
     "production": {
       "url": "${env:APP_URL}"

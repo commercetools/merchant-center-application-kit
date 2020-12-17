@@ -109,19 +109,8 @@ const processConfig = ({
                 'mc'
               )}`,
               // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-              projectKey: appConfig.env.development!.projectKey,
-              scope: [
-                // This is required as per OIDC spec.
-                'openid',
-                // Custom claims
-                `project_key:${appConfig.env.development?.projectKey}`,
-                ...(appConfig.permissions?.view || []).map(
-                  (scope) => `view:${scope}`
-                ),
-                ...(appConfig.permissions?.manage || []).map(
-                  (scope) => `manage:${scope}`
-                ),
-              ].join(' '),
+              initialProjectKey: appConfig.env.development!.initialProjectKey,
+              permissions: appConfig.permissions,
             },
           }
         : {}),

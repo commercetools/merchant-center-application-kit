@@ -10,6 +10,7 @@ import {
 } from '@commercetools-frontend/url-utils';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import { STORAGE_KEYS } from '../../constants';
+import { buildOidcScope } from '../authenticated/helpers';
 import Redirector from '../redirector';
 
 declare let window: ApplicationWindow;
@@ -33,6 +34,16 @@ const RedirectToLogin = () => {
   const location = useLocation();
 
   if (window.app.__DEVELOPMENT__) {
+    // We pick the project key from local storage. This assumes that the value
+    // as been previously set when the application starts up.
+    // This is necessary to allow switching projects and triggering a new login.
+    const nextProjectKey = window.localStorage.getItem(
+      STORAGE_KEYS.ACTIVE_PROJECT_KEY
+    );
+    if (!nextProjectKey) {
+      throw new Error('Unable to find active project key from local storage.');
+    }
+
     // According to the OIDC spec, the `state` parameter is recommended to be sent
     // to the authorization server to help mitigating Cross-Site Request Forgery.
     // https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest
@@ -47,16 +58,15 @@ const RedirectToLogin = () => {
       applicationId: window.app.applicationId!,
       // Store query parameters to be used after the callback redirect
       query: {
-        redirectTo: `/${window.app.__DEVELOPMENT__.projectKey}`,
+        redirectTo: `/${nextProjectKey}`,
       },
     });
+    const requestedScope = buildOidcScope({ projectKey: nextProjectKey });
+
     // Store session scopes, to be able to detect if requested scopes changed
     // in the application config and invalidate the session.
     // This is only valid for local development.
-    window.sessionStorage.setItem(
-      STORAGE_KEYS.SESSION_SCOPE,
-      window.app.__DEVELOPMENT__.scope
-    );
+    window.sessionStorage.setItem(STORAGE_KEYS.SESSION_SCOPE, requestedScope);
 
     return (
       <Redirector
@@ -68,7 +78,7 @@ const RedirectToLogin = () => {
           // Query parameters for OIDC-lik workflow.
           client_id: window.app.applicationId,
           response_type: 'id_token',
-          scope: window.app.__DEVELOPMENT__.scope,
+          scope: requestedScope,
           state: sessionId,
           nonce: sessionId,
         }}
