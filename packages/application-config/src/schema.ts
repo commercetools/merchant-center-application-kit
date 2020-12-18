@@ -27,11 +27,11 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
    */
   permissions?: {
     /**
-     * The list of view-only OAuth Scopes
+     * The list of view-only OAuth Scopes (https://docs.commercetools.com/api/scopes).
      */
     view: string[];
     /**
-     * The list of manage-only OAuth Scopes
+     * The list of manage-only OAuth Scopes (https://docs.commercetools.com/api/scopes).
      */
     manage: string[];
   };

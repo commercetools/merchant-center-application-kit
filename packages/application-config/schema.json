@@ -46,7 +46,7 @@
       "type": "object",
       "properties": {
         "view": {
-          "description": "The list of view-only OAuth Scopes",
+          "description": "The list of view-only OAuth Scopes (https://docs.commercetools.com/api/scopes).",
           "type": "array",
           "items": {
             "type": "string",
@@ -55,7 +55,7 @@
           "uniqueItems": true
         },
         "manage": {
-          "description": "The list of manage-only OAuth Scopes",
+          "description": "The list of manage-only OAuth Scopes (https://docs.commercetools.com/api/scopes).",
           "type": "array",
           "items": {
             "type": "string",

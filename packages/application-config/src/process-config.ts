@@ -86,10 +86,11 @@ const processConfig = ({
     | string
     | undefined = `__local:${appConfig.entryPointUriPath}`;
   if (isProd) {
+    // TODO: decide if we do require the application ID or not.
     if (appConfig.env.production.applicationId) {
       applicationId = `${appConfig.env.production.applicationId}:${appConfig.entryPointUriPath}`;
     } else {
-      // As long as we don't require the applicationId in production, we should
+      // As long as we don't require the application ID in production, we should
       // fall back to unset the value.
       applicationId = undefined;
     }
