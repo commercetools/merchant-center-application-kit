@@ -49,7 +49,7 @@ const headerLink = new ApolloLink((operation, forward) => {
     !isKnownGraphQlTarget(graphQlTarget)
   )
     throw new Error(
-      `GraphQL target "${graphQlTarget}" is missing or is not supported`
+      `GraphQL target "${graphQlTarget}" is missing (or is not supported) in operation "${operation.operationName}"`
     );
 
   /**
