@@ -7,7 +7,7 @@
   "scripts": {
     "postinstall": "manypkg check && preconstruct dev",
     "auth": "npm_config_registry=https://registry.npmjs.org npm whoami",
-    "clean": "lerna exec 'rm -rf build dist test-utils/dist'",
+    "clean": "lerna exec 'rm -rf build dist test-utils/dist experimental/dist'",
     "extract-intl": "formatjs extract --format=$(pwd)/packages/i18n/transifex-transformer.js --out-file=$(pwd)/packages/i18n/data/core.json 'packages/**/*messages.ts'",
     "compile-intl": "yarn --cwd packages/i18n compile-data",
     "l10n:build": "pushd packages/l10n; yarn generate-data",

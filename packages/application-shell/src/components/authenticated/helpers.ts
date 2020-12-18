@@ -21,6 +21,10 @@ export const buildOidcScope = (options: {
       )
     );
   }
+  const teamId = window.app.__DEVELOPMENT__?.teamId;
+  if (teamId) {
+    projectClaims.push(`${OIDC_CLAIMS.TEAM_ID}:${teamId}`);
+  }
   return [
     // This is required as per OIDC spec.
     OIDC_CLAIMS.OPEN_ID,

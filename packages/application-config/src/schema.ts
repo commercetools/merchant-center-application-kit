@@ -47,6 +47,10 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
        * The initial project key that the Custom Application is requesting access for. This is only used in development.
        */
       initialProjectKey?: string;
+      /**
+       * The ID of an existing team. This can be used for granting access on behalf of the permissions assigned to that team and project.
+       */
+      teamId?: string;
     };
     /**
      * Configuration for production only

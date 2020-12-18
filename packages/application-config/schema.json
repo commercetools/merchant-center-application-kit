@@ -78,6 +78,10 @@
             "initialProjectKey": {
               "description": "The initial project key that the Custom Application is requesting access for. This is only used in development.",
               "type": "string"
+            },
+            "teamId": {
+              "description": "The ID of an existing team. This can be used for granting access on behalf of the permissions assigned to that team and project.",
+              "type": "string"
             }
           },
           "additionalProperties": false

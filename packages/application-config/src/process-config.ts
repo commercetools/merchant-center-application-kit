@@ -111,6 +111,7 @@ const processConfig = ({
                 'mc'
               )}`,
               initialProjectKey: appConfig.env.development?.initialProjectKey,
+              teamId: appConfig.env.development?.teamId,
               permissions: appConfig.permissions,
             }),
           }

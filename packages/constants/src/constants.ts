@@ -161,6 +161,7 @@ export interface ApplicationWindow extends Window {
     __DEVELOPMENT__?: {
       authorizeUrl: string;
       initialProjectKey?: string;
+      teamId?: string;
       permissions?: {
         view: string[];
         manage: string[];
