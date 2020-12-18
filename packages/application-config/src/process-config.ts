@@ -62,7 +62,9 @@ const processConfig = ({
   );
 
   // Use `||` instead of `??` to include empty string values.
-  const envCdnUrl = appConfig.env.production.cdnUrl || appUrl.href;
+  const envCdnUrl = isProd
+    ? appConfig.env.production.cdnUrl || appUrl.href
+    : developmentAppUrl;
   const cdnUrl = getOrThrow(
     () => new URL(envCdnUrl),
     `Invalid application CDN URL: "${envCdnUrl}"`
@@ -82,9 +84,9 @@ const processConfig = ({
   // In development, we prefix the entry point with the "__local" prefix.
   // This is important to determine to which URL the MC should redirect to
   // after successful login.
-  let applicationId:
-    | string
-    | undefined = `__local:${appConfig.entryPointUriPath}`;
+  let applicationId: string | undefined = isOidcForDevelopmentEnabled
+    ? `__local:${appConfig.entryPointUriPath}`
+    : undefined;
   if (isProd) {
     // TODO: decide if we do require the application ID or not.
     if (appConfig.env.production.applicationId) {
