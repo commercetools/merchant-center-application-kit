@@ -2,7 +2,7 @@
   "key": "state-machines",
   "uriPath": "state-machines",
   "icon": "RocketIcon",
-  "permissions": ["ViewStateMachines"],
+  "permissions": ["ViewDeveloperSettings"],
   "featureToggle": null,
   "labelAllLocales": [
     {

@@ -2,14 +2,7 @@
   "name": "Application Kit Playground",
   "entryPointUriPath": "state-machines",
   "cloudIdentifier": "${env:CLOUD_IDENTIFIER}",
-  "permissions": {
-    "view": ["view_orders", "view_states"],
-    "manage": ["manage_orders"]
-  },
   "env": {
-    "development": {
-      "initialProjectKey": "${env:CTP_INITIAL_PROJECT_KEY}"
-    },
     "production": {
       "url": "${env:APP_URL}"
     }
