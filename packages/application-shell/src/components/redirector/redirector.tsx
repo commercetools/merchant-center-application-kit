@@ -10,7 +10,7 @@ type QueryParams = {
   reason?: typeof LOGOUT_REASONS[keyof typeof LOGOUT_REASONS];
   redirectTo?: string;
   client_id?: string;
-  response_type?: 'id_token';
+  response_type?: string;
   scope?: string;
   state?: string;
   nonce?: string;

@@ -46,7 +46,7 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
       /**
        * The initial project key that the Custom Application is requesting access for. This is only used in development.
        */
-      initialProjectKey: string;
+      initialProjectKey?: string;
     };
     /**
      * Configuration for production only

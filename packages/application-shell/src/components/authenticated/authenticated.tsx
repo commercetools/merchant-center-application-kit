@@ -36,6 +36,9 @@ Authenticated.displayName = 'Authenticated';
 
 const AuthenticationRoutes = (props: TProps) => (
   <Switch>
+    <Route path={`/account/auth/callback`}>
+      <AuthCallback />
+    </Route>
     <Route path={`/:projectKey/${window.app.entryPointUriPath}/auth/callback`}>
       <AuthCallback />
     </Route>

@@ -61,7 +61,8 @@ const processConfig = ({
     `Invalid application URL: "${envAppUrl}"`
   );
 
-  const envCdnUrl = appConfig.env.production.cdnUrl ?? appUrl.href;
+  // Use `||` instead of `??` to include empty string values.
+  const envCdnUrl = appConfig.env.production.cdnUrl || appUrl.href;
   const cdnUrl = getOrThrow(
     () => new URL(envCdnUrl),
     `Invalid application CDN URL: "${envCdnUrl}"`
@@ -103,15 +104,14 @@ const processConfig = ({
       entryPointUriPath: appConfig.entryPointUriPath,
       ...(!isProd && isOidcForDevelopmentEnabled
         ? {
-            __DEVELOPMENT__: {
+            __DEVELOPMENT__: omitEmpty({
               authorizeUrl: `${mcApiUrl.protocol}//${mcApiUrl.host.replace(
                 'mc-api',
                 'mc'
               )}`,
-              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-              initialProjectKey: appConfig.env.development!.initialProjectKey,
+              initialProjectKey: appConfig.env.development?.initialProjectKey,
               permissions: appConfig.permissions,
-            },
+            }),
           }
         : {}),
       cdnUrl: cdnUrl.href,

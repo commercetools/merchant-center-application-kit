@@ -160,10 +160,10 @@ export interface ApplicationWindow extends Window {
     // Properties for OIDC-like workflow for development
     __DEVELOPMENT__?: {
       authorizeUrl: string;
-      initialProjectKey: string;
+      initialProjectKey?: string;
       permissions?: {
-        view?: string[];
-        manage?: string[];
+        view: string[];
+        manage: string[];
       };
     };
   };

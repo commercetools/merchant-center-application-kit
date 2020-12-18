@@ -9,7 +9,7 @@ import {
   trimLeadingAndTrailingSlashes,
 } from '@commercetools-frontend/url-utils';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
-import { STORAGE_KEYS } from '../../constants';
+import { STORAGE_KEYS, OIDC_RESPONSE_TYPES } from '../../constants';
 import { buildOidcScope } from '../authenticated/helpers';
 import Redirector from '../redirector';
 
@@ -40,9 +40,6 @@ const RedirectToLogin = () => {
     const nextProjectKey = window.localStorage.getItem(
       STORAGE_KEYS.ACTIVE_PROJECT_KEY
     );
-    if (!nextProjectKey) {
-      throw new Error('Unable to find active project key from local storage.');
-    }
 
     // According to the OIDC spec, the `state` parameter is recommended to be sent
     // to the authorization server to help mitigating Cross-Site Request Forgery.
@@ -58,7 +55,7 @@ const RedirectToLogin = () => {
       applicationId: window.app.applicationId!,
       // Store query parameters to be used after the callback redirect
       query: {
-        redirectTo: `/${nextProjectKey}`,
+        redirectTo: nextProjectKey ? `/${nextProjectKey}` : '/',
       },
     });
     const requestedScope = buildOidcScope({ projectKey: nextProjectKey });
@@ -77,7 +74,7 @@ const RedirectToLogin = () => {
           reason: LOGOUT_REASONS.UNAUTHORIZED,
           // Query parameters for OIDC-lik workflow.
           client_id: window.app.applicationId,
-          response_type: 'id_token',
+          response_type: OIDC_RESPONSE_TYPES.ID_TOKEN,
           scope: requestedScope,
           state: sessionId,
           nonce: sessionId,
