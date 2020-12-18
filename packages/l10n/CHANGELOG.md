@@ -1,5 +1,15 @@
 # @commercetools-frontend/l10n
 
+## 17.7.0
+
+### Minor Changes
+
+- [`9746f4b`](https://github.com/commercetools/merchant-center-application-kit/commit/9746f4b992dd764599ca7bc7702e92b73dde739a) [#1929](https://github.com/commercetools/merchant-center-application-kit/pull/1929) Thanks [@mohib0306](https://github.com/mohib0306)! - Add Northern Ireland country to the available countries list
+
+### Patch Changes
+
+- [`1ec4379`](https://github.com/commercetools/merchant-center-application-kit/commit/1ec4379938b093d4444ec9e4079524c48afd4a42) [#1923](https://github.com/commercetools/merchant-center-application-kit/pull/1923) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
 ## 17.6.2
 
 ### Patch Changes
