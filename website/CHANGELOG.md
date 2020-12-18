@@ -1,5 +1,13 @@
 # @commercetools-website/custom-applications
 
+## 17.0.9
+
+### Patch Changes
+
+- [`1ec4379`](https://github.com/commercetools/merchant-center-application-kit/commit/1ec4379938b093d4444ec9e4079524c48afd4a42) [#1923](https://github.com/commercetools/merchant-center-application-kit/pull/1923) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+* [`06d00af`](https://github.com/commercetools/merchant-center-application-kit/commit/06d00aff634bb8f6e1af730b8ac4e8b0b8cbaa32) [#1932](https://github.com/commercetools/merchant-center-application-kit/pull/1932) Thanks [@TimonRey](https://github.com/TimonRey)! - The second left border of the Github icon in the right column was removed.
+
 ## 17.0.8
 
 ### Patch Changes

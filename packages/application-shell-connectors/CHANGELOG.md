@@ -1,5 +1,15 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 17.7.0
+
+### Minor Changes
+
+- [`b9fe353`](https://github.com/commercetools/merchant-center-application-kit/commit/b9fe353046fc6998c2bb43c80609db07cb88900a) [#1922](https://github.com/commercetools/merchant-center-application-kit/pull/1922) Thanks [@emmenko](https://github.com/emmenko)! - Fetch permissions for menu links using a separate query field `allPermissionsForAllApplications`.
+
+### Patch Changes
+
+- [`1ec4379`](https://github.com/commercetools/merchant-center-application-kit/commit/1ec4379938b093d4444ec9e4079524c48afd4a42) [#1923](https://github.com/commercetools/merchant-center-application-kit/pull/1923) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
 ## 17.6.2
 
 ### Patch Changes

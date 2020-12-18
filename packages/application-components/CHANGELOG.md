@@ -1,5 +1,15 @@
 # @commercetools-frontend/application-components
 
+## 17.7.0
+
+### Patch Changes
+
+- [`d74addd`](https://github.com/commercetools/merchant-center-application-kit/commit/d74addd32a5f39d19d6bae1ee31cbf33a35fd04e) [#1914](https://github.com/commercetools/merchant-center-application-kit/pull/1914) Thanks [@adnasa](https://github.com/adnasa)! - add experimental application-components/product-picker, generate new types in application-config, application-shell
+
+- Updated dependencies [[`1ec4379`](https://github.com/commercetools/merchant-center-application-kit/commit/1ec4379938b093d4444ec9e4079524c48afd4a42), [`9746f4b`](https://github.com/commercetools/merchant-center-application-kit/commit/9746f4b992dd764599ca7bc7702e92b73dde739a), [`b9fe353`](https://github.com/commercetools/merchant-center-application-kit/commit/b9fe353046fc6998c2bb43c80609db07cb88900a)]:
+  - @commercetools-frontend/application-shell-connectors@17.7.0
+  - @commercetools-frontend/l10n@17.7.0
+
 ## 17.6.2
 
 ### Patch Changes
