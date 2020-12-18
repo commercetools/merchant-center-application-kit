@@ -68,13 +68,16 @@ const headerLink = new ApolloLink((operation, forward) => {
     apolloContext.teamId || variables.teamId || selectTeamIdFromLocalStorage();
   const userId = selectUserId();
   const featureFlag = apolloContext.featureFlag || variables.featureFlag;
+  const sessionToken = window.sessionStorage.getItem(
+    STORAGE_KEYS.SESSION_TOKEN
+  );
 
   operation.setContext({
     credentials: 'include',
     headers: omitEmpty<Headers>({
-      [SUPPORTED_HEADERS.AUTHORIZATION]: `Bearer ${window.sessionStorage.getItem(
-        STORAGE_KEYS.SESSION_TOKEN
-      )}`,
+      [SUPPORTED_HEADERS.AUTHORIZATION]: sessionToken
+        ? `Bearer ${sessionToken}`
+        : undefined,
       [SUPPORTED_HEADERS.X_PROJECT_KEY]: projectKey,
       [SUPPORTED_HEADERS.X_CORRELATION_ID]: getCorrelationId({ userId }),
       [SUPPORTED_HEADERS.X_GRAPHQL_TARGET]: graphQlTarget,

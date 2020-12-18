@@ -54,14 +54,18 @@ const mergeObjectValues = <T>(object: { [key: string]: T }) =>
 const patchedGetCorrelationId = () =>
   getCorrelationId({ userId: selectUserId() });
 
-const getAdditionalHeaders = (): Headers | undefined =>
-  omitEmpty<Headers>({
-    [SUPPORTED_HEADERS.AUTHORIZATION]: `Bearer ${window.sessionStorage.getItem(
-      STORAGE_KEYS.SESSION_TOKEN
-    )}`,
+const getAdditionalHeaders = (): Headers | undefined => {
+  const sessionToken = window.sessionStorage.getItem(
+    STORAGE_KEYS.SESSION_TOKEN
+  );
+  return omitEmpty<Headers>({
+    [SUPPORTED_HEADERS.AUTHORIZATION]: sessionToken
+      ? `Bearer ${sessionToken}`
+      : undefined,
     [SUPPORTED_HEADERS.X_APPLICATION_ID]: window.app.applicationId,
     [SUPPORTED_HEADERS.X_TEAM_ID]: selectTeamIdFromLocalStorage(),
   });
+};
 
 const sdkMiddleware = createSdkMiddleware({
   getCorrelationId: patchedGetCorrelationId,
