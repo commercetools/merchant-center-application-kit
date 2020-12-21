@@ -5,7 +5,7 @@ export type TCreateUserBuilder = () => TBuilder<TUser>;
 
 type TBaseUser = {
   id: string;
-  version: string;
+  version: number;
   createdAt: string;
   lastModifiedAt: string;
   email: string;
@@ -13,15 +13,15 @@ type TBaseUser = {
   lastName: string;
   language: string;
   numberFormat: string;
-  timeZone?: string;
+  timeZone: string | undefined;
   gravatarHash: string;
   launchdarklyTrackingId: string;
   launchdarklyTrackingGroup: string;
   launchdarklyTrackingSubgroup: string;
-  launchdarklyTrackingTeam: string;
+  launchdarklyTrackingTeam: string[];
   launchdarklyTrackingTenant: string;
   defaultProjectKey: string;
-  businessRole?: string;
+  businessRole: string | undefined;
 };
 
 export type TUser = TBaseUser & {
@@ -37,7 +37,7 @@ export type TUser = TBaseUser & {
 export type TUserGraphql = TBaseUser & {
   __typename: 'User';
   projects: {
-    __typename: string;
+    __typename: 'ProjectQueryResult';
     count: number;
     offset: number;
     total: number;

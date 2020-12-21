@@ -1,6 +1,6 @@
 export type TProjectExpiry = {
   isActive: boolean;
-  daysLeft?: number;
+  daysLeft: number | undefined;
 };
 
 export type TProjectExpiryGraphql = TProjectExpiry & {

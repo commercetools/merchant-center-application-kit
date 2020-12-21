@@ -1,7 +1,11 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
+import type { TProjectGraphql } from '../../../../../test-data/project';
+import type { TUserGraphql } from '../../../../../test-data/user';
 
 import React from 'react';
 import { render } from '@testing-library/react';
+import * as ProjectMock from '../../../../../test-data/project';
+import * as UserMock from '../../../../../test-data/user';
 import {
   ApplicationContextProvider,
   ApplicationContext,
@@ -14,65 +18,6 @@ import {
 
 type AdditionalEnvironmentProps = { foo: string };
 
-const createTestUser = (custom = {}) => ({
-  id: 'u1',
-  email: 'foo@bar.com',
-  firstName: 'foo',
-  lastName: 'bar',
-  language: 'en',
-  timeZone: undefined,
-  businessRole: undefined,
-  // Fields that should not be exposed
-  numberFormat: 'en',
-  gravatarHash: 'aaa',
-  defaultProjectKey: 'aaaa',
-  projects: {
-    total: 1,
-    results: [
-      {
-        key: 'p1',
-        name: 'P1 ',
-        expiry: { isActive: false },
-        suspension: { isActive: false },
-      },
-    ],
-  },
-  launchdarklyTrackingGroup: 'commercetools',
-  launchdarklyTrackingSubgroup: 'dev',
-  launchdarklyTrackingId: '111',
-  launchdarklyTrackingTeam: undefined,
-  launchdarklyTrackingTenant: 'gcp-eu',
-  ...custom,
-});
-const createTestProject = (custom = {}) => ({
-  key: 'foo-1',
-  version: 1,
-  name: 'Foo 1',
-  countries: ['us'],
-  currencies: ['USD'],
-  languages: ['en'],
-  allAppliedPermissions: [{ name: 'canManageProjectSettings', value: true }],
-  allAppliedActionRights: [],
-  allAppliedDataFences: [],
-  allPermissionsForAllApplications: {
-    allAppliedPermissions: [],
-    allAppliedActionRights: [],
-    allAppliedDataFences: [],
-    allAppliedMenuVisibilities: [],
-  },
-  // Fields that should not be exposed
-  initialized: true,
-  expiry: {
-    isActive: false,
-    daysLeft: undefined,
-  },
-  suspension: {
-    isActive: false,
-    reason: undefined,
-  },
-  owner: { id: 'o1', name: 'Organization 1' },
-  ...custom,
-});
 const createTestEnvironment = (
   custom: Partial<ApplicationWindow['app']> = {}
 ) => ({
@@ -90,17 +35,23 @@ const createTestEnvironment = (
   ...custom,
 });
 
-const renderAppWithContext = (ui: React.ReactElement) =>
-  render(
+const testUser = UserMock.random().buildGraphql<TUserGraphql>();
+const testProject = ProjectMock.random()
+  .name('Ultron')
+  .buildGraphql<TProjectGraphql>();
+
+const renderAppWithContext = (ui: React.ReactElement) => {
+  return render(
     <ApplicationContextProvider<AdditionalEnvironmentProps>
-      user={createTestUser()}
-      project={createTestProject()}
+      user={testUser}
+      project={testProject}
       environment={createTestEnvironment()}
       projectDataLocale="en"
     >
       {ui}
     </ApplicationContextProvider>
   );
+};
 
 describe('<ApplicationContext>', () => {
   it('should render project name from context', async () => {
@@ -113,7 +64,7 @@ describe('<ApplicationContext>', () => {
         )}
       />
     );
-    await rendered.findByText('Project name: Foo 1');
+    await rendered.findByText('Project name: Ultron');
   });
 });
 
@@ -126,7 +77,7 @@ describe('useApplicationContext', () => {
   };
   it('should render project name from context', async () => {
     const rendered = renderAppWithContext(<TestComponent />);
-    await rendered.findByText('Project name: Foo 1');
+    await rendered.findByText('Project name: Ultron');
   });
 });
 
@@ -144,19 +95,20 @@ describe('withApplicationContext', () => {
   }))(TestComponent);
   it('should render project name from context', async () => {
     const rendered = renderAppWithContext(<AppWithContext />);
-    await rendered.findByText('Project name: Foo 1');
+    await rendered.findByText('Project name: Ultron');
   });
 });
 
 describe('mapUserToApplicationContextUser', () => {
   it('should map fetched user to user context', () => {
-    expect(mapUserToApplicationContextUser(createTestUser())).toEqual({
+    expect(mapUserToApplicationContextUser(testUser)).toEqual({
       id: expect.any(String),
       email: expect.any(String),
       firstName: expect.any(String),
       lastName: expect.any(String),
       locale: expect.any(String),
       timeZone: expect.any(String),
+      businessRole: expect.any(String),
       projects: expect.objectContaining({
         total: 1,
         results: expect.arrayContaining([
@@ -169,7 +121,7 @@ describe('mapUserToApplicationContextUser', () => {
 
 describe('mapProjectToApplicationContextProject', () => {
   it('should map fetched project to project context', () => {
-    expect(mapProjectToApplicationContextProject(createTestProject())).toEqual({
+    expect(mapProjectToApplicationContextProject(testProject)).toEqual({
       key: expect.any(String),
       version: expect.any(Number),
       name: expect.any(String),
