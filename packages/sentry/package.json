@@ -30,12 +30,12 @@
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "react": "16.14.0",
+    "react": "17.0.1",
     "sentry-testkit": "3.2.1",
     "wait-for-expect": "3.0.2"
   },
   "peerDependencies": {
     "@types/react": "16.x",
-    "react": "16.x"
+    "react": "16.x || 17.x"
   }
 }

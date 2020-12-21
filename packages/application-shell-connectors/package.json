@@ -40,7 +40,7 @@
   "devDependencies": {
     "@apollo/client": "3.3.6",
     "@testing-library/react": "11.2.2",
-    "react": "16.14.0"
+    "react": "17.0.1"
   },
   "peerDependencies": {
     "@apollo/client": "3.x",
