@@ -74,13 +74,13 @@
     "thread-loader": "3.0.1",
     "url-loader": "4.1.1",
     "webpack": "4.44.2",
-    "webpack-bundle-analyzer": "4.2.0",
+    "webpack-bundle-analyzer": "4.3.0",
     "webpack-dev-server": "3.11.0",
     "webpackbar": "4.0.0"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "7.12.10",
-    "@babel/preset-env": "7.12.10"
+    "@babel/preset-env": "7.12.11"
   },
   "engines": {
     "node": ">=10",
