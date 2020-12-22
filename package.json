@@ -181,7 +181,7 @@
     "postcss-custom-properties": "10.0.0",
     "prettier": "2.2.1",
     "puppeteer": "5.5.0",
-    "postcss-import": "13.0.0",
+    "postcss-import": "14.0.0",
     "rcfile": "1.0.3",
     "read-pkg-up": "7.0.1",
     "replace": "1.2.0",
