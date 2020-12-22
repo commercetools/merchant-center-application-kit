@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/react-notifications",
-  "version": "17.6.2",
+  "version": "17.7.1",
   "description": "React bindings for @commercetools-frontend/notifications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -24,10 +24,10 @@
   "dependencies": {
     "@babel/runtime": "7.12.5",
     "@babel/runtime-corejs3": "7.12.5",
-    "@commercetools-frontend/actions-global": "17.6.2",
+    "@commercetools-frontend/actions-global": "17.7.1",
     "@commercetools-frontend/constants": "17.6.0",
     "@commercetools-frontend/notifications": "17.6.0",
-    "@commercetools-frontend/sentry": "17.6.2",
+    "@commercetools-frontend/sentry": "17.7.1",
     "@commercetools-uikit/design-system": "^10.42.2",
     "@commercetools-uikit/icon-button": "^10.42.2",
     "@commercetools-uikit/icons": "^10.42.3",
