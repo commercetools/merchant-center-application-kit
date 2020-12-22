@@ -1,8 +1,14 @@
-// Do this as the first thing so that any code reading it knows the right env.
-process.env.BUILD_ROLLUP = true;
-
 module.exports = {
-  presets: ['@commercetools-frontend/babel-preset-mc-app'],
+  presets: [
+    [
+      '@commercetools-frontend/babel-preset-mc-app',
+      {
+        // TODO: change this to `automatic` when using the new runtime
+        runtime: 'classic',
+        keepPropTypes: true,
+      },
+    ],
+  ],
   plugins: [
     'babel-plugin-import-graphql',
     'babel-plugin-typescript-to-proptypes',

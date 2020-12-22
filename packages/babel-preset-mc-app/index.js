@@ -1,5 +1,17 @@
+const defaultOptions = {
+  // Enables new JSX runtime `automatic`.
+  runtime: 'classic',
+  // If prop types should be removed from the bundle or not.
+  // Usually when bundling packages we want to keep the prop types
+  // but when building the final application we can remove them.
+  keepPropTypes: false,
+};
+
 /* eslint-disable global-require */
 module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
+  // Merge with default options
+  const options = { ...defaultOptions, opts };
+
   // This is similar to how `env` works in Babel:
   // https://babeljs.io/docs/usage/babelrc/#env-option
   // We are not using `env` because it’s ignored in versions > babel-core@6.10.4:
@@ -10,7 +22,6 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
   const isEnvDevelopment = env === 'development';
   const isEnvProduction = env === 'production';
   const isEnvTest = env === 'test';
-  const isRollup = process.env.BUILD_ROLLUP === true;
 
   if (!isEnvDevelopment && !isEnvProduction && !isEnvTest) {
     throw new Error(
@@ -59,17 +70,17 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
           development: isEnvDevelopment || isEnvTest,
           // Will use the native built-in instead of trying to polyfill
           // behavior for any plugins that require one.
-          ...(opts.runtime === 'automatic'
+          ...(options.runtime === 'automatic'
             ? // https://emotion.sh/docs/css-prop#babel-preset
               { importSource: '@emotion/react' }
             : { useBuiltIns: true }),
-          runtime: opts.runtime || 'classic',
+          runtime: options.runtime || 'classic',
         },
       ],
       // Use this preset only with the JSX runtime `classic`, otherwise
       // use the `@emotion/babel-plugin` plugin.
       // https://emotion.sh/docs/@emotion/babel-preset-css-prop
-      opts.runtime !== 'automatic' && [
+      options.runtime !== 'automatic' && [
         '@emotion/babel-preset-css-prop',
         {
           sourceMap: isEnvDevelopment,
@@ -125,7 +136,7 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
         // In case of rollup bundles, we want to keep the prop types but wrap
         // them into a `process.env.NODE_ENV !== "production"` so that when
         // building the final application bundles, those codes parts can be removed.
-        isRollup ? { mode: 'wrap' } : { removeImport: true },
+        options.keepPropTypes ? { mode: 'wrap' } : { removeImport: true },
       ],
       // function* () { yield 42; yield 43; }
       !isEnvTest && [
@@ -140,7 +151,8 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
       // Use this plugin only with the JSX runtime `automatic`, otherwise
       // use the `@emotion/babel-preset-css-prop` preset.
       // https://emotion.sh/docs/@emotion/babel-preset-css-prop
-      opts.runtime === 'automatic' && require('@emotion/babel-plugin').default,
+      options.runtime === 'automatic' &&
+        require('@emotion/babel-plugin').default,
       // Cherry-pick Lodash modules
       require('babel-plugin-lodash').default,
     ].filter(Boolean),
