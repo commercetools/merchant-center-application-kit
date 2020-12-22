@@ -1,6 +1,3 @@
-// Do this as the first thing so that any code reading it knows the right env.
-process.env.BUILD_ROLLUP = true;
-
 const fs = require('fs');
 const { babel } = require('@rollup/plugin-babel');
 const readPkgUp = require('read-pkg-up');
@@ -30,6 +27,7 @@ const [, packageName] = pkg.name.split('@commercetools-frontend/');
 const extensions = ['.js', '.ts', '.tsx'];
 const babelOptions = getBabelPreset(null, {
   runtime: 'classic',
+  keepPropTypes: true,
 });
 
 const createPlugins = (format) => {
