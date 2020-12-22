@@ -1,5 +1,13 @@
 # @commercetools-frontend/babel-preset-mc-app
 
+## 17.7.1
+
+### Patch Changes
+
+- [`99558e7`](https://github.com/commercetools/merchant-center-application-kit/commit/99558e74cc0b0c747cfa7ab43bed51490dc5194e) [#1941](https://github.com/commercetools/merchant-center-application-kit/pull/1941) Thanks [@emmenko](https://github.com/emmenko)! - Pass option `keepPropTypes` for keeping prop types explicitly to babel preset, instead of relying on `BUILD_ROLLUP` env variable.
+
+* [`f6f3c5e`](https://github.com/commercetools/merchant-center-application-kit/commit/f6f3c5ebd08226fd4eca22aec5c39791cf5c5d6a) [#1935](https://github.com/commercetools/merchant-center-application-kit/pull/1935) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
 ## 17.7.0
 
 ### Patch Changes

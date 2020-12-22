@@ -1,5 +1,18 @@
 # @commercetools-frontend/mc-scripts
 
+## 17.7.1
+
+### Patch Changes
+
+- [`ee03593`](https://github.com/commercetools/merchant-center-application-kit/commit/ee0359335cbd88c5c31c2f43a29dd669edbd1173) [#1938](https://github.com/commercetools/merchant-center-application-kit/pull/1938) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency postcss-import to v14
+
+* [`f6f3c5e`](https://github.com/commercetools/merchant-center-application-kit/commit/f6f3c5ebd08226fd4eca22aec5c39791cf5c5d6a) [#1935](https://github.com/commercetools/merchant-center-application-kit/pull/1935) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+* Updated dependencies [[`99558e7`](https://github.com/commercetools/merchant-center-application-kit/commit/99558e74cc0b0c747cfa7ab43bed51490dc5194e), [`f6f3c5e`](https://github.com/commercetools/merchant-center-application-kit/commit/f6f3c5ebd08226fd4eca22aec5c39791cf5c5d6a)]:
+  - @commercetools-frontend/babel-preset-mc-app@17.7.1
+  - @commercetools-frontend/application-config@17.7.1
+  - @commercetools-frontend/mc-html-template@17.7.1
+
 ## 17.7.0
 
 ### Patch Changes
