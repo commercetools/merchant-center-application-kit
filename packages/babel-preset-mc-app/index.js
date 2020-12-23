@@ -10,7 +10,7 @@ const defaultOptions = {
 /* eslint-disable global-require */
 module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
   // Merge with default options
-  const options = { ...defaultOptions, opts };
+  const options = { ...defaultOptions, ...opts };
 
   // This is similar to how `env` works in Babel:
   // https://babeljs.io/docs/usage/babelrc/#env-option
