@@ -1,5 +1,11 @@
 # @commercetools-frontend/babel-preset-mc-app
 
+## 17.7.2
+
+### Patch Changes
+
+- [`fab682b`](https://github.com/commercetools/merchant-center-application-kit/commit/fab682b6598006a44c530b9f2fb7d8f450110f97) [#1942](https://github.com/commercetools/merchant-center-application-kit/pull/1942) Thanks [@emmenko](https://github.com/emmenko)! - Fix merging options of babel preset
+
 ## 17.7.1
 
 ### Patch Changes
