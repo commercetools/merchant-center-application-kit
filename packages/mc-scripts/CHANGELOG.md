@@ -1,5 +1,12 @@
 # @commercetools-frontend/mc-scripts
 
+## 17.7.2
+
+### Patch Changes
+
+- Updated dependencies [[`fab682b`](https://github.com/commercetools/merchant-center-application-kit/commit/fab682b6598006a44c530b9f2fb7d8f450110f97)]:
+  - @commercetools-frontend/babel-preset-mc-app@17.7.2
+
 ## 17.7.1
 
 ### Patch Changes
