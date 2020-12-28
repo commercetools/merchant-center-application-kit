@@ -32,7 +32,7 @@ describe('invalid configurations', () => {
         env: {},
       })
     ).toThrowErrorMatchingInlineSnapshot(
-      `".env should have required property 'production'"`
+      `"/env should have required property 'production'"`
     );
   });
   it('should validate that "entryPointUriPath" is defined', () => {
