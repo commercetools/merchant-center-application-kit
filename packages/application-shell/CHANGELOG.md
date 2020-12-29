@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 17.7.4
+
+### Patch Changes
+
+- [`5f4565e`](https://github.com/commercetools/merchant-center-application-kit/commit/5f4565e8c819cab178b8a823a3ae5a5b2ced5c9d) [#1946](https://github.com/commercetools/merchant-center-application-kit/pull/1946) Thanks [@emmenko](https://github.com/emmenko)! - Update `@flopflip` to latest pre-major version (fixes import bug)
+
 ## 17.7.3
 
 ### Patch Changes
