@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-config
 
+## 17.7.3
+
+### Patch Changes
+
+- [`9cbebcf`](https://github.com/commercetools/merchant-center-application-kit/commit/9cbebcf2fa5efd87451032b1e1fd4d86add6209d) [#1937](https://github.com/commercetools/merchant-center-application-kit/pull/1937) Thanks [@renovate](https://github.com/apps/renovate)! - Update `avj` dependency to v7
+
 ## 17.7.1
 
 ### Patch Changes
