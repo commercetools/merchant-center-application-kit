@@ -121,6 +121,7 @@ const render = ({
       environment={{
         revision: '1',
         applicationName: 'my-app',
+        entryPointUriPath: 'avengers',
         frontendHost: 'localhost:3001',
         mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
         location: 'eu',

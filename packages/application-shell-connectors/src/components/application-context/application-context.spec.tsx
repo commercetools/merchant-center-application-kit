@@ -78,6 +78,7 @@ const createTestEnvironment = (
 ) => ({
   revision: '1',
   applicationName: 'my-app',
+  entryPointUriPath: 'avengers',
   frontendHost: 'localhost:3001',
   mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
   location: 'eu',
@@ -212,6 +213,7 @@ describe('mapEnvironmentToApplicationContextEnvironment', () => {
       ).toEqual({
         revision: expect.any(String),
         applicationName: expect.any(String),
+        entryPointUriPath: expect.any(String),
         frontendHost: expect.any(String),
         mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
         location: expect.any(String),

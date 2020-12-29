@@ -82,7 +82,8 @@ type Props<AdditionalEnvironmentProperties extends {}> = {
     event: SyntheticEvent<HTMLAnchorElement>,
     track: TrackFn
   ) => void;
-  render: () => JSX.Element;
+  render?: () => JSX.Element;
+  children?: React.ReactNode;
   // Only available in development mode
   DEV_ONLY__loadAppbarMenuConfig?: () => Promise<TApplicationsMenu['appBar']>;
   DEV_ONLY__loadNavbarMenuConfig?: () => Promise<TApplicationsMenu['navBar']>;
@@ -424,12 +425,13 @@ export const RestrictedApplication = <
                                   from="/profile"
                                   to="/account/profile"
                                 />
-                                <Route
-                                  path="/account"
-                                  // Render the children and pass the control to the
-                                  // specific application part
-                                  render={props.render}
-                                />
+                                <Route path="/account">
+                                  {
+                                    // Render the children and pass the control to the
+                                    // specific application part
+                                    props.render ?? props.children
+                                  }
+                                </Route>
                                 {/* Project routes */}
                                 <Route
                                   exact={true}
@@ -469,7 +471,9 @@ export const RestrictedApplication = <
                                         // children, which is the application
                                         // specific part
                                         render={props.render}
-                                      />
+                                      >
+                                        {props.children}
+                                      </ProjectContainer>
                                     </React.Fragment>
                                   )}
                                 />
@@ -538,7 +542,9 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
                     DEV_ONLY__loadNavbarMenuConfig={
                       props.DEV_ONLY__loadNavbarMenuConfig
                     }
-                  />
+                  >
+                    {props.children}
+                  </RestrictedApplication>
                 </Route>
               </Switch>
             );

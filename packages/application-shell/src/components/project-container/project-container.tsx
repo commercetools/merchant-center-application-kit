@@ -21,6 +21,7 @@ import ProjectNotInitialized from '../project-not-initialized';
 import RedirectToProjectCreate from '../redirect-to-project-create';
 import ProjectSuspended from '../project-suspended';
 import ErrorBoundary from '../error-boundary';
+import ApplicationEntryPoint from '../application-entry-point';
 import messages from './messages';
 
 type QueryParams = {
@@ -32,7 +33,8 @@ type Props<AdditionalEnvironmentProperties extends {}> = Pick<
 > & {
   user: TFetchLoggedInUserQuery['user'];
   environment: TProviderProps<AdditionalEnvironmentProperties>['environment'];
-  render: () => JSX.Element;
+  render?: () => JSX.Element;
+  children?: React.ReactNode;
 };
 
 // A trial expire notification should be displayed from 2 weeks before the project expires
@@ -174,7 +176,12 @@ const ProjectContainer = <AdditionalEnvironmentProperties extends {}>(
                        * it's enough to trigger a re-render.
                        * The `locale` can then be read from the localStorage.
                        */}
-                      {props.render()}
+                      <ApplicationEntryPoint<AdditionalEnvironmentProperties>
+                        environment={props.environment}
+                        render={props.render}
+                      >
+                        {props.children}
+                      </ApplicationEntryPoint>
                     </React.Fragment>
                   </ApplicationContextProvider>
                 )}
