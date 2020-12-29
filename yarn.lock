@@ -3030,13 +3030,13 @@
   resolved "https://registry.yarnpkg.com/@exodus/schemasafe/-/schemasafe-1.0.0-rc.3.tgz#dda2fbf3dafa5ad8c63dadff7e01d3fdf4736025"
   integrity sha512-GoXw0U2Qaa33m3eUcxuHnHpNvHjNlLo0gtV091XBpaRINaB4X6FGCG5XKxSFNFiPpugUDqNruHzaqpTdDm4AOg==
 
-"@flopflip/launchdarkly-adapter@3.0.11":
-  version "3.0.11"
-  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-3.0.11.tgz#f9b3e261dea6441b7551cc04130bfc5e6c57e5f3"
-  integrity sha512-J/qdyoOUrQAtLd6sMF/z4oqISRrxkQOW9Q9LoktTBmGDFdB2WD/GQo/mJdvs6UJhG2BOIMCaVgFB/9BZdWprQA==
+"@flopflip/launchdarkly-adapter@3.0.12":
+  version "3.0.12"
+  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-3.0.12.tgz#76d399be7193a37590ebfe84e762342b6da61c95"
+  integrity sha512-8aLWVKZut1DDbX61FG8CDgjrVabuXwN9vWQVwdIBJ3sTkTzfX7MSe/fxf3WWWcW4D1R3kDRjOHsTkrSUWU6wmQ==
   dependencies:
     "@babel/runtime" "7.12.5"
-    "@flopflip/types" "3.0.11"
+    "@flopflip/types" "3.1.0"
     debounce-fn "4.0.0"
     deepmerge "4.2.2"
     globalthis "1.0.1"
@@ -3045,35 +3045,35 @@
     mitt "2.1.0"
     tiny-warning "1.0.3"
 
-"@flopflip/memory-adapter@2.0.11":
-  version "2.0.11"
-  resolved "https://registry.yarnpkg.com/@flopflip/memory-adapter/-/memory-adapter-2.0.11.tgz#45018cd1bf7f96a10ae2df332591c13364712078"
-  integrity sha512-GYK2vW9zlEynKESwJhWtdyOR5FulT2g+Z2TUiP9X6GQgBOy4x9s/slg17eTQLV3XZCKmIETYlkMDS2KKu5XIsA==
+"@flopflip/memory-adapter@2.0.12":
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/@flopflip/memory-adapter/-/memory-adapter-2.0.12.tgz#0b92240400a75aa64e385728e540fd8a60c82035"
+  integrity sha512-xNByQbqg3JWt8YAicVC+rojuyMlyVdkMZiVeUn8GXUAw4SY2U6Ul/xr10a0fZ4kjXUxVQr22MPezO3XD6bWTmA==
   dependencies:
     "@babel/runtime" "7.12.5"
-    "@flopflip/types" "3.0.11"
+    "@flopflip/types" "3.1.0"
     globalthis "1.0.1"
     lodash "4.17.20"
     mitt "2.1.0"
     tiny-warning "1.0.3"
 
-"@flopflip/react-broadcast@11.0.11":
-  version "11.0.11"
-  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-11.0.11.tgz#f096e744e7b89b8d03ac623e623ab09f05030126"
-  integrity sha512-z4jb+PcjIeRR1NpQVbMS3jWlq+TNAPwO42GBjzjEo/QwhEhKa7aKg8LOGzZvl1tO2dCcmpamqGN8O4fcSHJhcw==
+"@flopflip/react-broadcast@11.0.12":
+  version "11.0.12"
+  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-11.0.12.tgz#13eea63858ead3f59a7c414a4d39e96179107a22"
+  integrity sha512-7HD/toTGpl2oHJDaW8C/XXlOM3zmK6ASKHi0wHRHZ8KwzQRMmKCr8kJIpUwtctuv1h/3BpFcQDxtANjk4vBdIw==
   dependencies:
     "@babel/runtime" "7.12.5"
-    "@flopflip/react" "^10.0.11"
-    "@flopflip/types" "3.0.11"
+    "@flopflip/react" "^10.0.14"
+    "@flopflip/types" "3.1.0"
     lodash "4.17.20"
 
-"@flopflip/react@^10.0.11":
-  version "10.0.12"
-  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-10.0.12.tgz#4315d99e51945ae357650c1fb77fc8f68bc61dae"
-  integrity sha512-6tQzwkRKfUuFHBehU+vxu5onkqor5JRhaSR0KD24XQT+d54TNWEETd24uqvWZLkQs8JVEymUm4oSc9+ImNIx1w==
+"@flopflip/react@^10.0.14":
+  version "10.0.14"
+  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-10.0.14.tgz#a94beefce1bd4736ca5bd2087cee9c2f792d12ad"
+  integrity sha512-BYJP2bTCDE2ezl8LjqwhAIH3GX1m/laGa3W5/sSOwBNPwd+ypp/2xpk/Djv93sE21XA4gjvPk+/efjbogZSh3Q==
   dependencies:
     "@babel/runtime" "7.12.5"
-    "@flopflip/types" "3.0.11"
+    "@flopflip/types" "3.1.0"
     "@types/react-is" "17.0.0"
     deepmerge "4.2.2"
     lodash "4.17.20"
@@ -3081,10 +3081,10 @@
     react-is "17.0.1"
     tiny-warning "1.0.3"
 
-"@flopflip/types@3.0.11":
-  version "3.0.11"
-  resolved "https://registry.yarnpkg.com/@flopflip/types/-/types-3.0.11.tgz#70d54e29663b9c8856c141ad3f96e6ff54b49494"
-  integrity sha512-4ZURTX7s5K4ej/eDcr7HzpyQT7ZbNMK49wXW17PxdSDec5G0dXTUUwi4KY52lU3bgpeEb73bVNPkWeYfWk6w3Q==
+"@flopflip/types@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@flopflip/types/-/types-3.1.0.tgz#68c2a07c2835344dda07fbeb5c775e486e70ca5e"
+  integrity sha512-2nbT5cqgaGLIoLMJE+zeYaqys1wiiEonxceSToIGrI3q/izC44feUqdhgAUvDj65RNNhSuf4ccnLO4EogmjYmg==
 
 "@formatjs/cli@2.13.16":
   version "2.13.16"
