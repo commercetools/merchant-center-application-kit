@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 17.7.3
+
+### Patch Changes
+
+- [`62ad638`](https://github.com/commercetools/merchant-center-application-kit/commit/62ad6380ab62e1c3e77bd63bd6c3ad4aaee473a9) [#1945](https://github.com/commercetools/merchant-center-application-kit/pull/1945) Thanks [@tdeekens](https://github.com/tdeekens)! - refactor(app-shell): remove unused `updateFlags` export for LaunchDarkly adapter.
+
 ## 17.7.1
 
 ### Patch Changes
