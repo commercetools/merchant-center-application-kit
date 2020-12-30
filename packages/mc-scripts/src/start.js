@@ -26,6 +26,7 @@ const {
 } = require('react-dev-utils/WebpackDevServerUtils');
 const openBrowser = require('react-dev-utils/openBrowser');
 const createDevServerConfig = require('./config/webpack-dev-server.config');
+const createWebpackConfigForDevelopment = require('./config/create-webpack-config-for-development');
 
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebook/create-react-app/issues/637
@@ -41,6 +42,9 @@ const paths = {
   appPublic: resolveApp('public'),
   appWebpackConfig: resolveApp('webpack.config.dev.js'),
   yarnLockFile: resolveApp('yarn.lock'),
+  distPath: resolveApp('dist'),
+  entryPoint: resolveApp('src/index.js'),
+  sourceFolders: [resolveApp('src')],
 };
 
 const useYarn = fs.existsSync(paths.yarnLockFile);
@@ -50,8 +54,10 @@ const isInteractive = process.stdout.isTTY;
 // which is why it's disabled by default.
 const hasReactRefresh = process.env.FAST_REFRESH === 'true';
 
+const hasWebpackConfig = fs.existsSync(paths.appWebpackConfig);
+
 // Warn and crash if required files are missing
-if (!checkRequiredFiles([paths.appWebpackConfig])) {
+if (!checkRequiredFiles([])) {
   process.exit(1);
 }
 
@@ -71,7 +77,13 @@ choosePort(HOST, DEFAULT_PORT)
     const appName = require(paths.appPackageJson).name;
     const urls = prepareUrls(protocol, HOST, port);
     // Get webpack config
-    const config = require(paths.appWebpackConfig);
+    const config = hasWebpackConfig
+      ? require(paths.appWebpackConfig)
+      : createWebpackConfigForDevelopment({
+          distPath: paths.distPath,
+          entryPoint: paths.entryPoint,
+          sourceFolders: paths.sourceFolders,
+        });
     const devSocket = {
       warnings: (warnings) =>
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
