@@ -1,9 +1,5 @@
 {
-  "extends": [
-    "config:base",
-    ":pinOnlyDevDependencies",
-    "schedule:weekly"
-  ],
+  "extends": ["config:base", ":pinOnlyDevDependencies", "schedule:weekly"],
   "separateMajorMinor": true,
   "packageRules": [
     {
@@ -11,7 +7,9 @@
       "groupName": "all ui-kit packages"
     },
     {
-      "sourceUrlPrefixes": ["https://github.com/commercetools/commercetools-docs-kit"],
+      "sourceUrlPrefixes": [
+        "https://github.com/commercetools/commercetools-docs-kit"
+      ],
       "groupName": "all docs-kit packages"
     },
     {
@@ -19,9 +17,11 @@
       "groupName": "all test-data packages"
     },
     {
-      "packagePatterns": [
-        "*"
-      ],
+      "sourceUrlPrefixes": ["https://github.com/tdeekens/flopflip"],
+      "groupName": "all flopflip packages"
+    },
+    {
+      "packagePatterns": ["*"],
       "updateTypes": ["minor", "patch"],
       "groupName": "all dependencies",
       "groupSlug": "all"
