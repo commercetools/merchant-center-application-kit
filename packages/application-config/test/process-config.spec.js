@@ -1,6 +1,3 @@
-import os from 'os';
-import path from 'path';
-import shelljs from 'shelljs';
 import { processConfig } from '../src';
 import loadConfig from '../src/load-config';
 import fixtureConfigSimple from './fixtures/config-simple.json';
@@ -8,8 +5,6 @@ import fixtureConfigFull from './fixtures/config-full.json';
 import fixtureConfigEnvVariables from './fixtures/config-env-variables.json';
 
 jest.mock('../src/load-config');
-
-const tmpFolder = os.tmpdir();
 
 const createTestOptions = (options) => ({
   disableCache: true,
@@ -33,6 +28,7 @@ describe('processing a simple config', () => {
       env: {
         applicationId: undefined,
         applicationName: 'avengers-app',
+        entryPointUriPath: 'avengers',
         cdnUrl: 'http://localhost:3001/',
         env: 'test',
         frontendHost: 'localhost:3001',
@@ -63,6 +59,7 @@ describe('processing a simple config', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
+          entryPointUriPath: 'avengers',
           cdnUrl: 'https://avengers.app/',
           env: 'production',
           frontendHost: 'avengers.app',
@@ -98,6 +95,7 @@ describe('processing a simple config', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
+          entryPointUriPath: 'avengers',
           cdnUrl: 'http://localhost:3001/',
           env: 'development',
           frontendHost: 'localhost:3001',
@@ -132,6 +130,7 @@ describe('processing a simple config', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
+          entryPointUriPath: 'avengers',
           cdnUrl: 'https://avengers.app/',
           env: 'staging',
           frontendHost: 'avengers.app',
@@ -165,6 +164,7 @@ describe('processing a full config', () => {
       env: {
         applicationId: undefined,
         applicationName: 'avengers-app',
+        entryPointUriPath: 'avengers',
         cdnUrl: 'http://localhost:3001/',
         env: 'test',
         frontendHost: 'localhost:3001',
@@ -202,6 +202,7 @@ describe('processing a full config', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
+          entryPointUriPath: 'avengers',
           cdnUrl: 'https://cdn.avengers.app/',
           env: 'production',
           frontendHost: 'avengers.app',
@@ -246,6 +247,7 @@ describe('processing a full config', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
+          entryPointUriPath: 'avengers',
           cdnUrl: 'http://localhost:3001/',
           env: 'development',
           frontendHost: 'localhost:3001',
@@ -285,6 +287,7 @@ describe('processing a full config', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
+          entryPointUriPath: 'avengers',
           cdnUrl: 'https://cdn.avengers.app/',
           env: 'staging',
           frontendHost: 'avengers.app',
@@ -335,6 +338,7 @@ describe('processing a config with environment variable placeholders', () => {
       env: {
         applicationId: undefined,
         applicationName: 'avengers-app',
+        entryPointUriPath: 'avengers',
         cdnUrl: 'http://localhost:3001/',
         env: 'test',
         frontendHost: 'localhost:3001',
@@ -367,6 +371,7 @@ describe('processing a config with environment variable placeholders', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
+          entryPointUriPath: 'avengers',
           cdnUrl: 'https://avengers.app/',
           env: 'production',
           frontendHost: 'avengers.app',
@@ -404,6 +409,7 @@ describe('processing a config with environment variable placeholders', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
+          entryPointUriPath: 'avengers',
           cdnUrl: 'http://localhost:3001/',
           env: 'development',
           frontendHost: 'localhost:3001',
@@ -440,6 +446,7 @@ describe('processing a config with environment variable placeholders', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
+          entryPointUriPath: 'avengers',
           cdnUrl: 'https://avengers.app/',
           env: 'staging',
           frontendHost: 'avengers.app',

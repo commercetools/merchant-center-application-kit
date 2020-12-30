@@ -58,3 +58,19 @@ const EntryPoint = () => (
 +  </ApplicationShell>
 );
 ```
+
+Furthermore, the `test-utils` of the `@commercetools-frontend/application-shell` have now a new option to enable this opt-in behavior of rendering the application with pre-configured routes.
+To enable this option, pass the `renderEntryPointRoutes: true` to the `renderApp` or `renderAppWithRedux` functions.
+
+> Note that you also need to provide the `environment.entryPointUriPath` in order for the routes to be correctly configured.
+
+```diff
+-renderApp(<ApplicationStarter />, {
++renderApp(<AsyncApplicationRoutes />, {
+  route: '/my-project/examples-starter'
++  environment: {
++    entryPointUriPath: 'examples-starter',
++  },
++  renderEntryPointRoutes: true,
+});
+```

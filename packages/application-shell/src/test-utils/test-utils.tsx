@@ -25,6 +25,7 @@ import {
 } from '@commercetools-frontend/react-notifications';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import { createTestMiddleware as createSdkTestMiddleware } from '@commercetools-frontend/sdk/test-utils';
+import ApplicationEntryPoint from '../components/application-entry-point';
 import { createReduxStore } from '../configure-store';
 import createApolloClient from '../configure-apollo';
 
@@ -315,6 +316,7 @@ export type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;
   disableApolloMocks: boolean;
   route: string;
+  renderEntryPointRoutes: boolean;
   history: ReturnType<typeof createEnhancedHistory>;
   adapter: typeof memoryAdapter;
   flags: TFlags;
@@ -349,6 +351,7 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
     disableApolloMocks = false,
     // react-router
     route = '/',
+    renderEntryPointRoutes = false,
     history = createEnhancedHistory(
       createMemoryHistory({ initialEntries: [route] })
     ),
@@ -395,6 +398,11 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
   } as TProviderProps<AdditionalEnvironmentProperties>['environment'];
   const hasFlags = flags && Object.keys(flags).length > 0;
 
+  invariant(
+    renderEntryPointRoutes && environment?.entryPointUriPath,
+    '@commercetools-frontend/application-shell/test-utils: When the option "renderEntryPointRoutes" is set to "true", you also need to provide the "environment.entryPointUriPath" in order for the routes to be correctly configured.'
+  );
+
   const ApplicationProviders = (props: TApplicationProvidersProps) => (
     <IntlProvider locale={locale}>
       <ApolloProviderWrapper
@@ -416,7 +424,16 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
           >
             <Router history={history}>
               <React.Suspense fallback={<LoadingFallback />}>
-                {props.children}
+                <ApplicationEntryPoint
+                  environment={mergedEnvironment}
+                  render={
+                    renderEntryPointRoutes
+                      ? undefined
+                      : () => <>{props.children}</>
+                  }
+                >
+                  {renderEntryPointRoutes ? props.children : undefined}
+                </ApplicationEntryPoint>
               </React.Suspense>
             </Router>
           </ApplicationContextProvider>
@@ -520,11 +537,11 @@ function renderAppWithRedux<
 ): TRenderAppWithReduxResult<AdditionalEnvironmentProperties, StoreState> {
   invariant(
     !(store && storeState),
-    'test-utils: You provided both `store` and `storeState`. Please provide only one of them.'
+    '@commercetools-frontend/application-shell/test-utils: You provided both `store` and `storeState`. Please provide only one of them.'
   );
   invariant(
     !(store && sdkMocks.length > 0),
-    'test-utils: You provided both `store` and `sdkMocks`. Please provide only one of them.'
+    '@commercetools-frontend/application-shell/test-utils: You provided both `store` and `sdkMocks`. Please provide only one of them.'
   );
 
   // Determine the redux store to use in tests.

@@ -151,6 +151,7 @@ The `test-utils` additionally re-export all the public methods of [`@testing-lib
 | `options.apolloClient` | `ApolloClient`     | Apollo                                                                                                                                                                                             | Pass a custom instance of Apollo client, useful when your Custom Application has some custom cache policies. You can use the exported function `createApolloClient` of `@commercetools-frontend/application-shell`.                                                                                                  |
 | `options.disableApolloMocks` | `Boolean`     | Apollo                                                                                                                                                                                             | Pass `true` if you don't want to use the Apollo Mock Provider but instead let the GraphQL request through. This is usually useful if you want to mock at the network level, for example when using [Mock Service Worker](https://mswjs.io/).                                                                                                  |
 | `options.route`       | `String`      | Routing                                                                                                                                                                                            | The route the user is on, like `/test-project/products`. Defaults to `/`.                                                                                                                                                                                                                                                                                                          |
+| `options.renderEntryPointRoutes`       | `Boolean`      | Routing                                                                                                                                                                                            | Pass `true` if you are using the `children` prop for the `<ApplicationShell>`, instead of the `render` prop. This renders then the main application routes according to the given `entryPointUriPath`.                                                                                                                                                                                                                                                                                                          |
 | `options.history`     | `Object`      | Routing                                                                                                                                                                                            | By default a memory-history is generated which has the provided `options.route` set as its initial history entry. It's possible to pass a custom history as well. In that case, we recommend using the factory function `createEnhancedHistory` from the `@commercetools-frontend/browser-history` package, as it contains the enhanced `location` with the parsed `query` object. |
 | `options.adapter`     | `Object`      | Feature Toggles                                                                                                                                                                                    | The [FlopFlip](https://github.com/tdeekens/flopflip) adapter to use when configuring `flopflip`. Defaults to [`memoryAdapter`](https://github.com/tdeekens/flopflip/tree/master/packages/memory-adapter).                                                                                                                                                                          |
 | `options.flags`       | `Object`      | Feature Toggles                                                                                                                                                                                    | An object whose keys are feature-toggle keys and whose values are their toggle state. Use this to test your component with different feature toggle combinations. Example: `{ betaUserProfile: true }`.                                                                                                                                                                            |
@@ -185,10 +186,27 @@ The function accepts all options from `renderApp`, plus the following:
 
 Some examples:
 
+* Using the pre-configured entry point application routes
+
+  ```jsx
+  import { renderApp, screen } from '@commercetools-frontend/application-shell/test-utils';
+  import { AsyncApplicationRoutes } from '../entry-point';
+
+  describe('rendering', () => {
+    it('should render the authenticated users first name', async () => {
+      renderApp(<AsyncApplicationRoutes />, {
+        environment: { entryPointUriPath: 'the-big-bang-theory' },
+        renderEntryPointRoutes: true,
+      });
+      await screen.findByText('First name: Sheldon');
+    });
+  });
+  ```
+
 * Using a different application `locale`
 
   ```jsx
-  import { renderApp } from '@commercetools-frontend/application-shell/test-utils';
+  import { renderApp, screen } from '@commercetools-frontend/application-shell/test-utils';
 
   const Flag = props => {
     const intl = useIntl();
@@ -201,12 +219,12 @@ Some examples:
 
   describe('Flag', () => {
     it('should render the british flag when the locale is english', async () => {
-      const rendered = renderApp(<Flag />);
-      await rendered.findByText('🇬🇧');
+      renderApp(<Flag />);
+      await screen.findByText('🇬🇧');
     });
     it('should render the german flag when the locale is german', async () => {
-      const rendered = renderApp(<Flag />, { locale: 'de' });
-      await rendered.findByText('🇩🇪');
+      renderApp(<Flag />, { locale: 'de' });
+      await screen.findByText('🇩🇪');
     });
   });
   ```
@@ -214,7 +232,7 @@ Some examples:
 * Using a different locale for data localization
 
   ```jsx
-  import { renderApp } from '@commercetools-frontend/application-shell/test-utils';
+  import { renderApp, screen } from '@commercetools-frontend/application-shell/test-utils';
 
   const ProductName = props => (
     <ApplicationContext
@@ -235,16 +253,16 @@ Some examples:
       name: { en: 'Party Parrot', de: 'Party Papagei' },
     };
     it('should render the product name in the given data locale', async () => {
-      const rendered = renderApp(<ProductName product={partyParrot} />, {
+      renderApp(<ProductName product={partyParrot} />, {
         dataLocale: 'en',
       });
-      await rendered.findByText('Product name: Party Parrot');
+      await screen.findByText('Product name: Party Parrot');
     });
     it('should render the product name in the given data locale', async () => {
-      const rendered = renderApp(<ProductName product={partyParrot} />, {
+      renderApp(<ProductName product={partyParrot} />, {
         dataLocale: 'de',
       });
-      await rendered.findByText('Product name: Party Papagei');
+      await screen.findByText('Product name: Party Papagei');
     });
   });
   ```
@@ -277,7 +295,7 @@ Some examples:
   ```
 
   ```jsx
-  import { renderApp } from '@commercetools-frontend/application-shell/test-utils';
+  import { renderApp, screen } from '@commercetools-frontend/application-shell/test-utils';
   import {
     BankAccountBalance,
     BankAccountBalanceQuery,
@@ -285,7 +303,7 @@ Some examples:
 
   describe('BankAccountBalance', () => {
     it('should render the balance', async () => {
-      const rendered = renderApp(<BankAccountBalance token="foo-bar" />, {
+      renderApp(<BankAccountBalance token="foo-bar" />, {
         mocks: [
           {
             request: {
@@ -296,9 +314,9 @@ Some examples:
           },
         ],
       });
-      await rendered.findByText('Loading...');
+      await screen.findByText('Loading...');
       await waitFor(() => {
-        expect(rendered.queryByText('Your balance is 300€')).toBeInTheDocument();
+        expect(screen.queryByText('Your balance is 300€')).toBeInTheDocument();
       });
     });
   });
@@ -358,12 +376,12 @@ Some examples:
   ```
 
   ```jsx
-  import { renderAppWithRedux } from '@commercetools-frontend/application-shell/test-utils';
+  import { renderAppWithRedux, screen } from '@commercetools-frontend/application-shell/test-utils';
   import BankAccountBalance from './bank-account-balance';
 
   describe('BankAccountBalance', () => {
     it('should render the balance', async () => {
-      const rendered = renderAppWithRedux(
+      renderAppWithRedux(
         <BankAccountBalance token="foo-bar" />,
         {
           sdkMocks: [
@@ -385,9 +403,9 @@ Some examples:
           ],
         }
       );
-      await rendered.findByText('Loading...');
+      await screen.findByText('Loading...');
       await waitFor(() => {
-        expect(rendered.queryByText('Your balance is 300€')).toBeInTheDocument();
+        expect(screen.queryByText('Your balance is 300€')).toBeInTheDocument();
       });
     });
   });
@@ -396,7 +414,7 @@ Some examples:
 * Using feature toggles
 
   ```jsx
-  import { renderApp } from '@commercetools-frontend/application-shell/test-utils';
+  import { renderApp, screen } from '@commercetools-frontend/application-shell/test-utils';
   import { useFeatureToggle } from '@flopflip/react-broadcast';
 
   const Profile = props => {
@@ -413,20 +431,20 @@ Some examples:
     const baseProps = { name: 'Penny', age: 32 };
 
     it('should show no age when feature is toggled off', async () => {
-      const rendered = renderApp(<Profile {...baseProps} />, {
+      renderApp(<Profile {...baseProps} />, {
         flags: { experimentalAgeOnProfileFlag: false },
       });
-      await rendered.findByText('Penny');
+      await screen.findByText('Penny');
       await waitFor(() => {
-        expect(rendered.queryByText('32')).not.toBeInTheDocument();
+        expect(screen.queryByText('32')).not.toBeInTheDocument();
       });
     });
 
     it('should show age when feature toggle is on', () => {
-      const rendered = renderApp(<Profile {...baseProps} />, {
+      renderApp(<Profile {...baseProps} />, {
         flags: { experimentalAgeOnProfileFlag: true },
       });
-      await rendered.findByText('Penny (32)');
+      await screen.findByText('Penny (32)');
     });
   });
   ```
@@ -435,7 +453,7 @@ Some examples:
 
   ```jsx
   import { Switch, Route, Redirect } from 'react-router-dom';
-  import { renderApp } from '@commercetools-frontend/application-shell/test-utils';
+  import { renderApp, screen } from '@commercetools-frontend/application-shell/test-utils';
 
   const ProductTabs = () => (
     <Switch>
@@ -448,22 +466,22 @@ Some examples:
 
   describe('router', () => {
     it('should redirect to "general" when no tab is given', async () => {
-      const rendered = renderApp(<ProductTabs />, {
+      renderApp(<ProductTabs />, {
         route: '/products/party-parrot',
       });
-      await rendered.findByText('General');
+      await screen.findByText('General');
     });
     it('should render "general" when on general tab', async () => {
-      const rendered = renderApp(<ProductTabs />, {
+      renderApp(<ProductTabs />, {
         route: '/products/party-parrot/general',
       });
-      await rendered.findByText('General');
+      await screen.findByText('General');
     });
     it('should render "pricing" when on pricing tab', async () => {
-      const rendered = renderApp(<ProductTabs />, {
+      renderApp(<ProductTabs />, {
         route: '/products/party-parrot/pricing',
       });
-      await rendered.findByText('Pricing');
+      await screen.findByText('Pricing');
     });
   });
   ```
@@ -497,7 +515,7 @@ The following fields can be used to assign the different granular permission val
 Permissions are managed by the `@commercetools-frontend/permissions` package.
 
 ```jsx
-import { renderApp } from '@commercetools-frontend/application-shell/test-utils';
+import { renderApp, screen } from '@commercetools-frontend/application-shell/test-utils';
 
 const DeleteProductButton = () => {
   const canManageProducts = useIsAuthorized({
@@ -512,19 +530,19 @@ const DeleteProductButton = () => {
 
 describe('DeleteProductButton', () => {
   it('should be disabled when the user does not have permission to manage products', async () => {
-    const rendered = renderApp(<DeleteProductButton />, {
+    renderApp(<DeleteProductButton />, {
       permissions: { canManageProducts: false },
     });
     await waitFor(() => {
-      expect(rendered.queryByText('Delete Product')).toBeDisabled();
+      expect(screen.queryByText('Delete Product')).toBeDisabled();
     });
   });
   it('should be enabled when the user has permission to manage products', async () => {
-    const rendered = renderApp(<DeleteProductButton />, {
+    renderApp(<DeleteProductButton />, {
       permissions: { canManageProducts: true },
     });
     await waitFor(() => {
-      expect(rendered.queryByText('Delete Product')).not.toBeDisabled();
+      expect(screen.queryByText('Delete Product')).not.toBeDisabled();
     });
   });
 });

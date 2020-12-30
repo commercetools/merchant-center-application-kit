@@ -34,13 +34,5 @@ const ApplicationRoutes = () => {
   );
 };
 ApplicationRoutes.displayName = 'ApplicationRoutes';
-ApplicationRoutes.propTypes = {
-  match: PropTypes.shape({
-    path: PropTypes.string,
-    params: PropTypes.shape({
-      projectKey: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
-};
 
 export default ApplicationRoutes;
