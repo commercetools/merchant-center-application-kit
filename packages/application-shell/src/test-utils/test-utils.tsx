@@ -398,10 +398,12 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
   } as TProviderProps<AdditionalEnvironmentProperties>['environment'];
   const hasFlags = flags && Object.keys(flags).length > 0;
 
-  invariant(
-    renderEntryPointRoutes && environment?.entryPointUriPath,
-    '@commercetools-frontend/application-shell/test-utils: When the option "renderEntryPointRoutes" is set to "true", you also need to provide the "environment.entryPointUriPath" in order for the routes to be correctly configured.'
-  );
+  if (renderEntryPointRoutes) {
+    invariant(
+      Boolean(environment?.entryPointUriPath),
+      '@commercetools-frontend/application-shell/test-utils: When the option "renderEntryPointRoutes" is set to "true", you also need to provide the "environment.entryPointUriPath" in order for the routes to be correctly configured.'
+    );
+  }
 
   const ApplicationProviders = (props: TApplicationProvidersProps) => (
     <IntlProvider locale={locale}>
