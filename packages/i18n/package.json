@@ -47,7 +47,7 @@
   "devDependencies": {
     "intl-messageformat-parser": "6.1.2",
     "react": "16.14.0",
-    "react-intl": "5.10.11"
+    "react-intl": "5.10.9"
   },
   "peerDependencies": {
     "@types/react": "16.x",
