@@ -15,19 +15,19 @@
   "dependencies": {
     "@commercetools-docs/gatsby-theme-docs": "12.0.1",
     "@commercetools-docs/ui-kit": "12.0.1",
-    "@commercetools-uikit/card": "10.42.2",
-    "@commercetools-uikit/spacings-inline": "10.42.2",
-    "@commercetools-uikit/spacings-stack": "10.42.2",
-    "@emotion/react": "11.1.3",
+    "@commercetools-uikit/card": "10.43.2",
+    "@commercetools-uikit/spacings-inline": "10.43.2",
+    "@commercetools-uikit/spacings-stack": "10.43.2",
+    "@emotion/react": "11.1.4",
     "@emotion/styled": "11.0.0",
     "gatsby": "2.29.1",
     "gatsby-cli": "2.16.1",
     "prop-types": "15.7.2",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.10.9"
+    "react-intl": "5.10.11"
   },
   "devDependencies": {
-    "linkinator": "2.8.0"
+    "linkinator": "2.13.0"
   }
 }

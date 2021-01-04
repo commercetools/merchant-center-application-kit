@@ -28,7 +28,7 @@
     "@commercetools-frontend/constants": "17.6.0",
     "@commercetools-frontend/notifications": "17.6.0",
     "@commercetools-frontend/sentry": "17.7.1",
-    "@types/lodash": "^4.14.155",
+    "@types/lodash": "^4.14.167",
     "lodash": "4.17.20",
     "redux-thunk": "2.3.0"
   },
