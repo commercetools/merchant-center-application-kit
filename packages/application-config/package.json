@@ -26,14 +26,14 @@
   "dependencies": {
     "@babel/runtime": "7.12.5",
     "@babel/runtime-corejs3": "7.12.5",
-    "ajv": "7.0.2",
-    "core-js": "3.8.1",
+    "ajv": "7.0.3",
+    "core-js": "3.8.2",
     "cosmiconfig": "7.0.0",
     "lodash": "4.17.20",
     "omit-empty-es": "1.1.2"
   },
   "devDependencies": {
-    "json-schema-to-typescript": "10.0.2",
+    "json-schema-to-typescript": "10.0.3",
     "shelljs": "0.8.4"
   },
   "engines": {

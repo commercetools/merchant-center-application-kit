@@ -23,8 +23,8 @@
     "@babel/plugin-proposal-do-expressions": "7.12.1",
     "@babel/plugin-proposal-export-default-from": "7.12.1",
     "@babel/plugin-proposal-export-namespace-from": "7.12.1",
-    "@babel/plugin-proposal-object-rest-spread": "7.12.1",
     "@babel/plugin-proposal-logical-assignment-operators": "7.12.1",
+    "@babel/plugin-proposal-object-rest-spread": "7.12.1",
     "@babel/plugin-transform-classes": "7.12.1",
     "@babel/plugin-transform-destructuring": "7.12.1",
     "@babel/plugin-transform-react-display-name": "7.12.1",
@@ -35,12 +35,12 @@
     "@babel/preset-typescript": "7.12.7",
     "@babel/runtime": "7.12.5",
     "@babel/runtime-corejs3": "7.12.5",
-    "@emotion/babel-preset-css-prop": "11.0.0",
     "@emotion/babel-plugin": "11.1.2",
+    "@emotion/babel-preset-css-prop": "11.0.0",
     "babel-plugin-dev-expression": "0.2.2",
     "babel-plugin-lodash": "3.3.4",
     "babel-plugin-macros": "3.0.1",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
-    "core-js": "3.8.1"
+    "core-js": "3.8.2"
   }
 }

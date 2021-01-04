@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { Headers } = require('node-fetch');
 const path = require('path');
 const colors = require('colors/safe');
 const pkgDir = require('pkg-dir');
@@ -13,6 +14,7 @@ global.window.app = {
 };
 
 window.MutationObserver = MutationObserver;
+global.Headers = global.Headers || Headers;
 
 const shouldSilenceWarnings = (...messages) =>
   jestConfig.silenceConsoleWarnings.some((msgRegex) =>
