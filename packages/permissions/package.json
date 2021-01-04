@@ -9,7 +9,12 @@
     "directory": "packages/permissions"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -17,7 +22,12 @@
   },
   "main": "dist/commercetools-frontend-permissions.cjs.js",
   "module": "dist/commercetools-frontend-permissions.esm.js",
-  "files": ["dist", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prepare": "./../../scripts/version.js replace"
   },
@@ -27,14 +37,15 @@
     "@commercetools-frontend/application-shell-connectors": "17.7.1",
     "@commercetools-frontend/sentry": "17.7.1",
     "@emotion/react": "11.1.4",
-    "@types/lodash": "4.14.167",
-    "@types/prop-types": "15.7.3",
+    "@types/lodash": "^4.14.167",
+    "@types/prop-types": "^15.7.3",
     "lodash": "4.17.20",
     "prop-types": "15.7.2",
     "tiny-invariant": "1.1.0",
     "tiny-warning": "1.0.3"
   },
   "devDependencies": {
+    "@types/react": "16.14.2",
     "react": "16.14.0"
   },
   "peerDependencies": {

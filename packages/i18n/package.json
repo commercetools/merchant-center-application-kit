@@ -40,11 +40,12 @@
     "@commercetools-frontend/sentry": "17.7.1",
     "@commercetools-uikit/i18n": "10.42.2",
     "@emotion/react": "11.1.4",
-    "@types/prop-types": "15.7.3",
-    "moment": "^2.24.0",
+    "@types/prop-types": "^15.7.3",
+    "moment": "2.29.1",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
+    "@types/react": "16.14.2",
     "intl-messageformat-parser": "6.1.2",
     "react": "16.14.0",
     "react-intl": "5.10.9"
