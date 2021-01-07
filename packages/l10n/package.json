@@ -9,7 +9,12 @@
     "directory": "packages/l10n"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -17,7 +22,13 @@
   },
   "main": "dist/commercetools-frontend-l10n.cjs.js",
   "module": "dist/commercetools-frontend-l10n.esm.js",
-  "files": ["data", "dist", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "data",
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "generate-data": "node ./scripts/generate-l10n-data.js"
@@ -27,17 +38,18 @@
     "@babel/runtime-corejs3": "7.12.5",
     "@commercetools-frontend/sentry": "17.7.1",
     "@emotion/react": "11.1.4",
-    "@types/prop-types": "15.7.3",
+    "@types/prop-types": "^15.7.3",
     "lodash": "4.17.20",
-    "moment": "^2.24.0",
+    "moment": "^2.29.1",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "3.7.0",
+    "@types/react": "16.14.2",
     "chalk": "4.1.0",
     "cldr": "5.8.0",
     "deep-diff": "1.0.2",
-    "moment-timezone": "0.5.32",
+    "moment-timezone": "^0.5.32",
     "node-fetch": "2.6.1",
     "react": "16.14.0",
     "rimraf": "3.0.2",

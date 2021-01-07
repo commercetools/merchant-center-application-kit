@@ -9,13 +9,24 @@
     "directory": "packages/jest-stylelint-runner"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
     "access": "public"
   },
-  "files": ["package.json", "run.js", "index.js", "LICENSE", "README.md"],
+  "files": [
+    "package.json",
+    "run.js",
+    "index.js",
+    "LICENSE",
+    "README.md"
+  ],
   "main": "index.js",
   "module": "index.js",
   "peerDependencies": {
@@ -25,7 +36,8 @@
   "devDependencies": {
     "postcss": "8.2.2",
     "postcss-custom-properties": "10.0.0",
-    "postcss-import": "14.0.0"
+    "postcss-import": "14.0.0",
+    "stylelint": "13.8.0"
   },
   "dependencies": {
     "postcss-load-config": "3.0.0"
