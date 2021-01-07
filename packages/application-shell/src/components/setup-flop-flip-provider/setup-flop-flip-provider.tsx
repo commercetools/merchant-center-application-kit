@@ -3,6 +3,7 @@ import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 
 import React from 'react';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
+import omitEmpty from 'omit-empty-es';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
 import useAllMenuFeatureToggles from '../../hooks/use-all-menu-feature-toggles';
 import { FLAGS } from '../../feature-toggles';
@@ -15,6 +16,15 @@ type Props = {
   ldClientSideId?: string;
   children: React.ReactNode;
   shouldDeferAdapterConfiguration?: boolean;
+};
+
+type CustomLDUser = {
+  project: string;
+  id: string;
+  team: string[];
+  group: string;
+  subgroup: string;
+  tenant: string;
 };
 
 // This value is hard-coded here because we want to make sure that the
@@ -44,21 +54,23 @@ export const SetupFlopFlipProvider = (props: Props) => {
 
   const adapterArgs = React.useMemo(
     () => ({
-      // Allow to overwrite the client ID, passed via the `additionalEnv` properties
-      // of the application config.
-      // This is mostly useful for internal usage on our staging environments.
-      clientSideId: props.ldClientSideId ?? ldClientSideIdProduction,
+      sdk: {
+        // Allow to overwrite the client ID, passed via the `additionalEnv` properties
+        // of the application config.
+        // This is mostly useful for internal usage on our staging environments.
+        clientSideId: props.ldClientSideId ?? ldClientSideIdProduction,
+      },
       flags,
       user: {
-        key: props.user && props.user.id,
-        custom: {
-          id: props.user && props.user.launchdarklyTrackingId,
+        key: props.user?.id,
+        custom: omitEmpty<CustomLDUser, Partial<CustomLDUser>>({
+          id: props.user?.launchdarklyTrackingId,
           project: props.projectKey,
-          team: props.user && props.user.launchdarklyTrackingTeam,
-          group: props.user && props.user.launchdarklyTrackingGroup,
-          subgroup: props.user && props.user.launchdarklyTrackingSubgroup,
-          tenant: props.user && props.user.launchdarklyTrackingTenant,
-        },
+          team: props.user?.launchdarklyTrackingTeam,
+          group: props.user?.launchdarklyTrackingGroup,
+          subgroup: props.user?.launchdarklyTrackingSubgroup,
+          tenant: props.user?.launchdarklyTrackingTenant,
+        }),
       },
     }),
     [flags, props.ldClientSideId, props.projectKey, props.user]
