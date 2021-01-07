@@ -41,7 +41,7 @@
     "@commercetools-uikit/i18n": "10.42.2",
     "@emotion/react": "11.1.4",
     "@types/prop-types": "^15.7.3",
-    "moment": "2.29.1",
+    "moment": "^2.29.1",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
