@@ -165,7 +165,6 @@
 
 :global(.body__menu-open) .list-item .title {
   display: block;
-  white-space: nowrap;
   opacity: 1;
   margin-left: var(--spacing-m);
   color: var(--color-surface);
