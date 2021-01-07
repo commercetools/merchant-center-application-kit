@@ -1,5 +1,6 @@
+import { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useRouteMatch, useHistory } from 'react-router-dom';
 import LockedDiamondSVG from '@commercetools-frontend/assets/images/locked-diamond.svg';
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
 import { InjectReducers } from '@commercetools-frontend/application-shell';
@@ -18,18 +19,26 @@ const PageUnauthorized = () => (
   />
 );
 
-const ApplicationRoutes = (props) => {
+const ApplicationRoutes = () => {
+  const match = useRouteMatch();
+  const history = useHistory();
   const canViewDeveloperSettings = useIsAuthorized({
     demandedPermissions: [PERMISSIONS.ViewDeveloperSettings],
   });
+  const goToStateMachineDetail = useCallback(
+    (id) => {
+      history.push(`${match.url}/${id}`);
+    },
+    [history, match.url]
+  );
   return (
     <InjectReducers id="state-machines" reducers={reducers}>
       <Switch>
-        <Route path={`${props.match.path}/echo-server`}>
+        <Route path={`${match.path}/echo-server`}>
           <EchoServer />
         </Route>
         <Route
-          path={`${props.match.path}/:id`}
+          path={`${match.path}/:id`}
           render={(routerProps) => {
             if (!canViewDeveloperSettings) {
               return <PageUnauthorized />;
@@ -38,7 +47,7 @@ const ApplicationRoutes = (props) => {
               <StateMachinesDetails
                 id={routerProps.match.params.id}
                 projectKey={routerProps.match.params.projectKey}
-                backToListPath={props.match.url}
+                backToListPath={match.url}
               />
             );
           }}
@@ -50,9 +59,7 @@ const ApplicationRoutes = (props) => {
             }
             return (
               <StateMachinesList
-                goToStateMachineDetail={(id) => {
-                  props.history.push(`${props.match.url}/${id}`);
-                }}
+                goToStateMachineDetail={goToStateMachineDetail}
               />
             );
           }}

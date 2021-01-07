@@ -1,14 +1,10 @@
-import React from 'react';
-import {
-  renderApp,
-  fireEvent,
-} from '@commercetools-frontend/application-shell/test-utils';
-import { ApplicationStarter } from '../entry-point';
+import { fireEvent } from '@commercetools-frontend/application-shell/test-utils';
+import { renderApplication } from '../../test-utils';
 
 describe('main view', () => {
   it('the user can click on the link to "one" and the page should show a text with "View one"', async () => {
     const initialRoute = '/my-project/examples-starter';
-    const rendered = renderApp(<ApplicationStarter />, {
+    const rendered = renderApplication(null, {
       permissions: { canViewProducts: true, canManageProducts: true },
       route: initialRoute,
     });

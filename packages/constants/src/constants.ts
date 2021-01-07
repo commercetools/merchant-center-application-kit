@@ -142,6 +142,7 @@ export interface ApplicationWindow extends Window {
     // TODO: make it required: https://github.com/commercetools/merchant-center-application-kit/issues/1440
     applicationId?: string;
     applicationName: string;
+    entryPointUriPath: string;
     revision: string;
     env: string;
     location: string;

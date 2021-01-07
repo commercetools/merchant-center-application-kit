@@ -80,6 +80,7 @@ const processConfig = ({
       ...omitEmpty(additionalAppEnv),
       ...(applicationId ? { applicationId } : {}),
       applicationName: appConfig.name,
+      entryPointUriPath: appConfig.entryPointUriPath,
       cdnUrl: cdnUrl.href,
       env: appEnvKey,
       frontendHost: appUrl.host,

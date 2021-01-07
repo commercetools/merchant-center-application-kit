@@ -1,9 +1,7 @@
-import React from 'react';
-import { renderAppWithRedux } from '@commercetools-frontend/application-shell/test-utils';
-import { ApplicationStarter } from './entry-point';
+import { renderApplicationWithRedux } from '../../test-utils';
 
 const render = (options) => {
-  return renderAppWithRedux(<ApplicationStarter />, {
+  return renderApplicationWithRedux(null, {
     permissions: {
       canViewProducts: true,
     },

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import LockedDiamondSVG from '@commercetools-frontend/assets/images/locked-diamond.svg';
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
@@ -15,7 +15,8 @@ const PageUnauthorized = () => (
   />
 );
 
-const ApplicationRoutes = ({ match }) => {
+const ApplicationRoutes = () => {
+  const match = useRouteMatch();
   const canViewProducts = useIsAuthorized({
     demandedPermissions: [PERMISSIONS.ViewProducts],
   });
@@ -33,13 +34,5 @@ const ApplicationRoutes = ({ match }) => {
   );
 };
 ApplicationRoutes.displayName = 'ApplicationRoutes';
-ApplicationRoutes.propTypes = {
-  match: PropTypes.shape({
-    path: PropTypes.string,
-    params: PropTypes.shape({
-      projectKey: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
-};
 
 export default ApplicationRoutes;

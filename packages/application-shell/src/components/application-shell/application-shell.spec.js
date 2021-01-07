@@ -36,6 +36,7 @@ jest.mock('../../utils/location');
 const createTestProps = (props) => ({
   environment: {
     applicationName: 'my-app',
+    entryPointUriPath: 'avengers',
     frontendHost: 'localhost:3001',
     mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
     location: 'eu',
@@ -74,7 +75,8 @@ const createTestAppliedPermissions = ({
 });
 
 const renderApp = (ui, options = {}) => {
-  const { route, ...customProps } = options;
+  const { route, renderNodeAsChildren, ...customProps } = options;
+  const jsxElem = ui || <p>{'OK'}</p>;
   const initialRoute = route || '/';
   const testHistory = createEnhancedHistory(
     createMemoryHistory({ initialEntries: [initialRoute] })
@@ -85,10 +87,11 @@ const renderApp = (ui, options = {}) => {
     ...defaultProps,
     ...customProps,
     environment: { ...defaultProps.environment, ...customProps.environment },
+    ...(renderNodeAsChildren
+      ? { children: jsxElem }
+      : { render: () => jsxElem }),
   };
-  const rendered = render(
-    <ApplicationShell {...props} render={() => ui || <p>{'OK'}</p>} />
-  );
+  const rendered = render(<ApplicationShell {...props} />);
   const findByLeftNavigation = () => rendered.findByTestId('left-navigation');
   const queryByLeftNavigation = () => rendered.queryByTestId('left-navigation');
   const waitForLeftNavigationToBeLoaded = async () => {
@@ -179,18 +182,29 @@ afterEach(() => {
 beforeAll(() => mockServer.listen());
 afterAll(() => mockServer.close());
 
-describe('when rendering', () => {
-  it('should pass environment into application context', async () => {
-    const TestComponent = () => {
-      const applicationName = useApplicationContext(
-        (context) => context.environment.applicationName
-      );
-      return <p>{`Application name: ${applicationName}`}</p>;
-    };
-    const rendered = renderApp(<TestComponent />);
-    await rendered.findByText('Application name: my-app');
-  });
-});
+describe.each`
+  renderNodeAsChildren | route
+  ${false}             | ${'/'}
+  ${true}              | ${'/test-1/avengers'}
+`(
+  'when rendering (as children: $renderNodeAsChildren)',
+  ({ renderNodeAsChildren, route }) => {
+    it('should pass environment into application context', async () => {
+      const TestComponent = () => {
+        const applicationName = useApplicationContext(
+          (context) => context.environment.applicationName
+        );
+        return <p>{`Application name: ${applicationName}`}</p>;
+      };
+      const rendered = renderApp(<TestComponent />, {
+        renderNodeAsChildren,
+        route,
+      });
+      await rendered.findByText('Application name: my-app');
+    });
+  }
+);
+
 describe('when route does not contain a project key (e.g. /account)', () => {
   it('should not render NavBar', async () => {
     const rendered = renderApp();

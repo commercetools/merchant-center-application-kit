@@ -1,4 +1,4 @@
-import { lazy, Component } from 'react';
+import { lazy } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import {
   ApplicationShell,
@@ -53,24 +53,20 @@ ApplicationStateMachines.displayName = 'ApplicationStateMachines';
 // in order to catch possible errors on rendering/mounting.
 setupGlobalErrorListener();
 
-class EntryPoint extends Component {
-  static displayName = 'EntryPoint';
-  render() {
-    return (
-      <ApplicationShell
-        environment={window.app}
-        onRegisterErrorListeners={({ dispatch }) => {
-          Sdk.Get.errorHandler = (error) =>
-            globalActions.handleActionError(error, 'sdk')(dispatch);
-        }}
-        applicationMessages={loadMessages}
-        DEV_ONLY__loadNavbarMenuConfig={() =>
-          import('../../../menu.json').then((data) => data.default || data)
-        }
-        render={() => <ApplicationStateMachines />}
-      />
-    );
-  }
-}
+const EntryPoint = () => (
+  <ApplicationShell
+    environment={window.app}
+    onRegisterErrorListeners={({ dispatch }) => {
+      Sdk.Get.errorHandler = (error) =>
+        globalActions.handleActionError(error, 'sdk')(dispatch);
+    }}
+    applicationMessages={loadMessages}
+    DEV_ONLY__loadNavbarMenuConfig={() =>
+      import('../../../menu.json').then((data) => data.default || data)
+    }
+    render={() => <ApplicationStateMachines />}
+  />
+);
+EntryPoint.displayName = 'EntryPoint';
 
 export default EntryPoint;
