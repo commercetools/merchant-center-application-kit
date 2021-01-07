@@ -1,5 +1,33 @@
 # playground
 
+## 17.1.0
+
+### Minor Changes
+
+- [`bb65fa1`](https://github.com/commercetools/merchant-center-application-kit/commit/bb65fa149d3d056ae0e0f35d89bd0e5b1ba08694) [#1949](https://github.com/commercetools/merchant-center-application-kit/pull/1949) Thanks [@emmenko](https://github.com/emmenko)! - The `webpack.config.dev.js` and `webpack.config.prod.js` files are not required anymore to be defined in the application folder and can be removed. The default behavior is now implicitly implemented in case the config file is not found. The default behavior requires the following paths to exist:
+
+  - `<application_folder>/dist`
+  - `<application_folder>/src`
+  - `<application_folder>/src/index.js`
+
+  > You can still use the config files if you need to configure more specific behaviors.
+
+### Patch Changes
+
+- [`48a9886`](https://github.com/commercetools/merchant-center-application-kit/commit/48a98861dcf4193041e02e8ac11eb2940826f5d0) [#1954](https://github.com/commercetools/merchant-center-application-kit/pull/1954) Thanks [@tdeekens](https://github.com/tdeekens)! - chore: update dependencies across packages
+
+* [`4971a78`](https://github.com/commercetools/merchant-center-application-kit/commit/4971a78438fb4d2ca5487764192a0bb1ffc3b18e) [#1952](https://github.com/commercetools/merchant-center-application-kit/pull/1952) Thanks [@tdeekens](https://github.com/tdeekens)! - chore: add and apply fixes via manypkg for automatic mono-repo validation
+
+* Updated dependencies [[`3198d2c`](https://github.com/commercetools/merchant-center-application-kit/commit/3198d2ce49501c1c2f996b808d8060efe7270762), [`48a9886`](https://github.com/commercetools/merchant-center-application-kit/commit/48a98861dcf4193041e02e8ac11eb2940826f5d0), [`4971a78`](https://github.com/commercetools/merchant-center-application-kit/commit/4971a78438fb4d2ca5487764192a0bb1ffc3b18e), [`c6a967c`](https://github.com/commercetools/merchant-center-application-kit/commit/c6a967c4dc76dc87310dec0c1960e9518901f361)]:
+  - @commercetools-frontend/application-shell@17.8.0
+  - @commercetools-frontend/actions-global@17.8.0
+  - @commercetools-frontend/application-components@17.8.0
+  - @commercetools-frontend/application-shell-connectors@17.8.0
+  - @commercetools-frontend/i18n@17.8.0
+  - @commercetools-frontend/l10n@17.8.0
+  - @commercetools-frontend/permissions@17.8.0
+  - @commercetools-frontend/sdk@17.8.0
+
 ## 17.0.18
 
 ### Patch Changes
