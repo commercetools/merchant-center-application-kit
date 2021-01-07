@@ -19,6 +19,7 @@ const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const printBuildError = require('react-dev-utils/printBuildError');
+const createWebpackConfigForProduction = require('./config/create-webpack-config-for-production');
 
 const measureFileSizesBeforeBuild =
   FileSizeReporter.measureFileSizesBeforeBuild;
@@ -38,10 +39,15 @@ const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 const paths = {
   appBuild: resolveApp('dist/assets'),
   appWebpackConfig: resolveApp('webpack.config.prod.js'),
+  distPath: resolveApp('dist'),
+  entryPoint: resolveApp('src/index.js'),
+  sourceFolders: [resolveApp('src')],
 };
 
+const hasWebpackConfig = fs.existsSync(paths.appWebpackConfig);
+
 // Warn and crash if required files are missing
-if (!checkRequiredFiles([paths.appWebpackConfig])) {
+if (!checkRequiredFiles([])) {
   process.exit(1);
 }
 
@@ -101,7 +107,14 @@ measureFileSizesBeforeBuild(paths.appBuild)
 function build(previousFileSizes) {
   console.log('Creating an optimized production build...');
 
-  const compiler = webpack(require(paths.appWebpackConfig));
+  const config = hasWebpackConfig
+    ? require(paths.appWebpackConfig)
+    : createWebpackConfigForProduction({
+        distPath: paths.distPath,
+        entryPoint: paths.entryPoint,
+        sourceFolders: paths.sourceFolders,
+      });
+  const compiler = webpack(config);
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
       let messages;
