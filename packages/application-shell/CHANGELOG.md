@@ -1,5 +1,29 @@
 # @commercetools-frontend/application-shell
 
+## 17.8.0
+
+### Patch Changes
+
+- [`3198d2c`](https://github.com/commercetools/merchant-center-application-kit/commit/3198d2ce49501c1c2f996b808d8060efe7270762) [#1957](https://github.com/commercetools/merchant-center-application-kit/pull/1957) Thanks [@stephsprinkle](https://github.com/stephsprinkle)! - fix(navbar): remove title nowrap to accommodate long application names
+
+* [`48a9886`](https://github.com/commercetools/merchant-center-application-kit/commit/48a98861dcf4193041e02e8ac11eb2940826f5d0) [#1954](https://github.com/commercetools/merchant-center-application-kit/pull/1954) Thanks [@tdeekens](https://github.com/tdeekens)! - chore: update dependencies across packages
+
+- [`4971a78`](https://github.com/commercetools/merchant-center-application-kit/commit/4971a78438fb4d2ca5487764192a0bb1ffc3b18e) [#1952](https://github.com/commercetools/merchant-center-application-kit/pull/1952) Thanks [@tdeekens](https://github.com/tdeekens)! - chore: add and apply fixes via manypkg for automatic mono-repo validation
+
+* [`c6a967c`](https://github.com/commercetools/merchant-center-application-kit/commit/c6a967c4dc76dc87310dec0c1960e9518901f361) [#1953](https://github.com/commercetools/merchant-center-application-kit/pull/1953) Thanks [@tdeekens](https://github.com/tdeekens)! - refactor: to update @flopflip to v12
+
+* Updated dependencies [[`48a9886`](https://github.com/commercetools/merchant-center-application-kit/commit/48a98861dcf4193041e02e8ac11eb2940826f5d0), [`4971a78`](https://github.com/commercetools/merchant-center-application-kit/commit/4971a78438fb4d2ca5487764192a0bb1ffc3b18e)]:
+  - @commercetools-frontend/actions-global@17.8.0
+  - @commercetools-frontend/application-components@17.8.0
+  - @commercetools-frontend/application-shell-connectors@17.8.0
+  - @commercetools-frontend/browser-history@17.8.0
+  - @commercetools-frontend/i18n@17.8.0
+  - @commercetools-frontend/l10n@17.8.0
+  - @commercetools-frontend/permissions@17.8.0
+  - @commercetools-frontend/react-notifications@17.8.0
+  - @commercetools-frontend/sdk@17.8.0
+  - @commercetools-frontend/sentry@17.8.0
+
 ## 17.7.4
 
 ### Patch Changes

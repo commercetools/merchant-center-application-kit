@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/permissions",
-  "version": "17.7.1",
+  "version": "17.8.0",
   "description": "React components to declaratively handle MC permissions",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -9,12 +9,7 @@
     "directory": "packages/permissions"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": [
-    "javascript",
-    "frontend",
-    "react",
-    "toolkit"
-  ],
+  "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -22,20 +17,15 @@
   },
   "main": "dist/commercetools-frontend-permissions.cjs.js",
   "module": "dist/commercetools-frontend-permissions.esm.js",
-  "files": [
-    "dist",
-    "package.json",
-    "LICENSE",
-    "README.md"
-  ],
+  "files": ["dist", "package.json", "LICENSE", "README.md"],
   "scripts": {
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
     "@babel/runtime": "7.12.5",
     "@babel/runtime-corejs3": "7.12.5",
-    "@commercetools-frontend/application-shell-connectors": "17.7.1",
-    "@commercetools-frontend/sentry": "17.7.1",
+    "@commercetools-frontend/application-shell-connectors": "17.8.0",
+    "@commercetools-frontend/sentry": "17.8.0",
     "@emotion/react": "11.1.4",
     "@types/lodash": "^4.14.167",
     "@types/prop-types": "^15.7.3",
