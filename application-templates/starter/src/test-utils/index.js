@@ -13,7 +13,7 @@ const mergeWithDefaultOptions = (options = {}) => ({
     ...(options.environment || {}),
     entryPointUriPath,
   },
-  renderEntryPointRoutes: true,
+  disableAutomaticEntryPointRoutes: false,
 });
 
 const renderApplication = (ui, options) =>

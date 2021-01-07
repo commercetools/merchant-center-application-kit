@@ -316,7 +316,7 @@ export type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;
   disableApolloMocks: boolean;
   route: string;
-  renderEntryPointRoutes: boolean;
+  disableAutomaticEntryPointRoutes: boolean;
   history: ReturnType<typeof createEnhancedHistory>;
   adapter: typeof memoryAdapter;
   flags: TFlags;
@@ -351,7 +351,7 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
     disableApolloMocks = false,
     // react-router
     route = '/',
-    renderEntryPointRoutes = false,
+    disableAutomaticEntryPointRoutes = true,
     history = createEnhancedHistory(
       createMemoryHistory({ initialEntries: [route] })
     ),
@@ -398,10 +398,10 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
   } as TProviderProps<AdditionalEnvironmentProperties>['environment'];
   const hasFlags = flags && Object.keys(flags).length > 0;
 
-  if (renderEntryPointRoutes) {
+  if (!disableAutomaticEntryPointRoutes) {
     invariant(
       Boolean(environment?.entryPointUriPath),
-      '@commercetools-frontend/application-shell/test-utils: When the option "renderEntryPointRoutes" is set to "true", you also need to provide the "environment.entryPointUriPath" in order for the routes to be correctly configured.'
+      '@commercetools-frontend/application-shell/test-utils: When the option "disableAutomaticEntryPointRoutes" is set to "false", you also need to provide the "environment.entryPointUriPath" in order for the routes to be correctly configured.'
     );
   }
 
@@ -429,12 +429,14 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
                 <ApplicationEntryPoint
                   environment={mergedEnvironment}
                   render={
-                    renderEntryPointRoutes
-                      ? undefined
-                      : () => <>{props.children}</>
+                    disableAutomaticEntryPointRoutes
+                      ? () => <>{props.children}</>
+                      : undefined
                   }
                 >
-                  {renderEntryPointRoutes ? props.children : undefined}
+                  {disableAutomaticEntryPointRoutes
+                    ? undefined
+                    : props.children}
                 </ApplicationEntryPoint>
               </React.Suspense>
             </Router>

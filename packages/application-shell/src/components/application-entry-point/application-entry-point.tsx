@@ -33,7 +33,7 @@ const ApplicationEntryPoint = <AdditionalEnvironmentProperties extends {}>(
           )
         }
         <Route path={`/:projectKey/${entryPointUriPath}`}>
-          {props.children}
+          {React.Children.only<React.ReactNode>(props.children)}
         </Route>
         {/* Catch-all route */}
         <RouteCatchAll />
@@ -43,14 +43,14 @@ const ApplicationEntryPoint = <AdditionalEnvironmentProperties extends {}>(
 
   // We still support the `render` prop, for backwards compatibility
   // and for having more control in certain cases (mostly to some of our internal apps).
-  if (props.render) {
+  if (props.render && typeof props.render === 'function') {
     return <>{props.render()}</>;
   }
 
-  // The `render` props is still required (backwards compatibility).
+  // The `render` prop function is still required (backwards compatibility).
   invariant(
     !props.render,
-    '@commercetools-frontend/application-shell: Missing required prop "render".'
+    '@commercetools-frontend/application-shell: Missing required function prop "render".'
   );
   return null;
 };
