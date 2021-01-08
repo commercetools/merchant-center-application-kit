@@ -64,7 +64,7 @@
 
   ```diff
   -renderApp(<ApplicationStarter />, {
-  +renderApp(<AsyncApplicationRoutes />, {
+  +renderApp(<ApplicationRoutes />, {
     route: '/my-project/examples-starter'
   +  environment: {
   +    entryPointUriPath: 'examples-starter',
