@@ -500,6 +500,7 @@ const QuickAccess = (props: Props) => {
       // open in new window
       // and always open other pages in a new window
       if (meta.openInNewTab || !command.action.to.startsWith('/')) {
+        // eslint-disable-next-line no-restricted-globals
         open(command.action.to, '_blank');
       } else if (applicationContext.environment.useFullRedirectsForLinks) {
         location.replace(command.action.to);

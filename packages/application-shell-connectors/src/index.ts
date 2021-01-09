@@ -1,4 +1,3 @@
-export { default as version } from './version';
 import type {
   TProviderProps as ProviderProps,
   TApplicationContext as ApplicationContext,
@@ -37,3 +36,5 @@ export {
   ProjectExtensionProviderForImageRegex,
   withProjectExtensionImageRegex,
 } from './components/project-extension-image-regex';
+
+export { default as version } from './version';

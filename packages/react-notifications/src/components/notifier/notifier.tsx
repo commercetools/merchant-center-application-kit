@@ -5,7 +5,7 @@ import type {
 
 import React from 'react';
 import isNumber from 'lodash/isNumber';
-import * as globalActions from '@commercetools-frontend/actions-global';
+import { useShowNotification } from '@commercetools-frontend/actions-global';
 import {
   NOTIFICATION_DOMAINS,
   NOTIFICATION_KINDS_SIDE,
@@ -24,9 +24,7 @@ const defaultProps: Pick<Props, 'domain' | 'kind'> = {
 };
 
 const Notifier = (props: Props) => {
-  const showNotification = globalActions.useShowNotification<
-    Props & { id: number }
-  >();
+  const showNotification = useShowNotification<Props & { id: number }>();
 
   React.useEffect(() => {
     const notification = showNotification(
