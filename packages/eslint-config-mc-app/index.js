@@ -30,6 +30,9 @@ module.exports = {
     'prettier',
   ],
   rules: {
+    // NOTE: The regular rule does not support do-expressions. The equivalent rule of babel does.
+    'no-unused-expressions': 0,
+
     // Imports
     'import/extensions': [
       statusCode.error,
@@ -48,6 +51,7 @@ module.exports = {
     'import/first': statusCode.error,
     // TODO: enable this once there is support for `import type`
     // 'import/order': statusCode.error,
+    'import/namespace': statusCode.off,
     'import/no-extraneous-dependencies': statusCode.off,
     'import/no-named-as-default': statusCode.off,
     'import/no-named-as-default-member': statusCode.off,
