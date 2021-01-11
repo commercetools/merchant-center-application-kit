@@ -33,7 +33,7 @@
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "3.7.0",
+    "@testing-library/react-hooks": "4.0.0",
     "@types/react": "16.14.2",
     "chalk": "4.1.0",
     "cldr": "5.8.0",
