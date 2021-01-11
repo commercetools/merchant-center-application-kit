@@ -39,7 +39,7 @@
     "@commercetools-frontend/jest-preset-mc-app": "17.8.0",
     "@commercetools-frontend/mc-dev-authentication": "17.3.0",
     "@commercetools-frontend/mc-scripts": "17.9.0",
-    "@formatjs/cli": "2.15.0",
+    "@formatjs/cli": "3.0.1",
     "@testing-library/react": "11.2.2",
     "dotenv-cli": "4.0.0",
     "enzyme": "3.11.0",
