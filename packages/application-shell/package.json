@@ -9,7 +9,12 @@
     "directory": "packages/application-shell"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -19,7 +24,13 @@
   "module": "./dist/application-shell-index.es.js",
   "typings": "./dist/typings/index.d.ts",
   "types": "./dist/typings/index.d.ts",
-  "files": ["dist", "test-utils", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "dist",
+    "test-utils",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/** test-utils/**",
@@ -99,7 +110,7 @@
     "@apollo/client": "3.3.6",
     "@commercetools-frontend/ui-kit": "10.43.3",
     "@testing-library/react": "11.2.2",
-    "@types/prop-types": "15.7.3",
+    "@types/prop-types": "^15.7.3",
     "@types/react": "16.14.2",
     "@types/react-dom": "16.9.10",
     "@types/react-redux": "7.1.15",
