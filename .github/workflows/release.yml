@@ -71,6 +71,8 @@ jobs:
         with:
           publish: yarn changeset publish
           version: yarn changeset:version-and-format
+          title: 'ci(changesets): version packages'
+          commit: 'ci(changesets): version packages'
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
 
