@@ -11,6 +11,10 @@ export type Scalars = {
   Float: number;
 };
 
+
+
+
+
 export type TAdditionalUserInfo = {
   firstName: Scalars['String'];
   lastName: Scalars['String'];
@@ -807,6 +811,17 @@ export type TFetchUserProjectsQuery = (
         ) }
       )> }
     ) }
+  )> }
+);
+
+export type TAllFeaturesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TAllFeaturesQuery = (
+  { __typename?: 'Query' }
+  & { allFeatures: Array<(
+    { __typename?: 'Feature' }
+    & Pick<TFeature, 'name' | 'value'>
   )> }
 );
 

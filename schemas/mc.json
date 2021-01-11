@@ -4994,7 +4994,7 @@
       {
         "kind": "OBJECT",
         "name": "OrganizationTeamsCreated",
-        "description": "Note:\n  This is not a `Organization` type as in the future MC schema will not support\ne.g. expanding on team members on its internal schema.",
+        "description": "Note:\n  This is not a `Organization` type as in the future MC schema will not support e.g. expanding on team members on its internal schema.",
         "fields": [
           {
             "name": "id",
@@ -6353,6 +6353,116 @@
       }
     ],
     "directives": [
+      {
+        "name": "isAuthenticated",
+        "description": null,
+        "locations": ["FIELD_DEFINITION"],
+        "args": []
+      },
+      {
+        "name": "rateLimit",
+        "description": null,
+        "locations": ["FIELD_DEFINITION"],
+        "args": [
+          {
+            "name": "max",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "window",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "message",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "identityArgs",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "arrayLengthField",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ]
+      },
+      {
+        "name": "collectMetrics",
+        "description": null,
+        "locations": ["FIELD_DEFINITION"],
+        "args": []
+      },
+      {
+        "name": "deprecate",
+        "description": null,
+        "locations": ["FIELD_DEFINITION"],
+        "args": [
+          {
+            "name": "reason",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "withCounter",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": "true"
+          },
+          {
+            "name": "withLog",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": "true"
+          }
+        ]
+      },
       {
         "name": "skip",
         "description": "Directs the executor to skip this field or fragment when the `if` argument is true.",

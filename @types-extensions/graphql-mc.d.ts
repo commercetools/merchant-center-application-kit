@@ -33,6 +33,14 @@ declare module '*/project-switcher.mc.graphql' {
   export default defaultDocument;
 }
 
+declare module '*/fetch-all-features.mc.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const AllFeatures: DocumentNode;
+
+  export default defaultDocument;
+}
+
 declare module '*/select-user-id.mc.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

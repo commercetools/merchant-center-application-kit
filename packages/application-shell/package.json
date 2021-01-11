@@ -9,7 +9,12 @@
     "directory": "packages/application-shell"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -19,7 +24,13 @@
   "module": "./dist/application-shell-index.es.js",
   "typings": "./dist/typings/index.d.ts",
   "types": "./dist/typings/index.d.ts",
-  "files": ["dist", "test-utils", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "dist",
+    "test-utils",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/** test-utils/**",
@@ -60,6 +71,8 @@
     "@commercetools/http-user-agent": "2.1.2",
     "@emotion/react": "11.1.4",
     "@emotion/styled": "11.0.0",
+    "@flopflip/combine-adapters": "0.0.11",
+    "@flopflip/http-adapter": "0.0.2",
     "@flopflip/launchdarkly-adapter": "5.0.8",
     "@flopflip/memory-adapter": "3.0.12",
     "@flopflip/react-broadcast": "12.1.10",
