@@ -1,5 +1,13 @@
 # @commercetools-frontend/application-shell
 
+## 17.9.1
+
+### Patch Changes
+
+- Updated dependencies [[`d70e533`](https://github.com/commercetools/merchant-center-application-kit/commit/d70e533e7143dcb23df7b3f80eaec2741b7db1f3)]:
+  - @commercetools-frontend/l10n@17.9.1
+  - @commercetools-frontend/application-components@17.9.1
+
 ## 17.9.0
 
 ### Minor Changes

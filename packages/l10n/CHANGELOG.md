@@ -1,5 +1,11 @@
 # @commercetools-frontend/l10n
 
+## 17.9.1
+
+### Patch Changes
+
+- [`d70e533`](https://github.com/commercetools/merchant-center-application-kit/commit/d70e533e7143dcb23df7b3f80eaec2741b7db1f3) [#1967](https://github.com/commercetools/merchant-center-application-kit/pull/1967) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @testing-library/react-hooks to v4
+
 ## 17.9.0
 
 ### Patch Changes

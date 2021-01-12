@@ -1,5 +1,11 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 17.9.1
+
+### Patch Changes
+
+- [`e1794e6`](https://github.com/commercetools/merchant-center-application-kit/commit/e1794e629190397976ca9a8bc84576583c67b47b) [#1962](https://github.com/commercetools/merchant-center-application-kit/pull/1962) Thanks [@tdeekens](https://github.com/tdeekens)! - refactor(jest-preset): to remove unhandled promise lockfile
+
 ## 17.8.0
 
 ### Patch Changes

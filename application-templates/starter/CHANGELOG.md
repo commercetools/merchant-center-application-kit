@@ -1,5 +1,15 @@
 # merchant-center-application-template-starter
 
+## 17.2.1
+
+### Patch Changes
+
+- [`87c35d8`](https://github.com/commercetools/merchant-center-application-kit/commit/87c35d8677d74150efbc8f318e0bd9ebc8794006) [#1966](https://github.com/commercetools/merchant-center-application-kit/pull/1966) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @formatjs/cli to v3
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@17.9.1
+  - @commercetools-frontend/application-shell@17.9.1
+
 ## 17.2.0
 
 ### Minor Changes
