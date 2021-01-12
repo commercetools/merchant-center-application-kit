@@ -6,6 +6,7 @@ import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { STORAGE_KEYS } from '../../constants';
 import Redirector from '../redirector';
+import RedirectToLogin from './redirect-to-login';
 
 declare let window: ApplicationWindow;
 
@@ -25,8 +26,9 @@ const RedirectToLogout = (props: Props) => {
     // Remove the `sessionToken` from storage, so that the AppShell can initiate
     // a new authorization flow.
     window.sessionStorage.removeItem(STORAGE_KEYS.SESSION_TOKEN);
+    window.sessionStorage.removeItem(STORAGE_KEYS.SESSION_SCOPE);
     window.sessionStorage.removeItem(STORAGE_KEYS.IS_AUTHENTICATED);
-    return <Redirector to="login" />;
+    return <RedirectToLogin />;
   }
 
   return (

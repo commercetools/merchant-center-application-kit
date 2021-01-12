@@ -67,7 +67,7 @@ const RedirectToLogin = () => {
 
     return (
       <Redirector
-        to="authorize"
+        to="login/authorize"
         origin={window.app.__DEVELOPMENT__.authorizeUrl}
         location={location}
         queryParams={{

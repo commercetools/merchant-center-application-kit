@@ -516,7 +516,7 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
         applicationMessages={props.applicationMessages}
       >
         {({ isAuthenticated }) => {
-          if (isAuthenticated)
+          if (isAuthenticated) {
             return (
               <Switch>
                 <Route path="/logout">
@@ -541,7 +541,7 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
                 </Route>
               </Switch>
             );
-
+          }
           return <RedirectToLogin />;
         }}
       </ApplicationShellProvider>
