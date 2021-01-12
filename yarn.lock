@@ -1436,7 +1436,7 @@
     node-fetch "2.6.1"
     shelljs "0.8.4"
 
-"@commercetools-frontend/ui-kit@10.x":
+"@commercetools-frontend/ui-kit@10.43.3":
   version "10.43.3"
   resolved "https://registry.yarnpkg.com/@commercetools-frontend/ui-kit/-/ui-kit-10.43.3.tgz#20a3f9f992f7f7237239f30bd07066d1c3c19046"
   integrity sha512-M/LbCsdm4JHUQ1yHVdqreoyS9ohilOc8ocgi5PXc+yuJmOvnTink6uSVijoM1yUKZoQFPcUg3OVMR/KqI9T5Hg==
