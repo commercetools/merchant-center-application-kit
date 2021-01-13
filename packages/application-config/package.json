@@ -9,13 +9,7 @@
     "directory": "packages/application-config"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": [
-    "javascript",
-    "frontend",
-    "react",
-    "toolkit",
-    "config"
-  ],
+  "keywords": ["javascript", "frontend", "react", "toolkit", "config"],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -23,13 +17,7 @@
   },
   "main": "dist/commercetools-frontend-application-config.cjs.js",
   "module": "dist/commercetools-frontend-application-config.esm.js",
-  "files": [
-    "dist",
-    "schema.json",
-    "package.json",
-    "LICENSE",
-    "README.md"
-  ],
+  "files": ["dist", "schema.json", "package.json", "LICENSE", "README.md"],
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "yarn build:schema",
