@@ -39,7 +39,7 @@ type TFetchedHttpAdapterFlag = {
   value: boolean;
   reason?: string;
 };
-type TParsedHttpAdapterFlag = Record<
+type TParsedHttpAdapterFlags = Record<
   string,
   {
     value: boolean;
@@ -71,7 +71,7 @@ function getUserCustomFieldsForLaunchDarklyAdapter(
 type TFetchedFlags = {
   allFeatures: TFetchedHttpAdapterFlag[];
 };
-const parseFlags = (fetchedFlags: TFetchedFlags): TParsedHttpAdapterFlag =>
+const parseFlags = (fetchedFlags: TFetchedFlags): TParsedHttpAdapterFlags =>
   Object.fromEntries(
     fetchedFlags.allFeatures.map((fetchedFlag) => [
       fetchedFlag.name,
@@ -133,18 +133,17 @@ export const SetupFlopFlipProvider = (props: Props) => {
         user: {
           key: props.user?.id,
         },
-        execute: async function <TParsedHttpAdapterFlag>() {
+        execute: async function () {
           const response = await apolloClient.query<TAllFeaturesQuery>({
             query: AllFeaturesQuery,
             errorPolicy: 'ignore',
             context: {
-              target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+              target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
             },
           });
 
           return parseFlags(response.data);
-        },
-        cacheIdentifier: 'local',
+        }
       },
     }),
     [apolloClient, flags, props.ldClientSideId, props.projectKey, props.user]

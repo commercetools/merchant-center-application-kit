@@ -3669,6 +3669,16 @@
   resolved "https://registry.yarnpkg.com/@exodus/schemasafe/-/schemasafe-1.0.0-rc.3.tgz#dda2fbf3dafa5ad8c63dadff7e01d3fdf4736025"
   integrity sha512-GoXw0U2Qaa33m3eUcxuHnHpNvHjNlLo0gtV091XBpaRINaB4X6FGCG5XKxSFNFiPpugUDqNruHzaqpTdDm4AOg==
 
+"@flopflip/adapter-utilities@1.0.11":
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@flopflip/adapter-utilities/-/adapter-utilities-1.0.11.tgz#d31dcfa519cf3deed390afa8536563685f738e0a"
+  integrity sha512-yI7nwyGVWXUQWkROpO2Km8Q0cyTtUVmNaatLE6gCdDn9tOAZGUc/lANOKy6pdZaKlHXhT+WF9whYMTtznHjAiQ==
+  dependencies:
+    "@babel/runtime" "7.12.5"
+    "@flopflip/types" "4.1.9"
+    globalthis "1.0.1"
+    lodash "4.17.20"
+
 "@flopflip/adapter-utilities@1.0.12":
   version "1.0.12"
   resolved "https://registry.yarnpkg.com/@flopflip/adapter-utilities/-/adapter-utilities-1.0.12.tgz#dd5f034756a76be28c90dbb3522164ddc58ef00a"
@@ -3679,37 +3689,27 @@
     globalthis "1.0.1"
     lodash "4.17.20"
 
-"@flopflip/adapter-utilities@1.0.9":
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/@flopflip/adapter-utilities/-/adapter-utilities-1.0.9.tgz#b1133ff6c7224c070f8a3eba8df5b596dc3829b8"
-  integrity sha512-w7cDbxVCo+UEG5xuJ77Vo4UArlwLCctStmiQd+Io36OaZkxKbI1uPKkfGQw/4H6VEcckvGyeJdCMrT+EW3EtEA==
+"@flopflip/combine-adapters@0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@flopflip/combine-adapters/-/combine-adapters-0.0.13.tgz#ef3b788456612c21297f2b3a294c5f0961547c5b"
+  integrity sha512-Pw/hrm6O4XWgkqRvyDIyH3hiL/sarnf2AfyBzbQa8IJrEAqSIOvZtDvb+fdVy52v4HJD7YufzV/eMWycJ2mong==
   dependencies:
     "@babel/runtime" "7.12.5"
-    "@flopflip/types" "4.1.7"
-    globalthis "1.0.1"
-    lodash "4.17.20"
-
-"@flopflip/combine-adapters@0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@flopflip/combine-adapters/-/combine-adapters-0.0.11.tgz#6afeb6350593d75b9f81f5df75d52cf9fa685cad"
-  integrity sha512-Xi92O5nyNC3bzCVMziQSkRgA4OURAir2cJkgjkrHR9tLY/oO1LK4aLUtMB5Nk2Og5lMqtJoehyoNH8OPgR0BbQ==
-  dependencies:
-    "@babel/runtime" "7.12.5"
-    "@flopflip/adapter-utilities" "1.0.9"
-    "@flopflip/types" "4.1.7"
+    "@flopflip/adapter-utilities" "1.0.11"
+    "@flopflip/types" "4.1.9"
     mitt "2.1.0"
     tiny-warning "1.0.3"
 
-"@flopflip/http-adapter@0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@flopflip/http-adapter/-/http-adapter-0.0.2.tgz#3ab3eda7feed5bb5860c0ef54186523af12a8d8b"
-  integrity sha512-GNHt3TFRR6h02pcZHLCkODLvrBPInBdz5lDTl4YEgSQy9XZRfIfBJF4mXYmJOyTzQxKcDiMGVAHpeF2mPTbrDg==
+"@flopflip/http-adapter@0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@flopflip/http-adapter/-/http-adapter-0.0.4.tgz#89be10baaf043432c22efa70bca7bf2f26e20544"
+  integrity sha512-POpXx1TVfZKWW67DcHx/yVEHg97dsoofcOkt3ga64xbTie7ns9dvEDiBSF6a4gVVcceRMXEGu8eogQvkDzzwnw==
   dependencies:
     "@babel/runtime" "7.12.5"
-    "@flopflip/adapter-utilities" "1.0.9"
-    "@flopflip/localstorage-cache" "1.0.10"
-    "@flopflip/sessionstorage-cache" "1.0.10"
-    "@flopflip/types" "4.1.7"
+    "@flopflip/adapter-utilities" "1.0.11"
+    "@flopflip/localstorage-cache" "1.0.12"
+    "@flopflip/sessionstorage-cache" "1.0.12"
+    "@flopflip/types" "4.1.9"
     lodash "4.17.20"
     mitt "2.1.0"
     tiny-warning "1.0.3"
@@ -3729,12 +3729,12 @@
     mitt "2.1.0"
     tiny-warning "1.0.3"
 
-"@flopflip/localstorage-cache@1.0.10":
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/@flopflip/localstorage-cache/-/localstorage-cache-1.0.10.tgz#2d9bfd0668098b72e5842415851747852f1999d4"
-  integrity sha512-vy84VtOhZV2lz7dadjMO5jdISRA49w1/9mlOMNtUuve5P26cN1UR7MQQjtB1z72xH/tk2OYhDola/YMuFR1s8g==
+"@flopflip/localstorage-cache@1.0.12":
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/@flopflip/localstorage-cache/-/localstorage-cache-1.0.12.tgz#d2108509667b3dfda88dfb2033f58c6f0366d76f"
+  integrity sha512-hd2OtQ4CZZZ8NYf5MjwAWizlYrVQE1aZ/VMB8Tld82bF/5WMGeBARctcKCYUeUSihFg7b5Aad2NwG2mioIstog==
   dependencies:
-    "@flopflip/types" "4.1.7"
+    "@flopflip/types" "4.1.9"
 
 "@flopflip/memory-adapter@3.0.12":
   version "3.0.12"
@@ -3769,22 +3769,22 @@
     react-is "17.0.1"
     tiny-warning "1.0.3"
 
-"@flopflip/sessionstorage-cache@1.0.10":
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/@flopflip/sessionstorage-cache/-/sessionstorage-cache-1.0.10.tgz#d8530afec87d36dc32773fdd39407e9e550c48a5"
-  integrity sha512-Xprd01oUfNPj2+I68aHmyUJPNhuf2siBDvRJscvFrYZWw3EZsCvqF86Hu8gO+JnUb2xOzBHy09i8ikQfU4GFDQ==
+"@flopflip/sessionstorage-cache@1.0.12":
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/@flopflip/sessionstorage-cache/-/sessionstorage-cache-1.0.12.tgz#418fed54c6bf3ba9a980cbb654bc0c84c6da709b"
+  integrity sha512-d47gbqrmiyWmpW9JwCvVAh4y5R0j3mxc6ra7CPDdM4TqtprKPam4hJDx2wSGeVFLCblRPTvgtcu8FNDrmxBj+g==
   dependencies:
-    "@flopflip/types" "4.1.7"
+    "@flopflip/types" "4.1.9"
 
 "@flopflip/types@4.1.10":
   version "4.1.10"
   resolved "https://registry.yarnpkg.com/@flopflip/types/-/types-4.1.10.tgz#43264be1aeda291647b87c8022a31ae69c2d0ae0"
   integrity sha512-X24CAep+LltfJRypWNSIqpeL2jEH2qTcnUOUlV6q394tnxqey6ZNV0B165OsDVLIcHi1JIBePGRj4V1DqpXwoA==
 
-"@flopflip/types@4.1.7":
-  version "4.1.7"
-  resolved "https://registry.yarnpkg.com/@flopflip/types/-/types-4.1.7.tgz#7f127d582abe5bd2615d153f848e7d02ee738d5d"
-  integrity sha512-E8VLO24BSk4EMb3TPv+a8g8Oe40enjGWVclk7pLkCweQUiUXZsGrOW8QCW32YY9m85+NEnwToAn4yrWW66xWvw==
+"@flopflip/types@4.1.9":
+  version "4.1.9"
+  resolved "https://registry.yarnpkg.com/@flopflip/types/-/types-4.1.9.tgz#58d6e84d8fc885e7ef2b518ec22d169768ab0356"
+  integrity sha512-k91KggraKBfhsx5FlYKf7nnejy2OV76AqQzf611YPD2OXhdDM6fZyQ6YuO213XiNVw8FYZ1SWLXNvsbsBe2FYg==
 
 "@fontsource/open-sans@4.1.0":
   version "4.1.0"
@@ -7126,15 +7126,20 @@
     "@types/node" "*"
     form-data "^3.0.0"
 
-"@types/node@*", "@types/node@14", "@types/node@14.14.22", "@types/node@>= 8":
+"@types/node@*", "@types/node@14", "@types/node@>= 8":
+  version "14.14.21"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.21.tgz#d934aacc22424fe9622ebf6857370c052eae464e"
+  integrity sha512-cHYfKsnwllYhjOzuC5q1VpguABBeecUp24yFluHpn/BQaVxB1CuQ1FSRZCzrPxrkIfWISXV2LbeoBthLWg0+0A==
+
+"@types/node@14.14.22":
   version "14.14.22"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.22.tgz#0d29f382472c4ccf3bd96ff0ce47daf5b7b84b18"
   integrity sha512-g+f/qj/cNcqKkc3tFqlXOYjrmZA+jNBiDzbP3kH+B+otKFqAdPgVTGP1IeKRdMml/aE69as5S4FqtxAbl+LaMw==
 
 "@types/node@^12.7.1":
-  version "12.19.15"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.19.15.tgz#0de7e978fb43db62da369db18ea088a63673c182"
-  integrity sha512-lowukE3GUI+VSYSu6VcBXl14d61Rp5hA1D+61r16qnwC0lYNSqdxcvRh0pswejorHfS+HgwBasM8jLXz0/aOsw==
+  version "12.19.14"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.19.14.tgz#59e5029a3c2aea34f68b717955381692fd47cafb"
+  integrity sha512-2U9uLN46+7dv9PiS8VQJcHhuoOjiDPZOLAt0WuA1EanEknIMae+2QbMhayF7cgGqjvRVIfNpt+6jLPczJZFiRw==
 
 "@types/node@^8.5.7":
   version "8.10.66"
@@ -7504,7 +7509,7 @@
     semver "^7.3.2"
     tsutils "^3.17.1"
 
-"@typescript-eslint/experimental-utils@4.14.0", "@typescript-eslint/experimental-utils@^4.0.1":
+"@typescript-eslint/experimental-utils@4.14.0":
   version "4.14.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-4.14.0.tgz#5aa7b006736634f588a69ee343ca959cd09988df"
   integrity sha512-6i6eAoiPlXMKRbXzvoQD5Yn9L7k9ezzGRvzC/x1V3650rUk3c3AOjQyGYyF9BDxQQDK2ElmKOZRD0CbtdkMzQQ==
@@ -7527,6 +7532,18 @@
     eslint-scope "^5.0.0"
     eslint-utils "^2.0.0"
 
+"@typescript-eslint/experimental-utils@^4.0.1":
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-4.13.0.tgz#9dc9ab375d65603b43d938a0786190a0c72be44e"
+  integrity sha512-/ZsuWmqagOzNkx30VWYV3MNB/Re/CGv/7EzlqZo5RegBN8tMuPaBgNK6vPBCQA8tcYrbsrTdbx3ixMRRKEEGVw==
+  dependencies:
+    "@types/json-schema" "^7.0.3"
+    "@typescript-eslint/scope-manager" "4.13.0"
+    "@typescript-eslint/types" "4.13.0"
+    "@typescript-eslint/typescript-estree" "4.13.0"
+    eslint-scope "^5.0.0"
+    eslint-utils "^2.0.0"
+
 "@typescript-eslint/parser@4.14.0", "@typescript-eslint/parser@^2.24.0", "@typescript-eslint/parser@^4.14.0":
   version "4.14.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-4.14.0.tgz#62d4cd2079d5c06683e9bfb200c758f292c4dee7"
@@ -7536,6 +7553,14 @@
     "@typescript-eslint/types" "4.14.0"
     "@typescript-eslint/typescript-estree" "4.14.0"
     debug "^4.1.1"
+
+"@typescript-eslint/scope-manager@4.13.0":
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-4.13.0.tgz#5b45912a9aa26b29603d8fa28f5e09088b947141"
+  integrity sha512-UpK7YLG2JlTp/9G4CHe7GxOwd93RBf3aHO5L+pfjIrhtBvZjHKbMhBXTIQNkbz7HZ9XOe++yKrXutYm5KmjWgQ==
+  dependencies:
+    "@typescript-eslint/types" "4.13.0"
+    "@typescript-eslint/visitor-keys" "4.13.0"
 
 "@typescript-eslint/scope-manager@4.14.0":
   version "4.14.0"
@@ -7549,6 +7574,11 @@
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-3.10.1.tgz#1d7463fa7c32d8a23ab508a803ca2fe26e758727"
   integrity sha512-+3+FCUJIahE9q0lDi1WleYzjCwJs5hIsbugIgnbB+dSCYUxl8L6PwmsyOPFZde2hc1DlTo/xnkOgiTLSyAbHiQ==
+
+"@typescript-eslint/types@4.13.0":
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-4.13.0.tgz#6a7c6015a59a08fbd70daa8c83dfff86250502f8"
+  integrity sha512-/+aPaq163oX+ObOG00M0t9tKkOgdv9lq0IQv/y4SqGkAXmhFmCfgsELV7kOCTb2vVU5VOmVwXBXJTDr353C1rQ==
 
 "@typescript-eslint/types@4.14.0":
   version "4.14.0"
@@ -7564,6 +7594,20 @@
     "@typescript-eslint/visitor-keys" "3.10.1"
     debug "^4.1.1"
     glob "^7.1.6"
+    is-glob "^4.0.1"
+    lodash "^4.17.15"
+    semver "^7.3.2"
+    tsutils "^3.17.1"
+
+"@typescript-eslint/typescript-estree@4.13.0":
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-4.13.0.tgz#cf6e2207c7d760f5dfd8d18051428fadfc37b45e"
+  integrity sha512-9A0/DFZZLlGXn5XA349dWQFwPZxcyYyCFX5X88nWs2uachRDwGeyPz46oTsm9ZJE66EALvEns1lvBwa4d9QxMg==
+  dependencies:
+    "@typescript-eslint/types" "4.13.0"
+    "@typescript-eslint/visitor-keys" "4.13.0"
+    debug "^4.1.1"
+    globby "^11.0.1"
     is-glob "^4.0.1"
     lodash "^4.17.15"
     semver "^7.3.2"
@@ -7589,6 +7633,14 @@
   integrity sha512-9JgC82AaQeglebjZMgYR5wgmfUdUc+EitGUUMW8u2nDckaeimzW+VsoLV6FoimPv2id3VQzfjwBxEMVz08ameQ==
   dependencies:
     eslint-visitor-keys "^1.1.0"
+
+"@typescript-eslint/visitor-keys@4.13.0":
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-4.13.0.tgz#9acb1772d3b3183182b6540d3734143dce9476fe"
+  integrity sha512-6RoxWK05PAibukE7jElqAtNMq+RWZyqJ6Q/GdIxaiUj2Ept8jh8+FUVlbq9WxMYxkmEOPvCE5cRSyupMpwW31g==
+  dependencies:
+    "@typescript-eslint/types" "4.13.0"
+    eslint-visitor-keys "^2.0.0"
 
 "@typescript-eslint/visitor-keys@4.14.0":
   version "4.14.0"
@@ -9753,9 +9805,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001125, caniuse-lite@^1.0.30001173:
-  version "1.0.30001179"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001179.tgz#b0803883b4471a6c62066fb1752756f8afc699c8"
-  integrity sha512-blMmO0QQujuUWZKyVrD1msR4WNDAqb/UPO1Sw2WWsQ7deoM5bJiicKnWJ1Y0NS/aGINSnKPIWBMw5luX+NDUCA==
+  version "1.0.30001177"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001177.tgz#2c3b384933aafda03e29ccca7bb3d8c3389e1ece"
+  integrity sha512-6Ld7t3ifCL02jTj3MxPMM5wAYjbo4h/TAQGFTgv1inihP1tWnWp8mxxT4ut4JBEHLbpFXEXJJQ119JCJTBkYDw==
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -12458,9 +12510,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.3.564, electron-to-chromium@^1.3.634:
-  version "1.3.644"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.644.tgz#c89721733ec26b8d117275fb6b2acbeb3d45a6b6"
-  integrity sha512-N7FLvjDPADxad+OXXBuYfcvDvCBG0aW8ZZGr7G91sZMviYbnQJFxdSvUus4SJ0K7Q8dzMxE+Wx1d/CrJIIJ0sw==
+  version "1.3.639"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.639.tgz#0a27e3018ae3acf438a14a1dd4e41db4b8ab764e"
+  integrity sha512-bwl6/U6xb3d3CNufQU9QeO1L32ueouFwW4bWANSwdXR7LVqyLzWjNbynoKNfuC38QFB5Qn7O0l2KLqBkcXnC3Q==
 
 elegant-spinner@^1.0.1:
   version "1.0.1"
