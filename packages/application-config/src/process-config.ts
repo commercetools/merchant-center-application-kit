@@ -18,6 +18,7 @@ type ProcessConfigOptions = {
   // Options useful for testing
   disableCache?: boolean;
   processEnv?: NodeJS.ProcessEnv;
+  configJson?: JSONSchemaForCustomApplicationConfigurationFiles | undefined;
 };
 
 const developmentAppUrl = 'http://localhost:3001';
@@ -29,6 +30,7 @@ let cachedConfig: ApplicationConfig;
 const processConfig = ({
   disableCache = false,
   processEnv = process.env,
+  configJson,
 }: ProcessConfigOptions = {}): ApplicationConfig => {
   if (cachedConfig && !disableCache) return cachedConfig;
 
@@ -36,7 +38,7 @@ const processConfig = ({
     processEnv.MC_APP_ENV ?? processEnv.NODE_ENV ?? 'development';
   const isProd = getIsProd(processEnv);
 
-  const loadedAppConfig = loadConfig();
+  const loadedAppConfig = configJson ?? loadConfig();
   validateConfig(loadedAppConfig);
   const validatedLoadedAppConfig = loadedAppConfig as JSONSchemaForCustomApplicationConfigurationFiles;
 
