@@ -14,6 +14,8 @@
 
 export { default as version } from './version';
 
+export { default as PublicPageLayout } from './components/public-page-layout';
+
 // Maintenance pages
 export { default as MaintenancePageLayout } from './components/maintenance-page-layout';
 export { default as PageNotFound } from './components/page-not-found';
