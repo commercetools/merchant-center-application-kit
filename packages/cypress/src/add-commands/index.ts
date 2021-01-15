@@ -1,15 +1,25 @@
+import type { ApplicationConfig } from '@commercetools-frontend/application-config';
+
 import { v4 as uuidv4 } from 'uuid';
 import { OIDC_RESPONSE_TYPES, STORAGE_KEYS } from '../constants';
 import { buildOidcScope } from '../helpers';
 
-Cypress.Commands.add('loginByOidc', ({ entryPointUriPath }) => {
-  Cypress.log({ name: 'loginByOidc' });
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+declare const Cypress: any;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+declare const cy: any;
 
-  const projectKey = Cypress.env('PROJECT_KEY');
-  const sessionNonce = uuidv4();
+Cypress.Commands.add(
+  'loginByOidc',
+  ({ entryPointUriPath }: { entryPointUriPath: string }) => {
+    Cypress.log({ name: 'loginByOidc' });
 
-  cy.task('customApplicationConfig', { entryPointUriPath }).then(
-    (appConfig) => {
+    const projectKey = Cypress.env('PROJECT_KEY');
+    const sessionNonce = uuidv4();
+
+    cy.task('customApplicationConfig', {
+      entryPointUriPath,
+    }).then((appConfig: ApplicationConfig['env']) => {
       const applicationId = appConfig.applicationId;
       const sessionScope = buildOidcScope({
         projectKey,
@@ -32,9 +42,9 @@ Cypress.Commands.add('loginByOidc', ({ entryPointUriPath }) => {
         },
         followRedirect: false,
       };
-      cy.request(options).then((res) => {
+      cy.request(options).then((res: { body: { redirectTo: string } }) => {
         cy.visit(res.body.redirectTo, {
-          onBeforeLoad(win) {
+          onBeforeLoad(win: Window) {
             win.localStorage.setItem(
               STORAGE_KEYS.ACTIVE_PROJECT_KEY,
               projectKey
@@ -50,6 +60,6 @@ Cypress.Commands.add('loginByOidc', ({ entryPointUriPath }) => {
           },
         });
       });
-    }
-  );
-});
+    });
+  }
+);
