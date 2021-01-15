@@ -1,37 +1,43 @@
-/* eslint-disable jest/valid-expect-in-promise */
 import { encode } from 'qss';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
-import { URL_BASE, URL_STATE_MACHINES } from '../../support/urls';
+import {
+  URL_BASE,
+  URL_STATE_MACHINES,
+  ENTRY_POINT_STATE_MACHINES,
+} from '../../support/urls';
 
 describe('when user is authenticated', () => {
+  beforeEach(() => {
+    cy.loginByOidc({ entryPointUriPath: ENTRY_POINT_STATE_MACHINES });
+  });
   it('should log out with reason "user"', () => {
-    cy.login({ redirectToUri: URL_STATE_MACHINES });
-
     cy.findByRole('button', { name: /open user settings menu/i }).click();
-    cy.findByRole('link', { name: /logout/i }).click();
 
     const queryParams = encode({
       reason: LOGOUT_REASONS.USER,
     });
-    cy.url().should('include', `/logout?${queryParams}`);
-    cy.findByText('This is the logout page for local development.').should(
-      'exist'
+    cy.findByRole('link', { name: /logout/i }).should(
+      'have.attr',
+      'href',
+      `/logout?${queryParams}`
     );
   });
   describe('when navigating to an unknown route', () => {
     it('should render a not found page', () => {
-      cy.login({ redirectToUri: URL_STATE_MACHINES });
       cy.visit(`${URL_BASE}/a-non-existing-route`);
       cy.findByText('We could not find what you are looking for').should(
         'exist'
       );
+      cy.percySnapshot();
     });
   });
 });
 
 describe('navigation menu', () => {
+  beforeEach(() => {
+    cy.loginByOidc({ entryPointUriPath: ENTRY_POINT_STATE_MACHINES });
+  });
   it('should stay collapsed for small viewports', () => {
-    cy.login({ redirectToUri: URL_STATE_MACHINES });
     cy.viewport(900, 800);
     cy.findAllByText('Initial').should('exist');
     cy.percySnapshot(cy.state('runnable').fullTitle(), {
@@ -39,13 +45,31 @@ describe('navigation menu', () => {
     });
   });
   it('should expand menu when clicking on the expand button', () => {
-    cy.login({ redirectToUri: URL_STATE_MACHINES });
     cy.findAllByText('Initial').should('exist');
     cy.findByTestId('menu-expander').click();
+    // eslint-disable-next-line jest/valid-expect-in-promise
     cy.window().then((win) =>
-      // eslint-disable-next-line jest/valid-expect
       expect(win.localStorage.getItem('isForcedMenuOpen')).to.equal('true')
     );
     cy.percySnapshot();
+  });
+});
+
+describe('failed OIDC authentication', () => {
+  describe('when sessionToken is missing', () => {
+    it('should show auth callback error page', () => {
+      cy.visit(`/${URL_STATE_MACHINES}/auth/callback`);
+      cy.findByText('Authentication error');
+      cy.findByText(/missing sessionToken/i);
+      cy.percySnapshot();
+    });
+  });
+  describe('when sessionToken is invalid', () => {
+    it('should show auth callback error page', () => {
+      cy.visit(`/${URL_STATE_MACHINES}/auth/callback#sessionToken=123`);
+      cy.findByText('Authentication error');
+      cy.findByText(/invalid token specified/i);
+      cy.percySnapshot();
+    });
   });
 });

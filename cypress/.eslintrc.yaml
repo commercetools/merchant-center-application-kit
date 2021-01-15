@@ -3,5 +3,6 @@ plugins:
 env:
   cypress/globals: true
 rules:
-  prefer-object-spread/prefer-object-spread: 0
-  testing-library/await-async-query: 0
+  jest/valid-expect: off
+  prefer-object-spread/prefer-object-spread: off
+  testing-library/await-async-query: off

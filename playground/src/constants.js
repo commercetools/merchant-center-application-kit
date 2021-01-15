@@ -1,4 +1,4 @@
 export const PERMISSIONS = {
-  ManageDeveloperSettings: 'ManageDeveloperSettings',
-  ViewDeveloperSettings: 'ViewDeveloperSettings',
+  ManageStateMachines: 'ManageStateMachines',
+  ViewStateMachines: 'ViewStateMachines',
 };

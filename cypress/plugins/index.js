@@ -21,6 +21,7 @@
 
 /* eslint-disable global-require */
 const percyHealthCheck = require('@percy/cypress/task');
+const customApplications = require('@commercetools-frontend/cypress/task');
 
 // plugins file
 module.exports = (on, cypressConfig) => {
@@ -34,6 +35,7 @@ module.exports = (on, cypressConfig) => {
 
   on('task', {
     ...percyHealthCheck,
+    ...customApplications,
   });
 
   return Object.assign({}, cypressConfig, {

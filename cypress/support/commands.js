@@ -1,5 +1,6 @@
 import '@percy/cypress';
 import '@testing-library/cypress/add-commands';
+import '@commercetools-frontend/cypress/add-commands';
 
 function isLocalhost() {
   const url = new URL(Cypress.config('baseUrl'));
