@@ -6,8 +6,9 @@ import { customProperties } from '@commercetools-uikit/design-system';
 import Constraints from '@commercetools-uikit/constraints';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
+
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
-import base64Background from /* preval */ './public-background';
+const base64Background = /* preval */ require('./public-background');
 
 const year = new Date().getUTCFullYear();
 

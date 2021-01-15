@@ -5,7 +5,7 @@ module.exports = {
   modulePathIgnorePatterns: [
     'build',
     'dist',
-    'public',
+    'public/',
     '.spec.js',
     '.visualspec.js',
     '.visualroute.js',
