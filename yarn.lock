@@ -6323,7 +6323,7 @@
     find-up "^4.1.0"
     fs-extra "^8.1.0"
 
-"@manypkg/get-packages@^1.0.1", "@manypkg/get-packages@^1.1.1":
+"@manypkg/get-packages@1.1.1", "@manypkg/get-packages@^1.0.1", "@manypkg/get-packages@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@manypkg/get-packages/-/get-packages-1.1.1.tgz#7c7e72d0061ab2e61d2ce4da58ce91290a60ac8d"
   integrity sha512-J6VClfQSVgR6958eIDTGjfdCrELy1eT+SHeoSMomnvRQVktZMnEA5edIr5ovRFNw5y+Bk/jyoevPzGYod96mhw==
