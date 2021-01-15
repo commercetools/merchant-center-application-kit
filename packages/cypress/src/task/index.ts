@@ -36,7 +36,8 @@ const loadEnvironmentVariables = (packageDirPath: string) => {
       ...mergedEnvs,
       ...env.parsed,
     };
-  }, {});
+    // Merge it with the environment variables defined in the current process.
+  }, process.env);
 };
 
 const loadAllCustomApplicationConfigs = async () => {
