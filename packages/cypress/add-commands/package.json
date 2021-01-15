@@ -1,4 +1,5 @@
 {
   "main": "dist/commercetools-frontend-cypress-add-commands.cjs.js",
-  "module": "dist/commercetools-frontend-cypress-add-commands.esm.js"
+  "module": "dist/commercetools-frontend-cypress-add-commands.esm.js",
+  "types": "index.d.ts"
 }

@@ -1,4 +1,4 @@
-type LoginOidcOptions = {
+type CommandLoginOidcOptions = {
   entryPointUriPath: string;
 };
 
@@ -9,6 +9,6 @@ declare namespace Cypress {
      * @example
      *    cy.loginByOidc({ entryPointUriPath: 'examples-starter' })
      */
-    loginByOidc(options?: LoginOidcOptions): Chainable<Subject>;
+    loginByOidc(options?: CommandLoginOidcOptions): Chainable<Subject>;
   }
 }

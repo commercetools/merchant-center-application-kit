@@ -25,7 +25,7 @@
   "main": "dist/commercetools-frontend-cypress.cjs.js",
   "module": "dist/commercetools-frontend-cypress.esm.js",
   "preconstruct": {
-    "entrypoints": ["./index.ts", "./add-commands/index.ts", "./task/index.ts"]
+    "entrypoints": ["./index.ts", "./add-commands/index.js", "./task/index.ts"]
   },
   "files": [
     "dist",
@@ -44,5 +44,11 @@
     "@commercetools-frontend/application-config": "17.9.0",
     "@manypkg/get-packages": "1.1.1",
     "uuid": "8.3.2"
+  },
+  "devDependencies": {
+    "cypress": "6.2.1"
+  },
+  "peerDependencies": {
+    "cypress": "5.x || 6.x"
   }
 }
