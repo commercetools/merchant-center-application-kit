@@ -18,10 +18,6 @@ let cachedAllCustomApplicationConfigs: AllCustomApplicationConfigs;
 // TODO: make it configurable?
 const dotfiles = ['.env', '.env.local'];
 const loadEnvironmentVariables = (packageDirPath: string) => {
-  if (process.env.CI) {
-    return;
-  }
-
   return dotfiles.reduce((mergedEnvs, dotfile) => {
     const envPath = path.join(packageDirPath, dotfile);
 
