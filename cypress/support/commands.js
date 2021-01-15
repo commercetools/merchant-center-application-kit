@@ -33,10 +33,6 @@ function isLocalhost() {
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('logout', () => {
-  cy.visit('/logout');
-});
-
 Cypress.Commands.add(
   'login',
   ({ redirectToUri, isForcedMenuOpen = false } = {}) => {
