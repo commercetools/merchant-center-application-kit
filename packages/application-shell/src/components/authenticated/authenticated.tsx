@@ -1,4 +1,5 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
+import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
@@ -11,6 +12,8 @@ declare let window: ApplicationWindow;
 type RenderFnArgs = { isAuthenticated: boolean };
 export type TProps = {
   render: (args: RenderFnArgs) => JSX.Element;
+  locale: string;
+  applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   children?: never;
 };
 
@@ -37,10 +40,16 @@ Authenticated.displayName = 'Authenticated';
 const AuthenticationRoutes = (props: TProps) => (
   <Switch>
     <Route path={`/account/auth/callback`}>
-      <AuthCallback />
+      <AuthCallback
+        locale={props.locale}
+        applicationMessages={props.applicationMessages}
+      />
     </Route>
     <Route path={`/:projectKey/${window.app.entryPointUriPath}/auth/callback`}>
-      <AuthCallback />
+      <AuthCallback
+        locale={props.locale}
+        applicationMessages={props.applicationMessages}
+      />
     </Route>
     <Route>
       <Authenticated {...props} />

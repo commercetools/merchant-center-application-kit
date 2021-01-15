@@ -45,6 +45,7 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
   const coercedEnvironmentValues = useCoercedEnvironmentValues<AdditionalEnvironmentProperties>(
     props.environment
   );
+  const browserLocale = getBrowserLocale(window);
   return (
     <ErrorBoundary>
       <ApplicationContextProvider<AdditionalEnvironmentProperties>
@@ -56,11 +57,12 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
               <Router history={ApplicationShellProvider.history}>
                 <GtmBooter trackingEventList={props.trackingEventList || {}}>
                   <Authenticated
+                    locale={browserLocale}
+                    applicationMessages={props.applicationMessages}
                     render={({ isAuthenticated }) => {
                       if (isAuthenticated)
                         return props.children({ isAuthenticated });
 
-                      const browserLocale = getBrowserLocale(window);
                       return (
                         <AsyncLocaleData
                           locale={browserLocale}

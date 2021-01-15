@@ -1,20 +1,22 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
+import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import type { AuthorizeSessionState } from './types';
 
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { decode } from 'qss';
 import jwtDecode from 'jwt-decode';
-import Card from '@commercetools-uikit/card';
-import Constraints from '@commercetools-uikit/constraints';
-import { ContentNotification } from '@commercetools-uikit/notifications';
-import Spacings from '@commercetools-uikit/spacings';
-import Text from '@commercetools-uikit/text';
 import { STORAGE_KEYS, LOGIN_STRATEGY_OIDC } from '../../constants';
 import Redirector from '../redirector';
+import AuthCallbackErrorPage from './auth-callback-error-page';
 
 declare let window: ApplicationWindow;
 
+export type TProps = {
+  locale: string;
+  applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
+  children?: never;
+};
 type AuthorizeCallbackFragments = { sessionToken?: string; state: string };
 type SessionToken = { nonce: string };
 
@@ -45,7 +47,7 @@ const getSSOSessionState = (key: string): AuthorizeSessionState | null => {
   return null;
 };
 
-const AuthCallback = () => {
+const AuthCallback = (props: TProps) => {
   const location = useLocation();
   let errorMessage: string | undefined;
 
@@ -65,7 +67,7 @@ const AuthCallback = () => {
     if (sessionToken) {
       decodedSessionToken = jwtDecode<SessionToken>(sessionToken);
     } else {
-      errorMessage = 'Invalid client session';
+      errorMessage = 'Invalid client session (missing sessionToken)';
     }
   } catch (err) {
     errorMessage = err.message;
@@ -82,18 +84,11 @@ const AuthCallback = () => {
 
   if (errorMessage) {
     return (
-      <Card>
-        <Constraints.Horizontal constraint="l">
-          <Spacings.Stack scale="l">
-            <Text.Headline as="h2">{'Authentication error'}</Text.Headline>
-            <ContentNotification type="error">
-              <Spacings.Stack scale="m">
-                <Text.Body>{errorMessage}</Text.Body>
-              </Spacings.Stack>
-            </ContentNotification>
-          </Spacings.Stack>
-        </Constraints.Horizontal>
-      </Card>
+      <AuthCallbackErrorPage
+        message={errorMessage}
+        locale={props.locale}
+        applicationMessages={props.applicationMessages}
+      />
     );
   }
 
