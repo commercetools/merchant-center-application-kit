@@ -93,6 +93,7 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
       // Experimental macros support. Will be documented after it's had some time
       // in the wild.
       require('babel-plugin-macros'),
+      require('babel-plugin-preval'),
       // export { default } from './foo'
       require('@babel/plugin-proposal-export-default-from'),
       // export * from './foo'
