@@ -11,7 +11,7 @@ import { Suite, Spec } from '../../test-utils';
 export const routePath = '/public-page-form-wide';
 
 const LegalMessage = () => (
-  <p>
+  <Text.Body tone="inverted">
     Read our{' '}
     <Link isExternal={true} to="https://commercetools.com/privacy#suppliers">
       Privacy Policy
@@ -21,7 +21,7 @@ const LegalMessage = () => (
       Terms of Service
     </Link>
     .
-  </p>
+  </Text.Body>
 );
 
 export const Component = () => (
