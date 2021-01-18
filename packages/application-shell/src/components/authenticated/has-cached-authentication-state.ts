@@ -16,10 +16,11 @@ const hasCachedAuthenticationState = (): boolean => {
       }
       const activeProjectKey = oidcStorage.getActiveProjectKey();
       if (activeProjectKey) {
-        // The application is not requesting a project key, therefore
-        // we assume that the application does not need a project context
-        // and we can remove the cached project key.
-        // This is usually the case for applications like account.
+        // GIVEN The application is not requesting a project key,
+        // THEN we assume that the application does not need a project context.
+        // GIVEN The application is not requesting a project key,
+        // THEN we remove the cached project key.
+        // This is the case of an application like `account`.
         if (!window.app.__DEVELOPMENT__.initialProjectKey) {
           oidcStorage.removeActiveProjectKey();
         }
