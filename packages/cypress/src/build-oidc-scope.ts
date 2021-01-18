@@ -35,4 +35,4 @@ const buildOidcScope = (options: BuilOidcScopeOptions): string => {
   ].join(' ');
 };
 
-export { buildOidcScope };
+export default buildOidcScope;

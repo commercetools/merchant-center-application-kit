@@ -9,10 +9,8 @@ import {
   trimLeadingAndTrailingSlashes,
 } from '@commercetools-frontend/url-utils';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
-import {
-  buildOidcScope,
-  OIDC_RESPONSE_TYPES,
-} from '@commercetools-frontend/application-config';
+import { buildOidcScope } from '../authenticated/helpers';
+import { OIDC_RESPONSE_TYPES } from '../../constants';
 import * as oidcStorage from '../../utils/oidc-storage';
 import Redirector from '../redirector';
 

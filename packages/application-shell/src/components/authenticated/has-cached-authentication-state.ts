@@ -1,8 +1,8 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
-import { buildOidcScope } from '@commercetools-frontend/application-config';
 import { STORAGE_KEYS } from '../../constants';
 import * as oidcStorage from '../../utils/oidc-storage';
+import { buildOidcScope } from './helpers';
 
 declare let window: ApplicationWindow;
 

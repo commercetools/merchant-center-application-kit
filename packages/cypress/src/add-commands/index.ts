@@ -1,11 +1,8 @@
 import type { ApplicationConfig } from '@commercetools-frontend/application-config';
 
 import { v4 as uuidv4 } from 'uuid';
-import {
-  buildOidcScope,
-  OIDC_RESPONSE_TYPES,
-} from '@commercetools-frontend/application-config';
-import { STORAGE_KEYS } from '../constants';
+import { STORAGE_KEYS, OIDC_RESPONSE_TYPES } from '../constants';
+import buildOidcScope from '../build-oidc-scope';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const Cypress: any;

@@ -13,13 +13,3 @@ export const MC_API_URLS = {
   AWS_FRA: 'https://mc-api.eu-central-1.aws.commercetools.com',
   AWS_OHIO: 'https://mc-api.us-east-2.aws.commercetools.com',
 } as const;
-
-export const OIDC_RESPONSE_TYPES = { ID_TOKEN: 'id_token' };
-
-export const OIDC_CLAIMS = {
-  OPEN_ID: 'openid',
-  PROJECT_KEY: 'project_key',
-  TEAM_ID: 'team_id',
-  VIEW: 'view',
-  MANAGE: 'manage',
-};
