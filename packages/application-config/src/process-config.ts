@@ -50,10 +50,9 @@ const processConfig = ({
   const revision = (additionalAppEnv.revision as string) ?? '';
 
   // Feature flags
-  const isOidcForDevelopmentEnabled =
-    processEnv.ENABLE_OIDC_FOR_DEVELOPMENT === 'true' ||
-    // @ts-expect-error
-    processEnv.ENABLE_OIDC_FOR_DEVELOPMENT === true;
+  const isOidcForDevelopmentEnabled = JSON.parse(
+    processEnv.ENABLE_OIDC_FOR_DEVELOPMENT || 'false'
+  );
 
   // Parse all the supported URLs, which gets implicitly validated
 
