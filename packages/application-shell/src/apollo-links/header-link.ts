@@ -8,20 +8,21 @@ import type { TApolloContext } from '../utils/apollo-context';
 import { ApolloClient, ApolloLink } from '@apollo/client';
 import omitEmpty from 'omit-empty-es';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { STORAGE_KEYS, SUPPORTED_HEADERS } from '../constants';
+import { SUPPORTED_HEADERS } from '../constants';
 import {
   getCorrelationId,
   selectProjectKeyFromUrl,
   selectTeamIdFromLocalStorage,
   selectUserId,
 } from '../utils';
+import * as oidcStorage from '../utils/oidc-storage';
 
 declare let window: ApplicationWindow;
 
 type ApolloContextWithInMemoryCache = TApolloContext & {
   cache: ApolloClient<NormalizedCacheObject>;
 };
-type Headers = { [key: string]: string };
+type Headers = Record<string, string>;
 type QueryVariables = {
   // Deprecated, use `{ context: { target } }`
   target?: TGraphQLTargets;
@@ -68,9 +69,7 @@ const headerLink = new ApolloLink((operation, forward) => {
     apolloContext.teamId || variables.teamId || selectTeamIdFromLocalStorage();
   const userId = selectUserId();
   const featureFlag = apolloContext.featureFlag || variables.featureFlag;
-  const sessionToken = window.sessionStorage.getItem(
-    STORAGE_KEYS.SESSION_TOKEN
-  );
+  const sessionToken = oidcStorage.getSessionToken();
 
   operation.setContext({
     credentials: 'include',

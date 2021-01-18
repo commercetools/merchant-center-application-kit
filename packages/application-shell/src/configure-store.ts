@@ -15,7 +15,7 @@ import {
 } from '@commercetools-frontend/notifications';
 import { createMiddleware as createSdkMiddleware } from '@commercetools-frontend/sdk';
 import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-frontend/constants';
-import { STORAGE_KEYS, SUPPORTED_HEADERS } from './constants';
+import { SUPPORTED_HEADERS } from './constants';
 import hideNotificationsMiddleware from './middleware/hide-notifications';
 import loggerMiddleware from './middleware/logger';
 import { requestsInFlightReducer } from './components/requests-in-flight-loader';
@@ -25,6 +25,7 @@ import {
   selectTeamIdFromLocalStorage,
   selectUserId,
 } from './utils';
+import * as oidcStorage from './utils/oidc-storage';
 
 interface ApplicationWindowWithDevtools extends ApplicationWindow {
   __REDUX_DEVTOOLS_EXTENSION__: (config?: {
@@ -55,9 +56,7 @@ const patchedGetCorrelationId = () =>
   getCorrelationId({ userId: selectUserId() });
 
 const getAdditionalHeaders = (): Headers | undefined => {
-  const sessionToken = window.sessionStorage.getItem(
-    STORAGE_KEYS.SESSION_TOKEN
-  );
+  const sessionToken = oidcStorage.getSessionToken();
   return omitEmpty<Headers>({
     [SUPPORTED_HEADERS.AUTHORIZATION]: sessionToken
       ? `Bearer ${sessionToken}`

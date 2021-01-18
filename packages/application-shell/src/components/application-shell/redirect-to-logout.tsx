@@ -4,7 +4,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { STORAGE_KEYS } from '../../constants';
+import * as oidcStorage from '../../utils/oidc-storage';
 import Redirector from '../redirector';
 import RedirectToLogin from './redirect-to-login';
 
@@ -25,9 +25,8 @@ const RedirectToLogout = (props: Props) => {
   if (window.app.__DEVELOPMENT__) {
     // Remove the `sessionToken` from storage, so that the AppShell can initiate
     // a new authorization flow.
-    window.sessionStorage.removeItem(STORAGE_KEYS.SESSION_TOKEN);
-    window.sessionStorage.removeItem(STORAGE_KEYS.SESSION_SCOPE);
-    window.sessionStorage.removeItem(STORAGE_KEYS.IS_AUTHENTICATED);
+    oidcStorage.clearSession();
+
     return <RedirectToLogin />;
   }
 

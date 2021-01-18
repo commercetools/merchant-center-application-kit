@@ -9,7 +9,8 @@ import {
   trimLeadingAndTrailingSlashes,
 } from '@commercetools-frontend/url-utils';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
-import { STORAGE_KEYS, OIDC_RESPONSE_TYPES } from '../../constants';
+import { OIDC_RESPONSE_TYPES } from '../../constants';
+import * as oidcStorage from '../../utils/oidc-storage';
 import { buildOidcScope } from '../authenticated/helpers';
 import Redirector from '../redirector';
 
@@ -23,10 +24,7 @@ const generateAndCacheNonceWithState = (state: AuthorizeSessionState) => {
   // the id_token and, once validated, we can retrieve and use
   // the state object.
   // https://auth0.com/docs/protocols/oauth2/oauth-state#how-to-use-the-parameter-to-restore-application-state
-  window.sessionStorage.setItem(
-    `${STORAGE_KEYS.NONCE}_${nonce}`,
-    JSON.stringify(state)
-  );
+  oidcStorage.setSessionState(nonce, state);
   return nonce;
 };
 
@@ -37,9 +35,7 @@ const RedirectToLogin = () => {
     // We pick the project key from local storage. This assumes that the value
     // as been previously set when the application starts up.
     // This is necessary to allow switching projects and triggering a new login.
-    const nextProjectKey = window.localStorage.getItem(
-      STORAGE_KEYS.ACTIVE_PROJECT_KEY
-    );
+    const nextProjectKey = oidcStorage.getActiveProjectKey();
 
     // According to the OIDC spec, the `state` parameter is recommended to be sent
     // to the authorization server to help mitigating Cross-Site Request Forgery.
@@ -63,7 +59,7 @@ const RedirectToLogin = () => {
     // Store session scopes, to be able to detect if requested scopes changed
     // in the application config and invalidate the session.
     // This is only valid for local development.
-    window.sessionStorage.setItem(STORAGE_KEYS.SESSION_SCOPE, requestedScope);
+    oidcStorage.setSessionScope(requestedScope);
 
     return (
       <Redirector

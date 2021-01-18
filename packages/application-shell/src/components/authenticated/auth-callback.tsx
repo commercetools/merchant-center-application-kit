@@ -6,7 +6,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { decode } from 'qss';
 import jwtDecode from 'jwt-decode';
-import { STORAGE_KEYS, LOGIN_STRATEGY_OIDC } from '../../constants';
+import * as oidcStorage from '../../utils/oidc-storage';
 import Redirector from '../redirector';
 import AuthCallbackErrorPage from './auth-callback-error-page';
 
@@ -20,33 +20,6 @@ export type TProps = {
 type AuthorizeCallbackFragments = { sessionToken?: string; state: string };
 type SessionToken = { nonce: string };
 
-const removeSSOSessionState = (key: string) =>
-  window.sessionStorage.removeItem(key);
-const getSSOSessionState = (key: string): AuthorizeSessionState | null => {
-  const unparsedSessionState = window.sessionStorage.getItem(key);
-  if (unparsedSessionState) {
-    try {
-      const parsedSessionState = JSON.parse(
-        unparsedSessionState
-      ) as AuthorizeSessionState;
-
-      removeSSOSessionState(key);
-
-      return parsedSessionState;
-    } catch (error) {
-      removeSSOSessionState(key);
-
-      if (process.env.NODE_ENV !== 'production') {
-        // eslint-disable-next-line no-console
-        console.warn(
-          `Cannot parse session state for "${key}".\n${unparsedSessionState}`
-        );
-      }
-    }
-  }
-  return null;
-};
-
 const AuthCallback = (props: TProps) => {
   const location = useLocation();
   let errorMessage: string | undefined;
@@ -57,8 +30,8 @@ const AuthCallback = (props: TProps) => {
 
   // Validate the nonce (coming as a `state` parameter)
   // By trying to load the related session state, we can implicitly check if the nonce is correct or not.
-  const sessionState = getSSOSessionState(
-    [STORAGE_KEYS.NONCE, fragments.state].join('_')
+  const sessionState = oidcStorage.getSessionState<AuthorizeSessionState>(
+    fragments.state
   );
 
   const sessionToken = fragments.sessionToken;
@@ -92,10 +65,7 @@ const AuthCallback = (props: TProps) => {
     );
   }
 
-  window.localStorage.removeItem(STORAGE_KEYS.IS_AUTHENTICATED);
-  window.localStorage.setItem(STORAGE_KEYS.LOGIN_STRATEGY, LOGIN_STRATEGY_OIDC);
-  // Store the sessionToken
-  window.sessionStorage.setItem(STORAGE_KEYS.SESSION_TOKEN, sessionToken ?? '');
+  oidcStorage.setActiveSession(sessionToken);
 
   if (sessionState?.query.redirectTo) {
     try {

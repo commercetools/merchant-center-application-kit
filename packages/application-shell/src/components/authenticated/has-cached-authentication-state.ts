@@ -1,6 +1,7 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
 import { STORAGE_KEYS } from '../../constants';
+import * as oidcStorage from '../../utils/oidc-storage';
 import { buildOidcScope } from './helpers';
 
 declare let window: ApplicationWindow;
@@ -8,30 +9,25 @@ declare let window: ApplicationWindow;
 const hasCachedAuthenticationState = (): boolean => {
   if (window.app.__DEVELOPMENT__) {
     try {
-      const cachedScope = window.sessionStorage.getItem(
-        STORAGE_KEYS.SESSION_SCOPE
-      );
+      const cachedScope = oidcStorage.getSessionScope();
       // Force the user to log in again
       if (!cachedScope) {
         return false;
       }
-      const activeProjectKey = window.localStorage.getItem(
-        STORAGE_KEYS.ACTIVE_PROJECT_KEY
-      );
+      const activeProjectKey = oidcStorage.getActiveProjectKey();
       if (activeProjectKey) {
         // The application is not requesting a project key, therefore
         // we assume that the application does not need a project context
         // and we can remove the cached project key.
         // This is usually the case for applications like account.
         if (!window.app.__DEVELOPMENT__.initialProjectKey) {
-          window.localStorage.removeItem(STORAGE_KEYS.ACTIVE_PROJECT_KEY);
+          oidcStorage.removeActiveProjectKey();
         }
       } else {
         if (window.app.__DEVELOPMENT__.initialProjectKey) {
           // Here we store the initial project key in local storage,
           // so that it gets picked up when we initiate the login flow.
-          window.localStorage.setItem(
-            STORAGE_KEYS.ACTIVE_PROJECT_KEY,
+          oidcStorage.setActiveProjectKey(
             window.app.__DEVELOPMENT__.initialProjectKey
           );
         }

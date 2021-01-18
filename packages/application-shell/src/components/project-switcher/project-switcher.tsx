@@ -15,9 +15,9 @@ import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import SelectInput from '@commercetools-uikit/select-input';
 import { ErrorIcon } from '@commercetools-uikit/icons';
 import { customProperties } from '@commercetools-uikit/design-system';
-import { STORAGE_KEYS } from '../../constants';
 import { useMcQuery } from '../../hooks/apollo-hooks';
 import { location } from '../../utils/location';
+import * as oidcStorage from '../../utils/oidc-storage';
 import ProjectsQuery from './project-switcher.mc.graphql';
 import messages from './messages';
 
@@ -174,10 +174,7 @@ const ProjectSwitcher = (props: Props) => {
           const selectedProjectKey = event.target.value;
           if (selectedProjectKey !== props.projectKey) {
             if (window.app.__DEVELOPMENT__) {
-              window.localStorage.setItem(
-                STORAGE_KEYS.ACTIVE_PROJECT_KEY,
-                selectedProjectKey
-              );
+              oidcStorage.setActiveProjectKey(selectedProjectKey);
             }
 
             // We simply redirect to a "new" browser page, instead of using the
