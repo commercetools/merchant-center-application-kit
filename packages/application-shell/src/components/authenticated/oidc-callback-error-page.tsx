@@ -8,6 +8,7 @@ import { PublicPageLayout } from '@commercetools-frontend/application-components
 import { customProperties } from '@commercetools-uikit/design-system';
 import { ContentNotification } from '@commercetools-uikit/notifications';
 import Spacings from '@commercetools-uikit/spacings';
+import Card from '@commercetools-uikit/card';
 import Text from '@commercetools-uikit/text';
 import FlatButton from '@commercetools-uikit/flat-button';
 import { AngleLeftIcon } from '@commercetools-uikit/icons';
@@ -41,30 +42,32 @@ const AuthCallbackErrorPage = (props: TProps) => {
       {({ locale, messages }) => (
         <ConfigureIntlProvider locale={locale} messages={messages}>
           <PublicPageLayout>
-            <Spacings.Stack scale="l">
-              <Spacings.Inline justifyContent="center">
-                <img
-                  src={FailedAuthenticationSVG}
-                  alt="Failed authentication"
-                />
-              </Spacings.Inline>
-              <Text.Headline as="h2">{'Authentication error'}</Text.Headline>
-              <ContentNotification type="error">
+            <Card>
+              <Spacings.Stack scale="l">
+                <Spacings.Inline justifyContent="center">
+                  <img
+                    src={FailedAuthenticationSVG}
+                    alt="Failed authentication"
+                  />
+                </Spacings.Inline>
+                <Text.Headline as="h2">{'Authentication error'}</Text.Headline>
+                <ContentNotification type="error">
+                  <Spacings.Stack scale="m">
+                    <Text.Body>{props.message}</Text.Body>
+                  </Spacings.Stack>
+                </ContentNotification>
                 <Spacings.Stack scale="m">
-                  <Text.Body>{props.message}</Text.Body>
+                  <Divider />
+                  <FlatButton
+                    label="Try log in again"
+                    icon={<AngleLeftIcon />}
+                    onClick={() => {
+                      history.push('/');
+                    }}
+                  />
                 </Spacings.Stack>
-              </ContentNotification>
-              <Spacings.Stack scale="m">
-                <Divider />
-                <FlatButton
-                  label="Try log in again"
-                  icon={<AngleLeftIcon />}
-                  onClick={() => {
-                    history.push('/');
-                  }}
-                />
               </Spacings.Stack>
-            </Spacings.Stack>
+            </Card>
           </PublicPageLayout>
         </ConfigureIntlProvider>
       )}

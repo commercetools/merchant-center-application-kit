@@ -1,4 +1,5 @@
 import React from 'react';
+import { css } from '@emotion/react';
 import { PublicPageLayout } from '@commercetools-frontend/application-components';
 import DoorsClosedSvg from '@commercetools-frontend/assets/images/project-not-initialized.svg';
 // @ts-ignore
@@ -6,6 +7,7 @@ import Link from '@commercetools-uikit/link';
 import Spacings from '@commercetools-uikit/spacings';
 import { customProperties } from '@commercetools-uikit/design-system';
 import Text from '@commercetools-uikit/text';
+import Card from '@commercetools-uikit/card';
 import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/public-page-form-wide';
@@ -32,26 +34,46 @@ export const Component = () => (
         legalMessage={<LegalMessage />}
         contentScale="wide"
       >
-        <div
-          style={{
-            backgroundColor: customProperties.colorNeutral95,
-            borderTopLeftRadius: customProperties.borderRadius6,
-            borderBottomLeftRadius: customProperties.borderRadius6,
-          }}
+        <Card
+          css={css`
+            display: flex;
+            padding: 0;
+            > * + * {
+              padding: ${customProperties.spacingM};
+            }
+          `}
         >
-          <Spacings.Inset>
-            <Spacings.Inline alignItems="center" justifyContent="center">
-              <img src={DoorsClosedSvg} />
-            </Spacings.Inline>
-          </Spacings.Inset>
-        </div>
+          <div
+            css={css`
+              width: calc(${customProperties.constraint15} / 2);
+            `}
+          >
+            <div
+              style={{
+                backgroundColor: customProperties.colorNeutral95,
+                borderTopLeftRadius: customProperties.borderRadius6,
+                borderBottomLeftRadius: customProperties.borderRadius6,
+              }}
+            >
+              <Spacings.Inset>
+                <Spacings.Inline alignItems="center" justifyContent="center">
+                  <img src={DoorsClosedSvg} />
+                </Spacings.Inline>
+              </Spacings.Inset>
+            </div>
+          </div>
 
-        <Spacings.Inset>
-          <Spacings.Stack>
-            <Text.Headline as="h2">Login</Text.Headline>
-            <Text.Body>The login form</Text.Body>
-          </Spacings.Stack>
-        </Spacings.Inset>
+          <div
+            css={css`
+              width: calc(${customProperties.constraint15} / 2);
+            `}
+          >
+            <Spacings.Stack>
+              <Text.Headline as="h2">Login</Text.Headline>
+              <Text.Body>The login form</Text.Body>
+            </Spacings.Stack>
+          </div>
+        </Card>
       </PublicPageLayout>
     </Spec>
   </Suite>
