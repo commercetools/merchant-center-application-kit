@@ -5,7 +5,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import hasCachedAuthenticationState from './has-cached-authentication-state';
 import AmILoggedIn from './am-i-logged-in';
-import AuthCallback from './auth-callback';
+import OidcCallback from './oidc-callback';
 
 declare let window: ApplicationWindow;
 
@@ -39,14 +39,14 @@ Authenticated.displayName = 'Authenticated';
 
 const AuthenticationRoutes = (props: TProps) => (
   <Switch>
-    <Route path={`/account/auth/callback`}>
-      <AuthCallback
+    <Route path={`/account/oidc/callback`}>
+      <OidcCallback
         locale={props.locale}
         applicationMessages={props.applicationMessages}
       />
     </Route>
-    <Route path={`/:projectKey/${window.app.entryPointUriPath}/auth/callback`}>
-      <AuthCallback
+    <Route path={`/:projectKey/${window.app.entryPointUriPath}/oidc/callback`}>
+      <OidcCallback
         locale={props.locale}
         applicationMessages={props.applicationMessages}
       />

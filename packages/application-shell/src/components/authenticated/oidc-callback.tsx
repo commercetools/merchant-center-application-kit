@@ -20,7 +20,7 @@ export type TProps = {
 type AuthorizeCallbackFragments = { sessionToken?: string; state: string };
 type SessionToken = { nonce: string };
 
-const AuthCallback = (props: TProps) => {
+const OidcCallback = (props: TProps) => {
   const location = useLocation();
   let errorMessage: string | undefined;
 
@@ -76,8 +76,8 @@ const AuthCallback = (props: TProps) => {
       // ignore
     }
   }
-  return <Redirector to={location.pathname.replace('/auth/callback', '')} />;
+  return <Redirector to={location.pathname.replace('/oidc/callback', '')} />;
 };
-AuthCallback.displayName = 'AuthCallback';
+OidcCallback.displayName = 'OidcCallback';
 
-export default AuthCallback;
+export default OidcCallback;

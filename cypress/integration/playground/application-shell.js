@@ -57,16 +57,16 @@ describe('navigation menu', () => {
 
 describe('failed OIDC authentication', () => {
   describe('when sessionToken is missing', () => {
-    it('should show auth callback error page', () => {
-      cy.visit(`/${URL_STATE_MACHINES}/auth/callback`);
+    it('should show oidc callback error page', () => {
+      cy.visit(`/${URL_STATE_MACHINES}/oidc/callback`);
       cy.findByText('Authentication error');
       cy.findByText(/missing sessionToken/i);
       cy.percySnapshot();
     });
   });
   describe('when sessionToken is invalid', () => {
-    it('should show auth callback error page', () => {
-      cy.visit(`/${URL_STATE_MACHINES}/auth/callback#sessionToken=123`);
+    it('should show oidc callback error page', () => {
+      cy.visit(`/${URL_STATE_MACHINES}/oidc/callback#sessionToken=123`);
       cy.findByText('Authentication error');
       cy.findByText(/invalid token specified/i);
       cy.percySnapshot();
