@@ -6,7 +6,7 @@ describe('rendering', () => {
   it('should render welcome message and footer', async () => {
     renderComponent(
       <PublicPageLayout welcomeMessage="Welcome to the Merchant Center">
-        {'Test'}
+        Test
       </PublicPageLayout>
     );
     await screen.findByText('Welcome to the Merchant Center');

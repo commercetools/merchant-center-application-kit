@@ -26,7 +26,7 @@ type TProps = {
   /**
    * The `normal` scale uses an horizontal contraint size of `8` (384px).
    * The `wide` scale uses an horizontal contraint size of `15` (742px).
-   * The `wide` scale can be used for
+   * The `wide` scale can be used for rendering the content in 2 columns.
    */
   contentScale?: 'normal' | 'wide';
   /**
