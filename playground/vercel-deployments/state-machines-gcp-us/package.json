@@ -5,6 +5,6 @@
   },
   "dependencies": {
     "@commercetools-backend/express": "canary",
-    "@vercel/node": "^1.7.1"
+    "@vercel/node": "1.9.0"
   }
 }
