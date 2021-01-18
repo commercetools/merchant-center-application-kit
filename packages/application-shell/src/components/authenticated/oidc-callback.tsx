@@ -8,7 +8,7 @@ import { decode } from 'qss';
 import jwtDecode from 'jwt-decode';
 import * as oidcStorage from '../../utils/oidc-storage';
 import Redirector from '../redirector';
-import AuthCallbackErrorPage from './auth-callback-error-page';
+import OidcCallbackErrorPage from './oidc-callback-error-page';
 
 declare let window: ApplicationWindow;
 
@@ -57,7 +57,7 @@ const OidcCallback = (props: TProps) => {
 
   if (errorMessage) {
     return (
-      <AuthCallbackErrorPage
+      <OidcCallbackErrorPage
         message={errorMessage}
         locale={props.locale}
         applicationMessages={props.applicationMessages}
