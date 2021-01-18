@@ -41,8 +41,8 @@
       "description": "The URL of the Merchant Center API. We usually recommend to use the `cloudIdentifier` option to avoid possible typos.",
       "type": "string"
     },
-    "permissions": {
-      "description": "The permissions configuration for the required OAuth Scopes for this Custom Application.",
+    "oAuthScopes": {
+      "description": "The requested OAuth Scopes for this Custom Application.",
       "type": "object",
       "properties": {
         "view": {

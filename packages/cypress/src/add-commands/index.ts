@@ -1,8 +1,11 @@
 import type { ApplicationConfig } from '@commercetools-frontend/application-config';
 
 import { v4 as uuidv4 } from 'uuid';
-import { OIDC_RESPONSE_TYPES, STORAGE_KEYS } from '../constants';
-import { buildOidcScope } from '../helpers';
+import {
+  buildOidcScope,
+  OIDC_RESPONSE_TYPES,
+} from '@commercetools-frontend/application-config';
+import { STORAGE_KEYS } from '../constants';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const Cypress: any;
@@ -23,7 +26,7 @@ Cypress.Commands.add(
       const applicationId = appConfig.applicationId;
       const sessionScope = buildOidcScope({
         projectKey,
-        permissions: appConfig.__DEVELOPMENT__?.permissions,
+        oAuthScopes: appConfig.__DEVELOPMENT__?.oAuthScopes,
         teamId: appConfig.__DEVELOPMENT__?.teamId,
       });
       // Perform the login using the API, then store some required values into the browser storage

@@ -23,9 +23,9 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
    */
   mcApiUrl?: string;
   /**
-   * The permissions configuration for the required OAuth Scopes for this Custom Application.
+   * The requested OAuth Scopes for this Custom Application.
    */
-  permissions?: {
+  oAuthScopes?: {
     /**
      * The list of view-only OAuth Scopes (https://docs.commercetools.com/api/scopes).
      */

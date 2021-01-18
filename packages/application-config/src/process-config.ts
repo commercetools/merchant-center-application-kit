@@ -115,7 +115,7 @@ const processConfig = ({
               )}`,
               initialProjectKey: appConfig.env.development?.initialProjectKey,
               teamId: appConfig.env.development?.teamId,
-              permissions: appConfig.permissions,
+              oAuthScopes: appConfig.oAuthScopes,
             }),
           }
         : {}),

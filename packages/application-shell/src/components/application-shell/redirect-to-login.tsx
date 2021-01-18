@@ -9,9 +9,11 @@ import {
   trimLeadingAndTrailingSlashes,
 } from '@commercetools-frontend/url-utils';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
-import { OIDC_RESPONSE_TYPES } from '../../constants';
+import {
+  buildOidcScope,
+  OIDC_RESPONSE_TYPES,
+} from '@commercetools-frontend/application-config';
 import * as oidcStorage from '../../utils/oidc-storage';
-import { buildOidcScope } from '../authenticated/helpers';
 import Redirector from '../redirector';
 
 declare let window: ApplicationWindow;
@@ -54,7 +56,11 @@ const RedirectToLogin = () => {
         redirectTo: nextProjectKey ? `/${nextProjectKey}` : '/',
       },
     });
-    const requestedScope = buildOidcScope({ projectKey: nextProjectKey });
+    const requestedScope = buildOidcScope({
+      projectKey: nextProjectKey ?? undefined,
+      oAuthScopes: window.app.__DEVELOPMENT__?.oAuthScopes,
+      teamId: window.app.__DEVELOPMENT__?.teamId,
+    });
 
     // Store session scopes, to be able to detect if requested scopes changed
     // in the application config and invalidate the session.
