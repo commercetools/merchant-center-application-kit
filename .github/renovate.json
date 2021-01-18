@@ -1,5 +1,5 @@
 {
-  "extends": ["config:base", "schedule:weekly"],
+  "extends": ["config:base", ":preserveSemverRanges", "schedule:weekly"],
   "separateMajorMinor": true,
   "packageRules": [
     {
