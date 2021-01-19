@@ -8,8 +8,7 @@
     "postbuild": "./scripts/postbuild.sh && yarn check-links",
     "prestart": "yarn generate-icons",
     "start": "gatsby develop",
-    "precheck-links": "cp -f linkchecker.index.html ./public/index.html",
-    "check-links": "yarn linkinator ./public",
+    "check-links": "yarn linkinator '*/index.html' --server-root public",
     "generate-icons": "svgr -d src/icons/generated src/icons/svg && prettier --write '**/generated/*.js'"
   },
   "dependencies": {
