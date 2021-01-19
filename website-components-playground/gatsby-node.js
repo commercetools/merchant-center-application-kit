@@ -20,3 +20,9 @@ exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
   // This will completely replace the webpack config with the modified object.
   actions.replaceWebpackConfig(config);
 };
+
+exports.onCreateBabelConfig = ({ actions }) => {
+  actions.setBabelPlugin({
+    name: 'babel-plugin-preval',
+  });
+};

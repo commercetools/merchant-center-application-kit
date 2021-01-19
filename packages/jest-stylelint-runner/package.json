@@ -23,7 +23,7 @@
     "stylelint": ">= 9.5"
   },
   "devDependencies": {
-    "postcss": "8.2.2",
+    "postcss": "8.2.4",
     "postcss-custom-properties": "10.0.0",
     "postcss-import": "14.0.0",
     "stylelint": "13.8.0"

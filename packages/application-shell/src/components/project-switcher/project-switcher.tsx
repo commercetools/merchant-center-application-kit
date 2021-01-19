@@ -29,7 +29,7 @@ type Props = {
 type OptionType = Pick<TProject, 'key' | 'name' | 'suspension' | 'expiry'> & {
   label: string;
 };
-type CustomValueContainerProps = ValueContainerProps<OptionType> & {
+type CustomValueContainerProps = ValueContainerProps<OptionType, false> & {
   projectCount: number;
 };
 
@@ -71,7 +71,9 @@ export const ProjectSwitcherValueContainer = ({
   </div>
 );
 
-export const ProjectSwitcherOption = (props: OptionProps<OptionType>) => (
+export const ProjectSwitcherOption = (
+  props: OptionProps<OptionType, false>
+) => (
   <SelectInput.Option {...props}>
     <div
       css={css`

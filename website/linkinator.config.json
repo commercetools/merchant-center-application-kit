@@ -1,12 +1,11 @@
 {
   "recurse": true,
   "silent": true,
+  "retry": true,
   "skip": [
     ".(json|js|png|jpg|svg|css)(\\?(.*)+)?$",
-    "https://docs.commercetools.com/",
-    "https://commercetools.com/",
-    "https://support.commercetools.com",
     "aws.amazon.com",
+    "/$",
     "/api",
     "/cli-overview",
     "/docs",

@@ -8,26 +8,25 @@
     "postbuild": "./scripts/postbuild.sh && yarn check-links",
     "prestart": "yarn generate-icons",
     "start": "gatsby develop",
-    "precheck-links": "cp -f linkchecker.index.html ./public/index.html",
-    "check-links": "yarn linkinator ./public",
+    "check-links": "yarn linkinator '*/index.html' --server-root public",
     "generate-icons": "svgr -d src/icons/generated src/icons/svg && prettier --write '**/generated/*.js'"
   },
   "dependencies": {
-    "@commercetools-docs/gatsby-theme-docs": "12.0.1",
-    "@commercetools-docs/ui-kit": "12.0.1",
+    "@commercetools-docs/gatsby-theme-docs": "14.0.1",
+    "@commercetools-docs/ui-kit": "14.0.0",
     "@commercetools-uikit/card": "^10.43.2",
-    "@commercetools-uikit/spacings-inline": "10.43.2",
-    "@commercetools-uikit/spacings-stack": "10.43.2",
+    "@commercetools-uikit/spacings-inline": "10.43.3",
+    "@commercetools-uikit/spacings-stack": "10.43.3",
     "@emotion/react": "11.1.4",
     "@emotion/styled": "11.0.0",
-    "gatsby": "2.29.1",
-    "gatsby-cli": "2.16.1",
+    "gatsby": "2.30.3",
+    "gatsby-cli": "2.17.1",
     "prop-types": "15.7.2",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.10.9"
+    "react-intl": "5.10.16"
   },
   "devDependencies": {
-    "linkinator": "2.13.0"
+    "linkinator": "2.13.1"
   }
 }
