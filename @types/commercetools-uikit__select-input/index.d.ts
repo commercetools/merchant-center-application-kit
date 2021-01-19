@@ -3,7 +3,6 @@ declare module '@commercetools-uikit/select-input' {
   import {
     Props as ReactSelectProps,
     OptionTypeBase,
-    SelectComponentsConfig,
     OptionProps,
     ValueContainerProps,
   } from 'react-select';
@@ -63,12 +62,12 @@ declare module '@commercetools-uikit/select-input' {
     // Aliases from react-select built-in components
     Option: {
       <OptionType extends OptionTypeBase = { label: string; value: string }>(
-        props: OptionProps<OptionType>
+        props: OptionProps<OptionType, false>
       ): JSX.Element;
     };
     ValueContainer: {
       <OptionType extends OptionTypeBase = { label: string; value: string }>(
-        props: ValueContainerProps<OptionType>
+        props: ValueContainerProps<OptionType, false>
       ): JSX.Element;
     };
   };
