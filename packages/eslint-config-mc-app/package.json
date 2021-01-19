@@ -1,7 +1,7 @@
 {
   "name": "@commercetools-frontend/eslint-config-mc-app",
   "version": "17.10.1",
-  "description": "ESLint config used by a (Merchant Center) Custom Application.",
+  "description": "ESLint config used by a Custom Application.",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
     "type": "git",
