@@ -1,5 +1,11 @@
 # @commercetools-frontend/babel-preset-mc-app
 
+## 17.10.0
+
+### Minor Changes
+
+- [`dc7a443`](https://github.com/commercetools/merchant-center-application-kit/commit/dc7a4437f02cfe9c840ae6f22cc85f94cf6a0bc9) [#1974](https://github.com/commercetools/merchant-center-application-kit/pull/1974) Thanks [@emmenko](https://github.com/emmenko)! - Add `babel-plugin-preval`.
+
 ## 17.8.0
 
 ### Patch Changes
