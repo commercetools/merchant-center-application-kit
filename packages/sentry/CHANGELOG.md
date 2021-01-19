@@ -1,5 +1,12 @@
 # @commercetools-frontend/sentry
 
+## 17.10.0
+
+### Patch Changes
+
+- Updated dependencies [[`d86c2e8`](https://github.com/commercetools/merchant-center-application-kit/commit/d86c2e86179aca2729d92fa18545241e2bf36fca)]:
+  - @commercetools-frontend/constants@17.10.0
+
 ## 17.9.0
 
 ### Patch Changes
