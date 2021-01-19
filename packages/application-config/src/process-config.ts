@@ -73,7 +73,8 @@ const processConfig = ({
   const mcApiUrl = getOrThrow(
     () =>
       new URL(
-        appConfig.mcApiUrl ??
+        // Use `||` instead of `??` to include empty string values.
+        appConfig.mcApiUrl ||
           mapCloudIdentifierToApiUrl(
             appConfig.cloudIdentifier as CloudIdentifier
           )

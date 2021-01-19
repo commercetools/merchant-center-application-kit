@@ -2,7 +2,7 @@
   "name": "Application Kit Playground",
   "entryPointUriPath": "state-machines",
   "cloudIdentifier": "${env:CLOUD_IDENTIFIER}",
-  "mcApiUrl": "${env:MC_API_URL_GCP_STAGING}",
+  "mcApiUrl": "${env:MC_API_URL}",
   "oAuthScopes": {
     "view": ["view_orders", "view_states"],
     "manage": ["manage_orders"]

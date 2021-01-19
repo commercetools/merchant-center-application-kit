@@ -100,7 +100,7 @@ jobs:
           CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
           CYPRESS_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
           HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
-          MC_API_URL_GCP_STAGING: ${{ secrets.MC_API_URL_GCP_STAGING }}
+          MC_API_URL: ${{ secrets.MC_API_URL }}
           CTP_INITIAL_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
           ENABLE_OIDC_FOR_DEVELOPMENT: "true"
 
