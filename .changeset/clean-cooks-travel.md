@@ -1,4 +1,5 @@
 ---
+'@commercetools-frontend/application-components': minor
 '@commercetools-frontend/application-config': minor
 '@commercetools-frontend/application-shell': minor
 '@commercetools-frontend/application-shell-connectors': minor
@@ -7,6 +8,7 @@
 '@commercetools-frontend/mc-scripts': minor
 '@commercetools-frontend/sdk': minor
 'playground': minor
+'@commercetools-local/visual-testing-app': minor
 ---
 
 Introduce a new **experimental opt-in** feature to authenticate the application for local development, using an OIDC-like workflow.
