@@ -33,7 +33,7 @@
     "@commercetools/sdk-client": "2.1.2",
     "@commercetools/sdk-middleware-correlation-id": "2.1.4",
     "@commercetools/sdk-middleware-http": "6.0.9",
-    "@types/node-fetch": "2.5.7",
+    "@types/node-fetch": "2.5.8",
     "@types/prop-types": "^15.7.3",
     "fast-equals": "2.0.0",
     "prop-types": "15.7.2",

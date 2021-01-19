@@ -34,7 +34,7 @@
     "@babel/runtime": "7.12.5",
     "@babel/runtime-corejs3": "7.12.5",
     "@commercetools-frontend/application-config": "17.10.0",
-    "core-js": "3.8.2",
+    "core-js": "3.8.3",
     "serialize-javascript": "5.0.1",
     "uglify-es": "3.3.9",
     "uglifycss": "0.0.29"
