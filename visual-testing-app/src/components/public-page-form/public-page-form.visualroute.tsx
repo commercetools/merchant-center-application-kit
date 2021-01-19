@@ -4,6 +4,7 @@ import { PublicPageLayout } from '@commercetools-frontend/application-components
 import Link from '@commercetools-uikit/link';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
+import Card from '@commercetools-uikit/card';
 import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/public-page-form';
@@ -29,10 +30,12 @@ export const Component = () => (
         welcomeMessage="Welcome to the Merchant Center"
         legalMessage={<LegalMessage />}
       >
-        <Spacings.Stack>
-          <Text.Headline as="h2">Login</Text.Headline>
-          <Text.Body>The login form</Text.Body>
-        </Spacings.Stack>
+        <Card>
+          <Spacings.Stack>
+            <Text.Headline as="h2">Login</Text.Headline>
+            <Text.Body>The login form</Text.Body>
+          </Spacings.Stack>
+        </Card>
       </PublicPageLayout>
     </Spec>
   </Suite>

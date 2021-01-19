@@ -2,7 +2,15 @@
   "name": "Application Kit Playground",
   "entryPointUriPath": "state-machines",
   "cloudIdentifier": "${env:CLOUD_IDENTIFIER}",
+  "mcApiUrl": "${env:MC_API_URL_GCP_STAGING}",
+  "oAuthScopes": {
+    "view": ["view_orders", "view_states"],
+    "manage": ["manage_orders"]
+  },
   "env": {
+    "development": {
+      "initialProjectKey": "${env:CTP_INITIAL_PROJECT_KEY}"
+    },
     "production": {
       "url": "${env:APP_URL}"
     }
@@ -14,9 +22,7 @@
   },
   "headers": {
     "csp": {
-      "connect-src": [
-        "${env:HOST_GCP_STAGING}"
-      ]
+      "connect-src": ["${env:HOST_GCP_STAGING}"]
     }
   }
 }

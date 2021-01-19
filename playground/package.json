@@ -5,9 +5,9 @@
   "private": true,
   "scripts": {
     "build": "mc-scripts build",
-    "start": "dotenv -- mc-scripts start",
+    "start": "dotenv -c development -- mc-scripts start",
     "compile-html": "NODE_ENV=production dotenv -- mc-scripts compile-html",
-    "compile-html:local": "NODE_ENV=production MC_APP_ENV=development dotenv -- mc-scripts compile-html --transformer @commercetools-frontend/mc-dev-authentication/transformer-local.js",
+    "compile-html:local": "NODE_ENV=production MC_APP_ENV=development dotenv -c development -- mc-scripts compile-html --transformer @commercetools-frontend/mc-dev-authentication/transformer-local.js",
     "compile-html:gcp-eu": "dotenv -e vercel-deployments/state-machines-gcp-eu/.env -- mc-scripts compile-html --transformer $(pwd)/vercel-deployments/transformer-vercel.js",
     "compile-html:gcp-us": "dotenv -e vercel-deployments/state-machines-gcp-us/.env -- mc-scripts compile-html --transformer $(pwd)/vercel-deployments/transformer-vercel.js",
     "start:prod:local": "yarn compile-html:local && mc-scripts serve",

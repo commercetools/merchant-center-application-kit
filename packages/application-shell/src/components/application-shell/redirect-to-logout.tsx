@@ -1,22 +1,41 @@
-import type { RouteProps } from 'react-router-dom';
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import * as oidcStorage from '../../utils/oidc-storage';
 import Redirector from '../redirector';
+import RedirectToLogin from './redirect-to-login';
+
+declare let window: ApplicationWindow;
+
+type Props = {
+  reason?: typeof LOGOUT_REASONS[keyof typeof LOGOUT_REASONS];
+};
 
 // When the application redirects to this route, we always force a hard redirect
 // to the logout route of the authentication service.
-const RedirectToLogout = (props: RouteProps) => {
+const RedirectToLogout = (props: Props) => {
+  const location = useLocation();
   const servedByProxy = useApplicationContext(
     (context) => context.environment.servedByProxy
   );
+
+  if (window.app.__DEVELOPMENT__) {
+    // Remove the `sessionToken` from storage, so that the AppShell can initiate
+    // a new authorization flow.
+    oidcStorage.clearSession();
+
+    return <RedirectToLogin />;
+  }
+
   return (
     <Redirector
       to="logout"
-      location={props.location}
+      location={location}
       queryParams={{
-        reason: LOGOUT_REASONS.USER,
+        reason: props.reason ?? LOGOUT_REASONS.USER,
         ...(servedByProxy
           ? {}
           : {

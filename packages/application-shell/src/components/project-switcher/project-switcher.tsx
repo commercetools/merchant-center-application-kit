@@ -1,4 +1,5 @@
 import type { OptionProps, ValueContainerProps } from 'react-select';
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type {
   TProject,
   TFetchUserProjectsQuery,
@@ -16,8 +17,11 @@ import { ErrorIcon } from '@commercetools-uikit/icons';
 import { customProperties } from '@commercetools-uikit/design-system';
 import { useMcQuery } from '../../hooks/apollo-hooks';
 import { location } from '../../utils/location';
+import * as oidcStorage from '../../utils/oidc-storage';
 import ProjectsQuery from './project-switcher.mc.graphql';
 import messages from './messages';
+
+declare let window: ApplicationWindow;
 
 type Props = {
   projectKey?: string;
@@ -168,11 +172,16 @@ const ProjectSwitcher = (props: Props) => {
         aria-labelledby="project-switcher"
         onChange={(event) => {
           const selectedProjectKey = event.target.value;
-          if (selectedProjectKey !== props.projectKey)
+          if (selectedProjectKey !== props.projectKey) {
+            if (window.app.__DEVELOPMENT__) {
+              oidcStorage.setActiveProjectKey(selectedProjectKey);
+            }
+
             // We simply redirect to a "new" browser page, instead of using the
             // history router. This will simplify a lot of things and avoid possible
             // problems like e.g. resetting the store/state.
             redirectTo(`/${selectedProjectKey}`);
+          }
         }}
         options={
           data && data.user && mapProjectsToOptions(data.user.projects.results)

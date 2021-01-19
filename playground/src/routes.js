@@ -22,8 +22,8 @@ const PageUnauthorized = () => (
 const ApplicationRoutes = () => {
   const match = useRouteMatch();
   const history = useHistory();
-  const canViewDeveloperSettings = useIsAuthorized({
-    demandedPermissions: [PERMISSIONS.ViewDeveloperSettings],
+  const canViewStateMachines = useIsAuthorized({
+    demandedPermissions: [PERMISSIONS.ViewStateMachines],
   });
   const goToStateMachineDetail = useCallback(
     (id) => {
@@ -40,7 +40,7 @@ const ApplicationRoutes = () => {
         <Route
           path={`${match.path}/:id`}
           render={(routerProps) => {
-            if (!canViewDeveloperSettings) {
+            if (!canViewStateMachines) {
               return <PageUnauthorized />;
             }
             return (
@@ -54,7 +54,7 @@ const ApplicationRoutes = () => {
         />
         <Route
           render={() => {
-            if (!canViewDeveloperSettings) {
+            if (!canViewStateMachines) {
               return <PageUnauthorized />;
             }
             return (

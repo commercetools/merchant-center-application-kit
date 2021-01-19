@@ -3,3 +3,4 @@ dist
 *.vercel.json
 .now
 !.env
+.env.local

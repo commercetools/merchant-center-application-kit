@@ -1,5 +1,6 @@
 import '@percy/cypress';
 import '@testing-library/cypress/add-commands';
+import '@commercetools-frontend/cypress/add-commands';
 
 function isLocalhost() {
   const url = new URL(Cypress.config('baseUrl'));
@@ -31,10 +32,6 @@ function isLocalhost() {
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-
-Cypress.Commands.add('logout', () => {
-  cy.visit('/logout');
-});
 
 Cypress.Commands.add(
   'login',

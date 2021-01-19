@@ -13,10 +13,6 @@ import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import { ApolloClient } from '@apollo/client';
 import { Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
-import {
-  joinPaths,
-  trimLeadingAndTrailingSlashes,
-} from '@commercetools-frontend/url-utils';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import {
   reportErrorToSentry,
@@ -46,11 +42,11 @@ import GtmApplicationTracker from '../gtm-application-tracker';
 import NavBar, { LoadingNavBar } from '../navbar';
 import ApplicationLoader from '../application-loader';
 import ErrorApologizer from '../error-apologizer';
-import Redirector from '../redirector';
 import version from '../../version';
 import RedirectToProjectCreate from '../redirect-to-project-create';
 import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
 import QuickAccess from '../quick-access';
+import RedirectToLogin from './redirect-to-login';
 import RedirectToLogout from './redirect-to-logout';
 
 type Props<AdditionalEnvironmentProperties extends {}> = {
@@ -176,12 +172,7 @@ export const RestrictedApplication = <
                 logoutReason = LOGOUT_REASONS.UNAUTHORIZED;
               else if (hasUserBeenDeletedError)
                 logoutReason = LOGOUT_REASONS.DELETED;
-              return (
-                <Redirector
-                  to="logout"
-                  queryParams={{ reason: logoutReason }}
-                />
-              );
+              return <RedirectToLogout reason={logoutReason} />;
             }
           }
           // Since we do not know the locale of the user, we pick it from the
@@ -525,10 +516,12 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
         applicationMessages={props.applicationMessages}
       >
         {({ isAuthenticated }) => {
-          if (isAuthenticated)
+          if (isAuthenticated) {
             return (
               <Switch>
-                <Route path="/logout" component={RedirectToLogout} />
+                <Route path="/logout">
+                  <RedirectToLogout />
+                </Route>
                 <Route>
                   <RestrictedApplication<AdditionalEnvironmentProperties>
                     defaultFeatureFlags={props.defaultFeatureFlags}
@@ -548,23 +541,8 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
                 </Route>
               </Switch>
             );
-
-          return (
-            <Route
-              render={({ location }) => (
-                <Redirector
-                  to="login"
-                  location={location}
-                  queryParams={{
-                    reason: LOGOUT_REASONS.UNAUTHORIZED,
-                    redirectTo: trimLeadingAndTrailingSlashes(
-                      joinPaths(window.location.origin, location.pathname)
-                    ),
-                  }}
-                />
-              )}
-            />
-          );
+          }
+          return <RedirectToLogin />;
         }}
       </ApplicationShellProvider>
     </>

@@ -135,6 +135,16 @@ export const MC_API_PROXY_TARGETS = {
 } as const;
 export type TMcApiProxyTargets = typeof MC_API_PROXY_TARGETS[keyof typeof MC_API_PROXY_TARGETS];
 
+export type ApplicationOidcForDevelopmentConfig = {
+  authorizeUrl: string;
+  initialProjectKey?: string;
+  teamId?: string;
+  oAuthScopes?: {
+    view: string[];
+    manage: string[];
+  };
+};
+
 // Global application environment on window object
 export interface ApplicationWindow extends Window {
   dataLayer: unknown[];
@@ -157,5 +167,7 @@ export interface ApplicationWindow extends Window {
     trackingGtm?: string;
     enableSignUp?: boolean;
     useFullRedirectsForLinks?: boolean;
+    // Properties for OIDC-like workflow for development
+    __DEVELOPMENT__?: ApplicationOidcForDevelopmentConfig;
   };
 }

@@ -14,6 +14,8 @@ import Authenticated from './authenticated';
 
 const createTestProps = (custom: Partial<TProps> = {}) => ({
   render: jest.fn(() => <div />),
+  locale: 'en',
+  applicationMessages: {},
   ...custom,
 });
 

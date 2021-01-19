@@ -18,11 +18,10 @@ type ProcessConfigOptions = {
   // Options useful for testing
   disableCache?: boolean;
   processEnv?: NodeJS.ProcessEnv;
+  configJson?: JSONSchemaForCustomApplicationConfigurationFiles | undefined;
 };
 
-const developmentConfig: JSONSchemaForCustomApplicationConfigurationFiles['env']['production'] = {
-  url: 'http://localhost:3001',
-};
+const developmentAppUrl = 'http://localhost:3001';
 
 // Keep a reference to the config so that requiring the module
 // again will result in returning the cached value.
@@ -31,6 +30,7 @@ let cachedConfig: ApplicationConfig;
 const processConfig = ({
   disableCache = false,
   processEnv = process.env,
+  configJson,
 }: ProcessConfigOptions = {}): ApplicationConfig => {
   if (cachedConfig && !disableCache) return cachedConfig;
 
@@ -38,7 +38,7 @@ const processConfig = ({
     processEnv.MC_APP_ENV ?? processEnv.NODE_ENV ?? 'development';
   const isProd = getIsProd(processEnv);
 
-  const loadedAppConfig = loadConfig();
+  const loadedAppConfig = configJson ?? loadConfig();
   validateConfig(loadedAppConfig);
   const validatedLoadedAppConfig = loadedAppConfig as JSONSchemaForCustomApplicationConfigurationFiles;
 
@@ -49,15 +49,26 @@ const processConfig = ({
   const additionalAppEnv = appConfig.additionalEnv ?? {};
   const revision = (additionalAppEnv.revision as string) ?? '';
 
-  const appEnvConfig = isProd ? appConfig.env.production : developmentConfig;
-  // Parse all the supported URLs, which gets implicitly validated
-  const appUrl = getOrThrow(
-    () => new URL(appEnvConfig.url),
-    `Invalid application URL: "${appEnvConfig.url}"`
+  // Feature flags
+  const isOidcForDevelopmentEnabled = JSON.parse(
+    processEnv.ENABLE_OIDC_FOR_DEVELOPMENT || 'false'
   );
+
+  // Parse all the supported URLs, which gets implicitly validated
+
+  const envAppUrl = isProd ? appConfig.env.production.url : developmentAppUrl;
+  const appUrl = getOrThrow(
+    () => new URL(envAppUrl),
+    `Invalid application URL: "${envAppUrl}"`
+  );
+
+  // Use `||` instead of `??` to include empty string values.
+  const envCdnUrl = isProd
+    ? appConfig.env.production.cdnUrl || appUrl.href
+    : developmentAppUrl;
   const cdnUrl = getOrThrow(
-    () => new URL(appEnvConfig.cdnUrl || appUrl.href),
-    `Invalid application CDN URL: "${appEnvConfig.cdnUrl || appUrl.href}"`
+    () => new URL(envCdnUrl),
+    `Invalid application CDN URL: "${envCdnUrl}"`
   );
   const mcApiUrl = getOrThrow(
     () =>
@@ -69,18 +80,45 @@ const processConfig = ({
       ),
     `Invalid MC API URL: "${appConfig.mcApiUrl}"`
   );
-  // TODO: make the `id` required once we release the new model.
-  const applicationId =
-    appConfig.id && appConfig.entryPointUriPath
-      ? `${appConfig.id}:${appConfig.entryPointUriPath}`
-      : undefined;
+
+  // The real application ID is only used in production.
+  // In development, we prefix the entry point with the "__local" prefix.
+  // This is important to determine to which URL the MC should redirect to
+  // after successful login.
+  let applicationId: string | undefined = isOidcForDevelopmentEnabled
+    ? `__local:${appConfig.entryPointUriPath}`
+    : undefined;
+  if (isProd) {
+    // TODO: decide if we do require the application ID or not.
+    if (appConfig.env.production.applicationId) {
+      applicationId = `${appConfig.env.production.applicationId}:${appConfig.entryPointUriPath}`;
+    } else {
+      // As long as we don't require the application ID in production, we should
+      // fall back to unset the value.
+      applicationId = undefined;
+    }
+  }
 
   cachedConfig = {
     env: {
       ...omitEmpty(additionalAppEnv),
-      ...(applicationId ? { applicationId } : {}),
+      // TODO: how else should we provide the app identifier?
+      applicationId,
       applicationName: appConfig.name,
       entryPointUriPath: appConfig.entryPointUriPath,
+      ...(!isProd && isOidcForDevelopmentEnabled
+        ? {
+            __DEVELOPMENT__: omitEmpty({
+              authorizeUrl: `${mcApiUrl.protocol}//${mcApiUrl.host.replace(
+                'mc-api',
+                'mc'
+              )}`,
+              initialProjectKey: appConfig.env.development?.initialProjectKey,
+              teamId: appConfig.env.development?.teamId,
+              oAuthScopes: appConfig.oAuthScopes,
+            }),
+          }
+        : {}),
       cdnUrl: cdnUrl.href,
       env: appEnvKey,
       frontendHost: appUrl.host,

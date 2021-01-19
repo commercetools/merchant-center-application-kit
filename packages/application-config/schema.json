@@ -17,10 +17,6 @@
     }
   },
   "properties": {
-    "id": {
-      "description": "The ID of the Custom Application (when you register the application in the Merchant Center)",
-      "type": "string"
-    },
     "name": {
       "description": "The name of the Custom Application",
       "type": "string"
@@ -34,13 +30,7 @@
       "type": "string",
       "oneOf": [
         {
-          "enum": [
-            "gcp-au",
-            "gcp-eu",
-            "gcp-us",
-            "aws-fra",
-            "aws-ohio"
-          ]
+          "enum": ["gcp-au", "gcp-eu", "gcp-us", "aws-fra", "aws-ohio"]
         },
         {
           "$ref": "#/definitions/envVariablePlaceholder"
@@ -51,14 +41,59 @@
       "description": "The URL of the Merchant Center API. We usually recommend to use the `cloudIdentifier` option to avoid possible typos.",
       "type": "string"
     },
+    "oAuthScopes": {
+      "description": "The requested OAuth Scopes for this Custom Application.",
+      "type": "object",
+      "properties": {
+        "view": {
+          "description": "The list of view-only OAuth Scopes (https://docs.commercetools.com/api/scopes).",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "view_(.*)"
+          },
+          "uniqueItems": true
+        },
+        "manage": {
+          "description": "The list of manage-only OAuth Scopes (https://docs.commercetools.com/api/scopes).",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "manage_(.*)"
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false,
+      "required": ["view", "manage"]
+    },
     "env": {
       "description": "This is an object of keys that represents different environments (for example `production`). The environment used depends on the environment variable `MC_APP_ENV`. If `MC_APP_ENV` isn't set then `NODE_ENV` will be used. If neither is set, it defaults to `development`",
       "type": "object",
       "properties": {
+        "development": {
+          "description": "Configuration for development only",
+          "type": "object",
+          "properties": {
+            "initialProjectKey": {
+              "description": "The initial project key that the Custom Application is requesting access for. This is only used in development.",
+              "type": "string"
+            },
+            "teamId": {
+              "description": "The ID of an existing team. This can be used for granting access on behalf of the permissions assigned to that team and project.",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
         "production": {
           "description": "Configuration for production only",
           "type": "object",
           "properties": {
+            "applicationId": {
+              "description": "The ID of the Custom Application (when you register the application in the Merchant Center)",
+              "type": "string"
+            },
             "url": {
               "description": "The URL where the Custom Application is hosted",
               "type": "string"
@@ -69,15 +104,11 @@
             }
           },
           "additionalProperties": false,
-          "required": [
-            "url"
-          ]
+          "required": ["url"]
         }
       },
       "additionalProperties": false,
-      "required": [
-        "production"
-      ]
+      "required": ["production"]
     },
     "additionalEnv": {
       "description": "Additional environment values unique to your Custom Application that are injected in the application context.",
@@ -108,9 +139,7 @@
             }
           },
           "additionalProperties": false,
-          "required": [
-            "connect-src"
-          ]
+          "required": ["connect-src"]
         },
         "featurePolicies": {
           "description": "Configuration for the HTTP Feature-Policy header (https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy/Using_Feature_Policy)",
@@ -118,16 +147,9 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "csp"
-      ]
+      "required": ["csp"]
     }
   },
   "additionalProperties": false,
-  "required": [
-    "name",
-    "entryPointUriPath",
-    "cloudIdentifier",
-    "env"
-  ]
+  "required": ["name", "entryPointUriPath", "cloudIdentifier", "env"]
 }

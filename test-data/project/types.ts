@@ -26,7 +26,7 @@ export type TCreateProjectBuilder = () => TBuilder<TProject>;
 
 type TBaseProject = {
   id: string;
-  version: string;
+  version: number;
   createdAt: string;
   lastModifiedAt: string;
   name: string;

@@ -1,10 +1,13 @@
-import { URL_STATE_MACHINES, URL_STATE_MACHINES_ID } from '../../support/urls';
+import {
+  URL_STATE_MACHINES_ID,
+  ENTRY_POINT_STATE_MACHINES,
+} from '../../support/urls';
 
 describe('State machines', () => {
+  beforeEach(() => {
+    cy.loginByOidc({ entryPointUriPath: ENTRY_POINT_STATE_MACHINES });
+  });
   it('should render list view', () => {
-    cy.login({ redirectToUri: URL_STATE_MACHINES });
-    // NOTE: 'State Machines' exists once in the menu
-    // and once in `main`.
     cy.get('main').within(() => {
       cy.findByText('State Machines').should('exist');
     });
@@ -12,7 +15,6 @@ describe('State machines', () => {
     cy.percySnapshot();
   });
   it('should render list view and go to details page', () => {
-    cy.login({ redirectToUri: URL_STATE_MACHINES });
     // Go to details page
     cy.findAllByText('Initial').first().click();
     cy.url().should('include', URL_STATE_MACHINES_ID);

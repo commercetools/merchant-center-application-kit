@@ -103,8 +103,8 @@ describe('list view', () => {
     rendered = renderApp({
       sdkMocks: [createStateMachinesListSdkMock()],
       permissions: {
-        canViewDeveloperSettings: true,
-        canManageDeveloperSettings: true,
+        canViewStateMachines: true,
+        canManageStateMachines: true,
       },
     });
     await rendered.findByText(/State machines/i);
@@ -119,8 +119,8 @@ describe('list view', () => {
         createStateMachinesDetailSdkMockForId1(),
       ],
       permissions: {
-        canViewDeveloperSettings: true,
-        canManageDeveloperSettings: true,
+        canViewStateMachines: true,
+        canManageStateMachines: true,
       },
     });
     await rendered.findByText(/There are 2 objects in the cache/i);
@@ -142,8 +142,8 @@ describe('details view', () => {
         route: '/my-project/state-machines/sm1',
         sdkMocks: [createStateMachinesDetailSdkMockForId1()],
         permissions: {
-          canViewDeveloperSettings: true,
-          canManageDeveloperSettings: true,
+          canViewStateMachines: true,
+          canManageStateMachines: true,
         },
       });
       await rendered.findByText(/sm-1/i);
@@ -156,8 +156,8 @@ describe('details view', () => {
           createStateMachinesDetailSdkMockForId2(),
         ],
         permissions: {
-          canViewDeveloperSettings: true,
-          canManageDeveloperSettings: true,
+          canViewStateMachines: true,
+          canManageStateMachines: true,
         },
       });
       await rendered.findByText(/sm-1/i);
@@ -181,8 +181,8 @@ describe('details view', () => {
         route: '/my-project/state-machines/sm1',
         sdkMocks: [createStateMachinesDetailSdkErrorMock()],
         permissions: {
-          canViewDeveloperSettings: true,
-          canManageDeveloperSettings: true,
+          canViewStateMachines: true,
+          canManageStateMachines: true,
         },
       });
       await rendered.findByText(

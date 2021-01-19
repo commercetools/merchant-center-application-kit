@@ -15,13 +15,14 @@ import {
   selectTeamIdFromLocalStorage,
   selectUserId,
 } from '../utils';
+import * as oidcStorage from '../utils/oidc-storage';
 
 declare let window: ApplicationWindow;
 
 type ApolloContextWithInMemoryCache = TApolloContext & {
   cache: ApolloClient<NormalizedCacheObject>;
 };
-
+type Headers = Record<string, string>;
 type QueryVariables = {
   // Deprecated, use `{ context: { target } }`
   target?: TGraphQLTargets;
@@ -68,10 +69,14 @@ const headerLink = new ApolloLink((operation, forward) => {
     apolloContext.teamId || variables.teamId || selectTeamIdFromLocalStorage();
   const userId = selectUserId();
   const featureFlag = apolloContext.featureFlag || variables.featureFlag;
+  const sessionToken = oidcStorage.getSessionToken();
 
   operation.setContext({
     credentials: 'include',
-    headers: omitEmpty({
+    headers: omitEmpty<Headers>({
+      [SUPPORTED_HEADERS.AUTHORIZATION]: sessionToken
+        ? `Bearer ${sessionToken}`
+        : undefined,
       [SUPPORTED_HEADERS.X_PROJECT_KEY]: projectKey,
       [SUPPORTED_HEADERS.X_CORRELATION_ID]: getCorrelationId({ userId }),
       [SUPPORTED_HEADERS.X_GRAPHQL_TARGET]: graphQlTarget,

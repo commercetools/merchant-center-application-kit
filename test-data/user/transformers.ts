@@ -20,7 +20,10 @@ const transformers = {
       return {
         ...fields,
         __typename: 'User',
-        projects: projectsPaginatedResults,
+        projects: {
+          ...projectsPaginatedResults,
+          __typename: 'ProjectQueryResult',
+        },
       };
     },
   }),
