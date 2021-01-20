@@ -143,7 +143,7 @@ export const SetupFlopFlipProvider = (props: Props) => {
           });
 
           return parseFlags(response.data);
-        }
+        },
       },
     }),
     [apolloClient, flags, props.ldClientSideId, props.projectKey, props.user]
