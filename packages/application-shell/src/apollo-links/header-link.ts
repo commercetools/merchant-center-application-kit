@@ -24,13 +24,21 @@ type ApolloContextWithInMemoryCache = TApolloContext & {
 };
 type Headers = Record<string, string>;
 type QueryVariables = {
-  // Deprecated, use `{ context: { target } }`
+  /**
+   * @deprecated: Use `{ context: { target } }`
+   */
   target?: TGraphQLTargets;
-  // Deprecated, use `{ context: { projectKey } }`
+  /**
+   * @deprecated: Use `{ context: { projectKey } }`
+   */
   projectKey?: string;
-  // Deprecated, use `{ context: { teamId } }`
+  /**
+   * @deprecated: Use `{ context: { teamId } }`
+   */
   teamId?: string;
-  // Deprecated, use `{ context: { featureFlag } }`
+  /**
+   * @deprecated: Use `{ context: { featureFlag } }`
+   */
   featureFlag?: string;
 };
 

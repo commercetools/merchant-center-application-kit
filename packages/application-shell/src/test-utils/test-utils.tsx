@@ -67,7 +67,9 @@ const defaultProject = {
     allAppliedDataFences: [],
     allAppliedMenuVisibilities: [],
   },
-  // Deprecated!
+  /**
+   * @deprecated: Use `{ allPermissionsForAllApplications: { allAppliedMenuVisibilities: [] } }`
+   */
   allAppliedMenuVisibilities: [],
 };
 
@@ -120,18 +122,6 @@ const defaultFlopflipAdapterArgs = {
 // For backwards compatibility we need to denormalize the given `permissions` option
 // (which is now deprecated) to `allAppliedPermissions`, in order to pass the value
 // to the `project` prop in the application context provider.
-// From:
-// {
-//   permissions: {
-//     canManageProjectSettings: true
-//   }
-// }
-// To:
-// {
-//   allAppliedPermissions: [
-//     { name: 'canManageProjectSettings', value: true }
-//   ]
-// }
 type TPermissions = { [key: string]: boolean };
 type TAllAppliedPermission = {
   name: string;
@@ -150,22 +140,6 @@ const denormalizePermissions = (permissions?: TPermissions) => {
 // For backwards compatibility we need to denormalize the given `actionRights` option
 // (which is now deprecated) to `allAppliedActionRights`, in order to pass the value
 // to the `project` prop in the application context provider.
-// From:
-// {
-//   actionRights: {
-//     products: {
-//       canEditPrices: true,
-//       canPublishProducts: false,
-//     }
-//   }
-// }
-// To:
-// {
-//   allAppliedActionRights: [
-//     { group: 'products', name: 'canEditPrices', value: true },
-//     { group: 'products', name: 'canPublishProducts', value: false }
-//   ]
-// }
 type TNormalizedActionRights = { [key: string]: TPermissions };
 type TAllAppliedActionRight = TAllAppliedPermission & {
   group: string;
@@ -195,24 +169,6 @@ const denormalizeActionRights = (actionRights?: TNormalizedActionRights) => {
 // For backwards compatibility we need to denormalize the given `dataFences` option
 // (which is now deprecated) to `allAppliedDataFences`, in order to pass the value
 // to the `project` prop in the application context provider.
-// From:
-// {
-//   dataFences: {
-//     store: {
-//       orders: {
-//         canViewOrders: {
-//           values: ['store-1'],
-//         }
-//       }
-//     }
-//   }
-// }
-// To:
-// {
-//   allAppliedDataFences: [
-//     { type: 'store', group: 'orders', name: 'canViewOrders', value: 'store-1' }
-//   ]
-// }
 type TNormalizedDataFenceStorePermissions = {
   [key: string]: { values: string[] };
 };
@@ -326,9 +282,70 @@ export type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   user: Partial<TProviderProps<AdditionalEnvironmentProperties>['user']>;
   project: Partial<TProviderProps<AdditionalEnvironmentProperties>['project']>;
   dataLocale: TProviderProps<AdditionalEnvironmentProperties>['projectDataLocale'];
-  permissions: TPermissions; // <-- deprecated option, use `{ project: { allAppliedPermissions } }`
-  actionRights: TNormalizedActionRights; // <-- deprecated option, use `{ project: { allAppliedActionRights } }`
-  dataFences: TNormalizedDataFences; // <-- deprecated option, use `{ project: { allAppliedDataFences } }`
+  /**
+   * @deprecated: Use `{ project: { allAppliedPermissions } }`
+   * From:
+   *   {
+   *     permissions: {
+   *       canManageProjectSettings: true
+   *     }
+   *   }
+   * To:
+   *   {
+   *     project: {
+   *       allAppliedPermissions: [
+   *         { name: 'canManageProjectSettings', value: true }
+   *       ]
+   *     }
+   *   }
+   */
+  permissions: TPermissions;
+  /**
+   * @deprecated: Use `{ project: { allAppliedActionRights } }`
+   * From:
+   *   {
+   *     actionRights: {
+   *       products: {
+   *         canEditPrices: true,
+   *         canPublishProducts: false,
+   *       }
+   *     }
+   *   }
+   * To:
+   *   {
+   *     project: {
+   *       allAppliedActionRights: [
+   *         { group: 'products', name: 'canEditPrices', value: true },
+   *         { group: 'products', name: 'canPublishProducts', value: false }
+   *       ]
+   *     }
+   *   }
+   */
+  actionRights: TNormalizedActionRights;
+  /**
+   * @deprecated: Use `{ project: { allAppliedDataFences } }`
+   * From:
+   *   {
+   *     dataFences: {
+   *       store: {
+   *         orders: {
+   *           canViewOrders: {
+   *             values: ['store-1'],
+   *           }
+   *         }
+   *       }
+   *     }
+   *   }
+   * To:
+   *   {
+   *     project: {
+   *       allAppliedDataFences: [
+   *         { type: 'store', group: 'orders', name: 'canViewOrders', value: 'store-1' }
+   *       ]
+   *     }
+   *   }
+   */
+  dataFences: TNormalizedDataFences;
 } & rtl.RenderOptions;
 type TRenderAppResult<AdditionalEnvironmentProperties = {}> = rtl.RenderResult &
   Pick<
