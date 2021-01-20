@@ -3669,16 +3669,6 @@
   resolved "https://registry.yarnpkg.com/@exodus/schemasafe/-/schemasafe-1.0.0-rc.3.tgz#dda2fbf3dafa5ad8c63dadff7e01d3fdf4736025"
   integrity sha512-GoXw0U2Qaa33m3eUcxuHnHpNvHjNlLo0gtV091XBpaRINaB4X6FGCG5XKxSFNFiPpugUDqNruHzaqpTdDm4AOg==
 
-"@flopflip/adapter-utilities@1.0.11":
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/@flopflip/adapter-utilities/-/adapter-utilities-1.0.11.tgz#d31dcfa519cf3deed390afa8536563685f738e0a"
-  integrity sha512-yI7nwyGVWXUQWkROpO2Km8Q0cyTtUVmNaatLE6gCdDn9tOAZGUc/lANOKy6pdZaKlHXhT+WF9whYMTtznHjAiQ==
-  dependencies:
-    "@babel/runtime" "7.12.5"
-    "@flopflip/types" "4.1.9"
-    globalthis "1.0.1"
-    lodash "4.17.20"
-
 "@flopflip/adapter-utilities@1.0.12":
   version "1.0.12"
   resolved "https://registry.yarnpkg.com/@flopflip/adapter-utilities/-/adapter-utilities-1.0.12.tgz#dd5f034756a76be28c90dbb3522164ddc58ef00a"
@@ -3689,27 +3679,27 @@
     globalthis "1.0.1"
     lodash "4.17.20"
 
-"@flopflip/combine-adapters@0.0.13":
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/@flopflip/combine-adapters/-/combine-adapters-0.0.13.tgz#ef3b788456612c21297f2b3a294c5f0961547c5b"
-  integrity sha512-Pw/hrm6O4XWgkqRvyDIyH3hiL/sarnf2AfyBzbQa8IJrEAqSIOvZtDvb+fdVy52v4HJD7YufzV/eMWycJ2mong==
+"@flopflip/combine-adapters@0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@flopflip/combine-adapters/-/combine-adapters-0.0.14.tgz#d9014f51645243f0f05e0dbda7645ad29db26da0"
+  integrity sha512-NI/XdI8ZQCjWI8IWcG/eILGivPRWgxCE7kEUh3CorSPfRlT+gQLii4VvO/kV39gpTYcMBXHVHVaJKXW3U4KqlA==
   dependencies:
     "@babel/runtime" "7.12.5"
-    "@flopflip/adapter-utilities" "1.0.11"
-    "@flopflip/types" "4.1.9"
+    "@flopflip/adapter-utilities" "1.0.12"
+    "@flopflip/types" "4.1.10"
     mitt "2.1.0"
     tiny-warning "1.0.3"
 
-"@flopflip/http-adapter@0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@flopflip/http-adapter/-/http-adapter-0.0.4.tgz#89be10baaf043432c22efa70bca7bf2f26e20544"
-  integrity sha512-POpXx1TVfZKWW67DcHx/yVEHg97dsoofcOkt3ga64xbTie7ns9dvEDiBSF6a4gVVcceRMXEGu8eogQvkDzzwnw==
+"@flopflip/http-adapter@0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@flopflip/http-adapter/-/http-adapter-0.0.5.tgz#d076cafe0ba7ca6046360285e117d0e1dfcbc787"
+  integrity sha512-ImR4/BSbFKGgV2GGOsBpG+YkOdt/lEsQU3Tzg1kDztC6u+ddiJR9enPmkyPuiKqEpPTLWG1imJNk+V7lRRSOcw==
   dependencies:
     "@babel/runtime" "7.12.5"
-    "@flopflip/adapter-utilities" "1.0.11"
-    "@flopflip/localstorage-cache" "1.0.12"
-    "@flopflip/sessionstorage-cache" "1.0.12"
-    "@flopflip/types" "4.1.9"
+    "@flopflip/adapter-utilities" "1.0.12"
+    "@flopflip/localstorage-cache" "1.0.13"
+    "@flopflip/sessionstorage-cache" "1.0.13"
+    "@flopflip/types" "4.1.10"
     lodash "4.17.20"
     mitt "2.1.0"
     tiny-warning "1.0.3"
@@ -3729,12 +3719,12 @@
     mitt "2.1.0"
     tiny-warning "1.0.3"
 
-"@flopflip/localstorage-cache@1.0.12":
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/@flopflip/localstorage-cache/-/localstorage-cache-1.0.12.tgz#d2108509667b3dfda88dfb2033f58c6f0366d76f"
-  integrity sha512-hd2OtQ4CZZZ8NYf5MjwAWizlYrVQE1aZ/VMB8Tld82bF/5WMGeBARctcKCYUeUSihFg7b5Aad2NwG2mioIstog==
+"@flopflip/localstorage-cache@1.0.13":
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/@flopflip/localstorage-cache/-/localstorage-cache-1.0.13.tgz#d83114c293fadc858d63a097c832c0fd497f94ba"
+  integrity sha512-gquLqXE+ID6518dya1SC+xa2TnfILWGLmV2eQHIKzS2KPBvotBdWIPNt2TjQGAj/BnTVj8uCdhQQ/u4l/18+vQ==
   dependencies:
-    "@flopflip/types" "4.1.9"
+    "@flopflip/types" "4.1.10"
 
 "@flopflip/memory-adapter@3.0.12":
   version "3.0.12"
@@ -3769,22 +3759,17 @@
     react-is "17.0.1"
     tiny-warning "1.0.3"
 
-"@flopflip/sessionstorage-cache@1.0.12":
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/@flopflip/sessionstorage-cache/-/sessionstorage-cache-1.0.12.tgz#418fed54c6bf3ba9a980cbb654bc0c84c6da709b"
-  integrity sha512-d47gbqrmiyWmpW9JwCvVAh4y5R0j3mxc6ra7CPDdM4TqtprKPam4hJDx2wSGeVFLCblRPTvgtcu8FNDrmxBj+g==
+"@flopflip/sessionstorage-cache@1.0.13":
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/@flopflip/sessionstorage-cache/-/sessionstorage-cache-1.0.13.tgz#8dd80da20b7d63f9ec0d4d32b22ebedad0fb1826"
+  integrity sha512-WQ+l7dbovQT2IA5XCk+SzW5lFfzT5rQUrY1beJOzMt0QGq21+vH60ij/dNZ4v51jyG2UJ0hi/JE9pB6J1EamQw==
   dependencies:
-    "@flopflip/types" "4.1.9"
+    "@flopflip/types" "4.1.10"
 
 "@flopflip/types@4.1.10":
   version "4.1.10"
   resolved "https://registry.yarnpkg.com/@flopflip/types/-/types-4.1.10.tgz#43264be1aeda291647b87c8022a31ae69c2d0ae0"
   integrity sha512-X24CAep+LltfJRypWNSIqpeL2jEH2qTcnUOUlV6q394tnxqey6ZNV0B165OsDVLIcHi1JIBePGRj4V1DqpXwoA==
-
-"@flopflip/types@4.1.9":
-  version "4.1.9"
-  resolved "https://registry.yarnpkg.com/@flopflip/types/-/types-4.1.9.tgz#58d6e84d8fc885e7ef2b518ec22d169768ab0356"
-  integrity sha512-k91KggraKBfhsx5FlYKf7nnejy2OV76AqQzf611YPD2OXhdDM6fZyQ6YuO213XiNVw8FYZ1SWLXNvsbsBe2FYg==
 
 "@fontsource/open-sans@4.1.0":
   version "4.1.0"
