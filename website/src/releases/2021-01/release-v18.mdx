@@ -12,7 +12,7 @@ topics:
 
 The Application Kit packages have been released as a new **major version** `v18`.
 
-The changes relate to `@commercetools-frontend/eslint-config-mc-app` package, where `eslint` is now a required peer dependency.<br/>
+The changes relate to `@commercetools-frontend/eslint-config-mc-app` package, where `eslint` is now the only required peer dependency.<br/>
 Additionally, the ESLint config uses the ESLint React App config as a base instead of Airbnb.
 
 Most of the rules have stayed the same, however you may need to adjust or fix some depending on your usage.
@@ -20,13 +20,15 @@ Most of the rules have stayed the same, however you may need to adjust or fix so
 In this release we also removed the long deprecated hostnames `mc.commercetools.com` and `mc.commercetools.co` from the default Content Security Policy configuration.<br/>
 This is aligned with the long-running effort of [moving the Merchant Center to use the new URLs](https://docs.commercetools.com/merchant-center/releases/2021-01-11-merchant-center-has-changed-its-url).
 
-If you still want to support your Custom Application to run on the legacy hostname for the remaining time being, you would need to explicitly add the legacy hostname(s) in the `connect-src` config of the `custom-application-config.json`. 
+If you still want to support your Custom Application to run on the legacy hostname for the remaining time being, you would need to explicitly add the legacy hostname(s) in the `connect-src` config of the `custom-application-config.json`.
 
 Follow the steps below to migrate your ESLint config to the new version.
 
 <!--more-->
 
 # Migrating `@commercetools-frontend/eslint-config-mc-app`
+
+Simply remove all ESLint related dependencies that where previously required as peer dependencies.
 
 ```diff
 {
