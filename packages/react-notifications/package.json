@@ -28,10 +28,10 @@
     "@commercetools-frontend/constants": "17.10.1",
     "@commercetools-frontend/notifications": "17.6.0",
     "@commercetools-frontend/sentry": "17.10.1",
-    "@commercetools-uikit/design-system": "^10.43.2",
-    "@commercetools-uikit/icon-button": "^10.43.2",
-    "@commercetools-uikit/icons": "^10.43.2",
-    "@commercetools-uikit/spacings": "^10.43.2",
+    "@commercetools-uikit/design-system": "^10.43.3",
+    "@commercetools-uikit/icon-button": "^10.44.2",
+    "@commercetools-uikit/icons": "^10.44.1",
+    "@commercetools-uikit/spacings": "^10.44.2",
     "@emotion/react": "11.1.4",
     "@emotion/styled": "11.0.0",
     "@types/history": "4.7.8",
@@ -44,7 +44,7 @@
     "reselect": "4.0.0"
   },
   "devDependencies": {
-    "@commercetools-frontend/ui-kit": "10.43.3",
+    "@commercetools-frontend/ui-kit": "10.44.2",
     "@testing-library/react": "11.2.3",
     "@types/react": "16.14.2",
     "@types/react-dom": "16.9.10",
