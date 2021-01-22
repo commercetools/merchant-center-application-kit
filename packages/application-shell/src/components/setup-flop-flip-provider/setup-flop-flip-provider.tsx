@@ -81,15 +81,10 @@ const parseFlags = (fetchedFlags: TFetchedFlags): TParsedHttpAdapterFlags =>
     ])
   );
 
-type TAdditionalEnvironmentProperties = {
-  env: {
-    enableFeatureConfigurationFetching?: boolean;
-  }
-};
 export const SetupFlopFlipProvider = (props: Props) => {
   const apolloClient = useApolloClient();
-  const enableFeatureConfigurationFetching = useApplicationContext<TAdditionalEnvironmentProperties>(
-    (context) => context.environment.env.enableFeatureConfigurationFetching
+  const enableFeatureConfigurationFetching = useApplicationContext(
+    (context) => context.environment.enableFeatureConfigurationFetching
   );
   const allMenuFeatureToggles = useAllMenuFeatureToggles();
   const flags = React.useMemo(
@@ -101,11 +96,11 @@ export const SetupFlopFlipProvider = (props: Props) => {
     [allMenuFeatureToggles.allFeatureToggles, props.flags]
   );
   React.useMemo(() => {
-    combineAdapters.combine(
-      [ldAdapter, enableFeatureConfigurationFetching && httpAdapter].filter(
-        Boolean
-      )
-    );
+    if (enableFeatureConfigurationFetching) {
+      combineAdapters.combine([ldAdapter, httpAdapter]);
+    } else {
+      combineAdapters.combine([ldAdapter]);
+    }
   }, [enableFeatureConfigurationFetching]);
 
   const defaultFlags = React.useMemo(

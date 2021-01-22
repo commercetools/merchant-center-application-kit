@@ -169,5 +169,6 @@ export interface ApplicationWindow extends Window {
     useFullRedirectsForLinks?: boolean;
     // Properties for OIDC-like workflow for development
     __DEVELOPMENT__?: ApplicationOidcForDevelopmentConfig;
+    enableFeatureConfigurationFetching?: boolean;
   };
 }
