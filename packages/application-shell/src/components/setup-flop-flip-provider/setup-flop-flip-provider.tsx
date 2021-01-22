@@ -5,6 +5,7 @@ import type {
 } from '../../types/generated/mc';
 
 import React from 'react';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
 import httpAdapter from '@flopflip/http-adapter';
 import combineAdapters from '@flopflip/combine-adapters';
@@ -52,8 +53,6 @@ type TParsedHttpAdapterFlags = Record<
 // is no need to be concerned about security.
 const ldClientSideIdProduction = '5979d95f6040390cd07b5e01';
 
-combineAdapters.combine([ldAdapter, httpAdapter]);
-
 function getUserCustomFieldsForLaunchDarklyAdapter(
   user?: Props['user'],
   projectKey?: string
@@ -82,8 +81,16 @@ const parseFlags = (fetchedFlags: TFetchedFlags): TParsedHttpAdapterFlags =>
     ])
   );
 
+type TAdditionalEnvironmentProperties = {
+  env: {
+    enableFeatureConfigurationFetching?: boolean;
+  }
+};
 export const SetupFlopFlipProvider = (props: Props) => {
   const apolloClient = useApolloClient();
+  const enableFeatureConfigurationFetching = useApplicationContext<TAdditionalEnvironmentProperties>(
+    (context) => context.environment.env.enableFeatureConfigurationFetching
+  );
   const allMenuFeatureToggles = useAllMenuFeatureToggles();
   const flags = React.useMemo(
     () => ({
@@ -93,6 +100,13 @@ export const SetupFlopFlipProvider = (props: Props) => {
     }),
     [allMenuFeatureToggles.allFeatureToggles, props.flags]
   );
+  React.useMemo(() => {
+    combineAdapters.combine(
+      [ldAdapter, enableFeatureConfigurationFetching && httpAdapter].filter(
+        Boolean
+      )
+    );
+  }, [enableFeatureConfigurationFetching]);
 
   const defaultFlags = React.useMemo(
     () => ({
