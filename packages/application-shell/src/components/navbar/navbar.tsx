@@ -39,8 +39,6 @@ import {
   StarIcon,
   ConnectedSquareIcon,
   ClockWithArrowIcon,
-  // Types
-  IconProps,
 } from '@commercetools-uikit/icons';
 import MissingImageSvg from '@commercetools-frontend/assets/images/diagonal-line.svg';
 import {
@@ -83,6 +81,7 @@ type TProjectPermissions = {
 </DataMenu>
 */
 
+type IconProps = Parameters<typeof BackIcon>[0];
 type IconSwitcherProps = { iconName: string } & IconProps;
 // This component receives the icon name as a string
 // and statically maps it to the related icon component.
