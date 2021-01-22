@@ -55,6 +55,9 @@ export {
   ConfigureFlopFlip,
   ReconfigureFlopFlip,
   useFeatureToggle,
+  useFeatureToggles,
+  useFlagVariation,
+  useFlagVariations,
   useAdapterStatus,
   useAdapterReconfiguration,
 } from '@flopflip/react-broadcast';
