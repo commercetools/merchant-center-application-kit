@@ -95,7 +95,7 @@
     "@changesets/changelog-github": "0.2.8",
     "@changesets/cli": "2.13.0",
     "@commercetools-docs/writing-style": "3.0.3",
-    "@commercetools-frontend/eslint-config-mc-app": "17.10.1",
+    "@commercetools-frontend/eslint-config-mc-app": "*",
     "@commercetools-test-data/core": "2.1.1",
     "@commercetools-uikit/design-system": "^10.43.3",
     "@commercetools/github-labels": "1.1.0",
