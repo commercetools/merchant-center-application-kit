@@ -20,7 +20,7 @@ Most of the rules have stayed the same, however you may need to adjust or fix so
 In this release we also removed the long deprecated hostnames `mc.commercetools.com` and `mc.commercetools.co` from the default Content Security Policy configuration.<br/>
 This is aligned with the long-running effort of [moving the Merchant Center to use the new URLs](https://docs.commercetools.com/merchant-center/releases/2021-01-11-merchant-center-has-changed-its-url).
 
-This change should not affect your Custom Application because the `custom-application-config.json` already implies and provides the correct hostnames in the CSP directives.
+If you still want to support your Custom Application to run on the legacy hostname for the remaining time being, you would need to explicitly add the legacy hostname(s) in the `connect-src` config of the `custom-application-config.json`. 
 
 Follow the steps below to migrate your ESLint config to the new version.
 
