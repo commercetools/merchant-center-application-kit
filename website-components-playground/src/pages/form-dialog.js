@@ -3,6 +3,7 @@ import { Formik } from 'formik';
 import { FormDialog } from '@commercetools-frontend/application-components';
 import Spacings from '@commercetools-uikit/spacings';
 import TextField from '@commercetools-uikit/text-field';
+import TextInput from '@commercetools-uikit/text-input';
 import LayoutApp from '../layouts/layout-app';
 import PlaygroundController from '../components/playground-controller';
 import ModalController from '../components/modal-controller';

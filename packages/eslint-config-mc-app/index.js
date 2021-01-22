@@ -1,111 +1,129 @@
-const hasJsxRuntime = require('./has-jsx-runtime');
+const { statusCode } = require('./helpers/eslint');
+const hasJsxRuntime = require('./helpers/has-jsx-runtime');
 
 module.exports = {
-  parser: 'babel-eslint',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 8,
-    sourceType: 'module',
-  },
   extends: [
-    'airbnb-base',
+    // https://github.com/facebook/create-react-app/tree/master/packages/eslint-config-react-app
+    'react-app',
+    'react-app/jest',
+    // https://github.com/cypress-io/eslint-plugin-cypress
+    'plugin:cypress/recommended',
+    // https://github.com/benmosher/eslint-plugin-import
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
+    // https://github.com/jest-community/eslint-plugin-jest
     'plugin:jest/recommended',
-    'plugin:jest-dom/recommended',
+    // https://github.com/yannickcr/eslint-plugin-react
     'plugin:react/recommended',
+    // https://github.com/testing-library/eslint-plugin-testing-library
+    'plugin:testing-library/react',
+    // https://github.com/prettier/prettier-eslint
+    // NOTE: this should go last.
     'prettier',
     'prettier/react',
   ],
-  env: {
-    browser: true,
-    es6: true,
-    jest: true,
-    node: true,
-    mocha: false,
-  },
   plugins: [
-    'import',
-    'jest',
+    // https://github.com/testing-library/eslint-plugin-jest-dom
     'jest-dom',
-    'jsx-a11y',
+    // https://github.com/prettier/prettier-eslint
     'prettier',
-    'prefer-object-spread',
-    'react',
   ],
   rules: {
-    'class-methods-use-this': [
-      'error',
-      {
-        exceptMethods: [
-          'render',
-          'getInitialState',
-          'getDefaultProps',
-          'getChildContext',
-          'shouldComponentUpdate',
-          'UNSAFE_componentWillMount',
-          'UNSAFE_componentWillReceiveProps',
-          'UNSAFE_componentWillUpdate',
-          'componentWillUnmount',
-          'componentDidMount',
-          'componentDidUpdate',
-        ],
-      },
-    ],
-    'function-paren-newline': 0,
-    'import/extensions': [
-      'error',
-      'always',
-      {
-        js: 'never',
-        mjs: 'never',
-      },
-    ],
-    'import/no-extraneous-dependencies': 0,
-    'import/no-named-as-default': 0,
-    'import/no-unresolved': 0,
-    'import/first': 0,
-    'import/order': 2,
-    'no-restricted-globals': ['error', 'find', 'name', 'location'],
-    'no-warning-comments': 0,
-    'no-use-before-define': [
-      'error',
-      {
-        functions: false,
-      },
-    ],
-    'no-underscore-dangle': 0,
-    'jest/no-identical-title': 'warn',
-    'jest/no-focused-tests': 2,
-    /* eslint-plugin-react */
-    'react/jsx-uses-vars': 2,
-    'react/wrap-multilines': 0,
-    'react/no-deprecated': 'error',
-    'react/no-find-dom-node': 0,
-    'react/display-name': [
-      1,
-      {
-        ignoreTranspilerName: true,
-      },
-    ],
-    'react/jsx-no-target-blank': 0,
-    'react/no-unused-prop-types': 'error',
-    'prefer-object-spread/prefer-object-spread': 2,
-    'prefer-destructuring': 0,
-    'prefer-promise-reject-errors': 'warn',
-    'lines-between-class-members': 0,
     // NOTE: The regular rule does not support do-expressions. The equivalent rule of babel does.
     'no-unused-expressions': 0,
+
+    // Imports
+    'import/extensions': [
+      statusCode.error,
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+        mjs: 'never',
+        json: 'always',
+        svg: 'always',
+        graphql: 'always',
+      },
+    ],
+    'import/default': statusCode.off,
+    'import/first': statusCode.error,
+    // TODO: enable this once there is support for `import type`
+    // 'import/order': statusCode.error,
+    'import/namespace': statusCode.off,
+    'import/no-extraneous-dependencies': statusCode.off,
+    'import/no-named-as-default': statusCode.off,
+    'import/no-named-as-default-member': statusCode.off,
+    'import/no-unresolved': statusCode.error,
+
+    // Jest
+    'jest/expect-expect': statusCode.off,
+    'jest/no-identical-title': statusCode.warn,
+    'jest/no-focused-tests': statusCode.error,
+
+    // RTL
+    'testing-library/prefer-presence-queries': statusCode.error,
+    'testing-library/await-async-query': statusCode.error,
+
+    // React
+    'react/jsx-uses-vars': statusCode.error,
+    'react/no-deprecated': statusCode.error,
+    'react/no-unused-prop-types': statusCode.error,
     ...(hasJsxRuntime() && {
-      'react/jsx-uses-react': 'off',
-      'react/react-in-jsx-scope': 'off',
+      'react/jsx-uses-react': statusCode.off,
+      'react/react-in-jsx-scope': statusCode.off,
     }),
   },
   overrides: [
     {
-      files: ['*.spec.js'],
+      files: ['*.{spec,test}.*'],
       rules: {
-        'react/display-name': 0,
+        'react/display-name': statusCode.off,
+      },
+    },
+    {
+      files: ['**/*.ts?(x)'],
+      extends: ['prettier', 'prettier/@typescript-eslint'],
+      rules: {
+        // TypeScript
+        '@typescript-eslint/ban-types': statusCode.off,
+        '@typescript-eslint/naming-convention': statusCode.off,
+        '@typescript-eslint/consistent-type-definitions': statusCode.off,
+        '@typescript-eslint/no-explicit-any': statusCode.error,
+        '@typescript-eslint/no-use-before-define': [
+          statusCode.error,
+          { functions: false },
+        ],
+        '@typescript-eslint/no-var-requires': statusCode.off,
+        '@typescript-eslint/unbound-method': statusCode.off,
+        '@typescript-eslint/ban-ts-comment': statusCode.off,
+        '@typescript-eslint/explicit-function-return-type': statusCode.off,
+        '@typescript-eslint/explicit-member-accessibility': [
+          2,
+          { accessibility: 'no-public' },
+        ],
+        '@typescript-eslint/no-require-imports': statusCode.off,
+        '@typescript-eslint/promise-function-async': statusCode.off,
+
+        // React
+        'react/no-unused-prop-types': statusCode.off,
+        'react/prop-types': statusCode.off,
+      },
+      settings: {
+        react: {
+          version: 'detect',
+        },
+        'import/parsers': {
+          '@typescript-eslint/parser': ['.js', '.jsx', '.ts', '.tsx'],
+        },
+        'import/resolver': {
+          'eslint-import-resolver-typescript': true,
+          typescript: {},
+          node: {
+            extensions: ['.js', '.jsx', '.ts', '.tsx'],
+          },
+        },
       },
     },
   ],
