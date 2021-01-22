@@ -1,5 +1,12 @@
 # @commercetools-frontend/mc-html-template
 
+## 18.0.0
+
+### Major Changes
+
+- [`7f8b219`](https://github.com/commercetools/merchant-center-application-kit/commit/7f8b219b46c6d1935fdc2757346e195aae08afc6) [#1961](https://github.com/commercetools/merchant-center-application-kit/pull/1961) Thanks [@emmenko](https://github.com/emmenko)! - Remove [deprecated Merchant Center hostnames](https://docs.commercetools.com/merchant-center/releases/2021-01-11-merchant-center-has-changed-its-url) from default CSP config.<br/>
+  This change should not affect your Custom Application because the `custom-application-config.json` already implies and provides the correct hostnames in the CSP directives.
+
 ## 17.10.1
 
 ### Patch Changes
