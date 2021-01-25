@@ -3732,6 +3732,11 @@
   resolved "https://registry.yarnpkg.com/@flopflip/types/-/types-4.1.10.tgz#43264be1aeda291647b87c8022a31ae69c2d0ae0"
   integrity sha512-X24CAep+LltfJRypWNSIqpeL2jEH2qTcnUOUlV6q394tnxqey6ZNV0B165OsDVLIcHi1JIBePGRj4V1DqpXwoA==
 
+"@fontsource/open-sans@4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/open-sans/-/open-sans-4.1.0.tgz#d44b4495bd23d78018675e4e79973894e393c0ed"
+  integrity sha512-sWDAAr6ESHJdBKXse6njvZem4sTZLILkugaEfAvpdFiaKBh2RnXTa4DJllDh5LzP0MLMUrfj/JAjMbKxWFo6pQ==
+
 "@fontsource/roboto-mono@4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@fontsource/roboto-mono/-/roboto-mono-4.1.0.tgz#83aac6cce6849d0d943861e21c1b31d7b6dfd724"
@@ -14270,11 +14275,6 @@ follow-redirects@^1.0.0, follow-redirects@^1.10.0:
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.1.tgz#5f69b813376cee4fd0474a3aba835df04ab763b7"
   integrity sha512-SSG5xmZh1mkPGyKzjZP8zLjltIfpW32Y5QpdNJyjcfGxK3qo3NDDkZOZSFiGn1A6SclQxY9GzEwAHQ3dmYRWpg==
-
-fontsource-open-sans@3.1.5:
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/fontsource-open-sans/-/fontsource-open-sans-3.1.5.tgz#93d0040633d37215658d72565bd2a12d9a8fa854"
-  integrity sha512-tculQB3D6GHLPcbY1+WduZJM3bitV7GptWuKBAU7emfagJ/D5jtMCMd4i4JOGEzk0n416fdo5vLC0zYHxBYxzg==
 
 for-each@^0.3.3:
   version "0.3.3"
