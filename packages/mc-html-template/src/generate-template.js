@@ -64,13 +64,13 @@ module.exports = function generateTemplate({
     <div id="app"></div>
 
     <!-- Loading screen handling -->
-    <script>__LOADING_SCREEN_JS__</script>
+    <script referrerpolicy="no-referrer">__LOADING_SCREEN_JS__</script>
 
     <!-- Application globals -->
-    <script>window.app = __APP_ENVIRONMENT__;</script>
+    <script referrerpolicy="no-referrer">window.app = __APP_ENVIRONMENT__;</script>
 
     <!-- Tracking scripts (load before application bundles) -->
-    <script>__DATALAYER_JS__</script>
+    <script referrerpolicy="no-referrer">__DATALAYER_JS__</script>
     __GTM_SCRIPT__
 
     <!-- Main application chunks -->
