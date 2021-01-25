@@ -8,7 +8,7 @@ const getGtmTrackingScript = (gtmId) => {
   if (!gtmId) return '';
   const url = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
   return `
-<script async type="text/javascript" src="${url}"></script>
+<script async type="text/javascript" src="${url}" referrerpolicy="no-referrer"></script>
   `;
 };
 
