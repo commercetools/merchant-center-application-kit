@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@types/react": "16.14.2",
-    "@types/react-redux": "7.1.15",
+    "@types/react-redux": "7.1.16",
     "react": "16.14.0",
     "react-redux": "7.2.2",
     "redux": "4.0.5"

@@ -74,7 +74,7 @@
     "@types/uuid": "8.3.0",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.10.16"
+    "react-intl": "5.10.17"
   },
   "peerDependencies": {
     "@commercetools-frontend/ui-kit": "10.x",

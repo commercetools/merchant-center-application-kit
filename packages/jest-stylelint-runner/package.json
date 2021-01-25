@@ -26,7 +26,7 @@
     "postcss": "8.2.4",
     "postcss-custom-properties": "10.0.0",
     "postcss-import": "14.0.0",
-    "stylelint": "13.8.0"
+    "stylelint": "13.9.0"
   },
   "dependencies": {
     "postcss-load-config": "3.0.0"
