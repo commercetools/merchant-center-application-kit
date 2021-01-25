@@ -1,5 +1,13 @@
 # @commercetools-frontend/mc-html-template
 
+## 18.0.1
+
+### Patch Changes
+
+- [`83c5cf37`](https://github.com/commercetools/merchant-center-application-kit/commit/83c5cf37f98a3461cef70ac7bd80a6bbf1a6d4cd) [#1994](https://github.com/commercetools/merchant-center-application-kit/pull/1994) Thanks [@tdeekens](https://github.com/tdeekens)! - fix(mc-html-template): add no-referer policy
+
+* [`2869d6c1`](https://github.com/commercetools/merchant-center-application-kit/commit/2869d6c146b679227af9f39e76d1e3f90af7adde) [#1996](https://github.com/commercetools/merchant-center-application-kit/pull/1996) Thanks [@tdeekens](https://github.com/tdeekens)! - fix(mc-html-template): add no-referer policy to script-tags
+
 ## 18.0.0
 
 ### Major Changes
