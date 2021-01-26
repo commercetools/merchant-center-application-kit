@@ -25,4 +25,4 @@
 "@commercetools-frontend/sentry": patch
 ---
 
-refactor: use `combine-adapter` to be able to use `http-adapter` and `launchdarkly-adapter`
+Add internal opt-in support for combining feature flag adapters.
