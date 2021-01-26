@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 18.0.3
+
+### Patch Changes
+
+- [`80668fd2`](https://github.com/commercetools/merchant-center-application-kit/commit/80668fd27f3b8ce35230b7d5f780612e244f9621) [#1999](https://github.com/commercetools/merchant-center-application-kit/pull/1999) Thanks [@emmenko](https://github.com/emmenko)! - Fix rendering of application with implicit routes when redirecting to `/account` route.
+
 ## 18.0.2
 
 ### Patch Changes
