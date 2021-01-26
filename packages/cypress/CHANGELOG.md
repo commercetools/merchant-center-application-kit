@@ -1,5 +1,11 @@
 # @commercetools-frontend/cypress
 
+## 18.0.2
+
+### Patch Changes
+
+- [`b38cb57f`](https://github.com/commercetools/merchant-center-application-kit/commit/b38cb57f678e79a862f1b97df2d1c753838ffbb7) [#1991](https://github.com/commercetools/merchant-center-application-kit/pull/1991) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
 ## 17.10.1
 
 ### Patch Changes

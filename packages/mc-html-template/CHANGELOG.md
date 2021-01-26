@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-html-template
 
+## 18.0.2
+
+### Patch Changes
+
+- [`fa151b6a`](https://github.com/commercetools/merchant-center-application-kit/commit/fa151b6a4ae2971c243cac0b94bbe0c77947dcd2) [#1998](https://github.com/commercetools/merchant-center-application-kit/pull/1998) Thanks [@tdeekens](https://github.com/tdeekens)! - fix(mc-html-template): to never send a referrer
+
 ## 18.0.1
 
 ### Patch Changes
