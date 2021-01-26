@@ -1,0 +1,7 @@
+query AllFeatures {
+  allFeatures {
+    name
+    value
+    reason
+  }
+}

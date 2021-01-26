@@ -166,6 +166,7 @@ export interface ApplicationWindow extends Window {
     trackingSentry?: string;
     trackingGtm?: string;
     enableSignUp?: boolean;
+    enableFeatureConfigurationFetching?: boolean;
     useFullRedirectsForLinks?: boolean;
     // Properties for OIDC-like workflow for development
     __DEVELOPMENT__?: ApplicationOidcForDevelopmentConfig;

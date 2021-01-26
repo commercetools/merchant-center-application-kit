@@ -1,12 +1,20 @@
 import type { TFlags } from '@flopflip/types';
-import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
+import type {
+  TAllFeaturesQuery,
+  TFetchLoggedInUserQuery,
+} from '../../types/generated/mc';
 
 import React from 'react';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
-import omitEmpty from 'omit-empty-es';
+import httpAdapter from '@flopflip/http-adapter';
+import combineAdapters from '@flopflip/combine-adapters';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
+import { useApolloClient } from '@apollo/client/react';
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import useAllMenuFeatureToggles from '../../hooks/use-all-menu-feature-toggles';
 import { FLAGS } from '../../feature-toggles';
+import AllFeaturesQuery from './fetch-all-features.mc.graphql';
 
 type Props = {
   projectKey?: string;
@@ -18,7 +26,7 @@ type Props = {
   shouldDeferAdapterConfiguration?: boolean;
 };
 
-type CustomLDUser = {
+type TLaunchDarklyUserCustomFields = {
   project: string;
   id: string;
   team: string[];
@@ -27,12 +35,57 @@ type CustomLDUser = {
   tenant: string;
 };
 
+type TFetchedHttpAdapterFlag = {
+  name: string;
+  value: boolean;
+  reason?: string;
+};
+type TParsedHttpAdapterFlags = Record<
+  string,
+  {
+    value: boolean;
+    reason?: string;
+  }
+>;
+
 // This value is hard-coded here because we want to make sure that the
 // app uses our account of LD. The value is meant to be public, so there
 // is no need to be concerned about security.
 const ldClientSideIdProduction = '5979d95f6040390cd07b5e01';
 
+function getUserCustomFieldsForLaunchDarklyAdapter(
+  user?: Props['user'],
+  projectKey?: string
+): TLaunchDarklyUserCustomFields {
+  return {
+    project: projectKey ?? '',
+    id: user?.launchdarklyTrackingId ?? '',
+    team: user?.launchdarklyTrackingTeam ?? [],
+    group: user?.launchdarklyTrackingGroup ?? '',
+    subgroup: user?.launchdarklyTrackingSubgroup ?? '',
+    tenant: user?.launchdarklyTrackingTenant ?? '',
+  };
+}
+
+type TFetchedFlags = {
+  allFeatures: TFetchedHttpAdapterFlag[];
+};
+const parseFlags = (fetchedFlags: TFetchedFlags): TParsedHttpAdapterFlags =>
+  Object.fromEntries(
+    fetchedFlags.allFeatures.map((fetchedFlag) => [
+      fetchedFlag.name,
+      {
+        value: fetchedFlag.value,
+        reason: fetchedFlag.reason,
+      },
+    ])
+  );
+
 export const SetupFlopFlipProvider = (props: Props) => {
+  const apolloClient = useApolloClient();
+  const enableFeatureConfigurationFetching = useApplicationContext(
+    (context) => context.environment.enableFeatureConfigurationFetching
+  );
   const allMenuFeatureToggles = useAllMenuFeatureToggles();
   const flags = React.useMemo(
     () => ({
@@ -42,6 +95,13 @@ export const SetupFlopFlipProvider = (props: Props) => {
     }),
     [allMenuFeatureToggles.allFeatureToggles, props.flags]
   );
+  React.useMemo(() => {
+    if (enableFeatureConfigurationFetching) {
+      combineAdapters.combine([ldAdapter, httpAdapter]);
+    } else {
+      combineAdapters.combine([ldAdapter]);
+    }
+  }, [enableFeatureConfigurationFetching]);
 
   const defaultFlags = React.useMemo(
     () => ({
@@ -54,26 +114,48 @@ export const SetupFlopFlipProvider = (props: Props) => {
 
   const adapterArgs = React.useMemo(
     () => ({
-      sdk: {
-        // Allow to overwrite the client ID, passed via the `additionalEnv` properties
-        // of the application config.
-        // This is mostly useful for internal usage on our staging environments.
-        clientSideId: props.ldClientSideId ?? ldClientSideIdProduction,
-      },
-      flags,
       user: {
         key: props.user?.id,
-        custom: omitEmpty<CustomLDUser, Partial<CustomLDUser>>({
-          id: props.user?.launchdarklyTrackingId,
-          project: props.projectKey,
-          team: props.user?.launchdarklyTrackingTeam,
-          group: props.user?.launchdarklyTrackingGroup,
-          subgroup: props.user?.launchdarklyTrackingSubgroup,
-          tenant: props.user?.launchdarklyTrackingTenant,
-        }),
+      },
+      memory: {
+        user: {
+          key: props.user?.id,
+        },
+      },
+      launchdarkly: {
+        sdk: {
+          // Allow to overwrite the client ID, passed via the `additionalEnv` properties
+          // of the application config.
+          // This is mostly useful for internal usage on our staging environments.
+          clientSideId: props.ldClientSideId ?? ldClientSideIdProduction,
+        },
+        flags,
+        user: {
+          key: props.user?.id,
+          custom: getUserCustomFieldsForLaunchDarklyAdapter(
+            props.user,
+            props.projectKey
+          ),
+        },
+      },
+      http: {
+        user: {
+          key: props.user?.id,
+        },
+        execute: async function () {
+          const response = await apolloClient.query<TAllFeaturesQuery>({
+            query: AllFeaturesQuery,
+            errorPolicy: 'ignore',
+            context: {
+              target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+            },
+          });
+
+          return parseFlags(response.data);
+        },
       },
     }),
-    [flags, props.ldClientSideId, props.projectKey, props.user]
+    [apolloClient, flags, props.ldClientSideId, props.projectKey, props.user]
   );
 
   if (process.env.NODE_ENV === 'test') {
@@ -81,7 +163,7 @@ export const SetupFlopFlipProvider = (props: Props) => {
     return (
       <ConfigureFlopFlip<typeof memoryAdapter>
         adapter={memoryAdapter}
-        adapterArgs={adapterArgs}
+        adapterArgs={adapterArgs.memory}
         defaultFlags={defaultFlags}
         shouldDeferAdapterConfiguration={
           typeof props.shouldDeferAdapterConfiguration === 'boolean'
@@ -95,8 +177,8 @@ export const SetupFlopFlipProvider = (props: Props) => {
   }
 
   return (
-    <ConfigureFlopFlip<typeof ldAdapter>
-      adapter={ldAdapter}
+    <ConfigureFlopFlip<typeof combineAdapters>
+      adapter={combineAdapters}
       adapterArgs={adapterArgs}
       defaultFlags={defaultFlags}
       shouldDeferAdapterConfiguration={
