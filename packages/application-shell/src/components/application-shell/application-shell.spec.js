@@ -179,7 +179,11 @@ beforeEach(() => {
 afterEach(() => {
   mockServer.resetHandlers();
 });
-beforeAll(() => mockServer.listen());
+beforeAll(() =>
+  mockServer.listen({
+    onUnhandledRequest: 'error',
+  })
+);
 afterAll(() => mockServer.close());
 
 describe.each`
@@ -202,6 +206,32 @@ describe.each`
       });
       await rendered.findByText('Application name: my-app');
     });
+
+    describe('when user navigates to "/account" route', () => {
+      if (renderNodeAsChildren) {
+        it('should trigger a page reload (when served by proxy)', async () => {
+          const rendered = renderApp(null, {
+            renderNodeAsChildren,
+            environment: { servedByProxy: true },
+          });
+          await rendered.findByText('OK');
+          rendered.history.push('/account');
+          await waitFor(() => {
+            expect(location.reload).toHaveBeenCalled();
+          });
+        });
+      } else {
+        it('should render using the "render" prop', async () => {
+          const rendered = renderApp(null, {
+            renderNodeAsChildren,
+          });
+          await rendered.findByText('OK');
+          rendered.history.push('/account');
+          await rendered.findByText('OK');
+          expect(location.reload).not.toHaveBeenCalled();
+        });
+      }
+    });
   }
 );
 
@@ -212,8 +242,9 @@ describe('when route does not contain a project key (e.g. /account)', () => {
     rendered.history.push('/account');
     await waitFor(() => {
       expect(rendered.history.location.pathname).toBe('/account');
-      expect(rendered.queryByLeftNavigation()).not.toBeInTheDocument();
     });
+    expect(rendered.queryByLeftNavigation()).not.toBeInTheDocument();
+    await rendered.findByText('OK');
   });
 });
 describe('when user first visits "/" with no projectKey defined in localStorage', () => {
@@ -250,8 +281,8 @@ describe('when user has no default project', () => {
     });
     await waitFor(() => {
       expect(location.replace).toHaveBeenCalledWith('/account/projects/new');
-      expect(rendered.queryByText('OK')).not.toBeInTheDocument();
     });
+    expect(rendered.queryByText('OK')).not.toBeInTheDocument();
   });
 });
 describe('when loading user fails with an unknown graphql error', () => {
@@ -286,8 +317,8 @@ describe('when loading user fails with an unauthorized graphql error', () => {
       expect(location.replace).toHaveBeenCalledWith(
         expect.stringContaining(`/logout?${queryParams}`)
       );
-      expect(rendered.queryByText('OK')).not.toBeInTheDocument();
     });
+    expect(rendered.queryByText('OK')).not.toBeInTheDocument();
   });
 });
 describe('when loading user fails with a "was not found." graphql error message', () => {
@@ -308,8 +339,8 @@ describe('when loading user fails with a "was not found." graphql error message'
       expect(location.replace).toHaveBeenCalledWith(
         expect.stringContaining(`/logout?${queryParams}`)
       );
-      expect(rendered.queryByText('OK')).not.toBeInTheDocument();
     });
+    expect(rendered.queryByText('OK')).not.toBeInTheDocument();
   });
 });
 describe('when project is not found', () => {

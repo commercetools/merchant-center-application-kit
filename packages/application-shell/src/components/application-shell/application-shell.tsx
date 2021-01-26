@@ -24,7 +24,9 @@ import {
 } from '@commercetools-frontend/application-shell-connectors';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
+import version from '../../version';
 import internalReduxStore from '../../configure-store';
+import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
 import ProjectDataLocale from '../project-data-locale';
 import PortalsContainer from '../portals-container';
 import ApplicationShellProvider from '../application-shell-provider';
@@ -42,9 +44,8 @@ import GtmApplicationTracker from '../gtm-application-tracker';
 import NavBar, { LoadingNavBar } from '../navbar';
 import ApplicationLoader from '../application-loader';
 import ErrorApologizer from '../error-apologizer';
-import version from '../../version';
+import RouteCatchAll from '../route-catch-all';
 import RedirectToProjectCreate from '../redirect-to-project-create';
-import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
 import QuickAccess from '../quick-access';
 import RedirectToLogin from './redirect-to-login';
 import RedirectToLogout from './redirect-to-logout';
@@ -418,9 +419,20 @@ export const RestrictedApplication = <
                                 />
                                 <Route path="/account">
                                   {
-                                    // Render the children and pass the control to the
-                                    // specific application part
-                                    props.render ?? props.children
+                                    /**
+                                     * In case the AppShell uses the `render` function, we assume it's one of two cases:
+                                     * 1. The application does not use `children` and therefore implements the routes including
+                                     * the <RouteCatchAll> (this is the "legacy" behavior).
+                                     * 2. It's the account application, which always uses `render` and therefore should render as normal.
+                                     *
+                                     * In case the AppShell uses the `children` function, we can always assume that
+                                     * it's a normal Custom Application and that it should trigger a force reload.
+                                     */
+                                    props.render ? (
+                                      <>{props.render()}</>
+                                    ) : (
+                                      <RouteCatchAll />
+                                    )
                                   }
                                 </Route>
                                 {/* Project routes */}
