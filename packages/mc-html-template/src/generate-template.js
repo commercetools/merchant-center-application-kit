@@ -4,11 +4,10 @@ module.exports = function generateTemplate({
 }) {
   const cssImports = cssChunks.map(
     (chunkPath) =>
-      `<link href="__CDN_URL__${chunkPath}" rel='stylesheet' type='text/css' referrerpolicy='no-referrer'></link>`
+      `<link href="__CDN_URL__${chunkPath}" rel='stylesheet' type='text/css'></link>`
   );
   const scriptImports = scriptChunks.map(
-    (chunkPath) =>
-      `<script src="__CDN_URL__${chunkPath}" referrerpolicy='no-referrer'></script>`
+    (chunkPath) => `<script src="__CDN_URL__${chunkPath}"></script>`
   );
 
   return `
@@ -17,8 +16,9 @@ module.exports = function generateTemplate({
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="preconnect" href="__CDN_URL__" referrerpolicy="no-referrer">
-    <link rel="preconnect" href="__MC_API_URL__" referrerpolicy="no-referrer">
+    <meta name="referrer" content="no-referrer">
+    <link rel="preconnect" href="__CDN_URL__">
+    <link rel="preconnect" href="__MC_API_URL__">
     <!-- Fav and touch icons -->
     <link rel="shortcut icon" type="image/png" href="/favicon.png">
     <!-- Standard iPhone -->
@@ -33,7 +33,7 @@ module.exports = function generateTemplate({
     <!-- Retina iPad -->
     <link rel="apple-touch-icon" sizes="144x144" href="/favicon_144x144px.png">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon_144x144px.png">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i' rel='stylesheet' type='text/css' referrerpolicy="no-referrer"></link>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i' rel='stylesheet' type='text/css'></link>
     ${cssImports.join('\n')}
     <title>Merchant Center</title>
   </head>
@@ -64,13 +64,13 @@ module.exports = function generateTemplate({
     <div id="app"></div>
 
     <!-- Loading screen handling -->
-    <script referrerpolicy="no-referrer">__LOADING_SCREEN_JS__</script>
+    <script>__LOADING_SCREEN_JS__</script>
 
     <!-- Application globals -->
-    <script referrerpolicy="no-referrer">window.app = __APP_ENVIRONMENT__;</script>
+    <script>window.app = __APP_ENVIRONMENT__;</script>
 
     <!-- Tracking scripts (load before application bundles) -->
-    <script referrerpolicy="no-referrer">__DATALAYER_JS__</script>
+    <script>__DATALAYER_JS__</script>
     __GTM_SCRIPT__
 
     <!-- Main application chunks -->
