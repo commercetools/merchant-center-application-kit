@@ -1,6 +1,4 @@
-type CommandLoginOidcOptions = {
-  entryPointUriPath: string;
-};
+import type { CommandLoginByOidcOptions } from './dist/commercetools-frontend-cypress-add-commands.cjs';
 
 declare namespace Cypress {
   interface Chainable<Subject> {
@@ -9,6 +7,6 @@ declare namespace Cypress {
      * @example
      *    cy.loginByOidc({ entryPointUriPath: 'examples-starter' })
      */
-    loginByOidc(options?: CommandLoginOidcOptions): Chainable<Subject>;
+    loginByOidc(options?: CommandLoginByOidcOptions): Chainable<Subject>;
   }
 }
