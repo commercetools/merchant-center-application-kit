@@ -1,5 +1,11 @@
 # @commercetools-frontend/jest-stylelint-runner
 
+## 18.1.0
+
+### Patch Changes
+
+- [`3bf32993`](https://github.com/commercetools/merchant-center-application-kit/commit/3bf329935a109a73a7c33580fdf618e60fdbcc2c) [#1971](https://github.com/commercetools/merchant-center-application-kit/pull/1971) Thanks [@tdeekens](https://github.com/tdeekens)! - Add internal opt-in support for combining feature flag adapters.
+
 ## 18.0.2
 
 ### Patch Changes

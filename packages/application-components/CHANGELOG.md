@@ -1,5 +1,20 @@
 # @commercetools-frontend/application-components
 
+## 18.1.0
+
+### Patch Changes
+
+- [`3bf32993`](https://github.com/commercetools/merchant-center-application-kit/commit/3bf329935a109a73a7c33580fdf618e60fdbcc2c) [#1971](https://github.com/commercetools/merchant-center-application-kit/pull/1971) Thanks [@tdeekens](https://github.com/tdeekens)! - Add internal opt-in support for combining feature flag adapters.
+
+* [`7a53760f`](https://github.com/commercetools/merchant-center-application-kit/commit/7a53760f4a04decd02037315d8935bed953abfc8) [#2003](https://github.com/commercetools/merchant-center-application-kit/pull/2003) Thanks [@dogayuksel](https://github.com/dogayuksel)! - Allow `PublicPageLayout` container to flex beyond 100vh.
+
+* Updated dependencies [[`3bf32993`](https://github.com/commercetools/merchant-center-application-kit/commit/3bf329935a109a73a7c33580fdf618e60fdbcc2c)]:
+  - @commercetools-frontend/application-shell-connectors@18.1.0
+  - @commercetools-frontend/assets@18.1.0
+  - @commercetools-frontend/constants@18.1.0
+  - @commercetools-frontend/l10n@18.1.0
+  - @commercetools-frontend/i18n@18.1.0
+
 ## 18.0.2
 
 ### Patch Changes
