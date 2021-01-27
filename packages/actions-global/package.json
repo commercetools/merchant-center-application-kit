@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/actions-global",
-  "version": "18.0.2",
+  "version": "18.1.0",
   "description": "Global redux actions for a MC application",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -9,12 +9,7 @@
     "directory": "packages/actions-global"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": [
-    "javascript",
-    "frontend",
-    "react",
-    "toolkit"
-  ],
+  "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -22,22 +17,17 @@
   },
   "main": "dist/commercetools-frontend-actions-global.cjs.js",
   "module": "dist/commercetools-frontend-actions-global.esm.js",
-  "files": [
-    "dist",
-    "package.json",
-    "LICENSE",
-    "README.md"
-  ],
+  "files": ["dist", "package.json", "LICENSE", "README.md"],
   "scripts": {
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
     "@babel/runtime": "7.12.5",
     "@babel/runtime-corejs3": "7.12.5",
-    "@commercetools-frontend/browser-history": "17.10.1",
-    "@commercetools-frontend/constants": "17.10.1",
-    "@commercetools-frontend/notifications": "17.6.0",
-    "@commercetools-frontend/sentry": "17.10.1",
+    "@commercetools-frontend/browser-history": "18.1.0",
+    "@commercetools-frontend/constants": "18.1.0",
+    "@commercetools-frontend/notifications": "18.1.0",
+    "@commercetools-frontend/sentry": "18.1.0",
     "@types/lodash": "^4.14.167",
     "lodash": "4.17.20",
     "redux-thunk": "2.3.0"

@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/notifications",
-  "version": "17.6.0",
+  "version": "18.1.0",
   "description": "A general-purpose notification system built on top of redux",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -9,12 +9,7 @@
     "directory": "packages/notifications"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": [
-    "javascript",
-    "frontend",
-    "react",
-    "toolkit"
-  ],
+  "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -22,12 +17,7 @@
   },
   "main": "dist/commercetools-frontend-notifications.cjs.js",
   "module": "dist/commercetools-frontend-notifications.esm.js",
-  "files": [
-    "dist",
-    "package.json",
-    "LICENSE",
-    "README.md"
-  ],
+  "files": ["dist", "package.json", "LICENSE", "README.md"],
   "scripts": {
     "prepare": "./../../scripts/version.js replace"
   },

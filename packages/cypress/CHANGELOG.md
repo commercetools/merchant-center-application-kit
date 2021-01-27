@@ -1,5 +1,18 @@
 # @commercetools-frontend/cypress
 
+## 18.1.0
+
+### Minor Changes
+
+- [`f264af3f`](https://github.com/commercetools/merchant-center-application-kit/commit/f264af3f8aa27d8c03a414b9ac301588bad83135) [#2004](https://github.com/commercetools/merchant-center-application-kit/pull/2004) Thanks [@emmenko](https://github.com/emmenko)! - Add more options to `loginByOidc` command.
+
+### Patch Changes
+
+- [`3bf32993`](https://github.com/commercetools/merchant-center-application-kit/commit/3bf329935a109a73a7c33580fdf618e60fdbcc2c) [#1971](https://github.com/commercetools/merchant-center-application-kit/pull/1971) Thanks [@tdeekens](https://github.com/tdeekens)! - Add internal opt-in support for combining feature flag adapters.
+
+- Updated dependencies [[`3bf32993`](https://github.com/commercetools/merchant-center-application-kit/commit/3bf329935a109a73a7c33580fdf618e60fdbcc2c)]:
+  - @commercetools-frontend/application-config@18.1.0
+
 ## 18.0.2
 
 ### Patch Changes
