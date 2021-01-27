@@ -9,7 +9,7 @@ declare const Cypress: any;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const cy: any;
 
-type CommandLoginByOidcOptions = {
+export type CommandLoginByOidcOptions = {
   /**
    * The application entry point URI path. This value is used to identify
    * the correct application config.
