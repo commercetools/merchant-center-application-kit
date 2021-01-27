@@ -10,14 +10,19 @@ import { processConfig } from '@commercetools-frontend/application-config';
 
 type CustomApplicationConfigTaskOptions = {
   entryPointUriPath: string;
+  dotfiles?: string[];
 };
 type AllCustomApplicationConfigs = Record<string, ApplicationConfig['env']>;
 
 let cachedAllCustomApplicationConfigs: AllCustomApplicationConfigs;
 
-// TODO: make it configurable?
-const dotfiles = ['.env', '.env.local'];
-const loadEnvironmentVariables = (packageDirPath: string) => {
+const defaultDotfiles = ['.env', '.env.local'];
+
+const loadEnvironmentVariables = (
+  packageDirPath: string,
+  options: CustomApplicationConfigTaskOptions
+) => {
+  const dotfiles = options.dotfiles ?? defaultDotfiles;
   return dotfiles.reduce((mergedEnvs, dotfile) => {
     const envPath = path.join(packageDirPath, dotfile);
 
@@ -40,7 +45,9 @@ const loadEnvironmentVariables = (packageDirPath: string) => {
   }, process.env);
 };
 
-const loadAllCustomApplicationConfigs = async () => {
+const loadAllCustomApplicationConfigs = async (
+  options: CustomApplicationConfigTaskOptions
+) => {
   if (cachedAllCustomApplicationConfigs) {
     return cachedAllCustomApplicationConfigs;
   }
@@ -62,7 +69,7 @@ const loadAllCustomApplicationConfigs = async () => {
       const customAppConfigJson: TJSONSchemaForCustomApplicationConfigurationFiles = JSON.parse(
         fs.readFileSync(customAppConfigPath, { encoding: 'utf8' })
       );
-      const processEnv = loadEnvironmentVariables(packageInfo.dir);
+      const processEnv = loadEnvironmentVariables(packageInfo.dir, options);
       const processedConfig = processConfig({
         disableCache: true,
         configJson: customAppConfigJson,
@@ -79,17 +86,19 @@ const loadAllCustomApplicationConfigs = async () => {
   return cachedAllCustomApplicationConfigs;
 };
 
-const customApplicationConfig = async ({
-  entryPointUriPath,
-}: CustomApplicationConfigTaskOptions): Promise<ApplicationConfig['env']> => {
-  const allCustomApplicationConfigs = await loadAllCustomApplicationConfigs();
+const customApplicationConfig = async (
+  options: CustomApplicationConfigTaskOptions
+): Promise<ApplicationConfig['env']> => {
+  const allCustomApplicationConfigs = await loadAllCustomApplicationConfigs(
+    options
+  );
 
   const customApplicationConfig =
-    allCustomApplicationConfigs[entryPointUriPath];
+    allCustomApplicationConfigs[options.entryPointUriPath];
 
   if (!customApplicationConfig) {
     throw new Error(
-      `Could not find Custom Application config for entry point "${entryPointUriPath}"`
+      `Could not find Custom Application config for entry point "${options.entryPointUriPath}"`
     );
   }
 
