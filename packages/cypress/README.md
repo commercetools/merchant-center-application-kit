@@ -31,9 +31,15 @@ module.exports = (on, config) => {
 Add this line to your project's `cypress/support/commands.js`:
 
 ```javascript
-import '@commercetools-frontend/cypress/add-commands'
+import '@commercetools-frontend/cypress/add-commands';
 ```
 
 ### Commands
 
-* `cy.loginByOidc({ entryPointUriPath })`
+- `cy.loginByOidc({ entryPointUriPath })`
+
+  This command perform the user login using the OIDC workflow to retrieve the session token.<br/>
+  The command also requires to load the `custom-application-config.json` (automatically done via the Cypress task) and therefore it may need to load environment variables in case the application config uses environment placeholders.<br/>
+  By default, the `.env` and `.env.local` files are attempted to be loaded from the application folder. You can pass a `dotfiles` option to pass a list of names/paths relative to the application folder in case the files in the project have a different name/location.
+
+  > The command also requires the following environment variables to be available: `PROJECT_KEY`, `LOGIN_USER`, `LOGIN_PASSWORD`.
