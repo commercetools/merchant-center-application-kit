@@ -1,5 +1,11 @@
 # @commercetools-frontend/cypress
 
+## 18.1.2
+
+### Patch Changes
+
+- [`dbd896f5`](https://github.com/commercetools/merchant-center-application-kit/commit/dbd896f5fb44e75884ff9e161245d716ee26cd83) [#2008](https://github.com/commercetools/merchant-center-application-kit/pull/2008) Thanks [@emmenko](https://github.com/emmenko)! - Fix importing types into a `.d.ts` module.
+
 ## 18.1.1
 
 ### Patch Changes
