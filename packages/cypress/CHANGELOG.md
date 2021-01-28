@@ -1,5 +1,13 @@
 # @commercetools-frontend/cypress
 
+## 18.1.1
+
+### Patch Changes
+
+- [`44494820`](https://github.com/commercetools/merchant-center-application-kit/commit/444948201f77e8655d1e3adb836754f04b61ba68) [#2007](https://github.com/commercetools/merchant-center-application-kit/pull/2007) Thanks [@emmenko](https://github.com/emmenko)! - Improve logs for `loginByOidc` Cypress command
+
+* [`ac00a671`](https://github.com/commercetools/merchant-center-application-kit/commit/ac00a6718cdbf9c6bffac4e5a82e2f59faa21b7b) [#2005](https://github.com/commercetools/merchant-center-application-kit/pull/2005) Thanks [@emmenko](https://github.com/emmenko)! - Fix exporting types for command
+
 ## 18.1.0
 
 ### Minor Changes
