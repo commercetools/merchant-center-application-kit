@@ -61,10 +61,22 @@ Cypress.Commands.add(
     const projectKey = commandOptions.projectKey ?? Cypress.env('PROJECT_KEY');
     const sessionNonce = uuidv4();
 
-    cy.task('customApplicationConfig', {
-      entryPointUriPath: commandOptions.entryPointUriPath,
-      dotfiles: commandOptions.dotfiles,
-    }).then((appConfig: ApplicationConfig['env']) => {
+    cy.task(
+      'customApplicationConfig',
+      {
+        entryPointUriPath: commandOptions.entryPointUriPath,
+        dotfiles: commandOptions.dotfiles,
+      },
+      // Do not show log, as it may contain sensible information.
+      { log: false }
+    ).then((appConfig: ApplicationConfig['env']) => {
+      // Log loaded application config for debugging purposes.
+      Cypress.log({
+        displayName: 'task',
+        name: 'customApplicationConfig',
+        message: appConfig,
+      });
+
       const applicationId = appConfig.applicationId;
       const sessionScope = buildOidcScope({
         projectKey,
