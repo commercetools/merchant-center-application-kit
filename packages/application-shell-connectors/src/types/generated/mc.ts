@@ -821,7 +821,7 @@ export type TAllFeaturesQuery = (
   { __typename?: 'Query' }
   & { allFeatures: Array<(
     { __typename?: 'Feature' }
-    & Pick<TFeature, 'name' | 'value'>
+    & Pick<TFeature, 'name' | 'value' | 'reason'>
   )> }
 );
 
