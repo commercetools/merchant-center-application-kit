@@ -1,5 +1,3 @@
-import type { CommandLoginByOidcOptions } from './dist/commercetools-frontend-cypress-add-commands.cjs';
-
 declare namespace Cypress {
   interface Chainable<Subject> {
     /**
@@ -7,6 +5,9 @@ declare namespace Cypress {
      * @example
      *    cy.loginByOidc({ entryPointUriPath: 'examples-starter' })
      */
-    loginByOidc(options?: CommandLoginByOidcOptions): Chainable<Subject>;
+    loginByOidc(
+      // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-9.html#import-types
+      options?: import('./dist/commercetools-frontend-cypress-add-commands.cjs').CommandLoginByOidcOptions
+    ): Chainable<Subject>;
   }
 }
