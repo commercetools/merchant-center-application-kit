@@ -153,6 +153,14 @@ export const SetupFlopFlipProvider = (props: Props) => {
     [apolloClient, flags, props.ldClientSideId, props.projectKey, props.user]
   );
 
+  /**
+   * The `<ApplicationShell />` tests itself. When it does so it can not setup and use
+   * the `launchdarkly-adapter` and `http-adapter`. As a result the `process.env`
+   * is evaluated and a test provider is rendered for feature flags.
+   *
+   * The `process.env` check also ensures that this block is excluded from production
+   * bundles.
+   */
   if (process.env.NODE_ENV === 'test') {
     const { TestProviderFlopFlip } = require('@flopflip/react-broadcast');
 
