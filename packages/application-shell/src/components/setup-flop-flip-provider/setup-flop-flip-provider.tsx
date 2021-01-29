@@ -117,11 +117,6 @@ export const SetupFlopFlipProvider = (props: Props) => {
       user: {
         key: props.user?.id,
       },
-      memory: {
-        user: {
-          key: props.user?.id,
-        },
-      },
       launchdarkly: {
         sdk: {
           // Allow to overwrite the client ID, passed via the `additionalEnv` properties
@@ -159,20 +154,12 @@ export const SetupFlopFlipProvider = (props: Props) => {
   );
 
   if (process.env.NODE_ENV === 'test') {
-    const memoryAdapter = require('@flopflip/memory-adapter').default;
+    const { TestProviderFlopFlip } = require('@flopflip/react-broadcast');
+
     return (
-      <ConfigureFlopFlip<typeof memoryAdapter>
-        adapter={memoryAdapter}
-        adapterArgs={adapterArgs.memory}
-        defaultFlags={defaultFlags}
-        shouldDeferAdapterConfiguration={
-          typeof props.shouldDeferAdapterConfiguration === 'boolean'
-            ? props.shouldDeferAdapterConfiguration
-            : !props.user || allMenuFeatureToggles.isLoading
-        }
-      >
+      <TestProviderFlopFlip flags={defaultFlags}>
         {props.children}
-      </ConfigureFlopFlip>
+      </TestProviderFlopFlip>
     );
   }
 

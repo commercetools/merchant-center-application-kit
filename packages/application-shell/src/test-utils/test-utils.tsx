@@ -14,8 +14,7 @@ import { MockedProvider as ApolloMockProvider } from '@apollo/client/testing';
 import * as rtl from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
-import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
-import memoryAdapter from '@flopflip/memory-adapter';
+import { TestProviderFlopFlip } from '@flopflip/react-broadcast';
 import { Provider as StoreProvider } from 'react-redux';
 import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
@@ -28,12 +27,6 @@ import { createTestMiddleware as createSdkTestMiddleware } from '@commercetools-
 import ApplicationEntryPoint from '../components/application-entry-point';
 import { createReduxStore } from '../configure-store';
 import createApolloClient from '../configure-apollo';
-
-// Reset memoryAdapter after each test, so that the next test accepts the
-// defaultFlags param.
-// This could also be moved into setup-test-framework, not sure which
-// location is better for it.
-afterEach(memoryAdapter.reset);
 
 // These default values get merged with the values provided by the test from
 // the call to "render"
@@ -107,17 +100,6 @@ const defaultEnvironment: Partial<TProviderProps<{}>['environment']> = {
 
 const LoadingFallback = () => <>{'Loading...'}</>;
 LoadingFallback.displayName = 'LoadingFallback';
-
-const defaultFlopflipAdapterArgs = {
-  clientSideId: 'test-client-side-id',
-  user: {
-    key: 'user-key',
-  },
-  adapterConfiguration: {
-    pollingInteral: 1,
-  },
-  flags: {},
-};
 
 // For backwards compatibility we need to denormalize the given `permissions` option
 // (which is now deprecated) to `allAppliedPermissions`, in order to pass the value
@@ -274,7 +256,6 @@ export type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   route: string;
   disableAutomaticEntryPointRoutes: boolean;
   history: ReturnType<typeof createEnhancedHistory>;
-  adapter: typeof memoryAdapter;
   flags: TFlags;
   environment: Partial<
     TProviderProps<AdditionalEnvironmentProperties>['environment']
@@ -373,7 +354,6 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
       createMemoryHistory({ initialEntries: [route] })
     ),
     // flopflip
-    adapter = memoryAdapter,
     flags = {},
     // application-context
     environment,
@@ -413,7 +393,6 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
     ...defaultEnvironment,
     ...environment,
   } as TProviderProps<AdditionalEnvironmentProperties>['environment'];
-  const hasFlags = flags && Object.keys(flags).length > 0;
 
   if (!disableAutomaticEntryPointRoutes) {
     invariant(
@@ -429,12 +408,7 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
         apolloClient={apolloClient}
         mocks={mocks}
       >
-        <ConfigureFlopFlip
-          adapter={adapter}
-          defaultFlags={flags}
-          adapterArgs={defaultFlopflipAdapterArgs}
-          shouldDeferAdapterConfiguration={!hasFlags}
-        >
+        <TestProviderFlopFlip flags={flags}>
           <ApplicationContextProvider
             user={mergedUser}
             project={mergedProject}
@@ -458,7 +432,7 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
               </React.Suspense>
             </Router>
           </ApplicationContextProvider>
-        </ConfigureFlopFlip>
+        </TestProviderFlopFlip>
       </ApolloProviderWrapper>
     </IntlProvider>
   );
