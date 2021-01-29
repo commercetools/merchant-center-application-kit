@@ -168,6 +168,7 @@
     "postcss-custom-properties": "11.0.0",
     "postcss-discard-comments": "4.0.2",
     "postcss-import": "14.0.0",
+    "postcss-modules": "4.0.0",
     "postcss-preset-env": "6.7.0",
     "prettier": "2.2.1",
     "puppeteer": "5.5.0",
