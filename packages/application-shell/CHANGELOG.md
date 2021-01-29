@@ -1,5 +1,16 @@
 # @commercetools-frontend/application-shell
 
+## 18.1.3
+
+### Patch Changes
+
+- [`94e350e2`](https://github.com/commercetools/merchant-center-application-kit/commit/94e350e2b65caed07be2dfd9a9d6d29ebc86bf73) [#2014](https://github.com/commercetools/merchant-center-application-kit/pull/2014) Thanks [@tdeekens](https://github.com/tdeekens)! - refactor(test-utils): to use flopflip test provider
+
+  When using `@commercetools-frontend/application-shell/test-utils`, we now render a `TestProviderFlopFlip` instead of the normal `ConfigureFlopFlip` with the `memory` adapter.<br/>
+  This change simplifies how feature flags are propagated during tests and should not affect the usage of the test-utils.
+
+  > In the very unlikely case that you have been passing the `adapter` option to the test-utils, you can remove that as it's not necessary anymore.
+
 ## 18.1.0
 
 ### Patch Changes
