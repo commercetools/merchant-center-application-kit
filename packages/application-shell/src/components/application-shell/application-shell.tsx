@@ -1,4 +1,3 @@
-import type { SyntheticEvent } from 'react';
 import type { Dispatch } from 'redux';
 import type { TFlags } from '@flopflip/types';
 import type { NormalizedCacheObject } from '@apollo/client';
@@ -8,7 +7,7 @@ import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import type { TApplicationsMenu } from '../../types/generated/proxy';
 import type { TrackingList } from '../../utils/gtm';
 
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import { ApolloClient } from '@apollo/client';
 import { Global, css } from '@emotion/react';

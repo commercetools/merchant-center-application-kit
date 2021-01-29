@@ -15,20 +15,15 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./dist/application-shell-index.cjs.js",
-  "module": "./dist/application-shell-index.es.js",
-  "typings": "./dist/typings/index.d.ts",
-  "types": "./dist/typings/index.d.ts",
+  "main": "dist/commercetools-frontend-application-shell.cjs.js",
+  "module": "dist/commercetools-frontend-application-shell.esm.js",
+  "preconstruct": {
+    "entrypoints": ["./index.ts", "./test-utils/index.ts"]
+  },
   "files": ["dist", "test-utils", "package.json", "LICENSE", "README.md"],
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
-    "prebuild": "rimraf dist/** test-utils/**",
-    "build": "yarn build:bundles && yarn build:test-utils && yarn build:typings",
-    "build:bundles": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js -i ./src/index.ts -d dist",
-    "build:bundles:watch": "yarn build:bundles -w",
-    "build:test-utils": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js -i ./src/test-utils/index.ts",
-    "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings",
-    "postbuild:typings": "echo \"export * from '../dist/typings/test-utils';\" > test-utils/index.d.ts"
+    "compile-css-modules": "yarn --cwd ../../ postcss packages/application-shell/src/components/navbar/navbar.mod.css -o packages/application-shell/src/components/navbar/compiled/navbar.css"
   },
   "dependencies": {
     "@babel/runtime": "7.12.5",

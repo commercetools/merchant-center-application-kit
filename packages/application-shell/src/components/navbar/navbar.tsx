@@ -1,4 +1,3 @@
-import type { MouseEventHandler, SyntheticEvent } from 'react';
 import type { RouteComponentProps } from 'react-router-dom';
 import type {
   TApplicationContext,
@@ -16,10 +15,11 @@ import type {
   TNavbarMenu,
 } from '../../types/generated/proxy';
 
-import React from 'react';
+import React, { MouseEventHandler, SyntheticEvent } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { NavLink, matchPath, useLocation } from 'react-router-dom';
 import { ToggleFeature } from '@flopflip/react-broadcast';
+import { Global, css } from '@emotion/react';
 import classnames from 'classnames';
 import {
   BackIcon,
@@ -55,11 +55,14 @@ import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { location } from '../../utils/location';
 import { GtmContext } from '../gtm-booter';
 import LoadingPlaceholder from '../loading-placeholder';
-import styles from './navbar.mod.css';
 import messages from './messages';
 import useLoadingMenuLayoutEffect from './use-loading-menu-layout-effect';
 import useNavbarStateManager from './use-navbar-state-manager';
 import nonNullable from './non-nullable';
+// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
+import compiledStyles from /* preval */ './navbar.styles';
+
+const styles = compiledStyles.jsonMap;
 
 type TProjectPermissions = {
   permissions: TNormalizedPermissions | null;
@@ -538,15 +541,22 @@ type NavBarLayoutProps = {
 };
 const NavBarLayout = React.forwardRef<HTMLElement, NavBarLayoutProps>(
   (props, ref) => (
-    <nav
-      ref={ref}
-      className={styles['left-navigation']}
-      data-test="left-navigation"
-      data-testid="left-navigation"
-      data-track-component="Navigation"
-    >
-      {props.children}
-    </nav>
+    <>
+      <Global
+        styles={css`
+          ${compiledStyles.global}
+        `}
+      />
+      <nav
+        ref={ref}
+        className={styles['left-navigation']}
+        data-test="left-navigation"
+        data-testid="left-navigation"
+        data-track-component="Navigation"
+      >
+        {props.children}
+      </nav>
+    </>
   )
 );
 NavBarLayout.displayName = 'NavBarLayout';

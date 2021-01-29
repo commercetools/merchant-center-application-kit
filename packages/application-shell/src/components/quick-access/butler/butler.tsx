@@ -1,11 +1,4 @@
 import type {
-  KeyboardEventHandler,
-  ChangeEventHandler,
-  KeyboardEvent,
-  MouseEventHandler,
-  MouseEvent,
-} from 'react';
-import type {
   Command,
   SearchText,
   SelectedResult,
@@ -13,7 +6,13 @@ import type {
   HistoryEntry,
 } from '../types';
 
-import React from 'react';
+import React, {
+  KeyboardEventHandler,
+  ChangeEventHandler,
+  KeyboardEvent,
+  MouseEventHandler,
+  MouseEvent,
+} from 'react';
 import Fuse from 'fuse.js';
 import { FormattedMessage, useIntl } from 'react-intl';
 import last from 'lodash/last';
