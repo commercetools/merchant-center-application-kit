@@ -9,10 +9,7 @@ import { useApplicationContext } from '@commercetools-frontend/application-shell
 import ldAdapter from '@flopflip/launchdarkly-adapter';
 import httpAdapter from '@flopflip/http-adapter';
 import combineAdapters from '@flopflip/combine-adapters';
-import {
-  ConfigureFlopFlip,
-  TestProviderFlopFlip,
-} from '@flopflip/react-broadcast';
+import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
 import { useApolloClient } from '@apollo/client/react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import useAllMenuFeatureToggles from '../../hooks/use-all-menu-feature-toggles';
@@ -157,6 +154,8 @@ export const SetupFlopFlipProvider = (props: Props) => {
   );
 
   if (process.env.NODE_ENV === 'test') {
+    const { TestProviderFlopFlip } = require('@flopflip/react-broadcast');
+
     return (
       <TestProviderFlopFlip flags={defaultFlags}>
         {props.children}
