@@ -14,6 +14,9 @@ module.exports = {
       getJSON: function (cssFileName, json, outputFileName) {
         const fileName = path.basename(outputFileName);
         const compiledDir = path.dirname(outputFileName);
+        if (!fs.existsSync(compiledDir)) {
+          fs.mkdirSync(compiledDir);
+        }
         fs.writeFileSync(
           `${path.join(compiledDir, fileName)}.json`,
           JSON.stringify(json),
