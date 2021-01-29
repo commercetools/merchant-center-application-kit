@@ -1,5 +1,3 @@
-const fs = require('fs');
-const path = require('path');
 const {
   browserslist,
 } = require('@commercetools-frontend/mc-scripts/package.json');
@@ -12,6 +10,8 @@ module.exports = {
     'postcss-modules': {
       generateScopedName: '[name]__[local]___[hash:base64:5]',
       getJSON: function (cssFileName, json, outputFileName) {
+        const fs = require('fs');
+        const path = require('path');
         const fileName = path.basename(outputFileName);
         const compiledDir = path.dirname(outputFileName);
         if (!fs.existsSync(compiledDir)) {
@@ -29,7 +29,8 @@ module.exports = {
         );
         fs.writeFileSync(
           `${path.join(compiledDir, fileName)}.json.d.ts`,
-          `declare const styles: ${JSON.stringify(
+          `/* eslint-disable prettier/prettier */
+          declare const styles: ${JSON.stringify(
             json
           )}; export default styles;`,
           { encoding: 'utf8' }
