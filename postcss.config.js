@@ -22,6 +22,18 @@ module.exports = {
           JSON.stringify(json),
           { encoding: 'utf8' }
         );
+        fs.writeFileSync(
+          `${path.join(compiledDir, fileName)}.json`,
+          JSON.stringify(json),
+          { encoding: 'utf8' }
+        );
+        fs.writeFileSync(
+          `${path.join(compiledDir, fileName)}.json.d.ts`,
+          `declare const styles: ${JSON.stringify(
+            json
+          )}; export default styles;`,
+          { encoding: 'utf8' }
+        );
       },
     },
     'postcss-preset-env': {
