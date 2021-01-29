@@ -14,7 +14,7 @@ import { MockedProvider as ApolloMockProvider } from '@apollo/client/testing';
 import * as rtl from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
-import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
+import { TestProviderFlopFlip } from '@flopflip/react-broadcast';
 import memoryAdapter from '@flopflip/memory-adapter';
 import { Provider as StoreProvider } from 'react-redux';
 import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
@@ -107,17 +107,6 @@ const defaultEnvironment: Partial<TProviderProps<{}>['environment']> = {
 
 const LoadingFallback = () => <>{'Loading...'}</>;
 LoadingFallback.displayName = 'LoadingFallback';
-
-const defaultFlopflipAdapterArgs = {
-  clientSideId: 'test-client-side-id',
-  user: {
-    key: 'user-key',
-  },
-  adapterConfiguration: {
-    pollingInteral: 1,
-  },
-  flags: {},
-};
 
 // For backwards compatibility we need to denormalize the given `permissions` option
 // (which is now deprecated) to `allAppliedPermissions`, in order to pass the value
@@ -413,7 +402,6 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
     ...defaultEnvironment,
     ...environment,
   } as TProviderProps<AdditionalEnvironmentProperties>['environment'];
-  const hasFlags = flags && Object.keys(flags).length > 0;
 
   if (!disableAutomaticEntryPointRoutes) {
     invariant(
@@ -429,12 +417,7 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
         apolloClient={apolloClient}
         mocks={mocks}
       >
-        <ConfigureFlopFlip
-          adapter={adapter}
-          defaultFlags={flags}
-          adapterArgs={defaultFlopflipAdapterArgs}
-          shouldDeferAdapterConfiguration={!hasFlags}
-        >
+        <TestProviderFlopFlip flags={flags}>
           <ApplicationContextProvider
             user={mergedUser}
             project={mergedProject}
@@ -458,7 +441,7 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
               </React.Suspense>
             </Router>
           </ApplicationContextProvider>
-        </ConfigureFlopFlip>
+        </TestProviderFlopFlip>
       </ApolloProviderWrapper>
     </IntlProvider>
   );
