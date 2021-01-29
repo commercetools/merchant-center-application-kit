@@ -6,6 +6,8 @@ module.exports = {
     'build',
     'dist',
     'public/',
+    'compiled',
+    '.cache',
     '.spec.js',
     '.visualspec.js',
     '.visualroute.js',

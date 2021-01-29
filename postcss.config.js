@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const {
   browserslist,
 } = require('@commercetools-frontend/mc-scripts/package.json');
@@ -10,8 +12,9 @@ module.exports = {
     'postcss-modules': {
       generateScopedName: '[name]__[local]___[hash:base64:5]',
       getJSON: function (cssFileName, json, outputFileName) {
-        const fs = require('fs');
-        const path = require('path');
+        if (process.env.NODE_ENV === 'test') {
+          return;
+        }
         const fileName = path.basename(outputFileName);
         const compiledDir = path.dirname(outputFileName);
         if (!fs.existsSync(compiledDir)) {
@@ -37,12 +40,16 @@ module.exports = {
         );
       },
     },
-    'postcss-preset-env': {
-      autoprefixer: {
-        grid: true,
-        overrideBrowserslist: browserslist.production,
-      },
-    },
+    ...(process.env.NODE_ENV !== 'test'
+      ? {
+          'postcss-preset-env': {
+            autoprefixer: {
+              grid: true,
+              overrideBrowserslist: browserslist.production,
+            },
+          },
+        }
+      : {}),
     'postcss-custom-media': {
       importFrom: require.resolve(
         '@commercetools-frontend/application-components/materials/media-queries.css'
@@ -56,7 +63,9 @@ module.exports = {
         ),
       ],
     },
-    'postcss-discard-comments': {},
+    ...(process.env.NODE_ENV !== 'test'
+      ? { 'postcss-discard-comments': {} }
+      : {}),
     'postcss-color-mod-function': {},
   },
 };
