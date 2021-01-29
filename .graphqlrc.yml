@@ -11,7 +11,7 @@ projects:
           schemas/mc.json:
             plugins:
               - introspection
-          '@types-extensions/graphql-mc.d.ts':
+          '@types-extensions/graphql-mc/index.d.ts':
             plugins:
               - add:
                   content: /* THIS IS A GENERATED FILE */
@@ -53,7 +53,7 @@ projects:
           schemas/ctp.json:
             plugins:
               - introspection
-          '@types-extensions/graphql-ctp.d.ts':
+          '@types-extensions/graphql-ctp/index.d.ts':
             schema: schemas/ctp.json
             documents: packages/**/src/**/*.ctp.graphql
             plugins:
@@ -130,7 +130,7 @@ projects:
           schemas/settings.json:
             plugins:
               - introspection
-          '@types-extensions/graphql-settings.d.ts':
+          '@types-extensions/graphql-settings/index.d.ts':
             schema: schemas/settings.json
             documents: packages/**/src/**/*.settings.graphql
             plugins:
@@ -176,7 +176,7 @@ projects:
           schemas/proxy.json:
             plugins:
               - introspection
-          '@types-extensions/graphql-proxy.d.ts':
+          '@types-extensions/graphql-proxy/index.d.ts':
             schema: schemas/proxy.json
             documents: packages/**/src/**/*.proxy.graphql
             plugins:
