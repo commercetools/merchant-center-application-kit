@@ -18,11 +18,10 @@
   "main": "dist/commercetools-frontend-application-components.cjs.js",
   "module": "dist/commercetools-frontend-application-components.esm.js",
   "preconstruct": {
-    "entrypoints": ["./index.ts", "./experimental/index.ts"]
+    "entrypoints": ["./index.ts"]
   },
   "files": [
     "dist",
-    "experimental",
     "materials/media-queries.css",
     "package.json",
     "LICENSE",
@@ -47,7 +46,6 @@
     "@commercetools-uikit/flat-button": "^10.45.0",
     "@commercetools-uikit/icon-button": "^10.45.0",
     "@commercetools-uikit/icons": "^10.44.4",
-    "@commercetools-uikit/loading-spinner": "^10.45.0",
     "@commercetools-uikit/messages": "^10.45.0",
     "@commercetools-uikit/primary-button": "^10.45.0",
     "@commercetools-uikit/secondary-button": "^10.45.0",
@@ -56,22 +54,18 @@
     "@commercetools-uikit/text": "^10.45.0",
     "@emotion/react": "11.1.4",
     "@emotion/styled": "11.0.0",
-    "@types/debounce-promise": "^3.1.3",
     "@types/lodash": "^4.14.167",
     "@types/prop-types": "^15.7.3",
     "@types/react-modal": "^3.10.4",
-    "debounce-async": "0.0.2",
     "lodash": "4.17.20",
     "prop-types": "15.7.2",
     "react-modal": "3.12.1",
-    "react-required-if": "1.0.3",
-    "uuid": "8.3.2"
+    "react-required-if": "1.0.3"
   },
   "devDependencies": {
     "@commercetools-frontend/ui-kit": "10.46.0",
     "@types/react": "16.14.2",
     "@types/react-dom": "16.9.10",
-    "@types/uuid": "8.3.0",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-intl": "5.11.0"
