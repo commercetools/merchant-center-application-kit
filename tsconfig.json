@@ -27,6 +27,6 @@
     "stripInternal": true,
     "target": "ES2019",
     "allowJs": false,
-    "typeRoots": ["@types", "@types-extensions/*", "node_modules/@types"]
+    "typeRoots": ["@types", "@types-extensions", "node_modules/@types"]
   }
 }
