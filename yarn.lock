@@ -3726,17 +3726,6 @@
   dependencies:
     "@flopflip/types" "4.1.10"
 
-"@flopflip/memory-adapter@3.0.12":
-  version "3.0.12"
-  resolved "https://registry.yarnpkg.com/@flopflip/memory-adapter/-/memory-adapter-3.0.12.tgz#358f77982bb5e7276ef4795613e36009d15430c1"
-  integrity sha512-Iw4dyO5MV044mySFLonxTyyLlq2ylFxuDleHLkjqOWFqENCdF7bVm21dLXJwX294RDOuFUkJhLUdCVODB6+yNw==
-  dependencies:
-    "@babel/runtime" "7.12.5"
-    "@flopflip/adapter-utilities" "1.0.12"
-    "@flopflip/types" "4.1.10"
-    mitt "2.1.0"
-    tiny-warning "1.0.3"
-
 "@flopflip/react-broadcast@12.2.0":
   version "12.2.0"
   resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-12.2.0.tgz#21a2eb46f9c0b582ea517ef1900d66d32ec55784"

@@ -15,7 +15,6 @@ import * as rtl from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
 import { TestProviderFlopFlip } from '@flopflip/react-broadcast';
-import memoryAdapter from '@flopflip/memory-adapter';
 import { Provider as StoreProvider } from 'react-redux';
 import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
@@ -28,12 +27,6 @@ import { createTestMiddleware as createSdkTestMiddleware } from '@commercetools-
 import ApplicationEntryPoint from '../components/application-entry-point';
 import { createReduxStore } from '../configure-store';
 import createApolloClient from '../configure-apollo';
-
-// Reset memoryAdapter after each test, so that the next test accepts the
-// defaultFlags param.
-// This could also be moved into setup-test-framework, not sure which
-// location is better for it.
-afterEach(memoryAdapter.reset);
 
 // These default values get merged with the values provided by the test from
 // the call to "render"
@@ -263,7 +256,6 @@ export type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   route: string;
   disableAutomaticEntryPointRoutes: boolean;
   history: ReturnType<typeof createEnhancedHistory>;
-  adapter: typeof memoryAdapter;
   flags: TFlags;
   environment: Partial<
     TProviderProps<AdditionalEnvironmentProperties>['environment']
@@ -362,7 +354,6 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
       createMemoryHistory({ initialEntries: [route] })
     ),
     // flopflip
-    adapter = memoryAdapter,
     flags = {},
     // application-context
     environment,

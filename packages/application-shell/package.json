@@ -63,7 +63,6 @@
     "@flopflip/combine-adapters": "0.0.14",
     "@flopflip/http-adapter": "0.0.5",
     "@flopflip/launchdarkly-adapter": "5.0.8",
-    "@flopflip/memory-adapter": "3.0.12",
     "@flopflip/react-broadcast": "12.2.0",
     "@flopflip/types": "4.1.10",
     "@types/classnames": "2.2.11",
