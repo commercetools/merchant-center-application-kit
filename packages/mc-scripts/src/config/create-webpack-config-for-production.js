@@ -336,6 +336,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
               loader: require.resolve('postcss-loader'),
               options: {
                 postcssOptions: {
+                  config: false,
                   plugins: () => [
                     postcssImport({ path: sourceFolders }),
                     postcssPresetEnv({
