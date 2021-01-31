@@ -23,7 +23,7 @@
   "files": ["dist", "test-utils", "package.json", "LICENSE", "README.md"],
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
-    "compile-css-modules": "yarn --cwd ../../ postcss packages/application-shell/src/components/navbar/navbar.mod.css -o packages/application-shell/src/components/navbar/compiled/navbar.css"
+    "compile-css-modules": "./scripts/compile-styles.js"
   },
   "dependencies": {
     "@babel/runtime": "7.12.5",
