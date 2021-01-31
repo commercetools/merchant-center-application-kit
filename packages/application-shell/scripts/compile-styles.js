@@ -34,16 +34,16 @@ async function compileCss() {
         if (!fs.existsSync(compiledPaths.dir)) {
           fs.mkdirSync(compiledPaths.dir);
         }
+
+        // This file contains the mapping between the class names referenced
+        // in the components and the compiled CSS selectors.
         fs.writeFileSync(
           `${path.join(compiledPaths.dir, compiledPaths.fileName)}.json`,
           JSON.stringify(json),
           { encoding: 'utf8' }
         );
-        fs.writeFileSync(
-          `${path.join(compiledPaths.dir, compiledPaths.fileName)}.json`,
-          JSON.stringify(json),
-          { encoding: 'utf8' }
-        );
+
+        // This file provides the type declaration for the JSON file created above.
         fs.writeFileSync(
           `${path.join(compiledPaths.dir, compiledPaths.fileName)}.json.d.ts`,
           `/* eslint-disable prettier/prettier */
