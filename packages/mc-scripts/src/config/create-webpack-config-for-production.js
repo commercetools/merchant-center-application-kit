@@ -13,14 +13,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // webpack v4.0.0" (https://webpack.js.org/plugins/uglifyjs-webpack-plugin/)
 // we need to explicitly use the library to be using the newest version
 const TerserPlugin = require('terser-webpack-plugin');
-const postcssImport = require('postcss-import');
-const postcssPresetEnv = require('postcss-preset-env');
-const postcssReporter = require('postcss-reporter');
-const postcssCustomProperties = require('postcss-custom-properties');
-const postcssCustomMediaQueries = require('postcss-custom-media');
-const postcssColorModFunction = require('postcss-color-mod-function');
 const FinalStatsWriterPlugin = require('../webpack-plugins/final-stats-writer-plugin');
-const { browserslist } = require('../../package.json');
 const vendorsToTranspile = require('./vendors-to-transpile');
 const hasJsxRuntime = require('./has-jsx-runtime');
 
@@ -336,29 +329,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
               loader: require.resolve('postcss-loader'),
               options: {
                 postcssOptions: {
-                  config: false,
-                  plugins: () => [
-                    postcssImport({ path: sourceFolders }),
-                    postcssPresetEnv({
-                      autoprefixer: {
-                        grid: true,
-                        overrideBrowserslist: browserslist.production,
-                      },
-                    }),
-                    postcssCustomProperties({
-                      preserve: false,
-                      importFrom: require.resolve(
-                        '@commercetools-uikit/design-system/materials/custom-properties.css'
-                      ),
-                    }),
-                    postcssCustomMediaQueries({
-                      importFrom: require.resolve(
-                        '@commercetools-frontend/application-components/materials/media-queries.css'
-                      ),
-                    }),
-                    postcssColorModFunction(),
-                    postcssReporter(),
-                  ],
+                  config: path.join(__dirname, '../../postcss.config.js'),
                 },
               },
             },
@@ -388,28 +359,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
                   loader: require.resolve('postcss-loader'),
                   options: {
                     postcssOptions: {
-                      plugins: () => [
-                        postcssImport(),
-                        postcssPresetEnv({
-                          autoprefixer: {
-                            grid: true,
-                            overrideBrowserslist: browserslist.production,
-                          },
-                        }),
-                        postcssCustomMediaQueries({
-                          importFrom: require.resolve(
-                            '@commercetools-frontend/application-components/materials/media-queries.css'
-                          ),
-                        }),
-                        postcssCustomProperties({
-                          preserve: false,
-                          importFrom: require.resolve(
-                            '@commercetools-uikit/design-system/materials/custom-properties.css'
-                          ),
-                        }),
-                        postcssColorModFunction(),
-                        postcssReporter(),
-                      ],
+                      config: path.join(__dirname, '../../postcss.config.js'),
                     },
                   },
                 },

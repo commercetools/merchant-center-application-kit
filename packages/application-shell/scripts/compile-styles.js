@@ -4,9 +4,6 @@ const fs = require('fs');
 const path = require('path');
 const postcss = require('postcss');
 const loadPostCssConfig = require('postcss-load-config');
-const {
-  browserslist,
-} = require('@commercetools-frontend/mc-scripts/package.json');
 
 const filesToCompile = ['src/components/navbar/navbar.mod.css'];
 
@@ -22,7 +19,12 @@ function getCompiledPaths(cssFilePath) {
 }
 
 async function compileCss() {
-  const { plugins, options } = await loadPostCssConfig();
+  const { plugins, options } = await loadPostCssConfig(
+    undefined,
+    require
+      .resolve('@commercetools-frontend/mc-scripts/postcss.config.js')
+      .replace('/postcss.config.js', '')
+  );
 
   const processor = postcss([
     ...plugins,
@@ -51,12 +53,6 @@ declare const styles: ${JSON.stringify(json)};
 export default styles;`,
           { encoding: 'utf8' }
         );
-      },
-    }),
-    require('postcss-preset-env')({
-      autoprefixer: {
-        grid: true,
-        overrideBrowserslist: browserslist.production,
       },
     }),
   ]);

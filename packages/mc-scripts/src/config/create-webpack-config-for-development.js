@@ -5,13 +5,6 @@ const WebpackBar = require('webpackbar');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const postcssImport = require('postcss-import');
-const postcssPresetEnv = require('postcss-preset-env');
-const postcssReporter = require('postcss-reporter');
-const postcssCustomProperties = require('postcss-custom-properties');
-const postcssCustomMediaQueries = require('postcss-custom-media');
-const postcssColorModFunction = require('postcss-color-mod-function');
-const { browserslist } = require('../../package.json');
 const vendorsToTranspile = require('./vendors-to-transpile');
 const hasJsxRuntime = require('./has-jsx-runtime');
 
@@ -276,29 +269,7 @@ module.exports = ({
             loader: require.resolve('postcss-loader'),
             options: {
               postcssOptions: {
-                config: false,
-                plugins: () => [
-                  postcssImport({ path: sourceFolders }),
-                  postcssPresetEnv({
-                    autoprefixer: {
-                      grid: true,
-                      overrideBrowserslist: browserslist.development,
-                    },
-                  }),
-                  postcssCustomMediaQueries({
-                    importFrom: require.resolve(
-                      '@commercetools-frontend/application-components/materials/media-queries.css'
-                    ),
-                  }),
-                  postcssCustomProperties({
-                    preserve: false,
-                    importFrom: require.resolve(
-                      '@commercetools-uikit/design-system/materials/custom-properties.css'
-                    ),
-                  }),
-                  postcssColorModFunction(),
-                  postcssReporter(),
-                ],
+                config: path.join(__dirname, '../../postcss.config.js'),
               },
             },
           },
@@ -326,28 +297,7 @@ module.exports = ({
                 loader: require.resolve('postcss-loader'),
                 options: {
                   postcssOptions: {
-                    plugins: () => [
-                      postcssImport(),
-                      postcssPresetEnv({
-                        autoprefixer: {
-                          grid: true,
-                          overrideBrowserslist: browserslist.development,
-                        },
-                      }),
-                      postcssCustomMediaQueries({
-                        importFrom: require.resolve(
-                          '@commercetools-frontend/application-components/materials/media-queries.css'
-                        ),
-                      }),
-                      postcssCustomProperties({
-                        preserve: false,
-                        importFrom: require.resolve(
-                          '@commercetools-uikit/design-system/materials/custom-properties.css'
-                        ),
-                      }),
-                      postcssColorModFunction(),
-                      postcssReporter(),
-                    ],
+                    config: path.join(__dirname, '../../postcss.config.js'),
                   },
                 },
               },

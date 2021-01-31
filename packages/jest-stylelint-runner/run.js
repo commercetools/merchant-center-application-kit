@@ -46,7 +46,13 @@ module.exports = ({ testPath }) => {
 
   const css = fs.readFileSync(testPath, 'utf8');
 
-  return loadPostCssConfig(undefined, testPath).then(({ plugins, options }) => {
+  return loadPostCssConfig(
+    undefined,
+    // Use the `postcss.config.js` defined in `mc-scripts`.
+    require
+      .resolve('@commercetools-frontend/mc-scripts/postcss.config.js')
+      .replace('/postcss.config.js', '')
+  ).then(({ plugins, options }) => {
     return postcss(plugins)
       .process(css, { ...options, from: testPath })
       .then((result) => {
