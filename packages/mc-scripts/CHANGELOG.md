@@ -1,5 +1,17 @@
 # @commercetools-frontend/mc-scripts
 
+## 18.1.4
+
+### Patch Changes
+
+- [`af28d649`](https://github.com/commercetools/merchant-center-application-kit/commit/af28d6492856960f59637fac6ee279eaf4d24410) [#2023](https://github.com/commercetools/merchant-center-application-kit/pull/2023) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency postcss-custom-properties to v11
+
+* [`c9589f5e`](https://github.com/commercetools/merchant-center-application-kit/commit/c9589f5e3d1fd18393c7bf501c3b23b8ec402804) [#2020](https://github.com/commercetools/merchant-center-application-kit/pull/2020) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+* Updated dependencies [[`c9589f5e`](https://github.com/commercetools/merchant-center-application-kit/commit/c9589f5e3d1fd18393c7bf501c3b23b8ec402804)]:
+  - @commercetools-frontend/application-config@18.1.4
+  - @commercetools-frontend/mc-html-template@18.1.4
+
 ## 18.1.0
 
 ### Patch Changes
