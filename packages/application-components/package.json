@@ -68,13 +68,13 @@
     "uuid": "8.3.2"
   },
   "devDependencies": {
-    "@commercetools-frontend/ui-kit": "10.44.2",
+    "@commercetools-frontend/ui-kit": "10.46.0",
     "@types/react": "16.14.2",
     "@types/react-dom": "16.9.10",
     "@types/uuid": "8.3.0",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.10.17"
+    "react-intl": "5.11.0"
   },
   "peerDependencies": {
     "@commercetools-frontend/ui-kit": "10.x",
