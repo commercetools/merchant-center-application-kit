@@ -69,11 +69,11 @@ typings/
 .public
 
 # Build
+compiled
 compiled-data
 dist
 dist-tarballs
 public
-packages/application-shell/test-utils
 
 # Editor/IDE
 .idea

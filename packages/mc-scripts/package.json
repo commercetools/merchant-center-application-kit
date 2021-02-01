@@ -16,7 +16,15 @@
     "access": "public"
   },
   "main": "./build/index.js",
-  "files": ["bin", "build", "config", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "bin",
+    "build",
+    "config",
+    "package.json",
+    "postcss.config.js",
+    "LICENSE",
+    "README.md"
+  ],
   "bin": {
     "mc-scripts": "./bin/mc-scripts.js"
   },
@@ -39,6 +47,7 @@
     "@commercetools-frontend/mc-html-template": "18.1.4",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
     "@svgr/webpack": "5.5.0",
+    "autoprefixer": "10.2.4",
     "babel-loader": "8.2.2",
     "browserslist": "4.16.3",
     "clean-webpack-plugin": "3.0.0",
@@ -56,11 +65,10 @@
     "optimize-css-assets-webpack-plugin": "5.0.4",
     "postcss": "8.2.4",
     "postcss-color-mod-function": "3.0.3",
-    "postcss-custom-media": "7.0.8",
+    "postcss-custom-media": "8.0.0",
     "postcss-custom-properties": "11.0.0",
     "postcss-import": "14.0.0",
     "postcss-loader": "4.2.0",
-    "postcss-preset-env": "6.7.0",
     "postcss-reporter": "7.0.2",
     "postcss-safe-parser": "5.0.2",
     "react-dev-utils": "11.0.1",

@@ -3,7 +3,6 @@ import type { TApplicationContext } from '@commercetools-frontend/application-sh
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import type { TrackingList } from '../../utils/gtm';
 
-import './global-style-imports';
 import '../../track-performance';
 import React from 'react';
 import { Router } from 'react-router-dom';
@@ -21,6 +20,7 @@ import Authenticated from '../authenticated';
 import GtmBooter from '../gtm-booter';
 import ApplicationLoader from '../application-loader';
 import ErrorBoundary from '../error-boundary';
+import GlobalStyles from './global-styles';
 import { getBrowserLocale } from './utils';
 import useCoercedEnvironmentValues from './use-coerced-environment-values';
 
@@ -47,46 +47,49 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
   );
   const browserLocale = getBrowserLocale(window);
   return (
-    <ErrorBoundary>
-      <ApplicationContextProvider<AdditionalEnvironmentProperties>
-        environment={coercedEnvironmentValues}
-      >
-        <ReduxProvider store={internalReduxStore}>
-          <ApolloProvider client={apolloClient}>
-            <React.Suspense fallback={<ApplicationLoader />}>
-              <Router history={ApplicationShellProvider.history}>
-                <GtmBooter trackingEventList={props.trackingEventList || {}}>
-                  <Authenticated
-                    locale={browserLocale}
-                    applicationMessages={props.applicationMessages}
-                    render={({ isAuthenticated }) => {
-                      if (isAuthenticated)
-                        return props.children({ isAuthenticated });
+    <>
+      <GlobalStyles />
+      <ErrorBoundary>
+        <ApplicationContextProvider<AdditionalEnvironmentProperties>
+          environment={coercedEnvironmentValues}
+        >
+          <ReduxProvider store={internalReduxStore}>
+            <ApolloProvider client={apolloClient}>
+              <React.Suspense fallback={<ApplicationLoader />}>
+                <Router history={ApplicationShellProvider.history}>
+                  <GtmBooter trackingEventList={props.trackingEventList || {}}>
+                    <Authenticated
+                      locale={browserLocale}
+                      applicationMessages={props.applicationMessages}
+                      render={({ isAuthenticated }) => {
+                        if (isAuthenticated)
+                          return props.children({ isAuthenticated });
 
-                      return (
-                        <AsyncLocaleData
-                          locale={browserLocale}
-                          applicationMessages={props.applicationMessages}
-                        >
-                          {({ locale, messages }) => (
-                            <ConfigureIntlProvider
-                              locale={locale}
-                              messages={messages}
-                            >
-                              {props.children({ isAuthenticated })}
-                            </ConfigureIntlProvider>
-                          )}
-                        </AsyncLocaleData>
-                      );
-                    }}
-                  />
-                </GtmBooter>
-              </Router>
-            </React.Suspense>
-          </ApolloProvider>
-        </ReduxProvider>
-      </ApplicationContextProvider>
-    </ErrorBoundary>
+                        return (
+                          <AsyncLocaleData
+                            locale={browserLocale}
+                            applicationMessages={props.applicationMessages}
+                          >
+                            {({ locale, messages }) => (
+                              <ConfigureIntlProvider
+                                locale={locale}
+                                messages={messages}
+                              >
+                                {props.children({ isAuthenticated })}
+                              </ConfigureIntlProvider>
+                            )}
+                          </AsyncLocaleData>
+                        );
+                      }}
+                    />
+                  </GtmBooter>
+                </Router>
+              </React.Suspense>
+            </ApolloProvider>
+          </ReduxProvider>
+        </ApplicationContextProvider>
+      </ErrorBoundary>
+    </>
   );
 };
 

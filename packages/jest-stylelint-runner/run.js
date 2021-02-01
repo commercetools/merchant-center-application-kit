@@ -35,7 +35,7 @@ const endsWithAny = (suffixes, string) => {
   });
 };
 
-module.exports = ({ testPath }) => {
+module.exports = async ({ testPath }) => {
   const linter = createLinter(testPath);
   if (endsWithAny(['js', 'jsx', 'ts', 'tsx'], testPath)) {
     return linter({
@@ -44,16 +44,17 @@ module.exports = ({ testPath }) => {
     });
   }
 
-  const css = fs.readFileSync(testPath, 'utf8');
+  const css = fs.readFileSync(testPath, { encoding: 'utf8' });
 
-  return loadPostCssConfig(undefined, testPath).then(({ plugins, options }) => {
-    return postcss(plugins)
-      .process(css, { ...options, from: testPath })
-      .then((result) => {
-        return linter({
-          code: result.css,
-          formatter: 'string',
-        });
-      });
+  const { plugins, options } = await loadPostCssConfig();
+
+  const result = await postcss(plugins).process(css, {
+    ...options,
+    from: testPath,
+  });
+
+  return linter({
+    code: result.css,
+    formatter: 'string',
   });
 };
