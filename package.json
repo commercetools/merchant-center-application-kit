@@ -164,7 +164,7 @@
     "lint-staged": "10.5.3",
     "mri": "1.1.6",
     "postcss": "8.2.4",
-    "postcss-custom-properties": "10.0.0",
+    "postcss-custom-properties": "11.0.0",
     "postcss-import": "14.0.0",
     "prettier": "2.2.1",
     "puppeteer": "5.5.0",
