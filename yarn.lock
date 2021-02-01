@@ -3679,10 +3679,10 @@
     globalthis "1.0.1"
     lodash "4.17.20"
 
-"@flopflip/combine-adapters@0.0.14":
-  version "0.0.14"
-  resolved "https://registry.yarnpkg.com/@flopflip/combine-adapters/-/combine-adapters-0.0.14.tgz#d9014f51645243f0f05e0dbda7645ad29db26da0"
-  integrity sha512-NI/XdI8ZQCjWI8IWcG/eILGivPRWgxCE7kEUh3CorSPfRlT+gQLii4VvO/kV39gpTYcMBXHVHVaJKXW3U4KqlA==
+"@flopflip/combine-adapters@0.0.15":
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/@flopflip/combine-adapters/-/combine-adapters-0.0.15.tgz#d3dabb9933840bab02c92083e4eb4b2bc572f633"
+  integrity sha512-8HuhLNQUQXBpg2W33q1DEtE2wA7S6nrs6mB0RelIEmHo3F2J+KE9v/MA6rUt4FzTqZOux2CUQ2nMbNzojDv+YQ==
   dependencies:
     "@babel/runtime" "7.12.5"
     "@flopflip/adapter-utilities" "1.0.12"
@@ -3704,17 +3704,17 @@
     mitt "2.1.0"
     tiny-warning "1.0.3"
 
-"@flopflip/launchdarkly-adapter@5.0.8":
-  version "5.0.8"
-  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-5.0.8.tgz#2185a9e3014f1e35c6006ba078c9164ed3154a89"
-  integrity sha512-wmE7absZpkVtO0Wl3TakOJddPYvKkhxsBSv3CLjemBvp/A+GlNAAu9mj5XefRUaqbcVG9J+oA6xbT3uKxNdRnw==
+"@flopflip/launchdarkly-adapter@5.0.9":
+  version "5.0.9"
+  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-5.0.9.tgz#6f955e3707118a0948b39e5a4515e15655bd3f06"
+  integrity sha512-KzMygzFPIaJbdwxHlctMoE3tHNZwxG1YLPVvTeRGuHHTFnyKq1YbL+8MKEKnJI1xHI/1r8lwWu1omQ53gIFNaQ==
   dependencies:
     "@babel/runtime" "7.12.5"
     "@flopflip/adapter-utilities" "1.0.12"
     "@flopflip/types" "4.1.10"
     debounce-fn "4.0.0"
     deepmerge "4.2.2"
-    launchdarkly-js-client-sdk "2.18.3"
+    launchdarkly-js-client-sdk "2.19.0"
     lodash "4.17.20"
     mitt "2.1.0"
     tiny-warning "1.0.3"
@@ -3726,19 +3726,19 @@
   dependencies:
     "@flopflip/types" "4.1.10"
 
-"@flopflip/react-broadcast@12.2.0":
-  version "12.2.0"
-  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-12.2.0.tgz#21a2eb46f9c0b582ea517ef1900d66d32ec55784"
-  integrity sha512-9aP85Zbz64tAAt2GNeogsnnXhd+NaGf2z6unxDtjjeOzxhXCCKQiEPsvHcT4stoblX092h5NLAnpyMhAdHktjw==
+"@flopflip/react-broadcast@12.2.1":
+  version "12.2.1"
+  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-12.2.1.tgz#a3db5209b2e2ea768625bd91a3c9e123e2d2404c"
+  integrity sha512-n/iyFcq9qMB7HBFd2MlVwIvjG3dXQymXyRXM1vDX83pPBFi0yZbEI/j/m/p/hpNYAw/WHHElf/w7BjCKHGgOVg==
   dependencies:
     "@babel/runtime" "7.12.5"
-    "@flopflip/react" "^11.1.11"
+    "@flopflip/react" "^11.1.12"
     "@flopflip/types" "4.1.10"
 
-"@flopflip/react@^11.1.11":
-  version "11.1.11"
-  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-11.1.11.tgz#a3b03f97eb394b730f25a502f9f0c6cc0ad3646b"
-  integrity sha512-FD5AVzm06HpOvLL+mMRKfx7J5HLTXQpmSaTAlLWEyFcYa+ktO5sCzwU5ft8M1cGH8GpL/6Y8Yh0a1/x/Po6NLw==
+"@flopflip/react@^11.1.12":
+  version "11.1.12"
+  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-11.1.12.tgz#90e9f078870d648c17085f0d64f89889a79baca8"
+  integrity sha512-/Lit2GxRjaY0UTGvvaNi0H4UYhOJM3K7GLTpBu7yget0kxQiRCz3VNnjHt7lbJWZ3SXwowu7KRb1Vge65NBahw==
   dependencies:
     "@babel/runtime" "7.12.5"
     "@flopflip/types" "4.1.10"
@@ -19196,18 +19196,18 @@ latest-version@5.1.0, latest-version@^5.1.0:
   dependencies:
     package-json "^6.3.0"
 
-launchdarkly-js-client-sdk@2.18.3:
-  version "2.18.3"
-  resolved "https://registry.yarnpkg.com/launchdarkly-js-client-sdk/-/launchdarkly-js-client-sdk-2.18.3.tgz#e0172c969c603d473d891b17e031422fd930c85e"
-  integrity sha512-ff9o7RixhpyZudxqFAGdmvlC1BDSNs6l4kmJiawYtfrWeKc44iFcGAc+wDBPp4iJEQT7DAlFPGjEfyKuY/Xi/w==
+launchdarkly-js-client-sdk@2.19.0:
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/launchdarkly-js-client-sdk/-/launchdarkly-js-client-sdk-2.19.0.tgz#eb846ecf8d195d0631a6612f7c01c4cec157a1dd"
+  integrity sha512-wt5jQVFcTfietLsgHm2hFPenIx4vejCctrsi4KnjcI1mTWW9fWhpGqFVbQWfuezePr4xp8+1Ldol+lpe9c0DhA==
   dependencies:
     escape-string-regexp "^1.0.5"
-    launchdarkly-js-sdk-common "3.2.11"
+    launchdarkly-js-sdk-common "3.3.0"
 
-launchdarkly-js-sdk-common@3.2.11:
-  version "3.2.11"
-  resolved "https://registry.yarnpkg.com/launchdarkly-js-sdk-common/-/launchdarkly-js-sdk-common-3.2.11.tgz#52367bbaaf4ff6846ece24abd92ef59e4533777a"
-  integrity sha512-U3XrbGuJxRVaP5ONqQH1f1l/USDKIywcK3iXwEMhbsIflkOz+ODAHhi2LCDWB49Q6J7JfTb+SBsRlqsACwWtGg==
+launchdarkly-js-sdk-common@3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/launchdarkly-js-sdk-common/-/launchdarkly-js-sdk-common-3.3.0.tgz#1f78adeb4944e62850f8e8b0227ddd8fcc8af513"
+  integrity sha512-YZNwD9t7qL530Diz+thetn+9qVHzz+m421i4RAlMhWcximr9UCA9ZktuBa1ry1Fca1+wLNWXKI4Es94lTZSOVw==
   dependencies:
     base64-js "^1.3.0"
     fast-deep-equal "^2.0.1"
