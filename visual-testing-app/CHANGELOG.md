@@ -1,5 +1,15 @@
 # @commercetools-local/visual-testing-app
 
+## 17.1.6
+
+### Patch Changes
+
+- [`aa6f642a`](https://github.com/commercetools/merchant-center-application-kit/commit/aa6f642a7d28dec7f34f8e6147ed9c7fee0ebd13) [#2026](https://github.com/commercetools/merchant-center-application-kit/pull/2026) Thanks [@emmenko](https://github.com/emmenko)! - Update uikit and docs-kit dependencies to fix some underlying emotion and react-select version resolution.
+
+- Updated dependencies [[`aa6f642a`](https://github.com/commercetools/merchant-center-application-kit/commit/aa6f642a7d28dec7f34f8e6147ed9c7fee0ebd13)]:
+  - @commercetools-frontend/application-components@18.1.5
+  - @commercetools-frontend/react-notifications@18.1.5
+
 ## 17.1.5
 
 ### Patch Changes
