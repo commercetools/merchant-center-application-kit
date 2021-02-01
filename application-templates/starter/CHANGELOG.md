@@ -1,5 +1,16 @@
 # merchant-center-application-template-starter
 
+## 17.2.10
+
+### Patch Changes
+
+- [`aa6f642a`](https://github.com/commercetools/merchant-center-application-kit/commit/aa6f642a7d28dec7f34f8e6147ed9c7fee0ebd13) [#2026](https://github.com/commercetools/merchant-center-application-kit/pull/2026) Thanks [@emmenko](https://github.com/emmenko)! - Update uikit and docs-kit dependencies to fix some underlying emotion and react-select version resolution.
+
+- Updated dependencies [[`aa6f642a`](https://github.com/commercetools/merchant-center-application-kit/commit/aa6f642a7d28dec7f34f8e6147ed9c7fee0ebd13)]:
+  - @commercetools-frontend/application-components@18.1.5
+  - @commercetools-frontend/application-shell@18.1.5
+  - @commercetools-frontend/i18n@18.1.5
+
 ## 17.2.9
 
 ### Patch Changes

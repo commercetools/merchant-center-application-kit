@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/i18n",
-  "version": "18.1.4",
+  "version": "18.1.5",
   "description": "MC i18n messages",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -9,7 +9,12 @@
     "directory": "packages/i18n"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -17,7 +22,13 @@
   },
   "main": "dist/commercetools-frontend-i18n.cjs.js",
   "module": "dist/commercetools-frontend-i18n.esm.js",
-  "files": ["compiled-data", "dist", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "compiled-data",
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "yarn compile-data",
