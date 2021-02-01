@@ -12,11 +12,11 @@
     "generate-icons": "svgr -d src/icons/generated src/icons/svg && prettier --write '**/generated/*.js'"
   },
   "dependencies": {
-    "@commercetools-docs/gatsby-theme-docs": "14.0.2",
-    "@commercetools-docs/ui-kit": "14.0.2",
-    "@commercetools-uikit/card": "^10.44.0",
-    "@commercetools-uikit/spacings-inline": "^10.44.1",
-    "@commercetools-uikit/spacings-stack": "^10.44.1",
+    "@commercetools-docs/gatsby-theme-docs": "14.0.3",
+    "@commercetools-docs/ui-kit": "14.0.3",
+    "@commercetools-uikit/card": "^10.44.4",
+    "@commercetools-uikit/spacings-inline": "^10.44.4",
+    "@commercetools-uikit/spacings-stack": "^10.44.4",
     "@emotion/react": "11.1.4",
     "@emotion/styled": "11.0.0",
     "gatsby": "2.30.3",
