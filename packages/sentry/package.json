@@ -32,7 +32,7 @@
   "devDependencies": {
     "@types/react": "16.14.2",
     "react": "16.14.0",
-    "sentry-testkit": "3.2.1",
+    "sentry-testkit": "3.2.4",
     "wait-for-expect": "3.0.2"
   },
   "peerDependencies": {
