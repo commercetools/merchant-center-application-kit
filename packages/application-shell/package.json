@@ -69,7 +69,7 @@
     "@types/common-tags": "^1.8.0",
     "@types/history": "4.7.8",
     "@types/lodash": "^4.14.167",
-    "@types/react-select": "3.1.2",
+    "@types/react-select": "4.0.11",
     "@types/redux-logger": "3.0.8",
     "@types/uuid": "8.3.0",
     "apollo-link-logger": "2.0.0",
