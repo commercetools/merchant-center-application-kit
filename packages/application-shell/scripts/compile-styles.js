@@ -12,6 +12,11 @@ function getCompiledPaths(cssFilePath) {
   const [folderPath] = cssFilePath.split(fileName);
   const compiledDir = path.join(folderPath, 'compiled');
   const compiledFileName = fileName.replace('.mod', '');
+
+  if (!fs.existsSync(compiledDir)) {
+    fs.mkdirSync(compiledDir);
+  }
+
   return {
     dir: compiledDir,
     fileName: compiledFileName,
@@ -19,12 +24,7 @@ function getCompiledPaths(cssFilePath) {
 }
 
 async function compileCss() {
-  const { plugins, options } = await loadPostCssConfig(
-    undefined,
-    require
-      .resolve('@commercetools-frontend/mc-scripts/postcss.config.js')
-      .replace('/postcss.config.js', '')
-  );
+  const { plugins, options } = await loadPostCssConfig();
 
   const processor = postcss([
     ...plugins,
@@ -32,10 +32,6 @@ async function compileCss() {
       generateScopedName: '[name]__[local]___[hash:base64:5]',
       getJSON: function (cssFilePath, json) {
         const compiledPaths = getCompiledPaths(cssFilePath);
-
-        if (!fs.existsSync(compiledPaths.dir)) {
-          fs.mkdirSync(compiledPaths.dir);
-        }
 
         // This file contains the mapping between the class names referenced
         // in the components and the compiled CSS selectors.
@@ -49,8 +45,8 @@ async function compileCss() {
         fs.writeFileSync(
           `${path.join(compiledPaths.dir, compiledPaths.fileName)}.json.d.ts`,
           `/* eslint-disable prettier/prettier */
-declare const styles: ${JSON.stringify(json)};
-export default styles;`,
+    declare const styles: ${JSON.stringify(json)};
+    export default styles;`,
           { encoding: 'utf8' }
         );
       },
