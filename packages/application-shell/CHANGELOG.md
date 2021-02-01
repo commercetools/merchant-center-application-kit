@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 18.2.0
+
+### Minor Changes
+
+- [`7fbe0c71`](https://github.com/commercetools/merchant-center-application-kit/commit/7fbe0c718d43e5c940e324e282f3cdd67a46717e) [#2018](https://github.com/commercetools/merchant-center-application-kit/pull/2018) Thanks [@emmenko](https://github.com/emmenko)! - Build package using `preconstruct`. This is now possible as we don't directly load the `.css` file anymore. Instead, we use `postcss` to compile it and load the styles using a macro. This allows the code to be bundled using Babel.
+
 ## 18.1.5
 
 ### Patch Changes
