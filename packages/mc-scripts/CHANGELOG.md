@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-scripts
 
+## 18.2.0
+
+### Patch Changes
+
+- [`7fbe0c71`](https://github.com/commercetools/merchant-center-application-kit/commit/7fbe0c718d43e5c940e324e282f3cdd67a46717e) [#2018](https://github.com/commercetools/merchant-center-application-kit/pull/2018) Thanks [@emmenko](https://github.com/emmenko)! - Include a `postcss.config.js`, which is used by the `postcss-loader` Webpack plugin.
+
 ## 18.1.4
 
 ### Patch Changes
