@@ -4,5 +4,5 @@ module.exports = {
   moduleFileExtensions: ['md', 'mdx'],
   modulePathIgnorePatterns: ['build', 'dist', 'public/', 'CHANGELOG.md'],
   testMatch: ['<rootDir>/website/**/*.md', '<rootDir>/website/**/*.mdx'],
-  watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-master'],
+  watchPlugins: ['jest-watch-typeahead/filename'],
 };

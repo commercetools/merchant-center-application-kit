@@ -36,5 +36,5 @@ module.exports = {
     '^.+\\.js$': resolveRelativePath('./transform-babel-jest.js'),
     '^.+\\.graphql$': 'jest-transform-graphql',
   },
-  watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-master'],
+  watchPlugins: ['jest-watch-typeahead/filename'],
 };

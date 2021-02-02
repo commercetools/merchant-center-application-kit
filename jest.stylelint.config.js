@@ -19,5 +19,5 @@ module.exports = {
     '<rootDir>/packages/**/*.js',
     '<rootDir>/website/**/*.js',
   ],
-  watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-master'],
+  watchPlugins: ['jest-watch-typeahead/filename'],
 };
