@@ -9,11 +9,6 @@ declare let window: ApplicationWindow;
 const hasCachedAuthenticationState = (): boolean => {
   if (window.app.__DEVELOPMENT__) {
     try {
-      const cachedScope = oidcStorage.getSessionScope();
-      // Force the user to log in again
-      if (!cachedScope) {
-        return false;
-      }
       const activeProjectKey = oidcStorage.getActiveProjectKey();
       if (activeProjectKey) {
         // GIVEN The application is not requesting a project key,
@@ -32,6 +27,16 @@ const hasCachedAuthenticationState = (): boolean => {
             window.app.__DEVELOPMENT__.initialProjectKey
           );
         }
+      }
+
+      // cachedScope is assumed to be the exact cached version of the `requestedScope`
+      // if they don't match, then we know that one of the claims within the scope has changed
+      // given a change, we need to force the user to log in, so that new values on respective claim
+      // will apply for the given custom application
+      const cachedScope = oidcStorage.getSessionScope();
+      // Force the user to log in again
+      if (!cachedScope) {
+        return false;
       }
       // Rebuild the requested OIDC scope to verify that it didn't change.
       const requestedScope = buildOidcScope({
