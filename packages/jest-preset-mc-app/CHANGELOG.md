@@ -1,5 +1,11 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 18.2.1
+
+### Patch Changes
+
+- [`3e1567ed`](https://github.com/commercetools/merchant-center-application-kit/commit/3e1567ed599e3440b5fdfff3b2123d5f48dce7e0) [#2029](https://github.com/commercetools/merchant-center-application-kit/pull/2029) Thanks [@emmenko](https://github.com/emmenko)! - Remove `jest-watch-master` plugin, as it defaults to the `master` branch.
+
 ## 18.1.4
 
 ### Patch Changes

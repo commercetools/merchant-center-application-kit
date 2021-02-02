@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 18.2.1
+
+### Patch Changes
+
+- [`b8b11a72`](https://github.com/commercetools/merchant-center-application-kit/commit/b8b11a726f05ab2645fa18f93537a427202f2ecd) [#2030](https://github.com/commercetools/merchant-center-application-kit/pull/2030) Thanks [@adnasa](https://github.com/adnasa)! - move logic on cachedScope lookup
+
 ## 18.2.0
 
 ### Minor Changes
