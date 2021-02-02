@@ -5,5 +5,5 @@ module.exports = {
   testRegex: './*\\.visualspec\\.ts$',
   transform: jestPresetForTypescript.transform,
   globals: jestPresetForTypescript.globals,
-  watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-master'],
+  watchPlugins: ['jest-watch-typeahead/filename'],
 };

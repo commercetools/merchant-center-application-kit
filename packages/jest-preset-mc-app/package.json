@@ -36,7 +36,6 @@
     "jest-localstorage-mock": "2.4.6",
     "jest-silent-reporter": "0.4.0",
     "jest-transform-graphql": "2.1.0",
-    "jest-watch-master": "1.0.0",
     "jest-watch-typeahead": "0.6.1",
     "make-plural": "6.2.2",
     "pkg-dir": "5.0.0",
