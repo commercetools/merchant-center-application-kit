@@ -24,7 +24,7 @@ if (!fs.existsSync(tarballsDistPath)) {
 const branchName =
   process.env.GITHUB_EVENT_NAME === 'pull_request'
     ? process.env.GITHUB_HEAD_REF
-    : 'master';
+    : 'main';
 
 console.log('Cleaning up sandbox folder');
 shelljs.rm('-rf', sandboxPath);

@@ -1,13 +1,13 @@
 name: Main workflow
 
 # The event triggers are configured as following:
-# - on branch master, trigger the workflow on every push
+# - on branch main, trigger the workflow on every push
 # - on any pull request, trigger the workflow
 # This is to avoid running the workflow twice on pull requests.
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
 
 jobs:
@@ -126,14 +126,14 @@ jobs:
           path: cypress/videos
 
       - name: Deploying Playground application to Vercel
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         run: ./scripts/deploy_playground.sh
         env:
           VERCEL_TOKEN_PLAYGROUND: ${{ secrets.VERCEL_TOKEN_PLAYGROUND }}
           HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
 
       - name: Preparing tarballs of packages for testing templates installation
-        if: github.ref != 'refs/heads/master'
+        if: github.ref != 'refs/heads/main'
         run: node ./scripts/build-tarballs.js
 
       # TODO: in the future we want to extract this step into a separate job to be able
@@ -147,7 +147,7 @@ jobs:
       # - https://github.com/actions/upload-artifact/issues/5
       # - https://github.com/actions/upload-artifact/issues/45
       - name: Installing and building template starter
-        if: github.ref != 'refs/heads/master'
+        if: github.ref != 'refs/heads/main'
         run: node ./scripts/install-template.js
         env:
           TEMPLATE_NAME: starter

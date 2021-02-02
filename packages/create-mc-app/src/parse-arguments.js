@@ -15,7 +15,7 @@ module.exports = function parseArguments(flags) {
 
   // Parse options
   const templateName = flags.template || 'starter';
-  let tagOrBranchVersion = flags['template-version'] || 'master';
+  let tagOrBranchVersion = flags['template-version'] || 'main';
   tagOrBranchVersion =
     isSemVer(tagOrBranchVersion) && !tagOrBranchVersion.startsWith('v')
       ? `v${tagOrBranchVersion}`

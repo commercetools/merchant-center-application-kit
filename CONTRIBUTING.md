@@ -25,7 +25,7 @@ This repository is managed as a monorepo, meaning it contains multiple (sub)pack
 packages/
   actions-global/
   application-components/
-  application-config/  
+  application-config/
   application-shell/
   application-shell-connectors/
   assets/
@@ -151,9 +151,9 @@ When the `Version Packages` Pull Request gets merged, the Changesets release Git
 
 ## Canary releases
 
-On `master` branch, we automatically publish **canary** releases from CI to the `canary` distribution channel, _after_ the build runs successfully.
+On `main` branch, we automatically publish **canary** releases from CI to the `canary` distribution channel, _after_ the build runs successfully.
 
-Canary releases are useful to test early changes that should not be released yet to `next` or `latest`. They are automatically triggered and released after a Pull Request merged into `master`, unless the commit message contains `[skip publish]`.
+Canary releases are useful to test early changes that should not be released yet to `next` or `latest`. They are automatically triggered and released after a Pull Request merged into `main`.
 
 Note that canary releases **will not create git tags and version bump commits**.
 

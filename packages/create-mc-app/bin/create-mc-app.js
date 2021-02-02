@@ -29,7 +29,7 @@ async function execute() {
 
     --template <name>               (optional) The name of the template to install [default "starter"]
                                     Available options: ["starter"]
-    --template-version <version>    (optional) The version of the template to install [default "master"]
+    --template-version <version>    (optional) The version of the template to install [default "main"]
     --skip-install                  (optional) Skip installing the dependencies after cloning the template [default "false"]
     `);
     process.exit(0);

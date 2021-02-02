@@ -1979,7 +1979,7 @@ This release does not contain any changes compared to `v13.12.1`. However, the `
 
   - [#766](https://github.com/commercetools/merchant-center-application-kit/pull/766) feat(modal-pages): add delay before calling onClose to let animations finish ([@jonnybel](https://github.com/jonnybel))
 
-- `jest-stylelint-runner` [Readme](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/jest-stylelint-runner/README.md)
+- `jest-stylelint-runner` [Readme](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/jest-stylelint-runner/README.md)
   - [#789](https://github.com/commercetools/merchant-center-application-kit/pull/789) fix(jest-stylelint-runner): include run file ([@montezume](https://github.com/montezume))
 
 #### 🐛 Type: Bug
@@ -2994,7 +2994,7 @@ type LocalizedField {
 
 ## BREAKING CHANGES 💣
 
-ESLint is now a peer dependency in [#277](https://github.com/commercetools/merchant-center-application-kit/pull/277). Please make sure that ESLint and all required plugins are installed in your project. You can always check for the required list of plugins in the [package.json](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/eslint-config-mc-app/package.json) of `eslint-config-mc-app`. In order to install all peer dependencies with a single command run:
+ESLint is now a peer dependency in [#277](https://github.com/commercetools/merchant-center-application-kit/pull/277). Please make sure that ESLint and all required plugins are installed in your project. You can always check for the required list of plugins in the [package.json](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/eslint-config-mc-app/package.json) of `eslint-config-mc-app`. In order to install all peer dependencies with a single command run:
 
 ```bash
 $ npx install-peerdeps --dev @commercetools-frontend/eslint-config-mc-app

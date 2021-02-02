@@ -1,7 +1,7 @@
 # @commercetools-backend/loggers
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@commercetools-backend/loggers"><img src="https://badgen.net/npm/v/@commercetools-backend/loggers" alt="Latest release (latest dist-tag)" /></a> <a href="https://www.npmjs.com/package/@commercetools-backend/loggers"><img src="https://badgen.net/npm/v/@commercetools-backend/loggers/next" alt="Latest release (next dist-tag)" /></a> <a href="https://bundlephobia.com/result?p=@commercetools-backend/loggers"><img src="https://badgen.net/bundlephobia/minzip/@commercetools-backend/loggers" alt="Minified + GZipped size" /></a> <a href="https://github.com/commercetools/merchant-center-application-kit/blob/master/LICENSE"><img src="https://badgen.net/github/license/commercetools/merchant-center-application-kit" alt="GitHub license" /></a>
+  <a href="https://www.npmjs.com/package/@commercetools-backend/loggers"><img src="https://badgen.net/npm/v/@commercetools-backend/loggers" alt="Latest release (latest dist-tag)" /></a> <a href="https://www.npmjs.com/package/@commercetools-backend/loggers"><img src="https://badgen.net/npm/v/@commercetools-backend/loggers/next" alt="Latest release (next dist-tag)" /></a> <a href="https://bundlephobia.com/result?p=@commercetools-backend/loggers"><img src="https://badgen.net/bundlephobia/minzip/@commercetools-backend/loggers" alt="Minified + GZipped size" /></a> <a href="https://github.com/commercetools/merchant-center-application-kit/blob/main/LICENSE"><img src="https://badgen.net/github/license/commercetools/merchant-center-application-kit" alt="GitHub license" /></a>
 </p>
 
 Opinionated JSON loggers for HTTP server applications.

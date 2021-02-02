@@ -21,7 +21,7 @@ To test React components, we recommend to use one of the following approaches:
   > You want to write maintainable tests for your React components. As a part of this goal, you want your tests to avoid including implementation details of your components and rather focus on making your tests give you the confidence for which they are intended. As part of this, you want your test base to be maintainable in the long run so refactors of your components (changes to implementation but not functionality) don't break your tests and slow you and your team down.
 
   This is the **recommended approach** for writing component and UI tests.
-  To make it easier to test parts of the application, we additionally provide [`test-utils`](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell/src/test-utils/README.md) in the [`@commercetools-frontend/application-shell`](https://www.npmjs.com/package/@commercetools-frontend/application-shell) package.
+  To make it easier to test parts of the application, we additionally provide [`test-utils`](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/application-shell/src/test-utils/README.md) in the [`@commercetools-frontend/application-shell`](https://www.npmjs.com/package/@commercetools-frontend/application-shell) package.
 
 - [`shallow` rendering](https://github.com/airbnb/enzyme) for normal unit tests
 
@@ -31,7 +31,7 @@ To test React components, we recommend to use one of the following approaches:
 
   </Warning>
 
-For End-to-End tests you should use [Cypress](https://www.cypress.io/). Please check out the [app-kit cypress setup](https://github.com/commercetools/merchant-center-application-kit/tree/master/cypress) for more information.
+For End-to-End tests you should use [Cypress](https://www.cypress.io/). Please check out the [app-kit cypress setup](https://github.com/commercetools/merchant-center-application-kit/tree/main/cypress) for more information.
 
 # Test utils for `<ApplicationShell>`
 
@@ -42,7 +42,7 @@ When writing tests, you want to focus on testing the application specific logic.
 - `<IntlProvider>`: for Internationalization and Localization via the[`react-intl`](https://github.com/yahoo/react-intl).
 - `<ApolloProvider>`: for GraphQL requests via the [`@apollo/client`](https://www.apollographql.com/docs/react/).
 - `<ConfigureFlopFlip>`: for feature toggling via the [`flopflip`](https://github.com/tdeekens/flopflip).
-- `<ApplicationContextProvider>`: for holding context information about the Merchant Center application, like `user`, `project`, `environment`, `dataLocale`, and `permissions` via the [`application-shell-connectors`](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell-connectors/src/components/application-context/README.md).
+- `<ApplicationContextProvider>`: for holding context information about the Merchant Center application, like `user`, `project`, `environment`, `dataLocale`, and `permissions` via the [`application-shell-connectors`](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/application-shell-connectors/src/components/application-context/README.md).
 - `<Router>`: for routing via the [`react-router`](https://github.com/ReactTraining/react-router).
 
 ## Usage
@@ -85,7 +85,7 @@ const FirstName = () => {
 };
 ```
 
-This component uses the [`ApplicationContext`](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell-connectors/src/components/application-context/README.md) which allows to access the context information provided by the `<ApplicationShell>`.
+This component uses the [`ApplicationContext`](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/application-shell-connectors/src/components/application-context/README.md) which allows to access the context information provided by the `<ApplicationShell>`.
 
 We can now test that the name is rendered:
 
@@ -100,7 +100,7 @@ describe('rendering', () => {
 });
 ```
 
-This test renders the `<FirstName>` component and then verifies that the name _"Sheldon"_ gets printed. _"Sheldon"_ is the name of our [default user](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell/src/test-utils/test-utils.tsx) in tests.
+This test renders the `<FirstName>` component and then verifies that the name _"Sheldon"_ gets printed. _"Sheldon"_ is the name of our [default user](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/application-shell/src/test-utils/test-utils.tsx) in tests.
 
 We can make the test more robust by explicitly declaring the authenticated users first name. This ensures the test keeps working even when the defaults change.
 
@@ -156,8 +156,8 @@ The `test-utils` additionally re-export all the public methods of [`@testing-lib
 | `options.adapter`     | `Object`      | Feature Toggles                                                                                                                                                                                    | The [FlopFlip](https://github.com/tdeekens/flopflip) adapter to use when configuring `flopflip`. Defaults to [`memoryAdapter`](https://github.com/tdeekens/flopflip/tree/master/packages/memory-adapter).                                                                                                                                                                          |
 | `options.flags`       | `Object`      | Feature Toggles                                                                                                                                                                                    | An object whose keys are feature-toggle keys and whose values are their toggle state. Use this to test your component with different feature toggle combinations. Example: `{ betaUserProfile: true }`.                                                                                                                                                                            |
 | `options.environment` | `Object`      | [Runtime configuration](/development/application-config#runtime-application-environment) | Allows to set the `applicationContext.environment`. The passed object gets merged with the tests default environment. Pass `null` to completely remove the `environment`, which renders the `ui` as if no `environment` was given.                                                                                                                                                 |
-| `options.user`        | `Object`      | [Application Context](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell-connectors/src/components/application-context/README.md#user)        | Allows to set the `applicationContext.user`. The passed object gets merged with the tests default user. Pass `null` to completely remove the `user`, which renders the `ui` as if no user was authenticated.                                                                                                                                                                       |
-| `options.project`     | `Object`      | [Application Context](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell-connectors/src/components/application-context/README.md#project)     | Allows to set the `applicationContext.project`. The passed object gets merged with the tests default project. Pass `null` to completely remove the `project` which renders the `ui` outside of a project context.                                                                                                                                                                  |
+| `options.user`        | `Object`      | [Application Context](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/application-shell-connectors/src/components/application-context/README.md#user)        | Allows to set the `applicationContext.user`. The passed object gets merged with the tests default user. Pass `null` to completely remove the `user`, which renders the `ui` as if no user was authenticated.                                                                                                                                                                       |
+| `options.project`     | `Object`      | [Application Context](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/application-shell-connectors/src/components/application-context/README.md#project)     | Allows to set the `applicationContext.project`. The passed object gets merged with the tests default project. Pass `null` to completely remove the `project` which renders the `ui` outside of a project context.                                                                                                                                                                  |
 
 **Additional return values**
 
@@ -181,7 +181,7 @@ The function accepts all options from `renderApp`, plus the following:
 | ------------------------------------ | ---------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `options.store`                      | `Object`   | Redux   | A custom redux store.                                                                                                                                                                                                                                          |
 | `options.storeState`                 | `Object`   | Redux   | Pass an initial state to the default Redux store.                                                                                                                                                                                                              |
-| `options.sdkMocks`                   | `Array`    | Redux   | Allows mocking requests made with `@commercetools-frontend/sdk` (Redux). The `sdkMocks` is forwarded as `mocks` to the [SDK `test-utils`](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/sdk/src/test-utils/README.md). |
+| `options.sdkMocks`                   | `Array`    | Redux   | Allows mocking requests made with `@commercetools-frontend/sdk` (Redux). The `sdkMocks` is forwarded as `mocks` to the [SDK `test-utils`](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/sdk/src/test-utils/README.md). |
 | `options.mapNotificationToComponent` | `Function` | Redux   | Pass a function to map a notification to a custom component.                                                                                                                                                                                                   |
 
 Some examples:
