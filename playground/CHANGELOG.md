@@ -1,5 +1,14 @@
 # playground
 
+## 17.3.10
+
+### Patch Changes
+
+- [`01abcbff`](https://github.com/commercetools/merchant-center-application-kit/commit/01abcbff4117dd568102c8c62d516290fe9acc2b) [#2031](https://github.com/commercetools/merchant-center-application-kit/pull/2031) Thanks [@adnasa](https://github.com/adnasa)! - remove redundant key defined in `.env.local`
+
+- Updated dependencies [[`b8b11a72`](https://github.com/commercetools/merchant-center-application-kit/commit/b8b11a726f05ab2645fa18f93537a427202f2ecd)]:
+  - @commercetools-frontend/application-shell@18.2.1
+
 ## 17.3.9
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "merchant-center-application-template-starter",
-  "version": "17.2.11",
+  "version": "17.2.12",
   "description": "A starter example for the bare minimum setup to develop a Merchant Center Application",
   "private": true,
   "scripts": {
@@ -18,7 +18,7 @@
     "@apollo/client": "3.3.7",
     "@commercetools-frontend/actions-global": "18.1.4",
     "@commercetools-frontend/application-components": "18.1.5",
-    "@commercetools-frontend/application-shell": "18.2.0",
+    "@commercetools-frontend/application-shell": "18.2.1",
     "@commercetools-frontend/assets": "18.1.0",
     "@commercetools-frontend/i18n": "18.1.5",
     "@commercetools-frontend/permissions": "18.1.4",
@@ -36,7 +36,7 @@
     "redux": "4.0.5"
   },
   "devDependencies": {
-    "@commercetools-frontend/jest-preset-mc-app": "18.1.4",
+    "@commercetools-frontend/jest-preset-mc-app": "18.2.1",
     "@commercetools-frontend/mc-dev-authentication": "18.1.0",
     "@commercetools-frontend/mc-scripts": "18.2.0",
     "@formatjs/cli": "3.0.5",
