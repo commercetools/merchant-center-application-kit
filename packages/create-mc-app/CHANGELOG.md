@@ -1,5 +1,11 @@
 # @commercetools-frontend/create-mc-app
 
+## 18.2.3
+
+### Patch Changes
+
+- [`e5c77399`](https://github.com/commercetools/merchant-center-application-kit/commit/e5c77399f90ebc0a199a7620d0a8500ca53229f0) [#2036](https://github.com/commercetools/merchant-center-application-kit/pull/2036) Thanks [@tdeekens](https://github.com/tdeekens)! - Release to pull from main branch by default
+
 ## 18.1.0
 
 ### Patch Changes
