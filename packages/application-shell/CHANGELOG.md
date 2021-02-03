@@ -1,5 +1,23 @@
 # @commercetools-frontend/application-shell
 
+## 18.2.2
+
+### Patch Changes
+
+- [`27b6690c`](https://github.com/commercetools/merchant-center-application-kit/commit/27b6690c75c9b83bb11ffcf83251b039a6f06cf0) [#2033](https://github.com/commercetools/merchant-center-application-kit/pull/2033) Thanks [@tdeekens](https://github.com/tdeekens)! - Rename to `enableFeatureConfigurationFetching` to `enableLongLivedFeatureFlags`
+
+- Updated dependencies [[`27b6690c`](https://github.com/commercetools/merchant-center-application-kit/commit/27b6690c75c9b83bb11ffcf83251b039a6f06cf0)]:
+  - @commercetools-frontend/constants@18.2.2
+  - @commercetools-frontend/actions-global@18.2.2
+  - @commercetools-frontend/application-components@18.2.2
+  - @commercetools-frontend/application-shell-connectors@18.2.2
+  - @commercetools-frontend/react-notifications@18.2.2
+  - @commercetools-frontend/sdk@18.2.2
+  - @commercetools-frontend/sentry@18.2.2
+  - @commercetools-frontend/permissions@18.2.2
+  - @commercetools-frontend/i18n@18.2.2
+  - @commercetools-frontend/l10n@18.2.2
+
 ## 18.2.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 18.2.2
+
+### Patch Changes
+
+- [`27b6690c`](https://github.com/commercetools/merchant-center-application-kit/commit/27b6690c75c9b83bb11ffcf83251b039a6f06cf0) [#2033](https://github.com/commercetools/merchant-center-application-kit/pull/2033) Thanks [@tdeekens](https://github.com/tdeekens)! - Rename to `enableFeatureConfigurationFetching` to `enableLongLivedFeatureFlags`
+
 ## 18.1.0
 
 ### Patch Changes
