@@ -1,5 +1,14 @@
 # @commercetools-frontend/react-notifications
 
+## 18.2.2
+
+### Patch Changes
+
+- Updated dependencies [[`27b6690c`](https://github.com/commercetools/merchant-center-application-kit/commit/27b6690c75c9b83bb11ffcf83251b039a6f06cf0)]:
+  - @commercetools-frontend/constants@18.2.2
+  - @commercetools-frontend/actions-global@18.2.2
+  - @commercetools-frontend/sentry@18.2.2
+
 ## 18.1.5
 
 ### Patch Changes
