@@ -1,6 +1,6 @@
 {
   "name": "merchant-center-application-template-starter",
-  "version": "17.2.13",
+  "version": "17.2.14",
   "description": "A starter example for the bare minimum setup to develop a Merchant Center Application",
   "private": true,
   "scripts": {
