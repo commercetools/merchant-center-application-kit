@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-components
 
+## 18.3.0
+
+### Minor Changes
+
+- [`71e12377`](https://github.com/commercetools/merchant-center-application-kit/commit/71e12377a4b4e623942b7f6b441bc9899b561cb3) [#2017](https://github.com/commercetools/merchant-center-application-kit/pull/2017) Thanks [@adnasa](https://github.com/adnasa)! - remove product-picker-input
+
 ## 18.2.2
 
 ### Patch Changes
