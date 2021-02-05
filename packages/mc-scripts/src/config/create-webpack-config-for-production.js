@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-const path = require('path');
 const webpack = require('webpack');
 const cssnano = require('cssnano');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -14,7 +13,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // we need to explicitly use the library to be using the newest version
 const TerserPlugin = require('terser-webpack-plugin');
 const FinalStatsWriterPlugin = require('../webpack-plugins/final-stats-writer-plugin');
+const paths = require('./paths');
 const vendorsToTranspile = require('./vendors-to-transpile');
+const createPostcssConfig = require('./create-postcss-config');
 const hasJsxRuntime = require('./has-jsx-runtime');
 
 const optimizeCSSConfig = {
@@ -45,15 +46,36 @@ const defaultToggleFlags = {
   //    `int` for a specific number of CPUs
   parallelism: true,
 };
+const defaultOptions = {
+  distPath: paths.distPath,
+  entryPoint: paths.entryPoint,
+  sourceFolders: paths.sourceFolders,
+  postcssOptions: {},
+  toggleFlags: defaultToggleFlags,
+};
 
 /**
  * This is a factory function to create the default webpack config
  * for a MC Application in `production` mode.
  * The function requires the file path to the related application
  * "entry point".
+ *
+ * @param {Object} options - Options to configure the Webpack config
+ * @param {string} options.distPath - The absolute path to the `dist` folder where Webpack should output the assets.
+ * @param {string} options.entryPoint - The absolute path to the application entry point file.
+ * @param {string[]} options.sourceFolders[] - A list of folders where Webpack should look for source files.
+ * @param {Object} options.postcssOptions - Options related to Postcss plugins. See `createPostcssConfig` function.
+ * @param {Object} options.toggleFlags - Options to enable/disable certain functionalities of the Webpack config.
  */
-module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
-  const mergedToggleFlags = { ...defaultToggleFlags, ...toggleFlags };
+module.exports = function createWebpackConfigForProduction(options = {}) {
+  const mergedOptions = {
+    ...defaultOptions,
+    ...options,
+    toggleFlags: {
+      ...defaultToggleFlags,
+      ...options.toggleFlags,
+    },
+  };
 
   return {
     // Don't attempt to continue if there are any errors.
@@ -111,12 +133,12 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
           },
           // Use multi-process parallel running to improve the build speed
           // Default number of concurrent runs: os.cpus().length - 1
-          parallel: mergedToggleFlags.parallelism,
+          parallel: mergedOptions.toggleFlags.parallelism,
           // Enable file caching
           cache: true,
           sourceMap: true,
         }),
-        mergedToggleFlags.enableExtractCss &&
+        mergedOptions.toggleFlags.enableExtractCss &&
           new OptimizeCSSAssetsPlugin(optimizeCSSConfig),
       ].filter(Boolean),
       // Automatically split vendor and commons
@@ -140,7 +162,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
       app: [
         require.resolve('./application-runtime'),
         require.resolve('core-js/stable'),
-        entryPoint,
+        mergedOptions.entryPoint,
       ],
     },
 
@@ -150,7 +172,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
       filename: '[name].[chunkhash].js',
       chunkFilename: '[id].[name].[chunkhash].js',
       // The build folder.
-      path: path.join(distPath, 'assets'),
+      path: paths.appBuild,
       pathinfo: false,
       // Will be injected on runtime. See `packages/application-shell/src/public-path.js`
       publicPath: '',
@@ -170,13 +192,13 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
       new CleanWebpackPlugin({
         dangerouslyAllowCleanPatternsOutsideProject: true,
         dry: true,
-        cleanOnceBeforeBuildPatterns: [distPath],
+        cleanOnceBeforeBuildPatterns: [mergedOptions.distPath],
       }),
       // Allows to "assign" custom options to the `webpack` object.
       // At the moment, this is used to share some props with `postcss.config`.
       new webpack.LoaderOptionsPlugin({
         options: {
-          sourceFolders,
+          sourceFolders: mergedOptions.sourceFolders,
           context: __dirname,
         },
       }),
@@ -209,10 +231,10 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
       // This is necessary to programmatically refer to the correct bundle path
       // in the `index.html`.
       new FinalStatsWriterPlugin({
-        outputPath: distPath,
+        outputPath: mergedOptions.distPath,
         includeFields: ['entrypoints', 'assets', 'publicPath', 'time'],
       }),
-      mergedToggleFlags.generateIndexHtml &&
+      mergedOptions.toggleFlags.generateIndexHtml &&
         new HtmlWebpackPlugin({
           inject: false,
           filename: 'index.html.template',
@@ -220,7 +242,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
             '@commercetools-frontend/mc-html-template/webpack'
           ),
         }),
-      mergedToggleFlags.enableExtractCss && // Extracts CSS into one CSS file to mimic CSS order in dev
+      mergedOptions.toggleFlags.enableExtractCss && // Extracts CSS into one CSS file to mimic CSS order in dev
         new MiniCssExtractPlugin({
           filename: '[name].[chunkhash].css',
           chunkFilename: '[id].[name].[chunkhash].css',
@@ -309,9 +331,9 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
         // "style" loader turns CSS into JS modules that inject <style> tags.
         {
           test: /\.mod\.css$/,
-          include: sourceFolders,
+          include: mergedOptions.sourceFolders,
           use: [
-            mergedToggleFlags.enableExtractCss
+            mergedOptions.toggleFlags.enableExtractCss
               ? MiniCssExtractPlugin.loader
               : require.resolve('style-loader'),
             {
@@ -328,9 +350,9 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
             {
               loader: require.resolve('postcss-loader'),
               options: {
-                postcssOptions: {
-                  config: path.join(__dirname, '../../postcss.config.js'),
-                },
+                postcssOptions: createPostcssConfig(
+                  mergedOptions.postcssOptions
+                ),
               },
             },
           ],
@@ -349,18 +371,18 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
           oneOf: [
             {
               // Use "postcss" for all the included source folders.
-              include: sourceFolders,
+              include: mergedOptions.sourceFolders,
               use: [
-                mergedToggleFlags.enableExtractCss
+                mergedOptions.toggleFlags.enableExtractCss
                   ? MiniCssExtractPlugin.loader
                   : require.resolve('style-loader'),
                 require.resolve('css-loader'),
                 {
                   loader: require.resolve('postcss-loader'),
                   options: {
-                    postcssOptions: {
-                      config: path.join(__dirname, '../../postcss.config.js'),
-                    },
+                    postcssOptions: createPostcssConfig(
+                      mergedOptions.postcssOptions
+                    ),
                   },
                 },
               ],
@@ -370,7 +392,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
               // But still use MiniCssExtractPlugin :)
               include: /node_modules/,
               loaders: [
-                mergedToggleFlags.enableExtractCss
+                mergedOptions.toggleFlags.enableExtractCss
                   ? MiniCssExtractPlugin.loader
                   : require.resolve('style-loader'),
                 require.resolve('css-loader'),
@@ -415,12 +437,12 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
               },
             },
           ],
-          include: sourceFolders.concat(vendorsToTranspile),
+          include: mergedOptions.sourceFolders.concat(vendorsToTranspile),
         },
         // Allow to import `*.graphql` SDL files.
         {
           test: /\.graphql$/,
-          include: sourceFolders,
+          include: mergedOptions.sourceFolders,
           use: [require.resolve('graphql-tag/loader')],
         },
       ].filter(Boolean),

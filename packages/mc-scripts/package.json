@@ -16,15 +16,7 @@
     "access": "public"
   },
   "main": "./build/index.js",
-  "files": [
-    "bin",
-    "build",
-    "config",
-    "package.json",
-    "postcss.config.js",
-    "LICENSE",
-    "README.md"
-  ],
+  "files": ["bin", "build", "config", "package.json", "LICENSE", "README.md"],
   "bin": {
     "mc-scripts": "./bin/mc-scripts.js"
   },

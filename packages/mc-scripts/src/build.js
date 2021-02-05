@@ -11,7 +11,6 @@ process.on('unhandledRejection', (err) => {
   throw err;
 });
 
-const path = require('path');
 const fs = require('fs-extra');
 const webpack = require('webpack');
 const chalk = require('react-dev-utils/chalk');
@@ -19,6 +18,7 @@ const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const printBuildError = require('react-dev-utils/printBuildError');
+const paths = require('./config/paths');
 const createWebpackConfigForProduction = require('./config/create-webpack-config-for-production');
 
 const measureFileSizesBeforeBuild =
@@ -28,21 +28,6 @@ const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
 // These sizes are pretty large. We'll warn for bundles exceeding them.
 const WARN_AFTER_BUNDLE_GZIP_SIZE = 512 * 1024;
 const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024;
-
-// Make sure any symlinks in the project folder are resolved:
-// https://github.com/facebook/create-react-app/issues/637
-const appDirectory = fs.realpathSync(process.cwd());
-const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
-
-// Resolve the absolute path of the caller location. This is necessary
-// to point to files within that folder.
-const paths = {
-  appBuild: resolveApp('dist/assets'),
-  appWebpackConfig: resolveApp('webpack.config.prod.js'),
-  distPath: resolveApp('dist'),
-  entryPoint: resolveApp('src/index.js'),
-  sourceFolders: [resolveApp('src')],
-};
 
 const hasWebpackConfig = fs.existsSync(paths.appWebpackConfig);
 
@@ -109,11 +94,7 @@ function build(previousFileSizes) {
 
   const config = hasWebpackConfig
     ? require(paths.appWebpackConfig)
-    : createWebpackConfigForProduction({
-        distPath: paths.distPath,
-        entryPoint: paths.entryPoint,
-        sourceFolders: paths.sourceFolders,
-      });
+    : createWebpackConfigForProduction();
   const compiler = webpack(config);
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {

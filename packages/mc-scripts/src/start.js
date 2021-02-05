@@ -12,7 +12,6 @@ process.on('unhandledRejection', (err) => {
 });
 
 const fs = require('fs');
-const path = require('path');
 const semver = require('semver');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
@@ -25,28 +24,11 @@ const {
   prepareUrls,
 } = require('react-dev-utils/WebpackDevServerUtils');
 const openBrowser = require('react-dev-utils/openBrowser');
+const paths = require('./config/paths');
 const createDevServerConfig = require('./config/webpack-dev-server.config');
 const createWebpackConfigForDevelopment = require('./config/create-webpack-config-for-development');
 
-// Make sure any symlinks in the project folder are resolved:
-// https://github.com/facebook/create-react-app/issues/637
-const appDirectory = fs.realpathSync(process.cwd());
-const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
-
-const react = require(require.resolve('react', { paths: [appDirectory] }));
-
-// Resolve the absolute path of the caller location. This is necessary
-// to point to files within that folder.
-const paths = {
-  appPackageJson: resolveApp('package.json'),
-  appPublic: resolveApp('public'),
-  appWebpackConfig: resolveApp('webpack.config.dev.js'),
-  yarnLockFile: resolveApp('yarn.lock'),
-  distPath: resolveApp('dist'),
-  entryPoint: resolveApp('src/index.js'),
-  sourceFolders: [resolveApp('src')],
-};
-
+const react = require(require.resolve('react', { paths: [paths.appRoot] }));
 const useYarn = fs.existsSync(paths.yarnLockFile);
 const isInteractive = process.stdout.isTTY;
 
@@ -79,11 +61,7 @@ choosePort(HOST, DEFAULT_PORT)
     // Get webpack config
     const config = hasWebpackConfig
       ? require(paths.appWebpackConfig)
-      : createWebpackConfigForDevelopment({
-          distPath: paths.distPath,
-          entryPoint: paths.entryPoint,
-          sourceFolders: paths.sourceFolders,
-        });
+      : createWebpackConfigForDevelopment();
     const devSocket = {
       warnings: (warnings) =>
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
