@@ -186,8 +186,6 @@
     "@mdx-js/react": "1.6.22",
     "**/@mdx-js/react": "1.6.22",
     "**/gatsby-link": "2.11.0",
-    "@sentry/types": "5.30.0",
-    "**/@sentry/types": "5.30.0",
     "@types/react": "16.14.3",
     "@types/react-router": "5.1.11",
     "**/sharp": "0.27.1",
