@@ -27,7 +27,7 @@
     "@fontsource/open-sans": "4.2.0",
     "core-js": "3.8.3",
     "formik": "2.2.6",
-    "gatsby": "2.30.3",
+    "gatsby": "2.32.3",
     "gatsby-cli": "2.19.1",
     "gatsby-plugin-emotion": "5.4.0",
     "gatsby-source-filesystem": "2.11.0",
