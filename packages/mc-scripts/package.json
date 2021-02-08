@@ -60,7 +60,7 @@
     "postcss-custom-media": "8.0.0",
     "postcss-custom-properties": "11.0.0",
     "postcss-import": "14.0.0",
-    "postcss-loader": "4.2.0",
+    "postcss-loader": "5.0.0",
     "postcss-reporter": "7.0.2",
     "postcss-safe-parser": "5.0.2",
     "react-dev-utils": "11.0.1",
