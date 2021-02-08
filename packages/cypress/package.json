@@ -39,14 +39,14 @@
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
-    "@babel/runtime": "7.12.5",
-    "@babel/runtime-corejs3": "7.12.5",
+    "@babel/runtime": "7.12.13",
+    "@babel/runtime-corejs3": "7.12.13",
     "@commercetools-frontend/application-config": "18.1.4",
     "@manypkg/get-packages": "1.1.1",
     "uuid": "8.3.2"
   },
   "devDependencies": {
-    "cypress": "6.3.0"
+    "cypress": "6.4.0"
   },
   "peerDependencies": {
     "cypress": "5.x || 6.x"

@@ -22,17 +22,17 @@
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
-    "@babel/runtime": "7.12.5",
-    "@babel/runtime-corejs3": "7.12.5",
+    "@babel/runtime": "7.12.13",
+    "@babel/runtime-corejs3": "7.12.13",
     "@commercetools-frontend/constants": "18.2.2",
     "@sentry/browser": "5.30.0",
     "@types/prop-types": "^15.7.3",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "@types/react": "16.14.2",
+    "@types/react": "16.14.3",
     "react": "16.14.0",
-    "sentry-testkit": "3.2.4",
+    "sentry-testkit": "3.3.0",
     "wait-for-expect": "3.0.2"
   },
   "peerDependencies": {
