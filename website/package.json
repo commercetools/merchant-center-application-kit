@@ -19,7 +19,7 @@
     "@commercetools-uikit/spacings-stack": "^10.44.4",
     "@emotion/react": "11.1.5",
     "@emotion/styled": "11.1.5",
-    "gatsby": "2.32.3",
+    "gatsby": "2.30.3",
     "gatsby-cli": "2.19.1",
     "prop-types": "15.7.2",
     "react": "16.14.0",
