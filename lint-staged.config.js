@@ -1,14 +1,14 @@
 module.exports = {
-  '*.md': ['prettier --write --parser markdown'],
-  '*.yaml': ['prettier --write --parser yaml'],
-  '*.graphql': ['prettier --write --parser graphql'],
-  '*.json': ['prettier --write --parser json'],
+  '*.md': ['yarn prettier --write --parser markdown'],
+  '*.yaml': ['yarn prettier --write --parser yaml'],
+  '*.graphql': ['yarn prettier --write --parser graphql'],
+  '*.json': ['yarn prettier --write --parser json'],
   '*.mc.graphql': () => 'yarn generate-types:mc',
   '*.ctp.graphql': () => 'yarn generate-types:ctp',
   '*.settings.graphql': () => 'yarn generate-types:settings',
   '*.proxy.graphql': () => 'yarn generate-types:proxy',
   '*.{js,ts,tsx}': [
-    'prettier --write',
+    'yarn prettier --write',
     // NOTE: apparently if you pass some argument that is not a flag AFTER the `reporters`
     // flag, jest does not seem correctly parse the arguments.
     //

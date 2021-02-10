@@ -12,7 +12,8 @@
     "extract-intl": "formatjs extract --format=$(pwd)/intl-formatter.js --out-file=$(pwd)/src/i18n/data/core.json 'src/**/!(*.spec).js'",
     "test": "jest --config jest.test.config.js",
     "test:watch": "jest --config jest.test.config.js --watch",
-    "update-versions": "bulk-update-versions --match '^@commercetools-frontend/(?!ui-kit)(.*)'"
+    "versions:appkit": "manypkg upgrade @commercetools-frontend",
+    "versions:uikit": "manypkg upgrade @commercetools-uikit"
   },
   "dependencies": {
     "@apollo/client": "3.3.8",
@@ -22,11 +23,10 @@
     "@commercetools-frontend/assets": "18.1.0",
     "@commercetools-frontend/i18n": "18.2.2",
     "@commercetools-frontend/permissions": "18.2.2",
-    "@commercetools-uikit/flat-button": "^10.46.2",
-    "@commercetools-uikit/icons": "^10.44.4",
-    "@commercetools-uikit/spacings": "^10.44.4",
-    "@commercetools-uikit/text": "^10.46.2",
-    "bulk-update-versions": "1.1.2",
+    "@commercetools-uikit/flat-button": "^10.46.3",
+    "@commercetools-uikit/icons": "^10.46.3",
+    "@commercetools-uikit/spacings": "^10.46.3",
+    "@commercetools-uikit/text": "^10.46.3",
     "prop-types": "15.7.2",
     "react": "16.14.0",
     "react-dom": "16.14.0",
@@ -40,6 +40,7 @@
     "@commercetools-frontend/mc-dev-authentication": "18.1.0",
     "@commercetools-frontend/mc-scripts": "18.2.0",
     "@formatjs/cli": "3.0.5",
+    "@manypkg/cli": "0.17.0",
     "@testing-library/react": "11.2.5",
     "dotenv-cli": "4.0.0",
     "enzyme": "3.11.0",
