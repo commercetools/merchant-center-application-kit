@@ -6,6 +6,7 @@ packages/application-shell-connectors/test-utils/index.js
 packages/application-sdk/test-utils/index.js
 packages/application-config/src/schema.ts
 **/types/generated/
+schemas/
 .percy.yml
 .cache
 .yarn

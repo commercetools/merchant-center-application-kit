@@ -56,7 +56,8 @@
     "generate-types:settings": "./scripts/graphql-cli.sh codegen --project settings",
     "generate-types:proxy": "./scripts/graphql-cli.sh codegen --project proxy",
     "generate-types": "yarn generate-types:mc && yarn generate-types:ctp && yarn generate-types:settings && yarn generate-types:proxy",
-    "versions:uikit": "bulk-update-versions --match '@commercetools-uikit/(.*)'"
+    "versions:uikit": "manypkg upgrade @commercetools-uikit",
+    "versions:docskit": "manypkg upgrade @commercetools-docs"
   },
   "workspaces": {
     "packages": [
@@ -99,7 +100,7 @@
     "@commercetools-docs/writing-style": "3.0.4",
     "@commercetools-frontend/eslint-config-mc-app": "*",
     "@commercetools-test-data/core": "2.1.1",
-    "@commercetools-uikit/design-system": "^10.43.3",
+    "@commercetools-uikit/design-system": "^10.46.3",
     "@commercetools/github-labels": "1.1.0",
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
@@ -139,7 +140,6 @@
     "babel-plugin-import-graphql": "2.8.1",
     "babel-plugin-transform-rename-import": "2.3.0",
     "babel-plugin-typescript-to-proptypes": "1.4.2",
-    "bulk-update-versions": "1.1.2",
     "cross-env": "7.0.3",
     "cypress": "6.4.0",
     "dotenv": "8.2.0",
@@ -156,7 +156,6 @@
     "jest-puppeteer": "4.4.0",
     "jest-runner-eslint": "0.10.0",
     "jest-runner-executor": "1.0.0",
-    "jest-runner-prettier": "0.3.6",
     "jest-silent-reporter": "0.4.0",
     "jest-watch-typeahead": "0.6.1",
     "lerna": "3.22.1",
