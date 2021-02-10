@@ -23335,9 +23335,9 @@ prebuild-install@^6.0.0:
     which-pm-runs "^1.0.0"
 
 preferred-pm@^3.0.0:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/preferred-pm/-/preferred-pm-3.0.2.tgz#bbdbef1014e34a7490349bf70d6d244b8d57a5e1"
-  integrity sha512-yGIxyBkK/OWOppgCXfOeOXOeNrddyK1DzqS6XpOokRZb2ogXTpHRhKDTO7d0pjF/2p2sV9pEkKL4e0tNZI1y2A==
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/preferred-pm/-/preferred-pm-3.0.3.tgz#1b6338000371e3edbce52ef2e4f65eb2e73586d6"
+  integrity sha512-+wZgbxNES/KlJs9q40F/1sfOd/j7f1O9JaHcW5Dsn3aUUOZg3L2bjpVUcKV2jvtElYfoTuQiNeMfQJ4kwUAhCQ==
   dependencies:
     find-up "^5.0.0"
     find-yarn-workspace-root2 "1.2.16"
