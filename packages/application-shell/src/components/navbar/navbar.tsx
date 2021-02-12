@@ -39,6 +39,7 @@ import {
   StarIcon,
   ConnectedSquareIcon,
   ClockWithArrowIcon,
+  ListWithSearch,
 } from '@commercetools-uikit/icons';
 import MissingImageSvg from '@commercetools-frontend/assets/images/diagonal-line.svg';
 import {
@@ -116,6 +117,8 @@ const IconSwitcher = ({ iconName, ...iconProps }: IconSwitcherProps) => {
       return <GearIcon {...iconProps} />;
     case 'ClockWithArrowIcon':
       return <ClockWithArrowIcon {...iconProps} />;
+    case 'ListWithSearch':
+      return <ListWithSearch {...iconProps} />;
     // Custom application icons set
     case 'HeartIcon':
       return <HeartIcon {...iconProps} />;
