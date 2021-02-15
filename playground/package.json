@@ -25,15 +25,15 @@
     "@commercetools-frontend/l10n": "18.4.0",
     "@commercetools-frontend/permissions": "18.4.0",
     "@commercetools-frontend/sdk": "18.4.0",
-    "@commercetools-uikit/constraints": "^10.46.3",
-    "@commercetools-uikit/data-table": "^10.46.3",
-    "@commercetools-uikit/flat-button": "^10.46.3",
+    "@commercetools-uikit/constraints": "^10.47.3",
+    "@commercetools-uikit/data-table": "^10.47.3",
+    "@commercetools-uikit/flat-button": "^10.47.3",
     "@commercetools-uikit/grid": "^10.44.4",
-    "@commercetools-uikit/icons": "^10.46.3",
-    "@commercetools-uikit/loading-spinner": "^10.46.3",
-    "@commercetools-uikit/primary-button": "^10.46.3",
-    "@commercetools-uikit/spacings": "^10.46.3",
-    "@commercetools-uikit/text": "^10.46.3",
+    "@commercetools-uikit/icons": "^10.47.3",
+    "@commercetools-uikit/loading-spinner": "^10.47.3",
+    "@commercetools-uikit/primary-button": "^10.47.3",
+    "@commercetools-uikit/spacings": "^10.47.3",
+    "@commercetools-uikit/text": "^10.47.3",
     "lodash": "4.17.20",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.32",
@@ -41,7 +41,7 @@
     "prop-types": "15.7.2",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.12.1",
+    "react-intl": "5.12.3",
     "react-redux": "7.2.2",
     "react-router-dom": "5.2.0",
     "redux": "4.0.5"
@@ -49,7 +49,7 @@
   "devDependencies": {
     "@commercetools-frontend/mc-dev-authentication": "18.1.0",
     "@commercetools-frontend/mc-scripts": "18.4.0",
-    "@formatjs/cli": "3.0.5",
+    "@formatjs/cli": "3.1.0",
     "dotenv-cli": "4.0.0"
   }
 }

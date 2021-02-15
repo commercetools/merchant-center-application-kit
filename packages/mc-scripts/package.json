@@ -55,7 +55,7 @@
     "moment-locales-webpack-plugin": "1.2.0",
     "mri": "1.1.6",
     "optimize-css-assets-webpack-plugin": "5.0.4",
-    "postcss": "8.2.5",
+    "postcss": "8.2.6",
     "postcss-color-mod-function": "3.0.3",
     "postcss-custom-media": "8.0.0",
     "postcss-custom-properties": "11.0.0",
@@ -80,7 +80,7 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "7.12.15",
-    "@babel/preset-env": "7.12.13"
+    "@babel/preset-env": "7.12.16"
   },
   "engines": {
     "node": ">=10",
