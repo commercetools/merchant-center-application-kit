@@ -16,7 +16,7 @@
     "versions:uikit": "manypkg upgrade @commercetools-uikit"
   },
   "dependencies": {
-    "@apollo/client": "3.3.10",
+    "@apollo/client": "3.3.9",
     "@commercetools-frontend/actions-global": "18.4.0",
     "@commercetools-frontend/application-components": "18.4.0",
     "@commercetools-frontend/application-shell": "18.4.0",

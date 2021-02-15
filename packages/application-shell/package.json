@@ -93,7 +93,7 @@
     "uuid": "8.3.2"
   },
   "devDependencies": {
-    "@apollo/client": "3.3.10",
+    "@apollo/client": "3.3.9",
     "@commercetools-frontend/ui-kit": "10.47.3",
     "@testing-library/react": "11.2.5",
     "@types/prop-types": "^15.7.3",
