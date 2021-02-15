@@ -62,12 +62,12 @@
     "react-required-if": "1.0.3"
   },
   "devDependencies": {
-    "@commercetools-frontend/ui-kit": "10.46.2",
-    "@types/react": "16.14.3",
-    "@types/react-dom": "16.9.10",
+    "@commercetools-frontend/ui-kit": "10.47.3",
+    "@types/react": "16.14.4",
+    "@types/react-dom": "16.9.11",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.12.1"
+    "react-intl": "5.12.3"
   },
   "peerDependencies": {
     "@commercetools-frontend/ui-kit": "10.x",

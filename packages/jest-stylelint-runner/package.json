@@ -24,8 +24,8 @@
     "postcss-load-config": "3.0.1"
   },
   "devDependencies": {
-    "postcss": "8.2.5",
-    "stylelint": "13.9.0"
+    "postcss": "8.2.6",
+    "stylelint": "13.10.0"
   },
   "peerDependencies": {
     "postcss": ">= 7 || >= 8",

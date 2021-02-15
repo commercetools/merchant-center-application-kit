@@ -24,7 +24,7 @@
     "@commercetools-uikit/text-input": "^10.46.3",
     "@emotion/react": "11.1.5",
     "@emotion/styled": "11.1.5",
-    "@fontsource/open-sans": "4.2.0",
+    "@fontsource/open-sans": "4.2.1",
     "core-js": "3.8.3",
     "formik": "2.2.6",
     "gatsby": "2.32.3",
@@ -36,7 +36,7 @@
     "prop-types": "15.7.2",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.12.1",
+    "react-intl": "5.12.3",
     "react-router-dom": "5.2.0"
   }
 }

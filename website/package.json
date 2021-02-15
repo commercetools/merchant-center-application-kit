@@ -24,9 +24,9 @@
     "prop-types": "15.7.2",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.12.1"
+    "react-intl": "5.12.3"
   },
   "devDependencies": {
-    "linkinator": "2.13.3"
+    "linkinator": "2.13.4"
   }
 }
