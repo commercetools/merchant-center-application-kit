@@ -1,5 +1,12 @@
 # @commercetools-frontend/cypress
 
+## 18.4.1
+
+### Patch Changes
+
+- Updated dependencies [[`074ec33d`](https://github.com/commercetools/merchant-center-application-kit/commit/074ec33d97282fc9750fd59ccceb33ff0430da41)]:
+  - @commercetools-frontend/application-config@18.4.1
+
 ## 18.4.0
 
 ### Patch Changes

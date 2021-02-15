@@ -1,5 +1,18 @@
 # merchant-center-application-template-starter
 
+## 17.2.17
+
+### Patch Changes
+
+- [`074ec33d`](https://github.com/commercetools/merchant-center-application-kit/commit/074ec33d97282fc9750fd59ccceb33ff0430da41) [#2053](https://github.com/commercetools/merchant-center-application-kit/pull/2053) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies [[`074ec33d`](https://github.com/commercetools/merchant-center-application-kit/commit/074ec33d97282fc9750fd59ccceb33ff0430da41), [`e5743110`](https://github.com/commercetools/merchant-center-application-kit/commit/e574311090e90b6186c18a3a49747a8bcf08822b)]:
+  - @commercetools-frontend/actions-global@18.4.1
+  - @commercetools-frontend/application-components@18.4.1
+  - @commercetools-frontend/application-shell@18.4.1
+  - @commercetools-frontend/i18n@18.4.1
+  - @commercetools-frontend/permissions@18.4.1
+
 ## 17.2.16
 
 ### Patch Changes
