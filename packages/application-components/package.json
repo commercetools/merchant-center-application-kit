@@ -62,7 +62,7 @@
     "react-required-if": "1.0.3"
   },
   "devDependencies": {
-    "@commercetools-frontend/ui-kit": "10.47.3",
+    "@commercetools-frontend/ui-kit": "10.47.4",
     "@types/react": "16.14.4",
     "@types/react-dom": "16.9.11",
     "react": "16.14.0",
