@@ -2541,7 +2541,7 @@
     prop-types "15.7.2"
     tiny-invariant "1.1.0"
 
-"@commercetools-uikit/icons@10.47.3", "@commercetools-uikit/icons@^10.47.3":
+"@commercetools-uikit/icons@10.47.3":
   version "10.47.3"
   resolved "https://registry.yarnpkg.com/@commercetools-uikit/icons/-/icons-10.47.3.tgz#2d3a44d93bd8f0e001a1d6f6be0556630880b7bd"
   integrity sha512-aZSfxWMnIvqC70GROoeEEVeVYqU865X1WsBrQEVo2VimBfsMpBNLSAuk3//IhCEURwoREQJyki7aqZ78O4DNkQ==
@@ -2554,7 +2554,7 @@
     "@emotion/styled" "^11.0.0"
     prop-types "15.7.2"
 
-"@commercetools-uikit/icons@10.47.4":
+"@commercetools-uikit/icons@10.47.4", "@commercetools-uikit/icons@^10.47.4":
   version "10.47.4"
   resolved "https://registry.yarnpkg.com/@commercetools-uikit/icons/-/icons-10.47.4.tgz#dbdf05cdb3e0ba2a4a1c1af7b1201133668870d7"
   integrity sha512-Ue9oTo5d9ajpx3HRj208FlqTBw6OuZUVMjzlZ3F/RUpTHGxN760spCIPJ7B53qdMQ2l8HZ90ekN4q8F1JLwfQA==

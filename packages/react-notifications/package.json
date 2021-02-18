@@ -30,7 +30,7 @@
     "@commercetools-frontend/sentry": "18.4.1",
     "@commercetools-uikit/design-system": "^10.46.3",
     "@commercetools-uikit/icon-button": "^10.47.3",
-    "@commercetools-uikit/icons": "^10.47.3",
+    "@commercetools-uikit/icons": "^10.47.4",
     "@commercetools-uikit/spacings": "^10.47.3",
     "@emotion/react": "11.1.5",
     "@emotion/styled": "11.1.5",

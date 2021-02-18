@@ -14,7 +14,7 @@
     "@commercetools-frontend/i18n": "18.4.1",
     "@commercetools-uikit/design-system": "^10.46.3",
     "@commercetools-uikit/icon-button": "^10.47.3",
-    "@commercetools-uikit/icons": "^10.47.3",
+    "@commercetools-uikit/icons": "^10.47.4",
     "@commercetools-uikit/multiline-text-field": "^10.47.3",
     "@commercetools-uikit/secondary-button": "^10.47.3",
     "@commercetools-uikit/select-field": "^10.47.3",
