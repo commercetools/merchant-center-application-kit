@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-components",
-  "version": "18.4.0",
+  "version": "18.4.1",
   "description": "Generic components for building Merchant Center applications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -33,11 +33,11 @@
   "dependencies": {
     "@babel/runtime": "7.12.13",
     "@babel/runtime-corejs3": "7.12.13",
-    "@commercetools-frontend/application-shell-connectors": "18.4.0",
+    "@commercetools-frontend/application-shell-connectors": "18.4.1",
     "@commercetools-frontend/assets": "18.1.0",
     "@commercetools-frontend/constants": "18.4.0",
-    "@commercetools-frontend/i18n": "18.4.0",
-    "@commercetools-frontend/l10n": "18.4.0",
+    "@commercetools-frontend/i18n": "18.4.1",
+    "@commercetools-frontend/l10n": "18.4.1",
     "@commercetools-uikit/async-select-input": "^10.47.3",
     "@commercetools-uikit/card": "^10.47.3",
     "@commercetools-uikit/constraints": "^10.47.3",
