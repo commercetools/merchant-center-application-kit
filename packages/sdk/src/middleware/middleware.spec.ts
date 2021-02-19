@@ -283,6 +283,87 @@ describe('when the action is of type SDK', () => {
     });
   });
 
+  describe('when `service=orderEdits` and `applyOrderEditTo`', () => {
+    const dispatch = jest.fn();
+    const orderId = 'order-to-edit-id-1';
+    const action = sdkActions.post({
+      service: 'orderEdits',
+      options: { applyOrderEditTo: orderId },
+      payload: {},
+    });
+    const next = jest.fn();
+    const response = { body: { foo: 'bar' }, headers: {}, statusCode: 200 };
+    beforeEach(() => {
+      execute = jest.fn(() => Promise.resolve(response));
+      mocked(createClient).mockReturnValue({
+        execute,
+      });
+      resultPromise = createMiddleware(middlewareOptions)({
+        dispatch,
+        getState: jest.fn(),
+      })(next)(action);
+    });
+    it('should return the result the update', async () => {
+      await expect(resultPromise).resolves.toBe(response.body);
+    });
+    it('should call `client.execute`', () => {
+      expect(execute).toHaveBeenCalledTimes(1);
+    });
+    it('should call `client.execute` with uri, method, headers and body', () => {
+      expect(execute).toHaveBeenCalledWith({
+        // https://github.com/commercetools/nodejs/blob/master/packages/api-request-builder/src/create-service.js#L141:L141
+        // https://github.com/commercetools/nodejs/blob/master/packages/api-request-builder/src/build-query-string.js#L123:L123
+        uri: `/test-project/orders/edits/${orderId}/apply`,
+        method: 'POST',
+        headers: expect.objectContaining({
+          Accept: 'application/json',
+          'X-Project-Key': 'test-project',
+        }),
+        body: expect.any(Object),
+      });
+    });
+  });
+  describe('when `service=orderEdits` and no `applyOrderEditTo`', () => {
+    const dispatch = jest.fn();
+    const orderId = 'order-to-edit-id-1';
+    const action = sdkActions.post({
+      service: 'orderEdits',
+      options: { id: orderId },
+      payload: {},
+    });
+    const next = jest.fn();
+    const response = { body: { foo: 'bar' }, headers: {}, statusCode: 200 };
+    beforeEach(() => {
+      execute = jest.fn(() => Promise.resolve(response));
+      mocked(createClient).mockReturnValue({
+        execute,
+      });
+      resultPromise = createMiddleware(middlewareOptions)({
+        dispatch,
+        getState: jest.fn(),
+      })(next)(action);
+    });
+    it('should return the result the update', async () => {
+      await expect(resultPromise).resolves.toBe(response.body);
+    });
+    it('should call `client.execute`', () => {
+      expect(execute).toHaveBeenCalledTimes(1);
+    });
+    it('should call `client.execute` with uri, method, headers and body', () => {
+      expect(execute).toHaveBeenCalledWith({
+        // https://github.com/commercetools/nodejs/blob/master/packages/api-request-builder/src/create-service.js#L141:L141
+        // https://github.com/commercetools/nodejs/blob/master/packages/api-request-builder/src/build-query-string.js#L123:L123
+        uri: `/test-project/orders/edits/${orderId}`,
+        method: 'POST',
+        headers: expect.objectContaining({
+          Accept: 'application/json',
+          'X-Project-Key': 'test-project',
+        }),
+        body: expect.any(Object),
+      });
+    });
+  });
+
   describe('when the method is "post"', () => {
     const dispatch = jest.fn();
     const action = sdkActions.post({

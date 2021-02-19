@@ -1,6 +1,10 @@
 declare module '@commercetools/api-request-builder' {
+  type TUriOptions = {
+    withProjectKey?: boolean;
+    applyOrderEdit?: boolean;
+  };
   export type ServiceBuilder = {
-    build(): string;
+    build(uriOptions?: TUriOptions): string;
     parse(options: { [key: string]: unknown }): string;
   };
   export type ApiRequestBuilder = {
