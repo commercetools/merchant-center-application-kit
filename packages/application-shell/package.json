@@ -46,7 +46,7 @@
     "@commercetools-uikit/card": "^10.47.3",
     "@commercetools-uikit/design-system": "^10.46.3",
     "@commercetools-uikit/flat-button": "^10.47.3",
-    "@commercetools-uikit/icons": "^10.47.3",
+    "@commercetools-uikit/icons": "^10.47.4",
     "@commercetools-uikit/loading-spinner": "^10.47.3",
     "@commercetools-uikit/notifications": "^10.47.3",
     "@commercetools-uikit/select-input": "^10.47.3",
@@ -94,7 +94,7 @@
   },
   "devDependencies": {
     "@apollo/client": "3.3.9",
-    "@commercetools-frontend/ui-kit": "10.47.3",
+    "@commercetools-frontend/ui-kit": "10.47.4",
     "@testing-library/react": "11.2.5",
     "@types/prop-types": "^15.7.3",
     "@types/react": "16.14.4",
