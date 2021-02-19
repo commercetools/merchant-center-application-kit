@@ -20,6 +20,9 @@ const isSdkActionForUri = (
 ): actionPayload is TSdkActionPayloadForUri =>
   (actionPayload as TSdkActionPayloadForUri).uri !== undefined;
 
+// https://github.com/commercetools/nodejs/blob/master/packages/api-request-builder/src/default-services.js#L200:L200
+const ORDER_EDIT_SERVICE = 'orderEdits';
+
 const actionToUri = (action: TSdkAction, projectKey?: string): string => {
   if (isSdkActionForUri(action.payload)) return action.payload.uri;
 
@@ -42,9 +45,8 @@ const actionToUri = (action: TSdkAction, projectKey?: string): string => {
     // given `service=orderEdits` and no `applyOrderEditTo`, we build an update endpoint
     // https://docs.commercetools.com/api/projects/order-edits
     applyOrderEdit:
-      action.payload.service === 'orderEdits' &&
+      action.payload.service === ORDER_EDIT_SERVICE &&
       typeof action.payload.options?.applyOrderEditTo === 'string',
-
     // at this stage, the `projectKey` should be available already.
     withProjectKey: true,
   });
