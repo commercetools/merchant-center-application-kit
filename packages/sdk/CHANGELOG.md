@@ -1,5 +1,11 @@
 # @commercetools-frontend/sdk
 
+## 18.5.0
+
+### Minor Changes
+
+- [`7c69f93d`](https://github.com/commercetools/merchant-center-application-kit/commit/7c69f93d2f0aac04badcea556ea2bc9e5e77cb13) [#2060](https://github.com/commercetools/merchant-center-application-kit/pull/2060) Thanks [@adnasa](https://github.com/adnasa)! - support order/edits/apply in sdk/middleware
+
 ## 18.4.1
 
 ### Patch Changes

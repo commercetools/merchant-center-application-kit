@@ -1,5 +1,16 @@
 # @commercetools-frontend/application-shell
 
+## 18.5.0
+
+### Minor Changes
+
+- [`8cfd73f3`](https://github.com/commercetools/merchant-center-application-kit/commit/8cfd73f3bcb830a07dffc3040c9c5960f180016f) [#2052](https://github.com/commercetools/merchant-center-application-kit/pull/2052) Thanks [@torihedden](https://github.com/torihedden)! - feat(menu): add new icon option for side nav menu
+
+### Patch Changes
+
+- Updated dependencies [[`7c69f93d`](https://github.com/commercetools/merchant-center-application-kit/commit/7c69f93d2f0aac04badcea556ea2bc9e5e77cb13)]:
+  - @commercetools-frontend/sdk@18.5.0
+
 ## 18.4.1
 
 ### Patch Changes
