@@ -22,14 +22,14 @@
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
-    "@babel/runtime": "7.12.13",
-    "@babel/runtime-corejs3": "7.12.13",
+    "@babel/runtime": "7.12.18",
+    "@babel/runtime-corejs3": "7.12.18",
     "@commercetools-frontend/browser-history": "18.4.0",
     "@commercetools-frontend/constants": "18.4.0",
     "@commercetools-frontend/notifications": "18.4.0",
     "@commercetools-frontend/sentry": "18.4.1",
     "@types/lodash": "^4.14.167",
-    "lodash": "4.17.20",
+    "lodash": "4.17.21",
     "redux-thunk": "2.3.0"
   },
   "devDependencies": {

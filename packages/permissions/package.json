@@ -22,14 +22,14 @@
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
-    "@babel/runtime": "7.12.13",
-    "@babel/runtime-corejs3": "7.12.13",
+    "@babel/runtime": "7.12.18",
+    "@babel/runtime-corejs3": "7.12.18",
     "@commercetools-frontend/application-shell-connectors": "18.4.1",
     "@commercetools-frontend/sentry": "18.4.1",
     "@emotion/react": "11.1.5",
     "@types/lodash": "^4.14.167",
     "@types/prop-types": "^15.7.3",
-    "lodash": "4.17.20",
+    "lodash": "4.17.21",
     "prop-types": "15.7.2",
     "tiny-invariant": "1.1.0",
     "tiny-warning": "1.0.3"

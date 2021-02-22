@@ -31,8 +31,8 @@
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
-    "@babel/runtime": "7.12.13",
-    "@babel/runtime-corejs3": "7.12.13",
+    "@babel/runtime": "7.12.18",
+    "@babel/runtime-corejs3": "7.12.18",
     "@commercetools-frontend/application-shell-connectors": "18.4.1",
     "@commercetools-frontend/assets": "18.1.0",
     "@commercetools-frontend/constants": "18.4.0",
@@ -56,7 +56,7 @@
     "@types/lodash": "^4.14.167",
     "@types/prop-types": "^15.7.3",
     "@types/react-modal": "^3.10.4",
-    "lodash": "4.17.20",
+    "lodash": "4.17.21",
     "prop-types": "15.7.2",
     "react-modal": "3.12.1",
     "react-required-if": "1.0.3"
@@ -67,7 +67,7 @@
     "@types/react-dom": "16.9.11",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.12.3"
+    "react-intl": "5.12.5"
   },
   "peerDependencies": {
     "@commercetools-frontend/ui-kit": "10.x",

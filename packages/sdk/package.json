@@ -25,8 +25,8 @@
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
-    "@babel/runtime": "7.12.13",
-    "@babel/runtime-corejs3": "7.12.13",
+    "@babel/runtime": "7.12.18",
+    "@babel/runtime-corejs3": "7.12.18",
     "@commercetools-frontend/constants": "18.4.0",
     "@commercetools/api-request-builder": "5.6.3",
     "@commercetools/http-user-agent": "2.1.2",
