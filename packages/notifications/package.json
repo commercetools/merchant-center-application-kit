@@ -22,8 +22,8 @@
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
-    "@babel/runtime": "7.12.13",
-    "@babel/runtime-corejs3": "7.12.13"
+    "@babel/runtime": "7.12.18",
+    "@babel/runtime-corejs3": "7.12.18"
   },
   "devDependencies": {
     "redux": "4.0.5"
