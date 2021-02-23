@@ -1,5 +1,15 @@
 # @commercetools-frontend/permissions
 
+## 18.5.1
+
+### Patch Changes
+
+- [`bb2ceac2`](https://github.com/commercetools/merchant-center-application-kit/commit/bb2ceac229b94836482dbed57824d679a9cbd5d6) [#2062](https://github.com/commercetools/merchant-center-application-kit/pull/2062) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+- Updated dependencies [[`bb2ceac2`](https://github.com/commercetools/merchant-center-application-kit/commit/bb2ceac229b94836482dbed57824d679a9cbd5d6)]:
+  - @commercetools-frontend/application-shell-connectors@18.5.1
+  - @commercetools-frontend/sentry@18.5.1
+
 ## 18.4.1
 
 ### Patch Changes
