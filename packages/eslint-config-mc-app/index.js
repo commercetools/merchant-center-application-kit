@@ -21,7 +21,6 @@ module.exports = {
     // https://github.com/prettier/prettier-eslint
     // NOTE: this should go last.
     'prettier',
-    'prettier/react',
   ],
   plugins: [
     // https://github.com/testing-library/eslint-plugin-jest-dom
@@ -84,7 +83,7 @@ module.exports = {
     },
     {
       files: ['**/*.ts?(x)'],
-      extends: ['prettier', 'prettier/@typescript-eslint'],
+      extends: ['prettier'],
       rules: {
         // TypeScript
         '@typescript-eslint/ban-types': statusCode.off,
