@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/sdk",
-  "version": "18.5.0",
+  "version": "18.5.1",
   "description": "Tools for declarative fetching",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -27,7 +27,7 @@
   "dependencies": {
     "@babel/runtime": "7.12.18",
     "@babel/runtime-corejs3": "7.12.18",
-    "@commercetools-frontend/constants": "18.4.0",
+    "@commercetools-frontend/constants": "18.5.1",
     "@commercetools/api-request-builder": "5.6.3",
     "@commercetools/http-user-agent": "2.1.2",
     "@commercetools/sdk-client": "2.1.2",
