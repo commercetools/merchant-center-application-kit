@@ -19,12 +19,12 @@
     "@commercetools-uikit/spacings-stack": "^11.0.0",
     "@emotion/react": "11.1.5",
     "@emotion/styled": "11.1.5",
-    "gatsby": "2.32.4",
-    "gatsby-cli": "2.19.1",
+    "gatsby": "2.32.8",
+    "gatsby-cli": "2.19.2",
     "prop-types": "15.7.2",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.12.5"
+    "react-intl": "5.13.1"
   },
   "devDependencies": {
     "linkinator": "2.13.6"

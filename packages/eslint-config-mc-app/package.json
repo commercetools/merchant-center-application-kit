@@ -9,7 +9,13 @@
     "directory": "packages/eslint-config-mc-app"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit", "eslint"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit",
+    "eslint"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -38,6 +44,6 @@
     "eslint": ">=7.0.0"
   },
   "devDependencies": {
-    "eslint": "7.20.0"
+    "eslint": "7.21.0"
   }
 }

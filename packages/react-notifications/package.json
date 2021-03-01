@@ -9,7 +9,12 @@
     "directory": "packages/react-notifications"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -17,13 +22,18 @@
   },
   "main": "dist/commercetools-frontend-react-notifications.cjs.js",
   "module": "dist/commercetools-frontend-react-notifications.esm.js",
-  "files": ["dist", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
-    "@babel/runtime": "7.12.18",
-    "@babel/runtime-corejs3": "7.12.18",
+    "@babel/runtime": "7.13.8",
+    "@babel/runtime-corejs3": "7.13.8",
     "@commercetools-frontend/actions-global": "18.5.1",
     "@commercetools-frontend/constants": "18.5.1",
     "@commercetools-frontend/notifications": "18.5.1",
@@ -53,7 +63,7 @@
     "@types/react-router-dom": "5.1.7",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.12.5",
+    "react-intl": "5.13.1",
     "react-redux": "7.2.2",
     "react-router-dom": "5.2.0"
   },

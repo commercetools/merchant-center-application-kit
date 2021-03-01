@@ -25,18 +25,18 @@
     "@emotion/react": "11.1.5",
     "@emotion/styled": "11.1.5",
     "@fontsource/open-sans": "4.2.1",
-    "core-js": "3.9.0",
+    "core-js": "3.9.1",
     "formik": "2.2.6",
-    "gatsby": "2.32.4",
-    "gatsby-cli": "2.19.1",
+    "gatsby": "2.32.8",
+    "gatsby-cli": "2.19.2",
     "gatsby-plugin-emotion": "5.4.0",
-    "gatsby-source-filesystem": "2.11.0",
+    "gatsby-source-filesystem": "2.11.1",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.32",
     "prop-types": "15.7.2",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.12.5",
+    "react-intl": "5.13.1",
     "react-router-dom": "5.2.0"
   }
 }

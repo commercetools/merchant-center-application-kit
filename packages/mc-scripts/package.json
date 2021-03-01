@@ -9,20 +9,39 @@
     "directory": "packages/mc-scripts"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
     "access": "public"
   },
   "main": "./build/index.js",
-  "files": ["bin", "build", "config", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "bin",
+    "build",
+    "config",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "bin": {
     "mc-scripts": "./bin/mc-scripts.js"
   },
   "browserslist": {
-    "production": [">1%", "not op_mini all", "not dead"],
-    "development": ["last 2 firefox versions", "last 2 chrome versions"]
+    "production": [
+      ">1%",
+      "not op_mini all",
+      "not dead"
+    ],
+    "development": [
+      "last 2 firefox versions",
+      "last 2 chrome versions"
+    ]
   },
   "scripts": {
     "prebuild": "rimraf build/**",
@@ -30,8 +49,8 @@
     "build:bundles:watch": "yarn build -w"
   },
   "dependencies": {
-    "@babel/runtime": "7.12.18",
-    "@babel/runtime-corejs3": "7.12.18",
+    "@babel/runtime": "7.13.8",
+    "@babel/runtime-corejs3": "7.13.8",
     "@commercetools-frontend/application-config": "18.5.1",
     "@commercetools-frontend/assets": "18.1.0",
     "@commercetools-frontend/babel-preset-mc-app": "18.5.1",
@@ -43,15 +62,15 @@
     "babel-loader": "8.2.2",
     "browserslist": "4.16.3",
     "clean-webpack-plugin": "3.0.0",
-    "core-js": "3.9.0",
-    "css-loader": "5.0.2",
+    "core-js": "3.9.1",
+    "css-loader": "5.1.0",
     "cssnano": "4.1.10",
     "file-loader": "6.2.0",
     "fs-extra": "9.1.0",
     "graphql-tag": "^2.11.0",
     "html-webpack-plugin": "4.5.2",
     "json-loader": "0.5.7",
-    "mini-css-extract-plugin": "1.3.8",
+    "mini-css-extract-plugin": "1.3.9",
     "moment-locales-webpack-plugin": "1.2.0",
     "mri": "1.1.6",
     "optimize-css-assets-webpack-plugin": "5.0.4",
@@ -63,7 +82,7 @@
     "postcss-loader": "4.2.0",
     "postcss-reporter": "7.0.2",
     "postcss-safe-parser": "5.0.2",
-    "react-dev-utils": "11.0.2",
+    "react-dev-utils": "11.0.3",
     "react-refresh": "0.9.0",
     "semver": "7.3.4",
     "serve-handler": "6.1.3",
@@ -79,8 +98,8 @@
     "webpackbar": "4.0.0"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "7.12.17",
-    "@babel/preset-env": "7.12.17"
+    "@babel/plugin-transform-runtime": "7.13.8",
+    "@babel/preset-env": "7.13.8"
   },
   "engines": {
     "node": ">=10",

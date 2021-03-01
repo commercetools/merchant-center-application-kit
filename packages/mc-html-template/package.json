@@ -9,7 +9,12 @@
     "directory": "packages/mc-html-template"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -31,17 +36,17 @@
     "build:bundles:watch": "yarn build -w"
   },
   "dependencies": {
-    "@babel/runtime": "7.12.18",
-    "@babel/runtime-corejs3": "7.12.18",
+    "@babel/runtime": "7.13.8",
+    "@babel/runtime-corejs3": "7.13.8",
     "@commercetools-frontend/application-config": "18.5.1",
-    "core-js": "3.9.0",
+    "core-js": "3.9.1",
     "serialize-javascript": "5.0.1",
     "uglify-es": "3.3.9",
     "uglifycss": "0.0.29"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "7.12.17",
-    "@babel/preset-env": "7.12.17"
+    "@babel/plugin-transform-runtime": "7.13.8",
+    "@babel/preset-env": "7.13.8"
   },
   "engines": {
     "node": ">=10",
