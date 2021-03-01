@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-scripts
 
+## 18.5.3
+
+### Patch Changes
+
+- [`3ab46239`](https://github.com/commercetools/merchant-center-application-kit/commit/3ab4623970dea734a7e20a674aa0e626fba521a7) [#2074](https://github.com/commercetools/merchant-center-application-kit/pull/2074) Thanks [@tdeekens](https://github.com/tdeekens)! - fix(webpack): options passing to thread-loader
+
 ## 18.5.2
 
 ### Patch Changes
