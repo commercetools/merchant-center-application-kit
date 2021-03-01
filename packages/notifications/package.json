@@ -9,7 +9,12 @@
     "directory": "packages/notifications"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -17,13 +22,18 @@
   },
   "main": "dist/commercetools-frontend-notifications.cjs.js",
   "module": "dist/commercetools-frontend-notifications.esm.js",
-  "files": ["dist", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
-    "@babel/runtime": "7.12.18",
-    "@babel/runtime-corejs3": "7.12.18"
+    "@babel/runtime": "7.13.8",
+    "@babel/runtime-corejs3": "7.13.8"
   },
   "devDependencies": {
     "redux": "4.0.5"

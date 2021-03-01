@@ -9,7 +9,12 @@
     "directory": "packages/permissions"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -17,13 +22,18 @@
   },
   "main": "dist/commercetools-frontend-permissions.cjs.js",
   "module": "dist/commercetools-frontend-permissions.esm.js",
-  "files": ["dist", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
-    "@babel/runtime": "7.12.18",
-    "@babel/runtime-corejs3": "7.12.18",
+    "@babel/runtime": "7.13.8",
+    "@babel/runtime-corejs3": "7.13.8",
     "@commercetools-frontend/application-shell-connectors": "18.5.1",
     "@commercetools-frontend/sentry": "18.5.1",
     "@emotion/react": "11.1.5",

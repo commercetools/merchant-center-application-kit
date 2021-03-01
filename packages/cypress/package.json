@@ -25,7 +25,11 @@
   "main": "dist/commercetools-frontend-cypress.cjs.js",
   "module": "dist/commercetools-frontend-cypress.esm.js",
   "preconstruct": {
-    "entrypoints": ["./index.ts", "./add-commands/index.ts", "./task/index.ts"]
+    "entrypoints": [
+      "./index.ts",
+      "./add-commands/index.ts",
+      "./task/index.ts"
+    ]
   },
   "files": [
     "dist",
@@ -39,8 +43,8 @@
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
-    "@babel/runtime": "7.12.18",
-    "@babel/runtime-corejs3": "7.12.18",
+    "@babel/runtime": "7.13.8",
+    "@babel/runtime-corejs3": "7.13.8",
     "@commercetools-frontend/application-config": "18.5.1",
     "@manypkg/get-packages": "1.1.1",
     "uuid": "8.3.2"

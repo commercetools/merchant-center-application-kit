@@ -9,14 +9,19 @@
     "directory": "packages/mc-dev-authentication"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "pug": "3.0.0"
+    "pug": "3.0.2"
   },
   "engines": {
     "node": ">=8",

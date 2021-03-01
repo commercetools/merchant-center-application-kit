@@ -9,7 +9,12 @@
     "directory": "packages/l10n"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -17,14 +22,20 @@
   },
   "main": "dist/commercetools-frontend-l10n.cjs.js",
   "module": "dist/commercetools-frontend-l10n.esm.js",
-  "files": ["data", "dist", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "data",
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "generate-data": "node ./scripts/generate-l10n-data.js"
   },
   "dependencies": {
-    "@babel/runtime": "7.12.18",
-    "@babel/runtime-corejs3": "7.12.18",
+    "@babel/runtime": "7.13.8",
+    "@babel/runtime-corejs3": "7.13.8",
     "@commercetools-frontend/sentry": "18.5.1",
     "@emotion/react": "11.1.5",
     "@types/prop-types": "^15.7.3",
