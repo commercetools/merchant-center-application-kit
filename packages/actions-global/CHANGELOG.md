@@ -1,5 +1,17 @@
 # @commercetools-frontend/actions-global
 
+## 18.5.2
+
+### Patch Changes
+
+- [`7f26c54e`](https://github.com/commercetools/merchant-center-application-kit/commit/7f26c54e55eff8aeac786ec0d011d36e40b0d263) [#2066](https://github.com/commercetools/merchant-center-application-kit/pull/2066) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+- Updated dependencies [[`7f26c54e`](https://github.com/commercetools/merchant-center-application-kit/commit/7f26c54e55eff8aeac786ec0d011d36e40b0d263)]:
+  - @commercetools-frontend/browser-history@18.5.2
+  - @commercetools-frontend/constants@18.5.2
+  - @commercetools-frontend/notifications@18.5.2
+  - @commercetools-frontend/sentry@18.5.2
+
 ## 18.5.1
 
 ### Patch Changes

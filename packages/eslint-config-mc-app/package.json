@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/eslint-config-mc-app",
-  "version": "18.5.1",
+  "version": "18.5.2",
   "description": "ESLint config used by a Custom Application.",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -9,13 +9,7 @@
     "directory": "packages/eslint-config-mc-app"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": [
-    "javascript",
-    "frontend",
-    "react",
-    "toolkit",
-    "eslint"
-  ],
+  "keywords": ["javascript", "frontend", "react", "toolkit", "eslint"],
   "license": "MIT",
   "private": false,
   "publishConfig": {

@@ -1,5 +1,19 @@
 # @commercetools-frontend/mc-scripts
 
+## 18.5.2
+
+### Patch Changes
+
+- [`7f26c54e`](https://github.com/commercetools/merchant-center-application-kit/commit/7f26c54e55eff8aeac786ec0d011d36e40b0d263) [#2066](https://github.com/commercetools/merchant-center-application-kit/pull/2066) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+* [`7514a4f3`](https://github.com/commercetools/merchant-center-application-kit/commit/7514a4f3cd567b620f20875a6b13338223ca5fdd) [#2072](https://github.com/commercetools/merchant-center-application-kit/pull/2072) Thanks [@tdeekens](https://github.com/tdeekens)! - fix(webpack): to pass parallelism to thread-loader
+
+* Updated dependencies [[`7f26c54e`](https://github.com/commercetools/merchant-center-application-kit/commit/7f26c54e55eff8aeac786ec0d011d36e40b0d263)]:
+  - @commercetools-frontend/application-config@18.5.2
+  - @commercetools-frontend/babel-preset-mc-app@18.5.2
+  - @commercetools-frontend/mc-dev-authentication@18.5.2
+  - @commercetools-frontend/mc-html-template@18.5.2
+
 ## 18.5.1
 
 ### Patch Changes

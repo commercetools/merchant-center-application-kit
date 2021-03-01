@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/cypress",
-  "version": "18.5.1",
+  "version": "18.5.2",
   "description": "Cypress commands and utilities for Custom Applications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -25,11 +25,7 @@
   "main": "dist/commercetools-frontend-cypress.cjs.js",
   "module": "dist/commercetools-frontend-cypress.esm.js",
   "preconstruct": {
-    "entrypoints": [
-      "./index.ts",
-      "./add-commands/index.ts",
-      "./task/index.ts"
-    ]
+    "entrypoints": ["./index.ts", "./add-commands/index.ts", "./task/index.ts"]
   },
   "files": [
     "dist",
@@ -45,7 +41,7 @@
   "dependencies": {
     "@babel/runtime": "7.13.8",
     "@babel/runtime-corejs3": "7.13.8",
-    "@commercetools-frontend/application-config": "18.5.1",
+    "@commercetools-frontend/application-config": "18.5.2",
     "@manypkg/get-packages": "1.1.1",
     "uuid": "8.3.2"
   },
