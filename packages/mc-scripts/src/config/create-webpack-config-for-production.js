@@ -412,13 +412,17 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
           use: [
             // This loader parallelizes code compilation, it is optional but
             // improves compile time on larger projects
-            require.resolve('thread-loader'),
             {
-              loader: require.resolve('babel-loader'),
+              loader: require.resolve('thread-loader'),
               options: {
                 ...(Number.isInteger(mergedOptions.toggleFlags.parallelism)
                   ? { workers: mergedOptions.toggleFlags.parallelism }
                   : {}),
+              },
+            },
+            {
+              loader: require.resolve('babel-loader'),
+              options: {
                 babelrc: false,
                 configFile: false,
                 compact: false,
