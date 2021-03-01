@@ -416,6 +416,9 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
             {
               loader: require.resolve('babel-loader'),
               options: {
+                ...(Number.isInteger(mergedOptions.toggleFlags.parallelism)
+                  ? { workers: mergedOptions.toggleFlags.parallelism }
+                  : {}),
                 babelrc: false,
                 configFile: false,
                 compact: false,
