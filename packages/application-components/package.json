@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-components",
-  "version": "18.5.1",
+  "version": "18.5.2",
   "description": "Generic components for building Merchant Center applications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -9,12 +9,7 @@
     "directory": "packages/application-components"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": [
-    "javascript",
-    "frontend",
-    "react",
-    "toolkit"
-  ],
+  "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -23,9 +18,7 @@
   "main": "dist/commercetools-frontend-application-components.cjs.js",
   "module": "dist/commercetools-frontend-application-components.esm.js",
   "preconstruct": {
-    "entrypoints": [
-      "./index.ts"
-    ]
+    "entrypoints": ["./index.ts"]
   },
   "files": [
     "dist",
@@ -40,11 +33,11 @@
   "dependencies": {
     "@babel/runtime": "7.13.8",
     "@babel/runtime-corejs3": "7.13.8",
-    "@commercetools-frontend/application-shell-connectors": "18.5.1",
+    "@commercetools-frontend/application-shell-connectors": "18.5.2",
     "@commercetools-frontend/assets": "18.1.0",
-    "@commercetools-frontend/constants": "18.5.1",
-    "@commercetools-frontend/i18n": "18.5.1",
-    "@commercetools-frontend/l10n": "18.5.1",
+    "@commercetools-frontend/constants": "18.5.2",
+    "@commercetools-frontend/i18n": "18.5.2",
+    "@commercetools-frontend/l10n": "18.5.2",
     "@commercetools-uikit/async-select-input": "^11.0.0",
     "@commercetools-uikit/card": "^11.0.0",
     "@commercetools-uikit/constraints": "^11.0.0",

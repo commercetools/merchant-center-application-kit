@@ -1,6 +1,6 @@
 {
   "name": "merchant-center-application-template-starter",
-  "version": "17.2.19",
+  "version": "17.2.20",
   "description": "A starter example for the bare minimum setup to develop a Merchant Center Application",
   "private": true,
   "scripts": {
@@ -17,12 +17,12 @@
   },
   "dependencies": {
     "@apollo/client": "3.3.11",
-    "@commercetools-frontend/actions-global": "18.5.1",
-    "@commercetools-frontend/application-components": "18.5.1",
-    "@commercetools-frontend/application-shell": "18.5.1",
+    "@commercetools-frontend/actions-global": "18.5.2",
+    "@commercetools-frontend/application-components": "18.5.2",
+    "@commercetools-frontend/application-shell": "18.5.2",
     "@commercetools-frontend/assets": "18.1.0",
-    "@commercetools-frontend/i18n": "18.5.1",
-    "@commercetools-frontend/permissions": "18.5.1",
+    "@commercetools-frontend/i18n": "18.5.2",
+    "@commercetools-frontend/permissions": "18.5.2",
     "@commercetools-uikit/flat-button": "^11.0.0",
     "@commercetools-uikit/icons": "^11.0.0",
     "@commercetools-uikit/spacings": "^11.0.0",
@@ -36,9 +36,9 @@
     "redux": "4.0.5"
   },
   "devDependencies": {
-    "@commercetools-frontend/jest-preset-mc-app": "18.5.1",
-    "@commercetools-frontend/mc-dev-authentication": "18.1.0",
-    "@commercetools-frontend/mc-scripts": "18.5.1",
+    "@commercetools-frontend/jest-preset-mc-app": "18.5.2",
+    "@commercetools-frontend/mc-dev-authentication": "18.5.2",
+    "@commercetools-frontend/mc-scripts": "18.5.2",
     "@formatjs/cli": "3.1.5",
     "@manypkg/cli": "0.17.0",
     "@testing-library/react": "11.2.5",

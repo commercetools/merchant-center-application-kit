@@ -1,5 +1,28 @@
 # @commercetools-frontend/application-shell
 
+## 18.5.2
+
+### Patch Changes
+
+- [`5892c888`](https://github.com/commercetools/merchant-center-application-kit/commit/5892c88879bea4b5cb11b9da39d080005da6b045) [#2067](https://github.com/commercetools/merchant-center-application-kit/pull/2067) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all ui-kit packages to v11 (major)
+
+* [`7f26c54e`](https://github.com/commercetools/merchant-center-application-kit/commit/7f26c54e55eff8aeac786ec0d011d36e40b0d263) [#2066](https://github.com/commercetools/merchant-center-application-kit/pull/2066) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+* Updated dependencies [[`5892c888`](https://github.com/commercetools/merchant-center-application-kit/commit/5892c88879bea4b5cb11b9da39d080005da6b045), [`7f26c54e`](https://github.com/commercetools/merchant-center-application-kit/commit/7f26c54e55eff8aeac786ec0d011d36e40b0d263)]:
+  - @commercetools-frontend/application-components@18.5.2
+  - @commercetools-frontend/react-notifications@18.5.2
+  - @commercetools-frontend/actions-global@18.5.2
+  - @commercetools-frontend/application-shell-connectors@18.5.2
+  - @commercetools-frontend/browser-history@18.5.2
+  - @commercetools-frontend/constants@18.5.2
+  - @commercetools-frontend/i18n@18.5.2
+  - @commercetools-frontend/l10n@18.5.2
+  - @commercetools-frontend/notifications@18.5.2
+  - @commercetools-frontend/permissions@18.5.2
+  - @commercetools-frontend/sdk@18.5.2
+  - @commercetools-frontend/sentry@18.5.2
+  - @commercetools-frontend/url-utils@18.5.2
+
 ## 18.5.1
 
 ### Patch Changes
