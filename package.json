@@ -44,7 +44,7 @@
     "template-starter:build": "yarn manypkg run application-template-starter build",
     "template-starter:start": "yarn manypkg run application-template-starter start",
     "template-starter:start:prod:local": "yarn manypkg run application-template-starter start:prod:local",
-    "build": "preconstruct build && NODE_ENV=production yarn workspaces run build",
+    "build": "preconstruct build && NODE_ENV=production yarn manypkg run application-template-starter build && NODE_ENV=production yarn manypkg run mc-html-template build && NODE_ENV=production yarn manypkg run mc-scripts build && NODE_ENV=production yarn manypkg run playground build && NODE_ENV=production yarn manypkg run visual-testing-app build && NODE_ENV=production yarn manypkg run website build && NODE_ENV=production yarn manypkg run website-components-playground build",
     "build:watch": "preconstruct watch & NODE_ENV=development yarn manypkg run mc-html-template build:bundles:watch & & NODE_ENV=development yarn manypkg run mc-scripts build:bundles:watch",
     "build:website": "yarn build && yarn manypkg run @commercetools-website/custom-applications build && yarn manypkg @commercetools-website/components-playground build",
     "now-build": "yarn build:website && rm -rf public && mv website/public public",

@@ -22,8 +22,6 @@
   "module": "dist/commercetools-frontend-sdk.esm.js",
   "files": ["dist", "test-utils", "package.json", "LICENSE", "README.md"],
   "scripts": {
-    "prebuild": "exit 0",
-    "build": "exit 0",
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {

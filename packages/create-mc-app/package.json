@@ -12,10 +12,7 @@
   "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
   "private": false,
-  "scripts": {
-    "prebuild": "exit 0",
-    "build": "exit 0"
-  },
+  "scripts": {},
   "publishConfig": {
     "access": "public"
   },

@@ -15,10 +15,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "prebuild": "exit 0",
-    "build": "exit 0"
-  },
+  "scripts": {},
   "main": "dist/commercetools-backend-express.cjs.js",
   "module": "dist/commercetools-backend-express.esm.js",
   "files": ["dist", "package.json", "LICENSE", "README.md"],

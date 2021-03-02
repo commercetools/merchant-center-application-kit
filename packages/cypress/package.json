@@ -36,8 +36,6 @@
     "README.md"
   ],
   "scripts": {
-    "prebuild": "exit 0",
-    "build": "exit 0",
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {

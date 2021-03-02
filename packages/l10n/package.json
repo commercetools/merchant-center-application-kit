@@ -19,8 +19,6 @@
   "module": "dist/commercetools-frontend-l10n.esm.js",
   "files": ["data", "dist", "package.json", "LICENSE", "README.md"],
   "scripts": {
-    "prebuild": "exit 0",
-    "build": "exit 0",
     "prepare": "./../../scripts/version.js replace",
     "generate-data": "node ./scripts/generate-l10n-data.js"
   },

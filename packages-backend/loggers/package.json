@@ -22,10 +22,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "prebuild": "exit 0",
-    "build": "exit 0"
-  },
+  "scripts": {},
   "main": "dist/commercetools-backend-loggers.cjs.js",
   "module": "dist/commercetools-backend-loggers.esm.js",
   "files": ["dist", "package.json", "LICENSE", "README.md"],
