@@ -1,28 +1,29 @@
+const { getPackagesSync } = require('@manypkg/get-packages');
 const path = require('path');
 const shelljs = require('shelljs');
-const PackageUtilities = require('@lerna/project');
 
 const rootPath = path.join(__dirname, '..');
 const tarballsDistPath = path.join(rootPath, 'dist-tarballs');
 
 function extractTarball(packageInfo) {
-  const appPackageJsonPath = path.join(packageInfo.location, 'package.json');
-  const appPackageJson = require(appPackageJsonPath);
-  if (appPackageJson.private) return;
+  if (packageInfo.packageJson.private) return;
 
-  shelljs.exec('npm pack', { cwd: packageInfo.location, silent: true });
+  shelljs.exec('npm pack', { cwd: packageInfo.dir, silent: true });
+
   const packageTarName = shelljs
-    .ls(packageInfo.location)
+    .ls(packageInfo.dir)
     .find((fileName) => fileName.endsWith('.tgz'));
-  const tarballPath = path.join(packageInfo.location, packageTarName);
+  const tarballPath = path.join(packageInfo.dir, packageTarName);
+
   shelljs.mv(tarballPath, tarballsDistPath);
 }
 
-async function run() {
+function run() {
   shelljs.rm('-rf', tarballsDistPath);
   shelljs.mkdir('-p', tarballsDistPath);
-  const workspacePackageInfos = await PackageUtilities.getPackages(rootPath);
-  workspacePackageInfos.forEach(extractTarball);
+  const { packages } = getPackagesSync(rootPath);
+
+  packages.forEach(extractTarball);
 }
 
 run().catch((error) => {
