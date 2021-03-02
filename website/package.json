@@ -3,8 +3,8 @@
   "version": "17.0.20",
   "private": true,
   "scripts": {
-    "build": "gatsby build --prefix-paths",
     "prebuild": "./scripts/prebuild.sh && yarn generate-icons",
+    "build": "gatsby build --prefix-paths",
     "postbuild": "./scripts/postbuild.sh && yarn check-links",
     "prestart": "yarn generate-icons",
     "start": "gatsby develop",

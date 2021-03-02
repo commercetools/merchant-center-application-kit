@@ -4,6 +4,7 @@
   "description": "A starter example for the bare minimum setup to develop a Merchant Center Application",
   "private": true,
   "scripts": {
+    "prebuild": "exit 0",
     "build": "mc-scripts build",
     "start": "dotenv -- mc-scripts start",
     "compile-html": "NODE_ENV=production dotenv -- mc-scripts compile-html",

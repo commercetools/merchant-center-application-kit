@@ -8,6 +8,10 @@
     "url": "https://github.com/commercetools/merchant-center-application-kit.git",
     "directory": "packages/mc-dev-authentication"
   },
+  "scripts": {
+    "prebuild": "exit 0",
+    "build": "exit 0"
+  },
   "homepage": "https://docs.commercetools.com/custom-applications",
   "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",

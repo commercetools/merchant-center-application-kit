@@ -15,6 +15,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "scripts": {
+    "prebuild": "exit 0",
+    "build": "exit 0"
+  },
   "files": ["package.json", "run.js", "index.js", "LICENSE", "README.md"],
   "main": "index.js",
   "module": "index.js",

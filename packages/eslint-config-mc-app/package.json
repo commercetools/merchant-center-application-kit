@@ -15,6 +15,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "scripts": {
+    "prebuild": "exit 0",
+    "build": "exit 0"
+  },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^4.14.0",
     "@typescript-eslint/parser": "^4.14.0",
