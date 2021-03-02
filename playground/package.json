@@ -4,7 +4,6 @@
   "description": "A playground application to get started developing Merchant Center Applications",
   "private": true,
   "scripts": {
-    "prebuild": "exit 0",
     "build": "mc-scripts build",
     "start": "dotenv -c development -- mc-scripts start",
     "compile-html": "NODE_ENV=production dotenv -- mc-scripts compile-html",

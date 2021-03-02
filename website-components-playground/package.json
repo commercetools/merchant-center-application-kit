@@ -3,7 +3,6 @@
   "version": "16.10.37",
   "private": true,
   "scripts": {
-    "prebuild": "exit 0",
     "build:local": "gatsby build",
     "build": "gatsby build --prefix-paths",
     "postbuild": "mv public ../website/public/custom-applications/playground",
