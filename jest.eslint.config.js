@@ -5,8 +5,8 @@ module.exports = {
   modulePathIgnorePatterns: [
     '.yarn',
     '.cache',
-    'build',
-    'dist',
+    'build/',
+    'dist/',
     'public/',
     'generated',
   ],

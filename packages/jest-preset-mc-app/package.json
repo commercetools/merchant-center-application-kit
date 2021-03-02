@@ -15,6 +15,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "scripts": {},
   "main": "./jest-preset.js",
   "module": "./jest-preset.js",
   "dependencies": {

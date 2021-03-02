@@ -86,13 +86,13 @@ jobs:
           key: ${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
 
       - name: Installing Cypress binary
-        run: yarn run cypress install && yarn run cypress cache list
+        run: yarn cypress install && yarn cypress cache list
 
       - name: Building Playground application
         run: yarn playground:build
 
       - name: Running End-to-End tests for Playground application
-        run: yarn run start-server-and-test 'yarn playground:start:prod:local' 3001 'yarn run percy exec -- yarn test:e2e:playground'
+        run: yarn start-server-and-test 'yarn playground:start:prod:local' 3001 'yarn percy exec -- yarn test:e2e:playground'
         env:
           NODE_ENV: test
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_E2E_PLAYGROUND }}
@@ -109,7 +109,7 @@ jobs:
         run: yarn template-starter:build
 
       - name: Running End-to-End tests for Starter template application
-        run: yarn run start-server-and-test 'yarn template-starter:start:prod:local' 3001 'yarn run percy exec -- yarn test:e2e:template-starter'
+        run: yarn start-server-and-test 'yarn template-starter:start:prod:local' 3001 'yarn percy exec -- yarn test:e2e:template-starter'
         env:
           NODE_ENV: test
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_E2E_STARTER }}
