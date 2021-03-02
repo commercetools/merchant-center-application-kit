@@ -1,4 +1,4 @@
-const { getPackagesSync } = require('@manypkg/get-packages');
+const { getPackages } = require('@manypkg/get-packages');
 const path = require('path');
 const shelljs = require('shelljs');
 
@@ -18,11 +18,11 @@ function extractTarball(packageInfo) {
   shelljs.mv(tarballPath, tarballsDistPath);
 }
 
-function run() {
+async function run() {
   shelljs.rm('-rf', tarballsDistPath);
   shelljs.mkdir('-p', tarballsDistPath);
-  const { packages } = getPackagesSync(rootPath);
 
+  const { packages } = await getPackages(rootPath);
   packages.forEach(extractTarball);
 }
 
