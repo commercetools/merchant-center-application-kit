@@ -47,7 +47,7 @@
     "prebuild": "yarn compile-intl",
     "build": "preconstruct build && NODE_ENV=production NODE_ENV=production yarn manypkg run mc-html-template build && NODE_ENV=production yarn manypkg run mc-scripts build",
     "build:watch": "preconstruct watch & NODE_ENV=development yarn manypkg run mc-html-template build:bundles:watch & & NODE_ENV=development yarn manypkg run mc-scripts build:bundles:watch",
-    "build:website": "yarn build && yarn manypkg run @commercetools-website/custom-applications build && yarn manypkg @commercetools-website/components-playground build",
+    "build:website": "yarn build && yarn manypkg run @commercetools-website/custom-applications build && yarn manypkg run @commercetools-website/components-playground build",
     "now-build": "yarn build:website && rm -rf public && mv website/public public",
     "labels:sync": "github-labels sync",
     "generate-types:mc": "./scripts/graphql-cli.sh codegen --project mc",
