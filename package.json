@@ -46,7 +46,7 @@
     "template-starter:start:prod:local": "manypkg run application-template-starter start:prod:local",
     "prebuild": "yarn compile-intl",
     "build": "preconstruct build && NODE_ENV=production NODE_ENV=production manypkg run mc-html-template build && NODE_ENV=production manypkg run mc-scripts build",
-    "build:watch": "preconstruct watch & NODE_ENV=development manypkg run mc-html-template build:bundles:watch & & NODE_ENV=development manypkg run mc-scripts build:bundles:watch",
+    "build:watch": "preconstruct watch & NODE_ENV=development manypkg run mc-html-template build:bundles:watch && NODE_ENV=development manypkg run mc-scripts build:bundles:watch",
     "build:website": "yarn build && manypkg run @commercetools-website/custom-applications build && manypkg run @commercetools-website/components-playground build",
     "now-build": "yarn build:website && rm -rf public && mv website/public public",
     "labels:sync": "github-labels sync",
