@@ -158,6 +158,10 @@ export default defineMessages({
     id: 'QuickAccess.openProjectSettingsChannelsTab',
     defaultMessage: 'Open Project Settings • Channels',
   },
+  openProjectSettingsStoresTab: {
+    id: 'QuickAccess.openProjectSettingsStoresTab',
+    defaultMessage: 'Open Project Settings • Stores',
+  },
   openProductTypesSettings: {
     id: 'QuickAccess.openProductTypesSettings',
     defaultMessage: 'Open Product Types Settings',
