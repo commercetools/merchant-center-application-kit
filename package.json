@@ -7,7 +7,7 @@
   "scripts": {
     "postinstall": "manypkg check && preconstruct dev && yarn compile-css-modules",
     "auth": "npm_config_registry=https://registry.npmjs.org npm whoami",
-    "clean": "manypkg exec 'rm -rf build dist test-utils/dist experimental/dist task/dist add-commands/dist'",
+    "clean": "manypkg exec rm -rf build dist test-utils/dist experimental/dist task/dist add-commands/dist",
     "extract-intl": "formatjs extract --format=$(pwd)/packages/i18n/transifex-transformer.js --out-file=$(pwd)/packages/i18n/data/core.json 'packages/**/*messages.ts'",
     "compile-intl": "manypkg run i18n compile-data",
     "compile-css-modules": "manypkg run @commercetools-frontend/application-shell compile-css-modules --no-private",
