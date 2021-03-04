@@ -427,6 +427,14 @@ const createCommands = ({
                   to: `/${applicationContext.project.key}/settings/project/channels`,
                 },
               },
+              {
+                id: 'go/settings/project/stores',
+                text: intl.formatMessage(messages.openProjectSettingsStoresTab),
+                action: {
+                  type: actionTypes.go,
+                  to: `/${applicationContext.project.key}/settings/project/stores`,
+                },
+              },
             ].filter(nonNullable),
           },
           hasSomePermissions(
