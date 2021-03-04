@@ -25,7 +25,11 @@
   "main": "dist/commercetools-frontend-cypress.cjs.js",
   "module": "dist/commercetools-frontend-cypress.esm.js",
   "preconstruct": {
-    "entrypoints": ["./index.ts", "./add-commands/index.ts", "./task/index.ts"]
+    "entrypoints": [
+      "./index.ts",
+      "./add-commands/index.ts",
+      "./task/index.ts"
+    ]
   },
   "files": [
     "dist",
