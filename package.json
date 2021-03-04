@@ -30,7 +30,7 @@
     "pretest:watch": "yarn compile-intl",
     "test": "jest --config jest.test.config.js",
     "test:watch": "jest --config jest.test.config.js --watch",
-    "test:visual": "jest --config jest.visual.config.js --runInBand",
+    "test:visual": "jest --config jest.visual.config.js --runInBand --testTimeout=10000",
     "test:e2e": "cypress run",
     "test:e2e:playground": "cypress run --spec cypress/integration/playground/**/*.js",
     "test:e2e:template-starter": "cypress run --spec cypress/integration/template-starter/**/*.js",
