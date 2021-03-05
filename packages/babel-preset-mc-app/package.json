@@ -9,12 +9,7 @@
     "directory": "packages/babel-preset-mc-app"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": [
-    "javascript",
-    "frontend",
-    "react",
-    "toolkit"
-  ],
+  "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
   "private": false,
   "scripts": {},

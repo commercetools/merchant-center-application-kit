@@ -1,5 +1,13 @@
 # playground
 
+## 17.3.19
+
+### Patch Changes
+
+- Updated dependencies [[`5e7d20fb`](https://github.com/commercetools/merchant-center-application-kit/commit/5e7d20fbf908548aae8d9101bb7b36850f92aa95), [`e2137ecc`](https://github.com/commercetools/merchant-center-application-kit/commit/e2137ecc786c01445e4e9009174f32b2004a8daa)]:
+  - @commercetools-frontend/application-components@18.5.5
+  - @commercetools-frontend/application-shell@18.5.5
+
 ## 17.3.18
 
 ### Patch Changes

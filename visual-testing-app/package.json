@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-local/visual-testing-app",
-  "version": "17.2.4",
+  "version": "17.2.5",
   "description": "An app to facilitate visual testing",
   "private": true,
   "scripts": {
@@ -11,7 +11,7 @@
     "serve": "mc-scripts serve"
   },
   "dependencies": {
-    "@commercetools-frontend/application-components": "18.5.4",
+    "@commercetools-frontend/application-components": "18.5.5",
     "@commercetools-frontend/constants": "18.5.2",
     "@commercetools-frontend/react-notifications": "18.5.2",
     "@commercetools-uikit/design-system": "^11.0.0",

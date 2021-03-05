@@ -9,25 +9,14 @@
     "directory": "packages/jest-stylelint-runner"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": [
-    "javascript",
-    "frontend",
-    "react",
-    "toolkit"
-  ],
+  "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
   "private": false,
   "publishConfig": {
     "access": "public"
   },
   "scripts": {},
-  "files": [
-    "package.json",
-    "run.js",
-    "index.js",
-    "LICENSE",
-    "README.md"
-  ],
+  "files": ["package.json", "run.js", "index.js", "LICENSE", "README.md"],
   "main": "index.js",
   "module": "index.js",
   "dependencies": {

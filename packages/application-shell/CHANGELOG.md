@@ -1,5 +1,14 @@
 # @commercetools-frontend/application-shell
 
+## 18.5.5
+
+### Patch Changes
+
+- [`e2137ecc`](https://github.com/commercetools/merchant-center-application-kit/commit/e2137ecc786c01445e4e9009174f32b2004a8daa) [#2079](https://github.com/commercetools/merchant-center-application-kit/pull/2079) Thanks [@mohib0306](https://github.com/mohib0306)! - Add navigating to ProjectSetting->Stores to quick access command list
+
+- Updated dependencies [[`5e7d20fb`](https://github.com/commercetools/merchant-center-application-kit/commit/5e7d20fbf908548aae8d9101bb7b36850f92aa95)]:
+  - @commercetools-frontend/application-components@18.5.5
+
 ## 18.5.4
 
 ### Patch Changes

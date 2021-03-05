@@ -9,14 +9,7 @@
     "directory": "packages-backend/express"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": [
-    "javascript",
-    "nodejs",
-    "express",
-    "http",
-    "server",
-    "toolkit"
-  ],
+  "keywords": ["javascript", "nodejs", "express", "http", "server", "toolkit"],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -25,12 +18,7 @@
   "scripts": {},
   "main": "dist/commercetools-backend-express.cjs.js",
   "module": "dist/commercetools-backend-express.esm.js",
-  "files": [
-    "dist",
-    "package.json",
-    "LICENSE",
-    "README.md"
-  ],
+  "files": ["dist", "package.json", "LICENSE", "README.md"],
   "dependencies": {
     "@babel/runtime": "7.13.8",
     "@babel/runtime-corejs3": "7.13.8",
