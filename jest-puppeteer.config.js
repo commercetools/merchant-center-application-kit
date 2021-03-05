@@ -1,7 +1,7 @@
 module.exports = {
   launch: {
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    executablePath: 'google-chrome-stable',
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
   },
   server: {
     command: 'yarn visual-testing-app:serve',
