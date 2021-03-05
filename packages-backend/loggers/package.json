@@ -25,7 +25,12 @@
   "scripts": {},
   "main": "dist/commercetools-backend-loggers.cjs.js",
   "module": "dist/commercetools-backend-loggers.esm.js",
-  "files": ["dist", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "dependencies": {
     "@babel/runtime": "7.13.8",
     "@babel/runtime-corejs3": "7.13.8",
