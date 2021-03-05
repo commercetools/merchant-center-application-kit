@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-components
 
+## 18.5.5
+
+### Patch Changes
+
+- [`5e7d20fb`](https://github.com/commercetools/merchant-center-application-kit/commit/5e7d20fbf908548aae8d9101bb7b36850f92aa95) [#2078](https://github.com/commercetools/merchant-center-application-kit/pull/2078) Thanks [@adnasa](https://github.com/adnasa)! - Remove generated types config
+
 ## 18.5.4
 
 ### Patch Changes

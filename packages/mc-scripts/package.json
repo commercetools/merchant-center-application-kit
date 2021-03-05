@@ -9,39 +9,20 @@
     "directory": "packages/mc-scripts"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": [
-    "javascript",
-    "frontend",
-    "react",
-    "toolkit"
-  ],
+  "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
   "private": false,
   "publishConfig": {
     "access": "public"
   },
   "main": "./build/index.js",
-  "files": [
-    "bin",
-    "build",
-    "config",
-    "package.json",
-    "LICENSE",
-    "README.md"
-  ],
+  "files": ["bin", "build", "config", "package.json", "LICENSE", "README.md"],
   "bin": {
     "mc-scripts": "./bin/mc-scripts.js"
   },
   "browserslist": {
-    "production": [
-      ">1%",
-      "not op_mini all",
-      "not dead"
-    ],
-    "development": [
-      "last 2 firefox versions",
-      "last 2 chrome versions"
-    ]
+    "production": [">1%", "not op_mini all", "not dead"],
+    "development": ["last 2 firefox versions", "last 2 chrome versions"]
   },
   "scripts": {
     "prebuild": "rimraf build/**",
