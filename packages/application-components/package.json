@@ -31,8 +31,8 @@
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
-    "@babel/runtime": "7.13.8",
-    "@babel/runtime-corejs3": "7.13.8",
+    "@babel/runtime": "7.13.9",
+    "@babel/runtime-corejs3": "7.13.9",
     "@commercetools-frontend/application-shell-connectors": "18.5.2",
     "@commercetools-frontend/assets": "18.5.4",
     "@commercetools-frontend/constants": "18.5.2",
@@ -62,12 +62,12 @@
     "react-required-if": "1.0.3"
   },
   "devDependencies": {
-    "@commercetools-frontend/ui-kit": "11.0.1",
-    "@types/react": "16.14.4",
+    "@commercetools-frontend/ui-kit": "11.1.0",
+    "@types/react": "16.14.5",
     "@types/react-dom": "16.9.11",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.13.1"
+    "react-intl": "5.13.2"
   },
   "peerDependencies": {
     "@commercetools-frontend/ui-kit": "11.x",
