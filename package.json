@@ -175,7 +175,7 @@
     "stylelint-config-standard": "20.0.0",
     "stylelint-order": "4.1.0",
     "stylelint-value-no-unknown-custom-properties": "3.0.0",
-    "typescript": "4.2.3",
+    "typescript": "4.1.5",
     "vfile-message": "2.0.4"
   },
   "resolutions": {
