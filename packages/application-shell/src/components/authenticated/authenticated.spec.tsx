@@ -79,7 +79,10 @@ describe('rendering', () => {
         await waitFor(() => {
           expect(props.render).toHaveBeenCalledWith({ isAuthenticated: false });
         });
-        expect(mocked(window.localStorage.setItem)).not.toHaveBeenCalled();
+        expect(mocked(window.localStorage.setItem)).not.toHaveBeenCalledWith(
+          STORAGE_KEYS.IS_AUTHENTICATED,
+          expect.anything()
+        );
         expect(mocked(window.localStorage.removeItem)).toHaveBeenCalledWith(
           STORAGE_KEYS.IS_AUTHENTICATED
         );
