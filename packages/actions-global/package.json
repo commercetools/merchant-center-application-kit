@@ -22,8 +22,8 @@
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
-    "@babel/runtime": "7.13.8",
-    "@babel/runtime-corejs3": "7.13.8",
+    "@babel/runtime": "7.13.9",
+    "@babel/runtime-corejs3": "7.13.9",
     "@commercetools-frontend/browser-history": "18.5.2",
     "@commercetools-frontend/constants": "18.5.2",
     "@commercetools-frontend/notifications": "18.5.2",
@@ -33,7 +33,7 @@
     "redux-thunk": "2.3.0"
   },
   "devDependencies": {
-    "@types/react": "16.14.4",
+    "@types/react": "16.14.5",
     "@types/react-redux": "7.1.16",
     "react": "16.14.0",
     "react-redux": "7.2.2",

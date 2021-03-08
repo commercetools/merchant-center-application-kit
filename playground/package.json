@@ -14,7 +14,7 @@
     "extract-intl": "formatjs extract --format=$(pwd)/intl-formatter.js --out-file=$(pwd)/src/i18n/data/core.json 'src/**/!(*.spec).js'"
   },
   "dependencies": {
-    "@commercetools-docs/ui-kit": "14.0.3",
+    "@commercetools-docs/ui-kit": "14.0.4",
     "@commercetools-frontend/actions-global": "18.5.2",
     "@commercetools-frontend/application-components": "18.5.5",
     "@commercetools-frontend/application-shell": "18.5.5",
@@ -41,7 +41,7 @@
     "prop-types": "15.7.2",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.13.1",
+    "react-intl": "5.13.2",
     "react-redux": "7.2.2",
     "react-router-dom": "5.2.0",
     "redux": "4.0.5"
@@ -49,7 +49,7 @@
   "devDependencies": {
     "@commercetools-frontend/mc-dev-authentication": "18.5.4",
     "@commercetools-frontend/mc-scripts": "18.5.4",
-    "@formatjs/cli": "3.1.5",
+    "@formatjs/cli": "3.1.6",
     "dotenv-cli": "4.0.0"
   }
 }
