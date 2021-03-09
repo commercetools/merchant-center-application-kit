@@ -114,7 +114,7 @@
     "@graphql-codegen/typescript-graphql-files-modules": "1.18.1",
     "@graphql-codegen/typescript-operations": "1.17.15",
     "@manypkg/cli": "0.17.0",
-    "@percy/cli": "v1.0.0-beta.39",
+    "@percy/cli": "1.0.0-beta.39",
     "@percy/cypress": "2.3.4",
     "@percy/puppeteer": "2.0.0",
     "@preconstruct/cli": "2.0.6",
