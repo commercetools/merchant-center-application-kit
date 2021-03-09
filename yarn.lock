@@ -6514,7 +6514,7 @@
     globby "^11.0.1"
     image-size "^0.9.1"
 
-"@percy/cli@v1.0.0-beta.39":
+"@percy/cli@1.0.0-beta.39":
   version "1.0.0-beta.39"
   resolved "https://registry.yarnpkg.com/@percy/cli/-/cli-1.0.0-beta.39.tgz#0774f88a9bdbf43bf77d3728b690709a803c9d11"
   integrity sha512-zOb/pV0dGEUsr3tfP5MBzq/egDeWz6hfoLlXyR8QmivKxqti657OKqFA23XjbDGcI+kd/DFl9640IBjEwBCWGw==
