@@ -1,5 +1,15 @@
 # @commercetools-website/components-playground
 
+## 16.10.40
+
+### Patch Changes
+
+- [`ca4ea6eb`](https://github.com/commercetools/merchant-center-application-kit/commit/ca4ea6eb17c14bf015a8448248c58881e005ac99) [#2085](https://github.com/commercetools/merchant-center-application-kit/pull/2085) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+- Updated dependencies [[`ca4ea6eb`](https://github.com/commercetools/merchant-center-application-kit/commit/ca4ea6eb17c14bf015a8448248c58881e005ac99)]:
+  - @commercetools-frontend/application-components@18.5.6
+  - @commercetools-frontend/i18n@18.5.6
+
 ## 16.10.39
 
 ### Patch Changes
