@@ -1541,6 +1541,14 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime-corejs3@7.13.10":
+  version "7.13.10"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.13.10.tgz#14c3f4c85de22ba88e8e86685d13e8861a82fe86"
+  integrity sha512-x/XYVQ1h684pp1mJwOV4CyvqZXqbc8CMsMGUnAbuc82ZCdv1U63w5RSUzgDSXQHG5Rps/kiksH6g2D5BuaKyXg==
+  dependencies:
+    core-js-pure "^3.0.0"
+    regenerator-runtime "^0.13.4"
+
 "@babel/runtime-corejs3@7.13.7":
   version "7.13.7"
   resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.13.7.tgz#f47f882b62961c1ada113dbafc717c69c18a9b09"
@@ -1568,6 +1576,13 @@
   version "7.12.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.5.tgz#410e7e487441e1b360c29be715d870d9b985882e"
   integrity sha512-plcc+hbExy3McchJCEQG3knOsuh3HH+Prx1P6cLIkET/0dLuQDEnrT+s27Axgc9bqfsmNUNHfscgMUdBpC9xfg==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
+"@babel/runtime@7.13.10", "@babel/runtime@^7.13.10":
+  version "7.13.10"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.13.10.tgz#47d42a57b6095f4468da440388fdbad8bebf0d7d"
+  integrity sha512-4QPkjJq6Ns3V/RgpEahRk+AGfL0eO6RHHtTWoNNr5mO49G6B5+X6d6THgWEAvTrznU5xYpbAlVKRYcsCgh/Akw==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -1873,12 +1888,12 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@commercetools-docs/gatsby-theme-docs@14.0.5":
-  version "14.0.5"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-14.0.5.tgz#a5a8b69ab8b0a0c1f6ff5ac0fe5293f0397649e8"
-  integrity sha512-cf8BjNTmnSvVMts2ZiuL6a9E90XQ/kemeNzdGL8i7tw/0uX0rya0Y/BFNW1Pf/L3g5IOe9Fda3Lm8k5Rvbp1GQ==
+"@commercetools-docs/gatsby-theme-docs@14.0.7":
+  version "14.0.7"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-14.0.7.tgz#d7bb0c178948f7f0b723a896a8bed75a458c72b5"
+  integrity sha512-wVne/+n9Oilh+zBmJdWroHKkb68MT94DNO0uVpAqNVXsq7U/PVdwNdy3c1Tn5JgkSUtV9hx9DmP4Fw8IcDaOqQ==
   dependencies:
-    "@commercetools-docs/ui-kit" "14.0.4"
+    "@commercetools-docs/ui-kit" "14.0.7"
     "@commercetools-uikit/card" "^11.0.0"
     "@commercetools-uikit/checkbox-input" "^11.0.0"
     "@commercetools-uikit/date-input" "^11.0.0"
@@ -1893,11 +1908,11 @@
     "@emotion/react" "^11.1.1"
     "@emotion/server" "^11.0.0"
     "@emotion/styled" "^11.0.0"
-    "@fontsource/roboto" "4.2.1"
-    "@fontsource/roboto-mono" "4.2.1"
+    "@fontsource/roboto" "4.2.2"
+    "@fontsource/roboto-mono" "4.2.2"
     "@mdx-js/mdx" "1.6.22"
     "@mdx-js/react" "1.6.22"
-    "@sentry/browser" "6.2.0"
+    "@sentry/browser" "6.2.1"
     "@svgr/webpack" "5.5.0"
     docsearch.js "2.6.3"
     gatsby-image "2.11.0"
@@ -1912,18 +1927,19 @@
     gatsby-plugin-react-helmet-canonical-urls "1.4.0"
     gatsby-plugin-remove-trailing-slashes "2.10.0"
     gatsby-plugin-sharp "2.14.3"
-    gatsby-plugin-webpack-bundle-analyser-v2 "1.1.20"
+    gatsby-plugin-webpack-bundle-analyser-v2 "1.1.21"
     gatsby-remark-copy-linked-files "2.10.0"
     gatsby-remark-images "3.11.1"
     gatsby-remark-relative-images "0.2.3"
     gatsby-source-filesystem "2.11.1"
-    gatsby-transformer-sharp "2.12.0"
+    gatsby-transformer-sharp "2.12.1"
     gatsby-transformer-yaml "2.11.0"
     github-slugger "1.3.0"
     hast-util-heading "1.0.5"
     intersection-observer "0.12.0"
     lodash.throttle "4.1.1"
     moment "2.29.1"
+    prism-react-renderer "1.2.0"
     prismjs "1.23.0"
     prompts "^2.4.0"
     prop-types "15.7.2"
@@ -1941,13 +1957,13 @@
     unified "9.2.1"
     unist-util-filter "2.0.3"
 
-"@commercetools-docs/ui-kit@14.0.4":
-  version "14.0.4"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-14.0.4.tgz#102bdc80054360a4cb2ad65bc82f7803404b1d33"
-  integrity sha512-b/UzhhHOOncMC8SBcDJwdRZwksnKwP4/Vdq4LV2fKe+x3VXF9E7xj5TnqG7V6xBPYGgQrpOuFcIF9LPsNRX1JQ==
+"@commercetools-docs/ui-kit@14.0.7":
+  version "14.0.7"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-14.0.7.tgz#52f0c588e8b479de0842e6eda2138b7d1b5918fd"
+  integrity sha512-EeTHFbEiWNACxTu7CP4lvyOYucBDqOXqtvFvXqYrkgNyYmmrLmzeIloVSl5edm0NAzoqTBCszRIV1WCKVi2uwg==
   dependencies:
-    "@babel/runtime" "7.13.7"
-    "@babel/runtime-corejs3" "7.13.7"
+    "@babel/runtime" "7.13.10"
+    "@babel/runtime-corejs3" "7.13.10"
     "@commercetools-uikit/design-system" "^11.0.0"
     "@commercetools-uikit/icons" "^11.0.0"
     "@commercetools-uikit/loading-spinner" "^11.0.0"
@@ -1955,14 +1971,14 @@
     "@commercetools-uikit/tooltip" "^11.0.0"
     "@emotion/react" "^11.1.1"
     "@emotion/styled" "^11.0.0"
+    "@formatjs/intl-numberformat" "^6.2.2"
     lodash.escape "4.0.1"
     lodash.throttle "4.1.1"
     moment "2.29.1"
     parse5 "6.0.1"
-    prism-react-renderer "1.1.1"
+    prism-react-renderer "1.2.0"
     prop-types "15.7.2"
-    rss-parser "3.12.0"
-    swr "0.4.2"
+    swr "0.5.1"
     tiny-invariant "1.1.0"
 
 "@commercetools-docs/writing-style@3.0.4":
@@ -4754,15 +4770,15 @@
   resolved "https://registry.yarnpkg.com/@fontsource/open-sans/-/open-sans-4.2.2.tgz#59046f772136a44c5999e0189d33c6a26676630c"
   integrity sha512-NbsL1a9asJO6N/5kRxYPCy0kNhKMi9T75kl4QfIGtmpd/5IfB+UIAUxd9AICmCLaH4Osc2TImeTJj94xc9MNKg==
 
-"@fontsource/roboto-mono@4.2.1":
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/@fontsource/roboto-mono/-/roboto-mono-4.2.1.tgz#7cc321685a1521fd88c94ae56b6f7752d1397711"
-  integrity sha512-bA7CWIDl2bM55lnMyJSk+0JI2sqdMcqdoabMGXGfiiZEltiuByYHuFg7msj0RC2AW4iFm74KwzAvpSzYwVk2mQ==
+"@fontsource/roboto-mono@4.2.2":
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto-mono/-/roboto-mono-4.2.2.tgz#deb736753e9680e94a11d6e162badf8636310942"
+  integrity sha512-qBEDhPHwN0m6VXSS1EGSAkmKT3gqfQZJyynSkSDQZNPRLeDVq7CTcmJWhjIqAFgVqJ4PNfMUIEl9+bqeBtlvhQ==
 
-"@fontsource/roboto@4.2.1":
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-4.2.1.tgz#fc75a2c6f5267230f37c40c00bec5bf05d61c5c0"
-  integrity sha512-C236dlY57hG+Gg4C9SS2i5qNBILg31uzSdVhO6wUk27rgOz+rtztcUA17VI+HWdAd4LQaTp/vF6NDi303KRtqg==
+"@fontsource/roboto@4.2.2":
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-4.2.2.tgz#39b87680b25915539e445cc6e0fac99e1a81f58b"
+  integrity sha512-VzYWCdqjrepaT7dezuaTZXKaW1L+f5FSp7DGxMqTrf81OTzh9xpKIpr8lgjPg2ZNwiT8rnU++mJ4hojsCnOoqw==
 
 "@formatjs/cli@3.1.6":
   version "3.1.6"
@@ -4814,6 +4830,14 @@
   version "5.0.10"
   resolved "https://registry.yarnpkg.com/@formatjs/intl-listformat/-/intl-listformat-5.0.10.tgz#9f8c4ad5e8a925240e151ba794c41fba01f742cc"
   integrity sha512-FLtrtBPfBoeteRlYcHvThYbSW2YdJTllR0xEnk6cr/6FRArbfPRYMzDpFYlESzb5g8bpQMKZy+kFQ6V2Z+5KaA==
+  dependencies:
+    "@formatjs/ecma402-abstract" "1.6.2"
+    tslib "^2.1.0"
+
+"@formatjs/intl-numberformat@^6.2.2":
+  version "6.2.2"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-numberformat/-/intl-numberformat-6.2.2.tgz#a75ea1d18ac3c89c2a28d9d9ac35f612699963e8"
+  integrity sha512-mM6dwNizz8GS62kVS7yj0avz+6HDvIJldsAv495XCTFxxcSmP4iTREG+0J+ex8puBTJRESgJx4MBcXJPj0K76Q==
   dependencies:
     "@formatjs/ecma402-abstract" "1.6.2"
     tslib "^2.1.0"
@@ -6760,14 +6784,14 @@
     "@sentry/utils" "5.30.0"
     tslib "^1.9.3"
 
-"@sentry/browser@6.2.0":
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-6.2.0.tgz#4113a92bc82f55e63f30cb16a94f717bd0b95817"
-  integrity sha512-4r3paHcHXLemj471BtNDhUs2kvJxk5XDRplz1dbC/LHXN5PWEXP4anhGILxOlxqi4y33r53PIZu3xXFjznaVZA==
+"@sentry/browser@6.2.1":
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-6.2.1.tgz#f9f277e6f8cad0c7efd1a01726095d63a47a1c16"
+  integrity sha512-OAikFZ9EimD3noxMp8tA6Cf6qJcQ2U8k5QSgTPwdx+09nZOGJzbRFteK7WWmrS93ZJdzN61lpSQbg5v+bmmfbQ==
   dependencies:
-    "@sentry/core" "6.2.0"
-    "@sentry/types" "6.2.0"
-    "@sentry/utils" "6.2.0"
+    "@sentry/core" "6.2.1"
+    "@sentry/types" "6.2.1"
+    "@sentry/utils" "6.2.1"
     tslib "^1.9.3"
 
 "@sentry/core@5.30.0":
@@ -6781,15 +6805,15 @@
     "@sentry/utils" "5.30.0"
     tslib "^1.9.3"
 
-"@sentry/core@6.2.0":
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-6.2.0.tgz#be1c33854fc94e1a4d867f7c2c311cf1cefb8ee9"
-  integrity sha512-oTr2b25l+0bv/+d6IgMamPuGleWV7OgJb0NFfd+WZhw6UDRgr7CdEJy2gW6tK8SerwXgPHdn4ervxsT3WIBiXw==
+"@sentry/core@6.2.1":
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-6.2.1.tgz#8b177e9bf591e2e7ddcb04f0b1403de3f5aa8755"
+  integrity sha512-jPqQEtafxxDtLONhCbTHh/Uq8mZRhsfbwJTSVYfPVEe/ELfFZLQK7tP6rOh7zEWKbTkE0mE6XcaoH3ZRAhgrqg==
   dependencies:
-    "@sentry/hub" "6.2.0"
-    "@sentry/minimal" "6.2.0"
-    "@sentry/types" "6.2.0"
-    "@sentry/utils" "6.2.0"
+    "@sentry/hub" "6.2.1"
+    "@sentry/minimal" "6.2.1"
+    "@sentry/types" "6.2.1"
+    "@sentry/utils" "6.2.1"
     tslib "^1.9.3"
 
 "@sentry/hub@5.30.0":
@@ -6801,13 +6825,13 @@
     "@sentry/utils" "5.30.0"
     tslib "^1.9.3"
 
-"@sentry/hub@6.2.0":
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/@sentry/hub/-/hub-6.2.0.tgz#e7502652bc9608cf8fb63e43cd49df9019a28f29"
-  integrity sha512-BDTEFK8vlJydWXp/KMX0stvv73V7od224iLi+w3k7BcPwMKXBuURBXPU8d5XIC4G8nwg8X6cnDvwL+zBBlBbkg==
+"@sentry/hub@6.2.1":
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/@sentry/hub/-/hub-6.2.1.tgz#35bc6bf841a93f4354b3a17592c938b3dba20b73"
+  integrity sha512-pG7wCQeRpzeP6t0bT4T0X029R19dbDS3/qswF8BL6bg0AI3afjfjBAZm/fqn1Uwe/uBoMHVVdbxgJDZeQ5d4rQ==
   dependencies:
-    "@sentry/types" "6.2.0"
-    "@sentry/utils" "6.2.0"
+    "@sentry/types" "6.2.1"
+    "@sentry/utils" "6.2.1"
     tslib "^1.9.3"
 
 "@sentry/minimal@5.30.0":
@@ -6819,13 +6843,13 @@
     "@sentry/types" "5.30.0"
     tslib "^1.9.3"
 
-"@sentry/minimal@6.2.0":
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/@sentry/minimal/-/minimal-6.2.0.tgz#718b70babb55912eeb38babaf7823d1bcdd77d1e"
-  integrity sha512-haxsx8/ZafhZUaGeeMtY7bJt9HbDlqeiaXrRMp1CxGtd0ZRQwHt60imEjl6IH1I73SEWxNfqScGsX2s3HzztMg==
+"@sentry/minimal@6.2.1":
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/@sentry/minimal/-/minimal-6.2.1.tgz#8f01480e1b56bc7dd54adf925e5317f233e19384"
+  integrity sha512-wuSXB4Ayxv9rBEQ4pm7fnG4UU2ZPtPnnChoEfd4/mw1UthXSvmPFEn6O4pdo2G8fTkl8eqm6wT/Q7uIXMEmw+A==
   dependencies:
-    "@sentry/hub" "6.2.0"
-    "@sentry/types" "6.2.0"
+    "@sentry/hub" "6.2.1"
+    "@sentry/types" "6.2.1"
     tslib "^1.9.3"
 
 "@sentry/node@5.30.0":
@@ -6859,10 +6883,10 @@
   resolved "https://registry.yarnpkg.com/@sentry/types/-/types-5.30.0.tgz#19709bbe12a1a0115bc790b8942917da5636f402"
   integrity sha512-R8xOqlSTZ+htqrfteCWU5Nk0CDN5ApUTvrlvBuiH1DyP6czDZ4ktbZB0hAgBlVcK0U+qpD3ag3Tqqpa5Q67rPw==
 
-"@sentry/types@6.2.0":
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/@sentry/types/-/types-6.2.0.tgz#ca020ff42913c6b9f88a9d0c375b5ee3965a2590"
-  integrity sha512-vN4P/a+QqAuVfWFB9G3nQ7d6bgnM9jd/RLVi49owMuqvM24pv5mTQHUk2Hk4S3k7ConrHFl69E7xH6Dv5VpQnQ==
+"@sentry/types@6.2.1":
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/@sentry/types/-/types-6.2.1.tgz#28c946230b2023f72307b65606d32052ad9e5353"
+  integrity sha512-h0OV1QT+fv5ojfK5/+iEXClu33HirmvbjcQC2jf05IHj9yXIOWy6EB10S8nBjuLiiFqQiAQYj3FN9Ip4eN8NJA==
 
 "@sentry/utils@5.30.0":
   version "5.30.0"
@@ -6872,12 +6896,12 @@
     "@sentry/types" "5.30.0"
     tslib "^1.9.3"
 
-"@sentry/utils@6.2.0":
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-6.2.0.tgz#39c81ad5ba92cec54d690e3fa8ea4e777d8e9c2b"
-  integrity sha512-YToUC7xYf2E/pIluI7upYTlj8fKXOtdwoOBkcQZifHgX/dP+qDaHibbBFe5PyZwdmU2UiLnWFsBr0gjo0QFo1g==
+"@sentry/utils@6.2.1":
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-6.2.1.tgz#bfcb12c20d44bf2aeb0073b1264703c11c179ebd"
+  integrity sha512-6kQgM/yBPdXu+3qbJnI6HBcWztN9QfiMkH++ZiKk4ERhg9d2LYWlze478uTU5Fyo/JQYcp+McpjtjpR9QIrr0g==
   dependencies:
-    "@sentry/types" "6.2.0"
+    "@sentry/types" "6.2.1"
     tslib "^1.9.3"
 
 "@sheerun/mutationobserver-shim@0.3.3":
@@ -12275,11 +12299,6 @@ dequal@1.0.0:
   resolved "https://registry.yarnpkg.com/dequal/-/dequal-1.0.0.tgz#41c6065e70de738541c82cdbedea5292277a017e"
   integrity sha512-/Nd1EQbQbI9UbSHrMiKZjFLrXSnU328iQdZKPQf78XQI6C+gutkFUeoHpG5J08Ioa6HeRbRNFpSIclh1xyG0mw==
 
-dequal@2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/dequal/-/dequal-2.0.2.tgz#85ca22025e3a87e65ef75a7a437b35284a7e319d"
-  integrity sha512-q9K8BlJVxK7hQYqa6XISGmBZbtQQWVXSrRrWreHC94rMt1QL/Impruc+7p2CYSYuVIUr+YCt6hjrs1kkdJRTug==
-
 des.js@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/des.js/-/des.js-1.0.1.tgz#5382142e1bdc53f85d86d53e5f4aa7deb91e0843"
@@ -12894,7 +12913,7 @@ entities@^1.1.1, entities@~1.1.1:
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.2.tgz#bdfa735299664dfafd34529ed4f8522a275fea56"
   integrity sha512-f2LZMYl1Fzu7YSBKg+RoROelpOaNrcGmE9AZubeDfrCEia483oW4MI4VyFd5VNHIgQ/7qm1I0wUHK1eJnn2y2w==
 
-entities@^2.0.0, entities@^2.0.3:
+entities@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/entities/-/entities-2.2.0.tgz#098dc90ebb83d8dffa089d55256b351d34c4da55"
   integrity sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==
@@ -15115,12 +15134,12 @@ gatsby-plugin-utils@^0.9.0:
   dependencies:
     joi "^17.2.1"
 
-gatsby-plugin-webpack-bundle-analyser-v2@1.1.20:
-  version "1.1.20"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-webpack-bundle-analyser-v2/-/gatsby-plugin-webpack-bundle-analyser-v2-1.1.20.tgz#cc2c56b0af0aeb15c40a3c4a4a4b0eacc5186ea3"
-  integrity sha512-QGSq5II6sPUgQ1Dh0n7zQZlNXXIt4o+PtZW9nYFV6kpyDB8rmre5An5/cBYKsIWsQVjzYqkFl3BOUbdlIsBixw==
+gatsby-plugin-webpack-bundle-analyser-v2@1.1.21:
+  version "1.1.21"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-webpack-bundle-analyser-v2/-/gatsby-plugin-webpack-bundle-analyser-v2-1.1.21.tgz#3880106f76fbf997fbe0cc5e22534d41c8e58ca1"
+  integrity sha512-4mUL/ss5C4MEdrtnQflJIAEN2bHx2LaD02bDtJ7ckeq1LbxqpCIKntfQIKa8UDyDFkQfe0rx6pXmEjqBtzky6Q==
   dependencies:
-    "@babel/runtime" "^7.12.5"
+    "@babel/runtime" "^7.13.10"
     webpack-bundle-analyzer "^4.4.0"
 
 gatsby-react-router-scroll@^3.7.0:
@@ -15277,10 +15296,10 @@ gatsby-telemetry@^1.10.1:
     node-fetch "^2.6.1"
     uuid "3.4.0"
 
-gatsby-transformer-sharp@2.12.0:
-  version "2.12.0"
-  resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-2.12.0.tgz#c33a92788e8b432f01960f4de2745c105cea4784"
-  integrity sha512-3rtukdy9+QZL5ioMs+q2IjevJFOz0ORJzoGbnM/ups5C5ZtRQKRZNQ0920BP/eqpLQLI4lkQuyp+GCxfSQLkCQ==
+gatsby-transformer-sharp@2.12.1:
+  version "2.12.1"
+  resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-2.12.1.tgz#f55f1e91600c707d9c81386ef308cd2edbb6d16b"
+  integrity sha512-J9eZB82EMW3QnkGAJVH2X4ydmcRoDGLMPJBzc/VWDSxexuE7CYO/aQvq5RdCW5xetYu7X7J/gSiDflrNNS+F7w==
   dependencies:
     "@babel/runtime" "^7.12.5"
     bluebird "^3.7.2"
@@ -23382,10 +23401,10 @@ pretty-time@^1.1.0:
   resolved "https://registry.yarnpkg.com/pretty-time/-/pretty-time-1.1.0.tgz#ffb7429afabb8535c346a34e41873adf3d74dd0e"
   integrity sha512-28iF6xPQrP8Oa6uxE6a1biz+lWeTOAPKggvjB8HAs6nVMKZwf5bG++632Dx614hIWgUPkgivRfG+a8uAXGTIbA==
 
-prism-react-renderer@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/prism-react-renderer/-/prism-react-renderer-1.1.1.tgz#1c1be61b1eb9446a146ca7a50b7bcf36f2a70a44"
-  integrity sha512-MgMhSdHuHymNRqD6KM3eGS0PNqgK9q4QF5P0yoQQvpB6jNjeSAi3jcSAz0Sua/t9fa4xDOMar9HJbLa08gl9ug==
+prism-react-renderer@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/prism-react-renderer/-/prism-react-renderer-1.2.0.tgz#5ad4f90c3e447069426c8a53a0eafde60909cdf4"
+  integrity sha512-GHqzxLYImx1iKN1jJURcuRoA/0ygCcNhfGw1IT8nPIMzarmKQ3Nc+JcG0gi8JXQzuh0C5ShE4npMIoqNin40hg==
 
 prismjs@1.23.0:
   version "1.23.0"
@@ -25202,14 +25221,6 @@ rosie@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/rosie/-/rosie-2.0.1.tgz#c250c4787ce450b72aa9eff26509f68589814fa2"
   integrity sha1-wlDEeHzkULcqqe/yZQn2hYmBT6I=
-
-rss-parser@3.12.0:
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/rss-parser/-/rss-parser-3.12.0.tgz#b8888699ea46304a74363fbd8144671b2997984c"
-  integrity sha512-aqD3E8iavcCdkhVxNDIdg1nkBI17jgqF+9OqPS1orwNaOgySdpvq6B+DoONLhzjzwV8mWg37sb60e4bmLK117A==
-  dependencies:
-    entities "^2.0.3"
-    xml2js "^0.4.19"
 
 rss@^1.2.2:
   version "1.2.2"
@@ -27071,12 +27082,10 @@ swap-case@^2.0.1:
   dependencies:
     tslib "^2.0.3"
 
-swr@0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/swr/-/swr-0.4.2.tgz#4a9ed5e9948088af145c79d716d294cb99712a29"
-  integrity sha512-SKGxcAfyijj/lE5ja5zVMDqJNudASH3WZPRUakDVOePTM18FnsXgugndjl9BSRwj+jokFCulMDe7F2pQL+VhEw==
-  dependencies:
-    dequal "2.0.2"
+swr@0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/swr/-/swr-0.5.1.tgz#47173f120340cb44937ad70366b01d1b3d2de1e7"
+  integrity sha512-hDGCe4h6ZOtloyJNpSu6NhvG+8pfWzNSVhXznNCSe23zkeeTVtiItqWitxeUISFVHbSyzADkm7bulAe6mbTqwA==
 
 symbol-observable@^1.1.0, symbol-observable@^1.2.0:
   version "1.2.0"
@@ -29254,7 +29263,7 @@ xml-parse-from-string@^1.0.0:
   resolved "https://registry.yarnpkg.com/xml-parse-from-string/-/xml-parse-from-string-1.0.1.tgz#a9029e929d3dbcded169f3c6e28238d95a5d5a28"
   integrity sha1-qQKekp09vN7RafPG4oI42VpdWig=
 
-xml2js@^0.4.19, xml2js@^0.4.5:
+xml2js@^0.4.5:
   version "0.4.23"
   resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.4.23.tgz#a0c69516752421eb2ac758ee4d4ccf58843eac66"
   integrity sha512-ySPiMjM0+pLDftHgXY4By0uswI3SPKLDw/i3UXbnO8M/p28zqexCUoPmQFrYD+/1BzhGJSs2i1ERWKJAtiLrug==
