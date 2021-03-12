@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-scripts
 
+## 18.5.7
+
+### Patch Changes
+
+- [`b48e11d8`](https://github.com/commercetools/merchant-center-application-kit/commit/b48e11d80d8966515983981398d36fdf605ef882) [#2094](https://github.com/commercetools/merchant-center-application-kit/pull/2094) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency react-dev-utils to v11.0.4 [security]
+
 ## 18.5.6
 
 ### Patch Changes
