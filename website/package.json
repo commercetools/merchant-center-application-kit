@@ -27,6 +27,7 @@
     "react-intl": "5.13.2"
   },
   "devDependencies": {
+    "@svgr/cli": "5.5.0",
     "linkinator": "2.13.6"
   }
 }

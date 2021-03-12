@@ -73,7 +73,7 @@
     "terser-webpack-plugin": "4.2.3",
     "thread-loader": "3.0.1",
     "url-loader": "4.1.1",
-    "webpack": "5.24.4",
+    "webpack": "4.46.0",
     "webpack-bundle-analyzer": "4.4.0",
     "webpack-dev-server": "3.11.2",
     "webpackbar": "5.0.0-3"
