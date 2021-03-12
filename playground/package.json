@@ -14,7 +14,7 @@
     "extract-intl": "formatjs extract --format=$(pwd)/intl-formatter.js --out-file=$(pwd)/src/i18n/data/core.json 'src/**/!(*.spec).js'"
   },
   "dependencies": {
-    "@commercetools-docs/ui-kit": "14.0.4",
+    "@commercetools-docs/ui-kit": "15.0.0",
     "@commercetools-frontend/actions-global": "18.5.6",
     "@commercetools-frontend/application-components": "18.5.6",
     "@commercetools-frontend/application-shell": "18.5.6",

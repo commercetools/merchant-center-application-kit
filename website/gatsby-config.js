@@ -5,7 +5,8 @@ module.exports = {
   // https://www.gatsbyjs.com/docs/reference/release-notes/v2.30
   flags: {
     DEV_SSR: true,
-    FAST_REFRESH: true,
+    FAST_DEV: true,
+    PRESERVE_FILE_DOWNLOAD_CACHE: true,
     PRESERVE_WEBPACK_CACHE: true,
   },
   pathPrefix: '/custom-applications',
