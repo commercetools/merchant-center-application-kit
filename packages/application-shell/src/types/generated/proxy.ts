@@ -1,5 +1,7 @@
 export type Maybe<T> = T | undefined;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -9,10 +11,10 @@ export type Scalars = {
   Float: number;
 };
 
-export type TActionRight = {
-  __typename?: 'ActionRight';
-  group: Scalars['String'];
-  name: Scalars['String'];
+export type TQuery = {
+  __typename?: 'Query';
+  applicationsMenu: TApplicationsMenu;
+  allFeatureToggles: Array<Scalars['String']>;
 };
 
 export type TApplicationsMenu = {
@@ -33,6 +35,18 @@ export type TBaseMenu = {
   dataFences: Maybe<Array<TDataFence>>;
 };
 
+export type TLocalizedField = {
+  __typename?: 'LocalizedField';
+  locale: Scalars['String'];
+  value: Scalars['String'];
+};
+
+export type TActionRight = {
+  __typename?: 'ActionRight';
+  group: Scalars['String'];
+  name: Scalars['String'];
+};
+
 export type TDataFence = {
   __typename?: 'DataFence';
   group: Scalars['String'];
@@ -40,15 +54,9 @@ export type TDataFence = {
   type: Scalars['String'];
 };
 
-export type TLocalizedField = {
-  __typename?: 'LocalizedField';
-  locale: Scalars['String'];
-  value: Scalars['String'];
-};
-
 export type TNavbarMenu = {
   __typename?: 'NavbarMenu';
-  shouldRenderDivider: Scalars['Boolean'];
+  shouldRenderDivider: Maybe<Scalars['Boolean']>;
   key: Scalars['String'];
   uriPath: Scalars['String'];
   icon: Scalars['String'];
@@ -59,12 +67,6 @@ export type TNavbarMenu = {
   dataFences: Maybe<Array<TDataFence>>;
   menuVisibility: Maybe<Scalars['String']>;
   submenu: Array<TBaseMenu>;
-};
-
-export type TQuery = {
-  __typename?: 'Query';
-  applicationsMenu: TApplicationsMenu;
-  allFeatureToggles: Array<Scalars['String']>;
 };
 
 export type TFetchAllMenuFeatureTogglesQueryVariables = Exact<{ [key: string]: never; }>;

@@ -15,9 +15,234 @@ export type Scalars = {
 
 
 
-export type TAdditionalUserInfo = {
+export type TQuery = {
+  __typename?: 'Query';
+  release: Maybe<Scalars['String']>;
+  amILoggedIn: Scalars['Boolean'];
+  me: Maybe<TUser>;
+  project: Maybe<TProject>;
+  invitation: Maybe<TInvitationQueryResult>;
+  allSupportedResources: Maybe<Array<TSupportedResource>>;
+  allSupportedActionRights: Maybe<Array<TSupportedActionRight>>;
+  allSupportedStoreScopes: Maybe<Array<TSupportedStoreScope>>;
+  allSupportedMenuVisibilities: Maybe<Array<TSupportedMenuVisibility>>;
+  allSupportedOAuthScopes: Array<Scalars['String']>;
+  allImpliedOAuthScopes: Array<Scalars['String']>;
+  releases: Maybe<TReleaseHistory>;
+  oAuthClient: Maybe<TOAuthClient>;
+  oAuthClients: TOAuthClientQueryResult;
+  /** @deprecated Please use allSupportedOAuthScopesForOAuthClients instead. */
+  oAuthScopes: Array<TPermissionScope>;
+  allSupportedOAuthScopesForOAuthClients: Array<TSupportedOAuthScopeForOAuthClient>;
+  storeOAuthScopes: Array<TPermissionScope>;
+  oAuthClientTemplates: Array<TOAuthClientTemplate>;
+  allFeatures: Array<TFeature>;
+};
+
+
+export type TQuery_ProjectArgs = {
+  key: Maybe<Scalars['String']>;
+};
+
+
+export type TQuery_InvitationArgs = {
+  where: Maybe<TInvitationWhereInput>;
+};
+
+
+export type TQuery_AllImpliedOAuthScopesArgs = {
+  resourceAccessPermissions: Array<Scalars['String']>;
+};
+
+
+export type TQuery_ReleasesArgs = {
+  origin: TReleaseOrigin;
+  limit: Maybe<Scalars['Int']>;
+  offset: Maybe<Scalars['Int']>;
+};
+
+
+export type TQuery_OAuthClientArgs = {
+  id: Scalars['String'];
+};
+
+
+export type TQuery_OAuthClientsArgs = {
+  sort: Maybe<Array<Scalars['String']>>;
+  limit: Maybe<Scalars['Int']>;
+  offset: Maybe<Scalars['Int']>;
+};
+
+export type TUser = TMetaData & {
+  __typename?: 'User';
+  id: Scalars['ID'];
+  version: Maybe<Scalars['Int']>;
+  createdAt: Scalars['String'];
+  lastModifiedAt: Scalars['String'];
+  email: Scalars['String'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
+  language: Scalars['String'];
+  numberFormat: Scalars['String'];
+  timeZone: Maybe<Scalars['String']>;
+  launchdarklyTrackingId: Scalars['String'];
+  launchdarklyTrackingGroup: Scalars['String'];
+  launchdarklyTrackingSubgroup: Maybe<Scalars['String']>;
+  launchdarklyTrackingTeam: Maybe<Array<Scalars['String']>>;
+  launchdarklyTrackingTenant: Scalars['String'];
+  gravatarHash: Scalars['String'];
+  defaultProjectKey: Maybe<Scalars['String']>;
+  projects: TProjectQueryResult;
+  businessRole: Maybe<Scalars['String']>;
+};
+
+export type TMetaData = {
+  version: Maybe<Scalars['Int']>;
+  createdAt: Scalars['String'];
+  lastModifiedAt: Scalars['String'];
+};
+
+export type TProjectQueryResult = TQueryResult & {
+  __typename?: 'ProjectQueryResult';
+  count: Scalars['Int'];
+  offset: Scalars['Int'];
+  total: Scalars['Int'];
+  results: Array<TProject>;
+};
+
+export type TQueryResult = {
+  count: Scalars['Int'];
+  offset: Scalars['Int'];
+  total: Scalars['Int'];
+};
+
+export type TProject = TMetaData & {
+  __typename?: 'Project';
+  version: Maybe<Scalars['Int']>;
+  createdAt: Scalars['String'];
+  lastModifiedAt: Scalars['String'];
+  apiVersion: Scalars['String'];
+  countries: Array<Scalars['String']>;
+  currencies: Array<Scalars['String']>;
+  languages: Array<Scalars['String']>;
+  isProductionProject: Scalars['Boolean'];
+  initialized: Scalars['Boolean'];
+  plan: Scalars['String'];
+  key: Scalars['String'];
+  name: Scalars['String'];
+  owner: TOrganization;
+  suspension: TProjectSuspension;
+  expiry: TProjectExpiry;
+  settings: Maybe<TProjectSetting>;
+  shippingRateInputType: Maybe<TShippingRateInputType>;
+  allAppliedPermissions: Array<TAppliedPermission>;
+  allAppliedDataFences: Array<TAppliedDataFence>;
+  allAppliedActionRights: Array<TAppliedActionRight>;
+  /** @deprecated This field has been moved into the menuPermissionsForAllApplications field. */
+  allAppliedMenuVisibilities: Array<TAppliedMenuVisibilities>;
+  allPermissionsForAllApplications: TAllPermissionsForAllApplications;
+};
+
+/**
+ * TODO: use `Reference` instead once there is no more usage of the following fields:
+ * - name
+ * - createdAt
+ */
+export type TOrganization = {
+  __typename?: 'Organization';
+  id: Scalars['ID'];
+  /** @deprecated This field will be removed in the future. */
+  createdAt: Scalars['String'];
+  name: Scalars['String'];
+};
+
+export type TProjectSuspension = {
+  __typename?: 'ProjectSuspension';
+  isActive: Scalars['Boolean'];
+  reason: Maybe<TProjectSuspensionReason>;
+};
+
+export enum TProjectSuspensionReason {
+  Other = 'Other',
+  Payment = 'Payment',
+  TemporaryMaintenance = 'TemporaryMaintenance'
+}
+
+export type TProjectExpiry = {
+  __typename?: 'ProjectExpiry';
+  isActive: Scalars['Boolean'];
+  daysLeft: Maybe<Scalars['Int']>;
+};
+
+export type TProjectSetting = TMetaData & {
+  __typename?: 'ProjectSetting';
+  id: Scalars['ID'];
+  version: Maybe<Scalars['Int']>;
+  createdAt: Scalars['String'];
+  lastModifiedAt: Scalars['String'];
+  projectId: Scalars['String'];
+  projectKey: Scalars['String'];
+  user: Scalars['String'];
+  active: Scalars['String'];
+  productSettings: Array<Maybe<Scalars['String']>>;
+  currentProductSettings: Maybe<Scalars['String']>;
+};
+
+export type TShippingRateInputType = {
+  __typename?: 'ShippingRateInputType';
+  type: TShippingRateType;
+  values: Maybe<Array<Maybe<TCartClassificationValue>>>;
+};
+
+export enum TShippingRateType {
+  CartClassification = 'CartClassification',
+  CartScore = 'CartScore',
+  CartValue = 'CartValue'
+}
+
+export type TCartClassificationValue = {
+  __typename?: 'CartClassificationValue';
+  key: Scalars['String'];
+  allLocaleLabels: Array<Maybe<TLocalizedField>>;
+};
+
+export type TLocalizedField = {
+  __typename?: 'LocalizedField';
+  locale: Scalars['String'];
+  value: Scalars['String'];
+};
+
+export type TAppliedPermission = {
+  __typename?: 'AppliedPermission';
+  name: Scalars['String'];
+  value: Scalars['Boolean'];
+};
+
+export type TAppliedDataFence = TStoreDataFence;
+
+export type TStoreDataFence = TDataFence & {
+  __typename?: 'StoreDataFence';
+  value: Scalars['String'];
+  name: Scalars['String'];
+  group: Scalars['String'];
+  type: Scalars['String'];
+};
+
+export type TDataFence = {
+  type: Scalars['String'];
+};
+
+export type TAppliedActionRight = {
+  __typename?: 'AppliedActionRight';
+  name: Scalars['String'];
+  group: Scalars['String'];
+  value: Scalars['Boolean'];
+};
+
+export type TAppliedMenuVisibilities = {
+  __typename?: 'AppliedMenuVisibilities';
+  name: Scalars['String'];
+  value: Scalars['Boolean'];
 };
 
 /** Only used by the navbar menu component in ApplicationShell. */
@@ -29,86 +254,10 @@ export type TAllPermissionsForAllApplications = {
   allAppliedMenuVisibilities: Array<TAppliedMenuVisibilities>;
 };
 
-export type TAppliedActionRight = {
-  __typename?: 'AppliedActionRight';
-  name: Scalars['String'];
-  group: Scalars['String'];
-  value: Scalars['Boolean'];
-};
-
-export type TAppliedDataFence = TStoreDataFence;
-
-export type TAppliedMenuVisibilities = {
-  __typename?: 'AppliedMenuVisibilities';
-  name: Scalars['String'];
-  value: Scalars['Boolean'];
-};
-
-export type TAppliedPermission = {
-  __typename?: 'AppliedPermission';
-  name: Scalars['String'];
-  value: Scalars['Boolean'];
-};
-
-export type TCartClassificationValue = {
-  __typename?: 'CartClassificationValue';
-  key: Scalars['String'];
-  allLocaleLabels: Array<Maybe<TLocalizedField>>;
-};
-
-export type TChangeUserBusinessRole = {
-  businessRole: Maybe<Scalars['String']>;
-};
-
-export type TChangeUserLanguage = {
-  language: Scalars['String'];
-};
-
-/** NOTE: This is _not_ a username it is the user's name. */
-export type TChangeUserName = {
-  firstName: Scalars['String'];
-  lastName: Scalars['String'];
-};
-
-export type TChangeUserNumberFormat = {
-  numberFormat: Scalars['String'];
-};
-
-export type TChangeUserPassword = {
-  password: Scalars['String'];
-};
-
-export type TDataFence = {
-  type: Scalars['String'];
-};
-
-export type TDeleteAccountRequest = {
-  __typename?: 'DeleteAccountRequest';
-  jwt: Maybe<Scalars['String']>;
-};
-
-export type TDeletedUser = {
-  __typename?: 'DeletedUser';
-  id: Scalars['String'];
-};
-
-export type TFeature = {
-  __typename?: 'Feature';
-  name: Scalars['String'];
-  value: Scalars['Boolean'];
-  reason: Maybe<Scalars['String']>;
-};
-
-export type TInvitationInput = {
-  emails: Array<Scalars['String']>;
-  organization: TInvitationOrganizationInput;
-  team: TInvitationTeamInput;
-};
-
-export type TInvitationOrganizationInput = {
-  id: Scalars['ID'];
-  version: Scalars['Int'];
-  name: Maybe<Scalars['String']>;
+export type TInvitationWhereInput = {
+  email: Scalars['String'];
+  organizationId: Scalars['ID'];
+  teamId: Scalars['ID'];
 };
 
 /**
@@ -124,39 +273,165 @@ export type TInvitationQueryResult = {
   gravatarHash: Maybe<Scalars['String']>;
 };
 
-export type TInvitationResult = {
-  __typename?: 'InvitationResult';
-  status: TInvitationStatus;
-  email: Scalars['String'];
-  jwt: Maybe<Scalars['String']>;
+export type TSupportedResource = {
+  __typename?: 'SupportedResource';
+  name: Scalars['String'];
 };
 
-export enum TInvitationStatus {
-  InvitationFailure = 'InvitationFailure',
-  InvitationSent = 'InvitationSent',
-  PendingRegistration = 'PendingRegistration'
+export type TSupportedActionRight = {
+  __typename?: 'SupportedActionRight';
+  name: Scalars['String'];
+  group: Scalars['String'];
+};
+
+export type TSupportedStoreScope = {
+  __typename?: 'SupportedStoreScope';
+  group: Scalars['String'];
+  name: Scalars['String'];
+};
+
+export type TSupportedMenuVisibility = {
+  __typename?: 'SupportedMenuVisibility';
+  name: Scalars['String'];
+  group: Scalars['String'];
+};
+
+export enum TReleaseOrigin {
+  Ctp = 'ctp',
+  Mc = 'mc'
 }
 
-export type TInvitationTeamInput = {
+export type TReleaseHistory = {
+  __typename?: 'ReleaseHistory';
+  title: Scalars['String'];
+  description: Scalars['String'];
+  link: Scalars['String'];
+  entries: TReleaseQueryResult;
+};
+
+
+export type TReleaseHistory_EntriesArgs = {
+  limit: Maybe<Scalars['Int']>;
+  offset: Maybe<Scalars['Int']>;
+};
+
+export type TReleaseQueryResult = TQueryResult & {
+  __typename?: 'ReleaseQueryResult';
+  count: Scalars['Int'];
+  offset: Scalars['Int'];
+  total: Scalars['Int'];
+  results: Array<TReleaseEntry>;
+};
+
+export type TReleaseEntry = {
+  __typename?: 'ReleaseEntry';
+  guid: Scalars['String'];
+  releasedAt: Scalars['String'];
+  title: Scalars['String'];
+  link: Scalars['String'];
+  description: Scalars['String'];
+};
+
+export type TOAuthClient = {
+  __typename?: 'OAuthClient';
   id: Scalars['ID'];
+  name: Scalars['String'];
+  createdAt: Maybe<Scalars['String']>;
+  lastUsedAt: Maybe<Scalars['String']>;
+  secret: Scalars['String'];
+  ownerId: Scalars['ID'];
+  permissions: Array<TProjectPermission>;
 };
 
-export type TInvitationWhereInput = {
-  email: Scalars['String'];
-  organizationId: Scalars['ID'];
-  teamId: Scalars['ID'];
+export type TProjectPermission = {
+  __typename?: 'ProjectPermission';
+  key: TPermissionScope;
+  projectKey: Maybe<Scalars['String']>;
+  storeKey: Maybe<Scalars['String']>;
 };
 
-export type TLocalizedField = {
-  __typename?: 'LocalizedField';
-  locale: Scalars['String'];
-  value: Scalars['String'];
+export enum TPermissionScope {
+  CreateAnonymousToken = 'create_anonymous_token',
+  GetPermissionForAnyProject = 'get_permission_for_any_project',
+  IntrospectOauthTokens = 'introspect_oauth_tokens',
+  ManageApiClients = 'manage_api_clients',
+  ManageCustomers = 'manage_customers',
+  ManageDiscountCodes = 'manage_discount_codes',
+  ManageExtensions = 'manage_extensions',
+  ManageGlobalSubscriptions = 'manage_global_subscriptions',
+  ManageImportSinks = 'manage_import_sinks',
+  ManageMyOrders = 'manage_my_orders',
+  ManageMyPayments = 'manage_my_payments',
+  ManageMyProfile = 'manage_my_profile',
+  ManageMyShoppingLists = 'manage_my_shopping_lists',
+  ManageOrderEdits = 'manage_order_edits',
+  ManageOrders = 'manage_orders',
+  ManagePayments = 'manage_payments',
+  ManageProducts = 'manage_products',
+  ManageProject = 'manage_project',
+  ManageProjectSettings = 'manage_project_settings',
+  ManageShoppingLists = 'manage_shopping_lists',
+  ManageStates = 'manage_states',
+  ManageStores = 'manage_stores',
+  ManageSubscriptions = 'manage_subscriptions',
+  ManageTypes = 'manage_types',
+  ManageCustomerGroups = 'manage_customer_groups',
+  ManageCartDiscounts = 'manage_cart_discounts',
+  ManageShippingMethods = 'manage_shipping_methods',
+  ManageTaxCategories = 'manage_tax_categories',
+  ManageCategories = 'manage_categories',
+  ManageKeyValueDocuments = 'manage_key_value_documents',
+  ManageChangeHistory = 'manage_change_history',
+  ViewApiClients = 'view_api_clients',
+  ViewCustomers = 'view_customers',
+  ViewDiscountCodes = 'view_discount_codes',
+  ViewImportSinks = 'view_import_sinks',
+  ViewMessages = 'view_messages',
+  ViewOrderEdits = 'view_order_edits',
+  ViewOrders = 'view_orders',
+  ViewPayments = 'view_payments',
+  ViewProducts = 'view_products',
+  ViewPublishedProducts = 'view_published_products',
+  ViewProjectSettings = 'view_project_settings',
+  ViewProjects = 'view_projects',
+  ViewShoppingLists = 'view_shopping_lists',
+  ViewStates = 'view_states',
+  ViewStores = 'view_stores',
+  ViewTypes = 'view_types',
+  ViewCustomerGroups = 'view_customer_groups',
+  ViewCartDiscounts = 'view_cart_discounts',
+  ViewShippingMethods = 'view_shipping_methods',
+  ViewTaxCategories = 'view_tax_categories',
+  ViewCategories = 'view_categories',
+  ViewAuditLog = 'view_audit_log',
+  ViewKeyValueDocuments = 'view_key_value_documents',
+  ViewChangeHistory = 'view_change_history'
+}
+
+export type TOAuthClientQueryResult = TQueryResult & {
+  __typename?: 'OAuthClientQueryResult';
+  count: Scalars['Int'];
+  offset: Scalars['Int'];
+  total: Scalars['Int'];
+  results: Array<TOAuthClient>;
 };
 
-export type TMetaData = {
-  version: Maybe<Scalars['Int']>;
-  createdAt: Scalars['String'];
-  lastModifiedAt: Scalars['String'];
+export type TSupportedOAuthScopeForOAuthClient = {
+  __typename?: 'SupportedOAuthScopeForOAuthClient';
+  name: Scalars['String'];
+};
+
+export type TOAuthClientTemplate = {
+  __typename?: 'OAuthClientTemplate';
+  key: Scalars['String'];
+  oAuthScopes: Array<TPermissionScope>;
+};
+
+export type TFeature = {
+  __typename?: 'Feature';
+  name: Scalars['String'];
+  value: Scalars['Boolean'];
+  reason: Maybe<Scalars['String']>;
 };
 
 export type TMutation = {
@@ -253,159 +528,70 @@ export type TMutation_DeleteOAuthClientArgs = {
   id: Scalars['ID'];
 };
 
-export type TMyPermissionInitializationInput = {
-  teamId: Scalars['String'];
+export type TUserUpdateAction = {
+  changeName: Maybe<TChangeUserName>;
+  changePassword: Maybe<TChangeUserPassword>;
+  changeLanguage: Maybe<TChangeUserLanguage>;
+  changeNumberFormat: Maybe<TChangeUserNumberFormat>;
+  setTimeZone: Maybe<TSetUserTimeZone>;
+  changeBusinessRole: Maybe<TChangeUserBusinessRole>;
 };
 
-export type TOAuthClient = {
-  __typename?: 'OAuthClient';
+/** NOTE: This is _not_ a username it is the user's name. */
+export type TChangeUserName = {
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+};
+
+export type TChangeUserPassword = {
+  password: Scalars['String'];
+};
+
+export type TChangeUserLanguage = {
+  language: Scalars['String'];
+};
+
+export type TChangeUserNumberFormat = {
+  numberFormat: Scalars['String'];
+};
+
+export type TSetUserTimeZone = {
+  /** NOTE: This is optional as not passing it unsets the timezone. */
+  timeZone: Maybe<Scalars['String']>;
+};
+
+export type TChangeUserBusinessRole = {
+  businessRole: Maybe<Scalars['String']>;
+};
+
+export type TInvitationInput = {
+  emails: Array<Scalars['String']>;
+  organization: TInvitationOrganizationInput;
+  team: TInvitationTeamInput;
+};
+
+export type TInvitationOrganizationInput = {
   id: Scalars['ID'];
-  name: Scalars['String'];
-  createdAt: Maybe<Scalars['String']>;
-  lastUsedAt: Maybe<Scalars['String']>;
-  secret: Scalars['String'];
-  ownerId: Scalars['ID'];
-  permissions: Array<TProjectPermission>;
+  version: Scalars['Int'];
+  name: Maybe<Scalars['String']>;
 };
 
-export type TOAuthClientCreationInput = {
-  name: Scalars['String'];
-  ownerId: Scalars['ID'];
-  permissions: Array<TProjectPermissionInput>;
-};
-
-export type TOAuthClientQueryResult = TQueryResult & {
-  __typename?: 'OAuthClientQueryResult';
-  count: Scalars['Int'];
-  offset: Scalars['Int'];
-  total: Scalars['Int'];
-  results: Array<TOAuthClient>;
-};
-
-export type TOAuthClientTemplate = {
-  __typename?: 'OAuthClientTemplate';
-  key: Scalars['String'];
-  oAuthScopes: Array<TPermissionScope>;
-};
-
-/**
- * TODO: use `Reference` instead once there is no more usage of the following fields:
- * - name
- * - createdAt
- */
-export type TOrganization = {
-  __typename?: 'Organization';
+export type TInvitationTeamInput = {
   id: Scalars['ID'];
-  /** @deprecated This field will be removed in the future. */
-  createdAt: Scalars['String'];
-  name: Scalars['String'];
 };
 
-export type TOrganizationCreated = {
-  __typename?: 'OrganizationCreated';
-  id: Scalars['String'];
-  name: Scalars['String'];
-  teams: Array<TOrganizationTeamsCreated>;
+export type TInvitationResult = {
+  __typename?: 'InvitationResult';
+  status: TInvitationStatus;
+  email: Scalars['String'];
+  jwt: Maybe<Scalars['String']>;
 };
 
-export type TOrganizationDraftType = {
-  name: Scalars['String'];
-  ownerId: Scalars['String'];
-};
-
-/**
- * Note:
- *   This is not a `Organization` type as in the future MC schema will not support
- * e.g. expanding on team members on its internal schema.
- */
-export type TOrganizationTeamsCreated = {
-  __typename?: 'OrganizationTeamsCreated';
-  id: Scalars['String'];
-  name: Scalars['String'];
-};
-
-export enum TPermissionScope {
-  CreateAnonymousToken = 'create_anonymous_token',
-  GetPermissionForAnyProject = 'get_permission_for_any_project',
-  IntrospectOauthTokens = 'introspect_oauth_tokens',
-  ManageApiClients = 'manage_api_clients',
-  ManageCustomers = 'manage_customers',
-  ManageDiscountCodes = 'manage_discount_codes',
-  ManageExtensions = 'manage_extensions',
-  ManageGlobalSubscriptions = 'manage_global_subscriptions',
-  ManageImportSinks = 'manage_import_sinks',
-  ManageMyOrders = 'manage_my_orders',
-  ManageMyPayments = 'manage_my_payments',
-  ManageMyProfile = 'manage_my_profile',
-  ManageMyShoppingLists = 'manage_my_shopping_lists',
-  ManageOrderEdits = 'manage_order_edits',
-  ManageOrders = 'manage_orders',
-  ManagePayments = 'manage_payments',
-  ManageProducts = 'manage_products',
-  ManageProject = 'manage_project',
-  ManageProjectSettings = 'manage_project_settings',
-  ManageShoppingLists = 'manage_shopping_lists',
-  ManageStates = 'manage_states',
-  ManageStores = 'manage_stores',
-  ManageSubscriptions = 'manage_subscriptions',
-  ManageTypes = 'manage_types',
-  ManageCustomerGroups = 'manage_customer_groups',
-  ManageCartDiscounts = 'manage_cart_discounts',
-  ManageShippingMethods = 'manage_shipping_methods',
-  ManageTaxCategories = 'manage_tax_categories',
-  ManageKeyValueDocuments = 'manage_key_value_documents',
-  ViewApiClients = 'view_api_clients',
-  ViewCustomers = 'view_customers',
-  ViewDiscountCodes = 'view_discount_codes',
-  ViewImportSinks = 'view_import_sinks',
-  ViewMessages = 'view_messages',
-  ViewOrderEdits = 'view_order_edits',
-  ViewOrders = 'view_orders',
-  ViewPayments = 'view_payments',
-  ViewProducts = 'view_products',
-  ViewPublishedProducts = 'view_published_products',
-  ViewProjectSettings = 'view_project_settings',
-  ViewProjects = 'view_projects',
-  ViewShoppingLists = 'view_shopping_lists',
-  ViewStates = 'view_states',
-  ViewStores = 'view_stores',
-  ViewTypes = 'view_types',
-  ViewCustomerGroups = 'view_customer_groups',
-  ViewCartDiscounts = 'view_cart_discounts',
-  ViewShippingMethods = 'view_shipping_methods',
-  ViewTaxCategories = 'view_tax_categories',
-  ManageCategories = 'manage_categories',
-  ViewCategories = 'view_categories',
-  ViewChangeHistory = 'view_change_history',
-  ViewKeyValueDocuments = 'view_key_value_documents'
+export enum TInvitationStatus {
+  InvitationFailure = 'InvitationFailure',
+  InvitationSent = 'InvitationSent',
+  PendingRegistration = 'PendingRegistration'
 }
-
-export type TProject = TMetaData & {
-  __typename?: 'Project';
-  version: Maybe<Scalars['Int']>;
-  createdAt: Scalars['String'];
-  lastModifiedAt: Scalars['String'];
-  apiVersion: Scalars['String'];
-  countries: Array<Scalars['String']>;
-  currencies: Array<Scalars['String']>;
-  languages: Array<Scalars['String']>;
-  isProductionProject: Scalars['Boolean'];
-  initialized: Scalars['Boolean'];
-  plan: Scalars['String'];
-  key: Scalars['String'];
-  name: Scalars['String'];
-  owner: TOrganization;
-  suspension: TProjectSuspension;
-  expiry: TProjectExpiry;
-  settings: Maybe<TProjectSetting>;
-  shippingRateInputType: Maybe<TShippingRateInputType>;
-  allAppliedPermissions: Array<TAppliedPermission>;
-  allAppliedDataFences: Array<TAppliedDataFence>;
-  allAppliedActionRights: Array<TAppliedActionRight>;
-  /** @deprecated This field has been moved into the menuPermissionsForAllApplications field. */
-  allAppliedMenuVisibilities: Array<TAppliedMenuVisibilities>;
-  allPermissionsForAllApplications: TAllPermissionsForAllApplications;
-};
 
 export type TProjectDraftType = {
   key: Scalars['String'];
@@ -418,10 +604,8 @@ export type TProjectDraftType = {
   deleteDaysAfterCreation: Maybe<Scalars['Int']>;
 };
 
-export type TProjectExpiry = {
-  __typename?: 'ProjectExpiry';
-  isActive: Scalars['Boolean'];
-  daysLeft: Maybe<Scalars['Int']>;
+export type TMyPermissionInitializationInput = {
+  teamId: Scalars['String'];
 };
 
 export type TProjectPendingCreation = {
@@ -432,164 +616,26 @@ export type TProjectPendingCreation = {
   name: Scalars['String'];
 };
 
-export type TProjectPermission = {
-  __typename?: 'ProjectPermission';
-  key: TPermissionScope;
-  projectKey: Maybe<Scalars['String']>;
-  storeKey: Maybe<Scalars['String']>;
+export type TOrganizationDraftType = {
+  name: Scalars['String'];
+  ownerId: Scalars['String'];
 };
 
-export type TProjectPermissionInput = {
-  key: TPermissionScope;
-  projectKey: Maybe<Scalars['String']>;
-  storeKey: Maybe<Scalars['String']>;
-};
-
-export type TProjectQueryResult = TQueryResult & {
-  __typename?: 'ProjectQueryResult';
-  count: Scalars['Int'];
-  offset: Scalars['Int'];
-  total: Scalars['Int'];
-  results: Array<TProject>;
-};
-
-export type TProjectSetting = TMetaData & {
-  __typename?: 'ProjectSetting';
-  id: Scalars['ID'];
-  version: Maybe<Scalars['Int']>;
-  createdAt: Scalars['String'];
-  lastModifiedAt: Scalars['String'];
-  projectId: Scalars['String'];
-  projectKey: Scalars['String'];
-  user: Scalars['String'];
-  active: Scalars['String'];
-  productSettings: Array<Maybe<Scalars['String']>>;
-  currentProductSettings: Maybe<Scalars['String']>;
-};
-
-export type TProjectSuspension = {
-  __typename?: 'ProjectSuspension';
-  isActive: Scalars['Boolean'];
-  reason: Maybe<TProjectSuspensionReason>;
-};
-
-export enum TProjectSuspensionReason {
-  Other = 'Other',
-  Payment = 'Payment',
-  TemporaryMaintenance = 'TemporaryMaintenance'
-}
-
-export type TQuery = {
-  __typename?: 'Query';
-  release: Maybe<Scalars['String']>;
-  amILoggedIn: Scalars['Boolean'];
-  me: Maybe<TUser>;
-  project: Maybe<TProject>;
-  invitation: Maybe<TInvitationQueryResult>;
-  allSupportedResources: Maybe<Array<TSupportedResource>>;
-  allSupportedActionRights: Maybe<Array<TSupportedActionRight>>;
-  allSupportedStoreScopes: Maybe<Array<TSupportedStoreScope>>;
-  allSupportedMenuVisibilities: Maybe<Array<TSupportedMenuVisibility>>;
-  allSupportedOAuthScopes: Array<Scalars['String']>;
-  allImpliedOAuthScopes: Array<Scalars['String']>;
-  releases: Maybe<TReleaseHistory>;
-  oAuthClient: Maybe<TOAuthClient>;
-  oAuthClients: TOAuthClientQueryResult;
-  oAuthScopes: Array<TPermissionScope>;
-  storeOAuthScopes: Array<TPermissionScope>;
-  oAuthClientTemplates: Array<TOAuthClientTemplate>;
-  allFeatures: Array<TFeature>;
-};
-
-
-export type TQuery_ProjectArgs = {
-  key: Maybe<Scalars['String']>;
-};
-
-
-export type TQuery_InvitationArgs = {
-  where: Maybe<TInvitationWhereInput>;
-};
-
-
-export type TQuery_AllImpliedOAuthScopesArgs = {
-  resourceAccessPermissions: Array<Scalars['String']>;
-};
-
-
-export type TQuery_ReleasesArgs = {
-  origin: TReleaseOrigin;
-  limit: Maybe<Scalars['Int']>;
-  offset: Maybe<Scalars['Int']>;
-};
-
-
-export type TQuery_OAuthClientArgs = {
+export type TOrganizationCreated = {
+  __typename?: 'OrganizationCreated';
   id: Scalars['String'];
+  name: Scalars['String'];
+  teams: Array<TOrganizationTeamsCreated>;
 };
 
-
-export type TQuery_OAuthClientsArgs = {
-  sort: Maybe<Array<Scalars['String']>>;
-  limit: Maybe<Scalars['Int']>;
-  offset: Maybe<Scalars['Int']>;
-};
-
-export type TQueryResult = {
-  count: Scalars['Int'];
-  offset: Scalars['Int'];
-  total: Scalars['Int'];
-};
-
-export type TReference = {
-  __typename?: 'Reference';
-  typeId: Scalars['String'];
+/**
+ * Note:
+ *   This is not a `Organization` type as in the future MC schema will not support e.g. expanding on team members on its internal schema.
+ */
+export type TOrganizationTeamsCreated = {
+  __typename?: 'OrganizationTeamsCreated';
   id: Scalars['String'];
-};
-
-export type TReferenceInput = {
-  typeId: Scalars['String'];
-  id: Scalars['ID'];
-};
-
-export type TReleaseEntry = {
-  __typename?: 'ReleaseEntry';
-  guid: Scalars['String'];
-  releasedAt: Scalars['String'];
-  title: Scalars['String'];
-  link: Scalars['String'];
-  description: Scalars['String'];
-};
-
-export type TReleaseHistory = {
-  __typename?: 'ReleaseHistory';
-  title: Scalars['String'];
-  description: Scalars['String'];
-  link: Scalars['String'];
-  entries: TReleaseQueryResult;
-};
-
-
-export type TReleaseHistory_EntriesArgs = {
-  limit: Maybe<Scalars['Int']>;
-  offset: Maybe<Scalars['Int']>;
-};
-
-export enum TReleaseOrigin {
-  Ctp = 'ctp',
-  Mc = 'mc'
-}
-
-export type TReleaseQueryResult = TQueryResult & {
-  __typename?: 'ReleaseQueryResult';
-  count: Scalars['Int'];
-  offset: Scalars['Int'];
-  total: Scalars['Int'];
-  results: Array<TReleaseEntry>;
-};
-
-export type TResetPasswordDraft = {
-  password: Scalars['String'];
+  name: Scalars['String'];
 };
 
 export type TResetPasswordRequest = {
@@ -597,31 +643,18 @@ export type TResetPasswordRequest = {
   jwt: Maybe<Scalars['String']>;
 };
 
+export type TResetPasswordDraft = {
+  password: Scalars['String'];
+};
+
 export type TResetUser = {
   __typename?: 'ResetUser';
   id: Scalars['String'];
 };
 
-export type TSetUserTimeZone = {
-  /** NOTE: This is optional as not passing it unsets the timezone. */
-  timeZone: Maybe<Scalars['String']>;
-};
-
-export type TShippingRateInputType = {
-  __typename?: 'ShippingRateInputType';
-  type: TShippingRateType;
-  values: Maybe<Array<Maybe<TCartClassificationValue>>>;
-};
-
-export enum TShippingRateType {
-  CartClassification = 'CartClassification',
-  CartScore = 'CartScore',
-  CartValue = 'CartValue'
-}
-
-export type TSignedUpUser = {
-  __typename?: 'SignedUpUser';
-  id: Scalars['String'];
+export type TAdditionalUserInfo = {
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
 };
 
 export type TSignUpRequest = {
@@ -629,35 +662,11 @@ export type TSignUpRequest = {
   jwt: Maybe<Scalars['String']>;
 };
 
-export type TStoreDataFence = TDataFence & {
-  __typename?: 'StoreDataFence';
-  value: Scalars['String'];
-  name: Scalars['String'];
-  group: Scalars['String'];
-  type: Scalars['String'];
-};
-
-export type TSupportedActionRight = {
-  __typename?: 'SupportedActionRight';
-  name: Scalars['String'];
-  group: Scalars['String'];
-};
-
-export type TSupportedMenuVisibility = {
-  __typename?: 'SupportedMenuVisibility';
-  name: Scalars['String'];
-  group: Scalars['String'];
-};
-
-export type TSupportedResource = {
-  __typename?: 'SupportedResource';
-  name: Scalars['String'];
-};
-
-export type TSupportedStoreScope = {
-  __typename?: 'SupportedStoreScope';
-  group: Scalars['String'];
-  name: Scalars['String'];
+export type TUserDraft = {
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  password: Scalars['String'];
+  businessRole: Maybe<Scalars['String']>;
 };
 
 export type TTrackingConfig = {
@@ -669,43 +678,42 @@ export enum TTrackingProvider {
   HubSpot = 'HubSpot'
 }
 
-export type TUser = TMetaData & {
-  __typename?: 'User';
+export type TSignedUpUser = {
+  __typename?: 'SignedUpUser';
+  id: Scalars['String'];
+};
+
+export type TDeleteAccountRequest = {
+  __typename?: 'DeleteAccountRequest';
+  jwt: Maybe<Scalars['String']>;
+};
+
+export type TDeletedUser = {
+  __typename?: 'DeletedUser';
+  id: Scalars['String'];
+};
+
+export type TOAuthClientCreationInput = {
+  name: Scalars['String'];
+  ownerId: Scalars['ID'];
+  permissions: Array<TProjectPermissionInput>;
+};
+
+export type TProjectPermissionInput = {
+  key: TPermissionScope;
+  projectKey: Maybe<Scalars['String']>;
+  storeKey: Maybe<Scalars['String']>;
+};
+
+export type TReference = {
+  __typename?: 'Reference';
+  typeId: Scalars['String'];
+  id: Scalars['String'];
+};
+
+export type TReferenceInput = {
+  typeId: Scalars['String'];
   id: Scalars['ID'];
-  version: Maybe<Scalars['Int']>;
-  createdAt: Scalars['String'];
-  lastModifiedAt: Scalars['String'];
-  email: Scalars['String'];
-  firstName: Scalars['String'];
-  lastName: Scalars['String'];
-  language: Scalars['String'];
-  numberFormat: Scalars['String'];
-  timeZone: Maybe<Scalars['String']>;
-  launchdarklyTrackingId: Scalars['String'];
-  launchdarklyTrackingGroup: Scalars['String'];
-  launchdarklyTrackingSubgroup: Maybe<Scalars['String']>;
-  launchdarklyTrackingTeam: Maybe<Array<Scalars['String']>>;
-  launchdarklyTrackingTenant: Scalars['String'];
-  gravatarHash: Scalars['String'];
-  defaultProjectKey: Maybe<Scalars['String']>;
-  projects: TProjectQueryResult;
-  businessRole: Maybe<Scalars['String']>;
-};
-
-export type TUserDraft = {
-  firstName: Scalars['String'];
-  lastName: Scalars['String'];
-  password: Scalars['String'];
-  businessRole: Maybe<Scalars['String']>;
-};
-
-export type TUserUpdateAction = {
-  changeName: Maybe<TChangeUserName>;
-  changePassword: Maybe<TChangeUserPassword>;
-  changeLanguage: Maybe<TChangeUserLanguage>;
-  changeNumberFormat: Maybe<TChangeUserNumberFormat>;
-  setTimeZone: Maybe<TSetUserTimeZone>;
-  changeBusinessRole: Maybe<TChangeUserBusinessRole>;
 };
 
 export type TAmILoggedInQueryVariables = Exact<{ [key: string]: never; }>;
@@ -821,7 +829,7 @@ export type TAllFeaturesQuery = (
   { __typename?: 'Query' }
   & { allFeatures: Array<(
     { __typename?: 'Feature' }
-    & Pick<TFeature, 'name' | 'value'>
+    & Pick<TFeature, 'name' | 'value' | 'reason'>
   )> }
 );
 
