@@ -11,10 +11,10 @@ export type Scalars = {
   Float: number;
 };
 
-export type TQuery = {
-  __typename?: 'Query';
-  applicationsMenu: TApplicationsMenu;
-  allFeatureToggles: Array<Scalars['String']>;
+export type TActionRight = {
+  __typename?: 'ActionRight';
+  group: Scalars['String'];
+  name: Scalars['String'];
 };
 
 export type TApplicationsMenu = {
@@ -35,23 +35,17 @@ export type TBaseMenu = {
   dataFences: Maybe<Array<TDataFence>>;
 };
 
-export type TLocalizedField = {
-  __typename?: 'LocalizedField';
-  locale: Scalars['String'];
-  value: Scalars['String'];
-};
-
-export type TActionRight = {
-  __typename?: 'ActionRight';
-  group: Scalars['String'];
-  name: Scalars['String'];
-};
-
 export type TDataFence = {
   __typename?: 'DataFence';
   group: Scalars['String'];
   name: Scalars['String'];
   type: Scalars['String'];
+};
+
+export type TLocalizedField = {
+  __typename?: 'LocalizedField';
+  locale: Scalars['String'];
+  value: Scalars['String'];
 };
 
 export type TNavbarMenu = {
@@ -67,6 +61,12 @@ export type TNavbarMenu = {
   dataFences: Maybe<Array<TDataFence>>;
   menuVisibility: Maybe<Scalars['String']>;
   submenu: Array<TBaseMenu>;
+};
+
+export type TQuery = {
+  __typename?: 'Query';
+  applicationsMenu: TApplicationsMenu;
+  allFeatureToggles: Array<Scalars['String']>;
 };
 
 export type TFetchAllMenuFeatureTogglesQueryVariables = Exact<{ [key: string]: never; }>;

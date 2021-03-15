@@ -15,149 +15,6 @@ export type Scalars = {
 
 
 
-export type TQuery = {
-  __typename?: 'Query';
-  projectExtension: Maybe<TProjectExtension>;
-  allProjectExtensions: Array<TProjectExtension>;
-  /** @deprecated Experimental feature - For internal usage only */
-  allAppliedCustomApplicationPermissions: Array<TCustomApplicationPermission>;
-  organizationExtension: Maybe<TOrganizationExtension>;
-  /** @deprecated Experimental feature - For internal usage only */
-  globalOrganizationExtension: Maybe<TOrganizationExtension>;
-  ordersListViews: Array<Maybe<TOrdersListView>>;
-  ordersListView: Maybe<TOrdersListView>;
-  activeOrdersListView: Maybe<TOrdersListView>;
-  cartDiscountsCustomViews: Array<Maybe<TDiscountsCustomView>>;
-  cartDiscountsCustomView: Maybe<TDiscountsCustomView>;
-  activeCartDiscountsCustomView: Maybe<TDiscountsCustomView>;
-  productDiscountsCustomViews: Array<Maybe<TDiscountsCustomView>>;
-  productDiscountsCustomView: Maybe<TDiscountsCustomView>;
-  activeProductDiscountsCustomView: Maybe<TDiscountsCustomView>;
-  discountCodesCustomViews: Array<Maybe<TDiscountsCustomView>>;
-  discountCodesCustomView: Maybe<TDiscountsCustomView>;
-  activeDiscountCodesCustomView: Maybe<TDiscountsCustomView>;
-  pimSearchListViews: Array<Maybe<TPimSearchListView>>;
-  pimSearchListView: Maybe<TPimSearchListView>;
-  activePimSearchListView: Maybe<TPimSearchListView>;
-  productTypeAttributesViews: Maybe<Array<Maybe<TProductTypeAttributesView>>>;
-  productTypeAttributesView: Maybe<TProductTypeAttributesView>;
-  activeProductTypeAttributesView: Maybe<TProductTypeAttributesView>;
-  variantPricesListViews: Array<Maybe<TVariantPricesListView>>;
-  customersListViews: Array<Maybe<TCustomersListView>>;
-  customersListView: Maybe<TCustomersListView>;
-  activeCustomersListView: Maybe<TCustomersListView>;
-  ruleBuilderQuickSelectionValues: Maybe<Array<Maybe<TRuleBuilderQuickSelectionValues>>>;
-  cartDiscountsListView: Maybe<TCartDiscountsListView>;
-  productDiscountsListView: Maybe<TProductDiscountsListView>;
-  discountCodesListView: Maybe<TDiscountCodesListView>;
-  dashboardViews: Array<Maybe<TDashboardView>>;
-  dashboardView: Maybe<TDashboardView>;
-  activeDashboardView: Maybe<TDashboardView>;
-};
-
-
-export type TQuery_AllAppliedCustomApplicationPermissionsArgs = {
-  applicationId: Scalars['ID'];
-  entryPointUriPath: Scalars['String'];
-};
-
-
-export type TQuery_OrganizationExtensionArgs = {
-  organizationId: Scalars['String'];
-};
-
-
-export type TQuery_GlobalOrganizationExtensionArgs = {
-  organizationId: Scalars['String'];
-};
-
-
-export type TQuery_OrdersListViewArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type TQuery_CartDiscountsCustomViewArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type TQuery_ProductDiscountsCustomViewArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type TQuery_DiscountCodesCustomViewArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type TQuery_PimSearchListViewArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type TQuery_ProductTypeAttributesViewsArgs = {
-  productTypeId: Scalars['String'];
-  isVariant: Scalars['Boolean'];
-};
-
-
-export type TQuery_ProductTypeAttributesViewArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type TQuery_ActiveProductTypeAttributesViewArgs = {
-  productTypeId: Scalars['String'];
-  isVariant: Scalars['Boolean'];
-};
-
-
-export type TQuery_CustomersListViewArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type TQuery_RuleBuilderQuickSelectionValuesArgs = {
-  ruleBuilderType: TRuleBuilderType;
-};
-
-
-export type TQuery_DashboardViewArgs = {
-  id: Scalars['ID'];
-};
-
-export type TProjectExtension = {
-  __typename?: 'ProjectExtension';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  projectKey: Scalars['String'];
-  applications: Maybe<Array<TApplicationExtension>>;
-  installedApplications: Maybe<Array<TRestrictedCustomApplicationInstallationForProject>>;
-  imageRegex: Maybe<TImageRegex>;
-  orderStatesVisibility: Array<TOrderStatesVisibility>;
-  categoryRecommendationSettings: Maybe<TCategoryRecommendationSettings>;
-};
-
-
-export type TProjectExtension_ApplicationsArgs = {
-  where: Maybe<TRestrictedApplicationExtensionWhereInput>;
-};
-
-
-export type TProjectExtension_InstalledApplicationsArgs = {
-  where: Maybe<TRestrictedCustomApplicationInstallationWhereInput>;
-};
-
-
-export type TRestrictedApplicationExtensionWhereInput = {
-  id: Maybe<Scalars['ID']>;
-  isActive: Maybe<Scalars['Boolean']>;
-  url: Maybe<Scalars['String']>;
-};
-
 export type TApplicationExtension = {
   __typename?: 'ApplicationExtension';
   id: Scalars['ID'];
@@ -171,321 +28,520 @@ export type TApplicationExtension = {
   oAuthScopes: Array<Scalars['String']>;
 };
 
-export type TNavbarMenu = {
-  __typename?: 'NavbarMenu';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
+export type TApplicationExtensionDataInput = {
+  name: Scalars['String'];
+  description: Maybe<Scalars['String']>;
+  url: Scalars['String'];
+  oAuthScopes: Maybe<Array<Scalars['String']>>;
+  navbarMenu: TApplicationExtensionNavbarMenuDataInput;
+};
+
+export type TApplicationExtensionNavbarMenuDataInput = {
   key: Scalars['String'];
   uriPath: Scalars['String'];
-  labelAllLocales: Maybe<Array<TLocalizedField>>;
   featureToggle: Maybe<Scalars['String']>;
-  permissions: Array<TOAuthScope>;
   icon: Scalars['String'];
-  submenu: Maybe<Array<TNavbarSubmenu>>;
+  permissions: Array<TOAuthScope>;
+  labelAllLocales: Array<TLocalizedFieldDataInput>;
+  submenu: Array<TApplicationExtensionNavbarSubmenuDataInput>;
 };
 
-
-export type TNavbarMenu_LabelAllLocalesArgs = {
-  where: Maybe<TLocalizedFieldWhereInput>;
-  orderBy: Maybe<TLocalizedFieldOrderByInput>;
-  skip: Maybe<Scalars['Int']>;
-  after: Maybe<Scalars['String']>;
-  before: Maybe<Scalars['String']>;
-  first: Maybe<Scalars['Int']>;
-  last: Maybe<Scalars['Int']>;
-};
-
-
-export type TNavbarMenu_SubmenuArgs = {
-  where: Maybe<TNavbarSubmenuWhereInput>;
-  orderBy: Maybe<TNavbarSubmenuOrderByInput>;
-  skip: Maybe<Scalars['Int']>;
-  after: Maybe<Scalars['String']>;
-  before: Maybe<Scalars['String']>;
-  first: Maybe<Scalars['Int']>;
-  last: Maybe<Scalars['Int']>;
-};
-
-export type TLocalizedFieldWhereInput = {
-  id: Maybe<Scalars['ID']>;
-  id_not: Maybe<Scalars['ID']>;
-  id_in: Maybe<Array<Scalars['ID']>>;
-  id_not_in: Maybe<Array<Scalars['ID']>>;
-  id_lt: Maybe<Scalars['ID']>;
-  id_lte: Maybe<Scalars['ID']>;
-  id_gt: Maybe<Scalars['ID']>;
-  id_gte: Maybe<Scalars['ID']>;
-  id_contains: Maybe<Scalars['ID']>;
-  id_not_contains: Maybe<Scalars['ID']>;
-  id_starts_with: Maybe<Scalars['ID']>;
-  id_not_starts_with: Maybe<Scalars['ID']>;
-  id_ends_with: Maybe<Scalars['ID']>;
-  id_not_ends_with: Maybe<Scalars['ID']>;
-  createdAt: Maybe<Scalars['DateTime']>;
-  createdAt_not: Maybe<Scalars['DateTime']>;
-  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_lt: Maybe<Scalars['DateTime']>;
-  createdAt_lte: Maybe<Scalars['DateTime']>;
-  createdAt_gt: Maybe<Scalars['DateTime']>;
-  createdAt_gte: Maybe<Scalars['DateTime']>;
-  updatedAt: Maybe<Scalars['DateTime']>;
-  updatedAt_not: Maybe<Scalars['DateTime']>;
-  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt: Maybe<Scalars['DateTime']>;
-  updatedAt_lte: Maybe<Scalars['DateTime']>;
-  updatedAt_gt: Maybe<Scalars['DateTime']>;
-  updatedAt_gte: Maybe<Scalars['DateTime']>;
-  locale: Maybe<Scalars['String']>;
-  locale_not: Maybe<Scalars['String']>;
-  locale_in: Maybe<Array<Scalars['String']>>;
-  locale_not_in: Maybe<Array<Scalars['String']>>;
-  locale_lt: Maybe<Scalars['String']>;
-  locale_lte: Maybe<Scalars['String']>;
-  locale_gt: Maybe<Scalars['String']>;
-  locale_gte: Maybe<Scalars['String']>;
-  locale_contains: Maybe<Scalars['String']>;
-  locale_not_contains: Maybe<Scalars['String']>;
-  locale_starts_with: Maybe<Scalars['String']>;
-  locale_not_starts_with: Maybe<Scalars['String']>;
-  locale_ends_with: Maybe<Scalars['String']>;
-  locale_not_ends_with: Maybe<Scalars['String']>;
-  value: Maybe<Scalars['String']>;
-  value_not: Maybe<Scalars['String']>;
-  value_in: Maybe<Array<Scalars['String']>>;
-  value_not_in: Maybe<Array<Scalars['String']>>;
-  value_lt: Maybe<Scalars['String']>;
-  value_lte: Maybe<Scalars['String']>;
-  value_gt: Maybe<Scalars['String']>;
-  value_gte: Maybe<Scalars['String']>;
-  value_contains: Maybe<Scalars['String']>;
-  value_not_contains: Maybe<Scalars['String']>;
-  value_starts_with: Maybe<Scalars['String']>;
-  value_not_starts_with: Maybe<Scalars['String']>;
-  value_ends_with: Maybe<Scalars['String']>;
-  value_not_ends_with: Maybe<Scalars['String']>;
-  AND: Maybe<Array<TLocalizedFieldWhereInput>>;
-  OR: Maybe<Array<TLocalizedFieldWhereInput>>;
-  NOT: Maybe<Array<TLocalizedFieldWhereInput>>;
-};
-
-export enum TLocalizedFieldOrderByInput {
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-  LocaleAsc = 'locale_ASC',
-  LocaleDesc = 'locale_DESC',
-  ValueAsc = 'value_ASC',
-  ValueDesc = 'value_DESC'
-}
-
-export type TLocalizedField = {
-  __typename?: 'LocalizedField';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  locale: Scalars['String'];
-  value: Scalars['String'];
-};
-
-export enum TOAuthScope {
-  ManageProducts = 'ManageProducts',
-  ViewProducts = 'ViewProducts',
-  ManageCategories = 'ManageCategories',
-  ViewCategories = 'ViewCategories',
-  ManageCustomers = 'ManageCustomers',
-  ViewCustomers = 'ViewCustomers',
-  ManageCustomerGroups = 'ManageCustomerGroups',
-  ViewCustomerGroups = 'ViewCustomerGroups',
-  ManageOrders = 'ManageOrders',
-  ViewOrders = 'ViewOrders',
-  ManageProductDiscounts = 'ManageProductDiscounts',
-  ViewProductDiscounts = 'ViewProductDiscounts',
-  ManageCartDiscounts = 'ManageCartDiscounts',
-  ViewCartDiscounts = 'ViewCartDiscounts',
-  ManageDiscountCodes = 'ManageDiscountCodes',
-  ViewDiscountCodes = 'ViewDiscountCodes',
-  ManageImportSinks = 'ManageImportSinks',
-  ViewImportSinks = 'ViewImportSinks',
-  ManageProjectSettings = 'ManageProjectSettings',
-  ViewProjectSettings = 'ViewProjectSettings',
-  ManageProductTypes = 'ManageProductTypes',
-  ViewProductTypes = 'ViewProductTypes',
-  ManageDeveloperSettings = 'ManageDeveloperSettings',
-  ViewDeveloperSettings = 'ViewDeveloperSettings',
-  ManageProject = 'ManageProject'
-}
-
-export type TNavbarSubmenuWhereInput = {
-  id: Maybe<Scalars['ID']>;
-  id_not: Maybe<Scalars['ID']>;
-  id_in: Maybe<Array<Scalars['ID']>>;
-  id_not_in: Maybe<Array<Scalars['ID']>>;
-  id_lt: Maybe<Scalars['ID']>;
-  id_lte: Maybe<Scalars['ID']>;
-  id_gt: Maybe<Scalars['ID']>;
-  id_gte: Maybe<Scalars['ID']>;
-  id_contains: Maybe<Scalars['ID']>;
-  id_not_contains: Maybe<Scalars['ID']>;
-  id_starts_with: Maybe<Scalars['ID']>;
-  id_not_starts_with: Maybe<Scalars['ID']>;
-  id_ends_with: Maybe<Scalars['ID']>;
-  id_not_ends_with: Maybe<Scalars['ID']>;
-  createdAt: Maybe<Scalars['DateTime']>;
-  createdAt_not: Maybe<Scalars['DateTime']>;
-  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_lt: Maybe<Scalars['DateTime']>;
-  createdAt_lte: Maybe<Scalars['DateTime']>;
-  createdAt_gt: Maybe<Scalars['DateTime']>;
-  createdAt_gte: Maybe<Scalars['DateTime']>;
-  updatedAt: Maybe<Scalars['DateTime']>;
-  updatedAt_not: Maybe<Scalars['DateTime']>;
-  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt: Maybe<Scalars['DateTime']>;
-  updatedAt_lte: Maybe<Scalars['DateTime']>;
-  updatedAt_gt: Maybe<Scalars['DateTime']>;
-  updatedAt_gte: Maybe<Scalars['DateTime']>;
-  key: Maybe<Scalars['String']>;
-  key_not: Maybe<Scalars['String']>;
-  key_in: Maybe<Array<Scalars['String']>>;
-  key_not_in: Maybe<Array<Scalars['String']>>;
-  key_lt: Maybe<Scalars['String']>;
-  key_lte: Maybe<Scalars['String']>;
-  key_gt: Maybe<Scalars['String']>;
-  key_gte: Maybe<Scalars['String']>;
-  key_contains: Maybe<Scalars['String']>;
-  key_not_contains: Maybe<Scalars['String']>;
-  key_starts_with: Maybe<Scalars['String']>;
-  key_not_starts_with: Maybe<Scalars['String']>;
-  key_ends_with: Maybe<Scalars['String']>;
-  key_not_ends_with: Maybe<Scalars['String']>;
-  uriPath: Maybe<Scalars['String']>;
-  uriPath_not: Maybe<Scalars['String']>;
-  uriPath_in: Maybe<Array<Scalars['String']>>;
-  uriPath_not_in: Maybe<Array<Scalars['String']>>;
-  uriPath_lt: Maybe<Scalars['String']>;
-  uriPath_lte: Maybe<Scalars['String']>;
-  uriPath_gt: Maybe<Scalars['String']>;
-  uriPath_gte: Maybe<Scalars['String']>;
-  uriPath_contains: Maybe<Scalars['String']>;
-  uriPath_not_contains: Maybe<Scalars['String']>;
-  uriPath_starts_with: Maybe<Scalars['String']>;
-  uriPath_not_starts_with: Maybe<Scalars['String']>;
-  uriPath_ends_with: Maybe<Scalars['String']>;
-  uriPath_not_ends_with: Maybe<Scalars['String']>;
-  labelAllLocales_every: Maybe<TLocalizedFieldWhereInput>;
-  labelAllLocales_some: Maybe<TLocalizedFieldWhereInput>;
-  labelAllLocales_none: Maybe<TLocalizedFieldWhereInput>;
-  featureToggle: Maybe<Scalars['String']>;
-  featureToggle_not: Maybe<Scalars['String']>;
-  featureToggle_in: Maybe<Array<Scalars['String']>>;
-  featureToggle_not_in: Maybe<Array<Scalars['String']>>;
-  featureToggle_lt: Maybe<Scalars['String']>;
-  featureToggle_lte: Maybe<Scalars['String']>;
-  featureToggle_gt: Maybe<Scalars['String']>;
-  featureToggle_gte: Maybe<Scalars['String']>;
-  featureToggle_contains: Maybe<Scalars['String']>;
-  featureToggle_not_contains: Maybe<Scalars['String']>;
-  featureToggle_starts_with: Maybe<Scalars['String']>;
-  featureToggle_not_starts_with: Maybe<Scalars['String']>;
-  featureToggle_ends_with: Maybe<Scalars['String']>;
-  featureToggle_not_ends_with: Maybe<Scalars['String']>;
-  AND: Maybe<Array<TNavbarSubmenuWhereInput>>;
-  OR: Maybe<Array<TNavbarSubmenuWhereInput>>;
-  NOT: Maybe<Array<TNavbarSubmenuWhereInput>>;
-};
-
-export enum TNavbarSubmenuOrderByInput {
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-  KeyAsc = 'key_ASC',
-  KeyDesc = 'key_DESC',
-  UriPathAsc = 'uriPath_ASC',
-  UriPathDesc = 'uriPath_DESC',
-  FeatureToggleAsc = 'featureToggle_ASC',
-  FeatureToggleDesc = 'featureToggle_DESC'
-}
-
-export type TNavbarSubmenu = {
-  __typename?: 'NavbarSubmenu';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
+export type TApplicationExtensionNavbarSubmenuDataInput = {
   key: Scalars['String'];
   uriPath: Scalars['String'];
-  labelAllLocales: Maybe<Array<TLocalizedField>>;
   featureToggle: Maybe<Scalars['String']>;
   permissions: Array<TOAuthScope>;
+  labelAllLocales: Array<TLocalizedFieldDataInput>;
 };
 
-
-export type TNavbarSubmenu_LabelAllLocalesArgs = {
-  where: Maybe<TLocalizedFieldWhereInput>;
-  orderBy: Maybe<TLocalizedFieldOrderByInput>;
-  skip: Maybe<Scalars['Int']>;
-  after: Maybe<Scalars['String']>;
-  before: Maybe<Scalars['String']>;
-  first: Maybe<Scalars['Int']>;
-  last: Maybe<Scalars['Int']>;
-};
-
-export type TRestrictedCustomApplicationInstallationWhereInput = {
-  application: Maybe<TRestrictedCustomApplicationWhereInput>;
-};
-
-export type TRestrictedCustomApplicationWhereInput = {
+export type TApplicationExtensionWhereInput = {
   id: Maybe<Scalars['ID']>;
-  status: Maybe<TCustomApplicationStatus>;
+  id_not: Maybe<Scalars['ID']>;
+  id_in: Maybe<Array<Scalars['ID']>>;
+  id_not_in: Maybe<Array<Scalars['ID']>>;
+  id_lt: Maybe<Scalars['ID']>;
+  id_lte: Maybe<Scalars['ID']>;
+  id_gt: Maybe<Scalars['ID']>;
+  id_gte: Maybe<Scalars['ID']>;
+  id_contains: Maybe<Scalars['ID']>;
+  id_not_contains: Maybe<Scalars['ID']>;
+  id_starts_with: Maybe<Scalars['ID']>;
+  id_not_starts_with: Maybe<Scalars['ID']>;
+  id_ends_with: Maybe<Scalars['ID']>;
+  id_not_ends_with: Maybe<Scalars['ID']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  createdAt_not: Maybe<Scalars['DateTime']>;
+  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_lt: Maybe<Scalars['DateTime']>;
+  createdAt_lte: Maybe<Scalars['DateTime']>;
+  createdAt_gt: Maybe<Scalars['DateTime']>;
+  createdAt_gte: Maybe<Scalars['DateTime']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  updatedAt_not: Maybe<Scalars['DateTime']>;
+  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_lt: Maybe<Scalars['DateTime']>;
+  updatedAt_lte: Maybe<Scalars['DateTime']>;
+  updatedAt_gt: Maybe<Scalars['DateTime']>;
+  updatedAt_gte: Maybe<Scalars['DateTime']>;
+  isActive: Maybe<Scalars['Boolean']>;
+  isActive_not: Maybe<Scalars['Boolean']>;
+  name: Maybe<Scalars['String']>;
+  name_not: Maybe<Scalars['String']>;
+  name_in: Maybe<Array<Scalars['String']>>;
+  name_not_in: Maybe<Array<Scalars['String']>>;
+  name_lt: Maybe<Scalars['String']>;
+  name_lte: Maybe<Scalars['String']>;
+  name_gt: Maybe<Scalars['String']>;
+  name_gte: Maybe<Scalars['String']>;
+  name_contains: Maybe<Scalars['String']>;
+  name_not_contains: Maybe<Scalars['String']>;
+  name_starts_with: Maybe<Scalars['String']>;
+  name_not_starts_with: Maybe<Scalars['String']>;
+  name_ends_with: Maybe<Scalars['String']>;
+  name_not_ends_with: Maybe<Scalars['String']>;
+  description: Maybe<Scalars['String']>;
+  description_not: Maybe<Scalars['String']>;
+  description_in: Maybe<Array<Scalars['String']>>;
+  description_not_in: Maybe<Array<Scalars['String']>>;
+  description_lt: Maybe<Scalars['String']>;
+  description_lte: Maybe<Scalars['String']>;
+  description_gt: Maybe<Scalars['String']>;
+  description_gte: Maybe<Scalars['String']>;
+  description_contains: Maybe<Scalars['String']>;
+  description_not_contains: Maybe<Scalars['String']>;
+  description_starts_with: Maybe<Scalars['String']>;
+  description_not_starts_with: Maybe<Scalars['String']>;
+  description_ends_with: Maybe<Scalars['String']>;
+  description_not_ends_with: Maybe<Scalars['String']>;
   url: Maybe<Scalars['String']>;
-  entryPointUriPath: Maybe<Scalars['String']>;
+  url_not: Maybe<Scalars['String']>;
+  url_in: Maybe<Array<Scalars['String']>>;
+  url_not_in: Maybe<Array<Scalars['String']>>;
+  url_lt: Maybe<Scalars['String']>;
+  url_lte: Maybe<Scalars['String']>;
+  url_gt: Maybe<Scalars['String']>;
+  url_gte: Maybe<Scalars['String']>;
+  url_contains: Maybe<Scalars['String']>;
+  url_not_contains: Maybe<Scalars['String']>;
+  url_starts_with: Maybe<Scalars['String']>;
+  url_not_starts_with: Maybe<Scalars['String']>;
+  url_ends_with: Maybe<Scalars['String']>;
+  url_not_ends_with: Maybe<Scalars['String']>;
+  navbarMenu: Maybe<TNavbarMenuWhereInput>;
+  AND: Maybe<Array<TApplicationExtensionWhereInput>>;
+  OR: Maybe<Array<TApplicationExtensionWhereInput>>;
+  NOT: Maybe<Array<TApplicationExtensionWhereInput>>;
 };
 
-export enum TCustomApplicationStatus {
-  Draft = 'DRAFT',
-  PrivateUsage = 'PRIVATE_USAGE'
+export enum TAuthPermission {
+  LoggedInUser = 'loggedInUser',
+  AccessToProject = 'accessToProject',
+  ManageMyOrganizations = 'manageMyOrganizations',
+  ManageProjectSettings = 'manageProjectSettings',
+  ViewProjectSettings = 'viewProjectSettings',
+  ViewCustomers = 'viewCustomers',
+  ViewSomeDiscounts = 'viewSomeDiscounts',
+  ViewProductDiscounts = 'viewProductDiscounts',
+  ViewCartDiscounts = 'viewCartDiscounts',
+  ViewDiscountCodes = 'viewDiscountCodes',
+  ViewOrders = 'viewOrders',
+  ViewProducts = 'viewProducts'
 }
 
-export type TRestrictedCustomApplicationInstallationForProject = {
-  __typename?: 'RestrictedCustomApplicationInstallationForProject';
+export type TAverageOrderValueConfiguration = {
+  __typename?: 'AverageOrderValueConfiguration';
   id: Scalars['ID'];
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
-  application: TRestrictedCustomApplicationForProject;
-  installInAllProjects: Scalars['Boolean'];
+  showPreviousTimeframe: Scalars['Boolean'];
 };
 
-export type TRestrictedCustomApplicationForProject = {
-  __typename?: 'RestrictedCustomApplicationForProject';
+export type TAverageOrderValueConfigurationInput = {
+  showPreviousTimeframe: Scalars['Boolean'];
+};
+
+export type TAverageOrderValueConfigurationWhereInput = {
+  id: Maybe<Scalars['ID']>;
+  id_not: Maybe<Scalars['ID']>;
+  id_in: Maybe<Array<Scalars['ID']>>;
+  id_not_in: Maybe<Array<Scalars['ID']>>;
+  id_lt: Maybe<Scalars['ID']>;
+  id_lte: Maybe<Scalars['ID']>;
+  id_gt: Maybe<Scalars['ID']>;
+  id_gte: Maybe<Scalars['ID']>;
+  id_contains: Maybe<Scalars['ID']>;
+  id_not_contains: Maybe<Scalars['ID']>;
+  id_starts_with: Maybe<Scalars['ID']>;
+  id_not_starts_with: Maybe<Scalars['ID']>;
+  id_ends_with: Maybe<Scalars['ID']>;
+  id_not_ends_with: Maybe<Scalars['ID']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  createdAt_not: Maybe<Scalars['DateTime']>;
+  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_lt: Maybe<Scalars['DateTime']>;
+  createdAt_lte: Maybe<Scalars['DateTime']>;
+  createdAt_gt: Maybe<Scalars['DateTime']>;
+  createdAt_gte: Maybe<Scalars['DateTime']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  updatedAt_not: Maybe<Scalars['DateTime']>;
+  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_lt: Maybe<Scalars['DateTime']>;
+  updatedAt_lte: Maybe<Scalars['DateTime']>;
+  updatedAt_gt: Maybe<Scalars['DateTime']>;
+  updatedAt_gte: Maybe<Scalars['DateTime']>;
+  showPreviousTimeframe: Maybe<Scalars['Boolean']>;
+  showPreviousTimeframe_not: Maybe<Scalars['Boolean']>;
+  AND: Maybe<Array<TAverageOrderValueConfigurationWhereInput>>;
+  OR: Maybe<Array<TAverageOrderValueConfigurationWhereInput>>;
+  NOT: Maybe<Array<TAverageOrderValueConfigurationWhereInput>>;
+};
+
+export enum TBestSellingLimit {
+  Five = 'FIVE',
+  Ten = 'TEN',
+  Fifteen = 'FIFTEEN'
+}
+
+export type TCartDiscountsListView = {
+  __typename?: 'CartDiscountsListView';
   id: Scalars['ID'];
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
+  projectKey: Scalars['String'];
+  visibleColumns: Array<Scalars['String']>;
+};
+
+export type TCartDiscountsListViewInput = {
+  visibleColumns: Array<Scalars['String']>;
+};
+
+export enum TCategoryRecommendationSearchProperty {
+  Attribute = 'Attribute',
+  MachineLearning = 'MachineLearning',
+  ProductType = 'ProductType'
+}
+
+export type TCategoryRecommendationSettings = {
+  __typename?: 'CategoryRecommendationSettings';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  searchProperty: TCategoryRecommendationSearchProperty;
+  attributeName: Maybe<Scalars['String']>;
+};
+
+export type TCategoryRecommendationSettingsDataInput = {
+  searchProperty: TCategoryRecommendationSearchProperty;
+  attributeName: Maybe<Scalars['String']>;
+};
+
+export type TCategoryRecommendationSettingsWhereInput = {
+  id: Maybe<Scalars['ID']>;
+  id_not: Maybe<Scalars['ID']>;
+  id_in: Maybe<Array<Scalars['ID']>>;
+  id_not_in: Maybe<Array<Scalars['ID']>>;
+  id_lt: Maybe<Scalars['ID']>;
+  id_lte: Maybe<Scalars['ID']>;
+  id_gt: Maybe<Scalars['ID']>;
+  id_gte: Maybe<Scalars['ID']>;
+  id_contains: Maybe<Scalars['ID']>;
+  id_not_contains: Maybe<Scalars['ID']>;
+  id_starts_with: Maybe<Scalars['ID']>;
+  id_not_starts_with: Maybe<Scalars['ID']>;
+  id_ends_with: Maybe<Scalars['ID']>;
+  id_not_ends_with: Maybe<Scalars['ID']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  createdAt_not: Maybe<Scalars['DateTime']>;
+  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_lt: Maybe<Scalars['DateTime']>;
+  createdAt_lte: Maybe<Scalars['DateTime']>;
+  createdAt_gt: Maybe<Scalars['DateTime']>;
+  createdAt_gte: Maybe<Scalars['DateTime']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  updatedAt_not: Maybe<Scalars['DateTime']>;
+  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_lt: Maybe<Scalars['DateTime']>;
+  updatedAt_lte: Maybe<Scalars['DateTime']>;
+  updatedAt_gt: Maybe<Scalars['DateTime']>;
+  updatedAt_gte: Maybe<Scalars['DateTime']>;
+  searchProperty: Maybe<TCategoryRecommendationSearchProperty>;
+  searchProperty_not: Maybe<TCategoryRecommendationSearchProperty>;
+  searchProperty_in: Maybe<Array<TCategoryRecommendationSearchProperty>>;
+  searchProperty_not_in: Maybe<Array<TCategoryRecommendationSearchProperty>>;
+  attributeName: Maybe<Scalars['String']>;
+  attributeName_not: Maybe<Scalars['String']>;
+  attributeName_in: Maybe<Array<Scalars['String']>>;
+  attributeName_not_in: Maybe<Array<Scalars['String']>>;
+  attributeName_lt: Maybe<Scalars['String']>;
+  attributeName_lte: Maybe<Scalars['String']>;
+  attributeName_gt: Maybe<Scalars['String']>;
+  attributeName_gte: Maybe<Scalars['String']>;
+  attributeName_contains: Maybe<Scalars['String']>;
+  attributeName_not_contains: Maybe<Scalars['String']>;
+  attributeName_starts_with: Maybe<Scalars['String']>;
+  attributeName_not_starts_with: Maybe<Scalars['String']>;
+  attributeName_ends_with: Maybe<Scalars['String']>;
+  attributeName_not_ends_with: Maybe<Scalars['String']>;
+  AND: Maybe<Array<TCategoryRecommendationSettingsWhereInput>>;
+  OR: Maybe<Array<TCategoryRecommendationSettingsWhereInput>>;
+  NOT: Maybe<Array<TCategoryRecommendationSettingsWhereInput>>;
+};
+
+export type TCustomApplication = {
+  __typename?: 'CustomApplication';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  owner: TOrganizationExtension;
+  installedBy: Maybe<Array<TCustomApplicationInstallation>>;
   status: Maybe<TCustomApplicationStatus>;
   name: Scalars['String'];
   description: Maybe<Scalars['String']>;
   url: Scalars['String'];
   entryPointUriPath: Scalars['String'];
-  permissions: Array<TCustomApplicationPermission>;
+  permissions: Maybe<Array<TCustomApplicationPermission>>;
   menuLinks: Maybe<TCustomApplicationMenuLink>;
+  contacts: Maybe<Array<TCustomApplicationContactPerson>>;
 };
 
-export type TCustomApplicationPermission = {
-  __typename?: 'CustomApplicationPermission';
+
+export type TCustomApplication_InstalledByArgs = {
+  where: Maybe<TCustomApplicationInstallationWhereInput>;
+  orderBy: Maybe<TCustomApplicationInstallationOrderByInput>;
+  skip: Maybe<Scalars['Int']>;
+  after: Maybe<Scalars['String']>;
+  before: Maybe<Scalars['String']>;
+  first: Maybe<Scalars['Int']>;
+  last: Maybe<Scalars['Int']>;
+};
+
+
+export type TCustomApplication_PermissionsArgs = {
+  where: Maybe<TCustomApplicationPermissionWhereInput>;
+  orderBy: Maybe<TCustomApplicationPermissionOrderByInput>;
+  skip: Maybe<Scalars['Int']>;
+  after: Maybe<Scalars['String']>;
+  before: Maybe<Scalars['String']>;
+  first: Maybe<Scalars['Int']>;
+  last: Maybe<Scalars['Int']>;
+};
+
+
+export type TCustomApplication_ContactsArgs = {
+  where: Maybe<TCustomApplicationContactPersonWhereInput>;
+  orderBy: Maybe<TCustomApplicationContactPersonOrderByInput>;
+  skip: Maybe<Scalars['Int']>;
+  after: Maybe<Scalars['String']>;
+  before: Maybe<Scalars['String']>;
+  first: Maybe<Scalars['Int']>;
+  last: Maybe<Scalars['Int']>;
+};
+
+export enum TCustomApplicationContactConsent {
+  BetaTester = 'BETA_TESTER',
+  CommunityInitiatives = 'COMMUNITY_INITIATIVES',
+  LearningMaterial = 'LEARNING_MATERIAL',
+  Marketplace = 'MARKETPLACE',
+  Newsletter = 'NEWSLETTER',
+  UserResearch = 'USER_RESEARCH'
+}
+
+export type TCustomApplicationContactPerson = {
+  __typename?: 'CustomApplicationContactPerson';
   id: Scalars['ID'];
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
+  email: Scalars['String'];
+  consents: Array<TCustomApplicationContactConsent>;
+  maintainerOf: Maybe<Array<TCustomApplication>>;
+};
+
+
+export type TCustomApplicationContactPerson_MaintainerOfArgs = {
+  where: Maybe<TCustomApplicationWhereInput>;
+  orderBy: Maybe<TCustomApplicationOrderByInput>;
+  skip: Maybe<Scalars['Int']>;
+  after: Maybe<Scalars['String']>;
+  before: Maybe<Scalars['String']>;
+  first: Maybe<Scalars['Int']>;
+  last: Maybe<Scalars['Int']>;
+};
+
+export type TCustomApplicationContactPersonDataInput = {
+  email: Scalars['String'];
+  consents: Array<TCustomApplicationContactConsent>;
+};
+
+export enum TCustomApplicationContactPersonOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  EmailAsc = 'email_ASC',
+  EmailDesc = 'email_DESC'
+}
+
+export type TCustomApplicationContactPersonWhereInput = {
+  id: Maybe<Scalars['ID']>;
+  id_not: Maybe<Scalars['ID']>;
+  id_in: Maybe<Array<Scalars['ID']>>;
+  id_not_in: Maybe<Array<Scalars['ID']>>;
+  id_lt: Maybe<Scalars['ID']>;
+  id_lte: Maybe<Scalars['ID']>;
+  id_gt: Maybe<Scalars['ID']>;
+  id_gte: Maybe<Scalars['ID']>;
+  id_contains: Maybe<Scalars['ID']>;
+  id_not_contains: Maybe<Scalars['ID']>;
+  id_starts_with: Maybe<Scalars['ID']>;
+  id_not_starts_with: Maybe<Scalars['ID']>;
+  id_ends_with: Maybe<Scalars['ID']>;
+  id_not_ends_with: Maybe<Scalars['ID']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  createdAt_not: Maybe<Scalars['DateTime']>;
+  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_lt: Maybe<Scalars['DateTime']>;
+  createdAt_lte: Maybe<Scalars['DateTime']>;
+  createdAt_gt: Maybe<Scalars['DateTime']>;
+  createdAt_gte: Maybe<Scalars['DateTime']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  updatedAt_not: Maybe<Scalars['DateTime']>;
+  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_lt: Maybe<Scalars['DateTime']>;
+  updatedAt_lte: Maybe<Scalars['DateTime']>;
+  updatedAt_gt: Maybe<Scalars['DateTime']>;
+  updatedAt_gte: Maybe<Scalars['DateTime']>;
+  email: Maybe<Scalars['String']>;
+  email_not: Maybe<Scalars['String']>;
+  email_in: Maybe<Array<Scalars['String']>>;
+  email_not_in: Maybe<Array<Scalars['String']>>;
+  email_lt: Maybe<Scalars['String']>;
+  email_lte: Maybe<Scalars['String']>;
+  email_gt: Maybe<Scalars['String']>;
+  email_gte: Maybe<Scalars['String']>;
+  email_contains: Maybe<Scalars['String']>;
+  email_not_contains: Maybe<Scalars['String']>;
+  email_starts_with: Maybe<Scalars['String']>;
+  email_not_starts_with: Maybe<Scalars['String']>;
+  email_ends_with: Maybe<Scalars['String']>;
+  email_not_ends_with: Maybe<Scalars['String']>;
+  maintainerOf_every: Maybe<TCustomApplicationWhereInput>;
+  maintainerOf_some: Maybe<TCustomApplicationWhereInput>;
+  maintainerOf_none: Maybe<TCustomApplicationWhereInput>;
+  AND: Maybe<Array<TCustomApplicationContactPersonWhereInput>>;
+  OR: Maybe<Array<TCustomApplicationContactPersonWhereInput>>;
+  NOT: Maybe<Array<TCustomApplicationContactPersonWhereInput>>;
+};
+
+export type TCustomApplicationDraftDataInput = {
   name: Scalars['String'];
-  oAuthScopes: Array<Scalars['String']>;
+  description: Maybe<Scalars['String']>;
+  url: Scalars['String'];
+  entryPointUriPath: Scalars['String'];
+  permissions: Array<TCustomApplicationPermissionDataInput>;
+  contacts: Array<TCustomApplicationContactPersonDataInput>;
+  menuLinks: TCustomApplicationMenuLinksDraftDataInput;
+};
+
+export type TCustomApplicationInstallation = {
+  __typename?: 'CustomApplicationInstallation';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  organization: TOrganizationExtension;
+  application: TCustomApplication;
+  acceptedPermissions: Maybe<Array<TCustomApplicationPermission>>;
+  installInAllProjects: Scalars['Boolean'];
+  projects: Maybe<Array<TProjectExtension>>;
+};
+
+
+export type TCustomApplicationInstallation_AcceptedPermissionsArgs = {
+  where: Maybe<TCustomApplicationPermissionWhereInput>;
+  orderBy: Maybe<TCustomApplicationPermissionOrderByInput>;
+  skip: Maybe<Scalars['Int']>;
+  after: Maybe<Scalars['String']>;
+  before: Maybe<Scalars['String']>;
+  first: Maybe<Scalars['Int']>;
+  last: Maybe<Scalars['Int']>;
+};
+
+
+export type TCustomApplicationInstallation_ProjectsArgs = {
+  where: Maybe<TProjectExtensionWhereInput>;
+  orderBy: Maybe<TProjectExtensionOrderByInput>;
+  skip: Maybe<Scalars['Int']>;
+  after: Maybe<Scalars['String']>;
+  before: Maybe<Scalars['String']>;
+  first: Maybe<Scalars['Int']>;
+  last: Maybe<Scalars['Int']>;
+};
+
+export enum TCustomApplicationInstallationOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  InstallInAllProjectsAsc = 'installInAllProjects_ASC',
+  InstallInAllProjectsDesc = 'installInAllProjects_DESC'
+}
+
+export type TCustomApplicationInstallationWhereInput = {
+  id: Maybe<Scalars['ID']>;
+  id_not: Maybe<Scalars['ID']>;
+  id_in: Maybe<Array<Scalars['ID']>>;
+  id_not_in: Maybe<Array<Scalars['ID']>>;
+  id_lt: Maybe<Scalars['ID']>;
+  id_lte: Maybe<Scalars['ID']>;
+  id_gt: Maybe<Scalars['ID']>;
+  id_gte: Maybe<Scalars['ID']>;
+  id_contains: Maybe<Scalars['ID']>;
+  id_not_contains: Maybe<Scalars['ID']>;
+  id_starts_with: Maybe<Scalars['ID']>;
+  id_not_starts_with: Maybe<Scalars['ID']>;
+  id_ends_with: Maybe<Scalars['ID']>;
+  id_not_ends_with: Maybe<Scalars['ID']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  createdAt_not: Maybe<Scalars['DateTime']>;
+  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_lt: Maybe<Scalars['DateTime']>;
+  createdAt_lte: Maybe<Scalars['DateTime']>;
+  createdAt_gt: Maybe<Scalars['DateTime']>;
+  createdAt_gte: Maybe<Scalars['DateTime']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  updatedAt_not: Maybe<Scalars['DateTime']>;
+  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_lt: Maybe<Scalars['DateTime']>;
+  updatedAt_lte: Maybe<Scalars['DateTime']>;
+  updatedAt_gt: Maybe<Scalars['DateTime']>;
+  updatedAt_gte: Maybe<Scalars['DateTime']>;
+  organization: Maybe<TOrganizationExtensionWhereInput>;
+  application: Maybe<TCustomApplicationWhereInput>;
+  acceptedPermissions_every: Maybe<TCustomApplicationPermissionWhereInput>;
+  acceptedPermissions_some: Maybe<TCustomApplicationPermissionWhereInput>;
+  acceptedPermissions_none: Maybe<TCustomApplicationPermissionWhereInput>;
+  installInAllProjects: Maybe<Scalars['Boolean']>;
+  installInAllProjects_not: Maybe<Scalars['Boolean']>;
+  projects_every: Maybe<TProjectExtensionWhereInput>;
+  projects_some: Maybe<TProjectExtensionWhereInput>;
+  projects_none: Maybe<TProjectExtensionWhereInput>;
+  AND: Maybe<Array<TCustomApplicationInstallationWhereInput>>;
+  OR: Maybe<Array<TCustomApplicationInstallationWhereInput>>;
+  NOT: Maybe<Array<TCustomApplicationInstallationWhereInput>>;
 };
 
 export type TCustomApplicationMenuLink = {
@@ -520,6 +576,225 @@ export type TCustomApplicationMenuLink_SubmenuLinksArgs = {
   before: Maybe<Scalars['String']>;
   first: Maybe<Scalars['Int']>;
   last: Maybe<Scalars['Int']>;
+};
+
+export type TCustomApplicationMenuLinksDraftDataInput = {
+  labelAllLocales: Array<TLocalizedFieldDataInput>;
+  defaultLabel: Scalars['String'];
+  iconName: Scalars['String'];
+  permissions: Array<Scalars['String']>;
+  submenuLinks: Array<TCustomApplicationSubmenuLinksDraftDataInput>;
+};
+
+export type TCustomApplicationMenuLinkWhereInput = {
+  id: Maybe<Scalars['ID']>;
+  id_not: Maybe<Scalars['ID']>;
+  id_in: Maybe<Array<Scalars['ID']>>;
+  id_not_in: Maybe<Array<Scalars['ID']>>;
+  id_lt: Maybe<Scalars['ID']>;
+  id_lte: Maybe<Scalars['ID']>;
+  id_gt: Maybe<Scalars['ID']>;
+  id_gte: Maybe<Scalars['ID']>;
+  id_contains: Maybe<Scalars['ID']>;
+  id_not_contains: Maybe<Scalars['ID']>;
+  id_starts_with: Maybe<Scalars['ID']>;
+  id_not_starts_with: Maybe<Scalars['ID']>;
+  id_ends_with: Maybe<Scalars['ID']>;
+  id_not_ends_with: Maybe<Scalars['ID']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  createdAt_not: Maybe<Scalars['DateTime']>;
+  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_lt: Maybe<Scalars['DateTime']>;
+  createdAt_lte: Maybe<Scalars['DateTime']>;
+  createdAt_gt: Maybe<Scalars['DateTime']>;
+  createdAt_gte: Maybe<Scalars['DateTime']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  updatedAt_not: Maybe<Scalars['DateTime']>;
+  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_lt: Maybe<Scalars['DateTime']>;
+  updatedAt_lte: Maybe<Scalars['DateTime']>;
+  updatedAt_gt: Maybe<Scalars['DateTime']>;
+  updatedAt_gte: Maybe<Scalars['DateTime']>;
+  labelAllLocales_every: Maybe<TLocalizedFieldWhereInput>;
+  labelAllLocales_some: Maybe<TLocalizedFieldWhereInput>;
+  labelAllLocales_none: Maybe<TLocalizedFieldWhereInput>;
+  defaultLabel: Maybe<Scalars['String']>;
+  defaultLabel_not: Maybe<Scalars['String']>;
+  defaultLabel_in: Maybe<Array<Scalars['String']>>;
+  defaultLabel_not_in: Maybe<Array<Scalars['String']>>;
+  defaultLabel_lt: Maybe<Scalars['String']>;
+  defaultLabel_lte: Maybe<Scalars['String']>;
+  defaultLabel_gt: Maybe<Scalars['String']>;
+  defaultLabel_gte: Maybe<Scalars['String']>;
+  defaultLabel_contains: Maybe<Scalars['String']>;
+  defaultLabel_not_contains: Maybe<Scalars['String']>;
+  defaultLabel_starts_with: Maybe<Scalars['String']>;
+  defaultLabel_not_starts_with: Maybe<Scalars['String']>;
+  defaultLabel_ends_with: Maybe<Scalars['String']>;
+  defaultLabel_not_ends_with: Maybe<Scalars['String']>;
+  iconName: Maybe<Scalars['String']>;
+  iconName_not: Maybe<Scalars['String']>;
+  iconName_in: Maybe<Array<Scalars['String']>>;
+  iconName_not_in: Maybe<Array<Scalars['String']>>;
+  iconName_lt: Maybe<Scalars['String']>;
+  iconName_lte: Maybe<Scalars['String']>;
+  iconName_gt: Maybe<Scalars['String']>;
+  iconName_gte: Maybe<Scalars['String']>;
+  iconName_contains: Maybe<Scalars['String']>;
+  iconName_not_contains: Maybe<Scalars['String']>;
+  iconName_starts_with: Maybe<Scalars['String']>;
+  iconName_not_starts_with: Maybe<Scalars['String']>;
+  iconName_ends_with: Maybe<Scalars['String']>;
+  iconName_not_ends_with: Maybe<Scalars['String']>;
+  submenuLinks_every: Maybe<TCustomApplicationSubmenuLinkWhereInput>;
+  submenuLinks_some: Maybe<TCustomApplicationSubmenuLinkWhereInput>;
+  submenuLinks_none: Maybe<TCustomApplicationSubmenuLinkWhereInput>;
+  AND: Maybe<Array<TCustomApplicationMenuLinkWhereInput>>;
+  OR: Maybe<Array<TCustomApplicationMenuLinkWhereInput>>;
+  NOT: Maybe<Array<TCustomApplicationMenuLinkWhereInput>>;
+};
+
+export enum TCustomApplicationOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  StatusAsc = 'status_ASC',
+  StatusDesc = 'status_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  UrlAsc = 'url_ASC',
+  UrlDesc = 'url_DESC',
+  EntryPointUriPathAsc = 'entryPointUriPath_ASC',
+  EntryPointUriPathDesc = 'entryPointUriPath_DESC'
+}
+
+export type TCustomApplicationPermission = {
+  __typename?: 'CustomApplicationPermission';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  name: Scalars['String'];
+  oAuthScopes: Array<Scalars['String']>;
+};
+
+export type TCustomApplicationPermissionDataInput = {
+  name: Scalars['String'];
+  oAuthScopes: Array<Scalars['String']>;
+};
+
+export enum TCustomApplicationPermissionOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC'
+}
+
+export type TCustomApplicationPermissionWhereInput = {
+  id: Maybe<Scalars['ID']>;
+  id_not: Maybe<Scalars['ID']>;
+  id_in: Maybe<Array<Scalars['ID']>>;
+  id_not_in: Maybe<Array<Scalars['ID']>>;
+  id_lt: Maybe<Scalars['ID']>;
+  id_lte: Maybe<Scalars['ID']>;
+  id_gt: Maybe<Scalars['ID']>;
+  id_gte: Maybe<Scalars['ID']>;
+  id_contains: Maybe<Scalars['ID']>;
+  id_not_contains: Maybe<Scalars['ID']>;
+  id_starts_with: Maybe<Scalars['ID']>;
+  id_not_starts_with: Maybe<Scalars['ID']>;
+  id_ends_with: Maybe<Scalars['ID']>;
+  id_not_ends_with: Maybe<Scalars['ID']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  createdAt_not: Maybe<Scalars['DateTime']>;
+  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_lt: Maybe<Scalars['DateTime']>;
+  createdAt_lte: Maybe<Scalars['DateTime']>;
+  createdAt_gt: Maybe<Scalars['DateTime']>;
+  createdAt_gte: Maybe<Scalars['DateTime']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  updatedAt_not: Maybe<Scalars['DateTime']>;
+  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_lt: Maybe<Scalars['DateTime']>;
+  updatedAt_lte: Maybe<Scalars['DateTime']>;
+  updatedAt_gt: Maybe<Scalars['DateTime']>;
+  updatedAt_gte: Maybe<Scalars['DateTime']>;
+  name: Maybe<Scalars['String']>;
+  name_not: Maybe<Scalars['String']>;
+  name_in: Maybe<Array<Scalars['String']>>;
+  name_not_in: Maybe<Array<Scalars['String']>>;
+  name_lt: Maybe<Scalars['String']>;
+  name_lte: Maybe<Scalars['String']>;
+  name_gt: Maybe<Scalars['String']>;
+  name_gte: Maybe<Scalars['String']>;
+  name_contains: Maybe<Scalars['String']>;
+  name_not_contains: Maybe<Scalars['String']>;
+  name_starts_with: Maybe<Scalars['String']>;
+  name_not_starts_with: Maybe<Scalars['String']>;
+  name_ends_with: Maybe<Scalars['String']>;
+  name_not_ends_with: Maybe<Scalars['String']>;
+  AND: Maybe<Array<TCustomApplicationPermissionWhereInput>>;
+  OR: Maybe<Array<TCustomApplicationPermissionWhereInput>>;
+  NOT: Maybe<Array<TCustomApplicationPermissionWhereInput>>;
+};
+
+export enum TCustomApplicationStatus {
+  Draft = 'DRAFT',
+  PrivateUsage = 'PRIVATE_USAGE'
+}
+
+export type TCustomApplicationSubmenuLink = {
+  __typename?: 'CustomApplicationSubmenuLink';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  uriPath: Scalars['String'];
+  labelAllLocales: Maybe<Array<TLocalizedField>>;
+  defaultLabel: Scalars['String'];
+  permissions: Array<Scalars['String']>;
+};
+
+
+export type TCustomApplicationSubmenuLink_LabelAllLocalesArgs = {
+  where: Maybe<TLocalizedFieldWhereInput>;
+  orderBy: Maybe<TLocalizedFieldOrderByInput>;
+  skip: Maybe<Scalars['Int']>;
+  after: Maybe<Scalars['String']>;
+  before: Maybe<Scalars['String']>;
+  first: Maybe<Scalars['Int']>;
+  last: Maybe<Scalars['Int']>;
+};
+
+export enum TCustomApplicationSubmenuLinkOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  UriPathAsc = 'uriPath_ASC',
+  UriPathDesc = 'uriPath_DESC',
+  DefaultLabelAsc = 'defaultLabel_ASC',
+  DefaultLabelDesc = 'defaultLabel_DESC'
+}
+
+export type TCustomApplicationSubmenuLinksDraftDataInput = {
+  uriPath: Scalars['String'];
+  labelAllLocales: Array<TLocalizedFieldDataInput>;
+  defaultLabel: Scalars['String'];
+  permissions: Array<Scalars['String']>;
 };
 
 export type TCustomApplicationSubmenuLinkWhereInput = {
@@ -589,147 +864,115 @@ export type TCustomApplicationSubmenuLinkWhereInput = {
   NOT: Maybe<Array<TCustomApplicationSubmenuLinkWhereInput>>;
 };
 
-export enum TCustomApplicationSubmenuLinkOrderByInput {
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-  UriPathAsc = 'uriPath_ASC',
-  UriPathDesc = 'uriPath_DESC',
-  DefaultLabelAsc = 'defaultLabel_ASC',
-  DefaultLabelDesc = 'defaultLabel_DESC'
-}
-
-export type TCustomApplicationSubmenuLink = {
-  __typename?: 'CustomApplicationSubmenuLink';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  uriPath: Scalars['String'];
-  labelAllLocales: Maybe<Array<TLocalizedField>>;
-  defaultLabel: Scalars['String'];
-  permissions: Array<Scalars['String']>;
-};
-
-
-export type TCustomApplicationSubmenuLink_LabelAllLocalesArgs = {
-  where: Maybe<TLocalizedFieldWhereInput>;
-  orderBy: Maybe<TLocalizedFieldOrderByInput>;
-  skip: Maybe<Scalars['Int']>;
-  after: Maybe<Scalars['String']>;
-  before: Maybe<Scalars['String']>;
-  first: Maybe<Scalars['Int']>;
-  last: Maybe<Scalars['Int']>;
-};
-
-export type TImageRegex = {
-  __typename?: 'ImageRegex';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  small: Maybe<TImageRegexOptions>;
-  thumb: Maybe<TImageRegexOptions>;
-};
-
-export type TImageRegexOptions = {
-  __typename?: 'ImageRegexOptions';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  flag: Scalars['String'];
-  search: Scalars['String'];
-  replace: Scalars['String'];
-};
-
-export enum TOrderStatesVisibility {
-  HidePaymentState = 'HidePaymentState',
-  HideShipmentState = 'HideShipmentState',
-  HideOrderState = 'HideOrderState'
-}
-
-export type TCategoryRecommendationSettings = {
-  __typename?: 'CategoryRecommendationSettings';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  searchProperty: TCategoryRecommendationSearchProperty;
-  attributeName: Maybe<Scalars['String']>;
-};
-
-export enum TCategoryRecommendationSearchProperty {
-  Attribute = 'Attribute',
-  MachineLearning = 'MachineLearning',
-  ProductType = 'ProductType'
-}
-
-export type TOrganizationExtension = {
-  __typename?: 'OrganizationExtension';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  organizationId: Scalars['String'];
-  oidcSsoConfig: Maybe<TOidcSsoConfig>;
-  registeredApplications: Maybe<Array<TRestrictedCustomApplicationForOrganization>>;
-  installedApplications: Maybe<Array<TRestrictedCustomApplicationInstallationForOrganization>>;
-};
-
-export type TOidcSsoConfig = {
-  __typename?: 'OidcSsoConfig';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  isActive: Maybe<Scalars['Boolean']>;
-  authorityUrl: Scalars['String'];
-  clientId: Scalars['String'];
-  clientSecret: Maybe<Scalars['String']>;
-  teamIdForNewUsers: Scalars['String'];
-  logoutUrl: Maybe<Scalars['String']>;
-};
-
-export type TRestrictedCustomApplicationForOrganization = {
-  __typename?: 'RestrictedCustomApplicationForOrganization';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
+export type TCustomApplicationWhereInput = {
+  id: Maybe<Scalars['ID']>;
+  id_not: Maybe<Scalars['ID']>;
+  id_in: Maybe<Array<Scalars['ID']>>;
+  id_not_in: Maybe<Array<Scalars['ID']>>;
+  id_lt: Maybe<Scalars['ID']>;
+  id_lte: Maybe<Scalars['ID']>;
+  id_gt: Maybe<Scalars['ID']>;
+  id_gte: Maybe<Scalars['ID']>;
+  id_contains: Maybe<Scalars['ID']>;
+  id_not_contains: Maybe<Scalars['ID']>;
+  id_starts_with: Maybe<Scalars['ID']>;
+  id_not_starts_with: Maybe<Scalars['ID']>;
+  id_ends_with: Maybe<Scalars['ID']>;
+  id_not_ends_with: Maybe<Scalars['ID']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  createdAt_not: Maybe<Scalars['DateTime']>;
+  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_lt: Maybe<Scalars['DateTime']>;
+  createdAt_lte: Maybe<Scalars['DateTime']>;
+  createdAt_gt: Maybe<Scalars['DateTime']>;
+  createdAt_gte: Maybe<Scalars['DateTime']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  updatedAt_not: Maybe<Scalars['DateTime']>;
+  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_lt: Maybe<Scalars['DateTime']>;
+  updatedAt_lte: Maybe<Scalars['DateTime']>;
+  updatedAt_gt: Maybe<Scalars['DateTime']>;
+  updatedAt_gte: Maybe<Scalars['DateTime']>;
+  owner: Maybe<TOrganizationExtensionWhereInput>;
+  installedBy_every: Maybe<TCustomApplicationInstallationWhereInput>;
+  installedBy_some: Maybe<TCustomApplicationInstallationWhereInput>;
+  installedBy_none: Maybe<TCustomApplicationInstallationWhereInput>;
   status: Maybe<TCustomApplicationStatus>;
-  name: Scalars['String'];
+  status_not: Maybe<TCustomApplicationStatus>;
+  status_in: Maybe<Array<TCustomApplicationStatus>>;
+  status_not_in: Maybe<Array<TCustomApplicationStatus>>;
+  name: Maybe<Scalars['String']>;
+  name_not: Maybe<Scalars['String']>;
+  name_in: Maybe<Array<Scalars['String']>>;
+  name_not_in: Maybe<Array<Scalars['String']>>;
+  name_lt: Maybe<Scalars['String']>;
+  name_lte: Maybe<Scalars['String']>;
+  name_gt: Maybe<Scalars['String']>;
+  name_gte: Maybe<Scalars['String']>;
+  name_contains: Maybe<Scalars['String']>;
+  name_not_contains: Maybe<Scalars['String']>;
+  name_starts_with: Maybe<Scalars['String']>;
+  name_not_starts_with: Maybe<Scalars['String']>;
+  name_ends_with: Maybe<Scalars['String']>;
+  name_not_ends_with: Maybe<Scalars['String']>;
   description: Maybe<Scalars['String']>;
-  url: Scalars['String'];
-  entryPointUriPath: Scalars['String'];
-  permissions: Array<TCustomApplicationPermission>;
-  menuLinks: Maybe<TCustomApplicationMenuLink>;
-  contacts: Maybe<Array<TRestrictedCustomApplicationContactPerson>>;
+  description_not: Maybe<Scalars['String']>;
+  description_in: Maybe<Array<Scalars['String']>>;
+  description_not_in: Maybe<Array<Scalars['String']>>;
+  description_lt: Maybe<Scalars['String']>;
+  description_lte: Maybe<Scalars['String']>;
+  description_gt: Maybe<Scalars['String']>;
+  description_gte: Maybe<Scalars['String']>;
+  description_contains: Maybe<Scalars['String']>;
+  description_not_contains: Maybe<Scalars['String']>;
+  description_starts_with: Maybe<Scalars['String']>;
+  description_not_starts_with: Maybe<Scalars['String']>;
+  description_ends_with: Maybe<Scalars['String']>;
+  description_not_ends_with: Maybe<Scalars['String']>;
+  url: Maybe<Scalars['String']>;
+  url_not: Maybe<Scalars['String']>;
+  url_in: Maybe<Array<Scalars['String']>>;
+  url_not_in: Maybe<Array<Scalars['String']>>;
+  url_lt: Maybe<Scalars['String']>;
+  url_lte: Maybe<Scalars['String']>;
+  url_gt: Maybe<Scalars['String']>;
+  url_gte: Maybe<Scalars['String']>;
+  url_contains: Maybe<Scalars['String']>;
+  url_not_contains: Maybe<Scalars['String']>;
+  url_starts_with: Maybe<Scalars['String']>;
+  url_not_starts_with: Maybe<Scalars['String']>;
+  url_ends_with: Maybe<Scalars['String']>;
+  url_not_ends_with: Maybe<Scalars['String']>;
+  entryPointUriPath: Maybe<Scalars['String']>;
+  entryPointUriPath_not: Maybe<Scalars['String']>;
+  entryPointUriPath_in: Maybe<Array<Scalars['String']>>;
+  entryPointUriPath_not_in: Maybe<Array<Scalars['String']>>;
+  entryPointUriPath_lt: Maybe<Scalars['String']>;
+  entryPointUriPath_lte: Maybe<Scalars['String']>;
+  entryPointUriPath_gt: Maybe<Scalars['String']>;
+  entryPointUriPath_gte: Maybe<Scalars['String']>;
+  entryPointUriPath_contains: Maybe<Scalars['String']>;
+  entryPointUriPath_not_contains: Maybe<Scalars['String']>;
+  entryPointUriPath_starts_with: Maybe<Scalars['String']>;
+  entryPointUriPath_not_starts_with: Maybe<Scalars['String']>;
+  entryPointUriPath_ends_with: Maybe<Scalars['String']>;
+  entryPointUriPath_not_ends_with: Maybe<Scalars['String']>;
+  permissions_every: Maybe<TCustomApplicationPermissionWhereInput>;
+  permissions_some: Maybe<TCustomApplicationPermissionWhereInput>;
+  permissions_none: Maybe<TCustomApplicationPermissionWhereInput>;
+  menuLinks: Maybe<TCustomApplicationMenuLinkWhereInput>;
+  contacts_every: Maybe<TCustomApplicationContactPersonWhereInput>;
+  contacts_some: Maybe<TCustomApplicationContactPersonWhereInput>;
+  contacts_none: Maybe<TCustomApplicationContactPersonWhereInput>;
+  AND: Maybe<Array<TCustomApplicationWhereInput>>;
+  OR: Maybe<Array<TCustomApplicationWhereInput>>;
+  NOT: Maybe<Array<TCustomApplicationWhereInput>>;
 };
 
-export type TRestrictedCustomApplicationContactPerson = {
-  __typename?: 'RestrictedCustomApplicationContactPerson';
-  email: Scalars['String'];
-  consents: Array<TCustomApplicationContactConsent>;
-};
-
-export enum TCustomApplicationContactConsent {
-  BetaTester = 'BETA_TESTER',
-  CommunityInitiatives = 'COMMUNITY_INITIATIVES',
-  LearningMaterial = 'LEARNING_MATERIAL',
-  Marketplace = 'MARKETPLACE',
-  Newsletter = 'NEWSLETTER',
-  UserResearch = 'USER_RESEARCH'
-}
-
-export type TRestrictedCustomApplicationInstallationForOrganization = {
-  __typename?: 'RestrictedCustomApplicationInstallationForOrganization';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  application: TRestrictedCustomApplicationForProject;
-  installInAllProjects: Scalars['Boolean'];
-  projects: Maybe<Array<TProjectExtension>>;
-};
-
-export type TOrdersListView = {
-  __typename?: 'OrdersListView';
+export type TCustomersListView = {
+  __typename?: 'CustomersListView';
   id: Scalars['ID'];
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
@@ -744,7 +987,7 @@ export type TOrdersListView = {
 };
 
 
-export type TOrdersListView_NameAllLocalesArgs = {
+export type TCustomersListView_NameAllLocalesArgs = {
   where: Maybe<TLocalizedFieldWhereInput>;
   orderBy: Maybe<TLocalizedFieldOrderByInput>;
   skip: Maybe<Scalars['Int']>;
@@ -755,7 +998,7 @@ export type TOrdersListView_NameAllLocalesArgs = {
 };
 
 
-export type TOrdersListView_FiltersArgs = {
+export type TCustomersListView_FiltersArgs = {
   where: Maybe<TFilterValuesWhereInput>;
   orderBy: Maybe<TFilterValuesOrderByInput>;
   skip: Maybe<Scalars['Int']>;
@@ -765,26 +1008,180 @@ export type TOrdersListView_FiltersArgs = {
   last: Maybe<Scalars['Int']>;
 };
 
-export type TTable = {
-  __typename?: 'Table';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
+export type TCustomersListViewInput = {
+  search: Maybe<Scalars['String']>;
+  nameAllLocales: Array<TLocalizedFieldCreateInput>;
+  table: Maybe<TCustomersListViewTableInput>;
+  sort: TSortCreateInput;
+  filters: Array<TFilterValuesCreateInput>;
+};
+
+export type TCustomersListViewTableInput = {
   visibleColumns: Array<Scalars['String']>;
 };
 
-export type TSort = {
-  __typename?: 'Sort';
+export type TDashboardView = {
+  __typename?: 'DashboardView';
   id: Scalars['ID'];
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
-  key: Scalars['String'];
-  order: TSortOrder;
+  userId: Scalars['String'];
+  projectKey: Scalars['String'];
+  nameAllLocales: Maybe<Array<TLocalizedField>>;
+  isActive: Scalars['Boolean'];
+  layout: Maybe<Array<TLayoutCard>>;
 };
 
-export enum TSortOrder {
-  Asc = 'Asc',
-  Desc = 'Desc'
+
+export type TDashboardView_NameAllLocalesArgs = {
+  where: Maybe<TLocalizedFieldWhereInput>;
+  orderBy: Maybe<TLocalizedFieldOrderByInput>;
+  skip: Maybe<Scalars['Int']>;
+  after: Maybe<Scalars['String']>;
+  before: Maybe<Scalars['String']>;
+  first: Maybe<Scalars['Int']>;
+  last: Maybe<Scalars['Int']>;
+};
+
+
+export type TDashboardView_LayoutArgs = {
+  where: Maybe<TLayoutCardWhereInput>;
+  orderBy: Maybe<TLayoutCardOrderByInput>;
+  skip: Maybe<Scalars['Int']>;
+  after: Maybe<Scalars['String']>;
+  before: Maybe<Scalars['String']>;
+  first: Maybe<Scalars['Int']>;
+  last: Maybe<Scalars['Int']>;
+};
+
+export type TDashboardViewInput = {
+  nameAllLocales: Array<TLocalizedFieldCreateInput>;
+  layout: Array<TLayoutCardInput>;
+};
+
+export enum TDateFilterType {
+  Day = 'DAY',
+  Week = 'WEEK',
+  Month = 'MONTH',
+  Quarter = 'QUARTER',
+  Year = 'YEAR',
+  Custom = 'CUSTOM'
+}
+
+
+export type TDiscountCodesListView = {
+  __typename?: 'DiscountCodesListView';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
+  projectKey: Scalars['String'];
+  visibleColumns: Array<Scalars['String']>;
+};
+
+export type TDiscountCodesListViewInput = {
+  visibleColumns: Array<Scalars['String']>;
+};
+
+export type TDiscountsCustomView = {
+  __typename?: 'DiscountsCustomView';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
+  projectKey: Scalars['String'];
+  nameAllLocales: Maybe<Array<TLocalizedField>>;
+  isActive: Maybe<Scalars['Boolean']>;
+  type: TDiscountType;
+  search: Maybe<Scalars['String']>;
+  table: Maybe<TTable>;
+  sort: Maybe<TSort>;
+  filters: Maybe<Array<TFilterValues>>;
+};
+
+
+export type TDiscountsCustomView_NameAllLocalesArgs = {
+  where: Maybe<TLocalizedFieldWhereInput>;
+  orderBy: Maybe<TLocalizedFieldOrderByInput>;
+  skip: Maybe<Scalars['Int']>;
+  after: Maybe<Scalars['String']>;
+  before: Maybe<Scalars['String']>;
+  first: Maybe<Scalars['Int']>;
+  last: Maybe<Scalars['Int']>;
+};
+
+
+export type TDiscountsCustomView_FiltersArgs = {
+  where: Maybe<TFilterValuesWhereInput>;
+  orderBy: Maybe<TFilterValuesOrderByInput>;
+  skip: Maybe<Scalars['Int']>;
+  after: Maybe<Scalars['String']>;
+  before: Maybe<Scalars['String']>;
+  first: Maybe<Scalars['Int']>;
+  last: Maybe<Scalars['Int']>;
+};
+
+export type TDiscountsCustomViewInput = {
+  search: Maybe<Scalars['String']>;
+  nameAllLocales: Array<TLocalizedFieldCreateInput>;
+  table: Maybe<TOrdersListViewTableInput>;
+  sort: TSortCreateInput;
+  filters: Array<TFilterValuesCreateInput>;
+};
+
+export enum TDiscountType {
+  ProductDiscount = 'ProductDiscount',
+  CartDiscount = 'CartDiscount',
+  DiscountCode = 'DiscountCode'
+}
+
+export enum TExistence {
+  All = 'All',
+  Filled = 'Filled',
+  Empty = 'Empty'
+}
+
+export enum TFilterType {
+  EqualTo = 'EqualTo',
+  In = 'In',
+  LessThan = 'LessThan',
+  Missing = 'Missing',
+  MissingIn = 'MissingIn',
+  MoreThan = 'MoreThan',
+  Range = 'Range',
+  CustomField = 'CustomField'
+}
+
+export type TFilterValues = {
+  __typename?: 'FilterValues';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  target: Scalars['String'];
+  type: TFilterType;
+  json: Scalars['Json'];
+};
+
+export type TFilterValuesCreateInput = {
+  id: Maybe<Scalars['ID']>;
+  target: Scalars['String'];
+  type: TFilterType;
+  json: Scalars['Json'];
+};
+
+export enum TFilterValuesOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  TargetAsc = 'target_ASC',
+  TargetDesc = 'target_DESC',
+  TypeAsc = 'type_ASC',
+  TypeDesc = 'type_DESC',
+  JsonAsc = 'json_ASC',
+  JsonDesc = 'json_DESC'
 }
 
 export type TFilterValuesWhereInput = {
@@ -841,285 +1238,226 @@ export type TFilterValuesWhereInput = {
   NOT: Maybe<Array<TFilterValuesWhereInput>>;
 };
 
-export enum TFilterType {
-  EqualTo = 'EqualTo',
-  In = 'In',
-  LessThan = 'LessThan',
-  Missing = 'Missing',
-  MissingIn = 'MissingIn',
-  MoreThan = 'MoreThan',
-  Range = 'Range',
-  CustomField = 'CustomField'
-}
+export type TImageRegex = {
+  __typename?: 'ImageRegex';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  small: Maybe<TImageRegexOptions>;
+  thumb: Maybe<TImageRegexOptions>;
+};
 
-export enum TFilterValuesOrderByInput {
+export type TImageRegexDataInput = {
+  small: Maybe<TImageRegexOptionsInput>;
+  thumb: Maybe<TImageRegexOptionsInput>;
+};
+
+export type TImageRegexOptions = {
+  __typename?: 'ImageRegexOptions';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  flag: Scalars['String'];
+  search: Scalars['String'];
+  replace: Scalars['String'];
+};
+
+export type TImageRegexOptionsInput = {
+  flag: Scalars['String'];
+  search: Scalars['String'];
+  replace: Scalars['String'];
+};
+
+export type TImageRegexOptionsWhereInput = {
+  id: Maybe<Scalars['ID']>;
+  id_not: Maybe<Scalars['ID']>;
+  id_in: Maybe<Array<Scalars['ID']>>;
+  id_not_in: Maybe<Array<Scalars['ID']>>;
+  id_lt: Maybe<Scalars['ID']>;
+  id_lte: Maybe<Scalars['ID']>;
+  id_gt: Maybe<Scalars['ID']>;
+  id_gte: Maybe<Scalars['ID']>;
+  id_contains: Maybe<Scalars['ID']>;
+  id_not_contains: Maybe<Scalars['ID']>;
+  id_starts_with: Maybe<Scalars['ID']>;
+  id_not_starts_with: Maybe<Scalars['ID']>;
+  id_ends_with: Maybe<Scalars['ID']>;
+  id_not_ends_with: Maybe<Scalars['ID']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  createdAt_not: Maybe<Scalars['DateTime']>;
+  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_lt: Maybe<Scalars['DateTime']>;
+  createdAt_lte: Maybe<Scalars['DateTime']>;
+  createdAt_gt: Maybe<Scalars['DateTime']>;
+  createdAt_gte: Maybe<Scalars['DateTime']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  updatedAt_not: Maybe<Scalars['DateTime']>;
+  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_lt: Maybe<Scalars['DateTime']>;
+  updatedAt_lte: Maybe<Scalars['DateTime']>;
+  updatedAt_gt: Maybe<Scalars['DateTime']>;
+  updatedAt_gte: Maybe<Scalars['DateTime']>;
+  flag: Maybe<Scalars['String']>;
+  flag_not: Maybe<Scalars['String']>;
+  flag_in: Maybe<Array<Scalars['String']>>;
+  flag_not_in: Maybe<Array<Scalars['String']>>;
+  flag_lt: Maybe<Scalars['String']>;
+  flag_lte: Maybe<Scalars['String']>;
+  flag_gt: Maybe<Scalars['String']>;
+  flag_gte: Maybe<Scalars['String']>;
+  flag_contains: Maybe<Scalars['String']>;
+  flag_not_contains: Maybe<Scalars['String']>;
+  flag_starts_with: Maybe<Scalars['String']>;
+  flag_not_starts_with: Maybe<Scalars['String']>;
+  flag_ends_with: Maybe<Scalars['String']>;
+  flag_not_ends_with: Maybe<Scalars['String']>;
+  search: Maybe<Scalars['String']>;
+  search_not: Maybe<Scalars['String']>;
+  search_in: Maybe<Array<Scalars['String']>>;
+  search_not_in: Maybe<Array<Scalars['String']>>;
+  search_lt: Maybe<Scalars['String']>;
+  search_lte: Maybe<Scalars['String']>;
+  search_gt: Maybe<Scalars['String']>;
+  search_gte: Maybe<Scalars['String']>;
+  search_contains: Maybe<Scalars['String']>;
+  search_not_contains: Maybe<Scalars['String']>;
+  search_starts_with: Maybe<Scalars['String']>;
+  search_not_starts_with: Maybe<Scalars['String']>;
+  search_ends_with: Maybe<Scalars['String']>;
+  search_not_ends_with: Maybe<Scalars['String']>;
+  replace: Maybe<Scalars['String']>;
+  replace_not: Maybe<Scalars['String']>;
+  replace_in: Maybe<Array<Scalars['String']>>;
+  replace_not_in: Maybe<Array<Scalars['String']>>;
+  replace_lt: Maybe<Scalars['String']>;
+  replace_lte: Maybe<Scalars['String']>;
+  replace_gt: Maybe<Scalars['String']>;
+  replace_gte: Maybe<Scalars['String']>;
+  replace_contains: Maybe<Scalars['String']>;
+  replace_not_contains: Maybe<Scalars['String']>;
+  replace_starts_with: Maybe<Scalars['String']>;
+  replace_not_starts_with: Maybe<Scalars['String']>;
+  replace_ends_with: Maybe<Scalars['String']>;
+  replace_not_ends_with: Maybe<Scalars['String']>;
+  AND: Maybe<Array<TImageRegexOptionsWhereInput>>;
+  OR: Maybe<Array<TImageRegexOptionsWhereInput>>;
+  NOT: Maybe<Array<TImageRegexOptionsWhereInput>>;
+};
+
+export type TImageRegexWhereInput = {
+  id: Maybe<Scalars['ID']>;
+  id_not: Maybe<Scalars['ID']>;
+  id_in: Maybe<Array<Scalars['ID']>>;
+  id_not_in: Maybe<Array<Scalars['ID']>>;
+  id_lt: Maybe<Scalars['ID']>;
+  id_lte: Maybe<Scalars['ID']>;
+  id_gt: Maybe<Scalars['ID']>;
+  id_gte: Maybe<Scalars['ID']>;
+  id_contains: Maybe<Scalars['ID']>;
+  id_not_contains: Maybe<Scalars['ID']>;
+  id_starts_with: Maybe<Scalars['ID']>;
+  id_not_starts_with: Maybe<Scalars['ID']>;
+  id_ends_with: Maybe<Scalars['ID']>;
+  id_not_ends_with: Maybe<Scalars['ID']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  createdAt_not: Maybe<Scalars['DateTime']>;
+  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_lt: Maybe<Scalars['DateTime']>;
+  createdAt_lte: Maybe<Scalars['DateTime']>;
+  createdAt_gt: Maybe<Scalars['DateTime']>;
+  createdAt_gte: Maybe<Scalars['DateTime']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  updatedAt_not: Maybe<Scalars['DateTime']>;
+  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_lt: Maybe<Scalars['DateTime']>;
+  updatedAt_lte: Maybe<Scalars['DateTime']>;
+  updatedAt_gt: Maybe<Scalars['DateTime']>;
+  updatedAt_gte: Maybe<Scalars['DateTime']>;
+  small: Maybe<TImageRegexOptionsWhereInput>;
+  thumb: Maybe<TImageRegexOptionsWhereInput>;
+  AND: Maybe<Array<TImageRegexWhereInput>>;
+  OR: Maybe<Array<TImageRegexWhereInput>>;
+  NOT: Maybe<Array<TImageRegexWhereInput>>;
+};
+
+
+export type TLayoutCard = {
+  __typename?: 'LayoutCard';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  key: TMetricCardType;
+  nameAllLocales: Maybe<Array<TLocalizedField>>;
+  height: Scalars['Int'];
+  width: Scalars['Int'];
+  minHeight: Maybe<Scalars['Int']>;
+  minWidth: Maybe<Scalars['Int']>;
+  xPosition: Scalars['Int'];
+  yPosition: Scalars['Int'];
+  topProductsConfiguration: Maybe<TTopProductsConfiguration>;
+  salesPerformanceConfiguration: Maybe<TSalesPerformanceConfiguration>;
+  totalSalesConfiguration: Maybe<TTotalSalesConfiguration>;
+  averageOrderValueConfiguration: Maybe<TAverageOrderValueConfiguration>;
+  resourcesNumbersConfiguration: Maybe<TResourcesNumbersConfiguration>;
+  orderStatusConfiguration: Maybe<TOrderStatusConfiguration>;
+  totalOrdersConfiguration: Maybe<TTotalOrdersConfiguration>;
+};
+
+
+export type TLayoutCard_NameAllLocalesArgs = {
+  where: Maybe<TLocalizedFieldWhereInput>;
+  orderBy: Maybe<TLocalizedFieldOrderByInput>;
+  skip: Maybe<Scalars['Int']>;
+  after: Maybe<Scalars['String']>;
+  before: Maybe<Scalars['String']>;
+  first: Maybe<Scalars['Int']>;
+  last: Maybe<Scalars['Int']>;
+};
+
+export type TLayoutCardInput = {
+  key: TMetricCardType;
+  nameAllLocales: Maybe<Array<TLocalizedFieldCreateInput>>;
+  height: Scalars['Int'];
+  width: Scalars['Int'];
+  minHeight: Maybe<Scalars['Int']>;
+  minWidth: Maybe<Scalars['Int']>;
+  xPosition: Scalars['Int'];
+  yPosition: Scalars['Int'];
+  topProductsConfiguration: Maybe<TTopProductsConfigurationInput>;
+  salesPerformanceConfiguration: Maybe<TSalesPerformanceConfigurationInput>;
+  totalSalesConfiguration: Maybe<TTotalSalesConfigurationInput>;
+  averageOrderValueConfiguration: Maybe<TAverageOrderValueConfigurationInput>;
+  resourcesNumbersConfiguration: Maybe<TResourcesNumbersConfigurationInput>;
+  orderStatusConfiguration: Maybe<TOrderStatusConfigurationInput>;
+  totalOrdersConfiguration: Maybe<TTotalOrdersConfigurationInput>;
+};
+
+export enum TLayoutCardOrderByInput {
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   CreatedAtAsc = 'createdAt_ASC',
   CreatedAtDesc = 'createdAt_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
   UpdatedAtDesc = 'updatedAt_DESC',
-  TargetAsc = 'target_ASC',
-  TargetDesc = 'target_DESC',
-  TypeAsc = 'type_ASC',
-  TypeDesc = 'type_DESC',
-  JsonAsc = 'json_ASC',
-  JsonDesc = 'json_DESC'
+  KeyAsc = 'key_ASC',
+  KeyDesc = 'key_DESC',
+  HeightAsc = 'height_ASC',
+  HeightDesc = 'height_DESC',
+  WidthAsc = 'width_ASC',
+  WidthDesc = 'width_DESC',
+  MinHeightAsc = 'minHeight_ASC',
+  MinHeightDesc = 'minHeight_DESC',
+  MinWidthAsc = 'minWidth_ASC',
+  MinWidthDesc = 'minWidth_DESC',
+  XPositionAsc = 'xPosition_ASC',
+  XPositionDesc = 'xPosition_DESC',
+  YPositionAsc = 'yPosition_ASC',
+  YPositionDesc = 'yPosition_DESC'
 }
-
-export type TFilterValues = {
-  __typename?: 'FilterValues';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  target: Scalars['String'];
-  type: TFilterType;
-  json: Scalars['Json'];
-};
-
-
-export type TDiscountsCustomView = {
-  __typename?: 'DiscountsCustomView';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  userId: Scalars['String'];
-  projectKey: Scalars['String'];
-  nameAllLocales: Maybe<Array<TLocalizedField>>;
-  isActive: Maybe<Scalars['Boolean']>;
-  type: TDiscountType;
-  search: Maybe<Scalars['String']>;
-  table: Maybe<TTable>;
-  sort: Maybe<TSort>;
-  filters: Maybe<Array<TFilterValues>>;
-};
-
-
-export type TDiscountsCustomView_NameAllLocalesArgs = {
-  where: Maybe<TLocalizedFieldWhereInput>;
-  orderBy: Maybe<TLocalizedFieldOrderByInput>;
-  skip: Maybe<Scalars['Int']>;
-  after: Maybe<Scalars['String']>;
-  before: Maybe<Scalars['String']>;
-  first: Maybe<Scalars['Int']>;
-  last: Maybe<Scalars['Int']>;
-};
-
-
-export type TDiscountsCustomView_FiltersArgs = {
-  where: Maybe<TFilterValuesWhereInput>;
-  orderBy: Maybe<TFilterValuesOrderByInput>;
-  skip: Maybe<Scalars['Int']>;
-  after: Maybe<Scalars['String']>;
-  before: Maybe<Scalars['String']>;
-  first: Maybe<Scalars['Int']>;
-  last: Maybe<Scalars['Int']>;
-};
-
-export enum TDiscountType {
-  ProductDiscount = 'ProductDiscount',
-  CartDiscount = 'CartDiscount',
-  DiscountCode = 'DiscountCode'
-}
-
-export type TPimSearchListView = {
-  __typename?: 'PimSearchListView';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  userId: Scalars['String'];
-  projectKey: Scalars['String'];
-  nameAllLocales: Maybe<Array<TLocalizedField>>;
-  isActive: Maybe<Scalars['Boolean']>;
-  search: Maybe<Scalars['String']>;
-  table: Maybe<TTable>;
-  sort: Maybe<TSort>;
-  filters: Maybe<Array<TFilterValues>>;
-};
-
-
-export type TPimSearchListView_NameAllLocalesArgs = {
-  where: Maybe<TLocalizedFieldWhereInput>;
-  orderBy: Maybe<TLocalizedFieldOrderByInput>;
-  skip: Maybe<Scalars['Int']>;
-  after: Maybe<Scalars['String']>;
-  before: Maybe<Scalars['String']>;
-  first: Maybe<Scalars['Int']>;
-  last: Maybe<Scalars['Int']>;
-};
-
-
-export type TPimSearchListView_FiltersArgs = {
-  where: Maybe<TFilterValuesWhereInput>;
-  orderBy: Maybe<TFilterValuesOrderByInput>;
-  skip: Maybe<Scalars['Int']>;
-  after: Maybe<Scalars['String']>;
-  before: Maybe<Scalars['String']>;
-  first: Maybe<Scalars['Int']>;
-  last: Maybe<Scalars['Int']>;
-};
-
-export type TProductTypeAttributesView = {
-  __typename?: 'ProductTypeAttributesView';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  userId: Scalars['String'];
-  projectKey: Scalars['String'];
-  nameAllLocales: Maybe<Array<TLocalizedField>>;
-  productTypeId: Scalars['String'];
-  isActive: Scalars['Boolean'];
-  isVariant: Maybe<Scalars['Boolean']>;
-  pinnedAttributes: Array<Scalars['String']>;
-  searchTerm: Maybe<Scalars['String']>;
-  existence: Maybe<TExistence>;
-};
-
-
-export type TProductTypeAttributesView_NameAllLocalesArgs = {
-  where: Maybe<TLocalizedFieldWhereInput>;
-  orderBy: Maybe<TLocalizedFieldOrderByInput>;
-  skip: Maybe<Scalars['Int']>;
-  after: Maybe<Scalars['String']>;
-  before: Maybe<Scalars['String']>;
-  first: Maybe<Scalars['Int']>;
-  last: Maybe<Scalars['Int']>;
-};
-
-export enum TExistence {
-  All = 'All',
-  Filled = 'Filled',
-  Empty = 'Empty'
-}
-
-export type TVariantPricesListView = {
-  __typename?: 'VariantPricesListView';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  userId: Scalars['String'];
-  projectKey: Scalars['String'];
-  visibleColumns: Array<Scalars['String']>;
-};
-
-export type TCustomersListView = {
-  __typename?: 'CustomersListView';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  userId: Scalars['String'];
-  projectKey: Scalars['String'];
-  nameAllLocales: Maybe<Array<TLocalizedField>>;
-  isActive: Maybe<Scalars['Boolean']>;
-  search: Maybe<Scalars['String']>;
-  table: Maybe<TTable>;
-  sort: Maybe<TSort>;
-  filters: Maybe<Array<TFilterValues>>;
-};
-
-
-export type TCustomersListView_NameAllLocalesArgs = {
-  where: Maybe<TLocalizedFieldWhereInput>;
-  orderBy: Maybe<TLocalizedFieldOrderByInput>;
-  skip: Maybe<Scalars['Int']>;
-  after: Maybe<Scalars['String']>;
-  before: Maybe<Scalars['String']>;
-  first: Maybe<Scalars['Int']>;
-  last: Maybe<Scalars['Int']>;
-};
-
-
-export type TCustomersListView_FiltersArgs = {
-  where: Maybe<TFilterValuesWhereInput>;
-  orderBy: Maybe<TFilterValuesOrderByInput>;
-  skip: Maybe<Scalars['Int']>;
-  after: Maybe<Scalars['String']>;
-  before: Maybe<Scalars['String']>;
-  first: Maybe<Scalars['Int']>;
-  last: Maybe<Scalars['Int']>;
-};
-
-export enum TRuleBuilderType {
-  ProductDiscount = 'ProductDiscount',
-  CartDiscount = 'CartDiscount',
-  CartTargetDiscount = 'CartTargetDiscount'
-}
-
-export type TRuleBuilderQuickSelectionValues = {
-  __typename?: 'RuleBuilderQuickSelectionValues';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  userId: Scalars['String'];
-  projectKey: Scalars['String'];
-  ruleBuilderType: TRuleBuilderType;
-  functions: Array<Scalars['String']>;
-  predicates: Array<Scalars['String']>;
-};
-
-export type TCartDiscountsListView = {
-  __typename?: 'CartDiscountsListView';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  userId: Scalars['String'];
-  projectKey: Scalars['String'];
-  visibleColumns: Array<Scalars['String']>;
-};
-
-export type TProductDiscountsListView = {
-  __typename?: 'ProductDiscountsListView';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  userId: Scalars['String'];
-  projectKey: Scalars['String'];
-  visibleColumns: Array<Scalars['String']>;
-};
-
-export type TDiscountCodesListView = {
-  __typename?: 'DiscountCodesListView';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  userId: Scalars['String'];
-  projectKey: Scalars['String'];
-  visibleColumns: Array<Scalars['String']>;
-};
-
-export type TDashboardView = {
-  __typename?: 'DashboardView';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  userId: Scalars['String'];
-  projectKey: Scalars['String'];
-  nameAllLocales: Maybe<Array<TLocalizedField>>;
-  isActive: Scalars['Boolean'];
-  layout: Maybe<Array<TLayoutCard>>;
-};
-
-
-export type TDashboardView_NameAllLocalesArgs = {
-  where: Maybe<TLocalizedFieldWhereInput>;
-  orderBy: Maybe<TLocalizedFieldOrderByInput>;
-  skip: Maybe<Scalars['Int']>;
-  after: Maybe<Scalars['String']>;
-  before: Maybe<Scalars['String']>;
-  first: Maybe<Scalars['Int']>;
-  last: Maybe<Scalars['Int']>;
-};
-
-
-export type TDashboardView_LayoutArgs = {
-  where: Maybe<TLayoutCardWhereInput>;
-  orderBy: Maybe<TLayoutCardOrderByInput>;
-  skip: Maybe<Scalars['Int']>;
-  after: Maybe<Scalars['String']>;
-  before: Maybe<Scalars['String']>;
-  first: Maybe<Scalars['Int']>;
-  last: Maybe<Scalars['Int']>;
-};
 
 export type TLayoutCardWhereInput = {
   id: Maybe<Scalars['ID']>;
@@ -1219,6 +1557,103 @@ export type TLayoutCardWhereInput = {
   NOT: Maybe<Array<TLayoutCardWhereInput>>;
 };
 
+export type TLocalizedField = {
+  __typename?: 'LocalizedField';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  locale: Scalars['String'];
+  value: Scalars['String'];
+};
+
+export type TLocalizedFieldCreateInput = {
+  id: Maybe<Scalars['ID']>;
+  locale: Scalars['String'];
+  value: Scalars['String'];
+};
+
+export type TLocalizedFieldDataInput = {
+  locale: Scalars['String'];
+  value: Scalars['String'];
+};
+
+export enum TLocalizedFieldOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  LocaleAsc = 'locale_ASC',
+  LocaleDesc = 'locale_DESC',
+  ValueAsc = 'value_ASC',
+  ValueDesc = 'value_DESC'
+}
+
+export type TLocalizedFieldWhereInput = {
+  id: Maybe<Scalars['ID']>;
+  id_not: Maybe<Scalars['ID']>;
+  id_in: Maybe<Array<Scalars['ID']>>;
+  id_not_in: Maybe<Array<Scalars['ID']>>;
+  id_lt: Maybe<Scalars['ID']>;
+  id_lte: Maybe<Scalars['ID']>;
+  id_gt: Maybe<Scalars['ID']>;
+  id_gte: Maybe<Scalars['ID']>;
+  id_contains: Maybe<Scalars['ID']>;
+  id_not_contains: Maybe<Scalars['ID']>;
+  id_starts_with: Maybe<Scalars['ID']>;
+  id_not_starts_with: Maybe<Scalars['ID']>;
+  id_ends_with: Maybe<Scalars['ID']>;
+  id_not_ends_with: Maybe<Scalars['ID']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  createdAt_not: Maybe<Scalars['DateTime']>;
+  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_lt: Maybe<Scalars['DateTime']>;
+  createdAt_lte: Maybe<Scalars['DateTime']>;
+  createdAt_gt: Maybe<Scalars['DateTime']>;
+  createdAt_gte: Maybe<Scalars['DateTime']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  updatedAt_not: Maybe<Scalars['DateTime']>;
+  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_lt: Maybe<Scalars['DateTime']>;
+  updatedAt_lte: Maybe<Scalars['DateTime']>;
+  updatedAt_gt: Maybe<Scalars['DateTime']>;
+  updatedAt_gte: Maybe<Scalars['DateTime']>;
+  locale: Maybe<Scalars['String']>;
+  locale_not: Maybe<Scalars['String']>;
+  locale_in: Maybe<Array<Scalars['String']>>;
+  locale_not_in: Maybe<Array<Scalars['String']>>;
+  locale_lt: Maybe<Scalars['String']>;
+  locale_lte: Maybe<Scalars['String']>;
+  locale_gt: Maybe<Scalars['String']>;
+  locale_gte: Maybe<Scalars['String']>;
+  locale_contains: Maybe<Scalars['String']>;
+  locale_not_contains: Maybe<Scalars['String']>;
+  locale_starts_with: Maybe<Scalars['String']>;
+  locale_not_starts_with: Maybe<Scalars['String']>;
+  locale_ends_with: Maybe<Scalars['String']>;
+  locale_not_ends_with: Maybe<Scalars['String']>;
+  value: Maybe<Scalars['String']>;
+  value_not: Maybe<Scalars['String']>;
+  value_in: Maybe<Array<Scalars['String']>>;
+  value_not_in: Maybe<Array<Scalars['String']>>;
+  value_lt: Maybe<Scalars['String']>;
+  value_lte: Maybe<Scalars['String']>;
+  value_gt: Maybe<Scalars['String']>;
+  value_gte: Maybe<Scalars['String']>;
+  value_contains: Maybe<Scalars['String']>;
+  value_not_contains: Maybe<Scalars['String']>;
+  value_starts_with: Maybe<Scalars['String']>;
+  value_not_starts_with: Maybe<Scalars['String']>;
+  value_ends_with: Maybe<Scalars['String']>;
+  value_not_ends_with: Maybe<Scalars['String']>;
+  AND: Maybe<Array<TLocalizedFieldWhereInput>>;
+  OR: Maybe<Array<TLocalizedFieldWhereInput>>;
+  NOT: Maybe<Array<TLocalizedFieldWhereInput>>;
+};
+
 export enum TMetricCardType {
   SalesPerformance = 'SALES_PERFORMANCE',
   TotalSales = 'TOTAL_SALES',
@@ -1228,514 +1663,6 @@ export enum TMetricCardType {
   OrderStatus = 'ORDER_STATUS',
   TotalOrders = 'TOTAL_ORDERS'
 }
-
-export type TTopProductsConfigurationWhereInput = {
-  id: Maybe<Scalars['ID']>;
-  id_not: Maybe<Scalars['ID']>;
-  id_in: Maybe<Array<Scalars['ID']>>;
-  id_not_in: Maybe<Array<Scalars['ID']>>;
-  id_lt: Maybe<Scalars['ID']>;
-  id_lte: Maybe<Scalars['ID']>;
-  id_gt: Maybe<Scalars['ID']>;
-  id_gte: Maybe<Scalars['ID']>;
-  id_contains: Maybe<Scalars['ID']>;
-  id_not_contains: Maybe<Scalars['ID']>;
-  id_starts_with: Maybe<Scalars['ID']>;
-  id_not_starts_with: Maybe<Scalars['ID']>;
-  id_ends_with: Maybe<Scalars['ID']>;
-  id_not_ends_with: Maybe<Scalars['ID']>;
-  createdAt: Maybe<Scalars['DateTime']>;
-  createdAt_not: Maybe<Scalars['DateTime']>;
-  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_lt: Maybe<Scalars['DateTime']>;
-  createdAt_lte: Maybe<Scalars['DateTime']>;
-  createdAt_gt: Maybe<Scalars['DateTime']>;
-  createdAt_gte: Maybe<Scalars['DateTime']>;
-  updatedAt: Maybe<Scalars['DateTime']>;
-  updatedAt_not: Maybe<Scalars['DateTime']>;
-  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt: Maybe<Scalars['DateTime']>;
-  updatedAt_lte: Maybe<Scalars['DateTime']>;
-  updatedAt_gt: Maybe<Scalars['DateTime']>;
-  updatedAt_gte: Maybe<Scalars['DateTime']>;
-  bestSellingLimit: Maybe<TBestSellingLimit>;
-  bestSellingLimit_not: Maybe<TBestSellingLimit>;
-  bestSellingLimit_in: Maybe<Array<TBestSellingLimit>>;
-  bestSellingLimit_not_in: Maybe<Array<TBestSellingLimit>>;
-  AND: Maybe<Array<TTopProductsConfigurationWhereInput>>;
-  OR: Maybe<Array<TTopProductsConfigurationWhereInput>>;
-  NOT: Maybe<Array<TTopProductsConfigurationWhereInput>>;
-};
-
-export enum TBestSellingLimit {
-  Five = 'FIVE',
-  Ten = 'TEN',
-  Fifteen = 'FIFTEEN'
-}
-
-export type TSalesPerformanceConfigurationWhereInput = {
-  id: Maybe<Scalars['ID']>;
-  id_not: Maybe<Scalars['ID']>;
-  id_in: Maybe<Array<Scalars['ID']>>;
-  id_not_in: Maybe<Array<Scalars['ID']>>;
-  id_lt: Maybe<Scalars['ID']>;
-  id_lte: Maybe<Scalars['ID']>;
-  id_gt: Maybe<Scalars['ID']>;
-  id_gte: Maybe<Scalars['ID']>;
-  id_contains: Maybe<Scalars['ID']>;
-  id_not_contains: Maybe<Scalars['ID']>;
-  id_starts_with: Maybe<Scalars['ID']>;
-  id_not_starts_with: Maybe<Scalars['ID']>;
-  id_ends_with: Maybe<Scalars['ID']>;
-  id_not_ends_with: Maybe<Scalars['ID']>;
-  createdAt: Maybe<Scalars['DateTime']>;
-  createdAt_not: Maybe<Scalars['DateTime']>;
-  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_lt: Maybe<Scalars['DateTime']>;
-  createdAt_lte: Maybe<Scalars['DateTime']>;
-  createdAt_gt: Maybe<Scalars['DateTime']>;
-  createdAt_gte: Maybe<Scalars['DateTime']>;
-  updatedAt: Maybe<Scalars['DateTime']>;
-  updatedAt_not: Maybe<Scalars['DateTime']>;
-  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt: Maybe<Scalars['DateTime']>;
-  updatedAt_lte: Maybe<Scalars['DateTime']>;
-  updatedAt_gt: Maybe<Scalars['DateTime']>;
-  updatedAt_gte: Maybe<Scalars['DateTime']>;
-  showPreviousTimeframe: Maybe<Scalars['Boolean']>;
-  showPreviousTimeframe_not: Maybe<Scalars['Boolean']>;
-  dateFrom: Maybe<Scalars['DateTime']>;
-  dateFrom_not: Maybe<Scalars['DateTime']>;
-  dateFrom_in: Maybe<Array<Scalars['DateTime']>>;
-  dateFrom_not_in: Maybe<Array<Scalars['DateTime']>>;
-  dateFrom_lt: Maybe<Scalars['DateTime']>;
-  dateFrom_lte: Maybe<Scalars['DateTime']>;
-  dateFrom_gt: Maybe<Scalars['DateTime']>;
-  dateFrom_gte: Maybe<Scalars['DateTime']>;
-  dateTo: Maybe<Scalars['DateTime']>;
-  dateTo_not: Maybe<Scalars['DateTime']>;
-  dateTo_in: Maybe<Array<Scalars['DateTime']>>;
-  dateTo_not_in: Maybe<Array<Scalars['DateTime']>>;
-  dateTo_lt: Maybe<Scalars['DateTime']>;
-  dateTo_lte: Maybe<Scalars['DateTime']>;
-  dateTo_gt: Maybe<Scalars['DateTime']>;
-  dateTo_gte: Maybe<Scalars['DateTime']>;
-  dateFilterType: Maybe<TDateFilterType>;
-  dateFilterType_not: Maybe<TDateFilterType>;
-  dateFilterType_in: Maybe<Array<TDateFilterType>>;
-  dateFilterType_not_in: Maybe<Array<TDateFilterType>>;
-  AND: Maybe<Array<TSalesPerformanceConfigurationWhereInput>>;
-  OR: Maybe<Array<TSalesPerformanceConfigurationWhereInput>>;
-  NOT: Maybe<Array<TSalesPerformanceConfigurationWhereInput>>;
-};
-
-export enum TDateFilterType {
-  Day = 'DAY',
-  Week = 'WEEK',
-  Month = 'MONTH',
-  Quarter = 'QUARTER',
-  Year = 'YEAR',
-  Custom = 'CUSTOM'
-}
-
-export type TTotalSalesConfigurationWhereInput = {
-  id: Maybe<Scalars['ID']>;
-  id_not: Maybe<Scalars['ID']>;
-  id_in: Maybe<Array<Scalars['ID']>>;
-  id_not_in: Maybe<Array<Scalars['ID']>>;
-  id_lt: Maybe<Scalars['ID']>;
-  id_lte: Maybe<Scalars['ID']>;
-  id_gt: Maybe<Scalars['ID']>;
-  id_gte: Maybe<Scalars['ID']>;
-  id_contains: Maybe<Scalars['ID']>;
-  id_not_contains: Maybe<Scalars['ID']>;
-  id_starts_with: Maybe<Scalars['ID']>;
-  id_not_starts_with: Maybe<Scalars['ID']>;
-  id_ends_with: Maybe<Scalars['ID']>;
-  id_not_ends_with: Maybe<Scalars['ID']>;
-  createdAt: Maybe<Scalars['DateTime']>;
-  createdAt_not: Maybe<Scalars['DateTime']>;
-  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_lt: Maybe<Scalars['DateTime']>;
-  createdAt_lte: Maybe<Scalars['DateTime']>;
-  createdAt_gt: Maybe<Scalars['DateTime']>;
-  createdAt_gte: Maybe<Scalars['DateTime']>;
-  updatedAt: Maybe<Scalars['DateTime']>;
-  updatedAt_not: Maybe<Scalars['DateTime']>;
-  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt: Maybe<Scalars['DateTime']>;
-  updatedAt_lte: Maybe<Scalars['DateTime']>;
-  updatedAt_gt: Maybe<Scalars['DateTime']>;
-  updatedAt_gte: Maybe<Scalars['DateTime']>;
-  productId: Maybe<Scalars['String']>;
-  productId_not: Maybe<Scalars['String']>;
-  productId_in: Maybe<Array<Scalars['String']>>;
-  productId_not_in: Maybe<Array<Scalars['String']>>;
-  productId_lt: Maybe<Scalars['String']>;
-  productId_lte: Maybe<Scalars['String']>;
-  productId_gt: Maybe<Scalars['String']>;
-  productId_gte: Maybe<Scalars['String']>;
-  productId_contains: Maybe<Scalars['String']>;
-  productId_not_contains: Maybe<Scalars['String']>;
-  productId_starts_with: Maybe<Scalars['String']>;
-  productId_not_starts_with: Maybe<Scalars['String']>;
-  productId_ends_with: Maybe<Scalars['String']>;
-  productId_not_ends_with: Maybe<Scalars['String']>;
-  AND: Maybe<Array<TTotalSalesConfigurationWhereInput>>;
-  OR: Maybe<Array<TTotalSalesConfigurationWhereInput>>;
-  NOT: Maybe<Array<TTotalSalesConfigurationWhereInput>>;
-};
-
-export type TAverageOrderValueConfigurationWhereInput = {
-  id: Maybe<Scalars['ID']>;
-  id_not: Maybe<Scalars['ID']>;
-  id_in: Maybe<Array<Scalars['ID']>>;
-  id_not_in: Maybe<Array<Scalars['ID']>>;
-  id_lt: Maybe<Scalars['ID']>;
-  id_lte: Maybe<Scalars['ID']>;
-  id_gt: Maybe<Scalars['ID']>;
-  id_gte: Maybe<Scalars['ID']>;
-  id_contains: Maybe<Scalars['ID']>;
-  id_not_contains: Maybe<Scalars['ID']>;
-  id_starts_with: Maybe<Scalars['ID']>;
-  id_not_starts_with: Maybe<Scalars['ID']>;
-  id_ends_with: Maybe<Scalars['ID']>;
-  id_not_ends_with: Maybe<Scalars['ID']>;
-  createdAt: Maybe<Scalars['DateTime']>;
-  createdAt_not: Maybe<Scalars['DateTime']>;
-  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_lt: Maybe<Scalars['DateTime']>;
-  createdAt_lte: Maybe<Scalars['DateTime']>;
-  createdAt_gt: Maybe<Scalars['DateTime']>;
-  createdAt_gte: Maybe<Scalars['DateTime']>;
-  updatedAt: Maybe<Scalars['DateTime']>;
-  updatedAt_not: Maybe<Scalars['DateTime']>;
-  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt: Maybe<Scalars['DateTime']>;
-  updatedAt_lte: Maybe<Scalars['DateTime']>;
-  updatedAt_gt: Maybe<Scalars['DateTime']>;
-  updatedAt_gte: Maybe<Scalars['DateTime']>;
-  showPreviousTimeframe: Maybe<Scalars['Boolean']>;
-  showPreviousTimeframe_not: Maybe<Scalars['Boolean']>;
-  AND: Maybe<Array<TAverageOrderValueConfigurationWhereInput>>;
-  OR: Maybe<Array<TAverageOrderValueConfigurationWhereInput>>;
-  NOT: Maybe<Array<TAverageOrderValueConfigurationWhereInput>>;
-};
-
-export type TResourcesNumbersConfigurationWhereInput = {
-  id: Maybe<Scalars['ID']>;
-  id_not: Maybe<Scalars['ID']>;
-  id_in: Maybe<Array<Scalars['ID']>>;
-  id_not_in: Maybe<Array<Scalars['ID']>>;
-  id_lt: Maybe<Scalars['ID']>;
-  id_lte: Maybe<Scalars['ID']>;
-  id_gt: Maybe<Scalars['ID']>;
-  id_gte: Maybe<Scalars['ID']>;
-  id_contains: Maybe<Scalars['ID']>;
-  id_not_contains: Maybe<Scalars['ID']>;
-  id_starts_with: Maybe<Scalars['ID']>;
-  id_not_starts_with: Maybe<Scalars['ID']>;
-  id_ends_with: Maybe<Scalars['ID']>;
-  id_not_ends_with: Maybe<Scalars['ID']>;
-  createdAt: Maybe<Scalars['DateTime']>;
-  createdAt_not: Maybe<Scalars['DateTime']>;
-  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_lt: Maybe<Scalars['DateTime']>;
-  createdAt_lte: Maybe<Scalars['DateTime']>;
-  createdAt_gt: Maybe<Scalars['DateTime']>;
-  createdAt_gte: Maybe<Scalars['DateTime']>;
-  updatedAt: Maybe<Scalars['DateTime']>;
-  updatedAt_not: Maybe<Scalars['DateTime']>;
-  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt: Maybe<Scalars['DateTime']>;
-  updatedAt_lte: Maybe<Scalars['DateTime']>;
-  updatedAt_gt: Maybe<Scalars['DateTime']>;
-  updatedAt_gte: Maybe<Scalars['DateTime']>;
-  AND: Maybe<Array<TResourcesNumbersConfigurationWhereInput>>;
-  OR: Maybe<Array<TResourcesNumbersConfigurationWhereInput>>;
-  NOT: Maybe<Array<TResourcesNumbersConfigurationWhereInput>>;
-};
-
-export type TOrderStatusConfigurationWhereInput = {
-  id: Maybe<Scalars['ID']>;
-  id_not: Maybe<Scalars['ID']>;
-  id_in: Maybe<Array<Scalars['ID']>>;
-  id_not_in: Maybe<Array<Scalars['ID']>>;
-  id_lt: Maybe<Scalars['ID']>;
-  id_lte: Maybe<Scalars['ID']>;
-  id_gt: Maybe<Scalars['ID']>;
-  id_gte: Maybe<Scalars['ID']>;
-  id_contains: Maybe<Scalars['ID']>;
-  id_not_contains: Maybe<Scalars['ID']>;
-  id_starts_with: Maybe<Scalars['ID']>;
-  id_not_starts_with: Maybe<Scalars['ID']>;
-  id_ends_with: Maybe<Scalars['ID']>;
-  id_not_ends_with: Maybe<Scalars['ID']>;
-  createdAt: Maybe<Scalars['DateTime']>;
-  createdAt_not: Maybe<Scalars['DateTime']>;
-  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_lt: Maybe<Scalars['DateTime']>;
-  createdAt_lte: Maybe<Scalars['DateTime']>;
-  createdAt_gt: Maybe<Scalars['DateTime']>;
-  createdAt_gte: Maybe<Scalars['DateTime']>;
-  updatedAt: Maybe<Scalars['DateTime']>;
-  updatedAt_not: Maybe<Scalars['DateTime']>;
-  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt: Maybe<Scalars['DateTime']>;
-  updatedAt_lte: Maybe<Scalars['DateTime']>;
-  updatedAt_gt: Maybe<Scalars['DateTime']>;
-  updatedAt_gte: Maybe<Scalars['DateTime']>;
-  productId: Maybe<Scalars['String']>;
-  productId_not: Maybe<Scalars['String']>;
-  productId_in: Maybe<Array<Scalars['String']>>;
-  productId_not_in: Maybe<Array<Scalars['String']>>;
-  productId_lt: Maybe<Scalars['String']>;
-  productId_lte: Maybe<Scalars['String']>;
-  productId_gt: Maybe<Scalars['String']>;
-  productId_gte: Maybe<Scalars['String']>;
-  productId_contains: Maybe<Scalars['String']>;
-  productId_not_contains: Maybe<Scalars['String']>;
-  productId_starts_with: Maybe<Scalars['String']>;
-  productId_not_starts_with: Maybe<Scalars['String']>;
-  productId_ends_with: Maybe<Scalars['String']>;
-  productId_not_ends_with: Maybe<Scalars['String']>;
-  dateFrom: Maybe<Scalars['DateTime']>;
-  dateFrom_not: Maybe<Scalars['DateTime']>;
-  dateFrom_in: Maybe<Array<Scalars['DateTime']>>;
-  dateFrom_not_in: Maybe<Array<Scalars['DateTime']>>;
-  dateFrom_lt: Maybe<Scalars['DateTime']>;
-  dateFrom_lte: Maybe<Scalars['DateTime']>;
-  dateFrom_gt: Maybe<Scalars['DateTime']>;
-  dateFrom_gte: Maybe<Scalars['DateTime']>;
-  dateTo: Maybe<Scalars['DateTime']>;
-  dateTo_not: Maybe<Scalars['DateTime']>;
-  dateTo_in: Maybe<Array<Scalars['DateTime']>>;
-  dateTo_not_in: Maybe<Array<Scalars['DateTime']>>;
-  dateTo_lt: Maybe<Scalars['DateTime']>;
-  dateTo_lte: Maybe<Scalars['DateTime']>;
-  dateTo_gt: Maybe<Scalars['DateTime']>;
-  dateTo_gte: Maybe<Scalars['DateTime']>;
-  dateFilterType: Maybe<TDateFilterType>;
-  dateFilterType_not: Maybe<TDateFilterType>;
-  dateFilterType_in: Maybe<Array<TDateFilterType>>;
-  dateFilterType_not_in: Maybe<Array<TDateFilterType>>;
-  AND: Maybe<Array<TOrderStatusConfigurationWhereInput>>;
-  OR: Maybe<Array<TOrderStatusConfigurationWhereInput>>;
-  NOT: Maybe<Array<TOrderStatusConfigurationWhereInput>>;
-};
-
-export type TTotalOrdersConfigurationWhereInput = {
-  id: Maybe<Scalars['ID']>;
-  id_not: Maybe<Scalars['ID']>;
-  id_in: Maybe<Array<Scalars['ID']>>;
-  id_not_in: Maybe<Array<Scalars['ID']>>;
-  id_lt: Maybe<Scalars['ID']>;
-  id_lte: Maybe<Scalars['ID']>;
-  id_gt: Maybe<Scalars['ID']>;
-  id_gte: Maybe<Scalars['ID']>;
-  id_contains: Maybe<Scalars['ID']>;
-  id_not_contains: Maybe<Scalars['ID']>;
-  id_starts_with: Maybe<Scalars['ID']>;
-  id_not_starts_with: Maybe<Scalars['ID']>;
-  id_ends_with: Maybe<Scalars['ID']>;
-  id_not_ends_with: Maybe<Scalars['ID']>;
-  createdAt: Maybe<Scalars['DateTime']>;
-  createdAt_not: Maybe<Scalars['DateTime']>;
-  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_lt: Maybe<Scalars['DateTime']>;
-  createdAt_lte: Maybe<Scalars['DateTime']>;
-  createdAt_gt: Maybe<Scalars['DateTime']>;
-  createdAt_gte: Maybe<Scalars['DateTime']>;
-  updatedAt: Maybe<Scalars['DateTime']>;
-  updatedAt_not: Maybe<Scalars['DateTime']>;
-  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt: Maybe<Scalars['DateTime']>;
-  updatedAt_lte: Maybe<Scalars['DateTime']>;
-  updatedAt_gt: Maybe<Scalars['DateTime']>;
-  updatedAt_gte: Maybe<Scalars['DateTime']>;
-  productId: Maybe<Scalars['String']>;
-  productId_not: Maybe<Scalars['String']>;
-  productId_in: Maybe<Array<Scalars['String']>>;
-  productId_not_in: Maybe<Array<Scalars['String']>>;
-  productId_lt: Maybe<Scalars['String']>;
-  productId_lte: Maybe<Scalars['String']>;
-  productId_gt: Maybe<Scalars['String']>;
-  productId_gte: Maybe<Scalars['String']>;
-  productId_contains: Maybe<Scalars['String']>;
-  productId_not_contains: Maybe<Scalars['String']>;
-  productId_starts_with: Maybe<Scalars['String']>;
-  productId_not_starts_with: Maybe<Scalars['String']>;
-  productId_ends_with: Maybe<Scalars['String']>;
-  productId_not_ends_with: Maybe<Scalars['String']>;
-  showPreviousTimeframe: Maybe<Scalars['Boolean']>;
-  showPreviousTimeframe_not: Maybe<Scalars['Boolean']>;
-  dateFrom: Maybe<Scalars['DateTime']>;
-  dateFrom_not: Maybe<Scalars['DateTime']>;
-  dateFrom_in: Maybe<Array<Scalars['DateTime']>>;
-  dateFrom_not_in: Maybe<Array<Scalars['DateTime']>>;
-  dateFrom_lt: Maybe<Scalars['DateTime']>;
-  dateFrom_lte: Maybe<Scalars['DateTime']>;
-  dateFrom_gt: Maybe<Scalars['DateTime']>;
-  dateFrom_gte: Maybe<Scalars['DateTime']>;
-  dateTo: Maybe<Scalars['DateTime']>;
-  dateTo_not: Maybe<Scalars['DateTime']>;
-  dateTo_in: Maybe<Array<Scalars['DateTime']>>;
-  dateTo_not_in: Maybe<Array<Scalars['DateTime']>>;
-  dateTo_lt: Maybe<Scalars['DateTime']>;
-  dateTo_lte: Maybe<Scalars['DateTime']>;
-  dateTo_gt: Maybe<Scalars['DateTime']>;
-  dateTo_gte: Maybe<Scalars['DateTime']>;
-  dateFilterType: Maybe<TDateFilterType>;
-  dateFilterType_not: Maybe<TDateFilterType>;
-  dateFilterType_in: Maybe<Array<TDateFilterType>>;
-  dateFilterType_not_in: Maybe<Array<TDateFilterType>>;
-  AND: Maybe<Array<TTotalOrdersConfigurationWhereInput>>;
-  OR: Maybe<Array<TTotalOrdersConfigurationWhereInput>>;
-  NOT: Maybe<Array<TTotalOrdersConfigurationWhereInput>>;
-};
-
-export enum TLayoutCardOrderByInput {
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-  KeyAsc = 'key_ASC',
-  KeyDesc = 'key_DESC',
-  HeightAsc = 'height_ASC',
-  HeightDesc = 'height_DESC',
-  WidthAsc = 'width_ASC',
-  WidthDesc = 'width_DESC',
-  MinHeightAsc = 'minHeight_ASC',
-  MinHeightDesc = 'minHeight_DESC',
-  MinWidthAsc = 'minWidth_ASC',
-  MinWidthDesc = 'minWidth_DESC',
-  XPositionAsc = 'xPosition_ASC',
-  XPositionDesc = 'xPosition_DESC',
-  YPositionAsc = 'yPosition_ASC',
-  YPositionDesc = 'yPosition_DESC'
-}
-
-export type TLayoutCard = {
-  __typename?: 'LayoutCard';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  key: TMetricCardType;
-  nameAllLocales: Maybe<Array<TLocalizedField>>;
-  height: Scalars['Int'];
-  width: Scalars['Int'];
-  minHeight: Maybe<Scalars['Int']>;
-  minWidth: Maybe<Scalars['Int']>;
-  xPosition: Scalars['Int'];
-  yPosition: Scalars['Int'];
-  topProductsConfiguration: Maybe<TTopProductsConfiguration>;
-  salesPerformanceConfiguration: Maybe<TSalesPerformanceConfiguration>;
-  totalSalesConfiguration: Maybe<TTotalSalesConfiguration>;
-  averageOrderValueConfiguration: Maybe<TAverageOrderValueConfiguration>;
-  resourcesNumbersConfiguration: Maybe<TResourcesNumbersConfiguration>;
-  orderStatusConfiguration: Maybe<TOrderStatusConfiguration>;
-  totalOrdersConfiguration: Maybe<TTotalOrdersConfiguration>;
-};
-
-
-export type TLayoutCard_NameAllLocalesArgs = {
-  where: Maybe<TLocalizedFieldWhereInput>;
-  orderBy: Maybe<TLocalizedFieldOrderByInput>;
-  skip: Maybe<Scalars['Int']>;
-  after: Maybe<Scalars['String']>;
-  before: Maybe<Scalars['String']>;
-  first: Maybe<Scalars['Int']>;
-  last: Maybe<Scalars['Int']>;
-};
-
-export type TTopProductsConfiguration = {
-  __typename?: 'TopProductsConfiguration';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  bestSellingLimit: TBestSellingLimit;
-};
-
-export type TSalesPerformanceConfiguration = {
-  __typename?: 'SalesPerformanceConfiguration';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  showPreviousTimeframe: Scalars['Boolean'];
-  dateFrom: Maybe<Scalars['DateTime']>;
-  dateTo: Maybe<Scalars['DateTime']>;
-  dateFilterType: TDateFilterType;
-};
-
-export type TTotalSalesConfiguration = {
-  __typename?: 'TotalSalesConfiguration';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  productId: Maybe<Scalars['String']>;
-};
-
-export type TAverageOrderValueConfiguration = {
-  __typename?: 'AverageOrderValueConfiguration';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  showPreviousTimeframe: Scalars['Boolean'];
-};
-
-export type TResourcesNumbersConfiguration = {
-  __typename?: 'ResourcesNumbersConfiguration';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  resourceOptions: Array<TResourceType>;
-};
-
-export enum TResourceType {
-  TotalProducts = 'TOTAL_PRODUCTS',
-  PublishedProducts = 'PUBLISHED_PRODUCTS',
-  UnpublishedProducts = 'UNPUBLISHED_PRODUCTS',
-  Categories = 'CATEGORIES'
-}
-
-export type TOrderStatusConfiguration = {
-  __typename?: 'OrderStatusConfiguration';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  productId: Maybe<Scalars['String']>;
-  dateFrom: Maybe<Scalars['DateTime']>;
-  dateTo: Maybe<Scalars['DateTime']>;
-  dateFilterType: TDateFilterType;
-};
-
-export type TTotalOrdersConfiguration = {
-  __typename?: 'TotalOrdersConfiguration';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  productId: Maybe<Scalars['String']>;
-  showPreviousTimeframe: Scalars['Boolean'];
-  dateFrom: Maybe<Scalars['DateTime']>;
-  dateTo: Maybe<Scalars['DateTime']>;
-  dateFilterType: TDateFilterType;
-};
 
 export type TMutation = {
   __typename?: 'Mutation';
@@ -2171,109 +2098,24 @@ export type TMutation_DeactivateDashboardViewArgs = {
   id: Scalars['ID'];
 };
 
-export type TApplicationExtensionDataInput = {
-  name: Scalars['String'];
-  description: Maybe<Scalars['String']>;
-  url: Scalars['String'];
-  oAuthScopes: Maybe<Array<Scalars['String']>>;
-  navbarMenu: TApplicationExtensionNavbarMenuDataInput;
-};
-
-export type TApplicationExtensionNavbarMenuDataInput = {
-  key: Scalars['String'];
-  uriPath: Scalars['String'];
-  featureToggle: Maybe<Scalars['String']>;
-  icon: Scalars['String'];
-  permissions: Array<TOAuthScope>;
-  labelAllLocales: Array<TLocalizedFieldDataInput>;
-  submenu: Array<TApplicationExtensionNavbarSubmenuDataInput>;
-};
-
-export type TLocalizedFieldDataInput = {
-  locale: Scalars['String'];
-  value: Scalars['String'];
-};
-
-export type TApplicationExtensionNavbarSubmenuDataInput = {
-  key: Scalars['String'];
-  uriPath: Scalars['String'];
-  featureToggle: Maybe<Scalars['String']>;
-  permissions: Array<TOAuthScope>;
-  labelAllLocales: Array<TLocalizedFieldDataInput>;
-};
-
-export type TImageRegexDataInput = {
-  small: Maybe<TImageRegexOptionsInput>;
-  thumb: Maybe<TImageRegexOptionsInput>;
-};
-
-export type TImageRegexOptionsInput = {
-  flag: Scalars['String'];
-  search: Scalars['String'];
-  replace: Scalars['String'];
-};
-
-export type TCategoryRecommendationSettingsDataInput = {
-  searchProperty: TCategoryRecommendationSearchProperty;
-  attributeName: Maybe<Scalars['String']>;
-};
-
-export type TCustomApplicationDraftDataInput = {
-  name: Scalars['String'];
-  description: Maybe<Scalars['String']>;
-  url: Scalars['String'];
-  entryPointUriPath: Scalars['String'];
-  permissions: Array<TCustomApplicationPermissionDataInput>;
-  contacts: Array<TCustomApplicationContactPersonDataInput>;
-  menuLinks: TCustomApplicationMenuLinksDraftDataInput;
-};
-
-export type TCustomApplicationPermissionDataInput = {
-  name: Scalars['String'];
-  oAuthScopes: Array<Scalars['String']>;
-};
-
-export type TCustomApplicationContactPersonDataInput = {
-  email: Scalars['String'];
-  consents: Array<TCustomApplicationContactConsent>;
-};
-
-export type TCustomApplicationMenuLinksDraftDataInput = {
-  labelAllLocales: Array<TLocalizedFieldDataInput>;
-  defaultLabel: Scalars['String'];
-  iconName: Scalars['String'];
-  permissions: Array<Scalars['String']>;
-  submenuLinks: Array<TCustomApplicationSubmenuLinksDraftDataInput>;
-};
-
-export type TCustomApplicationSubmenuLinksDraftDataInput = {
-  uriPath: Scalars['String'];
-  labelAllLocales: Array<TLocalizedFieldDataInput>;
-  defaultLabel: Scalars['String'];
-  permissions: Array<Scalars['String']>;
-};
-
-export type TCustomApplication = {
-  __typename?: 'CustomApplication';
+export type TNavbarMenu = {
+  __typename?: 'NavbarMenu';
   id: Scalars['ID'];
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
-  owner: TOrganizationExtension;
-  installedBy: Maybe<Array<TCustomApplicationInstallation>>;
-  status: Maybe<TCustomApplicationStatus>;
-  name: Scalars['String'];
-  description: Maybe<Scalars['String']>;
-  url: Scalars['String'];
-  entryPointUriPath: Scalars['String'];
-  permissions: Maybe<Array<TCustomApplicationPermission>>;
-  menuLinks: Maybe<TCustomApplicationMenuLink>;
-  contacts: Maybe<Array<TCustomApplicationContactPerson>>;
+  key: Scalars['String'];
+  uriPath: Scalars['String'];
+  labelAllLocales: Maybe<Array<TLocalizedField>>;
+  featureToggle: Maybe<Scalars['String']>;
+  permissions: Array<TOAuthScope>;
+  icon: Scalars['String'];
+  submenu: Maybe<Array<TNavbarSubmenu>>;
 };
 
 
-export type TCustomApplication_InstalledByArgs = {
-  where: Maybe<TCustomApplicationInstallationWhereInput>;
-  orderBy: Maybe<TCustomApplicationInstallationOrderByInput>;
+export type TNavbarMenu_LabelAllLocalesArgs = {
+  where: Maybe<TLocalizedFieldWhereInput>;
+  orderBy: Maybe<TLocalizedFieldOrderByInput>;
   skip: Maybe<Scalars['Int']>;
   after: Maybe<Scalars['String']>;
   before: Maybe<Scalars['String']>;
@@ -2282,9 +2124,9 @@ export type TCustomApplication_InstalledByArgs = {
 };
 
 
-export type TCustomApplication_PermissionsArgs = {
-  where: Maybe<TCustomApplicationPermissionWhereInput>;
-  orderBy: Maybe<TCustomApplicationPermissionOrderByInput>;
+export type TNavbarMenu_SubmenuArgs = {
+  where: Maybe<TNavbarSubmenuWhereInput>;
+  orderBy: Maybe<TNavbarSubmenuOrderByInput>;
   skip: Maybe<Scalars['Int']>;
   after: Maybe<Scalars['String']>;
   before: Maybe<Scalars['String']>;
@@ -2292,18 +2134,7 @@ export type TCustomApplication_PermissionsArgs = {
   last: Maybe<Scalars['Int']>;
 };
 
-
-export type TCustomApplication_ContactsArgs = {
-  where: Maybe<TCustomApplicationContactPersonWhereInput>;
-  orderBy: Maybe<TCustomApplicationContactPersonOrderByInput>;
-  skip: Maybe<Scalars['Int']>;
-  after: Maybe<Scalars['String']>;
-  before: Maybe<Scalars['String']>;
-  first: Maybe<Scalars['Int']>;
-  last: Maybe<Scalars['Int']>;
-};
-
-export type TCustomApplicationInstallationWhereInput = {
+export type TNavbarMenuWhereInput = {
   id: Maybe<Scalars['ID']>;
   id_not: Maybe<Scalars['ID']>;
   id_in: Maybe<Array<Scalars['ID']>>;
@@ -2334,22 +2165,112 @@ export type TCustomApplicationInstallationWhereInput = {
   updatedAt_lte: Maybe<Scalars['DateTime']>;
   updatedAt_gt: Maybe<Scalars['DateTime']>;
   updatedAt_gte: Maybe<Scalars['DateTime']>;
-  organization: Maybe<TOrganizationExtensionWhereInput>;
-  application: Maybe<TCustomApplicationWhereInput>;
-  acceptedPermissions_every: Maybe<TCustomApplicationPermissionWhereInput>;
-  acceptedPermissions_some: Maybe<TCustomApplicationPermissionWhereInput>;
-  acceptedPermissions_none: Maybe<TCustomApplicationPermissionWhereInput>;
-  installInAllProjects: Maybe<Scalars['Boolean']>;
-  installInAllProjects_not: Maybe<Scalars['Boolean']>;
-  projects_every: Maybe<TProjectExtensionWhereInput>;
-  projects_some: Maybe<TProjectExtensionWhereInput>;
-  projects_none: Maybe<TProjectExtensionWhereInput>;
-  AND: Maybe<Array<TCustomApplicationInstallationWhereInput>>;
-  OR: Maybe<Array<TCustomApplicationInstallationWhereInput>>;
-  NOT: Maybe<Array<TCustomApplicationInstallationWhereInput>>;
+  key: Maybe<Scalars['String']>;
+  key_not: Maybe<Scalars['String']>;
+  key_in: Maybe<Array<Scalars['String']>>;
+  key_not_in: Maybe<Array<Scalars['String']>>;
+  key_lt: Maybe<Scalars['String']>;
+  key_lte: Maybe<Scalars['String']>;
+  key_gt: Maybe<Scalars['String']>;
+  key_gte: Maybe<Scalars['String']>;
+  key_contains: Maybe<Scalars['String']>;
+  key_not_contains: Maybe<Scalars['String']>;
+  key_starts_with: Maybe<Scalars['String']>;
+  key_not_starts_with: Maybe<Scalars['String']>;
+  key_ends_with: Maybe<Scalars['String']>;
+  key_not_ends_with: Maybe<Scalars['String']>;
+  uriPath: Maybe<Scalars['String']>;
+  uriPath_not: Maybe<Scalars['String']>;
+  uriPath_in: Maybe<Array<Scalars['String']>>;
+  uriPath_not_in: Maybe<Array<Scalars['String']>>;
+  uriPath_lt: Maybe<Scalars['String']>;
+  uriPath_lte: Maybe<Scalars['String']>;
+  uriPath_gt: Maybe<Scalars['String']>;
+  uriPath_gte: Maybe<Scalars['String']>;
+  uriPath_contains: Maybe<Scalars['String']>;
+  uriPath_not_contains: Maybe<Scalars['String']>;
+  uriPath_starts_with: Maybe<Scalars['String']>;
+  uriPath_not_starts_with: Maybe<Scalars['String']>;
+  uriPath_ends_with: Maybe<Scalars['String']>;
+  uriPath_not_ends_with: Maybe<Scalars['String']>;
+  labelAllLocales_every: Maybe<TLocalizedFieldWhereInput>;
+  labelAllLocales_some: Maybe<TLocalizedFieldWhereInput>;
+  labelAllLocales_none: Maybe<TLocalizedFieldWhereInput>;
+  featureToggle: Maybe<Scalars['String']>;
+  featureToggle_not: Maybe<Scalars['String']>;
+  featureToggle_in: Maybe<Array<Scalars['String']>>;
+  featureToggle_not_in: Maybe<Array<Scalars['String']>>;
+  featureToggle_lt: Maybe<Scalars['String']>;
+  featureToggle_lte: Maybe<Scalars['String']>;
+  featureToggle_gt: Maybe<Scalars['String']>;
+  featureToggle_gte: Maybe<Scalars['String']>;
+  featureToggle_contains: Maybe<Scalars['String']>;
+  featureToggle_not_contains: Maybe<Scalars['String']>;
+  featureToggle_starts_with: Maybe<Scalars['String']>;
+  featureToggle_not_starts_with: Maybe<Scalars['String']>;
+  featureToggle_ends_with: Maybe<Scalars['String']>;
+  featureToggle_not_ends_with: Maybe<Scalars['String']>;
+  icon: Maybe<Scalars['String']>;
+  icon_not: Maybe<Scalars['String']>;
+  icon_in: Maybe<Array<Scalars['String']>>;
+  icon_not_in: Maybe<Array<Scalars['String']>>;
+  icon_lt: Maybe<Scalars['String']>;
+  icon_lte: Maybe<Scalars['String']>;
+  icon_gt: Maybe<Scalars['String']>;
+  icon_gte: Maybe<Scalars['String']>;
+  icon_contains: Maybe<Scalars['String']>;
+  icon_not_contains: Maybe<Scalars['String']>;
+  icon_starts_with: Maybe<Scalars['String']>;
+  icon_not_starts_with: Maybe<Scalars['String']>;
+  icon_ends_with: Maybe<Scalars['String']>;
+  icon_not_ends_with: Maybe<Scalars['String']>;
+  submenu_every: Maybe<TNavbarSubmenuWhereInput>;
+  submenu_some: Maybe<TNavbarSubmenuWhereInput>;
+  submenu_none: Maybe<TNavbarSubmenuWhereInput>;
+  AND: Maybe<Array<TNavbarMenuWhereInput>>;
+  OR: Maybe<Array<TNavbarMenuWhereInput>>;
+  NOT: Maybe<Array<TNavbarMenuWhereInput>>;
 };
 
-export type TOrganizationExtensionWhereInput = {
+export type TNavbarSubmenu = {
+  __typename?: 'NavbarSubmenu';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  key: Scalars['String'];
+  uriPath: Scalars['String'];
+  labelAllLocales: Maybe<Array<TLocalizedField>>;
+  featureToggle: Maybe<Scalars['String']>;
+  permissions: Array<TOAuthScope>;
+};
+
+
+export type TNavbarSubmenu_LabelAllLocalesArgs = {
+  where: Maybe<TLocalizedFieldWhereInput>;
+  orderBy: Maybe<TLocalizedFieldOrderByInput>;
+  skip: Maybe<Scalars['Int']>;
+  after: Maybe<Scalars['String']>;
+  before: Maybe<Scalars['String']>;
+  first: Maybe<Scalars['Int']>;
+  last: Maybe<Scalars['Int']>;
+};
+
+export enum TNavbarSubmenuOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  KeyAsc = 'key_ASC',
+  KeyDesc = 'key_DESC',
+  UriPathAsc = 'uriPath_ASC',
+  UriPathDesc = 'uriPath_DESC',
+  FeatureToggleAsc = 'featureToggle_ASC',
+  FeatureToggleDesc = 'featureToggle_DESC'
+}
+
+export type TNavbarSubmenuWhereInput = {
   id: Maybe<Scalars['ID']>;
   id_not: Maybe<Scalars['ID']>;
   id_in: Maybe<Array<Scalars['ID']>>;
@@ -2380,30 +2301,103 @@ export type TOrganizationExtensionWhereInput = {
   updatedAt_lte: Maybe<Scalars['DateTime']>;
   updatedAt_gt: Maybe<Scalars['DateTime']>;
   updatedAt_gte: Maybe<Scalars['DateTime']>;
-  organizationId: Maybe<Scalars['String']>;
-  organizationId_not: Maybe<Scalars['String']>;
-  organizationId_in: Maybe<Array<Scalars['String']>>;
-  organizationId_not_in: Maybe<Array<Scalars['String']>>;
-  organizationId_lt: Maybe<Scalars['String']>;
-  organizationId_lte: Maybe<Scalars['String']>;
-  organizationId_gt: Maybe<Scalars['String']>;
-  organizationId_gte: Maybe<Scalars['String']>;
-  organizationId_contains: Maybe<Scalars['String']>;
-  organizationId_not_contains: Maybe<Scalars['String']>;
-  organizationId_starts_with: Maybe<Scalars['String']>;
-  organizationId_not_starts_with: Maybe<Scalars['String']>;
-  organizationId_ends_with: Maybe<Scalars['String']>;
-  organizationId_not_ends_with: Maybe<Scalars['String']>;
-  oidcSsoConfig: Maybe<TOidcSsoConfigWhereInput>;
-  registeredApplications_every: Maybe<TCustomApplicationWhereInput>;
-  registeredApplications_some: Maybe<TCustomApplicationWhereInput>;
-  registeredApplications_none: Maybe<TCustomApplicationWhereInput>;
-  installedApplications_every: Maybe<TCustomApplicationInstallationWhereInput>;
-  installedApplications_some: Maybe<TCustomApplicationInstallationWhereInput>;
-  installedApplications_none: Maybe<TCustomApplicationInstallationWhereInput>;
-  AND: Maybe<Array<TOrganizationExtensionWhereInput>>;
-  OR: Maybe<Array<TOrganizationExtensionWhereInput>>;
-  NOT: Maybe<Array<TOrganizationExtensionWhereInput>>;
+  key: Maybe<Scalars['String']>;
+  key_not: Maybe<Scalars['String']>;
+  key_in: Maybe<Array<Scalars['String']>>;
+  key_not_in: Maybe<Array<Scalars['String']>>;
+  key_lt: Maybe<Scalars['String']>;
+  key_lte: Maybe<Scalars['String']>;
+  key_gt: Maybe<Scalars['String']>;
+  key_gte: Maybe<Scalars['String']>;
+  key_contains: Maybe<Scalars['String']>;
+  key_not_contains: Maybe<Scalars['String']>;
+  key_starts_with: Maybe<Scalars['String']>;
+  key_not_starts_with: Maybe<Scalars['String']>;
+  key_ends_with: Maybe<Scalars['String']>;
+  key_not_ends_with: Maybe<Scalars['String']>;
+  uriPath: Maybe<Scalars['String']>;
+  uriPath_not: Maybe<Scalars['String']>;
+  uriPath_in: Maybe<Array<Scalars['String']>>;
+  uriPath_not_in: Maybe<Array<Scalars['String']>>;
+  uriPath_lt: Maybe<Scalars['String']>;
+  uriPath_lte: Maybe<Scalars['String']>;
+  uriPath_gt: Maybe<Scalars['String']>;
+  uriPath_gte: Maybe<Scalars['String']>;
+  uriPath_contains: Maybe<Scalars['String']>;
+  uriPath_not_contains: Maybe<Scalars['String']>;
+  uriPath_starts_with: Maybe<Scalars['String']>;
+  uriPath_not_starts_with: Maybe<Scalars['String']>;
+  uriPath_ends_with: Maybe<Scalars['String']>;
+  uriPath_not_ends_with: Maybe<Scalars['String']>;
+  labelAllLocales_every: Maybe<TLocalizedFieldWhereInput>;
+  labelAllLocales_some: Maybe<TLocalizedFieldWhereInput>;
+  labelAllLocales_none: Maybe<TLocalizedFieldWhereInput>;
+  featureToggle: Maybe<Scalars['String']>;
+  featureToggle_not: Maybe<Scalars['String']>;
+  featureToggle_in: Maybe<Array<Scalars['String']>>;
+  featureToggle_not_in: Maybe<Array<Scalars['String']>>;
+  featureToggle_lt: Maybe<Scalars['String']>;
+  featureToggle_lte: Maybe<Scalars['String']>;
+  featureToggle_gt: Maybe<Scalars['String']>;
+  featureToggle_gte: Maybe<Scalars['String']>;
+  featureToggle_contains: Maybe<Scalars['String']>;
+  featureToggle_not_contains: Maybe<Scalars['String']>;
+  featureToggle_starts_with: Maybe<Scalars['String']>;
+  featureToggle_not_starts_with: Maybe<Scalars['String']>;
+  featureToggle_ends_with: Maybe<Scalars['String']>;
+  featureToggle_not_ends_with: Maybe<Scalars['String']>;
+  AND: Maybe<Array<TNavbarSubmenuWhereInput>>;
+  OR: Maybe<Array<TNavbarSubmenuWhereInput>>;
+  NOT: Maybe<Array<TNavbarSubmenuWhereInput>>;
+};
+
+export enum TOAuthScope {
+  ManageProducts = 'ManageProducts',
+  ViewProducts = 'ViewProducts',
+  ManageCategories = 'ManageCategories',
+  ViewCategories = 'ViewCategories',
+  ManageCustomers = 'ManageCustomers',
+  ViewCustomers = 'ViewCustomers',
+  ManageCustomerGroups = 'ManageCustomerGroups',
+  ViewCustomerGroups = 'ViewCustomerGroups',
+  ManageOrders = 'ManageOrders',
+  ViewOrders = 'ViewOrders',
+  ManageProductDiscounts = 'ManageProductDiscounts',
+  ViewProductDiscounts = 'ViewProductDiscounts',
+  ManageCartDiscounts = 'ManageCartDiscounts',
+  ViewCartDiscounts = 'ViewCartDiscounts',
+  ManageDiscountCodes = 'ManageDiscountCodes',
+  ViewDiscountCodes = 'ViewDiscountCodes',
+  ManageImportSinks = 'ManageImportSinks',
+  ViewImportSinks = 'ViewImportSinks',
+  ManageProjectSettings = 'ManageProjectSettings',
+  ViewProjectSettings = 'ViewProjectSettings',
+  ManageProductTypes = 'ManageProductTypes',
+  ViewProductTypes = 'ViewProductTypes',
+  ManageDeveloperSettings = 'ManageDeveloperSettings',
+  ViewDeveloperSettings = 'ViewDeveloperSettings',
+  ManageProject = 'ManageProject'
+}
+
+export type TOidcSsoConfig = {
+  __typename?: 'OidcSsoConfig';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  isActive: Maybe<Scalars['Boolean']>;
+  authorityUrl: Scalars['String'];
+  clientId: Scalars['String'];
+  clientSecret: Maybe<Scalars['String']>;
+  teamIdForNewUsers: Scalars['String'];
+  logoutUrl: Maybe<Scalars['String']>;
+};
+
+export type TOidcSsoConfigDataInput = {
+  authorityUrl: Scalars['String'];
+  clientId: Scalars['String'];
+  clientSecret: Maybe<Scalars['String']>;
+  teamIdForNewUsers: Scalars['String'];
+  logoutUrl: Maybe<Scalars['String']>;
 };
 
 export type TOidcSsoConfigWhereInput = {
@@ -2514,234 +2508,80 @@ export type TOidcSsoConfigWhereInput = {
   NOT: Maybe<Array<TOidcSsoConfigWhereInput>>;
 };
 
-export type TCustomApplicationWhereInput = {
-  id: Maybe<Scalars['ID']>;
-  id_not: Maybe<Scalars['ID']>;
-  id_in: Maybe<Array<Scalars['ID']>>;
-  id_not_in: Maybe<Array<Scalars['ID']>>;
-  id_lt: Maybe<Scalars['ID']>;
-  id_lte: Maybe<Scalars['ID']>;
-  id_gt: Maybe<Scalars['ID']>;
-  id_gte: Maybe<Scalars['ID']>;
-  id_contains: Maybe<Scalars['ID']>;
-  id_not_contains: Maybe<Scalars['ID']>;
-  id_starts_with: Maybe<Scalars['ID']>;
-  id_not_starts_with: Maybe<Scalars['ID']>;
-  id_ends_with: Maybe<Scalars['ID']>;
-  id_not_ends_with: Maybe<Scalars['ID']>;
-  createdAt: Maybe<Scalars['DateTime']>;
-  createdAt_not: Maybe<Scalars['DateTime']>;
-  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_lt: Maybe<Scalars['DateTime']>;
-  createdAt_lte: Maybe<Scalars['DateTime']>;
-  createdAt_gt: Maybe<Scalars['DateTime']>;
-  createdAt_gte: Maybe<Scalars['DateTime']>;
-  updatedAt: Maybe<Scalars['DateTime']>;
-  updatedAt_not: Maybe<Scalars['DateTime']>;
-  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt: Maybe<Scalars['DateTime']>;
-  updatedAt_lte: Maybe<Scalars['DateTime']>;
-  updatedAt_gt: Maybe<Scalars['DateTime']>;
-  updatedAt_gte: Maybe<Scalars['DateTime']>;
-  owner: Maybe<TOrganizationExtensionWhereInput>;
-  installedBy_every: Maybe<TCustomApplicationInstallationWhereInput>;
-  installedBy_some: Maybe<TCustomApplicationInstallationWhereInput>;
-  installedBy_none: Maybe<TCustomApplicationInstallationWhereInput>;
-  status: Maybe<TCustomApplicationStatus>;
-  status_not: Maybe<TCustomApplicationStatus>;
-  status_in: Maybe<Array<TCustomApplicationStatus>>;
-  status_not_in: Maybe<Array<TCustomApplicationStatus>>;
-  name: Maybe<Scalars['String']>;
-  name_not: Maybe<Scalars['String']>;
-  name_in: Maybe<Array<Scalars['String']>>;
-  name_not_in: Maybe<Array<Scalars['String']>>;
-  name_lt: Maybe<Scalars['String']>;
-  name_lte: Maybe<Scalars['String']>;
-  name_gt: Maybe<Scalars['String']>;
-  name_gte: Maybe<Scalars['String']>;
-  name_contains: Maybe<Scalars['String']>;
-  name_not_contains: Maybe<Scalars['String']>;
-  name_starts_with: Maybe<Scalars['String']>;
-  name_not_starts_with: Maybe<Scalars['String']>;
-  name_ends_with: Maybe<Scalars['String']>;
-  name_not_ends_with: Maybe<Scalars['String']>;
-  description: Maybe<Scalars['String']>;
-  description_not: Maybe<Scalars['String']>;
-  description_in: Maybe<Array<Scalars['String']>>;
-  description_not_in: Maybe<Array<Scalars['String']>>;
-  description_lt: Maybe<Scalars['String']>;
-  description_lte: Maybe<Scalars['String']>;
-  description_gt: Maybe<Scalars['String']>;
-  description_gte: Maybe<Scalars['String']>;
-  description_contains: Maybe<Scalars['String']>;
-  description_not_contains: Maybe<Scalars['String']>;
-  description_starts_with: Maybe<Scalars['String']>;
-  description_not_starts_with: Maybe<Scalars['String']>;
-  description_ends_with: Maybe<Scalars['String']>;
-  description_not_ends_with: Maybe<Scalars['String']>;
-  url: Maybe<Scalars['String']>;
-  url_not: Maybe<Scalars['String']>;
-  url_in: Maybe<Array<Scalars['String']>>;
-  url_not_in: Maybe<Array<Scalars['String']>>;
-  url_lt: Maybe<Scalars['String']>;
-  url_lte: Maybe<Scalars['String']>;
-  url_gt: Maybe<Scalars['String']>;
-  url_gte: Maybe<Scalars['String']>;
-  url_contains: Maybe<Scalars['String']>;
-  url_not_contains: Maybe<Scalars['String']>;
-  url_starts_with: Maybe<Scalars['String']>;
-  url_not_starts_with: Maybe<Scalars['String']>;
-  url_ends_with: Maybe<Scalars['String']>;
-  url_not_ends_with: Maybe<Scalars['String']>;
-  entryPointUriPath: Maybe<Scalars['String']>;
-  entryPointUriPath_not: Maybe<Scalars['String']>;
-  entryPointUriPath_in: Maybe<Array<Scalars['String']>>;
-  entryPointUriPath_not_in: Maybe<Array<Scalars['String']>>;
-  entryPointUriPath_lt: Maybe<Scalars['String']>;
-  entryPointUriPath_lte: Maybe<Scalars['String']>;
-  entryPointUriPath_gt: Maybe<Scalars['String']>;
-  entryPointUriPath_gte: Maybe<Scalars['String']>;
-  entryPointUriPath_contains: Maybe<Scalars['String']>;
-  entryPointUriPath_not_contains: Maybe<Scalars['String']>;
-  entryPointUriPath_starts_with: Maybe<Scalars['String']>;
-  entryPointUriPath_not_starts_with: Maybe<Scalars['String']>;
-  entryPointUriPath_ends_with: Maybe<Scalars['String']>;
-  entryPointUriPath_not_ends_with: Maybe<Scalars['String']>;
-  permissions_every: Maybe<TCustomApplicationPermissionWhereInput>;
-  permissions_some: Maybe<TCustomApplicationPermissionWhereInput>;
-  permissions_none: Maybe<TCustomApplicationPermissionWhereInput>;
-  menuLinks: Maybe<TCustomApplicationMenuLinkWhereInput>;
-  contacts_every: Maybe<TCustomApplicationContactPersonWhereInput>;
-  contacts_some: Maybe<TCustomApplicationContactPersonWhereInput>;
-  contacts_none: Maybe<TCustomApplicationContactPersonWhereInput>;
-  AND: Maybe<Array<TCustomApplicationWhereInput>>;
-  OR: Maybe<Array<TCustomApplicationWhereInput>>;
-  NOT: Maybe<Array<TCustomApplicationWhereInput>>;
+export type TOrdersListView = {
+  __typename?: 'OrdersListView';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
+  projectKey: Scalars['String'];
+  nameAllLocales: Maybe<Array<TLocalizedField>>;
+  isActive: Maybe<Scalars['Boolean']>;
+  search: Maybe<Scalars['String']>;
+  table: Maybe<TTable>;
+  sort: Maybe<TSort>;
+  filters: Maybe<Array<TFilterValues>>;
 };
 
-export type TCustomApplicationPermissionWhereInput = {
-  id: Maybe<Scalars['ID']>;
-  id_not: Maybe<Scalars['ID']>;
-  id_in: Maybe<Array<Scalars['ID']>>;
-  id_not_in: Maybe<Array<Scalars['ID']>>;
-  id_lt: Maybe<Scalars['ID']>;
-  id_lte: Maybe<Scalars['ID']>;
-  id_gt: Maybe<Scalars['ID']>;
-  id_gte: Maybe<Scalars['ID']>;
-  id_contains: Maybe<Scalars['ID']>;
-  id_not_contains: Maybe<Scalars['ID']>;
-  id_starts_with: Maybe<Scalars['ID']>;
-  id_not_starts_with: Maybe<Scalars['ID']>;
-  id_ends_with: Maybe<Scalars['ID']>;
-  id_not_ends_with: Maybe<Scalars['ID']>;
-  createdAt: Maybe<Scalars['DateTime']>;
-  createdAt_not: Maybe<Scalars['DateTime']>;
-  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_lt: Maybe<Scalars['DateTime']>;
-  createdAt_lte: Maybe<Scalars['DateTime']>;
-  createdAt_gt: Maybe<Scalars['DateTime']>;
-  createdAt_gte: Maybe<Scalars['DateTime']>;
-  updatedAt: Maybe<Scalars['DateTime']>;
-  updatedAt_not: Maybe<Scalars['DateTime']>;
-  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt: Maybe<Scalars['DateTime']>;
-  updatedAt_lte: Maybe<Scalars['DateTime']>;
-  updatedAt_gt: Maybe<Scalars['DateTime']>;
-  updatedAt_gte: Maybe<Scalars['DateTime']>;
-  name: Maybe<Scalars['String']>;
-  name_not: Maybe<Scalars['String']>;
-  name_in: Maybe<Array<Scalars['String']>>;
-  name_not_in: Maybe<Array<Scalars['String']>>;
-  name_lt: Maybe<Scalars['String']>;
-  name_lte: Maybe<Scalars['String']>;
-  name_gt: Maybe<Scalars['String']>;
-  name_gte: Maybe<Scalars['String']>;
-  name_contains: Maybe<Scalars['String']>;
-  name_not_contains: Maybe<Scalars['String']>;
-  name_starts_with: Maybe<Scalars['String']>;
-  name_not_starts_with: Maybe<Scalars['String']>;
-  name_ends_with: Maybe<Scalars['String']>;
-  name_not_ends_with: Maybe<Scalars['String']>;
-  AND: Maybe<Array<TCustomApplicationPermissionWhereInput>>;
-  OR: Maybe<Array<TCustomApplicationPermissionWhereInput>>;
-  NOT: Maybe<Array<TCustomApplicationPermissionWhereInput>>;
+
+export type TOrdersListView_NameAllLocalesArgs = {
+  where: Maybe<TLocalizedFieldWhereInput>;
+  orderBy: Maybe<TLocalizedFieldOrderByInput>;
+  skip: Maybe<Scalars['Int']>;
+  after: Maybe<Scalars['String']>;
+  before: Maybe<Scalars['String']>;
+  first: Maybe<Scalars['Int']>;
+  last: Maybe<Scalars['Int']>;
 };
 
-export type TCustomApplicationMenuLinkWhereInput = {
-  id: Maybe<Scalars['ID']>;
-  id_not: Maybe<Scalars['ID']>;
-  id_in: Maybe<Array<Scalars['ID']>>;
-  id_not_in: Maybe<Array<Scalars['ID']>>;
-  id_lt: Maybe<Scalars['ID']>;
-  id_lte: Maybe<Scalars['ID']>;
-  id_gt: Maybe<Scalars['ID']>;
-  id_gte: Maybe<Scalars['ID']>;
-  id_contains: Maybe<Scalars['ID']>;
-  id_not_contains: Maybe<Scalars['ID']>;
-  id_starts_with: Maybe<Scalars['ID']>;
-  id_not_starts_with: Maybe<Scalars['ID']>;
-  id_ends_with: Maybe<Scalars['ID']>;
-  id_not_ends_with: Maybe<Scalars['ID']>;
-  createdAt: Maybe<Scalars['DateTime']>;
-  createdAt_not: Maybe<Scalars['DateTime']>;
-  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_lt: Maybe<Scalars['DateTime']>;
-  createdAt_lte: Maybe<Scalars['DateTime']>;
-  createdAt_gt: Maybe<Scalars['DateTime']>;
-  createdAt_gte: Maybe<Scalars['DateTime']>;
-  updatedAt: Maybe<Scalars['DateTime']>;
-  updatedAt_not: Maybe<Scalars['DateTime']>;
-  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt: Maybe<Scalars['DateTime']>;
-  updatedAt_lte: Maybe<Scalars['DateTime']>;
-  updatedAt_gt: Maybe<Scalars['DateTime']>;
-  updatedAt_gte: Maybe<Scalars['DateTime']>;
-  labelAllLocales_every: Maybe<TLocalizedFieldWhereInput>;
-  labelAllLocales_some: Maybe<TLocalizedFieldWhereInput>;
-  labelAllLocales_none: Maybe<TLocalizedFieldWhereInput>;
-  defaultLabel: Maybe<Scalars['String']>;
-  defaultLabel_not: Maybe<Scalars['String']>;
-  defaultLabel_in: Maybe<Array<Scalars['String']>>;
-  defaultLabel_not_in: Maybe<Array<Scalars['String']>>;
-  defaultLabel_lt: Maybe<Scalars['String']>;
-  defaultLabel_lte: Maybe<Scalars['String']>;
-  defaultLabel_gt: Maybe<Scalars['String']>;
-  defaultLabel_gte: Maybe<Scalars['String']>;
-  defaultLabel_contains: Maybe<Scalars['String']>;
-  defaultLabel_not_contains: Maybe<Scalars['String']>;
-  defaultLabel_starts_with: Maybe<Scalars['String']>;
-  defaultLabel_not_starts_with: Maybe<Scalars['String']>;
-  defaultLabel_ends_with: Maybe<Scalars['String']>;
-  defaultLabel_not_ends_with: Maybe<Scalars['String']>;
-  iconName: Maybe<Scalars['String']>;
-  iconName_not: Maybe<Scalars['String']>;
-  iconName_in: Maybe<Array<Scalars['String']>>;
-  iconName_not_in: Maybe<Array<Scalars['String']>>;
-  iconName_lt: Maybe<Scalars['String']>;
-  iconName_lte: Maybe<Scalars['String']>;
-  iconName_gt: Maybe<Scalars['String']>;
-  iconName_gte: Maybe<Scalars['String']>;
-  iconName_contains: Maybe<Scalars['String']>;
-  iconName_not_contains: Maybe<Scalars['String']>;
-  iconName_starts_with: Maybe<Scalars['String']>;
-  iconName_not_starts_with: Maybe<Scalars['String']>;
-  iconName_ends_with: Maybe<Scalars['String']>;
-  iconName_not_ends_with: Maybe<Scalars['String']>;
-  submenuLinks_every: Maybe<TCustomApplicationSubmenuLinkWhereInput>;
-  submenuLinks_some: Maybe<TCustomApplicationSubmenuLinkWhereInput>;
-  submenuLinks_none: Maybe<TCustomApplicationSubmenuLinkWhereInput>;
-  AND: Maybe<Array<TCustomApplicationMenuLinkWhereInput>>;
-  OR: Maybe<Array<TCustomApplicationMenuLinkWhereInput>>;
-  NOT: Maybe<Array<TCustomApplicationMenuLinkWhereInput>>;
+
+export type TOrdersListView_FiltersArgs = {
+  where: Maybe<TFilterValuesWhereInput>;
+  orderBy: Maybe<TFilterValuesOrderByInput>;
+  skip: Maybe<Scalars['Int']>;
+  after: Maybe<Scalars['String']>;
+  before: Maybe<Scalars['String']>;
+  first: Maybe<Scalars['Int']>;
+  last: Maybe<Scalars['Int']>;
 };
 
-export type TCustomApplicationContactPersonWhereInput = {
+export type TOrdersListViewInput = {
+  search: Maybe<Scalars['String']>;
+  nameAllLocales: Array<TLocalizedFieldCreateInput>;
+  table: Maybe<TOrdersListViewTableInput>;
+  sort: TSortCreateInput;
+  filters: Array<TFilterValuesCreateInput>;
+};
+
+export type TOrdersListViewTableInput = {
+  visibleColumns: Array<Scalars['String']>;
+};
+
+export enum TOrderStatesVisibility {
+  HidePaymentState = 'HidePaymentState',
+  HideShipmentState = 'HideShipmentState',
+  HideOrderState = 'HideOrderState'
+}
+
+export type TOrderStatusConfiguration = {
+  __typename?: 'OrderStatusConfiguration';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  productId: Maybe<Scalars['String']>;
+  dateFrom: Maybe<Scalars['DateTime']>;
+  dateTo: Maybe<Scalars['DateTime']>;
+  dateFilterType: TDateFilterType;
+};
+
+export type TOrderStatusConfigurationInput = {
+  productId: Maybe<Scalars['String']>;
+  dateFrom: Maybe<Scalars['DateTime']>;
+  dateTo: Maybe<Scalars['DateTime']>;
+  dateFilterType: TDateFilterType;
+};
+
+export type TOrderStatusConfigurationWhereInput = {
   id: Maybe<Scalars['ID']>;
   id_not: Maybe<Scalars['ID']>;
   id_in: Maybe<Array<Scalars['ID']>>;
@@ -2772,27 +2612,253 @@ export type TCustomApplicationContactPersonWhereInput = {
   updatedAt_lte: Maybe<Scalars['DateTime']>;
   updatedAt_gt: Maybe<Scalars['DateTime']>;
   updatedAt_gte: Maybe<Scalars['DateTime']>;
-  email: Maybe<Scalars['String']>;
-  email_not: Maybe<Scalars['String']>;
-  email_in: Maybe<Array<Scalars['String']>>;
-  email_not_in: Maybe<Array<Scalars['String']>>;
-  email_lt: Maybe<Scalars['String']>;
-  email_lte: Maybe<Scalars['String']>;
-  email_gt: Maybe<Scalars['String']>;
-  email_gte: Maybe<Scalars['String']>;
-  email_contains: Maybe<Scalars['String']>;
-  email_not_contains: Maybe<Scalars['String']>;
-  email_starts_with: Maybe<Scalars['String']>;
-  email_not_starts_with: Maybe<Scalars['String']>;
-  email_ends_with: Maybe<Scalars['String']>;
-  email_not_ends_with: Maybe<Scalars['String']>;
-  maintainerOf_every: Maybe<TCustomApplicationWhereInput>;
-  maintainerOf_some: Maybe<TCustomApplicationWhereInput>;
-  maintainerOf_none: Maybe<TCustomApplicationWhereInput>;
-  AND: Maybe<Array<TCustomApplicationContactPersonWhereInput>>;
-  OR: Maybe<Array<TCustomApplicationContactPersonWhereInput>>;
-  NOT: Maybe<Array<TCustomApplicationContactPersonWhereInput>>;
+  productId: Maybe<Scalars['String']>;
+  productId_not: Maybe<Scalars['String']>;
+  productId_in: Maybe<Array<Scalars['String']>>;
+  productId_not_in: Maybe<Array<Scalars['String']>>;
+  productId_lt: Maybe<Scalars['String']>;
+  productId_lte: Maybe<Scalars['String']>;
+  productId_gt: Maybe<Scalars['String']>;
+  productId_gte: Maybe<Scalars['String']>;
+  productId_contains: Maybe<Scalars['String']>;
+  productId_not_contains: Maybe<Scalars['String']>;
+  productId_starts_with: Maybe<Scalars['String']>;
+  productId_not_starts_with: Maybe<Scalars['String']>;
+  productId_ends_with: Maybe<Scalars['String']>;
+  productId_not_ends_with: Maybe<Scalars['String']>;
+  dateFrom: Maybe<Scalars['DateTime']>;
+  dateFrom_not: Maybe<Scalars['DateTime']>;
+  dateFrom_in: Maybe<Array<Scalars['DateTime']>>;
+  dateFrom_not_in: Maybe<Array<Scalars['DateTime']>>;
+  dateFrom_lt: Maybe<Scalars['DateTime']>;
+  dateFrom_lte: Maybe<Scalars['DateTime']>;
+  dateFrom_gt: Maybe<Scalars['DateTime']>;
+  dateFrom_gte: Maybe<Scalars['DateTime']>;
+  dateTo: Maybe<Scalars['DateTime']>;
+  dateTo_not: Maybe<Scalars['DateTime']>;
+  dateTo_in: Maybe<Array<Scalars['DateTime']>>;
+  dateTo_not_in: Maybe<Array<Scalars['DateTime']>>;
+  dateTo_lt: Maybe<Scalars['DateTime']>;
+  dateTo_lte: Maybe<Scalars['DateTime']>;
+  dateTo_gt: Maybe<Scalars['DateTime']>;
+  dateTo_gte: Maybe<Scalars['DateTime']>;
+  dateFilterType: Maybe<TDateFilterType>;
+  dateFilterType_not: Maybe<TDateFilterType>;
+  dateFilterType_in: Maybe<Array<TDateFilterType>>;
+  dateFilterType_not_in: Maybe<Array<TDateFilterType>>;
+  AND: Maybe<Array<TOrderStatusConfigurationWhereInput>>;
+  OR: Maybe<Array<TOrderStatusConfigurationWhereInput>>;
+  NOT: Maybe<Array<TOrderStatusConfigurationWhereInput>>;
 };
+
+export type TOrganizationExtension = {
+  __typename?: 'OrganizationExtension';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  organizationId: Scalars['String'];
+  oidcSsoConfig: Maybe<TOidcSsoConfig>;
+  registeredApplications: Maybe<Array<TRestrictedCustomApplicationForOrganization>>;
+  installedApplications: Maybe<Array<TRestrictedCustomApplicationInstallationForOrganization>>;
+};
+
+export type TOrganizationExtensionWhereInput = {
+  id: Maybe<Scalars['ID']>;
+  id_not: Maybe<Scalars['ID']>;
+  id_in: Maybe<Array<Scalars['ID']>>;
+  id_not_in: Maybe<Array<Scalars['ID']>>;
+  id_lt: Maybe<Scalars['ID']>;
+  id_lte: Maybe<Scalars['ID']>;
+  id_gt: Maybe<Scalars['ID']>;
+  id_gte: Maybe<Scalars['ID']>;
+  id_contains: Maybe<Scalars['ID']>;
+  id_not_contains: Maybe<Scalars['ID']>;
+  id_starts_with: Maybe<Scalars['ID']>;
+  id_not_starts_with: Maybe<Scalars['ID']>;
+  id_ends_with: Maybe<Scalars['ID']>;
+  id_not_ends_with: Maybe<Scalars['ID']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  createdAt_not: Maybe<Scalars['DateTime']>;
+  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_lt: Maybe<Scalars['DateTime']>;
+  createdAt_lte: Maybe<Scalars['DateTime']>;
+  createdAt_gt: Maybe<Scalars['DateTime']>;
+  createdAt_gte: Maybe<Scalars['DateTime']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  updatedAt_not: Maybe<Scalars['DateTime']>;
+  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_lt: Maybe<Scalars['DateTime']>;
+  updatedAt_lte: Maybe<Scalars['DateTime']>;
+  updatedAt_gt: Maybe<Scalars['DateTime']>;
+  updatedAt_gte: Maybe<Scalars['DateTime']>;
+  organizationId: Maybe<Scalars['String']>;
+  organizationId_not: Maybe<Scalars['String']>;
+  organizationId_in: Maybe<Array<Scalars['String']>>;
+  organizationId_not_in: Maybe<Array<Scalars['String']>>;
+  organizationId_lt: Maybe<Scalars['String']>;
+  organizationId_lte: Maybe<Scalars['String']>;
+  organizationId_gt: Maybe<Scalars['String']>;
+  organizationId_gte: Maybe<Scalars['String']>;
+  organizationId_contains: Maybe<Scalars['String']>;
+  organizationId_not_contains: Maybe<Scalars['String']>;
+  organizationId_starts_with: Maybe<Scalars['String']>;
+  organizationId_not_starts_with: Maybe<Scalars['String']>;
+  organizationId_ends_with: Maybe<Scalars['String']>;
+  organizationId_not_ends_with: Maybe<Scalars['String']>;
+  oidcSsoConfig: Maybe<TOidcSsoConfigWhereInput>;
+  registeredApplications_every: Maybe<TCustomApplicationWhereInput>;
+  registeredApplications_some: Maybe<TCustomApplicationWhereInput>;
+  registeredApplications_none: Maybe<TCustomApplicationWhereInput>;
+  installedApplications_every: Maybe<TCustomApplicationInstallationWhereInput>;
+  installedApplications_some: Maybe<TCustomApplicationInstallationWhereInput>;
+  installedApplications_none: Maybe<TCustomApplicationInstallationWhereInput>;
+  AND: Maybe<Array<TOrganizationExtensionWhereInput>>;
+  OR: Maybe<Array<TOrganizationExtensionWhereInput>>;
+  NOT: Maybe<Array<TOrganizationExtensionWhereInput>>;
+};
+
+export type TPimSearchListView = {
+  __typename?: 'PimSearchListView';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
+  projectKey: Scalars['String'];
+  nameAllLocales: Maybe<Array<TLocalizedField>>;
+  isActive: Maybe<Scalars['Boolean']>;
+  search: Maybe<Scalars['String']>;
+  table: Maybe<TTable>;
+  sort: Maybe<TSort>;
+  filters: Maybe<Array<TFilterValues>>;
+};
+
+
+export type TPimSearchListView_NameAllLocalesArgs = {
+  where: Maybe<TLocalizedFieldWhereInput>;
+  orderBy: Maybe<TLocalizedFieldOrderByInput>;
+  skip: Maybe<Scalars['Int']>;
+  after: Maybe<Scalars['String']>;
+  before: Maybe<Scalars['String']>;
+  first: Maybe<Scalars['Int']>;
+  last: Maybe<Scalars['Int']>;
+};
+
+
+export type TPimSearchListView_FiltersArgs = {
+  where: Maybe<TFilterValuesWhereInput>;
+  orderBy: Maybe<TFilterValuesOrderByInput>;
+  skip: Maybe<Scalars['Int']>;
+  after: Maybe<Scalars['String']>;
+  before: Maybe<Scalars['String']>;
+  first: Maybe<Scalars['Int']>;
+  last: Maybe<Scalars['Int']>;
+};
+
+export type TPimSearchListViewInput = {
+  search: Maybe<Scalars['String']>;
+  nameAllLocales: Array<TLocalizedFieldCreateInput>;
+  table: Maybe<TPimSearchListViewTableInput>;
+  sort: TSortCreateInput;
+  filters: Array<TFilterValuesCreateInput>;
+};
+
+export type TPimSearchListViewTableInput = {
+  visibleColumns: Array<Scalars['String']>;
+};
+
+export type TProductDiscountsListView = {
+  __typename?: 'ProductDiscountsListView';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
+  projectKey: Scalars['String'];
+  visibleColumns: Array<Scalars['String']>;
+};
+
+export type TProductDiscountsListViewInput = {
+  visibleColumns: Array<Scalars['String']>;
+};
+
+export type TProductTypeAttributesView = {
+  __typename?: 'ProductTypeAttributesView';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
+  projectKey: Scalars['String'];
+  nameAllLocales: Maybe<Array<TLocalizedField>>;
+  productTypeId: Scalars['String'];
+  isActive: Scalars['Boolean'];
+  isVariant: Maybe<Scalars['Boolean']>;
+  pinnedAttributes: Array<Scalars['String']>;
+  searchTerm: Maybe<Scalars['String']>;
+  existence: Maybe<TExistence>;
+};
+
+
+export type TProductTypeAttributesView_NameAllLocalesArgs = {
+  where: Maybe<TLocalizedFieldWhereInput>;
+  orderBy: Maybe<TLocalizedFieldOrderByInput>;
+  skip: Maybe<Scalars['Int']>;
+  after: Maybe<Scalars['String']>;
+  before: Maybe<Scalars['String']>;
+  first: Maybe<Scalars['Int']>;
+  last: Maybe<Scalars['Int']>;
+};
+
+export type TProductTypeAttributesViewInput = {
+  nameAllLocales: Array<TLocalizedFieldCreateInput>;
+  productTypeId: Scalars['String'];
+  pinnedAttributes: Array<Scalars['String']>;
+  isVariant: Maybe<Scalars['Boolean']>;
+  searchTerm: Maybe<Scalars['String']>;
+  existence: Maybe<TExistence>;
+};
+
+export type TProductTypeAttributesViewUpdateInput = {
+  nameAllLocales: Array<TLocalizedFieldCreateInput>;
+  isVariant: Maybe<Scalars['Boolean']>;
+  pinnedAttributes: Array<Scalars['String']>;
+  searchTerm: Maybe<Scalars['String']>;
+  existence: Maybe<TExistence>;
+};
+
+export type TProjectExtension = {
+  __typename?: 'ProjectExtension';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  projectKey: Scalars['String'];
+  applications: Maybe<Array<TApplicationExtension>>;
+  installedApplications: Maybe<Array<TRestrictedCustomApplicationInstallationForProject>>;
+  imageRegex: Maybe<TImageRegex>;
+  orderStatesVisibility: Array<TOrderStatesVisibility>;
+  categoryRecommendationSettings: Maybe<TCategoryRecommendationSettings>;
+};
+
+
+export type TProjectExtension_ApplicationsArgs = {
+  where: Maybe<TRestrictedApplicationExtensionWhereInput>;
+};
+
+
+export type TProjectExtension_InstalledApplicationsArgs = {
+  where: Maybe<TRestrictedCustomApplicationInstallationWhereInput>;
+};
+
+export enum TProjectExtensionOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  ProjectKeyAsc = 'projectKey_ASC',
+  ProjectKeyDesc = 'projectKey_DESC'
+}
 
 export type TProjectExtensionWhereInput = {
   id: Maybe<Scalars['ID']>;
@@ -2852,569 +2918,243 @@ export type TProjectExtensionWhereInput = {
   NOT: Maybe<Array<TProjectExtensionWhereInput>>;
 };
 
-export type TApplicationExtensionWhereInput = {
-  id: Maybe<Scalars['ID']>;
-  id_not: Maybe<Scalars['ID']>;
-  id_in: Maybe<Array<Scalars['ID']>>;
-  id_not_in: Maybe<Array<Scalars['ID']>>;
-  id_lt: Maybe<Scalars['ID']>;
-  id_lte: Maybe<Scalars['ID']>;
-  id_gt: Maybe<Scalars['ID']>;
-  id_gte: Maybe<Scalars['ID']>;
-  id_contains: Maybe<Scalars['ID']>;
-  id_not_contains: Maybe<Scalars['ID']>;
-  id_starts_with: Maybe<Scalars['ID']>;
-  id_not_starts_with: Maybe<Scalars['ID']>;
-  id_ends_with: Maybe<Scalars['ID']>;
-  id_not_ends_with: Maybe<Scalars['ID']>;
-  createdAt: Maybe<Scalars['DateTime']>;
-  createdAt_not: Maybe<Scalars['DateTime']>;
-  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_lt: Maybe<Scalars['DateTime']>;
-  createdAt_lte: Maybe<Scalars['DateTime']>;
-  createdAt_gt: Maybe<Scalars['DateTime']>;
-  createdAt_gte: Maybe<Scalars['DateTime']>;
-  updatedAt: Maybe<Scalars['DateTime']>;
-  updatedAt_not: Maybe<Scalars['DateTime']>;
-  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt: Maybe<Scalars['DateTime']>;
-  updatedAt_lte: Maybe<Scalars['DateTime']>;
-  updatedAt_gt: Maybe<Scalars['DateTime']>;
-  updatedAt_gte: Maybe<Scalars['DateTime']>;
-  isActive: Maybe<Scalars['Boolean']>;
-  isActive_not: Maybe<Scalars['Boolean']>;
-  name: Maybe<Scalars['String']>;
-  name_not: Maybe<Scalars['String']>;
-  name_in: Maybe<Array<Scalars['String']>>;
-  name_not_in: Maybe<Array<Scalars['String']>>;
-  name_lt: Maybe<Scalars['String']>;
-  name_lte: Maybe<Scalars['String']>;
-  name_gt: Maybe<Scalars['String']>;
-  name_gte: Maybe<Scalars['String']>;
-  name_contains: Maybe<Scalars['String']>;
-  name_not_contains: Maybe<Scalars['String']>;
-  name_starts_with: Maybe<Scalars['String']>;
-  name_not_starts_with: Maybe<Scalars['String']>;
-  name_ends_with: Maybe<Scalars['String']>;
-  name_not_ends_with: Maybe<Scalars['String']>;
-  description: Maybe<Scalars['String']>;
-  description_not: Maybe<Scalars['String']>;
-  description_in: Maybe<Array<Scalars['String']>>;
-  description_not_in: Maybe<Array<Scalars['String']>>;
-  description_lt: Maybe<Scalars['String']>;
-  description_lte: Maybe<Scalars['String']>;
-  description_gt: Maybe<Scalars['String']>;
-  description_gte: Maybe<Scalars['String']>;
-  description_contains: Maybe<Scalars['String']>;
-  description_not_contains: Maybe<Scalars['String']>;
-  description_starts_with: Maybe<Scalars['String']>;
-  description_not_starts_with: Maybe<Scalars['String']>;
-  description_ends_with: Maybe<Scalars['String']>;
-  description_not_ends_with: Maybe<Scalars['String']>;
-  url: Maybe<Scalars['String']>;
-  url_not: Maybe<Scalars['String']>;
-  url_in: Maybe<Array<Scalars['String']>>;
-  url_not_in: Maybe<Array<Scalars['String']>>;
-  url_lt: Maybe<Scalars['String']>;
-  url_lte: Maybe<Scalars['String']>;
-  url_gt: Maybe<Scalars['String']>;
-  url_gte: Maybe<Scalars['String']>;
-  url_contains: Maybe<Scalars['String']>;
-  url_not_contains: Maybe<Scalars['String']>;
-  url_starts_with: Maybe<Scalars['String']>;
-  url_not_starts_with: Maybe<Scalars['String']>;
-  url_ends_with: Maybe<Scalars['String']>;
-  url_not_ends_with: Maybe<Scalars['String']>;
-  navbarMenu: Maybe<TNavbarMenuWhereInput>;
-  AND: Maybe<Array<TApplicationExtensionWhereInput>>;
-  OR: Maybe<Array<TApplicationExtensionWhereInput>>;
-  NOT: Maybe<Array<TApplicationExtensionWhereInput>>;
+export type TQuery = {
+  __typename?: 'Query';
+  projectExtension: Maybe<TProjectExtension>;
+  allProjectExtensions: Array<TProjectExtension>;
+  /** @deprecated Experimental feature - For internal usage only */
+  allAppliedCustomApplicationPermissions: Array<TCustomApplicationPermission>;
+  organizationExtension: Maybe<TOrganizationExtension>;
+  /** @deprecated Experimental feature - For internal usage only */
+  globalOrganizationExtension: Maybe<TOrganizationExtension>;
+  ordersListViews: Array<Maybe<TOrdersListView>>;
+  ordersListView: Maybe<TOrdersListView>;
+  activeOrdersListView: Maybe<TOrdersListView>;
+  cartDiscountsCustomViews: Array<Maybe<TDiscountsCustomView>>;
+  cartDiscountsCustomView: Maybe<TDiscountsCustomView>;
+  activeCartDiscountsCustomView: Maybe<TDiscountsCustomView>;
+  productDiscountsCustomViews: Array<Maybe<TDiscountsCustomView>>;
+  productDiscountsCustomView: Maybe<TDiscountsCustomView>;
+  activeProductDiscountsCustomView: Maybe<TDiscountsCustomView>;
+  discountCodesCustomViews: Array<Maybe<TDiscountsCustomView>>;
+  discountCodesCustomView: Maybe<TDiscountsCustomView>;
+  activeDiscountCodesCustomView: Maybe<TDiscountsCustomView>;
+  pimSearchListViews: Array<Maybe<TPimSearchListView>>;
+  pimSearchListView: Maybe<TPimSearchListView>;
+  activePimSearchListView: Maybe<TPimSearchListView>;
+  productTypeAttributesViews: Maybe<Array<Maybe<TProductTypeAttributesView>>>;
+  productTypeAttributesView: Maybe<TProductTypeAttributesView>;
+  activeProductTypeAttributesView: Maybe<TProductTypeAttributesView>;
+  variantPricesListViews: Array<Maybe<TVariantPricesListView>>;
+  customersListViews: Array<Maybe<TCustomersListView>>;
+  customersListView: Maybe<TCustomersListView>;
+  activeCustomersListView: Maybe<TCustomersListView>;
+  ruleBuilderQuickSelectionValues: Maybe<Array<Maybe<TRuleBuilderQuickSelectionValues>>>;
+  cartDiscountsListView: Maybe<TCartDiscountsListView>;
+  productDiscountsListView: Maybe<TProductDiscountsListView>;
+  discountCodesListView: Maybe<TDiscountCodesListView>;
+  dashboardViews: Array<Maybe<TDashboardView>>;
+  dashboardView: Maybe<TDashboardView>;
+  activeDashboardView: Maybe<TDashboardView>;
 };
 
-export type TNavbarMenuWhereInput = {
-  id: Maybe<Scalars['ID']>;
-  id_not: Maybe<Scalars['ID']>;
-  id_in: Maybe<Array<Scalars['ID']>>;
-  id_not_in: Maybe<Array<Scalars['ID']>>;
-  id_lt: Maybe<Scalars['ID']>;
-  id_lte: Maybe<Scalars['ID']>;
-  id_gt: Maybe<Scalars['ID']>;
-  id_gte: Maybe<Scalars['ID']>;
-  id_contains: Maybe<Scalars['ID']>;
-  id_not_contains: Maybe<Scalars['ID']>;
-  id_starts_with: Maybe<Scalars['ID']>;
-  id_not_starts_with: Maybe<Scalars['ID']>;
-  id_ends_with: Maybe<Scalars['ID']>;
-  id_not_ends_with: Maybe<Scalars['ID']>;
-  createdAt: Maybe<Scalars['DateTime']>;
-  createdAt_not: Maybe<Scalars['DateTime']>;
-  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_lt: Maybe<Scalars['DateTime']>;
-  createdAt_lte: Maybe<Scalars['DateTime']>;
-  createdAt_gt: Maybe<Scalars['DateTime']>;
-  createdAt_gte: Maybe<Scalars['DateTime']>;
-  updatedAt: Maybe<Scalars['DateTime']>;
-  updatedAt_not: Maybe<Scalars['DateTime']>;
-  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt: Maybe<Scalars['DateTime']>;
-  updatedAt_lte: Maybe<Scalars['DateTime']>;
-  updatedAt_gt: Maybe<Scalars['DateTime']>;
-  updatedAt_gte: Maybe<Scalars['DateTime']>;
-  key: Maybe<Scalars['String']>;
-  key_not: Maybe<Scalars['String']>;
-  key_in: Maybe<Array<Scalars['String']>>;
-  key_not_in: Maybe<Array<Scalars['String']>>;
-  key_lt: Maybe<Scalars['String']>;
-  key_lte: Maybe<Scalars['String']>;
-  key_gt: Maybe<Scalars['String']>;
-  key_gte: Maybe<Scalars['String']>;
-  key_contains: Maybe<Scalars['String']>;
-  key_not_contains: Maybe<Scalars['String']>;
-  key_starts_with: Maybe<Scalars['String']>;
-  key_not_starts_with: Maybe<Scalars['String']>;
-  key_ends_with: Maybe<Scalars['String']>;
-  key_not_ends_with: Maybe<Scalars['String']>;
-  uriPath: Maybe<Scalars['String']>;
-  uriPath_not: Maybe<Scalars['String']>;
-  uriPath_in: Maybe<Array<Scalars['String']>>;
-  uriPath_not_in: Maybe<Array<Scalars['String']>>;
-  uriPath_lt: Maybe<Scalars['String']>;
-  uriPath_lte: Maybe<Scalars['String']>;
-  uriPath_gt: Maybe<Scalars['String']>;
-  uriPath_gte: Maybe<Scalars['String']>;
-  uriPath_contains: Maybe<Scalars['String']>;
-  uriPath_not_contains: Maybe<Scalars['String']>;
-  uriPath_starts_with: Maybe<Scalars['String']>;
-  uriPath_not_starts_with: Maybe<Scalars['String']>;
-  uriPath_ends_with: Maybe<Scalars['String']>;
-  uriPath_not_ends_with: Maybe<Scalars['String']>;
-  labelAllLocales_every: Maybe<TLocalizedFieldWhereInput>;
-  labelAllLocales_some: Maybe<TLocalizedFieldWhereInput>;
-  labelAllLocales_none: Maybe<TLocalizedFieldWhereInput>;
-  featureToggle: Maybe<Scalars['String']>;
-  featureToggle_not: Maybe<Scalars['String']>;
-  featureToggle_in: Maybe<Array<Scalars['String']>>;
-  featureToggle_not_in: Maybe<Array<Scalars['String']>>;
-  featureToggle_lt: Maybe<Scalars['String']>;
-  featureToggle_lte: Maybe<Scalars['String']>;
-  featureToggle_gt: Maybe<Scalars['String']>;
-  featureToggle_gte: Maybe<Scalars['String']>;
-  featureToggle_contains: Maybe<Scalars['String']>;
-  featureToggle_not_contains: Maybe<Scalars['String']>;
-  featureToggle_starts_with: Maybe<Scalars['String']>;
-  featureToggle_not_starts_with: Maybe<Scalars['String']>;
-  featureToggle_ends_with: Maybe<Scalars['String']>;
-  featureToggle_not_ends_with: Maybe<Scalars['String']>;
-  icon: Maybe<Scalars['String']>;
-  icon_not: Maybe<Scalars['String']>;
-  icon_in: Maybe<Array<Scalars['String']>>;
-  icon_not_in: Maybe<Array<Scalars['String']>>;
-  icon_lt: Maybe<Scalars['String']>;
-  icon_lte: Maybe<Scalars['String']>;
-  icon_gt: Maybe<Scalars['String']>;
-  icon_gte: Maybe<Scalars['String']>;
-  icon_contains: Maybe<Scalars['String']>;
-  icon_not_contains: Maybe<Scalars['String']>;
-  icon_starts_with: Maybe<Scalars['String']>;
-  icon_not_starts_with: Maybe<Scalars['String']>;
-  icon_ends_with: Maybe<Scalars['String']>;
-  icon_not_ends_with: Maybe<Scalars['String']>;
-  submenu_every: Maybe<TNavbarSubmenuWhereInput>;
-  submenu_some: Maybe<TNavbarSubmenuWhereInput>;
-  submenu_none: Maybe<TNavbarSubmenuWhereInput>;
-  AND: Maybe<Array<TNavbarMenuWhereInput>>;
-  OR: Maybe<Array<TNavbarMenuWhereInput>>;
-  NOT: Maybe<Array<TNavbarMenuWhereInput>>;
+
+export type TQuery_AllAppliedCustomApplicationPermissionsArgs = {
+  applicationId: Scalars['ID'];
+  entryPointUriPath: Scalars['String'];
 };
 
-export type TImageRegexWhereInput = {
-  id: Maybe<Scalars['ID']>;
-  id_not: Maybe<Scalars['ID']>;
-  id_in: Maybe<Array<Scalars['ID']>>;
-  id_not_in: Maybe<Array<Scalars['ID']>>;
-  id_lt: Maybe<Scalars['ID']>;
-  id_lte: Maybe<Scalars['ID']>;
-  id_gt: Maybe<Scalars['ID']>;
-  id_gte: Maybe<Scalars['ID']>;
-  id_contains: Maybe<Scalars['ID']>;
-  id_not_contains: Maybe<Scalars['ID']>;
-  id_starts_with: Maybe<Scalars['ID']>;
-  id_not_starts_with: Maybe<Scalars['ID']>;
-  id_ends_with: Maybe<Scalars['ID']>;
-  id_not_ends_with: Maybe<Scalars['ID']>;
-  createdAt: Maybe<Scalars['DateTime']>;
-  createdAt_not: Maybe<Scalars['DateTime']>;
-  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_lt: Maybe<Scalars['DateTime']>;
-  createdAt_lte: Maybe<Scalars['DateTime']>;
-  createdAt_gt: Maybe<Scalars['DateTime']>;
-  createdAt_gte: Maybe<Scalars['DateTime']>;
-  updatedAt: Maybe<Scalars['DateTime']>;
-  updatedAt_not: Maybe<Scalars['DateTime']>;
-  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt: Maybe<Scalars['DateTime']>;
-  updatedAt_lte: Maybe<Scalars['DateTime']>;
-  updatedAt_gt: Maybe<Scalars['DateTime']>;
-  updatedAt_gte: Maybe<Scalars['DateTime']>;
-  small: Maybe<TImageRegexOptionsWhereInput>;
-  thumb: Maybe<TImageRegexOptionsWhereInput>;
-  AND: Maybe<Array<TImageRegexWhereInput>>;
-  OR: Maybe<Array<TImageRegexWhereInput>>;
-  NOT: Maybe<Array<TImageRegexWhereInput>>;
+
+export type TQuery_OrganizationExtensionArgs = {
+  organizationId: Scalars['String'];
 };
 
-export type TImageRegexOptionsWhereInput = {
-  id: Maybe<Scalars['ID']>;
-  id_not: Maybe<Scalars['ID']>;
-  id_in: Maybe<Array<Scalars['ID']>>;
-  id_not_in: Maybe<Array<Scalars['ID']>>;
-  id_lt: Maybe<Scalars['ID']>;
-  id_lte: Maybe<Scalars['ID']>;
-  id_gt: Maybe<Scalars['ID']>;
-  id_gte: Maybe<Scalars['ID']>;
-  id_contains: Maybe<Scalars['ID']>;
-  id_not_contains: Maybe<Scalars['ID']>;
-  id_starts_with: Maybe<Scalars['ID']>;
-  id_not_starts_with: Maybe<Scalars['ID']>;
-  id_ends_with: Maybe<Scalars['ID']>;
-  id_not_ends_with: Maybe<Scalars['ID']>;
-  createdAt: Maybe<Scalars['DateTime']>;
-  createdAt_not: Maybe<Scalars['DateTime']>;
-  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_lt: Maybe<Scalars['DateTime']>;
-  createdAt_lte: Maybe<Scalars['DateTime']>;
-  createdAt_gt: Maybe<Scalars['DateTime']>;
-  createdAt_gte: Maybe<Scalars['DateTime']>;
-  updatedAt: Maybe<Scalars['DateTime']>;
-  updatedAt_not: Maybe<Scalars['DateTime']>;
-  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt: Maybe<Scalars['DateTime']>;
-  updatedAt_lte: Maybe<Scalars['DateTime']>;
-  updatedAt_gt: Maybe<Scalars['DateTime']>;
-  updatedAt_gte: Maybe<Scalars['DateTime']>;
-  flag: Maybe<Scalars['String']>;
-  flag_not: Maybe<Scalars['String']>;
-  flag_in: Maybe<Array<Scalars['String']>>;
-  flag_not_in: Maybe<Array<Scalars['String']>>;
-  flag_lt: Maybe<Scalars['String']>;
-  flag_lte: Maybe<Scalars['String']>;
-  flag_gt: Maybe<Scalars['String']>;
-  flag_gte: Maybe<Scalars['String']>;
-  flag_contains: Maybe<Scalars['String']>;
-  flag_not_contains: Maybe<Scalars['String']>;
-  flag_starts_with: Maybe<Scalars['String']>;
-  flag_not_starts_with: Maybe<Scalars['String']>;
-  flag_ends_with: Maybe<Scalars['String']>;
-  flag_not_ends_with: Maybe<Scalars['String']>;
-  search: Maybe<Scalars['String']>;
-  search_not: Maybe<Scalars['String']>;
-  search_in: Maybe<Array<Scalars['String']>>;
-  search_not_in: Maybe<Array<Scalars['String']>>;
-  search_lt: Maybe<Scalars['String']>;
-  search_lte: Maybe<Scalars['String']>;
-  search_gt: Maybe<Scalars['String']>;
-  search_gte: Maybe<Scalars['String']>;
-  search_contains: Maybe<Scalars['String']>;
-  search_not_contains: Maybe<Scalars['String']>;
-  search_starts_with: Maybe<Scalars['String']>;
-  search_not_starts_with: Maybe<Scalars['String']>;
-  search_ends_with: Maybe<Scalars['String']>;
-  search_not_ends_with: Maybe<Scalars['String']>;
-  replace: Maybe<Scalars['String']>;
-  replace_not: Maybe<Scalars['String']>;
-  replace_in: Maybe<Array<Scalars['String']>>;
-  replace_not_in: Maybe<Array<Scalars['String']>>;
-  replace_lt: Maybe<Scalars['String']>;
-  replace_lte: Maybe<Scalars['String']>;
-  replace_gt: Maybe<Scalars['String']>;
-  replace_gte: Maybe<Scalars['String']>;
-  replace_contains: Maybe<Scalars['String']>;
-  replace_not_contains: Maybe<Scalars['String']>;
-  replace_starts_with: Maybe<Scalars['String']>;
-  replace_not_starts_with: Maybe<Scalars['String']>;
-  replace_ends_with: Maybe<Scalars['String']>;
-  replace_not_ends_with: Maybe<Scalars['String']>;
-  AND: Maybe<Array<TImageRegexOptionsWhereInput>>;
-  OR: Maybe<Array<TImageRegexOptionsWhereInput>>;
-  NOT: Maybe<Array<TImageRegexOptionsWhereInput>>;
+
+export type TQuery_GlobalOrganizationExtensionArgs = {
+  organizationId: Scalars['String'];
 };
 
-export type TCategoryRecommendationSettingsWhereInput = {
-  id: Maybe<Scalars['ID']>;
-  id_not: Maybe<Scalars['ID']>;
-  id_in: Maybe<Array<Scalars['ID']>>;
-  id_not_in: Maybe<Array<Scalars['ID']>>;
-  id_lt: Maybe<Scalars['ID']>;
-  id_lte: Maybe<Scalars['ID']>;
-  id_gt: Maybe<Scalars['ID']>;
-  id_gte: Maybe<Scalars['ID']>;
-  id_contains: Maybe<Scalars['ID']>;
-  id_not_contains: Maybe<Scalars['ID']>;
-  id_starts_with: Maybe<Scalars['ID']>;
-  id_not_starts_with: Maybe<Scalars['ID']>;
-  id_ends_with: Maybe<Scalars['ID']>;
-  id_not_ends_with: Maybe<Scalars['ID']>;
-  createdAt: Maybe<Scalars['DateTime']>;
-  createdAt_not: Maybe<Scalars['DateTime']>;
-  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_lt: Maybe<Scalars['DateTime']>;
-  createdAt_lte: Maybe<Scalars['DateTime']>;
-  createdAt_gt: Maybe<Scalars['DateTime']>;
-  createdAt_gte: Maybe<Scalars['DateTime']>;
-  updatedAt: Maybe<Scalars['DateTime']>;
-  updatedAt_not: Maybe<Scalars['DateTime']>;
-  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt: Maybe<Scalars['DateTime']>;
-  updatedAt_lte: Maybe<Scalars['DateTime']>;
-  updatedAt_gt: Maybe<Scalars['DateTime']>;
-  updatedAt_gte: Maybe<Scalars['DateTime']>;
-  searchProperty: Maybe<TCategoryRecommendationSearchProperty>;
-  searchProperty_not: Maybe<TCategoryRecommendationSearchProperty>;
-  searchProperty_in: Maybe<Array<TCategoryRecommendationSearchProperty>>;
-  searchProperty_not_in: Maybe<Array<TCategoryRecommendationSearchProperty>>;
-  attributeName: Maybe<Scalars['String']>;
-  attributeName_not: Maybe<Scalars['String']>;
-  attributeName_in: Maybe<Array<Scalars['String']>>;
-  attributeName_not_in: Maybe<Array<Scalars['String']>>;
-  attributeName_lt: Maybe<Scalars['String']>;
-  attributeName_lte: Maybe<Scalars['String']>;
-  attributeName_gt: Maybe<Scalars['String']>;
-  attributeName_gte: Maybe<Scalars['String']>;
-  attributeName_contains: Maybe<Scalars['String']>;
-  attributeName_not_contains: Maybe<Scalars['String']>;
-  attributeName_starts_with: Maybe<Scalars['String']>;
-  attributeName_not_starts_with: Maybe<Scalars['String']>;
-  attributeName_ends_with: Maybe<Scalars['String']>;
-  attributeName_not_ends_with: Maybe<Scalars['String']>;
-  AND: Maybe<Array<TCategoryRecommendationSettingsWhereInput>>;
-  OR: Maybe<Array<TCategoryRecommendationSettingsWhereInput>>;
-  NOT: Maybe<Array<TCategoryRecommendationSettingsWhereInput>>;
+
+export type TQuery_OrdersListViewArgs = {
+  id: Scalars['ID'];
 };
 
-export enum TCustomApplicationInstallationOrderByInput {
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-  InstallInAllProjectsAsc = 'installInAllProjects_ASC',
-  InstallInAllProjectsDesc = 'installInAllProjects_DESC'
-}
 
-export type TCustomApplicationInstallation = {
-  __typename?: 'CustomApplicationInstallation';
+export type TQuery_CartDiscountsCustomViewArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type TQuery_ProductDiscountsCustomViewArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type TQuery_DiscountCodesCustomViewArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type TQuery_PimSearchListViewArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type TQuery_ProductTypeAttributesViewsArgs = {
+  productTypeId: Scalars['String'];
+  isVariant: Scalars['Boolean'];
+};
+
+
+export type TQuery_ProductTypeAttributesViewArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type TQuery_ActiveProductTypeAttributesViewArgs = {
+  productTypeId: Scalars['String'];
+  isVariant: Scalars['Boolean'];
+};
+
+
+export type TQuery_CustomersListViewArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type TQuery_RuleBuilderQuickSelectionValuesArgs = {
+  ruleBuilderType: TRuleBuilderType;
+};
+
+
+export type TQuery_DashboardViewArgs = {
+  id: Scalars['ID'];
+};
+
+export type TResourcesNumbersConfiguration = {
+  __typename?: 'ResourcesNumbersConfiguration';
   id: Scalars['ID'];
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
-  organization: TOrganizationExtension;
-  application: TCustomApplication;
-  acceptedPermissions: Maybe<Array<TCustomApplicationPermission>>;
+  resourceOptions: Array<TResourceType>;
+};
+
+export type TResourcesNumbersConfigurationInput = {
+  resourceOptions: Array<TResourceType>;
+};
+
+export type TResourcesNumbersConfigurationWhereInput = {
+  id: Maybe<Scalars['ID']>;
+  id_not: Maybe<Scalars['ID']>;
+  id_in: Maybe<Array<Scalars['ID']>>;
+  id_not_in: Maybe<Array<Scalars['ID']>>;
+  id_lt: Maybe<Scalars['ID']>;
+  id_lte: Maybe<Scalars['ID']>;
+  id_gt: Maybe<Scalars['ID']>;
+  id_gte: Maybe<Scalars['ID']>;
+  id_contains: Maybe<Scalars['ID']>;
+  id_not_contains: Maybe<Scalars['ID']>;
+  id_starts_with: Maybe<Scalars['ID']>;
+  id_not_starts_with: Maybe<Scalars['ID']>;
+  id_ends_with: Maybe<Scalars['ID']>;
+  id_not_ends_with: Maybe<Scalars['ID']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  createdAt_not: Maybe<Scalars['DateTime']>;
+  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_lt: Maybe<Scalars['DateTime']>;
+  createdAt_lte: Maybe<Scalars['DateTime']>;
+  createdAt_gt: Maybe<Scalars['DateTime']>;
+  createdAt_gte: Maybe<Scalars['DateTime']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  updatedAt_not: Maybe<Scalars['DateTime']>;
+  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_lt: Maybe<Scalars['DateTime']>;
+  updatedAt_lte: Maybe<Scalars['DateTime']>;
+  updatedAt_gt: Maybe<Scalars['DateTime']>;
+  updatedAt_gte: Maybe<Scalars['DateTime']>;
+  AND: Maybe<Array<TResourcesNumbersConfigurationWhereInput>>;
+  OR: Maybe<Array<TResourcesNumbersConfigurationWhereInput>>;
+  NOT: Maybe<Array<TResourcesNumbersConfigurationWhereInput>>;
+};
+
+export enum TResourceType {
+  TotalProducts = 'TOTAL_PRODUCTS',
+  PublishedProducts = 'PUBLISHED_PRODUCTS',
+  UnpublishedProducts = 'UNPUBLISHED_PRODUCTS',
+  Categories = 'CATEGORIES'
+}
+
+export type TRestrictedApplicationExtensionWhereInput = {
+  id: Maybe<Scalars['ID']>;
+  isActive: Maybe<Scalars['Boolean']>;
+  url: Maybe<Scalars['String']>;
+};
+
+export type TRestrictedCustomApplicationContactPerson = {
+  __typename?: 'RestrictedCustomApplicationContactPerson';
+  email: Scalars['String'];
+  consents: Array<TCustomApplicationContactConsent>;
+};
+
+export type TRestrictedCustomApplicationForOrganization = {
+  __typename?: 'RestrictedCustomApplicationForOrganization';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  status: Maybe<TCustomApplicationStatus>;
+  name: Scalars['String'];
+  description: Maybe<Scalars['String']>;
+  url: Scalars['String'];
+  entryPointUriPath: Scalars['String'];
+  permissions: Array<TCustomApplicationPermission>;
+  menuLinks: Maybe<TCustomApplicationMenuLink>;
+  contacts: Maybe<Array<TRestrictedCustomApplicationContactPerson>>;
+};
+
+export type TRestrictedCustomApplicationForProject = {
+  __typename?: 'RestrictedCustomApplicationForProject';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  status: Maybe<TCustomApplicationStatus>;
+  name: Scalars['String'];
+  description: Maybe<Scalars['String']>;
+  url: Scalars['String'];
+  entryPointUriPath: Scalars['String'];
+  permissions: Array<TCustomApplicationPermission>;
+  menuLinks: Maybe<TCustomApplicationMenuLink>;
+};
+
+export type TRestrictedCustomApplicationInstallationForOrganization = {
+  __typename?: 'RestrictedCustomApplicationInstallationForOrganization';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  application: TRestrictedCustomApplicationForProject;
   installInAllProjects: Scalars['Boolean'];
   projects: Maybe<Array<TProjectExtension>>;
 };
 
-
-export type TCustomApplicationInstallation_AcceptedPermissionsArgs = {
-  where: Maybe<TCustomApplicationPermissionWhereInput>;
-  orderBy: Maybe<TCustomApplicationPermissionOrderByInput>;
-  skip: Maybe<Scalars['Int']>;
-  after: Maybe<Scalars['String']>;
-  before: Maybe<Scalars['String']>;
-  first: Maybe<Scalars['Int']>;
-  last: Maybe<Scalars['Int']>;
-};
-
-
-export type TCustomApplicationInstallation_ProjectsArgs = {
-  where: Maybe<TProjectExtensionWhereInput>;
-  orderBy: Maybe<TProjectExtensionOrderByInput>;
-  skip: Maybe<Scalars['Int']>;
-  after: Maybe<Scalars['String']>;
-  before: Maybe<Scalars['String']>;
-  first: Maybe<Scalars['Int']>;
-  last: Maybe<Scalars['Int']>;
-};
-
-export enum TCustomApplicationPermissionOrderByInput {
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC'
-}
-
-export enum TProjectExtensionOrderByInput {
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-  ProjectKeyAsc = 'projectKey_ASC',
-  ProjectKeyDesc = 'projectKey_DESC'
-}
-
-export enum TCustomApplicationContactPersonOrderByInput {
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-  EmailAsc = 'email_ASC',
-  EmailDesc = 'email_DESC'
-}
-
-export type TCustomApplicationContactPerson = {
-  __typename?: 'CustomApplicationContactPerson';
+export type TRestrictedCustomApplicationInstallationForProject = {
+  __typename?: 'RestrictedCustomApplicationInstallationForProject';
   id: Scalars['ID'];
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
-  email: Scalars['String'];
-  consents: Array<TCustomApplicationContactConsent>;
-  maintainerOf: Maybe<Array<TCustomApplication>>;
+  application: TRestrictedCustomApplicationForProject;
+  installInAllProjects: Scalars['Boolean'];
 };
 
-
-export type TCustomApplicationContactPerson_MaintainerOfArgs = {
-  where: Maybe<TCustomApplicationWhereInput>;
-  orderBy: Maybe<TCustomApplicationOrderByInput>;
-  skip: Maybe<Scalars['Int']>;
-  after: Maybe<Scalars['String']>;
-  before: Maybe<Scalars['String']>;
-  first: Maybe<Scalars['Int']>;
-  last: Maybe<Scalars['Int']>;
+export type TRestrictedCustomApplicationInstallationWhereInput = {
+  application: Maybe<TRestrictedCustomApplicationWhereInput>;
 };
 
-export enum TCustomApplicationOrderByInput {
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-  StatusAsc = 'status_ASC',
-  StatusDesc = 'status_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  DescriptionAsc = 'description_ASC',
-  DescriptionDesc = 'description_DESC',
-  UrlAsc = 'url_ASC',
-  UrlDesc = 'url_DESC',
-  EntryPointUriPathAsc = 'entryPointUriPath_ASC',
-  EntryPointUriPathDesc = 'entryPointUriPath_DESC'
-}
-
-export type TOidcSsoConfigDataInput = {
-  authorityUrl: Scalars['String'];
-  clientId: Scalars['String'];
-  clientSecret: Maybe<Scalars['String']>;
-  teamIdForNewUsers: Scalars['String'];
-  logoutUrl: Maybe<Scalars['String']>;
-};
-
-export type TOrdersListViewInput = {
-  search: Maybe<Scalars['String']>;
-  nameAllLocales: Array<TLocalizedFieldCreateInput>;
-  table: Maybe<TOrdersListViewTableInput>;
-  sort: TSortCreateInput;
-  filters: Array<TFilterValuesCreateInput>;
-};
-
-export type TLocalizedFieldCreateInput = {
+export type TRestrictedCustomApplicationWhereInput = {
   id: Maybe<Scalars['ID']>;
-  locale: Scalars['String'];
-  value: Scalars['String'];
-};
-
-export type TOrdersListViewTableInput = {
-  visibleColumns: Array<Scalars['String']>;
-};
-
-export type TSortCreateInput = {
-  id: Maybe<Scalars['ID']>;
-  key: Scalars['String'];
-  order: TSortOrder;
-};
-
-export type TFilterValuesCreateInput = {
-  id: Maybe<Scalars['ID']>;
-  target: Scalars['String'];
-  type: TFilterType;
-  json: Scalars['Json'];
-};
-
-export type TDiscountsCustomViewInput = {
-  search: Maybe<Scalars['String']>;
-  nameAllLocales: Array<TLocalizedFieldCreateInput>;
-  table: Maybe<TOrdersListViewTableInput>;
-  sort: TSortCreateInput;
-  filters: Array<TFilterValuesCreateInput>;
-};
-
-export type TPimSearchListViewInput = {
-  search: Maybe<Scalars['String']>;
-  nameAllLocales: Array<TLocalizedFieldCreateInput>;
-  table: Maybe<TPimSearchListViewTableInput>;
-  sort: TSortCreateInput;
-  filters: Array<TFilterValuesCreateInput>;
-};
-
-export type TPimSearchListViewTableInput = {
-  visibleColumns: Array<Scalars['String']>;
-};
-
-export type TProductTypeAttributesViewInput = {
-  nameAllLocales: Array<TLocalizedFieldCreateInput>;
-  productTypeId: Scalars['String'];
-  pinnedAttributes: Array<Scalars['String']>;
-  isVariant: Maybe<Scalars['Boolean']>;
-  searchTerm: Maybe<Scalars['String']>;
-  existence: Maybe<TExistence>;
-};
-
-export type TProductTypeAttributesViewUpdateInput = {
-  nameAllLocales: Array<TLocalizedFieldCreateInput>;
-  isVariant: Maybe<Scalars['Boolean']>;
-  pinnedAttributes: Array<Scalars['String']>;
-  searchTerm: Maybe<Scalars['String']>;
-  existence: Maybe<TExistence>;
-};
-
-export type TVariantPricesListViewInput = {
-  visibleColumns: Array<Scalars['String']>;
-};
-
-export type TCustomersListViewInput = {
-  search: Maybe<Scalars['String']>;
-  nameAllLocales: Array<TLocalizedFieldCreateInput>;
-  table: Maybe<TCustomersListViewTableInput>;
-  sort: TSortCreateInput;
-  filters: Array<TFilterValuesCreateInput>;
-};
-
-export type TCustomersListViewTableInput = {
-  visibleColumns: Array<Scalars['String']>;
-};
-
-export type TRuleBuilderQuickSelectionInput = {
-  ruleBuilderType: TRuleBuilderType;
-  predicates: Maybe<TRuleBuilderQuickSelectCreatefunctionsInput>;
-  functions: Maybe<TRuleBuilderQuickSelectCreatepredicatesInput>;
+  status: Maybe<TCustomApplicationStatus>;
+  url: Maybe<Scalars['String']>;
+  entryPointUriPath: Maybe<Scalars['String']>;
 };
 
 export type TRuleBuilderQuickSelectCreatefunctionsInput = {
@@ -3425,43 +3165,39 @@ export type TRuleBuilderQuickSelectCreatepredicatesInput = {
   set: Maybe<Array<Scalars['String']>>;
 };
 
-export type TCartDiscountsListViewInput = {
-  visibleColumns: Array<Scalars['String']>;
+export type TRuleBuilderQuickSelectionInput = {
+  ruleBuilderType: TRuleBuilderType;
+  predicates: Maybe<TRuleBuilderQuickSelectCreatefunctionsInput>;
+  functions: Maybe<TRuleBuilderQuickSelectCreatepredicatesInput>;
 };
 
-export type TProductDiscountsListViewInput = {
-  visibleColumns: Array<Scalars['String']>;
+export type TRuleBuilderQuickSelectionValues = {
+  __typename?: 'RuleBuilderQuickSelectionValues';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
+  projectKey: Scalars['String'];
+  ruleBuilderType: TRuleBuilderType;
+  functions: Array<Scalars['String']>;
+  predicates: Array<Scalars['String']>;
 };
 
-export type TDiscountCodesListViewInput = {
-  visibleColumns: Array<Scalars['String']>;
-};
+export enum TRuleBuilderType {
+  ProductDiscount = 'ProductDiscount',
+  CartDiscount = 'CartDiscount',
+  CartTargetDiscount = 'CartTargetDiscount'
+}
 
-export type TDashboardViewInput = {
-  nameAllLocales: Array<TLocalizedFieldCreateInput>;
-  layout: Array<TLayoutCardInput>;
-};
-
-export type TLayoutCardInput = {
-  key: TMetricCardType;
-  nameAllLocales: Maybe<Array<TLocalizedFieldCreateInput>>;
-  height: Scalars['Int'];
-  width: Scalars['Int'];
-  minHeight: Maybe<Scalars['Int']>;
-  minWidth: Maybe<Scalars['Int']>;
-  xPosition: Scalars['Int'];
-  yPosition: Scalars['Int'];
-  topProductsConfiguration: Maybe<TTopProductsConfigurationInput>;
-  salesPerformanceConfiguration: Maybe<TSalesPerformanceConfigurationInput>;
-  totalSalesConfiguration: Maybe<TTotalSalesConfigurationInput>;
-  averageOrderValueConfiguration: Maybe<TAverageOrderValueConfigurationInput>;
-  resourcesNumbersConfiguration: Maybe<TResourcesNumbersConfigurationInput>;
-  orderStatusConfiguration: Maybe<TOrderStatusConfigurationInput>;
-  totalOrdersConfiguration: Maybe<TTotalOrdersConfigurationInput>;
-};
-
-export type TTopProductsConfigurationInput = {
-  bestSellingLimit: Maybe<TBestSellingLimit>;
+export type TSalesPerformanceConfiguration = {
+  __typename?: 'SalesPerformanceConfiguration';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  showPreviousTimeframe: Scalars['Boolean'];
+  dateFrom: Maybe<Scalars['DateTime']>;
+  dateTo: Maybe<Scalars['DateTime']>;
+  dateFilterType: TDateFilterType;
 };
 
 export type TSalesPerformanceConfigurationInput = {
@@ -3471,20 +3207,151 @@ export type TSalesPerformanceConfigurationInput = {
   dateFilterType: TDateFilterType;
 };
 
-export type TTotalSalesConfigurationInput = {
-  productId: Maybe<Scalars['String']>;
+export type TSalesPerformanceConfigurationWhereInput = {
+  id: Maybe<Scalars['ID']>;
+  id_not: Maybe<Scalars['ID']>;
+  id_in: Maybe<Array<Scalars['ID']>>;
+  id_not_in: Maybe<Array<Scalars['ID']>>;
+  id_lt: Maybe<Scalars['ID']>;
+  id_lte: Maybe<Scalars['ID']>;
+  id_gt: Maybe<Scalars['ID']>;
+  id_gte: Maybe<Scalars['ID']>;
+  id_contains: Maybe<Scalars['ID']>;
+  id_not_contains: Maybe<Scalars['ID']>;
+  id_starts_with: Maybe<Scalars['ID']>;
+  id_not_starts_with: Maybe<Scalars['ID']>;
+  id_ends_with: Maybe<Scalars['ID']>;
+  id_not_ends_with: Maybe<Scalars['ID']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  createdAt_not: Maybe<Scalars['DateTime']>;
+  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_lt: Maybe<Scalars['DateTime']>;
+  createdAt_lte: Maybe<Scalars['DateTime']>;
+  createdAt_gt: Maybe<Scalars['DateTime']>;
+  createdAt_gte: Maybe<Scalars['DateTime']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  updatedAt_not: Maybe<Scalars['DateTime']>;
+  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_lt: Maybe<Scalars['DateTime']>;
+  updatedAt_lte: Maybe<Scalars['DateTime']>;
+  updatedAt_gt: Maybe<Scalars['DateTime']>;
+  updatedAt_gte: Maybe<Scalars['DateTime']>;
+  showPreviousTimeframe: Maybe<Scalars['Boolean']>;
+  showPreviousTimeframe_not: Maybe<Scalars['Boolean']>;
+  dateFrom: Maybe<Scalars['DateTime']>;
+  dateFrom_not: Maybe<Scalars['DateTime']>;
+  dateFrom_in: Maybe<Array<Scalars['DateTime']>>;
+  dateFrom_not_in: Maybe<Array<Scalars['DateTime']>>;
+  dateFrom_lt: Maybe<Scalars['DateTime']>;
+  dateFrom_lte: Maybe<Scalars['DateTime']>;
+  dateFrom_gt: Maybe<Scalars['DateTime']>;
+  dateFrom_gte: Maybe<Scalars['DateTime']>;
+  dateTo: Maybe<Scalars['DateTime']>;
+  dateTo_not: Maybe<Scalars['DateTime']>;
+  dateTo_in: Maybe<Array<Scalars['DateTime']>>;
+  dateTo_not_in: Maybe<Array<Scalars['DateTime']>>;
+  dateTo_lt: Maybe<Scalars['DateTime']>;
+  dateTo_lte: Maybe<Scalars['DateTime']>;
+  dateTo_gt: Maybe<Scalars['DateTime']>;
+  dateTo_gte: Maybe<Scalars['DateTime']>;
+  dateFilterType: Maybe<TDateFilterType>;
+  dateFilterType_not: Maybe<TDateFilterType>;
+  dateFilterType_in: Maybe<Array<TDateFilterType>>;
+  dateFilterType_not_in: Maybe<Array<TDateFilterType>>;
+  AND: Maybe<Array<TSalesPerformanceConfigurationWhereInput>>;
+  OR: Maybe<Array<TSalesPerformanceConfigurationWhereInput>>;
+  NOT: Maybe<Array<TSalesPerformanceConfigurationWhereInput>>;
 };
 
-export type TAverageOrderValueConfigurationInput = {
+export type TSort = {
+  __typename?: 'Sort';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  key: Scalars['String'];
+  order: TSortOrder;
+};
+
+export type TSortCreateInput = {
+  id: Maybe<Scalars['ID']>;
+  key: Scalars['String'];
+  order: TSortOrder;
+};
+
+export enum TSortOrder {
+  Asc = 'Asc',
+  Desc = 'Desc'
+}
+
+export type TTable = {
+  __typename?: 'Table';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  visibleColumns: Array<Scalars['String']>;
+};
+
+export type TTopProductsConfiguration = {
+  __typename?: 'TopProductsConfiguration';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  bestSellingLimit: TBestSellingLimit;
+};
+
+export type TTopProductsConfigurationInput = {
+  bestSellingLimit: Maybe<TBestSellingLimit>;
+};
+
+export type TTopProductsConfigurationWhereInput = {
+  id: Maybe<Scalars['ID']>;
+  id_not: Maybe<Scalars['ID']>;
+  id_in: Maybe<Array<Scalars['ID']>>;
+  id_not_in: Maybe<Array<Scalars['ID']>>;
+  id_lt: Maybe<Scalars['ID']>;
+  id_lte: Maybe<Scalars['ID']>;
+  id_gt: Maybe<Scalars['ID']>;
+  id_gte: Maybe<Scalars['ID']>;
+  id_contains: Maybe<Scalars['ID']>;
+  id_not_contains: Maybe<Scalars['ID']>;
+  id_starts_with: Maybe<Scalars['ID']>;
+  id_not_starts_with: Maybe<Scalars['ID']>;
+  id_ends_with: Maybe<Scalars['ID']>;
+  id_not_ends_with: Maybe<Scalars['ID']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  createdAt_not: Maybe<Scalars['DateTime']>;
+  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_lt: Maybe<Scalars['DateTime']>;
+  createdAt_lte: Maybe<Scalars['DateTime']>;
+  createdAt_gt: Maybe<Scalars['DateTime']>;
+  createdAt_gte: Maybe<Scalars['DateTime']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  updatedAt_not: Maybe<Scalars['DateTime']>;
+  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_lt: Maybe<Scalars['DateTime']>;
+  updatedAt_lte: Maybe<Scalars['DateTime']>;
+  updatedAt_gt: Maybe<Scalars['DateTime']>;
+  updatedAt_gte: Maybe<Scalars['DateTime']>;
+  bestSellingLimit: Maybe<TBestSellingLimit>;
+  bestSellingLimit_not: Maybe<TBestSellingLimit>;
+  bestSellingLimit_in: Maybe<Array<TBestSellingLimit>>;
+  bestSellingLimit_not_in: Maybe<Array<TBestSellingLimit>>;
+  AND: Maybe<Array<TTopProductsConfigurationWhereInput>>;
+  OR: Maybe<Array<TTopProductsConfigurationWhereInput>>;
+  NOT: Maybe<Array<TTopProductsConfigurationWhereInput>>;
+};
+
+export type TTotalOrdersConfiguration = {
+  __typename?: 'TotalOrdersConfiguration';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  productId: Maybe<Scalars['String']>;
   showPreviousTimeframe: Scalars['Boolean'];
-};
-
-export type TResourcesNumbersConfigurationInput = {
-  resourceOptions: Array<TResourceType>;
-};
-
-export type TOrderStatusConfigurationInput = {
-  productId: Maybe<Scalars['String']>;
   dateFrom: Maybe<Scalars['DateTime']>;
   dateTo: Maybe<Scalars['DateTime']>;
   dateFilterType: TDateFilterType;
@@ -3498,20 +3365,153 @@ export type TTotalOrdersConfigurationInput = {
   dateFilterType: TDateFilterType;
 };
 
-export enum TAuthPermission {
-  LoggedInUser = 'loggedInUser',
-  AccessToProject = 'accessToProject',
-  ManageMyOrganizations = 'manageMyOrganizations',
-  ManageProjectSettings = 'manageProjectSettings',
-  ViewProjectSettings = 'viewProjectSettings',
-  ViewCustomers = 'viewCustomers',
-  ViewSomeDiscounts = 'viewSomeDiscounts',
-  ViewProductDiscounts = 'viewProductDiscounts',
-  ViewCartDiscounts = 'viewCartDiscounts',
-  ViewDiscountCodes = 'viewDiscountCodes',
-  ViewOrders = 'viewOrders',
-  ViewProducts = 'viewProducts'
-}
+export type TTotalOrdersConfigurationWhereInput = {
+  id: Maybe<Scalars['ID']>;
+  id_not: Maybe<Scalars['ID']>;
+  id_in: Maybe<Array<Scalars['ID']>>;
+  id_not_in: Maybe<Array<Scalars['ID']>>;
+  id_lt: Maybe<Scalars['ID']>;
+  id_lte: Maybe<Scalars['ID']>;
+  id_gt: Maybe<Scalars['ID']>;
+  id_gte: Maybe<Scalars['ID']>;
+  id_contains: Maybe<Scalars['ID']>;
+  id_not_contains: Maybe<Scalars['ID']>;
+  id_starts_with: Maybe<Scalars['ID']>;
+  id_not_starts_with: Maybe<Scalars['ID']>;
+  id_ends_with: Maybe<Scalars['ID']>;
+  id_not_ends_with: Maybe<Scalars['ID']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  createdAt_not: Maybe<Scalars['DateTime']>;
+  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_lt: Maybe<Scalars['DateTime']>;
+  createdAt_lte: Maybe<Scalars['DateTime']>;
+  createdAt_gt: Maybe<Scalars['DateTime']>;
+  createdAt_gte: Maybe<Scalars['DateTime']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  updatedAt_not: Maybe<Scalars['DateTime']>;
+  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_lt: Maybe<Scalars['DateTime']>;
+  updatedAt_lte: Maybe<Scalars['DateTime']>;
+  updatedAt_gt: Maybe<Scalars['DateTime']>;
+  updatedAt_gte: Maybe<Scalars['DateTime']>;
+  productId: Maybe<Scalars['String']>;
+  productId_not: Maybe<Scalars['String']>;
+  productId_in: Maybe<Array<Scalars['String']>>;
+  productId_not_in: Maybe<Array<Scalars['String']>>;
+  productId_lt: Maybe<Scalars['String']>;
+  productId_lte: Maybe<Scalars['String']>;
+  productId_gt: Maybe<Scalars['String']>;
+  productId_gte: Maybe<Scalars['String']>;
+  productId_contains: Maybe<Scalars['String']>;
+  productId_not_contains: Maybe<Scalars['String']>;
+  productId_starts_with: Maybe<Scalars['String']>;
+  productId_not_starts_with: Maybe<Scalars['String']>;
+  productId_ends_with: Maybe<Scalars['String']>;
+  productId_not_ends_with: Maybe<Scalars['String']>;
+  showPreviousTimeframe: Maybe<Scalars['Boolean']>;
+  showPreviousTimeframe_not: Maybe<Scalars['Boolean']>;
+  dateFrom: Maybe<Scalars['DateTime']>;
+  dateFrom_not: Maybe<Scalars['DateTime']>;
+  dateFrom_in: Maybe<Array<Scalars['DateTime']>>;
+  dateFrom_not_in: Maybe<Array<Scalars['DateTime']>>;
+  dateFrom_lt: Maybe<Scalars['DateTime']>;
+  dateFrom_lte: Maybe<Scalars['DateTime']>;
+  dateFrom_gt: Maybe<Scalars['DateTime']>;
+  dateFrom_gte: Maybe<Scalars['DateTime']>;
+  dateTo: Maybe<Scalars['DateTime']>;
+  dateTo_not: Maybe<Scalars['DateTime']>;
+  dateTo_in: Maybe<Array<Scalars['DateTime']>>;
+  dateTo_not_in: Maybe<Array<Scalars['DateTime']>>;
+  dateTo_lt: Maybe<Scalars['DateTime']>;
+  dateTo_lte: Maybe<Scalars['DateTime']>;
+  dateTo_gt: Maybe<Scalars['DateTime']>;
+  dateTo_gte: Maybe<Scalars['DateTime']>;
+  dateFilterType: Maybe<TDateFilterType>;
+  dateFilterType_not: Maybe<TDateFilterType>;
+  dateFilterType_in: Maybe<Array<TDateFilterType>>;
+  dateFilterType_not_in: Maybe<Array<TDateFilterType>>;
+  AND: Maybe<Array<TTotalOrdersConfigurationWhereInput>>;
+  OR: Maybe<Array<TTotalOrdersConfigurationWhereInput>>;
+  NOT: Maybe<Array<TTotalOrdersConfigurationWhereInput>>;
+};
+
+export type TTotalSalesConfiguration = {
+  __typename?: 'TotalSalesConfiguration';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  productId: Maybe<Scalars['String']>;
+};
+
+export type TTotalSalesConfigurationInput = {
+  productId: Maybe<Scalars['String']>;
+};
+
+export type TTotalSalesConfigurationWhereInput = {
+  id: Maybe<Scalars['ID']>;
+  id_not: Maybe<Scalars['ID']>;
+  id_in: Maybe<Array<Scalars['ID']>>;
+  id_not_in: Maybe<Array<Scalars['ID']>>;
+  id_lt: Maybe<Scalars['ID']>;
+  id_lte: Maybe<Scalars['ID']>;
+  id_gt: Maybe<Scalars['ID']>;
+  id_gte: Maybe<Scalars['ID']>;
+  id_contains: Maybe<Scalars['ID']>;
+  id_not_contains: Maybe<Scalars['ID']>;
+  id_starts_with: Maybe<Scalars['ID']>;
+  id_not_starts_with: Maybe<Scalars['ID']>;
+  id_ends_with: Maybe<Scalars['ID']>;
+  id_not_ends_with: Maybe<Scalars['ID']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  createdAt_not: Maybe<Scalars['DateTime']>;
+  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_lt: Maybe<Scalars['DateTime']>;
+  createdAt_lte: Maybe<Scalars['DateTime']>;
+  createdAt_gt: Maybe<Scalars['DateTime']>;
+  createdAt_gte: Maybe<Scalars['DateTime']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  updatedAt_not: Maybe<Scalars['DateTime']>;
+  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_lt: Maybe<Scalars['DateTime']>;
+  updatedAt_lte: Maybe<Scalars['DateTime']>;
+  updatedAt_gt: Maybe<Scalars['DateTime']>;
+  updatedAt_gte: Maybe<Scalars['DateTime']>;
+  productId: Maybe<Scalars['String']>;
+  productId_not: Maybe<Scalars['String']>;
+  productId_in: Maybe<Array<Scalars['String']>>;
+  productId_not_in: Maybe<Array<Scalars['String']>>;
+  productId_lt: Maybe<Scalars['String']>;
+  productId_lte: Maybe<Scalars['String']>;
+  productId_gt: Maybe<Scalars['String']>;
+  productId_gte: Maybe<Scalars['String']>;
+  productId_contains: Maybe<Scalars['String']>;
+  productId_not_contains: Maybe<Scalars['String']>;
+  productId_starts_with: Maybe<Scalars['String']>;
+  productId_not_starts_with: Maybe<Scalars['String']>;
+  productId_ends_with: Maybe<Scalars['String']>;
+  productId_not_ends_with: Maybe<Scalars['String']>;
+  AND: Maybe<Array<TTotalSalesConfigurationWhereInput>>;
+  OR: Maybe<Array<TTotalSalesConfigurationWhereInput>>;
+  NOT: Maybe<Array<TTotalSalesConfigurationWhereInput>>;
+};
+
+export type TVariantPricesListView = {
+  __typename?: 'VariantPricesListView';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
+  projectKey: Scalars['String'];
+  visibleColumns: Array<Scalars['String']>;
+};
+
+export type TVariantPricesListViewInput = {
+  visibleColumns: Array<Scalars['String']>;
+};
 
 export type TFetchProjectExtensionImageRegexQueryVariables = Exact<{ [key: string]: never; }>;
 
