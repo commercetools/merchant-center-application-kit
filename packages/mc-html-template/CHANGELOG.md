@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-html-template
 
+## 18.5.8
+
+### Patch Changes
+
+- [`88e2b817`](https://github.com/commercetools/merchant-center-application-kit/commit/88e2b817575de4b43b6830638a0bd08c9b40a7d3) [#2103](https://github.com/commercetools/merchant-center-application-kit/pull/2103) Thanks [@emmenko](https://github.com/emmenko)! - Respect `cdnUrl` value when loading favicons.
+
 ## 18.5.6
 
 ### Patch Changes
