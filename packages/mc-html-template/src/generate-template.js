@@ -20,19 +20,19 @@ module.exports = function generateTemplate({
     <link rel="preconnect" href="__CDN_URL__">
     <link rel="preconnect" href="__MC_API_URL__">
     <!-- Fav and touch icons -->
-    <link rel="shortcut icon" type="image/png" href="/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="__CDN_URL__favicon.png">
     <!-- Standard iPhone -->
-    <link rel="apple-touch-icon" sizes="57x57" href="/favicon_57x57px.png">
-    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/favicon_57x57px.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="__CDN_URL__favicon_57x57px.png">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="__CDN_URL__favicon_57x57px.png">
     <!-- Retina iPhone  - COMMENTED OUT AS ICON FILES DO NOT EXIST -->
-    <!-- <link rel="apple-touch-icon" sizes="114x114" href="/favicon_114x114px.png"/>
-    <link rel="apple-touch-icon-precomposed" sizes="114×114" href="/favicon_114x114px.png"/>-->
+    <!-- <link rel="apple-touch-icon" sizes="114x114" href="__CDN_URL__favicon_114x114px.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114×114" href="__CDN_URL__favicon_114x114px.png"/>-->
     <!-- Standard iPad -->
-    <link rel="apple-touch-icon" sizes="72x72" href="/favicon_72x72px.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/favicon_72x72px.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="__CDN_URL__favicon_72x72px.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="__CDN_URL__favicon_72x72px.png">
     <!-- Retina iPad -->
-    <link rel="apple-touch-icon" sizes="144x144" href="/favicon_144x144px.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon_144x144px.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="__CDN_URL__favicon_144x144px.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="__CDN_URL__favicon_144x144px.png">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i' rel='stylesheet' type='text/css'></link>
     ${cssImports.join('\n')}
     <title>Merchant Center</title>
