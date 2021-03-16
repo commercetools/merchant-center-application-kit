@@ -5,13 +5,13 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "postinstall": "manypkg check && preconstruct dev && yarn compile-css-modules",
+    "postinstall": "manypkg check && preconstruct dev && yarn compile-css-modules && yarn --cwd website && yarn --cwd website-components-playground",
     "auth": "npm_config_registry=https://registry.npmjs.org npm whoami",
     "clean": "manypkg exec rm -rf build dist test-utils/dist experimental/dist task/dist add-commands/dist",
     "extract-intl": "formatjs extract --format=$(pwd)/packages/i18n/transifex-transformer.js --out-file=$(pwd)/packages/i18n/data/core.json 'packages/**/*messages.ts'",
     "compile-intl": "manypkg run i18n compile-data",
     "compile-css-modules": "manypkg run @commercetools-frontend/application-shell compile-css-modules --no-private",
-    "l10n:build": "pushd packages/l10n; yarn generate-data",
+    "l10n:build": "yarn --cwd packages/l10n generate-data",
     "lint": "jest --projects jest.eslint.config.js jest.stylelint.config.js jest.text.config.js",
     "lint:js": "jest --config jest.eslint.config.js",
     "lint:css": "jest --config jest.stylelint.config.js",
@@ -47,8 +47,8 @@
     "prebuild": "yarn compile-intl",
     "build": "preconstruct build && NODE_ENV=production NODE_ENV=production manypkg run mc-html-template build && NODE_ENV=production manypkg run mc-scripts build",
     "build:watch": "preconstruct watch & NODE_ENV=development manypkg run mc-html-template build:bundles:watch && NODE_ENV=development manypkg run mc-scripts build:bundles:watch",
-    "build:website": "yarn build && manypkg run @commercetools-website/custom-applications build && manypkg run @commercetools-website/components-playground build",
-    "now-build": "yarn build:website && rm -rf public && mv website/public public",
+    "build:website": "yarn build && yarn --cwd website build && yarn --cwd website-components-playground build",
+    "vercel-build": "yarn build:website && rm -rf public && mv website/public public",
     "labels:sync": "github-labels sync",
     "generate-types:mc": "./scripts/graphql-cli.sh codegen --project mc",
     "generate-types:ctp": "./scripts/graphql-cli.sh codegen --project ctp",
@@ -64,9 +64,7 @@
       "packages-backend/*",
       "application-templates/*",
       "playground",
-      "visual-testing-app",
-      "website",
-      "website-components-playground"
+      "visual-testing-app"
     ]
   },
   "preconstruct": {
@@ -118,6 +116,7 @@
     "@percy/cypress": "2.3.4",
     "@percy/puppeteer": "2.0.0",
     "@preconstruct/cli": "2.0.6",
+    "@sindresorhus/slugify": "1.1.0",
     "@svgr/cli": "5.5.0",
     "@svgr/plugin-jsx": "5.5.0",
     "@svgr/plugin-svgo": "5.5.0",
@@ -148,7 +147,6 @@
     "eslint-formatter-pretty": "4.0.0",
     "eslint-plugin-graphql": "4.0.0",
     "faker": "5.4.0",
-    "gatsby-plugin-mdx": "1.10.1",
     "graphql-cli": "4.1.0",
     "husky": "4.3.8",
     "jest": "26.6.3",
@@ -179,26 +177,19 @@
     "vfile-message": "2.0.4"
   },
   "resolutions": {
-    "@mdx-js/mdx": "1.6.22",
-    "**/@mdx-js/mdx": "1.6.22",
-    "@mdx-js/react": "1.6.22",
-    "**/@mdx-js/react": "1.6.22",
-    "**/gatsby-link": "2.11.0",
     "@types/react": "16.14.5",
     "@types/react-router": "5.1.12",
-    "**/sharp": "0.27.2",
     "graphql": "14.7.0",
     "pretty-format": "26.6.2",
     "intl-messageformat-parser": "6.4.2",
     "**/intl-messageformat-parser": "6.4.2",
-    "**/@commercetools-docs/gatsby-theme-docs/react-intl": "5.13.2",
     "@typescript-eslint/eslint-plugin": "4.16.1",
     "@typescript-eslint/parser": "4.16.1",
     "@types/puppeteer": "5.4.3"
   },
   "engines": {
-    "node": ">=12",
-    "npm": ">=5",
+    "node": ">=14",
+    "npm": ">=6",
     "yarn": ">=1.10"
   }
 }

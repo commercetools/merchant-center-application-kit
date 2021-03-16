@@ -27,10 +27,10 @@
     "@fontsource/open-sans": "4.2.2",
     "core-js": "3.9.1",
     "formik": "2.2.6",
-    "gatsby": "2.32.9",
-    "gatsby-cli": "2.19.2",
-    "gatsby-plugin-emotion": "5.4.0",
-    "gatsby-source-filesystem": "2.11.1",
+    "gatsby": "3.0.4",
+    "gatsby-cli": "3.0.0",
+    "gatsby-plugin-emotion": "6.0.0",
+    "gatsby-source-filesystem": "3.0.0",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.32",
     "prop-types": "15.7.2",
@@ -38,5 +38,13 @@
     "react-dom": "16.14.0",
     "react-intl": "5.13.2",
     "react-router-dom": "5.2.0"
+  },
+  "resolutions": {
+    "@babel/core": "7.13.8",
+    "@mdx-js/mdx": "1.6.22",
+    "**/@mdx-js/mdx": "1.6.22",
+    "@mdx-js/react": "1.6.22",
+    "**/@mdx-js/react": "1.6.22",
+    "**/sharp": "0.27.2"
   }
 }

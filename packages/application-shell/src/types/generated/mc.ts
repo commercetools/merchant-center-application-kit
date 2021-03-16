@@ -353,7 +353,9 @@ export enum TPermissionScope {
   ManageCartDiscounts = 'manage_cart_discounts',
   ManageShippingMethods = 'manage_shipping_methods',
   ManageTaxCategories = 'manage_tax_categories',
+  ManageCategories = 'manage_categories',
   ManageKeyValueDocuments = 'manage_key_value_documents',
+  ManageChangeHistory = 'manage_change_history',
   ViewApiClients = 'view_api_clients',
   ViewCustomers = 'view_customers',
   ViewDiscountCodes = 'view_discount_codes',
@@ -374,10 +376,10 @@ export enum TPermissionScope {
   ViewCartDiscounts = 'view_cart_discounts',
   ViewShippingMethods = 'view_shipping_methods',
   ViewTaxCategories = 'view_tax_categories',
-  ManageCategories = 'manage_categories',
   ViewCategories = 'view_categories',
-  ViewChangeHistory = 'view_change_history',
-  ViewKeyValueDocuments = 'view_key_value_documents'
+  ViewAuditLog = 'view_audit_log',
+  ViewKeyValueDocuments = 'view_key_value_documents',
+  ViewChangeHistory = 'view_change_history'
 }
 
 export type TProject = TMetaData & {
@@ -495,7 +497,9 @@ export type TQuery = {
   releases: Maybe<TReleaseHistory>;
   oAuthClient: Maybe<TOAuthClient>;
   oAuthClients: TOAuthClientQueryResult;
+  /** @deprecated Please use allSupportedOAuthScopesForOAuthClients instead. */
   oAuthScopes: Array<TPermissionScope>;
+  allSupportedOAuthScopesForOAuthClients: Array<TSupportedOAuthScopeForOAuthClient>;
   storeOAuthScopes: Array<TPermissionScope>;
   oAuthClientTemplates: Array<TOAuthClientTemplate>;
   allFeatures: Array<TFeature>;
@@ -647,6 +651,11 @@ export type TSupportedMenuVisibility = {
   __typename?: 'SupportedMenuVisibility';
   name: Scalars['String'];
   group: Scalars['String'];
+};
+
+export type TSupportedOAuthScopeForOAuthClient = {
+  __typename?: 'SupportedOAuthScopeForOAuthClient';
+  name: Scalars['String'];
 };
 
 export type TSupportedResource = {
@@ -821,7 +830,7 @@ export type TAllFeaturesQuery = (
   { __typename?: 'Query' }
   & { allFeatures: Array<(
     { __typename?: 'Feature' }
-    & Pick<TFeature, 'name' | 'value'>
+    & Pick<TFeature, 'name' | 'value' | 'reason'>
   )> }
 );
 

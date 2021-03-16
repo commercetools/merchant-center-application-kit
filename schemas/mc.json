@@ -400,6 +400,30 @@
                 }
               }
             },
+            "isDeprecated": true,
+            "deprecationReason": "Please use allSupportedOAuthScopesForOAuthClients instead."
+          },
+          {
+            "name": "allSupportedOAuthScopesForOAuthClients",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "SupportedOAuthScopeForOAuthClient",
+                    "ofType": null
+                  }
+                }
+              }
+            },
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -3303,7 +3327,19 @@
             "deprecationReason": null
           },
           {
+            "name": "manage_categories",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "manage_key_value_documents",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "manage_change_history",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -3429,25 +3465,25 @@
             "deprecationReason": null
           },
           {
-            "name": "manage_categories",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "view_categories",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "view_change_history",
+            "name": "view_audit_log",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "view_key_value_documents",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "view_change_history",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -3541,6 +3577,33 @@
             "ofType": null
           }
         ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "SupportedOAuthScopeForOAuthClient",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -6356,13 +6419,17 @@
       {
         "name": "isAuthenticated",
         "description": null,
-        "locations": ["FIELD_DEFINITION"],
+        "locations": [
+          "FIELD_DEFINITION"
+        ],
         "args": []
       },
       {
         "name": "rateLimit",
         "description": null,
-        "locations": ["FIELD_DEFINITION"],
+        "locations": [
+          "FIELD_DEFINITION"
+        ],
         "args": [
           {
             "name": "max",
@@ -6423,13 +6490,17 @@
       {
         "name": "collectMetrics",
         "description": null,
-        "locations": ["FIELD_DEFINITION"],
+        "locations": [
+          "FIELD_DEFINITION"
+        ],
         "args": []
       },
       {
         "name": "deprecate",
         "description": null,
-        "locations": ["FIELD_DEFINITION"],
+        "locations": [
+          "FIELD_DEFINITION"
+        ],
         "args": [
           {
             "name": "reason",
@@ -6466,7 +6537,11 @@
       {
         "name": "skip",
         "description": "Directs the executor to skip this field or fragment when the `if` argument is true.",
-        "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
+        "locations": [
+          "FIELD",
+          "FRAGMENT_SPREAD",
+          "INLINE_FRAGMENT"
+        ],
         "args": [
           {
             "name": "if",
@@ -6487,7 +6562,11 @@
       {
         "name": "include",
         "description": "Directs the executor to include this field or fragment only when the `if` argument is true.",
-        "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
+        "locations": [
+          "FIELD",
+          "FRAGMENT_SPREAD",
+          "INLINE_FRAGMENT"
+        ],
         "args": [
           {
             "name": "if",
@@ -6508,7 +6587,10 @@
       {
         "name": "deprecated",
         "description": "Marks an element of a GraphQL schema as no longer supported.",
-        "locations": ["FIELD_DEFINITION", "ENUM_VALUE"],
+        "locations": [
+          "FIELD_DEFINITION",
+          "ENUM_VALUE"
+        ],
         "args": [
           {
             "name": "reason",

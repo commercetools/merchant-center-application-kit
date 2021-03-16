@@ -469,7 +469,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
                   size="scale"
                   color={getIconColor(
                     props.isActive || isMainMenuRouteActive(props.menu.uriPath),
-                    props.menu.shouldRenderDivider
+                    Boolean(props.menu.shouldRenderDivider)
                   )}
                 />
               </div>
