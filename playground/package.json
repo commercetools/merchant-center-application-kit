@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@commercetools-frontend/mc-dev-authentication": "18.5.4",
-    "@commercetools-frontend/mc-scripts": "18.5.7",
+    "@commercetools-frontend/mc-scripts": "18.5.8",
     "@formatjs/cli": "3.1.6",
     "dotenv-cli": "4.0.0"
   }
