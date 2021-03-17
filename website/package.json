@@ -22,8 +22,8 @@
     "gatsby": "3.1.0",
     "gatsby-cli": "3.1.0",
     "prop-types": "15.7.2",
-    "react": "16.14.0",
-    "react-dom": "16.14.0",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
     "react-intl": "5.13.4"
   },
   "devDependencies": {
