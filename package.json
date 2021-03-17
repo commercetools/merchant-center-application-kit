@@ -5,7 +5,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "postinstall": "manypkg check && preconstruct dev && yarn compile-css-modules && yarn --cwd website && yarn --cwd website-components-playground",
+    "postinstall": "manypkg check && preconstruct dev && yarn compile-css-modules",
     "auth": "npm_config_registry=https://registry.npmjs.org npm whoami",
     "clean": "manypkg exec rm -rf build dist test-utils/dist experimental/dist task/dist add-commands/dist",
     "extract-intl": "formatjs extract --format=$(pwd)/packages/i18n/transifex-transformer.js --out-file=$(pwd)/packages/i18n/data/core.json 'packages/**/*messages.ts'",
@@ -64,7 +64,9 @@
       "packages-backend/*",
       "application-templates/*",
       "playground",
-      "visual-testing-app"
+      "visual-testing-app",
+      "website",
+      "website-components-playground"
     ]
   },
   "preconstruct": {
@@ -94,7 +96,7 @@
     "@babel/core": "7.13.10",
     "@changesets/changelog-github": "0.3.0",
     "@changesets/cli": "2.14.1",
-    "@commercetools-docs/writing-style": "3.0.4",
+    "@commercetools-docs/writing-style": "3.0.5",
     "@commercetools-frontend/eslint-config-mc-app": "*",
     "@commercetools-test-data/core": "2.1.2",
     "@commercetools-uikit/design-system": "^11.0.2",
@@ -126,13 +128,12 @@
     "@types/jquery": "3.5.5",
     "@types/node": "14.14.35",
     "@types/puppeteer": "5.4.3",
-    "@types/react": "16.14.5",
-    "@types/react-dom": "16.9.11",
+    "@types/react": "17.0.3",
+    "@types/react-dom": "17.0.2",
     "@types/react-redux": "7.1.16",
     "@types/react-router": "5.1.12",
     "@types/react-router-dom": "5.1.7",
     "@types/uuid": "8.3.0",
-    "@types/webpack": "4.41.26",
     "@types/webpack-env": "1.16.0",
     "apollo-server-errors": "2.4.2",
     "autoprefixer": "10.2.5",
@@ -177,9 +178,10 @@
     "vfile-message": "2.0.4"
   },
   "resolutions": {
-    "@types/react": "16.14.5",
+    "@babel/core": "7.13.10",
+    "@types/react": "17.0.3",
     "@types/react-router": "5.1.12",
-    "graphql": "14.7.0",
+    "graphql": "15.5.0",
     "pretty-format": "26.6.2",
     "intl-messageformat-parser": "6.4.3",
     "**/intl-messageformat-parser": "6.4.3",

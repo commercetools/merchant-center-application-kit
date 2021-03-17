@@ -33,16 +33,16 @@
     "redux-thunk": "2.3.0"
   },
   "devDependencies": {
-    "@types/react": "16.14.5",
+    "@types/react": "17.0.3",
     "@types/react-redux": "7.1.16",
-    "react": "16.14.0",
+    "react": "17.0.1",
     "react-redux": "7.2.2",
     "redux": "4.0.5"
   },
   "peerDependencies": {
-    "@types/react": "16.x",
+    "@types/react": "17.x",
     "@types/react-redux": "7.x",
-    "react": ">=16.8.0",
+    "react": ">=17.0.0",
     "react-redux": "7.x",
     "redux": "4.x"
   }
