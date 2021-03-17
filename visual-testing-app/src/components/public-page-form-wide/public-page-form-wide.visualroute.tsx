@@ -34,44 +34,45 @@ export const Component = () => (
         legalMessage={<LegalMessage />}
         contentScale="wide"
       >
-        <Card
-          insetScale="none"
-          css={css`
-            display: flex;
-            > * + * {
-              padding: ${customProperties.spacingM};
-            }
-          `}
-        >
+        <Card insetScale="none">
           <div
             css={css`
-              width: calc(${customProperties.constraint15} / 2);
+              display: flex;
+              > * + * {
+                padding: ${customProperties.spacingM};
+              }
             `}
           >
             <div
-              style={{
-                backgroundColor: customProperties.colorNeutral95,
-                borderTopLeftRadius: customProperties.borderRadius6,
-                borderBottomLeftRadius: customProperties.borderRadius6,
-              }}
+              css={css`
+                width: calc(${customProperties.constraint15} / 2);
+              `}
             >
-              <Spacings.Inset>
-                <Spacings.Inline alignItems="center" justifyContent="center">
-                  <img src={DoorsClosedSvg} />
-                </Spacings.Inline>
-              </Spacings.Inset>
+              <div
+                style={{
+                  backgroundColor: customProperties.colorNeutral95,
+                  borderTopLeftRadius: customProperties.borderRadius6,
+                  borderBottomLeftRadius: customProperties.borderRadius6,
+                }}
+              >
+                <Spacings.Inset>
+                  <Spacings.Inline alignItems="center" justifyContent="center">
+                    <img src={DoorsClosedSvg} />
+                  </Spacings.Inline>
+                </Spacings.Inset>
+              </div>
             </div>
-          </div>
 
-          <div
-            css={css`
-              width: calc(${customProperties.constraint15} / 2);
-            `}
-          >
-            <Spacings.Stack>
-              <Text.Headline as="h2">Login</Text.Headline>
-              <Text.Body>The login form</Text.Body>
-            </Spacings.Stack>
+            <div
+              css={css`
+                width: calc(${customProperties.constraint15} / 2);
+              `}
+            >
+              <Spacings.Stack>
+                <Text.Headline as="h2">Login</Text.Headline>
+                <Text.Body>The login form</Text.Body>
+              </Spacings.Stack>
+            </div>
           </div>
         </Card>
       </PublicPageLayout>
