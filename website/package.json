@@ -19,19 +19,19 @@
     "@commercetools-uikit/spacings-stack": "^11.0.0",
     "@emotion/react": "11.1.5",
     "@emotion/styled": "11.1.5",
-    "gatsby": "3.0.4",
-    "gatsby-cli": "3.0.0",
+    "gatsby": "3.1.0",
+    "gatsby-cli": "3.1.0",
     "prop-types": "15.7.2",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.13.2"
+    "react-intl": "5.13.4"
   },
   "devDependencies": {
     "@svgr/cli": "5.5.0",
     "linkinator": "2.13.6"
   },
   "resolutions": {
-    "@babel/core": "7.13.8",
+    "@babel/core": "7.13.10",
     "@mdx-js/mdx": "1.6.22",
     "**/@mdx-js/mdx": "1.6.22",
     "@mdx-js/react": "1.6.22",

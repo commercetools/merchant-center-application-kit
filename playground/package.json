@@ -41,7 +41,7 @@
     "prop-types": "15.7.2",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.13.2",
+    "react-intl": "5.13.4",
     "react-redux": "7.2.2",
     "react-router-dom": "5.2.0",
     "redux": "4.0.5"
@@ -49,7 +49,7 @@
   "devDependencies": {
     "@commercetools-frontend/mc-dev-authentication": "18.5.4",
     "@commercetools-frontend/mc-scripts": "18.5.8",
-    "@formatjs/cli": "3.1.6",
+    "@formatjs/cli": "3.2.0",
     "dotenv-cli": "4.0.0"
   }
 }
