@@ -24,6 +24,27 @@ const supportedLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN', 'ja'];
 // https://www.drupal.org/project/drupal/issues/2036219
 const excludedCountries = ['QO', 'UN', 'ZZ'];
 
+// getNorthernIrelandCountryCode returns the Northern Ireland country code (key: name) depending on the passed locale
+// "XI" is the countryCode used to identify the Northern Ireland
+const getNorthernIrelandCountryCode = (locale) => {
+  switch (locale) {
+    case 'en':
+      return { XI: 'Northern Ireland' };
+    case 'de':
+      return { XI: 'Nordirland' };
+    case 'es':
+      return { XI: 'Irlanda del Norte' };
+    case 'fr-Fr':
+      return { XI: 'Irlande du Nord' };
+    case 'zh-CN':
+      return { XI: '北爱尔兰' };
+    case 'ja':
+      return { XI: '北アイルランド' };
+    default:
+      return { XI: 'Northern Ireland' };
+  }
+};
+
 const mapLocaleToCldrLocale = (locale) => {
   switch (locale) {
     case 'zh-CN':
@@ -34,7 +55,15 @@ const mapLocaleToCldrLocale = (locale) => {
 };
 
 const extractCountryDataForLocale = (locale) => {
-  const countryNames = cldr.extractTerritoryDisplayNames(locale);
+  // The Northern Ireland country code (or territory) is not part of the latest CLDR data.
+  // However, it is needed since the Brexit (Jan 1st 2021) and also supported by the platform API.
+  // Therefore, inorder to avoid editing the generated data files each time we run the script,
+  // we append the Northern Ireland to the available countries list.
+  // Check the discussions on https://github.com/commercetools/merchant-center-application-kit/pull/2054
+  const countryNames = {
+    ...cldr.extractTerritoryDisplayNames(locale),
+    ...getNorthernIrelandCountryCode(locale),
+  };
   // We only support ISO 3166-1 country code (https://en.wikipedia.org/wiki/ISO_3166-1)
   // there is alpha-2 (two-letter) , alpha-3 (three-letter) , and numeric (three-digit) representation
   // that's why we escape the non-supported representations
@@ -53,11 +82,15 @@ const extractCountryDataForLocale = (locale) => {
 
   // lowercase locales
   return Promise.resolve(
-    Object.keys(countryNames).reduce(
-      (acc, key) =>
-        Object.assign({}, acc, { [key.toLowerCase()]: countryNames[key] }),
-      {}
-    )
+    Object.keys(countryNames)
+      // we sort the keys so that the appended data does not appear at the bottom of file
+      // but rather in a sorted fashion and also ease future code reviews
+      .sort()
+      .reduce(
+        (acc, key) =>
+          Object.assign({}, acc, { [key.toLowerCase()]: countryNames[key] }),
+        {}
+      )
   );
 };
 
