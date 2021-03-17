@@ -35,9 +35,9 @@ export const Component = () => (
         contentScale="wide"
       >
         <Card
+          insetScale="none"
           css={css`
             display: flex;
-            padding: 0;
             > * + * {
               padding: ${customProperties.spacingM};
             }
