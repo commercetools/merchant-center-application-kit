@@ -104,7 +104,7 @@ const DialogContainer = (props: Props) => (
               > div {
                 display: flex;
                 flex-direction: column;
-                height: 100%;
+                height: calc(100% - ${customProperties.spacingM} * 2);
                 pointer-events: auto;
                 min-height: 0;
               }
