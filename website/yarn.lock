@@ -1178,6 +1178,20 @@
     "@emotion/styled" "^11.0.0"
     prop-types "15.7.2"
 
+"@commercetools-uikit/card@^11.2.0":
+  version "11.2.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-uikit/card/-/card-11.2.0.tgz#ed6d8bd1b076c38297a0fa2148b76e3b4b048462"
+  integrity sha512-jGaHiSPNEVUdV8dhvHHdhX8qMsBRh/N174qI/aDJzomCRtq0nlLSoiGHz7Q9eYlz52ghnvUhvEKu27FTwimWCQ==
+  dependencies:
+    "@babel/runtime" "7.13.9"
+    "@babel/runtime-corejs3" "7.13.9"
+    "@commercetools-uikit/design-system" "11.0.2"
+    "@commercetools-uikit/spacings-inset" "11.2.0"
+    "@commercetools-uikit/utils" "11.2.0"
+    "@emotion/react" "^11.1.1"
+    "@emotion/styled" "^11.0.0"
+    prop-types "15.7.2"
+
 "@commercetools-uikit/checkbox-input@^11.0.0":
   version "11.1.0"
   resolved "https://registry.yarnpkg.com/@commercetools-uikit/checkbox-input/-/checkbox-input-11.1.0.tgz#4475dffb3af188cbf8f09c1a698240560ca8325a"
@@ -1385,6 +1399,18 @@
     "@emotion/react" "^11.1.1"
     prop-types "15.7.2"
 
+"@commercetools-uikit/spacings-inline@^11.2.0":
+  version "11.2.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-uikit/spacings-inline/-/spacings-inline-11.2.0.tgz#40fab1a451c07913b25a8beb3310096890a2aacd"
+  integrity sha512-q89NsgZXYIs4UqB5u37iLlBFJ4vj7HeD9g27qwcGxgI4voZIc1QxmXKZPs8bRqkZpJzC6xrwvYFbGKSc2FoOdQ==
+  dependencies:
+    "@babel/runtime" "7.13.9"
+    "@babel/runtime-corejs3" "7.13.9"
+    "@commercetools-uikit/design-system" "11.0.2"
+    "@commercetools-uikit/utils" "11.2.0"
+    "@emotion/react" "^11.1.1"
+    prop-types "15.7.2"
+
 "@commercetools-uikit/spacings-inset-squish@11.0.2":
   version "11.0.2"
   resolved "https://registry.yarnpkg.com/@commercetools-uikit/spacings-inset-squish/-/spacings-inset-squish-11.0.2.tgz#0727a641dac43c74a12cd2d74a5e2a07e18e250b"
@@ -1409,6 +1435,18 @@
     "@emotion/react" "^11.1.1"
     prop-types "15.7.2"
 
+"@commercetools-uikit/spacings-inset@11.2.0":
+  version "11.2.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-uikit/spacings-inset/-/spacings-inset-11.2.0.tgz#1633dd57677ec5ac9a4bc388b9a724f9e399d520"
+  integrity sha512-RuwOmwmGOlMPzmUiToBf3jJtAGf7t8cLUz6DHveM7kCa+5Vf3gAteO9yRXsGNXhXvoVLetv6d4hHDog+OYkp8Q==
+  dependencies:
+    "@babel/runtime" "7.13.9"
+    "@babel/runtime-corejs3" "7.13.9"
+    "@commercetools-uikit/design-system" "11.0.2"
+    "@commercetools-uikit/utils" "11.2.0"
+    "@emotion/react" "^11.1.1"
+    prop-types "15.7.2"
+
 "@commercetools-uikit/spacings-stack@11.0.2", "@commercetools-uikit/spacings-stack@^11.0.0":
   version "11.0.2"
   resolved "https://registry.yarnpkg.com/@commercetools-uikit/spacings-stack/-/spacings-stack-11.0.2.tgz#96c2eb51d2c265e9039e33504fb897347f1987d9"
@@ -1418,6 +1456,18 @@
     "@babel/runtime-corejs3" "7.13.9"
     "@commercetools-uikit/design-system" "11.0.2"
     "@commercetools-uikit/utils" "10.47.3"
+    "@emotion/react" "^11.1.1"
+    prop-types "15.7.2"
+
+"@commercetools-uikit/spacings-stack@^11.2.0":
+  version "11.2.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-uikit/spacings-stack/-/spacings-stack-11.2.0.tgz#87d91f2cd786814b185ad1a7dda53b22feef1ce4"
+  integrity sha512-HsxQeTBWJ7sTR6otU3y1uAjOjV8cyuJRs1nnh1fa91IdfoWyifQ4CZpkNKjv3xNlTEPKugW4CUL7yiSEqCv/iQ==
+  dependencies:
+    "@babel/runtime" "7.13.9"
+    "@babel/runtime-corejs3" "7.13.9"
+    "@commercetools-uikit/design-system" "11.0.2"
+    "@commercetools-uikit/utils" "11.2.0"
     "@emotion/react" "^11.1.1"
     prop-types "15.7.2"
 
@@ -1484,6 +1534,17 @@
   dependencies:
     "@babel/runtime" "7.12.13"
     "@babel/runtime-corejs3" "7.12.13"
+    "@emotion/is-prop-valid" "1.1.0"
+    "@types/warning" "^3.0.0"
+    warning "4.0.3"
+
+"@commercetools-uikit/utils@11.2.0":
+  version "11.2.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-uikit/utils/-/utils-11.2.0.tgz#a8c6da5d4597cff6ef8337c7874758d8663453ae"
+  integrity sha512-7DHIOzJ+aeY3u15UQxmxSQNxFHDiR4CqjOIS4D+aCOWX6ffgNqDjn7BxC20XSirXjUhuKomalEE5vE6OPepX4A==
+  dependencies:
+    "@babel/runtime" "7.13.9"
+    "@babel/runtime-corejs3" "7.13.9"
     "@emotion/is-prop-valid" "1.1.0"
     "@types/warning" "^3.0.0"
     warning "4.0.3"
