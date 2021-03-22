@@ -1,5 +1,18 @@
 # @commercetools-frontend/l10n
 
+## 18.6.0
+
+### Minor Changes
+
+- [#2105](https://github.com/commercetools/merchant-center-application-kit/pull/2105) [`f347093f`](https://github.com/commercetools/merchant-center-application-kit/commit/f347093f1705ae8214fcd556b80bd2366624205d) Thanks [@mohib0306](https://github.com/mohib0306)! - Update generate-l10n-data script to include Northern Ireland territory
+
+### Patch Changes
+
+- [#2099](https://github.com/commercetools/merchant-center-application-kit/pull/2099) [`d09a154b`](https://github.com/commercetools/merchant-center-application-kit/commit/d09a154b9e74bc180da033acd8e74ac8ed32fc75) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies [[`d09a154b`](https://github.com/commercetools/merchant-center-application-kit/commit/d09a154b9e74bc180da033acd8e74ac8ed32fc75)]:
+  - @commercetools-frontend/sentry@18.6.0
+
 ## 18.5.6
 
 ### Patch Changes
