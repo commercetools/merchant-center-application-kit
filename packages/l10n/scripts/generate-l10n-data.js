@@ -34,9 +34,9 @@ const getNorthernIrelandCountryCode = (locale) => {
       return { XI: 'Nordirland' };
     case 'es':
       return { XI: 'Irlanda del Norte' };
-    case 'fr-Fr':
+    case 'fr-FR':
       return { XI: 'Irlande du Nord' };
-    case 'zh-CN':
+    case 'zh_hans_cn':
       return { XI: '北爱尔兰' };
     case 'ja':
       return { XI: '北アイルランド' };
