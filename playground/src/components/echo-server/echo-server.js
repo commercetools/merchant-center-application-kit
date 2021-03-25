@@ -1,10 +1,11 @@
-import { useReducer, useCallback } from 'react';
+import { useReducer, useCallback, useState } from 'react';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { useAsyncDispatch, actions } from '@commercetools-frontend/sdk';
 import { useOnActionError } from '@commercetools-frontend/actions-global';
 import Spacings from '@commercetools-uikit/spacings';
 import Constraints from '@commercetools-uikit/constraints';
 import Text from '@commercetools-uikit/text';
+import CheckboxInput from '@commercetools-uikit/checkbox-input';
 import PrimaryButton from '@commercetools-uikit/primary-button';
 import { CodeBlock } from '@commercetools-docs/ui-kit';
 
@@ -30,12 +31,24 @@ const EchoServer = () => {
   const echoServerApiUrl = useApplicationContext(
     (context) => context.environment.echoServerApiUrl
   );
+  const [
+    shouldIncludeParamInRequest,
+    setShouldIncludeParamInRequest,
+  ] = useState(false);
+
+  const onChangeShouldIncludeParamInRequest = (event) => {
+    const nextValue = event.target.value === 'false' ? true : false;
+    setShouldIncludeParamInRequest(nextValue);
+  };
+
   const handleSendRequest = useCallback(() => {
+    const searchParam = shouldIncludeParamInRequest ? `hello=world` : null;
+
     async function ping() {
       try {
         const result = await dispatch(
           actions.forwardTo.post({
-            uri: echoServerApiUrl,
+            uri: [echoServerApiUrl, searchParam].filter(Boolean).join('?'),
             payload: {
               say: 'Hello',
             },
@@ -49,7 +62,7 @@ const EchoServer = () => {
     }
     dispatchState({ type: 'loading' });
     ping();
-  });
+  }, [shouldIncludeParamInRequest]);
   return (
     <Spacings.Inset>
       <Spacings.Stack>
@@ -74,6 +87,14 @@ const EchoServer = () => {
                 onClick={handleSendRequest}
                 isDisabled={state.isLoading}
               />
+              <CheckboxInput
+                name="should-include-param-in-request"
+                value={shouldIncludeParamInRequest}
+                isChecked={shouldIncludeParamInRequest}
+                onChange={onChangeShouldIncludeParamInRequest}
+              >
+                {'Inlude Parameter in request'}
+              </CheckboxInput>
             </Spacings.Inline>
             {state.result && (
               <CodeBlock

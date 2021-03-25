@@ -25,6 +25,7 @@
     "@commercetools-frontend/l10n": "18.6.0",
     "@commercetools-frontend/permissions": "18.6.0",
     "@commercetools-frontend/sdk": "18.6.0",
+    "@commercetools-uikit/checkbox-input": "^11.2.0",
     "@commercetools-uikit/constraints": "^11.2.0",
     "@commercetools-uikit/data-table": "^11.2.0",
     "@commercetools-uikit/flat-button": "^11.2.0",
