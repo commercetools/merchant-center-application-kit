@@ -42,7 +42,7 @@ const EchoServer = () => {
   };
 
   const handleSendRequest = useCallback(() => {
-    const searchParam = shouldIncludeParamInRequest ? `?query=value` : null;
+    const searchParam = shouldIncludeParamInRequest ? `hello=world` : null;
 
     async function ping() {
       try {
