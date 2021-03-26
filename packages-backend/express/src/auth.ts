@@ -104,7 +104,7 @@ const getConfiguredDefaultIssuer = (options: TSessionMiddlewareOptions) => {
 // Construct the audience from the given option + the request path.
 // If the request path is `/`, do not append it to the audience, otherwise
 // the token validation might fail because of mismatching audiences.
-const getConfiguredAudience = (
+export const getConfiguredAudience = (
   options: TSessionMiddlewareOptions,
   requestPath: string
 ) => {
