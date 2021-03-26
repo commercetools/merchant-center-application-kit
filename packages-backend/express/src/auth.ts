@@ -110,9 +110,9 @@ export const getConfiguredAudience = (
 ) => {
   const url = new URL(options.audience);
   if (requestPath !== '/') {
-    return `${url.origin}${requestPath}${url.search}`;
+    return `${url.origin}${requestPath}`;
   }
-  return `${url.origin}${url.search}`;
+  return url.origin;
 };
 
 function createSessionAuthVerifier<
