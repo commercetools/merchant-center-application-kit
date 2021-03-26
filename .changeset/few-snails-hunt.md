@@ -1,5 +1,5 @@
 ---
-'@commercetools-backend/express': minor
+'@commercetools-backend/express': patch
 ---
 
-update `getConfiguredAudience` with explicit return and not use `toString()`
+Fix issue with invalid `audience` in case the request contains query parameters.
