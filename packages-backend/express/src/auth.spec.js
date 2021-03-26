@@ -23,6 +23,8 @@ describe('getConfiguredAudience', () => {
     beforeEach(() => {
       url = 'https://example.com';
       requestPath = '/hello/world';
+      url = 'https://example.com';
+      requestPath = '/hello/world';
     });
     it('should return `url + requestPath`', () => {
       expect(
@@ -33,6 +35,22 @@ describe('getConfiguredAudience', () => {
           requestPath
         )
       ).toEqual('https://example.com/hello/world');
+    });
+    describe('with trailing slash on `options.audience`', () => {
+      beforeEach(() => {
+        url = 'https://example.com/';
+        requestPath = '/hello/world';
+      });
+      it('should return `url + requestPath`', () => {
+        expect(
+          getConfiguredAudience(
+            {
+              audience: url,
+            },
+            requestPath
+          )
+        ).toEqual('https://example.com/hello/world');
+      });
     });
   });
 });

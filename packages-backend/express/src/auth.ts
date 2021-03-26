@@ -108,11 +108,12 @@ export const getConfiguredAudience = (
   options: TSessionMiddlewareOptions,
   requestPath: string
 ) => {
-  const url = new URL(options.audience);
-  if (requestPath !== '/') {
-    return `${url.origin}${requestPath}`;
+  // remove the trailing slash
+  const url = new URL(`${options.audience.replace(/\/?$/, '')}${requestPath}`);
+  if (requestPath === '/') {
+    return url.origin;
   }
-  return url.origin;
+  return `${url.origin}${url.pathname}`;
 };
 
 function createSessionAuthVerifier<
