@@ -1,56 +1,21 @@
 import { getConfiguredAudience } from './auth';
 
 describe('getConfiguredAudience', () => {
-  let url;
-  let requestPath;
-  describe('when there is no `requestPath`', () => {
-    beforeEach(() => {
-      url = 'https://example.com';
-      requestPath = '/';
-    });
-    it('should return `url`', () => {
-      expect(
-        getConfiguredAudience(
-          {
-            audience: url,
-          },
-          requestPath
-        )
-      ).toEqual(url);
-    });
-  });
-  describe('when there is a `requestPath`', () => {
-    beforeEach(() => {
-      url = 'https://example.com';
-      requestPath = '/hello/world';
-      url = 'https://example.com';
-      requestPath = '/hello/world';
-    });
-    it('should return `url + requestPath`', () => {
-      expect(
-        getConfiguredAudience(
-          {
-            audience: url,
-          },
-          requestPath
-        )
-      ).toEqual('https://example.com/hello/world');
-    });
-    describe('with trailing slash on `options.audience`', () => {
-      beforeEach(() => {
-        url = 'https://example.com/';
-        requestPath = '/hello/world';
-      });
-      it('should return `url + requestPath`', () => {
+  describe.each`
+    audienceOriginUrl         | requestPath               | expectedAudienceUrl
+    ${'https://example.com'}  | ${'/'}                    | ${'https://example.com'}
+    ${'https://example.com'}  | ${'/hello/world'}         | ${'https://example.com/hello/world'}
+    ${'https://example.com/'} | ${'/'}                    | ${'https://example.com'}
+    ${'https://example.com/'} | ${'/hello/world'}         | ${'https://example.com/hello/world'}
+    ${'https://example.com'}  | ${'/hello/world?foo=bar'} | ${'https://example.com/hello/world'}
+  `(
+    'with audience "$audienceOriginUrl" and request path "$requestPath"',
+    ({ audienceOriginUrl, requestPath, expectedAudienceUrl }) => {
+      it(`should construct audience url as "${expectedAudienceUrl}"`, () => {
         expect(
-          getConfiguredAudience(
-            {
-              audience: url,
-            },
-            requestPath
-          )
-        ).toEqual('https://example.com/hello/world');
+          getConfiguredAudience({ audience: audienceOriginUrl }, requestPath)
+        ).toEqual(expectedAudienceUrl);
       });
-    });
-  });
+    }
+  );
 });
