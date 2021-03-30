@@ -1,5 +1,11 @@
 # @commercetools-backend/express
 
+## 18.6.1
+
+### Patch Changes
+
+- [#2118](https://github.com/commercetools/merchant-center-application-kit/pull/2118) [`ae1f9d16`](https://github.com/commercetools/merchant-center-application-kit/commit/ae1f9d167933827070c2d9c5dcd704fee4a56886) Thanks [@adnasa](https://github.com/adnasa)! - Fix issue with invalid JWT `aud` in case the request contains query string parameters. Now the constructed audience url omits the query string parameters.
+
 ## 18.6.0
 
 ### Patch Changes

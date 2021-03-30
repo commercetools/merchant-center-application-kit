@@ -1,5 +1,11 @@
 # playground
 
+## 17.3.22
+
+### Patch Changes
+
+- [#2116](https://github.com/commercetools/merchant-center-application-kit/pull/2116) [`c8abff5a`](https://github.com/commercetools/merchant-center-application-kit/commit/c8abff5afb0109a209e11941aa6ed45c915aefdc) Thanks [@adnasa](https://github.com/adnasa)! - add checkbox to include params in playground
+
 ## 17.3.21
 
 ### Patch Changes
