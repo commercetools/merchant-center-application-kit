@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "17.3.21",
+  "version": "17.3.22",
   "description": "A playground application to get started developing Merchant Center Applications",
   "private": true,
   "scripts": {
