@@ -104,15 +104,16 @@ const getConfiguredDefaultIssuer = (options: TSessionMiddlewareOptions) => {
 // Construct the audience from the given option + the request path.
 // If the request path is `/`, do not append it to the audience, otherwise
 // the token validation might fail because of mismatching audiences.
-const getConfiguredAudience = (
+export const getConfiguredAudience = (
   options: TSessionMiddlewareOptions,
   requestPath: string
 ) => {
-  const url = new URL(options.audience);
-  if (requestPath !== '/') {
-    url.pathname = requestPath;
+  // remove the trailing slash
+  const url = new URL(`${options.audience.replace(/\/?$/, '')}${requestPath}`);
+  if (requestPath === '/') {
+    return url.origin;
   }
-  return url.toString();
+  return `${url.origin}${url.pathname}`;
 };
 
 function createSessionAuthVerifier<
