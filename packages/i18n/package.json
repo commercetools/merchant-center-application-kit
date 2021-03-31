@@ -45,14 +45,14 @@
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "@types/react": "16.14.5",
+    "@types/react": "17.0.3",
     "intl-messageformat-parser": "6.4.4",
-    "react": "16.14.0",
+    "react": "17.0.2",
     "react-intl": "5.15.7"
   },
   "peerDependencies": {
-    "@types/react": "16.x",
-    "react": ">=16.8.0",
+    "@types/react": "17.x",
+    "react": ">=17.0.0",
     "react-intl": "3.x || 4.x || 5.x"
   }
 }

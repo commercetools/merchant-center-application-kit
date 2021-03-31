@@ -29,14 +29,5 @@
   "devDependencies": {
     "@svgr/cli": "5.5.0",
     "linkinator": "2.13.6"
-  },
-  "resolutions": {
-    "@babel/core": "7.13.14",
-    "@mdx-js/mdx": "1.6.22",
-    "**/@mdx-js/mdx": "1.6.22",
-    "@mdx-js/react": "1.6.22",
-    "**/@mdx-js/react": "1.6.22",
-    "**/sharp": "0.28.0",
-    "react-intl": "5.15.7"
   }
 }
