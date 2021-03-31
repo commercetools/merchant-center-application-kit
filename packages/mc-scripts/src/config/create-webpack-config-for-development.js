@@ -80,6 +80,7 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
       runtimeChunk: {
         name: (entrypoint) => `runtime-${entrypoint.name}`,
       },
+      moduleIds: 'named',
     },
 
     resolve: {
@@ -168,9 +169,6 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
           const LocalHtmlWebpackPlugin = require('../webpack-plugins/local-html-webpack-plugin');
           return new LocalHtmlWebpackPlugin();
         })(),
-      // Add module names to factory functions so they appear in browser profiler.
-      // https://webpack.js.org/guides/caching/
-      new webpack.NamedModulesPlugin(),
       // Strip all locales except `en`, `de`
       // (`en` is built into Moment and can't be removed).
       new MomentLocalesPlugin({
@@ -199,8 +197,6 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
       strictExportPresence: true,
 
       rules: [
-        // Disable require.ensure as it's not a standard language feature.
-        { parser: { requireEnsure: false } },
         // For svg icons, we want to get them transformed into React components
         // when we import them.
         {
@@ -265,7 +261,7 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
         // A missing `test` is equivalent to a match.
         {
           test: /\.png$/,
-          use: [require.resolve('url-loader')],
+          type: 'asset/resource',
         },
         // "postcss" loader applies autoprefixer to our CSS
         // "css" loader resolves paths in CSS and adds assets as dependencies.
@@ -327,7 +323,7 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
             {
               // For all other vendor CSS, do not use "postcss" loader.
               include: /node_modules/,
-              loaders: [
+              use: [
                 require.resolve('style-loader'),
                 require.resolve('css-loader'),
               ],
@@ -339,6 +335,10 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
         {
           test: /\.mjs$/,
           type: 'javascript/auto',
+          resolve: {
+            // https://webpack.js.org/configuration/module/#resolvefullyspecified
+            fullySpecified: false,
+          },
         },
         // Process JS with Babel.
         {
@@ -380,6 +380,8 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
             },
           ],
           include: mergedOptions.sourceFolders.concat(vendorsToTranspile),
+          // Disable require.ensure as it's not a standard language feature.
+          parser: { requireEnsure: false },
         },
         // Allow to import `*.graphql` SDL files.
         {
@@ -388,19 +390,6 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
           use: [require.resolve('graphql-tag/loader')],
         },
       ],
-    },
-
-    // Some libraries import Node modules but don't use them in the browser.
-    // Tell Webpack to provide empty mocks for them so importing them works.
-    node: {
-      module: 'empty',
-      dgram: 'empty',
-      dns: 'mock',
-      fs: 'empty',
-      http2: 'empty',
-      net: 'empty',
-      tls: 'empty',
-      child_process: 'empty',
     },
     // Turn off performance processing because we utilize
     // our own hints via the FileSizeReporter
