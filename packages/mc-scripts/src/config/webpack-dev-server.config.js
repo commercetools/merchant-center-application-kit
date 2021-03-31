@@ -1,7 +1,7 @@
+const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const { processConfig } = require('@commercetools-frontend/application-config');
 const { processHeaders } = require('@commercetools-frontend/mc-html-template');
 const devAuthentication = require('@commercetools-frontend/mc-dev-authentication');
-const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 
 // Feature flags
 const isOidcForDevelopmentEnabled =
@@ -16,8 +16,6 @@ const host = process.env.HOST || '0.0.0.0';
 
 module.exports = ({ allowedHost, contentBase, port, publicPath }) => ({
   client: {
-    host,
-    port,
     overlay: false,
   },
   // Enable gzip compression of generated files.
@@ -42,7 +40,11 @@ module.exports = ({ allowedHost, contentBase, port, publicPath }) => ({
   injectClient: false,
   port,
   public: allowedHost,
-  static: contentBase,
+  static: {
+    directory: contentBase,
+    publicPath: [publicPath],
+    watch: true,
+  },
   // Enable HTTPS if the HTTPS environment variable is set to 'true'
   // `proxy` is run between `before` and `after` `webpack-dev-server` hooks
   onBeforeSetupMiddleware({ app }) {

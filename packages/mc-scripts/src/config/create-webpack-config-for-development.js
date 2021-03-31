@@ -56,6 +56,8 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
   };
 
   return {
+    target: 'web',
+
     // https://webpack.js.org/concepts/#mode
     mode: 'development',
 
@@ -256,9 +258,6 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
             },
           ],
         },
-        // "url" loader works like "file" loader except that it embeds assets
-        // smaller than specified limit in bytes as data URLs to avoid requests.
-        // A missing `test` is equivalent to a match.
         {
           test: /\.png$/,
           type: 'asset/resource',
@@ -397,7 +396,7 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
 
     // For dev server
     infrastructureLogging: {
-      level: 'warn',
+      level: 'none',
     },
   };
 };

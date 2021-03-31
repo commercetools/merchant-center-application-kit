@@ -1,37 +1,17 @@
 /* eslint-disable prettier/prettier */
 const webpack = require('webpack');
-const cssnano = require('cssnano');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const safeParser = require('postcss-safe-parser');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 // const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-// as "aliasing v1.0.0 as webpack.optimize.UglifyJsPlugin is scheduled for
-// webpack v4.0.0" (https://webpack.js.org/plugins/uglifyjs-webpack-plugin/)
-// we need to explicitly use the library to be using the newest version
 const TerserPlugin = require('terser-webpack-plugin');
 const FinalStatsWriterPlugin = require('../webpack-plugins/final-stats-writer-plugin');
 const paths = require('./paths');
 const vendorsToTranspile = require('./vendors-to-transpile');
 const createPostcssConfig = require('./create-postcss-config');
 const hasJsxRuntime = require('./has-jsx-runtime');
-
-const optimizeCSSConfig = {
-  // Since css-loader uses cssnano v3.1.0, it's best to stick with the
-  // same version here
-  cssProcessor: cssnano,
-  // This safe condition is necessary (as of v3 of cssnano) else we will run into
-  // problems, learn more👇
-  // https://github.com/NMFR/optimize-css-assets-webpack-plugin/issues/28
-  cssProcessorOptions: {
-    // The previous safe option has been removed this is a fix from
-    // https://github.com/NMFR/optimize-css-assets-webpack-plugin/issues/65#issuecomment-405721294
-    parser: safeParser,
-    discardComments: { removeAll: true },
-  },
-};
 
 const defaultToggleFlags = {
   // Allow to disable CSS extraction in case it's not necessary (e.g. for Storybook)
@@ -135,23 +115,24 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
           // Default number of concurrent runs: os.cpus().length - 1
           parallel: mergedOptions.toggleFlags.parallelism,
         }),
-        mergedOptions.toggleFlags.enableExtractCss &&
-          new OptimizeCSSAssetsPlugin(optimizeCSSConfig),
+        mergedOptions.toggleFlags.enableExtractCss && new CssMinimizerPlugin(),
       ].filter(Boolean),
-      // Automatically split vendor and commons
-      // https://twitter.com/wSokra/status/969633336732905474
-      // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
-      splitChunks: {
-        chunks: 'all',
-        // NOTE: if you enable `cacheGroups` for CSS, remember to toggle it with
-        // the `mergedToggleFlags.enableExtractCss`
-      },
       // Keep the runtime chunk separated to enable long term caching
       runtimeChunk: {
         name: 'runtime',
       },
       moduleIds: 'named',
       chunkIds: 'deterministic',
+    },
+
+    resolve: {
+      // These are the reasonable defaults supported by the Node ecosystem.
+      // We also include JSX as a common component filename extension to support
+      // some tools, although we do not recommend using it, see:
+      // https://github.com/facebook/create-react-app/issues/290
+      // `web` extension prefixes have been added for better support
+      // for React Native Web.
+      extensions: ['js', 'ts', 'tsx', 'json', 'jsx'].map((ext) => `.${ext}`),
     },
 
     // In production, we only want to load the polyfills and the app code.
@@ -173,16 +154,6 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
       pathinfo: false,
       // Will be injected on runtime. See `packages/application-shell/src/public-path.js`
       publicPath: '',
-    },
-
-    resolve: {
-      // These are the reasonable defaults supported by the Node ecosystem.
-      // We also include JSX as a common component filename extension to support
-      // some tools, although we do not recommend using it, see:
-      // https://github.com/facebook/create-react-app/issues/290
-      // `web` extension prefixes have been added for better support
-      // for React Native Web.
-      extensions: ['js', 'ts', 'tsx', 'json', 'jsx'].map((ext) => `.${ext}`),
     },
 
     plugins: [
@@ -303,9 +274,6 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
             },
           ],
         },
-        // "url" loader works like "file" loader except that it embeds assets
-        // smaller than specified limit in bytes as data URLs to avoid requests.
-        // A missing `test` is equivalent to a match.
         {
           test: /\.png$/,
           type: 'asset/resource',
