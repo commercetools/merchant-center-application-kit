@@ -78,7 +78,7 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
       // https://twitter.com/wSokra/status/969679223278505985
       // https://github.com/facebook/create-react-app/issues/5358
       runtimeChunk: {
-        name: (entrypoint) => `runtime-${entrypoint.name}`,
+        name: 'runtime',
       },
       moduleIds: 'named',
     },
@@ -394,5 +394,10 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
     // Turn off performance processing because we utilize
     // our own hints via the FileSizeReporter
     performance: false,
+
+    // For dev server
+    infrastructureLogging: {
+      level: 'warn',
+    },
   };
 };

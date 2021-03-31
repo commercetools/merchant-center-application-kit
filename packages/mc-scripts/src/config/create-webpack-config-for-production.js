@@ -147,12 +147,11 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
         // the `mergedToggleFlags.enableExtractCss`
       },
       // Keep the runtime chunk separated to enable long term caching
-      // https://twitter.com/wSokra/status/969679223278505985
-      // https://github.com/facebook/create-react-app/issues/5358
       runtimeChunk: {
-        name: (entrypoint) => `runtime-${entrypoint.name}`,
+        name: 'runtime',
       },
       moduleIds: 'named',
+      chunkIds: 'deterministic',
     },
 
     // In production, we only want to load the polyfills and the app code.

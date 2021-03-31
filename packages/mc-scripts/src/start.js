@@ -83,6 +83,7 @@ choosePort(HOST, DEFAULT_PORT)
     const serverConfig = createDevServerConfig({
       allowedHost: urls.localUrlForBrowser,
       contentBase: paths.appPublic,
+      port,
       publicPath: config.output.publicPath,
     });
     const devServer = new WebpackDevServer(compiler, serverConfig);
