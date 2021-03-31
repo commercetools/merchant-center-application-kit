@@ -16,10 +16,10 @@ const webpack = require('webpack');
 const chalk = require('react-dev-utils/chalk');
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 // FIXME: reuse normal import after CRA supports Webpack v5.
-// const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
+const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const printBuildError = require('react-dev-utils/printBuildError');
-const formatWebpackMessages = require('./patches/react-dev-utils/formatWebpackMessages');
+// const formatWebpackMessages = require('./patches/react-dev-utils/formatWebpackMessages');
 const paths = require('./config/paths');
 const createWebpackConfigForProduction = require('./config/create-webpack-config-for-production');
 
