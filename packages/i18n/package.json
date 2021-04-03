@@ -46,9 +46,9 @@
   },
   "devDependencies": {
     "@types/react": "16.14.5",
-    "intl-messageformat-parser": "6.4.3",
+    "intl-messageformat-parser": "6.4.4",
     "react": "16.14.0",
-    "react-intl": "5.13.4"
+    "react-intl": "5.15.6"
   },
   "peerDependencies": {
     "@types/react": "16.x",
