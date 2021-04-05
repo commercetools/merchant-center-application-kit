@@ -22,7 +22,7 @@ const printErrors = (errors?: ErrorObject[] | null) => {
 
   return errors
     .map((error) => {
-      const baseMessage = `${error.dataPath} ${error.message}`;
+      const baseMessage = `${error.instancePath} ${error.message}`;
       switch (error.keyword) {
         case 'additionalProperties':
           return `${baseMessage}: ${
