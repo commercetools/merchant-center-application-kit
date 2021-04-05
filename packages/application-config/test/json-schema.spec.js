@@ -22,7 +22,7 @@ describe('invalid configurations', () => {
         env: undefined,
       })
     ).toThrowErrorMatchingInlineSnapshot(
-      `" should have required property 'env'"`
+      `" must have required property 'env'"`
     );
   });
   it('should validate that "env.production" is defined', () => {
@@ -32,7 +32,7 @@ describe('invalid configurations', () => {
         env: {},
       })
     ).toThrowErrorMatchingInlineSnapshot(
-      `"/env should have required property 'production'"`
+      `"/env must have required property 'production'"`
     );
   });
   it('should validate that "entryPointUriPath" is defined', () => {
@@ -42,7 +42,7 @@ describe('invalid configurations', () => {
         entryPointUriPath: undefined,
       })
     ).toThrowErrorMatchingInlineSnapshot(
-      `" should have required property 'entryPointUriPath'"`
+      `" must have required property 'entryPointUriPath'"`
     );
   });
   it('should validate that "cloudIdentifier" is one of the expected values', () => {
@@ -54,7 +54,7 @@ describe('invalid configurations', () => {
     ).toThrowError(
       expect.objectContaining({
         message: expect.stringContaining(
-          'cloudIdentifier should be equal to one of the allowed values: gcp-au,gcp-eu,gcp-us,aws-fra,aws-ohio'
+          'cloudIdentifier must be equal to one of the allowed values: gcp-au,gcp-eu,gcp-us,aws-fra,aws-ohio'
         ),
       })
     );
