@@ -67,7 +67,7 @@
     "@types/react-dom": "16.9.12",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.15.6"
+    "react-intl": "5.15.7"
   },
   "peerDependencies": {
     "@commercetools-frontend/ui-kit": "11.x",
