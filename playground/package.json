@@ -29,7 +29,7 @@
     "@commercetools-uikit/constraints": "^11.2.0",
     "@commercetools-uikit/data-table": "^11.2.0",
     "@commercetools-uikit/flat-button": "^11.2.0",
-    "@commercetools-uikit/grid": "^10.44.4",
+    "@commercetools-uikit/grid": "^11.0.0",
     "@commercetools-uikit/icons": "^11.2.0",
     "@commercetools-uikit/loading-spinner": "^11.2.0",
     "@commercetools-uikit/primary-button": "^11.2.0",
