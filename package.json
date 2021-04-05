@@ -113,7 +113,7 @@
     "@graphql-codegen/typescript-operations": "1.17.15",
     "@manypkg/cli": "0.17.0",
     "@percy/cli": "1.0.0-beta.44",
-    "@percy/cypress": "2.3.4",
+    "@percy/cypress": "3.0.0",
     "@percy/puppeteer": "2.0.0",
     "@preconstruct/cli": "2.0.6",
     "@sindresorhus/slugify": "1.1.0",
