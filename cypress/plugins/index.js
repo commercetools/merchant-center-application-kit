@@ -20,7 +20,6 @@
 // Reference: https://docs.cypress.io/api/plugins/configuration-api.html#Promises
 
 /* eslint-disable global-require */
-const percyHealthCheck = require('@percy/cypress/task');
 const customApplications = require('@commercetools-frontend/cypress/task');
 
 // plugins file
@@ -34,7 +33,6 @@ module.exports = (on, cypressConfig) => {
   }
 
   on('task', {
-    ...percyHealthCheck,
     ...customApplications,
   });
 
