@@ -8015,10 +8015,10 @@ classnames@^2.2.6:
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
   integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
 
-cldr@5.8.0:
-  version "5.8.0"
-  resolved "https://registry.yarnpkg.com/cldr/-/cldr-5.8.0.tgz#f8d4c0e82376a25efa9e1dabd1d6e2cda459c49b"
-  integrity sha512-w0L5FX4X3txDX5G/YSbDAQuneVSFPSKjOXB2ehWh/J6BN7RJ+IUEVNG9hIGjuJoyYJcVGE2AoL0W0VSjirQPIg==
+cldr@6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/cldr/-/cldr-6.0.0.tgz#a12c3b8d19d9525d1ac9db5027709064b16e2093"
+  integrity sha512-gXf4exsXJmq50Jq3dbc4oTKZMFJvgaC4J+4wWfsjM6I+ZVyu9VIv4dnu2epDfaod1uB1POcT+UpB4MzzspJbcQ==
   dependencies:
     escodegen "^2.0.0"
     esprima "^4.0.1"
