@@ -1,5 +1,15 @@
 # @commercetools-frontend/l10n
 
+## 18.7.0
+
+### Minor Changes
+
+- [`263f3180`](https://github.com/commercetools/merchant-center-application-kit/commit/263f318028603daa7fadac7f6cd84c1891b2f1c0) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Update cldr dependency
+
+### Patch Changes
+
+- [#2110](https://github.com/commercetools/merchant-center-application-kit/pull/2110) [`c850d6dc`](https://github.com/commercetools/merchant-center-application-kit/commit/c850d6dcf8edabb5eb9390e41def4b6b52879b7a) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
 ## 18.6.0
 
 ### Minor Changes
