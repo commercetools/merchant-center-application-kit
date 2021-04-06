@@ -1,5 +1,13 @@
 # @commercetools-frontend/application-config
 
+## 18.7.0
+
+### Patch Changes
+
+- [#2125](https://github.com/commercetools/merchant-center-application-kit/pull/2125) [`8eed86e9`](https://github.com/commercetools/merchant-center-application-kit/commit/8eed86e977320aa00397b93e94c0cd29331d8c01) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency ajv to v8
+
+* [#2110](https://github.com/commercetools/merchant-center-application-kit/pull/2110) [`c850d6dc`](https://github.com/commercetools/merchant-center-application-kit/commit/c850d6dcf8edabb5eb9390e41def4b6b52879b7a) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
 ## 18.6.0
 
 ### Patch Changes

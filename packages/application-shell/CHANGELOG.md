@@ -1,5 +1,23 @@
 # @commercetools-frontend/application-shell
 
+## 18.7.0
+
+### Patch Changes
+
+- [#2122](https://github.com/commercetools/merchant-center-application-kit/pull/2122) [`c3ba44a6`](https://github.com/commercetools/merchant-center-application-kit/commit/c3ba44a6a124ddfbe6322436a260b93ff29ec4e9) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+* [#2110](https://github.com/commercetools/merchant-center-application-kit/pull/2110) [`c850d6dc`](https://github.com/commercetools/merchant-center-application-kit/commit/c850d6dcf8edabb5eb9390e41def4b6b52879b7a) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+* Updated dependencies [[`c3ba44a6`](https://github.com/commercetools/merchant-center-application-kit/commit/c3ba44a6a124ddfbe6322436a260b93ff29ec4e9), [`8b1e943c`](https://github.com/commercetools/merchant-center-application-kit/commit/8b1e943ca8068cfbf915a83e8498500455eabd75), [`263f3180`](https://github.com/commercetools/merchant-center-application-kit/commit/263f318028603daa7fadac7f6cd84c1891b2f1c0), [`c850d6dc`](https://github.com/commercetools/merchant-center-application-kit/commit/c850d6dcf8edabb5eb9390e41def4b6b52879b7a)]:
+  - @commercetools-frontend/application-components@18.7.0
+  - @commercetools-frontend/i18n@18.7.0
+  - @commercetools-frontend/react-notifications@18.7.0
+  - @commercetools-frontend/l10n@18.7.0
+  - @commercetools-frontend/actions-global@18.7.0
+  - @commercetools-frontend/application-shell-connectors@18.7.0
+  - @commercetools-frontend/sdk@18.7.0
+  - @commercetools-frontend/permissions@18.7.0
+
 ## 18.6.0
 
 ### Patch Changes

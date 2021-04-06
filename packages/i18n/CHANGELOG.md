@@ -1,5 +1,15 @@
 # @commercetools-frontend/i18n
 
+## 18.7.0
+
+### Patch Changes
+
+- [#2122](https://github.com/commercetools/merchant-center-application-kit/pull/2122) [`c3ba44a6`](https://github.com/commercetools/merchant-center-application-kit/commit/c3ba44a6a124ddfbe6322436a260b93ff29ec4e9) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+* [#2123](https://github.com/commercetools/merchant-center-application-kit/pull/2123) [`8b1e943c`](https://github.com/commercetools/merchant-center-application-kit/commit/8b1e943ca8068cfbf915a83e8498500455eabd75) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all ui-kit packages to v11 (major)
+
+- [#2110](https://github.com/commercetools/merchant-center-application-kit/pull/2110) [`c850d6dc`](https://github.com/commercetools/merchant-center-application-kit/commit/c850d6dcf8edabb5eb9390e41def4b6b52879b7a) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
 ## 18.6.0
 
 ### Patch Changes

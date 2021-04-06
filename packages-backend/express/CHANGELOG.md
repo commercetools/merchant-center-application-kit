@@ -1,5 +1,13 @@
 # @commercetools-backend/express
 
+## 18.7.0
+
+### Patch Changes
+
+- [#2111](https://github.com/commercetools/merchant-center-application-kit/pull/2111) [`b20e2dab`](https://github.com/commercetools/merchant-center-application-kit/commit/b20e2dab8b60e21463302d72724cbb65c78033fa) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency jwks-rsa to v2
+
+* [#2110](https://github.com/commercetools/merchant-center-application-kit/pull/2110) [`c850d6dc`](https://github.com/commercetools/merchant-center-application-kit/commit/c850d6dcf8edabb5eb9390e41def4b6b52879b7a) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
 ## 18.6.1
 
 ### Patch Changes
