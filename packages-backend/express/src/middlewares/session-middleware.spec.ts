@@ -10,7 +10,11 @@ const mockServer = setupServer();
 afterEach(() => {
   mockServer.resetHandlers();
 });
-beforeAll(() => mockServer.listen());
+beforeAll(() =>
+  mockServer.listen({
+    onUnhandledRequest: 'error',
+  })
+);
 afterAll(() => mockServer.close());
 
 describe.each`
