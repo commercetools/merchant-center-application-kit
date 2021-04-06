@@ -101,7 +101,7 @@
     "@commercetools/github-labels": "1.1.0",
     "@commitlint/cli": "12.1.1",
     "@commitlint/config-conventional": "12.1.1",
-    "@formatjs/cli": "3.2.0",
+    "@formatjs/cli": "4.2.6",
     "@graphql-cli/codegen": "1.17.22",
     "@graphql-cli/coverage": "2.1.0",
     "@graphql-cli/validate": "2.1.0",
