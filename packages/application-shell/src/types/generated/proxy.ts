@@ -25,14 +25,14 @@ export type TApplicationsMenu = {
 
 export type TBaseMenu = {
   __typename?: 'BaseMenu';
-  key: Scalars['String'];
-  uriPath: Scalars['String'];
-  labelAllLocales: Array<TLocalizedField>;
-  featureToggle: Maybe<Scalars['String']>;
-  menuVisibility: Maybe<Scalars['String']>;
-  permissions: Array<Scalars['String']>;
   actionRights: Maybe<Array<TActionRight>>;
   dataFences: Maybe<Array<TDataFence>>;
+  featureToggle: Maybe<Scalars['String']>;
+  key: Scalars['String'];
+  labelAllLocales: Array<TLocalizedField>;
+  menuVisibility: Maybe<Scalars['String']>;
+  permissions: Array<Scalars['String']>;
+  uriPath: Scalars['String'];
 };
 
 export type TDataFence = {
@@ -50,23 +50,23 @@ export type TLocalizedField = {
 
 export type TNavbarMenu = {
   __typename?: 'NavbarMenu';
-  shouldRenderDivider: Maybe<Scalars['Boolean']>;
-  key: Scalars['String'];
-  uriPath: Scalars['String'];
-  icon: Scalars['String'];
-  labelAllLocales: Array<TLocalizedField>;
-  featureToggle: Maybe<Scalars['String']>;
-  permissions: Array<Scalars['String']>;
   actionRights: Maybe<Array<TActionRight>>;
   dataFences: Maybe<Array<TDataFence>>;
+  featureToggle: Maybe<Scalars['String']>;
+  icon: Scalars['String'];
+  key: Scalars['String'];
+  labelAllLocales: Array<TLocalizedField>;
   menuVisibility: Maybe<Scalars['String']>;
+  permissions: Array<Scalars['String']>;
+  shouldRenderDivider: Maybe<Scalars['Boolean']>;
   submenu: Array<TBaseMenu>;
+  uriPath: Scalars['String'];
 };
 
 export type TQuery = {
   __typename?: 'Query';
-  applicationsMenu: TApplicationsMenu;
   allFeatureToggles: Array<Scalars['String']>;
+  applicationsMenu: TApplicationsMenu;
 };
 
 export type TFetchAllMenuFeatureTogglesQueryVariables = Exact<{ [key: string]: never; }>;

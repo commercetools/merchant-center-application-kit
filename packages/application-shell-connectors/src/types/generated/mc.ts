@@ -315,8 +315,7 @@ export type TOrganizationDraftType = {
 
 /**
  * Note:
- *   This is not a `Organization` type as in the future MC schema will not support
- * e.g. expanding on team members on its internal schema.
+ *   This is not a `Organization` type as in the future MC schema will not support e.g. expanding on team members on its internal schema.
  */
 export type TOrganizationTeamsCreated = {
   __typename?: 'OrganizationTeamsCreated';
@@ -399,7 +398,6 @@ export type TProject = TMetaData & {
   owner: TOrganization;
   suspension: TProjectSuspension;
   expiry: TProjectExpiry;
-  settings: Maybe<TProjectSetting>;
   shippingRateInputType: Maybe<TShippingRateInputType>;
   allAppliedPermissions: Array<TAppliedPermission>;
   allAppliedDataFences: Array<TAppliedDataFence>;
@@ -453,20 +451,6 @@ export type TProjectQueryResult = TQueryResult & {
   offset: Scalars['Int'];
   total: Scalars['Int'];
   results: Array<TProject>;
-};
-
-export type TProjectSetting = TMetaData & {
-  __typename?: 'ProjectSetting';
-  id: Scalars['ID'];
-  version: Maybe<Scalars['Int']>;
-  createdAt: Scalars['String'];
-  lastModifiedAt: Scalars['String'];
-  projectId: Scalars['String'];
-  projectKey: Scalars['String'];
-  user: Scalars['String'];
-  active: Scalars['String'];
-  productSettings: Array<Maybe<Scalars['String']>>;
-  currentProductSettings: Maybe<Scalars['String']>;
 };
 
 export type TProjectSuspension = {
@@ -623,14 +607,14 @@ export enum TShippingRateType {
   CartValue = 'CartValue'
 }
 
-export type TSignedUpUser = {
-  __typename?: 'SignedUpUser';
-  id: Scalars['String'];
-};
-
 export type TSignUpRequest = {
   __typename?: 'SignUpRequest';
   jwt: Maybe<Scalars['String']>;
+};
+
+export type TSignedUpUser = {
+  __typename?: 'SignedUpUser';
+  id: Scalars['String'];
 };
 
 export type TStoreDataFence = TDataFence & {
