@@ -32,6 +32,7 @@
     "@emotion/react": "11.1.5",
     "@types/lodash": "^4.14.167",
     "@types/prop-types": "^15.7.3",
+    "@types/react": "^17.0.3",
     "graphql": "15.5.0",
     "lodash": "4.17.21",
     "moment-timezone": "^0.5.32",
@@ -40,16 +41,13 @@
   "devDependencies": {
     "@apollo/client": "3.3.13",
     "@testing-library/react": "11.2.6",
-    "@types/react": "17.0.3",
     "react": "17.0.2"
   },
   "peerDependencies": {
     "@apollo/client": "3.x",
-    "@types/react": "17.x",
-    "react": ">=17.0.0"
+    "react": "17.x"
   },
   "engines": {
-    "node": ">=8",
-    "npm": ">=5"
+    "node": ">=12 || >=14"
   }
 }

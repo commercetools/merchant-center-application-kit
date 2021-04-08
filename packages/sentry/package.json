@@ -27,16 +27,15 @@
     "@commercetools-frontend/constants": "18.6.0",
     "@sentry/browser": "5.30.0",
     "@types/prop-types": "^15.7.3",
+    "@types/react": "^17.0.3",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "@types/react": "17.0.3",
     "react": "17.0.2",
     "sentry-testkit": "3.3.2",
     "wait-for-expect": "3.0.2"
   },
   "peerDependencies": {
-    "@types/react": "17.x",
-    "react": ">=17.0.0"
+    "react": "17.x"
   }
 }

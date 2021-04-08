@@ -41,18 +41,17 @@
     "@commercetools-uikit/i18n": "11.2.1",
     "@emotion/react": "11.1.5",
     "@types/prop-types": "^15.7.3",
+    "@types/react": "^17.0.3",
     "moment": "^2.29.1",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "@types/react": "17.0.3",
     "intl-messageformat-parser": "6.4.4",
     "react": "17.0.2",
     "react-intl": "5.15.7"
   },
   "peerDependencies": {
-    "@types/react": "17.x",
-    "react": ">=17.0.0",
-    "react-intl": "3.x || 4.x || 5.x"
+    "react": "17.x",
+    "react-intl": "5.x"
   }
 }

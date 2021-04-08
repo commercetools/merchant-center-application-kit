@@ -29,7 +29,7 @@
     "stylelint": "13.12.0"
   },
   "peerDependencies": {
-    "postcss": ">= 7 || >= 8",
-    "stylelint": ">= 9.5"
+    "postcss": "8.x",
+    "stylelint": "13.x"
   }
 }
