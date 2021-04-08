@@ -34,6 +34,7 @@ module.exports = ({ allowedHost, contentBase, port, publicPath }) => ({
     disableDotRule: true,
   },
   host,
+  hot: true,
   https: protocol === 'https',
   // Prevent a WS client from getting injected as we're already including
   // `webpackHotDevClient`.

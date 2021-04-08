@@ -56,6 +56,7 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
   };
 
   return {
+    // Explicitly set this. See https://github.com/pmmmwh/react-refresh-webpack-plugin/issues/252
     target: 'web',
 
     // https://webpack.js.org/concepts/#mode
@@ -160,7 +161,7 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
       mergedOptions.toggleFlags.generateIndexHtml &&
         new HtmlWebpackPlugin({
           inject: false,
-          filename: paths.appIndexHtmlTemplate,
+          filename: paths.appIndexHtml,
           template: require.resolve(
             '@commercetools-frontend/mc-html-template/webpack'
           ),
