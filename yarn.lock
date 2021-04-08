@@ -1431,12 +1431,12 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@commercetools-docs/gatsby-theme-docs@15.0.2":
-  version "15.0.2"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-15.0.2.tgz#31231c086ccccdb589f08c28e409eeb970dca8fc"
-  integrity sha512-sv8uY0xNZua0GZ2J9yuBBpBZ5lfPQEfVoq7ND4zginlgXfi+sv2P4bk9QfBr61IE5k26R7sCClgyn8RbUYGf4Q==
+"@commercetools-docs/gatsby-theme-docs@16.0.0":
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-16.0.0.tgz#8dfc54e326c90cba7eb0a9bb19561260c0db7991"
+  integrity sha512-7IP/+1i9yZFE0PU0lbmMfandda9wSSo5dg/1g2CU+BUW+7fSWzWF3k3KEqq6kYmChZNJuVnBNUibGeMDX7SCwA==
   dependencies:
-    "@commercetools-docs/ui-kit" "15.0.2"
+    "@commercetools-docs/ui-kit" "16.0.0"
     "@commercetools-uikit/card" "^11.2.0"
     "@commercetools-uikit/checkbox-input" "^11.2.0"
     "@commercetools-uikit/date-input" "^11.2.0"
@@ -1455,24 +1455,25 @@
     "@fontsource/roboto-mono" "4.2.2"
     "@mdx-js/mdx" "1.6.22"
     "@mdx-js/react" "1.6.22"
-    "@sentry/browser" "6.2.2"
+    "@sentry/browser" "6.2.3"
     "@svgr/webpack" "5.5.0"
+    cosmiconfig "^7.0.0"
     docsearch.js "2.6.3"
     gatsby-plugin-emotion "6.1.0"
     gatsby-plugin-feed "3.1.0"
     gatsby-plugin-google-analytics "3.1.0"
     gatsby-plugin-hubspot "1.3.4"
-    gatsby-plugin-image "1.1.0"
+    gatsby-plugin-image "1.1.2"
     gatsby-plugin-manifest "3.1.0"
     gatsby-plugin-mdx "2.1.0"
     gatsby-plugin-meta-redirect "1.1.1"
     gatsby-plugin-react-helmet "4.1.0"
     gatsby-plugin-react-helmet-canonical-urls "1.4.0"
     gatsby-plugin-remove-trailing-slashes "3.1.0"
-    gatsby-plugin-sharp "3.1.0"
+    gatsby-plugin-sharp "3.1.2"
     gatsby-plugin-webpack-bundle-analyser-v2 "1.1.21"
     gatsby-remark-copy-linked-files "3.1.0"
-    gatsby-remark-images "4.1.0"
+    gatsby-remark-images "4.1.1"
     gatsby-remark-relative-images "0.2.3"
     gatsby-source-filesystem "3.1.0"
     gatsby-transformer-sharp "3.1.0"
@@ -1497,14 +1498,14 @@
     remark-frontmatter "3.0.0"
     remark-parse "9.0.0"
     remark-react "8.0.0"
-    slugify "1.4.7"
+    slugify "1.5.0"
     unified "9.2.1"
     unist-util-filter "2.0.3"
 
-"@commercetools-docs/ui-kit@15.0.2":
-  version "15.0.2"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-15.0.2.tgz#abbbddaf17b00be567b3853a4bb139bc86f071c9"
-  integrity sha512-tyJvYI0WZ8r0/JwbslvJ3eRsb2WeEQQ6yjw0iq2K/DuLJfJhYibsmM/TvPZyK/zWcDKfesXsU+xBktlOCqLavQ==
+"@commercetools-docs/ui-kit@16.0.0":
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-16.0.0.tgz#9d6c7627728ac6de5c8a46c3c4e979b329351564"
+  integrity sha512-115HgDC4eRN8wGPoSXbAfvFk0NZZEEiTxQjW4nU+F7378DAuzixDQ8ilaQ3VUHA9raZvly0kkSN3lfnrZwbhUw==
   dependencies:
     "@babel/runtime" "7.13.10"
     "@babel/runtime-corejs3" "7.13.10"
@@ -1522,7 +1523,7 @@
     prism-react-renderer "1.2.0"
     prop-types "15.7.2"
     react-intl "^5.7.0"
-    swr "0.5.3"
+    swr "0.5.4"
     tiny-invariant "1.1.0"
 
 "@commercetools-docs/writing-style@3.0.5":
@@ -4942,14 +4943,14 @@
     "@sentry/utils" "5.30.0"
     tslib "^1.9.3"
 
-"@sentry/browser@6.2.2":
-  version "6.2.2"
-  resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-6.2.2.tgz#4df4ad7026b269d85b63b79a75387ce5370bc705"
-  integrity sha512-K5UGyEePtVPZIFMoiRafhd4Ov0M1kdozVsVKIPZrOpJyjQdPNX+fYDNL/h0nVmgOlE2S/uu4fl4mEfe/6aLShw==
+"@sentry/browser@6.2.3":
+  version "6.2.3"
+  resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-6.2.3.tgz#b622b3fb62340574e395b6ae12ffbb9d25d98bd4"
+  integrity sha512-QUqrZdAosY2MPAUfJYpyCT+dA6v7A2h8imO8R3Lbi0hRSPr+L7zjqHgFs3CTHJLmLV74cxHt6rVVUPSksYNQDQ==
   dependencies:
-    "@sentry/core" "6.2.2"
-    "@sentry/types" "6.2.2"
-    "@sentry/utils" "6.2.2"
+    "@sentry/core" "6.2.3"
+    "@sentry/types" "6.2.3"
+    "@sentry/utils" "6.2.3"
     tslib "^1.9.3"
 
 "@sentry/core@5.30.0":
@@ -4963,15 +4964,15 @@
     "@sentry/utils" "5.30.0"
     tslib "^1.9.3"
 
-"@sentry/core@6.2.2":
-  version "6.2.2"
-  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-6.2.2.tgz#ec86b5769f8855f43cb58e839f81f87074ec9a3f"
-  integrity sha512-qqWbvvXtymfXh7N5eEvk97MCnMURuyFIgqWdVD4MQM6yIfDCy36CyGfuQ3ViHTLZGdIfEOhLL9/f4kzf1RzqBA==
+"@sentry/core@6.2.3":
+  version "6.2.3"
+  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-6.2.3.tgz#ed5d21fd8b18ddc289d04c669393a437fb09639f"
+  integrity sha512-GpfHoSJiXchVXgyaMWVtIPVw2t97KkD1OJ4JdL3/TeH3auX5XvsN5iHTk+x/Er8t13IpOnvidH1xWdV1dnax2w==
   dependencies:
-    "@sentry/hub" "6.2.2"
-    "@sentry/minimal" "6.2.2"
-    "@sentry/types" "6.2.2"
-    "@sentry/utils" "6.2.2"
+    "@sentry/hub" "6.2.3"
+    "@sentry/minimal" "6.2.3"
+    "@sentry/types" "6.2.3"
+    "@sentry/utils" "6.2.3"
     tslib "^1.9.3"
 
 "@sentry/hub@5.30.0":
@@ -4983,13 +4984,13 @@
     "@sentry/utils" "5.30.0"
     tslib "^1.9.3"
 
-"@sentry/hub@6.2.2":
-  version "6.2.2"
-  resolved "https://registry.yarnpkg.com/@sentry/hub/-/hub-6.2.2.tgz#f451d8d3ad207e81556b4846d810226693e0444e"
-  integrity sha512-VR6uQGRYt6RP633FHShlSLj0LUKGVrlTeSlwCoooWM5FR9lmi6akAaweuxpG78/kZvXrAWpjX6/nuYwHKGwzGA==
+"@sentry/hub@6.2.3":
+  version "6.2.3"
+  resolved "https://registry.yarnpkg.com/@sentry/hub/-/hub-6.2.3.tgz#07fba07627b7523f69f8b862f00cd197e5e4e5bd"
+  integrity sha512-D5Horfo2l0p52S7KPvy7qwWNMrE4IsCN8ODbfcCsfJu7hEXJmItbkbohIVSqO5neukhn5nu+x8kyCe9Q5u1Q6g==
   dependencies:
-    "@sentry/types" "6.2.2"
-    "@sentry/utils" "6.2.2"
+    "@sentry/types" "6.2.3"
+    "@sentry/utils" "6.2.3"
     tslib "^1.9.3"
 
 "@sentry/minimal@5.30.0":
@@ -5001,13 +5002,13 @@
     "@sentry/types" "5.30.0"
     tslib "^1.9.3"
 
-"@sentry/minimal@6.2.2":
-  version "6.2.2"
-  resolved "https://registry.yarnpkg.com/@sentry/minimal/-/minimal-6.2.2.tgz#01f41e0a6a6a2becfc99f6bb6f9c4bddf54f8dae"
-  integrity sha512-l0IgoGQgg1lTd4qDU8bQn25sbZBg8PwIHfuTLbGMlRr1flDXHOM1UXajWK/UKbAPelnU7M2JBSVzgl7PwjprzA==
+"@sentry/minimal@6.2.3":
+  version "6.2.3"
+  resolved "https://registry.yarnpkg.com/@sentry/minimal/-/minimal-6.2.3.tgz#462ce7739fa85fd7d6dd13d56d20f17ff91e46d0"
+  integrity sha512-Gpn9x4NQAG7E94EK1+hAz9GUcYrffTuqJ/XgqvHYk0jsHZ6RfsXYrmBac0ZwUxOivMf2t0n5opK0v5rhMDfF2w==
   dependencies:
-    "@sentry/hub" "6.2.2"
-    "@sentry/types" "6.2.2"
+    "@sentry/hub" "6.2.3"
+    "@sentry/types" "6.2.3"
     tslib "^1.9.3"
 
 "@sentry/node@5.30.0":
@@ -5041,10 +5042,10 @@
   resolved "https://registry.yarnpkg.com/@sentry/types/-/types-5.30.0.tgz#19709bbe12a1a0115bc790b8942917da5636f402"
   integrity sha512-R8xOqlSTZ+htqrfteCWU5Nk0CDN5ApUTvrlvBuiH1DyP6czDZ4ktbZB0hAgBlVcK0U+qpD3ag3Tqqpa5Q67rPw==
 
-"@sentry/types@6.2.2":
-  version "6.2.2"
-  resolved "https://registry.yarnpkg.com/@sentry/types/-/types-6.2.2.tgz#9fc7795156680d3da5fc6ecc66702d8f7917f2b1"
-  integrity sha512-Y/1sRtw3a5JU4YdNBig8lLSVJ1UdYtuge+QP1CVLcLSAbq07Ok1bvF+Z+BlNcnHqle2Fl8aKuryG5Yu86enOyQ==
+"@sentry/types@6.2.3":
+  version "6.2.3"
+  resolved "https://registry.yarnpkg.com/@sentry/types/-/types-6.2.3.tgz#0c06a475a51d28c73a69b05f0d43db05310ec241"
+  integrity sha512-BpA+9FherWgYlkMD/82bGFh/gAqZNlZX5UE8vWLKyyzNyOEEz3v9ScxE8dOSWE4v5iXJR1O3jjxaTcRQxPVgCA==
 
 "@sentry/utils@5.30.0":
   version "5.30.0"
@@ -5054,12 +5055,12 @@
     "@sentry/types" "5.30.0"
     tslib "^1.9.3"
 
-"@sentry/utils@6.2.2":
-  version "6.2.2"
-  resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-6.2.2.tgz#69f7151db74e65a010cec062cc9ab3e30bf2c80a"
-  integrity sha512-qaee6X6VDNZ8HeO83/veaKw0KuhDE7j1R+Yryme3PywFzsoTzutDrEQjb7gvcHAhBaAYX8IHUBHgxcFI9BxI+w==
+"@sentry/utils@6.2.3":
+  version "6.2.3"
+  resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-6.2.3.tgz#c96539571a67fb2eed56897133649f35309e3f74"
+  integrity sha512-YnkJm97wSvck39eRpqWjIuuwbvzPilvAcMqhbUy9yK/UBQMDGUzAKCOKH40udw1DwMUCWjJ71mOCDgUorE4Fog==
   dependencies:
-    "@sentry/types" "6.2.2"
+    "@sentry/types" "6.2.3"
     tslib "^1.9.3"
 
 "@sheerun/mutationobserver-shim@0.3.3":
@@ -7181,7 +7182,7 @@ babel-jest@26.6.3, babel-jest@^26.6.3:
     graceful-fs "^4.2.4"
     slash "^3.0.0"
 
-babel-jsx-utils@^1.0.1:
+babel-jsx-utils@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/babel-jsx-utils/-/babel-jsx-utils-1.1.0.tgz#304ce4fce0c86cbeee849551a45eb4ed1036381a"
   integrity sha512-Mh1j/rw4xM9T3YICkw22aBQ78FhsHdsmlb9NEk4uVAFBOg+Ez9ZgXXHugoBPCZui3XLomk/7/JBBH4daJqTkQQ==
@@ -12543,14 +12544,15 @@ gatsby-plugin-hubspot@1.3.4:
   dependencies:
     "@babel/runtime" "^7.6.3"
 
-gatsby-plugin-image@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-image/-/gatsby-plugin-image-1.1.0.tgz#cf7538385ad9c80418529024ad35e2c1f7a919ac"
-  integrity sha512-r/nsdznnFp8Rz/gLuCKnbHl8cPHdQW6mYh3PVGXgdF9cI6CiJd9kYSs6zCFtrsl+FxMcW3VDY7h4F/1OTwh9kQ==
+gatsby-plugin-image@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-image/-/gatsby-plugin-image-1.1.2.tgz#85fc4f5356bf29c2098c4371e5396e14a0ff632e"
+  integrity sha512-ijuCa/++l+J3lUuEQyDPu1CoQ9dMdjlmgXQIZZvo+ZK25FlWVvZn/tyyg/cFekqv+Ir1Dr8LnHHlxEKdvYkIrw==
   dependencies:
+    "@babel/code-frame" "^7.12.13"
     "@babel/parser" "^7.12.5"
     "@babel/traverse" "^7.12.5"
-    babel-jsx-utils "^1.0.1"
+    babel-jsx-utils "^1.1.0"
     babel-plugin-remove-graphql-queries "^3.1.0"
     camelcase "^5.3.1"
     chokidar "^3.5.1"
@@ -12655,10 +12657,10 @@ gatsby-plugin-remove-trailing-slashes@3.1.0:
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-gatsby-plugin-sharp@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-sharp/-/gatsby-plugin-sharp-3.1.0.tgz#64472f5b0904ce04fe8da1a01ae9d72b099239c6"
-  integrity sha512-u9gVDjclnxKuC86r4ghX6ne94ndnYpHULezPkzWoVepJVV7p1khVYeRnvfWbXPt7TN3NrgUgIsyDKQ1fzHKFZA==
+gatsby-plugin-sharp@3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-sharp/-/gatsby-plugin-sharp-3.1.2.tgz#fd14aa7d729c3a8b8770321c91f33ad59f404185"
+  integrity sha512-YH4vd9u18Z0x/iiPqiyDpd8CQP7N7gN1LvvGydtch34sWijdQcCBP/kiZk+hn1iXCvVG4vxLt2DvkY4LaWGUpA==
   dependencies:
     "@babel/runtime" "^7.12.5"
     async "^3.2.0"
@@ -12801,10 +12803,10 @@ gatsby-remark-copy-linked-files@3.1.0:
     probe-image-size "^6.0.0"
     unist-util-visit "^1.4.1"
 
-gatsby-remark-images@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-images/-/gatsby-remark-images-4.1.0.tgz#8f8114901babaaf063969b205479fc72c9a91c99"
-  integrity sha512-+QV71bdBllYXyEFI6h4bYBrXoGFPBd+Ljr4RMJ6EYD5U1LAUZZghPfgfUVshy87o2rD/mY8Vi9DN3jc909BNBQ==
+gatsby-remark-images@4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-images/-/gatsby-remark-images-4.1.1.tgz#ae851169951a40c5ad7ba5a1bf19a33730aeee35"
+  integrity sha512-n28M87lAGgF5ootav7Gb+xnIbwWJ6MbnozVJlAwB5/Z7A5yDDfGtAdMrj8+KXa0menMIjHHLUaPmMbPQDGnCow==
   dependencies:
     "@babel/runtime" "^7.12.5"
     chalk "^4.1.0"
@@ -22753,7 +22755,12 @@ slice-ansi@^4.0.0:
     astral-regex "^2.0.0"
     is-fullwidth-code-point "^3.0.0"
 
-slugify@1.4.7, slugify@^1.4.4:
+slugify@1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/slugify/-/slugify-1.5.0.tgz#5f3c8e2a84105b54eb51486db1b468a599b3c9b8"
+  integrity sha512-Q2UPZ2udzquy1ElHfOLILMBMqBEXkiD3wE75qtBvV+FsDdZZjUqPZ44vqLTejAVq+wLLHacOMcENnP8+ZbzmIA==
+
+slugify@^1.4.4:
   version "1.4.7"
   resolved "https://registry.yarnpkg.com/slugify/-/slugify-1.4.7.tgz#e42359d505afd84a44513280868e31202a79a628"
   integrity sha512-tf+h5W1IrjNm/9rKKj0JU2MDMruiopx0jjVA5zCdBtcGjfp0+c5rHw/zADLC3IeKlGHtVbHtpfzvYA0OYT+HKg==
@@ -23774,10 +23781,10 @@ swap-case@^2.0.1:
   dependencies:
     tslib "^2.0.3"
 
-swr@0.5.3:
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/swr/-/swr-0.5.3.tgz#7290a9a61329d930583ef365317e636b8dbaa8bb"
-  integrity sha512-RUE3RWn3jt9e4qLPat2A9vbHG/5N6konsc27xKjE65jFSiGv0P7HLD8IGvwAv6DRKktL7Od2UcayX0plKb2awg==
+swr@0.5.4:
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/swr/-/swr-0.5.4.tgz#9516af6ffd84ba2c23a804ff771be2eb83ba8d46"
+  integrity sha512-TUSxxuC8uP/4JKV22ml91WQ0tbif+9HVhm683xm8KYfwZIW5ogwcnU634dg3x6N7azpIDIOLokoIi+z5vCz/yA==
 
 symbol-observable@^1.1.0, symbol-observable@^1.2.0:
   version "1.2.0"
