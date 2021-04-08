@@ -5,6 +5,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "prepare": "husky install",
     "postinstall": "manypkg check && preconstruct dev && yarn compile-css-modules && yarn --cwd website && yarn --cwd website-components-playground",
     "auth": "npm_config_registry=https://registry.npmjs.org npm whoami",
     "clean": "manypkg exec rm -rf build dist test-utils/dist experimental/dist task/dist add-commands/dist",
@@ -148,7 +149,7 @@
     "eslint-plugin-graphql": "4.0.0",
     "faker": "5.4.0",
     "graphql-cli": "4.1.0",
-    "husky": "4.3.8",
+    "husky": "6.0.0",
     "jest": "26.6.3",
     "jest-each": "26.6.2",
     "jest-puppeteer": "4.4.0",
