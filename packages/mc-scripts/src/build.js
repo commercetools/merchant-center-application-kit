@@ -11,15 +11,16 @@ process.on('unhandledRejection', (err) => {
   throw err;
 });
 
+// NOTE: `react-dev-utils` does not currently fully support Webpack v5.
+// Most of the imports work, however we might bump into some edge cases.
+// In any case, once they release a compatible version, we should't have problems.
 const fs = require('fs-extra');
 const webpack = require('webpack');
 const chalk = require('react-dev-utils/chalk');
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
-// FIXME: reuse normal import after CRA supports Webpack v5.
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const printBuildError = require('react-dev-utils/printBuildError');
-// const formatWebpackMessages = require('./patches/react-dev-utils/formatWebpackMessages');
 const paths = require('./config/paths');
 const createWebpackConfigForProduction = require('./config/create-webpack-config-for-production');
 
