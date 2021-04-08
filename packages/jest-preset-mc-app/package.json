@@ -50,8 +50,8 @@
     "jest": "26.6.3"
   },
   "peerDependencies": {
-    "@testing-library/react": "9.x || 10.x || 11.x",
+    "@testing-library/react": "11.x",
     "enzyme": "3.x",
-    "jest": "24.x || 25.x || 26.x"
+    "jest": "26.x"
   }
 }

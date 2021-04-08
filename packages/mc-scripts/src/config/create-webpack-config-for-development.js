@@ -56,9 +56,6 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
   };
 
   return {
-    // Explicitly set this. See https://github.com/pmmmwh/react-refresh-webpack-plugin/issues/252
-    target: 'web',
-
     // https://webpack.js.org/concepts/#mode
     mode: 'development',
 
@@ -84,6 +81,7 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
         name: 'runtime',
       },
       moduleIds: 'named',
+      chunkIds: 'deterministic',
     },
 
     resolve: {

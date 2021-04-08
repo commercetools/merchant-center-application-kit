@@ -32,20 +32,13 @@ module.exports = ({ allowedHost, contentBase, port, publicPath }) => ({
     // Paths with dots should still use the history fallback.
     // See https://github.com/facebookincubator/create-react-app/issues/387.
     disableDotRule: true,
+    index: publicPath,
   },
   host,
   hot: true,
   https: protocol === 'https',
-  // Prevent a WS client from getting injected as we're already including
-  // `webpackHotDevClient`.
-  injectClient: false,
   port,
   public: allowedHost,
-  static: {
-    directory: contentBase,
-    publicPath: [publicPath],
-    watch: true,
-  },
   // Enable HTTPS if the HTTPS environment variable is set to 'true'
   // `proxy` is run between `before` and `after` `webpack-dev-server` hooks
   onBeforeSetupMiddleware({ app }) {
