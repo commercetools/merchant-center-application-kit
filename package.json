@@ -100,7 +100,7 @@
     "@commercetools-docs/writing-style": "3.0.5",
     "@commercetools-frontend/eslint-config-mc-app": "*",
     "@commercetools-test-data/core": "2.1.2",
-    "@commercetools-uikit/design-system": "^11.0.2",
+    "@commercetools-uikit/design-system": "^11.2.1",
     "@commercetools/github-labels": "1.1.0",
     "@commitlint/cli": "12.1.1",
     "@commitlint/config-conventional": "12.1.1",
