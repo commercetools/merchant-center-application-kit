@@ -2,7 +2,7 @@
 date: 2021-04-08
 title: Custom Applications v19
 description: |
-  The Application Kit packages have been released as a new major version v19.\
+  The Application Kit packages have been released with a new major version v19.\
   In this release note we go through some migration steps.
 type: announcement
 topics:
@@ -10,9 +10,9 @@ topics:
   - Dependencies
 ---
 
-The Application Kit packages have been released as a new **major version** `v19`.
+The Application Kit packages have been released with a new **major version** `v19`.
 
-In this version there are no explicit changes in the packages but mainly updates to major versions of some of the dependency libraries. For instance:
+This version does not contain explicit changes in our packages but mainly updates to major versions of some of the depended upon libraries. For instance:
 
 - `@commercetools-frontend/ui-kit` and all `@commercetools-uikit/*` packages have been updated to `v12`.
 - `react` and `react-dom` have been updated to `v17`.
@@ -27,7 +27,7 @@ Furthermore, some peer dependencies have been updated to only require more recen
 
 ## Constraints
 
-For the `<Constraints.Horizontal />` component, the deprecated `constraint` prop has been removed. Now only the `max` prop is used instead.
+For the `<Constraints.Horizontal />` component, the deprecated `constraint` prop has been removed. Now only the `max` prop can be used instead.
 
 ```diff
 - <Constraints.Horizontal constraint="m" />
@@ -53,7 +53,7 @@ For the `<Text.Headline>` and `<Text.Subheadline>` components, the deprecated `e
 + <Text.Headline as="h2" intlMessage={message} />
 ```
 
-For the `<Text.Body>` and `<Text.Detail>` components, the deprecated `isInline` prop has been removed. Now only the `as` prop is used instead.
+For the `<Text.Body>` and `<Text.Detail>` components, the deprecated `isInline` prop has been removed. Now only the `as` prop can be used instead.
 
 ```diff
 - <Text.Body isInline={true} intlMessage={message} />
@@ -68,8 +68,8 @@ When the prop `isExternal` is used and the `to` prop is not a **string** but a *
 
 ## Tag
 
-For the `<Tag>` component, the deprecated `linkTo` prop has been removed. Now only the `to` prop is used instead.
+For the `<Tag>` component, the deprecated `linkTo` prop has been removed. Now only the `to` prop can be used instead.
 
 ## SecondaryButton
 
-For the `<SecondaryButton>` component, the deprecated `linkTo` prop has been removed. Now only the `to` prop is used instead.
+For the `<SecondaryButton>` component, the deprecated `linkTo` prop has been removed. Now only the `to` prop can be used instead.
