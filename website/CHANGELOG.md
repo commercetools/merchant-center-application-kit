@@ -1,5 +1,11 @@
 # @commercetools-website/custom-applications
 
+## 18.0.0
+
+### Major Changes
+
+- [#2041](https://github.com/commercetools/merchant-center-application-kit/pull/2041) [`a240f657`](https://github.com/commercetools/merchant-center-application-kit/commit/a240f6574a9240a2ac82febb67b0f6c814db979f) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade and migrate packages to use `ui-kit@v12`
+
 ## 17.0.22
 
 ### Patch Changes

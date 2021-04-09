@@ -1,5 +1,31 @@
 # @commercetools-frontend/application-shell
 
+## 19.0.0
+
+### Major Changes
+
+- [#2041](https://github.com/commercetools/merchant-center-application-kit/pull/2041) [`a240f657`](https://github.com/commercetools/merchant-center-application-kit/commit/a240f6574a9240a2ac82febb67b0f6c814db979f) Thanks [@emmenko](https://github.com/emmenko)! - - Requires a peer dependency of `react@17`, `react-dom@17`.
+  - The `@types/react*` peer dependencies have been removed and included as normal dependencies with a minor range version.
+  - The peer dependency `react-intl` now only requires version `>=5`.
+  - The peer dependency `@testing-library/react` now only requires version `>=11`.
+  - Changes required Node.js engine version to `>=12 || >=14` in `package.json`.
+  - Uses `graphql@15`.
+
+* [#2041](https://github.com/commercetools/merchant-center-application-kit/pull/2041) [`a240f657`](https://github.com/commercetools/merchant-center-application-kit/commit/a240f6574a9240a2ac82febb67b0f6c814db979f) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade and migrate packages to use `ui-kit@v12`
+
+### Patch Changes
+
+- Updated dependencies [[`a240f657`](https://github.com/commercetools/merchant-center-application-kit/commit/a240f6574a9240a2ac82febb67b0f6c814db979f), [`a240f657`](https://github.com/commercetools/merchant-center-application-kit/commit/a240f6574a9240a2ac82febb67b0f6c814db979f), [`a240f657`](https://github.com/commercetools/merchant-center-application-kit/commit/a240f6574a9240a2ac82febb67b0f6c814db979f), [`a240f657`](https://github.com/commercetools/merchant-center-application-kit/commit/a240f6574a9240a2ac82febb67b0f6c814db979f), [`a240f657`](https://github.com/commercetools/merchant-center-application-kit/commit/a240f6574a9240a2ac82febb67b0f6c814db979f), [`a240f657`](https://github.com/commercetools/merchant-center-application-kit/commit/a240f6574a9240a2ac82febb67b0f6c814db979f), [`a240f657`](https://github.com/commercetools/merchant-center-application-kit/commit/a240f6574a9240a2ac82febb67b0f6c814db979f), [`a240f657`](https://github.com/commercetools/merchant-center-application-kit/commit/a240f6574a9240a2ac82febb67b0f6c814db979f), [`a240f657`](https://github.com/commercetools/merchant-center-application-kit/commit/a240f6574a9240a2ac82febb67b0f6c814db979f), [`a240f657`](https://github.com/commercetools/merchant-center-application-kit/commit/a240f6574a9240a2ac82febb67b0f6c814db979f)]:
+  - @commercetools-frontend/application-shell-connectors@19.0.0
+  - @commercetools-frontend/l10n@19.0.0
+  - @commercetools-frontend/permissions@19.0.0
+  - @commercetools-frontend/react-notifications@19.0.0
+  - @commercetools-frontend/actions-global@19.0.0
+  - @commercetools-frontend/sentry@19.0.0
+  - @commercetools-frontend/sdk@19.0.0
+  - @commercetools-frontend/application-components@19.0.0
+  - @commercetools-frontend/i18n@19.0.0
+
 ## 18.7.0
 
 ### Patch Changes
