@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "prepare": "husky install",
-    "postinstall": "manypkg check && preconstruct dev && yarn compile-css-modules && yarn --cwd website && yarn --cwd website-components-playground",
+    "postinstall": "manypkg check && preconstruct dev && yarn compile-css-modules",
     "auth": "npm_config_registry=https://registry.npmjs.org npm whoami",
     "clean": "manypkg exec rm -rf build dist test-utils/dist experimental/dist task/dist add-commands/dist",
     "extract-intl": "formatjs extract --format=$(pwd)/packages/i18n/transifex-transformer.js --out-file=$(pwd)/packages/i18n/data/core.json 'packages/**/*messages.ts'",
@@ -65,7 +65,9 @@
       "packages-backend/*",
       "application-templates/*",
       "playground",
-      "visual-testing-app"
+      "visual-testing-app",
+      "website",
+      "website-components-playground"
     ]
   },
   "preconstruct": {
@@ -98,7 +100,7 @@
     "@commercetools-docs/writing-style": "3.0.5",
     "@commercetools-frontend/eslint-config-mc-app": "*",
     "@commercetools-test-data/core": "2.1.2",
-    "@commercetools-uikit/design-system": "^11.0.2",
+    "@commercetools-uikit/design-system": "^12.0.0",
     "@commercetools/github-labels": "1.1.0",
     "@commitlint/cli": "12.1.1",
     "@commitlint/config-conventional": "12.1.1",
@@ -127,13 +129,7 @@
     "@types/jquery": "3.5.5",
     "@types/node": "14.14.37",
     "@types/puppeteer": "5.4.3",
-    "@types/react": "16.14.5",
-    "@types/react-dom": "16.9.12",
-    "@types/react-redux": "7.1.16",
-    "@types/react-router": "5.1.13",
-    "@types/react-router-dom": "5.1.7",
     "@types/uuid": "8.3.0",
-    "@types/webpack": "4.41.27",
     "@types/webpack-env": "1.16.0",
     "apollo-server-errors": "2.4.2",
     "autoprefixer": "10.2.5",
@@ -178,19 +174,20 @@
     "vfile-message": "2.0.4"
   },
   "resolutions": {
-    "@types/react": "16.14.5",
+    "@babel/core": "7.13.14",
+    "@pmmmwh/react-refresh-webpack-plugin": "0.5.0-beta.1",
+    "@types/puppeteer": "5.4.3",
     "@types/react-router": "5.1.13",
-    "graphql": "14.7.0",
-    "pretty-format": "26.6.2",
-    "intl-messageformat-parser": "6.4.4",
-    "**/intl-messageformat-parser": "6.4.4",
     "@typescript-eslint/eslint-plugin": "4.20.0",
     "@typescript-eslint/parser": "4.20.0",
-    "@types/puppeteer": "5.4.3",
+    "graphql": "15.5.0",
+    "intl-messageformat-parser": "6.4.4",
+    "**/intl-messageformat-parser": "6.4.4",
+    "pretty-format": "26.6.2",
     "react-intl": "5.15.7"
   },
   "engines": {
-    "node": ">=14",
+    "node": ">=12 || >=14",
     "npm": ">=6",
     "yarn": ">=1.10"
   }

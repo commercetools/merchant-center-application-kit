@@ -33,7 +33,7 @@ export const RedirectToProjectCreate = () => {
       css={css`
         align-self: center;
         margin-top: ${customProperties.spacingXl};
-        max-width: ${customProperties.constraintL};
+        max-width: ${customProperties.constraint10};
       `}
     >
       <Card type="flat" theme="dark">

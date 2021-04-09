@@ -13,7 +13,23 @@ declare module '@commercetools-uikit/select-input' {
   export type SelectInputProps<
     OptionType extends OptionTypeBase = { label: string; value: string }
   > = {
-    horizontalConstraint?: 's' | 'm' | 'l' | 'xl' | 'scale';
+    horizontalConstraint?:
+      | 3
+      | 4
+      | 5
+      | 6
+      | 7
+      | 8
+      | 9
+      | 10
+      | 11
+      | 12
+      | 13
+      | 14
+      | 15
+      | 16
+      | 'scale'
+      | 'auto';
     hasError?: boolean;
     hasWarning?: boolean;
     isReadOnly?: boolean;

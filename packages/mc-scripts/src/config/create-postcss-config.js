@@ -47,7 +47,10 @@ module.exports = function createPostcssConfig({
         // limited autoplacement support.
         // https://github.com/postcss/autoprefixer#grid-autoplacement-support-in-ie
         grid: 'autoplace',
-        overrideBrowserslist: browserslist.development,
+        overrideBrowserslist:
+          process.env.NODE_ENV === 'production'
+            ? browserslist.production
+            : browserslist.development,
       }),
       /**
        * Plugin to enable Custom Media Queries in CSS, following

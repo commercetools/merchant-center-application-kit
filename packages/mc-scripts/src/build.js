@@ -11,6 +11,9 @@ process.on('unhandledRejection', (err) => {
   throw err;
 });
 
+// NOTE: `react-dev-utils` does not currently fully support Webpack v5.
+// Most of the imports work, however we might bump into some edge cases.
+// In any case, once they release a compatible version, we should't have problems.
 const fs = require('fs-extra');
 const webpack = require('webpack');
 const chalk = require('react-dev-utils/chalk');

@@ -27,7 +27,7 @@ const paths = {
   appPackageJson: resolveApp('package.json'),
   appPublic: resolveApp('public'),
   appBuild: resolveApp('dist/assets'),
-  appIndexHtmlTemplate: resolveApp('dist/assets/index.html'),
+  appIndexHtml: resolveApp('dist/assets/index.html'),
   appWebpackConfig: resolveApp(
     `webpack.config.${
       process.env.NODE_ENV === 'production' ? 'prod' : 'dev'

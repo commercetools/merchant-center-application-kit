@@ -1,6 +1,5 @@
 import React from 'react';
 import { PublicPageLayout } from '@commercetools-frontend/application-components';
-// @ts-ignore
 import Link from '@commercetools-uikit/link';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';

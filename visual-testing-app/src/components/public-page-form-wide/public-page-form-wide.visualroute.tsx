@@ -2,7 +2,6 @@ import React from 'react';
 import { css } from '@emotion/react';
 import { PublicPageLayout } from '@commercetools-frontend/application-components';
 import DoorsClosedSvg from '@commercetools-frontend/assets/images/project-not-initialized.svg';
-// @ts-ignore
 import Link from '@commercetools-uikit/link';
 import Spacings from '@commercetools-uikit/spacings';
 import { customProperties } from '@commercetools-uikit/design-system';

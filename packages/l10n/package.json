@@ -28,24 +28,23 @@
     "@commercetools-frontend/sentry": "18.6.0",
     "@emotion/react": "11.1.5",
     "@types/prop-types": "^15.7.3",
+    "@types/react": "^17.0.3",
     "lodash": "4.17.21",
     "moment": "^2.29.1",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "5.1.1",
-    "@types/react": "16.14.5",
     "chalk": "4.1.0",
     "cldr": "6.0.0",
     "deep-diff": "1.0.2",
     "moment-timezone": "^0.5.32",
     "node-fetch": "2.6.1",
-    "react": "16.14.0",
+    "react": "17.0.2",
     "rimraf": "3.0.2",
     "shelljs": "0.8.4"
   },
   "peerDependencies": {
-    "@types/react": "16.x",
-    "react": ">=16.8.0"
+    "react": "17.x"
   }
 }

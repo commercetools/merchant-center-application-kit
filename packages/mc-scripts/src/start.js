@@ -12,7 +12,6 @@ process.on('unhandledRejection', (err) => {
 });
 
 const fs = require('fs');
-const semver = require('semver');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const chalk = require('react-dev-utils/chalk');
@@ -28,13 +27,11 @@ const paths = require('./config/paths');
 const createDevServerConfig = require('./config/webpack-dev-server.config');
 const createWebpackConfigForDevelopment = require('./config/create-webpack-config-for-development');
 
-const react = require(require.resolve('react', { paths: [paths.appRoot] }));
 const useYarn = fs.existsSync(paths.yarnLockFile);
 const isInteractive = process.stdout.isTTY;
 
 // Whether or not `react-refresh` is enabled, `react-refresh` is not 100% stable at this time,
 // which is why it's disabled by default.
-const hasReactRefresh = process.env.FAST_REFRESH === 'true';
 
 const hasWebpackConfig = fs.existsSync(paths.appWebpackConfig);
 
@@ -83,6 +80,7 @@ choosePort(HOST, DEFAULT_PORT)
     const serverConfig = createDevServerConfig({
       allowedHost: urls.localUrlForBrowser,
       contentBase: paths.appPublic,
+      port,
       publicPath: config.output.publicPath,
     });
     const devServer = new WebpackDevServer(compiler, serverConfig);
@@ -94,14 +92,6 @@ choosePort(HOST, DEFAULT_PORT)
       }
       if (isInteractive) {
         clearConsole();
-      }
-
-      if (hasReactRefresh && semver.lt(react.version, '16.10.0')) {
-        console.log(
-          chalk.yellow(
-            `Fast Refresh requires React 16.10 or higher. You are using React ${react.version}.`
-          )
-        );
       }
 
       console.log(chalk.cyan('Starting the development server...\n'));
