@@ -1,5 +1,21 @@
 # @commercetools-frontend/mc-scripts
 
+## 19.0.0
+
+### Major Changes
+
+- [#2041](https://github.com/commercetools/merchant-center-application-kit/pull/2041) [`a240f657`](https://github.com/commercetools/merchant-center-application-kit/commit/a240f6574a9240a2ac82febb67b0f6c814db979f) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade and migrate packages to use `ui-kit@v12`
+
+* [#2041](https://github.com/commercetools/merchant-center-application-kit/pull/2041) [`a240f657`](https://github.com/commercetools/merchant-center-application-kit/commit/a240f6574a9240a2ac82febb67b0f6c814db979f) Thanks [@emmenko](https://github.com/emmenko)! - - Changes required Node.js engine version to `>=12 || >=14` in `package.json`.
+  - Uses `webpack@5`.
+
+### Patch Changes
+
+- Updated dependencies [[`a240f657`](https://github.com/commercetools/merchant-center-application-kit/commit/a240f6574a9240a2ac82febb67b0f6c814db979f), [`a240f657`](https://github.com/commercetools/merchant-center-application-kit/commit/a240f6574a9240a2ac82febb67b0f6c814db979f), [`a240f657`](https://github.com/commercetools/merchant-center-application-kit/commit/a240f6574a9240a2ac82febb67b0f6c814db979f), [`a240f657`](https://github.com/commercetools/merchant-center-application-kit/commit/a240f6574a9240a2ac82febb67b0f6c814db979f)]:
+  - @commercetools-frontend/mc-html-template@19.0.0
+  - @commercetools-frontend/mc-dev-authentication@19.0.0
+  - @commercetools-frontend/application-config@19.0.0
+
 ## 18.7.0
 
 ### Patch Changes
