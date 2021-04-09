@@ -2,4 +2,4 @@
 'playground': major
 ---
 
-Ships with `react@17`
+- Uses `react@17`, `react-dom@17`.

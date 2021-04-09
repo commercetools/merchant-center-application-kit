@@ -2,4 +2,4 @@
 'merchant-center-application-template-starter': minor
 ---
 
-- Ships template with `react@17`.
+- Uses `react@17`, `react-dom@17`.

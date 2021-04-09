@@ -2,5 +2,5 @@
 '@commercetools-frontend/mc-scripts': major
 ---
 
-- Change required engine version to `>=12 || >=14`.
+- Changes required Node.js engine version to `>=12 || >=14` in `package.json`.
 - Uses `webpack@5`.
