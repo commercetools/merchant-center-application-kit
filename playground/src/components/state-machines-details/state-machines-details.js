@@ -110,7 +110,7 @@ const StateMachinesDetails = (props) => {
                 </Text.Headline>
                 <Text.Detail>{data.key}</Text.Detail>
               </Spacings.Stack>
-              <Constraints.Horizontal constraint="m">
+              <Constraints.Horizontal max={7}>
                 <Grid
                   gridGap="16px"
                   gridAutoColumns="1fr"
