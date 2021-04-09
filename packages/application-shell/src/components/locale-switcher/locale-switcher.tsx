@@ -72,7 +72,7 @@ const LocaleSwitcher = (props: Props) => {
     <div
       css={css`
         position: relative;
-        width: ${customProperties.constraintS};
+        width: ${customProperties.constraint3};
       `}
       data-track-component="LocaleSwitch"
     >
