@@ -26,7 +26,7 @@ const MaintenancePageLayout = (props: Props) => (
       text-align: center;
     `}
   >
-    <Constraints.Horizontal constraint="l">
+    <Constraints.Horizontal max={10}>
       <Spacings.Stack scale="m">
         <div>
           <img src={props.imageSrc} alt={props.label} />

@@ -79,7 +79,7 @@ const EchoServer = () => {
             }
           </Text.Body>
         </Spacings.Stack>
-        <Constraints.Horizontal constraint="xl">
+        <Constraints.Horizontal max={16}>
           <Spacings.Stack>
             <Spacings.Inline>
               <PrimaryButton

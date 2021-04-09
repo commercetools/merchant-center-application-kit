@@ -51,7 +51,7 @@ const ModalPageWithPortalParentSelector = ({
             touched={formikProps.touched.email}
             onChange={formikProps.handleChange}
             onBlur={formikProps.handleBlur}
-            horizontalConstraint="m"
+            horizontalConstraint={7}
           />
         </CustomFormModalPage>
       )}

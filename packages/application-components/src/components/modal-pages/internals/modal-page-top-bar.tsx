@@ -96,8 +96,8 @@ const ModalPageTopBar = (props: Props) => {
         />
         {props.currentPathLabel && (
           <React.Fragment>
-            <Text.Detail isInline>/</Text.Detail>
-            <Text.Detail title={props.currentPathLabel} isInline truncate>
+            <Text.Detail as="span">/</Text.Detail>
+            <Text.Detail as="span" title={props.currentPathLabel} truncate>
               {props.currentPathLabel}
             </Text.Detail>
           </React.Fragment>
