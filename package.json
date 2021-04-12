@@ -56,6 +56,7 @@
     "generate-types:settings": "./scripts/graphql-cli.sh codegen --project settings",
     "generate-types:proxy": "./scripts/graphql-cli.sh codegen --project proxy",
     "generate-types": "yarn generate-types:mc && yarn generate-types:ctp && yarn generate-types:settings && yarn generate-types:proxy",
+    "canary:uikit": "manypkg upgrade @commercetools-uikit canary",
     "versions:uikit": "manypkg upgrade @commercetools-uikit",
     "versions:docskit": "manypkg upgrade @commercetools-docs"
   },
