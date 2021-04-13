@@ -5,7 +5,7 @@ import ApplicationNavbarMenu from './application-navbar-menu';
 const CustomApplication = new Factory()
   .sequence('sequenceId')
   .attr('__typename', 'ApplicationExtension')
-  .attr('id', () => faker.random.uuid())
+  .attr('id', () => faker.datatype.uuid())
   .attr('navbarMenu', () => ApplicationNavbarMenu.build());
 
 export default CustomApplication;

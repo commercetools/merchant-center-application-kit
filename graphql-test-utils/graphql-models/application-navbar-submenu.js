@@ -4,7 +4,7 @@ import faker from 'faker';
 const ApplicationNavbarSubmenu = new Factory()
   .sequence('sequenceId')
   .attr('__typename', 'NavbarSubmenu')
-  .attr('id', () => faker.random.uuid())
+  .attr('id', () => faker.datatype.uuid())
   .attr('key', () => faker.lorem.slug(1))
   .attr('uriPath', () => `${faker.lorem.slug(1)}/${faker.lorem.slug(1)}`)
   .attr('labelAllLocales', () => [
