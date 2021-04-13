@@ -5,7 +5,7 @@ const Project = new Factory()
   .sequence('sequenceId')
   .attr('__typename', 'Project')
   .attr('key', () => faker.random.alphaNumeric(4))
-  .attr('version', () => faker.random.number())
+  .attr('version', () => faker.datatype.number())
   .attr('name', () => faker.company.companyName())
   .attr('countries', ['de'])
   .attr('currencies', ['EUR', 'USD'])
@@ -32,7 +32,7 @@ const Project = new Factory()
   }))
   .attr('owner', () => ({
     __typename: 'Organization',
-    id: faker.random.uuid(),
+    id: faker.datatype.uuid(),
     name: faker.company.companyName(),
   }));
 

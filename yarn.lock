@@ -5453,6 +5453,11 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
+"@types/faker@5.5.1":
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/@types/faker/-/faker-5.5.1.tgz#9fff6bf7bbaa13b1069c4e534c45610603a48bc5"
+  integrity sha512-JXGjV76oEUZUOSAr3bP5txETYoq0XDOQA8BpOz8Wc3EuvfF7sUVquf/EvM3aphuVKuVaYDSDu523/mAHnqrcvg==
+
 "@types/faker@^4.1.9":
   version "4.1.12"
   resolved "https://registry.yarnpkg.com/@types/faker/-/faker-4.1.12.tgz#065d37343677df1aa757c622650bd14666c42602"

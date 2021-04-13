@@ -4,7 +4,7 @@ import faker from 'faker';
 const User = new Factory()
   .sequence('sequenceId')
   .attr('__typename', 'User')
-  .attr('id', () => faker.random.uuid())
+  .attr('id', () => faker.datatype.uuid())
   .attr('email', () => faker.internet.email())
   .attr('gravatarHash', () => faker.random.alphaNumeric(16))
   .attr('firstName', () => faker.name.firstName())

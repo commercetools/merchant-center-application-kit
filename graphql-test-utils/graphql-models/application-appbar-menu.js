@@ -4,7 +4,7 @@ import faker from 'faker';
 const ApplicationAppbarMenu = new Factory()
   .sequence('sequenceId')
   .attr('__typename', 'BaseMenu')
-  .attr('id', () => faker.random.uuid())
+  .attr('id', () => faker.datatype.uuid())
   .attr('key', () => faker.lorem.slug(1))
   .attr('uriPath', () => faker.lorem.slug(1))
   .attr('labelAllLocales', () => [
