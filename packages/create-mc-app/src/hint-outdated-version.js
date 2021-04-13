@@ -13,31 +13,14 @@ module.exports = function hintOutdatedVersion(currentVersion) {
         }
       )
     );
-    const packageInfoForTagNext = JSON.parse(
-      execa.sync(
-        'npm',
-        ['view', '@commercetools-frontend/create-mc-app@next', '--json'],
-        {
-          encoding: 'utf-8',
-          stdio: 'ignore',
-        }
-      )
-    );
 
     const hasBeenReleastedInLatestTag = semver.gt(
       packageInfoForTagLatest.version,
       currentVersion
     );
-    const hasBeenReleasedInNextTag = semver.gt(
-      packageInfoForTagNext.version,
-      currentVersion
-    );
 
     const hintNewerVersions = [
-      hasBeenReleastedInLatestTag &&
-        `${packageInfoForTagLatest.version} (stable)`,
-      hasBeenReleasedInNextTag &&
-        `${packageInfoForTagNext.version} (prerelease)`,
+      hasBeenReleastedInLatestTag && `${packageInfoForTagLatest.version}`,
     ]
       .filter(Boolean)
       .join(', ');
