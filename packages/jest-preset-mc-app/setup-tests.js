@@ -1,8 +1,5 @@
-const fs = require('fs');
 const { Headers } = require('node-fetch');
-const path = require('path');
 const colors = require('colors/safe');
-const pkgDir = require('pkg-dir');
 const MutationObserver = require('@sheerun/mutationobserver-shim');
 const loadConfig = require('./load-config');
 
