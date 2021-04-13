@@ -4,7 +4,7 @@ require('@testing-library/jest-dom/extend-expect');
 require('./polyfills/intl');
 
 const Enzyme = require('enzyme');
-const Adapter = require('enzyme-adapter-react-16');
+const Adapter = require('@wojtekmaj/enzyme-adapter-react-17');
 const ShallowWrapper = require('enzyme/ShallowWrapper');
 const { configure: configureRtl } = require('@testing-library/react');
 const configureEnzymeExtensions = require('@commercetools/enzyme-extensions');
