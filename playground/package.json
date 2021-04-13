@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "18.0.0",
+  "version": "18.0.1",
   "description": "A playground application to get started developing Merchant Center Applications",
   "private": true,
   "scripts": {
@@ -16,15 +16,15 @@
   "dependencies": {
     "@commercetools-docs/ui-kit": "16.1.0",
     "@commercetools-frontend/actions-global": "19.0.0",
-    "@commercetools-frontend/application-components": "19.0.0",
-    "@commercetools-frontend/application-shell": "19.0.0",
-    "@commercetools-frontend/application-shell-connectors": "19.0.0",
+    "@commercetools-frontend/application-components": "19.0.1",
+    "@commercetools-frontend/application-shell": "19.0.1",
+    "@commercetools-frontend/application-shell-connectors": "19.0.1",
     "@commercetools-frontend/assets": "18.5.4",
     "@commercetools-frontend/constants": "18.6.0",
-    "@commercetools-frontend/i18n": "19.0.0",
+    "@commercetools-frontend/i18n": "19.0.1",
     "@commercetools-frontend/l10n": "19.0.0",
-    "@commercetools-frontend/permissions": "19.0.0",
-    "@commercetools-frontend/sdk": "19.0.0",
+    "@commercetools-frontend/permissions": "19.0.1",
+    "@commercetools-frontend/sdk": "19.0.1",
     "@commercetools-uikit/checkbox-input": "^12.0.0",
     "@commercetools-uikit/constraints": "^12.0.0",
     "@commercetools-uikit/data-table": "^12.0.0",
@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@commercetools-frontend/mc-dev-authentication": "19.0.0",
-    "@commercetools-frontend/mc-scripts": "19.0.0",
+    "@commercetools-frontend/mc-scripts": "19.0.1",
     "@formatjs/cli": "4.2.7",
     "dotenv-cli": "4.0.0"
   }
