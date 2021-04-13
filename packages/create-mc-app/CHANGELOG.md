@@ -1,5 +1,11 @@
 # @commercetools-frontend/create-mc-app
 
+## 19.0.2
+
+### Patch Changes
+
+- [#2140](https://github.com/commercetools/merchant-center-application-kit/pull/2140) [`6496e66c`](https://github.com/commercetools/merchant-center-application-kit/commit/6496e66c4c5572267a40df9d108783083a33aa13) Thanks [@emmenko](https://github.com/emmenko)! - Only check for `latest` version for outdated version hint.
+
 ## 19.0.0
 
 ### Major Changes
