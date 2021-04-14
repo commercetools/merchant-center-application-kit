@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import LockedDiamondSVG from '@commercetools-frontend/assets/images/locked-diamond.svg';

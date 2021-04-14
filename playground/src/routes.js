@@ -1,5 +1,4 @@
 import { useCallback } from 'react';
-import PropTypes from 'prop-types';
 import { Route, Switch, useRouteMatch, useHistory } from 'react-router-dom';
 import LockedDiamondSVG from '@commercetools-frontend/assets/images/locked-diamond.svg';
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
@@ -23,7 +22,7 @@ const ApplicationRoutes = () => {
   const match = useRouteMatch();
   const history = useHistory();
   const canViewStateMachines = useIsAuthorized({
-    demandedPermissions: [PERMISSIONS.ViewStateMachines],
+    demandedPermissions: [PERMISSIONS.ViewPlaygroundStateMachines],
   });
   const goToStateMachineDetail = useCallback(
     (id) => {
@@ -69,17 +68,5 @@ const ApplicationRoutes = () => {
   );
 };
 ApplicationRoutes.displayName = 'ApplicationRoutes';
-ApplicationRoutes.propTypes = {
-  match: PropTypes.shape({
-    url: PropTypes.string.isRequired,
-    path: PropTypes.string.isRequired,
-    params: PropTypes.shape({
-      projectKey: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
-};
 
 export default ApplicationRoutes;

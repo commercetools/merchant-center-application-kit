@@ -1,9 +1,8 @@
 {
-  "key": "state-machines",
-  "uriPath": "state-machines",
+  "key": "playground-state-machines",
+  "uriPath": "playground-state-machines",
   "icon": "RocketIcon",
-  "permissions": ["ViewStateMachines"],
-  "featureToggle": null,
+  "permissions": ["ViewPlaygroundStateMachines"],
   "labelAllLocales": [
     {
       "locale": "en",
@@ -20,10 +19,9 @@
   ],
   "submenu": [
     {
-      "key": "state-machines-echo-server",
-      "uriPath": "state-machines/echo-server",
-      "permissions": [],
-      "featureToggle": null,
+      "key": "playground-state-machines-echo-server",
+      "uriPath": "playground-state-machines/echo-server",
+      "permissions": ["ViewPlaygroundStateMachines"],
       "labelAllLocales": [
         {
           "locale": "en",
