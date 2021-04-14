@@ -12,6 +12,7 @@ import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client/react';
 import { MockedProvider as ApolloMockProvider } from '@apollo/client/testing';
 import * as rtl from '@testing-library/react';
+import * as rtlHooks from '@testing-library/react-hooks';
 import { createMemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
 import { TestProviderFlopFlip } from '@flopflip/react-broadcast';
@@ -336,37 +337,31 @@ type TRenderAppResult<AdditionalEnvironmentProperties = {}> = rtl.RenderResult &
 type TApplicationProvidersProps = {
   children: React.ReactNode;
 };
-// Inspired by
-// https://github.com/kentcdodds/react-testing-library-course/blob/2a5b1560656790bb1d9c055fba3845780b2c2c97/src/__tests__/react-router-03.js
-function renderApp<AdditionalEnvironmentProperties = {}>(
-  ui: React.ReactElement,
-  {
-    // react-intl
-    locale = 'en',
-    // Apollo
-    mocks = [],
-    apolloClient,
-    disableApolloMocks = false,
-    // react-router
-    route = '/',
-    disableAutomaticEntryPointRoutes = true,
-    history = createEnhancedHistory(
-      createMemoryHistory({ initialEntries: [route] })
-    ),
-    // flopflip
-    flags = {},
-    // application-context
-    environment,
-    user,
-    project,
-    permissions, // <-- deprecated option, use `{ project: { allAppliedPermissions } }`
-    actionRights, // <-- deprecated option, use `{ project: { allAppliedActionRights } }`
-    dataFences, // <-- deprecated option, use `{ project: { allAppliedDataFences } }`
-    dataLocale = 'en',
-    // forwarding to @testing-library/react
-    ...renderOptions
-  }: Partial<TRenderAppOptions<AdditionalEnvironmentProperties>> = {}
-): TRenderAppResult<AdditionalEnvironmentProperties> {
+
+function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
+  // react-intl
+  locale = 'en',
+  // Apollo
+  mocks = [],
+  apolloClient,
+  disableApolloMocks = false,
+  // react-router
+  route = '/',
+  disableAutomaticEntryPointRoutes = true,
+  history = createEnhancedHistory(
+    createMemoryHistory({ initialEntries: [route] })
+  ),
+  // flopflip
+  flags = {},
+  // application-context
+  environment,
+  user,
+  project,
+  permissions, // <-- deprecated option, use `{ project: { allAppliedPermissions } }`
+  actionRights, // <-- deprecated option, use `{ project: { allAppliedActionRights } }`
+  dataFences, // <-- deprecated option, use `{ project: { allAppliedDataFences } }`
+  dataLocale = 'en',
+}: Partial<TRenderAppOptions<AdditionalEnvironmentProperties>> = {}) {
   const mergedUser = user === null ? undefined : { ...defaultUser, ...user };
   const mergedProject = (() => {
     if (project === null) {
@@ -440,12 +435,35 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
     children: PropTypes.node.isRequired,
   };
 
+  return {
+    ApplicationProviders,
+    mergedUser,
+    mergedProject,
+    mergedEnvironment,
+    history,
+  };
+}
+
+// Inspired by
+// https://github.com/kentcdodds/react-testing-library-course/blob/2a5b1560656790bb1d9c055fba3845780b2c2c97/src/__tests__/react-router-03.js
+function renderApp<AdditionalEnvironmentProperties = {}>(
+  ui: React.ReactElement,
+  options: Partial<TRenderAppOptions<AdditionalEnvironmentProperties>> = {}
+): TRenderAppResult<AdditionalEnvironmentProperties> {
+  const {
+    ApplicationProviders,
+    mergedUser,
+    mergedProject,
+    mergedEnvironment,
+    history,
+  } = createApplicationProviders(options);
+
   const rendered = rtl.render(ui, {
-    ...renderOptions,
+    ...options,
     // eslint-disable-next-line react/display-name
     wrapper: ({ children, ...props }) => (
       <ApplicationProviders {...props}>
-        {wrapIfNeeded(children, renderOptions.wrapper)}
+        {wrapIfNeeded(children, options.wrapper)}
       </ApplicationProviders>
     ),
   });
@@ -484,52 +502,45 @@ type TRenderAppWithReduxResult<
     'store'
   >;
 
-// Test setup for rendering with Redux
-// We expose a sophisticated function because we plan to get rid of Redux
-// Use this function only when your test actually needs Redux
-function renderAppWithRedux<
+function createReduxProviders<
   AdditionalEnvironmentProperties = {},
   StoreState = {}
->(
-  ui: React.ReactElement,
-  {
-    // The store option is kept around to keep the API open as not all use-cases
-    // are known yet. Meanwhile storeState and sdkMocks provide convenient ways
-    // to work with the redux store.
-    store = undefined,
-    // Pass an initial state to Redux store.
-    storeState = undefined,
-    // renderAppWithRedux supports mocking requests made through the sdk
-    // middleware. The approach is inspired by ApolloMockProvider.
-    // You can pass responses for specific actions like
-    //   renderAppWithRedux(ui, {
-    //     sdkMocks: [
-    //       {
-    //         action: { type: 'SDK', payload: {}},
-    //         response: { foo: true },
-    //       }
-    //     ]
-    //   })
-    // You can also fake a failing request using
-    //   renderAppWithRedux(ui, {
-    //     sdkMocks: [
-    //       {
-    //         action: { type: 'SDK', payload: {}},
-    //         error: new Error('foo'),
-    //       }
-    //     ]
-    //   })
-    // Note that each response will only be used once. When multiple responses
-    // are provided for identical actions, then they are used in the order
-    // they are provided in.
-    sdkMocks = [],
-    // Pass a function to map custom notification components
-    mapNotificationToComponent = () => null,
-    ...renderOptions
-  }: Partial<
-    TRenderAppWithReduxOptions<AdditionalEnvironmentProperties, StoreState>
-  > = {}
-): TRenderAppWithReduxResult<AdditionalEnvironmentProperties, StoreState> {
+>({
+  // The store option is kept around to keep the API open as not all use-cases
+  // are known yet. Meanwhile storeState and sdkMocks provide convenient ways
+  // to work with the redux store.
+  store = undefined,
+  // Pass an initial state to Redux store.
+  storeState = undefined,
+  // renderAppWithRedux supports mocking requests made through the sdk
+  // middleware. The approach is inspired by ApolloMockProvider.
+  // You can pass responses for specific actions like
+  //   renderAppWithRedux(ui, {
+  //     sdkMocks: [
+  //       {
+  //         action: { type: 'SDK', payload: {}},
+  //         response: { foo: true },
+  //       }
+  //     ]
+  //   })
+  // You can also fake a failing request using
+  //   renderAppWithRedux(ui, {
+  //     sdkMocks: [
+  //       {
+  //         action: { type: 'SDK', payload: {}},
+  //         error: new Error('foo'),
+  //       }
+  //     ]
+  //   })
+  // Note that each response will only be used once. When multiple responses
+  // are provided for identical actions, then they are used in the order
+  // they are provided in.
+  sdkMocks = [],
+  // Pass a function to map custom notification components
+  mapNotificationToComponent = () => null,
+}: Partial<
+  TRenderAppWithReduxOptions<AdditionalEnvironmentProperties, StoreState>
+> = {}) {
   invariant(
     !(store && storeState),
     '@commercetools-frontend/application-shell/test-utils: You provided both `store` and `storeState`. Please provide only one of them.'
@@ -576,12 +587,31 @@ function renderAppWithRedux<
     children: PropTypes.node.isRequired,
   };
 
+  return {
+    ReduxProviders,
+    reduxStore,
+  };
+}
+
+// Test setup for rendering with Redux
+// We expose a sophisticated function because we plan to get rid of Redux
+// Use this function only when your test actually needs Redux
+function renderAppWithRedux<
+  AdditionalEnvironmentProperties = {},
+  StoreState = {}
+>(
+  ui: React.ReactElement,
+  options: Partial<
+    TRenderAppWithReduxOptions<AdditionalEnvironmentProperties, StoreState>
+  > = {}
+): TRenderAppWithReduxResult<AdditionalEnvironmentProperties, StoreState> {
+  const { ReduxProviders, reduxStore } = createReduxProviders(options);
   const rendered = renderApp(ui, {
-    ...renderOptions,
+    ...options,
     // eslint-disable-next-line react/display-name
     wrapper: ({ children, ...props }) => (
       <ReduxProviders {...props}>
-        {wrapIfNeeded(children, renderOptions.wrapper)}
+        {wrapIfNeeded(children, options.wrapper)}
       </ReduxProviders>
     ),
   });
@@ -595,7 +625,83 @@ function renderAppWithRedux<
   };
 }
 
+export type TRenderHookOptions<
+  RenderedHookProps,
+  AdditionalEnvironmentProperties = {},
+  StoreState = {}
+> = Omit<
+  TRenderAppWithReduxOptions<AdditionalEnvironmentProperties, StoreState>,
+  'disableApolloMocks'
+> &
+  rtlHooks.RenderHookOptions<RenderedHookProps>;
+
+export type TRenderHookResult<
+  RenderHookCallbackProps,
+  RenderHookCallbackValue,
+  AdditionalEnvironmentProperties = {},
+  StoreState = {}
+> = rtlHooks.RenderHookResult<
+  RenderHookCallbackProps,
+  RenderHookCallbackValue
+> &
+  Pick<
+    TRenderAppWithReduxResult<AdditionalEnvironmentProperties, StoreState>,
+    'store' | 'history' | 'user' | 'project' | 'environment'
+  >;
+
+function renderHook<
+  RenderedHookProps,
+  RenderedHookResult,
+  AdditionalEnvironmentProperties = {},
+  StoreState = {}
+>(
+  callback: (props: RenderedHookProps) => RenderedHookResult,
+  options?: Partial<
+    TRenderHookOptions<
+      RenderedHookProps,
+      AdditionalEnvironmentProperties,
+      StoreState
+    >
+  >
+): TRenderHookResult<
+  RenderedHookProps,
+  RenderedHookResult,
+  AdditionalEnvironmentProperties,
+  StoreState
+> {
+  const { ReduxProviders, reduxStore } = createReduxProviders(options);
+  const {
+    ApplicationProviders,
+    mergedUser,
+    mergedProject,
+    mergedEnvironment,
+    history,
+  } = createApplicationProviders({
+    ...options,
+    disableApolloMocks: true,
+  });
+
+  const rendered = rtlHooks.renderHook(callback, {
+    ...options,
+    // eslint-disable-next-line react/display-name
+    wrapper: ({ children }) => (
+      <ReduxProviders>
+        <ApplicationProviders>{children}</ApplicationProviders>
+      </ReduxProviders>
+    ),
+  });
+
+  return {
+    ...rendered,
+    store: reduxStore,
+    history,
+    user: mergedUser,
+    project: mergedProject,
+    environment: mergedEnvironment,
+  };
+}
+
 // re-export everything
 export * from '@testing-library/react';
 
-export { renderApp, renderAppWithRedux };
+export { renderApp, renderAppWithRedux, renderHook };
