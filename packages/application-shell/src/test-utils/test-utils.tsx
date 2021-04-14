@@ -656,13 +656,13 @@ function renderHook<
   StoreState = {}
 >(
   callback: (props: RenderedHookProps) => RenderedHookResult,
-  options?: Partial<
+  options: Partial<
     TRenderHookOptions<
       RenderedHookProps,
       AdditionalEnvironmentProperties,
       StoreState
     >
-  >
+  > = {}
 ): TRenderHookResult<
   RenderedHookProps,
   RenderedHookResult,
@@ -686,7 +686,9 @@ function renderHook<
     // eslint-disable-next-line react/display-name
     wrapper: ({ children }) => (
       <ApplicationProviders>
-        <ReduxProviders>{children}</ReduxProviders>
+        <ReduxProviders>
+          {wrapIfNeeded(children, options.wrapper)}
+        </ReduxProviders>
       </ApplicationProviders>
     ),
   });
