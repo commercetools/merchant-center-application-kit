@@ -685,9 +685,9 @@ function renderHook<
     ...options,
     // eslint-disable-next-line react/display-name
     wrapper: ({ children }) => (
-      <ReduxProviders>
-        <ApplicationProviders>{children}</ApplicationProviders>
-      </ReduxProviders>
+      <ApplicationProviders>
+        <ReduxProviders>{children}</ReduxProviders>
+      </ApplicationProviders>
     ),
   });
 
