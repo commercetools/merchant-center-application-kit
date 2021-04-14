@@ -1,4 +1,4 @@
 export const PERMISSIONS = {
-  ManageStateMachines: 'ManageStateMachines',
-  ViewStateMachines: 'ViewStateMachines',
+  ManagePlaygroundStateMachines: 'ManagePlaygroundStateMachines',
+  ViewPlaygroundStateMachines: 'ViewPlaygroundStateMachines',
 };

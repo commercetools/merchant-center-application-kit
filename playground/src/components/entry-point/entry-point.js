@@ -38,11 +38,14 @@ export const ApplicationStateMachines = () => (
         <Redirect
           exact={true}
           from="/:projectKey"
-          to="/:projectKey/state-machines"
+          to="/:projectKey/playground-state-machines"
         />
       )
     }
-    <Route path="/:projectKey/state-machines" component={AsyncStateMachines} />
+    <Route
+      path="/:projectKey/playground-state-machines"
+      component={AsyncStateMachines}
+    />
     {/* Catch-all route */}
     <RouteCatchAll />
   </Switch>

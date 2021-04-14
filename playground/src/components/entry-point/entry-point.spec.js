@@ -27,24 +27,24 @@ const render = (options) => {
   return renderAppWithRedux(<ApplicationStateMachines />, {
     sdkMocks: [createStateMachinesListSdkMock()],
     permissions: {
-      canViewStateMachines: true,
-      canManageStateMachines: true,
+      canViewPlaygroundStateMachines: true,
+      canManagePlaygroundStateMachines: true,
     },
     ...options,
   });
 };
 
-describe('when route is /state-machines', () => {
+describe('when route is /playground-state-machines', () => {
   let rendered;
   it('should render state machines', async () => {
     rendered = render({
-      route: '/project/state-machines',
+      route: '/project/playground-state-machines',
     });
     await rendered.findByText(/State machines/i);
   });
 });
 
-describe('when route is not /state-machines', () => {
+describe('when route is not /playground-state-machines', () => {
   let rendered;
   it('should render catch all', async () => {
     rendered = render({

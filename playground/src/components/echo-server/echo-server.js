@@ -1,13 +1,16 @@
 import { useReducer, useCallback, useState } from 'react';
+import { useIntl } from 'react-intl';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { useAsyncDispatch, actions } from '@commercetools-frontend/sdk';
 import { useOnActionError } from '@commercetools-frontend/actions-global';
 import Spacings from '@commercetools-uikit/spacings';
 import Constraints from '@commercetools-uikit/constraints';
+import Link from '@commercetools-uikit/link';
 import Text from '@commercetools-uikit/text';
 import CheckboxInput from '@commercetools-uikit/checkbox-input';
 import PrimaryButton from '@commercetools-uikit/primary-button';
 import { CodeBlock } from '@commercetools-docs/ui-kit';
+import messages from './messages';
 
 const initialState = {
   isLoading: false,
@@ -24,7 +27,17 @@ const reducer = (state, action) => {
   }
 };
 
+const getLinkDocs = (msg) => (
+  <Link
+    isExternal
+    to="https://docs.commercetools.com/custom-applications/main-concepts/proxy-to-external-api"
+  >
+    {msg}
+  </Link>
+);
+
 const EchoServer = () => {
+  const intl = useIntl();
   const [state, dispatchState] = useReducer(reducer, initialState);
   const dispatch = useAsyncDispatch();
   const dispatchError = useOnActionError();
@@ -42,13 +55,16 @@ const EchoServer = () => {
   };
 
   const handleSendRequest = useCallback(() => {
-    const searchParam = shouldIncludeParamInRequest ? `hello=world` : null;
+    const forwardToUrl = new URL(echoServerApiUrl);
+    if (shouldIncludeParamInRequest) {
+      forwardToUrl.searchParams.set('hello', 'world');
+    }
 
     async function ping() {
       try {
         const result = await dispatch(
           actions.forwardTo.post({
-            uri: [echoServerApiUrl, searchParam].filter(Boolean).join('?'),
+            uri: forwardToUrl.toString(),
             payload: {
               say: 'Hello',
             },
@@ -62,28 +78,32 @@ const EchoServer = () => {
     }
     dispatchState({ type: 'loading' });
     ping();
-  }, [shouldIncludeParamInRequest]);
+  }, [dispatch, dispatchError, echoServerApiUrl, shouldIncludeParamInRequest]);
   return (
     <Spacings.Inset>
       <Spacings.Stack>
-        <Text.Headline as="h1">{'Echo Server'}</Text.Headline>
-        <Spacings.Stack>
-          <Text.Body>
-            {
-              'This page demonstrate how to connect a Custom Application to an external API, using the "/proxy/forward-to" endpoint.'
-            }
-          </Text.Body>
-          <Text.Body>
-            {
-              'For demo purposes, the external API used by this page is a simple echo server, which just returns some information about the request sent.'
-            }
-          </Text.Body>
-        </Spacings.Stack>
+        <Text.Headline as="h1" intlMessage={messages.title} />
+        <Constraints.Horizontal max={16}>
+          <Spacings.Stack>
+            <Text.Body
+              intlMessage={{
+                ...messages.description,
+                values: {
+                  linkDocs: getLinkDocs,
+                },
+              }}
+            />
+          </Spacings.Stack>
+        </Constraints.Horizontal>
         <Constraints.Horizontal max={16}>
           <Spacings.Stack>
             <Spacings.Inline>
               <PrimaryButton
-                label={state.isLoading ? 'Sending...' : 'Send request'}
+                label={intl.formatMessage(
+                  state.isLoading
+                    ? messages.labelSending
+                    : messages.labelSendRequest
+                )}
                 onClick={handleSendRequest}
                 isDisabled={state.isLoading}
               />
@@ -93,7 +113,7 @@ const EchoServer = () => {
                 isChecked={shouldIncludeParamInRequest}
                 onChange={onChangeShouldIncludeParamInRequest}
               >
-                {'Inlude Parameter in request'}
+                {intl.formatMessage(messages.labelIncludeParamsInRequest)}
               </CheckboxInput>
             </Spacings.Inline>
             {state.result && (
