@@ -27,8 +27,8 @@ const render = (options) => {
   return renderAppWithRedux(<ApplicationStateMachines />, {
     sdkMocks: [createStateMachinesListSdkMock()],
     permissions: {
-      canViewStateMachines: true,
-      canManageStateMachines: true,
+      canViewPlaygroundStateMachines: true,
+      canManagePlaygroundStateMachines: true,
     },
     ...options,
   });

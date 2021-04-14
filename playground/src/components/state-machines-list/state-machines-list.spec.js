@@ -91,6 +91,10 @@ const renderApp = (options = {}) => {
     </GtmContext.Provider>,
     {
       route,
+      permissions: {
+        canViewPlaygroundStateMachines: true,
+        canManagePlaygroundStateMachines: true,
+      },
       ...options,
     }
   );
@@ -102,10 +106,6 @@ describe('list view', () => {
   it('the user can see a list of state machines', async () => {
     rendered = renderApp({
       sdkMocks: [createStateMachinesListSdkMock()],
-      permissions: {
-        canViewStateMachines: true,
-        canManageStateMachines: true,
-      },
     });
     await rendered.findByText(/State machines/i);
     await rendered.findByText(/There are 2 objects in the cache/i);
@@ -118,10 +118,6 @@ describe('list view', () => {
         createStateMachinesListSdkMock(),
         createStateMachinesDetailSdkMockForId1(),
       ],
-      permissions: {
-        canViewStateMachines: true,
-        canManageStateMachines: true,
-      },
     });
     await rendered.findByText(/There are 2 objects in the cache/i);
     fireEvent.click(rendered.getByText('sm-1'));
@@ -141,10 +137,6 @@ describe('details view', () => {
       rendered = renderApp({
         route: '/my-project/playground-state-machines/sm1',
         sdkMocks: [createStateMachinesDetailSdkMockForId1()],
-        permissions: {
-          canViewStateMachines: true,
-          canManageStateMachines: true,
-        },
       });
       await rendered.findByText(/sm-1/i);
     });
@@ -155,10 +147,6 @@ describe('details view', () => {
           createStateMachinesDetailSdkMockForId1(),
           createStateMachinesDetailSdkMockForId2(),
         ],
-        permissions: {
-          canViewStateMachines: true,
-          canManageStateMachines: true,
-        },
       });
       await rendered.findByText(/sm-1/i);
       await waitFor(() => {
@@ -180,10 +168,6 @@ describe('details view', () => {
       rendered = renderApp({
         route: '/my-project/playground-state-machines/sm1',
         sdkMocks: [createStateMachinesDetailSdkErrorMock()],
-        permissions: {
-          canViewStateMachines: true,
-          canManageStateMachines: true,
-        },
       });
       await rendered.findByText(
         /^Sorry, but there seems to be something wrong/i
