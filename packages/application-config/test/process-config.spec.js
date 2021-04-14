@@ -186,6 +186,9 @@ describe('processing a full config', () => {
         featurePolicies: {
           microphone: 'none',
         },
+        permissionsPolicies: {
+          microphone: '()',
+        },
       },
     });
   });
@@ -229,6 +232,9 @@ describe('processing a full config', () => {
           featurePolicies: {
             microphone: 'none',
           },
+          permissionsPolicies: {
+            microphone: '()',
+          },
         },
       });
     });
@@ -268,6 +274,9 @@ describe('processing a full config', () => {
           },
           featurePolicies: {
             microphone: 'none',
+          },
+          permissionsPolicies: {
+            microphone: '()',
           },
         },
       });
@@ -313,6 +322,9 @@ describe('processing a full config', () => {
           },
           featurePolicies: {
             microphone: 'none',
+          },
+          permissionsPolicies: {
+            microphone: '()',
           },
         },
       });

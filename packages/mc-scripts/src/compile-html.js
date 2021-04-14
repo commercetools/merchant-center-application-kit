@@ -39,7 +39,6 @@ const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 const publicAssetsPath = resolveApp('public');
 
 const paths = {
-  featurePoliciesPath: flags.featurePolicies,
   publicAssetsPath,
   // NOTE: previously, for running the prod server locally, we were copying
   // assets into public/assets and compiling the index.html into public folder.
