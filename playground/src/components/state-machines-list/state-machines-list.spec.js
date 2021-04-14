@@ -83,7 +83,7 @@ const createStateMachinesDetailSdkErrorMock = () => ({
 });
 
 const renderApp = (options = {}) => {
-  const route = options.route || '/my-project/state-machines';
+  const route = options.route || '/my-project/playground-state-machines';
   const gtmMock = { track: jest.fn(), getHierarchy: jest.fn() };
   const rendered = renderAppWithRedux(
     <GtmContext.Provider value={gtmMock}>
@@ -127,7 +127,7 @@ describe('list view', () => {
     fireEvent.click(rendered.getByText('sm-1'));
     await waitFor(() => {
       expect(rendered.history.location.pathname).toBe(
-        '/my-project/state-machines/sm1'
+        '/my-project/playground-state-machines/sm1'
       );
     });
     await rendered.findByText(/sm-1/i);
@@ -139,7 +139,7 @@ describe('details view', () => {
   describe('when request is successful', () => {
     it('should render data on page', async () => {
       rendered = renderApp({
-        route: '/my-project/state-machines/sm1',
+        route: '/my-project/playground-state-machines/sm1',
         sdkMocks: [createStateMachinesDetailSdkMockForId1()],
         permissions: {
           canViewStateMachines: true,
@@ -150,7 +150,7 @@ describe('details view', () => {
     });
     it('should retrigger request if id changes', async () => {
       rendered = renderApp({
-        route: '/my-project/state-machines/sm1',
+        route: '/my-project/playground-state-machines/sm1',
         sdkMocks: [
           createStateMachinesDetailSdkMockForId1(),
           createStateMachinesDetailSdkMockForId2(),
@@ -168,7 +168,7 @@ describe('details view', () => {
         );
       });
 
-      rendered.history.push('/my-project/state-machines/sm2');
+      rendered.history.push('/my-project/playground-state-machines/sm2');
       await rendered.findByText(/sm-2/i);
     });
   });
@@ -178,7 +178,7 @@ describe('details view', () => {
     });
     it('should render notification error message', async () => {
       rendered = renderApp({
-        route: '/my-project/state-machines/sm1',
+        route: '/my-project/playground-state-machines/sm1',
         sdkMocks: [createStateMachinesDetailSdkErrorMock()],
         permissions: {
           canViewStateMachines: true,
