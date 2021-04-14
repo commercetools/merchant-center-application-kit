@@ -23,6 +23,9 @@
     },
     "featurePolicies": {
       "microphone": "none"
+    },
+    "permissionsPolicies": {
+      "microphone": "()"
     }
   }
 }

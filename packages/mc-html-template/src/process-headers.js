@@ -124,6 +124,11 @@ const processHeaders = (applicationConfig) => {
         applicationConfig.headers.featurePolicies
       ),
     }),
+    ...(applicationConfig.headers.permissionsPolicies && {
+      'Permissions-Policy': toHeaderString(
+        applicationConfig.headers.permissionsPolicies
+      ),
+    }),
   };
 };
 

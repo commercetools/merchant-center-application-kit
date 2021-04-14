@@ -96,5 +96,11 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
     featurePolicies?: {
       [k: string]: unknown;
     };
+    /**
+     * Configuration for the HTTP Permissions-Policy header (https://github.com/w3c/webappsec-permissions-policy/blob/main/permissions-policy-explainer.md)
+     */
+    permissionsPolicies?: {
+      [k: string]: unknown;
+    };
   };
 }
