@@ -12,7 +12,7 @@
       "initialProjectKey": "${env:CTP_INITIAL_PROJECT_KEY}"
     },
     "production": {
-      "applicationId": "${env.APP_ID}",
+      "applicationId": "${env:APP_ID}",
       "url": "${env:APP_URL}"
     }
   },
