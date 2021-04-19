@@ -14,23 +14,28 @@ import loadMessages from '../../messages';
 // Splitting by route is usually recommended and you can potentially have a splitting
 // point for each route. More info at https://reactjs.org/docs/code-splitting.html
 const AsyncStateMachines = lazy(
-  () => import('../../routes' /* webpackChunkName: "state-machines" */)
+  () =>
+    import('../../routes' /* webpackChunkName: "playground-state-machines" */)
 );
 
 export const ApplicationStateMachines = () => (
   <Switch>
-    {/* The /account route is only useful for the playground app for testing purposes.
-    If you build an application for production, this route should be removed. */}
-    <Route
-      path="/account"
-      render={() => (
-        <Text.Body>
-          {
-            'This is a placeholder page for the /account routes and is only useful for testing purposes. Do not use this in production.'
-          }
-        </Text.Body>
-      )}
-    />
+    {
+      /* The /account route is only useful for the playground app for testing purposes.
+      If you build an application for production, this route should be removed. */
+      process.env.NODE_ENV === 'production' ? null : (
+        <Route
+          path="/account"
+          render={() => (
+            <Text.Body>
+              {
+                'This is a placeholder page for the /account routes and is only useful for testing purposes. Do not use this in production.'
+              }
+            </Text.Body>
+          )}
+        />
+      )
+    }
     {
       /* For development, it's useful to redirect to the actual
       application routes when you open the browser at http://localhost:3001 */
