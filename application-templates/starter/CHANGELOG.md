@@ -1,5 +1,13 @@
 # merchant-center-application-template-starter
 
+## 18.0.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@19.1.0
+  - @commercetools-frontend/application-shell@19.1.0
+
 ## 18.0.1
 
 ### Patch Changes

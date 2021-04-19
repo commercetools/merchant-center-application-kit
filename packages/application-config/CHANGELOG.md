@@ -1,5 +1,23 @@
 # @commercetools-frontend/application-config
 
+## 19.1.0
+
+### Minor Changes
+
+- [#2143](https://github.com/commercetools/merchant-center-application-kit/pull/2143) [`53b27b0b`](https://github.com/commercetools/merchant-center-application-kit/commit/53b27b0b318b3d84f8f6828368b7c6a94008dcd3) Thanks [@tdeekens](https://github.com/tdeekens)! - Adds support for specifying the `Permissions-Policy` header supported in Chrome 90.
+
+  Similar to the `Feature-Policies` header an application config now support a `permissionsPolicies` field.
+
+  ```js
+  headers: {
+    permissionPolicies: {
+      mircophone: '()';
+    }
+  }
+  ```
+
+  More information about supported permission policies can be found [here](https://github.com/w3c/webappsec-permissions-policy/blob/main/permissions-policy-explainer.md).
+
 ## 19.0.1
 
 ### Patch Changes

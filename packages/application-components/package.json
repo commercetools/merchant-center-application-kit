@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-components",
-  "version": "19.0.1",
+  "version": "19.1.0",
   "description": "Generic components for building Merchant Center applications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -37,7 +37,7 @@
     "@commercetools-frontend/assets": "18.5.4",
     "@commercetools-frontend/constants": "18.6.0",
     "@commercetools-frontend/i18n": "19.0.1",
-    "@commercetools-frontend/l10n": "19.0.0",
+    "@commercetools-frontend/l10n": "19.1.0",
     "@commercetools-uikit/async-select-input": "^12.0.0",
     "@commercetools-uikit/card": "^12.0.0",
     "@commercetools-uikit/constraints": "^12.0.0",
