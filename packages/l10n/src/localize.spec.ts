@@ -1,8 +1,24 @@
 import {
   transformLocalizedFieldToLocalizedString,
+  transformLocalizedStringToLocalizedField,
   applyTransformedLocalizedFields,
   formatLocalizedString,
 } from './localize';
+
+describe('transformLocalizedStringToLocalizedField', () => {
+  describe('when LocalizedString is empty', () => {
+    it('should return empty LocalizedField[]', () => {
+      expect(transformLocalizedStringToLocalizedField({})).toEqual([]);
+    });
+  });
+  describe('when LocalizedString is not empty', () => {
+    it('should return LocalizedField[]', () => {
+      expect(
+        transformLocalizedStringToLocalizedField({ en: 'Fallout 4' })
+      ).toEqual([{ locale: 'en', value: 'Fallout 4' }]);
+    });
+  });
+});
 
 describe('applyTransformedLocalizedFields', () => {
   describe('when entity contains list of locale fields', () => {
