@@ -1,5 +1,12 @@
 # @commercetools-frontend/application-components
 
+## 19.1.0
+
+### Patch Changes
+
+- Updated dependencies [[`18fb7648`](https://github.com/commercetools/merchant-center-application-kit/commit/18fb76483f27e17e05dc8fddeda625dadf587a0f)]:
+  - @commercetools-frontend/l10n@19.1.0
+
 ## 19.0.1
 
 ### Patch Changes

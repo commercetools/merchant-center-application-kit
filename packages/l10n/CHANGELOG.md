@@ -1,5 +1,23 @@
 # @commercetools-frontend/l10n
 
+## 19.1.0
+
+### Minor Changes
+
+- [#2148](https://github.com/commercetools/merchant-center-application-kit/pull/2148) [`18fb7648`](https://github.com/commercetools/merchant-center-application-kit/commit/18fb76483f27e17e05dc8fddeda625dadf587a0f) Thanks [@adnasa](https://github.com/adnasa)! - Add `transformLocalizedStringToLocalizedField` to `i10n`.
+
+  Transforms [`LocalizedString`](https://docs.commercetools.com/api/types#localizedstring) to a list of `LocalizedField` (`[{ locale: string, value: string }]`)
+
+  **Example**
+
+  ```jsx
+  import { transformLocalizedStringToLocalizedField } from '@commercetools-frontend/l10n';
+
+  const productName = { sv: 'Kanelbulle', en: 'Cinnamon Bun' };
+  console.log(transformLocalizedStringToLocalizedField(productName));
+  // [{ locale: 'sv', value: 'Kanelbulle' }, { locale: 'en', value: 'Cinnamon Bun' }]
+  ```
+
 ## 19.0.0
 
 ### Major Changes
