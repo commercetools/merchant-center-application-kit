@@ -629,10 +629,7 @@ export type TRenderHookOptions<
   RenderedHookProps,
   AdditionalEnvironmentProperties = {},
   StoreState = {}
-> = Omit<
-  TRenderAppWithReduxOptions<AdditionalEnvironmentProperties, StoreState>,
-  'disableApolloMocks'
-> &
+> = TRenderAppWithReduxOptions<AdditionalEnvironmentProperties, StoreState> &
   rtlHooks.RenderHookOptions<RenderedHookProps>;
 
 export type TRenderHookResult<
@@ -676,10 +673,7 @@ function renderHook<
     mergedProject,
     mergedEnvironment,
     history,
-  } = createApplicationProviders({
-    ...options,
-    disableApolloMocks: true,
-  });
+  } = createApplicationProviders(options);
 
   const rendered = rtlHooks.renderHook(callback, {
     ...options,
@@ -706,4 +700,10 @@ function renderHook<
 // re-export everything
 export * from '@testing-library/react';
 
-export { renderApp, renderAppWithRedux, renderHook };
+// namespace for hooks related helpers
+const hooks = {
+  ...rtlHooks,
+  renderHook,
+};
+
+export { renderApp, renderAppWithRedux, hooks };
