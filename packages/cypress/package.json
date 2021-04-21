@@ -49,6 +49,6 @@
     "cypress": "7.1.0"
   },
   "peerDependencies": {
-    "cypress": "7.x"
+    "cypress": "5.x || 6.x || 7.x"
   }
 }
