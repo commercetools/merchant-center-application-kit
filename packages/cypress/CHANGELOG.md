@@ -1,5 +1,11 @@
 # @commercetools-frontend/cypress
 
+## 19.1.1
+
+### Patch Changes
+
+- [#2136](https://github.com/commercetools/merchant-center-application-kit/pull/2136) [`4eddd6a5`](https://github.com/commercetools/merchant-center-application-kit/commit/4eddd6a5a8a81a506031c418bd9bf7c5c5a81ff4) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependency cypress to v7 also allowing Cypress v7 as a peer dependency.
+
 ## 19.1.0
 
 ### Patch Changes

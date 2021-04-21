@@ -1,5 +1,25 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 19.1.1
+
+### Patch Changes
+
+- [#2150](https://github.com/commercetools/merchant-center-application-kit/pull/2150) [`f9b1140c`](https://github.com/commercetools/merchant-center-application-kit/commit/f9b1140c02aca9c27e123ed9a25d31e8e1a3b28a) Thanks [@tdeekens](https://github.com/tdeekens)! - Fix `jest-preset-mc-app` to use default v16 enzyme adapter
+
+  In a recent release we prematurely migrated to a community version of the v17 adapter of enzyme. We noticed that this adapter can not be used as easily as we have hoped.
+
+  As a result, we revert to using the default v16 adapter while offering a configuration option to use any adapter needed.
+
+  In a `jest-preset-mc-app.config.js` file you can configure the adapter as follows:
+
+  ```js
+  const EnzymeAdapter = require('@wojtekmaj/enzyme-adapter-react-17');
+
+  module.exports = {
+    EnzymeAdapter,
+  };
+  ```
+
 ## 19.0.1
 
 ### Patch Changes
