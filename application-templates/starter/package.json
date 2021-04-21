@@ -36,7 +36,7 @@
     "redux": "4.0.5"
   },
   "devDependencies": {
-    "@commercetools-frontend/jest-preset-mc-app": "19.0.1",
+    "@commercetools-frontend/jest-preset-mc-app": "19.1.1",
     "@commercetools-frontend/mc-dev-authentication": "19.0.0",
     "@commercetools-frontend/mc-scripts": "19.1.0",
     "@formatjs/cli": "4.2.7",
