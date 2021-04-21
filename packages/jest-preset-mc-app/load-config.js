@@ -3,6 +3,12 @@ const { cosmiconfigSync } = require('cosmiconfig');
 const moduleName = 'jest-preset-mc-app';
 const explorer = cosmiconfigSync(moduleName);
 
+function createListMergerWithDefaults(key) {
+  return (config) => ({
+    [key]: defaultConfig[key].concat(config[key] || []),
+  });
+}
+
 const defaultConfig = {
   silenceConsoleWarnings: [
     /.*Warning: componentWillReceiveProps has been renamed.*/,
@@ -41,9 +47,3 @@ const loadConfig = () => {
 };
 
 module.exports = loadConfig;
-
-function createListMergerWithDefaults(key) {
-  return (config) => ({
-    [key]: defaultConfig[key].concat(config[key] || []),
-  });
-}
