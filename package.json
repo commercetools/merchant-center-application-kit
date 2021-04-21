@@ -138,7 +138,7 @@
     "babel-plugin-transform-rename-import": "2.3.0",
     "babel-plugin-typescript-to-proptypes": "1.4.2",
     "cross-env": "7.0.3",
-    "cypress": "6.9.1",
+    "cypress": "7.1.0",
     "dotenv": "8.2.0",
     "enzyme": "3.11.0",
     "eslint": "7.24.0",
