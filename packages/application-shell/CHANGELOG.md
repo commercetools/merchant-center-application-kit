@@ -1,5 +1,32 @@
 # @commercetools-frontend/application-shell
 
+## 19.2.0
+
+### Minor Changes
+
+- [#2144](https://github.com/commercetools/merchant-center-application-kit/pull/2144) [`7ec6626f`](https://github.com/commercetools/merchant-center-application-kit/commit/7ec6626f7db35127b3611f546828b01151222d4c) Thanks [@pa3](https://github.com/pa3)! - Adds re-export of `@testing-library/react-hooks` from `test-utils` with `renderHook` functions wrapped with app-kit providers.
+
+  The `renderHook` function is wrapped similarily to the existing `renderAppWithRedux`:
+
+  - All `options` which can be passed to `renderAppWithRedux` can be passed to `renderHooks`
+  - All additional poperties returned as a result of an `renderAppWithRedux` call (like `store` or `history`) are returend from the wrapped `renderHook` too
+
+  All `@testing-library/react-hooks` functionality is exported under the namespace `hooks` from the package '@commercetools-frontend/application-shell/test-utils'.
+
+  **Usage example**
+
+  ```jsx
+  import { hooks } from '@commercetools-frontend/application-shell/test-utils';
+
+  const { act, renderHook } = hooks;
+
+  it('should navigate to a route', () => {
+    const { result, history } = renderHook(useRoutes);
+    act(() => result.current.someRoute.go());
+    expect(history.location.pathname).toBe('/some-route');
+  });
+  ```
+
 ## 19.1.0
 
 ### Patch Changes
