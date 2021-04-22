@@ -1,9 +1,12 @@
 const path = require('path');
+const loadConfig = require('./load-config');
 
 // Resolve the absolute path of the caller location.
 const rootPath = process.cwd();
 const resolveRelativePath = (relativePath) =>
   path.resolve(__dirname, relativePath);
+
+const jestConfig = loadConfig();
 
 module.exports = {
   displayName: 'test',
@@ -27,7 +30,6 @@ module.exports = {
     'jest-localstorage-mock',
   ],
   setupFilesAfterEnv: [resolveRelativePath('./setup-test-framework.js')],
-  snapshotSerializers: ['enzyme-to-json/serializer'],
   testEnvironment: 'jsdom',
   testURL: 'https://mc.europe-west1.gcp.commercetools.com/',
   testPathIgnorePatterns: ['node_modules', 'cypress'],
@@ -37,4 +39,5 @@ module.exports = {
     '^.+\\.graphql$': 'jest-transform-graphql',
   },
   watchPlugins: ['jest-watch-typeahead/filename'],
+  ...jestConfig.preset,
 };
