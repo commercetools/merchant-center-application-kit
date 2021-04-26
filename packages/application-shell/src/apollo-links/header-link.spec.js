@@ -1,4 +1,12 @@
-import { ApolloLink, execute, Observable, gql } from '@apollo/client';
+import { graphql } from 'msw';
+import { setupServer } from 'msw/node';
+import {
+  ApolloLink,
+  execute,
+  Observable,
+  gql,
+  createHttpLink,
+} from '@apollo/client';
 import waitFor from 'wait-for-observables';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import {
@@ -6,6 +14,7 @@ import {
   selectProjectKeyFromUrl,
   selectTeamIdFromLocalStorage,
 } from '../utils';
+import * as oidcStorage from '../utils/oidc-storage';
 import headerLink from './header-link';
 
 jest.mock('../utils/', () => ({
@@ -14,6 +23,7 @@ jest.mock('../utils/', () => ({
   selectTeamIdFromLocalStorage: jest.fn(() => 'team-1'),
   selectUserId: jest.fn(() => 'user-1'),
 }));
+jest.mock('../utils/oidc-storage');
 
 describe('headerLink', () => {
   it('should be an instance of ApolloLink', () => {
@@ -21,22 +31,31 @@ describe('headerLink', () => {
   });
 });
 
+const mockServer = setupServer();
+afterEach(() => {
+  mockServer.resetHandlers();
+});
+beforeAll(() =>
+  mockServer.listen({
+    onUnhandledRequest: 'error',
+  })
+);
+afterAll(() => mockServer.close());
+
 const query = gql`
-  {
+  query Test {
     sample {
       id
     }
   }
 `;
 
-describe('with valid target', () => {
+describe('configuring header link', () => {
   let context;
-  let debugLink;
   let link;
-  let terminatingLinkStub;
 
   beforeEach(async () => {
-    debugLink = new ApolloLink((operation, forward) => {
+    const debugLink = new ApolloLink((operation, forward) => {
       context = operation.getContext();
 
       // Remove request metadata to avoid having it in the snapshots
@@ -48,7 +67,7 @@ describe('with valid target', () => {
       return forward(operation);
     });
 
-    terminatingLinkStub = jest.fn(() => Observable.of({}));
+    const terminatingLinkStub = jest.fn(() => Observable.of({}));
 
     link = ApolloLink.from([headerLink, debugLink, terminatingLinkStub]);
 
@@ -70,6 +89,7 @@ describe('with valid target', () => {
         "headers": Object {
           "X-Correlation-Id": "test-correlation-id",
           "X-Feature-Flag": "test-feature-a",
+          "X-Graphql-Operation-Name": "Test",
           "X-Graphql-Target": "mc",
           "X-Project-Key": "project-1",
           "X-Team-Id": "team-1",
@@ -143,6 +163,7 @@ describe('with valid target', () => {
           "credentials": "include",
           "headers": Object {
             "X-Correlation-Id": "test-correlation-id",
+            "X-Graphql-Operation-Name": "Test",
             "X-Graphql-Target": "mc",
             "X-Project-Key": "test-project-key",
             "X-Team-Id": "team-1",
@@ -181,6 +202,7 @@ describe('with valid target', () => {
           "credentials": "include",
           "headers": Object {
             "X-Correlation-Id": "test-correlation-id",
+            "X-Graphql-Operation-Name": "Test",
             "X-Graphql-Target": "mc",
             "X-Project-Key": "project-1",
             "X-Team-Id": "test-team-id",
@@ -220,6 +242,7 @@ describe('with valid target', () => {
           "headers": Object {
             "X-Correlation-Id": "test-correlation-id",
             "X-Feature-Flag": "test-feature-flag",
+            "X-Graphql-Operation-Name": "Test",
             "X-Graphql-Target": "mc",
             "X-Project-Key": "project-1",
             "X-Team-Id": "team-1",
@@ -232,6 +255,44 @@ describe('with valid target', () => {
       expect(context.headers).toEqual(
         expect.objectContaining({
           'X-Feature-Flag': featureFlag,
+        })
+      );
+    });
+  });
+
+  describe('with session token in storage', () => {
+    beforeEach(async () => {
+      oidcStorage.getSessionToken.mockReturnValue('jwt-token');
+      await waitFor(
+        execute(link, {
+          query,
+          context: {
+            target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+          },
+        })
+      );
+    });
+
+    it('should set headers matching snapshot', () => {
+      expect(context).toMatchInlineSnapshot(`
+        Object {
+          "credentials": "include",
+          "headers": Object {
+            "Authorization": "Bearer jwt-token",
+            "X-Correlation-Id": "test-correlation-id",
+            "X-Graphql-Operation-Name": "Test",
+            "X-Graphql-Target": "mc",
+            "X-Project-Key": "project-1",
+            "X-Team-Id": "team-1",
+          },
+        }
+      `);
+    });
+
+    it('should set `Authorization`-Header', () => {
+      expect(context.headers).toEqual(
+        expect.objectContaining({
+          Authorization: 'Bearer jwt-token',
         })
       );
     });
@@ -262,5 +323,39 @@ describe('with valid target', () => {
       expect(context.headers).not.toHaveProperty('X-Project-Key');
       expect(context.headers).toHaveProperty('X-Correlation-Id');
     });
+  });
+});
+
+describe('handling response side effects', () => {
+  beforeEach(async () => {
+    const httpLink = createHttpLink({
+      uri: `http://ct-test.com/graphql`,
+      headers: {
+        accept: 'application/json',
+      },
+      fetch,
+    });
+    mockServer.use(
+      graphql.query('Test', (req, res, ctx) =>
+        res.once(
+          ctx.set('x-refreshed-session-token', 'jwt-token'),
+          ctx.data({ message: 'ok' })
+        )
+      )
+    );
+    const link = ApolloLink.from([headerLink, httpLink]);
+
+    await waitFor(
+      execute(link, {
+        query,
+        context: {
+          target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+        },
+      })
+    );
+  });
+
+  it('set new token into storage', () => {
+    expect(oidcStorage.setActiveSession).toHaveBeenCalledWith('jwt-token');
   });
 });
