@@ -31,10 +31,10 @@
     "build:bundles:watch": "yarn build -w"
   },
   "dependencies": {
-    "@babel/runtime": "7.13.10",
-    "@babel/runtime-corejs3": "7.13.10",
+    "@babel/runtime": "7.13.17",
+    "@babel/runtime-corejs3": "7.13.17",
     "@commercetools-frontend/application-config": "19.1.0",
-    "core-js": "3.10.1",
+    "core-js": "3.11.0",
     "serialize-javascript": "5.0.1",
     "uglify-es": "3.3.9",
     "uglifycss": "0.0.29"
