@@ -23,8 +23,8 @@
     "generate-data": "node ./scripts/generate-l10n-data.js"
   },
   "dependencies": {
-    "@babel/runtime": "7.13.10",
-    "@babel/runtime-corejs3": "7.13.10",
+    "@babel/runtime": "7.13.17",
+    "@babel/runtime-corejs3": "7.13.17",
     "@commercetools-frontend/sentry": "19.0.0",
     "@emotion/react": "11.1.5",
     "@types/prop-types": "^15.7.3",
@@ -34,9 +34,9 @@
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "5.1.1",
-    "chalk": "4.1.0",
-    "cldr": "6.0.0",
+    "@testing-library/react-hooks": "5.1.2",
+    "chalk": "4.1.1",
+    "cldr": "6.1.0",
     "deep-diff": "1.0.2",
     "moment-timezone": "^0.5.32",
     "node-fetch": "2.6.1",

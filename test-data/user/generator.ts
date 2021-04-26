@@ -4,7 +4,7 @@ import { fake, sequence, Generator } from '@commercetools-test-data/core';
 
 const generator = Generator<TUser>({
   fields: {
-    id: fake((f) => f.random.uuid()),
+    id: fake((f) => f.datatype.uuid()),
     version: sequence(),
     createdAt: fake((f) => f.date.recent(2)),
     lastModifiedAt: fake((f) => f.date.recent(1)),
