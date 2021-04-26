@@ -4,7 +4,7 @@ import { fake, Generator } from '@commercetools-test-data/core';
 
 const generator = Generator<TOrganization>({
   fields: {
-    id: fake((f) => f.random.uuid()),
+    id: fake((f) => f.datatype.uuid()),
     name: fake((f) => f.company.companyName()),
   },
 });
