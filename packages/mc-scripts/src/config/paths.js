@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const moduleFileExtensions = ['js', 'cjs', 'jsx', 'ts', 'tsx'];
+const moduleFileExtensions = ['js', 'jsx', 'ts', 'tsx'];
 
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebook/create-react-app/issues/637
@@ -9,9 +9,13 @@ const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath, extentions) =>
   path.resolve(appDirectory, relativePath);
 
-// Resolve file paths in the same order as webpack
-const resolveModule = (resolveFn, filePath) => {
-  const extension = moduleFileExtensions.find((extension) =>
+// Resolve file paths in the order given
+const resolveModule = (
+  resolveFn,
+  filePath,
+  extensions = moduleFileExtensions
+) => {
+  const extension = extensions.find((extension) =>
     fs.existsSync(resolveFn(`${filePath}.${extension}`))
   );
 
@@ -31,7 +35,8 @@ const paths = {
   appIndexHtml: resolveApp('dist/assets/index.html'),
   appWebpackConfig: resolveModule(
     resolveApp,
-    `webpack.config.${process.env.NODE_ENV === 'production' ? 'prod' : 'dev'}`
+    `webpack.config.${process.env.NODE_ENV === 'production' ? 'prod' : 'dev'}`,
+    ['.js', '.cjs']
   ),
   yarnLockFile: resolveApp('yarn.lock'),
   appRoot: resolveApp('.'),
