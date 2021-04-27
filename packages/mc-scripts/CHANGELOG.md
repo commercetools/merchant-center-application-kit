@@ -1,5 +1,18 @@
 # @commercetools-frontend/mc-scripts
 
+## 19.3.1
+
+### Patch Changes
+
+- [#2159](https://github.com/commercetools/merchant-center-application-kit/pull/2159) [`a73c31ad`](https://github.com/commercetools/merchant-center-application-kit/commit/a73c31ada3919b0141e9c78fd2a13b2689883434) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency css-minimizer-webpack-plugin to v2
+
+* [#2157](https://github.com/commercetools/merchant-center-application-kit/pull/2157) [`e757dd2b`](https://github.com/commercetools/merchant-center-application-kit/commit/e757dd2b114f0c751400eca6179700bddbb3aecc) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+* Updated dependencies [[`e757dd2b`](https://github.com/commercetools/merchant-center-application-kit/commit/e757dd2b114f0c751400eca6179700bddbb3aecc)]:
+  - @commercetools-frontend/application-config@19.3.1
+  - @commercetools-frontend/babel-preset-mc-app@19.3.1
+  - @commercetools-frontend/mc-html-template@19.3.1
+
 ## 19.1.0
 
 ### Minor Changes

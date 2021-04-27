@@ -1,5 +1,28 @@
 # @commercetools-frontend/application-shell
 
+## 19.3.1
+
+### Patch Changes
+
+- [#2157](https://github.com/commercetools/merchant-center-application-kit/pull/2157) [`e757dd2b`](https://github.com/commercetools/merchant-center-application-kit/commit/e757dd2b114f0c751400eca6179700bddbb3aecc) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+* [#2163](https://github.com/commercetools/merchant-center-application-kit/pull/2163) [`de1fa715`](https://github.com/commercetools/merchant-center-application-kit/commit/de1fa7153c1baab5da116babc857fec3f0e99d51) Thanks [@emmenko](https://github.com/emmenko)! - Handle HTTP responses with header `x-refreshed-session-token`, when using OIDC workflow.
+
+* Updated dependencies [[`e757dd2b`](https://github.com/commercetools/merchant-center-application-kit/commit/e757dd2b114f0c751400eca6179700bddbb3aecc)]:
+  - @commercetools-frontend/actions-global@19.3.1
+  - @commercetools-frontend/application-components@19.3.1
+  - @commercetools-frontend/application-shell-connectors@19.3.1
+  - @commercetools-frontend/browser-history@19.3.1
+  - @commercetools-frontend/constants@19.3.1
+  - @commercetools-frontend/i18n@19.3.1
+  - @commercetools-frontend/l10n@19.3.1
+  - @commercetools-frontend/notifications@19.3.1
+  - @commercetools-frontend/permissions@19.3.1
+  - @commercetools-frontend/react-notifications@19.3.1
+  - @commercetools-frontend/sdk@19.3.1
+  - @commercetools-frontend/sentry@19.3.1
+  - @commercetools-frontend/url-utils@19.3.1
+
 ## 19.3.0
 
 ### Minor Changes

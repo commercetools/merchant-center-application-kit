@@ -1,5 +1,14 @@
 # @commercetools-frontend/i18n
 
+## 19.3.1
+
+### Patch Changes
+
+- [#2157](https://github.com/commercetools/merchant-center-application-kit/pull/2157) [`e757dd2b`](https://github.com/commercetools/merchant-center-application-kit/commit/e757dd2b114f0c751400eca6179700bddbb3aecc) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+- Updated dependencies [[`e757dd2b`](https://github.com/commercetools/merchant-center-application-kit/commit/e757dd2b114f0c751400eca6179700bddbb3aecc)]:
+  - @commercetools-frontend/sentry@19.3.1
+
 ## 19.0.1
 
 ### Patch Changes
