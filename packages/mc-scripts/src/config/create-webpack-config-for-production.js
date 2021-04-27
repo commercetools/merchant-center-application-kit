@@ -132,7 +132,9 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
       // https://github.com/facebook/create-react-app/issues/290
       // `web` extension prefixes have been added for better support
       // for React Native Web.
-      extensions: ['js', 'ts', 'tsx', 'json', 'jsx'].map((ext) => `.${ext}`),
+      extensions: ['js', 'mjs', 'cjs', 'ts', 'tsx', 'json', 'jsx'].map(
+        (ext) => `.${ext}`
+      ),
     },
 
     // In production, we only want to load the polyfills and the app code.
@@ -364,7 +366,7 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
         },
         // Process application JavaScript with Babel.
         {
-          test: /\.(js|jsx|ts|tsx)$/,
+          test: /\.(js|mjs|cjs|jsx|ts|tsx)$/,
           use: [
             // This loader parallelizes code compilation, it is optional but
             // improves compile time on larger projects
