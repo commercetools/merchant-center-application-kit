@@ -103,7 +103,18 @@ const headerLink = new ApolloLink((operation, forward) => {
         : undefined,
     }),
   });
-  return forward(operation);
+  return forward(operation).map((response) => {
+    const context = operation.getContext();
+
+    const refreshedSessionToken = context.response?.headers?.get(
+      'x-refreshed-session-token'
+    );
+    if (refreshedSessionToken) {
+      oidcStorage.setActiveSession(refreshedSessionToken);
+    }
+
+    return response;
+  });
 });
 
 export default headerLink;
