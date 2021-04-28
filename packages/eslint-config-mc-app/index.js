@@ -1,4 +1,4 @@
-const { statusCode } = require('./helpers/eslint');
+const { statusCode, allSupportedExtensions } = require('./helpers/eslint');
 const hasJsxRuntime = require('./helpers/has-jsx-runtime');
 
 module.exports = {
@@ -74,6 +74,13 @@ module.exports = {
       'react/react-in-jsx-scope': statusCode.off,
     }),
   },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: allSupportedExtensions,
+      },
+    },
+  },
   overrides: [
     {
       files: ['*.{spec,test}.*'],
@@ -120,7 +127,7 @@ module.exports = {
           'eslint-import-resolver-typescript': true,
           typescript: {},
           node: {
-            extensions: ['.js', '.jsx', '.ts', '.tsx'],
+            extensions: allSupportedExtensions,
           },
         },
       },

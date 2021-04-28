@@ -3,5 +3,6 @@ const statusCode = {
   warn: 'warn',
   off: 'off',
 };
+const allSupportedExtensions = ['.js', '.mjs', '.cjs', '.jsx', '.ts', '.tsx'];
 
-module.exports = { statusCode };
+module.exports = { statusCode, allSupportedExtensions };
