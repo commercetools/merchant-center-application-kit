@@ -1,4 +1,4 @@
-const { statusCode } = require('./helpers/eslint');
+const { statusCode, allSupportedExtensions } = require('./helpers/eslint');
 const hasJsxRuntime = require('./helpers/has-jsx-runtime');
 
 module.exports = {
@@ -28,13 +28,6 @@ module.exports = {
     // https://github.com/prettier/prettier-eslint
     'prettier',
   ],
-  settings: {
-    'import/resolver': {
-      node: {
-        extensions: ['.js', '.mjs', '.cjs'],
-      },
-    },
-  },
   rules: {
     // NOTE: The regular rule does not support do-expressions. The equivalent rule of babel does.
     'no-unused-expressions': 0,
@@ -80,6 +73,13 @@ module.exports = {
       'react/jsx-uses-react': statusCode.off,
       'react/react-in-jsx-scope': statusCode.off,
     }),
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: allSupportedExtensions,
+      },
+    },
   },
   overrides: [
     {
@@ -127,7 +127,7 @@ module.exports = {
           'eslint-import-resolver-typescript': true,
           typescript: {},
           node: {
-            extensions: ['.js', '.jsx', '.ts', '.tsx'],
+            extensions: allSupportedExtensions,
           },
         },
       },
