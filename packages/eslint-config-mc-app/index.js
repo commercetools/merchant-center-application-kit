@@ -28,6 +28,13 @@ module.exports = {
     // https://github.com/prettier/prettier-eslint
     'prettier',
   ],
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.mjs'],
+      },
+    },
+  },
   rules: {
     // NOTE: The regular rule does not support do-expressions. The equivalent rule of babel does.
     'no-unused-expressions': 0,
