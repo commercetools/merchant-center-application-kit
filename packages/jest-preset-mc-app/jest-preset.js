@@ -12,7 +12,7 @@ module.exports = {
       NODE_ENV: 'test',
     },
   },
-  moduleFileExtensions: ['js', 'jsx', 'json'],
+  moduleFileExtensions: ['js', 'mjs', 'jsx', 'json'],
   moduleDirectories: ['src', 'node_modules'],
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': resolveRelativePath(
@@ -33,7 +33,7 @@ module.exports = {
   testPathIgnorePatterns: ['node_modules', 'cypress'],
   testRegex: '\\.spec\\.jsx?$',
   transform: {
-    '^.+\\.js$': resolveRelativePath('./transform-babel-jest.js'),
+    '^.+\\.(js|mjs)$': resolveRelativePath('./transform-babel-jest.js'),
     '^.+\\.graphql$': 'jest-transform-graphql',
   },
   watchPlugins: ['jest-watch-typeahead/filename'],
