@@ -1,5 +1,13 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 19.4.0
+
+### Minor Changes
+
+- [#2165](https://github.com/commercetools/merchant-center-application-kit/pull/2165) [`d019bc54`](https://github.com/commercetools/merchant-center-application-kit/commit/d019bc54c59ec52a49006f88366dd4bc7212c2aa) Thanks [@tdeekens](https://github.com/tdeekens)! - Adds support for the `*.mjs` and `*.cjs` JavaScript file extensions.
+
+  Updates the webpack configurations, Jest and ESLint presets to support the `*.mjs` and `*.cjs` extensions. This allows better integration with packages using ES modules.
+
 ## 19.3.1
 
 ### Patch Changes
