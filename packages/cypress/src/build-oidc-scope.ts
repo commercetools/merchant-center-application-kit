@@ -9,15 +9,15 @@ type BuilOidcScopeOptions = {
 };
 
 const buildOidcScope = (options: BuilOidcScopeOptions): string => {
-  const projectClaims = [];
+  const claims = [];
   if (options.projectKey) {
-    projectClaims.push(`${OIDC_CLAIMS.PROJECT_KEY}:${options.projectKey}`);
-    projectClaims.push(
+    claims.push(`${OIDC_CLAIMS.PROJECT_KEY}:${options.projectKey}`);
+    claims.push(
       ...(options.oAuthScopes?.view ?? []).map(
         (scope) => `${OIDC_CLAIMS.VIEW}:${scope}`
       )
     );
-    projectClaims.push(
+    claims.push(
       ...(options.oAuthScopes?.manage ?? []).map(
         (scope) => `${OIDC_CLAIMS.MANAGE}:${scope}`
       )
@@ -25,13 +25,13 @@ const buildOidcScope = (options: BuilOidcScopeOptions): string => {
   }
   const teamId = options.teamId;
   if (teamId) {
-    projectClaims.push(`${OIDC_CLAIMS.TEAM_ID}:${teamId}`);
+    claims.push(`${OIDC_CLAIMS.TEAM_ID}:${teamId}`);
   }
   return [
     // This is required as per OIDC spec.
     OIDC_CLAIMS.OPEN_ID,
     // Custom claims
-    ...projectClaims,
+    ...claims,
   ].join(' ');
 };
 
