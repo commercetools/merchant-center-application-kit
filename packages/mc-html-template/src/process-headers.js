@@ -24,7 +24,7 @@ const mergeCspDirectives = (...csps) =>
       ),
     {}
   );
-const toHeaderString = (directives = {}) =>
+const toHeaderString = (directives = {}, seperator = '; ') =>
   Object.entries(directives)
     .map(
       ([directive, value]) =>
@@ -126,7 +126,8 @@ const processHeaders = (applicationConfig) => {
     }),
     ...(applicationConfig.headers.permissionsPolicies && {
       'Permissions-Policy': toHeaderString(
-        applicationConfig.headers.permissionsPolicies
+        applicationConfig.headers.permissionsPolicies,
+        ', '
       ),
     }),
   };
