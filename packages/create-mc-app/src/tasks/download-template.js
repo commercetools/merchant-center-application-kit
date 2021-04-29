@@ -65,13 +65,26 @@ module.exports = function downloadTemplate(options) {
             const sanitizedProjectDirectoryPath = options.projectDirectoryPath
               // Escape white spaces
               .replace(/ /g, '\\ ');
-            const result = await execa(
-              'mv',
-              [templateFolderPath, sanitizedProjectDirectoryPath],
-              {
-                encoding: 'utf-8',
-              }
-            );
+
+            let result;
+            if(process.platform == 'win32' || process.platform == 'cygwin') {
+              result = await execa(
+                'move',
+                [templateFolderPath, sanitizedProjectDirectoryPath],
+                {
+                  encoding: 'utf-8',
+                }
+              );
+            } else {
+              result = await execa(
+                'mv',
+                [templateFolderPath, sanitizedProjectDirectoryPath],
+                {
+                  encoding: 'utf-8',
+                }
+              );
+            }
+            
             if (result.failed) {
               throw new Error(result.stderr);
             }
