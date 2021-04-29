@@ -66,24 +66,14 @@ module.exports = function downloadTemplate(options) {
               // Escape white spaces
               .replace(/ /g, '\\ ');
 
-            let result;
-            if(process.platform == 'win32' || process.platform == 'cygwin') {
-              result = await execa(
-                'move',
-                [templateFolderPath, sanitizedProjectDirectoryPath],
-                {
-                  encoding: 'utf-8',
-                }
-              );
-            } else {
-              result = await execa(
-                'mv',
-                [templateFolderPath, sanitizedProjectDirectoryPath],
-                {
-                  encoding: 'utf-8',
-                }
-              );
-            }
+            const command = (process.platform == 'win32' || process.platform == 'cygwin') ? 'move' : 'mv';
+            const result = await execa(
+              command,
+              [templateFolderPath, sanitizedProjectDirectoryPath],
+              {
+                encoding: 'utf-8',
+              }
+            );
             
             if (result.failed) {
               throw new Error(result.stderr);
