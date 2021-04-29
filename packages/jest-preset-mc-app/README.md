@@ -41,7 +41,7 @@ For example:
 const jestPresetForTypeScript = require('@commercetools-frontend/jest-preset-mc-app/jest-preset-for-typescript');
 
 module.exports = {
-  preset: jestPresetForTypeScript,
+  ...jestPresetForTypeScript,
 };
 ```
 

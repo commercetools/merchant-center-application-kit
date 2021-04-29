@@ -1,10 +1,7 @@
-import type { ShallowWrapper } from 'enzyme';
 import type { Props } from './sdk-get';
-import type { Json } from '../../types';
 
-import { mocked } from 'ts-jest/utils';
 import React from 'react';
-import { shallow } from 'enzyme';
+import { fireEvent, render, screen } from '@testing-library/react';
 import * as sdkActions from '../../actions';
 import { SdkGet } from './sdk-get';
 
@@ -15,84 +12,79 @@ const createTestProps = (custom: Partial<Props> = {}) => ({
   shouldRefetch: () => false,
   onSuccess: jest.fn(),
   onError: jest.fn(),
-  render: jest.fn(() => <div></div>),
+  render: jest.fn(),
   ...custom,
 });
 
 describe('rendering', () => {
-  let props: Props;
-  let wrapper: ShallowWrapper;
   beforeEach(() => {
-    props = createTestProps();
-    wrapper = shallow(<SdkGet {...props} />);
-    const instance = wrapper.instance();
-    if (instance.componentDidMount) instance.componentDidMount();
+    const props = createTestProps();
+    render(
+      <SdkGet
+        {...props}
+        dispatch={() => Promise.resolve({ status: 'ok' })}
+        render={({ isLoading, result, error }) => {
+          if (isLoading) return <div>Loading ...</div>;
+          if (error) return <div>Error: {error}</div>;
+          return <div>{JSON.stringify(result)}</div>;
+        }}
+      />
+    );
   });
-  it('should call render', () => {
-    expect(props.render).toHaveBeenCalledWith({
-      isLoading: true,
-      refresh: expect.any(Function),
-      result: undefined,
-      error: undefined,
-    });
-  });
-  describe('when refreshing', () => {
-    let result: Promise<void | Json>;
-    beforeEach(() => {
-      result = mocked(props.render).mock.calls[0][0].refresh();
-      return result;
-    });
-    it('should dispatch again', () => {
-      expect(props.dispatch).toHaveBeenCalledTimes(2);
-    });
-    it('should return a promise', () => {
-      expect(typeof result.then).toEqual('function');
-    });
+  it('should fetch data and render it', async () => {
+    await screen.findByText(JSON.stringify({ status: 'ok' }));
   });
 });
-
-describe('when the component mounts', () => {
-  describe('when the request succeeds', () => {
-    let wrapper: ShallowWrapper;
-    let props: Props;
-    const result = { foo: 'bar' };
-    beforeEach(() => {
-      props = createTestProps({
-        dispatch: jest.fn(() => Promise.resolve(result)),
-      });
-      wrapper = shallow(<SdkGet {...props} />);
-      const instance = wrapper.instance();
-      if (instance.componentDidMount) instance.componentDidMount();
-    });
-    it('should fetch with the passed args', () => {
-      expect(props.dispatch).toHaveBeenCalledWith(
-        props.actionCreator(...props.actionCreatorArgs)
-      );
-    });
-    it('should call onSuccess with the result', () => {
-      expect(props.onSuccess).toHaveBeenCalledWith(result);
-    });
-    it('should not call onError', () => {
-      expect(props.onError).not.toHaveBeenCalled();
-    });
+describe('rendering with error', () => {
+  beforeEach(() => {
+    const props = createTestProps();
+    render(
+      <SdkGet
+        {...props}
+        dispatch={() => Promise.reject({ message: 'oops' })}
+        render={({ isLoading, result, error }) => {
+          if (isLoading) return <div>Loading ...</div>;
+          if (error) return <div>Error: {error.message}</div>;
+          return <div>{JSON.stringify(result)}</div>;
+        }}
+      />
+    );
   });
-  describe('when the request fails', () => {
-    let wrapper: ShallowWrapper;
-    let props: Props;
-    const error = new Error('foo');
-    beforeEach(() => {
-      props = createTestProps({
-        dispatch: jest.fn(() => Promise.reject(error)),
-      });
-      wrapper = shallow(<SdkGet {...props} />);
-      const instance = wrapper.instance();
-      if (instance.componentDidMount) instance.componentDidMount();
-    });
-    it('should not call onSuccess', () => {
-      expect(props.onSuccess).not.toHaveBeenCalled();
-    });
-    it('should call onError with the result', () => {
-      expect(props.onError).toHaveBeenCalledWith(error);
-    });
+  it('should fetch data and render error message', async () => {
+    await screen.findByText(`Error: oops`);
+  });
+});
+describe('rendering and refetching', () => {
+  let count = 1;
+  beforeEach(() => {
+    const props = createTestProps();
+    render(
+      <SdkGet
+        {...props}
+        dispatch={() => Promise.resolve({ count })}
+        render={({ isLoading, result, error, refresh }) => {
+          if (isLoading) return <div>Loading ...</div>;
+          if (error) return <div>Error: {error}</div>;
+          return (
+            <div>
+              <div>{JSON.stringify(result)}</div>;
+              <button
+                onClick={() => {
+                  count += 1;
+                  refresh();
+                }}
+              >
+                Refresh
+              </button>
+            </div>
+          );
+        }}
+      />
+    );
+  });
+  it('should fetch data and render it', async () => {
+    await screen.findByText(JSON.stringify({ count: 1 }));
+    fireEvent.click(screen.getByRole('button', { name: 'Refresh' }));
+    await screen.findByText(JSON.stringify({ count: 2 }));
   });
 });

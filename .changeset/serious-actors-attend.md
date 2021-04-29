@@ -30,10 +30,8 @@ const jestPreset = require('@commercetools-frontend/jest-preset-mc-app');
 const jestPresetForEnzyme16 = require('@commercetools-frontend/jest-preset-mc-app/enzyme/jest-preset-for-enzyme-16');
 
 module.exports = {
-  preset: {
-    ...jestPreset,
-    ...jestPresetForEnzyme16,
-  },
+  ...jestPreset,
+  ...jestPresetForEnzyme16,
 };
 ```
 
@@ -61,10 +59,7 @@ const jestPreset = require('@commercetools-frontend/jest-preset-mc-app');
 const jestPresetForEnzyme17 = require('@commercetools-frontend/jest-preset-mc-app/enzyme/jest-preset-for-enzyme-17');
 
 module.exports = {
-  preset: {
-    ...jestPreset,
-    ...jestPresetForEnzyme17,
-  },
+  ...jestPreset,
+  ...jestPresetForEnzyme17,
 };
 ```
-
