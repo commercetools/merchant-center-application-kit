@@ -65,13 +65,19 @@ module.exports = function downloadTemplate(options) {
             const sanitizedProjectDirectoryPath = options.projectDirectoryPath
               // Escape white spaces
               .replace(/ /g, '\\ ');
+
+            const command =
+              process.platform === 'win32' || process.platform === 'cygwin'
+                ? 'move'
+                : 'mv';
             const result = await execa(
-              'mv',
+              command,
               [templateFolderPath, sanitizedProjectDirectoryPath],
               {
                 encoding: 'utf-8',
               }
             );
+
             if (result.failed) {
               throw new Error(result.stderr);
             }
