@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 19.4.1
+
+### Patch Changes
+
+- [#2169](https://github.com/commercetools/merchant-center-application-kit/pull/2169) [`75efb3e4`](https://github.com/commercetools/merchant-center-application-kit/commit/75efb3e4f50cf5011c5affb4a9488f3520e7a8a7) Thanks [@emmenko](https://github.com/emmenko)! - Skip `project_key` claim check when validating oidc scope. This allows project switching without having to log in again (when using OIDC flow), thanks to the `x-refreshed-session-token` header.
+
 ## 19.3.1
 
 ### Patch Changes
