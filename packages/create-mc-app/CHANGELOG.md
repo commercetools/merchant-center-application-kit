@@ -1,5 +1,11 @@
 # @commercetools-frontend/create-mc-app
 
+## 19.4.2
+
+### Patch Changes
+
+- [#2173](https://github.com/commercetools/merchant-center-application-kit/pull/2173) [`fec92125`](https://github.com/commercetools/merchant-center-application-kit/commit/fec92125a2a0e5678c1b42ad78a2c0d46669ae32) Thanks [@emmenko](https://github.com/emmenko)! - Fix windows support when installing the template
+
 ## 19.0.2
 
 ### Patch Changes
