@@ -32,6 +32,6 @@
     "react-router-dom": "5.2.0"
   },
   "devDependencies": {
-    "@commercetools-frontend/mc-scripts": "19.4.0"
+    "@commercetools-frontend/mc-scripts": "19.4.1"
   }
 }

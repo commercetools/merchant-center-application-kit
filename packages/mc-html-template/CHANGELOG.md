@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-html-template
 
+## 19.4.1
+
+### Patch Changes
+
+- [#2170](https://github.com/commercetools/merchant-center-application-kit/pull/2170) [`4d4b1f9f`](https://github.com/commercetools/merchant-center-application-kit/commit/4d4b1f9f6834bd2a928491368333bf4ea5670dd3) Thanks [@tdeekens](https://github.com/tdeekens)! - Fix multiple permissions policies to be joined with comma not semicolon.
+
 ## 19.3.1
 
 ### Patch Changes
