@@ -30,7 +30,7 @@ const toHeaderString = (directives = {}, seperator = '; ') =>
       ([directive, value]) =>
         `${directive} ${Array.isArray(value) ? value.join(' ') : value}`
     )
-    .join('; ');
+    .join(seperator);
 
 const processHeaders = (applicationConfig) => {
   const isMcDevEnv = applicationConfig.env.env === 'development';
