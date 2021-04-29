@@ -1,10 +1,16 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
-import { STORAGE_KEYS } from '../../constants';
+import { STORAGE_KEYS, OIDC_CLAIMS } from '../../constants';
 import * as oidcStorage from '../../utils/oidc-storage';
 import { buildOidcScope } from './helpers';
 
 declare let window: ApplicationWindow;
+
+const withoutProjectKeyClaim = (scope: string) =>
+  scope
+    .split(' ')
+    .filter((claim) => !claim.startsWith(OIDC_CLAIMS.PROJECT_KEY))
+    .join(' ');
 
 const hasCachedAuthenticationState = (): boolean => {
   if (window.app.__DEVELOPMENT__) {
@@ -44,8 +50,14 @@ const hasCachedAuthenticationState = (): boolean => {
         oAuthScopes: window.app.__DEVELOPMENT__?.oAuthScopes,
         teamId: window.app.__DEVELOPMENT__?.teamId,
       });
+      // Omit the project key from the check. This allows to switch projects
+      // without having to log in again.
+      const cachedScopeWithoutProjectKey = withoutProjectKeyClaim(cachedScope);
+      const requestedScopeWithoutProjectKey = withoutProjectKeyClaim(
+        requestedScope
+      );
       // Check that the session scope didn't change.
-      if (cachedScope === requestedScope) {
+      if (cachedScopeWithoutProjectKey === requestedScopeWithoutProjectKey) {
         return true;
       }
       return false;
