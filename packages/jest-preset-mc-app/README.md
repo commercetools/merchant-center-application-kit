@@ -97,6 +97,8 @@ yarn add \
   jest-enzyme
 ```
 
+> NOTE that the `@wojtekmaj/enzyme-adapter-react-17` is not the official supported package by Enzyme. Follow the progress on [this PR](https://github.com/enzymejs/enzyme/pull/2430) to know when the official adapter is going to be released.
+
 2. In your Jest config, instead of importing the preset `@commercetools-frontend/jest-preset-mc-app` you need to import `@commercetools-frontend/jest-preset-mc-app/enzyme/jest-preset-for-enzyme-17.js`
 
 For example:
