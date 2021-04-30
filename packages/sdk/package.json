@@ -44,7 +44,7 @@
     "uuid": "8.3.2"
   },
   "devDependencies": {
-    "@types/enzyme": "3.10.8",
+    "@testing-library/react": "11.2.6",
     "@types/uuid": "8.3.0",
     "react": "17.0.2",
     "react-redux": "7.2.4",
