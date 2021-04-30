@@ -9,7 +9,7 @@ Get up and running in a few steps and start developing Custom Applications for t
 Before you start development, you should have the following:
 
 - A [commercetools](https://docs.commercetools.com/tutorials/getting-started) account and a project.
-- [Node.js](https://nodejs.org/en/) installed (version `>=8`). Either [`yarn`](https://yarnpkg.com/) or [`npm`](https://www.npmjs.com/get-npm) as a package manager.
+- [Node.js](https://nodejs.org/en/) installed (version `>=12`, recommended `>=14`). Either [`yarn`](https://yarnpkg.com/) or [`npm`](https://www.npmjs.com/get-npm) as a package manager.
 - Basic knowledge of [React](https://reactjs.org/) as well as some experience working with web applications.
 
 # Installing a starter application
@@ -67,13 +67,20 @@ Be sure to choose a value that does not conflict with one of the official route 
 The official main route path values are (_the list can be extended at any time_):
 
 - `account`
-- `authentication`
-- `categories`
-- `customers`
+- `audit-log`
 - `dashboard`
+- `categories`
+- `change-history`
+- `customers`
+- `exports`
 - `discounts`
+- `impex`
+- `imports`
+- `imports-exports`
 - `orders`
 - `products`
 - `settings`
+- `welcome`
+- `disabled`
 
 You should choose a value that fits with the purpose of the application you are developing. For example, if your application manages state machines, you can choose to name the route `state-machines`.
