@@ -1,5 +1,14 @@
 # merchant-center-application-template-starter
 
+## 18.0.7
+
+### Patch Changes
+
+- [#2175](https://github.com/commercetools/merchant-center-application-kit/pull/2175) [`49d253ad`](https://github.com/commercetools/merchant-center-application-kit/commit/49d253ad4aeb373389e424f8e09ecdafc15405c8) Thanks [@emmenko](https://github.com/emmenko)! - Remove `enzyme` from tests and dependencies.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell@20.0.0
+
 ## 18.0.6
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @commercetools-frontend/sdk
 
+## 20.0.0
+
+### Patch Changes
+
+- [#2175](https://github.com/commercetools/merchant-center-application-kit/pull/2175) [`49d253ad`](https://github.com/commercetools/merchant-center-application-kit/commit/49d253ad4aeb373389e424f8e09ecdafc15405c8) Thanks [@emmenko](https://github.com/emmenko)! - Remove `enzyme` from tests and dependencies.
+
 ## 19.3.1
 
 ### Patch Changes
