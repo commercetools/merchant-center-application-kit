@@ -1,5 +1,16 @@
 # @commercetools-frontend/mc-html-template
 
+## 20.0.1
+
+### Patch Changes
+
+- [#2183](https://github.com/commercetools/merchant-center-application-kit/pull/2183) [`149af138`](https://github.com/commercetools/merchant-center-application-kit/commit/149af138030dccd1b3ae6df0e46d7b31e25b7325) Thanks [@tdeekens](https://github.com/tdeekens)! - Fix processing of structured headers
+
+* [#2178](https://github.com/commercetools/merchant-center-application-kit/pull/2178) [`26d4487a`](https://github.com/commercetools/merchant-center-application-kit/commit/26d4487a15dcee5c526de7b1f227e042e2711d3f) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+* Updated dependencies [[`26d4487a`](https://github.com/commercetools/merchant-center-application-kit/commit/26d4487a15dcee5c526de7b1f227e042e2711d3f)]:
+  - @commercetools-frontend/application-config@20.0.1
+
 ## 19.4.1
 
 ### Patch Changes
