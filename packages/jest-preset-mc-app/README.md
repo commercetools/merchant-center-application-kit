@@ -66,21 +66,20 @@ yarn add \
   jest-enzyme
 ```
 
-2. In your Jest config, instead of importing the preset `@commercetools-frontend/jest-preset-mc-app` you need to import `@commercetools-frontend/jest-preset-mc-app/enzyme/jest-preset-for-enzyme-16.js`
+2. In your Jest config, instead of importing the preset `@commercetools-frontend/jest-preset-mc-app` you need to use the helper function `@commercetools-frontend/jest-preset-mc-app/enzyme/create-jest-preset-with-enzyme.js` to merge one of the main presets with the opt-in Enzyme setup.
 
 For example:
 
 ```js
 const jestPreset = require('@commercetools-frontend/jest-preset-mc-app');
-const jestPresetForEnzyme16 = require('@commercetools-frontend/jest-preset-mc-app/enzyme/jest-preset-for-enzyme-16');
+const createJestPresetWithEnzyme = require('@commercetools-frontend/jest-preset-mc-app/enzyme/create-jest-preset-with-enzyme');
 
 module.exports = {
-  preset: {
-    ...jestPreset,
-    ...jestPresetForEnzyme16,
-  },
+  ...createJestPresetWithEnzyme(16, jestPreset),
 };
 ```
+
+Similarly, you can use the `@commercetools-frontend/jest-preset-mc-app/jest-preset-for-typescript` instead of the `@commercetools-frontend/jest-preset-mc-app`.
 
 ### Enzyme 17
 
@@ -99,18 +98,17 @@ yarn add \
 
 > NOTE that the `@wojtekmaj/enzyme-adapter-react-17` is not the official supported package by Enzyme. Follow the progress on [this PR](https://github.com/enzymejs/enzyme/pull/2430) to know when the official adapter is going to be released.
 
-2. In your Jest config, instead of importing the preset `@commercetools-frontend/jest-preset-mc-app` you need to import `@commercetools-frontend/jest-preset-mc-app/enzyme/jest-preset-for-enzyme-17.js`
+2. In your Jest config, instead of importing the preset `@commercetools-frontend/jest-preset-mc-app` you need to use the helper function `@commercetools-frontend/jest-preset-mc-app/enzyme/create-jest-preset-with-enzyme.js` to merge one of the main presets with the opt-in Enzyme setup.
 
 For example:
 
 ```js
 const jestPreset = require('@commercetools-frontend/jest-preset-mc-app');
-const jestPresetForEnzyme17 = require('@commercetools-frontend/jest-preset-mc-app/enzyme/jest-preset-for-enzyme-17');
+const createJestPresetWithEnzyme = require('@commercetools-frontend/jest-preset-mc-app/enzyme/create-jest-preset-with-enzyme');
 
 module.exports = {
-  preset: {
-    ...jestPreset,
-    ...jestPresetForEnzyme17,
-  },
+  ...createJestPresetWithEnzyme(17, jestPreset),
 };
 ```
+
+Similarly, you can use the `@commercetools-frontend/jest-preset-mc-app/jest-preset-for-typescript` instead of the `@commercetools-frontend/jest-preset-mc-app`.
