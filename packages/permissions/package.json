@@ -22,8 +22,8 @@
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
-    "@babel/runtime": "7.13.17",
-    "@babel/runtime-corejs3": "7.13.17",
+    "@babel/runtime": "7.14.0",
+    "@babel/runtime-corejs3": "7.14.0",
     "@commercetools-frontend/application-shell-connectors": "19.3.1",
     "@commercetools-frontend/sentry": "19.3.1",
     "@emotion/react": "11.1.5",

@@ -22,8 +22,8 @@
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
-    "@babel/runtime": "7.13.17",
-    "@babel/runtime-corejs3": "7.13.17",
+    "@babel/runtime": "7.14.0",
+    "@babel/runtime-corejs3": "7.14.0",
     "@commercetools-frontend/actions-global": "19.3.1",
     "@commercetools-frontend/constants": "19.3.1",
     "@commercetools-frontend/notifications": "19.3.1",
@@ -52,7 +52,7 @@
     "@testing-library/react": "11.2.6",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-intl": "5.17.0",
+    "react-intl": "5.17.4",
     "react-redux": "7.2.4",
     "react-router-dom": "5.2.0"
   },
