@@ -31,8 +31,8 @@
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
-    "@babel/runtime": "7.13.17",
-    "@babel/runtime-corejs3": "7.13.17",
+    "@babel/runtime": "7.14.0",
+    "@babel/runtime-corejs3": "7.14.0",
     "@commercetools-frontend/application-shell-connectors": "19.3.1",
     "@commercetools-frontend/assets": "18.5.4",
     "@commercetools-frontend/constants": "19.3.1",
@@ -66,7 +66,7 @@
   "devDependencies": {
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-intl": "5.17.0"
+    "react-intl": "5.17.4"
   },
   "peerDependencies": {
     "react": "17.x",

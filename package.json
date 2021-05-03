@@ -94,7 +94,7 @@
   },
   "dependencies": {
     "@babel/cli": "7.13.16",
-    "@babel/core": "7.13.16",
+    "@babel/core": "7.14.0",
     "@changesets/changelog-github": "0.4.0",
     "@changesets/cli": "2.16.0",
     "@commercetools-docs/writing-style": "3.0.5",
@@ -104,7 +104,7 @@
     "@commercetools/github-labels": "1.1.0",
     "@commitlint/cli": "12.1.1",
     "@commitlint/config-conventional": "12.1.1",
-    "@formatjs/cli": "4.2.9",
+    "@formatjs/cli": "4.2.11",
     "@graphql-cli/codegen": "1.17.23",
     "@graphql-cli/coverage": "2.1.0",
     "@graphql-cli/validate": "2.1.0",
@@ -128,7 +128,7 @@
     "@types/faker": "5.5.3",
     "@types/jest-environment-puppeteer": "4.4.1",
     "@types/jquery": "3.5.5",
-    "@types/node": "14.14.41",
+    "@types/node": "14.14.43",
     "@types/puppeteer": "5.4.3",
     "@types/uuid": "8.3.0",
     "@types/webpack-env": "1.16.0",
@@ -138,7 +138,7 @@
     "babel-plugin-transform-rename-import": "2.3.0",
     "babel-plugin-typescript-to-proptypes": "1.4.2",
     "cross-env": "7.0.3",
-    "cypress": "7.1.0",
+    "cypress": "7.2.0",
     "dotenv": "8.2.0",
     "eslint": "7.25.0",
     "eslint-formatter-pretty": "4.0.0",
@@ -155,7 +155,7 @@
     "jest-watch-typeahead": "0.6.3",
     "lint-staged": "10.5.4",
     "mri": "1.1.6",
-    "postcss": "8.2.12",
+    "postcss": "8.2.13",
     "postcss-load-config": "3.0.1",
     "postcss-modules": "4.0.0",
     "prettier": "2.2.1",
@@ -165,7 +165,7 @@
     "rosie": "2.1.0",
     "shelljs": "0.8.4",
     "start-server-and-test": "1.12.1",
-    "stylelint": "13.13.0",
+    "stylelint": "13.13.1",
     "stylelint-config-prettier": "8.0.2",
     "stylelint-config-standard": "20.0.0",
     "stylelint-order": "4.1.0",
@@ -174,7 +174,7 @@
     "vfile-message": "2.0.4"
   },
   "resolutions": {
-    "@babel/core": "7.13.16",
+    "@babel/core": "7.14.0",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.0-beta.4",
     "@types/puppeteer": "5.4.3",
     "@types/react-router": "5.1.13",
@@ -184,7 +184,7 @@
     "intl-messageformat-parser": "6.4.4",
     "**/intl-messageformat-parser": "6.4.4",
     "pretty-format": "26.6.2",
-    "react-intl": "5.17.0"
+    "react-intl": "5.17.4"
   },
   "engines": {
     "node": ">=12 || >=14",
