@@ -3,7 +3,7 @@ const path = require('path');
 const resolveRelativePath = (relativePath) =>
   path.resolve(__dirname, relativePath);
 
-const createJestPresetForEnzyme = ({ enzymeAdapterVersion, jestPreset }) => {
+const applyJestPresetWithEnzyme = ({ enzymeAdapterVersion, jestPreset }) => {
   switch (enzymeAdapterVersion) {
     case 16:
     case 17:
@@ -14,8 +14,8 @@ const createJestPresetForEnzyme = ({ enzymeAdapterVersion, jestPreset }) => {
       );
   }
   return {
-    // Use default preset
     ...jestPreset,
+    // Custom preset config specific for Enzyme.
     snapshotSerializers: [
       ...(jestPreset.snapshotSerializers || []),
       'enzyme-to-json/serializer',
@@ -29,4 +29,4 @@ const createJestPresetForEnzyme = ({ enzymeAdapterVersion, jestPreset }) => {
   };
 };
 
-module.exports = createJestPresetForEnzyme;
+module.exports = applyJestPresetWithEnzyme;
