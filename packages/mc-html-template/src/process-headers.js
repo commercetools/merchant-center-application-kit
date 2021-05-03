@@ -24,13 +24,20 @@ const mergeCspDirectives = (...csps) =>
       ),
     {}
   );
-const toHeaderString = (directives = {}, seperator = '; ') =>
+const toHeaderString = (directives = {}) =>
   Object.entries(directives)
     .map(
       ([directive, value]) =>
         `${directive} ${Array.isArray(value) ? value.join(' ') : value}`
     )
-    .join(seperator);
+    .join('; ');
+const toStructuredHeaderString = (directives = {}) =>
+  Object.entries(directives)
+    .map(
+      ([directive, value]) =>
+        `${directive} ${Array.isArray(value) ? value.join('=') : value}`
+    )
+    .join(', ');
 
 const processHeaders = (applicationConfig) => {
   const isMcDevEnv = applicationConfig.env.env === 'development';
@@ -125,9 +132,8 @@ const processHeaders = (applicationConfig) => {
       ),
     }),
     ...(applicationConfig.headers.permissionsPolicies && {
-      'Permissions-Policy': toHeaderString(
-        applicationConfig.headers.permissionsPolicies,
-        ', '
+      'Permissions-Policy': toStructuredHeaderString(
+        applicationConfig.headers.permissionsPolicies
       ),
     }),
   };
