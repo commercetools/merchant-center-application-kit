@@ -35,7 +35,7 @@ const toStructuredHeaderString = (directives = {}) =>
   Object.entries(directives)
     .map(
       ([directive, value]) =>
-        `${directive} ${Array.isArray(value) ? value.join('=') : value}`
+        `${directive}=${Array.isArray(value) ? value.join(' ') : value}`
     )
     .join(', ');
 
