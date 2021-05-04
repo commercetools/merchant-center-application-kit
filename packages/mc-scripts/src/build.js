@@ -118,9 +118,17 @@ function build(previousFileSizes) {
           warnings: [],
         });
       } else {
-        messages = formatWebpackMessages(
-          stats.toJson({ all: false, warnings: true, errors: true })
-        );
+        //TODO: Remove after 'react-dev-utils' natively supports webpack@5
+        const rawMessages = stats.toJson({
+          all: false,
+          warnings: true,
+          errors: true,
+          moduleTrace: false,
+        });
+        messages = formatWebpackMessages({
+          errors: rawMessages.errors.map((e) => e.message),
+          warnings: rawMessages.warnings.map((e) => e.message),
+        });
       }
       if (messages.errors.length) {
         // Only keep the first error. Others are often indicative
