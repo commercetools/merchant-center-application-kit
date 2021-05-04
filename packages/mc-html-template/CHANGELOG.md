@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-html-template
 
+## 20.0.2
+
+### Patch Changes
+
+- [#2186](https://github.com/commercetools/merchant-center-application-kit/pull/2186) [`6c951d70`](https://github.com/commercetools/merchant-center-application-kit/commit/6c951d70819c75ee87a50983f039e5a2e785bfca) Thanks [@tdeekens](https://github.com/tdeekens)! - Add test for processing headers while fixing a bug
+
 ## 20.0.1
 
 ### Patch Changes
