@@ -118,6 +118,7 @@ function build(previousFileSizes) {
           warnings: [],
         });
       } else {
+        //TODO: Remove after 'react-dev-utils' natively supports webpack@5
         const rawMessages = stats.toJson({
           all: false,
           warnings: true,
