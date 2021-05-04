@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-scripts
 
+## 20.0.3
+
+### Patch Changes
+
+- [#2189](https://github.com/commercetools/merchant-center-application-kit/pull/2189) [`b8cc7c9f`](https://github.com/commercetools/merchant-center-application-kit/commit/b8cc7c9fdb0eb207db81f4430be9bfc101814089) Thanks [@dgoemans](https://github.com/dgoemans)! - Temporary fix for parsing Webpack error messages until `react-dev-utils` supports Webpack v5.
+
 ## 20.0.2
 
 ### Patch Changes
