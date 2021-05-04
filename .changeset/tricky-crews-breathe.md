@@ -2,4 +2,4 @@
 '@commercetools-frontend/mc-scripts': patch
 ---
 
-Fix error messages not showing in mc-build
+Temporary fix for parsing Webpack error messages until `react-dev-utils` supports Webpack v5.
