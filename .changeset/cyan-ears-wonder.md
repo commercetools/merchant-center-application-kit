@@ -23,16 +23,26 @@ NODE_ENV=production dotenv -e .env.gcp-production-eu -- mc-scripts compile-html
 
 Now the `mc-scripts` CLI has the dotenv features built-in, so you don't need to install and use `dotenv-cli` anymore.
 
-The options are as following:
+By default, the following dotenv files are loaded according to the current environment values specified on each command: `process.MC_APP_ENV` or `process.NODE_ENV`. The priority of how the files are merged and overwritten goes from top to bottom (highest defined variable overrides lower).
+
+- `.env.development.local`, `.env.test.local`, `.env.production.local`: Local overrides of environment-specific settings.
+- `.env.development`, `.env.test`, `.env.production`: Environment-specific settings.
+- `.env.local`: Local overrides. **This file is loaded for all environments except test.**
+- `.env`
+
+Please refer to the [dotenv documentation](https://github.com/motdotla/dotenv) for more details.
+
+Furthermore, you can pass additional dotenv files by using the following option:
 
 - `--env <path>`: Parses the file path as a dotenv file and adds the variables to the environment. Multiple flags are allowed.
-- `--env-type <environment>`: Supports cascading env variables from `.env`, `.env.local`, `.env.<environment>`, `.env.<environment>.local` files.
 
-Therefore, the example above can be refactored as following:
+These files will take higher priority over the standard environment dotenv files.
+
+The example above can then be refactored as following:
 
 ```diff
 -dotenv -c development -- mc-scripts start
-+mc-scripts --env-type development start
++mc-scripts start
 
 -NODE_ENV=production dotenv -- mc-scripts compile-html
 +NODE_ENV=production mc-scripts compile-html

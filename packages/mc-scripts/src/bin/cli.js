@@ -18,7 +18,6 @@ Usage: mc-scripts [global-options] [command] [options]
 Global options:
 
   --env <path>              (optional) Parses the file path as a dotenv file and adds the variables to the environment. Multiple flags are allowed.
-  --env-type <environment>  (optional) Supports cascading env variables from ".env", ".env.local", ".env.<environment>", ".env.<environment>.local" files.
 
 Commands:
 
@@ -161,28 +160,42 @@ async function getApplicationPath(flags) {
 
 // Load dotenv files into the process environment.
 // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
+// Inspired also by https://create-react-app.dev/docs/adding-custom-environment-variables/#what-other-env-files-can-be-used
 function loadDotEnvFiles(flags, applicationPath) {
-  let dotenvPath = [];
+  const environment = process.MC_APP_ENV || process.NODE_ENV;
 
-  if (flags['env-type']) {
-    dotenvPath = [
-      `.env.${flags['env-type']}.local`,
-      `.env.${flags['env-type']}`,
-      '.env.local',
-      '.env',
-    ];
-  } else {
-    if (typeof flags.env === 'string') {
-      dotenvPath.push(flags.env);
-    } else if (Array.isArray(flags.env)) {
-      dotenvPath.push(...flags.env);
-    } else {
-      dotenvPath.push('.env');
-    }
+  // https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
+  const dotenvFiles = [
+    `.env.${environment}.local`,
+    // Don't include `.env.local` for `test` environment
+    // since normally you expect tests to produce the same
+    // results for everyone
+    process.NODE_ENV !== 'test' && `.env.local`,
+    `.env.${environment}`,
+    '.env',
+  ].filter(Boolean);
+
+  // Additionally add other dotenv files if specified by the `--env` option.
+  if (typeof flags.env === 'string') {
+    dotenvFiles.push(flags.env);
+  } else if (Array.isArray(flags.env)) {
+    // Multiple `--env` options are allowed.
+    dotenvFiles.push(...flags.env);
   }
 
-  dotenvPath.forEach((env) => {
-    const dotenvFilePath = path.join(applicationPath, env);
-    dotenvExpand(dotenv.config({ path: path.resolve(dotenvFilePath) }));
+  // Load environment variables from .env* files. Suppress warnings using silent
+  // if this file is missing. dotenv will never modify any environment variables
+  // that have already been set.  Variable expansion is supported in .env files.
+  // https://github.com/motdotla/dotenv
+  // https://github.com/motdotla/dotenv-expand
+  dotenvFiles.forEach((dotenvFile) => {
+    if (fs.existsSync(dotenvFile)) {
+      const dotenvFilePath = path.join(applicationPath, dotenvFile);
+      dotenvExpand(
+        dotenv.config({
+          path: path.resolve(dotenvFilePath),
+        })
+      );
+    }
   });
 }
