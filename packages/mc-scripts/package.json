@@ -18,7 +18,7 @@
   "main": "./build/index.js",
   "files": ["build", "config", "package.json", "LICENSE", "README.md"],
   "bin": {
-    "mc-scripts": "./build/bin/mc-scripts.js"
+    "mc-scripts": "./bin/mc-scripts.js"
   },
   "browserslist": {
     "production": [">1%", "not op_mini all", "not dead"],

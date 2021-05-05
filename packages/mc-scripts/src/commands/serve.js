@@ -13,19 +13,7 @@ process.on('unhandledRejection', (err) => {
 const fs = require('fs');
 const path = require('path');
 const http = require('http');
-const mri = require('mri');
 const serveHandler = require('serve-handler');
-
-const flags = mri(process.argv.slice(2), {
-  alias: { help: ['h'] },
-});
-
-if (flags.help) {
-  console.log(`
-  Usage: mc-scripts serve
-  `);
-  process.exit(0);
-}
 
 const port = 3001;
 
