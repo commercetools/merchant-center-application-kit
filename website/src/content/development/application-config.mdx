@@ -220,7 +220,7 @@ For example:
 - as an inline environment variable when running a script command
 
   ```console
-  CLOUD_IDENTIFIER=gcp-eu yarn start
+  CLOUD_IDENTIFIER=gcp-eu mc-scripts start
   ```
 
 - using a [dotenv](https://github.com/motdotla/dotenv) file
@@ -230,7 +230,7 @@ For example:
   ```
 
   ```console
-  dotenv -e .env-eu -- yarn start
+  mc-scripts --env .env-eu start
   ```
 
 - by defining the environment variables in your CI service

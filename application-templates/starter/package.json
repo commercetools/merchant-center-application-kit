@@ -5,9 +5,9 @@
   "private": true,
   "scripts": {
     "build": "mc-scripts build",
-    "start": "dotenv -- mc-scripts start",
-    "compile-html": "NODE_ENV=production dotenv -- mc-scripts compile-html",
-    "compile-html:local": "NODE_ENV=production MC_APP_ENV=development dotenv -- mc-scripts compile-html --transformer @commercetools-frontend/mc-dev-authentication/transformer-local.js",
+    "start": "mc-scripts start",
+    "compile-html": "NODE_ENV=production mc-scripts compile-html",
+    "compile-html:local": "NODE_ENV=production MC_APP_ENV=development mc-scripts compile-html --transformer @commercetools-frontend/mc-dev-authentication/transformer-local.js",
     "start:prod:local": "yarn compile-html:local && mc-scripts serve",
     "extract-intl": "formatjs extract --format=$(pwd)/intl-formatter.js --out-file=$(pwd)/src/i18n/data/core.json 'src/**/!(*.spec).js'",
     "test": "jest --config jest.test.config.js",
@@ -42,7 +42,6 @@
     "@formatjs/cli": "4.2.11",
     "@manypkg/cli": "0.17.0",
     "@testing-library/react": "11.2.6",
-    "dotenv-cli": "4.0.0",
     "jest": "26.6.3"
   }
 }

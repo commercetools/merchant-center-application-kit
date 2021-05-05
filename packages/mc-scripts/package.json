@@ -16,9 +16,9 @@
     "access": "public"
   },
   "main": "./build/index.js",
-  "files": ["bin", "build", "config", "package.json", "LICENSE", "README.md"],
+  "files": ["build", "config", "package.json", "LICENSE", "README.md"],
   "bin": {
-    "mc-scripts": "./bin/mc-scripts.js"
+    "mc-scripts": "./build/bin/mc-scripts.js"
   },
   "browserslist": {
     "production": [">1%", "not op_mini all", "not dead"],
@@ -37,6 +37,7 @@
     "@commercetools-frontend/babel-preset-mc-app": "20.0.1",
     "@commercetools-frontend/mc-dev-authentication": "19.0.0",
     "@commercetools-frontend/mc-html-template": "20.0.2",
+    "@manypkg/get-packages": "1.1.1",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.0-beta.4",
     "@svgr/webpack": "5.5.0",
     "autoprefixer": "10.2.5",
@@ -50,6 +51,7 @@
     "html-webpack-plugin": "5.3.1",
     "json-loader": "0.5.7",
     "mini-css-extract-plugin": "1.6.0",
+    "minimatch": "3.0.4",
     "moment-locales-webpack-plugin": "1.2.0",
     "mri": "1.1.6",
     "postcss": "8.2.13",
@@ -59,6 +61,7 @@
     "postcss-import": "14.0.1",
     "postcss-loader": "5.2.0",
     "postcss-reporter": "7.0.2",
+    "prompts": "2.4.1",
     "react-dev-utils": "11.0.4",
     "react-refresh": "0.10.0",
     "serve-handler": "6.1.3",
