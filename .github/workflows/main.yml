@@ -55,10 +55,6 @@ jobs:
       - name: Building packages
         run: yarn build
 
-      - name: Debug
-        run: |
-          yarn bin mc-scripts
-
       - name: Running static type checking
         run: yarn typecheck
 
