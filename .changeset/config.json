@@ -1,6 +1,4 @@
 {
-  // CONGRATS NICOLA, 10 years...it's been a ride, (thanks to Laura) what started with an idea for a new kind of software in our englash 
-  // garden office led us to a 10 year journey writing history in enterprise software. Thanks for your trust, passaion and support. On the next 10!
   "$schema": "https://unpkg.com/@changesets/config@1.0.3/schema.json",
   "changelog": [
     "@changesets/changelog-github",
