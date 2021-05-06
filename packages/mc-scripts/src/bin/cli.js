@@ -1,3 +1,10 @@
+// Makes the script crash on unhandled rejections instead of silently
+// ignoring them. In the future, promise rejections that are not handled will
+// terminate the Node.js process with a non-zero exit code.
+process.on('unhandledRejection', (err) => {
+  throw err;
+});
+
 const fs = require('fs');
 const path = require('path');
 const mri = require('mri');
@@ -43,18 +50,35 @@ const appDirectory = fs.realpathSync(process.cwd());
 (async () => {
   try {
     switch (command) {
-      case 'build':
+      case 'build': {
+        // Do this as the first thing so that any code reading it knows the right env.
+        process.env.BABEL_ENV = 'production';
+        process.env.NODE_ENV = 'production';
+
+        proxyCommand();
+        break;
+      }
       case 'serve': {
+        // Do this as the first thing so that any code reading it knows the right env.
+        process.env.NODE_ENV = 'production';
+
         proxyCommand();
         break;
       }
       case 'compile-html': {
+        // Do this as the first thing so that any code reading it knows the right env.
+        process.env.NODE_ENV = 'production';
+
         // Get specific flag for this command.
         const commandArgs = getArgsForCommand(['transformer']);
         proxyCommand({ commandArgs });
         break;
       }
       case 'start': {
+        // Do this as the first thing so that any code reading it knows the right env.
+        process.env.BABEL_ENV = 'development';
+        process.env.NODE_ENV = 'development';
+
         // Special case to handle the `--match` option, where the user is prompted
         // to select an application. We then use that as the `cwd` value when executing the command.
         const applicationPath = await getApplicationPath(flags);
@@ -162,26 +186,30 @@ async function getApplicationPath(flags) {
 // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
 // Inspired also by https://create-react-app.dev/docs/adding-custom-environment-variables/#what-other-env-files-can-be-used
 function loadDotEnvFiles(flags, applicationPath) {
-  const environment = process.MC_APP_ENV || process.NODE_ENV;
+  const environment = process.env.MC_APP_ENV || process.env.NODE_ENV;
 
-  // https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
-  const dotenvFiles = [
-    `.env.${environment}.local`,
-    // Don't include `.env.local` for `test` environment
-    // since normally you expect tests to produce the same
-    // results for everyone
-    process.NODE_ENV !== 'test' && `.env.local`,
-    `.env.${environment}`,
-    '.env',
-  ].filter(Boolean);
+  const dotenvFiles = [];
 
-  // Additionally add other dotenv files if specified by the `--env` option.
+  // Custom dotenv files specified by the `--env` option takes precedence.
   if (typeof flags.env === 'string') {
     dotenvFiles.push(flags.env);
   } else if (Array.isArray(flags.env)) {
     // Multiple `--env` options are allowed.
     dotenvFiles.push(...flags.env);
   }
+
+  // https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
+  dotenvFiles.push(
+    ...[
+      `.env.${environment}.local`,
+      // Don't include `.env.local` for `test` environment
+      // since normally you expect tests to produce the same
+      // results for everyone
+      process.NODE_ENV !== 'test' && `.env.local`,
+      `.env.${environment}`,
+      '.env',
+    ].filter(Boolean)
+  );
 
   // Load environment variables from .env* files. Suppress warnings using silent
   // if this file is missing. dotenv will never modify any environment variables
