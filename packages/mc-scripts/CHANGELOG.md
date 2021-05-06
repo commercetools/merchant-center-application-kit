@@ -1,5 +1,13 @@
 # @commercetools-frontend/mc-scripts
 
+## 20.1.1
+
+### Patch Changes
+
+- [#2196](https://github.com/commercetools/merchant-center-application-kit/pull/2196) [`a2f6732c`](https://github.com/commercetools/merchant-center-application-kit/commit/a2f6732c655f5f1fef2bd7511a5d35a9b5f24617) Thanks [@emmenko](https://github.com/emmenko)! - Resolve path to dotenv file before checking for its existence.
+
+* [#2196](https://github.com/commercetools/merchant-center-application-kit/pull/2196) [`a2f6732c`](https://github.com/commercetools/merchant-center-application-kit/commit/a2f6732c655f5f1fef2bd7511a5d35a9b5f24617) Thanks [@emmenko](https://github.com/emmenko)! - Remove experimental `--match` option.
+
 ## 20.1.0
 
 ### Minor Changes
