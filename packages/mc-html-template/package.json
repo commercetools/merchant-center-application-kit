@@ -52,7 +52,7 @@
         "@babel/preset-env",
         {
           "targets": {
-            "node": "10"
+            "node": "12"
           },
           "modules": "commonjs",
           "useBuiltIns": "usage",

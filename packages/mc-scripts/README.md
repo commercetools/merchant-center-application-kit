@@ -14,7 +14,30 @@ $ npm install --save @commercetools-frontend/mc-scripts
 
 ## Usage
 
-The package exports some functions to configure Webpack
+The CLI provides some commands. See https://docs.commercetools.com/custom-applications/development/available-scripts.
+
+## Using dotenv files (`.env`)
+
+Now the `mc-scripts` CLI has the dotenv features built-in.
+
+By default, the following dotenv files are loaded according to the current environment values specified on each command: `process.MC_APP_ENV` or `process.NODE_ENV`. The priority of how the files are merged and overwritten goes from top to bottom (highest defined variable overrides lower).
+
+- `.env.development.local`, `.env.test.local`, `.env.production.local`: Local overrides of environment-specific settings.
+- `.env.development`, `.env.test`, `.env.production`: Environment-specific settings.
+- `.env.local`: Local overrides. **This file is loaded for all environments except test.**
+- `.env`
+
+Please refer to the [dotenv documentation](https://github.com/motdotla/dotenv) for more details.
+
+Furthermore, you can pass additional dotenv files by using the following option:
+
+- `--env <path>`: Parses the file path as a dotenv file and adds the variables to the environment. Multiple flags are allowed.
+
+These files will take higher priority over the standard environment dotenv files.
+
+## API usage
+
+The package exports some functions to configure Webpack:
 
 ```js
 const {

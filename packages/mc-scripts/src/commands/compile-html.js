@@ -19,20 +19,7 @@ const {
 } = require('@commercetools-frontend/assets');
 const { compileHtml } = require('@commercetools-frontend/mc-html-template');
 
-const flags = mri(process.argv.slice(2), {
-  alias: { help: ['h'] },
-});
-
-if (flags.help) {
-  console.log(`
-  Usage: mc-scripts compile-html [options]
-
-  Options:
-  --transformer=<path>      (optional) The path to a JS module that can be used to generate a configuration for a specific cloud provider (e.g. Netlify, Vercel, Firebase).
-  `);
-  process.exit(0);
-}
-
+const flags = mri(process.argv.slice(2));
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
