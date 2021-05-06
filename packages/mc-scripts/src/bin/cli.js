@@ -8,11 +8,8 @@ process.on('unhandledRejection', (err) => {
 const fs = require('fs');
 const path = require('path');
 const mri = require('mri');
-const prompts = require('prompts');
-const minimatch = require('minimatch');
 const dotenv = require('dotenv');
 const dotenvExpand = require('dotenv-expand');
-const { getPackages } = require('@manypkg/get-packages');
 const spawn = require('react-dev-utils/crossSpawn');
 
 const flags = mri(process.argv.slice(2), { alias: { help: ['h'] } });
@@ -35,7 +32,6 @@ Commands:
       --transformer <path>  (optional) The path to a JS module that can be used to generate a configuration for a specific cloud provider (e.g. Netlify, Vercel, Firebase).
 
   start                     Starts the application in development mode using Webpack Dev Server.
-      --match <glob>        (optional) A glob pattern (see "minimatch" package on NPM) for matching multiple package names within a mono repository. A prompt will be presented to select the package to execute the command from.
 
   serve                     Serves previously built and compiled application from the "public" folder.
   `);
@@ -45,7 +41,7 @@ Commands:
 const command = commands[0];
 
 // Get the current directory where the CLI is executed from. Usually this is the application folder.
-const appDirectory = fs.realpathSync(process.cwd());
+const applicationDirectory = fs.realpathSync(process.cwd());
 
 (async () => {
   try {
@@ -79,10 +75,7 @@ const appDirectory = fs.realpathSync(process.cwd());
         process.env.BABEL_ENV = 'development';
         process.env.NODE_ENV = 'development';
 
-        // Special case to handle the `--match` option, where the user is prompted
-        // to select an application. We then use that as the `cwd` value when executing the command.
-        const applicationPath = await getApplicationPath(flags);
-        proxyCommand({ applicationPath });
+        proxyCommand();
         break;
       }
       default:
@@ -108,20 +101,16 @@ function getArgsForCommand(allowedFlags = []) {
   }, []);
 }
 
-function proxyCommand({ commandArgs, applicationPath } = {}) {
-  // Always use `cwd`, defaults to the application folder.
-  // The `applicationPath` is usually used when selecting an application.
-  const cwd = applicationPath || appDirectory;
-
+function proxyCommand({ commandArgs } = {}) {
   // Load dotenv files into the process environment.
   // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
-  loadDotEnvFiles(flags, cwd);
+  loadDotEnvFiles(flags);
 
   // Spawn the actual command.
   const result = spawn.sync(
     'node',
     [require.resolve(`../commands/${command}`)].concat(commandArgs),
-    { cwd, stdio: 'inherit' }
+    { stdio: 'inherit' }
   );
 
   // Handle exit signals.
@@ -147,45 +136,10 @@ function proxyCommand({ commandArgs, applicationPath } = {}) {
   process.exit(result.status);
 }
 
-// Determines the application path where to execute the command from.
-// If the `--match` flag is provided, the user is prompted to select an
-// application matching the given glob pattern.
-async function getApplicationPath(flags) {
-  if (!flags.match) {
-    return appDirectory;
-  }
-
-  const { packages } = await getPackages(process.cwd());
-  const matchedPackages = packages.filter(({ packageJson }) =>
-    minimatch(packageJson.name, flags.match)
-  );
-  if (matchedPackages.length === 0) {
-    throw new Error(`No packages found matching the pattern "${flags.match}".`);
-  }
-  if (matchedPackages.length === 1) {
-    return matchedPackages[0].dir;
-  }
-
-  const applicationPrompt = await prompts({
-    type: 'select',
-    name: 'applicationPath',
-    message: 'Select the application where to execute the mc-scripts command.',
-    choices: matchedPackages.map(({ packageJson, dir }) => ({
-      title: packageJson.name,
-      value: dir,
-    })),
-  });
-  if (applicationPrompt.applicationPath) {
-    return applicationPrompt.applicationPath;
-  }
-
-  throw new Error(`No package selected, aborting.`);
-}
-
 // Load dotenv files into the process environment.
 // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
 // Inspired also by https://create-react-app.dev/docs/adding-custom-environment-variables/#what-other-env-files-can-be-used
-function loadDotEnvFiles(flags, applicationPath) {
+function loadDotEnvFiles(flags) {
   const environment = process.env.MC_APP_ENV || process.env.NODE_ENV;
 
   const dotenvFiles = [];
@@ -217,13 +171,11 @@ function loadDotEnvFiles(flags, applicationPath) {
   // https://github.com/motdotla/dotenv
   // https://github.com/motdotla/dotenv-expand
   dotenvFiles.forEach((dotenvFile) => {
-    if (fs.existsSync(dotenvFile)) {
-      const dotenvFilePath = path.join(applicationPath, dotenvFile);
-      dotenvExpand(
-        dotenv.config({
-          path: path.resolve(dotenvFilePath),
-        })
-      );
+    const dotenvFilePath = path.resolve(
+      path.join(applicationDirectory, dotenvFile)
+    );
+    if (fs.existsSync(dotenvFilePath)) {
+      dotenvExpand(dotenv.config({ path: dotenvFilePath }));
     }
   });
 }
