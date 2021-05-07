@@ -14,7 +14,7 @@ const sessionAuthVerifier = createSessionAuthVerifier({
   inferIssuer: true,
 });
 
-export default async (request: NowRequest, response: NowResponse) => {
+async function handler(request: NowRequest, response: NowResponse) {
   const { url, headers, body } = request;
   try {
     await sessionAuthVerifier(request, response);
@@ -24,6 +24,7 @@ export default async (request: NowRequest, response: NowResponse) => {
       url,
       headers,
       body,
+      error,
     });
     return;
   }
@@ -35,4 +36,6 @@ export default async (request: NowRequest, response: NowResponse) => {
     // @ts-ignore
     session: request.session,
   });
-};
+}
+
+export default handler;
