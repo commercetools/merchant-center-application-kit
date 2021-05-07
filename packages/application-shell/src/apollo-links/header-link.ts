@@ -3,7 +3,7 @@ import type {
   ApplicationWindow,
   TGraphQLTargets,
 } from '@commercetools-frontend/constants';
-import type { TApolloContext } from '../utils/apollo-context';
+import type { TApolloContext, THeaders } from '../utils/apollo-context';
 
 import { ApolloClient, ApolloLink } from '@apollo/client';
 import omitEmpty from 'omit-empty-es';
@@ -22,7 +22,6 @@ declare let window: ApplicationWindow;
 type ApolloContextWithInMemoryCache = TApolloContext & {
   cache: ApolloClient<NormalizedCacheObject>;
 };
-type Headers = Record<string, string>;
 type QueryVariables = {
   /**
    * @deprecated: Use `{ context: { target } }`
@@ -44,6 +43,27 @@ type QueryVariables = {
 
 const isKnownGraphQlTarget = (target?: TGraphQLTargets) =>
   target ? Object.values(GRAPHQL_TARGETS).includes(target) : false;
+
+const getAppliedForwardToHeaders = (
+  apolloContext: ApolloContextWithInMemoryCache
+): THeaders => {
+  if (apolloContext.forwardToConfig) {
+    return {
+      ...Object.entries(apolloContext.forwardToConfig.headers ?? {}).reduce(
+        (customForwardHeaders, [headerName, headerValue]) => ({
+          ...customForwardHeaders,
+          // Prefix headers so that the MC API can allow and forward them.
+          [`x-forward-header-${headerName}`]: headerValue,
+        }),
+        {}
+      ),
+      [SUPPORTED_HEADERS.ACCEPT_VERSION]: apolloContext.forwardToConfig.version,
+      [SUPPORTED_HEADERS.X_FORWARD_TO]: apolloContext.forwardToConfig.uri,
+    };
+  }
+
+  return {};
+};
 
 /* eslint-disable import/prefer-default-export */
 // Use a middleware to update the request headers with the correct params.
@@ -82,7 +102,7 @@ const headerLink = new ApolloLink((operation, forward) => {
 
   operation.setContext({
     credentials: 'include',
-    headers: omitEmpty<Headers>({
+    headers: omitEmpty<THeaders>({
       [SUPPORTED_HEADERS.AUTHORIZATION]: sessionToken
         ? `Bearer ${sessionToken}`
         : undefined,
@@ -96,12 +116,7 @@ const headerLink = new ApolloLink((operation, forward) => {
       [SUPPORTED_HEADERS.X_APPLICATION_ID]: window.app.applicationId,
       [SUPPORTED_HEADERS.X_FEATURE_FLAG]: featureFlag,
       // Additional headers for the forward-to feature.
-      [SUPPORTED_HEADERS.ACCEPT_VERSION]: apolloContext.forwardToConfig
-        ? apolloContext.forwardToConfig.version
-        : undefined,
-      [SUPPORTED_HEADERS.X_FORWARD_TO]: apolloContext.forwardToConfig
-        ? apolloContext.forwardToConfig.uri
-        : undefined,
+      ...getAppliedForwardToHeaders(apolloContext),
     }),
   });
   return forward(operation).map((response) => {
