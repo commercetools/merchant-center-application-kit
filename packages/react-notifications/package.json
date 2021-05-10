@@ -29,7 +29,7 @@
     "@commercetools-frontend/notifications": "20.0.1",
     "@commercetools-frontend/sentry": "20.0.1",
     "@commercetools-uikit/design-system": "^12.0.0",
-    "@commercetools-uikit/icon-button": "^12.0.0",
+    "@commercetools-uikit/icon-button": "^12.0.4",
     "@commercetools-uikit/icons": "^12.0.0",
     "@commercetools-uikit/spacings": "^12.0.0",
     "@emotion/react": "11.1.5",
