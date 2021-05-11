@@ -42,9 +42,8 @@ const NotificationsListGlobal = (props: Props) => {
     <div css={getStyles(props)}>
       {notifications.map((notification) => {
         // 1. Check if there is a custom notification component first
-        const CustomNotificationComponent = mapCustomNotificationToComponent(
-          notification
-        );
+        const CustomNotificationComponent =
+          mapCustomNotificationToComponent(notification);
         if (CustomNotificationComponent) {
           return (
             <CustomNotificationComponent
@@ -112,9 +111,8 @@ const NotificationsListPage = (props: Props) => {
     <div css={getStyles(props)}>
       {notifications.map((notification) => {
         // 1. Check if there is a custom notification component first
-        const CustomNotificationComponent = mapCustomNotificationToComponent(
-          notification
-        );
+        const CustomNotificationComponent =
+          mapCustomNotificationToComponent(notification);
         if (CustomNotificationComponent) {
           return (
             <CustomNotificationComponent
@@ -165,7 +163,8 @@ const NotificationsListPage = (props: Props) => {
                 key={notification.id}
                 notification={{
                   ...errorNotification,
-                  values: notification.values as TAppNotificationValuesUnexpectedError,
+                  values:
+                    notification.values as TAppNotificationValuesUnexpectedError,
                 }}
                 dismiss={() => {
                   dispatch(removeNotification(notification.id));
@@ -190,9 +189,8 @@ const NotificationsListSide = (props: Props) => {
     <div css={getStyles(props)}>
       {notifications.map((notification) => {
         // 1. Check if there is a custom notification component first
-        const CustomNotificationComponent = mapCustomNotificationToComponent(
-          notification
-        );
+        const CustomNotificationComponent =
+          mapCustomNotificationToComponent(notification);
         if (CustomNotificationComponent) {
           return (
             <CustomNotificationComponent

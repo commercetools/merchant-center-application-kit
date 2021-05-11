@@ -86,14 +86,16 @@ const useIsAuthorized = ({
     )}.`
   );
 
-  const actualPermissions = useApplicationContext<TNormalizedPermissions | null>(
-    (applicationContext) =>
-      projectPermissions?.permissions ?? applicationContext.permissions
-  );
-  const actualActionRights = useApplicationContext<TNormalizedActionRights | null>(
-    (applicationContext) =>
-      projectPermissions?.actionRights ?? applicationContext.actionRights
-  );
+  const actualPermissions =
+    useApplicationContext<TNormalizedPermissions | null>(
+      (applicationContext) =>
+        projectPermissions?.permissions ?? applicationContext.permissions
+    );
+  const actualActionRights =
+    useApplicationContext<TNormalizedActionRights | null>(
+      (applicationContext) =>
+        projectPermissions?.actionRights ?? applicationContext.actionRights
+    );
   const actualDataFences = useApplicationContext<TNormalizedDataFences | null>(
     (applicationContext) =>
       projectPermissions?.dataFences ?? applicationContext.dataFences

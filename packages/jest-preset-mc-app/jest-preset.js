@@ -15,9 +15,8 @@ module.exports = {
   moduleFileExtensions: ['js', 'mjs', 'cjs', 'jsx', 'json'],
   moduleDirectories: ['src', 'node_modules'],
   moduleNameMapper: {
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': resolveRelativePath(
-      './transform-file.js'
-    ),
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      resolveRelativePath('./transform-file.js'),
     '\\.css$': 'identity-obj-proxy',
   },
   rootDir: rootPath,

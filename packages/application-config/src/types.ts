@@ -3,9 +3,11 @@ import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema'
 
 import { CLOUD_IDENTIFIERS } from './constants';
 
-export type TJSONSchemaForCustomApplicationConfigurationFiles = JSONSchemaForCustomApplicationConfigurationFiles;
+export type TJSONSchemaForCustomApplicationConfigurationFiles =
+  JSONSchemaForCustomApplicationConfigurationFiles;
 
-export type CloudIdentifier = typeof CLOUD_IDENTIFIERS[keyof typeof CLOUD_IDENTIFIERS];
+export type CloudIdentifier =
+  typeof CLOUD_IDENTIFIERS[keyof typeof CLOUD_IDENTIFIERS];
 
 // Supported environment variables
 export type ApplicationConfigEnv = 'production' | 'development';

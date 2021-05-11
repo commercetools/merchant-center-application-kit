@@ -40,12 +40,14 @@ const processConfig = ({
 
   const loadedAppConfig = configJson ?? loadConfig();
   validateConfig(loadedAppConfig);
-  const validatedLoadedAppConfig = loadedAppConfig as JSONSchemaForCustomApplicationConfigurationFiles;
+  const validatedLoadedAppConfig =
+    loadedAppConfig as JSONSchemaForCustomApplicationConfigurationFiles;
 
-  const appConfig = substituteEnvVariablePlaceholders<JSONSchemaForCustomApplicationConfigurationFiles>(
-    validatedLoadedAppConfig,
-    { processEnv }
-  );
+  const appConfig =
+    substituteEnvVariablePlaceholders<JSONSchemaForCustomApplicationConfigurationFiles>(
+      validatedLoadedAppConfig,
+      { processEnv }
+    );
   const additionalAppEnv = appConfig.additionalEnv ?? {};
   const revision = (additionalAppEnv.revision as string) ?? '';
 

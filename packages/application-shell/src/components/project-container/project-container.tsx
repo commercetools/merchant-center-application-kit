@@ -49,10 +49,8 @@ const ProjectContainer = <AdditionalEnvironmentProperties extends {}>(
   props: Props<AdditionalEnvironmentProperties>
 ) => {
   const intl = useIntl();
-  const [
-    localeSwitcherNode,
-    setLocaleSwitcherNode,
-  ] = React.useState<HTMLElement | null>(null);
+  const [localeSwitcherNode, setLocaleSwitcherNode] =
+    React.useState<HTMLElement | null>(null);
 
   React.useEffect(() => {
     /**

@@ -48,7 +48,8 @@ const isKnownGraphQlTarget = (target?: TGraphQLTargets) =>
 /* eslint-disable import/prefer-default-export */
 // Use a middleware to update the request headers with the correct params.
 const headerLink = new ApolloLink((operation, forward) => {
-  const apolloContext = operation.getContext() as ApolloContextWithInMemoryCache;
+  const apolloContext =
+    operation.getContext() as ApolloContextWithInMemoryCache;
 
   const variables = operation.variables as QueryVariables;
 

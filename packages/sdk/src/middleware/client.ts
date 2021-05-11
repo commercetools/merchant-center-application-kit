@@ -22,19 +22,18 @@ const userAgent = createHttpUserAgent({
   contactEmail: 'mc@commercetools.com',
 });
 
-const customUserAgentMiddleware = (next: Next): Next => (
-  request: MiddlewareRequest,
-  response: MiddlewareResponse
-) => {
-  const requestWithCustomUserAgent = {
-    ...request,
-    headers: {
-      ...request.headers,
-      'X-User-Agent': userAgent,
-    },
+const customUserAgentMiddleware =
+  (next: Next): Next =>
+  (request: MiddlewareRequest, response: MiddlewareResponse) => {
+    const requestWithCustomUserAgent = {
+      ...request,
+      headers: {
+        ...request.headers,
+        'X-User-Agent': userAgent,
+      },
+    };
+    next(requestWithCustomUserAgent, response);
   };
-  next(requestWithCustomUserAgent, response);
-};
 
 // NOTE we should not use these directly but rather have them passed in from
 // the application

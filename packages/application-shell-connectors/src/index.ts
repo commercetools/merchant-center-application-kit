@@ -7,12 +7,10 @@ import type {
   TNormalizedDataFences as NormalizedDataFences,
 } from './components/application-context';
 
-export type TProviderProps<
-  AdditionalEnvironmentProperties extends {}
-> = ProviderProps<AdditionalEnvironmentProperties>;
-export type TApplicationContext<
-  AdditionalEnvironmentProperties extends {}
-> = ApplicationContext<AdditionalEnvironmentProperties>;
+export type TProviderProps<AdditionalEnvironmentProperties extends {}> =
+  ProviderProps<AdditionalEnvironmentProperties>;
+export type TApplicationContext<AdditionalEnvironmentProperties extends {}> =
+  ApplicationContext<AdditionalEnvironmentProperties>;
 
 export type TNormalizedMenuVisibilities = NormalizedMenuVisibilities;
 export type TNormalizedPermissions = NormalizedPermissions;

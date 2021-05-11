@@ -71,37 +71,40 @@ type TInjectAuthorizedOptions<OwnProps extends {}> = {
   getSelectDataFenceData?: (ownProps: OwnProps) => TSelectDataFenceData;
 };
 
-const injectAuthorized = <
-  OwnProps extends {
-    isAuthorized?: boolean;
-  },
-  InjectedProps extends OwnProps & { [key: string]: boolean }
->(
-  demandedPermissions: TPermissionName[],
-  options: TInjectAuthorizedOptions<OwnProps> = {},
-  propName = 'isAuthorized'
-) => (
-  Component: React.ComponentType<OwnProps>
-): React.ComponentType<OwnProps & InjectedProps> => {
-  const WrappedComponent = (props: OwnProps) => (
-    <Authorized
-      shouldMatchSomePermissions={options.shouldMatchSomePermissions}
-      demandedPermissions={demandedPermissions}
-      demandedActionRights={options.actionRights}
-      demandedDataFences={options.dataFences}
-      selectDataFenceData={
-        options.getSelectDataFenceData && options.getSelectDataFenceData(props)
-      }
-      render={(isAuthorized) => (
-        <Component {...props} {...{ [propName]: isAuthorized }} />
-      )}
-    />
-  );
-  WrappedComponent.displayName = `withUserPermissions(${getDisplayName<OwnProps>(
-    Component
-  )})`;
-  return WrappedComponent;
-};
+const injectAuthorized =
+  <
+    OwnProps extends {
+      isAuthorized?: boolean;
+    },
+    InjectedProps extends OwnProps & { [key: string]: boolean }
+  >(
+    demandedPermissions: TPermissionName[],
+    options: TInjectAuthorizedOptions<OwnProps> = {},
+    propName = 'isAuthorized'
+  ) =>
+  (
+    Component: React.ComponentType<OwnProps>
+  ): React.ComponentType<OwnProps & InjectedProps> => {
+    const WrappedComponent = (props: OwnProps) => (
+      <Authorized
+        shouldMatchSomePermissions={options.shouldMatchSomePermissions}
+        demandedPermissions={demandedPermissions}
+        demandedActionRights={options.actionRights}
+        demandedDataFences={options.dataFences}
+        selectDataFenceData={
+          options.getSelectDataFenceData &&
+          options.getSelectDataFenceData(props)
+        }
+        render={(isAuthorized) => (
+          <Component {...props} {...{ [propName]: isAuthorized }} />
+        )}
+      />
+    );
+    WrappedComponent.displayName = `withUserPermissions(${getDisplayName<OwnProps>(
+      Component
+    )})`;
+    return WrappedComponent;
+  };
 
 export default Authorized;
 export { injectAuthorized };

@@ -6,7 +6,8 @@ export type TAudience = string;
 
 export type TIssuer = string;
 
-export type TCloudIdentifier = typeof CLOUD_IDENTIFIERS[keyof typeof CLOUD_IDENTIFIERS];
+export type TCloudIdentifier =
+  typeof CLOUD_IDENTIFIERS[keyof typeof CLOUD_IDENTIFIERS];
 
 export type TSessionMiddlewareOptions = {
   // The public-facing URL used to connect to the server / serverless function.

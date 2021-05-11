@@ -9,7 +9,8 @@ import * as ProjectMock from '../project';
 const transformers = {
   graphql: Transformer<TUser, TUserGraphql>('graphql', {
     replaceFields: ({ fields }) => {
-      const project = ProjectMock.random().buildGraphql<ProjectMock.TProjectGraphql>();
+      const project =
+        ProjectMock.random().buildGraphql<ProjectMock.TProjectGraphql>();
       const projectsPaginatedResults = toGraphqlPaginatedQueryResult(
         [project],
         {

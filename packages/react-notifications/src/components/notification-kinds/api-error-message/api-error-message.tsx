@@ -7,7 +7,8 @@ import has from 'lodash/has';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import messages from './messages';
 
-const regexInvalidOperationRequiredAttribute = /Required attribute '(.*)' cannot be removed/;
+const regexInvalidOperationRequiredAttribute =
+  /Required attribute '(.*)' cannot be removed/;
 
 type ExtraErrorFields = {
   errorByExtension?: {

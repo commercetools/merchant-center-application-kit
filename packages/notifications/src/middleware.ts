@@ -20,52 +20,51 @@ const dismissCallbacksMap = new Map<
 >();
 let id = 0;
 
-const middleware = <Payload extends TNotification>({
-  dispatch,
-}: MiddlewareAPI) => (next: Dispatch<TNotificationAction<Payload>>) => (
-  action: TNotificationAction<Payload>
-) => {
-  if (!isNotificationAction<Payload>(action)) {
-    return next(action);
-  }
+const middleware =
+  <Payload extends TNotification>({ dispatch }: MiddlewareAPI) =>
+  (next: Dispatch<TNotificationAction<Payload>>) =>
+  (action: TNotificationAction<Payload>) => {
+    if (!isNotificationAction<Payload>(action)) {
+      return next(action);
+    }
 
-  switch (action.type) {
-    case ADD_NOTIFICATION: {
-      id += 1;
+    switch (action.type) {
+      case ADD_NOTIFICATION: {
+        id += 1;
 
-      const notification = {
-        ...action.payload,
-        id,
-      };
+        const notification = {
+          ...action.payload,
+          id,
+        };
 
-      const dismissCallback = () => {
-        dispatch(removeNotification(notification.id));
-      };
+        const dismissCallback = () => {
+          dispatch(removeNotification(notification.id));
+        };
 
-      if (action.meta) {
-        if (action.meta.dismissAfter)
-          setTimeout(dismissCallback, action.meta.dismissAfter);
-        if (typeof action.meta.onDismiss === 'function')
-          dismissCallbacksMap.set(notification.id, action.meta.onDismiss);
+        if (action.meta) {
+          if (action.meta.dismissAfter)
+            setTimeout(dismissCallback, action.meta.dismissAfter);
+          if (typeof action.meta.onDismiss === 'function')
+            dismissCallbacksMap.set(notification.id, action.meta.onDismiss);
+        }
+
+        const nextAction = {
+          ...action,
+          payload: notification,
+          dismiss: dismissCallback,
+        };
+        return next(nextAction);
       }
-
-      const nextAction = {
-        ...action,
-        payload: notification,
-        dismiss: dismissCallback,
-      };
-      return next(nextAction);
+      case REMOVE_NOTIFICATION: {
+        const notificationId = action.payload.id;
+        const callback = dismissCallbacksMap.get(notificationId);
+        if (callback) callback(notificationId);
+        dismissCallbacksMap.delete(notificationId);
+        return next(action);
+      }
+      default:
+        return next(action);
     }
-    case REMOVE_NOTIFICATION: {
-      const notificationId = action.payload.id;
-      const callback = dismissCallbacksMap.get(notificationId);
-      if (callback) callback(notificationId);
-      dismissCallbacksMap.delete(notificationId);
-      return next(action);
-    }
-    default:
-      return next(action);
-  }
-};
+  };
 
 export default middleware;
