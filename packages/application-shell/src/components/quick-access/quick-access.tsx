@@ -124,10 +124,11 @@ const QuickAccess = (props: Props) => {
   // Destructure functions from props to reference them in the hook dependency list
   const { onPimIndexerStateChange: onPimIndexerStateChangeFromParent } = props;
 
-  const dispatchFetchProductIds = useAsyncDispatch<
-    ReturnType<typeof searchProductIdsAction>,
-    FetchProductIdsResult
-  >();
+  const dispatchFetchProductIds =
+    useAsyncDispatch<
+      ReturnType<typeof searchProductIdsAction>,
+      FetchProductIdsResult
+    >();
   const fetchPimSearchProductIds = React.useCallback<
     (searchText: string) => Promise<string[]>
   >(
@@ -151,10 +152,8 @@ const QuickAccess = (props: Props) => {
     ]
   );
 
-  const dispatchFetchPimIndexerStatus = useAsyncDispatch<
-    ReturnType<typeof pimIndexerStatusAction>,
-    unknown
-  >();
+  const dispatchFetchPimIndexerStatus =
+    useAsyncDispatch<ReturnType<typeof pimIndexerStatusAction>, unknown>();
   const fetchPimIndexerStatus = React.useCallback<
     () => Promise<
       | typeof pimIndexerStates['INDEXED']

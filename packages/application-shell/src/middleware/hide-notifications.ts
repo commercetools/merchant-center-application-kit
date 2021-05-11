@@ -38,18 +38,18 @@ const isHideAllNotificationsAction = (
 ): action is TNotificationActionHideAll =>
   action.type === HIDE_ALL_PAGE_NOTIFICATIONS;
 
-export default ({ getState }: MiddlewareAPI) => (next: Dispatch<Action>) => (
-  action: Action
-) => {
-  if (
-    isHideAllNotificationsAction(action) ||
-    isAddNotificationErrorAction(action)
-  ) {
-    const state = getState();
-    selectPageNotifications(state).forEach((notification) => {
-      next(removeNotification(notification.id));
-    });
-  }
+export default ({ getState }: MiddlewareAPI) =>
+  (next: Dispatch<Action>) =>
+  (action: Action) => {
+    if (
+      isHideAllNotificationsAction(action) ||
+      isAddNotificationErrorAction(action)
+    ) {
+      const state = getState();
+      selectPageNotifications(state).forEach((notification) => {
+        next(removeNotification(notification.id));
+      });
+    }
 
-  return next(action);
-};
+    return next(action);
+  };

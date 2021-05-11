@@ -44,10 +44,8 @@ const EchoServer = () => {
   const echoServerApiUrl = useApplicationContext(
     (context) => context.environment.echoServerApiUrl
   );
-  const [
-    shouldIncludeParamInRequest,
-    setShouldIncludeParamInRequest,
-  ] = useState(false);
+  const [shouldIncludeParamInRequest, setShouldIncludeParamInRequest] =
+    useState(false);
 
   const onChangeShouldIncludeParamInRequest = (event) => {
     const nextValue = event.target.value === 'false' ? true : false;

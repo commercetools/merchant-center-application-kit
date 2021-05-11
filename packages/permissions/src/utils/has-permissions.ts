@@ -94,9 +94,8 @@ const doesManagePermissionInferViewPermission = (
   demandedPermission: TPermissionName,
   actualPermissions: TPermissions
 ) => {
-  const isDemandedPermissionViewPermission = getIsViewPermission(
-    demandedPermission
-  );
+  const isDemandedPermissionViewPermission =
+    getIsViewPermission(demandedPermission);
   const isViewPermissionInferredByManagePermission = Boolean(
     getInferredManagePermission(demandedPermission, actualPermissions)
   );
@@ -337,10 +336,11 @@ export const hasSomeDataFence = (options: TOptionsForAppliedDataFence) => {
         dataFenceValue: dataFenceValue as TActualDataFence['dataFenceValue'],
       };
 
-      const isPermissionOverwritingDataFence = getIsPermissionOverwritingDataFence(
-        options.actualPermissions,
-        demandedDataFence
-      );
+      const isPermissionOverwritingDataFence =
+        getIsPermissionOverwritingDataFence(
+          options.actualPermissions,
+          demandedDataFence
+        );
 
       const hasDemandedDataFence = getHasDemandedDataFence({
         actualDataFence,

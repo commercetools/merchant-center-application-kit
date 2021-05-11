@@ -84,8 +84,9 @@ const createInternalReducer = (
   // notifications:
   // Unexpected key "new Key" found in preloadedState argument passed to createStore. Expected to find one of the known reducer keys instead: "requestsInFlight", "notifications". Unexpected keys will be ignored.
   // https://redux.js.org/api/createstore#createstorereducer-preloadedstate-enhancer
-  const preloadedStateReducers = mapValues(preloadedState, (value) => () =>
-    value
+  const preloadedStateReducers = mapValues(
+    preloadedState,
+    (value) => () => value
   );
 
   // NOTE: since we don't know in advance which reducers will be injected,

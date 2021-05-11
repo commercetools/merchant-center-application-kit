@@ -439,9 +439,10 @@ export const RestrictedApplication = <
                                   exact={true}
                                   path="/"
                                   render={() => {
-                                    const previousProjectKey = getPreviousProjectKey(
-                                      user && user.defaultProjectKey
-                                    );
+                                    const previousProjectKey =
+                                      getPreviousProjectKey(
+                                        user && user.defaultProjectKey
+                                      );
 
                                     /**
                                      * NOTE:

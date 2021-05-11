@@ -42,9 +42,10 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
   React.useEffect(() => {
     setCachedApolloClient(apolloClient);
   }, [apolloClient]);
-  const coercedEnvironmentValues = useCoercedEnvironmentValues<AdditionalEnvironmentProperties>(
-    props.environment
-  );
+  const coercedEnvironmentValues =
+    useCoercedEnvironmentValues<AdditionalEnvironmentProperties>(
+      props.environment
+    );
   const browserLocale = getBrowserLocale(window);
   return (
     <>

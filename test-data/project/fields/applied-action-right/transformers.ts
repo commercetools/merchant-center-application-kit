@@ -10,14 +10,13 @@ const transformers = {
     replaceFields: ({ fields }) =>
       Object.entries(fields).reduce<TAppliedActionRightsGraphql>(
         (allAppliedActionRights, [group, actionRight]) => {
-          const transformedActionRight: TAppliedActionRightsGraphql = Object.entries(
-            actionRight
-          ).map(([canKey, value]) => ({
-            __typename: 'AppliedActionRight',
-            name: upperFirst(canKey.replace('can', '')),
-            value,
-            group,
-          }));
+          const transformedActionRight: TAppliedActionRightsGraphql =
+            Object.entries(actionRight).map(([canKey, value]) => ({
+              __typename: 'AppliedActionRight',
+              name: upperFirst(canKey.replace('can', '')),
+              value,
+              group,
+            }));
           return [...allAppliedActionRights, ...transformedActionRight];
         },
         []

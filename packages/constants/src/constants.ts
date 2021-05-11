@@ -37,30 +37,33 @@ export const NOTIFICATION_KINDS_PAGE = {
   'unexpected-error': 'unexpected-error',
   'api-error': 'api-error',
 } as const;
-export type TAppNotificationDomain = typeof NOTIFICATION_DOMAINS[keyof typeof NOTIFICATION_DOMAINS];
+export type TAppNotificationDomain =
+  typeof NOTIFICATION_DOMAINS[keyof typeof NOTIFICATION_DOMAINS];
 // Alias to `NOTIFICATION_DOMAINS` for backwards compatibility
 export const DOMAINS = NOTIFICATION_DOMAINS;
 
-export type TAppNotificationKindSide = typeof NOTIFICATION_KINDS_SIDE[keyof typeof NOTIFICATION_KINDS_SIDE];
-export type TAppNotificationKindGlobal = typeof NOTIFICATION_KINDS_GLOBAL[keyof typeof NOTIFICATION_KINDS_GLOBAL];
-export type TAppNotificationKindPage = typeof NOTIFICATION_KINDS_PAGE[keyof typeof NOTIFICATION_KINDS_PAGE];
+export type TAppNotificationKindSide =
+  typeof NOTIFICATION_KINDS_SIDE[keyof typeof NOTIFICATION_KINDS_SIDE];
+export type TAppNotificationKindGlobal =
+  typeof NOTIFICATION_KINDS_GLOBAL[keyof typeof NOTIFICATION_KINDS_GLOBAL];
+export type TAppNotificationKindPage =
+  typeof NOTIFICATION_KINDS_PAGE[keyof typeof NOTIFICATION_KINDS_PAGE];
 export type TAppNotificationKind =
   | TAppNotificationKindSide
   | TAppNotificationKindGlobal
   | TAppNotificationKindPage;
 export type TAppNotificationOfDomain = { domain: TAppNotificationDomain };
-export type TAppNotificationOfKind<
-  T extends TAppNotificationOfDomain
-> = TAppNotificationOfDomain & {
-  // Conditionally check the shape based on other values
-  kind: 'global' extends T['domain']
-    ? TAppNotificationKindGlobal
-    : 'page' extends T['domain']
-    ? TAppNotificationKindPage
-    : 'side' extends T['domain']
-    ? TAppNotificationKindSide
-    : never;
-};
+export type TAppNotificationOfKind<T extends TAppNotificationOfDomain> =
+  TAppNotificationOfDomain & {
+    // Conditionally check the shape based on other values
+    kind: 'global' extends T['domain']
+      ? TAppNotificationKindGlobal
+      : 'page' extends T['domain']
+      ? TAppNotificationKindPage
+      : 'side' extends T['domain']
+      ? TAppNotificationKindSide
+      : never;
+  };
 export type TAppNotificationApiError<ExtraFields extends {} = {}> = {
   message: string;
   code?: string;
@@ -69,18 +72,17 @@ export type TAppNotificationValuesApiError<ExtraFields extends {} = {}> = {
   errors: TAppNotificationApiError<ExtraFields>[];
 };
 export type TAppNotificationValuesUnexpectedError = { errorId?: string };
-export type TAppNotification<
-  T extends TAppNotificationOfKind<T>
-> = TAppNotificationOfKind<T> & {
-  id: number;
-  // Conditionally check the shape based on other values
-  text?: TAppNotificationKindSide extends T['kind'] ? string : never;
-  values?: 'api-error' extends T['kind']
-    ? TAppNotificationValuesApiError
-    : 'unexpected-error' extends T['kind']
-    ? TAppNotificationValuesUnexpectedError
-    : never;
-};
+export type TAppNotification<T extends TAppNotificationOfKind<T>> =
+  TAppNotificationOfKind<T> & {
+    id: number;
+    // Conditionally check the shape based on other values
+    text?: TAppNotificationKindSide extends T['kind'] ? string : never;
+    values?: 'api-error' extends T['kind']
+      ? TAppNotificationValuesApiError
+      : 'unexpected-error' extends T['kind']
+      ? TAppNotificationValuesUnexpectedError
+      : never;
+  };
 export type TAppNotificationGlobal = TAppNotification<{
   domain: typeof NOTIFICATION_DOMAINS.GLOBAL;
   kind: TAppNotificationKindGlobal;
@@ -124,7 +126,8 @@ export const GRAPHQL_TARGETS = {
   SETTINGS_SERVICE: 'settings',
   ADMINISTRATION_SERVICE: 'administration',
 } as const;
-export type TGraphQLTargets = typeof GRAPHQL_TARGETS[keyof typeof GRAPHQL_TARGETS];
+export type TGraphQLTargets =
+  typeof GRAPHQL_TARGETS[keyof typeof GRAPHQL_TARGETS];
 
 export const MC_API_PROXY_TARGETS = {
   COMMERCETOOLS_PLATFORM: 'ctp',
@@ -133,7 +136,8 @@ export const MC_API_PROXY_TARGETS = {
   MC_METRICS: 'mc-metrics',
   IMPORT: 'import',
 } as const;
-export type TMcApiProxyTargets = typeof MC_API_PROXY_TARGETS[keyof typeof MC_API_PROXY_TARGETS];
+export type TMcApiProxyTargets =
+  typeof MC_API_PROXY_TARGETS[keyof typeof MC_API_PROXY_TARGETS];
 
 export type ApplicationOidcForDevelopmentConfig = {
   authorizeUrl: string;

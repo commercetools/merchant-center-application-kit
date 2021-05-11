@@ -30,14 +30,21 @@ const transformers = {
     ],
     addFields: () => ({
       __typename: 'Project',
-      allAppliedPermissions: AppliedPermissionMock.random().buildGraphql<AppliedPermissionMock.TAppliedPermissionGraphql>(),
-      allAppliedActionRights: AppliedActionRightMock.random().buildGraphql<AppliedActionRightMock.TAppliedActionRightsGraphql>(),
-      allAppliedDataFences: AppliedStoreDataFenceMock.random().buildGraphql<AppliedStoreDataFenceMock.TAppliedStoreDataFencesGraphql>(),
+      allAppliedPermissions:
+        AppliedPermissionMock.random().buildGraphql<AppliedPermissionMock.TAppliedPermissionGraphql>(),
+      allAppliedActionRights:
+        AppliedActionRightMock.random().buildGraphql<AppliedActionRightMock.TAppliedActionRightsGraphql>(),
+      allAppliedDataFences:
+        AppliedStoreDataFenceMock.random().buildGraphql<AppliedStoreDataFenceMock.TAppliedStoreDataFencesGraphql>(),
       allPermissionsForAllApplications: {
-        allAppliedPermissions: AppliedPermissionMock.random().buildGraphql<AppliedPermissionMock.TAppliedPermissionGraphql>(),
-        allAppliedActionRights: AppliedActionRightMock.random().buildGraphql<AppliedActionRightMock.TAppliedActionRightsGraphql>(),
-        allAppliedDataFences: AppliedStoreDataFenceMock.random().buildGraphql<AppliedStoreDataFenceMock.TAppliedStoreDataFencesGraphql>(),
-        allAppliedMenuVisibilities: AppliedMenuVisibilitiesMock.random().buildGraphql<AppliedMenuVisibilitiesMock.TAppliedMenuVisibilitiesGraphql>(),
+        allAppliedPermissions:
+          AppliedPermissionMock.random().buildGraphql<AppliedPermissionMock.TAppliedPermissionGraphql>(),
+        allAppliedActionRights:
+          AppliedActionRightMock.random().buildGraphql<AppliedActionRightMock.TAppliedActionRightsGraphql>(),
+        allAppliedDataFences:
+          AppliedStoreDataFenceMock.random().buildGraphql<AppliedStoreDataFenceMock.TAppliedStoreDataFencesGraphql>(),
+        allAppliedMenuVisibilities:
+          AppliedMenuVisibilitiesMock.random().buildGraphql<AppliedMenuVisibilitiesMock.TAppliedMenuVisibilitiesGraphql>(),
       },
     }),
     removeFields: [

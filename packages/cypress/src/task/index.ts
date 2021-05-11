@@ -53,8 +53,8 @@ const loadAllCustomApplicationConfigs = async (
   }
 
   const { packages } = await getPackages(process.cwd());
-  cachedAllCustomApplicationConfigs = packages.reduce<AllCustomApplicationConfigs>(
-    (allConfigs, packageInfo) => {
+  cachedAllCustomApplicationConfigs =
+    packages.reduce<AllCustomApplicationConfigs>((allConfigs, packageInfo) => {
       const customAppConfigPath = path.join(
         packageInfo.dir,
         'custom-application-config.json'
@@ -66,9 +66,8 @@ const loadAllCustomApplicationConfigs = async (
       console.log(
         `Reading Custom Application config for ${packageInfo.packageJson.name}`
       );
-      const customAppConfigJson: TJSONSchemaForCustomApplicationConfigurationFiles = JSON.parse(
-        fs.readFileSync(customAppConfigPath, { encoding: 'utf8' })
-      );
+      const customAppConfigJson: TJSONSchemaForCustomApplicationConfigurationFiles =
+        JSON.parse(fs.readFileSync(customAppConfigPath, { encoding: 'utf8' }));
       const processEnv = loadEnvironmentVariables(packageInfo.dir, options);
       const processedConfig = processConfig({
         disableCache: true,
@@ -79,9 +78,7 @@ const loadAllCustomApplicationConfigs = async (
         ...allConfigs,
         [processedConfig.env.entryPointUriPath]: processedConfig.env,
       };
-    },
-    {}
-  );
+    }, {});
 
   return cachedAllCustomApplicationConfigs;
 };

@@ -11,9 +11,8 @@ type ErrorAdditionalProperty = ErrorObject<
 type ErrorEnum = ErrorObject<'enum', { allowedValues: string[] }>;
 
 const ajv = new Ajv({ strict: true });
-const validate = ajv.compile<JSONSchemaForCustomApplicationConfigurationFiles>(
-  schemaJson
-);
+const validate =
+  ajv.compile<JSONSchemaForCustomApplicationConfigurationFiles>(schemaJson);
 
 const printErrors = (errors?: ErrorObject[] | null) => {
   if (!errors) {
@@ -29,7 +28,9 @@ const printErrors = (errors?: ErrorObject[] | null) => {
             (error as ErrorAdditionalProperty).params.additionalProperty
           }`;
         case 'enum':
-          return `${baseMessage}: ${(error as ErrorEnum).params.allowedValues.toString()}`;
+          return `${baseMessage}: ${(
+            error as ErrorEnum
+          ).params.allowedValues.toString()}`;
         default:
           return baseMessage;
       }

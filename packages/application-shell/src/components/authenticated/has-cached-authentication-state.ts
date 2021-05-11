@@ -53,9 +53,8 @@ const hasCachedAuthenticationState = (): boolean => {
       // Omit the project key from the check. This allows to switch projects
       // without having to log in again.
       const cachedScopeWithoutProjectKey = withoutProjectKeyClaim(cachedScope);
-      const requestedScopeWithoutProjectKey = withoutProjectKeyClaim(
-        requestedScope
-      );
+      const requestedScopeWithoutProjectKey =
+        withoutProjectKeyClaim(requestedScope);
       // Check that the session scope didn't change.
       if (cachedScopeWithoutProjectKey === requestedScopeWithoutProjectKey) {
         return true;
