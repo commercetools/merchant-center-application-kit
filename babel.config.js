@@ -6,6 +6,7 @@ module.exports = {
         // TODO: change this to `automatic` when using the new runtime
         runtime: 'classic',
         keepPropTypes: true,
+        enableLooseMode: process.env.CYPRESS_CI === 'true' ? false : true,
       },
     ],
   ],
