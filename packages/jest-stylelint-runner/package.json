@@ -20,7 +20,6 @@
   "main": "index.js",
   "module": "index.js",
   "dependencies": {
-    "@commercetools-frontend/mc-scripts": "^20.0.1",
     "create-jest-runner": "0.7.0",
     "postcss-load-config": "3.0.1"
   },
