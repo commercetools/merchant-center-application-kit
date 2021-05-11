@@ -111,7 +111,18 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
           loose: true,
         },
       ],
-      ['@babel/plugin-proposal-private-methods', { loose: true }],
+      [
+        require('@babel/plugin-proposal-private-methods').default,
+        {
+          loose: true,
+        },
+      ],
+      [
+        require('@babel/plugin-proposal-private-property-in-object').default,
+        {
+          loose: true,
+        },
+      ],
       // The following two plugins use Object.assign directly, instead of Babel's
       // extends helper. Note that this assumes `Object.assign` is available.
       // { ...todo, completed: true }
