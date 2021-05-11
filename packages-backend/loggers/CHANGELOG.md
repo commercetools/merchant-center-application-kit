@@ -1,5 +1,11 @@
 # @commercetools-backend/loggers
 
+## 20.2.1
+
+### Patch Changes
+
+- [#2207](https://github.com/commercetools/merchant-center-application-kit/pull/2207) [`f8b4acc1`](https://github.com/commercetools/merchant-center-application-kit/commit/f8b4acc1acd175b8dc6a65c6aead2162771fd748) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade `@sentry/*` dependencies to v6.
+
 ## 20.0.1
 
 ### Patch Changes

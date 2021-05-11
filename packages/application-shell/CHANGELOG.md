@@ -1,5 +1,19 @@
 # @commercetools-frontend/application-shell
 
+## 20.2.1
+
+### Patch Changes
+
+- Updated dependencies [[`f8b4acc1`](https://github.com/commercetools/merchant-center-application-kit/commit/f8b4acc1acd175b8dc6a65c6aead2162771fd748)]:
+  - @commercetools-frontend/sentry@20.2.1
+  - @commercetools-frontend/actions-global@20.2.1
+  - @commercetools-frontend/application-shell-connectors@20.2.1
+  - @commercetools-frontend/i18n@20.2.1
+  - @commercetools-frontend/l10n@20.2.1
+  - @commercetools-frontend/permissions@20.2.1
+  - @commercetools-frontend/react-notifications@20.2.1
+  - @commercetools-frontend/application-components@20.2.1
+
 ## 20.2.0
 
 ### Minor Changes

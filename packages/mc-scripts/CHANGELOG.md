@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-scripts
 
+## 20.2.1
+
+### Patch Changes
+
+- [#2210](https://github.com/commercetools/merchant-center-application-kit/pull/2210) [`0090f451`](https://github.com/commercetools/merchant-center-application-kit/commit/0090f45183003f6da26cc68809a80cb8f88d3f73) Thanks [@emmenko](https://github.com/emmenko)! - Fix regression when updating `webpack-dev-server` to `v4.0.0-beta.3`
+
 ## 20.1.2
 
 ### Patch Changes

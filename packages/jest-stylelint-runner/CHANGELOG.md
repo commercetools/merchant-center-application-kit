@@ -1,5 +1,11 @@
 # @commercetools-frontend/jest-stylelint-runner
 
+## 20.2.1
+
+### Patch Changes
+
+- [#2209](https://github.com/commercetools/merchant-center-application-kit/pull/2209) [`39b24f20`](https://github.com/commercetools/merchant-center-application-kit/commit/39b24f2054aa3e374a72d3f705f86327e3ced02d) Thanks [@emmenko](https://github.com/emmenko)! - Remove unused dep
+
 ## 20.0.1
 
 ### Patch Changes
