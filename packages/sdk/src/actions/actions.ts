@@ -55,7 +55,14 @@ const enhancePayloadForForwardToProxy = (payload: TSdkActionPayloadForUri) => {
     uri: '/proxy/forward-to',
     mcApiProxyTarget: undefined,
     headers: {
-      ...headers,
+      ...Object.entries(headers).reduce(
+        (customForwardHeaders, [headerName, headerValue]) => ({
+          ...customForwardHeaders,
+          // Prefix headers so that the MC API can allow and forward them.
+          [`x-forward-header-${headerName}`]: headerValue,
+        }),
+        {}
+      ),
       'Accept-version': 'v2',
       'X-Forward-To': payload.uri,
     },

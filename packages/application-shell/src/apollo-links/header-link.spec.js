@@ -260,6 +260,113 @@ describe('configuring header link', () => {
     });
   });
 
+  describe('with forward-to config', () => {
+    describe('without custom headers', () => {
+      beforeEach(async () => {
+        await waitFor(
+          execute(link, {
+            query,
+            context: {
+              target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+              forwardToConfig: {
+                version: 'v2',
+                uri: 'https://avengers.app',
+              },
+            },
+          })
+        );
+      });
+
+      it('should set headers matching snapshot', () => {
+        expect(context).toMatchInlineSnapshot(`
+          Object {
+            "credentials": "include",
+            "forwardToConfig": Object {
+              "uri": "https://avengers.app",
+              "version": "v2",
+            },
+            "headers": Object {
+              "Accept-version": "v2",
+              "X-Correlation-Id": "test-correlation-id",
+              "X-Forward-To": "https://avengers.app",
+              "X-Graphql-Operation-Name": "Test",
+              "X-Graphql-Target": "mc",
+              "X-Project-Key": "project-1",
+              "X-Team-Id": "team-1",
+            },
+          }
+        `);
+      });
+
+      it('should set required forward-to headers', () => {
+        expect(context.headers).toEqual(
+          expect.objectContaining({
+            'Accept-version': 'v2',
+            'X-Forward-To': 'https://avengers.app',
+          })
+        );
+      });
+    });
+    describe('with custom headers', () => {
+      beforeEach(async () => {
+        await waitFor(
+          execute(link, {
+            query,
+            context: {
+              target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+              forwardToConfig: {
+                version: 'v2',
+                uri: 'https://avengers.app',
+                headers: {
+                  'x-foo': 'bar',
+                  'accept-language': '*',
+                },
+              },
+            },
+          })
+        );
+      });
+
+      it('should set headers matching snapshot', () => {
+        expect(context).toMatchInlineSnapshot(`
+          Object {
+            "credentials": "include",
+            "forwardToConfig": Object {
+              "headers": Object {
+                "accept-language": "*",
+                "x-foo": "bar",
+              },
+              "uri": "https://avengers.app",
+              "version": "v2",
+            },
+            "headers": Object {
+              "Accept-version": "v2",
+              "X-Correlation-Id": "test-correlation-id",
+              "X-Forward-To": "https://avengers.app",
+              "X-Graphql-Operation-Name": "Test",
+              "X-Graphql-Target": "mc",
+              "X-Project-Key": "project-1",
+              "X-Team-Id": "team-1",
+              "x-forward-header-accept-language": "*",
+              "x-forward-header-x-foo": "bar",
+            },
+          }
+        `);
+      });
+
+      it('should set required forward-to headers', () => {
+        expect(context.headers).toEqual(
+          expect.objectContaining({
+            'Accept-version': 'v2',
+            'X-Forward-To': 'https://avengers.app',
+            'x-forward-header-x-foo': 'bar',
+            'x-forward-header-accept-language': '*',
+          })
+        );
+      });
+    });
+  });
+
   describe('with session token in storage', () => {
     beforeEach(async () => {
       oidcStorage.getSessionToken.mockReturnValue('jwt-token');

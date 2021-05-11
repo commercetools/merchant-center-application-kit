@@ -34,6 +34,18 @@ Requests to that endpoint should additionally pass the following HTTP headers:
 
 To facilitate the usage of the [built-in Apollo client and the SDK actions](/main-concepts/data-fetching), we provide some helpers to easily integrate with the request configuration for the HTTP headers listed above.
 
+## Sending custom HTTP headers
+
+<Info>
+
+This feature is available from version `>= 20.2.0`.
+
+</Info>
+
+In case you need to send certain HTTP headers to the external API, you can do so for both the Apollo client and the SDK actions. See the examples below on how to configure the HTTP headers for both scenarios.
+
+All custom HTTP headers are sent to the Merchant Center API with a prefix `x-forward-header-`, as it allows the Merchant Center API to allow requests with those headers to be forwarded. However, the request forwarded to the external API contains the correct headers without the prefix.
+
 ## Usage for Apollo
 
 We can leverage the `context` option for Apollo queries to adjust how request is configured and executed. The `@commercetools-frontend/application-shell` package now exposes an utility function to configure the Apollo context for the `/proxy/forward-to` usage.
@@ -56,6 +68,10 @@ const Fetcher = () => {
     context: createApolloContextForProxyForwardTo({
       // The URL to your external API
       uri: externalApiUrl,
+      // Optionally pass custom HTTP headers
+      headers: {
+        'x-foo': 'bar',
+      },
     }),
   });
   // ...
@@ -74,6 +90,14 @@ actions.forwardTo.head({ uri: 'https://my-custom-app.com/graphql' });
 actions.forwardTo.post({
   uri: 'https://my-custom-app.com/graphql',
   payload: { say: 'Hello' },
+});
+
+// You can also pass custom HTTP headers, for example:
+actions.forwardTo.get({
+  uri: 'https://my-custom-app.com/graphql',
+  headers: {
+    'x-foo': 'bar',
+  },
 });
 ```
 
