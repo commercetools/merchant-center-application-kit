@@ -5,6 +5,11 @@ const defaultOptions = {
   // Usually when bundling packages we want to keep the prop types
   // but when building the final application we can remove them.
   keepPropTypes: false,
+  enableLooseMode: true,
+  // plugin-proposal-class-properties, plugin-proposal-private-methods,
+  // plugin-proposal-private-property-in-object have a loose option which
+  // needs to be synced. At times, for instance for better debuggability
+  // the loose option can be disabled at the cost of lowered performance.
 };
 
 /* eslint-disable global-require */
@@ -108,19 +113,19 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
       [
         require('@babel/plugin-proposal-class-properties').default,
         {
-          loose: true,
+          loose: options.enableLooseMode,
         },
       ],
       [
         require('@babel/plugin-proposal-private-methods').default,
         {
-          loose: true,
+          loose: options.enableLooseMode,
         },
       ],
       [
         require('@babel/plugin-proposal-private-property-in-object').default,
         {
-          loose: true,
+          loose: options.enableLooseMode,
         },
       ],
       // The following two plugins use Object.assign directly, instead of Babel's
