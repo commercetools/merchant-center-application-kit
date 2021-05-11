@@ -1,5 +1,11 @@
 # @commercetools-website/custom-applications
 
+## 18.2.1
+
+### Patch Changes
+
+- [#2193](https://github.com/commercetools/merchant-center-application-kit/pull/2193) [`2c159ca3`](https://github.com/commercetools/merchant-center-application-kit/commit/2c159ca3a861a4321ecfb8c6ea382bea9a9cdd65) Thanks [@adnasa](https://github.com/adnasa)! - Bump to latest ui-kit
+
 ## 18.2.0
 
 ### Minor Changes

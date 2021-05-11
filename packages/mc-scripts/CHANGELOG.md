@@ -1,5 +1,16 @@
 # @commercetools-frontend/mc-scripts
 
+## 20.1.2
+
+### Patch Changes
+
+- [#2200](https://github.com/commercetools/merchant-center-application-kit/pull/2200) [`9b9cf924`](https://github.com/commercetools/merchant-center-application-kit/commit/9b9cf924d96b0ee9b292a62199503626a48a8b59) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency dotenv to v9
+
+- Updated dependencies [[`0bfa1613`](https://github.com/commercetools/merchant-center-application-kit/commit/0bfa16134450fb0699018b2210e0da904f646140), [`99ea52d3`](https://github.com/commercetools/merchant-center-application-kit/commit/99ea52d354a9ad61187388553e1490964347550f)]:
+  - @commercetools-frontend/application-config@20.1.2
+  - @commercetools-frontend/babel-preset-mc-app@20.1.2
+  - @commercetools-frontend/mc-html-template@20.1.2
+
 ## 20.1.1
 
 ### Patch Changes
