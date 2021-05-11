@@ -1,5 +1,18 @@
 # playground
 
+## 18.1.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@20.2.1
+  - @commercetools-frontend/application-shell@20.2.1
+  - @commercetools-frontend/application-shell-connectors@20.2.1
+  - @commercetools-frontend/i18n@20.2.1
+  - @commercetools-frontend/l10n@20.2.1
+  - @commercetools-frontend/permissions@20.2.1
+  - @commercetools-frontend/application-components@20.2.1
+
 ## 18.1.2
 
 ### Patch Changes

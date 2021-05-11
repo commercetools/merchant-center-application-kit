@@ -1,5 +1,13 @@
 # @commercetools-frontend/permissions
 
+## 20.2.1
+
+### Patch Changes
+
+- Updated dependencies [[`f8b4acc1`](https://github.com/commercetools/merchant-center-application-kit/commit/f8b4acc1acd175b8dc6a65c6aead2162771fd748)]:
+  - @commercetools-frontend/sentry@20.2.1
+  - @commercetools-frontend/application-shell-connectors@20.2.1
+
 ## 20.1.2
 
 ### Patch Changes
