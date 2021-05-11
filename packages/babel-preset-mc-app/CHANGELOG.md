@@ -1,5 +1,13 @@
 # @commercetools-frontend/babel-preset-mc-app
 
+## 20.1.2
+
+### Patch Changes
+
+- [#2199](https://github.com/commercetools/merchant-center-application-kit/pull/2199) [`0bfa1613`](https://github.com/commercetools/merchant-center-application-kit/commit/0bfa16134450fb0699018b2210e0da904f646140) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+* [#2203](https://github.com/commercetools/merchant-center-application-kit/pull/2203) [`99ea52d3`](https://github.com/commercetools/merchant-center-application-kit/commit/99ea52d354a9ad61187388553e1490964347550f) Thanks [@tdeekens](https://github.com/tdeekens)! - Fixes `babel-preset-mc-app` warnings about `loose` mode. You can now pass a `disableLooseMode` option to this preset to turn it off (defaults to `true`).
+
 ## 20.0.1
 
 ### Patch Changes
