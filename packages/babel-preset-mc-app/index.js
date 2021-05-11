@@ -113,19 +113,19 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
       [
         require('@babel/plugin-proposal-class-properties').default,
         {
-          loose: options.disableLooseMode,
+          loose: !options.disableLooseMode,
         },
       ],
       [
         require('@babel/plugin-proposal-private-methods').default,
         {
-          loose: options.disableLooseMode,
+          loose: !options.disableLooseMode,
         },
       ],
       [
         require('@babel/plugin-proposal-private-property-in-object').default,
         {
-          loose: options.disableLooseMode,
+          loose: !options.disableLooseMode,
         },
       ],
       // The following two plugins use Object.assign directly, instead of Babel's
