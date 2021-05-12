@@ -170,6 +170,7 @@
     "stylelint-config-standard": "22.0.0",
     "stylelint-order": "4.1.0",
     "stylelint-value-no-unknown-custom-properties": "3.0.0",
+    "tsc-files": "1.1.2",
     "typescript": "4.2.4",
     "vfile-message": "2.0.4"
   },
