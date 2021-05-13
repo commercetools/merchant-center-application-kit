@@ -119,7 +119,7 @@
     "@percy/cypress": "3.1.0",
     "@percy/puppeteer": "2.0.0",
     "@preconstruct/cli": "2.1.0",
-    "@sindresorhus/slugify": "1.1.2",
+    "@sindresorhus/slugify": "2.1.0",
     "@svgr/cli": "5.5.0",
     "@svgr/plugin-jsx": "5.5.0",
     "@svgr/plugin-svgo": "5.5.0",
