@@ -43,7 +43,7 @@
     "prop-types": "15.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-intl": "5.17.5",
+    "react-intl": "5.17.7",
     "react-redux": "7.2.4",
     "react-router-dom": "5.2.0",
     "redux": "4.1.0"
@@ -51,6 +51,6 @@
   "devDependencies": {
     "@commercetools-frontend/mc-dev-authentication": "19.0.0",
     "@commercetools-frontend/mc-scripts": "20.2.1",
-    "@formatjs/cli": "4.2.12"
+    "@formatjs/cli": "4.2.14"
   }
 }

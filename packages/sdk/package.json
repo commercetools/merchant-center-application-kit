@@ -37,14 +37,14 @@
     "@types/prop-types": "^15.7.3",
     "@types/react": "^17.0.3",
     "@types/react-redux": "^7.1.16",
-    "fast-equals": "2.0.2",
+    "fast-equals": "2.0.3",
     "prop-types": "15.7.2",
     "qss": "2.0.3",
     "unfetch": "4.2.0",
     "uuid": "8.3.2"
   },
   "devDependencies": {
-    "@testing-library/react": "11.2.6",
+    "@testing-library/react": "11.2.7",
     "@types/uuid": "8.3.0",
     "react": "17.0.2",
     "react-redux": "7.2.4",
