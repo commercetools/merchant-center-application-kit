@@ -39,8 +39,8 @@
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "@apollo/client": "3.3.16",
-    "@testing-library/react": "11.2.6",
+    "@apollo/client": "3.3.18",
+    "@testing-library/react": "11.2.7",
     "react": "17.0.2"
   },
   "peerDependencies": {
