@@ -1,3 +1,5 @@
+import type { RenderResult } from '@testing-library/react';
+
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
