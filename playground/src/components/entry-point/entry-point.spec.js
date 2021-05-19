@@ -1,5 +1,8 @@
 import { MC_API_PROXY_TARGETS } from '@commercetools-frontend/constants';
-import { renderAppWithRedux } from '@commercetools-frontend/application-shell/test-utils';
+import {
+  screen,
+  renderAppWithRedux,
+} from '@commercetools-frontend/application-shell/test-utils';
 import { ApplicationStateMachines } from './entry-point';
 
 const createStateMachinesListSdkMock = () => ({
@@ -35,21 +38,19 @@ const render = (options) => {
 };
 
 describe('when route is /playground-state-machines', () => {
-  let rendered;
   it('should render state machines', async () => {
-    rendered = render({
+    render({
       route: '/project/playground-state-machines',
     });
-    await rendered.findByText(/State machines/i);
+    await screen.findByText(/State machines/i);
   });
 });
 
 describe('when route is not /playground-state-machines', () => {
-  let rendered;
   it('should render catch all', async () => {
-    rendered = render({
+    render({
       route: '/project/xyz',
     });
-    await rendered.findByText(/we could not find what you are looking for/i);
+    await screen.findByText(/we could not find what you are looking for/i);
   });
 });

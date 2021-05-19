@@ -1,20 +1,22 @@
 import { fireEvent } from '@commercetools-frontend/application-shell/test-utils';
+import { screen } from '@testing-library/react';
 import { renderApplication } from '../../test-utils';
 
 describe('main view', () => {
   it('the user can click on the link to "one" and the page should show a text with "View one"', async () => {
     const initialRoute = '/my-project/examples-starter';
-    const rendered = renderApplication(null, {
+    const { history } = renderApplication(null, {
       permissions: { canViewProducts: true, canManageProducts: true },
       route: initialRoute,
     });
-    await rendered.findByText(/Hello, world/i);
 
-    fireEvent.click(rendered.getByText(/Page one/i));
+    await screen.findByText(/Hello, world/i);
 
-    await rendered.findByText(/View one/i);
+    fireEvent.click(screen.getByText(/Page one/i));
 
-    expect(rendered.history.location).toEqual(
+    await screen.findByText(/View one/i);
+
+    expect(history.location).toEqual(
       expect.objectContaining({
         pathname: `${initialRoute}/one`,
       })

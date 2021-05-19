@@ -1,6 +1,6 @@
 import React from 'react';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
-import { render } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import RestrictedByPermissions from './restricted-by-permissions';
 
 type TAllAppliedPermission = {
@@ -123,7 +123,7 @@ describe('with permissions', () => {
   describe('when demanded permissions are present', () => {
     describe('with `FaaC`', () => {
       it('should indicate being authorized', () => {
-        const rendered = testRender({
+        testRender({
           allAppliedPermissions: [
             {
               name: 'canManageCustomers',
@@ -133,13 +133,13 @@ describe('with permissions', () => {
           component: <FaaCTestComponent />,
         });
 
-        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
 
     describe('with `render`-prop', () => {
       it('should indicate being authorized', () => {
-        const rendered = testRender({
+        testRender({
           allAppliedPermissions: [
             {
               name: 'canManageCustomers',
@@ -149,13 +149,13 @@ describe('with permissions', () => {
           component: <RenderPropTestComponent />,
         });
 
-        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
 
     describe('with `children` being a `ReactNode`', () => {
       it('should indicate being authorized', () => {
-        const rendered = testRender({
+        testRender({
           allAppliedPermissions: [
             {
               name: 'canManageCustomers',
@@ -165,7 +165,7 @@ describe('with permissions', () => {
           component: <TestComponent />,
         });
 
-        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
   });
@@ -173,7 +173,7 @@ describe('with permissions', () => {
   describe('when demanded permissions are not present', () => {
     describe('with `FaaC`', () => {
       it('should indicate not being authorized', () => {
-        const rendered = testRender({
+        testRender({
           allAppliedPermissions: [
             {
               name: 'canManageCustomers',
@@ -187,12 +187,12 @@ describe('with permissions', () => {
           component: <FaaCTestComponent />,
         });
 
-        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
     describe('with `render`-prop', () => {
       it('should indicate not being authorized', () => {
-        const rendered = testRender({
+        testRender({
           allAppliedPermissions: [
             {
               name: 'canManageCustomers',
@@ -206,12 +206,12 @@ describe('with permissions', () => {
           component: <RenderPropTestComponent />,
         });
 
-        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
     describe('with `children` being a `ReactNode`', () => {
       it('should indicate not being authorized', () => {
-        const rendered = testRender({
+        testRender({
           allAppliedPermissions: [
             {
               name: 'canManageCustomers',
@@ -226,14 +226,14 @@ describe('with permissions', () => {
         });
 
         expect(
-          rendered.queryByText('Is authorized: Yes')
+          screen.queryByText('Is authorized: Yes')
         ).not.toBeInTheDocument();
       });
     });
     describe('with `unauthorizedComponent` being a `ReactNode`', () => {
       it('should indicate not being authorized', () => {
         const UnauthorizedComponent = () => <p>Is authorized: No</p>;
-        const rendered = testRender({
+        testRender({
           allAppliedPermissions: [
             {
               name: 'canManageCustomers',
@@ -249,7 +249,7 @@ describe('with permissions', () => {
           ),
         });
 
-        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
   });
@@ -259,7 +259,7 @@ describe('with action rights', () => {
   describe('when demanded action rights are present', () => {
     describe('with `FaaC`', () => {
       it('should indicate not being authorized', () => {
-        const rendered = testRender({
+        testRender({
           allAppliedPermissions: [
             {
               name: 'canManageCustomers',
@@ -280,14 +280,14 @@ describe('with action rights', () => {
           ),
         });
 
-        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
   });
   describe('when demanded action rights are not present', () => {
     describe('with `FaaC`', () => {
       it('should indicate not being authorized', () => {
-        const rendered = testRender({
+        testRender({
           allAppliedPermissions: [
             {
               name: 'canManageCustomers',
@@ -308,7 +308,7 @@ describe('with action rights', () => {
           ),
         });
 
-        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
   });

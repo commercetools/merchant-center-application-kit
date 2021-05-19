@@ -54,7 +54,9 @@ const renderSubtitle = (subtitle?: Props['subtitle']) => {
 };
 
 const ModalPageHeaderTitle = (props: Props) => {
+  // eslint-disable-next-line testing-library/render-result-naming-convention
   const renderedTitle = renderTitle(props.titleSize, props.title);
+  // eslint-disable-next-line testing-library/render-result-naming-convention
   const renderedSubtitle = renderSubtitle(props.subtitle);
   return (
     <div

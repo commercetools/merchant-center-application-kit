@@ -1,6 +1,6 @@
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
-import { renderApp, waitFor } from '../../test-utils';
+import { screen, renderApp, waitFor } from '../../test-utils';
 import { location } from '../../utils/location';
 import RouteCatchAll from './route-catch-all';
 
@@ -24,12 +24,12 @@ describe('rendering', () => {
   });
   describe('when "servedByProxy" is "false"', () => {
     it('should render 404 page', async () => {
-      const rendered = renderApp(<RouteCatchAll />, {
+      renderApp(<RouteCatchAll />, {
         environment: {
           servedByProxy: false,
         },
       });
-      await rendered.findByText('We could not find what you are looking for');
+      await screen.findByText('We could not find what you are looking for');
     });
   });
 });

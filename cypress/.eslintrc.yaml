@@ -6,3 +6,4 @@ rules:
   jest/valid-expect: off
   prefer-object-spread/prefer-object-spread: off
   testing-library/await-async-query: off
+  testing-library/prefer-screen-queries: off

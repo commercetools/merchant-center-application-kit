@@ -7,7 +7,7 @@ import ServicePageProjectSwitcher from './service-page-project-switcher';
 describe('rendering', () => {
   describe('when user has access to no projects', () => {
     it('should render nothing', async () => {
-      const rendered = renderApp(
+      const { container } = renderApp(
         <Route path={`/:projectKey`} component={ServicePageProjectSwitcher} />,
         {
           route: '/test-1',
@@ -21,7 +21,8 @@ describe('rendering', () => {
       );
       await waitFor(() => {
         expect(
-          rendered.container.querySelector('[name="project-switcher"]')
+          // eslint-disable-next-line testing-library/no-container
+          container.querySelector('[name="project-switcher"]')
         ).not.toBeInTheDocument();
       });
     });
@@ -33,7 +34,7 @@ describe('rendering', () => {
           numberOfProjects: 1,
         }),
       ];
-      const rendered = renderApp(
+      const { container } = renderApp(
         <Route path={`/:projectKey`} component={ServicePageProjectSwitcher} />,
         {
           route: '/test-1',
@@ -52,7 +53,8 @@ describe('rendering', () => {
       );
       await waitFor(() =>
         expect(
-          rendered.container.querySelector('[name="project-switcher"]')
+          // eslint-disable-next-line testing-library/no-container
+          container.querySelector('[name="project-switcher"]')
         ).toBeInTheDocument()
       );
     });

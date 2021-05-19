@@ -1,9 +1,12 @@
-import type { RenderResult } from '@testing-library/react';
 import type { MockedResponse } from '@apollo/client/testing';
 import type { TImageRegexContext } from './project-extension-image-regex';
 
 import React from 'react';
-import { render, waitForElementToBeRemoved } from '@testing-library/react';
+import {
+  screen,
+  render,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import { MockedProvider as ApolloMockProvider } from '@apollo/client/testing';
 import {
   ProjectExtensionProviderForImageRegex,
@@ -75,11 +78,9 @@ const renderComponentWithoutProvider = () =>
   );
 
 describe('rendering', () => {
-  let rendered: RenderResult;
-
   describe('when image regex is defined', () => {
-    beforeEach(() => {
-      rendered = renderComponent([
+    it('should render regex info', async () => {
+      renderComponent([
         {
           request: {
             query: FetchProjectExtensionImageRegex,
@@ -107,15 +108,13 @@ describe('rendering', () => {
           },
         },
       ]);
-    });
-    it('should render regex info', async () => {
-      await waitForElementToBeRemoved(() => rendered.queryByText('Loading...'));
-      expect(rendered.getByText('-thumb.jpg')).toBeInTheDocument();
+      await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
+      expect(screen.getByText('-thumb.jpg')).toBeInTheDocument();
     });
   });
   describe('when image regex is not defined', () => {
-    beforeEach(() => {
-      rendered = renderComponent([
+    it('should not render regex info', async () => {
+      renderComponent([
         {
           request: {
             query: FetchProjectExtensionImageRegex,
@@ -134,26 +133,20 @@ describe('rendering', () => {
           },
         },
       ]);
-    });
-    it('should not render regex info', async () => {
-      await waitForElementToBeRemoved(() => rendered.queryByText('Loading...'));
-      expect(rendered.getByText('Not found')).toBeInTheDocument();
+      await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
+      expect(screen.getByText('Not found')).toBeInTheDocument();
     });
   });
   describe('when fetching regex settings is skipped', () => {
-    beforeEach(() => {
-      rendered = renderComponent([], true);
-    });
     it('should not render regex info', () => {
-      expect(rendered.getByText('Not found')).toBeInTheDocument();
+      renderComponent([], true);
+      expect(screen.getByText('Not found')).toBeInTheDocument();
     });
   });
   describe('when context provider is not defined', () => {
-    beforeEach(() => {
-      rendered = renderComponentWithoutProvider();
-    });
     it('should not render regex info', () => {
-      expect(rendered.getByText('Not found')).toBeInTheDocument();
+      renderComponentWithoutProvider();
+      expect(screen.getByText('Not found')).toBeInTheDocument();
     });
   });
 });

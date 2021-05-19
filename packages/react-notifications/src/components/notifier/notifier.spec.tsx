@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
-import type { RenderResult } from '@testing-library/react';
 import type { TAddNotificationAction } from '@commercetools-frontend/notifications';
 import type { TShowNotification } from '@commercetools-frontend/actions-global';
 
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react';
+import { screen, render, fireEvent, waitFor } from '@testing-library/react';
 import { ADD_NOTIFICATION } from '@commercetools-frontend/notifications';
 import {
   NOTIFICATION_DOMAINS,
@@ -33,13 +32,13 @@ const TestController = (props: TextControllerProps) => {
       <button onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? 'Close' : 'Open'}
       </button>
+      {/* eslint-disable-next-line testing-library/no-node-access */}
       {isOpen && props.children}
     </div>
   );
 };
 
 describe('rendering', () => {
-  let rendered: RenderResult;
   let dismiss: () => void;
   let showNotification: (
     notification: TShowNotification
@@ -55,7 +54,7 @@ describe('rendering', () => {
     mocked(useShowNotification).mockReturnValue(showNotification);
   });
   it('should dispatch notification when component renders, then remove the notification when component is removed', async () => {
-    rendered = render(
+    render(
       <TestController>
         <Notifier
           domain={NOTIFICATION_DOMAINS.SIDE}
@@ -64,8 +63,8 @@ describe('rendering', () => {
         />
       </TestController>
     );
-    await rendered.findByText('Open');
-    fireEvent.click(rendered.getByText('Open'));
+    await screen.findByText('Open');
+    fireEvent.click(screen.getByText('Open'));
 
     await waitFor(() => {
       expect(showNotification).toHaveBeenCalledWith(
@@ -79,12 +78,12 @@ describe('rendering', () => {
       expect(dismiss).not.toHaveBeenCalled();
     });
 
-    fireEvent.click(rendered.getByText('Increase counter'));
-    fireEvent.click(rendered.getByText('Increase counter'));
-    fireEvent.click(rendered.getByText('Increase counter'));
-    await rendered.findByText('Count: 3');
+    fireEvent.click(screen.getByText('Increase counter'));
+    fireEvent.click(screen.getByText('Increase counter'));
+    fireEvent.click(screen.getByText('Increase counter'));
+    await screen.findByText('Count: 3');
 
-    fireEvent.click(rendered.getByText('Close'));
+    fireEvent.click(screen.getByText('Close'));
     await waitFor(() => {
       expect(showNotification).toHaveBeenCalledTimes(1);
       expect(dismiss).toHaveBeenCalled();

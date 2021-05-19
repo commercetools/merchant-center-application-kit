@@ -2,7 +2,7 @@ import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type { Props } from './gtm-booter';
 
 import React from 'react';
-import { render, waitFor, fireEvent } from '@testing-library/react';
+import { screen, render, waitFor, fireEvent } from '@testing-library/react';
 import GtmBooter from './gtm-booter';
 
 declare let window: ApplicationWindow;
@@ -18,7 +18,7 @@ describe('rendering', () => {
   it('should track event when clicking on an element', async () => {
     window.dataLayer = [];
     const props = createTestProps();
-    const rendered = render(
+    render(
       <GtmBooter {...props}>
         <button
           data-track-component="Test.button"
@@ -29,7 +29,7 @@ describe('rendering', () => {
         </button>
       </GtmBooter>
     );
-    fireEvent.click(rendered.getByText('Click me'));
+    fireEvent.click(screen.getByText('Click me'));
     await waitFor(() => {
       expect(window.dataLayer).toEqual(
         expect.arrayContaining([

@@ -9,7 +9,7 @@ import { mocked } from 'ts-jest/utils';
 import React from 'react';
 import upperFirst from 'lodash/upperFirst';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { renderApp, waitFor } from '../../test-utils';
+import { screen, renderApp, waitFor } from '../../test-utils';
 import FetchApplicationsMenu from './fetch-applications-menu.proxy.graphql';
 import useApplicationsMenu from './use-applications-menu';
 
@@ -94,7 +94,7 @@ const createGraphqlResponse = (
 describe('fetching the menu query', () => {
   describe('when the query succeeds', () => {
     it('should render menu key', async () => {
-      const rendered = renderApp(<NavBarTest />, {
+      renderApp(<NavBarTest />, {
         mocks: [
           {
             request: {
@@ -106,8 +106,8 @@ describe('fetching the menu query', () => {
           },
         ],
       });
-      await rendered.findByText('loading');
-      await rendered.findByText(/Key: orders/i);
+      await screen.findByText('loading');
+      await screen.findByText(/Key: orders/i);
     });
   });
   describe('when the query fails', () => {
@@ -115,7 +115,7 @@ describe('fetching the menu query', () => {
       console.error = jest.fn();
       mocked(reportErrorToSentry).mockClear();
       const error = new Error('Oops');
-      const rendered = renderApp(
+      renderApp(
         <AppBarTest
           menuConfig={{
             queryOptions: { onError: reportErrorToSentry },
@@ -132,7 +132,7 @@ describe('fetching the menu query', () => {
           ],
         }
       );
-      await rendered.findByText('loading');
+      await screen.findByText('loading');
       await waitFor(() => {
         expect(reportErrorToSentry).toHaveBeenCalled();
       });
@@ -141,7 +141,7 @@ describe('fetching the menu query', () => {
 });
 describe('loading the menu for local development', () => {
   it('should render menu key', async () => {
-    const rendered = renderApp(
+    renderApp(
       <NavBarTest
         menuConfig={{
           skipRemoteQuery: true,
@@ -154,9 +154,9 @@ describe('loading the menu for local development', () => {
         }}
       />
     );
-    await rendered.findByText('loading');
-    await rendered.findByText(/Key: orders/i);
-    await rendered.findByText(/Key: products/i);
-    await rendered.findByText(/Key: customers/i);
+    await screen.findByText('loading');
+    await screen.findByText(/Key: orders/i);
+    await screen.findByText(/Key: products/i);
+    await screen.findByText(/Key: customers/i);
   });
 });

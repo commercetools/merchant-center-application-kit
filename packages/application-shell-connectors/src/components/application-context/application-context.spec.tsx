@@ -3,7 +3,7 @@ import type { TProjectGraphql } from '../../../../../test-data/project';
 import type { TUserGraphql } from '../../../../../test-data/user';
 
 import React from 'react';
-import { render } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import * as ProjectMock from '../../../../../test-data/project';
 import * as UserMock from '../../../../../test-data/user';
 import {
@@ -55,7 +55,7 @@ const renderAppWithContext = (ui: React.ReactElement) => {
 
 describe('<ApplicationContext>', () => {
   it('should render project name from context', async () => {
-    const rendered = renderAppWithContext(
+    renderAppWithContext(
       <ApplicationContext
         render={(context) => (
           <div>{`Project name: ${
@@ -64,7 +64,7 @@ describe('<ApplicationContext>', () => {
         )}
       />
     );
-    await rendered.findByText('Project name: Ultron');
+    await screen.findByText('Project name: Ultron');
   });
 });
 
@@ -76,8 +76,8 @@ describe('useApplicationContext', () => {
     return <div>{`Project name: ${projectName}`}</div>;
   };
   it('should render project name from context', async () => {
-    const rendered = renderAppWithContext(<TestComponent />);
-    await rendered.findByText('Project name: Ultron');
+    renderAppWithContext(<TestComponent />);
+    await screen.findByText('Project name: Ultron');
   });
 });
 
@@ -94,8 +94,8 @@ describe('withApplicationContext', () => {
     projectName: context.project ? context.project.name : undefined,
   }))(TestComponent);
   it('should render project name from context', async () => {
-    const rendered = renderAppWithContext(<AppWithContext />);
-    await rendered.findByText('Project name: Ultron');
+    renderAppWithContext(<AppWithContext />);
+    await screen.findByText('Project name: Ultron');
   });
 });
 

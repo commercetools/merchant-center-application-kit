@@ -33,14 +33,14 @@ describe('Intl', () => {
     return <span>{intl.locale}</span>;
   };
   it('should have intl', async () => {
-    const rendered = renderApp(<TestComponent />);
-    await rendered.findByText('en');
+    renderApp(<TestComponent />);
+    await screen.findByText('en');
   });
   it('should be possible to overwrite', async () => {
-    const rendered = renderApp(<TestComponent />, {
+    renderApp(<TestComponent />, {
       locale: 'de',
     });
-    await rendered.findByText('de');
+    await screen.findByText('de');
   });
 });
 
@@ -60,7 +60,7 @@ describe('ApolloMockProvider', () => {
     return <>{data.foo.name}</>;
   };
   it('should be possible to fake GraphQL requests', async () => {
-    const rendered = renderApp(<TestComponent />, {
+    renderApp(<TestComponent />, {
       mocks: [
         {
           request: {
@@ -71,7 +71,7 @@ describe('ApolloMockProvider', () => {
         },
       ],
     });
-    await rendered.findByText('Snoop Dogg');
+    await screen.findByText('Snoop Dogg');
   });
 });
 
@@ -96,10 +96,10 @@ describe('Real ApolloProvider', () => {
         res(ctx.data({ foo: { name: 'Snoop Dogg' } }))
       )
     );
-    const rendered = renderApp(<TestComponent />, {
+    renderApp(<TestComponent />, {
       disableApolloMocks: true,
     });
-    await rendered.findByText('Snoop Dogg');
+    await screen.findByText('Snoop Dogg');
   });
 });
 
@@ -110,14 +110,14 @@ describe('`flopflip`', () => {
     return <p>Enabled: {isFeatureEnabled ? 'Yes' : 'No'}</p>;
   };
   it('should not enable features toggles by default', async () => {
-    const rendered = renderApp(<TestComponent />);
-    await rendered.findByText(/Enabled: No/i);
+    renderApp(<TestComponent />);
+    await screen.findByText(/Enabled: No/i);
   });
   it('should be possible to enable feature toggles', async () => {
-    const rendered = renderApp(<TestComponent />, {
+    renderApp(<TestComponent />, {
       flags: { [FEATURE_NAME]: true },
     });
-    await rendered.findByText(/Enabled: Yes/i);
+    await screen.findByText(/Enabled: Yes/i);
   });
 });
 
@@ -132,10 +132,10 @@ describe('ApplicationContext', () => {
     );
 
     it('should render with defaults', async () => {
-      const rendered = renderApp(<TestComponent />);
-      await rendered.findByText('Sheldon Cooper');
+      const { user } = renderApp(<TestComponent />);
+      await screen.findByText('Sheldon Cooper');
       // the user should be returned from "render"
-      expect(rendered.user).toEqual(
+      expect(user).toEqual(
         expect.objectContaining({
           id: 'user-id-1',
           email: 'sheldon.cooper@caltech.edu',
@@ -148,13 +148,13 @@ describe('ApplicationContext', () => {
     });
 
     it('should respect user overwrites', async () => {
-      const rendered = renderApp(<TestComponent />, {
+      const { user } = renderApp(<TestComponent />, {
         user: { firstName: 'Leonard' },
       });
       // shows that data gets merged and overwrites have priority
-      await rendered.findByText('Leonard Cooper');
+      await screen.findByText('Leonard Cooper');
       // the merged user should be returned from "render"
-      expect(rendered.user).toEqual(
+      expect(user).toEqual(
         expect.objectContaining({
           email: 'sheldon.cooper@caltech.edu',
           firstName: 'Leonard',
@@ -173,10 +173,10 @@ describe('ApplicationContext', () => {
     );
 
     it('should render with defaults', async () => {
-      const rendered = renderApp(<TestComponent />);
-      await rendered.findByText('test-with-big-data Test with big data');
+      const { project } = renderApp(<TestComponent />);
+      await screen.findByText('test-with-big-data Test with big data');
       // the project should be returned from "render"
-      expect(rendered.project).toEqual(
+      expect(project).toEqual(
         expect.objectContaining({
           key: 'test-with-big-data',
           version: 43,
@@ -193,13 +193,13 @@ describe('ApplicationContext', () => {
     });
 
     it('should respect project overwrites', async () => {
-      const rendered = renderApp(<TestComponent />, {
+      const { project } = renderApp(<TestComponent />, {
         project: { name: 'Geek' },
       });
       // shows that data gets merged and overwrites have priority
-      await rendered.findByText('test-with-big-data Geek');
+      await screen.findByText('test-with-big-data Geek');
       // the merged project should be returned from "render"
-      expect(rendered.project).toEqual(
+      expect(project).toEqual(
         expect.objectContaining({
           key: 'test-with-big-data',
           name: 'Geek',
@@ -215,16 +215,16 @@ describe('ApplicationContext', () => {
       </RestrictedByPermissions>
     );
     it('should render unauthorized when ManageProducts permission is false', async () => {
-      const rendered = renderApp(<TestComponent />, {
+      renderApp(<TestComponent />, {
         permissions: { canManageProducts: false },
       });
-      await rendered.findByText('Not allowed');
+      await screen.findByText('Not allowed');
     });
     it('should render authorized when ManageProducts permission is true', async () => {
-      const rendered = renderApp(<TestComponent />, {
+      renderApp(<TestComponent />, {
         permissions: { canManageProducts: true },
       });
-      await rendered.findByText('Authorized');
+      await screen.findByText('Authorized');
     });
   });
 
@@ -233,8 +233,8 @@ describe('ApplicationContext', () => {
       <ApplicationContext render={({ dataLocale }) => dataLocale} />
     );
     it('should add the locale to the project', async () => {
-      const rendered = renderApp(<TestComponent />, { dataLocale: 'de' });
-      await rendered.findByText('de');
+      renderApp(<TestComponent />, { dataLocale: 'de' });
+      await screen.findByText('de');
     });
   });
 
@@ -248,11 +248,11 @@ describe('ApplicationContext', () => {
     );
 
     it('should render with defaults', async () => {
-      const rendered = renderApp(<TestComponent />);
+      const { environment } = renderApp(<TestComponent />);
       // shows that data gets merged and overwrites have priority
-      await rendered.findByText('eu production');
+      await screen.findByText('eu production');
       // the project should be returned from "render"
-      expect(rendered.environment).toEqual(
+      expect(environment).toEqual(
         expect.objectContaining({
           frontendHost: 'localhost:3001',
           mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
@@ -265,13 +265,13 @@ describe('ApplicationContext', () => {
     });
 
     it('should respect user overwrites', async () => {
-      const rendered = renderApp(<TestComponent />, {
+      const { environment } = renderApp(<TestComponent />, {
         environment: { location: 'us' },
       });
       // shows that data gets merged and overwrites have priority
-      await rendered.findByText('us production');
+      await screen.findByText('us production');
       // the merged project should be returned from "render"
-      expect(rendered.environment).toEqual(
+      expect(environment).toEqual(
         expect.objectContaining({
           frontendHost: 'localhost:3001',
           location: 'us',
@@ -290,19 +290,19 @@ describe('router', () => {
     </Switch>
   );
   it('should render fallback when no route is provided', async () => {
-    const rendered = renderApp(<TestComponent />);
-    await rendered.findByText('None');
-    expect(rendered.queryByText('Foo')).not.toBeInTheDocument();
+    renderApp(<TestComponent />);
+    await screen.findByText('None');
+    expect(screen.queryByText('Foo')).not.toBeInTheDocument();
   });
   it('should render the route when a route is provided', async () => {
-    const rendered = renderApp(<TestComponent />, { route: '/foo' });
-    await rendered.findByText('Foo');
-    expect(rendered.queryByText('None')).not.toBeInTheDocument();
+    renderApp(<TestComponent />, { route: '/foo' });
+    await screen.findByText('Foo');
+    expect(screen.queryByText('None')).not.toBeInTheDocument();
   });
   it('should return a history object', async () => {
-    const rendered = renderApp(<TestComponent />, { route: '/foo' });
+    const { history } = renderApp(<TestComponent />, { route: '/foo' });
     await waitFor(() => {
-      expect(rendered.history.location.pathname).toBe('/foo');
+      expect(history.location.pathname).toBe('/foo');
     });
   });
 });
@@ -327,10 +327,10 @@ describe('custom render functions', () => {
         return <>{value}</>;
       };
 
-      const rendered = renderApp(<TestComponent />, {
+      renderApp(<TestComponent />, {
         wrapper: ProvidedWrapper,
       });
-      await rendered.findByText(/provided wrapper/i);
+      await screen.findByText(/provided wrapper/i);
     });
 
     it('should merge the passed wrapper with renderAppWithRedux internal wrapper', async () => {
@@ -343,31 +343,31 @@ describe('custom render functions', () => {
         return <>{value}</>;
       };
 
-      const rendered = renderAppWithRedux(<TestComponent />, {
+      renderAppWithRedux(<TestComponent />, {
         wrapper: ProvidedWrapper,
       });
-      await rendered.findByText(/provided wrapper/i);
+      await screen.findByText(/provided wrapper/i);
     });
   });
 
   describe('without wrapper', () => {
     it('should work with renderApp', async () => {
       const TestComponent = (props: { children: React.ReactNode }) => (
+        // eslint-disable-next-line testing-library/no-node-access
         <>{props.children}</>
       );
 
-      const rendered = renderApp(<TestComponent>{'one'}</TestComponent>);
-      await rendered.findByText('one');
+      renderApp(<TestComponent>{'one'}</TestComponent>);
+      await screen.findByText('one');
     });
     it('should work with renderAppWithRedux', async () => {
       const TestComponent = (props: { children: React.ReactNode }) => (
+        // eslint-disable-next-line testing-library/no-node-access
         <>{props.children}</>
       );
 
-      const rendered = renderAppWithRedux(
-        <TestComponent>{'one'}</TestComponent>
-      );
-      await rendered.findByText('one');
+      renderAppWithRedux(<TestComponent>{'one'}</TestComponent>);
+      await screen.findByText('one');
     });
   });
 
@@ -376,32 +376,34 @@ describe('custom render functions', () => {
       const TestComponent = (props: { children: React.ReactNode }) => {
         // the error won't be triggered unless one of the providers is used
         useIntl();
+        // eslint-disable-next-line testing-library/no-node-access
         return <>{props.children}</>;
       };
 
-      const rendered = renderApp(<TestComponent>{'one'}</TestComponent>);
-      await rendered.findByText('one');
+      const { rerender } = renderApp(<TestComponent>{'one'}</TestComponent>);
+      await screen.findByText('one');
 
-      rendered.rerender(<TestComponent>{'two'}</TestComponent>);
-      await rendered.findByText('two');
-      expect(rendered.queryByText('one')).not.toBeInTheDocument();
+      rerender(<TestComponent>{'two'}</TestComponent>);
+      await screen.findByText('two');
+      expect(screen.queryByText('one')).not.toBeInTheDocument();
     });
 
     it('should work with renderAppWithRedux', async () => {
       const TestComponent = (props: { children: React.ReactNode }) => {
         // the error won't be triggered unless one of the providers is used
         useSelector(() => undefined);
+        // eslint-disable-next-line testing-library/no-node-access
         return <>{props.children}</>;
       };
 
-      const rendered = renderAppWithRedux(
+      const { rerender } = renderAppWithRedux(
         <TestComponent>{'one'}</TestComponent>
       );
-      await rendered.findByText('one');
+      await screen.findByText('one');
 
-      rendered.rerender(<TestComponent>{'two'}</TestComponent>);
-      await rendered.findByText('two');
-      expect(rendered.queryByText('one')).not.toBeInTheDocument();
+      rerender(<TestComponent>{'two'}</TestComponent>);
+      await screen.findByText('two');
+      expect(screen.queryByText('one')).not.toBeInTheDocument();
     });
   });
 });

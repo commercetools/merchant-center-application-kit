@@ -1,6 +1,6 @@
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
-import { renderApp, waitFor } from '../../test-utils';
+import { screen, renderApp, waitFor } from '../../test-utils';
 import { location } from '../../utils/location';
 import RedirectToProjectCreate from './redirect-to-project-create';
 
@@ -34,8 +34,8 @@ describe('given not `servedByProxy`', () => {
   });
 
   it('should show development mode message', async () => {
-    const rendered = renderApp(<RedirectToProjectCreate />);
-    await rendered.findByText('Please create a project!');
+    renderApp(<RedirectToProjectCreate />);
+    await screen.findByText('Please create a project!');
     expect(mocked(location.replace)).not.toHaveBeenCalled();
   });
 });
