@@ -78,7 +78,6 @@ const renderComponentWithoutProvider = () =>
   );
 
 describe('rendering', () => {
-
   describe('when image regex is defined', () => {
     it('should render regex info', async () => {
       renderComponent([
@@ -113,7 +112,7 @@ describe('rendering', () => {
       expect(screen.getByText('-thumb.jpg')).toBeInTheDocument();
     });
   });
-  describe('when image regex is not defined', () => {;
+  describe('when image regex is not defined', () => {
     it('should not render regex info', async () => {
       renderComponent([
         {

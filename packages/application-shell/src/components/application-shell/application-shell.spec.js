@@ -218,7 +218,7 @@ describe.each`
     describe('when user navigates to "/account" route', () => {
       if (renderNodeAsChildren) {
         it('should trigger a page reload (when served by proxy)', async () => {
-          const {history} = renderApp(null, {
+          const { history } = renderApp(null, {
             renderNodeAsChildren,
             environment: { servedByProxy: true },
           });
@@ -230,7 +230,7 @@ describe.each`
         });
       } else {
         it('should render using the "render" prop', async () => {
-          const {history} = renderApp(null, {
+          const { history } = renderApp(null, {
             renderNodeAsChildren,
           });
           await screen.findByText('OK');
@@ -625,7 +625,7 @@ describe('when selecting project locale "de"', () => {
     await screen.findByText('Data locale: en');
 
     // Select a different locale
-    // eslint-disable-next-line testing-library/no-node-access
+    // eslint-disable-next-line testing-library/no-node-access, testing-library/no-container
     const input = container.querySelector('[name="locale-switcher"]');
     fireEvent.focus(input);
     fireEvent.keyDown(input, { key: 'ArrowDown' });
@@ -650,7 +650,7 @@ describe('when project has only one language', () => {
     const { container } = renderApp();
     await waitFor(() => {
       expect(
-        // eslint-disable-next-line testing-library/no-node-access
+        // eslint-disable-next-line testing-library/no-node-access, testing-library/no-container
         container.querySelector('[name="locale-switcher"]')
       ).not.toBeInTheDocument();
     });
@@ -669,7 +669,7 @@ describe('when user has no projects', () => {
     const { container } = renderApp();
     await waitFor(() => {
       expect(
-        // eslint-disable-next-line testing-library/no-node-access
+        // eslint-disable-next-line testing-library/no-node-access, testing-library/no-container
         container.querySelector('[name="project-switcher"]')
       ).not.toBeInTheDocument();
     });

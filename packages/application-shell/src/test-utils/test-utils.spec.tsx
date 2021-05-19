@@ -132,7 +132,7 @@ describe('ApplicationContext', () => {
     );
 
     it('should render with defaults', async () => {
-      const {user} = renderApp(<TestComponent />);
+      const { user } = renderApp(<TestComponent />);
       await screen.findByText('Sheldon Cooper');
       // the user should be returned from "render"
       expect(user).toEqual(
@@ -148,7 +148,7 @@ describe('ApplicationContext', () => {
     });
 
     it('should respect user overwrites', async () => {
-      const {user} = renderApp(<TestComponent />, {
+      const { user } = renderApp(<TestComponent />, {
         user: { firstName: 'Leonard' },
       });
       // shows that data gets merged and overwrites have priority
@@ -173,7 +173,7 @@ describe('ApplicationContext', () => {
     );
 
     it('should render with defaults', async () => {
-      const {project} = renderApp(<TestComponent />);
+      const { project } = renderApp(<TestComponent />);
       await screen.findByText('test-with-big-data Test with big data');
       // the project should be returned from "render"
       expect(project).toEqual(
@@ -193,7 +193,7 @@ describe('ApplicationContext', () => {
     });
 
     it('should respect project overwrites', async () => {
-      const {project} =renderApp(<TestComponent />, {
+      const { project } = renderApp(<TestComponent />, {
         project: { name: 'Geek' },
       });
       // shows that data gets merged and overwrites have priority
@@ -248,7 +248,7 @@ describe('ApplicationContext', () => {
     );
 
     it('should render with defaults', async () => {
-      const {environment} = renderApp(<TestComponent />);
+      const { environment } = renderApp(<TestComponent />);
       // shows that data gets merged and overwrites have priority
       await screen.findByText('eu production');
       // the project should be returned from "render"
@@ -265,7 +265,7 @@ describe('ApplicationContext', () => {
     });
 
     it('should respect user overwrites', async () => {
-      const {environment} = renderApp(<TestComponent />, {
+      const { environment } = renderApp(<TestComponent />, {
         environment: { location: 'us' },
       });
       // shows that data gets merged and overwrites have priority
@@ -300,7 +300,7 @@ describe('router', () => {
     expect(screen.queryByText('None')).not.toBeInTheDocument();
   });
   it('should return a history object', async () => {
-    const {history} = renderApp(<TestComponent />, { route: '/foo' });
+    const { history } = renderApp(<TestComponent />, { route: '/foo' });
     await waitFor(() => {
       expect(history.location.pathname).toBe('/foo');
     });

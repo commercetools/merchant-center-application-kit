@@ -417,7 +417,7 @@ describe('QuickAccess', () => {
     const mocks = [
       createMatchlessSearchMock({ variables: { searchText: 'Open dshbrd' } }),
     ];
-    const {history} = renderQuickAccess({
+    const { history } = renderQuickAccess({
       mocks,
       flags,
       sdkMocks: [
@@ -1029,7 +1029,7 @@ describe('QuickAccess', () => {
   it('should support selection by mouse', async () => {
     const searchText = 'Open dshbrd';
     const mocks = [createMatchlessSearchMock({ variables: { searchText } })];
-    const {history} = renderQuickAccess({
+    const { history } = renderQuickAccess({
       mocks,
       flags,
       sdkMocks: [
@@ -1059,9 +1059,7 @@ describe('QuickAccess', () => {
     fireEvent.click(openOrdersResult);
 
     await waitFor(() => {
-      expect(history.location.pathname).toBe(
-        '/test-with-big-data/orders'
-      );
+      expect(history.location.pathname).toBe('/test-with-big-data/orders');
     });
     // should close quick access
     expect(screen.queryByTestId('quick-access')).not.toBeInTheDocument();

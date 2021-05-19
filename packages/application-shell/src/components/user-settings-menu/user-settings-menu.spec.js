@@ -116,7 +116,7 @@ describe('rendering', () => {
         DEV_ONLY__loadAppbarMenuConfig: () =>
           Promise.all([Promise.resolve(createTestMenuConfig('projects'))]),
       });
-      const {history} = renderApp(<UserSettingsMenu {...props} />);
+      const { history } = renderApp(<UserSettingsMenu {...props} />);
       const dropdownMenu = await screen.findByRole('button', {
         name: /open user settings menu/i,
       });
