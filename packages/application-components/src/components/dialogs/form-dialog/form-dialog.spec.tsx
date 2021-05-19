@@ -1,6 +1,6 @@
 import React from 'react';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
-import { renderComponent, fireEvent } from '../../../test-utils';
+import { screen, renderComponent, fireEvent } from '../../../test-utils';
 import FormDialog from './form-dialog';
 
 type DialogControllerProps = {
@@ -27,7 +27,7 @@ describe('rendering', () => {
   it('should open the modal and close it by clicking on the close button', async () => {
     const onCancel = jest.fn();
     const onConfirm = jest.fn();
-    const rendered = renderComponent(
+    renderComponent(
       <DialogController>
         {({ isOpen, setIsOpen }) => (
           <FormDialog
@@ -42,24 +42,24 @@ describe('rendering', () => {
         )}
       </DialogController>
     );
-    expect(rendered.queryByText(/Lorem ipsus/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Lorem ipsus/i)).not.toBeInTheDocument();
 
-    fireEvent.click(rendered.getByLabelText(/Open Form Dialog/i));
-    await rendered.findByText(/Lorem ipsus/i);
-    expect(rendered.getByText(/Hello/i)).toBeInTheDocument();
+    fireEvent.click(screen.getByLabelText(/Open Form Dialog/i));
+    await screen.findByText(/Lorem ipsus/i);
+    expect(screen.getByText(/Hello/i)).toBeInTheDocument();
 
-    fireEvent.click(rendered.getByLabelText('Cancel'));
+    fireEvent.click(screen.getByLabelText('Cancel'));
     expect(onCancel).toHaveBeenCalled();
-    fireEvent.click(rendered.getByLabelText('Save'));
+    fireEvent.click(screen.getByLabelText('Save'));
     expect(onConfirm).toHaveBeenCalled();
 
-    fireEvent.click(rendered.getByLabelText(/Close dialog/i));
-    expect(rendered.queryByText(/Lorem ipsus/i)).not.toBeInTheDocument();
+    fireEvent.click(screen.getByLabelText(/Close dialog/i));
+    expect(screen.queryByText(/Lorem ipsus/i)).not.toBeInTheDocument();
   });
   it('should not be able to close the modal when onClose is not provided', async () => {
     const onCancel = jest.fn();
     const onConfirm = jest.fn();
-    const rendered = renderComponent(
+    renderComponent(
       <DialogController>
         {({ isOpen }) => (
           <FormDialog
@@ -73,12 +73,12 @@ describe('rendering', () => {
         )}
       </DialogController>
     );
-    expect(rendered.queryByText(/Lorem ipsus/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Lorem ipsus/i)).not.toBeInTheDocument();
 
-    fireEvent.click(rendered.getByLabelText(/Open Form Dialog/i));
-    await rendered.findByText(/Lorem ipsus/i);
-    expect(rendered.getByText(/Hello/i)).toBeInTheDocument();
+    fireEvent.click(screen.getByLabelText(/Open Form Dialog/i));
+    await screen.findByText(/Lorem ipsus/i);
+    expect(screen.getByText(/Hello/i)).toBeInTheDocument();
 
-    expect(rendered.queryByText(/Close dialog/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Close dialog/i)).not.toBeInTheDocument();
   });
 });

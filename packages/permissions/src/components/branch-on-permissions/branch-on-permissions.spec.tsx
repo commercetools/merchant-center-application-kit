@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import branchOnPermissions from './branch-on-permissions';
 
@@ -95,8 +95,8 @@ const renderWithPermissions = (demandedPermissions: string[]) => {
 describe('rendering', () => {
   describe('when permissions match', () => {
     it('should render component', async () => {
-      const rendered = renderWithPermissions(['ViewProducts']);
-      await rendered.findByText('Authorized');
+      renderWithPermissions(['ViewProducts']);
+      await screen.findByText('Authorized');
     });
   });
 });

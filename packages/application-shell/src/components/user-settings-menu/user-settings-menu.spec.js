@@ -4,7 +4,7 @@ import {
   LOGOUT_REASONS,
   SUPPORT_PORTAL_URL,
 } from '@commercetools-frontend/constants';
-import { renderApp, fireEvent, waitFor } from '../../test-utils';
+import { screen, renderApp, fireEvent, waitFor } from '../../test-utils';
 import FetchApplicationsMenu from '../../hooks/use-applications-menu/fetch-applications-menu.proxy.graphql';
 import UserSettingsMenu from './user-settings-menu';
 
@@ -31,8 +31,8 @@ const createGraphqlResponse = (custom = {}) => ({
   },
   ...custom,
 });
-const linkChecker = (rendered) => (label, href) => {
-  const link = rendered.queryByText(label);
+const linkChecker = () => (label, href) => {
+  const link = screen.queryByText(label);
   expect(link.closest('a')).toHaveAttribute('href', href);
 };
 
@@ -40,7 +40,7 @@ describe('rendering', () => {
   describe('when fetching remote menu config', () => {
     it('should open the menu and inspect the links', async () => {
       const props = createTestProps();
-      const rendered = renderApp(<UserSettingsMenu {...props} />, {
+      renderApp(<UserSettingsMenu {...props} />, {
         environment: {
           servedByProxy: 'true',
         },
@@ -55,16 +55,16 @@ describe('rendering', () => {
           },
         ],
       });
-      const dropdownMenu = await rendered.findByRole('button', {
+      const dropdownMenu = await screen.findByRole('button', {
         name: /open user settings menu/i,
       });
       fireEvent.click(dropdownMenu);
       // Menu should be open
-      await rendered.findByRole('button', {
+      await screen.findByRole('button', {
         name: /close user settings menu/i,
       });
 
-      const checkLink = linkChecker(rendered);
+      const checkLink = linkChecker();
 
       // Projects link
       checkLink('Projects', '/account/projects');
@@ -85,17 +85,17 @@ describe('rendering', () => {
         DEV_ONLY__loadAppbarMenuConfig: () =>
           Promise.all([Promise.resolve(createTestMenuConfig('projects'))]),
       });
-      const rendered = renderApp(<UserSettingsMenu {...props} />);
-      const dropdownMenu = await rendered.findByRole('button', {
+      renderApp(<UserSettingsMenu {...props} />);
+      const dropdownMenu = await screen.findByRole('button', {
         name: /open user settings menu/i,
       });
       fireEvent.click(dropdownMenu);
       // Menu should be open
-      await rendered.findByRole('button', {
+      await screen.findByRole('button', {
         name: /close user settings menu/i,
       });
 
-      const checkLink = linkChecker(rendered);
+      const checkLink = linkChecker();
 
       // Projects link
       checkLink('Projects', '/account/projects');
@@ -116,25 +116,25 @@ describe('rendering', () => {
         DEV_ONLY__loadAppbarMenuConfig: () =>
           Promise.all([Promise.resolve(createTestMenuConfig('projects'))]),
       });
-      const rendered = renderApp(<UserSettingsMenu {...props} />);
-      const dropdownMenu = await rendered.findByRole('button', {
+      const {history} = renderApp(<UserSettingsMenu {...props} />);
+      const dropdownMenu = await screen.findByRole('button', {
         name: /open user settings menu/i,
       });
       fireEvent.click(dropdownMenu);
       // Menu should be open
-      await rendered.findByRole('button', {
+      await screen.findByRole('button', {
         name: /close user settings menu/i,
       });
 
-      const link = rendered.queryByText('Projects');
+      const link = screen.queryByText('Projects');
       fireEvent.click(link);
 
       // Menu should be closed
-      await rendered.findByRole('button', {
+      await screen.findByRole('button', {
         name: /open user settings menu/i,
       });
       await waitFor(() => {
-        expect(rendered.history.location.pathname).toBe('/account/projects');
+        expect(history.location.pathname).toBe('/account/projects');
       });
     });
   });
@@ -144,21 +144,21 @@ describe('rendering', () => {
         DEV_ONLY__loadAppbarMenuConfig: () =>
           Promise.all([Promise.resolve(createTestMenuConfig('projects'))]),
       });
-      const rendered = renderApp(<UserSettingsMenu {...props} />);
-      const dropdownMenu = await rendered.findByRole('button', {
+      renderApp(<UserSettingsMenu {...props} />);
+      const dropdownMenu = await screen.findByRole('button', {
         name: /open user settings menu/i,
       });
       fireEvent.click(dropdownMenu);
       // Menu should be open
-      await rendered.findByRole('button', {
+      await screen.findByRole('button', {
         name: /close user settings menu/i,
       });
 
-      const link = rendered.queryByText('Privacy Policy');
+      const link = screen.queryByText('Privacy Policy');
       fireEvent.click(link);
 
       // Menu should be closed
-      await rendered.findByRole('button', {
+      await screen.findByRole('button', {
         name: /open user settings menu/i,
       });
     });
@@ -169,21 +169,21 @@ describe('rendering', () => {
         DEV_ONLY__loadAppbarMenuConfig: () =>
           Promise.all([Promise.resolve(createTestMenuConfig('projects'))]),
       });
-      const rendered = renderApp(<UserSettingsMenu {...props} />);
-      const dropdownMenu = await rendered.findByRole('button', {
+      renderApp(<UserSettingsMenu {...props} />);
+      const dropdownMenu = await screen.findByRole('button', {
         name: /open user settings menu/i,
       });
       fireEvent.click(dropdownMenu);
       // Menu should be open
-      await rendered.findByRole('button', {
+      await screen.findByRole('button', {
         name: /close user settings menu/i,
       });
 
-      const link = rendered.queryByText('Support');
+      const link = screen.queryByText('Support');
       fireEvent.click(link);
 
       // Menu should be closed
-      await rendered.findByRole('button', {
+      await screen.findByRole('button', {
         name: /open user settings menu/i,
       });
     });

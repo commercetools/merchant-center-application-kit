@@ -1,7 +1,7 @@
 import type { Props } from './maintenance-page-layout';
 
 import React from 'react';
-import { renderComponent } from '../../../test-utils';
+import { screen, renderComponent } from '../../../test-utils';
 import MaintenancePageLayout from './maintenance-page-layout';
 
 const createTestProps = (props: Partial<Props> = {}) => ({
@@ -18,9 +18,9 @@ describe('rendering', () => {
       props = createTestProps();
     });
     it('renders the title and paragraph', () => {
-      const rendered = renderComponent(<MaintenancePageLayout {...props} />);
-      expect(rendered.getByText('title')).toBeInTheDocument();
-      expect(rendered.getByText('title 1')).toBeInTheDocument();
+      renderComponent(<MaintenancePageLayout {...props} />);
+      expect(screen.getByText('title')).toBeInTheDocument();
+      expect(screen.getByText('title 1')).toBeInTheDocument();
     });
   });
   describe('with both paragraphs', () => {
@@ -30,10 +30,10 @@ describe('rendering', () => {
       });
     });
     it('renders the title and paragraphs', () => {
-      const rendered = renderComponent(<MaintenancePageLayout {...props} />);
-      expect(rendered.getByText('title')).toBeInTheDocument();
-      expect(rendered.getByText('title 1')).toBeInTheDocument();
-      expect(rendered.getByText('title 2')).toBeInTheDocument();
+      renderComponent(<MaintenancePageLayout {...props} />);
+      expect(screen.getByText('title')).toBeInTheDocument();
+      expect(screen.getByText('title 1')).toBeInTheDocument();
+      expect(screen.getByText('title 2')).toBeInTheDocument();
     });
   });
   describe('with both paragraphs and a body content in between', () => {
@@ -44,11 +44,11 @@ describe('rendering', () => {
       });
     });
     it('renders the title, paragraphs and body content', () => {
-      const rendered = renderComponent(<MaintenancePageLayout {...props} />);
-      expect(rendered.getByText('title')).toBeInTheDocument();
-      expect(rendered.getByText('title 1')).toBeInTheDocument();
-      expect(rendered.getByText('title 2')).toBeInTheDocument();
-      expect(rendered.getByText('content')).toBeInTheDocument();
+      renderComponent(<MaintenancePageLayout {...props} />);
+      expect(screen.getByText('title')).toBeInTheDocument();
+      expect(screen.getByText('title 1')).toBeInTheDocument();
+      expect(screen.getByText('title 2')).toBeInTheDocument();
+      expect(screen.getByText('content')).toBeInTheDocument();
     });
   });
   describe('with only one paragraph and the body content', () => {
@@ -58,10 +58,10 @@ describe('rendering', () => {
       });
     });
     it('renders the title, paragraphs and body content', () => {
-      const rendered = renderComponent(<MaintenancePageLayout {...props} />);
-      expect(rendered.getByText('title')).toBeInTheDocument();
-      expect(rendered.getByText('title 1')).toBeInTheDocument();
-      expect(rendered.getByText('content')).toBeInTheDocument();
+      renderComponent(<MaintenancePageLayout {...props} />);
+      expect(screen.getByText('title')).toBeInTheDocument();
+      expect(screen.getByText('title 1')).toBeInTheDocument();
+      expect(screen.getByText('content')).toBeInTheDocument();
     });
   });
   describe('with label', () => {
@@ -69,9 +69,9 @@ describe('rendering', () => {
       props = createTestProps({ label: 'page label' });
     });
     it('renders the label as an alt of the image', () => {
-      const rendered = renderComponent(<MaintenancePageLayout {...props} />);
+      renderComponent(<MaintenancePageLayout {...props} />);
       expect(
-        rendered.getByRole('img', { name: props.label })
+        screen.getByRole('img', { name: props.label })
       ).toBeInTheDocument();
     });
   });

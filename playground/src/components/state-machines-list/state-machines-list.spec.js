@@ -1,5 +1,6 @@
 import { MC_API_PROXY_TARGETS } from '@commercetools-frontend/constants';
 import {
+  screen,
   renderAppWithRedux,
   waitFor,
   fireEvent,
@@ -85,7 +86,7 @@ const createStateMachinesDetailSdkErrorMock = () => ({
 const renderApp = (options = {}) => {
   const route = options.route || '/my-project/playground-state-machines';
   const gtmMock = { track: jest.fn(), getHierarchy: jest.fn() };
-  const rendered = renderAppWithRedux(
+  const { history } = renderAppWithRedux(
     <GtmContext.Provider value={gtmMock}>
       <ApplicationStateMachines />
     </GtmContext.Provider>,
@@ -98,66 +99,64 @@ const renderApp = (options = {}) => {
       ...options,
     }
   );
-  return { ...rendered, gtmMock };
+  return { gtmMock, history };
 };
 
 describe('list view', () => {
-  let rendered;
   it('the user can see a list of state machines', async () => {
-    rendered = renderApp({
+    renderApp({
       sdkMocks: [createStateMachinesListSdkMock()],
     });
-    await rendered.findByText(/State machines/i);
-    await rendered.findByText(/There are 2 objects in the cache/i);
-    await rendered.findByText('sm-1');
-    await rendered.findByText('sm-2');
+    await screen.findByText(/State machines/i);
+    await screen.findByText(/There are 2 objects in the cache/i);
+    await screen.findByText('sm-1');
+    await screen.findByText('sm-2');
   });
   it('the user can click on the state machines to get to the details page', async () => {
-    rendered = renderApp({
+    const { history } = renderApp({
       sdkMocks: [
         createStateMachinesListSdkMock(),
         createStateMachinesDetailSdkMockForId1(),
       ],
     });
-    await rendered.findByText(/There are 2 objects in the cache/i);
-    fireEvent.click(rendered.getByText('sm-1'));
+    await screen.findByText(/There are 2 objects in the cache/i);
+    fireEvent.click(screen.getByText('sm-1'));
     await waitFor(() => {
-      expect(rendered.history.location.pathname).toBe(
+      expect(history.location.pathname).toBe(
         '/my-project/playground-state-machines/sm1'
       );
     });
-    await rendered.findByText(/sm-1/i);
+    await screen.findByText(/sm-1/i);
   });
 });
 
 describe('details view', () => {
-  let rendered;
   describe('when request is successful', () => {
     it('should render data on page', async () => {
-      rendered = renderApp({
+      renderApp({
         route: '/my-project/playground-state-machines/sm1',
         sdkMocks: [createStateMachinesDetailSdkMockForId1()],
       });
-      await rendered.findByText(/sm-1/i);
+      await screen.findByText(/sm-1/i);
     });
     it('should retrigger request if id changes', async () => {
-      rendered = renderApp({
+      const { history, gtmMock } = renderApp({
         route: '/my-project/playground-state-machines/sm1',
         sdkMocks: [
           createStateMachinesDetailSdkMockForId1(),
           createStateMachinesDetailSdkMockForId2(),
         ],
       });
-      await rendered.findByText(/sm-1/i);
+      await screen.findByText(/sm-1/i);
       await waitFor(() => {
-        expect(rendered.gtmMock.track).toHaveBeenCalledWith(
+        expect(gtmMock.track).toHaveBeenCalledWith(
           'rendered',
           'State machine details'
         );
       });
 
-      rendered.history.push('/my-project/playground-state-machines/sm2');
-      await rendered.findByText(/sm-2/i);
+      history.push('/my-project/playground-state-machines/sm2');
+      await screen.findByText(/sm-2/i);
     });
   });
   describe('when request returns an error', () => {
@@ -165,13 +164,11 @@ describe('details view', () => {
       console.error = jest.fn();
     });
     it('should render notification error message', async () => {
-      rendered = renderApp({
+      renderApp({
         route: '/my-project/playground-state-machines/sm1',
         sdkMocks: [createStateMachinesDetailSdkErrorMock()],
       });
-      await rendered.findByText(
-        /^Sorry, but there seems to be something wrong/i
-      );
+      await screen.findByText(/^Sorry, but there seems to be something wrong/i);
     });
   });
 });

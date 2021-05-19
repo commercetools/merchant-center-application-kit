@@ -2,7 +2,13 @@ import React from 'react';
 import { encode } from 'qss';
 import { graphql, rest } from 'msw';
 import { setupServer } from 'msw/node';
-import { render, waitFor, fireEvent, within } from '@testing-library/react';
+import {
+  screen,
+  render,
+  waitFor,
+  fireEvent,
+  within,
+} from '@testing-library/react';
 import { AuthenticationError, ApolloError } from 'apollo-server-errors';
 import { useDispatch } from 'react-redux';
 import { createMemoryHistory } from 'history';
@@ -91,23 +97,25 @@ const renderApp = (ui, options = {}) => {
       ? { children: jsxElem }
       : { render: () => jsxElem }),
   };
-  const rendered = render(<ApplicationShell {...props} />);
-  const findByLeftNavigation = () => rendered.findByTestId('left-navigation');
-  const queryByLeftNavigation = () => rendered.queryByTestId('left-navigation');
+  const { container } = render(<ApplicationShell {...props} />);
+  const findByLeftNavigation = () => screen.findByTestId('left-navigation');
+  const queryByLeftNavigation = () => screen.queryByTestId('left-navigation');
+  const getByLeftNavigation = () => screen.getByTestId('left-navigation');
   const waitForLeftNavigationToBeLoaded = async () => {
     await findByLeftNavigation();
     // Wait for the loading navbar to disappear. Instead of using `waitForElementToBeRemoved`,
     // which seems not stable enough, we wait to find the "Support" link, which is present
     // when the navbar is loaded.
-    await rendered.findByText('Support');
+    await screen.findByText('Support');
   };
 
   return {
-    ...rendered,
     findByLeftNavigation,
     queryByLeftNavigation,
+    getByLeftNavigation,
     waitForLeftNavigationToBeLoaded,
     history: testHistory,
+    container,
   };
 };
 
@@ -200,34 +208,34 @@ describe.each`
         );
         return <p>{`Application name: ${applicationName}`}</p>;
       };
-      const rendered = renderApp(<TestComponent />, {
+      renderApp(<TestComponent />, {
         renderNodeAsChildren,
         route,
       });
-      await rendered.findByText('Application name: my-app');
+      await screen.findByText('Application name: my-app');
     });
 
     describe('when user navigates to "/account" route', () => {
       if (renderNodeAsChildren) {
         it('should trigger a page reload (when served by proxy)', async () => {
-          const rendered = renderApp(null, {
+          const {history} = renderApp(null, {
             renderNodeAsChildren,
             environment: { servedByProxy: true },
           });
-          await rendered.findByText('OK');
-          rendered.history.push('/account');
+          await screen.findByText('OK');
+          history.push('/account');
           await waitFor(() => {
             expect(location.reload).toHaveBeenCalled();
           });
         });
       } else {
         it('should render using the "render" prop', async () => {
-          const rendered = renderApp(null, {
+          const {history} = renderApp(null, {
             renderNodeAsChildren,
           });
-          await rendered.findByText('OK');
-          rendered.history.push('/account');
-          await rendered.findByText('OK');
+          await screen.findByText('OK');
+          history.push('/account');
+          await screen.findByText('OK');
           expect(location.reload).not.toHaveBeenCalled();
         });
       }
@@ -237,24 +245,24 @@ describe.each`
 
 describe('when route does not contain a project key (e.g. /account)', () => {
   it('should not render NavBar', async () => {
-    const rendered = renderApp();
-    await rendered.findByText('OK');
-    rendered.history.push('/account');
+    const { history, queryByLeftNavigation } = renderApp();
+    await screen.findByText('OK');
+    history.push('/account');
     await waitFor(() => {
-      expect(rendered.history.location.pathname).toBe('/account');
+      expect(history.location.pathname).toBe('/account');
     });
-    expect(rendered.queryByLeftNavigation()).not.toBeInTheDocument();
-    await rendered.findByText('OK');
+    expect(queryByLeftNavigation()).not.toBeInTheDocument();
+    await screen.findByText('OK');
   });
 });
 describe('when user first visits "/" with no projectKey defined in localStorage', () => {
   it('should not render the NavBar first, then redirect to "/:projectKey" and render the NavBar', async () => {
-    const rendered = renderApp();
+    const { history, getByLeftNavigation } = renderApp();
     await waitFor(() => {
       // Redirect "/" -> "/:projectKey"
-      expect(rendered.history.location.pathname).toBe(`/test-1`);
+      expect(history.location.pathname).toBe(`/test-1`);
     });
-    expect(rendered.queryByLeftNavigation()).toBeInTheDocument();
+    expect(getByLeftNavigation()).toBeInTheDocument();
   });
 });
 describe('when user has no default project', () => {
@@ -274,7 +282,7 @@ describe('when user has no default project', () => {
     );
   });
   it('should redirect to project creation', async () => {
-    const rendered = renderApp(null, {
+    renderApp(null, {
       environment: {
         servedByProxy: 'true',
       },
@@ -282,7 +290,7 @@ describe('when user has no default project', () => {
     await waitFor(() => {
       expect(location.replace).toHaveBeenCalledWith('/account/projects/new');
     });
-    expect(rendered.queryByText('OK')).not.toBeInTheDocument();
+    expect(screen.queryByText('OK')).not.toBeInTheDocument();
   });
 });
 describe('when loading user fails with an unknown graphql error', () => {
@@ -295,8 +303,8 @@ describe('when loading user fails with an unknown graphql error', () => {
     );
   });
   it('should render error page', async () => {
-    const rendered = renderApp();
-    await rendered.findByText('Sorry! An unexpected error occured.');
+    renderApp();
+    await screen.findByText('Sorry! An unexpected error occured.');
   });
 });
 describe('when loading user fails with an unauthorized graphql error', () => {
@@ -309,7 +317,7 @@ describe('when loading user fails with an unauthorized graphql error', () => {
     );
   });
   it('should redirect to "/logout" with reason unauthorized', async () => {
-    const rendered = renderApp();
+    renderApp();
     const queryParams = encode({
       reason: LOGOUT_REASONS.UNAUTHORIZED,
     });
@@ -318,7 +326,7 @@ describe('when loading user fails with an unauthorized graphql error', () => {
         expect.stringContaining(`/logout?${queryParams}`)
       );
     });
-    expect(rendered.queryByText('OK')).not.toBeInTheDocument();
+    expect(screen.queryByText('OK')).not.toBeInTheDocument();
   });
 });
 describe('when loading user fails with a "was not found." graphql error message', () => {
@@ -331,7 +339,7 @@ describe('when loading user fails with a "was not found." graphql error message'
     );
   });
   it('should redirect to /logout with reason "deleted"', async () => {
-    const rendered = renderApp();
+    renderApp();
     const queryParams = encode({
       reason: LOGOUT_REASONS.DELETED,
     });
@@ -340,13 +348,13 @@ describe('when loading user fails with a "was not found." graphql error message'
         expect.stringContaining(`/logout?${queryParams}`)
       );
     });
-    expect(rendered.queryByText('OK')).not.toBeInTheDocument();
+    expect(screen.queryByText('OK')).not.toBeInTheDocument();
   });
 });
 describe('when project is not found', () => {
   it('should render "project not found" page', async () => {
-    const rendered = renderApp(null, { route: '/not-found' });
-    await rendered.findByText('We could not find this Project');
+    renderApp(null, { route: '/not-found' });
+    await screen.findByText('We could not find this Project');
   });
 });
 describe('when project is temporarily suspended', () => {
@@ -367,8 +375,8 @@ describe('when project is temporarily suspended', () => {
     );
   });
   it('should render "project suspended" page', async () => {
-    const rendered = renderApp();
-    await rendered.findByText(
+    renderApp();
+    await screen.findByText(
       'Your Project is temporarily suspended due to maintenance.'
     );
   });
@@ -391,8 +399,8 @@ describe('when project is suspended for another reason', () => {
     );
   });
   it('should render "project suspended" page', async () => {
-    const rendered = renderApp();
-    await rendered.findByText('Your Project has been suspended');
+    renderApp();
+    await screen.findByText('Your Project has been suspended');
   });
 });
 describe('when project is expired', () => {
@@ -413,8 +421,8 @@ describe('when project is expired', () => {
     );
   });
   it('should render "project expired" page', async () => {
-    const rendered = renderApp();
-    await rendered.findByText('Your trial has expired');
+    renderApp();
+    await screen.findByText('Your trial has expired');
   });
 });
 describe('when project is about to expire (<14 days left)', () => {
@@ -435,8 +443,8 @@ describe('when project is about to expire (<14 days left)', () => {
     );
   });
   it('should render global warning message', async () => {
-    const rendered = renderApp();
-    await rendered.findByText(
+    renderApp();
+    await screen.findByText(
       /^Your project trial period will expire in 13 days\.(.*)$/
     );
   });
@@ -459,8 +467,8 @@ describe('when project is about to expire (14 days left)', () => {
     );
   });
   it('should render global warning message', async () => {
-    const rendered = renderApp();
-    await rendered.findByText(
+    renderApp();
+    await screen.findByText(
       /^Your project trial period will expire in 14 days\.(.*)$/
     );
   });
@@ -483,10 +491,10 @@ describe('when project is about to expire (>14 days left)', () => {
     );
   });
   it('should not render global warning message', async () => {
-    const rendered = renderApp();
+    renderApp();
     await waitFor(() => {
       expect(
-        rendered.queryByText(/^Your project trial period will expire (.*)$/)
+        screen.queryByText(/^Your project trial period will expire (.*)$/)
       ).not.toBeInTheDocument();
     });
   });
@@ -509,8 +517,8 @@ describe('when project is about to expire (0 days left)', () => {
     );
   });
   it('should render global warning message', async () => {
-    const rendered = renderApp();
-    await rendered.findByText(
+    renderApp();
+    await screen.findByText(
       /^Your project trial period will expire in 0 days\.(.*)$/
     );
   });
@@ -529,8 +537,8 @@ describe('when project is not initialized', () => {
     );
   });
   it('should render "project not initialized" page', async () => {
-    const rendered = renderApp();
-    await rendered.findByText('Your project has not yet been initialized');
+    renderApp();
+    await screen.findByText('Your project has not yet been initialized');
   });
 });
 describe('when user does not have permissions to access the project', () => {
@@ -564,21 +572,19 @@ describe('when user does not have permissions to access the project', () => {
       }
       return <p>{'OK'}</p>;
     };
-    const rendered = renderApp(<TestComponent />);
-    await rendered.findByText('Not enough permissions to access this resource');
+    renderApp(<TestComponent />);
+    await screen.findByText('Not enough permissions to access this resource');
   });
 });
 describe('when switching project', () => {
   it('should render app for new project', async () => {
-    const rendered = renderApp(
-      <label id="project-switcher">{'Project switcher'}</label>
-    );
-    await rendered.findByText('Project switcher');
-    const input = await rendered.findByLabelText('Project switcher');
+    renderApp(<label id="project-switcher">{'Project switcher'}</label>);
+    await screen.findByText('Project switcher');
+    const input = await screen.findByLabelText('Project switcher');
 
     fireEvent.focus(input);
     fireEvent.keyDown(input, { key: 'ArrowDown' });
-    rendered.getByText('Test 2').click();
+    screen.getByText('Test 2').click();
 
     await waitFor(() => {
       expect(location.replace).toHaveBeenCalledWith(`/test-2`);
@@ -593,7 +599,7 @@ describe('when user is not authenticated', () => {
     );
   });
   it('should redirect to /login with reason "unauthorized"', async () => {
-    const rendered = renderApp(null, { route: '/foo' });
+    renderApp(null, { route: '/foo' });
     const queryParams = encode({
       reason: LOGOUT_REASONS.UNAUTHORIZED,
       redirectTo: `${window.location.origin}/foo`,
@@ -603,7 +609,7 @@ describe('when user is not authenticated', () => {
       expect(location.replace).toHaveBeenCalledWith(
         `${window.location.origin}/login?${queryParams}`
       );
-      expect(rendered.queryByText('OK')).not.toBeInTheDocument();
+      expect(screen.queryByText('OK')).not.toBeInTheDocument();
     });
   });
 });
@@ -615,15 +621,16 @@ describe('when selecting project locale "de"', () => {
       );
       return <span>{`Data locale: ${projectDataLocale}`}</span>;
     };
-    const rendered = renderApp(<TestComponent />);
-    await rendered.findByText('Data locale: en');
+    const { container } = renderApp(<TestComponent />);
+    await screen.findByText('Data locale: en');
 
     // Select a different locale
-    const input = rendered.container.querySelector('[name="locale-switcher"]');
+    // eslint-disable-next-line testing-library/no-node-access
+    const input = container.querySelector('[name="locale-switcher"]');
     fireEvent.focus(input);
     fireEvent.keyDown(input, { key: 'ArrowDown' });
-    rendered.getByText('de').click();
-    await rendered.findByText('Data locale: de');
+    screen.getByText('de').click();
+    await screen.findByText('Data locale: de');
   });
 });
 describe('when project has only one language', () => {
@@ -640,10 +647,11 @@ describe('when project has only one language', () => {
     );
   });
   it('should not render locale switcher', async () => {
-    const rendered = renderApp();
+    const { container } = renderApp();
     await waitFor(() => {
       expect(
-        rendered.container.querySelector('[name="locale-switcher"]')
+        // eslint-disable-next-line testing-library/no-node-access
+        container.querySelector('[name="locale-switcher"]')
       ).not.toBeInTheDocument();
     });
   });
@@ -658,13 +666,14 @@ describe('when user has no projects', () => {
     );
   });
   it('should not render project switcher', async () => {
-    const rendered = renderApp();
+    const { container } = renderApp();
     await waitFor(() => {
       expect(
-        rendered.container.querySelector('[name="project-switcher"]')
+        // eslint-disable-next-line testing-library/no-node-access
+        container.querySelector('[name="project-switcher"]')
       ).not.toBeInTheDocument();
     });
-    await rendered.findByText('Back to project');
+    await screen.findByText('Back to project');
   });
 });
 describe('when dispatching a loading notification', () => {
@@ -690,22 +699,23 @@ describe('when dispatching a loading notification', () => {
         </>
       );
     };
-    const rendered = renderApp(<TestComponent />);
-    const showBtn = await rendered.findByText('Show loading');
+    renderApp(<TestComponent />);
+    const showBtn = await screen.findByText('Show loading');
     fireEvent.click(showBtn);
-    await rendered.findByText('Processing...');
-    const hideBtn = await rendered.findByText('Hide loading');
+    await screen.findByText('Processing...');
+    const hideBtn = await screen.findByText('Hide loading');
     fireEvent.click(hideBtn);
     await waitFor(() => {
-      expect(rendered.queryByText('Processing...')).not.toBeInTheDocument();
+      expect(screen.queryByText('Processing...')).not.toBeInTheDocument();
     });
   });
 });
 describe('when clicking on navbar menu toggle', () => {
   it('should expand and collapse menu', async () => {
-    const rendered = renderApp();
-    await rendered.waitForLeftNavigationToBeLoaded();
-    const button = await rendered.findByTestId('menu-expander');
+    const { findByLeftNavigation, waitForLeftNavigationToBeLoaded } =
+      renderApp();
+    await waitForLeftNavigationToBeLoaded();
+    const button = await screen.findByTestId('menu-expander');
     fireEvent.click(button);
     await waitFor(() => {
       expect(window.localStorage.setItem).toHaveBeenCalledWith(
@@ -722,28 +732,31 @@ describe('when clicking on navbar menu toggle', () => {
     });
     // Check that the support link is rendered
     // Get the nav container, to narrow down the search area
-    const container = await rendered.findByLeftNavigation();
+    const container = await findByLeftNavigation();
     const navbarRendered = within(container);
     expect(navbarRendered.getByText('Support')).toBeInTheDocument();
   });
 });
 describe('navbar menu links interactions', () => {
-  async function checkLinksInteractions(
-    rendered,
-    { mainMenuLabel, mainSubmenuLabel }
-  ) {
+  async function checkLinksInteractions({
+    container,
+    findByLeftNavigation,
+    mainMenuLabel,
+    mainSubmenuLabel,
+  }) {
     // Check the relationships between the menu items of a group
-    const menuTitle = await within(
-      await rendered.findByLeftNavigation()
-    ).findByText(mainMenuLabel.value);
+    const menuTitle = await within(await findByLeftNavigation()).findByText(
+      mainMenuLabel.value
+    );
     const groupId = menuTitle.getAttribute('aria-owns');
-    const submenuContainer = rendered.container.querySelector(`#${groupId}`);
+    // eslint-disable-next-line testing-library/no-node-access, testing-library/no-container
+    const submenuContainer = container.querySelector(`#${groupId}`);
     expect(submenuContainer).toHaveAttribute('aria-expanded', 'false');
     fireEvent.click(menuTitle);
     await waitFor(() => {
       expect(submenuContainer).toHaveAttribute('aria-expanded', 'true');
     });
-    const menuGroupContainer = within(rendered.getByTestId(groupId));
+    const menuGroupContainer = within(screen.getByTestId(groupId));
     const menuLink = menuGroupContainer.queryByText(mainSubmenuLabel.value);
     expect(menuLink).toBeInTheDocument();
     expect(menuLink).not.toHaveAttribute('aria-current');
@@ -759,7 +772,11 @@ describe('navbar menu links interactions', () => {
       const navbarMock = ApplicationNavbarMenuMock.build({
         submenu: [navbarSubmenuMock],
       });
-      const rendered = renderApp(null, {
+      const {
+        container,
+        findByLeftNavigation,
+        waitForLeftNavigationToBeLoaded,
+      } = renderApp(null, {
         DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
       });
 
@@ -772,8 +789,10 @@ describe('navbar menu links interactions', () => {
       );
 
       // Wait for the loading nav container to disappear
-      await rendered.waitForLeftNavigationToBeLoaded();
-      await checkLinksInteractions(rendered, {
+      await waitForLeftNavigationToBeLoaded();
+      await checkLinksInteractions({
+        container,
+        findByLeftNavigation,
         mainMenuLabel,
         mainSubmenuLabel,
       });
@@ -850,22 +869,30 @@ describe('navbar menu links interactions', () => {
       );
     });
     it('should render links with all the correct state attributes', async () => {
-      const rendered = renderApp(null, {
+      const {
+        container,
+        findByLeftNavigation,
+        waitForLeftNavigationToBeLoaded,
+      } = renderApp(null, {
         environment: {
           servedByProxy: 'true',
         },
       });
       // Wait for the loading nav container to disappear
-      await rendered.waitForLeftNavigationToBeLoaded();
+      await waitForLeftNavigationToBeLoaded();
 
       // Check links from internal applications menu
-      await checkLinksInteractions(rendered, {
+      await checkLinksInteractions({
+        container,
+        findByLeftNavigation,
         mainMenuLabel: { value: 'Products' },
         mainSubmenuLabel: { value: 'Add product' },
       });
 
       // Check links from custom applications menu
-      await checkLinksInteractions(rendered, {
+      await checkLinksInteractions({
+        container,
+        findByLeftNavigation,
         mainMenuLabel: { value: 'Marvel' },
         mainSubmenuLabel: { value: 'Avengers' },
       });
@@ -900,12 +927,15 @@ describe('when navbar menu items are hidden', () => {
     const navbarMock = ApplicationNavbarMenuMock.build({
       submenu: [navbarSubmenuMock],
     });
-    const rendered = renderApp(null, {
-      DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
-    });
-    await rendered.waitForLeftNavigationToBeLoaded();
+    const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
+      null,
+      {
+        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+      }
+    );
+    await waitForLeftNavigationToBeLoaded();
     // Get the nav container, to narrow down the search area
-    const container = await rendered.findByLeftNavigation();
+    const container = await findByLeftNavigation();
     const navbarRendered = within(container);
 
     const applicationLocale = 'en';
@@ -944,11 +974,14 @@ describe('when navbar menu items match given permissions', () => {
     const navbarMock = ApplicationNavbarMenuMock.build({
       permissions: ['ManageOrders'],
     });
-    const rendered = renderApp(null, {
-      DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
-    });
-    await rendered.waitForLeftNavigationToBeLoaded();
-    const container = await rendered.findByLeftNavigation();
+    const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
+      null,
+      {
+        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+      }
+    );
+    await waitForLeftNavigationToBeLoaded();
+    const container = await findByLeftNavigation();
 
     const applicationLocale = 'en';
     const mainMenuLabel = navbarMock.labelAllLocales.find(
@@ -982,12 +1015,15 @@ describe('when navbar menu items do not match given permissions', () => {
     const navbarMock = ApplicationNavbarMenuMock.build({
       permissions: ['ViewOrders'],
     });
-    const rendered = renderApp(null, {
-      DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
-    });
-    await rendered.waitForLeftNavigationToBeLoaded();
+    const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
+      null,
+      {
+        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+      }
+    );
+    await waitForLeftNavigationToBeLoaded();
     // Get the nav container, to narrow down the search area
-    const container = await rendered.findByLeftNavigation();
+    const container = await findByLeftNavigation();
     const navbarRendered = within(container);
 
     const applicationLocale = 'en';
@@ -1035,11 +1071,14 @@ describe('when navbar menu items match given action rights', () => {
       permissions: ['ManageOrders'],
       actionRights: [{ group: 'orders', name: 'AddOrders' }],
     });
-    const rendered = renderApp(null, {
-      DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
-    });
-    await rendered.waitForLeftNavigationToBeLoaded();
-    const container = await rendered.findByLeftNavigation();
+    const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
+      null,
+      {
+        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+      }
+    );
+    await waitForLeftNavigationToBeLoaded();
+    const container = await findByLeftNavigation();
 
     const applicationLocale = 'en';
     const mainMenuLabel = navbarMock.labelAllLocales.find(
@@ -1082,12 +1121,15 @@ describe('when navbar menu items do not match given action rights', () => {
       permissions: ['ManageOrders'],
       actionRights: [{ group: 'orders', name: 'AddOrders' }],
     });
-    const rendered = renderApp(null, {
-      DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
-    });
-    await rendered.waitForLeftNavigationToBeLoaded();
+    const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
+      null,
+      {
+        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+      }
+    );
+    await waitForLeftNavigationToBeLoaded();
     // Get the nav container, to narrow down the search area
-    const container = await rendered.findByLeftNavigation();
+    const container = await findByLeftNavigation();
     const navbarRendered = within(container);
 
     const applicationLocale = 'en';
@@ -1142,11 +1184,14 @@ describe('when navbar menu items match given data fences', () => {
         },
       ],
     });
-    const rendered = renderApp(null, {
-      DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
-    });
-    await rendered.waitForLeftNavigationToBeLoaded();
-    const container = await rendered.findByLeftNavigation();
+    const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
+      null,
+      {
+        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+      }
+    );
+    await waitForLeftNavigationToBeLoaded();
+    const container = await findByLeftNavigation();
 
     const applicationLocale = 'en';
     const mainMenuLabel = navbarMock.labelAllLocales.find(
@@ -1196,11 +1241,14 @@ describe('when navbar menu items do not match given data fences', () => {
         },
       ],
     });
-    const rendered = renderApp(null, {
-      DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
-    });
-    await rendered.waitForLeftNavigationToBeLoaded();
-    const container = await rendered.findByLeftNavigation();
+    const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
+      null,
+      {
+        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+      }
+    );
+    await waitForLeftNavigationToBeLoaded();
+    const container = await findByLeftNavigation();
 
     const applicationLocale = 'en';
     const mainMenuLabel = navbarMock.labelAllLocales.find(

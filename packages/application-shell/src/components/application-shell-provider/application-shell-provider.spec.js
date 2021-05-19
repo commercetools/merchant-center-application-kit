@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactReduxContext } from 'react-redux';
 import { IntlProvider, FormattedMessage } from 'react-intl';
-import { render, waitFor } from '@testing-library/react';
+import { screen, render, waitFor } from '@testing-library/react';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { GtmContext } from '../gtm-booter';
 // eslint-disable-next-line import/named
@@ -39,7 +39,7 @@ describe('rendering', () => {
     hasCachedAuthenticationState.mockReturnValue(true);
   });
   it('should access environment from application context', async () => {
-    const rendered = render(
+    render(
       <ApplicationShellProvider {...createTestProps()}>
         {() => (
           <ApplicationContext
@@ -48,7 +48,7 @@ describe('rendering', () => {
         )}
       </ApplicationShellProvider>
     );
-    await rendered.findByText('eu');
+    await screen.findByText('eu');
   });
   it('should access redux store from context', () => {
     let hasStore = false;
@@ -118,7 +118,7 @@ describe('rendering', () => {
     hasCachedAuthenticationState.mockReturnValue(false);
     __setIsAuthenticated(false);
     getBrowserLocale.mockReturnValue('de');
-    const rendered = render(
+    render(
       <ApplicationShellProvider {...createTestProps()}>
         {({ isAuthenticated }) =>
           isAuthenticated ? null : (
@@ -127,17 +127,17 @@ describe('rendering', () => {
         }
       </ApplicationShellProvider>
     );
-    await rendered.findByText('Titel');
+    await screen.findByText('Titel');
   });
   it('when authenticated, it should render children', async () => {
-    const rendered = render(
+    render(
       <ApplicationShellProvider {...createTestProps()}>
         {({ isAuthenticated }) =>
           isAuthenticated ? <div>{'Hello'}</div> : null
         }
       </ApplicationShellProvider>
     );
-    await rendered.findByText('Hello');
+    await screen.findByText('Hello');
   });
   it('when something in the children throws, it should render the error apologiser page', async () => {
     console.error = jest.fn();
@@ -149,14 +149,14 @@ describe('rendering', () => {
         return null;
       }
     }
-    const rendered = render(
+    render(
       <IntlProvider locale="en" messages={{}}>
         <ApplicationShellProvider {...createTestProps()}>
           {() => <Thrower />}
         </ApplicationShellProvider>
       </IntlProvider>
     );
-    await rendered.findByText(/Sorry! An unexpected error occured/i);
+    await screen.findByText(/Sorry! An unexpected error occured/i);
     expect(console.error).toHaveBeenCalled();
   });
 });

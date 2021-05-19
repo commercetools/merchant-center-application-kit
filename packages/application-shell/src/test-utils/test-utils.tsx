@@ -221,6 +221,7 @@ const ApolloProviderWrapper = (props: TApolloProviderWrapperProps) => {
   const apolloClient = props.apolloClient ?? createApolloClient();
   if (props.disableApolloMocks) {
     return (
+      // eslint-disable-next-line testing-library/no-node-access
       <ApolloProvider client={apolloClient}>{props.children}</ApolloProvider>
     );
   }
@@ -235,6 +236,7 @@ const ApolloProviderWrapper = (props: TApolloProviderWrapperProps) => {
       addTypename={apolloClient.cache.addTypename ?? true}
       cache={apolloClient.cache}
     >
+      {/* eslint-disable-next-line testing-library/no-node-access */}
       {props.children}
     </ApolloMockProvider>
   );
@@ -416,13 +418,15 @@ function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
                   environment={mergedEnvironment}
                   render={
                     disableAutomaticEntryPointRoutes
-                      ? () => <>{props.children}</>
+                      ? // eslint-disable-next-line testing-library/no-node-access
+                        () => <>{props.children}</>
                       : undefined
                   }
                 >
                   {disableAutomaticEntryPointRoutes
                     ? undefined
-                    : props.children}
+                    : // eslint-disable-next-line testing-library/no-node-access
+                      props.children}
                 </ApplicationEntryPoint>
               </React.Suspense>
             </Router>
@@ -458,6 +462,7 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
     history,
   } = createApplicationProviders(options);
 
+  // eslint-disable-next-line testing-library/render-result-naming-convention
   const rendered = rtl.render(ui, {
     ...options,
     // eslint-disable-next-line react/display-name
@@ -578,6 +583,7 @@ function createReduxProviders<
           <NotificationsList domain={DOMAINS.GLOBAL} />
           <NotificationsList domain={DOMAINS.PAGE} />
           <NotificationsList domain={DOMAINS.SIDE} />
+          {/* eslint-disable-next-line testing-library/no-node-access */}
           {props.children}
         </div>
       </StoreProvider>
@@ -606,6 +612,7 @@ function renderAppWithRedux<
   > = {}
 ): TRenderAppWithReduxResult<AdditionalEnvironmentProperties, StoreState> {
   const { ReduxProviders, reduxStore } = createReduxProviders(options);
+  // eslint-disable-next-line testing-library/render-result-naming-convention
   const rendered = renderApp(ui, {
     ...options,
     // eslint-disable-next-line react/display-name
@@ -675,6 +682,7 @@ function renderHook<
     history,
   } = createApplicationProviders(options);
 
+  // eslint-disable-next-line testing-library/render-result-naming-convention
   const rendered = rtlHooks.renderHook(callback, {
     ...options,
     // eslint-disable-next-line react/display-name

@@ -1,10 +1,8 @@
-import type { RenderResult } from '@testing-library/react';
-
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { useSelector } from 'react-redux';
-import { render } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import {
   NOTIFICATION_DOMAINS,
   NOTIFICATION_KINDS_PAGE,
@@ -29,7 +27,6 @@ const renderComponent = (ui: React.ReactElement): RenderResult =>
   );
 
 describe('rendering', () => {
-  let rendered: RenderResult;
   beforeEach(() => {
     mocked(useSelector).mockClear();
     mocked(useSelector).mockReturnValue([]);
@@ -45,7 +42,7 @@ describe('rendering', () => {
           text: 'Something went wrong',
         },
       ]);
-      rendered = renderComponent(
+      renderComponent(
         <NotificationProviderForCustomComponent
           mapNotificationToComponent={mapNotificationToComponent}
         >
@@ -54,7 +51,7 @@ describe('rendering', () => {
       );
     });
     it('should render the <CustomComponent> notification component', async () => {
-      await rendered.findByText('Custom component');
+      await screen.findByText('Custom component');
     });
   });
   describe('for domain: page', () => {
@@ -69,12 +66,12 @@ describe('rendering', () => {
             text: 'Something went wrong',
           },
         ]);
-        rendered = renderComponent(
+        renderComponent(
           <NotificationsList domain={NOTIFICATION_DOMAINS.PAGE} />
         );
       });
       it('should render the GenericNotification notification component', async () => {
-        await rendered.findByText('Something went wrong');
+        await screen.findByText('Something went wrong');
       });
     });
     describe('for kind: api-error', () => {
@@ -95,12 +92,12 @@ describe('rendering', () => {
             },
           },
         ]);
-        rendered = renderComponent(
+        renderComponent(
           <NotificationsList domain={NOTIFICATION_DOMAINS.PAGE} />
         );
       });
       it('should render the ApiErrorNotification notification component', async () => {
-        await rendered.findByText(
+        await screen.findByText(
           /we were unable to save your changes as someone else made changes to this same source while you were editing/
         );
       });
@@ -117,14 +114,12 @@ describe('rendering', () => {
             values: {},
           },
         ]);
-        rendered = renderComponent(
+        renderComponent(
           <NotificationsList domain={NOTIFICATION_DOMAINS.PAGE} />
         );
       });
       it('should render the UnexpectedErrorNotification notification component', async () => {
-        await rendered.findByText(
-          /Sorry, but there seems to be something wrong/
-        );
+        await screen.findByText(/Sorry, but there seems to be something wrong/);
       });
     });
   });
@@ -140,12 +135,12 @@ describe('rendering', () => {
             text: 'Something went wrong',
           },
         ]);
-        rendered = renderComponent(
+        renderComponent(
           <NotificationsList domain={NOTIFICATION_DOMAINS.GLOBAL} />
         );
       });
       it('should render the GenericNotification notification component', async () => {
-        await rendered.findByText('Something went wrong');
+        await screen.findByText('Something went wrong');
       });
     });
     describe('for kind: unexpected-error', () => {
@@ -159,14 +154,12 @@ describe('rendering', () => {
             values: {},
           },
         ]);
-        rendered = renderComponent(
+        renderComponent(
           <NotificationsList domain={NOTIFICATION_DOMAINS.GLOBAL} />
         );
       });
       it('should render the UnexpectedErrorNotification notification component', async () => {
-        await rendered.findByText(
-          /Sorry, but there seems to be something wrong/
-        );
+        await screen.findByText(/Sorry, but there seems to be something wrong/);
       });
     });
   });
@@ -182,12 +175,12 @@ describe('rendering', () => {
             text: 'Something went wrong',
           },
         ]);
-        rendered = renderComponent(
+        renderComponent(
           <NotificationsList domain={NOTIFICATION_DOMAINS.SIDE} />
         );
       });
       it('should render the GenericNotification notification component', async () => {
-        await rendered.findByText('Something went wrong');
+        await screen.findByText('Something went wrong');
       });
     });
   });

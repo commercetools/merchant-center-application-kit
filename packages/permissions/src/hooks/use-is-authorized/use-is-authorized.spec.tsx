@@ -2,7 +2,7 @@ import React from 'react';
 import { mocked } from 'ts-jest/utils';
 import warning from 'tiny-warning';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
-import { render as rtlRender } from '@testing-library/react';
+import { screen, render as rtlRender } from '@testing-library/react';
 import useIsAuthorized from './use-is-authorized';
 
 jest.mock('tiny-warning');
@@ -145,7 +145,7 @@ describe('general permissions', () => {
   describe('when only some permission should be matched', () => {
     describe('with one applied permission and one matching demanded permission', () => {
       it('should indicate being authorized', () => {
-        const rendered = render({
+        render({
           demandedPermissions: ['ManageCustomers', 'ManageOrders'],
           allAppliedPermissions: [
             {
@@ -156,12 +156,12 @@ describe('general permissions', () => {
           shouldMatchSomePermissions: true,
         });
 
-        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
     describe('with one applied permission and no matching demanded permission', () => {
       it('should indicate not being authorized', () => {
-        const rendered = render({
+        render({
           demandedPermissions: ['ManageCustomers', 'ManageOrders'],
           allAppliedPermissions: [
             {
@@ -171,14 +171,14 @@ describe('general permissions', () => {
           ],
         });
 
-        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
   });
   describe('when all permissions should be matched', () => {
     describe('with one applied permission and one not matching demanded permission', () => {
       it('should indicate being not authorized', () => {
-        const rendered = render({
+        render({
           allAppliedPermissions: [
             {
               name: 'canManageCustomers',
@@ -188,12 +188,12 @@ describe('general permissions', () => {
           demandedPermissions: ['ManageCustomers', 'ManageOrders'],
         });
 
-        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
     describe('with mulltiple applied permission and all demanded permission matching', () => {
       it('should indicate being authorized', () => {
-        const rendered = render({
+        render({
           allAppliedPermissions: [
             {
               name: 'canManageCustomers',
@@ -207,13 +207,13 @@ describe('general permissions', () => {
           demandedPermissions: ['ManageCustomers', 'ManageOrders'],
         });
 
-        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
     describe('with applied manage permission', () => {
       describe('when demanding view permission', () => {
         it('should indicate being authorized', () => {
-          const rendered = render({
+          render({
             allAppliedPermissions: [
               {
                 name: 'canManageCustomers',
@@ -223,12 +223,12 @@ describe('general permissions', () => {
             demandedPermissions: ['ViewCustomers'],
           });
 
-          expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
+          expect(screen.getByText('Is authorized: Yes')).toBeInTheDocument();
         });
       });
       describe('when demanding manage permission', () => {
         it('should indicate being authorized', () => {
-          const rendered = render({
+          render({
             allAppliedPermissions: [
               {
                 name: 'canManageCustomers',
@@ -238,13 +238,13 @@ describe('general permissions', () => {
             demandedPermissions: ['ManageCustomers'],
           });
 
-          expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
+          expect(screen.getByText('Is authorized: Yes')).toBeInTheDocument();
         });
       });
     });
     describe('without applied manage permission', () => {
       it('should indicate not being authorized', () => {
-        const rendered = render({
+        render({
           allAppliedPermissions: [
             {
               name: 'canManageCustomers',
@@ -254,7 +254,7 @@ describe('general permissions', () => {
           demandedPermissions: ['ViewCustomersGroups'],
         });
 
-        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
   });
@@ -264,7 +264,7 @@ describe('action rights', () => {
   describe('with applied and matching demanded view permission', () => {
     describe('without applied action right matching demanded', () => {
       it('should indicate not being authorized', () => {
-        const rendered = render({
+        render({
           allAppliedPermissions: [
             { name: 'canManageProjectSettings', value: true },
             { name: 'canViewProducts', value: true },
@@ -282,12 +282,12 @@ describe('action rights', () => {
           ],
         });
 
-        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
     describe('with applied action right matching demanded', () => {
       it('should indicate being authorized', () => {
-        const rendered = render({
+        render({
           allAppliedPermissions: [
             { name: 'canManageProjectSettings', value: true },
             { name: 'canViewProducts', value: true },
@@ -303,12 +303,12 @@ describe('action rights', () => {
           demandedActionRights: [{ group: 'products', name: 'EditPrices' }],
         });
 
-        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
     describe('with applied action right in another group of demanded', () => {
       it('should indicate not being authorized', () => {
-        const rendered = render({
+        render({
           allAppliedPermissions: [
             { name: 'canManageProjectSettings', value: true },
             { name: 'canViewProducts', value: true },
@@ -324,14 +324,14 @@ describe('action rights', () => {
           demandedActionRights: [{ group: 'products', name: 'EditPrices' }],
         });
 
-        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
   });
   describe('with applied and none matching demanded view permission', () => {
     describe('with applied action right not matching demanded', () => {
       it('should indicate not being authorized', () => {
-        const rendered = render({
+        render({
           allAppliedPermissions: [{ name: 'canViewProducts', value: false }],
           allAppliedActionRights: [
             {
@@ -346,13 +346,13 @@ describe('action rights', () => {
           ],
         });
 
-        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
   });
   describe('without applied and matching demanded view permission', () => {
     it('should indicate not being authorized', () => {
-      const rendered = render({
+      render({
         allAppliedPermissions: [
           { name: 'canManageProjectSettings', value: true },
           // Misses `canViewProducts`
@@ -368,7 +368,7 @@ describe('action rights', () => {
         demandedActionRights: [{ group: 'products', name: 'EditPrices' }],
       });
 
-      expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
+      expect(screen.getByText('Is authorized: No')).toBeInTheDocument();
     });
   });
 });
@@ -378,7 +378,7 @@ describe('data fences', () => {
     describe('when data fence is matched', () => {
       describe('when not overwritten', () => {
         it('should indicate as authorized', () => {
-          const rendered = render({
+          render({
             shouldMatchSomePermissions: true,
             allAppliedPermissions: [{ name: 'canManageOrders', value: true }],
             allAppliedDataFences: [
@@ -408,13 +408,13 @@ describe('data fences', () => {
             },
           });
 
-          expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
+          expect(screen.getByText('Is authorized: Yes')).toBeInTheDocument();
         });
       });
     });
     describe('when overwritten', () => {
       it('should indicate as not authorized', () => {
-        const rendered = render({
+        render({
           allAppliedPermissions: [{ name: 'canManageOrders', value: true }],
           allAppliedActionRights: [
             {
@@ -453,12 +453,12 @@ describe('data fences', () => {
           },
         });
 
-        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
     describe('when data fence is not matched', () => {
       it('should indicate as authorized', () => {
-        const rendered = render({
+        render({
           allAppliedPermissions: [{ name: 'canManageOrders', value: true }],
           allAppliedDataFences: [
             {
@@ -487,12 +487,12 @@ describe('data fences', () => {
           },
         });
 
-        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
     describe('when actual data fence is from different group', () => {
       it('should indicate as authorized', () => {
-        const rendered = render({
+        render({
           allAppliedPermissions: [{ name: 'canManageOrders', value: true }],
           allAppliedDataFences: [
             {
@@ -521,7 +521,7 @@ describe('data fences', () => {
           },
         });
 
-        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
   });
@@ -529,7 +529,7 @@ describe('data fences', () => {
   describe('when general permission is not matched', () => {
     describe('when at least one of the demanded data fence is matched', () => {
       it('should indicate as authorized', () => {
-        const rendered = render({
+        render({
           allAppliedPermissions: [
             { name: 'canViewOrders', value: false },
             { name: 'canManageOrders', value: false },
@@ -559,12 +559,12 @@ describe('data fences', () => {
           selectDataFenceData: () => ['store-1'],
         });
 
-        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
     describe('when all data fences are matched', () => {
       it('should indicate as authorized', () => {
-        const rendered = render({
+        render({
           allAppliedPermissions: [
             { name: 'canViewOrders', value: false },
             { name: 'canManageOrders', value: false },
@@ -596,12 +596,12 @@ describe('data fences', () => {
           },
         });
 
-        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
     describe('when data fence permission is not matched', () => {
       it('should indicate as not authorized', () => {
-        const rendered = render({
+        render({
           allAppliedPermissions: [
             { name: 'canViewOrders', value: false },
             { name: 'canManageOrders', value: false },
@@ -633,12 +633,12 @@ describe('data fences', () => {
           },
         });
 
-        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
     describe('when actual data fence permission is from different group', () => {
       it('should indicate as not authorized', () => {
-        const rendered = render({
+        render({
           allAppliedPermissions: [
             { name: 'canViewOrders', value: false },
             { name: 'canManageOrders', value: false },
@@ -670,7 +670,7 @@ describe('data fences', () => {
           },
         });
 
-        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
+        expect(screen.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
   });

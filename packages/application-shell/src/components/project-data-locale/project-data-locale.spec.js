@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
+import { screen, render, waitFor } from '@testing-library/react';
 import { STORAGE_KEYS } from '../../constants';
 import ProjectDataLocale from './project-data-locale';
 
@@ -14,23 +14,23 @@ describe('rendering', () => {
     describe('when cached locale is a known project locale', () => {
       it('should render with cached value', async () => {
         window.localStorage.getItem.mockReturnValue('de');
-        const rendered = render(
+        render(
           <ProjectDataLocale locales={['en', 'de']}>
             {({ locale }) => <span>{`Locale: ${locale}`}</span>}
           </ProjectDataLocale>
         );
-        await rendered.findByText('Locale: de');
+        await screen.findByText('Locale: de');
       });
     });
     describe('when cached locale is not in the list of project locales', () => {
       it('should render with first locale from the project list and cache it', async () => {
         window.localStorage.getItem.mockReturnValue('it');
-        const rendered = render(
+        render(
           <ProjectDataLocale locales={['en', 'de']}>
             {({ locale }) => <span>{`Locale: ${locale}`}</span>}
           </ProjectDataLocale>
         );
-        await rendered.findByText('Locale: en');
+        await screen.findByText('Locale: en');
         await waitFor(() => {
           expect(window.localStorage.setItem).toHaveBeenCalledWith(
             STORAGE_KEYS.SELECTED_DATA_LOCALE,
@@ -43,12 +43,12 @@ describe('rendering', () => {
   describe('when selected locale is not cached', () => {
     it('should render with first locale from the project list and cache it', async () => {
       window.localStorage.getItem.mockReturnValue(undefined);
-      const rendered = render(
+      render(
         <ProjectDataLocale locales={['en', 'de']}>
           {({ locale }) => <span>{`Locale: ${locale}`}</span>}
         </ProjectDataLocale>
       );
-      await rendered.findByText('Locale: en');
+      await screen.findByText('Locale: en');
       await waitFor(() => {
         expect(window.localStorage.setItem).toHaveBeenCalledWith(
           STORAGE_KEYS.SELECTED_DATA_LOCALE,

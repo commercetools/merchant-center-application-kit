@@ -1,6 +1,6 @@
 import React from 'react';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
-import { renderComponent, fireEvent } from '../../../test-utils';
+import { screen, renderComponent, fireEvent } from '../../../test-utils';
 import InfoDialog from './info-dialog';
 
 type DialogControllerProps = {
@@ -25,7 +25,7 @@ DialogController.displayName = 'DialogController';
 
 describe('rendering', () => {
   it('should open the modal and close it by clicking on the close button', async () => {
-    const rendered = renderComponent(
+    renderComponent(
       <DialogController>
         {({ isOpen, setIsOpen }) => (
           <InfoDialog
@@ -38,13 +38,13 @@ describe('rendering', () => {
         )}
       </DialogController>
     );
-    expect(rendered.queryByText(/Lorem ipsus/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Lorem ipsus/)).not.toBeInTheDocument();
 
-    fireEvent.click(rendered.getByLabelText(/Open Info Dialog/));
-    await rendered.findByText(/Lorem ipsus/);
-    expect(rendered.getByText(/Hello/)).toBeInTheDocument();
+    fireEvent.click(screen.getByLabelText(/Open Info Dialog/));
+    await screen.findByText(/Lorem ipsus/);
+    expect(screen.getByText(/Hello/)).toBeInTheDocument();
 
-    fireEvent.click(rendered.getByLabelText(/Close dialog/));
-    expect(rendered.queryByText(/Lorem ipsus/)).not.toBeInTheDocument();
+    fireEvent.click(screen.getByLabelText(/Close dialog/));
+    expect(screen.queryByText(/Lorem ipsus/)).not.toBeInTheDocument();
   });
 });
