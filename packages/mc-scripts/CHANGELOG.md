@@ -1,5 +1,22 @@
 # @commercetools-frontend/mc-scripts
 
+## 20.3.0
+
+### Patch Changes
+
+- [#2223](https://github.com/commercetools/merchant-center-application-kit/pull/2223) [`6de28034`](https://github.com/commercetools/merchant-center-application-kit/commit/6de28034f51e53b3cd1f293eaa16b8f66d9ae9e0) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+* [#2226](https://github.com/commercetools/merchant-center-application-kit/pull/2226) [`2ceba5c8`](https://github.com/commercetools/merchant-center-application-kit/commit/2ceba5c8ba654b04e99ece62a3d71b692031b7f0) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency dotenv to v10
+
+- [#2212](https://github.com/commercetools/merchant-center-application-kit/pull/2212) [`5961c019`](https://github.com/commercetools/merchant-center-application-kit/commit/5961c019ab908bc1a5d58acd4511e7c579976797) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+* [#2213](https://github.com/commercetools/merchant-center-application-kit/pull/2213) [`665961f8`](https://github.com/commercetools/merchant-center-application-kit/commit/665961f8b17dcd718f201fb407e7f06287a4e478) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency css-minimizer-webpack-plugin to v3
+
+* Updated dependencies [[`6de28034`](https://github.com/commercetools/merchant-center-application-kit/commit/6de28034f51e53b3cd1f293eaa16b8f66d9ae9e0), [`5961c019`](https://github.com/commercetools/merchant-center-application-kit/commit/5961c019ab908bc1a5d58acd4511e7c579976797)]:
+  - @commercetools-frontend/application-config@20.3.0
+  - @commercetools-frontend/babel-preset-mc-app@20.3.0
+  - @commercetools-frontend/mc-html-template@20.3.0
+
 ## 20.2.1
 
 ### Patch Changes

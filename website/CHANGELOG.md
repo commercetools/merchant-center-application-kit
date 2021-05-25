@@ -1,5 +1,15 @@
 # @commercetools-website/custom-applications
 
+## 18.2.2
+
+### Patch Changes
+
+- [#2223](https://github.com/commercetools/merchant-center-application-kit/pull/2223) [`6de28034`](https://github.com/commercetools/merchant-center-application-kit/commit/6de28034f51e53b3cd1f293eaa16b8f66d9ae9e0) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+* [#2220](https://github.com/commercetools/merchant-center-application-kit/pull/2220) [`f3919cd9`](https://github.com/commercetools/merchant-center-application-kit/commit/f3919cd9877b016eac5ffb4aa29d18f09033d909) Thanks [@dogayuksel](https://github.com/dogayuksel)! - Fix apollo Query component import path
+
+- [#2212](https://github.com/commercetools/merchant-center-application-kit/pull/2212) [`5961c019`](https://github.com/commercetools/merchant-center-application-kit/commit/5961c019ab908bc1a5d58acd4511e7c579976797) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
 ## 18.2.1
 
 ### Patch Changes
