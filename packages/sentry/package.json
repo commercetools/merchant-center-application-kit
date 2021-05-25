@@ -27,7 +27,7 @@
     "@commercetools-frontend/constants": "20.3.0",
     "@sentry/browser": "6.4.1",
     "@types/prop-types": "^15.7.3",
-    "@types/react": "^17.0.3",
+    "@types/react": "^17.0.7",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
