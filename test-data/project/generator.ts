@@ -1,6 +1,6 @@
 import type { TProject } from './types';
 
-import slugify from '@sindresorhus/slugify';
+import faker from 'faker';
 import { fake, sequence, Generator } from '@commercetools-test-data/core';
 
 const generator = Generator<TProject>({
@@ -25,7 +25,7 @@ const generator = Generator<TProject>({
     dataFences: null,
   },
   postBuild: (project) => {
-    project.key = slugify(project.name);
+    project.key = faker.helpers.slugify(project.name);
     return project;
   },
 });
