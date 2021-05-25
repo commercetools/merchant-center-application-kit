@@ -9,18 +9,32 @@
     "directory": "packages/sdk"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
     "access": "public"
   },
   "preconstruct": {
-    "entrypoints": ["./index.ts", "./test-utils/index.ts"]
+    "entrypoints": [
+      "./index.ts",
+      "./test-utils/index.ts"
+    ]
   },
   "main": "dist/commercetools-frontend-sdk.cjs.js",
   "module": "dist/commercetools-frontend-sdk.esm.js",
-  "files": ["dist", "test-utils", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "dist",
+    "test-utils",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prepare": "./../../scripts/version.js replace"
   },
@@ -35,7 +49,7 @@
     "@commercetools/sdk-middleware-http": "6.0.11",
     "@types/node-fetch": "2.5.10",
     "@types/prop-types": "^15.7.3",
-    "@types/react": "^17.0.3",
+    "@types/react": "^17.0.7",
     "@types/react-redux": "^7.1.16",
     "fast-equals": "2.0.3",
     "prop-types": "15.7.2",

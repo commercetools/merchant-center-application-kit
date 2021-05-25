@@ -9,7 +9,12 @@
     "directory": "packages/actions-global"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -17,7 +22,12 @@
   },
   "main": "dist/commercetools-frontend-actions-global.cjs.js",
   "module": "dist/commercetools-frontend-actions-global.esm.js",
-  "files": ["dist", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prepare": "./../../scripts/version.js replace"
   },
@@ -29,7 +39,7 @@
     "@commercetools-frontend/notifications": "20.0.1",
     "@commercetools-frontend/sentry": "20.3.0",
     "@types/lodash": "^4.14.167",
-    "@types/react": "^17.0.3",
+    "@types/react": "^17.0.7",
     "@types/react-redux": "^7.1.16",
     "lodash": "4.17.21",
     "redux-thunk": "2.3.0"

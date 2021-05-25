@@ -9,7 +9,12 @@
     "directory": "packages/application-components"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -18,7 +23,9 @@
   "main": "dist/commercetools-frontend-application-components.cjs.js",
   "module": "dist/commercetools-frontend-application-components.esm.js",
   "preconstruct": {
-    "entrypoints": ["./index.ts"]
+    "entrypoints": [
+      "./index.ts"
+    ]
   },
   "files": [
     "dist",
@@ -55,7 +62,7 @@
     "@emotion/styled": "11.3.0",
     "@types/lodash": "^4.14.167",
     "@types/prop-types": "^15.7.3",
-    "@types/react": "^17.0.3",
+    "@types/react": "^17.0.7",
     "@types/react-dom": "^17.0.3",
     "@types/react-modal": "^3.10.4",
     "lodash": "4.17.21",

@@ -9,7 +9,12 @@
     "directory": "packages/sentry"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -17,7 +22,12 @@
   },
   "main": "dist/commercetools-frontend-sentry.cjs.js",
   "module": "dist/commercetools-frontend-sentry.esm.js",
-  "files": ["dist", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prepare": "./../../scripts/version.js replace"
   },
@@ -27,7 +37,7 @@
     "@commercetools-frontend/constants": "20.3.0",
     "@sentry/browser": "6.4.1",
     "@types/prop-types": "^15.7.3",
-    "@types/react": "^17.0.3",
+    "@types/react": "^17.0.7",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
