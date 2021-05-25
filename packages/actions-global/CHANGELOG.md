@@ -1,5 +1,13 @@
 # @commercetools-frontend/actions-global
 
+## 20.3.0
+
+### Patch Changes
+
+- Updated dependencies [[`6de28034`](https://github.com/commercetools/merchant-center-application-kit/commit/6de28034f51e53b3cd1f293eaa16b8f66d9ae9e0), [`11a6c70d`](https://github.com/commercetools/merchant-center-application-kit/commit/11a6c70d9b76f595933d399f5688d7e85c805c66), [`5961c019`](https://github.com/commercetools/merchant-center-application-kit/commit/5961c019ab908bc1a5d58acd4511e7c579976797)]:
+  - @commercetools-frontend/sentry@20.3.0
+  - @commercetools-frontend/constants@20.3.0
+
 ## 20.2.1
 
 ### Patch Changes

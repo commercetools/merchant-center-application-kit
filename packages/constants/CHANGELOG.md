@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 20.3.0
+
+### Minor Changes
+
+- [#2228](https://github.com/commercetools/merchant-center-application-kit/pull/2228) [`11a6c70d`](https://github.com/commercetools/merchant-center-application-kit/commit/11a6c70d9b76f595933d399f5688d7e85c805c66) Thanks [@pa3](https://github.com/pa3)! - Change missing value placholder (i.e. `NO_VALUE_FALLBACK`) from `- - - -` to `- -`
+
 ## 20.0.1
 
 ### Patch Changes

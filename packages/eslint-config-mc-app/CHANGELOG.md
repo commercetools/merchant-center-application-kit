@@ -1,5 +1,11 @@
 # @commercetools-frontend/eslint-config-mc-app
 
+## 20.3.0
+
+### Patch Changes
+
+- [#2223](https://github.com/commercetools/merchant-center-application-kit/pull/2223) [`6de28034`](https://github.com/commercetools/merchant-center-application-kit/commit/6de28034f51e53b3cd1f293eaa16b8f66d9ae9e0) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
 ## 19.4.0
 
 ### Minor Changes
