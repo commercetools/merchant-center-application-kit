@@ -45,7 +45,7 @@
     "core-js": "3.12.1",
     "css-loader": "5.2.6",
     "css-minimizer-webpack-plugin": "3.0.0",
-    "dotenv": "8.6.0",
+    "dotenv": "10.0.0",
     "dotenv-expand": "5.1.0",
     "fs-extra": "9.1.0",
     "graphql-tag": "^2.11.0",
