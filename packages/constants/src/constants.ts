@@ -97,7 +97,7 @@ export type TAppNotificationSide = TAppNotification<{
 }>;
 
 // Fallback string when there is no localized value
-export const NO_VALUE_FALLBACK = '- - - -';
+export const NO_VALUE_FALLBACK = '- -';
 
 // HTTP requests and responses
 export const STATUS_CODES = {
