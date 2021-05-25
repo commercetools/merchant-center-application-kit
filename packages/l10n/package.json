@@ -36,7 +36,7 @@
   "devDependencies": {
     "@testing-library/react-hooks": "5.1.2",
     "chalk": "4.1.1",
-    "cldr": "6.1.0",
+    "cldr": "7.0.0",
     "deep-diff": "1.0.2",
     "moment-timezone": "^0.5.32",
     "node-fetch": "2.6.1",
