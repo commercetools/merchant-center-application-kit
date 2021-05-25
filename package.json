@@ -139,7 +139,7 @@
     "babel-plugin-typescript-to-proptypes": "1.4.2",
     "cross-env": "7.0.3",
     "cypress": "7.4.0",
-    "dotenv": "8.6.0",
+    "dotenv": "10.0.0",
     "eslint": "7.27.0",
     "eslint-formatter-pretty": "4.0.0",
     "eslint-plugin-graphql": "4.0.0",
