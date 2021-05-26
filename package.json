@@ -184,7 +184,6 @@
     "graphql": "15.5.0",
     "intl-messageformat-parser": "6.4.4",
     "**/intl-messageformat-parser": "6.4.4",
-    "pretty-format": "26.6.2",
     "react-intl": "5.18.1"
   },
   "engines": {
