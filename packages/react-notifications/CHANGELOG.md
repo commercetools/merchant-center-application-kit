@@ -1,5 +1,15 @@
 # @commercetools-frontend/react-notifications
 
+## 20.3.1
+
+### Patch Changes
+
+- [#2230](https://github.com/commercetools/merchant-center-application-kit/pull/2230) [`035ec444`](https://github.com/commercetools/merchant-center-application-kit/commit/035ec444c928d6b13f299012cfcdd0dec0e68af8) Thanks [@tdeekens](https://github.com/tdeekens)! - fix: update left behind dependencies
+
+- Updated dependencies [[`035ec444`](https://github.com/commercetools/merchant-center-application-kit/commit/035ec444c928d6b13f299012cfcdd0dec0e68af8)]:
+  - @commercetools-frontend/actions-global@20.3.1
+  - @commercetools-frontend/sentry@20.3.1
+
 ## 20.3.0
 
 ### Patch Changes

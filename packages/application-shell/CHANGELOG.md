@@ -1,5 +1,24 @@
 # @commercetools-frontend/application-shell
 
+## 20.3.1
+
+### Patch Changes
+
+- [#2235](https://github.com/commercetools/merchant-center-application-kit/pull/2235) [`e5192ff1`](https://github.com/commercetools/merchant-center-application-kit/commit/e5192ff17db08f08ade15e0faf09eba28d832158) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency perfume.js to v6
+
+* [#2230](https://github.com/commercetools/merchant-center-application-kit/pull/2230) [`035ec444`](https://github.com/commercetools/merchant-center-application-kit/commit/035ec444c928d6b13f299012cfcdd0dec0e68af8) Thanks [@tdeekens](https://github.com/tdeekens)! - fix: update left behind dependencies
+
+* Updated dependencies [[`035ec444`](https://github.com/commercetools/merchant-center-application-kit/commit/035ec444c928d6b13f299012cfcdd0dec0e68af8)]:
+  - @commercetools-frontend/actions-global@20.3.1
+  - @commercetools-frontend/application-components@20.3.1
+  - @commercetools-frontend/application-shell-connectors@20.3.1
+  - @commercetools-frontend/i18n@20.3.1
+  - @commercetools-frontend/l10n@20.3.1
+  - @commercetools-frontend/permissions@20.3.1
+  - @commercetools-frontend/react-notifications@20.3.1
+  - @commercetools-frontend/sdk@20.3.1
+  - @commercetools-frontend/sentry@20.3.1
+
 ## 20.3.0
 
 ### Patch Changes
