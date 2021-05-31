@@ -1,5 +1,11 @@
 # @commercetools-frontend/eslint-config-mc-app
 
+## 20.3.2
+
+### Patch Changes
+
+- [#2238](https://github.com/commercetools/merchant-center-application-kit/pull/2238) [`f35706a4`](https://github.com/commercetools/merchant-center-application-kit/commit/f35706a46b2acf6fba436c904646e120bffcd3f2) Thanks [@tdeekens](https://github.com/tdeekens)! - Fix eslint-config to not error for container use in react-testing-library but only warn.
+
 ## 20.3.1
 
 ### Patch Changes
