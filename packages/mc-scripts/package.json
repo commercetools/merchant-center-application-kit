@@ -39,10 +39,10 @@
     "@commercetools-frontend/mc-html-template": "20.3.0",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.0-beta.8",
     "@svgr/webpack": "5.5.0",
-    "autoprefixer": "10.2.5",
+    "autoprefixer": "10.2.6",
     "babel-loader": "8.2.2",
     "browserslist": "4.16.6",
-    "core-js": "3.12.1",
+    "core-js": "3.13.1",
     "css-loader": "5.2.6",
     "css-minimizer-webpack-plugin": "3.0.0",
     "dotenv": "10.0.0",
@@ -69,14 +69,14 @@
     "svg-url-loader": "7.1.1",
     "terser-webpack-plugin": "5.1.2",
     "thread-loader": "3.0.4",
-    "webpack": "5.37.1",
+    "webpack": "5.38.1",
     "webpack-bundle-analyzer": "4.4.2",
     "webpack-dev-server": "4.0.0-beta.3",
     "webpackbar": "5.0.0-3"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "7.14.3",
-    "@babel/preset-env": "7.14.2"
+    "@babel/preset-env": "7.14.4"
   },
   "engines": {
     "node": ">=12 || >=14"
