@@ -67,6 +67,7 @@ module.exports = {
     // Enabling these would be a breaking change to the config
     'testing-library/render-result-naming-convention': statusCode.off,
     'testing-library/prefer-screen-queries': statusCode.off,
+    'testing-library/no-container': statusCode.warn,
 
     // React
     'react/jsx-uses-vars': statusCode.error,
