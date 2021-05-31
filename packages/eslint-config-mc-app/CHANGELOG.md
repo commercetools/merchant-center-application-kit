@@ -1,5 +1,11 @@
 # @commercetools-frontend/eslint-config-mc-app
 
+## 20.3.1
+
+### Patch Changes
+
+- [#2237](https://github.com/commercetools/merchant-center-application-kit/pull/2237) [`9f5a3bae`](https://github.com/commercetools/merchant-center-application-kit/commit/9f5a3baef34b2b5d054d50afc47543f3f854db9c) Thanks [@tdeekens](https://github.com/tdeekens)! - Fix eslint-config not not error on new react-testing-library rules introduced by the v4 update.
+
 ## 20.3.0
 
 ### Patch Changes
