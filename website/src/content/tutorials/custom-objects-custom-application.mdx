@@ -35,3 +35,17 @@ cd custom-objects-custom-application-project
 ```bash
 yarn start
 ```
+
+## Set up your local project
+Open file `custom-application-config.json` from the project's root and update the values of `name` and `entryPointUriPath` properties.
+`cloudIdentifier` is configured to use the HTTP APIs in the Google Cloud (gcp) in Europe(eu) region [`gcp-eu`]. If you plan to run the Custom Application in another environment, change the `cloudIdentifier` accordingly.
+You can find list of supported regions [here](https://docs.commercetools.com/api/general-concepts#hosts).
+
+```json
+"name": "Custom Objects Custom Application",
+"entryPointUriPath": "custom-objects",
+```
+
+### JSON validation and autocompletion  for VS code (optional step)
+If you are using the [VS code editor](https://code.visualstudio.com/), You can add [Custom Application config JSON Schema settings](https://docs.commercetools.com/custom-applications/development/application-config#json-schema-support-for-vscode) to validate and autocompletion for custom-application-config.json file.
+
