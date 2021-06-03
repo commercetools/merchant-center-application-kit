@@ -67,3 +67,130 @@ Clear active session cookie for production domain (e.g. commercetools.com) and t
 ![Custom Objects Custom Application Starter](/images/mc-dev-starter-custom-objects-main.png)
 
 
+## Dispaly Custom Objects of the commercetools project
+Let's use the view one of the project `<project-root>/src/components/view-one/view-one.js` to dispaly list of `key` and `value` of Custom Objects for the given `container`.
+Before querying commercetools platform for Custom Obejcts, it's required to pass a specific container. [More details about HTTP API for Query CustomObjects](https://docs.commercetools.com/api/projects/custom-objects#query-customobjects).
+
+### ADD UI to collect user input for the Custom Objects container
+1. Need simple form with text field and submit button to accept input `container` from the user.
+Let's call this container input form component as **UpdateContainerForm** component.
+
+Create new folder called `update-container-form` inside `<project-root>/src/components/view-one` folder. Create empty `index.js`, `update-container-form.js` and `messages.js` files inside `update-container-form` folder.
+
+Add following code snippet to `index.js`.
+```js
+  export { default } from './update-container-form';
+```
+
+Add following code to `update-container-form.js`.
+```js
+  import React from 'react';
+  import TextInput from '@commercetools-uikit/text-input';
+  import PrimaryButton from '@commercetools-uikit/primary-button';
+  import Spacings from '@commercetools-uikit/spacings';
+  import Constraints from '@commercetools-uikit/constraints';
+  import FieldLabel from '@commercetools-uikit/field-label';
+
+  import { useIntl } from 'react-intl';
+  import messages from './messages';
+
+  const UpdateContainerForm = ({ updateContainerCallback }) => {
+      const intl = useIntl();
+
+      const [containerValue, setContainerValue] = React.useState('');
+
+      const handleTextInputChange = (event) => {setContainerValue(event.target.value)};
+
+      const handleUpdateContainer = (event) => {
+          event.preventDefault(); // prevent default form submission behavior
+          updateContainerCallback(containerValue);
+      };
+
+      return (
+          <form onSubmit={handleUpdateContainer}>
+              <Constraints.Horizontal max={4}>
+                  <Spacings.Stack scale="m">
+                      <FieldLabel
+                          title={intl.formatMessage(messages.containerInputLabel)}
+                          hasRequiredIndicator={true}
+                          htmlFor="updateContainer"
+                          horizontalConstraint={7}
+                      />
+                      <TextInput
+                          name="name"
+                          id="updateContainer"
+                          onChange={handleTextInputChange}
+                          value={containerValue}
+                      />
+                      <PrimaryButton
+                          label={intl.formatMessage(messages.updateContainerNameSubmitButtonLabel)}
+                          type="submit"
+                          onClick={() => {/* do nothing */}}
+                          isDisabled={false}
+                          horizontalConstraint={4}
+                      />
+                  </Spacings.Stack>
+              </Constraints.Horizontal>
+          </form>
+      );
+  }
+  export default UpdateContainerForm;
+```
+
+Add following code snippet to `messages.js` for [react-intl](https://formatjs.io/docs/react-intl/) localization.
+```js
+  import { defineMessages } from 'react-intl';
+
+  export default defineMessages({
+      containerInput: {
+          id: 'ViewOne.containerInputLabel',
+          description: 'The page title of view two',
+          defaultMessage: 'Container input',
+      },
+      updateContainerNameSubmitButtonLabel: {
+          id: 'ViewOne.updateContainerNameSubmitButtonLabel',
+          description: 'Update container name form submit button label',
+          defaultMessage: 'Update container name',
+      }
+  });
+```
+
+Add `@commercetools-uikit/text-input`, `@commercetools-uikit/field-label`, `@commercetools-uikit/primary-button` and `@commercetools-uikit/constraints` UI components to the project by running following command on root of the project.
+```shell
+yarn add @commercetools-uikit/text-input @commercetools-uikit/field-label @commercetools-uikit/primary-button @commercetools-uikit/constraints
+```
+
+Replace `<project-root>/src/components/view-one/view-one.js`code with following code.
+
+```js
+  import React from 'react';
+  import Text from '@commercetools-uikit/text';
+  import UpdateContainerForm from './update-container-form';
+  import Spacings from '@commercetools-uikit/spacings';
+
+  const ViewOne = () => {
+      const [containerValue, setContainerValue] = React.useState('');
+      const handleUpdateContainer = (value) => setContainerValue(value);
+
+      return (
+          <Spacings.Stack scale="m">
+              {containerValue && <Text.Headline as="h3">Current selected container is {containerValue}</Text.Headline>}
+              <UpdateContainerForm updateContainerCallback={handleUpdateContainer} />
+          </Spacings.Stack>
+      );
+  };
+  ViewOne.displayName = 'ViewOne';
+
+  export default ViewOne;
+```
+It renders the `UpdateContainerForm` component and shows the container name when user submits the container.
+
+If it's successful, you should see UI on the Custom Application.
+![Custom Objects update container form without value](/images/custom-application-custom-obejcts-update-container-form-with-value.png)
+
+After user entered the container.
+![Custom Objects update container form with value](/images/custom-application-custom-obejcts-update-container-form-without-value.png)
+
+3. Display list of `key` and `value` of Custom Objects using DataTable UI component.
+### ADD commercetools Custom Objects graphQL query.
+###
