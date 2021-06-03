@@ -28,13 +28,6 @@ After you create an app, you’ll be greeted with some basic information.
 If you open the project in your code editor you should be able to see the Custom Application starter template project.
 ![Custom Application Starter Template on VS code editor](/images/custom-application-starter-template-project.png)
 
-Navigate to `custom-objects-custom-application-project` directory and execute `yarn start` to start the Custom Application.
-```bash
-cd custom-objects-custom-application-project
-```
-```bash
-yarn start
-```
 
 ## Set up your local project
 Open file `custom-application-config.json` from the project's root and update the values of `name` and `entryPointUriPath` properties.
@@ -48,4 +41,29 @@ You can find list of supported regions [here](https://docs.commercetools.com/api
 
 ### JSON validation and autocompletion  for VS code (optional step)
 If you are using the [VS code editor](https://code.visualstudio.com/), You can add [Custom Application config JSON Schema settings](https://docs.commercetools.com/custom-applications/development/application-config#json-schema-support-for-vscode) to validate and autocompletion for custom-application-config.json file.
+
+Navigate to `custom-objects-custom-application-project` directory and execute `yarn start` to start the Custom Application.
+```bash
+cd custom-objects-custom-application-project
+```
+```bash
+yarn start
+```
+Browser will open new tab with URL `http://localhost:3001`and login screen for development only.
+You can login with your commercetools account.
+![Custom Application Starter Template on VS code editor](/images/mc-dev-starter-login.png)
+
+If your athentication is successful, then will be rediercted to `http://localhost:3001/:projectKey/examples-starter`and `:projectKey`is your commercetools project.
+
+<Info>
+
+If login is not successful, open the URL `http://localhost:3001` in a different Browser.
+
+Or
+
+Clear active session cookie for production domain (e.g. commercetools.com) and try to open the URL `http://localhost:3001` again.
+</Info>
+
+![Custom Objects Custom Application Starter](/images/mc-dev-starter-custom-objects-main.png)
+
 
