@@ -142,7 +142,7 @@ Add following code snippet to `messages.js` for [react-intl](https://formatjs.io
   import { defineMessages } from 'react-intl';
 
   export default defineMessages({
-      containerInput: {
+      containerInputLabel: {
           id: 'ViewOne.containerInputLabel',
           description: 'The page title of view two',
           defaultMessage: 'Container input',
@@ -191,6 +191,129 @@ If it's successful, you should see UI on the Custom Application.
 After user entered the container.
 ![Custom Objects update container form with value](/images/custom-application-custom-obejcts-update-container-form-without-value.png)
 
+
+2. Display list of `key` and `value` of Custom Objects using DataTable UI component
+Create new folder called `custom-objects-key-value-table` inside `<project-root>/src/components/view-one` folder. Create empty `index.js`, `custom-objects-key-value-table.js`, `messages.js` and `get-custom-objects-by-containers.graphql` files inside `custom-objects-key-value-table` folder.
+
+Add following code snippet to `index.js`.
+```js
+  export { default } from './custom-objects-key-value-table';
+```
+
+Add following code to `update-container-form.js`.
+```js
+import React from 'react';
+import DataTable from '@commercetools-uikit/data-table';
+import LoadingSpinner from '@commercetools-uikit/loading-spinner';
+import { ErrorMessage } from '@commercetools-uikit/messages';
+
+import { useQuery } from '@apollo/client';
+import GetCustomObjectsByContainer from './get-custom-objects-by-containers.graphql';
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+
+import { useIntl } from 'react-intl';
+import messages from './messages';
+
+const target = GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM;
+
+const CustomObjectsKeyValueTable = ({ container }) => {
+    const intl = useIntl();
+    const { loading, error, data } = useQuery(GetCustomObjectsByContainer, {
+        variables: {
+            container,
+            target
+        },
+      });
+
+    const rows =  data ? data.customObjects.results.map(({key, value}) => ({id: key, key, value})) : [];
+    const columns = [
+        { key: 'key', label: intl.formatMessage(messages.customObjectKeyLabel)},
+        { key: 'value', label:intl.formatMessage(messages.customObjectValueLabel)}
+    ];
+
+    if (loading) return (<LoadingSpinner size="m">Loading</LoadingSpinner>);
+    if (error) return (<ErrorMessage>{intl.formatMessage(messages.errorMessage)}</ErrorMessage>);
+    return (<DataTable rows={rows} columns={columns} />);
+}
+export default CustomObjectsKeyValueTable;
+```
+
+Add following code snippet to `messages.js` for [react-intl](https://formatjs.io/docs/react-intl/) localization.
+```js
+  import { defineMessages } from 'react-intl';
+
+  export default defineMessages({
+      customObjectKeyLabel: {
+          id: 'CustomObjectsKeyValueTable.customObjectKeyLabel',
+          description: 'Custom Object key label',
+          defaultMessage: 'Key',
+      },
+      customObjectValueLabel: {
+          id: 'CustomObjectsKeyValueTable.customObjectValueLabel',
+          description: 'Custom Object value label',
+          defaultMessage: 'Value',
+      },
+      errorMessage: {
+          id: 'CustomObjectsKeyValueTable.ErrorMessage',
+          description: 'Something went wrong fetching Custom Object data',
+          defaultMessage: 'Something went wrong',
+      }
+  });
+```
+
+Add following GraphQL query to `get-custom-objects-by-containers.graphql`.
+```graphql
+  query GetCustomObjectsByContainer ($container: String!) {
+    customObjects(container: $container) {
+      results {
+        container
+        key
+        value
+      }
+    }
+  }
+```
+
+Add `@commercetools-uikit/data-table`, `@commercetools-uikit/loading-spinner` and `@commercetools-uikit/messages` UI components, `@apollo/client` and `@commercetools-frontend/constants` to the project by running following command on root of the project.
+```shell
+yarn add @commercetools-uikit/data-table @commercetools-uikit/loading-spinner @commercetools-uikit/messages @apollo/client @commercetools-frontend/constants.
+```
+Getting Custom Objects for given container is queried using `get-custom-objects-by-containers.graphql` query, `useQuery` from `@apollo/client` and target platfrom from `@commercetools-frontend/constants`.
+
+
+
+Replace `<project-root>/src/components/view-one/view-one.js` code with following code to include `CustomObjectsKeyValueTable` component to display Custom Objects data in the table.
+
+```js
+  import React from 'react';
+  import Text from '@commercetools-uikit/text';
+  import UpdateContainerForm from './update-container-form';
+  import CustomObjectsKeyValueTable from './custom-objects-key-value-table';
+  import Spacings from '@commercetools-uikit/spacings';
+
+  const ViewOne = () => {
+      const [containerValue, setContainerValue] = React.useState('');
+      const handleUpdateContainer = (value) => setContainerValue(value);
+
+      return (
+          <Spacings.Stack scale="m">
+              {containerValue && <Text.Headline as="h3">Current selected container is {containerValue}</Text.Headline>}
+              <UpdateContainerForm updateContainerCallback={handleUpdateContainer} />
+              {containerValue && <CustomObjectsKeyValueTable container={containerValue} />}
+          </Spacings.Stack>
+      );
+  };
+  ViewOne.displayName = 'ViewOne';
+
+  export default ViewOne;
+```
+
 3. Display list of `key` and `value` of Custom Objects using DataTable UI component.
 ### ADD commercetools Custom Objects graphQL query.
 ###
+
+
+## Custom Application Permission
+
+## Next steps
+What's not covered in this tutorial is Pagination, delete Custom Application.
