@@ -1,5 +1,24 @@
 # @commercetools-frontend/mc-html-template
 
+## 20.3.3
+
+### Patch Changes
+
+- [#2242](https://github.com/commercetools/merchant-center-application-kit/pull/2242) [`dc994692`](https://github.com/commercetools/merchant-center-application-kit/commit/dc99469254e8f7611479ab8c64663e2e04e16662) Thanks [@tdeekens](https://github.com/tdeekens)! - Add `preload` and `includeSubDomains` to `Strict-Transport-Security` header
+
+* [#2244](https://github.com/commercetools/merchant-center-application-kit/pull/2244) [`118efedd`](https://github.com/commercetools/merchant-center-application-kit/commit/118efeddf0c1349f18bc27a974bf88612a637004) Thanks [@tdeekens](https://github.com/tdeekens)! - Allow configuration of `Strict-Transport-Security` header through custom application config.
+
+  Similar to the `Feature-Policies` header use the `strictTransportSecurity` property of the custom application config to add to the defaults.
+
+  ```js
+  headers: {
+    strictTransportSecurity: ['includeSubDomains'];
+  }
+  ```
+
+* Updated dependencies [[`118efedd`](https://github.com/commercetools/merchant-center-application-kit/commit/118efeddf0c1349f18bc27a974bf88612a637004)]:
+  - @commercetools-frontend/application-config@20.3.3
+
 ## 20.3.1
 
 ### Patch Changes

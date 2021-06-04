@@ -1,5 +1,19 @@
 # @commercetools-frontend/application-config
 
+## 20.3.3
+
+### Patch Changes
+
+- [#2244](https://github.com/commercetools/merchant-center-application-kit/pull/2244) [`118efedd`](https://github.com/commercetools/merchant-center-application-kit/commit/118efeddf0c1349f18bc27a974bf88612a637004) Thanks [@tdeekens](https://github.com/tdeekens)! - Allow configuration of `Strict-Transport-Security` header through custom application config.
+
+  Similar to the `Feature-Policies` header use the `strictTransportSecurity` property of the custom application config to add to the defaults.
+
+  ```js
+  headers: {
+    strictTransportSecurity: ['includeSubDomains'];
+  }
+  ```
+
 ## 20.3.1
 
 ### Patch Changes
