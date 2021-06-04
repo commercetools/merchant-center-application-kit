@@ -4,7 +4,6 @@
 
 export type EnvVariablePlaceholder = string;
 export type CspDirective = string[];
-export type HstsDirective = ('includeSubDomains' | 'preload')[];
 
 export interface JSONSchemaForCustomApplicationConfigurationFiles {
   /**
@@ -106,6 +105,6 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
     /**
      * Additional configuration for the HTTP Strict-Transport-Security header (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)
      */
-    strictTransportSecurity?: HstsDirective[];
+    strictTransportSecurity?: ('includeSubDomains' | 'preload')[];
   };
 }
