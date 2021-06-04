@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@commercetools-frontend/mc-dev-authentication": "19.0.0",
-    "@commercetools-frontend/mc-scripts": "20.3.1",
+    "@commercetools-frontend/mc-scripts": "20.3.3",
     "@formatjs/cli": "4.2.16"
   }
 }
