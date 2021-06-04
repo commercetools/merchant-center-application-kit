@@ -21,6 +21,8 @@ You can initialize a new Custom Application project in your directory using the 
 ```bash
 npx @commercetools-frontend/create-mc-app custom-objects-custom-application-project --template starter
 ```
+You will be asked if it's ok to install package `@commercetools-frontend/create-mc-app`, type `y`and press **enter key** to procceed.
+
 
 After you create an app, you’ll be greeted with some basic information.
 ![Custom Application Project Starter Template Success Greeting](/images/custom-application-project-starter-template-success-greeting.png)
@@ -30,16 +32,15 @@ If you open the project in your code editor you should be able to see the Custom
 
 
 ## Set up your local project
-Open file `custom-application-config.json` from the project's root and update the values of `name` and `entryPointUriPath` properties.
-`cloudIdentifier` is configured to use the HTTP APIs in the Google Cloud (gcp) in Europe(eu) region [`gcp-eu`]. If you plan to run the Custom Application in another environment, change the `cloudIdentifier` accordingly.
-You can find list of supported regions [here](https://docs.commercetools.com/api/general-concepts#hosts).
-
+Open file `custom-application-config.json` on the project's root and update the value `Custom Objects Custom Application` to `name` and `custom-objects` to `entryPointUriPath` properties.
 ```json
 "name": "Custom Objects Custom Application",
 "entryPointUriPath": "custom-objects",
 ```
+`cloudIdentifier` is configured to use the HTTP APIs in the Google Cloud (gcp) in Europe(eu) region [`gcp-eu`]. If you plan to run the Custom Application in another environment, change the `cloudIdentifier` accordingly.
+You can find list of supported regions [here](https://docs.commercetools.com/api/general-concepts#hosts).
 
-### JSON validation and autocompletion  for VS code (optional step)
+### JSON validation and autocompletion for VS code (optional step)
 If you are using the [VS code editor](https://code.visualstudio.com/), You can add [Custom Application config JSON Schema settings](https://docs.commercetools.com/custom-applications/development/application-config#json-schema-support-for-vscode) to validate and autocompletion for custom-application-config.json file.
 
 Navigate to `custom-objects-custom-application-project` directory and execute `yarn start` to start the Custom Application.
@@ -53,7 +54,7 @@ Browser will open new tab with URL `http://localhost:3001`and login screen for d
 You can login with your commercetools account.
 ![Custom Application Starter Template on VS code editor](/images/mc-dev-starter-login.png)
 
-If your athentication is successful, then will be rediercted to `http://localhost:3001/:projectKey/examples-starter`and `:projectKey`is your commercetools project.
+If your athentication is successful, then will be redirected to `http://localhost:3001/:projectKey/examples-starter`and `:projectKey`is your commercetools project.
 
 <Info>
 
@@ -67,13 +68,16 @@ Clear active session cookie for production domain (e.g. commercetools.com) and t
 ![Custom Objects Custom Application Starter](/images/mc-dev-starter-custom-objects-main.png)
 
 
-## Dispaly Custom Objects of the commercetools project
-Let's use the view one of the project `<project-root>/src/components/view-one/view-one.js` to dispaly list of `key` and `value` of Custom Objects for the given `container`.
+## Display Custom Objects of the commercetools project
+Let's use the **view one** of this project `<project-root>/src/components/view-one/view-one.js` to dispaly list of `key` and `value` of Custom Objects for the given `container`.
 Before querying commercetools platform for Custom Obejcts, it's required to pass a specific container. [More details about HTTP API for Query CustomObjects](https://docs.commercetools.com/api/projects/custom-objects#query-customobjects).
 
 ### ADD UI to collect user input for the Custom Objects container
-1. Need simple form with text field and submit button to accept input `container` from the user.
-Let's call this container input form component as **UpdateContainerForm** component.
+Need a simple form with text field and submit button to accept input `container` from the user.
+Show Text message using Text UI component and PrimaryButton to open the form dialog.
+Let's call this user interface as **UpdateContainerForm** component.
+
+We can use the [FormDialog](/components/form-dialog) component.
 
 Create new folder called `update-container-form` inside `<project-root>/src/components/view-one` folder. Create empty `index.js`, `update-container-form.js` and `messages.js` files inside `update-container-form` folder.
 
@@ -82,60 +86,74 @@ Add following code snippet to `index.js`.
   export { default } from './update-container-form';
 ```
 
-Add following code to `update-container-form.js`.
+Add following code to `update-container-form.js`. Mainly importing UI component `useIntl` and `messages` for React localization.
 ```js
-  import React from 'react';
-  import TextInput from '@commercetools-uikit/text-input';
-  import PrimaryButton from '@commercetools-uikit/primary-button';
-  import Spacings from '@commercetools-uikit/spacings';
-  import Constraints from '@commercetools-uikit/constraints';
-  import FieldLabel from '@commercetools-uikit/field-label';
+import React from 'react';
+import TextInput from '@commercetools-uikit/text-input';
+import PrimaryButton from '@commercetools-uikit/primary-button';
+import Spacings from '@commercetools-uikit/spacings';
+import Constraints from '@commercetools-uikit/constraints';
+import FieldLabel from '@commercetools-uikit/field-label';
+import { FormDialog } from '@commercetools-frontend/application-components';
 
-  import { useIntl } from 'react-intl';
-  import messages from './messages';
+import { useIntl } from 'react-intl';
+import messages from './messages';
 
-  const UpdateContainerForm = ({ updateContainerCallback }) => {
-      const intl = useIntl();
+const UpdateContainerForm = ({ updateContainerCallback }) => {
+    const intl = useIntl();
 
-      const [containerValue, setContainerValue] = React.useState('');
+    const [containerValue, setContainerValue] = React.useState('');
+    const [isFormOpen, setIsFormOpen] = React.useState(false);
 
-      const handleTextInputChange = (event) => {setContainerValue(event.target.value)};
+    const handleCloseForm = () => setIsFormOpen(false);
 
-      const handleUpdateContainer = (event) => {
-          event.preventDefault(); // prevent default form submission behavior
-          updateContainerCallback(containerValue);
-      };
+    const handleUpdateContainer = (event) => {
+        event.preventDefault(); // prevent default form submission behavior
+        updateContainerCallback(containerValue);
+        setIsFormOpen(false);
+    };
 
-      return (
-          <form onSubmit={handleUpdateContainer}>
-              <Constraints.Horizontal max={4}>
-                  <Spacings.Stack scale="m">
-                      <FieldLabel
-                          title={intl.formatMessage(messages.containerInputLabel)}
-                          hasRequiredIndicator={true}
-                          htmlFor="updateContainer"
-                          horizontalConstraint={7}
-                      />
-                      <TextInput
-                          name="name"
-                          id="updateContainer"
-                          onChange={handleTextInputChange}
-                          value={containerValue}
-                      />
-                      <PrimaryButton
-                          label={intl.formatMessage(messages.updateContainerNameSubmitButtonLabel)}
-                          type="submit"
-                          onClick={() => {/* do nothing */}}
-                          isDisabled={false}
-                          horizontalConstraint={4}
-                      />
-                  </Spacings.Stack>
-              </Constraints.Horizontal>
-          </form>
-      );
-  }
-  export default UpdateContainerForm;
+    return (
+        <Constraints.Horizontal max={4}>
+            {!containerValue && <PrimaryButton
+                label={intl.formatMessage(messages.AddContainerNameButtonLabel)}
+                onClick={() => {setIsFormOpen(true)}}
+                isDisabled={false}
+                horizontalConstraint={4}
+            />}
+            {containerValue && <PrimaryButton
+                label={intl.formatMessage(messages.updateContainerNameButtonLabel)}
+                onClick={() => {setIsFormOpen(true)}}
+                isDisabled={false}
+                horizontalConstraint={4}
+            />}
+            <FormDialog
+                title={intl.formatMessage(messages.FormTitle)}
+                isOpen={isFormOpen}
+                onClose={handleCloseForm}
+                onSecondaryButtonClick={handleCloseForm}
+                onPrimaryButtonClick={handleUpdateContainer}
+            >
+                <Spacings.Stack scale="m">
+                    <FieldLabel
+                        title={intl.formatMessage(messages.containerInputLabel)}
+                        hasRequiredIndicator={true}
+                        htmlFor="updateContainer"
+                        horizontalConstraint={7}
+                    />
+                    <TextInput id="updateContainer" value={containerValue} onChange={(event) => {
+                        setContainerValue(event.target.value);
+                    }} />
+                </Spacings.Stack>
+            </FormDialog>
+        </Constraints.Horizontal>
+    );
+}
+export default UpdateContainerForm;
 ```
+Importing UI components , import react-intl and messages for the localization.
+`updateContainerCallback` callback function to listen updates for the container as props.
+
 
 Add following code snippet to `messages.js` for [react-intl](https://formatjs.io/docs/react-intl/) localization.
 ```js
@@ -143,13 +161,23 @@ Add following code snippet to `messages.js` for [react-intl](https://formatjs.io
 
   export default defineMessages({
       containerInputLabel: {
-          id: 'ViewOne.containerInputLabel',
+          id: 'UpdateContainerForm.containerInputLabel',
           description: 'The page title of view two',
-          defaultMessage: 'Container input',
+          defaultMessage: 'Container',
       },
-      updateContainerNameSubmitButtonLabel: {
-          id: 'ViewOne.updateContainerNameSubmitButtonLabel',
-          description: 'Update container name form submit button label',
+      FormTitle: {
+          id: 'UpdateContainerForm.FormTitle',
+          description: 'Add or update Custom Object container',
+          defaultMessage: 'Add or update Custom Object container',
+      },
+      AddContainerNameButtonLabel: {
+          id: 'UpdateContainerForm.AddContainerNameButtonLabel',
+          description: 'Add container name button label',
+          defaultMessage: 'Add container name',
+      },
+      updateContainerNameButtonLabel: {
+          id: 'UpdateContainerForm.updateContainerNameButtonLabel',
+          description: 'Update container name button label',
           defaultMessage: 'Update container name',
       }
   });
@@ -164,35 +192,56 @@ Replace `<project-root>/src/components/view-one/view-one.js`code with following 
 
 ```js
   import React from 'react';
-  import Text from '@commercetools-uikit/text';
-  import UpdateContainerForm from './update-container-form';
-  import Spacings from '@commercetools-uikit/spacings';
+import Text from '@commercetools-uikit/text';
+import Spacings from '@commercetools-uikit/spacings';
 
-  const ViewOne = () => {
-      const [containerValue, setContainerValue] = React.useState('');
-      const handleUpdateContainer = (value) => setContainerValue(value);
+import UpdateContainerForm from './update-container-form';
 
-      return (
-          <Spacings.Stack scale="m">
-              {containerValue && <Text.Headline as="h3">Current selected container is {containerValue}</Text.Headline>}
-              <UpdateContainerForm updateContainerCallback={handleUpdateContainer} />
-          </Spacings.Stack>
-      );
-  };
-  ViewOne.displayName = 'ViewOne';
+import { useIntl } from 'react-intl';
+import messages from './messages';
 
-  export default ViewOne;
+const ViewOne = () => {
+    const intl = useIntl();
+
+    const [containerValue, setContainerValue] = React.useState('');
+    const handleUpdateContainer = (value) => setContainerValue(value);
+
+    return (
+        <Spacings.Stack scale="m">
+            {!containerValue && <Text.Headline as="h3">{intl.formatMessage(messages.addContainerMessage)}</Text.Headline>}
+            {containerValue && <Text.Headline as="h3">{intl.formatMessage(messages.selectedContainerMessage)} <b>{containerValue}</b></Text.Headline>}
+            <UpdateContainerForm updateContainerCallback={handleUpdateContainer} />
+        </Spacings.Stack>
+    );
+};
+ViewOne.displayName = 'ViewOne';
+
+export default ViewOne;
 ```
-It renders the `UpdateContainerForm` component and shows the container name when user submits the container.
+It renders the newly added `UpdateContainerForm` component and shows the container name when user submits the container name.
+One last step to see 1st UI change is to update the messages of view-one component, replace `<project-root>/src/components/view-one/messages.js` code with following code.
+
+```js
+  import { defineMessages } from 'react-intl';
+
+  export default defineMessages({
+    addContainerMessage: {
+      id: 'ViewOne.addContainerMessage',
+      description: 'Message to show when no container is chosen',
+      defaultMessage: 'Please add container to view Custom Objects',
+    },
+    selectedContainerMessage: {
+      id: 'ViewOne.selectedContainerMessage',
+      description: 'Message to show chosen container',
+      defaultMessage: 'Current selected container is',
+    }
+  });
+```
 
 If it's successful, you should see UI on the Custom Application.
-![Custom Objects update container form without value](/images/custom-application-custom-obejcts-update-container-form-with-value.png)
+![Custom Objects update container form with value](custom-application-custom-objects-with-update-container-form.gif)
 
-After user entered the container.
-![Custom Objects update container form with value](/images/custom-application-custom-obejcts-update-container-form-without-value.png)
-
-
-2. Display list of `key` and `value` of Custom Objects using DataTable UI component
+2. Next step is to display list of `key` and `value` of Custom Objects using DataTable UI component.
 Create new folder called `custom-objects-key-value-table` inside `<project-root>/src/components/view-one` folder. Create empty `index.js`, `custom-objects-key-value-table.js`, `messages.js` and `get-custom-objects-by-containers.graphql` files inside `custom-objects-key-value-table` folder.
 
 Add following code snippet to `index.js`.
@@ -310,10 +359,55 @@ Replace `<project-root>/src/components/view-one/view-one.js` code with following
 
 3. Display list of `key` and `value` of Custom Objects using DataTable UI component.
 ### ADD commercetools Custom Objects graphQL query.
-###
 
 
-## Custom Application Permission
+
+### Create or Update Custom objects
+Dependencies to install `@commercetools-frontend/application-components`.
+
+Create new folder called `create-or-update-custom-objects-form` inside `<project-root>/src/components/view-one` folder. Create empty `index.js`, `create-or-update-custom-objects-form.js`, `messages.js` and `create-or-update-custom-object.graphql` files inside `create-or-update-custom-objects-form` folder.
+
+Add GraphQL mutation to create or update custom objects in `create-or-update-custom-object.graphql` file.
+```graphql
+  mutation CreateOrUpdateCustomObject ( $customObjectDraft:  CustomObjectDraft!) {
+    createOrUpdateCustomObject (draft: $customObjectDraft) {
+      container
+      key
+      value
+    }
+  }
+```
+
+Replace the `view-one.js` file code.
+
+```js
+import React from 'react';
+import Text from '@commercetools-uikit/text';
+import UpdateContainerForm from './update-container-form';
+import CustomObjectsKeyValueTable from './custom-objects-key-value-table';
+import CreateOrUpdateCustomObjectsForm from './create-or-update-custom-objects-form';
+import Spacings from '@commercetools-uikit/spacings';
+
+const ViewOne = () => {
+    const [containerValue, setContainerValue] = React.useState('');
+    const handleUpdateContainer = (value) => setContainerValue(value);
+
+    return (
+        <Spacings.Stack scale="m">
+            {containerValue && <Text.Headline as="h3">Current selected container is {containerValue}</Text.Headline>}
+            <UpdateContainerForm updateContainerCallback={handleUpdateContainer} />
+            <CreateOrUpdateCustomObjectsForm container={containerValue} />
+            {containerValue && <CustomObjectsKeyValueTable container={containerValue} />}
+        </Spacings.Stack>
+    );
+};
+ViewOne.displayName = 'ViewOne';
+
+export default ViewOne;
+```
 
 ## Next steps
-What's not covered in this tutorial is Pagination, delete Custom Application.
+- [Add Custom Application permission](/main-concepts/user-permissions)
+- [Deploy to AWS](/deployment/example-deployment-aws-s3-cloudfront)
+- [Register Custom Application](/register-applications/configuring-a-custom-application)
+- What's not covered in this tutorial are Pagination(What if you have huge list of customObjects) and delete Custom Application. Consider implementing this missing feature.
