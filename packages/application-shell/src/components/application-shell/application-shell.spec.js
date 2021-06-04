@@ -182,8 +182,7 @@ const mockServer = setupServer(
   // Other network requests
   rest.post(/\/proxy\/mc-metrics\/metrics\//, (req, res, ctx) =>
     res(ctx.json({ message: 'ok' }))
-  ),
-  rest.post('*', (req) => console.log(req))
+  )
 );
 
 beforeEach(() => {
