@@ -5,6 +5,13 @@
   "alias": "mc-custom-applications",
   "routes": [
     {
+      "src": "/(.*)",
+      "headers": {
+        "X-Frame-Options": "SAMEORIGIN"
+      },
+      "continue": true
+    },
+    {
       "src": "/",
       "status": 302,
       "headers": {
