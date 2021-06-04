@@ -14,6 +14,13 @@
         "type": "string"
       },
       "uniqueItems": true
+    },
+    "hstsDirective": {
+      "type": "array",
+      "items": {
+        "enum": ["includeSubDomains", "preload"]
+      },
+      "uniqueItems": true
     }
   },
   "properties": {
@@ -148,6 +155,10 @@
         "permissionsPolicies": {
           "description": "Configuration for the HTTP Permissions-Policy header (https://github.com/w3c/webappsec-permissions-policy/blob/main/permissions-policy-explainer.md)",
           "type": "object"
+        },
+        "strictTransportSecurity": {
+          "description": "Additional configuration for the HTTP Strict-Transport-Security header (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)",
+          "$ref": "#/definitions/hstsDirective"
         }
       },
       "additionalProperties": false,

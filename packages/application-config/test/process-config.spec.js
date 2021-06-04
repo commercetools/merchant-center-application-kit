@@ -189,6 +189,7 @@ describe('processing a full config', () => {
         permissionsPolicies: {
           microphone: '()',
         },
+        strictTransportSecurity: ['includeSubDomains'],
       },
     });
   });
@@ -235,6 +236,7 @@ describe('processing a full config', () => {
           permissionsPolicies: {
             microphone: '()',
           },
+          strictTransportSecurity: ['includeSubDomains'],
         },
       });
     });
@@ -278,6 +280,7 @@ describe('processing a full config', () => {
           permissionsPolicies: {
             microphone: '()',
           },
+          strictTransportSecurity: ['includeSubDomains'],
         },
       });
     });
@@ -326,6 +329,7 @@ describe('processing a full config', () => {
           permissionsPolicies: {
             microphone: '()',
           },
+          strictTransportSecurity: ['includeSubDomains'],
         },
       });
     });

@@ -120,7 +120,9 @@ const processHeaders = (applicationConfig) => {
   );
 
   return {
-    'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
+    'Strict-Transport-Security': ['max-age=31536000']
+      .concat(applicationConfig.headers.strictTransportSecurity || [])
+      .join('; '),
     'X-XSS-Protection': '1; mode=block',
     'X-Content-Type-Options': 'nosniff',
     'X-Frame-Options': 'DENY',

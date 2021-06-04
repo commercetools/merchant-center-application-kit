@@ -102,5 +102,9 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
     permissionsPolicies?: {
       [k: string]: unknown;
     };
+    /**
+     * Additional configuration for the HTTP Strict-Transport-Security header (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)
+     */
+    strictTransportSecurity?: ('includeSubDomains' | 'preload')[];
   };
 }

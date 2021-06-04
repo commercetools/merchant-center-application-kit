@@ -96,3 +96,39 @@ describe('structured header string', () => {
     });
   });
 });
+
+describe('with strict transport security', () => {
+  describe('when value is a string', () => {
+    it('should convert to a header string', () => {
+      const testApplicationConfig = {
+        ...defaultApplicationConfig,
+        headers: {
+          strictTransportSecurity: ['includeSubDomains'],
+        },
+      };
+
+      const processedApplicationConfig = processConfig(testApplicationConfig);
+
+      expect(
+        processedApplicationConfig['Strict-Transport-Security']
+      ).toMatchInlineSnapshot(`"max-age=31536000; includeSubDomains"`);
+    });
+  });
+});
+
+describe('without strict transport security', () => {
+  describe('when value is a string', () => {
+    it('should convert to a header string', () => {
+      const testApplicationConfig = {
+        ...defaultApplicationConfig,
+        headers: {},
+      };
+
+      const processedApplicationConfig = processConfig(testApplicationConfig);
+
+      expect(
+        processedApplicationConfig['Strict-Transport-Security']
+      ).toMatchInlineSnapshot(`"max-age=31536000"`);
+    });
+  });
+});
