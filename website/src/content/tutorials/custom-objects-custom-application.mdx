@@ -399,7 +399,7 @@ ViewOne.displayName = 'ViewOne';
 export default ViewOne;
 ```
 If it's successful, you should be something like below.
-![Custom Objects update container form with value](custom-application-custom-objects-display-in-data-table.gif)
+![Custom Objects update container form with value](/images/custom-application-custom-objects-display-in-data-table.gif)
 
 3. Display list of `key` and `value` of Custom Objects using DataTable UI component.
 ### ADD commercetools Custom Objects graphQL query.
@@ -407,7 +407,6 @@ If it's successful, you should be something like below.
 
 
 ### Create or Update Custom objects
-Dependencies to install `@commercetools-frontend/application-components`.
 
 Create new folder called `create-or-update-custom-objects-form` inside `<project-root>/src/components/view-one` folder. Create empty `index.js`, `create-or-update-custom-objects-form.js`, `messages.js` and `create-or-update-custom-object.graphql` files inside `create-or-update-custom-objects-form` folder.
 
@@ -422,25 +421,167 @@ Add GraphQL mutation to create or update custom objects in `create-or-update-cus
   }
 ```
 
+Add `index.js`
+```js
+export { default } from './create-or-update-custom-objects-form';
+```
+Add following code to `create-or-update-custom-objects-form.js`.
+```js
+import React from 'react';
+import TextInput from '@commercetools-uikit/text-input';
+import PrimaryButton from '@commercetools-uikit/primary-button';
+import Constraints from '@commercetools-uikit/constraints';
+import Spacings from '@commercetools-uikit/spacings';
+import FieldLabel from '@commercetools-uikit/field-label';
+import { FormDialog } from '@commercetools-frontend/application-components';
+
+import { useMutation } from '@apollo/client';
+import CreateOrUpdateCustomObject from './create-or-update-custom-object.graphql';
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+
+import { useIntl } from 'react-intl';
+import messages from './messages';
+
+const {
+    keyInputLabel,
+    valueInputLabel,
+    formTitle,
+    openFormButtonLabel
+} = messages;
+
+const target = GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM;
+
+const CreateOrUpdateCustomObjectsForm = ({ container }) => {
+    const intl = useIntl();
+    const [isFormOpen, setIsFormOpen] = React.useState(false);
+    const [key, setKey] = React.useState('');
+    const [value, setValue] = React.useState('');
+
+    const [createOrUpdateCustomObject] = useMutation(CreateOrUpdateCustomObject, {
+        variables: {
+          target,
+          "customObjectDraft": {
+            key,
+            value: `\"${value}\"`,
+            container
+          }
+        }
+    });
+
+    const handleOpenForm = () => setIsFormOpen(true);
+    const handleCloseForm = () => setIsFormOpen(false);
+    const handleCreateOrUpdateCustomObject = () => {
+        if (key.length > 0 && value.length > 0) {
+            createOrUpdateCustomObject();
+        }
+        setIsFormOpen(false);
+    };
+
+    return (
+        <Constraints.Horizontal max={4}>
+            <PrimaryButton
+                label={intl.formatMessage(openFormButtonLabel)}
+                onClick={handleOpenForm}
+                isDisabled={!container}
+                horizontalConstraint={4}
+            />
+            <FormDialog
+                title={intl.formatMessage(formTitle)}
+                isOpen={isFormOpen}
+                onClose={handleCloseForm}
+                onSecondaryButtonClick={handleCloseForm}
+                onPrimaryButtonClick={handleCreateOrUpdateCustomObject}
+            >
+                <Spacings.Stack scale="m">
+                    <FieldLabel
+                        title={intl.formatMessage(keyInputLabel)}
+                        hasRequiredIndicator={true}
+                        htmlFor="createOrUpdateCustomObjectKey"
+                        horizontalConstraint={7}
+                    />
+                    <TextInput id="createOrUpdateCustomObjectKey" value={key} onChange={(event) => {
+                        setKey(event.target.value)
+                    }} />
+                    <FieldLabel
+                        title={intl.formatMessage(valueInputLabel)}
+                        hasRequiredIndicator={true}
+                        htmlFor="createOrUpdateCustomObjectValue"
+                        horizontalConstraint={7}
+                    />
+                    <TextInput id="createOrUpdateCustomObjectValue" value={value} onChange={(event) => {
+                        setValue(event.target.value)
+                    }} />
+                </Spacings.Stack>
+            </FormDialog>
+        </Constraints.Horizontal>
+    );
+}
+export default CreateOrUpdateCustomObjectsForm;
+
+```
+Add `messages.js`.
+
+```js
+import { defineMessages } from 'react-intl';
+
+export default defineMessages({
+    keyInputLabel: {
+        id: 'CreateOrUpdateCustomObjectsForm.keyInputLabel',
+        description: 'Create or update Custom objects form key label',
+        defaultMessage: 'Key',
+    },
+    valueInputLabel: {
+        id: 'CreateOrUpdateCustomObjectsForm.valueInputLabel',
+        description: 'Create or update Custom objects form value label',
+        defaultMessage: 'Value',
+    },
+    openFormButtonLabel: {
+        id: 'CreateOrUpdateCustomObjectsForm.openFormButtonLabel',
+        description: 'Open Create or Update Custom Object form button label',
+        defaultMessage: 'Create or update Custom Object',
+    },
+    formTitle: {
+        id: "CreateOrUpdateCustomObjectsForm.formTitle",
+        description: "Create or update Custom objects form title",
+        defaultMessage: "Create or update Custom Object"
+    }
+});
+```
 Replace the `view-one.js` file code.
 
 ```js
 import React from 'react';
 import Text from '@commercetools-uikit/text';
+import Spacings from '@commercetools-uikit/spacings';
+
 import UpdateContainerForm from './update-container-form';
 import CustomObjectsKeyValueTable from './custom-objects-key-value-table';
 import CreateOrUpdateCustomObjectsForm from './create-or-update-custom-objects-form';
-import Spacings from '@commercetools-uikit/spacings';
+
+import { useIntl } from 'react-intl';
+import messages from './messages';
+const {
+    addContainerMessage,
+    selectedContainerMessage
+} = messages;
 
 const ViewOne = () => {
+    const intl = useIntl();
+
     const [containerValue, setContainerValue] = React.useState('');
     const handleUpdateContainer = (value) => setContainerValue(value);
 
     return (
         <Spacings.Stack scale="m">
-            {containerValue && <Text.Headline as="h3">Current selected container is {containerValue}</Text.Headline>}
+            {containerValue?
+            <Text.Headline as="h3">
+                {intl.formatMessage(selectedContainerMessage)} <b>{containerValue}</b>
+            </Text.Headline>:
+            <Text.Headline as="h3">
+                {intl.formatMessage(addContainerMessage)}
+            </Text.Headline>}
             <UpdateContainerForm updateContainerCallback={handleUpdateContainer} />
-            <CreateOrUpdateCustomObjectsForm container={containerValue} />
+            {containerValue && <CreateOrUpdateCustomObjectsForm container={containerValue} />}
             {containerValue && <CustomObjectsKeyValueTable container={containerValue} />}
         </Spacings.Stack>
     );
@@ -449,6 +590,9 @@ ViewOne.displayName = 'ViewOne';
 
 export default ViewOne;
 ```
+
+If it's successful, you should be something like below.
+![create or update Custom Object](/images/custom-application-add-or-update-custom-object.gif)
 
 ## Next steps
 - [Add Custom Application permission](/main-concepts/user-permissions)
