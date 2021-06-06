@@ -15,19 +15,19 @@ This tutorial assumes you have experience working with [React](https://reactjs.o
 </Info>
 
 ## Create a Custom Application using starter template
-The first step is to create a new Custom Application with project name `custom-objects-custom-application-project` and using [starter template](https://github.com/commercetools/merchant-center-application-kit/tree/main/application-templates/starter).
+The first step is to create a new Custom Application with the project name `custom-objects-custom-application-project` and using a [starter template](https://github.com/commercetools/merchant-center-application-kit/tree/main/application-templates/starter).
 You can initialize a new Custom Application project in your directory using the following command:
 
 ```bash
 npx @commercetools-frontend/create-mc-app custom-objects-custom-application-project --template starter
 ```
-You will be asked if it's OK to install package `@commercetools-frontend/create-mc-app`, type `y`and press **enter key** to procceed.
+You will be asked if it's OK to install package `@commercetools-frontend/create-mc-app`, type `y` for YES and press **enter key** to proceed.
 
 
 After you create an app, you’ll be greeted with some basic information.
 ![Custom Application Project Starter Template Success Greeting](/images/custom-application-project-starter-template-success-greeting.png)
 
-If you open the project in your code editor you should be able to see the Custom Application starter template project.
+If you open the project in your code editor, you should see the Custom Application starter template project files similar to below.
 ![Custom Application Starter Template on VS code editor](/images/custom-application-starter-template-project.png)
 
 
@@ -38,10 +38,10 @@ Open file `custom-application-config.json` on the project's root and update the 
 "entryPointUriPath": "custom-objects",
 ```
 `cloudIdentifier` is configured to use the HTTP APIs in the Google Cloud (gcp) in Europe(eu) region [`gcp-eu`]. If you plan to run the Custom Application in another environment, change the `cloudIdentifier` accordingly.
-You can find list of supported regions [here](https://docs.commercetools.com/api/general-concepts#hosts).
+You can find a list of supported regions [here](https://docs.commercetools.com/api/general-concepts#hosts).
 
-### JSON validation and autocompletion for VS code (optional step)
-If you are using the [VS code editor](https://code.visualstudio.com/), You can add [Custom Application config JSON Schema settings](https://docs.commercetools.com/custom-applications/development/application-config#json-schema-support-for-vscode) to validate and autocompletion for custom-application-config.json file.
+### JSON validation and autocompletion for VS code (optional)
+You can add [Custom Application config JSON Schema settings](https://docs.commercetools.com/custom-applications/development/application-config#json-schema-support-for-vscode) to validate and autocompletion for custom-application-config.json file if you are using the [VS code editor](https://code.visualstudio.com/).
 
 Navigate to `custom-objects-custom-application-project` directory and execute `yarn start` to start the Custom Application.
 ```bash
@@ -54,7 +54,7 @@ Browser will open new tab with URL `http://localhost:3001`and login screen for d
 You can login with your commercetools account.
 ![Custom Application Starter Template on VS code editor](/images/mc-dev-starter-login.png)
 
-If your athentication is successful, then will be redirected to `http://localhost:3001/:projectKey/examples-starter`and `:projectKey`is your commercetools project.
+If your athentication is successful, then will be redirected to `http://localhost:3001/:projectKey/custom-objects`and `:projectKey`is your commercetools project.
 
 <Info>
 
@@ -68,25 +68,19 @@ Clear active session cookie for production domain (for example commercetools.com
 ![Custom Objects Custom Application Starter](/images/mc-dev-starter-custom-objects-main.png)
 
 
-## Display Custom Objects of the commercetools project
-Let's use the **view one** of this project `<project-root>/src/components/view-one/view-one.js` to dispaly list of `key` and `value` of Custom Objects for the given `container`.
-Before querying commercetools platform for Custom Obejcts, it's required to pass a specific container. [More details about HTTP API for Query CustomObjects](https://docs.commercetools.com/api/projects/custom-objects#query-customobjects).
+## Display Custom Objects for current commercetools project
+Clicking on the `Page one` tab navigates to **view-one** with page URL `http://localhost:3001/:projectKey/custom-objects/one`.
+Let's use the **view one** of this project `<project-root>/src/components/view-one/view-one.js` to display a list of `key` and `value` of Custom Objects for the given `container`.
+Before querying the commercetools platform for Custom Objects, it's required to pass a specific container. [More details about HTTP API for Query CustomObjects](https://docs.commercetools.com/api/projects/custom-objects#query-customobjects).
 
-### ADD UI to collect user input for the Custom Objects container
-Need a simple form with text field and submit button to accept input `container` from the user.
-Show Text message using Text UI component and PrimaryButton to open the form dialog.
-Let's call this user interface as **UpdateContainerForm** component.
+### ADD user interface to collect user input for the Custom Objects container
+We can use the [FormDialog](/components/form-dialog) component with [TextInput](https://uikit.commercetools.com/?path=/story/components-inputs--textinput) component to accept input `container` from the user.
+Show Text message using [Text](https://uikit.commercetools.com/?path=/story/basics-typography-text--headline) and [PrimaryButton](https://uikit.commercetools.com/?path=/story/components-buttons--primarybutton) components to open the form dialog.
+Let's call this user interface as the **UpdateContainerForm** component.
 
-We can use the [FormDialog](/components/form-dialog) component.
+Create a new folder called `update-container-form` inside `<project-root>/src/components/view-one` folder. Create empty `index.js`, `update-container-form.js` and `messages.js` files inside `update-container-form` folder.
 
-Create new folder called `update-container-form` inside `<project-root>/src/components/view-one` folder. Create empty `index.js`, `update-container-form.js` and `messages.js` files inside `update-container-form` folder.
-
-Add following code snippet to `index.js`.
-```js
-  export { default } from './update-container-form';
-```
-
-Add following code to `update-container-form.js`. Mainly importing UI component `useIntl` and `messages` for React localization.
+Add following code to `update-container-form.js`.
 ```js
 import React, { useState } from 'react';
 import TextInput from '@commercetools-uikit/text-input';
@@ -158,8 +152,9 @@ const UpdateContainerForm = ({ updateContainerCallback }) => {
 }
 export default UpdateContainerForm;
 ```
-Importing UI components , import react-intl and messages for the localization.
-`updateContainerCallback` callback function to listen updates for the container as props.
+Importing UI components, `useIntl` and `messages` for React localization.
+State management using [useState](https://reactjs.org/docs/hooks-reference.html#usestate) of [React Hooks](https://reactjs.org/docs/hooks-intro.html).
+`updateContainerCallback` callback function to listen updates for the container for `ViewOne` component.
 
 
 Add following code snippet to `messages.js` for [react-intl](https://formatjs.io/docs/react-intl/) localization.
@@ -190,12 +185,17 @@ export default defineMessages({
 });
 ```
 
-Add `@commercetools-uikit/text-input`, `@commercetools-uikit/field-label`, `@commercetools-uikit/primary-button` and `@commercetools-uikit/constraints` UI components to the project by running following command on root of the project.
+Install `@commercetools-uikit/text-input`, `@commercetools-uikit/field-label`, `@commercetools-uikit/primary-button` and `@commercetools-uikit/constraints` UI components packages and save it to your `package.json` dependencies using the following command:
 ```shell
 yarn add @commercetools-uikit/text-input @commercetools-uikit/field-label @commercetools-uikit/primary-button @commercetools-uikit/constraints
 ```
 
-Replace `<project-root>/src/components/view-one/view-one.js`code with following code.
+Add following code snippet to `index.js`.
+```js
+  export { default } from './update-container-form';
+```
+
+Replace `<project-root>/src/components/view-one/view-one.js` code with following code, which imports and renders the `UpdateContainerForm` component.
 
 ```js
 import React from 'react';
@@ -234,9 +234,8 @@ ViewOne.displayName = 'ViewOne';
 
 export default ViewOne;
 ```
-It renders the newly added `UpdateContainerForm` component and shows the container name when user submits the container name.
-One last step to see first UI change is to update the messages of view-one component, replace `<project-root>/src/components/view-one/messages.js` code with following code.
 
+One last step to see the first UI change is to update the messages of the `ViewOne` component, replace `<project-root>/src/components/view-one/messages.js` code with the following code.
 ```js
 import { defineMessages } from 'react-intl';
 
@@ -254,16 +253,12 @@ export default defineMessages({
 });
 ```
 
-If it's successful, you should see UI on the Custom Application.
+If it's successful, you should see the following UI on the Custom Application.
 ![Custom Objects update container form with value](custom-application-custom-objects-with-update-container-form.gif)
 
-2. Next step is to display list of `key` and `value` of Custom Objects using DataTable UI component.
+### Display Custom Objects key and value in a DataTable.
+Next step is to display list of `key` and `value` of Custom Objects using [DataTable]() UI component.
 Create new folder called `custom-objects-key-value-table` inside `<project-root>/src/components/view-one` folder. Create empty `index.js`, `custom-objects-key-value-table.js`, `messages.js` and `get-custom-objects-by-containers.graphql` files inside `custom-objects-key-value-table` folder.
-
-Add following code snippet to `index.js`.
-```js
-  export { default } from './custom-objects-key-value-table';
-```
 
 Add following code to `update-container-form.js`. to handle loading, error and dataTable if it's success.
 ```js
@@ -308,6 +303,10 @@ const CustomObjectsKeyValueTable = ({ container }) => {
 }
 export default CustomObjectsKeyValueTable;
 ```
+Add `@commercetools-uikit/data-table` and UI components to the project by running following command on root of the project.
+```shell
+yarn add @commercetools-uikit/data-table
+```
 
 Add following code snippet to `messages.js` for [react-intl](https://formatjs.io/docs/react-intl/) localization.
 ```js
@@ -350,10 +349,11 @@ Add following GraphQL query to `get-custom-objects-by-containers.graphql`.
   }
 ```
 
-Add `@commercetools-uikit/data-table` and UI components to the project by running following command on root of the project.
-```shell
-yarn add @commercetools-uikit/data-table
+Add following code snippet to `index.js`.
+```js
+  export { default } from './custom-objects-key-value-table';
 ```
+
 Getting Custom Objects for given container is queried using `get-custom-objects-by-container.graphql` query, `useQuery` from `@apollo/client` and target platfrom from `@commercetools-frontend/constants`.
 
 
