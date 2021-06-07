@@ -41,11 +41,10 @@ const VersionTracker = () => {
   const applicationName = useApplicationContext(
     (context) => context.environment.applicationName
   );
-  const dispatch =
-    useAsyncDispatch<
-      ReturnType<typeof pushDependencyVersionCounter>,
-      unknown
-    >();
+  const dispatch = useAsyncDispatch<
+    ReturnType<typeof pushDependencyVersionCounter>,
+    unknown
+  >();
   React.useEffect(() => {
     dispatch(
       pushDependencyVersionCounter({
