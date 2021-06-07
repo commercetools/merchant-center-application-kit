@@ -4,8 +4,9 @@ import type { TSessionMiddlewareOptions } from '../types';
 import { createSessionAuthVerifier } from '../auth';
 
 function createSessionMiddleware(options: TSessionMiddlewareOptions) {
-  const sessionAuthVerifier =
-    createSessionAuthVerifier<Request, Response>(options);
+  const sessionAuthVerifier = createSessionAuthVerifier<Request, Response>(
+    options
+  );
 
   return async (request: Request, response: Response, next: NextFunction) => {
     try {
