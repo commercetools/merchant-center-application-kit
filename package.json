@@ -158,7 +158,7 @@
     "postcss-load-config": "3.0.1",
     "postcss-modules": "4.0.0",
     "prettier": "2.3.0",
-    "puppeteer": "9.1.1",
+    "puppeteer": "10.0.0",
     "rcfile": "1.0.3",
     "replace": "1.2.1",
     "rosie": "2.1.0",
