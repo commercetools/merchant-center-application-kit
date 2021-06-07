@@ -42,6 +42,6 @@
     "@formatjs/cli": "4.2.16",
     "@manypkg/cli": "0.18.0",
     "@testing-library/react": "11.2.7",
-    "jest": "27.0.1"
+    "jest": "27.0.2"
   }
 }
