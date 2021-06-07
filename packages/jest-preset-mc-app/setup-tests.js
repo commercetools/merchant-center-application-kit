@@ -17,7 +17,7 @@ window.MutationObserver = MutationObserver;
 global.Headers = global.Headers || Headers;
 
 let additionalSilencedWarnings = [];
-let additionalNotThrowingWarnings = [];
+let additionalNonThrowingWarnings = [];
 
 function hasMatchingRegexForMessage(messages, msgRegExps) {
   return msgRegExps.some((msgRegex) =>
@@ -43,17 +43,17 @@ function shouldNotThrowWarnings(...messages) {
     messages,
     jestConfig.notThrowWarnings
   );
-  const additionallyNotThrowing = hasMatchingRegexForMessage(
+  const additionallyNonThrowing = hasMatchingRegexForMessage(
     messages,
-    additionalNotThrowingWarnings
+    additionalNonThrowingWarnings
   );
 
-  return notThrowingByJestConfig || additionallyNotThrowing;
+  return notThrowingByJestConfig || additionallyNonThrowing;
 }
 
 // setup file
 function logOrThrow(log, method, messages) {
-  const warning = `console.${method} calls not allowed in tests`;
+  let warning = `@commercetools-frontend/jest-preset-mc-app: console.${method} calls should not be used in tests.`;
   if (process.env.CI) {
     if (shouldSilenceWarnings(messages)) return;
 
@@ -62,6 +62,8 @@ function logOrThrow(log, method, messages) {
     // NOTE: That some warnings should be logged allowing us to refactor graceully
     // without having to introduce a breaking change.
     if (shouldNotThrowWarnings(messages)) return;
+
+    warning = `@commercetools-frontend/jest-preset-mc-app: console.${method} calls not allowed in tests.`;
 
     throw new Error(...messages);
   } else {
@@ -97,5 +99,5 @@ global.console.config = {};
 
 global.console.config.addSilencedWarning = (rexExp) =>
   additionalSilencedWarnings.push(rexExp);
-global.console.config.addNotThrowingWarning = (rexExp) =>
-  additionalNotThrowingWarnings.push(rexExp);
+global.console.config.addNonThrowingWarning = (rexExp) =>
+  additionalNonThrowingWarnings.push(rexExp);
