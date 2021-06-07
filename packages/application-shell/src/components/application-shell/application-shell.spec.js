@@ -157,6 +157,25 @@ const getDefaultMockResolvers = (mocks = {}) => {
       }
       return res(ctx.data({ project: mockedProjects[0] }));
     }),
+    graphql.query('FetchProjectExtensionsNavbar', (req, res, ctx) =>
+      ctx.data({
+        projectExtension: null,
+      })
+    ),
+    graphql
+      .link(`${window.location.origin}/api/graphql`)
+      .query('FetchApplicationsMenu', (req, res, ctx) =>
+        res(
+          ctx.data({
+            applicationsMenu: null,
+          })
+        )
+      ),
+    graphql
+      .link(`${window.location.origin}/api/graphql`)
+      .query('FetchAllMenuFeatureToggles', (req, res, ctx) =>
+        res(ctx.data({ allFeatureToggles: [] }))
+      ),
   ];
 };
 const mockServer = setupServer(
@@ -802,7 +821,6 @@ describe('navbar menu links interactions', () => {
     beforeEach(() => {
       mockServer.resetHandlers();
       mockServer.use(
-        ...getDefaultMockResolvers(),
         graphql.query('FetchProjectExtensionsNavbar', (req, res, ctx) => {
           return res(
             ctx.data({
@@ -865,7 +883,8 @@ describe('navbar menu links interactions', () => {
           .link(`${window.location.origin}/api/graphql`)
           .query('FetchAllMenuFeatureToggles', (req, res, ctx) =>
             res(ctx.data({ allFeatureToggles: [] }))
-          )
+          ),
+        ...getDefaultMockResolvers()
       );
     });
     it('should render links with all the correct state attributes', async () => {

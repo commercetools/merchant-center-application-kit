@@ -1,3 +1,4 @@
+require('setimmediate');
 require('unfetch/polyfill');
 require('@testing-library/jest-dom/extend-expect');
 require('./polyfills/intl');

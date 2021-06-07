@@ -14,6 +14,22 @@ const jestBabelConfig = {
   plugins: [...mcAppBabelConfig.plugins, ...getJestBabelPreset().plugins],
 };
 
-const transformer = babelJest.createTransformer(jestBabelConfig);
+/**
+ * NOTE:
+ *  In `babel-jest` v27 the export has changed
+ *  from: `babelJest.createTransformer`
+ *  to `babelJest.default.createTransformer`.
+ *  In order to remain backwards compatible the
+ *  type of the export is checked.
+ *
+ *  TODO: v21: Remove check and release `jest-preset-mc-app`
+ *  as a breaking release.
+ */
+const createTransformer =
+  typeof babelJest.createTransformer === 'function'
+    ? babelJest.createTransformer
+    : babelJest.default.createTransformer;
+
+const transformer = createTransformer(jestBabelConfig);
 
 module.exports = transformer;

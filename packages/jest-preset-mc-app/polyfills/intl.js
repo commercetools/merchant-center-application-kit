@@ -4,3 +4,5 @@
 // https://github.com/formatjs/formatjs/tree/master/packages/intl-messageformat#modern-intl-dependency
 global.Intl = require('intl');
 global.Intl.PluralRules = require('./intl-pluralrules');
+// Work-around for the issue  https://github.com/andyearnshaw/Intl.js/issues/256
+global.Intl.__disableRegExpRestore();
