@@ -73,7 +73,7 @@ Clicking on the `Page one` tab navigates to **view-one** with page URL `http://l
 Let's use the **view one** of this project `<project-root>/src/components/view-one/view-one.js` to display a list of `key` and `value` of Custom Objects for the given `container`.
 Before querying the commercetools platform for Custom Objects, it's required to pass a specific container. [More details about HTTP API for Query CustomObjects](https://docs.commercetools.com/api/projects/custom-objects#query-customobjects).
 
-### ADD user interface to collect user input for the Custom Objects container
+## ADD user interface to collect user input for the Custom Objects container
 We can use the [FormDialog](/components/form-dialog) component with [TextInput](https://uikit.commercetools.com/?path=/story/components-inputs--textinput) component to accept input `container` from the user.
 Show Text message using [Text](https://uikit.commercetools.com/?path=/story/basics-typography-text--headline) and [PrimaryButton](https://uikit.commercetools.com/?path=/story/components-buttons--primarybutton) components to open the form dialog.
 Let's call this user interface as the **UpdateContainerForm** component.
@@ -256,11 +256,11 @@ export default defineMessages({
 If it's successful, you should see the following UI on the Custom Application.
 ![Custom Objects update container form with value](custom-application-custom-objects-with-update-container-form.gif)
 
-### Display Custom Objects key and value in a DataTable.
-Next step is to display list of `key` and `value` of Custom Objects using [DataTable]() UI component.
+## Display Custom Objects key and value in a DataTable
+The next step is to display list of `key` and `value` of Custom Objects using the [DataTable](https://uikit.commercetools.com/?path=/story/components-datatable--datatable) UI component.
 Create new folder called `custom-objects-key-value-table` inside `<project-root>/src/components/view-one` folder. Create empty `index.js`, `custom-objects-key-value-table.js`, `messages.js` and `get-custom-objects-by-containers.graphql` files inside `custom-objects-key-value-table` folder.
 
-Add following code to `update-container-form.js`. to handle loading, error and dataTable if it's success.
+Add the following code to `update-container-form.js` file to display loading, error and data using [LoadingSpinner](https://uikit.commercetools.com/?path=/story/components-loading--loadingspinner), [ErrorMessage](https://uikit.commercetools.com/?path=/story/components-messages--errormessage) and [DataTable](https://uikit.commercetools.com/?path=/story/components-datatable--datatable) UI components.
 ```js
 import React from 'react';
 import DataTable from '@commercetools-uikit/data-table';
@@ -309,6 +309,7 @@ yarn add @commercetools-uikit/data-table
 ```
 
 Add following code snippet to `messages.js` for [react-intl](https://formatjs.io/docs/react-intl/) localization.
+Getting Custom Objects for given container is queried using GraphQL query from `get-custom-objects-by-container.graphql` file, [useQuery](https://www.apollographql.com/docs/react/data/queries/) from [@apollo/client](https://www.apollographql.com/docs/) and **target platfrom** from [@commercetools-frontend/constants](https://www.npmjs.com/package/@commercetools-frontend/constants) package.
 ```js
 import { defineMessages } from 'react-intl';
 
@@ -354,10 +355,7 @@ Add following code snippet to `index.js`.
   export { default } from './custom-objects-key-value-table';
 ```
 
-Getting Custom Objects for given container is queried using `get-custom-objects-by-container.graphql` query, `useQuery` from `@apollo/client` and target platfrom from `@commercetools-frontend/constants`.
-
-
-Replace `<project-root>/src/components/view-one/view-one.js` code with following code to include `CustomObjectsKeyValueTable` component to display Custom Objects data in the table.
+Replace `<project-root>/src/components/view-one/view-one.js` code with following code to include `CustomObjectsKeyValueTable` component to display Custom Objects data in the DataTable.
 
 ```js
 import React from 'react';
@@ -398,19 +396,15 @@ ViewOne.displayName = 'ViewOne';
 
 export default ViewOne;
 ```
-If it's successful, you should be something like below.
+If it's successful, you should see something like below.
 ![Custom Objects update container form with value](/images/custom-application-custom-objects-display-in-data-table.gif)
 
-3. Display list of `key` and `value` of Custom Objects using DataTable UI component.
-### ADD commercetools Custom Objects graphQL query.
 
-
-
-### Create or Update Custom objects
+### ADD user interface to create or update Custom objects
 
 Create new folder called `create-or-update-custom-objects-form` inside `<project-root>/src/components/view-one` folder. Create empty `index.js`, `create-or-update-custom-objects-form.js`, `messages.js` and `create-or-update-custom-object.graphql` files inside `create-or-update-custom-objects-form` folder.
 
-Add GraphQL mutation to create or update custom objects in `create-or-update-custom-object.graphql` file.
+Add **GraphQL mutation** to create or update Custom Objects in `create-or-update-custom-object.graphql` file.
 ```graphql
   mutation CreateOrUpdateCustomObject ( $customObjectDraft:  CustomObjectDraft!) {
     createOrUpdateCustomObject (draft: $customObjectDraft) {
@@ -421,11 +415,12 @@ Add GraphQL mutation to create or update custom objects in `create-or-update-cus
   }
 ```
 
-Add `index.js`
+Add following code snippet to `index.js`.
 ```js
 export { default } from './create-or-update-custom-objects-form';
 ```
-Add following code to `create-or-update-custom-objects-form.js`.
+
+Add following code to `create-or-update-custom-objects-form.js` to get the user input to create or updaye Custom Object using **key** and **value**.
 ```js
 import React from 'react';
 import TextInput from '@commercetools-uikit/text-input';
@@ -519,7 +514,7 @@ const CreateOrUpdateCustomObjectsForm = ({ container }) => {
 export default CreateOrUpdateCustomObjectsForm;
 
 ```
-Add `messages.js`.
+Add following code snippet to `messages.js` for [react-intl](https://formatjs.io/docs/react-intl/) localization.
 
 ```js
 import { defineMessages } from 'react-intl';
@@ -547,7 +542,7 @@ export default defineMessages({
     }
 });
 ```
-Replace the `view-one.js` file code.
+Replace the `view-one.js` file code to include `CreateOrUpdateCustomObjectsForm` component.
 
 ```js
 import React from 'react';
@@ -591,11 +586,11 @@ ViewOne.displayName = 'ViewOne';
 export default ViewOne;
 ```
 
-If it's successful, you should be something like below.
+If it's successful, you should see something like below.
 ![create or update Custom Object](/images/custom-application-add-or-update-custom-object.gif)
 
 ## Next steps
-- [Add Custom Application permission](/main-concepts/user-permissions)
-- [Deploy to AWS](/deployment/example-deployment-aws-s3-cloudfront)
-- [Register Custom Application](/register-applications/configuring-a-custom-application)
-- What's not covered in this tutorial are Pagination(What if you have huge list of customObjects) and delete Custom Application. Consider implementing this missing feature.
+- [Deploy Custom Application](/deployment/compiling-a-custom-application#deployment)
+- [Register yout Custom Application](/register-applications/configuring-a-custom-application)
+- Implement additional features. What's not covered in this tutorial are Pagination(What if you have a huge list of Custom Objects) and delete a Custom Object. Consider implementing these missing features.
+
