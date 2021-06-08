@@ -22,4 +22,8 @@ export default defineMessages({
     id: 'StateMachines.EchoServer.labelIncludeParamsInRequest',
     defaultMessage: 'Inlude Parameter in request',
   },
+  labelIncludeForwardHeaderInRequest: {
+    id: 'StateMachines.EchoServer.labelIncludeForwardHeaderInRequest',
+    defaultMessage: 'Inlude Forward Header in request',
+  },
 });
