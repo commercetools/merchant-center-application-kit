@@ -1,5 +1,11 @@
 # @commercetools-frontend/create-mc-app
 
+## 20.4.0
+
+### Patch Changes
+
+- [#2247](https://github.com/commercetools/merchant-center-application-kit/pull/2247) [`f8f759b6`](https://github.com/commercetools/merchant-center-application-kit/commit/f8f759b6f0f6d8cc677efd90fecbd19d103c6a4f) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
 ## 20.3.1
 
 ### Patch Changes

@@ -1,5 +1,25 @@
 # @commercetools-frontend/application-shell
 
+## 20.4.0
+
+### Patch Changes
+
+- [#2247](https://github.com/commercetools/merchant-center-application-kit/pull/2247) [`f8f759b6`](https://github.com/commercetools/merchant-center-application-kit/commit/f8f759b6f0f6d8cc677efd90fecbd19d103c6a4f) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+* [#2233](https://github.com/commercetools/merchant-center-application-kit/pull/2233) [`e642229a`](https://github.com/commercetools/merchant-center-application-kit/commit/e642229a7be1c544ede8de831cb9e3633deb3fdd) Thanks [@tdeekens](https://github.com/tdeekens)! - Updates to `jest` v27 including `jest-each`, `pretty-format` and `ts-jest`.
+
+  The breaking changes of `jest` are encapsulated into `jest-preset-mc-app` while a condition was added to ensure backwards compatibility of `babel-jest` and the export of `createTransformer`.
+
+* Updated dependencies [[`f8f759b6`](https://github.com/commercetools/merchant-center-application-kit/commit/f8f759b6f0f6d8cc677efd90fecbd19d103c6a4f)]:
+  - @commercetools-frontend/application-components@20.4.0
+  - @commercetools-frontend/i18n@20.4.0
+  - @commercetools-frontend/react-notifications@20.4.0
+  - @commercetools-frontend/sentry@20.4.0
+  - @commercetools-frontend/actions-global@20.4.0
+  - @commercetools-frontend/application-shell-connectors@20.4.0
+  - @commercetools-frontend/l10n@20.4.0
+  - @commercetools-frontend/permissions@20.4.0
+
 ## 20.3.1
 
 ### Patch Changes
