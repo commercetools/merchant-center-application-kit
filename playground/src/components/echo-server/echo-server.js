@@ -46,10 +46,19 @@ const EchoServer = () => {
   );
   const [shouldIncludeParamInRequest, setShouldIncludeParamInRequest] =
     useState(false);
+  const [
+    shouldIncludeForwardHeaderInRequest,
+    setShouldIncludeForwardHeaderInRequest,
+  ] = useState(false);
 
   const onChangeShouldIncludeParamInRequest = (event) => {
     const nextValue = event.target.value === 'false' ? true : false;
     setShouldIncludeParamInRequest(nextValue);
+  };
+
+  const onChangeShouldIncludeForwardHeaderInRequest = (event) => {
+    const nextValue = event.target.value === 'false' ? true : false;
+    setShouldIncludeForwardHeaderInRequest(nextValue);
   };
 
   const handleSendRequest = useCallback(() => {
@@ -66,6 +75,9 @@ const EchoServer = () => {
             payload: {
               say: 'Hello',
             },
+            headers: shouldIncludeForwardHeaderInRequest && {
+              'custom-header-name': 'custom-header-value',
+            },
           })
         );
         dispatchState({ type: 'complete', payload: result });
@@ -76,7 +88,13 @@ const EchoServer = () => {
     }
     dispatchState({ type: 'loading' });
     ping();
-  }, [dispatch, dispatchError, echoServerApiUrl, shouldIncludeParamInRequest]);
+  }, [
+    dispatch,
+    dispatchError,
+    echoServerApiUrl,
+    shouldIncludeParamInRequest,
+    shouldIncludeForwardHeaderInRequest,
+  ]);
   return (
     <Spacings.Inset>
       <Spacings.Stack>
@@ -112,6 +130,16 @@ const EchoServer = () => {
                 onChange={onChangeShouldIncludeParamInRequest}
               >
                 {intl.formatMessage(messages.labelIncludeParamsInRequest)}
+              </CheckboxInput>
+              <CheckboxInput
+                name="should-include-forward-header-in-request"
+                value={shouldIncludeForwardHeaderInRequest}
+                isChecked={shouldIncludeForwardHeaderInRequest}
+                onChange={onChangeShouldIncludeForwardHeaderInRequest}
+              >
+                {intl.formatMessage(
+                  messages.labelIncludeForwardHeaderInRequest
+                )}
               </CheckboxInput>
             </Spacings.Inline>
             {state.result && (
