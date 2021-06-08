@@ -13,19 +13,44 @@ global.window.app = {
 window.MutationObserver = MutationObserver;
 global.Headers = global.Headers || Headers;
 
-const shouldSilenceWarnings = (...messages) =>
-  jestConfig.silenceConsoleWarnings.some((msgRegex) =>
+let additionalSilencedWarnings = [];
+let additionalNonThrowingWarnings = [];
+
+function hasMatchingRegexForMessage(messages, msgRegExps) {
+  return msgRegExps.some((msgRegex) =>
     messages.some((msg) => msgRegex.test(msg))
+  );
+}
+
+function shouldSilenceWarnings(...messages) {
+  const silencedByJestConfig = hasMatchingRegexForMessage(
+    messages,
+    jestConfig.silenceConsoleWarnings
+  );
+  const additionallySilenced = hasMatchingRegexForMessage(
+    messages,
+    additionalSilencedWarnings
   );
 
-const shouldNotThrowWarnings = (...messages) =>
-  jestConfig.notThrowWarnings.some((msgRegex) =>
-    messages.some((msg) => msgRegex.test(msg))
+  return silencedByJestConfig || additionallySilenced;
+}
+
+function shouldNotThrowWarnings(...messages) {
+  const notThrowingByJestConfig = hasMatchingRegexForMessage(
+    messages,
+    jestConfig.notThrowWarnings
   );
+  const additionallyNonThrowing = hasMatchingRegexForMessage(
+    messages,
+    additionalNonThrowingWarnings
+  );
+
+  return notThrowingByJestConfig || additionallyNonThrowing;
+}
 
 // setup file
-const logOrThrow = (log, method, messages) => {
-  const warning = `console.${method} calls not allowed in tests`;
+function logOrThrow(log, method, messages) {
+  let warning = `@commercetools-frontend/jest-preset-mc-app: console.${method} calls should not be used in tests.`;
   if (process.env.CI) {
     if (shouldSilenceWarnings(messages)) return;
 
@@ -35,11 +60,13 @@ const logOrThrow = (log, method, messages) => {
     // without having to introduce a breaking change.
     if (shouldNotThrowWarnings(messages)) return;
 
+    warning = `@commercetools-frontend/jest-preset-mc-app: console.${method} calls not allowed in tests.`;
+
     throw new Error(...messages);
   } else {
     log(colors.bgYellow.black(' WARN '), warning, '\n', ...messages);
   }
-};
+}
 
 // eslint-disable-next-line no-console
 const logMessage = console.log;
@@ -64,3 +91,10 @@ const logError = console.error;
 global.console.error = (...messages) => {
   logOrThrow(logError, 'error', messages);
 };
+
+global.console.config = {};
+
+global.console.config.addSilencedWarning = (rexExp) =>
+  additionalSilencedWarnings.push(rexExp);
+global.console.config.addNonThrowingWarning = (rexExp) =>
+  additionalNonThrowingWarnings.push(rexExp);
