@@ -123,6 +123,7 @@ export const GRAPHQL_TARGETS = {
   DASHBOARD_SERVICE: 'dashboard',
   CHANGE_HISTORY_SERVICE: 'change-history',
   PIM_INDEXER: 'pim-indexer',
+  ORDER_INDEXER: 'order-indexer',
   SETTINGS_SERVICE: 'settings',
   ADMINISTRATION_SERVICE: 'administration',
 } as const;
@@ -133,6 +134,7 @@ export const MC_API_PROXY_TARGETS = {
   COMMERCETOOLS_PLATFORM: 'ctp',
   MACHINE_LEARNING: 'ml',
   PIM_SEARCH: 'pim-search',
+  ORDER_SEARCH: 'order-search',
   MC_METRICS: 'mc-metrics',
   IMPORT: 'import',
 } as const;
