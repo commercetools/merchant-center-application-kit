@@ -177,6 +177,8 @@ It is recommended to create a shared module containing a React hook, component, 
 For example, define a React hook `usePermissions` that includes evaluations of different permissions used across the application.
 
 ```js
+import { useIsAuthorized } from '@commercetools-frontend/permissions';
+
 const usePermissions = () => {
   const canManageProducts = useIsAuthorized({
     demandedPermissions: [PERMISSIONS.ManageProducts],
