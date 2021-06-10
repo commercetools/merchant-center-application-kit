@@ -149,7 +149,7 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
         {
           // corejs messes with jest@27 in tests, due to some
           // Promise/Date related polyfills it provides.
-          corejs: isEnvTest || options.disableCoreJs ? false : 3,
+          corejs: options.disableCoreJs ? false : 3,
           // To be able to use `runtime` in Rollup babel plugin
           helpers: true,
           regenerator: true,
