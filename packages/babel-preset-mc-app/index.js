@@ -141,7 +141,9 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
       [
         require('@babel/plugin-transform-runtime').default,
         {
-          corejs: 3,
+          // corejs messes with jest@27 in tests, due to some
+          // Promise/Date related polyfills it provides.
+          corejs: !isEnvTest && 3,
           // To be able to use `runtime` in Rollup babel plugin
           helpers: true,
           regenerator: true,
