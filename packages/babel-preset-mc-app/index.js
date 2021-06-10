@@ -44,7 +44,7 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
         {
           targets: {
             browsers: ['last 2 versions'],
-            node: '8',
+            node: 'current',
           },
         },
       ],
