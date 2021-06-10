@@ -25,6 +25,10 @@ const defaultToggleFlags = {
   //    `false` to disable any paralelism
   //    `int` for a specific number of CPUs
   parallelism: true,
+  // Some environemnts do not require `core-js` and can hence disable
+  // it explicitely. This will disable `core-js` for `preset-env` and the
+  // `plugin-transform-runtime`.
+  disableCoreJs: false,
 };
 const defaultOptions = {
   distPath: paths.distPath,
@@ -141,7 +145,8 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
     entry: {
       app: [
         require.resolve('./application-runtime'),
-        require.resolve('core-js/stable'),
+        !mergedOptions.toggleFlags.disableCoreJs &&
+          require.resolve('core-js/stable'),
         mergedOptions.entryPoint,
       ],
     },
@@ -233,6 +238,7 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
                     ),
                     {
                       runtime: hasJsxRuntime() ? 'automatic' : 'classic',
+                      disableCoreJs: mergedOptions.toggleFlags.disableCoreJs,
                     },
                   ],
                 ],

@@ -13,6 +13,10 @@ const hasJsxRuntime = require('./has-jsx-runtime');
 const defaultToggleFlags = {
   // Allow to disable index.html generation in case it's not necessary (e.g. for Storybook)
   generateIndexHtml: true,
+  // Some environemnts do not require `core-js` and can hence disable
+  // it explicitely. This will disable `core-js` for `preset-env` and the
+  // `plugin-transform-runtime`.
+  disableCoreJs: false,
 };
 const defaultOptions = {
   distPath: paths.distPath,
@@ -99,7 +103,8 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
     entry: {
       app: [
         require.resolve('./application-runtime'),
-        require.resolve('core-js/stable'),
+        !mergedOptions.toggleFlags.disableCoreJs &&
+          require.resolve('core-js/stable'),
         // When using the experimental `react-refresh` integration,
         // the webpack plugin takes care of injecting the dev client for us.
         !hasReactRefresh &&
@@ -216,6 +221,7 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
                     ),
                     {
                       runtime: hasJsxRuntime() ? 'automatic' : 'classic',
+                      disableCoreJs: mergedOptions.toggleFlags.disableCoreJs,
                     },
                   ],
                 ],
