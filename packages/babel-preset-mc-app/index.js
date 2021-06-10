@@ -5,11 +5,15 @@ const defaultOptions = {
   // Usually when bundling packages we want to keep the prop types
   // but when building the final application we can remove them.
   keepPropTypes: false,
-  disableLooseMode: false,
   // plugin-proposal-class-properties, plugin-proposal-private-methods,
   // plugin-proposal-private-property-in-object have a loose option which
   // needs to be synced. At times, for instance for better debuggability
   // the loose option can be disabled at the cost of lowered performance.
+  disableLooseMode: false,
+  // Some environemnts do not require `core-js` and can hence disable
+  // it explicitely. This will disable `core-js` for `preset-env` and the
+  // `plugin-transform-runtime`.
+  disableCoreJs: false,
 };
 
 /* eslint-disable global-require */
@@ -55,7 +59,9 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
           targets: {
             browsers: ['last 2 versions'],
           },
-          corejs: { version: 3, proposals: true },
+          ...(options.disableCoreJs
+            ? {}
+            : { corejs: { version: 3, proposals: true } }),
           // `entry` transforms `@babel/polyfill` into individual requires for
           // the targeted browsers. This is safer than `usage` which performs
           // static code analysis to determine what's required.
@@ -143,7 +149,7 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
         {
           // corejs messes with jest@27 in tests, due to some
           // Promise/Date related polyfills it provides.
-          corejs: !isEnvTest && 3,
+          corejs: isEnvTest || options.disableCoreJs ? false : 3,
           // To be able to use `runtime` in Rollup babel plugin
           helpers: true,
           regenerator: true,
