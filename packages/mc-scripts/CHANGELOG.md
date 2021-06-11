@@ -1,5 +1,18 @@
 # @commercetools-frontend/mc-scripts
 
+## 20.5.0
+
+### Minor Changes
+
+- [#2261](https://github.com/commercetools/merchant-center-application-kit/pull/2261) [`481fb8f8`](https://github.com/commercetools/merchant-center-application-kit/commit/481fb8f8ace9502e48d89eb81b58ebf70a5724ba) Thanks [@tdeekens](https://github.com/tdeekens)! - Adds the ability to explicitly disable core-js for `mc-scripts` and the webpack configs
+
+  Some environments or build targets might not require core-js. In order to opt-out of it you can specify a `disableCoreJs` option.
+
+### Patch Changes
+
+- Updated dependencies [[`481fb8f8`](https://github.com/commercetools/merchant-center-application-kit/commit/481fb8f8ace9502e48d89eb81b58ebf70a5724ba), [`9aba0c49`](https://github.com/commercetools/merchant-center-application-kit/commit/9aba0c49d9ce643f66c58031c69b25ded9eb4859)]:
+  - @commercetools-frontend/babel-preset-mc-app@20.5.0
+
 ## 20.4.0
 
 ### Patch Changes
