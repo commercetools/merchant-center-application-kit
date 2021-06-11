@@ -5,6 +5,15 @@ const rootPath = process.cwd();
 const resolveRelativePath = (relativePath) =>
   path.resolve(__dirname, relativePath);
 
+const defaultTransformFile = resolveRelativePath('./transform-file.js');
+const defaultSetupTests = resolveRelativePath('./setup-tests.js');
+const defaultSetupTestFramework = resolveRelativePath(
+  './setup-test-framework.js'
+);
+const defaultTransformBabelJest = resolveRelativePath(
+  './transform-babel-jest.js'
+);
+
 module.exports = {
   displayName: 'test',
   globals: {
@@ -16,22 +25,18 @@ module.exports = {
   moduleDirectories: ['src', 'node_modules'],
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      resolveRelativePath('./transform-file.js'),
+      defaultTransformFile,
     '\\.css$': 'identity-obj-proxy',
   },
   rootDir: rootPath,
-  setupFiles: [
-    'raf/polyfill',
-    resolveRelativePath('./setup-tests.js'),
-    'jest-localstorage-mock',
-  ],
-  setupFilesAfterEnv: [resolveRelativePath('./setup-test-framework.js')],
+  setupFiles: ['raf/polyfill', defaultSetupTests, 'jest-localstorage-mock'],
+  setupFilesAfterEnv: [defaultSetupTestFramework],
   testEnvironment: 'jsdom',
   testURL: 'https://mc.europe-west1.gcp.commercetools.com/',
   testPathIgnorePatterns: ['node_modules', 'cypress'],
   testRegex: '\\.spec\\.jsx?$',
   transform: {
-    '^.+\\.(js|mjs)$': resolveRelativePath('./transform-babel-jest.js'),
+    '^.+\\.(js|mjs)$': defaultTransformBabelJest,
     '^.+\\.graphql$': 'jest-transform-graphql',
   },
   watchPlugins: ['jest-watch-typeahead/filename'],

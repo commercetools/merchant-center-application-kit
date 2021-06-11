@@ -19,6 +19,13 @@ const defaultConfig = {
     /.*@commercetools-frontend\/permissions.*/,
     /.*Warning: React.createFactory() is deprecated.*/,
   ],
+  babelConfig: {
+    // Some environemnts do not require `core-js` and can hence disable
+    // it explicitely. This will disable `core-js` for `preset-env` and the
+    // `plugin-transform-runtime`.
+    disableCoreJs: false,
+  },
+  rtlConfig: {},
 };
 
 const mergeSilenceConsoleWarnings = createListMergerWithDefaults(

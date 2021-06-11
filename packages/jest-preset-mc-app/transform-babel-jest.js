@@ -2,9 +2,13 @@ const getBabePresetConfigForMcApp = require('@commercetools-frontend/babel-prese
 const getJestBabelPreset = require('babel-preset-jest');
 const babelJest = require('babel-jest');
 const hasJsxRuntime = require('./has-jsx-runtime');
+const loadConfig = require('./load-config');
+
+const jestConfig = loadConfig();
 
 const mcAppBabelConfig = getBabePresetConfigForMcApp(null, {
   runtime: hasJsxRuntime() ? 'automatic' : 'classic',
+  disableCoreJs: jestConfig.babelConfig.disableCoreJs,
 });
 
 const jestBabelConfig = {
