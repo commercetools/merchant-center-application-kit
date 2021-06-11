@@ -1,5 +1,19 @@
 # @commercetools-frontend/babel-preset-mc-app
 
+## 20.5.0
+
+### Minor Changes
+
+- [#2261](https://github.com/commercetools/merchant-center-application-kit/pull/2261) [`481fb8f8`](https://github.com/commercetools/merchant-center-application-kit/commit/481fb8f8ace9502e48d89eb81b58ebf70a5724ba) Thanks [@tdeekens](https://github.com/tdeekens)! - Adds the ability to explicitly disable core-js for `babel-preset-mc-app`
+
+  Some environments or build targets might not require core-js. In order to opt-out of it you can specify a `disableCoreJs` option.
+
+### Patch Changes
+
+- [#2260](https://github.com/commercetools/merchant-center-application-kit/pull/2260) [`9aba0c49`](https://github.com/commercetools/merchant-center-application-kit/commit/9aba0c49d9ce643f66c58031c69b25ded9eb4859) Thanks [@tdeekens](https://github.com/tdeekens)! - Set Node.js version to `current` in the `babel-preset-mc-app` for `babel-preset-env`
+
+  The previous version was hard-coded to `8` while `current` whill always use the version of the running process.
+
 ## 20.4.0
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/actions-global",
-  "version": "20.4.0",
+  "version": "20.5.0",
   "description": "Global redux actions for a MC application",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -25,9 +25,9 @@
     "@babel/runtime": "7.14.0",
     "@babel/runtime-corejs3": "7.14.0",
     "@commercetools-frontend/browser-history": "20.0.1",
-    "@commercetools-frontend/constants": "20.3.0",
+    "@commercetools-frontend/constants": "20.5.0",
     "@commercetools-frontend/notifications": "20.0.1",
-    "@commercetools-frontend/sentry": "20.4.0",
+    "@commercetools-frontend/sentry": "20.5.0",
     "@types/lodash": "^4.14.167",
     "@types/react": "^17.0.7",
     "@types/react-redux": "^7.1.16",

@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 20.5.0
+
+### Patch Changes
+
+- [#2258](https://github.com/commercetools/merchant-center-application-kit/pull/2258) [`b9196aa7`](https://github.com/commercetools/merchant-center-application-kit/commit/b9196aa7097dae058d46f335e6332a5ee014a9d1) Thanks [@Rombelirk](https://github.com/Rombelirk)! - Add API targets for order search and order indexer
+
 ## 20.3.0
 
 ### Minor Changes

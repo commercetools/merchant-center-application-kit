@@ -1,5 +1,26 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 20.5.0
+
+### Minor Changes
+
+- [#2262](https://github.com/commercetools/merchant-center-application-kit/pull/2262) [`4d9bce0f`](https://github.com/commercetools/merchant-center-application-kit/commit/4d9bce0ff9aee5c6f27f751e44815465f1452c09) Thanks [@tdeekens](https://github.com/tdeekens)! - Add a `babelConfig` to the `jest-preset-mc-app` `cosmiconfig`.
+
+  To use it create a `jest-preset-mc-app.config.js` in the root of your project and e.g. add a:
+
+  ```js
+  module.exports = {
+    babelConfig: {
+      disableCoreJs: true,
+    },
+  };
+  ```
+
+### Patch Changes
+
+- Updated dependencies [[`481fb8f8`](https://github.com/commercetools/merchant-center-application-kit/commit/481fb8f8ace9502e48d89eb81b58ebf70a5724ba), [`9aba0c49`](https://github.com/commercetools/merchant-center-application-kit/commit/9aba0c49d9ce643f66c58031c69b25ded9eb4859)]:
+  - @commercetools-frontend/babel-preset-mc-app@20.5.0
+
 ## 20.4.0
 
 ### Minor Changes
