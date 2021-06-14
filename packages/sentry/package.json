@@ -22,10 +22,10 @@
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
-    "@babel/runtime": "7.14.0",
-    "@babel/runtime-corejs3": "7.14.0",
+    "@babel/runtime": "7.14.5",
+    "@babel/runtime-corejs3": "7.14.5",
     "@commercetools-frontend/constants": "20.5.0",
-    "@sentry/browser": "6.5.1",
+    "@sentry/browser": "6.6.0",
     "@types/prop-types": "^15.7.3",
     "@types/react": "^17.0.7",
     "prop-types": "15.7.2"
