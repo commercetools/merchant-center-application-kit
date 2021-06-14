@@ -73,6 +73,7 @@ describe('rendering', () => {
         )}
       </DialogController>
     );
+
     expect(screen.queryByText(/Lorem ipsus/i)).not.toBeInTheDocument();
 
     fireEvent.click(screen.getByLabelText(/Open Confirmation Dialog/i));
