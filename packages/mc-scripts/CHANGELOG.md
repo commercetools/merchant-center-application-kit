@@ -1,5 +1,20 @@
 # @commercetools-frontend/mc-scripts
 
+## 20.5.1
+
+### Patch Changes
+
+- [#2265](https://github.com/commercetools/merchant-center-application-kit/pull/2265) [`1a2e3258`](https://github.com/commercetools/merchant-center-application-kit/commit/1a2e32585546f8af6dc819b71c7d2fed043e15f7) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency postcss-loader to v6
+
+* [#2264](https://github.com/commercetools/merchant-center-application-kit/pull/2264) [`e0ea1333`](https://github.com/commercetools/merchant-center-application-kit/commit/e0ea1333218aa7a916ff0971a52ed8175be4d697) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+- [#2268](https://github.com/commercetools/merchant-center-application-kit/pull/2268) [`c370f242`](https://github.com/commercetools/merchant-center-application-kit/commit/c370f242bb85bc0041b4825bc4ebc877eaaa61e4) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+- Updated dependencies [[`e0ea1333`](https://github.com/commercetools/merchant-center-application-kit/commit/e0ea1333218aa7a916ff0971a52ed8175be4d697), [`c370f242`](https://github.com/commercetools/merchant-center-application-kit/commit/c370f242bb85bc0041b4825bc4ebc877eaaa61e4)]:
+  - @commercetools-frontend/application-config@20.5.1
+  - @commercetools-frontend/babel-preset-mc-app@20.5.1
+  - @commercetools-frontend/mc-html-template@20.5.1
+
 ## 20.5.0
 
 ### Minor Changes
