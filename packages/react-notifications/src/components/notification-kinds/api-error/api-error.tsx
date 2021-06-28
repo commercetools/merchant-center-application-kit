@@ -29,7 +29,9 @@ const ApiErrorNotification = (props: Props) => (
     <ul>
       {props.notification.values &&
         props.notification.values.errors.map((error, idx) => {
-          if (!error.code && process.env.NODE_ENV !== 'production') {
+          const shouldLogErrorToConsole =
+            !error.code && process.env.NODE_ENV === 'development';
+          if (shouldLogErrorToConsole) {
             /**
              * NOTE: This is an API error which usually contains
              * a `code` property such as `DuplicateField` or `InvalidOperation`.
