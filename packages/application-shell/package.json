@@ -100,7 +100,7 @@
   },
   "devDependencies": {
     "@apollo/client": "3.3.20",
-    "@testing-library/react": "11.2.7",
+    "@testing-library/react": "12.0.0",
     "@testing-library/react-hooks": "7.0.0",
     "msw": "0.30.0",
     "react": "17.0.2",
@@ -113,7 +113,7 @@
   },
   "peerDependencies": {
     "@apollo/client": "3.x",
-    "@testing-library/react": "11.x",
+    "@testing-library/react": "12.x",
     "@testing-library/react-hooks": "5.x || 7.x",
     "react": "17.x",
     "react-dom": "17.x",
