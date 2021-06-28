@@ -123,7 +123,7 @@
     "@svgr/plugin-jsx": "5.5.0",
     "@svgr/plugin-svgo": "5.5.0",
     "@testing-library/cypress": "7.0.6",
-    "@testing-library/react": "11.2.7",
+    "@testing-library/react": "12.0.0",
     "@types/faker": "5.5.6",
     "@types/jest-environment-puppeteer": "4.4.1",
     "@types/jquery": "3.5.5",
