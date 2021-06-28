@@ -2,6 +2,6 @@
 '@commercetools-frontend/react-notifications': patch
 ---
 
-fix(api-error): log api errors to console only in development env
+Removing logging API errors to `console.error` in test environments. Now loggin only in development.
 
 Prevent <ApiErrorNotification /> component from polluting console with the `console.error` messages in both `test` and `production` environments.
