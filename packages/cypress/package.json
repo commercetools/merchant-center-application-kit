@@ -40,13 +40,13 @@
   },
   "dependencies": {
     "@babel/runtime": "7.14.6",
-    "@babel/runtime-corejs3": "7.14.6",
+    "@babel/runtime-corejs3": "7.14.7",
     "@commercetools-frontend/application-config": "20.5.1",
     "@manypkg/get-packages": "1.1.1",
     "uuid": "8.3.2"
   },
   "devDependencies": {
-    "cypress": "7.5.0"
+    "cypress": "7.6.0"
   },
   "peerDependencies": {
     "cypress": "5.x || 6.x || 7.x"
