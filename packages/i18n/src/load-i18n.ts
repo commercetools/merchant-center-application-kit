@@ -10,10 +10,7 @@ import {
 type MomentImportData = {
   default: moment.Locale;
 };
-type UIKitImportData = {
-  default: Record<string, string> | Record<string, MessageFormatElement[]>;
-};
-type AppKitImportData = {
+type I18NImportData = {
   default: Record<string, string> | Record<string, MessageFormatElement[]>;
 };
 type MergedMessages =
@@ -50,7 +47,7 @@ const getMomentChunkImport = (locale: string): Promise<MomentImportData> => {
   }
 };
 
-const getUiKitChunkImport = (locale: string): Promise<UIKitImportData> => {
+const getUiKitChunkImport = (locale: string): Promise<I18NImportData> => {
   const intlLocale = mapLocaleToIntlLocale(locale);
   switch (intlLocale) {
     case 'de':
@@ -80,7 +77,7 @@ const getUiKitChunkImport = (locale: string): Promise<UIKitImportData> => {
   }
 };
 
-const getAppKitChunkImport = (locale: string): Promise<AppKitImportData> => {
+const getAppKitChunkImport = (locale: string): Promise<I18NImportData> => {
   const intlLocale = mapLocaleToIntlLocale(locale);
   switch (intlLocale) {
     case 'de':
@@ -110,6 +107,56 @@ const getAppKitChunkImport = (locale: string): Promise<AppKitImportData> => {
   }
 };
 
+const getCommunityKitChunkImport = (
+  locale: string
+): Promise<I18NImportData> => {
+  const intlLocale = mapLocaleToIntlLocale(locale);
+  try {
+    /* eslint-disable import/no-unresolved */
+    switch (intlLocale) {
+      case 'de':
+        return import(
+          // @ts-expect-error: it's an optional dependency.
+          /* webpackChunkName: "i18n-community-kit-locale-de" */ '@commercetools-community-kit/i18n/i18n/compiled-data/de.json'
+        );
+      case 'es':
+        return import(
+          // @ts-expect-error: it's an optional dependency.
+          /* webpackChunkName: "i18n-community-kit-locale-es" */ '@commercetools-community-kit/i18n/i18n/compiled-data/es.json'
+        );
+      case 'fr-FR':
+        return import(
+          // @ts-expect-error: it's an optional dependency.
+          /* webpackChunkName: "i18n-community-kit-locale-fr-FR" */ '@commercetools-community-kit/i18n/i18n/compiled-data/fr-FR.json'
+        );
+      case 'zh-CN':
+        return import(
+          // @ts-expect-error: it's an optional dependency.
+          /* webpackChunkName: "i18n-community-kit-locale-zh-CN" */ '@commercetools-community-kit/i18n/i18n/compiled-data/zh-CN.json'
+        );
+      case 'ja':
+        return import(
+          // @ts-expect-error: it's an optional dependency.
+          /* webpackChunkName: "i18n-community-kit-locale-ja" */ '@commercetools-community-kit/i18n/i18n/compiled-data/ja.json'
+        );
+      default:
+        return import(
+          // @ts-expect-error: it's an optional dependency.
+          /* webpackChunkName: "i18n-community-kit-locale-en" */ '@commercetools-community-kit/i18n/i18n/compiled-data/en.json'
+        );
+    }
+    /* eslint-enable import/no-unresolved */
+  } catch (error) {
+    switch (error.code) {
+      case 'ERR_MODULE_NOT_FOUND':
+        // Ignoring, as the dependency is optional.
+        return Promise.resolve({ default: {} });
+      default:
+        throw error;
+    }
+  }
+};
+
 // Use default (lazy) so that we will receive one chunk per
 // locale. https://webpack.js.org/api/module-methods/#import-
 export default async function loadI18n(
@@ -124,10 +171,14 @@ export default async function loadI18n(
   // Load app-kit translations
   const appKitChunkImport = await getAppKitChunkImport(locale);
 
+  // Load community-kit translations
+  const communityKitChunkImport = await getCommunityKitChunkImport(locale);
+
   // Prefer loading `default` (for ESM bundles) and
   // fall back to normal import (for CJS bundles).
   return mergeMessages(
     uiKitChunkImport.default || uiKitChunkImport,
-    appKitChunkImport.default || appKitChunkImport
+    appKitChunkImport.default || appKitChunkImport,
+    communityKitChunkImport.default || communityKitChunkImport
   );
 }

@@ -1532,6 +1532,14 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime-corejs3@7.13.17":
+  version "7.13.17"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.13.17.tgz#9baf45f03d4d013f021760b992d6349a9d27deaf"
+  integrity sha512-RGXINY1YvduBlGrP+vHjJqd/nK7JVpfM4rmZLGMx77WoL3sMrhheA0qxii9VNn1VHnxJLEyxmvCB+Wqc+x/FMw==
+  dependencies:
+    core-js-pure "^3.0.0"
+    regenerator-runtime "^0.13.4"
+
 "@babel/runtime-corejs3@7.14.0", "@babel/runtime-corejs3@^7.10.2", "@babel/runtime-corejs3@^7.12.5", "@babel/runtime-corejs3@^7.13.10":
   version "7.14.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.14.0.tgz#6bf5fbc0b961f8e3202888cb2cd0fb7a0a9a3f66"
@@ -1560,6 +1568,13 @@
   version "7.13.10"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.13.10.tgz#47d42a57b6095f4468da440388fdbad8bebf0d7d"
   integrity sha512-4QPkjJq6Ns3V/RgpEahRk+AGfL0eO6RHHtTWoNNr5mO49G6B5+X6d6THgWEAvTrznU5xYpbAlVKRYcsCgh/Akw==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
+"@babel/runtime@7.13.17":
+  version "7.13.17"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.13.17.tgz#8966d1fc9593bf848602f0662d6b4d0069e3a7ec"
+  integrity sha512-NCdgJEelPTSh+FEFylhnP1ylq848l1z9t9N0j1Lfbcw0+KXGjsTvUmkxy+voLLXB5SOKMbLLx4jxYliGrYQseA==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -1886,6 +1901,14 @@
     fs-extra "^7.0.1"
     human-id "^1.0.2"
     prettier "^1.19.1"
+
+"@commercetools-community-kit/i18n@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@commercetools-community-kit/i18n/-/i18n-0.2.4.tgz#ddac50b2eff961ebcd0031c8a9d607cb474877da"
+  integrity sha512-Kd5DyVYIPXta17LvTvtaEoK+XUuZfa2NiYpWYvCcx911j9v2MPFROg+gWVtVe2wPdn/rSOERrp56nE0WTkEeBA==
+  dependencies:
+    "@babel/runtime" "7.13.17"
+    "@babel/runtime-corejs3" "7.13.17"
 
 "@commercetools-docs/gatsby-theme-docs@16.3.1":
   version "16.3.1"
@@ -2260,7 +2283,7 @@
     "@commercetools-uikit/utils" "12.0.0"
     lodash "4.17.20"
 
-"@commercetools-uikit/i18n@12.0.7":
+"@commercetools-uikit/i18n@^12.0.7":
   version "12.0.7"
   resolved "https://registry.yarnpkg.com/@commercetools-uikit/i18n/-/i18n-12.0.7.tgz#dac4b38a2da14f24401a055d0701f39f2b09d6ea"
   integrity sha512-ccVu0OcInl9WFymayuBpfJogmAufzVqSGx8IU0LYQ+DKY+uXsUvyJV39I/o8mHXbQi1jotlvWtgzkOfloUCO0w==

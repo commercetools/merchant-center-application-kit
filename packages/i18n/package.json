@@ -37,8 +37,9 @@
   "dependencies": {
     "@babel/runtime": "7.14.6",
     "@babel/runtime-corejs3": "7.14.7",
+    "@commercetools-community-kit/i18n": "^0.2.4",
     "@commercetools-frontend/sentry": "20.5.2",
-    "@commercetools-uikit/i18n": "12.0.7",
+    "@commercetools-uikit/i18n": "^12.0.7",
     "@emotion/react": "11.4.0",
     "@types/prop-types": "^15.7.3",
     "@types/react": "^17.0.7",
