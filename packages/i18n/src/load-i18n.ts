@@ -107,7 +107,7 @@ const getAppKitChunkImport = (locale: string): Promise<I18NImportData> => {
   }
 };
 
-const getCommunityKitChunkImport = (
+const getCommunityKitChunkImport = async (
   locale: string
 ): Promise<I18NImportData> => {
   const intlLocale = mapLocaleToIntlLocale(locale);
@@ -115,42 +115,42 @@ const getCommunityKitChunkImport = (
     /* eslint-disable import/no-unresolved */
     switch (intlLocale) {
       case 'de':
-        return import(
+        return await import(
           // @ts-expect-error: it's an optional dependency.
-          /* webpackChunkName: "i18n-community-kit-locale-de" */ '@commercetools-community-kit/i18n/i18n/compiled-data/de.json'
+          /* webpackChunkName: "i18n-community-kit-locale-de" */ '@commercetools-community-kit/i18n/compiled-data/de.json'
         );
       case 'es':
-        return import(
+        return await import(
           // @ts-expect-error: it's an optional dependency.
-          /* webpackChunkName: "i18n-community-kit-locale-es" */ '@commercetools-community-kit/i18n/i18n/compiled-data/es.json'
+          /* webpackChunkName: "i18n-community-kit-locale-es" */ '@commercetools-community-kit/i18n/compiled-data/es.json'
         );
       case 'fr-FR':
-        return import(
+        return await import(
           // @ts-expect-error: it's an optional dependency.
-          /* webpackChunkName: "i18n-community-kit-locale-fr-FR" */ '@commercetools-community-kit/i18n/i18n/compiled-data/fr-FR.json'
+          /* webpackChunkName: "i18n-community-kit-locale-fr-FR" */ '@commercetools-community-kit/i18n/compiled-data/fr-FR.json'
         );
       case 'zh-CN':
-        return import(
+        return await import(
           // @ts-expect-error: it's an optional dependency.
-          /* webpackChunkName: "i18n-community-kit-locale-zh-CN" */ '@commercetools-community-kit/i18n/i18n/compiled-data/zh-CN.json'
+          /* webpackChunkName: "i18n-community-kit-locale-zh-CN" */ '@commercetools-community-kit/i18n/compiled-data/zh-CN.json'
         );
       case 'ja':
-        return import(
+        return await import(
           // @ts-expect-error: it's an optional dependency.
-          /* webpackChunkName: "i18n-community-kit-locale-ja" */ '@commercetools-community-kit/i18n/i18n/compiled-data/ja.json'
+          /* webpackChunkName: "i18n-community-kit-locale-ja" */ '@commercetools-community-kit/i18n/compiled-data/ja.json'
         );
       default:
-        return import(
+        return await import(
           // @ts-expect-error: it's an optional dependency.
-          /* webpackChunkName: "i18n-community-kit-locale-en" */ '@commercetools-community-kit/i18n/i18n/compiled-data/en.json'
+          /* webpackChunkName: "i18n-community-kit-locale-en" */ '@commercetools-community-kit/i18n/compiled-data/en.json'
         );
     }
     /* eslint-enable import/no-unresolved */
   } catch (error) {
     switch (error.code) {
-      case 'ERR_MODULE_NOT_FOUND':
+      case 'MODULE_NOT_FOUND':
         // Ignoring, as the dependency is optional.
-        return Promise.resolve({ default: {} });
+        return { default: {} };
       default:
         throw error;
     }
