@@ -1,5 +1,28 @@
 # @commercetools-frontend/application-shell
 
+## 20.5.2
+
+### Patch Changes
+
+- [#2274](https://github.com/commercetools/merchant-center-application-kit/pull/2274) [`374659f3`](https://github.com/commercetools/merchant-center-application-kit/commit/374659f3a06f61a2c9a0218d298ba5ee0de0c9c4) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @testing-library/react to v12
+
+* [#2273](https://github.com/commercetools/merchant-center-application-kit/pull/2273) [`b96d4f3d`](https://github.com/commercetools/merchant-center-application-kit/commit/b96d4f3d6ab177da66bc8cab337172bf3a85b2c6) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+* Updated dependencies [[`b8f46017`](https://github.com/commercetools/merchant-center-application-kit/commit/b8f46017ca02c01bd606a0b27d2c7e568e6e3ed7), [`374659f3`](https://github.com/commercetools/merchant-center-application-kit/commit/374659f3a06f61a2c9a0218d298ba5ee0de0c9c4), [`b96d4f3d`](https://github.com/commercetools/merchant-center-application-kit/commit/b96d4f3d6ab177da66bc8cab337172bf3a85b2c6)]:
+  - @commercetools-frontend/react-notifications@20.5.2
+  - @commercetools-frontend/application-shell-connectors@20.5.2
+  - @commercetools-frontend/sdk@20.5.2
+  - @commercetools-frontend/actions-global@20.5.2
+  - @commercetools-frontend/application-components@20.5.2
+  - @commercetools-frontend/browser-history@20.5.2
+  - @commercetools-frontend/constants@20.5.2
+  - @commercetools-frontend/i18n@20.5.2
+  - @commercetools-frontend/l10n@20.5.2
+  - @commercetools-frontend/notifications@20.5.2
+  - @commercetools-frontend/permissions@20.5.2
+  - @commercetools-frontend/sentry@20.5.2
+  - @commercetools-frontend/url-utils@20.5.2
+
 ## 20.5.1
 
 ### Patch Changes
