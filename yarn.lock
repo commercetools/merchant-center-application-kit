@@ -1887,10 +1887,10 @@
     human-id "^1.0.2"
     prettier "^1.19.1"
 
-"@commercetools-community-kit/i18n@^0.2.5":
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/@commercetools-community-kit/i18n/-/i18n-0.2.5.tgz#468d5c0be4a4dd5ecd2bfca7c9bf381d75b55d6a"
-  integrity sha512-u37AwuRo8S0rk086wrX/+dGZYgX22sWaFWXjKDoh/el/A7Sp/VxVxiBIyCzd1r69Q+YW+ZRilWMnapwkmFsRJw==
+"@commercetools-community-kit/i18n@^0.2.7":
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/@commercetools-community-kit/i18n/-/i18n-0.2.7.tgz#23c03bf77a99e64fb3d21ce89146964c486f9f07"
+  integrity sha512-1TIyewG1HwAQnwqHft2R6DJFFaLGV4Pw6G1MORyKwHba3Zsu09t79eXNAQ93cLw2iZT25o7wbHhtPlFwShlw8g==
   dependencies:
     "@babel/runtime" "7.14.6"
     "@babel/runtime-corejs3" "7.14.7"

@@ -111,49 +111,31 @@ const getCommunityKitChunkImport = async (
   locale: string
 ): Promise<I18NImportData> => {
   const intlLocale = mapLocaleToIntlLocale(locale);
-  try {
-    /* eslint-disable import/no-unresolved */
-    switch (intlLocale) {
-      case 'de':
-        return await import(
-          // @ts-expect-error: it's an optional dependency.
-          /* webpackChunkName: "i18n-community-kit-locale-de" */ '@commercetools-community-kit/i18n/compiled-data/de.json'
-        );
-      case 'es':
-        return await import(
-          // @ts-expect-error: it's an optional dependency.
-          /* webpackChunkName: "i18n-community-kit-locale-es" */ '@commercetools-community-kit/i18n/compiled-data/es.json'
-        );
-      case 'fr-FR':
-        return await import(
-          // @ts-expect-error: it's an optional dependency.
-          /* webpackChunkName: "i18n-community-kit-locale-fr-FR" */ '@commercetools-community-kit/i18n/compiled-data/fr-FR.json'
-        );
-      case 'zh-CN':
-        return await import(
-          // @ts-expect-error: it's an optional dependency.
-          /* webpackChunkName: "i18n-community-kit-locale-zh-CN" */ '@commercetools-community-kit/i18n/compiled-data/zh-CN.json'
-        );
-      case 'ja':
-        return await import(
-          // @ts-expect-error: it's an optional dependency.
-          /* webpackChunkName: "i18n-community-kit-locale-ja" */ '@commercetools-community-kit/i18n/compiled-data/ja.json'
-        );
-      default:
-        return await import(
-          // @ts-expect-error: it's an optional dependency.
-          /* webpackChunkName: "i18n-community-kit-locale-en" */ '@commercetools-community-kit/i18n/compiled-data/en.json'
-        );
-    }
-    /* eslint-enable import/no-unresolved */
-  } catch (error) {
-    switch (error.code) {
-      case 'MODULE_NOT_FOUND':
-        // Ignoring, as the dependency is optional.
-        return { default: {} };
-      default:
-        throw error;
-    }
+  switch (intlLocale) {
+    case 'de':
+      return await import(
+        /* webpackChunkName: "i18n-community-kit-locale-de" */ '@commercetools-community-kit/i18n/compiled-data/de.json'
+      );
+    case 'es':
+      return await import(
+        /* webpackChunkName: "i18n-community-kit-locale-es" */ '@commercetools-community-kit/i18n/compiled-data/es.json'
+      );
+    case 'fr-FR':
+      return await import(
+        /* webpackChunkName: "i18n-community-kit-locale-fr-FR" */ '@commercetools-community-kit/i18n/compiled-data/fr-FR.json'
+      );
+    case 'zh-CN':
+      return await import(
+        /* webpackChunkName: "i18n-community-kit-locale-zh-CN" */ '@commercetools-community-kit/i18n/compiled-data/zh-CN.json'
+      );
+    case 'ja':
+      return await import(
+        /* webpackChunkName: "i18n-community-kit-locale-ja" */ '@commercetools-community-kit/i18n/compiled-data/ja.json'
+      );
+    default:
+      return await import(
+        /* webpackChunkName: "i18n-community-kit-locale-en" */ '@commercetools-community-kit/i18n/compiled-data/en.json'
+      );
   }
 };
 
