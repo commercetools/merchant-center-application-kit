@@ -1887,6 +1887,14 @@
     human-id "^1.0.2"
     prettier "^1.19.1"
 
+"@commercetools-community-kit/i18n@^0.2.7":
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/@commercetools-community-kit/i18n/-/i18n-0.2.7.tgz#23c03bf77a99e64fb3d21ce89146964c486f9f07"
+  integrity sha512-1TIyewG1HwAQnwqHft2R6DJFFaLGV4Pw6G1MORyKwHba3Zsu09t79eXNAQ93cLw2iZT25o7wbHhtPlFwShlw8g==
+  dependencies:
+    "@babel/runtime" "7.14.6"
+    "@babel/runtime-corejs3" "7.14.7"
+
 "@commercetools-docs/gatsby-theme-docs@16.3.1":
   version "16.3.1"
   resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-16.3.1.tgz#7324503533529b34814716826df34c6dd8465e8e"
@@ -2260,7 +2268,7 @@
     "@commercetools-uikit/utils" "12.0.0"
     lodash "4.17.20"
 
-"@commercetools-uikit/i18n@12.0.7":
+"@commercetools-uikit/i18n@^12.0.7":
   version "12.0.7"
   resolved "https://registry.yarnpkg.com/@commercetools-uikit/i18n/-/i18n-12.0.7.tgz#dac4b38a2da14f24401a055d0701f39f2b09d6ea"
   integrity sha512-ccVu0OcInl9WFymayuBpfJogmAufzVqSGx8IU0LYQ+DKY+uXsUvyJV39I/o8mHXbQi1jotlvWtgzkOfloUCO0w==
