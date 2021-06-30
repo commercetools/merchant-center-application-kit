@@ -180,7 +180,7 @@ const MenuGroup = (props: MenuGroupProps) => {
     <ul
       id={`${props.id}-group`}
       data-testid={`${props.id}-group`}
-      role="menu"
+      role="link"
       aria-expanded={
         isSublistActiveWhileIsMenuExpanded ||
         isSublistActiveWhileIsMenuCollapsed
@@ -221,7 +221,7 @@ type MenuItemProps = {
 };
 const MenuItem = (props: MenuItemProps) => (
   <li
-    role="menu-item"
+    role="link"
     className={classnames(styles['list-item'], {
       [styles.item__active]: props.isActive,
       [styles['item_menu-collapsed']]: !props.isMenuOpen,
@@ -428,6 +428,14 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
     return Boolean(match);
   };
 
+  const isMainMenuItemALink =
+    // 1. When the navbar is collapsed
+    !props.isMenuOpen ||
+    // 2. When there is no submenu
+    !hasSubmenu ||
+    // 3. When the submenu group is active/visible
+    props.isActive;
+
   return (
     <>
       {props.menu.shouldRenderDivider && <MenuItemDivider />}
@@ -453,7 +461,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
         >
           <MenuItemLink
             linkTo={
-              !props.isMenuOpen || !hasSubmenu
+              isMainMenuItemALink
                 ? `/${props.projectKey}/${props.menu.uriPath}`
                 : undefined
             }
