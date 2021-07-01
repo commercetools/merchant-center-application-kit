@@ -1,5 +1,12 @@
 # merchant-center-application-template-starter
 
+## 18.1.11
+
+### Patch Changes
+
+- Updated dependencies [[`63995aa8`](https://github.com/commercetools/merchant-center-application-kit/commit/63995aa8c204a9e31778bb5b5a9cc6b5b500fdb4)]:
+  - @commercetools-frontend/application-shell@20.6.1
+
 ## 18.1.10
 
 ### Patch Changes
