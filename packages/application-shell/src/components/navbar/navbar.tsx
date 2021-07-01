@@ -180,7 +180,7 @@ const MenuGroup = (props: MenuGroupProps) => {
     <ul
       id={`${props.id}-group`}
       data-testid={`${props.id}-group`}
-      role="link"
+      role="menu"
       aria-expanded={
         isSublistActiveWhileIsMenuExpanded ||
         isSublistActiveWhileIsMenuCollapsed
@@ -221,7 +221,7 @@ type MenuItemProps = {
 };
 const MenuItem = (props: MenuItemProps) => (
   <li
-    role="link"
+    role="menu-item"
     className={classnames(styles['list-item'], {
       [styles.item__active]: props.isActive,
       [styles['item_menu-collapsed']]: !props.isMenuOpen,
