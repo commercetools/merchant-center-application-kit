@@ -1,5 +1,15 @@
 # @commercetools-frontend/i18n
 
+## 20.6.0
+
+### Minor Changes
+
+- [#2280](https://github.com/commercetools/merchant-center-application-kit/pull/2280) [`b910aa8e`](https://github.com/commercetools/merchant-center-application-kit/commit/b910aa8e10b824d35a880bc9fda9d460d5ff0957) Thanks [@emmenko](https://github.com/emmenko)! - Include i18n messages from `@commercetools-community-kit/i18n`.
+
+### Patch Changes
+
+- [#2279](https://github.com/commercetools/merchant-center-application-kit/pull/2279) [`be968d34`](https://github.com/commercetools/merchant-center-application-kit/commit/be968d344261622931c6cfadde905605d5b5dfde) Thanks [@transifex-integration](https://github.com/apps/transifex-integration)! - Updates `es` translations.
+
 ## 20.5.2
 
 ### Patch Changes

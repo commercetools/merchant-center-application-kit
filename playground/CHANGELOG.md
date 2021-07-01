@@ -1,5 +1,14 @@
 # playground
 
+## 18.1.10
+
+### Patch Changes
+
+- Updated dependencies [[`b910aa8e`](https://github.com/commercetools/merchant-center-application-kit/commit/b910aa8e10b824d35a880bc9fda9d460d5ff0957), [`e7c0ee57`](https://github.com/commercetools/merchant-center-application-kit/commit/e7c0ee5777db1b455b71cf3785bfce2185596cba), [`be968d34`](https://github.com/commercetools/merchant-center-application-kit/commit/be968d344261622931c6cfadde905605d5b5dfde)]:
+  - @commercetools-frontend/i18n@20.6.0
+  - @commercetools-frontend/application-shell@20.6.0
+  - @commercetools-frontend/application-components@20.6.0
+
 ## 18.1.9
 
 ### Patch Changes
