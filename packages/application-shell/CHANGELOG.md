@@ -1,5 +1,17 @@
 # @commercetools-frontend/application-shell
 
+## 20.6.0
+
+### Patch Changes
+
+- [#2281](https://github.com/commercetools/merchant-center-application-kit/pull/2281) [`e7c0ee57`](https://github.com/commercetools/merchant-center-application-kit/commit/e7c0ee5777db1b455b71cf3785bfce2185596cba) Thanks [@emmenko](https://github.com/emmenko)! - Previously when a menu item had sub-links, clicking on the item would only expand the group of sub-links, making the main menu link not usable.
+
+  Now when the item group is collapsed, clicking on the main item the first time expands the group of sub-links. **At this point the main menu item becomes a normal link** and can be used as expected.
+
+- Updated dependencies [[`b910aa8e`](https://github.com/commercetools/merchant-center-application-kit/commit/b910aa8e10b824d35a880bc9fda9d460d5ff0957), [`be968d34`](https://github.com/commercetools/merchant-center-application-kit/commit/be968d344261622931c6cfadde905605d5b5dfde)]:
+  - @commercetools-frontend/i18n@20.6.0
+  - @commercetools-frontend/application-components@20.6.0
+
 ## 20.5.2
 
 ### Patch Changes
