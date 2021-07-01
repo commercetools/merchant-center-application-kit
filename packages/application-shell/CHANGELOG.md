@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 20.6.1
+
+### Patch Changes
+
+- [#2285](https://github.com/commercetools/merchant-center-application-kit/pull/2285) [`63995aa8`](https://github.com/commercetools/merchant-center-application-kit/commit/63995aa8c204a9e31778bb5b5a9cc6b5b500fdb4) Thanks [@emmenko](https://github.com/emmenko)! - Keep custom aria `role` attributes for navbar.
+
 ## 20.6.0
 
 ### Patch Changes
