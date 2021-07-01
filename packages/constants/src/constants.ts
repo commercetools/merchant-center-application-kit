@@ -124,6 +124,7 @@ export const GRAPHQL_TARGETS = {
   CHANGE_HISTORY_SERVICE: 'change-history',
   PIM_INDEXER: 'pim-indexer',
   ORDER_INDEXER: 'order-indexer',
+  ORDER_SEARCH: 'order-search',
   SETTINGS_SERVICE: 'settings',
   ADMINISTRATION_SERVICE: 'administration',
 } as const;
