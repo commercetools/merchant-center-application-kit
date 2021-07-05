@@ -22,7 +22,7 @@
     "@commercetools-frontend/babel-preset-mc-app": "20.5.2",
     "@sheerun/mutationobserver-shim": "0.3.3",
     "@testing-library/jest-dom": "5.14.1",
-    "babel-jest": "27.0.5",
+    "babel-jest": "27.0.6",
     "colors": "1.4.0",
     "cosmiconfig": "7.0.0",
     "identity-obj-proxy": "3.0.0",
@@ -39,6 +39,6 @@
   },
   "devDependencies": {
     "@testing-library/react": "12.0.0",
-    "jest": "27.0.5"
+    "jest": "27.0.6"
   }
 }
