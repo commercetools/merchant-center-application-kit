@@ -144,7 +144,7 @@
     "eslint-plugin-graphql": "4.0.0",
     "faker": "5.5.3",
     "graphql-cli": "4.1.0",
-    "husky": "6.0.0",
+    "husky": "7.0.0",
     "jest": "27.0.5",
     "jest-each": "27.0.2",
     "jest-puppeteer": "5.0.4",
