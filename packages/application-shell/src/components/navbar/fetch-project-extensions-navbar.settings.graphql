@@ -33,7 +33,7 @@ query FetchProjectExtensionsNavbar {
         entryPointUriPath
         menuLinks {
           id
-          iconName
+          icon
           permissions
           defaultLabel
           labelAllLocales {
