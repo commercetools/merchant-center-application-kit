@@ -24,7 +24,7 @@
   "dependencies": {
     "@babel/runtime": "7.14.6",
     "@babel/runtime-corejs3": "7.14.7",
-    "@types/history": "4.7.8",
+    "@types/history": "4.7.9",
     "history": "4.10.1",
     "history-query-enhancer": "1.0.4",
     "qss": "2.0.3"
