@@ -46,7 +46,7 @@
     "uuid": "8.3.2"
   },
   "devDependencies": {
-    "cypress": "7.6.0"
+    "cypress": "7.7.0"
   },
   "peerDependencies": {
     "cypress": "5.x || 6.x || 7.x"

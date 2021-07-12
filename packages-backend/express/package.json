@@ -29,6 +29,6 @@
   },
   "devDependencies": {
     "jose": "2.0.5",
-    "msw": "0.30.1"
+    "msw": "0.31.0"
   }
 }
