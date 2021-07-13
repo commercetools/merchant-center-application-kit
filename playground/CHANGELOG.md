@@ -1,5 +1,27 @@
 # playground
 
+## 18.2.0
+
+### Minor Changes
+
+- [#2292](https://github.com/commercetools/merchant-center-application-kit/pull/2292) [`cd381943`](https://github.com/commercetools/merchant-center-application-kit/commit/cd38194393e052ae2d10714c2693bb72a1bc8719) Thanks [@emmenko](https://github.com/emmenko)! - Support rendering menu icons using `<InlineSvg>` component.
+
+### Patch Changes
+
+- [#2293](https://github.com/commercetools/merchant-center-application-kit/pull/2293) [`c7325b0d`](https://github.com/commercetools/merchant-center-application-kit/commit/c7325b0d4e45132ff0c9a5243132537057dfa406) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+* [#2287](https://github.com/commercetools/merchant-center-application-kit/pull/2287) [`f5aa350a`](https://github.com/commercetools/merchant-center-application-kit/commit/f5aa350a29983383dd5933ac38c0beb56f0b9cf5) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+* Updated dependencies [[`c7325b0d`](https://github.com/commercetools/merchant-center-application-kit/commit/c7325b0d4e45132ff0c9a5243132537057dfa406), [`f5aa350a`](https://github.com/commercetools/merchant-center-application-kit/commit/f5aa350a29983383dd5933ac38c0beb56f0b9cf5), [`cd381943`](https://github.com/commercetools/merchant-center-application-kit/commit/cd38194393e052ae2d10714c2693bb72a1bc8719)]:
+  - @commercetools-frontend/application-shell-connectors@20.7.0
+  - @commercetools-frontend/application-shell@20.7.0
+  - @commercetools-frontend/sdk@20.7.0
+  - @commercetools-frontend/l10n@20.7.0
+  - @commercetools-frontend/application-components@20.7.0
+  - @commercetools-frontend/permissions@20.7.0
+  - @commercetools-frontend/actions-global@20.7.0
+  - @commercetools-frontend/i18n@20.7.0
+
 ## 18.1.11
 
 ### Patch Changes
