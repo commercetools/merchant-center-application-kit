@@ -1,5 +1,12 @@
 # @commercetools-frontend/i18n
 
+## 20.7.0
+
+### Patch Changes
+
+- Updated dependencies [[`f5aa350a`](https://github.com/commercetools/merchant-center-application-kit/commit/f5aa350a29983383dd5933ac38c0beb56f0b9cf5)]:
+  - @commercetools-frontend/sentry@20.7.0
+
 ## 20.6.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-website/custom-applications",
-  "version": "18.2.6",
+  "version": "18.3.0",
   "private": true,
   "scripts": {
     "prebuild": "./scripts/prebuild.sh && yarn generate-icons",
