@@ -135,7 +135,7 @@ const useNavbarStateManager = (props: HookProps) => {
               key: application.id,
               uriPath: application.entryPointUriPath,
               labelAllLocales: application.menuLinks.labelAllLocales || [],
-              icon: application.menuLinks.iconName,
+              icon: application.menuLinks.icon,
               permissions: application.menuLinks.permissions as string[],
               defaultLabel: application.menuLinks.defaultLabel,
               featureToggle: undefined,

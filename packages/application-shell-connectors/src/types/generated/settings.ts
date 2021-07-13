@@ -147,7 +147,8 @@ export enum TAuthPermission {
   ViewProductDiscounts = 'viewProductDiscounts',
   ViewProducts = 'viewProducts',
   ViewProjectSettings = 'viewProjectSettings',
-  ViewSomeDiscounts = 'viewSomeDiscounts'
+  ViewSomeDiscounts = 'viewSomeDiscounts',
+  ViewUsersAndOrganizations = 'viewUsersAndOrganizations'
 }
 
 export type TAverageOrderValueConfiguration = {
@@ -297,7 +298,6 @@ export type TCategoryRecommendationSettingsWhereInput = {
 export type TCustomApplication = {
   __typename?: 'CustomApplication';
   contact: TCustomApplicationContactInformation;
-  contacts: Maybe<Array<TCustomApplicationContactPerson>>;
   createdAt: Scalars['DateTime'];
   description: Maybe<Scalars['String']>;
   entryPointUriPath: Scalars['String'];
@@ -310,17 +310,6 @@ export type TCustomApplication = {
   status: Maybe<TCustomApplicationStatus>;
   updatedAt: Scalars['DateTime'];
   url: Scalars['String'];
-};
-
-
-export type TCustomApplication_ContactsArgs = {
-  where: Maybe<TCustomApplicationContactPersonWhereInput>;
-  orderBy: Maybe<TCustomApplicationContactPersonOrderByInput>;
-  skip: Maybe<Scalars['Int']>;
-  after: Maybe<Scalars['String']>;
-  before: Maybe<Scalars['String']>;
-  first: Maybe<Scalars['Int']>;
-  last: Maybe<Scalars['Int']>;
 };
 
 
@@ -345,33 +334,24 @@ export type TCustomApplication_PermissionsArgs = {
   where: Maybe<TCustomApplicationPermissionWhereInput>;
 };
 
-export enum TCustomApplicationContactConsent {
-  BetaTester = 'BETA_TESTER',
-  CommunityInitiatives = 'COMMUNITY_INITIATIVES',
-  LearningMaterial = 'LEARNING_MATERIAL',
-  Marketplace = 'MARKETPLACE',
-  Newsletter = 'NEWSLETTER',
-  UserResearch = 'USER_RESEARCH'
-}
-
 export type TCustomApplicationContactInformation = {
   __typename?: 'CustomApplicationContactInformation';
-  id: Scalars['ID'];
   createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
   email: Scalars['String'];
+  id: Scalars['ID'];
   maintainerOf: Maybe<Array<TCustomApplication>>;
+  updatedAt: Scalars['DateTime'];
 };
 
 
 export type TCustomApplicationContactInformation_MaintainerOfArgs = {
-  where: Maybe<TCustomApplicationWhereInput>;
-  orderBy: Maybe<TCustomApplicationOrderByInput>;
-  skip: Maybe<Scalars['Int']>;
   after: Maybe<Scalars['String']>;
   before: Maybe<Scalars['String']>;
   first: Maybe<Scalars['Int']>;
   last: Maybe<Scalars['Int']>;
+  orderBy: Maybe<TCustomApplicationOrderByInput>;
+  skip: Maybe<Scalars['Int']>;
+  where: Maybe<TCustomApplicationWhereInput>;
 };
 
 export type TCustomApplicationContactInformationDataInput = {
@@ -379,151 +359,60 @@ export type TCustomApplicationContactInformationDataInput = {
 };
 
 export type TCustomApplicationContactInformationWhereInput = {
-  id: Maybe<Scalars['ID']>;
-  id_not: Maybe<Scalars['ID']>;
-  id_in: Maybe<Array<Scalars['ID']>>;
-  id_not_in: Maybe<Array<Scalars['ID']>>;
-  id_lt: Maybe<Scalars['ID']>;
-  id_lte: Maybe<Scalars['ID']>;
-  id_gt: Maybe<Scalars['ID']>;
-  id_gte: Maybe<Scalars['ID']>;
-  id_contains: Maybe<Scalars['ID']>;
-  id_not_contains: Maybe<Scalars['ID']>;
-  id_starts_with: Maybe<Scalars['ID']>;
-  id_not_starts_with: Maybe<Scalars['ID']>;
-  id_ends_with: Maybe<Scalars['ID']>;
-  id_not_ends_with: Maybe<Scalars['ID']>;
-  createdAt: Maybe<Scalars['DateTime']>;
-  createdAt_not: Maybe<Scalars['DateTime']>;
-  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_lt: Maybe<Scalars['DateTime']>;
-  createdAt_lte: Maybe<Scalars['DateTime']>;
-  createdAt_gt: Maybe<Scalars['DateTime']>;
-  createdAt_gte: Maybe<Scalars['DateTime']>;
-  updatedAt: Maybe<Scalars['DateTime']>;
-  updatedAt_not: Maybe<Scalars['DateTime']>;
-  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt: Maybe<Scalars['DateTime']>;
-  updatedAt_lte: Maybe<Scalars['DateTime']>;
-  updatedAt_gt: Maybe<Scalars['DateTime']>;
-  updatedAt_gte: Maybe<Scalars['DateTime']>;
-  email: Maybe<Scalars['String']>;
-  email_not: Maybe<Scalars['String']>;
-  email_in: Maybe<Array<Scalars['String']>>;
-  email_not_in: Maybe<Array<Scalars['String']>>;
-  email_lt: Maybe<Scalars['String']>;
-  email_lte: Maybe<Scalars['String']>;
-  email_gt: Maybe<Scalars['String']>;
-  email_gte: Maybe<Scalars['String']>;
-  email_contains: Maybe<Scalars['String']>;
-  email_not_contains: Maybe<Scalars['String']>;
-  email_starts_with: Maybe<Scalars['String']>;
-  email_not_starts_with: Maybe<Scalars['String']>;
-  email_ends_with: Maybe<Scalars['String']>;
-  email_not_ends_with: Maybe<Scalars['String']>;
-  maintainerOf_every: Maybe<TCustomApplicationWhereInput>;
-  maintainerOf_some: Maybe<TCustomApplicationWhereInput>;
-  maintainerOf_none: Maybe<TCustomApplicationWhereInput>;
   AND: Maybe<Array<TCustomApplicationContactInformationWhereInput>>;
-  OR: Maybe<Array<TCustomApplicationContactInformationWhereInput>>;
   NOT: Maybe<Array<TCustomApplicationContactInformationWhereInput>>;
-};
-
-export type TCustomApplicationContactPerson = {
-  __typename?: 'CustomApplicationContactPerson';
-  id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  email: Scalars['String'];
-  consents: Array<TCustomApplicationContactConsent>;
-  maintainerOf: Maybe<Array<TCustomApplication>>;
-};
-
-
-export type TCustomApplicationContactPerson_MaintainerOfArgs = {
-  where: Maybe<TCustomApplicationWhereInput>;
-  orderBy: Maybe<TCustomApplicationOrderByInput>;
-  skip: Maybe<Scalars['Int']>;
-  after: Maybe<Scalars['String']>;
-  before: Maybe<Scalars['String']>;
-  first: Maybe<Scalars['Int']>;
-  last: Maybe<Scalars['Int']>;
-};
-
-export type TCustomApplicationContactPersonDataInput = {
-  email: Scalars['String'];
-  consents: Array<TCustomApplicationContactConsent>;
-};
-
-export enum TCustomApplicationContactPersonOrderByInput {
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-  EmailAsc = 'email_ASC',
-  EmailDesc = 'email_DESC'
-}
-
-export type TCustomApplicationContactPersonWhereInput = {
-  id: Maybe<Scalars['ID']>;
-  id_not: Maybe<Scalars['ID']>;
-  id_in: Maybe<Array<Scalars['ID']>>;
-  id_not_in: Maybe<Array<Scalars['ID']>>;
-  id_lt: Maybe<Scalars['ID']>;
-  id_lte: Maybe<Scalars['ID']>;
-  id_gt: Maybe<Scalars['ID']>;
-  id_gte: Maybe<Scalars['ID']>;
-  id_contains: Maybe<Scalars['ID']>;
-  id_not_contains: Maybe<Scalars['ID']>;
-  id_starts_with: Maybe<Scalars['ID']>;
-  id_not_starts_with: Maybe<Scalars['ID']>;
-  id_ends_with: Maybe<Scalars['ID']>;
-  id_not_ends_with: Maybe<Scalars['ID']>;
+  OR: Maybe<Array<TCustomApplicationContactInformationWhereInput>>;
   createdAt: Maybe<Scalars['DateTime']>;
-  createdAt_not: Maybe<Scalars['DateTime']>;
-  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_lt: Maybe<Scalars['DateTime']>;
-  createdAt_lte: Maybe<Scalars['DateTime']>;
   createdAt_gt: Maybe<Scalars['DateTime']>;
   createdAt_gte: Maybe<Scalars['DateTime']>;
-  updatedAt: Maybe<Scalars['DateTime']>;
-  updatedAt_not: Maybe<Scalars['DateTime']>;
-  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt: Maybe<Scalars['DateTime']>;
-  updatedAt_lte: Maybe<Scalars['DateTime']>;
-  updatedAt_gt: Maybe<Scalars['DateTime']>;
-  updatedAt_gte: Maybe<Scalars['DateTime']>;
+  createdAt_in: Maybe<Array<Scalars['DateTime']>>;
+  createdAt_lt: Maybe<Scalars['DateTime']>;
+  createdAt_lte: Maybe<Scalars['DateTime']>;
+  createdAt_not: Maybe<Scalars['DateTime']>;
+  createdAt_not_in: Maybe<Array<Scalars['DateTime']>>;
   email: Maybe<Scalars['String']>;
-  email_not: Maybe<Scalars['String']>;
-  email_in: Maybe<Array<Scalars['String']>>;
-  email_not_in: Maybe<Array<Scalars['String']>>;
-  email_lt: Maybe<Scalars['String']>;
-  email_lte: Maybe<Scalars['String']>;
+  email_contains: Maybe<Scalars['String']>;
+  email_ends_with: Maybe<Scalars['String']>;
   email_gt: Maybe<Scalars['String']>;
   email_gte: Maybe<Scalars['String']>;
-  email_contains: Maybe<Scalars['String']>;
+  email_in: Maybe<Array<Scalars['String']>>;
+  email_lt: Maybe<Scalars['String']>;
+  email_lte: Maybe<Scalars['String']>;
+  email_not: Maybe<Scalars['String']>;
   email_not_contains: Maybe<Scalars['String']>;
-  email_starts_with: Maybe<Scalars['String']>;
-  email_not_starts_with: Maybe<Scalars['String']>;
-  email_ends_with: Maybe<Scalars['String']>;
   email_not_ends_with: Maybe<Scalars['String']>;
+  email_not_in: Maybe<Array<Scalars['String']>>;
+  email_not_starts_with: Maybe<Scalars['String']>;
+  email_starts_with: Maybe<Scalars['String']>;
+  id: Maybe<Scalars['ID']>;
+  id_contains: Maybe<Scalars['ID']>;
+  id_ends_with: Maybe<Scalars['ID']>;
+  id_gt: Maybe<Scalars['ID']>;
+  id_gte: Maybe<Scalars['ID']>;
+  id_in: Maybe<Array<Scalars['ID']>>;
+  id_lt: Maybe<Scalars['ID']>;
+  id_lte: Maybe<Scalars['ID']>;
+  id_not: Maybe<Scalars['ID']>;
+  id_not_contains: Maybe<Scalars['ID']>;
+  id_not_ends_with: Maybe<Scalars['ID']>;
+  id_not_in: Maybe<Array<Scalars['ID']>>;
+  id_not_starts_with: Maybe<Scalars['ID']>;
+  id_starts_with: Maybe<Scalars['ID']>;
   maintainerOf_every: Maybe<TCustomApplicationWhereInput>;
-  maintainerOf_some: Maybe<TCustomApplicationWhereInput>;
   maintainerOf_none: Maybe<TCustomApplicationWhereInput>;
-  AND: Maybe<Array<TCustomApplicationContactPersonWhereInput>>;
-  OR: Maybe<Array<TCustomApplicationContactPersonWhereInput>>;
-  NOT: Maybe<Array<TCustomApplicationContactPersonWhereInput>>;
+  maintainerOf_some: Maybe<TCustomApplicationWhereInput>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  updatedAt_gt: Maybe<Scalars['DateTime']>;
+  updatedAt_gte: Maybe<Scalars['DateTime']>;
+  updatedAt_in: Maybe<Array<Scalars['DateTime']>>;
+  updatedAt_lt: Maybe<Scalars['DateTime']>;
+  updatedAt_lte: Maybe<Scalars['DateTime']>;
+  updatedAt_not: Maybe<Scalars['DateTime']>;
+  updatedAt_not_in: Maybe<Array<Scalars['DateTime']>>;
 };
 
 export type TCustomApplicationDraftDataInput = {
   contact: TCustomApplicationContactInformationDataInput;
-  contacts: Array<TCustomApplicationContactPersonDataInput>;
   description: Maybe<Scalars['String']>;
   entryPointUriPath: Scalars['String'];
   menuLinks: TCustomApplicationMenuLinksDraftDataInput;
@@ -627,6 +516,7 @@ export type TCustomApplicationMenuLink = {
   __typename?: 'CustomApplicationMenuLink';
   createdAt: Scalars['DateTime'];
   defaultLabel: Scalars['String'];
+  icon: Scalars['String'];
   iconName: Scalars['String'];
   id: Scalars['ID'];
   labelAllLocales: Maybe<Array<TLocalizedField>>;
@@ -683,6 +573,7 @@ export type TCustomApplicationMenuLinkWhereInput = {
   defaultLabel_not_in: Maybe<Array<Scalars['String']>>;
   defaultLabel_not_starts_with: Maybe<Scalars['String']>;
   defaultLabel_starts_with: Maybe<Scalars['String']>;
+  icon: Maybe<Scalars['String']>;
   iconName: Maybe<Scalars['String']>;
   iconName_contains: Maybe<Scalars['String']>;
   iconName_ends_with: Maybe<Scalars['String']>;
@@ -697,6 +588,19 @@ export type TCustomApplicationMenuLinkWhereInput = {
   iconName_not_in: Maybe<Array<Scalars['String']>>;
   iconName_not_starts_with: Maybe<Scalars['String']>;
   iconName_starts_with: Maybe<Scalars['String']>;
+  icon_contains: Maybe<Scalars['String']>;
+  icon_ends_with: Maybe<Scalars['String']>;
+  icon_gt: Maybe<Scalars['String']>;
+  icon_gte: Maybe<Scalars['String']>;
+  icon_in: Maybe<Array<Scalars['String']>>;
+  icon_lt: Maybe<Scalars['String']>;
+  icon_lte: Maybe<Scalars['String']>;
+  icon_not: Maybe<Scalars['String']>;
+  icon_not_contains: Maybe<Scalars['String']>;
+  icon_not_ends_with: Maybe<Scalars['String']>;
+  icon_not_in: Maybe<Array<Scalars['String']>>;
+  icon_not_starts_with: Maybe<Scalars['String']>;
+  icon_starts_with: Maybe<Scalars['String']>;
   id: Maybe<Scalars['ID']>;
   id_contains: Maybe<Scalars['ID']>;
   id_ends_with: Maybe<Scalars['ID']>;
@@ -729,6 +633,7 @@ export type TCustomApplicationMenuLinkWhereInput = {
 
 export type TCustomApplicationMenuLinksDraftDataInput = {
   defaultLabel: Scalars['String'];
+  icon: Scalars['String'];
   iconName: Scalars['String'];
   labelAllLocales: Array<TLocalizedFieldDataInput>;
   permissions: Array<Scalars['String']>;
@@ -948,9 +853,6 @@ export type TCustomApplicationWhereInput = {
   NOT: Maybe<Array<TCustomApplicationWhereInput>>;
   OR: Maybe<Array<TCustomApplicationWhereInput>>;
   contact: Maybe<TCustomApplicationContactInformationWhereInput>;
-  contacts_every: Maybe<TCustomApplicationContactPersonWhereInput>;
-  contacts_none: Maybe<TCustomApplicationContactPersonWhereInput>;
-  contacts_some: Maybe<TCustomApplicationContactPersonWhereInput>;
   createdAt: Maybe<Scalars['DateTime']>;
   createdAt_gt: Maybe<Scalars['DateTime']>;
   createdAt_gte: Maybe<Scalars['DateTime']>;
@@ -3011,6 +2913,8 @@ export type TQuery = {
   activeProductTypeAttributesView: Maybe<TProductTypeAttributesView>;
   /** @deprecated Experimental feature - For internal usage only */
   allAppliedCustomApplicationPermissions: Array<TCustomApplicationPermission>;
+  /** @deprecated Experimental feature - For internal usage only */
+  allOrganizationExtensions: Array<TOrganizationExtension>;
   allProjectExtensions: Array<TProjectExtension>;
   cartDiscountsCustomView: Maybe<TDiscountsCustomView>;
   cartDiscountsCustomViews: Array<Maybe<TDiscountsCustomView>>;
@@ -3049,6 +2953,11 @@ export type TQuery_ActiveProductTypeAttributesViewArgs = {
 export type TQuery_AllAppliedCustomApplicationPermissionsArgs = {
   applicationId: Scalars['ID'];
   entryPointUriPath: Scalars['String'];
+};
+
+
+export type TQuery_AllOrganizationExtensionsArgs = {
+  organizationIds: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
@@ -3178,16 +3087,9 @@ export type TRestrictedCustomApplicationContactInformation = {
   email: Scalars['String'];
 };
 
-export type TRestrictedCustomApplicationContactPerson = {
-  __typename?: 'RestrictedCustomApplicationContactPerson';
-  email: Scalars['String'];
-  consents: Array<TCustomApplicationContactConsent>;
-};
-
 export type TRestrictedCustomApplicationForOrganization = {
   __typename?: 'RestrictedCustomApplicationForOrganization';
   contact: TRestrictedCustomApplicationContactInformation;
-  contacts: Maybe<Array<TRestrictedCustomApplicationContactPerson>>;
   createdAt: Scalars['DateTime'];
   description: Maybe<Scalars['String']>;
   entryPointUriPath: Scalars['String'];
@@ -3659,7 +3561,7 @@ export type TFetchProjectExtensionsNavbarQuery = (
         & Pick<TRestrictedCustomApplicationForProject, 'id' | 'entryPointUriPath'>
         & { menuLinks: Maybe<(
           { __typename?: 'CustomApplicationMenuLink' }
-          & Pick<TCustomApplicationMenuLink, 'id' | 'iconName' | 'permissions' | 'defaultLabel'>
+          & Pick<TCustomApplicationMenuLink, 'id' | 'icon' | 'permissions' | 'defaultLabel'>
           & { labelAllLocales: Maybe<Array<(
             { __typename?: 'LocalizedField' }
             & Pick<TLocalizedField, 'locale' | 'value'>

@@ -40,6 +40,7 @@ import {
   ConnectedSquareIcon,
   ListWithSearchIcon,
 } from '@commercetools-uikit/icons';
+import InlineSvg from '@commercetools-uikit/icons/inline-svg';
 import MissingImageSvg from '@commercetools-frontend/assets/images/diagonal-line.svg';
 import {
   NO_VALUE_FALLBACK,
@@ -85,20 +86,17 @@ type TProjectPermissions = {
 */
 
 type IconProps = Parameters<typeof BackIcon>[0];
-type IconSwitcherProps = { iconName: string } & IconProps;
-// This component receives the icon name as a string
-// and statically maps it to the related icon component.
-// We need to do this to avoid importing ALL icons and pick
-// the icon dynamically.
-// https://github.com/commercetools/ui-kit/pull/270
-// TODO: find a better solution once we implement
-// https://github.com/commercetools/merchant-center-application-kit/issues/37
-// which moves the static navbar config out of the AppShell,
-// in which case we don't have a clue on the icons used.
-// A possible solution to that would be to import the SVG using
-// a `<img src>`, given that the SVG are available from a public URL.
-const IconSwitcher = ({ iconName, ...iconProps }: IconSwitcherProps) => {
-  switch (iconName) {
+type IconSwitcherProps = { icon: string } & IconProps;
+// The icon is expected to be the `svg` document as a string.
+// For backwards compatibility purposes, we still support the legacy "icon name",
+// which we then map to one of the pre-defined icons.
+// Eventually, we want to get rid of this "switch" logic.
+const IconSwitcher = ({ icon, ...iconProps }: IconSwitcherProps) => {
+  if (icon.includes('<svg')) {
+    return <InlineSvg data={icon} {...iconProps} />;
+  }
+  // Backwards compatibility for apps using the "icon name".
+  switch (icon) {
     // Application icons
     case 'TreeStructureIcon':
       return <TreeStructureIcon {...iconProps} />;
@@ -471,7 +469,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
             <div className={styles['item-icon-text']}>
               <div className={styles.icon}>
                 <IconSwitcher
-                  iconName={props.menu.icon}
+                  icon={props.menu.icon}
                   size="scale"
                   color={getIconColor(
                     props.isActive || isMainMenuRouteActive(props.menu.uriPath),
