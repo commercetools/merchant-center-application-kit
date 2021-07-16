@@ -1823,23 +1823,7 @@
     lodash "4.17.21"
     prop-types "15.7.2"
 
-"@commercetools-uikit/icons@12.2.0", "@commercetools-uikit/icons@^12.0.0":
-  version "12.2.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-uikit/icons/-/icons-12.2.0.tgz#8a3f8d8653aecba1bdd30b812adb6ea97eaec238"
-  integrity sha512-56WvSTAqjhdkhhKheV0d+/eS/y7LMcGYE4qXNmxU6NsrYL4GuCi/xWc1U35DLIWQRJbZHpP9RE0B065TgzTjAQ==
-  dependencies:
-    "@babel/runtime" "7.14.6"
-    "@babel/runtime-corejs3" "7.14.7"
-    "@commercetools-uikit/design-system" "12.1.0"
-    "@commercetools-uikit/utils" "12.2.0"
-    "@emotion/react" "^11.4.0"
-    "@emotion/styled" "^11.3.0"
-    "@types/dompurify" "^2.2.3"
-    dompurify "2.3.0"
-    prop-types "15.7.2"
-    react-from-dom "0.6.1"
-
-"@commercetools-uikit/icons@12.2.1", "@commercetools-uikit/icons@^12.2.1":
+"@commercetools-uikit/icons@12.2.0", "@commercetools-uikit/icons@12.2.1", "@commercetools-uikit/icons@^12.0.0", "@commercetools-uikit/icons@^12.2.1":
   version "12.2.1"
   resolved "https://registry.yarnpkg.com/@commercetools-uikit/icons/-/icons-12.2.1.tgz#6dba36f904ee7ab13f72d082cdcb03e163b3c6c7"
   integrity sha512-EnFMzSiLbWBdItHG12myB1/Mzb+xNMmI+pveyurpmyCE7FIESO67mpLZAm/qZZQMA8iNII2MGeGR1RL1xqFsew==
