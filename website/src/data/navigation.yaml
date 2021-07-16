@@ -10,6 +10,10 @@
       path: '/support-policy'
     - title: Help Needed?
       path: '/help-needed'
+- chapter-title: Tutorials
+  pages:
+    - title: Custom Objects Custom Application
+      path: '/tutorials/custom-objects-custom-application'
 - chapter-title: Development
   pages:
     - title: Folder Structure
