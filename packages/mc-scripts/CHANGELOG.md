@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-scripts
 
+## 20.7.1
+
+### Patch Changes
+
+- [#2296](https://github.com/commercetools/merchant-center-application-kit/pull/2296) [`85608163`](https://github.com/commercetools/merchant-center-application-kit/commit/85608163b25d3f7ddb2e747e1f3609d213b0d4ca) Thanks [@emmenko](https://github.com/emmenko)! - Update `@pmmmwh/react-refresh-webpack-plugin` to `0.5.0-rc.2`
+
 ## 20.7.0
 
 ### Patch Changes
