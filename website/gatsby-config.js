@@ -4,10 +4,9 @@ module.exports = {
   // https://www.gatsbyjs.com/docs/reference/release-notes/v2.28/#feature-flags-in-gatsby-configjs
   // https://www.gatsbyjs.com/docs/reference/release-notes/v2.30
   flags: {
-    DEV_SSR: true,
+    DEV_SSR: false, // good for catching bugs when developing, but too slow for productive content authoring
     FAST_DEV: true,
     PRESERVE_FILE_DOWNLOAD_CACHE: true,
-    PRESERVE_WEBPACK_CACHE: true,
   },
   pathPrefix: '/custom-applications',
   siteMetadata: {

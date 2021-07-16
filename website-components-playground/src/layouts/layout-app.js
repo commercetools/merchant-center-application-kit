@@ -17,6 +17,12 @@ const LayoutApp = (props) => {
     <>
       <Global
         styles={css`
+          *,
+          *::before,
+          *::after {
+            box-sizing: inherit;
+          }
+
           html,
           body {
             padding: 0;
