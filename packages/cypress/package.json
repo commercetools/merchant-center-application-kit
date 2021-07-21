@@ -39,8 +39,8 @@
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
-    "@babel/runtime": "7.14.6",
-    "@babel/runtime-corejs3": "7.14.7",
+    "@babel/runtime": "7.14.8",
+    "@babel/runtime-corejs3": "7.14.8",
     "@commercetools-frontend/application-config": "20.7.0",
     "@manypkg/get-packages": "1.1.1",
     "uuid": "8.3.2"
