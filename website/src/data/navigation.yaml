@@ -26,8 +26,6 @@
       path: '/development/testing'
     - title: Translations
       path: '/development/translations'
-    - title: TypeScript
-      path: '/development/typescript'
 - chapter-title: UI Components
   pages:
     - title: Application Shell
