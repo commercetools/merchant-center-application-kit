@@ -131,7 +131,7 @@
     "@types/puppeteer": "5.4.4",
     "@types/uuid": "8.3.1",
     "@types/webpack-env": "1.16.2",
-    "apollo-server-errors": "2.5.0",
+    "apollo-server-errors": "3.0.1",
     "autoprefixer": "10.3.1",
     "babel-plugin-import-graphql": "2.8.1",
     "babel-plugin-transform-rename-import": "2.3.0",

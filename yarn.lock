@@ -6475,10 +6475,10 @@ apollo-link-logger@2.0.0:
   resolved "https://registry.yarnpkg.com/apollo-link-logger/-/apollo-link-logger-2.0.0.tgz#3718d8bf89b8c04c988ee6ce8b48bb85789d2003"
   integrity sha512-UBiQZM4KAcJokWRsYrMkyqOvWhnHXPEjNhhGMA1D/quHDk8YUjNmnwqf6KQtq8R8qNW3mQx3AeaWWxNRP3Q9+w==
 
-apollo-server-errors@2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/apollo-server-errors/-/apollo-server-errors-2.5.0.tgz#5d1024117c7496a2979e3e34908b5685fe112b68"
-  integrity sha512-lO5oTjgiC3vlVg2RKr3RiXIIQ5pGXBFxYGGUkKDhTud3jMIhs+gel8L8zsEjKaKxkjHhCQAA/bcEfYiKkGQIvA==
+apollo-server-errors@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/apollo-server-errors/-/apollo-server-errors-3.0.1.tgz#0dfcc1fe8b10eab311fc7e4f6da93189ea6bcdae"
+  integrity sha512-PSp64IFeN1YK5EYZ3V/8iDRESMMyE00h1vE5aCr83wHL3T0mN7VRiMKoOIZ+2rUtnn7CpK73o6QLmouhxPtXsQ==
 
 append-field@^1.0.0:
   version "1.0.0"
