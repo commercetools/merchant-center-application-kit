@@ -31,7 +31,7 @@ const generateAndCacheNonceWithState = (state: AuthorizeSessionState) => {
 const RedirectToLogin = () => {
   const location = useLocation();
 
-  if (window.app.__DEVELOPMENT__) {
+  if (window.app.__DEVELOPMENT__?.oidc?.authorizeUrl) {
     // We pick the project key from local storage. This assumes that the value
     // as been previously set when the application starts up.
     // This is necessary to allow switching projects and triggering a new login.
@@ -56,8 +56,8 @@ const RedirectToLogin = () => {
     });
     const requestedScope = buildOidcScope({
       projectKey: nextProjectKey ?? undefined,
-      oAuthScopes: window.app.__DEVELOPMENT__?.oAuthScopes,
-      teamId: window.app.__DEVELOPMENT__?.teamId,
+      oAuthScopes: window.app.__DEVELOPMENT__?.oidc?.oAuthScopes,
+      teamId: window.app.__DEVELOPMENT__?.oidc?.teamId,
     });
 
     // Store session scopes, to be able to detect if requested scopes changed
@@ -68,7 +68,7 @@ const RedirectToLogin = () => {
     return (
       <Redirector
         to="login/authorize"
-        origin={window.app.__DEVELOPMENT__.authorizeUrl}
+        origin={window.app.__DEVELOPMENT__?.oidc?.authorizeUrl}
         location={location}
         queryParams={{
           reason: LOGOUT_REASONS.UNAUTHORIZED,

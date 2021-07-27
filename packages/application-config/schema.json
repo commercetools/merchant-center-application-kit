@@ -14,13 +14,6 @@
         "type": "string"
       },
       "uniqueItems": true
-    },
-    "hstsDirective": {
-      "type": "array",
-      "items": {
-        "enum": ["includeSubDomains", "preload"]
-      },
-      "uniqueItems": true
     }
   },
   "properties": {
@@ -37,7 +30,13 @@
       "type": "string",
       "oneOf": [
         {
-          "enum": ["gcp-au", "gcp-eu", "gcp-us", "aws-fra", "aws-ohio"]
+          "enum": [
+            "gcp-au",
+            "gcp-eu",
+            "gcp-us",
+            "aws-fra",
+            "aws-ohio"
+          ]
         },
         {
           "$ref": "#/definitions/envVariablePlaceholder"
@@ -72,7 +71,10 @@
         }
       },
       "additionalProperties": false,
-      "required": ["view", "manage"]
+      "required": [
+        "view",
+        "manage"
+      ]
     },
     "env": {
       "description": "This is an object of keys that represents different environments (for example `production`). The environment used depends on the environment variable `MC_APP_ENV`. If `MC_APP_ENV` isn't set then `NODE_ENV` will be used. If neither is set, it defaults to `development`",
@@ -111,11 +113,15 @@
             }
           },
           "additionalProperties": false,
-          "required": ["url"]
+          "required": [
+            "url"
+          ]
         }
       },
       "additionalProperties": false,
-      "required": ["production"]
+      "required": [
+        "production"
+      ]
     },
     "additionalEnv": {
       "description": "Additional environment values unique to your Custom Application that are injected in the application context.",
@@ -146,7 +152,9 @@
             }
           },
           "additionalProperties": false,
-          "required": ["connect-src"]
+          "required": [
+            "connect-src"
+          ]
         },
         "featurePolicies": {
           "description": "Configuration for the HTTP Feature-Policy header (https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy/Using_Feature_Policy)",
@@ -158,13 +166,148 @@
         },
         "strictTransportSecurity": {
           "description": "Additional configuration for the HTTP Strict-Transport-Security header (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)",
-          "$ref": "#/definitions/hstsDirective"
+          "type": "array",
+          "items": {
+            "enum": [
+              "includeSubDomains",
+              "preload"
+            ]
+          },
+          "uniqueItems": true
         }
       },
       "additionalProperties": false,
-      "required": ["csp"]
+      "required": [
+        "csp"
+      ]
+    },
+    "menuLinks": {
+      "description": "Configuration for the menu links on the left-side navbar.",
+      "type": "object",
+      "properties": {
+        "icon": {
+          "description": "The SVG icon that represents this application. Pass the raw SVG string or a path to an SVG file, for example a relative path `${path:./app.svg}`, or a path from a module `${path:@commercetools-frontend/assets/application-icons/heart.svg}`.",
+          "type": "string"
+        },
+        "defaultLabel": {
+          "description": "A default label to be rendered if there is no matching localized label for the user locale.",
+          "type": "string"
+        },
+        "labelAllLocales": {
+          "description": "Localized label based on the application locales available from the user profile.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "locale": {
+                "type": "string",
+                "enum": [
+                  "en",
+                  "de",
+                  "es",
+                  "fr-FR",
+                  "zh-CN",
+                  "ja"
+                ]
+              },
+              "value": {
+                "description": "A label for the specific locale or a reference to a translated message. For example `${intl:en:Menu.Avengers}` which looks for the message key `Menu.Avengers` in the `src/i18n/data/en.json`",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "locale",
+              "value"
+            ]
+          }
+        },
+        "permissions": {
+          "description": "Set the visibility of the menu link. Users must have at least one permission to see the Custom Application in the Merchant Center menu.",
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string"
+          }
+        },
+        "submenuLinks": {
+          "description": "Configuration for the submenu links on the left-side navbar.",
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "uriPath": {
+                "description": "Route path relative to the entry point URI path of the Custom Application.",
+                "type": "string"
+              },
+              "defaultLabel": {
+                "description": "A default label to be rendered if there is no matching localized label for the user locale.",
+                "type": "string"
+              },
+              "labelAllLocales": {
+                "description": "Localized label based on the application locales available from the user profile.",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "locale": {
+                      "type": "string",
+                      "enum": [
+                        "en",
+                        "de",
+                        "es",
+                        "fr-FR",
+                        "zh-CN",
+                        "ja"
+                      ]
+                    },
+                    "value": {
+                      "description": "A label for the specific locale or a reference to a translated message. For example `${intl:en:Menu.Avengers}` which looks for the message key `Menu.Avengers` in the `src/i18n/data/en.json`",
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "locale",
+                    "value"
+                  ]
+                }
+              },
+              "permissions": {
+                "description": "Set the visibility of the menu link. Users must have at least one permission to see the Custom Application in the Merchant Center menu.",
+                "type": "array",
+                "default": [],
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": true,
+            "required": [
+              "uriPath",
+              "defaultLabel",
+              "labelAllLocales",
+              "permissions"
+            ]
+          }
+        }
+      },
+      "additionalProperties": true,
+      "required": [
+        "icon",
+        "defaultLabel",
+        "labelAllLocales",
+        "permissions",
+        "submenuLinks"
+      ]
     }
   },
-  "additionalProperties": false,
-  "required": ["name", "entryPointUriPath", "cloudIdentifier", "env"]
+  "additionalProperties": true,
+  "required": [
+    "name",
+    "entryPointUriPath",
+    "cloudIdentifier",
+    "env"
+  ]
 }

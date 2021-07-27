@@ -13,7 +13,7 @@ const withoutProjectKeyClaim = (scope: string) =>
     .join(' ');
 
 const hasCachedAuthenticationState = (): boolean => {
-  if (window.app.__DEVELOPMENT__) {
+  if (window.app.__DEVELOPMENT__?.oidc?.authorizeUrl) {
     try {
       const activeProjectKey = oidcStorage.getActiveProjectKey();
       if (activeProjectKey) {
@@ -22,15 +22,15 @@ const hasCachedAuthenticationState = (): boolean => {
         // GIVEN The application is not requesting a project key,
         // THEN we remove the cached project key.
         // This is the case of an application like `account`.
-        if (!window.app.__DEVELOPMENT__.initialProjectKey) {
+        if (!window.app.__DEVELOPMENT__?.oidc?.initialProjectKey) {
           oidcStorage.removeActiveProjectKey();
         }
       } else {
-        if (window.app.__DEVELOPMENT__.initialProjectKey) {
+        if (window.app.__DEVELOPMENT__?.oidc?.initialProjectKey) {
           // Here we store the initial project key in local storage,
           // so that it gets picked up when we initiate the login flow.
           oidcStorage.setActiveProjectKey(
-            window.app.__DEVELOPMENT__.initialProjectKey
+            window.app.__DEVELOPMENT__?.oidc?.initialProjectKey
           );
         }
       }
@@ -47,8 +47,8 @@ const hasCachedAuthenticationState = (): boolean => {
       // Rebuild the requested OIDC scope to verify that it didn't change.
       const requestedScope = buildOidcScope({
         projectKey: activeProjectKey ?? undefined,
-        oAuthScopes: window.app.__DEVELOPMENT__?.oAuthScopes,
-        teamId: window.app.__DEVELOPMENT__?.teamId,
+        oAuthScopes: window.app.__DEVELOPMENT__?.oidc?.oAuthScopes,
+        teamId: window.app.__DEVELOPMENT__?.oidc?.teamId,
       });
       // Omit the project key from the check. This allows to switch projects
       // without having to log in again.

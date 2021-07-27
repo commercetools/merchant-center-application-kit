@@ -141,6 +141,22 @@ export const MC_API_PROXY_TARGETS = {
 export type TMcApiProxyTargets =
   typeof MC_API_PROXY_TARGETS[keyof typeof MC_API_PROXY_TARGETS];
 
+export type TLocalizedField = {
+  locale: string;
+  value: string;
+};
+export type ApplicationMenuLinksForDevelopmentConfig = {
+  icon: string;
+  defaultLabel: string;
+  labelAllLocales: TLocalizedField[];
+  permissions: string[];
+  submenuLinks: {
+    uriPath: string;
+    defaultLabel: string;
+    labelAllLocales: TLocalizedField[];
+    permissions: string[];
+  }[];
+};
 export type ApplicationOidcForDevelopmentConfig = {
   authorizeUrl: string;
   initialProjectKey?: string;
@@ -175,6 +191,9 @@ export interface ApplicationWindow extends Window {
     enableLongLivedFeatureFlags?: boolean;
     useFullRedirectsForLinks?: boolean;
     // Properties for OIDC-like workflow for development
-    __DEVELOPMENT__?: ApplicationOidcForDevelopmentConfig;
+    __DEVELOPMENT__?: {
+      oidc?: ApplicationOidcForDevelopmentConfig;
+      menuLinks?: ApplicationMenuLinksForDevelopmentConfig;
+    };
   };
 }

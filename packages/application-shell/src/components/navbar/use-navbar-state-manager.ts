@@ -69,7 +69,7 @@ const useNavbarStateManager = (props: HookProps) => {
     queryOptions: {
       onError: reportErrorToSentry,
     },
-    skipRemoteQuery: !props.environment.servedByProxy,
+    environment: props.environment,
     loadMenuConfig: props.DEV_ONLY__loadNavbarMenuConfig,
   });
   const { data: projectExtensionsQuery } = useMcQuery<

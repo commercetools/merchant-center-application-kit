@@ -1,4 +1,6 @@
 {
+  "Menu.StateMachines": "State Machines",
+  "Menu.EchoServer": "Echo Server",
   "StateMachines.ListView.column.stateMachineKey": "",
   "StateMachines.ListView.column.stateMachineName": "",
   "StateMachines.ListView.noResults": "",

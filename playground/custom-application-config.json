@@ -4,7 +4,10 @@
   "cloudIdentifier": "${env:CLOUD_IDENTIFIER}",
   "mcApiUrl": "${env:MC_API_URL}",
   "oAuthScopes": {
-    "view": ["view_orders", "view_states"],
+    "view": [
+      "view_orders",
+      "view_states"
+    ],
     "manage": []
   },
   "env": {
@@ -23,7 +26,43 @@
   },
   "headers": {
     "csp": {
-      "connect-src": ["${env:HOST_GCP_STAGING}"]
+      "connect-src": [
+        "${env:HOST_GCP_STAGING}"
+      ]
     }
+  },
+  "menuLinks": {
+    "icon": "${path:@commercetools-frontend/assets/application-icons/rocket.svg}",
+    "defaultLabel": "${intl:en:Menu.StateMachines}",
+    "labelAllLocales": [
+      {
+        "locale": "en",
+        "value": "${intl:en:Menu.StateMachines}"
+      },
+      {
+        "locale": "de",
+        "value": "${intl:de:Menu.StateMachines}"
+      }
+    ],
+    "permissions": [
+      "ViewPlaygroundStateMachines"
+    ],
+    "submenuLinks": [
+      {
+        "uriPath": "echo-server",
+        "permissions": ["ViewPlaygroundStateMachines"],
+        "defaultLabel": "${intl:en:Menu.EchoServer}",
+        "labelAllLocales": [
+          {
+            "locale": "en",
+            "value": "${intl:en:Menu.EchoServer}"
+          },
+          {
+            "locale": "de",
+            "value": "${intl:de:Menu.EchoServer}"
+          }
+        ]
+      }
+    ]
   }
 }

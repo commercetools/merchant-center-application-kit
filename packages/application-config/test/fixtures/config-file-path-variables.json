@@ -1,0 +1,23 @@
+{
+  "name": "avengers-app",
+  "entryPointUriPath": "avengers",
+  "cloudIdentifier": "gcp-eu",
+  "env": {
+    "production": {
+      "url": "https://my-app.com"
+    }
+  },
+  "menuLinks": {
+    "icon": "${path:@commercetools-frontend/assets/images/camera.svg}",
+    "defaultLabel": "Avengers",
+    "labelAllLocales": [
+      {
+        "locale": "en",
+        "value": "${intl:en:Menu.Avengers}"
+      }
+    ],
+    "permissions": [
+      "ViewAvengers"
+    ]
+  }
+}
