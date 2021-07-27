@@ -7,7 +7,6 @@ import type {
 } from '@commercetools-frontend/constants';
 import type { TAppState } from './types';
 
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   NOTIFICATION_DOMAINS,

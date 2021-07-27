@@ -1,6 +1,5 @@
 import type { Props } from './maintenance-page-layout';
 
-import React from 'react';
 import { screen, renderComponent } from '../../../test-utils';
 import MaintenancePageLayout from './maintenance-page-layout';
 

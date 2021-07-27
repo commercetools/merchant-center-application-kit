@@ -2,7 +2,6 @@ import type { TProjectGraphql } from '../../../../../test-data/project';
 
 import { graphql } from 'msw';
 import { setupServer } from 'msw/node';
-import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import * as ProjectMock from '../../../../../test-data/project';
 import { renderApp, screen, waitForElementToBeRemoved } from '../../test-utils';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Formik } from 'formik';
 import TextField, { CustomFormikErrors } from '@commercetools-uikit/text-field';
 import { FormModalPage } from '@commercetools-frontend/application-components';

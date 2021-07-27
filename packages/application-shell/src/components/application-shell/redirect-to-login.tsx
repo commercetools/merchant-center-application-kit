@@ -1,7 +1,6 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type { AuthorizeSessionState } from '../authenticated/types';
 
-import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useLocation } from 'react-router-dom';
 import {

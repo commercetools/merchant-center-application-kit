@@ -1,4 +1,3 @@
-import React from 'react';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
 import { Suite, Spec } from '../../test-utils';
 

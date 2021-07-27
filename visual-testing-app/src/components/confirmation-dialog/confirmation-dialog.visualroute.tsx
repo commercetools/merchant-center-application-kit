@@ -1,4 +1,3 @@
-import React from 'react';
 import Text from '@commercetools-uikit/text';
 import Spacings from '@commercetools-uikit/spacings';
 import { ConfirmationDialog } from '@commercetools-frontend/application-components';

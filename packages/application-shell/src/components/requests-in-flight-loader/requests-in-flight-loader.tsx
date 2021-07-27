@@ -1,6 +1,5 @@
 import type { TRequestsInFlightState } from './types';
 
-import React from 'react';
 import ReactDOM from 'react-dom';
 import { FormattedMessage } from 'react-intl';
 import { useSelector } from 'react-redux';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useIntl, FormattedMessage } from 'react-intl';
 import UnexpectedErrorSVG from '@commercetools-frontend/assets/images/icecream.svg';
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';

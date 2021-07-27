@@ -1,4 +1,3 @@
-import React from 'react';
 import { renderComponent, screen } from '../../test-utils';
 import PublicPageLayout from './public-page-layout';
 

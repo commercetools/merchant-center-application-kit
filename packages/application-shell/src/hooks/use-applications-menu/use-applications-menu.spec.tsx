@@ -6,7 +6,6 @@ import type { TFetchApplicationsMenuQuery } from '../../types/generated/proxy';
 import type { Config, MenuLoaderResult } from './use-applications-menu';
 
 import { mocked } from 'ts-jest/utils';
-import React from 'react';
 import upperFirst from 'lodash/upperFirst';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { transformLocalizedFieldToLocalizedString } from '@commercetools-frontend/l10n';

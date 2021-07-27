@@ -1,6 +1,5 @@
 import type { Props } from './sdk-get';
 
-import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import * as sdkActions from '../../actions';
 import { SdkGet } from './sdk-get';

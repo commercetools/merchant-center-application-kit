@@ -1,4 +1,3 @@
-import React from 'react';
 import { mocked } from 'ts-jest/utils';
 import warning from 'tiny-warning';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';

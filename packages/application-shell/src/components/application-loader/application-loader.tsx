@@ -1,4 +1,3 @@
-import React from 'react';
 import { css } from '@emotion/react';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import { customProperties } from '@commercetools-uikit/design-system';

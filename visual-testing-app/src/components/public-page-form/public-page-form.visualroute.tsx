@@ -1,4 +1,3 @@
-import React from 'react';
 import { PublicPageLayout } from '@commercetools-frontend/application-components';
 import Link from '@commercetools-uikit/link';
 import Spacings from '@commercetools-uikit/spacings';

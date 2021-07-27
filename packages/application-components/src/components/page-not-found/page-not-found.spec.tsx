@@ -1,4 +1,3 @@
-import React from 'react';
 import { screen, renderComponent } from '../../test-utils';
 import PageNotFound from './page-not-found';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { PageNotFound } from '@commercetools-frontend/application-components';
 import { Suite, Spec } from '../../test-utils';
 

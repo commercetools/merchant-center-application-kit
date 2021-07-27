@@ -6,7 +6,6 @@ import type {
   TFetchUserProjectsQueryVariables,
 } from '../../types/generated/mc';
 
-import React from 'react';
 import memoize from 'memoize-one';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { css } from '@emotion/react';

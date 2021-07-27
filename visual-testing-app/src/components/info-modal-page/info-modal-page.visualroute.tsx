@@ -1,4 +1,3 @@
-import React from 'react';
 import Text from '@commercetools-uikit/text';
 import { InfoModalPage } from '@commercetools-frontend/application-components';
 import { Suite, Spec } from '../../test-utils';

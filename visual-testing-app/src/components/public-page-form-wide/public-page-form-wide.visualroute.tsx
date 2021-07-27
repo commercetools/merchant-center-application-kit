@@ -1,4 +1,3 @@
-import React from 'react';
 import { css } from '@emotion/react';
 import { PublicPageLayout } from '@commercetools-frontend/application-components';
 import DoorsClosedSvg from '@commercetools-frontend/assets/images/project-not-initialized.svg';

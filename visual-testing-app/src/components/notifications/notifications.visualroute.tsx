@@ -1,4 +1,3 @@
-import React from 'react';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import { Notification } from '@commercetools-frontend/react-notifications';
 import { Suite, Spec } from '../../test-utils';

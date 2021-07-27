@@ -1,7 +1,6 @@
 import type { MockedResponse } from '@apollo/client/testing';
 import type { TImageRegexContext } from './project-extension-image-regex';
 
-import React from 'react';
 import {
   screen,
   render,

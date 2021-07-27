@@ -2,7 +2,6 @@ import type { TUserGraphql } from '../../../../../test-data/user';
 
 import { graphql } from 'msw';
 import { setupServer } from 'msw/node';
-import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import * as UserMock from '../../../../../test-data/user';
 import { renderApp, screen, waitForElementToBeRemoved } from '../../test-utils';
