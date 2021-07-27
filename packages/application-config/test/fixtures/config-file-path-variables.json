@@ -8,7 +8,7 @@
     }
   },
   "menuLinks": {
-    "icon": "${path:@commercetools-frontend/assets/images/camera.svg}",
+    "icon": "${path:@commercetools-frontend/assets/application-icons/heart.svg}",
     "defaultLabel": "Avengers",
     "labelAllLocales": [
       {
@@ -16,8 +16,6 @@
         "value": "${intl:en:Menu.Avengers}"
       }
     ],
-    "permissions": [
-      "ViewAvengers"
-    ]
+    "permissions": ["ViewAvengers"]
   }
 }

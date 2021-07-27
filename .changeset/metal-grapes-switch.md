@@ -1,10 +1,8 @@
 ---
 '@commercetools-frontend/application-config': minor
 '@commercetools-frontend/application-shell': minor
-'@commercetools-frontend/assets': minor
 '@commercetools-frontend/constants': minor
 '@commercetools-frontend/cypress': minor
-'@commercetools-frontend/mc-html-template': minor
 'playground': minor
 ---
 
@@ -23,17 +21,17 @@ At the moment, menu links are expected to be defined in a `menu.json` file and l
 
 This poses some issues and confusion:
 
-* The prop `DEV_ONLY__loadNavbarMenuConfig` is confusing, and users have to explicitly load the `menu.json` with code splitting, to avoid having the content in the production bundles.
-* The content of the `menu.json` is not validated at all, relying on try-error approaches from the users.
-* The `menu.json` is not really documented.
-* Having an extra `menu.json` file besides the `custom-application-config.json` is not ideal.
+- The prop `DEV_ONLY__loadNavbarMenuConfig` is confusing, and users have to explicitly load the `menu.json` with code splitting, to avoid having the content in the production bundles.
+- The content of the `menu.json` is not validated at all, relying on try-error approaches from the users.
+- The `menu.json` is not really documented.
+- Having an extra `menu.json` file besides the `custom-application-config.json` is not ideal.
 
 Now we support defining the menu links in the `custom-application-config.json` itself, which aims to solve all the issues mentioned before. It also comes with some additional improvements such as:
 
-* Less configuration fields.
-* Support for two new variable placeholders:
-  * `intl`: Given that menu labels are translated, you can reference a translation using the following syntax: `${intl:<local>:<translation_key>}`, for example `${intl:en:Menu.Avengers}`.
-  * `path`: Reference a file to load the its content and inline it. This is usually useful for SVG icons. The path can be relative to the application folder, for example `${path:./app.svg}`, or from a module, for example `${path:@commercetools-frontend/assets/application-icons/heart.svg}`.
+- Less configuration fields.
+- Support for two new variable placeholders:
+  - `intl`: Given that menu labels are translated, you can reference a translation using the following syntax: `${intl:<local>:<translation_key>}`, for example `${intl:en:Menu.Avengers}`.
+  - `path`: Reference a file to load the its content and inline it. This is usually useful for SVG icons. The path can be relative to the application folder, for example `${path:./app.svg}`, or from a module, for example `${path:@commercetools-frontend/assets/application-icons/heart.svg}`.
 
 > NOTE: This is an opt-in feature and is meant to replace the `menu.json` approach. For now it's fully backwards compatible.
 
