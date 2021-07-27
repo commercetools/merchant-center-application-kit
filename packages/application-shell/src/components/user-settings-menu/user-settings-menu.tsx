@@ -142,9 +142,7 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
     menuElementRef.current?.focus();
   }, []);
 
-  const environment = useApplicationContext(
-    (context) => context.environment
-  );
+  const environment = useApplicationContext((context) => context.environment);
   const applicationsAppBarMenu = useApplicationsMenu<'appBar'>('appBar', {
     queryOptions: {
       onError: reportErrorToSentry,

@@ -575,9 +575,7 @@ describe('processing a config with file path variable placeholders', () => {
         servedByProxy: false,
         __DEVELOPMENT__: {
           menuLinks: {
-            // If we get `test-file-stub` it means the SVG file was correctly loaded.
-            // The stub comes from the Jest config `moduleNameMapper`.
-            icon: expect.stringContaining('test-file-stub'),
+            icon: expect.stringContaining('<svg'),
             defaultLabel: 'Avengers',
             labelAllLocales: [
               {
