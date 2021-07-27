@@ -73,6 +73,7 @@ const loadAllCustomApplicationConfigs = async (
         disableCache: true,
         configJson: customAppConfigJson,
         processEnv,
+        applicationPath: packageInfo.dir,
       });
       return {
         ...allConfigs,
