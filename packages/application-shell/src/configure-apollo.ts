@@ -100,6 +100,10 @@ const createApolloClient = (
         Store: {
           keyFields: ['key'],
         },
+        // CTP types with optional id
+        TaxRate: {
+          keyFields: ['name', 'amount']
+        },
         // Internal apps menu links representations
         ApplicationsMenu: {
           fields: {
