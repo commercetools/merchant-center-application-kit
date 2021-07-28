@@ -4,8 +4,6 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-// You can delete this file if you're not using it
-
 exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
   const config = getConfig();
   config.module.rules = [
@@ -24,5 +22,11 @@ exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
 exports.onCreateBabelConfig = ({ actions }) => {
   actions.setBabelPlugin({
     name: 'babel-plugin-preval',
+  });
+  actions.setBabelPlugin({
+    name: '@babel/plugin-transform-react-jsx',
+    options: {
+      runtime: 'automatic',
+    },
   });
 };
