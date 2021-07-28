@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSiteData, Link } from '@commercetools-docs/gatsby-theme-docs';
 import { GithubSvgIcon } from '../../../icons';
 

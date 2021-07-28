@@ -1,6 +1,6 @@
 import type { SingleValueProps } from 'react-select';
 
-import React from 'react';
+import { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import SelectInput from '@commercetools-uikit/select-input';
@@ -62,7 +62,7 @@ SingleValue.displayName = 'SingleValue';
 
 const LocaleSwitcher = (props: Props) => {
   const { setProjectDataLocale } = props;
-  const handleSelection = React.useCallback(
+  const handleSelection = useCallback(
     (event) => {
       setProjectDataLocale(event.target.value);
     },

@@ -3,7 +3,7 @@ import type { TAddNotificationAction } from '@commercetools-frontend/notificatio
 import type { TShowNotification } from '@commercetools-frontend/actions-global';
 
 import { mocked } from 'ts-jest/utils';
-import React from 'react';
+import { useState, ReactNode } from 'react';
 import { screen, render, fireEvent, waitFor } from '@testing-library/react';
 import { ADD_NOTIFICATION } from '@commercetools-frontend/notifications';
 import {
@@ -16,12 +16,12 @@ import Notifier from './notifier';
 jest.mock('@commercetools-frontend/actions-global');
 
 type TextControllerProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 const TestController = (props: TextControllerProps) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   // This is just to test a rendering of the children
-  const [counter, setCounter] = React.useState(0);
+  const [counter, setCounter] = useState(0);
 
   return (
     <div>

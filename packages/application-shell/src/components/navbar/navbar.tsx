@@ -15,7 +15,15 @@ import type {
   TNavbarMenu,
 } from '../../types/generated/proxy';
 
-import React, { MouseEventHandler, SyntheticEvent } from 'react';
+import {
+  forwardRef,
+  MouseEventHandler,
+  ReactNode,
+  SyntheticEvent,
+  useContext,
+  useMemo,
+  useRef,
+} from 'react';
 import { FormattedMessage } from 'react-intl';
 import { NavLink, matchPath, useLocation } from 'react-router-dom';
 import { ToggleFeature } from '@flopflip/react-broadcast';
@@ -167,7 +175,7 @@ type MenuGroupProps = {
   level: 1 | 2;
   isActive?: boolean;
   isExpanded?: boolean;
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 const MenuGroup = (props: MenuGroupProps) => {
   const isSublistActiveWhileIsMenuExpanded =
@@ -215,7 +223,7 @@ type MenuItemProps = {
   onClick: MouseEventHandler<HTMLElement>;
   onMouseEnter?: MouseEventHandler<HTMLElement>;
   onMouseLeave?: MouseEventHandler<HTMLElement>;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 const MenuItem = (props: MenuItemProps) => (
   <li
@@ -237,7 +245,7 @@ MenuItem.displayName = 'MenuItem';
 type MenuItemLinkProps = {
   linkTo?: string;
   exactMatch: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
   onClick?: <TrackFn>(
     event: SyntheticEvent<HTMLAnchorElement>,
     track: TrackFn
@@ -248,7 +256,7 @@ const menuItemLinkDefaultProps: Pick<MenuItemLinkProps, 'exactMatch'> = {
   exactMatch: false,
 };
 const MenuItemLink = (props: MenuItemLinkProps) => {
-  const gtmTracking = React.useContext(GtmContext);
+  const gtmTracking = useContext(GtmContext);
   const redirectTo = (targetUrl: string) => location.replace(targetUrl);
   if (props.linkTo) {
     return (
@@ -310,7 +318,7 @@ type RestrictedMenuItemProps = {
   permissions: string[];
   actionRights?: TActionRight[];
   dataFences?: TDataFence[];
-  children: React.ReactNode;
+  children: ReactNode;
 };
 const restrictedMenuItemDefaultProps: Pick<
   RestrictedMenuItemProps,
@@ -541,9 +549,9 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
 ApplicationMenu.displayName = 'ApplicationMenu';
 
 type NavBarLayoutProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
-const NavBarLayout = React.forwardRef<HTMLElement, NavBarLayoutProps>(
+const NavBarLayout = forwardRef<HTMLElement, NavBarLayoutProps>(
   (props, ref) => (
     <>
       <Global
@@ -594,7 +602,7 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
   );
   const location = useLocation();
 
-  const projectPermissions: TProjectPermissions = React.useMemo(
+  const projectPermissions: TProjectPermissions = useMemo(
     () => ({
       permissions: normalizeAllAppliedPermissions(
         props.project?.allPermissionsForAllApplications.allAppliedPermissions
@@ -608,7 +616,7 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
     }),
     [props.project]
   );
-  const menuVisibilities = React.useMemo(
+  const menuVisibilities = useMemo(
     () =>
       normalizeAllAppliedMenuVisibilities(
         props.project?.allPermissionsForAllApplications
@@ -690,12 +698,12 @@ NavBar.displayName = 'NavBar';
 export default NavBar;
 
 export const LoadingNavBar = () => {
-  const ref = React.useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   useLoadingMenuLayoutEffect();
   return (
     <NavBarLayout ref={ref}>
       <MenuGroup id="main" level={1}>
-        <React.Fragment>
+        <>
           {Array.from(new Array(5)).map((_, index) => (
             <MenuItem
               key={index}
@@ -712,7 +720,7 @@ export const LoadingNavBar = () => {
               </div>
             </MenuItem>
           ))}
-        </React.Fragment>
+        </>
       </MenuGroup>
     </NavBarLayout>
   );

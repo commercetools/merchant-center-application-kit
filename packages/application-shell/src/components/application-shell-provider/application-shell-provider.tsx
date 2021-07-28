@@ -4,7 +4,7 @@ import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import type { TrackingList } from '../../utils/gtm';
 
 import '../../track-performance';
-import React from 'react';
+import { Suspense, useEffect, useMemo } from 'react';
 import { Router } from 'react-router-dom';
 import { ApolloClient } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client/react';
@@ -35,11 +35,11 @@ type Props<AdditionalEnvironmentProperties extends {}> = {
 const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
   props: Props<AdditionalEnvironmentProperties>
 ) => {
-  const apolloClient = React.useMemo(
+  const apolloClient = useMemo(
     () => props.apolloClient ?? createApolloClient(),
     [props.apolloClient]
   );
-  React.useEffect(() => {
+  useEffect(() => {
     setCachedApolloClient(apolloClient);
   }, [apolloClient]);
   const coercedEnvironmentValues =
@@ -56,7 +56,7 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
         >
           <ReduxProvider store={internalReduxStore}>
             <ApolloProvider client={apolloClient}>
-              <React.Suspense fallback={<ApplicationLoader />}>
+              <Suspense fallback={<ApplicationLoader />}>
                 <Router history={ApplicationShellProvider.history}>
                   <GtmBooter trackingEventList={props.trackingEventList || {}}>
                     <Authenticated
@@ -85,7 +85,7 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
                     />
                   </GtmBooter>
                 </Router>
-              </React.Suspense>
+              </Suspense>
             </ApolloProvider>
           </ReduxProvider>
         </ApplicationContextProvider>

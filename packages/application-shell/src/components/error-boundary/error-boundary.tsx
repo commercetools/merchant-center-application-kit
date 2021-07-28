@@ -1,16 +1,16 @@
-import React, { ErrorInfo } from 'react';
+import { Component, ErrorInfo, ReactNode } from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import ErrorApologizer from '../error-apologizer';
 
 type Props = {
   pathname?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 type State = {
   hasError: boolean;
 };
 
-class ErrorBoundary extends React.Component<Props, State> {
+class ErrorBoundary extends Component<Props, State> {
   static getDerivedStateFromError(/* error */) {
     // Update state so the next render will show the fallback UI.
     return { hasError: true };

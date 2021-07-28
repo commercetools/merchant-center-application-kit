@@ -1,4 +1,4 @@
-import React from 'react';
+import { Dispatch, useState } from 'react';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import { screen, renderComponent, fireEvent } from '../../../test-utils';
 import InfoDialog from './info-dialog';
@@ -6,11 +6,11 @@ import InfoDialog from './info-dialog';
 type DialogControllerProps = {
   children: (renderProps: {
     isOpen: boolean;
-    setIsOpen: React.Dispatch<boolean>;
+    setIsOpen: Dispatch<boolean>;
   }) => JSX.Element;
 };
 const DialogController = (props: DialogControllerProps) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
       <SecondaryButton

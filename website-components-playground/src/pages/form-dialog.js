@@ -1,4 +1,3 @@
-import React from 'react';
 import { Formik } from 'formik';
 import { FormDialog } from '@commercetools-frontend/application-components';
 import Spacings from '@commercetools-uikit/spacings';

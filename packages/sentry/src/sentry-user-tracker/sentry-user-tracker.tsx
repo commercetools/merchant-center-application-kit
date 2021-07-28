@@ -1,6 +1,6 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
-import React from 'react';
+import { PureComponent } from 'react';
 import * as Sentry from '@sentry/browser';
 
 declare let window: ApplicationWindow;
@@ -18,7 +18,7 @@ type Props = {
  * changed.
  */
 
-class SentryUserTracker extends React.PureComponent<Props> {
+class SentryUserTracker extends PureComponent<Props> {
   static displayName = 'SentryUserTracker';
   componentDidMount() {
     // since the user and project could have been loaded from the apollo cache

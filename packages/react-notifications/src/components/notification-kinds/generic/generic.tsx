@@ -4,7 +4,7 @@ import type {
   TAppNotificationKindSide,
 } from '@commercetools-frontend/constants';
 
-import React from 'react';
+import { SyntheticEvent } from 'react';
 import Notification from '../../notification';
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
     kind: TAppNotificationKindSide;
     text: string;
   }>;
-  dismiss: (event: React.SyntheticEvent) => void;
+  dismiss: (event: SyntheticEvent) => void;
 };
 
 const GenericNotification = (props: Props) => (

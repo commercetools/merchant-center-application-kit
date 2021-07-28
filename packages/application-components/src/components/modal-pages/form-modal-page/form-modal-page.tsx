@@ -1,4 +1,4 @@
-import React from 'react';
+import { SyntheticEvent, ReactNode, ReactElement } from 'react';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import CustomFormModalPage from '../custom-form-modal-page';
 
@@ -16,8 +16,8 @@ type Props = {
   level?: number;
   title: string;
   isOpen: boolean;
-  onClose?: (event: React.SyntheticEvent) => void;
-  children: React.ReactNode;
+  onClose?: (event: SyntheticEvent) => void;
+  children: ReactNode;
   zIndex?: number;
   baseZIndex?: number;
   getParentSelector?: () => HTMLElement;
@@ -26,7 +26,7 @@ type Props = {
   topBarCurrentPathLabel?: string;
   topBarPreviousPathLabel?: Label;
   // Header Props
-  subtitle?: string | React.ReactElement;
+  subtitle?: string | ReactElement;
   // Controls Props
   isPrimaryButtonDisabled?: boolean;
   isSecondaryButtonDisabled?: boolean;
@@ -34,8 +34,8 @@ type Props = {
   dataAttributesSecondaryButton?: { [key: string]: string };
   labelPrimaryButton?: Label;
   labelSecondaryButton?: Label;
-  onPrimaryButtonClick: (event: React.SyntheticEvent) => void;
-  onSecondaryButtonClick: (event: React.SyntheticEvent) => void;
+  onPrimaryButtonClick: (event: SyntheticEvent) => void;
+  onSecondaryButtonClick: (event: SyntheticEvent) => void;
   hideControls: boolean;
 };
 

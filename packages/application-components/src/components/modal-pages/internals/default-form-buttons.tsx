@@ -1,4 +1,4 @@
-import React from 'react';
+import { SyntheticEvent } from 'react';
 import { useIntl } from 'react-intl';
 import PrimaryButton from '@commercetools-uikit/primary-button';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
@@ -18,7 +18,7 @@ type MessageDescriptor = {
 type Label = string | MessageDescriptor;
 type Props = {
   label: Label;
-  onClick: (event: React.SyntheticEvent) => void;
+  onClick: (event: SyntheticEvent) => void;
   isDisabled: boolean;
   dataAttributes: { [key: string]: string };
   children?: never;

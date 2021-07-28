@@ -1,4 +1,4 @@
-import React from 'react';
+import { SyntheticEvent, ReactNode } from 'react';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import DialogContainer from '../internals/dialog-container';
 import DialogHeader from '../internals/dialog-header';
@@ -16,16 +16,16 @@ type MessageDescriptor = {
 type Label = string | MessageDescriptor;
 type Props = {
   isOpen: boolean;
-  onClose?: (event: React.SyntheticEvent) => void;
+  onClose?: (event: SyntheticEvent) => void;
   title: string;
   size?: 'm' | 'l' | 7 | 8 | 9 | 10 | 'scale';
   zIndex?: number;
-  children: React.ReactNode;
+  children: ReactNode;
   labelSecondary: Label;
   labelPrimary: Label;
   isPrimaryButtonDisabled?: boolean;
-  onSecondaryButtonClick: (event: React.SyntheticEvent) => void;
-  onPrimaryButtonClick: (event: React.SyntheticEvent) => void;
+  onSecondaryButtonClick: (event: SyntheticEvent) => void;
+  onPrimaryButtonClick: (event: SyntheticEvent) => void;
   dataAttributesSecondaryButton?: { [key: string]: string };
   dataAttributesPrimaryButton?: { [key: string]: string };
   getParentSelector?: () => HTMLElement;

@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
 import { useAsyncLocaleData } from '@commercetools-frontend/i18n';
@@ -32,7 +32,7 @@ const availableLocaleOptions = availableLocales.map((locale) => ({
 const loadApplicationMessages = () => Promise.resolve({});
 
 const IntlController = (props) => {
-  const [activeLocale, setActiveLocale] = React.useState('en');
+  const [activeLocale, setActiveLocale] = useState('en');
   const { messages } = useAsyncLocaleData({
     locale: activeLocale,
     applicationMessages: loadApplicationMessages,

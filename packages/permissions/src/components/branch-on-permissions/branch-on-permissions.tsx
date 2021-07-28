@@ -1,4 +1,4 @@
-import React from 'react';
+import { ComponentType } from 'react';
 import getDisplayName from '../../utils/get-display-name';
 import Authorized from '../authorized';
 
@@ -33,12 +33,12 @@ type TOptions<OwnProps extends {}> = {
 const branchOnPermissions =
   <OwnProps extends {}>(
     demandedPermissions: TPermissionName[],
-    FallbackComponent: React.ComponentType<unknown>,
+    FallbackComponent: ComponentType<unknown>,
     options: TOptions<OwnProps> = {
       shouldMatchSomePermissions: false,
     }
   ) =>
-  (Component: React.ComponentType<OwnProps>): React.ComponentType<OwnProps> => {
+  (Component: ComponentType<OwnProps>): ComponentType<OwnProps> => {
     const WrappedComponent = (props: OwnProps) => (
       <Authorized
         shouldMatchSomePermissions={options.shouldMatchSomePermissions}
@@ -56,7 +56,7 @@ const branchOnPermissions =
           if (FallbackComponent) {
             return <FallbackComponent />;
           }
-          return <React.Fragment></React.Fragment>;
+          return <></>;
         }}
       />
     );

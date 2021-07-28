@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, version as reactVersion } from 'react';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { useAsyncDispatch } from '@commercetools-frontend/sdk';
 import applicationShellVersion from '../../version';
@@ -32,7 +32,7 @@ const createVersionMetric = ({
     metricLabels: {
       application: applicationName,
       package_name: 'react',
-      package_version: React.version,
+      package_version: reactVersion,
     },
   },
 ];
@@ -45,7 +45,7 @@ const VersionTracker = () => {
     ReturnType<typeof pushDependencyVersionCounter>,
     unknown
   >();
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(
       pushDependencyVersionCounter({
         payload: createVersionMetric({

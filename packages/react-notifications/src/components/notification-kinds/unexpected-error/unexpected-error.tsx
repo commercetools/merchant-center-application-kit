@@ -3,7 +3,7 @@ import type {
   TAppNotificationValuesUnexpectedError,
 } from '@commercetools-frontend/constants';
 
-import React from 'react';
+import { SyntheticEvent } from 'react';
 import { FormattedMessage } from 'react-intl';
 import {
   NOTIFICATION_DOMAINS,
@@ -19,7 +19,7 @@ type Props = {
     kind: typeof NOTIFICATION_KINDS_PAGE['unexpected-error'];
     values: TAppNotificationValuesUnexpectedError;
   }>;
-  dismiss: (event: React.SyntheticEvent) => void;
+  dismiss: (event: SyntheticEvent) => void;
 };
 
 const UnexpectedErrorNotification = (props: Props) => (

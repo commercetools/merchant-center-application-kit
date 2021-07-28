@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import Constraints from '@commercetools-uikit/constraints';
@@ -7,11 +7,11 @@ import Spacings from '@commercetools-uikit/spacings';
 
 export type Props = {
   imageSrc: string;
-  title: React.ReactNode;
+  title: ReactNode;
   label?: string;
-  paragraph1: React.ReactNode;
-  paragraph2?: React.ReactNode;
-  bodyContent?: React.ReactNode;
+  paragraph1: ReactNode;
+  paragraph2?: ReactNode;
+  bodyContent?: ReactNode;
   children?: never;
 };
 

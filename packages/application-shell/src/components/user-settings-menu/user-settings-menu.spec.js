@@ -1,4 +1,3 @@
-import React from 'react';
 import upperFirst from 'lodash/upperFirst';
 import {
   LOGOUT_REASONS,

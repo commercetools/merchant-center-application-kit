@@ -1,4 +1,3 @@
-import React from 'react';
 import Text from '@commercetools-uikit/text';
 import Spacings from '@commercetools-uikit/spacings';
 import { InfoDialog } from '@commercetools-frontend/application-components';
@@ -11,7 +10,7 @@ type ContainerProps = {
 } & Partial<Parameters<typeof InfoDialog>[0]>;
 
 const InfoDialogExample = (props: ContainerProps) => (
-  <React.Fragment>
+  <>
     <div id={props.portalId} style={{ flex: 1 }} />
     <InfoDialog
       title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
@@ -31,7 +30,7 @@ const InfoDialogExample = (props: ContainerProps) => (
         </Text.Body>
       </Spacings.Stack>
     </InfoDialog>
-  </React.Fragment>
+  </>
 );
 InfoDialogExample.displayName = 'InfoDialogExample';
 

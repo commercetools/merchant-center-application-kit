@@ -1,4 +1,4 @@
-import React from 'react';
+import { SyntheticEvent, ReactNode, ReactElement } from 'react';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import ModalPage from '../internals/modal-page';
 import ModalPageHeader from '../internals/modal-page-header';
@@ -23,8 +23,8 @@ type Props = {
   level?: number;
   title: string;
   isOpen: boolean;
-  onClose?: (event: React.SyntheticEvent) => void;
-  children: React.ReactNode;
+  onClose?: (event: SyntheticEvent) => void;
+  children: ReactNode;
   zIndex?: number;
   baseZIndex?: number;
   getParentSelector?: () => HTMLElement;
@@ -33,9 +33,9 @@ type Props = {
   topBarCurrentPathLabel?: string;
   topBarPreviousPathLabel?: Label;
   // Header Props
-  subtitle?: string | React.ReactElement;
+  subtitle?: string | ReactElement;
   // Controls Props
-  formControls?: React.ReactNode;
+  formControls?: ReactNode;
   hideControls?: boolean;
 };
 

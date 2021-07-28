@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode, useCallback, useState } from 'react';
 import { STORAGE_KEYS } from '../../constants';
 
 type RenderFnArgs = {
@@ -7,7 +7,7 @@ type RenderFnArgs = {
 };
 type Props = {
   locales: string[];
-  children: (args: RenderFnArgs) => React.ReactNode;
+  children: (args: RenderFnArgs) => ReactNode;
 };
 
 const getSelectedDataLocaleForProject = (projectLocales: Props['locales']) => {
@@ -31,10 +31,10 @@ const getSelectedDataLocaleForProject = (projectLocales: Props['locales']) => {
 };
 
 const ProjectDataLocale = (props: Props) => {
-  const [locale, setLocale] = React.useState(
+  const [locale, setLocale] = useState(
     getSelectedDataLocaleForProject(props.locales)
   );
-  const handleSetProjectDataLocale = React.useCallback((locale) => {
+  const handleSetProjectDataLocale = useCallback((locale) => {
     setLocale(locale);
     // Cache it
     window.localStorage.setItem(STORAGE_KEYS.SELECTED_DATA_LOCALE, locale);

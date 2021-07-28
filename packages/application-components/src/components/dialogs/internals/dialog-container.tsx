@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode, SyntheticEvent } from 'react';
 import Modal from 'react-modal';
 import { css, ClassNames } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -29,11 +29,11 @@ const getDefaultParentSelector = () =>
 
 type Props = {
   isOpen: boolean;
-  onClose?: (event: React.SyntheticEvent) => void;
+  onClose?: (event: SyntheticEvent) => void;
   size: 'm' | 'l' | 7 | 8 | 9 | 10 | 'scale';
   zIndex: number;
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
   getParentSelector: typeof getDefaultParentSelector;
 };
 const defaultProps: Pick<Props, 'size' | 'zIndex' | 'getParentSelector'> = {

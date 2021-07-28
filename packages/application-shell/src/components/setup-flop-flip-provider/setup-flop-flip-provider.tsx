@@ -4,7 +4,7 @@ import type {
   TFetchLoggedInUserQuery,
 } from '../../types/generated/mc';
 
-import React from 'react';
+import { ReactNode, useMemo } from 'react';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
 import httpAdapter from '@flopflip/http-adapter';
@@ -22,7 +22,7 @@ type Props = {
   flags?: TFlags;
   defaultFlags?: TFlags;
   ldClientSideId?: string;
-  children: React.ReactNode;
+  children: ReactNode;
   shouldDeferAdapterConfiguration?: boolean;
 };
 
@@ -87,7 +87,7 @@ export const SetupFlopFlipProvider = (props: Props) => {
     (context) => context.environment.enableLongLivedFeatureFlags
   );
   const allMenuFeatureToggles = useAllMenuFeatureToggles();
-  const flags = React.useMemo(
+  const flags = useMemo(
     () => ({
       ...FLAGS,
       ...allMenuFeatureToggles.allFeatureToggles,
@@ -95,7 +95,7 @@ export const SetupFlopFlipProvider = (props: Props) => {
     }),
     [allMenuFeatureToggles.allFeatureToggles, props.flags]
   );
-  React.useMemo(() => {
+  useMemo(() => {
     if (enableLongLivedFeatureFlags) {
       combineAdapters.combine([ldAdapter, httpAdapter]);
     } else {
@@ -103,7 +103,7 @@ export const SetupFlopFlipProvider = (props: Props) => {
     }
   }, [enableLongLivedFeatureFlags]);
 
-  const defaultFlags = React.useMemo(
+  const defaultFlags = useMemo(
     () => ({
       ...FLAGS,
       ...allMenuFeatureToggles.allFeatureToggles,
@@ -112,7 +112,7 @@ export const SetupFlopFlipProvider = (props: Props) => {
     [allMenuFeatureToggles.allFeatureToggles, props.defaultFlags]
   );
 
-  const adapterArgs = React.useMemo(
+  const adapterArgs = useMemo(
     () => ({
       user: {
         key: props.user?.id,

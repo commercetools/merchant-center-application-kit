@@ -1,4 +1,4 @@
-import React from 'react';
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import * as gtm from '../../utils/gtm';
 import ErrorBoundary from '../error-boundary';
 import trackingEvents from './tracking-events';
@@ -9,16 +9,16 @@ type Props = {
   onChangeProjectDataLocale?: (locale: string) => void;
 };
 
-const QuickAccess = React.lazy(
+const QuickAccess = lazy(
   () => import('./quick-access' /* webpackChunkName: "quick-access" */)
 );
 
 const QuickAccessTrigger = (props: Props) => {
-  const [isVisible, setIsVisible] = React.useState(false);
-  const open = React.useCallback(() => {
+  const [isVisible, setIsVisible] = useState(false);
+  const open = useCallback(() => {
     setIsVisible(true);
   }, []);
-  const close = React.useCallback(() => {
+  const close = useCallback(() => {
     setIsVisible(false);
   }, []);
   // We store the information of whether a project is indexed by pim-indexer,
@@ -31,16 +31,13 @@ const QuickAccessTrigger = (props: Props) => {
   //
   // We don't need to update this information when the project key changes,
   // as changing a project always results in a full page reload anyways.
-  const [pimIndexerState, setPimIndexerState] = React.useState(
+  const [pimIndexerState, setPimIndexerState] = useState(
     pimIndexerStates.UNCHECKED
   );
-  const handlePimIndexerStateChange = React.useCallback(
-    (nextPimIndexerState) => {
-      setPimIndexerState(nextPimIndexerState);
-    },
-    []
-  );
-  const keyHandler = React.useCallback(
+  const handlePimIndexerStateChange = useCallback((nextPimIndexerState) => {
+    setPimIndexerState(nextPimIndexerState);
+  }, []);
+  const keyHandler = useCallback(
     (event) => {
       const hotKey = 'f';
       // avoid interfering with any key combinations using modifier keys
@@ -94,7 +91,7 @@ const QuickAccessTrigger = (props: Props) => {
     },
     [close, isVisible, open]
   );
-  React.useEffect(() => {
+  useEffect(() => {
     document.addEventListener('keydown', keyHandler);
     return () => {
       document.removeEventListener('keydown', keyHandler);
@@ -105,14 +102,14 @@ const QuickAccessTrigger = (props: Props) => {
 
   return (
     <ErrorBoundary>
-      <React.Suspense fallback={<ButlerContainer tabIndex={-1} />}>
+      <Suspense fallback={<ButlerContainer tabIndex={-1} />}>
         <QuickAccess
           pimIndexerState={pimIndexerState}
           onPimIndexerStateChange={handlePimIndexerStateChange}
           onClose={close}
           onChangeProjectDataLocale={props.onChangeProjectDataLocale}
         />
-      </React.Suspense>
+      </Suspense>
     </ErrorBoundary>
   );
 };

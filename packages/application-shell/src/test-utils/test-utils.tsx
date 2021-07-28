@@ -4,7 +4,13 @@ import type { TProviderProps } from '@commercetools-frontend/application-shell-c
 import type { TMapNotificationToComponentProps } from '@commercetools-frontend/react-notifications';
 import type { TSdkMock } from '@commercetools-frontend/sdk/test-utils';
 
-import React from 'react';
+import {
+  ComponentType,
+  createElement,
+  ReactElement,
+  ReactNode,
+  Suspense,
+} from 'react';
 import PropTypes from 'prop-types';
 import { Router } from 'react-router-dom';
 import invariant from 'tiny-invariant';
@@ -206,16 +212,14 @@ const denormalizeDataFences = (dataFences?: TNormalizedDataFences) => {
   );
 };
 
-const wrapIfNeeded = (
-  children: React.ReactNode,
-  wrapper?: React.ComponentType
-) => (wrapper ? React.createElement(wrapper, null, children) : children);
+const wrapIfNeeded = (children: ReactNode, wrapper?: ComponentType) =>
+  wrapper ? createElement(wrapper, null, children) : children;
 
 type TApolloProviderWrapperProps = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;
   mocks: ReadonlyArray<MockedResponse>;
   disableApolloMocks: boolean;
-  children: React.ReactElement;
+  children: ReactElement;
 };
 const ApolloProviderWrapper = (props: TApolloProviderWrapperProps) => {
   const apolloClient = props.apolloClient ?? createApolloClient();
@@ -337,7 +341,7 @@ type TRenderAppResult<AdditionalEnvironmentProperties = {}> = rtl.RenderResult &
     'history' | 'user' | 'project' | 'environment'
   >;
 type TApplicationProvidersProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
@@ -413,7 +417,7 @@ function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
             projectDataLocale={dataLocale}
           >
             <Router history={history}>
-              <React.Suspense fallback={<LoadingFallback />}>
+              <Suspense fallback={<LoadingFallback />}>
                 <ApplicationEntryPoint
                   environment={mergedEnvironment}
                   render={
@@ -428,7 +432,7 @@ function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
                     : // eslint-disable-next-line testing-library/no-node-access
                       props.children}
                 </ApplicationEntryPoint>
-              </React.Suspense>
+              </Suspense>
             </Router>
           </ApplicationContextProvider>
         </TestProviderFlopFlip>
@@ -451,7 +455,7 @@ function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
 // Inspired by
 // https://github.com/kentcdodds/react-testing-library-course/blob/2a5b1560656790bb1d9c055fba3845780b2c2c97/src/__tests__/react-router-03.js
 function renderApp<AdditionalEnvironmentProperties = {}>(
-  ui: React.ReactElement,
+  ui: ReactElement,
   options: Partial<TRenderAppOptions<AdditionalEnvironmentProperties>> = {}
 ): TRenderAppResult<AdditionalEnvironmentProperties> {
   const {
@@ -574,7 +578,7 @@ function createReduxProviders<
     return createReduxStore(storeState, [testingMiddleware]);
   })();
 
-  const ReduxProviders = (props: { children: React.ReactNode }) => (
+  const ReduxProviders = (props: { children: ReactNode }) => (
     <NotificationProviderForCustomComponent
       mapNotificationToComponent={mapNotificationToComponent}
     >
@@ -606,7 +610,7 @@ function renderAppWithRedux<
   AdditionalEnvironmentProperties = {},
   StoreState = {}
 >(
-  ui: React.ReactElement,
+  ui: ReactElement,
   options: Partial<
     TRenderAppWithReduxOptions<AdditionalEnvironmentProperties, StoreState>
   > = {}

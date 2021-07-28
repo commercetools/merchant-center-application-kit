@@ -1,4 +1,3 @@
-import React from 'react';
 import { InfoModalPage } from '@commercetools-frontend/application-components';
 import Text from '@commercetools-uikit/text';
 import LayoutApp from '../layouts/layout-app';

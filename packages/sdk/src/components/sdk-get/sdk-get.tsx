@@ -2,7 +2,7 @@ import type { ThunkDispatch } from 'redux-thunk';
 import type { SuccessResult, HttpErrorType } from '@commercetools/sdk-client';
 import type { TSdkAction } from '../../types';
 
-import React from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
 import { deepEqual } from 'fast-equals';
 
@@ -41,7 +41,7 @@ type OwnProps = {
 export type Props = DispatchProps & OwnProps;
 type StaticErrorHandler = (error: TSdkError) => void;
 
-export class SdkGet extends React.Component<Props, State> {
+export class SdkGet extends Component<Props, State> {
   static displayName = 'SdkGet';
   static errorHandler: StaticErrorHandler = (error: TSdkError) => {
     throw error;

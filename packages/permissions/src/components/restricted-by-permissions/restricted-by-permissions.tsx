@@ -4,13 +4,12 @@ import type {
   TNormalizedDataFences,
 } from '@commercetools-frontend/application-shell-connectors';
 
-import React from 'react';
+import { ReactNode, Children, ComponentType, createElement } from 'react';
 import invariant from 'tiny-invariant';
 import isNil from 'lodash/isNil';
 import Authorized from '../authorized';
 
-const getHasChildren = (children: React.ReactNode) =>
-  React.Children.count(children) > 0;
+const getHasChildren = (children: ReactNode) => Children.count(children) > 0;
 
 // Permissions
 type TPermissionName = string;
@@ -37,7 +36,7 @@ type TProjectPermissions = {
   actionRights: TNormalizedActionRights | null;
   dataFences: TNormalizedDataFences | null;
 };
-type TRenderProp = (props: { isAuthorized: boolean }) => React.ReactNode;
+type TRenderProp = (props: { isAuthorized: boolean }) => ReactNode;
 
 type Props = {
   shouldMatchSomePermissions?: boolean;
@@ -45,10 +44,10 @@ type Props = {
   actionRights?: TDemandedActionRight[];
   dataFences?: TDemandedDataFence[];
   selectDataFenceData?: TSelectDataFenceData;
-  unauthorizedComponent?: React.ComponentType;
+  unauthorizedComponent?: ComponentType;
   projectPermissions?: TProjectPermissions;
   render?: TRenderProp;
-  children?: TRenderProp | React.ReactNode;
+  children?: TRenderProp | ReactNode;
 };
 
 const RestrictedByPermissions = (props: Props) => {
@@ -79,10 +78,10 @@ const RestrictedByPermissions = (props: Props) => {
 
         if (isAuthorized) {
           if (props.children && getHasChildren(props.children))
-            return React.Children.only(props.children);
+            return Children.only(props.children);
         } else if (!isAuthorized) {
           if (props.unauthorizedComponent) {
-            return React.createElement(props.unauthorizedComponent);
+            return createElement(props.unauthorizedComponent);
           }
         }
 

@@ -5,7 +5,7 @@ import type {
   TFetchApplicationsMenuQuery,
 } from '../../types/generated/proxy';
 
-import React from 'react';
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useIntl, FormattedMessage } from 'react-intl';
 import { css } from '@emotion/react';
@@ -38,7 +38,7 @@ type MenuBodyProps = Props & {
 };
 type OptionalFeatureToggleProps = {
   featureToggle?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 type MenuItemProps = {
   hasDivider?: boolean;
@@ -48,11 +48,11 @@ type MenuConfig = TFetchApplicationsMenuQuery['applicationsMenu']['appBar'][0];
 const UserAvatar = (
   props: Pick<Props, 'firstName' | 'lastName' | 'gravatarHash'>
 ) => {
-  const [isMouseOver, setIsMouseOver] = React.useState(false);
-  const handleMouseOver = React.useCallback(() => {
+  const [isMouseOver, setIsMouseOver] = useState(false);
+  const handleMouseOver = useCallback(() => {
     setIsMouseOver(true);
   }, []);
-  const handleMouseOut = React.useCallback(() => {
+  const handleMouseOut = useCallback(() => {
     setIsMouseOver(false);
   }, []);
   return (
@@ -137,8 +137,8 @@ const getUserSettingsMenuItemLinkStyles = () => css`
 
 const UserSettingsMenuBody = (props: MenuBodyProps) => {
   // Focus on a menu item when it's opened through keyboard
-  const menuElementRef = React.useRef<HTMLAnchorElement>(null);
-  React.useEffect(() => {
+  const menuElementRef = useRef<HTMLAnchorElement>(null);
+  useEffect(() => {
     menuElementRef.current?.focus();
   }, []);
 

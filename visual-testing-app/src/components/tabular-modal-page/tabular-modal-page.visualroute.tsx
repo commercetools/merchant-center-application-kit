@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from '@emotion/styled';
 import Text from '@commercetools-uikit/text';
 import TextInput from '@commercetools-uikit/text-input';
@@ -98,11 +97,11 @@ export const Component = () => (
       <ModalPageWithPortalParentSelector
         portalId="tabular-modal-page-default-controls"
         formControls={
-          <React.Fragment>
+          <>
             <TabularModalPage.FormSecondaryButton onClick={() => undefined} />
             <TabularModalPage.FormPrimaryButton onClick={() => undefined} />
             <TabularModalPage.FormDeleteButton onClick={() => undefined} />
-          </React.Fragment>
+          </>
         }
       >
         <Content />
@@ -111,7 +110,7 @@ export const Component = () => (
     <Spec label="TabularModalPage - with other custom controls" size="xl">
       <ModalPageWithPortalParentSelector
         formControls={
-          <React.Fragment>
+          <>
             <IconButton
               label="SearchIcon"
               icon={<SearchIcon />}
@@ -127,7 +126,7 @@ export const Component = () => (
               icon={<BinLinearIcon />}
               onClick={() => undefined}
             />
-          </React.Fragment>
+          </>
         }
         portalId="tabular-modal-page-custom-controls"
       >
@@ -190,11 +189,11 @@ export const Component = () => (
           </Spacings.Inline>
         }
         formControls={
-          <React.Fragment>
+          <>
             <TabularModalPage.FormSecondaryButton onClick={() => undefined} />
             <TabularModalPage.FormPrimaryButton onClick={() => undefined} />
             <TabularModalPage.FormDeleteButton onClick={() => undefined} />
-          </React.Fragment>
+          </>
         }
         portalId="tabular-modal-page-custom-title-row-default-controls"
       >
@@ -204,11 +203,11 @@ export const Component = () => (
     <Spec label="TabularModalPage - with hidden controls" size="xl">
       <ModalPageWithPortalParentSelector
         formControls={
-          <React.Fragment>
+          <>
             <TabularModalPage.FormSecondaryButton onClick={() => undefined} />
             <TabularModalPage.FormPrimaryButton onClick={() => undefined} />
             <TabularModalPage.FormDeleteButton onClick={() => undefined} />
-          </React.Fragment>
+          </>
         }
         hideControls={true}
         portalId="tabular-modal-page-hidden-controls"

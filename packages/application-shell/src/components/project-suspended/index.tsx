@@ -1,6 +1,6 @@
-import React from 'react';
+import { lazy } from 'react';
 
-const ProjectSuspended = React.lazy(
+const ProjectSuspended = lazy(
   () =>
     import('./project-suspended' /* webpackChunkName: "project-suspended" */)
 );

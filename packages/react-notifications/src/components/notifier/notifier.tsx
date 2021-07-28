@@ -3,7 +3,7 @@ import type {
   TAppNotificationKind,
 } from '@commercetools-frontend/constants';
 
-import React from 'react';
+import { useEffect } from 'react';
 import isNumber from 'lodash/isNumber';
 import { useShowNotification } from '@commercetools-frontend/actions-global';
 import {
@@ -26,7 +26,7 @@ const defaultProps: Pick<Props, 'domain' | 'kind'> = {
 const Notifier = (props: Props) => {
   const showNotification = useShowNotification<Props & { id: number }>();
 
-  React.useEffect(() => {
+  useEffect(() => {
     const notification = showNotification(
       {
         id: 0,

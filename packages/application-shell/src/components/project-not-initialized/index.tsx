@@ -1,6 +1,6 @@
-import React from 'react';
+import { lazy } from 'react';
 
-const ProjectNotInitialized = React.lazy(
+const ProjectNotInitialized = lazy(
   () =>
     import(
       './project-not-initialized' /* webpackChunkName: "project-not-initialized" */

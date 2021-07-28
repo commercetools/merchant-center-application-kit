@@ -1,4 +1,4 @@
-import React from 'react';
+import { ComponentType, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 interface ApplicationWindow extends Window {
@@ -8,7 +8,7 @@ declare let window: ApplicationWindow;
 
 type TVisualRouteSpec = {
   routePath: string;
-  Component: React.ComponentType;
+  Component: ComponentType;
 };
 
 const visualRoutesContext = require.context(
@@ -38,7 +38,7 @@ const hideAppLoader = () => {
 };
 
 const App = () => {
-  React.useEffect(() => {
+  useEffect(() => {
     hideAppLoader();
   }, []);
   return (

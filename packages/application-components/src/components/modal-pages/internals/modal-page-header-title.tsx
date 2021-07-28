@@ -1,4 +1,4 @@
-import React from 'react';
+import { isValidElement, ReactElement } from 'react';
 import { customProperties } from '@commercetools-uikit/design-system';
 import Text from '@commercetools-uikit/text';
 import { css } from '@emotion/react';
@@ -7,7 +7,7 @@ import styled from '@emotion/styled';
 type Props = {
   title: string;
   titleSize: 'big' | 'small';
-  subtitle?: string | React.ReactElement;
+  subtitle?: string | ReactElement;
   children?: never;
 };
 const defaultProps: Pick<Props, 'titleSize'> = {
@@ -41,7 +41,7 @@ const renderSubtitle = (subtitle?: Props['subtitle']) => {
   if (!subtitle) {
     return null;
   }
-  if (React.isValidElement(subtitle)) {
+  if (isValidElement(subtitle)) {
     return <SubtitleWrapper>{subtitle}</SubtitleWrapper>;
   }
   return (

@@ -4,7 +4,7 @@ import type {
   TImageRegexOptions,
 } from '../../types/generated/settings';
 
-import React from 'react';
+import { ComponentType, createContext, ReactNode } from 'react';
 import { useQuery } from '@apollo/client/react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
@@ -20,14 +20,14 @@ export type TImageRegexContext = {
 };
 type ProviderProps = {
   skip?: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 type ConsumerProps = {
-  render: (imageRegex: TImageRegexContext) => React.ReactNode;
+  render: (imageRegex: TImageRegexContext) => ReactNode;
   children?: never;
 };
 
-const Context = React.createContext<TImageRegexContext>({ isLoading: false });
+const Context = createContext<TImageRegexContext>({ isLoading: false });
 
 const ProjectExtensionProviderForImageRegex = (props: ProviderProps) => {
   const { loading, data } = useQuery<
@@ -64,7 +64,7 @@ GetProjectExtensionImageRegex.displayName = 'GetProjectExtensionImageRegex';
 function withProjectExtensionImageRegex<Props extends {}>(
   propKey = 'imageRegexData'
 ) {
-  return (Component: React.ComponentType<Props>) => {
+  return (Component: ComponentType<Props>) => {
     const WrappedComponent = (props: Props) => (
       <GetProjectExtensionImageRegex
         render={(imageRegexData) => (

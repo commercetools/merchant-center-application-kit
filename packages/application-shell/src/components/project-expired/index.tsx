@@ -1,6 +1,6 @@
-import React from 'react';
+import { lazy } from 'react';
 
-const ProjectExpired = React.lazy(
+const ProjectExpired = lazy(
   () => import('./project-expired' /* webpackChunkName: "project-expired" */)
 );
 

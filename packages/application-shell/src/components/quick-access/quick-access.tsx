@@ -1,7 +1,7 @@
 import type { TQuickAccessQuery } from '../../types/generated/ctp';
 import type { ExecGraphQlQuery, Command, HistoryEntry } from './types';
 
-import React from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useFeatureToggles } from '@flopflip/react-broadcast';
 import { useApolloClient } from '@apollo/client/react';
@@ -97,10 +97,8 @@ type Props = {
 };
 
 const QuickAccess = (props: Props) => {
-  const [historyEntries, setHistoryEntries] = React.useState(
-    loadHistoryEntries()
-  );
-  const handleHistoryEntriesChange = React.useCallback<
+  const [historyEntries, setHistoryEntries] = useState(loadHistoryEntries());
+  const handleHistoryEntriesChange = useCallback<
     (historyEntries: HistoryEntry[]) => void
   >((entries) => {
     // Keep the history in sync with the session storage
@@ -128,7 +126,7 @@ const QuickAccess = (props: Props) => {
     ReturnType<typeof searchProductIdsAction>,
     FetchProductIdsResult
   >();
-  const fetchPimSearchProductIds = React.useCallback<
+  const fetchPimSearchProductIds = useCallback<
     (searchText: string) => Promise<string[]>
   >(
     async (searchText) => {
@@ -155,7 +153,7 @@ const QuickAccess = (props: Props) => {
     ReturnType<typeof pimIndexerStatusAction>,
     unknown
   >();
-  const fetchPimIndexerStatus = React.useCallback<
+  const fetchPimIndexerStatus = useCallback<
     () => Promise<
       | typeof pimIndexerStates['INDEXED']
       | typeof pimIndexerStates['NOT_INDEXED']
@@ -186,7 +184,7 @@ const QuickAccess = (props: Props) => {
     dispatchFetchPimIndexerStatus,
   ]);
 
-  const getProjectIndexStatus = React.useCallback(async () => {
+  const getProjectIndexStatus = useCallback(async () => {
     // skip when there is no project
     if (!applicationContext.project) return pimIndexerStates.NOT_INDEXED;
 
@@ -205,7 +203,7 @@ const QuickAccess = (props: Props) => {
     fetchPimIndexerStatus,
   ]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (props.pimIndexerState === pimIndexerStates.UNCHECKED) {
       getProjectIndexStatus().then((status) => {
         onPimIndexerStateChangeFromParent(status);
@@ -214,7 +212,7 @@ const QuickAccess = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // <-- run only once, when component mounts
 
-  const execQuery = React.useCallback<ExecGraphQlQuery>(
+  const execQuery = useCallback<ExecGraphQlQuery>(
     (Query, variables, context) =>
       apolloClient
         .query({
@@ -227,9 +225,7 @@ const QuickAccess = (props: Props) => {
     [apolloClient]
   );
 
-  const getNextCommands = React.useCallback<
-    (command: Command) => Promise<Command[]>
-  >(
+  const getNextCommands = useCallback<(command: Command) => Promise<Command[]>>(
     async (command) => {
       if (!command.subCommands) return [];
       if (Array.isArray(command.subCommands)) return command.subCommands;
@@ -238,7 +234,7 @@ const QuickAccess = (props: Props) => {
     [execQuery]
   );
 
-  const getProjectCommands = React.useCallback<
+  const getProjectCommands = useCallback<
     (searchText: string) => Promise<Command[]>
   >(
     async (searchText) => {
@@ -442,7 +438,7 @@ const QuickAccess = (props: Props) => {
     cancelObj: 'canceled',
   });
 
-  const search = React.useCallback<(searchText: string) => Promise<Command[]>>(
+  const search = useCallback<(searchText: string) => Promise<Command[]>>(
     async (searchText) => {
       const generalCommands = createCommands({
         applicationContext,
@@ -487,7 +483,7 @@ const QuickAccess = (props: Props) => {
     ]
   );
 
-  const executeCommand = React.useCallback<
+  const executeCommand = useCallback<
     (command: Command, meta: { openInNewTab: boolean }) => void
   >(
     (command, meta) => {

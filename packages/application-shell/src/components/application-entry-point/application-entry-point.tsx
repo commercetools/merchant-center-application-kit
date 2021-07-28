@@ -1,6 +1,6 @@
 import type { TProviderProps } from '@commercetools-frontend/application-shell-connectors';
 
-import React from 'react';
+import { Children, ReactNode } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 import RouteCatchAll from '../route-catch-all';
@@ -8,7 +8,7 @@ import RouteCatchAll from '../route-catch-all';
 type Props<AdditionalEnvironmentProperties extends {}> = {
   environment: TProviderProps<AdditionalEnvironmentProperties>['environment'];
   render?: () => JSX.Element;
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
 const ApplicationEntryPoint = <AdditionalEnvironmentProperties extends {}>(
@@ -33,7 +33,7 @@ const ApplicationEntryPoint = <AdditionalEnvironmentProperties extends {}>(
           )
         }
         <Route path={`/:projectKey/${entryPointUriPath}`}>
-          {React.Children.only<React.ReactNode>(props.children)}
+          {Children.only<ReactNode>(props.children)}
         </Route>
         {/* Catch-all route */}
         <RouteCatchAll />

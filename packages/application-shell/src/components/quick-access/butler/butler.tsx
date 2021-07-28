@@ -6,12 +6,15 @@ import type {
   HistoryEntry,
 } from '../types';
 
-import React, {
+import {
   KeyboardEventHandler,
   ChangeEventHandler,
   KeyboardEvent,
   MouseEventHandler,
   MouseEvent,
+  useReducer,
+  useRef,
+  useCallback,
 } from 'react';
 import Fuse from 'fuse.js';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -217,26 +220,26 @@ type Props = {
 };
 const Butler = (props: Props) => {
   const intl = useIntl();
-  const [state, dispatch] = React.useReducer<
+  const [state, dispatch] = useReducer<
     (prevState: State, action: Action) => State
   >(reducer, initialState);
 
-  const shouldSelectFieldText = React.useRef(false);
-  const isNewWindowCombo = React.useRef(false);
-  const skipNextSelection = React.useRef(false);
-  const searchContainerRef = React.useRef<HTMLDivElement>(null);
-  const searchInputRef = React.useRef<HTMLInputElement>(null);
+  const shouldSelectFieldText = useRef(false);
+  const isNewWindowCombo = useRef(false);
+  const skipNextSelection = useRef(false);
+  const searchContainerRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
-  const setHasNetworkError = React.useCallback(() => {
+  const setHasNetworkError = useCallback(() => {
     dispatch({ type: 'networkError', payload: true });
   }, []);
-  const unsetHasNetworkError = React.useCallback(() => {
+  const unsetHasNetworkError = useCallback(() => {
     dispatch({ type: 'networkError', payload: false });
   }, []);
-  const setIsLoading = React.useCallback(() => {
+  const setIsLoading = useCallback(() => {
     dispatch({ type: 'loading', payload: true });
   }, []);
-  const unsetIsLoading = React.useCallback(() => {
+  const unsetIsLoading = useCallback(() => {
     dispatch({ type: 'loading', payload: false });
   }, []);
 
@@ -249,7 +252,7 @@ const Butler = (props: Props) => {
     getNextCommands: getNextCommandsFromParent,
   } = props;
 
-  const shake = React.useCallback(() => {
+  const shake = useCallback(() => {
     if (searchContainerRef.current) {
       searchContainerRef.current.classList.remove(
         props.classNameShakeAnimation
@@ -261,7 +264,7 @@ const Butler = (props: Props) => {
     }
   }, [props.classNameShakeAnimation]);
 
-  const execute = React.useCallback(
+  const execute = useCallback(
     (command, meta) => {
       // Only main entries get added to history, so when a subcommand is executed,
       // we add the main command of it to the history (the top-level command).
@@ -306,9 +309,7 @@ const Butler = (props: Props) => {
       state.stack,
     ]
   );
-  const handleKeyDown = React.useCallback<
-    KeyboardEventHandler<HTMLInputElement>
-  >(
+  const handleKeyDown = useCallback<KeyboardEventHandler<HTMLInputElement>>(
     (event) => {
       // Preventing cursor jumps can only happen in onKeyDown, but not in onKeyUp
       event.persist();
@@ -466,7 +467,7 @@ const Butler = (props: Props) => {
       unsetHasNetworkError,
     ]
   );
-  const handleKeyUp = React.useCallback<KeyboardEventHandler<HTMLInputElement>>(
+  const handleKeyUp = useCallback<KeyboardEventHandler<HTMLInputElement>>(
     (event) => {
       // setting the selection can only happen in onKeyUp
       if (shouldSelectFieldText.current) {
@@ -491,7 +492,7 @@ const Butler = (props: Props) => {
     },
     [execute, state.results, state.selectedResult]
   );
-  const handleChange = React.useCallback<ChangeEventHandler<HTMLInputElement>>(
+  const handleChange = useCallback<ChangeEventHandler<HTMLInputElement>>(
     (event) => {
       const searchText = event.target.value;
       if (searchText.trim().length === 0) {
@@ -550,12 +551,12 @@ const Butler = (props: Props) => {
       unsetIsLoading,
     ]
   );
-  const handleContainerClick = React.useCallback(() => {
+  const handleContainerClick = useCallback(() => {
     dispatch({ type: 'resetResultsWhenClosing' });
     onCloseFromParent();
   }, [onCloseFromParent]);
 
-  const createCommandMouseEnterHandler = React.useCallback<
+  const createCommandMouseEnterHandler = useCallback<
     (index: number) => MouseEventHandler<HTMLDivElement>
   >(
     (index) => () => {
@@ -576,7 +577,7 @@ const Butler = (props: Props) => {
     },
     []
   );
-  const createCommandClickHandler = React.useCallback<
+  const createCommandClickHandler = useCallback<
     (command: Command) => MouseEventHandler<HTMLDivElement>
   >(
     (command) => (event) => {

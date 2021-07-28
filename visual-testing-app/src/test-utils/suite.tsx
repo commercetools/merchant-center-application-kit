@@ -1,9 +1,9 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import { IntlProvider } from 'react-intl';
 
 type Props = {
   locale: string;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 const defaultProps: Pick<Props, 'locale'> = {
   locale: 'en',

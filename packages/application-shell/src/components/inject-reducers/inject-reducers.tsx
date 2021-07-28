@@ -1,14 +1,14 @@
 import type { ReducersMapObject } from 'redux';
 import type { TEnhancedStore } from '../../configure-store';
 
-import React from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { useStore } from 'react-redux';
 
 type Props = {
   id: string;
   reducers: ReducersMapObject;
   shouldCleanUpOnUnmount: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 const defaultProps: Pick<Props, 'shouldCleanUpOnUnmount'> = {
@@ -16,10 +16,10 @@ const defaultProps: Pick<Props, 'shouldCleanUpOnUnmount'> = {
 };
 
 const InjectReducers = (props: Props) => {
-  const [areReducersInjected, setAreReducersInjected] = React.useState(false);
+  const [areReducersInjected, setAreReducersInjected] = useState(false);
   const store = useStore() as TEnhancedStore;
 
-  React.useEffect(() => {
+  useEffect(() => {
     store.injectReducers({
       id: props.id,
       reducers: props.reducers,

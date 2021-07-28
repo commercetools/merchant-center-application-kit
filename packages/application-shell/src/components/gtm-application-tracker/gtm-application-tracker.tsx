@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 import * as gtm from '../../utils/gtm';
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 };
 
 const GtmApplicationTracker = (props: Props) => {
-  React.useEffect(() => {
+  useEffect(() => {
     gtm.trackApplicationName(props.applicationName);
     gtm.trackProjectKey(props.projectKey);
     gtm.trackUserBusinessRole(props.userBusinessRole);

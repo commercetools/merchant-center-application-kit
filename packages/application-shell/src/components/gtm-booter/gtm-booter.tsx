@@ -1,4 +1,4 @@
-import React from 'react';
+import { createContext, ReactNode, useEffect } from 'react';
 import * as gtm from '../../utils/gtm';
 import defaultTrackingEventList from '../../tracking-event-list';
 
@@ -9,10 +9,10 @@ export type Props = {
   trackingEventList: {
     [key: string]: string | TGtmTrackingEventList;
   };
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
-// Expose a React.Context with the tracking functions.
+// Expose a Context with the tracking functions.
 // This context can be used by consumers to access the values by either:
 // 1. using `<GtmContext.Consumer>`
 // 2. `static contextType = GtmContext;`
@@ -20,14 +20,14 @@ export type Props = {
 // fall back to the default value defined, when the context was created,
 // in case the component does not have a matching Provider above in the tree.
 // https://reactjs.org/docs/context.html#reactcreatecontext
-export const GtmContext = React.createContext({
+export const GtmContext = createContext({
   track: gtm.track,
   getHierarchy: gtm.getHierarchy,
   trackUserBusinessRole: gtm.trackUserBusinessRole,
 });
 
 const GtmBooter = (props: Props) => {
-  React.useEffect(() => {
+  useEffect(() => {
     // We don't need any user data to start using GTM, for example for
     // tracking page views and flows when the user is not logged in.
     gtm.boot({

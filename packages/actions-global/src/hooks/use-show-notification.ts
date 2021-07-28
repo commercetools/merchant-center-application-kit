@@ -1,7 +1,7 @@
 import type { TNotificationMetaOptions } from '@commercetools-frontend/notifications';
 import type { TShowNotification } from '../types';
 
-import React from 'react';
+import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { showNotification } from '../actions';
 
@@ -18,7 +18,7 @@ export default function useShowNotification<
   // FIXME: remove the `notificationFragment`, it makes the typing unnecessarily complex
 >(notificationFragment?: Partial<Notification>) {
   const dispatch = useDispatch();
-  return React.useCallback(
+  return useCallback(
     (content: Notification, meta?: TNotificationMetaOptions) => {
       const notification = showNotification<Notification>(
         { ...notificationFragment, ...content },
