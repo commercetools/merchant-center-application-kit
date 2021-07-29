@@ -22,7 +22,7 @@ const RedirectToLogout = (props: Props) => {
     (context) => context.environment.servedByProxy
   );
 
-  if (window.app.__DEVELOPMENT__) {
+  if (window.app.__DEVELOPMENT__?.oidc?.authorizeUrl) {
     // Remove the `sessionToken` from storage, so that the AppShell can initiate
     // a new authorization flow.
     oidcStorage.clearSession();

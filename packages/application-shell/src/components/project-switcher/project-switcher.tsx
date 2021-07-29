@@ -175,7 +175,7 @@ const ProjectSwitcher = (props: Props) => {
         onChange={(event) => {
           const selectedProjectKey = event.target.value;
           if (selectedProjectKey !== props.projectKey) {
-            if (window.app.__DEVELOPMENT__) {
+            if (window.app.__DEVELOPMENT__?.oidc?.authorizeUrl) {
               oidcStorage.setActiveProjectKey(selectedProjectKey);
             }
 

@@ -3,7 +3,7 @@
  *  Allows env variable placeholders e.g. `${env:MC_API_URL}`.
  *  Other placeholder types might be supported in the future.
  */
-const variableSyntax = /\${([ ~:a-zA-Z0-9._\'",\-\/\(\)]+?)}/g;
+const variableSyntax = /\${([ ~:\w.'",\-/()@]+?)}/g;
 const envRefSyntax = /^env:/g;
 
 const hasVariablePlaceholder = (valueOfEnvConfig) =>

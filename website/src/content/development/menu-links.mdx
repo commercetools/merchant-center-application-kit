@@ -12,7 +12,15 @@ Additionally, links to Custom Applications are also fetched dynamically, based o
 # Links for local development
 
 However, when developing a Custom Application locally, we can't fetch any configuration dynamically. This is because only one application is running locally and therefore links to other applications are pretty much useless.
-Therefore, in development only the application links should be rendered. To do so, you need to configure the links in the `menu.json`. The file is then loaded through a special prop that is only available in `development` mode.
+
+Therefore, in development only links of the Custom Application should be rendered. This can be done using one of the following approaches:
+
+* Via the `menu.json` file. This is the default approach.
+* Via the [Application Config](/development/application-config#menulinks). This is a new opt-in approach, available from version `>= 20.8.0`.
+
+## Menu links in menu.json
+
+Configure the menu links in a `menu.json` file. The file then should be loaded through a special prop `DEV_ONLY__loadNavbarMenuConfig` that is only available in `development` mode.
 
 ```jsx
 // entry-point.js
@@ -33,27 +41,14 @@ The `menu.json` is only used for development. For production usage, the configur
 
 </Info>
 
-Furthermore, when you visit the URL `http://localhost:3001/` in development, you get redirected to the default route `/:projectKey`, but your application can't handle this route and shows a 404 page. To fix that, you can provide an extra redirect to your **main application route path**, which is only used in `development` mode.
+## Menu links in application config
 
-```jsx
-// entry-point.js
+<Info>
 
-const ApplicationStarter = () => (
-  <Switch>
-    {
-      process.env.NODE_ENV === 'production' ? null : (
-        <Redirect
-          from="/:projectKey"
-          to="/:projectKey/examples-starter"
-        />
-      );
-    }
-    <Route
-      path="/:projectKey/examples-starter"
-      component={AsyncApplicationRoutes}
-    />
-    {/* Catch-all route */}
-    <RouteCatchAll />
-  </Switch>
-)
-```
+This opt-in feature is available from version `>= 20.8.0`.
+
+</Info>
+
+To use this feature you need to define the menu links in the [Application Config](/development/application-config#menuLinks) under the field `menuLinks`.
+
+If the `menuLinks` field is defined, it takes precedence over the `menu.json`.

@@ -69,9 +69,6 @@ const EntryPoint = () => (
         globalActions.handleActionError(error, 'sdk')(dispatch);
     }}
     applicationMessages={loadMessages}
-    DEV_ONLY__loadNavbarMenuConfig={() =>
-      import('../../../menu.json').then((data) => data.default || data)
-    }
     render={() => <ApplicationStateMachines />}
   />
 );

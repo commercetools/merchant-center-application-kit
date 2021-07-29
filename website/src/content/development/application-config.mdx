@@ -147,6 +147,60 @@ The `featurePolicies` object can be used to configure the [HTTP `Feature-Policy`
 
 The `permissionsPolicies` object can be used to configure the [HTTP `Permission-Policy` header](https://github.com/w3c/webappsec-permissions-policy/blob/main/permissions-policy-explainer.md).
 
+### `menuLinks`
+
+<Info>
+
+This opt-in feature is available from version `>= 20.8.0`.
+
+</Info>
+
+The `menuLinks` field contains the configuration for the Custom Application's menu links on the left-side navbar of the Merchant Center.
+
+The menu links configured here are then used in `development` mode only. See [Menu links](/development/menu-links#links-for-local-development) for more information.
+
+### `menuLinks.icon`
+
+The `icon` identifies the Custom Application in the Merchant Center menu.
+
+You can pass the name of one of the following supported icons:
+
+* `HeartIcon`
+* `PaperclipIcon`
+* `PluginIcon`
+* `RocketIcon`
+* `StarIcon`
+* `ConnectedSquareIcon`
+* `WorldIcon`
+
+### `menuLinks.labelAllLocales`
+
+A list of localized fields `{ locale, value }` with translated labels for each application locales available in the user profile.
+
+### `menuLinks.defaultLabel`
+
+The `defaultLabel` represents the label to be rendered if there is no matching localized label for the user locale.
+
+### `menuLinks.permissions`
+
+A list of user permissions required to make the link visible. Users must have at least one permission to see the Custom Application in the Merchant Center menu.
+
+### `menuLinks.submenuLinks.*.uriPath`
+
+The `uriPath` represents the (sub)route path relative to the `entryPointUriPath` of the Custom Application. For example, given the `entryPointUriPath: avengers`, and the (sub)route `uriPath: new`, the menu link results in `/avengers/new`.
+
+### `menuLinks.submenuLinks.*.labelAllLocales`
+
+Same as [`menuLinks.labelAllLocales`](#menulinkslabelalllocales).
+
+### `menuLinks.submenuLinks.*.defaultLabel`
+
+Same as [`menuLinks.defaultLabel`](#menulinksdefaultlabel).
+
+### `menuLinks.submenuLinks.*.permissions`
+
+Same as [`menuLinks.permissions`](#menulinkspermissions).
+
 ## JSON Schema support for VSCode
 
 To enable JSON schema autocompletion and validation support, add a reference to the `schema.json` URL in the VSCode settings (either user settings or workspace settings):
@@ -200,13 +254,15 @@ All the properties defined in the `additionalEnv` object are made available to t
 
 </Info>
 
-# Using environment variables
+# Using variable placeholders
+
+## Environment variable references
 
 To make the application config more reusable across different environments, you can use references to environment variables within the JSON file.
 
 References are specified with a special expansion-like syntax `${}` together with the prefix key `env:`. For example, to load an environment variable called `APP_URL`, you would use `${env:APP_URL}`.
 
-For example, imagine developing a Custom Application that can be used in the commercetools platform **Europe** region and **North America** region. We can assign the `${env:CLOUD_IDENTIFIER}` reference to the field `cloudIdentifier` and pass the actual value using environment variables.
+Imagine developing a Custom Application that can be used in the commercetools platform **Europe** region and **North America** region. We can assign the `${env:CLOUD_IDENTIFIER}` reference to the field `cloudIdentifier` and pass the actual value using environment variables.
 
 ```json title="custom-application-config.json"
 {
@@ -244,3 +300,40 @@ You can also pass multiple references to the same value:
   }
 }
 ```
+
+## Intl message references
+
+<Info>
+
+This feature is available from version `>= 20.8.0`.
+
+</Info>
+
+References for Intl messages are specified with a special expansion-like syntax `${}` together with the prefix key `intl:`. For example, to load a translation message from the `en.json` file named `Menu.Avengers`, you would use `${intl:en:Menu.Avengers}`.
+
+This is useful when specifying [menu link labels](#menulinkslabelalllocales), for example:
+
+```json
+{
+  // ...
+  "menuLinks": {
+    // ...
+    "defaultLabel": "${intl:en:Menu.StateMachines}",
+    "labelAllLocales": [
+      {
+        "locale": "en",
+        "value": "${intl:en:Menu.StateMachines}"
+      },
+      {
+        "locale": "de",
+        "value": "${intl:de:Menu.StateMachines}"
+      }
+    ]
+  }
+}
+```
+
+The reference placeholder assumes that the Custom Application has the translation files in one of the following locations:
+
+* `<app_root>/src/i18n/data/<locale>.json`
+* `<app_root>/i18n/data/<locale>.json`

@@ -3,6 +3,7 @@ import type { ApplicationConfig, CloudIdentifier } from './types';
 
 // Loads the configuration file and parse the environment and header values.
 // Most of the resulting values are inferred from the config.
+import fs from 'fs';
 import omitEmpty from 'omit-empty-es';
 import loadConfig from './load-config';
 import validateConfig from './validate-config';
@@ -12,16 +13,24 @@ import {
   getIsProd,
   getOrThrow,
 } from './utils';
-import substituteEnvVariablePlaceholders from './substitute-env-variable-placeholders';
+import substituteVariablePlaceholders from './substitute-variable-placeholders';
 
 type ProcessConfigOptions = {
   // Options useful for testing
   disableCache?: boolean;
   processEnv?: NodeJS.ProcessEnv;
+  applicationPath?: string;
   configJson?: JSONSchemaForCustomApplicationConfigurationFiles | undefined;
 };
 
 const developmentAppUrl = 'http://localhost:3001';
+
+const omitDevConfigIfEmpty = (
+  devConfig: ApplicationConfig['env']['__DEVELOPMENT__']
+) => {
+  if (devConfig?.menuLinks || devConfig?.oidc) return devConfig;
+  return undefined;
+};
 
 // Keep a reference to the config so that requiring the module
 // again will result in returning the cached value.
@@ -30,6 +39,7 @@ let cachedConfig: ApplicationConfig;
 const processConfig = ({
   disableCache = false,
   processEnv = process.env,
+  applicationPath = fs.realpathSync(process.cwd()),
   configJson,
 }: ProcessConfigOptions = {}): ApplicationConfig => {
   if (cachedConfig && !disableCache) return cachedConfig;
@@ -44,16 +54,17 @@ const processConfig = ({
     loadedAppConfig as JSONSchemaForCustomApplicationConfigurationFiles;
 
   const appConfig =
-    substituteEnvVariablePlaceholders<JSONSchemaForCustomApplicationConfigurationFiles>(
+    substituteVariablePlaceholders<JSONSchemaForCustomApplicationConfigurationFiles>(
       validatedLoadedAppConfig,
-      { processEnv }
+      { processEnv, applicationPath }
     );
+
   const additionalAppEnv = appConfig.additionalEnv ?? {};
   const revision = (additionalAppEnv.revision as string) ?? '';
 
   // Feature flags
-  const isOidcForDevelopmentEnabled = JSON.parse(
-    processEnv.ENABLE_OIDC_FOR_DEVELOPMENT || 'false'
+  const isOidcForDevelopmentEnabled = Boolean(
+    JSON.parse(processEnv.ENABLE_OIDC_FOR_DEVELOPMENT || 'false')
   );
 
   // Parse all the supported URLs, which gets implicitly validated
@@ -102,6 +113,26 @@ const processConfig = ({
     }
   }
 
+  const developmentConfig: ApplicationConfig['env']['__DEVELOPMENT__'] = isProd
+    ? undefined
+    : omitDevConfigIfEmpty({
+        oidc: isOidcForDevelopmentEnabled
+          ? omitEmpty({
+              authorizeUrl: [
+                mcApiUrl.protocol,
+                '//',
+                mcApiUrl.host.replace('mc-api', 'mc'),
+              ].join(''),
+              initialProjectKey: appConfig.env.development?.initialProjectKey,
+              teamId: appConfig.env.development?.teamId,
+              oAuthScopes: appConfig.oAuthScopes,
+            })
+          : undefined,
+        menuLinks: appConfig.menuLinks,
+        // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
+        accountLinks: appConfig.accountLinks,
+      });
+
   cachedConfig = {
     env: {
       ...omitEmpty(additionalAppEnv),
@@ -109,19 +140,9 @@ const processConfig = ({
       applicationId,
       applicationName: appConfig.name,
       entryPointUriPath: appConfig.entryPointUriPath,
-      ...(!isProd && isOidcForDevelopmentEnabled
-        ? {
-            __DEVELOPMENT__: omitEmpty({
-              authorizeUrl: `${mcApiUrl.protocol}//${mcApiUrl.host.replace(
-                'mc-api',
-                'mc'
-              )}`,
-              initialProjectKey: appConfig.env.development?.initialProjectKey,
-              teamId: appConfig.env.development?.teamId,
-              oAuthScopes: appConfig.oAuthScopes,
-            }),
-          }
-        : {}),
+      ...(isProd || !developmentConfig
+        ? {}
+        : { __DEVELOPMENT__: developmentConfig }),
       cdnUrl: cdnUrl.href,
       env: appEnvKey,
       frontendHost: appUrl.host,

@@ -10,7 +10,7 @@ type ErrorAdditionalProperty = ErrorObject<
 >;
 type ErrorEnum = ErrorObject<'enum', { allowedValues: string[] }>;
 
-const ajv = new Ajv({ strict: true });
+const ajv = new Ajv({ strict: true, useDefaults: true });
 const validate =
   ajv.compile<JSONSchemaForCustomApplicationConfigurationFiles>(schemaJson);
 

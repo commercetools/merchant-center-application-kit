@@ -28,7 +28,7 @@ const Authenticated = (props: TProps) => {
 
   // When using the OIDC workflow, we always return false, to trigger
   // the redirect to the login page.
-  if (window.app.__DEVELOPMENT__) {
+  if (window.app.__DEVELOPMENT__?.oidc?.authorizeUrl) {
     return <>{props.render({ isAuthenticated: false })}</>;
   }
 

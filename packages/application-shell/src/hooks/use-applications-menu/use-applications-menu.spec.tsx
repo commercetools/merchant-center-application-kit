@@ -1,76 +1,129 @@
-import type { TFetchApplicationsMenuQuery } from '../../types/generated/proxy';
 import type {
-  MenuKey,
-  Config,
-  MenuLoaderResult,
-} from './use-applications-menu';
+  ApplicationWindow,
+  ApplicationMenuLinksForDevelopmentConfig,
+} from '@commercetools-frontend/constants';
+import type { TFetchApplicationsMenuQuery } from '../../types/generated/proxy';
+import type { Config, MenuLoaderResult } from './use-applications-menu';
 
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
 import upperFirst from 'lodash/upperFirst';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { transformLocalizedFieldToLocalizedString } from '@commercetools-frontend/l10n';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { screen, renderApp, waitFor } from '../../test-utils';
+import {
+  screen,
+  renderApp,
+  waitFor,
+  waitForElementToBeRemoved,
+} from '../../test-utils';
 import FetchApplicationsMenu from './fetch-applications-menu.proxy.graphql';
 import useApplicationsMenu from './use-applications-menu';
 
 jest.mock('@commercetools-frontend/sentry');
 
-type TestProps<Key extends MenuKey> = {
-  menuConfig?: Config<Key>;
-};
+const createTestEnvironment = (
+  custom: Partial<ApplicationWindow['app']> = {}
+) => ({
+  applicationId: 'application-id',
+  applicationName: 'Avengers',
+  entryPointUriPath: 'avengers',
+  revision: '123',
+  env: 'development',
+  location: 'gcp-eu',
+  cdnUrl: 'http://localhost:3001',
+  mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
+  frontendHost: 'mc.europe-west1.gcp.commercetools.com',
+  servedByProxy: false,
+  ...custom,
+});
 
-const NavBarTest = (props: TestProps<'navBar'>) => {
-  const applicationsMenu = useApplicationsMenu<'navBar'>(
-    'navBar',
-    props.menuConfig
+const NavBarTest = (props: Config<'navBar'>) => {
+  const applicationsMenu = useApplicationsMenu<'navBar'>('navBar', props);
+  const userLocale = useApplicationContext(
+    (context) => context.user?.locale ?? 'en'
   );
   if (applicationsMenu) {
     return (
       <>
-        {applicationsMenu.map((menu) => (
-          <div key={menu.key}>{`Key: ${menu.key}`}</div>
-        ))}
+        {applicationsMenu.map((menu) => {
+          const localizedLabels = transformLocalizedFieldToLocalizedString(
+            menu.labelAllLocales
+          );
+          return (
+            <ul key={menu.uriPath}>
+              <li>
+                <label>{localizedLabels?.[userLocale]}</label>
+                <p>{`Path: ${menu.uriPath}`}</p>
+              </li>
+              {menu.submenu.map((submenu) => {
+                const localizedLabels =
+                  transformLocalizedFieldToLocalizedString(
+                    submenu.labelAllLocales
+                  );
+                return (
+                  <ul key={submenu.uriPath}>
+                    <li>
+                      <label>{localizedLabels?.[userLocale]}</label>
+                      <p>{`Sub-path: ${submenu.uriPath}`}</p>
+                    </li>
+                  </ul>
+                );
+              })}
+            </ul>
+          );
+        })}
       </>
     );
   }
   return <div>{'loading'}</div>;
 };
-const AppBarTest = (props: TestProps<'appBar'>) => {
-  const applicationsMenu = useApplicationsMenu<'appBar'>(
-    'appBar',
-    props.menuConfig
+const AppBarTest = (props: Config<'appBar'>) => {
+  const applicationsMenu = useApplicationsMenu<'appBar'>('appBar', props);
+  const userLocale = useApplicationContext(
+    (context) => context.user?.locale ?? 'en'
   );
   if (applicationsMenu) {
     return (
       <>
-        {applicationsMenu.map((menu) => (
-          <div key={menu.key}>{`Key: ${menu.key}`}</div>
-        ))}
+        {applicationsMenu.map((menu) => {
+          const localizedLabels = transformLocalizedFieldToLocalizedString(
+            menu.labelAllLocales
+          );
+          return (
+            <ul key={menu.uriPath}>
+              <li>
+                <label>{localizedLabels?.[userLocale]}</label>
+                <p>{`Path: ${menu.uriPath}`}</p>
+              </li>
+            </ul>
+          );
+        })}
       </>
     );
   }
   return <div>{'loading'}</div>;
 };
 
-const createTestNavBarMenuConfig = (
-  key: string,
+const createTestNavBarLegacyMenuJsonConfig = (
+  uriPath: string,
   props: Partial<MenuLoaderResult<'navBar'>[0]> = {}
 ) => ({
-  key,
-  labelAllLocales: [{ locale: 'en', value: upperFirst(key) }],
-  uriPath: key,
+  uriPath,
+  key: uriPath,
+  labelAllLocales: [{ locale: 'en', value: upperFirst(uriPath) }],
   icon: 'UserFilledIcon',
   permissions: [],
   dataFences: [],
   actionRights: [],
   featureToggle: '',
-  menuVisibility: `hide${upperFirst(key)}`,
+  menuVisibility: `hide${upperFirst(uriPath)}`,
   submenu: [
     {
-      key: `${key}-new`,
-      labelAllLocales: [{ locale: 'en', value: `${upperFirst(key)} new` }],
-      menuVisibility: `hide${upperFirst(key)}New`,
-      uriPath: `${key}/new`,
+      uriPath: `${uriPath}/new`,
+      key: `${uriPath}-new`,
+      labelAllLocales: [{ locale: 'en', value: `${upperFirst(uriPath)} new` }],
+      menuVisibility: `hide${upperFirst(uriPath)}New`,
       permissions: [],
       actionRights: [],
       dataFences: [],
@@ -80,21 +133,61 @@ const createTestNavBarMenuConfig = (
   shouldRenderDivider: false,
   ...props,
 });
+const createTestNavBarMenuLinksConfig = (
+  props: Partial<ApplicationMenuLinksForDevelopmentConfig> = {}
+) => ({
+  icon: '<svg><path fill="#000000" /></svg>',
+  defaultLabel: 'Avengers',
+  labelAllLocales: [{ locale: 'en', value: 'Avengers' }],
+  permissions: [],
+  submenuLinks: [
+    {
+      uriPath: 'new',
+      defaultLabel: 'Add avenger',
+      labelAllLocales: [{ locale: 'en', value: 'Add avenger' }],
+      permissions: [],
+    },
+  ],
+  ...props,
+});
+const createTestAppBarMenuLinksConfig = (
+  props: Partial<
+    ApplicationMenuLinksForDevelopmentConfig['submenuLinks'][0]
+  > = {}
+) => [
+  {
+    uriPath: 'profile',
+    defaultLabel: 'Profile',
+    labelAllLocales: [{ locale: 'en', value: 'Profile' }],
+    permissions: [],
+    ...props,
+  },
+  {
+    uriPath: 'organizations',
+    defaultLabel: 'Organizations',
+    labelAllLocales: [{ locale: 'en', value: 'Organizations' }],
+    permissions: [],
+    ...props,
+  },
+];
 
 const createGraphqlResponse = (
   custom: Partial<TFetchApplicationsMenuQuery> = {}
 ) => ({
   applicationsMenu: {
     appBar: [],
-    navBar: [createTestNavBarMenuConfig('orders')],
+    navBar: [createTestNavBarLegacyMenuJsonConfig('orders')],
   },
   ...custom,
 });
 
-describe('fetching the menu query', () => {
+describe('for production usage', () => {
+  const environment = createTestEnvironment({
+    servedByProxy: true,
+  });
   describe('when the query succeeds', () => {
     it('should render menu key', async () => {
-      renderApp(<NavBarTest />, {
+      renderApp(<NavBarTest environment={environment} />, {
         mocks: [
           {
             request: {
@@ -106,8 +199,11 @@ describe('fetching the menu query', () => {
           },
         ],
       });
-      await screen.findByText('loading');
-      await screen.findByText(/Key: orders/i);
+      await waitForElementToBeRemoved(screen.getByText('loading'));
+      expect(screen.getByText('Orders')).toBeInTheDocument();
+      expect(screen.getByText('Orders new')).toBeInTheDocument();
+      expect(screen.getByText('Path: orders')).toBeInTheDocument();
+      expect(screen.getByText('Sub-path: orders/new')).toBeInTheDocument();
     });
   });
   describe('when the query fails', () => {
@@ -117,8 +213,9 @@ describe('fetching the menu query', () => {
       const error = new Error('Oops');
       renderApp(
         <AppBarTest
-          menuConfig={{
-            queryOptions: { onError: reportErrorToSentry },
+          environment={environment}
+          queryOptions={{
+            onError: reportErrorToSentry,
           }}
         />,
         {
@@ -139,24 +236,71 @@ describe('fetching the menu query', () => {
     });
   });
 });
-describe('loading the menu for local development', () => {
-  it('should render menu key', async () => {
-    renderApp(
-      <NavBarTest
-        menuConfig={{
-          skipRemoteQuery: true,
-          loadMenuConfig: () =>
-            Promise.all([
-              Promise.resolve(createTestNavBarMenuConfig('orders')),
-              Promise.resolve(createTestNavBarMenuConfig('products')),
-              Promise.resolve(createTestNavBarMenuConfig('customers')),
-            ]),
-        }}
-      />
-    );
-    await screen.findByText('loading');
-    await screen.findByText(/Key: orders/i);
-    await screen.findByText(/Key: products/i);
-    await screen.findByText(/Key: customers/i);
+describe('for local development', () => {
+  describe('<NavBar>', () => {
+    describe('loading the legacy menu.json file', () => {
+      it('should render menu key', async () => {
+        const environment = createTestEnvironment();
+        renderApp(
+          <NavBarTest
+            environment={environment}
+            loadMenuConfig={() =>
+              Promise.all([
+                Promise.resolve(createTestNavBarLegacyMenuJsonConfig('orders')),
+                Promise.resolve(
+                  createTestNavBarLegacyMenuJsonConfig('products')
+                ),
+              ])
+            }
+          />
+        );
+        await waitForElementToBeRemoved(screen.getByText('loading'));
+        // Orders
+        expect(screen.getByText('Orders')).toBeInTheDocument();
+        expect(screen.getByText('Orders new')).toBeInTheDocument();
+        expect(screen.getByText('Path: orders')).toBeInTheDocument();
+        expect(screen.getByText('Sub-path: orders/new')).toBeInTheDocument();
+
+        // Products
+        expect(screen.getByText('Products')).toBeInTheDocument();
+        expect(screen.getByText('Products new')).toBeInTheDocument();
+        expect(screen.getByText('Path: products')).toBeInTheDocument();
+        expect(screen.getByText('Sub-path: products/new')).toBeInTheDocument();
+      });
+    });
+    describe('loading the menu config from the application config', () => {
+      it('should render menu key', async () => {
+        const environment = createTestEnvironment({
+          __DEVELOPMENT__: {
+            menuLinks: createTestNavBarMenuLinksConfig(),
+          },
+        });
+        renderApp(<NavBarTest environment={environment} />);
+        await waitForElementToBeRemoved(screen.getByText('loading'));
+        expect(screen.getByText('Avengers')).toBeInTheDocument();
+        expect(screen.getByText('Add avenger')).toBeInTheDocument();
+        expect(screen.getByText('Path: avengers')).toBeInTheDocument();
+        expect(screen.getByText('Sub-path: avengers/new')).toBeInTheDocument();
+      });
+    });
+  });
+
+  describe('<AppBar>', () => {
+    describe('loading the account menu config from the application config', () => {
+      it('should render menu key', async () => {
+        const environment = createTestEnvironment({
+          __DEVELOPMENT__: {
+            // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
+            accountLinks: createTestAppBarMenuLinksConfig(),
+          },
+        });
+        renderApp(<AppBarTest environment={environment} />);
+        await waitForElementToBeRemoved(screen.getByText('loading'));
+        expect(screen.getByText('Profile')).toBeInTheDocument();
+        expect(screen.getByText('Path: profile')).toBeInTheDocument();
+        expect(screen.getByText('Organizations')).toBeInTheDocument();
+        expect(screen.getByText('Path: organizations')).toBeInTheDocument();
+      });
+    });
   });
 });

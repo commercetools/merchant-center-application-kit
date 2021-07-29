@@ -80,8 +80,8 @@ Cypress.Commands.add(
       const applicationId = appConfig.applicationId;
       const sessionScope = buildOidcScope({
         projectKey,
-        oAuthScopes: appConfig.__DEVELOPMENT__?.oAuthScopes,
-        teamId: appConfig.__DEVELOPMENT__?.teamId,
+        oAuthScopes: appConfig.__DEVELOPMENT__?.oidc?.oAuthScopes,
+        teamId: appConfig.__DEVELOPMENT__?.oidc?.teamId,
       });
       const userCredentials = commandOptions.login ?? {
         email: Cypress.env('LOGIN_EMAIL') ?? Cypress.env('LOGIN_USER'),

@@ -107,4 +107,61 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
      */
     strictTransportSecurity?: ('includeSubDomains' | 'preload')[];
   };
+  /**
+   * Configuration for the menu links on the left-side navbar.
+   */
+  menuLinks?: {
+    /**
+     * The SVG icon that represents this application. Pass the raw SVG string or a path to an SVG file, for example a relative path `${path:./app.svg}`, or a path from a module `${path:@commercetools-frontend/assets/application-icons/heart.svg}`.
+     */
+    icon: string;
+    /**
+     * A default label to be rendered if there is no matching localized label for the user locale.
+     */
+    defaultLabel: string;
+    /**
+     * Localized label based on the application locales available from the user profile.
+     */
+    labelAllLocales: {
+      locale: 'en' | 'de' | 'es' | 'fr-FR' | 'zh-CN' | 'ja';
+      /**
+       * A label for the specific locale or a reference to a translated message. For example `${intl:en:Menu.Avengers}` which looks for the message key `Menu.Avengers` in the `src/i18n/data/en.json`
+       */
+      value: string;
+    }[];
+    /**
+     * Set the visibility of the menu link. Users must have at least one permission to see the Custom Application in the Merchant Center menu.
+     */
+    permissions: string[];
+    /**
+     * Configuration for the submenu links on the left-side navbar.
+     */
+    submenuLinks: {
+      /**
+       * Route path relative to the entry point URI path of the Custom Application.
+       */
+      uriPath: string;
+      /**
+       * A default label to be rendered if there is no matching localized label for the user locale.
+       */
+      defaultLabel: string;
+      /**
+       * Localized label based on the application locales available from the user profile.
+       */
+      labelAllLocales: {
+        locale: 'en' | 'de' | 'es' | 'fr-FR' | 'zh-CN' | 'ja';
+        /**
+         * A label for the specific locale or a reference to a translated message. For example `${intl:en:Menu.Avengers}` which looks for the message key `Menu.Avengers` in the `src/i18n/data/en.json`
+         */
+        value: string;
+      }[];
+      /**
+       * Set the visibility of the menu link. Users must have at least one permission to see the Custom Application in the Merchant Center menu.
+       */
+      permissions: string[];
+      [k: string]: unknown;
+    }[];
+    [k: string]: unknown;
+  };
+  [k: string]: unknown;
 }

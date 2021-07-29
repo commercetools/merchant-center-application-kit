@@ -1,13 +1,19 @@
 import validateConfig from '../src/validate-config';
 import fixtureConfigSimple from './fixtures/config-simple.json';
 import fixtureConfigFull from './fixtures/config-full.json';
+import fixtureConfigOidc from './fixtures/config-oidc.json';
 import fixtureConfigEnvVariables from './fixtures/config-env-variables.json';
+import fixtureConfigIntlVariables from './fixtures/config-intl-variables.json';
+import fixtureConfigFilePathVariables from './fixtures/config-file-path-variables.json';
 
 describe.each`
-  name               | config
-  ${'Simple'}        | ${fixtureConfigSimple}
-  ${'Full'}          | ${fixtureConfigFull}
-  ${'Env variables'} | ${fixtureConfigEnvVariables}
+  name                     | config
+  ${'Simple'}              | ${fixtureConfigSimple}
+  ${'Full'}                | ${fixtureConfigFull}
+  ${'OIDC'}                | ${fixtureConfigOidc}
+  ${'Env variables'}       | ${fixtureConfigEnvVariables}
+  ${'Intl variables'}      | ${fixtureConfigIntlVariables}
+  ${'File path variables'} | ${fixtureConfigFilePathVariables}
 `('validating config "$name"', ({ config }) => {
   it('should detect the config as valid', () => {
     expect(() => validateConfig(config)).not.toThrowError();

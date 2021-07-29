@@ -1,0 +1,46 @@
+{
+  "name": "avengers-app",
+  "entryPointUriPath": "avengers",
+  "cloudIdentifier": "gcp-eu",
+  "env": {
+    "production": {
+      "url": "https://my-app.com"
+    }
+  },
+  "menuLinks": {
+    "icon": "<svg><path fill=\"#000000\" /></svg>",
+    "defaultLabel": "Avengers",
+    "labelAllLocales": [
+      {
+        "locale": "en",
+        "value": "${intl:en:Menu.Avengers}"
+      },
+      {
+        "locale": "de",
+        "value": "${intl:de:Menu.Avengers}"
+      }
+    ],
+    "permissions": [
+      "ViewAvengers"
+    ],
+    "submenuLinks": [
+      {
+        "uriPath": "new",
+        "defaultLabel": "New Avenger",
+        "labelAllLocales": [
+          {
+            "locale": "en",
+            "value": "${intl:en:Menu.Avengers.New}"
+          },
+          {
+            "locale": "de",
+            "value": "${intl:de:Menu.Avengers.New}"
+          }
+        ],
+        "permissions": [
+          "ManageAvengers"
+        ]
+      }
+    ]
+  }
+}

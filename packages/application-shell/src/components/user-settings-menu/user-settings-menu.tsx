@@ -142,14 +142,12 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
     menuElementRef.current?.focus();
   }, []);
 
-  const servedByProxy = useApplicationContext(
-    (context) => context.environment.servedByProxy
-  );
+  const environment = useApplicationContext((context) => context.environment);
   const applicationsAppBarMenu = useApplicationsMenu<'appBar'>('appBar', {
     queryOptions: {
       onError: reportErrorToSentry,
     },
-    skipRemoteQuery: !servedByProxy,
+    environment,
     loadMenuConfig: props.DEV_ONLY__loadAppbarMenuConfig,
   });
 
