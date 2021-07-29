@@ -1,5 +1,11 @@
 # @commercetools-frontend/assets
 
+## 20.8.0
+
+### Minor Changes
+
+- [#2312](https://github.com/commercetools/merchant-center-application-kit/pull/2312) [`ca4e1441`](https://github.com/commercetools/merchant-center-application-kit/commit/ca4e14410537c2eadaccfb537431036fb8fae883) Thanks [@emmenko](https://github.com/emmenko)! - Add new SVG files for application icons usage.
+
 ## 18.5.4
 
 ### Patch Changes

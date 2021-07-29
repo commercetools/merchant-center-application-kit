@@ -1,5 +1,16 @@
 # @commercetools-frontend/i18n
 
+## 20.8.0
+
+### Patch Changes
+
+- [#2313](https://github.com/commercetools/merchant-center-application-kit/pull/2313) [`9826a605`](https://github.com/commercetools/merchant-center-application-kit/commit/9826a605cd7b84c433383b02c1b94985c8173cda) Thanks [@emmenko](https://github.com/emmenko)! - Use new TS compiler options `jsx: react-jsx` and `jsxImportSource: @emotion/react`. All unused React imports then have been removed or migrated to destructured named imports.
+
+* [#2300](https://github.com/commercetools/merchant-center-application-kit/pull/2300) [`b3437eab`](https://github.com/commercetools/merchant-center-application-kit/commit/b3437eab6fd7b1529f5eac78eda658028474afa7) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+* Updated dependencies [[`9826a605`](https://github.com/commercetools/merchant-center-application-kit/commit/9826a605cd7b84c433383b02c1b94985c8173cda), [`b3437eab`](https://github.com/commercetools/merchant-center-application-kit/commit/b3437eab6fd7b1529f5eac78eda658028474afa7)]:
+  - @commercetools-frontend/sentry@20.8.0
+
 ## 20.7.0
 
 ### Patch Changes

@@ -1,5 +1,20 @@
 # @commercetools-local/visual-testing-app
 
+## 18.1.1
+
+### Patch Changes
+
+- [#2316](https://github.com/commercetools/merchant-center-application-kit/pull/2316) [`3acfa94b`](https://github.com/commercetools/merchant-center-application-kit/commit/3acfa94bb1e67de9a144237d4f32cb94c6a2f26b) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade to uikit `v12.2.2`.
+
+* [#2313](https://github.com/commercetools/merchant-center-application-kit/pull/2313) [`9826a605`](https://github.com/commercetools/merchant-center-application-kit/commit/9826a605cd7b84c433383b02c1b94985c8173cda) Thanks [@emmenko](https://github.com/emmenko)! - Use new TS compiler options `jsx: react-jsx` and `jsxImportSource: @emotion/react`. All unused React imports then have been removed or migrated to destructured named imports.
+
+- [#2300](https://github.com/commercetools/merchant-center-application-kit/pull/2300) [`b3437eab`](https://github.com/commercetools/merchant-center-application-kit/commit/b3437eab6fd7b1529f5eac78eda658028474afa7) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+- Updated dependencies [[`3acfa94b`](https://github.com/commercetools/merchant-center-application-kit/commit/3acfa94bb1e67de9a144237d4f32cb94c6a2f26b), [`9826a605`](https://github.com/commercetools/merchant-center-application-kit/commit/9826a605cd7b84c433383b02c1b94985c8173cda), [`ca4e1441`](https://github.com/commercetools/merchant-center-application-kit/commit/ca4e14410537c2eadaccfb537431036fb8fae883), [`b3437eab`](https://github.com/commercetools/merchant-center-application-kit/commit/b3437eab6fd7b1529f5eac78eda658028474afa7), [`22177e58`](https://github.com/commercetools/merchant-center-application-kit/commit/22177e5885372d7821b591a4e69e2b03cc24c867)]:
+  - @commercetools-frontend/application-components@20.8.0
+  - @commercetools-frontend/react-notifications@20.8.0
+  - @commercetools-frontend/constants@20.8.0
+
 ## 18.1.0
 
 ### Minor Changes
