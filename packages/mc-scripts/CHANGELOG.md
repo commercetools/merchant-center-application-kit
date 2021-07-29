@@ -1,5 +1,21 @@
 # @commercetools-frontend/mc-scripts
 
+## 20.8.0
+
+### Patch Changes
+
+- [#2296](https://github.com/commercetools/merchant-center-application-kit/pull/2296) [`85608163`](https://github.com/commercetools/merchant-center-application-kit/commit/85608163b25d3f7ddb2e747e1f3609d213b0d4ca) Thanks [@emmenko](https://github.com/emmenko)! - Update `@pmmmwh/react-refresh-webpack-plugin` to `0.5.0-rc.2`
+
+* [#2314](https://github.com/commercetools/merchant-center-application-kit/pull/2314) [`13cc96d8`](https://github.com/commercetools/merchant-center-application-kit/commit/13cc96d8105232f55aecf9481b70b002dfcc948a) Thanks [@emmenko](https://github.com/emmenko)! - Migrate `webpack-dev-server` options to `v4.0.0-rc.0`
+
+- [#2300](https://github.com/commercetools/merchant-center-application-kit/pull/2300) [`b3437eab`](https://github.com/commercetools/merchant-center-application-kit/commit/b3437eab6fd7b1529f5eac78eda658028474afa7) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+- Updated dependencies [[`ca4e1441`](https://github.com/commercetools/merchant-center-application-kit/commit/ca4e14410537c2eadaccfb537431036fb8fae883), [`ca4e1441`](https://github.com/commercetools/merchant-center-application-kit/commit/ca4e14410537c2eadaccfb537431036fb8fae883), [`ca4e1441`](https://github.com/commercetools/merchant-center-application-kit/commit/ca4e14410537c2eadaccfb537431036fb8fae883), [`b3437eab`](https://github.com/commercetools/merchant-center-application-kit/commit/b3437eab6fd7b1529f5eac78eda658028474afa7)]:
+  - @commercetools-frontend/mc-html-template@20.8.0
+  - @commercetools-frontend/assets@20.8.0
+  - @commercetools-frontend/application-config@20.8.0
+  - @commercetools-frontend/babel-preset-mc-app@20.8.0
+
 ## 20.7.0
 
 ### Patch Changes
