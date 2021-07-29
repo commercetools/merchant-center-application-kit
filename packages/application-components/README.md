@@ -12,3 +12,9 @@ The components follow the same principles of the [UIKit](https://github.com/comm
 ```bash
 $ npm install --save @commercetools-frontend/application-components
 ```
+
+## Usage outside of Custom Applications
+
+If you happen to use some of the components outside of a Custom Application, you need to additionally render the `<PortalsContainer>`.
+
+The `<PortalsContainer>` renders an empty HTML element with a specific identifier and is used to render all modal components (dialogs, modal pages, etc.). Make sure to render this component once in your application.

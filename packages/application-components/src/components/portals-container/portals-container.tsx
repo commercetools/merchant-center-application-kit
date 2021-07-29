@@ -1,8 +1,7 @@
 import { css } from '@emotion/react';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 
-// This is used so we can render all overlays inside here
-// Otherwise (if appended to <body>), notifications will overlap it
+// All modal components expect to be rendered inside this container.
 const PortalsContainer = () => (
   <div
     id={PORTALS_CONTAINER_ID}
