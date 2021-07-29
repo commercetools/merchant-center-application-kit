@@ -8,7 +8,13 @@ import type {
   TFetchProjectExtensionsNavbarQueryVariables,
 } from '../../types/generated/settings';
 
-import React from 'react';
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useReducer,
+  useRef,
+} from 'react';
 import isNil from 'lodash/isNil';
 import throttle from 'lodash/throttle';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
@@ -64,7 +70,7 @@ const reducer = (state: State, action: Action): State => {
 };
 
 const useNavbarStateManager = (props: HookProps) => {
-  const navBarNode = React.useRef<HTMLElement>(null);
+  const navBarNode = useRef<HTMLElement>(null);
   const applicationsNavBarMenu = useApplicationsMenu<'navBar'>('navBar', {
     queryOptions: {
       onError: reportErrorToSentry,
@@ -167,11 +173,11 @@ const useNavbarStateManager = (props: HookProps) => {
     ? null
     : (JSON.parse(cachedIsForcedMenuOpen) as boolean);
 
-  const [state, dispatch] = React.useReducer<
+  const [state, dispatch] = useReducer<
     (prevState: State, action: Action) => State
   >(reducer, getInitialState(isForcedMenuOpen));
 
-  const checkSize = React.useCallback(
+  const checkSize = useCallback(
     throttle(() => {
       const shouldOpen = window.innerWidth > 1024;
       const canExpandMenu = window.innerWidth > 918;
@@ -209,7 +215,7 @@ const useNavbarStateManager = (props: HookProps) => {
     [isForcedMenuOpen, state.isExpanderVisible, state.isMenuOpen]
   );
 
-  const shouldCloseMenuFly = React.useCallback<
+  const shouldCloseMenuFly = useCallback<
     (e: React.MouseEvent<HTMLElement> | MouseEvent) => void
   >(
     (event) => {
@@ -226,7 +232,7 @@ const useNavbarStateManager = (props: HookProps) => {
     [state.isMenuOpen]
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener('resize', checkSize);
     window.addEventListener('click', shouldCloseMenuFly, true);
 
@@ -236,17 +242,17 @@ const useNavbarStateManager = (props: HookProps) => {
     };
   }, [checkSize, shouldCloseMenuFly]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     checkSize();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // <-- run this only once!!
 
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (state.isMenuOpen) document.body.classList.add('body__menu-open');
     if (!state.isMenuOpen) document.body.classList.remove('body__menu-open');
   }, [state.isMenuOpen]);
 
-  const handleToggleItem = React.useCallback(
+  const handleToggleItem = useCallback(
     (nextActiveItemIndex: string) => {
       if (state.activeItemIndex !== nextActiveItemIndex)
         dispatch({
@@ -257,7 +263,7 @@ const useNavbarStateManager = (props: HookProps) => {
     [state.activeItemIndex]
   );
 
-  const handleToggleMenu = React.useCallback(() => {
+  const handleToggleMenu = useCallback(() => {
     if (state.isMenuOpen && state.activeItemIndex) {
       dispatch({ type: 'unsetActiveItemIndex' });
     }

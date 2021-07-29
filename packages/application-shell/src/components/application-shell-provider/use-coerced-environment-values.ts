@@ -1,6 +1,6 @@
 import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 
-import React from 'react';
+import { useMemo } from 'react';
 
 type ShallowJson = { [key: string]: unknown };
 
@@ -50,7 +50,7 @@ const useCoercedEnvironmentValues = <
 >(
   environment: ShallowJson
 ): TApplicationContext<AdditionalEnvironmentProperties>['environment'] => {
-  const coercedEnvironmentValues = React.useMemo(
+  const coercedEnvironmentValues = useMemo(
     () =>
       shallowlyCoerceValues(
         environment
