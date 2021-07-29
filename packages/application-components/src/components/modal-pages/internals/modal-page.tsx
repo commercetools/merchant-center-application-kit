@@ -1,4 +1,11 @@
-import React from 'react';
+import {
+  ReactNode,
+  SyntheticEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import Modal from 'react-modal';
 import { ClassNames } from '@emotion/react';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
@@ -46,8 +53,8 @@ type Props = {
   level: number;
   title: string;
   isOpen: boolean;
-  onClose?: (event: React.SyntheticEvent) => void;
-  children: React.ReactNode;
+  onClose?: (event: SyntheticEvent) => void;
+  children: ReactNode;
   zIndex?: number;
   baseZIndex: number;
   getParentSelector: typeof getDefaultParentSelector;
@@ -68,9 +75,9 @@ const defaultProps: Pick<
 };
 
 const ModalPage = (props: Props) => {
-  const [forceClose, setForceClose] = React.useState(false);
-  const closingTimer = React.useRef<NodeJS.Timeout>();
-  React.useEffect(() => {
+  const [forceClose, setForceClose] = useState(false);
+  const closingTimer = useRef<NodeJS.Timeout>();
+  useEffect(() => {
     if (props.isOpen === true) setForceClose(false);
     return () => {
       if (closingTimer.current) {
@@ -79,7 +86,7 @@ const ModalPage = (props: Props) => {
     };
   }, [props.isOpen]);
   const { onClose } = props;
-  const handleClose = React.useCallback(
+  const handleClose = useCallback(
     (event) => {
       if (props.shouldDelayOnClose) {
         // In this case we want the closing animation to be shown

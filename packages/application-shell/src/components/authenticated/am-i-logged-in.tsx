@@ -3,7 +3,6 @@ import type {
   TAmILoggedInQueryVariables,
 } from '../../types/generated/mc';
 
-import React from 'react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { useMcQuery } from '../../hooks/apollo-hooks';
 import { STORAGE_KEYS } from '../../constants';

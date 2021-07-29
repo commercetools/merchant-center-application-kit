@@ -1,6 +1,5 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
-import React from 'react';
 import { render } from '@testing-library/react';
 import * as Sentry from '@sentry/browser';
 import SentryUserTracker from './sentry-user-tracker';

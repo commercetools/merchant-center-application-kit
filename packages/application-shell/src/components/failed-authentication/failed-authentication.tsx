@@ -1,4 +1,3 @@
-import React from 'react';
 import { useIntl, FormattedMessage } from 'react-intl';
 import FailedAuthenticationSVG from '@commercetools-frontend/assets/images/locked-diamond.svg';
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';

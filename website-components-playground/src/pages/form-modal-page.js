@@ -1,4 +1,3 @@
-import React from 'react';
 import { Formik } from 'formik';
 import { FormModalPage } from '@commercetools-frontend/application-components';
 import TextInput from '@commercetools-uikit/text-input';

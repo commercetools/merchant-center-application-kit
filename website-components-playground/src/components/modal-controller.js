@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -18,7 +18,7 @@ const PortalContainer = styled.div`
 `;
 
 const ModalController = (props) => {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = useState(true);
   return (
     <>
       <PortalContainer id={props.containerId} />

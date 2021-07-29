@@ -1,4 +1,4 @@
-import React from 'react';
+import { Children, isValidElement, ReactElement, ReactNode } from 'react';
 import styled from '@emotion/styled';
 import { customProperties } from '@commercetools-uikit/design-system';
 
@@ -82,15 +82,15 @@ const Box = styled.div<Pick<SpecProps, 'tone' | 'contentAlignment'>>`
 
 type PillProps = {
   label: string;
-  value: React.ReactNode;
+  value: ReactNode;
 };
 
 const Pill = (props: PillProps) => {
   const value = (() => {
-    if (React.isValidElement(props.value)) return 'React Element';
+    if (isValidElement(props.value)) return 'React Element';
     if (
       Array.isArray(props.value) &&
-      props.value.every((element) => React.isValidElement(element))
+      props.value.every((element) => isValidElement(element))
     )
       return '[React Element]';
     try {
@@ -109,12 +109,12 @@ const Pill = (props: PillProps) => {
 Pill.displayName = 'Pill';
 
 type PropsLoggerProps = {
-  children: React.ReactElement;
+  children: ReactElement;
 };
 
 const PropsLogger = (props: PropsLoggerProps) => {
-  const node = React.Children.only(props.children);
-  const propEntries = Object.entries<React.ReactNode>(node.props);
+  const node = Children.only(props.children);
+  const propEntries = Object.entries<ReactNode>(node.props);
   return (
     <PropList>
       {propEntries
@@ -131,7 +131,7 @@ type SpecProps = {
   label: string;
   size: 'm' | 'l' | 'xl' | 7 | 8 | 9 | 10 | 'scale';
   contentAlignment: 'default' | 'center';
-  children: React.ReactElement;
+  children: ReactElement;
   tone: 'normal' | 'secondary' | 'inverted';
   omitPropsList: boolean;
 };

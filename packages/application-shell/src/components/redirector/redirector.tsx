@@ -1,7 +1,7 @@
 import type { RouteComponentProps } from 'react-router-dom';
 import type { TEnhancedLocation } from '@commercetools-frontend/browser-history';
 
-import React from 'react';
+import { useEffect } from 'react';
 import { encode } from 'qss';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import { location } from '../../utils/location';
@@ -41,7 +41,7 @@ const Redirector = (props: Props) => {
   targetUrlObject.search = `?${encode(searchQuery)}`;
   const targetUrl = targetUrlObject.toString();
 
-  React.useEffect(() => {
+  useEffect(() => {
     redirectTo(targetUrl);
   }, [targetUrl]);
 

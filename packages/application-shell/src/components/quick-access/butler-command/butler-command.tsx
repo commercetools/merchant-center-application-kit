@@ -1,6 +1,6 @@
 import type { Command } from '../types';
 
-import React, { MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import { AngleThinRightIcon } from '@commercetools-uikit/icons';

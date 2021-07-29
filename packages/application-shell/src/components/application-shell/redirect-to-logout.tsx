@@ -1,6 +1,5 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
-import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';

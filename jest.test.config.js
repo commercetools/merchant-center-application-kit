@@ -1,3 +1,5 @@
+process.env.ENABLE_NEW_JSX_TRANSFORM = 'true';
+
 module.exports = {
   preset: './packages/jest-preset-mc-app/jest-preset-for-typescript',
   moduleDirectories: [

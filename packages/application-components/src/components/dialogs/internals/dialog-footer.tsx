@@ -1,6 +1,6 @@
 import type { IntlShape } from 'react-intl';
 
-import React from 'react';
+import { SyntheticEvent } from 'react';
 import { useIntl } from 'react-intl';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import PrimaryButton from '@commercetools-uikit/primary-button';
@@ -19,8 +19,8 @@ type Label = string | MessageDescriptor;
 type Props = {
   labelSecondary: Label;
   labelPrimary: Label;
-  onCancel: (event: React.SyntheticEvent) => void;
-  onConfirm: (event: React.SyntheticEvent) => void;
+  onCancel: (event: SyntheticEvent) => void;
+  onConfirm: (event: SyntheticEvent) => void;
   isPrimaryButtonDisabled: boolean;
   dataAttributesPrimaryButton: { [key: string]: string };
   dataAttributesSecondaryButton: { [key: string]: string };

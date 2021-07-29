@@ -1,4 +1,4 @@
-import React from 'react';
+import { SyntheticEvent } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useIntl } from 'react-intl';
@@ -37,7 +37,7 @@ type Props = {
   color: 'surface' | 'neutral';
   currentPathLabel?: string;
   previousPathLabel: Label;
-  onClose: (event: React.SyntheticEvent) => void;
+  onClose: (event: SyntheticEvent) => void;
   children?: never;
 };
 const defaultProps: Pick<Props, 'color' | 'previousPathLabel'> = {
@@ -95,12 +95,12 @@ const ModalPageTopBar = (props: Props) => {
           onClick={props.onClose}
         />
         {props.currentPathLabel && (
-          <React.Fragment>
+          <>
             <Text.Detail as="span">/</Text.Detail>
             <Text.Detail as="span" title={props.currentPathLabel} truncate>
               {props.currentPathLabel}
             </Text.Detail>
-          </React.Fragment>
+          </>
         )}
       </div>
       {props.onClose && (

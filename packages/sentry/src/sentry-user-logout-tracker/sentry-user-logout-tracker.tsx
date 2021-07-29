@@ -1,11 +1,11 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
-import React from 'react';
+import { Component } from 'react';
 import * as Sentry from '@sentry/browser';
 
 declare let window: ApplicationWindow;
 
-class SentryUserLogoutTracker extends React.Component {
+class SentryUserLogoutTracker extends Component {
   static displayName = 'SentryUserLogoutTracker';
   componentDidMount() {
     // When the user is not logged in anymore (e.g. on logout) we still track

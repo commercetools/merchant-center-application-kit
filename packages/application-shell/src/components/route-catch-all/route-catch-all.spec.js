@@ -1,5 +1,4 @@
 import { mocked } from 'ts-jest/utils';
-import React from 'react';
 import { screen, renderApp, waitFor } from '../../test-utils';
 import { location } from '../../utils/location';
 import RouteCatchAll from './route-catch-all';

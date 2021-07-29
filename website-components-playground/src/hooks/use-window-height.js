@@ -1,13 +1,13 @@
-import React from 'react';
+import { useState, useCallback, useLayoutEffect } from 'react';
 
 const useWindowHeight = () => {
-  const [height, setHeight] = React.useState(0);
+  const [height, setHeight] = useState(0);
 
-  const updateHeight = React.useCallback(() => {
+  const updateHeight = useCallback(() => {
     setHeight(document.querySelector('body').scrollHeight);
   }, [setHeight]);
 
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     window.addEventListener('resize', updateHeight);
 
     // Initial values

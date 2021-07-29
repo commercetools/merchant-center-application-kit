@@ -1,6 +1,6 @@
-import React from 'react';
+import { lazy } from 'react';
 
-const FailedAuthentication = React.lazy(
+const FailedAuthentication = lazy(
   () =>
     import(
       './failed-authentication' /* webpackChunkName: "failed-authentication" */

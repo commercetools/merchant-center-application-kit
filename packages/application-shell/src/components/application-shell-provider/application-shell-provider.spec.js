@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { ReactReduxContext } from 'react-redux';
 import { IntlProvider, FormattedMessage } from 'react-intl';
 import { screen, render, waitFor } from '@testing-library/react';
@@ -141,7 +141,7 @@ describe('rendering', () => {
   });
   it('when something in the children throws, it should render the error apologiser page', async () => {
     console.error = jest.fn();
-    class Thrower extends React.PureComponent {
+    class Thrower extends PureComponent {
       componentDidMount() {
         throw new Error('Oops');
       }

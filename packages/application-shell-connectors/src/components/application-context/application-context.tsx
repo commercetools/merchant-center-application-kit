@@ -4,7 +4,7 @@ import type {
   TFetchProjectQuery,
 } from '../../types/generated/mc';
 
-import React from 'react';
+import { ComponentType, createContext, ReactNode, useContext } from 'react';
 import moment from 'moment-timezone';
 import getDisplayName from '../../utils/get-display-name';
 import {
@@ -52,7 +52,7 @@ type TApplicationContextDataFences = Partial<
 >;
 type TApplicationContextEnvironment = ApplicationWindow['app'];
 
-const Context = React.createContext({});
+const Context = createContext({});
 
 const defaultTimeZone = moment.tz.guess() || 'Etc/UTC';
 
@@ -118,12 +118,12 @@ export type ProviderProps<AdditionalEnvironmentProperties extends {}> = {
   user?: TFetchedUser;
   project?: TFetchedProject;
   projectDataLocale?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 type ConsumerProps<AdditionalEnvironmentProperties extends {}> = {
   render: (
     context: TApplicationContext<AdditionalEnvironmentProperties>
-  ) => React.ReactNode;
+  ) => ReactNode;
   children?: never;
 };
 
@@ -194,8 +194,8 @@ function withApplicationContext<
   ) => MappedProps
 ) {
   return (
-    Component: React.ComponentType<OwnProps>
-  ): React.ComponentType<OwnProps & MappedProps> => {
+    Component: ComponentType<OwnProps>
+  ): ComponentType<OwnProps & MappedProps> => {
     const WrappedComponent = (props: OwnProps) => (
       <ApplicationContext<AdditionalEnvironmentProperties>
         render={(applicationContext) => {
@@ -237,7 +237,7 @@ function useApplicationContextHook<
     context: TApplicationContext<AdditionalEnvironmentProperties>
   ) => SelectedContext
 ) {
-  const context = React.useContext(Context);
+  const context = useContext(Context);
   // Because of the way the ApplicationShell configures the Context.Provider,
   // we ensure that, when we read from the context, we always get actual
   // context object and not the initial value.

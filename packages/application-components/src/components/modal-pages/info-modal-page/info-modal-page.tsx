@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactElement, ReactNode, SyntheticEvent } from 'react';
 import ModalPage from '../internals/modal-page';
 import ModalPageHeader from '../internals/modal-page-header';
 import { ContentWrapper } from '../internals/modal-page.styles';
@@ -16,8 +16,8 @@ type Props = {
   level?: number;
   title: string;
   isOpen: boolean;
-  onClose?: (event: React.SyntheticEvent) => void;
-  children: React.ReactNode;
+  onClose?: (event: SyntheticEvent) => void;
+  children: ReactNode;
   zIndex?: number;
   baseZIndex?: number;
   getParentSelector?: () => HTMLElement;
@@ -26,7 +26,7 @@ type Props = {
   topBarCurrentPathLabel?: string;
   topBarPreviousPathLabel?: Label;
   // Header Props
-  subtitle?: string | React.ReactElement;
+  subtitle?: string | ReactElement;
 };
 
 const InfoModalPage = (props: Props) => (

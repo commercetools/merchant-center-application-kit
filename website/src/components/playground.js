@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withPrefix } from 'gatsby';
 
@@ -11,8 +11,8 @@ const getIframeUrl = (urlPath, isFullScreen = false) => {
 };
 
 const PlaygroundController = (props) => {
-  const [iframeHeight, setIframeHeight] = React.useState(0);
-  React.useEffect(() => {
+  const [iframeHeight, setIframeHeight] = useState(0);
+  useEffect(() => {
     const onReceiveMessage = (event) => {
       if (Array.isArray(event.data)) {
         const [eventSource, value] = event.data;

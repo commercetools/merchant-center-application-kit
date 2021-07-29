@@ -1,6 +1,5 @@
 import type { Action } from 'redux';
 
-import React from 'react';
 import { Provider } from 'react-redux';
 import { renderHook } from '@testing-library/react-hooks';
 import useOnActionError from './use-on-action-error';

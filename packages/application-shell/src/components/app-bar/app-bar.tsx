@@ -1,7 +1,6 @@
 import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 import type { TApplicationsMenu } from '../../types/generated/proxy';
 
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { css } from '@emotion/react';
 import Spacings from '@commercetools-uikit/spacings';

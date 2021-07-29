@@ -1,4 +1,3 @@
-import React from 'react';
 import { Global, css } from '@emotion/react';
 import { customProperties } from '@commercetools-uikit/design-system';
 

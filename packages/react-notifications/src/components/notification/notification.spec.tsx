@@ -1,6 +1,5 @@
 import type { Props } from './notification';
 
-import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { screen, render, fireEvent } from '@testing-library/react';
 import {

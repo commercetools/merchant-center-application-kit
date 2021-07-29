@@ -7,7 +7,7 @@ import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import type { TApplicationsMenu } from '../../types/generated/proxy';
 import type { TrackingList } from '../../utils/gtm';
 
-import React, { SyntheticEvent } from 'react';
+import { ReactNode, SyntheticEvent, useEffect } from 'react';
 import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import { ApolloClient } from '@apollo/client';
 import { Global, css } from '@emotion/react';
@@ -79,7 +79,7 @@ type Props<AdditionalEnvironmentProperties extends {}> = {
     track: TrackFn
   ) => void;
   render?: () => JSX.Element;
-  children?: React.ReactNode;
+  children?: ReactNode;
   // Only available in development mode
   DEV_ONLY__loadAppbarMenuConfig?: () => Promise<TApplicationsMenu['appBar']>;
   DEV_ONLY__loadNavbarMenuConfig?: () => Promise<TApplicationsMenu['navBar']>;
@@ -225,7 +225,7 @@ export const RestrictedApplication = <
                     flags={props.featureFlags}
                     defaultFlags={props.defaultFeatureFlags}
                   >
-                    <React.Fragment>
+                    <>
                       <VersionTracker />
                       {/* NOTE: the requests in flight loader will render a loading
                       spinner into the AppBar. */}
@@ -464,20 +464,18 @@ export const RestrictedApplication = <
                                   exact={false}
                                   path="/:projectKey"
                                   render={(routerProps) => (
-                                    <React.Fragment>
-                                      <ProjectContainer<AdditionalEnvironmentProperties>
-                                        user={user}
-                                        match={routerProps.match}
-                                        location={routerProps.location}
-                                        environment={applicationEnvironment}
-                                        // This effectively renders the
-                                        // children, which is the application
-                                        // specific part
-                                        render={props.render}
-                                      >
-                                        {props.children}
-                                      </ProjectContainer>
-                                    </React.Fragment>
+                                    <ProjectContainer<AdditionalEnvironmentProperties>
+                                      user={user}
+                                      match={routerProps.match}
+                                      location={routerProps.location}
+                                      environment={applicationEnvironment}
+                                      // This effectively renders the
+                                      // children, which is the application
+                                      // specific part
+                                      render={props.render}
+                                    >
+                                      {props.children}
+                                    </ProjectContainer>
                                   )}
                                 />
                               </Switch>
@@ -485,7 +483,7 @@ export const RestrictedApplication = <
                           </MainContainer>
                         )}
                       </div>
-                    </React.Fragment>
+                    </>
                   </SetupFlopFlipProvider>
                 </ConfigureIntlProvider>
               )}
@@ -501,7 +499,7 @@ RestrictedApplication.displayName = 'RestrictedApplication';
 const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
   props: Props<AdditionalEnvironmentProperties>
 ) => {
-  React.useEffect(() => {
+  useEffect(() => {
     props.onRegisterErrorListeners({
       dispatch: internalReduxStore.dispatch,
     });

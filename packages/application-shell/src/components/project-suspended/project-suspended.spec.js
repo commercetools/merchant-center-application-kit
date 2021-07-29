@@ -1,6 +1,5 @@
 import { graphql } from 'msw';
 import { setupServer } from 'msw/node';
-import React from 'react';
 import { Route } from 'react-router-dom';
 import { UserMock, ProjectMock } from '../../../../../graphql-test-utils';
 import { renderApp, screen } from '../../test-utils';

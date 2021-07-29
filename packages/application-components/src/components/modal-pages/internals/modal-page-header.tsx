@@ -1,12 +1,12 @@
-import React from 'react';
+import { ReactElement, ReactNode } from 'react';
 import { customProperties } from '@commercetools-uikit/design-system';
 import { css } from '@emotion/react';
 import ModalPageHeaderTitle from './modal-page-header-title';
 
 type Props = {
   title: string;
-  subtitle?: string | React.ReactElement;
-  children?: React.ReactNode;
+  subtitle?: string | ReactElement;
+  children?: ReactNode;
 };
 
 const ModalPageHeader = (props: Props) => (

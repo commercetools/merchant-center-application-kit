@@ -1,5 +1,5 @@
 import { mocked } from 'ts-jest/utils';
-import React from 'react';
+import { ReactElement } from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
@@ -7,7 +7,7 @@ import ApiErrorMessage from './api-error-message';
 
 jest.mock('@commercetools-frontend/sentry');
 
-const renderMessage = (ui: React.ReactElement) =>
+const renderMessage = (ui: ReactElement) =>
   render(<IntlProvider locale="en">{ui}</IntlProvider>);
 
 describe('render', () => {

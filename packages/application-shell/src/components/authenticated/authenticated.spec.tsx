@@ -7,7 +7,6 @@ import type {
 import { mocked } from 'ts-jest/utils';
 import { graphql } from 'msw';
 import { setupServer } from 'msw/node';
-import React from 'react';
 import { renderApp, waitFor } from '../../test-utils';
 import { STORAGE_KEYS } from '../../constants';
 import Authenticated from './authenticated';

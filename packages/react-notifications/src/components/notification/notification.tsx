@@ -3,7 +3,7 @@ import type {
   TAppNotificationDomain,
 } from '@commercetools-frontend/constants';
 
-import React from 'react';
+import { ReactNode, SyntheticEvent } from 'react';
 import { useIntl } from 'react-intl';
 import {
   CloseBoldIcon,
@@ -55,8 +55,8 @@ export type Props = {
   domain: TAppNotificationDomain;
   type: TAppNotificationKind;
   fixed: boolean;
-  onCloseClick?: (event: React.SyntheticEvent) => void;
-  children: React.ReactNode;
+  onCloseClick?: (event: SyntheticEvent) => void;
+  children: ReactNode;
 };
 const defaultProps: Pick<Props, 'fixed'> = {
   fixed: false,

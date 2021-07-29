@@ -4,7 +4,7 @@ import type {
   TNormalizedDataFences,
 } from '@commercetools-frontend/application-shell-connectors';
 
-import React from 'react';
+import { ComponentType, ReactNode } from 'react';
 import useIsAuthorized from '../../hooks/use-is-authorized';
 import getDisplayName from '../../utils/get-display-name';
 
@@ -41,7 +41,7 @@ type Props = {
   shouldMatchSomePermissions?: boolean;
   selectDataFenceData?: TSelectDataFenceData;
   projectPermissions?: TProjectPermissions;
-  render: (isAuthorized: boolean) => React.ReactNode;
+  render: (isAuthorized: boolean) => ReactNode;
   children?: never;
 };
 const defaultProps: Pick<Props, 'shouldMatchSomePermissions'> = {
@@ -58,7 +58,7 @@ const Authorized = (props: Props) => {
     projectPermissions: props.projectPermissions,
   });
 
-  return <React.Fragment>{props.render(isAuthorized)}</React.Fragment>;
+  return <>{props.render(isAuthorized)}</>;
 };
 Authorized.displayName = 'Authorized';
 Authorized.defaultProps = defaultProps;
@@ -83,8 +83,8 @@ const injectAuthorized =
     propName = 'isAuthorized'
   ) =>
   (
-    Component: React.ComponentType<OwnProps>
-  ): React.ComponentType<OwnProps & InjectedProps> => {
+    Component: ComponentType<OwnProps>
+  ): ComponentType<OwnProps & InjectedProps> => {
     const WrappedComponent = (props: OwnProps) => (
       <Authorized
         shouldMatchSomePermissions={options.shouldMatchSomePermissions}

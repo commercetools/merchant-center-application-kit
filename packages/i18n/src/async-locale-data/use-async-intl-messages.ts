@@ -1,6 +1,6 @@
 import type { MessageFormatElement } from 'intl-messageformat-parser';
 
-import React from 'react';
+import { useEffect, useState } from 'react';
 
 export type TMessageTranslations =
   | Record<string, string>
@@ -27,9 +27,9 @@ const initialState: TState = {
 // Low level hook to load messages for a specific locale. The loading is async
 // because it's assumed that the translation files are dynamically imported (code splitted).
 const useAsyncIntlMessages = ({ locale, loader }: THookOptions): TState => {
-  const [state, setState] = React.useState(initialState);
+  const [state, setState] = useState(initialState);
 
-  React.useEffect(() => {
+  useEffect(() => {
     let _isUnmounting = false;
 
     async function load(_locale: string) {

@@ -6,7 +6,7 @@
 // tools here instead of actual components.
 import { graphql } from 'msw';
 import { setupServer } from 'msw/node';
-import React from 'react';
+import { createContext, ReactNode, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { gql } from '@apollo/client';
 import { useIntl } from 'react-intl';
@@ -309,8 +309,8 @@ describe('router', () => {
 
 describe('custom render functions', () => {
   describe('with wrapper', () => {
-    const Context = React.createContext('');
-    const ProvidedWrapper = ({ children }: { children?: React.ReactNode }) => (
+    const Context = createContext('');
+    const ProvidedWrapper = ({ children }: { children?: ReactNode }) => (
       <Context.Provider value="provided wrapper">{children}</Context.Provider>
     );
     ProvidedWrapper.propTypes = {
@@ -320,7 +320,7 @@ describe('custom render functions', () => {
     it('should merge the passed wrapper with renderApp internal wrapper', async () => {
       const TestComponent = () => {
         // provided wrapper
-        const value = React.useContext(Context);
+        const value = useContext(Context);
         // own wrapper
         useIntl();
 
@@ -336,7 +336,7 @@ describe('custom render functions', () => {
     it('should merge the passed wrapper with renderAppWithRedux internal wrapper', async () => {
       const TestComponent = () => {
         // provided wrapper
-        const value = React.useContext(Context);
+        const value = useContext(Context);
         // own wrapper
         useSelector(() => undefined);
 
@@ -352,7 +352,7 @@ describe('custom render functions', () => {
 
   describe('without wrapper', () => {
     it('should work with renderApp', async () => {
-      const TestComponent = (props: { children: React.ReactNode }) => (
+      const TestComponent = (props: { children: ReactNode }) => (
         // eslint-disable-next-line testing-library/no-node-access
         <>{props.children}</>
       );
@@ -361,7 +361,7 @@ describe('custom render functions', () => {
       await screen.findByText('one');
     });
     it('should work with renderAppWithRedux', async () => {
-      const TestComponent = (props: { children: React.ReactNode }) => (
+      const TestComponent = (props: { children: ReactNode }) => (
         // eslint-disable-next-line testing-library/no-node-access
         <>{props.children}</>
       );
@@ -373,7 +373,7 @@ describe('custom render functions', () => {
 
   describe('rerender', () => {
     it('should work with renderApp', async () => {
-      const TestComponent = (props: { children: React.ReactNode }) => {
+      const TestComponent = (props: { children: ReactNode }) => {
         // the error won't be triggered unless one of the providers is used
         useIntl();
         // eslint-disable-next-line testing-library/no-node-access
@@ -389,7 +389,7 @@ describe('custom render functions', () => {
     });
 
     it('should work with renderAppWithRedux', async () => {
-      const TestComponent = (props: { children: React.ReactNode }) => {
+      const TestComponent = (props: { children: ReactNode }) => {
         // the error won't be triggered unless one of the providers is used
         useSelector(() => undefined);
         // eslint-disable-next-line testing-library/no-node-access

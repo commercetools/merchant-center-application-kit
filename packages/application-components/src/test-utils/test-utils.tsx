@@ -1,6 +1,6 @@
 import type { RenderOptions } from '@testing-library/react';
 
-import React from 'react';
+import { ReactNode } from 'react';
 import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 
@@ -9,7 +9,7 @@ type CustomRenderOptions = {
 } & Omit<RenderOptions, 'queries'>;
 
 const customRender = (
-  node: React.ReactNode,
+  node: ReactNode,
   { locale = 'en', ...rtlOptions }: Partial<CustomRenderOptions> = {}
 ) => ({
   ...render(<IntlProvider locale={locale}>{node}</IntlProvider>, rtlOptions),

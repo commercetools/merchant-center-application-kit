@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from '@emotion/styled';
 import { TabularModalPage } from '@commercetools-frontend/application-components';
 import Spacings from '@commercetools-uikit/spacings';
@@ -124,7 +123,7 @@ const TabularModalPageExample = (props) => (
                 values.useCustomTitleRow === 'custom' && exampleCustomTitleRow
               }
               formControls={
-                <React.Fragment>
+                <>
                   <TabularModalPage.FormSecondaryButton
                     onClick={() => {
                       setIsOpen(false);
@@ -138,7 +137,7 @@ const TabularModalPageExample = (props) => (
                     onClick={() => undefined}
                     isDisabled
                   />
-                </React.Fragment>
+                </>
               }
               hideControls={values.hideControls}
             >

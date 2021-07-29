@@ -1,6 +1,5 @@
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 
-import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from '@emotion/styled';
 import FailedAuthenticationSVG from '@commercetools-frontend/assets/images/locked-diamond.svg';

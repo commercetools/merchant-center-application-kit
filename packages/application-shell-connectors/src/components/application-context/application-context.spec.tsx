@@ -2,7 +2,7 @@ import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type { TProjectGraphql } from '../../../../../test-data/project';
 import type { TUserGraphql } from '../../../../../test-data/user';
 
-import React from 'react';
+import { ReactElement } from 'react';
 import { screen, render } from '@testing-library/react';
 import * as ProjectMock from '../../../../../test-data/project';
 import * as UserMock from '../../../../../test-data/user';
@@ -40,7 +40,7 @@ const testProject = ProjectMock.random()
   .name('Ultron')
   .buildGraphql<TProjectGraphql>();
 
-const renderAppWithContext = (ui: React.ReactElement) => {
+const renderAppWithContext = (ui: ReactElement) => {
   return render(
     <ApplicationContextProvider<AdditionalEnvironmentProps>
       user={testUser}

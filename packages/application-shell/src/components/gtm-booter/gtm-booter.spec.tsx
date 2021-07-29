@@ -1,7 +1,6 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type { Props } from './gtm-booter';
 
-import React from 'react';
 import { screen, render, waitFor, fireEvent } from '@testing-library/react';
 import GtmBooter from './gtm-booter';
 

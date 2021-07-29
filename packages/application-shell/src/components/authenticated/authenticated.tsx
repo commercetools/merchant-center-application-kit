@@ -1,7 +1,6 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 
-import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import hasCachedAuthenticationState from './has-cached-authentication-state';
 import AmILoggedIn from './am-i-logged-in';

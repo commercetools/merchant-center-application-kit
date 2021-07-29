@@ -1,6 +1,6 @@
 import type { IntlConfig } from 'react-intl';
 
-import React from 'react';
+import { ReactNode, useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 
 interface ApplicationWindow extends Window {
@@ -11,7 +11,7 @@ declare let window: ApplicationWindow;
 type Props = {
   locale?: string;
   messages?: IntlConfig['messages'];
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 const hideAppLoader = () => {
@@ -31,7 +31,7 @@ const hideAppLoader = () => {
 };
 
 const ConfigureIntlProvider = (props: Props) => {
-  React.useEffect(() => {
+  useEffect(() => {
     if (props.locale) {
       hideAppLoader();
     }

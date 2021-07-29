@@ -1,4 +1,3 @@
-import React from 'react';
 import { css } from '@emotion/react';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 

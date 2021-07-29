@@ -1,4 +1,3 @@
-import React from 'react';
 import { screen, renderAppWithRedux, waitFor } from '../../test-utils';
 import RequestsInFlightLoader from './requests-in-flight-loader';
 

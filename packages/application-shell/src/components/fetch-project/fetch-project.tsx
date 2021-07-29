@@ -4,7 +4,7 @@ import type {
   TFetchProjectQueryVariables,
 } from '../../types/generated/mc';
 
-import React from 'react';
+import { ReactNode } from 'react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { useMcQuery } from '../../hooks/apollo-hooks';
@@ -18,7 +18,7 @@ type RenderFnArgs = {
 type Props = {
   projectKey: string;
   skip?: boolean;
-  children: (args: RenderFnArgs) => React.ReactNode;
+  children: (args: RenderFnArgs) => ReactNode;
 };
 
 const FetchProject = (props: Props) => {

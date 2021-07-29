@@ -1,4 +1,4 @@
-import React from 'react';
+import { useLayoutEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { AngleRightIcon, AngleDownIcon } from '@commercetools-uikit/icons';
@@ -26,11 +26,11 @@ const PreviewContainer = styled.div`
 `;
 
 const PlaygroundController = (props) => {
-  const [isPanelOpen, setIsPanelOpen] = React.useState(false);
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
   const togglePanel = () => {
     setIsPanelOpen(!isPanelOpen);
   };
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     window.dispatchEvent(new Event('resize'));
   }, [isPanelOpen]);
   return (

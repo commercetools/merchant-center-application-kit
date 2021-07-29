@@ -2,7 +2,6 @@ import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import type { AuthorizeSessionState } from './types';
 
-import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { decode } from 'qss';
 import jwtDecode from 'jwt-decode';

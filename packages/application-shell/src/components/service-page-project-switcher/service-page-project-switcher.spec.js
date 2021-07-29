@@ -1,4 +1,3 @@
-import React from 'react';
 import { Route } from 'react-router-dom';
 import { renderApp, waitFor } from '../../test-utils';
 import { createGraphqlResponseForProjectsQuery } from '../project-switcher/project-switcher-test-utils';

@@ -1,4 +1,4 @@
-import React from 'react';
+import { useLayoutEffect } from 'react';
 import isNil from 'lodash/isNil';
 import { STORAGE_KEYS } from '../../constants';
 
@@ -9,7 +9,7 @@ const useLoadingMenuLayoutEffect = () => {
   const isForcedMenuOpen = isNil(cachedIsForcedMenuOpen)
     ? null
     : (JSON.parse(cachedIsForcedMenuOpen) as boolean);
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (isForcedMenuOpen) document.body.classList.add('body__menu-open');
     if (!isForcedMenuOpen) document.body.classList.remove('body__menu-open');
   }, [isForcedMenuOpen]);

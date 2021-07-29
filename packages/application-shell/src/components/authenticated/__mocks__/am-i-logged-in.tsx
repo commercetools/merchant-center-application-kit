@@ -1,5 +1,3 @@
-import React from 'react';
-
 type RenderFnArgs = { isAuthenticated: boolean };
 type Props = {
   render: (args: RenderFnArgs) => JSX.Element;

@@ -1,4 +1,4 @@
-import React from 'react';
+import { ComponentType, ReactElement } from 'react';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { screen, render } from '@testing-library/react';
 import RestrictedByPermissions from './restricted-by-permissions';
@@ -39,7 +39,7 @@ const testRender = ({
   allAppliedActionRights?: TAllAppliedActionRight[];
   allAppliedMenuVisibilities?: TAllAppliedMenuVisibility[];
   allAppliedDataFences?: TAllAppliedDataFence[];
-  component: React.ReactElement;
+  component: ReactElement;
 }) =>
   render(
     <ApplicationContextProvider
@@ -108,9 +108,7 @@ const RenderPropTestComponent = () => (
     )}
   />
 );
-const TestComponent = (props: {
-  unauthorizedComponent?: React.ComponentType;
-}) => (
+const TestComponent = (props: { unauthorizedComponent?: ComponentType }) => (
   <RestrictedByPermissions
     permissions={['ManageCustomers']}
     unauthorizedComponent={props.unauthorizedComponent}

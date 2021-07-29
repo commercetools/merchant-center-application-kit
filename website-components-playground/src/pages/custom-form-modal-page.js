@@ -1,4 +1,3 @@
-import React from 'react';
 import { Formik } from 'formik';
 import { CustomFormModalPage } from '@commercetools-frontend/application-components';
 import TextInput from '@commercetools-uikit/text-input';
@@ -65,7 +64,7 @@ const CustomFormModalPageExample = () => (
                   isOpen={isOpen}
                   onClose={() => setIsOpen(false)}
                   formControls={
-                    <React.Fragment>
+                    <>
                       <CustomFormModalPage.FormSecondaryButton
                         onClick={() => {
                           formikProps.resetForm();
@@ -79,7 +78,7 @@ const CustomFormModalPageExample = () => (
                         onClick={() => null}
                         isDisabled={true}
                       />
-                    </React.Fragment>
+                    </>
                   }
                   hideControls={values.hideControls}
                   getParentSelector={() =>

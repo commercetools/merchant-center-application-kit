@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   GRAPHQL_TARGETS,
   MC_API_PROXY_TARGETS,

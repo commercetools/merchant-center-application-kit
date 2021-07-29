@@ -1,4 +1,4 @@
-import React from 'react';
+import { ComponentType, useEffect, useReducer } from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { getDisplayName } from '../utils';
 
@@ -47,14 +47,14 @@ export function createL10NHook<LoadedData extends {}>(
   loadLocale: LoadLocale<LoadedData>
 ) {
   return (locale: string) => {
-    const [data, dispatch] = React.useReducer<
+    const [data, dispatch] = useReducer<
       (
         prevState: State<LoadedData>,
         action: Action<LoadedData>
       ) => State<LoadedData>
     >(reducer, initialState);
 
-    React.useEffect(() => {
+    useEffect(() => {
       let cleaning = false;
       dispatch({ type: 'loading' });
       async function run() {
@@ -87,7 +87,7 @@ export function createL10NInjector<LoadedData extends {}>({
   ) {
     const useL10n = createL10NHook(loadLocale);
 
-    return (WrappedComponent: React.ComponentType<Props>) => {
+    return (WrappedComponent: ComponentType<Props>) => {
       const L10NComponent = (props: Props) => {
         const state = useL10n(mapPropsToLocale(props));
         return (

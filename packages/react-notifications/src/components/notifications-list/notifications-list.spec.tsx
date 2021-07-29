@@ -1,7 +1,7 @@
 import type { RenderResult } from '@testing-library/react';
 
 import { mocked } from 'ts-jest/utils';
-import React from 'react';
+import { ReactElement } from 'react';
 import { IntlProvider } from 'react-intl';
 import { useSelector } from 'react-redux';
 import { screen, render } from '@testing-library/react';
@@ -21,7 +21,7 @@ jest.mock('react-redux');
 
 const mapNotificationToComponent = () => CustomComponent;
 
-const renderComponent = (ui: React.ReactElement): RenderResult =>
+const renderComponent = (ui: ReactElement): RenderResult =>
   render(
     <IntlProvider locale="en" messages={{}}>
       {ui}

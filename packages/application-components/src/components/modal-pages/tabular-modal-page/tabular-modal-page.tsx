@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactElement, ReactNode, SyntheticEvent } from 'react';
 import { css } from '@emotion/react';
 import { customProperties } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
@@ -26,8 +26,8 @@ type Props = {
   level?: number;
   title: string;
   isOpen: boolean;
-  onClose?: (event: React.SyntheticEvent) => void;
-  children: React.ReactNode;
+  onClose?: (event: SyntheticEvent) => void;
+  children: ReactNode;
   zIndex?: number;
   baseZIndex?: number;
   getParentSelector?: () => HTMLElement;
@@ -36,12 +36,12 @@ type Props = {
   topBarCurrentPathLabel?: string;
   topBarPreviousPathLabel?: Label;
   // Replaces the title/subtitle row with a custom one (for special use cases)
-  customTitleRow?: React.ReactNode;
+  customTitleRow?: ReactNode;
   // Pass tab components
-  tabControls: React.ReactNode;
+  tabControls: ReactNode;
   // Header Props
-  subtitle?: string | React.ReactElement;
-  formControls?: React.ReactNode;
+  subtitle?: string | ReactElement;
+  formControls?: ReactNode;
   hideControls: boolean;
 };
 

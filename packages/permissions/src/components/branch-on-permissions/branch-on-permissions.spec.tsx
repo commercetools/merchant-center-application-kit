@@ -1,4 +1,3 @@
-import React from 'react';
 import { screen, render } from '@testing-library/react';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import branchOnPermissions from './branch-on-permissions';

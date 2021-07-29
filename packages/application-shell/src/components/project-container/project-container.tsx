@@ -2,7 +2,7 @@ import type { RouteComponentProps } from 'react-router-dom';
 import type { TProviderProps } from '@commercetools-frontend/application-shell-connectors';
 import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 
-import React from 'react';
+import { ReactNode, Suspense, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -34,7 +34,7 @@ type Props<AdditionalEnvironmentProperties extends {}> = Pick<
   user: TFetchLoggedInUserQuery['user'];
   environment: TProviderProps<AdditionalEnvironmentProperties>['environment'];
   render?: () => JSX.Element;
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
 // A trial expire notification should be displayed from 2 weeks before the project expires
@@ -50,9 +50,9 @@ const ProjectContainer = <AdditionalEnvironmentProperties extends {}>(
 ) => {
   const intl = useIntl();
   const [localeSwitcherNode, setLocaleSwitcherNode] =
-    React.useState<HTMLElement | null>(null);
+    useState<HTMLElement | null>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     /**
      * NOTE: in order to render a component into a portal, the portal
      * DOM node needs to exists in the DOM.
@@ -75,7 +75,7 @@ const ProjectContainer = <AdditionalEnvironmentProperties extends {}>(
   }, [setLocaleSwitcherNode]);
 
   const projectKey = props.match.params.projectKey;
-  React.useEffect(() => {
+  useEffect(() => {
     // Ensure to sync the `projectKey` from the URL with localStorage.
     if (projectKey) {
       window.localStorage.setItem(STORAGE_KEYS.ACTIVE_PROJECT_KEY, projectKey);
@@ -112,7 +112,7 @@ const ProjectContainer = <AdditionalEnvironmentProperties extends {}>(
 
   return (
     <ErrorBoundary pathname={props.location.pathname}>
-      <React.Suspense fallback={<ApplicationLoader />}>
+      <Suspense fallback={<ApplicationLoader />}>
         <FetchProject
           skip={!props.user || !props.user.defaultProjectKey}
           projectKey={projectKey}
@@ -143,7 +143,7 @@ const ProjectContainer = <AdditionalEnvironmentProperties extends {}>(
                     projectDataLocale={locale}
                     environment={props.environment}
                   >
-                    <React.Fragment>
+                    <>
                       {shouldShowNotificationForTrialExpired(
                         project.expiry.daysLeft
                       ) && (
@@ -180,14 +180,14 @@ const ProjectContainer = <AdditionalEnvironmentProperties extends {}>(
                       >
                         {props.children}
                       </ApplicationEntryPoint>
-                    </React.Fragment>
+                    </>
                   </ApplicationContextProvider>
                 )}
               </ProjectDataLocale>
             );
           }}
         </FetchProject>
-      </React.Suspense>
+      </Suspense>
     </ErrorBoundary>
   );
 };

@@ -1,4 +1,3 @@
-import React from 'react';
 import { encode } from 'qss';
 import { graphql, rest } from 'msw';
 import { setupServer } from 'msw/node';

@@ -1,6 +1,6 @@
 import type { MessageFormatElement } from 'intl-messageformat-parser';
 
-import React from 'react';
+import { useEffect, ReactNode, useCallback } from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { extractLanguageTagFromLocale, mergeMessages } from '../utils';
 import loadI18n from '../load-i18n';
@@ -26,7 +26,7 @@ export type Props = {
   applicationMessages:
     | { [locale: string]: TMessageTranslations }
     | TMessageTranslationsAsync;
-  children: (state: TRenderFunctionResult) => React.ReactNode;
+  children: (state: TRenderFunctionResult) => ReactNode;
 };
 
 const getMessagesForLocale = (
@@ -43,7 +43,7 @@ const useAsyncLocaleData = ({
   locale,
   applicationMessages,
 }: Pick<Props, 'locale' | 'applicationMessages'>) => {
-  const loadApplicationMessages = React.useCallback(
+  const loadApplicationMessages = useCallback(
     async (locale: string) => {
       if (typeof applicationMessages === 'function') {
         return await applicationMessages(locale);
@@ -80,7 +80,7 @@ const useAsyncLocaleData = ({
 const AsyncLocaleData = (props: Props) => {
   const { isLoading, messages, error } = useAsyncLocaleData(props);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (error) reportErrorToSentry(error, {});
   }, [error]);
 

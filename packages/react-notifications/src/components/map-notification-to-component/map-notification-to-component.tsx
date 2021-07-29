@@ -4,7 +4,7 @@ import type {
   TAppNotificationSide,
 } from '@commercetools-frontend/constants';
 
-import React from 'react';
+import { ElementType, ReactNode, createContext, useContext } from 'react';
 
 export type Props = {
   mapNotificationToComponent: (
@@ -12,17 +12,17 @@ export type Props = {
       | TAppNotificationGlobal
       | TAppNotificationPage
       | TAppNotificationSide
-  ) => React.ElementType | null;
-  children: React.ReactNode;
+  ) => ElementType | null;
+  children: ReactNode;
 };
 
-const Context = React.createContext<
+const Context = createContext<
   (
     notification:
       | TAppNotificationGlobal
       | TAppNotificationPage
       | TAppNotificationSide
-  ) => React.ElementType | null
+  ) => ElementType | null
 >(() => null);
 
 function NotificationProviderForCustomComponent(props: Props) {
@@ -35,7 +35,7 @@ function NotificationProviderForCustomComponent(props: Props) {
 NotificationProviderForCustomComponent.displayName =
   'NotificationProviderForCustomComponent';
 
-export const useCustomNotificationComponent = () => React.useContext(Context);
+export const useCustomNotificationComponent = () => useContext(Context);
 
 // Exports
 export default NotificationProviderForCustomComponent;

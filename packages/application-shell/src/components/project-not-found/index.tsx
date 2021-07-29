@@ -1,6 +1,6 @@
-import React from 'react';
+import { lazy } from 'react';
 
-const ProjectNotFound = React.lazy(
+const ProjectNotFound = lazy(
   () =>
     import('./project-not-found' /* webpackChunkName: "project-not-found" */)
 );

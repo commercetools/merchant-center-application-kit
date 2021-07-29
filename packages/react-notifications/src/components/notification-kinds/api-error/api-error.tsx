@@ -3,7 +3,7 @@ import type {
   TAppNotificationValuesApiError,
 } from '@commercetools-frontend/constants';
 
-import React from 'react';
+import { SyntheticEvent } from 'react';
 import {
   NOTIFICATION_DOMAINS,
   NOTIFICATION_KINDS_PAGE,
@@ -17,7 +17,7 @@ type Props = {
     kind: typeof NOTIFICATION_KINDS_PAGE['api-error'];
     values: TAppNotificationValuesApiError;
   }>;
-  dismiss: (event: React.SyntheticEvent) => void;
+  dismiss: (event: SyntheticEvent) => void;
 };
 
 const ApiErrorNotification = (props: Props) => (

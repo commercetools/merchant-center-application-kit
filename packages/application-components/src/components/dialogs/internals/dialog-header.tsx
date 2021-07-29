@@ -1,4 +1,4 @@
-import React from 'react';
+import { SyntheticEvent } from 'react';
 import { css } from '@emotion/react';
 import { CloseIcon } from '@commercetools-uikit/icons';
 import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';
@@ -7,7 +7,7 @@ import Spacings from '@commercetools-uikit/spacings';
 
 type Props = {
   title: string;
-  onClose?: (event: React.SyntheticEvent) => void;
+  onClose?: (event: SyntheticEvent) => void;
   children?: never;
 };
 

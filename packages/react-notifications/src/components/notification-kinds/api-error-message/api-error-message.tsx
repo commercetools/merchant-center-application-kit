@@ -1,7 +1,7 @@
 import type { TAppNotificationApiError } from '@commercetools-frontend/constants';
 import type { IntlShape } from 'react-intl';
 
-import React from 'react';
+import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import has from 'lodash/has';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
@@ -58,7 +58,7 @@ const FormattedErrorMessage = (props: Props) => {
       ? messages[props.error.code]
       : undefined;
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!messageCode) {
       // This error is not mapped / translated yet,
       // we log, report it to sentry and show the original error, unless `error.code` is `invalid_scope`

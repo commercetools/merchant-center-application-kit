@@ -11,7 +11,7 @@ import type {
   TFetchApplicationsMenuQueryVariables,
 } from '../../types/generated/proxy';
 
-import React from 'react';
+import { useEffect } from 'react';
 import { useApolloClient } from '@apollo/client';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { useMcQuery } from '../../hooks/apollo-hooks';
@@ -257,7 +257,7 @@ function useApplicationsMenu<Key extends MenuKey>(
 
   // For development, we read the menu data from the configuration file and
   // write it into the Apollo cache.
-  React.useEffect(() => {
+  useEffect(() => {
     if (
       config.environment.__DEVELOPMENT__ &&
       (config.environment.__DEVELOPMENT__.menuLinks ||

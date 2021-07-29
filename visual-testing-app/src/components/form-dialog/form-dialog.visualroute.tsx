@@ -1,4 +1,3 @@
-import React from 'react';
 import { Formik } from 'formik';
 import TextField, { CustomFormikErrors } from '@commercetools-uikit/text-field';
 import Spacings from '@commercetools-uikit/spacings';
@@ -17,7 +16,7 @@ type FormValues = {
 const FormDialogExample = (props: ContainerProps) => (
   <Formik<FormValues> initialValues={{ email: '' }} onSubmit={() => undefined}>
     {(formikProps) => (
-      <React.Fragment>
+      <>
         <div id={props.portalId} style={{ flex: 1 }} />
         <FormDialog
           title="Lorem ipsum"
@@ -46,7 +45,7 @@ const FormDialogExample = (props: ContainerProps) => (
             />
           </Spacings.Stack>
         </FormDialog>
-      </React.Fragment>
+      </>
     )}
   </Formik>
 );

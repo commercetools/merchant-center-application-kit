@@ -1,6 +1,6 @@
 import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 
-import React from 'react';
+import { useEffect } from 'react';
 import * as gtm from '../../utils/gtm';
 
 type TFetchedUser = TFetchLoggedInUserQuery['user'];
@@ -13,7 +13,7 @@ type Props = {
  * changed.
  */
 const GtmUserTracker = (props: Props) => {
-  React.useEffect(() => {
+  useEffect(() => {
     if (props.user) {
       gtm.updateUser(props.user.id);
     }

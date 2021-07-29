@@ -1,4 +1,3 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import FlatButton from '@commercetools-uikit/flat-button';
 import { AngleLeftIcon } from '@commercetools-uikit/icons';
