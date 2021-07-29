@@ -21,13 +21,13 @@ import {
   ApplicationContextProvider,
   useApplicationContext,
 } from '@commercetools-frontend/application-shell-connectors';
+import { PortalsContainer } from '@commercetools-frontend/application-components';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import version from '../../version';
 import internalReduxStore from '../../configure-store';
 import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
 import ProjectDataLocale from '../project-data-locale';
-import PortalsContainer from '../portals-container';
 import ApplicationShellProvider from '../application-shell-provider';
 import { getBrowserLocale } from '../application-shell-provider/utils';
 import FetchUser from '../fetch-user';
