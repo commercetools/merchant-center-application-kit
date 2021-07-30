@@ -1,4 +1,4 @@
-import { PERMISSIONS } from './src/constants'
+import { PERMISSIONS } from './src/constants';
 const name = 'State machines (Playground application)';
 
 /**
