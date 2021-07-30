@@ -1,6 +1,3 @@
-/**
- * @type {import('@jest/types').Config.ProjectConfig}
- */
 module.exports = {
   runner: 'jest-runner-executor',
   displayName: 'vale',

@@ -1,9 +1,6 @@
-import { PERMISSIONS } from './src/constants'
+import { PERMISSIONS } from './src/constants';
 const name = 'State machines (Playground application)';
 
-/**
- * @type {import('@commercetools-frontend/application-config').ConfigOptions}
- */
 const config = {
   name,
   entryPointUriPath: 'playground-state-machines',

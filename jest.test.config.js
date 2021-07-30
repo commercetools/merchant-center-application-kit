@@ -1,8 +1,5 @@
 process.env.ENABLE_NEW_JSX_TRANSFORM = 'true';
 
-/**
- * @type {import('@jest/types').Config.ProjectConfig}
- */
 module.exports = {
   preset: './packages/jest-preset-mc-app/jest-preset-for-typescript',
   moduleDirectories: [

@@ -1,8 +1,5 @@
 process.env.ENABLE_NEW_JSX_TRANSFORM = 'true';
 
-/**
- * @type {import("eslint").Linter.Config}
- */
 module.exports = {
   extends: ['@commercetools-frontend/eslint-config-mc-app'],
   plugins: ['graphql'],

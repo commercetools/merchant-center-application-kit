@@ -1,6 +1,3 @@
-/**
- * @type {import('@jest/types').Config.ProjectConfig}
- */
 module.exports = {
   runner: '@commercetools-frontend/jest-stylelint-runner',
   displayName: 'stylelint',
