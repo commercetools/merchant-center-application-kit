@@ -1,5 +1,5 @@
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
-import type { ApplicationConfig, CloudIdentifier } from './types';
+import type { ApplicationRuntimeConfig, CloudIdentifier } from './types';
 
 // Loads the configuration file and parse the environment and header values.
 // Most of the resulting values are inferred from the config.
@@ -26,7 +26,7 @@ type ProcessConfigOptions = {
 const developmentAppUrl = 'http://localhost:3001';
 
 const omitDevConfigIfEmpty = (
-  devConfig: ApplicationConfig['env']['__DEVELOPMENT__']
+  devConfig: ApplicationRuntimeConfig['env']['__DEVELOPMENT__']
 ) => {
   if (devConfig?.menuLinks || devConfig?.oidc) return devConfig;
   return undefined;
@@ -34,21 +34,20 @@ const omitDevConfigIfEmpty = (
 
 // Keep a reference to the config so that requiring the module
 // again will result in returning the cached value.
-let cachedConfig: ApplicationConfig;
+let cachedConfig: ApplicationRuntimeConfig;
 
 const processConfig = ({
   disableCache = false,
   processEnv = process.env,
   applicationPath = fs.realpathSync(process.cwd()),
-  configJson,
-}: ProcessConfigOptions = {}): ApplicationConfig => {
+}: ProcessConfigOptions = {}): ApplicationRuntimeConfig => {
   if (cachedConfig && !disableCache) return cachedConfig;
 
   const appEnvKey =
     processEnv.MC_APP_ENV ?? processEnv.NODE_ENV ?? 'development';
   const isProd = getIsProd(processEnv);
 
-  const loadedAppConfig = configJson ?? loadConfig();
+  const loadedAppConfig = loadConfig(applicationPath);
   validateConfig(loadedAppConfig);
   const validatedLoadedAppConfig =
     loadedAppConfig as JSONSchemaForCustomApplicationConfigurationFiles;
@@ -113,25 +112,26 @@ const processConfig = ({
     }
   }
 
-  const developmentConfig: ApplicationConfig['env']['__DEVELOPMENT__'] = isProd
-    ? undefined
-    : omitDevConfigIfEmpty({
-        oidc: isOidcForDevelopmentEnabled
-          ? omitEmpty({
-              authorizeUrl: [
-                mcApiUrl.protocol,
-                '//',
-                mcApiUrl.host.replace('mc-api', 'mc'),
-              ].join(''),
-              initialProjectKey: appConfig.env.development?.initialProjectKey,
-              teamId: appConfig.env.development?.teamId,
-              oAuthScopes: appConfig.oAuthScopes,
-            })
-          : undefined,
-        menuLinks: appConfig.menuLinks,
-        // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
-        accountLinks: appConfig.accountLinks,
-      });
+  const developmentConfig: ApplicationRuntimeConfig['env']['__DEVELOPMENT__'] =
+    isProd
+      ? undefined
+      : omitDevConfigIfEmpty({
+          oidc: isOidcForDevelopmentEnabled
+            ? omitEmpty({
+                authorizeUrl: [
+                  mcApiUrl.protocol,
+                  '//',
+                  mcApiUrl.host.replace('mc-api', 'mc'),
+                ].join(''),
+                initialProjectKey: appConfig.env.development?.initialProjectKey,
+                teamId: appConfig.env.development?.teamId,
+                oAuthScopes: appConfig.oAuthScopes,
+              })
+            : undefined,
+          menuLinks: appConfig.menuLinks,
+          // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
+          accountLinks: appConfig.accountLinks,
+        });
 
   cachedConfig = {
     env: {
