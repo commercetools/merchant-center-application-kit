@@ -1,6 +1,9 @@
 const { statusCode, allSupportedExtensions } = require('./helpers/eslint');
 const hasJsxRuntime = require('./helpers/has-jsx-runtime');
 
+/**
+ * @type {import("eslint").Linter.Config}
+ */
 module.exports = {
   extends: [
     // https://github.com/facebook/create-react-app/tree/master/packages/eslint-config-react-app

@@ -13,7 +13,7 @@
     "compile-intl": "manypkg run i18n compile-data",
     "compile-css-modules": "manypkg run @commercetools-frontend/application-shell compile-css-modules --no-private",
     "l10n:build": "yarn --cwd packages/l10n generate-data",
-    "lint": "jest --projects jest.{eslint,stylelint,text}.config.js",
+    "lint": "jest --projects jest.eslint.config.js jest.stylelint.config.js jest.text.config.js",
     "lint:js": "jest --config jest.eslint.config.js",
     "lint:css": "jest --config jest.stylelint.config.js",
     "lint:text": "jest --config jest.text.config.js",
