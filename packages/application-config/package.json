@@ -17,7 +17,14 @@
   },
   "main": "dist/commercetools-frontend-application-config.cjs.js",
   "module": "dist/commercetools-frontend-application-config.esm.js",
-  "files": ["dist", "schema.json", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "dist",
+    "scripts",
+    "schema.json",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "yarn build:schema",

@@ -1,11 +1,27 @@
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 import type { LoaderSync } from 'cosmiconfig';
 
-import { execFileSync } from 'child_process';
+import fs from 'fs';
 import path from 'path';
+import { execFileSync } from 'child_process';
 import { cosmiconfigSync, defaultLoaders } from 'cosmiconfig';
 
+// Helper function to find the package root path from the current location,
+// for instance in respect to both source files and dist files.
+const findPackageRootPath = (dir: string): string => {
+  const packageJsonPath = path.join(dir, 'package.json');
+  if (fs.existsSync(packageJsonPath)) {
+    return dir;
+  }
+  const parentDir = path.join(dir, '..');
+  return findPackageRootPath(parentDir);
+};
+
 const loadJsModule: LoaderSync = (filePath) => {
+  const packageRootPath = findPackageRootPath(
+    // Start from the parent folder
+    path.join(__dirname, '..')
+  );
   // Load the JS module using a child process. This is primarly to avoid
   // unwanted behaviors using `@babel/register` in the main process.
   // The loader script does the actual `require` of the given `filePath`
@@ -13,7 +29,7 @@ const loadJsModule: LoaderSync = (filePath) => {
   // The "required module output" is then written into `stdout` and parsed
   // as JSON.
   const output = execFileSync(
-    path.join(__dirname, 'loaders/js-module.js'),
+    path.join(packageRootPath, 'scripts/load-js-module.js'),
     [filePath],
     { encoding: 'utf8' }
   );
