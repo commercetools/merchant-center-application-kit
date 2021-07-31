@@ -11,6 +11,6 @@ describe.each`
   it('should load and parse the config', () => {
     const applicationPath = path.join(__dirname, 'fixtures', fixtureApp);
     const config = loadConfig(applicationPath);
-    expect(config.name).toBeDefined();
+    expect(config.entryPointUriPath).toBe('test');
   });
 });

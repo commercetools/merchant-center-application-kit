@@ -1,19 +1,23 @@
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 import type { LoaderSync } from 'cosmiconfig';
 
+import { execFileSync } from 'child_process';
+import path from 'path';
 import { cosmiconfigSync, defaultLoaders } from 'cosmiconfig';
-import get from 'lodash/get';
 
 const loadJsModule: LoaderSync = (filePath) => {
-  // Load JS modules using Babel, as we need to load
-  // the config synchronously with `require`, no `await import`.
-  require('@babel/register')({
-    babelrc: false,
-    extensions: ['.js', '.cjs', '.mjs', '.ts'],
-    presets: ['@commercetools-frontend/babel-preset-mc-app'],
-  });
-  const result = require(filePath);
-  return get(result, 'default', result);
+  // Load the JS module using a child process. This is primarly to avoid
+  // unwanted behaviors using `@babel/register` in the main process.
+  // The loader script does the actual `require` of the given `filePath`
+  // and uses `@babel/register` to correctly parse and execute the file.
+  // The "required module output" is then written into `stdout` and parsed
+  // as JSON.
+  const output = execFileSync(
+    path.join(__dirname, 'loaders/js-module.js'),
+    [filePath],
+    { encoding: 'utf8' }
+  );
+  return JSON.parse(output);
 };
 
 const moduleName = 'custom-application-config';
