@@ -39,7 +39,7 @@ const printErrors = (errors?: ErrorObject[] | null) => {
 };
 
 const validateConfig = (
-  config?: JSONSchemaForCustomApplicationConfigurationFiles
+  config: JSONSchemaForCustomApplicationConfigurationFiles
 ): void => {
   const valid = validate(config);
   if (!valid) {

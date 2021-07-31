@@ -63,9 +63,15 @@ const explorer = cosmiconfigSync(moduleName, {
 
 const loadConfig = (
   applicationPath: string
-): JSONSchemaForCustomApplicationConfigurationFiles | undefined => {
+): JSONSchemaForCustomApplicationConfigurationFiles => {
   const configFile = explorer.search(applicationPath);
-  return configFile?.config;
+
+  if (!configFile || !configFile.config) {
+    throw new Error(
+      `Missing or invalid Custom Application configuration file.`
+    );
+  }
+  return configFile.config;
 };
 
 export default loadConfig;

@@ -59,15 +59,26 @@ const loadAllCustomApplicationConfigs = async (
         `Reading Custom Application config for ${packageInfo.packageJson.name}`
       );
       const processEnv = loadEnvironmentVariables(packageInfo.dir, options);
-      const processedConfig = processConfig({
-        disableCache: true,
-        processEnv,
-        applicationPath: packageInfo.dir,
-      });
-      return {
-        ...allConfigs,
-        [processedConfig.env.entryPointUriPath]: processedConfig.env,
-      };
+      try {
+        const processedConfig = processConfig({
+          disableCache: true,
+          processEnv,
+          applicationPath: packageInfo.dir,
+        });
+        return {
+          ...allConfigs,
+          [processedConfig.env.entryPointUriPath]: processedConfig.env,
+        };
+      } catch (error) {
+        if (
+          error.message.includes(
+            'Missing or invalid Custom Application configuration'
+          )
+        ) {
+          return allConfigs;
+        }
+        throw error;
+      }
     }, {});
 
   return cachedAllCustomApplicationConfigs;
