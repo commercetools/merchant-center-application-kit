@@ -5,6 +5,7 @@ import fs from 'fs';
 import path from 'path';
 import { execFileSync } from 'child_process';
 import { cosmiconfigSync, defaultLoaders } from 'cosmiconfig';
+import { MissingOrInvalidConfigError } from './errors';
 
 // Helper function to find the package root path from the current location,
 // for instance in respect to both source files and dist files.
@@ -67,7 +68,7 @@ const loadConfig = (
   const configFile = explorer.search(applicationPath);
 
   if (!configFile || !configFile.config) {
-    throw new Error(
+    throw new MissingOrInvalidConfigError(
       `Missing or invalid Custom Application configuration file.`
     );
   }

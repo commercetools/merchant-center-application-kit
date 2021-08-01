@@ -3,7 +3,10 @@ import type { ApplicationRuntimeConfig } from '@commercetools-frontend/applicati
 import fs from 'fs';
 import path from 'path';
 import { getPackages } from '@manypkg/get-packages';
-import { processConfig } from '@commercetools-frontend/application-config';
+import {
+  processConfig,
+  MissingOrInvalidConfigError,
+} from '@commercetools-frontend/application-config';
 
 type CustomApplicationConfigTaskOptions = {
   entryPointUriPath: string;
@@ -70,11 +73,10 @@ const loadAllCustomApplicationConfigs = async (
           [processedConfig.env.entryPointUriPath]: processedConfig.env,
         };
       } catch (error) {
-        if (
-          error.message.includes(
-            'Missing or invalid Custom Application configuration'
-          )
-        ) {
+        // Ignore packages that do not have a valid config file, either because
+        // the package is not a Custom Application or because the config file
+        // is invalid.
+        if (error instanceof MissingOrInvalidConfigError) {
           return allConfigs;
         }
         throw error;
