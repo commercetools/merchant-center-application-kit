@@ -30,8 +30,8 @@ const createGraphqlResponse = (custom = {}) => ({
   },
   ...custom,
 });
-const linkChecker = () => (label, href) => {
-  const link = screen.queryByText(label);
+const linkChecker = () => async (label, href) => {
+  const link = await screen.findByText(label);
   expect(link.closest('a')).toHaveAttribute('href', href);
 };
 
@@ -66,16 +66,16 @@ describe('rendering', () => {
       const checkLink = linkChecker();
 
       // Projects link
-      checkLink('Projects', '/account/projects');
+      await checkLink('Projects', '/account/projects');
       // Privacy link
-      checkLink(
+      await checkLink(
         'Privacy Policy',
         'https://commercetools.com/privacy#suppliers'
       );
       // Support link
-      checkLink('Support', SUPPORT_PORTAL_URL);
+      await checkLink('Support', SUPPORT_PORTAL_URL);
       // Logout link
-      checkLink('Logout', `/logout?reason=${LOGOUT_REASONS.USER}`);
+      await checkLink('Logout', `/logout?reason=${LOGOUT_REASONS.USER}`);
     });
   });
   describe('when fetching dev menu config', () => {
@@ -97,16 +97,16 @@ describe('rendering', () => {
       const checkLink = linkChecker();
 
       // Projects link
-      checkLink('Projects', '/account/projects');
+      await checkLink('Projects', '/account/projects');
       // Privacy link
-      checkLink(
+      await checkLink(
         'Privacy Policy',
         'https://commercetools.com/privacy#suppliers'
       );
       // Support link
-      checkLink('Support', SUPPORT_PORTAL_URL);
+      await checkLink('Support', SUPPORT_PORTAL_URL);
       // Logout link
-      checkLink('Logout', `/logout?reason=${LOGOUT_REASONS.USER}`);
+      await checkLink('Logout', `/logout?reason=${LOGOUT_REASONS.USER}`);
     });
   });
   describe('when clicking on the projects link', () => {
