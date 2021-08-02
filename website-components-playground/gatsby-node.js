@@ -27,6 +27,7 @@ exports.onCreateBabelConfig = ({ actions }) => {
     name: '@babel/plugin-transform-react-jsx',
     options: {
       runtime: 'automatic',
+      importSource: '@emotion/react',
     },
   });
 };
