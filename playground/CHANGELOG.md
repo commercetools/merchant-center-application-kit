@@ -1,5 +1,70 @@
 # playground
 
+## 18.4.0
+
+### Minor Changes
+
+- [#2317](https://github.com/commercetools/merchant-center-application-kit/pull/2317) [`487fcca6`](https://github.com/commercetools/merchant-center-application-kit/commit/487fcca6bcc03a4df59830e5204ca89cc5395df4) Thanks [@emmenko](https://github.com/emmenko)! - Add support for defining the Custom Application config as JS files.
+
+  Until now a Custom Application config file had to be defined as a JSON file with one of the following names:
+
+  - `.custom-application-configrc`
+  - `.custom-application-config.json`
+  - `custom-application-config.json`
+
+  On top of that, we built some "syntax features" to allow [variable placeholders](https://docs.commercetools.com/custom-applications/development/application-config#using-variable-placeholders) as a way to inject dynamic information into the static configuration file.
+
+  However, there are still some use cases where the information you need to provide must be imported from another file, for example a constants file or something similar.
+
+  To support such use cases, we now allow additional JS files to be used as a Custom Application config, specifically the following file extensions:
+
+  - `.js`
+  - `.cjs`
+  - `.mjs`
+  - `.ts`
+
+  The file must obviously return the configuration object.
+
+  > NOTE that you can still use variable placeholders.
+
+  For example:
+
+  ```js
+  // constants.js
+  const entryPointUriPath = 'test';
+  module.exports = { entryPointUriPath };
+
+  // custom-application-config.js
+  const { entryPointUriPath } = require('./constants');
+
+  const name = 'Test application';
+
+  /**
+   * @type {import('@commercetools-frontend/application-config').ConfigOptions}
+   */
+  const config = {
+    name,
+    cloudIdentifier: 'gcp-eu',
+    entryPointUriPath,
+    env: {
+      production: {
+        url: '${env:APP_URL}',
+      },
+    },
+  };
+  module.exports = config;
+  ```
+
+### Patch Changes
+
+- Updated dependencies [[`a0e1cd72`](https://github.com/commercetools/merchant-center-application-kit/commit/a0e1cd72847cccb80f0d3436fbf44cada6d86bd0), [`a04f5d02`](https://github.com/commercetools/merchant-center-application-kit/commit/a04f5d021b8620b059cd90442f91501ff538679c)]:
+  - @commercetools-frontend/actions-global@20.9.0
+  - @commercetools-frontend/application-shell-connectors@20.9.0
+  - @commercetools-frontend/i18n@20.9.0
+  - @commercetools-frontend/application-shell@20.9.0
+  - @commercetools-frontend/application-components@20.9.0
+  - @commercetools-frontend/permissions@20.9.0
+
 ## 18.3.0
 
 ### Minor Changes
