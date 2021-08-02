@@ -68,8 +68,6 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
           // This is probably a fine default to help trim down bundles when
           // end-users inevitably import '@babel/polyfill'.
           useBuiltIns: !options.disableCoreJs ? 'entry' : false,
-          // Do not transform modules to CJS
-          modules: false,
           include: ['transform-classes'],
         },
       ],

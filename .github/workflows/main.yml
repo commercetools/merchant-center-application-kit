@@ -59,7 +59,7 @@ jobs:
         run: yarn typecheck
 
       - name: Running linters and tests
-        run: yarn run jest --projects jest.{eslint,stylelint,test,text}.config.js --reporters jest-silent-reporter
+        run: yarn jest --projects jest.{eslint,stylelint,test,text}.config.js
         env:
           CI: true
           RTL_ASYNC_UTIL_TIMEOUT: 5000

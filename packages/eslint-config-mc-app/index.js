@@ -1,6 +1,9 @@
 const { statusCode, allSupportedExtensions } = require('./helpers/eslint');
 const hasJsxRuntime = require('./helpers/has-jsx-runtime');
 
+/**
+ * @type {import("eslint").Linter.Config}
+ */
 module.exports = {
   extends: [
     // https://github.com/facebook/create-react-app/tree/master/packages/eslint-config-react-app
@@ -30,7 +33,7 @@ module.exports = {
   ],
   rules: {
     // NOTE: The regular rule does not support do-expressions. The equivalent rule of babel does.
-    'no-unused-expressions': 0,
+    'no-unused-expressions': statusCode.off,
 
     // Imports
     'import/extensions': [
@@ -110,7 +113,7 @@ module.exports = {
         '@typescript-eslint/ban-ts-comment': statusCode.off,
         '@typescript-eslint/explicit-function-return-type': statusCode.off,
         '@typescript-eslint/explicit-member-accessibility': [
-          2,
+          statusCode.error,
           { accessibility: 'no-public' },
         ],
         '@typescript-eslint/no-require-imports': statusCode.off,
@@ -134,6 +137,15 @@ module.exports = {
             extensions: allSupportedExtensions,
           },
         },
+      },
+    },
+    {
+      files: [
+        '.custom-application-config.{js,cjs,mjs,ts}',
+        'custom-application-config.{js,cjs,mjs,ts}',
+      ],
+      rules: {
+        'no-template-curly-in-string': statusCode.off,
       },
     },
   ],

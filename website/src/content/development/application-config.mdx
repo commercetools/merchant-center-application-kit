@@ -13,10 +13,12 @@ A Custom Application requires certain configuration to be able to work, for exam
 The configuration of a Custom Application is defined in a JSON file with one of the following names:
 
 - `.custom-application-configrc`
-- `.custom-application-config.json`
-- `custom-application-config.json`
+- `.custom-application-config.<ext>`
+- `custom-application-config.<ext>`
 
-The file needs to be placed in the project root folder to be automatically loaded.
+The `<ext>` refers to the file extension chosen for the configuration file. See list of [supported file extensions](#supported-file-extensions).
+
+The file needs to be placed in the application root folder to be automatically loaded.
 
 <Info>
 
@@ -201,60 +203,48 @@ Same as [`menuLinks.defaultLabel`](#menulinksdefaultlabel).
 
 Same as [`menuLinks.permissions`](#menulinkspermissions).
 
-## JSON Schema support for VSCode
+# Supported file extensions
 
-To enable JSON schema autocompletion and validation support, add a reference to the `schema.json` URL in the VSCode settings (either user settings or workspace settings):
-
-```json title=".vscode/settings.json"
-"json.schemas": [
-  {
-    "fileMatch": [
-      "/.custom-application-configrc",
-      "/.custom-application-config.json",
-      "/custom-application-config.json"
-    ],
-    "url": "https://docs.commercetools.com/custom-applications/schema.json"
-  }
-]
-```
-
-![Example validation of the JSON schema in the editor](/images/custom-application-config-schema-validation.png 'Example validation of the JSON schema in the editor')
-
-# Runtime application environment
-
-Based on the application config, the necessary information for the Custom Application for runtime usage are injected into the global variable `window.app`.
-
-This value must be used in the `<EntryPoint>` component when rendering the `<ApplicationShell>`.
-
-```jsx highlightLines="3"
-const EntryPoint = () => (
-  <ApplicationShell
-    environment={window.app}
-    // other props
-  />
-);
-```
-
-The `environment` prop is parsed and injected into a React Context, making it available to the entire application. To access it, use the `@commercetools-frontend/application-shell-connectors` package.
-
-```jsx
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-
-const MyComponent = () => {
-  const applicationName = useApplicationContext(
-    context => context.environment.applicationName
-  );
-  return (<div>{`Welcome to the application ${applicationName}!`}</div>);
-};
-```
+The following file extensions for the application config are supported: `.json`, `.js`, `.cjs`, `.mjs`, `.ts`.
 
 <Info>
 
-All the properties defined in the `additionalEnv` object are made available to the `context.environment` object.
+The file extensions `.js`, `.cjs`, `.mjs`, `.ts` are only supported from version `>= 20.9.0`. These can be used in cases where the information you need to provide must be imported from another file, for example a constants file or something similar.
 
 </Info>
 
+
+For example:
+
+```js title="custom-application-config.js"
+const { entryPointUriPath } = require('./constants');
+
+const name = 'Test application';
+
+/**
+ * @type {import('@commercetools-frontend/application-config').ConfigOptions}
+ */
+const config = {
+  name,
+  cloudIdentifier: 'gcp-eu',
+  entryPointUriPath,
+  env: {
+    production: {
+      url: '${env:APP_URL}',
+    },
+  },
+};
+module.exports = config;
+```
+
+```js title="./constants.js"
+const entryPointUriPath = 'test';
+module.exports = { entryPointUriPath };
+```
+
 # Using variable placeholders
+
+Variable placeholders are a way of injecting certain information into the "static" configuration file.
 
 ## Environment variable references
 
@@ -337,3 +327,81 @@ The reference placeholder assumes that the Custom Application has the translatio
 
 * `<app_root>/src/i18n/data/<locale>.json`
 * `<app_root>/i18n/data/<locale>.json`
+
+# Runtime application environment
+
+Based on the application config, the necessary information for the Custom Application for runtime usage are injected into the global variable `window.app`.
+
+This value must be used in the `<EntryPoint>` component when rendering the `<ApplicationShell>`.
+
+```jsx highlightLines="3"
+const EntryPoint = () => (
+  <ApplicationShell
+    environment={window.app}
+    // other props
+  />
+);
+```
+
+The `environment` prop is parsed and injected into a React Context, making it available to the entire application. To access it, use the `@commercetools-frontend/application-shell-connectors` package.
+
+```jsx
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+
+const MyComponent = () => {
+  const applicationName = useApplicationContext(
+    context => context.environment.applicationName
+  );
+  return (<div>{`Welcome to the application ${applicationName}!`}</div>);
+};
+```
+
+<Info>
+
+All the properties defined in the `additionalEnv` object are made available to the `context.environment` object.
+
+</Info>
+
+# Editor support
+
+To facilitate the usage of the application config, you should instruct your editor to provide hints and code completion (IntelliSense) depending on the format of the configuration file.
+
+## JSON Schema support for VSCode
+
+When using JSON files, you can take advantage of the JSON schema for the application config. To enable JSON schema autocompletion and validation support, add a reference to the `schema.json` URL in the VSCode settings (either user settings or workspace settings):
+
+```json title=".vscode/settings.json"
+"json.schemas": [
+  {
+    "fileMatch": [
+      "/.custom-application-configrc",
+      "/.custom-application-config.json",
+      "/custom-application-config.json"
+    ],
+    "url": "https://docs.commercetools.com/custom-applications/schema.json"
+  }
+]
+```
+
+![Example validation of the JSON schema in the editor](/images/custom-application-config-schema-validation.png 'Example validation of the JSON schema in the editor')
+
+Other editors might have different settings.
+
+## Using JSDoc @type expression
+
+For non-JSON files, you can annotate the configuration object with a JSDOc `@type` tag, pointing it to the exported TypeScript declaration of the `@commercetools-frontend/application-config` package.
+
+```js title="custom-application-config.js"
+/**
+ * @type {import('@commercetools-frontend/application-config').ConfigOptions}
+ */
+const config = {}
+```
+
+For TypeScript files `.ts`, you can instead import the type directly.
+
+```ts title="custom-application-config.ts"
+import type { ConfigOptions } from '@commercetools-frontend/application-config';
+
+const config: ConfigOptions = {};
+```

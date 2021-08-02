@@ -1,4 +1,4 @@
-import type { ApplicationConfig } from '@commercetools-frontend/application-config';
+import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
 
 import { v4 as uuidv4 } from 'uuid';
 import { STORAGE_KEYS, OIDC_RESPONSE_TYPES } from '../constants';
@@ -69,7 +69,7 @@ Cypress.Commands.add(
       },
       // Do not show log, as it may contain sensible information.
       { log: false }
-    ).then((appConfig: ApplicationConfig['env']) => {
+    ).then((appConfig: ApplicationRuntimeConfig['env']) => {
       // Log loaded application config for debugging purposes.
       Cypress.log({
         displayName: 'task',
