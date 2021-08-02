@@ -1,3 +1,4 @@
+export { default as version } from './version';
 export { default as ApplicationShell } from './components/application-shell';
 export { default as ApplicationShellProvider } from './components/application-shell-provider';
 export { default as createApolloClient } from './configure-apollo';
@@ -14,7 +15,6 @@ export { GtmContext } from './components/gtm-booter';
 export { default as GtmUserLogoutTracker } from './components/gtm-user-logout-tracker';
 export { default as SetupFlopFlipProvider } from './components/setup-flop-flip-provider';
 export { default as ConfigureIntlProvider } from './components/configure-intl-provider';
-export { default as version } from './version';
 export {
   useMcQuery,
   useMcLazyQuery,
