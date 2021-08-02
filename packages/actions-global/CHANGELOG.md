@@ -1,5 +1,18 @@
 # @commercetools-frontend/actions-global
 
+## 20.9.0
+
+### Patch Changes
+
+- [#2323](https://github.com/commercetools/merchant-center-application-kit/pull/2323) [`a0e1cd72`](https://github.com/commercetools/merchant-center-application-kit/commit/a0e1cd72847cccb80f0d3436fbf44cada6d86bd0) Thanks [@emmenko](https://github.com/emmenko)! - Move exported types into a separate file, to avoid having type imports/exports in the package entry point.
+
+  > This change is only useful in development in the merchant-center-application-kit repository.
+
+* [#2321](https://github.com/commercetools/merchant-center-application-kit/pull/2321) [`a04f5d02`](https://github.com/commercetools/merchant-center-application-kit/commit/a04f5d021b8620b059cd90442f91501ff538679c) Thanks [@emmenko](https://github.com/emmenko)! - Allow the package to be used on SSR, by loading the browser history object only on runtime.
+
+* Updated dependencies [[`a0e1cd72`](https://github.com/commercetools/merchant-center-application-kit/commit/a0e1cd72847cccb80f0d3436fbf44cada6d86bd0)]:
+  - @commercetools-frontend/browser-history@20.9.0
+
 ## 20.8.0
 
 ### Patch Changes

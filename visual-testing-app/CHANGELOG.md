@@ -1,5 +1,13 @@
 # @commercetools-local/visual-testing-app
 
+## 18.1.2
+
+### Patch Changes
+
+- Updated dependencies [[`a0e1cd72`](https://github.com/commercetools/merchant-center-application-kit/commit/a0e1cd72847cccb80f0d3436fbf44cada6d86bd0)]:
+  - @commercetools-frontend/react-notifications@20.9.0
+  - @commercetools-frontend/application-components@20.9.0
+
 ## 18.1.1
 
 ### Patch Changes
