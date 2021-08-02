@@ -10,7 +10,6 @@ import {
   LOGOUT_REASONS,
 } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import browserHistory from '@commercetools-frontend/browser-history';
 import showApiErrorNotification from './show-api-error-notification';
 import showUnexpectedErrorNotification from './show-unexpected-error-notification';
 
@@ -48,8 +47,12 @@ export default function handleActionError(error: ActionError) {
       return dispatch(showUnexpectedErrorNotification({ errorId }));
     }
 
-    // logout when unauthorized
+    // When unauthorized, log the user out.
     if (error.statusCode === STATUS_CODES.UNAUTHORIZED) {
+      // Require the browser history on runtime. This allows the package to be used on SSR.
+      const {
+        default: browserHistory,
+      } = require('@commercetools-frontend/browser-history');
       browserHistory.push(`/logout?reason=${LOGOUT_REASONS.UNAUTHORIZED}`);
     }
 
