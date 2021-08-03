@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-config
 
+## 20.9.1
+
+### Patch Changes
+
+- [#2327](https://github.com/commercetools/merchant-center-application-kit/pull/2327) [`b2d58de3`](https://github.com/commercetools/merchant-center-application-kit/commit/b2d58de3febf627296f7aa85e17dd7b74fc88174) Thanks [@emmenko](https://github.com/emmenko)! - Fix check when processing application config.
+
 ## 20.9.0
 
 ### Minor Changes
