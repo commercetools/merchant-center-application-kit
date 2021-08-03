@@ -28,7 +28,13 @@ const developmentAppUrl = 'http://localhost:3001';
 const omitDevConfigIfEmpty = (
   devConfig: ApplicationRuntimeConfig['env']['__DEVELOPMENT__']
 ) => {
-  if (devConfig?.menuLinks || devConfig?.oidc) return devConfig;
+  if (
+    // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
+    devConfig?.accountLinks ||
+    devConfig?.menuLinks ||
+    devConfig?.oidc
+  )
+    return devConfig;
   return undefined;
 };
 
