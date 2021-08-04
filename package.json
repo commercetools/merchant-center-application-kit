@@ -182,9 +182,9 @@
     "@types/react-router": "5.1.16",
     "@typescript-eslint/eslint-plugin": "4.29.0",
     "@typescript-eslint/parser": "4.29.0",
+    "downshift": "6.1.5",
     "graphql": "15.5.1",
     "intl-messageformat-parser": "6.4.4",
-    "**/intl-messageformat-parser": "6.4.4",
     "react-intl": "5.20.6"
   },
   "engines": {
