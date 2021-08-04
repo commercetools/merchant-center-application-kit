@@ -9,6 +9,10 @@
  * in any Node environment.
  */
 
+// Ensure there is a babel/node environment variable set, otherwise the
+// babel preset throws an error.
+process.env.BABEL_ENV = 'development';
+
 const get = require('lodash/get');
 
 // Load JS modules using Babel, as we need to load
