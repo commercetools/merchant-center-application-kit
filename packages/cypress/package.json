@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@babel/runtime": "7.14.8",
-    "@babel/runtime-corejs3": "7.14.8",
+    "@babel/runtime-corejs3": "7.14.9",
     "@commercetools-frontend/application-config": "20.9.2",
     "@manypkg/get-packages": "1.1.1",
     "uuid": "8.3.2"

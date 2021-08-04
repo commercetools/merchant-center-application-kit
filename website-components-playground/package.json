@@ -25,7 +25,7 @@
     "@emotion/react": "11.4.0",
     "@emotion/styled": "11.3.0",
     "@fontsource/open-sans": "4.5.0",
-    "core-js": "3.15.2",
+    "core-js": "3.16.0",
     "formik": "2.2.9",
     "gatsby": "3.10.2",
     "gatsby-cli": "3.10.0",
