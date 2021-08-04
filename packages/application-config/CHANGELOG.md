@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-config
 
+## 20.9.2
+
+### Patch Changes
+
+- [#2329](https://github.com/commercetools/merchant-center-application-kit/pull/2329) [`9e6e31f4`](https://github.com/commercetools/merchant-center-application-kit/commit/9e6e31f4deddbbd1bb8a6cb67346af40fb6acbdd) Thanks [@emmenko](https://github.com/emmenko)! - Set babel env before loading babel preset.
+
 ## 20.9.1
 
 ### Patch Changes
