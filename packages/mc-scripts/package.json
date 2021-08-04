@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@babel/runtime": "7.14.8",
-    "@babel/runtime-corejs3": "7.14.8",
+    "@babel/runtime-corejs3": "7.14.9",
     "@commercetools-frontend/application-config": "20.9.2",
     "@commercetools-frontend/assets": "20.8.0",
     "@commercetools-frontend/babel-preset-mc-app": "20.9.0",
@@ -41,8 +41,8 @@
     "@svgr/webpack": "5.5.0",
     "autoprefixer": "10.3.1",
     "babel-loader": "8.2.2",
-    "browserslist": "4.16.6",
-    "core-js": "3.15.2",
+    "browserslist": "4.16.7",
+    "core-js": "3.16.0",
     "css-loader": "5.2.7",
     "css-minimizer-webpack-plugin": "3.0.2",
     "dotenv": "10.0.0",
@@ -69,14 +69,14 @@
     "svg-url-loader": "7.1.1",
     "terser-webpack-plugin": "5.1.4",
     "thread-loader": "3.0.4",
-    "webpack": "5.46.0",
+    "webpack": "5.48.0",
     "webpack-bundle-analyzer": "4.4.2",
     "webpack-dev-server": "4.0.0-rc.0",
     "webpackbar": "5.0.0-3"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "7.14.5",
-    "@babel/preset-env": "7.14.8"
+    "@babel/preset-env": "7.14.9"
   },
   "engines": {
     "node": ">=12 || >=14"
