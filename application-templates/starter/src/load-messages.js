@@ -6,11 +6,6 @@ const loadMessages = (lang) => {
         './i18n/data/de.json' /* webpackChunkName: "app-i18n-de" */
       );
       break;
-    case 'es':
-      loadAppI18nPromise = import(
-        './i18n/data/es.json' /* webpackChunkName: "app-i18n-es" */
-      );
-      break;
     default:
       loadAppI18nPromise = import(
         './i18n/data/en.json' /* webpackChunkName: "app-i18n-en" */
