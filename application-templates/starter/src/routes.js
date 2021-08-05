@@ -1,35 +1,33 @@
-import React from 'react';
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
-import LockedDiamondSVG from '@commercetools-frontend/assets/images/locked-diamond.svg';
-import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
-import MainView from './components/main-view';
-import { PERMISSIONS } from './constants';
-
-const PageUnauthorized = () => (
-  <MaintenancePageLayout
-    imageSrc={LockedDiamondSVG}
-    title="Not enough permissions to access this resource"
-    paragraph1="We recommend to contact your project administrators for further questions."
-  />
-);
+import { PageUnauthorized } from '@commercetools-frontend/application-components';
+import Spacings from '@commercetools-uikit/spacings';
+import Channels from './components/channels';
+import Welcome from './components/welcome';
+import { PERMISSIONS } from './constants/permissions';
 
 const ApplicationRoutes = () => {
   const match = useRouteMatch();
-  const canViewProducts = useIsAuthorized({
+
+  // We can evaluate the user permissions and use the information to restrict
+  // certain parts of the application.
+  // For example, we can show an unauthorized page if the user does not have
+  // the permission to `view` products.
+  const canViewChannels = useIsAuthorized({
     demandedPermissions: [PERMISSIONS.ViewProducts],
   });
-  if (!canViewProducts) {
-    return <PageUnauthorized />;
-  }
+
   return (
-    <Switch>
-      <Route
-        path={`${match.path}/some-other-route`}
-        render={() => <div>{'Nothing to see'}</div>}
-      />
-      <Route render={(routerProps) => <MainView match={routerProps.match} />} />
-    </Switch>
+    <Spacings.Inset scale="l">
+      <Switch>
+        <Route path={`${match.path}/channels`}>
+          {canViewChannels ? <Channels /> : <PageUnauthorized />}
+        </Route>
+        <Route>
+          <Welcome />
+        </Route>
+      </Switch>
+    </Spacings.Inset>
   );
 };
 ApplicationRoutes.displayName = 'ApplicationRoutes';

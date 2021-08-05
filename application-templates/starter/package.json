@@ -4,6 +4,7 @@
   "description": "A starter example for the bare minimum setup to develop a Merchant Center Application",
   "private": true,
   "scripts": {
+    "postinstall": "manypkg check",
     "build": "mc-scripts build",
     "start": "mc-scripts start",
     "compile-html": "NODE_ENV=production mc-scripts compile-html",
@@ -12,6 +13,8 @@
     "extract-intl": "formatjs extract --format=$(pwd)/intl-formatter.js --out-file=$(pwd)/src/i18n/data/core.json 'src/**/!(*.spec).js'",
     "test": "jest --config jest.test.config.js",
     "test:watch": "jest --config jest.test.config.js --watch",
+    "lint": "jest --config jest.eslint.config.js",
+    "format": "prettier --write '**/*.js'",
     "versions:appkit": "manypkg upgrade @commercetools-frontend",
     "versions:uikit": "manypkg upgrade @commercetools-uikit"
   },
@@ -23,8 +26,12 @@
     "@commercetools-frontend/assets": "20.8.0",
     "@commercetools-frontend/i18n": "20.9.4",
     "@commercetools-frontend/permissions": "20.9.4",
+    "@commercetools-uikit/data-table": "^12.2.2",
     "@commercetools-uikit/flat-button": "^12.2.2",
     "@commercetools-uikit/icons": "^12.2.2",
+    "@commercetools-uikit/link": "^12.2.2",
+    "@commercetools-uikit/loading-spinner": "^12.2.2",
+    "@commercetools-uikit/pagination": "^12.2.2",
     "@commercetools-uikit/spacings": "^12.2.2",
     "@commercetools-uikit/text": "^12.2.2",
     "prop-types": "15.7.2",
@@ -36,12 +43,20 @@
     "redux": "4.1.1"
   },
   "devDependencies": {
+    "@commercetools-frontend/eslint-config-mc-app": "20.9.3",
     "@commercetools-frontend/jest-preset-mc-app": "20.9.4",
     "@commercetools-frontend/mc-dev-authentication": "19.0.0",
     "@commercetools-frontend/mc-scripts": "20.9.4",
-    "@formatjs/cli": "4.2.30",
+    "@commercetools-test-data/commons": "2.4.1",
+    "@commercetools-test-data/core": "2.4.1",
+    "@formatjs/cli": "4.2.29",
     "@manypkg/cli": "0.18.0",
     "@testing-library/react": "12.0.0",
-    "jest": "27.0.6"
+    "eslint": "7.32.0",
+    "eslint-formatter-pretty": "4.1.0",
+    "jest": "27.0.6",
+    "jest-runner-eslint": "0.10.1",
+    "jest-watch-typeahead": "0.6.4",
+    "prettier": "2.3.2"
   }
 }
