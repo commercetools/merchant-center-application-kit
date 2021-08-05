@@ -1583,6 +1583,18 @@
     node-fetch "2.6.1"
     shelljs "0.8.4"
 
+"@commercetools-test-data/commons@2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@commercetools-test-data/commons/-/commons-2.4.1.tgz#1409c223060b7982f51f39a0efe9bcc985321add"
+  integrity sha512-C2YluzHls1zZ2kILbEl4rglw3tSAdioc8Pl4g7sJ8XIvWRWRLCFOjgsqN5QQnaTl1hL7wB3slABKDSG+p6x0KQ==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+    "@babel/runtime-corejs3" "^7.13.10"
+    "@commercetools-test-data/core" "2.4.1"
+    "@types/faker" "^5.5.1"
+    faker "^5.5.3"
+    lodash "^4.17.21"
+
 "@commercetools-test-data/core@2.4.1":
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@commercetools-test-data/core/-/core-2.4.1.tgz#e0a731bb8f82d06886ff05bd275d15e417a5a061"
@@ -2012,6 +2024,44 @@
     common-tags "1.8.0"
     prop-types "15.7.2"
     react-required-if "1.0.3"
+
+"@commercetools-uikit/number-input@12.2.2":
+  version "12.2.2"
+  resolved "https://registry.yarnpkg.com/@commercetools-uikit/number-input/-/number-input-12.2.2.tgz#c8ff19cd8aa9f869a4cc190e4f6ed232d4408b56"
+  integrity sha512-rPmDGoI/XrM5YDuPrMrk0KfQNuv1Vc5FhokM1DqSiFLRmbUcaBS7dAktOQCtC7CvgaeJmlmXg3H6B90g2P/2yQ==
+  dependencies:
+    "@babel/runtime" "7.14.8"
+    "@babel/runtime-corejs3" "7.14.8"
+    "@commercetools-uikit/constraints" "12.2.2"
+    "@commercetools-uikit/design-system" "12.2.2"
+    "@commercetools-uikit/input-utils" "12.2.2"
+    "@commercetools-uikit/utils" "12.2.0"
+    "@emotion/react" "^11.4.0"
+    "@emotion/styled" "^11.3.0"
+    prop-types "15.7.2"
+
+"@commercetools-uikit/pagination@^12.2.2":
+  version "12.2.2"
+  resolved "https://registry.yarnpkg.com/@commercetools-uikit/pagination/-/pagination-12.2.2.tgz#1716f19849e9013d7aaeae0ca8e37a081cbe7142"
+  integrity sha512-X8160owonzaHb6Tzrcxs90CIQpACBDY1YygOoAeRHKGBJ/RyM0zDKFuZfUozwCecDVXy+aiUcFdy/472ff+/pg==
+  dependencies:
+    "@babel/runtime" "7.14.8"
+    "@babel/runtime-corejs3" "7.14.8"
+    "@commercetools-uikit/constraints" "12.2.2"
+    "@commercetools-uikit/design-system" "12.2.2"
+    "@commercetools-uikit/icons" "12.2.2"
+    "@commercetools-uikit/label" "12.2.2"
+    "@commercetools-uikit/number-input" "12.2.2"
+    "@commercetools-uikit/secondary-icon-button" "12.2.2"
+    "@commercetools-uikit/select-input" "12.2.2"
+    "@commercetools-uikit/spacings" "12.2.2"
+    "@commercetools-uikit/text" "12.2.2"
+    "@commercetools-uikit/utils" "12.2.0"
+    "@emotion/react" "^11.4.0"
+    "@emotion/styled" "^11.3.0"
+    formik "^2.2.9"
+    lodash "4.17.21"
+    prop-types "15.7.2"
 
 "@commercetools-uikit/primary-button@^12.2.2":
   version "12.2.2"
@@ -11649,7 +11699,7 @@ format@^0.2.0:
   resolved "https://registry.yarnpkg.com/format/-/format-0.2.2.tgz#d6170107e9efdc4ed30c9dc39016df942b5cb58b"
   integrity sha1-1hcBB+nv3E7TDJ3DkBbflCtctYs=
 
-formik@2.2.9:
+formik@2.2.9, formik@^2.2.9:
   version "2.2.9"
   resolved "https://registry.yarnpkg.com/formik/-/formik-2.2.9.tgz#8594ba9c5e2e5cf1f42c5704128e119fc46232d0"
   integrity sha512-LQLcISMmf1r5at4/gyJigGn0gOwFbeEAlji+N9InZF6LIMXnFNkO42sCI8Jt84YZggpD4cPWObAZaxpEFtSzNA==

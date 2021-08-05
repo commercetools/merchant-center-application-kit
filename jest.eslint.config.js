@@ -14,5 +14,8 @@ module.exports = {
     'generated',
   ],
   testMatch: ['<rootDir>/**/*.js', '<rootDir>/**/*.ts', '<rootDir>/**/*.tsx'],
-  watchPlugins: ['jest-watch-typeahead/filename'],
+  watchPlugins: [
+    'jest-watch-typeahead/filename',
+    'jest-runner-eslint/watch-fix',
+  ],
 };
