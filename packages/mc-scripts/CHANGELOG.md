@@ -1,5 +1,18 @@
 # @commercetools-frontend/mc-scripts
 
+## 20.9.3
+
+### Patch Changes
+
+- [#2318](https://github.com/commercetools/merchant-center-application-kit/pull/2318) [`83f2add2`](https://github.com/commercetools/merchant-center-application-kit/commit/83f2add2a56ba6696c51fd930a0a1dadbf36c134) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+* [#2334](https://github.com/commercetools/merchant-center-application-kit/pull/2334) [`869a3b6d`](https://github.com/commercetools/merchant-center-application-kit/commit/869a3b6d960dad25f57228b6122bbb80a2c9ad55) Thanks [@emmenko](https://github.com/emmenko)! - Fix web socket configuration to make HMR work.
+
+* Updated dependencies [[`83f2add2`](https://github.com/commercetools/merchant-center-application-kit/commit/83f2add2a56ba6696c51fd930a0a1dadbf36c134)]:
+  - @commercetools-frontend/application-config@20.9.3
+  - @commercetools-frontend/babel-preset-mc-app@20.9.3
+  - @commercetools-frontend/mc-html-template@20.9.3
+
 ## 20.9.2
 
 ### Patch Changes
