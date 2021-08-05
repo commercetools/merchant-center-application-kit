@@ -24,7 +24,7 @@ const Welcome = () => {
   return (
     <Spacings.Stack scale="xl">
       <Text.Headline as="h1" intlMessage={messages.title} />
-      <div>
+      <Constraints.Horizontal max={13}>
         <div className={styles.imageContainer}>
           <img
             alt="web developer"
@@ -33,7 +33,7 @@ const Welcome = () => {
             height="100%"
           />
         </div>
-      </div>
+      </Constraints.Horizontal>
       <Constraints.Horizontal max={13}>
         <Spacings.Stack scale="l">
           <Spacings.Stack scale="s">

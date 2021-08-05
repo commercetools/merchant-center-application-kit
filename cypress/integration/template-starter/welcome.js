@@ -1,9 +1,11 @@
 import { URL_EXAMPLES_STARTER } from '../../support/urls';
 
-describe('Main view', () => {
+describe('Welcome', () => {
   it('should render page', () => {
     cy.login({ redirectToUri: URL_EXAMPLES_STARTER });
-    cy.findByText('Hello, world').should('exist');
+    cy.findByText('Develop applications for the Merchant Center').should(
+      'exist'
+    );
     cy.findByText('Processing...').should('not.exist');
     cy.percySnapshot();
   });
