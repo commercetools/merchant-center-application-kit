@@ -13,8 +13,18 @@ const shouldUseYarn = () => {
 
 const slugify = (name) => name.toLowerCase().replace(/_/gi, '-');
 
+const upperFirst = (value) => value.charAt(0).toUpperCase() + value.slice(1);
+
+const wordify = (slug) =>
+  slug
+    .split('-')
+    .map((word) => upperFirst(word))
+    .join(' ');
+
 module.exports = {
   isSemVer,
   shouldUseYarn,
   slugify,
+  wordify,
+  upperFirst,
 };

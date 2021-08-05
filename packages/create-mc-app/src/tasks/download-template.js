@@ -5,6 +5,8 @@ const execa = require('execa');
 const Listr = require('listr');
 const { throwIfTemplateVersionDoesNotExist } = require('../validations');
 
+const filesToBeRemoved = ['CHANGELOG.md'];
+
 module.exports = function downloadTemplate(options) {
   return {
     title: 'Downloading template',
@@ -89,6 +91,33 @@ module.exports = function downloadTemplate(options) {
               throw new Error(
                 `Unable to verify that the template application has a package.json at "${templatePackageJsonPath}"`
               );
+            }
+            return result.stdout;
+          },
+        },
+        {
+          title: `Cleaning up project directory`,
+          task: async () => {
+            const sanitizedProjectDirectoryPath = options.projectDirectoryPath
+              // Escape white spaces
+              .replace(/ /g, '\\ ');
+
+            const command =
+              process.platform === 'win32' || process.platform === 'cygwin'
+                ? 'del'
+                : 'rm';
+            const result = await execa(
+              command,
+              filesToBeRemoved.map((filePath) =>
+                path.join(sanitizedProjectDirectoryPath, filePath)
+              ),
+              {
+                encoding: 'utf-8',
+              }
+            );
+
+            if (result.failed) {
+              throw new Error(result.stderr);
             }
             return result.stdout;
           },

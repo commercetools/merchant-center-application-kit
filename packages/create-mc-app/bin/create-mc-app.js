@@ -43,6 +43,8 @@ async function execute() {
     [
       tasks.downloadTemplate(options),
       tasks.updatePackageInfo(options),
+      tasks.updateCustomApplicationConfig(options),
+      tasks.updateApplicationConstants(options),
       !flags['skip-install'] && tasks.installDependencies(options),
     ].filter(Boolean)
   );
@@ -52,7 +54,7 @@ async function execute() {
 
   console.log('');
   console.log(
-    `🎉 🎉 🎉 The Merchant Center application ${options.projectDirectoryName} was successfully bootstrapped based on the ${options.templateName} template.`
+    `🎉 🎉 🎉 The Custom Application has been created in the "${options.projectDirectoryName}" folder.`
   );
   console.log('');
   console.log(`To get started:`);
