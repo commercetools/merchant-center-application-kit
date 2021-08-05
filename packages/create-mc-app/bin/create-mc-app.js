@@ -42,7 +42,7 @@ async function execute() {
   const taskList = new Listr(
     [
       tasks.downloadTemplate(options),
-      tasks.updatePackageInfo(options),
+      tasks.updatePackageJson(options),
       tasks.updateCustomApplicationConfig(options),
       tasks.updateApplicationConstants(options),
       !flags['skip-install'] && tasks.installDependencies(options),

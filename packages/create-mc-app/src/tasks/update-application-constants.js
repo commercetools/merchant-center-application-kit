@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { slugify } = require('../utils');
 
-const entryPointVariableRegex = /entryPointUriPath\s?=\s?'(.*)';$/;
+const entryPointVariableRegex = /entryPointUriPath\s?=\s?'(.*)';/;
 
 // TODO: when we enable OIDC login as the default behavior, we also want to
 // update the following things:
@@ -25,14 +25,18 @@ module.exports = function updateApplicationConstants(options) {
       const entryPointUriPath = slugify(options.projectDirectoryName);
 
       // TODO: use Babel AST?
-      appConstantsRaw.replace(
+      const updatedAppConstantsRaw = appConstantsRaw.replace(
         entryPointVariableRegex,
         `entryPointUriPath = '${entryPointUriPath}';`
       );
 
-      fs.writeFileSync(applicationConstantsPath, appConstantsRaw + os.EOL, {
-        encoding: 'utf8',
-      });
+      fs.writeFileSync(
+        applicationConstantsPath,
+        updatedAppConstantsRaw + os.EOL,
+        {
+          encoding: 'utf8',
+        }
+      );
     },
   };
 };
