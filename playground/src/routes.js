@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
 import { Route, Switch, useRouteMatch, useHistory } from 'react-router-dom';
-import LockedDiamondSVG from '@commercetools-frontend/assets/images/locked-diamond.svg';
-import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
+import { PageUnauthorized } from '@commercetools-frontend/application-components';
 import { InjectReducers } from '@commercetools-frontend/application-shell';
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import StateMachinesList from './components/state-machines-list';
@@ -9,14 +8,6 @@ import StateMachinesDetails from './components/state-machines-details';
 import EchoServer from './components/echo-server';
 import reducers from './reducers';
 import { PERMISSIONS } from './constants';
-
-const PageUnauthorized = () => (
-  <MaintenancePageLayout
-    imageSrc={LockedDiamondSVG}
-    title="Not enough permissions to access this resource"
-    paragraph1="We recommend to contact your project administrators for further questions."
-  />
-);
 
 const ApplicationRoutes = () => {
   const match = useRouteMatch();
