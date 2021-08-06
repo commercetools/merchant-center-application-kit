@@ -21,7 +21,11 @@ const ApplicationRoutes = () => {
     <Spacings.Inset scale="l">
       <Switch>
         <Route path={`${match.path}/channels`}>
-          {canViewChannels ? <Channels /> : <PageUnauthorized />}
+          {canViewChannels ? (
+            <Channels linkToWelcome={match.url} />
+          ) : (
+            <PageUnauthorized />
+          )}
         </Route>
         <Route>
           <Welcome />

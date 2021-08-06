@@ -1840,7 +1840,7 @@
     "@emotion/styled" "^11.0.0"
     prop-types "15.7.2"
 
-"@commercetools-uikit/hooks@12.2.2":
+"@commercetools-uikit/hooks@12.2.2", "@commercetools-uikit/hooks@^12.2.2":
   version "12.2.2"
   resolved "https://registry.yarnpkg.com/@commercetools-uikit/hooks/-/hooks-12.2.2.tgz#bf95a2f5f08215df950707c19bf393791ac1ff2d"
   integrity sha512-WWb9+rU2bwcDECkTQAyG7PnopC7MSDmWDYKuFk0qekZLaKGvZ+9r3BkFguz9wJ7oVsRI0N8AUIMTlBvB0FIiuw==

@@ -1,4 +1,7 @@
 import { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
+import { Link as RouterLink } from 'react-router-dom';
 import { useMcQuery } from '@commercetools-frontend/application-shell';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
@@ -7,8 +10,12 @@ import {
   usePaginationState,
   useDataTableSortingState,
 } from '@commercetools-uikit/hooks';
+import { BackIcon } from '@commercetools-uikit/icons';
+import Constraints from '@commercetools-uikit/constraints';
+import FlatButton from '@commercetools-uikit/flat-button';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import DataTable from '@commercetools-uikit/data-table';
+import { ContentNotification } from '@commercetools-uikit/notifications';
 import { Pagination } from '@commercetools-uikit/pagination';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
@@ -29,7 +36,8 @@ const itemRendered = (item, column) => {
   }
 };
 
-const Channels = () => {
+const Channels = (props) => {
+  const intl = useIntl();
   const { page, perPage } = usePaginationState();
   const tableSorting = useDataTableSortingState({ key: 'key', order: 'asc' });
   const showApiErrorNotification = useShowApiErrorNotification();
@@ -58,12 +66,26 @@ const Channels = () => {
 
   return (
     <Spacings.Stack scale="xl">
-      <Text.Headline as="h2" intlMessage={messages.title} />
+      <Spacings.Stack scale="xs">
+        <FlatButton
+          as={RouterLink}
+          to={props.linkToWelcome}
+          label={intl.formatMessage(messages.backToWelcome)}
+          icon={<BackIcon />}
+        />
+        <Text.Headline as="h2" intlMessage={messages.title} />
+      </Spacings.Stack>
+
+      <Constraints.Horizontal max={13}>
+        <ContentNotification type="info">
+          <Text.Body intlMessage={messages.demoHint} />
+        </ContentNotification>
+      </Constraints.Horizontal>
 
       {loading && <LoadingSpinner />}
 
       {data?.channels ? (
-        <Spacings.Stack>
+        <Spacings.Stack scale="l">
           <DataTable
             isCondensed
             columns={columns}
@@ -87,5 +109,8 @@ const Channels = () => {
   );
 };
 Channels.displayName = 'Channels';
+Channels.propTypes = {
+  linkToWelcome: PropTypes.string.isRequired,
+};
 
 export default Channels;

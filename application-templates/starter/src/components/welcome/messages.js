@@ -5,22 +5,35 @@ export default defineMessages({
     id: 'Welcome.title',
     defaultMessage: 'Develop applications for the Merchant Center',
   },
-  gettingStartedTitle: {
-    id: 'Welcome.gettingStartedTitle',
-    defaultMessage: 'Read the documentation',
-  },
-  gettingStartedContent: {
-    id: 'Welcome.gettingStartedContent',
+  subtitle: {
+    id: 'Welcome.subtitle',
     defaultMessage:
-      'If this is the first time building a Custom Application, we recommend to <linkdocs>read the documentation</linkdocs> and get familiar with the tools and concepts behind it.',
+      'Welcome to Custom Applications! To get started, inspect the source code to get familiar with the setup, the folder structure, the development tools, etc. and read the README file for additional information.',
   },
-  aboutTitle: {
-    id: 'Welcome.aboutTitle',
-    defaultMessage: 'About the starter template',
+  cardDocumentationTitle: {
+    id: 'Welcome.cardDocumentationTitle',
+    defaultMessage: 'Documentation',
   },
-  aboutContent: {
-    id: 'Welcome.aboutContent',
+  cardDocumentationContent: {
+    id: 'Welcome.cardDocumentationContent',
+    defaultMessage: 'Learn more about Custom Applications.',
+  },
+  cardDesignSystemTitle: {
+    id: 'Welcome.cardDesignSystemTitle',
+    defaultMessage: 'Design System',
+  },
+  cardDesignSystemContent: {
+    id: 'Welcome.cardDesignSystemContent',
     defaultMessage:
-      'This Custom Application has some built-in functionalities for demo purposes to help you getting started. For example, the <linkchannels>Channels page</linkchannels> fetches channels from the commercetools platform and renders them in a table. ',
+      'Explore the UI components to develop Custom Applications and learn more about the Design System.',
+  },
+  cardChannelsTitle: {
+    id: 'Welcome.cardChannelsTitle',
+    defaultMessage: 'Fetching channels',
+  },
+  cardChannelsContent: {
+    id: 'Welcome.cardChannelsContent',
+    defaultMessage:
+      'Demo example to fetch some data using GraphQL and displaying it in a paginated table.',
   },
 });
