@@ -94,7 +94,7 @@
   },
   "dependencies": {
     "@babel/cli": "7.14.8",
-    "@babel/core": "7.14.8",
+    "@babel/core": "7.15.0",
     "@changesets/changelog-github": "0.4.0",
     "@changesets/cli": "2.16.0",
     "@commercetools-docs/writing-style": "3.0.6",
@@ -104,7 +104,7 @@
     "@commercetools/github-labels": "1.1.0",
     "@commitlint/cli": "13.1.0",
     "@commitlint/config-conventional": "13.1.0",
-    "@formatjs/cli": "4.2.29",
+    "@formatjs/cli": "4.2.30",
     "@graphql-cli/codegen": "2.0.1",
     "@graphql-cli/coverage": "2.1.0",
     "@graphql-cli/validate": "2.1.0",
@@ -115,7 +115,7 @@
     "@graphql-codegen/typescript-graphql-files-modules": "2.0.0",
     "@graphql-codegen/typescript-operations": "2.0.1",
     "@manypkg/cli": "0.18.0",
-    "@percy/cli": "1.0.0-beta.62",
+    "@percy/cli": "1.0.0-beta.63",
     "@percy/cypress": "3.1.1",
     "@percy/puppeteer": "2.0.0",
     "@preconstruct/cli": "2.1.0",
@@ -151,14 +151,14 @@
     "jest-runner-executor": "1.0.0",
     "jest-silent-reporter": "0.5.0",
     "jest-watch-typeahead": "0.6.4",
-    "lint-staged": "11.1.1",
+    "lint-staged": "11.1.2",
     "mri": "1.1.6",
     "patch-package": "6.4.7",
     "postcss": "8.3.6",
     "postcss-load-config": "3.1.0",
     "postcss-modules": "4.2.2",
     "prettier": "2.3.2",
-    "puppeteer": "10.1.0",
+    "puppeteer": "10.2.0",
     "rcfile": "1.0.3",
     "replace": "1.2.1",
     "rosie": "2.1.0",
@@ -174,8 +174,8 @@
     "vfile-message": "3.0.1"
   },
   "resolutions": {
-    "@babel/core": "7.14.8",
-    "@babel/preset-env": "7.14.9",
+    "@babel/core": "7.15.0",
+    "@babel/preset-env": "7.15.0",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.0-rc.2",
     "@types/puppeteer": "5.4.4",
     "@types/react-router": "5.1.16",
@@ -183,7 +183,7 @@
     "@typescript-eslint/parser": "4.29.0",
     "graphql": "15.5.1",
     "intl-messageformat-parser": "6.4.4",
-    "react-intl": "5.20.6"
+    "react-intl": "5.20.7"
   },
   "engines": {
     "node": ">=12 || >=14",
