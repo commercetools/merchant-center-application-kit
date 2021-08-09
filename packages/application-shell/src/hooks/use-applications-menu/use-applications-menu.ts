@@ -14,7 +14,7 @@ import type {
 import { useEffect } from 'react';
 import { useApolloClient } from '@apollo/client';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { useMcQuery } from '../../hooks/apollo-hooks';
+import { useMcLazyQuery } from '../../hooks/apollo-hooks';
 import FetchApplicationsMenu from './fetch-applications-menu.proxy.graphql';
 
 const supportedLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN', 'ja'];
@@ -27,7 +27,9 @@ export type MenuLoaderResult<Key extends MenuKey> = Key extends 'appBar'
   : never;
 export type Config<Key extends MenuKey> = {
   environment: TApplicationContext<{}>['environment'];
-  queryOptions?: QueryFunctionOptions;
+  queryOptions?: {
+    onError?: QueryFunctionOptions['onError'];
+  };
   /**
    * @deprecated The `menu.json` file has been deprecated in favor of defining the menu links
    * in the custom application config file.
@@ -232,22 +234,23 @@ function useApplicationsMenu<Key extends MenuKey>(
   const mcProxyApiUrl = useApplicationContext(
     (context) => context.environment.mcProxyApiUrl
   );
-  const queryOptions = config.queryOptions || {};
 
   // Fetch all menu links from the GraphQL API in the Merchant Center Proxy.
   // For local development, we don't fetch data from the remote server but use
   // only the configuration for the menu links defined for the application.
   // To do so, we manually write the data in the Apollo cache and use the
   // `fetchPolicy: cache-only` to instruct Apollo to read the data from the cache.
-  const { data: menuQueryResult } = useMcQuery<
+  // NOTE: we lazily execute the query to ensure that (for development) we can
+  // write the data into the cache BEFORE the query attempts to read from it.
+  // If not, Apollo throws an error like `Can't find field 'applicationMenu' on ROOT_QUERY object`.
+  const [executeQuery, { data: menuQueryResult, called }] = useMcLazyQuery<
     TFetchApplicationsMenuQuery,
     TFetchApplicationsMenuQueryVariables
   >(FetchApplicationsMenu, {
-    ...queryOptions,
+    onError: config.queryOptions?.onError,
     fetchPolicy: config.environment.servedByProxy
-      ? queryOptions.fetchPolicy || 'cache-first'
+      ? 'cache-first'
       : 'cache-only',
-    variables: {},
     context: {
       // Allow to overwrite the API url from application config
       uri: `${mcProxyApiUrl || defaultApiUrl}/api/graphql`,
@@ -283,6 +286,10 @@ function useApplicationsMenu<Key extends MenuKey>(
           data: applicationMenu,
         });
       });
+    }
+
+    if (!called) {
+      executeQuery();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Make sure to run this effect only once, otherwise we might end up in an infinite loop!

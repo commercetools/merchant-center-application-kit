@@ -11,6 +11,7 @@ afterEach(() => {
 describe('selectUserId', () => {
   describe('when `readQuery` throws', () => {
     beforeEach(() => {
+      console.error = jest.fn();
       const apolloClient = createApolloClient();
       apolloClient.writeQuery({
         query: FetchUserId,
@@ -23,6 +24,9 @@ describe('selectUserId', () => {
       setCachedApolloClient(apolloClient);
     });
     it('should return `null`', () => {
+      expect(console.error).toHaveBeenCalledWith(
+        expect.stringContaining(`Missing field 'id'`)
+      );
       expect(selectUserId()).toBeNull();
     });
   });
