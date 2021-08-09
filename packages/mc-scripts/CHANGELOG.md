@@ -1,5 +1,18 @@
 # @commercetools-frontend/mc-scripts
 
+## 20.9.4
+
+### Patch Changes
+
+- [#2331](https://github.com/commercetools/merchant-center-application-kit/pull/2331) [`670ec977`](https://github.com/commercetools/merchant-center-application-kit/commit/670ec977ecf711b2e363da50830b831863e3a756) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade to [Apollo Client v3.4](https://github.com/apollographql/apollo-client/blob/main/CHANGELOG.md#apollo-client-340).
+
+* [#2336](https://github.com/commercetools/merchant-center-application-kit/pull/2336) [`8c6c13a7`](https://github.com/commercetools/merchant-center-application-kit/commit/8c6c13a79f91ea9476983e12c48ae834ca4640c1) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+* Updated dependencies [[`d7b712e4`](https://github.com/commercetools/merchant-center-application-kit/commit/d7b712e44e0dbd7c3d477f08493e3e0004817d79), [`8c6c13a7`](https://github.com/commercetools/merchant-center-application-kit/commit/8c6c13a79f91ea9476983e12c48ae834ca4640c1)]:
+  - @commercetools-frontend/application-config@20.9.4
+  - @commercetools-frontend/babel-preset-mc-app@20.9.4
+  - @commercetools-frontend/mc-html-template@20.9.4
+
 ## 20.9.3
 
 ### Patch Changes
