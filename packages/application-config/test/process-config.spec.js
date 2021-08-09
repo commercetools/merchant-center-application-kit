@@ -527,17 +527,8 @@ describe('processing a config with intl variable placeholders', () => {
             submenuLinks: [
               {
                 uriPath: 'new',
-                defaultLabel: 'New Avenger',
-                labelAllLocales: [
-                  {
-                    locale: 'en',
-                    value: 'Add avenger',
-                  },
-                  {
-                    locale: 'de',
-                    value: 'Avenger hinzufügen',
-                  },
-                ],
+                defaultLabel: 'Add avenger',
+                labelAllLocales: [],
                 permissions: ['ManageAvengers'],
               },
             ],

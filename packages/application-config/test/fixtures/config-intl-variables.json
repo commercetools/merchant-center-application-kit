@@ -20,26 +20,12 @@
         "value": "${intl:de:Menu.Avengers}"
       }
     ],
-    "permissions": [
-      "ViewAvengers"
-    ],
+    "permissions": ["ViewAvengers"],
     "submenuLinks": [
       {
         "uriPath": "new",
-        "defaultLabel": "New Avenger",
-        "labelAllLocales": [
-          {
-            "locale": "en",
-            "value": "${intl:en:Menu.Avengers.New}"
-          },
-          {
-            "locale": "de",
-            "value": "${intl:de:Menu.Avengers.New}"
-          }
-        ],
-        "permissions": [
-          "ManageAvengers"
-        ]
+        "defaultLabel": "${intl:en:Menu.Avengers.New}",
+        "permissions": ["ManageAvengers"]
       }
     ]
   }
