@@ -180,6 +180,7 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
       // Makes some environment variables available to the JS code, for example:
       // if (process.env.NODE_ENV === 'production') { ... }.
       new webpack.DefinePlugin({
+        __DEV__: 'false',
         'process.env': {
           NODE_ENV: JSON.stringify('production'),
         },

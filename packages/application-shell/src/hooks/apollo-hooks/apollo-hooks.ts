@@ -20,7 +20,7 @@ type TQueryOptionsWithContext<
 type TMutationOptionsWithContext<
   TData = unknown,
   TVariables = OperationVariables
-> = MutationHookOptions<TData, TVariables> & {
+> = MutationHookOptions<TData, TVariables, TApolloContext> & {
   context: TApolloContext;
 };
 
@@ -41,8 +41,8 @@ function useMcLazyQuery<TData = unknown, TVariables = OperationVariables>(
 function useMcMutation<TData = unknown, TVariables = OperationVariables>(
   mutation: DocumentNode,
   options?: TMutationOptionsWithContext<TData, TVariables>
-): MutationTuple<TData, TVariables> {
-  return useMutation<TData, TVariables>(mutation, options);
+): MutationTuple<TData, TVariables, TApolloContext> {
+  return useMutation<TData, TVariables, TApolloContext>(mutation, options);
 }
 
 // Custom Apollo query/mutation wrappers, useful to take advantage
