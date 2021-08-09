@@ -6,4 +6,4 @@ set -e
 export $(egrep -v '^#' .env | xargs)
 
 # Proxy the command options to the `graphql-cli` script.
-yarn graphql "$@" --overwrite
+yarn graphql-codegen "$@" --overwrite

@@ -353,6 +353,7 @@ export enum TPermissionScope {
   ManageShippingMethods = 'manage_shipping_methods',
   ManageTaxCategories = 'manage_tax_categories',
   ManageCategories = 'manage_categories',
+  ManageAuditLog = 'manage_audit_log',
   ManageKeyValueDocuments = 'manage_key_value_documents',
   ManageChangeHistory = 'manage_change_history',
   ViewApiClients = 'view_api_clients',
@@ -481,8 +482,6 @@ export type TQuery = {
   releases: Maybe<TReleaseHistory>;
   oAuthClient: Maybe<TOAuthClient>;
   oAuthClients: TOAuthClientQueryResult;
-  /** @deprecated Please use allSupportedOAuthScopesForOAuthClients instead. */
-  oAuthScopes: Array<TPermissionScope>;
   allSupportedOAuthScopesForOAuthClients: Array<TSupportedOAuthScopeForOAuthClient>;
   storeOAuthScopes: Array<TPermissionScope>;
   oAuthClientTemplates: Array<TOAuthClientTemplate>;
@@ -502,6 +501,7 @@ export type TQuery_InvitationArgs = {
 
 export type TQuery_AllImpliedOAuthScopesArgs = {
   resourceAccessPermissions: Array<Scalars['String']>;
+  onlyConfiguredOnTrustedClient: Maybe<Scalars['Boolean']>;
 };
 
 
@@ -704,127 +704,31 @@ export type TUserUpdateAction = {
 export type TAmILoggedInQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TAmILoggedInQuery = (
-  { __typename?: 'Query' }
-  & Pick<TQuery, 'amILoggedIn'>
-);
+export type TAmILoggedInQuery = { __typename?: 'Query', amILoggedIn: boolean };
 
 export type TFetchProjectQueryVariables = Exact<{
   projectKey: Scalars['String'];
 }>;
 
 
-export type TFetchProjectQuery = (
-  { __typename?: 'Query' }
-  & { project: Maybe<(
-    { __typename?: 'Project' }
-    & Pick<TProject, 'key' | 'version' | 'name' | 'countries' | 'currencies' | 'languages' | 'initialized'>
-    & { expiry: (
-      { __typename?: 'ProjectExpiry' }
-      & Pick<TProjectExpiry, 'isActive' | 'daysLeft'>
-    ), suspension: (
-      { __typename?: 'ProjectSuspension' }
-      & Pick<TProjectSuspension, 'isActive' | 'reason'>
-    ), allAppliedPermissions: Array<(
-      { __typename?: 'AppliedPermission' }
-      & Pick<TAppliedPermission, 'name' | 'value'>
-    )>, allAppliedActionRights: Array<(
-      { __typename?: 'AppliedActionRight' }
-      & Pick<TAppliedActionRight, 'group' | 'name' | 'value'>
-    )>, allAppliedDataFences: Array<(
-      { __typename: 'StoreDataFence' }
-      & Pick<TStoreDataFence, 'type' | 'name' | 'value' | 'group'>
-    )>, allPermissionsForAllApplications: (
-      { __typename?: 'AllPermissionsForAllApplications' }
-      & { allAppliedPermissions: Array<(
-        { __typename?: 'AppliedPermission' }
-        & Pick<TAppliedPermission, 'name' | 'value'>
-      )>, allAppliedActionRights: Array<(
-        { __typename?: 'AppliedActionRight' }
-        & Pick<TAppliedActionRight, 'group' | 'name' | 'value'>
-      )>, allAppliedMenuVisibilities: Array<(
-        { __typename?: 'AppliedMenuVisibilities' }
-        & Pick<TAppliedMenuVisibilities, 'name' | 'value'>
-      )>, allAppliedDataFences: Array<(
-        { __typename: 'StoreDataFence' }
-        & Pick<TStoreDataFence, 'type' | 'name' | 'value' | 'group'>
-      )> }
-    ), owner: (
-      { __typename?: 'Organization' }
-      & Pick<TOrganization, 'id' | 'name'>
-    ) }
-  )> }
-);
+export type TFetchProjectQuery = { __typename?: 'Query', project: Maybe<{ __typename?: 'Project', key: string, version: Maybe<number>, name: string, countries: Array<string>, currencies: Array<string>, languages: Array<string>, initialized: boolean, expiry: { __typename?: 'ProjectExpiry', isActive: boolean, daysLeft: Maybe<number> }, suspension: { __typename?: 'ProjectSuspension', isActive: boolean, reason: Maybe<TProjectSuspensionReason> }, allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }>, allPermissionsForAllApplications: { __typename?: 'AllPermissionsForAllApplications', allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedMenuVisibilities: Array<{ __typename?: 'AppliedMenuVisibilities', name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }> }, owner: { __typename?: 'Organization', id: string, name: string } }> };
 
 export type TFetchLoggedInUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TFetchLoggedInUserQuery = (
-  { __typename?: 'Query' }
-  & { user: Maybe<(
-    { __typename?: 'User' }
-    & Pick<TUser, 'id' | 'email' | 'gravatarHash' | 'firstName' | 'lastName' | 'language' | 'numberFormat' | 'timeZone' | 'launchdarklyTrackingId' | 'launchdarklyTrackingGroup' | 'launchdarklyTrackingSubgroup' | 'launchdarklyTrackingTeam' | 'launchdarklyTrackingTenant' | 'defaultProjectKey' | 'businessRole'>
-    & { projects: (
-      { __typename?: 'ProjectQueryResult' }
-      & Pick<TProjectQueryResult, 'total'>
-      & { results: Array<(
-        { __typename?: 'Project' }
-        & Pick<TProject, 'name' | 'key'>
-        & { suspension: (
-          { __typename?: 'ProjectSuspension' }
-          & Pick<TProjectSuspension, 'isActive'>
-        ), expiry: (
-          { __typename?: 'ProjectExpiry' }
-          & Pick<TProjectExpiry, 'isActive'>
-        ) }
-      )> }
-    ) }
-  )> }
-);
+export type TFetchLoggedInUserQuery = { __typename?: 'Query', user: Maybe<{ __typename?: 'User', id: string, email: string, gravatarHash: string, firstName: string, lastName: string, language: string, numberFormat: string, timeZone: Maybe<string>, launchdarklyTrackingId: string, launchdarklyTrackingGroup: string, launchdarklyTrackingSubgroup: Maybe<string>, launchdarklyTrackingTeam: Maybe<Array<string>>, launchdarklyTrackingTenant: string, defaultProjectKey: Maybe<string>, businessRole: Maybe<string>, projects: { __typename?: 'ProjectQueryResult', total: number, results: Array<{ __typename?: 'Project', name: string, key: string, suspension: { __typename?: 'ProjectSuspension', isActive: boolean }, expiry: { __typename?: 'ProjectExpiry', isActive: boolean } }> } }> };
 
 export type TFetchUserProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TFetchUserProjectsQuery = (
-  { __typename?: 'Query' }
-  & { user: Maybe<(
-    { __typename?: 'User' }
-    & Pick<TUser, 'id'>
-    & { projects: (
-      { __typename?: 'ProjectQueryResult' }
-      & { results: Array<(
-        { __typename?: 'Project' }
-        & Pick<TProject, 'name' | 'key'>
-        & { suspension: (
-          { __typename?: 'ProjectSuspension' }
-          & Pick<TProjectSuspension, 'isActive'>
-        ), expiry: (
-          { __typename?: 'ProjectExpiry' }
-          & Pick<TProjectExpiry, 'isActive'>
-        ) }
-      )> }
-    ) }
-  )> }
-);
+export type TFetchUserProjectsQuery = { __typename?: 'Query', user: Maybe<{ __typename?: 'User', id: string, projects: { __typename?: 'ProjectQueryResult', results: Array<{ __typename?: 'Project', name: string, key: string, suspension: { __typename?: 'ProjectSuspension', isActive: boolean }, expiry: { __typename?: 'ProjectExpiry', isActive: boolean } }> } }> };
 
 export type TAllFeaturesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TAllFeaturesQuery = (
-  { __typename?: 'Query' }
-  & { allFeatures: Array<(
-    { __typename?: 'Feature' }
-    & Pick<TFeature, 'name' | 'value' | 'reason'>
-  )> }
-);
+export type TAllFeaturesQuery = { __typename?: 'Query', allFeatures: Array<{ __typename?: 'Feature', name: string, value: boolean, reason: Maybe<string> }> };
 
 export type TFetchUserIdQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TFetchUserIdQuery = (
-  { __typename?: 'Query' }
-  & { user: Maybe<(
-    { __typename?: 'User' }
-    & Pick<TUser, 'id'>
-  )> }
-);
+export type TFetchUserIdQuery = { __typename?: 'Query', user: Maybe<{ __typename?: 'User', id: string }> };
