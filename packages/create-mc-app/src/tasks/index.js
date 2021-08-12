@@ -1,9 +1,13 @@
 const downloadTemplate = require('./download-template');
 const installDependencies = require('./install-dependencies');
-const updatePackageInfo = require('./update-package-info');
+const updatePackageJson = require('./update-package-json');
+const updateCustomApplicationConfig = require('./update-custom-application-config');
+const updateApplicationConstants = require('./update-application-constants');
 
 module.exports = {
   downloadTemplate,
   installDependencies,
-  updatePackageInfo,
+  updatePackageJson,
+  updateCustomApplicationConfig,
+  updateApplicationConstants,
 };

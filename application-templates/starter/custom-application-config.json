@@ -6,5 +6,19 @@
     "production": {
       "url": "https://<your_app_hostname>"
     }
+  },
+  "menuLinks": {
+    "icon": "HeartIcon",
+    "defaultLabel": "Starter",
+    "labelAllLocales": [],
+    "permissions": [],
+    "submenuLinks": [
+      {
+        "uriPath": "channels",
+        "defaultLabel": "Channels",
+        "labelAllLocales": [],
+        "permissions": []
+      }
+    ]
   }
 }

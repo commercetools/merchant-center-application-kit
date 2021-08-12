@@ -1,11 +1,10 @@
-import React from 'react';
+import { createApolloClient } from '@commercetools-frontend/application-shell';
 import {
   renderApp,
   renderAppWithRedux,
 } from '@commercetools-frontend/application-shell/test-utils';
 import ApplicationRoutes from '../routes';
-
-const entryPointUriPath = 'examples-starter';
+import { entryPointUriPath } from '../constants/application';
 
 const mergeWithDefaultOptions = (options = {}) => ({
   ...options,
@@ -13,6 +12,8 @@ const mergeWithDefaultOptions = (options = {}) => ({
     ...(options.environment || {}),
     entryPointUriPath,
   },
+  apolloClient: createApolloClient(),
+  disableApolloMocks: true,
   disableAutomaticEntryPointRoutes: false,
 });
 

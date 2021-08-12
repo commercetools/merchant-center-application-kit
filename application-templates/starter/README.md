@@ -2,57 +2,51 @@
   <a href="https://commercetools.com/">
     <img alt="commercetools logo" src="https://unpkg.com/@commercetools-frontend/assets/logos/commercetools_primary-logo_horizontal_RGB.png">
   </a>
-  <b>Merchant Center starter application</b>
+  <b>Custom Application Starter</b>
 </p>
 
-This application gives you the minimum setup to develop and launch a working Merchant Center application.
+This is the `starter` template to [develop Custom Applications](https://docs.commercetools.com/custom-applications/) for the Merchant Center.
 
 ## Installation
 
+Install the template using the `npx` command. Replace `<folder_name>` with the name of the folder where the template should be installed into.
+
 ```bash
+$ npx @commercetools-frontend/create-mc-app <folder_name> --template starter
+```
+
+You can also install the `@commercetools-frontend/create-mc-app` CLI globally:
+
+```bash
+# Using yarn
+$ yarn global add @commercetools-frontend/create-mc-app
+$ create-mc-app <folder_name> --template starter
+
+# Using npm
 $ npm install --global @commercetools-frontend/create-mc-app
-$ create-mc-app my-new-custom-application-project --template starter
-
-# or
-
-$ npx @commercetools-frontend/create-mc-app my-new-custom-application-project --template starter
+$ create-mc-app <folder_name> --template starter
 ```
 
-## Adjust the cloud identifier
+## Configuring the Custom Application
 
-The `custom-application-config.json` is configured to use the HTTP APIs in the GCP-EU region. If you plan to run the Custom Application in another environment, change the cloud identifier accordingly.
+Once the template has been installed, you need to check and adjust the `custom-application-config.json` file accordingly. [Reference: Custom Application Config](https://docs.commercetools.com/custom-applications/development/application-config).
 
-## Start the development server
+> You can additionally configure [editor support](https://docs.commercetools.com/custom-applications/development/application-config#editor-support) to provide hints and code completion.
 
-Run the following command to start the development server and launch the application:
+The template provides the bare minimum configuration setup, so you might not need to change anything specific for now.
 
-```bash
-$ yarn start
-```
+## Developing the Custom Application
 
-## Run tests
+To develop the Custom Application in development mode, use the `start` command in `package.json`.
 
-Run the following command to run the tests:
+Important commands:
 
-```bash
-$ yarn test
-$ yarn test:watch
-```
+* `test`: runs tests using Jest.
+* `build`: [builds the production bundles](https://docs.commercetools.com/custom-applications/development/available-scripts#mc-scripts-build) and outputs them in `dist`.
+* `compile-html`: [compiles the application](https://docs.commercetools.com/custom-applications/development/available-scripts#mc-scripts-compile-html) `index.html` based on the application config.
+* `extract-intl`: extracts [messages for translations](https://docs.commercetools.com/custom-applications/development/translations).
 
-## Build the production bundles
+Other useful commands:
 
-Run the following command to build the production bundles with webpack:
-
-```bash
-$ yarn build
-```
-
-## Adjust the configuration for production
-
-The `custom-application-config.json` has a `env.production` configuration object. When you're ready to deploy the application to production, make sure to provide the URL where the Custom Application is hosted.
-
-## Linting, formatting, and so on
-
-We only provide the minimal scripts and tooling to _start_, _test_, and _build_ the application. If you want to add more development tooling such as **linters**, **prettier**, etc. you need to provide those on your own.
-
-You can have a look at our setup in the [`merchant-center-application-kit`](https://github.com/commercetools/merchant-center-application-kit) repository to help you getting set up.
+* `compile-html:local` and `start:prod:local`: use these commands to test the application locally in production mode.
+* `versions:*`: use these commands to update dependency versions in bulk related to Custom Applications.

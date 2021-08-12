@@ -5,6 +5,8 @@ const execa = require('execa');
 const Listr = require('listr');
 const { throwIfTemplateVersionDoesNotExist } = require('../validations');
 
+const filesToBeRemoved = ['CHANGELOG.md'];
+
 module.exports = function downloadTemplate(options) {
   return {
     title: 'Downloading template',
@@ -62,17 +64,17 @@ module.exports = function downloadTemplate(options) {
         {
           title: `Copying template ${options.templateName} into project directory ${options.projectDirectoryPath}`,
           task: async () => {
-            const sanitizedProjectDirectoryPath = options.projectDirectoryPath
-              // Escape white spaces
-              .replace(/ /g, '\\ ');
-
             const command =
               process.platform === 'win32' || process.platform === 'cygwin'
                 ? 'move'
                 : 'mv';
             const result = await execa(
               command,
-              [templateFolderPath, sanitizedProjectDirectoryPath],
+              [
+                templateFolderPath,
+                // Wrap folder path in quotes to avoid issues with empty spaces in the folder names.
+                options.projectDirectoryPath,
+              ],
               {
                 encoding: 'utf-8',
               }
@@ -89,6 +91,29 @@ module.exports = function downloadTemplate(options) {
               throw new Error(
                 `Unable to verify that the template application has a package.json at "${templatePackageJsonPath}"`
               );
+            }
+            return result.stdout;
+          },
+        },
+        {
+          title: `Cleaning up project directory`,
+          task: async () => {
+            const command =
+              process.platform === 'win32' || process.platform === 'cygwin'
+                ? 'del'
+                : 'rm';
+            const result = await execa(
+              command,
+              filesToBeRemoved.map((filePath) =>
+                path.join(options.projectDirectoryPath, filePath)
+              ),
+              {
+                encoding: 'utf-8',
+              }
+            );
+
+            if (result.failed) {
+              throw new Error(result.stderr);
             }
             return result.stdout;
           },
