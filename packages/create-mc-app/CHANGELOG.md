@@ -1,5 +1,11 @@
 # @commercetools-frontend/create-mc-app
 
+## 20.10.0
+
+### Minor Changes
+
+- [#2335](https://github.com/commercetools/merchant-center-application-kit/pull/2335) [`f8f9d5c7`](https://github.com/commercetools/merchant-center-application-kit/commit/f8f9d5c79f86b31fffdc68f034b5c0bb3c4a32ed) Thanks [@emmenko](https://github.com/emmenko)! - Derives the `entryPointUriPath` from the folder name, then replaces it in the template in the custom app config and in the constants file.
+
 ## 20.4.0
 
 ### Patch Changes
