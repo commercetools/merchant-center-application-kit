@@ -86,7 +86,7 @@ const patchDependencyImportPath = (depName, dependencies) => {
 Object.keys(appPackageJson.dependencies).forEach((depName) => {
   patchDependencyImportPath(depName, appPackageJson.dependencies);
 });
-Object.keys(appPackageJson.devDependencies).forEach((depName) => {
+Object.keys(appPackageJson.devDependencies || {}).forEach((depName) => {
   patchDependencyImportPath(depName, appPackageJson.devDependencies);
 });
 fs.writeFileSync(appPackageJsonPath, JSON.stringify(appPackageJson, null, 2), {
