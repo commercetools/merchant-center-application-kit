@@ -33,7 +33,7 @@ $ npx @commercetools-frontend/create-mc-app my-new-custom-application-project --
 
 2. Add necessary environment variables
 
-   > In the vscode file tree or the terminal, navigate to `merchant_center_application_kit/playground`, open `.env.local.template`, and add these values:
+   > Navigate to `merchant_center_application_kit/playground`, duplicate `.env.local.template`, name the duplicate `.env.local` and add these values:
 
    ```bash
      MC_API_URL="https://mc-api.europe-west1.gcp.commercetools.com" # for prod
