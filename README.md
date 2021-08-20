@@ -23,13 +23,70 @@ $ npx @commercetools-frontend/create-mc-app my-new-custom-application-project --
 
 ## Developing application-kit packages
 
-Install the dependencies (uses yarn workspaces):
+### Initial Installation
 
-```bash
-$ yarn
-```
+1. Clone this repo
 
-To run the tests:
+   ```bash
+   $ git clone https://github.com/commercetools/merchant-center-application-kit.git
+   ```
+
+2. Add necessary environment variables
+
+   > In the vscode file tree or the terminal, navigate to `merchant_center_application_kit/playground`, open `.env.local.template`, and add these values:
+
+   ```bash
+     MC_API_URL="https://mc-api.europe-west1.gcp.commercetools.com" # for prod
+     APP_ID="" # can be an empty string for dev
+     CTP_INITIAL_PRODUCT_KEY=<your-project-name> # the name of any project you have access to on prod/stage
+   ```
+
+   > In the vscode filetree or the terminal, change `.env.local.template` filename to `.env.local`
+
+3. Build and run the application kit
+
+   > In a new terminal window, navigate to the project root directory - `/merchant_center_application_kit` - and run:
+
+   ```bash
+   $ yarn && yarn prebuild && yarn build && yarn build:watch
+   ```
+
+   > Confirm that the watch is running successfully, you should see:
+
+   ```bash
+   > "info @commercetools-frontend/application-shell waiting for changes..."
+   >...
+   ```
+
+4. Build and run the [playground application](./playground):
+
+   > In a new terminal window, navigate to the project root directory - `/merchant_center_application_kit`, and run:
+
+   ```bash
+   $ `yarn playground:build && yarn playground:start`
+   ```
+
+   > This should open a browser window and the standard merchant cernter login prompt, login using your account, and then the playground should load in the browser if permissions are set correctly (I am unclear on what those perms are or how to set them, so this is completely theoretical on my part at this point)
+
+### RUNNING THE APP KIT AND PLAYGROUND AFTER INITIAL INSTALLATION
+
+- Open 2 terminal windows
+
+  - In the first terminal run
+
+    ```bash
+      $ yarn build:watch
+    ```
+
+  - Once the watch process has completed and is listening,in the second terminalm window run
+
+         ```bash
+           $ yarn playground:start
+         ```
+
+    > The playground application consumes the app-kit dependencies as es modules, which means you need to bundle the packages first. We recommend to bundle the packages in watch mode in one terminal process and start the playground app in another terminal process.
+
+## To run the tests:
 
 ```bash
 $ yarn test
@@ -38,25 +95,13 @@ $ yarn test
 $ yarn test:watch
 ```
 
-Build the application bundles
+## To Build the application bundles:
 
 ```bash
 $ yarn build
 
 # or
 $ yarn build:bundles:watch
-```
-
-Start the [playground application](./playground):
-
-> NOTE: the playground application consumes the app-kit dependencies's es modules, which means you need to bundle the packages first. We recommend to bundle the packages in watch mode in one terminal process and start the playground app in another terminal process.
-
-```bash
-// Terminal process 1
-$ yarn build:bundles:watch
-
-// Terminal process 2
-$ yarn playground:start
 ```
 
 ## Documentation
