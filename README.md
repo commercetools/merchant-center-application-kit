@@ -41,8 +41,6 @@ $ npx @commercetools-frontend/create-mc-app my-new-custom-application-project --
      CTP_INITIAL_PRODUCT_KEY=<your-project-name> # the name of any project you have access to on prod/stage
    ```
 
-   > In the vscode filetree or the terminal, change `.env.local.template` filename to `.env.local`
-
 3. Build and run the application kit
 
    > In a new terminal window, navigate to the project root directory - `/merchant_center_application_kit` - and run:
@@ -63,7 +61,7 @@ $ npx @commercetools-frontend/create-mc-app my-new-custom-application-project --
    > In a new terminal window, navigate to the project root directory - `/merchant_center_application_kit`, and run:
 
    ```bash
-   $ `yarn playground:build && yarn playground:start`
+   $ yarn playground:build && yarn playground:start
    ```
 
    > This should open a browser window and the standard merchant cernter login prompt, login using your account, and then the playground should load in the browser if permissions are set correctly (I am unclear on what those perms are or how to set them, so this is completely theoretical on my part at this point)
@@ -80,9 +78,9 @@ $ npx @commercetools-frontend/create-mc-app my-new-custom-application-project --
 
   - Once the watch process has completed and is listening,in the second terminalm window run
 
-         ```bash
-           $ yarn playground:start
-         ```
+    ```bash
+      $ yarn playground:start
+    ```
 
     > The playground application consumes the app-kit dependencies as es modules, which means you need to bundle the packages first. We recommend to bundle the packages in watch mode in one terminal process and start the playground app in another terminal process.
 
