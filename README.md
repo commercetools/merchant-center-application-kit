@@ -68,6 +68,8 @@ $ npx @commercetools-frontend/create-mc-app my-new-custom-application-project --
 
 ### RUNNING THE APP KIT AND PLAYGROUND AFTER INITIAL INSTALLATION
 
+> The playground application consumes the app-kit dependencies as es modules, which means you need to bundle the packages first. We recommend to bundle the packages in watch mode in one terminal process and start the playground app in another terminal process.
+
 - Open 2 terminal windows
 
   - In the first terminal run
@@ -76,13 +78,11 @@ $ npx @commercetools-frontend/create-mc-app my-new-custom-application-project --
       $ yarn build:watch
     ```
 
-  - Once the watch process has completed and is listening,in the second terminalm window run
+  - Once the watch process has completed and is listening, in the second terminal window run
 
     ```bash
       $ yarn playground:start
     ```
-
-    > The playground application consumes the app-kit dependencies as es modules, which means you need to bundle the packages first. We recommend to bundle the packages in watch mode in one terminal process and start the playground app in another terminal process.
 
 ## To run the tests:
 
