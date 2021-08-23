@@ -38,7 +38,7 @@ $ npx @commercetools-frontend/create-mc-app my-new-custom-application-project --
    ```bash
      MC_API_URL="https://mc-api.europe-west1.gcp.commercetools.com" # for prod
      APP_ID="" # can be an empty string for dev
-     CTP_INITIAL_PRODUCT_KEY=<your-project-name> # the name of any project you have access to on prod/stage
+     CTP_INITIAL_PROJECT_KEY=<your-project-name> # the name of any project you have access to on prod/stage
    ```
 
 3. Build and run the application kit
