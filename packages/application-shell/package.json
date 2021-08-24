@@ -26,8 +26,8 @@
     "compile-css-modules": "./scripts/compile-styles.js"
   },
   "dependencies": {
-    "@babel/runtime": "7.14.8",
-    "@babel/runtime-corejs3": "7.14.9",
+    "@babel/runtime": "7.15.3",
+    "@babel/runtime-corejs3": "7.15.3",
     "@commercetools-frontend/actions-global": "20.9.4",
     "@commercetools-frontend/application-components": "20.9.4",
     "@commercetools-frontend/application-shell-connectors": "20.9.4",
@@ -77,7 +77,7 @@
     "classnames": "^2.2.6",
     "common-tags": "1.8.0",
     "debounce-async": "0.0.2",
-    "downshift": "6.1.6",
+    "downshift": "6.1.7",
     "fuse.js": "6.4.6",
     "graphql": "15.5.1",
     "history": "4.10.1",
@@ -99,13 +99,13 @@
     "uuid": "8.3.2"
   },
   "devDependencies": {
-    "@apollo/client": "3.4.5",
+    "@apollo/client": "3.4.8",
     "@testing-library/react": "12.0.0",
     "@testing-library/react-hooks": "7.0.1",
-    "msw": "0.34.0",
+    "msw": "0.35.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-intl": "5.20.7",
+    "react-intl": "5.20.10",
     "react-redux": "7.2.4",
     "react-router-dom": "5.2.0",
     "redux": "4.1.1",
