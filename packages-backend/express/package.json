@@ -20,15 +20,15 @@
   "module": "dist/commercetools-backend-express.esm.js",
   "files": ["dist", "package.json", "LICENSE", "README.md"],
   "dependencies": {
-    "@babel/runtime": "7.14.8",
-    "@babel/runtime-corejs3": "7.14.9",
+    "@babel/runtime": "7.15.3",
+    "@babel/runtime-corejs3": "7.15.3",
     "@types/node": "15.6.1",
     "express": "4.17.1",
-    "express-jwt": "6.0.0",
+    "express-jwt": "6.1.0",
     "jwks-rsa": "2.0.4"
   },
   "devDependencies": {
     "jose": "2.0.5",
-    "msw": "0.34.0"
+    "msw": "0.35.0"
   }
 }
