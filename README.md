@@ -59,7 +59,7 @@ $ npx @commercetools-frontend/create-mc-app my-new-custom-application-project --
 4. Remove fake permission:
    > `PERMISSIONS.ViewPlaygroundStateMachines` which is required by playground is a fake permission and you might need to remove it
    > in order to be able to run and view the application. You'll need to remove it twice in `custom-application-config.mjs` and once in
-   > `routes.js` so that `permissions` is just an empty object:
+   > `routes.js` so that `permissions`/`demandedPermissions` are just empty objects:
 
 `custom-application-config.mjs`
 
