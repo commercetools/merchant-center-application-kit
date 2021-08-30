@@ -86,12 +86,11 @@ $ npx @commercetools-frontend/create-mc-app my-new-custom-application-project --
 
 `routes.js`
 
-````bash
+```bash
    const canViewStateMachines = useIsAuthorized({
      demandedPermissions: [PERMISSIONS.ViewPlaygroundStateMachines],
    });
- ```
-
+```
 
 5. Build and run the [playground application](./playground):
 
@@ -99,7 +98,7 @@ $ npx @commercetools-frontend/create-mc-app my-new-custom-application-project --
 
 ```bash
 $ yarn playground:build && yarn playground:start
-````
+```
 
 > This should open a browser window and the standard merchant cernter login prompt, login using your account, and then the playground should load in the browser if permissions are set correctly (I am unclear on what those perms are or how to set them, so this is completely theoretical on my part at this point)
 
