@@ -56,15 +56,52 @@ $ npx @commercetools-frontend/create-mc-app my-new-custom-application-project --
    >...
    ```
 
-4. Build and run the [playground application](./playground):
+4. Remove fake permission:
+   > `PERMISSIONS.ViewPlaygroundStateMachines` which is required by playground is a fake permission and you might need to remove it
+   > in order to be able to run and view the application. You'll need to remove it twice in `custom-application-config.mjs` and once in
+   > `routes.js` so that `permissions` is just an empty object:
 
-   > In a new terminal window, navigate to the project root directory - `/merchant_center_application_kit`, and run:
+`custom-application-config.mjs`
 
-   ```bash
-   $ yarn playground:build && yarn playground:start
-   ```
+```bash
+ permissions: [PERMISSIONS.ViewPlaygroundStateMachines],
+ submenuLinks: [
+    {
+      uriPath: 'echo-server',
+      permissions: [PERMISSIONS.ViewPlaygroundStateMachines],
+      defaultLabel: '${intl:en:Menu.EchoServer}',
+      labelAllLocales: [
+        {
+          locale: 'en',
+          value: '${intl:en:Menu.EchoServer}',
+        },
+        {
+          locale: 'de',
+          value: '${intl:de:Menu.EchoServer}',
+        },
+      ],
+    },
+  ],
+```
 
-   > This should open a browser window and the standard merchant cernter login prompt, login using your account, and then the playground should load in the browser if permissions are set correctly (I am unclear on what those perms are or how to set them, so this is completely theoretical on my part at this point)
+`routes.js`
+
+````bash
+   const canViewStateMachines = useIsAuthorized({
+     demandedPermissions: [PERMISSIONS.ViewPlaygroundStateMachines],
+   });
+ ```
+
+
+5. Build and run the [playground application](./playground):
+
+> In a new terminal window, navigate to the project root directory - `/merchant_center_application_kit`, and run:
+
+```bash
+$ yarn playground:build && yarn playground:start
+````
+
+> This should open a browser window and the standard merchant cernter login prompt, login using your account, and then the playground should load in the browser if permissions are set correctly (I am unclear on what those perms are or how to set them, so this is completely theoretical on my part at this point)
 
 ### RUNNING THE APP KIT AND PLAYGROUND AFTER INITIAL INSTALLATION
 
