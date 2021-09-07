@@ -768,14 +768,21 @@ describe('navbar menu links interactions', () => {
     );
     const groupId = menuTitle.getAttribute('aria-owns');
     // eslint-disable-next-line testing-library/no-node-access, testing-library/no-container
-    const submenuContainer = container.querySelector(`#${groupId}`);
-    expect(submenuContainer).toHaveAttribute('aria-expanded', 'false');
+    // const submenuContainer = container.querySelector(`#${groupId}`);
+    const menuGroupContainer = within(screen.getByTestId(groupId));
+    const menuItems = menuGroupContainer.getAllByRole('menuitem', {
+      hidden: true,
+    });
+    menuItems.forEach((menuItem) =>
+      expect(menuItem).toHaveAttribute('aria-expanded', 'false')
+    );
+    const menuLink = menuGroupContainer.queryByText(mainSubmenuLabel.value);
     fireEvent.click(menuTitle);
     await waitFor(() => {
-      expect(submenuContainer).toHaveAttribute('aria-expanded', 'true');
+      menuItems.forEach((menuItem) =>
+        expect(menuItem).toHaveAttribute('aria-expanded', 'true')
+      );
     });
-    const menuGroupContainer = within(screen.getByTestId(groupId));
-    const menuLink = menuGroupContainer.queryByText(mainSubmenuLabel.value);
     expect(menuLink).toBeInTheDocument();
     expect(menuLink).not.toHaveAttribute('aria-current');
     // Go to the link to check if the link becomes active

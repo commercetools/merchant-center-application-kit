@@ -20,7 +20,9 @@ import {
   MouseEventHandler,
   ReactNode,
   SyntheticEvent,
+  useCallback,
   useContext,
+  useEffect,
   useMemo,
   useRef,
 } from 'react';
@@ -139,7 +141,7 @@ const IconSwitcher = ({ icon, ...iconProps }: IconSwitcherProps) => {
     case 'WorldIcon':
       return <WorldIcon {...iconProps} />;
     default:
-      return <img src={MissingImageSvg} />;
+      return <img src={MissingImageSvg} alt="missing icon" />;
   }
 };
 IconSwitcher.displayName = 'IconSwitcher';
@@ -187,10 +189,6 @@ const MenuGroup = (props: MenuGroupProps) => {
       id={`${props.id}-group`}
       data-testid={`${props.id}-group`}
       role="menu"
-      aria-expanded={
-        isSublistActiveWhileIsMenuExpanded ||
-        isSublistActiveWhileIsMenuCollapsed
-      }
       className={classnames(
         { [styles.list]: props.level === 1 },
         { [styles.sublist]: props.level === 2 },
@@ -227,7 +225,8 @@ type MenuItemProps = {
 };
 const MenuItem = (props: MenuItemProps) => (
   <li
-    role="menu-item"
+    role="menuitem"
+    aria-expanded={props.isActive}
     className={classnames(styles['list-item'], {
       [styles.item__active]: props.isActive,
       [styles['item_menu-collapsed']]: !props.isMenuOpen,
@@ -419,20 +418,31 @@ type ApplicationMenuProps = {
   onMenuItemClick?: MenuItemLinkProps['onClick'];
 };
 const ApplicationMenu = (props: ApplicationMenuProps) => {
+  const isMainMenuRouteActive = useCallback(
+    (link: string) => {
+      const match = matchPath(props.location.pathname, {
+        path: `/${props.projectKey}/${link}`,
+        exact: false,
+        strict: false,
+      });
+      return Boolean(match);
+    },
+    [props.location.pathname, props.projectKey]
+  );
+
+  useEffect(() => {
+    const canExpandMenu = window.innerWidth > 918;
+    if (canExpandMenu && isMainMenuRouteActive(props.menu.uriPath)) {
+      props.handleToggleItem();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // <-- run this only once!!
+
   const hasSubmenu =
     Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
   const namesOfMenuVisibilitiesOfAllSubmenus = hasSubmenu
     ? getMenuVisibilitiesOfSubmenus(props.menu)
     : getMenuVisibilityOfMainmenu(props.menu);
-
-  const isMainMenuRouteActive = (link: string) => {
-    const match = matchPath(props.location.pathname, {
-      path: `/${props.projectKey}/${link}`,
-      exact: false,
-      strict: false,
-    });
-    return Boolean(match);
-  };
 
   const isMainMenuItemALink =
     // 1. When the navbar is collapsed
@@ -520,7 +530,11 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
                         : undefined
                     }
                   >
-                    <li className={styles['sublist-item']}>
+                    <li
+                      role="menuitem"
+                      aria-expanded={props.isActive}
+                      className={styles['sublist-item']}
+                    >
                       <div className={styles.text}>
                         <MenuItemLink
                           linkTo={`/${props.projectKey}/${submenu.uriPath}`}
