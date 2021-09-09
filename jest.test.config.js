@@ -18,4 +18,5 @@ module.exports = {
     'node_modules/(?!(@commercetools-[frontend|backend]+)/)',
   ],
   testEnvironment: 'jsdom',
+  testTimeout: 10000,
 };
