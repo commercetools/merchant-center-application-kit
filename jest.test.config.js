@@ -18,5 +18,6 @@ module.exports = {
     'node_modules/(?!(@commercetools-[frontend|backend]+)/)',
   ],
   testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['./jest.setup.js'],
   testTimeout: 15000,
 };
