@@ -431,7 +431,8 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
   );
 
   useEffect(() => {
-    const shouldOpen = window.innerWidth >= 1024;
+    const shouldOpen = window.innerWidth > 1024;
+    console.log(shouldOpen, window.innerWidth);
     if (shouldOpen && isMainMenuRouteActive(props.menu.uriPath)) {
       props.handleToggleItem();
     }
