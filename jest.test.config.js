@@ -19,5 +19,5 @@ module.exports = {
   ],
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['./jest.setup.js'],
-  testTimeout: 15000,
+  testTimeout: 60000,
 };
