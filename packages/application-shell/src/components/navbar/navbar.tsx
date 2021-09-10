@@ -20,7 +20,9 @@ import {
   MouseEventHandler,
   ReactNode,
   SyntheticEvent,
+  useCallback,
   useContext,
+  useEffect,
   useMemo,
   useRef,
 } from 'react';
@@ -139,7 +141,7 @@ const IconSwitcher = ({ icon, ...iconProps }: IconSwitcherProps) => {
     case 'WorldIcon':
       return <WorldIcon {...iconProps} />;
     default:
-      return <img src={MissingImageSvg} />;
+      return <img src={MissingImageSvg} alt="missing icon" />;
   }
 };
 IconSwitcher.displayName = 'IconSwitcher';
@@ -227,7 +229,7 @@ type MenuItemProps = {
 };
 const MenuItem = (props: MenuItemProps) => (
   <li
-    role="menu-item"
+    role="menuitem"
     className={classnames(styles['list-item'], {
       [styles.item__active]: props.isActive,
       [styles['item_menu-collapsed']]: !props.isMenuOpen,
@@ -419,20 +421,32 @@ type ApplicationMenuProps = {
   onMenuItemClick?: MenuItemLinkProps['onClick'];
 };
 const ApplicationMenu = (props: ApplicationMenuProps) => {
+  const isMainMenuRouteActive = useCallback(
+    (link: string) => {
+      const match = matchPath(props.location.pathname, {
+        path: `/${props.projectKey}/${link}`,
+        exact: false,
+        strict: false,
+      });
+      return Boolean(match);
+    },
+    [props.location.pathname, props.projectKey]
+  );
+
+  useEffect(() => {
+    const shouldOpen = window.innerWidth > 1024;
+    if (shouldOpen && isMainMenuRouteActive(props.menu.uriPath)) {
+      props.handleToggleItem();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // <-- run this only once!!
+
   const hasSubmenu =
     Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
+
   const namesOfMenuVisibilitiesOfAllSubmenus = hasSubmenu
     ? getMenuVisibilitiesOfSubmenus(props.menu)
     : getMenuVisibilityOfMainmenu(props.menu);
-
-  const isMainMenuRouteActive = (link: string) => {
-    const match = matchPath(props.location.pathname, {
-      path: `/${props.projectKey}/${link}`,
-      exact: false,
-      strict: false,
-    });
-    return Boolean(match);
-  };
 
   const isMainMenuItemALink =
     // 1. When the navbar is collapsed

@@ -46,11 +46,13 @@ const config = {
         value: '${intl:de:Menu.StateMachines}',
       },
     ],
-    permissions: [PERMISSIONS.ViewPlaygroundStateMachines],
+    permissions: [],
+    // permissions: [PERMISSIONS.ViewPlaygroundStateMachines],
     submenuLinks: [
       {
         uriPath: 'echo-server',
-        permissions: [PERMISSIONS.ViewPlaygroundStateMachines],
+        permissions: [],
+        // permissions: [PERMISSIONS.ViewPlaygroundStateMachines],
         defaultLabel: '${intl:en:Menu.EchoServer}',
         labelAllLocales: [
           {
