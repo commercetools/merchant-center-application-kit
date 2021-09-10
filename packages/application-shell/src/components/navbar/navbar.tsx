@@ -721,6 +721,7 @@ export const LoadingNavBar = () => {
             </MenuItem>
           ))}
         </>
+        <div></div>
       </MenuGroup>
     </NavBarLayout>
   );
