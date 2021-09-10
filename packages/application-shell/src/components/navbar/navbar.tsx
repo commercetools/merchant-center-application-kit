@@ -189,6 +189,10 @@ const MenuGroup = (props: MenuGroupProps) => {
       id={`${props.id}-group`}
       data-testid={`${props.id}-group`}
       role="menu"
+      aria-expanded={
+        isSublistActiveWhileIsMenuExpanded ||
+        isSublistActiveWhileIsMenuCollapsed
+      }
       className={classnames(
         { [styles.list]: props.level === 1 },
         { [styles.sublist]: props.level === 2 },
