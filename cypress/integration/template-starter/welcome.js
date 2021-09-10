@@ -2,7 +2,6 @@ import { URL_EXAMPLES_STARTER } from '../../support/urls';
 
 describe('Welcome', () => {
   it('should render page', () => {
-    cy.viewport(1024, 1024);
     cy.login({ redirectToUri: URL_EXAMPLES_STARTER });
     cy.findByText('Develop applications for the Merchant Center').should(
       'exist'
