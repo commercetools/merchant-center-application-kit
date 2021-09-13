@@ -415,6 +415,7 @@ type ApplicationMenuProps = {
   projectPermissions: TProjectPermissions;
   menuVisibilities: TNormalizedMenuVisibilities | null;
   handleToggleItem: () => void;
+  handleToggleMenu: () => void;
   applicationLocale: string;
   projectKey: string;
   useFullRedirectsForLinks: boolean;
@@ -435,8 +436,13 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
 
   useEffect(() => {
     const shouldOpen = window.innerWidth > 1024;
-
+    //if the screen width is greater than 1024 and the main meny route corresponds to this menu item
     if (shouldOpen && isMainMenuRouteActive(props.menu.uriPath)) {
+      //if the navbar is collapsed, open it
+      if (!props.isMenuOpen) {
+        props.handleToggleMenu();
+      }
+      //then make the menu item active
       props.handleToggleItem();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -654,6 +660,7 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
                 menu={menu}
                 isActive={activeItemIndex === itemIndex}
                 handleToggleItem={() => handleToggleItem(itemIndex)}
+                handleToggleMenu={handleToggleMenu}
                 isMenuOpen={isMenuOpen}
                 shouldCloseMenuFly={shouldCloseMenuFly}
                 projectPermissions={projectPermissions}
