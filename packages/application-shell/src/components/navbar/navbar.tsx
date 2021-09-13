@@ -434,8 +434,8 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
   );
 
   useEffect(() => {
-    const shouldOpen = window.innerWidth > 1024;
-    if (shouldOpen && isMainMenuRouteActive(props.menu.uriPath)) {
+    const canExpandMenu = window.innerWidth > 918;
+    if (canExpandMenu && isMainMenuRouteActive(props.menu.uriPath)) {
       props.handleToggleItem();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
