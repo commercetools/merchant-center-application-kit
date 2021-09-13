@@ -499,6 +499,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
                     Boolean(props.menu.shouldRenderDivider)
                   )}
                 />
+                {window.innerWidth}
               </div>
               <div
                 className={styles.title}
