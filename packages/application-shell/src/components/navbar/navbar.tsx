@@ -436,13 +436,16 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
 
   useEffect(() => {
     const shouldOpen = window.innerWidth > 1024;
-    //if the screen width is greater than 1024 and the main meny route corresponds to this menu item
+    // If the screen width is greater than 1024px and the main menu route corresponds to this menu item,
+    // then we want to force the menu to expand and set this menu item to be active.
+    //
+    // If the screen width is 1024px or less, keep the menu behavior as-is: do not expand the menu or activate the current item.
     if (shouldOpen && isMainMenuRouteActive(props.menu.uriPath)) {
-      //if the navbar is collapsed, open it
+      // if the navbar is collapsed, open it
       if (!props.isMenuOpen) {
         props.handleToggleMenu();
       }
-      //then make the menu item active
+      // then make the menu item active
       props.handleToggleItem();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
