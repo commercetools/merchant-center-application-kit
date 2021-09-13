@@ -13,8 +13,8 @@ const ApplicationRoutes = () => {
   const match = useRouteMatch();
   const history = useHistory();
   const canViewStateMachines = useIsAuthorized({
-    // demandedPermissions: [],
-    demandedPermissions: [PERMISSIONS.ViewPlaygroundStateMachines],
+    demandedPermissions: [],
+    // demandedPermissions: [PERMISSIONS.ViewPlaygroundStateMachines],
   });
   const goToStateMachineDetail = useCallback(
     (id) => {
