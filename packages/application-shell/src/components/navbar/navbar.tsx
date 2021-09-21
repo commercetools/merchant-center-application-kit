@@ -436,15 +436,16 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
 
   useEffect(() => {
     const shouldOpen = window.innerWidth > 1024;
-    // If the screen width is greater than 1024px and the main menu route corresponds to this menu item,
-    // then we want to force the menu to expand and set this menu item to be active.
+    // If the screen width is greater than 1024px, the main menu is expanded,
+    // and the main menu route corresponds to this menu item, then we want to set this menu item to be active.
     //
-    // If the screen width is 1024px or less, keep the menu behavior as-is: do not expand the menu or activate the current item.
-    if (shouldOpen && isMainMenuRouteActive(props.menu.uriPath)) {
-      // if the navbar is collapsed, open it
-      if (!props.isMenuOpen) {
-        props.handleToggleMenu();
-      }
+    // If the screen width is 1024px or less or the menu is not open,
+    // keep the menu behavior as-is: do not expand the menu or activate the current item.
+    if (
+      shouldOpen &&
+      isMainMenuRouteActive(props.menu.uriPath) &&
+      props.isMenuOpen
+    ) {
       // then make the menu item active
       props.handleToggleItem();
     }
