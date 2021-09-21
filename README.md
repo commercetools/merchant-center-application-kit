@@ -25,84 +25,69 @@ $ npx @commercetools-frontend/create-mc-app my-new-custom-application-project --
 
 ### Initial Installation
 
-1. Clone this repo
+1. Add necessary environment variables
+
+   Navigate to `merchant_center_application_kit/playground`, duplicate `.env.local.template`, name the duplicate `.env.local` and add the necessary values.
+
+2. Build and run the application kit
+
+   First build the application. In a new terminal window, navigate to the project root directory and run:
 
    ```bash
-   $ git clone https://github.com/commercetools/merchant-center-application-kit.git
+   $  yarn build
    ```
 
-2. Add necessary environment variables
-
-   > Navigate to `merchant_center_application_kit/playground`, duplicate `.env.local.template`, name the duplicate `.env.local` and add these values:
+   Once the build is complete, you can run the application in watch mode by running:
 
    ```bash
-     MC_API_URL="https://mc-api.europe-west1.gcp.commercetools.com" # for prod
-     APP_ID="" # can be an empty string for dev
-     CTP_INITIAL_PROJECT_KEY=<your-project-name> # the name of any project you have access to on prod/stage
+   $  yarn build:watch
    ```
 
-3. Build and run the application kit
+3. Update Playground Permissions:
 
-   > In a new terminal window, navigate to the project root directory - `/merchant_center_application_kit` - and run:
+   `PERMISSIONS.ViewPlaygroundStateMachines` is not necessary and you might need to remove it in order to be able to view the application.
+   You'll need to remove it twice in `custom-application-config.mjs` and once in `routes.js` so that `permissions`/`demandedPermissions` are empty arrays:
+
+   `custom-application-config.mjs`
 
    ```bash
-   $ yarn && yarn prebuild && yarn build && yarn build:watch
+   permissions: [],
+   submenuLinks: [
+       {
+         uriPath: 'echo-server',
+         permissions: [],
+         defaultLabel: '${intl:en:Menu.EchoServer}',
+         labelAllLocales: [
+           {
+             locale: 'en',
+             value: '${intl:en:Menu.EchoServer}',
+           },
+           {
+             locale: 'de',
+             value: '${intl:de:Menu.EchoServer}',
+           },
+         ],
+       },
+     ],
    ```
 
-   > Confirm that the watch is running successfully, you should see:
+   `routes.js`
 
    ```bash
-   > "info @commercetools-frontend/application-shell waiting for changes..."
-   >...
+     const canViewStateMachines = useIsAuthorized({
+       demandedPermissions: [],
+     });
    ```
 
-4. Remove fake permission:
-   > `PERMISSIONS.ViewPlaygroundStateMachines` which is required by playground is a fake permission and you might need to remove it
-   > in order to be able to run and view the application. You'll need to remove it twice in `custom-application-config.mjs` and once in
-   > `routes.js` so that `permissions`/`demandedPermissions` are just empty objects:
+4. Build and run the [playground application](./playground):
 
-`custom-application-config.mjs`
+   In a new terminal window, navigate to the project root directory and run:
 
-```bash
- permissions: [PERMISSIONS.ViewPlaygroundStateMachines],
- submenuLinks: [
-    {
-      uriPath: 'echo-server',
-      permissions: [PERMISSIONS.ViewPlaygroundStateMachines],
-      defaultLabel: '${intl:en:Menu.EchoServer}',
-      labelAllLocales: [
-        {
-          locale: 'en',
-          value: '${intl:en:Menu.EchoServer}',
-        },
-        {
-          locale: 'de',
-          value: '${intl:de:Menu.EchoServer}',
-        },
-      ],
-    },
-  ],
-```
+   ```bash
+   $ yarn playground:start
+   ```
 
-`routes.js`
-
-```bash
-   const canViewStateMachines = useIsAuthorized({
-     demandedPermissions: [PERMISSIONS.ViewPlaygroundStateMachines],
-   });
-```
-
-5. Build and run the [playground application](./playground):
-
-> In a new terminal window, navigate to the project root directory - `/merchant_center_application_kit`, and run:
-
-```bash
-$ yarn playground:build && yarn playground:start
-```
-
-> This should open a browser window and the standard merchant cernter login prompt, login using your account, and then the playground should load in the browser if permissions are set correctly (I am unclear on what those perms are or how to set them, so this is completely theoretical on my part at this point)
-
-### RUNNING THE APP KIT AND PLAYGROUND AFTER INITIAL INSTALLATION
+### Running the App Kit and Playground After Initial Installation
 
 > The playground application consumes the app-kit dependencies as es modules, which means you need to bundle the packages first. We recommend to bundle the packages in watch mode in one terminal process and start the playground app in another terminal process.
 
