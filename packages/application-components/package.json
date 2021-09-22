@@ -31,8 +31,8 @@
     "prepare": "./../../scripts/version.js replace"
   },
   "dependencies": {
-    "@babel/runtime": "7.15.3",
-    "@babel/runtime-corejs3": "7.15.3",
+    "@babel/runtime": "7.15.4",
+    "@babel/runtime-corejs3": "7.15.4",
     "@commercetools-frontend/application-shell-connectors": "20.9.4",
     "@commercetools-frontend/assets": "20.8.0",
     "@commercetools-frontend/constants": "20.9.3",
