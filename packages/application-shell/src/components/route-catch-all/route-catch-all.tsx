@@ -6,7 +6,7 @@ import { location } from '../../utils/location';
 
 const ForcePageReload = () => {
   useEffect(() => {
-    location.reload(/* forcedReload */ true);
+    location.reload();
   }, []);
   return null;
 };

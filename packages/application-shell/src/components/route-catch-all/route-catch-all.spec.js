@@ -17,7 +17,7 @@ describe('rendering', () => {
         },
       });
       await waitFor(() => {
-        expect(location.reload).toHaveBeenCalledWith(true);
+        expect(location.reload).toHaveBeenCalled();
       });
     });
   });

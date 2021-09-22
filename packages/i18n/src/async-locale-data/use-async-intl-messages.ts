@@ -39,7 +39,9 @@ const useAsyncIntlMessages = ({ locale, loader }: THookOptions): TState => {
           setState({ isLoading: false, messages });
         }
       } catch (error) {
-        setState({ isLoading: false, error });
+        if (error instanceof Error) {
+          setState({ isLoading: false, error });
+        }
       }
     }
 

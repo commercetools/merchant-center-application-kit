@@ -42,7 +42,11 @@ const OidcCallback = (props: TProps) => {
       errorMessage = 'Invalid client session (missing sessionToken)';
     }
   } catch (err) {
-    errorMessage = err.message;
+    if (err instanceof Error) {
+      errorMessage = err.message;
+    } else {
+      errorMessage = 'Unknown error';
+    }
   }
 
   if (!errorMessage) {
