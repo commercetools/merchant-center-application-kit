@@ -176,6 +176,7 @@
   "resolutions": {
     "@babel/core": "7.15.5",
     "@babel/preset-env": "7.15.6",
+    "@jest/types": "27.1.1",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.1",
     "@types/puppeteer": "5.4.4",
     "@types/react": "17.0.24",

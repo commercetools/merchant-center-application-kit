@@ -60,10 +60,16 @@ export function createL10NHook<LoadedData extends {}>(
       async function run() {
         try {
           const data = await loadLocale(locale);
-          !cleaning && dispatch({ type: 'ok', data });
+          if (!cleaning) {
+            dispatch({ type: 'ok', data });
+          }
         } catch (error) {
-          reportErrorToSentry(error);
-          !cleaning && dispatch({ type: 'error', error });
+          if (error instanceof Error) {
+            reportErrorToSentry(error);
+            if (!cleaning) {
+              dispatch({ type: 'error', error });
+            }
+          }
         }
       }
       run();
