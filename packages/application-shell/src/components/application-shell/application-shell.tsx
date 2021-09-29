@@ -387,7 +387,6 @@ export const RestrictedApplication = <
                           </MainContainer>
                         ) : (
                           <MainContainer role="main">
-                            <PortalsContainer />
                             <NotificationsList domain={DOMAINS.PAGE} />
                             <NotificationsList domain={DOMAINS.SIDE} />
                             <div
@@ -395,6 +394,7 @@ export const RestrictedApplication = <
                                 flex-grow: 1;
                                 display: flex;
                                 flex-direction: column;
+                                position: relative;
 
                                 /*
                                 This is only necessary because we have an intermediary <div> wrapping the
@@ -404,13 +404,14 @@ export const RestrictedApplication = <
                                 and let it do the layout, so we can avoid laying our from the outside as we
                                 do here.
                               */
-                                > * {
+                                > *:not(:first-of-type) {
                                   flex-grow: 1;
                                   display: flex;
                                   flex-direction: column;
                                 }
                               `}
                             >
+                              <PortalsContainer />
                               <Switch>
                                 <Redirect
                                   from="/profile"
