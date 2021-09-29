@@ -404,7 +404,7 @@ export const RestrictedApplication = <
                                 and let it do the layout, so we can avoid laying our from the outside as we
                                 do here.
                               */
-                                > *:not(:first-child) {
+                                > *:not(:first-of-type) {
                                   flex-grow: 1;
                                   display: flex;
                                   flex-direction: column;
