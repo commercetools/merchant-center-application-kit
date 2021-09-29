@@ -437,7 +437,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
       props.handleToggleItem();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // <-- run this only once!!
+  }, [props.isMenuOpen]); // <-- (re)run this only when the all menu expands
 
   const namesOfMenuVisibilitiesOfAllSubmenus = hasSubmenu
     ? getMenuVisibilitiesOfSubmenus(props.menu)
