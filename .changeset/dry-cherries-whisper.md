@@ -1,5 +1,5 @@
 ---
-'@commercetools-frontend/application-shell': minor
+'@commercetools-frontend/application-shell': patch
 ---
 
-Change the DOM structure for portal container
+Page notifications (like errors) now correctly push the page content below them, even for modal pages.
