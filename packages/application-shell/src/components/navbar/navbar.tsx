@@ -21,6 +21,7 @@ import {
   ReactNode,
   SyntheticEvent,
   useContext,
+  useEffect,
   useMemo,
   useRef,
 } from 'react';
@@ -139,7 +140,7 @@ const IconSwitcher = ({ icon, ...iconProps }: IconSwitcherProps) => {
     case 'WorldIcon':
       return <WorldIcon {...iconProps} />;
     default:
-      return <img src={MissingImageSvg} />;
+      return <img src={MissingImageSvg} alt="missing icon" />;
   }
 };
 IconSwitcher.displayName = 'IconSwitcher';
@@ -419,20 +420,28 @@ type ApplicationMenuProps = {
   onMenuItemClick?: MenuItemLinkProps['onClick'];
 };
 const ApplicationMenu = (props: ApplicationMenuProps) => {
+  const isMainMenuRouteActive = Boolean(
+    matchPath(props.location.pathname, {
+      path: `/${props.projectKey}/${props.menu.uriPath}`,
+      exact: false,
+      strict: false,
+    })
+  );
   const hasSubmenu =
     Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
+
+  useEffect(() => {
+    // On first render, check which menu is active for the current application and expand
+    // the submenu automatically unless the all navbar is collapsed or there are no submenu links.
+    if (props.isMenuOpen && isMainMenuRouteActive && hasSubmenu) {
+      props.handleToggleItem();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.isMenuOpen]); // <-- (re)run this only when the all menu expands
+
   const namesOfMenuVisibilitiesOfAllSubmenus = hasSubmenu
     ? getMenuVisibilitiesOfSubmenus(props.menu)
     : getMenuVisibilityOfMainmenu(props.menu);
-
-  const isMainMenuRouteActive = (link: string) => {
-    const match = matchPath(props.location.pathname, {
-      path: `/${props.projectKey}/${link}`,
-      exact: false,
-      strict: false,
-    });
-    return Boolean(match);
-  };
 
   const isMainMenuItemALink =
     // 1. When the navbar is collapsed
@@ -480,7 +489,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
                   icon={props.menu.icon}
                   size="scale"
                   color={getIconColor(
-                    props.isActive || isMainMenuRouteActive(props.menu.uriPath),
+                    props.isActive || isMainMenuRouteActive,
                     Boolean(props.menu.shouldRenderDivider)
                   )}
                 />
