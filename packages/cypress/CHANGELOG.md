@@ -1,5 +1,20 @@
 # @commercetools-frontend/cypress
 
+## 20.10.1
+
+### Patch Changes
+
+- [#2348](https://github.com/commercetools/merchant-center-application-kit/pull/2348) [`3247e604`](https://github.com/commercetools/merchant-center-application-kit/commit/3247e6048533a72c9f64cd316621dd51471cd1a8) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+* [#2342](https://github.com/commercetools/merchant-center-application-kit/pull/2342) [`91ba0910`](https://github.com/commercetools/merchant-center-application-kit/commit/91ba0910ce09ab7f3552fd381983724a63d7243d) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+- [#2308](https://github.com/commercetools/merchant-center-application-kit/pull/2308) [`c0a0329a`](https://github.com/commercetools/merchant-center-application-kit/commit/c0a0329ab5fced30bf7b3d118e5a004ff3bc508c) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependency cypress to v8 while adding support to cypress v8 as a peer dependency.
+
+* [#2356](https://github.com/commercetools/merchant-center-application-kit/pull/2356) [`e34fe076`](https://github.com/commercetools/merchant-center-application-kit/commit/e34fe076aab6681cdcc54622d84123f2c22020e6) Thanks [@ByronDWall](https://github.com/ByronDWall)! - set node version to 16.8 in nvmrc to avoid a bug in node/v8
+
+* Updated dependencies [[`3247e604`](https://github.com/commercetools/merchant-center-application-kit/commit/3247e6048533a72c9f64cd316621dd51471cd1a8), [`91ba0910`](https://github.com/commercetools/merchant-center-application-kit/commit/91ba0910ce09ab7f3552fd381983724a63d7243d), [`e34fe076`](https://github.com/commercetools/merchant-center-application-kit/commit/e34fe076aab6681cdcc54622d84123f2c22020e6)]:
+  - @commercetools-frontend/application-config@20.10.1
+
 ## 20.9.4
 
 ### Patch Changes
