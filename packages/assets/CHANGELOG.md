@@ -1,5 +1,11 @@
 # @commercetools-frontend/assets
 
+## 20.10.1
+
+### Patch Changes
+
+- [#2356](https://github.com/commercetools/merchant-center-application-kit/pull/2356) [`e34fe076`](https://github.com/commercetools/merchant-center-application-kit/commit/e34fe076aab6681cdcc54622d84123f2c22020e6) Thanks [@ByronDWall](https://github.com/ByronDWall)! - set node version to 16.8 in nvmrc to avoid a bug in node/v8
+
 ## 20.8.0
 
 ### Minor Changes

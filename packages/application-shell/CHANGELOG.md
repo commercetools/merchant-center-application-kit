@@ -1,5 +1,35 @@
 # @commercetools-frontend/application-shell
 
+## 20.10.1
+
+### Patch Changes
+
+- [#2364](https://github.com/commercetools/merchant-center-application-kit/pull/2364) [`8bd31bb3`](https://github.com/commercetools/merchant-center-application-kit/commit/8bd31bb3e0d951b594d6f6b345438ee462d26640) Thanks [@jaikumar-tj](https://github.com/jaikumar-tj)! - Page notifications (like errors) now correctly push the page content below them, even for modal pages.
+
+* [#2348](https://github.com/commercetools/merchant-center-application-kit/pull/2348) [`3247e604`](https://github.com/commercetools/merchant-center-application-kit/commit/3247e6048533a72c9f64cd316621dd51471cd1a8) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- [#2342](https://github.com/commercetools/merchant-center-application-kit/pull/2342) [`91ba0910`](https://github.com/commercetools/merchant-center-application-kit/commit/91ba0910ce09ab7f3552fd381983724a63d7243d) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+* [#2358](https://github.com/commercetools/merchant-center-application-kit/pull/2358) [`55aec805`](https://github.com/commercetools/merchant-center-application-kit/commit/55aec80597179f31f68ad5d727b5af57846922c1) Thanks [@ByronDWall](https://github.com/ByronDWall)! - The main menu of the Merchant Center for the active application now automatically expands when the user navigates to that application. The user then can see the submenu links of that application without having to manually expand the submenu.
+
+- [#2356](https://github.com/commercetools/merchant-center-application-kit/pull/2356) [`e34fe076`](https://github.com/commercetools/merchant-center-application-kit/commit/e34fe076aab6681cdcc54622d84123f2c22020e6) Thanks [@ByronDWall](https://github.com/ByronDWall)! - set node version to 16.8 in nvmrc to avoid a bug in node/v8
+
+- Updated dependencies [[`3247e604`](https://github.com/commercetools/merchant-center-application-kit/commit/3247e6048533a72c9f64cd316621dd51471cd1a8), [`91ba0910`](https://github.com/commercetools/merchant-center-application-kit/commit/91ba0910ce09ab7f3552fd381983724a63d7243d), [`e34fe076`](https://github.com/commercetools/merchant-center-application-kit/commit/e34fe076aab6681cdcc54622d84123f2c22020e6)]:
+  - @commercetools-frontend/actions-global@20.10.1
+  - @commercetools-frontend/application-components@20.10.1
+  - @commercetools-frontend/application-shell-connectors@20.10.1
+  - @commercetools-frontend/browser-history@20.10.1
+  - @commercetools-frontend/constants@20.10.1
+  - @commercetools-frontend/i18n@20.10.1
+  - @commercetools-frontend/l10n@20.10.1
+  - @commercetools-frontend/notifications@20.10.1
+  - @commercetools-frontend/permissions@20.10.1
+  - @commercetools-frontend/react-notifications@20.10.1
+  - @commercetools-frontend/sdk@20.10.1
+  - @commercetools-frontend/sentry@20.10.1
+  - @commercetools-frontend/url-utils@20.10.1
+  - @commercetools-frontend/assets@20.10.1
+
 ## 20.9.4
 
 ### Patch Changes
