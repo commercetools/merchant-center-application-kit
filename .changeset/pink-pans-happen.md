@@ -1,6 +1,5 @@
 ---
 '@commercetools-frontend/application-shell': patch
-'playground': patch
 ---
 
-    feat(navbar-expansion-behavior): toggle menu and submenu for the currently loaded application on initial mount in navbar whne screen width is greater than 1024px"
+The main menu of the Merchant Center for the active application now automatically expands when the user navigates to that application. The user then can see the submenu links of that application without having to manually expand the submenu.

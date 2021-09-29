@@ -20,7 +20,6 @@ import {
   MouseEventHandler,
   ReactNode,
   SyntheticEvent,
-  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -229,7 +228,7 @@ type MenuItemProps = {
 };
 const MenuItem = (props: MenuItemProps) => (
   <li
-    role="menuitem"
+    role="menu-item"
     className={classnames(styles['list-item'], {
       [styles.item__active]: props.isActive,
       [styles['item_menu-collapsed']]: !props.isMenuOpen,
@@ -415,45 +414,30 @@ type ApplicationMenuProps = {
   projectPermissions: TProjectPermissions;
   menuVisibilities: TNormalizedMenuVisibilities | null;
   handleToggleItem: () => void;
-  handleToggleMenu: () => void;
   applicationLocale: string;
   projectKey: string;
   useFullRedirectsForLinks: boolean;
   onMenuItemClick?: MenuItemLinkProps['onClick'];
 };
 const ApplicationMenu = (props: ApplicationMenuProps) => {
-  const isMainMenuRouteActive = useCallback(
-    (link: string) => {
-      const match = matchPath(props.location.pathname, {
-        path: `/${props.projectKey}/${link}`,
-        exact: false,
-        strict: false,
-      });
-      return Boolean(match);
-    },
-    [props.location.pathname, props.projectKey]
+  const isMainMenuRouteActive = Boolean(
+    matchPath(props.location.pathname, {
+      path: `/${props.projectKey}/${props.menu.uriPath}`,
+      exact: false,
+      strict: false,
+    })
   );
+  const hasSubmenu =
+    Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
 
   useEffect(() => {
-    const shouldOpen = window.innerWidth > 1024;
-    // If the screen width is greater than 1024px, the main menu is expanded,
-    // and the main menu route corresponds to this menu item, then we want to set this menu item to be active.
-    //
-    // If the screen width is 1024px or less or the menu is not open,
-    // keep the menu behavior as-is: do not expand the menu or activate the current item.
-    if (
-      shouldOpen &&
-      isMainMenuRouteActive(props.menu.uriPath) &&
-      props.isMenuOpen
-    ) {
-      // then make the menu item active
+    // On first render, check which menu is active for the current application and expand
+    // the submenu automatically unless the all navbar is collapsed or there are no submenu links.
+    if (props.isMenuOpen && isMainMenuRouteActive && hasSubmenu) {
       props.handleToggleItem();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // <-- run this only once!!
-
-  const hasSubmenu =
-    Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
 
   const namesOfMenuVisibilitiesOfAllSubmenus = hasSubmenu
     ? getMenuVisibilitiesOfSubmenus(props.menu)
@@ -505,7 +489,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
                   icon={props.menu.icon}
                   size="scale"
                   color={getIconColor(
-                    props.isActive || isMainMenuRouteActive(props.menu.uriPath),
+                    props.isActive || isMainMenuRouteActive,
                     Boolean(props.menu.shouldRenderDivider)
                   )}
                 />
@@ -664,7 +648,6 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
                 menu={menu}
                 isActive={activeItemIndex === itemIndex}
                 handleToggleItem={() => handleToggleItem(itemIndex)}
-                handleToggleMenu={handleToggleMenu}
                 isMenuOpen={isMenuOpen}
                 shouldCloseMenuFly={shouldCloseMenuFly}
                 projectPermissions={projectPermissions}
