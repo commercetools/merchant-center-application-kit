@@ -1,5 +1,13 @@
 # @commercetools-frontend/application-shell
 
+## 20.10.2
+
+### Patch Changes
+
+- [#2368](https://github.com/commercetools/merchant-center-application-kit/pull/2368) [`fffb3b36`](https://github.com/commercetools/merchant-center-application-kit/commit/fffb3b36bd9b5e4e57d15e915e2c2e5f215c8453) Thanks [@emmenko](https://github.com/emmenko)! - Apply custom headers passed to the Apollo `context`.
+
+  > NOTE that if a headers is not allowed in the CORS rules of the Merchant Center API the request will fail.
+
 ## 20.10.1
 
 ### Patch Changes
