@@ -103,6 +103,9 @@ const headerLink = new ApolloLink((operation, forward) => {
   operation.setContext({
     credentials: 'include',
     headers: omitEmpty<THeaders>({
+      // Other headers that are allowed in the CORS rules of the MC API.
+      ...apolloContext.headers,
+      // Required headers
       [SUPPORTED_HEADERS.AUTHORIZATION]: sessionToken
         ? `Bearer ${sessionToken}`
         : undefined,
