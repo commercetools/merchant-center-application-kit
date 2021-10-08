@@ -41,13 +41,13 @@
     "@commercetools-frontend/sentry": "20.10.1",
     "@commercetools-uikit/i18n": "^12.0.7",
     "@emotion/react": "11.4.1",
+    "@formatjs/icu-messageformat-parser": "2.0.12",
     "@types/prop-types": "^15.7.3",
     "@types/react": "^17.0.16",
     "moment": "^2.29.1",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "intl-messageformat-parser": "6.4.4",
     "react": "17.0.2",
     "react-intl": "5.20.10"
   },
