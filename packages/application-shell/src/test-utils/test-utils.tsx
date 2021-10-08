@@ -5,7 +5,7 @@ import type { TMapNotificationToComponentProps } from '@commercetools-frontend/r
 import type { TSdkMock } from '@commercetools-frontend/sdk/test-utils';
 
 import {
-  ComponentType,
+  JSXElementConstructor,
   createElement,
   ReactElement,
   ReactNode,
@@ -212,8 +212,10 @@ const denormalizeDataFences = (dataFences?: TNormalizedDataFences) => {
   );
 };
 
-const wrapIfNeeded = (children: ReactNode, wrapper?: ComponentType) =>
-  wrapper ? createElement(wrapper, null, children) : children;
+const wrapIfNeeded = (
+  children: ReactNode,
+  wrapper?: JSXElementConstructor<{ children: ReactElement }>
+) => (wrapper ? createElement(wrapper, null, children) : children);
 
 type TApolloProviderWrapperProps = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;
