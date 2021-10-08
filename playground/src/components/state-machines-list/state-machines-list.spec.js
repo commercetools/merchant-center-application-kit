@@ -1,92 +1,30 @@
-import { MC_API_PROXY_TARGETS } from '@commercetools-frontend/constants';
+import { graphql } from 'msw';
+import { setupServer } from 'msw/node';
+import { buildGraphqlList } from '@commercetools-test-data/core';
 import {
   screen,
-  renderAppWithRedux,
   waitFor,
   fireEvent,
 } from '@commercetools-frontend/application-shell/test-utils';
 import { GtmContext } from '@commercetools-frontend/application-shell';
 import { ApplicationStateMachines } from '../entry-point';
+import * as StateMock from '../../test-utils/test-data/state';
+import { renderApplicationWithRedux } from '../../test-utils';
+import { stateTypes } from '../../test-utils/test-data/state/constants';
 
-const createStateMachinesListSdkMock = () => ({
-  action: {
-    type: 'SDK',
-    payload: {
-      method: 'GET',
-      service: 'states',
-      options: {
-        perPage: 25,
-        page: 1,
-      },
-      mcApiProxyTarget: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
-    },
-  },
-  response: {
-    count: 25,
-    offset: 0,
-    total: 2,
-    results: [
-      { id: 'sm1', key: 'sm-1' },
-      { id: 'sm2', key: 'sm-2', name: { en: 'SM 2' } },
-    ],
-  },
-});
-const createStateMachinesDetailSdkMockForId1 = () => ({
-  action: {
-    type: 'SDK',
-    payload: {
-      method: 'GET',
-      service: 'states',
-      options: { id: 'sm1' },
-      mcApiProxyTarget: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
-    },
-  },
-  response: {
-    id: 'sm1',
-    key: 'sm-1',
-    type: 'LineItemState',
-    initial: true,
-    builtIn: true,
-  },
-});
-const createStateMachinesDetailSdkMockForId2 = () => ({
-  action: {
-    type: 'SDK',
-    payload: {
-      method: 'GET',
-      service: 'states',
-      options: { id: 'sm2' },
-      mcApiProxyTarget: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
-    },
-  },
-  response: {
-    id: 'sm2',
-    key: 'sm-2',
-    type: 'LineItemState',
-    initial: true,
-    builtIn: true,
-  },
-});
-const createStateMachinesDetailSdkErrorMock = () => ({
-  action: {
-    type: 'SDK',
-    payload: {
-      method: 'GET',
-      service: 'states',
-      options: { id: 'sm1' },
-      mcApiProxyTarget: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
-    },
-  },
-  error: {
-    statusCode: 500,
-    message: 'Something went wrong',
-  },
-});
+const mockServer = setupServer();
+afterEach(() => mockServer.resetHandlers());
+beforeAll(() =>
+  mockServer.listen({
+    onUnhandledRequest: 'error',
+  })
+);
+afterAll(() => mockServer.close());
 
 const renderApp = (options = {}) => {
   const route = options.route || '/my-project/playground-state-machines';
   const gtmMock = { track: jest.fn(), getHierarchy: jest.fn() };
-  const { history } = renderAppWithRedux(
+  const { history } = renderApplicationWithRedux(
     <GtmContext.Provider value={gtmMock}>
       <ApplicationStateMachines />
     </GtmContext.Provider>,
@@ -102,52 +40,87 @@ const renderApp = (options = {}) => {
   return { gtmMock, history };
 };
 
+const fetchState = () => {
+  return graphql.query('FetchState', (req, res, ctx) => {
+    const { id } = req.variables;
+    return res(
+      ctx.data({
+        state: {
+          id,
+          key: `state-key-${id}`,
+          name: `state-name-${id}`,
+          initial: true,
+          builtIn: false,
+          type: stateTypes.LineItemState,
+        },
+      })
+    );
+  });
+};
+
+const fetchAllStates = () => {
+  return graphql.query('FetchStates', (req, res, ctx) =>
+    res(
+      ctx.data({
+        states: buildGraphqlList(
+          [
+            StateMock.random().key('state-key-1').id('1'),
+            StateMock.random().key('state-key-2').id('2'),
+            StateMock.random().key('state-key-3').id('3'),
+          ],
+          {
+            name: 'State',
+            total: 3,
+          }
+        ),
+      })
+    )
+  );
+};
+
 describe('list view', () => {
   it('the user can see a list of state machines', async () => {
-    renderApp({
-      sdkMocks: [createStateMachinesListSdkMock()],
-    });
+    mockServer.use(fetchAllStates());
+    renderApp();
     await screen.findByText(/State machines/i);
-    await screen.findByText(/There are 2 objects in the cache/i);
-    await screen.findByText('sm-1');
-    await screen.findByText('sm-2');
+    await screen.findByText(/There are 3 objects in the cache/i);
+    await screen.findByText('state-key-1');
+    await screen.findByText('state-key-2');
+    expect(screen.queryByText('state-key-22')).not.toBeInTheDocument();
   });
+
   it('the user can click on the state machines to get to the details page', async () => {
-    const { history } = renderApp({
-      sdkMocks: [
-        createStateMachinesListSdkMock(),
-        createStateMachinesDetailSdkMockForId1(),
-      ],
-    });
-    await screen.findByText(/There are 2 objects in the cache/i);
-    fireEvent.click(screen.getByText('sm-1'));
+    mockServer.use(fetchAllStates(), fetchState());
+    const { history } = renderApp();
+    // await screen.findByText(/There are 2 objects in the cache/i);
+    await screen.findByText('state-key-1');
+    fireEvent.click(screen.getByText('state-key-1'));
     await waitFor(() => {
       expect(history.location.pathname).toBe(
-        '/my-project/playground-state-machines/sm1'
+        '/my-project/playground-state-machines/1'
       );
     });
-    await screen.findByText(/sm-1/i);
+    await screen.findByText(/state-key-1/i);
   });
 });
 
 describe('details view', () => {
   describe('when request is successful', () => {
     it('should render data on page', async () => {
+      mockServer.use(fetchState());
       renderApp({
-        route: '/my-project/playground-state-machines/sm1',
-        sdkMocks: [createStateMachinesDetailSdkMockForId1()],
+        route: '/my-project/playground-state-machines/2',
       });
-      await screen.findByText(/sm-1/i);
+
+      await screen.findByText(/state-key-2/i);
+      await screen.findByText(/state-name-2/i);
     });
     it('should retrigger request if id changes', async () => {
+      mockServer.use(fetchState());
       const { history, gtmMock } = renderApp({
-        route: '/my-project/playground-state-machines/sm1',
-        sdkMocks: [
-          createStateMachinesDetailSdkMockForId1(),
-          createStateMachinesDetailSdkMockForId2(),
-        ],
+        route: '/my-project/playground-state-machines/1',
       });
-      await screen.findByText(/sm-1/i);
+      await screen.findByText(/state-key-1/i);
       await waitFor(() => {
         expect(gtmMock.track).toHaveBeenCalledWith(
           'rendered',
@@ -155,18 +128,30 @@ describe('details view', () => {
         );
       });
 
-      history.push('/my-project/playground-state-machines/sm2');
-      await screen.findByText(/sm-2/i);
+      history.push('/my-project/playground-state-machines/2');
+      await screen.findByText(/state-name-2/i);
     });
   });
+
   describe('when request returns an error', () => {
     beforeEach(() => {
       console.error = jest.fn();
     });
     it('should render notification error message', async () => {
+      mockServer.use(
+        graphql.query('FetchState', (req, res, ctx) => {
+          return res(
+            ctx.errors([
+              {
+                statusCode: 500,
+                message: 'Something went wrong',
+              },
+            ])
+          );
+        })
+      );
       renderApp({
-        route: '/my-project/playground-state-machines/sm1',
-        sdkMocks: [createStateMachinesDetailSdkErrorMock()],
+        route: '/my-project/playground-state-machines/1',
       });
       await screen.findByText(/^Sorry, but there seems to be something wrong/i);
     });
