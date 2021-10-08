@@ -1,4 +1,4 @@
-import type { MessageFormatElement } from 'intl-messageformat-parser';
+import type { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
 
 import moment from 'moment';
 import {
