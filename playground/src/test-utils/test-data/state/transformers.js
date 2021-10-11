@@ -4,9 +4,6 @@ const transformers = {
   default: Transformer('default', {
     buildFields: ['name', 'description'],
   }),
-  rest: Transformer('rest', {
-    buildFields: ['name', 'description'],
-  }),
   graphql: Transformer('graphql', {
     replaceFields: ({ fields }) => {
       const name =

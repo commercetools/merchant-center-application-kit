@@ -1,7 +1,5 @@
-import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { useSelector, connect } from 'react-redux';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { DotIcon } from '@commercetools-uikit/icons';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
@@ -14,11 +12,9 @@ import {
   usePaginationState,
   useDataTableSortingState,
 } from '@commercetools-uikit/hooks';
-import { selectStateMachinesFromCache } from '../../reducers/cache';
 import messages from './messages';
 import styles from './state-machines-list.mod.css';
 import FetchStatesQuery from './fetch-states.ctp.graphql';
-import * as actions from './actions';
 
 export const columnsDefinition = [
   {
@@ -35,11 +31,6 @@ const getErrorMessage = (error) =>
   error.stack || error.message || error.toString();
 
 const StateMachinesList = (props) => {
-  const cachedStateMachine = useSelector(selectStateMachinesFromCache);
-  const cachedStateMachineObjectsCount = cachedStateMachine
-    ? Object.keys(cachedStateMachine).length
-    : null;
-
   const dataLocale = useApplicationContext((context) => context.dataLocale);
   const { page, perPage } = usePaginationState();
   const tableSorting = useDataTableSortingState({ key: 'key', order: 'asc' });
@@ -55,13 +46,6 @@ const StateMachinesList = (props) => {
       target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
     },
   });
-
-  const { setStateMachines } = props;
-  useEffect(() => {
-    if (data?.states.results) {
-      setStateMachines(data.states.results);
-    }
-  }, [data, setStateMachines]);
 
   const hasNoResults = Boolean(
     !loading && data.states.results && data.states.results.total === 0
@@ -80,19 +64,17 @@ const StateMachinesList = (props) => {
         )}
         {data?.states && (
           <Spacings.Stack scale="m">
-            {cachedStateMachineObjectsCount !== null && (
-              <Spacings.Inline alignItems="center">
-                <DotIcon size="small" color="primary" />
-                <Text.Detail isItalic={true}>
-                  <FormattedMessage
-                    {...messages.objectsInCache}
-                    values={{
-                      count: cachedStateMachineObjectsCount,
-                    }}
-                  />
-                </Text.Detail>
-              </Spacings.Inline>
-            )}
+            <Spacings.Inline alignItems="center">
+              <DotIcon size="small" color="primary" />
+              <Text.Detail isItalic={true}>
+                <FormattedMessage
+                  {...messages.objectsInCache}
+                  values={{
+                    count: data.states.results.length,
+                  }}
+                />
+              </Text.Detail>
+            </Spacings.Inline>
             <DataTable
               columns={columnsDefinition}
               rows={data.states.results}
@@ -110,9 +92,6 @@ const StateMachinesList = (props) => {
 StateMachinesList.displayName = 'StateMachinesList';
 StateMachinesList.propTypes = {
   goToStateMachineDetail: PropTypes.func.isRequired,
-  setStateMachines: PropTypes.func.isRequired,
 };
 
-export default connect(null, { setStateMachines: actions.setStateMachines })(
-  StateMachinesList
-);
+export default StateMachinesList;
