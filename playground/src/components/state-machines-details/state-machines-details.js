@@ -51,7 +51,6 @@ const StateMachinesDetails = (props) => {
     return null;
   }
 
-  const { name, key, type, builtIn, initial } = data.state;
   return (
     <Spacings.Inset scale="m">
       <Spacings.Stack scale="l">
@@ -62,8 +61,8 @@ const StateMachinesDetails = (props) => {
           to={props.backToListPath}
         />
         <Spacings.Stack scale="xs">
-          <Text.Headline as="h2">{name || 'n/a'}</Text.Headline>
-          <Text.Detail>{key}</Text.Detail>
+          <Text.Headline as="h2">{data.state.name || 'n/a'}</Text.Headline>
+          <Text.Detail>{data.state.key}</Text.Detail>
         </Spacings.Stack>
         <Constraints.Horizontal max={7}>
           <Grid
@@ -72,11 +71,11 @@ const StateMachinesDetails = (props) => {
             gridTemplateColumns="repeat(2, 1fr)"
           >
             <Text.Body>{'Type'}</Text.Body>
-            <Text.Body>{type}</Text.Body>
+            <Text.Body>{data.state.type}</Text.Body>
             <Text.Body>{'Built In'}</Text.Body>
-            <span>{builtIn ? <CheckBoldIcon /> : ''}</span>
+            <span>{data.state.builtIn ? <CheckBoldIcon /> : ''}</span>
             <Text.Body>{'Initial'}</Text.Body>
-            <span>{initial ? <CheckBoldIcon /> : ''}</span>
+            <span>{data.state.initial ? <CheckBoldIcon /> : ''}</span>
           </Grid>
         </Constraints.Horizontal>
       </Spacings.Stack>
