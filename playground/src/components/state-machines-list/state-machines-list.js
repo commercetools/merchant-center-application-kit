@@ -15,10 +15,11 @@ import {
   formatLocalizedString,
   applyTransformedLocalizedFields,
 } from '@commercetools-frontend/l10n';
+import { Pagination } from '@commercetools-uikit/pagination';
+import { ErrorMessage } from '@commercetools-uikit/messages';
 import messages from './messages';
 import styles from './state-machines-list.mod.css';
 import FetchStatesQuery from './fetch-states.ctp.graphql';
-import { Pagination } from '@commercetools-uikit/pagination';
 
 export const columnsDefinition = [
   {
@@ -69,7 +70,7 @@ const StateMachinesList = (props) => {
   });
 
   const hasNoResults = Boolean(
-    !loading && data.states.results && data.states.total === 0
+    !loading && data?.states.results && data?.states.total === 0
   );
 
   return (
@@ -77,7 +78,7 @@ const StateMachinesList = (props) => {
       <Spacings.Stack scale="m">
         <Text.Headline as="h2" intlMessage={messages.title} />
         {loading && <LoadingSpinner />}
-        {error && <div>{getErrorMessage(error)}</div>}
+        {error && <ErrorMessage>{getErrorMessage(error)}</ErrorMessage>}
         {hasNoResults && (
           <div className={styles['empty-results']}>
             <Text.Body intlMessage={messages.noResultsText} />

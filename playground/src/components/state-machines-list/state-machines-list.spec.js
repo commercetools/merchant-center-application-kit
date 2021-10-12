@@ -142,7 +142,7 @@ describe('details view', () => {
       renderApp({
         route: '/my-project/playground-state-machines/1',
       });
-      await screen.findByText(/^Sorry, but there seems to be something wrong/i);
+      await screen.findByText(/Something went wrong/i);
     });
   });
 });
