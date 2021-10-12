@@ -34,14 +34,14 @@
     "@babel/runtime": "7.15.4",
     "@babel/runtime-corejs3": "7.15.4",
     "@commercetools-frontend/application-config": "20.10.1",
-    "core-js": "3.18.0",
+    "core-js": "3.18.2",
     "serialize-javascript": "6.0.0",
     "uglify-es": "3.3.9",
     "uglifycss": "0.0.29"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "7.15.0",
-    "@babel/preset-env": "7.15.6"
+    "@babel/plugin-transform-runtime": "7.15.8",
+    "@babel/preset-env": "7.15.8"
   },
   "engines": {
     "node": ">=12 || >=14"

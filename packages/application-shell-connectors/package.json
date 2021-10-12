@@ -33,14 +33,14 @@
     "@types/lodash": "^4.14.167",
     "@types/prop-types": "^15.7.3",
     "@types/react": "^17.0.16",
-    "graphql": "15.6.0",
+    "graphql": "15.6.1",
     "lodash": "4.17.21",
     "moment-timezone": "^0.5.32",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "@apollo/client": "3.4.13",
-    "@testing-library/react": "12.1.0",
+    "@apollo/client": "3.4.16",
+    "@testing-library/react": "12.1.2",
     "react": "17.0.2"
   },
   "peerDependencies": {
