@@ -1,4 +1,4 @@
-import { PERMISSIONS } from './src/constants';
+import { PERMISSIONS, entryPointUriPath } from './src/constants';
 const name = 'State machines (Playground application)';
 
 /**
@@ -6,7 +6,7 @@ const name = 'State machines (Playground application)';
  */
 const config = {
   name,
-  entryPointUriPath: 'playground-state-machines',
+  entryPointUriPath,
   cloudIdentifier: '${env:CLOUD_IDENTIFIER}',
   mcApiUrl: '${env:MC_API_URL}',
   oAuthScopes: {
