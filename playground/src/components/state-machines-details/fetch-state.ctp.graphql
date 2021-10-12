@@ -1,0 +1,10 @@
+query FetchState($id: String!, $locale: Locale!) {
+  state(id: $id) {
+    id
+    name(locale: $locale)
+    key
+    type
+    initial
+    builtIn
+  }
+}
