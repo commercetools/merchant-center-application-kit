@@ -1,11 +1,9 @@
-import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { Link as RouterLink } from 'react-router-dom';
 import { useMcQuery } from '@commercetools-frontend/application-shell';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { useShowApiErrorNotification } from '@commercetools-frontend/actions-global';
 import {
   usePaginationState,
   useDataTableSortingState,
@@ -23,8 +21,12 @@ import {
   formatLocalizedString,
   applyTransformedLocalizedFields,
 } from '@commercetools-frontend/l10n';
+import { ErrorMessage } from '@commercetools-uikit/messages';
 import FetchChannelsQuery from './fetch-channels.ctp.graphql';
 import messages from './messages';
+
+const getErrorMessage = (error) =>
+  error.stack || error.message || error.toString();
 
 const columns = [
   { key: 'name', label: 'Channel name' },
@@ -52,7 +54,6 @@ const Channels = (props) => {
   const intl = useIntl();
   const { page, perPage } = usePaginationState();
   const tableSorting = useDataTableSortingState({ key: 'key', order: 'asc' });
-  const showApiErrorNotification = useShowApiErrorNotification();
   const { dataLocale, projectLanguages } = useApplicationContext((context) => ({
     dataLocale: context.dataLocale,
     projectLanguages: context.project.languages,
@@ -67,16 +68,6 @@ const Channels = (props) => {
       target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
     },
   });
-  useEffect(() => {
-    if (error) {
-      showApiErrorNotification({
-        errors:
-          error.graphQLErrors.length > 0
-            ? error.graphQLErrors
-            : [{ message: error.message }],
-      });
-    }
-  }, [error, showApiErrorNotification]);
 
   return (
     <Spacings.Stack scale="xl">
@@ -97,6 +88,7 @@ const Channels = (props) => {
       </Constraints.Horizontal>
 
       {loading && <LoadingSpinner />}
+      {error && <ErrorMessage>{getErrorMessage(error)}</ErrorMessage>}
 
       {data?.channels ? (
         <Spacings.Stack scale="l">
