@@ -15,6 +15,7 @@ import {
 import messages from './messages';
 import styles from './state-machines-list.mod.css';
 import FetchStatesQuery from './fetch-states.ctp.graphql';
+import { Pagination } from '@commercetools-uikit/pagination';
 
 export const columnsDefinition = [
   {
@@ -48,7 +49,7 @@ const StateMachinesList = (props) => {
   });
 
   const hasNoResults = Boolean(
-    !loading && data.states.results && data.states.results.total === 0
+    !loading && data.states.results && data.states.total === 0
   );
 
   return (
@@ -82,6 +83,16 @@ const StateMachinesList = (props) => {
                 props.goToStateMachineDetail(id);
               }}
               itemRenderer={(row, column) => <span>{row[column.key]}</span>}
+              sortedBy={tableSorting.value.key}
+              sortDirection={tableSorting.value.order}
+              onSortChange={tableSorting.onChange}
+            />
+            <Pagination
+              page={page.value}
+              onPageChange={page.onChange}
+              perPage={perPage.value}
+              onPerPageChange={perPage.onChange}
+              totalItems={data.states.total}
             />
           </Spacings.Stack>
         )}
