@@ -20,6 +20,7 @@ export const columnsDefinition = [
   {
     key: 'key',
     label: <FormattedMessage {...messages.columnStateMachineKey} />,
+    isSortable: true,
   },
   {
     key: 'name',
