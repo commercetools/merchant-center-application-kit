@@ -609,7 +609,8 @@ describe('processing a config with OIDC enabled', () => {
       env: {
         __DEVELOPMENT__: {
           oidc: {
-            authorizeUrl: 'https://mc.europe-west1.gcp.commercetools.com',
+            authorizeUrl:
+              'https://mc.europe-west1.gcp.commercetools.com/login/authorize',
             initialProjectKey: 'project-key',
             oAuthScopes: {
               manage: ['manage_orders'],

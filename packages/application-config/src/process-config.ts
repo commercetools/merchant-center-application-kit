@@ -23,7 +23,9 @@ type ProcessConfigOptions = {
   configJson?: JSONSchemaForCustomApplicationConfigurationFiles | undefined;
 };
 
-const developmentAppUrl = 'http://localhost:3001';
+// TODO: make it configurable.
+const developmentPort = 3001;
+const developmentAppUrl = `http://localhost:${developmentPort}`;
 
 const omitDevConfigIfEmpty = (
   devConfig: ApplicationRuntimeConfig['env']['__DEVELOPMENT__']
@@ -125,9 +127,15 @@ const processConfig = ({
           oidc: isOidcForDevelopmentEnabled
             ? omitEmpty({
                 authorizeUrl: [
-                  mcApiUrl.protocol,
-                  '//',
-                  mcApiUrl.host.replace('mc-api', 'mc'),
+                  // In case the MC API url points to localhost, we need to point
+                  // to a local running dev login page to handle the workflow properly.
+                  mcApiUrl.hostname === 'localhost'
+                    ? mcApiUrl.origin.replace(
+                        mcApiUrl.port,
+                        String(developmentPort)
+                      )
+                    : mcApiUrl.origin.replace('mc-api', 'mc'),
+                  '/login/authorize',
                 ].join(''),
                 initialProjectKey: appConfig.env.development?.initialProjectKey,
                 teamId: appConfig.env.development?.teamId,

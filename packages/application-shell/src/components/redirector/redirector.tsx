@@ -37,7 +37,7 @@ const Redirector = (props: Props) => {
     ...(enhancedLocation.query ?? {}),
   };
   const targetUrlObject = new URL(originUrl);
-  targetUrlObject.pathname = props.to;
+  targetUrlObject.pathname = props.to || targetUrlObject.pathname;
   targetUrlObject.search = `?${encode(searchQuery)}`;
   const targetUrl = targetUrlObject.toString();
 
