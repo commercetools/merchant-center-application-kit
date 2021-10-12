@@ -11,6 +11,10 @@ import {
   usePaginationState,
   useDataTableSortingState,
 } from '@commercetools-uikit/hooks';
+import {
+  formatLocalizedString,
+  applyTransformedLocalizedFields,
+} from '@commercetools-frontend/l10n';
 import messages from './messages';
 import styles from './state-machines-list.mod.css';
 import FetchStatesQuery from './fetch-states.ctp.graphql';
@@ -28,17 +32,33 @@ export const columnsDefinition = [
   },
 ];
 
+const itemRendered = (item, column, dataLocale, projectLanguages) => {
+  switch (column.key) {
+    case 'name':
+      return formatLocalizedString(
+        applyTransformedLocalizedFields(item, [
+          { from: 'nameAllLocales', to: 'name' },
+        ]),
+        { key: 'name', locale: dataLocale, fallbackOrder: projectLanguages }
+      );
+    default:
+      return <span>{item[column.key]}</span>;
+  }
+};
+
 const getErrorMessage = (error) =>
   error.stack || error.message || error.toString();
 
 const StateMachinesList = (props) => {
-  const dataLocale = useApplicationContext((context) => context.dataLocale);
+  const { dataLocale, projectLanguages } = useApplicationContext((context) => ({
+    dataLocale: context.dataLocale,
+    projectLanguages: context.project.languages,
+  }));
   const { page, perPage } = usePaginationState();
   const tableSorting = useDataTableSortingState({ key: 'key', order: 'asc' });
 
   const { data, error, loading } = useMcQuery(FetchStatesQuery, {
     variables: {
-      locale: dataLocale,
       limit: perPage.value,
       offset: (page.value - 1) * perPage.value,
       sort: [`${tableSorting.value.key} ${tableSorting.value.order}`],
@@ -71,7 +91,9 @@ const StateMachinesList = (props) => {
               onRowClick={({ id }) => {
                 props.goToStateMachineDetail(id);
               }}
-              itemRenderer={(row, column) => <span>{row[column.key]}</span>}
+              itemRenderer={(item, column) =>
+                itemRendered(item, column, dataLocale, projectLanguages)
+              }
               sortedBy={tableSorting.value.key}
               sortDirection={tableSorting.value.order}
               onSortChange={tableSorting.onChange}

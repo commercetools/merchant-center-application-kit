@@ -19,6 +19,10 @@ import { ContentNotification } from '@commercetools-uikit/notifications';
 import { Pagination } from '@commercetools-uikit/pagination';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
+import {
+  formatLocalizedString,
+  applyTransformedLocalizedFields,
+} from '@commercetools-frontend/l10n';
 import FetchChannelsQuery from './fetch-channels.ctp.graphql';
 import messages from './messages';
 
@@ -27,10 +31,18 @@ const columns = [
   { key: 'key', label: 'Channel key', isSortable: true },
   { key: 'roles', label: 'Roles' },
 ];
-const itemRendered = (item, column) => {
+
+const itemRendered = (item, column, dataLocale, projectLanguages) => {
   switch (column.key) {
     case 'roles':
       return item.roles.join(', ');
+    case 'name':
+      return formatLocalizedString(
+        applyTransformedLocalizedFields(item, [
+          { from: 'nameAllLocales', to: 'name' },
+        ]),
+        { key: 'name', locale: dataLocale, fallbackOrder: projectLanguages }
+      );
     default:
       return item[column.key];
   }
@@ -41,10 +53,12 @@ const Channels = (props) => {
   const { page, perPage } = usePaginationState();
   const tableSorting = useDataTableSortingState({ key: 'key', order: 'asc' });
   const showApiErrorNotification = useShowApiErrorNotification();
-  const dataLocale = useApplicationContext((context) => context.dataLocale);
+  const { dataLocale, projectLanguages } = useApplicationContext((context) => ({
+    dataLocale: context.dataLocale,
+    projectLanguages: context.project.languages,
+  }));
   const { data, error, loading } = useMcQuery(FetchChannelsQuery, {
     variables: {
-      locale: dataLocale,
       limit: perPage.value,
       offset: (page.value - 1) * perPage.value,
       sort: [`${tableSorting.value.key} ${tableSorting.value.order}`],
@@ -90,7 +104,9 @@ const Channels = (props) => {
             isCondensed
             columns={columns}
             rows={data.channels.results}
-            itemRenderer={itemRendered}
+            itemRenderer={(item, column) =>
+              itemRendered(item, column, dataLocale, projectLanguages)
+            }
             maxHeight={600}
             sortedBy={tableSorting.value.key}
             sortDirection={tableSorting.value.order}
