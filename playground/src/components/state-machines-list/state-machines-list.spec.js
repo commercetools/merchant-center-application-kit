@@ -10,7 +10,6 @@ import { GtmContext } from '@commercetools-frontend/application-shell';
 import { ApplicationStateMachines } from '../entry-point';
 import * as StateMock from '../../test-utils/test-data/state';
 import { renderApplicationWithRedux } from '../../test-utils';
-import { stateTypes } from '../../test-utils/test-data/state/constants';
 
 const mockServer = setupServer();
 afterEach(() => mockServer.resetHandlers());
@@ -45,14 +44,7 @@ const fetchState = () => {
     const { id } = req.variables;
     return res(
       ctx.data({
-        state: {
-          id,
-          key: `state-key-${id}`,
-          name: `state-name-${id}`,
-          initial: true,
-          builtIn: false,
-          type: stateTypes.LineItemState,
-        },
+        state: StateMock.random().id(id).key(`state-key-${id}`).buildGraphql(),
       })
     );
   });
@@ -113,7 +105,6 @@ describe('details view', () => {
       });
 
       await screen.findByText(/state-key-2/i);
-      await screen.findByText(/state-name-2/i);
     });
     it('should retrigger request if id changes', async () => {
       mockServer.use(fetchState());
@@ -129,7 +120,7 @@ describe('details view', () => {
       });
 
       history.push('/my-project/playground-state-machines/2');
-      await screen.findByText(/state-name-2/i);
+      await screen.findByText(/state-key-2/i);
     });
   });
 
