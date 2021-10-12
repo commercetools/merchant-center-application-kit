@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { DotIcon } from '@commercetools-uikit/icons';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import DataTable from '@commercetools-uikit/data-table';
 import Spacings from '@commercetools-uikit/spacings';
@@ -65,17 +64,6 @@ const StateMachinesList = (props) => {
         )}
         {data?.states && (
           <Spacings.Stack scale="m">
-            <Spacings.Inline alignItems="center">
-              <DotIcon size="small" color="primary" />
-              <Text.Detail isItalic={true}>
-                <FormattedMessage
-                  {...messages.objectsInCache}
-                  values={{
-                    count: data.states.results.length,
-                  }}
-                />
-              </Text.Detail>
-            </Spacings.Inline>
             <DataTable
               columns={columnsDefinition}
               rows={data.states.results}

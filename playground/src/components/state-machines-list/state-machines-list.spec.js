@@ -75,7 +75,6 @@ describe('list view', () => {
     mockServer.use(fetchAllStates());
     renderApp();
     await screen.findByText(/State machines/i);
-    await screen.findByText(/There are 3 objects in the cache/i);
     await screen.findByText('state-key-1');
     await screen.findByText('state-key-2');
     expect(screen.queryByText('state-key-22')).not.toBeInTheDocument();
@@ -84,7 +83,6 @@ describe('list view', () => {
   it('the user can click on the state machines to get to the details page', async () => {
     mockServer.use(fetchAllStates(), fetchState());
     const { history } = renderApp();
-    // await screen.findByText(/There are 2 objects in the cache/i);
     await screen.findByText('state-key-1');
     fireEvent.click(screen.getByText('state-key-1'));
     await waitFor(() => {
