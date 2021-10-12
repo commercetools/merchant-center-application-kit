@@ -14,17 +14,23 @@ import Text from '@commercetools-uikit/text';
 import Grid from '@commercetools-uikit/grid';
 import Constraints from '@commercetools-uikit/constraints';
 import FlatButton from '@commercetools-uikit/flat-button';
+import {
+  formatLocalizedString,
+  applyTransformedLocalizedFields,
+} from '@commercetools-frontend/l10n';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import FetchStateQuery from './fetch-state.ctp.graphql';
 
 const StateMachinesDetails = (props) => {
-  const dataLocale = useApplicationContext((context) => context.dataLocale);
+  const { dataLocale, projectLanguages } = useApplicationContext((context) => ({
+    dataLocale: context.dataLocale,
+    projectLanguages: context.project.languages,
+  }));
   const showApiErrorNotification = useShowApiErrorNotification();
 
   const { data, error, loading } = useMcQuery(FetchStateQuery, {
     variables: {
       id: props.id,
-      locale: dataLocale,
     },
     context: {
       target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
@@ -51,6 +57,12 @@ const StateMachinesDetails = (props) => {
     return null;
   }
 
+  const stateName = formatLocalizedString(
+    applyTransformedLocalizedFields(data.state, [
+      { from: 'nameAllLocales', to: 'name' },
+    ]),
+    { key: 'name', locale: dataLocale, fallbackOrder: projectLanguages }
+  );
   return (
     <Spacings.Inset scale="m">
       <Spacings.Stack scale="l">
@@ -61,7 +73,7 @@ const StateMachinesDetails = (props) => {
           to={props.backToListPath}
         />
         <Spacings.Stack scale="xs">
-          <Text.Headline as="h2">{data.state.name || 'n/a'}</Text.Headline>
+          <Text.Headline as="h2">{stateName || 'n/a'}</Text.Headline>
           <Text.Detail>{data.state.key}</Text.Detail>
         </Spacings.Stack>
         <Constraints.Horizontal max={7}>

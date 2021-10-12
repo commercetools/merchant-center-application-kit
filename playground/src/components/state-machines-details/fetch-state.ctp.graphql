@@ -1,7 +1,10 @@
-query FetchState($id: String!, $locale: Locale!) {
+query FetchState($id: String!) {
   state(id: $id) {
     id
-    name(locale: $locale)
+    nameAllLocales {
+      locale
+      value
+    }
     key
     type
     initial
