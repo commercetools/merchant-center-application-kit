@@ -13,7 +13,7 @@ import {
 } from '@commercetools-uikit/hooks';
 import {
   formatLocalizedString,
-  applyTransformedLocalizedFields,
+  transformLocalizedFieldToLocalizedString,
 } from '@commercetools-frontend/l10n';
 import { Pagination } from '@commercetools-uikit/pagination';
 import { ErrorMessage } from '@commercetools-uikit/messages';
@@ -37,9 +37,7 @@ const itemRendered = (item, column, dataLocale, projectLanguages) => {
   switch (column.key) {
     case 'name':
       return formatLocalizedString(
-        applyTransformedLocalizedFields(item, [
-          { from: 'nameAllLocales', to: 'name' },
-        ]),
+        { name: transformLocalizedFieldToLocalizedString(item.nameAllLocales) },
         { key: 'name', locale: dataLocale, fallbackOrder: projectLanguages }
       );
     default:
