@@ -18,8 +18,8 @@ import {
   transformLocalizedFieldToLocalizedString,
 } from '@commercetools-frontend/l10n';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { ErrorMessage } from '@commercetools-uikit/messages';
 import FetchStateQuery from './fetch-state.ctp.graphql';
+import { ContentNotification } from '@commercetools-uikit/notifications';
 
 const getErrorMessage = (error) =>
   error.stack || error.message || error.toString();
@@ -51,11 +51,18 @@ const StateMachinesDetails = (props) => {
     track('rendered', 'State machine details');
   }, [track]);
 
+  if (error) {
+    return (
+      <ContentNotification type="error">
+        <Text.Body>{getErrorMessage(error)}</Text.Body>
+      </ContentNotification>
+    );
+  }
+
   return (
     <Spacings.Inset scale="m">
       <Spacings.Stack scale="l">
         {loading && <LoadingSpinner />}
-        {error && <ErrorMessage>{getErrorMessage(error)}</ErrorMessage>}
         {data && (
           <>
             <FlatButton

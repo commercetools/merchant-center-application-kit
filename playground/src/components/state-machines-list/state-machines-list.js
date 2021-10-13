@@ -16,7 +16,7 @@ import {
   transformLocalizedFieldToLocalizedString,
 } from '@commercetools-frontend/l10n';
 import { Pagination } from '@commercetools-uikit/pagination';
-import { ErrorMessage } from '@commercetools-uikit/messages';
+import { ContentNotification } from '@commercetools-uikit/notifications';
 import messages from './messages';
 import styles from './state-machines-list.mod.css';
 import FetchStatesQuery from './fetch-states.ctp.graphql';
@@ -58,7 +58,7 @@ const StateMachinesList = (props) => {
 
   const { data, error, loading } = useMcQuery(FetchStatesQuery, {
     variables: {
-      limit: perPage.value,
+      limit: perPage.values,
       offset: (page.value - 1) * perPage.value,
       sort: [`${tableSorting.value.key} ${tableSorting.value.order}`],
     },
@@ -71,12 +71,19 @@ const StateMachinesList = (props) => {
     !loading && data?.states.results && data?.states.total === 0
   );
 
+  if (error) {
+    return (
+      <ContentNotification type="error">
+        <Text.Body>{getErrorMessage(error)}</Text.Body>
+      </ContentNotification>
+    );
+  }
+
   return (
     <Spacings.Inset scale="m">
       <Spacings.Stack scale="m">
         <Text.Headline as="h2" intlMessage={messages.title} />
         {loading && <LoadingSpinner />}
-        {error && <ErrorMessage>{getErrorMessage(error)}</ErrorMessage>}
         {hasNoResults && (
           <div className={styles['empty-results']}>
             <Text.Body intlMessage={messages.noResultsText} />

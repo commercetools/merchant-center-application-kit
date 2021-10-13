@@ -21,7 +21,6 @@ import {
   formatLocalizedString,
   transformLocalizedFieldToLocalizedString,
 } from '@commercetools-frontend/l10n';
-import { ErrorMessage } from '@commercetools-uikit/messages';
 import FetchChannelsQuery from './fetch-channels.ctp.graphql';
 import messages from './messages';
 
@@ -67,6 +66,14 @@ const Channels = (props) => {
     },
   });
 
+  if (error) {
+    return (
+      <ContentNotification type="error">
+        <Text.Body>{getErrorMessage(error)}</Text.Body>
+      </ContentNotification>
+    );
+  }
+
   return (
     <Spacings.Stack scale="xl">
       <Spacings.Stack scale="xs">
@@ -86,7 +93,6 @@ const Channels = (props) => {
       </Constraints.Horizontal>
 
       {loading && <LoadingSpinner />}
-      {error && <ErrorMessage>{getErrorMessage(error)}</ErrorMessage>}
 
       {data?.channels ? (
         <Spacings.Stack scale="l">
