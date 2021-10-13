@@ -33,7 +33,7 @@ const columns = [
   { key: 'roles', label: 'Roles' },
 ];
 
-const itemRendered = (item, column, dataLocale, projectLanguages) => {
+const itemRenderer = (item, column, dataLocale, projectLanguages) => {
   switch (column.key) {
     case 'roles':
       return item.roles.join(', ');
@@ -101,7 +101,7 @@ const Channels = (props) => {
             columns={columns}
             rows={data.channels.results}
             itemRenderer={(item, column) =>
-              itemRendered(item, column, dataLocale, projectLanguages)
+              itemRenderer(item, column, dataLocale, projectLanguages)
             }
             maxHeight={600}
             sortedBy={tableSorting.value.key}

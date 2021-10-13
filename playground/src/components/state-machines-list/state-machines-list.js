@@ -34,7 +34,7 @@ export const columnsDefinition = [
   },
 ];
 
-const itemRendered = (item, column, dataLocale, projectLanguages) => {
+const itemRenderer = (item, column, dataLocale, projectLanguages) => {
   switch (column.key) {
     case 'name':
       return formatLocalizedString(
@@ -96,7 +96,7 @@ const StateMachinesList = (props) => {
                 props.goToStateMachineDetail(id);
               }}
               itemRenderer={(item, column) =>
-                itemRendered(item, column, dataLocale, projectLanguages)
+                itemRenderer(item, column, dataLocale, projectLanguages)
               }
               sortedBy={tableSorting.value.key}
               sortDirection={tableSorting.value.order}
