@@ -19,7 +19,7 @@ import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import {
   formatLocalizedString,
-  applyTransformedLocalizedFields,
+  transformLocalizedFieldToLocalizedString,
 } from '@commercetools-frontend/l10n';
 import { ErrorMessage } from '@commercetools-uikit/messages';
 import FetchChannelsQuery from './fetch-channels.ctp.graphql';
@@ -40,9 +40,7 @@ const itemRendered = (item, column, dataLocale, projectLanguages) => {
       return item.roles.join(', ');
     case 'name':
       return formatLocalizedString(
-        applyTransformedLocalizedFields(item, [
-          { from: 'nameAllLocales', to: 'name' },
-        ]),
+        { name: transformLocalizedFieldToLocalizedString(item.nameAllLocales) },
         { key: 'name', locale: dataLocale, fallbackOrder: projectLanguages }
       );
     default:

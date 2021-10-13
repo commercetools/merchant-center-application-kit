@@ -15,7 +15,7 @@ import Constraints from '@commercetools-uikit/constraints';
 import FlatButton from '@commercetools-uikit/flat-button';
 import {
   formatLocalizedString,
-  applyTransformedLocalizedFields,
+  transformLocalizedFieldToLocalizedString,
 } from '@commercetools-frontend/l10n';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { ErrorMessage } from '@commercetools-uikit/messages';
@@ -26,9 +26,7 @@ const getErrorMessage = (error) =>
 
 const getStateName = (state, dataLocale, projectLanguages) =>
   formatLocalizedString(
-    applyTransformedLocalizedFields(state, [
-      { from: 'nameAllLocales', to: 'name' },
-    ]),
+    { name: transformLocalizedFieldToLocalizedString(state.nameAllLocales) },
     { key: 'name', locale: dataLocale, fallbackOrder: projectLanguages }
   ) || 'n/a';
 
