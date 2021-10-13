@@ -20,9 +20,7 @@ import {
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import FetchStateQuery from './fetch-state.ctp.graphql';
 import { ContentNotification } from '@commercetools-uikit/notifications';
-
-const getErrorMessage = (error) =>
-  error.stack || error.message || error.toString();
+import { getErrorMessage } from '../../utils/get-error-message';
 
 const getStateName = (state, dataLocale, projectLanguages) =>
   formatLocalizedString(
