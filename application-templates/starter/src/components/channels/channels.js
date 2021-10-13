@@ -25,7 +25,7 @@ import FetchChannelsQuery from './fetch-channels.ctp.graphql';
 import messages from './messages';
 
 const getErrorMessage = (error) =>
-  error.stack || error.message || error.toString();
+  error.graphQLErrors?.map((e) => e.message).join('\n') || error.message;
 
 const columns = [
   { key: 'name', label: 'Channel name' },

@@ -20,6 +20,7 @@ import { ContentNotification } from '@commercetools-uikit/notifications';
 import messages from './messages';
 import styles from './state-machines-list.mod.css';
 import FetchStatesQuery from './fetch-states.ctp.graphql';
+import { getErrorMessage } from '../../utils/get-error-message';
 
 export const columnsDefinition = [
   {
@@ -45,9 +46,6 @@ const itemRendered = (item, column, dataLocale, projectLanguages) => {
   }
 };
 
-const getErrorMessage = (error) =>
-  error.stack || error.message || error.toString();
-
 const StateMachinesList = (props) => {
   const { dataLocale, projectLanguages } = useApplicationContext((context) => ({
     dataLocale: context.dataLocale,
@@ -58,7 +56,7 @@ const StateMachinesList = (props) => {
 
   const { data, error, loading } = useMcQuery(FetchStatesQuery, {
     variables: {
-      limit: perPage.values,
+      limit: perPage.value,
       offset: (page.value - 1) * perPage.value,
       sort: [`${tableSorting.value.key} ${tableSorting.value.order}`],
     },
