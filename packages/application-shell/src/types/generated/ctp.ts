@@ -11700,14 +11700,13 @@ export type TSetKey = {
 };
 
 export type TFetchChannelsQueryVariables = Exact<{
-  locale: Scalars['Locale'];
   limit: Scalars['Int'];
   offset: Scalars['Int'];
   sort: Maybe<Array<Scalars['String']> | Scalars['String']>;
 }>;
 
 
-export type TFetchChannelsQuery = { __typename?: 'Query', channels: { __typename?: 'ChannelQueryResult', total: number, count: number, offset: number, results: Array<{ __typename?: 'Channel', id: string, name: Maybe<string>, key: string, roles: Array<TChannelRole> }> } };
+export type TFetchChannelsQuery = { __typename?: 'Query', channels: { __typename?: 'ChannelQueryResult', total: number, count: number, offset: number, results: Array<{ __typename?: 'Channel', id: string, key: string, roles: Array<TChannelRole>, nameAllLocales: Maybe<Array<{ __typename?: 'LocalizedString', locale: string, value: string }>> }> } };
 
 export type TQuickAccessProductQueryVariables = Exact<{
   productId: Scalars['String'];
@@ -11728,18 +11727,16 @@ export type TQuickAccessQuery = { __typename?: 'Query', productsByIds: Maybe<{ _
 
 export type TFetchStateQueryVariables = Exact<{
   id: Scalars['String'];
-  locale: Scalars['Locale'];
 }>;
 
 
-export type TFetchStateQuery = { __typename?: 'Query', state: Maybe<{ __typename?: 'State', id: string, name: Maybe<string>, key: Maybe<string>, type: TStateType, initial: boolean, builtIn: boolean }> };
+export type TFetchStateQuery = { __typename?: 'Query', state: Maybe<{ __typename?: 'State', id: string, key: Maybe<string>, type: TStateType, initial: boolean, builtIn: boolean, nameAllLocales: Maybe<Array<{ __typename?: 'LocalizedString', locale: string, value: string }>> }> };
 
 export type TFetchStatesQueryVariables = Exact<{
-  locale: Scalars['Locale'];
   limit: Scalars['Int'];
   offset: Scalars['Int'];
   sort: Maybe<Array<Scalars['String']> | Scalars['String']>;
 }>;
 
 
-export type TFetchStatesQuery = { __typename?: 'Query', states: { __typename?: 'StateQueryResult', total: number, count: number, offset: number, results: Array<{ __typename?: 'State', id: string, name: Maybe<string>, key: Maybe<string> }> } };
+export type TFetchStatesQuery = { __typename?: 'Query', states: { __typename?: 'StateQueryResult', total: number, count: number, offset: number, results: Array<{ __typename?: 'State', id: string, key: Maybe<string>, nameAllLocales: Maybe<Array<{ __typename?: 'LocalizedString', locale: string, value: string }>> }> } };
