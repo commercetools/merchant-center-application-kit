@@ -1,5 +1,11 @@
 # @commercetools-backend/loggers
 
+## 20.10.3
+
+### Patch Changes
+
+- [#2362](https://github.com/commercetools/merchant-center-application-kit/pull/2362) [`f6b3ae02`](https://github.com/commercetools/merchant-center-application-kit/commit/f6b3ae02133927642976f976d2d2fd5eb675ce84) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
 ## 20.10.1
 
 ### Patch Changes

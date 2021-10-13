@@ -1,5 +1,14 @@
 # @commercetools-frontend/mc-html-template
 
+## 20.10.3
+
+### Patch Changes
+
+- [#2362](https://github.com/commercetools/merchant-center-application-kit/pull/2362) [`f6b3ae02`](https://github.com/commercetools/merchant-center-application-kit/commit/f6b3ae02133927642976f976d2d2fd5eb675ce84) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies [[`9d879503`](https://github.com/commercetools/merchant-center-application-kit/commit/9d879503f7af467729291d66a35625b6e7cbb385), [`f6b3ae02`](https://github.com/commercetools/merchant-center-application-kit/commit/f6b3ae02133927642976f976d2d2fd5eb675ce84)]:
+  - @commercetools-frontend/application-config@20.10.3
+
 ## 20.10.1
 
 ### Patch Changes
