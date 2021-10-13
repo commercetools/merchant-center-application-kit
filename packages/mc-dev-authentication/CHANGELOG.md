@@ -1,5 +1,13 @@
 # @commercetools-frontend/mc-dev-authentication
 
+## 20.10.3
+
+### Patch Changes
+
+- [#2376](https://github.com/commercetools/merchant-center-application-kit/pull/2376) [`9d879503`](https://github.com/commercetools/merchant-center-application-kit/commit/9d879503f7af467729291d66a35625b6e7cbb385) Thanks [@emmenko](https://github.com/emmenko)! - > For commercetools only.
+
+  Allow to use OIDC login when developing against a local running MC API.
+
 ## 20.10.1
 
 ### Patch Changes
