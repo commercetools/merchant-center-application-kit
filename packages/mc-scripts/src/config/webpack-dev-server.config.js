@@ -3,11 +3,6 @@ const { processConfig } = require('@commercetools-frontend/application-config');
 const { processHeaders } = require('@commercetools-frontend/mc-html-template');
 const devAuthentication = require('@commercetools-frontend/mc-dev-authentication');
 
-// Feature flags
-const isOidcForDevelopmentEnabled =
-  process.env.ENABLE_OIDC_FOR_DEVELOPMENT === 'true' ||
-  process.env.ENABLE_OIDC_FOR_DEVELOPMENT === true;
-
 const applicationConfig = processConfig();
 const compiledHeaders = processHeaders(applicationConfig);
 
@@ -69,7 +64,21 @@ module.exports = ({ allowedHost, contentBase, port, publicPath }) => ({
       );
     });
 
-    if (!isOidcForDevelopmentEnabled) {
+    // Handle login page for OIDC workflow when developing against a local MC API.
+    if (applicationConfig.env.__DEVELOPMENT__.oidc?.authorizeUrl) {
+      if (
+        applicationConfig.env.__DEVELOPMENT__.oidc?.authorizeUrl.startsWith(
+          'http://localhost'
+        )
+      ) {
+        app.use(
+          '/login/authorize',
+          devAuthentication.middlewares.createLoginMiddleware(
+            applicationConfig.env
+          )
+        );
+      }
+    } else {
       app.use(
         '/login',
         devAuthentication.middlewares.createLoginMiddleware(

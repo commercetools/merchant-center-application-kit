@@ -20,6 +20,16 @@ window.addEventListener('load', function loaded() {
       password: data.get('password'),
     };
 
+    var queryParams = new URLSearchParams(window.location.search);
+    if (queryParams.has('response_type')) {
+      // OIDC params
+      payload.client_id = queryParams.get('client_id');
+      payload.response_type = queryParams.get('response_type');
+      payload.scope = queryParams.get('scope');
+      payload.state = queryParams.get('state');
+      payload.nonce = queryParams.get('nonce');
+    }
+
     var container = document.getElementById('errors');
     // Clean up error message elements
     while (container.firstChild) {
@@ -40,11 +50,16 @@ window.addEventListener('load', function loaded() {
       })
       .then(function handleResponse(response) {
         if (response.ok) {
-          return response.json().then(function onSuccess() {
-            window.localStorage.setItem('isAuthenticated', true);
-            var searchParams = new URLSearchParams(window.location.search);
-            var redirectTo = searchParams.get('redirectTo') || '/';
-            window.location.replace(redirectTo);
+          return response.json().then(function onSuccess(result) {
+            // Handle OIDC redirect.
+            if (queryParams.has('response_type')) {
+              window.location.replace(result.redirectTo);
+            } else {
+              window.localStorage.setItem('isAuthenticated', true);
+              var searchParams = new URLSearchParams(window.location.search);
+              var redirectTo = searchParams.get('redirectTo') || '/';
+              window.location.replace(redirectTo);
+            }
           });
         }
         return response.text().then(function onError(responseText) {
