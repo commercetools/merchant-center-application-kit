@@ -17,7 +17,10 @@ import {
   formatLocalizedString,
   transformLocalizedFieldToLocalizedString,
 } from '@commercetools-frontend/l10n';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import {
+  GRAPHQL_TARGETS,
+  NO_VALUE_FALLBACK,
+} from '@commercetools-frontend/constants';
 import FetchStateQuery from './fetch-state.ctp.graphql';
 import { ContentNotification } from '@commercetools-uikit/notifications';
 import { getErrorMessage } from '../../utils/get-error-message';
@@ -25,7 +28,12 @@ import { getErrorMessage } from '../../utils/get-error-message';
 const getStateName = (state, dataLocale, projectLanguages) =>
   formatLocalizedString(
     { name: transformLocalizedFieldToLocalizedString(state.nameAllLocales) },
-    { key: 'name', locale: dataLocale, fallbackOrder: projectLanguages }
+    {
+      key: 'name',
+      locale: dataLocale,
+      fallbackOrder: projectLanguages,
+      fallback: NO_VALUE_FALLBACK,
+    }
   ) || 'n/a';
 
 const StateMachinesDetails = (props) => {

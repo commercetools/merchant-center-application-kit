@@ -3,7 +3,10 @@ import { useIntl } from 'react-intl';
 import { Link as RouterLink } from 'react-router-dom';
 import { useMcQuery } from '@commercetools-frontend/application-shell';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import {
+  GRAPHQL_TARGETS,
+  NO_VALUE_FALLBACK,
+} from '@commercetools-frontend/constants';
 import {
   usePaginationState,
   useDataTableSortingState,
@@ -40,7 +43,12 @@ const itemRenderer = (item, column, dataLocale, projectLanguages) => {
     case 'name':
       return formatLocalizedString(
         { name: transformLocalizedFieldToLocalizedString(item.nameAllLocales) },
-        { key: 'name', locale: dataLocale, fallbackOrder: projectLanguages }
+        {
+          key: 'name',
+          locale: dataLocale,
+          fallbackOrder: projectLanguages,
+          fallback: NO_VALUE_FALLBACK,
+        }
       );
     default:
       return item[column.key];

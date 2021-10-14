@@ -5,7 +5,10 @@ import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import DataTable from '@commercetools-uikit/data-table';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import {
+  GRAPHQL_TARGETS,
+  NO_VALUE_FALLBACK,
+} from '@commercetools-frontend/constants';
 import { useMcQuery } from '@commercetools-frontend/application-shell';
 import {
   usePaginationState,
@@ -39,7 +42,12 @@ const itemRenderer = (item, column, dataLocale, projectLanguages) => {
     case 'name':
       return formatLocalizedString(
         { name: transformLocalizedFieldToLocalizedString(item.nameAllLocales) },
-        { key: 'name', locale: dataLocale, fallbackOrder: projectLanguages }
+        {
+          key: 'name',
+          locale: dataLocale,
+          fallbackOrder: projectLanguages,
+          fallback: NO_VALUE_FALLBACK,
+        }
       );
     default:
       return <span>{item[column.key]}</span>;
