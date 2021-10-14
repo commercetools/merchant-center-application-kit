@@ -5,16 +5,25 @@ import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import DataTable from '@commercetools-uikit/data-table';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import {
+  GRAPHQL_TARGETS,
+  NO_VALUE_FALLBACK,
+} from '@commercetools-frontend/constants';
 import { useMcQuery } from '@commercetools-frontend/application-shell';
 import {
   usePaginationState,
   useDataTableSortingState,
 } from '@commercetools-uikit/hooks';
+import {
+  formatLocalizedString,
+  transformLocalizedFieldToLocalizedString,
+} from '@commercetools-frontend/l10n';
+import { Pagination } from '@commercetools-uikit/pagination';
+import { ContentNotification } from '@commercetools-uikit/notifications';
 import messages from './messages';
 import styles from './state-machines-list.mod.css';
 import FetchStatesQuery from './fetch-states.ctp.graphql';
-import { Pagination } from '@commercetools-uikit/pagination';
+import { getErrorMessage } from '../../utils/get-error-message';
 
 export const columnsDefinition = [
   {
@@ -28,17 +37,33 @@ export const columnsDefinition = [
   },
 ];
 
-const getErrorMessage = (error) =>
-  error.stack || error.message || error.toString();
+const itemRenderer = (item, column, dataLocale, projectLanguages) => {
+  switch (column.key) {
+    case 'name':
+      return formatLocalizedString(
+        { name: transformLocalizedFieldToLocalizedString(item.nameAllLocales) },
+        {
+          key: 'name',
+          locale: dataLocale,
+          fallbackOrder: projectLanguages,
+          fallback: NO_VALUE_FALLBACK,
+        }
+      );
+    default:
+      return <span>{item[column.key]}</span>;
+  }
+};
 
 const StateMachinesList = (props) => {
-  const dataLocale = useApplicationContext((context) => context.dataLocale);
+  const { dataLocale, projectLanguages } = useApplicationContext((context) => ({
+    dataLocale: context.dataLocale,
+    projectLanguages: context.project.languages,
+  }));
   const { page, perPage } = usePaginationState();
   const tableSorting = useDataTableSortingState({ key: 'key', order: 'asc' });
 
   const { data, error, loading } = useMcQuery(FetchStatesQuery, {
     variables: {
-      locale: dataLocale,
       limit: perPage.value,
       offset: (page.value - 1) * perPage.value,
       sort: [`${tableSorting.value.key} ${tableSorting.value.order}`],
@@ -49,15 +74,22 @@ const StateMachinesList = (props) => {
   });
 
   const hasNoResults = Boolean(
-    !loading && data.states.results && data.states.total === 0
+    !loading && data?.states.results && data?.states.total === 0
   );
+
+  if (error) {
+    return (
+      <ContentNotification type="error">
+        <Text.Body>{getErrorMessage(error)}</Text.Body>
+      </ContentNotification>
+    );
+  }
 
   return (
     <Spacings.Inset scale="m">
       <Spacings.Stack scale="m">
         <Text.Headline as="h2" intlMessage={messages.title} />
         {loading && <LoadingSpinner />}
-        {error && <div>{getErrorMessage(error)}</div>}
         {hasNoResults && (
           <div className={styles['empty-results']}>
             <Text.Body intlMessage={messages.noResultsText} />
@@ -71,7 +103,9 @@ const StateMachinesList = (props) => {
               onRowClick={({ id }) => {
                 props.goToStateMachineDetail(id);
               }}
-              itemRenderer={(row, column) => <span>{row[column.key]}</span>}
+              itemRenderer={(item, column) =>
+                itemRenderer(item, column, dataLocale, projectLanguages)
+              }
               sortedBy={tableSorting.value.key}
               sortDirection={tableSorting.value.order}
               onSortChange={tableSorting.onChange}

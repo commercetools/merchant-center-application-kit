@@ -1,11 +1,12 @@
-import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { Link as RouterLink } from 'react-router-dom';
 import { useMcQuery } from '@commercetools-frontend/application-shell';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { useShowApiErrorNotification } from '@commercetools-frontend/actions-global';
+import {
+  GRAPHQL_TARGETS,
+  NO_VALUE_FALLBACK,
+} from '@commercetools-frontend/constants';
 import {
   usePaginationState,
   useDataTableSortingState,
@@ -19,18 +20,36 @@ import { ContentNotification } from '@commercetools-uikit/notifications';
 import { Pagination } from '@commercetools-uikit/pagination';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
+import {
+  formatLocalizedString,
+  transformLocalizedFieldToLocalizedString,
+} from '@commercetools-frontend/l10n';
 import FetchChannelsQuery from './fetch-channels.ctp.graphql';
 import messages from './messages';
+
+const getErrorMessage = (error) =>
+  error.graphQLErrors?.map((e) => e.message).join('\n') || error.message;
 
 const columns = [
   { key: 'name', label: 'Channel name' },
   { key: 'key', label: 'Channel key', isSortable: true },
   { key: 'roles', label: 'Roles' },
 ];
-const itemRendered = (item, column) => {
+
+const itemRenderer = (item, column, dataLocale, projectLanguages) => {
   switch (column.key) {
     case 'roles':
       return item.roles.join(', ');
+    case 'name':
+      return formatLocalizedString(
+        { name: transformLocalizedFieldToLocalizedString(item.nameAllLocales) },
+        {
+          key: 'name',
+          locale: dataLocale,
+          fallbackOrder: projectLanguages,
+          fallback: NO_VALUE_FALLBACK,
+        }
+      );
     default:
       return item[column.key];
   }
@@ -40,11 +59,12 @@ const Channels = (props) => {
   const intl = useIntl();
   const { page, perPage } = usePaginationState();
   const tableSorting = useDataTableSortingState({ key: 'key', order: 'asc' });
-  const showApiErrorNotification = useShowApiErrorNotification();
-  const dataLocale = useApplicationContext((context) => context.dataLocale);
+  const { dataLocale, projectLanguages } = useApplicationContext((context) => ({
+    dataLocale: context.dataLocale,
+    projectLanguages: context.project.languages,
+  }));
   const { data, error, loading } = useMcQuery(FetchChannelsQuery, {
     variables: {
-      locale: dataLocale,
       limit: perPage.value,
       offset: (page.value - 1) * perPage.value,
       sort: [`${tableSorting.value.key} ${tableSorting.value.order}`],
@@ -53,16 +73,14 @@ const Channels = (props) => {
       target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
     },
   });
-  useEffect(() => {
-    if (error) {
-      showApiErrorNotification({
-        errors:
-          error.graphQLErrors.length > 0
-            ? error.graphQLErrors
-            : [{ message: error.message }],
-      });
-    }
-  }, [error, showApiErrorNotification]);
+
+  if (error) {
+    return (
+      <ContentNotification type="error">
+        <Text.Body>{getErrorMessage(error)}</Text.Body>
+      </ContentNotification>
+    );
+  }
 
   return (
     <Spacings.Stack scale="xl">
@@ -90,7 +108,9 @@ const Channels = (props) => {
             isCondensed
             columns={columns}
             rows={data.channels.results}
-            itemRenderer={itemRendered}
+            itemRenderer={(item, column) =>
+              itemRenderer(item, column, dataLocale, projectLanguages)
+            }
             maxHeight={600}
             sortedBy={tableSorting.value.key}
             sortDirection={tableSorting.value.order}
