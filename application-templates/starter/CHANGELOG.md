@@ -1,5 +1,27 @@
 # merchant-center-application-template-starter
 
+## 18.3.4
+
+### Patch Changes
+
+- [#2377](https://github.com/commercetools/merchant-center-application-kit/pull/2377) [`8ae002a1`](https://github.com/commercetools/merchant-center-application-kit/commit/8ae002a1b13ee41ef350876be3be4ceeea671d2a) Thanks [@Rhotimee](https://github.com/Rhotimee)! - ## Improve starter template and playground
+
+  - use <field>AllLocales field instead of passing a data locale to the query.
+  - remove code for dispatching error notifications in case a query has errors. Instead, render the error in the component itself.
+
+* [#2380](https://github.com/commercetools/merchant-center-application-kit/pull/2380) [`7fa4d7d0`](https://github.com/commercetools/merchant-center-application-kit/commit/7fa4d7d0c560226eba69ccb73c4014879939e8da) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+* Updated dependencies [[`8ae002a1`](https://github.com/commercetools/merchant-center-application-kit/commit/8ae002a1b13ee41ef350876be3be4ceeea671d2a), [`21a115ee`](https://github.com/commercetools/merchant-center-application-kit/commit/21a115eead26af1390cd3cbd60bfcf198afe2812), [`7fa4d7d0`](https://github.com/commercetools/merchant-center-application-kit/commit/7fa4d7d0c560226eba69ccb73c4014879939e8da)]:
+  - @commercetools-frontend/application-shell@20.10.4
+  - @commercetools-frontend/mc-scripts@20.10.4
+  - @commercetools-frontend/actions-global@20.10.4
+  - @commercetools-frontend/application-components@20.10.4
+  - @commercetools-frontend/application-shell-connectors@20.10.4
+  - @commercetools-frontend/i18n@20.10.4
+  - @commercetools-frontend/jest-preset-mc-app@20.10.4
+  - @commercetools-frontend/permissions@20.10.4
+  - @commercetools-frontend/sdk@20.10.4
+
 ## 18.3.3
 
 ### Patch Changes

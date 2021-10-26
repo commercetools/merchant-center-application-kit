@@ -1,5 +1,11 @@
 # @commercetools-backend/express
 
+## 20.10.4
+
+### Patch Changes
+
+- [#2380](https://github.com/commercetools/merchant-center-application-kit/pull/2380) [`7fa4d7d0`](https://github.com/commercetools/merchant-center-application-kit/commit/7fa4d7d0c560226eba69ccb73c4014879939e8da) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
 ## 20.10.1
 
 ### Patch Changes

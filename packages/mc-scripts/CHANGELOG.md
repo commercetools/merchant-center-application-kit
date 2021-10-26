@@ -1,5 +1,18 @@
 # @commercetools-frontend/mc-scripts
 
+## 20.10.4
+
+### Patch Changes
+
+- [#2383](https://github.com/commercetools/merchant-center-application-kit/pull/2383) [`21a115ee`](https://github.com/commercetools/merchant-center-application-kit/commit/21a115eead26af1390cd3cbd60bfcf198afe2812) Thanks [@emmenko](https://github.com/emmenko)! - Fix property access for optional object.
+
+* [#2380](https://github.com/commercetools/merchant-center-application-kit/pull/2380) [`7fa4d7d0`](https://github.com/commercetools/merchant-center-application-kit/commit/7fa4d7d0c560226eba69ccb73c4014879939e8da) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+* Updated dependencies [[`7fa4d7d0`](https://github.com/commercetools/merchant-center-application-kit/commit/7fa4d7d0c560226eba69ccb73c4014879939e8da)]:
+  - @commercetools-frontend/application-config@20.10.4
+  - @commercetools-frontend/babel-preset-mc-app@20.10.4
+  - @commercetools-frontend/mc-html-template@20.10.4
+
 ## 20.10.3
 
 ### Patch Changes
