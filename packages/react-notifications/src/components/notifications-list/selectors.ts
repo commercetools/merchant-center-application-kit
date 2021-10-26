@@ -2,7 +2,6 @@ import type {
   TAppNotificationGlobal,
   TAppNotificationPage,
   TAppNotificationSide,
-  TAppNotificationDomain,
 } from '@commercetools-frontend/constants';
 import type { TAppState } from './types';
 
@@ -14,14 +13,12 @@ import { NOTIFICATION_DOMAINS } from '@commercetools-frontend/constants';
 export const selectNotifications = (state: TAppState) => state.notifications;
 
 export const selectGlobalNotifications = createSelector<
-  TAppState,
-  TAppState['notifications'],
+  [typeof selectNotifications],
   TAppNotificationGlobal[]
 >(
   selectNotifications,
   (notifications) =>
-    // https://stackoverflow.com/a/42487130
-    (notifications as { domain: TAppNotificationDomain }[])
+    notifications
       .filter(
         (notification) => notification.domain === NOTIFICATION_DOMAINS.GLOBAL
       )
@@ -30,27 +27,23 @@ export const selectGlobalNotifications = createSelector<
 );
 
 export const selectPageNotifications = createSelector<
-  TAppState,
-  TAppState['notifications'],
+  [typeof selectNotifications],
   TAppNotificationPage[]
 >(
   selectNotifications,
   (notifications) =>
-    // https://stackoverflow.com/a/42487130
-    (notifications as { domain: TAppNotificationDomain }[]).filter(
+    notifications.filter(
       (notification) => notification.domain === NOTIFICATION_DOMAINS.PAGE
     ) as TAppNotificationPage[]
 );
 
 export const selectSideNotifications = createSelector<
-  TAppState,
-  TAppState['notifications'],
+  [typeof selectNotifications],
   TAppNotificationSide[]
 >(
   selectNotifications,
   (notifications) =>
-    // https://stackoverflow.com/a/42487130
-    (notifications as { domain: TAppNotificationDomain }[]).filter(
+    notifications.filter(
       (notification) => notification.domain === NOTIFICATION_DOMAINS.SIDE
     ) as TAppNotificationSide[]
 );
