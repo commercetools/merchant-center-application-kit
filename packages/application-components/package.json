@@ -51,7 +51,7 @@
     "@commercetools-uikit/secondary-icon-button": "^12.2.2",
     "@commercetools-uikit/spacings": "^12.2.2",
     "@commercetools-uikit/text": "^12.2.2",
-    "@emotion/react": "11.4.1",
+    "@emotion/react": "11.5.0",
     "@emotion/styled": "11.3.0",
     "@types/lodash": "^4.14.167",
     "@types/prop-types": "^15.7.3",
@@ -66,7 +66,7 @@
   "devDependencies": {
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-intl": "5.20.12"
+    "react-intl": "5.21.0"
   },
   "peerDependencies": {
     "react": "17.x",
