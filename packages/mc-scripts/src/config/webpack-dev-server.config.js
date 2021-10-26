@@ -64,10 +64,10 @@ module.exports = ({ allowedHost, contentBase, port, publicPath }) => ({
       );
     });
 
-    // Handle login page for OIDC workflow when developing against a local MC API.
-    if (applicationConfig.env.__DEVELOPMENT__.oidc?.authorizeUrl) {
+    if (applicationConfig.env.__DEVELOPMENT__?.oidc?.authorizeUrl) {
+      // Handle login page for OIDC workflow when developing against a local MC API.
       if (
-        applicationConfig.env.__DEVELOPMENT__.oidc?.authorizeUrl.startsWith(
+        applicationConfig.env.__DEVELOPMENT__?.oidc?.authorizeUrl.startsWith(
           'http://localhost'
         )
       ) {
