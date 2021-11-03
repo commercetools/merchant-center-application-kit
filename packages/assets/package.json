@@ -11,8 +11,6 @@
   "homepage": "https://docs.commercetools.com/custom-applications",
   "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
-  "private": false,
-  "scripts": {},
   "publishConfig": {
     "access": "public"
   },

@@ -11,11 +11,9 @@
   "homepage": "https://docs.commercetools.com/custom-applications",
   "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
-  "private": false,
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {},
   "main": "./jest-preset.js",
   "module": "./jest-preset.js",
   "dependencies": {

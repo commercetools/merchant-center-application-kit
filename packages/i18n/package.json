@@ -16,7 +16,6 @@
     "toolkit"
   ],
   "license": "MIT",
-  "private": false,
   "publishConfig": {
     "access": "public"
   },

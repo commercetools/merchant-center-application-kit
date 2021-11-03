@@ -2,7 +2,6 @@
   "name": "merchant-center-application-kit",
   "version": "0.0.0",
   "description": "Merchant Center Application Kit (monorepo)",
-  "license": "MIT",
   "private": true,
   "scripts": {
     "prepare": "husky install",
@@ -191,5 +190,6 @@
     "node": ">=12 || >=14",
     "npm": ">=6",
     "yarn": ">=1.10"
-  }
+  },
+  "packageManager": "yarn@3.1.0"
 }

@@ -18,7 +18,6 @@
     "testing"
   ],
   "license": "MIT",
-  "private": false,
   "publishConfig": {
     "access": "public"
   },
