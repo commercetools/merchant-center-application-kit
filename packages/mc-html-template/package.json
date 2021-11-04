@@ -25,7 +25,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "rimraf build/** && babel src --out-dir build",
+    "build": "rimraf build && babel src --out-dir build",
     "build:bundles:watch": "yarn build -w"
   },
   "dependencies": {
