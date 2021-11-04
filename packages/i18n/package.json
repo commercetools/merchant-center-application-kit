@@ -29,7 +29,6 @@
     "README.md"
   ],
   "scripts": {
-    "prepare": "./../../scripts/version.js replace",
     "compile-data": "formatjs compile-folder --format=./transifex-transformer.js --ast data compiled-data"
   },
   "dependencies": {

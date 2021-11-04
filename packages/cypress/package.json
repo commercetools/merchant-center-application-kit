@@ -34,9 +34,6 @@
     "LICENSE",
     "README.md"
   ],
-  "scripts": {
-    "prepare": "./../../scripts/version.js replace"
-  },
   "dependencies": {
     "@babel/runtime": "7.15.4",
     "@babel/runtime-corejs3": "7.15.4",

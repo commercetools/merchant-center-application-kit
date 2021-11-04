@@ -20,9 +20,6 @@
   "preconstruct": {
     "entrypoints": ["./index.ts", "./test-utils/index.ts"]
   },
-  "scripts": {
-    "prepare": "./../../scripts/version.js replace"
-  },
   "dependencies": {
     "@babel/runtime": "7.15.4",
     "@babel/runtime-corejs3": "7.15.4",

@@ -17,9 +17,6 @@
   "main": "dist/commercetools-frontend-react-notifications.cjs.js",
   "module": "dist/commercetools-frontend-react-notifications.esm.js",
   "files": ["dist", "package.json", "LICENSE", "README.md"],
-  "scripts": {
-    "prepare": "./../../scripts/version.js replace"
-  },
   "dependencies": {
     "@babel/runtime": "7.15.4",
     "@babel/runtime-corejs3": "7.15.4",

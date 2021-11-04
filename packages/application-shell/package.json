@@ -21,7 +21,6 @@
   },
   "files": ["dist", "test-utils", "package.json", "LICENSE", "README.md"],
   "scripts": {
-    "prepare": "./../../scripts/version.js replace",
     "compile-css-modules": "./scripts/compile-styles.js"
   },
   "dependencies": {
