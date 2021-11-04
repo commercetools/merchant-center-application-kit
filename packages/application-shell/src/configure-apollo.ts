@@ -12,7 +12,7 @@ import {
   createHttpLink,
   InMemoryCache,
 } from '@apollo/client';
-import { version as apolloVersion } from '@apollo/client/version';
+// import { version as apolloVersion } from '@apollo/client/version';
 import createHttpUserAgent from '@commercetools/http-user-agent';
 import {
   errorLink,
@@ -32,7 +32,7 @@ type TApolloClientOptions = {
 
 const userAgent = createHttpUserAgent({
   name: 'apollo-client',
-  version: apolloVersion,
+  // version: apolloVersion,
   libraryName: [window.app.applicationName, 'application-shell'].join('/'),
   libraryVersion: version,
   contactUrl: 'https://git.io/fjuyC', // points to the appkit repo issues
