@@ -30,7 +30,6 @@
   ],
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
-    "prebuild": "yarn compile-data",
     "compile-data": "formatjs compile-folder --format=./transifex-transformer.js --ast data compiled-data"
   },
   "dependencies": {
