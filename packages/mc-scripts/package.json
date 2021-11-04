@@ -16,9 +16,7 @@
   },
   "main": "./build/index.js",
   "files": ["build", "config", "package.json", "LICENSE", "README.md"],
-  "bin": {
-    "mc-scripts": "./bin/mc-scripts.js"
-  },
+  "bin": "./bin/cli.js",
   "browserslist": {
     "production": [">1%", "not op_mini all", "not dead"],
     "development": ["last 2 firefox versions", "last 2 chrome versions"]
