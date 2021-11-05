@@ -1,14 +1,14 @@
 module.exports = {
-  '*.md': ['yarn prettier --write --parser markdown'],
-  '*.yaml': ['yarn prettier --write --parser yaml'],
-  '*.graphql': ['yarn prettier --write --parser graphql'],
-  '*.json': ['yarn prettier --write --parser json'],
+  '*.md': ['prettier --write --parser markdown'],
+  '*.yaml': ['prettier --write --parser yaml'],
+  '*.graphql': ['prettier --write --parser graphql'],
+  '*.json': ['prettier --write --parser json'],
   '*.mc.graphql': () => 'yarn generate-types:mc',
   '*.ctp.graphql': () => 'yarn generate-types:ctp',
   '*.settings.graphql': () => 'yarn generate-types:settings',
   '*.proxy.graphql': () => 'yarn generate-types:proxy',
   '*.js': [
-    'yarn prettier --write',
+    'prettier --write',
     // NOTE: apparently if you pass some argument that is not a flag AFTER the `reporters`
     // flag, jest does not seem correctly parse the arguments.
     //
@@ -20,7 +20,7 @@ module.exports = {
     'yarn lint:js --reporters=jest-silent-reporter --onlyChanged',
   ],
   '*.{ts,tsx}': [
-    'yarn prettier --write',
+    'prettier --write',
     // NOTE: apparently if you pass some argument that is not a flag AFTER the `reporters`
     // flag, jest does not seem correctly parse the arguments.
     //
@@ -45,5 +45,5 @@ module.exports = {
     'yarn lint:css --reporters=jest-silent-reporter --onlyChanged',
   ],
   'packages/application-config/schema.json': () =>
-    'yarn --cwd packages/application-config build:schema',
+    'yarn workspace @commercetools-frontend/application-config build:schema',
 };
