@@ -17,4 +17,5 @@ module.exports = {
     'babel-plugin-typescript-to-proptypes',
     './babel-plugin-package-version',
   ],
+  ignore: ['./babel-plugin-package-version'],
 };
