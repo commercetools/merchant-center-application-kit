@@ -15,6 +15,6 @@ module.exports = {
   plugins: [
     'babel-plugin-import-graphql',
     'babel-plugin-typescript-to-proptypes',
-    require('./babel-plugin-package-version'),
+    './babel-plugin-package-version',
   ],
 };
