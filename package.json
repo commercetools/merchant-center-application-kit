@@ -6,7 +6,7 @@
   "scripts": {
     "auth": "npm_config_registry=https://registry.npmjs.org npm whoami",
     "clean": "manypkg exec rm -rf build dist test-utils/dist experimental/dist task/dist add-commands/dist",
-    "extract-intl": "formatjs extract --format=$(pwd)/packages/i18n/transifex-transformer.js --out-file=$(pwd)/packages/i18n/data/core.json 'packages/**/*messages.ts'",
+    "extract-intl": "formatjs extract --format=./packages/i18n/transifex-transformer.js --out-file=./packages/i18n/data/core.json 'packages/**/*messages.ts'",
     "compile-intl": "yarn workspace @commercetools-frontend/i18n compile-data",
     "compile-css-modules": "yarn workspace @commercetools-frontend/application-shell compile-css-modules --no-private",
     "l10n:build": "yarn workspace @commercetools-frontend/l10n generate-data",
