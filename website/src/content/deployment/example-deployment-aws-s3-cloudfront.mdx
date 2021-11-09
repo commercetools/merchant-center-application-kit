@@ -396,7 +396,7 @@ We assume that the transformer function is defined at the following location: `.
 
 ```console highlightLines="3" noPromptLines="2"
 mc-scripts compile-html \
-  --transformer $(pwd)/config/transformer-aws.js
+  --transformer ./config/transformer-aws.js
 ```
 
 The purpose of the transformer function is to generate the final Lambda file given the compiled values passed to the function.
@@ -540,7 +540,7 @@ To generate the Lambda function, run the `compile-html` command:
 yarn build
 
 mc-scripts compile-html \
-  --transformer $(pwd)/config/transformer-aws.js
+  --transformer ./config/transformer-aws.js
 ```
 
 The previously generated Lambda function has the important role of including security headers on all requests made to the CloudFront distribution. Here you will populate the contents of the Lambda function.
