@@ -59,7 +59,7 @@ type Props = {
   baseZIndex: number;
   getParentSelector: typeof getDefaultParentSelector;
   shouldDelayOnClose: boolean;
-  afterOpenTransform?: string;
+  afterOpenStyles?: string | { [key: string]: string | number };
   // TopBar props:
   topBarColor?: 'surface' | 'neutral';
   currentPathLabel?: string;
@@ -118,7 +118,12 @@ const ModalPage = (props: Props) => {
           }}
           className={{
             base: makeClassName(getContainerStyles(props)),
-            afterOpen: makeClassName(getAfterOpenContainerAnimation(props)),
+            afterOpen:
+              typeof props.afterOpenStyles === 'string'
+                ? props.afterOpenStyles
+                : makeClassName(
+                    props.afterOpenStyles ?? getAfterOpenContainerAnimation()
+                  ),
             beforeClose: makeClassName(getBeforeCloseContainerAnimation()),
           }}
           contentLabel={props.title}

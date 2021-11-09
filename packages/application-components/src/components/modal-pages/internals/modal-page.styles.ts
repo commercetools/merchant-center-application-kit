@@ -8,7 +8,6 @@ type StyleProps = {
   level: number;
   zIndex?: number;
   baseZIndex: number;
-  afterOpenTransform?: string;
 };
 
 export const getContainerStyles = (props: StyleProps) => css`
@@ -40,8 +39,8 @@ export const getOverlayStyles = (props: StyleProps) => css`
   transition: opacity ${TRANSITION_DURATION}ms ease;
 `;
 
-export const getAfterOpenContainerAnimation = (props: StyleProps) => css`
-  transform: ${props.afterOpenTransform || 'translate3d(0, 0, 0)'} !important;
+export const getAfterOpenContainerAnimation = () => css`
+  transform: translate3d(0, 0, 0) !important;
 `;
 
 export const getAfterOpenOverlayAnimation = () => css`

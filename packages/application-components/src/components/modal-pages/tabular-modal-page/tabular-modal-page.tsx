@@ -32,7 +32,7 @@ type Props = {
   baseZIndex?: number;
   getParentSelector?: () => HTMLElement;
   shouldDelayOnClose?: boolean;
-  afterOpenTransform?: string;
+  afterOpenStyles?: string | { [key: string]: string | number };
   // TopBar Props
   topBarCurrentPathLabel?: string;
   topBarPreviousPathLabel?: Label;
@@ -63,7 +63,7 @@ const TabularModalPage = (props: Props) => (
     previousPathLabel={props.topBarPreviousPathLabel}
     getParentSelector={props.getParentSelector}
     shouldDelayOnClose={props.shouldDelayOnClose}
-    afterOpenTransform={props.afterOpenTransform}
+    afterOpenStyles={props.afterOpenStyles}
   >
     <div
       css={css`
