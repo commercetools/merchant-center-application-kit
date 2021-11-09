@@ -7,7 +7,7 @@ import {
   useState,
 } from 'react';
 import Modal from 'react-modal';
-import { ClassNames } from '@emotion/react';
+import { ClassNames, CSSObject } from '@emotion/react';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import {
   TRANSITION_DURATION,
@@ -59,7 +59,7 @@ type Props = {
   baseZIndex: number;
   getParentSelector: typeof getDefaultParentSelector;
   shouldDelayOnClose: boolean;
-  afterOpenStyles?: string | { [key: string]: string | number };
+  afterOpenStyles?: string | CSSObject;
   // TopBar props:
   topBarColor?: 'surface' | 'neutral';
   currentPathLabel?: string;

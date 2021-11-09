@@ -1,5 +1,5 @@
 import { ReactElement, ReactNode, SyntheticEvent } from 'react';
-import { css } from '@emotion/react';
+import { css, CSSObject } from '@emotion/react';
 import { customProperties } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import { sharedMessages } from '@commercetools-frontend/i18n';
@@ -32,7 +32,7 @@ type Props = {
   baseZIndex?: number;
   getParentSelector?: () => HTMLElement;
   shouldDelayOnClose?: boolean;
-  afterOpenStyles?: string | { [key: string]: string | number };
+  afterOpenStyles?: string | CSSObject;
   // TopBar Props
   topBarCurrentPathLabel?: string;
   topBarPreviousPathLabel?: Label;
