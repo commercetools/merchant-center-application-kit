@@ -1,7 +1,6 @@
 import type { Command } from '../types';
 
 import { MouseEventHandler } from 'react';
-import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import { AngleThinRightIcon } from '@commercetools-uikit/icons';
 import { customProperties } from '@commercetools-uikit/design-system';
@@ -67,21 +66,5 @@ const ButlerCommand = (props: Props) => (
 );
 
 ButlerCommand.displayName = 'ButlerCommand';
-
-ButlerCommand.propTypes = {
-  command: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-    subCommands: PropTypes.oneOfType([
-      PropTypes.func,
-      // commands are recursive (subCommands are commands), but this component
-      // doesn't care about that part, so we just accept any.
-      PropTypes.arrayOf(PropTypes.object),
-    ]),
-  }).isRequired,
-  isSelected: PropTypes.bool,
-  onMouseEnter: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired,
-};
 
 export default ButlerCommand;

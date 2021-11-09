@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import type { TAddNotificationAction } from '@commercetools-frontend/notifications';
 import type { TShowNotification } from '@commercetools-frontend/actions-global';
 

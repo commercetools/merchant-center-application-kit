@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import Constraints from '@commercetools-uikit/constraints';
 import Text from '@commercetools-uikit/text';
@@ -49,13 +48,5 @@ const MaintenancePageLayout = (props: Props) => (
   </div>
 );
 MaintenancePageLayout.displayName = 'MaintenancePageLayout';
-MaintenancePageLayout.propTypes = {
-  imageSrc: PropTypes.string.isRequired,
-  label: PropTypes.string,
-  title: PropTypes.node.isRequired,
-  paragraph1: PropTypes.node.isRequired,
-  paragraph2: PropTypes.node,
-  bodyContent: PropTypes.node,
-};
 
 export default MaintenancePageLayout;
