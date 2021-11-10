@@ -1,4 +1,5 @@
 import { ReactElement, ReactNode, SyntheticEvent } from 'react';
+import { CSSObject } from '@emotion/react';
 import ModalPage from '../internals/modal-page';
 import ModalPageHeader from '../internals/modal-page-header';
 import { ContentWrapper } from '../internals/modal-page.styles';
@@ -22,6 +23,7 @@ type Props = {
   baseZIndex?: number;
   getParentSelector?: () => HTMLElement;
   shouldDelayOnClose?: boolean;
+  afterOpenStyles?: string | CSSObject;
   // TopBar Props
   topBarCurrentPathLabel?: string;
   topBarPreviousPathLabel?: Label;
@@ -41,6 +43,7 @@ const InfoModalPage = (props: Props) => (
     previousPathLabel={props.topBarPreviousPathLabel}
     shouldDelayOnClose={props.shouldDelayOnClose}
     getParentSelector={props.getParentSelector}
+    afterOpenStyles={props.afterOpenStyles}
   >
     <ModalPageHeader title={props.title} subtitle={props.subtitle} />
     <ContentWrapper>{props.children}</ContentWrapper>
