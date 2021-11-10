@@ -1,3 +1,5 @@
+import type { CSSObject } from '@emotion/react';
+
 import { ReactElement, ReactNode, SyntheticEvent } from 'react';
 import { css } from '@emotion/react';
 import { customProperties } from '@commercetools-uikit/design-system';
@@ -32,6 +34,7 @@ type Props = {
   baseZIndex?: number;
   getParentSelector?: () => HTMLElement;
   shouldDelayOnClose?: boolean;
+  afterOpenStyles?: string | CSSObject;
   // TopBar Props
   topBarCurrentPathLabel?: string;
   topBarPreviousPathLabel?: Label;
@@ -62,6 +65,7 @@ const TabularModalPage = (props: Props) => (
     previousPathLabel={props.topBarPreviousPathLabel}
     getParentSelector={props.getParentSelector}
     shouldDelayOnClose={props.shouldDelayOnClose}
+    afterOpenStyles={props.afterOpenStyles}
   >
     <div
       css={css`

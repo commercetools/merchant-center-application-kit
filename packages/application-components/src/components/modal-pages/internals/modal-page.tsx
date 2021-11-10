@@ -1,3 +1,5 @@
+import type { CSSObject } from '@emotion/react';
+
 import {
   ReactNode,
   SyntheticEvent,
@@ -59,6 +61,7 @@ type Props = {
   baseZIndex: number;
   getParentSelector: typeof getDefaultParentSelector;
   shouldDelayOnClose: boolean;
+  afterOpenStyles?: string | CSSObject;
   // TopBar props:
   topBarColor?: 'surface' | 'neutral';
   currentPathLabel?: string;
@@ -117,7 +120,12 @@ const ModalPage = (props: Props) => {
           }}
           className={{
             base: makeClassName(getContainerStyles(props)),
-            afterOpen: makeClassName(getAfterOpenContainerAnimation()),
+            afterOpen:
+              typeof props.afterOpenStyles === 'string'
+                ? props.afterOpenStyles
+                : makeClassName(
+                    props.afterOpenStyles ?? getAfterOpenContainerAnimation()
+                  ),
             beforeClose: makeClassName(getBeforeCloseContainerAnimation()),
           }}
           contentLabel={props.title}

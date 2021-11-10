@@ -1,3 +1,5 @@
+import type { CSSObject } from '@emotion/react';
+
 import { SyntheticEvent, ReactNode, ReactElement } from 'react';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import CustomFormModalPage from '../custom-form-modal-page';
@@ -22,6 +24,7 @@ type Props = {
   baseZIndex?: number;
   getParentSelector?: () => HTMLElement;
   shouldDelayOnClose?: boolean;
+  afterOpenStyles?: string | CSSObject;
   // TopBar Props
   topBarCurrentPathLabel?: string;
   topBarPreviousPathLabel?: Label;
@@ -57,6 +60,7 @@ const FormModalPage = (props: Props) => (
     getParentSelector={props.getParentSelector}
     shouldDelayOnClose={props.shouldDelayOnClose}
     hideControls={props.hideControls}
+    afterOpenStyles={props.afterOpenStyles}
     formControls={
       <>
         <CustomFormModalPage.FormSecondaryButton
