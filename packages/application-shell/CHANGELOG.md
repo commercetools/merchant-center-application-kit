@@ -1,5 +1,12 @@
 # @commercetools-frontend/application-shell
 
+## 20.10.5
+
+### Patch Changes
+
+- Updated dependencies [[`e897317a`](https://github.com/commercetools/merchant-center-application-kit/commit/e897317a90d6179638283e9a108bf93394d67eef)]:
+  - @commercetools-frontend/application-components@20.10.5
+
 ## 20.10.4
 
 ### Patch Changes

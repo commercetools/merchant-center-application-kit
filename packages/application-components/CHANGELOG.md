@@ -1,5 +1,12 @@
 # @commercetools-frontend/application-components
 
+## 20.10.5
+
+### Patch Changes
+
+- [#2387](https://github.com/commercetools/merchant-center-application-kit/pull/2387) [`e897317a`](https://github.com/commercetools/merchant-center-application-kit/commit/e897317a90d6179638283e9a108bf93394d67eef) Thanks [@fuchodeveloper](https://github.com/fuchodeveloper)! - The `<*ModalPage>` components now accept a prop `afterOpenStyles` to overwrite the default styles. You can pass a "class name" or a CSS-in-JS style object.
+  This should be used only in cases the default styles are causing some layout issues.
+
 ## 20.10.4
 
 ### Patch Changes

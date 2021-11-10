@@ -1,6 +1,6 @@
 {
   "name": "merchant-center-application-template-starter",
-  "version": "18.3.4",
+  "version": "18.3.5",
   "description": "A starter example for the bare minimum setup to develop a Merchant Center Application",
   "private": true,
   "scripts": {
@@ -21,8 +21,8 @@
   "dependencies": {
     "@apollo/client": "3.4.16",
     "@commercetools-frontend/actions-global": "20.10.4",
-    "@commercetools-frontend/application-components": "20.10.4",
-    "@commercetools-frontend/application-shell": "20.10.4",
+    "@commercetools-frontend/application-components": "20.10.5",
+    "@commercetools-frontend/application-shell": "20.10.5",
     "@commercetools-frontend/application-shell-connectors": "20.10.4",
     "@commercetools-frontend/assets": "20.10.1",
     "@commercetools-frontend/constants": "20.10.1",
