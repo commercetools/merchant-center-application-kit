@@ -1,3 +1,5 @@
+import type { CSSObject } from '@emotion/react';
+
 import {
   ReactNode,
   SyntheticEvent,
@@ -7,7 +9,7 @@ import {
   useState,
 } from 'react';
 import Modal from 'react-modal';
-import { ClassNames, CSSObject } from '@emotion/react';
+import { ClassNames } from '@emotion/react';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import {
   TRANSITION_DURATION,

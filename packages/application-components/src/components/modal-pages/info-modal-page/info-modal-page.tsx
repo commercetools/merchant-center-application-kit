@@ -1,5 +1,6 @@
+import type { CSSObject } from '@emotion/react';
+
 import { ReactElement, ReactNode, SyntheticEvent } from 'react';
-import { CSSObject } from '@emotion/react';
 import ModalPage from '../internals/modal-page';
 import ModalPageHeader from '../internals/modal-page-header';
 import { ContentWrapper } from '../internals/modal-page.styles';

@@ -1,5 +1,7 @@
+import type { CSSObject } from '@emotion/react';
+
 import { ReactElement, ReactNode, SyntheticEvent } from 'react';
-import { css, CSSObject } from '@emotion/react';
+import { css } from '@emotion/react';
 import { customProperties } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import { sharedMessages } from '@commercetools-frontend/i18n';
