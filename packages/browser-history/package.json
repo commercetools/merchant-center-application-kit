@@ -11,16 +11,12 @@
   "homepage": "https://docs.commercetools.com/custom-applications",
   "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
-  "private": false,
   "publishConfig": {
     "access": "public"
   },
   "main": "dist/commercetools-frontend-browser-history.cjs.js",
   "module": "dist/commercetools-frontend-browser-history.esm.js",
   "files": ["dist", "package.json", "LICENSE", "README.md"],
-  "scripts": {
-    "prepare": "./../../scripts/version.js replace"
-  },
   "dependencies": {
     "@babel/runtime": "7.15.4",
     "@babel/runtime-corejs3": "7.15.4",

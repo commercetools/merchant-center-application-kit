@@ -50,6 +50,7 @@ describe('rendering', () => {
           mocks: mockedRequest,
         }
       );
+      // eslint-disable-next-line testing-library/prefer-find-by
       await waitFor(() =>
         expect(
           // eslint-disable-next-line testing-library/no-container

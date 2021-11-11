@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "build:local": "gatsby build",
-    "build": "gatsby build --prefix-paths",
-    "postbuild": "mv public ../website/public/custom-applications/playground",
+    "build": "gatsby build --prefix-paths && mv public ../website/public/custom-applications/playground",
     "start": "gatsby develop --port 8001",
     "serve": "gatsby serve"
   },

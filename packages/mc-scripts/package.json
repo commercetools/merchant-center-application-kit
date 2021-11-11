@@ -11,22 +11,18 @@
   "homepage": "https://docs.commercetools.com/custom-applications",
   "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
-  "private": false,
   "publishConfig": {
     "access": "public"
   },
   "main": "./build/index.js",
   "files": ["build", "config", "package.json", "LICENSE", "README.md"],
-  "bin": {
-    "mc-scripts": "./bin/mc-scripts.js"
-  },
+  "bin": "./bin/cli.js",
   "browserslist": {
     "production": [">1%", "not op_mini all", "not dead"],
     "development": ["last 2 firefox versions", "last 2 chrome versions"]
   },
   "scripts": {
-    "prebuild": "rimraf build/**",
-    "build": "babel src --out-dir build",
+    "build": "rimraf build && babel src --out-dir build",
     "build:bundles:watch": "yarn build -w"
   },
   "dependencies": {
@@ -76,7 +72,8 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "7.15.8",
-    "@babel/preset-env": "7.15.8"
+    "@babel/preset-env": "7.15.8",
+    "rimraf": "3.0.2"
   },
   "engines": {
     "node": ">=12 || >=14"

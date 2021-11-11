@@ -18,11 +18,9 @@
     "toolkit"
   ],
   "license": "MIT",
-  "private": false,
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {},
   "main": "dist/commercetools-backend-loggers.cjs.js",
   "module": "dist/commercetools-backend-loggers.esm.js",
   "files": ["dist", "package.json", "LICENSE", "README.md"],

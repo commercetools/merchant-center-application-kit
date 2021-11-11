@@ -62,14 +62,16 @@ const generateStatic = async () => {
 
   if (flags.transformer) {
     try {
-      require.resolve(flags.transformer);
+      const transformerPath = require.resolve(flags.transformer, {
+        paths: [appDirectory],
+      });
+      const transformerFn = require(transformerPath);
+      transformerFn(compiled);
     } catch (error) {
       throw new Error(
         `Could not load transformer module "${flags.transformer}"\n${error.stack}`
       );
     }
-    const transformerFn = require(flags.transformer);
-    transformerFn(compiled);
   } else {
     console.log(JSON.stringify(compiled.headers));
   }

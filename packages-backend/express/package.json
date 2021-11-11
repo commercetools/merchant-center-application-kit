@@ -11,11 +11,9 @@
   "homepage": "https://docs.commercetools.com/custom-applications",
   "keywords": ["javascript", "nodejs", "express", "http", "server", "toolkit"],
   "license": "MIT",
-  "private": false,
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {},
   "main": "dist/commercetools-backend-express.cjs.js",
   "module": "dist/commercetools-backend-express.esm.js",
   "files": ["dist", "package.json", "LICENSE", "README.md"],

@@ -3,11 +3,8 @@
   "version": "18.3.5",
   "private": true,
   "scripts": {
-    "prebuild": "./scripts/prebuild.sh && yarn generate-icons",
-    "build": "gatsby build --prefix-paths",
-    "postbuild": "./scripts/postbuild.sh && yarn check-links",
-    "prestart": "yarn generate-icons",
-    "start": "gatsby develop",
+    "build": "./scripts/prebuild.sh && yarn generate-icons && gatsby build --prefix-paths && ./scripts/postbuild.sh && yarn check-links",
+    "start": "yarn generate-icons && gatsby develop",
     "check-links": "yarn linkinator '*/index.html' --server-root public",
     "generate-icons": "svgr -d src/icons/generated src/icons/svg && prettier --write '**/generated/*.js'"
   },

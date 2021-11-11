@@ -16,7 +16,6 @@
     "toolkit"
   ],
   "license": "MIT",
-  "private": false,
   "publishConfig": {
     "access": "public"
   },
@@ -30,9 +29,7 @@
     "README.md"
   ],
   "scripts": {
-    "prepare": "./../../scripts/version.js replace",
-    "prebuild": "yarn compile-data",
-    "compile-data": "formatjs compile-folder --format=$(pwd)/transifex-transformer.js --ast data compiled-data"
+    "compile-data": "formatjs compile-folder --format=./transifex-transformer.js --ast data compiled-data"
   },
   "dependencies": {
     "@babel/runtime": "7.15.4",
@@ -48,6 +45,7 @@
     "prop-types": "15.7.2"
   },
   "devDependencies": {
+    "@formatjs/cli": "4.4.0",
     "react": "17.0.2",
     "react-intl": "5.21.0"
   },

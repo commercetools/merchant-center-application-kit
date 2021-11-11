@@ -161,7 +161,7 @@ We assume that the transformer function is defined at the following location: `.
 
 ```console noPromptLines="2"
 mc-scripts compile-html \
-  --transformer $(pwd)/config/transformer-firebase.js
+  --transformer ./config/transformer-firebase.js
 ```
 
 The purpose of the transformer function is to generate the final `firebase.json` file given the compiled values passed to the function.
@@ -353,7 +353,7 @@ Finally, we can trigger the deployment using the [Firebase CLI](https://firebase
 yarn build
 
 mc-scripts compile-html \
-  --transformer $(pwd)/config/transformer-firebase.js
+  --transformer ./config/transformer-firebase.js
 
 firebase deploy
 ```

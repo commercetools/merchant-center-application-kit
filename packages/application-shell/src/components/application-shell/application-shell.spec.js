@@ -154,7 +154,7 @@ const getDefaultMockResolvers = (mocks = {}) => {
       if (req.variables.projectKey === 'not-found') {
         return res(ctx.data({ project: null }));
       }
-      return res(ctx.data({ project: mockedProjects[0] }));
+      return res(ctx.data({ project: mockedProjects[0] ?? null }));
     }),
     graphql.query('FetchProjectExtensionsNavbar', (req, res, ctx) =>
       ctx.data({

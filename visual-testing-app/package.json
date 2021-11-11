@@ -4,9 +4,7 @@
   "description": "An app to facilitate visual testing",
   "private": true,
   "scripts": {
-    "prebuild": "rimraf dist/**",
-    "build": "mc-scripts build",
-    "postbuild": "MC_APP_ENV=development mc-scripts compile-html",
+    "build": "rimraf dist && mc-scripts build && MC_APP_ENV=development mc-scripts compile-html",
     "start": "mc-scripts start",
     "serve": "mc-scripts serve"
   },
@@ -32,6 +30,7 @@
     "react-router-dom": "5.3.0"
   },
   "devDependencies": {
-    "@commercetools-frontend/mc-scripts": "20.10.4"
+    "@commercetools-frontend/mc-scripts": "20.10.4",
+    "rimraf": "3.0.2"
   }
 }

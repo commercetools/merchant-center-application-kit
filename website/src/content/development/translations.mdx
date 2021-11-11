@@ -28,7 +28,7 @@ To generate translation files, you can use the official `@formatjs/cli` package 
 
 ```console noPromptLines="2-3"
 formatjs extract \
-  --out-file=$(pwd)/src/i18n/data/core.json \
+  --out-file=./src/i18n/data/core.json \
   'src/**/messages.js'
 ```
 
@@ -36,8 +36,8 @@ Based on your translation tool, you may need to transform the extracted messages
 
 ```console noPromptLines="2-3" highlightLines="2"
 formatjs extract \
-  --format=$(pwd)/intl-transformer.js
-  --out-file=$(pwd)/src/i18n/data/core.json \
+  --format=./intl-transformer.js
+  --out-file=./src/i18n/data/core.json \
   'src/**/messages.js'
 ```
 

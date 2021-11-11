@@ -11,14 +11,10 @@
   "homepage": "https://docs.commercetools.com/custom-applications",
   "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
-  "private": false,
-  "scripts": {},
   "publishConfig": {
     "access": "public"
   },
-  "bin": {
-    "create-mc-app": "./bin/create-mc-app.js"
-  },
+  "bin": "./bin/cli.js",
   "dependencies": {
     "execa": "5.1.1",
     "listr": "0.14.3",
