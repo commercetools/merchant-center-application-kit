@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-website/custom-applications",
-  "version": "18.3.5",
+  "version": "18.3.6",
   "private": true,
   "scripts": {
     "build": "./scripts/prebuild.sh && yarn generate-icons && gatsby build --prefix-paths && ./scripts/postbuild.sh && yarn check-links",

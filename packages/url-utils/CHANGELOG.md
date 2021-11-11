@@ -1,5 +1,11 @@
 # @commercetools-frontend/url-utils
 
+## 20.10.6
+
+### Patch Changes
+
+- [#2386](https://github.com/commercetools/merchant-center-application-kit/pull/2386) [`d7fcf6fc`](https://github.com/commercetools/merchant-center-application-kit/commit/d7fcf6fc8495d4eae68e0a4f4c1f1b3e0e394454) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade to Yarn v3
+
 ## 20.10.1
 
 ### Patch Changes

@@ -1,5 +1,20 @@
 # @commercetools-frontend/mc-scripts
 
+## 20.10.6
+
+### Patch Changes
+
+- [#2386](https://github.com/commercetools/merchant-center-application-kit/pull/2386) [`d7fcf6fc`](https://github.com/commercetools/merchant-center-application-kit/commit/d7fcf6fc8495d4eae68e0a4f4c1f1b3e0e394454) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade to Yarn v3
+
+* [#2386](https://github.com/commercetools/merchant-center-application-kit/pull/2386) [`d7fcf6fc`](https://github.com/commercetools/merchant-center-application-kit/commit/d7fcf6fc8495d4eae68e0a4f4c1f1b3e0e394454) Thanks [@emmenko](https://github.com/emmenko)! - Allow to pass a relative path for transformer option
+
+* Updated dependencies [[`d7fcf6fc`](https://github.com/commercetools/merchant-center-application-kit/commit/d7fcf6fc8495d4eae68e0a4f4c1f1b3e0e394454)]:
+  - @commercetools-frontend/application-config@20.10.6
+  - @commercetools-frontend/assets@20.10.6
+  - @commercetools-frontend/babel-preset-mc-app@20.10.6
+  - @commercetools-frontend/mc-dev-authentication@20.10.6
+  - @commercetools-frontend/mc-html-template@20.10.6
+
 ## 20.10.4
 
 ### Patch Changes

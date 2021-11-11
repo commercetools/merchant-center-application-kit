@@ -1,5 +1,26 @@
 # merchant-center-application-template-starter
 
+## 18.3.6
+
+### Patch Changes
+
+- [#2386](https://github.com/commercetools/merchant-center-application-kit/pull/2386) [`d7fcf6fc`](https://github.com/commercetools/merchant-center-application-kit/commit/d7fcf6fc8495d4eae68e0a4f4c1f1b3e0e394454) Thanks [@emmenko](https://github.com/emmenko)! - Allow to pass a relative path for transformer option
+
+- Updated dependencies [[`d7fcf6fc`](https://github.com/commercetools/merchant-center-application-kit/commit/d7fcf6fc8495d4eae68e0a4f4c1f1b3e0e394454), [`d7fcf6fc`](https://github.com/commercetools/merchant-center-application-kit/commit/d7fcf6fc8495d4eae68e0a4f4c1f1b3e0e394454)]:
+  - @commercetools-frontend/actions-global@20.10.6
+  - @commercetools-frontend/application-components@20.10.6
+  - @commercetools-frontend/application-shell@20.10.6
+  - @commercetools-frontend/application-shell-connectors@20.10.6
+  - @commercetools-frontend/assets@20.10.6
+  - @commercetools-frontend/constants@20.10.6
+  - @commercetools-frontend/eslint-config-mc-app@20.10.6
+  - @commercetools-frontend/i18n@20.10.6
+  - @commercetools-frontend/jest-preset-mc-app@20.10.6
+  - @commercetools-frontend/mc-dev-authentication@20.10.6
+  - @commercetools-frontend/mc-scripts@20.10.6
+  - @commercetools-frontend/permissions@20.10.6
+  - @commercetools-frontend/sdk@20.10.6
+
 ## 18.3.5
 
 ### Patch Changes
