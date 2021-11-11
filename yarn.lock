@@ -2375,7 +2375,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/application-components@20.10.4, @commercetools-frontend/application-components@workspace:packages/application-components":
+"@commercetools-frontend/application-components@20.10.5, @commercetools-frontend/application-components@workspace:packages/application-components":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/application-components@workspace:packages/application-components"
   dependencies:
@@ -2463,7 +2463,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/application-shell@20.10.4, @commercetools-frontend/application-shell@workspace:packages/application-shell":
+"@commercetools-frontend/application-shell@20.10.5, @commercetools-frontend/application-shell@workspace:packages/application-shell":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/application-shell@workspace:packages/application-shell"
   dependencies:
@@ -2471,7 +2471,7 @@ __metadata:
     "@babel/runtime": 7.15.4
     "@babel/runtime-corejs3": 7.15.4
     "@commercetools-frontend/actions-global": 20.10.4
-    "@commercetools-frontend/application-components": 20.10.4
+    "@commercetools-frontend/application-components": 20.10.5
     "@commercetools-frontend/application-shell-connectors": 20.10.4
     "@commercetools-frontend/assets": 20.10.1
     "@commercetools-frontend/browser-history": 20.10.1
@@ -2992,7 +2992,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-local/visual-testing-app@workspace:visual-testing-app"
   dependencies:
-    "@commercetools-frontend/application-components": 20.10.4
+    "@commercetools-frontend/application-components": 20.10.5
     "@commercetools-frontend/constants": 20.10.1
     "@commercetools-frontend/mc-scripts": 20.10.4
     "@commercetools-frontend/react-notifications": 20.10.4
@@ -3956,7 +3956,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-website/components-playground@workspace:website-components-playground"
   dependencies:
-    "@commercetools-frontend/application-components": 20.10.4
+    "@commercetools-frontend/application-components": 20.10.5
     "@commercetools-frontend/i18n": 20.10.4
     "@commercetools-uikit/design-system": ^12.2.2
     "@commercetools-uikit/icon-button": ^12.2.2
@@ -22856,8 +22856,8 @@ __metadata:
   dependencies:
     "@apollo/client": 3.4.16
     "@commercetools-frontend/actions-global": 20.10.4
-    "@commercetools-frontend/application-components": 20.10.4
-    "@commercetools-frontend/application-shell": 20.10.4
+    "@commercetools-frontend/application-components": 20.10.5
+    "@commercetools-frontend/application-shell": 20.10.5
     "@commercetools-frontend/application-shell-connectors": 20.10.4
     "@commercetools-frontend/assets": 20.10.1
     "@commercetools-frontend/constants": 20.10.1
@@ -25554,8 +25554,8 @@ __metadata:
   dependencies:
     "@commercetools-docs/ui-kit": 17.0.8
     "@commercetools-frontend/actions-global": 20.10.4
-    "@commercetools-frontend/application-components": 20.10.4
-    "@commercetools-frontend/application-shell": 20.10.4
+    "@commercetools-frontend/application-components": 20.10.5
+    "@commercetools-frontend/application-shell": 20.10.5
     "@commercetools-frontend/application-shell-connectors": 20.10.4
     "@commercetools-frontend/assets": 20.10.1
     "@commercetools-frontend/constants": 20.10.1
