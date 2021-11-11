@@ -1,7 +1,6 @@
 import type { SingleValueProps } from 'react-select';
 
 import { useCallback } from 'react';
-import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import SelectInput from '@commercetools-uikit/select-input';
 import { WorldIcon } from '@commercetools-uikit/icons';
@@ -54,10 +53,6 @@ export const SingleValue = (props: CustomSingleValueProps) => (
     </span>
   </div>
 );
-SingleValue.propTypes = {
-  children: PropTypes.node.isRequired,
-  localeCount: PropTypes.number.isRequired,
-};
 SingleValue.displayName = 'SingleValue';
 
 const LocaleSwitcher = (props: Props) => {

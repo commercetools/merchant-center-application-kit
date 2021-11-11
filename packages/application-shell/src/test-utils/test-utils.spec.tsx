@@ -7,7 +7,6 @@
 import { graphql } from 'msw';
 import { setupServer } from 'msw/node';
 import { createContext, ReactNode, useContext } from 'react';
-import PropTypes from 'prop-types';
 import { gql } from '@apollo/client';
 import { useIntl } from 'react-intl';
 import { useSelector, useStore } from 'react-redux';
@@ -313,9 +312,6 @@ describe('custom render functions', () => {
     const ProvidedWrapper = ({ children }: { children?: ReactNode }) => (
       <Context.Provider value="provided wrapper">{children}</Context.Provider>
     );
-    ProvidedWrapper.propTypes = {
-      children: PropTypes.node.isRequired,
-    };
 
     it('should merge the passed wrapper with renderApp internal wrapper', async () => {
       const TestComponent = () => {
