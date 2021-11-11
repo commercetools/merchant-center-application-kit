@@ -12190,13 +12190,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "commander@npm:3.0.2"
-  checksum: 6d14ad030d1904428139487ed31febcb04c1604db2b8d9fae711f60ee6718828dc0e11602249e91c8a97b0e721e9c6d53edbc166bad3cde1596851d59a8f824d
-  languageName: node
-  linkType: hard
-
 "commander@npm:^4.0.1":
   version: 4.1.1
   resolution: "commander@npm:4.1.1"
@@ -15280,10 +15273,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expect-puppeteer@npm:^5.0.4":
-  version: 5.0.4
-  resolution: "expect-puppeteer@npm:5.0.4"
-  checksum: 002201879884038c7e9cd303bab772adc8f3d8a1c81112cada627bc58184223cd3d533958dc27fee3e09c8f03918d1d120b3da3201f1161c4c71354fdf5cf0cc
+"expect-puppeteer@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "expect-puppeteer@npm:6.0.0"
+  checksum: 7794c6dd0cd1c3ab3f8d6ad74d882c7cf040c76dd9a2a8e65717d6fe67ab80abb853617d6f4cd9e856671de365c98f8d31ff1fdfaa3e92a7278e4e8e339ba216
   languageName: node
   linkType: hard
 
@@ -15880,7 +15873,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"find-process@npm:^1.4.4":
+"find-process@npm:^1.4.5":
   version: 1.4.5
   resolution: "find-process@npm:1.4.5"
   dependencies:
@@ -20124,18 +20117,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-dev-server@npm:^5.0.3":
-  version: 5.0.3
-  resolution: "jest-dev-server@npm:5.0.3"
+"jest-dev-server@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "jest-dev-server@npm:6.0.0"
   dependencies:
-    chalk: ^4.1.1
+    chalk: ^4.1.2
     cwd: ^0.10.0
-    find-process: ^1.4.4
+    find-process: ^1.4.5
     prompts: ^2.4.1
-    spawnd: ^5.0.0
+    spawnd: ^6.0.0
     tree-kill: ^1.2.2
-    wait-on: ^5.3.0
-  checksum: 7285dfd4c903b14653ce58a50c4dcbc06236d367c341646f366f16aee0cfa9fa56f473e8e24ea71b4be1382cd13173ee3162855ee8b63d9c77bc41cd5211f18a
+    wait-on: ^6.0.0
+  checksum: ada602a3f28efb9144cc9fcfa335fbfd29dfeb0614eac7db2855bd3edc30b8ef6554c36b87e9d787e12caef67afbb44097a5c368e3366be7c8912dd2dc7450c6
   languageName: node
   linkType: hard
 
@@ -20228,16 +20221,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-environment-puppeteer@npm:^5.0.4":
-  version: 5.0.4
-  resolution: "jest-environment-puppeteer@npm:5.0.4"
+"jest-environment-puppeteer@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "jest-environment-puppeteer@npm:6.0.0"
   dependencies:
     chalk: ^4.1.1
     cwd: ^0.10.0
-    jest-dev-server: ^5.0.3
+    jest-dev-server: ^6.0.0
     jest-environment-node: ^27.0.1
     merge-deep: ^3.0.3
-  checksum: 0d5864f1069bf49d75b9a6f9c19c11bdf44c77f7d0b908e74ad3524a4486d495fac2f3c3cfeaeed6dcf7fa62ba7d88fb8340169c57a6769cb7211dcf296d8cc9
+  checksum: 0eda3ad49d2ef2d9cc3949b44364a2ad8b809f5c15d4b6eb0172503964f2b52d4cd724c3dd01a8d2f713cb613056736feea08d7407e5bc81fb2ff862fc6a1a9a
   languageName: node
   linkType: hard
 
@@ -20400,15 +20393,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-puppeteer@npm:5.0.4":
-  version: 5.0.4
-  resolution: "jest-puppeteer@npm:5.0.4"
+"jest-puppeteer@npm:6.0.0":
+  version: 6.0.0
+  resolution: "jest-puppeteer@npm:6.0.0"
   dependencies:
-    expect-puppeteer: ^5.0.4
-    jest-environment-puppeteer: ^5.0.4
+    expect-puppeteer: ^6.0.0
+    jest-environment-puppeteer: ^6.0.0
   peerDependencies:
-    puppeteer: ">= 1.5.0 < 10"
-  checksum: 29737a1a015950f78691838fbeedb8072cab2383b1212384fc631959ffd39971a50acc8c857a9f13e2df47357589319442828cdd445266efbe5727b9af23a0d4
+    puppeteer: ">= 1.5.0"
+  checksum: df0574ef0483558dd902a37910d59d6b28cefbac0f139f3af25ec3b3caa80bae1c81f8c3a8b8a68baf5eb9e6fca1e96b09bf3de2525891eebdbba92a7c07dbee
   languageName: node
   linkType: hard
 
@@ -20746,7 +20739,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"joi@npm:^17.2.1, joi@npm:^17.3.0, joi@npm:^17.4.0, joi@npm:^17.4.2":
+"joi@npm:^17.2.1, joi@npm:^17.4.0, joi@npm:^17.4.2":
   version: 17.4.2
   resolution: "joi@npm:17.4.2"
   dependencies:
@@ -22821,7 +22814,7 @@ __metadata:
     husky: 7.0.4
     jest: 27.3.1
     jest-each: 27.3.1
-    jest-puppeteer: 5.0.4
+    jest-puppeteer: 6.0.0
     jest-runner-eslint: 0.11.1
     jest-runner-executor: 1.0.0
     jest-silent-reporter: 0.5.0
@@ -28448,7 +28441,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rxjs@npm:^6.3.3, rxjs@npm:^6.4.0, rxjs@npm:^6.6.0, rxjs@npm:^6.6.3":
+"rxjs@npm:^6.3.3, rxjs@npm:^6.4.0, rxjs@npm:^6.6.0":
   version: 6.6.7
   resolution: "rxjs@npm:6.6.7"
   dependencies:
@@ -29343,15 +29336,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"spawnd@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "spawnd@npm:5.0.0"
+"spawnd@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "spawnd@npm:6.0.0"
   dependencies:
     exit: ^0.1.2
     signal-exit: ^3.0.3
     tree-kill: ^1.2.2
-    wait-port: ^0.2.9
-  checksum: 6a14b8b3c5f398c645e8dce46fe8f02eb2db3c31a43e9e978e904d46bddcfc723cc0c171d7f745d6b899dbe745c1a29ec035b1db0283993116ac6795d2eb0dea
+  checksum: f0ad259fb9ada645f208019d1c9fc3c3694047f260c2da5739cc1c63724f20f9bc638478e5fc9f39d116e69f46bd0456e1233b2662f495468a580347e801e75a
   languageName: node
   linkType: hard
 
@@ -32476,7 +32468,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wait-on@npm:6.0.0":
+"wait-on@npm:6.0.0, wait-on@npm:^6.0.0":
   version: 6.0.0
   resolution: "wait-on@npm:6.0.0"
   dependencies:
@@ -32488,34 +32480,6 @@ __metadata:
   bin:
     wait-on: bin/wait-on
   checksum: 6ae7bd2a933715c3b2f1c49f033d97c576b2c6a0257420d4c83964d2846c3967bfce33bc9af9a1a631ef38dfa6185be03cef57d2867c8c30c523278f964ac9e3
-  languageName: node
-  linkType: hard
-
-"wait-on@npm:^5.3.0":
-  version: 5.3.0
-  resolution: "wait-on@npm:5.3.0"
-  dependencies:
-    axios: ^0.21.1
-    joi: ^17.3.0
-    lodash: ^4.17.21
-    minimist: ^1.2.5
-    rxjs: ^6.6.3
-  bin:
-    wait-on: bin/wait-on
-  checksum: b7099104b7900ff6349f1196edff759076ab557a2053c017a587819f7a59f146ec9e35c99579acd31dcda371bfa72241ef28b8ccda902f0bf3fbf2d780a00ebf
-  languageName: node
-  linkType: hard
-
-"wait-port@npm:^0.2.9":
-  version: 0.2.9
-  resolution: "wait-port@npm:0.2.9"
-  dependencies:
-    chalk: ^2.4.2
-    commander: ^3.0.2
-    debug: ^4.1.1
-  bin:
-    wait-port: bin/wait-port.js
-  checksum: 62ad348234b4a7398f600e409a6b549b641319cb6d00b04b6a762041763634f453c3788ef10d3fcbd59cb466d49ce0917702fe0de331b7625ed4f18c158be664
   languageName: node
   linkType: hard
 
