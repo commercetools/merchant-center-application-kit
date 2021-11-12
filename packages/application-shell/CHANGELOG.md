@@ -1,5 +1,27 @@
 # @commercetools-frontend/application-shell
 
+## 20.10.6
+
+### Patch Changes
+
+- [#2386](https://github.com/commercetools/merchant-center-application-kit/pull/2386) [`d7fcf6fc`](https://github.com/commercetools/merchant-center-application-kit/commit/d7fcf6fc8495d4eae68e0a4f4c1f1b3e0e394454) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade to Yarn v3
+
+- Updated dependencies [[`d7fcf6fc`](https://github.com/commercetools/merchant-center-application-kit/commit/d7fcf6fc8495d4eae68e0a4f4c1f1b3e0e394454)]:
+  - @commercetools-frontend/actions-global@20.10.6
+  - @commercetools-frontend/application-components@20.10.6
+  - @commercetools-frontend/application-shell-connectors@20.10.6
+  - @commercetools-frontend/assets@20.10.6
+  - @commercetools-frontend/browser-history@20.10.6
+  - @commercetools-frontend/constants@20.10.6
+  - @commercetools-frontend/i18n@20.10.6
+  - @commercetools-frontend/l10n@20.10.6
+  - @commercetools-frontend/notifications@20.10.6
+  - @commercetools-frontend/permissions@20.10.6
+  - @commercetools-frontend/react-notifications@20.10.6
+  - @commercetools-frontend/sdk@20.10.6
+  - @commercetools-frontend/sentry@20.10.6
+  - @commercetools-frontend/url-utils@20.10.6
+
 ## 20.10.5
 
 ### Patch Changes
