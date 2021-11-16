@@ -36,7 +36,7 @@ module.exports = {
   testPathIgnorePatterns: ['node_modules', 'cypress'],
   testRegex: '\\.spec\\.jsx?$',
   transform: {
-    '^.+\\.(js|mjs)$': defaultTransformBabelJest,
+    '^.+\\.(js|jsx|mjs|ts|tsx)$': defaultTransformBabelJest,
     '^.+\\.graphql$': 'jest-transform-graphql',
   },
   watchPlugins: ['jest-watch-typeahead/filename'],
