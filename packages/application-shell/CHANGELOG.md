@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 20.10.7
+
+### Patch Changes
+
+- [#2397](https://github.com/commercetools/merchant-center-application-kit/pull/2397) [`cf8b2b93`](https://github.com/commercetools/merchant-center-application-kit/commit/cf8b2b934451e754f938ae392d0abdc146e77d88) Thanks [@emmenko](https://github.com/emmenko)! - Fix passing submenu default label to navbar
+
 ## 20.10.6
 
 ### Patch Changes
