@@ -13,6 +13,7 @@ import type {
   TApplicationsMenu,
   TLocalizedField,
   TNavbarMenu,
+  TBaseMenu,
 } from '../../types/generated/proxy';
 
 import {
@@ -402,12 +403,18 @@ const MenuLabel = (props: MenuLabelProps) => {
   return <>{NO_VALUE_FALLBACK}</>;
 };
 
+type TMenuWithDefaultLabel = TNavbarMenu & {
+  // derives from `projectExtensionsQuery.installedApplications.application.menu`
+  defaultLabel?: string;
+};
+type TSubmenuWithDefaultLabel = TBaseMenu & {
+  // derives from `projectExtensionsQuery.installedApplications.application.menu`
+  defaultLabel?: string;
+};
+
 type ApplicationMenuProps = {
   location: RouteComponentProps['location'];
-  menu: TNavbarMenu & {
-    // derives from `projectExtensionsQuery.installedApplications.application.menu`
-    defaultLabel?: string;
-  };
+  menu: TMenuWithDefaultLabel;
   isActive: boolean;
   isMenuOpen: boolean;
   shouldCloseMenuFly: MouseEventHandler<HTMLElement>;
@@ -513,7 +520,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
             isExpanded={props.isMenuOpen}
           >
             {hasSubmenu
-              ? props.menu.submenu.map((submenu) => (
+              ? props.menu.submenu.map((submenu: TSubmenuWithDefaultLabel) => (
                   <RestrictedMenuItem
                     key={`${props.menu.key}-submenu-${submenu.key}`}
                     keyOfMenuItem={submenu.key}
@@ -541,6 +548,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
                         >
                           <MenuLabel
                             labelAllLocales={submenu.labelAllLocales}
+                            defaultLabel={submenu.defaultLabel}
                             applicationLocale={props.applicationLocale}
                           />
                         </MenuItemLink>
