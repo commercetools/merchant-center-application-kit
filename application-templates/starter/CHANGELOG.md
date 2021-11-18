@@ -1,5 +1,13 @@
 # merchant-center-application-template-starter
 
+## 18.3.7
+
+### Patch Changes
+
+- Updated dependencies [[`cf8b2b93`](https://github.com/commercetools/merchant-center-application-kit/commit/cf8b2b934451e754f938ae392d0abdc146e77d88), [`5543128b`](https://github.com/commercetools/merchant-center-application-kit/commit/5543128b8dee4d50a3bf164980e10cb68f0a9f28)]:
+  - @commercetools-frontend/application-shell@20.10.7
+  - @commercetools-frontend/jest-preset-mc-app@20.10.7
+
 ## 18.3.6
 
 ### Patch Changes

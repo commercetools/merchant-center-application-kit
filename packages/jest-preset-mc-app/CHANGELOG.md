@@ -1,5 +1,11 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 20.10.7
+
+### Patch Changes
+
+- [#2395](https://github.com/commercetools/merchant-center-application-kit/pull/2395) [`5543128b`](https://github.com/commercetools/merchant-center-application-kit/commit/5543128b8dee4d50a3bf164980e10cb68f0a9f28) Thanks [@emmenko](https://github.com/emmenko)! - Use `babel-jest` also for TypeScript files instead of `ts-jest`.
+
 ## 20.10.6
 
 ### Patch Changes
