@@ -1,4 +1,4 @@
-export type Maybe<T> = T | undefined;
+export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
@@ -25,14 +25,14 @@ export type TApplicationsMenu = {
 
 export type TBaseMenu = {
   __typename?: 'BaseMenu';
+  actionRights?: Maybe<Array<TActionRight>>;
+  dataFences?: Maybe<Array<TDataFence>>;
+  featureToggle?: Maybe<Scalars['String']>;
   key: Scalars['String'];
-  uriPath: Scalars['String'];
   labelAllLocales: Array<TLocalizedField>;
-  featureToggle: Maybe<Scalars['String']>;
-  menuVisibility: Maybe<Scalars['String']>;
+  menuVisibility?: Maybe<Scalars['String']>;
   permissions: Array<Scalars['String']>;
-  actionRights: Maybe<Array<TActionRight>>;
-  dataFences: Maybe<Array<TDataFence>>;
+  uriPath: Scalars['String'];
 };
 
 export type TDataFence = {
@@ -50,23 +50,23 @@ export type TLocalizedField = {
 
 export type TNavbarMenu = {
   __typename?: 'NavbarMenu';
-  shouldRenderDivider: Maybe<Scalars['Boolean']>;
-  key: Scalars['String'];
-  uriPath: Scalars['String'];
+  actionRights?: Maybe<Array<TActionRight>>;
+  dataFences?: Maybe<Array<TDataFence>>;
+  featureToggle?: Maybe<Scalars['String']>;
   icon: Scalars['String'];
+  key: Scalars['String'];
   labelAllLocales: Array<TLocalizedField>;
-  featureToggle: Maybe<Scalars['String']>;
+  menuVisibility?: Maybe<Scalars['String']>;
   permissions: Array<Scalars['String']>;
-  actionRights: Maybe<Array<TActionRight>>;
-  dataFences: Maybe<Array<TDataFence>>;
-  menuVisibility: Maybe<Scalars['String']>;
+  shouldRenderDivider?: Maybe<Scalars['Boolean']>;
   submenu: Array<TBaseMenu>;
+  uriPath: Scalars['String'];
 };
 
 export type TQuery = {
   __typename?: 'Query';
-  applicationsMenu: TApplicationsMenu;
   allFeatureToggles: Array<Scalars['String']>;
+  applicationsMenu: TApplicationsMenu;
 };
 
 export type TFetchAllMenuFeatureTogglesQueryVariables = Exact<{ [key: string]: never; }>;
@@ -77,4 +77,4 @@ export type TFetchAllMenuFeatureTogglesQuery = { __typename?: 'Query', allFeatur
 export type TFetchApplicationsMenuQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TFetchApplicationsMenuQuery = { __typename?: 'Query', applicationsMenu: { __typename?: 'ApplicationsMenu', navBar: Array<{ __typename?: 'NavbarMenu', shouldRenderDivider: Maybe<boolean>, key: string, uriPath: string, icon: string, featureToggle: Maybe<string>, menuVisibility: Maybe<string>, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }>, dataFences: Maybe<Array<{ __typename?: 'DataFence', group: string, name: string, type: string }>>, actionRights: Maybe<Array<{ __typename?: 'ActionRight', group: string, name: string }>>, submenu: Array<{ __typename?: 'BaseMenu', key: string, uriPath: string, featureToggle: Maybe<string>, menuVisibility: Maybe<string>, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }>, actionRights: Maybe<Array<{ __typename?: 'ActionRight', group: string, name: string }>>, dataFences: Maybe<Array<{ __typename?: 'DataFence', group: string, name: string, type: string }>> }> }>, appBar: Array<{ __typename?: 'BaseMenu', key: string, uriPath: string, featureToggle: Maybe<string>, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }> } };
+export type TFetchApplicationsMenuQuery = { __typename?: 'Query', applicationsMenu: { __typename?: 'ApplicationsMenu', navBar: Array<{ __typename?: 'NavbarMenu', shouldRenderDivider?: boolean | null | undefined, key: string, uriPath: string, icon: string, featureToggle?: string | null | undefined, menuVisibility?: string | null | undefined, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }>, dataFences?: Array<{ __typename?: 'DataFence', group: string, name: string, type: string }> | null | undefined, actionRights?: Array<{ __typename?: 'ActionRight', group: string, name: string }> | null | undefined, submenu: Array<{ __typename?: 'BaseMenu', key: string, uriPath: string, featureToggle?: string | null | undefined, menuVisibility?: string | null | undefined, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }>, actionRights?: Array<{ __typename?: 'ActionRight', group: string, name: string }> | null | undefined, dataFences?: Array<{ __typename?: 'DataFence', group: string, name: string, type: string }> | null | undefined }> }>, appBar: Array<{ __typename?: 'BaseMenu', key: string, uriPath: string, featureToggle?: string | null | undefined, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }> } };

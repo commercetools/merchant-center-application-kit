@@ -14,9 +14,9 @@ import FetchProjectExtensionImageRegex from './fetch-project-extension-image-reg
 export type TImageRegexContext = {
   isLoading: boolean;
   imageRegex?: {
-    small?: Pick<TImageRegexOptions, 'flag' | 'replace' | 'search'>;
-    thumb?: Pick<TImageRegexOptions, 'flag' | 'replace' | 'search'>;
-  };
+    small?: Pick<TImageRegexOptions, 'flag' | 'replace' | 'search'> | null;
+    thumb?: Pick<TImageRegexOptions, 'flag' | 'replace' | 'search'> | null;
+  } | null;
 };
 type ProviderProps = {
   skip?: boolean;

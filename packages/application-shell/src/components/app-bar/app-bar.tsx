@@ -22,7 +22,7 @@ type Props = {
 
 const AppBar = (props: Props) => {
   const previousProjectKey = getPreviousProjectKey(
-    props.user && props.user.defaultProjectKey
+    props.user?.defaultProjectKey ?? undefined
   );
 
   return (

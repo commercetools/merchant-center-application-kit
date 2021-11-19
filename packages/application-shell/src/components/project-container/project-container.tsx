@@ -145,7 +145,7 @@ const ProjectContainer = <AdditionalEnvironmentProperties extends {}>(
                   >
                     <>
                       {shouldShowNotificationForTrialExpired(
-                        project.expiry.daysLeft
+                        project.expiry.daysLeft ?? undefined
                       ) && (
                         <Notifier
                           kind="warning"

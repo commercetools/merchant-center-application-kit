@@ -465,10 +465,10 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
       <RestrictedMenuItem
         key={props.menu.key}
         keyOfMenuItem={props.menu.key}
-        featureToggle={props.menu.featureToggle}
+        featureToggle={props.menu.featureToggle ?? undefined}
         permissions={props.menu.permissions}
-        actionRights={props.menu.actionRights}
-        dataFences={props.menu.dataFences}
+        actionRights={props.menu.actionRights ?? undefined}
+        dataFences={props.menu.dataFences ?? undefined}
         projectPermissions={props.projectPermissions}
         menuVisibilities={props.menuVisibilities}
         namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
@@ -524,10 +524,10 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
                   <RestrictedMenuItem
                     key={`${props.menu.key}-submenu-${submenu.key}`}
                     keyOfMenuItem={submenu.key}
-                    featureToggle={submenu.featureToggle}
+                    featureToggle={submenu.featureToggle ?? undefined}
                     permissions={submenu.permissions}
-                    actionRights={submenu.actionRights}
-                    dataFences={submenu.dataFences}
+                    actionRights={submenu.actionRights ?? undefined}
+                    dataFences={submenu.dataFences ?? undefined}
                     projectPermissions={props.projectPermissions}
                     menuVisibilities={props.menuVisibilities}
                     namesOfMenuVisibilities={

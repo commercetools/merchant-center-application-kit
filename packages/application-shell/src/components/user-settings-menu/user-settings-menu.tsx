@@ -193,7 +193,7 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
         {applicationsAppBarMenu?.map((menu) => (
           <OptionalFeatureToggle
             key={menu.key}
-            featureToggle={menu.featureToggle}
+            featureToggle={menu.featureToggle ?? undefined}
           >
             <Link
               css={getUserSettingsMenuItemLinkStyles()}

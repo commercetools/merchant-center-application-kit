@@ -38,13 +38,13 @@ type TLaunchDarklyUserCustomFields = {
 type TFetchedHttpAdapterFlag = {
   name: string;
   value: boolean;
-  reason?: string;
+  reason?: string | null;
 };
 type TParsedHttpAdapterFlags = Record<
   string,
   {
     value: boolean;
-    reason?: string;
+    reason?: string | null;
   }
 >;
 
