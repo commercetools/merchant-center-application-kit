@@ -209,7 +209,7 @@ export const RestrictedApplication = <
             `isLoading` prop to decide what to render.
           */}
             <AsyncLocaleData
-              locale={user && user.language}
+              locale={user?.language}
               applicationMessages={props.applicationMessages}
             >
               {({ isLoading: isLoadingLocaleData, locale, messages }) => (
@@ -230,12 +230,12 @@ export const RestrictedApplication = <
                       {/* NOTE: the requests in flight loader will render a loading
                       spinner into the AppBar. */}
                       <RequestsInFlightLoader />
-                      <SentryUserTracker user={user} />
+                      <SentryUserTracker user={user ?? undefined} />
                       <GtmUserTracker user={user} />
                       <GtmApplicationTracker
                         applicationName={applicationEnvironment.applicationName}
                         projectKey={projectKeyFromUrl}
-                        userBusinessRole={user?.businessRole}
+                        userBusinessRole={user?.businessRole ?? undefined}
                       />
                       <div
                         role="application-layout"
@@ -442,7 +442,7 @@ export const RestrictedApplication = <
                                   render={() => {
                                     const previousProjectKey =
                                       getPreviousProjectKey(
-                                        user && user.defaultProjectKey
+                                        user?.defaultProjectKey ?? undefined
                                       );
 
                                     /**

@@ -1,0 +1,39 @@
+schema:
+  - '${MC_API_URL}':
+      headers:
+        Cookie: mcAccessToken=${MC_ACCESS_TOKEN}
+        X-Graphql-Target: settings
+documents: '**/*.settings.graphql'
+extensions:
+  codegen:
+    generates:
+      schemas/settings.json:
+        plugins:
+          - introspection
+      '@types-extensions/graphql-settings/index.d.ts':
+        plugins:
+          - add:
+              content: '/* THIS IS A GENERATED FILE */'
+          - add:
+              content: '/* eslint-disable import/no-duplicates */'
+          - typescript-graphql-files-modules
+      packages/application-shell/src/types/generated/settings.ts:
+        plugins:
+          - typescript
+          - typescript-operations
+        config:
+          typesPrefix: T
+          addUnderscoreToArgsType: true
+          scalars:
+            DateTime: string
+            Json: '{ [key: string]: unknown }'
+      packages/application-shell-connectors/src/types/generated/settings.ts:
+        plugins:
+          - typescript
+          - typescript-operations
+        config:
+          typesPrefix: T
+          addUnderscoreToArgsType: true
+          scalars:
+            DateTime: string
+            Json: '{ [key: string]: unknown }'

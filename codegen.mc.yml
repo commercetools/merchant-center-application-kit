@@ -1,0 +1,35 @@
+schema:
+  - '${MC_API_URL}':
+      headers:
+        X-Graphql-Target: mc
+documents: '**/*.mc.graphql'
+extensions:
+  codegen:
+    generates:
+      schemas/mc.json:
+        plugins:
+          - introspection
+      '@types-extensions/graphql-mc/index.d.ts':
+        plugins:
+          - add:
+              content: /* THIS IS A GENERATED FILE */
+          - add:
+              content: /* eslint-disable import/no-duplicates */
+          - typescript-graphql-files-modules
+      packages/application-shell-connectors/src/types/generated/mc.ts:
+        plugins:
+          - typescript
+          - typescript-operations
+        config:
+          addUnderscoreToArgsType: true
+          typesPrefix: T
+      packages/application-shell/src/types/generated/mc.ts:
+        plugins:
+          - typescript
+          - typescript-operations
+        config:
+          addUnderscoreToArgsType: true
+          typesPrefix: T
+    hooks:
+      afterAllFileWrite:
+        - prettier --write
