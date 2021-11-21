@@ -23,7 +23,6 @@ const config = {
     },
   },
   additionalEnv: {
-    trackingGtm: '${env:TRACKING_GTM}',
     trackingSentry:
       'https://327619347ab84c8e9702a1dc16460198@o32365.ingest.sentry.io/1549825',
     echoServerApiUrl: '${env:ECHO_SERVER_URL}',
