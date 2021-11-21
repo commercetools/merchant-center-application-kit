@@ -1,6 +1,6 @@
 export const PERMISSIONS = {
-  ManagePlaygroundStateMachines: 'ManagePlaygroundStateMachines',
-  ViewPlaygroundStateMachines: 'ViewPlaygroundStateMachines',
+  ManageAppKitPlayground: 'ManageAppKitPlayground',
+  ViewAppKitPlayground: 'ViewAppKitPlayground',
 };
 
-export const entryPointUriPath = 'playground-state-machines';
+export const entryPointUriPath = 'app-kit-playground';

@@ -1,7 +1,4 @@
-// NOTE: this file is duplicated in both gcp-eu/us deployment folders
-/* eslint-disable import/no-unresolved */
-// @ts-ignore
-import { NowRequest, NowResponse } from '@vercel/node';
+import { VercelRequest, VercelResponse } from '@vercel/node';
 import {
   createSessionAuthVerifier,
   CLOUD_IDENTIFIERS,
@@ -14,7 +11,7 @@ const sessionAuthVerifier = createSessionAuthVerifier({
   inferIssuer: true,
 });
 
-async function handler(request: NowRequest, response: NowResponse) {
+async function handler(request: VercelRequest, response: VercelResponse) {
   const { url, headers, body } = request;
   try {
     await sessionAuthVerifier(request, response);

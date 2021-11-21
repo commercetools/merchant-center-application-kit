@@ -13,7 +13,8 @@ module.exports = async function compileHtml(indexHtmlTemplatePath) {
   );
   const indexHtmlContent = replaceHtmlPlaceholders(
     indexHtmlTemplateContent,
-    applicationConfig.env
+    applicationConfig.env,
+    compiledHeaders
   );
   return {
     env: applicationConfig.env,

@@ -1,5 +1,4 @@
 dist
 node_modules
 src
-Dockerfile
-menu.json
+

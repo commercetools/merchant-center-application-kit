@@ -3,6 +3,7 @@ import {
   screen,
   renderAppWithRedux,
 } from '@commercetools-frontend/application-shell/test-utils';
+import { entryPointUriPath } from '../../constants';
 import { ApplicationStateMachines } from './entry-point';
 
 const createStateMachinesListSdkMock = () => ({
@@ -30,23 +31,23 @@ const render = (options) => {
   return renderAppWithRedux(<ApplicationStateMachines />, {
     sdkMocks: [createStateMachinesListSdkMock()],
     permissions: {
-      canViewPlaygroundStateMachines: true,
-      canManagePlaygroundStateMachines: true,
+      canViewAppKitPlayground: true,
+      canManageAppKitPlayground: true,
     },
     ...options,
   });
 };
 
-describe('when route is /playground-state-machines', () => {
+describe(`when route is /${entryPointUriPath}`, () => {
   it('should render state machines', async () => {
     render({
-      route: '/project/playground-state-machines',
+      route: `/project/${entryPointUriPath}`,
     });
     await screen.findByText(/State machines/i);
   });
 });
 
-describe('when route is not /playground-state-machines', () => {
+describe(`when route is not /${entryPointUriPath}`, () => {
   it('should render catch all', async () => {
     render({
       route: '/project/xyz',

@@ -1,5 +1,5 @@
 import { PERMISSIONS, entryPointUriPath } from './src/constants';
-const name = 'State machines (Playground application)';
+const name = 'AppKit Playground Application';
 
 /**
  * @type {import('@commercetools-frontend/application-config').ConfigOptions}
@@ -46,11 +46,11 @@ const config = {
         value: '${intl:de:Menu.StateMachines}',
       },
     ],
-    permissions: [PERMISSIONS.ViewPlaygroundStateMachines],
+    permissions: [PERMISSIONS.ViewAppKitPlayground],
     submenuLinks: [
       {
         uriPath: 'echo-server',
-        permissions: [PERMISSIONS.ViewPlaygroundStateMachines],
+        permissions: [PERMISSIONS.ViewAppKitPlayground],
         defaultLabel: '${intl:en:Menu.EchoServer}',
         labelAllLocales: [
           {
