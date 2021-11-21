@@ -2748,6 +2748,7 @@ __metadata:
     "@babel/runtime": 7.15.4
     "@babel/runtime-corejs3": 7.15.4
     "@commercetools-frontend/application-config": 20.10.6
+    "@commercetools-frontend/constants": 20.10.6
     core-js: 3.19.0
     rimraf: 3.0.2
     serialize-javascript: 6.0.0
