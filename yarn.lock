@@ -25238,6 +25238,7 @@ __metadata:
     "@commercetools-uikit/link": ^12.2.2
     "@commercetools-uikit/loading-spinner": ^12.2.2
     "@commercetools-uikit/notifications": ^12.2.2
+    "@commercetools-uikit/pagination": ^12.2.2
     "@commercetools-uikit/primary-button": ^12.2.2
     "@commercetools-uikit/spacings": ^12.2.2
     "@commercetools-uikit/text": ^12.2.2
