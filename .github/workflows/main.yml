@@ -108,6 +108,19 @@ jobs:
           CTP_INITIAL_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
           ENABLE_OIDC_FOR_DEVELOPMENT: "true"
 
+      - name: Deploying Playground application to Vercel
+        # if: github.ref == 'refs/heads/main'
+        run: |
+          mkdir playground/.vercel
+          echo '{"projectId":"${{ secrets.VERCEL_PROJECT_ID_PLAYGROUND }}","orgId":"${{ secrets.VERCEL_ORG_ID_PLAYGROUND }}"}' > playground/.vercel/project.json
+          yarn workspace playground run compile-html
+          yarn workspace playground run deploy --token="${{ secrets.VERCEL_TOKEN_PLAYGROUND }}"
+        env:
+          APP_ID: ${{ secrets.APP_ID_PLAYGROUND_STATE_MACHINES }}
+          MC_API_URL: ${{ secrets.MC_API_URL }}
+          CTP_INITIAL_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
+          HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
+
       - name: Building Starter template application
         run: yarn template-starter:build
 

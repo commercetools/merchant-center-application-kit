@@ -43,7 +43,7 @@
     "build": "yarn compile-intl && preconstruct build && NODE_ENV=production yarn workspace @commercetools-frontend/mc-html-template build && NODE_ENV=production yarn workspace @commercetools-frontend/mc-scripts build",
     "build:watch": "preconstruct watch & NODE_ENV=development yarn workspace @commercetools-frontend/mc-html-template build:bundles:watch && NODE_ENV=development yarn workspace @commercetools-frontend/mc-scripts build:bundles:watch",
     "build:website": "yarn build && yarn workspace @commercetools-website/custom-applications build && yarn workspace @commercetools-website/components-playground build",
-    "vercel-build": "./scripts/deploy.sh",
+    "vercel-build": "yarn build:website && rm -rf public && mv website/public public",
     "labels:sync": "github-labels sync",
     "generate-types:mc": "graphql-codegen -r dotenv/config --config codegen.mc.yml",
     "generate-types:ctp": "graphql-codegen -r dotenv/config --config codegen.ctp.yml",
