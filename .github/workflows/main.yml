@@ -108,11 +108,6 @@ jobs:
           CTP_INITIAL_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
           ENABLE_OIDC_FOR_DEVELOPMENT: "true"
 
-      - name: Preparing project config for Vercel (Playground)
-        run: |
-          mkdir playground/.vercel
-          echo '{"projectId":"${{ secrets.VERCEL_PROJECT_ID_PLAYGROUND }}","orgId":"${{ secrets.VERCEL_ORG_ID_PLAYGROUND }}"}' > playground/.vercel/project.json
-
       - name: Deploying Playground application to Vercel (production)
         if: github.ref == 'refs/heads/main'
         run: |
@@ -123,6 +118,8 @@ jobs:
           MC_API_URL: ${{ secrets.MC_API_URL }}
           CTP_INITIAL_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
           HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID_PLAYGROUND }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_PLAYGROUND }}
 
       - name: Deploying Playground application to Vercel (branch preview)
         if: github.ref != 'refs/heads/main'
@@ -134,6 +131,8 @@ jobs:
           MC_API_URL: ${{ secrets.MC_API_URL }}
           CTP_INITIAL_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
           HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID_PLAYGROUND }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_PLAYGROUND }}
 
       - name: Building Starter template application
         run: yarn template-starter:build
