@@ -8,7 +8,9 @@ const {
 } = require('@commercetools-frontend/assets');
 const { compileHtml } = require('@commercetools-frontend/mc-html-template');
 
-const flags = mri(process.argv.slice(2));
+const flags = mri(process.argv.slice(2), {
+  boolean: ['inline-csp'],
+});
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
@@ -54,7 +56,9 @@ try {
 shelljs.cp('-R', path.join(assetsFrom, '/*'), publicAssetsPath);
 
 const generateStatic = async () => {
-  const compiled = await compileHtml(paths.indexHtmlTemplatePath);
+  const compiled = await compileHtml(paths.indexHtmlTemplatePath, {
+    inlineCsp: flags['inline-csp'],
+  });
 
   fs.writeFileSync(paths.indexHtmlPath, compiled.indexHtmlContent, {
     encoding: 'utf8',

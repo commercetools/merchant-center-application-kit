@@ -30,6 +30,7 @@ Commands:
   compile-html              Compiles "index.html.template" file into a "index.html" with all the required runtime configuration. Outputs a "public" folder. Additionally, the security headers are also compiled and printed to stdout, unless you use a "transformer".
                             More info at https://docs.commercetools.com/custom-applications/deployment/compiling-a-custom-application.
       --transformer <path>  (optional) The path to a JS module that can be used to generate a configuration for a specific cloud provider (e.g. Netlify, Vercel, Firebase).
+      --inline-csp          (optional) If defined, the CSP config is inlined in the HTML head as a meta tag. This might be useful to keep using a static config for a hosting provider without the dynamically generated Content-Security-Policy header.
 
   start                     Starts the application in development mode using Webpack Dev Server.
 
@@ -66,7 +67,7 @@ const applicationDirectory = fs.realpathSync(process.cwd());
         process.env.NODE_ENV = 'production';
 
         // Get specific flag for this command.
-        const commandArgs = getArgsForCommand(['transformer']);
+        const commandArgs = getArgsForCommand(['transformer', 'inline-csp']);
         proxyCommand({ commandArgs });
         break;
       }

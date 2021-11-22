@@ -27,7 +27,9 @@ class LocalHtmlWebpackPlugin {
       HtmlWebpackPlugin.getHooks(compilation).beforeEmit.tapAsync(
         'LocalHtmlWebpackPlugin',
         (data, cb) => {
-          data.html = replaceHtmlPlaceholders(data.html, enhancedLocalEnv);
+          data.html = replaceHtmlPlaceholders(data.html, {
+            env: enhancedLocalEnv,
+          });
           cb(null, data);
         }
       );
