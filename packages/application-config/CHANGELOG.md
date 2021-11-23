@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-config
 
+## 20.11.0
+
+### Minor Changes
+
+- [#2403](https://github.com/commercetools/merchant-center-application-kit/pull/2403) [`59b72adf`](https://github.com/commercetools/merchant-center-application-kit/commit/59b72adff45d631d751a32541fa23d2d5d795b3f) Thanks [@Rhotimee](https://github.com/Rhotimee)! - Allow to use the "frame-src" directive for `headers.csp` in the Custom Application config.
+
 ## 20.10.6
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 20.11.0
+
+### Patch Changes
+
+- [#2400](https://github.com/commercetools/merchant-center-application-kit/pull/2400) [`fc7f62ba`](https://github.com/commercetools/merchant-center-application-kit/commit/fc7f62bad0bad3d432bb52438e3bbf0660130bf4) Thanks [@emmenko](https://github.com/emmenko)! - Define default security headers as constants
+
 ## 20.10.6
 
 ### Patch Changes
