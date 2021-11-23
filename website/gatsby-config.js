@@ -1,11 +1,5 @@
 const colorPresets = require('@commercetools-docs/gatsby-theme-docs/color-presets');
 
-Object.entries(process.env).forEach(([envName, envValue]) => {
-  if (envName.startsWith('GATSBY_VERCEL_')) {
-    console.log(`Checking gatsby env variable ${envName}`, envValue);
-  }
-});
-
 module.exports = {
   // https://www.gatsbyjs.com/docs/reference/release-notes/v2.28/#feature-flags-in-gatsby-configjs
   // https://www.gatsbyjs.com/docs/reference/release-notes/v2.30
