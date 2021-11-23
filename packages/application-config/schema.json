@@ -136,6 +136,9 @@
             },
             "style-src": {
               "$ref": "#/definitions/cspDirective"
+            },
+            "frame-src": {
+              "$ref": "#/definitions/cspDirective"
             }
           },
           "additionalProperties": false,
