@@ -1,5 +1,24 @@
 # playground
 
+## 18.5.0
+
+### Minor Changes
+
+- [#2400](https://github.com/commercetools/merchant-center-application-kit/pull/2400) [`fc7f62ba`](https://github.com/commercetools/merchant-center-application-kit/commit/fc7f62bad0bad3d432bb52438e3bbf0660130bf4) Thanks [@emmenko](https://github.com/emmenko)! - Use static `vercel.json` config, rename `entryPointUriPath`, use new Custom Applications setup.
+
+### Patch Changes
+
+- Updated dependencies [[`22a1b35d`](https://github.com/commercetools/merchant-center-application-kit/commit/22a1b35daf802958552e66d78924676f5f93534a), [`fc7f62ba`](https://github.com/commercetools/merchant-center-application-kit/commit/fc7f62bad0bad3d432bb52438e3bbf0660130bf4)]:
+  - @commercetools-frontend/application-shell@20.11.0
+  - @commercetools-frontend/application-shell-connectors@20.11.0
+  - @commercetools-frontend/constants@20.11.0
+  - @commercetools-frontend/application-components@20.11.0
+  - @commercetools-frontend/permissions@20.11.0
+  - @commercetools-frontend/actions-global@20.11.0
+  - @commercetools-frontend/sdk@20.11.0
+  - @commercetools-frontend/i18n@20.11.0
+  - @commercetools-frontend/l10n@20.11.0
+
 ## 18.4.9
 
 ### Patch Changes

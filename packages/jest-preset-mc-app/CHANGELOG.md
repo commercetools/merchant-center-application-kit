@@ -1,5 +1,11 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 20.11.0
+
+### Patch Changes
+
+- [#2349](https://github.com/commercetools/merchant-center-application-kit/pull/2349) [`96eae0b7`](https://github.com/commercetools/merchant-center-application-kit/commit/96eae0b760efabb97a491238f77a92e34cc12bdf) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency make-plural to v7
+
 ## 20.10.7
 
 ### Patch Changes

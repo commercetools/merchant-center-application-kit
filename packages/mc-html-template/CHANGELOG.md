@@ -1,5 +1,17 @@
 # @commercetools-frontend/mc-html-template
 
+## 20.11.0
+
+### Patch Changes
+
+- [#2400](https://github.com/commercetools/merchant-center-application-kit/pull/2400) [`fc7f62ba`](https://github.com/commercetools/merchant-center-application-kit/commit/fc7f62bad0bad3d432bb52438e3bbf0660130bf4) Thanks [@emmenko](https://github.com/emmenko)! - Add experimental flag `--inline-csp` to `compile-html` command. If defined, the `Content-Security-Policy` header is injected in the `index.html` as a meta tag.
+
+* [#2400](https://github.com/commercetools/merchant-center-application-kit/pull/2400) [`fc7f62ba`](https://github.com/commercetools/merchant-center-application-kit/commit/fc7f62bad0bad3d432bb52438e3bbf0660130bf4) Thanks [@emmenko](https://github.com/emmenko)! - Define default security headers as constants
+
+* Updated dependencies [[`59b72adf`](https://github.com/commercetools/merchant-center-application-kit/commit/59b72adff45d631d751a32541fa23d2d5d795b3f), [`fc7f62ba`](https://github.com/commercetools/merchant-center-application-kit/commit/fc7f62bad0bad3d432bb52438e3bbf0660130bf4)]:
+  - @commercetools-frontend/application-config@20.11.0
+  - @commercetools-frontend/constants@20.11.0
+
 ## 20.10.6
 
 ### Patch Changes

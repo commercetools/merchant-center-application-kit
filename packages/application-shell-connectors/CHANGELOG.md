@@ -1,5 +1,15 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 20.11.0
+
+### Patch Changes
+
+- [#2398](https://github.com/commercetools/merchant-center-application-kit/pull/2398) [`22a1b35d`](https://github.com/commercetools/merchant-center-application-kit/commit/22a1b35daf802958552e66d78924676f5f93534a) Thanks [@emmenko](https://github.com/emmenko)! - Replace `.graphqlrc.yml` with `codegen.yml` config files and simplify setup. GraphQL types are also regenerated.
+
+- Updated dependencies [[`fc7f62ba`](https://github.com/commercetools/merchant-center-application-kit/commit/fc7f62bad0bad3d432bb52438e3bbf0660130bf4)]:
+  - @commercetools-frontend/constants@20.11.0
+  - @commercetools-frontend/sentry@20.11.0
+
 ## 20.10.6
 
 ### Patch Changes
