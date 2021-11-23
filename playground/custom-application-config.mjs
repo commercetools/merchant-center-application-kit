@@ -1,5 +1,5 @@
 import { PERMISSIONS, entryPointUriPath } from './src/constants';
-const name = 'State machines (Playground application)';
+const name = 'AppKit Playground Application';
 
 /**
  * @type {import('@commercetools-frontend/application-config').ConfigOptions}
@@ -23,7 +23,6 @@ const config = {
     },
   },
   additionalEnv: {
-    trackingGtm: '${env:TRACKING_GTM}',
     trackingSentry:
       'https://327619347ab84c8e9702a1dc16460198@o32365.ingest.sentry.io/1549825',
     echoServerApiUrl: '${env:ECHO_SERVER_URL}',
@@ -46,11 +45,11 @@ const config = {
         value: '${intl:de:Menu.StateMachines}',
       },
     ],
-    permissions: [PERMISSIONS.ViewPlaygroundStateMachines],
+    permissions: [PERMISSIONS.ViewAppKitPlayground],
     submenuLinks: [
       {
         uriPath: 'echo-server',
-        permissions: [PERMISSIONS.ViewPlaygroundStateMachines],
+        permissions: [PERMISSIONS.ViewAppKitPlayground],
         defaultLabel: '${intl:en:Menu.EchoServer}',
         labelAllLocales: [
           {

@@ -9,13 +9,13 @@ import { Sdk } from '@commercetools-frontend/sdk';
 import * as globalActions from '@commercetools-frontend/actions-global';
 import Text from '@commercetools-uikit/text';
 import loadMessages from '../../messages';
+import { entryPointUriPath } from '../../constants';
 
 // Here we split up the main (app) bundle with the actual application business logic.
 // Splitting by route is usually recommended and you can potentially have a splitting
 // point for each route. More info at https://reactjs.org/docs/code-splitting.html
 const AsyncStateMachines = lazy(
-  () =>
-    import('../../routes' /* webpackChunkName: "playground-state-machines" */)
+  () => import('../../routes' /* webpackChunkName: "app-kit-playground" */)
 );
 
 export const ApplicationStateMachines = () => (
@@ -43,12 +43,12 @@ export const ApplicationStateMachines = () => (
         <Redirect
           exact={true}
           from="/:projectKey"
-          to="/:projectKey/playground-state-machines"
+          to={`/:projectKey/${entryPointUriPath}`}
         />
       )
     }
     <Route
-      path="/:projectKey/playground-state-machines"
+      path={`/:projectKey/${entryPointUriPath}`}
       component={AsyncStateMachines}
     />
     {/* Catch-all route */}

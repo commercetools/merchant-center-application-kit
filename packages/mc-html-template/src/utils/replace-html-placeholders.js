@@ -12,26 +12,32 @@ const getGtmTrackingScript = (gtmId) => {
   `;
 };
 
-const replaceHtmlPlaceholders = (indexHtmlContent, config) =>
+const replaceHtmlPlaceholders = (indexHtmlContent, options) =>
   indexHtmlContent
     .replace(
+      new RegExp('__CSP__', 'g'),
+      options.headers && options.cliFlags && options.cliFlags.inlineCsp
+        ? options.headers['Content-Security-Policy']
+        : ''
+    )
+    .replace(
       new RegExp('__CDN_URL__', 'g'),
-      config.cdnUrl
+      options.env.cdnUrl
         ? // Ensure there is a trailing slash
-          `${trimTrailingSlash(config.cdnUrl)}/`
+          `${trimTrailingSlash(options.env.cdnUrl)}/`
         : ''
     )
     .replace(
       new RegExp('__MC_API_URL__', 'g'),
-      trimTrailingSlash(config.mcApiUrl)
+      trimTrailingSlash(options.env.mcApiUrl)
     )
     .replace(
       new RegExp('__APP_ENVIRONMENT__', 'g'),
-      sanitizeAppEnvironment(config)
+      sanitizeAppEnvironment(options.env)
     )
     .replace(
       new RegExp('__GTM_SCRIPT__', 'g'),
-      getGtmTrackingScript(config.trackingGtm)
+      getGtmTrackingScript(options.env.trackingGtm)
     )
     .replace(new RegExp('__DATALAYER_JS__', 'g'), htmlScripts.dataLayer)
     .replace(

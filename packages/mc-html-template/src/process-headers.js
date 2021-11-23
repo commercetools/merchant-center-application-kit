@@ -1,3 +1,4 @@
+const { HTTP_SECURITY_HEADERS } = require('@commercetools-frontend/constants');
 const createAssetHash = require('./utils/create-asset-hash');
 const sanitizeAppEnvironment = require('./utils/sanitize-app-environment');
 const htmlScripts = require('./load-html-scripts');
@@ -120,19 +121,29 @@ const processHeaders = (applicationConfig) => {
   );
 
   return {
-    'Strict-Transport-Security': ['max-age=31536000']
-      .concat(applicationConfig.headers.strictTransportSecurity || [])
-      .join('; '),
-    'X-XSS-Protection': '1; mode=block',
-    'X-Content-Type-Options': 'nosniff',
-    'X-Frame-Options': 'DENY',
-    'Referrer-Policy': 'same-origin',
+    // Default security headers.
+    ...HTTP_SECURITY_HEADERS,
+
+    // The `Content-Security-Policy` header is always generated
+    // based on the Custom Application config.
     'Content-Security-Policy': toHeaderString(mergedCsp),
+
+    // Allow to extend the `Strict-Transport-Security` header.
+    ...(applicationConfig.headers.strictTransportSecurity && {
+      'Strict-Transport-Security': [
+        HTTP_SECURITY_HEADERS['Strict-Transport-Security'],
+        ...applicationConfig.headers.strictTransportSecurity,
+      ].join('; '),
+    }),
+
+    // Allow to extend the `Feature-Policy` header.
     ...(applicationConfig.headers.featurePolicies && {
       'Feature-Policy': toHeaderString(
         applicationConfig.headers.featurePolicies
       ),
     }),
+
+    // Allow to extend the `Permissions-Policy` header.
     ...(applicationConfig.headers.permissionsPolicies && {
       'Permissions-Policy': toStructuredHeaderString(
         applicationConfig.headers.permissionsPolicies

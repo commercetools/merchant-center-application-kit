@@ -1,6 +1,5 @@
 node_modules
 dist
-*.vercel.json
-.now
 !.env
 .env.local
+.vercel

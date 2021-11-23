@@ -17,6 +17,7 @@ module.exports = function generateTemplate({
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="referrer" content="no-referrer">
+    <meta http-equiv="Content-Security-Policy" content="__CSP__">
     <link rel="preconnect" href="__CDN_URL__">
     <link rel="preconnect" href="__MC_API_URL__">
     <!-- Fav and touch icons -->

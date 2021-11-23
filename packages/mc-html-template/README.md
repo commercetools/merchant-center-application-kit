@@ -20,7 +20,7 @@ This method will return the compiled HTML document with the CSS/JS scripts injec
 
 > NOTE that the HTML document will still have the **placeholders** (see `replaceHtmlPlaceholders`)
 
-#### `replaceHtmlPlaceholders(html: String, env: Object): String`
+#### `replaceHtmlPlaceholders(html: String, { env: Object, headers: Object, cliFlags: Object }): String`
 
 This method will replace the **placeholders** defined in the HTML document based on the application config.
 
@@ -35,6 +35,7 @@ At the moment we define the following placeholders:
 - `__APP_ENVIRONMENT__`: the sanitized application config environment, which will be available at the global variable `window.app`
 - `__DATALAYER_JS__`: the initial configuration for GTM, in case the `trackingGtm` is defined in the `additionalEnv` property of the application config
 - `__GTM_SCRIPT__`: the actual GTM script, in case the `trackingGtm` is defined in the `additionalEnv` property of the application config
+- `__CSP__`: the generated `Content-Security-Policy` directives, defined as an HTML meta tag
 
 #### `processHeaders(applicationConfig: Object, { env: Object, headers: Object }): Object`
 

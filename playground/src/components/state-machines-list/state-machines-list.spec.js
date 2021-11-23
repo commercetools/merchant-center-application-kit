@@ -7,9 +7,10 @@ import {
   fireEvent,
 } from '@commercetools-frontend/application-shell/test-utils';
 import { GtmContext } from '@commercetools-frontend/application-shell';
-import { ApplicationStateMachines } from '../entry-point';
-import * as StateMock from '../../test-utils/test-data/state';
+import { entryPointUriPath } from '../../constants';
 import { renderApplicationWithRedux } from '../../test-utils';
+import * as StateMock from '../../test-utils/test-data/state';
+import { ApplicationStateMachines } from '../entry-point';
 
 const mockServer = setupServer();
 afterEach(() => mockServer.resetHandlers());
@@ -21,7 +22,7 @@ beforeAll(() =>
 afterAll(() => mockServer.close());
 
 const renderApp = (options = {}) => {
-  const route = options.route || '/my-project/playground-state-machines';
+  const route = options.route || `/my-project/${entryPointUriPath}`;
   const gtmMock = { track: jest.fn(), getHierarchy: jest.fn() };
   const { history } = renderApplicationWithRedux(
     <GtmContext.Provider value={gtmMock}>
@@ -30,8 +31,8 @@ const renderApp = (options = {}) => {
     {
       route,
       permissions: {
-        canViewPlaygroundStateMachines: true,
-        canManagePlaygroundStateMachines: true,
+        canViewAppKitPlayground: true,
+        canManageAppKitPlayground: true,
       },
       ...options,
     }
@@ -87,7 +88,7 @@ describe('list view', () => {
     fireEvent.click(screen.getByText('state-key-1'));
     await waitFor(() => {
       expect(history.location.pathname).toBe(
-        '/my-project/playground-state-machines/1'
+        `/my-project/${entryPointUriPath}/1`
       );
     });
     await screen.findByText(/state-key-1/i);
@@ -99,7 +100,7 @@ describe('details view', () => {
     it('should render data on page', async () => {
       mockServer.use(fetchState());
       renderApp({
-        route: '/my-project/playground-state-machines/2',
+        route: `/my-project/${entryPointUriPath}/2`,
       });
 
       await screen.findByText(/state-key-2/i);
@@ -107,7 +108,7 @@ describe('details view', () => {
     it('should retrigger request if id changes', async () => {
       mockServer.use(fetchState());
       const { history, gtmMock } = renderApp({
-        route: '/my-project/playground-state-machines/1',
+        route: `/my-project/${entryPointUriPath}/1`,
       });
       await screen.findByText(/state-key-1/i);
       await waitFor(() => {
@@ -117,7 +118,7 @@ describe('details view', () => {
         );
       });
 
-      history.push('/my-project/playground-state-machines/2');
+      history.push(`/my-project/${entryPointUriPath}/2`);
       await screen.findByText(/state-key-2/i);
     });
   });
@@ -140,7 +141,7 @@ describe('details view', () => {
         })
       );
       renderApp({
-        route: '/my-project/playground-state-machines/1',
+        route: `/my-project/${entryPointUriPath}/1`,
       });
       await screen.findByText(/Something went wrong/i);
     });
