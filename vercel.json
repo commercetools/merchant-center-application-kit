@@ -1,23 +1,10 @@
 {
   "version": 2,
-  "public": true,
-  "name": "mc-custom-applications",
-  "alias": "mc-custom-applications",
-  "routes": [
+  "redirects": [
     {
-      "src": "/",
-      "status": 302,
-      "headers": {
-        "Location": "/custom-applications/"
-      }
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "status": 404,
-      "dest": "/custom-applications/404"
+      "source": "/",
+      "destination": "/custom-applications/",
+      "permanent": false
     }
   ]
 }
