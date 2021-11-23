@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 
 // https://vercel.com/docs/concepts/projects/environment-variables#system-environment-variables
 const vercelEnv = process.env.GATSBY_VERCEL_ENV;
-// const branchName = process.env.GATSBY_VERCEL_GIT_COMMIT_REF;
+const branchName = process.env.GATSBY_VERCEL_GIT_COMMIT_REF;
 
 const getIframeUrl = (urlPath, isFullScreen = false) => {
   const fullScreenPath = isFullScreen ? '/fullscreen' : '';
   if (process.env.NODE_ENV === 'production') {
     const playgroundUrl =
       vercelEnv === 'preview'
-        ? `https://application-kit-components-playground-git-6049ba-commercetools.vercel.app`
-        : `https://application-kit-components-playground.vercel.app`;
+        ? `https://appkit-playground-git-${branchName}-commercetools.vercel.app`
+        : `https://appkit-playground.vercel.app`;
 
     return `${playgroundUrl}/${urlPath}${fullScreenPath}`;
   }
