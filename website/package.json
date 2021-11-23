@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@svgr/cli": "5.5.0",
-    "linkinator": "2.14.4"
+    "linkinator": "2.14.4",
+    "prettier": "2.4.1"
   }
 }
