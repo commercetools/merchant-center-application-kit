@@ -8,7 +8,6 @@ module.exports = {
     FAST_DEV: true,
     PRESERVE_FILE_DOWNLOAD_CACHE: true,
   },
-  pathPrefix: '/custom-applications/playground',
   siteMetadata: {
     title: `AppKit UI components | Playground`,
     description: ``,
