@@ -1,11 +1,19 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { withPrefix } from 'gatsby';
+
+// https://vercel.com/docs/concepts/projects/environment-variables#system-environment-variables
+const vercelEnv = process.env.GATSBY_VERCEL_ENV;
+// const branchName = process.env.GATSBY_VERCEL_GIT_COMMIT_REF;
 
 const getIframeUrl = (urlPath, isFullScreen = false) => {
   const fullScreenPath = isFullScreen ? '/fullscreen' : '';
   if (process.env.NODE_ENV === 'production') {
-    return withPrefix(`/playground/${urlPath}${fullScreenPath}`);
+    const playgroundUrl =
+      vercelEnv === 'preview'
+        ? `https://application-kit-components-playground-git-6049ba-commercetools.vercel.app`
+        : `https://application-kit-components-playground.vercel.app`;
+
+    return `${playgroundUrl}/${urlPath}${fullScreenPath}`;
   }
   return `http://localhost:8001/${urlPath}${fullScreenPath}`;
 };

@@ -1,5 +1,16 @@
 const colorPresets = require('@commercetools-docs/gatsby-theme-docs/color-presets');
 
+// Proxy env variables needed for `gatsby-browser.js` and `gatsby-ssr.js`.
+// https://www.gatsbyjs.org/docs/environment-variables/#client-side-javascript
+const proxyEnvironmentVariables = [
+  'NODE_ENV',
+  'VERCEL_ENV',
+  'VERCEL_GIT_COMMIT_REF',
+];
+proxyEnvironmentVariables.forEach((envName) => {
+  process.env[`GATSBY_${envName}`] = process.env[envName];
+});
+
 module.exports = {
   // https://www.gatsbyjs.com/docs/reference/release-notes/v2.28/#feature-flags-in-gatsby-configjs
   // https://www.gatsbyjs.com/docs/reference/release-notes/v2.30
