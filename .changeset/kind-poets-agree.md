@@ -2,4 +2,4 @@
 '@commercetools-frontend/application-config': minor
 ---
 
-Introduce a "frame-src" directive to the Application Config
+Allow to use the "frame-src" directive for `headers.csp` in the Custom Application config.
