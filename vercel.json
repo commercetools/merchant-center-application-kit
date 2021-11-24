@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "redirects": [
+  "rewrites": [
     {
-      "source": "/",
-      "destination": "/custom-applications/",
-      "permanent": false
+      "source": "/custom-applications",
+      "destination": "/"
+    },
+    {
+      "source": "/custom-applications/(.*)",
+      "destination": "/$1"
     }
   ]
 }
