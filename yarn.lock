@@ -3971,6 +3971,7 @@ __metadata:
     react: 17.0.2
     react-dom: 17.0.2
     react-intl: 5.21.0
+    start-server-and-test: 1.14.0
   languageName: unknown
   linkType: soft
 
