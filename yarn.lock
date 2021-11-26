@@ -2154,7 +2154,7 @@ __metadata:
   dependencies:
     "@babel/runtime": 7.15.4
     "@babel/runtime-corejs3": 7.15.4
-    "@types/node": 15.6.1
+    "@types/node": 16.11.10
     express: 4.17.1
     express-jwt: 6.1.0
     jose: 2.0.5
@@ -8227,10 +8227,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:15.6.1":
-  version: 15.6.1
-  resolution: "@types/node@npm:15.6.1"
-  checksum: 8ed16d4f7404203d3aade0b73e58c969fab4a721cfe637eff9b739f6b25a35e33dfe9e0961b9ac5994d629302faa977f8ee8931d09187a136875f966332cc552
+"@types/node@npm:16.11.10":
+  version: 16.11.10
+  resolution: "@types/node@npm:16.11.10"
+  checksum: 9c79419c5c3d92d5825bffa30f3668533f598d8b63a73ea7fc24e47f162bdbed92b0f8e4f4261cc3314b39cee050e303366d2aa154abc95c63a572a110b8c160
   languageName: node
   linkType: hard
 
@@ -22476,7 +22476,7 @@ __metadata:
     "@types/faker": 5.5.9
     "@types/jest-environment-puppeteer": 4.4.1
     "@types/jquery": 3.5.8
-    "@types/node": 15.6.1
+    "@types/node": 16.11.10
     "@types/puppeteer": 5.4.4
     "@types/uuid": 8.3.1
     "@types/webpack-env": 1.16.3

@@ -20,7 +20,7 @@
   "dependencies": {
     "@babel/runtime": "7.15.4",
     "@babel/runtime-corejs3": "7.15.4",
-    "@types/node": "15.6.1",
+    "@types/node": "16.11.10",
     "express": "4.17.1",
     "express-jwt": "6.1.0",
     "jwks-rsa": "2.0.5"
