@@ -84,7 +84,7 @@
     "@babel/core": "7.15.8",
     "@changesets/changelog-github": "0.4.1",
     "@changesets/cli": "2.17.0",
-    "@commercetools-docs/writing-style": "3.0.7",
+    "@commercetools-docs/writing-style": "3.0.8",
     "@commercetools-test-data/core": "2.4.1",
     "@commercetools-uikit/design-system": "^12.2.2",
     "@commercetools/github-labels": "1.1.0",
