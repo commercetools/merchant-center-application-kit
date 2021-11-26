@@ -1,0 +1,292 @@
+---
+title: Migrating from Project-level Custom Applications
+---
+
+When we released Custom Applications a couple of years ago we had one main goal: to provide a **great developer experience** for developing and extending Merchant Center functionalities.
+Over time we have constantly improved this experience and broadened our set of tools and components to further help developers focussing on what matters: productivity.
+
+We also gathered lots of valuable feedback both from our internal teams and especially from external partners and developers.
+
+As a result, we started working on new important features and improvements of all aspects of Custom Applications, from documentation to database models.
+In this document we explain what's new, what changed, and how to actually migrate.
+
+<Warning>
+
+Please take your time and read carefully this document to familiarize yourself with the changes, new concepts, and steps required to migrate your existing Custom Applications.
+
+</Warning>
+
+# Introducing (Org-level) Custom Applications
+
+The new release of Custom Applications is what we call and refer to as **Org-level Custom Applications**.
+
+Before we go into details about the new release and features, let's define some of the terminology used in the documentation:
+
+* **Org-level Custom Applications** refers to the new release and it's the default functionality from now on. Application Kit packages (`@commercetools-frontend/*`) must use version `>= 21`.
+* **Project-level Custom Applications** refers to the "legacy" functionality up until now. This is still available in maintenance mode for the [migration period](#migration-period) of time and will be removed afterwards.
+
+<Info>
+
+The documentation for Project-level Custom Applications [remains available at a different location](https://docs.commercetools.com/custom-applications/_legacy]) for the [migration period](#migration-period).
+
+</Info>
+
+Up until now, Project-level Custom Applications had to be defined on a per-project level (hence the term) under "Settings > Custom Applications". After registering a new Custom Application you could activate it and start using it.
+However, the Custom Application was only available for that specific project. If you wanted to use the Custom Application in another project, you would need to go through the registration process all over again.
+
+With the introduction of Org-level Custom Applications we intend to improve that process and enable new features for the time being and for the future.
+
+What this means is that managing Custom Applications is done now at the organization level rather than the project level. One of the main advantages is being able to **configure a Custom Application once, and use it in multiple projects**.
+
+# OAuth Scopes and User Permissions
+
+Up until now, Project-level Custom Applications weren't able to define which [OAuth Scopes](https://docs.commercetools.com/api/scopes) of the commercetools platform were needed and could only rely on the "implicit" OAuth Scopes defined for User Permissions of the "native" Merchant Center applications ("Organizations > Teams > Permissions").
+
+Let us look at an example. The User Permission `ViewProducts` maps internally to some OAuth Scopes, like `view_products`, `view_states`, `view_types`, etc. If a Custom Application had to use the [States API](https://docs.commercetools.com/api/projects/states), it would need to use the `ViewProducts` permission in order to properly authorize the user to perform the API requests.
+Therefore, using the `ViewProducts` permission makes the Custom Application work **by chance** to be able to interact with the States API.
+
+What if this mapping of User Permissions and OAuth Scopes changes? Suddenly Custom Applications relying on this **undocumented and implicit** behavior will stop working.
+Furthermore, if a Custom Application requires to use a platform API with OAuth Scopes that are not mapped to any User Permissions, it won't be even possible.
+
+With the introduction of Org-level Custom Applications we intend to change this behavior and empower Custom Applications to take control of their requirements.
+
+From now on, Custom Applications **must specify the list of OAuth Scopes** needed by the application. The list of OAuth Scopes also maps to a unique pair of User Permissions specific to the Custom Application.
+For instance, in the Custom Application config you would configure the OAuth Scopes as following:
+
+```json title="custom-application-config.json"
+{
+  "oAuthScopes": {
+    "view": ["view_states"],
+    "manage": []
+  }
+}
+```
+
+This mapping means that OAuth Scopes defined in the `view` field are assigned to the "view" permission and OAuth Scopes defined in the `manage` field are assigned to the "manage" permission.
+The new User Permissions pair (view/manage) of each Custom Application can then be assigned in the "Organizations > Teams > Permissions" settings, like any other permission.
+
+As a result, Custom Applications OAuth Scopes and User Permissions become completely **decoupled** from the "native" Merchant Center applications and allow to actually fulfill many more use cases for Custom Applications.
+
+# Why should you migrate?
+
+The Project-level Custom Applications will become end-of-life after the [migration period](#migration-period). After that, all related functionalities will be removed.
+
+Migrating to Org-level Custom Applications not only brings new features and functionalities but it allows to benefit from any future improvements on top of that.
+
+# Migration period
+
+Project-level Custom Applications must be migrated until the **end of July 2022**.
+
+During this period, Project-level Custom Applications still work but are considered in **maintenance mode**. Adding new Project-level Custom Applications won't be possible anymore.
+
+# Step by step
+
+Migrating your existing Project-level Custom Applications to the new Org-level Custom Applications is fairly straight-forward but it requires to understand first the new concepts like [OAuth Scopes and User Permissions](#oauth-scopes-and-user-permissions).
+
+As for the Custom Application code, nothing much needs to be changed except for the configuration file and the [permission names](#migrate-user-permissions) (in case they were used).
+
+In general there are 2 parts of the migration: development changes and configuration of the new Custom Application in the Merchant Center.
+
+## Upgrade packages to v21
+
+Upgrade your Application Kit packages (`@commercetools-frontend/*`) to version `>= 21`. This major version enforces a new JSON schema for the Custom Application config with some new required fields.
+
+<Info>
+
+If you need to upgrade from several major versions behind, we recommend to go through the [migration guides](https://docs.commercetools.com/custom-applications/releases?filterTopics=Dependencies) of each major version first.
+
+</Info>
+
+## Update the Custom Application config
+
+There are several new required fields in the Custom Application config.
+
+```json title="custom-application-config.json" highlightLines="6-8,10,14-31"
+{
+  "name": "Avengers app",
+  "entryPointUriPath": "avengers",
+  "cloudIdentifier": "gcp-eu",
+  "env": {
+    "development": {
+      "initialProjectKey": "<project_key>"
+    },
+    "production": {
+      "applicationId": "<application_id>",
+      "url": "https://avengers.app"
+    }
+  },
+  "oAuthScopes": {
+    "view": ["view_states", "view_products"],
+    "manage": ["manage_products"]
+  },
+  "icon": "${path:@commercetools-frontend/assets/application-icons/rocket.svg}",
+  "mainMenuLink": {
+    "defaultLabel": "Avengers",
+    "labelAllLocales": [],
+    "permissions": [],
+  },
+  "submenuLinks": [
+    {
+      "uriPath": "new",
+      "defaultLabel": "Add Avenger",
+      "labelAllLocales": [],
+      "permissions": [],
+    }
+  ]
+}
+```
+
+* `env.development`: A configuration object that is only used in `development` mode.
+  * `initialProjectKey`: The project key used for the first login request. See [Development login via OIDC](#development-login-for-oidc) for more information.
+* `oAuthScopes`: The configuration for [OAuth Scopes and User Permissions](#oauth-scopes-and-user-permissions).
+  * `view`: A list of "view-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated to the "View" permission.
+  * `manage`: A list of "manage-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated to the "Manage" permission.
+* `icon`: The icon of the Custom Application. The value should be the SVG code of the icon itself. You can choose [one of the available icons](https://github.com/commercetools/merchant-center-application-kit/tree/main/packages/assets/application-icons) by referencing the path to that file using `${path:}`.
+* `mainMenuLink`: The configuration for the main menu link on the left-side navbar menu of the Merchant Center.
+  * `defaultLabel`: The label to be rendered if there is no matching localized label for the user locale.
+  * `labelAllLocales`: A list of localized fields `{ locale, value }` with translated labels for each application locales available in the user profile.
+  * `permissions`: A list of user permissions specific to the Custom Application required to make the link visible. Users must have at least one permission to see the link of the Custom Application in the Merchant Center left-side navbar menu. The value of the permission is unique for your Custom Application. See [Choose the `entryPointUriPath`](#choose-the-entrypointuripath) for more information.
+* `submenuLinks`: The configuration for all the submenu links on the left-side navbar menu of the Merchant Center.
+  * `uriPath`: The (sub)route path relative to the `entryPointUriPath` of the Custom Application. For example, given the `entryPointUriPath: avengers`, and the (sub)route `uriPath: new`, the menu link results in `/avengers/new`.
+  * `defaultLabel`: See `mainMenuLink.defaultLabel`.
+  * `labelAllLocales`: See `mainMenuLink.labelAllLocales`.
+  * `permissions`: See `mainMenuLink.permissions`.
+
+<Info>
+
+If the menu labels are translated into multiple locales, you can reference the translation keys in the Custom Application config by using the `${int:}` reference expansion. See [Intl message references](/development/application-config#intl-message-references) for more information.
+
+</Info>
+
+
+## Choose the `entryPointUriPath`
+
+The `entryPointUriPath` plays a crucial role in a Custom Application. Effectively, it's the **identifier** of the Custom Application much like the commercetools platform `projectKey`.
+
+<Info>
+
+From now on, with the introduction of Org-level Custom Applications, the `entryPointUriPath` is **considered unique** within each [cloud region](https://docs.commercetools.com/api/general-concepts#regions) environment.
+
+</Info>
+
+Choosing the `entryPointUriPath` becomes then more important and should be done carefully as it affects routing and permissions.
+
+The `entryPointUriPath` value must adhere to the following restrictions:
+
+* Only lowercase alphanumeric characters are allowed.
+* Must be between 2 and 64 characters.
+* Underscores and hyphens are allowed except as leading, trailing, and adjacent characters.
+
+Furthermore, the `entryPointUriPath` value is tightly bound to User Permissions of the Custom Application and is used to derive the unique name of the User Permissions.
+The name consists of the following format: `{View,Manage}<EntryPointUriPath>`.
+
+Here are some examples:
+
+| `entryPointUriPath` | User Permission |
+| --- | --- |
+| `avengers` | `{View,Manage}Avengers` |
+| `the-avengers` | `{View,Manage}TheAvengers` |
+| `the_avengers` | `{View,Manage}The_Avengers` |
+| `avengers-01` | `{View,Manage}Avengers/01` |
+| `avengers_01` | `{View,Manage}Avengers_01` |
+
+This ensures that User Permissions are also unique for each Custom Application.
+
+## Migrate User Permissions
+
+If the Custom Application was relying on existing User Permissions such as `ViewProducts`, `ManageOrders`, etc. you need to change that.
+
+As explained in [OAuth Scopes and User Permissions](#oauth-scopes-and-user-permissions), Custom Applications are now decoupled from the "native" Merchant Center applications and thus from their User Permissions.
+
+In the Custom Application config you need to explicitly define the `oAuthScopes` needed by the Custom Application and map them in the `oAuthScopes.view` and `oAuthScopes.manage` fields.
+These fields relate to the unique User Permissions pair of your Custom Application, as explained in [Choose the `entryPointUriPath`](#choose-the-entrypointuripath), and are the only permission values that your Custom Application is able to use.
+
+In your Custom Application code, replace the usage of the "native" User Permissions with the name derived from the `entryPointUriPath`.
+
+```js highlightLines="6"
+import { useIsAuthorized } from '@commercetools-frontend/permissions';
+
+const MyComponent = () => {
+  const canViewAvengers = useIsAuthorized({
+    // Assuming that the `entryPointUriPath` is `avengers`.
+    demandedPermissions: ['ViewAvengers'],
+  });
+};
+```
+
+Furthermore, you also need to replace the usage of the "native" User Permissions in the menu links `permissions` field in the Custom Application config.
+
+```json highlightLines="6"
+{
+  "mainMenuLink": {
+    "permissions": ["ViewAvengers"]
+  }
+}
+```
+
+## Remove `menu.json`
+
+If your Custom Application uses the `menu.json` file, you need to migrate its content to the Custom Application config file. See [Update the Custom Application config](#update-the-custom-application-config) for more information.
+
+In addition to that, you should also remove the `DEV_ONLY__loadNavbarMenuConfig` prop in the `<ApplicationShell>`.
+
+## Development login via OIDC
+
+<Info>
+
+If you are already using this feature via the opt-in environment variable `ENABLE_OIDC_FOR_DEVELOPMENT=true`, you can remove the variable as this is now the default behavior.
+
+</Info>
+
+In order to make use of the [OAuth Scopes and User Permissions](#oauth-scopes-and-user-permissions) in local development, even though the Custom Application hasn't been configured in the Merchant Center yet, the login workflow works a bit differently from before.
+
+Starting the Custom Application locally now redirects you to the login page of the Merchant Center production environment (as defined in the Custom Application config). Upon successful login, you are redirected back to your local development server with a valid session.
+The session is saved in the `sessionStorage` (not a cookie like in the production environments) and is sent with each API request as an HTTP `Authorization` header. It has a short expiration time (hours, not days) and is bound by default to the project specified in the `env.development.initialProjectKey` and the OAuth Scopes specified in the `oAuthScopes` config field.
+
+You can still switch between projects and the session token is automatically replaced in the background without having to log in again.
+
+<Warning>
+
+Local development and login is only allowed for users being part of the `Administrators` team of your organization.
+
+</Warning>
+
+## Assign the application ID
+
+Before deploying the Custom Application to production with the new setup, you need to define the `env.production.applicationId` in the Custom Application config.
+
+<Info>
+
+As long as you are developing the Custom Application locally, you can define any random value as it's a required field.
+
+</Info>
+
+The Custom Application ID is provided when you add a Custom Application in the Merchant Center ("Organizations > Custom Applications > Configure > Add"). See [Managing Custom Applications in the Merchant Center](https://docs.commercetools.com/merchant-center/custom-applications) for more information.
+
+## Use the new Custom Application in the Merchant Center
+
+Depending on your deployment setup you might need to consider what migration strategy works best for you and the users of your Custom Application.
+
+<Info>
+
+We recommend to inform your company and colleagues that are using the Custom Application about the migration and possible unavailability of it during the time of the switch.
+
+</Info>
+
+In general, before deploying the new changes, you should configure the Custom Application in the Merchant Center first (see [Managing Custom Applications in the Merchant Center](https://docs.commercetools.com/merchant-center/custom-applications)) and assign the `applicationId` to the Custom Application config file.
+
+At this point we recommend to deactivate and remove the "old" Custom Application. You can then proceed with the deployment of the new setup.
+
+Finally, you need to install the Custom Application in your organization and grant access to one or more projects.
+The Custom Application can now be used.
+
+## Assign User Permissions to Teams
+
+One of the new features of the Org-level Custom Applications is the ability to assign [OAuth Scopes and User Permissions](#oauth-scopes-and-user-permissions) to each Custom Application.
+Once the Custom Application has been installed to an organization, admins of the organization can [assign User Permissions to each team](https://docs.commercetools.com/merchant-center/user-permissions).
+
+<Info>
+
+As usual, User Permissions for the `Administrators` team are automatically managed when project access is granted or removed.
+
+</Info>

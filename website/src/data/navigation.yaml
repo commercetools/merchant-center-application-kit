@@ -10,6 +10,8 @@
       path: '/support-policy'
     - title: Help Needed?
       path: '/help-needed'
+    - title: Migrating from Project-level Custom Applications
+      path: '/migrating-from-project-level-custom-applications'
 - chapter-title: Development
   pages:
     - title: Folder Structure
