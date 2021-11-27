@@ -97,6 +97,7 @@ cypress/videos
 # Gatsby
 .cache
 public
+vercel-public
 
 # Parcel
 .parcel-cache
