@@ -21,6 +21,10 @@
       "groupName": "all flopflip packages"
     },
     {
+      "sourceUrlPrefixes": ["https://github.com/gregberge/svgr"],
+      "groupName": "all svgr packages"
+    },
+    {
       "packagePatterns": ["*"],
       "updateTypes": ["minor", "patch"],
       "groupName": "all dependencies",
