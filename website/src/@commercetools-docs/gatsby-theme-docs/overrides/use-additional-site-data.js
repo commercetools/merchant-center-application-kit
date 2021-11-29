@@ -6,6 +6,7 @@ const useAdditionalSiteData = () => {
       site {
         siteMetadata {
           repositoryUrl
+          legacyDocs
         }
       }
     }

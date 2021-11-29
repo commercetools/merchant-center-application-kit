@@ -16,6 +16,8 @@ module.exports = {
     betaLink: '/support-policy',
     repositoryUrl:
       'https://github.com/commercetools/merchant-center-application-kit',
+    legacyDocs:
+      'https://mc-custom-applications-legacy.vercel.app/custom-applications/_legacy',
   },
   plugins: [
     // Pages for React components

@@ -3,6 +3,7 @@
   "version": "18.3.10",
   "private": true,
   "scripts": {
+    "clean": "gatsby clean",
     "build": "./scripts/prebuild.sh && yarn generate-icons && gatsby build --prefix-paths --verbose --log-pages && yarn check-links",
     "start": "yarn generate-icons && gatsby develop",
     "check-links": "echo \"Disabled link checks for now\" && exit 0 || start-server-and-test 'yarn gatsby serve --prefix-paths' http://localhost:9000/custom-applications 'yarn linkinator http://localhost:9000/custom-applications'",
