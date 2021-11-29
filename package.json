@@ -102,7 +102,7 @@
     "@percy/cypress": "3.1.1",
     "@percy/puppeteer": "2.0.0",
     "@preconstruct/cli": "2.1.5",
-    "@svgr/cli": "5.5.0",
+    "@svgr/cli": "6.0.0",
     "@svgr/plugin-jsx": "5.5.0",
     "@svgr/plugin-svgo": "5.5.0",
     "@testing-library/cypress": "8.0.1",
