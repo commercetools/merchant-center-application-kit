@@ -7507,7 +7507,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@svgr/plugin-svgo@npm:5.5.0, @svgr/plugin-svgo@npm:^5.5.0":
+"@svgr/plugin-svgo@npm:6.0.0":
+  version: 6.0.0
+  resolution: "@svgr/plugin-svgo@npm:6.0.0"
+  dependencies:
+    cosmiconfig: ^7.0.1
+    deepmerge: ^4.2.2
+    svgo: ^2.5.0
+  peerDependencies:
+    "@svgr/core": ^6.0.0-alpha.0
+  checksum: 40d944e88f5ca737fca63ddd67dc8b21d99c6d4b3a7d6df634f168ae3b4620b1e34f131101a4a004adabca75dcf4e46ba3452897dc25dc704a7303133a29f193
+  languageName: node
+  linkType: hard
+
+"@svgr/plugin-svgo@npm:^5.5.0":
   version: 5.5.0
   resolution: "@svgr/plugin-svgo@npm:5.5.0"
   dependencies:
@@ -12319,7 +12332,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cosmiconfig@npm:7.0.1, cosmiconfig@npm:^7.0.0":
+"cosmiconfig@npm:7.0.1, cosmiconfig@npm:^7.0.0, cosmiconfig@npm:^7.0.1":
   version: 7.0.1
   resolution: "cosmiconfig@npm:7.0.1"
   dependencies:
@@ -22546,7 +22559,7 @@ __metadata:
     "@preconstruct/cli": 2.1.5
     "@svgr/cli": 5.5.0
     "@svgr/plugin-jsx": 5.5.0
-    "@svgr/plugin-svgo": 5.5.0
+    "@svgr/plugin-svgo": 6.0.0
     "@testing-library/cypress": 8.0.1
     "@testing-library/react": 12.1.2
     "@types/faker": 5.5.9
@@ -30178,7 +30191,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svgo@npm:^2.7.0":
+"svgo@npm:^2.5.0, svgo@npm:^2.7.0":
   version: 2.8.0
   resolution: "svgo@npm:2.8.0"
   dependencies:
