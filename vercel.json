@@ -6,8 +6,70 @@
       "destination": "/"
     },
     {
+      "source": "/custom-applications/_legacy",
+      "destination": "https://mc-custom-applications-legacy.vercel.app"
+    },
+    {
+      "source": "/custom-applications/_legacy/(.*)",
+      "destination": "https://mc-custom-applications-legacy.vercel.app/$1"
+    },
+    {
       "source": "/custom-applications/(.*)",
       "destination": "/$1"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/custom-applications/getting-started/what-is-a-custom-application",
+      "destination": "/custom-applications/what-is-a-custom-application"
+    },
+    {
+      "source": "/custom-applications/getting-started/(.*)",
+      "destination": "/custom-applications/_legacy/getting-started/$1"
+    },
+    {
+      "source": "/custom-applications/development/folder-structure",
+      "destination": "/custom-applications/_legacy/development/folder-structure"
+    },
+    {
+      "source": "/custom-applications/development/available-scripts",
+      "destination": "/custom-applications/_legacy/development/available-scripts"
+    },
+    {
+      "source": "/custom-applications/development/application-config",
+      "destination": "/custom-applications/_legacy/development/application-config"
+    },
+    {
+      "source": "/custom-applications/development/menu-links",
+      "destination": "/custom-applications/_legacy/development/menu-links"
+    },
+    {
+      "source": "/custom-applications/development/styling",
+      "destination": "/custom-applications/_legacy/development/styling"
+    },
+    {
+      "source": "/custom-applications/development/testing",
+      "destination": "/custom-applications/_legacy/development/testing"
+    },
+    {
+      "source": "/custom-applications/development/translations",
+      "destination": "/custom-applications/_legacy/development/translations"
+    },
+    {
+      "source": "/custom-applications/components/(.*)",
+      "destination": "/custom-applications/_legacy/components/$1"
+    },
+    {
+      "source": "/custom-applications/deployment/(.*)",
+      "destination": "/custom-applications/_legacy/deployment/$1"
+    },
+    {
+      "source": "/custom-applications/register-applications/(.*)",
+      "destination": "/custom-applications/_legacy/register-applications/$1"
+    },
+    {
+      "source": "/custom-applications/main-concepts/(.*)",
+      "destination": "/custom-applications/_legacy/main-concepts/$1"
     }
   ]
 }
