@@ -12,7 +12,10 @@ const renderMessage = (ui: ReactElement) =>
 
 describe('render', () => {
   it('should show message for InvalidInput', () => {
-    const error = { code: 'InvalidInput', message: 'message-content' };
+    const error = {
+      extensions: { code: 'InvalidInput' },
+      message: 'message-content',
+    };
     renderMessage(<ApiErrorMessage error={error} />);
     expect(
       screen.getByText(/Sorry, but there seems to be something wrong/i)
@@ -20,7 +23,7 @@ describe('render', () => {
   });
   it('should show message for OverlappingPrices', () => {
     const error = {
-      code: 'unnecessary code',
+      extensions: { code: 'unnecessary code' },
       message: 'message-content',
       invalidValue: { overlappingPrices: 'overlappingPricesContent' },
     };
@@ -31,7 +34,7 @@ describe('render', () => {
   });
   it('should show message for InvalidOperation', () => {
     const error = {
-      code: 'InvalidOperation',
+      extensions: { code: 'InvalidOperation' },
       message: "Required attribute 'foo' cannot be removed",
     };
     renderMessage(<ApiErrorMessage error={error} />);
@@ -39,7 +42,7 @@ describe('render', () => {
   });
   it('should show message for InvalidDateRange', () => {
     const error = {
-      code: 'InvalidField',
+      extensions: { code: 'InvalidField' },
       message: 'message-content',
       field: 'price',
       invalidValue: {
@@ -55,7 +58,7 @@ describe('render', () => {
   it('should show message for unmapped error and report to sentry', async () => {
     mocked(reportErrorToSentry).mockReset();
     const error = {
-      code: 'unmapped error message foo 123',
+      extensions: { code: 'unmapped error message foo 123' },
       message: 'message-content',
       detailedErrorMessage: 'detailed-error-message-content',
     };
@@ -70,7 +73,7 @@ describe('render', () => {
   it('should show message for unmapped error and not report to sentry for project expired', async () => {
     mocked(reportErrorToSentry).mockReset();
     const error = {
-      code: 'invalid_scope',
+      extensions: { code: 'invalid_scope' },
       message: 'has expired',
     };
     renderMessage(<ApiErrorMessage error={error} />);
@@ -81,7 +84,7 @@ describe('render', () => {
   });
   it('should show message for DuplicateSlug', () => {
     const error = {
-      code: 'DuplicateField',
+      extensions: { code: 'DuplicateField' },
       message: 'message-content',
       field: 'slug',
       duplicateValue: 'duplicateValueContent',
@@ -93,7 +96,7 @@ describe('render', () => {
   });
   it('should show message for DuplicateAttributeValue', () => {
     const error = {
-      code: 'DuplicateAttributeValue',
+      extensions: { code: 'DuplicateAttributeValue' },
       message: 'message-content',
       attribute: {
         name: 'attribute-name',
@@ -108,7 +111,7 @@ describe('render', () => {
   });
   it('should show message for Unauthorized', () => {
     const error = {
-      code: 'Unauthorized',
+      extensions: { code: 'Unauthorized' },
       message: 'message-content',
     };
     renderMessage(<ApiErrorMessage error={error} />);
@@ -120,7 +123,7 @@ describe('render', () => {
   });
   it('should show message for Forbidden', () => {
     const error = {
-      code: 'insufficient_scope',
+      extensions: { code: 'insufficient_scope' },
       message: 'message-content',
     };
     renderMessage(<ApiErrorMessage error={error} />);
@@ -132,7 +135,7 @@ describe('render', () => {
   });
   it('should show translated message for API Error extensions', () => {
     const error = {
-      code: 'InvalidField',
+      extensions: { code: 'InvalidField' },
       message: 'Default message',
       errorByExtension: {
         id: 'some-id',
@@ -147,7 +150,7 @@ describe('render', () => {
   });
   it('should show "untranslated" message for API Error extensions', () => {
     const error = {
-      code: 'InvalidField',
+      extensions: { code: 'InvalidField' },
       message: 'Default message',
       errorByExtension: {
         id: 'some-id',
@@ -161,7 +164,7 @@ describe('render', () => {
   });
   it('should show message for ExtensionNoResponse', () => {
     const error = {
-      code: 'ExtensionNoResponse',
+      extensions: { code: 'ExtensionNoResponse' },
       message: 'message-content',
     };
     renderMessage(<ApiErrorMessage error={error} />);
@@ -173,7 +176,7 @@ describe('render', () => {
   });
   it('should show message for ExtensionBadResponse', () => {
     const error = {
-      code: 'ExtensionBadResponse',
+      extensions: { code: 'ExtensionBadResponse' },
       message: 'message-content',
     };
     renderMessage(<ApiErrorMessage error={error} />);
@@ -185,7 +188,7 @@ describe('render', () => {
   });
   it('should show message for ExtensionUpdateActionsFailed', () => {
     const error = {
-      code: 'ExtensionUpdateActionsFailed',
+      extensions: { code: 'ExtensionUpdateActionsFailed' },
       message: 'message-content',
     };
     renderMessage(<ApiErrorMessage error={error} />);
@@ -197,7 +200,7 @@ describe('render', () => {
   });
   it('should show message for MaxResourceLimitExceeded', () => {
     const error = {
-      code: 'MaxResourceLimitExceeded',
+      extensions: { code: 'MaxResourceLimitExceeded' },
       message: 'message-content',
     };
     renderMessage(<ApiErrorMessage error={error} />);
