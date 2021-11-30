@@ -87,7 +87,9 @@ describe('rendering', () => {
             values: {
               errors: [
                 {
-                  code: 'ConcurrentModification',
+                  extensions: {
+                    code: 'ConcurrentModification',
+                  },
                   message: 'Concurrent modification',
                 },
               ],
