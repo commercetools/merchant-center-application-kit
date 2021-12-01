@@ -1,0 +1,61 @@
+---
+title: OAuth Scopes and User Permissions
+---
+
+# OAuth Scopes
+
+Custom Applications can potentially use any of the available commercetools platform APIs. This is very important and one of the reasons for using Custom Applications in the first place: to be able to extend and improve functionalities of the commercetools platform and Merchant Center.
+
+Therefore, Custom Applications **must specify the list of OAuth Scopes** needed by the application.
+
+For example, if you are developing a Custom Application to manage [Channels](https://docs.commercetools.com/api/projects/channels) you would probably need the OAuth Scopes `view_products` and `manage_products`. On top of that, you might decide to also view [Customers](https://docs.commercetools.com/api/projects/customers) information.
+
+To fulfill these requirements, your Custom Application requires the following OAuth Scopes:
+
+* `view_products`, `view_customers`
+* `manage_products`
+
+These OAuth Scopes must be specified in your Custom Application config, using the `oAuthScopes` field.
+
+```json title="custom-application-config.json"
+{
+  "oAuthScopes": {
+    "view": ["view_products", "view_customers"],
+    "manage": ["manage_products"]
+  }
+}
+```
+
+Notice here how the OAuth Scopes are grouped by the two fields `view` and `manage`.
+
+This grouping determines the **mapping and relation between OAuth Scopes and User Permissions**.
+
+# User Permissions
+
+In the Merchant Center, you can assign User Permissions to different parts of the Merchant Center. See [User Permissions in Merchant Center](https://docs.commercetools.com/merchant-center/user-permissions) for more information.<br />
+The same concepts applies for Custom Applications as well. Once your Custom Application has been installed in your Organization, you can assign User Permissions for your Custom Application to each specific Team.
+
+Each Custom Application gets a **unique pair** of User Permissions: "view" and "manage".
+
+* When assigning "view"-only permission to a Team, only the `view_` OAuth Scopes are used to authorize API requests.
+* When assigning "manage" permission to a Team, both `view_` and `manage_` OAuth Scopes are used to authorize API requests.
+
+<Info>
+
+The permission names are unique to each Custom Application and they derive from the `entryPointUriPath`, based on the following format: `{View,Manage}<EntryPointUriPath>`.
+
+Here are some examples:
+
+| `entryPointUriPath` | User Permission |
+| --- | --- |
+| `avengers` | `{View,Manage}Avengers` |
+| `the-avengers` | `{View,Manage}TheAvengers` |
+| `the_avengers` | `{View,Manage}The_Avengers` |
+| `avengers-01` | `{View,Manage}Avengers/01` |
+| `avengers_01` | `{View,Manage}Avengers_01` |
+
+</Info>
+
+Ultimately, User Permissions should be applied and enforced in the actual Custom Application code. For example to restrict access to certain pages, or to disable a button, etc.
+
+To learn more about it, head over to the [Permissions in the development section](/development/permissions).

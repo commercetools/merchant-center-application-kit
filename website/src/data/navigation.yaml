@@ -12,14 +12,16 @@
       path: /migrating-from-project-level-custom-applications
 - chapter-title: Concepts
   pages:
-    - title: OAuth Scopes and Permissions
-      path: /concepts/oauth-scopes-and-permissions
+    - title: OAuth Scopes and User Permissions
+      path: /concepts/oauth-scopes-and-user-permissions
     - title: Merchant Center API
       path: /concepts/merchant-center-api
     - title: Integrate with your own API
       path: /concepts/integrate-with-your-own-api
 - chapter-title: Development
   pages:
+    - title: Overview
+      path: /development
     - title: Data Fetching
       path: /development/data-fetching
     - title: UI Components
@@ -38,11 +40,13 @@
       path: /development/going-to-production
 - chapter-title: Deployment Examples
   pages:
-    - title: 'Example Deployment with Vercel'
+    - title: Overview
+      path: /deployment-examples
+    - title: Example Deployment with Vercel
       path: /deployment-examples/vercel
-    - title: 'Example Deployment with Firebase'
+    - title: Example Deployment with Firebase
       path: /deployment-examples/firebase
-    - title: 'Example Deployment with AWS, S3 and CloudFront'
+    - title: Example Deployment with AWS, S3 and CloudFront
       path: /deployment-examples/aws-s3-cloudfront
 - chapter-title: API Reference
   pages:
