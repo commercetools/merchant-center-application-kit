@@ -2976,10 +2976,13 @@ __metadata:
   resolution: "@commercetools-local/visual-testing-app@workspace:visual-testing-app"
   dependencies:
     "@commercetools-frontend/application-components": 20.11.0
+    "@commercetools-frontend/assets": 20.10.6
     "@commercetools-frontend/constants": 20.11.0
     "@commercetools-frontend/mc-scripts": 20.11.0
     "@commercetools-frontend/react-notifications": 20.11.0
+    "@commercetools-uikit/accessible-button": ^12.2.2
     "@commercetools-uikit/design-system": ^12.2.2
+    "@commercetools-uikit/grid": ^12.0.7
     "@commercetools-uikit/icon-button": ^12.2.2
     "@commercetools-uikit/icons": ^12.2.2
     "@commercetools-uikit/link": ^12.2.2
@@ -3045,6 +3048,27 @@ __metadata:
   peerDependencies:
     react: 17.x
   checksum: e54226a0319c6103a00c5d61e28b7983f7baf6df791101e15564f1745223357971deeac1eeca62d42999903c650e0059166c5249374e25f384901a41fbc221ea
+  languageName: node
+  linkType: hard
+
+"@commercetools-uikit/accessible-button@npm:^12.2.2":
+  version: 12.2.5
+  resolution: "@commercetools-uikit/accessible-button@npm:12.2.5"
+  dependencies:
+    "@babel/runtime": 7.16.3
+    "@babel/runtime-corejs3": 7.16.3
+    "@commercetools-uikit/design-system": 12.2.5
+    "@commercetools-uikit/utils": 12.2.5
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    "@types/react-is": ^17.0.0
+    common-tags: 1.8.2
+    lodash: 4.17.21
+    prop-types: 15.7.2
+    react-is: 17.0.2
+  peerDependencies:
+    react: 17.x
+  checksum: 6b1e36c799dfed186dc4f783bb3e5ac4fb961f5d58b8daeeb1e14029a1e3556fb1ab05a079df90c6023c5190ecccc424ed2d0b686568992c26490146ab63488b
   languageName: node
   linkType: hard
 
@@ -3240,6 +3264,16 @@ __metadata:
     "@babel/runtime": 7.15.4
     "@babel/runtime-corejs3": 7.15.4
   checksum: 9332b394879c70bfac7d2bdecc4484fafbe80931799bc566bcb6ef805d51900d5e461f0e10fd5745d5dc7c9dbfabdafebcb0d62e925b7911b48565250b46fe7e
+  languageName: node
+  linkType: hard
+
+"@commercetools-uikit/design-system@npm:12.2.5":
+  version: 12.2.5
+  resolution: "@commercetools-uikit/design-system@npm:12.2.5"
+  dependencies:
+    "@babel/runtime": 7.16.3
+    "@babel/runtime-corejs3": 7.16.3
+  checksum: 10ead8a00cd55bdc173450a84edf33148d721041eae6a4b133dac5ae8570055025d367e591ac1a332ceae858f1007ea958a9efb96dbdf807bffd54b478cf1230
   languageName: node
   linkType: hard
 
@@ -3935,6 +3969,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@commercetools-uikit/utils@npm:12.2.5":
+  version: 12.2.5
+  resolution: "@commercetools-uikit/utils@npm:12.2.5"
+  dependencies:
+    "@babel/runtime": 7.16.3
+    "@babel/runtime-corejs3": 7.16.3
+    "@emotion/is-prop-valid": 1.1.1
+    "@types/warning": ^3.0.0
+    warning: 4.0.3
+  checksum: 10254c6ece75c72e70fd50c29f18e84313592a52a7258cfaad98842592456fedb1bed8af8581aff30bafed7568c3223a36b40cfaba6833919ee4e39c3c20818e
+  languageName: node
+  linkType: hard
+
 "@commercetools-website/components-playground@workspace:website-components-playground":
   version: 0.0.0-use.local
   resolution: "@commercetools-website/components-playground@workspace:website-components-playground"
@@ -4349,6 +4396,15 @@ __metadata:
   dependencies:
     "@emotion/memoize": ^0.7.4
   checksum: 87351133ad80612138d9e34e79198635d36b238c7a5fddb4593798ecf8a2db6ac1d84e1e5e282a7fec04fb589e0cd4b1214ad080a9181671dcab2ce24ef22c1b
+  languageName: node
+  linkType: hard
+
+"@emotion/is-prop-valid@npm:1.1.1":
+  version: 1.1.1
+  resolution: "@emotion/is-prop-valid@npm:1.1.1"
+  dependencies:
+    "@emotion/memoize": ^0.7.4
+  checksum: 5816696dae6ac79537a31fe95256e0c1f55651507204676dd9903542b102f727c16a68924e6634a89b0972f0d15b0803bb9d4e14bd0fb8a49da8a2e3956e6639
   languageName: node
   linkType: hard
 
@@ -11931,6 +11987,13 @@ __metadata:
   version: 1.8.0
   resolution: "common-tags@npm:1.8.0"
   checksum: fb0cc9420d149176f2bd2b1fc9e6df622cd34eccaca60b276aa3253a7c9241e8a8ed1ec0702b2679eba7e47aeef721869c686bbd7257b75b5c44993c8462cd7f
+  languageName: node
+  linkType: hard
+
+"common-tags@npm:1.8.2":
+  version: 1.8.2
+  resolution: "common-tags@npm:1.8.2"
+  checksum: 767a6255a84bbc47df49a60ab583053bb29a7d9687066a18500a516188a062c4e4cd52de341f22de0b07062e699b1b8fe3cfa1cb55b241cb9301aeb4f45b4dff
   languageName: node
   linkType: hard
 
