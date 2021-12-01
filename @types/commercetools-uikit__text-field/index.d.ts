@@ -1,7 +1,7 @@
 declare module '@commercetools-uikit/text-field' {
   import * as React from 'react';
   import { FormikValues } from 'formik';
-  import { TextInputProps } from '@commercetools-uikit/text-input';
+  import { TTextInputProps } from '@commercetools-uikit/text-input';
 
   export const version: string;
 
@@ -49,14 +49,14 @@ declare module '@commercetools-uikit/text-field' {
 
   // <TextField>
   export interface TextFieldProps
-    extends TextInputProps,
+    extends TTextInputProps,
       FieldComponentProps,
       FieldComponentLabelProps,
       FieldComponentErrorsProps {}
   const TextField: {
     (props: TextFieldProps): JSX.Element;
     displayName: string;
-    defaultProps: Pick<TextFieldProps, 'horizontalConstraint' | 'type'>;
+    defaultProps: Pick<TextFieldProps, 'horizontalConstraint'>;
   };
   export default TextField;
 }
