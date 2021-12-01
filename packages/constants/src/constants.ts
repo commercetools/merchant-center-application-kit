@@ -66,6 +66,8 @@ export type TAppNotificationOfKind<T extends TAppNotificationOfDomain> =
   };
 export type TAppNotificationApiError<ExtraFields extends {} = {}> = {
   message: string;
+  /** @deprecated Use `extensions.code` */
+  code?: string;
   extensions?: {
     code?: string;
   };
