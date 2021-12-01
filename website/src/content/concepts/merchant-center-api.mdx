@@ -48,7 +48,7 @@ https://{mcService}.{region}.{cloudProvider}.commercetools.com
 
 # Authentication
 
-The Merchant Center API is protected by a **session token** via the HTTP `Cookie` header.
+The Merchant Center API is protected by a **session token** via the HTTP `Cookie` header, which is set only for `<cloud-region>.commercetools.com` domains.
 
 In the browser, the session token is stored in a **secure cookie** named `mcAccessToken`.
 
@@ -123,6 +123,7 @@ The following proxy endpoints are available:
 * `/proxy/ctp/*`: Proxies requests to the [commercetools platform HTTP API](https://docs.commercetools.com/api).
 * `/proxy/ml/*`: Proxies requests to the [Machine Learning API](https://docs.commercetools.com/api/ml).
 * `/proxy/import/*`: Proxies requests to the [Import Export API](https://docs.commercetools.com/import-export).
+* `/proxy/forward-to`: See [Integrate with your own API](/concepts/integrate-with-your-own-api).
 
 There are other proxy endpoints available but they are mostly for internal usage and not documented.
 
