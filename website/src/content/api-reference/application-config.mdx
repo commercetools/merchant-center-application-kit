@@ -2,6 +2,8 @@
 title: Application config
 ---
 
+import ApplicationIcons from '../../components/application-icons.js'
+
 <Info>
 
 This feature is available from version `>= 16.15.0`.
@@ -189,17 +191,15 @@ The menu links configured here are then used in `development` mode only. See [Me
 
 ### `menuLinks.icon`
 
-The `icon` identifies the Custom Application in the Merchant Center menu.
+The `icon` identifies the Custom Application in the Merchant Center menu. You can choose one of the following pre-defined icons by referencing it with the special expansion-like syntax `${path:}`:
 
-You can pass the name of one of the following supported icons:
+```json
+{
+  "icon": "${path:@commercetools-frontend/assets/application-icons/<icon_name>.svg}"
+}
+```
 
-* `HeartIcon`
-* `PaperclipIcon`
-* `PluginIcon`
-* `RocketIcon`
-* `StarIcon`
-* `ConnectedSquareIcon`
-* `WorldIcon`
+<ApplicationIcons />
 
 ### `menuLinks.labelAllLocales`
 
