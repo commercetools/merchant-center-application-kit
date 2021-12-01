@@ -8,7 +8,7 @@
     }
   },
   "menuLinks": {
-    "icon": "${path:@commercetools-frontend/assets/application-icons/heart.svg}",
+    "icon": "${path:@commercetools-frontend/assets/application-icons/04.Rocket.svg}",
     "defaultLabel": "Avengers",
     "labelAllLocales": [
       {
