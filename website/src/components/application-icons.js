@@ -33,7 +33,6 @@ const ApplicationIcons = () => (
           <Spacings.Stack alignItems="center">
             <div
               css={css`
-                padding: ${customProperties.spacingS};
                 width: calc(${customProperties.spacingXl} * 1.5);
                 height: calc(${customProperties.spacingXl} * 1.5);
               `}
