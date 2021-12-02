@@ -48,14 +48,6 @@
       "destination": "/custom-applications/_legacy/development/styling"
     },
     {
-      "source": "/custom-applications/development/testing",
-      "destination": "/custom-applications/_legacy/development/testing"
-    },
-    {
-      "source": "/custom-applications/development/translations",
-      "destination": "/custom-applications/_legacy/development/translations"
-    },
-    {
       "source": "/custom-applications/components/(.*)",
       "destination": "/custom-applications/_legacy/components/$1"
     },
