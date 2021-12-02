@@ -1,5 +1,11 @@
 # @commercetools-frontend/assets
 
+## 20.12.0
+
+### Minor Changes
+
+- [#2416](https://github.com/commercetools/merchant-center-application-kit/pull/2416) [`f549637b`](https://github.com/commercetools/merchant-center-application-kit/commit/f549637b4a235ecc768ca77710784ddf63d1889b) Thanks [@emmenko](https://github.com/emmenko)! - Add new SVG icons for Custom Applications. Test icon colors with VRT.
+
 ## 20.10.6
 
 ### Patch Changes

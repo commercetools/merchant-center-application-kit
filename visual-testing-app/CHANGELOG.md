@@ -1,5 +1,19 @@
 # @commercetools-local/visual-testing-app
 
+## 18.2.0
+
+### Minor Changes
+
+- [#2416](https://github.com/commercetools/merchant-center-application-kit/pull/2416) [`f549637b`](https://github.com/commercetools/merchant-center-application-kit/commit/f549637b4a235ecc768ca77710784ddf63d1889b) Thanks [@emmenko](https://github.com/emmenko)! - Add new SVG icons for Custom Applications. Test icon colors with VRT.
+
+### Patch Changes
+
+- Updated dependencies [[`f549637b`](https://github.com/commercetools/merchant-center-application-kit/commit/f549637b4a235ecc768ca77710784ddf63d1889b), [`fc8a3546`](https://github.com/commercetools/merchant-center-application-kit/commit/fc8a3546eb402cb58eea8ad1ff1169f6ed697a5e)]:
+  - @commercetools-frontend/assets@20.12.0
+  - @commercetools-frontend/constants@20.12.0
+  - @commercetools-frontend/react-notifications@20.12.0
+  - @commercetools-frontend/application-components@20.12.0
+
 ## 18.1.10
 
 ### Patch Changes
