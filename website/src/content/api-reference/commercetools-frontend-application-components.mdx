@@ -26,7 +26,13 @@ npm --save install react react-dom react-intl
 
 # Components
 
-## InfoDialog
+* [InfoDialog](#infodialog)
+* [ConfirmationDialog](#confirmationdialog)
+* [FormDialog](#formdialog)
+* [InfoModalPage](#infomodalpage)
+* [FormModalPage](#formmodalpage)
+
+## `InfoDialog`
 
 <Playground urlPath="info-dialog" />
 
@@ -58,4 +64,414 @@ import { InfoDialog } from '@commercetools-frontend/application-components';
 | `getParentSelector` | `function` |    -     | -                 | -       | The function should return an HTML element that will be used as the parent container to hold the modal DOM tree. If no function is provided, it's expected that an HTML element with the `id="parent-container"` is present in the DOM. In the `NODE_ENV=test` environment, the default HTML element is `body`. |
 
 
-## ConfirmationDialog
+## `ConfirmationDialog`
+
+<Playground urlPath="confirmation-dialog" />
+
+Confirmation dialogs are controlled components used to prompt the user to confirm an important or destructive action. They are similar to Info dialogs but they have a primary and secondary button in the footer area.
+
+### Usage
+
+```jsx
+<ConfirmationDialog
+  title="Lorem ipsus"
+  isOpen={isOpen}
+  onClose={handleClose}
+  onCancel={handleCancel}
+  onConfirm={handleConfirm}
+>
+  <Spacings.Stack scale="m">
+    <Text.Body>{'Lorem ipsus ...'}</Text.Body>
+    <Text.Body>{'Lorem ipsus ...'}</Text.Body>
+  </Spacings.Stack>
+</ConfirmationDialog>
+```
+
+### Properties
+
+| Props                           | Type                       | Required | Values            | Default   | Description                                                                                                                                                                                                                                                                                                     |
+| ------------------------------- | -------------------------- | :------: | ----------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`                         | `string`                   |    ✅    | -                 | -         | The title of the Confirmation Dialog.                                                                                                                                                                                                                                                                           |
+| `isOpen`                        | `boolean`                  |    ✅    | -                 | -         | Indicates whether the dialog is open or closed. The parent component needs to manage this state.                                                                                                                                                                                                                |
+| `onClose`                       | `function`                 |    -     | -                 | -         | Called when the dialog closes: click on overlay, click on close button, press ESC. If the function is not provided, the modal cannot be closed by any of the listed options.                                                                                                                                    |
+| `children`                      | `node`                     |    ✅    | -                 | -         | Content rendered within the dialog. If the content is long in height (depending on the screen size) a scrollbar will appear.                                                                                                                                                                                    |
+| `size`                          | `string`                   |          | `m`, `l`, `scale` | `l`       | Horizontal width limit of the dialog card.                                                                                                                                                                                                                                                                      |
+| `zIndex`                        | `number`                   |          | -                 | `1000`    | The `z-index` value to be applied to the overlay container. It is useful if you have stacking modals.                                                                                                                                                                                                           |
+| `labelSecondary`                | `string` \| `Intl message` |    ✅    | -                 | `Cancel`  | The label for the secondary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#confirmationdialogintl).                                                     |
+| `labelPrimary`                  | `string` \| `Intl message` |    ✅    | -                 | `Confirm` | The label for the primary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#confirmationdialogintl).                                                                                  |
+| `onCancel`                      | `function`                 |    ✅    | -                 | -         | Called when the secondary button is clicked.                                                                                                                                                                                                                                                                    |
+| `onConfirm`                     | `function`                 |    ✅    | -                 | -         | Called when the primary button is clicked.                                                                                                                                                                                                                                                                      |
+| `isPrimaryButtonDisabled`       | `boolean`                  |    -     | -                 | false     | Indicates whether the primary button is disabled or not.                                                                                                                                                                                                                                                        |
+| `dataAttributesSecondaryButton` | `object`                   |    -     | -                 | -         | Use this prop to pass `data-` attributes to the secondary button.                                                                                                                                                                                                                                               |
+| `dataAttributesPrimaryButton`   | `object`                   |    -     | -                 | -         | Use this prop to pass `data-` attributes to the primary button.                                                                                                                                                                                                                                                 |
+| `getParentSelector`             | `function`                 |    -     | -                 | -         | The function should return an HTML element that will be used as the parent container to hold the modal DOM tree. If no function is provided, it's expected that an HTML element with the `id="parent-container"` is present in the DOM. In the `NODE_ENV=test` environment, the default HTML element is `body`. |
+
+### Static properties
+
+* `ConfirmationDialog.Intl`
+
+  This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+  The Intl messages can be used for button labels.
+
+  ```jsx
+  <ConfirmationDialog
+    // other props...
+    labelSecondary={ConfirmationDialog.Intl.revert}
+  />
+  ```
+
+## `FormDialog`
+
+<Playground urlPath="form-dialog" />
+
+Form dialogs are controlled components used to render a form or something that requires user input. They are very similar to Confirmation dialogs but semantically they fulfill a different role.
+
+### Usage
+
+```jsx
+import { FormDialog } from '@commercetools-frontend/application-components';
+
+<FormDialog
+  title="Lorem ipsus"
+  isOpen={isOpen}
+  onClose={handleClose}
+  onSecondaryButtonClick={handleCancel}
+  onPrimaryButtonClick={handleSubmit}
+>
+  <Spacings.Stack scale="m">
+    <Text.Body>{'Lorem ipsus ...'}</Text.Body>
+    <Text.Body>{'Lorem ipsus ...'}</Text.Body>
+  </Spacings.Stack>
+</FormDialog>
+```
+
+### Properties
+
+| Props                           | Type                       | Required | Values            | Default   | Description                                                                                                                                                                                                                                                                                                     |
+| ------------------------------- | -------------------------- | :------: | ----------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`                         | `string`                   |    ✅    | -                 | -         | The title of the Form Dialog.                                                                                                                                                                                                                                                                                   |
+| `isOpen`                        | `boolean`                  |    ✅    | -                 | -         | Indicates whether the dialog is open or closed. The parent component needs to manage this state.                                                                                                                                                                                                                |
+| `onClose`                       | `function`                 |    -     | -                 | -         | Called when the dialog closes: click on overlay, click on close button, press ESC. If the function is not provided, the modal cannot be closed by any of the listed options.                                                                                                                                    |
+| `children`                      | `node`                     |    ✅    | -                 | -         | Content rendered within the dialog. If the content is long in height (depending on the screen size) a scrollbar will appear.                                                                                                                                                                                    |
+| `size`                          | `string`                   |          | `m`, `l`, `scale` | `l`       | Horizontal width limit of the dialog card.                                                                                                                                                                                                                                                                      |
+| `zIndex`                        | `number`                   |          | -                 | `1000`    | The `z-index` value to be applied to the overlay container. It is useful if you have stacking modals.                                                                                                                                                                                                           |
+| `labelSecondary`                | `string` \| `Intl message` |    ✅    | -                 | `Cancel`  | The label for the secondary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#formdialogintl).                                                     |
+| `labelPrimary`                  | `string` \| `Intl message` |    ✅    | -                 | `Confirm` | The label for the primary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#formdialogintl).                                                                                  |
+| `onSecondaryButtonClick`        | `function`                 |    ✅    | -                 | -         | Called when the secondary button is clicked.                                                                                                                                                                                                                                                                    |
+| `onPrimaryButtonClick`          | `function`                 |    ✅    | -                 | -         | Called when the primary button is clicked.                                                                                                                                                                                                                                                                      |
+| `isPrimaryButtonDisabled`       | `boolean`                  |    -     | -                 | false     | Indicates whether the primary button is disabled or not.                                                                                                                                                                                                                                                        |
+| `dataAttributesSecondaryButton` | `object`                   |    -     | -                 | -         | Use this prop to pass `data-` attributes to the secondary button.                                                                                                                                                                                                                                               |
+| `dataAttributesPrimaryButton`   | `object`                   |    -     | -                 | -         | Use this prop to pass `data-` attributes to the primary button.                                                                                                                                                                                                                                                 |
+| `getParentSelector`             | `function`                 |    -     | -                 | -         | The function should return an HTML element that will be used as the parent container to hold the modal DOM tree. If no function is provided, it's expected that an HTML element with the `id="parent-container"` is present in the DOM. In the `NODE_ENV=test` environment, the default HTML element is `body`. |
+
+### Static properties
+
+* `FormDialog.Intl`
+
+  This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+  The Intl messages can be used for button labels.
+
+  ```jsx
+  <FormDialog
+    // other props...
+    labelSecondary={FormDialog.Intl.revert}
+  />
+  ```
+
+## `InfoModalPage`
+
+<Playground urlPath="info-modal-page" />
+
+Info Modal pages are controlled components used to render a page using a modal container, which makes it appear on top of the normal page. This is useful to render detailed data that normally requires some space.
+
+### Usage
+
+```jsx
+import { InfoModalPage } from '@commercetools-frontend/application-components';
+
+<InfoModalPage
+  title="Lorem ipsum"
+  isOpen={true}
+  onClose={handleClose}
+  subtitle={<Text.Body>{'Lorem ipsum ...'}</Text.Body>}
+  topBarCurrentPathLabel="Lorem ipsum"
+  topBarPreviousPathLabel="Back"
+>
+  <Text.Body>{'Lorem ipsum ...'}</Text.Body>
+</InfoModalPage>;
+```
+
+### Properties
+
+| Props                     | Type               | Required | Default                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------------- | ------------------ | :------: | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `isOpen`                  | `boolean`          |    ✅    | -                        | Indicates whether the page is open or closed. The parent component needs to manage this state.                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `title`                   | `string`           |    ✅    | -                        | The title of the page.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `subtitle`                | `node` or `string` |    -     | -                        | The subtitle of the page, usually a React component. If a string is passed, it's rendered as a paragraph.                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `onClose`                 | `function`         |    -     | -                        | Called when the page closes: click on overlay, click on close button, press ESC. If the function is not provided, the page cannot be closed by any of the listed options.                                                                                                                                                                                                                                                                                                                                                  |
+| `level`                   | `number`           |          | `1`                      | The level indicates the stack position of the modal page, progressively increasing the `z-index` position (combined with the `baseZIndex`) as well as the spacing from the left side of the page.                                                                                                                                                                                                                                                                                                                          |
+| `baseZIndex`              | `number`           |          | `1000`                   | The base `z-index` value to be applied to the overlay container, incremented by `1` according to the `level` prop.                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `zIndex`                  | `number`           |          | -                        | The `z-index` value to be applied to the overlay container. This value overrides the normal `z-index` value calculated from the `baseZIndex` and `level` props. If you provide this value, you would need to take care of providing a proper `z-index` based on the stacked level.                                                                                                                                                                                                                                         |
+| `topBarCurrentPathLabel`  | `string`           |          | The `title` prop         | Label to appear as the current path of the top bar of the modal.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `topBarPreviousPathLabel` | `string`           |          | `"Go Back"` (translated) | Label to appear as the previous path of the top bar of the modal.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `children`                | `node`             |    ✅    | -                        | Content rendered within the page. If the content is long in height (depending on the screen size) a scrollbar will appear.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `getParentSelector`       | `function`         |    -     | -                        | The function should return an HTML element that will be used as the parent container to hold the modal DOM tree. If no function is provided, it's expected that an HTML element with the `id="parent-container"` is present in the DOM. In the `NODE_ENV=test` environment, the default HTML element is `body`.                                                                                                                                                                                                            |
+| `shouldDelayOnClose`      | `bool`             |    -     | `true`                   | Sets whether the ModalPage should delay calling its `onClose` function to allow the closing animation time to finish. This can be turned off if the developer is controlling the ModalPage only through the `isOpen` prop, and not abruptly mounting/unmounting it or one of its parent elements. You might also want to turn this off if you need to display a prompt (for example to save changes) on the ModalPage before navigating out of it, as this option makes the Modal close itself before `onClose` is called. |
+| `afterOpenStyles`         | `string` or `object`  |    -  | -                        | Overwrite the default styles of `afterOpen`. You can pass a "class name" or a CSS-in-JS style object. This should be used only in cases the default styles are causing some layout issues.                                                                                                                                                                                                                                                                                                                                 |
+
+## `FormModalPage`
+
+<Playground urlPath="form-modal-page" />
+
+Form Modal pages are controlled components used to render a page with a form or something that requires user input, similar to `InfoModalPage` but semantically with a different role. The header includes buttons to control the submission or cancellation of the form. These buttons can be overwritten with custom controls by using the `<CustomFormModalPage>` component.
+
+### Usage
+
+```jsx
+import { FormModalPage } from '@commercetools-frontend/application-components';
+
+<FormModalPage
+  title="Lorem ipsum"
+  isOpen={true}
+  onClose={handleClose}
+  subtitle={<Text.Body>{'Lorem ipsum ...'}</Text.Body>}
+  topBarCurrentPathLabel="Lorem ipsum"
+  topBarPreviousPathLabel="Back"
+  onSecondaryButtonClick={handleCancel}
+  onPrimaryButtonClick={handleSubmit}
+>
+  <TextField {...textFieldFormProps} />
+</FormModalPage>;
+```
+
+### Properties
+
+| Props                           | Type                       | Required | Default                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------------------- | -------------------------- | :------: | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `isOpen`                        | `boolean`                  |    ✅    | -                        | Indicates whether the page is open or closed. The parent component needs to manage this state.                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `title`                         | `string`                   |    ✅    | -                        | The title of the page.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `subtitle`                      | `node` or `string`         |    -     | -                        | The subtitle of the page, usually a React component. If a string is passed, it's rendered as a paragraph.                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `onClose`                       | `function`                 |    -     | -                        | Called when the page closes click on overlay, click on close button, press ESC. If the function is not provided, the page cannot be closed by any of the listed options.                                                                                                                                                                                                                                                                                                                                                   |
+| `level`                         | `number`                   |          | `1`                      | The level indicates the stack position of the modal page, progressively increasing the `z-index` position (combined with the `baseZIndex`) as well as the spacing from the left side of the page.                                                                                                                                                                                                                                                                                                                          |
+| `baseZIndex`                    | `number`                   |          | `1000`                   | The base `z-index` value to be applied to the overlay container, incremented by `1` according to the `level` prop.                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `zIndex`                        | `number`                   |          | -                        | The `z-index` value to be applied to the overlay container. This value overrides the normal `z-index` value calculated from the `baseZIndex` and `level` props. If you provide this value, you would need to take care of providing a proper `z-index` based on the stacked level.                                                                                                                                                                                                                                         |
+| `topBarCurrentPathLabel`        | `string`                   |          | The `title` prop         | Label to appear as the current path of the top bar of the modal.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `topBarPreviousPathLabel`       | `string`                   |          | `"Go Back"` (translated) | Label to appear as the previous path of the top bar of the modal.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `children`                      | `node`                     |    ✅    | -                        | Content rendered within the page. If the content is long in height (depending on the screen size) a scrollbar will appear.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `labelSecondaryButton`                | `string` \| `Intl message` |    ✅    | -                 | `Cancel`  | The label for the secondary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#formmodalpageintl).                                                     |
+| `labelPrimaryButton`                  | `string` \| `Intl message` |    ✅    | -                 | `Confirm` | The label for the primary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#formmodalpageintl).                                                                                  |
+| `onSecondaryButtonClick`        | `function`                 |    ✅    | -                        | Called when the secondary button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `onPrimaryButtonClick`          | `function`                 |    ✅    | -                        | Called when the primary button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `isPrimaryButtonDisabled`       | `boolean`                  |    -     | `false`                  | Indicates whether the primary button is disabled or not.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `dataAttributesSecondaryButton` | `object`                   |    -     | -                        | Use this prop to pass `data-` attributes to the secondary button.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `dataAttributesPrimaryButton`   | `object`                   |    -     | -                        | Use this prop to pass `data-` attributes to the primary button.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `getParentSelector`             | `function`                 |    -     | -                        | The function should return an HTML element that will be used as the parent container to hold the modal DOM tree. If no function is provided, it's expected that an HTML element with the `id="parent-container"` is present in the DOM. In the `NODE_ENV=test` environment, the default HTML element is `body`.                                                                                                                                                                                                            |
+| `shouldDelayOnClose`            | `bool`                     |    -     | `true`                   | Sets whether the ModalPage should delay calling its `onClose` function to allow the closing animation time to finish. This can be turned off if the developer is controlling the ModalPage only through the `isOpen` prop, and not abruptly mounting/unmounting it or one of its parent elements. You might also want to turn this off if you need to display a Prompt (for example to save changes) on the ModalPage before navigating out of it, as this option makes the Modal close itself before `onClose` is called. |
+| `afterOpenStyles`               | `string` or `object`       |    -     | -                        | Overwrite the default styles of `afterOpen`. You can pass a "class name" or a CSS-in-JS style object. This should be used only in cases the default styles are causing some layout issues.                                                                                                                                                                                                                                                                                                                                 |
+
+### Static properties
+
+* `FormModalPage.Intl`
+
+  This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+  The Intl messages can be used for button labels.
+
+  ```jsx
+  <FormModalPage
+    // other props...
+    labelSecondaryButton={FormModalPage.Intl.revert}
+  />
+  ```
+
+## `CustomFormModalPage`
+
+<Playground urlPath="custom-form-modal-page" />
+
+Custom Form Modal pages are a variation of the `<FormModalPage>` that allow to pass custom control elements via `formControls`.
+This is useful in case the modal page needs different control elements than the default ones (primary and secondary buttons).
+
+### Usage
+
+```jsx
+import { CustomFormModalPage } from '@commercetools-frontend/application-components';
+
+<CustomFormModalPage
+  title="Lorem ipsum"
+  isOpen={true}
+  onClose={handleClose}
+  subtitle={<Text.Body>{'Lorem ipsum ...'}</Text.Body>}
+  topBarCurrentPathLabel="Lorem ipsum"
+  topBarPreviousPathLabel="Back"
+  formControls={
+    <React.Fragment>
+      <CustomFormModalPage.FormSecondaryButton onClick={handleCancel} />
+      <CustomFormModalPage.FormPrimaryButton onClick={handleConfirm} />
+      <CustomFormModalPage.FormDeleteButton onClick={handleDelete} />
+    </React.Fragment>
+  }
+>
+  <TextField {...textFieldFormProps} />
+</CustomFormModalPage>;
+```
+
+### Properties
+
+| Props                     | Type               | Required | Default                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ------------------------- | ------------------ | :------: | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `isOpen`                  | `boolean`          |    ✅    | -                        | Indicates whether the page is open or closed. The parent component needs to manage this state.                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `title`                   | `string`           |    ✅    | -                        | The title of the page.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `subtitle`                | `node` or `string` |    -     | -                        | The subtitle of the page, usually a React component. If a string is passed, it's rendered as a paragraph.                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `onClose`                 | `function`         |    -     | -                        | Called when the page closes: click on overlay, click on close button, press ESC. If the function is not provided, the page cannot be closed by any of the listed options.                                                                                                                                                                                                                                                                                                                                          |
+| `level`                   | `number`           |          | `1`                      | The level indicates the stack position of the modal page, progressively increasing the `z-index` position (combined with the `baseZIndex`) as well as the spacing from the left side of the page.                                                                                                                                                                                                                                                                                                                  |
+| `baseZIndex`              | `number`           |          | `1000`                   | The base `z-index` value to be applied to the overlay container, incremented by `1` according to the `level` prop.                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `zIndex`                  | `number`           |          | -                        | The `z-index` value to be applied to the overlay container. This value overrides the normal `z-index` value calculated from the `baseZIndex` and `level` props. If you provide this value, you would need to take care of providing a proper `z-index` based on the stacked level.                                                                                                                                                                                                                                  |
+| `topBarCurrentPathLabel`  | `string`           |          | The `title` prop         | Label to appear as the current path of the top bar of the modal                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `topBarPreviousPathLabel` | `string`           |          | `"Go Back"` (translated) | Label to appear as the previous path of the top bar of the modal                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `children`                | `node`             |    ✅    | -                        | Content rendered within the page. If the content is long in height (depending on the screen size) a scrollbar will appear.                                                                                                                                                                                                                                                                                                                                                                                          |
+| `formControls`            | `node`             |    -     | -                        | Pass a React.node with form controls. You can use the pre-made form buttons exposed by this component or you can use your own.                                                                                                                                                                                                                                                                                                                                                                                      |
+| `getParentSelector`       | `function`         |    -     | -                        | The function should return an HTML element that will be used as the parent container to hold the modal DOM tree. If no function is provided, it's expected that an HTML element with the `id="parent-container"` is present in the DOM. In the `NODE_ENV=test` environment, the default HTML element is `body`.                                                                                                                                                                                                         |
+| `hideControls`            | `bool`             |    -     | `false`                  | Hides the form controls.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `shouldDelayOnClose`      | `bool`             |    -     | `true`                   | Sets whether the ModalPage should delay calling its `onClose` function to allow the closing animation time to finish. This can be turned off if the developer is controlling the ModalPage only through the `isOpen` prop, and not abruptly mounting/unmounting it or one of its parent elements. You might also want to turn this off if you need to display a Prompt (for example to save changes) on the ModalPage before navigating out of it, as this option makes the Modal close itself before `onClose` is called. |
+| `afterOpenStyles`         | `string` or `object`  |    -  | -                        | Overwrite the default styles of `afterOpen`. You can pass a "class name" or a CSS-in-JS style object. This should be used only in cases the default styles are causing some layout issues.                                                                                                                                                                                                                                                                                                                          |
+### Static properties
+
+* Form Control Buttons
+
+  Pre-configured form control buttons to easily re-use them in the custom controls.
+
+  ```js
+  CustomFormModalPage.FormPrimaryButton = FormPrimaryButton;
+  CustomFormModalPage.FormSecondaryButton = FormSecondaryButton;
+  CustomFormModalPage.FormDeleteButton = FormDeleteButton;
+  ```
+
+* `CustomFormModalPage.Intl`
+
+  This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+  The Intl messages can be used for button labels.
+
+  ```jsx
+  <CustomFormModalPage
+    // other props...
+    formControls={
+      <CustomFormModalPage.FormSecondaryButton
+        // other props...
+        label={CustomFormModalPage.Intl.revert}
+      />
+    }
+  />
+  ```
+
+## `TabularModalPage`
+
+<Playground urlPath="tabular-modal-page" />
+
+Tabular Modal pages are controlled components used to render a page with custom navigational controls and content, for instance, with Tabs. Similar to `InfoModalPage`, but with no header and a gray top bar.
+
+### Usage
+
+```jsx
+import { TabularModalPage } from '@commercetools-frontend/application-components';
+
+<TabularModalPage
+  title="Lorem ipsum"
+  isOpen={true}
+  onClose={handleClose}
+  topBarCurrentPathLabel="Lorem ipsum"
+  topBarPreviousPathLabel="Back"
+>
+  <ViewHeader {...viewHeaderProps} />
+  <TabsContainer {...tabsContainerProps} />
+</TabularModalPage>;
+```
+
+### Properties
+
+| Props                           | Type                       | Required | Default                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------------------- | -------------------------- | :------: | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `isOpen`                        | `boolean`                  |    ✅    | -                        | Indicates whether the page is open or closed. The parent component needs to manage this state.                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `title`                         | `string`                   |    ✅    | -                        | The title of the page.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `subtitle`                      | `node` or `string`         |    -     | -                        | The subtitle of the page, usually a React component. If a string is passed, it's rendered as a paragraph.                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `onClose`                       | `function`                 |    -     | -                        | Called when the page closes: click on overlay, click on close button, press ESC. If the function is not provided, the page cannot be closed by any of the listed options.                                                                                                                                                                                                                                                                                                                                                  |
+| `level`                         | `number`                   |          | `1`                      | The level indicates the stack position of the modal page, progressively increasing the `z-index` position (combined with the `baseZIndex`) as well as the spacing from the left side of the page.                                                                                                                                                                                                                                                                                                                          |
+| `baseZIndex`                    | `number`                   |          | `1000`                   | The base `z-index` value to be applied to the overlay container, incremented by `1` according to the `level` prop.                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `zIndex`                        | `number`                   |          | -                        | The `z-index` value to be applied to the overlay container. This value overrides the normal `z-index` value calculated from the `baseZIndex` and `level` props. If you provide this value, you would need to take care of providing a proper `z-index` based on the stacked level.                                                                                                                                                                                                                                         |
+| `topBarCurrentPathLabel`        | `string`                   |          | The `title` prop         | Label to appear as the current path of the top bar of the modal.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `topBarPreviousPathLabel`       | `string`                   |          | `"Go Back"` (translated) | Label to appear as the previous path of the top bar of the modal.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `children`                      | `node`                     |    ✅    | -                        | Content rendered within the page. It isn't wrapped by anything except the Modal Container itself, so its expected to have its style fully customized.                                                                                                                                                                                                                                                                                                                                                                      |
+| `formControls`            | `node`             |    -     | -                        | Pass a React.node with form controls. You can use the pre-made form buttons exposed by this component or you can use your own.                                                                                                                                                                                                                                                                                                                                                                                      |
+| `customTitleRow`                | `node`                     |    -     | -                        | Pass a React.node to be used in place of the `title` and `subtitle`.                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `tabControls`                   | `node`                     |    ✅    | -                        | Pass a React.node to be used as the Tabs component for controlling the navigation between the Tab contents within the modal.                                                                                                                                                                                                                                                                                                                                                                                               |
+| `getParentSelector`             | `function`                 |    -     | -                        | The function should return an HTML element that will be used as the parent container to hold the modal DOM tree. If no function is provided, it's expected that an HTML element with the `id="parent-container"` is present in the DOM. In the `NODE_ENV=test` environment, the default HTML element is `body`.                                                                                                                                                                                                            |
+| `shouldDelayOnClose`      | `bool`             |    -     | `true`                   | Sets whether the ModalPage should delay calling its `onClose` function to allow the closing animation time to finish. This can be turned off if the developer is controlling the ModalPage only through the `isOpen` prop, and not abruptly mounting/unmounting it or one of its parent elements. You might also want to turn this off if you need to display a Prompt (for example to save changes) on the ModalPage before navigating out of it, as this option makes the Modal close itself before `onClose` is called. |
+| `afterOpenStyles`               | `string` or `object`       |    -     | -                        | Overwrite the default styles of `afterOpen`. You can pass a "class name" or a CSS-in-JS style object. This should be used only in cases the default styles are causing some layout issues.                                                                                                                                                                                                                                                                                                                                 |
+
+### Static properties
+
+* Form Control Buttons
+
+  Pre-configured form control buttons to easily re-use them in the custom controls.
+
+  ```js
+  TabularModalPage.FormPrimaryButton = FormPrimaryButton;
+  TabularModalPage.FormSecondaryButton = FormSecondaryButton;
+  TabularModalPage.FormDeleteButton = FormDeleteButton;
+  ```
+
+* `TabularModalPage.Intl`
+
+  This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+  The Intl messages can be used for button labels.
+
+  ```jsx
+  <TabularModalPage
+    // other props...
+    formControls={
+      <TabularModalPage.FormSecondaryButton
+        // other props...
+        label={TabularModalPage.Intl.revert}
+      />
+    }
+  />
+  ```
+
+# Hooks
+
+## `useModalState`
+
+Using the dialog or modal page components usually requires to have some state to open/close these components.
+
+### Usage
+
+```jsx
+import {
+  useModalState,
+  InfoDialog,
+} from '@commercetools-frontend/application-components';
+
+const MyComponent = () => {
+  const infoModalState = useModalState();
+
+  return (
+    <div>
+      <button onClick={infoModalState.openModal}>Click me</button>
+
+      <InfoDialog
+        isOpen={infoModalState.isModalOpen}
+        onClose={infoModalState.closeModal}
+        title="Welcome"
+      >
+        Hi there.
+      </InfoDialog>
+    </div>
+  )
+}
+```
+
+### Return type
+
+The following is the definition of the state object returned by `useModalState`:
+
+* `isModalOpen`: Whether the state is open or closed.
+* `openModal`: Update the `isModalOpen` state to `true`.
+* `closeModal`: Update the `isModalOpen` state to `false`.
