@@ -13671,10 +13671,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"electron-to-chromium@npm:^1.3.564, electron-to-chromium@npm:^1.4.17":
+"electron-to-chromium@npm:^1.3.564":
   version: 1.4.51
   resolution: "electron-to-chromium@npm:1.4.51"
   checksum: dad1fd5faad1eed0206951429290ff0343eebfcabc201600dc0aeda7a2de07e0db697728fcd0b9e14f9c5f8cd5ec4841acda3179c5b2f8cdea09a5e81c634313
+  languageName: node
+  linkType: hard
+
+"electron-to-chromium@npm:^1.4.17":
+  version: 1.4.23
+  resolution: "electron-to-chromium@npm:1.4.23"
+  checksum: 2caf7d9102ee3c22c0c1f86ac1c3293313edf79e52cfa52b4d45d682f40409fea0bb1f6f8c7ef2d62c50958c81bbbfa3092bf5a039bb92fbb04a7842487013d8
   languageName: node
   linkType: hard
 
