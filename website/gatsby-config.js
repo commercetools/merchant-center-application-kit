@@ -20,15 +20,6 @@ module.exports = {
       'https://mc-custom-applications-legacy.vercel.app/custom-applications/_legacy',
   },
   plugins: [
-    // Pages for React components
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'components',
-        path: `${__dirname}/../packages/application-components/src/`,
-        ignore: ['.js', '.tsx'],
-      },
-    },
     // Docs theme
     {
       resolve: '@commercetools-docs/gatsby-theme-docs',
@@ -38,19 +29,6 @@ module.exports = {
         beta: true,
         excludeFromSearchIndex: false,
         gaTrackingId: 'UA-38285631-3',
-        // Patch the slug creation to get meaningful slugs for the application components
-        createNodeSlug: (originalSlug, { node }) => {
-          const isNodeForAppComponent =
-            node.fileAbsolutePath &&
-            node.fileAbsolutePath.includes('packages/application-components');
-          if (isNodeForAppComponent) {
-            return originalSlug.replace(
-              /^\/components\/(.*)\/(.*)\/$/,
-              '/components/$2/'
-            );
-          }
-          return originalSlug;
-        },
       },
     },
   ],
