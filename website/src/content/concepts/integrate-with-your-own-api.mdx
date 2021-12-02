@@ -30,7 +30,7 @@ Requests to that endpoint should additionally pass the following HTTP headers:
 - `X-Forward-To: <url>`: The URL to your external API.
 - `X-Project-Key: <project-key>`: The key of the project currently being used by the Custom Application. The Merchant Center API Gateway will perform a validation check to ensure that the user has access to the project, then forward the request to your server only if the check was successful.
 
-To facilitate the usage of the [built-in Apollo client and the SDK actions](/main-concepts/data-fetching), we provide some helpers to easily integrate with the request configuration for the HTTP headers listed above.
+To facilitate the usage of the [built-in Apollo client and the SDK actions](/development/data-fetching), we provide some helpers to easily integrate with the request configuration for the HTTP headers listed above.
 
 ## Sending custom HTTP headers
 
@@ -49,14 +49,13 @@ All custom HTTP headers are sent to the Merchant Center API with a prefix `x-for
 We can leverage the `context` option for Apollo queries to adjust how request is configured and executed. The `@commercetools-frontend/application-shell` package now exposes an utility function to configure the Apollo context for the `/proxy/forward-to` usage.
 
 ```js
-import React from 'react';
 import {
   createApolloContextForProxyForwardTo,
   useMcQuery,
 } from '@commercetools-frontend/application-shell';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 
-const Fetcher = () => {
+const useExternalApiFetcher = () => {
   // Assuming that the `custom-application-config.json` contains the custom value:
   // `{ additionalEnv: { externalApiUrl: 'https://my-custom-app.com/graphql'} }`
   const externalApiUrl = useApplicationContext(
@@ -72,7 +71,12 @@ const Fetcher = () => {
       },
     }),
   });
-  // ...
+
+  return {
+    loading,
+    data,
+    error,
+  }
 };
 ```
 
@@ -101,35 +105,9 @@ actions.forwardTo.get({
 
 <Info>
 
-As a reminder, action creators can be dispatched using the `useAsyncDispatch` React hook. You can [check out an example](https://github.com/commercetools/merchant-center-application-kit/blob/e9548422ca8580a5846f80a250ccac043806ee3c/playground/src/components/echo-server/echo-server.js#L28-L52) in the Playground application.
+As a reminder, action creators can be dispatched using the `useAsyncDispatch` React hook. See [Data Fetching for REST APIs](/development/data-fetching#requests-to-rest-apis) for more information.
 
 </Info>
-
-```js
-import React from 'react';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { actions, useAsyncDispatch } from '@commercetools-frontend/sdk';
-
-const Fetcher = () => {
-  const dispatch = useAsyncDispatch();
-  // Assuming that the `custom-application-config.json` contains the custom value:
-  // `{ additionalEnv: { externalApiUrl: 'https://my-custom-app.com/graphql'} }`
-  const externalApiUrl = useApplicationContext(
-    context => context.environment.externalApiUrl
-  );
-  React.useEffect(() => {
-    const sendRequest = async () => {
-      const result = await dispatch(
-        // The URL to your external API
-        actions.forwardTo.get({ uri: externalApiUrl })
-      );
-      // do something with the result
-    };
-    sendRequest();
-  }, [dispatch, externalApiUrl]);
-  // ...
-};
-```
 
 # Authenticating requests from the external API
 
@@ -166,7 +144,7 @@ The Exchange token structure consist of **Registered Claim Names** and **Private
 
 - `exp`: The **expiration time** on or after which the exchange token must not be accepted for processing.
 - `sub`: The **subject identifier** is the unique user identifier of a Merchant Center account, specifically the ID of the logged in user.
-- `iss`: The **issuer identifier** is the URL identifier of the server that issued the JWT. In this particular case is the URL of the [Merchant Center API Gateway](/main-concepts/api-gateway).
+- `iss`: The **issuer identifier** is the URL identifier of the server that issued the JWT. In this particular case is the URL of the [Merchant Center API Gateway](/concepts/merchant-center-api).
 - `aud`: The **audience** is the value that the exchange token is intended for. In this particular case is the exact URL passed to the `X-Forward-To` HTTP header.
 - `iat`: This value represents the time at which the JWT was issued.
 - `type`: This value is a **private claim** and is always set to `exchange`.
@@ -199,7 +177,7 @@ The middleware requires some options:
 
   For example, given the external API is hosted at `https://my-api-server.com`, the `audience` value must be set to `https://my-api-server.com`.
 
-- `issuer` (_string_): Either a cloud identifier or a valid URL to the Merchant Center API Gateway. The cloud identifier maps to the Merchant Center API URL of the related [cloud region](/main-concepts/api-gateway#cloud-regions).
+- `issuer` (_string_): Either a cloud identifier or a valid URL to the Merchant Center API Gateway. The cloud identifier maps to the Merchant Center API URL of the related [Cloud Region](/concepts/merchant-center-api#cloud-regions).
 
   | Cloud Identifier | Merchant Center API Gateway URL |
   | --- | --- |
