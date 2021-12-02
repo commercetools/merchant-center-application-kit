@@ -142,6 +142,7 @@ There are several new required fields in the Custom Application config.
   * `view`: A list of "view-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated to the "View" permission.
   * `manage`: A list of "manage-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated to the "Manage" permission.
 * `icon`: The icon of the Custom Application. You can choose [one of the available icons](/api-reference/application-config#icon) by referencing the path to that file using `${path:}`.
+
   <Info>
 
   The previous named icons are deprecated and will be removed at some point.
@@ -155,6 +156,7 @@ There are several new required fields in the Custom Application config.
   * `WorldIcon`
 
   </Info>
+
 * `mainMenuLink`: The configuration for the main menu link on the left-side navbar menu of the Merchant Center.
   * `defaultLabel`: The label to be rendered if there is no matching localized label for the user locale.
   * `labelAllLocales`: A list of localized fields `{ locale, value }` with translated labels for each application locales available in the user profile.
@@ -174,11 +176,11 @@ If the menu labels are translated into multiple locales, you can reference the t
 
 ## Choose the `entryPointUriPath`
 
-The `entryPointUriPath` plays a crucial role in a Custom Application. Effectively, it's the **identifier** of the Custom Application much like the commercetools platform `projectKey`.
+The `entryPointUriPath` plays a crucial role in a Custom Application. Effectively, it's the **identifier** of the Custom Application similarly to the `projectKey` of the commercetools platform.
 
 <Info>
 
-From now on, with the introduction of Org-level Custom Applications, the `entryPointUriPath` is **considered unique** within each [cloud region](https://docs.commercetools.com/api/general-concepts#regions) environment.
+From now on, with the introduction of Org-level Custom Applications, the `entryPointUriPath` is **considered unique** within each [cloud region](https://docs.commercetools.com/api/general-concepts#regions) environment, meaning that there can't be any duplicates.
 
 </Info>
 
@@ -190,7 +192,7 @@ The `entryPointUriPath` value must adhere to the following restrictions:
 * Must be between 2 and 64 characters.
 * Underscores and hyphens are allowed except as leading, trailing, and adjacent characters.
 
-Furthermore, the `entryPointUriPath` value is tightly bound to User Permissions of the Custom Application and is used to derive the unique name of the User Permissions.
+Furthermore, the `entryPointUriPath` value is tightly bound to User Permissions of the Custom Application and is used to derive the unique name of the User Permissions.<br />
 The name consists of the following format: `{View,Manage}<EntryPointUriPath>`.
 
 Here are some examples:
