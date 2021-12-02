@@ -29,8 +29,9 @@ const ApiErrorNotification = (props: Props) => (
     <ul>
       {props.notification.values &&
         props.notification.values.errors.map((error, idx) => {
+          const extensionErrorCode = error.extensions?.code ?? error.code;
           const shouldLogErrorToConsole =
-            !error.code && process.env.NODE_ENV === 'development';
+            !extensionErrorCode && process.env.NODE_ENV === 'development';
           if (shouldLogErrorToConsole) {
             /**
              * NOTE: This is an API error which usually contains

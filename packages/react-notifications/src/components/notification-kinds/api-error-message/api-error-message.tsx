@@ -53,9 +53,11 @@ const hasErrorCodeAMatchingMessage = (
 const FormattedErrorMessage = (props: Props) => {
   const intl = useIntl();
   // Attempt to map the error by code
+  const extensionErrorCode = props.error.extensions?.code ?? props.error.code;
+
   const messageCode =
-    props.error.code && hasErrorCodeAMatchingMessage(props.error.code)
-      ? messages[props.error.code]
+    extensionErrorCode && hasErrorCodeAMatchingMessage(extensionErrorCode)
+      ? messages[extensionErrorCode]
       : undefined;
 
   useEffect(() => {
@@ -64,7 +66,7 @@ const FormattedErrorMessage = (props: Props) => {
       // we log, report it to sentry and show the original error, unless `error.code` is `invalid_scope`
       // which an error code emitted for expired project(s)
       if (
-        props.error.code !== 'invalid_scope' &&
+        extensionErrorCode !== 'invalid_scope' &&
         !props.error.message.includes('has expired')
       ) {
         reportErrorToSentry(new Error('Unmapped error'), {
@@ -72,7 +74,7 @@ const FormattedErrorMessage = (props: Props) => {
         });
       }
     }
-  }, [messageCode, props.error]);
+  }, [extensionErrorCode, messageCode, props.error]);
 
   if (messageCode) {
     // The `error` object might contain extra fields for the specific `code`.
@@ -122,6 +124,8 @@ function getSpecialFormattedMessageByErrorCode(
   error: Props['error'],
   intl: IntlShape
 ) {
+  const extensionErrorCode = error.extensions?.code ?? error.code;
+
   if (error.errorByExtension) {
     let extensionMessage;
     if (error.localizedMessage) {
@@ -130,14 +134,14 @@ function getSpecialFormattedMessageByErrorCode(
     return extensionMessage || error.message;
   }
 
-  if (!error.code || error.code === 'InvalidInput')
+  if (!extensionErrorCode || extensionErrorCode === 'InvalidInput')
     return intl.formatMessage(messages.General);
 
   // TODO: this is a temporary solution until we have proper pages about 403
-  if (error.code === 'insufficient_scope')
+  if (extensionErrorCode === 'insufficient_scope')
     return intl.formatMessage(messages.Forbidden);
 
-  if (error.code === 'DuplicateField' && error.field === 'slug')
+  if (extensionErrorCode === 'DuplicateField' && error.field === 'slug')
     return intl.formatMessage(messages.DuplicateSlug, {
       slugValue: error.duplicateValue,
     });
@@ -150,7 +154,7 @@ function getSpecialFormattedMessageByErrorCode(
     return intl.formatMessage(messages.OverlappingPrices);
 
   if (
-    error.code === 'InvalidOperation' &&
+    extensionErrorCode === 'InvalidOperation' &&
     error.message.includes('validFrom') &&
     error.message.includes('validUntil')
   ) {
@@ -160,14 +164,14 @@ function getSpecialFormattedMessageByErrorCode(
   }
 
   if (
-    error.code === 'InvalidOperation' &&
+    extensionErrorCode === 'InvalidOperation' &&
     error.message.includes('Duplicate tax rate for')
   ) {
     return intl.formatMessage(messages.TaxCategoryDuplicateCountry);
   }
 
   if (
-    error.code === 'InvalidOperation' &&
+    extensionErrorCode === 'InvalidOperation' &&
     regexInvalidOperationRequiredAttribute.test(error.message)
   ) {
     const attrName = error.message.replace(
@@ -182,7 +186,7 @@ function getSpecialFormattedMessageByErrorCode(
   // this error (invalid start / end dates with prices) from other price
   // errors. We should investigate this further.
   if (
-    error.code === 'InvalidField' &&
+    extensionErrorCode === 'InvalidField' &&
     error.field === 'price' &&
     has(error, 'invalidValue') &&
     has(error.invalidValue, 'validFrom') &&
@@ -192,13 +196,13 @@ function getSpecialFormattedMessageByErrorCode(
       field: error.field,
     });
 
-  if (error.code === 'DuplicateAttributeValue' && error.attribute) {
+  if (extensionErrorCode === 'DuplicateAttributeValue' && error.attribute) {
     return intl.formatMessage(messages.DuplicateAttributeValue, {
       name: error.attribute.name,
     });
   }
 
-  if (error.code === 'MaxResourceLimitExceeded') {
+  if (extensionErrorCode === 'MaxResourceLimitExceeded') {
     return intl.formatMessage(messages.MaxResourceLimitExceeded);
   }
 
