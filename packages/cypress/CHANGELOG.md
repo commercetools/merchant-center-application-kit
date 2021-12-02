@@ -1,5 +1,16 @@
 # @commercetools-frontend/cypress
 
+## 20.12.0
+
+### Minor Changes
+
+- [#2416](https://github.com/commercetools/merchant-center-application-kit/pull/2416) [`f549637b`](https://github.com/commercetools/merchant-center-application-kit/commit/f549637b4a235ecc768ca77710784ddf63d1889b) Thanks [@emmenko](https://github.com/emmenko)! - Add new SVG icons for Custom Applications. Test icon colors with VRT.
+
+### Patch Changes
+
+- Updated dependencies [[`f549637b`](https://github.com/commercetools/merchant-center-application-kit/commit/f549637b4a235ecc768ca77710784ddf63d1889b)]:
+  - @commercetools-frontend/application-config@20.12.0
+
 ## 20.11.0
 
 ### Patch Changes

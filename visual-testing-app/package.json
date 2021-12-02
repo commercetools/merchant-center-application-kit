@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-local/visual-testing-app",
-  "version": "18.1.10",
+  "version": "18.2.0",
   "description": "An app to facilitate visual testing",
   "private": true,
   "scripts": {
@@ -9,10 +9,10 @@
     "serve": "mc-scripts serve"
   },
   "dependencies": {
-    "@commercetools-frontend/application-components": "20.11.0",
-    "@commercetools-frontend/assets": "20.10.6",
-    "@commercetools-frontend/constants": "20.11.0",
-    "@commercetools-frontend/react-notifications": "20.11.0",
+    "@commercetools-frontend/application-components": "20.12.0",
+    "@commercetools-frontend/assets": "20.12.0",
+    "@commercetools-frontend/constants": "20.12.0",
+    "@commercetools-frontend/react-notifications": "20.12.0",
     "@commercetools-uikit/accessible-button": "^12.2.2",
     "@commercetools-uikit/design-system": "^12.2.2",
     "@commercetools-uikit/grid": "^12.0.7",
@@ -33,7 +33,7 @@
     "react-router-dom": "5.3.0"
   },
   "devDependencies": {
-    "@commercetools-frontend/mc-scripts": "20.11.0",
+    "@commercetools-frontend/mc-scripts": "20.12.0",
     "rimraf": "3.0.2"
   }
 }
