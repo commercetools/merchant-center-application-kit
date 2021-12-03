@@ -55,3 +55,33 @@ The production bundles are then copied to the `public` directory, together with 
 
 The `public` folder now contains all your static assets ready to be deployed and hosted for production usage.
 
+<Info>
+
+The `compile-html` command outputs a JSON string to `stdout` with the required [Security Headers](/api-reference/security-headers), including the generated Content-Security-Policy.
+
+By default you don't need to do anything with these HTTP headers.
+* The Content-Security-Policy is included by default in the `index.html`.
+* The rest of the security headers are enforced by the [Merchant Center Proxy Router](/concepts/merchant-center-proxy-router).
+
+In case you do need want to use that information, you can use the `--transformer` option to implement some custom logic on top of that.
+
+</Info>
+
+# Deploying the production bundles
+
+Deploying and hosting Custom Applications is managed by you. This allows you to choose whatever hosting solution works best for you and your company.
+
+See [Deployment Examples](/deployment-examples) to quickly get up und running with some of the common cloud hosting providers.
+
+<Info>
+
+One important thing to remember when hosting the static assets is that a Custom Application is a Single-Page Application, meaning that all requests must be handled to serve the `index.html` file.<br />
+The client-side routing then does the rest of the work once the Custom Application has been rendered in the browser.
+
+</Info>
+
+# About Static Assets
+
+Depending on where you want to host your Custom Application you might choose to keep the static assets (JS, CSS, etc.) in the same location as the `index.html` or to have them serve by something like a CDN.
+
+If you choose to have them hosted in a separate location, you need to configure the [CDN URL](/api-reference/application-config#envproductioncdnurl) in the Custom Application config.
