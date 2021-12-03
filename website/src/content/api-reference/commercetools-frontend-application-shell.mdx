@@ -26,7 +26,7 @@ npm --save install @apollo/client react react-dom react-intl react-redux react-r
 
 # Components
 
-## `ApplicationShell`
+## ApplicationShell
 
 This is the main component that contains all the general logic to render a Custom Application.<br />
 The `ApplicationShell` component is expected to be rendered as the top-level component your application.
@@ -69,21 +69,21 @@ export default EntryPoint;
 
 # Hooks
 
-## `useMcQuery`
+## useMcQuery
 
 A React Hook that wraps the [`useQuery`](https://www.apollographql.com/docs/react/data/queries/) Hook of Apollo Client. The only difference is that `useMcQuery` properly types the `context` object, which is always used to define the GraphQL `target`. See [Data Fetching](/development/data-fetching).
 
-## `useMcLazyQuery`
+## useMcLazyQuery
 
 A React Hook that wraps the [`useLazyQuery`](https://www.apollographql.com/docs/react/data/queries/#manual-execution-with-uselazyquery) Hook of Apollo Client. The only difference is that `useMcLazyQuery` properly types the `context` object, which is always used to define the GraphQL `target`. See [Data Fetching](/development/data-fetching).
 
-## `useMcMutation`
+## useMcMutation
 
 A React Hook that wraps the [`useMutation`](https://www.apollographql.com/docs/react/data/mutations/) Hook of Apollo Client. The only difference is that `useMcMutation` properly types the `context` object, which is always used to define the GraphQL `target`. See [Data Fetching](/development/data-fetching).
 
 # Utilities
 
-## `createApolloClient`
+## createApolloClient
 
 Creates a new instance of the Apollo Client. Use this if you need to [configure the Apollo cache](https://www.apollographql.com/docs/react/caching/cache-configuration).
 

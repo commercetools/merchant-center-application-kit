@@ -10,12 +10,12 @@ Therefore, Custom Applications **must specify the list of OAuth Scopes** needed 
 
 For example, if you are developing a Custom Application to manage [Channels](https://docs.commercetools.com/api/projects/channels) you would probably need the OAuth Scopes `view_products` and `manage_products`. On top of that, you might decide to also view [Customers](https://docs.commercetools.com/api/projects/customers) information.
 
-To fulfill these requirements, your Custom Application requires the following OAuth Scopes:
+To fulfill these requirements, your Custom Application would require the following OAuth Scopes:
 
 * `view_products`, `view_customers`
 * `manage_products`
 
-These OAuth Scopes must be specified in your Custom Application config, using the `oAuthScopes` field.
+These OAuth Scopes must be specified in your Custom Application config, using the [`oAuthScopes` field](/api-reference/application-config#oauthscopes).
 
 ```json title="custom-application-config.json"
 {
@@ -32,8 +32,8 @@ This grouping determines the **mapping and relation between OAuth Scopes and Use
 
 # User Permissions
 
-In the Merchant Center, you can assign User Permissions to different parts of the Merchant Center. See [User Permissions in Merchant Center](https://docs.commercetools.com/merchant-center/user-permissions) for more information.<br />
-The same concepts applies for Custom Applications as well. Once your Custom Application has been installed in your Organization, you can assign User Permissions for your Custom Application to each specific Team.
+In the Merchant Center, you can assign User Permissions to Teams in order to grant or restrict access to certain parts and functionalities of the Merchant Center. See [User Permissions in Merchant Center](https://docs.commercetools.com/merchant-center/user-permissions) for more information.<br />
+The same concepts apply for Custom Applications as well. Once your Custom Application has been installed in your Organization, you can assign User Permissions for your Custom Application to each specific Team.
 
 Each Custom Application gets a **unique pair** of User Permissions: "view" and "manage".
 

@@ -31,8 +31,10 @@ npm --save install react react-dom react-intl
 * [FormDialog](#formdialog)
 * [InfoModalPage](#infomodalpage)
 * [FormModalPage](#formmodalpage)
+* [CustomFormModalPage](#customformmodalpage)
+* [TabularModalPage](#tabularmodalpage)
 
-## `InfoDialog`
+## InfoDialog
 
 <Playground urlPath="info-dialog" />
 
@@ -64,7 +66,7 @@ import { InfoDialog } from '@commercetools-frontend/application-components';
 | `getParentSelector` | `function` |    -     | -                 | -       | The function should return an HTML element that will be used as the parent container to hold the modal DOM tree. If no function is provided, it's expected that an HTML element with the `id="parent-container"` is present in the DOM. In the `NODE_ENV=test` environment, the default HTML element is `body`. |
 
 
-## `ConfirmationDialog`
+## ConfirmationDialog
 
 <Playground urlPath="confirmation-dialog" />
 
@@ -120,7 +122,7 @@ Confirmation dialogs are controlled components used to prompt the user to confir
   />
   ```
 
-## `FormDialog`
+## FormDialog
 
 <Playground urlPath="form-dialog" />
 
@@ -178,7 +180,7 @@ import { FormDialog } from '@commercetools-frontend/application-components';
   />
   ```
 
-## `InfoModalPage`
+## InfoModalPage
 
 <Playground urlPath="info-modal-page" />
 
@@ -219,7 +221,7 @@ import { InfoModalPage } from '@commercetools-frontend/application-components';
 | `shouldDelayOnClose`      | `bool`             |    -     | `true`                   | Sets whether the ModalPage should delay calling its `onClose` function to allow the closing animation time to finish. This can be turned off if the developer is controlling the ModalPage only through the `isOpen` prop, and not abruptly mounting/unmounting it or one of its parent elements. You might also want to turn this off if you need to display a prompt (for example to save changes) on the ModalPage before navigating out of it, as this option makes the Modal close itself before `onClose` is called. |
 | `afterOpenStyles`         | `string` or `object`  |    -  | -                        | Overwrite the default styles of `afterOpen`. You can pass a "class name" or a CSS-in-JS style object. This should be used only in cases the default styles are causing some layout issues.                                                                                                                                                                                                                                                                                                                                 |
 
-## `FormModalPage`
+## FormModalPage
 
 <Playground urlPath="form-modal-page" />
 
@@ -283,7 +285,7 @@ import { FormModalPage } from '@commercetools-frontend/application-components';
   />
   ```
 
-## `CustomFormModalPage`
+## CustomFormModalPage
 
 <Playground urlPath="custom-form-modal-page" />
 
@@ -362,7 +364,7 @@ import { CustomFormModalPage } from '@commercetools-frontend/application-compone
   />
   ```
 
-## `TabularModalPage`
+## TabularModalPage
 
 <Playground urlPath="tabular-modal-page" />
 
@@ -437,7 +439,7 @@ import { TabularModalPage } from '@commercetools-frontend/application-components
 
 # Hooks
 
-## `useModalState`
+## useModalState
 
 Using the dialog or modal page components usually requires to have some state to open/close these components.
 
