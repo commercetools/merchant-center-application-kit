@@ -37,13 +37,13 @@ The `build` command generates a file named `index.html.template` that contains r
 </html>
 ```
 
-In order to have a fully functional production build, we need to perform an additional step: compiling the `index.html.template`.
+In order to have a fully functional production build, we need to perform an additional step: compiling the `index.html.template` with the runtime information derived from the Custom Application config.
 
 # Compiling the `index.html`
 
 We learned that the `build` command generates the production bundles and a file named `index.html.template` that contains **placeholder values**.
 
-The main reason for this is being able to build the static assets once and configure the application `index.html` on demand, based on the Custom Application config.
+The main reason for this is being able to build the static assets once and configure the application `index.html` on demand, based on the Custom Application config. For example you could compile it once for GCP-EU and once for GCP-US.
 
 The compiled `index.html` is created by running the CLI `compile-html` command:
 
@@ -51,10 +51,7 @@ The compiled `index.html` is created by running the CLI `compile-html` command:
 mc-scripts compile-html
 ```
 
-The production bundles are then copied to the `public` directory, together with the `index.html` and some pre-defined static files. Furthermore, the placeholder values have been replaced with the values from the Custom Application config.
+The production bundles are then copied to the `public` directory, together with the `index.html` and some pre-defined static files.
 
-<!-- ## Injecting CSP
+The `public` folder now contains all your static assets ready to be deployed and hosted for production usage.
 
-
-
-## Using transformers -->
