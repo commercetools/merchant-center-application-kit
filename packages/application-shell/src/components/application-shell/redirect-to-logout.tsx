@@ -6,6 +6,7 @@ import { useApplicationContext } from '@commercetools-frontend/application-shell
 import * as oidcStorage from '../../utils/oidc-storage';
 import Redirector from '../redirector';
 import RedirectToLogin from './redirect-to-login';
+import { getMcOrigin } from './helpers';
 
 declare let window: ApplicationWindow;
 
@@ -29,9 +30,12 @@ const RedirectToLogout = (props: Props) => {
     return <RedirectToLogin />;
   }
 
+  const mcOrigin = servedByProxy ? getMcOrigin(window.app.mcApiUrl) : undefined;
+
   return (
     <Redirector
       to="logout"
+      origin={mcOrigin}
       location={location}
       queryParams={{
         reason: props.reason ?? LOGOUT_REASONS.USER,

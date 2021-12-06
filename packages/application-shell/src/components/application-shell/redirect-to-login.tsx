@@ -3,6 +3,7 @@ import type { AuthorizeSessionState } from '../authenticated/types';
 
 import { v4 as uuidv4 } from 'uuid';
 import { useLocation } from 'react-router-dom';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
@@ -12,6 +13,7 @@ import { buildOidcScope } from '../authenticated/helpers';
 import { OIDC_RESPONSE_TYPES } from '../../constants';
 import * as oidcStorage from '../../utils/oidc-storage';
 import Redirector from '../redirector';
+import { getMcOrigin } from './helpers';
 
 declare let window: ApplicationWindow;
 
@@ -29,6 +31,9 @@ const generateAndCacheNonceWithState = (state: AuthorizeSessionState) => {
 
 const RedirectToLogin = () => {
   const location = useLocation();
+  const servedByProxy = useApplicationContext(
+    (context) => context.environment.servedByProxy
+  );
 
   if (window.app.__DEVELOPMENT__?.oidc?.authorizeUrl) {
     // We pick the project key from local storage. This assumes that the value
@@ -81,9 +86,13 @@ const RedirectToLogin = () => {
       />
     );
   }
+
+  const mcOrigin = servedByProxy ? getMcOrigin(window.app.mcApiUrl) : undefined;
+
   return (
     <Redirector
       to="login"
+      origin={mcOrigin}
       location={location}
       queryParams={{
         reason: LOGOUT_REASONS.UNAUTHORIZED,
