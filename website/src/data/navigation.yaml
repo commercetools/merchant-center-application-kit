@@ -44,13 +44,13 @@
   pages:
     - title: Overview
       path: /deployment-examples
-    - title: Example Deployment with Vercel
+    - title: Deploying to Vercel
       path: /deployment-examples/vercel
-    - title: Example Deployment with Netlify
+    - title: Deploying to Netlify
       path: /deployment-examples/netlify
-    - title: Example Deployment with Render
+    - title: Deploying to Render
       path: /deployment-examples/render
-    - title: Example Deployment with S3 and CloudFront on AWS
+    - title: Deploying to AWS with S3 and CloudFront
       path: /deployment-examples/aws-s3-cloudfront
 - chapter-title: API Reference
   pages:
