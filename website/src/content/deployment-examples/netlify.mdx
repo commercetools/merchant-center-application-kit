@@ -1,14 +1,14 @@
 ---
-title: Deploying to Vercel
+title: Deploying to Netlify
 ---
 
-This deployment example refers to [Vercel](https://vercel.com).
+This deployment example refers to [Netlify](https://www.netlify.com/).
 
 # Prerequisites
 
 Before you get started, you need to have:
 
-- A [Vercel](https://vercel.com) account.
+- A [Netlify](https://app.netlify.com) account.
 - A [commercetools](https://docs.commercetools.com/getting-started) account and a project.
 - A Custom Application [configured in the Merchant Center](https://docs.commercetools.com/merchant-center/custom-applications).
 
@@ -16,14 +16,14 @@ Before you get started, you need to have:
 
 In your Custom Application config, make sure to provide the [Custom Application ID](/api-reference/application-config#envproductionapplicationId) that you got when you configured the Custom Application in the Merchant Center.
 
-Moreover, you need to provide the [production URL](/api-reference/application-config#envproductionurl) from your Vercel project. You can keep the standard Vercel URL `https://<project>.vercel.app` or provide your own custom domain.
+Moreover, you need to provide the [production URL](/api-reference/application-config#envproductionurl) from your Netlify site. You can keep the standard Netlify URL `https://<site>.netlify.app` or provide your own custom domain.
 
 ```json title="custom-application-config.json"
 {
   "env": {
     "production": {
       "applicationId": "ckvtahxl90097sys6har1e6n3",
-      "url": "https://<project>.vercel.app"
+      "url": "https://<site>.netlify.app"
     }
   }
 }
@@ -38,31 +38,30 @@ In case you want to avoid hardcoding certain values, for example the application
   "env": {
     "production": {
       "applicationId": "${env:APPLICATION_ID}",
-      "url": "https://<project>.vercel.app"
+      "url": "https://<site>.netlify.app"
     }
   }
 }
 ```
 
-Make sure then to provide the environment variables in your "Vercel project > Settings > Environment variables".
+Make sure then to provide the environment variables in your "Netlify site > Settings > Build & deploy > Environment".
 
-# Connect Vercel with GitHub
+# Connect Netlify with GitHub
 
-The easiest way to deploy to Vercel is to use the [GitHub integration](https://vercel.com/docs/concepts/git/vercel-for-github).
+The easiest way to deploy to Netlify is to use the GitHub integration.
 
-Follow the steps in Vercel to create and import a new Git repository.
+Follow the steps in Netlify to create and import a new Git repository.
 
 <Info>
 
-Make sure to also install the [Vercel GitHub App](https://github.com/apps/vercel) to grant access to your repository.
+Make sure to also install the [Netlify GitHub App](https://github.com/apps/netlify) to grant access to your repository.
 
 </Info>
 
 ## Configuring Build Settings
 
-In the Vercel setup process you need to configure the following things:
+In the Netlify setup process you need to configure the following things:
 
-* Select `Create React App` as the *Framework Preset*.
 * Override the *Build command* with: `yarn build`.
 
   <Info>
@@ -80,6 +79,17 @@ In the Vercel setup process you need to configure the following things:
   </Info>
 
 * Override the *Output directory* with: `public`.
+
+## Configuring rewrite rules
+
+A Custom Application is a Single-Page Application that uses client-side routing. Therefore, we need to [instruct Netlify](https://docs.netlify.com/routing/redirects/rewrites-proxies/#history-pushstate-and-single-page-apps) to rewrite all requests to serve the `index.html`.
+
+```toml title="netlify.toml"
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
 
 # Test your deployment
 
