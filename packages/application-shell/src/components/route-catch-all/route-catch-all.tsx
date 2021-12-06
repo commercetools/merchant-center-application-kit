@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Route } from 'react-router-dom';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { PageNotFound } from '@commercetools-frontend/application-components';
+import useIsServedByProxy from '../../hooks/use-is-served-by-proxy';
 import { location } from '../../utils/location';
 
 const ForcePageReload = () => {
@@ -13,9 +13,7 @@ const ForcePageReload = () => {
 
 const RouteCatchAll = () => {
   // NOTE: it's important that the return value is a `Route` component!
-  const servedByProxy = useApplicationContext(
-    (context) => context.environment.servedByProxy
-  );
+  const servedByProxy = useIsServedByProxy();
   // In case the application is served by a proxy server, we assume that
   // the reverse proxy router handles requests forwarding to the specified
   // service.

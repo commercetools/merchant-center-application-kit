@@ -2,10 +2,11 @@ import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
 import { useLocation } from 'react-router-dom';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import useIsServedByProxy from '../../hooks/use-is-served-by-proxy';
 import * as oidcStorage from '../../utils/oidc-storage';
 import Redirector from '../redirector';
 import RedirectToLogin from './redirect-to-login';
+import { getMcOrigin } from './helpers';
 
 declare let window: ApplicationWindow;
 
@@ -17,9 +18,7 @@ type Props = {
 // to the logout route of the authentication service.
 const RedirectToLogout = (props: Props) => {
   const location = useLocation();
-  const servedByProxy = useApplicationContext(
-    (context) => context.environment.servedByProxy
-  );
+  const servedByProxy = useIsServedByProxy();
 
   if (window.app.__DEVELOPMENT__?.oidc?.authorizeUrl) {
     // Remove the `sessionToken` from storage, so that the AppShell can initiate
@@ -29,9 +28,12 @@ const RedirectToLogout = (props: Props) => {
     return <RedirectToLogin />;
   }
 
+  const mcOrigin = servedByProxy ? getMcOrigin(window.app.mcApiUrl) : undefined;
+
   return (
     <Redirector
       to="logout"
+      origin={mcOrigin}
       location={location}
       queryParams={{
         reason: props.reason ?? LOGOUT_REASONS.USER,
