@@ -4,13 +4,11 @@ import { ContentNotification } from '@commercetools-uikit/notifications';
 import Text from '@commercetools-uikit/text';
 import Card from '@commercetools-uikit/card';
 import { customProperties } from '@commercetools-uikit/design-system';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import useIsServedByProxy from '../../hooks/use-is-served-by-proxy';
 import { location } from '../../utils/location';
 
 export const RedirectToProjectCreate = () => {
-  const servedByProxy = useApplicationContext(
-    (context) => context.environment.servedByProxy
-  );
+  const servedByProxy = useIsServedByProxy();
   /**
    * NOTE:
    *   This looks a bit unusual: redirecting in render.

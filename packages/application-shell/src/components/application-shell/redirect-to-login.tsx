@@ -3,13 +3,13 @@ import type { AuthorizeSessionState } from '../authenticated/types';
 
 import { v4 as uuidv4 } from 'uuid';
 import { useLocation } from 'react-router-dom';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
 } from '@commercetools-frontend/url-utils';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import { buildOidcScope } from '../authenticated/helpers';
+import useIsServedByProxy from '../../hooks/use-is-served-by-proxy';
 import { OIDC_RESPONSE_TYPES } from '../../constants';
 import * as oidcStorage from '../../utils/oidc-storage';
 import Redirector from '../redirector';
@@ -31,9 +31,7 @@ const generateAndCacheNonceWithState = (state: AuthorizeSessionState) => {
 
 const RedirectToLogin = () => {
   const location = useLocation();
-  const servedByProxy = useApplicationContext(
-    (context) => context.environment.servedByProxy
-  );
+  const servedByProxy = useIsServedByProxy();
 
   if (window.app.__DEVELOPMENT__?.oidc?.authorizeUrl) {
     // We pick the project key from local storage. This assumes that the value
