@@ -88,17 +88,6 @@ A Custom Application is a Single-Page Application that uses client-side routing.
 /* --> /index.html
 ```
 
-## Configuring rewrite rules
-
-A Custom Application is a Single-Page Application that uses client-side routing. Therefore, we need to [instruct Netlify](https://docs.netlify.com/routing/redirects/rewrites-proxies/#history-pushstate-and-single-page-apps) to rewrite all requests to serve the `index.html`.
-
-```toml title="netlify.toml"
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-```
-
 # Test your deployment
 
 In the Merchant Center you can now [follow the steps to install the Custom Application](https://docs.commercetools.com/merchant-center/custom-applications) and access it in your projects.
