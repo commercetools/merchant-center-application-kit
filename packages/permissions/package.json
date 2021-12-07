@@ -18,17 +18,17 @@
   "module": "dist/commercetools-frontend-permissions.esm.js",
   "files": ["dist", "package.json", "LICENSE", "README.md"],
   "dependencies": {
-    "@babel/runtime": "7.15.4",
-    "@babel/runtime-corejs3": "7.15.4",
+    "@babel/runtime": "7.16.3",
+    "@babel/runtime-corejs3": "7.16.3",
     "@commercetools-frontend/application-shell-connectors": "20.12.0",
     "@commercetools-frontend/sentry": "20.12.0",
-    "@emotion/react": "11.5.0",
+    "@emotion/react": "11.7.0",
     "@types/lodash": "^4.14.167",
     "@types/prop-types": "^15.7.3",
     "@types/react": "^17.0.16",
     "lodash": "4.17.21",
     "prop-types": "15.7.2",
-    "tiny-invariant": "1.1.0",
+    "tiny-invariant": "1.2.0",
     "tiny-warning": "1.0.3"
   },
   "devDependencies": {

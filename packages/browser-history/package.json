@@ -18,8 +18,8 @@
   "module": "dist/commercetools-frontend-browser-history.esm.js",
   "files": ["dist", "package.json", "LICENSE", "README.md"],
   "dependencies": {
-    "@babel/runtime": "7.15.4",
-    "@babel/runtime-corejs3": "7.15.4",
+    "@babel/runtime": "7.16.3",
+    "@babel/runtime-corejs3": "7.16.3",
     "@types/history": "4.7.9",
     "history": "4.10.1",
     "history-query-enhancer": "1.0.4",

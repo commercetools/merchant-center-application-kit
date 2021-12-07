@@ -32,22 +32,22 @@
     "compile-data": "formatjs compile-folder --format=./transifex-transformer.js --ast data compiled-data"
   },
   "dependencies": {
-    "@babel/runtime": "7.15.4",
-    "@babel/runtime-corejs3": "7.15.4",
+    "@babel/runtime": "7.16.3",
+    "@babel/runtime-corejs3": "7.16.3",
     "@commercetools-community-kit/i18n": "^0.2.7",
     "@commercetools-frontend/sentry": "20.12.0",
     "@commercetools-uikit/i18n": "^12.0.7",
-    "@emotion/react": "11.5.0",
-    "@formatjs/icu-messageformat-parser": "2.0.14",
+    "@emotion/react": "11.7.0",
+    "@formatjs/icu-messageformat-parser": "2.0.15",
     "@types/prop-types": "^15.7.3",
     "@types/react": "^17.0.16",
     "moment": "^2.29.1",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "@formatjs/cli": "4.4.0",
+    "@formatjs/cli": "4.5.0",
     "react": "17.0.2",
-    "react-intl": "5.21.0"
+    "react-intl": "5.23.0"
   },
   "peerDependencies": {
     "react": "17.x",
