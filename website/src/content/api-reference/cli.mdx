@@ -34,13 +34,13 @@ By default the application starts at `http://localhost:3001`.
 
 ## build
 
-This command bundles the application in `production` mode and creates an optimized production build of your application in the `dist/assets` folder.
-
-It also creates a `index.html.template` file with some placeholder values and references to JS and CSS assets. This file needs to be compiled to `index.html`. See [Going to Production](/development/going-to-production) for more information.
+This command bundles the application in `production` mode and creates an optimized production build of your application in the `public` folder.
 
 ```console
 mc-scripts build
 ```
+
+By default, the `build` command compiles the `index.html`, included in the `public` folder. You can opt-out of the compilation step by using the option `--build-only`. See [Going to Production](/development/going-to-production) for more information.
 
 ### Options
 
