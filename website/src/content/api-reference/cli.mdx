@@ -42,6 +42,10 @@ It also creates a `index.html.template` file with some placeholder values and re
 mc-scripts build
 ```
 
+### Options
+
+* `--build-only`: Generates production bundles without compiling the `index.html`. To compile it, run `compile-html`.
+
 ## compile-html
 
 This command compiles the `index.html.template` file into an `index.html` file according to the [Custom Application config](/api-reference/application-config). The production assets are then copied to the `public` folder and are ready to be deployed.
@@ -54,13 +58,25 @@ See [Going to Production](/development/going-to-production) for more information
 
 <Info>
 
-This script requires `mc-scripts build` to be executed first.
+By default, compiling the `index.html` is implicitly done in the `build` command, unless the option `--build-only` is used. In that case, you need execute the `compile-html` command separately.
 
 </Info>
 
-<!-- ### `--inline-csp`
+### Options
 
-### `--transformer` -->
+* `--transformer <path>`: The path to a JavaScript module exporting a function. This can be used as a way to programmatically configure something based on the compiled information, for example related to your deployment or hosting provider. The function is called with the following signature.
+
+  ```ts
+  type TransformerFunctionOptions = {
+    // The runtime environment specified within the application config.
+    env: Json;
+    // The compiled HTTP headers, including the Content-Security-Policy headers.
+    headers: Json;
+    // The final HTML content of the `index.html`.
+    indexHtmlContent: string;
+  }
+  type TransformerFunction = (options: TransformerFunctionOptions) => void;
+  ```
 
 ## serve
 
