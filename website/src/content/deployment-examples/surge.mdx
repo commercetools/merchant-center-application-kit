@@ -1,14 +1,14 @@
 ---
-title: Deploying to AWS with S3 and CloudFront
+title: Deploying to Surge
 ---
 
-This deployment example refers to [AWS](https://aws.amazon.com/) static hosting using an [S3](https://s3.console.aws.amazon.com/s3/home) bucket and [CloudFront](https://console.aws.amazon.com/cloudfront/home) distribution.
+This deployment example refers to [Surge](https://surge.sh/).
 
 # Prerequisites
 
 Before you get started, you need to have:
 
-- An [AWS](https://portal.aws.amazon.com/billing/signup#/start) account.
+- A [Surge](https://surge.sh) account, using the `surge` CLI.
 - A [commercetools](https://docs.commercetools.com/getting-started) account and a project.
 - A Custom Application [configured in the Merchant Center](https://docs.commercetools.com/merchant-center/custom-applications).
 
@@ -16,14 +16,14 @@ Before you get started, you need to have:
 
 In your Custom Application config, make sure to provide the [Custom Application ID](/api-reference/application-config#envproductionapplicationId) that you got when you configured the Custom Application in the Merchant Center.
 
-Moreover, you need to provide the [production URL](/api-reference/application-config#envproductionurl) from your Netlify site. You can keep the standard Netlify URL `https://<site>.netlify.app` or provide your own custom domain.
+Moreover, you need to provide the [production URL](/api-reference/application-config#envproductionurl) from your Surge project. You can keep the standard Surge URL `https://<project>.surge.sh` or provide your own custom domain.
 
 ```json title="custom-application-config.json"
 {
   "env": {
     "production": {
       "applicationId": "ckvtahxl90097sys6har1e6n3",
-      "url": "https://<site>.netlify.app"
+      "url": "https://<project>.surge.sh"
     }
   }
 }
@@ -38,29 +38,32 @@ In case you want to avoid hardcoding certain values, for example the application
   "env": {
     "production": {
       "applicationId": "${env:APPLICATION_ID}",
-      "url": "https://<site>.netlify.app"
+      "url": "https://<project>.surge.sh"
     }
   }
 }
 ```
 
-# Set up S3 and CloudFront
+# Production bundles
 
-To host the production bundles of your Custom Application you need to create some resources in AWS, like an S3 bucket, configure a CloudFront distribution, etc.
+The main command to create the production bundles is `mc-scripts build`. The output folder is `public`, which is what is going to be uploaded to Surge.<br />
+See [Going to production](/development/going-to-production) for more information.
 
 <Info>
 
-A Custom Application is set up in a very similar way as a Create React App. Therefore, we recommend checking out other articles about configuring AWS for static hosting for more detailed explanations about the setup.
-
-* [Deploy React app to S3 & CloudFront](https://dev.to/karanpratapsingh/deploy-react-app-to-s3-cloudfront-1cao)
-* [Deploying create-react-app to S3 and CloudFront](https://wolovim.medium.com/deploying-create-react-app-to-s3-or-cloudfront-48dae4ce0af)
+To properly [support client-side routing](https://surge.sh/help/adding-a-200-page-for-client-side-routing), you need to rename the `index.html` file to `200.html` before uploading the static files.
 
 </Info>
 
-# Production bundles
+# Deploying to Surge
 
-The main command to create the production bundles is `mc-scripts build`. The output folder is `public`.<br />
-See [Going to production](/development/going-to-production) for more information.
+Use the [Surge CLI](https://www.npmjs.com/package/surge) to upload the static files.
+
+```console
+surge public https://<project>.surge.sh
+```
+
+That's it!
 
 # Test your deployment
 
