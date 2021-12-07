@@ -87,12 +87,6 @@ const RedirectToLogin = () => {
 
   const mcOrigin = servedByProxy ? getMcOrigin(window.app.mcApiUrl) : undefined;
 
-  if (process.env.NODE_ENV === 'production') {
-    console.log(`DEBUG: servedByProxy`, servedByProxy);
-    console.log(`DEBUG: window.app`, window.app);
-    console.log(`DEBUG: mcOrigin`, mcOrigin);
-  }
-
   return (
     <Redirector
       to="login"
