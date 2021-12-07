@@ -33,7 +33,7 @@ const config = {
     },
   },
   menuLinks: {
-    icon: '${path:@commercetools-frontend/assets/application-icons/04.Rocket.svg}',
+    icon: '${path:@commercetools-frontend/assets/application-icons/Rocket.svg}',
     defaultLabel: '${intl:en:Menu.StateMachines}',
     labelAllLocales: [
       {

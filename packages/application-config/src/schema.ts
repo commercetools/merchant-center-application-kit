@@ -113,7 +113,7 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
    */
   menuLinks?: {
     /**
-     * The SVG icon that represents this application. Pass the raw SVG string or a path to an SVG file, for example a relative path `${path:./app.svg}`, or a path from a module `${path:@commercetools-frontend/assets/application-icons/04.Rocket.svg}`.
+     * The SVG icon that represents this application. Pass the raw SVG string or a path to an SVG file, for example a relative path `${path:./app.svg}`, or a path from a module `${path:@commercetools-frontend/assets/application-icons/Rocket.svg}`.
      */
     icon: string;
     /**

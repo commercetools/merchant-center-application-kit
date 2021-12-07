@@ -34,7 +34,7 @@ describe('providing a config with env variable placeholders', () => {
         },
         empty: '${env:EMPTY}',
         moduleFilePath:
-          '${path:@commercetools-frontend/assets/application-icons/04.Rocket.svg}',
+          '${path:@commercetools-frontend/assets/application-icons/Rocket.svg}',
         relativeFilePath: '${path:./i18n/data/en.json}',
         labelAllLocales: [
           {
