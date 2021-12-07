@@ -1,0 +1,31 @@
+---
+date: 2022-01-15
+title: Custom Applications v21
+description: |
+  The Application Kit packages have been released with a new major version v21.\
+  In this release note we go through some migration steps.
+type: announcement
+topics:
+  - Breaking Changes
+  - Dependencies
+---
+
+The Application Kit packages have been released with a new **major version** `v21`.
+
+=> Read migration guide!
+
+* application config
+  * new required fields
+  * changed menu links structure
+* make `--inline-csp` of `compile-html` the default (remove flag)
+* `build` by default also runs `compile-html`.
+  * opt-out with `--build-only`, for example to use `--transformer` for `compile-html`
+* change some test-utils defaults:
+  * `disableApolloMocks` should be `true` by default
+  * `disableAutomaticEntryPointRoutes` should be `false` by default
+  * require top-level option `entryPointUriPath`
+  * remove deprecated options `permissions`, `actionRights`, `dataFences`. Use `{ project: { ... } }` instead
+  * add helper `mapResourceAccessToAppliedPermissions` to map permission name (resource access) to `allAppliedPermissions`.
+* reconfigure `dist` to be `public`
+* adjust create-mc-app
+* adjust starter template (permissions, etc)
