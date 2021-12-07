@@ -5,7 +5,7 @@ title: Testing
 In the previous sections we learned several aspects of developing your Custom Application, like fetching data, building your User Interface, etc.<br />
 At this point probably the basic functionalities of your application are in place. It's time to **write some tests** to facilitate further development.
 
-> Write test. Not too many. Mostly integration.
+> _Write test. Not too many. Mostly integration._
 
 When it comes down to testing applications there are several approaches available. You've probably heard about the _Testing Pyramid_ to describe the different level of testing.
 
@@ -15,7 +15,7 @@ To test your Custom Applications, we recommend using [React Testing Library](htt
 
 This library describes the testing problem as following:
 
-> You want to write maintainable tests for your React components. As a part of this goal, you want your tests to avoid including implementation details of your components and rather focus on making your tests give you the confidence for which they are intended. As part of this, you want your test base to be maintainable in the long run so refactors of your components (changes to implementation but not functionality) don't break your tests and slow you and your team down.
+> _You want to write maintainable tests for your React components. As a part of this goal, you want your tests to avoid including implementation details of your components and rather focus on making your tests give you the confidence for which they are intended. As part of this, you want your test base to be maintainable in the long run so refactors of your components (changes to implementation but not functionality) don't break your tests and slow you and your team down._
 
 This is the **recommended approach** for writing component and UI tests.
 
@@ -25,12 +25,195 @@ For End-to-End tests we recommend to use [Cypress](https://www.cypress.io/). See
 
 # Integration tests
 
-Writing integration tests is mostly about putting yourself in the user's perspective and derive test scenarios that focus on use interactions and workflows.
+Writing integration tests is mostly about putting yourself in the user's perspective and derive test scenarios that focus on user interactions and workflows.
 
 For instance, in our Channels page we can write a test to check that the page renders some data in a table and maybe paginate to page two.
 
 ## Mocking data
 
+One of the first things to consider when writing tests is about the **test data**. Of course mocking network requests is important but so is providing "realistic" test data.
+
+In our Custom Application we recommend to implement the following approaches:
+
+* Use the [Mock Service Worker](https://mswjs.io/) library to mock network requests.
+* Use the [Test Data](https://github.com/commercetools/test-data) library to use realistic test data models.
+
+Let's set things up. First, we need to configure MSW to create a mock server.
+
+```js title="channels.spec.js"
+import { setupServer } from 'msw/node';
+
+const mockServer = setupServer();
+afterEach(() => mockServer.resetHandlers());
+beforeAll(() =>
+  mockServer.listen({
+    onUnhandledRequest: 'error',
+  })
+);
+afterAll(() => mockServer.close());
+```
+
+In our test we then mock all necessary API requests. If a network request is not properly mocked, MSW will let you know.<br />
+Our Channels page sends a `FetchChannels` GraphQL query, therefore we need to use the `graphql.query` handler matching the name of the query: `FetchChannels`.
+
+```js title="channels.spec.js"
+import { graphql } from 'msw';
+
+it('should render channels', async () => {
+  mockServer.use(
+    graphql.query('FetchChannels', (req, res, ctx) => {
+      return res(
+        ctx.data({
+          channels: {
+            // Mocked data
+          }
+        })
+      );
+    })
+  );
+
+  // Actual test...
+});
+```
+
+The mocked data that we need to return should match the shape of the fields we are requesting in our GraphQL query.<br />
+In theory we can simply hardcode some random object but this does not scale well as your Custom Application grows.
+
+A better way to fulfill the data requirements is to use a [Test Data model](https://github.com/commercetools/test-data) for a `Channel`.
+
+```js title="channels.spec.js" highlightLines="2-3,8-9,13-21"
+import { graphql } from 'msw';
+import { buildGraphqlList } from '@commercetools-test-data/core';
+import * as ChannelMock from '@commercetools-test-data/channel';
+
+it('should render channels', async () => {
+  mockServer.use(
+    graphql.query('FetchChannels', (req, res, ctx) => {
+      const totalItems = 20;
+      const itemsPerPage = 5;
+
+      return res(
+        ctx.data({
+          channels: buildGraphqlList(
+            Array.from({ length: itemsPerPage }).map((_, index) =>
+              ChannelMock.random().key(`channel-key-${index}`)
+            ),
+            {
+              name: 'Channel',
+              total: totalItems,
+            }
+          ),
+        })
+      );
+    })
+  );
+
+  // Actual test...
+});
+```
+
+## Testing the application
+
+To test the actual Custom Application, you should use the [`test-utils`](/api-reference/commercetools-frontend-application-shell#test-utils) package, as it provides the necessary setup to render a Custom Application within a test environment.
+
+Most of the time you want to render your application from one of the top-level components, for example your routes. This is a great way to also implicitly test your routes and to navigate between them.
+
+We recommend to write a function, for example `renderApp`, to encapsulate the basic test setup, so that your actual test remains as clean as possible.
+
+```js title="channels.spec.js"
+import {
+  fireEvent,
+  screen,
+  renderAppWithRedux,
+  mapResourceAccessToAppliedPermissions,
+} from '@commercetools-frontend/application-shell/test-utils';
+import { entryPointUriPath } from '../../constants/application';
+import { PERMISSIONS } from '../../constants/permissions';
+import ApplicationRoutes from '../../routes';
+
+const renderApp = (options = {}) => {
+  const route = options.route || `/my-project/${entryPointUriPath}/channels`;
+  renderApplicationWithRedux(<ApplicationRoutes />, {
+    route,
+    entryPointUriPath,
+    project: {
+      allAppliedPermissions: mapResourceAccessToAppliedPermissions([
+        PERMISSIONS.ViewChannels
+      ]),
+    },
+    ...options,
+  });
+};
+
+it('should render channels', async () => {
+  mockServer.use(/* See mock setup */);
+
+  renderApp();
+
+  await screen.findByText('channel-key-0');
+});
+```
+
+With this simple test we implicitly have tested the following things:
+
+* The routes work.
+* The channels page renders.
+* The data is fetched.
+* The data is displayed on the page.
+
+From here you can enhance the test to do other things, especially testing the user interactions. For example:
+
+* We can simulate that the user clicks on a table row, opening the channels detail page.
+* We can simulate that the user clicks on a "Add channel" button, fill out the form, and save a new channel.
+* We can simulate that the user paginates through the table, or use search and filters.
+
+You get the idea.
+
+Let's enhance our test to paginate to page two. First we need to adjust our GraphQL mock to return results based on the `offset` from the query variables. Then we need to interact with the pagination button to go to the next page.
+
+```js title="channels.spec.js" highlightLines="1,5-7,14,30-31,34,37-38"
+it('should render channels and paginate to second page', async () => {
+  mockServer.use(
+    graphql.query('FetchChannels', (req, res, ctx) => {
+      // Simulate a server side pagination.
+      const { offset } = req.variables;
+      const totalItems = 25; // 2 pages
+      const itemsPerPage = offset === 0 ? 20 : 5;
+
+      return res(
+        ctx.data({
+          channels: buildGraphqlList(
+            Array.from({ length: itemsPerPage }).map((_, index) =>
+              ChannelMock.random().key(
+                `channel-key-${offset === 0 ? index : 20 + index}`
+              )
+            ),
+            {
+              name: 'Channel',
+              total: totalItems,
+            }
+          ),
+        })
+      );
+    })
+  );
+
+  renderApp();
+
+  // First page
+  await screen.findByText('channel-key-0');
+  expect(screen.queryByText('channel-key-22')).not.toBeInTheDocument();
+
+  // Go to second page
+  fireEvent.click(screen.getByLabelText('Next page'));
+
+  // Second page
+  await screen.findByText('channel-key-22');
+  expect(screen.queryByText('channel-key-0')).not.toBeInTheDocument();
+});
+```
+
+This should give you a basic idea on how you can approach testing your Custom Application.
 
 
-# End-to-End
+<!-- # End-to-End -->
