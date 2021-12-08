@@ -5,7 +5,6 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
-// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const FinalStatsWriterPlugin = require('../webpack-plugins/final-stats-writer-plugin');
 const paths = require('./paths');
@@ -31,7 +30,6 @@ const defaultToggleFlags = {
   disableCoreJs: false,
 };
 const defaultOptions = {
-  distPath: paths.distPath,
   entryPoint: paths.entryPoint,
   sourceFolders: paths.sourceFolders,
   postcssOptions: {},
@@ -45,7 +43,6 @@ const defaultOptions = {
  * "entry point".
  *
  * @param {Object} options - Options to configure the Webpack config
- * @param {string} options.distPath - The absolute path to the `dist` folder where Webpack should output the assets.
  * @param {string} options.entryPoint - The absolute path to the application entry point file.
  * @param {string[]} options.sourceFolders[] - A list of folders where Webpack should look for source files.
  * @param {Object} options.postcssOptions - Options related to Postcss plugins. See `createPostcssConfig` function.
@@ -164,11 +161,6 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
     },
 
     plugins: [
-      // new CleanWebpackPlugin({
-      //   dangerouslyAllowCleanPatternsOutsideProject: true,
-      //   dry: true,
-      //   cleanOnceBeforeBuildPatterns: [mergedOptions.distPath],
-      // }),
       // Allows to "assign" custom options to the `webpack` object.
       // At the moment, this is used to share some props with `postcss.config`.
       new webpack.LoaderOptionsPlugin({
@@ -196,7 +188,7 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
       // This is necessary to programmatically refer to the correct bundle path
       // in the `index.html`.
       new FinalStatsWriterPlugin({
-        outputPath: mergedOptions.distPath,
+        outputPath: paths.appBuild,
         includeFields: ['entrypoints', 'assets', 'publicPath', 'time'],
       }),
       mergedOptions.toggleFlags.generateIndexHtml &&

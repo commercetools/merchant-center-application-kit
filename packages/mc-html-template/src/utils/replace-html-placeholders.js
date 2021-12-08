@@ -16,9 +16,7 @@ const replaceHtmlPlaceholders = (indexHtmlContent, options) =>
   indexHtmlContent
     .replace(
       new RegExp('__CSP__', 'g'),
-      options.headers && options.cliFlags && options.cliFlags.inlineCsp
-        ? options.headers['Content-Security-Policy']
-        : ''
+      options.headers ? options.headers['Content-Security-Policy'] : ''
     )
     .replace(
       new RegExp('__CDN_URL__', 'g'),

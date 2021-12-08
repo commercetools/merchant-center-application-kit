@@ -1,21 +1,15 @@
 /* eslint-disable no-console,global-require,import/no-dynamic-require */
-const fs = require('fs');
-const path = require('path');
 const http = require('http');
 const serveHandler = require('serve-handler');
+const paths = require('../config/paths');
 
 const port = 3001;
-
-const appDirectory = fs.realpathSync(process.cwd());
-const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
-
-const publicAssetsPath = resolveApp('public');
 
 const server = http.createServer((request, response) => {
   // You pass two more arguments for config and middleware
   // More details here: https://github.com/vercel/serve-handler#options
   return serveHandler(request, response, {
-    public: publicAssetsPath,
+    public: paths.appBuild,
     rewrites: [
       {
         source: '/favicon*',
