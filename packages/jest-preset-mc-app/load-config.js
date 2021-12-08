@@ -14,6 +14,7 @@ const defaultConfig = {
     /.*Warning: componentWillReceiveProps has been renamed.*/,
     /.*CellMeasurerCache should only measure a cell's width or height.*/,
     /.*\[React Intl\] "defaultRichTextElements" was specified but "message" was not pre-compiled.*/,
+    /.*util function is now deprecated and has been moved to Jest repository.*/,
   ],
   notThrowWarnings: [
     /.*@commercetools-frontend\/permissions.*/,
