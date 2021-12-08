@@ -1,5 +1,11 @@
 # @commercetools-frontend/assets
 
+## 20.12.1
+
+### Patch Changes
+
+- [#2424](https://github.com/commercetools/merchant-center-application-kit/pull/2424) [`6f02335c`](https://github.com/commercetools/merchant-center-application-kit/commit/6f02335cd1fc05751e0398945b9d0fde0ef86c35) Thanks [@emmenko](https://github.com/emmenko)! - Use simpler names for application icons
+
 ## 20.12.0
 
 ### Minor Changes
