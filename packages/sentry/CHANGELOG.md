@@ -1,5 +1,14 @@
 # @commercetools-frontend/sentry
 
+## 20.12.1
+
+### Patch Changes
+
+- [#2384](https://github.com/commercetools/merchant-center-application-kit/pull/2384) [`cf914004`](https://github.com/commercetools/merchant-center-application-kit/commit/cf9140043ade6edb3ee71a7558b757f5e19bee81) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies [[`cf914004`](https://github.com/commercetools/merchant-center-application-kit/commit/cf9140043ade6edb3ee71a7558b757f5e19bee81)]:
+  - @commercetools-frontend/constants@20.12.1
+
 ## 20.12.0
 
 ### Patch Changes
