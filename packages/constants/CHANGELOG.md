@@ -67,7 +67,7 @@
   - Less configuration fields.
   - Support for two new variable placeholders:
     - `intl`: Given that menu labels are translated, you can reference a translation using the following syntax: `${intl:<local>:<translation_key>}`, for example `${intl:en:Menu.Avengers}`.
-    - `path`: Reference a file to load the its content and inline it. This is usually useful for SVG icons. The path can be relative to the application folder, for example `${path:./app.svg}`, or from a module, for example `${path:@commercetools-frontend/assets/application-icons/04.Rocket.svg}`.
+    - `path`: Reference a file to load the its content and inline it. This is usually useful for SVG icons. The path can be relative to the application folder, for example `${path:./app.svg}`, or from a module, for example `${path:@commercetools-frontend/assets/application-icons/Rocket.svg}`.
 
   > NOTE: This is an opt-in feature and is meant to replace the `menu.json` approach. For now it's fully backwards compatible.
 
@@ -79,7 +79,7 @@
   {
     // ...
     "menuLinks": {
-      "icon": "${path:@commercetools-frontend/assets/application-icons/04.Rocket.svg}",
+      "icon": "${path:@commercetools-frontend/assets/application-icons/Rocket.svg}",
       "defaultLabel": "${intl:en:Menu.StateMachines}",
       "labelAllLocales": [
         {
