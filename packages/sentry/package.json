@@ -18,17 +18,17 @@
   "module": "dist/commercetools-frontend-sentry.esm.js",
   "files": ["dist", "package.json", "LICENSE", "README.md"],
   "dependencies": {
-    "@babel/runtime": "7.15.4",
-    "@babel/runtime-corejs3": "7.15.4",
+    "@babel/runtime": "7.16.3",
+    "@babel/runtime-corejs3": "7.16.3",
     "@commercetools-frontend/constants": "20.12.0",
-    "@sentry/browser": "6.13.3",
+    "@sentry/browser": "6.16.0",
     "@types/prop-types": "^15.7.3",
     "@types/react": "^17.0.16",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
     "react": "17.0.2",
-    "sentry-testkit": "3.3.6",
+    "sentry-testkit": "3.3.7",
     "wait-for-expect": "3.0.2"
   },
   "peerDependencies": {

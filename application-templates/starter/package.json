@@ -19,7 +19,7 @@
     "versions:uikit": "manypkg upgrade @commercetools-uikit"
   },
   "dependencies": {
-    "@apollo/client": "3.4.16",
+    "@apollo/client": "3.5.6",
     "@commercetools-frontend/actions-global": "20.12.0",
     "@commercetools-frontend/application-components": "20.12.0",
     "@commercetools-frontend/application-shell": "20.12.0",
@@ -47,22 +47,22 @@
     "@commercetools-uikit/pagination": "^12.2.2",
     "@commercetools-uikit/spacings": "^12.2.2",
     "@commercetools-uikit/text": "^12.2.2",
-    "@formatjs/cli": "4.4.0",
-    "@manypkg/cli": "0.18.0",
+    "@formatjs/cli": "4.5.0",
+    "@manypkg/cli": "0.19.1",
     "@testing-library/react": "12.1.2",
     "eslint": "7.32.0",
     "eslint-formatter-pretty": "4.1.0",
-    "jest": "27.3.1",
+    "jest": "27.4.3",
     "jest-runner-eslint": "0.11.1",
     "jest-watch-typeahead": "1.0.0",
-    "msw": "0.35.0",
-    "prettier": "2.4.1",
+    "msw": "0.36.1",
+    "prettier": "2.5.1",
     "prop-types": "15.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-intl": "5.21.0",
+    "react-intl": "5.23.0",
     "react-redux": "7.2.6",
     "react-router-dom": "5.3.0",
-    "redux": "4.1.1"
+    "redux": "4.1.2"
   }
 }

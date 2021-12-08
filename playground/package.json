@@ -42,7 +42,7 @@
     "prop-types": "15.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-intl": "5.21.0",
+    "react-intl": "5.23.0",
     "react-router-dom": "5.3.0",
     "vercel": "23.1.2"
   },
@@ -50,7 +50,7 @@
     "@commercetools-backend/express": "20.12.0",
     "@commercetools-frontend/mc-dev-authentication": "20.10.6",
     "@commercetools-frontend/mc-scripts": "20.12.0",
-    "@formatjs/cli": "4.4.0",
+    "@formatjs/cli": "4.5.0",
     "@vercel/node": "^1.12.1"
   }
 }

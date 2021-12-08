@@ -2,7 +2,6 @@
 
 import { css } from '@emotion/react';
 import InlineSvg from '@commercetools-uikit/icons/inline-svg';
-import AccessibleButton from '@commercetools-uikit/accessible-button';
 import Grid from '@commercetools-uikit/grid';
 import { customProperties } from '@commercetools-uikit/design-system';
 import { Suite, Spec } from '../../test-utils';
@@ -38,26 +37,19 @@ const IconsGrid = (props: {
     gridAutoColumns="1fr"
     gridTemplateColumns={`repeat(auto-fill, minmax(calc(${customProperties.spacingXl} * 2), 1fr))`}
   >
-    {Object.keys(svgIcons).map((iconName, index) => {
+    {Object.keys(svgIcons).map((iconName) => {
       const data = svgIcons[iconName].default;
       return (
         <Grid.Item key={iconName} justifySelf="center">
-          <AccessibleButton
-            label={iconName}
-            buttonAttributes={{
-              'data-testid': `icon-svg-${index}`,
-              tabIndex: 0,
-              role: 'button',
-            }}
+          <div
             css={css`
               padding: ${customProperties.spacingS};
               width: calc(${customProperties.spacingXl} * 2);
               height: calc(${customProperties.spacingXl} * 2);
             `}
-            onClick={() => {}}
           >
             <InlineSvg data={data} size="scale" color={props.color} />
-          </AccessibleButton>
+          </div>
         </Grid.Item>
       );
     })}

@@ -18,8 +18,8 @@
   "module": "dist/commercetools-frontend-actions-global.esm.js",
   "files": ["dist", "package.json", "LICENSE", "README.md"],
   "dependencies": {
-    "@babel/runtime": "7.15.4",
-    "@babel/runtime-corejs3": "7.15.4",
+    "@babel/runtime": "7.16.3",
+    "@babel/runtime-corejs3": "7.16.3",
     "@commercetools-frontend/browser-history": "20.10.6",
     "@commercetools-frontend/constants": "20.12.0",
     "@commercetools-frontend/notifications": "20.10.6",
@@ -28,12 +28,12 @@
     "@types/react": "^17.0.16",
     "@types/react-redux": "^7.1.16",
     "lodash": "4.17.21",
-    "redux-thunk": "2.4.0"
+    "redux-thunk": "2.4.1"
   },
   "devDependencies": {
     "react": "17.0.2",
     "react-redux": "7.2.6",
-    "redux": "4.1.1"
+    "redux": "4.1.2"
   },
   "peerDependencies": {
     "react": "17.x",
