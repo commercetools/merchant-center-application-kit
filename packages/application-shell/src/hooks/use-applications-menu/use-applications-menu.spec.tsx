@@ -275,8 +275,7 @@ describe('for local development', () => {
           },
         });
         renderApp(<NavBarTest environment={environment} />);
-        await waitForElementToBeRemoved(screen.getByText('loading'));
-        expect(screen.getByText('Avengers')).toBeInTheDocument();
+        await screen.findByText('Avengers');
         expect(screen.getByText('Add avenger')).toBeInTheDocument();
         expect(screen.getByText('Path: avengers')).toBeInTheDocument();
         expect(screen.getByText('Sub-path: avengers/new')).toBeInTheDocument();
@@ -294,8 +293,7 @@ describe('for local development', () => {
           },
         });
         renderApp(<AppBarTest environment={environment} />);
-        await waitForElementToBeRemoved(screen.getByText('loading'));
-        expect(screen.getByText('Profile')).toBeInTheDocument();
+        await screen.findByText('Profile');
         expect(screen.getByText('Path: profile')).toBeInTheDocument();
         expect(screen.getByText('Organizations')).toBeInTheDocument();
         expect(screen.getByText('Path: organizations')).toBeInTheDocument();
