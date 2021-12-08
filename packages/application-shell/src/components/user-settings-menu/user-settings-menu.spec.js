@@ -80,11 +80,15 @@ describe('rendering', () => {
   });
   describe('when fetching dev menu config', () => {
     it('should open the menu and inspect the links', async () => {
-      const props = createTestProps({
-        DEV_ONLY__loadAppbarMenuConfig: () =>
-          Promise.all([Promise.resolve(createTestMenuConfig('projects'))]),
+      const props = createTestProps();
+      renderApp(<UserSettingsMenu {...props} />, {
+        environment: {
+          __DEVELOPMENT__: {
+            // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
+            accountLinks: [createTestMenuConfig('projects')],
+          },
+        },
       });
-      renderApp(<UserSettingsMenu {...props} />);
       const dropdownMenu = await screen.findByRole('button', {
         name: /open user settings menu/i,
       });
@@ -111,11 +115,15 @@ describe('rendering', () => {
   });
   describe('when clicking on the projects link', () => {
     it('should navigate to projects route and close the user menu', async () => {
-      const props = createTestProps({
-        DEV_ONLY__loadAppbarMenuConfig: () =>
-          Promise.all([Promise.resolve(createTestMenuConfig('projects'))]),
+      const props = createTestProps();
+      const { history } = renderApp(<UserSettingsMenu {...props} />, {
+        environment: {
+          __DEVELOPMENT__: {
+            // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
+            accountLinks: [createTestMenuConfig('projects')],
+          },
+        },
       });
-      const { history } = renderApp(<UserSettingsMenu {...props} />);
       const dropdownMenu = await screen.findByRole('button', {
         name: /open user settings menu/i,
       });
@@ -139,11 +147,15 @@ describe('rendering', () => {
   });
   describe('when clicking on the Privacy link', () => {
     it('should close the user menu', async () => {
-      const props = createTestProps({
-        DEV_ONLY__loadAppbarMenuConfig: () =>
-          Promise.all([Promise.resolve(createTestMenuConfig('projects'))]),
+      const props = createTestProps();
+      renderApp(<UserSettingsMenu {...props} />, {
+        environment: {
+          __DEVELOPMENT__: {
+            // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
+            accountLinks: [createTestMenuConfig('projects')],
+          },
+        },
       });
-      renderApp(<UserSettingsMenu {...props} />);
       const dropdownMenu = await screen.findByRole('button', {
         name: /open user settings menu/i,
       });
@@ -164,11 +176,15 @@ describe('rendering', () => {
   });
   describe('when clicking on the Support link', () => {
     it('should close the user menu', async () => {
-      const props = createTestProps({
-        DEV_ONLY__loadAppbarMenuConfig: () =>
-          Promise.all([Promise.resolve(createTestMenuConfig('projects'))]),
+      const props = createTestProps();
+      renderApp(<UserSettingsMenu {...props} />, {
+        environment: {
+          __DEVELOPMENT__: {
+            // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
+            accountLinks: [createTestMenuConfig('projects')],
+          },
+        },
       });
-      renderApp(<UserSettingsMenu {...props} />);
       const dropdownMenu = await screen.findByRole('button', {
         name: /open user settings menu/i,
       });

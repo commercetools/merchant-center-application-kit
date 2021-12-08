@@ -1,0 +1,16 @@
+---
+'merchant-center-application-template-starter': major
+'@commercetools-frontend/application-config': major
+'@commercetools-frontend/application-shell': major
+'playground': major
+'@commercetools-local/visual-testing-app': major
+---
+
+Following breaking changes were introduced:
+
+- New required fields in the Custom Application config.
+- Menu links structure in Custom Application config changed a bit.
+- The `ENABLE_OIDC_FOR_DEVELOPMENT` is now the default behavior.
+- The deprecated `menu.json` file and the `DEV_ONLY_` props have been removed.
+
+For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-15-custom-applications-v21).

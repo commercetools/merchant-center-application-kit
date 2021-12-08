@@ -590,7 +590,7 @@ describe('processing a config with file path variable placeholders', () => {
   });
 });
 
-describe('processing a config with OIDC enabled', () => {
+describe('processing a config with OIDC', () => {
   beforeEach(() => {
     loadConfig.mockReturnValue(fixtureConfigOidc);
   });
@@ -601,7 +601,6 @@ describe('processing a config with OIDC enabled', () => {
           APP_URL: 'https://avengers.app',
           CLOUD_IDENTIFIER: 'gcp-eu',
           NODE_ENV: 'test',
-          ENABLE_OIDC_FOR_DEVELOPMENT: 'true',
         },
       })
     );
@@ -646,7 +645,6 @@ describe('processing a config with OIDC enabled', () => {
             APP_URL: 'https://avengers.app',
             CLOUD_IDENTIFIER: 'gcp-eu',
             NODE_ENV: 'production',
-            ENABLE_OIDC_FOR_DEVELOPMENT: 'true',
           },
         })
       );

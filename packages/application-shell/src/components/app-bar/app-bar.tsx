@@ -1,5 +1,4 @@
 import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
-import type { TApplicationsMenu } from '../../types/generated/proxy';
 
 import { Link } from 'react-router-dom';
 import { css } from '@emotion/react';
@@ -17,7 +16,6 @@ import { REQUESTS_IN_FLIGHT_LOADER_DOM_ID } from '../requests-in-flight-loader/c
 type Props = {
   user: TFetchLoggedInUserQuery['user'];
   projectKeyFromUrl?: string;
-  DEV_ONLY__loadAppbarMenuConfig?: () => Promise<TApplicationsMenu['appBar']>;
 };
 
 const AppBar = (props: Props) => {
@@ -115,9 +113,6 @@ const AppBar = (props: Props) => {
               lastName={props.user.lastName}
               gravatarHash={props.user.gravatarHash}
               email={props.user.email}
-              DEV_ONLY__loadAppbarMenuConfig={
-                props.DEV_ONLY__loadAppbarMenuConfig
-              }
             />
           ) : (
             <LoadingPlaceholder shape="dot" size="l" />

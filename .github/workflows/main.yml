@@ -104,7 +104,6 @@ jobs:
           APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
           MC_API_URL: ${{ secrets.MC_API_URL }}
           CTP_INITIAL_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
-          ENABLE_OIDC_FOR_DEVELOPMENT: "true"
 
       - name: Deploying Playground application to Vercel (production)
         if: github.ref == 'refs/heads/main'

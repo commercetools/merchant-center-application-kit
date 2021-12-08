@@ -69,11 +69,6 @@ const processConfig = ({
   const additionalAppEnv = appConfig.additionalEnv ?? {};
   const revision = (additionalAppEnv.revision as string) ?? '';
 
-  // Feature flags
-  const isOidcForDevelopmentEnabled = Boolean(
-    JSON.parse(processEnv.ENABLE_OIDC_FOR_DEVELOPMENT || 'false')
-  );
-
   // Parse all the supported URLs, which gets implicitly validated
 
   const envAppUrl = isProd ? appConfig.env.production.url : developmentAppUrl;
@@ -106,43 +101,35 @@ const processConfig = ({
   // In development, we prefix the entry point with the "__local" prefix.
   // This is important to determine to which URL the MC should redirect to
   // after successful login.
-  let applicationId: string | undefined = isOidcForDevelopmentEnabled
-    ? `__local:${appConfig.entryPointUriPath}`
-    : undefined;
-  if (isProd) {
-    // TODO: decide if we do require the application ID or not.
-    if (appConfig.env.production.applicationId) {
-      applicationId = `${appConfig.env.production.applicationId}:${appConfig.entryPointUriPath}`;
-    } else {
-      // As long as we don't require the application ID in production, we should
-      // fall back to unset the value.
-      applicationId = undefined;
-    }
-  }
+  const applicationId = isProd
+    ? `${appConfig.env.production.applicationId}:${appConfig.entryPointUriPath}`
+    : `__local:${appConfig.entryPointUriPath}`;
 
   const developmentConfig: ApplicationRuntimeConfig['env']['__DEVELOPMENT__'] =
     isProd
       ? undefined
       : omitDevConfigIfEmpty({
-          oidc: isOidcForDevelopmentEnabled
-            ? omitEmpty({
-                authorizeUrl: [
-                  // In case the MC API url points to localhost, we need to point
-                  // to a local running dev login page to handle the workflow properly.
-                  mcApiUrl.hostname === 'localhost'
-                    ? mcApiUrl.origin.replace(
-                        mcApiUrl.port,
-                        String(developmentPort)
-                      )
-                    : mcApiUrl.origin.replace('mc-api', 'mc'),
-                  '/login/authorize',
-                ].join(''),
-                initialProjectKey: appConfig.env.development?.initialProjectKey,
-                teamId: appConfig.env.development?.teamId,
-                oAuthScopes: appConfig.oAuthScopes,
-              })
-            : undefined,
-          menuLinks: appConfig.menuLinks,
+          oidc: omitEmpty({
+            authorizeUrl: [
+              // In case the MC API url points to localhost, we need to point
+              // to a local running dev login page to handle the workflow properly.
+              mcApiUrl.hostname === 'localhost'
+                ? mcApiUrl.origin.replace(
+                    mcApiUrl.port,
+                    String(developmentPort)
+                  )
+                : mcApiUrl.origin.replace('mc-api', 'mc'),
+              '/login/authorize',
+            ].join(''),
+            initialProjectKey: appConfig.env.development.initialProjectKey,
+            teamId: appConfig.env.development?.teamId,
+            oAuthScopes: appConfig.oAuthScopes,
+          }),
+          menuLinks: {
+            icon: appConfig.icon,
+            ...appConfig.mainMenuLink,
+            submenuLinks: appConfig.submenuLinks,
+          },
           // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
           accountLinks: appConfig.accountLinks,
         });
@@ -150,7 +137,6 @@ const processConfig = ({
   cachedConfig = {
     env: {
       ...omitEmpty(additionalAppEnv),
-      // TODO: how else should we provide the app identifier?
       applicationId,
       applicationName: appConfig.name,
       entryPointUriPath: appConfig.entryPointUriPath,
@@ -170,15 +156,15 @@ const processConfig = ({
       csp: {
         ...appConfig.headers?.csp,
         'connect-src': getUniqueValues(
-          appConfig.headers?.csp['connect-src'],
+          appConfig.headers?.csp?.['connect-src'],
           [mcApiUrl.origin].concat(isProd ? [appUrl.href] : [])
         ),
         'script-src': getUniqueValues(
-          appConfig.headers?.csp['script-src'],
+          appConfig.headers?.csp?.['script-src'],
           isProd ? [appUrl.href, cdnUrl.href] : []
         ),
         'style-src': getUniqueValues(
-          appConfig.headers?.csp['style-src'],
+          appConfig.headers?.csp?.['style-src'],
           isProd ? [appUrl.href, cdnUrl.href] : []
         ),
       },
