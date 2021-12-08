@@ -4,7 +4,6 @@ import type { NormalizedCacheObject } from '@apollo/client';
 import type { ApolloError } from '@apollo/client/errors';
 import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
-import type { TApplicationsMenu } from '../../types/generated/proxy';
 import type { TrackingList } from '../../utils/gtm';
 
 import { ReactNode, SyntheticEvent, useEffect } from 'react';
@@ -80,9 +79,6 @@ type Props<AdditionalEnvironmentProperties extends {}> = {
   ) => void;
   render?: () => JSX.Element;
   children?: ReactNode;
-  // Only available in development mode
-  DEV_ONLY__loadAppbarMenuConfig?: () => Promise<TApplicationsMenu['appBar']>;
-  DEV_ONLY__loadNavbarMenuConfig?: () => Promise<TApplicationsMenu['navBar']>;
 };
 
 /**
@@ -314,9 +310,6 @@ export const RestrictedApplication = <
                           <AppBar
                             user={user}
                             projectKeyFromUrl={projectKeyFromUrl}
-                            DEV_ONLY__loadAppbarMenuConfig={
-                              props.DEV_ONLY__loadAppbarMenuConfig
-                            }
                           />
                         </header>
 
@@ -368,9 +361,6 @@ export const RestrictedApplication = <
                                         projectKey={projectKeyFromUrl}
                                         project={project}
                                         environment={applicationEnvironment}
-                                        DEV_ONLY__loadNavbarMenuConfig={
-                                          props.DEV_ONLY__loadNavbarMenuConfig
-                                        }
                                         onMenuItemClick={props.onMenuItemClick}
                                       />
                                     </ApplicationContextProvider>
@@ -540,12 +530,6 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
                     render={props.render}
                     applicationMessages={props.applicationMessages}
                     onMenuItemClick={props.onMenuItemClick}
-                    DEV_ONLY__loadAppbarMenuConfig={
-                      props.DEV_ONLY__loadAppbarMenuConfig
-                    }
-                    DEV_ONLY__loadNavbarMenuConfig={
-                      props.DEV_ONLY__loadNavbarMenuConfig
-                    }
                   >
                     {props.children}
                   </RestrictedApplication>

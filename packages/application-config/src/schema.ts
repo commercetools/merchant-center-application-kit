@@ -25,7 +25,7 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
   /**
    * The requested OAuth Scopes for this Custom Application.
    */
-  oAuthScopes?: {
+  oAuthScopes: {
     /**
      * The list of view-only OAuth Scopes (https://docs.commercetools.com/api/scopes).
      */
@@ -42,11 +42,11 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
     /**
      * Configuration for development only
      */
-    development?: {
+    development: {
       /**
        * The initial project key that the Custom Application is requesting access for. This is only used in development.
        */
-      initialProjectKey?: string;
+      initialProjectKey: string;
       /**
        * The ID of an existing team. This can be used for granting access on behalf of the permissions assigned to that team and project.
        */
@@ -59,7 +59,7 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
       /**
        * The ID of the Custom Application (when you register the application in the Merchant Center)
        */
-      applicationId?: string;
+      applicationId: string;
       /**
        * The URL where the Custom Application is hosted
        */
@@ -83,7 +83,7 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
     /**
      * Configuration for the HTTP Content-Security-Policy header (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
      */
-    csp: {
+    csp?: {
       'connect-src': CspDirective;
       'font-src'?: CspDirective;
       'img-src'?: CspDirective;
@@ -109,13 +109,13 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
     strictTransportSecurity?: ('includeSubDomains' | 'preload')[];
   };
   /**
-   * Configuration for the menu links on the left-side navbar.
+   * The SVG icon that represents this application. Pass the raw SVG string or a path to an SVG file, for example a relative path `${path:./app.svg}`, or a path from a module `${path:@commercetools-frontend/assets/application-icons/rocket.svg}`.
    */
-  menuLinks?: {
-    /**
-     * The SVG icon that represents this application. Pass the raw SVG string or a path to an SVG file, for example a relative path `${path:./app.svg}`, or a path from a module `${path:@commercetools-frontend/assets/application-icons/rocket.svg}`.
-     */
-    icon: string;
+  icon: string;
+  /**
+   * Configuration for the main menu link on the left-side navbar.
+   */
+  mainMenuLink: {
     /**
      * A default label to be rendered if there is no matching localized label for the user locale.
      */
@@ -131,38 +131,38 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
       value: string;
     }[];
     /**
-     * Set the visibility of the menu link. Users must have at least one permission to see the Custom Application in the Merchant Center menu.
+     * Set the visibility of the menu link. Permission values are derived from the `entryPointUriPath`. Users must have at least one permission to see the Custom Application in the Merchant Center menu.
      */
     permissions: string[];
-    /**
-     * Configuration for the submenu links on the left-side navbar.
-     */
-    submenuLinks: {
-      /**
-       * Route path relative to the entry point URI path of the Custom Application.
-       */
-      uriPath: string;
-      /**
-       * A default label to be rendered if there is no matching localized label for the user locale.
-       */
-      defaultLabel: string;
-      /**
-       * Localized label based on the application locales available from the user profile.
-       */
-      labelAllLocales: {
-        locale: 'en' | 'de' | 'es' | 'fr-FR' | 'zh-CN' | 'ja';
-        /**
-         * A label for the specific locale or a reference to a translated message. For example `${intl:en:Menu.Avengers}` which looks for the message key `Menu.Avengers` in the `src/i18n/data/en.json`
-         */
-        value: string;
-      }[];
-      /**
-       * Set the visibility of the menu link. Users must have at least one permission to see the Custom Application in the Merchant Center menu.
-       */
-      permissions: string[];
-      [k: string]: unknown;
-    }[];
     [k: string]: unknown;
   };
+  /**
+   * Configuration for the submenu links on the left-side navbar.
+   */
+  submenuLinks: {
+    /**
+     * Route path relative to the entry point URI path of the Custom Application.
+     */
+    uriPath: string;
+    /**
+     * A default label to be rendered if there is no matching localized label for the user locale.
+     */
+    defaultLabel: string;
+    /**
+     * Localized label based on the application locales available from the user profile.
+     */
+    labelAllLocales: {
+      locale: 'en' | 'de' | 'es' | 'fr-FR' | 'zh-CN' | 'ja';
+      /**
+       * A label for the specific locale or a reference to a translated message. For example `${intl:en:Menu.Avengers}` which looks for the message key `Menu.Avengers` in the `src/i18n/data/en.json`
+       */
+      value: string;
+    }[];
+    /**
+     * Set the visibility of the menu link. Permission values are derived from the `entryPointUriPath`. Users must have at least one permission to see the Custom Application in the Merchant Center menu.
+     */
+    permissions: string[];
+    [k: string]: unknown;
+  }[];
   [k: string]: unknown;
 }

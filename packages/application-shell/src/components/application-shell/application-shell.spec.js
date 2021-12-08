@@ -795,7 +795,11 @@ describe('navbar menu links interactions', () => {
         findByLeftNavigation,
         waitForLeftNavigationToBeLoaded,
       } = renderApp(null, {
-        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+        environment: {
+          __DEVELOPMENT__: {
+            menuLinks: navbarMock,
+          },
+        },
       });
 
       const applicationLocale = 'en';
@@ -948,7 +952,11 @@ describe('when navbar menu items are hidden', () => {
     const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
       null,
       {
-        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+        environment: {
+          __DEVELOPMENT__: {
+            menuLinks: navbarMock,
+          },
+        },
       }
     );
     await waitForLeftNavigationToBeLoaded();
@@ -995,7 +1003,11 @@ describe('when navbar menu items match given permissions', () => {
     const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
       null,
       {
-        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+        environment: {
+          __DEVELOPMENT__: {
+            menuLinks: navbarMock,
+          },
+        },
       }
     );
     await waitForLeftNavigationToBeLoaded();
@@ -1036,7 +1048,11 @@ describe('when navbar menu items do not match given permissions', () => {
     const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
       null,
       {
-        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+        environment: {
+          __DEVELOPMENT__: {
+            menuLinks: navbarMock,
+          },
+        },
       }
     );
     await waitForLeftNavigationToBeLoaded();
@@ -1092,7 +1108,11 @@ describe('when navbar menu items match given action rights', () => {
     const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
       null,
       {
-        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+        environment: {
+          __DEVELOPMENT__: {
+            menuLinks: navbarMock,
+          },
+        },
       }
     );
     await waitForLeftNavigationToBeLoaded();
@@ -1142,7 +1162,11 @@ describe('when navbar menu items do not match given action rights', () => {
     const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
       null,
       {
-        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+        environment: {
+          __DEVELOPMENT__: {
+            menuLinks: navbarMock,
+          },
+        },
       }
     );
     await waitForLeftNavigationToBeLoaded();
@@ -1205,7 +1229,11 @@ describe('when navbar menu items match given data fences', () => {
     const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
       null,
       {
-        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+        environment: {
+          __DEVELOPMENT__: {
+            menuLinks: navbarMock,
+          },
+        },
       }
     );
     await waitForLeftNavigationToBeLoaded();
@@ -1262,7 +1290,11 @@ describe('when navbar menu items do not match given data fences', () => {
     const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
       null,
       {
-        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+        environment: {
+          __DEVELOPMENT__: {
+            menuLinks: navbarMock,
+          },
+        },
       }
     );
     await waitForLeftNavigationToBeLoaded();

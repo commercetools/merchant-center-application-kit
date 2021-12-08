@@ -3,22 +3,30 @@
   "entryPointUriPath": "examples-starter",
   "cloudIdentifier": "gcp-eu",
   "env": {
+    "development": {
+      "initialProjectKey": "TODO"
+    },
     "production": {
+      "applicationId": "TODO",
       "url": "https://<your_app_hostname>"
     }
   },
-  "menuLinks": {
-    "icon": "HeartIcon",
+  "oAuthScopes": {
+    "view": ["view_products"],
+    "manage": []
+  },
+  "icon": "${path:@commercetools-frontend/assets/application-icons/Rocket.svg}",
+  "mainMenuLink": {
     "defaultLabel": "Starter",
     "labelAllLocales": [],
-    "permissions": [],
-    "submenuLinks": [
-      {
-        "uriPath": "channels",
-        "defaultLabel": "Channels",
-        "labelAllLocales": [],
-        "permissions": []
-      }
-    ]
-  }
+    "permissions": []
+  },
+  "submenuLinks": [
+    {
+      "uriPath": "channels",
+      "defaultLabel": "Channels",
+      "labelAllLocales": [],
+      "permissions": []
+    }
+  ]
 }

@@ -1,8 +1,5 @@
 import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import type {
-  TApplicationsMenu,
-  TNavbarMenu,
-} from '../../types/generated/proxy';
+import type { TNavbarMenu } from '../../types/generated/proxy';
 import type {
   TFetchProjectExtensionsNavbarQuery,
   TFetchProjectExtensionsNavbarQueryVariables,
@@ -27,7 +24,6 @@ import nonNullable from './non-nullable';
 
 type HookProps = {
   environment: TApplicationContext<{}>['environment'];
-  DEV_ONLY__loadNavbarMenuConfig?: () => Promise<TApplicationsMenu['navBar']>;
 };
 type State = {
   activeItemIndex?: string;
@@ -76,7 +72,6 @@ const useNavbarStateManager = (props: HookProps) => {
       onError: reportErrorToSentry,
     },
     environment: props.environment,
-    loadMenuConfig: props.DEV_ONLY__loadNavbarMenuConfig,
   });
   const { data: projectExtensionsQuery } = useMcQuery<
     TFetchProjectExtensionsNavbarQuery,

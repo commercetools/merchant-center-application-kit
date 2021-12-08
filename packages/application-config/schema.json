@@ -48,6 +48,7 @@
         "view": {
           "description": "The list of view-only OAuth Scopes (https://docs.commercetools.com/api/scopes).",
           "type": "array",
+          "default": [],
           "items": {
             "type": "string",
             "pattern": "view_(.*)"
@@ -57,6 +58,7 @@
         "manage": {
           "description": "The list of manage-only OAuth Scopes (https://docs.commercetools.com/api/scopes).",
           "type": "array",
+          "default": [],
           "items": {
             "type": "string",
             "pattern": "manage_(.*)"
@@ -84,7 +86,8 @@
               "type": "string"
             }
           },
-          "additionalProperties": false
+          "additionalProperties": false,
+          "required": ["initialProjectKey"]
         },
         "production": {
           "description": "Configuration for production only",
@@ -104,11 +107,11 @@
             }
           },
           "additionalProperties": false,
-          "required": ["url"]
+          "required": ["applicationId", "url"]
         }
       },
       "additionalProperties": false,
-      "required": ["production"]
+      "required": ["development", "production"]
     },
     "additionalEnv": {
       "description": "Additional environment values unique to your Custom Application that are injected in the application context.",
@@ -161,17 +164,16 @@
           "uniqueItems": true
         }
       },
-      "additionalProperties": false,
-      "required": ["csp"]
+      "additionalProperties": false
     },
-    "menuLinks": {
-      "description": "Configuration for the menu links on the left-side navbar.",
+    "icon": {
+      "description": "The SVG icon that represents this application. Pass the raw SVG string or a path to an SVG file, for example a relative path `${path:./app.svg}`, or a path from a module `${path:@commercetools-frontend/assets/application-icons/rocket.svg}`.",
+      "type": "string"
+    },
+    "mainMenuLink": {
+      "description": "Configuration for the main menu link on the left-side navbar.",
       "type": "object",
       "properties": {
-        "icon": {
-          "description": "The SVG icon that represents this application. Pass the raw SVG string or a path to an SVG file, for example a relative path `${path:./app.svg}`, or a path from a module `${path:@commercetools-frontend/assets/application-icons/rocket.svg}`.",
-          "type": "string"
-        },
         "defaultLabel": {
           "description": "A default label to be rendered if there is no matching localized label for the user locale.",
           "type": "string"
@@ -197,77 +199,80 @@
           }
         },
         "permissions": {
-          "description": "Set the visibility of the menu link. Users must have at least one permission to see the Custom Application in the Merchant Center menu.",
+          "description": "Set the visibility of the menu link. Permission values are derived from the `entryPointUriPath`. Users must have at least one permission to see the Custom Application in the Merchant Center menu.",
           "type": "array",
           "default": [],
           "items": {
             "type": "string"
           }
-        },
-        "submenuLinks": {
-          "description": "Configuration for the submenu links on the left-side navbar.",
-          "default": [],
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "uriPath": {
-                "description": "Route path relative to the entry point URI path of the Custom Application.",
-                "type": "string"
-              },
-              "defaultLabel": {
-                "description": "A default label to be rendered if there is no matching localized label for the user locale.",
-                "type": "string"
-              },
-              "labelAllLocales": {
-                "description": "Localized label based on the application locales available from the user profile.",
-                "type": "array",
-                "default": [],
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "locale": {
-                      "type": "string",
-                      "enum": ["en", "de", "es", "fr-FR", "zh-CN", "ja"]
-                    },
-                    "value": {
-                      "description": "A label for the specific locale or a reference to a translated message. For example `${intl:en:Menu.Avengers}` which looks for the message key `Menu.Avengers` in the `src/i18n/data/en.json`",
-                      "type": "string"
-                    }
-                  },
-                  "additionalProperties": false,
-                  "required": ["locale", "value"]
-                }
-              },
-              "permissions": {
-                "description": "Set the visibility of the menu link. Users must have at least one permission to see the Custom Application in the Merchant Center menu.",
-                "type": "array",
-                "default": [],
-                "items": {
-                  "type": "string"
-                }
-              }
-            },
-            "additionalProperties": true,
-            "required": [
-              "uriPath",
-              "defaultLabel",
-              "labelAllLocales",
-              "permissions"
-            ]
-          }
         }
       },
       "additionalProperties": true,
-      "required": [
-        "icon",
-        "defaultLabel",
-        "labelAllLocales",
-        "permissions",
-        "submenuLinks"
-      ]
+      "required": ["defaultLabel", "labelAllLocales", "permissions"]
+    },
+    "submenuLinks": {
+      "description": "Configuration for the submenu links on the left-side navbar.",
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "uriPath": {
+            "description": "Route path relative to the entry point URI path of the Custom Application.",
+            "type": "string"
+          },
+          "defaultLabel": {
+            "description": "A default label to be rendered if there is no matching localized label for the user locale.",
+            "type": "string"
+          },
+          "labelAllLocales": {
+            "description": "Localized label based on the application locales available from the user profile.",
+            "type": "array",
+            "default": [],
+            "items": {
+              "type": "object",
+              "properties": {
+                "locale": {
+                  "type": "string",
+                  "enum": ["en", "de", "es", "fr-FR", "zh-CN", "ja"]
+                },
+                "value": {
+                  "description": "A label for the specific locale or a reference to a translated message. For example `${intl:en:Menu.Avengers}` which looks for the message key `Menu.Avengers` in the `src/i18n/data/en.json`",
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false,
+              "required": ["locale", "value"]
+            }
+          },
+          "permissions": {
+            "description": "Set the visibility of the menu link. Permission values are derived from the `entryPointUriPath`. Users must have at least one permission to see the Custom Application in the Merchant Center menu.",
+            "type": "array",
+            "default": [],
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": true,
+        "required": [
+          "uriPath",
+          "defaultLabel",
+          "labelAllLocales",
+          "permissions"
+        ]
+      }
     }
   },
   "additionalProperties": true,
-  "required": ["name", "entryPointUriPath", "cloudIdentifier", "env"]
+  "required": [
+    "name",
+    "entryPointUriPath",
+    "cloudIdentifier",
+    "env",
+    "oAuthScopes",
+    "icon",
+    "mainMenuLink",
+    "submenuLinks"
+  ]
 }
