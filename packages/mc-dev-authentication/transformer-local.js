@@ -14,7 +14,7 @@ const compileLogoutView = pug.compileFile(
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 const paths = {
-  appPublic: resolveApp('public'),
+  appBuild: resolveApp('public'),
 };
 
 // This transformer will generate a development `login` and `logout` HTML files
@@ -26,23 +26,23 @@ module.exports = ({ env }) => {
 
   fs.copyFileSync(
     path.join(__dirname, 'views', 'login.css'),
-    path.join(paths.appPublic, 'login.css')
+    path.join(paths.appBuild, 'login.css')
   );
   fs.copyFileSync(
     path.join(__dirname, 'views', 'login.js'),
-    path.join(paths.appPublic, 'login.js')
+    path.join(paths.appBuild, 'login.js')
   );
   fs.copyFileSync(
     path.join(__dirname, 'views', 'logout.js'),
-    path.join(paths.appPublic, 'logout.js')
+    path.join(paths.appBuild, 'logout.js')
   );
   fs.writeFileSync(
-    path.join(paths.appPublic, 'login.html'),
+    path.join(paths.appBuild, 'login.html'),
     loginViewHtml,
     'utf8'
   );
   fs.writeFileSync(
-    path.join(paths.appPublic, 'logout.html'),
+    path.join(paths.appBuild, 'logout.html'),
     logoutViewHtml,
     'utf8'
   );

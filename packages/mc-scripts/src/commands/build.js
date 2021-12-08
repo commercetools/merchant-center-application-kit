@@ -2,6 +2,7 @@
 // NOTE: `react-dev-utils` does not currently fully support Webpack v5.
 // Most of the imports work, however we might bump into some edge cases.
 // In any case, once they release a compatible version, we should't have problems.
+const path = require('path');
 const fs = require('fs-extra');
 const webpack = require('webpack');
 const chalk = require('react-dev-utils/chalk');
@@ -9,6 +10,9 @@ const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const printBuildError = require('react-dev-utils/printBuildError');
+const {
+  packageLocation: applicationStaticAssetsPath,
+} = require('@commercetools-frontend/assets');
 const paths = require('../config/paths');
 const createWebpackConfigForProduction = require('../config/create-webpack-config-for-production');
 
@@ -34,6 +38,8 @@ measureFileSizesBeforeBuild(paths.appBuild)
     // Remove all content but keep the directory so that
     // if you're in it, you don't end up in Trash
     fs.emptyDirSync(paths.appBuild);
+    // Copy default files
+    copyDefaultFiles();
     // Start the webpack build
     return build(previousFileSizes);
   })
@@ -148,4 +154,12 @@ function build(previousFileSizes) {
       });
     });
   });
+}
+
+function copyDefaultFiles() {
+  fs.copySync(
+    path.join(applicationStaticAssetsPath, 'html-page'),
+    paths.appBuild,
+    { dereference: true }
+  );
 }

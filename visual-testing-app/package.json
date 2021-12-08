@@ -4,7 +4,7 @@
   "description": "An app to facilitate visual testing",
   "private": true,
   "scripts": {
-    "build": "rimraf dist && mc-scripts build && MC_APP_ENV=development mc-scripts compile-html",
+    "build": "MC_APP_ENV=development mc-scripts build",
     "start": "mc-scripts start",
     "serve": "mc-scripts serve"
   },

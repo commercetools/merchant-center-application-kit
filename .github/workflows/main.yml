@@ -88,6 +88,11 @@ jobs:
 
       - name: Building Playground application
         run: yarn playground:build
+        env:
+          APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
+          MC_API_URL: ${{ secrets.MC_API_URL }}
+          CTP_INITIAL_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
+          HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
 
       - name: Running End-to-End tests for Playground application
         run: yarn start-server-and-test 'yarn playground:start:prod:local' 3001 'yarn percy exec -- yarn test:e2e:playground'
@@ -106,13 +111,8 @@ jobs:
       - name: Deploying Playground application to Vercel (production)
         if: github.ref == 'refs/heads/main'
         run: |
-          yarn workspace playground run compile-html
           yarn workspace playground run deploy --prod --token="${{ secrets.VERCEL_TOKEN_PLAYGROUND }}"
         env:
-          APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
-          MC_API_URL: ${{ secrets.MC_API_URL }}
-          CTP_INITIAL_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
-          HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID_PLAYGROUND }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_PLAYGROUND }}
 

@@ -25,16 +25,15 @@ const resolveModule = (resolveFn, filePath) => {
 // to point to files within that folder.
 const paths = {
   appPackageJson: resolveApp('package.json'),
-  appPublic: resolveApp('public'),
-  appBuild: resolveApp('dist/assets'),
-  appIndexHtml: resolveApp('dist/assets/index.html'),
+  appBuild: resolveApp('public'),
+  appIndexHtmlTemplate: resolveApp('public/index.html.template'),
+  appIndexHtml: resolveApp('public/index.html'),
   appWebpackConfig: resolveModule(
     resolveApp,
     `webpack.config.${process.env.NODE_ENV === 'production' ? 'prod' : 'dev'}`
   ),
   yarnLockFile: resolveApp('yarn.lock'),
   appRoot: resolveApp('.'),
-  distPath: resolveApp('dist'),
   entryPoint: resolveModule(resolveApp, 'src/index'),
   sourceFolders: [resolveApp('src')],
 };

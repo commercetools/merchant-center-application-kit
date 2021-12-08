@@ -19,7 +19,6 @@ const defaultToggleFlags = {
   disableCoreJs: false,
 };
 const defaultOptions = {
-  distPath: paths.distPath,
   entryPoint: paths.entryPoint,
   sourceFolders: paths.sourceFolders,
   postcssOptions: {},
@@ -43,7 +42,6 @@ const reactRefreshOverlayEntry = require.resolve(
  * "entry point".
  *
  * @param {Object} options - Options to configure the Webpack config
- * @param {string} options.distPath - The absolute path to the `dist` folder where Webpack should output the assets.
  * @param {string} options.entryPoint - The absolute path to the application entry point file.
  * @param {string[]} options.sourceFolders[] - A list of folders where Webpack should look for source files.
  * @param {Object} options.postcssOptions - Options related to Postcss plugins. See `createPostcssConfig` function.
