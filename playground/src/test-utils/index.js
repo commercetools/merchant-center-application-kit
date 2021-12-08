@@ -9,8 +9,6 @@ const mergeWithDefaultOptions = (options = {}) => ({
     entryPointUriPath,
   },
   apolloClient: createApolloClient(),
-  disableApolloMocks: true,
-  disableAutomaticEntryPointRoutes: false,
 });
 
 const renderApplicationWithRedux = (ui, options = {}) =>

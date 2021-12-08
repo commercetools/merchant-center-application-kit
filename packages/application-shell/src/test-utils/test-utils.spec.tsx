@@ -17,7 +17,12 @@ import { ApplicationContext } from '@commercetools-frontend/application-shell-co
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { useMcQuery } from '../hooks/apollo-hooks';
-import { renderApp, renderAppWithRedux, waitFor } from './test-utils';
+import {
+  renderApp,
+  renderAppWithRedux,
+  waitFor,
+  denormalizePermissions,
+} from './test-utils';
 
 const mockServer = setupServer();
 afterEach(() => {
@@ -60,6 +65,7 @@ describe('ApolloMockProvider', () => {
   };
   it('should be possible to fake GraphQL requests', async () => {
     renderApp(<TestComponent />, {
+      enableApolloMocks: true,
       mocks: [
         {
           request: {
@@ -95,9 +101,7 @@ describe('Real ApolloProvider', () => {
         res(ctx.data({ foo: { name: 'Snoop Dogg' } }))
       )
     );
-    renderApp(<TestComponent />, {
-      disableApolloMocks: true,
-    });
+    renderApp(<TestComponent />);
     await screen.findByText('Snoop Dogg');
   });
 });
@@ -215,13 +219,21 @@ describe('ApplicationContext', () => {
     );
     it('should render unauthorized when ManageProducts permission is false', async () => {
       renderApp(<TestComponent />, {
-        permissions: { canManageProducts: false },
+        project: {
+          allAppliedPermissions: denormalizePermissions({
+            canManageProducts: false,
+          }),
+        },
       });
       await screen.findByText('Not allowed');
     });
     it('should render authorized when ManageProducts permission is true', async () => {
       renderApp(<TestComponent />, {
-        permissions: { canManageProducts: true },
+        project: {
+          allAppliedPermissions: denormalizePermissions({
+            canManageProducts: true,
+          }),
+        },
       });
       await screen.findByText('Authorized');
     });

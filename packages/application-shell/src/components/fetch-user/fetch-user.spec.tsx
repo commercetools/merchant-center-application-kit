@@ -33,8 +33,7 @@ const renderUser = () =>
         if (user) return <div>{`User: ${user.firstName}`}</div>;
         return null;
       }}
-    </FetchUser>,
-    { disableApolloMocks: true }
+    </FetchUser>
   );
 
 describe('rendering', () => {
