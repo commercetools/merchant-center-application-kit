@@ -67,10 +67,6 @@ const defaultProject = {
     allAppliedDataFences: [],
     allAppliedMenuVisibilities: [],
   },
-  /**
-   * @deprecated: Use `{ allPermissionsForAllApplications: { allAppliedMenuVisibilities: [] } }`
-   */
-  allAppliedMenuVisibilities: [],
 };
 
 const defaultUser = {
@@ -220,12 +216,12 @@ const wrapIfNeeded = (
 type TApolloProviderWrapperProps = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;
   mocks: ReadonlyArray<MockedResponse>;
-  disableApolloMocks: boolean;
+  enableApolloMocks: boolean;
   children: ReactElement;
 };
 const ApolloProviderWrapper = (props: TApolloProviderWrapperProps) => {
   const apolloClient = props.apolloClient ?? createApolloClient();
-  if (props.disableApolloMocks) {
+  if (!props.enableApolloMocks) {
     return (
       // eslint-disable-next-line testing-library/no-node-access
       <ApolloProvider client={apolloClient}>{props.children}</ApolloProvider>
@@ -261,7 +257,7 @@ export type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   locale: string;
   mocks: ReadonlyArray<MockedResponse>;
   apolloClient?: ApolloClient<NormalizedCacheObject>;
-  disableApolloMocks: boolean;
+  enableApolloMocks: boolean;
   route: string;
   disableAutomaticEntryPointRoutes: boolean;
   history: ReturnType<typeof createEnhancedHistory>;
@@ -272,70 +268,6 @@ export type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   user: Partial<TProviderProps<AdditionalEnvironmentProperties>['user']>;
   project: Partial<TProviderProps<AdditionalEnvironmentProperties>['project']>;
   dataLocale: TProviderProps<AdditionalEnvironmentProperties>['projectDataLocale'];
-  /**
-   * @deprecated: Use `{ project: { allAppliedPermissions } }`
-   * From:
-   *   {
-   *     permissions: {
-   *       canManageProjectSettings: true
-   *     }
-   *   }
-   * To:
-   *   {
-   *     project: {
-   *       allAppliedPermissions: [
-   *         { name: 'canManageProjectSettings', value: true }
-   *       ]
-   *     }
-   *   }
-   */
-  permissions: TPermissions;
-  /**
-   * @deprecated: Use `{ project: { allAppliedActionRights } }`
-   * From:
-   *   {
-   *     actionRights: {
-   *       products: {
-   *         canEditPrices: true,
-   *         canPublishProducts: false,
-   *       }
-   *     }
-   *   }
-   * To:
-   *   {
-   *     project: {
-   *       allAppliedActionRights: [
-   *         { group: 'products', name: 'canEditPrices', value: true },
-   *         { group: 'products', name: 'canPublishProducts', value: false }
-   *       ]
-   *     }
-   *   }
-   */
-  actionRights: TNormalizedActionRights;
-  /**
-   * @deprecated: Use `{ project: { allAppliedDataFences } }`
-   * From:
-   *   {
-   *     dataFences: {
-   *       store: {
-   *         orders: {
-   *           canViewOrders: {
-   *             values: ['store-1'],
-   *           }
-   *         }
-   *       }
-   *     }
-   *   }
-   * To:
-   *   {
-   *     project: {
-   *       allAppliedDataFences: [
-   *         { type: 'store', group: 'orders', name: 'canViewOrders', value: 'store-1' }
-   *       ]
-   *     }
-   *   }
-   */
-  dataFences: TNormalizedDataFences;
 } & rtl.RenderOptions;
 type TRenderAppResult<AdditionalEnvironmentProperties = {}> = rtl.RenderResult &
   Pick<
@@ -352,10 +284,10 @@ function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
   // Apollo
   mocks = [],
   apolloClient,
-  disableApolloMocks = false,
+  enableApolloMocks = false,
   // react-router
   route = '/',
-  disableAutomaticEntryPointRoutes = true,
+  disableAutomaticEntryPointRoutes = false,
   history = createEnhancedHistory(
     createMemoryHistory({ initialEntries: [route] })
   ),
@@ -365,9 +297,6 @@ function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
   environment,
   user,
   project,
-  permissions, // <-- deprecated option, use `{ project: { allAppliedPermissions } }`
-  actionRights, // <-- deprecated option, use `{ project: { allAppliedActionRights } }`
-  dataFences, // <-- deprecated option, use `{ project: { allAppliedDataFences } }`
   dataLocale = 'en',
 }: Partial<TRenderAppOptions<AdditionalEnvironmentProperties>> = {}) {
   const mergedUser = user === null ? undefined : { ...defaultUser, ...user };
@@ -375,21 +304,9 @@ function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
     if (project === null) {
       return undefined;
     }
-    const allAppliedPermissions = denormalizePermissions(permissions);
-    const allAppliedActionRights = denormalizeActionRights(actionRights);
-    const allAppliedDataFences = denormalizeDataFences(dataFences);
     return {
       ...defaultProject,
       ...project,
-      allAppliedPermissions,
-      allAppliedActionRights,
-      allAppliedDataFences,
-      allPermissionsForAllApplications: {
-        allAppliedPermissions,
-        allAppliedActionRights,
-        allAppliedDataFences,
-        allAppliedMenuVisibilities: [],
-      },
     };
   })();
   const mergedEnvironment = {
@@ -407,7 +324,7 @@ function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
   const ApplicationProviders = (props: TApplicationProvidersProps) => (
     <IntlProvider locale={locale}>
       <ApolloProviderWrapper
-        disableApolloMocks={disableApolloMocks}
+        enableApolloMocks={enableApolloMocks}
         apolloClient={apolloClient}
         mocks={mocks}
       >
@@ -720,4 +637,11 @@ const hooks = {
   renderHook,
 };
 
-export { renderApp, renderAppWithRedux, hooks };
+export {
+  renderApp,
+  renderAppWithRedux,
+  hooks,
+  denormalizePermissions,
+  denormalizeActionRights,
+  denormalizeDataFences,
+};

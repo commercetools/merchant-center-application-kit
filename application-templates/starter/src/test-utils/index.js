@@ -13,8 +13,6 @@ const mergeWithDefaultOptions = (options = {}) => ({
     entryPointUriPath,
   },
   apolloClient: createApolloClient(),
-  disableApolloMocks: true,
-  disableAutomaticEntryPointRoutes: false,
 });
 
 const renderApplication = (ui, options) =>

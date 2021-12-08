@@ -35,8 +35,7 @@ const renderProject = () =>
         if (project) return <div>{`Project: ${project.name}`}</div>;
         return null;
       }}
-    </FetchProject>,
-    { disableApolloMocks: true }
+    </FetchProject>
   );
 
 describe('rendering', () => {
