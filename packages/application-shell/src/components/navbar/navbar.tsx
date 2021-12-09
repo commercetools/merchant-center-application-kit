@@ -15,6 +15,7 @@ import type {
   TNavbarMenu,
   TBaseMenu,
 } from '../../types/generated/proxy';
+import type { TFlagVariation } from '@flopflip/types';
 
 import {
   forwardRef,
@@ -28,7 +29,7 @@ import {
 } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { NavLink, matchPath, useLocation } from 'react-router-dom';
-import { ToggleFeature } from '@flopflip/react-broadcast';
+import { useFlagVariation } from '@flopflip/react-broadcast';
 import { Global, css } from '@emotion/react';
 import classnames from 'classnames';
 import {
@@ -295,11 +296,6 @@ const MenuItemDivider = () => (
 );
 MenuItemDivider.displayName = 'MenuItemDivider';
 
-// This component wraps `<RestrictedByPermissions>`
-// and the `<ToggleFeature>` components. However, it's necessary to have it as
-// the `<ToggleFeature>` wrapper should be rendered only if the `featureToggle`
-// prop is defined. This is because `<ToggleFeature>` will not render any
-// children if the flag is missing/not found.
 const isEveryMenuVisibilitySetToHidden = (
   menuVisibilities?: TNormalizedMenuVisibilities | null,
   namesOfMenuVisibilities?: string[]
@@ -322,15 +318,25 @@ type RestrictedMenuItemProps = {
   dataFences?: TDataFence[];
   children: ReactNode;
 };
+type TLongLivedFlag = {
+  value: boolean;
+  reason?: string;
+};
 const restrictedMenuItemDefaultProps: Pick<
   RestrictedMenuItemProps,
   'permissions'
 > = {
   permissions: [],
 };
+function isLongLivedFlag(
+  flag: TFlagVariation | TLongLivedFlag
+): flag is TLongLivedFlag {
+  return typeof (flag as TLongLivedFlag)?.value === 'boolean';
+}
 const RestrictedMenuItem = (props: RestrictedMenuItemProps) => {
   // NOTE: Custom application are activated/deactivated while their
   // visibility is not controlled via a visibiility overwrite.
+  const flagVariation = useFlagVariation(props.featureToggle);
   if (
     isEveryMenuVisibilitySetToHidden(
       props.menuVisibilities,
@@ -365,12 +371,15 @@ const RestrictedMenuItem = (props: RestrictedMenuItemProps) => {
     );
 
   if (props.featureToggle) {
-    return (
-      <ToggleFeature flag={props.featureToggle}>
-        {permissionsWrapper}
-      </ToggleFeature>
-    );
+    // A regular short-lived feature toggle
+    if (flagVariation === true) return permissionsWrapper;
+    // A long-lived feature toggle with `{ value: boolean, string: reason }`
+    if (isLongLivedFlag(flagVariation) && flagVariation.value === true)
+      return permissionsWrapper;
+
+    return null;
   }
+
   return permissionsWrapper;
 };
 RestrictedMenuItem.displayName = 'RestrictedMenuItem';
