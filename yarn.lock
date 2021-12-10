@@ -2421,7 +2421,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/application-shell@20.12.1, @commercetools-frontend/application-shell@workspace:packages/application-shell":
+"@commercetools-frontend/application-shell@20.12.2, @commercetools-frontend/application-shell@workspace:packages/application-shell":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/application-shell@workspace:packages/application-shell"
   dependencies:
@@ -23078,7 +23078,7 @@ __metadata:
     "@apollo/client": 3.5.6
     "@commercetools-frontend/actions-global": 20.12.1
     "@commercetools-frontend/application-components": 20.12.1
-    "@commercetools-frontend/application-shell": 20.12.1
+    "@commercetools-frontend/application-shell": 20.12.2
     "@commercetools-frontend/application-shell-connectors": 20.12.1
     "@commercetools-frontend/assets": 20.12.1
     "@commercetools-frontend/constants": 20.12.1
@@ -25683,7 +25683,7 @@ __metadata:
     "@commercetools-docs/ui-kit": 18.0.0
     "@commercetools-frontend/actions-global": 20.12.1
     "@commercetools-frontend/application-components": 20.12.1
-    "@commercetools-frontend/application-shell": 20.12.1
+    "@commercetools-frontend/application-shell": 20.12.2
     "@commercetools-frontend/application-shell-connectors": 20.12.1
     "@commercetools-frontend/assets": 20.12.1
     "@commercetools-frontend/constants": 20.12.1
