@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 20.12.2
+
+### Patch Changes
+
+- [#2425](https://github.com/commercetools/merchant-center-application-kit/pull/2425) [`3481dbb5`](https://github.com/commercetools/merchant-center-application-kit/commit/3481dbb5ce3c6d4895a5b947e550c297b1761f6f) Thanks [@tdeekens](https://github.com/tdeekens)! - Add support for long-running flags in the menu configuration of an application.
+
 ## 20.12.1
 
 ### Patch Changes
