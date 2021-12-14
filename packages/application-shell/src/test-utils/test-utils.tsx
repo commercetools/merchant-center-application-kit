@@ -208,6 +208,12 @@ const denormalizeDataFences = (dataFences?: TNormalizedDataFences) => {
   );
 };
 
+const mapResourceAccessToAppliedPermissions = (resourceAccesses: string[]) =>
+  resourceAccesses.map<TAllAppliedPermission>((resourceAccess) => ({
+    name: `can${resourceAccess}`,
+    value: true,
+  }));
+
 const wrapIfNeeded = (
   children: ReactNode,
   wrapper?: JSXElementConstructor<{ children: ReactElement }>
@@ -641,6 +647,7 @@ export {
   renderApp,
   renderAppWithRedux,
   hooks,
+  mapResourceAccessToAppliedPermissions,
   denormalizePermissions,
   denormalizeActionRights,
   denormalizeDataFences,

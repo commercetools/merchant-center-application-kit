@@ -15,4 +15,4 @@ Following breaking changes were introduced:
 - The `--inline-csp` of `compile-html` has been dropped, as it's now the built-in behavior.
 - The `dist` folder created by the `build` command has been removed. Instead, the `build` command writes the production bundles directly into the `public` folder.
 
-For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-15-custom-applications-v21).
+For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-25-custom-applications-v21).
