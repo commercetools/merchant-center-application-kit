@@ -1,5 +1,5 @@
 ---
-date: 2022-01-15
+date: 2022-01-25
 title: Custom Applications v21
 description: |
   The Application Kit packages have been released with a new major version v21.\
@@ -12,20 +12,113 @@ topics:
 
 The Application Kit packages have been released with a new **major version** `v21`.
 
-=> Read migration guide!
+This version marks the release of new Custom Application features. See [Migrating from Project-level Custom Applications](/migrating-from-project-level-custom-applications) for more information. Furthermore, the Custom Application documentation has been restructured and updated accordingly. The [legacy documentation](https://mc-custom-applications-legacy.vercel.app/custom-applications/_legacy) is still available during the migration period.
 
-* application config
-  * new required fields
-  * changed menu links structure
-* make `--inline-csp` of `compile-html` the default (remove flag)
-* `build` by default also runs `compile-html`.
-  * opt-out with `--build-only`, for example to use `--transformer` for `compile-html`
-* change some test-utils defaults:
-  * `disableApolloMocks` should be `true` by default
-  * `disableAutomaticEntryPointRoutes` should be `false` by default
-  * require top-level option `entryPointUriPath`
-  * remove deprecated options `permissions`, `actionRights`, `dataFences`. Use `{ project: { ... } }` instead
-  * add helper `mapResourceAccessToAppliedPermissions` to map permission name (resource access) to `allAppliedPermissions`.
-* reconfigure `dist` to be `public`
-* adjust create-mc-app
-* adjust starter template (permissions, etc)
+With that, there are several breaking changes to the Application Kit packages.
+
+Follow the steps below to migrate your Application Kit packages to the new version.
+
+<!--more-->
+
+# Changes to Custom Application config
+
+The Custom Application config file has some new required fields.
+
+* `env.development`
+* `oAuthScopes`
+
+The menu link structure also changed a bit.
+
+```json
+// Before
+{
+  "menuLinks": {
+    "icon": "HeartIcon",
+    "defaultLabel": "Starter",
+    "labelAllLocales": [],
+    "permissions": [],
+    "submenuLinks": [
+      {
+        "uriPath": "channels",
+        "defaultLabel": "Channels",
+        "labelAllLocales": [],
+        "permissions": []
+      }
+    ]
+  }
+}
+
+// After
+{
+  "icon": "${path:@commercetools-frontend/assets/application-icons/Rocket.svg}",
+  "mainMenuLink": {
+    "defaultLabel": "Starter",
+    "labelAllLocales": [],
+    "permissions": [],
+  },
+  "submenuLinks": [
+    {
+      "uriPath": "channels",
+      "defaultLabel": "Channels",
+      "labelAllLocales": [],
+      "permissions": []
+    }
+  ]
+}
+```
+
+See [Custom Application config](/api-reference/application-config) for more information.
+
+## Migrating from `menu.json`
+
+Support for the deprecated `menu.json` file has been removed. The menu links must be defined now in the [Custom Application config](/api-reference/application-config) file.
+
+Furthermore the `DEV_ONLY__loadNavbarMenuConfig` prop of the `<ApplicationShell>` have been removed as well.
+
+# New login workflow
+
+Starting the Custom Application locally now redirects you to the login page of the Merchant Center production environment (as defined in the Custom Application config). Upon successful login, you are redirected back to your local development server with a valid session.
+
+<Info>
+
+If you were using the opt-in feature `ENABLE_OIDC_FOR_DEVELOPMENT=true`, this is now the default behavior and you can remove the environment variable.
+
+</Info>
+
+See [Development login via OIDC](/migrating-from-project-level-custom-applications#development-login-via-oidc) for more information.
+
+# Changes to the CLI
+
+The `mc-scripts` CLI has some breaking changes about the commands:
+
+- In `mc-scripts`, the `build` command now additionally compiles the `index.html` by default.
+  - Running the `compile-html` command by default should not be necessary anymore. However, you can pass `--build-only` to the `build` command to opt-out of the compilation step, in case you want to run it separately, for example to use the `--transformer`.
+- Running the `compile-html` command by default does not print to `stdout` the JSON string with the security headers. You can opt into the old behavior by passing the `--print-security-headers` option.
+- The `--inline-csp` of `compile-html` has been dropped, as it's now the built-in behavior.
+- The `dist` folder created by the `build` command has been removed. Instead, the `build` command writes the production bundles directly into the `public` folder.
+
+# Changes to Test Utils
+
+The `@commercetools-frontend/application-shell/test-utils` has the following breaking changes:
+
+- The deprecated `project.allAppliedMenuVisibilities` option has been removed.
+- The `disableApolloMocks` option has been renamed to `useApolloMocks`. The behavior is now inverted. By default, the Apollo mocks are disabled. This is to encourage mocking via [MSW](https://mswjs.io/). See [Testing](/development/testing) for more information.
+- The `disableAutomaticEntryPointRoutes` option now defaults to `false`. This means that when rendering the `<ApplicationShell>`, you should not use the `render` function but pass the application component using `children`. See [changelog](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/application-shell/CHANGELOG.md#1790) for more information.
+- The deprecated `permissions` option has been removed. Use `project.allAppliedPermissions` instead.
+
+```js
+// Before
+{
+  permissions: {
+    canManageProducts: true;
+  }
+}
+// After
+{
+  project: {
+    allAppliedPermissions: [{ name: 'canManageProducts', value: true }];
+  }
+}
+```
+
+To help defining the list of applied permissions, you can use the helper function [`mapResourceAccessToAppliedPermissions`](/api-reference/commercetools-frontend-application-shell#mapresourceaccesstoappliedpermissions) or [`denormalizePermissions`](/api-reference/commercetools-frontend-application-shell#denormalizepermissions).

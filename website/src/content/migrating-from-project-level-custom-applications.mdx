@@ -89,7 +89,7 @@ In general there are 2 parts of the migration: development changes and configura
 
 ## Upgrade packages to v21
 
-Upgrade your Application Kit packages (`@commercetools-frontend/*`) to version `>= 21`. Follow the instructions in the [Release notes](/releases/2022-01-15-custom-applications-v21).
+Upgrade your Application Kit packages (`@commercetools-frontend/*`) to version `>= 21`. Follow the instructions in the [Release notes](/releases/2022-01-25-custom-applications-v21).
 
 <Info>
 
@@ -136,42 +136,7 @@ There are several new required fields in the Custom Application config.
 }
 ```
 
-* `env.development`: A configuration object that is only used in `development` mode.
-  * `initialProjectKey`: The project key used for the first login request. See [Development login via OIDC](#development-login-for-oidc) for more information.
-* `oAuthScopes`: The configuration for [OAuth Scopes and User Permissions](#oauth-scopes-and-user-permissions).
-  * `view`: A list of "view-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated to the "View" permission.
-  * `manage`: A list of "manage-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated to the "Manage" permission.
-* `icon`: The icon of the Custom Application. You can choose [one of the available icons](/api-reference/application-config#icon) by referencing the path to that file using `${path:}`.
-
-  <Info>
-
-  The previous named icons are deprecated and will be removed at some point.
-
-  * `HeartIcon`
-  * `PaperclipIcon`
-  * `PluginIcon`
-  * `RocketIcon`
-  * `StarIcon`
-  * `ConnectedSquareIcon`
-  * `WorldIcon`
-
-  </Info>
-
-* `mainMenuLink`: The configuration for the main menu link on the left-side navbar menu of the Merchant Center.
-  * `defaultLabel`: The label to be rendered if there is no matching localized label for the user locale.
-  * `labelAllLocales`: A list of localized fields `{ locale, value }` with translated labels for each application locales available in the user profile.
-  * `permissions`: A list of user permissions specific to the Custom Application required to make the link visible. Users must have at least one permission to see the link of the Custom Application in the Merchant Center left-side navbar menu. The value of the permission is unique for your Custom Application. See [Choose the `entryPointUriPath`](#choose-the-entrypointuripath) for more information.
-* `submenuLinks`: The configuration for all the submenu links on the left-side navbar menu of the Merchant Center.
-  * `uriPath`: The (sub)route path relative to the `entryPointUriPath` of the Custom Application. For example, given the `entryPointUriPath: avengers`, and the (sub)route `uriPath: new`, the menu link results in `/avengers/new`.
-  * `defaultLabel`: See `mainMenuLink.defaultLabel`.
-  * `labelAllLocales`: See `mainMenuLink.labelAllLocales`.
-  * `permissions`: See `mainMenuLink.permissions`.
-
-<Info>
-
-If the menu labels are translated into multiple locales, you can reference the translation keys in the Custom Application config by using the `${int:}` reference expansion. See [Intl message references](/development/application-config#intl-message-references) for more information.
-
-</Info>
+See [Custom Application config](/api-reference/application-config) for more information.
 
 
 ## Choose the `entryPointUriPath`
