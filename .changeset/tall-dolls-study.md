@@ -128,4 +128,4 @@ Following breaking changes were introduced in `test-utils`:
   }
   ```
 
-For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-15-custom-applications-v21).
+For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-25-custom-applications-v21).

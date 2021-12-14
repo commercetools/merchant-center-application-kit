@@ -13,4 +13,4 @@ Following breaking changes were introduced:
 - The `ENABLE_OIDC_FOR_DEVELOPMENT` is now the default behavior.
 - The deprecated `menu.json` file and the `DEV_ONLY_` props have been removed.
 
-For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-15-custom-applications-v21).
+For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-25-custom-applications-v21).
