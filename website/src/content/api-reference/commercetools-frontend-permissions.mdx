@@ -1,3 +1,57 @@
 ---
 title: "@/permissions"
 ---
+
+<Subtitle>
+
+React components and hooks to declaratively handle Merchant Center User Permissions.
+
+</Subtitle>
+
+# Installation
+
+```
+yarn add @commercetools-frontend/permissions
+
+# or
+
+npm --save install @commercetools-frontend/permissions
+```
+
+Additionally install the peer dependencies (if not present)
+
+```
+yarn add react
+
+# or
+
+npm --save install react
+```
+
+# Hooks
+
+## useIsAuthorized
+
+A React Hook that evaluates the [Custom Application requested User Permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions) against the applied User Permissions.
+
+### Usage
+
+```jsx
+import { useIsAuthorized } from '@commercetools-frontend/permissions';
+
+const CreateButton = () => {
+  const canManage = useIsAuthorized({
+    demandedPermissions: ['ManageAvengers']
+  });
+  return (
+    <PrimaryButton
+      isDisabled={!canManage}
+      // ...
+    />
+  );
+}
+```
+
+### Options
+
+* `demandedPermissions`: A list of User Permissions of the Custom Application that need to be evaluated against the applied User Permissions.

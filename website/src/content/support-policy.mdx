@@ -25,15 +25,10 @@ Make sure to read and understand the [Minimum required maintenance policy](#mini
 
 Tooling and packages related to Custom Applications are released and published to [Node Package Manager](https://www.npmjs.com) (NPM) following [Semantic Versioning](https://semver.org/) (SemVer).
 
-Releases are documented in both a `CHANGELOG.md` file and in the GitHub release pages in the following repositories:
+Releases are documented in each package's `CHANGELOG.md` file and in the GitHub release pages in the following repositories:
 
-- [Merchant Center Application Kit](https://github.com/commercetools/merchant-center-application-kit)
-  - [`CHANGELOG.md`](https://github.com/commercetools/merchant-center-application-kit/blob/main/CHANGELOG.md)
-  - [Release notes](https://github.com/commercetools/merchant-center-application-kit/releases)
-
-- [UIKit](https://github.com/commercetools/ui-kit)
-  - [`CHANGELOG.md`](https://github.com/commercetools/ui-kit/blob/main/CHANGELOG.md)
-  - [Release notes](https://github.com/commercetools/ui-kit/releases)
+- [Application Kit Releases](https://github.com/commercetools/merchant-center-application-kit/releases)
+- [UIKit Releases](https://github.com/commercetools/ui-kit/releases)
 
 All published packages to NPM are listed in the following scoped packages:
 
@@ -50,12 +45,6 @@ According to Semantic Versioning, minor, and patch version releases can be safel
 However, a major release indicates a breaking change (see [Breaking changes](#breaking-changes)) and might require maintenance work. Breaking changes are kept to an absolute minimum and are planned ahead of time.
 
 </Info>
-
-## Stable releases and pre-releases
-
-By default, all releases go to the `next` distribution tag and should be considered **prereleases**. This gives commercetools a chance to test a release internally before marking it **stable** in the `latest` distribution channel.
-
-It is recommended to use packages only from the `latest` distribution channel. The `next` channel is stable enough to be used on production but it's not officially supported. It can be used to try out new features or to get important bug fixes.
 
 ## Breaking changes
 
@@ -76,20 +65,20 @@ A new major release does not always mean that breaking changes directly affect c
 
 </Info>
 
-All breaking changes are thoroughly documented in the release notes together with migration steps to facilitate the version update. This also helps to identify if changes are needed within the Custom Application's code.
+All breaking changes are thoroughly documented in the [release notes](/releases) together with migration steps to facilitate the version update. This also helps to identify if changes are needed within the Custom Application's code.
 
 # Minimum required maintenance policy
 
-All the official Merchant Center applications are constantly kept up-to-date with the released tools and packages. This ensures that all the latest bug fixes and features are consistently adopted by all applications.
+All the native Merchant Center applications are constantly kept up-to-date with the released tools and packages. This ensures that all the latest bug fixes and features are consistently adopted by all applications.
 
 In regards to Custom Applications, commercetools does not expect the same amount of maintenance as it requires internally.
 However, commercetools **recommends** that Custom Applications are **updated at regular periods** and **maintained in planned intervals**, to avoid falling too many versions behind.
 Not doing so might result in an increased maintenance effort in case the codebase needs to be updated to multiple versions, even more so for major versions and/or deprecated API functionalities.
 
-| Feature maturity     | Recommended update interval               |
-| -------------------- | ----------------------------------------- |
-| Beta                 | At least once a quarter (every 3 months)  |
-| General Availability | At least twice a year (every 6 months)    |
+| Feature maturity     | Recommended update interval              |
+| -------------------- | ---------------------------------------- |
+| Beta                 | At least once a quarter (every 3 months) |
+| General Availability | At least twice a year (every 6 months)   |
 
 <Info>
 
@@ -121,8 +110,8 @@ In case some HTTP API functionalities need to be deprecated, commercetools start
 
 | Feature maturity     | Deprecation period |
 | -------------------- | ------------------ |
-| Beta                 | 4 months           |
-| General Availability | 12 months          |
+| Beta                 | 4 months           |
+| General Availability | 12 months          |
 
 <Info>
 
@@ -150,14 +139,22 @@ commercetools does not take any responsibility towards incidents and service dis
 
 # Issues and support requests
 
-For any question or issue about Custom Applications, we recommend to open a GitHub Issue in one of the repositories (according to what the issue is about).
-Any sensitive information should be left out, as Issues are publicly visible.
+If you encounter issues developing Custom Applications, we recommend to open a **GitHub Issue** in one of the following repositories (according to what the issue is about):
 
-In case the issue must contain sensitive information, for example the name of a customer project, open a commercetools [support ticket](https://jira.commercetools.com/servicedesk/customer/portal/1).
+- [Application Kit Issues](https://github.com/commercetools/merchant-center-application-kit/issues/new/choose)
+- [UIKit Issues](https://github.com/commercetools/ui-kit/issues/new/choose)
+
+If you have questions or need help with something, we recommend to open a **GitHub Discussion** in one of the following repositories (according to what the issue is about):
+
+- [Application Kit Discussions](https://github.com/commercetools/merchant-center-application-kit/discussions)
+- [UIKit Discussions](https://github.com/commercetools/ui-kit/discussions)
 
 <Info>
 
-Never ever include password, credentials, or any private information in any issue (public or private)!
+Never ever include passwords, credentials, or any private information in any issue (public or private)!<br />
+Any sensitive information should be left out, as GitHub Issues are publicly visible.
+
+In case the issue must contain sensitive information, for example the name of a customer project, open a commercetools [support ticket](https://jira.commercetools.com/servicedesk/customer/portal/1).
 
 </Info>
 

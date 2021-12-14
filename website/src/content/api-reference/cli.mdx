@@ -83,7 +83,7 @@ By default, compiling the `index.html` is implicitly done in the `build` command
 This command starts a HTTP server to serve the previously built and compiled Custom Application, from the `public` folder. This is useful for testing the production build locally.
 
 ```console
-mc-scripts compile-html
+mc-scripts serve
 ```
 
 We recommend to set up the following scripts in your `package.json`:
@@ -91,7 +91,7 @@ We recommend to set up the following scripts in your `package.json`:
 ```json title="package.json"
 {
   "scripts": {
-    "compile-html:local": "MC_APP_ENV=development mc-scripts compile-html --inline-csp --transformer @commercetools-frontend/mc-dev-authentication/transformer-local.js",
+    "compile-html:local": "MC_APP_ENV=development mc-scripts compile-html --transformer @commercetools-frontend/mc-dev-authentication/transformer-local.js",
     "start:prod:local": "yarn compile-html:local && mc-scripts serve"
   }
 }

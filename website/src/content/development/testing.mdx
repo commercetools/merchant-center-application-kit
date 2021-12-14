@@ -125,7 +125,6 @@ import {
   fireEvent,
   screen,
   renderAppWithRedux,
-  mapResourceAccessToAppliedPermissions,
 } from '@commercetools-frontend/application-shell/test-utils';
 import { entryPointUriPath } from '../../constants/application';
 import { PERMISSIONS } from '../../constants/permissions';
@@ -136,11 +135,7 @@ const renderApp = (options = {}) => {
   renderApplicationWithRedux(<ApplicationRoutes />, {
     route,
     entryPointUriPath,
-    project: {
-      allAppliedPermissions: mapResourceAccessToAppliedPermissions([
-        PERMISSIONS.ViewChannels
-      ]),
-    },
+    // ...
     ...options,
   });
 };
@@ -215,5 +210,57 @@ it('should render channels and paginate to second page', async () => {
 
 This should give you a basic idea on how you can approach testing your Custom Application.
 
+## Testing User Permissions
+
+User permissions are bound to a `project` and can vary depending on the permissions assigned to the Team where the user is a member of.
+
+By default, the [`test-utils`](/api-reference/commercetools-frontend-application-shell#test-utils) do not assign any pre-defined permissions. You need to explicitly provide them in your test setup. The following fields can be used to assign the different granular permission values:
+
+* `project.allAppliedPermissions`: A list of applied resource permissions that the user should have for the given project. A resource permission is an object with the following shape:
+
+  * `name`: The name of the User Permissions prefixed with `can`. For example `canViewChannels`.
+  * `value`: If `true`, the resource permission is applied to the user.
+
+In our example application, we can apply this as following:
+
+```js title="channels.spec.js" highlightLines="14-21"
+import {
+  renderAppWithRedux,
+  mapResourceAccessToAppliedPermissions,
+} from '@commercetools-frontend/application-shell/test-utils';
+import { entryPointUriPath } from '../../constants/application';
+import { PERMISSIONS } from '../../constants/permissions';
+import ApplicationRoutes from '../../routes';
+
+const renderApp = (options = {}) => {
+  const route = options.route || `/my-project/${entryPointUriPath}/channels`;
+  renderApplicationWithRedux(<ApplicationRoutes />, {
+    route,
+    entryPointUriPath,
+    project: {
+      allAppliedPermissions: [
+        {
+          name: 'canViewChannels',
+          value: true,
+        },
+      ],
+    },
+    ...options,
+  });
+};
+```
+
+To help defining the list of applied permissions, you can use the helper function [`mapResourceAccessToAppliedPermissions`](/api-reference/commercetools-frontend-application-shell#mapresourceaccesstoappliedpermissions).
+
+
+```js
+{
+  project: {
+    allAppliedPermissions: mapResourceAccessToAppliedPermissions([
+      PERMISSIONS.ViewChannels
+    ])
+  },
+}
+```
 
 <!-- # End-to-End -->
