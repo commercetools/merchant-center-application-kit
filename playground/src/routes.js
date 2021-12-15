@@ -11,7 +11,7 @@ const ApplicationRoutes = () => {
   const match = useRouteMatch();
   const history = useHistory();
   const canViewStateMachines = useIsAuthorized({
-    demandedPermissions: [PERMISSIONS.ViewAppKitPlayground],
+    demandedPermissions: [PERMISSIONS.View],
   });
   const goToStateMachineDetail = useCallback(
     (id) => {
