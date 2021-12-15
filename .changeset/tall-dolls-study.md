@@ -27,7 +27,21 @@ Following breaking changes were introduced in `test-utils`:
   }
   ```
 
-  You can also use the helper function `denormalizePermissions`.
+  You can also use the helper function `mapResourceAccessToAppliedPermissions` (recommended)
+
+  ```js
+  import { mapResourceAccessToAppliedPermissions } from '@commercetools-frontend/application-shell/test-utils';
+
+  {
+    project: {
+      allAppliedPermissions: mapResourceAccessToAppliedPermissions([
+        PERMISSIONS.View
+      ])
+    },
+  }
+  ```
+
+  or the `denormalizePermissions` function.
 
   ```js
   import { denormalizePermissions } from '@commercetools-frontend/application-shell/test-utils';
