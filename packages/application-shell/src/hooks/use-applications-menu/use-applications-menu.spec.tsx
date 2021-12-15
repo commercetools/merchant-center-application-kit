@@ -197,6 +197,7 @@ describe('for production usage', () => {
             },
           },
         ],
+        enableApolloMocks: true,
       });
       await waitForElementToBeRemoved(screen.getByText('loading'));
       expect(screen.getByText('Orders')).toBeInTheDocument();
@@ -226,6 +227,7 @@ describe('for production usage', () => {
               error,
             },
           ],
+          enableApolloMocks: true,
         }
       );
       await screen.findByText('loading');

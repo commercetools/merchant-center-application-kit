@@ -1,7 +1,0 @@
-{
-  "csp": {
-    "script-src": [],
-    "connect-src": ["mc-api.europe-west1.gcp.commercetools.com"],
-    "style-src": []
-  }
-}

@@ -7,7 +7,7 @@
       "initialProjectKey": "project-key"
     },
     "production": {
-      "applicationId": "TODO",
+      "applicationId": "app-id-123",
       "url": "https://<not_important>"
     }
   },

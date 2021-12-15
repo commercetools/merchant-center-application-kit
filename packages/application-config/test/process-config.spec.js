@@ -31,7 +31,7 @@ describe('processing a simple config', () => {
     const result = processConfig(createTestOptions());
     expect(result).toEqual({
       env: {
-        applicationId: undefined,
+        applicationId: '__local:avengers',
         applicationName: 'avengers-app',
         entryPointUriPath: 'avengers',
         cdnUrl: 'http://localhost:3001/',
@@ -41,6 +41,24 @@ describe('processing a simple config', () => {
         mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
         revision: '',
         servedByProxy: false,
+        __DEVELOPMENT__: {
+          accountLinks: undefined,
+          menuLinks: {
+            defaultLabel: 'Avengers',
+            icon: '<svg><path fill="#000000" /></svg>',
+            labelAllLocales: [],
+            permissions: [],
+            submenuLinks: [],
+          },
+          oidc: {
+            authorizeUrl:
+              'https://mc.europe-west1.gcp.commercetools.com/login/authorize',
+            initialProjectKey: 'test',
+            oAuthScopes: {
+              view: ['view_products'],
+            },
+          },
+        },
       },
       headers: {
         csp: {
@@ -62,7 +80,7 @@ describe('processing a simple config', () => {
       );
       expect(result).toEqual({
         env: {
-          applicationId: undefined,
+          applicationId: 'app-id-123:avengers',
           applicationName: 'avengers-app',
           entryPointUriPath: 'avengers',
           cdnUrl: 'https://avengers.app/',
@@ -98,7 +116,7 @@ describe('processing a simple config', () => {
       );
       expect(result).toEqual({
         env: {
-          applicationId: undefined,
+          applicationId: '__local:avengers',
           applicationName: 'avengers-app',
           entryPointUriPath: 'avengers',
           cdnUrl: 'http://localhost:3001/',
@@ -108,6 +126,24 @@ describe('processing a simple config', () => {
           mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
           revision: '',
           servedByProxy: false,
+          __DEVELOPMENT__: {
+            accountLinks: undefined,
+            menuLinks: {
+              defaultLabel: 'Avengers',
+              icon: '<svg><path fill="#000000" /></svg>',
+              labelAllLocales: [],
+              permissions: [],
+              submenuLinks: [],
+            },
+            oidc: {
+              authorizeUrl:
+                'https://mc.europe-west1.gcp.commercetools.com/login/authorize',
+              initialProjectKey: 'test',
+              oAuthScopes: {
+                view: ['view_products'],
+              },
+            },
+          },
         },
         headers: {
           csp: {
@@ -133,7 +169,7 @@ describe('processing a simple config', () => {
       );
       expect(result).toEqual({
         env: {
-          applicationId: undefined,
+          applicationId: 'app-id-123:avengers',
           applicationName: 'avengers-app',
           entryPointUriPath: 'avengers',
           cdnUrl: 'https://avengers.app/',
@@ -167,7 +203,7 @@ describe('processing a full config', () => {
     const result = processConfig(createTestOptions());
     expect(result).toEqual({
       env: {
-        applicationId: undefined,
+        applicationId: '__local:avengers',
         applicationName: 'avengers-app',
         entryPointUriPath: 'avengers',
         cdnUrl: 'http://localhost:3001/',
@@ -178,6 +214,24 @@ describe('processing a full config', () => {
         numberOfMovies: 4,
         revision: '',
         servedByProxy: false,
+        __DEVELOPMENT__: {
+          accountLinks: undefined,
+          menuLinks: {
+            defaultLabel: 'Avengers',
+            icon: '<svg><path fill="#000000" /></svg>',
+            labelAllLocales: [],
+            permissions: [],
+            submenuLinks: [],
+          },
+          oidc: {
+            authorizeUrl:
+              'https://mc.europe-west1.gcp.commercetools.com/login/authorize',
+            initialProjectKey: 'test',
+            oAuthScopes: {
+              view: ['view_products'],
+            },
+          },
+        },
       },
       headers: {
         csp: {
@@ -209,7 +263,7 @@ describe('processing a full config', () => {
       );
       expect(result).toEqual({
         env: {
-          applicationId: undefined,
+          applicationId: 'app-id-123:avengers',
           applicationName: 'avengers-app',
           entryPointUriPath: 'avengers',
           cdnUrl: 'https://cdn.avengers.app/',
@@ -258,7 +312,7 @@ describe('processing a full config', () => {
       );
       expect(result).toEqual({
         env: {
-          applicationId: undefined,
+          applicationId: '__local:avengers',
           applicationName: 'avengers-app',
           entryPointUriPath: 'avengers',
           cdnUrl: 'http://localhost:3001/',
@@ -269,6 +323,24 @@ describe('processing a full config', () => {
           numberOfMovies: 4,
           revision: '',
           servedByProxy: false,
+          __DEVELOPMENT__: {
+            accountLinks: undefined,
+            menuLinks: {
+              defaultLabel: 'Avengers',
+              icon: '<svg><path fill="#000000" /></svg>',
+              labelAllLocales: [],
+              permissions: [],
+              submenuLinks: [],
+            },
+            oidc: {
+              authorizeUrl:
+                'https://mc.europe-west1.gcp.commercetools.com/login/authorize',
+              initialProjectKey: 'test',
+              oAuthScopes: {
+                view: ['view_products'],
+              },
+            },
+          },
         },
         headers: {
           csp: {
@@ -302,7 +374,7 @@ describe('processing a full config', () => {
       );
       expect(result).toEqual({
         env: {
-          applicationId: undefined,
+          applicationId: 'app-id-123:avengers',
           applicationName: 'avengers-app',
           entryPointUriPath: 'avengers',
           cdnUrl: 'https://cdn.avengers.app/',
@@ -352,12 +424,13 @@ describe('processing a config with environment variable placeholders', () => {
           APP_URL: 'https://avengers.app',
           CLOUD_IDENTIFIER: 'gcp-eu',
           NODE_ENV: 'test',
+          PROJECT_KEY: 'test',
         },
       })
     );
     expect(result).toEqual({
       env: {
-        applicationId: undefined,
+        applicationId: '__local:avengers',
         applicationName: 'avengers-app',
         entryPointUriPath: 'avengers',
         cdnUrl: 'http://localhost:3001/',
@@ -367,6 +440,24 @@ describe('processing a config with environment variable placeholders', () => {
         mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
         revision: '',
         servedByProxy: false,
+        __DEVELOPMENT__: {
+          accountLinks: undefined,
+          menuLinks: {
+            defaultLabel: 'Avengers',
+            icon: '<svg><path fill="#000000" /></svg>',
+            labelAllLocales: [],
+            permissions: [],
+            submenuLinks: [],
+          },
+          oidc: {
+            authorizeUrl:
+              'https://mc.europe-west1.gcp.commercetools.com/login/authorize',
+            initialProjectKey: 'test',
+            oAuthScopes: {
+              view: ['view_products'],
+            },
+          },
+        },
       },
       headers: {
         csp: {
@@ -385,12 +476,13 @@ describe('processing a config with environment variable placeholders', () => {
             APP_URL: 'https://avengers.app',
             CLOUD_IDENTIFIER: 'gcp-eu',
             NODE_ENV: 'production',
+            PROJECT_KEY: 'test',
           },
         })
       );
       expect(result).toEqual({
         env: {
-          applicationId: undefined,
+          applicationId: 'app-id-123:avengers',
           applicationName: 'avengers-app',
           entryPointUriPath: 'avengers',
           cdnUrl: 'https://avengers.app/',
@@ -423,12 +515,13 @@ describe('processing a config with environment variable placeholders', () => {
             CLOUD_IDENTIFIER: 'gcp-eu',
             NODE_ENV: 'production',
             MC_APP_ENV: 'development',
+            PROJECT_KEY: 'test',
           },
         })
       );
       expect(result).toEqual({
         env: {
-          applicationId: undefined,
+          applicationId: '__local:avengers',
           applicationName: 'avengers-app',
           entryPointUriPath: 'avengers',
           cdnUrl: 'http://localhost:3001/',
@@ -438,6 +531,24 @@ describe('processing a config with environment variable placeholders', () => {
           mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
           revision: '',
           servedByProxy: false,
+          __DEVELOPMENT__: {
+            accountLinks: undefined,
+            menuLinks: {
+              defaultLabel: 'Avengers',
+              icon: '<svg><path fill="#000000" /></svg>',
+              labelAllLocales: [],
+              permissions: [],
+              submenuLinks: [],
+            },
+            oidc: {
+              authorizeUrl:
+                'https://mc.europe-west1.gcp.commercetools.com/login/authorize',
+              initialProjectKey: 'test',
+              oAuthScopes: {
+                view: ['view_products'],
+              },
+            },
+          },
         },
         headers: {
           csp: {
@@ -460,12 +571,13 @@ describe('processing a config with environment variable placeholders', () => {
             CLOUD_IDENTIFIER: 'gcp-eu',
             NODE_ENV: 'production',
             MC_APP_ENV: 'staging',
+            PROJECT_KEY: 'test',
           },
         })
       );
       expect(result).toEqual({
         env: {
-          applicationId: undefined,
+          applicationId: 'app-id-123:avengers',
           applicationName: 'avengers-app',
           entryPointUriPath: 'avengers',
           cdnUrl: 'https://avengers.app/',
@@ -499,7 +611,7 @@ describe('processing a config with intl variable placeholders', () => {
     const result = processConfig(createTestOptions());
     expect(result).toEqual({
       env: {
-        applicationId: undefined,
+        applicationId: '__local:avengers',
         applicationName: 'avengers-app',
         entryPointUriPath: 'avengers',
         cdnUrl: 'http://localhost:3001/',
@@ -510,6 +622,7 @@ describe('processing a config with intl variable placeholders', () => {
         revision: '',
         servedByProxy: false,
         __DEVELOPMENT__: {
+          accountLinks: undefined,
           menuLinks: expect.objectContaining({
             icon: expect.stringContaining('<svg'),
             defaultLabel: 'Avengers',
@@ -533,6 +646,14 @@ describe('processing a config with intl variable placeholders', () => {
               },
             ],
           }),
+          oidc: {
+            authorizeUrl:
+              'https://mc.europe-west1.gcp.commercetools.com/login/authorize',
+            initialProjectKey: 'test',
+            oAuthScopes: {
+              view: ['view_products'],
+            },
+          },
         },
       },
       headers: {
@@ -554,7 +675,7 @@ describe('processing a config with file path variable placeholders', () => {
     const result = processConfig(createTestOptions());
     expect(result).toEqual({
       env: {
-        applicationId: undefined,
+        applicationId: '__local:avengers',
         applicationName: 'avengers-app',
         entryPointUriPath: 'avengers',
         cdnUrl: 'http://localhost:3001/',
@@ -565,6 +686,7 @@ describe('processing a config with file path variable placeholders', () => {
         revision: '',
         servedByProxy: false,
         __DEVELOPMENT__: {
+          accountLinks: undefined,
           menuLinks: {
             icon: expect.stringContaining('<svg'),
             defaultLabel: 'Avengers',
@@ -576,6 +698,14 @@ describe('processing a config with file path variable placeholders', () => {
             ],
             permissions: ['ViewAvengers'],
             submenuLinks: [],
+          },
+          oidc: {
+            authorizeUrl:
+              'https://mc.europe-west1.gcp.commercetools.com/login/authorize',
+            initialProjectKey: 'test',
+            oAuthScopes: {
+              view: ['view_products'],
+            },
           },
         },
       },
@@ -616,6 +746,14 @@ describe('processing a config with OIDC', () => {
               view: ['view_orders', 'view_states'],
             },
           },
+          accountLinks: undefined,
+          menuLinks: {
+            icon: '<svg><path fill="#000000" /></svg>',
+            defaultLabel: 'Avengers',
+            labelAllLocales: [],
+            permissions: [],
+            submenuLinks: [],
+          },
         },
         applicationId: '__local:avengers',
         applicationName: 'avengers-app',
@@ -650,7 +788,7 @@ describe('processing a config with OIDC', () => {
       );
       expect(result).toEqual({
         env: {
-          applicationId: undefined,
+          applicationId: 'app-id-123:avengers',
           applicationName: 'avengers-app',
           entryPointUriPath: 'avengers',
           cdnUrl: 'https://avengers.app/',
@@ -681,7 +819,9 @@ describe('when app URL is malformed', () => {
     loadConfig.mockReturnValue({
       ...fixtureConfigSimple,
       env: {
+        ...fixtureConfigSimple.env,
         production: {
+          ...fixtureConfigSimple.env.production,
           url: 'wrong url',
         },
       },
@@ -706,8 +846,9 @@ describe('when CDN URL is malformed', () => {
     loadConfig.mockReturnValue({
       ...fixtureConfigSimple,
       env: {
+        ...fixtureConfigSimple.env,
         production: {
-          url: 'https://avengers.app',
+          ...fixtureConfigSimple.env.production,
           cdnUrl: 'wrong url',
         },
       },

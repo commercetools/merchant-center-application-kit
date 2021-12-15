@@ -3,12 +3,20 @@
   "entryPointUriPath": "avengers",
   "cloudIdentifier": "gcp-eu",
   "env": {
+    "development": {
+      "initialProjectKey": "test"
+    },
     "production": {
+      "applicationId": "app-id-123",
       "url": "https://my-app.com"
     }
   },
-  "menuLinks": {
-    "icon": "${path:@commercetools-frontend/assets/application-icons/rocket.svg}",
+  "oAuthScopes": {
+    "view": ["view_products"],
+    "manage": []
+  },
+  "icon": "${path:@commercetools-frontend/assets/application-icons/rocket.svg}",
+  "mainMenuLink": {
     "defaultLabel": "Avengers",
     "labelAllLocales": [
       {
@@ -17,5 +25,6 @@
       }
     ],
     "permissions": ["ViewAvengers"]
-  }
+  },
+  "submenuLinks": []
 }

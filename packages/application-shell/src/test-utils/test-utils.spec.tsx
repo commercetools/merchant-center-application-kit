@@ -295,7 +295,7 @@ describe('ApplicationContext', () => {
 describe('router', () => {
   const TestComponent = () => (
     <Switch>
-      <Route path="/foo" render={() => 'Foo'} />
+      <Route path="/foo/avengers" render={() => 'Foo'} />
       {/* Define a catch-all route */}
       <Route render={() => 'None'} />
     </Switch>
@@ -306,14 +306,20 @@ describe('router', () => {
     expect(screen.queryByText('Foo')).not.toBeInTheDocument();
   });
   it('should render the route when a route is provided', async () => {
-    renderApp(<TestComponent />, { route: '/foo' });
+    renderApp(<TestComponent />, {
+      route: '/foo/avengers',
+      environment: { entryPointUriPath: 'avengers' },
+    });
     await screen.findByText('Foo');
     expect(screen.queryByText('None')).not.toBeInTheDocument();
   });
   it('should return a history object', async () => {
-    const { history } = renderApp(<TestComponent />, { route: '/foo' });
+    const { history } = renderApp(<TestComponent />, {
+      route: '/foo/avengers',
+      environment: { entryPointUriPath: 'avengers' },
+    });
     await waitFor(() => {
-      expect(history.location.pathname).toBe('/foo');
+      expect(history.location.pathname).toBe('/foo/avengers');
     });
   });
 });
