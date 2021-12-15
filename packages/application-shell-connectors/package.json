@@ -42,8 +42,5 @@
   "peerDependencies": {
     "@apollo/client": "3.x",
     "react": "17.x"
-  },
-  "engines": {
-    "node": ">=12 || >=14"
   }
 }
