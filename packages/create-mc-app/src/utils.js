@@ -1,5 +1,4 @@
 const fs = require('fs');
-const path = require('path');
 const execa = require('execa');
 
 const isSemVer = (version) => /^(v?)([0-9].[0-9].[0-9])+/.test(version);
@@ -13,6 +12,8 @@ const shouldUseYarn = () => {
   }
 };
 
+const slugify = (name) => name.toLowerCase().replace(/_/gi, '-');
+
 const upperFirst = (value) => value.charAt(0).toUpperCase() + value.slice(1);
 
 const wordify = (slug) =>
@@ -22,16 +23,17 @@ const wordify = (slug) =>
     .join(' ');
 
 const resolveFilePathByExtension = (requestedModule) => {
-  const fileExtension = ['.js', '.ts', '.mjs', '.cjs'].find((fileExtension) => {
-    const filePath = path.join(requestedModule, fileExtension);
+  const fileExtension = ['.js', '.ts', '.mjs', '.cjs'].find((ext) => {
+    const filePath = `${requestedModule}${ext}`;
     return fs.existsSync(filePath);
   });
-  return path.join(requestedModule, fileExtension);
+  return `${requestedModule}${fileExtension}`;
 };
 
 module.exports = {
   isSemVer,
   shouldUseYarn,
+  slugify,
   wordify,
   upperFirst,
   resolveFilePathByExtension,
