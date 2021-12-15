@@ -41,8 +41,5 @@
   "devDependencies": {
     "json-schema-to-typescript": "10.1.5",
     "shelljs": "0.8.4"
-  },
-  "engines": {
-    "node": ">=12 || >=14"
   }
 }

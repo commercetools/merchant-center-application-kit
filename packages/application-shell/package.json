@@ -125,8 +125,5 @@
     "react-redux": "7.x",
     "react-router-dom": "5.x",
     "redux": "4.x"
-  },
-  "engines": {
-    "node": ">=12 || >=14"
   }
 }
