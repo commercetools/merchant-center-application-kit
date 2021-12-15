@@ -1,38 +1,63 @@
-const os = require('os');
 const fs = require('fs');
 const path = require('path');
-const { slugify, wordify } = require('../utils');
+const rcfile = require('rcfile');
+const prettier = require('prettier');
+const babel = require('@babel/core');
+const { wordify, resolveFilePathByExtension } = require('../utils');
+
+function replaceApplicationInfoInCustomApplicationConfig(filePath, options) {
+  const appName = wordify(options.entryPointUriPath);
+
+  const result = babel.transformFileSync(filePath, {
+    plugins: [
+      function replaceCustomApplicationConfig() {
+        return {
+          visitor: {
+            Identifier(nodePath) {
+              if (nodePath.isIdentifier({ name: 'name' })) {
+                nodePath.parent.value = babel.types.stringLiteral(appName);
+              }
+              if (nodePath.isIdentifier({ name: 'initialProjectKey' })) {
+                nodePath.parent.value = babel.types.stringLiteral(
+                  options.initialProjectKey
+                );
+              }
+              if (nodePath.isIdentifier({ name: 'defaultLabel' })) {
+                if (
+                  nodePath.findParent((parentPath) =>
+                    parentPath.get('key').isIdentifier({ name: 'mainMenuLink' })
+                  )
+                ) {
+                  nodePath.parent.value = babel.types.stringLiteral(appName);
+                }
+              }
+            },
+          },
+        };
+      },
+    ],
+    retainLines: true,
+  });
+
+  const prettierConfig = rcfile('prettier', {
+    cwd: options.projectDirectoryPath,
+  });
+  const formattedData = prettier.format(result.code, prettierConfig);
+  fs.writeFileSync(filePath, formattedData, {
+    encoding: 'utf8',
+  });
+}
 
 module.exports = function updateCustomApplicationConfig(options) {
-  // NOTE: this only works assuming the template uses a JSON file.
   return {
-    title: 'Updating custom-application-config.json',
+    title: 'Updating Custom Applications config',
     task: () => {
-      const customApplicationConfigJsonPath = path.join(
-        options.projectDirectoryPath,
-        'custom-application-config.json'
+      const customApplicationConfigPath = resolveFilePathByExtension(
+        path.join(options.projectDirectoryPath, 'custom-application-config')
       );
-      const appConfigJson = JSON.parse(
-        fs.readFileSync(customApplicationConfigJsonPath, { encoding: 'utf8' })
-      );
-
-      // Set the entry point based on the package/folder name.
-      const entryPointUriPath = slugify(options.projectDirectoryName);
-      const appName = wordify(entryPointUriPath);
-
-      const updatedAppConfigJson = Object.assign({}, appConfigJson, {
-        name: appName,
-        entryPointUriPath,
-        menuLinks: {
-          ...appConfigJson.menuLinks,
-          defaultLabel: appName,
-        },
-      });
-
-      fs.writeFileSync(
-        customApplicationConfigJsonPath,
-        JSON.stringify(updatedAppConfigJson, null, 2) + os.EOL,
-        { encoding: 'utf8' }
+      replaceApplicationInfoInCustomApplicationConfig(
+        customApplicationConfigPath,
+        options
       );
     },
   };

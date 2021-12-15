@@ -45,12 +45,12 @@ const config = {
         value: '${intl:de:Menu.StateMachines}',
       },
     ],
-    permissions: [PERMISSIONS.ViewAppKitPlayground],
+    permissions: [PERMISSIONS.View],
   },
   submenuLinks: [
     {
       uriPath: 'echo-server',
-      permissions: [PERMISSIONS.ViewAppKitPlayground],
+      permissions: [PERMISSIONS.View],
       defaultLabel: '${intl:en:Menu.EchoServer}',
       labelAllLocales: [
         {

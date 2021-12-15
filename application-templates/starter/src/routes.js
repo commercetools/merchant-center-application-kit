@@ -4,7 +4,7 @@ import { PageUnauthorized } from '@commercetools-frontend/application-components
 import Spacings from '@commercetools-uikit/spacings';
 import Channels from './components/channels';
 import Welcome from './components/welcome';
-import { PERMISSIONS } from './constants/permissions';
+import { PERMISSIONS } from './constants';
 
 const ApplicationRoutes = () => {
   const match = useRouteMatch();
@@ -13,15 +13,15 @@ const ApplicationRoutes = () => {
   // certain parts of the application.
   // For example, we can show an unauthorized page if the user does not have
   // the permission to `view` products.
-  const canViewChannels = useIsAuthorized({
-    demandedPermissions: [PERMISSIONS.ViewProducts],
+  const canView = useIsAuthorized({
+    demandedPermissions: [PERMISSIONS.View],
   });
 
   return (
     <Spacings.Inset scale="l">
       <Switch>
         <Route path={`${match.path}/channels`}>
-          {canViewChannels ? (
+          {canView ? (
             <Channels linkToWelcome={match.url} />
           ) : (
             <PageUnauthorized />

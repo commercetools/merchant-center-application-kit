@@ -3,7 +3,7 @@ declare namespace Cypress {
     /**
      * Log into the Custom Application using the OIDC workflow.
      * @example
-     *    cy.loginByOidc({ entryPointUriPath: 'examples-starter' })
+     *    cy.loginByOidc({ entryPointUriPath: 'template-starter' })
      */
     loginByOidc(
       // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-9.html#import-types

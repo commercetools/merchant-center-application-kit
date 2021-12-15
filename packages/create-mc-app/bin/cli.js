@@ -30,6 +30,7 @@ async function execute() {
     --template <name>               (optional) The name of the template to install [default "starter"]
                                     Available options: ["starter"]
     --template-version <version>    (optional) The version of the template to install [default "main"]
+    --entry-point-uri-path <value>  (optional) The version of the template to install [default "starter-<hash>"]
     --skip-install                  (optional) Skip installing the dependencies after cloning the template [default "false"]
     `);
     process.exit(0);
@@ -37,7 +38,7 @@ async function execute() {
   console.log(`Version: v${currentVersion}`);
   hintOutdatedVersion(currentVersion);
   console.log('');
-  const options = parseArguments(flags);
+  const options = await parseArguments(flags);
 
   const taskList = new Listr(
     [
