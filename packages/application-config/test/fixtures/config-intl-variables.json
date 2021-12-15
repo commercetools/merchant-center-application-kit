@@ -3,12 +3,20 @@
   "entryPointUriPath": "avengers",
   "cloudIdentifier": "gcp-eu",
   "env": {
+    "development": {
+      "initialProjectKey": "test"
+    },
     "production": {
+      "applicationId": "app-id-123",
       "url": "https://my-app.com"
     }
   },
-  "menuLinks": {
-    "icon": "<svg><path fill=\"#000000\" /></svg>",
+  "oAuthScopes": {
+    "view": ["view_products"],
+    "manage": []
+  },
+  "icon": "<svg><path fill=\"#000000\" /></svg>",
+  "mainMenuLink": {
     "defaultLabel": "Avengers",
     "labelAllLocales": [
       {
@@ -20,13 +28,13 @@
         "value": "${intl:de:Menu.Avengers}"
       }
     ],
-    "permissions": ["ViewAvengers"],
-    "submenuLinks": [
-      {
-        "uriPath": "new",
-        "defaultLabel": "${intl:en:Menu.Avengers.New}",
-        "permissions": ["ManageAvengers"]
-      }
-    ]
-  }
+    "permissions": ["ViewAvengers"]
+  },
+  "submenuLinks": [
+    {
+      "uriPath": "new",
+      "defaultLabel": "${intl:en:Menu.Avengers.New}",
+      "permissions": ["ManageAvengers"]
+    }
+  ]
 }

@@ -82,11 +82,6 @@ const createTestAppliedPermissions = ({
 const renderApp = (ui, options = {}) => {
   const { route, renderNodeAsChildren, ...customProps } = options;
   const jsxElem = ui || <p>{'OK'}</p>;
-  const initialRoute = route || '/';
-  const testHistory = createEnhancedHistory(
-    createMemoryHistory({ initialEntries: [initialRoute] })
-  );
-  ApplicationShellProvider.history = testHistory;
   const defaultProps = createTestProps();
   const props = {
     ...defaultProps,
@@ -96,6 +91,12 @@ const renderApp = (ui, options = {}) => {
       ? { children: jsxElem }
       : { render: () => jsxElem }),
   };
+  const initialRoute =
+    route || `/project-key/${props.environment.entryPointUriPath}`;
+  const testHistory = createEnhancedHistory(
+    createMemoryHistory({ initialEntries: [initialRoute] })
+  );
+  ApplicationShellProvider.history = testHistory;
   const { container } = render(<ApplicationShell {...props} />);
   const findByLeftNavigation = () => screen.findByTestId('left-navigation');
   const queryByLeftNavigation = () => screen.queryByTestId('left-navigation');

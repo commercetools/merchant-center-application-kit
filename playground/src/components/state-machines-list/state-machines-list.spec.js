@@ -5,9 +5,10 @@ import {
   screen,
   waitFor,
   fireEvent,
+  mapResourceAccessToAppliedPermissions,
 } from '@commercetools-frontend/application-shell/test-utils';
 import { GtmContext } from '@commercetools-frontend/application-shell';
-import { entryPointUriPath } from '../../constants';
+import { entryPointUriPath, PERMISSIONS } from '../../constants';
 import { renderApplicationWithRedux } from '../../test-utils';
 import * as StateMock from '../../test-utils/test-data/state';
 import { ApplicationStateMachines } from '../entry-point';
@@ -30,9 +31,14 @@ const renderApp = (options = {}) => {
     </GtmContext.Provider>,
     {
       route,
-      permissions: {
-        canViewAppKitPlayground: true,
-        canManageAppKitPlayground: true,
+      environment: {
+        entryPointUriPath,
+      },
+      project: {
+        allAppliedPermissions: mapResourceAccessToAppliedPermissions([
+          PERMISSIONS.View,
+          PERMISSIONS.Manage,
+        ]),
       },
       ...options,
     }

@@ -3,7 +3,11 @@
   "cloudIdentifier": "gcp-eu",
   "entryPointUriPath": "avengers",
   "env": {
+    "development": {
+      "initialProjectKey": "test"
+    },
     "production": {
+      "applicationId": "app-id-123",
       "url": "https://avengers.app",
       "cdnUrl": "https://cdn.avengers.app"
     }
@@ -12,14 +16,14 @@
     "numberOfMovies": 4,
     "empty": ""
   },
+  "oAuthScopes": {
+    "view": ["view_products"],
+    "manage": []
+  },
   "headers": {
     "csp": {
-      "script-src": [
-        "https://track.avengers.app"
-      ],
-      "connect-src": [
-        "https://track.avengers.app"
-      ]
+      "script-src": ["https://track.avengers.app"],
+      "connect-src": ["https://track.avengers.app"]
     },
     "featurePolicies": {
       "microphone": "none"
@@ -28,5 +32,12 @@
       "microphone": "()"
     },
     "strictTransportSecurity": ["includeSubDomains"]
-  }
+  },
+  "icon": "<svg><path fill=\"#000000\" /></svg>",
+  "mainMenuLink": {
+    "defaultLabel": "Avengers",
+    "labelAllLocales": [],
+    "permissions": []
+  },
+  "submenuLinks": []
 }
