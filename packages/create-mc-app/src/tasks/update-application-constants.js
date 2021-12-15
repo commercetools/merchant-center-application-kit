@@ -29,7 +29,7 @@ function replaceEntryPointUriPathInConstants(filePath, options) {
   });
 }
 
-module.exports = async function updateApplicationConstants(options) {
+module.exports = function updateApplicationConstants(options) {
   return {
     title: 'Updating application constants',
     task: () => {
