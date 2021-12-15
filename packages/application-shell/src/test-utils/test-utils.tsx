@@ -93,6 +93,7 @@ const defaultUser = {
 
 const defaultEnvironment: Partial<TProviderProps<{}>['environment']> = {
   applicationName: 'my-app',
+  entryPointUriPath: 'random-entry-point',
   frontendHost: 'localhost:3001',
   mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
   location: 'eu',
@@ -292,11 +293,9 @@ function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
   apolloClient,
   enableApolloMocks = false,
   // react-router
-  route = '/',
+  route,
   disableAutomaticEntryPointRoutes = false,
-  history = createEnhancedHistory(
-    createMemoryHistory({ initialEntries: [route] })
-  ),
+  history,
   // flopflip
   flags = {},
   // application-context
@@ -306,26 +305,22 @@ function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
   dataLocale = 'en',
 }: Partial<TRenderAppOptions<AdditionalEnvironmentProperties>> = {}) {
   const mergedUser = user === null ? undefined : { ...defaultUser, ...user };
-  const mergedProject = (() => {
-    if (project === null) {
-      return undefined;
-    }
-    return {
-      ...defaultProject,
-      ...project,
-    };
-  })();
+  const mergedProject =
+    project === null ? undefined : { ...defaultProject, ...project };
   const mergedEnvironment = {
     ...defaultEnvironment,
     ...environment,
   } as TProviderProps<AdditionalEnvironmentProperties>['environment'];
 
-  if (!disableAutomaticEntryPointRoutes) {
-    invariant(
-      Boolean(environment?.entryPointUriPath),
-      '@commercetools-frontend/application-shell/test-utils: When the option "disableAutomaticEntryPointRoutes" is set to "false", you also need to provide the "environment.entryPointUriPath" in order for the routes to be correctly configured.'
-    );
+  let initialRoute = route;
+  if (!route && mergedProject) {
+    initialRoute = `/${mergedProject.key}/${mergedEnvironment.entryPointUriPath}`;
   }
+  const memoryHistory =
+    history ??
+    createEnhancedHistory(
+      createMemoryHistory({ initialEntries: [initialRoute || '/'] })
+    );
 
   const ApplicationProviders = (props: TApplicationProvidersProps) => (
     <IntlProvider locale={locale}>
@@ -341,7 +336,7 @@ function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
             environment={mergedEnvironment}
             projectDataLocale={dataLocale}
           >
-            <Router history={history}>
+            <Router history={memoryHistory}>
               <Suspense fallback={<LoadingFallback />}>
                 <ApplicationEntryPoint
                   environment={mergedEnvironment}
@@ -373,7 +368,7 @@ function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
     mergedUser,
     mergedProject,
     mergedEnvironment,
-    history,
+    history: memoryHistory,
   };
 }
 
