@@ -31,11 +31,25 @@ describe('invalid configurations', () => {
       `" must have required property 'env'"`
     );
   });
-  it('should validate that "env.production" is defined', () => {
+  it('should validate that "env.development" is defined', () => {
     expect(() =>
       validateConfig({
         ...fixtureConfigSimple,
         env: {},
+      })
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"/env must have required property 'development'"`
+    );
+  });
+  it('should validate that "env.production" is defined', () => {
+    expect(() =>
+      validateConfig({
+        ...fixtureConfigSimple,
+        env: {
+          development: {
+            initialProjectKey: '',
+          },
+        },
       })
     ).toThrowErrorMatchingInlineSnapshot(
       `"/env must have required property 'production'"`
@@ -63,6 +77,60 @@ describe('invalid configurations', () => {
           'cloudIdentifier must be equal to one of the allowed values: gcp-au,gcp-eu,gcp-us,aws-fra,aws-ohio'
         ),
       })
+    );
+  });
+  it('should validate that "oAuthScopes" is defined', () => {
+    expect(() =>
+      validateConfig({
+        ...fixtureConfigSimple,
+        oAuthScopes: undefined,
+      })
+    ).toThrowErrorMatchingInlineSnapshot(
+      `" must have required property 'oAuthScopes'"`
+    );
+  });
+  it('should validate that "oAuthScopes.view" contains OAuth Scopes starting with "view_"', () => {
+    expect(() =>
+      validateConfig({
+        ...fixtureConfigSimple,
+        oAuthScopes: {
+          view: ['view_products', 'manage_orders'],
+        },
+      })
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"/oAuthScopes/view/1 must match pattern \\"view_(.*)\\""`
+    );
+  });
+  it('should validate that "oAuthScopes.manage" contains OAuth Scopes starting with "manage_"', () => {
+    expect(() =>
+      validateConfig({
+        ...fixtureConfigSimple,
+        oAuthScopes: {
+          manage: ['view_products', 'manage_orders'],
+        },
+      })
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"/oAuthScopes/manage/0 must match pattern \\"manage_(.*)\\""`
+    );
+  });
+  it('should validate that "icon" is defined', () => {
+    expect(() =>
+      validateConfig({
+        ...fixtureConfigSimple,
+        icon: undefined,
+      })
+    ).toThrowErrorMatchingInlineSnapshot(
+      `" must have required property 'icon'"`
+    );
+  });
+  it('should validate that "mainMenuLink" is defined', () => {
+    expect(() =>
+      validateConfig({
+        ...fixtureConfigSimple,
+        mainMenuLink: undefined,
+      })
+    ).toThrowErrorMatchingInlineSnapshot(
+      `" must have required property 'mainMenuLink'"`
     );
   });
 });
