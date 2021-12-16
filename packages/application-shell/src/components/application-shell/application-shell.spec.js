@@ -78,6 +78,21 @@ const createTestAppliedPermissions = ({
     allAppliedMenuVisibilities,
   },
 });
+const createTestNavBarMenuLinksConfig = (props = {}) => ({
+  icon: '<svg><path fill="#000000" /></svg>',
+  defaultLabel: 'Avengers',
+  labelAllLocales: [{ locale: 'en', value: 'Avengers' }],
+  permissions: [],
+  submenuLinks: [
+    {
+      uriPath: 'new',
+      defaultLabel: 'Add avenger',
+      labelAllLocales: [{ locale: 'en', value: 'Add avenger' }],
+      permissions: [],
+    },
+  ],
+  ...props,
+});
 
 const renderApp = (ui, options = {}) => {
   const { route, renderNodeAsChildren, ...customProps } = options;
@@ -91,8 +106,7 @@ const renderApp = (ui, options = {}) => {
       ? { children: jsxElem }
       : { render: () => jsxElem }),
   };
-  const initialRoute =
-    route || `/project-key/${props.environment.entryPointUriPath}`;
+  const initialRoute = route || `/`;
   const testHistory = createEnhancedHistory(
     createMemoryHistory({ initialEntries: [initialRoute] })
   );
@@ -787,10 +801,7 @@ describe('navbar menu links interactions', () => {
   }
   describe('when rendering navbar menu links from local config', () => {
     it('should render links with all the correct state attributes', async () => {
-      const navbarSubmenuMock = ApplicationNavbarSubmenuMock.build();
-      const navbarMock = ApplicationNavbarMenuMock.build({
-        submenu: [navbarSubmenuMock],
-      });
+      const menuLinks = createTestNavBarMenuLinksConfig();
       const {
         container,
         findByLeftNavigation,
@@ -798,16 +809,16 @@ describe('navbar menu links interactions', () => {
       } = renderApp(null, {
         environment: {
           __DEVELOPMENT__: {
-            menuLinks: navbarMock,
+            menuLinks,
           },
         },
       });
 
       const applicationLocale = 'en';
-      const mainMenuLabel = navbarMock.labelAllLocales.find(
+      const mainMenuLabel = menuLinks.labelAllLocales.find(
         (localized) => localized.locale === applicationLocale
       );
-      const mainSubmenuLabel = navbarSubmenuMock.labelAllLocales.find(
+      const mainSubmenuLabel = menuLinks.submenuLinks[0].labelAllLocales.find(
         (localized) => localized.locale === applicationLocale
       );
 
@@ -849,6 +860,8 @@ describe('navbar menu links interactions', () => {
                     }),
                   }),
                 }),
+                // TODO: also test installed applications!
+                installedApplications: [],
               }),
             })
           );
@@ -944,18 +957,17 @@ describe('when navbar menu items are hidden', () => {
     );
   });
   it('should not render hidden menu items', async () => {
-    const navbarSubmenuMock = ApplicationNavbarSubmenuMock.build({
+    const menuLinks = createTestNavBarMenuLinksConfig({
       menuVisibility: 'hideFoo',
+      submenuLinks: [],
     });
-    const navbarMock = ApplicationNavbarMenuMock.build({
-      submenu: [navbarSubmenuMock],
-    });
+
     const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
       null,
       {
         environment: {
           __DEVELOPMENT__: {
-            menuLinks: navbarMock,
+            menuLinks,
           },
         },
       }
@@ -966,7 +978,7 @@ describe('when navbar menu items are hidden', () => {
     const navbarRendered = within(container);
 
     const applicationLocale = 'en';
-    const mainMenuLabel = navbarMock.labelAllLocales.find(
+    const mainMenuLabel = menuLinks.labelAllLocales.find(
       (localized) => localized.locale === applicationLocale
     );
     await waitFor(() => {
@@ -998,7 +1010,7 @@ describe('when navbar menu items match given permissions', () => {
     );
   });
   it('should render item', async () => {
-    const navbarMock = ApplicationNavbarMenuMock.build({
+    const menuLinks = createTestNavBarMenuLinksConfig({
       permissions: ['ManageOrders'],
     });
     const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
@@ -1006,7 +1018,7 @@ describe('when navbar menu items match given permissions', () => {
       {
         environment: {
           __DEVELOPMENT__: {
-            menuLinks: navbarMock,
+            menuLinks,
           },
         },
       }
@@ -1015,7 +1027,7 @@ describe('when navbar menu items match given permissions', () => {
     const container = await findByLeftNavigation();
 
     const applicationLocale = 'en';
-    const mainMenuLabel = navbarMock.labelAllLocales.find(
+    const mainMenuLabel = menuLinks.labelAllLocales.find(
       (localized) => localized.locale === applicationLocale
     );
     await within(container).findByText(mainMenuLabel.value);
@@ -1043,7 +1055,7 @@ describe('when navbar menu items do not match given permissions', () => {
     );
   });
   it('should not render item', async () => {
-    const navbarMock = ApplicationNavbarMenuMock.build({
+    const menuLinks = createTestNavBarMenuLinksConfig({
       permissions: ['ViewOrders'],
     });
     const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
@@ -1051,7 +1063,7 @@ describe('when navbar menu items do not match given permissions', () => {
       {
         environment: {
           __DEVELOPMENT__: {
-            menuLinks: navbarMock,
+            menuLinks,
           },
         },
       }
@@ -1062,7 +1074,7 @@ describe('when navbar menu items do not match given permissions', () => {
     const navbarRendered = within(container);
 
     const applicationLocale = 'en';
-    const mainMenuLabel = navbarMock.labelAllLocales.find(
+    const mainMenuLabel = menuLinks.labelAllLocales.find(
       (localized) => localized.locale === applicationLocale
     );
     await waitFor(() => {
@@ -1102,7 +1114,7 @@ describe('when navbar menu items match given action rights', () => {
     );
   });
   it('should render item', async () => {
-    const navbarMock = ApplicationNavbarMenuMock.build({
+    const menuLinks = createTestNavBarMenuLinksConfig({
       permissions: ['ManageOrders'],
       actionRights: [{ group: 'orders', name: 'AddOrders' }],
     });
@@ -1111,7 +1123,7 @@ describe('when navbar menu items match given action rights', () => {
       {
         environment: {
           __DEVELOPMENT__: {
-            menuLinks: navbarMock,
+            menuLinks,
           },
         },
       }
@@ -1120,7 +1132,7 @@ describe('when navbar menu items match given action rights', () => {
     const container = await findByLeftNavigation();
 
     const applicationLocale = 'en';
-    const mainMenuLabel = navbarMock.labelAllLocales.find(
+    const mainMenuLabel = menuLinks.labelAllLocales.find(
       (localized) => localized.locale === applicationLocale
     );
     await within(container).findByText(mainMenuLabel.value);
@@ -1156,7 +1168,7 @@ describe('when navbar menu items do not match given action rights', () => {
     );
   });
   it('should not render item', async () => {
-    const navbarMock = ApplicationNavbarMenuMock.build({
+    const menuLinks = createTestNavBarMenuLinksConfig({
       permissions: ['ManageOrders'],
       actionRights: [{ group: 'orders', name: 'AddOrders' }],
     });
@@ -1165,7 +1177,7 @@ describe('when navbar menu items do not match given action rights', () => {
       {
         environment: {
           __DEVELOPMENT__: {
-            menuLinks: navbarMock,
+            menuLinks,
           },
         },
       }
@@ -1176,7 +1188,7 @@ describe('when navbar menu items do not match given action rights', () => {
     const navbarRendered = within(container);
 
     const applicationLocale = 'en';
-    const mainMenuLabel = navbarMock.labelAllLocales.find(
+    const mainMenuLabel = menuLinks.labelAllLocales.find(
       (localized) => localized.locale === applicationLocale
     );
     await waitFor(() => {
@@ -1217,7 +1229,7 @@ describe('when navbar menu items match given data fences', () => {
     );
   });
   it('should render item', async () => {
-    const navbarMock = ApplicationNavbarMenuMock.build({
+    const menuLinks = createTestNavBarMenuLinksConfig({
       permissions: ['ManageOrders'],
       dataFences: [
         {
@@ -1232,7 +1244,7 @@ describe('when navbar menu items match given data fences', () => {
       {
         environment: {
           __DEVELOPMENT__: {
-            menuLinks: navbarMock,
+            menuLinks,
           },
         },
       }
@@ -1241,7 +1253,7 @@ describe('when navbar menu items match given data fences', () => {
     const container = await findByLeftNavigation();
 
     const applicationLocale = 'en';
-    const mainMenuLabel = navbarMock.labelAllLocales.find(
+    const mainMenuLabel = menuLinks.labelAllLocales.find(
       (localized) => localized.locale === applicationLocale
     );
     await within(container).findByText(mainMenuLabel.value);
@@ -1278,7 +1290,7 @@ describe('when navbar menu items do not match given data fences', () => {
     );
   });
   it('should not render item', async () => {
-    const navbarMock = ApplicationNavbarMenuMock.build({
+    const menuLinks = createTestNavBarMenuLinksConfig({
       permissions: ['ManageOrders'],
       dataFences: [
         {
@@ -1293,7 +1305,7 @@ describe('when navbar menu items do not match given data fences', () => {
       {
         environment: {
           __DEVELOPMENT__: {
-            menuLinks: navbarMock,
+            menuLinks,
           },
         },
       }
@@ -1302,7 +1314,7 @@ describe('when navbar menu items do not match given data fences', () => {
     const container = await findByLeftNavigation();
 
     const applicationLocale = 'en';
-    const mainMenuLabel = navbarMock.labelAllLocales.find(
+    const mainMenuLabel = menuLinks.labelAllLocales.find(
       (localized) => localized.locale === applicationLocale
     );
     await waitFor(async () => {
