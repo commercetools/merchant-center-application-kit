@@ -20,6 +20,7 @@ const render = () => {
     </>,
     {
       mocks: mockedRequest,
+      enableApolloMocks: true,
     }
   );
 };

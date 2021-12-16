@@ -57,6 +57,7 @@ const render = ({ mocks, environment } = { mocks: [] }) =>
   renderApp(<TestComponent />, {
     mocks,
     environment,
+    enableApolloMocks: true,
   });
 
 describe('when served by proxy', () => {

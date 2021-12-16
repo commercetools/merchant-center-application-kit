@@ -48,6 +48,7 @@ describe('rendering', () => {
             },
           },
           mocks: mockedRequest,
+          enableApolloMocks: true,
         }
       );
       // eslint-disable-next-line testing-library/prefer-find-by
