@@ -1,7 +1,7 @@
 import type { SuccessResult, ClientRequest } from '@commercetools/sdk-client';
 import type { Json, TSdkAction } from '../types';
 
-import { mocked } from 'ts-jest/utils';
+import { mocked } from 'jest-mock';
 import {
   SHOW_LOADING,
   HIDE_LOADING,

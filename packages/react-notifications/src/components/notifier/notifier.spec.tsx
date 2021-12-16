@@ -1,7 +1,7 @@
 import type { TAddNotificationAction } from '@commercetools-frontend/notifications';
 import type { TShowNotification } from '@commercetools-frontend/actions-global';
 
-import { mocked } from 'ts-jest/utils';
+import { mocked } from 'jest-mock';
 import { useState, ReactNode } from 'react';
 import { screen, render, fireEvent, waitFor } from '@testing-library/react';
 import { ADD_NOTIFICATION } from '@commercetools-frontend/notifications';

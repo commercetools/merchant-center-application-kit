@@ -1,4 +1,4 @@
-import { mocked } from 'ts-jest/utils';
+import { mocked } from 'jest-mock';
 import { screen, renderApp, waitFor } from '../../test-utils';
 import { location } from '../../utils/location';
 import RedirectToProjectCreate from './redirect-to-project-create';
