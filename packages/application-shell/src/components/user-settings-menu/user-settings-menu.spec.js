@@ -89,6 +89,7 @@ describe('rendering', () => {
             accountLinks: [createTestMenuConfig('projects')],
           },
         },
+        disableAutomaticEntryPointRoutes: true,
       });
       const dropdownMenu = await screen.findByRole('button', {
         name: /open user settings menu/i,
@@ -124,6 +125,7 @@ describe('rendering', () => {
             accountLinks: [createTestMenuConfig('projects')],
           },
         },
+        disableAutomaticEntryPointRoutes: true,
       });
       const dropdownMenu = await screen.findByRole('button', {
         name: /open user settings menu/i,
@@ -137,12 +139,12 @@ describe('rendering', () => {
       const link = screen.queryByText('Projects');
       fireEvent.click(link);
 
+      await waitFor(() => {
+        expect(history.location.pathname).toBe('/account/projects');
+      });
       // Menu should be closed
       await screen.findByRole('button', {
         name: /open user settings menu/i,
-      });
-      await waitFor(() => {
-        expect(history.location.pathname).toBe('/account/projects');
       });
     });
   });
@@ -156,6 +158,7 @@ describe('rendering', () => {
             accountLinks: [createTestMenuConfig('projects')],
           },
         },
+        disableAutomaticEntryPointRoutes: true,
       });
       const dropdownMenu = await screen.findByRole('button', {
         name: /open user settings menu/i,
@@ -185,6 +188,7 @@ describe('rendering', () => {
             accountLinks: [createTestMenuConfig('projects')],
           },
         },
+        disableAutomaticEntryPointRoutes: true,
       });
       const dropdownMenu = await screen.findByRole('button', {
         name: /open user settings menu/i,

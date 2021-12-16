@@ -7,6 +7,7 @@ import {
   renderAppWithRedux,
   fireEvent,
   waitFor,
+  denormalizePermissions,
 } from '../../test-utils';
 import * as gtm from '../../utils/gtm';
 import { location } from '../../utils/location';
@@ -163,9 +164,20 @@ const createPimSearchSdkMock = (
 
 const renderQuickAccess = (options = {}, ui) => {
   const { history } = renderAppWithRedux(ui || <QuickAccess />, {
-    permissions: managePermissions,
     sdkMocks: [createPimAvailabilityCheckSdkMock()],
+    enableApolloMocks: true,
+    disableAutomaticEntryPointRoutes: true,
     ...options,
+    // Manually override `project`
+    project:
+      options.project === null
+        ? null
+        : {
+            ...options.project,
+            allAppliedPermissions: denormalizePermissions(
+              options.permissions ?? managePermissions
+            ),
+          },
   });
 
   const findCurrentItem = ({ input, inputKey, itemTestId }) => {
