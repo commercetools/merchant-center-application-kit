@@ -11,7 +11,7 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
    */
   name: string;
   /**
-   * The unique route path of the Custom Application. This is the identifier that the Merchant Center Proxy uses to match the HTTP request and to forward it to the Custom Application URL. This value also needs to be used in the application client side routes. The value must be the same as the `navbarMenu.uriPath` in the `menu.json` and the application route path when registering the Custom Application. For example, if the Custom Application should be served at the route `/:projectKey/avengers`, the `entryPointUriPath` must be set to `avengers` and the same for the application routes.
+   * The unique route path of the Custom Application. This is the identifier that the Merchant Center Proxy uses to match the HTTP request and to forward it to the Custom Application URL (https://docs.commercetools.com/custom-applications/api-reference/application-config).
    */
   entryPointUriPath: string;
   /**

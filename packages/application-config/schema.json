@@ -22,8 +22,9 @@
       "type": "string"
     },
     "entryPointUriPath": {
-      "description": "The unique route path of the Custom Application. This is the identifier that the Merchant Center Proxy uses to match the HTTP request and to forward it to the Custom Application URL. This value also needs to be used in the application client side routes. The value must be the same as the `navbarMenu.uriPath` in the `menu.json` and the application route path when registering the Custom Application. For example, if the Custom Application should be served at the route `/:projectKey/avengers`, the `entryPointUriPath` must be set to `avengers` and the same for the application routes.",
-      "type": "string"
+      "description": "The unique route path of the Custom Application. This is the identifier that the Merchant Center Proxy uses to match the HTTP request and to forward it to the Custom Application URL (https://docs.commercetools.com/custom-applications/api-reference/application-config).",
+      "type": "string",
+      "pattern": "^[^\\-_]([0-9a-z]|[\\-_](?![\\-_])){2,64}[^\\-_]$"
     },
     "cloudIdentifier": {
       "description": "The cloud identifier where the Custom Application is running. This value is used to derive the Merchant Center API URL. Alternatively you can use the `mcApiUrl` property.",
