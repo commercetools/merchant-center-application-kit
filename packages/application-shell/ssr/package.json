@@ -1,0 +1,4 @@
+{
+  "main": "dist/commercetools-frontend-application-shell-ssr.cjs.js",
+  "module": "dist/commercetools-frontend-application-shell-ssr.esm.js"
+}
