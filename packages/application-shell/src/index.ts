@@ -10,6 +10,8 @@ export {
   selectUserId,
   selectProjectKeyFromUrl,
   createApolloContextForProxyForwardTo,
+  entryPointUriPathToPermissionKeys,
+  entryPointUriPathToResourceAccesses,
 } from './utils';
 export { GtmContext } from './components/gtm-booter';
 export { default as GtmUserLogoutTracker } from './components/gtm-user-logout-tracker';
