@@ -1,4 +1,4 @@
-import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-config';
+import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-shell';
 
 export const entryPointUriPath = 'app-kit-playground';
 
