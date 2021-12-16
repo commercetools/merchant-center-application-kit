@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const fs = require('fs');
 const path = require('path');
-const uglify = require('uglify-es');
+const uglify = require('uglify-js');
 
 const loadScriptAsString = (fileName) => {
   const content = fs.readFileSync(
