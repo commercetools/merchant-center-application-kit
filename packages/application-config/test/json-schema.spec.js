@@ -20,6 +20,25 @@ describe.each`
   });
 });
 
+describe.each`
+  entryPointUriPath
+  ${'avengers'}
+  ${'the-avengers'}
+  ${'the_avengers'}
+  ${'avengers01'}
+  ${'avengers-01'}
+  ${'avengers_01'}
+`('validating "entryPointUriPath"', ({ entryPointUriPath }) => {
+  it(`should validate "${entryPointUriPath}" correctly`, () => {
+    expect(() =>
+      validateConfig({
+        ...fixtureConfigSimple,
+        entryPointUriPath,
+      })
+    ).not.toThrowError();
+  });
+});
+
 describe('invalid configurations', () => {
   it('should validate that "env" is defined', () => {
     expect(() =>
@@ -64,6 +83,26 @@ describe('invalid configurations', () => {
     ).toThrowErrorMatchingInlineSnapshot(
       `" must have required property 'entryPointUriPath'"`
     );
+  });
+  describe.each`
+    entryPointUriPath
+    ${'-avengers'}
+    ${'avengers-'}
+    ${'_avengers'}
+    ${'avengers_'}
+    ${'-avengers_'}
+    ${'_avengers-'}
+    ${'the-_avengers'}
+    ${'the_-avengers'}
+  `('validating "entryPointUriPath"', ({ entryPointUriPath }) => {
+    it(`should validate "${entryPointUriPath}" wrong value`, () => {
+      expect(() =>
+        validateConfig({
+          ...fixtureConfigSimple,
+          entryPointUriPath,
+        })
+      ).toThrowError(/\/entryPointUriPath must match pattern/);
+    });
   });
   it('should validate that "cloudIdentifier" is one of the expected values', () => {
     expect(() =>
