@@ -20,7 +20,7 @@ const config = {
     view: ['view_products'],
     manage: [],
   },
-  icon: '${path:@commercetools-frontend/assets/application-icons/Rocket.svg}',
+  icon: '${path:@commercetools-frontend/assets/application-icons/rocket.svg}',
   mainMenuLink: {
     defaultLabel: 'Template starter',
     labelAllLocales: [],
