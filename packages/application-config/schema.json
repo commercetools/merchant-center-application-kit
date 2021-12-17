@@ -169,7 +169,7 @@
       "type": "object",
       "properties": {
         "icon": {
-          "description": "The SVG icon that represents this application. Pass the raw SVG string or a path to an SVG file, for example a relative path `${path:./app.svg}`, or a path from a module `${path:@commercetools-frontend/assets/application-icons/Rocket.svg}`.",
+          "description": "The SVG icon that represents this application. Pass the raw SVG string or a path to an SVG file, for example a relative path `${path:./app.svg}`, or a path from a module `${path:@commercetools-frontend/assets/application-icons/rocket.svg}`.",
           "type": "string"
         },
         "defaultLabel": {
