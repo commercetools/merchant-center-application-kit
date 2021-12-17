@@ -2,17 +2,16 @@ declare module '@commercetools-uikit/select-input' {
   import * as React from 'react';
   import {
     Props as ReactSelectProps,
-    OptionTypeBase,
     OptionProps,
     ValueContainerProps,
   } from 'react-select';
 
   export const version: string;
 
+  export type SelectInputOption = { label: string; value: string };
+
   // <SelectInput>
-  export type SelectInputProps<
-    OptionType extends OptionTypeBase = { label: string; value: string }
-  > = {
+  export type SelectInputProps<OptionType = SelectInputOption> = {
     horizontalConstraint?:
       | 3
       | 4
@@ -41,7 +40,7 @@ declare module '@commercetools-uikit/select-input' {
     value: string | string[];
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   } & Pick<
-    ReactSelectProps<OptionType>,
+    ReactSelectProps<OptionType, false>,
     | 'aria-label'
     | 'aria-labelledby'
     | 'backspaceRemovesValue'
@@ -68,7 +67,7 @@ declare module '@commercetools-uikit/select-input' {
     | 'tabSelectsValue'
   >;
   const SelectInput: {
-    <OptionType extends OptionTypeBase = { label: string; value: string }>(
+    <OptionType = SelectInputOption>(
       props: SelectInputProps<OptionType>
     ): JSX.Element;
     displayName: string;
@@ -77,12 +76,12 @@ declare module '@commercetools-uikit/select-input' {
     isTouched: (touched: unknown) => boolean;
     // Aliases from react-select built-in components
     Option: {
-      <OptionType extends OptionTypeBase = { label: string; value: string }>(
+      <OptionType = SelectInputOption>(
         props: OptionProps<OptionType, false>
       ): JSX.Element;
     };
     ValueContainer: {
-      <OptionType extends OptionTypeBase = { label: string; value: string }>(
+      <OptionType = SelectInputOption>(
         props: ValueContainerProps<OptionType, false>
       ): JSX.Element;
     };
