@@ -1,6 +1,6 @@
 import type { ApplicationOidcForDevelopmentConfig } from '@commercetools-frontend/constants';
 
-import { OIDC_CLAIMS } from './constants';
+import { OIDC_CLAIMS } from '../constants';
 
 type BuilOidcScopeOptions = {
   projectKey?: ApplicationOidcForDevelopmentConfig['initialProjectKey'];
@@ -35,4 +35,4 @@ const buildOidcScope = (options: BuilOidcScopeOptions): string => {
   ].join(' ');
 };
 
-export default buildOidcScope;
+export { buildOidcScope };
