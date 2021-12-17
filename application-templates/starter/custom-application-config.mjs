@@ -13,7 +13,7 @@ const config = {
     },
     production: {
       applicationId: 'TODO',
-      url: 'https://<your_app_hostname>.com',
+      url: 'https://your_app_hostname.com',
     },
   },
   oAuthScopes: {
