@@ -1,4 +1,4 @@
-import { mocked } from 'ts-jest/utils';
+import { mocked } from 'jest-mock';
 import { screen, renderApp, fireEvent, waitFor } from '../../test-utils';
 import { createGraphqlResponseForProjectsQuery } from './project-switcher-test-utils';
 import { location } from '../../utils/location';

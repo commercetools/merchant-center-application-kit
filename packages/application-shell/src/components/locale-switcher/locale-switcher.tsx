@@ -1,4 +1,5 @@
 import type { SingleValueProps } from 'react-select';
+import type { SelectInputOption } from '@commercetools-uikit/select-input';
 
 import { useCallback } from 'react';
 import { css } from '@emotion/react';
@@ -6,10 +7,7 @@ import SelectInput from '@commercetools-uikit/select-input';
 import { WorldIcon } from '@commercetools-uikit/icons';
 import { customProperties } from '@commercetools-uikit/design-system';
 
-type CustomSingleValueProps = SingleValueProps<{
-  label: string;
-  value: string;
-}> & {
+type CustomSingleValueProps = SingleValueProps<SelectInputOption, false> & {
   localeCount: number;
 };
 type Props = {
@@ -83,7 +81,7 @@ const LocaleSwitcher = (props: Props) => {
         components={{
           // eslint-disable-next-line react/display-name
           SingleValue: (
-            valueProps: SingleValueProps<{ label: string; value: string }>
+            valueProps: SingleValueProps<SelectInputOption, false>
           ) => (
             <SingleValue
               {...valueProps}

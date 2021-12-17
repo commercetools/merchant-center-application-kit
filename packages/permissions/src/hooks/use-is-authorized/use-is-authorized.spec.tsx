@@ -1,4 +1,4 @@
-import { mocked } from 'ts-jest/utils';
+import { mocked } from 'jest-mock';
 import warning from 'tiny-warning';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { screen, render as rtlRender } from '@testing-library/react';

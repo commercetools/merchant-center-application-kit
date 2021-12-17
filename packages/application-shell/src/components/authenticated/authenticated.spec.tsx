@@ -4,7 +4,7 @@ import type {
   TAmILoggedInQueryVariables,
 } from '../../types/generated/mc';
 
-import { mocked } from 'ts-jest/utils';
+import { mocked } from 'jest-mock';
 import { graphql } from 'msw';
 import { setupServer } from 'msw/node';
 import { renderApp, waitFor } from '../../test-utils';

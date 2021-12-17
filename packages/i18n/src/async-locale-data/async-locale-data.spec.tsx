@@ -1,7 +1,7 @@
 import type { TRenderFunctionResult, Props } from './async-locale-data';
 import type { TMessageTranslations } from './use-async-intl-messages';
 
-import { mocked } from 'ts-jest/utils';
+import { mocked } from 'jest-mock';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { render, waitFor } from '@testing-library/react';
 import loadI18n from '../load-i18n';
