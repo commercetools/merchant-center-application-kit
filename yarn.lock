@@ -7673,11 +7673,11 @@ __metadata:
   linkType: hard
 
 "@types/dompurify@npm:^2.3.1":
-  version: 2.3.3
-  resolution: "@types/dompurify@npm:2.3.3"
+  version: 2.3.2
+  resolution: "@types/dompurify@npm:2.3.2"
   dependencies:
     "@types/trusted-types": "*"
-  checksum: 427e2dc60d94d13d7860a293b926b376727cb2f545a3334a3f2e7de695a2bb23058dd15108e49e0651378229b443ee8ae0028034b6f2df9a9008c04fb7ad6f8f
+  checksum: 757390676c95edc516770a42e36defd6bfd15959bc4f7a1bf546bf82963174c01461c49b5997b0a395810eef457480f885c473e14749bd9646b667e2898942da
   languageName: node
   linkType: hard
 
@@ -13679,9 +13679,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.17":
-  version: 1.4.23
-  resolution: "electron-to-chromium@npm:1.4.23"
-  checksum: 2caf7d9102ee3c22c0c1f86ac1c3293313edf79e52cfa52b4d45d682f40409fea0bb1f6f8c7ef2d62c50958c81bbbfa3092bf5a039bb92fbb04a7842487013d8
+  version: 1.4.20
+  resolution: "electron-to-chromium@npm:1.4.20"
+  checksum: 1ff0a5a1ab3e637208315a372fd489059762d56ebfcd07969bb014b2dc0b50c9f564aca71cbf5aafa62bf7ee458b5623470048fc0c93c10fef0cadde8151c51c
   languageName: node
   linkType: hard
 
