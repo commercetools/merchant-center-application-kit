@@ -17,9 +17,16 @@
   "main": "dist/commercetools-frontend-application-shell.cjs.js",
   "module": "dist/commercetools-frontend-application-shell.esm.js",
   "preconstruct": {
-    "entrypoints": ["./index.ts", "./test-utils/index.ts"]
+    "entrypoints": ["./index.ts", "./ssr/index.ts", "./test-utils/index.ts"]
   },
-  "files": ["dist", "test-utils", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "dist",
+    "ssr",
+    "test-utils",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "compile-css-modules": "./scripts/compile-styles.js"
   },
