@@ -2,7 +2,7 @@
 title: Permissions
 ---
 
-As we learned in [OAuth Scopes and User Permissions](/concepts/oauth-scopes-and-user-permissions), each Custom Application has a unique pair of User Permissions at its disposal: "view" and "manage".
+As we learned in [OAuth Scopes and User Permissions](/concepts/oauth-scopes-and-user-permissions), each Custom Application has a unique pair of User Permissions at its disposal: "view" and "manage."
 
 The values of the User Permissions are derived from the application `entryPointUriPath`.
 
@@ -35,7 +35,7 @@ This determines which links should be visible or not, depending on the permissio
 
 In case certain routes should not be accessible without proper User Permissions, you can render the route conditionally based on the evaluated permission.
 
-To do so you can use the `useIsAuthorized` React Hook from the `@commercetools-frontend/permissions` package.
+To do so you can use the `useIsAuthorized` React hook from the `@commercetools-frontend/permissions` package.
 
 ```js title="routes.js" highlightLines="10-12"
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
