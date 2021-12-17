@@ -7,7 +7,7 @@ type Meta = { processEnv: NodeJS.ProcessEnv; applicationPath: string };
  * Allows variable placeholders. Supported types are:
  * - `env`: For example `${env:MC_API_URL}`.
  * - `intl`: For example `${intl:en:Menu.title}`.
- * - `path`: For example `${path:./app.svg}`, or `${path:@commercetools-frontend/assets/application-icons/Rocket.svg}`.
+ * - `path`: For example `${path:./app.svg}`, or `${path:@commercetools-frontend/assets/application-icons/rocket.svg}`.
  */
 const variableSyntax = /\${([ ~:\w.'",\-/()@]+?)}/g;
 const envRefSyntax = /^env:/g;
