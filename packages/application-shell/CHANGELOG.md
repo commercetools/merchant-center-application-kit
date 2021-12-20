@@ -1,5 +1,49 @@
 # @commercetools-frontend/application-shell
 
+## 20.12.3
+
+### Patch Changes
+
+- [#2437](https://github.com/commercetools/merchant-center-application-kit/pull/2437) [`cc5c5f4a`](https://github.com/commercetools/merchant-center-application-kit/commit/cc5c5f4a2ee58207bbe326067c4c3eb344715b70) Thanks [@emmenko](https://github.com/emmenko)! - Expose helper function from `@commercetools-frontend/application-shell/ssr`, clean up duplicate in `@commercetools-frontend/cypress`.
+
+* [#2433](https://github.com/commercetools/merchant-center-application-kit/pull/2433) [`d65e29e4`](https://github.com/commercetools/merchant-center-application-kit/commit/d65e29e4eea4d1809abaa8cc82cc246c681dfa27) Thanks [@emmenko](https://github.com/emmenko)! - Replace `ts-jest/utils` with `jest-mock`, for using the `mocked` function.
+
+- [#2432](https://github.com/commercetools/merchant-center-application-kit/pull/2432) [`fe1a1bec`](https://github.com/commercetools/merchant-center-application-kit/commit/fe1a1bec55290cea5374db57f1ed0ab3f1274ce9) Thanks [@emmenko](https://github.com/emmenko)! - Expose helper functions to convert `entryPointUriPath` to resource accesses and permission keys:
+
+  - `entryPointUriPathToResourceAccesses`: returns a view/manage pair of resource access names based on the `entryPointUriPath`.
+  - `entryPointUriPathToPermissionKeys`: returns a view/manage pair of user permission keys based on the `entryPointUriPath`.
+
+  The helpers are exported from the main bundle `@commercetools-frontend/application-shell` (for client-side usage) and from a separate entry point bundle `@commercetools-frontend/application-shell/ssr` (for node/server-side usage).
+
+  > The helpers are only useful for the upcoming v21 release.
+
+  ```js
+  import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-shell/ssr';
+
+  export const entryPointUriPath = 'avengers';
+  export const PERMISSIONS =
+    entryPointUriPathToPermissionKeys(entryPointUriPath);
+  // PERMISSIONS === { View: 'ViewAvengers', Manage: 'ManageAvengers' }
+  ```
+
+* [#2433](https://github.com/commercetools/merchant-center-application-kit/pull/2433) [`d65e29e4`](https://github.com/commercetools/merchant-center-application-kit/commit/d65e29e4eea4d1809abaa8cc82cc246c681dfa27) Thanks [@emmenko](https://github.com/emmenko)! - Update dependencies
+
+* Updated dependencies [[`630ee1b5`](https://github.com/commercetools/merchant-center-application-kit/commit/630ee1b5d0c70c05104eaf4712b1db662fe8f8f7), [`d65e29e4`](https://github.com/commercetools/merchant-center-application-kit/commit/d65e29e4eea4d1809abaa8cc82cc246c681dfa27), [`d65e29e4`](https://github.com/commercetools/merchant-center-application-kit/commit/d65e29e4eea4d1809abaa8cc82cc246c681dfa27)]:
+  - @commercetools-frontend/assets@20.12.3
+  - @commercetools-frontend/actions-global@20.12.3
+  - @commercetools-frontend/application-components@20.12.3
+  - @commercetools-frontend/application-shell-connectors@20.12.3
+  - @commercetools-frontend/browser-history@20.12.3
+  - @commercetools-frontend/constants@20.12.3
+  - @commercetools-frontend/i18n@20.12.3
+  - @commercetools-frontend/l10n@20.12.3
+  - @commercetools-frontend/notifications@20.12.3
+  - @commercetools-frontend/permissions@20.12.3
+  - @commercetools-frontend/react-notifications@20.12.3
+  - @commercetools-frontend/sdk@20.12.3
+  - @commercetools-frontend/sentry@20.12.3
+  - @commercetools-frontend/url-utils@20.12.3
+
 ## 20.12.2
 
 ### Patch Changes
