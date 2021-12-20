@@ -1,5 +1,19 @@
 # @commercetools-frontend/cypress
 
+## 20.12.3
+
+### Patch Changes
+
+- [#2437](https://github.com/commercetools/merchant-center-application-kit/pull/2437) [`cc5c5f4a`](https://github.com/commercetools/merchant-center-application-kit/commit/cc5c5f4a2ee58207bbe326067c4c3eb344715b70) Thanks [@emmenko](https://github.com/emmenko)! - Expose helper function from `@commercetools-frontend/application-shell/ssr`, clean up duplicate in `@commercetools-frontend/cypress`.
+
+* [#2433](https://github.com/commercetools/merchant-center-application-kit/pull/2433) [`d65e29e4`](https://github.com/commercetools/merchant-center-application-kit/commit/d65e29e4eea4d1809abaa8cc82cc246c681dfa27) Thanks [@emmenko](https://github.com/emmenko)! - Replace `ts-jest/utils` with `jest-mock`, for using the `mocked` function.
+
+- [#2433](https://github.com/commercetools/merchant-center-application-kit/pull/2433) [`d65e29e4`](https://github.com/commercetools/merchant-center-application-kit/commit/d65e29e4eea4d1809abaa8cc82cc246c681dfa27) Thanks [@emmenko](https://github.com/emmenko)! - Update dependencies
+
+- Updated dependencies [[`cc5c5f4a`](https://github.com/commercetools/merchant-center-application-kit/commit/cc5c5f4a2ee58207bbe326067c4c3eb344715b70), [`630ee1b5`](https://github.com/commercetools/merchant-center-application-kit/commit/630ee1b5d0c70c05104eaf4712b1db662fe8f8f7), [`d65e29e4`](https://github.com/commercetools/merchant-center-application-kit/commit/d65e29e4eea4d1809abaa8cc82cc246c681dfa27), [`fe1a1bec`](https://github.com/commercetools/merchant-center-application-kit/commit/fe1a1bec55290cea5374db57f1ed0ab3f1274ce9), [`d65e29e4`](https://github.com/commercetools/merchant-center-application-kit/commit/d65e29e4eea4d1809abaa8cc82cc246c681dfa27)]:
+  - @commercetools-frontend/application-shell@20.12.3
+  - @commercetools-frontend/application-config@20.12.3
+
 ## 20.12.1
 
 ### Patch Changes

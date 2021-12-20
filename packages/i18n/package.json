@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/i18n",
-  "version": "20.12.1",
+  "version": "20.12.3",
   "description": "MC i18n messages",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -35,7 +35,7 @@
     "@babel/runtime": "7.16.5",
     "@babel/runtime-corejs3": "7.16.5",
     "@commercetools-community-kit/i18n": "^0.2.7",
-    "@commercetools-frontend/sentry": "20.12.1",
+    "@commercetools-frontend/sentry": "20.12.3",
     "@commercetools-uikit/i18n": "^12.2.9",
     "@emotion/react": "11.7.1",
     "@formatjs/icu-messageformat-parser": "2.0.15",

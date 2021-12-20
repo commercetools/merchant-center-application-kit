@@ -1,5 +1,11 @@
 # @commercetools-frontend/assets
 
+## 20.12.3
+
+### Patch Changes
+
+- [#2434](https://github.com/commercetools/merchant-center-application-kit/pull/2434) [`630ee1b5`](https://github.com/commercetools/merchant-center-application-kit/commit/630ee1b5d0c70c05104eaf4712b1db662fe8f8f7) Thanks [@emmenko](https://github.com/emmenko)! - Lowercase application icons
+
 ## 20.12.1
 
 ### Patch Changes
