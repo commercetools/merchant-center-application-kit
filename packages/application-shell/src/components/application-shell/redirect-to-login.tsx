@@ -8,9 +8,9 @@ import {
   trimLeadingAndTrailingSlashes,
 } from '@commercetools-frontend/url-utils';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
-import { buildOidcScope } from '../authenticated/helpers';
 import useIsServedByProxy from '../../hooks/use-is-served-by-proxy';
 import { OIDC_RESPONSE_TYPES } from '../../constants';
+import { buildOidcScope } from '../../utils/oidc';
 import * as oidcStorage from '../../utils/oidc-storage';
 import Redirector from '../redirector';
 import { getMcOrigin } from './helpers';
