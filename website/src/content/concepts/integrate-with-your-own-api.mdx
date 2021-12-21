@@ -46,39 +46,7 @@ All custom HTTP headers are sent to the Merchant Center API with a prefix `x-for
 
 ## Usage for Apollo
 
-We can leverage the `context` option for Apollo queries to adjust how request is configured and executed. The `@commercetools-frontend/application-shell` package now exposes an utility function to configure the Apollo context for the `/proxy/forward-to` usage.
-
-```js
-import {
-  createApolloContextForProxyForwardTo,
-  useMcQuery,
-} from '@commercetools-frontend/application-shell';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-
-const useExternalApiFetcher = () => {
-  // Assuming that the `custom-application-config.json` contains the custom value:
-  // `{ additionalEnv: { externalApiUrl: 'https://my-custom-app.com/graphql'} }`
-  const externalApiUrl = useApplicationContext(
-    context => context.environment.externalApiUrl
-  );
-  const { loading, data, error } = useMcQuery(MyQuery, {
-    context: createApolloContextForProxyForwardTo({
-      // The URL to your external API
-      uri: externalApiUrl,
-      // Optionally pass custom HTTP headers
-      headers: {
-        'x-foo': 'bar',
-      },
-    }),
-  });
-
-  return {
-    loading,
-    data,
-    error,
-  }
-};
-```
+We can leverage the `context` option for Apollo queries to adjust how request is configured and executed. The `@commercetools-frontend/application-shell` package now exposes an utility function to configure the Apollo context for the `/proxy/forward-to` usage. See [`createApolloContextForProxyForwardTo`](/api-reference/commercetools-frontend-application-shell#createapollocontextforproxyforwardto)
 
 ## Usage for SDK actions
 
@@ -177,15 +145,7 @@ The middleware requires some options:
 
   For example, given the external API is hosted at `https://my-api-server.com`, the `audience` value must be set to `https://my-api-server.com`.
 
-- `issuer` (_string_): Either a cloud identifier or a valid URL to the Merchant Center API Gateway. The cloud identifier maps to the Merchant Center API URL of the related [Cloud Region](/concepts/merchant-center-api#cloud-regions).
-
-  | Cloud Identifier | Merchant Center API Gateway URL |
-  | --- | --- |
-  | `gcp-au` | `https://mc-api.australia-southeast1.gcp.commercetools.com` |
-  | `gcp-eu` | `https://mc-api.europe-west1.gcp.commercetools.com` |
-  | `gcp-us` | `https://mc-api.us-central1.gcp.commercetools.com` |
-  | `aws-fra` | `https://mc-api.eu-central-1.aws.commercetools.com` |
-  | `aws-ohio` | `https://mc-api.us-east-2.aws.commercetools.com` |
+- `issuer` (_string_): Either a [cloud identifier](/concepts/merchant-center-api#cloud-identifiers) or a valid URL to the Merchant Center API Gateway.
 
 - `inferIssuer` (_boolean_): Determines whether the issuer should be inferred from the custom request HTTP header `x-mc-api-cloud-identifier` which is sent by the Merchant Center API Gateway when forwarding the request. This might be useful in case the server is used in multiple regions. **Default: `false`**
 
@@ -275,8 +235,8 @@ When we introduce a new version, the default version enters a **deprecation peri
 
 | Feature maturity     | Deprecation period |
 | -------------------- | ------------------ |
-| Beta                 | 4 months           |
-| General Availability | 12 months          |
+| Beta                 | 4 months           |
+| General Availability | 12 months          |
 
 The following table lists all the supported versions and the possible start date for their deprecation period:
 
@@ -291,3 +251,22 @@ We want to make the migration to a new version as simple as possible and abstrac
 
 For instance, changes related to `v2` are all included in the package `@commercetools-backend/express` and the data fetching components improvements (see [Proxying requests to the external API](#proxying-requests-to-external-api)).
 If you use those packages, you only need to follow the instructions in the release notes to update to new versions for the packages.
+
+# Related
+
+For more information on what to do next, we recommend the following sections:
+
+<Cards smallTitle clickable>
+  <Card
+    title="Merchant Center API"
+    href="/development/data-fetching"
+  >
+    Learn more about the Merchant Center API.
+  </Card>
+  <Card
+    title="Data Fetching"
+    href="/development/data-fetching"
+  >
+    Learn more about fetching data via Merchant Center API.
+  </Card>
+</Cards>
