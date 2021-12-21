@@ -4,19 +4,19 @@ title: Application Config
 
 import ApplicationIcons from '../../components/application-icons.js'
 
-A Custom Application requires some minimal configuration to be able to work, for example which [Cloud Region](/concepts/merchant-center-api#cloud-regions) to use, the identifier of the application, the required [OAuth Scopes](/concepts/oauth-scopes-and-user-permissions), and so on.
+<Subtitle>
 
-The configuration of a Custom Application is defined in a JSON file `custom-application-config.json` in the root of your project directory (next to `package.json`).
+A Custom Application configuration file defines the necessary requirements to develop and build your application.
+
+</Subtitle>
+
+The configuration of a Custom Application is typically defined in a JSON file `custom-application-config.json` in the root of your project directory (next to `package.json`).
 
 # Supported file extensions
 
+The configuration file can be defined in different syntax formats but it is expected that the file is named `custom-application-config`.
+
 The following file extensions can be used: `.json`, `.js`, `.cjs`, `.mjs`, `.ts`.
-
-<Info>
-
-The file extensions `.js`, `.cjs`, `.mjs`, `.ts` are only supported from version `>= 20.9.0`. These can be used in cases where the information you need to provide must be imported from another file, for example a constants file or something similar.
-
-</Info>
 
 For example:
 
