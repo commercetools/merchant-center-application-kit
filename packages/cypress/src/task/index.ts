@@ -30,16 +30,16 @@ const loadEnvironmentVariables = (
     const envPath = path.join(packageDirPath, dotfile);
 
     if (!fs.existsSync(envPath)) {
-      console.error(`Skipping loading of ${dotfile} from ${packageDirPath}`);
       return mergedEnvs;
     }
 
     const env = require('dotenv').config({ path: envPath });
     if (env.error) {
-      console.error(`Failed to load ${dotfile} from ${packageDirPath}`);
+      console.error(`Failed to load environment variables from ${envPath}`);
       return mergedEnvs;
     }
 
+    console.log(`Loading environment variables from ${envPath}`);
     return {
       ...mergedEnvs,
       ...env.parsed,
@@ -58,9 +58,6 @@ const loadAllCustomApplicationConfigs = async (
   const { packages } = await getPackages(process.cwd());
   cachedAllCustomApplicationConfigs =
     packages.reduce<AllCustomApplicationConfigs>((allConfigs, packageInfo) => {
-      console.log(
-        `Reading Custom Application config for ${packageInfo.packageJson.name}`
-      );
       const processEnv = loadEnvironmentVariables(packageInfo.dir, options);
       try {
         const processedConfig = processConfig({
@@ -68,6 +65,9 @@ const loadAllCustomApplicationConfigs = async (
           processEnv,
           applicationPath: packageInfo.dir,
         });
+        console.log(
+          `Found Custom Application config for ${packageInfo.packageJson.name}`
+        );
         return {
           ...allConfigs,
           [processedConfig.env.entryPointUriPath]: processedConfig.env,
@@ -102,6 +102,9 @@ const customApplicationConfig = async (
     );
   }
 
+  console.log(
+    `Using Custom Application config for "${options.entryPointUriPath}"`
+  );
   return customApplicationConfig;
 };
 
