@@ -44,6 +44,8 @@ describe('rendering', () => {
           text: 'Something went wrong',
         },
       ]);
+    });
+    it('should render the <CustomComponent> notification component', async () => {
       renderComponent(
         <NotificationProviderForCustomComponent
           mapNotificationToComponent={mapNotificationToComponent}
@@ -51,8 +53,6 @@ describe('rendering', () => {
           <NotificationsList domain={NOTIFICATION_DOMAINS.PAGE} />
         </NotificationProviderForCustomComponent>
       );
-    });
-    it('should render the <CustomComponent> notification component', async () => {
       await screen.findByText('Custom component');
     });
   });
@@ -68,11 +68,11 @@ describe('rendering', () => {
             text: 'Something went wrong',
           },
         ]);
+      });
+      it('should render the GenericNotification notification component', async () => {
         renderComponent(
           <NotificationsList domain={NOTIFICATION_DOMAINS.PAGE} />
         );
-      });
-      it('should render the GenericNotification notification component', async () => {
         await screen.findByText('Something went wrong');
       });
     });
@@ -96,11 +96,11 @@ describe('rendering', () => {
             },
           },
         ]);
+      });
+      it('should render the ApiErrorNotification notification component', async () => {
         renderComponent(
           <NotificationsList domain={NOTIFICATION_DOMAINS.PAGE} />
         );
-      });
-      it('should render the ApiErrorNotification notification component', async () => {
         await screen.findByText(
           /we were unable to save your changes as someone else made changes to this same source while you were editing/
         );
@@ -118,11 +118,11 @@ describe('rendering', () => {
             values: {},
           },
         ]);
+      });
+      it('should render the UnexpectedErrorNotification notification component', async () => {
         renderComponent(
           <NotificationsList domain={NOTIFICATION_DOMAINS.PAGE} />
         );
-      });
-      it('should render the UnexpectedErrorNotification notification component', async () => {
         await screen.findByText(/Sorry, but there seems to be something wrong/);
       });
     });
@@ -139,11 +139,11 @@ describe('rendering', () => {
             text: 'Something went wrong',
           },
         ]);
+      });
+      it('should render the GenericNotification notification component', async () => {
         renderComponent(
           <NotificationsList domain={NOTIFICATION_DOMAINS.GLOBAL} />
         );
-      });
-      it('should render the GenericNotification notification component', async () => {
         await screen.findByText('Something went wrong');
       });
     });
@@ -158,11 +158,11 @@ describe('rendering', () => {
             values: {},
           },
         ]);
+      });
+      it('should render the UnexpectedErrorNotification notification component', async () => {
         renderComponent(
           <NotificationsList domain={NOTIFICATION_DOMAINS.GLOBAL} />
         );
-      });
-      it('should render the UnexpectedErrorNotification notification component', async () => {
         await screen.findByText(/Sorry, but there seems to be something wrong/);
       });
     });
@@ -179,11 +179,11 @@ describe('rendering', () => {
             text: 'Something went wrong',
           },
         ]);
+      });
+      it('should render the GenericNotification notification component', async () => {
         renderComponent(
           <NotificationsList domain={NOTIFICATION_DOMAINS.SIDE} />
         );
-      });
-      it('should render the GenericNotification notification component', async () => {
         await screen.findByText('Something went wrong');
       });
     });
