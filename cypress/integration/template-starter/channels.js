@@ -5,6 +5,7 @@ describe('Channels', () => {
     cy.loginByOidc({ entryPointUriPath: ENTRY_POINT_TEMPLATE_STARTER });
   });
   it('should render page', () => {
+    cy.findByText('Fetching channels').click();
     cy.get('main').within(() => {
       cy.findByText('Channels list').should('exist');
     });
