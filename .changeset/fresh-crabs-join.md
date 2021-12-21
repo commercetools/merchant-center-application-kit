@@ -13,4 +13,6 @@ Following breaking changes were introduced:
 - The `ENABLE_OIDC_FOR_DEVELOPMENT` is now the default behavior.
 - The deprecated `menu.json` file and the `DEV_ONLY_` props have been removed.
 
+Note that if you were testing your Custom Application with Cypress, you need to use the `@commercetools-frontend/cypress` package to be able to use the `cy.loginByOidc` command.
+
 For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-25-custom-applications-v21).
