@@ -65,7 +65,6 @@
     "@flopflip/launchdarkly-adapter": "5.0.21",
     "@flopflip/react-broadcast": "12.2.13",
     "@flopflip/types": "4.1.20",
-    "@types/classnames": "2.3.1",
     "@types/common-tags": "^1.8.1",
     "@types/history": "4.7.11",
     "@types/lodash": "^4.14.178",
