@@ -1,7 +1,8 @@
-import type { SingleValueProps } from 'react-select';
+import type { SingleValueProps, ValueContainerProps } from 'react-select';
 import type { SelectInputOption } from '@commercetools-uikit/select-input';
 
 import { useCallback } from 'react';
+import { components } from 'react-select';
 import { css } from '@emotion/react';
 import SelectInput from '@commercetools-uikit/select-input';
 import { WorldIcon } from '@commercetools-uikit/icons';
@@ -53,6 +54,16 @@ export const SingleValue = (props: CustomSingleValueProps) => (
 );
 SingleValue.displayName = 'SingleValue';
 
+const PatchedValueContainer = (
+  props: ValueContainerProps<SelectInputOption, false>
+) => (
+  <components.ValueContainer
+    {...props}
+    innerProps={{ style: { display: 'flex' } }}
+  />
+);
+PatchedValueContainer.displayName = 'PatchedValueContainer';
+
 const LocaleSwitcher = (props: Props) => {
   const { setProjectDataLocale } = props;
   const handleSelection = useCallback(
@@ -79,7 +90,6 @@ const LocaleSwitcher = (props: Props) => {
           value: locale,
         }))}
         components={{
-          // eslint-disable-next-line react/display-name
           SingleValue: (
             valueProps: SingleValueProps<SelectInputOption, false>
           ) => (
@@ -88,6 +98,7 @@ const LocaleSwitcher = (props: Props) => {
               localeCount={props.availableLocales.length}
             />
           ),
+          ValueContainer: PatchedValueContainer,
         }}
         isClearable={false}
         backspaceRemovesValue={false}
