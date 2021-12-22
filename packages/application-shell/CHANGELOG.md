@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 20.12.4
+
+### Patch Changes
+
+- [#2440](https://github.com/commercetools/merchant-center-application-kit/pull/2440) [`a324f506`](https://github.com/commercetools/merchant-center-application-kit/commit/a324f5067fa2e6c2a1d63e2deccc6297a30b4fe9) Thanks [@emmenko](https://github.com/emmenko)! - Fix container style for locale switcher component (due to internal changes in `react-select` v5).
+
 ## 20.12.3
 
 ### Patch Changes
