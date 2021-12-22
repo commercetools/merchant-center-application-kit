@@ -191,9 +191,7 @@ const ProjectSwitcher = (props: Props) => {
           option.suspension.isActive || option.expiry.isActive
         }
         components={{
-          // eslint-disable-next-line react/display-name
-          Option: (optionsProps) => <ProjectSwitcherOption {...optionsProps} />,
-          // eslint-disable-next-line react/display-name
+          Option: ProjectSwitcherOption,
           ValueContainer: (valueContainerProps) => (
             <ProjectSwitcherValueContainer
               {...valueContainerProps}
