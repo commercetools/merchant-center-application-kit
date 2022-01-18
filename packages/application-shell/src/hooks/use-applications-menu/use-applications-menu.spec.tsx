@@ -199,7 +199,7 @@ describe('for production usage', () => {
         ],
         enableApolloMocks: true,
       });
-      await waitForElementToBeRemoved(screen.queryByText('loading'));
+      await waitForElementToBeRemoved(() => screen.queryByText('loading'));
       expect(screen.getByText('Orders')).toBeInTheDocument();
       expect(screen.getByText('Orders new')).toBeInTheDocument();
       expect(screen.getByText('Path: orders')).toBeInTheDocument();
