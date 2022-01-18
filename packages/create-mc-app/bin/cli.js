@@ -3,12 +3,15 @@
 const mri = require('mri');
 const Listr = require('listr');
 const {
+  isValidNodeVersion,
   shouldUseYarn,
   tasks,
   hintOutdatedVersion,
   parseArguments,
 } = require('../src');
 const pkg = require('../package.json');
+
+isValidNodeVersion(process.versions.node, pkg.engines.node);
 
 const currentVersion = pkg.version;
 
@@ -38,6 +41,12 @@ async function execute() {
   console.log(`Version: v${currentVersion}`);
   hintOutdatedVersion(currentVersion);
   console.log('');
+
+  console.log(
+    `Documentation available at https://docs.commercetools.com/custom-applications`
+  );
+  console.log('');
+
   const options = await parseArguments(flags);
 
   const taskList = new Listr(

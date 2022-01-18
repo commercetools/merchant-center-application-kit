@@ -1,5 +1,20 @@
 const fs = require('fs');
 const execa = require('execa');
+const semver = require('semver');
+
+const isValidNodeVersion = (currentNodeVersion, expectedVersionRange) => {
+  const hasValidNodeVersion = semver.satisfies(
+    currentNodeVersion,
+    expectedVersionRange
+  );
+
+  if (!hasValidNodeVersion) {
+    console.error(
+      `You are running Node ${currentNodeVersion} but create-mc-app requires Node ${expectedVersionRange}. Please update your version of Node.`
+    );
+    process.exit(1);
+  }
+};
 
 const isSemVer = (version) => /^(v?)([0-9].[0-9].[0-9])+/.test(version);
 
@@ -31,6 +46,7 @@ const resolveFilePathByExtension = (requestedModule) => {
 };
 
 module.exports = {
+  isValidNodeVersion,
   isSemVer,
   shouldUseYarn,
   slugify,

@@ -6,6 +6,7 @@ const crypto = require('crypto');
 const {
   throwIfTemplateIsNotSupported,
   throwIfProjectDirectoryExists,
+  throwIfInitialProjectKeyIsMissing,
 } = require('./validations');
 const { isSemVer } = require('./utils');
 
@@ -53,8 +54,9 @@ module.exports = async function parseArguments(flags) {
   // Read prompts
   const entryPointUriPath = await getEntryPointUriPath(flags);
   const initialProjectKey = await question(
-    `Provide the initial project key for local development (optional): `
+    `Provide the initial project key for local development: `
   );
+  throwIfInitialProjectKeyIsMissing(initialProjectKey);
 
   rl.close();
 
