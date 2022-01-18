@@ -162,6 +162,7 @@
     "@babel/preset-env": "7.16.4",
     "@jest/types": "27.4.2",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.3",
+    "@types/eslint": "^8.2.2",
     "@types/puppeteer": "5.4.4",
     "@types/react": "17.0.37",
     "@types/react-dom": "17.0.11",
