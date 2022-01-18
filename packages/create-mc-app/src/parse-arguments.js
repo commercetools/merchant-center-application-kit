@@ -26,14 +26,19 @@ const getEntryPointUriPath = async (flags) => {
   const randomEntryPointUriPath = `${templateName}-${crypto
     .randomBytes(3)
     .toString('hex')}`;
+
+  if (flags.yes) {
+    return randomEntryPointUriPath;
+  }
+
   const answerEntryPointUriPath = await question(
     `Provide the Custom Application entryPointUriPath (default "${randomEntryPointUriPath}"): `
   );
   return answerEntryPointUriPath || randomEntryPointUriPath;
 };
 const getInitialProjectKey = async (flags) => {
-  if (flags['intial-project-key']) {
-    return flags['intial-project-key'];
+  if (flags['initial-project-key']) {
+    return flags['initial-project-key'];
   }
 
   const initialProjectKey = await question(
