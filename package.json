@@ -158,7 +158,6 @@
     "vfile-message": "3.1.0"
   },
   "resolutions": {
-    "@babel/core": "7.16.0",
     "@babel/preset-env": "7.16.4",
     "@jest/types": "27.4.2",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.3",
