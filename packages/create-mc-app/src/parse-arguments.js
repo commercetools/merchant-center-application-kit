@@ -31,6 +31,19 @@ const getEntryPointUriPath = async (flags) => {
   );
   return answerEntryPointUriPath || randomEntryPointUriPath;
 };
+const getInitialProjectKey = async (flags) => {
+  if (flags['intial-project-key']) {
+    return flags['intial-project-key'];
+  }
+
+  const initialProjectKey = await question(
+    `Provide the initial project key for local development: `
+  );
+
+  throwIfInitialProjectKeyIsMissing(initialProjectKey);
+
+  return initialProjectKey;
+};
 
 module.exports = async function parseArguments(flags) {
   const [projectDirectoryName] = flags._;
@@ -53,10 +66,7 @@ module.exports = async function parseArguments(flags) {
 
   // Read prompts
   const entryPointUriPath = await getEntryPointUriPath(flags);
-  const initialProjectKey = await question(
-    `Provide the initial project key for local development: `
-  );
-  throwIfInitialProjectKeyIsMissing(initialProjectKey);
+  const initialProjectKey = await getInitialProjectKey(flags);
 
   rl.close();
 

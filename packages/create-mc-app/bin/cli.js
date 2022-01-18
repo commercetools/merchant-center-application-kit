@@ -33,8 +33,9 @@ async function execute() {
     --template <name>               (optional) The name of the template to install [default "starter"]
                                     Available options: ["starter"]
     --template-version <version>    (optional) The version of the template to install [default "main"]
-    --entry-point-uri-path <value>  (optional) The version of the template to install [default "starter-<hash>"]
     --skip-install                  (optional) Skip installing the dependencies after cloning the template [default "false"]
+    --entry-point-uri-path <value>  (optional) The version of the template to install [default "starter-<hash>"]
+    --intial-project-key <value>    (optional) A commercetools project key used for the initial login in development. By default, the value is prompted in the terminal.
     `);
     process.exit(0);
   }

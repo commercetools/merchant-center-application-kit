@@ -56,6 +56,7 @@ shelljs.exec(
     applicationName,
     '--template=starter',
     `--template-version=${branchName}`,
+    `--intial-project-key=${process.env.CTP_INITIAL_PROJECT_KEY}`,
     // Don't install deps automatically, we need to patch the package.json to use the
     // local tarballs for resolving the dependencies.
     '--skip-install',
