@@ -93,7 +93,7 @@ jobs:
         env:
           APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
           MC_API_URL: ${{ secrets.MC_API_URL }}
-          CTP_INITIAL_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
+          CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
           HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
 
       - name: Running End-to-End tests for Playground application
@@ -104,11 +104,11 @@ jobs:
           CYPRESS_CI: "true"
           CYPRESS_LOGIN_USER: ${{ secrets.CYPRESS_LOGIN_USER }}
           CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
-          CYPRESS_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
+          CYPRESS_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
           HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
           APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
           MC_API_URL: ${{ secrets.MC_API_URL }}
-          CTP_INITIAL_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
+          CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
       - name: Deploying Playground application to Vercel (production)
         if: github.ref == 'refs/heads/main'
@@ -121,7 +121,7 @@ jobs:
       - name: Building Starter template application
         run: yarn template-starter:build
         env:
-          CTP_INITIAL_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
+          CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
       - name: Running End-to-End tests for Starter template application
         run: yarn start-server-and-test 'yarn template-starter:start:prod:local' 3001 'yarn percy exec -- yarn test:e2e:template-starter'
@@ -131,11 +131,11 @@ jobs:
           CYPRESS_CI: "true"
           CYPRESS_LOGIN_USER: ${{ secrets.CYPRESS_LOGIN_USER }}
           CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
-          CYPRESS_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
+          CYPRESS_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
           HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
           APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
           MC_API_URL: ${{ secrets.MC_API_URL }}
-          CTP_INITIAL_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
+          CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
       - name: Uploading Cypress artifacts
         uses: actions/upload-artifact@v2
