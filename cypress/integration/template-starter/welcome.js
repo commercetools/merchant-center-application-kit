@@ -9,6 +9,7 @@ describe('Welcome', () => {
       'exist'
     );
     cy.findByText('Processing...').should('not.exist');
+    cy.findByText('Fetching channels').should('exist');
     cy.percySnapshot();
   });
 });
