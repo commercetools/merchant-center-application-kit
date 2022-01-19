@@ -4,7 +4,7 @@ title: Merchant Center Proxy Router
 
 When you navigate through the Merchant Center, you can switch between the different Custom Applications available in your projects, no matter if they are commercetools native applications or something developed externally.
 
-You might have noticed that the URL of the Merchant Center is always using the same origin, and only the URI part changes depending on the project and application.
+You might have noticed that the URL of the Merchant Center is always using the same origin, and only the URI part changes depending on the Project and application.
 
 ```
 https://mc.<cloud-region>.commercetools.com/:projectKey/dashboard
@@ -21,11 +21,11 @@ This way it looks like you are using one single web application even though unde
 Every initial request to render the page goes through a server component called **Merchant Center Proxy Router**.<br />
 This server is primarily responsible for matching the incoming request to the appropriate Custom Application and to forward the request to the actual location of the Custom Application. The response then should be serving the `index.html` of the Custom Application.
 
-For example, the user tries to access the `/:projectKey/products` URL. The request goes through the Proxy Router which successfully matches the `products` identifier. The Proxy Router then loads the related configuration for the Products application (assuming that the application is installed for the given `projectKey`) and forwards the request to the location where the Custom Application is hosted. The `index.html` is then returned as a response and the Proxy Router forwards that to the browser. The Products application renders.
+For example, the User tries to access the `/:projectKey/products` URL. The request goes through the Proxy Router which successfully matches the `products` identifier. The Proxy Router then loads the related configuration for the Products application (assuming that the application is installed for the given `projectKey`) and forwards the request to the location where the Custom Application is hosted. The `index.html` is then returned as a response and the Proxy Router forwards that to the browser. The Products application renders.
 
 The same principle applies to any Custom Application:
 1. Matching of the `entryPointUriPath`.
-2. Loading configuration of Custom Application based on the project access.
+2. Loading configuration of Custom Application based on the Project access.
 3. Forwarding of request to Custom Application URL.
 4. Serving of `index.html`.
 

@@ -212,14 +212,14 @@ This should give you a basic idea on how you can approach testing your Custom Ap
 
 ## Testing User Permissions
 
-User permissions are bound to a `project` and can vary depending on the permissions assigned to the Team where the user is a member of.
+User permissions are bound to a `project` and can vary depending on the permissions assigned to the Team where the User is a member of.
 
 By default, the [`test-utils`](/api-reference/commercetools-frontend-application-shell#test-utils) do not assign any pre-defined permissions. You need to explicitly provide them in your test setup. The following fields can be used to assign the different granular permission values:
 
-* `project.allAppliedPermissions`: A list of applied resource permissions that the user should have for the given project. A resource permission is an object with the following shape:
+* `project.allAppliedPermissions`: A list of applied resource permissions that the User should have for the given Project. A resource permission is an object with the following shape:
 
   * `name`: The name of the User Permissions prefixed with `can`. For example `canViewChannels`.
-  * `value`: If `true`, the resource permission is applied to the user.
+  * `value`: If `true`, the resource permission is applied to the User.
 
 In our example application, we can apply this as following:
 

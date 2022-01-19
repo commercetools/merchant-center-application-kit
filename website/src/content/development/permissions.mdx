@@ -6,11 +6,11 @@ As we learned in [OAuth Scopes and User Permissions](/concepts/oauth-scopes-and-
 
 The values of the User Permissions are derived from the application `entryPointUriPath`.
 
-When developing a Custom Application you might want to enforce these User Permissions in some parts of your application. For example, performing certain actions like creating, or updating, or deleting a resource should only be possible if the user has "manage" permission.
+When developing a Custom Application you might want to enforce these User Permissions in some parts of your application. For example, performing certain actions like creating, or updating, or deleting a resource should only be possible if the User has "manage" permission.
 
 # Applying User Permissions
 
-A Custom Application allows to easily check and evaluate if certain User Permissions are assigned or not, making it possible to determine whether to render something or not, or to disable some UI functionalities or not, and so on.
+A Custom Application allows to easily check and evaluate if certain User Permissions are assigned or not, making it possible to determine whether to render something or not, or to turn off some UI functionalities or not, and so on.
 
 ## In menu links
 
@@ -29,7 +29,7 @@ In the Custom Application config, the menu links allow to define the level of re
 }
 ```
 
-This determines which links should be visible or not, depending on the permissions assigned to the user.
+This determines which links should be visible or not, depending on the permissions assigned to the User.
 
 ## In routes
 

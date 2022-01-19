@@ -37,20 +37,20 @@ The documentation for Project-level Custom Applications [remains available](http
 </Info>
 
 Up until now, Project-level Custom Applications had to be defined on a per Project level (hence the term) under **Settings > Custom Applications**. After registering a new Custom Application you could activate it and start using it.
-However, the Custom Application was only available for that specific project. If you wanted to use the Custom Application in another project, you would need to go through the registration process all over again.
+However, the Custom Application was only available for that specific Project. If you wanted to use the Custom Application in another Project, you would need to go through the registration process all over again.
 
 With the introduction of Org-level Custom Applications we intend to improve that process and enable new features for the time being and for the future.
 
-What this means is that managing Custom Applications is done now at the organization level rather than the project level. One of the main advantages is being able to **configure a Custom Application once, and use it in multiple projects**.
+What this means is that managing Custom Applications is done now at the Organization level rather than the Project level. One of the main advantages is being able to **configure a Custom Application once, and use it in multiple projects**.
 
 # OAuth Scopes and User Permissions
 
-Up until now, Project-level Custom Applications weren't able to define which [OAuth Scopes](https://docs.commercetools.com/api/scopes) of the commercetools Platform were needed and could only rely on the "implicit" OAuth Scopes defined for User Permissions of the "native" Merchant Center applications ("Organizations > Teams > Permissions").
+Up until now, Project-level Custom Applications weren't able to define which [OAuth Scopes](https://docs.commercetools.com/api/scopes) of the commercetools Platform were needed and could only rely on the "implicit" OAuth Scopes defined for User Permissions of the "native" Merchant Center applications (**Organizations > Teams > Permissions**).
 
-Let us look at an example. The User Permission `ViewProducts` maps internally to some OAuth Scopes, like `view_products`, `view_states`, `view_types`, etc. If a Custom Application had to use the [States API](https://docs.commercetools.com/api/projects/states), it would need to use the `ViewProducts` permission in order to properly authorize the user to perform the API requests.
+Let us look at an example. The User Permission `ViewProducts` maps internally to some OAuth Scopes, like `view_products`, `view_states`, `view_types`, etc. If a Custom Application had to use the [States API](https://docs.commercetools.com/api/projects/states), it would need to use the `ViewProducts` permission to properly authorize the User to perform the API requests.
 Therefore, using the `ViewProducts` permission makes the Custom Application work **by chance** to be able to interact with the States API.
 
-What if this mapping of User Permissions and OAuth Scopes changes? Suddenly Custom Applications relying on this **undocumented and implicit** behavior will stop working.
+What if this mapping of User Permissions and OAuth Scopes changes? Custom Applications relying on this **undocumented and implicit** behavior will stop working.
 Furthermore, if a Custom Application requires to use a platform API with OAuth Scopes that are not mapped to any User Permissions, it won't be even possible.
 
 With the introduction of Org-level Custom Applications we intend to change this behavior and empower Custom Applications to take control of their requirements.
@@ -68,7 +68,7 @@ For instance, in the Custom Application config you would configure the OAuth Sco
 ```
 
 This mapping means that OAuth Scopes defined in the `view` field are assigned to the "view" permission and OAuth Scopes defined in the `manage` field are assigned to the "manage" permission.
-The new User Permissions pair (view/manage) of each Custom Application can then be assigned in the "Organizations > Teams > Permissions" settings, like any other permission.
+The new User Permissions pair (view/manage) of each Custom Application can then be assigned in the **Organizations > Teams > Permissions** settings, like any other permission.
 
 As a result, Custom Applications OAuth Scopes and User Permissions become completely **decoupled** from the "native" Merchant Center applications and allow to actually fulfill many more use cases for Custom Applications.
 
@@ -156,7 +156,7 @@ The `entryPointUriPath` value must adhere to the following restrictions:
 * Must be between 2 and 64 characters.
 * Underscores and hyphens are allowed except as leading, trailing, and adjacent characters.
 
-Furthermore, the `entryPointUriPath` value is tightly bound to User Permissions of the Custom Application and is used to derive the unique name of the User Permissions.<br />
+Furthermore, the `entryPointUriPath` value is bound to User Permissions of the Custom Application and is used to derive the unique name of the User Permissions.<br />
 The name consists of the following format: `{View,Manage}<EntryPointUriPath>`.
 
 Here are some examples:
@@ -217,16 +217,16 @@ If you are already using this feature via the opt-in environment variable `ENABL
 
 </Info>
 
-In order to make use of the [OAuth Scopes and User Permissions](#oauth-scopes-and-user-permissions) in local development, even though the Custom Application hasn't been configured in the Merchant Center yet, the login workflow works a bit differently from before.
+To make use of the [OAuth Scopes and User Permissions](#oauth-scopes-and-user-permissions) in local development, even though the Custom Application hasn't been configured in the Merchant Center yet, the login workflow works a bit differently from before.
 
 Starting the Custom Application locally now redirects you to the login page of the Merchant Center production environment (as defined in the Custom Application config). Upon successful login, you are redirected back to your local development server with a valid session.
-The session is saved in the `sessionStorage` (not a cookie like in the production environments) and is sent with each API request as an HTTP `Authorization` header. It has a short expiration time (hours, not days) and is bound by default to the project specified in the `env.development.initialProjectKey` and the OAuth Scopes specified in the `oAuthScopes` config field.
+The session is saved in the `sessionStorage` (not a cookie like in the production environments) and is sent with each API request as an HTTP `Authorization` header. It has a short expiration time (hours, not days) and is bound by default to the Project specified in the `env.development.initialProjectKey` and the OAuth Scopes specified in the `oAuthScopes` config field.
 
-You can still switch between projects and the session token is automatically replaced in the background without having to log in again.
+You can still switch between Projects and the session token is automatically replaced in the background without having to log in again.
 
 <Warning>
 
-Local development and login is only allowed for users being part of the `Administrators` team of your organization.
+Local development and login is only allowed for users being part of the `Administrators` Team of your Organization.
 
 </Warning>
 
@@ -240,7 +240,7 @@ As long as you are developing the Custom Application locally, you can define any
 
 </Info>
 
-The Custom Application ID is provided when you add a Custom Application in the Merchant Center ("Organizations > Custom Applications > Configure > Add"). See [Managing Custom Applications in the Merchant Center](https://docs.commercetools.com/merchant-center/custom-applications) for more information.
+The Custom Application ID is provided when you add a Custom Application in the Merchant Center (**Organizations > Custom Applications > Configure > Add**). See [Managing Custom Applications in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications) for more information.
 
 ## Use the new Custom Application in the Merchant Center
 
@@ -252,20 +252,20 @@ We recommend informing your company and colleagues that are using the Custom App
 
 </Info>
 
-In general, before deploying the new changes, you should configure the Custom Application in the Merchant Center first (see [Managing Custom Applications in the Merchant Center](https://docs.commercetools.com/merchant-center/custom-applications)) and assign the `applicationId` to the Custom Application config file.
+In general, before deploying the new changes, you should configure the Custom Application in the Merchant Center first (see [Managing Custom Applications in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications)) and assign the `applicationId` to the Custom Application config file.
 
 At this point we recommend deactivating and removing the "old" Custom Application. You can then proceed with the deployment of the new setup.
 
-Finally, you need to install the Custom Application in your organization and grant access to one or more projects.
+Finally, you need to install the Custom Application in your Organization and grant access to one or more projects.
 The Custom Application can now be used.
 
 ## Assign User Permissions to Teams
 
 One of the new features of the Org-level Custom Applications is the ability to assign [OAuth Scopes and User Permissions](#oauth-scopes-and-user-permissions) to each Custom Application.
-Once the Custom Application has been installed to an organization, admins of the organization can [assign User Permissions to each team](https://docs.commercetools.com/merchant-center/user-permissions).
+Once the Custom Application has been installed to an Organization, admins of the Organization can [assign User Permissions to each Team](https://docs.commercetools.com/merchant-center/user-permissions).
 
 <Info>
 
-As usual, User Permissions for the `Administrators` team are automatically managed when project access is granted or removed.
+As usual, User Permissions for the `Administrators` Team are automatically managed when Project access is granted or removed.
 
 </Info>

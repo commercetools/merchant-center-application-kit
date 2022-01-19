@@ -20,7 +20,7 @@ These regions are completely isolated from each other and no data is transferred
 <Info>
 
 Platform accounts created for one region are not valid for the other regions. A [signup](https://docs.commercetools.com/tutorials/getting-started) is required for each region individually.
-In case you need advice in which region your project should be located, please contact [commercetools support](https://support.commercetools.com).
+In case you need advice in which region your Project should be located, please contact [commercetools support](https://support.commercetools.com).
 
 </Info>
 
@@ -78,9 +78,9 @@ In local development the authentication is handled a bit differently using a OID
 
 ## Obtaining a session token
 
-The session token `mcAccessToken` is granted upon user login and is stored in a **secure cookie** in the browser.
+The session token `mcAccessToken` is granted upon User login and is stored in a **secure cookie** in the browser.
 
-The Merchant Center API provides 2 endpoints for authenticating a user:
+The Merchant Center API provides 2 endpoints for authenticating a User:
 
 - `/tokens`: For normal login using `email` and `password`.
 - `/tokens/sso`: For login using an `idToken` from an SSO workflow (see [Single-Sign-On](https://docs.commercetools.com/merchant-center/single-sign-on-beta)).
@@ -95,7 +95,7 @@ When you develop a Custom Application all authentication logic is handled implic
 
 The Merchant Center API primarily acts as an API Gateway with the following responsibilities:
 
-* Verifying the user session.
+* Verifying the User session.
 * Routing the request to the correct route handler, specific to the targeted API.
 * Making sure that requests to the targeted APIs are properly authenticated and authorized ([OAuth Scopes and User Permissions](/concepts/oauth-scopes-and-user-permissions)).
 

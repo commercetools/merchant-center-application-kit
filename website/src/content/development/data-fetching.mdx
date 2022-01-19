@@ -121,7 +121,7 @@ const Channels = (props) => {
 
 For more information about using the `error` from Apollo Client, see [Error handling](https://www.apollographql.com/docs/react/data/error-handling/).
 
-In our case we simply want to print out the `error.graphQLErrors`. We can attempt to do that by implementing a helper function like this:
+In our case we just want to print out the `error.graphQLErrors`. We can attempt to do that by implementing a helper function like this:
 
 ```js title="channels.js"
 const getErrorMessage = (error) =>
