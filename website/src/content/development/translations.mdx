@@ -94,10 +94,17 @@ The `react-intl` library also provides an [imperative API](https://formatjs.io/d
 Using the `intl` object is usually necessary for props that only accept strings, for example `aria-label`, `title`, etc.
 
 ```js
-<FlatButton
-  label={intl.formatMessage(messages.save)}
-  // ...
-/>
+import { useIntl } from 'react-intl';
+
+const Button = () => {
+  const intl = useIntl();
+  return (
+    <FlatButton
+      label={intl.formatMessage(messages.save)}
+      // ...
+    />
+  )
+}
 ```
 
 # Extracting messages for translations

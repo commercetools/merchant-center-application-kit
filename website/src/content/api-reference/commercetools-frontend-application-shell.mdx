@@ -67,9 +67,9 @@ export default EntryPoint;
 | -------------------------------- | ------------------ | :---------------------: | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `applicationMessages`            | `object` or `func` |           ✅            | -       | This is either an object containing all the translated messages, grouped by locale (`{ "en": { "Welcome": "Welcome" }, "de": { "Welcome": "Wilkommen" }}`), or a function that returns a Promise that resolves to such an object. The function is called with a `locale` parameter. See [Using the messages in the application](/development/translations#using-the-messages-in-the-application).                                                                                                                                                                |
 | `environment`                  | `object`           |           ✅            | -       | The application runtime environment, which is exposed in `window.app`. See [Runtime configuration](/development/application-config#runtime-application-environment).                                                                                                                                                                                                                                                                                                                                                       |
-| `render`                         | `func`             |           ✅ (*)           | -       | The render function is called when the `<ApplicationShell>` is ready to render the actual application. This is the case when the required data (user, project) has been fetched and the application context has been initialized. See also `children` to opt-into the new behavior to simplify the setup. The `render` prop still continues to be supported.                                                                                                                                                                                                                                  |
 | `children`                         | `node`             |           ✅ (*)            | -       | Instead of using the `render` prop, render your application component as children of `<ApplicationShell>`. By doing so, the `<ApplicationShell>` pre-configures the main application routes according to the `entryPointUriPath` defined in the `custom-application-config.json`. This is an opt-int behavior as a replacement of the `render` prop, to simplify the entry point setup.                                                                                                                                                                                                                                    |
-| `trackingEventList`         | `object`           |                       | -       | An optional object containing a map of tracking events.                                                                                                                                                                                                                                        |
+| `render`                         | `func`             |            (*)           | -       | The render function is called when the `<ApplicationShell>` is ready to render the actual application. This is the case when the required data (user, project) has been fetched and the application context has been initialized. It's **recommended to use the `children`** prop to benefit from a simpler setup.                                                                                                                                                                                                                                  |
+| `apolloClient`         | `ApolloClient`           |                       | -       | An optional instance of [ApolloClient](https://www.apollographql.com/docs/react/) to be used instead of the default one. This is usually the case when you need to configure the Apollo cache. See [`createApolloClient`](#createapolloclient).                                                                                                                                                                                                                                        |
 
 # Hooks
 
@@ -86,6 +86,26 @@ A React hook that wraps the [`useLazyQuery`](https://www.apollographql.com/docs/
 A React hook that wraps the [`useMutation`](https://www.apollographql.com/docs/react/data/mutations/) hook of Apollo Client. The only difference is that `useMcMutation` properly types the `context` object, which is always used to define the GraphQL `target`. See [Data Fetching](/development/data-fetching).
 
 # Utilities
+
+## setupGlobalErrorListener
+
+Configures global event listeners to catch unexpected errors and report them to Sentry. Make sure to render this in the `entry-point` file.
+
+```js title="entry-point.js"
+import {
+  setupGlobalErrorListener,
+  ApplicationShell,
+} from '@commercetools-frontend/application-shell';
+
+const EntryPoint = () => {
+  return (
+    <ApplicationShell
+      apolloClient={apolloClient}
+      // ...other props
+    />
+  );
+};
+```
 
 ## createApolloClient
 

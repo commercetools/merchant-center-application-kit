@@ -12,9 +12,9 @@ Developing Custom Applications might require you to have your own backend server
 
 If that's the case, you're probably facing a problem: _how do you authenticate requests to your API?_
 
-Previously we learned that Custom Applications must use the [Merchant Center API](/concepts/merchant-center-api) to target any of the commercetools platform APIs, as the Merchant Center API handles all [authentication and authorization](/concepts/merchant-center-api#authentication) logic to access those APIs. Therefore, Custom Applications don't need to deal with this logic as they can't really safely store any access token on the client/browser.
+Previously we learned that Custom Applications must use the [Merchant Center API](/concepts/merchant-center-api) to target any of the commercetools Platform APIs, as the Merchant Center API handles all [authentication and authorization](/concepts/merchant-center-api#authentication) logic to access those APIs. Therefore, Custom Applications don't need to deal with this logic as they can't really safely store any access token on the client/browser.
 
-However, since your backend server is hosted on a different domain than the Merchant Center, you can't send authenticated requests to your server from your Custom Application. Well, you can but you don't know if the request comes from an authenticated user or not.
+However, since your backend server is hosted on a different domain than the Merchant Center, you can't send authenticated requests to your server from your Custom Application. Well, you can but you don't know whether the request comes from an authenticated user or not.
 
 # Proxying requests to the external API
 

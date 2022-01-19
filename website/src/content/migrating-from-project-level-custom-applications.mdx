@@ -2,8 +2,8 @@
 title: Migrating from Project-level Custom Applications
 ---
 
-When we released Custom Applications a couple of years ago we had one main goal: to provide a **great developer experience** for developing and extending Merchant Center functionalities.
-Over time we have constantly improved this experience and broadened our set of tools and components to further help developers focussing on what matters: productivity.
+When we released Custom Applications a couple of years ago we had one main goal: to provide a great developer experience for developing and extending Merchant Center functionalities.
+Over time we have constantly improved this experience and broadened our set of tools and components to further help developers focusing on what matters: productivity.
 
 We also gathered lots of valuable feedback both from our internal teams and especially from external partners and developers.
 
@@ -12,29 +12,31 @@ In this document we explain what's new, what changed, and how to actually migrat
 
 <Warning>
 
-Please take your time and read carefully this document to familiarize yourself with the changes, new concepts, and steps required to migrate your existing Custom Applications.
+Please take your time and read this document carefully to familiarize yourself with the changes, new concepts, and steps required to migrate your existing Custom Applications.
 
 **Project-level Custom Applications must be migrated until the end of July 2022**.<br />
 During this period, Project-level Custom Applications still work but are considered in **maintenance mode**. **Adding new Project-level Custom Applications won't be possible anymore.**
+
+After the migration deadline, Project-level Custom Applications won't be accessible anymore.
 
 </Warning>
 
 # Introducing (Org-level) Custom Applications
 
-The new release of Custom Applications is what we call and refer to as **Org-level Custom Applications**.
+The [new release](/releases/2022-01-25-custom-applications-v21) of Custom Applications is what we call and refer to as **Org-level Custom Applications**.
 
 Before we go into details about the new release and features, let's define some of the terminology used in the documentation:
 
 * **Org-level Custom Applications** refers to the new release and it's the default functionality from now on. Application Kit packages (`@commercetools-frontend/*`) must use version `>= 21`.
-* **Project-level Custom Applications** refers to the "legacy" functionality up until now. This is still available in maintenance mode for the [migration period](#migration-period) of time and will be removed afterwards.
+* **Project-level Custom Applications** refers to the legacy functionality up until now. This is still available in maintenance mode during the [migration period](#migration-period) and will be removed afterwards.
 
 <Info>
 
-The documentation for Project-level Custom Applications [remains available at a different location](https://docs.commercetools.com/custom-applications/_legacy]) for the [migration period](#migration-period).
+The documentation for Project-level Custom Applications [remains available](https://docs.commercetools.com/custom-applications/_legacy]) for the [migration period](#migration-period).
 
 </Info>
 
-Up until now, Project-level Custom Applications had to be defined on a per-project level (hence the term) under "Settings > Custom Applications." After registering a new Custom Application you could activate it and start using it.
+Up until now, Project-level Custom Applications had to be defined on a per Project level (hence the term) under **Settings > Custom Applications**. After registering a new Custom Application you could activate it and start using it.
 However, the Custom Application was only available for that specific project. If you wanted to use the Custom Application in another project, you would need to go through the registration process all over again.
 
 With the introduction of Org-level Custom Applications we intend to improve that process and enable new features for the time being and for the future.
@@ -43,7 +45,7 @@ What this means is that managing Custom Applications is done now at the organiza
 
 # OAuth Scopes and User Permissions
 
-Up until now, Project-level Custom Applications weren't able to define which [OAuth Scopes](https://docs.commercetools.com/api/scopes) of the commercetools platform were needed and could only rely on the "implicit" OAuth Scopes defined for User Permissions of the "native" Merchant Center applications ("Organizations > Teams > Permissions").
+Up until now, Project-level Custom Applications weren't able to define which [OAuth Scopes](https://docs.commercetools.com/api/scopes) of the commercetools Platform were needed and could only rely on the "implicit" OAuth Scopes defined for User Permissions of the "native" Merchant Center applications ("Organizations > Teams > Permissions").
 
 Let us look at an example. The User Permission `ViewProducts` maps internally to some OAuth Scopes, like `view_products`, `view_states`, `view_types`, etc. If a Custom Application had to use the [States API](https://docs.commercetools.com/api/projects/states), it would need to use the `ViewProducts` permission in order to properly authorize the user to perform the API requests.
 Therefore, using the `ViewProducts` permission makes the Custom Application work **by chance** to be able to interact with the States API.
@@ -78,7 +80,7 @@ Migrating to Org-level Custom Applications not only brings new features and func
 
 # Step by step
 
-Migrating your existing Project-level Custom Applications to the new Org-level Custom Applications is fairly straight-forward but it requires to understand first the new concepts like [OAuth Scopes and User Permissions](#oauth-scopes-and-user-permissions).
+Migrating your existing Project-level Custom Applications to the new Org-level Custom Applications is fairly straight-forward but it requires first to understand the new concepts like [OAuth Scopes and User Permissions](#oauth-scopes-and-user-permissions).
 
 As for the Custom Application code, nothing much needs to be changed except for the configuration file and the [permission names](#migrate-user-permissions) (in case they were used).
 
@@ -138,7 +140,7 @@ See [Custom Application config](/api-reference/application-config) for more info
 
 ## Choose the `entryPointUriPath`
 
-The `entryPointUriPath` plays a crucial role in a Custom Application. Effectively, it's the **identifier** of the Custom Application similarly to the `projectKey` of the commercetools platform.
+The `entryPointUriPath` plays a crucial role in a Custom Application. Effectively, it's the **identifier** of the Custom Application similarly to the `projectKey` of the commercetools Platform.
 
 <Info>
 
@@ -246,13 +248,13 @@ Depending on your deployment setup you might need to consider what migration str
 
 <Info>
 
-We recommend to inform your company and colleagues that are using the Custom Application about the migration and possible unavailability of it during the time of the switch.
+We recommend informing your company and colleagues that are using the Custom Application about the migration and possible unavailability of it during the time of the switch.
 
 </Info>
 
 In general, before deploying the new changes, you should configure the Custom Application in the Merchant Center first (see [Managing Custom Applications in the Merchant Center](https://docs.commercetools.com/merchant-center/custom-applications)) and assign the `applicationId` to the Custom Application config file.
 
-At this point we recommend to deactivate and remove the "old" Custom Application. You can then proceed with the deployment of the new setup.
+At this point we recommend deactivating and removing the "old" Custom Application. You can then proceed with the deployment of the new setup.
 
 Finally, you need to install the Custom Application in your organization and grant access to one or more projects.
 The Custom Application can now be used.

@@ -115,7 +115,7 @@ An optional description of the Custom Application, for information purposes.
 
 ## `entryPointUriPath`
 
-The **unique identifier** of the Custom Application, similarly to the `projectKey` of the commercetools platform. This value determines the route at which the Custom Application is served by the Merchant Center.
+The **unique identifier** of the Custom Application, similarly to the `projectKey` of the commercetools Platform. This value determines the route at which the Custom Application is served by the Merchant Center.
 
 ```
 /:projectKey/:entryPointUriPath
@@ -169,7 +169,7 @@ Note that the list can be extended at any time. _Last update 2022-01-01_.
 
 ## `cloudIdentifier`
 
-The [identifier of the cloud region](/concepts/merchant-center-api#cloud-identifiers) that the Custom Application uses to connect to the commercetools platform. The values map to the actual Merchant Center API URL for that region.
+The [identifier of the cloud region](/concepts/merchant-center-api#cloud-identifiers) that the Custom Application uses to connect to the commercetools Platform. The values map to the actual Merchant Center API URL for that region.
 
 Supported values are:
 
@@ -552,7 +552,7 @@ To make the application config more reusable across different environments, you 
 
 References are specified with a special expansion-like syntax `${}` together with the prefix key `env:`. For example, to load an environment variable called `APP_URL`, you would use `${env:APP_URL}`.
 
-Imagine developing a Custom Application that can be used in the commercetools platform **Europe** region and **North America** region. We can assign the `${env:CLOUD_IDENTIFIER}` reference to the field `cloudIdentifier` and pass the actual value using environment variables.
+Imagine developing a Custom Application that can be used in the commercetools Platform **Europe** region and **North America** region. We can assign the `${env:CLOUD_IDENTIFIER}` reference to the field `cloudIdentifier` and pass the actual value using environment variables.
 
 ```json
 {
@@ -638,7 +638,7 @@ This is useful when specifying the [`icon`](#icon) of the Custom Application.
 }
 ```
 
-You can use a relative path or a path to a module.
+You can use a path relative to the application folder or a path to a module.
 
 ```json
 {

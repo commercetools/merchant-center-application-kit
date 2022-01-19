@@ -4,7 +4,7 @@ title: Data Fetching
 
 In client-side applications, data fetching is not always easy and it usually involves a lot of boilerplate code around implementation, state management, data normalization, etc.
 
-The commercetools platform and the Merchant Center have first-class support for GraphQL and we **strongly recommend to build your Custom Application using GraphQL** wherever possible.
+The commercetools Platform and the Merchant Center have first-class support for GraphQL and we **strongly recommend building your Custom Application using GraphQL** wherever possible.
 
 To handle requests to the [GraphQL APIs](/concepts/merchant-center-api#graphql) we use the built-in [Apollo GraphQL Client](https://www.apollographql.com/docs/react/).
 
@@ -166,7 +166,7 @@ Note that the `use-channels-connector.js` file can contain multiple connector ho
 
 </Info>
 
-We would then use our connector hook in the `Channels` component instead of using the Apollo Client hooks directly. Therefore, there is less code in the React component as most of the logic and configuration is abstracted away in the connector hook.
+We would then use our connector hook in the `Channels` component instead of directly using the Apollo Client hooks. Therefore, there is less code in the React component as most of the logic and configuration is abstracted away in the connector hook.
 
 ```js title="channels.js" highlightLines="3,6"
 import { ContentNotification } from '@commercetools-uikit/notifications';

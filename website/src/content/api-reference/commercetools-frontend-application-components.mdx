@@ -47,14 +47,25 @@ Info dialogs are controlled components used to show more information about a par
 ### Usage
 
 ```jsx
-import { InfoDialog } from '@commercetools-frontend/application-components';
+import { InfoDialog, useModalState } from '@commercetools-frontend/application-components';
 
-<InfoDialog title="Lorem ipsus" isOpen={isOpen} onClose={handleClose}>
-  <Spacings.Stack scale="m">
-    <Text.Body>{'Lorem ipsus ...'}</Text.Body>
-    <Text.Body>{'Lorem ipsus ...'}</Text.Body>
-  </Spacings.Stack>
-</InfoDialog>;
+const ChannelsInfo = () => {
+  const infoModalState = useModalState()
+
+  return (
+    <InfoDialog
+      title="About channels"
+      isOpen={infoModalState.isModalOpen}
+      onClose={infoModalState.closeModal}
+    >
+      <Spacings.Stack scale="m">
+        <Text.Body>
+          {'Channels are ...'}
+        </Text.Body>
+      </Spacings.Stack>
+    </InfoDialog>
+  );
+}
 ```
 
 ### Properties
@@ -65,7 +76,7 @@ import { InfoDialog } from '@commercetools-frontend/application-components';
 | `isOpen`            | `boolean`  |    ✅    | -                 | -       | Indicates whether the dialog is open or closed. The parent component needs to manage this state.                                                                                                                                                                                                                |
 | `onClose`           | `function` |    ✅    | -                 | -       | Called when the dialog closes: click on overlay, click on close button, press ESC.                                                                                                                                                                                                                              |
 | `children`          | `node`     |    ✅    | -                 | -       | Content rendered within the dialog. If the content is long in height (depending on the screen size) a scrollbar will appear.                                                                                                                                                                                    |
-| `size`              | `string`   |    -     | `m`, `l`, `scale` | `l`     | Horizontal width of the dialog card.                                                                                                                                                                                                                                                                            |
+| `size`              | `string`   |    -     | `m`, `l`, `scale` | `l`     | Horizontal width of the dialog card. If `scale` is used, the dialog size expands to the viewport size, with some margin.                                                                                                                                                                                                                                                                            |
 | `zIndex`            | `number`   |    -     | -                 | `1000`  | The `z-index` value to be applied to the overlay container. It is useful if you have stacking modals.                                                                                                                                                                                                           |
 | `getParentSelector` | `function` |    -     | -                 | -       | The function should return an HTML element that will be used as the parent container to hold the modal DOM tree. If no function is provided, it's expected that an HTML element with the `id="parent-container"` is present in the DOM. In the `NODE_ENV=test` environment, the default HTML element is `body`. |
 
@@ -79,18 +90,30 @@ Confirmation dialogs are controlled components used to prompt the user to confir
 ### Usage
 
 ```jsx
-<ConfirmationDialog
-  title="Lorem ipsus"
-  isOpen={isOpen}
-  onClose={handleClose}
-  onCancel={handleCancel}
-  onConfirm={handleConfirm}
->
-  <Spacings.Stack scale="m">
-    <Text.Body>{'Lorem ipsus ...'}</Text.Body>
-    <Text.Body>{'Lorem ipsus ...'}</Text.Body>
-  </Spacings.Stack>
-</ConfirmationDialog>
+import { ConfirmationDialog, useModalState } from '@commercetools-frontend/application-components';
+
+const ChannelDeletion = () => {
+  const confirmationModalState = useModalState()
+  const handleConfirm = useCallback(() => {
+    // Do something async
+  }, [])
+
+  return (
+    <ConfirmationDialog
+      title="Confirm channel deletion"
+      isOpen={confirmationModalState.isModalOpen}
+      onClose={confirmationModalState.closeModal}
+      onCancel={confirmationModalState.closeModal}
+      onConfirm={handleConfirm}
+    >
+      <Spacings.Stack scale="m">
+        <Text.Body>
+          {'Are you sure you want to delete this channel?'}
+        </Text.Body>
+      </Spacings.Stack>
+    </ConfirmationDialog>
+  );
+}
 ```
 
 ### Properties
@@ -101,10 +124,10 @@ Confirmation dialogs are controlled components used to prompt the user to confir
 | `isOpen`                        | `boolean`                  |    ✅    | -                 | -         | Indicates whether the dialog is open or closed. The parent component needs to manage this state.                                                                                                                                                                                                                |
 | `onClose`                       | `function`                 |    -     | -                 | -         | Called when the dialog closes: click on overlay, click on close button, press ESC. If the function is not provided, the modal cannot be closed by any of the listed options.                                                                                                                                    |
 | `children`                      | `node`                     |    ✅    | -                 | -         | Content rendered within the dialog. If the content is long in height (depending on the screen size) a scrollbar will appear.                                                                                                                                                                                    |
-| `size`                          | `string`                   |          | `m`, `l`, `scale` | `l`       | Horizontal width limit of the dialog card.                                                                                                                                                                                                                                                                      |
+| `size`                          | `string`                   |          | `m`, `l`, `scale` | `l`       | Horizontal width limit of the dialog card. If `scale` is used, the dialog size expands to the viewport size, with some margin.                                                                                                                                                                                                                                                                      |
 | `zIndex`                        | `number`                   |          | -                 | `1000`    | The `z-index` value to be applied to the overlay container. It is useful if you have stacking modals.                                                                                                                                                                                                           |
-| `labelSecondary`                | `string` \| `Intl message` |    ✅    | -                 | `Cancel`  | The label for the secondary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#confirmationdialogintl).                                                     |
-| `labelPrimary`                  | `string` \| `Intl message` |    ✅    | -                 | `Confirm` | The label for the primary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#confirmationdialogintl).                                                                                  |
+| `labelSecondary`                | `string` \| `Intl message` |        | -                 | `Cancel`  | The label for the secondary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#confirmationdialogintl).                                                     |
+| `labelPrimary`                  | `string` \| `Intl message` |        | -                 | `Confirm` | The label for the primary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#confirmationdialogintl).                                                                                  |
 | `onCancel`                      | `function`                 |    ✅    | -                 | -         | Called when the secondary button is clicked.                                                                                                                                                                                                                                                                    |
 | `onConfirm`                     | `function`                 |    ✅    | -                 | -         | Called when the primary button is clicked.                                                                                                                                                                                                                                                                      |
 | `isPrimaryButtonDisabled`       | `boolean`                  |    -     | -                 | false     | Indicates whether the primary button is disabled or not.                                                                                                                                                                                                                                                        |
@@ -135,20 +158,55 @@ Form dialogs are controlled components used to render a form or something that r
 ### Usage
 
 ```jsx
-import { FormDialog } from '@commercetools-frontend/application-components';
+import { useFormik } from 'formik';
+import TextField from '@commercetools-uikit/text-field';
+import TextInput from '@commercetools-uikit/text-input';
+import { FormDialog, useModalState } from '@commercetools-frontend/application-components';
 
-<FormDialog
-  title="Lorem ipsus"
-  isOpen={isOpen}
-  onClose={handleClose}
-  onSecondaryButtonClick={handleCancel}
-  onPrimaryButtonClick={handleSubmit}
->
-  <Spacings.Stack scale="m">
-    <Text.Body>{'Lorem ipsus ...'}</Text.Body>
-    <Text.Body>{'Lorem ipsus ...'}</Text.Body>
-  </Spacings.Stack>
-</FormDialog>
+const EmailForm = () => {
+  const formModalState = useModalState()
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+    },
+    validate: (formikValues) => {
+      if (TextInput.isEmpty(formikValues.email)) {
+        return { email: { missing: true } };
+      }
+      return {};
+    },
+    onSubmit: async (formikValues) => {
+      alert(`email: ${formikValues.email}`);
+      // Do something async
+    },
+  });
+
+  return (
+    <FormDialog
+      title="Update email"
+      isOpen={formModalState.isModalOpen}
+      onClose={formModalState.closeModal}
+      isPrimaryButtonDisabled={formik.isSubmitting}
+      onSecondaryButtonClick={() => {
+        formik.resetForm();
+        formModalState.closeModal()
+      }}
+      onPrimaryButtonClick={formik.handleSubmit}
+    >
+      <TextField
+        name="email"
+        title="Email"
+        isRequired={true}
+        value={formik.values.email}
+        errors={formik.errors.email}
+        touched={formik.touched.email}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        onFocus={formik.handleFocus}
+      />
+    </FormDialog>
+  );
+}
 ```
 
 ### Properties
@@ -159,10 +217,10 @@ import { FormDialog } from '@commercetools-frontend/application-components';
 | `isOpen`                        | `boolean`                  |    ✅    | -                 | -         | Indicates whether the dialog is open or closed. The parent component needs to manage this state.                                                                                                                                                                                                                |
 | `onClose`                       | `function`                 |    -     | -                 | -         | Called when the dialog closes: click on overlay, click on close button, press ESC. If the function is not provided, the modal cannot be closed by any of the listed options.                                                                                                                                    |
 | `children`                      | `node`                     |    ✅    | -                 | -         | Content rendered within the dialog. If the content is long in height (depending on the screen size) a scrollbar will appear.                                                                                                                                                                                    |
-| `size`                          | `string`                   |          | `m`, `l`, `scale` | `l`       | Horizontal width limit of the dialog card.                                                                                                                                                                                                                                                                      |
+| `size`                          | `string`                   |          | `m`, `l`, `scale` | `l`       | Horizontal width limit of the dialog card. If `scale` is used, the dialog size expands to the viewport size, with some margin.                                                                                                                                                                                                                                                                     |
 | `zIndex`                        | `number`                   |          | -                 | `1000`    | The `z-index` value to be applied to the overlay container. It is useful if you have stacking modals.                                                                                                                                                                                                           |
-| `labelSecondary`                | `string` \| `Intl message` |    ✅    | -                 | `Cancel`  | The label for the secondary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#formdialogintl).                                                     |
-| `labelPrimary`                  | `string` \| `Intl message` |    ✅    | -                 | `Confirm` | The label for the primary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#formdialogintl).                                                                                  |
+| `labelSecondary`                | `string` \| `Intl message` |        | -                 | `Cancel`  | The label for the secondary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#formdialogintl).                                                     |
+| `labelPrimary`                  | `string` \| `Intl message` |        | -                 | `Save` | The label for the primary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#formdialogintl).                                                                                  |
 | `onSecondaryButtonClick`        | `function`                 |    ✅    | -                 | -         | Called when the secondary button is clicked.                                                                                                                                                                                                                                                                    |
 | `onPrimaryButtonClick`          | `function`                 |    ✅    | -                 | -         | Called when the primary button is clicked.                                                                                                                                                                                                                                                                      |
 | `isPrimaryButtonDisabled`       | `boolean`                  |    -     | -                 | false     | Indicates whether the primary button is disabled or not.                                                                                                                                                                                                                                                        |
@@ -193,18 +251,24 @@ Info Modal pages are controlled components used to render a page using a modal c
 ### Usage
 
 ```jsx
-import { InfoModalPage } from '@commercetools-frontend/application-components';
+import { InfoModalPage, useModalState } from '@commercetools-frontend/application-components';
 
-<InfoModalPage
-  title="Lorem ipsum"
-  isOpen={true}
-  onClose={handleClose}
-  subtitle={<Text.Body>{'Lorem ipsum ...'}</Text.Body>}
-  topBarCurrentPathLabel="Lorem ipsum"
-  topBarPreviousPathLabel="Back"
->
-  <Text.Body>{'Lorem ipsum ...'}</Text.Body>
-</InfoModalPage>;
+const Example = () => {
+  const pageModalState = useModalState()
+
+  return (
+    <InfoModalPage
+      title="Lorem ipsum"
+      isOpen={true}
+      onClose={handleClose}
+      subtitle={<Text.Body>{'Lorem ipsum ...'}</Text.Body>}
+      topBarCurrentPathLabel="Lorem ipsum"
+      topBarPreviousPathLabel="Back"
+    >
+      <Text.Body>{'Lorem ipsum ...'}</Text.Body>
+    </InfoModalPage>;
+  )
+}
 ```
 
 ### Properties
@@ -234,20 +298,55 @@ Form Modal pages are controlled components used to render a page with a form or 
 ### Usage
 
 ```jsx
-import { FormModalPage } from '@commercetools-frontend/application-components';
+import { useFormik } from 'formik';
+import TextField from '@commercetools-uikit/text-field';
+import TextInput from '@commercetools-uikit/text-input';
+import { FormModalPage, useModalState } from '@commercetools-frontend/application-components';
 
-<FormModalPage
-  title="Lorem ipsum"
-  isOpen={true}
-  onClose={handleClose}
-  subtitle={<Text.Body>{'Lorem ipsum ...'}</Text.Body>}
-  topBarCurrentPathLabel="Lorem ipsum"
-  topBarPreviousPathLabel="Back"
-  onSecondaryButtonClick={handleCancel}
-  onPrimaryButtonClick={handleSubmit}
->
-  <TextField {...textFieldFormProps} />
-</FormModalPage>;
+const AccountPage = () => {
+  const formModalState = useModalState()
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+    },
+    validate: (formikValues) => {
+      if (TextInput.isEmpty(formikValues.email)) {
+        return { email: { missing: true } };
+      }
+      return {};
+    },
+    onSubmit: async (formikValues) => {
+      alert(`email: ${formikValues.email}`);
+      // Do something async
+    },
+  });
+
+  return (
+    <FormModalPage
+      title="Manage your account"
+      isOpen={formModalState.isModalOpen}
+      onClose={formModalState.closeModal}
+      isPrimaryButtonDisabled={formik.isSubmitting}
+      onSecondaryButtonClick={() => {
+        formik.resetForm();
+        formModalState.closeModal()
+      }}
+      onPrimaryButtonClick={formik.handleSubmit}
+    >
+      <TextField
+        name="email"
+        title="Email"
+        isRequired={true}
+        value={formik.values.email}
+        errors={formik.errors.email}
+        touched={formik.touched.email}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        onFocus={formik.handleFocus}
+      />
+    </FormModalPage>
+  );
+}
 ```
 
 ### Properties
@@ -264,8 +363,8 @@ import { FormModalPage } from '@commercetools-frontend/application-components';
 | `topBarCurrentPathLabel`        | `string`                   |          | The `title` prop         | Label to appear as the current path of the top bar of the modal.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | `topBarPreviousPathLabel`       | `string`                   |          | `"Go Back"` (translated) | Label to appear as the previous path of the top bar of the modal.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | `children`                      | `node`                     |    ✅    | -                        | Content rendered within the page. If the content is long in height (depending on the screen size) a scrollbar will appear.                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `labelSecondaryButton`                | `string` \| `Intl message` |    ✅    | -                 | `Cancel`  | The label for the secondary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#formmodalpageintl).                                                     |
-| `labelPrimaryButton`                  | `string` \| `Intl message` |    ✅    | -                 | `Confirm` | The label for the primary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#formmodalpageintl).                                                                                  |
+| `labelSecondaryButton`                | `string` \| `Intl message` |        | -                 | `Cancel`  | The label for the secondary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#formmodalpageintl).                                                     |
+| `labelPrimaryButton`                  | `string` \| `Intl message` |        | -                 | `Save` | The label for the primary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#formmodalpageintl).                                                                                  |
 | `onSecondaryButtonClick`        | `function`                 |    ✅    | -                        | Called when the secondary button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | `onPrimaryButtonClick`          | `function`                 |    ✅    | -                        | Called when the primary button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `isPrimaryButtonDisabled`       | `boolean`                  |    -     | `false`                  | Indicates whether the primary button is disabled or not.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
@@ -299,25 +398,67 @@ This is useful in case the modal page needs different control elements than the 
 ### Usage
 
 ```jsx
-import { CustomFormModalPage } from '@commercetools-frontend/application-components';
+import { useFormik } from 'formik';
+import TextField from '@commercetools-uikit/text-field';
+import TextInput from '@commercetools-uikit/text-input';
+import { CustomFormModalPage, useModalState } from '@commercetools-frontend/application-components';
 
-<CustomFormModalPage
-  title="Lorem ipsum"
-  isOpen={true}
-  onClose={handleClose}
-  subtitle={<Text.Body>{'Lorem ipsum ...'}</Text.Body>}
-  topBarCurrentPathLabel="Lorem ipsum"
-  topBarPreviousPathLabel="Back"
-  formControls={
-    <React.Fragment>
-      <CustomFormModalPage.FormSecondaryButton onClick={handleCancel} />
-      <CustomFormModalPage.FormPrimaryButton onClick={handleConfirm} />
-      <CustomFormModalPage.FormDeleteButton onClick={handleDelete} />
-    </React.Fragment>
-  }
->
-  <TextField {...textFieldFormProps} />
-</CustomFormModalPage>;
+const AccountPage = () => {
+  const formModalState = useModalState()
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+    },
+    validate: (formikValues) => {
+      if (TextInput.isEmpty(formikValues.email)) {
+        return { email: { missing: true } };
+      }
+      return {};
+    },
+    onSubmit: async (formikValues) => {
+      alert(`email: ${formikValues.email}`);
+      // Do something async
+    },
+  });
+
+  return (
+    <CustomFormModalPage
+      title="Manage your account"
+      isOpen={formModalState.isModalOpen}
+      onClose={formModalState.closeModal}
+      isPrimaryButtonDisabled={formik.isSubmitting}
+      onSecondaryButtonClick={() => {
+        formik.resetForm();
+        formModalState.closeModal()
+      }}
+      onPrimaryButtonClick={formik.handleSubmit}
+      formControls={
+        <>
+          <CustomFormModalPage.FormSecondaryButton
+            onClick={() => {
+              formik.resetForm();
+              formModalState.closeModal()
+            }}
+          />
+          <CustomFormModalPage.FormPrimaryButton onClick={formik.handleSubmit} />
+          <CustomFormModalPage.FormDeleteButton onClick={handleDelete} />
+        </>
+      }
+    >
+      <TextField
+        name="email"
+        title="Email"
+        isRequired={true}
+        value={formik.values.email}
+        errors={formik.errors.email}
+        touched={formik.touched.email}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        onFocus={formik.handleFocus}
+      />
+    </CustomFormModalPage>
+  );
+}
 ```
 
 ### Properties
@@ -377,18 +518,33 @@ Tabular Modal pages are controlled components used to render a page with custom 
 ### Usage
 
 ```jsx
-import { TabularModalPage } from '@commercetools-frontend/application-components';
+import { Switch, Route, useRouteMatch } from 'react-router-dom'
+import { TabularModalPage, useModalState } from '@commercetools-frontend/application-components';
 
-<TabularModalPage
-  title="Lorem ipsum"
-  isOpen={true}
-  onClose={handleClose}
-  topBarCurrentPathLabel="Lorem ipsum"
-  topBarPreviousPathLabel="Back"
->
-  <ViewHeader {...viewHeaderProps} />
-  <TabsContainer {...tabsContainerProps} />
-</TabularModalPage>;
+const AccountPage = () => {
+  const match = useRouteMatch()
+  const tabsModalState = useModalState()
+
+  return (
+    <TabularModalPage
+      title="Manage your account"
+      isOpen={tabsModalState.isModalOpen}
+      onClose={tabsModalState.closeModal}
+      tabControls={
+        // Tabs components
+      }
+    >
+      <Switch>
+        <Route path={`${match.path}/tab-1`}>
+          <Tab1 />
+        </Route>
+        <Route path={`${match.path}/tab-2`}>
+          <Tab2 />
+        </Route>
+      </Switch>
+    </TabularModalPage>
+  );
+}
 ```
 
 ### Properties

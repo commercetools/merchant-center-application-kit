@@ -55,3 +55,9 @@ const CreateButton = () => {
 ### Options
 
 * `demandedPermissions`: A list of User Permissions of the Custom Application that need to be evaluated against the applied User Permissions.
+
+  <Info>
+
+  Multiple values can be provided, in which case the check becomes an `AND` condition. However, this is discouraged and it's better to define the `useIsAuthorized` hook multiple times, one for each permission to be checked.
+
+  </Info>
