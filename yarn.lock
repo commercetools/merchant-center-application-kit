@@ -2888,7 +2888,7 @@ __metadata:
     cypress: 9.3.1
     uuid: 8.3.2
   peerDependencies:
-    cypress: 9.x
+    cypress: 5.x || 6.x || 7.x || 8.x || 9.x
   languageName: unknown
   linkType: soft
 
