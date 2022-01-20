@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/i18n",
-  "version": "20.12.3",
+  "version": "20.13.0",
   "description": "MC i18n messages",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {

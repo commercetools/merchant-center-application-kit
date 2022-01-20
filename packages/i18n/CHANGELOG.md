@@ -1,5 +1,11 @@
 # @commercetools-frontend/i18n
 
+## 20.13.0
+
+### Patch Changes
+
+- [#2444](https://github.com/commercetools/merchant-center-application-kit/pull/2444) [`aa3b4472`](https://github.com/commercetools/merchant-center-application-kit/commit/aa3b447233d2741cf4573686a14887720ffca302) Thanks [@transifex-integration](https://github.com/apps/transifex-integration)! - Translate '/packages/i18n/data/core.json' in 'es'
+
 ## 20.12.3
 
 ### Patch Changes
