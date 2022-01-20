@@ -1,5 +1,16 @@
 # @commercetools-frontend/cypress
 
+## 20.13.0
+
+### Minor Changes
+
+- [#2394](https://github.com/commercetools/merchant-center-application-kit/pull/2394) [`5875b2b7`](https://github.com/commercetools/merchant-center-application-kit/commit/5875b2b7c191ae66be371858002afc571be61769) Thanks [@renovate](https://github.com/apps/renovate)! - Support Cypress v9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell@20.13.0
+
 ## 20.12.4
 
 ### Patch Changes

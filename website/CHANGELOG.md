@@ -1,5 +1,11 @@
 # @commercetools-website/custom-applications
 
+## 18.3.9
+
+### Patch Changes
+
+- [#2420](https://github.com/commercetools/merchant-center-application-kit/pull/2420) [`02b00565`](https://github.com/commercetools/merchant-center-application-kit/commit/02b00565c25e34c2dadea4e060e665e4ff39639f) Thanks [@renovate](https://github.com/apps/renovate)! - Upgrade SVGR packages to v6
+
 ## 18.3.8
 
 ### Patch Changes

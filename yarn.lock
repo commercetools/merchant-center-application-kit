@@ -2617,7 +2617,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/application-components@20.12.3, @commercetools-frontend/application-components@workspace:packages/application-components":
+"@commercetools-frontend/application-components@20.13.0, @commercetools-frontend/application-components@workspace:packages/application-components":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/application-components@workspace:packages/application-components"
   dependencies:
@@ -2626,7 +2626,7 @@ __metadata:
     "@commercetools-frontend/application-shell-connectors": 20.12.3
     "@commercetools-frontend/assets": 20.12.3
     "@commercetools-frontend/constants": 20.12.3
-    "@commercetools-frontend/i18n": 20.12.3
+    "@commercetools-frontend/i18n": 20.13.0
     "@commercetools-frontend/l10n": 20.12.3
     "@commercetools-uikit/card": ^12.2.9
     "@commercetools-uikit/constraints": ^12.2.9
@@ -2704,7 +2704,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/application-shell@20.12.4, @commercetools-frontend/application-shell@workspace:packages/application-shell":
+"@commercetools-frontend/application-shell@20.13.0, @commercetools-frontend/application-shell@workspace:packages/application-shell":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/application-shell@workspace:packages/application-shell"
   dependencies:
@@ -2712,12 +2712,12 @@ __metadata:
     "@babel/runtime": 7.16.5
     "@babel/runtime-corejs3": 7.16.5
     "@commercetools-frontend/actions-global": 20.12.3
-    "@commercetools-frontend/application-components": 20.12.3
+    "@commercetools-frontend/application-components": 20.13.0
     "@commercetools-frontend/application-shell-connectors": 20.12.3
     "@commercetools-frontend/assets": 20.12.3
     "@commercetools-frontend/browser-history": 20.12.3
     "@commercetools-frontend/constants": 20.12.3
-    "@commercetools-frontend/i18n": 20.12.3
+    "@commercetools-frontend/i18n": 20.13.0
     "@commercetools-frontend/l10n": 20.12.3
     "@commercetools-frontend/notifications": 20.12.3
     "@commercetools-frontend/permissions": 20.12.3
@@ -2883,7 +2883,7 @@ __metadata:
     "@babel/runtime": 7.16.5
     "@babel/runtime-corejs3": 7.16.5
     "@commercetools-frontend/application-config": 20.12.3
-    "@commercetools-frontend/application-shell": 20.12.4
+    "@commercetools-frontend/application-shell": 20.13.0
     "@manypkg/get-packages": 1.1.3
     cypress: 9.3.1
     uuid: 8.3.2
@@ -2919,7 +2919,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/i18n@20.12.3, @commercetools-frontend/i18n@workspace:packages/i18n":
+"@commercetools-frontend/i18n@20.13.0, @commercetools-frontend/i18n@workspace:packages/i18n":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/i18n@workspace:packages/i18n"
   dependencies:
@@ -3036,7 +3036,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/mc-scripts@20.12.3, @commercetools-frontend/mc-scripts@workspace:packages/mc-scripts":
+"@commercetools-frontend/mc-scripts@20.13.0, @commercetools-frontend/mc-scripts@workspace:packages/mc-scripts":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/mc-scripts@workspace:packages/mc-scripts"
   dependencies:
@@ -3235,10 +3235,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-local/visual-testing-app@workspace:visual-testing-app"
   dependencies:
-    "@commercetools-frontend/application-components": 20.12.3
+    "@commercetools-frontend/application-components": 20.13.0
     "@commercetools-frontend/assets": 20.12.3
     "@commercetools-frontend/constants": 20.12.3
-    "@commercetools-frontend/mc-scripts": 20.12.3
+    "@commercetools-frontend/mc-scripts": 20.13.0
     "@commercetools-frontend/react-notifications": 20.12.3
     "@commercetools-uikit/accessible-button": ^12.2.9
     "@commercetools-uikit/design-system": ^12.2.9
@@ -4560,8 +4560,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-website/components-playground@workspace:website-components-playground"
   dependencies:
-    "@commercetools-frontend/application-components": 20.12.3
-    "@commercetools-frontend/i18n": 20.12.3
+    "@commercetools-frontend/application-components": 20.13.0
+    "@commercetools-frontend/i18n": 20.13.0
     "@commercetools-uikit/design-system": ^12.2.9
     "@commercetools-uikit/icon-button": ^12.2.9
     "@commercetools-uikit/icons": ^12.2.9
@@ -23612,16 +23612,16 @@ __metadata:
   dependencies:
     "@apollo/client": 3.5.6
     "@commercetools-frontend/actions-global": 20.12.3
-    "@commercetools-frontend/application-components": 20.12.3
-    "@commercetools-frontend/application-shell": 20.12.4
+    "@commercetools-frontend/application-components": 20.13.0
+    "@commercetools-frontend/application-shell": 20.13.0
     "@commercetools-frontend/application-shell-connectors": 20.12.3
     "@commercetools-frontend/assets": 20.12.3
     "@commercetools-frontend/constants": 20.12.3
     "@commercetools-frontend/eslint-config-mc-app": 20.12.3
-    "@commercetools-frontend/i18n": 20.12.3
+    "@commercetools-frontend/i18n": 20.13.0
     "@commercetools-frontend/jest-preset-mc-app": 20.12.3
     "@commercetools-frontend/mc-dev-authentication": 20.10.6
-    "@commercetools-frontend/mc-scripts": 20.12.3
+    "@commercetools-frontend/mc-scripts": 20.13.0
     "@commercetools-frontend/permissions": 20.12.3
     "@commercetools-frontend/sdk": 20.12.3
     "@commercetools-test-data/commons": 2.4.1
@@ -26217,15 +26217,15 @@ __metadata:
     "@commercetools-backend/express": 20.12.3
     "@commercetools-docs/ui-kit": 18.0.1
     "@commercetools-frontend/actions-global": 20.12.3
-    "@commercetools-frontend/application-components": 20.12.3
-    "@commercetools-frontend/application-shell": 20.12.4
+    "@commercetools-frontend/application-components": 20.13.0
+    "@commercetools-frontend/application-shell": 20.13.0
     "@commercetools-frontend/application-shell-connectors": 20.12.3
     "@commercetools-frontend/assets": 20.12.3
     "@commercetools-frontend/constants": 20.12.3
-    "@commercetools-frontend/i18n": 20.12.3
+    "@commercetools-frontend/i18n": 20.13.0
     "@commercetools-frontend/l10n": 20.12.3
     "@commercetools-frontend/mc-dev-authentication": 20.10.6
-    "@commercetools-frontend/mc-scripts": 20.12.3
+    "@commercetools-frontend/mc-scripts": 20.13.0
     "@commercetools-frontend/permissions": 20.12.3
     "@commercetools-frontend/sdk": 20.12.3
     "@commercetools-uikit/checkbox-input": ^12.2.9

@@ -1,5 +1,13 @@
 # @commercetools-frontend/mc-scripts
 
+## 20.13.0
+
+### Patch Changes
+
+- [#2420](https://github.com/commercetools/merchant-center-application-kit/pull/2420) [`02b00565`](https://github.com/commercetools/merchant-center-application-kit/commit/02b00565c25e34c2dadea4e060e665e4ff39639f) Thanks [@renovate](https://github.com/apps/renovate)! - Upgrade SVGR packages to v6
+
+* [#2445](https://github.com/commercetools/merchant-center-application-kit/pull/2445) [`62e4fc87`](https://github.com/commercetools/merchant-center-application-kit/commit/62e4fc87792a815c743acf88d359f8256cc54cb6) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency shelljs to v0.8.5 [security]
+
 ## 20.12.3
 
 ### Patch Changes
