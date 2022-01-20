@@ -253,14 +253,18 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
             {
               loader: require.resolve('@svgr/webpack'),
               options: {
-                // NOTE: disable this and manually add `removeViewBox: false` in the SVGO plugins list
-                // See related PR: https://github.com/smooth-code/svgr/pull/137
                 icon: false,
                 svgoConfig: {
                   plugins: [
-                    { removeViewBox: false },
-                    // Keeps ID's of svgs so they can be targeted with CSS
-                    { cleanupIDs: false },
+                    {
+                      // https://github.com/svg/svgo#default-preset
+                      name: 'preset-default',
+                      params: {
+                        overrides: {
+                          removeViewBox: false,
+                        },
+                      },
+                    },
                   ],
                 },
               },

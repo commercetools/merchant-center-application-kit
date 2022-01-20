@@ -14,10 +14,16 @@ module.exports = {
   icon: false,
   svgoConfig: {
     plugins: [
-      { removeViewBox: false },
-      { prefixIds: true },
-      // Keeps ID's of svgs so they can be targeted with CSS
-      { cleanupIDs: false },
+      {
+        // https://github.com/svg/svgo#default-preset
+        name: 'preset-default',
+        params: {
+          overrides: {
+            removeViewBox: false,
+          },
+        },
+      },
+      'prefixIds',
     ],
   },
   plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
