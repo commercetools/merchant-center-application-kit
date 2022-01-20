@@ -146,7 +146,7 @@
     "rcfile": "1.0.3",
     "replace": "1.2.1",
     "rosie": "2.1.0",
-    "shelljs": "0.8.4",
+    "shelljs": "0.8.5",
     "start-server-and-test": "1.14.0",
     "stylelint": "13.13.1",
     "stylelint-config-prettier": "8.0.2",
