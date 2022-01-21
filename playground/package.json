@@ -13,7 +13,7 @@
     "deploy": "vercel --scope=commercetools-playground --confirm --no-clipboard"
   },
   "dependencies": {
-    "@commercetools-docs/ui-kit": "18.0.1",
+    "@commercetools-docs/ui-kit": "18.1.0",
     "@commercetools-frontend/actions-global": "20.12.3",
     "@commercetools-frontend/application-components": "20.13.0",
     "@commercetools-frontend/application-shell": "20.13.0",
@@ -39,10 +39,10 @@
     "@commercetools-uikit/text": "^12.2.9",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.34",
-    "prop-types": "15.7.2",
+    "prop-types": "15.8.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-intl": "5.23.0",
+    "react-intl": "5.24.3",
     "react-router-dom": "5.3.0",
     "vercel": "23.1.2"
   },
@@ -50,7 +50,7 @@
     "@commercetools-backend/express": "20.12.3",
     "@commercetools-frontend/mc-dev-authentication": "20.10.6",
     "@commercetools-frontend/mc-scripts": "20.13.0",
-    "@formatjs/cli": "4.5.0",
+    "@formatjs/cli": "4.8.0",
     "@vercel/node": "^1.12.1"
   }
 }

@@ -14,6 +14,8 @@ jobs:
   build_lint_and_test:
     runs-on: ubuntu-latest
 
+    timeout-minutes: 25
+
     # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
     env:
       # prevents extra Cypress installation progress messages
