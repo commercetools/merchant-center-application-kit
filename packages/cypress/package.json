@@ -35,8 +35,8 @@
     "README.md"
   ],
   "dependencies": {
-    "@babel/runtime": "7.16.5",
-    "@babel/runtime-corejs3": "7.16.5",
+    "@babel/runtime": "7.16.7",
+    "@babel/runtime-corejs3": "7.16.8",
     "@commercetools-frontend/application-config": "20.12.3",
     "@commercetools-frontend/application-shell": "20.13.0",
     "@manypkg/get-packages": "1.1.3",

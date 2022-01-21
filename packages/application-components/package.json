@@ -27,8 +27,8 @@
     "README.md"
   ],
   "dependencies": {
-    "@babel/runtime": "7.16.5",
-    "@babel/runtime-corejs3": "7.16.5",
+    "@babel/runtime": "7.16.7",
+    "@babel/runtime-corejs3": "7.16.8",
     "@commercetools-frontend/application-shell-connectors": "20.12.3",
     "@commercetools-frontend/assets": "20.12.3",
     "@commercetools-frontend/constants": "20.12.3",
@@ -50,18 +50,18 @@
     "@emotion/styled": "11.6.0",
     "@types/lodash": "^4.14.178",
     "@types/prop-types": "^15.7.4",
-    "@types/react": "^17.0.37",
+    "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "@types/react-modal": "^3.13.1",
     "lodash": "4.17.21",
-    "prop-types": "15.7.2",
+    "prop-types": "15.8.1",
     "react-modal": "3.14.4",
     "react-required-if": "1.0.3"
   },
   "devDependencies": {
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-intl": "5.23.0"
+    "react-intl": "5.24.3"
   },
   "peerDependencies": {
     "react": "17.x",
