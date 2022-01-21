@@ -14,11 +14,11 @@ If that's the case, you're probably facing a problem: _how do you authenticate r
 
 Previously we learned that Custom Applications must use the [Merchant Center API](/concepts/merchant-center-api) to target any of the commercetools Platform APIs, as the Merchant Center API handles all [authentication and authorization](/concepts/merchant-center-api#authentication) logic to access those APIs. Therefore, Custom Applications don't need to deal with this logic as they can't really safely store any access token on the client/browser.
 
-However, since your backend server is hosted on a different domain than the Merchant Center, you can't send authenticated requests to your server from your Custom Application. Well, you can but you don't know whether the request comes from an authenticated User or not.
+However, since your backend server is hosted on a different domain than the Merchant Center, you can't send authenticated requests to your server from your Custom Application. Well, you can but you don't know whether the request comes from an authenticated user or not.
 
 # Proxying requests to the external API
 
-To be able to validate that the request comes from an authenticated User, the Merchant Center API Gateway provides an endpoint that must be used to connect to your external API in a secured manner.
+To be able to validate that the request comes from an authenticated user, the Merchant Center API Gateway provides an endpoint that must be used to connect to your external API in a secured manner.
 
 ```
 /proxy/forward-to
@@ -28,7 +28,7 @@ Requests to that endpoint should additionally pass the following HTTP headers:
 
 - `Accept-version: v2`: See [Versioning](#versioning).
 - `X-Forward-To: <url>`: The URL to your external API.
-- `X-Project-Key: <project-key>`: The key of the commercetools Project currently being used by the Custom Application. The Merchant Center API Gateway will perform a validation check to ensure that the User has access to the Project, then forward the request to your server only if the check was successful.
+- `X-Project-Key: <project-key>`: The key of the commercetools Project currently being used by the Custom Application. The Merchant Center API Gateway will perform a validation check to ensure that the user has access to the Project, then forward the request to your server only if the check was successful.
 
 To facilitate the usage of the [built-in Apollo client and the SDK actions](/development/data-fetching), we provide some helpers to easily integrate with the request configuration for the HTTP headers listed above.
 
@@ -87,7 +87,7 @@ The external API must verify that the token is valid by [using the JSON Web Key 
 
 <Warning>
 
-It's imperative that the external API is securely protected and that only users with access to the project should be able to connect to the API.
+It's imperative that the external API is securely protected and that only users with access to the Project should be able to connect to the API.
 
 </Warning>
 
@@ -111,7 +111,7 @@ The Exchange token structure consist of **Registered Claim Names** and **Private
 ```
 
 - `exp`: The **expiration time** on or after which the exchange token must not be accepted for processing.
-- `sub`: The **subject identifier** is the unique User identifier of a Merchant Center account, specifically the ID of the logged in User.
+- `sub`: The **subject identifier** is the unique user identifier of a Merchant Center account, specifically the ID of the logged in user.
 - `iss`: The **issuer identifier** is the URL identifier of the server that issued the JWT. In this particular case is the URL of the [Merchant Center API Gateway](/concepts/merchant-center-api).
 - `aud`: The **audience** is the value that the exchange token is intended for. In this particular case is the exact URL passed to the `X-Forward-To` HTTP header.
 - `iat`: This value represents the time at which the JWT was issued.
