@@ -79,7 +79,7 @@ This package contains static assets, such as SVG images.
 
 This package contains a set of useful constant variables.
 
-#### [constants](./packages/create-mc-app)
+#### [create-mc-app](./packages/create-mc-app)
 
 This package contains a CLI to bootstrap a starter application based on a predefined template.
 
@@ -98,10 +98,6 @@ This package contains a preset configuration for Jest, focused on necessary tool
 #### [l10n](./packages/l10n)
 
 This package contains React components for accessing localization data such as country, currency, language, time zone, etc.
-
-#### [mc-http-server](./packages/mc-http-server)
-
-This package runs a small HTTP server to serve the `index.html`, with some additional extra like CSP headers, etc. The server is meant to be used to run the application in **production** mode.
 
 #### [mc-scripts](./packages/mc-scripts)
 
