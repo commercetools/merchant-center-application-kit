@@ -48,6 +48,7 @@ import RedirectToProjectCreate from '../redirect-to-project-create';
 import QuickAccess from '../quick-access';
 import RedirectToLogin from './redirect-to-login';
 import RedirectToLogout from './redirect-to-logout';
+import { resolveApplicationMessages } from './helpers';
 
 type Props<AdditionalEnvironmentProperties extends {}> = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;
@@ -507,6 +508,17 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // <-- run only once, when component mounts
 
+  /**
+   * We allow Custom Apps to provide a translations object or a function to asynchronously fetch those translations.
+   * Furthermore, if that's not provided, we provide a loader function based on the 'availableLocales' app configuration.
+   * If no trasnlations info is received and no locales are configured, we raise an error.
+   * (more info: https://docs.commercetools.com/custom-applications/development/translations)
+   */
+  const applicationMessages = resolveApplicationMessages(
+    props.applicationMessages,
+    props.environment.availableLocales
+  );
+
   return (
     <>
       <Global
@@ -524,7 +536,7 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
         apolloClient={props.apolloClient}
         environment={props.environment}
         trackingEventList={props.trackingEventList}
-        applicationMessages={props.applicationMessages}
+        applicationMessages={applicationMessages}
       >
         {({ isAuthenticated }) => {
           if (isAuthenticated) {
@@ -538,7 +550,7 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
                     defaultFeatureFlags={props.defaultFeatureFlags}
                     featureFlags={props.featureFlags}
                     render={props.render}
-                    applicationMessages={props.applicationMessages}
+                    applicationMessages={applicationMessages}
                     onMenuItemClick={props.onMenuItemClick}
                     DEV_ONLY__loadAppbarMenuConfig={
                       props.DEV_ONLY__loadAppbarMenuConfig

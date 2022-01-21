@@ -1,6 +1,13 @@
 {
-  "StateMachines.ListView.column.stateMachineKey": "",
-  "StateMachines.ListView.column.stateMachineName": "",
-  "StateMachines.ListView.noResults": "",
-  "StateMachines.ListView.title": ""
+  "StateMachines.EchoServer.description": "Esta página demuestra cómo conectar una Custom Application a un API externo utilizando el <linkDocs>\"/proxy/forward-to\" endpoint</linkDocs>. Para el ejemplo, el API externo utilizando en esta página es un simple servidor de eco, el cual simplemente devuelve parte de la información sobre la request enviada.",
+  "StateMachines.EchoServer.labelIncludeForwardHeaderInRequest": "Incluir la cabecera Forward en la request",
+  "StateMachines.EchoServer.labelIncludeParamsInRequest": "Incluir Parámetro en la request",
+  "StateMachines.EchoServer.labelSendRequest": "Enviar la request",
+  "StateMachines.EchoServer.labelSending": "Enviando...",
+  "StateMachines.EchoServer.title": "Servidor eco",
+  "StateMachines.ListView.column.stateMachineKey": "Clave",
+  "StateMachines.ListView.column.stateMachineName": "Nombre",
+  "StateMachines.ListView.noResults": "No hay resultados coincidentes con tus criterios de búsqueda.",
+  "StateMachines.ListView.objectsInCache": "Existen {count} objectos en la caché.",
+  "StateMachines.ListView.title": "Máquinas de estado"
 }

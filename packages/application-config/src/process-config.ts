@@ -164,6 +164,7 @@ const processConfig = ({
       mcApiUrl: mcApiUrl.origin,
       revision,
       servedByProxy: isProd,
+      availableLocales: appConfig.availableLocales,
     },
     headers: {
       ...appConfig.headers,

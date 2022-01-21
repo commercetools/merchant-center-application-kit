@@ -112,6 +112,7 @@ export type TApplicationContext<AdditionalEnvironmentProperties extends {}> = {
   actionRights: TApplicationContextActionRights | null;
   dataFences: TApplicationContextDataFences | null;
   dataLocale: string | null;
+  availableLocales: string[] | null;
 };
 export type ProviderProps<AdditionalEnvironmentProperties extends {}> = {
   environment: AdditionalEnvironmentProperties & TApplicationContextEnvironment;
@@ -147,6 +148,7 @@ const createApplicationContext: <AdditionalEnvironmentProperties extends {}>(
   ),
   dataFences: normalizeAllAppliedDataFences(project?.allAppliedDataFences),
   dataLocale: projectDataLocale || null,
+  availableLocales: environment.availableLocales || null,
 });
 
 const ApplicationContextProvider = <AdditionalEnvironmentProperties extends {}>(

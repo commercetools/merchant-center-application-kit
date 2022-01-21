@@ -64,6 +64,7 @@ const config = {
       },
     ],
   },
+  availableLocales: ['de', 'en', 'es']
 };
 
 export default config;

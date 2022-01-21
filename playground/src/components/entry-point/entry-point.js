@@ -8,7 +8,6 @@ import {
 import { Sdk } from '@commercetools-frontend/sdk';
 import * as globalActions from '@commercetools-frontend/actions-global';
 import Text from '@commercetools-uikit/text';
-import loadMessages from '../../messages';
 import { entryPointUriPath } from '../../constants';
 
 // Here we split up the main (app) bundle with the actual application business logic.
@@ -68,7 +67,6 @@ const EntryPoint = () => (
       Sdk.Get.errorHandler = (error) =>
         globalActions.handleActionError(error, 'sdk')(dispatch);
     }}
-    applicationMessages={loadMessages}
     render={() => <ApplicationStateMachines />}
   />
 );

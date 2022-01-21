@@ -194,6 +194,7 @@ export interface ApplicationWindow extends Window {
     enableSignUp?: boolean;
     enableLongLivedFeatureFlags?: boolean;
     useFullRedirectsForLinks?: boolean;
+    availableLocales?: string[];
     // Properties for OIDC-like workflow for development
     __DEVELOPMENT__?: {
       oidc?: ApplicationOidcForDevelopmentConfig;

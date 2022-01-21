@@ -1,3 +1,5 @@
+import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
+
 /**
  * Get the "real" Merchant Center frontend URL to redirect the user
  * to the login page.
@@ -33,4 +35,53 @@ export function getMcOrigin(mcApiUrl: string, actualWindow = window) {
   }
 
   return mcApiUrlObject.origin.replace('mc-api', 'mc');
+}
+
+const defaultAsyncMessagesLoader =
+  (availableLanguages: string[]) => (lang: string) => {
+    const isAvailableLanguage = availableLanguages?.includes(lang);
+    console.log('Loading translations data from the default loader...');
+    return import(
+      `../../i18n/data/${
+        isAvailableLanguage ? lang : 'core'
+      }.json` /* webpackChunkName: "app-i18n-[request]" */
+    )
+      .then((i18nModule) => i18nModule.default)
+      .catch((error) => {
+        console.warn(
+          `Something went wrong while loading the app messages for ${lang}`,
+          error
+        );
+
+        return {};
+      });
+  };
+
+/**
+ * Based on the provided object/loader from the Custom Application and the locales configuration,
+ * this function decides which is the most suitable handler to resolve translations, providing
+ * a default loader by default so the Custom Application would not have to implement it (just set the locales configuration).
+ *
+ * @param customAppProvidedMessages translations object/loader provided from the Custom Application
+ * @param availableLocales locales configured in the Custom Application config file
+ * @returns Custom Application provided object/loader, a default loader or raise an error if no enough info is available
+ */
+export function resolveApplicationMessages(
+  customAppProvidedMessages: TAsyncLocaleDataProps['applicationMessages'],
+  availableLocales?: string[]
+) {
+  if (customAppProvidedMessages) {
+    return customAppProvidedMessages;
+  }
+
+  if (availableLocales && availableLocales.length > 0) {
+    return defaultAsyncMessagesLoader(availableLocales);
+  }
+
+  throw new Error(
+    `
+    Invalid i18n configuration: no messages provided to the ApplicationShell component nor 'availableLocales' configured in the 'custom-application-config' file.
+    You can get more information about how to configure i18 over here: https://docs.commercetools.com/custom-applications/development/translations
+    `
+  );
 }
