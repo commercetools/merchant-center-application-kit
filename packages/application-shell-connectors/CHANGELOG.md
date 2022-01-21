@@ -1,5 +1,19 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 21.0.0-rc.0
+
+### Major Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`1c363fad`](https://github.com/commercetools/merchant-center-application-kit/commit/1c363fad7ab770a739ac8080358e41ae4af42074) Thanks [@emmenko](https://github.com/emmenko)! - Drop Node.js `v12`. Recommended min Node.js version is `v14` or `v16`.
+
+### Patch Changes
+
+- [#2450](https://github.com/commercetools/merchant-center-application-kit/pull/2450) [`eb8f5b2c`](https://github.com/commercetools/merchant-center-application-kit/commit/eb8f5b2c885a4c3ffc7857a61e50508b429bf964) Thanks [@emmenko](https://github.com/emmenko)! - Update dependencies
+
+- Updated dependencies [[`eb8f5b2c`](https://github.com/commercetools/merchant-center-application-kit/commit/eb8f5b2c885a4c3ffc7857a61e50508b429bf964)]:
+  - @commercetools-frontend/constants@21.0.0-rc.0
+  - @commercetools-frontend/sentry@21.0.0-rc.0
+
 ## 20.12.3
 
 ### Patch Changes

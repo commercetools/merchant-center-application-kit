@@ -1,5 +1,196 @@
 # playground
 
+## 19.0.0-rc.0
+
+### Major Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`b8fb4cbb`](https://github.com/commercetools/merchant-center-application-kit/commit/b8fb4cbbb8b78ff18af7edf8100703f7f9712187) Thanks [@emmenko](https://github.com/emmenko)! - Following breaking changes were introduced:
+
+  - New required fields in the Custom Application config.
+  - Menu links structure in Custom Application config changed a bit.
+  - The `ENABLE_OIDC_FOR_DEVELOPMENT` is now the default behavior.
+  - The deprecated `menu.json` file and the `DEV_ONLY_` props have been removed.
+
+  Note that if you were testing your Custom Application with Cypress, you need to use the `@commercetools-frontend/cypress` package to be able to use the `cy.loginByOidc` command.
+
+  For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-31-custom-applications-v21).
+
+* [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`1c363fad`](https://github.com/commercetools/merchant-center-application-kit/commit/1c363fad7ab770a739ac8080358e41ae4af42074) Thanks [@emmenko](https://github.com/emmenko)! - Drop Node.js `v12`. Recommended min Node.js version is `v14` or `v16`.
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`e079fdcb`](https://github.com/commercetools/merchant-center-application-kit/commit/e079fdcb21ae7dddf14e554be1bd6e36f7346417) Thanks [@emmenko](https://github.com/emmenko)! - Following breaking changes were introduced:
+
+  - The starter template has been updated to use the new Org-level Custom Application features.
+  - The Custom Application config of the starter template has been converted from `.json` to `.mjs`, to allow importing and referencing constants.
+  - When installing the starter template using the `create-mc-app` CLI, the Custom Application config is updated with some of the user inputs, like `entryPointUriPath`.
+    - If no `entryPointUriPath` is provided, a random one is assigned.
+
+  For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-31-custom-applications-v21).
+
+* [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`07f5b00f`](https://github.com/commercetools/merchant-center-application-kit/commit/07f5b00f3045a3e30462a1150e6ba85fcecc9098) Thanks [@emmenko](https://github.com/emmenko)! - Following breaking changes were introduced:
+
+  - In `mc-scripts`, the `build` command additionally compiles the `index.html` by default.
+  - Running the `compile-html` command by default should not be necessary anymore. However, you can pass `--build-only` to the `build` command to opt-out of the compilation step, in case you want to run it separately, for example to use the `--transformer`.
+  - Running the `compile-html` command by default does not print to `stdout` the JSON string with the security headers. You can opt into the old behavior by passing the `--print-security-headers` option.
+  - The `--inline-csp` of `compile-html` has been dropped, as it's now the built-in behavior.
+  - The `dist` folder created by the `build` command has been removed. Instead, the `build` command writes the production bundles directly into the `public` folder.
+
+  For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-31-custom-applications-v21).
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`6d0e71d7`](https://github.com/commercetools/merchant-center-application-kit/commit/6d0e71d7e08222f5b6462b7c60fca80e8992cfa7) Thanks [@emmenko](https://github.com/emmenko)! - Following breaking changes were introduced in `test-utils`:
+
+  - The deprecated `project.allAppliedMenuVisibilities` option has been removed.
+  - The `disableApolloMocks` option has been renamed to `enableApolloMocks`. The behavior is now inverted. By default, the Apollo mocks are disabled. This is to encourage mocking via [MSW](https://mswjs.io/).
+  - The `disableAutomaticEntryPointRoutes` option now defaults to `false`. This means that when rendering the `<ApplicationShell>`, you should not use the `render` function but pass the application component using `children`. See [changelog](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/application-shell/CHANGELOG.md#1790) for more information.
+  - The deprecated `permissions` option has been removed. Use `project.allAppliedPermissions` instead.
+
+    ```js
+    // Before
+    {
+      permissions: {
+        canManageProducts: true;
+      }
+    }
+
+    // After
+    {
+      project: {
+        allAppliedPermissions: [{ name: 'canManageProducts', value: true }];
+      }
+    }
+    ```
+
+    You can also use the helper function `mapResourceAccessToAppliedPermissions` (recommended)
+
+    ```js
+    import { mapResourceAccessToAppliedPermissions } from '@commercetools-frontend/application-shell/test-utils';
+
+    {
+      project: {
+        allAppliedPermissions: mapResourceAccessToAppliedPermissions([
+          PERMISSIONS.View
+        ])
+      },
+    }
+    ```
+
+    or the `denormalizePermissions` function.
+
+    ```js
+    import { denormalizePermissions } from '@commercetools-frontend/application-shell/test-utils';
+
+    {
+      project: {
+        allAppliedPermissions: denormalizePermissions({
+          canManageProducts: true,
+        });
+      }
+    }
+    ```
+
+  - The deprecated `actionRights` option has been removed. Use `project.allAppliedActionRights` instead.
+
+    ```js
+    // Before
+    {
+      actionRights: {
+        products: {
+          canEditPrices: true,
+          canPublishProducts: false,
+        }
+      }
+    }
+
+    // After
+    {
+      project: {
+        allAppliedActionRights: [
+          { group: 'products', name: 'canEditPrices', value: true },
+          { group: 'products', name: 'canPublishProducts', value: false }
+        ]
+      }
+    }
+    ```
+
+    You can also use the helper function `denormalizeActionRights`.
+
+    ```js
+    import { denormalizeActionRights } from '@commercetools-frontend/application-shell/test-utils';
+
+    {
+      project: {
+        allAppliedActionRights: denormalizeActionRights({
+          products: {
+            canEditPrices: true,
+            canPublishProducts: false,
+          },
+        });
+      }
+    }
+    ```
+
+  - The deprecated `dataFences` option has been removed. Use `project.allAppliedDataFences` instead.
+
+    ```js
+    // Before
+    {
+      dataFences: {
+        store: {
+          orders: {
+            canViewOrders: {
+              values: ['store-1'],
+            }
+          }
+        }
+      }
+    }
+
+    // After
+    {
+      project: {
+        allAppliedDataFences: [
+          { type: 'store', group: 'orders', name: 'canViewOrders', value: 'store-1' }
+        ]
+      }
+    }
+    ```
+
+    You can also use the helper function `denormalizeDataFences`.
+
+    ```js
+    import { denormalizeDataFences } from '@commercetools-frontend/application-shell/test-utils';
+
+    {
+      project: {
+        allAppliedDataFences: denormalizeDataFences({
+          store: {
+            orders: {
+              canViewOrders: {
+                values: ['store-1'],
+              },
+            },
+          },
+        });
+      }
+    }
+    ```
+
+  For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-31-custom-applications-v21).
+
+### Patch Changes
+
+- [#2450](https://github.com/commercetools/merchant-center-application-kit/pull/2450) [`eb8f5b2c`](https://github.com/commercetools/merchant-center-application-kit/commit/eb8f5b2c885a4c3ffc7857a61e50508b429bf964) Thanks [@emmenko](https://github.com/emmenko)! - Update dependencies
+
+- Updated dependencies [[`eb8f5b2c`](https://github.com/commercetools/merchant-center-application-kit/commit/eb8f5b2c885a4c3ffc7857a61e50508b429bf964), [`b8fb4cbb`](https://github.com/commercetools/merchant-center-application-kit/commit/b8fb4cbbb8b78ff18af7edf8100703f7f9712187), [`1c363fad`](https://github.com/commercetools/merchant-center-application-kit/commit/1c363fad7ab770a739ac8080358e41ae4af42074), [`6d0e71d7`](https://github.com/commercetools/merchant-center-application-kit/commit/6d0e71d7e08222f5b6462b7c60fca80e8992cfa7)]:
+  - @commercetools-frontend/actions-global@21.0.0-rc.0
+  - @commercetools-frontend/application-components@21.0.0-rc.0
+  - @commercetools-frontend/application-shell@21.0.0-rc.0
+  - @commercetools-frontend/application-shell-connectors@21.0.0-rc.0
+  - @commercetools-frontend/constants@21.0.0-rc.0
+  - @commercetools-frontend/i18n@21.0.0-rc.0
+  - @commercetools-frontend/l10n@21.0.0-rc.0
+  - @commercetools-frontend/permissions@21.0.0-rc.0
+  - @commercetools-frontend/sdk@21.0.0-rc.0
+
 ## 18.6.5
 
 ### Patch Changes

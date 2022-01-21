@@ -1,5 +1,41 @@
 # @commercetools-local/visual-testing-app
 
+## 19.0.0-rc.0
+
+### Major Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`b8fb4cbb`](https://github.com/commercetools/merchant-center-application-kit/commit/b8fb4cbbb8b78ff18af7edf8100703f7f9712187) Thanks [@emmenko](https://github.com/emmenko)! - Following breaking changes were introduced:
+
+  - New required fields in the Custom Application config.
+  - Menu links structure in Custom Application config changed a bit.
+  - The `ENABLE_OIDC_FOR_DEVELOPMENT` is now the default behavior.
+  - The deprecated `menu.json` file and the `DEV_ONLY_` props have been removed.
+
+  Note that if you were testing your Custom Application with Cypress, you need to use the `@commercetools-frontend/cypress` package to be able to use the `cy.loginByOidc` command.
+
+  For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-31-custom-applications-v21).
+
+* [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`1c363fad`](https://github.com/commercetools/merchant-center-application-kit/commit/1c363fad7ab770a739ac8080358e41ae4af42074) Thanks [@emmenko](https://github.com/emmenko)! - Drop Node.js `v12`. Recommended min Node.js version is `v14` or `v16`.
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`07f5b00f`](https://github.com/commercetools/merchant-center-application-kit/commit/07f5b00f3045a3e30462a1150e6ba85fcecc9098) Thanks [@emmenko](https://github.com/emmenko)! - Following breaking changes were introduced:
+
+  - In `mc-scripts`, the `build` command additionally compiles the `index.html` by default.
+  - Running the `compile-html` command by default should not be necessary anymore. However, you can pass `--build-only` to the `build` command to opt-out of the compilation step, in case you want to run it separately, for example to use the `--transformer`.
+  - Running the `compile-html` command by default does not print to `stdout` the JSON string with the security headers. You can opt into the old behavior by passing the `--print-security-headers` option.
+  - The `--inline-csp` of `compile-html` has been dropped, as it's now the built-in behavior.
+  - The `dist` folder created by the `build` command has been removed. Instead, the `build` command writes the production bundles directly into the `public` folder.
+
+  For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-31-custom-applications-v21).
+
+### Patch Changes
+
+- [#2450](https://github.com/commercetools/merchant-center-application-kit/pull/2450) [`eb8f5b2c`](https://github.com/commercetools/merchant-center-application-kit/commit/eb8f5b2c885a4c3ffc7857a61e50508b429bf964) Thanks [@emmenko](https://github.com/emmenko)! - Update dependencies
+
+- Updated dependencies [[`eb8f5b2c`](https://github.com/commercetools/merchant-center-application-kit/commit/eb8f5b2c885a4c3ffc7857a61e50508b429bf964)]:
+  - @commercetools-frontend/application-components@21.0.0-rc.0
+  - @commercetools-frontend/constants@21.0.0-rc.0
+  - @commercetools-frontend/react-notifications@21.0.0-rc.0
+
 ## 18.2.3
 
 ### Patch Changes

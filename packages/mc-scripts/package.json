@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/mc-scripts",
-  "version": "20.13.0",
+  "version": "21.0.0-rc.0",
   "description": "Configuration and scripts for developing a MC application",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -28,11 +28,11 @@
   "dependencies": {
     "@babel/runtime": "7.16.7",
     "@babel/runtime-corejs3": "7.16.8",
-    "@commercetools-frontend/application-config": "20.12.3",
+    "@commercetools-frontend/application-config": "21.0.0-rc.0",
     "@commercetools-frontend/assets": "20.12.3",
-    "@commercetools-frontend/babel-preset-mc-app": "20.12.3",
-    "@commercetools-frontend/mc-dev-authentication": "20.10.6",
-    "@commercetools-frontend/mc-html-template": "20.12.3",
+    "@commercetools-frontend/babel-preset-mc-app": "21.0.0-rc.0",
+    "@commercetools-frontend/mc-dev-authentication": "21.0.0-rc.0",
+    "@commercetools-frontend/mc-html-template": "21.0.0-rc.0",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.4",
     "@svgr/webpack": "6.2.0",
     "autoprefixer": "10.4.2",
