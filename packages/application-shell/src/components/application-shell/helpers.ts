@@ -40,7 +40,7 @@ export function getMcOrigin(mcApiUrl: string, actualWindow = window) {
 const defaultAsyncMessagesLoader =
   (availableLanguages: string[]) => (lang: string) => {
     const isAvailableLanguage = availableLanguages?.includes(lang);
-    console.log('Loading translations data from the default loader...');
+
     return import(
       `../../i18n/data/${
         isAvailableLanguage ? lang : 'core'
@@ -67,7 +67,7 @@ const defaultAsyncMessagesLoader =
  * @returns Custom Application provided object/loader, a default loader or raise an error if no enough info is available
  */
 export function resolveApplicationMessages(
-  customAppProvidedMessages: TAsyncLocaleDataProps['applicationMessages'],
+  customAppProvidedMessages?: TAsyncLocaleDataProps['applicationMessages'],
   availableLocales?: string[]
 ) {
   if (customAppProvidedMessages) {
