@@ -12,13 +12,17 @@ topics:
 
 The Application Kit packages have been released with a new **major version** `v21`.
 
-This version marks the release of new Custom Application features. See [Migrating from Project-level Custom Applications](/migrating-from-project-level-custom-applications) for more information. Furthermore, the Custom Application documentation has been restructured and updated accordingly. The [legacy documentation](https://mc-custom-applications-legacy.vercel.app/custom-applications/_legacy) is still available during the migration period.
+This version marks the release of new Custom Application features. See [Migrating from Project-level Custom Applications](/migrating-from-project-level-custom-applications) for more information.
 
-With that, there are several breaking changes to the Application Kit packages.
+Furthermore, the Custom Application documentation has been restructured and updated to match the new status quo of Custom Applications. The [Project-level legacy documentation](https://mc-custom-applications-legacy.vercel.app/custom-applications/_legacy) remains available during the migration period in a separate location.
 
 Follow the steps below to migrate your Application Kit packages to the new version.
 
 <!--more-->
+
+# Supported Node.js versions
+
+Support for Node.js `v12` has been dropped. Recommended versions are `v14` or `v16`.
 
 # Changes to Custom Application config
 
@@ -85,13 +89,13 @@ If you were using the opt-in feature `ENABLE_OIDC_FOR_DEVELOPMENT=true`, this is
 
 </Info>
 
-See [Development login via OIDC](/migrating-from-project-level-custom-applications#development-login-via-oidc) for more information.
+See [Development login via OpenID Connect](/migrating-from-project-level-custom-applications#development-login-via-openid-connect) for more information.
 
 # Changes to the CLI
 
 The `mc-scripts` CLI has some breaking changes about the commands:
 
-- In `mc-scripts`, the `build` command now additionally compiles the `index.html` by default.
+- In `mc-scripts`, the `build` command additionally compiles the `index.html` by default.
   - Running the `compile-html` command by default should not be necessary anymore. However, you can pass `--build-only` to the `build` command to opt-out of the compilation step, in case you want to run it separately, for example to use the `--transformer`.
 - Running the `compile-html` command by default does not print to `stdout` the JSON string with the security headers. You can opt into the old behavior by passing the `--print-security-headers` option.
 - The `--inline-csp` of `compile-html` has been dropped, as it's now the built-in behavior.
@@ -102,23 +106,51 @@ The `mc-scripts` CLI has some breaking changes about the commands:
 The `@commercetools-frontend/application-shell/test-utils` has the following breaking changes:
 
 - The deprecated `project.allAppliedMenuVisibilities` option has been removed.
-- The `disableApolloMocks` option has been renamed to `useApolloMocks`. The behavior is now inverted. By default, the Apollo mocks are disabled. This is to encourage mocking via [MSW](https://mswjs.io/). See [Testing](/development/testing) for more information.
+- The `disableApolloMocks` option has been renamed to `enableApolloMocks`. The behavior is now inverted. By default, the Apollo mocks are disabled. This is to encourage mocking via [MSW](https://mswjs.io/). See [Testing](/development/testing) for more information.
 - The `disableAutomaticEntryPointRoutes` option now defaults to `false`. This means that when rendering the `<ApplicationShell>`, you should not use the `render` function but pass the application component using `children`. See [changelog](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/application-shell/CHANGELOG.md#1790) for more information.
 - The deprecated `permissions` option has been removed. Use `project.allAppliedPermissions` instead.
 
-```js
-// Before
-{
-  permissions: {
-    canManageProducts: true;
+  ```js
+  // Before
+  {
+    permissions: {
+      canManageProducts: true;
+    }
   }
-}
-// After
-{
-  project: {
-    allAppliedPermissions: [{ name: 'canManageProducts', value: true }];
+  // After
+  {
+    project: {
+      allAppliedPermissions: [{ name: 'canManageProducts', value: true }];
+    }
   }
-}
-```
+  ```
+
+  You can also use the helper function `mapResourceAccessToAppliedPermissions` (recommended)
+
+  ```js
+  import { mapResourceAccessToAppliedPermissions } from '@commercetools-frontend/application-shell/test-utils';
+  {
+    project: {
+      allAppliedPermissions: mapResourceAccessToAppliedPermissions([
+        PERMISSIONS.View
+      ])
+    },
+  }
+  ```
+
+  or the `denormalizePermissions` function.
+
+  ```js
+  import { denormalizePermissions } from '@commercetools-frontend/application-shell/test-utils';
+  {
+    project: {
+      allAppliedPermissions: denormalizePermissions({
+        canManageProducts: true,
+      });
+    }
+  }
+  ```
 
 To help defining the list of applied permissions, you can use the helper function [`mapResourceAccessToAppliedPermissions`](/api-reference/commercetools-frontend-application-shell#mapresourceaccesstoappliedpermissions) or [`denormalizePermissions`](/api-reference/commercetools-frontend-application-shell#denormalizepermissions).
+
+Note that if you were testing your Custom Application with Cypress, you need to use the `@commercetools-frontend/cypress` package to be able to use the `cy.loginByOidc` command. See [End-to-End tests](/development/testing#end-to-end) for more information.
