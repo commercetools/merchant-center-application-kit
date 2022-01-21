@@ -28,7 +28,7 @@ In case you need advice in which region your Project should be located, please c
 
 The Merchant Center and the Merchant Center API Gateway are available at the same cloud regions where the commercetools Platform runs.
 
-All hostnames are subdomains of `commercetools.com` and follow a specific naming format, including the cloud provider, the cloud region, and the Merchant Center service name.
+All hostnames are subdomains of `commercetools.com` and follow a specific naming format, including the cloud provider, the cloud Region, and the Merchant Center service name.
 
 ```
 https://{mcService}.{region}.{cloudProvider}.commercetools.com
@@ -48,7 +48,7 @@ https://{mcService}.{region}.{cloudProvider}.commercetools.com
 
 ## Cloud Identifiers
 
-To make it easier to reference the Merchant Center API URL, for example in the [Custom Application config](/api-reference/application-config#cloudIdentifier), each cloud region maps to an identifier.
+To make it easier to reference the Merchant Center API URL, for example in the [Custom Application config](/api-reference/application-config#cloudIdentifier), each cloud Region maps to an identifier.
 
 | Cloud region | Cloud identifier |
 | --- | --- |
@@ -97,7 +97,7 @@ The Merchant Center API primarily acts as an API Gateway with the following resp
 
 * Verifying the User session.
 * Routing the request to the correct route handler, specific to the targeted API.
-* Making sure that requests to the targeted APIs are properly authenticated and authorized ([OAuth Scopes and User Permissions](/concepts/oauth-scopes-and-user-permissions)).
+* Making sure that requests to the targeted APIs are properly authenticated and authorized ([OAuth Scopes and user permissions](/concepts/oauth-scopes-and-user-permissions)).
 
 As for the API endpoints available to be used to target the correct API, they are grouped in two categories:
 

@@ -20,8 +20,8 @@ The following file extensions can be used: `.json`, `.js`, `.cjs`, `.mjs`, `.ts`
 
 For example:
 
-```js title="custom-application-config.js"
-const { entryPointUriPath } = require('./constants');
+```js title="custom-application-config.mjs"
+import { entryPointUriPath } from './constants';
 
 const name = 'Test application';
 
@@ -137,7 +137,7 @@ The `entryPointUriPath` value must adhere to the following restrictions:
 * Must be between 2 and 64 characters.
 * Underscores and hyphens are allowed except as leading, trailing, and adjacent characters.
 
-Furthermore, the `entryPointUriPath` value is tightly bound to User Permissions of the Custom Application and is used to [derive the unique name of the User Permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions).
+Furthermore, the `entryPointUriPath` value is tightly bound to user permissions of the Custom Application and is used to [derive the unique name of the user permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions).
 
 Finally, make sure that your Custom Application routes also include the `entryPointUriPath`.
 
@@ -169,7 +169,7 @@ Note that the list can be extended at any time. _Last update 2022-01-01_.
 
 ## `cloudIdentifier`
 
-The [identifier of the cloud region](/concepts/merchant-center-api#cloud-identifiers) that the Custom Application uses to connect to the commercetools Platform. The values map to the actual Merchant Center API URL for that region.
+The [identifier of the cloud Region](/concepts/merchant-center-api#cloud-identifiers) that the Custom Application uses to connect to the commercetools Platform. The values map to the actual Merchant Center API URL for that region.
 
 Supported values are:
 
@@ -187,7 +187,7 @@ Supported values are:
 
 <Info>
 
-If a cloud region is not listed in the values above, you can override the value by adding a `mcApiUrl` property to the Custom Application config file with the full origin URL.
+If a cloud Region is not listed in the values above, you can override the value by adding a `mcApiUrl` property to the Custom Application config file with the full origin URL.
 
 </Info>
 
@@ -292,7 +292,7 @@ For example, if the Custom Application should reference an external API, or have
 
 ## `oAuthScopes`
 
-The configuration for [OAuth Scopes and User Permissions](#oauth-scopes-and-user-permissions).
+The configuration for [OAuth Scopes and user permissions](#oauth-scopes-and-user-permissions).
 
 <Info>
 
@@ -456,7 +456,7 @@ A list of localized fields `{ locale, value }` with translated labels for each a
 
 ## `mainMenuLink.permissions`
 
-A list of the [User Permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions) specific to your Custom Application. Users must have at least one permission to see the link in the Merchant Center menu.
+A list of the [user permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions) specific to your Custom Application. Users must have at least one permission to see the link in the Merchant Center menu.
 
 ```json
 {
@@ -468,7 +468,7 @@ A list of the [User Permissions](/concepts/oauth-scopes-and-user-permissions#use
 
 <Info>
 
-The values of the User Permissions for the Custom Application are always derived from the `entryPointUriPath`. For example given `entryPointUriPath: avengers`, the User Permissions are `ViewAvengers` and `ManageAvengers`.
+The values of the user permissions for the Custom Application are always derived from the `entryPointUriPath`. For example given `entryPointUriPath: avengers`, the user permissions are `ViewAvengers` and `ManageAvengers`.
 
 </Info>
 
@@ -524,7 +524,7 @@ A list of localized fields `{ locale, value }` with translated labels for each a
 
 ## `submenuLinks.*.permissions`
 
-A list of the [User Permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions) specific to your Custom Application. Users must have at least one permission to see the link in the Merchant Center menu.
+A list of the [user permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions) specific to your Custom Application. Users must have at least one permission to see the link in the Merchant Center menu.
 
 ```json
 {
@@ -538,7 +538,7 @@ A list of the [User Permissions](/concepts/oauth-scopes-and-user-permissions#use
 
 <Info>
 
-The values of the User Permissions for the Custom Application are always derived from the `entryPointUriPath`. For example given `entryPointUriPath: avengers`, the User Permissions are `ViewAvengers` and `ManageAvengers`.
+The values of the user permissions for the Custom Application are always derived from the `entryPointUriPath`. For example given `entryPointUriPath: avengers`, the user permissions are `ViewAvengers` and `ManageAvengers`.
 
 </Info>
 

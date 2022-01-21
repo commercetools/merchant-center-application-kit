@@ -1,5 +1,5 @@
 ---
-title: OAuth Scopes and User Permissions
+title: OAuth Scopes and user permissions
 ---
 
 # OAuth Scopes
@@ -28,14 +28,14 @@ These [OAuth Scopes](https://docs.commercetools.com/api/scopes) must be specifie
 
 Notice here how the OAuth Scopes are grouped by the two fields `view` and `manage`.
 
-This grouping determines the **mapping and relation between OAuth Scopes and User Permissions**.
+This grouping determines the **mapping and relation between OAuth Scopes and user permissions**.
 
-# User Permissions
+# user permissions
 
-In the Merchant Center, you can assign User Permissions to Teams in order to grant or restrict access to certain parts and functionalities of the Merchant Center. See [User Permissions in Merchant Center](https://docs.commercetools.com/merchant-center/user-permissions) for more information.<br />
-The same concepts apply for Custom Applications as well. Once your Custom Application has been installed in your Organization, you can assign User Permissions for your Custom Application to each specific Team.
+In the Merchant Center, you can assign user permissions to Teams in order to grant or restrict access to certain parts and functionalities of the Merchant Center. See [user permissions in Merchant Center](https://docs.commercetools.com/merchant-center/user-permissions) for more information.<br />
+The same concepts apply for Custom Applications as well. Once your Custom Application has been installed in your Organization, you can assign user permissions for your Custom Application to each specific Team.
 
-Each Custom Application gets a **unique pair** of User Permissions: "view" and "manage."
+Each Custom Application gets a **unique pair** of user permissions: "view" and "manage."
 
 * When assigning "view"-only permission to a Team, only the `view_` OAuth Scopes are used to authorize API requests.
 * When assigning "manage" permission to a Team, both `view_` and `manage_` OAuth Scopes are used to authorize API requests.
@@ -46,7 +46,7 @@ The permission names are unique to each Custom Application and they derive from 
 
 Here are some examples:
 
-| `entryPointUriPath` | User Permission |
+| `entryPointUriPath` | User permission |
 | --- | --- |
 | `avengers` | `{View,Manage}Avengers` |
 | `the-avengers` | `{View,Manage}TheAvengers` |
@@ -56,7 +56,7 @@ Here are some examples:
 
 </Info>
 
-Ultimately, User Permissions should be applied and enforced in the actual Custom Application code. For example to restrict access to certain pages, or to disable a button, etc.
+Ultimately, user permissions should be applied and enforced in the actual Custom Application code. For example to restrict access to certain pages, or to disable a button, etc.
 
 To learn more about it, head over to the [Permissions in the development section](/development/permissions).
 
@@ -72,9 +72,9 @@ For more information on what to do next, we recommend the following sections:
     Learn more about the Custom Application configuration file.
   </Card>
   <Card
-    title="Applying User Permissions"
+    title="Applying user permissions"
     href="/development/permissions"
   >
-    Learn more about applying User Permissions in the Custom Application.
+    Learn more about applying user permissions in the Custom Application.
   </Card>
 </Cards>

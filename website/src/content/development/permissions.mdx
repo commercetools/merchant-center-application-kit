@@ -2,19 +2,19 @@
 title: Permissions
 ---
 
-As we learned in [OAuth Scopes and User Permissions](/concepts/oauth-scopes-and-user-permissions), each Custom Application has a unique pair of User Permissions at its disposal: "view" and "manage."
+As we learned in [OAuth Scopes and user permissions](/concepts/oauth-scopes-and-user-permissions), each Custom Application has a unique pair of user permissions at its disposal: "view" and "manage."
 
-The values of the User Permissions are derived from the application `entryPointUriPath`.
+The values of the user permissions are derived from the application `entryPointUriPath`.
 
-When developing a Custom Application you might want to enforce these User Permissions in some parts of your application. For example, performing certain actions like creating, or updating, or deleting a resource should only be possible if the User has "manage" permission.
+When developing a Custom Application you might want to enforce these user permissions in some parts of your application. For example, performing certain actions like creating, or updating, or deleting a resource should only be possible if the User has "manage" permission.
 
-# Applying User Permissions
+# Applying user permissions
 
-A Custom Application allows to easily check and evaluate if certain User Permissions are assigned or not, making it possible to determine whether to render something or not, or to turn off some UI functionalities or not, and so on.
+A Custom Application allows to easily check and evaluate if certain user permissions are assigned or not, making it possible to determine whether to render something or not, or to turn off some UI functionalities or not, and so on.
 
 ## In menu links
 
-In the Custom Application config, the menu links allow to define the level of required access by providing the name of the demanded User Permission.
+In the Custom Application config, the menu links allow to define the level of required access by providing the name of the demanded user permission.
 
 ```json
 {
@@ -33,7 +33,7 @@ This determines which links should be visible or not, depending on the permissio
 
 ## In routes
 
-In case certain routes should not be accessible without proper User Permissions, you can render the route conditionally based on the evaluated permission.
+In case certain routes should not be accessible without proper user permissions, you can render the route conditionally based on the evaluated permission.
 
 To do so you can use the `useIsAuthorized` React hook from the `@commercetools-frontend/permissions` package.
 
@@ -70,7 +70,7 @@ const ApplicationRoutes = () => {
 
 ## In components
 
-Similarly, you can also evaluate User Permissions in your React components, for example to disable a button.
+Similarly, you can also evaluate user permissions in your React components, for example to disable a button.
 
 ```jsx
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
