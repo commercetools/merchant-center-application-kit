@@ -7,7 +7,7 @@
 Following breaking changes were introduced in `test-utils`:
 
 - The deprecated `project.allAppliedMenuVisibilities` option has been removed.
-- The `disableApolloMocks` option has been renamed to `useApolloMocks`. The behavior is now inverted. By default, the Apollo mocks are disabled. This is to encourage mocking via [MSW](https://mswjs.io/).
+- The `disableApolloMocks` option has been renamed to `enableApolloMocks`. The behavior is now inverted. By default, the Apollo mocks are disabled. This is to encourage mocking via [MSW](https://mswjs.io/).
 - The `disableAutomaticEntryPointRoutes` option now defaults to `false`. This means that when rendering the `<ApplicationShell>`, you should not use the `render` function but pass the application component using `children`. See [changelog](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/application-shell/CHANGELOG.md#1790) for more information.
 - The deprecated `permissions` option has been removed. Use `project.allAppliedPermissions` instead.
 
@@ -142,4 +142,4 @@ Following breaking changes were introduced in `test-utils`:
   }
   ```
 
-For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-25-custom-applications-v21).
+For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-31-custom-applications-v21).

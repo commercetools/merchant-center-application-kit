@@ -12,4 +12,4 @@ Following breaking changes were introduced:
 - When installing the starter template using the `create-mc-app` CLI, the Custom Application config is updated with some of the user inputs, like `entryPointUriPath`.
   - If no `entryPointUriPath` is provided, a random one is assigned.
 
-For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-25-custom-applications-v21).
+For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-31-custom-applications-v21).
