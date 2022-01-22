@@ -37,7 +37,7 @@
     "cldr": "7.1.1",
     "deep-diff": "1.0.2",
     "moment-timezone": "^0.5.34",
-    "node-fetch": "2.6.7",
+    "node-fetch": "3.1.1",
     "react": "17.0.2",
     "rimraf": "3.0.2",
     "shelljs": "0.8.5"
