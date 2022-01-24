@@ -16,7 +16,7 @@ const createTestProps = (custom: Partial<Props> = {}) => ({
 });
 
 describe('rendering', () => {
-  beforeEach(() => {
+  it('should fetch data and render it', async () => {
     const props = createTestProps();
     render(
       <SdkGet
@@ -29,13 +29,11 @@ describe('rendering', () => {
         }}
       />
     );
-  });
-  it('should fetch data and render it', async () => {
     await screen.findByText(JSON.stringify({ status: 'ok' }));
   });
 });
 describe('rendering with error', () => {
-  beforeEach(() => {
+  it('should fetch data and render error message', async () => {
     const props = createTestProps();
     render(
       <SdkGet
@@ -48,14 +46,12 @@ describe('rendering with error', () => {
         }}
       />
     );
-  });
-  it('should fetch data and render error message', async () => {
     await screen.findByText(`Error: oops`);
   });
 });
 describe('rendering and refetching', () => {
   let count = 1;
-  beforeEach(() => {
+  it('should fetch data and render it', async () => {
     const props = createTestProps();
     render(
       <SdkGet
@@ -80,8 +76,6 @@ describe('rendering and refetching', () => {
         }}
       />
     );
-  });
-  it('should fetch data and render it', async () => {
     await screen.findByText(JSON.stringify({ count: 1 }));
     fireEvent.click(screen.getByRole('button', { name: 'Refresh' }));
     await screen.findByText(JSON.stringify({ count: 2 }));

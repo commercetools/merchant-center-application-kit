@@ -1,15 +1,15 @@
 import selectProjectKeyFromUrl from './select-project-key-from-url';
 
-describe.each([
-  ['/login', undefined],
-  ['/logout', undefined],
-  ['/account', undefined],
-  ['/foo', 'foo'],
-  ['/foo/bar', 'foo'],
-  ['/foo/bar/123', 'foo'],
-  // eslint-disable-next-line jest/valid-describe
-])('when location is %s', (path, expected) => {
-  it(`should return project key as "${expected}"`, () => {
-    expect(selectProjectKeyFromUrl(path)).toBe(expected);
+describe.each`
+  uriPath           | expectedProjectKey
+  ${'/login'}       | ${undefined}
+  ${'/logout'}      | ${undefined}
+  ${'/account'}     | ${undefined}
+  ${'/foo'}         | ${'foo'}
+  ${'/foo/bar'}     | ${'foo'}
+  ${'/foo/bar/123'} | ${'foo'}
+`('when location is $uriPath', ({ uriPath, expectedProjectKey }) => {
+  it(`should return project key as "${expectedProjectKey}"`, () => {
+    expect(selectProjectKeyFromUrl(uriPath)).toBe(expectedProjectKey);
   });
 });

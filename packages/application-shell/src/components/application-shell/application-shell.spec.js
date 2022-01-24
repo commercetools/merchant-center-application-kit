@@ -642,8 +642,8 @@ describe('when user is not authenticated', () => {
       expect(location.replace).toHaveBeenCalledWith(
         `${window.location.origin}/login?${queryParams}`
       );
-      expect(screen.queryByText('OK')).not.toBeInTheDocument();
     });
+    expect(screen.queryByText('OK')).not.toBeInTheDocument();
   });
 });
 describe('when selecting project locale "de"', () => {

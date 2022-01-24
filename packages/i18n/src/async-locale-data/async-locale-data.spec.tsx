@@ -51,8 +51,8 @@ describe('rendering', () => {
       const { container } = render(<AsyncLocaleData {...props} />);
       await waitFor(() => {
         expect(container).toHaveTextContent('Nothing');
-        expect(reportErrorToSentry).toHaveBeenCalledWith(error, {});
       });
+      expect(reportErrorToSentry).toHaveBeenCalledWith(error, {});
     });
   });
 
@@ -68,8 +68,8 @@ describe('rendering', () => {
       const { container } = render(<AsyncLocaleData {...props} />);
       await waitFor(() => {
         expect(container).toHaveTextContent('Locale: en-US');
-        expect(container).toHaveTextContent('Messages: Custom title en');
       });
+      expect(container).toHaveTextContent('Messages: Custom title en');
     });
   });
 
@@ -91,8 +91,8 @@ describe('rendering', () => {
       const { container } = render(<AsyncLocaleData {...props} />);
       await waitFor(() => {
         expect(container).toHaveTextContent('Locale: en-CA');
-        expect(container).toHaveTextContent('Messages: New title en');
       });
+      expect(container).toHaveTextContent('Messages: New title en');
     });
   });
 

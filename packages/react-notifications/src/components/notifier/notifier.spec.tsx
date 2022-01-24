@@ -74,8 +74,8 @@ describe('rendering', () => {
         }),
         undefined
       );
-      expect(dismiss).not.toHaveBeenCalled();
     });
+    expect(dismiss).not.toHaveBeenCalled();
 
     fireEvent.click(screen.getByText('Increase counter'));
     fireEvent.click(screen.getByText('Increase counter'));
@@ -85,7 +85,7 @@ describe('rendering', () => {
     fireEvent.click(screen.getByText('Close'));
     await waitFor(() => {
       expect(showNotification).toHaveBeenCalledTimes(1);
-      expect(dismiss).toHaveBeenCalled();
     });
+    expect(dismiss).toHaveBeenCalled();
   });
 });
