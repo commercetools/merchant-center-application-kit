@@ -4,9 +4,17 @@
   <a href="https://www.npmjs.com/package/@commercetools-frontend/assets"><img src="https://badgen.net/npm/v/@commercetools-frontend/assets" alt="Latest release (latest dist-tag)" /></a> <a href="https://www.npmjs.com/package/@commercetools-frontend/assets"><img src="https://badgen.net/npm/v/@commercetools-frontend/assets/next" alt="Latest release (next dist-tag)" /></a> <a href="https://bundlephobia.com/result?p=@commercetools-frontend/assets"><img src="https://badgen.net/bundlephobia/minzip/@commercetools-frontend/assets" alt="Minified + GZipped size" /></a> <a href="https://github.com/commercetools/merchant-center-application-kit/blob/main/LICENSE"><img src="https://badgen.net/github/license/commercetools/merchant-center-application-kit" alt="GitHub license" /></a>
 </p>
 
-This package contains image assets that can be used in the creation of Merchant Center applications. These are used within the package `application-shell`. The images can be used directly, from the `images` folder.
+This package contains various assets that can be used in Merchant Center Custom Applications.
 
-## Usage
+## Install
+
+```bash
+$ npm install --save @commercetools-frontend/assets
+```
+
+## Using SVG images
+
+The `images` folder contains SVG images to be imported and used as `<img src>` URLs.
 
 ```js
 import React from 'react';
@@ -18,10 +26,4 @@ const Component = () => (
     <img src={Hourglass} />
   </div>
 );
-```
-
-## Install
-
-```bash
-$ npm install --save @commercetools-frontend/assets
 ```
