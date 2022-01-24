@@ -228,6 +228,19 @@ Furthermore, replace the user permissions in the menu links `permissions` field 
 
 Given that you have defined the `constants` variables as described above, to avoid duplicating and hardcoding the `entryPointUriPath` and user permission values you can choose to use the `.mjs` extension for the Custom Application config file, instead of `.json`. This allows you to import the variables from the `constants` file and reference them in the configuration. See [supported file extensions](/api-reference/application-config#supported-file-extensions) for more information.
 
+```js title="custom-application-config.mjs"
+import { entryPointUriPath, PERMISSIONS } from './src/constants';
+
+const config = {
+  entryPointUriPath,
+  mainMenuLink: {
+    permissions: [PERMISSIONS.View]
+  },
+  // ...
+};
+export default config;
+```
+
 </Info>
 
 ## Remove `menu.json`

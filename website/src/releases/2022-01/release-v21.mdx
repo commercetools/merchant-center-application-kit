@@ -24,6 +24,12 @@ Follow the steps below to migrate your Application Kit packages to the new versi
 
 Support for Node.js `v12` has been dropped. Recommended versions are `v14` or `v16`.
 
+# Upgrading ESLint to v8
+
+ESLint has been upgraded to `v8` as the minimal required version. Make sure to upgrade the `eslint` package to `v8` and any other ESLint-related package to their latest version.
+
+The upgrade might include some rule changes and therefore some lint errors that need to be fixed.
+
 # Changes to Custom Application config
 
 The Custom Application config file has some new required fields.
@@ -72,6 +78,37 @@ The menu link structure also changed a bit.
 ```
 
 See [Custom Application config](/api-reference/application-config) for more information.
+
+## Referencing constants
+
+The Custom Application config has [support for additional file extensions](/api-reference/application-config#supported-file-extensions). This allows us to reference certain variables in our Custom Application config and in other places of the application.
+
+For example, we can define the `entryPointUriPath` and the user permissions in a `constants.js` file. The user permissions can be computed using the `entryPointUriPathToPermissionKeys` function, to avoid defining them manually.
+
+```js title="constants.js"
+import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-shell/ssr';
+
+export const entryPointUriPath = 'avengers';
+
+export const PERMISSIONS = entryPointUriPathToPermissionKeys(entryPointUriPath);
+```
+
+The `PERMISSIONS` variable contains a `View` and `Manage` properties, with the values being the computed values based on the `entryPointUriPath`.
+
+You can now reference these variables in the application code, as well as in the Custom Application config (using the `.mjs` file extension):
+
+```js title="custom-application-config.mjs"
+import { entryPointUriPath, PERMISSIONS } from './src/constants';
+
+const config = {
+  entryPointUriPath,
+  mainMenuLink: {
+    permissions: [PERMISSIONS.View]
+  },
+  // ...
+};
+export default config;
+```
 
 ## Migrating from `menu.json`
 
