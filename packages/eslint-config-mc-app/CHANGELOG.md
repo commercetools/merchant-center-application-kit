@@ -1,5 +1,15 @@
 # @commercetools-frontend/eslint-config-mc-app
 
+## 21.0.0-rc.1
+
+### Major Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`4e3baf52`](https://github.com/commercetools/merchant-center-application-kit/commit/4e3baf52f15859a1bdeacc9df4270ed84c7066c4) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade to ESLint v8. Make sure you upgrade the `eslint` dependency to v8 as well and fix possible linting errors.
+
+### Patch Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`5ea8baf1`](https://github.com/commercetools/merchant-center-application-kit/commit/5ea8baf1b2ca2661aac9a6a572d2c8e596ee0b2c) Thanks [@emmenko](https://github.com/emmenko)! - Use version range for Babel packages.
+
 ## 21.0.0-rc.0
 
 ### Patch Changes
