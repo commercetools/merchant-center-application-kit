@@ -39,6 +39,13 @@ describe('resolveApplicationMessages', () => {
     const coreI18n = { foo: 'baz' };
     const enI18n = { foo: 'bar' };
     const mockLoadError = new Error('i18n load error');
+    const mockConsoleWarn = (msg: string) => {
+      expect(msg).toEqual(
+        expect.stringContaining(
+          'Something went wrong while loading the app messages for error'
+        )
+      );
+    };
     jest.mock('../../i18n/data/core.json', () => coreI18n, { virtual: true });
     jest.mock('../../i18n/data/en.json', () => enI18n, { virtual: true });
     jest.mock(
@@ -48,6 +55,7 @@ describe('resolveApplicationMessages', () => {
       },
       { virtual: true }
     );
+    console.warn = jest.fn(mockConsoleWarn);
 
     const defaultAsyncMessagesLoader = resolveApplicationMessages(undefined, [
       'en',
