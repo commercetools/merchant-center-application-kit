@@ -26,8 +26,8 @@
     "build:bundles:watch": "yarn build -w"
   },
   "dependencies": {
-    "@babel/runtime": "7.16.7",
-    "@babel/runtime-corejs3": "7.16.8",
+    "@babel/runtime": "^7.16.7",
+    "@babel/runtime-corejs3": "^7.16.8",
     "@commercetools-frontend/application-config": "21.0.0-rc.0",
     "@commercetools-frontend/assets": "20.12.3",
     "@commercetools-frontend/babel-preset-mc-app": "21.0.0-rc.0",
@@ -38,7 +38,7 @@
     "autoprefixer": "10.4.2",
     "babel-loader": "8.2.3",
     "browserslist": "4.19.1",
-    "core-js": "3.20.3",
+    "core-js": "^3.20.3",
     "css-loader": "5.2.7",
     "css-minimizer-webpack-plugin": "3.4.1",
     "dotenv": "10.0.0",
@@ -71,8 +71,8 @@
     "webpackbar": "5.0.2"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "7.16.10",
-    "@babel/preset-env": "7.16.11",
+    "@babel/plugin-transform-runtime": "^7.16.10",
+    "@babel/preset-env": "^7.16.11",
     "rimraf": "3.0.2"
   },
   "engines": {

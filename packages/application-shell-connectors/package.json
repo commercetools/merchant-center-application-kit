@@ -21,8 +21,8 @@
     "entrypoints": ["./index.ts", "./test-utils/index.ts"]
   },
   "dependencies": {
-    "@babel/runtime": "7.16.7",
-    "@babel/runtime-corejs3": "7.16.8",
+    "@babel/runtime": "^7.16.7",
+    "@babel/runtime-corejs3": "^7.16.8",
     "@commercetools-frontend/constants": "21.0.0-rc.0",
     "@commercetools-frontend/sentry": "21.0.0-rc.0",
     "@emotion/react": "11.7.1",

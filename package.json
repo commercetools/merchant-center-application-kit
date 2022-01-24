@@ -80,8 +80,8 @@
     ]
   },
   "dependencies": {
-    "@babel/cli": "7.16.8",
-    "@babel/core": "7.16.10",
+    "@babel/cli": "^7.16.8",
+    "@babel/core": "^7.16.10",
     "@changesets/changelog-github": "0.4.2",
     "@changesets/cli": "2.19.0",
     "@commercetools-docs/writing-style": "3.0.9",
@@ -158,7 +158,7 @@
     "vfile-message": "3.1.0"
   },
   "resolutions": {
-    "@babel/preset-env": "7.16.4",
+    "@babel/preset-env": "7.16.11",
     "@jest/types": "27.4.2",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.3",
     "@types/puppeteer": "5.4.4",

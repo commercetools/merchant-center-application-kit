@@ -16,7 +16,7 @@
   },
   "bin": "./bin/cli.js",
   "dependencies": {
-    "@babel/core": "7.16.10",
+    "@babel/core": "^7.16.10",
     "execa": "5.1.1",
     "listr": "0.14.3",
     "mri": "1.2.0",
