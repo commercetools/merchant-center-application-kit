@@ -115,7 +115,7 @@ An optional description of the Custom Application, for information purposes.
 
 ## `entryPointUriPath`
 
-The **unique identifier** of the Custom Application, similarly to the `projectKey` of the commercetools Platform. This value determines the route at which the Custom Application is served by the Merchant Center.
+The **unique identifier** of the Custom Application, similarly to the `projectKey` of the commercetools Platform. This value determines the route at which the Custom Application is [served by the Merchant Center Proxy](/concepts/merchant-center-proxy-router).
 
 ```
 /:projectKey/:entryPointUriPath
@@ -137,9 +137,7 @@ The `entryPointUriPath` value must adhere to the following restrictions:
 * Must be between 2 and 64 characters.
 * Underscores and hyphens are allowed except as leading, trailing, and adjacent characters.
 
-Furthermore, the `entryPointUriPath` value is tightly bound to user permissions of the Custom Application and is used to [derive the unique name of the user permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions).
-
-Finally, make sure that your Custom Application routes also include the `entryPointUriPath`.
+Furthermore, the `entryPointUriPath` value is bound to user permissions of the Custom Application and is used to [derive the unique name of the user permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions).
 
 <Warning>
 
@@ -243,7 +241,7 @@ As long as you are developing the Custom Application locally, you can define any
 
 ## `env.production.url`
 
-The full URL value where the Custom Application is hosted at. This value is also used to configure the [Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) HTTP headers to allow the browser to request data from the application domain.
+The full URL value where the Custom Application is hosted at. The Merchant Center serves Custom Applications on its own domain, but requests are internally forwarded to this URL. See [Merchant Center Proxy Router](/concepts/merchant-center-proxy-router) for more information.
 
 ```json
 {
@@ -254,6 +252,12 @@ The full URL value where the Custom Application is hosted at. This value is also
   }
 }
 ```
+
+<Info>
+
+This value is also used to configure the [Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) HTTP headers to allow the browser to request data from the application domain.
+
+</Info>
 
 ## `env.production.cdnUrl`
 
@@ -425,7 +429,7 @@ The visual identifier of the Custom Application in the Merchant Center. You can 
 
 ## `mainMenuLink`
 
-An object describing the main link to the Custom Application in the Merchant Center left-side navbar menu.
+An object describing the main link to the Custom Application in the Merchant Center main navigation.
 
 ## `mainMenuLink.defaultLabel`
 
@@ -474,7 +478,7 @@ The values of the user permissions for the Custom Application are always derived
 
 ## `submenuLinks`
 
-An list of objects describing the sub-links to the Custom Application in the Merchant Center left-side navbar menu.
+An list of objects describing the sub-links to the Custom Application in the Merchant Center main navigation.
 
 ## `submenuLinks.*.uriPath`
 
