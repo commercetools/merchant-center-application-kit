@@ -12,7 +12,7 @@ module.exports = {
     'playground',
     'node_modules',
   ],
-  modulePathIgnorePatterns: ['build', 'dist', 'public/', 'examples'],
+  modulePathIgnorePatterns: ['.cache', 'build', 'dist', 'public/', 'examples'],
   transformIgnorePatterns: [
     // Transpile also our local packages as they are only symlinked.
     'node_modules/(?!(@commercetools-[frontend|backend]+)/)',
