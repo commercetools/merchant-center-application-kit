@@ -2674,7 +2674,7 @@ __metadata:
     "@types/node": 16.11.21
     express: 4.17.2
     express-jwt: 6.1.0
-    jose: 2.0.5
+    jose: 4.4.0
     jwks-rsa: 2.0.5
     msw: 0.36.5
   languageName: unknown
@@ -21908,7 +21908,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jose@npm:2.0.5, jose@npm:^2.0.5":
+"jose@npm:4.4.0":
+  version: 4.4.0
+  resolution: "jose@npm:4.4.0"
+  checksum: c84c7c3ab68080bae2115ab48cea939f71772e2ed9fc968e1d749528fc5c59960c90e434a4333875e2f24da0208d6b5133eb55a3ca0d0591e5235229accd0074
+  languageName: node
+  linkType: hard
+
+"jose@npm:^2.0.5":
   version: 2.0.5
   resolution: "jose@npm:2.0.5"
   dependencies:
