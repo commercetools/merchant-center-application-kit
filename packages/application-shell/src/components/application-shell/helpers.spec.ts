@@ -35,9 +35,9 @@ describe('resolveApplicationMessages', () => {
     expect(applicationMessages).toBe(customAppMessages);
   });
 
-  it('should return default loader if now messages are received and there are available locales', async () => {
-    const coreI18n = { foo: 'baz' };
-    const enI18n = { foo: 'bar' };
+  it('should return default loader if no messages are received and there are available locales', async () => {
+    const defaultI18n = { foo: 'baz' };
+    const deI18n = { foo: 'bar' };
     const mockLoadError = new Error('i18n load error');
     const mockConsoleWarn = (msg: string) => {
       expect(msg).toEqual(
@@ -46,8 +46,8 @@ describe('resolveApplicationMessages', () => {
         )
       );
     };
-    jest.mock('../../i18n/data/core.json', () => coreI18n, { virtual: true });
-    jest.mock('../../i18n/data/en.json', () => enI18n, { virtual: true });
+    jest.mock('../../i18n/data/en.json', () => defaultI18n, { virtual: true });
+    jest.mock('../../i18n/data/de.json', () => deI18n, { virtual: true });
     jest.mock(
       '../../i18n/data/error.json',
       () => {
@@ -58,15 +58,15 @@ describe('resolveApplicationMessages', () => {
     console.warn = jest.fn(mockConsoleWarn);
 
     const defaultAsyncMessagesLoader = resolveApplicationMessages(undefined, [
-      'en',
+      'de',
       'error',
     ]) as TMessageTranslationsAsync;
 
-    let translations = await defaultAsyncMessagesLoader('en');
-    expect(translations).toEqual(enI18n);
+    let translations = await defaultAsyncMessagesLoader('de');
+    expect(translations).toEqual(deI18n);
 
-    translations = await defaultAsyncMessagesLoader('de');
-    expect(translations).toEqual(coreI18n);
+    translations = await defaultAsyncMessagesLoader('es');
+    expect(translations).toEqual(defaultI18n);
 
     translations = await defaultAsyncMessagesLoader('error');
     expect(translations).toEqual({});

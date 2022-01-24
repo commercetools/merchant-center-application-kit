@@ -43,7 +43,7 @@ const defaultAsyncMessagesLoader =
 
     return import(
       `../../i18n/data/${
-        isAvailableLanguage ? lang : 'core'
+        isAvailableLanguage ? lang : 'en'
       }.json` /* webpackChunkName: "app-i18n-[request]" */
     )
       .then((i18nModule) => i18nModule.default)
