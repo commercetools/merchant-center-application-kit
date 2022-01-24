@@ -168,6 +168,5 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
    * Sets the locales for which there are translations generated. Example: ["en", "de", "es"]
    */
   availableLocales?: string[];
-
   [k: string]: unknown;
 }

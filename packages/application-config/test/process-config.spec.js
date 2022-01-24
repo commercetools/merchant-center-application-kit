@@ -33,6 +33,7 @@ describe('processing a simple config', () => {
       env: {
         applicationId: undefined,
         applicationName: 'avengers-app',
+        availableLocales: [],
         entryPointUriPath: 'avengers',
         cdnUrl: 'http://localhost:3001/',
         env: 'test',
@@ -64,6 +65,7 @@ describe('processing a simple config', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
+          availableLocales: [],
           entryPointUriPath: 'avengers',
           cdnUrl: 'https://avengers.app/',
           env: 'production',
@@ -100,6 +102,7 @@ describe('processing a simple config', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
+          availableLocales: [],
           entryPointUriPath: 'avengers',
           cdnUrl: 'http://localhost:3001/',
           env: 'development',
@@ -135,6 +138,7 @@ describe('processing a simple config', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
+          availableLocales: [],
           entryPointUriPath: 'avengers',
           cdnUrl: 'https://avengers.app/',
           env: 'staging',
@@ -169,6 +173,7 @@ describe('processing a full config', () => {
       env: {
         applicationId: undefined,
         applicationName: 'avengers-app',
+        availableLocales: ['en', 'de'],
         entryPointUriPath: 'avengers',
         cdnUrl: 'http://localhost:3001/',
         env: 'test',
@@ -211,6 +216,7 @@ describe('processing a full config', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
+          availableLocales: ['en', 'de'],
           entryPointUriPath: 'avengers',
           cdnUrl: 'https://cdn.avengers.app/',
           env: 'production',
@@ -260,6 +266,7 @@ describe('processing a full config', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
+          availableLocales: ['en', 'de'],
           entryPointUriPath: 'avengers',
           cdnUrl: 'http://localhost:3001/',
           env: 'development',
@@ -304,6 +311,7 @@ describe('processing a full config', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
+          availableLocales: ['en', 'de'],
           entryPointUriPath: 'avengers',
           cdnUrl: 'https://cdn.avengers.app/',
           env: 'staging',
@@ -359,6 +367,7 @@ describe('processing a config with environment variable placeholders', () => {
       env: {
         applicationId: undefined,
         applicationName: 'avengers-app',
+        availableLocales: [],
         entryPointUriPath: 'avengers',
         cdnUrl: 'http://localhost:3001/',
         env: 'test',
@@ -392,6 +401,7 @@ describe('processing a config with environment variable placeholders', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
+          availableLocales: [],
           entryPointUriPath: 'avengers',
           cdnUrl: 'https://avengers.app/',
           env: 'production',
@@ -430,6 +440,7 @@ describe('processing a config with environment variable placeholders', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
+          availableLocales: [],
           entryPointUriPath: 'avengers',
           cdnUrl: 'http://localhost:3001/',
           env: 'development',
@@ -467,6 +478,7 @@ describe('processing a config with environment variable placeholders', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
+          availableLocales: [],
           entryPointUriPath: 'avengers',
           cdnUrl: 'https://avengers.app/',
           env: 'staging',
@@ -501,6 +513,7 @@ describe('processing a config with intl variable placeholders', () => {
       env: {
         applicationId: undefined,
         applicationName: 'avengers-app',
+        availableLocales: [],
         entryPointUriPath: 'avengers',
         cdnUrl: 'http://localhost:3001/',
         env: 'test',
@@ -556,6 +569,7 @@ describe('processing a config with file path variable placeholders', () => {
       env: {
         applicationId: undefined,
         applicationName: 'avengers-app',
+        availableLocales: [],
         entryPointUriPath: 'avengers',
         cdnUrl: 'http://localhost:3001/',
         env: 'test',
@@ -620,6 +634,7 @@ describe('processing a config with OIDC enabled', () => {
         },
         applicationId: '__local:avengers',
         applicationName: 'avengers-app',
+        availableLocales: [],
         entryPointUriPath: 'avengers',
         cdnUrl: 'http://localhost:3001/',
         env: 'test',
@@ -654,6 +669,7 @@ describe('processing a config with OIDC enabled', () => {
         env: {
           applicationId: undefined,
           applicationName: 'avengers-app',
+          availableLocales: [],
           entryPointUriPath: 'avengers',
           cdnUrl: 'https://avengers.app/',
           env: 'production',

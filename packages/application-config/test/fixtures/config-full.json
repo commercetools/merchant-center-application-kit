@@ -14,12 +14,8 @@
   },
   "headers": {
     "csp": {
-      "script-src": [
-        "https://track.avengers.app"
-      ],
-      "connect-src": [
-        "https://track.avengers.app"
-      ]
+      "script-src": ["https://track.avengers.app"],
+      "connect-src": ["https://track.avengers.app"]
     },
     "featurePolicies": {
       "microphone": "none"
@@ -28,5 +24,6 @@
       "microphone": "()"
     },
     "strictTransportSecurity": ["includeSubDomains"]
-  }
+  },
+  "availableLocales": ["en", "de"]
 }
