@@ -35,5 +35,12 @@
     "@commercetools-website/custom-applications": "18.3.9",
     "@commercetools-website/components-playground": "17.1.14"
   },
-  "changesets": []
+  "changesets": [
+    "dull-mails-poke",
+    "fresh-crabs-join",
+    "hungry-bobcats-relax",
+    "large-knives-turn",
+    "many-tables-appear",
+    "tall-dolls-study"
+  ]
 }

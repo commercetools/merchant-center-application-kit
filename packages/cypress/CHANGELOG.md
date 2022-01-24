@@ -1,5 +1,28 @@
 # @commercetools-frontend/cypress
 
+## 21.0.0-rc.0
+
+### Major Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`1c363fad`](https://github.com/commercetools/merchant-center-application-kit/commit/1c363fad7ab770a739ac8080358e41ae4af42074) Thanks [@emmenko](https://github.com/emmenko)! - Drop Node.js `v12`. Recommended min Node.js version is `v14` or `v16`.
+
+* [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`e079fdcb`](https://github.com/commercetools/merchant-center-application-kit/commit/e079fdcb21ae7dddf14e554be1bd6e36f7346417) Thanks [@emmenko](https://github.com/emmenko)! - Following breaking changes were introduced:
+
+  - The starter template has been updated to use the new Org-level Custom Application features.
+  - The Custom Application config of the starter template has been converted from `.json` to `.mjs`, to allow importing and referencing constants.
+  - When installing the starter template using the `create-mc-app` CLI, the Custom Application config is updated with some of the user inputs, like `entryPointUriPath`.
+    - If no `entryPointUriPath` is provided, a random one is assigned.
+
+  For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-31-custom-applications-v21).
+
+### Patch Changes
+
+- [#2450](https://github.com/commercetools/merchant-center-application-kit/pull/2450) [`eb8f5b2c`](https://github.com/commercetools/merchant-center-application-kit/commit/eb8f5b2c885a4c3ffc7857a61e50508b429bf964) Thanks [@emmenko](https://github.com/emmenko)! - Update dependencies
+
+- Updated dependencies [[`eb8f5b2c`](https://github.com/commercetools/merchant-center-application-kit/commit/eb8f5b2c885a4c3ffc7857a61e50508b429bf964), [`b8fb4cbb`](https://github.com/commercetools/merchant-center-application-kit/commit/b8fb4cbbb8b78ff18af7edf8100703f7f9712187), [`1c363fad`](https://github.com/commercetools/merchant-center-application-kit/commit/1c363fad7ab770a739ac8080358e41ae4af42074), [`6d0e71d7`](https://github.com/commercetools/merchant-center-application-kit/commit/6d0e71d7e08222f5b6462b7c60fca80e8992cfa7)]:
+  - @commercetools-frontend/application-config@21.0.0-rc.0
+  - @commercetools-frontend/application-shell@21.0.0-rc.0
+
 ## 20.13.0
 
 ### Minor Changes
