@@ -63,6 +63,11 @@ setupGlobalErrorListener();
 const EntryPoint = () => (
   <ApplicationShell
     environment={window.app}
+    localeLoader={(localeFileName) =>
+      import(
+        `../../i18n/data/${localeFileName}` /* webpackChunkName: "app-i18n-[request]" */
+      )
+    }
     onRegisterErrorListeners={({ dispatch }) => {
       Sdk.Get.errorHandler = (error) =>
         globalActions.handleActionError(error, 'sdk')(dispatch);

@@ -48,7 +48,7 @@ import RedirectToProjectCreate from '../redirect-to-project-create';
 import QuickAccess from '../quick-access';
 import RedirectToLogin from './redirect-to-login';
 import RedirectToLogout from './redirect-to-logout';
-import { resolveApplicationMessages } from './helpers';
+import { LocaleLoader, resolveApplicationMessages } from './helpers';
 
 type Props<AdditionalEnvironmentProperties extends {}> = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;
@@ -74,6 +74,7 @@ type Props<AdditionalEnvironmentProperties extends {}> = {
   defaultFeatureFlags?: TFlags;
   trackingEventList?: TrackingList;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
+  localeLoader?: LocaleLoader;
   onRegisterErrorListeners: (args: { dispatch: Dispatch }) => void;
   onMenuItemClick?: <TrackFn>(
     event: SyntheticEvent<HTMLAnchorElement>,
@@ -140,7 +141,7 @@ export const RestrictedApplication = <
 >(
   props: Omit<
     Props<AdditionalEnvironmentProperties>,
-    'environment' | 'onRegisterErrorListeners'
+    'environment' | 'onRegisterErrorListeners' | 'localeLoader'
   >
 ) => {
   const applicationEnvironment = useApplicationContext(
@@ -516,6 +517,7 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
    */
   const applicationMessages = resolveApplicationMessages(
     props.applicationMessages,
+    props.localeLoader,
     props.environment.availableLocales
   );
 

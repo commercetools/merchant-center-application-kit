@@ -1,4 +1,6 @@
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
+import { TMessageTranslationsAsync } from '@commercetools-frontend/i18n/src/async-locale-data/async-locale-data';
+import { TMessageTranslations } from '@commercetools-frontend/i18n/src/utils';
 
 /**
  * Get the "real" Merchant Center frontend URL to redirect the user
@@ -37,19 +39,23 @@ export function getMcOrigin(mcApiUrl: string, actualWindow = window) {
   return mcApiUrlObject.origin.replace('mc-api', 'mc');
 }
 
+export type LocaleLoader = (
+  localeFileName: string
+) => Promise<TMessageTranslations>;
+
 const defaultAsyncMessagesLoader =
-  (availableLanguages: string[]) => (lang: string) => {
+  (availableLanguages: string[], localeLoader: TMessageTranslationsAsync) =>
+  (lang: string) => {
     const isAvailableLanguage = availableLanguages?.includes(lang);
 
-    return import(
-      `../../i18n/data/${
-        isAvailableLanguage ? lang : 'en'
-      }.json` /* webpackChunkName: "app-i18n-[request]" */
-    )
-      .then((i18nModule) => i18nModule.default)
+    return localeLoader(`${isAvailableLanguage ? lang : 'en'}.json`)
+      .then((i18nModule) => i18nModule)
       .catch((error) => {
         console.warn(
-          `Something went wrong while loading the app messages for ${lang}`,
+          `
+          Could not load translations for language "${lang}".
+          Please, consult i18n documentation following this link: https://docs.commercetools.com/custom-applications/development/translations
+          `,
           error
         );
 
@@ -68,14 +74,15 @@ const defaultAsyncMessagesLoader =
  */
 export function resolveApplicationMessages(
   customAppProvidedMessages?: TAsyncLocaleDataProps['applicationMessages'],
+  localeLoader?: LocaleLoader,
   availableLocales?: string[]
-) {
+): TAsyncLocaleDataProps['applicationMessages'] {
   if (customAppProvidedMessages) {
     return customAppProvidedMessages;
   }
 
-  if (availableLocales && availableLocales.length > 0) {
-    return defaultAsyncMessagesLoader(availableLocales);
+  if (availableLocales && availableLocales.length > 0 && localeLoader) {
+    return defaultAsyncMessagesLoader(availableLocales, localeLoader);
   }
 
   throw new Error(
