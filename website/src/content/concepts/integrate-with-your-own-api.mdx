@@ -30,7 +30,7 @@ Requests to that endpoint should additionally pass the following HTTP headers:
 - `X-Forward-To: <url>`: The URL to your external API.
 - `X-Project-Key: <project-key>`: The key of the commercetools Project currently being used by the Custom Application. The Merchant Center API Gateway will perform a validation check to ensure that the user has access to the Project, then forward the request to your server only if the check was successful.
 
-To facilitate the usage of the [built-in Apollo client and the SDK actions](/development/data-fetching), we provide some helpers to easily integrate with the request configuration for the HTTP headers listed above.
+To facilitate the usage of the [built-in Apollo client and the SDK actions](/development/data-fetching), we provide some helpers to integrate with the request configuration for the HTTP headers listed above.
 
 ## Sending custom HTTP headers
 
@@ -46,7 +46,7 @@ All custom HTTP headers are sent to the Merchant Center API with a prefix `x-for
 
 ## Usage for Apollo
 
-We can leverage the `context` option for Apollo queries to adjust how request is configured and executed. The `@commercetools-frontend/application-shell` package now exposes an utility function to configure the Apollo context for the `/proxy/forward-to` usage. See [`createApolloContextForProxyForwardTo`](/api-reference/commercetools-frontend-application-shell#createapollocontextforproxyforwardto)
+We can leverage the `context` option for Apollo queries to adjust how request is configured and executed. The `@commercetools-frontend/application-shell` package now exposes an utility function to configure the Apollo context for the `/proxy/forward-to` usage. See [`createApolloContextForProxyForwardTo`](/api-reference/commercetools-frontend-application-shell#createapollocontextforproxyforwardto).
 
 ## Usage for SDK actions
 
@@ -204,7 +204,7 @@ exports.handler = async function (request, response) {
 
 ## Using JSON Web Key Set endpoint
 
-The Merchant Center API Gateway exposes a `/.well-known/jwks.json` endpoint that can be used to validate JWTs, as defined in Open ID Connect (OIDC) specification. The endpoint provides a rotating public key used to verify the JWT signature.
+The Merchant Center API Gateway exposes a `/.well-known/jwks.json` endpoint that can be used to validate JWTs, as defined in OpenID Connect (OIDC) specification. The endpoint provides a rotating public key used to verify the JWT signature.
 Additionally, there is also a `/.well-known/openid-configuration` discovery endpoint.
 
 You can read more about JSON Web Key Set [here](https://auth0.com/docs/jwks) and [here](https://tools.ietf.org/html/rfc7517).

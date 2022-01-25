@@ -2,31 +2,31 @@
 title: Merchant Center API
 ---
 
-Custom Applications need to fetch data from different APIs in the commercetools Platform. For example to fetch channel information, or to update products data, and so on.
+Custom Applications need to fetch data from different APIs in the commercetools Platform. Examples are fetching channel information or updating product data.
 
 Accessing these API requires some sort of authentication mechanism. For security reasons, client-side applications **cannot be trusted** with sensitive credentials, which makes it difficult to connect to an API directly from the browser.
 
 To solve these issues, the Merchant Center provides an HTTP API that handles authentication and authorization to all commercetools Platform APIs. You can think about it as an **API Gateway**.
 
-Therefore, Custom Applications use the Merchant Center API to make requests to one of the commercetools Platform APIs. The way you select the API in your requests depends on the [API Gateway Endpoints](#api-gateway-endpoints).
+Therefore, Custom Applications use the Merchant Center API to make requests to one of the commercetools Platform APIs. The way you select the API in your requests depends on the [API Gateway endpoints](#api-gateway-endpoints).
 
 ![Merchant Center API](/images/merchant-center-api.png 'Merchant Center API')
 
 # Cloud regions
 
-The commercetools Platform is available in [multiple cloud regions](https://docs.commercetools.com/api/general-concepts#regions).
-These regions are completely isolated from each other and no data is transferred between them.
+The commercetools Platform is available in [multiple cloud Regions](https://docs.commercetools.com/api/general-concepts#regions).
+These Regions are completely isolated from each other and no data is transferred between them.
 
 <Info>
 
-Platform accounts created for one region are not valid for the other regions. A [signup](https://docs.commercetools.com/tutorials/getting-started) is required for each region individually.
-In case you need advice in which region your Project should be located, please contact [commercetools support](https://support.commercetools.com).
+Platform accounts created for one Region are not valid for the other Regions. A [signup](https://docs.commercetools.com/tutorials/getting-started) is required for each Region individually.
+In case you need advice in which Region your Project should be located, please contact [commercetools support](https://support.commercetools.com).
 
 </Info>
 
 ## Hostnames
 
-The Merchant Center and the Merchant Center API Gateway are available at the same cloud regions where the commercetools Platform runs.
+The Merchant Center and the Merchant Center API Gateway are available at the same cloud Regions where the commercetools Platform runs.
 
 All hostnames are subdomains of `commercetools.com` and follow a specific naming format, including the cloud provider, the cloud Region, and the Merchant Center service name.
 
@@ -34,11 +34,11 @@ All hostnames are subdomains of `commercetools.com` and follow a specific naming
 https://{mcService}.{region}.{cloudProvider}.commercetools.com
 ```
 
-- `mcService`: for the Merchant Center front-end the value is `mc`, for the Merchant Center API Gateway the value is `mc-api`.
-- `region`: the region of the cloud provider, see table below.
+- `mcService`: for the Merchant Center frontend the value is `mc`, for the Merchant Center API Gateway the value is `mc-api`.
+- `region`: the Region of the cloud provider, see table below.
 - `cloudProvider`: the cloud provider, either `gcp` or `aws`.
 
-| Cloud region | Merchant Center API Gateway hostname |
+| Cloud Region | Merchant Center API Gateway hostname |
 | --- | --- |
 | Australia (Google Cloud, Sydney) | `mc-api.australia-southeast1.gcp.commercetools.com` |
 | Europe (Google Cloud, Belgium) | `mc-api.europe-west1.gcp.commercetools.com` |
@@ -50,7 +50,7 @@ https://{mcService}.{region}.{cloudProvider}.commercetools.com
 
 To make it easier to reference the Merchant Center API URL, for example in the [Custom Application config](/api-reference/application-config#cloudIdentifier), each cloud Region maps to an identifier.
 
-| Cloud region | Cloud identifier |
+| Cloud Region | Cloud identifier |
 | --- | --- |
 | Australia (Google Cloud, Sydney) | `gcp-au` |
 | Europe (Google Cloud, Belgium) | `gcp-eu` |
@@ -60,9 +60,9 @@ To make it easier to reference the Merchant Center API URL, for example in the [
 
 # Authentication
 
-The Merchant Center API is protected by a **session token** via the HTTP `Cookie` header, which is set only for `<cloud-region>.commercetools.com` domains.
+The Merchant Center API is protected by a session token via the HTTP `Cookie` header, which is set only for `<cloud-region>.commercetools.com` domains.
 
-In the browser, the session token is stored in a **secure cookie** named `mcAccessToken`.
+In the browser, the session token is stored in a secure cookie named `mcAccessToken`.
 
 ```
 Cookie: mcAccessToken=<jwt>
@@ -72,18 +72,18 @@ Sending the cookie to the Merchant Center API is already configured in the built
 
 <Info>
 
-In local development the authentication is handled a bit differently using a OIDC login workflow. The session token is stored in `sessionStorage` and sent to the Merchant Center API via `Authentication` HTTP header.
+In local development the authentication is handled a bit differently using a OpenID Connect (OIDC) login workflow. The session token is stored in `sessionStorage` and sent to the Merchant Center API via `Authentication` HTTP header.
 
 </Info>
 
 ## Obtaining a session token
 
-The session token `mcAccessToken` is granted upon user login and is stored in a **secure cookie** in the browser.
+The session token `mcAccessToken` is granted upon user login and is stored in a secure cookie in the browser.
 
-The Merchant Center API provides 2 endpoints for authenticating a user:
+The Merchant Center API provides two endpoints for authenticating a user:
 
-- `/tokens`: For normal login using `email` and `password`.
-- `/tokens/sso`: For login using an `idToken` from an SSO workflow (see [Single-Sign-On](https://docs.commercetools.com/merchant-center/single-sign-on-beta)).
+- `/tokens`: for normal login using `email` and `password`.
+- `/tokens/sso`: for login using an `idToken` from an SSO workflow (see [Single-Sign-On](https://docs.commercetools.com/merchant-center/single-sign-on-beta)).
 
 <Info>
 
@@ -91,7 +91,7 @@ When you develop a Custom Application all authentication logic is handled implic
 
 </Info>
 
-# API Gateway Endpoints
+# API Gateway endpoints
 
 The Merchant Center API primarily acts as an API Gateway with the following responsibilities:
 
