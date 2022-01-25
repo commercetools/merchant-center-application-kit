@@ -14,7 +14,7 @@ Before you get started, you need to have:
 
 # Configuration
 
-In your Custom Application config, make sure to provide the [Custom Application ID](/api-reference/application-config#envproductionapplicationId) that you got when you configured the Custom Application in the Merchant Center.
+In your Custom Application config, make sure to provide the [Custom Application ID](/api-reference/application-config#envproductionapplicationid) that you got when you configured the Custom Application in the Merchant Center.
 
 Moreover, you need to provide the [production URL](/api-reference/application-config#envproductionurl) from your Netlify site. You can keep the standard Netlify URL `https://<site>.netlify.app` or provide your own custom domain.
 
@@ -48,7 +48,7 @@ Make sure then to provide the environment variables in your **Netlify site > Set
 
 # Connect Netlify with GitHub
 
-The easiest way to deploy to Netlify is to use the GitHub integration.
+The easiest way to deploy to Netlify is to use the [GitHub integration](https://docs.netlify.com/configure-builds/overview/).
 
 Follow the steps in Netlify to create and import a new Git repository.
 
@@ -58,7 +58,7 @@ Make sure to also install the [Netlify GitHub App](https://github.com/apps/netli
 
 </Info>
 
-## Configuring Build Settings
+## Configuring build settings
 
 In the Netlify setup process you need to configure the following things:
 
@@ -94,12 +94,12 @@ A Custom Application is a Single-Page Application that uses client-side routing.
 
 # Test your deployment
 
-In the Merchant Center you can now [follow the steps to install the Custom Application](https://docs.commercetools.com/merchant-center/managing-custom-applications) and access it in your projects.
+In the Merchant Center you can now [follow the steps to install the Custom Application](https://docs.commercetools.com/merchant-center/managing-custom-applications) and access it in your Projects.
 
 <Warning>
 
 The Custom Application won't render if you try to access it directly via the deployment URL, as it needs to be served within the [Merchant Center Proxy Router](/concepts/merchant-center-proxy-router).
 
-Therefore, Preview deployments also are not really useful. If you are interested in this functionality, let us know and open a [support issue](https://github.com/commercetools/merchant-center-application-kit/issues/new/choose).
+Therefore, Preview deployments are not really useful. If you are interested in this functionality, let us know and open a [support issue](https://github.com/commercetools/merchant-center-application-kit/issues/new/choose).
 
 </Warning>
