@@ -20,6 +20,10 @@ Follow the steps below to migrate your Application Kit packages to the new versi
 
 <!--more-->
 
+# New documentation
+
+The Custom Applications documentation has been restructured and improved to provide a better developer experience. During the migration period the [Project-level legacy documentation](https://mc-custom-applications-legacy.vercel.app/custom-applications/_legacy) remains available for maintenance and reference purposes.
+
 # Supported Node.js versions
 
 Support for Node.js `v12` has been dropped. Recommended versions are `v14` or `v16`.
@@ -138,12 +142,22 @@ The `mc-scripts` CLI has some breaking changes about the commands:
 - The `--inline-csp` of `compile-html` has been dropped, as it's now the built-in behavior.
 - The `dist` folder created by the `build` command has been removed. Instead, the `build` command writes the production bundles directly into the `public` folder.
 
+# Better deployments support
+
+With the new improvements in the developer tools, it's now even simpler to deploy a Custom Application to all the major hosting services. In fact, you can now take advantage of the GitHub integration with some of those hosting providers, without any extra effort around configuration.
+
+Previously you would need to use the `--transformer` option of the `compile-html` command to configure the configuration file of the hosting provider.
+
+Now most of the things are built-in and defined as defaults, removing the need to dynamically create a configuration file. As a result, configurations for the hosting provider can be defined statically, thus allowing to fully use the GitHub integration features.
+
+Check out the [deployment examples](/deployment-examples) pages for more information.
+
 # Changes to Test Utils
 
 The `@commercetools-frontend/application-shell/test-utils` has the following breaking changes:
 
 - The deprecated `project.allAppliedMenuVisibilities` option has been removed.
-- The `disableApolloMocks` option has been renamed to `enableApolloMocks`. The behavior is now inverted. By default, the Apollo mocks are disabled. This is to encourage mocking via [MSW](https://mswjs.io/). See [Testing](/development/testing) for more information.
+- The `disableApolloMocks` option has been renamed to `enableApolloMocks`. The behavior is now inverted. By default, the Apollo mocks are disabled. This is to encourage mocking via [Mock Service Worker](https://mswjs.io/). See [Testing](/development/testing) for more information.
 - The `disableAutomaticEntryPointRoutes` option now defaults to `false`. This means that when rendering the `<ApplicationShell>`, you should not use the `render` function but pass the application component using `children`. See [changelog](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/application-shell/CHANGELOG.md#1790) for more information.
 - The deprecated `permissions` option has been removed. Use `project.allAppliedPermissions` instead.
 

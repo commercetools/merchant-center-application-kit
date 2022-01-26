@@ -4,7 +4,7 @@ title: Data Fetching
 
 In client-side applications, data fetching is not always easy and it usually involves a lot of boilerplate code around implementation, state management, data normalization, etc.
 
-The commercetools Platform and the Merchant Center have first-class support for GraphQL and we **strongly recommend building your Custom Application using GraphQL** wherever possible.
+The commercetools Platform and the Merchant Center have first-class support for GraphQL and we strongly recommend building your Custom Application using GraphQL wherever possible.
 
 To handle requests to the [GraphQL APIs](/concepts/merchant-center-api#graphql) we use the built-in [Apollo GraphQL Client](https://www.apollographql.com/docs/react/).
 
@@ -14,7 +14,7 @@ The Apollo Client comes already pre-configured in a Custom Application to connec
 
 </Info>
 
-# Using React Hooks
+# Using React hooks
 
 The preferred way of fetching data in a React component is to use [React hooks](https://reactjs.org/docs/hooks-intro.html).
 
@@ -121,7 +121,7 @@ const Channels = (props) => {
 
 For more information about using the `error` from Apollo Client, see [Error handling](https://www.apollographql.com/docs/react/data/error-handling/).
 
-In our case we just want to print out the `error.graphQLErrors`. We can attempt to do that by implementing a helper function like this:
+In our case we just want to print the `error.graphQLErrors`. We can attempt to do that by implementing a helper function like this:
 
 ```js title="channels.js"
 const getErrorMessage = (error) =>
@@ -132,13 +132,13 @@ const getErrorMessage = (error) =>
 
 ## Using Connector Hooks
 
-As your data requirements grow, for example having multiple queries and mutations in a React component, or using the same query in multiple components, you might want to extract your queries into separate re-usable hooks.
+As your data requirements grow, for example by having multiple queries and mutations in a React component, or using the same query in multiple components, you might want to extract your queries into separate reusable hooks.
 
-We recommend to extract the logic into what we call "connector hooks."
+We recommend extracting the logic into what we call _connector hooks_.
 
 A connector hook is a React hook that implements most of the data requirements (queries and mutations) specific to the use cases where the data should be used.
 
-For example, we can extract fetching of Channels into a connector hook named `useChannelsFetcher`.
+For example, we can extract the fetching of Channels into a connector hook named `useChannelsFetcher`.
 This hook can be put into a file named `use-channels-connector.js`.
 
 ```js title="use-channels-connector.js"
@@ -198,7 +198,7 @@ const Channels = (props) => {
 ## Connecting to an external GraphQL API
 
 In case your Custom Application needs to connect to an [external GraphQL API](/concepts/integrate-with-your-own-api), in addition to the commercetools GraphQL APIs, the Apollo Client needs to be reconfigured to connect to the `/proxy/forward-to` endpoint with the appropriate headers.
-This can be achieved by using the `context` option of Apollo Client, which allows to pass configuration options to the Apollo Links.
+This can be achieved by using the `context` option of Apollo Client, which allows passing configuration options to the Apollo Links.
 
 The `@commercetools-frontend/application-shell` package now exposes a `createApolloContextForProxyForwardTo` to construct a predefined context object specific to the `/proxy/forward-to`.
 

@@ -6,30 +6,64 @@ As we learned in [OAuth Scopes and user permissions](/concepts/oauth-scopes-and-
 
 The values of the user permissions are derived from the application `entryPointUriPath`.
 
-When developing a Custom Application you might want to enforce these user permissions in some parts of your application. For example, performing certain actions like creating, or updating, or deleting a resource should only be possible if the user has "manage" permission.
+When developing a Custom Application you might want to enforce these user permissions in some parts of your application. For example, performing certain actions like creating, updating, or deleting a resource should only be possible if the user has "manage" permission.
+
+# Defining constants
+
+The user permissions can be computed using the `entryPointUriPathToPermissionKeys` function, to avoid defining them manually. We recommend to define them in a `constants.js` file.
+
+```js title="constants.js"
+import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-shell/ssr';
+
+export const entryPointUriPath = 'channels';
+
+export const PERMISSIONS = entryPointUriPathToPermissionKeys(entryPointUriPath);
+```
+
+The `PERMISSIONS` variable contains a `View` and `Manage` properties, with the values being the computed values based on the `entryPointUriPath`:
+
+* `PERMISSIONS.View`: maps to `ViewChannels`.
+* `PERMISSIONS.Manage`: maps to `ManageChannels`.
+
+You can then use the `PERMISSIONS` variable to reference the permission in the application code.
 
 # Applying user permissions
 
-A Custom Application allows to easily check and evaluate if certain user permissions are assigned or not, making it possible to determine whether to render something or not, or to turn off some UI functionalities or not, and so on.
+A Custom Application allows, for example, to check and evaluate if certain user permissions are assigned or not, making it possible to determine whether to render something or not, or to turn off some UI functionalities.
 
 ## In menu links
 
-In the Custom Application config, the menu links allow to define the level of required access by providing the name of the demanded user permission.
+In the Custom Application config, the menu links allow defining the level of required access by providing the name of the requested user permission.
 
 ```json
 {
   "mainMenuLink": {
-    "permissions": ["ViewAvengers"]
+    "permissions": ["ViewChannels"]
   },
   "submenuLinks": [
     {
-      "permissions": ["ManageAvengers"]
+      "permissions": ["ManageChannels"]
     }
   ]
 }
 ```
 
 This determines which links should be visible or not, depending on the permissions assigned to the user.
+
+In case you defined the permissions in a `constants` file, we recommend to reference them in the Custom Application config as well. To do so, the config file needs to be converted to a JS file (instead of JSON), for example using the `.mjs` file extension.
+
+```js title="custom-application-config.mjs"
+import { entryPointUriPath, PERMISSIONS } from './src/constants';
+
+const config = {
+  entryPointUriPath,
+  mainMenuLink: {
+    permissions: [PERMISSIONS.View]
+  },
+  // ...
+};
+export default config;
+```
 
 ## In routes
 
@@ -41,20 +75,20 @@ To do so you can use the `useIsAuthorized` React hook from the `@commercetools-f
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
-import { PERMISSIONS } from './constants/permissions';
+import { PERMISSIONS } from './constants';
 import ChannelsCreate from './components/channels-create';
 import ChannelsList from './components/channels-list';
 
 const ApplicationRoutes = () => {
   const match = useRouteMatch();
-  const canManageChannels = useIsAuthorized({
-    demandedPermissions: [PERMISSIONS.ManageChannels],
+  const canManage = useIsAuthorized({
+    demandedPermissions: [PERMISSIONS.Manage],
   });
 
   return (
     <Switch>
       <Route path={`${match.path}/new`}>
-        {canManageChannels ? (
+        {canManage ? (
           <ChannelsCreate />
         ) : (
           <PageUnauthorized />
@@ -75,18 +109,18 @@ Similarly, you can also evaluate user permissions in your React components, for 
 ```jsx
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import PrimaryButton from '@commercetools-uikit/primary-button';
-import { PERMISSIONS } from '../constants/permissions';
+import { PERMISSIONS } from '../constants';
 
 const MyComponent = () => {
-  const canManageChannels = useIsAuthorized({
-    demandedPermissions: [PERMISSIONS.ManageChannels],
+  const canManage = useIsAuthorized({
+    demandedPermissions: [PERMISSIONS.Manage],
   });
 
   return (
     <div>
       <PrimaryButton
         label="Create channel"
-        isDisabled={!canManageChannels}
+        isDisabled={!canManage}
       />
     </div>
   )

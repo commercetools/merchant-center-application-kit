@@ -3,15 +3,15 @@ title: Testing
 ---
 
 In the previous sections we learned several aspects of developing your Custom Application, like fetching data, building your User Interface, etc.<br />
-At this point probably the basic functionalities of your application are in place. It's time to **write some tests** to facilitate further development.
+At this point the basic functionalities of your application are in place. It's time to write some tests to facilitate further development.
 
-> _Write test. Not too many. Mostly integration._
+> _Write tests. Not too many. Mostly integration._
 
-When it comes down to testing applications there are several approaches available. You've probably heard about the _Testing Pyramid_ to describe the different level of testing.
+When it comes to testing applications there are several approaches available. You've probably heard about the _Testing Pyramid_ to describe the different levels of testing.
 
 # Recommended testing strategies
 
-To test your Custom Applications, we recommend using [React Testing Library](https://github.com/testing-library/react-testing-library) for integration tests (or user flow tests).
+To test your Custom Applications, we recommend using the [React Testing Library](https://github.com/testing-library/react-testing-library) for integration tests (or user flow tests).
 
 This library describes the testing problem as following:
 
@@ -21,24 +21,24 @@ This is the **recommended approach** for writing component and UI tests.
 
 To facilitate writing integration tests we additionally provide some [`test-utils`](/api-reference/commercetools-frontend-application-shell#test-utils) with the necessary setup to test a Custom Application.
 
-For End-to-End tests we recommend to use [Cypress](https://www.cypress.io/). See [End-to-End](#end-to-end) for more information.
+For End-to-End tests we recommend using [Cypress](https://www.cypress.io/). See [End-to-End](#end-to-end) for more information.
 
 # Integration tests
 
-Writing integration tests is mostly about putting yourself in the user's perspective and derive test scenarios that focus on user interactions and workflows.
+Writing integration tests is about putting yourself in the user's perspective and deriving test scenarios that focus on user interactions and workflows.
 
 For instance, in our Channels page we can write a test to check that the page renders some data in a table and maybe paginate to page two.
 
 ## Mocking data
 
-One of the first things to consider when writing tests is about the **test data**. Of course mocking network requests is important but so is providing "realistic" test data.
+One of the first things to consider when writing tests is about the test data. Of course mocking network requests is important but so is providing "realistic" test data.
 
 In our Custom Application we recommend to implement the following approaches:
 
 * Use the [Mock Service Worker](https://mswjs.io/) library to mock network requests.
 * Use the [Test Data](https://github.com/commercetools/test-data) library to use realistic test data models.
 
-Let's set things up. First, we need to configure MSW to create a mock server.
+Let's set things up. First, we need to configure Mock Service Worker to create a mock server.
 
 ```js title="channels.spec.js"
 import { setupServer } from 'msw/node';
@@ -53,7 +53,7 @@ beforeAll(() =>
 afterAll(() => mockServer.close());
 ```
 
-In our test we then mock all necessary API requests. If a network request is not properly mocked, MSW will let you know.<br />
+In our test we then mock all necessary API requests. If a network request is not properly mocked, Mock Service Worker will let you know.<br />
 Our Channels page sends a `FetchChannels` GraphQL query, therefore we need to use the `graphql.query` handler matching the name of the query: `FetchChannels`.
 
 ```js title="channels.spec.js"
@@ -118,7 +118,7 @@ To test the actual Custom Application, you should use the [`test-utils`](/api-re
 
 Most of the time you want to render your application from one of the top-level components, for example your routes. This is a great way to also implicitly test your routes and to navigate between them.
 
-We recommend to write a function, for example `renderApp`, to encapsulate the basic test setup, so that your actual test remains as clean as possible.
+We recommend writing a function, for example `renderApp`, to encapsulate the basic test setup, so that your actual test remains as clean as possible.
 
 ```js title="channels.spec.js"
 import {
@@ -127,7 +127,6 @@ import {
   renderAppWithRedux,
 } from '@commercetools-frontend/application-shell/test-utils';
 import { entryPointUriPath } from '../../constants/application';
-import { PERMISSIONS } from '../../constants/permissions';
 import ApplicationRoutes from '../../routes';
 
 const renderApp = (options = {}) => {
@@ -159,7 +158,7 @@ With this simple test we implicitly have tested the following things:
 From here you can enhance the test to do other things, especially testing the user interactions. For example:
 
 * We can simulate that the user clicks on a table row, opening the channels detail page.
-* We can simulate that the user clicks on a "Add channel" button, fill out the form, and save a new channel.
+* We can simulate that the user clicks on an "Add channel" button, fills out the form, and saves a new channel.
 * We can simulate that the user paginates through the table, or use search and filters.
 
 You get the idea.
@@ -216,20 +215,16 @@ User permissions are bound to a Project and can vary depending on the permission
 
 By default, the [`test-utils`](/api-reference/commercetools-frontend-application-shell#test-utils) do not assign any pre-defined permissions. You need to explicitly provide them in your test setup. The following fields can be used to assign the different granular permission values:
 
-* `project.allAppliedPermissions`: A list of applied resource permissions that the user should have for the given Project. A resource permission is an object with the following shape:
+* `project.allAppliedPermissions`: a list of applied resource permissions that the user should have for the given Project. A resource permission is an object with the following shape:
 
   * `name`: The name of the user permissions prefixed with `can`. For example `canViewChannels`.
   * `value`: If `true`, the resource permission is applied to the user.
 
 In our example application, we can apply this as following:
 
-```js title="channels.spec.js" highlightLines="14-21"
-import {
-  renderAppWithRedux,
-  mapResourceAccessToAppliedPermissions,
-} from '@commercetools-frontend/application-shell/test-utils';
+```js title="channels.spec.js" highlightLines="10-17"
+import { renderAppWithRedux } from '@commercetools-frontend/application-shell/test-utils';
 import { entryPointUriPath } from '../../constants/application';
-import { PERMISSIONS } from '../../constants/permissions';
 import ApplicationRoutes from '../../routes';
 
 const renderApp = (options = {}) => {
@@ -250,17 +245,29 @@ const renderApp = (options = {}) => {
 };
 ```
 
-To help defining the list of applied permissions, you can use the helper function [`mapResourceAccessToAppliedPermissions`](/api-reference/commercetools-frontend-application-shell#mapresourceaccesstoappliedpermissions).
+To help define the list of applied permissions, you can use the helper function [`mapResourceAccessToAppliedPermissions`](/api-reference/commercetools-frontend-application-shell#mapresourceaccesstoappliedpermissions).
 
 
-```js
-{
-  project: {
-    allAppliedPermissions: mapResourceAccessToAppliedPermissions([
-      PERMISSIONS.ViewChannels
-    ])
-  },
-}
+```js title="channels.spec.js" highlightLines="3,5,13-15"
+import {
+  renderAppWithRedux,
+  mapResourceAccessToAppliedPermissions,
+} from '@commercetools-frontend/application-shell/test-utils';
+import { PERMISSIONS } from '../../constants';
+
+const renderApp = (options = {}) => {
+  const route = options.route || `/my-project/${entryPointUriPath}/channels`;
+  renderApplicationWithRedux(<ApplicationRoutes />, {
+    route,
+    entryPointUriPath,
+    project: {
+      allAppliedPermissions: mapResourceAccessToAppliedPermissions([
+        PERMISSIONS.View
+      ])
+    },
+    ...options,
+  });
+};
 ```
 
 # End-to-End
@@ -269,7 +276,7 @@ To complement unit and integration tests, we recommend to also write End-to-End 
 
 Cypress is a feature-rich and developer friendly tool to write End-to-End tests and it's very easy to use for testing Custom Applications.
 
-Assuming you have already [set up and installed Cypress](https://docs.cypress.io/guides/getting-started/installing-cypress), we recommend to additionally install the following packages:
+Assuming you have already [set up and installed Cypress](https://docs.cypress.io/guides/getting-started/installing-cypress), we recommend to install the following packages:
 
 * [`@testing-library/cypress`](https://testing-library.com/docs/cypress-testing-library/intro/): provides commands to select elements using React/Dom Testing Library.
 * `@commercetools-frontend/cypress`: provides commands specific to Custom Applications.
