@@ -30,7 +30,7 @@ module.exports = {
         globalNotification: {
           notificationType: 'info',
           content:
-            'This is the new documentation of Custom Applications. [Read the announcement](/migrating-from-project-level-custom-applications) to migrate from Project-level Custom Applications. During the migration period you can still [visit the legacy documentation](https://mc-custom-applications-legacy.vercel.app/custom-applications/_legacy) of the Project-level Custom Applications.',
+            'This is the new documentation of Custom Applications. You can still [visit the legacy documentation](https://mc-custom-applications-legacy.vercel.app/custom-applications/_legacy) during the migration from Project-level Custom Applications. [Read the announcement](/migrating-from-project-level-custom-applications).',
         },
       },
     },
