@@ -96,6 +96,15 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
       extensions: ['js', 'mjs', 'cjs', 'ts', 'tsx', 'json', 'jsx'].map(
         (ext) => `.${ext}`
       ),
+
+      // NOTE: this is meant to be a temporary list of fallback/polyfills for certain
+      // nodejs modules. With Webpack <5 these polyfills were included by default in Webpack,
+      // however now it's not the case anymore.
+      // See also related work in CRA: https://github.com/facebook/create-react-app/pull/11764
+      fallback: {
+        url: require.resolve('url/'),
+        querystring: require.resolve('querystring-es3'),
+      },
     },
 
     entry: {
