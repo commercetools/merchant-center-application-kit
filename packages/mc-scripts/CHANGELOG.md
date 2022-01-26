@@ -1,5 +1,13 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.0.0-rc.2
+
+### Patch Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`8fbae1d9`](https://github.com/commercetools/merchant-center-application-kit/commit/8fbae1d92a34e1ddbd5bfbae4ef6a0bb234847d6) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade `react-dev-utils` to `v12`
+
+* [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`d8e36891`](https://github.com/commercetools/merchant-center-application-kit/commit/d8e36891b3a78c5475818f96d068e4cdd1ab1a3e) Thanks [@emmenko](https://github.com/emmenko)! - Include fallback polyfills in Webpack config for `url` and `querystring`.
+
 ## 21.0.0-rc.1
 
 ### Patch Changes

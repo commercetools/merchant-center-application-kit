@@ -2590,7 +2590,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/mc-scripts@21.0.0-rc.1, @commercetools-frontend/mc-scripts@workspace:packages/mc-scripts":
+"@commercetools-frontend/mc-scripts@21.0.0-rc.2, @commercetools-frontend/mc-scripts@workspace:packages/mc-scripts":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/mc-scripts@workspace:packages/mc-scripts"
   dependencies:
@@ -2794,7 +2794,7 @@ __metadata:
     "@commercetools-frontend/application-components": 21.0.0-rc.1
     "@commercetools-frontend/assets": 21.0.0-rc.1
     "@commercetools-frontend/constants": 21.0.0-rc.1
-    "@commercetools-frontend/mc-scripts": 21.0.0-rc.1
+    "@commercetools-frontend/mc-scripts": 21.0.0-rc.2
     "@commercetools-frontend/react-notifications": 21.0.0-rc.1
     "@commercetools-uikit/accessible-button": ^12.2.9
     "@commercetools-uikit/design-system": ^12.2.9
@@ -22208,7 +22208,7 @@ __metadata:
     "@commercetools-frontend/i18n": 21.0.0-rc.1
     "@commercetools-frontend/jest-preset-mc-app": 21.0.0-rc.1
     "@commercetools-frontend/mc-dev-authentication": 21.0.0-rc.1
-    "@commercetools-frontend/mc-scripts": 21.0.0-rc.1
+    "@commercetools-frontend/mc-scripts": 21.0.0-rc.2
     "@commercetools-frontend/permissions": 21.0.0-rc.1
     "@commercetools-frontend/sdk": 21.0.0-rc.1
     "@commercetools-test-data/commons": 2.4.1
@@ -24805,7 +24805,7 @@ __metadata:
     "@commercetools-frontend/i18n": 21.0.0-rc.1
     "@commercetools-frontend/l10n": 21.0.0-rc.1
     "@commercetools-frontend/mc-dev-authentication": 21.0.0-rc.1
-    "@commercetools-frontend/mc-scripts": 21.0.0-rc.1
+    "@commercetools-frontend/mc-scripts": 21.0.0-rc.2
     "@commercetools-frontend/permissions": 21.0.0-rc.1
     "@commercetools-frontend/sdk": 21.0.0-rc.1
     "@commercetools-uikit/checkbox-input": ^12.2.9
