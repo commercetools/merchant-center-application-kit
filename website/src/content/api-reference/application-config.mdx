@@ -14,7 +14,7 @@ The configuration of a Custom Application is typically defined in a JSON file `c
 
 # Supported file extensions
 
-The configuration file can be defined in different syntax formats but it is expected that the file is named `custom-application-config`.
+The configuration file can be defined in different syntax formats, but it is expected that the file is named `custom-application-config`.
 
 The following file extensions can be used: `.json`, `.js`, `.cjs`, `.mjs`, `.ts`.
 
@@ -45,9 +45,9 @@ module.exports = { entryPointUriPath };
 
 To facilitate the usage of the application config, you should instruct your editor to provide hints and code completion (IntelliSense) depending on the format of the configuration file.
 
-## JSON Schema support for VSCode
+## JSON schema support for VSCode
 
-When using JSON files, you can take advantage of the [JSON schema for the application config](https://docs.commercetools.com/custom-applications/schema.json). To enable JSON schema autocompletion and validation support, add a reference to the `schema.json` URL in the VSCode settings (either user settings or workspace settings):
+When using JSON files, you can take advantage of the [JSON schema for the application config](https://docs.commercetools.com/custom-applications/schema.json). To enable JSON schema autocompletion and validation support, add a reference to the `schema.json` URL in the VSCode settings (either user or workspace settings):
 
 ```json title=".vscode/settings.json"
 "json.schemas": [
@@ -77,7 +77,7 @@ const config = {
 module.exports = config;
 ```
 
-For TypeScript files `.ts`, you can instead import the type directly.
+For TypeScript files `.ts`, you can import the type directly instead.
 
 ```ts title="custom-application-config.ts"
 import type { ConfigOptions } from '@commercetools-frontend/application-config';
@@ -91,7 +91,7 @@ export default config;
 
 # Configuration properties
 
-To learn more about the application config properties, read the following documentation.
+To learn more about the application config properties, read the following.
 
 ## `name`
 
@@ -121,7 +121,7 @@ The **unique identifier** of the Custom Application, similarly to the `projectKe
 /:projectKey/:entryPointUriPath
 ```
 
-The value is considered unique within each [Cloud Region](/concepts/merchant-center-api#cloud-regions) environment, meaning that there can't be any duplicates.
+The value is considered unique within each [cloud Region](/concepts/merchant-center-api#cloud-regions) environment, meaning that there can't be any duplicates.
 
 Choosing the `entryPointUriPath` is important and should be done carefully as it affects routing and permissions.
 
@@ -167,7 +167,7 @@ Note that the list can be extended at any time. _Last update 2022-01-01_.
 
 ## `cloudIdentifier`
 
-The [identifier of the cloud Region](/concepts/merchant-center-api#cloud-identifiers) that the Custom Application uses to connect to the commercetools Platform. The values map to the actual Merchant Center API URL for that region.
+The [identifier of the cloud Region](/concepts/merchant-center-api#cloud-identifiers) that the Custom Application uses to connect to the commercetools Platform. The values map to the actual Merchant Center API URL for that Region.
 
 Supported values are:
 
@@ -191,7 +191,7 @@ If a cloud Region is not listed in the values above, you can override the value 
 
 ## `env`
 
-An object holding environment specific configurations, for example `development`, or `production`. Which environment is used depends on the environment variable `MC_APP_ENV`. If `MC_APP_ENV` isn't set then `NODE_ENV` will be used. If neither is set it defaults to `development`.
+An object holding environment specific configurations, for example `development` or `production`. Which environment is used depends on the environment variable `MC_APP_ENV`. If `MC_APP_ENV` isn't set, `NODE_ENV` will be used. If neither is set, it defaults to `development`.
 
 <Info>
 
@@ -201,7 +201,7 @@ The `MC_APP_ENV` is useful if you want to run the production build of the Custom
 
 ## `env.development.initialProjectKey`
 
-A `projectKey` of a commercetools Project you have access to be used as the default Project upon login in development.
+A `projectKey` of a commercetools Project you have access to. To be used as the default Project upon login in development.
 
 ```json
 {
@@ -318,7 +318,7 @@ A list of "view-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) 
 
 ## `oAuthScopes.manage`
 
-A list of "manage-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated to the "Manage" permission.
+A list of "manage-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated with the "Manage" permission.
 
 ```json
 {
@@ -417,7 +417,7 @@ An optional list to extend the [HTTP `Strict-Transport-Security` header](https:/
 
 ## `icon`
 
-The visual identifier of the Custom Application in the Merchant Center. You can choose one of the following pre-defined icons by referencing it with the special expansion-like syntax `${path:}`:
+The visual identifier of the Custom Application in the Merchant Center. You can choose one of the following predefined icons by referencing it with the special expansion-like syntax `${path:}`:
 
 ```json
 {
@@ -445,7 +445,7 @@ The label to be rendered if there is no matching localized label for the user lo
 
 ## `mainMenuLink.labelAllLocales`
 
-A list of localized fields `{ locale, value }` with translated labels for each application locales available in the user profile.
+A list of localized fields `{ locale, value }` with translated labels for each application locale, available in the user profile.
 
 ```json
 {
@@ -472,13 +472,13 @@ A list of the [user permissions](/concepts/oauth-scopes-and-user-permissions#use
 
 <Info>
 
-The values of the user permissions for the Custom Application are always derived from the `entryPointUriPath`. For example given `entryPointUriPath: avengers`, the user permissions are `ViewAvengers` and `ManageAvengers`.
+The values of the user permissions for the Custom Application are always derived from the `entryPointUriPath`. For example, given `entryPointUriPath: avengers`, the user permissions are `ViewAvengers` and `ManageAvengers`.
 
 </Info>
 
 ## `submenuLinks`
 
-An list of objects describing the sub-links to the Custom Application in the Merchant Center main navigation.
+A list of objects describing the sub-links to the Custom Application in the Merchant Center main navigation.
 
 ## `submenuLinks.*.uriPath`
 
@@ -511,7 +511,7 @@ The label to be rendered if there is no matching localized label for the user lo
 
 ## `submenuLinks.*.labelAllLocales`
 
-A list of localized fields `{ locale, value }` with translated labels for each application locales available in the user profile.
+A list of localized fields `{ locale, value }` with translated labels for each application locale, available in the user profile.
 
 ```json
 {
@@ -542,7 +542,7 @@ A list of the [user permissions](/concepts/oauth-scopes-and-user-permissions#use
 
 <Info>
 
-The values of the user permissions for the Custom Application are always derived from the `entryPointUriPath`. For example given `entryPointUriPath: avengers`, the user permissions are `ViewAvengers` and `ManageAvengers`.
+The values of the user permissions for the Custom Application are always derived from the `entryPointUriPath`. For example, given `entryPointUriPath: avengers`, the user permissions are `ViewAvengers` and `ManageAvengers`.
 
 </Info>
 
@@ -652,7 +652,7 @@ You can use a path relative to the application folder or a path to a module.
 
 # Runtime application environment
 
-Many of the information specified in the application config is injected into the runtime environment and available via the global variable `window.app`.
+Much of the information specified in the application config is injected into the runtime environment and available via the global variable `window.app`.
 
 It is recommended to always pass the value to the `<ApplicationShell>`.
 
