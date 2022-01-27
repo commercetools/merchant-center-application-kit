@@ -5,83 +5,78 @@
 export type EnvVariablePlaceholder = string;
 export type CspDirective = string[];
 
-export interface JSONSchemaForCustomApplicationConfigurationFiles {
+export interface JSONSchemaForCustomApplicationConfigurationFilesHttpsDocsCommercetoolsComCustomApplicationsApiReferenceApplicationConfig {
   /**
-   * The name of the Custom Application
+   * See https://docs.commercetools.com/custom-applications/api-reference/application-config#name
    */
   name: string;
   /**
-   * The unique route path of the Custom Application. This is the identifier that the Merchant Center Proxy uses to match the HTTP request and to forward it to the Custom Application URL (https://docs.commercetools.com/custom-applications/api-reference/application-config).
+   * See https://docs.commercetools.com/custom-applications/api-reference/application-config#description
+   */
+  description?: string;
+  /**
+   * See https://docs.commercetools.com/custom-applications/api-reference/application-config#entrypointuripath
    */
   entryPointUriPath: string;
   /**
-   * The cloud identifier where the Custom Application is running. This value is used to derive the Merchant Center API URL. Alternatively you can use the `mcApiUrl` property.
+   * See https://docs.commercetools.com/custom-applications/api-reference/application-config#cloudidentifier
    */
   cloudIdentifier: (('gcp-au' | 'gcp-eu' | 'gcp-us' | 'aws-fra' | 'aws-ohio') | EnvVariablePlaceholder) & string;
   /**
-   * The URL of the Merchant Center API. We usually recommend to use the `cloudIdentifier` option to avoid possible typos.
+   * See https://docs.commercetools.com/custom-applications/api-reference/application-config#mcapiurl
    */
   mcApiUrl?: string;
   /**
-   * The requested OAuth Scopes for this Custom Application.
+   * See https://docs.commercetools.com/custom-applications/api-reference/application-config#oauthscopes
    */
   oAuthScopes: {
     /**
-     * The list of view-only OAuth Scopes (https://docs.commercetools.com/api/scopes).
+     * See https://docs.commercetools.com/custom-applications/api-reference/application-config#oauthscopesview
      */
     view: string[];
     /**
-     * The list of manage-only OAuth Scopes (https://docs.commercetools.com/api/scopes).
+     * See https://docs.commercetools.com/custom-applications/api-reference/application-config#oauthscopesmanage
      */
     manage: string[];
   };
   /**
-   * This is an object of keys that represents different environments (for example `production`). The environment used depends on the environment variable `MC_APP_ENV`. If `MC_APP_ENV` isn't set then `NODE_ENV` will be used. If neither is set, it defaults to `development`
+   * See https://docs.commercetools.com/custom-applications/api-reference/application-config#env
    */
   env: {
-    /**
-     * Configuration for development only
-     */
     development: {
       /**
-       * The initial project key that the Custom Application is requesting access for. This is only used in development.
+       * See https://docs.commercetools.com/custom-applications/api-reference/application-config#envdevelopmentinitialprojectkey
        */
       initialProjectKey: string;
-      /**
-       * The ID of an existing team. This can be used for granting access on behalf of the permissions assigned to that team and project.
-       */
       teamId?: string;
     };
-    /**
-     * Configuration for production only
-     */
     production: {
       /**
-       * The ID of the Custom Application (when you register the application in the Merchant Center)
+       * See https://docs.commercetools.com/custom-applications/api-reference/application-config#envproductionapplicationid
        */
       applicationId: string;
       /**
-       * The URL where the Custom Application is hosted
+       * See https://docs.commercetools.com/custom-applications/api-reference/application-config#envproductionurl
        */
       url: string;
       /**
-       * The URL where the Custom Application static assets are hosted, like an external CDN. If the static assets are hosted alongside the Custom Application, you can omit this option and the Custom Application URL will be used instead.
+       * See https://docs.commercetools.com/custom-applications/api-reference/application-config#envproductioncdnurl
        */
       cdnUrl?: string;
     };
   };
   /**
-   * Additional environment values unique to your Custom Application that are injected in the application context.
+   * See https://docs.commercetools.com/custom-applications/api-reference/application-config#additionalenv
    */
   additionalEnv?: {
     [k: string]: unknown;
   };
   /**
-   * Configuration for HTTP headers
+   * See https://docs.commercetools.com/custom-applications/api-reference/application-config#headers
    */
   headers?: {
     /**
-     * Configuration for the HTTP Content-Security-Policy header (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
+     * See https://docs.commercetools.com/custom-applications/api-reference/application-config#headerscsp
      */
     csp?: {
       'connect-src': CspDirective;
@@ -92,74 +87,68 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
       'frame-src'?: CspDirective;
     };
     /**
-     * Configuration for the HTTP Feature-Policy header (https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy/Using_Feature_Policy)
+     * See https://docs.commercetools.com/custom-applications/api-reference/application-config#headersfeaturepolicies
      */
     featurePolicies?: {
       [k: string]: unknown;
     };
     /**
-     * Configuration for the HTTP Permissions-Policy header (https://github.com/w3c/webappsec-permissions-policy/blob/main/permissions-policy-explainer.md)
+     * See https://docs.commercetools.com/custom-applications/api-reference/application-config#headerspermissionspolicies
      */
     permissionsPolicies?: {
       [k: string]: unknown;
     };
     /**
-     * Additional configuration for the HTTP Strict-Transport-Security header (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)
+     * See https://docs.commercetools.com/custom-applications/api-reference/application-config#headersstricttransportsecurity
      */
     strictTransportSecurity?: ('includeSubDomains' | 'preload')[];
   };
   /**
-   * The SVG icon that represents this application. Pass the raw SVG string or a path to an SVG file, for example a relative path `${path:./app.svg}`, or a path from a module `${path:@commercetools-frontend/assets/application-icons/rocket.svg}`.
+   * See https://docs.commercetools.com/custom-applications/api-reference/application-config#icon
    */
   icon: string;
   /**
-   * Configuration for the main menu link on the left-side navbar.
+   * See https://docs.commercetools.com/custom-applications/api-reference/application-config#mainmenulink
    */
   mainMenuLink: {
     /**
-     * A default label to be rendered if there is no matching localized label for the user locale.
+     * See https://docs.commercetools.com/custom-applications/api-reference/application-config#mainmenulinkdefaultlabel
      */
     defaultLabel: string;
     /**
-     * Localized label based on the application locales available from the user profile.
+     * See https://docs.commercetools.com/custom-applications/api-reference/application-config#mainmenulinklabelalllocales
      */
     labelAllLocales: {
       locale: 'en' | 'de' | 'es' | 'fr-FR' | 'zh-CN' | 'ja';
-      /**
-       * A label for the specific locale or a reference to a translated message. For example `${intl:en:Menu.Avengers}` which looks for the message key `Menu.Avengers` in the `src/i18n/data/en.json`
-       */
       value: string;
     }[];
     /**
-     * Set the visibility of the menu link. Permission values are derived from the `entryPointUriPath`. Users must have at least one permission to see the Custom Application in the Merchant Center menu.
+     * See https://docs.commercetools.com/custom-applications/api-reference/application-config#mainmenulinkpermissions
      */
     permissions: string[];
     [k: string]: unknown;
   };
   /**
-   * Configuration for the submenu links on the left-side navbar.
+   * See https://docs.commercetools.com/custom-applications/api-reference/application-config#submenulinks
    */
   submenuLinks: {
     /**
-     * Route path relative to the entry point URI path of the Custom Application.
+     * See https://docs.commercetools.com/custom-applications/api-reference/application-config#submenulinksuripath
      */
     uriPath: string;
     /**
-     * A default label to be rendered if there is no matching localized label for the user locale.
+     * See https://docs.commercetools.com/custom-applications/api-reference/application-config#submenulinksdefaultlabel
      */
     defaultLabel: string;
     /**
-     * Localized label based on the application locales available from the user profile.
+     * See https://docs.commercetools.com/custom-applications/api-reference/application-config#submenulinkslabelalllocales
      */
     labelAllLocales: {
       locale: 'en' | 'de' | 'es' | 'fr-FR' | 'zh-CN' | 'ja';
-      /**
-       * A label for the specific locale or a reference to a translated message. For example `${intl:en:Menu.Avengers}` which looks for the message key `Menu.Avengers` in the `src/i18n/data/en.json`
-       */
       value: string;
     }[];
     /**
-     * Set the visibility of the menu link. Permission values are derived from the `entryPointUriPath`. Users must have at least one permission to see the Custom Application in the Merchant Center menu.
+     * See https://docs.commercetools.com/custom-applications/api-reference/application-config#submenulinkspermissions
      */
     permissions: string[];
     [k: string]: unknown;
