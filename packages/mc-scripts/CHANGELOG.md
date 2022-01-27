@@ -1,5 +1,12 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.0.0-rc.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/mc-html-template@21.0.0-rc.3
+
 ## 21.0.0-rc.2
 
 ### Patch Changes
