@@ -1,5 +1,27 @@
 # @commercetools-frontend/application-shell
 
+## 21.0.0-rc.3
+
+### Minor Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`e6051a9d`](https://github.com/commercetools/merchant-center-application-kit/commit/e6051a9dde8fd77a1e949fe34393b4c7a61dee55) Thanks [@emmenko](https://github.com/emmenko)! - The `applicationId` is required.
+
+* [#2459](https://github.com/commercetools/merchant-center-application-kit/pull/2459) [`f70e3074`](https://github.com/commercetools/merchant-center-application-kit/commit/f70e30742ff4b1228ff3bdc72f4a5d893ef8081f) Thanks [@emmenko](https://github.com/emmenko)! - Enforce that the Custom Application route is protected by the application "View" permission.
+
+### Patch Changes
+
+- Updated dependencies [[`e6051a9d`](https://github.com/commercetools/merchant-center-application-kit/commit/e6051a9dde8fd77a1e949fe34393b4c7a61dee55)]:
+  - @commercetools-frontend/constants@21.0.0-rc.3
+  - @commercetools-frontend/actions-global@21.0.0-rc.3
+  - @commercetools-frontend/application-components@21.0.0-rc.3
+  - @commercetools-frontend/application-shell-connectors@21.0.0-rc.3
+  - @commercetools-frontend/react-notifications@21.0.0-rc.3
+  - @commercetools-frontend/sdk@21.0.0-rc.3
+  - @commercetools-frontend/sentry@21.0.0-rc.3
+  - @commercetools-frontend/permissions@21.0.0-rc.3
+  - @commercetools-frontend/i18n@21.0.0-rc.3
+  - @commercetools-frontend/l10n@21.0.0-rc.3
+
 ## 21.0.0-rc.1
 
 ### Patch Changes
