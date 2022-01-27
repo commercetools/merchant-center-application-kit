@@ -49,8 +49,7 @@ const RedirectToLogin = () => {
     // https://auth0.com/docs/protocols/oauth2/redirect-users
     // Additionally, we still send the `nonce` parameter as well.
     const sessionId = generateAndCacheNonceWithState({
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      applicationId: window.app.applicationId!,
+      applicationId: window.app.applicationId,
       // Store query parameters to be used after the callback redirect
       query: {
         redirectTo: nextProjectKey ? `/${nextProjectKey}` : '/',

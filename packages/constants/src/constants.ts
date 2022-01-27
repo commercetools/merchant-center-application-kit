@@ -175,8 +175,7 @@ export type ApplicationOidcForDevelopmentConfig = {
 export interface ApplicationWindow extends Window {
   dataLayer: unknown[];
   app: {
-    // TODO: make it required: https://github.com/commercetools/merchant-center-application-kit/issues/1440
-    applicationId?: string;
+    applicationId: string;
     applicationName: string;
     entryPointUriPath: string;
     revision: string;
