@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "https://docs.commercetools.com/custom-applications/schema.json",
-  "title": "JSON schema for Custom Application configuration files. https://docs.commercetools.com/custom-applications/api-reference/application-config",
+  "title": "JSON schema for Custom Application configuration files",
   "type": "object",
   "definitions": {
     "envVariablePlaceholder": {

@@ -5,7 +5,7 @@
 export type EnvVariablePlaceholder = string;
 export type CspDirective = string[];
 
-export interface JSONSchemaForCustomApplicationConfigurationFilesHttpsDocsCommercetoolsComCustomApplicationsApiReferenceApplicationConfig {
+export interface JSONSchemaForCustomApplicationConfigurationFiles {
   /**
    * See https://docs.commercetools.com/custom-applications/api-reference/application-config#name
    */
