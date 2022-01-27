@@ -1,25 +1,12 @@
 ---
-title: Support Policy
+title: Support & Maintenance
 ---
 
 <Subtitle>
 
-This page describes the different aspects of the support policy between commercetools and consumers of the Custom Applications features.
-
+This page describes the different aspects of the support and maintenance recommendations for consumers of the Custom Applications features. Regarding details about our API Contract, please see [HTTP API Contract](https://docs.commercetools.com/api/contract). To check our long-term support plan for commercetools SDKs, please take a look at [our release notes](https://docs.commercetools.com/api/releases/2021-08-31-announced-long-term-support-plan-for-commercetools-sdks).
+ 
 </Subtitle>
-
-# Beta
-
-Beta features are indicated with the <BetaFlag /> flag. The flag can be visible in the main navigation of the documentation website as well as at the top of a page. The latter is a link to this page.
-
-A feature is marked as Beta when is stable enough to be used in production but may not yet be fully feature complete. Although expected to be stable, any Beta feature can be subject to change and should be used carefully in production.
-During the Beta period commercetools is still in the process of gathering the necessary feedback from consumers to complete and finalize the features. After the Beta period, the feature is promoted to General Availability and announced in the release notes.
-
-<Info>
-
-Make sure to read and understand the [Minimum required maintenance policy](#minimum-required-maintenance-policy) before starting to use Custom Applications in production, including the [Deprecation notice and End Of Life (EOL)](#deprecation-notice-and-end-of-life-eol).
-
-</Info>
 
 # Release process
 
@@ -75,61 +62,17 @@ In regards to Custom Applications, commercetools does not expect the same amount
 However, commercetools **recommends** that Custom Applications are **updated at regular periods** and **maintained in planned intervals**, to avoid falling too many versions behind.
 Not doing so might result in an increased maintenance effort in case the codebase needs to be updated to multiple versions, even more so for major versions and/or deprecated API functionalities.
 
-| Feature maturity     | Recommended update interval              |
-| -------------------- | ---------------------------------------- |
-| Beta                 | At least once a quarter (every 3 months) |
-| General Availability | At least twice a year (every 6 months)   |
-
 <Info>
 
 It is important to keep the dependencies up-to-date, especially to get the latest bug fixes and security patches. See also [Automate maintenance of dependencies](#automate-maintenance-of-dependencies).
 
 </Info>
 
-## Deprecation notice and End Of Life (EOL)
-
-Some packages, for example `@commercetools-frontend/application-shell`, interact with different commercetools HTTP APIs. Changes to those packages might include updates related to HTTP API functionalities, usually in a backwards compatible way.
-However, it can happen that some HTTP API functionalities might be **deprecated** over time and **eventually removed**.
-
-<Warning>
-
-The application kit packages rely on internal Merchant Center HTTP APIs that are **not covered by the standard [commercetools HTTP API policy](https://docs.commercetools.com/api/contract) of no breaking changes**.
-For Custom Applications this means that, in case the application is not kept up-to-date within the supported deprecation period, it might stop working because of the removed HTTP API functionalities.
-
-</Warning>
-
-In case some HTTP API functionalities need to be deprecated, commercetools starts a **deprecation process** as following:
-
-1. The HTTP API feature is marked as deprecated (for example GraphQL fields get the `@deprecated` directive)
-2. The deprecated feature is removed from the packages that refer and use that feature
-3. A new breaking change version of the packages is released, marking the starting point for how long the feature will remain deprecated
-4. The deprecation period (start to end) is documented on this page
-5. During the deprecation period, commercetools tracks the usage of the deprecated features, to determine if there are still applications using them
-6. Towards the end of the deprecation period, commercetools might contact the owners/maintainers of applications that are still using versions prior to the deprecation release
-7. After the deprecation period ends, commercetools is free to remove the deprecated functionalities from the respective HTTP APIs.
-
-| Feature maturity     | Deprecation period |
-| -------------------- | ------------------ |
-| Beta                 | 4 months           |
-| General Availability | 12 months          |
-
-<Info>
-
-Be aware that commercetools does not take any responsibility towards applications that might stop working after the deprecation period, because of the removed features.
-
-</Info>
-
-The following table lists all the released versions affected by the deprecation period:
-
-| Version  | Start date | End date   |
-| -------- | ---------- | ---------- |
-| `v5.0.0` | 2019-01-03 | 2019-05-03 |
-
 ## Automate maintenance of dependencies
 
-To help with the maintenance of dependencies, there are tools and services that can be used to automatically get dependency version updates to your own repository, for example [Renovate](https://renovate.whitesourcesoftware.com/), or [Dependabot](https://dependabot.com/).
+To help with the maintenance of dependencies, there are tools and services that can be used to automatically get dependency version updates to your own repository, for example, [Renovate](https://renovate.whitesourcesoftware.com/), or [Dependabot](https://dependabot.com/).
 
-Those tools and services can be configured to meet everyone's needs, for example to get updates only once a week.
+Those tools and services can be configured to meet everyone's needs, for example, to get updates only once a week.
 
 # Hosting
 
@@ -153,14 +96,14 @@ If you have questions or need help with something, we recommend opening a **GitH
 Never ever include passwords, credentials, or any private information in any issue (public or private)!<br />
 Any sensitive information should be left out, as GitHub Issues are publicly visible.
 
-In case the issue must contain sensitive information, for example the name of a customer Project, open a commercetools [support ticket](https://jira.commercetools.com/servicedesk/customer/portal/1).
+In case the issue must contain sensitive information, for example, the name of a customer Project, open a commercetools [support ticket](https://jira.commercetools.com/servicedesk/customer/portal/1).
 
 </Warning>
 
 # Contributing
 
 All packages and tools provided by commercetools are open source and licensed under MIT.
-At commercetools we love open source and we do what we can to contribute to other open source software that we also use internally.
+At commercetools we love open source and we do what we can to contribute to other open-source software that we also use internally.
 As such, we are happy to receive any contributions about our own packages, that being an Issue or a Pull Request.
 
 You can read more about the contribution guidelines in the following repositories:
