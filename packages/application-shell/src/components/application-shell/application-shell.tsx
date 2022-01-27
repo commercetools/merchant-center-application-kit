@@ -77,6 +77,7 @@ type Props<AdditionalEnvironmentProperties extends {}> = {
     event: SyntheticEvent<HTMLAnchorElement>,
     track: TrackFn
   ) => void;
+  disableRoutePermissionCheck?: boolean;
   render?: () => JSX.Element;
   children?: ReactNode;
 };
@@ -460,6 +461,9 @@ export const RestrictedApplication = <
                                       match={routerProps.match}
                                       location={routerProps.location}
                                       environment={applicationEnvironment}
+                                      disableRoutePermissionCheck={
+                                        props.disableRoutePermissionCheck
+                                      }
                                       // This effectively renders the
                                       // children, which is the application
                                       // specific part
@@ -530,6 +534,9 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
                     render={props.render}
                     applicationMessages={props.applicationMessages}
                     onMenuItemClick={props.onMenuItemClick}
+                    disableRoutePermissionCheck={
+                      props.disableRoutePermissionCheck
+                    }
                   >
                     {props.children}
                   </RestrictedApplication>

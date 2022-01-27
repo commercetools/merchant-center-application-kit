@@ -187,6 +187,7 @@ describe('for production usage', () => {
   describe('when the query succeeds', () => {
     it('should render menu key', async () => {
       renderApp(<NavBarTest environment={environment} />, {
+        disableRoutePermissionCheck: true,
         mocks: [
           {
             request: {
@@ -219,6 +220,7 @@ describe('for production usage', () => {
           }}
         />,
         {
+          disableRoutePermissionCheck: true,
           mocks: [
             {
               request: {
@@ -246,7 +248,9 @@ describe('for local development', () => {
             menuLinks: createTestNavBarMenuLinksConfig(),
           },
         });
-        renderApp(<NavBarTest environment={environment} />);
+        renderApp(<NavBarTest environment={environment} />, {
+          disableRoutePermissionCheck: true,
+        });
         await screen.findByText('Avengers');
         expect(screen.getByText('Add avenger')).toBeInTheDocument();
         expect(screen.getByText('Path: avengers')).toBeInTheDocument();
@@ -264,7 +268,9 @@ describe('for local development', () => {
             accountLinks: createTestAppBarMenuLinksConfig(),
           },
         });
-        renderApp(<AppBarTest environment={environment} />);
+        renderApp(<AppBarTest environment={environment} />, {
+          disableRoutePermissionCheck: true,
+        });
         await screen.findByText('Profile');
         expect(screen.getByText('Path: profile')).toBeInTheDocument();
         expect(screen.getByText('Organizations')).toBeInTheDocument();

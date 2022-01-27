@@ -244,9 +244,57 @@ describe.each`
       renderApp(<TestComponent />, {
         renderNodeAsChildren,
         route,
+        disableRoutePermissionCheck: true,
       });
       await screen.findByText('Application name: my-app');
     });
+
+    if (renderNodeAsChildren) {
+      describe('when route permission check is enabled (default)', () => {
+        it('should render page if application has view permission', async () => {
+          mockServer.use(
+            ...getDefaultMockResolvers({
+              projects: [
+                ProjectMock.build({
+                  ...createTestAppliedPermissions({
+                    allAppliedPermissions: [
+                      {
+                        name: 'canViewAvengers',
+                        value: true,
+                      },
+                    ],
+                  }),
+                }),
+              ],
+            })
+          );
+          const TestComponent = () => {
+            const applicationName = useApplicationContext(
+              (context) => context.environment.applicationName
+            );
+            return <p>{`Application name: ${applicationName}`}</p>;
+          };
+          renderApp(<TestComponent />, {
+            renderNodeAsChildren,
+            route,
+          });
+          await screen.findByText('Application name: my-app');
+        });
+        it('should render unauthorized page if application does not have view permission', async () => {
+          const TestComponent = () => {
+            const applicationName = useApplicationContext(
+              (context) => context.environment.applicationName
+            );
+            return <p>{`Application name: ${applicationName}`}</p>;
+          };
+          renderApp(<TestComponent />, {
+            renderNodeAsChildren,
+            route,
+          });
+          await screen.findByText(/you are not authorized to view it/);
+        });
+      });
+    }
 
     describe('when user navigates to "/account" route', () => {
       if (renderNodeAsChildren) {
@@ -254,6 +302,7 @@ describe.each`
           const { history } = renderApp(null, {
             renderNodeAsChildren,
             environment: { servedByProxy: true },
+            disableRoutePermissionCheck: true,
           });
           await screen.findByText('OK');
           history.push('/account');
@@ -265,6 +314,7 @@ describe.each`
         it('should render using the "render" prop', async () => {
           const { history } = renderApp(null, {
             renderNodeAsChildren,
+            disableRoutePermissionCheck: true,
           });
           await screen.findByText('OK');
           history.push('/account');
@@ -278,7 +328,9 @@ describe.each`
 
 describe('when route does not contain a project key (e.g. /account)', () => {
   it('should not render NavBar', async () => {
-    const { history, queryByLeftNavigation } = renderApp();
+    const { history, queryByLeftNavigation } = renderApp(null, {
+      disableRoutePermissionCheck: true,
+    });
     await screen.findByText('OK');
     history.push('/account');
     await waitFor(() => {

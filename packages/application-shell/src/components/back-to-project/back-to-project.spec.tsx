@@ -7,7 +7,9 @@ jest.mock('../../utils/location');
 
 describe('with `projectKey`', () => {
   it('should redirect to the project with the key', async () => {
-    renderApp(<BackToProject projectKey="test-project-key" />);
+    renderApp(<BackToProject projectKey="test-project-key" />, {
+      disableRoutePermissionCheck: true,
+    });
     fireEvent.click(screen.getByText('Back to project'));
     await waitFor(() => {
       expect(mocked(location.replace)).toHaveBeenCalledWith(
@@ -18,7 +20,9 @@ describe('with `projectKey`', () => {
 });
 describe('without `projectKey`', () => {
   it('should redirect to the root', async () => {
-    renderApp(<BackToProject />);
+    renderApp(<BackToProject />, {
+      disableRoutePermissionCheck: true,
+    });
     fireEvent.click(screen.getByText('Back to project'));
     await waitFor(() => {
       expect(mocked(location.replace)).toHaveBeenCalledWith('/');

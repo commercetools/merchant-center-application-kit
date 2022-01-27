@@ -55,6 +55,7 @@ const mockRequests = {
 
 const render = ({ mocks, environment } = { mocks: [] }) =>
   renderApp(<TestComponent />, {
+    disableRoutePermissionCheck: true,
     mocks,
     environment,
     enableApolloMocks: true,

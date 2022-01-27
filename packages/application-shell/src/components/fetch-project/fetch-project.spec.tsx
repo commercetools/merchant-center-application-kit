@@ -35,7 +35,10 @@ const renderProject = () =>
         if (project) return <div>{`Project: ${project.name}`}</div>;
         return null;
       }}
-    </FetchProject>
+    </FetchProject>,
+    {
+      disableRoutePermissionCheck: true,
+    }
   );
 
 describe('rendering', () => {

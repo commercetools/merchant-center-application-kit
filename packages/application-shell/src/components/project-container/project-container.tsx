@@ -33,6 +33,7 @@ type Props<AdditionalEnvironmentProperties extends {}> = Pick<
 > & {
   user: TFetchLoggedInUserQuery['user'];
   environment: TProviderProps<AdditionalEnvironmentProperties>['environment'];
+  disableRoutePermissionCheck?: boolean;
   render?: () => JSX.Element;
   children?: ReactNode;
 };
@@ -176,6 +177,9 @@ const ProjectContainer = <AdditionalEnvironmentProperties extends {}>(
                        */}
                       <ApplicationEntryPoint<AdditionalEnvironmentProperties>
                         environment={props.environment}
+                        disableRoutePermissionCheck={
+                          props.disableRoutePermissionCheck
+                        }
                         render={props.render}
                       >
                         {props.children}
