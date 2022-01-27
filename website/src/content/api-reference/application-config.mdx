@@ -189,6 +189,16 @@ If a cloud Region is not listed in the values above, you can override the value 
 
 </Info>
 
+## `mcApiUrl`
+
+The origin URL of the [Merchant Center API](/concepts/merchant-center-api#hostnames).
+
+<Info>
+
+The value takes precedence over the `cloudIdentifier`. Use this only if the `cloudIdentifier` does not contain a value for the environment you want to connect to.
+
+</Info>
+
 ## `env`
 
 An object holding environment specific configurations, for example `development` or `production`. Which environment is used depends on the environment variable `MC_APP_ENV`. If `MC_APP_ENV` isn't set, `NODE_ENV` will be used. If neither is set, it defaults to `development`.
@@ -283,7 +293,7 @@ If the static assets are hosted alongside the Custom Application, you can omit t
 
 An optional object that should be used to inject properties used within your Custom Application. These properties are then made available to the [runtime application environment](#runtime-application-environment).
 
-For example, if the Custom Application should reference an external API, or have links to certain support pages, etc.:
+For example, if the Custom Application should reference an external API, or have links to certain support pages:
 
 ```json
 {
@@ -296,17 +306,17 @@ For example, if the Custom Application should reference an external API, or have
 
 ## `oAuthScopes`
 
-The configuration for [OAuth Scopes and user permissions](#oauth-scopes-and-user-permissions).
+The configuration for [OAuth Scopes and user permissions](/concepts/oauth-scopes-and-user-permissions).
 
 <Info>
 
-You can have "view" or "manage" only OAuth Scopes and leave the other list field empty, as long as at least one OAuth Scope is specified.
+You can have "view-only" or "manage-only" OAuth Scopes and leave the other list field empty, as long as at least one OAuth Scope is specified.
 
 </Info>
 
 ## `oAuthScopes.view`
 
-A list of "view-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated to the "View" permission.
+A list of "view-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated to the `View` permission.
 
 ```json
 {
@@ -318,7 +328,7 @@ A list of "view-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) 
 
 ## `oAuthScopes.manage`
 
-A list of "manage-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated with the "Manage" permission.
+A list of "manage-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated with the `Manage` permission.
 
 ```json
 {
@@ -458,9 +468,11 @@ A list of localized fields `{ locale, value }` with translated labels for each a
 }
 ```
 
+Labels can also be references using the i18n translation files. See [Intl message references](#intl-message-references) for more information.
+
 ## `mainMenuLink.permissions`
 
-A list of the [user permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions) specific to your Custom Application. Users must have at least one permission to see the link in the Merchant Center menu.
+A list of the [user permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions) specific to your Custom Application. Users must have at least one permission to see the link in the Merchant Center main navigation.
 
 ```json
 {
@@ -472,7 +484,7 @@ A list of the [user permissions](/concepts/oauth-scopes-and-user-permissions#use
 
 <Info>
 
-The values of the user permissions for the Custom Application are always derived from the `entryPointUriPath`. For example, given `entryPointUriPath: avengers`, the user permissions are `ViewAvengers` and `ManageAvengers`.
+The values of the user permissions for the Custom Application are always derived from the `entryPointUriPath`. See [Applying user permissions](/development/permissions#applying-user-permissions) for more information.
 
 </Info>
 
@@ -526,9 +538,11 @@ A list of localized fields `{ locale, value }` with translated labels for each a
 }
 ```
 
+Labels can also be references using the i18n translation files. See [Intl message references](#intl-message-references) for more information.
+
 ## `submenuLinks.*.permissions`
 
-A list of the [user permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions) specific to your Custom Application. Users must have at least one permission to see the link in the Merchant Center menu.
+A list of the [user permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions) specific to your Custom Application. Users must have at least one permission to see the link in the Merchant Center main navigation.
 
 ```json
 {
@@ -542,7 +556,7 @@ A list of the [user permissions](/concepts/oauth-scopes-and-user-permissions#use
 
 <Info>
 
-The values of the user permissions for the Custom Application are always derived from the `entryPointUriPath`. For example, given `entryPointUriPath: avengers`, the user permissions are `ViewAvengers` and `ManageAvengers`.
+The values of the user permissions for the Custom Application are always derived from the `entryPointUriPath`. See [Applying user permissions](/development/permissions#applying-user-permissions) for more information.
 
 </Info>
 
@@ -556,7 +570,7 @@ To make the application config more reusable across different environments, you 
 
 References are specified with a special expansion-like syntax `${}` together with the prefix key `env:`. For example, to load an environment variable called `APP_URL`, you would use `${env:APP_URL}`.
 
-Imagine developing a Custom Application that can be used in the commercetools Platform **Europe** region and **North America** region. We can assign the `${env:CLOUD_IDENTIFIER}` reference to the field `cloudIdentifier` and pass the actual value using environment variables.
+Imagine developing a Custom Application that can be used in the commercetools Platform Europe Region and North America Region. We can assign the `${env:CLOUD_IDENTIFIER}` reference to the field `cloudIdentifier` and pass the actual value using environment variables.
 
 ```json
 {

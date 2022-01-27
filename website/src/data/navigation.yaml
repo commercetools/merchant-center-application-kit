@@ -4,8 +4,8 @@
       path: /what-is-a-custom-application
     - title: Getting Started
       path: /getting-started
-    - title: Support Policy
-      path: /support-policy
+    - title: Maintenance guidelines
+      path: /maintenance-guidelines
     - title: Help Needed?
       path: /help-needed
     - title: Migrating from Project-level Custom Applications

@@ -637,3 +637,21 @@ The following is the definition of the state object returned by `useModalState`:
 * `isModalOpen`: Whether the state is open or closed.
 * `openModal`: Update the `isModalOpen` state to `true`.
 * `closeModal`: Update the `isModalOpen` state to `false`.
+
+
+# Usage outside of Custom Applications
+
+If you happen to use some of the components outside of a Custom Application, you need to additionally render the `<PortalsContainer>`.
+
+The `<PortalsContainer>` renders an empty HTML element with a specific identifier and is used to render all modal components (for example dialogs or modal pages). Make sure to render this component once in your application.
+
+```js
+import { PortalsContainer } from '@commercetools-frontend/application-components';
+
+const Application = () => (
+  <main>
+    <PortalsContainer />
+    {/* ... */}
+  </main>
+)
+```

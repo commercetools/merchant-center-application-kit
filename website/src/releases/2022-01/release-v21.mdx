@@ -40,8 +40,9 @@ The Custom Application config file has some new required fields.
 
 * `env.development`
 * `oAuthScopes`
+* `*.defaultLabel`
 
-The menu link structure also changed a bit.
+In addition to that, the menu link structure also changed a bit.
 
 ```json
 // Before
@@ -80,6 +81,8 @@ The menu link structure also changed a bit.
   ]
 }
 ```
+
+Note that there is a new required field `defaultLabel`, which is used in case there is no localized label for the user's locale. If you don't need localized labels, you can leave the `labelAllLocales` field empty and only use the `defaultLabel`.
 
 See [Custom Application config](/api-reference/application-config) for more information.
 
@@ -131,6 +134,12 @@ If you were using the opt-in feature `ENABLE_OIDC_FOR_DEVELOPMENT=true`, this is
 </Info>
 
 See [Development login via OpenID Connect](/migrating-from-project-level-custom-applications#development-login-via-openid-connect) for more information.
+
+# Recommended setup for EntryPoint
+
+In the Custom Application `<EntryPoint>` component we recommend to render the application content as `children` of `<ApplicationShell>` instead of the `render` prop.
+
+This allows the `<ApplicationShell>` to pre-configure the application entry point routes. In addition to that, the entry point route is protected by the basic `View` permission check. This means that a user without permissions of your Custom Application won't be able to access the Custom Application route.
 
 # Changes to the CLI
 

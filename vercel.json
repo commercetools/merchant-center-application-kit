@@ -31,6 +31,10 @@
   ],
   "redirects": [
     {
+      "source": "/custom-applications/support-policy",
+      "destination": "/custom-applications/maintenance-guidelines"
+    },
+    {
       "source": "/custom-applications/getting-started/what-is-a-custom-application",
       "destination": "/custom-applications/what-is-a-custom-application"
     },
