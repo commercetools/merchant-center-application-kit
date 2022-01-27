@@ -30,7 +30,7 @@ module.exports = {
         globalNotification: {
           notificationType: 'info',
           content:
-            'This is the new documentation of Custom Applications. You can still [visit the legacy documentation](https://docs.commercetools.com/custom-applications/legacy) during the migration from Project-level Custom Applications. [Read the announcement](/migrating-from-project-level-custom-applications).',
+            'This is the new documentation of Custom Applications. You can still visit the [legacy documentation](https://docs.commercetools.com/custom-applications/legacy) during the [migration](/migrating-from-project-level-custom-applications) from Project-level Custom Applications.',
         },
       },
     },
