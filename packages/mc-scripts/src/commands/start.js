@@ -71,13 +71,9 @@ choosePort(HOST, DEFAULT_PORT)
       port,
       publicPath: config.output.publicPath,
     });
-    const devServer = new WebpackDevServer(compiler, serverConfig);
+    const devServer = new WebpackDevServer(serverConfig, compiler);
     // Launch WebpackDevServer.
-    devServer.listen(port, HOST, (err) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
+    devServer.startCallback(() => {
       if (isInteractive) {
         clearConsole();
       }
