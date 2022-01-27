@@ -266,6 +266,7 @@ export type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;
   enableApolloMocks: boolean;
   route: string;
+  disableRoutePermissionCheck: boolean;
   disableAutomaticEntryPointRoutes: boolean;
   history: ReturnType<typeof createEnhancedHistory>;
   flags: TFlags;
@@ -286,6 +287,9 @@ type TApplicationProvidersProps = {
 };
 
 function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
+  // application
+  disableAutomaticEntryPointRoutes = false,
+  disableRoutePermissionCheck = false,
   // react-intl
   locale = 'en',
   // Apollo
@@ -294,7 +298,6 @@ function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
   enableApolloMocks = false,
   // react-router
   route,
-  disableAutomaticEntryPointRoutes = false,
   history,
   // flopflip
   flags = {},
@@ -340,6 +343,7 @@ function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
               <Suspense fallback={<LoadingFallback />}>
                 <ApplicationEntryPoint
                   environment={mergedEnvironment}
+                  disableRoutePermissionCheck={disableRoutePermissionCheck}
                   render={
                     disableAutomaticEntryPointRoutes
                       ? // eslint-disable-next-line testing-library/no-node-access

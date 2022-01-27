@@ -3,12 +3,49 @@ import type { TProviderProps } from '@commercetools-frontend/application-shell-c
 import { Children, ReactNode } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import invariant from 'tiny-invariant';
+import { useIsAuthorized } from '@commercetools-frontend/permissions';
+import { PageUnauthorized } from '@commercetools-frontend/application-components';
+import { entryPointUriPathToPermissionKeys } from '../../utils/formatters';
 import RouteCatchAll from '../route-catch-all';
 
 type Props<AdditionalEnvironmentProperties extends {}> = {
   environment: TProviderProps<AdditionalEnvironmentProperties>['environment'];
+  disableRoutePermissionCheck?: boolean;
   render?: () => JSX.Element;
   children?: ReactNode;
+};
+
+const ApplicationRouteWithPermissionCheck = <
+  AdditionalEnvironmentProperties extends {}
+>(
+  props: Props<AdditionalEnvironmentProperties>
+) => {
+  const permissionKeys = entryPointUriPathToPermissionKeys(
+    props.environment.entryPointUriPath
+  );
+  // Require View permission to render the application.
+  const canView = useIsAuthorized({
+    demandedPermissions: [permissionKeys.View],
+  });
+
+  if (canView) {
+    return <>{Children.only<ReactNode>(props.children)}</>;
+  }
+  return <PageUnauthorized />;
+};
+
+const ApplicationRoute = <AdditionalEnvironmentProperties extends {}>(
+  props: Props<AdditionalEnvironmentProperties>
+) => {
+  if (props.disableRoutePermissionCheck) {
+    return <>{Children.only<ReactNode>(props.children)}</>;
+  }
+
+  return (
+    <ApplicationRouteWithPermissionCheck<AdditionalEnvironmentProperties>
+      {...props}
+    />
+  );
 };
 
 const ApplicationEntryPoint = <AdditionalEnvironmentProperties extends {}>(
@@ -33,7 +70,7 @@ const ApplicationEntryPoint = <AdditionalEnvironmentProperties extends {}>(
           )
         }
         <Route path={`/:projectKey/${entryPointUriPath}`}>
-          {Children.only<ReactNode>(props.children)}
+          <ApplicationRoute<AdditionalEnvironmentProperties> {...props} />
         </Route>
         {/* Catch-all route */}
         <RouteCatchAll />
