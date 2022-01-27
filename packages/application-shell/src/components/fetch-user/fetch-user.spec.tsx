@@ -33,7 +33,10 @@ const renderUser = () =>
         if (user) return <div>{`User: ${user.firstName}`}</div>;
         return null;
       }}
-    </FetchUser>
+    </FetchUser>,
+    {
+      disableRoutePermissionCheck: true,
+    }
   );
 
 describe('rendering', () => {

@@ -40,6 +40,7 @@ describe('rendering', () => {
     it('should open the menu and inspect the links', async () => {
       const props = createTestProps();
       renderApp(<UserSettingsMenu {...props} />, {
+        disableRoutePermissionCheck: true,
         environment: {
           servedByProxy: 'true',
         },
@@ -83,6 +84,7 @@ describe('rendering', () => {
     it('should open the menu and inspect the links', async () => {
       const props = createTestProps();
       renderApp(<UserSettingsMenu {...props} />, {
+        disableRoutePermissionCheck: true,
         environment: {
           __DEVELOPMENT__: {
             // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
@@ -119,6 +121,7 @@ describe('rendering', () => {
     it('should navigate to projects route and close the user menu', async () => {
       const props = createTestProps();
       const { history } = renderApp(<UserSettingsMenu {...props} />, {
+        disableRoutePermissionCheck: true,
         environment: {
           __DEVELOPMENT__: {
             // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
@@ -152,6 +155,7 @@ describe('rendering', () => {
     it('should close the user menu', async () => {
       const props = createTestProps();
       renderApp(<UserSettingsMenu {...props} />, {
+        disableRoutePermissionCheck: true,
         environment: {
           __DEVELOPMENT__: {
             // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
@@ -182,6 +186,7 @@ describe('rendering', () => {
     it('should close the user menu', async () => {
       const props = createTestProps();
       renderApp(<UserSettingsMenu {...props} />, {
+        disableRoutePermissionCheck: true,
         environment: {
           __DEVELOPMENT__: {
             // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.

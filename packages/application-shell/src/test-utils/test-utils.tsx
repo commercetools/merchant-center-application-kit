@@ -417,7 +417,7 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
   };
 }
 
-type TRenderAppWithReduxOptions<
+export type TRenderAppWithReduxOptions<
   AdditionalEnvironmentProperties = {},
   StoreState = {}
 > = {

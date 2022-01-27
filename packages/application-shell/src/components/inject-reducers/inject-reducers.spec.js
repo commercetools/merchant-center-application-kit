@@ -39,7 +39,10 @@ describe('injecting reducers', () => {
     renderAppWithRedux(
       <InjectReducers id="test" reducers={reducers}>
         <ConnectedCounter />
-      </InjectReducers>
+      </InjectReducers>,
+      {
+        disableRoutePermissionCheck: true,
+      }
     );
 
     await screen.findByText(/The count is 0/i);
