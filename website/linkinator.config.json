@@ -2,8 +2,9 @@
   "__docs": "https://github.com/JustinBeckwith/linkinator/blob/main/src/config.ts#L3",
   "recurse": true,
   "skip": [
-    "/.+/(page-data|static)/(.*)",
+    "/.+/(page-data|static|icons)/(.*)",
     "/[^/]+/[^/]+.(js|json)$",
+    "/.+/favicon(.*)",
     "https://support.commercetools.com",
     "https://developers.cloudflare.com",
     "https://dash.cloudflare.com",
