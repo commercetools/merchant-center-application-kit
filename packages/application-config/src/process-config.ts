@@ -121,7 +121,11 @@ const processConfig = ({
                 : mcApiUrl.origin.replace('mc-api', 'mc'),
               '/login/authorize',
             ].join(''),
-            initialProjectKey: appConfig.env.development.initialProjectKey,
+            initialProjectKey:
+              // For the `account` application, we should unset the projectKey.
+              appConfig.entryPointUriPath === 'account'
+                ? undefined
+                : appConfig.env.development.initialProjectKey,
             teamId: appConfig.env.development?.teamId,
             oAuthScopes: appConfig.oAuthScopes,
           }),
