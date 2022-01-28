@@ -91,7 +91,7 @@ const Welcome = () => {
             <InfoCard
               title={intl.formatMessage(messages.cardDocumentationTitle)}
               content={intl.formatMessage(messages.cardDocumentationContent)}
-              linkTo="https://docs.commercetools.com/custom-applications/getting-started/what-is-a-custom-application"
+              linkTo="https://docs.commercetools.com/custom-applications/what-is-a-custom-application"
               isExternal
             />
             <InfoCard
