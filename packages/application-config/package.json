@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-config",
-  "version": "21.0.0-rc.1",
+  "version": "21.0.0-rc.4",
   "description": "Configuration utilities for building Custom Applications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {

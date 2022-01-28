@@ -2215,7 +2215,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/application-config@21.0.0-rc.1, @commercetools-frontend/application-config@workspace:packages/application-config":
+"@commercetools-frontend/application-config@21.0.0-rc.4, @commercetools-frontend/application-config@workspace:packages/application-config":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/application-config@workspace:packages/application-config"
   dependencies:
@@ -2258,7 +2258,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/application-shell@21.0.0-rc.3, @commercetools-frontend/application-shell@workspace:packages/application-shell":
+"@commercetools-frontend/application-shell@21.0.0-rc.4, @commercetools-frontend/application-shell@workspace:packages/application-shell":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/application-shell@workspace:packages/application-shell"
   dependencies:
@@ -2438,8 +2438,8 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.16.7
     "@babel/runtime-corejs3": ^7.16.8
-    "@commercetools-frontend/application-config": 21.0.0-rc.1
-    "@commercetools-frontend/application-shell": 21.0.0-rc.3
+    "@commercetools-frontend/application-config": 21.0.0-rc.4
+    "@commercetools-frontend/application-shell": 21.0.0-rc.4
     "@manypkg/get-packages": 1.1.3
     cypress: 9.3.1
     uuid: 8.3.2
@@ -2572,7 +2572,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/mc-html-template@21.0.0-rc.3, @commercetools-frontend/mc-html-template@workspace:packages/mc-html-template":
+"@commercetools-frontend/mc-html-template@21.0.0-rc.4, @commercetools-frontend/mc-html-template@workspace:packages/mc-html-template":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/mc-html-template@workspace:packages/mc-html-template"
   dependencies:
@@ -2580,7 +2580,7 @@ __metadata:
     "@babel/preset-env": ^7.16.11
     "@babel/runtime": ^7.16.7
     "@babel/runtime-corejs3": ^7.16.8
-    "@commercetools-frontend/application-config": 21.0.0-rc.1
+    "@commercetools-frontend/application-config": 21.0.0-rc.4
     "@commercetools-frontend/constants": 21.0.0-rc.3
     core-js: ^3.20.3
     rimraf: 3.0.2
@@ -2590,7 +2590,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/mc-scripts@21.0.0-rc.3, @commercetools-frontend/mc-scripts@workspace:packages/mc-scripts":
+"@commercetools-frontend/mc-scripts@21.0.0-rc.4, @commercetools-frontend/mc-scripts@workspace:packages/mc-scripts":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/mc-scripts@workspace:packages/mc-scripts"
   dependencies:
@@ -2598,11 +2598,11 @@ __metadata:
     "@babel/preset-env": ^7.16.11
     "@babel/runtime": ^7.16.7
     "@babel/runtime-corejs3": ^7.16.8
-    "@commercetools-frontend/application-config": 21.0.0-rc.1
+    "@commercetools-frontend/application-config": 21.0.0-rc.4
     "@commercetools-frontend/assets": 21.0.0-rc.1
     "@commercetools-frontend/babel-preset-mc-app": 21.0.0-rc.1
     "@commercetools-frontend/mc-dev-authentication": 21.0.0-rc.1
-    "@commercetools-frontend/mc-html-template": 21.0.0-rc.3
+    "@commercetools-frontend/mc-html-template": 21.0.0-rc.4
     "@pmmmwh/react-refresh-webpack-plugin": 0.5.4
     "@svgr/webpack": 6.2.0
     autoprefixer: 10.4.2
@@ -2794,7 +2794,7 @@ __metadata:
     "@commercetools-frontend/application-components": 21.0.0-rc.3
     "@commercetools-frontend/assets": 21.0.0-rc.1
     "@commercetools-frontend/constants": 21.0.0-rc.3
-    "@commercetools-frontend/mc-scripts": 21.0.0-rc.3
+    "@commercetools-frontend/mc-scripts": 21.0.0-rc.4
     "@commercetools-frontend/react-notifications": 21.0.0-rc.3
     "@commercetools-uikit/accessible-button": ^12.2.9
     "@commercetools-uikit/design-system": ^12.2.9
@@ -22200,7 +22200,7 @@ __metadata:
     "@apollo/client": 3.5.7
     "@commercetools-frontend/actions-global": 21.0.0-rc.3
     "@commercetools-frontend/application-components": 21.0.0-rc.3
-    "@commercetools-frontend/application-shell": 21.0.0-rc.3
+    "@commercetools-frontend/application-shell": 21.0.0-rc.4
     "@commercetools-frontend/application-shell-connectors": 21.0.0-rc.3
     "@commercetools-frontend/assets": 21.0.0-rc.1
     "@commercetools-frontend/constants": 21.0.0-rc.3
@@ -22208,7 +22208,7 @@ __metadata:
     "@commercetools-frontend/i18n": 21.0.0-rc.3
     "@commercetools-frontend/jest-preset-mc-app": 21.0.0-rc.1
     "@commercetools-frontend/mc-dev-authentication": 21.0.0-rc.1
-    "@commercetools-frontend/mc-scripts": 21.0.0-rc.3
+    "@commercetools-frontend/mc-scripts": 21.0.0-rc.4
     "@commercetools-frontend/permissions": 21.0.0-rc.3
     "@commercetools-frontend/sdk": 21.0.0-rc.3
     "@commercetools-test-data/commons": 2.4.1
@@ -24798,14 +24798,14 @@ __metadata:
     "@commercetools-docs/ui-kit": 18.1.0
     "@commercetools-frontend/actions-global": 21.0.0-rc.3
     "@commercetools-frontend/application-components": 21.0.0-rc.3
-    "@commercetools-frontend/application-shell": 21.0.0-rc.3
+    "@commercetools-frontend/application-shell": 21.0.0-rc.4
     "@commercetools-frontend/application-shell-connectors": 21.0.0-rc.3
     "@commercetools-frontend/assets": 21.0.0-rc.1
     "@commercetools-frontend/constants": 21.0.0-rc.3
     "@commercetools-frontend/i18n": 21.0.0-rc.3
     "@commercetools-frontend/l10n": 21.0.0-rc.3
     "@commercetools-frontend/mc-dev-authentication": 21.0.0-rc.1
-    "@commercetools-frontend/mc-scripts": 21.0.0-rc.3
+    "@commercetools-frontend/mc-scripts": 21.0.0-rc.4
     "@commercetools-frontend/permissions": 21.0.0-rc.3
     "@commercetools-frontend/sdk": 21.0.0-rc.3
     "@commercetools-uikit/checkbox-input": ^12.2.9
