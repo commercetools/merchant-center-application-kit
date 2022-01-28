@@ -62,7 +62,7 @@ const Application = () => {
 
 ## Changes about Apollo query variables and context
 
-Previously, to perform GraphQL requests to the Merchant Center API Gateway, you would need to specify request metadata options such as the [GraphQL Target](https://docs.commercetools.com/custom-applications/main-concepts/graphql#request-format).
+Previously, to perform GraphQL requests to the Merchant Center API Gateway, you would need to specify request metadata options such as the [GraphQL Target](https://docs.commercetools.com/custom-applications/legacy/main-concepts/graphql#request-format).
 
 These values had to be specified in the query `variables` object, which the built-in Merchant Center Apollo HTTP Link would parse and assign it to the request as HTTP headers. We call these options **request context**.
 
@@ -120,7 +120,7 @@ Previously deprecated CLI options such as `--env`, `--csp`, `--headers`, have be
 Additionally, the CLI flag `--use-local-assets` has been removed as well. As such the default behavior of `mc-scripts compile-html` changed to compile the assets locally.
 
 When running the `mc-scripts compile-html` command, the `index.html` is compiled for production usage and it lives in the `public` folder, together with the other static assets. This is all you need to deploy your application.
-You can decide to [deploy the Custom Application statically to one of the popular cloud providers](/deployment/compiling-a-custom-application#deployment), or serve the files on your own using a static server.
+You can decide to [deploy the Custom Application statically to one of the popular cloud providers](https://docs.commercetools.com/custom-applications/legacy/deployment/compiling-a-custom-application#deployment), or serve the files on your own using a static server.
 
 For example, to run locally the Custom Application using the production bundles:
 
@@ -140,7 +140,7 @@ With the usage of the `compile-html` command there is no need to have a pre-conf
 
 <Info>
 
-Remember that after building your production bundles you need to [compile the Custom Application](/deployment/compiling-a-custom-application#deployment) for production usage.
+Remember that after building your production bundles you need to [compile the Custom Application](https://docs.commercetools.com/custom-applications/legacy/deployment/compiling-a-custom-application#deployment) for production usage.
 
 </Info>
 

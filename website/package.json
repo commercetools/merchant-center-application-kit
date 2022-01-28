@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "clean": "gatsby clean",
-    "build": "./scripts/prebuild.sh && yarn generate-icons && gatsby build --prefix-paths --verbose --log-pages && yarn check-links",
+    "build": "./scripts/prebuild.sh && yarn generate-icons && gatsby build --prefix-paths --verbose --log-pages",
     "start": "yarn generate-icons && gatsby develop",
-    "check-links": "echo \"Disabled link checks for now\" && exit 0 || start-server-and-test 'yarn gatsby serve --prefix-paths' http://localhost:9000/custom-applications 'yarn linkinator http://localhost:9000/custom-applications'",
+    "serve": "gatsby serve --prefix-paths",
+    "check-links": "start-server-and-test 'yarn serve' http://localhost:9000/custom-applications 'yarn linkinator --url-rewrite-replace=http://localhost:9000 http://localhost:9000/custom-applications'",
     "generate-icons": "svgr -d src/icons/generated -- src/icons/svg && prettier --write '**/generated/*.js'"
   },
   "dependencies": {
@@ -26,7 +27,7 @@
   },
   "devDependencies": {
     "@svgr/cli": "6.2.0",
-    "linkinator": "2.16.2",
+    "linkinator": "3.0.3",
     "prettier": "2.5.1",
     "start-server-and-test": "1.14.0"
   }

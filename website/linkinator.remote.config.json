@@ -32,5 +32,6 @@
   "retry": true,
   "retryErrors": true,
   "retryErrorsCount": 3,
-  "retryErrorsJitter": 500
+  "retryErrorsJitter": 500,
+  "urlRewriteSearch": "https://docs.commercetools.com"
 }
