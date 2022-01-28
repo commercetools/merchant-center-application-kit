@@ -13,7 +13,7 @@
     "deploy": "vercel --scope=commercetools-playground --confirm --no-clipboard"
   },
   "dependencies": {
-    "@commercetools-docs/ui-kit": "18.1.0",
+    "@commercetools-docs/ui-kit": "18.2.2",
     "@commercetools-frontend/actions-global": "21.0.0-rc.3",
     "@commercetools-frontend/application-components": "21.0.0-rc.3",
     "@commercetools-frontend/application-shell": "21.0.0-rc.4",
