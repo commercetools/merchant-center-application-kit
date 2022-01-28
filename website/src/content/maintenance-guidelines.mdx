@@ -52,7 +52,7 @@ How a breaking change can impact a Custom Application:
 A new major release does not always mean that breaking changes directly affect consumers of the packages. Some examples are:
 
 - A dependency package drops support for an "old" Node.js version, thus releasing a major version. As a consequence, commercetools could release a new major version as well for dropping support of a given Node.js version. However, this unlikely affects consumers of Custom Application packages.
-- React releases some new feature that requires a specific minimal version of React. Therefore, commercetools could release a new major version that requires Custom Applications to run to a minimal React version.
+- React releases a new feature that requires a specific minimal version of React. Therefore, commercetools could release a new major version that requires Custom Applications to run to a minimal React version.
 
 </Info>
 
@@ -74,7 +74,7 @@ It is important to keep the dependencies up-to-date, especially to get the lates
 
 ## Automate maintenance of dependencies
 
-To help with the maintenance of dependencies, there are tools and services that can be used to automatically get dependency version updates to your own repository, for example, [Renovate](https://renovate.whitesourcesoftware.com/), or [Dependabot](https://dependabot.com/).
+To help with the maintenance of dependencies, there are tools and services that can be used to automatically get dependency version updates to your own repository, for example, [Renovate](https://www.whitesourcesoftware.com/free-developer-tools/renovate/), or [Dependabot](https://github.com/dependabot).
 
 Those tools and services can be configured to meet everyone's needs, for example, to get updates only once a week.
 
