@@ -1,5 +1,15 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.0.0-rc.4
+
+### Patch Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`6d3b7ba3`](https://github.com/commercetools/merchant-center-application-kit/commit/6d3b7ba3f835e86846c4cc1619ccd4ab237636d1) Thanks [@emmenko](https://github.com/emmenko)! - Fix WebpackDevServer deprecation warnings
+
+- Updated dependencies [[`5e3ee854`](https://github.com/commercetools/merchant-center-application-kit/commit/5e3ee854b77cb052be448afb5ecc6b2c62b0d712)]:
+  - @commercetools-frontend/application-config@21.0.0-rc.4
+  - @commercetools-frontend/mc-html-template@21.0.0-rc.4
+
 ## 21.0.0-rc.3
 
 ### Patch Changes

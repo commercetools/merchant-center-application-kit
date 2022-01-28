@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "19.0.0-rc.2",
+  "version": "19.0.0-rc.3",
   "description": "A playground application to get started developing Merchant Center Applications",
   "private": true,
   "scripts": {
@@ -16,7 +16,7 @@
     "@commercetools-docs/ui-kit": "18.1.0",
     "@commercetools-frontend/actions-global": "21.0.0-rc.3",
     "@commercetools-frontend/application-components": "21.0.0-rc.3",
-    "@commercetools-frontend/application-shell": "21.0.0-rc.3",
+    "@commercetools-frontend/application-shell": "21.0.0-rc.4",
     "@commercetools-frontend/application-shell-connectors": "21.0.0-rc.3",
     "@commercetools-frontend/assets": "21.0.0-rc.1",
     "@commercetools-frontend/constants": "21.0.0-rc.3",
@@ -49,7 +49,7 @@
   "devDependencies": {
     "@commercetools-backend/express": "21.0.0-rc.1",
     "@commercetools-frontend/mc-dev-authentication": "21.0.0-rc.1",
-    "@commercetools-frontend/mc-scripts": "21.0.0-rc.3",
+    "@commercetools-frontend/mc-scripts": "21.0.0-rc.4",
     "@formatjs/cli": "4.8.0",
     "@vercel/node": "^1.12.1"
   }

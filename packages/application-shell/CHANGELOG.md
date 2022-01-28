@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 21.0.0-rc.4
+
+### Patch Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`5e3ee854`](https://github.com/commercetools/merchant-center-application-kit/commit/5e3ee854b77cb052be448afb5ecc6b2c62b0d712) Thanks [@emmenko](https://github.com/emmenko)! - Unset `initialProjectKey` for `account` app.
+
 ## 21.0.0-rc.3
 
 ### Minor Changes
