@@ -1,5 +1,12 @@
 # playground
 
+## 19.0.0-rc.4
+
+### Patch Changes
+
+- Updated dependencies [[`4b1c5977`](https://github.com/commercetools/merchant-center-application-kit/commit/4b1c5977aa413732b7a484e06a825e0e6375b5d8)]:
+  - @commercetools-frontend/application-shell@21.0.0-rc.5
+
 ## 19.0.0-rc.3
 
 ### Patch Changes

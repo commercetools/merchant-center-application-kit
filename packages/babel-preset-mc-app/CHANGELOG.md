@@ -1,5 +1,11 @@
 # @commercetools-frontend/babel-preset-mc-app
 
+## 21.0.0-rc.5
+
+### Patch Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`8c189ad3`](https://github.com/commercetools/merchant-center-application-kit/commit/8c189ad3233b7bf7846e097539f2c47827c79b2b) Thanks [@emmenko](https://github.com/emmenko)! - Update babel dependencies
+
 ## 21.0.0-rc.1
 
 ### Patch Changes
