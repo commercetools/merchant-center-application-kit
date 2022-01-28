@@ -72,7 +72,7 @@ type Props<AdditionalEnvironmentProperties extends {}> = {
   defaultFeatureFlags?: TFlags;
   trackingEventList?: TrackingList;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
-  onRegisterErrorListeners: (args: { dispatch: Dispatch }) => void;
+  onRegisterErrorListeners?: (args: { dispatch: Dispatch }) => void;
   onMenuItemClick?: <TrackFn>(
     event: SyntheticEvent<HTMLAnchorElement>,
     track: TrackFn
@@ -495,7 +495,7 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
   props: Props<AdditionalEnvironmentProperties>
 ) => {
   useEffect(() => {
-    props.onRegisterErrorListeners({
+    props.onRegisterErrorListeners?.({
       dispatch: internalReduxStore.dispatch,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
