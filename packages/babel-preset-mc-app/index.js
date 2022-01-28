@@ -34,7 +34,7 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
 
   if (!isEnvDevelopment && !isEnvProduction && !isEnvTest) {
     throw new Error(
-      'The babel preset of `mc-scripts` requires that you specify `NODE_ENV` or ' +
+      'Using `babel-preset-mc-app` requires that you specify `NODE_ENV` or ' +
         '`BABEL_ENV` environment variables. Valid values are "development", ' +
         `"test", and "production". Instead, received: ${JSON.stringify(env)}.`
     );
@@ -69,6 +69,8 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
           // end-users inevitably import '@babel/polyfill'.
           useBuiltIns: !options.disableCoreJs ? 'entry' : false,
           include: ['transform-classes'],
+          // Exclude transforms that make all code slower
+          exclude: ['transform-typeof-symbol'],
         },
       ],
       [
@@ -114,6 +116,12 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
       // class { handleClick = () => { } }
       // Enable loose mode to use assignment instead of defineProperty
       // See discussion in https://github.com/facebook/create-react-app/issues/4263
+      // Note:
+      // 'loose' mode configuration must be the same for
+      // * @babel/plugin-proposal-class-properties
+      // * @babel/plugin-proposal-private-methods
+      // * @babel/plugin-proposal-private-property-in-object
+      // (when they are enabled)
       [
         require('@babel/plugin-proposal-class-properties').default,
         {
@@ -141,7 +149,8 @@ module.exports = function getBabePresetConfigForMcApp(api, opts = {}) {
           useBuiltIns: true,
         },
       ],
-      // Polyfills the runtime needed for async/await and generators
+      // Polyfills the runtime needed for async/await, generators, and friends
+      // https://babeljs.io/docs/en/babel-plugin-transform-runtime
       [
         require('@babel/plugin-transform-runtime').default,
         {
