@@ -20,11 +20,10 @@ jobs:
           node-version-file: '.nvmrc'
 
       - name: Check links
-        # the docs production domain has to be rewritten to the preview URL to allow new pages to be created without the link checker
-        # erroring on the canonical URL of the new page. Known compromise to not find links that point to the absolute production URL
-        # but the docs kit is automatically making those a relative URL in authored content so the impact is low.
-        run: |
-          npx --yes linkinator@3.x \
-            --config website/linkinator.remote.config.json \
-            --url-rewrite-replace=${{ github.event.deployment_status.target_url }} \
-            ${{ github.event.deployment_status.target_url }}
+        uses: JustinBeckwith/linkinator-action@v1.10.0
+        with:
+          paths: ${{ github.event.deployment_status.target_url }}/custom-applications
+          config: website/linkinator.config.json
+          markdown: false
+          urlRewriteReplace: ${{ github.event.deployment_status.target_url }}
+          urlRewriteSearch: https://docs.commercetools.com
