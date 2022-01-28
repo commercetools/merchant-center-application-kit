@@ -2452,6 +2452,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/eslint-config-mc-app@workspace:packages/eslint-config-mc-app"
   dependencies:
+    "@rushstack/eslint-patch": ^1.1.0
     "@typescript-eslint/eslint-plugin": ^5.10.0
     "@typescript-eslint/parser": ^5.10.0
     eslint: 8.7.0
