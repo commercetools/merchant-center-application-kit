@@ -100,7 +100,7 @@
 - [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`6d0e71d7`](https://github.com/commercetools/merchant-center-application-kit/commit/6d0e71d7e08222f5b6462b7c60fca80e8992cfa7) Thanks [@emmenko](https://github.com/emmenko)! - Following breaking changes were introduced in `test-utils`:
 
   - The deprecated `project.allAppliedMenuVisibilities` option has been removed.
-  - The `disableApolloMocks` option has been renamed to `enableApolloMocks`. The behavior is now inverted. By default, the Apollo mocks are disabled. This is to encourage mocking via [MSW](https://mswjs.io/).
+  - The `disableApolloMocks` option has been removed. By default, the [Apollo mocks](https://www.apollographql.com/docs/react/development-testing/testing/) are disabled. This is to encourage mocking via [MSW](https://mswjs.io/). To opt into the usage of Apollo mocks, you only need to pass the `mocks` property with a non-empty array.
   - The `disableAutomaticEntryPointRoutes` option now defaults to `false`. This means that when rendering the `<ApplicationShell>`, you should not use the `render` function but pass the application component using `children`. See [changelog](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/application-shell/CHANGELOG.md#1790) for more information.
   - The deprecated `permissions` option has been removed. Use `project.allAppliedPermissions` instead.
 

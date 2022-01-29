@@ -165,7 +165,6 @@ const createPimSearchSdkMock = (
 const renderQuickAccess = (options = {}, ui) => {
   const { history } = renderAppWithRedux(ui || <QuickAccess />, {
     sdkMocks: [createPimAvailabilityCheckSdkMock()],
-    enableApolloMocks: true,
     disableAutomaticEntryPointRoutes: true,
     ...options,
     // Manually override `project`

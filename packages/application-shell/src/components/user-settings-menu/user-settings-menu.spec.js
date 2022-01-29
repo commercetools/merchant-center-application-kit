@@ -54,7 +54,6 @@ describe('rendering', () => {
             },
           },
         ],
-        enableApolloMocks: true,
       });
       const dropdownMenu = await screen.findByRole('button', {
         name: /open user settings menu/i,

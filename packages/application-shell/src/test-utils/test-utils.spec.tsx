@@ -78,7 +78,6 @@ describe('ApolloMockProvider', () => {
     renderApp(
       <TestComponent />,
       createDefaultOptions({
-        enableApolloMocks: true,
         mocks: [
           {
             request: {

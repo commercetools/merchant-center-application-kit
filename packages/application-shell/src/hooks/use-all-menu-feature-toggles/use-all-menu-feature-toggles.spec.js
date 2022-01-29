@@ -53,12 +53,11 @@ const mockRequests = {
   },
 };
 
-const render = ({ mocks, environment } = { mocks: [] }) =>
+const render = ({ mocks, environment }) =>
   renderApp(<TestComponent />, {
     disableRoutePermissionCheck: true,
     mocks,
     environment,
-    enableApolloMocks: true,
   });
 
 describe('when served by proxy', () => {
@@ -99,7 +98,9 @@ describe('when served by proxy', () => {
 
 describe('when not served proxy', () => {
   it('should not be loading and not return any feature toggles', async () => {
-    render();
+    render({
+      mocks: [mockRequests.withoutError],
+    });
 
     expect(screen.queryByText('Loading')).not.toBeInTheDocument();
 

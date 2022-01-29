@@ -21,7 +21,6 @@ const render = () => {
     {
       disableRoutePermissionCheck: true,
       mocks: mockedRequest,
-      enableApolloMocks: true,
     }
   );
 };

@@ -32,6 +32,7 @@ import {
 import { DOMAINS } from '@commercetools-frontend/constants';
 import { createTestMiddleware as createSdkTestMiddleware } from '@commercetools-frontend/sdk/test-utils';
 import ApplicationEntryPoint from '../components/application-entry-point';
+import { entryPointUriPathToPermissionKeys } from '../utils/formatters';
 import { createReduxStore } from '../configure-store';
 import createApolloClient from '../configure-apollo';
 
@@ -92,6 +93,7 @@ const defaultUser = {
 };
 
 const defaultEnvironment: Partial<TProviderProps<{}>['environment']> = {
+  applicationId: '__local',
   applicationName: 'my-app',
   entryPointUriPath: 'random-entry-point',
   frontendHost: 'localhost:3001',
@@ -222,13 +224,15 @@ const wrapIfNeeded = (
 
 type TApolloProviderWrapperProps = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;
-  mocks: ReadonlyArray<MockedResponse>;
-  enableApolloMocks: boolean;
+  mocks?: ReadonlyArray<MockedResponse>;
   children: ReactElement;
 };
 const ApolloProviderWrapper = (props: TApolloProviderWrapperProps) => {
   const apolloClient = props.apolloClient ?? createApolloClient();
-  if (!props.enableApolloMocks) {
+
+  const enableApolloMocks = Boolean(props.mocks && props.mocks.length > 0);
+
+  if (!enableApolloMocks) {
     return (
       // eslint-disable-next-line testing-library/no-node-access
       <ApolloProvider client={apolloClient}>{props.children}</ApolloProvider>
@@ -262,9 +266,8 @@ const ApolloProviderWrapper = (props: TApolloProviderWrapperProps) => {
 
 export type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   locale: string;
-  mocks: ReadonlyArray<MockedResponse>;
+  mocks?: ReadonlyArray<MockedResponse>;
   apolloClient?: ApolloClient<NormalizedCacheObject>;
-  enableApolloMocks: boolean;
   route: string;
   disableRoutePermissionCheck: boolean;
   disableAutomaticEntryPointRoutes: boolean;
@@ -293,9 +296,8 @@ function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
   // react-intl
   locale = 'en',
   // Apollo
-  mocks = [],
+  mocks,
   apolloClient,
-  enableApolloMocks = false,
   // react-router
   route,
   history,
@@ -315,6 +317,17 @@ function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
     ...environment,
   } as TProviderProps<AdditionalEnvironmentProperties>['environment'];
 
+  // Provide default permissions to render the application route.
+  if (mergedProject) {
+    if (mergedProject.allAppliedPermissions.length === 0) {
+      const defaultPermissionKeys = entryPointUriPathToPermissionKeys(
+        mergedEnvironment.entryPointUriPath
+      );
+      mergedProject.allAppliedPermissions =
+        mapResourceAccessToAppliedPermissions([defaultPermissionKeys.View]);
+    }
+  }
+
   let initialRoute = route;
   if (!route && mergedProject) {
     initialRoute = `/${mergedProject.key}/${mergedEnvironment.entryPointUriPath}`;
@@ -327,11 +340,7 @@ function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
 
   const ApplicationProviders = (props: TApplicationProvidersProps) => (
     <IntlProvider locale={locale}>
-      <ApolloProviderWrapper
-        enableApolloMocks={enableApolloMocks}
-        apolloClient={apolloClient}
-        mocks={mocks}
-      >
+      <ApolloProviderWrapper apolloClient={apolloClient} mocks={mocks}>
         <TestProviderFlopFlip flags={flags}>
           <ApplicationContextProvider
             user={mergedUser}
