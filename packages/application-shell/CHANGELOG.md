@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 21.0.0-rc.5
+
+### Patch Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`4b1c5977`](https://github.com/commercetools/merchant-center-application-kit/commit/4b1c5977aa413732b7a484e06a825e0e6375b5d8) Thanks [@emmenko](https://github.com/emmenko)! - Make `onRegisterErrorListeners` optional
+
 ## 21.0.0-rc.4
 
 ### Patch Changes
