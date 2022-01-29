@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 21.0.0-rc.6
+
+### Minor Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`433a2604`](https://github.com/commercetools/merchant-center-application-kit/commit/433a2604d1dfeeacfbad477c4a22896c5941a0be) Thanks [@emmenko](https://github.com/emmenko)! - The application `View` permission is automatically applied to the `project` object, based on the `environment.entryPointUriPath` value. You can always override the permission values by explicitly assigning `project.allAppliedPermissions`.
+
 ## 21.0.0-rc.5
 
 ### Patch Changes
