@@ -3307,7 +3307,7 @@ __metadata:
     postcss: 8.4.5
     postcss-color-mod-function: 3.0.3
     postcss-custom-media: 8.0.0
-    postcss-custom-properties: 11.0.0
+    postcss-custom-properties: 12.1.4
     postcss-import: 14.0.2
     postcss-loader: 6.2.1
     postcss-reporter: 7.0.5
@@ -20866,13 +20866,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-url-superb@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "is-url-superb@npm:4.0.0"
-  checksum: fd55e91c96349acb0d688f95fcb1ac67450e5db934976e3a8ff13ef446841e779a6f4d18b15f02331f05a3429c8fdaba2382ac1ab444059e86e9ffcde1ec8db0
-  languageName: node
-  linkType: hard
-
 "is-valid-path@npm:^0.1.1":
   version: 0.1.1
   resolution: "is-valid-path@npm:0.1.1"
@@ -26662,14 +26655,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-custom-properties@npm:11.0.0":
-  version: 11.0.0
-  resolution: "postcss-custom-properties@npm:11.0.0"
+"postcss-custom-properties@npm:12.1.4":
+  version: 12.1.4
+  resolution: "postcss-custom-properties@npm:12.1.4"
   dependencies:
-    postcss-values-parser: ^4.0.0
+    postcss-value-parser: ^4.2.0
   peerDependencies:
-    postcss: ^8.1.0
-  checksum: 1fa54763af9e747f2539111d64b49c99947a1917d2fd49436701db953e6e3a5f95fec7d8d676d6b8ad52e00aab00f9214b1b82989b7883517ed6763219aa8cef
+    postcss: ^8.4
+  checksum: c5ef5c5ff126a65adcae9f1842b6c82df8adc337481497a405de5dfb2121c799d381e75aed3dbfe855f4258e9d90927e77801012166fb667ea5c8f7d79562ada
   languageName: node
   linkType: hard
 
@@ -27217,17 +27210,6 @@ __metadata:
     postcss: ^7.0.5
     url-regex: ^5.0.0
   checksum: 99212936143b0a0952c88d5881fb5ed0a7c875fe1f9060406eb7120a5cecee058294a0376da4981e2e3c11cb9a94fc2628a6ad4ff5d7000526d3e9546407da1b
-  languageName: node
-  linkType: hard
-
-"postcss-values-parser@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "postcss-values-parser@npm:4.0.0"
-  dependencies:
-    color-name: ^1.1.4
-    is-url-superb: ^4.0.0
-    postcss: ^7.0.5
-  checksum: 8838a8667957feec6c127c85331c82582cff6194b948e1388d34e4c64daa347f6ef31ec6ecfb1ef192c3a1d15ed57c0caf352f7828deb26b9ec4d3d666401204
   languageName: node
   linkType: hard
 

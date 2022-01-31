@@ -53,7 +53,7 @@
     "postcss": "8.4.5",
     "postcss-color-mod-function": "3.0.3",
     "postcss-custom-media": "8.0.0",
-    "postcss-custom-properties": "11.0.0",
+    "postcss-custom-properties": "12.1.4",
     "postcss-import": "14.0.2",
     "postcss-loader": "6.2.1",
     "postcss-reporter": "7.0.5",
