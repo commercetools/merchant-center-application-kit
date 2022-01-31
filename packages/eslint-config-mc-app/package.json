@@ -15,6 +15,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@commercetools-frontend/babel-preset-mc-app": "^21.0.0-rc.5",
     "@rushstack/eslint-patch": "^1.1.0",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",

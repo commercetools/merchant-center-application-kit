@@ -10,7 +10,11 @@ const hasJsxRuntime = require('./helpers/has-jsx-runtime');
 module.exports = {
   parserOptions: {
     babelOptions: {
-      presets: [require.resolve('@commercetools-frontend/babel-preset-mc-app')],
+      presets: [
+        require.resolve(
+          '@commercetools-frontend/babel-preset-mc-app/production'
+        ),
+      ],
     },
   },
   extends: [
