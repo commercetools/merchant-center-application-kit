@@ -165,9 +165,22 @@ Check out the [deployment examples](/deployment-examples) pages for more informa
 
 The `@commercetools-frontend/application-shell/test-utils` has the following breaking changes:
 
+- The `disableApolloMocks` option has been removed. By default, the [Apollo mocks](https://www.apollographql.com/docs/react/development-testing/testing/) are disabled. This is to encourage mocking via [Mock Service Worker](https://mswjs.io/). To opt into the usage of Apollo mocks, you only need to pass the `mocks` property with a non-empty array. See [Testing](/development/testing) for more information.
+- The `disableAutomaticEntryPointRoutes` option now defaults to `false`. This means that when rendering the `<ApplicationShell>`, you should not use the `render` function but pass the application component using `children`.
+
+  ```js title="entry-point.js"
+  const EntryPoint = () => (
+    <ApplicationShell
+      environment={window.app}
+      applicationMessages={loadMessages}
+    >
+      <AsyncApplicationRoutes />
+    </ApplicationShell>
+  )
+  ```
+
+- The application `View` permission is automatically applied to the `project` object, based on the `environment.entryPointUriPath` value. You can always override the permission values by explicitly assigning `project.allAppliedPermissions`.
 - The deprecated `project.allAppliedMenuVisibilities` option has been removed.
-- The `disableApolloMocks` option has been renamed to `enableApolloMocks`. The behavior is now inverted. By default, the Apollo mocks are disabled. This is to encourage mocking via [Mock Service Worker](https://mswjs.io/). See [Testing](/development/testing) for more information.
-- The `disableAutomaticEntryPointRoutes` option now defaults to `false`. This means that when rendering the `<ApplicationShell>`, you should not use the `render` function but pass the application component using `children`. See [changelog](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/application-shell/CHANGELOG.md#1790) for more information.
 - The deprecated `permissions` option has been removed. Use `project.allAppliedPermissions` instead.
 
   ```js
