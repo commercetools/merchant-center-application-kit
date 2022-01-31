@@ -1,5 +1,16 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.0.0-rc.7
+
+### Patch Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`504fe229`](https://github.com/commercetools/merchant-center-application-kit/commit/504fe229077e0c6d0dd9f5f9d06dfcd14ef0de35) Thanks [@emmenko](https://github.com/emmenko)! - Adjust webpack dev server error message for `/api/graphql` endpoint.
+
+- Updated dependencies [[`71171d65`](https://github.com/commercetools/merchant-center-application-kit/commit/71171d65c276801d499f9b39923674114dff360c)]:
+  - @commercetools-frontend/babel-preset-mc-app@21.0.0-rc.7
+  - @commercetools-frontend/application-config@21.0.0-rc.7
+  - @commercetools-frontend/mc-html-template@21.0.0-rc.7
+
 ## 21.0.0-rc.5
 
 ### Patch Changes

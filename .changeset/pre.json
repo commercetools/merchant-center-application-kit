@@ -36,6 +36,7 @@
     "@commercetools-website/components-playground": "17.1.14"
   },
   "changesets": [
+    "cool-seals-decide",
     "dull-mails-poke",
     "fresh-crabs-join",
     "friendly-dodos-sing",
@@ -54,6 +55,7 @@
     "thin-cows-develop",
     "thirty-eyes-listen",
     "tidy-lemons-film",
+    "tricky-hornets-remain",
     "young-mayflies-obey"
   ]
 }
