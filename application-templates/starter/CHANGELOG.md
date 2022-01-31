@@ -1,5 +1,14 @@
 # merchant-center-application-template-starter
 
+## 19.0.0-rc.7
+
+### Patch Changes
+
+- Updated dependencies [[`71171d65`](https://github.com/commercetools/merchant-center-application-kit/commit/71171d65c276801d499f9b39923674114dff360c), [`504fe229`](https://github.com/commercetools/merchant-center-application-kit/commit/504fe229077e0c6d0dd9f5f9d06dfcd14ef0de35)]:
+  - @commercetools-frontend/eslint-config-mc-app@21.0.0-rc.7
+  - @commercetools-frontend/mc-scripts@21.0.0-rc.7
+  - @commercetools-frontend/jest-preset-mc-app@21.0.0-rc.7
+
 ## 19.0.0-rc.6
 
 ### Patch Changes

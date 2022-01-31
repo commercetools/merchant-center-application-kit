@@ -1,5 +1,12 @@
 # @commercetools-frontend/application-config
 
+## 21.0.0-rc.7
+
+### Patch Changes
+
+- Updated dependencies [[`71171d65`](https://github.com/commercetools/merchant-center-application-kit/commit/71171d65c276801d499f9b39923674114dff360c)]:
+  - @commercetools-frontend/babel-preset-mc-app@21.0.0-rc.7
+
 ## 21.0.0-rc.5
 
 ### Patch Changes

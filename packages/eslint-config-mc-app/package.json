@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/eslint-config-mc-app",
-  "version": "21.0.0-rc.5",
+  "version": "21.0.0-rc.7",
   "description": "ESLint config used by a Custom Application.",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -15,7 +15,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@commercetools-frontend/babel-preset-mc-app": "^21.0.0-rc.5",
+    "@commercetools-frontend/babel-preset-mc-app": "^21.0.0-rc.7",
     "@rushstack/eslint-patch": "^1.1.0",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",
