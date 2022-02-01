@@ -56,38 +56,6 @@ module.exports = {
 
 Run it as `jest --config jest.stylelint.config.js`.
 
-### Recommended setup for Custom Applications
-
-If you are developing Custom Applications for commercetools's Merchant Center, we recommend to additionally install the following dependencies:
-
-```
-yarn add -E postcss-syntax @stylelint/postcss-css-in-js stylelint-config-prettier stylelint-config-standard stylelint-order stylelint-value-no-unknown-custom-properties
-```
-
-Then configure Stylelint as following:
-
-```js
-/**
- * @type {import('stylelint').Config}
- */
-module.exports = {
-  extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
-  plugins: ['stylelint-order', 'stylelint-value-no-unknown-custom-properties'],
-  customSyntax: '@stylelint/postcss-css-in-js',
-  rules: {
-    // other rules...
-    'csstools/value-no-unknown-custom-properties': [
-      true,
-      {
-        importFrom: [
-          'node_modules/@commercetools-uikit/design-system/materials/custom-properties.css',
-        ],
-      },
-    ],
-  },
-};
-```
-
 ### Define your PostCSS config
 
 In your `postcss.config.js`:
@@ -105,8 +73,45 @@ module.exports = () => {
 };
 ```
 
-## Run Jest
+## Recommended setup for Custom Applications
 
-```bash
-yarn jest
+If you are developing Custom Applications for commercetools's Merchant Center, and are using CSS Modules, we recommend to additionally install the following dependencies:
+
 ```
+yarn add -E postcss-syntax stylelint-config-prettier stylelint-config-standard stylelint-order stylelint-value-no-unknown-custom-properties
+```
+
+Then configure Stylelint as following:
+
+```js
+/**
+ * @type {import('stylelint').Config}
+ */
+module.exports = {
+  extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
+  plugins: ['stylelint-order', 'stylelint-value-no-unknown-custom-properties'],
+  rules: {
+    // other rules...
+    'csstools/value-no-unknown-custom-properties': [
+      true,
+      {
+        importFrom: [
+          'node_modules/@commercetools-uikit/design-system/materials/custom-properties.css',
+        ],
+      },
+    ],
+  },
+};
+```
+
+Furthermore, the `postcss.config.js` should be configured as following:
+
+```js
+const { createPostcssConfig } = require('@commercetools-frontend/mc-scripts');
+
+// Re-export the pre-configured `postcss.config.js`.
+// This file is only used by file/scripts in this repository, for example linters etc.
+module.exports = createPostcssConfig();
+```
+
+You can also customize some of the plugins (see function signature).

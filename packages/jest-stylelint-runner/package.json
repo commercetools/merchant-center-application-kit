@@ -9,7 +9,7 @@
     "directory": "packages/jest-stylelint-runner"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": ["javascript", "frontend", "react", "toolkit", "postcss-runner"],
   "license": "MIT",
   "publishConfig": {
     "access": "public"

@@ -4,7 +4,6 @@
 module.exports = {
   extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
   plugins: ['stylelint-order', 'stylelint-value-no-unknown-custom-properties'],
-  customSyntax: '@stylelint/postcss-css-in-js',
   rules: {
     'font-family-name-quotes': ['always-unless-keyword'],
     'function-url-quotes': 'always',

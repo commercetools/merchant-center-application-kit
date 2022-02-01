@@ -14,7 +14,7 @@ module.exports = {
     '.spec.js',
     '.visualspec.js',
     '.visualroute.js',
-    'packages/jest-stylelint-runner/',
+    // 'packages/jest-stylelint-runner/',
     'test-utils',
   ],
   testMatch: [
