@@ -23,7 +23,7 @@ After the migration deadline, Project-level Custom Applications won't be accessi
 
 # Introducing Org-level Custom Applications
 
-The [new release](/releases/2022-01-31-custom-applications-v21) of Custom Applications is what we call and refer to as **Org-level Custom Applications**.
+The [new release](/releases/2022-02-02-custom-applications-v21) of Custom Applications is what we call and refer to as **Org-level Custom Applications**.
 
 Before we go into details about the new release and features, let's define some of the terminology used in the documentation:
 
@@ -82,13 +82,13 @@ Migrating to Org-level Custom Applications allows you to use the new features an
 
 Migrating your existing Project-level Custom Applications to Org-level Custom Applications is relative straight-forward, but it requires to understand the new concepts like [OAuth Scopes and user permissions](#oauth-scopes-and-user-permissions).
 
-As for the Custom Application code, nothing much needs to be changed except for the configuration file and the [permission names](#migrate-user-permissions) (in case they were used).
+As for the Custom Application code, there are some small changes to be applied in regards to the configuration file, the [permissions](#migrate-user-permissions), and possibly some of the tests setup.
 
 In general there are 2 parts of the migration: development changes and configuration of the new Custom Application in the Merchant Center.
 
 ## Upgrade packages to v21
 
-Upgrade your Application Kit packages (`@commercetools-frontend/*`) to version `>= 21`. Follow the instructions in the [release note](/releases/2022-01-31-custom-applications-v21).
+Upgrade your Application Kit packages (`@commercetools-frontend/*`) to version `>= 21`. Follow the instructions in the [release note](/releases/2022-02-02-custom-applications-v21).
 
 <Info>
 
@@ -172,7 +172,7 @@ This ensures that user permissions are unique for each Custom Application too.
 
 ## Migrate user permissions
 
-If the Custom Application was relying on existing user permissions such as `ViewProducts` or `ManageOrders`. you need to change that.
+If the Custom Application was relying on existing user permissions such as `ViewProducts` or `ManageOrders`, you need to change that.
 
 As explained in [OAuth Scopes and user permissions](#oauth-scopes-and-user-permissions), Custom Applications are now decoupled from the _default_ Merchant Center applications and thus from their user permissions.
 
@@ -242,9 +242,9 @@ export default config;
 
 </Info>
 
-## Remove `menu.json`
+## Remove menu.json
 
-If your Custom Application uses the `menu.json` file, you need to migrate its content to the Custom Application config file. See [Update the Custom Application config](#update-the-custom-application-config) for more information.
+If your Custom Application uses the `menu.json` file, you need to migrate its content to the Custom Application config file. See [Custom Application config](/api-reference/application-config) for more information.
 
 In addition to that, you should also remove the `DEV_ONLY__loadNavbarMenuConfig` prop in the `<ApplicationShell>`.
 
