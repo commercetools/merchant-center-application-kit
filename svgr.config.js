@@ -10,6 +10,9 @@ const indexTemplate = (filePaths) => {
   return exportEntries.join('\n');
 };
 
+/**
+ * @type {import('@svgr/core').Config}
+ */
 module.exports = {
   icon: false,
   svgoConfig: {

@@ -29,20 +29,8 @@ const createLinter = (testPath) => {
   };
 };
 
-const endsWithAny = (suffixes, string) => {
-  return suffixes.some((suffix) => {
-    return string.endsWith(suffix);
-  });
-};
-
 module.exports = async ({ testPath }) => {
   const linter = createLinter(testPath);
-  if (endsWithAny(['js', 'jsx', 'ts', 'tsx'], testPath)) {
-    return linter({
-      files: testPath,
-      formatter: 'string',
-    });
-  }
 
   const css = fs.readFileSync(testPath, { encoding: 'utf8' });
 
@@ -51,6 +39,7 @@ module.exports = async ({ testPath }) => {
   const result = await postcss(plugins).process(css, {
     ...options,
     from: testPath,
+    to: testPath,
   });
 
   return linter({

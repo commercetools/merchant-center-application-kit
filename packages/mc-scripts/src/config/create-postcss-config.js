@@ -18,13 +18,11 @@ const safeResolvePath = (packageName, fileRelativePath) => {
  * @param {string[]} options.postcssImportPaths[] - A list of paths where to look for files used by the `@import` statements.
  * @param {string[]} options.postcssCustomMediaPaths[] - A list of paths where to look for files with custom media queries.
  * @param {string[]} options.postcssCustomPropertiesPaths[] - A list of paths where to look for files with custom properties.
- * @param {string[]} options.postcssColorModPaths[] - A list of paths where to look for files with color-mod properties.
  */
 module.exports = function createPostcssConfig({
   postcssImportPaths = [],
   postcssCustomMediaPaths = [],
   postcssCustomPropertiesPaths = [],
-  postcssColorModPaths = [],
 } = {}) {
   return {
     parser: false,
@@ -80,11 +78,6 @@ module.exports = function createPostcssConfig({
           ),
           ...postcssCustomPropertiesPaths,
         ],
-      }),
-      // TODO: we should deprecate/remove this, as it's not maintained and it doesn't
-      // officially support postcss v8 yet.
-      require('postcss-color-mod-function')({
-        importFrom: postcssColorModPaths,
       }),
       /**
        * Plugin to `console.log()` the messages (warnings, etc.)
