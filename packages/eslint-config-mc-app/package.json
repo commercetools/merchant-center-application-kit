@@ -34,7 +34,7 @@
     "eslint-plugin-testing-library": "^5.0.4"
   },
   "peerDependencies": {
-    "eslint": ">=8.0.0"
+    "eslint": "8.x"
   },
   "devDependencies": {
     "eslint": "8.7.0"
