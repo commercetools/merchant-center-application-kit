@@ -1,5 +1,16 @@
 # @commercetools-frontend/cypress
 
+## 21.0.0-rc.8
+
+### Major Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`d1707b78`](https://github.com/commercetools/merchant-center-application-kit/commit/d1707b78e81d007460ddff7b2a4924b997c981e7) Thanks [@emmenko](https://github.com/emmenko)! - The peer dependency min version for `cypress` is now `8`.
+
+### Patch Changes
+
+- Updated dependencies [[`d1707b78`](https://github.com/commercetools/merchant-center-application-kit/commit/d1707b78e81d007460ddff7b2a4924b997c981e7)]:
+  - @commercetools-frontend/application-shell@21.0.0-rc.8
+
 ## 21.0.0-rc.7
 
 ### Patch Changes

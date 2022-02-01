@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 21.0.0-rc.8
+
+### Major Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`d1707b78`](https://github.com/commercetools/merchant-center-application-kit/commit/d1707b78e81d007460ddff7b2a4924b997c981e7) Thanks [@emmenko](https://github.com/emmenko)! - The peer dependencies min version for `@testing-library/react` is now `12` and for `@testing-library/react-hooks` is now `7`.
+
 ## 21.0.0-rc.6
 
 ### Minor Changes
