@@ -9,6 +9,7 @@ module.exports = {
     'function-url-quotes': 'always',
     'selector-attribute-quotes': 'always',
     'string-quotes': 'single',
+    'selector-class-pattern': null,
     'selector-pseudo-class-no-unknown': [
       true,
       { ignorePseudoClasses: ['global'] },
@@ -39,5 +40,10 @@ module.exports = {
         ],
       },
     ],
+    // TODO: fix them in uikit design system
+    'color-function-notation': null,
+    'hue-degree-notation': null,
+    'number-max-precision': null,
+    'alpha-value-notation': null,
   },
 };
