@@ -1,6 +1,10 @@
+/**
+ * @type {import('stylelint').Config}
+ */
 module.exports = {
   extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
   plugins: ['stylelint-order', 'stylelint-value-no-unknown-custom-properties'],
+  customSyntax: '@stylelint/postcss-css-in-js',
   rules: {
     'font-family-name-quotes': ['always-unless-keyword'],
     'function-url-quotes': 'always',
@@ -27,7 +31,14 @@ module.exports = {
     'declaration-empty-line-before': null,
     'no-missing-end-of-source-newline': null,
     'function-name-case': null,
-    'csstools/value-no-unknown-custom-properties': true,
     'comment-empty-line-before': null,
+    'csstools/value-no-unknown-custom-properties': [
+      true,
+      {
+        importFrom: [
+          'node_modules/@commercetools-uikit/design-system/materials/custom-properties.css',
+        ],
+      },
+    ],
   },
 };

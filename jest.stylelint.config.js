@@ -4,7 +4,7 @@
 module.exports = {
   runner: '@commercetools-frontend/jest-stylelint-runner',
   displayName: 'stylelint',
-  moduleFileExtensions: ['css', 'js'],
+  moduleFileExtensions: ['css', 'js', 'tsx'],
   modulePathIgnorePatterns: [
     'build',
     'dist',
@@ -20,6 +20,7 @@ module.exports = {
   testMatch: [
     '<rootDir>/**/*.css',
     '<rootDir>/packages/**/*.js',
+    '<rootDir>/packages/**/*.tsx',
     '<rootDir>/website/**/*.js',
   ],
   watchPlugins: ['jest-watch-typeahead/filename'],
