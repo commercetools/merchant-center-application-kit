@@ -1,31 +1,37 @@
-#jest-stylelint-runner
+# @commercetools-frontend/jest-stylelint-runner
 
-## description
+<p align="center">
+  <a href="https://www.npmjs.com/package/@commercetools-frontend/jest-stylelint-runner"><img src="https://badgen.net/npm/v/@commercetools-frontend/jest-stylelint-runner" alt="Latest release (latest dist-tag)" /></a> <a href="https://www.npmjs.com/package/@commercetools-frontend/jest-stylelint-runner"><img src="https://badgen.net/npm/v/@commercetools-frontend/jest-stylelint-runner/next" alt="Latest release (next dist-tag)" /></a> <a href="https://bundlephobia.com/result?p=@commercetools-frontend/jest-stylelint-runner"><img src="https://badgen.net/bundlephobia/minzip/@commercetools-frontend/jest-stylelint-runner" alt="Minified + GZipped size" /></a> <a href="https://github.com/commercetools/merchant-center-application-kit/blob/main/LICENSE"><img src="https://badgen.net/github/license/commercetools/merchant-center-application-kit" alt="GitHub license" /></a>
+</p>
 
-jest-stylelint-runner is inspired by [jest-runner-stylelint](https://github.com/keplersj/jest-runner-stylelint).
+Jest runner for Stylelint.
+
+## Disclaimer
+
+`@commercetools-frontend/jest-stylelint-runner` is inspired by [jest-runner-stylelint](https://github.com/keplersj/jest-runner-stylelint).
 
 However, it has two main distinctions.
 
-- `jest-stylelint-runner` will process your CSS with PostCSS given a `postcss.config.js` file in your project. This means that it can resolve imports and custom properties through the use of postcss plugins.
+- `jest-stylelint-runner` will process your CSS with PostCSS given a `postcss.config.js` file in your project. This means that it can resolve imports and custom properties through the use of PostCSS plugins.
 - `jest-stylelint-runner` has `stylelint` as a peer dependency.
 
-## Usage
+## Install
 
-### Install
-
-Install `jest`_(it needs Jest 21+)_,`jest-stylelint-runner`, `postcss` and any postcss plugins you need.
+Install `jest`_(it needs Jest 21+)_,`jest-stylelint-runner`, `postcss` and any PostCSS plugins you need.
 
 ```bash
-yarn add --dev jest postcss @commercetools-frontend/jest-stylelint-runner
+yarn add --dev jest postcss stylelint @commercetools-frontend/jest-stylelint-runner
 
 # or with NPM
 
-npm install --save-dev jest postcss @commercetools-frontend/jest-stylelint-runner
+npm install --save-dev jest postcss stylelint @commercetools-frontend/jest-stylelint-runner
 ```
 
-### Add it to your Jest config
+## Usage
 
-In your `package.json`
+Add it to your Jest config.
+
+In your `package.json`:
 
 ```json
 {
@@ -37,19 +43,54 @@ In your `package.json`
 }
 ```
 
-Or in `jest.config.js`
+Or in `jest.stylelint.config.js`:
 
 ```js
 module.exports = {
   runner: '@commercetools-frontend/jest-stylelint-runner',
+  displayName: 'stylelint',
   moduleFileExtensions: ['css'],
   testMatch: ['**/*.css'],
 };
 ```
 
-### Define your postcss config
+Run it as `jest --config jest.stylelint.config.js`.
 
-In your `postcss.config.js`
+### Recommended setup for Custom Applications
+
+If you are developing Custom Applications for commercetools's Merchant Center, we recommend to additionally install the following dependencies:
+
+```
+yarn add -E postcss-syntax @stylelint/postcss-css-in-js stylelint-config-prettier stylelint-config-standard stylelint-order stylelint-value-no-unknown-custom-properties
+```
+
+Then configure Stylelint as following:
+
+```js
+/**
+ * @type {import('stylelint').Config}
+ */
+module.exports = {
+  extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
+  plugins: ['stylelint-order', 'stylelint-value-no-unknown-custom-properties'],
+  customSyntax: '@stylelint/postcss-css-in-js',
+  rules: {
+    // other rules...
+    'csstools/value-no-unknown-custom-properties': [
+      true,
+      {
+        importFrom: [
+          'node_modules/@commercetools-uikit/design-system/materials/custom-properties.css',
+        ],
+      },
+    ],
+  },
+};
+```
+
+### Define your PostCSS config
+
+In your `postcss.config.js`:
 
 ```js
 module.exports = () => {
@@ -58,20 +99,13 @@ module.exports = () => {
     map: false,
     plugins: {
       'postcss-import': {},
-      'postcss-custom-properties': {
-        preserve: false,
-        importFrom: [
-          require.resolve(
-            '@commercetools-uikit/design-system/materials/custom-properties.css'
-          ),
-        ],
-      },
+      // ...
     },
   };
 };
 ```
 
-### Run Jest
+## Run Jest
 
 ```bash
 yarn jest
