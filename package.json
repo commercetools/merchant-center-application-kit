@@ -118,7 +118,7 @@
     "autoprefixer": "^10.4.2",
     "babel-plugin-import-graphql": "^2.8.1",
     "babel-plugin-transform-rename-import": "^2.3.0",
-    "babel-plugin-typescript-to-proptypes": "1.4.2",
+    "babel-plugin-typescript-to-proptypes": "2.0.0",
     "cross-env": "7.0.3",
     "cypress": "9.3.1",
     "dotenv": "10.0.0",
