@@ -5,7 +5,6 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
-// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const FinalStatsWriterPlugin = require('../webpack-plugins/final-stats-writer-plugin');
 const paths = require('./paths');
@@ -31,7 +30,6 @@ const defaultToggleFlags = {
   disableCoreJs: false,
 };
 const defaultOptions = {
-  distPath: paths.distPath,
   entryPoint: paths.entryPoint,
   sourceFolders: paths.sourceFolders,
   postcssOptions: {},
@@ -45,7 +43,6 @@ const defaultOptions = {
  * "entry point".
  *
  * @param {Object} options - Options to configure the Webpack config
- * @param {string} options.distPath - The absolute path to the `dist` folder where Webpack should output the assets.
  * @param {string} options.entryPoint - The absolute path to the application entry point file.
  * @param {string[]} options.sourceFolders[] - A list of folders where Webpack should look for source files.
  * @param {Object} options.postcssOptions - Options related to Postcss plugins. See `createPostcssConfig` function.
@@ -139,6 +136,14 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
       extensions: ['js', 'mjs', 'cjs', 'ts', 'tsx', 'json', 'jsx'].map(
         (ext) => `.${ext}`
       ),
+
+      // NOTE: this is meant to be a temporary list of fallback/polyfills for certain
+      // nodejs modules. With Webpack <5 these polyfills were included by default in Webpack,
+      // however now it's not the case anymore.
+      // See also related work in CRA: https://github.com/facebook/create-react-app/pull/11764
+      fallback: {
+        querystring: require.resolve('querystring-es3'),
+      },
     },
 
     // In production, we only want to load the polyfills and the app code.
@@ -164,11 +169,6 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
     },
 
     plugins: [
-      // new CleanWebpackPlugin({
-      //   dangerouslyAllowCleanPatternsOutsideProject: true,
-      //   dry: true,
-      //   cleanOnceBeforeBuildPatterns: [mergedOptions.distPath],
-      // }),
       // Allows to "assign" custom options to the `webpack` object.
       // At the moment, this is used to share some props with `postcss.config`.
       new webpack.LoaderOptionsPlugin({
@@ -196,7 +196,7 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
       // This is necessary to programmatically refer to the correct bundle path
       // in the `index.html`.
       new FinalStatsWriterPlugin({
-        outputPath: mergedOptions.distPath,
+        outputPath: paths.appBuild,
         includeFields: ['entrypoints', 'assets', 'publicPath', 'time'],
       }),
       mergedOptions.toggleFlags.generateIndexHtml &&
@@ -294,8 +294,12 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
         // "postcss" loader applies autoprefixer to our CSS
         // "css" loader resolves paths in CSS and adds assets as dependencies.
         // "style" loader turns CSS into JS modules that inject <style> tags.
+        // In production, we use MiniCSSExtractPlugin to extract that CSS
+        // to a file, but in development "style" loader enables hot editing
+        // of CSS.
+        // By default we support CSS Modules with the extension `.mod.css` and `.module.css`.
         {
-          test: /\.mod\.css$/,
+          test: /\.(mod|module)\.css$/,
           include: mergedOptions.sourceFolders,
           use: [
             mergedOptions.toggleFlags.enableExtractCss
@@ -307,7 +311,7 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
                 modules: {
                   mode: 'local',
                   localIdentName: '[name]__[local]___[hash:base64:5]',
-                  localIdentHashPrefix: 'ct',
+                  localIdentHashSalt: 'ct',
                 },
                 importLoaders: 1,
               },
@@ -341,7 +345,15 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
                 mergedOptions.toggleFlags.enableExtractCss
                   ? MiniCssExtractPlugin.loader
                   : require.resolve('style-loader'),
-                require.resolve('css-loader'),
+                {
+                  loader: require.resolve('css-loader'),
+                  options: {
+                    modules: {
+                      mode: 'icss',
+                    },
+                    importLoaders: 1,
+                  },
+                },
                 {
                   loader: require.resolve('postcss-loader'),
                   options: {
@@ -360,7 +372,15 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
                 mergedOptions.toggleFlags.enableExtractCss
                   ? MiniCssExtractPlugin.loader
                   : require.resolve('style-loader'),
-                require.resolve('css-loader'),
+                {
+                  loader: require.resolve('css-loader'),
+                  options: {
+                    modules: {
+                      mode: 'icss',
+                    },
+                    importLoaders: 1,
+                  },
+                },
               ],
             },
           ],

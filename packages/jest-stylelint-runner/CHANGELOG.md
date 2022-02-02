@@ -1,5 +1,29 @@
 # @commercetools-frontend/jest-stylelint-runner
 
+## 21.0.0-rc.8
+
+### Major Changes
+
+- [#2465](https://github.com/commercetools/merchant-center-application-kit/pull/2465) [`91331314`](https://github.com/commercetools/merchant-center-application-kit/commit/91331314a10b683921fd5f21837b837985e6069b) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade Stylelint and PostCSS dependencies.
+
+  The peer dependency min version for `stylelint` is now `14`. If your project has a Stylelint config file, we recommend to follow the [Migrating to 14.0.0 guide](https://github.com/stylelint/stylelint/blob/main/docs/migration-guide/to-14.md).
+
+  > Note that the syntax support for CSS-in-JS languages has been removed from Stylelint and therefore is not available by default in the `jest-stylelint-runner`.
+
+  Moreover, the `postcss-color-mod-function` dependency has been removed, as the `color-mod()` function is [not part of the CSS Color spec](https://github.com/w3c/csswg-drafts/commit/034b063697c3dadf144504f52e0858a79cd84414) anymore. If you were relying on this function you need to find another solution.
+
+## 21.0.0-rc.1
+
+### Patch Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`5ea8baf1`](https://github.com/commercetools/merchant-center-application-kit/commit/5ea8baf1b2ca2661aac9a6a572d2c8e596ee0b2c) Thanks [@emmenko](https://github.com/emmenko)! - Use version range for Babel packages.
+
+## 21.0.0-rc.0
+
+### Patch Changes
+
+- [#2450](https://github.com/commercetools/merchant-center-application-kit/pull/2450) [`eb8f5b2c`](https://github.com/commercetools/merchant-center-application-kit/commit/eb8f5b2c885a4c3ffc7857a61e50508b429bf964) Thanks [@emmenko](https://github.com/emmenko)! - Update dependencies
+
 ## 20.12.3
 
 ### Patch Changes

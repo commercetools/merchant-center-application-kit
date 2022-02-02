@@ -3,8 +3,23 @@
   "entryPointUriPath": "avengers",
   "cloudIdentifier": "${env:CLOUD_IDENTIFIER}",
   "env": {
+    "development": {
+      "initialProjectKey": "${env:PROJECT_KEY}"
+    },
     "production": {
+      "applicationId": "app-id-123",
       "url": "${env:APP_URL}"
     }
-  }
+  },
+  "oAuthScopes": {
+    "view": ["view_products"],
+    "manage": []
+  },
+  "icon": "<svg><path fill=\"#000000\" /></svg>",
+  "mainMenuLink": {
+    "defaultLabel": "Avengers",
+    "labelAllLocales": [],
+    "permissions": []
+  },
+  "submenuLinks": []
 }

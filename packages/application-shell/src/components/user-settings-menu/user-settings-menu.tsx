@@ -1,9 +1,6 @@
 import type { ControllerStateAndHelpers, DownshiftProps } from 'downshift';
 import type { TUser } from '../../types/generated/mc';
-import type {
-  TApplicationsMenu,
-  TFetchApplicationsMenuQuery,
-} from '../../types/generated/proxy';
+import type { TFetchApplicationsMenuQuery } from '../../types/generated/proxy';
 
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -30,9 +27,7 @@ import messages from './messages';
 type Props = Pick<
   TUser,
   'language' | 'firstName' | 'lastName' | 'email' | 'gravatarHash'
-> & {
-  DEV_ONLY__loadAppbarMenuConfig?: () => Promise<TApplicationsMenu['appBar']>;
-};
+>;
 type MenuBodyProps = Props & {
   downshiftProps: ControllerStateAndHelpers<{}>;
 };
@@ -148,7 +143,6 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
       onError: reportErrorToSentry,
     },
     environment,
-    loadMenuConfig: props.DEV_ONLY__loadAppbarMenuConfig,
   });
 
   return (

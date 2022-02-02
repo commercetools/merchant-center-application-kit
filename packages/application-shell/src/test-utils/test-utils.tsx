@@ -32,6 +32,7 @@ import {
 import { DOMAINS } from '@commercetools-frontend/constants';
 import { createTestMiddleware as createSdkTestMiddleware } from '@commercetools-frontend/sdk/test-utils';
 import ApplicationEntryPoint from '../components/application-entry-point';
+import { entryPointUriPathToPermissionKeys } from '../utils/formatters';
 import { createReduxStore } from '../configure-store';
 import createApolloClient from '../configure-apollo';
 
@@ -67,10 +68,6 @@ const defaultProject = {
     allAppliedDataFences: [],
     allAppliedMenuVisibilities: [],
   },
-  /**
-   * @deprecated: Use `{ allPermissionsForAllApplications: { allAppliedMenuVisibilities: [] } }`
-   */
-  allAppliedMenuVisibilities: [],
 };
 
 const defaultUser = {
@@ -96,7 +93,9 @@ const defaultUser = {
 };
 
 const defaultEnvironment: Partial<TProviderProps<{}>['environment']> = {
+  applicationId: '__local',
   applicationName: 'my-app',
+  entryPointUriPath: 'random-entry-point',
   frontendHost: 'localhost:3001',
   mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
   location: 'eu',
@@ -212,6 +211,12 @@ const denormalizeDataFences = (dataFences?: TNormalizedDataFences) => {
   );
 };
 
+const mapResourceAccessToAppliedPermissions = (resourceAccesses: string[]) =>
+  resourceAccesses.map<TAllAppliedPermission>((resourceAccess) => ({
+    name: `can${resourceAccess}`,
+    value: true,
+  }));
+
 const wrapIfNeeded = (
   children: ReactNode,
   wrapper?: JSXElementConstructor<{ children: ReactElement }>
@@ -219,13 +224,15 @@ const wrapIfNeeded = (
 
 type TApolloProviderWrapperProps = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;
-  mocks: ReadonlyArray<MockedResponse>;
-  disableApolloMocks: boolean;
+  mocks?: ReadonlyArray<MockedResponse>;
   children: ReactElement;
 };
 const ApolloProviderWrapper = (props: TApolloProviderWrapperProps) => {
   const apolloClient = props.apolloClient ?? createApolloClient();
-  if (props.disableApolloMocks) {
+
+  const enableApolloMocks = Boolean(props.mocks && props.mocks.length > 0);
+
+  if (!enableApolloMocks) {
     return (
       // eslint-disable-next-line testing-library/no-node-access
       <ApolloProvider client={apolloClient}>{props.children}</ApolloProvider>
@@ -259,10 +266,10 @@ const ApolloProviderWrapper = (props: TApolloProviderWrapperProps) => {
 
 export type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   locale: string;
-  mocks: ReadonlyArray<MockedResponse>;
+  mocks?: ReadonlyArray<MockedResponse>;
   apolloClient?: ApolloClient<NormalizedCacheObject>;
-  disableApolloMocks: boolean;
   route: string;
+  disableRoutePermissionCheck: boolean;
   disableAutomaticEntryPointRoutes: boolean;
   history: ReturnType<typeof createEnhancedHistory>;
   flags: TFlags;
@@ -272,70 +279,6 @@ export type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   user: Partial<TProviderProps<AdditionalEnvironmentProperties>['user']>;
   project: Partial<TProviderProps<AdditionalEnvironmentProperties>['project']>;
   dataLocale: TProviderProps<AdditionalEnvironmentProperties>['projectDataLocale'];
-  /**
-   * @deprecated: Use `{ project: { allAppliedPermissions } }`
-   * From:
-   *   {
-   *     permissions: {
-   *       canManageProjectSettings: true
-   *     }
-   *   }
-   * To:
-   *   {
-   *     project: {
-   *       allAppliedPermissions: [
-   *         { name: 'canManageProjectSettings', value: true }
-   *       ]
-   *     }
-   *   }
-   */
-  permissions: TPermissions;
-  /**
-   * @deprecated: Use `{ project: { allAppliedActionRights } }`
-   * From:
-   *   {
-   *     actionRights: {
-   *       products: {
-   *         canEditPrices: true,
-   *         canPublishProducts: false,
-   *       }
-   *     }
-   *   }
-   * To:
-   *   {
-   *     project: {
-   *       allAppliedActionRights: [
-   *         { group: 'products', name: 'canEditPrices', value: true },
-   *         { group: 'products', name: 'canPublishProducts', value: false }
-   *       ]
-   *     }
-   *   }
-   */
-  actionRights: TNormalizedActionRights;
-  /**
-   * @deprecated: Use `{ project: { allAppliedDataFences } }`
-   * From:
-   *   {
-   *     dataFences: {
-   *       store: {
-   *         orders: {
-   *           canViewOrders: {
-   *             values: ['store-1'],
-   *           }
-   *         }
-   *       }
-   *     }
-   *   }
-   * To:
-   *   {
-   *     project: {
-   *       allAppliedDataFences: [
-   *         { type: 'store', group: 'orders', name: 'canViewOrders', value: 'store-1' }
-   *       ]
-   *     }
-   *   }
-   */
-  dataFences: TNormalizedDataFences;
 } & rtl.RenderOptions;
 type TRenderAppResult<AdditionalEnvironmentProperties = {}> = rtl.RenderResult &
   Pick<
@@ -347,70 +290,57 @@ type TApplicationProvidersProps = {
 };
 
 function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
+  // application
+  disableAutomaticEntryPointRoutes = false,
+  disableRoutePermissionCheck = false,
   // react-intl
   locale = 'en',
   // Apollo
-  mocks = [],
+  mocks,
   apolloClient,
-  disableApolloMocks = false,
   // react-router
-  route = '/',
-  disableAutomaticEntryPointRoutes = true,
-  history = createEnhancedHistory(
-    createMemoryHistory({ initialEntries: [route] })
-  ),
+  route,
+  history,
   // flopflip
   flags = {},
   // application-context
   environment,
   user,
   project,
-  permissions, // <-- deprecated option, use `{ project: { allAppliedPermissions } }`
-  actionRights, // <-- deprecated option, use `{ project: { allAppliedActionRights } }`
-  dataFences, // <-- deprecated option, use `{ project: { allAppliedDataFences } }`
   dataLocale = 'en',
 }: Partial<TRenderAppOptions<AdditionalEnvironmentProperties>> = {}) {
   const mergedUser = user === null ? undefined : { ...defaultUser, ...user };
-  const mergedProject = (() => {
-    if (project === null) {
-      return undefined;
-    }
-    const allAppliedPermissions = denormalizePermissions(permissions);
-    const allAppliedActionRights = denormalizeActionRights(actionRights);
-    const allAppliedDataFences = denormalizeDataFences(dataFences);
-    return {
-      ...defaultProject,
-      ...project,
-      allAppliedPermissions,
-      allAppliedActionRights,
-      allAppliedDataFences,
-      allPermissionsForAllApplications: {
-        allAppliedPermissions,
-        allAppliedActionRights,
-        allAppliedDataFences,
-        allAppliedMenuVisibilities: [],
-      },
-    };
-  })();
+  const mergedProject =
+    project === null ? undefined : { ...defaultProject, ...project };
   const mergedEnvironment = {
     ...defaultEnvironment,
     ...environment,
   } as TProviderProps<AdditionalEnvironmentProperties>['environment'];
 
-  if (!disableAutomaticEntryPointRoutes) {
-    invariant(
-      Boolean(environment?.entryPointUriPath),
-      '@commercetools-frontend/application-shell/test-utils: When the option "disableAutomaticEntryPointRoutes" is set to "false", you also need to provide the "environment.entryPointUriPath" in order for the routes to be correctly configured.'
-    );
+  // Provide default permissions to render the application route.
+  if (mergedProject) {
+    if (mergedProject.allAppliedPermissions.length === 0) {
+      const defaultPermissionKeys = entryPointUriPathToPermissionKeys(
+        mergedEnvironment.entryPointUriPath
+      );
+      mergedProject.allAppliedPermissions =
+        mapResourceAccessToAppliedPermissions([defaultPermissionKeys.View]);
+    }
   }
+
+  let initialRoute = route;
+  if (!route && mergedProject) {
+    initialRoute = `/${mergedProject.key}/${mergedEnvironment.entryPointUriPath}`;
+  }
+  const memoryHistory =
+    history ??
+    createEnhancedHistory(
+      createMemoryHistory({ initialEntries: [initialRoute || '/'] })
+    );
 
   const ApplicationProviders = (props: TApplicationProvidersProps) => (
     <IntlProvider locale={locale}>
-      <ApolloProviderWrapper
-        disableApolloMocks={disableApolloMocks}
-        apolloClient={apolloClient}
-        mocks={mocks}
-      >
+      <ApolloProviderWrapper apolloClient={apolloClient} mocks={mocks}>
         <TestProviderFlopFlip flags={flags}>
           <ApplicationContextProvider
             user={mergedUser}
@@ -418,10 +348,11 @@ function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
             environment={mergedEnvironment}
             projectDataLocale={dataLocale}
           >
-            <Router history={history}>
+            <Router history={memoryHistory}>
               <Suspense fallback={<LoadingFallback />}>
                 <ApplicationEntryPoint
                   environment={mergedEnvironment}
+                  disableRoutePermissionCheck={disableRoutePermissionCheck}
                   render={
                     disableAutomaticEntryPointRoutes
                       ? // eslint-disable-next-line testing-library/no-node-access
@@ -450,7 +381,7 @@ function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
     mergedUser,
     mergedProject,
     mergedEnvironment,
-    history,
+    history: memoryHistory,
   };
 }
 
@@ -495,7 +426,7 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
   };
 }
 
-type TRenderAppWithReduxOptions<
+export type TRenderAppWithReduxOptions<
   AdditionalEnvironmentProperties = {},
   StoreState = {}
 > = {
@@ -720,4 +651,12 @@ const hooks = {
   renderHook,
 };
 
-export { renderApp, renderAppWithRedux, hooks };
+export {
+  renderApp,
+  renderAppWithRedux,
+  hooks,
+  mapResourceAccessToAppliedPermissions,
+  denormalizePermissions,
+  denormalizeActionRights,
+  denormalizeDataFences,
+};

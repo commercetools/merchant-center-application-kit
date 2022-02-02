@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/notifications",
-  "version": "20.12.3",
+  "version": "21.0.0-rc.1",
   "description": "A general-purpose notification system built on top of redux",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -18,8 +18,8 @@
   "module": "dist/commercetools-frontend-notifications.esm.js",
   "files": ["dist", "package.json", "LICENSE", "README.md"],
   "dependencies": {
-    "@babel/runtime": "7.16.7",
-    "@babel/runtime-corejs3": "7.16.8"
+    "@babel/runtime": "^7.16.7",
+    "@babel/runtime-corejs3": "^7.16.8"
   },
   "devDependencies": {
     "redux": "4.1.2"

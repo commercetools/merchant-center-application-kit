@@ -1,42 +1,42 @@
 const os = require('os');
 const fs = require('fs');
 const path = require('path');
-const { slugify } = require('../utils');
+const babel = require('@babel/core');
+const { resolveFilePathByExtension } = require('../utils');
 
-const entryPointVariableRegex = /entryPointUriPath\s?=\s?'(.*)';/;
+function replaceEntryPointUriPathInConstants(filePath, options) {
+  const result = babel.transformFileSync(filePath, {
+    plugins: [
+      function replaceConstants() {
+        return {
+          visitor: {
+            VariableDeclarator(nodePath) {
+              if (nodePath.node.id.name === 'entryPointUriPath') {
+                nodePath.node.init = babel.types.stringLiteral(
+                  options.entryPointUriPath
+                );
+              }
+            },
+          },
+        };
+      },
+    ],
+    retainLines: true,
+  });
 
-// TODO: when we enable OIDC login as the default behavior, we also want to
-// update the following things:
-// * permission names (based on the entryPointUriPath)
+  fs.writeFileSync(filePath, result.code + os.EOL, {
+    encoding: 'utf8',
+  });
+}
+
 module.exports = function updateApplicationConstants(options) {
   return {
     title: 'Updating application constants',
     task: () => {
-      const applicationConstantsPath = path.join(
-        options.projectDirectoryPath,
-        // TODO: support other file extensions?
-        'src/constants/application.js'
+      const applicationConstantsPath = resolveFilePathByExtension(
+        path.join(options.projectDirectoryPath, 'src/constants')
       );
-      const appConstantsRaw = fs.readFileSync(applicationConstantsPath, {
-        encoding: 'utf8',
-      });
-
-      // Set the entry point based on the package/folder name.
-      const entryPointUriPath = slugify(options.projectDirectoryName);
-
-      // TODO: use Babel AST?
-      const updatedAppConstantsRaw = appConstantsRaw.replace(
-        entryPointVariableRegex,
-        `entryPointUriPath = '${entryPointUriPath}';`
-      );
-
-      fs.writeFileSync(
-        applicationConstantsPath,
-        updatedAppConstantsRaw + os.EOL,
-        {
-          encoding: 'utf8',
-        }
-      );
+      replaceEntryPointUriPathInConstants(applicationConstantsPath, options);
     },
   };
 };

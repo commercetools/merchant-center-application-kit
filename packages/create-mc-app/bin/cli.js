@@ -3,6 +3,7 @@
 const mri = require('mri');
 const Listr = require('listr');
 const {
+  isValidNodeVersion,
   shouldUseYarn,
   tasks,
   hintOutdatedVersion,
@@ -10,12 +11,14 @@ const {
 } = require('../src');
 const pkg = require('../package.json');
 
+isValidNodeVersion(process.versions.node, pkg.engines.node);
+
 const currentVersion = pkg.version;
 
 async function execute() {
   const flags = mri(process.argv.slice(2), {
     alias: { help: ['h'] },
-    default: { 'skip-install': false },
+    default: { 'skip-install': false, yes: false },
   });
   const commands = flags._;
 
@@ -31,13 +34,23 @@ async function execute() {
                                     Available options: ["starter"]
     --template-version <version>    (optional) The version of the template to install [default "main"]
     --skip-install                  (optional) Skip installing the dependencies after cloning the template [default "false"]
+    --yes                           (optional) If set, the prompt options with default values will be skipped. [default "false"]
+    --entry-point-uri-path <value>  (optional) The version of the template to install [default "starter-<hash>"]
+    --initial-project-key <value>   (optional) A commercetools project key used for the initial login in development. By default, the value is prompted in the terminal.
     `);
     process.exit(0);
   }
-  console.log(`Version: v${currentVersion}`);
+  console.log('');
+  console.log(`create-mc-app: v${currentVersion}`);
   hintOutdatedVersion(currentVersion);
   console.log('');
-  const options = parseArguments(flags);
+
+  console.log(
+    `Documentation available at https://docs.commercetools.com/custom-applications`
+  );
+  console.log('');
+
+  const options = await parseArguments(flags);
 
   const taskList = new Listr(
     [

@@ -1,3 +1,6 @@
+// This is a workaround for https://github.com/eslint/eslint/issues/3458
+require('@rushstack/eslint-patch/modern-module-resolution');
+
 const { statusCode, allSupportedExtensions } = require('./helpers/eslint');
 const hasJsxRuntime = require('./helpers/has-jsx-runtime');
 
@@ -5,6 +8,15 @@ const hasJsxRuntime = require('./helpers/has-jsx-runtime');
  * @type {import("eslint").Linter.Config}
  */
 module.exports = {
+  parserOptions: {
+    babelOptions: {
+      presets: [
+        require.resolve(
+          '@commercetools-frontend/babel-preset-mc-app/production'
+        ),
+      ],
+    },
+  },
   extends: [
     // https://github.com/facebook/create-react-app/tree/master/packages/eslint-config-react-app
     'react-app',

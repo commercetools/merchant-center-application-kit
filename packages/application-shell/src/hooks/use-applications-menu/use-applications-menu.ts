@@ -6,7 +6,6 @@ import type {
   TLocalizedField,
 } from '@commercetools-frontend/constants';
 import type {
-  TNavbarMenu,
   TFetchApplicationsMenuQuery,
   TFetchApplicationsMenuQueryVariables,
 } from '../../types/generated/proxy';
@@ -25,16 +24,11 @@ export type MenuLoaderResult<Key extends MenuKey> = Key extends 'appBar'
   : Key extends 'navBar'
   ? TFetchApplicationsMenuQuery['applicationsMenu']['navBar']
   : never;
-export type Config<Key extends MenuKey> = {
+export type Config = {
   environment: TApplicationContext<{}>['environment'];
   queryOptions?: {
     onError?: QueryFunctionOptions['onError'];
   };
-  /**
-   * @deprecated The `menu.json` file has been deprecated in favor of defining the menu links
-   * in the custom application config file.
-   */
-  loadMenuConfig?: () => Promise<MenuLoaderResult<Key>>;
 };
 
 const defaultApiUrl = window.location.origin;
@@ -149,86 +143,10 @@ const mapApplicationMenuConfigToGraqhQLQueryResult = (
     },
   };
 };
-/**
- * Transform menu links defined in the `menu.json` to the `FetchApplicationsMenu` schema.
- * This is only needed for development.
- * @deprecated The `menu.json` file has been deprecated in favor of defining the menu links
- * in the custom application config file.
- */
-const mapLegacyMenuJsonToGraphQLQueryResult = <Key extends MenuKey>(
-  menuKey: Key,
-  menuJson: MenuLoaderResult<Key>
-): TFetchApplicationsMenuQuery => {
-  return {
-    applicationsMenu: {
-      __typename: 'ApplicationsMenu',
-      // @ts-ignore: to suppress `featureToggle` error.
-      navBar:
-        menuKey === 'navBar'
-          ? menuJson.map((data) => {
-              const menuLink = data as TNavbarMenu;
-              return {
-                __typename: 'NavbarMenu',
-                shouldRenderDivider: false,
-                key: menuLink.uriPath,
-                uriPath: menuLink.uriPath,
-                icon: menuLink.icon,
-                labelAllLocales: mapLabelAllLocalesWithDefaults(
-                  menuLink.labelAllLocales,
-                  // There is no `defaultValue`, so we pick the first in the list.
-                  menuLink.labelAllLocales[0].value
-                ),
-                permissions: menuLink.permissions,
-                // @ts-ignore: not defined in schema, as it's only used internally.
-                featureToggle: menuLink.featureToggle ?? null,
-                // @ts-ignore: not defined in schema, as it's only used internally.
-                menuVisibility: menuLink.menuVisibility ?? null,
-                // @ts-ignore: not defined in schema, as it's only used internally.
-                actionRights: menuLink.actionRights ?? null,
-                // @ts-ignore: not defined in schema, as it's only used internally.
-                dataFences: menuLink.dataFences ?? null,
-                submenu: menuLink.submenu.map((submenuLink) => ({
-                  __typename: 'BaseMenu',
-                  key: `${menuLink.uriPath}-${submenuLink.uriPath}`,
-                  uriPath: submenuLink.uriPath,
-                  labelAllLocales: mapLabelAllLocalesWithDefaults(
-                    submenuLink.labelAllLocales
-                  ),
-                  permissions: submenuLink.permissions,
-                  // @ts-ignore: not defined in schema, as it's only used internally.
-                  featureToggle: submenuLink.featureToggle ?? null,
-                  // @ts-ignore: not defined in schema, as it's only used internally.
-                  menuVisibility: submenuLink.menuVisibility ?? null,
-                  // @ts-ignore: not defined in schema, as it's only used internally.
-                  actionRights: submenuLink.actionRights ?? null,
-                  // @ts-ignore: not defined in schema, as it's only used internally.
-                  dataFences: submenuLink.dataFences ?? null,
-                })),
-              };
-            })
-          : [],
-      // @ts-ignore: to suppress `featureToggle` error.
-      appBar:
-        menuKey === 'appBar'
-          ? menuJson.map((menuLink) => ({
-              __typename: 'BaseMenu',
-              key: menuLink.uriPath,
-              uriPath: menuLink.uriPath,
-              labelAllLocales: mapLabelAllLocalesWithDefaults(
-                menuLink.labelAllLocales
-              ),
-              permissions: menuLink.permissions,
-              // @ts-ignore: not defined in schema, as it's only used internally.
-              featureToggle: menuLink.featureToggle ?? null,
-            }))
-          : [],
-    },
-  };
-};
 
 function useApplicationsMenu<Key extends MenuKey>(
   menuKey: Key,
-  config: Config<Key>
+  config: Config
 ): MenuLoaderResult<Key> | undefined {
   const apolloClient = useApolloClient();
   const mcProxyApiUrl = useApplicationContext(
@@ -273,18 +191,6 @@ function useApplicationsMenu<Key extends MenuKey>(
       apolloClient.writeQuery({
         query: FetchApplicationsMenu,
         data: applicationMenu,
-      });
-    } else if (!config.environment.servedByProxy && config.loadMenuConfig) {
-      config.loadMenuConfig().then((menuConfig) => {
-        const menuJson = Array.isArray(menuConfig) ? menuConfig : [menuConfig];
-        const applicationMenu = mapLegacyMenuJsonToGraphQLQueryResult<MenuKey>(
-          menuKey,
-          menuJson
-        );
-        apolloClient.writeQuery({
-          query: FetchApplicationsMenu,
-          data: applicationMenu,
-        });
       });
     }
 

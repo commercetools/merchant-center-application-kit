@@ -1,9 +1,0 @@
-{
-  "applicationName": "avengers-app",
-  "frontendHost": "localhost:3001",
-  "mcApiUrl": "https://mc-api.europe-west1.gcp.commercetools.com",
-  "location": "gcp-eu",
-  "env": "development",
-  "cdnUrl": "http://localhost:3001",
-  "servedByProxy": false
-}

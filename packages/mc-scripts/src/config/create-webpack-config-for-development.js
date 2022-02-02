@@ -19,7 +19,6 @@ const defaultToggleFlags = {
   disableCoreJs: false,
 };
 const defaultOptions = {
-  distPath: paths.distPath,
   entryPoint: paths.entryPoint,
   sourceFolders: paths.sourceFolders,
   postcssOptions: {},
@@ -43,7 +42,6 @@ const reactRefreshOverlayEntry = require.resolve(
  * "entry point".
  *
  * @param {Object} options - Options to configure the Webpack config
- * @param {string} options.distPath - The absolute path to the `dist` folder where Webpack should output the assets.
  * @param {string} options.entryPoint - The absolute path to the application entry point file.
  * @param {string[]} options.sourceFolders[] - A list of folders where Webpack should look for source files.
  * @param {Object} options.postcssOptions - Options related to Postcss plugins. See `createPostcssConfig` function.
@@ -98,6 +96,15 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
       extensions: ['js', 'mjs', 'cjs', 'ts', 'tsx', 'json', 'jsx'].map(
         (ext) => `.${ext}`
       ),
+
+      // NOTE: this is meant to be a temporary list of fallback/polyfills for certain
+      // nodejs modules. With Webpack <5 these polyfills were included by default in Webpack,
+      // however now it's not the case anymore.
+      // See also related work in CRA: https://github.com/facebook/create-react-app/pull/11764
+      fallback: {
+        url: require.resolve('url/'),
+        querystring: require.resolve('querystring-es3'),
+      },
     },
 
     entry: {
@@ -278,7 +285,7 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
         // "css" loader resolves paths in CSS and adds assets as dependencies.
         // "style" loader turns CSS into JS modules that inject <style> tags.
         {
-          test: /\.mod\.css$/,
+          test: /\.(mod|module)\.css$/,
           include: mergedOptions.sourceFolders,
           use: [
             require.resolve('style-loader'),
@@ -288,7 +295,7 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
                 modules: {
                   mode: 'local',
                   localIdentName: '[name]__[local]___[hash:base64:5]',
-                  localIdentHashPrefix: 'ct',
+                  localIdentHashSalt: 'ct',
                 },
                 importLoaders: 1,
               },
@@ -320,7 +327,15 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
               include: mergedOptions.sourceFolders,
               use: [
                 require.resolve('style-loader'),
-                require.resolve('css-loader'),
+                {
+                  loader: require.resolve('css-loader'),
+                  options: {
+                    modules: {
+                      mode: 'icss',
+                    },
+                    importLoaders: 1,
+                  },
+                },
                 {
                   loader: require.resolve('postcss-loader'),
                   options: {
@@ -336,7 +351,15 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
               include: /node_modules/,
               use: [
                 require.resolve('style-loader'),
-                require.resolve('css-loader'),
+                {
+                  loader: require.resolve('css-loader'),
+                  options: {
+                    modules: {
+                      mode: 'icss',
+                    },
+                    importLoaders: 1,
+                  },
+                },
               ],
             },
           ],

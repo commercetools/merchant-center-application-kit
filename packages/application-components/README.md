@@ -4,17 +4,4 @@
   <a href="https://www.npmjs.com/package/@commercetools-frontend/application-components"><img src="https://badgen.net/npm/v/@commercetools-frontend/application-components" alt="Latest release (latest dist-tag)" /></a> <a href="https://www.npmjs.com/package/@commercetools-frontend/application-components"><img src="https://badgen.net/npm/v/@commercetools-frontend/application-components/next" alt="Latest release (next dist-tag)" /></a> <a href="https://bundlephobia.com/result?p=@commercetools-frontend/application-components"><img src="https://badgen.net/bundlephobia/minzip/@commercetools-frontend/application-components" alt="Minified + GZipped size" /></a> <a href="https://github.com/commercetools/merchant-center-application-kit/blob/main/LICENSE"><img src="https://badgen.net/github/license/commercetools/merchant-center-application-kit" alt="GitHub license" /></a>
 </p>
 
-UI components for building Merchant Center applications.
-The components follow the same principles of the [UIKit](https://github.com/commercetools/ui-kit) components, but are more specific to Merchant Center applications.
-
-## Install
-
-```bash
-$ npm install --save @commercetools-frontend/application-components
-```
-
-## Usage outside of Custom Applications
-
-If you happen to use some of the components outside of a Custom Application, you need to additionally render the `<PortalsContainer>`.
-
-The `<PortalsContainer>` renders an empty HTML element with a specific identifier and is used to render all modal components (dialogs, modal pages, etc.). Make sure to render this component once in your application.
+Check out the [documentation](https://docs.commercetools.com/custom-applications/api-reference/commercetools-frontend-application-components) for more information.

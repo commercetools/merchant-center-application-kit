@@ -14,6 +14,12 @@ const templateName = process.env.TEMPLATE_NAME;
 if (!templateName) {
   throw new Error('Missing required environment variable "TEMPLATE_NAME"');
 }
+const initialProjectKey = process.env.CTP_INITIAL_PROJECT_KEY;
+if (!initialProjectKey) {
+  throw new Error(
+    'Missing required environment variable "CTP_INITIAL_PROJECT_KEY"'
+  );
+}
 
 if (!fs.existsSync(tarballsDistPath)) {
   throw new Error(
@@ -48,7 +54,7 @@ shelljs.exec(
 );
 
 console.log(
-  `Using package binary to install the application ${applicationName}, using the template ${templateName}`
+  `Bootstrapping the application ${applicationName} using the template ${templateName}.`
 );
 shelljs.exec(
   [
@@ -56,6 +62,8 @@ shelljs.exec(
     applicationName,
     '--template=starter',
     `--template-version=${branchName}`,
+    `--initial-project-key=${initialProjectKey}`,
+    `--yes`,
     // Don't install deps automatically, we need to patch the package.json to use the
     // local tarballs for resolving the dependencies.
     '--skip-install',

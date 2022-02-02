@@ -9,6 +9,7 @@ describe('rendering', () => {
       const { container } = renderApp(
         <Route path={`/:projectKey`} component={ServicePageProjectSwitcher} />,
         {
+          disableRoutePermissionCheck: true,
           route: '/test-1',
           user: {
             projects: {
@@ -36,6 +37,7 @@ describe('rendering', () => {
       const { container } = renderApp(
         <Route path={`/:projectKey`} component={ServicePageProjectSwitcher} />,
         {
+          disableRoutePermissionCheck: true,
           route: '/test-1',
           user: {
             projects: {

@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-shell",
-  "version": "20.13.0",
+  "version": "21.0.0-rc.8",
   "description": "React component to bootstrap the general MC application logic",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -8,7 +8,7 @@
     "url": "https://github.com/commercetools/merchant-center-application-kit.git",
     "directory": "packages/application-shell"
   },
-  "homepage": "https://docs.commercetools.com/custom-applications",
+  "homepage": "https://docs.commercetools.com/custom-applications/api-reference/commercetools-frontend-application-shell",
   "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
   "publishConfig": {
@@ -31,22 +31,22 @@
     "compile-css-modules": "./scripts/compile-styles.js"
   },
   "dependencies": {
-    "@babel/runtime": "7.16.7",
-    "@babel/runtime-corejs3": "7.16.8",
-    "@commercetools-frontend/actions-global": "20.12.3",
-    "@commercetools-frontend/application-components": "20.13.0",
-    "@commercetools-frontend/application-shell-connectors": "20.12.3",
-    "@commercetools-frontend/assets": "20.12.3",
-    "@commercetools-frontend/browser-history": "20.12.3",
-    "@commercetools-frontend/constants": "20.12.3",
-    "@commercetools-frontend/i18n": "20.13.0",
-    "@commercetools-frontend/l10n": "20.12.3",
-    "@commercetools-frontend/notifications": "20.12.3",
-    "@commercetools-frontend/permissions": "20.12.3",
-    "@commercetools-frontend/react-notifications": "20.12.3",
-    "@commercetools-frontend/sdk": "20.12.3",
-    "@commercetools-frontend/sentry": "20.12.3",
-    "@commercetools-frontend/url-utils": "20.12.3",
+    "@babel/runtime": "^7.16.7",
+    "@babel/runtime-corejs3": "^7.16.8",
+    "@commercetools-frontend/actions-global": "21.0.0-rc.3",
+    "@commercetools-frontend/application-components": "21.0.0-rc.3",
+    "@commercetools-frontend/application-shell-connectors": "21.0.0-rc.3",
+    "@commercetools-frontend/assets": "21.0.0-rc.1",
+    "@commercetools-frontend/browser-history": "21.0.0-rc.1",
+    "@commercetools-frontend/constants": "21.0.0-rc.3",
+    "@commercetools-frontend/i18n": "21.0.0-rc.3",
+    "@commercetools-frontend/l10n": "21.0.0-rc.3",
+    "@commercetools-frontend/notifications": "21.0.0-rc.1",
+    "@commercetools-frontend/permissions": "21.0.0-rc.3",
+    "@commercetools-frontend/react-notifications": "21.0.0-rc.3",
+    "@commercetools-frontend/sdk": "21.0.0-rc.3",
+    "@commercetools-frontend/sentry": "21.0.0-rc.3",
+    "@commercetools-frontend/url-utils": "21.0.0-rc.1",
     "@commercetools-uikit/avatar": "^12.2.9",
     "@commercetools-uikit/card": "^12.2.9",
     "@commercetools-uikit/design-system": "^12.2.9",
@@ -65,7 +65,6 @@
     "@flopflip/launchdarkly-adapter": "5.0.21",
     "@flopflip/react-broadcast": "12.2.13",
     "@flopflip/types": "4.1.20",
-    "@types/classnames": "2.3.1",
     "@types/common-tags": "^1.8.1",
     "@types/history": "4.7.11",
     "@types/lodash": "^4.14.178",
@@ -118,8 +117,8 @@
   },
   "peerDependencies": {
     "@apollo/client": "3.x",
-    "@testing-library/react": "11.x || 12.x",
-    "@testing-library/react-hooks": "5.x || 7.x",
+    "@testing-library/react": "12.x",
+    "@testing-library/react-hooks": "7.x",
     "react": "17.x",
     "react-dom": "17.x",
     "react-intl": "5.x",
@@ -128,6 +127,6 @@
     "redux": "4.x"
   },
   "engines": {
-    "node": ">=12 || >=14"
+    "node": ">=14"
   }
 }

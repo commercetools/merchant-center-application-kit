@@ -1,5 +1,86 @@
 # @commercetools-frontend/cypress
 
+## 21.0.0-rc.8
+
+### Major Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`d1707b78`](https://github.com/commercetools/merchant-center-application-kit/commit/d1707b78e81d007460ddff7b2a4924b997c981e7) Thanks [@emmenko](https://github.com/emmenko)! - The peer dependency min version for `cypress` is now `8`.
+
+### Patch Changes
+
+- Updated dependencies [[`d1707b78`](https://github.com/commercetools/merchant-center-application-kit/commit/d1707b78e81d007460ddff7b2a4924b997c981e7)]:
+  - @commercetools-frontend/application-shell@21.0.0-rc.8
+
+## 21.0.0-rc.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@21.0.0-rc.7
+
+## 21.0.0-rc.6
+
+### Patch Changes
+
+- Updated dependencies [[`433a2604`](https://github.com/commercetools/merchant-center-application-kit/commit/433a2604d1dfeeacfbad477c4a22896c5941a0be)]:
+  - @commercetools-frontend/application-shell@21.0.0-rc.6
+
+## 21.0.0-rc.5
+
+### Patch Changes
+
+- Updated dependencies [[`4b1c5977`](https://github.com/commercetools/merchant-center-application-kit/commit/4b1c5977aa413732b7a484e06a825e0e6375b5d8)]:
+  - @commercetools-frontend/application-shell@21.0.0-rc.5
+  - @commercetools-frontend/application-config@21.0.0-rc.5
+
+## 21.0.0-rc.4
+
+### Patch Changes
+
+- Updated dependencies [[`5e3ee854`](https://github.com/commercetools/merchant-center-application-kit/commit/5e3ee854b77cb052be448afb5ecc6b2c62b0d712)]:
+  - @commercetools-frontend/application-config@21.0.0-rc.4
+  - @commercetools-frontend/application-shell@21.0.0-rc.4
+
+## 21.0.0-rc.3
+
+### Patch Changes
+
+- Updated dependencies [[`e6051a9d`](https://github.com/commercetools/merchant-center-application-kit/commit/e6051a9dde8fd77a1e949fe34393b4c7a61dee55), [`f70e3074`](https://github.com/commercetools/merchant-center-application-kit/commit/f70e30742ff4b1228ff3bdc72f4a5d893ef8081f)]:
+  - @commercetools-frontend/application-shell@21.0.0-rc.3
+
+## 21.0.0-rc.1
+
+### Patch Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`5ea8baf1`](https://github.com/commercetools/merchant-center-application-kit/commit/5ea8baf1b2ca2661aac9a6a572d2c8e596ee0b2c) Thanks [@emmenko](https://github.com/emmenko)! - Use version range for Babel packages.
+
+- Updated dependencies [[`5ea8baf1`](https://github.com/commercetools/merchant-center-application-kit/commit/5ea8baf1b2ca2661aac9a6a572d2c8e596ee0b2c)]:
+  - @commercetools-frontend/application-config@21.0.0-rc.1
+  - @commercetools-frontend/application-shell@21.0.0-rc.1
+
+## 21.0.0-rc.0
+
+### Major Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`1c363fad`](https://github.com/commercetools/merchant-center-application-kit/commit/1c363fad7ab770a739ac8080358e41ae4af42074) Thanks [@emmenko](https://github.com/emmenko)! - Drop Node.js `v12`. Recommended min Node.js version is `v14` or `v16`.
+
+* [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`e079fdcb`](https://github.com/commercetools/merchant-center-application-kit/commit/e079fdcb21ae7dddf14e554be1bd6e36f7346417) Thanks [@emmenko](https://github.com/emmenko)! - Following breaking changes were introduced:
+
+  - The starter template has been updated to use the new Org-level Custom Application features.
+  - The Custom Application config of the starter template has been converted from `.json` to `.mjs`, to allow importing and referencing constants.
+  - When installing the starter template using the `create-mc-app` CLI, the Custom Application config is updated with some of the user inputs, like `entryPointUriPath`.
+    - If no `entryPointUriPath` is provided, a random one is assigned.
+
+  For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-31-custom-applications-v21).
+
+### Patch Changes
+
+- [#2450](https://github.com/commercetools/merchant-center-application-kit/pull/2450) [`eb8f5b2c`](https://github.com/commercetools/merchant-center-application-kit/commit/eb8f5b2c885a4c3ffc7857a61e50508b429bf964) Thanks [@emmenko](https://github.com/emmenko)! - Update dependencies
+
+- Updated dependencies [[`eb8f5b2c`](https://github.com/commercetools/merchant-center-application-kit/commit/eb8f5b2c885a4c3ffc7857a61e50508b429bf964), [`b8fb4cbb`](https://github.com/commercetools/merchant-center-application-kit/commit/b8fb4cbbb8b78ff18af7edf8100703f7f9712187), [`1c363fad`](https://github.com/commercetools/merchant-center-application-kit/commit/1c363fad7ab770a739ac8080358e41ae4af42074), [`6d0e71d7`](https://github.com/commercetools/merchant-center-application-kit/commit/6d0e71d7e08222f5b6462b7c60fca80e8992cfa7)]:
+  - @commercetools-frontend/application-config@21.0.0-rc.0
+  - @commercetools-frontend/application-shell@21.0.0-rc.0
+
 ## 20.13.0
 
 ### Minor Changes

@@ -17,7 +17,13 @@ import { ApplicationContext } from '@commercetools-frontend/application-shell-co
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { useMcQuery } from '../hooks/apollo-hooks';
-import { renderApp, renderAppWithRedux, waitFor } from './test-utils';
+import {
+  type TRenderAppWithReduxOptions,
+  renderApp,
+  renderAppWithRedux,
+  waitFor,
+  denormalizePermissions,
+} from './test-utils';
 
 const mockServer = setupServer();
 afterEach(() => {
@@ -26,19 +32,29 @@ afterEach(() => {
 beforeAll(() => mockServer.listen());
 afterAll(() => mockServer.close());
 
+const createDefaultOptions = (
+  customOptions: Partial<TRenderAppWithReduxOptions> = {}
+): Partial<TRenderAppWithReduxOptions> => ({
+  disableRoutePermissionCheck: true,
+  ...customOptions,
+});
+
 describe('Intl', () => {
   const TestComponent = () => {
     const intl = useIntl();
     return <span>{intl.locale}</span>;
   };
   it('should have intl', async () => {
-    renderApp(<TestComponent />);
+    renderApp(<TestComponent />, createDefaultOptions());
     await screen.findByText('en');
   });
   it('should be possible to overwrite', async () => {
-    renderApp(<TestComponent />, {
-      locale: 'de',
-    });
+    renderApp(
+      <TestComponent />,
+      createDefaultOptions({
+        locale: 'de',
+      })
+    );
     await screen.findByText('de');
   });
 });
@@ -59,17 +75,20 @@ describe('ApolloMockProvider', () => {
     return <>{data.foo.name}</>;
   };
   it('should be possible to fake GraphQL requests', async () => {
-    renderApp(<TestComponent />, {
-      mocks: [
-        {
-          request: {
-            query: SomeQuery,
-            context: { target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM },
+    renderApp(
+      <TestComponent />,
+      createDefaultOptions({
+        mocks: [
+          {
+            request: {
+              query: SomeQuery,
+              context: { target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM },
+            },
+            result: { data: { foo: { name: 'Snoop Dogg' } } },
           },
-          result: { data: { foo: { name: 'Snoop Dogg' } } },
-        },
-      ],
-    });
+        ],
+      })
+    );
     await screen.findByText('Snoop Dogg');
   });
 });
@@ -95,9 +114,7 @@ describe('Real ApolloProvider', () => {
         res(ctx.data({ foo: { name: 'Snoop Dogg' } }))
       )
     );
-    renderApp(<TestComponent />, {
-      disableApolloMocks: true,
-    });
+    renderApp(<TestComponent />, createDefaultOptions());
     await screen.findByText('Snoop Dogg');
   });
 });
@@ -109,13 +126,16 @@ describe('`flopflip`', () => {
     return <p>Enabled: {isFeatureEnabled ? 'Yes' : 'No'}</p>;
   };
   it('should not enable features toggles by default', async () => {
-    renderApp(<TestComponent />);
+    renderApp(<TestComponent />, createDefaultOptions());
     await screen.findByText(/Enabled: No/i);
   });
   it('should be possible to enable feature toggles', async () => {
-    renderApp(<TestComponent />, {
-      flags: { [FEATURE_NAME]: true },
-    });
+    renderApp(
+      <TestComponent />,
+      createDefaultOptions({
+        flags: { [FEATURE_NAME]: true },
+      })
+    );
     await screen.findByText(/Enabled: Yes/i);
   });
 });
@@ -131,7 +151,7 @@ describe('ApplicationContext', () => {
     );
 
     it('should render with defaults', async () => {
-      const { user } = renderApp(<TestComponent />);
+      const { user } = renderApp(<TestComponent />, createDefaultOptions());
       await screen.findByText('Sheldon Cooper');
       // the user should be returned from "render"
       expect(user).toEqual(
@@ -147,9 +167,12 @@ describe('ApplicationContext', () => {
     });
 
     it('should respect user overwrites', async () => {
-      const { user } = renderApp(<TestComponent />, {
-        user: { firstName: 'Leonard' },
-      });
+      const { user } = renderApp(
+        <TestComponent />,
+        createDefaultOptions({
+          user: { firstName: 'Leonard' },
+        })
+      );
       // shows that data gets merged and overwrites have priority
       await screen.findByText('Leonard Cooper');
       // the merged user should be returned from "render"
@@ -172,7 +195,7 @@ describe('ApplicationContext', () => {
     );
 
     it('should render with defaults', async () => {
-      const { project } = renderApp(<TestComponent />);
+      const { project } = renderApp(<TestComponent />, createDefaultOptions());
       await screen.findByText('test-with-big-data Test with big data');
       // the project should be returned from "render"
       expect(project).toEqual(
@@ -192,9 +215,12 @@ describe('ApplicationContext', () => {
     });
 
     it('should respect project overwrites', async () => {
-      const { project } = renderApp(<TestComponent />, {
-        project: { name: 'Geek' },
-      });
+      const { project } = renderApp(
+        <TestComponent />,
+        createDefaultOptions({
+          project: { name: 'Geek' },
+        })
+      );
       // shows that data gets merged and overwrites have priority
       await screen.findByText('test-with-big-data Geek');
       // the merged project should be returned from "render"
@@ -214,15 +240,29 @@ describe('ApplicationContext', () => {
       </RestrictedByPermissions>
     );
     it('should render unauthorized when ManageProducts permission is false', async () => {
-      renderApp(<TestComponent />, {
-        permissions: { canManageProducts: false },
-      });
+      renderApp(
+        <TestComponent />,
+        createDefaultOptions({
+          project: {
+            allAppliedPermissions: denormalizePermissions({
+              canManageProducts: false,
+            }),
+          },
+        })
+      );
       await screen.findByText('Not allowed');
     });
     it('should render authorized when ManageProducts permission is true', async () => {
-      renderApp(<TestComponent />, {
-        permissions: { canManageProducts: true },
-      });
+      renderApp(
+        <TestComponent />,
+        createDefaultOptions({
+          project: {
+            allAppliedPermissions: denormalizePermissions({
+              canManageProducts: true,
+            }),
+          },
+        })
+      );
       await screen.findByText('Authorized');
     });
   });
@@ -232,7 +272,7 @@ describe('ApplicationContext', () => {
       <ApplicationContext render={({ dataLocale }) => dataLocale} />
     );
     it('should add the locale to the project', async () => {
-      renderApp(<TestComponent />, { dataLocale: 'de' });
+      renderApp(<TestComponent />, createDefaultOptions({ dataLocale: 'de' }));
       await screen.findByText('de');
     });
   });
@@ -247,7 +287,10 @@ describe('ApplicationContext', () => {
     );
 
     it('should render with defaults', async () => {
-      const { environment } = renderApp(<TestComponent />);
+      const { environment } = renderApp(
+        <TestComponent />,
+        createDefaultOptions()
+      );
       // shows that data gets merged and overwrites have priority
       await screen.findByText('eu production');
       // the project should be returned from "render"
@@ -264,9 +307,12 @@ describe('ApplicationContext', () => {
     });
 
     it('should respect user overwrites', async () => {
-      const { environment } = renderApp(<TestComponent />, {
-        environment: { location: 'us' },
-      });
+      const { environment } = renderApp(
+        <TestComponent />,
+        createDefaultOptions({
+          environment: { location: 'us' },
+        })
+      );
       // shows that data gets merged and overwrites have priority
       await screen.findByText('us production');
       // the merged project should be returned from "render"
@@ -283,25 +329,37 @@ describe('ApplicationContext', () => {
 describe('router', () => {
   const TestComponent = () => (
     <Switch>
-      <Route path="/foo" render={() => 'Foo'} />
+      <Route path="/foo/avengers" render={() => 'Foo'} />
       {/* Define a catch-all route */}
       <Route render={() => 'None'} />
     </Switch>
   );
   it('should render fallback when no route is provided', async () => {
-    renderApp(<TestComponent />);
+    renderApp(<TestComponent />, createDefaultOptions());
     await screen.findByText('None');
     expect(screen.queryByText('Foo')).not.toBeInTheDocument();
   });
   it('should render the route when a route is provided', async () => {
-    renderApp(<TestComponent />, { route: '/foo' });
+    renderApp(
+      <TestComponent />,
+      createDefaultOptions({
+        route: '/foo/avengers',
+        environment: { entryPointUriPath: 'avengers' },
+      })
+    );
     await screen.findByText('Foo');
     expect(screen.queryByText('None')).not.toBeInTheDocument();
   });
   it('should return a history object', async () => {
-    const { history } = renderApp(<TestComponent />, { route: '/foo' });
+    const { history } = renderApp(
+      <TestComponent />,
+      createDefaultOptions({
+        route: '/foo/avengers',
+        environment: { entryPointUriPath: 'avengers' },
+      })
+    );
     await waitFor(() => {
-      expect(history.location.pathname).toBe('/foo');
+      expect(history.location.pathname).toBe('/foo/avengers');
     });
   });
 });
@@ -323,9 +381,12 @@ describe('custom render functions', () => {
         return <>{value}</>;
       };
 
-      renderApp(<TestComponent />, {
-        wrapper: ProvidedWrapper,
-      });
+      renderApp(
+        <TestComponent />,
+        createDefaultOptions({
+          wrapper: ProvidedWrapper,
+        })
+      );
       await screen.findByText(/provided wrapper/i);
     });
 
@@ -339,9 +400,12 @@ describe('custom render functions', () => {
         return <>{value}</>;
       };
 
-      renderAppWithRedux(<TestComponent />, {
-        wrapper: ProvidedWrapper,
-      });
+      renderAppWithRedux(
+        <TestComponent />,
+        createDefaultOptions({
+          wrapper: ProvidedWrapper,
+        })
+      );
       await screen.findByText(/provided wrapper/i);
     });
   });
@@ -353,7 +417,7 @@ describe('custom render functions', () => {
         <>{props.children}</>
       );
 
-      renderApp(<TestComponent>{'one'}</TestComponent>);
+      renderApp(<TestComponent>{'one'}</TestComponent>, createDefaultOptions());
       await screen.findByText('one');
     });
     it('should work with renderAppWithRedux', async () => {
@@ -362,7 +426,10 @@ describe('custom render functions', () => {
         <>{props.children}</>
       );
 
-      renderAppWithRedux(<TestComponent>{'one'}</TestComponent>);
+      renderAppWithRedux(
+        <TestComponent>{'one'}</TestComponent>,
+        createDefaultOptions()
+      );
       await screen.findByText('one');
     });
   });
@@ -376,7 +443,10 @@ describe('custom render functions', () => {
         return <>{props.children}</>;
       };
 
-      const { rerender } = renderApp(<TestComponent>{'one'}</TestComponent>);
+      const { rerender } = renderApp(
+        <TestComponent>{'one'}</TestComponent>,
+        createDefaultOptions()
+      );
       await screen.findByText('one');
 
       rerender(<TestComponent>{'two'}</TestComponent>);
@@ -393,7 +463,8 @@ describe('custom render functions', () => {
       };
 
       const { rerender } = renderAppWithRedux(
-        <TestComponent>{'one'}</TestComponent>
+        <TestComponent>{'one'}</TestComponent>,
+        createDefaultOptions()
       );
       await screen.findByText('one');
 
@@ -411,15 +482,18 @@ describe('renderAppWithRedux', () => {
       const state = store.getState();
       return state.products.currentVisible.id;
     };
-    renderAppWithRedux(<TestComponent />, {
-      storeState: {
-        products: {
-          currentVisible: {
-            id: 'current-visible-product-id',
+    renderAppWithRedux(
+      <TestComponent />,
+      createDefaultOptions({
+        storeState: {
+          products: {
+            currentVisible: {
+              id: 'current-visible-product-id',
+            },
           },
         },
-      },
-    });
+      })
+    );
     expect(screen.getByText(/current-visible-product-id/i)).toBeInTheDocument();
   });
 });

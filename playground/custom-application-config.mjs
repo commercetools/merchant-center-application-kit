@@ -32,8 +32,8 @@ const config = {
       'connect-src': ['${env:HOST_GCP_STAGING}'],
     },
   },
-  menuLinks: {
-    icon: '${path:@commercetools-frontend/assets/application-icons/rocket.svg}',
+  icon: '${path:@commercetools-frontend/assets/application-icons/rocket.svg}',
+  mainMenuLink: {
     defaultLabel: '${intl:en:Menu.StateMachines}',
     labelAllLocales: [
       {
@@ -45,25 +45,25 @@ const config = {
         value: '${intl:de:Menu.StateMachines}',
       },
     ],
-    permissions: [PERMISSIONS.ViewAppKitPlayground],
-    submenuLinks: [
-      {
-        uriPath: 'echo-server',
-        permissions: [PERMISSIONS.ViewAppKitPlayground],
-        defaultLabel: '${intl:en:Menu.EchoServer}',
-        labelAllLocales: [
-          {
-            locale: 'en',
-            value: '${intl:en:Menu.EchoServer}',
-          },
-          {
-            locale: 'de',
-            value: '${intl:de:Menu.EchoServer}',
-          },
-        ],
-      },
-    ],
+    permissions: [PERMISSIONS.View],
   },
+  submenuLinks: [
+    {
+      uriPath: 'echo-server',
+      permissions: [PERMISSIONS.View],
+      defaultLabel: '${intl:en:Menu.EchoServer}',
+      labelAllLocales: [
+        {
+          locale: 'en',
+          value: '${intl:en:Menu.EchoServer}',
+        },
+        {
+          locale: 'de',
+          value: '${intl:de:Menu.EchoServer}',
+        },
+      ],
+    },
+  ],
 };
 
 export default config;

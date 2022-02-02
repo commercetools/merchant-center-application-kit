@@ -41,7 +41,9 @@ describe('rendering', () => {
     it('should call render with `isAuthenticated` set to true', async () => {
       mocked(window.localStorage.getItem).mockReturnValue('true');
       const props = createTestProps();
-      renderApp(<Authenticated {...props} />);
+      renderApp(<Authenticated {...props} />, {
+        disableRoutePermissionCheck: true,
+      });
       await waitFor(() => {
         expect(props.render).toHaveBeenCalledWith({ isAuthenticated: true });
       });
@@ -52,7 +54,9 @@ describe('rendering', () => {
       it('should call render with `isAuthenticated` set to true', async () => {
         mocked(window.localStorage.getItem).mockReturnValue(null);
         const props = createTestProps();
-        renderApp(<Authenticated {...props} />, { disableApolloMocks: true });
+        renderApp(<Authenticated {...props} />, {
+          disableRoutePermissionCheck: true,
+        });
         await waitFor(() => {
           expect(props.render).toHaveBeenCalledWith({ isAuthenticated: true });
         });
@@ -74,7 +78,9 @@ describe('rendering', () => {
         console.error = jest.fn();
         mocked(window.localStorage.getItem).mockReturnValue(null);
         const props = createTestProps();
-        renderApp(<Authenticated {...props} />, { disableApolloMocks: true });
+        renderApp(<Authenticated {...props} />, {
+          disableRoutePermissionCheck: true,
+        });
         await waitFor(() => {
           expect(props.render).toHaveBeenCalledWith({ isAuthenticated: false });
         });

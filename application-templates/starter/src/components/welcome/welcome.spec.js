@@ -1,14 +1,19 @@
-import { screen } from '@commercetools-frontend/application-shell/test-utils';
+import {
+  screen,
+  mapResourceAccessToAppliedPermissions,
+} from '@commercetools-frontend/application-shell/test-utils';
 import { renderApplicationWithRedux } from '../../test-utils';
-import { entryPointUriPath } from '../../constants/application';
+import { entryPointUriPath, PERMISSIONS } from '../../constants';
 import ApplicationRoutes from '../../routes';
 
 const renderApp = (options = {}) => {
   const route = options.route || `/my-project/${entryPointUriPath}`;
   const { history } = renderApplicationWithRedux(<ApplicationRoutes />, {
     route,
-    permissions: {
-      canViewProducts: true,
+    project: {
+      allAppliedPermissions: mapResourceAccessToAppliedPermissions([
+        PERMISSIONS.View,
+      ]),
     },
     ...options,
   });

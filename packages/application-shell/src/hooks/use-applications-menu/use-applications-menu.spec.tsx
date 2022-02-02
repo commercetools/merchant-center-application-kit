@@ -37,7 +37,7 @@ const createTestEnvironment = (
   ...custom,
 });
 
-const NavBarTest = (props: Config<'navBar'>) => {
+const NavBarTest = (props: Config) => {
   const applicationsMenu = useApplicationsMenu<'navBar'>('navBar', props);
   const userLocale = useApplicationContext(
     (context) => context.user?.locale ?? 'en'
@@ -77,7 +77,7 @@ const NavBarTest = (props: Config<'navBar'>) => {
   }
   return <div>{'loading'}</div>;
 };
-const AppBarTest = (props: Config<'appBar'>) => {
+const AppBarTest = (props: Config) => {
   const applicationsMenu = useApplicationsMenu<'appBar'>('appBar', props);
   const userLocale = useApplicationContext(
     (context) => context.user?.locale ?? 'en'
@@ -187,6 +187,7 @@ describe('for production usage', () => {
   describe('when the query succeeds', () => {
     it('should render menu key', async () => {
       renderApp(<NavBarTest environment={environment} />, {
+        disableRoutePermissionCheck: true,
         mocks: [
           {
             request: {
@@ -198,7 +199,7 @@ describe('for production usage', () => {
           },
         ],
       });
-      await waitForElementToBeRemoved(screen.getByText('loading'));
+      await waitForElementToBeRemoved(() => screen.queryByText('loading'));
       expect(screen.getByText('Orders')).toBeInTheDocument();
       expect(screen.getByText('Orders new')).toBeInTheDocument();
       expect(screen.getByText('Path: orders')).toBeInTheDocument();
@@ -218,6 +219,7 @@ describe('for production usage', () => {
           }}
         />,
         {
+          disableRoutePermissionCheck: true,
           mocks: [
             {
               request: {
@@ -237,36 +239,6 @@ describe('for production usage', () => {
 });
 describe('for local development', () => {
   describe('<NavBar>', () => {
-    describe('loading the legacy menu.json file', () => {
-      it('should render menu key', async () => {
-        const environment = createTestEnvironment();
-        renderApp(
-          <NavBarTest
-            environment={environment}
-            loadMenuConfig={() =>
-              Promise.all([
-                Promise.resolve(createTestNavBarLegacyMenuJsonConfig('orders')),
-                Promise.resolve(
-                  createTestNavBarLegacyMenuJsonConfig('products')
-                ),
-              ])
-            }
-          />
-        );
-        await waitForElementToBeRemoved(screen.getByText('loading'));
-        // Orders
-        expect(screen.getByText('Orders')).toBeInTheDocument();
-        expect(screen.getByText('Orders new')).toBeInTheDocument();
-        expect(screen.getByText('Path: orders')).toBeInTheDocument();
-        expect(screen.getByText('Sub-path: orders/new')).toBeInTheDocument();
-
-        // Products
-        expect(screen.getByText('Products')).toBeInTheDocument();
-        expect(screen.getByText('Products new')).toBeInTheDocument();
-        expect(screen.getByText('Path: products')).toBeInTheDocument();
-        expect(screen.getByText('Sub-path: products/new')).toBeInTheDocument();
-      });
-    });
     describe('loading the menu config from the application config', () => {
       it('should render menu key', async () => {
         const environment = createTestEnvironment({
@@ -274,7 +246,9 @@ describe('for local development', () => {
             menuLinks: createTestNavBarMenuLinksConfig(),
           },
         });
-        renderApp(<NavBarTest environment={environment} />);
+        renderApp(<NavBarTest environment={environment} />, {
+          disableRoutePermissionCheck: true,
+        });
         await screen.findByText('Avengers');
         expect(screen.getByText('Add avenger')).toBeInTheDocument();
         expect(screen.getByText('Path: avengers')).toBeInTheDocument();
@@ -292,7 +266,9 @@ describe('for local development', () => {
             accountLinks: createTestAppBarMenuLinksConfig(),
           },
         });
-        renderApp(<AppBarTest environment={environment} />);
+        renderApp(<AppBarTest environment={environment} />, {
+          disableRoutePermissionCheck: true,
+        });
         await screen.findByText('Profile');
         expect(screen.getByText('Path: profile')).toBeInTheDocument();
         expect(screen.getByText('Organizations')).toBeInTheDocument();

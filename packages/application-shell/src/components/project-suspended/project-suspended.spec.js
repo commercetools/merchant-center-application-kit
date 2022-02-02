@@ -33,7 +33,10 @@ describe('rendering', () => {
         path="/:projectKey"
         render={() => <ProjectSuspended isTemporary={true} />}
       />,
-      { route: '/my-project', disableApolloMocks: true }
+      {
+        disableRoutePermissionCheck: true,
+        route: '/my-project',
+      }
     );
     await screen.findByText(
       /Your Project is temporarily suspended due to maintenance/

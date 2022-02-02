@@ -67,7 +67,7 @@ jobs:
 
       # Publish canary releases only if the packages weren't published already
       - name: Publishing canary releases to npm registry
-        if: steps.changesets.outputs.published != 'true'
+        if: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
         run: |
           git checkout main
           yarn changeset version --snapshot canary

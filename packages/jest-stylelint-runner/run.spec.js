@@ -7,7 +7,7 @@ describe('jest-stylelint-runner', () => {
       'should pass',
       () =>
         run({
-          testPath: path.join(__dirname, '__fixtures__', 'good.css'),
+          testPath: path.join(__dirname, '__fixtures__/good.css'),
         }).then((result) => {
           expect(result.numFailingTests).toEqual(0);
           expect(result.numPassingTests).toEqual(1);
@@ -18,23 +18,13 @@ describe('jest-stylelint-runner', () => {
       'should fail',
       () =>
         run({
-          testPath: path.join(__dirname, '__fixtures__', 'bad.css'),
+          testPath: path.join(__dirname, '__fixtures__/bad.css'),
         }).then((result) => {
           expect(result.numFailingTests).toEqual(1);
           expect(result.numPassingTests).toEqual(0);
-        }),
-      10000
-    );
-  });
-  describe('with JS files', () => {
-    it(
-      'should pass',
-      () =>
-        run({
-          testPath: path.join(__dirname, '__fixtures__', 'styled-component.js'),
-        }).then((result) => {
-          expect(result.numFailingTests).toEqual(0);
-          expect(result.numPassingTests).toEqual(1);
+          expect(result.failureMessage).toMatch(
+            /Unexpected custom property "--color-does-not-exist" inside declaration/
+          );
         }),
       10000
     );

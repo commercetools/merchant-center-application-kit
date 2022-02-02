@@ -47,8 +47,15 @@ const throwIfTemplateVersionDoesNotExist = (
   }
 };
 
+const throwIfInitialProjectKeyIsMissing = (initialProjectKey) => {
+  if (!initialProjectKey) {
+    throw new Error(`Provide a valid project key that you have access to.`);
+  }
+};
+
 module.exports = {
   throwIfTemplateIsNotSupported,
   throwIfProjectDirectoryExists,
   throwIfTemplateVersionDoesNotExist,
+  throwIfInitialProjectKeyIsMissing,
 };

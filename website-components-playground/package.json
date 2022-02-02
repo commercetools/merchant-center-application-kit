@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-website/components-playground",
-  "version": "17.1.14",
+  "version": "17.1.15-rc.2",
   "private": true,
   "scripts": {
     "build:local": "gatsby build",
@@ -9,8 +9,8 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
-    "@commercetools-frontend/application-components": "20.13.0",
-    "@commercetools-frontend/i18n": "20.13.0",
+    "@commercetools-frontend/application-components": "21.0.0-rc.3",
+    "@commercetools-frontend/i18n": "21.0.0-rc.3",
     "@commercetools-uikit/design-system": "^12.2.9",
     "@commercetools-uikit/icon-button": "^12.2.9",
     "@commercetools-uikit/icons": "^12.2.9",
@@ -24,12 +24,12 @@
     "@emotion/react": "11.7.1",
     "@emotion/styled": "11.6.0",
     "@fontsource/open-sans": "4.5.2",
-    "core-js": "3.20.3",
+    "core-js": "^3.20.3",
     "formik": "2.2.9",
-    "gatsby": "4.5.4",
-    "gatsby-cli": "4.5.2",
-    "gatsby-plugin-emotion": "7.5.0",
-    "gatsby-source-filesystem": "4.5.2",
+    "gatsby": "4.6.0",
+    "gatsby-cli": "4.6.0",
+    "gatsby-plugin-emotion": "7.6.0",
+    "gatsby-source-filesystem": "4.6.0",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.34",
     "prop-types": "15.8.1",

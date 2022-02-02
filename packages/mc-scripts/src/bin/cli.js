@@ -12,29 +12,35 @@ const dotenv = require('dotenv');
 const dotenvExpand = require('dotenv-expand');
 const spawn = require('react-dev-utils/crossSpawn');
 
-const flags = mri(process.argv.slice(2), { alias: { help: ['h'] } });
+const flags = mri(process.argv.slice(2), {
+  alias: { help: ['h'] },
+  boolean: ['build-only'],
+});
 const commands = flags._;
 
 if (commands.length === 0 || (flags.help && commands.length === 0)) {
   console.log(`
 Usage: mc-scripts [global-options] [command] [options]
 
+https://docs.commercetools.com/custom-applications/api-reference/cli.
+
 Global options:
 
-  --env <path>              (optional) Parses the file path as a dotenv file and adds the variables to the environment. Multiple flags are allowed.
+  --env <path>                (optional) Parses the file path as a dotenv file and adds the variables to the environment. Multiple flags are allowed.
 
 Commands:
 
-  build                     Bundles the application in production mode. Outputs a "dist" folder.
+  build                       Bundles the application in production mode. Outputs a "public" folder.
+    --build-only              (optional) If defined, the command only creates the production bundles without compiling the "index.html".
 
-  compile-html              Compiles "index.html.template" file into a "index.html" with all the required runtime configuration. Outputs a "public" folder. Additionally, the security headers are also compiled and printed to stdout, unless you use a "transformer".
-                            More info at https://docs.commercetools.com/custom-applications/deployment/compiling-a-custom-application.
-      --transformer <path>  (optional) The path to a JS module that can be used to generate a configuration for a specific cloud provider (e.g. Netlify, Vercel, Firebase).
-      --inline-csp          (optional) If defined, the CSP config is inlined in the HTML head as a meta tag. This might be useful to keep using a static config for a hosting provider without the dynamically generated Content-Security-Policy header.
+  compile-html                Compiles "index.html.template" file into a "index.html" with all the required runtime configuration. Additionally, the security headers are also compiled and printed to stdout, unless you use a "transformer".
+    --transformer <path>      (optional) The path to a JS module that can be used to generate a configuration for a specific cloud provider (e.g. Vercel, Netlify).
+    --print-security-headers  (optional) The path to a JS module that can be used to generate a configuration for a specific cloud provider (e.g. Vercel, Netlify).
 
-  start                     Starts the application in development mode using Webpack Dev Server.
+  start                       Starts the application in development mode using Webpack Dev Server.
 
-  serve                     Serves previously built and compiled application from the "public" folder.
+  serve                       Serves previously built and compiled application from the "public" folder.
+
   `);
   process.exit(0);
 }
@@ -52,14 +58,23 @@ const applicationDirectory = fs.realpathSync(process.cwd());
         process.env.BABEL_ENV = 'production';
         process.env.NODE_ENV = 'production';
 
-        proxyCommand();
+        const shouldAlsoCompile = !flags['build-only'];
+
+        proxyCommand(command, {
+          noExit: shouldAlsoCompile,
+        });
+
+        if (shouldAlsoCompile) {
+          proxyCommand('compile-html');
+        }
+
         break;
       }
       case 'serve': {
         // Do this as the first thing so that any code reading it knows the right env.
         process.env.NODE_ENV = 'production';
 
-        proxyCommand();
+        proxyCommand(command);
         break;
       }
       case 'compile-html': {
@@ -67,8 +82,8 @@ const applicationDirectory = fs.realpathSync(process.cwd());
         process.env.NODE_ENV = 'production';
 
         // Get specific flag for this command.
-        const commandArgs = getArgsForCommand(['transformer', 'inline-csp']);
-        proxyCommand({ commandArgs });
+        const commandArgs = getArgsForCommand(['transformer']);
+        proxyCommand(command, { commandArgs });
         break;
       }
       case 'start': {
@@ -76,7 +91,7 @@ const applicationDirectory = fs.realpathSync(process.cwd());
         process.env.BABEL_ENV = 'development';
         process.env.NODE_ENV = 'development';
 
-        proxyCommand();
+        proxyCommand(command);
         break;
       }
       default:
@@ -102,7 +117,7 @@ function getArgsForCommand(allowedFlags = []) {
   }, []);
 }
 
-function proxyCommand({ commandArgs } = {}) {
+function proxyCommand(fileName, { commandArgs, noExit } = {}) {
   // Load dotenv files into the process environment.
   // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
   loadDotEnvFiles(flags);
@@ -110,7 +125,7 @@ function proxyCommand({ commandArgs } = {}) {
   // Spawn the actual command.
   const result = spawn.sync(
     'node',
-    [require.resolve(`../commands/${command}`)].concat(commandArgs),
+    [require.resolve(`../commands/${fileName}`)].concat(commandArgs),
     { stdio: 'inherit' }
   );
 
@@ -119,13 +134,13 @@ function proxyCommand({ commandArgs } = {}) {
     switch (result.signal) {
       case 'SIGKILL': {
         console.log(
-          `The command ${command} failed because the process exited too early. This probably means the system ran out of memory or someone called "kill -9" on the process.`
+          `The command ${fileName} failed because the process exited too early. This probably means the system ran out of memory or someone called "kill -9" on the process.`
         );
         break;
       }
       case 'SIGTERM': {
         console.log(
-          `The command ${command} failed because the process exited too early. Someone might have called "kill" or "killall", or the system could be shutting down.`
+          `The command ${fileName} failed because the process exited too early. Someone might have called "kill" or "killall", or the system could be shutting down.`
         );
         break;
       }
@@ -134,7 +149,13 @@ function proxyCommand({ commandArgs } = {}) {
     }
     process.exit(1);
   }
-  process.exit(result.status);
+  if (result.status > 0) {
+    process.exit(result.status);
+  } else {
+    if (!noExit) {
+      process.exit(result.status);
+    }
+  }
 }
 
 // Load dotenv files into the process environment.

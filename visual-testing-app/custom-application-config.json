@@ -3,8 +3,23 @@
   "entryPointUriPath": "<not_important>",
   "cloudIdentifier": "gcp-eu",
   "env": {
+    "development": {
+      "initialProjectKey": "project-key"
+    },
     "production": {
+      "applicationId": "app-id-123",
       "url": "https://<not_important>"
     }
-  }
+  },
+  "oAuthScopes": {
+    "view": ["view_products"],
+    "manage": []
+  },
+  "icon": "<svg><path fill=\"#000000\" /></svg>",
+  "mainMenuLink": {
+    "defaultLabel": "VRT",
+    "labelAllLocales": [],
+    "permissions": []
+  },
+  "submenuLinks": []
 }

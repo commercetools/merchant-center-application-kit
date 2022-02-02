@@ -10,23 +10,29 @@ type BuilOidcScopeOptions = {
 
 const buildOidcScope = (options: BuilOidcScopeOptions): string => {
   const claims = [];
+
+  // Set the projectKey
   if (options.projectKey) {
     claims.push(`${OIDC_CLAIMS.PROJECT_KEY}:${options.projectKey}`);
-    claims.push(
-      ...(options.oAuthScopes?.view ?? []).map(
-        (scope) => `${OIDC_CLAIMS.VIEW}:${scope}`
-      )
-    );
-    claims.push(
-      ...(options.oAuthScopes?.manage ?? []).map(
-        (scope) => `${OIDC_CLAIMS.MANAGE}:${scope}`
-      )
-    );
   }
-  const teamId = options.teamId;
-  if (teamId) {
-    claims.push(`${OIDC_CLAIMS.TEAM_ID}:${teamId}`);
+
+  // Set the OAuth Scopes
+  claims.push(
+    ...(options.oAuthScopes?.view ?? []).map(
+      (scope) => `${OIDC_CLAIMS.VIEW}:${scope}`
+    )
+  );
+  claims.push(
+    ...(options.oAuthScopes?.manage ?? []).map(
+      (scope) => `${OIDC_CLAIMS.MANAGE}:${scope}`
+    )
+  );
+
+  // Set the teamId
+  if (options.teamId) {
+    claims.push(`${OIDC_CLAIMS.TEAM_ID}:${options.teamId}`);
   }
+
   return [
     // This is required as per OIDC spec.
     OIDC_CLAIMS.OPEN_ID,

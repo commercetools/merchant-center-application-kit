@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-components",
-  "version": "20.13.0",
+  "version": "21.0.0-rc.3",
   "description": "Generic components for building Merchant Center applications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -8,7 +8,7 @@
     "url": "https://github.com/commercetools/merchant-center-application-kit.git",
     "directory": "packages/application-components"
   },
-  "homepage": "https://docs.commercetools.com/custom-applications",
+  "homepage": "https://docs.commercetools.com/custom-applications/api-reference/commercetools-frontend-application-components",
   "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
   "publishConfig": {
@@ -27,13 +27,13 @@
     "README.md"
   ],
   "dependencies": {
-    "@babel/runtime": "7.16.7",
-    "@babel/runtime-corejs3": "7.16.8",
-    "@commercetools-frontend/application-shell-connectors": "20.12.3",
-    "@commercetools-frontend/assets": "20.12.3",
-    "@commercetools-frontend/constants": "20.12.3",
-    "@commercetools-frontend/i18n": "20.13.0",
-    "@commercetools-frontend/l10n": "20.12.3",
+    "@babel/runtime": "^7.16.7",
+    "@babel/runtime-corejs3": "^7.16.8",
+    "@commercetools-frontend/application-shell-connectors": "21.0.0-rc.3",
+    "@commercetools-frontend/assets": "21.0.0-rc.1",
+    "@commercetools-frontend/constants": "21.0.0-rc.3",
+    "@commercetools-frontend/i18n": "21.0.0-rc.3",
+    "@commercetools-frontend/l10n": "21.0.0-rc.3",
     "@commercetools-uikit/card": "^12.2.9",
     "@commercetools-uikit/constraints": "^12.2.9",
     "@commercetools-uikit/design-system": "^12.2.9",

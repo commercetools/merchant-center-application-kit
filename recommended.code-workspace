@@ -32,18 +32,6 @@
       "typescriptreact",
       "graphql"
     ],
-    "stylelint.configOverrides": {
-      "rules": {
-        "csstools/value-no-unknown-custom-properties": [
-          true,
-          {
-            "importFrom": [
-              "node_modules/@commercetools-uikit/design-system/materials/custom-properties.css"
-            ]
-          }
-        ]
-      }
-    },
     "vscode-vale.path": "${workspaceFolder}/node_modules/.bin/commercetools-vale",
     "vscode-vale.fileExtensions": [
       "md",

@@ -34,7 +34,9 @@ const renderUser = () =>
         return null;
       }}
     </FetchUser>,
-    { disableApolloMocks: true }
+    {
+      disableRoutePermissionCheck: true,
+    }
   );
 
 describe('rendering', () => {
@@ -42,7 +44,7 @@ describe('rendering', () => {
     it('should fetch user and pass data to children function', async () => {
       renderUser();
 
-      await waitForElementToBeRemoved(() => screen.getByText('loading...'));
+      await waitForElementToBeRemoved(() => screen.queryByText('loading...'));
 
       expect(screen.getByText(/John/i)).toBeInTheDocument();
     });
@@ -58,7 +60,7 @@ describe('rendering', () => {
 
       renderUser();
 
-      await waitForElementToBeRemoved(() => screen.getByText('loading...'));
+      await waitForElementToBeRemoved(() => screen.queryByText('loading...'));
 
       expect(
         screen.getByText(/Error: Something went wrong(.*)/i)
@@ -77,7 +79,7 @@ describe('rendering', () => {
 
       renderUser();
 
-      await waitForElementToBeRemoved(() => screen.getByText('loading...'));
+      await waitForElementToBeRemoved(() => screen.queryByText('loading...'));
 
       expect(
         screen.getByText(/Error: Response not successful(.*)/i)

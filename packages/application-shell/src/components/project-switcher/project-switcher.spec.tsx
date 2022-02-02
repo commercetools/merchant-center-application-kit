@@ -19,6 +19,7 @@ const render = () => {
       <ProjectSwitcher projectKey="key-0" />
     </>,
     {
+      disableRoutePermissionCheck: true,
       mocks: mockedRequest,
     }
   );

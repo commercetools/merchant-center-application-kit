@@ -78,15 +78,25 @@ const createTestAppliedPermissions = ({
     allAppliedMenuVisibilities,
   },
 });
+const createTestNavBarMenuLinksConfig = (props = {}) => ({
+  icon: '<svg><path fill="#000000" /></svg>',
+  defaultLabel: 'Avengers',
+  labelAllLocales: [{ locale: 'en', value: 'Avengers' }],
+  permissions: [],
+  submenuLinks: [
+    {
+      uriPath: 'new',
+      defaultLabel: 'Add avenger',
+      labelAllLocales: [{ locale: 'en', value: 'Add avenger' }],
+      permissions: [],
+    },
+  ],
+  ...props,
+});
 
 const renderApp = (ui, options = {}) => {
   const { route, renderNodeAsChildren, ...customProps } = options;
   const jsxElem = ui || <p>{'OK'}</p>;
-  const initialRoute = route || '/';
-  const testHistory = createEnhancedHistory(
-    createMemoryHistory({ initialEntries: [initialRoute] })
-  );
-  ApplicationShellProvider.history = testHistory;
   const defaultProps = createTestProps();
   const props = {
     ...defaultProps,
@@ -96,6 +106,11 @@ const renderApp = (ui, options = {}) => {
       ? { children: jsxElem }
       : { render: () => jsxElem }),
   };
+  const initialRoute = route || `/`;
+  const testHistory = createEnhancedHistory(
+    createMemoryHistory({ initialEntries: [initialRoute] })
+  );
+  ApplicationShellProvider.history = testHistory;
   const { container } = render(<ApplicationShell {...props} />);
   const findByLeftNavigation = () => screen.findByTestId('left-navigation');
   const queryByLeftNavigation = () => screen.queryByTestId('left-navigation');
@@ -229,9 +244,57 @@ describe.each`
       renderApp(<TestComponent />, {
         renderNodeAsChildren,
         route,
+        disableRoutePermissionCheck: true,
       });
       await screen.findByText('Application name: my-app');
     });
+
+    if (renderNodeAsChildren) {
+      describe('when route permission check is enabled (default)', () => {
+        it('should render page if application has view permission', async () => {
+          mockServer.use(
+            ...getDefaultMockResolvers({
+              projects: [
+                ProjectMock.build({
+                  ...createTestAppliedPermissions({
+                    allAppliedPermissions: [
+                      {
+                        name: 'canViewAvengers',
+                        value: true,
+                      },
+                    ],
+                  }),
+                }),
+              ],
+            })
+          );
+          const TestComponent = () => {
+            const applicationName = useApplicationContext(
+              (context) => context.environment.applicationName
+            );
+            return <p>{`Application name: ${applicationName}`}</p>;
+          };
+          renderApp(<TestComponent />, {
+            renderNodeAsChildren,
+            route,
+          });
+          await screen.findByText('Application name: my-app');
+        });
+        it('should render unauthorized page if application does not have view permission', async () => {
+          const TestComponent = () => {
+            const applicationName = useApplicationContext(
+              (context) => context.environment.applicationName
+            );
+            return <p>{`Application name: ${applicationName}`}</p>;
+          };
+          renderApp(<TestComponent />, {
+            renderNodeAsChildren,
+            route,
+          });
+          await screen.findByText(/you are not authorized to view it/);
+        });
+      });
+    }
 
     describe('when user navigates to "/account" route', () => {
       if (renderNodeAsChildren) {
@@ -239,6 +302,7 @@ describe.each`
           const { history } = renderApp(null, {
             renderNodeAsChildren,
             environment: { servedByProxy: true },
+            disableRoutePermissionCheck: true,
           });
           await screen.findByText('OK');
           history.push('/account');
@@ -250,6 +314,7 @@ describe.each`
         it('should render using the "render" prop', async () => {
           const { history } = renderApp(null, {
             renderNodeAsChildren,
+            disableRoutePermissionCheck: true,
           });
           await screen.findByText('OK');
           history.push('/account');
@@ -263,7 +328,9 @@ describe.each`
 
 describe('when route does not contain a project key (e.g. /account)', () => {
   it('should not render NavBar', async () => {
-    const { history, queryByLeftNavigation } = renderApp();
+    const { history, queryByLeftNavigation } = renderApp(null, {
+      disableRoutePermissionCheck: true,
+    });
     await screen.findByText('OK');
     history.push('/account');
     await waitFor(() => {
@@ -627,8 +694,8 @@ describe('when user is not authenticated', () => {
       expect(location.replace).toHaveBeenCalledWith(
         `${window.location.origin}/login?${queryParams}`
       );
-      expect(screen.queryByText('OK')).not.toBeInTheDocument();
     });
+    expect(screen.queryByText('OK')).not.toBeInTheDocument();
   });
 });
 describe('when selecting project locale "de"', () => {
@@ -786,23 +853,24 @@ describe('navbar menu links interactions', () => {
   }
   describe('when rendering navbar menu links from local config', () => {
     it('should render links with all the correct state attributes', async () => {
-      const navbarSubmenuMock = ApplicationNavbarSubmenuMock.build();
-      const navbarMock = ApplicationNavbarMenuMock.build({
-        submenu: [navbarSubmenuMock],
-      });
+      const menuLinks = createTestNavBarMenuLinksConfig();
       const {
         container,
         findByLeftNavigation,
         waitForLeftNavigationToBeLoaded,
       } = renderApp(null, {
-        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+        environment: {
+          __DEVELOPMENT__: {
+            menuLinks,
+          },
+        },
       });
 
       const applicationLocale = 'en';
-      const mainMenuLabel = navbarMock.labelAllLocales.find(
+      const mainMenuLabel = menuLinks.labelAllLocales.find(
         (localized) => localized.locale === applicationLocale
       );
-      const mainSubmenuLabel = navbarSubmenuMock.labelAllLocales.find(
+      const mainSubmenuLabel = menuLinks.submenuLinks[0].labelAllLocales.find(
         (localized) => localized.locale === applicationLocale
       );
 
@@ -844,6 +912,8 @@ describe('navbar menu links interactions', () => {
                     }),
                   }),
                 }),
+                // TODO: also test installed applications!
+                installedApplications: [],
               }),
             })
           );
@@ -939,16 +1009,19 @@ describe('when navbar menu items are hidden', () => {
     );
   });
   it('should not render hidden menu items', async () => {
-    const navbarSubmenuMock = ApplicationNavbarSubmenuMock.build({
+    const menuLinks = createTestNavBarMenuLinksConfig({
       menuVisibility: 'hideFoo',
+      submenuLinks: [],
     });
-    const navbarMock = ApplicationNavbarMenuMock.build({
-      submenu: [navbarSubmenuMock],
-    });
+
     const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
       null,
       {
-        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+        environment: {
+          __DEVELOPMENT__: {
+            menuLinks,
+          },
+        },
       }
     );
     await waitForLeftNavigationToBeLoaded();
@@ -957,7 +1030,7 @@ describe('when navbar menu items are hidden', () => {
     const navbarRendered = within(container);
 
     const applicationLocale = 'en';
-    const mainMenuLabel = navbarMock.labelAllLocales.find(
+    const mainMenuLabel = menuLinks.labelAllLocales.find(
       (localized) => localized.locale === applicationLocale
     );
     await waitFor(() => {
@@ -989,20 +1062,24 @@ describe('when navbar menu items match given permissions', () => {
     );
   });
   it('should render item', async () => {
-    const navbarMock = ApplicationNavbarMenuMock.build({
+    const menuLinks = createTestNavBarMenuLinksConfig({
       permissions: ['ManageOrders'],
     });
     const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
       null,
       {
-        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+        environment: {
+          __DEVELOPMENT__: {
+            menuLinks,
+          },
+        },
       }
     );
     await waitForLeftNavigationToBeLoaded();
     const container = await findByLeftNavigation();
 
     const applicationLocale = 'en';
-    const mainMenuLabel = navbarMock.labelAllLocales.find(
+    const mainMenuLabel = menuLinks.labelAllLocales.find(
       (localized) => localized.locale === applicationLocale
     );
     await within(container).findByText(mainMenuLabel.value);
@@ -1030,13 +1107,17 @@ describe('when navbar menu items do not match given permissions', () => {
     );
   });
   it('should not render item', async () => {
-    const navbarMock = ApplicationNavbarMenuMock.build({
+    const menuLinks = createTestNavBarMenuLinksConfig({
       permissions: ['ViewOrders'],
     });
     const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
       null,
       {
-        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+        environment: {
+          __DEVELOPMENT__: {
+            menuLinks,
+          },
+        },
       }
     );
     await waitForLeftNavigationToBeLoaded();
@@ -1045,7 +1126,7 @@ describe('when navbar menu items do not match given permissions', () => {
     const navbarRendered = within(container);
 
     const applicationLocale = 'en';
-    const mainMenuLabel = navbarMock.labelAllLocales.find(
+    const mainMenuLabel = menuLinks.labelAllLocales.find(
       (localized) => localized.locale === applicationLocale
     );
     await waitFor(() => {
@@ -1085,21 +1166,25 @@ describe('when navbar menu items match given action rights', () => {
     );
   });
   it('should render item', async () => {
-    const navbarMock = ApplicationNavbarMenuMock.build({
+    const menuLinks = createTestNavBarMenuLinksConfig({
       permissions: ['ManageOrders'],
       actionRights: [{ group: 'orders', name: 'AddOrders' }],
     });
     const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
       null,
       {
-        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+        environment: {
+          __DEVELOPMENT__: {
+            menuLinks,
+          },
+        },
       }
     );
     await waitForLeftNavigationToBeLoaded();
     const container = await findByLeftNavigation();
 
     const applicationLocale = 'en';
-    const mainMenuLabel = navbarMock.labelAllLocales.find(
+    const mainMenuLabel = menuLinks.labelAllLocales.find(
       (localized) => localized.locale === applicationLocale
     );
     await within(container).findByText(mainMenuLabel.value);
@@ -1135,14 +1220,18 @@ describe('when navbar menu items do not match given action rights', () => {
     );
   });
   it('should not render item', async () => {
-    const navbarMock = ApplicationNavbarMenuMock.build({
+    const menuLinks = createTestNavBarMenuLinksConfig({
       permissions: ['ManageOrders'],
       actionRights: [{ group: 'orders', name: 'AddOrders' }],
     });
     const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
       null,
       {
-        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+        environment: {
+          __DEVELOPMENT__: {
+            menuLinks,
+          },
+        },
       }
     );
     await waitForLeftNavigationToBeLoaded();
@@ -1151,7 +1240,7 @@ describe('when navbar menu items do not match given action rights', () => {
     const navbarRendered = within(container);
 
     const applicationLocale = 'en';
-    const mainMenuLabel = navbarMock.labelAllLocales.find(
+    const mainMenuLabel = menuLinks.labelAllLocales.find(
       (localized) => localized.locale === applicationLocale
     );
     await waitFor(() => {
@@ -1192,7 +1281,7 @@ describe('when navbar menu items match given data fences', () => {
     );
   });
   it('should render item', async () => {
-    const navbarMock = ApplicationNavbarMenuMock.build({
+    const menuLinks = createTestNavBarMenuLinksConfig({
       permissions: ['ManageOrders'],
       dataFences: [
         {
@@ -1205,14 +1294,18 @@ describe('when navbar menu items match given data fences', () => {
     const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
       null,
       {
-        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+        environment: {
+          __DEVELOPMENT__: {
+            menuLinks,
+          },
+        },
       }
     );
     await waitForLeftNavigationToBeLoaded();
     const container = await findByLeftNavigation();
 
     const applicationLocale = 'en';
-    const mainMenuLabel = navbarMock.labelAllLocales.find(
+    const mainMenuLabel = menuLinks.labelAllLocales.find(
       (localized) => localized.locale === applicationLocale
     );
     await within(container).findByText(mainMenuLabel.value);
@@ -1249,7 +1342,7 @@ describe('when navbar menu items do not match given data fences', () => {
     );
   });
   it('should not render item', async () => {
-    const navbarMock = ApplicationNavbarMenuMock.build({
+    const menuLinks = createTestNavBarMenuLinksConfig({
       permissions: ['ManageOrders'],
       dataFences: [
         {
@@ -1262,14 +1355,18 @@ describe('when navbar menu items do not match given data fences', () => {
     const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
       null,
       {
-        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+        environment: {
+          __DEVELOPMENT__: {
+            menuLinks,
+          },
+        },
       }
     );
     await waitForLeftNavigationToBeLoaded();
     const container = await findByLeftNavigation();
 
     const applicationLocale = 'en';
-    const mainMenuLabel = navbarMock.labelAllLocales.find(
+    const mainMenuLabel = menuLinks.labelAllLocales.find(
       (localized) => localized.locale === applicationLocale
     );
     await waitFor(async () => {

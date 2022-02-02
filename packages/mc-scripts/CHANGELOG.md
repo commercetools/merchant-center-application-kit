@@ -1,5 +1,107 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.0.0-rc.9
+
+### Minor Changes
+
+- [#2467](https://github.com/commercetools/merchant-center-application-kit/pull/2467) [`1763f30b`](https://github.com/commercetools/merchant-center-application-kit/commit/1763f30ba1754c6a20b8c86876592e8f59d8778e) Thanks [@emmenko](https://github.com/emmenko)! - Update `css-loader` to `v6`. Support both `.mod.css` and `.module.css` for CSS module files.
+
+## 21.0.0-rc.8
+
+### Major Changes
+
+- [#2465](https://github.com/commercetools/merchant-center-application-kit/pull/2465) [`91331314`](https://github.com/commercetools/merchant-center-application-kit/commit/91331314a10b683921fd5f21837b837985e6069b) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade Stylelint and PostCSS dependencies.
+
+  The peer dependency min version for `stylelint` is now `14`. If your project has a Stylelint config file, we recommend to follow the [Migrating to 14.0.0 guide](https://github.com/stylelint/stylelint/blob/main/docs/migration-guide/to-14.md).
+
+  > Note that the syntax support for CSS-in-JS languages has been removed from Stylelint and therefore is not available by default in the `jest-stylelint-runner`.
+
+  Moreover, the `postcss-color-mod-function` dependency has been removed, as the `color-mod()` function is [not part of the CSS Color spec](https://github.com/w3c/csswg-drafts/commit/034b063697c3dadf144504f52e0858a79cd84414) anymore. If you were relying on this function you need to find another solution.
+
+## 21.0.0-rc.7
+
+### Patch Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`504fe229`](https://github.com/commercetools/merchant-center-application-kit/commit/504fe229077e0c6d0dd9f5f9d06dfcd14ef0de35) Thanks [@emmenko](https://github.com/emmenko)! - Adjust webpack dev server error message for `/api/graphql` endpoint.
+
+- Updated dependencies [[`71171d65`](https://github.com/commercetools/merchant-center-application-kit/commit/71171d65c276801d499f9b39923674114dff360c)]:
+  - @commercetools-frontend/babel-preset-mc-app@21.0.0-rc.7
+  - @commercetools-frontend/application-config@21.0.0-rc.7
+  - @commercetools-frontend/mc-html-template@21.0.0-rc.7
+
+## 21.0.0-rc.5
+
+### Patch Changes
+
+- Updated dependencies [[`8c189ad3`](https://github.com/commercetools/merchant-center-application-kit/commit/8c189ad3233b7bf7846e097539f2c47827c79b2b)]:
+  - @commercetools-frontend/babel-preset-mc-app@21.0.0-rc.5
+  - @commercetools-frontend/application-config@21.0.0-rc.5
+  - @commercetools-frontend/mc-html-template@21.0.0-rc.5
+
+## 21.0.0-rc.4
+
+### Patch Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`6d3b7ba3`](https://github.com/commercetools/merchant-center-application-kit/commit/6d3b7ba3f835e86846c4cc1619ccd4ab237636d1) Thanks [@emmenko](https://github.com/emmenko)! - Fix WebpackDevServer deprecation warnings
+
+- Updated dependencies [[`5e3ee854`](https://github.com/commercetools/merchant-center-application-kit/commit/5e3ee854b77cb052be448afb5ecc6b2c62b0d712)]:
+  - @commercetools-frontend/application-config@21.0.0-rc.4
+  - @commercetools-frontend/mc-html-template@21.0.0-rc.4
+
+## 21.0.0-rc.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/mc-html-template@21.0.0-rc.3
+
+## 21.0.0-rc.2
+
+### Patch Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`8fbae1d9`](https://github.com/commercetools/merchant-center-application-kit/commit/8fbae1d92a34e1ddbd5bfbae4ef6a0bb234847d6) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade `react-dev-utils` to `v12`
+
+* [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`d8e36891`](https://github.com/commercetools/merchant-center-application-kit/commit/d8e36891b3a78c5475818f96d068e4cdd1ab1a3e) Thanks [@emmenko](https://github.com/emmenko)! - Include fallback polyfills in Webpack config for `url` and `querystring`.
+
+## 21.0.0-rc.1
+
+### Patch Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`5ea8baf1`](https://github.com/commercetools/merchant-center-application-kit/commit/5ea8baf1b2ca2661aac9a6a572d2c8e596ee0b2c) Thanks [@emmenko](https://github.com/emmenko)! - Use version range for Babel packages.
+
+- Updated dependencies [[`5ea8baf1`](https://github.com/commercetools/merchant-center-application-kit/commit/5ea8baf1b2ca2661aac9a6a572d2c8e596ee0b2c), [`1bee4f25`](https://github.com/commercetools/merchant-center-application-kit/commit/1bee4f25043af3e6408f624fa3e632bd7e39a587)]:
+  - @commercetools-frontend/application-config@21.0.0-rc.1
+  - @commercetools-frontend/babel-preset-mc-app@21.0.0-rc.1
+  - @commercetools-frontend/mc-dev-authentication@21.0.0-rc.1
+  - @commercetools-frontend/mc-html-template@21.0.0-rc.1
+  - @commercetools-frontend/assets@21.0.0-rc.1
+
+## 21.0.0-rc.0
+
+### Major Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`1c363fad`](https://github.com/commercetools/merchant-center-application-kit/commit/1c363fad7ab770a739ac8080358e41ae4af42074) Thanks [@emmenko](https://github.com/emmenko)! - Drop Node.js `v12`. Recommended min Node.js version is `v14` or `v16`.
+
+* [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`07f5b00f`](https://github.com/commercetools/merchant-center-application-kit/commit/07f5b00f3045a3e30462a1150e6ba85fcecc9098) Thanks [@emmenko](https://github.com/emmenko)! - Following breaking changes were introduced:
+
+  - In `mc-scripts`, the `build` command additionally compiles the `index.html` by default.
+  - Running the `compile-html` command by default should not be necessary anymore. However, you can pass `--build-only` to the `build` command to opt-out of the compilation step, in case you want to run it separately, for example to use the `--transformer`.
+  - Running the `compile-html` command by default does not print to `stdout` the JSON string with the security headers. You can opt into the old behavior by passing the `--print-security-headers` option.
+  - The `--inline-csp` of `compile-html` has been dropped, as it's now the built-in behavior.
+  - The `dist` folder created by the `build` command has been removed. Instead, the `build` command writes the production bundles directly into the `public` folder.
+
+  For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-31-custom-applications-v21).
+
+### Patch Changes
+
+- [#2450](https://github.com/commercetools/merchant-center-application-kit/pull/2450) [`eb8f5b2c`](https://github.com/commercetools/merchant-center-application-kit/commit/eb8f5b2c885a4c3ffc7857a61e50508b429bf964) Thanks [@emmenko](https://github.com/emmenko)! - Update dependencies
+
+- Updated dependencies [[`eb8f5b2c`](https://github.com/commercetools/merchant-center-application-kit/commit/eb8f5b2c885a4c3ffc7857a61e50508b429bf964), [`b8fb4cbb`](https://github.com/commercetools/merchant-center-application-kit/commit/b8fb4cbbb8b78ff18af7edf8100703f7f9712187), [`1c363fad`](https://github.com/commercetools/merchant-center-application-kit/commit/1c363fad7ab770a739ac8080358e41ae4af42074), [`07f5b00f`](https://github.com/commercetools/merchant-center-application-kit/commit/07f5b00f3045a3e30462a1150e6ba85fcecc9098)]:
+  - @commercetools-frontend/application-config@21.0.0-rc.0
+  - @commercetools-frontend/babel-preset-mc-app@21.0.0-rc.0
+  - @commercetools-frontend/mc-html-template@21.0.0-rc.0
+  - @commercetools-frontend/mc-dev-authentication@21.0.0-rc.0
+
 ## 20.13.0
 
 ### Patch Changes

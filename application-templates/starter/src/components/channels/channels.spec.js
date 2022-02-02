@@ -3,11 +3,12 @@ import { setupServer } from 'msw/node';
 import {
   fireEvent,
   screen,
+  mapResourceAccessToAppliedPermissions,
 } from '@commercetools-frontend/application-shell/test-utils';
 import { buildGraphqlList } from '@commercetools-test-data/core';
 import { renderApplicationWithRedux } from '../../test-utils';
 import * as ChannelMock from '../../test-utils/test-data/channel';
-import { entryPointUriPath } from '../../constants/application';
+import { entryPointUriPath, PERMISSIONS } from '../../constants';
 import ApplicationRoutes from '../../routes';
 
 const mockServer = setupServer();
@@ -23,8 +24,10 @@ const renderApp = (options = {}) => {
   const route = options.route || `/my-project/${entryPointUriPath}/channels`;
   const { history } = renderApplicationWithRedux(<ApplicationRoutes />, {
     route,
-    permissions: {
-      canViewProducts: true,
+    project: {
+      allAppliedPermissions: mapResourceAccessToAppliedPermissions([
+        PERMISSIONS.View,
+      ]),
     },
     ...options,
   });

@@ -12,6 +12,7 @@ describe('rendering', () => {
   describe('when "servedByProxy" is "true"', () => {
     it('should force a page reload', async () => {
       renderApp(<RouteCatchAll />, {
+        disableRoutePermissionCheck: true,
         environment: {
           servedByProxy: true,
         },
@@ -24,6 +25,7 @@ describe('rendering', () => {
   describe('when "servedByProxy" is "false"', () => {
     it('should render 404 page', async () => {
       renderApp(<RouteCatchAll />, {
+        disableRoutePermissionCheck: true,
         environment: {
           servedByProxy: false,
         },

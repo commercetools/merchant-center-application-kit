@@ -18,15 +18,20 @@
   },
   "properties": {
     "name": {
-      "description": "The name of the Custom Application",
+      "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#name",
+      "type": "string"
+    },
+    "description": {
+      "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#description",
       "type": "string"
     },
     "entryPointUriPath": {
-      "description": "The unique route path of the Custom Application. This is the identifier that the Merchant Center Proxy uses to match the HTTP request and to forward it to the Custom Application URL. This value also needs to be used in the application client side routes. The value must be the same as the `navbarMenu.uriPath` in the `menu.json` and the application route path when registering the Custom Application. For example, if the Custom Application should be served at the route `/:projectKey/avengers`, the `entryPointUriPath` must be set to `avengers` and the same for the application routes.",
-      "type": "string"
+      "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#entrypointuripath",
+      "type": "string",
+      "pattern": "^[^\\-_]([0-9a-z]|[\\-_](?![\\-_])){2,64}[^\\-_]$"
     },
     "cloudIdentifier": {
-      "description": "The cloud identifier where the Custom Application is running. This value is used to derive the Merchant Center API URL. Alternatively you can use the `mcApiUrl` property.",
+      "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#cloudidentifier",
       "type": "string",
       "oneOf": [
         {
@@ -38,16 +43,17 @@
       ]
     },
     "mcApiUrl": {
-      "description": "The URL of the Merchant Center API. We usually recommend to use the `cloudIdentifier` option to avoid possible typos.",
+      "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#mcapiurl",
       "type": "string"
     },
     "oAuthScopes": {
-      "description": "The requested OAuth Scopes for this Custom Application.",
+      "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#oauthscopes",
       "type": "object",
       "properties": {
         "view": {
-          "description": "The list of view-only OAuth Scopes (https://docs.commercetools.com/api/scopes).",
+          "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#oauthscopesview",
           "type": "array",
+          "default": [],
           "items": {
             "type": "string",
             "pattern": "view_(.*)"
@@ -55,8 +61,9 @@
           "uniqueItems": true
         },
         "manage": {
-          "description": "The list of manage-only OAuth Scopes (https://docs.commercetools.com/api/scopes).",
+          "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#oauthscopesmanage",
           "type": "array",
+          "default": [],
           "items": {
             "type": "string",
             "pattern": "manage_(.*)"
@@ -68,58 +75,56 @@
       "required": ["view", "manage"]
     },
     "env": {
-      "description": "This is an object of keys that represents different environments (for example `production`). The environment used depends on the environment variable `MC_APP_ENV`. If `MC_APP_ENV` isn't set then `NODE_ENV` will be used. If neither is set, it defaults to `development`",
+      "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#env",
       "type": "object",
       "properties": {
         "development": {
-          "description": "Configuration for development only",
           "type": "object",
           "properties": {
             "initialProjectKey": {
-              "description": "The initial project key that the Custom Application is requesting access for. This is only used in development.",
+              "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#envdevelopmentinitialprojectkey",
               "type": "string"
             },
             "teamId": {
-              "description": "The ID of an existing team. This can be used for granting access on behalf of the permissions assigned to that team and project.",
-              "type": "string"
-            }
-          },
-          "additionalProperties": false
-        },
-        "production": {
-          "description": "Configuration for production only",
-          "type": "object",
-          "properties": {
-            "applicationId": {
-              "description": "The ID of the Custom Application (when you register the application in the Merchant Center)",
-              "type": "string"
-            },
-            "url": {
-              "description": "The URL where the Custom Application is hosted",
-              "type": "string"
-            },
-            "cdnUrl": {
-              "description": "The URL where the Custom Application static assets are hosted, like an external CDN. If the static assets are hosted alongside the Custom Application, you can omit this option and the Custom Application URL will be used instead.",
               "type": "string"
             }
           },
           "additionalProperties": false,
-          "required": ["url"]
+          "required": ["initialProjectKey"]
+        },
+        "production": {
+          "type": "object",
+          "properties": {
+            "applicationId": {
+              "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#envproductionapplicationid",
+              "type": "string"
+            },
+            "url": {
+              "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#envproductionurl",
+              "type": "string"
+            },
+            "cdnUrl": {
+              "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#envproductioncdnurl",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": ["applicationId", "url"]
         }
       },
       "additionalProperties": false,
-      "required": ["production"]
+      "required": ["development", "production"]
     },
     "additionalEnv": {
-      "description": "Additional environment values unique to your Custom Application that are injected in the application context.",
+      "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#additionalenv",
       "type": "object"
     },
     "headers": {
-      "description": "Configuration for HTTP headers",
+      "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#headers",
       "type": "object",
       "properties": {
         "csp": {
-          "description": "Configuration for the HTTP Content-Security-Policy header (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)",
+          "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#headerscsp",
           "type": "object",
           "properties": {
             "connect-src": {
@@ -145,15 +150,15 @@
           "required": ["connect-src"]
         },
         "featurePolicies": {
-          "description": "Configuration for the HTTP Feature-Policy header (https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy/Using_Feature_Policy)",
+          "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#headersfeaturepolicies",
           "type": "object"
         },
         "permissionsPolicies": {
-          "description": "Configuration for the HTTP Permissions-Policy header (https://github.com/w3c/webappsec-permissions-policy/blob/main/permissions-policy-explainer.md)",
+          "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#headerspermissionspolicies",
           "type": "object"
         },
         "strictTransportSecurity": {
-          "description": "Additional configuration for the HTTP Strict-Transport-Security header (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)",
+          "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#headersstricttransportsecurity",
           "type": "array",
           "items": {
             "enum": ["includeSubDomains", "preload"]
@@ -161,23 +166,22 @@
           "uniqueItems": true
         }
       },
-      "additionalProperties": false,
-      "required": ["csp"]
+      "additionalProperties": false
     },
-    "menuLinks": {
-      "description": "Configuration for the menu links on the left-side navbar.",
+    "icon": {
+      "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#icon",
+      "type": "string"
+    },
+    "mainMenuLink": {
+      "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#mainmenulink",
       "type": "object",
       "properties": {
-        "icon": {
-          "description": "The SVG icon that represents this application. Pass the raw SVG string or a path to an SVG file, for example a relative path `${path:./app.svg}`, or a path from a module `${path:@commercetools-frontend/assets/application-icons/rocket.svg}`.",
-          "type": "string"
-        },
         "defaultLabel": {
-          "description": "A default label to be rendered if there is no matching localized label for the user locale.",
+          "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#mainmenulinkdefaultlabel",
           "type": "string"
         },
         "labelAllLocales": {
-          "description": "Localized label based on the application locales available from the user profile.",
+          "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#mainmenulinklabelalllocales",
           "type": "array",
           "default": [],
           "items": {
@@ -188,7 +192,6 @@
                 "enum": ["en", "de", "es", "fr-FR", "zh-CN", "ja"]
               },
               "value": {
-                "description": "A label for the specific locale or a reference to a translated message. For example `${intl:en:Menu.Avengers}` which looks for the message key `Menu.Avengers` in the `src/i18n/data/en.json`",
                 "type": "string"
               }
             },
@@ -197,77 +200,79 @@
           }
         },
         "permissions": {
-          "description": "Set the visibility of the menu link. Users must have at least one permission to see the Custom Application in the Merchant Center menu.",
+          "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#mainmenulinkpermissions",
           "type": "array",
           "default": [],
           "items": {
             "type": "string"
           }
-        },
-        "submenuLinks": {
-          "description": "Configuration for the submenu links on the left-side navbar.",
-          "default": [],
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "uriPath": {
-                "description": "Route path relative to the entry point URI path of the Custom Application.",
-                "type": "string"
-              },
-              "defaultLabel": {
-                "description": "A default label to be rendered if there is no matching localized label for the user locale.",
-                "type": "string"
-              },
-              "labelAllLocales": {
-                "description": "Localized label based on the application locales available from the user profile.",
-                "type": "array",
-                "default": [],
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "locale": {
-                      "type": "string",
-                      "enum": ["en", "de", "es", "fr-FR", "zh-CN", "ja"]
-                    },
-                    "value": {
-                      "description": "A label for the specific locale or a reference to a translated message. For example `${intl:en:Menu.Avengers}` which looks for the message key `Menu.Avengers` in the `src/i18n/data/en.json`",
-                      "type": "string"
-                    }
-                  },
-                  "additionalProperties": false,
-                  "required": ["locale", "value"]
-                }
-              },
-              "permissions": {
-                "description": "Set the visibility of the menu link. Users must have at least one permission to see the Custom Application in the Merchant Center menu.",
-                "type": "array",
-                "default": [],
-                "items": {
-                  "type": "string"
-                }
-              }
-            },
-            "additionalProperties": true,
-            "required": [
-              "uriPath",
-              "defaultLabel",
-              "labelAllLocales",
-              "permissions"
-            ]
-          }
         }
       },
       "additionalProperties": true,
-      "required": [
-        "icon",
-        "defaultLabel",
-        "labelAllLocales",
-        "permissions",
-        "submenuLinks"
-      ]
+      "required": ["defaultLabel", "labelAllLocales", "permissions"]
+    },
+    "submenuLinks": {
+      "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#submenulinks",
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "uriPath": {
+            "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#submenulinksuripath",
+            "type": "string"
+          },
+          "defaultLabel": {
+            "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#submenulinksdefaultlabel",
+            "type": "string"
+          },
+          "labelAllLocales": {
+            "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#submenulinkslabelalllocales",
+            "type": "array",
+            "default": [],
+            "items": {
+              "type": "object",
+              "properties": {
+                "locale": {
+                  "type": "string",
+                  "enum": ["en", "de", "es", "fr-FR", "zh-CN", "ja"]
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false,
+              "required": ["locale", "value"]
+            }
+          },
+          "permissions": {
+            "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#submenulinkspermissions",
+            "type": "array",
+            "default": [],
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": true,
+        "required": [
+          "uriPath",
+          "defaultLabel",
+          "labelAllLocales",
+          "permissions"
+        ]
+      }
     }
   },
   "additionalProperties": true,
-  "required": ["name", "entryPointUriPath", "cloudIdentifier", "env"]
+  "required": [
+    "name",
+    "entryPointUriPath",
+    "cloudIdentifier",
+    "env",
+    "oAuthScopes",
+    "icon",
+    "mainMenuLink",
+    "submenuLinks"
+  ]
 }

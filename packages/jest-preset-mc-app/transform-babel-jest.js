@@ -25,9 +25,6 @@ const jestBabelConfig = {
  *  to `babelJest.default.createTransformer`.
  *  In order to remain backwards compatible the
  *  type of the export is checked.
- *
- *  TODO: v21: Remove check and release `jest-preset-mc-app`
- *  as a breaking release.
  */
 const createTransformer =
   typeof babelJest.createTransformer === 'function'

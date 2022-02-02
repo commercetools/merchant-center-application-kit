@@ -1,5 +1,36 @@
 # @commercetools-frontend/eslint-config-mc-app
 
+## 21.0.0-rc.7
+
+### Patch Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`71171d65`](https://github.com/commercetools/merchant-center-application-kit/commit/71171d65c276801d499f9b39923674114dff360c) Thanks [@emmenko](https://github.com/emmenko)! - ESLint config depends on Babel preset. Add pre-configured entry points for Babel preset for different environments.
+
+- Updated dependencies [[`71171d65`](https://github.com/commercetools/merchant-center-application-kit/commit/71171d65c276801d499f9b39923674114dff360c)]:
+  - @commercetools-frontend/babel-preset-mc-app@21.0.0-rc.7
+
+## 21.0.0-rc.5
+
+### Patch Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`611c3717`](https://github.com/commercetools/merchant-center-application-kit/commit/611c37173b0f6c76638c9a201d2df1a5b960d926) Thanks [@emmenko](https://github.com/emmenko)! - Fix config setup
+
+## 21.0.0-rc.1
+
+### Major Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`4e3baf52`](https://github.com/commercetools/merchant-center-application-kit/commit/4e3baf52f15859a1bdeacc9df4270ed84c7066c4) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade to ESLint v8. Make sure you upgrade the `eslint` dependency to v8 as well and fix possible linting errors.
+
+### Patch Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`5ea8baf1`](https://github.com/commercetools/merchant-center-application-kit/commit/5ea8baf1b2ca2661aac9a6a572d2c8e596ee0b2c) Thanks [@emmenko](https://github.com/emmenko)! - Use version range for Babel packages.
+
+## 21.0.0-rc.0
+
+### Patch Changes
+
+- [#2450](https://github.com/commercetools/merchant-center-application-kit/pull/2450) [`eb8f5b2c`](https://github.com/commercetools/merchant-center-application-kit/commit/eb8f5b2c885a4c3ffc7857a61e50508b429bf964) Thanks [@emmenko](https://github.com/emmenko)! - Update dependencies
+
 ## 20.12.3
 
 ### Patch Changes

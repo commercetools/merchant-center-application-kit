@@ -12,6 +12,7 @@ beforeEach(() => {
 describe('given `servedByProxy`', () => {
   it('should redirect to `projects/new`', async () => {
     renderApp(<RedirectToProjectCreate />, {
+      disableRoutePermissionCheck: true,
       environment: {
         servedByProxy: true,
       },
@@ -26,14 +27,18 @@ describe('given `servedByProxy`', () => {
 
 describe('given not `servedByProxy`', () => {
   it('should not redirect to `projects/new`', async () => {
-    renderApp(<RedirectToProjectCreate />);
+    renderApp(<RedirectToProjectCreate />, {
+      disableRoutePermissionCheck: true,
+    });
     await waitFor(() => {
       expect(mocked(location.replace)).not.toHaveBeenCalled();
     });
   });
 
   it('should show development mode message', async () => {
-    renderApp(<RedirectToProjectCreate />);
+    renderApp(<RedirectToProjectCreate />, {
+      disableRoutePermissionCheck: true,
+    });
     await screen.findByText('Please create a project!');
     expect(mocked(location.replace)).not.toHaveBeenCalled();
   });

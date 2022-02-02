@@ -1,5 +1,33 @@
 # @commercetools-frontend/permissions
 
+## 21.0.0-rc.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell-connectors@21.0.0-rc.3
+  - @commercetools-frontend/sentry@21.0.0-rc.3
+
+## 21.0.0-rc.1
+
+### Patch Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`5ea8baf1`](https://github.com/commercetools/merchant-center-application-kit/commit/5ea8baf1b2ca2661aac9a6a572d2c8e596ee0b2c) Thanks [@emmenko](https://github.com/emmenko)! - Use version range for Babel packages.
+
+- Updated dependencies [[`5ea8baf1`](https://github.com/commercetools/merchant-center-application-kit/commit/5ea8baf1b2ca2661aac9a6a572d2c8e596ee0b2c)]:
+  - @commercetools-frontend/application-shell-connectors@21.0.0-rc.1
+  - @commercetools-frontend/sentry@21.0.0-rc.1
+
+## 21.0.0-rc.0
+
+### Patch Changes
+
+- [#2450](https://github.com/commercetools/merchant-center-application-kit/pull/2450) [`eb8f5b2c`](https://github.com/commercetools/merchant-center-application-kit/commit/eb8f5b2c885a4c3ffc7857a61e50508b429bf964) Thanks [@emmenko](https://github.com/emmenko)! - Update dependencies
+
+- Updated dependencies [[`eb8f5b2c`](https://github.com/commercetools/merchant-center-application-kit/commit/eb8f5b2c885a4c3ffc7857a61e50508b429bf964), [`1c363fad`](https://github.com/commercetools/merchant-center-application-kit/commit/1c363fad7ab770a739ac8080358e41ae4af42074)]:
+  - @commercetools-frontend/application-shell-connectors@21.0.0-rc.0
+  - @commercetools-frontend/sentry@21.0.0-rc.0
+
 ## 20.12.3
 
 ### Patch Changes

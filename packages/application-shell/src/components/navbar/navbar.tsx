@@ -10,7 +10,6 @@ import type { TFetchProjectQuery } from '../../types/generated/mc';
 import type {
   TDataFence,
   TActionRight,
-  TApplicationsMenu,
   TLocalizedField,
   TNavbarMenu,
   TBaseMenu,
@@ -605,7 +604,6 @@ type NavbarProps<AdditionalEnvironmentProperties extends {}> = {
   environment: TApplicationContext<AdditionalEnvironmentProperties>['environment'];
   project: TFetchProjectQuery['project'];
   onMenuItemClick?: MenuItemLinkProps['onClick'];
-  DEV_ONLY__loadNavbarMenuConfig?: () => Promise<TApplicationsMenu['navBar']>;
 };
 const NavBar = <AdditionalEnvironmentProperties extends {}>(
   props: NavbarProps<AdditionalEnvironmentProperties>
@@ -621,7 +619,6 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
     allApplicationNavbarMenu,
   } = useNavbarStateManager({
     environment: props.environment,
-    DEV_ONLY__loadNavbarMenuConfig: props.DEV_ONLY__loadNavbarMenuConfig,
   });
   const useFullRedirectsForLinks = Boolean(
     props.environment.useFullRedirectsForLinks

@@ -1,7 +1,7 @@
 import type { Props } from './notification';
 
 import { IntlProvider } from 'react-intl';
-import { screen, render, fireEvent } from '@testing-library/react';
+import { screen, render, fireEvent, waitFor } from '@testing-library/react';
 import {
   NOTIFICATION_DOMAINS,
   NOTIFICATION_KINDS_SIDE,
@@ -35,18 +35,15 @@ const renderComponent = (props: ReturnType<typeof createTestProps>) =>
   );
 
 describe('rendering', () => {
-  let props: ReturnType<typeof createTestProps>;
-  beforeEach(() => {
-    props = createTestProps();
+  it('should render children', async () => {
+    const props = createTestProps();
     renderComponent(props);
-  });
+    await screen.findByText('Test');
 
-  it('should render children', () => {
-    expect(screen.getByText('Test')).toBeInTheDocument();
-  });
-
-  it('should trigger onCloseClick', () => {
     fireEvent.click(screen.getByLabelText('Hide notification'));
-    expect(props.onCloseClick).toHaveBeenCalled();
+
+    await waitFor(() => {
+      expect(props.onCloseClick).toHaveBeenCalled();
+    });
   });
 });

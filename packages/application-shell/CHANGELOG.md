@@ -1,5 +1,249 @@
 # @commercetools-frontend/application-shell
 
+## 21.0.0-rc.8
+
+### Major Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`d1707b78`](https://github.com/commercetools/merchant-center-application-kit/commit/d1707b78e81d007460ddff7b2a4924b997c981e7) Thanks [@emmenko](https://github.com/emmenko)! - The peer dependencies min version for `@testing-library/react` is now `12` and for `@testing-library/react-hooks` is now `7`.
+
+## 21.0.0-rc.6
+
+### Minor Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`433a2604`](https://github.com/commercetools/merchant-center-application-kit/commit/433a2604d1dfeeacfbad477c4a22896c5941a0be) Thanks [@emmenko](https://github.com/emmenko)! - The application `View` permission is automatically applied to the `project` object, based on the `environment.entryPointUriPath` value. You can always override the permission values by explicitly assigning `project.allAppliedPermissions`.
+
+## 21.0.0-rc.5
+
+### Patch Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`4b1c5977`](https://github.com/commercetools/merchant-center-application-kit/commit/4b1c5977aa413732b7a484e06a825e0e6375b5d8) Thanks [@emmenko](https://github.com/emmenko)! - Make `onRegisterErrorListeners` optional
+
+## 21.0.0-rc.4
+
+### Patch Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`5e3ee854`](https://github.com/commercetools/merchant-center-application-kit/commit/5e3ee854b77cb052be448afb5ecc6b2c62b0d712) Thanks [@emmenko](https://github.com/emmenko)! - Unset `initialProjectKey` for `account` app.
+
+## 21.0.0-rc.3
+
+### Minor Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`e6051a9d`](https://github.com/commercetools/merchant-center-application-kit/commit/e6051a9dde8fd77a1e949fe34393b4c7a61dee55) Thanks [@emmenko](https://github.com/emmenko)! - The `applicationId` is required.
+
+* [#2459](https://github.com/commercetools/merchant-center-application-kit/pull/2459) [`f70e3074`](https://github.com/commercetools/merchant-center-application-kit/commit/f70e30742ff4b1228ff3bdc72f4a5d893ef8081f) Thanks [@emmenko](https://github.com/emmenko)! - Enforce that the Custom Application route is protected by the application "View" permission.
+
+### Patch Changes
+
+- Updated dependencies [[`e6051a9d`](https://github.com/commercetools/merchant-center-application-kit/commit/e6051a9dde8fd77a1e949fe34393b4c7a61dee55)]:
+  - @commercetools-frontend/constants@21.0.0-rc.3
+  - @commercetools-frontend/actions-global@21.0.0-rc.3
+  - @commercetools-frontend/application-components@21.0.0-rc.3
+  - @commercetools-frontend/application-shell-connectors@21.0.0-rc.3
+  - @commercetools-frontend/react-notifications@21.0.0-rc.3
+  - @commercetools-frontend/sdk@21.0.0-rc.3
+  - @commercetools-frontend/sentry@21.0.0-rc.3
+  - @commercetools-frontend/permissions@21.0.0-rc.3
+  - @commercetools-frontend/i18n@21.0.0-rc.3
+  - @commercetools-frontend/l10n@21.0.0-rc.3
+
+## 21.0.0-rc.1
+
+### Patch Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`5ea8baf1`](https://github.com/commercetools/merchant-center-application-kit/commit/5ea8baf1b2ca2661aac9a6a572d2c8e596ee0b2c) Thanks [@emmenko](https://github.com/emmenko)! - Use version range for Babel packages.
+
+- Updated dependencies [[`5ea8baf1`](https://github.com/commercetools/merchant-center-application-kit/commit/5ea8baf1b2ca2661aac9a6a572d2c8e596ee0b2c), [`1bee4f25`](https://github.com/commercetools/merchant-center-application-kit/commit/1bee4f25043af3e6408f624fa3e632bd7e39a587)]:
+  - @commercetools-frontend/actions-global@21.0.0-rc.1
+  - @commercetools-frontend/application-components@21.0.0-rc.1
+  - @commercetools-frontend/application-shell-connectors@21.0.0-rc.1
+  - @commercetools-frontend/browser-history@21.0.0-rc.1
+  - @commercetools-frontend/constants@21.0.0-rc.1
+  - @commercetools-frontend/i18n@21.0.0-rc.1
+  - @commercetools-frontend/l10n@21.0.0-rc.1
+  - @commercetools-frontend/notifications@21.0.0-rc.1
+  - @commercetools-frontend/permissions@21.0.0-rc.1
+  - @commercetools-frontend/react-notifications@21.0.0-rc.1
+  - @commercetools-frontend/sdk@21.0.0-rc.1
+  - @commercetools-frontend/sentry@21.0.0-rc.1
+  - @commercetools-frontend/url-utils@21.0.0-rc.1
+  - @commercetools-frontend/assets@21.0.0-rc.1
+
+## 21.0.0-rc.0
+
+### Major Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`b8fb4cbb`](https://github.com/commercetools/merchant-center-application-kit/commit/b8fb4cbbb8b78ff18af7edf8100703f7f9712187) Thanks [@emmenko](https://github.com/emmenko)! - Following breaking changes were introduced:
+
+  - New required fields in the Custom Application config.
+  - Menu links structure in Custom Application config changed a bit.
+  - The `ENABLE_OIDC_FOR_DEVELOPMENT` is now the default behavior.
+  - The deprecated `menu.json` file and the `DEV_ONLY_` props have been removed.
+
+  Note that if you were testing your Custom Application with Cypress, you need to use the `@commercetools-frontend/cypress` package to be able to use the `cy.loginByOidc` command.
+
+  For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-31-custom-applications-v21).
+
+* [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`1c363fad`](https://github.com/commercetools/merchant-center-application-kit/commit/1c363fad7ab770a739ac8080358e41ae4af42074) Thanks [@emmenko](https://github.com/emmenko)! - Drop Node.js `v12`. Recommended min Node.js version is `v14` or `v16`.
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`6d0e71d7`](https://github.com/commercetools/merchant-center-application-kit/commit/6d0e71d7e08222f5b6462b7c60fca80e8992cfa7) Thanks [@emmenko](https://github.com/emmenko)! - Following breaking changes were introduced in `test-utils`:
+
+  - The deprecated `project.allAppliedMenuVisibilities` option has been removed.
+  - The `disableApolloMocks` option has been removed. By default, the [Apollo mocks](https://www.apollographql.com/docs/react/development-testing/testing/) are disabled. This is to encourage mocking via [MSW](https://mswjs.io/). To opt into the usage of Apollo mocks, you only need to pass the `mocks` property with a non-empty array.
+  - The `disableAutomaticEntryPointRoutes` option now defaults to `false`. This means that when rendering the `<ApplicationShell>`, you should not use the `render` function but pass the application component using `children`. See [changelog](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/application-shell/CHANGELOG.md#1790) for more information.
+  - The deprecated `permissions` option has been removed. Use `project.allAppliedPermissions` instead.
+
+    ```js
+    // Before
+    {
+      permissions: {
+        canManageProducts: true;
+      }
+    }
+
+    // After
+    {
+      project: {
+        allAppliedPermissions: [{ name: 'canManageProducts', value: true }];
+      }
+    }
+    ```
+
+    You can also use the helper function `mapResourceAccessToAppliedPermissions` (recommended)
+
+    ```js
+    import { mapResourceAccessToAppliedPermissions } from '@commercetools-frontend/application-shell/test-utils';
+
+    {
+      project: {
+        allAppliedPermissions: mapResourceAccessToAppliedPermissions([
+          PERMISSIONS.View
+        ])
+      },
+    }
+    ```
+
+    or the `denormalizePermissions` function.
+
+    ```js
+    import { denormalizePermissions } from '@commercetools-frontend/application-shell/test-utils';
+
+    {
+      project: {
+        allAppliedPermissions: denormalizePermissions({
+          canManageProducts: true,
+        });
+      }
+    }
+    ```
+
+  - The deprecated `actionRights` option has been removed. Use `project.allAppliedActionRights` instead.
+
+    ```js
+    // Before
+    {
+      actionRights: {
+        products: {
+          canEditPrices: true,
+          canPublishProducts: false,
+        }
+      }
+    }
+
+    // After
+    {
+      project: {
+        allAppliedActionRights: [
+          { group: 'products', name: 'canEditPrices', value: true },
+          { group: 'products', name: 'canPublishProducts', value: false }
+        ]
+      }
+    }
+    ```
+
+    You can also use the helper function `denormalizeActionRights`.
+
+    ```js
+    import { denormalizeActionRights } from '@commercetools-frontend/application-shell/test-utils';
+
+    {
+      project: {
+        allAppliedActionRights: denormalizeActionRights({
+          products: {
+            canEditPrices: true,
+            canPublishProducts: false,
+          },
+        });
+      }
+    }
+    ```
+
+  - The deprecated `dataFences` option has been removed. Use `project.allAppliedDataFences` instead.
+
+    ```js
+    // Before
+    {
+      dataFences: {
+        store: {
+          orders: {
+            canViewOrders: {
+              values: ['store-1'],
+            }
+          }
+        }
+      }
+    }
+
+    // After
+    {
+      project: {
+        allAppliedDataFences: [
+          { type: 'store', group: 'orders', name: 'canViewOrders', value: 'store-1' }
+        ]
+      }
+    }
+    ```
+
+    You can also use the helper function `denormalizeDataFences`.
+
+    ```js
+    import { denormalizeDataFences } from '@commercetools-frontend/application-shell/test-utils';
+
+    {
+      project: {
+        allAppliedDataFences: denormalizeDataFences({
+          store: {
+            orders: {
+              canViewOrders: {
+                values: ['store-1'],
+              },
+            },
+          },
+        });
+      }
+    }
+    ```
+
+  For more information see [Release notes v21](https://docs.commercetools.com/custom-applications/releases/2022-01-31-custom-applications-v21).
+
+### Patch Changes
+
+- [#2450](https://github.com/commercetools/merchant-center-application-kit/pull/2450) [`eb8f5b2c`](https://github.com/commercetools/merchant-center-application-kit/commit/eb8f5b2c885a4c3ffc7857a61e50508b429bf964) Thanks [@emmenko](https://github.com/emmenko)! - Update dependencies
+
+- Updated dependencies [[`eb8f5b2c`](https://github.com/commercetools/merchant-center-application-kit/commit/eb8f5b2c885a4c3ffc7857a61e50508b429bf964), [`1c363fad`](https://github.com/commercetools/merchant-center-application-kit/commit/1c363fad7ab770a739ac8080358e41ae4af42074)]:
+  - @commercetools-frontend/actions-global@21.0.0-rc.0
+  - @commercetools-frontend/application-components@21.0.0-rc.0
+  - @commercetools-frontend/application-shell-connectors@21.0.0-rc.0
+  - @commercetools-frontend/browser-history@21.0.0-rc.0
+  - @commercetools-frontend/constants@21.0.0-rc.0
+  - @commercetools-frontend/i18n@21.0.0-rc.0
+  - @commercetools-frontend/l10n@21.0.0-rc.0
+  - @commercetools-frontend/notifications@21.0.0-rc.0
+  - @commercetools-frontend/permissions@21.0.0-rc.0
+  - @commercetools-frontend/react-notifications@21.0.0-rc.0
+  - @commercetools-frontend/sdk@21.0.0-rc.0
+  - @commercetools-frontend/sentry@21.0.0-rc.0
+  - @commercetools-frontend/url-utils@21.0.0-rc.0
+
 ## 20.13.0
 
 ### Patch Changes
