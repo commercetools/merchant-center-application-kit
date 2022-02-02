@@ -23,13 +23,89 @@ $ npx @commercetools-frontend/create-mc-app my-new-custom-application-project --
 
 ## Developing application-kit packages
 
-Install the dependencies (uses yarn workspaces):
+### Initial Installation
 
-```bash
-$ yarn
-```
+1. Add necessary environment variables
 
-To run the tests:
+   Navigate to `merchant_center_application_kit/playground`, duplicate `.env.local.template`, name the duplicate `.env.local` and add the necessary values.
+
+2. Build and run the application kit
+
+   First build the application. In a new terminal window, navigate to the project root directory and run:
+
+   ```bash
+   $  yarn build
+   ```
+
+   Once the build is complete, you can run the application in watch mode by running:
+
+   ```bash
+   $  yarn build:watch
+   ```
+
+3. Update Playground Permissions:
+
+   `PERMISSIONS.ViewPlaygroundStateMachines` is not necessary and you might need to remove it in order to be able to view the application.
+   You'll need to remove it twice in `custom-application-config.mjs` and once in `routes.js` so that `permissions`/`demandedPermissions` are empty arrays:
+
+   `custom-application-config.mjs`
+
+   ```bash
+   permissions: [],
+   submenuLinks: [
+       {
+         uriPath: 'echo-server',
+         permissions: [],
+         defaultLabel: '${intl:en:Menu.EchoServer}',
+         labelAllLocales: [
+           {
+             locale: 'en',
+             value: '${intl:en:Menu.EchoServer}',
+           },
+           {
+             locale: 'de',
+             value: '${intl:de:Menu.EchoServer}',
+           },
+         ],
+       },
+     ],
+   ```
+
+   `routes.js`
+
+   ```bash
+     const canViewStateMachines = useIsAuthorized({
+       demandedPermissions: [],
+     });
+   ```
+
+4. Build and run the [playground application](./playground):
+
+   In a new terminal window, navigate to the project root directory and run:
+
+   ```bash
+   $ yarn playground:start
+   ```
+
+### Running the App Kit and Playground After Initial Installation
+
+> The playground application consumes the app-kit dependencies as es modules, which means you need to bundle the packages first. We recommend to bundle the packages in watch mode in one terminal process and start the playground app in another terminal process.
+
+- Open 2 terminal windows
+
+  - In the first terminal run
+
+    ```bash
+      $ yarn build:watch
+    ```
+
+  - Once the watch process has completed and is listening, in the second terminal window run
+
+    ```bash
+      $ yarn playground:start
+    ```
+
+## To run the tests:
 
 ```bash
 $ yarn test
@@ -38,25 +114,13 @@ $ yarn test
 $ yarn test:watch
 ```
 
-Build the application bundles
+## To Build the application bundles:
 
 ```bash
 $ yarn build
 
 # or
 $ yarn build:bundles:watch
-```
-
-Start the [playground application](./playground):
-
-> NOTE: the playground application consumes the app-kit dependencies's es modules, which means you need to bundle the packages first. We recommend to bundle the packages in watch mode in one terminal process and start the playground app in another terminal process.
-
-```bash
-// Terminal process 1
-$ yarn build:bundles:watch
-
-// Terminal process 2
-$ yarn playground:start
 ```
 
 ## Documentation
