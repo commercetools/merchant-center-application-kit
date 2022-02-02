@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.0.0-rc.9
+
+### Minor Changes
+
+- [#2467](https://github.com/commercetools/merchant-center-application-kit/pull/2467) [`1763f30b`](https://github.com/commercetools/merchant-center-application-kit/commit/1763f30ba1754c6a20b8c86876592e8f59d8778e) Thanks [@emmenko](https://github.com/emmenko)! - Update `css-loader` to `v6`. Support both `.mod.css` and `.module.css` for CSS module files.
+
 ## 21.0.0-rc.8
 
 ### Major Changes

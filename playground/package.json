@@ -49,7 +49,7 @@
   "devDependencies": {
     "@commercetools-backend/express": "21.0.0-rc.1",
     "@commercetools-frontend/mc-dev-authentication": "21.0.0-rc.1",
-    "@commercetools-frontend/mc-scripts": "21.0.0-rc.8",
+    "@commercetools-frontend/mc-scripts": "21.0.0-rc.9",
     "@formatjs/cli": "4.8.0",
     "@vercel/node": "^1.12.1"
   }
