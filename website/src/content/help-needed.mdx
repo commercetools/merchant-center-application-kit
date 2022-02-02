@@ -20,7 +20,7 @@ Additionally, we also recommend checking for existing [GitHub Issues](https://gi
 
 # Browser support
 
-commercetools officially supports the **latest two versions** all major browsers (Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge), unless otherwise noted.
+commercetools officially supports the **latest two versions** of all major browsers (Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge), unless otherwise noted.
 
 The following browsers are not supported any longer:
 
@@ -33,24 +33,16 @@ It is recommended to always keep your browser up-to-date for **security** reason
 </Warning>
 
 
-# Changes to the Custom Application are not reflected immediately
+# Configuration changes to the Custom Application are not reflected immediately
 
 The first time a user visits the Custom Application route in the Merchant Center, the proxy router fetches the configuration of the Custom Application to determine where to proxy the request to.
 
 This configuration is cached for a certain time within the proxy router to reduce potential latency introduced by validating each incoming request. The cache is automatically updated at a regular interval (the default value is **30 minutes**).
 
-This implies that changes to the Custom Application configuration, for example the **Application URL**, are effectively applied according to the cache interval.
+This implies that changes to the [Custom Application configuration](https://docs.commercetools.com/merchant-center/managing-custom-applications), for example the **Application URL**, are effectively applied according to the cache interval.
 
 <Info>
 
-In the future, the cache mechanism will be improved to provide instant cache invalidation whenever something changes in the Custom Application settings.
+If you are interested in more advanced functionalities, let us know and open a [support issue](https://github.com/commercetools/merchant-center-application-kit/issues/new/choose).
 
 </Info>
-
-# Development login does not work on Chrome
-
-Chrome has a setting option that prevents saving cookies, which makes it impossible to have a valid session when developing the Custom Applications locally.
-
-![Chrome cookie setting](/images/chrome-cookie-setting.png)
-
-The option `Allow sites to save and read cookie data (recommended)` **must be turned on**.

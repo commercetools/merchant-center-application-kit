@@ -1,0 +1,29 @@
+name: After deployments
+
+on: [deployment_status]
+
+jobs:
+  link-check:
+    name: 'Check links'
+
+    if: github.event.deployment_status.state == 'success'
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node (uses version in .nvmrc)
+        uses: actions/setup-node@v2
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Check links
+        uses: JustinBeckwith/linkinator-action@v1.10.0
+        with:
+          paths: ${{ github.event.deployment_status.target_url }}/custom-applications
+          config: website/linkinator.config.json
+          markdown: false
+          urlRewriteReplace: ${{ github.event.deployment_status.target_url }}
+          urlRewriteSearch: https://docs.commercetools.com

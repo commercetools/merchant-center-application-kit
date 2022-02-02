@@ -13,20 +13,11 @@ module.exports = {
     title: 'Custom Applications',
     description: 'Develop applications for the Merchant Center',
     author: 'commercetools',
-    betaLink: '/support-policy',
+    betaLink: 'https://docs.commercetools.com/api/contract#public-beta',
     repositoryUrl:
       'https://github.com/commercetools/merchant-center-application-kit',
   },
   plugins: [
-    // Pages for React components
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'components',
-        path: `${__dirname}/../packages/application-components/src/`,
-        ignore: ['.js', '.tsx'],
-      },
-    },
     // Docs theme
     {
       resolve: '@commercetools-docs/gatsby-theme-docs',
@@ -36,18 +27,10 @@ module.exports = {
         beta: true,
         excludeFromSearchIndex: false,
         gaTrackingId: 'UA-38285631-3',
-        // Patch the slug creation to get meaningful slugs for the application components
-        createNodeSlug: (originalSlug, { node }) => {
-          const isNodeForAppComponent =
-            node.fileAbsolutePath &&
-            node.fileAbsolutePath.includes('packages/application-components');
-          if (isNodeForAppComponent) {
-            return originalSlug.replace(
-              /^\/components\/(.*)\/(.*)\/$/,
-              '/components/$2/'
-            );
-          }
-          return originalSlug;
+        globalNotification: {
+          notificationType: 'info',
+          content:
+            'This is the new documentation of Custom Applications. You can still visit the [legacy documentation](https://docs.commercetools.com/custom-applications/legacy) during the [migration](/migrating-from-project-level-custom-applications) from Project-level Custom Applications.',
         },
       },
     },

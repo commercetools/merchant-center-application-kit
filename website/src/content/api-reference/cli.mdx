@@ -1,0 +1,123 @@
+---
+title: CLI
+---
+
+<Subtitle>
+
+The CLI of Custom Applications allows you to start and build your application.
+
+</Subtitle>
+
+# Installation
+
+```
+yarn add @commercetools-frontend/mc-scripts
+
+# or
+
+npm --save install @commercetools-frontend/mc-scripts
+```
+
+<Info>
+
+You could also install the CLI globally, but we recommend local installation instead.
+
+</Info>
+
+# Commands
+
+## start
+
+This command starts the application in `development` mode. It uses Webpack Dev Server with hot-code reloading, error reporting, and more.
+
+```console
+mc-scripts start
+```
+
+By default the application starts at `http://localhost:3001`.
+
+## build
+
+This command bundles the application in `production` mode and creates an optimized production build of your application in the `public` folder.
+
+```console
+mc-scripts build
+```
+
+By default, the `build` command compiles the `index.html`, included in the `public` folder. You can opt-out of the compilation step by using the option `--build-only`. See [Going to Production](/development/going-to-production) for more information.
+
+### Options
+
+* `--build-only`: Generates production bundles without compiling the `index.html`. To compile it, run `compile-html`.
+
+## compile-html
+
+This command compiles the `index.html.template` file into an `index.html` file according to the [Custom Application config](/api-reference/application-config). The production assets are then copied to the `public` folder and are ready to be deployed.
+
+```console
+mc-scripts compile-html
+```
+
+See [Going to Production](/development/going-to-production) for more information.
+
+<Info>
+
+By default, compiling the `index.html` is implicitly done in the `build` command, unless the option `--build-only` is used. In that case, you need to execute the `compile-html` command separately.
+
+</Info>
+
+### Options
+
+* `--transformer <path>`: the path to a JavaScript module exporting a function. This can be used as a way to programmatically configure something based on the compiled information, for example, related to your deployment or hosting provider. The function is called with the following signature.
+
+  ```ts
+  type TransformerFunctionOptions = {
+    // The runtime environment specified within the application config.
+    env: Json;
+    // The compiled HTTP headers, including the Content-Security-Policy headers.
+    headers: Json;
+    // The final HTML content of the `index.html`.
+    indexHtmlContent: string;
+  }
+  type TransformerFunction = (options: TransformerFunctionOptions) => void;
+  ```
+
+## serve
+
+This command starts a HTTP server to serve the previously built and compiled Custom Application, from the `public` folder. This is useful for testing the production build locally.
+
+```console
+mc-scripts serve
+```
+
+We recommend to set up the following scripts in your `package.json`:
+
+```json title="package.json"
+{
+  "scripts": {
+    "compile-html:local": "MC_APP_ENV=development mc-scripts compile-html --transformer @commercetools-frontend/mc-dev-authentication/transformer-local.js",
+    "start:prod:local": "yarn compile-html:local && mc-scripts serve"
+  }
+}
+```
+
+By default the application starts at `http://localhost:3001`.
+
+# Using dotenv files
+
+The `mc-scripts` CLI has the dotenv features built-in.
+
+By default, the following dotenv files are loaded according to the current environment values specified on each command: `process.env.MC_APP_ENV` or `process.env.NODE_ENV`. The files are merged and overwritten prioritized from top to bottom (highest defined variable overrides lower).
+
+- `.env.development.local`, `.env.test.local`, `.env.production.local`: local overrides of environment-specific settings.
+- `.env.development`, `.env.test`, `.env.production`: environment-specific settings.
+- `.env.local`: local overrides. **This file is loaded for all environments except test.**
+- `.env`
+
+Please refer to the [dotenv documentation](https://github.com/motdotla/dotenv) for more details.
+
+Furthermore, you can pass additional dotenv files by using the following option:
+
+- `--env <path>`: Parses the file path as a dotenv file and adds the variables to the environment. Multiple flags are allowed.
+
+These files will take higher priority over the standard environment dotenv files.

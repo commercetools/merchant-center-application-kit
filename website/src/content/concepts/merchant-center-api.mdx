@@ -1,0 +1,172 @@
+---
+title: Merchant Center API
+---
+
+Custom Applications need to fetch data from different APIs in the commercetools Platform. Examples are fetching channel information or updating product data.
+
+Accessing these API requires some sort of authentication mechanism. For security reasons, client-side applications **cannot be trusted** with sensitive credentials, which makes it difficult to connect to an API directly from the browser.
+
+To solve these issues, the Merchant Center provides an HTTP API that handles authentication and authorization to all commercetools Platform APIs. You can think about it as an **API Gateway**.
+
+Therefore, Custom Applications use the Merchant Center API to make requests to one of the commercetools Platform APIs. The way you select the API in your requests depends on the [API Gateway endpoints](#api-gateway-endpoints).
+
+![Merchant Center API](/images/merchant-center-api.png 'Merchant Center API')
+
+# Cloud Regions
+
+The commercetools Platform is available in [multiple cloud Regions](https://docs.commercetools.com/api/general-concepts#regions).
+These Regions are completely isolated from each other and no data is transferred between them.
+
+<Info>
+
+Platform accounts created for one Region are not valid for the other Regions. A [signup](https://docs.commercetools.com/tutorials/getting-started) is required for each Region individually.
+In case you need advice in which Region your Project should be located, please contact [commercetools support](https://support.commercetools.com).
+
+</Info>
+
+## Hostnames
+
+The Merchant Center and the Merchant Center API Gateway are available at the same cloud Regions where the commercetools Platform runs.
+
+All hostnames are subdomains of `commercetools.com` and follow a specific naming format, including the cloud provider, the cloud Region, and the Merchant Center service name.
+
+```
+https://{mcService}.{region}.{cloudProvider}.commercetools.com
+```
+
+- `mcService`: for the Merchant Center frontend the value is `mc`, for the Merchant Center API Gateway the value is `mc-api`.
+- `region`: the Region of the cloud provider, see table below.
+- `cloudProvider`: the cloud provider, either `gcp` or `aws`.
+
+| Cloud Region | Merchant Center API Gateway hostname |
+| --- | --- |
+| Australia (Google Cloud, Sydney) | `mc-api.australia-southeast1.gcp.commercetools.com` |
+| Europe (Google Cloud, Belgium) | `mc-api.europe-west1.gcp.commercetools.com` |
+| Europe (AWS, Frankfurt) | `mc-api.eu-central-1.aws.commercetools.com` |
+| North America (Google Cloud, Iowa) | `mc-api.us-central1.gcp.commercetools.com` |
+| North America (AWS, Ohio) | `mc-api.us-east-2.aws.commercetools.com` |
+
+## Cloud Identifiers
+
+To make it easier to reference the Merchant Center API URL, for example in the [Custom Application config](/api-reference/application-config#cloudIdentifier), each cloud Region maps to an identifier.
+
+| Cloud Region | Cloud identifier |
+| --- | --- |
+| Australia (Google Cloud, Sydney) | `gcp-au` |
+| Europe (Google Cloud, Belgium) | `gcp-eu` |
+| Europe (AWS, Frankfurt) | `aws-fra` |
+| North America (Google Cloud, Iowa) | `gcp-us` |
+| North America (AWS, Ohio) | `aws-ohio` |
+
+# Authentication
+
+The Merchant Center API is protected by a session token via the HTTP `Cookie` header, which is set only for `<cloud-region>.commercetools.com` domains.
+
+In the browser, the session token is stored in a secure cookie named `mcAccessToken`.
+
+```
+Cookie: mcAccessToken=<jwt>
+```
+
+Sending the cookie to the Merchant Center API is already configured in the built-in HTTP clients (see [Data Fetching](/development/data-fetching)), by using the `credentials: "include"` option of the [Fetch API](https://fetch.spec.whatwg.org/).
+
+<Info>
+
+In local development the authentication is handled a bit differently using a OpenID Connect (OIDC) login workflow. The session token is stored in `sessionStorage` and sent to the Merchant Center API via `Authentication` HTTP header.
+
+</Info>
+
+## Obtaining a session token
+
+The session token `mcAccessToken` is granted upon user login and is stored in a secure cookie in the browser.
+
+The Merchant Center API provides two endpoints for authenticating a user:
+
+- `/tokens`: for normal login using `email` and `password`.
+- `/tokens/sso`: for login using an `idToken` from an SSO workflow (see [Single-Sign-On](https://docs.commercetools.com/merchant-center/single-sign-on-beta)).
+
+<Info>
+
+When you develop a Custom Application all authentication logic is handled implicitly and you don't need to worry about it.
+
+</Info>
+
+# API Gateway endpoints
+
+The Merchant Center API primarily acts as an API Gateway with the following responsibilities:
+
+* Verifying the user session.
+* Routing the request to the correct route handler, specific to the targeted API.
+* Making sure that requests to the targeted APIs are properly authenticated and authorized ([OAuth Scopes and user permissions](/concepts/oauth-scopes-and-user-permissions)).
+
+As for the API endpoints available to be used to target the correct API, they are grouped in two categories:
+
+* `/graphql`: For GraphQL requests.
+* `/proxy/*`: For REST requests.
+
+## /graphql
+
+The Merchant Center API exposes a single `/graphql` endpoint.
+
+```
+https://mc-api.<cloud-region>.commercetools.com/graphql
+```
+
+However, there are multiple target GraphQL APIs that Custom Applications can use. To instruct the API Gateway to target the correct API, you need to provide a special HTTP header: `X-Graphql-Target`.
+
+The following targets are available:
+
+* `ctp`: Proxies requests to the [commercetools Platform GraphQL API](https://docs.commercetools.com/api/graphql).
+* `change-history`: Proxies requests to the [commercetools Platform History API](https://docs.commercetools.com/api/history/change-history).
+* `mc`: Proxies requests to the Merchant Center GraphQL API.
+
+Normally you would only need to use the official [commercetools Platform GraphQL API](https://docs.commercetools.com/api/graphql) as other APIs are mostly for internal usage and not documented.
+
+To learn more how to use the target values, check out the [Data Fetching documentation](/development/data-fetching) for developing Custom Applications.
+
+## /proxy/:target/*
+
+The Merchant Center API exposes multiple proxy endpoints to target a specific REST API.
+
+```
+https://mc-api.<cloud-region>.commercetools.com/proxy/*
+```
+
+The following proxy endpoints are available:
+
+* `/proxy/ctp/*`: Proxies requests to the [commercetools Platform HTTP API](https://docs.commercetools.com/api).
+* `/proxy/ml/*`: Proxies requests to the [Machine Learning API](https://docs.commercetools.com/api/ml).
+* `/proxy/import/*`: Proxies requests to the [Import Export API](https://docs.commercetools.com/import-export).
+* `/proxy/forward-to`: See [Integrate with your own API](/concepts/integrate-with-your-own-api).
+
+The way the proxy endpoints work is that they act as "prefixes" to the actual endpoint path of the targeted API. For example:
+
+```js highlightLines="6,7"
+// To use the Orders API, you would send a request to:
+https://api.europe-west1.gcp.commercetools.com
+  /:projectKey/orders
+
+// The same results would be achieved using the API Gateway like:
+https://mc-api.europe-west1.gcp.commercetools.com
+  /proxy/ctp
+  /:projectKey/orders
+```
+
+# Related
+
+For more information on what to do next, we recommend the following sections:
+
+<Cards smallTitle clickable>
+  <Card
+    title="Data Fetching"
+    href="/development/data-fetching"
+  >
+    Learn more about fetching data via Merchant Center API.
+  </Card>
+  <Card
+    title="Application Config"
+    href="/api-reference/application-config"
+  >
+    Learn more about the Custom Application configuration file.
+  </Card>
+</Cards>

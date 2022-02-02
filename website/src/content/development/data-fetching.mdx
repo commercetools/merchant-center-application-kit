@@ -1,0 +1,281 @@
+---
+title: Data Fetching
+---
+
+In client-side applications, data fetching is not always easy and it usually involves a lot of boilerplate code around implementation, state management, data normalization, etc.
+
+The commercetools Platform and the Merchant Center have first-class support for GraphQL and we strongly recommend building your Custom Application using GraphQL wherever possible.
+
+To handle requests to the [GraphQL APIs](/concepts/merchant-center-api#graphql) we use the built-in [Apollo GraphQL Client](https://www.apollographql.com/docs/react/).
+
+<Info>
+
+The Apollo Client comes already pre-configured in a Custom Application to connect to the `/graphql` endpoint of the [Merchant Center API](/concepts/merchant-center-api#graphql).
+
+</Info>
+
+# Using React hooks
+
+The preferred way of fetching data in a React component is to use [React hooks](https://reactjs.org/docs/hooks-intro.html).
+
+The Apollo Client provides some React hooks to [query data](https://www.apollographql.com/docs/react/data/queries/) and [mutate data](https://www.apollographql.com/docs/react/data/mutations/).
+
+Using the hooks in your React component is as simple as this:
+
+```js title="channels.js" highlightLines="5-9"
+import { useQuery } from '@apollo/client/react';
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+
+const Channels = (props) => {
+  const { data } = useQuery(FetchChannelsQuery, {
+    context: {
+      target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+    }
+  });
+
+  return (
+    <div>
+      {/* Do something with `data` */}
+    </div>
+  );
+};
+```
+
+Notice here that we define the `context.target`. This is how you configure the [GraphQL target for the Merchant Center API](/concepts/merchant-center-api#graphql).
+
+The available GraphQL targets are exposed as a `GRAPHQL_TARGETS` constant in the [`@commercetools-frontend/constants`](/api-reference/commercetools-frontend-constants) package.
+
+# Using GraphQL documents
+
+In Custom Applications you define your queries and mutations in dedicated `.graphql` files that you can `import` in your component file.
+
+<Info>
+
+Using `.graphql` files is a great way to co-locate your data requirements next to your React component. Furthermore, you can leverage these files to improve the developer experience with editor syntax highlighting, linting, code generation, etc.
+
+</Info>
+
+Let's create one:
+
+```graphql title="fetch-channels.ctp.graphql"
+query FetchChannels {
+  channels {
+    total
+    count
+    offset
+    results {
+      id
+      key
+      roles
+      nameAllLocales {
+        locale
+        value
+      }
+    }
+  }
+}
+```
+
+And import it from the React component file:
+
+```js
+import FetchChannelsQuery from './fetch-channels.ctp.graphql';
+```
+
+# Error handling
+
+Of course we need to handle situations where requests fail for whatever reason (network errors, schema validation errors, etc.).
+
+The Apollo Client hooks provide an `error` object that we can use in our component to handle failures.
+
+For example, we can render a content notification error instead of rendering the component.
+
+```js title="channels.js" highlightLines="7,13-19"
+import { useQuery } from '@apollo/client/react';
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import { ContentNotification } from '@commercetools-uikit/notifications';
+import Text from '@commercetools-uikit/text';
+
+const Channels = (props) => {
+  const { data, error } = useQuery(FetchChannelsQuery, {
+    context: {
+      target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+    }
+  });
+
+  if (error) {
+    return (
+      <ContentNotification type="error">
+        <Text.Body>{getErrorMessage(error)}</Text.Body>
+      </ContentNotification>
+    );
+  }
+
+  return (
+    <div>
+      {/* Do something with `data` */}
+    </div>
+  );
+};
+```
+
+For more information about using the `error` from Apollo Client, see [Error handling](https://www.apollographql.com/docs/react/data/error-handling/).
+
+In our case we just want to print the `error.graphQLErrors`. We can attempt to do that by implementing a helper function like this:
+
+```js title="channels.js"
+const getErrorMessage = (error) =>
+  error.graphQLErrors?.map((e) => e.message).join('\n') || error.message;
+```
+
+# Advanced usage
+
+## Using Connector Hooks
+
+As your data requirements grow, for example by having multiple queries and mutations in a React component, or using the same query in multiple components, you might want to extract your queries into separate reusable hooks.
+
+We recommend extracting the logic into what we call _connector hooks_.
+
+A connector hook is a React hook that implements most of the data requirements (queries and mutations) specific to the use cases where the data should be used.
+
+For example, we can extract the fetching of Channels into a connector hook named `useChannelsFetcher`.
+This hook can be put into a file named `use-channels-connector.js`.
+
+```js title="use-channels-connector.js"
+import { useQuery } from '@apollo/client/react';
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+
+export const useChannelsFetcher = () => {
+  const { data, error, loading } = useQuery(FetchChannelsQuery, {
+    context: {
+      target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+    }
+  });
+
+  return {
+    channels: data?.channels,
+    error,
+    loading,
+  };
+};
+```
+
+<Info>
+
+Note that the `use-channels-connector.js` file can contain multiple connector hooks. For example `useChannelsFetcher`, `useChannelsUpdater`, `useChannelsCreator`, and so on.
+
+</Info>
+
+We would then use our connector hook in the `Channels` component instead of directly using the Apollo Client hooks. Therefore, there is less code in the React component as most of the logic and configuration is abstracted away in the connector hook.
+
+```js title="channels.js" highlightLines="3,6"
+import { ContentNotification } from '@commercetools-uikit/notifications';
+import Text from '@commercetools-uikit/text';
+import { useChannelsFetcher } from '../../hooks/use-channels-connector';
+
+const Channels = (props) => {
+  const { channels, error } = useChannelsFetcher();
+
+  if (error) {
+    return (
+      <ContentNotification type="error">
+        <Text.Body>{getErrorMessage(error)}</Text.Body>
+      </ContentNotification>
+    );
+  }
+
+  return (
+    <div>
+      {/* Do something with `channels` */}
+    </div>
+  );
+};
+```
+
+<!-- TODO: ## Using fetch policy -->
+<!-- TODO: ## Customizing Apollo Cache -->
+
+## Connecting to an external GraphQL API
+
+In case your Custom Application needs to connect to an [external GraphQL API](/concepts/integrate-with-your-own-api), in addition to the commercetools GraphQL APIs, the Apollo Client needs to be reconfigured to connect to the `/proxy/forward-to` endpoint with the appropriate headers.
+This can be achieved by using the `context` option of Apollo Client, which allows passing configuration options to the Apollo Links.
+
+The `@commercetools-frontend/application-shell` package now exposes a `createApolloContextForProxyForwardTo` to construct a predefined context object specific to the `/proxy/forward-to`.
+
+```jsx highlightLines="2,10-12"
+import {
+  createApolloContextForProxyForwardTo,
+  useMcQuery,
+} from '@commercetools-frontend/application-shell';
+import Text from '@commercetools-uikit/text';
+import HelloWorldQuery from './hello-world.graphql';
+
+const HelloWorld = () => {
+  const { loading, data, error } = useMcQuery(HelloWorldQuery, {
+    context: createApolloContextForProxyForwardTo({
+      uri: 'https://my-custom-app.com/graphql',
+    }),
+  });
+
+  if (loading) return 'Loading...';
+  if (error) return `Error! ${error.message}`;
+  return <Text.Headline as="h1">{data.title}</Text.Headline>;
+}
+```
+
+<!-- TODO: see [@/application-shell](/api-reference/commercetools-frontend-application-shell) for more information. -->
+
+## Requests to REST APIs
+
+Some endpoints or APIs might not be available as GraphQL but as a standard HTTP REST endpoint instead.
+
+In theory you can use any HTTP client library of your choice to do so. However, for Custom Applications we provide a declarative fetching library [`@commercetools-frontend/sdk`](https://www.npmjs.com/package/@commercetools-frontend/sdk), which builds on top of the [JS SDK client](https://commercetools.github.io/nodejs/sdk/api/sdkClient.html) and [Redux](https://redux.js.org/)
+
+<Info>
+
+The SDK library comes already pre-configured in a Custom Application to connect to the `/proxy/:target/*` endpoints of the [Merchant Center API](/concepts/merchant-center-api#proxytarget).
+
+</Info>
+
+The SDK library is built using Redux actions, meaning that you dispatch an action describing the request and the library takes care of handling the request.
+
+```js title="channels.js"
+import { useAsyncDispatch, actions } from '@commercetools-frontend/sdk';
+import { MC_API_PROXY_TARGETS } from '@commercetools-frontend/constants';
+
+const Channels = (props) => {
+  const dispatch = useAsyncDispatch();
+  useEffect(() => {
+    async function execute() {
+      try {
+        const result = await dispatch(
+          actions.get({
+            mcApiProxyTarget: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
+            service: 'channels',
+          });
+        );
+        // Update state with `result`
+      } catch (error) {
+        // Update state with `error`
+      }
+    }
+    execute();
+  }, [dispatch])
+
+  return (
+    <div>
+      {/* Do something with the state */}
+    </div>
+  );
+};
+```
+
+Notice here that we define the `mcApiProxyTarget`. This is how you configure the proxy target for the [Merchant Center API](/concepts/merchant-center-api#proxytarget).
+
+The available proxy targets are exposed as a `MC_API_PROXY_TARGETS` constant in the [`@commercetools-frontend/constants`](/api-reference/commercetools-frontend-constants) package.
+
+<Warning>
+
+The SDK library does not include features like data normalization, caching, etc. You will need to build these on your own.
+
+</Warning>

@@ -1,88 +1,97 @@
-- chapter-title: Getting started
+- chapter-title: General
   pages:
     - title: What is a Custom Application?
-      path: '/getting-started/what-is-a-custom-application'
-    - title: Installing a Starter Application
-      path: '/getting-started/installing-a-starter-application'
-    - title: Tooling
-      path: '/getting-started/tooling'
-    - title: Support Policy
-      path: '/support-policy'
+      path: /what-is-a-custom-application
+    - title: Getting Started
+      path: /getting-started
+    - title: Maintenance guidelines
+      path: /maintenance-guidelines
     - title: Help Needed?
-      path: '/help-needed'
+      path: /help-needed
+    - title: Migrating from Project-level Custom Applications
+      path: /migrating-from-project-level-custom-applications
+- chapter-title: Concepts
+  pages:
+    - title: OAuth Scopes and User Permissions
+      path: /concepts/oauth-scopes-and-user-permissions
+    - title: Merchant Center Proxy Router
+      path: /concepts/merchant-center-proxy-router
+    - title: Merchant Center API
+      path: /concepts/merchant-center-api
+    - title: Integrate with your own API
+      path: /concepts/integrate-with-your-own-api
 - chapter-title: Development
   pages:
-    - title: Folder Structure
-      path: '/development/folder-structure'
-    - title: Available Scripts
-      path: '/development/available-scripts'
-    - title: Application Config
-      path: '/development/application-config'
-    - title: Menu Links
-      path: '/development/menu-links'
-    - title: Styling
-      path: '/development/styling'
-    - title: Testing
-      path: '/development/testing'
-    - title: Translations
-      path: '/development/translations'
-- chapter-title: UI Components
-  pages:
-    - title: Application Shell
-      path: '/components/application-shell'
-    - title: InfoDialog
-      path: '/components/info-dialog'
-    - title: ConfirmationDialog
-      path: '/components/confirmation-dialog'
-    - title: FormDialog
-      path: '/components/form-dialog'
-    - title: InfoModalPage
-      path: '/components/info-modal-page'
-    - title: FormModalPage
-      path: '/components/form-modal-page'
-    - title: CustomFormModalPage
-      path: '/components/custom-form-modal-page'
-    - title: TabularModalPage
-      path: '/components/tabular-modal-page'
-    - title: UI-Kit
-      path: '/components/ui-kit'
-- chapter-title: Deployment
-  pages:
-    - title: Production Build
-      path: '/deployment/production-build'
-    - title: Compiling a Custom Application
-      path: '/deployment/compiling-a-custom-application'
-    - title: Serving Static Assets
-      path: '/deployment/serving-static-assets'
-    - title: 'Example Deployment with Vercel'
-      path: '/deployment/example-deployment-vercel'
-    - title: 'Example Deployment with Firebase'
-      path: '/deployment/example-deployment-firebase'
-    - title: 'Example Deployment with AWS, S3 and CloudFront'
-      path: '/deployment/example-deployment-aws-s3-cloudfront'
-- chapter-title: Register applications
-  pages:
-    - title: Configuring a Custom Application
-      path: '/register-applications/configuring-a-custom-application'
-    - title: Activating a Custom Application
-      path: '/register-applications/activating-a-custom-application'
-    - title: Removing a Custom Application
-      path: '/register-applications/removing-a-custom-application'
-- chapter-title: Main concepts
-  pages:
-    - title: Architecture
-      path: '/main-concepts/architecture'
-    - title: Authentication
-      path: '/main-concepts/authentication'
-    - title: API Gateway
-      path: '/main-concepts/api-gateway'
-    - title: GraphQL API
-      path: '/main-concepts/graphql'
-    - title: Proxy Endpoints
-      path: '/main-concepts/proxy-endpoints'
-    - title: Proxy to External API
-      path: '/main-concepts/proxy-to-external-api'
+    - title: Overview
+      path: /development
     - title: Data Fetching
-      path: '/main-concepts/data-fetching'
-    - title: User Permissions
-      path: '/main-concepts/user-permissions'
+      path: /development/data-fetching
+    - title: UI Components
+      path: /development/ui-components
+    # - title: Forms
+    #   path: /development/forms
+    # - title: Notifications
+    #   path: /development/notifications
+    - title: Testing
+      path: /development/testing
+    - title: Translations
+      path: /development/translations
+    - title: Permissions
+      path: /development/permissions
+    - title: Going to Production
+      path: /development/going-to-production
+- chapter-title: Deployment Examples
+  pages:
+    - title: Overview
+      path: /deployment-examples
+    - title: Deploying to Vercel
+      path: /deployment-examples/vercel
+    - title: Deploying to Netlify
+      path: /deployment-examples/netlify
+    - title: Deploying to Render
+      path: /deployment-examples/render
+    - title: Deploying to AWS with S3 and CloudFront
+      path: /deployment-examples/aws-s3-cloudfront
+    - title: Deploying to Surge
+      path: /deployment-examples/surge
+    - title: Deploying to Cloudflare Pages
+      path: /deployment-examples/cloudflare
+- chapter-title: API Reference
+  pages:
+    - title: CLI
+      path: /api-reference/cli
+    - title: Application Config
+      path: /api-reference/application-config
+    - title: Create MC App
+      path: /api-reference/create-mc-app
+    # - title: Custom Webpack Config
+    #   path: /api-reference/custom-webpack-config
+    # - title: Security Headers
+    #   path: /api-reference/security-headers
+    # - title: I18N
+    #   path: /api-reference/i18n
+    # - title: ESLint Config MC App
+    #   path: /api-reference/eslint-config-mc-app
+    # - title: Babel Preset MC App
+    #   path: /api-reference/babel-preset-mc-app
+    # - title: Jest Preset MC App
+    #   path: /api-reference/jest-preset-mc-app
+
+    - title: '@/application-shell'
+      path: /api-reference/commercetools-frontend-application-shell
+    # - title: '@/application-shell-connectors'
+    #   path: /api-reference/commercetools-frontend-application-shell-connectors
+    - title: '@/application-components'
+      path: /api-reference/commercetools-frontend-application-components
+    - title: '@/constants'
+      path: /api-reference/commercetools-frontend-constants
+    - title: '@/cypress'
+      path: /api-reference/commercetools-frontend-cypress
+    # - title: '@/i18n'
+    #   path: /api-reference/commercetools-frontend-i18n
+    # - title: '@/l10n'
+    #   path: /api-reference/commercetools-frontend-l10n
+    - title: '@/permissions'
+      path: /api-reference/commercetools-frontend-permissions
+    # - title: '@/sdk'
+    #   path: /api-reference/commercetools-frontend-sdk

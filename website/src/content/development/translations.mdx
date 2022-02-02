@@ -2,34 +2,132 @@
 title: Translations
 ---
 
-Merchant Center applications use [`react-intl`](https://github.com/formatjs/react-intl), a library built on top of the [ECMAScript Internationalization API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl).
+The Merchant Center is translated in several languages like `en`, `de`, `es`, etc. The **default language** is `en`.
 
-In the React components, you can use things like `<FormattedMessage>` or `intl.formatMessage` to render the correct translation message based on the active `locale`.
+<Info>
 
-We usually define a `messages.js` file co-located to the React component using those messages. The file defines messages as following:
+The Merchant Center locale can be changed in the user Profile page.
 
-```js
+</Info>
+
+When you develop a Custom Application you can choose to optionally translate it in one or more languages.<br />
+Translations are usually included as JSON files that are dynamically imported into the Custom Application based on the user's locale.
+
+To facilitate managing source messages and translations we provide some built-in functionalities in Custom Applications and some tooling around that.
+
+# Defining source messages
+
+As a first step, we recommend defining source messages in the `messages.js` file next to your React component.
+
+```js title="messages.js"
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
   title: {
-    id: 'StateMachines.ListView.title',
-    description: 'The page title of state machines list',
-    defaultMessage: 'State Machines',
+    id: 'Channels.title',
+    defaultMessage: 'Channels list',
   },
 });
 ```
 
-This is the default message, which will be used in case there is no translation available for the given `locale`.
+Source messages are defined as named objects by [`react-intl`](https://github.com/formatjs/react-intl), a library with React abstractions on top of the [ECMAScript Internationalization API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl).
+
+<Info>
+
+We recommend getting familiar with the [ICU Message syntax](https://formatjs.io/docs/core-concepts/icu-syntax) to take advantage of the different syntax features.
+
+</Info>
+
+The source messages can then be used in your React components.<br />
+Below you will find some examples of consuming the Intl messages.
+
+# Consuming messages as React components
+
+The `react-intl` library provides several React components to render the message, like `<FormattedMessage>`.
+
+```js title="channels.js" highlightLines="1,10"
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
+
+const Channels = () => {
+  // ...
+  return (
+    <Spacings.Stack scale="l">
+      <Spacings.Stack scale="s">
+        <Text.Headline as="h2">
+          <FormattedMessage message={messages.title}>
+        </Text.Headline>
+      </Spacings.Stack>
+      {/* ... */}
+    </Spacings.Stack>
+  )
+};
+```
+
+<Info>
+
+Most of the UI-Kit components support formatting messages via the prop `intlMessage`. You can pass your raw message and the component takes care of rendering the message.
+
+```js title="channels.js" highlightLines="9"
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
+
+const Channels = () => {
+  // ...
+  return (
+    <Spacings.Stack scale="l">
+      <Spacings.Stack scale="s">
+        <Text.Headline as="h2" intlMessage={messages.title} />
+      </Spacings.Stack>
+      {/* ... */}
+    </Spacings.Stack>
+  )
+};
+```
+
+</Info>
+
+# Consuming messages as React Hooks
+
+The `react-intl` library also provides an [imperative API](https://formatjs.io/docs/react-intl/api) approach via `useIntl`, which exposes an `intl` object with several formatting methods.
+
+Using the `intl` object is usually necessary for props that only accept strings, for example `aria-label`, `title`, etc.
+
+```js
+import { useIntl } from 'react-intl';
+
+const Button = () => {
+  const intl = useIntl();
+  return (
+    <FlatButton
+      label={intl.formatMessage(messages.save)}
+      // ...
+    />
+  )
+}
+```
 
 # Extracting messages for translations
 
-To generate translation files, you can use the official `@formatjs/cli` package to [extract message from React Intl messages files](https://formatjs.io/docs/tooling/cli#extraction). For example:
+To generate translation files, you can use the official `@formatjs/cli` package to [extract source messages](https://formatjs.io/docs/tooling/cli#extraction) into a `core.json` source file. For example:
 
 ```console noPromptLines="2-3"
 formatjs extract \
   --out-file=./src/i18n/data/core.json \
   'src/**/messages.js'
+```
+
+The `core.json` is the so-called source file, which should be used as the reference file for the translations in the other locales.
+
+As a convention, we store the translation files in an `i18n` folder:
+
+```
+└── src
+    └── i18n
+        └── data
+            ├── core.json
+            ├── en.json
+            └── de.json
 ```
 
 Based on your translation tool, you may need to transform the extracted messages to the appropriate format. For that you can write a [formatter file](https://formatjs.io/docs/tooling/cli#--format-path) and pass it as the `--format` option to the script.
@@ -41,39 +139,30 @@ formatjs extract \
   'src/**/messages.js'
 ```
 
+<Info>
+
 At commercetools we use [Transifex](https://www.transifex.com/) as our translation tool. Therefore, in our applications we generate a `core.json` file with the key being the message id and the value being the default Intl message.
 
 ```json
 {
-  "StateMachines.ListView.title": "State Machines"
+  "Channels.title": "Channels list"
 }
 ```
 
-The `core.json` is the so-called source file, which should be used as reference file for the translations in the other locales.
+</Info>
 
-As a convention, we store the translation files in a `i18n` folder:
+<!-- TODO: mention compiled-data -->
 
-```
-└── src
-    └── i18n
-        └── data
-            ├── core.json
-            ├── en.json
-            └── de.json
-```
+# Importing translations
 
-# Using the messages in the application
-
-The JSON files containing the translations need to be loaded within the application. The `<ApplicationShell>` expects a `applicationMessages` prop that is used to load the messages in the `react-intl` provider.
+The JSON files containing the translations need to be loaded within the application. The `<ApplicationShell>` expects a `applicationMessages` prop that is used to load the messages in the `react-intl` provider.<br />
 The `applicationMessages` prop can either be a JSON object or a function returning a Promise with the loaded messages.
 
 To keep the bundle size low, the application should only load the messages for a specific locale and not all of them. This can be achieved by using the [Code-Splitting](https://reactjs.org/docs/code-splitting.html) feature.
 
 Given the translation messages are located in the `i18n/data` folder, you can define a function to dynamically load the messages:
 
-```js
-// entry-point.js
-
+```js title="entry-point.js"
 const loadMessages = lang => {
   let loadAppI18nPromise;
   switch (lang) {
@@ -106,10 +195,16 @@ const loadMessages = lang => {
   );
 };
 
-const Application = () => (
+const EntryPoint = () => (
   <ApplicationShell
-    // other props
     applicationMessages={loadMessages}
+    // ...
   />
 );
 ```
+
+<!-- # Advanced usage
+
+## Using arguments in messages
+
+## Using rich text formatting -->

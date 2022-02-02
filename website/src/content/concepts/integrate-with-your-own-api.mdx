@@ -1,0 +1,272 @@
+---
+title: Integrate with your own API
+---
+
+<Info>
+
+If you are interested in more advanced functionalities, let us know and open a [support issue](https://github.com/commercetools/merchant-center-application-kit/issues/new/choose).
+
+</Info>
+
+Developing Custom Applications might require you to have your own backend server, for several reasons: storing sensitive credentials for third-party services, performing custom server logic, etc.
+
+If that's the case, you're probably facing a problem: _how do you authenticate requests to your API?_
+
+Previously we learned that Custom Applications must use the [Merchant Center API](/concepts/merchant-center-api) to target any of the commercetools Platform APIs, as the Merchant Center API handles all [authentication and authorization](/concepts/merchant-center-api#authentication) logic to access those APIs. Therefore, Custom Applications don't need to deal with this logic as they can't really safely store any access token on the client/browser.
+
+However, since your backend server is hosted on a different domain than the Merchant Center, you can't send authenticated requests to your server from your Custom Application. Well, you can but you don't know whether the request comes from an authenticated user or not.
+
+# Proxying requests to the external API
+
+To be able to validate that the request comes from an authenticated user, the Merchant Center API Gateway provides an endpoint that must be used to connect to your external API in a secured manner.
+
+```
+/proxy/forward-to
+```
+
+Requests to that endpoint should additionally pass the following HTTP headers:
+
+- `Accept-version: v2`: See [Versioning](#versioning).
+- `X-Forward-To: <url>`: The URL to your external API.
+- `X-Project-Key: <project-key>`: The key of the commercetools Project currently being used by the Custom Application. The Merchant Center API Gateway will perform a validation check to ensure that the user has access to the Project, then forward the request to your server only if the check was successful.
+
+To facilitate the usage of the [built-in Apollo client and the SDK actions](/development/data-fetching), we provide some helpers to integrate with the request configuration for the HTTP headers listed above.
+
+## Sending custom HTTP headers
+
+<Info>
+
+This feature is available from version `>= 20.2.0`.
+
+</Info>
+
+In case you need to send certain HTTP headers to the external API, you can do so for both the Apollo client and the SDK actions. See the examples below on how to configure the HTTP headers for both scenarios.
+
+All custom HTTP headers are sent to the Merchant Center API with a prefix `x-forward-header-`, as it allows the Merchant Center API to allow requests with those headers to be forwarded. However, the request forwarded to the external API contains the correct headers without the prefix.
+
+## Usage for Apollo
+
+We can leverage the `context` option for Apollo queries to adjust how request is configured and executed. The `@commercetools-frontend/application-shell` package now exposes an utility function to configure the Apollo context for the `/proxy/forward-to` usage. See [`createApolloContextForProxyForwardTo`](/api-reference/commercetools-frontend-application-shell#createapollocontextforproxyforwardto).
+
+## Usage for SDK actions
+
+By default, all requests with the SDK actions are configured to be sent to the Merchant Center API Gateway.
+When making requests to the external API using the SDK actions, you can now use the `forwardTo` object, which wraps the normal action creators and configures them with the required HTTP headers.
+
+```js
+actions.forwardTo.get({ uri: 'https://my-custom-app.com/graphql' });
+actions.forwardTo.del({ uri: 'https://my-custom-app.com/graphql' });
+actions.forwardTo.head({ uri: 'https://my-custom-app.com/graphql' });
+actions.forwardTo.post({
+  uri: 'https://my-custom-app.com/graphql',
+  payload: { say: 'Hello' },
+});
+
+// You can also pass custom HTTP headers, for example:
+actions.forwardTo.get({
+  uri: 'https://my-custom-app.com/graphql',
+  headers: {
+    'x-foo': 'bar',
+  },
+});
+```
+
+<Info>
+
+As a reminder, action creators can be dispatched using the `useAsyncDispatch` React hook. See [Data Fetching for REST APIs](/development/data-fetching#requests-to-rest-apis) for more information.
+
+</Info>
+
+# Authenticating requests from the external API
+
+When a valid request is sent via the `/proxy/forward-to` endpoint, the Merchant Center API Gateway forwards the request to the external API with an `Authorization: Bearer <token>` HTTP header.
+
+The bearer token is a short-living JSON Web Token (JWT) that is used exclusively for the authorization exchange between the Merchant Center API Gateway and the external API. The token is valid for **60 seconds**.
+
+The external API must verify that the token is valid by [using the JSON Web Key Set endpoint](#using-json-web-key-set-endpoint).
+
+<Warning>
+
+It's imperative that the external API is securely protected and that only users with access to the Project should be able to connect to the API.
+
+</Warning>
+
+## Exchange token structure
+
+The Exchange token follows the [JWT structure](https://auth0.com/docs/tokens/json-web-tokens/json-web-token-structure), specified by the [JWT specification](https://tools.ietf.org/html/rfc7519).
+This means that the Exchange token contains claims, which are statements about the token and is used to assert the token itself.
+
+The Exchange token structure consist of **Registered Claim Names** and **Private claims**:
+
+```json
+{
+  "exp": 1600092401,
+  "sub": "<subject>",
+  "iss": "<hostname>",
+  "aud": "<audience-url>",
+  "type": "exchange",
+  "<hostname>/claims/project_key": "<project-key>",
+  "iat": 1600092341
+}
+```
+
+- `exp`: The **expiration time** on or after which the exchange token must not be accepted for processing.
+- `sub`: The **subject identifier** is the unique user identifier of a Merchant Center account, specifically the ID of the logged in user.
+- `iss`: The **issuer identifier** is the URL identifier of the server that issued the JWT. In this particular case is the URL of the [Merchant Center API Gateway](/concepts/merchant-center-api).
+- `aud`: The **audience** is the value that the exchange token is intended for. In this particular case is the exact URL passed to the `X-Forward-To` HTTP header.
+- `iat`: This value represents the time at which the JWT was issued.
+- `type`: This value is a **private claim** and is always set to `exchange`.
+- `<iss>/claims/project_key`: This value represents the Project key that the request is associated to. The claim is a **public claim** prefixed by a collision-resistant namespace, as per the JWT specification.
+
+## Validating the JSON Web Token
+
+To facilitate the implementation of validating the JWT from the `Authorization: Bearer <token>` HTTP header, we provide a package with built-in functions and helpers to perform the heavy work.
+
+```console noPromptLines="2"
+npm install --save @commercetools-backend/express
+
+yarn add @commercetools-backend/express
+```
+
+### Usage for Express.js
+
+The package includes an async Express.js middleware that performs the token validation and assigns a `session` object to the `request` object.
+
+```ts
+type TSession = {
+  userId: string;
+  projectKey: string;
+};
+```
+
+The middleware requires some options:
+
+- `audience` (_string_): The public-facing URL of your API server. The value should only contain the origin URL (protocol, hostname, port), the request path is inferred from the incoming request.
+
+  For example, given the external API is hosted at `https://my-api-server.com`, the `audience` value must be set to `https://my-api-server.com`.
+
+- `issuer` (_string_): Either a [cloud identifier](/concepts/merchant-center-api#cloud-identifiers) or a valid URL to the Merchant Center API Gateway.
+
+- `inferIssuer` (_boolean_): Determines whether the issuer should be inferred from the custom request HTTP header `x-mc-api-cloud-identifier` which is sent by the Merchant Center API Gateway when forwarding the request. This might be useful in case the server is used in multiple regions. **Default: `false`**
+
+- `jwks` (_object_): See [options of `jwks-rsa`](https://github.com/auth0/node-jwks-rsa/).
+
+You can use the middleware as following:
+
+```js highlightLines="3,9-12"
+const express = require('express');
+const {
+  createSessionMiddleware,
+  CLOUD_IDENTIFIERS,
+} = require('@commercetools-backend/express');
+
+const app = express();
+app.use(
+  createSessionMiddleware({
+    audience: 'https://my-api-server.com',
+    issuer: CLOUD_IDENTIFIERS.GCP_EU,
+  })
+);
+app.use((request, response, next) => {
+  // `request.session` contains the useful information
+});
+```
+
+### Usage for Serverless Functions
+
+The package also exposes an async `createSessionAuthVerifier` factory function that can be used directly instead of the middleware. In fact, the middleware is just a thin wrapper around this function.
+
+The options to configure the function are the same as the Express.js middleware.
+
+Below is an example of validating the JWT for Google Cloud Functions:
+
+```js highlightLines="2,6-9,12-17"
+const {
+  createSessionAuthVerifier,
+  CLOUD_IDENTIFIERS,
+} = require('@commercetools-backend/express');
+
+const sessionAuthVerifier = createSessionAuthVerifier({
+  audience: 'https://my-api-server.com',
+  issuer: CLOUD_IDENTIFIERS.GCP_EU,
+});
+
+exports.handler = async function (request, response) {
+  try {
+    await sessionAuthVerifier(request, response);
+  } catch (error) {
+    response.status(401).send(JSON.stringify({ message: 'Unauthorized' }));
+    return;
+  }
+  // `request.session` contains the useful information
+};
+```
+
+## Using JSON Web Key Set endpoint
+
+The Merchant Center API Gateway exposes a `/.well-known/jwks.json` endpoint that can be used to validate JWTs, as defined in OpenID Connect (OIDC) specification. The endpoint provides a rotating public key used to verify the JWT signature.
+Additionally, there is also a `/.well-known/openid-configuration` discovery endpoint.
+
+You can read more about JSON Web Key Set [here](https://auth0.com/docs/jwks) and [here](https://tools.ietf.org/html/rfc7517).
+
+<Info>
+
+The setup described above is not needed when using the `@commercetools-backend/express` package which already contains the necessary setup.
+
+</Info>
+
+# Versioning
+
+The `/proxy/forward-to` endpoint is versioned using the `Accept-version` HTTP header.
+
+Versions follow an incremental number in the format `v1`, `v2`, etc.
+
+<Info>
+
+**Important**: The default version of the API may change in the future. If you're building a Custom Application and care about the stability of the API, be sure to request a specific version in the `Accept-version` HTTP header.
+
+</Info>
+
+## Current and deprecated versions
+
+The current version refers to the **default** version used by the API, if no `Accept-version` header is provided.
+
+When we introduce a new version, the default version enters a **deprecation period**, after which the version is marked as deprecated and the new version becomes the **default** version.
+
+| Feature maturity     | Deprecation period |
+| -------------------- | ------------------ |
+| Beta                 | 4 months           |
+| General Availability | 12 months          |
+
+The following table lists all the supported versions and the possible start date for their deprecation period:
+
+| Version  | Is default |  Deprecated from  |
+| -------- | ---------- | ---------- |
+| `v1` | ✅ | 2020-08-25 |
+| `v2` |  |  |
+
+## Migrating to new versions
+
+We want to make the migration to a new version as simple as possible and abstract away the changes into the packages provided by the application-kit repository.
+
+For instance, changes related to `v2` are all included in the package `@commercetools-backend/express` and the data fetching components improvements (see [Proxying requests to the external API](#proxying-requests-to-external-api)).
+If you use those packages, you only need to follow the instructions in the release notes to update to new versions for the packages.
+
+# Related
+
+For more information on what to do next, we recommend the following sections:
+
+<Cards smallTitle clickable>
+  <Card
+    title="Merchant Center API"
+    href="/development/data-fetching"
+  >
+    Learn more about the Merchant Center API.
+  </Card>
+  <Card
+    title="Data Fetching"
+    href="/development/data-fetching"
+  >
+    Learn more about fetching data via Merchant Center API.
+  </Card>
+</Cards>

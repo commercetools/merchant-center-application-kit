@@ -10,7 +10,7 @@ module.exports = {
   },
   pathPrefix: '/custom-applications/playground',
   siteMetadata: {
-    title: `AppKit UI components | Playground`,
+    title: `AppKit UI components | Playground`,
     description: ``,
     author: `commercetools`,
     repositoryUrl:
