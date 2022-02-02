@@ -1,5 +1,11 @@
 # @commercetools-frontend/assets
 
+## 21.0.0
+
+### Patch Changes
+
+- [#2430](https://github.com/commercetools/merchant-center-application-kit/pull/2430) [`bb1f7d75`](https://github.com/commercetools/merchant-center-application-kit/commit/bb1f7d75ff54f7fef05c4d2b3328b88e400b4867) Thanks [@emmenko](https://github.com/emmenko)! - Update readme
+
 ## 21.0.0-rc.1
 
 ### Patch Changes
