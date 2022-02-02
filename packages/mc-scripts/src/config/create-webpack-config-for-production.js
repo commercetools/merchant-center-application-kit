@@ -311,7 +311,7 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
                 modules: {
                   mode: 'local',
                   localIdentName: '[name]__[local]___[hash:base64:5]',
-                  localIdentHashPrefix: 'ct',
+                  localIdentHashSalt: 'ct',
                 },
                 importLoaders: 1,
               },
