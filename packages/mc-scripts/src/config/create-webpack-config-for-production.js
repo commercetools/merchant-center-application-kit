@@ -294,8 +294,12 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
         // "postcss" loader applies autoprefixer to our CSS
         // "css" loader resolves paths in CSS and adds assets as dependencies.
         // "style" loader turns CSS into JS modules that inject <style> tags.
+        // In production, we use MiniCSSExtractPlugin to extract that CSS
+        // to a file, but in development "style" loader enables hot editing
+        // of CSS.
+        // By default we support CSS Modules with the extension `.mod.css` and `.module.css`.
         {
-          test: /\.mod\.css$/,
+          test: /\.(mod|module)\.css$/,
           include: mergedOptions.sourceFolders,
           use: [
             mergedOptions.toggleFlags.enableExtractCss
@@ -341,7 +345,15 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
                 mergedOptions.toggleFlags.enableExtractCss
                   ? MiniCssExtractPlugin.loader
                   : require.resolve('style-loader'),
-                require.resolve('css-loader'),
+                {
+                  loader: require.resolve('css-loader'),
+                  options: {
+                    modules: {
+                      mode: 'icss',
+                    },
+                    importLoaders: 1,
+                  },
+                },
                 {
                   loader: require.resolve('postcss-loader'),
                   options: {
@@ -360,7 +372,15 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
                 mergedOptions.toggleFlags.enableExtractCss
                   ? MiniCssExtractPlugin.loader
                   : require.resolve('style-loader'),
-                require.resolve('css-loader'),
+                {
+                  loader: require.resolve('css-loader'),
+                  options: {
+                    modules: {
+                      mode: 'icss',
+                    },
+                    importLoaders: 1,
+                  },
+                },
               ],
             },
           ],

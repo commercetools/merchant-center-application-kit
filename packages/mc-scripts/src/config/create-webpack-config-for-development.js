@@ -285,7 +285,7 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
         // "css" loader resolves paths in CSS and adds assets as dependencies.
         // "style" loader turns CSS into JS modules that inject <style> tags.
         {
-          test: /\.mod\.css$/,
+          test: /\.(mod|module)\.css$/,
           include: mergedOptions.sourceFolders,
           use: [
             require.resolve('style-loader'),
@@ -327,7 +327,15 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
               include: mergedOptions.sourceFolders,
               use: [
                 require.resolve('style-loader'),
-                require.resolve('css-loader'),
+                {
+                  loader: require.resolve('css-loader'),
+                  options: {
+                    modules: {
+                      mode: 'icss',
+                    },
+                    importLoaders: 1,
+                  },
+                },
                 {
                   loader: require.resolve('postcss-loader'),
                   options: {
@@ -343,7 +351,15 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
               include: /node_modules/,
               use: [
                 require.resolve('style-loader'),
-                require.resolve('css-loader'),
+                {
+                  loader: require.resolve('css-loader'),
+                  options: {
+                    modules: {
+                      mode: 'icss',
+                    },
+                    importLoaders: 1,
+                  },
+                },
               ],
             },
           ],

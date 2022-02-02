@@ -2607,11 +2607,11 @@ __metadata:
     "@commercetools-frontend/mc-html-template": 21.0.0-rc.7
     "@pmmmwh/react-refresh-webpack-plugin": 0.5.4
     "@svgr/webpack": 6.2.0
-    autoprefixer: 10.4.2
+    autoprefixer: ^10.4.2
     babel-loader: 8.2.3
-    browserslist: 4.19.1
+    browserslist: ^4.19.1
     core-js: ^3.20.3
-    css-loader: 5.2.7
+    css-loader: 6.5.1
     css-minimizer-webpack-plugin: 3.4.1
     dotenv: 10.0.0
     dotenv-expand: 5.1.0
@@ -2619,7 +2619,7 @@ __metadata:
     graphql-tag: ^2.12.6
     html-webpack-plugin: 5.5.0
     json-loader: 0.5.7
-    mini-css-extract-plugin: 1.6.2
+    mini-css-extract-plugin: 2.5.3
     moment-locales-webpack-plugin: 1.2.0
     mri: 1.2.0
     postcss: 8.4.6
@@ -9807,7 +9807,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autoprefixer@npm:10.4.2, autoprefixer@npm:^10.4.0":
+"autoprefixer@npm:^10.4.0, autoprefixer@npm:^10.4.2":
   version: 10.4.2
   resolution: "autoprefixer@npm:10.4.2"
   dependencies:
@@ -10598,7 +10598,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browserslist@npm:4.19.1, browserslist@npm:^4.0.0, browserslist@npm:^4.14.5, browserslist@npm:^4.16.3, browserslist@npm:^4.16.6, browserslist@npm:^4.17.5, browserslist@npm:^4.18.1, browserslist@npm:^4.19.1":
+"browserslist@npm:^4.0.0, browserslist@npm:^4.14.5, browserslist@npm:^4.16.3, browserslist@npm:^4.16.6, browserslist@npm:^4.17.5, browserslist@npm:^4.18.1, browserslist@npm:^4.19.1":
   version: 4.19.1
   resolution: "browserslist@npm:4.19.1"
   dependencies:
@@ -12303,7 +12303,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"css-loader@npm:5.2.7, css-loader@npm:^5.2.7":
+"css-loader@npm:6.5.1":
+  version: 6.5.1
+  resolution: "css-loader@npm:6.5.1"
+  dependencies:
+    icss-utils: ^5.1.0
+    postcss: ^8.2.15
+    postcss-modules-extract-imports: ^3.0.0
+    postcss-modules-local-by-default: ^4.0.0
+    postcss-modules-scope: ^3.0.0
+    postcss-modules-values: ^4.0.0
+    postcss-value-parser: ^4.1.0
+    semver: ^7.3.5
+  peerDependencies:
+    webpack: ^5.0.0
+  checksum: 5a3bedecb468038f09673d25c32d8db5b0baa6c38820253c54ce4c56c27a2250d5d5b4bace77dd5e20ba0a569604eb759362bab4e3128e7db2229e40857d4aca
+  languageName: node
+  linkType: hard
+
+"css-loader@npm:^5.2.7":
   version: 5.2.7
   resolution: "css-loader@npm:5.2.7"
   dependencies:
@@ -22188,7 +22206,7 @@ __metadata:
     "@types/uuid": 8.3.4
     "@types/webpack-env": 1.16.3
     apollo-server-errors: 3.3.1
-    autoprefixer: 10.4.2
+    autoprefixer: ^10.4.2
     babel-plugin-import-graphql: ^2.8.1
     babel-plugin-transform-rename-import: ^2.3.0
     babel-plugin-typescript-to-proptypes: 1.4.2
@@ -22770,6 +22788,17 @@ __metadata:
   peerDependencies:
     webpack: ^4.4.0 || ^5.0.0
   checksum: c2c1f3d7e5bc206b5bece0f37b65467ee58e0bb0b61d5e031bb818682b02db2552b296f5018af9058b18eb7127e00f6462fb718712a3d4432079dfa848b510cc
+  languageName: node
+  linkType: hard
+
+"mini-css-extract-plugin@npm:2.5.3":
+  version: 2.5.3
+  resolution: "mini-css-extract-plugin@npm:2.5.3"
+  dependencies:
+    schema-utils: ^4.0.0
+  peerDependencies:
+    webpack: ^5.0.0
+  checksum: de53fbded09fd2ae81174b11754bc955fcf0e0a85b2c4df7e179fcc8a81533362498824395d43d50960b0bc93550eb2bd9cd1ded113eaa21bd84ab50ef29e65c
   languageName: node
   linkType: hard
 
