@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - nm-org-level-v21
 
 jobs:
   release:
