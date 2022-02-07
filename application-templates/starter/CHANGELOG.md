@@ -1,5 +1,12 @@
 # merchant-center-application-template-starter
 
+## 19.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/mc-scripts@21.0.1
+
 ## 19.0.0
 
 ### Major Changes

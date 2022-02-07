@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-config
 
+## 21.0.1
+
+### Patch Changes
+
+- [#2474](https://github.com/commercetools/merchant-center-application-kit/pull/2474) [`e4eeccb1`](https://github.com/commercetools/merchant-center-application-kit/commit/e4eeccb1d9090c4c922d53c897ae23a6467dac78) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Allow to use environment variable placeholders for the `entryPointUriPath` field.
+
 ## 21.0.0
 
 ### Major Changes
