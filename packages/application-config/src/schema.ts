@@ -17,7 +17,13 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
   /**
    * See https://docs.commercetools.com/custom-applications/api-reference/application-config#entrypointuripath
    */
-  entryPointUriPath: string;
+  entryPointUriPath: (
+    | {
+        [k: string]: unknown;
+      }
+    | EnvVariablePlaceholder
+  ) &
+    string;
   /**
    * See https://docs.commercetools.com/custom-applications/api-reference/application-config#cloudidentifier
    */
