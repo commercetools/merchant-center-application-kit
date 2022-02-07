@@ -421,6 +421,7 @@ describe('processing a config with environment variable placeholders', () => {
     const result = processConfig(
       createTestOptions({
         processEnv: {
+          ENTRY_POINT_URI_PATH: 'avengers',
           APP_URL: 'https://avengers.app',
           CLOUD_IDENTIFIER: 'gcp-eu',
           NODE_ENV: 'test',
@@ -473,6 +474,7 @@ describe('processing a config with environment variable placeholders', () => {
       const result = processConfig(
         createTestOptions({
           processEnv: {
+            ENTRY_POINT_URI_PATH: 'avengers',
             APP_URL: 'https://avengers.app',
             CLOUD_IDENTIFIER: 'gcp-eu',
             NODE_ENV: 'production',
@@ -511,6 +513,7 @@ describe('processing a config with environment variable placeholders', () => {
       const result = processConfig(
         createTestOptions({
           processEnv: {
+            ENTRY_POINT_URI_PATH: 'avengers',
             APP_URL: 'https://avengers.app',
             CLOUD_IDENTIFIER: 'gcp-eu',
             NODE_ENV: 'production',
@@ -567,6 +570,7 @@ describe('processing a config with environment variable placeholders', () => {
       const result = processConfig(
         createTestOptions({
           processEnv: {
+            ENTRY_POINT_URI_PATH: 'avengers',
             APP_URL: 'https://avengers.app',
             CLOUD_IDENTIFIER: 'gcp-eu',
             NODE_ENV: 'production',
