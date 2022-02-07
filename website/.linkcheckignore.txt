@@ -1,0 +1,24 @@
+# Excluding Gatsby generated content.
+
+\/.+\/(page-data|static)\/(.*)
+\/[^\/]+\/[^\/]+.(js|json)$
+\/.+\/favicon(.*)$
+
+# Exclude problematic domains that seem to be flaky
+# or cause multiple redirects.
+https://support.commercetools.com
+https://developers.cloudflare.com
+https://dash.cloudflare.com
+https://www.npmjs.com
+
+# Exclude links to other microsites
+
+\/.+\/api$
+\/.+\/api\/
+\/.+\/custom-applications\/legacy
+\/.+\/custom-applications\/playground
+\/.+\/docs\/login
+\/.+\/import-export
+\/.+\/merchant-center
+\/.+\/sdk
+\/.+\/tutorials
