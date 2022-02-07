@@ -53,7 +53,7 @@ Start the [playground application](./playground):
 
 ```bash
 // Terminal process 1
-$ yarn build:bundles:watch
+$ yarn build:watch
 
 // Terminal process 2
 $ yarn playground:start

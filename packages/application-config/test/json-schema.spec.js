@@ -28,6 +28,7 @@ describe.each`
   ${'avengers01'}
   ${'avengers-01'}
   ${'avengers_01'}
+  ${'${env:APP_ENTRY_POINT_URI_PATH}'}
 `('validating "entryPointUriPath"', ({ entryPointUriPath }) => {
   it(`should validate "${entryPointUriPath}" correctly`, () => {
     expect(() =>
