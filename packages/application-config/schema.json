@@ -28,7 +28,14 @@
     "entryPointUriPath": {
       "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#entrypointuripath",
       "type": "string",
-      "pattern": "^[^\\-_]([0-9a-z]|[\\-_](?![\\-_])){2,64}[^\\-_]$"
+      "oneOf": [
+        {
+          "pattern": "^[^\\-_]([0-9a-z]|[\\-_](?![\\-_])){2,64}[^\\-_]$"
+        },
+        {
+          "$ref": "#/definitions/envVariablePlaceholder"
+        }
+      ]
     },
     "cloudIdentifier": {
       "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#cloudidentifier",
