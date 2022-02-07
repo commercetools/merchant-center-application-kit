@@ -2,4 +2,4 @@
 '@commercetools-frontend/application-config': minor
 ---
 
-Allow env vars in entryPointUriPath app config at schema level
+Allow to use environment variable placeholders for the `entryPointUriPath` field.
