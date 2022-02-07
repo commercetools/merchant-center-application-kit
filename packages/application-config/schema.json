@@ -27,7 +27,6 @@
     },
     "entryPointUriPath": {
       "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#entrypointuripath",
-      "type": "string",
       "oneOf": [
         {
           "type": "string",
@@ -40,7 +39,6 @@
     },
     "cloudIdentifier": {
       "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#cloudidentifier",
-      "type": "string",
       "oneOf": [
         {
           "enum": ["gcp-au", "gcp-eu", "gcp-us", "aws-fra", "aws-ohio"]

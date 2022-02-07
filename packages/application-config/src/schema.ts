@@ -17,17 +17,11 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
   /**
    * See https://docs.commercetools.com/custom-applications/api-reference/application-config#entrypointuripath
    */
-  entryPointUriPath: (
-    | {
-        [k: string]: unknown;
-      }
-    | EnvVariablePlaceholder
-  ) &
-    string;
+  entryPointUriPath: string;
   /**
    * See https://docs.commercetools.com/custom-applications/api-reference/application-config#cloudidentifier
    */
-  cloudIdentifier: (('gcp-au' | 'gcp-eu' | 'gcp-us' | 'aws-fra' | 'aws-ohio') | EnvVariablePlaceholder) & string;
+  cloudIdentifier: ('gcp-au' | 'gcp-eu' | 'gcp-us' | 'aws-fra' | 'aws-ohio') | EnvVariablePlaceholder;
   /**
    * See https://docs.commercetools.com/custom-applications/api-reference/application-config#mcapiurl
    */
