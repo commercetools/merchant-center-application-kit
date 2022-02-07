@@ -1,6 +1,6 @@
 # Excluding Gatsby generated content.
 
-\/.+\/(page-data|static)\/(.*)
+\/.+\/(page-data|static|icons)\/(.*)
 \/[^\/]+\/[^\/]+.(js|json)$
 \/.+\/favicon(.*)$
 

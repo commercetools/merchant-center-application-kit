@@ -15,6 +15,6 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Check links
-        uses: docker://tennox/linkcheck:2.0.20
+        uses: filiph/linkcheck@2.0.20
         with:
-          args: --external --skip-file website/.linkcheckignore.txt ${{ github.event.deployment_status.target_url }}
+          arguments: --external --skip-file website/.linkcheckignore.txt ${{ github.event.deployment_status.target_url }}
