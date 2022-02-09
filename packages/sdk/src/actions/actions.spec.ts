@@ -6,7 +6,8 @@ describe.each`
   ${'DELETE'} | ${'/foo/bar'} | ${undefined}
   ${'HEAD'}   | ${'/foo/bar'} | ${undefined}
   ${'POST'}   | ${'/foo/bar'} | ${JSON.stringify({ name: 'bar' })}
-`('method $method', ({ method, uri, body }) => {
+  ${'POST'}   | ${'/foo/bar'} | ${new FormData()}
+`('method $method ($uri)', ({ method, uri, body }) => {
   it('should build action for uri', () => {
     const payloadWithBody = { uri, payload: body };
     const payloadWithoutBody = { uri };

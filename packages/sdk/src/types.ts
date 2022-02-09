@@ -8,7 +8,7 @@ export type TSdkActionPayloadMethod<Method extends THttpMethod> = {
   method: Method;
 };
 export type TSdkActionPayloadBody = {
-  payload: string | Json;
+  payload: unknown;
 };
 export interface TSdkActionPayloadBase {
   headers?: { [key: string]: string };
