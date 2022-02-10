@@ -288,13 +288,13 @@ In case you need to deal with file uploads, you will probably use [`FormData`](h
 
 The `FormData` object can then be sent as the request HTTP body.
 
-One important thing is to properly configure the `Content-Type` HTTP header, which usually must be set to `multipart/form-data`. However, you also need to provide a `boundary` [directive](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type#directives).
+It is important to properly configure the `Content-Type` HTTP header, which usually must be set to `multipart/form-data`. However, you also need to provide a `boundary` [directive](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type#directives).
 
-The best way to properly configure it, is to let the browser do it. You do so by not providing the `Content-Type` HTTP header in the request. The browser will automatically set one.
+We recommend to omit the `Content-Type` HTTP header in the request and let the browser correctly infer it.
 
 <Info>
 
-When using the [`@commercetools-frontend/sdk`](https://www.npmjs.com/package/@commercetools-frontend/sdk) package, you need to explicitly unset the `Content-Type` HTTP header, by passing `null` as value.
+When using the [`@commercetools-frontend/sdk`](https://www.npmjs.com/package/@commercetools-frontend/sdk) package, you need to explicitly unset the `Content-Type` HTTP header by passing `null` as value.
 
 ```js
 {
