@@ -13,7 +13,7 @@ declare module '@commercetools/sdk-client' {
   export type ClientRequest = {
     uri: string;
     method: MethodType;
-    body?: string | Json;
+    body?: unknown;
     headers?: Headers;
   };
   export class HttpErrorType {

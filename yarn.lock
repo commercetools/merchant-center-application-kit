@@ -2737,7 +2737,7 @@ __metadata:
     "@commercetools/http-user-agent": 2.1.2
     "@commercetools/sdk-client": 2.1.2
     "@commercetools/sdk-middleware-correlation-id": 2.1.4
-    "@commercetools/sdk-middleware-http": 6.1.0
+    "@commercetools/sdk-middleware-http": 6.1.1
     "@testing-library/react": 12.1.2
     "@types/node-fetch": 2.5.12
     "@types/prop-types": ^15.7.4
@@ -3833,10 +3833,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools/sdk-middleware-http@npm:6.1.0":
-  version: 6.1.0
-  resolution: "@commercetools/sdk-middleware-http@npm:6.1.0"
-  checksum: 4167e27e4ac41b2b94aa8529cd959f4c7ef093690de88e3072cee9981fb6e5a3ccfb39eb860330f30d9e2c730d12afc88d32dbf2897bb8b67e515066e67528b3
+"@commercetools/sdk-middleware-http@npm:6.1.1":
+  version: 6.1.1
+  resolution: "@commercetools/sdk-middleware-http@npm:6.1.1"
+  checksum: e9b7262c4988a93e41e39a740cfc2bc67214c6a45ed08f0ca8f503f73d08bb811f8c9a534b6e919b2890885bb429ff566193fdd2db7874662fa827fd83dff72a
   languageName: node
   linkType: hard
 

@@ -279,3 +279,27 @@ The available proxy targets are exposed as a `MC_API_PROXY_TARGETS` constant in 
 The SDK library does not include features like data normalization, caching, etc. You will need to build these on your own.
 
 </Warning>
+
+<!-- TODO: ### Using your own HTTP client -->
+
+### Using file uploads
+
+In case you need to deal with file uploads, you will probably use [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+
+The `FormData` object can then be sent as the request HTTP body.
+
+It is important to properly configure the `Content-Type` HTTP header, which usually must be set to `multipart/form-data`. However, you also need to provide a `boundary` [directive](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type#directives).
+
+We recommend to omit the `Content-Type` HTTP header in the request and let the browser correctly infer it.
+
+<Info>
+
+When using the [`@commercetools-frontend/sdk`](https://www.npmjs.com/package/@commercetools-frontend/sdk) package, you need to explicitly unset the `Content-Type` HTTP header by passing `null` as value.
+
+```js
+{
+  'Content-Type': null
+}
+```
+
+</Info>
