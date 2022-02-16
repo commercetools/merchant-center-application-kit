@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 const path = require('path');
-const util = require('util');
 const readline = require('readline');
 const crypto = require('crypto');
 const {
@@ -14,7 +13,9 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
-const question = util.promisify(rl.question).bind(rl);
+
+const question = (query) =>
+  new Promise((resolve) => rl.question(query, resolve));
 
 const getTemplateName = (flags) => flags.template || 'starter';
 const getEntryPointUriPath = async (flags) => {
