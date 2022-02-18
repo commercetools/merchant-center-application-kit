@@ -20038,7 +20038,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-runner-eslint@npm:^1.0.0":
+"jest-runner-eslint@npm:1.0.0":
   version: 1.0.0
   resolution: "jest-runner-eslint@npm:1.0.0"
   dependencies:
@@ -22282,7 +22282,7 @@ __metadata:
     jest: 27.4.7
     jest-each: 27.4.6
     jest-puppeteer: 6.0.3
-    jest-runner-eslint: ^1.0.0
+    jest-runner-eslint: 1.0.0
     jest-runner-executor: 1.0.0
     jest-silent-reporter: 0.5.0
     jest-watch-typeahead: 1.0.0
@@ -22348,7 +22348,7 @@ __metadata:
     eslint: 8.7.0
     eslint-formatter-pretty: 4.1.0
     jest: 27.4.7
-    jest-runner-eslint: ^1.0.0
+    jest-runner-eslint: 1.0.0
     jest-watch-typeahead: 1.0.0
     msw: 0.36.5
     prettier: 2.5.1
