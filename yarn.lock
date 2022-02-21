@@ -2613,7 +2613,7 @@ __metadata:
     core-js: ^3.20.3
     css-loader: 6.5.1
     css-minimizer-webpack-plugin: 3.4.1
-    dotenv: 10.0.0
+    dotenv: 16.0.0
     dotenv-expand: 5.1.0
     fs-extra: 10.0.0
     graphql-tag: ^2.12.6
@@ -13605,7 +13605,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:10.0.0, dotenv@npm:^10.0.0":
+"dotenv@npm:16.0.0":
+  version: 16.0.0
+  resolution: "dotenv@npm:16.0.0"
+  checksum: 664cebb51f0a9a1d1b930f51f0271e72e26d62feaecc9dc03df39453dd494b4e724809ca480fb3ec3213382b1ed3f791aaeb83569a137f9329ce58efd4853dbf
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:^10.0.0":
   version: 10.0.0
   resolution: "dotenv@npm:10.0.0"
   checksum: f412c5fe8c24fbe313d302d2500e247ba8a1946492db405a4de4d30dd0eb186a88a43f13c958c5a7de303938949c4231c56994f97d05c4bc1f22478d631b4005
@@ -22272,7 +22279,7 @@ __metadata:
     babel-plugin-typescript-to-proptypes: 1.4.2
     cross-env: 7.0.3
     cypress: 9.3.1
-    dotenv: 10.0.0
+    dotenv: 16.0.0
     eslint: 8.7.0
     eslint-formatter-pretty: 4.1.0
     eslint-plugin-graphql: 4.0.0
