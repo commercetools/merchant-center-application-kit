@@ -1,5 +1,17 @@
 # playground
 
+## 19.0.1
+
+### Patch Changes
+
+- [#2482](https://github.com/commercetools/merchant-center-application-kit/pull/2482) [`2172e53e`](https://github.com/commercetools/merchant-center-application-kit/commit/2172e53e36add3849e61977fad8f521650236bf5) Thanks [@renovate](https://github.com/apps/renovate)! - Updated ui-kit to its latest version
+
+- Updated dependencies [[`45e0a856`](https://github.com/commercetools/merchant-center-application-kit/commit/45e0a85645e1e1741e4a9ec8cb221f19f2136f5a), [`2172e53e`](https://github.com/commercetools/merchant-center-application-kit/commit/2172e53e36add3849e61977fad8f521650236bf5)]:
+  - @commercetools-frontend/sdk@21.1.0
+  - @commercetools-frontend/application-components@21.1.0
+  - @commercetools-frontend/application-shell@21.1.0
+  - @commercetools-frontend/i18n@21.1.0
+
 ## 19.0.0
 
 ### Major Changes

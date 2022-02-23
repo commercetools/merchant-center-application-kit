@@ -1,5 +1,13 @@
 # @commercetools-frontend/create-mc-app
 
+## 21.1.0
+
+### Patch Changes
+
+- [#2491](https://github.com/commercetools/merchant-center-application-kit/pull/2491) [`ede1624c`](https://github.com/commercetools/merchant-center-application-kit/commit/ede1624cdd1034a343940ff0a6dd2f4d5ccb9b84) Thanks [@kark](https://github.com/kark)! - Fix compatibility with Node `< v14.18` for reading user input.
+
+* [#2490](https://github.com/commercetools/merchant-center-application-kit/pull/2490) [`99e2a570`](https://github.com/commercetools/merchant-center-application-kit/commit/99e2a57075db6eef67f774aa1e602f87e7c773ac) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update `engines.node` attribute in `package.json` to explicitly state supported versions (not 15)
+
 ## 21.0.0
 
 ### Major Changes

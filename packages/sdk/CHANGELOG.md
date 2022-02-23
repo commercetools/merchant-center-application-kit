@@ -1,5 +1,22 @@
 # @commercetools-frontend/sdk
 
+## 21.1.0
+
+### Minor Changes
+
+- [#2480](https://github.com/commercetools/merchant-center-application-kit/pull/2480) [`45e0a856`](https://github.com/commercetools/merchant-center-application-kit/commit/45e0a85645e1e1741e4a9ec8cb221f19f2136f5a) Thanks [@emmenko](https://github.com/emmenko)! - The SDK request payload (body) now allows to pass something other than a `string` or JSON objects.
+
+  One use case for that is when using `FormData`, for example for uploading a file.
+  In this case, we recommend to explicitly unset the `Content-Type` HTTP header, and let the browser correctly infer it.
+
+  To unset the `Content-Type`, pass the `null` value.
+
+  ```js
+  {
+    'Content-Type': null
+  }
+  ```
+
 ## 21.0.0
 
 ### Patch Changes
