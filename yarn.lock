@@ -2190,7 +2190,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/application-components@21.0.0, @commercetools-frontend/application-components@workspace:packages/application-components":
+"@commercetools-frontend/application-components@21.1.0, @commercetools-frontend/application-components@workspace:packages/application-components":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/application-components@workspace:packages/application-components"
   dependencies:
@@ -2199,7 +2199,7 @@ __metadata:
     "@commercetools-frontend/application-shell-connectors": 21.0.0
     "@commercetools-frontend/assets": 21.0.0
     "@commercetools-frontend/constants": 21.0.0
-    "@commercetools-frontend/i18n": 21.0.0
+    "@commercetools-frontend/i18n": 21.1.0
     "@commercetools-frontend/l10n": 21.0.0
     "@commercetools-uikit/card": ^13.0.2
     "@commercetools-uikit/constraints": ^13.0.2
@@ -2277,7 +2277,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/application-shell@21.0.0, @commercetools-frontend/application-shell@workspace:packages/application-shell":
+"@commercetools-frontend/application-shell@21.1.0, @commercetools-frontend/application-shell@workspace:packages/application-shell":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/application-shell@workspace:packages/application-shell"
   dependencies:
@@ -2285,17 +2285,17 @@ __metadata:
     "@babel/runtime": ^7.16.7
     "@babel/runtime-corejs3": ^7.16.8
     "@commercetools-frontend/actions-global": 21.0.0
-    "@commercetools-frontend/application-components": 21.0.0
+    "@commercetools-frontend/application-components": 21.1.0
     "@commercetools-frontend/application-shell-connectors": 21.0.0
     "@commercetools-frontend/assets": 21.0.0
     "@commercetools-frontend/browser-history": 21.0.0
     "@commercetools-frontend/constants": 21.0.0
-    "@commercetools-frontend/i18n": 21.0.0
+    "@commercetools-frontend/i18n": 21.1.0
     "@commercetools-frontend/l10n": 21.0.0
     "@commercetools-frontend/notifications": 21.0.0
     "@commercetools-frontend/permissions": 21.0.0
-    "@commercetools-frontend/react-notifications": 21.0.0
-    "@commercetools-frontend/sdk": 21.0.0
+    "@commercetools-frontend/react-notifications": 21.1.0
+    "@commercetools-frontend/sdk": 21.1.0
     "@commercetools-frontend/sentry": 21.0.0
     "@commercetools-frontend/url-utils": 21.0.0
     "@commercetools-uikit/avatar": ^13.0.2
@@ -2458,7 +2458,7 @@ __metadata:
     "@babel/runtime": ^7.16.7
     "@babel/runtime-corejs3": ^7.16.8
     "@commercetools-frontend/application-config": 21.0.1
-    "@commercetools-frontend/application-shell": 21.0.0
+    "@commercetools-frontend/application-shell": 21.1.0
     "@manypkg/get-packages": 1.1.3
     cypress: 9.3.1
     uuid: 8.3.2
@@ -2494,7 +2494,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/i18n@21.0.0, @commercetools-frontend/i18n@workspace:packages/i18n":
+"@commercetools-frontend/i18n@21.1.0, @commercetools-frontend/i18n@workspace:packages/i18n":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/i18n@workspace:packages/i18n"
   dependencies:
@@ -2701,7 +2701,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/react-notifications@21.0.0, @commercetools-frontend/react-notifications@workspace:packages/react-notifications":
+"@commercetools-frontend/react-notifications@21.1.0, @commercetools-frontend/react-notifications@workspace:packages/react-notifications":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/react-notifications@workspace:packages/react-notifications"
   dependencies:
@@ -2745,7 +2745,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/sdk@21.0.0, @commercetools-frontend/sdk@workspace:packages/sdk":
+"@commercetools-frontend/sdk@21.1.0, @commercetools-frontend/sdk@workspace:packages/sdk":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/sdk@workspace:packages/sdk"
   dependencies:
@@ -2811,11 +2811,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-local/visual-testing-app@workspace:visual-testing-app"
   dependencies:
-    "@commercetools-frontend/application-components": 21.0.0
+    "@commercetools-frontend/application-components": 21.1.0
     "@commercetools-frontend/assets": 21.0.0
     "@commercetools-frontend/constants": 21.0.0
     "@commercetools-frontend/mc-scripts": 21.0.1
-    "@commercetools-frontend/react-notifications": 21.0.0
+    "@commercetools-frontend/react-notifications": 21.1.0
     "@commercetools-uikit/accessible-button": ^13.0.2
     "@commercetools-uikit/design-system": ^13.0.0
     "@commercetools-uikit/grid": ^12.2.9
@@ -4136,8 +4136,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-website/components-playground@workspace:website-components-playground"
   dependencies:
-    "@commercetools-frontend/application-components": 21.0.0
-    "@commercetools-frontend/i18n": 21.0.0
+    "@commercetools-frontend/application-components": 21.1.0
+    "@commercetools-frontend/i18n": 21.1.0
     "@commercetools-uikit/design-system": ^13.0.0
     "@commercetools-uikit/icon-button": ^13.0.2
     "@commercetools-uikit/icons": ^13.0.2
@@ -22736,18 +22736,18 @@ __metadata:
   dependencies:
     "@apollo/client": 3.5.7
     "@commercetools-frontend/actions-global": 21.0.0
-    "@commercetools-frontend/application-components": 21.0.0
-    "@commercetools-frontend/application-shell": 21.0.0
+    "@commercetools-frontend/application-components": 21.1.0
+    "@commercetools-frontend/application-shell": 21.1.0
     "@commercetools-frontend/application-shell-connectors": 21.0.0
     "@commercetools-frontend/assets": 21.0.0
     "@commercetools-frontend/constants": 21.0.0
     "@commercetools-frontend/eslint-config-mc-app": 21.0.0
-    "@commercetools-frontend/i18n": 21.0.0
+    "@commercetools-frontend/i18n": 21.1.0
     "@commercetools-frontend/jest-preset-mc-app": 21.0.0
     "@commercetools-frontend/mc-dev-authentication": 21.0.0
     "@commercetools-frontend/mc-scripts": 21.0.1
     "@commercetools-frontend/permissions": 21.0.0
-    "@commercetools-frontend/sdk": 21.0.0
+    "@commercetools-frontend/sdk": 21.1.0
     "@commercetools-test-data/commons": 2.4.1
     "@commercetools-test-data/core": 2.4.1
     "@commercetools-uikit/constraints": ^13.0.2
@@ -25319,17 +25319,17 @@ __metadata:
     "@commercetools-backend/express": 21.0.0
     "@commercetools-docs/ui-kit": 18.2.2
     "@commercetools-frontend/actions-global": 21.0.0
-    "@commercetools-frontend/application-components": 21.0.0
-    "@commercetools-frontend/application-shell": 21.0.0
+    "@commercetools-frontend/application-components": 21.1.0
+    "@commercetools-frontend/application-shell": 21.1.0
     "@commercetools-frontend/application-shell-connectors": 21.0.0
     "@commercetools-frontend/assets": 21.0.0
     "@commercetools-frontend/constants": 21.0.0
-    "@commercetools-frontend/i18n": 21.0.0
+    "@commercetools-frontend/i18n": 21.1.0
     "@commercetools-frontend/l10n": 21.0.0
     "@commercetools-frontend/mc-dev-authentication": 21.0.0
     "@commercetools-frontend/mc-scripts": 21.0.1
     "@commercetools-frontend/permissions": 21.0.0
-    "@commercetools-frontend/sdk": 21.0.0
+    "@commercetools-frontend/sdk": 21.1.0
     "@commercetools-uikit/checkbox-input": ^13.0.2
     "@commercetools-uikit/constraints": ^13.0.2
     "@commercetools-uikit/data-table": ^13.0.2

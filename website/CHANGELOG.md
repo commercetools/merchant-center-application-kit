@@ -1,5 +1,11 @@
 # @commercetools-website/custom-applications
 
+## 18.3.11
+
+### Patch Changes
+
+- [#2482](https://github.com/commercetools/merchant-center-application-kit/pull/2482) [`2172e53e`](https://github.com/commercetools/merchant-center-application-kit/commit/2172e53e36add3849e61977fad8f521650236bf5) Thanks [@renovate](https://github.com/apps/renovate)! - Updated ui-kit to its latest version
+
 ## 18.3.10
 
 ### Patch Changes
