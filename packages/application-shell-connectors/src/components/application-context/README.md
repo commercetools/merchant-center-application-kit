@@ -37,7 +37,7 @@ The selected project **locale** (from the locale switcher in the AppBar) used to
 
 #### `environment`
 
-See https://docs.commercetools.com/custom-applications/development/application-config#runtime-application-environment
+See https://docs.commercetools.com/custom-applications/api-reference/application-config#runtime-application-environment
 
 ### Usage
 
