@@ -9,18 +9,10 @@ yarn node scripts/gatsby-cache.mjs pre
 
 echo "Building Gatsby websites"
 
-NODE_ENV=production yarn workspaces foreach \
-  --include '@commercetools-website/*' \
-  --parallel \
-  --interlaced \
-  --verbose \
-  run build
+yarn workspace @commercetools-website/custom-applications build
+yarn workspace @commercetools-website/components-playground build
 
 yarn node scripts/gatsby-cache.mjs post
-
-echo "Checking links locally"
-
-yarn workspace @commercetools-website/custom-applications check-links
 
 echo "Group websites into one folder"
 
