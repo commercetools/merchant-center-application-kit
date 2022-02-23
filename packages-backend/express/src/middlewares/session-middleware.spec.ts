@@ -35,10 +35,15 @@ describe.each`
         )
       );
     });
-    it('should verify the token and attach the session info to the request', async () => {
+
+    function setupTest(options?: {
+      middlewareOptions?: Record<string, unknown>;
+      requestOptions?: Record<string, unknown>;
+    }) {
       const sessionMiddleware = createSessionMiddleware({
         audience: 'http://test-server',
         issuer: cloudIdentifier,
+        ...options?.middlewareOptions,
       });
       const fakeRequest = {
         method: 'GET',
@@ -51,8 +56,16 @@ describe.each`
           'x-mc-api-forward-to-version': 'v2',
         },
         originalUrl: '/foo/bar',
+        ...options?.requestOptions,
       };
       const fakeResponse = {};
+
+      return { sessionMiddleware, fakeRequest, fakeResponse };
+    }
+
+    it('should verify the token and attach the session info to the request', async () => {
+      const { sessionMiddleware, fakeRequest, fakeResponse } = setupTest();
+
       await new Promise<void>((resolve, reject) => {
         // @ts-ignore
         sessionMiddleware(fakeRequest, fakeResponse, (error) => {
@@ -67,26 +80,73 @@ describe.each`
       });
       expect(fakeRequest).not.toHaveProperty('decoded_token');
     });
+
+    it('should resolve the original url externally when a resolver is provided', async () => {
+      const { sessionMiddleware, fakeRequest, fakeResponse } = setupTest({
+        middlewareOptions: {
+          urlResolver: (request: {
+            urlData: { path: string; query: string };
+          }) => {
+            return `${request.urlData.path}${request.urlData.query}`;
+          },
+        },
+        requestOptions: {
+          originalUrl: undefined,
+          urlData: {
+            path: '/foo/bar',
+            query: '?param1=a&param2=b',
+          },
+        },
+      });
+
+      await new Promise<void>((resolve, reject) => {
+        // @ts-ignore
+        sessionMiddleware(fakeRequest, fakeResponse, (error) => {
+          if (error) reject(error);
+          else resolve();
+        });
+      });
+
+      expect(fakeRequest).toHaveProperty('session', {
+        userId: 'user-id',
+        projectKey: 'project-key',
+      });
+      expect(fakeRequest).not.toHaveProperty('decoded_token');
+    });
+
+    it('should fail if incoming request does not contain expected URL params and no urlProvider is provided', async () => {
+      const { sessionMiddleware, fakeRequest, fakeResponse } = setupTest({
+        requestOptions: {
+          originalUrl: undefined,
+          urlData: {
+            path: '/foo/bar',
+            query: '?param1=a&param2=b',
+          },
+        },
+      });
+
+      await expect(
+        new Promise<void>((resolve, reject) => {
+          // @ts-ignore
+          sessionMiddleware(fakeRequest, fakeResponse, (error) => {
+            if (error) reject(error);
+            else resolve();
+          });
+        })
+      ).rejects.toMatchObject({
+        message: expect.stringContaining('jwt audience invalid'),
+      });
+    });
+
     if (!cloudIdentifier.startsWith('http')) {
       it('should infer cloud identifier from custom HTTP header instead of given "mcApiUrl"', async () => {
-        const sessionMiddleware = createSessionMiddleware({
-          audience: 'http://test-server',
-          issuer: 'https://mc-api.another-ct-test.com', // This value should not matter
-          inferIssuer: true,
-        });
-        const fakeRequest = {
-          method: 'GET',
-          headers: {
-            authorization: `Bearer ${fixtureJWTToken.createToken({
-              issuer,
-              audience: 'http://test-server/foo/bar',
-            })}`,
-            'x-mc-api-cloud-identifier': cloudIdentifier,
-            'x-mc-api-forward-to-version': 'v2',
+        const { sessionMiddleware, fakeRequest, fakeResponse } = setupTest({
+          middlewareOptions: {
+            issuer: 'https://mc-api.another-ct-test.com', // This value should not matter
+            inferIssuer: true,
           },
-          originalUrl: '/foo/bar',
-        };
-        const fakeResponse = {};
+        });
+
         await new Promise<void>((resolve, reject) => {
           // @ts-ignore
           sessionMiddleware(fakeRequest, fakeResponse, (error) => {
