@@ -16,6 +16,8 @@ jobs:
 
       - name: Check links
         run: |
+          ./.linkcheck/check_connection.sh ${{ github.event.deployment_status.target_url }}
+
           ./.linkcheck/releases/2.0.20/linux-x64/linkcheck \
             --external \
             --skip-file .linkcheck/skip_list.txt \
