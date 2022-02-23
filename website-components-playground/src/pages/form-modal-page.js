@@ -100,7 +100,6 @@ const FormModalPageExample = (props) => (
                     touched={formikProps.touched.email}
                     onChange={formikProps.handleChange}
                     onBlur={formikProps.handleBlur}
-                    onFocus={formikProps.handleFocus}
                   />
                 </FormModalPage>
               )}

@@ -80,7 +80,6 @@ const FormDialogExample = (props) => (
                       touched={formikProps.touched.email}
                       onChange={formikProps.handleChange}
                       onBlur={formikProps.handleBlur}
-                      onFocus={formikProps.handleFocus}
                     />
                   </Spacings.Stack>
                 </FormDialog>

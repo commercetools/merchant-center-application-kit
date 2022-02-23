@@ -1,0 +1,540 @@
+---
+title: Forms
+---
+
+In the previous sections we learned how to start building the actual User Interface by using UI components and fetching data. One of the most common thing to implement in a User Interface is forms.
+
+To facilitate the development of UI forms, we provide many different ready-to-use input and field components based on [commercetools Design System](https://github.com/commercetools/ui-kit).
+
+# Form state management
+
+Forms generally consist of a group of inputs that users interact with and eventually some actions will be triggered.
+All the user interactions need to be tracked, managed, and reflected in the UI. This is where the form needs to have some state to be able to handle all of that.
+
+At commercetools we have settled on using [Formik](https://formik.org) as the preferred form state management library when building User Interfaces.
+
+Formik comes with several built-in features such as validations, array fields, input states, async submission, etc.
+
+At a bare minimum, implementing a form could look something like this:
+
+```jsx
+import { useFormik } from 'formik';
+import TextField from '@commercetools-uikit/text-field';
+import PrimaryButton from '@commercetools-uikit/primary-button';
+import validate from './validate';
+
+const ChannelsForm = () => {
+  const formik = useFormik({
+    initialValues: {
+      // A Channel's `key`: https://docs.commercetools.com/api/projects/channels
+      key: '',
+    },
+    validate,
+    onSubmit: async (formikValues) => {
+      alert(`key: ${formikValues.key}`);
+      // Do something async
+    },
+  });
+
+  return (
+    <form onSubmit={formik.handleSubmit}>
+      <TextField
+        name="key"
+        title="Key"
+        isRequired={true}
+        value={formik.values.key}
+        errors={formik.errors.key}
+        touched={formik.touched.key}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+      />
+
+      <PrimaryButton
+        type="submit"
+        label="Submit"
+        onClick={formik.handleSubmit}
+        isDisabled={formik.isSubmitting}
+      />
+    </form>
+  );
+}
+```
+
+# Field and input components
+
+The commercetools UIKit library provides several UI components for working with forms. Most of the time you want to use the field components as they provide all the recommended features for rendering form elements.
+
+![Form field example](/images/form-field.png 'Form field example')
+
+A field component consists of an input element wrapped with other field elements such as label, description, error message, hint, badge, etc.
+
+Depending on the use case, you might want to use a date field, or a text field, or a select field. In the UIKit library we provide a variety of components to cover different use cases. For more information about field and input components check their related packages in the [commercetools/ui-kit](https://github.com/commercetools/ui-kit) repository.
+
+<Info>
+
+All UIKit field components have a related input component, for example `<TextField>` -> `<TextInput>`.
+
+</Info>
+
+## Accessibility support
+
+All field and input components have built-in support for accessibility features such as aria labels, keyboard navigation and focus, error messaging.
+
+<Info>
+
+Testing these field components with [React Testing Library](https://github.com/testing-library/react-testing-library) can be easily done using selectors such as `*ByLabelText`, `*ByRole`, etc.
+
+</Info>
+
+# Form validation
+
+One of the important parts of forms is validation. It's important to validate things like required fields, or to check that the value is a valid URL, or even perform asynchronous checks against an API.
+
+For that, Formik allows you to implement a [`validate` function](https://formik.org/docs/api/formik#validate-values-values--formikerrorsvalues--promiseany) that should return an object of errors.
+
+```ts
+type FieldErrors = Record<string, boolean>;
+type FormikErrors = Record<string, FieldErrors>;
+
+declare const validate = (values: FormikValues) => FormikErrors;
+```
+
+Specifically, the `FormikErrors` object should contain properties as the name of the form fields with values being objects with error keys. Let's take a look at an example:
+
+```js title="validate.js"
+import TextInput from '@commercetools-uikit/text-input';
+
+const validate = (values) => {
+  const errors = {};
+
+  if (TextInput.isEmpty(values.key)) {
+    errors.key = { missing: true };
+  }
+
+  return errors;
+}
+```
+
+In this example we are validating that the `key` field has a required value. If the value is empty, we assign to the `errors.key` property an error object with the error key `missing` set to `true`.
+
+In the field component you need to make sure to assign the `errors` and `touched` props which will make the field component render an error message, in case one was returned from the `validate` function.
+
+```js highlightLines="6-7"
+<TextField
+  name="key"
+  title="Key"
+  isRequired={true}
+  value={formik.values.key}
+  errors={formik.errors.key}
+  touched={formik.touched.key}
+  onChange={formik.handleChange}
+  onBlur={formik.handleBlur}
+/>
+```
+
+<Info>
+
+Error messages are only shown when the `touched` value for the specific field is set to `true`. This happens whenever the user stops interacting with a field (loses `focus`). The point here is that as long as the user is interacting with a field for the first time there is no need to show a validation.
+
+</Info>
+
+By default field components have built-in error messages for the `missing` error key. Any other error message can be mapped and rendered using the `renderError` function.
+
+```js highlightLines="7-14"
+<TextField
+  name="key"
+  title="Key"
+  isRequired={true}
+  value={formik.values.key}
+  errors={formik.errors.key}
+  renderError={(errorKey) => {
+    switch (errorKey) {
+      case 'invalid':
+        return 'The value is invalid.';
+      default:
+        return null;
+    }
+  }}
+  touched={formik.touched.key}
+  onChange={formik.handleChange}
+  onBlur={formik.handleBlur}
+/>
+```
+
+# Form data conversion
+
+Implementing forms is almost always related to managing data as a bidirectional data flow.
+
+image
+
+To facilitate converting data to and from a form, we recommend to define some conversion functions.
+
+* `docToFormValues`: converts data, for example fetched from an API, to the form specific format.
+* `formValuesToDoc`: converts form data back to the original data format, for example to be used in an API.
+
+The `docToFormValues` is what you would usually use for initializing the form.
+
+```jsx highlightLines="2,6"
+import { useFormik } from 'formik';
+import { docToFormValues } from './conversions';
+
+const ChannelsForm = () => {
+  const formik = useFormik({
+    initialValues: docToFormValues(props.data),
+    // ...
+  });
+  // ...
+}
+```
+
+In our Channels example, it can look something like this:
+
+```js title="conversions.js"
+export const docToFormValues = (doc) => ({
+  key: doc?.key ?? '',
+})
+```
+
+The `formValuesToDoc` on the other end is what you would usually use when submitting the form.
+
+```jsx highlightLines="2,7"
+import { useFormik } from 'formik';
+import { formValuesToDoc } from './conversions';
+
+const ChannelsForm = () => {
+  const formik = useFormik({
+    onSubmit: async (formValues) => {
+      const updateData = formValuesToDoc(formValues);
+    },
+    // ...
+  });
+  // ...
+}
+```
+
+In our Channels example, it can look something like this:
+
+```js title="conversions.js"
+export const formValuesToDoc = (formValues) => ({
+  key: formValues.key,
+})
+```
+
+<Info>
+
+Most of the time you would have a simple 1:1 mapping. However, we still recommend to use these conversion functions as a best practice and to help decoupling the data transformation logic from the form component.
+
+</Info>
+
+# Building a form page
+
+Let's apply what we just learned in our `Channels` application, as we might want to add a page to see and manage a Channel's details.
+
+Given that we might want to allow creating new channels and updating existing ones, there will be 2 different pages with the same form components. Therefore, we can implement the form as a component and re-use it in both the create and details pages. The only difference is that the form for the create page will be initially empty and the form for the details page will have some data.
+
+```jsx title="channels-form.js"
+import { useFormik } from 'formik';
+import LocalizedTextField from '@commercetools-uikit/localized-text-field';
+import TextField from '@commercetools-uikit/text-field';
+import PrimaryButton from '@commercetools-uikit/primary-button';
+import SecondaryButton from '@commercetools-uikit/secondary-button';
+import Spacings from '@commercetools-uikit/spacings';
+import validate from './validate';
+
+const ChannelsForm = (props) => {
+  const formik = useFormik({
+    // Pass initial values from the parent component.
+    initialValues: props.initialValues,
+    // Handle form submission in the parent component.
+    onSubmit: props.onSubmit
+    validate,
+    enableReinitialize: true,
+  });
+
+  return (
+    <form onSubmit={formik.handleSubmit}>
+      <Spacings.Stack scale="l">
+        <LocalizedTextField
+          name="name"
+          title="Name"
+          isRequired={true}
+          selectedLanguage="en"
+          value={formik.values.name}
+          errors={formik.errors.name}
+          touched={formik.touched.name}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        <TextField
+          name="key"
+          title="Key"
+          isRequired={true}
+          value={formik.values.key}
+          errors={formik.errors.key}
+          touched={formik.touched.key}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+
+        <Spacings.Inline>
+          <SecondaryButton
+            label="Cancel"
+            onClick={formik.handleReset}
+          />
+          <PrimaryButton
+            type="submit"
+            label="Submit"
+            onClick={formik.handleSubmit}
+            isDisabled={formik.isSubmitting}
+          />
+        </Spacings.Inline>
+      </Spacings.Stack>
+    </form>
+  );
+}
+```
+
+Now that we have defined our form component, we can implement the create and details pages.
+
+The create page does not have any initial data, so we can use our conversion function `docToFormValues()` with default values.
+
+```js title="channels-create.js"
+import { useCallback } from 'react';
+import Text from '@commercetools-uikit/text';
+import Spacings from '@commercetools-uikit/spacings';
+import { docToFormValues, formValuesToDoc } from './conversions';
+import ChannelsForm from './channels-form';
+
+const ChannelsCreate = () => {
+  const handleSubmit = useCallback(
+    async (formValues) => {
+      const data = formValuesToDoc(formValues);
+      // This would trigger the request, for example a mutation.
+      const result = await createChannel(data);
+      // If successful, show a notification and redirect
+      // to the Channels details page.
+      // If errored, show an error notification.
+    },
+    [createChannel]
+  );
+
+  return (
+    <Spacings.Stack scale="xl">
+      <Text.Headline as="h1">
+        Create a channel
+      </Text.Headline>
+      <ChannelsForm
+        initialValues={docToFormValues()}
+        onSubmit={handleSubmit}
+      />
+    </Spacings.Stack>
+  );
+}
+```
+
+In the details page we would need to fetch the data first, then initialize the form with the data.
+
+```js title="channels-details.js"
+import { useCallback } from 'react';
+import { useRouteMatch } from "react-router-dom";
+import Text from '@commercetools-uikit/text';
+import Spacings from '@commercetools-uikit/spacings';
+import LoadingSpinner from '@commercetools-uikit/loading-spinner';
+import useChannels from './use-channels';
+import { docToFormValues, formValuesToDoc } from './conversions';
+import ChannelsForm from './channels-form';
+
+const ChannelsDetails = (props) => {
+  const match = useRouteMatch();
+  const { data: channel } = useChannels(match.params.id)
+  const handleSubmit = useCallback(
+    async (formValues) => {
+      const data = formValuesToDoc(formValues);
+      // This would trigger the request, for example a mutation.
+      const result = await updateChannel(data);
+      // If successful, show a notification.
+      // If errored, show an error notification.
+    },
+    [updateChannel]
+  );
+
+  if (!channel) {
+    return <LoadingSpinner />;
+  }
+
+  return (
+    <Spacings.Stack scale="xl">
+      <Text.Headline as="h1">
+        Manage Channel
+      </Text.Headline>
+      <ChannelsForm
+        initialValues={docToFormValues(channel)}
+        onSubmit={handleSubmit}
+      />
+    </Spacings.Stack>
+  );
+}
+```
+
+## Using modal pages
+
+Most of the time a create or details page with a form can be implemented using either the [FormModalPage](/api-reference/commercetools-frontend-application-components#formmodalpage) or the [CustomFormModalPage](/api-reference/commercetools-frontend-application-components#customformmodalpage) components.
+
+Using these components has the advantage of providing the form control buttons (for example `Cancel` and `Save`) in the correct place, according to our design guidelines.
+
+However, the form component must be defined "outside" of the modal page to be able to pass the necessary functions to the modal page to interact with the form.
+
+Therefore, our Channels form must be refactored to defined all the form elements but return them using the function-as-child component pattern.
+
+```jsx title="channels-form.js"
+import { useFormik } from 'formik';
+import LocalizedTextField from '@commercetools-uikit/localized-text-field';
+import TextField from '@commercetools-uikit/text-field';
+import Spacings from '@commercetools-uikit/spacings';
+import validate from './validate';
+
+const ChannelsForm = (props) => {
+  const formik = useFormik({
+    // Pass initial values from the parent component.
+    initialValues: props.initialValues,
+    // Handle form submission in the parent component.
+    onSubmit: props.onSubmit
+    validate,
+    enableReinitialize: true,
+  });
+
+  // Only contains the form elements, no buttons.
+  const formElements = (
+    <Spacings.Stack scale="l">
+      <LocalizedTextField
+        name="name"
+        title="Name"
+        isRequired={true}
+        selectedLanguage="en"
+        value={formik.values.name}
+        errors={formik.errors.name}
+        touched={formik.touched.name}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+      />
+      <TextField
+        name="key"
+        title="Key"
+        isRequired={true}
+        value={formik.values.key}
+        errors={formik.errors.key}
+        touched={formik.touched.key}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+      />
+    </Spacings.Stack>
+  );
+
+  return props.children({
+    formElements,
+    isDirty: formik.dirty,
+    isSubmitting: formik.isSubmitting,
+    submitForm: formik.handleSubmit,
+    handleCancel: formik.handleReset,
+  });
+}
+```
+
+The Channels pages then can be refactored as following:
+
+```js title="channels-create.js"
+import { useCallback } from 'react';
+import { FormModalPage } from '@commercetools-frontend/application-components';
+import { docToFormValues, formValuesToDoc } from './conversions';
+import ChannelsForm from './channels-form';
+
+const ChannelsCreate = (props) => {
+  const handleSubmit = useCallback(
+    async (formValues) => {
+      const data = formValuesToDoc(formValues);
+      // This would trigger the request, for example a mutation.
+      const result = await createChannel(data);
+      // If successful, show a notification and redirect
+      // to the Channels details page.
+      // If errored, show an error notification.
+    },
+    [createChannel]
+  );
+
+  return (
+    <ChannelsForm
+      initialValues={docToFormValues()}
+      onSubmit={handleSubmit}
+    >
+      {(formProps) => {
+        return (
+          <FormModalPage
+            title="Create a channel"
+            isOpen
+            onClose={props.onClose}
+            isPrimaryButtonDisabled={formProps.isSubmitting}
+            onSecondaryButtonClick={() => {
+              formProps.handleCancel();
+              props.onClose()
+            }}
+            onPrimaryButtonClick={formProps.submitForm}
+          >
+            {formProps.formElements}
+          </FormModalPage>
+        )
+      }}
+    </ChannelsForm>
+  );
+}
+```
+
+```js title="channels-details.js"
+import { useCallback } from 'react';
+import { useRouteMatch } from "react-router-dom";
+import LoadingSpinner from '@commercetools-uikit/loading-spinner';
+import { FormModalPage } from '@commercetools-frontend/application-components';
+import useChannels from './use-channels';
+import { docToFormValues, formValuesToDoc } from './conversions';
+import ChannelsForm from './channels-form';
+
+const ChannelsDetails = (props) => {
+  const match = useRouteMatch();
+  const { data: channel } = useChannels(match.params.id)
+  const handleSubmit = useCallback(
+    async (formValues) => {
+      const data = formValuesToDoc(formValues);
+      // This would trigger the request, for example a mutation.
+      const result = await updateChannel(data);
+      // If successful, show a notification.
+      // If errored, show an error notification.
+    },
+    [updateChannel]
+  );
+
+  if (!channel) {
+    return <LoadingSpinner />;
+  }
+
+  return (
+    <ChannelsForm
+      initialValues={docToFormValues(channel)}
+      onSubmit={handleSubmit}
+    >
+      {(formProps) => {
+        return (
+          <FormModalPage
+            title="Manage Channel"
+            isOpen
+            onClose={props.onClose}
+            isPrimaryButtonDisabled={formProps.isSubmitting}
+            onSecondaryButtonClick={formProps.handleCancel}
+            onPrimaryButtonClick={formProps.submitForm}
+          >
+            {formProps.formElements}
+          </FormModalPage>
+        )
+      }}
+    </ChannelsForm>
+  );
+}
+```

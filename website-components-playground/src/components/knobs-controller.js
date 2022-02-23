@@ -40,7 +40,6 @@ const KnobsController = (props) => {
                       touched={formikProps.touched[knobConfig.name]}
                       onChange={formikProps.handleChange}
                       onBlur={formikProps.handleBlur}
-                      onFocus={formikProps.handleFocus}
                     />
                   );
                 case 'text-multi':
@@ -54,7 +53,6 @@ const KnobsController = (props) => {
                       touched={formikProps.touched[knobConfig.name]}
                       onChange={formikProps.handleChange}
                       onBlur={formikProps.handleBlur}
-                      onFocus={formikProps.handleFocus}
                     />
                   );
                 case 'select':
@@ -69,7 +67,6 @@ const KnobsController = (props) => {
                       touched={formikProps.touched[knobConfig.name]}
                       onChange={formikProps.handleChange}
                       onBlur={formikProps.handleBlur}
-                      onFocus={formikProps.handleFocus}
                     />
                   );
                 default:
