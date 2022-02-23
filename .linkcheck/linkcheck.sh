@@ -16,4 +16,4 @@ case $os in
     ;;
 esac
 
-./releases/2.0.20/$binary_name/linkcheck "$@"
+$(dirname "$0")/releases/2.0.20/$binary_name/linkcheck "$@"
