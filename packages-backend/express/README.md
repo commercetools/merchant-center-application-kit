@@ -41,7 +41,7 @@ app.use((request, response, next) => {
 
 - `audience` (_string_): The public-facing URL of your API server. The value should only contain the origin URL (protocol, hostname, port), the request path is inferred from the incoming request.
 
-- `issuer` (_string_): Either a cloud identifier or a valid URL to the Merchant Center API Gateway. The cloud identifier maps to the Merchant Center API URL of the related [cloud region](https://docs.commercetools.com/custom-applications/main-concepts/api-gateway#cloud-regions).
+- `issuer` (_string_): Either a cloud identifier or a valid URL to the Merchant Center API Gateway. The cloud identifier maps to the Merchant Center API URL of the related [cloud region](https://docs.commercetools.com/custom-applications/concepts/merchant-center-api#cloud-regions).
 
   - `gcp-au`: `https://mc-api.australia-southeast1.gcp.commercetools.com`
   - `gcp-eu`: `https://mc-api.europe-west1.gcp.commercetools.com`

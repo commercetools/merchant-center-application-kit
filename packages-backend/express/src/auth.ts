@@ -39,7 +39,7 @@ const writeSessionContext = <Request extends IncomingMessage>(
 // Given a cloud identifier, try to map it to one of the supported
 // environments and return the MC API URL for that environment.
 // The URL points to the new hostnames.
-// https://docs.commercetools.com/custom-applications/main-concepts/api-gateway#hostnames
+// https://docs.commercetools.com/custom-applications/concepts/merchant-center-api#hostnames
 const mapCloudIdentifierToIssuer = (
   issuer: TSessionMiddlewareOptions['issuer']
 ): string | undefined => {
@@ -60,7 +60,6 @@ const mapCloudIdentifierToIssuer = (
 };
 // Given a cloud identifier, try to map it to a legacy hostname.
 // This is for backwards compatibility.
-// https://docs.commercetools.com/custom-applications/main-concepts/api-gateway#legacy-hostnames
 const mapToLegacyIssuer = (cloudIdentifier: string): string | undefined => {
   switch (cloudIdentifier) {
     case CLOUD_IDENTIFIERS.GCP_EU:
@@ -77,7 +76,7 @@ const throwIfIssuerIsNotAValidUrl = (issuer: string) => {
     new URL(issuer);
   } catch (error) {
     throw new Error(
-      `Invalid issuer URL "${issuer}". Expected a valid URL to the Merchant Center API Gateway, or a cloud identifier to one of the available cloud regions. See https://docs.commercetools.com/custom-applications/main-concepts/api-gateway#hostnames.`
+      `Invalid issuer URL "${issuer}". Expected a valid URL to the Merchant Center API Gateway, or a cloud identifier to one of the available cloud regions. See https://docs.commercetools.com/custom-applications/concepts/merchant-center-api#hostnames.`
     );
   }
 };

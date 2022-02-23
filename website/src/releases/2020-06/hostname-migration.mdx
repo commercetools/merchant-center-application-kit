@@ -10,7 +10,7 @@ topics:
   - Configuration
 ---
 
-Recently we [introduced a new host naming scheme](/main-concepts/api-gateway#cloud-regions) for the commercetools APIs, including the Merchant Center, to increase region and cloud provider transparency.
+Recently we [introduced a new host naming scheme](/concepts/merchant-center-api#cloud-regions) for the commercetools APIs, including the Merchant Center, to increase region and cloud provider transparency.
 
 While the previous hostnames such as `*.sphere.io` (Google Cloud, Belgium), `*.commercetools.com` (Google Cloud, Belgium), and `*.commercetools.co` (Google Cloud, Iowa) continue to be operational, we **strongly recommend** to migrate to the new hostname structure.
 
@@ -68,7 +68,7 @@ For example:
 
 <Info>
 
-In production, the `<ApplicationShell>` takes care of inferring the correct [Merchant Center Gateway API hostname](/main-concepts/api-gateway#hostnames) based on the Merchant Center hostname that the user is logged into.
+In production, the `<ApplicationShell>` takes care of inferring the correct [Merchant Center Gateway API hostname](/concepts/merchant-center-api#hostnames) based on the Merchant Center hostname that the user is logged into.
 This results in the Custom Application to work in both new and legacy hostnames, even though the `mcApiUrl` is configured to a specific value.
 
 This feature is available from version `>= 16.2.1`.
