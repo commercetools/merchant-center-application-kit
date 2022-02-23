@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "clean": "gatsby clean",
+    "check-links": "start-server-and-test 'yarn serve' http://localhost:9000/custom-applications '../.linkcheck/linkcheck.sh --skip-file ../.linkcheck/skip_list.txt http://localhost:9000/custom-applications'",
     "build": "./scripts/prebuild.sh && yarn generate-icons && gatsby build --prefix-paths --verbose --log-pages",
     "start": "yarn generate-icons && gatsby develop",
     "serve": "gatsby serve --prefix-paths",
-    "check-links": "start-server-and-test 'yarn serve' http://localhost:9000/custom-applications '../.linkcheck/releases/2.0.20/macos-x64/linkcheck --skip-file ../.linkcheck/skip_list.txt http://localhost:9000/custom-applications'",
     "generate-icons": "svgr -d src/icons/generated -- src/icons/svg && prettier --write '**/generated/*.js'"
   },
   "dependencies": {
@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@svgr/cli": "6.2.0",
+    "linkinator": "3.0.3",
     "prettier": "2.5.1",
     "start-server-and-test": "1.14.0"
   }

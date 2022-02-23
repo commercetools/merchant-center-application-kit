@@ -2,6 +2,14 @@ This folder contains configurations and executables for the [linkcheck](https://
 
 The `linkcheck` is used to verify that the documentation links are correct, including anchor links.
 
+# Using linkcheck
+
+Use the custom bash script that recognizes the correct OS.
+
+```
+./.linkcheck/linkcheck.sh
+```
+
 # Updating linkcheck versions
 
 The library provides ready-to-use executables for different systems. See [Releases page](https://github.com/filiph/linkcheck/releases).
