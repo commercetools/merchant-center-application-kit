@@ -151,6 +151,8 @@ The middleware requires some options:
 
 - `jwks` (_object_): See [options of `jwks-rsa`](https://github.com/auth0/node-jwks-rsa/).
 
+- `getRequestUrl` (_(request) => string_): In case the middleware don't get an Express Request object as first parameter (see AWS Lambda example below), you need to provide this function to extract the full URL from the received object.
+
 You can use the middleware as following:
 
 ```js highlightLines="3,9-12"
@@ -201,6 +203,39 @@ exports.handler = async function (request, response) {
   // `request.session` contains the useful information
 };
 ```
+
+There are other providers that do not pass a Node.js/Express `Request` to the handler as AWS lambda functions do.
+In that context, the handler will receive an `Event` ([reference](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html)) object with a different structure.
+As the verifier needs to access the original URL to validate the JWT and it will not find it in the expected attribute,
+you would need to provide a custom option when creating the verifier to resolve it.
+
+This is an example of validating the JWT for AWS Lambda Functions ([v2 payload](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html))
+
+```js highlightLines="9"
+const {
+  createSessionAuthVerifier,
+  CLOUD_IDENTIFIERS,
+} = require('@commercetools-backend/express');
+
+const sessionAuthVerifier = createSessionAuthVerifier({
+  audience: 'https://my-api-server.com',
+  issuer: CLOUD_IDENTIFIERS.GCP_EU,
+  getRequestUrl: (event) => `${event.rawPath}${event.rawQueryString ? '?' + event.rawQueryString : ''}`
+});
+
+exports.handler = async function (event, context) {
+  try {
+    await sessionAuthVerifier(event, context);
+  } catch (error) {
+    return {
+      statusCode: 401,
+      body: JSON.stringify({ message: 'Unauthorized' }),
+    };
+  }
+  // `event.session` contains the useful information
+};
+```
+
 
 ## Using JSON Web Key Set endpoint
 
