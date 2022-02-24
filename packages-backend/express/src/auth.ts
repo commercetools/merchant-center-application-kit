@@ -149,8 +149,8 @@ function createSessionAuthVerifier<
       issuer = mapToLegacyIssuer(cloudIdentifierHeader) ?? issuer;
     }
 
-    const requestUrlPath = options.urlResolver
-      ? options.urlResolver(request)
+    const requestUrlPath = options.getRequestUrl
+      ? options.getRequestUrl(request)
       : // @ts-ignore: the node HTTP request does not know about `originalUrl`
         request.originalUrl ?? request.url;
     const audience = getConfiguredAudience(options, requestUrlPath);

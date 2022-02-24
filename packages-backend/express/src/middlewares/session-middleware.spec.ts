@@ -97,7 +97,7 @@ describe.each`
     it('should resolve the original url externally when a resolver is provided', async () => {
       const { sessionMiddleware, fakeRequest, fakeResponse } = setupTest({
         middlewareOptions: {
-          urlResolver: (request: {
+          getRequestUrl: (request: {
             urlData: { path: string; query: string };
           }) => {
             return `${request.urlData.path}${request.urlData.query}`;

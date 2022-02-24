@@ -35,7 +35,7 @@ export type TSessionMiddlewareOptions = {
   // (Reference: https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html)
   // To handle these situations, this option allows the delegation of the URL resolution
   // from the request-like object provided to the middleware as its first parameter.
-  urlResolver?: (request: unknown) => string;
+  getRequestUrl?: (request: unknown) => string;
 };
 
 export type TSession = {
