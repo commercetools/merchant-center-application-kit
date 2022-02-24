@@ -151,7 +151,10 @@ The middleware requires some options:
 
 - `jwks` (_object_): See [options of `jwks-rsa`](https://github.com/auth0/node-jwks-rsa/).
 
-- `getRequestUrl` (_(request) => string_): In case the middleware don't get an Express Request object as first parameter (see AWS Lambda example below), you need to provide this function to extract the full URL from the received object.
+- `getRequestUrl` (_function_): Returns the URL (URI path + query string) of the `request` to validate the audience. Use this in case the `request` object does not contain either a property `originalUrl` or `url` (see serverless example below for using AWS Lambda functions).
+
+  ```ts
+  type function getRequestUrl(request: Request): string;
 
 You can use the middleware as following:
 
