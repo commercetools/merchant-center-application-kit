@@ -151,7 +151,7 @@ The middleware requires some options:
 
 - `jwks` (_object_): See [options of `jwks-rsa`](https://github.com/auth0/node-jwks-rsa/).
 
-- `getRequestUrl` (_function_): Returns the URL (URI path + query string) of the `request` to validate the audience. Use this in case the `request` object does not contain either a property `originalUrl` or `url` (see serverless example below for using AWS Lambda functions).
+- `getRequestUrl` (_function_): Returns the URL (URI path + query string) of the `request` to validate the audience. Use this in case the `request` object does not contain either an `originalUrl` or an `url` property (see serverless example below for using AWS Lambda functions).
 
   ```ts
   type function getRequestUrl(request: Request): string;
@@ -207,7 +207,7 @@ exports.handler = async function (request, response) {
 };
 ```
 
-Other cloud providers might not use a standard Node.js/Express `request` object. For example AWS Lambda functions  receive an [`Event` object](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html) with different properties.
+Other cloud providers might not use a standard Node.js/Express `request` object. For example AWS Lambda functions receive an [`Event` object](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html) with different properties.
 
 In these cases you need to implement the `getRequestUrl` function to correctly map the expected URL (URI path + query string). The following example shows how to map an AWS Lambda function [event](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html).
 
