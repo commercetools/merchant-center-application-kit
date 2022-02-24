@@ -5,6 +5,12 @@ import createSessionMiddleware from './session-middleware';
 import * as fixtureJWTToken from './fixtures/jwt-token';
 import { createSessionAuthVerifier } from '../auth';
 import { CLOUD_IDENTIFIERS } from '../constants';
+import { TBaseRequest } from '../types';
+
+interface TMockAWSLambdaRequest extends TBaseRequest {
+  rawPath: string;
+  rawQueryString?: string;
+}
 
 const mockServer = setupServer();
 
@@ -97,18 +103,16 @@ describe.each`
     it('should resolve the original url externally when a resolver is provided', async () => {
       const { sessionMiddleware, fakeRequest, fakeResponse } = setupTest({
         middlewareOptions: {
-          getRequestUrl: (request: {
-            urlData: { path: string; query: string };
-          }) => {
-            return `${request.urlData.path}${request.urlData.query}`;
+          getRequestUrl: (request: TMockAWSLambdaRequest) => {
+            return `${request.rawPath}${
+              request.rawQueryString ? '?' + request.rawQueryString : ''
+            }`;
           },
         },
         requestOptions: {
           originalUrl: undefined,
-          urlData: {
-            path: '/foo/bar',
-            query: '?param1=a&param2=b',
-          },
+          rawPath: '/foo/bar',
+          rawQueryString: '?param1=a&param2=b',
         },
       });
 
@@ -129,17 +133,15 @@ describe.each`
       const { sessionMiddleware, fakeRequest, fakeResponse } = setupTest({
         requestOptions: {
           originalUrl: undefined,
-          urlData: {
-            path: '/foo/bar',
-            query: '?param1=a&param2=b',
-          },
+          rawPath: '/foo/bar',
+          rawQueryString: '?param1=a&param2=b',
         },
       });
 
       await expect(
         waitForSessionMiddleware(sessionMiddleware, fakeRequest, fakeResponse)
       ).rejects.toMatchObject({
-        message: expect.stringContaining('jwt audience invalid'),
+        message: expect.stringContaining('Could not get the request URL'),
       });
     });
 

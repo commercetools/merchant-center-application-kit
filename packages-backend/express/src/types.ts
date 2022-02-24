@@ -9,7 +9,13 @@ export type TIssuer = string;
 export type TCloudIdentifier =
   typeof CLOUD_IDENTIFIERS[keyof typeof CLOUD_IDENTIFIERS];
 
-export type TSessionMiddlewareOptions = {
+export interface TBaseRequest {
+  headers: Record<string, string | string[] | undefined>;
+  url?: string;
+  originalUrl?: string;
+}
+
+export type TSessionMiddlewareOptions<Request extends TBaseRequest> = {
   // The public-facing URL used to connect to the server / serverless function.
   // The value should only contain the origin URL (protocol, hostname, port),
   // the request path is inferred from the incoming request.
@@ -35,7 +41,7 @@ export type TSessionMiddlewareOptions = {
   // (Reference: https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html)
   // To handle these situations, this option allows the delegation of the URL resolution
   // from the request-like object provided to the middleware as its first parameter.
-  getRequestUrl?: (request: unknown) => string;
+  getRequestUrl?: (request: Request) => string;
 };
 
 export type TSession = {

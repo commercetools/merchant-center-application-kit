@@ -1,5 +1,8 @@
-import type { ServerResponse, IncomingMessage } from 'http';
-import type { TSessionMiddlewareOptions, TSession } from './types';
+import type {
+  TSessionMiddlewareOptions,
+  TSession,
+  TBaseRequest,
+} from './types';
 
 import jwksRsa from 'jwks-rsa';
 import expressJwtMiddleware from 'express-jwt';
@@ -18,7 +21,7 @@ type TDecodedJWT = {
 
 const decodedTokenKey = 'decoded_token';
 // Assign a session object to the request object.
-const writeSessionContext = <Request extends IncomingMessage>(
+const writeSessionContext = <Request extends TBaseRequest>(
   request: Request & { decoded_token?: TDecodedJWT; session?: TSession }
 ) => {
   const decodedToken = request[decodedTokenKey];
@@ -40,8 +43,8 @@ const writeSessionContext = <Request extends IncomingMessage>(
 // environments and return the MC API URL for that environment.
 // The URL points to the new hostnames.
 // https://docs.commercetools.com/custom-applications/main-concepts/api-gateway#hostnames
-const mapCloudIdentifierToIssuer = (
-  issuer: TSessionMiddlewareOptions['issuer']
+const mapCloudIdentifierToIssuer = <Request extends TBaseRequest>(
+  issuer: TSessionMiddlewareOptions<Request>['issuer']
 ): string | undefined => {
   switch (issuer) {
     case CLOUD_IDENTIFIERS.GCP_AU:
@@ -82,7 +85,9 @@ const throwIfIssuerIsNotAValidUrl = (issuer: string) => {
   }
 };
 // Validates required option values.
-const validateRequiredValues = (options: TSessionMiddlewareOptions) => {
+const validateRequiredValues = <Request extends TBaseRequest>(
+  options: TSessionMiddlewareOptions<Request>
+) => {
   if (!options.audience) {
     throw new Error(`Missing required option "audience"`);
   }
@@ -92,8 +97,10 @@ const validateRequiredValues = (options: TSessionMiddlewareOptions) => {
 };
 // Attempt to parse the given issuer. If the value is a cloud identifier, it will
 // be mapped to one of the supported values. If not, we assume the value is a valid URL.
-const getConfiguredDefaultIssuer = (options: TSessionMiddlewareOptions) => {
-  const issuer = mapCloudIdentifierToIssuer(options.issuer);
+const getConfiguredDefaultIssuer = <Request extends TBaseRequest>(
+  options: TSessionMiddlewareOptions<Request>
+) => {
+  const issuer = mapCloudIdentifierToIssuer<Request>(options.issuer);
   if (!issuer) {
     throwIfIssuerIsNotAValidUrl(options.issuer);
     return options.issuer;
@@ -104,8 +111,8 @@ const getConfiguredDefaultIssuer = (options: TSessionMiddlewareOptions) => {
 // Construct the audience from the given option + the request path.
 // If the request path is `/`, do not append it to the audience, otherwise
 // the token validation might fail because of mismatching audiences.
-export const getConfiguredAudience = (
-  options: TSessionMiddlewareOptions,
+export const getConfiguredAudience = <Request extends TBaseRequest>(
+  options: TSessionMiddlewareOptions<Request>,
   requestPath: string
 ) => {
   // remove the trailing slash
@@ -116,16 +123,15 @@ export const getConfiguredAudience = (
   return `${url.origin}${url.pathname}`;
 };
 
-function createSessionAuthVerifier<
-  Request extends IncomingMessage,
-  Response extends ServerResponse
->(options: TSessionMiddlewareOptions) {
-  validateRequiredValues(options);
+function createSessionAuthVerifier<Request extends TBaseRequest>(
+  options: TSessionMiddlewareOptions<Request>
+) {
+  validateRequiredValues<Request>(options);
 
-  const configuredDefaultIssuer = getConfiguredDefaultIssuer(options);
+  const configuredDefaultIssuer = getConfiguredDefaultIssuer<Request>(options);
 
   // Returns an async HTTP handler.
-  return async (request: Request, response: Response) => {
+  return async (request: Request, response?: unknown) => {
     // Get the cloud identifier header, forwarded by the `/proxy/forward-to` endpoint.
     const cloudIdentifierHeader = getFirstOrThrow(
       request.headers[MC_API_PROXY_HEADERS.CLOUD_IDENTIFIER],
@@ -134,7 +140,7 @@ function createSessionAuthVerifier<
 
     let issuer =
       options.inferIssuer && cloudIdentifierHeader
-        ? mapCloudIdentifierToIssuer(cloudIdentifierHeader) ??
+        ? mapCloudIdentifierToIssuer<Request>(cloudIdentifierHeader) ??
           configuredDefaultIssuer
         : configuredDefaultIssuer;
 
@@ -151,9 +157,13 @@ function createSessionAuthVerifier<
 
     const requestUrlPath = options.getRequestUrl
       ? options.getRequestUrl(request)
-      : // @ts-ignore: the node HTTP request does not know about `originalUrl`
-        request.originalUrl ?? request.url;
-    const audience = getConfiguredAudience(options, requestUrlPath);
+      : request.originalUrl ?? request.url;
+
+    if (!requestUrlPath || requestUrlPath === 'undefined') {
+      throw new Error('Could not get the request URL.');
+    }
+
+    const audience = getConfiguredAudience<Request>(options, requestUrlPath);
 
     return new Promise<void>((resolve, reject) => {
       expressJwtMiddleware({
@@ -175,7 +185,7 @@ function createSessionAuthVerifier<
         issuer,
         algorithms: ['RS256'],
         // @ts-ignore: the middleware expects an Express.js Request/Response objects
-      })(request, response, (error) => {
+      })(request, response ?? {}, (error) => {
         if (error) {
           reject(error);
         } else {
