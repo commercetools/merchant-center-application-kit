@@ -2,18 +2,18 @@
 title: Forms
 ---
 
-In the previous sections we learned how to start building the actual User Interface by using UI components and fetching data. One of the most common thing to implement in a User Interface is forms.
+In the previous sections we learned how to start building the actual User Interface by using UI components and fetching data. One of the most common requirements when implementing a User Interface is about forms.
 
 To facilitate the development of UI forms, we provide many different ready-to-use input and field components based on [commercetools Design System](https://github.com/commercetools/ui-kit).
 
 # Form state management
 
-Forms generally consist of a group of inputs that users interact with and eventually some actions will be triggered.
-All the user interactions need to be tracked, managed, and reflected in the UI. This is where the form needs to have some state to be able to handle all of that.
+Forms generally consist of a group of inputs that users interact with to eventually trigger some actions.
+In this process all user interactions need to be tracked, managed, and reflected in the UI. To achieve this, a form needs to maintain its own state.
 
 At commercetools we have settled on using [Formik](https://formik.org) as the preferred form state management library when building User Interfaces.
 
-Formik comes with several built-in features such as validations, array fields, input states, async submission, etc.
+Formik comes with several built-in features such as validations, array fields, input states, async submission and many more.
 
 At a bare minimum, implementing a form could look something like this:
 
@@ -78,7 +78,7 @@ All UIKit field components have a related input component, for example `<TextFie
 
 ## Accessibility support
 
-All field and input components have built-in support for accessibility features such as aria labels, keyboard navigation and focus, error messaging.
+All field and input components have built-in support for accessibility features such as aria labels, keyboard navigation and focus management, error messaging and more.
 
 <Info>
 
@@ -88,7 +88,9 @@ Testing these field components with [React Testing Library](https://github.com/t
 
 # Form validation
 
-One of the important parts of forms is validation. It's important to validate things like required fields, or to check that the value is a valid URL, or even perform asynchronous checks against an API.
+One of the important parts of forms is validation. It is important to validate constraints of forms such as required fields but also to check additional semantic requirements, for example checking that the value is a valid URL.
+
+Asides from client-side validation, forms can also perform asynchronous validation against an API to ensure data correctness before submitting the form.
 
 For that, Formik allows you to implement a [`validate` function](https://formik.org/docs/api/formik#validate-values-values--formikerrorsvalues--promiseany) that should return an object of errors.
 
@@ -99,7 +101,7 @@ type FormikErrors = Record<string, FieldErrors>;
 declare const validate = (values: FormikValues) => FormikErrors;
 ```
 
-Specifically, the `FormikErrors` object should contain properties as the name of the form fields with values being objects with error keys. Let's take a look at an example:
+Specifically, the `FormikErrors` object should contain properties correlating to field names with their values being objects with reasons for the given error. Let's take a look at an example:
 
 ```js title="validate.js"
 import TextInput from '@commercetools-uikit/text-input';
@@ -165,7 +167,7 @@ By default field components have built-in error messages for the `missing` error
 
 Implementing forms is almost always related to managing data as a bidirectional data flow.
 
-image
+![Form data conversion](/images/form-conversion.png)
 
 To facilitate converting data to and from a form, we recommend to define some conversion functions.
 
@@ -224,13 +226,15 @@ export const formValuesToDoc = (formValues) => ({
 
 Most of the time you would have a simple 1:1 mapping. However, we still recommend to use these conversion functions as a best practice and to help decoupling the data transformation logic from the form component.
 
+For instance, the form might only need a couple of fields even though the data object has many mores. By being explicit in the conversion, we ensure that only the necessary data is passed to the form.
+
 </Info>
 
 # Building a form page
 
 Let's apply what we just learned in our `Channels` application, as we might want to add a page to see and manage a Channel's details.
 
-Given that we might want to allow creating new channels and updating existing ones, there will be 2 different pages with the same form components. Therefore, we can implement the form as a component and re-use it in both the create and details pages. The only difference is that the form for the create page will be initially empty and the form for the details page will have some data.
+Given that we might want to allow creating new channels and updating existing ones, there will be two different pages with the same form components. Therefore, we can implement the form as a component and re-use it in both the create and details pages. The only difference is that the form for the create page will be initially empty and the form for the details page will have some data.
 
 ```jsx title="channels-form.js"
 import { useFormik } from 'formik';
