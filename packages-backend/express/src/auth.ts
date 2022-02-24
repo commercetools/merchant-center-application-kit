@@ -158,8 +158,10 @@ function createSessionAuthVerifier<Request extends TBaseRequest>(
       ? options.getRequestUrl(request)
       : request.originalUrl ?? request.url;
 
-    if (!requestUrlPath || requestUrlPath === 'undefined') {
-      throw new Error('Invalid request path. Please make sure that the request object has either a property `originalUrl` or `url`. If not, you should implement the `getRequestUrl` function. More info at https://docs.commercetools.com/custom-applications/concepts/integrate-with-your-own-api#validating-the-json-web-token');
+    if (!requestUrlPath) {
+      throw new Error(
+        'Invalid request path. Please make sure that the request object has either a property `originalUrl` or `url`. If not, you should implement the `getRequestUrl` function. More info at https://docs.commercetools.com/custom-applications/concepts/integrate-with-your-own-api#validating-the-json-web-token'
+      );
     }
 
     const audience = getConfiguredAudience<Request>(options, requestUrlPath);
