@@ -1,11 +1,26 @@
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
+import type { Handler } from 'express';
 import createSessionMiddleware from './session-middleware';
 import * as fixtureJWTToken from './fixtures/jwt-token';
 import { createSessionAuthVerifier } from '../auth';
 import { CLOUD_IDENTIFIERS } from '../constants';
 
 const mockServer = setupServer();
+
+function waitForSessionMiddleware(
+  middleware: Handler,
+  request: unknown,
+  response: unknown
+) {
+  return new Promise<void>((resolve, reject) => {
+    // @ts-ignore
+    middleware(request, response, (error) => {
+      if (error) reject(error);
+      else resolve();
+    });
+  });
+}
 
 afterEach(() => {
   mockServer.resetHandlers();
@@ -66,13 +81,11 @@ describe.each`
     it('should verify the token and attach the session info to the request', async () => {
       const { sessionMiddleware, fakeRequest, fakeResponse } = setupTest();
 
-      await new Promise<void>((resolve, reject) => {
-        // @ts-ignore
-        sessionMiddleware(fakeRequest, fakeResponse, (error) => {
-          if (error) reject(error);
-          else resolve();
-        });
-      });
+      await waitForSessionMiddleware(
+        sessionMiddleware,
+        fakeRequest,
+        fakeResponse
+      );
 
       expect(fakeRequest).toHaveProperty('session', {
         userId: 'user-id',
@@ -99,13 +112,11 @@ describe.each`
         },
       });
 
-      await new Promise<void>((resolve, reject) => {
-        // @ts-ignore
-        sessionMiddleware(fakeRequest, fakeResponse, (error) => {
-          if (error) reject(error);
-          else resolve();
-        });
-      });
+      await waitForSessionMiddleware(
+        sessionMiddleware,
+        fakeRequest,
+        fakeResponse
+      );
 
       expect(fakeRequest).toHaveProperty('session', {
         userId: 'user-id',
@@ -126,13 +137,7 @@ describe.each`
       });
 
       await expect(
-        new Promise<void>((resolve, reject) => {
-          // @ts-ignore
-          sessionMiddleware(fakeRequest, fakeResponse, (error) => {
-            if (error) reject(error);
-            else resolve();
-          });
-        })
+        waitForSessionMiddleware(sessionMiddleware, fakeRequest, fakeResponse)
       ).rejects.toMatchObject({
         message: expect.stringContaining('jwt audience invalid'),
       });
@@ -147,13 +152,11 @@ describe.each`
           },
         });
 
-        await new Promise<void>((resolve, reject) => {
-          // @ts-ignore
-          sessionMiddleware(fakeRequest, fakeResponse, (error) => {
-            if (error) reject(error);
-            else resolve();
-          });
-        });
+        await waitForSessionMiddleware(
+          sessionMiddleware,
+          fakeRequest,
+          fakeResponse
+        );
 
         expect(fakeRequest).toHaveProperty('session', {
           userId: 'user-id',
