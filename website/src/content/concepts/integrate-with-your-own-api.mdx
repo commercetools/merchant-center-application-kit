@@ -207,12 +207,9 @@ exports.handler = async function (request, response) {
 };
 ```
 
-There are other providers that do not pass a Node.js/Express `Request` to the handler as AWS lambda functions do.
-In that context, the handler will receive an `Event` ([reference](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html)) object with a different structure.
-As the verifier needs to access the original URL to validate the JWT and it will not find it in the expected attribute,
-you would need to provide a custom option when creating the verifier to resolve it.
+Other cloud providers might not use a standard Node.js/Express `request` object. For example AWS Lambda functions  receive an [`Event` object](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html) with different properties.
 
-This is an example of validating the JWT for AWS Lambda Functions ([v2 payload](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html))
+In these cases you need to implement the `getRequestUrl` function to correctly map the expected URL (URI path + query string). The following example shows how to map an AWS Lambda function [event](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html).
 
 ```js highlightLines="9"
 const {
