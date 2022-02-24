@@ -26,14 +26,15 @@ export type TSessionMiddlewareOptions = {
   /* Options for the `jwksRsa.expressJwtSecret` */
   jwks?: Omit<ExpressJwtOptions, 'jwksUri'>;
 
-  // This middleware needs to resolve the request URL to know about the
-  // 'audience' it needs to use for the JWT.
-  // By default it assumes a nodejs IncomingMessage object as its first parameter,
-  // however this is not always the case (eg; AWS lambda functions).
-  // When providing this function you will be delegated to resolve the URL from
-  // the first parameter the middleware receives.
-  // Form example, in AWS lambda functions it will be an Event object
-  // (https://github.com/DefinitelyTyped/DefinitelyTyped/blob/a1260a1f3d40f239b53fd29effba594b0d1bee08/types/aws-lambda/trigger/api-gateway-proxy.d.ts#L12)
+  // In order to determine the 'audience' for JWT validation, the middleware needs
+  // to resolve the request url.
+  // By default, the middleware assumes it receives a Node.js IncomingMessage object
+  // as its first parameter.
+  // This default behaviour might not work for every scenario as, for example,
+  // AWS lambda functions, where that first parameter is an Event object.
+  // (Reference: https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html)
+  // To handle these situations, this option allows the delegation of the URL resolution
+  // from the request-like object provided to the middleware as its first parameter.
   urlResolver?: (request: unknown) => string;
 };
 
