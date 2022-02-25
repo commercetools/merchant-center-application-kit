@@ -9,7 +9,13 @@ export type TIssuer = string;
 export type TCloudIdentifier =
   typeof CLOUD_IDENTIFIERS[keyof typeof CLOUD_IDENTIFIERS];
 
-export type TSessionMiddlewareOptions = {
+export interface TBaseRequest {
+  headers: Record<string, string | string[] | undefined>;
+  url?: string;
+  originalUrl?: string;
+}
+
+export type TSessionMiddlewareOptions<Request extends TBaseRequest> = {
   // The public-facing URL used to connect to the server / serverless function.
   // The value should only contain the origin URL (protocol, hostname, port),
   // the request path is inferred from the incoming request.
@@ -25,6 +31,12 @@ export type TSessionMiddlewareOptions = {
 
   /* Options for the `jwksRsa.expressJwtSecret` */
   jwks?: Omit<ExpressJwtOptions, 'jwksUri'>;
+
+  // By default we assume that the `request` is a Node.js-like object having either
+  // an `originalUrl` or `url` properties.
+  // If that's not the case (for example in AWS Lambda functions) you need to correctly
+  // map the URL (URI path + query string) of the `request`.
+  getRequestUrl?: (request: Request) => string;
 };
 
 export type TSession = {

@@ -1,12 +1,12 @@
-import type { Request, Response, NextFunction } from 'express';
-import type { TSessionMiddlewareOptions } from '../types';
+import type { Response, NextFunction } from 'express';
+import type { TBaseRequest, TSessionMiddlewareOptions } from '../types';
 
 import { createSessionAuthVerifier } from '../auth';
 
-function createSessionMiddleware(options: TSessionMiddlewareOptions) {
-  const sessionAuthVerifier = createSessionAuthVerifier<Request, Response>(
-    options
-  );
+function createSessionMiddleware<Request extends TBaseRequest>(
+  options: TSessionMiddlewareOptions<Request>
+) {
+  const sessionAuthVerifier = createSessionAuthVerifier<Request>(options);
 
   return async (request: Request, response: Response, next: NextFunction) => {
     try {

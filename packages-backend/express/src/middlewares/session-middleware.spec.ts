@@ -1,11 +1,32 @@
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
+import type { Handler } from 'express';
 import createSessionMiddleware from './session-middleware';
 import * as fixtureJWTToken from './fixtures/jwt-token';
 import { createSessionAuthVerifier } from '../auth';
 import { CLOUD_IDENTIFIERS } from '../constants';
+import { TBaseRequest } from '../types';
+
+interface TMockAWSLambdaRequest extends TBaseRequest {
+  rawPath: string;
+  rawQueryString?: string;
+}
 
 const mockServer = setupServer();
+
+function waitForSessionMiddleware(
+  middleware: Handler,
+  request: unknown,
+  response: unknown
+) {
+  return new Promise<void>((resolve, reject) => {
+    // @ts-ignore
+    middleware(request, response, (error) => {
+      if (error) reject(error);
+      else resolve();
+    });
+  });
+}
 
 afterEach(() => {
   mockServer.resetHandlers();
@@ -35,10 +56,15 @@ describe.each`
         )
       );
     });
-    it('should verify the token and attach the session info to the request', async () => {
+
+    function setupTest(options?: {
+      middlewareOptions?: Record<string, unknown>;
+      requestOptions?: Record<string, unknown>;
+    }) {
       const sessionMiddleware = createSessionMiddleware({
         audience: 'http://test-server',
         issuer: cloudIdentifier,
+        ...options?.middlewareOptions,
       });
       const fakeRequest = {
         method: 'GET',
@@ -51,15 +77,21 @@ describe.each`
           'x-mc-api-forward-to-version': 'v2',
         },
         originalUrl: '/foo/bar',
+        ...options?.requestOptions,
       };
       const fakeResponse = {};
-      await new Promise<void>((resolve, reject) => {
-        // @ts-ignore
-        sessionMiddleware(fakeRequest, fakeResponse, (error) => {
-          if (error) reject(error);
-          else resolve();
-        });
-      });
+
+      return { sessionMiddleware, fakeRequest, fakeResponse };
+    }
+
+    it('should verify the token and attach the session info to the request', async () => {
+      const { sessionMiddleware, fakeRequest, fakeResponse } = setupTest();
+
+      await waitForSessionMiddleware(
+        sessionMiddleware,
+        fakeRequest,
+        fakeResponse
+      );
 
       expect(fakeRequest).toHaveProperty('session', {
         userId: 'user-id',
@@ -67,33 +99,66 @@ describe.each`
       });
       expect(fakeRequest).not.toHaveProperty('decoded_token');
     });
+
+    it('should resolve the original url externally when a resolver is provided', async () => {
+      const { sessionMiddleware, fakeRequest, fakeResponse } = setupTest({
+        middlewareOptions: {
+          getRequestUrl: (request: TMockAWSLambdaRequest) => {
+            return `${request.rawPath}${
+              request.rawQueryString ? '?' + request.rawQueryString : ''
+            }`;
+          },
+        },
+        requestOptions: {
+          originalUrl: undefined,
+          rawPath: '/foo/bar',
+          rawQueryString: '?param1=a&param2=b',
+        },
+      });
+
+      await waitForSessionMiddleware(
+        sessionMiddleware,
+        fakeRequest,
+        fakeResponse
+      );
+
+      expect(fakeRequest).toHaveProperty('session', {
+        userId: 'user-id',
+        projectKey: 'project-key',
+      });
+      expect(fakeRequest).not.toHaveProperty('decoded_token');
+    });
+
+    it('should fail if incoming request does not contain expected URL params and no urlProvider is provided', async () => {
+      const { sessionMiddleware, fakeRequest, fakeResponse } = setupTest({
+        requestOptions: {
+          originalUrl: undefined,
+          rawPath: '/foo/bar',
+          rawQueryString: '?param1=a&param2=b',
+        },
+      });
+
+      await expect(
+        waitForSessionMiddleware(sessionMiddleware, fakeRequest, fakeResponse)
+      ).rejects.toMatchObject({
+        message: expect.stringContaining('Invalid request URI path.'),
+      });
+    });
+
     if (!cloudIdentifier.startsWith('http')) {
       it('should infer cloud identifier from custom HTTP header instead of given "mcApiUrl"', async () => {
-        const sessionMiddleware = createSessionMiddleware({
-          audience: 'http://test-server',
-          issuer: 'https://mc-api.another-ct-test.com', // This value should not matter
-          inferIssuer: true,
-        });
-        const fakeRequest = {
-          method: 'GET',
-          headers: {
-            authorization: `Bearer ${fixtureJWTToken.createToken({
-              issuer,
-              audience: 'http://test-server/foo/bar',
-            })}`,
-            'x-mc-api-cloud-identifier': cloudIdentifier,
-            'x-mc-api-forward-to-version': 'v2',
+        const { sessionMiddleware, fakeRequest, fakeResponse } = setupTest({
+          middlewareOptions: {
+            issuer: 'https://mc-api.another-ct-test.com', // This value should not matter
+            inferIssuer: true,
           },
-          originalUrl: '/foo/bar',
-        };
-        const fakeResponse = {};
-        await new Promise<void>((resolve, reject) => {
-          // @ts-ignore
-          sessionMiddleware(fakeRequest, fakeResponse, (error) => {
-            if (error) reject(error);
-            else resolve();
-          });
         });
+
+        await waitForSessionMiddleware(
+          sessionMiddleware,
+          fakeRequest,
+          fakeResponse
+        );
 
         expect(fakeRequest).toHaveProperty('session', {
           userId: 'user-id',
