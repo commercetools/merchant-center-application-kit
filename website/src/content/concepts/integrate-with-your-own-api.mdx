@@ -208,7 +208,7 @@ exports.handler = async function (request, response) {
 };
 ```
 
-Other cloud providers might not use a standard Node.js/Express `request` object. For example AWS Lambda functions receive an [`Event` object](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html) with different properties.
+Other cloud providers might not use a standard Node.js/Express `request` object. For example AWS Lambda functions receive an [`event` object](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html) with different properties.
 
 In these cases you need to implement the `getRequestUrl` function to correctly map the expected URL (URI path + query string). The following example shows how to map an AWS Lambda function [event](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html).
 
