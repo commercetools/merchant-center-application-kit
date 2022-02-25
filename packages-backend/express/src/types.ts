@@ -32,15 +32,10 @@ export type TSessionMiddlewareOptions<Request extends TBaseRequest> = {
   /* Options for the `jwksRsa.expressJwtSecret` */
   jwks?: Omit<ExpressJwtOptions, 'jwksUri'>;
 
-  // In order to determine the 'audience' for JWT validation, the middleware needs
-  // to resolve the request url.
-  // By default, the middleware assumes it receives a Node.js IncomingMessage object
-  // as its first parameter.
-  // This default behaviour might not work for every scenario as, for example,
-  // AWS lambda functions, where that first parameter is an Event object.
-  // (Reference: https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html)
-  // To handle these situations, this option allows the delegation of the URL resolution
-  // from the request-like object provided to the middleware as its first parameter.
+  // By default we assume that the `request` is a Node.js-like object having either
+  // an `originalUrl` or `url` properties.
+  // If that's not the case (for example in AWS Lambda functions) you need to correctly
+  // map the URL (URI path + query string) of the `request`.
   getRequestUrl?: (request: Request) => string;
 };
 

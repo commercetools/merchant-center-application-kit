@@ -141,7 +141,7 @@ describe.each`
       await expect(
         waitForSessionMiddleware(sessionMiddleware, fakeRequest, fakeResponse)
       ).rejects.toMatchObject({
-        message: expect.stringContaining('Invalid request path.'),
+        message: expect.stringContaining('Invalid request URI path.'),
       });
     });
 
