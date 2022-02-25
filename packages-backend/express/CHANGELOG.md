@@ -1,5 +1,13 @@
 # @commercetools-backend/express
 
+## 21.1.1
+
+### Patch Changes
+
+- [#2494](https://github.com/commercetools/merchant-center-application-kit/pull/2494) [`0ea616f8`](https://github.com/commercetools/merchant-center-application-kit/commit/0ea616f8263499328f8e3724d6fd2840727fcde6) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Allow to map a `request` URL (URI path + query string) using the `getRequestUrl` function in case the `request` object does not contain either an `originalUrl` or `url` properties.
+
+  More info at https://docs.commercetools.com/custom-applications/concepts/integrate-with-your-own-api#validating-the-json-web-token.
+
 ## 21.0.0
 
 ### Patch Changes

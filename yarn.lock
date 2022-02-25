@@ -2000,7 +2000,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-backend/express@21.0.0, @commercetools-backend/express@workspace:packages-backend/express":
+"@commercetools-backend/express@21.1.1, @commercetools-backend/express@workspace:packages-backend/express":
   version: 0.0.0-use.local
   resolution: "@commercetools-backend/express@workspace:packages-backend/express"
   dependencies:
@@ -25316,7 +25316,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "playground@workspace:playground"
   dependencies:
-    "@commercetools-backend/express": 21.0.0
+    "@commercetools-backend/express": 21.1.1
     "@commercetools-docs/ui-kit": 18.2.2
     "@commercetools-frontend/actions-global": 21.0.0
     "@commercetools-frontend/application-components": 21.1.0
