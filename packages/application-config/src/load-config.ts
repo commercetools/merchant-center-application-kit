@@ -30,8 +30,8 @@ const loadJsModule: LoaderSync = (filePath) => {
   // The "required module output" is then written into `stdout` and parsed
   // as JSON.
   const output = execFileSync(
-    path.join(packageRootPath, 'scripts/load-js-module.js'),
-    [filePath],
+    'node',
+    [path.join(packageRootPath, 'scripts/load-js-module.js'), filePath],
     { encoding: 'utf8' }
   );
   return JSON.parse(output);
