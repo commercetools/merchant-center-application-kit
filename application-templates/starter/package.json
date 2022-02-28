@@ -1,6 +1,6 @@
 {
   "name": "merchant-center-application-template-starter",
-  "version": "19.0.2",
+  "version": "19.0.3",
   "description": "A starter example for the bare minimum setup to develop a Merchant Center Application",
   "private": true,
   "scripts": {
@@ -30,7 +30,7 @@
     "@commercetools-frontend/i18n": "21.1.0",
     "@commercetools-frontend/jest-preset-mc-app": "21.0.0",
     "@commercetools-frontend/mc-dev-authentication": "21.0.0",
-    "@commercetools-frontend/mc-scripts": "21.0.1",
+    "@commercetools-frontend/mc-scripts": "21.1.2",
     "@commercetools-frontend/permissions": "21.0.0",
     "@commercetools-frontend/sdk": "21.1.0",
     "@commercetools-test-data/commons": "2.4.1",
