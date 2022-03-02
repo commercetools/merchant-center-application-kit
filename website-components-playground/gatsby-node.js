@@ -31,3 +31,21 @@ exports.onCreateBabelConfig = ({ actions }) => {
     },
   });
 };
+
+exports.createPages = ({ actions }) => {
+  const { createRedirect } = actions;
+
+  createRedirect({
+    fromPath: `/tabular-modal-page/`,
+    toPath: `/tabular-modal-page/tab-one`,
+    redirectInBrowser: true,
+    isPermanent: true,
+  });
+
+  createRedirect({
+    fromPath: `/tabular-modal-page`,
+    toPath: `/tabular-modal-page/tab-one`,
+    redirectInBrowser: true,
+    isPermanent: true,
+  });
+};

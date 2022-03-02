@@ -37,6 +37,7 @@ npm --save install react react-dom react-intl
 * [FormModalPage](#formmodalpage)
 * [CustomFormModalPage](#customformmodalpage)
 * [TabularModalPage](#tabularmodalpage)
+* [TabHeader](#tabheader)
 
 ## InfoDialog
 
@@ -531,7 +532,7 @@ const AccountPage = () => {
       isOpen={tabsModalState.isModalOpen}
       onClose={tabsModalState.closeModal}
       tabControls={
-        // Tabs components
+        // TabHeader components
       }
     >
       <Switch>
@@ -596,6 +597,57 @@ const AccountPage = () => {
     }
   />
   ```
+
+## TabHeader
+
+<Playground urlPath="tabular-modal-page" />
+
+A composition of Tab Header components enable navigation within a Tabular Modal page.
+
+### Usage
+
+```jsx
+import styled from "@emotion/styled";
+import { BrowserRouter as Router } from "react-router-dom";
+import { TabHeader } from '@commercetools-frontend/application-components';
+
+const TabList = styled.ul`
+  min-height: 30px;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`;
+
+const TabsView = () => {
+  return (
+    <Router>
+      <TabList>
+        <TabHeader name="tab-one" to="/tab-one">
+          Tab One
+        </TabHeader>
+        <TabHeader name="tab-two" to="/tab-two">
+          Tab Two
+        </TabHeader>
+      </TabList>
+    </Router>
+  );
+};
+
+export default TabsView;
+```
+
+### Properties
+
+| Props                           | Type                       | Required | Default                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------------------- | -------------------------- | :------: | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`                          | `string`                   |    ✅    | -                        | Value of `data-track-component` attribute in DOM.                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `to`                            | `string`                   |          | -                        | Path that the TabHeader directs to when not disabled.                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `isDisabled`                    | `boolean`                  |          | -                        | If `true`, indicates that the element is in a disabled state.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `exact`                         | `boolean`                  |          | -                        | If set to true TabHeader will shown as active only when there is an exact match of route.                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `onClick`                       | `function`                 |          | -                        | A callback function, called when TabHeader is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                                             |
+| `children`                      | `node`                     |    ✅    | -                        | Any React node passed to LinkWrapper.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+
 
 # Hooks
 
