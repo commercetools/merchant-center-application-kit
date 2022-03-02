@@ -42,7 +42,7 @@ type TTabHeaderProps = {
    */
   isDisabled?: boolean;
   /**
-   * If set to true TabHeader will shown as active only when there is an exact match of route.
+   * If set to true TabHeader will be visible as active only when there is an exact match of route.
    */
   exact?: boolean;
   /**

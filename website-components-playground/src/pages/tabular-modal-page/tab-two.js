@@ -1,3 +1,6 @@
 import TabularModalPageExample from '../../components/tabular-modal';
 
-export default TabularModalPageExample;
+const TabTwoExample = (props) => <TabularModalPageExample {...props} />;
+TabTwoExample.displayName = 'TabTwoExample';
+
+export default TabTwoExample;
