@@ -8,6 +8,7 @@ import type {
 
 import memoize from 'memoize-one';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { components } from 'react-select';
 import { css } from '@emotion/react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
@@ -28,9 +29,21 @@ type Props = {
 type OptionType = Pick<TProject, 'key' | 'name' | 'suspension' | 'expiry'> & {
   label: string;
 };
-type CustomValueContainerProps = ValueContainerProps<OptionType, false> & {
+type CustomValueContainerProps = ValueContainerProps & {
   projectCount: number;
 };
+
+// FIXME: properly expose these static component types from uikit.
+type SelectInputWithStaticComponents = {
+  ValueContainer: typeof components.ValueContainer;
+  Option: typeof components.Option;
+};
+const SelectInputValueContainer = (
+  SelectInput as unknown as SelectInputWithStaticComponents
+).ValueContainer;
+const SelectInputOption = (
+  SelectInput as unknown as SelectInputWithStaticComponents
+).Option;
 
 export const ProjectSwitcherValueContainer = ({
   projectCount,
@@ -48,9 +61,9 @@ export const ProjectSwitcherValueContainer = ({
         flex: 1;
       `}
     >
-      <SelectInput.ValueContainer {...restProps}>
+      <SelectInputValueContainer {...restProps}>
         {restProps.children}
-      </SelectInput.ValueContainer>
+      </SelectInputValueContainer>
     </div>
     <span
       css={css`
@@ -70,67 +83,68 @@ export const ProjectSwitcherValueContainer = ({
   </div>
 );
 
-export const ProjectSwitcherOption = (
-  props: OptionProps<OptionType, false>
-) => (
-  <SelectInput.Option {...props}>
-    <div
-      css={css`
-        word-wrap: break-word;
-      `}
-    >
+export const ProjectSwitcherOption = (props: OptionProps) => {
+  const project = props.data as OptionType;
+  return (
+    <SelectInputOption {...props}>
       <div
         css={css`
-          color: ${props.isDisabled
-            ? customProperties.colorNeutral
-            : customProperties.colorAccent};
+          word-wrap: break-word;
         `}
       >
-        {props.data.name}
-        {props.isDisabled && (
-          <span
+        <div
+          css={css`
+            color: ${props.isDisabled
+              ? customProperties.colorNeutral
+              : customProperties.colorAccent};
+          `}
+        >
+          {project.name}
+          {props.isDisabled && (
+            <span
+              css={css`
+                font-size: 1.5rem;
+                display: flex;
+              `}
+            >
+              <ErrorIcon size="medium" />
+            </span>
+          )}
+        </div>
+        <div
+          css={css`
+            font-size: 11px;
+            color: ${props.isDisabled
+              ? customProperties.colorNeutral
+              : 'inherit'};
+          `}
+        >
+          {project.key}
+        </div>
+        {project.suspension && project.suspension.isActive && (
+          <div
             css={css`
-              font-size: 1.5rem;
-              display: flex;
+              font-size: 11px;
+              color: ${customProperties.colorError};
             `}
           >
-            <ErrorIcon size="medium" />
-          </span>
+            <FormattedMessage {...messages.suspended} />
+          </div>
+        )}
+        {project.expiry && project.expiry.isActive && (
+          <div
+            css={css`
+              font-size: 11px;
+              color: ${customProperties.colorError};
+            `}
+          >
+            <FormattedMessage {...messages.expired} />
+          </div>
         )}
       </div>
-      <div
-        css={css`
-          font-size: 11px;
-          color: ${props.isDisabled
-            ? customProperties.colorNeutral
-            : 'inherit'};
-        `}
-      >
-        {props.data.key}
-      </div>
-      {props.data.suspension && props.data.suspension.isActive && (
-        <div
-          css={css`
-            font-size: 11px;
-            color: ${customProperties.colorError};
-          `}
-        >
-          <FormattedMessage {...messages.suspended} />
-        </div>
-      )}
-      {props.data.expiry && props.data.expiry.isActive && (
-        <div
-          css={css`
-            font-size: 11px;
-            color: ${customProperties.colorError};
-          `}
-        >
-          <FormattedMessage {...messages.expired} />
-        </div>
-      )}
-    </div>
-  </SelectInput.Option>
-);
+    </SelectInputOption>
+  );
+};
 
 const mapProjectsToOptions = memoize((projects) =>
   projects.map((project: TProject) => ({
@@ -167,12 +181,12 @@ const ProjectSwitcher = (props: Props) => {
       data-track-component="ProjectSwitch"
       data-track-event="click"
     >
-      <SelectInput<OptionType>
+      <SelectInput
         value={props.projectKey || ''}
         name="project-switcher"
         aria-labelledby="project-switcher"
         onChange={(event) => {
-          const selectedProjectKey = event.target.value;
+          const selectedProjectKey = event.target.value as string;
           if (selectedProjectKey !== props.projectKey) {
             if (window.app.__DEVELOPMENT__?.oidc?.authorizeUrl) {
               oidcStorage.setActiveProjectKey(selectedProjectKey);
@@ -187,9 +201,10 @@ const ProjectSwitcher = (props: Props) => {
         options={
           data && data.user && mapProjectsToOptions(data.user.projects.results)
         }
-        isOptionDisabled={(option) =>
-          option.suspension.isActive || option.expiry.isActive
-        }
+        isOptionDisabled={(option) => {
+          const project = option as OptionType;
+          return project.suspension.isActive || project.expiry.isActive;
+        }}
         components={{
           Option: ProjectSwitcherOption,
           ValueContainer: (valueContainerProps) => (

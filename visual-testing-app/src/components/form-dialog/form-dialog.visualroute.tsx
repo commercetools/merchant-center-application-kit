@@ -1,5 +1,5 @@
-import { Formik } from 'formik';
-import TextField, { CustomFormikErrors } from '@commercetools-uikit/text-field';
+import { Formik, type FormikValues } from 'formik';
+import TextField from '@commercetools-uikit/text-field';
 import Spacings from '@commercetools-uikit/spacings';
 import { FormDialog } from '@commercetools-frontend/application-components';
 import { Suite, Spec } from '../../test-utils';
@@ -11,6 +11,12 @@ type ContainerProps = {
 } & Partial<Parameters<typeof FormDialog>[0]>;
 type FormValues = {
   email: string;
+};
+type CustomFormikErrorsField = {
+  [errorKey: string]: boolean; // <-- our ui-kit components use a boolean flag to indicate the error
+};
+type CustomFormikErrors<Values = FormikValues> = {
+  [K in keyof Values]?: CustomFormikErrorsField;
 };
 
 const FormDialogExample = (props: ContainerProps) => (

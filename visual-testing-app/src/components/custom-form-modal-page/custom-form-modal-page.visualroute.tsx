@@ -1,10 +1,10 @@
-import { Formik } from 'formik';
+import { Formik, type FormikValues } from 'formik';
 import {
   SearchIcon,
   FlameIcon,
   BinLinearIcon,
 } from '@commercetools-uikit/icons';
-import TextField, { CustomFormikErrors } from '@commercetools-uikit/text-field';
+import TextField from '@commercetools-uikit/text-field';
 import IconButton from '@commercetools-uikit/icon-button';
 import { CustomFormModalPage } from '@commercetools-frontend/application-components';
 import { Suite, Spec } from '../../test-utils';
@@ -16,6 +16,12 @@ type ContainerProps = {
 } & Partial<Parameters<typeof CustomFormModalPage>[0]>;
 type FormValues = {
   email: string;
+};
+type CustomFormikErrorsField = {
+  [errorKey: string]: boolean; // <-- our ui-kit components use a boolean flag to indicate the error
+};
+type CustomFormikErrors<Values = FormikValues> = {
+  [K in keyof Values]?: CustomFormikErrorsField;
 };
 
 const ModalPageWithPortalParentSelector = ({
