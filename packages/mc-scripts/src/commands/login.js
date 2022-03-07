@@ -16,7 +16,7 @@ const getEmail = async () => {
   let email = await read({ prompt: 'Email: ' });
   if (!validateEmail(email)) {
     console.log('Please input a valid email');
-    await getEmail();
+    email = await getEmail();
   }
   return email;
 };
