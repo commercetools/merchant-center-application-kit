@@ -3,6 +3,7 @@ const fetch = require('node-fetch');
 const fs = require('fs');
 const homedir = require('os').homedir();
 const { MC_API_URLS, DEFAULT_CREDENTIALS } = require('../constants');
+const { processConfig } = require('@commercetools-frontend/application-config');
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -34,16 +35,18 @@ const getPassword = async () => {
   return await question('Password: ');
 };
 
-const getUpdatedCredentials = (oldCredentials, env, token) => {
-  oldCredentials[env] = token;
+const getUpdatedCredentials = (oldCredentials, cloudIdentifier, token) => {
+  oldCredentials[cloudIdentifier] = token;
   return JSON.stringify(oldCredentials);
 };
 
-const getSuccessMessage = (env) => {
-  console.log(`You've successfully logged into the ${env} environment.`);
+const getSuccessMessage = (cloudIdentifier) => {
+  console.log(
+    `You've successfully logged into the ${cloudIdentifier} environment.`
+  );
 };
 
-const updateCredential = (env, token) => {
+const updateCredential = (cloudIdentifier, token) => {
   const dirpath = `${homedir}/.mcscriptsrc`;
   const filename = 'credentials.json';
   const filePath = `${dirpath}/${filename}`;
@@ -53,7 +56,7 @@ const updateCredential = (env, token) => {
       fs.mkdirSync(dirpath);
       const credentials = getUpdatedCredentials(
         DEFAULT_CREDENTIALS,
-        env,
+        cloudIdentifier,
         token
       );
       console.log({ credentials });
@@ -61,7 +64,11 @@ const updateCredential = (env, token) => {
     } else {
       const data = fs.readFileSync(filePath, 'utf8');
       console.log({ data });
-      const credentials = getUpdatedCredentials(JSON.parse(data), env, token);
+      const credentials = getUpdatedCredentials(
+        JSON.parse(data),
+        cloudIdentifier,
+        token
+      );
       fs.writeFileSync(filePath, credentials);
     }
   } catch (err) {
@@ -69,12 +76,13 @@ const updateCredential = (env, token) => {
   }
 };
 
-const start = async () => {
+const login = async () => {
+  const applicationConfig = processConfig();
+  const cloudIdentifier = applicationConfig.env.cloudIdentifier.toUpperCase();
   const email = await getEmail();
   const password = await getPassword();
 
-  const env = 'GCP_EU';
-  const response = await fetch(MC_API_URLS[env], {
+  const response = await fetch(MC_API_URLS[cloudIdentifier], {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -89,9 +97,9 @@ const start = async () => {
 
   const cookieDate = response.headers.get('set-cookie');
   const cookie = cookieDate.split(';')[0].split('=')[1];
-  updateCredential(env, cookie);
-  getSuccessMessage(env);
+  updateCredential(cloudIdentifier, cookie);
+  getSuccessMessage(cloudIdentifier);
   rl.close();
 };
 
-start();
+login();
