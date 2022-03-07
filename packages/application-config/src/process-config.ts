@@ -144,6 +144,7 @@ const processConfig = ({
       applicationId,
       applicationName: appConfig.name,
       entryPointUriPath: appConfig.entryPointUriPath,
+      cloudIdentifier: appConfig.cloudIdentifier,
       ...(isProd || !developmentConfig
         ? {}
         : { __DEVELOPMENT__: developmentConfig }),

@@ -2,8 +2,8 @@ const readline = require('readline');
 const fetch = require('node-fetch');
 const fs = require('fs');
 const homedir = require('os').homedir();
-const { MC_API_URLS, DEFAULT_CREDENTIALS } = require('../constants');
 const { processConfig } = require('@commercetools-frontend/application-config');
+const { MC_API_URLS, DEFAULT_CREDENTIALS } = require('../constants');
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -81,6 +81,12 @@ const login = async () => {
   const cloudIdentifier = applicationConfig.env.cloudIdentifier.toUpperCase();
   const email = await getEmail();
   const password = await getPassword();
+
+  // Checking if the cloud identifier is valid
+  if (!MC_API_URLS[cloudIdentifier]) {
+    console.log('cloudIdentifier in the applicationConfig is invalid');
+    rl.close();
+  }
 
   const response = await fetch(MC_API_URLS[cloudIdentifier], {
     method: 'POST',
