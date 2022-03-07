@@ -59,6 +59,7 @@
     "querystring-es3": "^0.2.1",
     "react-dev-utils": "12.0.0",
     "react-refresh": "0.11.0",
+    "read": "^1.0.7",
     "serve-handler": "6.1.3",
     "shelljs": "0.8.5",
     "style-loader": "3.3.1",

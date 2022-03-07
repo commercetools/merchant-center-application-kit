@@ -1,21 +1,11 @@
-const readline = require('readline');
+const path = require('path');
+const { promisify } = require('util');
+const read = promisify(require('read'));
 const fetch = require('node-fetch');
 const fs = require('fs');
 const homedir = require('os').homedir();
 const { processConfig } = require('@commercetools-frontend/application-config');
 const { MC_API_URLS, DEFAULT_CREDENTIALS } = require('../constants');
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-rl.on('close', () => {
-  process.exit(0);
-});
-
-const question = (query) =>
-  new Promise((resolve) => rl.question(query, resolve));
 
 function validateEmail(email) {
   const re = /\S+@\S+\.\S+/;
@@ -23,7 +13,7 @@ function validateEmail(email) {
 }
 
 const getEmail = async () => {
-  let email = await question('Email: ');
+  let email = await read({ prompt: 'Email: ' });
   if (!validateEmail(email)) {
     console.log('Please input a valid email');
     await getEmail();
@@ -32,18 +22,12 @@ const getEmail = async () => {
 };
 
 const getPassword = async () => {
-  return await question('Password: ');
+  return await read({ prompt: 'Password: ', silent: true });
 };
 
 const getUpdatedCredentials = (oldCredentials, cloudIdentifier, token) => {
   oldCredentials[cloudIdentifier] = token;
   return JSON.stringify(oldCredentials);
-};
-
-const getSuccessMessage = (cloudIdentifier) => {
-  console.log(
-    `You've successfully logged into the ${cloudIdentifier} environment.`
-  );
 };
 
 const updateCredential = (cloudIdentifier, token) => {
@@ -72,20 +56,21 @@ const updateCredential = (cloudIdentifier, token) => {
       fs.writeFileSync(filePath, credentials);
     }
   } catch (err) {
-    console.error('An error occured');
+    console.error('An error occurred');
   }
 };
 
 const login = async () => {
-  const applicationConfig = processConfig();
+  const applicationConfig = processConfig({
+    applicationPath: path.join(__dirname, 'fixtures'),
+  });
   const cloudIdentifier = applicationConfig.env.cloudIdentifier.toUpperCase();
   const email = await getEmail();
   const password = await getPassword();
 
-  // Checking if the cloud identifier is valid
   if (!MC_API_URLS[cloudIdentifier]) {
     console.log('cloudIdentifier in the applicationConfig is invalid');
-    rl.close();
+    process.exit(0);
   }
 
   const response = await fetch(MC_API_URLS[cloudIdentifier], {
@@ -98,14 +83,16 @@ const login = async () => {
 
   if (response.status !== 200) {
     console.log('Invalid email or password');
-    rl.close();
+    process.exit(0);
   }
 
-  const cookieDate = response.headers.get('set-cookie');
-  const cookie = cookieDate.split(';')[0].split('=')[1];
+  const cookieData = response.headers.get('set-cookie');
+  const cookie = cookieData.split(';')[0].split('=')[1];
   updateCredential(cloudIdentifier, cookie);
-  getSuccessMessage(cloudIdentifier);
-  rl.close();
+  console.log(
+    `You've successfully logged into the ${cloudIdentifier} environment.`
+  );
+  process.exit(0);
 };
 
 login();
