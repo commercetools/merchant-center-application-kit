@@ -8,7 +8,7 @@ import TextInput from '@commercetools-uikit/text-input';
 import LayoutApp from '../layouts/layout-app';
 import PlaygroundController from '../components/playground-controller';
 import ModalController from '../components/modal-controller';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, StaticRouter, Switch, Route } from 'react-router-dom';
 
 const containerId = 'tabular-modal-page';
 
@@ -33,6 +33,9 @@ const exampleCustomTitleRow = (
     </Spacings.Inline>
   </Spacings.Inline>
 );
+
+const isBrowser = typeof window !== 'undefined';
+const Router = isBrowser ? BrowserRouter : StaticRouter;
 
 const TabularModalPageExample = (props) => {
   return (
