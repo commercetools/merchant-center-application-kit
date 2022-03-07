@@ -602,37 +602,24 @@ const AccountPage = () => {
 
 <Playground urlPath="tabular-modal-page" />
 
-A composition of Tab Header components enable navigation within a Tabular Modal page.
+A composition of Tab Header components enables navigation within a Tabular Modal page.
 
 ### Usage
 
 ```jsx
-import styled from "@emotion/styled";
 import { BrowserRouter as Router } from "react-router-dom";
 import { TabHeader } from '@commercetools-frontend/application-components';
 
-const TabList = styled.ul`
-  min-height: 30px;
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`;
-
-const TabsView = () => {
-  return (
-    <Router>
-      <TabList>
-        <TabHeader name="tab-one" to="/tab-one">
-          Tab One
-        </TabHeader>
-        <TabHeader name="tab-two" to="/tab-two">
-          Tab Two
-        </TabHeader>
-      </TabList>
-    </Router>
-  );
-};
+const TabsView = () => (
+  <Router>
+    <TabHeader to="/tab-one">
+      Tab One
+    </TabHeader>
+    <TabHeader to="/tab-two">
+      Tab Two
+    </TabHeader>
+  </Router>
+);
 
 export default TabsView;
 ```
@@ -641,13 +628,13 @@ export default TabsView;
 
 | Props                           | Type                       | Required | Default                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ------------------------------- | -------------------------- | :------: | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`                          | `string`                   |    ✅    | -                        | Value of `data-track-component` attribute in DOM.                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| `to`                            | `string`                   |          | -                        | Path that the TabHeader directs to when not disabled.                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| `isDisabled`                    | `boolean`                  |          | -                        | If `true`, indicates that the element is in a disabled state.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `exact`                         | `boolean`                  |          | -                        | If set to true TabHeader will be visible as active only when there is an exact match of route.                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `onClick`                       | `function`                 |          | -                        | A callback function, called when TabHeader is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                                             |
-| `children`                      | `node`                     |    ✅    | -                        | Any React node passed to LinkWrapper.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-
+| `to`                            | `string` or `object`       |    ✅    | -                        | Path that the `TabHeader` directs to when not disabled.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `name`                          | `string`                   |          | -                        | Name visible in DOM for the sake of tracking and testing.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `isDisabled`                    | `boolean`                  |          | `false`                  | If `true`, indicates that the element is in a disabled state.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `exact`                         | `boolean`                  |          | `false`                  | If set to `true` `TabHeader` will be visible as active only when there is an exact match of route.                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `onClick`                       | `function`                 |          | -                        | A callback function, called when TabHeader is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                                             
+| `intlMessage`                   | `object`                   |          | -                        | An `intl` message object that will be rendered with `FormattedMessage`. Required if `children` is not provided.                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `children`                      | `node`                     |          | -                        | Any React node passed to LinkWrapper. Required if `intlMessage` is not provided.                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 
 # Hooks
 

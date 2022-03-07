@@ -33,18 +33,28 @@ exports.onCreateBabelConfig = ({ actions }) => {
 };
 
 exports.createPages = ({ actions }) => {
-  const { createRedirect } = actions;
+  const { createRedirect, createPage } = actions;
+
+  createPage({
+    path: '/tab-one',
+    component: require.resolve('./src/pages/tabular-modal-page.js'),
+  });
+
+  createPage({
+    path: '/tab-two',
+    component: require.resolve('./src/pages/tabular-modal-page.js'),
+  });
 
   createRedirect({
     fromPath: `/tabular-modal-page/`,
-    toPath: `/tabular-modal-page/tab-one`,
+    toPath: `/tab-one`,
     redirectInBrowser: true,
     isPermanent: true,
   });
 
   createRedirect({
     fromPath: `/tabular-modal-page`,
-    toPath: `/tabular-modal-page/tab-one`,
+    toPath: `/tab-one`,
     redirectInBrowser: true,
     isPermanent: true,
   });

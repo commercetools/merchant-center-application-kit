@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import Text from '@commercetools-uikit/text';
 import TextInput from '@commercetools-uikit/text-input';
 import IconButton from '@commercetools-uikit/icon-button';
@@ -16,14 +15,6 @@ import { Suite, Spec } from '../../test-utils';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 export const routePath = '/tabular-modal-page';
-
-const TabList = styled.ul`
-  min-height: 30px;
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`;
 
 type ContainerProps = {
   portalId: string;
@@ -45,21 +36,13 @@ const ModalPageWithPortalParentSelector = ({
         document.querySelector(`#${portalId}`) as HTMLElement
       }
       tabControls={
-        <TabList>
-          <TabHeader name="tab-one" to="/tabular-modal-page/tab-one">
-            Tab One
-          </TabHeader>
-          <TabHeader name="tab-two" to="/tabular-modal-page/tab-two">
-            Tab Two
-          </TabHeader>
-          <TabHeader
-            name="tab-three"
-            to={'/tabular-modal-page/tab-three'}
-            isDisabled={true}
-          >
+        <>
+          <TabHeader to="/tabular-modal-page/tab-one">Tab One</TabHeader>
+          <TabHeader to="/tabular-modal-page/tab-two">Tab Two</TabHeader>
+          <TabHeader to="/tabular-modal-page/tab-three" isDisabled>
             Disabled tab
           </TabHeader>
-        </TabList>
+        </>
       }
       {...props}
     >
@@ -76,12 +59,12 @@ const Content = () => (
       <Route exact={true} path="/tabular-modal-page">
         <Redirect to="/tabular-modal-page/tab-one" />
       </Route>
-      <Route path={'/tabular-modal-page/tab-one'}>
+      <Route path="/tabular-modal-page/tab-one">
         <Text.Body>
           {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec turpis in risus elementum fringilla. Vestibulum nec vulputate metus, fringilla luctus nisl. Vestibulum mattis ultricies augue sagittis vestibulum. Nulla facilisi. Quisque tempor pulvinar efficitur. Praesent interdum ultrices leo. Vivamus non ex maximus justo egestas suscipit eget sed purus. Aliquam ut venenatis nulla. Fusce ac ligula viverra, blandit augue eget, congue turpis. Curabitur a sagittis leo. Nunc sed quam dictum, placerat nunc quis, luctus erat.`}
         </Text.Body>
       </Route>
-      <Route path={'/tabular-modal-page/tab-two'}>
+      <Route path="/tabular-modal-page/tab-two">
         <Text.Body>
           {`Nam id orci ut risus accumsan pellentesque. Quisque efficitur eu arcu ut tristique. Praesent ornare varius leo, ut consequat lacus rutrum vel. Donec mollis leo id lectus vehicula tempor. Nulla facilisi. Fusce fringilla tellus ac ligula consequat suscipit. Sed consectetur molestie quam eu pulvinar. Interdum et malesuada fames ac ante ipsum primis in faucibus. In hac habitasse platea dictumst.`}
         </Text.Body>
