@@ -8,7 +8,6 @@ import type {
 
 import memoize from 'memoize-one';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { components } from 'react-select';
 import { css } from '@emotion/react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
@@ -33,18 +32,6 @@ type CustomValueContainerProps = ValueContainerProps & {
   projectCount: number;
 };
 
-// FIXME: properly expose these static component types from uikit.
-type SelectInputWithStaticComponents = {
-  ValueContainer: typeof components.ValueContainer;
-  Option: typeof components.Option;
-};
-const SelectInputValueContainer = (
-  SelectInput as unknown as SelectInputWithStaticComponents
-).ValueContainer;
-const SelectInputOption = (
-  SelectInput as unknown as SelectInputWithStaticComponents
-).Option;
-
 export const ProjectSwitcherValueContainer = ({
   projectCount,
   ...restProps
@@ -61,9 +48,9 @@ export const ProjectSwitcherValueContainer = ({
         flex: 1;
       `}
     >
-      <SelectInputValueContainer {...restProps}>
+      <SelectInput.ValueContainer {...restProps}>
         {restProps.children}
-      </SelectInputValueContainer>
+      </SelectInput.ValueContainer>
     </div>
     <span
       css={css`
@@ -86,7 +73,7 @@ export const ProjectSwitcherValueContainer = ({
 export const ProjectSwitcherOption = (props: OptionProps) => {
   const project = props.data as OptionType;
   return (
-    <SelectInputOption {...props}>
+    <SelectInput.Option {...props}>
       <div
         css={css`
           word-wrap: break-word;
@@ -142,7 +129,7 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
           </div>
         )}
       </div>
-    </SelectInputOption>
+    </SelectInput.Option>
   );
 };
 

@@ -1,6 +1,5 @@
 import type { SingleValueProps, ValueContainerProps } from 'react-select';
 import { useCallback } from 'react';
-import { components } from 'react-select';
 import { css } from '@emotion/react';
 import SelectInput from '@commercetools-uikit/select-input';
 import { WorldIcon } from '@commercetools-uikit/icons';
@@ -53,7 +52,7 @@ export const SingleValue = (props: CustomSingleValueProps) => (
 SingleValue.displayName = 'SingleValue';
 
 const PatchedValueContainer = (props: ValueContainerProps) => (
-  <components.ValueContainer
+  <SelectInput.ValueContainer
     {...props}
     innerProps={{ style: { display: 'flex' } }}
   />

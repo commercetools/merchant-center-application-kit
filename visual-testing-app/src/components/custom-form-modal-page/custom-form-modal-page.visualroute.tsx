@@ -1,4 +1,4 @@
-import { Formik, type FormikValues } from 'formik';
+import { Formik } from 'formik';
 import {
   SearchIcon,
   FlameIcon,
@@ -16,12 +16,6 @@ type ContainerProps = {
 } & Partial<Parameters<typeof CustomFormModalPage>[0]>;
 type FormValues = {
   email: string;
-};
-type CustomFormikErrorsField = {
-  [errorKey: string]: boolean; // <-- our ui-kit components use a boolean flag to indicate the error
-};
-type CustomFormikErrors<Values = FormikValues> = {
-  [K in keyof Values]?: CustomFormikErrorsField;
 };
 
 const ModalPageWithPortalParentSelector = ({
@@ -51,7 +45,7 @@ const ModalPageWithPortalParentSelector = ({
             isRequired={true}
             value={formikProps.values.email}
             errors={
-              (formikProps.errors as CustomFormikErrors<FormValues>).email
+              TextField.toFieldErrors<FormValues>(formikProps.errors).email
             }
             touched={formikProps.touched.email}
             onChange={formikProps.handleChange}
