@@ -31,31 +31,3 @@ exports.onCreateBabelConfig = ({ actions }) => {
     },
   });
 };
-
-exports.createPages = ({ actions }) => {
-  const { createRedirect, createPage } = actions;
-
-  createPage({
-    path: '/tab-one',
-    component: require.resolve('./src/pages/tabular-modal-page.js'),
-  });
-
-  createPage({
-    path: '/tab-two',
-    component: require.resolve('./src/pages/tabular-modal-page.js'),
-  });
-
-  createRedirect({
-    fromPath: `/tabular-modal-page/`,
-    toPath: `/tab-one`,
-    redirectInBrowser: true,
-    isPermanent: true,
-  });
-
-  createRedirect({
-    fromPath: `/tabular-modal-page`,
-    toPath: `/tab-one`,
-    redirectInBrowser: true,
-    isPermanent: true,
-  });
-};

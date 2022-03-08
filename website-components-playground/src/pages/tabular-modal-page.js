@@ -8,7 +8,13 @@ import TextInput from '@commercetools-uikit/text-input';
 import LayoutApp from '../layouts/layout-app';
 import PlaygroundController from '../components/playground-controller';
 import ModalController from '../components/modal-controller';
-import { BrowserRouter, StaticRouter, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter,
+  StaticRouter,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 
 const containerId = 'tabular-modal-page';
 
@@ -135,6 +141,14 @@ const TabularModalPageExample = (props) => {
                   hideControls={values.hideControls}
                 >
                   <Switch>
+                    <Route
+                      path={[
+                        '/custom-applications/playground/tabular-modal-page/', // production
+                        '/tabular-modal-page/', // development
+                      ]}
+                    >
+                      <Redirect to="/tab-one" />
+                    </Route>
                     <Route path="/tab-one">
                       <Text.Body>{values['tab-one-content']}</Text.Body>
                     </Route>
