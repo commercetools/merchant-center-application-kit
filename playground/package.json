@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "19.0.1",
+  "version": "19.1.0",
   "description": "A playground application to get started developing Merchant Center Applications",
   "private": true,
   "scripts": {
@@ -15,12 +15,12 @@
   "dependencies": {
     "@commercetools-docs/ui-kit": "18.2.2",
     "@commercetools-frontend/actions-global": "21.0.0",
-    "@commercetools-frontend/application-components": "21.1.0",
-    "@commercetools-frontend/application-shell": "21.1.0",
+    "@commercetools-frontend/application-components": "21.2.0",
+    "@commercetools-frontend/application-shell": "21.2.0",
     "@commercetools-frontend/application-shell-connectors": "21.0.0",
     "@commercetools-frontend/assets": "21.0.0",
     "@commercetools-frontend/constants": "21.0.0",
-    "@commercetools-frontend/i18n": "21.1.0",
+    "@commercetools-frontend/i18n": "21.2.0",
     "@commercetools-frontend/l10n": "21.0.0",
     "@commercetools-frontend/permissions": "21.0.0",
     "@commercetools-frontend/sdk": "21.1.0",
