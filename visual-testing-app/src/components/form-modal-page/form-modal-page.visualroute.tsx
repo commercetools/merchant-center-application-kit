@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import TextField, { CustomFormikErrors } from '@commercetools-uikit/text-field';
+import TextField from '@commercetools-uikit/text-field';
 import { FormModalPage } from '@commercetools-frontend/application-components';
 import { Suite, Spec } from '../../test-utils';
 
@@ -43,7 +43,7 @@ const ModalPageWithPortalParentSelector = ({
             isRequired={true}
             value={formikProps.values.email}
             errors={
-              (formikProps.errors as CustomFormikErrors<FormValues>).email
+              TextField.toFieldErrors<FormValues>(formikProps.errors).email
             }
             touched={formikProps.touched.email}
             onChange={formikProps.handleChange}
