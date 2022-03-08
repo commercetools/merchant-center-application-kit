@@ -1,5 +1,11 @@
 # @commercetools-website/custom-applications
 
+## 18.4.0
+
+### Minor Changes
+
+- [#2504](https://github.com/commercetools/merchant-center-application-kit/pull/2504) [`732e846e`](https://github.com/commercetools/merchant-center-application-kit/commit/732e846eaa5a353d5aa067206d2626d1366ba79a) Thanks [@emmenko](https://github.com/emmenko)! - Update uikit packages to v14
+
 ## 18.3.12
 
 ### Patch Changes
