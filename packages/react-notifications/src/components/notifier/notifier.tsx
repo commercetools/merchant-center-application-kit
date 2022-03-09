@@ -24,12 +24,11 @@ const defaultProps: Pick<Props, 'domain' | 'kind'> = {
 };
 
 const Notifier = (props: Props) => {
-  const showNotification = useShowNotification<Props & { id: number }>();
+  const showNotification = useShowNotification<Props>();
 
   useEffect(() => {
     const notification = showNotification(
       {
-        id: 0,
         domain: props.domain,
         kind: props.kind,
         text: props.text,

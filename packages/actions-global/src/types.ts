@@ -1,4 +1,3 @@
-import type { TNotification } from '@commercetools-frontend/notifications';
 import type {
   TAppNotification,
   TAppNotificationDomain,
@@ -8,25 +7,23 @@ import type {
   TAppNotificationValuesUnexpectedError,
 } from '@commercetools-frontend/constants';
 
-export type TShowNotification = TNotification & {
+export type TShowNotification = {
   domain: TAppNotificationDomain;
   kind: TAppNotificationKind;
   text?: string;
 };
 
-export type TApiErrorNotification = TNotification &
-  TAppNotification<{
-    domain: 'page';
-    kind: 'api-error';
-    values: TAppNotificationValuesApiError;
-  }>;
+export type TApiErrorNotification = TAppNotification<{
+  domain: 'page';
+  kind: 'api-error';
+  values: TAppNotificationValuesApiError;
+}>;
 
-export type TUnexpectedErrorNotification = TNotification &
-  TAppNotification<{
-    domain: 'page';
-    kind: 'unexpected-error';
-    values: TAppNotificationValuesUnexpectedError;
-  }>;
+export type TUnexpectedErrorNotification = TAppNotification<{
+  domain: 'page';
+  kind: 'unexpected-error';
+  values: TAppNotificationValuesUnexpectedError;
+}>;
 
 export type TApiErrorNotificationOptions = {
   errors: TAppNotificationApiError | TAppNotificationApiError[];
