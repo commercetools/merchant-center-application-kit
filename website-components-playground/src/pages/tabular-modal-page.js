@@ -145,10 +145,10 @@ const TabularModalPageExample = (props) => {
                     <Route path={withPrefix('/tabular-modal-page/')}>
                       <Redirect to="/tab-one" />
                     </Route>
-                    <Route path={withPrefix('/tab-one')}>
+                    <Route path="/tab-one">
                       <Text.Body>{values['tab-one-content']}</Text.Body>
                     </Route>
-                    <Route path={withPrefix('/tab-two')}>
+                    <Route path="/tab-two">
                       <Text.Body>{values['tab-two-content']}</Text.Body>
                     </Route>
                   </Switch>
