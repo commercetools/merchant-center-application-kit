@@ -50,7 +50,9 @@ const ChannelsForm = () => {
         isRequired
         selectedLanguage={dataLocale}
         value={formik.values.name}
-        errors={formik.errors.name}
+        errors={
+          LocalizedTextField.toFieldErrors(formik.errors).name
+        }
         touched={formik.touched.name}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
@@ -102,10 +104,13 @@ Asides from client-side validation, forms can also perform asynchronous validati
 For that, Formik allows you to implement a [`validate` function](https://formik.org/docs/api/formik#validate-values-values--formikerrorsvalues--promiseany) that should return an object of errors.
 
 ```ts
-type FieldErrors = Record<string, boolean>;
-type FormikErrors = Record<string, FieldErrors>;
+type TFieldErrors = Record<string, boolean>;
+// Similar shape of `FormikErrors` but values are `TFieldErrors` objects.
+type TCustomFormErrors<Values> = {
+  [K in keyof Values]?: TFieldErrors;
+};
 
-declare const validate = (values: FormikValues) => FormikErrors;
+declare const validate = (values: FormValues) => TCustomFormErrors<FormValues>;
 ```
 
 Specifically, the `FormikErrors` object should contain properties correlating to field names with their values being objects with reasons for the given error. Let's take a look at an example:
@@ -128,14 +133,16 @@ In this example we are validating that the `name` field has a required value. If
 
 In the field component you need to make sure to assign the `errors` and `touched` props which will make the field component render an error message, in case one was returned from the `validate` function.
 
-```js highlightLines="7-8"
+```js highlightLines="7-10"
 <LocalizedTextField
   name="name"
   title="Name"
   isRequired
   selectedLanguage={dataLocale}
   value={formik.values.name}
-  errors={formik.errors.name}
+  errors={
+    LocalizedTextField.toFieldErrors(formik.errors).name
+  }
   touched={formik.touched.name}
   onChange={formik.handleChange}
   onBlur={formik.handleBlur}
@@ -150,14 +157,16 @@ Error messages are only shown when the `touched` value for the specific field is
 
 By default field components have built-in error messages for the `missing` error key. Any other error message can be mapped and rendered using the `renderError` function.
 
-```js highlightLines="8-15"
+```js highlightLines="10-17"
 <LocalizedTextField
   name="name"
   title="Name"
   isRequired
   selectedLanguage={dataLocale}
   value={formik.values.name}
-  errors={formik.errors.name}
+  errors={
+    LocalizedTextField.toFieldErrors(formik.errors).name
+  }
   renderError={(errorKey) => {
     switch (errorKey) {
       case 'invalid':
@@ -285,7 +294,9 @@ const ChannelsForm = (props) => {
           isRequired
           selectedLanguage={dataLocale}
           value={formik.values.name}
-          errors={formik.errors.name}
+          errors={
+            LocalizedTextField.toFieldErrors(formik.errors).name
+          }
           touched={formik.touched.name}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -295,7 +306,9 @@ const ChannelsForm = (props) => {
           title="Key"
           isRequired
           value={formik.values.key}
-          errors={formik.errors.key}
+          errors={
+            TextField.toFieldErrors(formik.errors).key
+          }
           touched={formik.touched.key}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -443,7 +456,9 @@ const ChannelsForm = (props) => {
         isRequired
         selectedLanguage={dataLocale}
         value={formik.values.name}
-        errors={formik.errors.name}
+        errors={
+          LocalizedTextField.toFieldErrors(formik.errors).name
+        }
         touched={formik.touched.name}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
@@ -453,7 +468,9 @@ const ChannelsForm = (props) => {
         title="Key"
         isRequired
         value={formik.values.key}
-        errors={formik.errors.key}
+        errors={
+          TextField.toFieldErrors(formik.errors).key
+        }
         touched={formik.touched.key}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
@@ -573,3 +590,76 @@ const ChannelsDetails = (props) => {
   );
 }
 ```
+
+## Splitting form fields
+
+Sometimes a form contains many different fields, resulting in the form component to be difficult to read.
+
+One way to improve that is to split the form component into multiple smaller components. As a rule of thumb you can create one separate component for each form field. For example a `<FormChannelNameField>`, a `<FormChannelKeyField>`, and so on.
+
+These components are simple wrapper components of the UI-Kit field components but they contain and encapsulate all the logic related to the specific field. As a result, your form component can look like this:
+
+```jsx title="channels-form.js"
+import { useFormik } from 'formik';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import Spacings from '@commercetools-uikit/spacings';
+import FormChannelNameField from './form-channel-name-field';
+import FormChannelKeyField from './form-channel-key-field';
+import validate from './validate';
+
+const ChannelsForm = (props) => {
+  const dataLocale = useApplicationContext((context) => context.dataLocale);
+  const formik = useFormik({
+    // Pass initial values from the parent component.
+    initialValues: props.initialValues,
+    // Handle form submission in the parent component.
+    onSubmit: props.onSubmit
+    validate,
+    enableReinitialize: true,
+  });
+
+  // Only contains the form elements, no buttons.
+  const formElements = (
+    <Spacings.Stack scale="l">
+      <FormChannelNameField />
+      <FormChannelKeyField />
+    </Spacings.Stack>
+  );
+
+  return props.children({
+    formElements,
+    isDirty: formik.dirty,
+    isSubmitting: formik.isSubmitting,
+    submitForm: formik.handleSubmit,
+    handleCancel: formik.handleReset,
+  });
+}
+```
+
+One of the advantages of splitting up the form fields is the encapsulation of the logic. You might notice that we don't explicitly pass any props to these components. Instead, each component can access the form data that they need from the form context, using Formik's `useField` hook.
+
+```js title="form-channel-name.js"
+import { useField } from 'formik';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import LocalizedTextField from '@commercetools-uikit/localized-text-field';
+
+const FormChannelNameField = () => {
+  const dataLocale = useApplicationContext((context) => context.dataLocale);
+  const [field, meta] = useField('name');
+
+  return (
+    <LocalizedTextField
+      title="Name"
+      isRequired
+      selectedLanguage={dataLocale}
+      {...field}
+      errors={
+        LocalizedTextField.toFieldErrors({ name: meta.error }).name
+      }
+      touched={meta.touched}
+    />
+  );
+}
+```
+
+The `field` object can be spread to the UI-Kit field component (it contains the props like `name`, `onChange`, etc.) and the `meta` object contains things like `touched` and `error` values of the specific field.
