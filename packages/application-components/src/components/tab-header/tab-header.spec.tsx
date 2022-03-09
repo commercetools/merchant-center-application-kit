@@ -38,17 +38,6 @@ describe('navigation', () => {
       expect(history.location.pathname).toBe('/tab-one');
     });
   });
-  it('should prevent the navigation when "isDisabled" prop is passed', async () => {
-    const { history } = renderTabHeader({ isDisabled: true });
-
-    expect(
-      screen.queryByRole('link', { name: /tab one/i })
-    ).not.toBeInTheDocument();
-    fireEvent.click(screen.getByText(/tab one/i));
-    await waitFor(() => {
-      expect(history.location.pathname).toBe('/');
-    });
-  });
 });
 describe('warnings', () => {
   it('should warn when neither "label" nor "intlMessage" is passed', () => {

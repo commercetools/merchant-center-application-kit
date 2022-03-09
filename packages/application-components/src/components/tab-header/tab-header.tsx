@@ -1,7 +1,7 @@
 import { Link, matchPath, useLocation } from 'react-router-dom';
 import startCase from 'lodash/startCase';
 import { FormattedMessage, type MessageDescriptor } from 'react-intl';
-import type { ReactNode, ElementType } from 'react';
+import type { ReactNode } from 'react';
 import type { LocationDescriptor } from 'history';
 import { warning } from '@commercetools-uikit/utils';
 import Text from '@commercetools-uikit/text';
@@ -19,19 +19,12 @@ const warnIfMissingContent = (props: TTabHeaderProps) => {
   );
 };
 
-type TLinkWrapperProps = {
-  to: TTabHeaderProps['to'] | null;
-  children: ReactNode;
-};
+const getDisabledTabHeaderAriaAttributes = (
+  isDisabled: TTabHeaderProps['isDisabled']
+) => (isDisabled ? { 'aria-disabled': true } : {});
 
-/* This wrapper component provides disabled mode for `TabHeader`.
-If `to` prop is `null` the wrapping `<a>` element (used instead of `<Link>`) has no `href` attribute.
-Therefore, it is not clickable and falls out of the tabbing sequence.  */
-const LinkWrapper = (props: TLinkWrapperProps) => {
-  const Component = (props.to ? Link : 'a') as ElementType;
-  return <Component {...props}>{props.children}</Component>;
-};
-LinkWrapper.displayName = 'LinkWrapper';
+const getDisabledLinkAtributes = (isDisabled: TTabHeaderProps['isDisabled']) =>
+  isDisabled ? { tabIndex: -1 } : {};
 
 export type TTabHeaderProps = {
   /**
@@ -89,12 +82,14 @@ export const TabHeader = (props: TTabHeaderProps) => {
       aria-selected={isActive}
       // TODO: add aria-controls when TabPanel component is ready
       css={getTabHeaderStyles(isActive, isDisabled)}
+      {...getDisabledTabHeaderAriaAttributes(isDisabled)}
       {...dataAttributeProps}
     >
-      <LinkWrapper
-        to={isDisabled ? null : props.to}
+      <Link
+        to={props.to}
         // @ts-ignore
         css={getLinkWrapperStyles(isDisabled)}
+        {...getDisabledLinkAtributes(isDisabled)}
       >
         <Text.Subheadline as="h4" truncate={true}>
           {props.intlMessage ? (
@@ -103,7 +98,7 @@ export const TabHeader = (props: TTabHeaderProps) => {
             props.label
           )}
         </Text.Subheadline>
-      </LinkWrapper>
+      </Link>
     </div>
   );
 };

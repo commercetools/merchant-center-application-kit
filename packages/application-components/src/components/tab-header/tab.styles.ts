@@ -38,6 +38,11 @@ const getTabHeaderStateStyles = (
       }
     `);
   }
+  if (isDisabled) {
+    combinedStyles.push(css`
+      cursor: not-allowed;
+    `);
+  }
   if (!isActive && !isDisabled) {
     combinedStyles.push(css`
       * > &:hover,
@@ -83,6 +88,6 @@ export const getLinkWrapperStyles = (
   isDisabled &&
     css`
       opacity: 0.5;
-      cursor: not-allowed;
+      pointer-events: none;
     `,
 ];
