@@ -19,32 +19,39 @@ At a bare minimum, implementing a form could look something like this:
 
 ```jsx
 import { useFormik } from 'formik';
-import TextField from '@commercetools-uikit/text-field';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import LocalizedTextField from '@commercetools-uikit/localized-text-field';
+import LocalizedTextInput from '@commercetools-uikit/localized-text-input';
 import PrimaryButton from '@commercetools-uikit/primary-button';
 import validate from './validate';
 
 const ChannelsForm = () => {
+  const { dataLocale, languages } = useApplicationContext((context) => ({
+    dataLocale: context.dataLocale,
+    languages: context.project.languages,
+  }));
   const formik = useFormik({
     initialValues: {
-      // A Channel's `key`: https://docs.commercetools.com/api/projects/channels
-      key: '',
+      // A Channel's `name`: https://docs.commercetools.com/api/projects/channels
+      name: LocalizedTextInput.createLocalizedString(languages),
     },
     validate,
     onSubmit: async (formikValues) => {
-      alert(`key: ${formikValues.key}`);
+      alert(`name: ${formikValues.name}`);
       // Do something async
     },
   });
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <TextField
-        name="key"
-        title="Key"
-        isRequired={true}
-        value={formik.values.key}
-        errors={formik.errors.key}
-        touched={formik.touched.key}
+      <LocalizedTextField
+        name="name"
+        title="Name"
+        isRequired
+        selectedLanguage={dataLocale}
+        value={formik.values.name}
+        errors={formik.errors.name}
+        touched={formik.touched.name}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
       />
@@ -104,31 +111,32 @@ declare const validate = (values: FormikValues) => FormikErrors;
 Specifically, the `FormikErrors` object should contain properties correlating to field names with their values being objects with reasons for the given error. Let's take a look at an example:
 
 ```js title="validate.js"
-import TextInput from '@commercetools-uikit/text-input';
+import LocalizedTextInput from '@commercetools-uikit/localized-text-input';
 
 const validate = (values) => {
   const errors = {};
 
-  if (TextInput.isEmpty(values.key)) {
-    errors.key = { missing: true };
+  if (LocalizedTextInput.isEmpty(values.name)) {
+    errors.name = { missing: true };
   }
 
   return errors;
 }
 ```
 
-In this example we are validating that the `key` field has a required value. If the value is empty, we assign to the `errors.key` property an error object with the error key `missing` set to `true`.
+In this example we are validating that the `name` field has a required value. If the value is empty (no localized values have been provided), we assign to the `errors.name` property an error object with the error key `missing` set to `true`.
 
 In the field component you need to make sure to assign the `errors` and `touched` props which will make the field component render an error message, in case one was returned from the `validate` function.
 
-```js highlightLines="6-7"
-<TextField
-  name="key"
-  title="Key"
-  isRequired={true}
-  value={formik.values.key}
-  errors={formik.errors.key}
-  touched={formik.touched.key}
+```js highlightLines="7-8"
+<LocalizedTextField
+  name="name"
+  title="Name"
+  isRequired
+  selectedLanguage={dataLocale}
+  value={formik.values.name}
+  errors={formik.errors.name}
+  touched={formik.touched.name}
   onChange={formik.handleChange}
   onBlur={formik.handleBlur}
 />
@@ -142,13 +150,14 @@ Error messages are only shown when the `touched` value for the specific field is
 
 By default field components have built-in error messages for the `missing` error key. Any other error message can be mapped and rendered using the `renderError` function.
 
-```js highlightLines="7-14"
-<TextField
-  name="key"
-  title="Key"
-  isRequired={true}
-  value={formik.values.key}
-  errors={formik.errors.key}
+```js highlightLines="8-15"
+<LocalizedTextField
+  name="name"
+  title="Name"
+  isRequired
+  selectedLanguage={dataLocale}
+  value={formik.values.name}
+  errors={formik.errors.name}
   renderError={(errorKey) => {
     switch (errorKey) {
       case 'invalid':
@@ -157,7 +166,7 @@ By default field components have built-in error messages for the `missing` error
         return null;
     }
   }}
-  touched={formik.touched.key}
+  touched={formik.touched.name}
   onChange={formik.handleChange}
   onBlur={formik.handleBlur}
 />
@@ -178,11 +187,13 @@ The `docToFormValues` is what you would usually use for initializing the form.
 
 ```jsx highlightLines="2,6"
 import { useFormik } from 'formik';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { docToFormValues } from './conversions';
 
 const ChannelsForm = () => {
+  const languages = useApplicationContext((context) => context.project.languages);
   const formik = useFormik({
-    initialValues: docToFormValues(props.data),
+    initialValues: docToFormValues(props.data, languages),
     // ...
   });
   // ...
@@ -192,8 +203,10 @@ const ChannelsForm = () => {
 In our Channels example, it can look something like this:
 
 ```js title="conversions.js"
-export const docToFormValues = (doc) => ({
-  key: doc?.key ?? '',
+import LocalizedTextInput from '@commercetools-uikit/localized-text-input';
+
+export const docToFormValues = (doc, languages) => ({
+  name: LocalizedTextInput.createLocalizedString(languages, doc?.name),
 })
 ```
 
@@ -217,8 +230,14 @@ const ChannelsForm = () => {
 In our Channels example, it can look something like this:
 
 ```js title="conversions.js"
+import LocalizedTextInput from '@commercetools-uikit/localized-text-input';
+import { transformLocalizedStringToLocalizedField } from '@commercetools-frontend/l10n';
+
 export const formValuesToDoc = (formValues) => ({
-  key: formValues.key,
+  name: transformLocalizedStringToLocalizedField(
+    LocalizedTextInput.omitEmptyTranslations(formValues.name)
+  ),
+  // ...
 })
 ```
 
@@ -238,6 +257,7 @@ Given that we might want to allow creating new channels and updating existing on
 
 ```jsx title="channels-form.js"
 import { useFormik } from 'formik';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import LocalizedTextField from '@commercetools-uikit/localized-text-field';
 import TextField from '@commercetools-uikit/text-field';
 import PrimaryButton from '@commercetools-uikit/primary-button';
@@ -246,6 +266,7 @@ import Spacings from '@commercetools-uikit/spacings';
 import validate from './validate';
 
 const ChannelsForm = (props) => {
+  const dataLocale = useApplicationContext((context) => context.dataLocale);
   const formik = useFormik({
     // Pass initial values from the parent component.
     initialValues: props.initialValues,
@@ -261,8 +282,8 @@ const ChannelsForm = (props) => {
         <LocalizedTextField
           name="name"
           title="Name"
-          isRequired={true}
-          selectedLanguage="en"
+          isRequired
+          selectedLanguage={dataLocale}
           value={formik.values.name}
           errors={formik.errors.name}
           touched={formik.touched.name}
@@ -272,7 +293,7 @@ const ChannelsForm = (props) => {
         <TextField
           name="key"
           title="Key"
-          isRequired={true}
+          isRequired
           value={formik.values.key}
           errors={formik.errors.key}
           touched={formik.touched.key}
@@ -304,12 +325,14 @@ The create page does not have any initial data, so we can use our conversion fun
 
 ```js title="channels-create.js"
 import { useCallback } from 'react';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import Text from '@commercetools-uikit/text';
 import Spacings from '@commercetools-uikit/spacings';
 import { docToFormValues, formValuesToDoc } from './conversions';
 import ChannelsForm from './channels-form';
 
 const ChannelsCreate = () => {
+  const languages = useApplicationContext((context) => context.project.languages);
   const handleSubmit = useCallback(
     async (formValues) => {
       const data = formValuesToDoc(formValues);
@@ -328,7 +351,7 @@ const ChannelsCreate = () => {
         Create a channel
       </Text.Headline>
       <ChannelsForm
-        initialValues={docToFormValues()}
+        initialValues={docToFormValues(null, languages)}
         onSubmit={handleSubmit}
       />
     </Spacings.Stack>
@@ -341,6 +364,7 @@ In the details page we would need to fetch the data first, then initialize the f
 ```js title="channels-details.js"
 import { useCallback } from 'react';
 import { useRouteMatch } from "react-router-dom";
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import Text from '@commercetools-uikit/text';
 import Spacings from '@commercetools-uikit/spacings';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
@@ -350,6 +374,7 @@ import ChannelsForm from './channels-form';
 
 const ChannelsDetails = (props) => {
   const match = useRouteMatch();
+  const languages = useApplicationContext((context) => context.project.languages);
   const { data: channel } = useChannels(match.params.id)
   const handleSubmit = useCallback(
     async (formValues) => {
@@ -372,7 +397,7 @@ const ChannelsDetails = (props) => {
         Manage Channel
       </Text.Headline>
       <ChannelsForm
-        initialValues={docToFormValues(channel)}
+        initialValues={docToFormValues(channel, languages)}
         onSubmit={handleSubmit}
       />
     </Spacings.Stack>
@@ -392,12 +417,14 @@ Therefore, our Channels form must be refactored to defined all the form elements
 
 ```jsx title="channels-form.js"
 import { useFormik } from 'formik';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import LocalizedTextField from '@commercetools-uikit/localized-text-field';
 import TextField from '@commercetools-uikit/text-field';
 import Spacings from '@commercetools-uikit/spacings';
 import validate from './validate';
 
 const ChannelsForm = (props) => {
+  const dataLocale = useApplicationContext((context) => context.dataLocale);
   const formik = useFormik({
     // Pass initial values from the parent component.
     initialValues: props.initialValues,
@@ -413,8 +440,8 @@ const ChannelsForm = (props) => {
       <LocalizedTextField
         name="name"
         title="Name"
-        isRequired={true}
-        selectedLanguage="en"
+        isRequired
+        selectedLanguage={dataLocale}
         value={formik.values.name}
         errors={formik.errors.name}
         touched={formik.touched.name}
@@ -424,7 +451,7 @@ const ChannelsForm = (props) => {
       <TextField
         name="key"
         title="Key"
-        isRequired={true}
+        isRequired
         value={formik.values.key}
         errors={formik.errors.key}
         touched={formik.touched.key}
@@ -448,11 +475,13 @@ The Channels pages then can be refactored as following:
 
 ```js title="channels-create.js"
 import { useCallback } from 'react';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { FormModalPage } from '@commercetools-frontend/application-components';
 import { docToFormValues, formValuesToDoc } from './conversions';
 import ChannelsForm from './channels-form';
 
 const ChannelsCreate = (props) => {
+  const languages = useApplicationContext((context) => context.project.languages);
   const handleSubmit = useCallback(
     async (formValues) => {
       const data = formValuesToDoc(formValues);
@@ -467,7 +496,7 @@ const ChannelsCreate = (props) => {
 
   return (
     <ChannelsForm
-      initialValues={docToFormValues()}
+      initialValues={docToFormValues(null, languages)}
       onSubmit={handleSubmit}
     >
       {(formProps) => {
@@ -495,14 +524,16 @@ const ChannelsCreate = (props) => {
 ```js title="channels-details.js"
 import { useCallback } from 'react';
 import { useRouteMatch } from "react-router-dom";
-import LoadingSpinner from '@commercetools-uikit/loading-spinner';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { FormModalPage } from '@commercetools-frontend/application-components';
+import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import useChannels from './use-channels';
 import { docToFormValues, formValuesToDoc } from './conversions';
 import ChannelsForm from './channels-form';
 
 const ChannelsDetails = (props) => {
   const match = useRouteMatch();
+  const languages = useApplicationContext((context) => context.project.languages);
   const { data: channel } = useChannels(match.params.id)
   const handleSubmit = useCallback(
     async (formValues) => {
@@ -521,7 +552,7 @@ const ChannelsDetails = (props) => {
 
   return (
     <ChannelsForm
-      initialValues={docToFormValues(channel)}
+      initialValues={docToFormValues(channel, languages)}
       onSubmit={handleSubmit}
     >
       {(formProps) => {
