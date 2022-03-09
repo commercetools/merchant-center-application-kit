@@ -1,5 +1,5 @@
 import { Link, matchPath, useLocation } from 'react-router-dom';
-import startCase from 'lodash.startcase';
+import startCase from 'lodash/startCase';
 import { FormattedMessage, type MessageDescriptor } from 'react-intl';
 import type { ReactNode, ElementType, MouseEvent, KeyboardEvent } from 'react';
 import type { LocationDescriptor } from 'history';
@@ -88,7 +88,6 @@ export const TabHeader = (props: TTabHeaderProps) => {
     ...(props.name &&
       props.name.length > 0 && {
         'data-track-component': startCase(props.name),
-        'data-testid': `tab-header-item-${props.name}`,
       }),
   };
 
@@ -98,6 +97,7 @@ export const TabHeader = (props: TTabHeaderProps) => {
     <div
       role="tab"
       aria-selected={isActive}
+      // TODO: add aria-controls when TabPanel component is ready
       css={getTabHeaderStyles(isActive, isDisabled)}
       onClick={isDisabled ? noop : props.onClick}
       {...dataAttributeProps}

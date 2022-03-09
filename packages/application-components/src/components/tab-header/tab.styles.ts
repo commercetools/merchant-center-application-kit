@@ -4,7 +4,7 @@ import {
   type Interpolation,
   type Theme,
 } from '@emotion/react';
-import { customProperties as vars } from '@commercetools-uikit/design-system';
+import { customProperties } from '@commercetools-uikit/design-system';
 
 const getTabHeaderStateStyles = (
   isActive: boolean,
@@ -13,18 +13,18 @@ const getTabHeaderStateStyles = (
   const combinedStyles: SerializedStyles[] = [];
   if (isActive) {
     combinedStyles.push(css`
-      color: ${vars.colorPrimary};
+      color: ${customProperties.colorPrimary};
 
       @keyframes bottomBorder {
         from {
           background-color: none;
         }
         to {
-          background-color: ${vars.colorPrimary};
+          background-color: ${customProperties.colorPrimary};
         }
       }
 
-      // bottom border
+      /* bottom border */
       &:after {
         content: '';
         position: absolute;
@@ -32,8 +32,9 @@ const getTabHeaderStateStyles = (
         left: 0;
         right: 0;
         height: 4px;
-        border-radius: ${vars.borderRadius2};
-        animation: bottomBorder ${vars.transitionEaseinout150Ms} forwards;
+        border-radius: ${customProperties.borderRadius2};
+        animation: bottomBorder ${customProperties.transitionEaseinout150Ms}
+          forwards;
       }
     `);
   }
@@ -42,7 +43,7 @@ const getTabHeaderStateStyles = (
       * > &:hover,
       &:focus,
       &:active {
-        color: ${vars.colorPrimary};
+        color: ${customProperties.colorPrimary};
       }
     `);
   }
@@ -54,8 +55,7 @@ export const getTabHeaderStyles = (
   isDisabled: boolean
 ): SerializedStyles[] => [
   css`
-    color: ${vars.colorAccent};
-    min-width: 50px;
+    color: ${customProperties.colorAccent};
     position: relative;
     text-align: center;
     display: inline-block;
@@ -76,10 +76,10 @@ export const getLinkWrapperStyles = (
   isDisabled: boolean
 ): Interpolation<Theme> => [
   css`
-    font-size: ${vars.fontSizeDefault};
-    padding-bottom: ${vars.spacingXs};
+    font-size: ${customProperties.fontSizeDefault};
+    padding-bottom: ${customProperties.spacingXs};
     display: block;
-    padding: ${vars.spacingM} ${vars.spacingS} ${vars.spacingM} ${vars.spacingS};
+    padding: ${customProperties.spacingM} ${customProperties.spacingS};
   `,
   isDisabled &&
     css`

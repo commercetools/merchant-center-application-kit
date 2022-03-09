@@ -1,6 +1,7 @@
 import {
   TabularModalPage,
   TabHeader,
+  TabList,
 } from '@commercetools-frontend/application-components';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
@@ -15,6 +16,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
+import { withPrefix } from 'gatsby';
 
 const containerId = 'tabular-modal-page';
 
@@ -107,7 +109,7 @@ const TabularModalPageExample = (props) => {
                     document.querySelector(`#${containerId}`)
                   }
                   tabControls={
-                    <>
+                    <TabList>
                       <TabHeader name="tab-one" to="/tab-one">
                         Tab One
                       </TabHeader>
@@ -115,7 +117,7 @@ const TabularModalPageExample = (props) => {
                       <TabHeader name="tab-three" to="/tab-three" isDisabled>
                         Disabled tab
                       </TabHeader>
-                    </>
+                    </TabList>
                   }
                   customTitleRow={
                     values.useCustomTitleRow === 'custom' &&
@@ -141,18 +143,13 @@ const TabularModalPageExample = (props) => {
                   hideControls={values.hideControls}
                 >
                   <Switch>
-                    <Route
-                      path={[
-                        '/custom-applications/playground/tabular-modal-page/', // production
-                        '/tabular-modal-page/', // development
-                      ]}
-                    >
+                    <Route path={withPrefix('/tabular-modal-page/')}>
                       <Redirect to="/tab-one" />
                     </Route>
-                    <Route path="/tab-one">
+                    <Route path={withPrefix('/tab-one')}>
                       <Text.Body>{values['tab-one-content']}</Text.Body>
                     </Route>
-                    <Route path="/tab-two">
+                    <Route path={withPrefix('/tab-two')}>
                       <Text.Body>{values['tab-two-content']}</Text.Body>
                     </Route>
                   </Switch>

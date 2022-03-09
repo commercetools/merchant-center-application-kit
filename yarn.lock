@@ -2218,14 +2218,12 @@ __metadata:
     "@emotion/styled": 11.6.0
     "@types/history": 4.7.11
     "@types/lodash": ^4.14.178
-    "@types/lodash.startcase": ^4.4.6
     "@types/prop-types": ^15.7.4
     "@types/react": ^17.0.38
     "@types/react-dom": ^17.0.11
     "@types/react-modal": ^3.13.1
     history: 4.10.1
     lodash: 4.17.21
-    lodash.startcase: ^4.4.0
     prop-types: 15.8.1
     react: 17.0.2
     react-dom: 17.0.2
@@ -8401,22 +8399,6 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: b5f8aa592cc21c16d99e69aec0976f12b893b055e4456d90148a610a6b6088e297b2ba5f38f8c8280cef006cfd8f9ec99e069905020882619dc5fc8aa46f5f27
-  languageName: node
-  linkType: hard
-
-"@types/lodash.startcase@npm:^4.4.6":
-  version: 4.4.6
-  resolution: "@types/lodash.startcase@npm:4.4.6"
-  dependencies:
-    "@types/lodash": "*"
-  checksum: c6bdf79b6f2c7caa7c78f1dbde9a4af41acfc75061b774653ca166efc570a94d87bb67fd6794c136aef28e0c7d297937b496fad006742ddcd7bc053341df4a1b
-  languageName: node
-  linkType: hard
-
-"@types/lodash@npm:*":
-  version: 4.14.179
-  resolution: "@types/lodash@npm:4.14.179"
-  checksum: 71faa0c8071732c2b7f0bd092850d3cea96fc7912055d57d819cf2ab399a64150e4190d8a4ea35a0905662ddc118be9d2abd55891d8047c085acf98608156149
   languageName: node
   linkType: hard
 

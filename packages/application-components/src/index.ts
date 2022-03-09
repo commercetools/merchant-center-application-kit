@@ -2,6 +2,7 @@ export { default as version } from './version';
 
 // Tabs
 export { default as TabHeader } from './components/tab-header';
+export { default as TabList } from './components/tab-list';
 
 // Dialogs
 export { default as InfoDialog } from './components/dialogs/info-dialog';

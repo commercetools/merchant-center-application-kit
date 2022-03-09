@@ -10,6 +10,7 @@ import Spacings from '@commercetools-uikit/spacings';
 import {
   TabularModalPage,
   TabHeader,
+  TabList,
 } from '@commercetools-frontend/application-components';
 import { Suite, Spec } from '../../test-utils';
 import { Switch, Route, Redirect } from 'react-router-dom';
@@ -36,13 +37,13 @@ const ModalPageWithPortalParentSelector = ({
         document.querySelector(`#${portalId}`) as HTMLElement
       }
       tabControls={
-        <>
+        <TabList>
           <TabHeader to="/tabular-modal-page/tab-one">Tab One</TabHeader>
           <TabHeader to="/tabular-modal-page/tab-two">Tab Two</TabHeader>
           <TabHeader to="/tabular-modal-page/tab-three" isDisabled>
             Disabled tab
           </TabHeader>
-        </>
+        </TabList>
       }
       {...props}
     >
