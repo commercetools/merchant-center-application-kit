@@ -194,7 +194,7 @@ To facilitate converting data to and from a form, we recommend to define some co
 
 The `docToFormValues` is what you would usually use for initializing the form.
 
-```jsx highlightLines="2,6"
+```jsx highlightLines="3,8"
 import { useFormik } from 'formik';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { docToFormValues } from './conversions';
@@ -218,6 +218,14 @@ export const docToFormValues = (doc, languages) => ({
   name: LocalizedTextInput.createLocalizedString(languages, doc?.name),
 })
 ```
+
+<Info>
+
+Most UI-Kit field and input components expose some static methods to ease data conversion and validation. Make sure to check if these methods are available in either the field or the input component.
+
+For example, to validate if a text field is empty you can use `TextInput.isEmpty()`.
+
+</Info>
 
 The `formValuesToDoc` on the other end is what you would usually use when submitting the form.
 
