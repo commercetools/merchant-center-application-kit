@@ -38,11 +38,13 @@ const ModalPageWithPortalParentSelector = ({
       }
       tabControls={
         <TabList>
-          <TabHeader to="/tabular-modal-page/tab-one">Tab One</TabHeader>
-          <TabHeader to="/tabular-modal-page/tab-two">Tab Two</TabHeader>
-          <TabHeader to="/tabular-modal-page/tab-three" isDisabled>
-            Disabled tab
-          </TabHeader>
+          <TabHeader to="/tabular-modal-page/tab-one" label="Tab One" />
+          <TabHeader to="/tabular-modal-page/tab-two" label="Tab Two" />
+          <TabHeader
+            to="/tabular-modal-page/tab-three"
+            label="Disabled tab"
+            isDisabled
+          />
         </TabList>
       }
       {...props}

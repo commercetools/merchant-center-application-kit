@@ -9,9 +9,7 @@ jest.mock('@commercetools-uikit/utils', () => ({
 
 const renderTabHeader = (additionalProps = {}) =>
   renderComponent(
-    <TabHeader to="/tab-one" {...additionalProps}>
-      Tab One
-    </TabHeader>
+    <TabHeader to="/tab-one" label="Tab One" {...additionalProps} />
   );
 
 describe('rendering', () => {
@@ -20,12 +18,12 @@ describe('rendering', () => {
 
     expect(screen.getByText(/tab one/i)).toBeInTheDocument();
   });
-  it('should render "to" is of LocationProvider type', () => {
+  it('should render when "to" is of LocationProvider type', () => {
     renderTabHeader({ to: { pathname: '/tab-one' } });
 
     expect(screen.getByText(/tab one/i)).toBeInTheDocument();
   });
-  it('should display a custom intl message instead of children', () => {
+  it('should display a custom intl message instead of a label', () => {
     const intlMessage = { id: 'localized', defaultMessage: 'localized text' };
     renderTabHeader({ intlMessage });
     expect(screen.getByText('localized text')).toBeInTheDocument();
@@ -53,12 +51,12 @@ describe('navigation', () => {
   });
 });
 describe('warnings', () => {
-  it('should warn when neither `children` nor `intlMessage` is passed', () => {
+  it('should warn when neither "label" nor "intlMessage" is passed', () => {
     renderComponent(<TabHeader to="tab-one" />);
 
     expect(warning).toHaveBeenCalledWith(
       false,
-      'TabHeader: one of either `children` or `intlMessage` is required but their values are `undefined`'
+      'TabHeader: one of either `label` or `intlMessage` is required but their values are `undefined`'
     );
   });
 });

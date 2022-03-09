@@ -1,22 +1,21 @@
 import { Link, matchPath, useLocation } from 'react-router-dom';
 import startCase from 'lodash/startCase';
 import { FormattedMessage, type MessageDescriptor } from 'react-intl';
-import type { ReactNode, ElementType, MouseEvent, KeyboardEvent } from 'react';
+import type { ReactNode, ElementType } from 'react';
 import type { LocationDescriptor } from 'history';
-import { getTabHeaderStyles, getLinkWrapperStyles } from './tab.styles';
 import { warning } from '@commercetools-uikit/utils';
+import Text from '@commercetools-uikit/text';
+import { getTabHeaderStyles, getLinkWrapperStyles } from './tab.styles';
 
 const pathWithoutSearch = (path: TTabHeaderProps['to']) =>
   typeof path === 'string' ? path.split('?')[0] : path.pathname;
 
-const noop = () => {};
-
 const warnIfMissingContent = (props: TTabHeaderProps) => {
-  const hasContent = Boolean(props.intlMessage) || Boolean(props.children);
+  const hasContent = Boolean(props.intlMessage) || Boolean(props.label);
 
   warning(
     hasContent,
-    'TabHeader: one of either `children` or `intlMessage` is required but their values are `undefined`'
+    'TabHeader: one of either `label` or `intlMessage` is required but their values are `undefined`'
   );
 };
 
@@ -40,11 +39,11 @@ export type TTabHeaderProps = {
    */
   to: string | LocationDescriptor;
   /**
-   * Any React node passed to TabHeader.
+   * A label for the TabHeader.
    * * <br />
    * Required if `intlMessage` is not provided.
    */
-  children?: ReactNode;
+  label?: string;
   /**
    * An `intl` message object that will be rendered with `FormattedMessage`.
    * <br />
@@ -54,21 +53,13 @@ export type TTabHeaderProps = {
     values?: Record<string, ReactNode>;
   };
   /**
-   * Name visible in DOM for the sake of tracking and testing.
-   */
-  name?: string;
-  /**
    * If `true`, indicates that the element is in a disabled state.
    */
   isDisabled?: boolean;
   /**
-   * If set to true TabHeader will be visible as active only upon exact match of route.
+   * If set to `true` TabHeader will be visible as active only upon exact match of route.
    */
   exact?: boolean;
-  /**
-   * A callback function, called when TabHeader is clicked.
-   */
-  onClick?: (event: MouseEvent | KeyboardEvent) => void;
 };
 
 export const TabHeader = (props: TTabHeaderProps) => {
@@ -85,10 +76,9 @@ export const TabHeader = (props: TTabHeaderProps) => {
 
   const dataAttributeProps = {
     'data-track-event': 'click',
-    ...(props.name &&
-      props.name.length > 0 && {
-        'data-track-component': startCase(props.name),
-      }),
+    ...(props.label && {
+      'data-track-component': startCase(props.label),
+    }),
   };
 
   warnIfMissingContent(props);
@@ -99,7 +89,6 @@ export const TabHeader = (props: TTabHeaderProps) => {
       aria-selected={isActive}
       // TODO: add aria-controls when TabPanel component is ready
       css={getTabHeaderStyles(isActive, isDisabled)}
-      onClick={isDisabled ? noop : props.onClick}
       {...dataAttributeProps}
     >
       <LinkWrapper
@@ -107,11 +96,13 @@ export const TabHeader = (props: TTabHeaderProps) => {
         // @ts-ignore
         css={getLinkWrapperStyles(isDisabled)}
       >
-        {props.intlMessage ? (
-          <FormattedMessage {...props.intlMessage} />
-        ) : (
-          props.children
-        )}
+        <Text.Subheadline as="h4" truncate={true}>
+          {props.intlMessage ? (
+            <FormattedMessage {...props.intlMessage} />
+          ) : (
+            props.label
+          )}
+        </Text.Subheadline>
       </LinkWrapper>
     </div>
   );

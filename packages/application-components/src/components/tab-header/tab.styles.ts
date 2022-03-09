@@ -77,13 +77,12 @@ export const getLinkWrapperStyles = (
 ): Interpolation<Theme> => [
   css`
     font-size: ${customProperties.fontSizeDefault};
-    padding-bottom: ${customProperties.spacingXs};
     display: block;
-    padding: ${customProperties.spacingM} ${customProperties.spacingS};
+    padding: ${customProperties.spacingS} ${customProperties.spacingM};
   `,
   isDisabled &&
     css`
       opacity: 0.5;
-      pointer-events: none;
+      cursor: not-allowed;
     `,
 ];

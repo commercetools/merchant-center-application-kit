@@ -110,13 +110,13 @@ const TabularModalPageExample = (props) => {
                   }
                   tabControls={
                     <TabList>
-                      <TabHeader name="tab-one" to="/tab-one">
-                        Tab One
-                      </TabHeader>
-                      <TabHeader to="/tab-two">Tab Two</TabHeader>
-                      <TabHeader name="tab-three" to="/tab-three" isDisabled>
-                        Disabled tab
-                      </TabHeader>
+                      <TabHeader to="/tab-one" label="Tab One" />
+                      <TabHeader to="/tab-two" label="Tab Two" />
+                      <TabHeader
+                        to="/tab-three"
+                        label="Disabled tab"
+                        isDisabled
+                      />
                     </TabList>
                   }
                   customTitleRow={
