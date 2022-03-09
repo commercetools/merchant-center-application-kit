@@ -96,6 +96,7 @@ const TabularModalPage = (props: Props) => (
             css={css`
               margin-bottom: 16px;
             `}
+            role="tablist"
           >
             {!props.hideControls && props.formControls && (
               <Spacings.Inline alignItems="flex-end">

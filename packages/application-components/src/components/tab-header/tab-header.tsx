@@ -40,7 +40,7 @@ export type TTabHeaderProps = {
   /**
    * An `intl` message object that will be rendered with `FormattedMessage`.
    * <br />
-   * Required if `children` is not provided.
+   * Required if `label` is not provided.
    */
   intlMessage?: MessageDescriptor & {
     values?: Record<string, ReactNode>;

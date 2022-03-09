@@ -1,7 +1,6 @@
 import {
   TabularModalPage,
   TabHeader,
-  TabList,
 } from '@commercetools-frontend/application-components';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
@@ -109,7 +108,7 @@ const TabularModalPageExample = (props) => {
                     document.querySelector(`#${containerId}`)
                   }
                   tabControls={
-                    <TabList>
+                    <>
                       <TabHeader to="/tab-one" label="Tab One" />
                       <TabHeader to="/tab-two" label="Tab Two" />
                       <TabHeader
@@ -117,7 +116,7 @@ const TabularModalPageExample = (props) => {
                         label="Disabled tab"
                         isDisabled
                       />
-                    </TabList>
+                    </>
                   }
                   customTitleRow={
                     values.useCustomTitleRow === 'custom' &&
