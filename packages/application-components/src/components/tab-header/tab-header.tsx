@@ -1,6 +1,6 @@
 import { Link, matchPath, useLocation } from 'react-router-dom';
 import startCase from 'lodash/startCase';
-import { FormattedMessage, type MessageDescriptor } from 'react-intl';
+import { useIntl, type MessageDescriptor } from 'react-intl';
 import type { ReactNode } from 'react';
 import type { LocationDescriptor } from 'history';
 import { warning } from '@commercetools-uikit/utils';
@@ -56,6 +56,7 @@ export type TTabHeaderProps = {
 };
 
 export const TabHeader = (props: TTabHeaderProps) => {
+  const intl = useIntl();
   const location = useLocation();
   const isActive = Boolean(
     matchPath(location.pathname, {
@@ -67,10 +68,15 @@ export const TabHeader = (props: TTabHeaderProps) => {
   );
   const isDisabled = Boolean(props.isDisabled);
 
+  let label = props.label;
+  if (props.intlMessage) {
+    label = intl.formatMessage(props.intlMessage);
+  }
+
   const dataAttributeProps = {
     'data-track-event': 'click',
     ...(props.label && {
-      'data-track-component': startCase(props.label),
+      'data-track-component': startCase(label),
     }),
   };
 
@@ -80,23 +86,17 @@ export const TabHeader = (props: TTabHeaderProps) => {
     <div
       role="tab"
       aria-selected={isActive}
-      // TODO: add aria-controls when TabPanel component is ready
       css={getTabHeaderStyles(isActive, isDisabled)}
       {...getDisabledTabHeaderAriaAttributes(isDisabled)}
       {...dataAttributeProps}
     >
       <Link
         to={props.to}
-        // @ts-ignore
         css={getLinkWrapperStyles(isDisabled)}
         {...getDisabledLinkAtributes(isDisabled)}
       >
         <Text.Subheadline as="h4" truncate={true}>
-          {props.intlMessage ? (
-            <FormattedMessage {...props.intlMessage} />
-          ) : (
-            props.label
-          )}
+          {label}
         </Text.Subheadline>
       </Link>
     </div>
