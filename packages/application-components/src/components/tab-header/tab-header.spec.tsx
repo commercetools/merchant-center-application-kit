@@ -16,17 +16,17 @@ describe('rendering', () => {
   it('should render when "to" is string', () => {
     renderTabHeader();
 
-    expect(screen.getByText(/tab one/i)).toBeInTheDocument();
+    screen.getByText(/tab one/i);
   });
   it('should render when "to" is of LocationProvider type', () => {
     renderTabHeader({ to: { pathname: '/tab-one' } });
 
-    expect(screen.getByText(/tab one/i)).toBeInTheDocument();
+    screen.getByText(/tab one/i);
   });
   it('should display a custom intl message instead of a label', () => {
     const intlMessage = { id: 'localized', defaultMessage: 'localized text' };
     renderTabHeader({ intlMessage });
-    expect(screen.getByText('localized text')).toBeInTheDocument();
+    screen.getByText('localized text');
   });
 });
 describe('navigation', () => {
