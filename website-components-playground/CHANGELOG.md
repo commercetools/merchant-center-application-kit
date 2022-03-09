@@ -1,5 +1,17 @@
 # @commercetools-website/components-playground
 
+## 17.2.0
+
+### Minor Changes
+
+- [#2504](https://github.com/commercetools/merchant-center-application-kit/pull/2504) [`732e846e`](https://github.com/commercetools/merchant-center-application-kit/commit/732e846eaa5a353d5aa067206d2626d1366ba79a) Thanks [@emmenko](https://github.com/emmenko)! - Update uikit packages to v14
+
+### Patch Changes
+
+- Updated dependencies [[`732e846e`](https://github.com/commercetools/merchant-center-application-kit/commit/732e846eaa5a353d5aa067206d2626d1366ba79a)]:
+  - @commercetools-frontend/application-components@21.2.0
+  - @commercetools-frontend/i18n@21.2.0
+
 ## 17.1.16
 
 ### Patch Changes

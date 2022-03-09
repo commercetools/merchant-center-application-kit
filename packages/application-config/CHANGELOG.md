@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-config
 
+## 21.1.2
+
+### Patch Changes
+
+- [#2501](https://github.com/commercetools/merchant-center-application-kit/pull/2501) [`78ab6456`](https://github.com/commercetools/merchant-center-application-kit/commit/78ab6456bf855f8aef647c573e77e279023754d1) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Fixed an issue when loading application config file in Windows OS
+
 ## 21.0.1
 
 ### Patch Changes

@@ -1,14 +1,11 @@
 import type { SingleValueProps, ValueContainerProps } from 'react-select';
-import type { SelectInputOption } from '@commercetools-uikit/select-input';
-
 import { useCallback } from 'react';
-import { components } from 'react-select';
 import { css } from '@emotion/react';
 import SelectInput from '@commercetools-uikit/select-input';
 import { WorldIcon } from '@commercetools-uikit/icons';
 import { customProperties } from '@commercetools-uikit/design-system';
 
-type CustomSingleValueProps = SingleValueProps<SelectInputOption, false> & {
+type CustomSingleValueProps = SingleValueProps & {
   localeCount: number;
 };
 type Props = {
@@ -54,10 +51,8 @@ export const SingleValue = (props: CustomSingleValueProps) => (
 );
 SingleValue.displayName = 'SingleValue';
 
-const PatchedValueContainer = (
-  props: ValueContainerProps<SelectInputOption, false>
-) => (
-  <components.ValueContainer
+const PatchedValueContainer = (props: ValueContainerProps) => (
+  <SelectInput.ValueContainer
     {...props}
     innerProps={{ style: { display: 'flex' } }}
   />
@@ -90,9 +85,7 @@ const LocaleSwitcher = (props: Props) => {
           value: locale,
         }))}
         components={{
-          SingleValue: (
-            valueProps: SingleValueProps<SelectInputOption, false>
-          ) => (
+          SingleValue: (valueProps: SingleValueProps) => (
             <SingleValue
               {...valueProps}
               localeCount={props.availableLocales.length}

@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-local/visual-testing-app",
-  "version": "19.0.1",
+  "version": "19.1.0",
   "description": "An app to facilitate visual testing",
   "private": true,
   "scripts": {
@@ -9,20 +9,20 @@
     "serve": "mc-scripts serve"
   },
   "dependencies": {
-    "@commercetools-frontend/application-components": "21.1.0",
+    "@commercetools-frontend/application-components": "21.2.0",
     "@commercetools-frontend/assets": "21.0.0",
     "@commercetools-frontend/constants": "21.0.0",
-    "@commercetools-frontend/react-notifications": "21.1.0",
-    "@commercetools-uikit/accessible-button": "^13.0.2",
-    "@commercetools-uikit/design-system": "^13.0.0",
-    "@commercetools-uikit/grid": "^12.2.9",
-    "@commercetools-uikit/icon-button": "^13.0.2",
-    "@commercetools-uikit/icons": "^13.0.2",
-    "@commercetools-uikit/link": "^13.0.2",
-    "@commercetools-uikit/spacings": "^13.0.2",
-    "@commercetools-uikit/text": "^13.0.2",
-    "@commercetools-uikit/text-field": "^13.0.2",
-    "@commercetools-uikit/text-input": "^13.0.2",
+    "@commercetools-frontend/react-notifications": "21.2.0",
+    "@commercetools-uikit/accessible-button": "^14.0.1",
+    "@commercetools-uikit/design-system": "^14.0.0",
+    "@commercetools-uikit/grid": "^14.0.0",
+    "@commercetools-uikit/icon-button": "^14.0.1",
+    "@commercetools-uikit/icons": "^14.0.1",
+    "@commercetools-uikit/link": "^14.0.1",
+    "@commercetools-uikit/spacings": "^14.0.1",
+    "@commercetools-uikit/text": "^14.0.1",
+    "@commercetools-uikit/text-field": "^14.0.1",
+    "@commercetools-uikit/text-input": "^14.0.1",
     "@emotion/react": "11.7.1",
     "@emotion/styled": "11.6.0",
     "formik": "2.2.9",
@@ -33,7 +33,7 @@
     "react-router-dom": "5.3.0"
   },
   "devDependencies": {
-    "@commercetools-frontend/mc-scripts": "21.0.1",
+    "@commercetools-frontend/mc-scripts": "21.1.2",
     "rimraf": "3.0.2"
   }
 }

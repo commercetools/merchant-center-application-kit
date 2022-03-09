@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 /**
  * This script file is used to load and parse a JS module in a child process,
  * to isolate the Babel configuration from the main program and avoid causing
