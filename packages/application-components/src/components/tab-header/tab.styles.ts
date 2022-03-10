@@ -6,35 +6,29 @@ import {
 } from '@emotion/react';
 import { customProperties } from '@commercetools-uikit/design-system';
 
+const getBottomBorderStyles = (background: string): SerializedStyles => css`
+  :after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    border-radius: ${customProperties.borderRadius2};
+    background-color: ${background};
+    transition: background-color ${customProperties.transitionEaseinout150Ms};
+  }
+`;
+
 const getTabHeaderStateStyles = (
   isActive: boolean,
   isDisabled: boolean
 ): SerializedStyles[] => {
-  const combinedStyles: SerializedStyles[] = [];
+  const combinedStyles: SerializedStyles[] = [
+    getBottomBorderStyles('transparent'),
+  ];
   if (isActive) {
-    combinedStyles.push(css`
-      @keyframes bottomBorder {
-        from {
-          background-color: none;
-        }
-        to {
-          background-color: ${customProperties.colorPrimary};
-        }
-      }
-
-      /* bottom border */
-      &:after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        border-radius: ${customProperties.borderRadius2};
-        animation: bottomBorder ${customProperties.transitionEaseinout150Ms}
-          forwards;
-      }
-    `);
+    combinedStyles.push(getBottomBorderStyles(customProperties.colorPrimary));
   }
   if (isDisabled) {
     combinedStyles.push(css`
