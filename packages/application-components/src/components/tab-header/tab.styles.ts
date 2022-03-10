@@ -14,6 +14,7 @@ const getTabHeaderStateStyles = (
   if (isActive) {
     combinedStyles.push(css`
       color: ${customProperties.colorPrimary};
+      border-bottom: 4px solid ${customProperties.colorPrimary};
 
       @keyframes bottomBorder {
         from {
@@ -25,7 +26,7 @@ const getTabHeaderStateStyles = (
       }
 
       /* bottom border */
-      &:after {
+      /* &:after {
         content: '';
         position: absolute;
         bottom: 0;
@@ -35,7 +36,7 @@ const getTabHeaderStateStyles = (
         border-radius: ${customProperties.borderRadius2};
         animation: bottomBorder ${customProperties.transitionEaseinout150Ms}
           forwards;
-      }
+      } */
     `);
   }
   if (isDisabled) {
