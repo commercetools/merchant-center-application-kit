@@ -13,9 +13,6 @@ const getTabHeaderStateStyles = (
   const combinedStyles: SerializedStyles[] = [];
   if (isActive) {
     combinedStyles.push(css`
-      color: ${customProperties.colorPrimary};
-      border-bottom: 4px solid ${customProperties.colorPrimary};
-
       @keyframes bottomBorder {
         from {
           background-color: none;
@@ -26,7 +23,7 @@ const getTabHeaderStateStyles = (
       }
 
       /* bottom border */
-      /* &:after {
+      &:after {
         content: '';
         position: absolute;
         bottom: 0;
@@ -36,21 +33,12 @@ const getTabHeaderStateStyles = (
         border-radius: ${customProperties.borderRadius2};
         animation: bottomBorder ${customProperties.transitionEaseinout150Ms}
           forwards;
-      } */
+      }
     `);
   }
   if (isDisabled) {
     combinedStyles.push(css`
       cursor: not-allowed;
-    `);
-  }
-  if (!isActive && !isDisabled) {
-    combinedStyles.push(css`
-      * > &:hover,
-      &:focus,
-      &:active {
-        color: ${customProperties.colorPrimary};
-      }
     `);
   }
   return combinedStyles;
@@ -78,7 +66,8 @@ export const getTabHeaderStyles = (
   ...getTabHeaderStateStyles(isActive, isDisabled),
 ];
 
-export const getLinkWrapperStyles = (
+export const getLinkStyles = (
+  isActive: boolean,
   isDisabled: boolean
 ): Interpolation<Theme> => [
   css`
@@ -86,9 +75,26 @@ export const getLinkWrapperStyles = (
     display: block;
     padding: ${customProperties.spacingS} ${customProperties.spacingM};
   `,
+  isActive &&
+    css`
+      > * {
+        color: ${customProperties.colorPrimary} !important;
+      }
+    `,
   isDisabled &&
     css`
       opacity: 0.5;
       pointer-events: none;
+    `,
+  !isActive &&
+    !isDisabled &&
+    css`
+      :hover,
+      :focus,
+      :active {
+        > * {
+          color: ${customProperties.colorPrimary} !important;
+        }
+      }
     `,
 ];

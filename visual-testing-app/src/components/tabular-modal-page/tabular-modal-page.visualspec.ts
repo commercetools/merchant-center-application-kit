@@ -8,7 +8,7 @@ describe('TabularModalPage', () => {
 
   it('Default', async () => {
     await expect(page).toMatch('TabularModalPage');
-    // await new Promise((resolve) => setTimeout(resolve, 200));
+    await new Promise((resolve) => setTimeout(resolve, 200));
     await percySnapshot(page, 'TabularModalPage');
   });
 });

@@ -5,7 +5,7 @@ import type { ReactNode } from 'react';
 import type { LocationDescriptor } from 'history';
 import { warning } from '@commercetools-uikit/utils';
 import Text from '@commercetools-uikit/text';
-import { getTabHeaderStyles, getLinkWrapperStyles } from './tab.styles';
+import { getTabHeaderStyles, getLinkStyles } from './tab.styles';
 
 const pathWithoutSearch = (path: TTabHeaderProps['to']) =>
   typeof path === 'string' ? path.split('?')[0] : path.pathname;
@@ -92,7 +92,7 @@ export const TabHeader = (props: TTabHeaderProps) => {
     >
       <Link
         to={props.to}
-        css={getLinkWrapperStyles(isDisabled)}
+        css={getLinkStyles(isActive, isDisabled)}
         {...getDisabledLinkAtributes(isDisabled)}
       >
         <Text.Subheadline as="h4" truncate={true}>
