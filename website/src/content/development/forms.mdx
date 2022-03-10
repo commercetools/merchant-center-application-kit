@@ -2,18 +2,18 @@
 title: Forms
 ---
 
-In the previous sections we learned how to start building the actual User Interface by using UI components and fetching data. One of the most common requirements when implementing a User Interface is about forms.
+In the previous sections, we learned how to start building the actual User Interface by using UI components and fetching data. One of the most common requirements when implementing a User Interface is about forms.
 
 To facilitate the development of UI forms, we provide many different ready-to-use input and field components based on [commercetools Design System](https://github.com/commercetools/ui-kit).
 
 # Form state management
 
 Forms generally consist of a group of inputs that users interact with to eventually trigger some actions.
-In this process all user interactions need to be tracked, managed, and reflected in the UI. To achieve this, a form needs to maintain its own state.
+In this process, all user interactions need to be tracked, managed, and reflected in the UI. To achieve this, a form needs to maintain its own state.
 
-At commercetools we have settled on using [Formik](https://formik.org) as the preferred form state management library when building User Interfaces.
+At commercetools, we have settled on using [Formik](https://formik.org) as the preferred form state management library when building User Interfaces.
 
-Formik comes with several built-in features such as validations, array fields, input states, async submission and many more.
+Formik comes with several built-in features such as validations, array fields, input states, async submission, and many more.
 
 At a bare minimum, implementing a form could look something like this:
 
@@ -77,7 +77,7 @@ The commercetools UIKit library provides several UI components for working with 
 
 A field component consists of an input element wrapped with other field elements such as label, description, error message, hint, badge, etc.
 
-Depending on the use case, you might want to use a date field, or a text field, or a select field. In the UIKit library we provide a variety of components to cover different use cases. For more information about field and input components check their related packages in the [commercetools/ui-kit](https://github.com/commercetools/ui-kit) repository.
+Depending on the use case, you might want to use a date field, a text field, or a select field. In the UIKit library, we provide a variety of components to cover different use cases. For more information about field and input components check their related packages in the [commercetools/ui-kit](https://github.com/commercetools/ui-kit) repository.
 
 <Info>
 
@@ -87,7 +87,7 @@ All UIKit field components have a related input component, for example `<TextFie
 
 ## Accessibility support
 
-All field and input components have built-in support for accessibility features such as aria labels, keyboard navigation and focus management, error messaging and more.
+All field and input components have built-in support for accessibility features such as aria labels, keyboard navigation and focus management, error messaging, and more.
 
 <Info>
 
@@ -129,9 +129,9 @@ const validate = (values) => {
 }
 ```
 
-In this example we are validating that the `name` field has a required value. If the value is empty (no localized values have been provided), we assign to the `errors.name` property an error object with the error key `missing` set to `true`.
+In this example, we are validating that the `name` field has a required value. If the value is empty (no localized values have been provided), we assign to the `errors.name` property an error object with the error key `missing` set to `true`.
 
-In the field component you need to make sure to assign the `errors` and `touched` props which will make the field component render an error message, in case one was returned from the `validate` function.
+In the field component, you need to make sure to assign the `errors` and `touched` props which will make the field component render an error message, in case one was returned from the `validate` function.
 
 ```js highlightLines="7-10"
 <LocalizedTextField
@@ -151,11 +151,11 @@ In the field component you need to make sure to assign the `errors` and `touched
 
 <Info>
 
-Error messages are only shown when the `touched` value for the specific field is set to `true`. This happens whenever the user stops interacting with a field (loses `focus`). The point here is that as long as the user is interacting with a field for the first time there is no need to show a validation.
+Error messages are only shown when the `touched` value for the specific field is set to `true`. This happens whenever the user stops interacting with a field (loses `focus`). The point here is that as long as the user is interacting with a field for the first time there is no need to show validation.
 
 </Info>
 
-By default field components have built-in error messages for the `missing` error key. Any other error message can be mapped and rendered using the `renderError` function.
+By default, field components have built-in error messages for the `missing` error key. Any other error message can be mapped and rendered using the `renderError` function.
 
 ```js highlightLines="10-17"
 <LocalizedTextField
@@ -187,10 +187,10 @@ Implementing forms is almost always related to managing data as a bidirectional 
 
 ![Form data conversion](/images/form-conversion.png)
 
-To facilitate converting data to and from a form, we recommend to define some conversion functions.
+To facilitate converting data to and from a form, we recommend defining some conversion functions.
 
-* `docToFormValues`: converts data, for example fetched from an API, to the form specific format.
-* `formValuesToDoc`: converts form data back to the original data format, for example to be used in an API.
+* `docToFormValues`: converts data, for instance, fetched from an API, to the form-specific format.
+* `formValuesToDoc`: converts form data back to the original data format, for instance, to be used in an API.
 
 The `docToFormValues` is what you would usually use for initializing the form.
 
@@ -380,7 +380,7 @@ const ChannelsCreate = () => {
 }
 ```
 
-In the details page we would need to fetch the data first, then initialize the form with the data.
+On the details page, we would need to fetch the data first, then initialize the form with the data.
 
 ```js title="channels-details.js"
 import { useCallback } from 'react';
