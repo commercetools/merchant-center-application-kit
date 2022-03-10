@@ -24,9 +24,13 @@ class CredentialsStorage {
     return JSON.parse(data);
   }
 
-  get() {
+  getToken() {
     const allCredentials = this._getAllCredentials();
-    return allCredentials[this.cloudIdentifier];
+    if (!this.isSessionValid()) {
+      return null;
+    }
+    const parsedCookie = cookie.parse(allCredentials[this.cloudIdentifier]);
+    return parsedCookie['mcAccessToken'];
   }
 
   update(cookieData) {
