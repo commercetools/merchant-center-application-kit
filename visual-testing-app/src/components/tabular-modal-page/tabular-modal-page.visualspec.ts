@@ -3,7 +3,9 @@ import { HOST } from '../../constants';
 
 describe('TabularModalPage', () => {
   beforeAll(async () => {
-    await page.goto(`${HOST}/tabular-modal-page`, { waitUntil: 'load' });
+    await page.goto(`${HOST}/tabular-modal-page`, {
+      waitUntil: 'networkidle0',
+    });
   });
 
   it('Default', async () => {
