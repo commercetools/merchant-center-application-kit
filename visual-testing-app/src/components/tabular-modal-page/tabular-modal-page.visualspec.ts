@@ -3,7 +3,7 @@ import { HOST } from '../../constants';
 
 describe('TabularModalPage', () => {
   beforeAll(async () => {
-    await page.goto(`${HOST}/tabular-modal-page`, { timeout: 200 });
+    await page.goto(`${HOST}/tabular-modal-page`, { waitUntil: 'load' });
   });
 
   it('Default', async () => {
