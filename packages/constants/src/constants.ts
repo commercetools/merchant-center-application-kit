@@ -186,7 +186,6 @@ export interface ApplicationWindow extends Window {
     frontendHost: string;
     servedByProxy: boolean;
     // Optional properties. To use them, pass them to the `additionalEnv` object of the application config.
-    cloudIdentifier?: string;
     mcProxyApiUrl?: string;
     ldClientSideId?: string;
     trackingSentry?: string;
