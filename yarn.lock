@@ -2641,6 +2641,7 @@ __metadata:
     html-webpack-plugin: 5.5.0
     json-loader: 0.5.7
     mini-css-extract-plugin: 2.6.0
+    mock-fs: ^5.1.2
     moment-locales-webpack-plugin: 1.2.0
     mri: 1.2.0
     postcss: 8.4.8
@@ -24042,6 +24043,13 @@ __metadata:
   bin:
     mkdirp: bin/cmd.js
   checksum: a96865108c6c3b1b8e1d5e9f11843de1e077e57737602de1b82030815f311be11f96f09cce59bd5b903d0b29834733e5313f9301e3ed6d6f6fba2eae0df4298f
+  languageName: node
+  linkType: hard
+
+"mock-fs@npm:^5.1.2":
+  version: 5.1.2
+  resolution: "mock-fs@npm:5.1.2"
+  checksum: 04eaa16edbae8d60835a22e5dee4d4809b05aa948154edd37321cca7c6c9b967985ce0e30b47a3a421f3f4524080913a8130e87bc5198783fdf7b13f52251960
   languageName: node
   linkType: hard
 
