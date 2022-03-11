@@ -1,4 +1,4 @@
-const validateEmail = require('./validateEmail');
+const validateEmail = require('./validate-email');
 
 describe.each`
   email                         | isValid

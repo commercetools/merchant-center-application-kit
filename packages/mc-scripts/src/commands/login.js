@@ -1,9 +1,9 @@
 const { promisify } = require('util');
 const read = promisify(require('read'));
 const { processConfig } = require('@commercetools-frontend/application-config');
-const CredentialsStorage = require('../utils/credentialsStorage');
+const CredentialsStorage = require('../utils/credentials-storage');
 const authenticator = require('../utils/auth');
-const validateEmail = require('../utils/validateEmail');
+const validateEmail = require('../utils/validate-email');
 
 const getEmail = async () => {
   let email = await read({ prompt: 'Email: ' });

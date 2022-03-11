@@ -1,5 +1,5 @@
 const mock = require('mock-fs');
-const CredentialsStorage = require('../utils/credentialsStorage');
+const CredentialsStorage = require('./credentials-storage');
 const homedir = require('os').homedir();
 
 const fullCredentialsPath = `${homedir}/.mcscriptsrc/credentials.json`;
