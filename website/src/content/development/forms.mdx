@@ -341,9 +341,9 @@ const ChannelsForm = (props) => {
 }
 ```
 
-Now that we have defined our form component, we can implement the create and details pages.
+Now that we have defined our form component, we can implement the "create" and "details" pages.
 
-The create page does not have any initial data, so we can use our conversion function `docToFormValues()` with default values.
+The "create" page does not have any initial data, so we can use our conversion function `docToFormValues()` with default values.
 
 ```js title="channels-create.js"
 import { useCallback } from 'react';
@@ -381,7 +381,7 @@ const ChannelsCreate = () => {
 }
 ```
 
-On the details page, we would need to fetch the data first, then initialize the form with the data.
+On the "details" page, we would need to fetch the data first, then initialize the form with the data.
 
 ```js title="channels-details.js"
 import { useCallback } from 'react';
@@ -431,7 +431,7 @@ const ChannelsDetails = (props) => {
 
 ## Using modal pages
 
-Most of the time a create or details page with a form can be implemented using either the [FormModalPage](/api-reference/commercetools-frontend-application-components#formmodalpage) or the [CustomFormModalPage](/api-reference/commercetools-frontend-application-components#customformmodalpage) components.
+Most of the time a "create" or "details" page with a form can be implemented using either the [FormModalPage](/api-reference/commercetools-frontend-application-components#formmodalpage) or the [CustomFormModalPage](/api-reference/commercetools-frontend-application-components#customformmodalpage) components.
 
 Using these components has the advantage of providing the form control buttons (for example `Cancel` and `Save`) in the correct place, according to our design guidelines.
 
