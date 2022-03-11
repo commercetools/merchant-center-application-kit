@@ -31,6 +31,7 @@ const ChannelsForm = () => {
     languages: context.project.languages,
   }));
   const formik = useFormik({
+    // We assume that the form is empty. Therefore, we need to provide default values.
     initialValues: {
       // A Channel's `name`: https://docs.commercetools.com/api/projects/channels
       name: LocalizedTextInput.createLocalizedString(languages),
@@ -113,7 +114,7 @@ type TCustomFormErrors<Values> = {
 declare const validate = (values: FormValues) => TCustomFormErrors<FormValues>;
 ```
 
-Specifically, the `FormikErrors` object should contain properties correlating to field names with their values being objects with reasons for the given error. Let's take a look at an example:
+Specifically, the object returned from the `validate` function should contain properties correlating to field names with their values being objects with reasons for the given error. Let's take a look at an example:
 
 ```js title="validate.js"
 import LocalizedTextInput from '@commercetools-uikit/localized-text-input';
@@ -199,7 +200,7 @@ import { useFormik } from 'formik';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { docToFormValues } from './conversions';
 
-const ChannelsForm = () => {
+const ChannelsForm = (props) => {
   const languages = useApplicationContext((context) => context.project.languages);
   const formik = useFormik({
     initialValues: docToFormValues(props.data, languages),
@@ -389,14 +390,16 @@ import { useApplicationContext } from '@commercetools-frontend/application-shell
 import Text from '@commercetools-uikit/text';
 import Spacings from '@commercetools-uikit/spacings';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
-import useChannels from './use-channels';
+import useChannelsFetcher from './use-channels-fetcher';
+import useChannelsUpdater from './use-channels-updater';
 import { docToFormValues, formValuesToDoc } from './conversions';
 import ChannelsForm from './channels-form';
 
 const ChannelsDetails = (props) => {
   const match = useRouteMatch();
   const languages = useApplicationContext((context) => context.project.languages);
-  const { data: channel } = useChannels(match.params.id)
+  const { data: channel } = useChannelsFetcher(match.params.id)
+  const { updateChannel } = useChannelsUpdater(match.params.id)
   const handleSubmit = useCallback(
     async (formValues) => {
       const data = formValuesToDoc(formValues);
@@ -434,7 +437,7 @@ Using these components has the advantage of providing the form control buttons (
 
 However, the form component must be defined "outside" of the modal page to be able to pass the necessary functions to the modal page to interact with the form.
 
-Therefore, our Channels form must be refactored to defined all the form elements but return them using the function-as-child component pattern.
+Therefore, our Channels form must be refactored to define all the form elements but return them using the function-as-child component pattern.
 
 ```jsx title="channels-form.js"
 import { useFormik } from 'formik';
@@ -552,14 +555,16 @@ import { useRouteMatch } from "react-router-dom";
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { FormModalPage } from '@commercetools-frontend/application-components';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
-import useChannels from './use-channels';
+import useChannelsFetcher from './use-channels-fetcher';
+import useChannelsUpdater from './use-channels-updater';
 import { docToFormValues, formValuesToDoc } from './conversions';
 import ChannelsForm from './channels-form';
 
 const ChannelsDetails = (props) => {
   const match = useRouteMatch();
   const languages = useApplicationContext((context) => context.project.languages);
-  const { data: channel } = useChannels(match.params.id)
+  const { data: channel } = useChannelsFetcher(match.params.id)
+  const { updateChannel } = useChannelsUpdater(match.params.id)
   const handleSubmit = useCallback(
     async (formValues) => {
       const data = formValuesToDoc(formValues);
