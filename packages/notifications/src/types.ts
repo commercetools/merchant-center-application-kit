@@ -3,7 +3,7 @@ import type { Action } from 'redux';
 import { ADD_NOTIFICATION, REMOVE_NOTIFICATION } from './action-types';
 
 export type TNotification = {
-  id: number;
+  id?: number;
 };
 
 export type TNotificationOnDismiss = (id: TNotification['id']) => void;

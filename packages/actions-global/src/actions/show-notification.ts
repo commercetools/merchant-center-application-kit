@@ -1,4 +1,7 @@
-import type { TNotificationMetaOptions } from '@commercetools-frontend/notifications';
+import type {
+  TNotificationMetaOptions,
+  TNotification,
+} from '@commercetools-frontend/notifications';
 import type { TShowNotification } from '../types';
 
 import isNumber from 'lodash/isNumber';
@@ -28,7 +31,7 @@ export default function showNotification<
     dismissAfter =
       notification.kind === NOTIFICATION_KINDS_SIDE.success ? 5000 : 0;
 
-  return addNotification<Pick<Notification, 'id'>>(notification, {
+  return addNotification<Notification & TNotification>(notification, {
     ...meta,
     dismissAfter,
   });

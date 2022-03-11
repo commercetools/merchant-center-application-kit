@@ -4,10 +4,13 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { showUnexpectedErrorNotification } from '../actions';
 
-// Returns a function that dispatches an unexpected error notification.
-// Example:
-//   const showUnexpectedErrorNotification = useShowUnexpectedErrorNotification();
-//   showUnexpectedErrorNotification({ error });
+/**
+ * Dispatch an unexpected error notification.
+ *
+ * @example
+ * const showUnexpectedErrorNotification = useShowUnexpectedErrorNotification();
+ * showUnexpectedErrorNotification({ errors });
+ */
 export default function useShowUnexpectedErrorNotification() {
   const dispatch = useDispatch();
   return useCallback(
