@@ -30,11 +30,11 @@ describe('When cookie is not expired', () => {
   });
 
   it('should return token', () => {
-    expect(credentialsStorage.getToken()).toEqual('hello-world');
+    expect(credentialsStorage.getToken()).toBe('hello-world');
   });
 
   it('should return true', () => {
-    expect(credentialsStorage.isSessionValid()).toEqual(true);
+    expect(credentialsStorage.isSessionValid()).toBe(true);
   });
 
   it('should return new token', () => {
@@ -42,7 +42,7 @@ describe('When cookie is not expired', () => {
       36000
     )}; HttpOnly; Secure`;
     credentialsStorage.update(newCookie);
-    expect(credentialsStorage.getToken()).toEqual('fizz-buzz');
+    expect(credentialsStorage.getToken()).toBe('fizz-buzz');
   });
 });
 
@@ -58,11 +58,11 @@ describe('When cookie is expired', () => {
   });
 
   it('should not return token', () => {
-    expect(credentialsStorage.getToken()).toEqual(null);
+    expect(credentialsStorage.getToken()).toBe(null);
   });
 
   it('should return false', () => {
-    expect(credentialsStorage.isSessionValid()).toEqual(false);
+    expect(credentialsStorage.isSessionValid()).toBe(false);
   });
 });
 
@@ -72,11 +72,11 @@ describe('When credentials folder is not present', () => {
   });
 
   it('should not return token', () => {
-    expect(credentialsStorage.getToken()).toEqual(null);
+    expect(credentialsStorage.getToken()).toBe(null);
   });
 
   it('should return false', () => {
-    expect(credentialsStorage.isSessionValid()).toEqual(false);
+    expect(credentialsStorage.isSessionValid()).toBe(false);
   });
 
   it('should return new token', () => {
@@ -84,6 +84,6 @@ describe('When credentials folder is not present', () => {
       36000
     )}; HttpOnly; Secure`;
     credentialsStorage.update(newCookie);
-    expect(credentialsStorage.getToken()).toEqual('fizz-buzz');
+    expect(credentialsStorage.getToken()).toBe('fizz-buzz');
   });
 });

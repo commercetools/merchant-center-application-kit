@@ -3,11 +3,7 @@ const read = promisify(require('read'));
 const { processConfig } = require('@commercetools-frontend/application-config');
 const CredentialsStorage = require('../utils/credentialsStorage');
 const authenticator = require('../utils/auth');
-
-function validateEmail(email) {
-  const re = /\S+@\S+\.\S+/;
-  return re.test(email);
-}
+const validateEmail = require('../utils/validateEmail');
 
 const getEmail = async () => {
   let email = await read({ prompt: 'Email: ' });
