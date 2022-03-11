@@ -42,7 +42,7 @@
     "css-loader": "6.5.1",
     "css-minimizer-webpack-plugin": "3.4.1",
     "dotenv": "10.0.0",
-    "dotenv-expand": "5.1.0",
+    "dotenv-expand": "8.0.2",
     "fs-extra": "10.0.0",
     "graphql-tag": "^2.12.6",
     "html-webpack-plugin": "5.5.0",
