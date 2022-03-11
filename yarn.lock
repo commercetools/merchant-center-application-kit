@@ -2644,6 +2644,7 @@ __metadata:
     mock-fs: ^5.1.2
     moment-locales-webpack-plugin: 1.2.0
     mri: 1.2.0
+    msw: 0.39.1
     postcss: 8.4.8
     postcss-custom-media: 8.0.0
     postcss-custom-properties: 12.1.4

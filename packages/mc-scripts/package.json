@@ -77,6 +77,7 @@
     "@babel/plugin-transform-runtime": "^7.16.10",
     "@babel/preset-env": "^7.16.11",
     "mock-fs": "^5.1.2",
+    "msw": "0.39.1",
     "rimraf": "3.0.2"
   },
   "engines": {

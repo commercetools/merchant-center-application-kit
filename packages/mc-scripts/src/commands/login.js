@@ -1,9 +1,8 @@
 const { promisify } = require('util');
 const read = promisify(require('read'));
-const fetch = require('node-fetch');
 const { processConfig } = require('@commercetools-frontend/application-config');
 const CredentialsStorage = require('../utils/credentialsStorage');
-const path = require('path');
+const authenticator = require('../utils/auth');
 
 function validateEmail(email) {
   const re = /\S+@\S+\.\S+/;
@@ -42,19 +41,11 @@ const login = async () => {
   const email = await getEmail();
   const password = await getPassword();
 
-  const response = await fetch(`${applicationConfig.env.mcApiUrl}/tokens`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ email, password }),
-  });
-
-  if (response.status !== 200) {
-    const res = await response.json();
-    throw new Error(res.message);
-  }
-  const cookieData = response.headers.get('set-cookie');
+  const cookieData = await authenticator(
+    email,
+    password,
+    applicationConfig.env.mcApiUrl
+  );
   credentialsStorage.update(cookieData);
   successfulLoginMessage(cloudIdentifier);
 };
