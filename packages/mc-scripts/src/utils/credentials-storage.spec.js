@@ -3,7 +3,6 @@ const CredentialsStorage = require('./credentials-storage');
 const homedir = require('os').homedir();
 
 const fullCredentialsPath = `${homedir}/.commercetools/mc-credentials.json`;
-const domain = 'europe-west1.gcp.commercetools.com';
 
 const getExpiryDate = (hours) => {
   const date = new Date();
@@ -41,10 +40,11 @@ describe('When cookie is not expired', () => {
   });
 
   it('should return new token', () => {
-    const newCookie = `mcAccessToken=fizz-buzz; Domain=${domain}; Path=/; Expires=${getExpiryDate(
-      36000
-    )}; HttpOnly; Secure`;
-    credentialsStorage.setToken(mcApiUrl, newCookie);
+    const newSessionData = {
+      sessionToken: 'fizz-buzz',
+      expiresAt: getExpiryDate(36000),
+    };
+    credentialsStorage.setToken(mcApiUrl, newSessionData);
     expect(credentialsStorage.getToken(mcApiUrl)).toBe('fizz-buzz');
   });
 });
@@ -84,10 +84,11 @@ describe('When credentials folder is not present', () => {
   });
 
   it('should return new token', () => {
-    const newCookie = `mcAccessToken=fizz-buzz; Domain=${domain}; Path=/; Expires=${getExpiryDate(
-      36000
-    )}; HttpOnly; Secure`;
-    credentialsStorage.setToken(mcApiUrl, newCookie);
+    const newSessionData = {
+      sessionToken: 'fizz-buzz',
+      expiresAt: getExpiryDate(36000),
+    };
+    credentialsStorage.setToken(mcApiUrl, newSessionData);
     expect(credentialsStorage.getToken(mcApiUrl)).toBe('fizz-buzz');
   });
 });

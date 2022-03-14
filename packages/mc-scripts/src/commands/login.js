@@ -3,7 +3,6 @@ const read = promisify(require('read'));
 const { processConfig } = require('@commercetools-frontend/application-config');
 const CredentialsStorage = require('../utils/credentials-storage');
 const authenticator = require('../utils/auth');
-const path = require('path');
 
 const credentialsStorage = new CredentialsStorage();
 
@@ -21,8 +20,8 @@ const login = async () => {
   const email = await read({ prompt: 'Email: ' });
   const password = await read({ prompt: 'Password: ', silent: true });
 
-  const cookieData = await authenticator({ email, password, mcApiUrl });
-  credentialsStorage.setToken(mcApiUrl, cookieData);
+  const sessionData = await authenticator({ email, password, mcApiUrl });
+  credentialsStorage.setToken(mcApiUrl, sessionData);
   console.log(`Login successful for the ${mcApiUrl} environment.`);
 };
 

@@ -1,5 +1,4 @@
 const { existsSync, writeFileSync, readFileSync, mkdirSync } = require('fs');
-const cookie = require('cookie');
 const homedir = require('os').homedir();
 
 const dirPath = `${homedir}/.commercetools`;
@@ -28,13 +27,9 @@ class CredentialsStorage {
     return allCredentials[mcApiUrl].sessionToken;
   }
 
-  setToken(mcApiUrl, cookieData) {
+  setToken(mcApiUrl, sessionData) {
     const allCredentials = this._getAllCredentials();
-    const parsedCookie = cookie.parse(cookieData);
-    allCredentials[mcApiUrl] = {
-      sessionToken: parsedCookie.mcAccessToken,
-      expiresAt: parsedCookie.Expires,
-    };
+    allCredentials[mcApiUrl] = sessionData;
     this._updateCredentialsFile(allCredentials);
   }
 

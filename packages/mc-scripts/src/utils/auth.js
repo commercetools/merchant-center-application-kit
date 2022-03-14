@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const cookie = require('cookie');
 
 const authenticator = async ({ email, password, mcApiUrl }) => {
   const response = await fetch(`${mcApiUrl}/tokens`, {
@@ -15,7 +16,11 @@ const authenticator = async ({ email, password, mcApiUrl }) => {
     throw new Error(errorMessage);
   }
 
-  return response.headers.get('set-cookie');
+  const parsedCookie = cookie.parse(response.headers.get('set-cookie'));
+  return {
+    sessionToken: parsedCookie.mcAccessToken,
+    expiresAt: parsedCookie.Expires,
+  };
 };
 
 module.exports = authenticator;

@@ -25,12 +25,15 @@ describe('When login details are correct', () => {
     );
   });
   it('should match returned credentials', async () => {
-    const credentials = await authenticator({
+    const sessionData = await authenticator({
       email: 'lorem@commercetools.co',
       password: 'pass',
       mcApiUrl,
     });
-    expect(credentials).toEqual('mcAccessToken=hello-world');
+    expect(sessionData).toEqual({
+      sessionToken: 'hello-world',
+      expiresAt: undefined,
+    });
   });
 });
 
