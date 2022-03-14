@@ -1,7 +1,7 @@
 const { rest } = require('msw');
 const { setupServer } = require('msw/node');
 
-const authenticator = require('../utils/auth');
+const getSessionData = require('./get-session-data');
 
 const mockServer = setupServer();
 afterEach(() => {
@@ -25,7 +25,7 @@ describe('When login details are correct', () => {
     );
   });
   it('should match returned credentials', async () => {
-    const sessionData = await authenticator({
+    const sessionData = await getSessionData({
       email: 'lorem@commercetools.co',
       password: 'pass',
       mcApiUrl,
@@ -53,7 +53,7 @@ describe('When login details are incorrect', () => {
   it('should throw error', async () => {
     await expect(
       async () =>
-        await authenticator({
+        await getSessionData({
           email: 'test@commercetools.co',
           password: 'incorrect-pass',
           mcApiUrl,

@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const cookie = require('cookie');
 
-const authenticator = async ({ email, password, mcApiUrl }) => {
+const getSessionData = async ({ email, password, mcApiUrl }) => {
   const response = await fetch(`${mcApiUrl}/tokens`, {
     method: 'POST',
     headers: {
@@ -23,4 +23,4 @@ const authenticator = async ({ email, password, mcApiUrl }) => {
   };
 };
 
-module.exports = authenticator;
+module.exports = getSessionData;
