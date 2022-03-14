@@ -22,7 +22,7 @@
     "@babel/runtime-corejs3": "^7.16.8",
     "@commercetools-frontend/application-shell-connectors": "21.0.0",
     "@commercetools-frontend/sentry": "21.0.0",
-    "@emotion/react": "11.7.1",
+    "@emotion/react": "11.8.2",
     "@types/lodash": "^4.14.178",
     "@types/prop-types": "^15.7.4",
     "@types/react": "^17.0.38",
