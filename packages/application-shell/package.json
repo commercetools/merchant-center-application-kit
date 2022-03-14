@@ -103,7 +103,7 @@
     "uuid": "8.3.2"
   },
   "devDependencies": {
-    "@apollo/client": "3.5.7",
+    "@apollo/client": "3.5.10",
     "@testing-library/react": "12.1.2",
     "@testing-library/react-hooks": "7.0.2",
     "msw": "0.36.5",
