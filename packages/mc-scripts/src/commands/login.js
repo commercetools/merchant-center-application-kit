@@ -22,7 +22,7 @@ const login = async () => {
   const password = await read({ prompt: 'Password: ', silent: true });
 
   const cookieData = await authenticator({ email, password, mcApiUrl });
-  credentialsStorage.setToken(cookieData, mcApiUrl);
+  credentialsStorage.setToken(mcApiUrl, cookieData);
   console.log(`Login successful for the ${mcApiUrl} environment.`);
 };
 

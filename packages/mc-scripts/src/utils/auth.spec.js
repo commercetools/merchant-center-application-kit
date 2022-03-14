@@ -25,11 +25,11 @@ describe('When login details are correct', () => {
     );
   });
   it('should match returned credentials', async () => {
-    const credentials = await authenticator(
-      'lorem@commercetools.co',
-      'pass',
-      mcApiUrl
-    );
+    const credentials = await authenticator({
+      email: 'lorem@commercetools.co',
+      password: 'pass',
+      mcApiUrl,
+    });
     expect(credentials).toEqual('mcAccessToken=hello-world');
   });
 });
@@ -50,7 +50,11 @@ describe('When login details are incorrect', () => {
   it('should throw error', async () => {
     await expect(
       async () =>
-        await authenticator('test@commercetools.co', 'incorrect-pass', mcApiUrl)
+        await authenticator({
+          email: 'test@commercetools.co',
+          password: 'incorrect-pass',
+          mcApiUrl,
+        })
     ).rejects.toThrow('Invalid email or password');
   });
 });

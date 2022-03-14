@@ -2,7 +2,7 @@ const mock = require('mock-fs');
 const CredentialsStorage = require('./credentials-storage');
 const homedir = require('os').homedir();
 
-const fullCredentialsPath = `${homedir}/.mcscriptsrc/credentials.json`;
+const fullCredentialsPath = `${homedir}/.commercetools/mc-credentials.json`;
 const domain = 'europe-west1.gcp.commercetools.com';
 
 const getExpiryDate = (hours) => {
@@ -12,37 +12,40 @@ const getExpiryDate = (hours) => {
   return date.toUTCString();
 };
 
-const credentialsStorage = new CredentialsStorage('gcp-eu');
+const credentialsStorage = new CredentialsStorage();
 
 afterEach(() => {
   mock.restore();
 });
 
+const mcApiUrl = 'https://mc-api.europe-west1.gcp.commercetools.com';
+
 describe('When cookie is not expired', () => {
   beforeEach(() => {
     mock({
       [fullCredentialsPath]: JSON.stringify({
-        'gcp-eu': `mcAccessToken=hello-world; Domain=${domain}; Path=/; Expires=${getExpiryDate(
-          36000
-        )}; HttpOnly; Secure`,
+        [mcApiUrl]: {
+          sessionToken: 'hello-world',
+          expiresAt: getExpiryDate(36000),
+        },
       }),
     });
   });
 
   it('should return token', () => {
-    expect(credentialsStorage.getToken()).toBe('hello-world');
+    expect(credentialsStorage.getToken(mcApiUrl)).toBe('hello-world');
   });
 
   it('should return true', () => {
-    expect(credentialsStorage.isSessionValid()).toBe(true);
+    expect(credentialsStorage.isSessionValid(mcApiUrl)).toBe(true);
   });
 
   it('should return new token', () => {
     const newCookie = `mcAccessToken=fizz-buzz; Domain=${domain}; Path=/; Expires=${getExpiryDate(
       36000
     )}; HttpOnly; Secure`;
-    credentialsStorage.update(newCookie);
-    expect(credentialsStorage.getToken()).toBe('fizz-buzz');
+    credentialsStorage.setToken(mcApiUrl, newCookie);
+    expect(credentialsStorage.getToken(mcApiUrl)).toBe('fizz-buzz');
   });
 });
 
@@ -50,19 +53,20 @@ describe('When cookie is expired', () => {
   beforeEach(() => {
     mock({
       [fullCredentialsPath]: JSON.stringify({
-        'gcp-eu': `mcAccessToken=hello-world; Domain=${domain}; Path=/; Expires=${getExpiryDate(
-          -3600
-        )}; HttpOnly; Secure`,
+        [mcApiUrl]: {
+          sessionToken: 'hello-world',
+          expiresAt: getExpiryDate(-36000),
+        },
       }),
     });
   });
 
   it('should not return token', () => {
-    expect(credentialsStorage.getToken()).toBe(null);
+    expect(credentialsStorage.getToken(mcApiUrl)).toBe(null);
   });
 
   it('should return false', () => {
-    expect(credentialsStorage.isSessionValid()).toBe(false);
+    expect(credentialsStorage.isSessionValid(mcApiUrl)).toBe(false);
   });
 });
 
@@ -72,18 +76,18 @@ describe('When credentials folder is not present', () => {
   });
 
   it('should not return token', () => {
-    expect(credentialsStorage.getToken()).toBe(null);
+    expect(credentialsStorage.getToken(mcApiUrl)).toBe(null);
   });
 
   it('should return false', () => {
-    expect(credentialsStorage.isSessionValid()).toBe(false);
+    expect(credentialsStorage.isSessionValid(mcApiUrl)).toBe(false);
   });
 
   it('should return new token', () => {
     const newCookie = `mcAccessToken=fizz-buzz; Domain=${domain}; Path=/; Expires=${getExpiryDate(
       36000
     )}; HttpOnly; Secure`;
-    credentialsStorage.update(newCookie);
-    expect(credentialsStorage.getToken()).toBe('fizz-buzz');
+    credentialsStorage.setToken(mcApiUrl, newCookie);
+    expect(credentialsStorage.getToken(mcApiUrl)).toBe('fizz-buzz');
   });
 });

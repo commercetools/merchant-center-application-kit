@@ -22,13 +22,13 @@ class CredentialsStorage {
 
   getToken(mcApiUrl) {
     const allCredentials = this._getAllCredentials();
-    if (!this.isSessionValid()) {
+    if (!this.isSessionValid(mcApiUrl)) {
       return null;
     }
     return allCredentials[mcApiUrl].sessionToken;
   }
 
-  setToken(cookieData, mcApiUrl) {
+  setToken(mcApiUrl, cookieData) {
     const allCredentials = this._getAllCredentials();
     const parsedCookie = cookie.parse(cookieData);
     allCredentials[mcApiUrl] = {
