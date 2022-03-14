@@ -7,7 +7,9 @@ const filePath = `${dirPath}/${filename}`;
 
 class CredentialsStorage {
   _updateCredentialsFile(credentials) {
-    writeFileSync(filePath, JSON.stringify(credentials), { encoding: 'utf8' });
+    writeFileSync(filePath, JSON.stringify(credentials, null, 2), {
+      encoding: 'utf8',
+    });
   }
 
   _getAllCredentials() {
