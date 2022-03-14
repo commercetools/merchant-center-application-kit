@@ -3,20 +3,6 @@ const read = promisify(require('read'));
 const { processConfig } = require('@commercetools-frontend/application-config');
 const CredentialsStorage = require('../utils/credentials-storage');
 const authenticator = require('../utils/auth');
-const validateEmail = require('../utils/validate-email');
-
-const getEmail = async () => {
-  let email = await read({ prompt: 'Email: ' });
-  if (!validateEmail(email)) {
-    console.log('Please input a valid email');
-    email = await getEmail();
-  }
-  return email;
-};
-
-const getPassword = async () => {
-  return await read({ prompt: 'Password: ', silent: true });
-};
 
 const successfulLoginMessage = (cloudIdentifier) => {
   console.log(
@@ -34,8 +20,8 @@ const login = async () => {
     successfulLoginMessage(cloudIdentifier);
   }
 
-  const email = await getEmail();
-  const password = await getPassword();
+  const email = await read({ prompt: 'Email: ' });
+  const password = await read({ prompt: 'Password: ', silent: true });
 
   const cookieData = await authenticator(
     email,
