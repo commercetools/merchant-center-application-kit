@@ -71,6 +71,7 @@ const TabularModalPage = (props: Props) => (
       css={css`
         background-color: ${customProperties.colorNeutral95};
         padding: ${customProperties.spacingM} ${customProperties.spacingM} 0;
+        border-bottom: 1px ${customProperties.colorNeutral} solid;
       `}
     >
       <Spacings.Stack>

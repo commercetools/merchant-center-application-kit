@@ -42,6 +42,7 @@ const exampleCustomTitleRow = (
 );
 
 const isBrowser = typeof window !== 'undefined';
+// During Gatsby's build time browser API is not available and BrowserRouter can't be used. For that step StaticRouter has to be plugged in.
 const Router = isBrowser ? BrowserRouter : StaticRouter;
 
 const TabularModalPageExample = (props) => {

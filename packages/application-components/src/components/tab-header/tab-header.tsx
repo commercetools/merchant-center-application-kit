@@ -28,17 +28,17 @@ const getDisabledLinkAtributes = (isDisabled: TTabHeaderProps['isDisabled']) =>
 
 export type TTabHeaderProps = {
   /**
-   * Path that the TabHeader directs to when not disabled.
+   * A route path to redirect to when the tab is clicked.
    */
   to: string | LocationDescriptor;
   /**
-   * A label for the TabHeader.
+   * The label of the tab.
    * * <br />
    * Required if `intlMessage` is not provided.
    */
   label?: string;
   /**
-   * An `intl` message object that will be rendered with `FormattedMessage`.
+   * The label of the tab, using an `intl` message object.
    * <br />
    * Required if `label` is not provided.
    */
@@ -48,11 +48,11 @@ export type TTabHeaderProps = {
   /**
    * If `true`, indicates that the element is in a disabled state.
    */
-  isDisabled?: boolean;
+  isDisabled: boolean;
   /**
-   * If set to `true` TabHeader will be visible as active only upon exact match of route.
+   * If `true`, marks the tab as active if the link matches exactly the route.
    */
-  exact?: boolean;
+  exactPathMatch: boolean;
 };
 
 export const TabHeader = (props: TTabHeaderProps) => {
@@ -62,11 +62,11 @@ export const TabHeader = (props: TTabHeaderProps) => {
     matchPath(location.pathname, {
       // strip the search, otherwise the path won't match
       path: pathWithoutSearch(props.to),
-      exact: props.exact,
+      exact: props.exactPathMatch,
       strict: false,
     })
   );
-  const isDisabled = Boolean(props.isDisabled);
+  const isDisabled = props.isDisabled;
 
   let label = props.label;
   if (props.intlMessage) {
@@ -105,9 +105,9 @@ export const TabHeader = (props: TTabHeaderProps) => {
 
 TabHeader.displayName = 'TabHeader';
 
-const defaultProps: Pick<TTabHeaderProps, 'isDisabled' | 'exact'> = {
+const defaultProps: Pick<TTabHeaderProps, 'isDisabled' | 'exactPathMatch'> = {
   isDisabled: false,
-  exact: false,
+  exactPathMatch: false,
 };
 TabHeader.defaultProps = defaultProps;
 

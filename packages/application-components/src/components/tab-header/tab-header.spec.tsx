@@ -23,9 +23,14 @@ describe('rendering', () => {
 
     screen.getByText(/tab one/i);
   });
-  it('should display a custom intl message instead of a label', () => {
+  it('should display a custom intl message', () => {
     const intlMessage = { id: 'localized', defaultMessage: 'localized text' };
-    renderTabHeader({ intlMessage });
+    renderComponent(<TabHeader to="/tab-one" intlMessage={intlMessage} />);
+    screen.getByText('localized text');
+  });
+  it('should display a custom intl message instead of a label when both are passed', () => {
+    const intlMessage = { id: 'localized', defaultMessage: 'localized text' };
+    renderTabHeader({ intlMessage }); // mind that both `intlMessage` and `label` are passed
     screen.getByText('localized text');
   });
 });
