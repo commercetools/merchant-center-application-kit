@@ -25,13 +25,16 @@ class CredentialsStorage {
     if (!this.isSessionValid()) {
       return null;
     }
-    const parsedCookie = cookie.parse(allCredentials[mcApiUrl]);
-    return parsedCookie['mcAccessToken'];
+    return allCredentials[mcApiUrl].sessionToken;
   }
 
   setToken(cookieData, mcApiUrl) {
     const allCredentials = this._getAllCredentials();
-    allCredentials[mcApiUrl] = cookieData;
+    const parsedCookie = cookie.parse(cookieData);
+    allCredentials[mcApiUrl] = {
+      sessionToken: parsedCookie.mcAccessToken,
+      expiresAt: parsedCookie.Expires,
+    };
     this._updateCredentialsFile(allCredentials);
   }
 
@@ -42,8 +45,7 @@ class CredentialsStorage {
       return false;
     }
     const now = new Date();
-    const parsedCookie = cookie.parse(credential);
-    return now < new Date(parsedCookie.Expires);
+    return now < new Date(allCredentials[mcApiUrl].expiresAt);
   }
 }
 

@@ -8,9 +8,7 @@ const path = require('path');
 const credentialsStorage = new CredentialsStorage();
 
 const login = async () => {
-  const applicationConfig = processConfig({
-    applicationPath: path.join(__dirname, 'f'),
-  });
+  const applicationConfig = processConfig();
   const { mcApiUrl } = applicationConfig.env;
 
   if (credentialsStorage.isSessionValid(mcApiUrl)) {
@@ -23,9 +21,9 @@ const login = async () => {
   const email = await read({ prompt: 'Email: ' });
   const password = await read({ prompt: 'Password: ', silent: true });
 
-  const cookieData = await authenticator(email, password, mcApiUrl);
+  const cookieData = await authenticator({ email, password, mcApiUrl });
   credentialsStorage.setToken(cookieData, mcApiUrl);
-  console.log(`You've successfully logged into the ${mcApiUrl} environment.`);
+  console.log(`Login successful for the ${mcApiUrl} environment.`);
 };
 
 login().catch((error) => {

@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-const authenticator = async (email, password, mcApiUrl) => {
+const authenticator = async ({ email, password, mcApiUrl }) => {
   const response = await fetch(`${mcApiUrl}/tokens`, {
     method: 'POST',
     headers: {
@@ -9,9 +9,10 @@ const authenticator = async (email, password, mcApiUrl) => {
     body: JSON.stringify({ email, password }),
   });
 
-  if (response.status !== 200) {
-    const res = await response.json();
-    throw new Error(res.message);
+  if (!response.ok) {
+    const rawResponseError = await response.text();
+    const errorMessage = JSON.parse(rawResponseError)['message'];
+    throw new Error(errorMessage);
   }
 
   return response.headers.get('set-cookie');
