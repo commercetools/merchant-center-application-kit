@@ -1,5 +1,5 @@
 ---
-"@commercetools-frontend/mc-scripts": patch
+'@commercetools-frontend/mc-scripts': minor
 ---
 
 feat: add `mc-scripts login` command

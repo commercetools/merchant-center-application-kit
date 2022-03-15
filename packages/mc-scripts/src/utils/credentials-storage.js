@@ -6,43 +6,44 @@ const filename = 'mc-credentials.json';
 const filePath = `${dirPath}/${filename}`;
 
 class CredentialsStorage {
-  _updateCredentialsFile(credentials) {
+  _writeCredentials(credentials) {
     writeFileSync(filePath, JSON.stringify(credentials, null, 2), {
       encoding: 'utf8',
     });
   }
 
-  _getAllCredentials() {
+  _loadCredentials() {
     if (!existsSync(dirPath)) {
       mkdirSync(dirPath);
-      this._updateCredentialsFile({});
+      this._writeCredentials({});
+      return {};
     }
     const data = readFileSync(filePath, { encoding: 'utf8' });
     return JSON.parse(data);
   }
 
-  getToken(mcApiUrl) {
-    const allCredentials = this._getAllCredentials();
-    if (!this.isSessionValid(mcApiUrl)) {
+  getToken(environmentKey) {
+    const allCredentials = this._loadCredentials();
+    if (!this.isSessionValid(environmentKey)) {
       return null;
     }
-    return allCredentials[mcApiUrl].sessionToken;
+    return allCredentials[environmentKey].sessionToken;
   }
 
-  setToken(mcApiUrl, sessionData) {
-    const allCredentials = this._getAllCredentials();
-    allCredentials[mcApiUrl] = sessionData;
-    this._updateCredentialsFile(allCredentials);
+  setToken(environmentKey, sessionData) {
+    const allCredentials = this._loadCredentials();
+    allCredentials[environmentKey] = sessionData;
+    this._writeCredentials(allCredentials);
   }
 
-  isSessionValid(mcApiUrl) {
-    const allCredentials = this._getAllCredentials();
-    const credential = allCredentials[mcApiUrl];
-    if (!credential) {
+  isSessionValid(environmentKey) {
+    const allCredentials = this._loadCredentials();
+    const credentials = allCredentials[environmentKey];
+    if (!credentials) {
       return false;
     }
     const now = new Date();
-    return now < new Date(allCredentials[mcApiUrl].expiresAt);
+    return now < new Date(allCredentials[environmentKey].expiresAt);
   }
 }
 

@@ -20,19 +20,25 @@ describe('When login details are correct', () => {
   beforeEach(() => {
     mockServer.use(
       rest.post(`${mcApiUrl}/tokens`, (req, res, ctx) => {
-        return res(ctx.status(200), ctx.cookie('mcAccessToken', 'hello-world'));
+        return res(
+          ctx.status(200),
+          ctx.set(
+            'set-cookie',
+            'mcAccessToken=hello-world; Expires=Tue, 15 Mar 2022 10:01:09 GMT'
+          )
+        );
       })
     );
   });
   it('should match returned credentials', async () => {
     const sessionData = await getSessionData({
-      email: 'lorem@commercetools.co',
-      password: 'pass',
+      email: 'user@email.com',
+      password: 'secret',
       mcApiUrl,
     });
     expect(sessionData).toEqual({
       sessionToken: 'hello-world',
-      expiresAt: undefined,
+      expiresAt: 'Tue, 15 Mar 2022 10:01:09 GMT',
     });
   });
 });
@@ -54,8 +60,8 @@ describe('When login details are incorrect', () => {
     await expect(
       async () =>
         await getSessionData({
-          email: 'test@commercetools.co',
-          password: 'incorrect-pass',
+          email: 'user@email.com',
+          password: 'secret',
           mcApiUrl,
         })
     ).rejects.toThrow('Invalid email or password');

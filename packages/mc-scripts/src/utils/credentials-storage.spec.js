@@ -19,7 +19,7 @@ afterEach(() => {
 
 const mcApiUrl = 'https://mc-api.europe-west1.gcp.commercetools.com';
 
-describe('When cookie is not expired', () => {
+describe('when session is valid', () => {
   beforeEach(() => {
     mock({
       [fullCredentialsPath]: JSON.stringify({
@@ -31,15 +31,12 @@ describe('When cookie is not expired', () => {
     });
   });
 
-  it('should return token', () => {
+  it('should load credentials', () => {
     expect(credentialsStorage.getToken(mcApiUrl)).toBe('hello-world');
-  });
-
-  it('should return true', () => {
     expect(credentialsStorage.isSessionValid(mcApiUrl)).toBe(true);
   });
 
-  it('should return new token', () => {
+  it('should update token', () => {
     const newSessionData = {
       sessionToken: 'fizz-buzz',
       expiresAt: getExpiryDate(36000),
@@ -49,7 +46,7 @@ describe('When cookie is not expired', () => {
   });
 });
 
-describe('When cookie is expired', () => {
+describe('when session is expired', () => {
   beforeEach(() => {
     mock({
       [fullCredentialsPath]: JSON.stringify({
@@ -61,29 +58,23 @@ describe('When cookie is expired', () => {
     });
   });
 
-  it('should not return token', () => {
-    expect(credentialsStorage.getToken(mcApiUrl)).toBe(null);
-  });
-
-  it('should return false', () => {
+  it('should not load credentials', () => {
     expect(credentialsStorage.isSessionValid(mcApiUrl)).toBe(false);
+    expect(credentialsStorage.getToken(mcApiUrl)).toBe(null);
   });
 });
 
-describe('When credentials folder is not present', () => {
+describe('when credentials file is missing', () => {
   beforeEach(() => {
     mock({});
   });
 
-  it('should not return token', () => {
+  it('should not load credentials', () => {
     expect(credentialsStorage.getToken(mcApiUrl)).toBe(null);
-  });
-
-  it('should return false', () => {
     expect(credentialsStorage.isSessionValid(mcApiUrl)).toBe(false);
   });
 
-  it('should return new token', () => {
+  it('should update token', () => {
     const newSessionData = {
       sessionToken: 'fizz-buzz',
       expiresAt: getExpiryDate(36000),
