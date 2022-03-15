@@ -41,7 +41,7 @@ Commands:
 
   serve                       Serves previously built and compiled application from the "public" folder.
 
-  login                       Authenticate the user to the merchant center. 
+  login                       Log in to your Merchant Center account through the CLI. The session token is stored in your home directory and will be used by other CLI commands that require a valid session token.
 
   `);
   process.exit(0);

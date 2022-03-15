@@ -2,7 +2,8 @@
 '@commercetools-frontend/mc-scripts': minor
 ---
 
-Add `mc-scripts login` command
-This command enables users to log in to the merchant center service from the command line.
-Upon login, an authentication token is stored on the user's computer's home directory. The token can be used to perform some operations in the merchant center through the CLI.
-If no valid token is available on the computer, the login command requires an email and password to authenticate.
+Add a new CLI command `mc-scripts login`.
+
+This command enables users to log in to their Merchant Center account through the CLI. An interactive prompt will be displayed asking the user to enter the login credentials.
+
+Upon login, the user session token is stored in the user's home directory `$HOME/.commercetools/mc-credentials.json`. The session token will be used by other CLI commands that require a valid session token.

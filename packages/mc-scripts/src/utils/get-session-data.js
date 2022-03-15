@@ -15,9 +15,7 @@ const getSessionData = async ({ email, password, mcApiUrl }) => {
     let parsed;
     try {
       parsed = JSON.parse(text);
-    } catch (error) {
-      throw new Error(error);
-    }
+    } catch (error) {}
     const errorMessage = parsed ? parsed.message : text;
     throw new Error(errorMessage);
   }

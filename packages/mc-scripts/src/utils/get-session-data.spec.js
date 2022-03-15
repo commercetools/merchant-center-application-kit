@@ -1,3 +1,4 @@
+const cookie = require('cookie');
 const { rest } = require('msw');
 const { setupServer } = require('msw/node');
 
@@ -18,15 +19,14 @@ const mcApiUrl = 'https://mc-api.europe-west1.gcp.commercetools.com';
 
 describe('When login details are correct', () => {
   beforeEach(() => {
+    const sessionData = cookie.serialize('mcAccessToken', 'hello-world', {
+      expires: new Date('2022-01-01'),
+      httpOnly: true,
+      domain: 'mc.europe-west1.gcp.commercetools.com',
+    });
     mockServer.use(
       rest.post(`${mcApiUrl}/tokens`, (req, res, ctx) => {
-        return res(
-          ctx.status(200),
-          ctx.set(
-            'set-cookie',
-            'mcAccessToken=hello-world; Expires=Tue, 15 Mar 2022 10:01:09 GMT'
-          )
-        );
+        return res(ctx.status(200), ctx.set('set-cookie', sessionData));
       })
     );
   });
@@ -38,7 +38,7 @@ describe('When login details are correct', () => {
     });
     expect(sessionData).toEqual({
       sessionToken: 'hello-world',
-      expiresAt: 'Tue, 15 Mar 2022 10:01:09 GMT',
+      expiresAt: 'Sat, 01 Jan 2022 00:00:00 GMT',
     });
   });
 });
