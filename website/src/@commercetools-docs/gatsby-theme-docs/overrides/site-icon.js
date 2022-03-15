@@ -1,3 +1,3 @@
-import { CustomApplicationSmallSvgIcon } from '@commercetools-docs/ui-kit';
+import { Icons } from '@commercetools-docs/ui-kit';
 
-export default CustomApplicationSmallSvgIcon;
+export default Icons.CustomApplicationSmallSvgIcon;

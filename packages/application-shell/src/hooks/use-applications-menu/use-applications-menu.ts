@@ -10,10 +10,10 @@ import type {
   TFetchApplicationsMenuQueryVariables,
 } from '../../types/generated/proxy';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useApolloClient } from '@apollo/client';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { useMcLazyQuery } from '../../hooks/apollo-hooks';
+import { useMcQuery } from '../../hooks/apollo-hooks';
 import FetchApplicationsMenu from './fetch-applications-menu.proxy.graphql';
 
 const supportedLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN', 'ja'];
@@ -153,18 +153,25 @@ function useApplicationsMenu<Key extends MenuKey>(
     (context) => context.environment.mcProxyApiUrl
   );
 
+  const [hasWrittenToCache, setHasWrittenToCache] = useState(false);
+
   // Fetch all menu links from the GraphQL API in the Merchant Center Proxy.
   // For local development, we don't fetch data from the remote server but use
   // only the configuration for the menu links defined for the application.
   // To do so, we manually write the data in the Apollo cache and use the
   // `fetchPolicy: cache-only` to instruct Apollo to read the data from the cache.
-  // NOTE: we lazily execute the query to ensure that (for development) we can
-  // write the data into the cache BEFORE the query attempts to read from it.
-  // If not, Apollo throws an error like `Can't find field 'applicationMenu' on ROOT_QUERY object`.
-  const [executeQuery, { data: menuQueryResult, called }] = useMcLazyQuery<
+  // NOTE: In development, we skip the query as long as the data hasn't been written
+  // into the cache. If not, Apollo throws an error like
+  // `Can't find field 'applicationMenu' on ROOT_QUERY object`.
+  const { data: menuQueryResult } = useMcQuery<
     TFetchApplicationsMenuQuery,
     TFetchApplicationsMenuQueryVariables
   >(FetchApplicationsMenu, {
+    skip: config.environment.servedByProxy
+      ? // Production environment
+        false
+      : // Development environment
+        !hasWrittenToCache,
     onError: config.queryOptions?.onError,
     fetchPolicy: config.environment.servedByProxy
       ? 'cache-first'
@@ -183,7 +190,8 @@ function useApplicationsMenu<Key extends MenuKey>(
       config.environment.__DEVELOPMENT__ &&
       (config.environment.__DEVELOPMENT__.menuLinks ||
         // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
-        config.environment.__DEVELOPMENT__.accountLinks)
+        config.environment.__DEVELOPMENT__.accountLinks) &&
+      !hasWrittenToCache
     ) {
       const applicationMenu = mapApplicationMenuConfigToGraqhQLQueryResult(
         config.environment
@@ -192,13 +200,11 @@ function useApplicationsMenu<Key extends MenuKey>(
         query: FetchApplicationsMenu,
         data: applicationMenu,
       });
-    }
 
-    if (!called) {
-      executeQuery();
+      setHasWrittenToCache(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Make sure to run this effect only once, otherwise we might end up in an infinite loop!
+  }, [hasWrittenToCache]); // Only subscribe to state changes.
 
   if (menuQueryResult && menuQueryResult.applicationsMenu) {
     return menuQueryResult.applicationsMenu[menuKey] as MenuLoaderResult<Key>;

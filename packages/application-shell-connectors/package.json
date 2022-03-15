@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-shell-connectors",
-  "version": "21.0.0",
+  "version": "21.2.1",
   "description": "Contains complementary tools for @commercetools-frontend/application-shell",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -24,8 +24,8 @@
     "@babel/runtime": "^7.16.7",
     "@babel/runtime-corejs3": "^7.16.8",
     "@commercetools-frontend/constants": "21.0.0",
-    "@commercetools-frontend/sentry": "21.0.0",
-    "@emotion/react": "11.7.1",
+    "@commercetools-frontend/sentry": "21.2.1",
+    "@emotion/react": "11.8.2",
     "@types/lodash": "^4.14.178",
     "@types/prop-types": "^15.7.4",
     "@types/react": "^17.0.38",
@@ -35,8 +35,8 @@
     "prop-types": "15.8.1"
   },
   "devDependencies": {
-    "@apollo/client": "3.5.7",
-    "@testing-library/react": "12.1.2",
+    "@apollo/client": "3.5.10",
+    "@testing-library/react": "12.1.4",
     "react": "17.0.2"
   },
   "peerDependencies": {

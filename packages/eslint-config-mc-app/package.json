@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/eslint-config-mc-app",
-  "version": "21.0.0",
+  "version": "21.2.1",
   "description": "ESLint config used by a Custom Application.",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -37,7 +37,7 @@
     "eslint": "8.x"
   },
   "devDependencies": {
-    "eslint": "8.7.0"
+    "eslint": "8.11.0"
   },
   "engines": {
     "node": ">=14"

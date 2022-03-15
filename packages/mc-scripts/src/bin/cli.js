@@ -197,7 +197,7 @@ function loadDotEnvFiles(flags) {
       path.join(applicationDirectory, dotenvFile)
     );
     if (fs.existsSync(dotenvFilePath)) {
-      dotenvExpand(dotenv.config({ path: dotenvFilePath }));
+      dotenvExpand.expand(dotenv.config({ path: dotenvFilePath }));
     }
   });
 }

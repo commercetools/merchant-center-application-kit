@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/react-notifications",
-  "version": "21.2.0",
+  "version": "21.2.1",
   "description": "React bindings for @commercetools-frontend/notifications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -20,16 +20,16 @@
   "dependencies": {
     "@babel/runtime": "^7.16.7",
     "@babel/runtime-corejs3": "^7.16.8",
-    "@commercetools-frontend/actions-global": "21.0.0",
+    "@commercetools-frontend/actions-global": "21.2.1",
     "@commercetools-frontend/constants": "21.0.0",
-    "@commercetools-frontend/notifications": "21.0.0",
-    "@commercetools-frontend/sentry": "21.0.0",
+    "@commercetools-frontend/notifications": "21.2.1",
+    "@commercetools-frontend/sentry": "21.2.1",
     "@commercetools-uikit/design-system": "^14.0.0",
     "@commercetools-uikit/icon-button": "^14.0.1",
     "@commercetools-uikit/icons": "^14.0.1",
     "@commercetools-uikit/spacings": "^14.0.1",
-    "@emotion/react": "11.7.1",
-    "@emotion/styled": "11.6.0",
+    "@emotion/react": "11.8.2",
+    "@emotion/styled": "11.8.1",
     "@types/history": "4.7.11",
     "@types/lodash": "^4.14.178",
     "@types/prop-types": "^15.7.4",
@@ -45,10 +45,10 @@
     "reselect": "4.1.5"
   },
   "devDependencies": {
-    "@testing-library/react": "12.1.2",
+    "@testing-library/react": "12.1.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-intl": "5.24.3",
+    "react-intl": "5.24.7",
     "react-redux": "7.2.6",
     "react-router-dom": "5.3.0"
   },

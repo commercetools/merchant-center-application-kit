@@ -1,4 +1,7 @@
-import type { TAddNotificationAction } from '@commercetools-frontend/notifications';
+import type {
+  TAddNotificationAction,
+  TNotification,
+} from '@commercetools-frontend/notifications';
 import type { TShowNotification } from '@commercetools-frontend/actions-global';
 
 import { mocked } from 'jest-mock';
@@ -41,12 +44,12 @@ describe('rendering', () => {
   let dismiss: () => void;
   let showNotification: (
     notification: TShowNotification
-  ) => TAddNotificationAction<Pick<TShowNotification, 'id'>>;
+  ) => TAddNotificationAction<TShowNotification & TNotification>;
   beforeEach(() => {
     dismiss = jest.fn();
     showNotification = jest.fn(() => ({
       type: ADD_NOTIFICATION,
-      payload: { id: 1 },
+      payload: { id: 1, domain: 'side', kind: 'success' },
       dismiss,
     }));
     mocked(useShowNotification).mockClear();

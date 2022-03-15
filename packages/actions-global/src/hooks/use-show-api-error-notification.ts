@@ -4,10 +4,13 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { showApiErrorNotification } from '../actions';
 
-// Returns a function that dispatches an API error notification.
-// Example:
-//   const showApiErrorNotification = useShowApiErrorNotification();
-//   showApiErrorNotification({ errors });
+/**
+ * Dispatch an API error notification.
+ *
+ * @example
+ * const showApiErrorNotification = useShowApiErrorNotification();
+ * showApiErrorNotification({ errors });
+ */
 export default function useShowApiErrorNotification() {
   const dispatch = useDispatch();
   return useCallback(

@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-backend/express",
-  "version": "21.1.1",
+  "version": "21.2.1",
   "description": "Zero-config HTTP server as Express.js to facilitate development",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -20,13 +20,13 @@
   "dependencies": {
     "@babel/runtime": "^7.16.7",
     "@babel/runtime-corejs3": "^7.16.8",
-    "@types/node": "16.11.21",
-    "express": "4.17.2",
-    "express-jwt": "6.1.0",
+    "@types/node": "16.11.26",
+    "express": "4.17.3",
+    "express-jwt": "6.1.1",
     "jwks-rsa": "2.0.5"
   },
   "devDependencies": {
     "jose": "2.0.5",
-    "msw": "0.36.5"
+    "msw": "0.39.1"
   }
 }
