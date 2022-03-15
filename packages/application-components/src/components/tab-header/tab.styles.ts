@@ -20,65 +20,42 @@ const getBottomBorderStyles = (background: string): SerializedStyles => css`
   }
 `;
 
-const getTabHeaderStateStyles = (
-  isActive: boolean,
-  isDisabled: boolean
-): SerializedStyles[] => {
-  const combinedStyles: SerializedStyles[] = [
-    getBottomBorderStyles('transparent'),
-  ];
-  if (isActive) {
-    combinedStyles.push(getBottomBorderStyles(customProperties.colorPrimary));
-  }
-  if (isDisabled) {
-    combinedStyles.push(css`
-      cursor: not-allowed;
-    `);
-  }
-  return combinedStyles;
-};
-
-export const getTabHeaderStyles = (
-  isActive: boolean,
-  isDisabled: boolean
-): SerializedStyles[] => [
-  css`
-    color: ${customProperties.colorAccent};
-    position: relative;
-    text-align: center;
-    display: inline-block;
-
-    &:first-of-type > * {
-      padding-left: 0;
-    }
-
-    > * {
-      color: inherit;
-      text-decoration: inherit;
-    }
-  `,
-  ...getTabHeaderStateStyles(isActive, isDisabled),
-];
-
 export const getLinkStyles = (
   isActive: boolean,
   isDisabled: boolean
 ): Interpolation<Theme> => [
   css`
     font-size: ${customProperties.fontSizeDefault};
-    display: block;
     padding: ${customProperties.spacingS} ${customProperties.spacingM};
+    position: relative;
+    text-align: center;
+    display: inline-block;
+    color: inherit;
+    text-decoration: inherit;
+
+    &:first-of-type {
+      padding-left: 0;
+    }
+
+    ${getBottomBorderStyles('transparent')}
   `,
   isActive &&
     css`
-      > * {
+      ${getBottomBorderStyles(customProperties.colorPrimary)}
+      > * > * {
         color: ${customProperties.colorPrimary} !important;
       }
     `,
   isDisabled &&
     css`
-      opacity: 0.5;
-      pointer-events: none;
+      &[aria-disabled='true'] {
+        cursor: not-allowed;
+        opacity: 0.5;
+
+        &:active {
+          pointer-events: none;
+        }
+      }
     `,
   !isActive &&
     !isDisabled &&
@@ -86,7 +63,7 @@ export const getLinkStyles = (
       :hover,
       :focus,
       :active {
-        > * {
+        > * > * {
           color: ${customProperties.colorPrimary} !important;
         }
       }

@@ -5,7 +5,7 @@ import type { ReactNode } from 'react';
 import type { LocationDescriptor } from 'history';
 import { warning } from '@commercetools-uikit/utils';
 import Text from '@commercetools-uikit/text';
-import { getTabHeaderStyles, getLinkStyles } from './tab.styles';
+import { getLinkStyles } from './tab.styles';
 
 const pathWithoutSearch = (path: TTabHeaderProps['to']) =>
   typeof path === 'string' ? path.split('?')[0] : path.pathname;
@@ -24,7 +24,7 @@ const getDisabledTabHeaderAriaAttributes = (
 ) => (isDisabled ? { 'aria-disabled': true } : {});
 
 const getDisabledLinkAtributes = (isDisabled: TTabHeaderProps['isDisabled']) =>
-  isDisabled ? { tabIndex: -1 } : {};
+  isDisabled ? { tabIndex: -1, 'aria-disabled': true } : {};
 
 export type TTabHeaderProps = {
   /**
@@ -75,7 +75,7 @@ export const TabHeader = (props: TTabHeaderProps) => {
 
   const dataAttributeProps = {
     'data-track-event': 'click',
-    ...(props.label && {
+    ...(label && {
       'data-track-component': startCase(label),
     }),
   };
@@ -83,23 +83,22 @@ export const TabHeader = (props: TTabHeaderProps) => {
   warnIfMissingContent(props);
 
   return (
-    <div
-      role="tab"
-      aria-selected={isActive}
-      css={getTabHeaderStyles(isActive, isDisabled)}
-      {...getDisabledTabHeaderAriaAttributes(isDisabled)}
+    <Link
+      to={props.to}
+      css={getLinkStyles(isActive, isDisabled)}
+      {...getDisabledLinkAtributes(isDisabled)}
       {...dataAttributeProps}
     >
-      <Link
-        to={props.to}
-        css={getLinkStyles(isActive, isDisabled)}
-        {...getDisabledLinkAtributes(isDisabled)}
+      <div
+        role="tab"
+        aria-selected={isActive}
+        {...getDisabledTabHeaderAriaAttributes(isDisabled)}
       >
         <Text.Subheadline as="h4" truncate={true}>
           {label}
         </Text.Subheadline>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 

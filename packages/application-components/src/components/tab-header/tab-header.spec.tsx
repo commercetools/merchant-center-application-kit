@@ -38,7 +38,7 @@ describe('navigation', () => {
   it('should navigate to link when clicked', async () => {
     const { history } = renderTabHeader();
 
-    fireEvent.click(screen.getByRole('link', { name: /tab one/i }));
+    fireEvent.click(screen.getByRole('tab', { name: /tab one/i }));
     await waitFor(() => {
       expect(history.location.pathname).toBe('/tab-one');
     });

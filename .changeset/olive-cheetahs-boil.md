@@ -5,7 +5,8 @@
 '@commercetools-website/components-playground': minor
 ---
 
-Add `TabHeader` component. A composition of those components is meant to be used in `Tabular Modal Page` passed as `tabControls` prop, e.g.
+Add a new `<TabHeader>` component.
+A composition of those components is meant to be used in the `<TabularModalPage>` component passed as `tabControls` prop. See example below:
 
 ```jsx
 <TabularModalPage
