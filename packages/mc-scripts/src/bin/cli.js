@@ -11,6 +11,7 @@ const mri = require('mri');
 const dotenv = require('dotenv');
 const dotenvExpand = require('dotenv-expand');
 const spawn = require('react-dev-utils/crossSpawn');
+const pkg = require('../../package.json');
 
 const flags = mri(process.argv.slice(2), {
   alias: { help: ['h'] },
@@ -41,11 +42,17 @@ Commands:
 
   serve                       Serves previously built and compiled application from the "public" folder.
 
+  login                       Log in to your Merchant Center account through the CLI. The session token is stored in your home directory and will be used by other CLI commands that require a valid session token.
+
   `);
   process.exit(0);
 }
 
 const command = commands[0];
+
+console.log('');
+console.log(`mc-scripts: v${pkg.version}`);
+console.log('');
 
 // Get the current directory where the CLI is executed from. Usually this is the application folder.
 const applicationDirectory = fs.realpathSync(process.cwd());
@@ -91,6 +98,12 @@ const applicationDirectory = fs.realpathSync(process.cwd());
         process.env.BABEL_ENV = 'development';
         process.env.NODE_ENV = 'development';
 
+        proxyCommand(command);
+        break;
+      }
+      case 'login': {
+        // Do this as the first thing so that any code reading it knows the right env.
+        process.env.NODE_ENV = 'production';
         proxyCommand(command);
         break;
       }
