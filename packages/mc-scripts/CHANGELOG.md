@@ -1,5 +1,17 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.2.1
+
+### Patch Changes
+
+- [#2471](https://github.com/commercetools/merchant-center-application-kit/pull/2471) [`dc02733d`](https://github.com/commercetools/merchant-center-application-kit/commit/dc02733dfe14ce864e6efd36c6746892170ade3d) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+* [#2510](https://github.com/commercetools/merchant-center-application-kit/pull/2510) [`50232472`](https://github.com/commercetools/merchant-center-application-kit/commit/50232472efac1939dfce5589e531dbde2022f35c) Thanks [@emmenko](https://github.com/emmenko)! - Update `dotenv` dependencies
+
+* Updated dependencies [[`dc02733d`](https://github.com/commercetools/merchant-center-application-kit/commit/dc02733dfe14ce864e6efd36c6746892170ade3d)]:
+  - @commercetools-frontend/application-config@21.2.1
+  - @commercetools-frontend/mc-html-template@21.2.1
+
 ## 21.1.2
 
 ### Patch Changes

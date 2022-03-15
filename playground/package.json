@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "19.1.0",
+  "version": "19.1.1",
   "description": "A playground application to get started developing Merchant Center Applications",
   "private": true,
   "scripts": {
@@ -14,16 +14,16 @@
   },
   "dependencies": {
     "@commercetools-docs/ui-kit": "18.4.0",
-    "@commercetools-frontend/actions-global": "21.0.0",
-    "@commercetools-frontend/application-components": "21.2.0",
-    "@commercetools-frontend/application-shell": "21.2.0",
-    "@commercetools-frontend/application-shell-connectors": "21.0.0",
+    "@commercetools-frontend/actions-global": "21.2.1",
+    "@commercetools-frontend/application-components": "21.2.1",
+    "@commercetools-frontend/application-shell": "21.2.1",
+    "@commercetools-frontend/application-shell-connectors": "21.2.1",
     "@commercetools-frontend/assets": "21.0.0",
     "@commercetools-frontend/constants": "21.0.0",
-    "@commercetools-frontend/i18n": "21.2.0",
-    "@commercetools-frontend/l10n": "21.0.0",
-    "@commercetools-frontend/permissions": "21.0.0",
-    "@commercetools-frontend/sdk": "21.1.0",
+    "@commercetools-frontend/i18n": "21.2.1",
+    "@commercetools-frontend/l10n": "21.2.1",
+    "@commercetools-frontend/permissions": "21.2.1",
+    "@commercetools-frontend/sdk": "21.2.1",
     "@commercetools-uikit/checkbox-input": "^14.0.1",
     "@commercetools-uikit/constraints": "^14.0.1",
     "@commercetools-uikit/data-table": "^14.0.1",
@@ -47,9 +47,9 @@
     "vercel": "23.1.2"
   },
   "devDependencies": {
-    "@commercetools-backend/express": "21.1.1",
+    "@commercetools-backend/express": "21.2.1",
     "@commercetools-frontend/mc-dev-authentication": "21.0.0",
-    "@commercetools-frontend/mc-scripts": "21.1.2",
+    "@commercetools-frontend/mc-scripts": "21.2.1",
     "@formatjs/cli": "4.8.2",
     "@vercel/node": "^1.12.1"
   }

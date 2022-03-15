@@ -1,5 +1,16 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 21.2.1
+
+### Patch Changes
+
+- [#2471](https://github.com/commercetools/merchant-center-application-kit/pull/2471) [`dc02733d`](https://github.com/commercetools/merchant-center-application-kit/commit/dc02733dfe14ce864e6efd36c6746892170ade3d) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+* [#2511](https://github.com/commercetools/merchant-center-application-kit/pull/2511) [`dd5e33ea`](https://github.com/commercetools/merchant-center-application-kit/commit/dd5e33ea58b15e32a2d9aeb1d95cb4a4aec8d069) Thanks [@emmenko](https://github.com/emmenko)! - Avoid using `useLazyQuery` to load application menu data. This allows us to update the `@apollo/client` version to `>3.5.7`, as the [issue](https://github.com/apollographql/apollo-client/issues/9375) with `useLazyQuery` and `fetchPolicy` does not seem to be fixed by Apollo any time soon.
+
+* Updated dependencies [[`dc02733d`](https://github.com/commercetools/merchant-center-application-kit/commit/dc02733dfe14ce864e6efd36c6746892170ade3d)]:
+  - @commercetools-frontend/sentry@21.2.1
+
 ## 21.0.0
 
 ### Major Changes
