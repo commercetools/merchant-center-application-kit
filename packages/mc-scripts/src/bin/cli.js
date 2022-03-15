@@ -41,6 +41,8 @@ Commands:
 
   serve                       Serves previously built and compiled application from the "public" folder.
 
+  login                       Authenticate the user to the merchant center. 
+
   `);
   process.exit(0);
 }
