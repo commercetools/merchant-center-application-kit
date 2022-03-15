@@ -46,8 +46,8 @@
     "@commercetools-uikit/secondary-icon-button": "^14.0.1",
     "@commercetools-uikit/spacings": "^14.0.1",
     "@commercetools-uikit/text": "^14.0.1",
-    "@emotion/react": "11.7.1",
-    "@emotion/styled": "11.6.0",
+    "@emotion/react": "11.8.2",
+    "@emotion/styled": "11.8.1",
     "@types/lodash": "^4.14.178",
     "@types/prop-types": "^15.7.4",
     "@types/react": "^17.0.38",
@@ -61,7 +61,7 @@
   "devDependencies": {
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-intl": "5.24.3"
+    "react-intl": "5.24.7"
   },
   "peerDependencies": {
     "react": "17.x",

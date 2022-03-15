@@ -28,8 +28,8 @@
     "@commercetools/http-user-agent": "2.1.2",
     "@commercetools/sdk-client": "2.1.2",
     "@commercetools/sdk-middleware-correlation-id": "2.1.4",
-    "@commercetools/sdk-middleware-http": "6.1.1",
-    "@types/node-fetch": "2.5.12",
+    "@commercetools/sdk-middleware-http": "6.2.0",
+    "@types/node-fetch": "2.6.1",
     "@types/prop-types": "^15.7.4",
     "@types/react": "^17.0.38",
     "@types/react-redux": "^7.1.22",
@@ -40,7 +40,7 @@
     "uuid": "8.3.2"
   },
   "devDependencies": {
-    "@testing-library/react": "12.1.2",
+    "@testing-library/react": "12.1.4",
     "@types/uuid": "8.3.4",
     "react": "17.0.2",
     "react-redux": "7.2.6",
