@@ -1,8 +1,5 @@
 const mock = require('mock-fs');
 const CredentialsStorage = require('./credentials-storage');
-const homedir = require('os').homedir();
-
-const fullCredentialsPath = `${homedir}/.commercetools/mc-credentials.json`;
 
 const getExpiryDate = (hours) => {
   const date = new Date();
@@ -11,8 +8,6 @@ const getExpiryDate = (hours) => {
   return date.toUTCString();
 };
 
-const credentialsStorage = new CredentialsStorage();
-
 afterEach(() => {
   mock.restore();
 });
@@ -20,15 +15,17 @@ afterEach(() => {
 const mcApiUrl = 'https://mc-api.europe-west1.gcp.commercetools.com';
 
 describe('when session is valid', () => {
+  let credentialsStorage;
   beforeEach(() => {
     mock({
-      [fullCredentialsPath]: JSON.stringify({
+      [CredentialsStorage.location]: JSON.stringify({
         [mcApiUrl]: {
           sessionToken: 'hello-world',
           expiresAt: getExpiryDate(36000),
         },
       }),
     });
+    credentialsStorage = new CredentialsStorage();
   });
 
   it('should load credentials', () => {
@@ -47,15 +44,17 @@ describe('when session is valid', () => {
 });
 
 describe('when session is expired', () => {
+  let credentialsStorage;
   beforeEach(() => {
     mock({
-      [fullCredentialsPath]: JSON.stringify({
+      [CredentialsStorage.location]: JSON.stringify({
         [mcApiUrl]: {
           sessionToken: 'hello-world',
           expiresAt: getExpiryDate(-36000),
         },
       }),
     });
+    credentialsStorage = new CredentialsStorage();
   });
 
   it('should not load credentials', () => {
@@ -65,8 +64,10 @@ describe('when session is expired', () => {
 });
 
 describe('when credentials file is missing', () => {
+  let credentialsStorage;
   beforeEach(() => {
     mock({});
+    credentialsStorage = new CredentialsStorage();
   });
 
   it('should not load credentials', () => {
