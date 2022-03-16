@@ -114,6 +114,7 @@ const TabularDetailPage = (props: TTabularDetailPageProps) => {
               <PageHeaderTitle
                 title={titleToDisplay}
                 subtitle={subtitleToDisplay}
+                titleSize="big"
               />
             ))}
           <ControlsContainter tabControls={props.tabControls} />

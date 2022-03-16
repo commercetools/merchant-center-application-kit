@@ -98,12 +98,14 @@ const TabularMainPage = (props: TTabularMainPageProps) => {
               <PageHeaderTitle
                 title={titleToDisplay}
                 subtitle={subtitleToDisplay}
+                titleSize="big"
               />
             ))}
           <ControlsContainter tabControls={props.tabControls} />
         </Spacings.Stack>
       </TabularPageContainer>
       <ContentWrapper
+        // @ts-ignore
         css={css`
           background-color: ${customProperties.colorNeutral95};
         `}
