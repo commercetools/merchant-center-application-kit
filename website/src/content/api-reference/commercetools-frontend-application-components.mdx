@@ -518,31 +518,36 @@ Tabular Modal pages are controlled components used to render a page with custom 
 ### Usage
 
 ```jsx
-import { Switch, Route, useRouteMatch } from 'react-router-dom'
-import { TabularModalPage, useModalState } from '@commercetools-frontend/application-components';
+import { BrowserRouter as Router, Switch, Route, useRouteMatch } from 'react-router-dom'
+import { TabularModalPage, useModalState, TabHeader } from '@commercetools-frontend/application-components';
 
 const AccountPage = () => {
   const match = useRouteMatch()
   const tabsModalState = useModalState()
 
   return (
-    <TabularModalPage
-      title="Manage your account"
-      isOpen={tabsModalState.isModalOpen}
-      onClose={tabsModalState.closeModal}
-      tabControls={
-        // Tabs components
-      }
-    >
-      <Switch>
-        <Route path={`${match.path}/tab-1`}>
-          <Tab1 />
-        </Route>
-        <Route path={`${match.path}/tab-2`}>
-          <Tab2 />
-        </Route>
-      </Switch>
-    </TabularModalPage>
+    <Router>
+      <TabularModalPage
+        title="Manage your account"
+        isOpen={tabsModalState.isModalOpen}
+        onClose={tabsModalState.closeModal}
+        tabControls={
+          <>
+            <TabHeader to="/tab-one" label="Tab One" />
+            <TabHeader to="/tab-two" label="Tab Two" />
+          </>
+        }
+      >
+        <Switch>
+          <Route path={`${match.path}/tab-1`}>
+            <Tab1 />
+          </Route>
+          <Route path={`${match.path}/tab-2`}>
+            <Tab2 />
+          </Route>
+        </Switch>
+      </TabularModalPage>
+    </Router>
   );
 }
 ```
@@ -561,7 +566,7 @@ const AccountPage = () => {
 | `topBarCurrentPathLabel`        | `string`                   |          | The `title` prop         | Label to appear as the current path of the top bar of the modal.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | `topBarPreviousPathLabel`       | `string`                   |          | `"Go Back"` (translated) | Label to appear as the previous path of the top bar of the modal.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | `children`                      | `node`                     |    ✅    | -                        | Content rendered within the page. It isn't wrapped by anything except the Modal Container itself, so it's expected to have its style fully customized.                                                                                                                                                                                                                                                                                                                                                                      |
-| `formControls`            | `node`             |    -     | -                        | Pass a React.node with form controls. You can use the pre-made form buttons exposed by this component or you can use your own.                                                                                                                                                                                                                                                                                                                                                                                      |
+| `formControls`                  | `node`                     |    -     | -                        | Pass a React.node with form controls. You can use the pre-made form buttons exposed by this component or you can use your own.                                                                                                                                                                                                                                                                                                                                                                                             |
 | `customTitleRow`                | `node`                     |    -     | -                        | Pass a React.node to be used in place of the `title` and `subtitle`.                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | `tabControls`                   | `node`                     |    ✅    | -                        | Pass a React.node to be used as the Tabs component for controlling the navigation between the Tab contents within the modal.                                                                                                                                                                                                                                                                                                                                                                                               |
 | `getParentSelector`             | `function`                 |    -     | -                        | The function should return an HTML element that will be used as the parent container to hold the modal DOM tree. If no function is provided, it's expected that an HTML element with the `id="parent-container"` is present in the DOM. In the `NODE_ENV=test` environment, the default HTML element is `body`.                                                                                                                                                                                                            |

@@ -1,5 +1,8 @@
 export { default as version } from './version';
 
+// Tabs
+export { default as TabHeader } from './components/tab-header';
+
 // Dialogs
 export { default as InfoDialog } from './components/dialogs/info-dialog';
 export { default as ConfirmationDialog } from './components/dialogs/confirmation-dialog';

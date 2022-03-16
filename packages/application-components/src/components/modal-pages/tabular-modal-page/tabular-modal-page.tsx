@@ -89,6 +89,7 @@ const TabularModalPage = (props: Props) => (
             css={css`
               margin-top: 8px;
             `}
+            role="tablist"
           >
             {props.tabControls}
           </div>

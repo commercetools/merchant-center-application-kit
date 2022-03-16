@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import Text from '@commercetools-uikit/text';
 import TextInput from '@commercetools-uikit/text-input';
 import IconButton from '@commercetools-uikit/icon-button';
@@ -7,30 +6,15 @@ import {
   SearchIcon,
   BinLinearIcon,
 } from '@commercetools-uikit/icons';
-import { customProperties } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
-import { TabularModalPage } from '@commercetools-frontend/application-components';
+import {
+  TabularModalPage,
+  TabHeader,
+} from '@commercetools-frontend/application-components';
 import { Suite, Spec } from '../../test-utils';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 export const routePath = '/tabular-modal-page';
-
-const TabControlsContainer = styled.div`
-  min-height: 30px;
-  display: flex;
-  > * {
-    min-width: 50px;
-    cursor: pointer;
-    &:first-of-type {
-      border-bottom: 3px solid ${customProperties.colorPrimary};
-      & > * {
-        color: ${customProperties.colorPrimary};
-      }
-    }
-  }
-  > * + * {
-    margin-left: 16px;
-  }
-`;
 
 type ContainerProps = {
   portalId: string;
@@ -52,17 +36,15 @@ const ModalPageWithPortalParentSelector = ({
         document.querySelector(`#${portalId}`) as HTMLElement
       }
       tabControls={
-        <TabControlsContainer>
-          <span>
-            <Text.Subheadline as="h4">Tab One</Text.Subheadline>
-          </span>
-          <span>
-            <Text.Subheadline as="h4">Tab Two</Text.Subheadline>
-          </span>
-          <span>
-            <Text.Subheadline as="h4">Tab Three</Text.Subheadline>
-          </span>
-        </TabControlsContainer>
+        <>
+          <TabHeader to="/tabular-modal-page/tab-one" label="Tab One" />
+          <TabHeader to="/tabular-modal-page/tab-two" label="Tab Two" />
+          <TabHeader
+            to="/tabular-modal-page/tab-three"
+            label="Disabled tab"
+            isDisabled
+          />
+        </>
       }
       {...props}
     >
@@ -75,12 +57,24 @@ ModalPageWithPortalParentSelector.displayName =
 
 const Content = () => (
   <Spacings.Stack scale="m">
-    <Text.Body>
-      {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec turpis in risus elementum fringilla. Vestibulum nec vulputate metus, fringilla luctus nisl. Vestibulum mattis ultricies augue sagittis vestibulum. Nulla facilisi. Quisque tempor pulvinar efficitur. Praesent interdum ultrices leo. Vivamus non ex maximus justo egestas suscipit eget sed purus. Aliquam ut venenatis nulla. Fusce ac ligula viverra, blandit augue eget, congue turpis. Curabitur a sagittis leo. Nunc sed quam dictum, placerat nunc quis, luctus erat.`}
-    </Text.Body>
-    <Text.Body>
-      {`Nam id orci ut risus accumsan pellentesque. Quisque efficitur eu arcu ut tristique. Praesent ornare varius leo, ut consequat lacus rutrum vel. Donec mollis leo id lectus vehicula tempor. Nulla facilisi. Fusce fringilla tellus ac ligula consequat suscipit. Sed consectetur molestie quam eu pulvinar. Interdum et malesuada fames ac ante ipsum primis in faucibus. In hac habitasse platea dictumst.`}
-    </Text.Body>
+    <Switch>
+      <Route exact={true} path="/tabular-modal-page">
+        <Redirect to="/tabular-modal-page/tab-one" />
+      </Route>
+      <Route path="/tabular-modal-page/tab-one">
+        <Text.Body>
+          {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec turpis in risus elementum fringilla. Vestibulum nec vulputate metus, fringilla luctus nisl. Vestibulum mattis ultricies augue sagittis vestibulum. Nulla facilisi. Quisque tempor pulvinar efficitur. Praesent interdum ultrices leo. Vivamus non ex maximus justo egestas suscipit eget sed purus. Aliquam ut venenatis nulla. Fusce ac ligula viverra, blandit augue eget, congue turpis. Curabitur a sagittis leo. Nunc sed quam dictum, placerat nunc quis, luctus erat.`}
+        </Text.Body>
+        <Text.Body>
+          {`Nam id orci ut risus accumsan pellentesque. Quisque efficitur eu arcu ut tristique. Praesent ornare varius leo, ut consequat lacus rutrum vel. Donec mollis leo id lectus vehicula tempor. Nulla facilisi. Fusce fringilla tellus ac ligula consequat suscipit. Sed consectetur molestie quam eu pulvinar. Interdum et malesuada fames ac ante ipsum primis in faucibus. In hac habitasse platea dictumst.`}
+        </Text.Body>
+      </Route>
+      <Route path="/tabular-modal-page/tab-two">
+        <Text.Body>
+          {`Integer dignissim in sapien vitae elementum. Vivamus vestibulum leo at tempus auctor. Nunc dictum tincidunt porta. Vestibulum ornare odio leo, vitae rutrum arcu rutrum sit amet. Suspendisse elementum lacus nisl, sit amet sollicitudin ex luctus semper. Mauris rutrum venenatis sodales. Proin dictum, lorem at tincidunt mattis, tortor felis sodales arcu, id congue orci purus in libero. In porta semper enim, sed ornare ante commodo eget. Donec facilisis nibh sed sollicitudin elementum. Donec hendrerit lobortis ante eget interdum. Fusce sodales dui nunc, sed rhoncus enim sodales eget. Vestibulum vestibulum metus molestie volutpat tincidunt.`}
+        </Text.Body>
+      </Route>
+    </Switch>
   </Spacings.Stack>
 );
 export const Component = () => (
