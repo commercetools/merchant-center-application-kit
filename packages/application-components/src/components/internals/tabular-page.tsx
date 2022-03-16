@@ -46,10 +46,9 @@ type TTabularPageContainerProps = {
 const TabularPageContainer = (props: TTabularPageContainerProps) => (
   <div
     css={css`
-      background-color: ${customProperties.colorNeutral95};
-      background-color: ${props.color === 'neutral'
-        ? customProperties.colorNeutral95
-        : customProperties.colorSurface};
+      background-color: ${props.color === 'surface'
+        ? customProperties.colorSurface
+        : customProperties.colorNeutral95};
       padding: ${customProperties.spacingM} ${customProperties.spacingM} 0;
       border-bottom: 1px ${customProperties.colorNeutral} solid;
     `}

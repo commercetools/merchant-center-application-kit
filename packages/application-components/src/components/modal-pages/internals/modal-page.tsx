@@ -20,7 +20,7 @@ import {
   getBeforeCloseOverlayAnimation,
   getBeforeCloseContainerAnimation,
 } from './modal-page.styles';
-import PageTopBar from './modal-page-top-bar';
+import ModalPageTopBar from './modal-page-top-bar';
 
 // When running tests, we don't render the AppShell. Instead we mock the
 // application context to make the data available to the application under
@@ -140,7 +140,7 @@ const ModalPage = (props: Props) => {
             },
           }}
         >
-          <PageTopBar
+          <ModalPageTopBar
             color={props.topBarColor}
             onClose={handleClose}
             currentPathLabel={props.currentPathLabel}
