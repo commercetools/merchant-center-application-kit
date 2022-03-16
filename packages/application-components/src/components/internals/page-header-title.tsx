@@ -18,7 +18,6 @@ const SubtitleWrapper = styled.div`
   margin-top: ${customProperties.spacingM};
 `;
 
-// eslint-disable-next-line react/display-name
 const renderTitle = (size: Props['titleSize'], title: Props['title']) => {
   switch (size) {
     case 'big':
@@ -53,10 +52,8 @@ const renderSubtitle = (subtitle?: Props['subtitle']) => {
   );
 };
 
-const ModalPageHeaderTitle = (props: Props) => {
-  // eslint-disable-next-line testing-library/render-result-naming-convention
+const PageHeaderTitle = (props: Props) => {
   const renderedTitle = renderTitle(props.titleSize, props.title);
-  // eslint-disable-next-line testing-library/render-result-naming-convention
   const renderedSubtitle = renderSubtitle(props.subtitle);
   return (
     <div
@@ -69,7 +66,7 @@ const ModalPageHeaderTitle = (props: Props) => {
     </div>
   );
 };
-ModalPageHeaderTitle.displayName = 'ModalPageHeaderTitle';
-ModalPageHeaderTitle.defaultProps = defaultProps;
+PageHeaderTitle.displayName = 'PageHeaderTitle';
+PageHeaderTitle.defaultProps = defaultProps;
 
-export default ModalPageHeaderTitle;
+export default PageHeaderTitle;

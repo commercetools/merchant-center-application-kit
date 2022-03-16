@@ -1,7 +1,9 @@
 export { default as version } from './version';
 
-// Tabs
+// TabHeader & Tabular pages
 export { default as TabHeader } from './components/tab-header';
+export { default as TabularMainPage } from './components/tabular-main-page';
+export { default as TabularDetailPage } from './components/tabular-detail-page';
 
 // Dialogs
 export { default as InfoDialog } from './components/dialogs/info-dialog';

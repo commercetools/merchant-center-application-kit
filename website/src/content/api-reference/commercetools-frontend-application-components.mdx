@@ -37,6 +37,8 @@ npm --save install react react-dom react-intl
 * [FormModalPage](#formmodalpage)
 * [CustomFormModalPage](#customformmodalpage)
 * [TabularModalPage](#tabularmodalpage)
+* [TabularMainPage](#tabularmainpage)
+* [TabularDetailPage](#tabulardetailpage)
 
 ## InfoDialog
 
@@ -598,6 +600,133 @@ const AccountPage = () => {
     }
   />
   ```
+
+## TabularMainPage
+
+<Playground urlPath="tabular-main-page" />
+
+Tabular main pages are components used to render a page with custom navigational controls (for instance, with `TabHeaders`) and content. Similar to `TabularDetailPage`, but with no back button and a white top bar.
+
+### Usage
+
+```jsx
+import { BrowserRouter as Router, Switch, Route, useRouteMatch } from 'react-router-dom'
+import { TabularMainPage, TabHeader } from '@commercetools-frontend/application-components';
+
+const MainPage = () => {
+  const match = useRouteMatch()
+
+  return (
+    <Router>
+      <TabularMainPage
+        title="Main page"
+        tabControls={
+          <>
+            <TabHeader to="/tab-one" label="Tab One" />
+            <TabHeader to="/tab-two" label="Tab Two" />
+          </>
+        }
+      >
+        <Switch>
+          <Route path={`${match.path}/tab-1`}>
+            <Tab1 />
+          </Route>
+          <Route path={`${match.path}/tab-2`}>
+            <Tab2 />
+          </Route>
+        </Switch>
+      </TabularMainPage>
+    </Router>
+  );
+}
+```
+
+### Properties
+
+| Props                           | Type                       | Required | Default                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------------------- | -------------------------- | :------: | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`                         | `string`                   |    -     | -                        | The title of the page. Required when neither `titleIntlMessage` nor `customTitleRow` are provided.                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `titleIntlMessage`              | `MessageDescriptor`        |    -     | -                        | The title of the page, using an `intl` message object. Required when neither `title` nor `customTitleRow` are provided.                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `subtitle`                      | `node` or `string`         |    -     | -                        | The subtitle of the page, usually a React component. If a string is passed, it's rendered as a paragraph.                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `subtitleIntlMessage`           | `MessageDescriptor`        |    -     | -                        | The subtitle of the page, using an `intl` message object.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `customTitleRow`                | `node`                     |    -     | -                        | Pass a React.node to be used in place of the `title` and `subtitle`. Required when neither `title` nor `titleIntlMessage` are provided.                                                                                                                                                                                                                                                                                                                                                                                    |
+| `children`                      | `node`                     |    ✅    | -                        | Content rendered within the page. It's expected to have its style fully customized.                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `tabControls`                   | `node`                     |    ✅    | -                        | Pass a React.node to be used as the Tabs component for controlling the navigation between the Tab contents within the page.                                                                                                                                                                                                                                                                                                                                                                                                |
+
+### Static properties
+
+* `TabularMainPage.Intl`
+
+  This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+  The Intl messages can for instance be used for button labels.
+
+## TabularDetailPage
+
+<Playground urlPath="tabular-detail-page" />
+
+Tabular detail pages are components used to render a page with custom navigational controls (for instance, with `TabHeaders`) and content. Similar to `TabularMainPage`, but with back button and a grey top bar.
+
+### Usage
+
+```jsx
+import { BrowserRouter as Router, Switch, Route, useRouteMatch, useHistory } from 'react-router-dom'
+import { TabularDetailPage, TabHeader } from '@commercetools-frontend/application-components';
+
+const DetailPage = () => {
+  const match = useRouteMatch()
+  const history = useHistory();
+
+  return (
+    <TabularDetailPage
+      title="Detail page"
+      onClose={() => history.push('/starting-page')}
+      previousPathLabel="Go back"
+      tabControls={
+        <>
+          <TabHeader to="/tab-one" label="Tab One" />
+          <TabHeader to="/tab-two" label="Tab Two" />
+        </>
+      }
+    >
+      <Switch>
+        <Route path={`${match.path}/tab-1`}>
+          <Tab1 />
+        </Route>
+        <Route path={`${match.path}/tab-2`}>
+          <Tab2 />
+        </Route>
+      </Switch>
+    </TabularDetailPage>
+  );
+}
+
+const DetailPageWithRouter = () => (
+  <Router>
+    <DetailPage />
+  </Router>
+)
+```
+
+### Properties
+
+| Props                           | Type                            | Required | Default                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------------------- | ------------------------------- | :------: | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`                         | `string`                        |    -     | -                                  | The title of the page. Required when neither `titleIntlMessage` nor `customTitleRow` are provided.                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `titleIntlMessage`              | `MessageDescriptor`             |    -     | -                                  | The title of the page, using an `intl` message object. Required when neither `title` nor `customTitleRow` are provided.                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `subtitle`                      | `node` or `string`              |    -     | -                                  | The subtitle of the page, usually a React component. If a string is passed, it's rendered as a paragraph.                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `subtitleIntlMessage`           | `MessageDescriptor`             |    -     | -                                  | The subtitle of the page, using an `intl` message object.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `customTitleRow`                | `node`                          |    -     | -                                  | Pass a React.node to be used in place of the `title` and `subtitle`. Required when neither `title` nor `titleIntlMessage` are provided.                                                                                                                                                                                                                                                                                                                                                                                    |
+| `children`                      | `node`                          |    ✅    | -                                  | Content rendered within the page. It's expected to have its style fully customized.                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `tabControls`                   | `node`                          |    ✅    | -                                  | Pass a React.node to be used as the Tabs component for controlling the navigation between the Tab contents within the page.                                                                                                                                                                                                                                                                                                                                                                                                |
+| `previousPathLabel`             | `string` or `MessageDescriptor` |    -     | `"Back to list view"` (translated) | Label to appear as the previous path of the top bar of the page.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `onClose`                       | `function`                      |    -     | -                                  | Called when the back button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+
+### Static properties
+
+* `TabularDetailPage.Intl`
+
+  This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+  The Intl messages can for instance be used for button labels.
 
 # Hooks
 

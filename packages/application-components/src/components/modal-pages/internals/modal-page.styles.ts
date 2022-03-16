@@ -1,5 +1,4 @@
 import { css } from '@emotion/react';
-import styled from '@emotion/styled';
 import { customProperties } from '@commercetools-uikit/design-system';
 
 export const TRANSITION_DURATION = 200;
@@ -53,10 +52,4 @@ export const getBeforeCloseContainerAnimation = () => css`
 
 export const getBeforeCloseOverlayAnimation = () => css`
   opacity: 0 !important;
-`;
-
-export const ContentWrapper = styled.div`
-  flex: 1;
-  padding: ${customProperties.spacingM};
-  overflow: auto;
 `;

@@ -3,8 +3,8 @@ import type { CSSObject } from '@emotion/react';
 import { SyntheticEvent, ReactNode, ReactElement } from 'react';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import ModalPage from '../internals/modal-page';
-import ModalPageHeader from '../internals/modal-page-header';
-import { ContentWrapper } from '../internals/modal-page.styles';
+import PageHeader from '../../internals/page-header';
+import { ContentWrapper } from '../../internals/page.styles';
 import Spacings from '@commercetools-uikit/spacings';
 import {
   FormPrimaryButton,
@@ -56,13 +56,13 @@ const CustomFormModalPage = (props: Props) => (
     shouldDelayOnClose={props.shouldDelayOnClose}
     afterOpenStyles={props.afterOpenStyles}
   >
-    <ModalPageHeader title={props.title} subtitle={props.subtitle}>
+    <PageHeader title={props.title} subtitle={props.subtitle}>
       {!props.hideControls && props.formControls && (
         <Spacings.Inline alignItems="flex-end">
           {props.formControls}
         </Spacings.Inline>
       )}
-    </ModalPageHeader>
+    </PageHeader>
     <ContentWrapper>{props.children}</ContentWrapper>
   </ModalPage>
 );

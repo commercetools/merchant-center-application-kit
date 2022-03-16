@@ -2,8 +2,8 @@ import type { CSSObject } from '@emotion/react';
 
 import { ReactElement, ReactNode, SyntheticEvent } from 'react';
 import ModalPage from '../internals/modal-page';
-import ModalPageHeader from '../internals/modal-page-header';
-import { ContentWrapper } from '../internals/modal-page.styles';
+import PageHeader from '../../internals/page-header';
+import { ContentWrapper } from '../../internals/page.styles';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin
@@ -46,7 +46,7 @@ const InfoModalPage = (props: Props) => (
     getParentSelector={props.getParentSelector}
     afterOpenStyles={props.afterOpenStyles}
   >
-    <ModalPageHeader title={props.title} subtitle={props.subtitle} />
+    <PageHeader title={props.title} subtitle={props.subtitle} />
     <ContentWrapper>{props.children}</ContentWrapper>
   </ModalPage>
 );

@@ -19,7 +19,8 @@ const PreviewContainer = styled.div`
   width: 100%;
   overflow: hidden;
   height: ${(props) => props.height};
-  background-color: ${customProperties.colorSurface};
+  background-color: ${(props) =>
+    props.background || customProperties.colorSurface};
   border-radius: ${customProperties.borderRadius4}
     ${customProperties.borderRadius4} 0 0;
   border-bottom: 1px solid ${customProperties.colorNeutral90};
@@ -40,7 +41,7 @@ const PlaygroundController = (props) => {
           {({ form, values }) => (
             <PlaygroundContainer>
               <Spacings.Stack scale="s">
-                <PreviewContainer height="400px">
+                <PreviewContainer height="400px" background={props.background}>
                   {props.children({ values })}
                 </PreviewContainer>
                 <Spacings.Inline alignItems="center">
@@ -76,6 +77,7 @@ PlaygroundController.propTypes = {
       ),
     }).isRequired
   ).isRequired,
+  background: PropTypes.string,
   children: PropTypes.func.isRequired,
 };
 

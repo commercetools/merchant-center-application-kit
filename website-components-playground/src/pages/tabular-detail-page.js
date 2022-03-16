@@ -1,18 +1,15 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { withPrefix } from 'gatsby';
 import {
-  TabularModalPage,
+  TabularDetailPage,
   TabHeader,
 } from '@commercetools-frontend/application-components';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import TextInput from '@commercetools-uikit/text-input';
-import { withPrefix } from 'gatsby';
 import LayoutApp from '../layouts/layout-app';
 import PlaygroundController from '../components/playground-controller';
-import ModalController from '../components/modal-controller';
 import RouterWrapper from '../components/router-wrapper';
-
-const containerId = 'tabular-modal-page';
 
 const exampleCustomTitleRow = (
   <Spacings.Inline scale="m">
@@ -36,7 +33,7 @@ const exampleCustomTitleRow = (
   </Spacings.Inline>
 );
 
-const TabularModalPageExample = (props) => {
+const TabularDetailPageExample = (props) => {
   return (
     <RouterWrapper>
       <LayoutApp>
@@ -73,94 +70,51 @@ const TabularModalPageExample = (props) => {
               ],
               initialValue: 'default',
             },
-            {
-              kind: 'select',
-              name: 'hideControls',
-              label: 'Hide Controls?',
-              valueOptions: [
-                { value: false, label: 'No' },
-                { value: true, label: 'Yes' },
-              ],
-              initialValue: true,
-            },
           ]}
         >
           {({ values }) => (
-            <ModalController
+            <TabularDetailPage
               title={values.title}
-              buttonLabel="Open Tabular Modal Page"
-              containerId={containerId}
+              tabControls={
+                <>
+                  <TabHeader
+                    to={withPrefix('/tabular-detail-page/tab-one')}
+                    label="Tab One"
+                  />
+                  <TabHeader
+                    to={withPrefix('/tabular-detail-page/tab-two')}
+                    label="Tab Two"
+                  />
+                  <TabHeader
+                    to={withPrefix('/tabular-detail-page/tab-three')}
+                    label="Disabled tab"
+                    isDisabled
+                  />
+                </>
+              }
+              customTitleRow={
+                values.useCustomTitleRow === 'custom' && exampleCustomTitleRow
+              }
+              onClose={() => window.alert('Back button clicked')}
             >
-              {({ isOpen, setIsOpen }) => (
-                <TabularModalPage
-                  title={values.title}
-                  isOpen={isOpen}
-                  onClose={() => setIsOpen(false)}
-                  getParentSelector={() =>
-                    document.querySelector(`#${containerId}`)
-                  }
-                  tabControls={
-                    <>
-                      <TabHeader
-                        to={withPrefix('/tabular-modal-page/tab-one')}
-                        label="Tab One"
-                      />
-                      <TabHeader
-                        to={withPrefix('/tabular-modal-page/tab-two')}
-                        label="Tab Two"
-                      />
-                      <TabHeader
-                        to={withPrefix('/tabular-modal-page/tab-three')}
-                        label="Disabled tab"
-                        isDisabled
-                      />
-                    </>
-                  }
-                  customTitleRow={
-                    values.useCustomTitleRow === 'custom' &&
-                    exampleCustomTitleRow
-                  }
-                  formControls={
-                    <>
-                      <TabularModalPage.FormSecondaryButton
-                        onClick={() => {
-                          setIsOpen(false);
-                        }}
-                      />
-                      <TabularModalPage.FormPrimaryButton
-                        onClick={() => undefined}
-                        isDisabled
-                      />
-                      <TabularModalPage.FormDeleteButton
-                        onClick={() => undefined}
-                        isDisabled
-                      />
-                    </>
-                  }
-                  hideControls={values.hideControls}
-                >
-                  <Switch>
-                    <Route exact path={withPrefix('/tabular-modal-page/')}>
-                      <Redirect
-                        to={withPrefix('/tabular-modal-page/tab-one')}
-                      />
-                    </Route>
-                    <Route path={withPrefix('/tabular-modal-page/tab-one')}>
-                      <Text.Body>{values['tab-one-content']}</Text.Body>
-                    </Route>
-                    <Route path={withPrefix('/tabular-modal-page/tab-two')}>
-                      <Text.Body>{values['tab-two-content']}</Text.Body>
-                    </Route>
-                  </Switch>
-                </TabularModalPage>
-              )}
-            </ModalController>
+              <Switch>
+                <Route exact path={withPrefix('/tabular-detail-page/')}>
+                  <Redirect to={withPrefix('/tabular-detail-page/tab-one')} />
+                </Route>
+                <Route path={withPrefix('/tabular-detail-page/tab-one')}>
+                  <Text.Body>{values['tab-one-content']}</Text.Body>
+                </Route>
+                <Route path={withPrefix('/tabular-detail-page/tab-two')}>
+                  <Text.Body>{values['tab-two-content']}</Text.Body>
+                </Route>
+              </Switch>
+            </TabularDetailPage>
           )}
         </PlaygroundController>
       </LayoutApp>
     </RouterWrapper>
   );
 };
-TabularModalPageExample.displayName = 'TabularModalPageExample';
+TabularDetailPageExample.displayName = 'TabularDetailPageExample';
 
-export default TabularModalPageExample;
+export default TabularDetailPageExample;
