@@ -4,7 +4,6 @@ import { ListIcon } from '@commercetools-uikit/icons';
 import FlatButton from '@commercetools-uikit/flat-button';
 import { customProperties } from '@commercetools-uikit/design-system';
 import type { MouseEvent, KeyboardEvent } from 'react';
-
 import messages from './messages';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.

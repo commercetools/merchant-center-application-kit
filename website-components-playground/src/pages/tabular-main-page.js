@@ -71,7 +71,6 @@ const TabularMainPageExample = (props) => {
               initialValue: 'default',
             },
           ]}
-          background="transparent"
         >
           {({ values }) => (
             <TabularMainPage

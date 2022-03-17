@@ -1,15 +1,9 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Text from '@commercetools-uikit/text';
 import Spacings from '@commercetools-uikit/spacings';
-import { warning } from '@commercetools-uikit/utils';
 import { screen, renderComponent, fireEvent, waitFor } from '../../test-utils';
 import TabHeader from '../tab-header/tab-header';
 import TabularMainPage from './tabular-main-page';
-
-jest.mock('@commercetools-uikit/utils', () => ({
-  ...jest.requireActual('@commercetools-uikit/utils'),
-  warning: jest.fn(),
-}));
 
 const Content = () => (
   <Spacings.Stack scale="m">
@@ -34,6 +28,7 @@ const Content = () => (
 const renderTabularMainPage = (additionalProps = {}) =>
   renderComponent(
     <TabularMainPage
+      title="Test page"
       tabControls={
         <>
           <TabHeader to="/tab-one" label="Tab One" />
@@ -49,18 +44,9 @@ const renderTabularMainPage = (additionalProps = {}) =>
 
 describe('rendering', () => {
   it('should render "tab one" as active by default and the content that it leads to', () => {
-    renderTabularMainPage({ title: 'Title' });
+    renderTabularMainPage();
 
     screen.getByText(/curabitur nec turpis in risus elementum fringilla/i);
-  });
-  it('should render title passed as "intl" message', () => {
-    const titleIntlMessage = {
-      id: 'localized',
-      defaultMessage: 'localized text',
-    };
-    renderTabularMainPage({ titleIntlMessage });
-
-    screen.getByText(/localized text/i);
   });
   it('should render custom title row', () => {
     const customTitleRow = <div>Custom</div>;
@@ -71,22 +57,12 @@ describe('rendering', () => {
 });
 describe('navigation', () => {
   it('should navigate to the other tab when clicked and show content that it leads to', async () => {
-    const { history } = renderTabularMainPage({ title: 'Title' });
+    const { history } = renderTabularMainPage();
 
     fireEvent.click(screen.getByRole('tab', { name: /tab two/i }));
     await waitFor(() => {
       expect(history.location.pathname).toBe('/tab-two');
       screen.getByText(/nam id orci ut risus accumsan pellentesque/i);
     });
-  });
-});
-describe('warnings', () => {
-  it('should warn when neither "title", "titleIntlMessage" nor "customTitleRow" is passed', () => {
-    renderTabularMainPage();
-
-    expect(warning).toHaveBeenCalledWith(
-      false,
-      'TabularMainPage: one of either `title`, `titleIntlMessage` or `customTitleRow` is required but their values are `undefined`'
-    );
   });
 });

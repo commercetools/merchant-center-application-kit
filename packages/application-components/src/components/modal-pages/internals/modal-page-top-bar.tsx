@@ -7,7 +7,7 @@ import FlatButton from '@commercetools-uikit/flat-button';
 import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';
 import Text from '@commercetools-uikit/text';
 import { customProperties } from '@commercetools-uikit/design-system';
-import messages from './messages';
+import messages from '../../internals/messages';
 
 // Component to have a larger clickable surface
 const LargeIconWrapper = styled.span`

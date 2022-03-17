@@ -1,15 +1,9 @@
 import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
 import Text from '@commercetools-uikit/text';
 import Spacings from '@commercetools-uikit/spacings';
-import { warning } from '@commercetools-uikit/utils';
 import { screen, renderComponent, fireEvent, waitFor } from '../../test-utils';
 import TabHeader from '../tab-header/tab-header';
 import TabularDetailPage from './tabular-detail-page';
-
-jest.mock('@commercetools-uikit/utils', () => ({
-  ...jest.requireActual('@commercetools-uikit/utils'),
-  warning: jest.fn(),
-}));
 
 const Content = () => (
   <Spacings.Stack scale="m">
@@ -34,6 +28,7 @@ const Content = () => (
 const renderTabularDetailPage = (additionalProps = {}) =>
   renderComponent(
     <TabularDetailPage
+      title="Test page"
       tabControls={
         <>
           <TabHeader to="/tab-one" label="Tab One" />
@@ -70,18 +65,9 @@ const TabularDetailPageWithHistory = () => {
 
 describe('rendering', () => {
   it('should render "tab one" as active by default and the content that it leads to', () => {
-    renderTabularDetailPage({ title: 'Title' });
+    renderTabularDetailPage();
 
     screen.getByText(/curabitur nec turpis in risus elementum fringilla/i);
-  });
-  it('should render title passed as "intl" message', () => {
-    const titleIntlMessage = {
-      id: 'localized',
-      defaultMessage: 'localized text',
-    };
-    renderTabularDetailPage({ titleIntlMessage });
-
-    screen.getByText(/localized text/i);
   });
   it('should render custom title row', () => {
     const customTitleRow = <div>Custom</div>;
@@ -103,19 +89,9 @@ describe('navigation', () => {
   it('should navigate to link on back button click', async () => {
     const { history } = renderComponent(<TabularDetailPageWithHistory />);
 
-    fireEvent.click(screen.getByRole('button', { name: /back to list view/i }));
+    fireEvent.click(screen.getByRole('button', { name: /go back/i }));
     await waitFor(() => {
       expect(history.location.pathname).toBe('/tab-ten');
     });
-  });
-});
-describe('warnings', () => {
-  it('should warn when neither "title", "titleIntlMessage" nor "customTitleRow" is passed', () => {
-    renderTabularDetailPage({ title: 'Title' });
-
-    expect(warning).toHaveBeenCalledWith(
-      false,
-      'TabularDetailPage: one of either `title`, `titleIntlMessage` or `customTitleRow` is required but their values are `undefined`'
-    );
   });
 });

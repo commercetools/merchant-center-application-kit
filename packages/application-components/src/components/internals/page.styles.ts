@@ -6,3 +6,9 @@ export const ContentWrapper = styled.div`
   padding: ${customProperties.spacingM};
   overflow: auto;
 `;
+
+export const PageWrapper = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;

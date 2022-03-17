@@ -5,7 +5,7 @@
 '@commercetools-website/components-playground': minor
 ---
 
-Add 2 new components: `<TabularMainPage>` and `<TabularDetailPage>` providing navigation using for instance `TabHeader` components. Both pages, as opposed to `<TabularModalPage>`, are not rendered within a modal.
+Add 2 new components: `<TabularMainPage>` and `<TabularDetailPage>` providing navigation through for instance `TabHeader` components. Both pages, as opposed to `<TabularModalPage>`, are not rendered within a modal.
 
 Example use of `<TabularMainPage>`:
 
