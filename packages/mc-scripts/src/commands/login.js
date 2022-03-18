@@ -1,12 +1,9 @@
 const { promisify } = require('util');
 const read = promisify(require('read'));
-const mri = require('mri');
 const chalk = require('react-dev-utils/chalk');
 const { processConfig } = require('@commercetools-frontend/application-config');
 const CredentialsStorage = require('../utils/credentials-storage');
 const { getAuthToken } = require('../utils/auth');
-
-const flags = mri(process.argv.slice(2));
 
 const credentialsStorage = new CredentialsStorage();
 
@@ -27,9 +24,9 @@ const login = async () => {
   const credentials = await getAuthToken(mcApiUrl, {
     email,
     password,
-    projectKey: flags['project-key'],
   });
   credentialsStorage.setToken(mcApiUrl, credentials);
+
   console.log(
     chalk.green(`Login successful for the ${mcApiUrl} environment.\n`)
   );
