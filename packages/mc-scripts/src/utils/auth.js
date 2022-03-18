@@ -33,11 +33,8 @@ const getAuthToken = async (mcApiUrl, payload) => {
     throw new Error(errorMessage);
   }
 
-  const data = await response.json();
-  return {
-    token: data.token,
-    expiresAt: calculateExpirationTime(data.expiresIn),
-  };
+  const authToken = await response.json();
+  return authToken;
 };
 
 exports.getAuthToken = getAuthToken;

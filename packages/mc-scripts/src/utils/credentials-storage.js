@@ -53,7 +53,7 @@ class CredentialsStorage {
     if (!credentials) {
       return false;
     }
-    const now = Date.now();
+    const now = Math.floor(Date.now() / 1000);
     return now < credentials.expiresAt;
   }
 }

@@ -14,7 +14,7 @@ describe('when session is valid', () => {
       [CredentialsStorage.location]: JSON.stringify({
         [mcApiUrl]: {
           token: 'hello-world',
-          expiresAt: Date.now() + 3600 * 1000,
+          expiresAt: Math.floor(Date.now() / 1000) + 60 * 60 * 36,
         },
       }),
     });
@@ -27,7 +27,7 @@ describe('when session is valid', () => {
 
     const newSessionData = {
       token: 'fizz-buzz',
-      expiresAt: Date.now() + 3600 * 1000,
+      expiresAt: Math.floor(Date.now() / 1000) + 60 * 60 * 36,
     };
     credentialsStorage.setToken(mcApiUrl, newSessionData);
     expect(credentialsStorage.getToken(mcApiUrl)).toBe('fizz-buzz');
@@ -41,7 +41,7 @@ describe('when session is expired', () => {
       [CredentialsStorage.location]: JSON.stringify({
         [mcApiUrl]: {
           token: 'hello-world',
-          expiresAt: Date.now() - 1,
+          expiresAt: Math.floor(Date.now() / 1000) - 1,
         },
       }),
     });
@@ -67,7 +67,7 @@ describe('when credentials file is missing', () => {
 
     const newSessionData = {
       token: 'fizz-buzz',
-      expiresAt: Date.now() + 3600 * 1000,
+      expiresAt: Math.floor(Date.now() / 1000) + 60 * 60 * 36,
     };
     credentialsStorage.setToken(mcApiUrl, newSessionData);
     expect(credentialsStorage.getToken(mcApiUrl)).toBe('fizz-buzz');

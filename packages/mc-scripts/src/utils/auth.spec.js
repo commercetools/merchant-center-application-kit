@@ -23,7 +23,7 @@ describe('when login details are correct', () => {
           ctx.status(200),
           ctx.json({
             token: 'hello-world',
-            expiresIn: 3600,
+            expiresAt: Math.floor(Date.now() / 1000) + 60 * 60 * 36, // 1,5 days
           })
         );
       })
@@ -38,8 +38,12 @@ describe('when login details are correct', () => {
       token: 'hello-world',
       expiresAt: expect.any(Number),
     });
-    expect(sessionData.expiresAt).toBeGreaterThan(Date.now());
-    expect(sessionData.expiresAt).toBeLessThan(Date.now() + 3600 * 1000);
+    expect(sessionData.expiresAt).toBeGreaterThan(
+      Math.floor(Date.now() / 1000)
+    );
+    expect(sessionData.expiresAt).toBeLessThanOrEqual(
+      Math.floor(Date.now() / 1000) + 60 * 60 * 36
+    );
   });
 });
 
