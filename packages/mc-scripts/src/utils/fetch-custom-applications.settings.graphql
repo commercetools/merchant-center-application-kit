@@ -1,0 +1,8 @@
+query OrganizationExtensionForCustomApplication($organizationId: String!) {
+  organizationExtension(organizationId: $organizationId) {
+    id
+    installedApplications {
+      id
+    }
+  }
+}

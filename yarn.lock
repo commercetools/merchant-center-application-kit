@@ -2877,6 +2877,7 @@ __metadata:
     dotenv: 16.0.0
     dotenv-expand: 8.0.3
     fs-extra: 10.0.1
+    graphql-request: ^4.1.0
     graphql-tag: ^2.12.6
     html-webpack-plugin: 5.5.0
     json-loader: 0.5.7
@@ -18840,6 +18841,19 @@ __metadata:
   peerDependencies:
     graphql: 14 - 16
   checksum: db3800cc4ee884cd1514d7d5eafafb9ed27694278fdddd7402345754a7d25e7d713246c72aa510b439b6df2633b74f2cf74fb36864a22a857d5fb2de1cf0b4d8
+  languageName: node
+  linkType: hard
+
+"graphql-request@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "graphql-request@npm:4.1.0"
+  dependencies:
+    cross-fetch: ^3.0.6
+    extract-files: ^9.0.0
+    form-data: ^3.0.0
+  peerDependencies:
+    graphql: 14 - 16
+  checksum: 347f3bb943d8f734f152765cbe507a287333d0f477b6912f4745addd4d1160cd171db3d629c7bac5c8ec627cd989c7bdf0407b32e3545808397fc791e65bfbcf
   languageName: node
   linkType: hard
 

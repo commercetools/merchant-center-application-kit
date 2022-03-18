@@ -111,6 +111,12 @@ const applicationDirectory = fs.realpathSync(process.cwd());
         proxyCommand(command);
         break;
       }
+      case 'config:sync': {
+        // Do this as the first thing so that any code reading it knows the right env.
+        process.env.NODE_ENV = 'production';
+        proxyCommand(command);
+        break;
+      }
       default:
         console.log(`Unknown script "${command}".`);
         console.log('Perhaps you need to update mc-scripts?');
