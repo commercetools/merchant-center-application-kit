@@ -9,7 +9,7 @@ type TTabControlsProps = {
 const TabControls = (props: TTabControlsProps) => (
   <div
     css={css`
-      margin-top: 8px;
+      margin-top: ${customProperties.spacingS};
     `}
     role="tablist"
   >

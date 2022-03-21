@@ -56,7 +56,7 @@ const TabularDetailPageWithHistory = () => {
           <TabHeader to="/tab-three" label="Disabled tab" isDisabled />
         </>
       }
-      onClose={() => history.push('/tab-ten')}
+      onClose={() => history.push('/start')}
     >
       <Content />
     </TabularDetailPage>
@@ -91,7 +91,7 @@ describe('navigation', () => {
 
     fireEvent.click(screen.getByRole('button', { name: /go back/i }));
     await waitFor(() => {
-      expect(history.location.pathname).toBe('/tab-ten');
+      expect(history.location.pathname).toBe('/start');
     });
   });
 });
