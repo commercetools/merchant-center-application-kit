@@ -1,6 +1,12 @@
 import Text from '@commercetools-uikit/text';
 import TextInput from '@commercetools-uikit/text-input';
 import Spacings from '@commercetools-uikit/spacings';
+import IconButton from '@commercetools-uikit/icon-button';
+import {
+  FlameIcon,
+  SearchIcon,
+  BinLinearIcon,
+} from '@commercetools-uikit/icons';
 import {
   TabularMainPage,
   TabHeader,
@@ -65,7 +71,51 @@ export const Component = () => (
         <Content />
       </TabularMainPageContainer>
     </Spec>
-    <Spec label="TabularMainPage - with Custom Title Row" size="xl">
+    <Spec
+      size="xl"
+      label="TabularMainPage - with the static exposed form controls"
+    >
+      <TabularMainPageContainer
+        formControls={
+          <>
+            <TabularMainPage.FormSecondaryButton onClick={() => undefined} />
+            <TabularMainPage.FormPrimaryButton onClick={() => undefined} />
+            <TabularMainPage.FormDeleteButton onClick={() => undefined} />
+          </>
+        }
+      >
+        <Content />
+      </TabularMainPageContainer>
+    </Spec>
+    <Spec label="TabularMainPage - with other custom controls" size="xl">
+      <TabularMainPageContainer
+        formControls={
+          <>
+            <IconButton
+              label="SearchIcon"
+              icon={<SearchIcon />}
+              onClick={() => undefined}
+            />
+            <IconButton
+              label="FlameIcon"
+              icon={<FlameIcon />}
+              onClick={() => undefined}
+            />
+            <IconButton
+              label="BinLinearIcon"
+              icon={<BinLinearIcon />}
+              onClick={() => undefined}
+            />
+          </>
+        }
+      >
+        <Content />
+      </TabularMainPageContainer>
+    </Spec>
+    <Spec
+      label="TabularMainPage - with Custom Title Row and no controls"
+      size="xl"
+    >
       <TabularMainPageContainer
         customTitleRow={
           <Spacings.Inline scale="m">
@@ -87,6 +137,56 @@ export const Component = () => (
             </Spacings.Inline>
           </Spacings.Inline>
         }
+      >
+        <Content />
+      </TabularMainPageContainer>
+    </Spec>
+    <Spec
+      label="TabularMainPage - with Custom Title Row and the static exposed form controls"
+      size="xl"
+    >
+      <TabularMainPageContainer
+        customTitleRow={
+          <Spacings.Inline scale="m">
+            <Spacings.Inline alignItems="center">
+              <label htmlFor="input-1">
+                <Text.Body isBold truncate>
+                  Input 1
+                </Text.Body>
+              </label>
+              <TextInput id="input-1" value="" onChange={() => undefined} />
+            </Spacings.Inline>
+            <Spacings.Inline alignItems="center">
+              <label htmlFor="input-2">
+                <Text.Body isBold truncate>
+                  Input 2
+                </Text.Body>
+              </label>
+              <TextInput id="input-2" value="" onChange={() => undefined} />
+            </Spacings.Inline>
+          </Spacings.Inline>
+        }
+        formControls={
+          <>
+            <TabularMainPage.FormSecondaryButton onClick={() => undefined} />
+            <TabularMainPage.FormPrimaryButton onClick={() => undefined} />
+            <TabularMainPage.FormDeleteButton onClick={() => undefined} />
+          </>
+        }
+      >
+        <Content />
+      </TabularMainPageContainer>
+    </Spec>
+    <Spec label="TabularMainPage - with hidden controls" size="xl">
+      <TabularMainPageContainer
+        formControls={
+          <>
+            <TabularMainPage.FormSecondaryButton onClick={() => undefined} />
+            <TabularMainPage.FormPrimaryButton onClick={() => undefined} />
+            <TabularMainPage.FormDeleteButton onClick={() => undefined} />
+          </>
+        }
+        hideControls={true}
       >
         <Content />
       </TabularMainPageContainer>

@@ -70,6 +70,16 @@ const TabularDetailPageExample = (props) => {
               ],
               initialValue: 'default',
             },
+            {
+              kind: 'select',
+              name: 'hideControls',
+              label: 'Hide Controls?',
+              valueOptions: [
+                { value: false, label: 'No' },
+                { value: true, label: 'Yes' },
+              ],
+              initialValue: true,
+            },
           ]}
         >
           {({ values }) => (
@@ -95,7 +105,24 @@ const TabularDetailPageExample = (props) => {
               customTitleRow={
                 values.useCustomTitleRow === 'custom' && exampleCustomTitleRow
               }
-              onClose={() => window.alert('Back button clicked')}
+              formControls={
+                <>
+                  <TabularDetailPage.FormSecondaryButton
+                    onClick={() => undefined}
+                    isDisabled
+                  />
+                  <TabularDetailPage.FormPrimaryButton
+                    onClick={() => undefined}
+                    isDisabled
+                  />
+                  <TabularDetailPage.FormDeleteButton
+                    onClick={() => undefined}
+                    isDisabled
+                  />
+                </>
+              }
+              hideControls={values.hideControls}
+              onPreviousPathClick={() => window.alert('Back button clicked')}
             >
               <Switch>
                 <Route exact path={withPrefix('/tabular-detail-page/')}>

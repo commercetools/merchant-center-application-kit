@@ -62,4 +62,18 @@ const defaultProps: Pick<TTabularPageContainerProps, 'color'> = {
 };
 TabularPageContainer.defaultProps = defaultProps;
 
-export { ControlsContainter, TabularPageContainer };
+type TFormControlsContainerProps = {
+  children: ReactNode;
+};
+const FormControlsContainer = (props: TFormControlsContainerProps) => (
+  <div
+    css={css`
+      margin-bottom: ${customProperties.spacingM};
+    `}
+  >
+    {props.children}
+  </div>
+);
+FormControlsContainer.displayName = 'FormControlsContainer';
+
+export { ControlsContainter, TabularPageContainer, FormControlsContainer };

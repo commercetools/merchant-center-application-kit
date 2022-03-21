@@ -1,6 +1,12 @@
 import Text from '@commercetools-uikit/text';
 import TextInput from '@commercetools-uikit/text-input';
 import Spacings from '@commercetools-uikit/spacings';
+import IconButton from '@commercetools-uikit/icon-button';
+import {
+  FlameIcon,
+  SearchIcon,
+  BinLinearIcon,
+} from '@commercetools-uikit/icons';
 import {
   TabularDetailPage,
   TabHeader,
@@ -28,7 +34,7 @@ const TabularDetailPageContainer = (props: ContainerProps) => (
           />
         </>
       }
-      onClose={() => window.alert('Back button clicked')}
+      onPreviousPathClick={() => window.alert('Back button clicked')}
       {...props}
     >
       {props.children}
@@ -66,7 +72,51 @@ export const Component = () => (
         <Content />
       </TabularDetailPageContainer>
     </Spec>
-    <Spec label="TabularDetailPage - with Custom Title Row" size="xl">
+    <Spec
+      size="xl"
+      label="TabularDetailPage - with the static exposed form controls"
+    >
+      <TabularDetailPageContainer
+        formControls={
+          <>
+            <TabularDetailPage.FormSecondaryButton onClick={() => undefined} />
+            <TabularDetailPage.FormPrimaryButton onClick={() => undefined} />
+            <TabularDetailPage.FormDeleteButton onClick={() => undefined} />
+          </>
+        }
+      >
+        <Content />
+      </TabularDetailPageContainer>
+    </Spec>
+    <Spec label="TabularDetailPage - with other custom controls" size="xl">
+      <TabularDetailPageContainer
+        formControls={
+          <>
+            <IconButton
+              label="SearchIcon"
+              icon={<SearchIcon />}
+              onClick={() => undefined}
+            />
+            <IconButton
+              label="FlameIcon"
+              icon={<FlameIcon />}
+              onClick={() => undefined}
+            />
+            <IconButton
+              label="BinLinearIcon"
+              icon={<BinLinearIcon />}
+              onClick={() => undefined}
+            />
+          </>
+        }
+      >
+        <Content />
+      </TabularDetailPageContainer>
+    </Spec>
+    <Spec
+      label="TabularDetailPage - with Custom Title Row and no controls"
+      size="xl"
+    >
       <TabularDetailPageContainer
         customTitleRow={
           <Spacings.Inline scale="m">
@@ -88,6 +138,56 @@ export const Component = () => (
             </Spacings.Inline>
           </Spacings.Inline>
         }
+      >
+        <Content />
+      </TabularDetailPageContainer>
+    </Spec>
+    <Spec
+      label="TabularDetailPage - with Custom Title Row and the static exposed form controls"
+      size="xl"
+    >
+      <TabularDetailPageContainer
+        customTitleRow={
+          <Spacings.Inline scale="m">
+            <Spacings.Inline alignItems="center">
+              <label htmlFor="input-1">
+                <Text.Body isBold truncate>
+                  Input 1
+                </Text.Body>
+              </label>
+              <TextInput id="input-1" value="" onChange={() => undefined} />
+            </Spacings.Inline>
+            <Spacings.Inline alignItems="center">
+              <label htmlFor="input-2">
+                <Text.Body isBold truncate>
+                  Input 2
+                </Text.Body>
+              </label>
+              <TextInput id="input-2" value="" onChange={() => undefined} />
+            </Spacings.Inline>
+          </Spacings.Inline>
+        }
+        formControls={
+          <>
+            <TabularDetailPage.FormSecondaryButton onClick={() => undefined} />
+            <TabularDetailPage.FormPrimaryButton onClick={() => undefined} />
+            <TabularDetailPage.FormDeleteButton onClick={() => undefined} />
+          </>
+        }
+      >
+        <Content />
+      </TabularDetailPageContainer>
+    </Spec>
+    <Spec label="TabularMainPage - with hidden controls" size="xl">
+      <TabularDetailPageContainer
+        formControls={
+          <>
+            <TabularDetailPage.FormSecondaryButton onClick={() => undefined} />
+            <TabularDetailPage.FormPrimaryButton onClick={() => undefined} />
+            <TabularDetailPage.FormDeleteButton onClick={() => undefined} />
+          </>
+        }
+        hideControls={true}
       >
         <Content />
       </TabularDetailPageContainer>

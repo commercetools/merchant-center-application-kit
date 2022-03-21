@@ -1,7 +1,6 @@
 import type { CSSObject } from '@emotion/react';
 
 import { ReactElement, ReactNode, SyntheticEvent } from 'react';
-import { css } from '@emotion/react';
 import Spacings from '@commercetools-uikit/spacings';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import ModalPage from '../internals/modal-page';
@@ -10,10 +9,11 @@ import {
   FormPrimaryButton,
   FormSecondaryButton,
   FormDeleteButton,
-} from '../internals/default-form-buttons';
+} from '../../internals/default-form-buttons';
 import {
   ControlsContainter,
   TabularPageContainer,
+  FormControlsContainer,
 } from '../../internals/tabular-page';
 import { ContentWrapper } from '../../internals/page.styles';
 
@@ -78,17 +78,13 @@ const TabularModalPage = (props: Props) => (
         <ControlsContainter
           tabControls={props.tabControls}
           formControls={
-            <div
-              css={css`
-                margin-bottom: 16px;
-              `}
-            >
+            <FormControlsContainer>
               {!props.hideControls && props.formControls && (
                 <Spacings.Inline alignItems="flex-end">
                   {props.formControls}
                 </Spacings.Inline>
               )}
-            </div>
+            </FormControlsContainer>
           }
         />
       </Spacings.Stack>

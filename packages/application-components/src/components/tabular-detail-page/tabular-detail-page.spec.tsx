@@ -36,7 +36,7 @@ const renderTabularDetailPage = (additionalProps = {}) =>
           <TabHeader to="/tab-three" label="Disabled tab" isDisabled />
         </>
       }
-      onClose={() => {}}
+      onPreviousPathClick={() => {}}
       {...additionalProps}
     >
       <Content />
@@ -56,7 +56,7 @@ const TabularDetailPageWithHistory = () => {
           <TabHeader to="/tab-three" label="Disabled tab" isDisabled />
         </>
       }
-      onClose={() => history.push('/start')}
+      onPreviousPathClick={() => history.push('/start')}
     >
       <Content />
     </TabularDetailPage>

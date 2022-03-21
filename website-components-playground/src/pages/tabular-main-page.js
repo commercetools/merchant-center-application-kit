@@ -70,6 +70,16 @@ const TabularMainPageExample = (props) => {
               ],
               initialValue: 'default',
             },
+            {
+              kind: 'select',
+              name: 'hideControls',
+              label: 'Hide Controls?',
+              valueOptions: [
+                { value: false, label: 'No' },
+                { value: true, label: 'Yes' },
+              ],
+              initialValue: true,
+            },
           ]}
         >
           {({ values }) => (
@@ -96,6 +106,23 @@ const TabularMainPageExample = (props) => {
               customTitleRow={
                 values.useCustomTitleRow === 'custom' && exampleCustomTitleRow
               }
+              formControls={
+                <>
+                  <TabularMainPage.FormSecondaryButton
+                    onClick={() => undefined}
+                    isDisabled
+                  />
+                  <TabularMainPage.FormPrimaryButton
+                    onClick={() => undefined}
+                    isDisabled
+                  />
+                  <TabularMainPage.FormDeleteButton
+                    onClick={() => undefined}
+                    isDisabled
+                  />
+                </>
+              }
+              hideControls={values.hideControls}
             >
               <Switch>
                 <Route exact path={withPrefix('/tabular-main-page/')}>

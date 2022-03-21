@@ -650,8 +650,19 @@ const MainPage = () => {
 | `customTitleRow`                | `node`                          |    -     | -                        | Pass a React.node to be used in place of the `title` and `subtitle`.                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | `children`                      | `node`                          |    ✅    | -                        | Content rendered within the page. It's expected to have its style fully customized.                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `tabControls`                   | `node`                          |    ✅    | -                        | Pass a React.node to be used as the Tabs component for controlling the navigation between the Tab contents within the page.                                                                                                                                                                                                                                                                                                                                                                                                |
+| `formControls`                  | `node`                          |    -     | -                        | Pass a React.node with form controls. You can use the pre-made form buttons exposed by this component or you can use your own.                                                                                                                                                                                                                                                                                                                                                                                             |
+| `hideControls`                  | `bool`                          |    -     | `false`                  | Hides the form controls.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
 ### Static properties
+
+* Form Control Buttons
+
+  Pre-configured form control buttons to easily re-use them in the custom controls.
+
+  ```js
+  TabularMainPage.FormPrimaryButton = FormPrimaryButton;
+  TabularMainPage.FormSecondaryButton = FormSecondaryButton;
+  TabularMainPage.FormDeleteButton = FormDeleteButton;
 
 * `TabularMainPage.Intl`
 
@@ -677,7 +688,7 @@ const DetailPage = () => {
   return (
     <TabularDetailPage
       title="Detail page"
-      onClose={() => history.push('/starting-page')}
+      onPreviousPathClick={() => history.push('/starting-page')}
       previousPathLabel="Go back"
       tabControls={
         <>
@@ -714,10 +725,21 @@ const DetailPageWithRouter = () => (
 | `customTitleRow`                | `node`                          |    -     | -                                  | Pass a React.node to be used in place of the `title` and `subtitle`.                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | `children`                      | `node`                          |    ✅    | -                                  | Content rendered within the page. It's expected to have its style fully customized.                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `tabControls`                   | `node`                          |    ✅    | -                                  | Pass a React.node to be used as the Tabs component for controlling the navigation between the Tab contents within the page.                                                                                                                                                                                                                                                                                                                                                                                                |
+| `formControls`                  | `node`                          |    -     | -                                  | Pass a React.node with form controls. You can use the pre-made form buttons exposed by this component or you can use your own.                                                                                                                                                                                                                                                                                                                                                                                             |
+| `hideControls`                  | `bool`                          |    -     | `false`                            | Hides the form controls.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `previousPathLabel`             | `string` or `Intl message`      |    -     | `"Go back"` (translated)           | Label to appear as the previous path of the top bar of the page.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| `onClose`                       | `function`                      |    -     | -                                  | Called when the back button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `onPreviousPathClick`           | `function`                      |    ✅    | -                                  | Called when the back button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
 ### Static properties
+
+* Form Control Buttons
+
+  Pre-configured form control buttons to easily re-use them in the custom controls.
+
+  ```js
+  TabularDetailPage.FormPrimaryButton = FormPrimaryButton;
+  TabularDetailPage.FormSecondaryButton = FormSecondaryButton;
+  TabularDetailPage.FormDeleteButton = FormDeleteButton;
 
 * `TabularDetailPage.Intl`
 

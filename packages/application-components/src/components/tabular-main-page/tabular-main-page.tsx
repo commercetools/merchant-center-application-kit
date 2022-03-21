@@ -7,8 +7,14 @@ import PageHeaderTitle from '../internals/page-header-title';
 import {
   ControlsContainter,
   TabularPageContainer,
+  FormControlsContainer,
 } from '../internals/tabular-page';
 import { ContentWrapper, PageWrapper } from '../internals/page.styles';
+import {
+  FormPrimaryButton,
+  FormSecondaryButton,
+  FormDeleteButton,
+} from '../internals/default-form-buttons';
 
 type TTabularMainPageProps = {
   /**
@@ -31,6 +37,14 @@ type TTabularMainPageProps = {
    * A composition of tab components.
    */
   tabControls: ReactNode;
+  /**
+   * Any React node to be rendered as the form controls.
+   */
+  formControls?: ReactNode;
+  /**
+   * Determines if the form controls should be rendered.
+   */
+  hideControls: boolean;
 };
 
 const TabularMainPage = (props: TTabularMainPageProps) => (
@@ -44,7 +58,18 @@ const TabularMainPage = (props: TTabularMainPageProps) => (
             titleSize="big"
           />
         )}
-        <ControlsContainter tabControls={props.tabControls} />
+        <ControlsContainter
+          tabControls={props.tabControls}
+          formControls={
+            <FormControlsContainer>
+              {!props.hideControls && props.formControls && (
+                <Spacings.Inline alignItems="flex-end">
+                  {props.formControls}
+                </Spacings.Inline>
+              )}
+            </FormControlsContainer>
+          }
+        />
       </Spacings.Stack>
     </TabularPageContainer>
     <ContentWrapper
@@ -57,6 +82,17 @@ const TabularMainPage = (props: TTabularMainPageProps) => (
   </PageWrapper>
 );
 TabularMainPage.displayName = 'TabularMainPage';
+
+const defaultProps: Pick<TTabularMainPageProps, 'hideControls'> = {
+  hideControls: false,
+};
+
+TabularMainPage.defaultProps = defaultProps;
+// Static export of pre-configured form control buttons to easily re-use
+// them in the custom controls.
+TabularMainPage.FormPrimaryButton = FormPrimaryButton;
+TabularMainPage.FormSecondaryButton = FormSecondaryButton;
+TabularMainPage.FormDeleteButton = FormDeleteButton;
 // This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
 TabularMainPage.Intl = sharedMessages;
 
