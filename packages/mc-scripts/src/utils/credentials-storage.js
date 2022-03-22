@@ -38,12 +38,12 @@ class CredentialsStorage {
     if (!this.isSessionValid(environmentKey)) {
       return null;
     }
-    return allCredentials[environmentKey].sessionToken;
+    return allCredentials[environmentKey].token;
   }
 
-  setToken(environmentKey, sessionData) {
+  setToken(environmentKey, credentials) {
     const allCredentials = this._loadCredentials();
-    allCredentials[environmentKey] = sessionData;
+    allCredentials[environmentKey] = credentials;
     this._writeCredentials(allCredentials);
   }
 
@@ -53,8 +53,8 @@ class CredentialsStorage {
     if (!credentials) {
       return false;
     }
-    const now = new Date();
-    return now < new Date(allCredentials[environmentKey].expiresAt);
+    const now = Math.floor(Date.now() / 1000);
+    return now < credentials.expiresAt;
   }
 }
 

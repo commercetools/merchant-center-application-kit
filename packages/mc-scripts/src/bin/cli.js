@@ -42,7 +42,7 @@ Commands:
 
   serve                       Serves previously built and compiled application from the "public" folder.
 
-  login                       Log in to your Merchant Center account through the CLI. The session token is stored in your home directory and will be used by other CLI commands that require a valid session token.
+  login                       Log in to your Merchant Center account through the CLI, using the cloud environment information from the Custom Application config file. An API token is generated and stored in a configuration file for the related cloud environment, and valid for 36 hours.
 
   `);
   process.exit(0);
@@ -89,7 +89,10 @@ const applicationDirectory = fs.realpathSync(process.cwd());
         process.env.NODE_ENV = 'production';
 
         // Get specific flag for this command.
-        const commandArgs = getArgsForCommand(['transformer']);
+        const commandArgs = getArgsForCommand([
+          'transformer',
+          'print-security-headers',
+        ]);
         proxyCommand(command, { commandArgs });
         break;
       }
@@ -104,6 +107,7 @@ const applicationDirectory = fs.realpathSync(process.cwd());
       case 'login': {
         // Do this as the first thing so that any code reading it knows the right env.
         process.env.NODE_ENV = 'production';
+
         proxyCommand(command);
         break;
       }

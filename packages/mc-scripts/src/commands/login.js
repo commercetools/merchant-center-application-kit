@@ -3,7 +3,7 @@ const read = promisify(require('read'));
 const chalk = require('react-dev-utils/chalk');
 const { processConfig } = require('@commercetools-frontend/application-config');
 const CredentialsStorage = require('../utils/credentials-storage');
-const getSessionData = require('../utils/get-session-data');
+const { getAuthToken } = require('../utils/auth');
 
 const credentialsStorage = new CredentialsStorage();
 
@@ -19,10 +19,14 @@ const login = async () => {
   }
 
   const email = await read({ prompt: 'Email: ' });
-  const password = await read({ prompt: 'Password: ', silent: true });
+  const password = await read({ prompt: 'Password (hidden): ', silent: true });
 
-  const sessionData = await getSessionData({ email, password, mcApiUrl });
-  credentialsStorage.setToken(mcApiUrl, sessionData);
+  const credentials = await getAuthToken(mcApiUrl, {
+    email,
+    password,
+  });
+  credentialsStorage.setToken(mcApiUrl, credentials);
+
   console.log(
     chalk.green(`Login successful for the ${mcApiUrl} environment.\n`)
   );

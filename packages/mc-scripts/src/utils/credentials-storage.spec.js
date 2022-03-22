@@ -1,13 +1,6 @@
 const mock = require('mock-fs');
 const CredentialsStorage = require('./credentials-storage');
 
-const getExpiryDate = (hours) => {
-  const date = new Date();
-  const expireTime = date.getTime() + 1000 * hours;
-  date.setTime(expireTime);
-  return date.toUTCString();
-};
-
 afterEach(() => {
   mock.restore();
 });
@@ -20,23 +13,21 @@ describe('when session is valid', () => {
     mock({
       [CredentialsStorage.location]: JSON.stringify({
         [mcApiUrl]: {
-          sessionToken: 'hello-world',
-          expiresAt: getExpiryDate(36000),
+          token: 'hello-world',
+          expiresAt: Math.floor(Date.now() / 1000) + 60 * 60 * 36,
         },
       }),
     });
     credentialsStorage = new CredentialsStorage();
   });
 
-  it('should load credentials', () => {
+  it('should load credentials and update token', () => {
     expect(credentialsStorage.getToken(mcApiUrl)).toBe('hello-world');
     expect(credentialsStorage.isSessionValid(mcApiUrl)).toBe(true);
-  });
 
-  it('should update token', () => {
     const newSessionData = {
-      sessionToken: 'fizz-buzz',
-      expiresAt: getExpiryDate(36000),
+      token: 'fizz-buzz',
+      expiresAt: Math.floor(Date.now() / 1000) + 60 * 60 * 36,
     };
     credentialsStorage.setToken(mcApiUrl, newSessionData);
     expect(credentialsStorage.getToken(mcApiUrl)).toBe('fizz-buzz');
@@ -49,8 +40,8 @@ describe('when session is expired', () => {
     mock({
       [CredentialsStorage.location]: JSON.stringify({
         [mcApiUrl]: {
-          sessionToken: 'hello-world',
-          expiresAt: getExpiryDate(-36000),
+          token: 'hello-world',
+          expiresAt: Math.floor(Date.now() / 1000) - 1,
         },
       }),
     });
@@ -70,15 +61,13 @@ describe('when credentials file is missing', () => {
     credentialsStorage = new CredentialsStorage();
   });
 
-  it('should not load credentials', () => {
+  it('should not load credentials and update token', () => {
     expect(credentialsStorage.getToken(mcApiUrl)).toBe(null);
     expect(credentialsStorage.isSessionValid(mcApiUrl)).toBe(false);
-  });
 
-  it('should update token', () => {
     const newSessionData = {
-      sessionToken: 'fizz-buzz',
-      expiresAt: getExpiryDate(36000),
+      token: 'fizz-buzz',
+      expiresAt: Math.floor(Date.now() / 1000) + 60 * 60 * 36,
     };
     credentialsStorage.setToken(mcApiUrl, newSessionData);
     expect(credentialsStorage.getToken(mcApiUrl)).toBe('fizz-buzz');

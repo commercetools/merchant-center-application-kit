@@ -1,8 +1,6 @@
-const cookie = require('cookie');
 const { rest } = require('msw');
 const { setupServer } = require('msw/node');
-
-const getSessionData = require('./get-session-data');
+const { getAuthToken } = require('./auth');
 
 const mockServer = setupServer();
 afterEach(() => {
@@ -17,36 +15,42 @@ afterAll(() => mockServer.close());
 
 const mcApiUrl = 'https://mc-api.europe-west1.gcp.commercetools.com';
 
-describe('When login details are correct', () => {
+describe('when login details are correct', () => {
   beforeEach(() => {
-    const sessionData = cookie.serialize('mcAccessToken', 'hello-world', {
-      expires: new Date('2022-01-01'),
-      httpOnly: true,
-      domain: 'mc.europe-west1.gcp.commercetools.com',
-    });
     mockServer.use(
-      rest.post(`${mcApiUrl}/tokens`, (req, res, ctx) => {
-        return res(ctx.status(200), ctx.set('set-cookie', sessionData));
+      rest.post(`${mcApiUrl}/tokens/cli`, (req, res, ctx) => {
+        return res(
+          ctx.status(200),
+          ctx.json({
+            token: 'hello-world',
+            expiresAt: Math.floor(Date.now() / 1000) + 60 * 60 * 36, // 1,5 days
+          })
+        );
       })
     );
   });
   it('should match returned credentials', async () => {
-    const sessionData = await getSessionData({
+    const sessionData = await getAuthToken(mcApiUrl, {
       email: 'user@email.com',
       password: 'secret',
-      mcApiUrl,
     });
     expect(sessionData).toEqual({
-      sessionToken: 'hello-world',
-      expiresAt: 'Sat, 01 Jan 2022 00:00:00 GMT',
+      token: 'hello-world',
+      expiresAt: expect.any(Number),
     });
+    expect(sessionData.expiresAt).toBeGreaterThan(
+      Math.floor(Date.now() / 1000)
+    );
+    expect(sessionData.expiresAt).toBeLessThanOrEqual(
+      Math.floor(Date.now() / 1000) + 60 * 60 * 36
+    );
   });
 });
 
-describe('When login details are incorrect', () => {
+describe('when login details are incorrect', () => {
   beforeEach(() => {
     mockServer.use(
-      rest.post(`${mcApiUrl}/tokens`, (req, res, ctx) => {
+      rest.post(`${mcApiUrl}/tokens/cli`, (req, res, ctx) => {
         return res(
           ctx.status(400),
           ctx.json({
@@ -59,10 +63,9 @@ describe('When login details are incorrect', () => {
   it('should throw error', async () => {
     await expect(
       async () =>
-        await getSessionData({
+        await getAuthToken(mcApiUrl, {
           email: 'user@email.com',
           password: 'secret',
-          mcApiUrl,
         })
     ).rejects.toThrow('Invalid email or password');
   });
