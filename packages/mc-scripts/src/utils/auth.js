@@ -2,8 +2,6 @@ const fetch = require('node-fetch');
 const createHttpUserAgent = require('@commercetools/http-user-agent');
 const pkgJson = require('../../package.json');
 
-const calculateExpirationTime = (expiresIn) => Date.now() + expiresIn * 1000;
-
 const userAgent = createHttpUserAgent({
   name: 'cli-login',
   libraryName: 'mc-scripts',
