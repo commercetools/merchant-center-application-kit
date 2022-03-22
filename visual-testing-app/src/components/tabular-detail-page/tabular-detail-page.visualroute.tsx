@@ -72,6 +72,11 @@ export const Component = () => (
         <Content />
       </TabularDetailPageContainer>
     </Spec>
+    <Spec label="TabularDetailPage - with a very long title" size="xl">
+      <TabularDetailPageContainer title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec turpis in risus elementum fringilla. Vestibulum nec vulputate metus, fringilla luctus nisl.">
+        <Content />
+      </TabularDetailPageContainer>
+    </Spec>
     <Spec
       size="xl"
       label="TabularDetailPage - with the static exposed form controls"
