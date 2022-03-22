@@ -1,7 +1,5 @@
-import type { ErrorObject } from 'ajv';
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
-
-import Ajv from 'ajv';
+import Ajv, { type ErrorObject } from 'ajv';
 import schemaJson from '../schema.json';
 
 type ErrorAdditionalProperty = ErrorObject<

@@ -31,8 +31,8 @@ import {
 } from '@commercetools-frontend/react-notifications';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import { createTestMiddleware as createSdkTestMiddleware } from '@commercetools-frontend/sdk/test-utils';
+import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-config/ssr';
 import ApplicationEntryPoint from '../components/application-entry-point';
-import { entryPointUriPathToPermissionKeys } from '../utils/formatters';
 import { createReduxStore } from '../configure-store';
 import createApolloClient from '../configure-apollo';
 

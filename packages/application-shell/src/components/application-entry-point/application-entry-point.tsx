@@ -5,7 +5,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
-import { entryPointUriPathToPermissionKeys } from '../../utils/formatters';
+import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-config/ssr';
 import RouteCatchAll from '../route-catch-all';
 
 type Props<AdditionalEnvironmentProperties extends {}> = {

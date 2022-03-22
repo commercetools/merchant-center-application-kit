@@ -30,6 +30,30 @@ describe('processing a simple config', () => {
   it('should process the config and prepare the application environment and headers', () => {
     const result = processConfig(createTestOptions());
     expect(result).toEqual({
+      data: {
+        id: 'app-id-123',
+        name: 'avengers-app',
+        description: undefined,
+        entryPointUriPath: 'avengers',
+        url: 'https://avengers.app',
+        permissions: [
+          {
+            name: 'ViewAvengers',
+            oAuthScopes: ['view_products'],
+          },
+          {
+            name: 'ManageAvengers',
+            oAuthScopes: [],
+          },
+        ],
+        icon: '<svg><path fill="#000000" /></svg>',
+        mainMenuLink: {
+          defaultLabel: 'Avengers',
+          labelAllLocales: [],
+          permissions: [],
+        },
+        submenuLinks: [],
+      },
       env: {
         applicationId: '__local:avengers',
         applicationName: 'avengers-app',
@@ -79,6 +103,30 @@ describe('processing a simple config', () => {
         })
       );
       expect(result).toEqual({
+        data: {
+          id: 'app-id-123',
+          name: 'avengers-app',
+          description: undefined,
+          entryPointUriPath: 'avengers',
+          url: 'https://avengers.app',
+          permissions: [
+            {
+              name: 'ViewAvengers',
+              oAuthScopes: ['view_products'],
+            },
+            {
+              name: 'ManageAvengers',
+              oAuthScopes: [],
+            },
+          ],
+          icon: '<svg><path fill="#000000" /></svg>',
+          mainMenuLink: {
+            defaultLabel: 'Avengers',
+            labelAllLocales: [],
+            permissions: [],
+          },
+          submenuLinks: [],
+        },
         env: {
           applicationId: 'app-id-123:avengers',
           applicationName: 'avengers-app',
@@ -115,6 +163,30 @@ describe('processing a simple config', () => {
         })
       );
       expect(result).toEqual({
+        data: {
+          id: 'app-id-123',
+          name: 'avengers-app',
+          description: undefined,
+          entryPointUriPath: 'avengers',
+          url: 'https://avengers.app',
+          permissions: [
+            {
+              name: 'ViewAvengers',
+              oAuthScopes: ['view_products'],
+            },
+            {
+              name: 'ManageAvengers',
+              oAuthScopes: [],
+            },
+          ],
+          icon: '<svg><path fill="#000000" /></svg>',
+          mainMenuLink: {
+            defaultLabel: 'Avengers',
+            labelAllLocales: [],
+            permissions: [],
+          },
+          submenuLinks: [],
+        },
         env: {
           applicationId: '__local:avengers',
           applicationName: 'avengers-app',
@@ -168,6 +240,30 @@ describe('processing a simple config', () => {
         })
       );
       expect(result).toEqual({
+        data: {
+          id: 'app-id-123',
+          name: 'avengers-app',
+          description: undefined,
+          entryPointUriPath: 'avengers',
+          url: 'https://avengers.app',
+          permissions: [
+            {
+              name: 'ViewAvengers',
+              oAuthScopes: ['view_products'],
+            },
+            {
+              name: 'ManageAvengers',
+              oAuthScopes: [],
+            },
+          ],
+          icon: '<svg><path fill="#000000" /></svg>',
+          mainMenuLink: {
+            defaultLabel: 'Avengers',
+            labelAllLocales: [],
+            permissions: [],
+          },
+          submenuLinks: [],
+        },
         env: {
           applicationId: 'app-id-123:avengers',
           applicationName: 'avengers-app',
@@ -202,6 +298,30 @@ describe('processing a full config', () => {
   it('should process the config and prepare the application environment and headers', () => {
     const result = processConfig(createTestOptions());
     expect(result).toEqual({
+      data: {
+        id: 'app-id-123',
+        name: 'avengers-app',
+        description: undefined,
+        entryPointUriPath: 'avengers',
+        url: 'https://avengers.app',
+        permissions: [
+          {
+            name: 'ViewAvengers',
+            oAuthScopes: ['view_products'],
+          },
+          {
+            name: 'ManageAvengers',
+            oAuthScopes: [],
+          },
+        ],
+        icon: '<svg><path fill="#000000" /></svg>',
+        mainMenuLink: {
+          defaultLabel: 'Avengers',
+          labelAllLocales: [],
+          permissions: [],
+        },
+        submenuLinks: [],
+      },
       env: {
         applicationId: '__local:avengers',
         applicationName: 'avengers-app',
@@ -262,6 +382,30 @@ describe('processing a full config', () => {
         })
       );
       expect(result).toEqual({
+        data: {
+          id: 'app-id-123',
+          name: 'avengers-app',
+          description: undefined,
+          entryPointUriPath: 'avengers',
+          url: 'https://avengers.app',
+          permissions: [
+            {
+              name: 'ViewAvengers',
+              oAuthScopes: ['view_products'],
+            },
+            {
+              name: 'ManageAvengers',
+              oAuthScopes: [],
+            },
+          ],
+          icon: '<svg><path fill="#000000" /></svg>',
+          mainMenuLink: {
+            defaultLabel: 'Avengers',
+            labelAllLocales: [],
+            permissions: [],
+          },
+          submenuLinks: [],
+        },
         env: {
           applicationId: 'app-id-123:avengers',
           applicationName: 'avengers-app',
@@ -311,6 +455,30 @@ describe('processing a full config', () => {
         })
       );
       expect(result).toEqual({
+        data: {
+          id: 'app-id-123',
+          name: 'avengers-app',
+          description: undefined,
+          entryPointUriPath: 'avengers',
+          url: 'https://avengers.app',
+          permissions: [
+            {
+              name: 'ViewAvengers',
+              oAuthScopes: ['view_products'],
+            },
+            {
+              name: 'ManageAvengers',
+              oAuthScopes: [],
+            },
+          ],
+          icon: '<svg><path fill="#000000" /></svg>',
+          mainMenuLink: {
+            defaultLabel: 'Avengers',
+            labelAllLocales: [],
+            permissions: [],
+          },
+          submenuLinks: [],
+        },
         env: {
           applicationId: '__local:avengers',
           applicationName: 'avengers-app',
@@ -373,6 +541,30 @@ describe('processing a full config', () => {
         })
       );
       expect(result).toEqual({
+        data: {
+          id: 'app-id-123',
+          name: 'avengers-app',
+          description: undefined,
+          entryPointUriPath: 'avengers',
+          url: 'https://avengers.app',
+          permissions: [
+            {
+              name: 'ViewAvengers',
+              oAuthScopes: ['view_products'],
+            },
+            {
+              name: 'ManageAvengers',
+              oAuthScopes: [],
+            },
+          ],
+          icon: '<svg><path fill="#000000" /></svg>',
+          mainMenuLink: {
+            defaultLabel: 'Avengers',
+            labelAllLocales: [],
+            permissions: [],
+          },
+          submenuLinks: [],
+        },
         env: {
           applicationId: 'app-id-123:avengers',
           applicationName: 'avengers-app',
@@ -430,6 +622,30 @@ describe('processing a config with environment variable placeholders', () => {
       })
     );
     expect(result).toEqual({
+      data: {
+        id: 'app-id-123',
+        name: 'avengers-app',
+        description: undefined,
+        entryPointUriPath: 'avengers',
+        url: 'https://avengers.app',
+        permissions: [
+          {
+            name: 'ViewAvengers',
+            oAuthScopes: ['view_products'],
+          },
+          {
+            name: 'ManageAvengers',
+            oAuthScopes: [],
+          },
+        ],
+        icon: '<svg><path fill="#000000" /></svg>',
+        mainMenuLink: {
+          defaultLabel: 'Avengers',
+          labelAllLocales: [],
+          permissions: [],
+        },
+        submenuLinks: [],
+      },
       env: {
         applicationId: '__local:avengers',
         applicationName: 'avengers-app',
@@ -483,6 +699,30 @@ describe('processing a config with environment variable placeholders', () => {
         })
       );
       expect(result).toEqual({
+        data: {
+          id: 'app-id-123',
+          name: 'avengers-app',
+          description: undefined,
+          entryPointUriPath: 'avengers',
+          url: 'https://avengers.app',
+          permissions: [
+            {
+              name: 'ViewAvengers',
+              oAuthScopes: ['view_products'],
+            },
+            {
+              name: 'ManageAvengers',
+              oAuthScopes: [],
+            },
+          ],
+          icon: '<svg><path fill="#000000" /></svg>',
+          mainMenuLink: {
+            defaultLabel: 'Avengers',
+            labelAllLocales: [],
+            permissions: [],
+          },
+          submenuLinks: [],
+        },
         env: {
           applicationId: 'app-id-123:avengers',
           applicationName: 'avengers-app',
@@ -523,6 +763,30 @@ describe('processing a config with environment variable placeholders', () => {
         })
       );
       expect(result).toEqual({
+        data: {
+          id: 'app-id-123',
+          name: 'avengers-app',
+          description: undefined,
+          entryPointUriPath: 'avengers',
+          url: 'https://avengers.app',
+          permissions: [
+            {
+              name: 'ViewAvengers',
+              oAuthScopes: ['view_products'],
+            },
+            {
+              name: 'ManageAvengers',
+              oAuthScopes: [],
+            },
+          ],
+          icon: '<svg><path fill="#000000" /></svg>',
+          mainMenuLink: {
+            defaultLabel: 'Avengers',
+            labelAllLocales: [],
+            permissions: [],
+          },
+          submenuLinks: [],
+        },
         env: {
           applicationId: '__local:avengers',
           applicationName: 'avengers-app',
@@ -580,6 +844,30 @@ describe('processing a config with environment variable placeholders', () => {
         })
       );
       expect(result).toEqual({
+        data: {
+          id: 'app-id-123',
+          name: 'avengers-app',
+          description: undefined,
+          entryPointUriPath: 'avengers',
+          url: 'https://avengers.app',
+          permissions: [
+            {
+              name: 'ViewAvengers',
+              oAuthScopes: ['view_products'],
+            },
+            {
+              name: 'ManageAvengers',
+              oAuthScopes: [],
+            },
+          ],
+          icon: '<svg><path fill="#000000" /></svg>',
+          mainMenuLink: {
+            defaultLabel: 'Avengers',
+            labelAllLocales: [],
+            permissions: [],
+          },
+          submenuLinks: [],
+        },
         env: {
           applicationId: 'app-id-123:avengers',
           applicationName: 'avengers-app',
@@ -614,6 +902,46 @@ describe('processing a config with intl variable placeholders', () => {
   it('should process the config and correctly parse the translations', () => {
     const result = processConfig(createTestOptions());
     expect(result).toEqual({
+      data: {
+        id: 'app-id-123',
+        name: 'avengers-app',
+        description: undefined,
+        entryPointUriPath: 'avengers',
+        url: 'https://my-app.com',
+        permissions: [
+          {
+            name: 'ViewAvengers',
+            oAuthScopes: ['view_products'],
+          },
+          {
+            name: 'ManageAvengers',
+            oAuthScopes: [],
+          },
+        ],
+        icon: '<svg><path fill="#000000" /></svg>',
+        mainMenuLink: {
+          defaultLabel: 'Avengers',
+          labelAllLocales: [
+            {
+              locale: 'en',
+              value: 'The Avengers',
+            },
+            {
+              locale: 'de',
+              value: 'Die Avengers',
+            },
+          ],
+          permissions: ['ViewAvengers'],
+        },
+        submenuLinks: [
+          {
+            defaultLabel: 'Add avenger',
+            labelAllLocales: [],
+            permissions: ['ManageAvengers'],
+            uriPath: 'new',
+          },
+        ],
+      },
       env: {
         applicationId: '__local:avengers',
         applicationName: 'avengers-app',
@@ -678,6 +1006,35 @@ describe('processing a config with file path variable placeholders', () => {
   it('should process the config and correctly parse the file content', () => {
     const result = processConfig(createTestOptions());
     expect(result).toEqual({
+      data: {
+        id: 'app-id-123',
+        name: 'avengers-app',
+        description: undefined,
+        entryPointUriPath: 'avengers',
+        url: 'https://my-app.com',
+        permissions: [
+          {
+            name: 'ViewAvengers',
+            oAuthScopes: ['view_products'],
+          },
+          {
+            name: 'ManageAvengers',
+            oAuthScopes: [],
+          },
+        ],
+        icon: expect.stringContaining('<svg'),
+        mainMenuLink: {
+          defaultLabel: 'Avengers',
+          labelAllLocales: [
+            {
+              locale: 'en',
+              value: 'The Avengers',
+            },
+          ],
+          permissions: ['ViewAvengers'],
+        },
+        submenuLinks: [],
+      },
       env: {
         applicationId: '__local:avengers',
         applicationName: 'avengers-app',
@@ -739,6 +1096,30 @@ describe('processing a config with OIDC', () => {
       })
     );
     expect(result).toEqual({
+      data: {
+        id: 'app-id-123',
+        name: 'avengers-app',
+        description: undefined,
+        entryPointUriPath: 'avengers',
+        url: 'https://avengers.app',
+        permissions: [
+          {
+            name: 'ViewAvengers',
+            oAuthScopes: ['view_orders', 'view_states'],
+          },
+          {
+            name: 'ManageAvengers',
+            oAuthScopes: ['manage_orders'],
+          },
+        ],
+        icon: '<svg><path fill="#000000" /></svg>',
+        mainMenuLink: {
+          defaultLabel: 'Avengers',
+          labelAllLocales: [],
+          permissions: [],
+        },
+        submenuLinks: [],
+      },
       env: {
         __DEVELOPMENT__: {
           oidc: {
@@ -791,6 +1172,30 @@ describe('processing a config with OIDC', () => {
         })
       );
       expect(result).toEqual({
+        data: {
+          id: 'app-id-123',
+          name: 'avengers-app',
+          description: undefined,
+          entryPointUriPath: 'avengers',
+          url: 'https://avengers.app',
+          permissions: [
+            {
+              name: 'ViewAvengers',
+              oAuthScopes: ['view_orders', 'view_states'],
+            },
+            {
+              name: 'ManageAvengers',
+              oAuthScopes: ['manage_orders'],
+            },
+          ],
+          icon: '<svg><path fill="#000000" /></svg>',
+          mainMenuLink: {
+            defaultLabel: 'Avengers',
+            labelAllLocales: [],
+            permissions: [],
+          },
+          submenuLinks: [],
+        },
         env: {
           applicationId: 'app-id-123:avengers',
           applicationName: 'avengers-app',
