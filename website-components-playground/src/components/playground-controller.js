@@ -76,7 +76,6 @@ PlaygroundController.propTypes = {
       ),
     }).isRequired
   ).isRequired,
-  background: PropTypes.string,
   children: PropTypes.func.isRequired,
 };
 

@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 import { customProperties } from '@commercetools-uikit/design-system';
 import { css } from '@emotion/react';
 import PageHeaderTitle from './page-header-title';

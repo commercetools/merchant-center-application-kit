@@ -1,22 +1,11 @@
-import { css } from '@emotion/react';
-import { customProperties } from '@commercetools-uikit/design-system';
 import type { ReactNode } from 'react';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { customProperties } from '@commercetools-uikit/design-system';
 
-type TTabControlsProps = {
-  children: ReactNode;
-};
-
-const TabControls = (props: TTabControlsProps) => (
-  <div
-    css={css`
-      margin-top: ${customProperties.spacingS};
-    `}
-    role="tablist"
-  >
-    {props.children}
-  </div>
-);
-TabControls.displayName = 'TabControls';
+const TabControls = styled.div`
+  margin-top: ${customProperties.spacingS};
+`;
 
 type TControlsContainterProps = {
   tabControls: ReactNode;
@@ -32,7 +21,7 @@ const ControlsContainter = (props: TControlsContainterProps) => (
       justify-content: space-between;
     `}
   >
-    <TabControls>{props.tabControls}</TabControls>
+    <TabControls role="tablist">{props.tabControls}</TabControls>
     {props.formControls}
   </div>
 );
@@ -62,18 +51,8 @@ const defaultProps: Pick<TTabularPageContainerProps, 'color'> = {
 };
 TabularPageContainer.defaultProps = defaultProps;
 
-type TFormControlsContainerProps = {
-  children: ReactNode;
-};
-const FormControlsContainer = (props: TFormControlsContainerProps) => (
-  <div
-    css={css`
-      margin-bottom: ${customProperties.spacingM};
-    `}
-  >
-    {props.children}
-  </div>
-);
-FormControlsContainer.displayName = 'FormControlsContainer';
+const FormControlsContainer = styled.div`
+  margin-bottom: ${customProperties.spacingM};
+`;
 
 export { ControlsContainter, TabularPageContainer, FormControlsContainer };

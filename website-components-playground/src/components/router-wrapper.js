@@ -1,11 +1,10 @@
 import { BrowserRouter, StaticRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const isBrowser = typeof window !== 'undefined';
-// During Gatsby's build time browser API is not available and BrowserRouter can't be used. For that step StaticRouter has to be plugged in.
-const Router = isBrowser ? BrowserRouter : StaticRouter;
-
 const RouterWrapper = (props) => {
+  const isBrowser = typeof window !== 'undefined';
+  // Some pages are rendered using SSR. Therefore, we need to use the `StaticRouter` instead of the normal `BrowserRouter`.
+  const Router = isBrowser ? BrowserRouter : StaticRouter;
   return <Router>{props.children}</Router>;
 };
 RouterWrapper.displayName = 'RouterWrapper';

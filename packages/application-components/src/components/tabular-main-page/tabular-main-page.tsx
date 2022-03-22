@@ -47,6 +47,10 @@ type TTabularMainPageProps = {
   hideControls: boolean;
 };
 
+const defaultProps: Pick<TTabularMainPageProps, 'hideControls'> = {
+  hideControls: false,
+};
+
 const TabularMainPage = (props: TTabularMainPageProps) => (
   <PageWrapper>
     <TabularPageContainer color="surface">
@@ -82,11 +86,6 @@ const TabularMainPage = (props: TTabularMainPageProps) => (
   </PageWrapper>
 );
 TabularMainPage.displayName = 'TabularMainPage';
-
-const defaultProps: Pick<TTabularMainPageProps, 'hideControls'> = {
-  hideControls: false,
-};
-
 TabularMainPage.defaultProps = defaultProps;
 // Static export of pre-configured form control buttons to easily re-use
 // them in the custom controls.

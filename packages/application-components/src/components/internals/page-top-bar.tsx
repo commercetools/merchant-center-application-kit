@@ -1,9 +1,9 @@
+import type { MouseEvent, KeyboardEvent, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import { useIntl } from 'react-intl';
 import { ListIcon } from '@commercetools-uikit/icons';
 import FlatButton from '@commercetools-uikit/flat-button';
 import { customProperties } from '@commercetools-uikit/design-system';
-import type { MouseEvent, KeyboardEvent } from 'react';
 import messages from './messages';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
@@ -13,6 +13,7 @@ type MessageDescriptor = {
   id: string;
   description?: string | object;
   defaultMessage?: string;
+  values?: Record<string, ReactNode>;
 };
 type Label = string | MessageDescriptor;
 type Props = {

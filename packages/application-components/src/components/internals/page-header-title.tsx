@@ -1,4 +1,4 @@
-import { isValidElement, ReactElement } from 'react';
+import { isValidElement, type ReactElement } from 'react';
 import { customProperties } from '@commercetools-uikit/design-system';
 import Text from '@commercetools-uikit/text';
 import { css } from '@emotion/react';

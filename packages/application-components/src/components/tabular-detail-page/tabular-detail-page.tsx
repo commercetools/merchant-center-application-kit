@@ -68,6 +68,10 @@ type TTabularDetailPageProps = {
   ) => void;
 };
 
+const defaultProps: Pick<TTabularDetailPageProps, 'hideControls'> = {
+  hideControls: false,
+};
+
 const TabularDetailPage = (props: TTabularDetailPageProps) => (
   <PageWrapper>
     <TabularPageContainer color="neutral">
@@ -102,11 +106,6 @@ const TabularDetailPage = (props: TTabularDetailPageProps) => (
   </PageWrapper>
 );
 TabularDetailPage.displayName = 'TabularDetailPage';
-
-const defaultProps: Pick<TTabularDetailPageProps, 'hideControls'> = {
-  hideControls: false,
-};
-
 TabularDetailPage.defaultProps = defaultProps;
 // Static export of pre-configured form control buttons to easily re-use
 // them in the custom controls.

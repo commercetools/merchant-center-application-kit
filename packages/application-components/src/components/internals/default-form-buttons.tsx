@@ -1,4 +1,4 @@
-import { SyntheticEvent } from 'react';
+import type { SyntheticEvent } from 'react';
 import { useIntl } from 'react-intl';
 import PrimaryButton from '@commercetools-uikit/primary-button';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
