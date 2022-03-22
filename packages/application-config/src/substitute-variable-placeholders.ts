@@ -1,6 +1,5 @@
 import fs from 'fs';
-
-type Meta = { processEnv: NodeJS.ProcessEnv; applicationPath: string };
+import type { LoadingConfigOptions } from './types';
 
 /**
  * NOTE:
@@ -36,10 +35,10 @@ const substituteEnvVariablePlaceholder = (
   valueOfPlaceholder: string,
   matchedString: string,
   valueOfEnvConfig: string,
-  meta: Meta
+  loadingOptions: LoadingConfigOptions
 ) => {
   const [, requestedEnvVar] = valueOfPlaceholder.split(':');
-  const hasEnvField = meta.processEnv.hasOwnProperty(requestedEnvVar);
+  const hasEnvField = loadingOptions.processEnv.hasOwnProperty(requestedEnvVar);
 
   if (!hasEnvField) {
     throw new Error(
@@ -50,7 +49,7 @@ const substituteEnvVariablePlaceholder = (
   const escapedMatchedString = matchedString.replace(/[${}:]/g, '\\$&');
   return valueOfEnvConfig.replace(
     new RegExp(`(${escapedMatchedString})+`, 'g'),
-    meta.processEnv[requestedEnvVar] as string
+    loadingOptions.processEnv[requestedEnvVar] as string
   );
 };
 
@@ -58,12 +57,15 @@ const substituteIntlVariablePlaceholder = (
   valueOfPlaceholder: string,
   matchedString: string,
   valueOfEnvConfig: string,
-  meta: Meta
+  loadingOptions: LoadingConfigOptions
 ) => {
   const [, locale, requestedIntlMessageId] = valueOfPlaceholder.split(':');
 
   const translationsFilePath = require.resolve(`./i18n/data/${locale}.json`, {
-    paths: [`${meta.applicationPath}/src`, meta.applicationPath],
+    paths: [
+      `${loadingOptions.applicationPath}/src`,
+      loadingOptions.applicationPath,
+    ],
   });
   const translations: Record<string, string> = require(translationsFilePath);
 
@@ -86,14 +88,14 @@ const substituteFilePathVariablePlaceholder = (
   valueOfPlaceholder: string,
   matchedString: string,
   valueOfEnvConfig: string,
-  meta: Meta
+  loadingOptions: LoadingConfigOptions
 ) => {
   const [, filePathOrModule] = valueOfPlaceholder.split(':');
 
   const content = fs.readFileSync(
     require.resolve(filePathOrModule, {
       // Relative paths should be resolved from the application folder.
-      paths: [meta.applicationPath],
+      paths: [loadingOptions.applicationPath],
     }),
     {
       encoding: 'utf-8',
@@ -112,7 +114,10 @@ const getValueOfPlaceholder = (valueWithPlaceholder: string) =>
     .replace(variableSyntax, (_match, varName) => varName.trim())
     .replace(/\s/g, '');
 
-const substituteVariablePlaceholders = <T>(config: T, meta: Meta): T =>
+const substituteVariablePlaceholders = <T>(
+  config: T,
+  loadingOptions: LoadingConfigOptions
+): T =>
   JSON.parse(JSON.stringify(config), (_key, value) => {
     // Only strings are allowed
     let substitutedValue = value as string;
@@ -128,21 +133,21 @@ const substituteVariablePlaceholders = <T>(config: T, meta: Meta): T =>
               valueOfPlaceholder,
               matchedString,
               substitutedValue,
-              meta
+              loadingOptions
             );
           } else if (isIntlVariablePlaceholder(valueOfPlaceholder)) {
             substitutedValue = substituteIntlVariablePlaceholder(
               valueOfPlaceholder,
               matchedString,
               substitutedValue,
-              meta
+              loadingOptions
             );
           } else if (isFilePathVariablePlaceholder(valueOfPlaceholder)) {
             substitutedValue = substituteFilePathVariablePlaceholder(
               valueOfPlaceholder,
               matchedString,
               substitutedValue,
-              meta
+              loadingOptions
             );
           }
         });

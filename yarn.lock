@@ -2291,6 +2291,7 @@ __metadata:
     "@babel/runtime-corejs3": ^7.16.8
     "@commercetools-frontend/actions-global": 21.2.1
     "@commercetools-frontend/application-components": 21.2.1
+    "@commercetools-frontend/application-config": 21.2.1
     "@commercetools-frontend/application-shell-connectors": 21.2.1
     "@commercetools-frontend/assets": 21.0.0
     "@commercetools-frontend/browser-history": 21.0.0

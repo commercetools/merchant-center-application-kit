@@ -10,8 +10,6 @@ export {
   selectUserId,
   selectProjectKeyFromUrl,
   createApolloContextForProxyForwardTo,
-  entryPointUriPathToPermissionKeys,
-  entryPointUriPathToResourceAccesses,
 } from './utils';
 export { GtmContext } from './components/gtm-booter';
 export { default as GtmUserLogoutTracker } from './components/gtm-user-logout-tracker';
@@ -22,6 +20,11 @@ export {
   useMcLazyQuery,
   useMcMutation,
 } from './hooks/apollo-hooks';
+
+export {
+  entryPointUriPathToPermissionKeys,
+  entryPointUriPathToResourceAccesses,
+} from '@commercetools-frontend/application-config/ssr';
 
 /**
  * NOTE:

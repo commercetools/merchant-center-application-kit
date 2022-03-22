@@ -1,26 +1,28 @@
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
-import type { ApplicationRuntimeConfig, CloudIdentifier } from './types';
+import type {
+  ApplicationRuntimeConfig,
+  CloudIdentifier,
+  LoadingConfigOptions,
+} from './types';
 
 // Loads the configuration file and parse the environment and header values.
 // Most of the resulting values are inferred from the config.
 import fs from 'fs';
 import omitEmpty from 'omit-empty-es';
 import loadConfig from './load-config';
-import validateConfig from './validate-config';
+import validate from './validate-config';
+import substituteVariablePlaceholders from './substitute-variable-placeholders';
 import {
   mapCloudIdentifierToApiUrl,
   getUniqueValues,
   getIsProd,
   getOrThrow,
 } from './utils';
-import substituteVariablePlaceholders from './substitute-variable-placeholders';
+import { transformCustomApplicationConfigToData } from './transformers';
 
-type ProcessConfigOptions = {
+type ProcessConfigOptions = Partial<LoadingConfigOptions> & {
   // Options useful for testing
   disableCache?: boolean;
-  processEnv?: NodeJS.ProcessEnv;
-  applicationPath?: string;
-  configJson?: JSONSchemaForCustomApplicationConfigurationFiles | undefined;
 };
 
 // TODO: make it configurable.
@@ -51,27 +53,26 @@ const processConfig = ({
 }: ProcessConfigOptions = {}): ApplicationRuntimeConfig => {
   if (cachedConfig && !disableCache) return cachedConfig;
 
+  const rawConfig = loadConfig(applicationPath);
+  validate(rawConfig);
+  const appConfig =
+    substituteVariablePlaceholders<JSONSchemaForCustomApplicationConfigurationFiles>(
+      rawConfig,
+      { applicationPath, processEnv }
+    );
+  const customApplicationData =
+    transformCustomApplicationConfigToData(appConfig);
+
   const appEnvKey =
     processEnv.MC_APP_ENV ?? processEnv.NODE_ENV ?? 'development';
   const isProd = getIsProd(processEnv);
-
-  const loadedAppConfig = loadConfig(applicationPath);
-  validateConfig(loadedAppConfig);
-  const validatedLoadedAppConfig =
-    loadedAppConfig as JSONSchemaForCustomApplicationConfigurationFiles;
-
-  const appConfig =
-    substituteVariablePlaceholders<JSONSchemaForCustomApplicationConfigurationFiles>(
-      validatedLoadedAppConfig,
-      { processEnv, applicationPath }
-    );
 
   const additionalAppEnv = appConfig.additionalEnv ?? {};
   const revision = (additionalAppEnv.revision as string) ?? '';
 
   // Parse all the supported URLs, which gets implicitly validated
 
-  const envAppUrl = isProd ? appConfig.env.production.url : developmentAppUrl;
+  const envAppUrl = isProd ? customApplicationData.url : developmentAppUrl;
   const appUrl = getOrThrow(
     () => new URL(envAppUrl),
     `Invalid application URL: "${envAppUrl}"`
@@ -102,8 +103,8 @@ const processConfig = ({
   // This is important to determine to which URL the MC should redirect to
   // after successful login.
   const applicationId = isProd
-    ? `${appConfig.env.production.applicationId}:${appConfig.entryPointUriPath}`
-    : `__local:${appConfig.entryPointUriPath}`;
+    ? `${customApplicationData.id}:${customApplicationData.entryPointUriPath}`
+    : `__local:${customApplicationData.entryPointUriPath}`;
 
   const developmentConfig: ApplicationRuntimeConfig['env']['__DEVELOPMENT__'] =
     isProd
@@ -123,27 +124,28 @@ const processConfig = ({
             ].join(''),
             initialProjectKey:
               // For the `account` application, we should unset the projectKey.
-              appConfig.entryPointUriPath === 'account'
+              customApplicationData.entryPointUriPath === 'account'
                 ? undefined
                 : appConfig.env.development.initialProjectKey,
             teamId: appConfig.env.development?.teamId,
             oAuthScopes: appConfig.oAuthScopes,
           }),
           menuLinks: {
-            icon: appConfig.icon,
-            ...appConfig.mainMenuLink,
-            submenuLinks: appConfig.submenuLinks,
+            icon: customApplicationData.icon,
+            ...customApplicationData.mainMenuLink,
+            submenuLinks: customApplicationData.submenuLinks,
           },
           // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
           accountLinks: appConfig.accountLinks,
         });
 
   cachedConfig = {
+    data: customApplicationData,
     env: {
       ...omitEmpty(additionalAppEnv),
       applicationId,
-      applicationName: appConfig.name,
-      entryPointUriPath: appConfig.entryPointUriPath,
+      applicationName: customApplicationData.name,
+      entryPointUriPath: customApplicationData.entryPointUriPath,
       ...(isProd || !developmentConfig
         ? {}
         : { __DEVELOPMENT__: developmentConfig }),

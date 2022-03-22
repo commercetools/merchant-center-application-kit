@@ -16,8 +16,12 @@
   },
   "main": "dist/commercetools-frontend-application-config.cjs.js",
   "module": "dist/commercetools-frontend-application-config.esm.js",
+  "preconstruct": {
+    "entrypoints": ["./index.ts", "./ssr.ts"]
+  },
   "files": [
     "dist",
+    "ssr",
     "scripts",
     "schema.json",
     "package.json",
