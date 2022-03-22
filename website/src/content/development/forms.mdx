@@ -2,18 +2,18 @@
 title: Forms
 ---
 
-In the previous sections, we learned how to start building the actual User Interface by using UI components and fetching data. One of the most common requirements when implementing a User Interface is about forms.
+In previous sections, we learned how to start building the user interface with components and fetching data. One of the most common requirements when implementing a user interface is forms.
 
-To facilitate the development of UI forms, we provide many different ready-to-use input and field components based on [commercetools Design System](https://github.com/commercetools/ui-kit).
+To facilitate the development of forms, we provide many ready-to-use input and field components based on the [commercetools Design System](https://github.com/commercetools/ui-kit).
 
 # Form state management
 
-Forms generally consist of a group of inputs that users interact with to eventually trigger some actions.
-In this process, all user interactions need to be tracked, managed, and reflected in the UI. To achieve this, a form needs to maintain its own state.
+Forms generally consist of a group of inputs that users interact with to trigger actions.
+In this process, all user interactions must be tracked, managed, and reflected in the UI. To achieve this, a form must maintain its own state.
 
-At commercetools, we have settled on using [Formik](https://formik.org) as the preferred form state management library when building User Interfaces.
+[Formik](https://formik.org) is used as the preferred form state management library when building user interfaces.
 
-Formik comes with several built-in features such as validations, array fields, input states, async submission, and many more.
+Formik comes with several built-in features, including validation, array fields, input states, and async submission.
 
 At a bare minimum, implementing a form could look something like this:
 
@@ -72,13 +72,13 @@ const ChannelsForm = () => {
 
 # Field and input components
 
-The commercetools UIKit library provides several UI components for working with forms. Most of the time you want to use the field components as they provide all the recommended features for rendering form elements.
+The commercetools UIKit library provides several UI components for working with forms. Most of the time you should use the field components as they provide all the recommended features for rendering form elements.
 
 ![Form field example](/images/form-field.png 'Form field example')
 
-A field component consists of an input element wrapped with other field elements such as label, description, error message, hint, badge, etc.
+A field component consists of an input element wrapped with other field elements (such as label, description, error message, hint, and badge).
 
-Depending on the use case, you might want to use a date field, a text field, or a select field. In the UIKit library, we provide a variety of components to cover different use cases. For more information about field and input components check their related packages in the [commercetools/ui-kit](https://github.com/commercetools/ui-kit) repository.
+Depending on the use case, you might want to use a date field, a text field, or a select field. In the UIKit library, there are many components that cover different use cases. For more information about field and input components check their related packages in the [commercetools/ui-kit](https://github.com/commercetools/ui-kit) repository.
 
 <Info>
 
@@ -88,21 +88,21 @@ All UIKit field components have a related input component, for example `<TextFie
 
 ## Accessibility support
 
-All field and input components have built-in support for accessibility features such as aria labels, keyboard navigation and focus management, error messaging, and more.
+All field and input components have built-in support for accessibility features such as aria labels, keyboard navigation, focus management, and error messaging.
 
 <Info>
 
-Testing these field components with [React Testing Library](https://github.com/testing-library/react-testing-library) can be easily done using selectors such as `*ByLabelText`, `*ByRole`, etc.
+Testing these field components with [React Testing Library](https://github.com/testing-library/react-testing-library) can be easily done using selectors such as `*ByLabelText` and `*ByRole`.
 
 </Info>
 
 # Form validation
 
-One of the important parts of forms is validation. It is important to validate constraints of forms such as required fields but also to check additional semantic requirements, for example checking that the value is a valid URL.
+One of the important parts of forms is validation. It is important to validate constraints of forms such as required fields and to check additional semantic requirements (for example, checking that the value is a valid URL).
 
-Asides from client-side validation, forms can also perform asynchronous validation against an API to ensure data correctness before submitting the form.
+Aside from client-side validation, forms can also perform asynchronous validation against an API to ensure data correctness before form submission.
 
-For that, Formik allows you to implement a [`validate` function](https://formik.org/docs/api/formik#validate-values-values--formikerrorsvalues--promiseany) that should return an object of errors.
+For that, Formik allows you to implement a [`validate` function](https://formik.org/docs/api/formik#validate-values-values--formikerrorsvalues--promiseany) that returns an object of errors.
 
 ```ts
 type TFieldErrors = Record<string, boolean>;
@@ -114,7 +114,7 @@ type TCustomFormErrors<Values> = {
 declare const validate = (values: FormValues) => TCustomFormErrors<FormValues>;
 ```
 
-Specifically, the object returned from the `validate` function should contain properties correlating to field names with their values being objects with reasons for the given error. Let's take a look at an example:
+Specifically, the object returned from the `validate` function should contain properties correlating to field names with their values being objects with reasons for the given error. For example:
 
 ```js title="validate.js"
 import LocalizedTextInput from '@commercetools-uikit/localized-text-input';
@@ -132,7 +132,7 @@ const validate = (values) => {
 
 In this example, we are validating that the `name` field has a required value. If the value is empty (no localized values have been provided), we assign to the `errors.name` property an error object with the error key `missing` set to `true`.
 
-In the field component, you need to make sure to assign the `errors` and `touched` props which will make the field component render an error message, in case one was returned from the `validate` function.
+In the field component, you must assign the `errors` and `touched` props which make the field component render an error message, in case one was returned from the `validate` function.
 
 ```js highlightLines="7-10"
 <LocalizedTextField
@@ -152,7 +152,7 @@ In the field component, you need to make sure to assign the `errors` and `touche
 
 <Info>
 
-Error messages are only shown when the `touched` value for the specific field is set to `true`. This happens whenever the user stops interacting with a field (loses `focus`). The point here is that as long as the user is interacting with a field for the first time there is no need to show validation.
+Error messages are only shown when the `touched` value for the specific field is `true`. This happens whenever the user stops interacting with a field (loses focus). The point here is that as long as the user is interacting with a field for the first time there is no need to show validation.
 
 </Info>
 
@@ -224,7 +224,7 @@ export const docToFormValues = (doc, languages) => ({
 
 Most UI-Kit field and input components expose some static methods to ease data conversion and validation. Make sure to check if these methods are available in either the field or the input component.
 
-For example, to validate if a text field is empty you can use `TextInput.isEmpty()`.
+For example, to validate if a text field is empty, use `TextInput.isEmpty()`.
 
 </Info>
 
@@ -261,15 +261,15 @@ export const formValuesToDoc = (formValues) => ({
 
 <Info>
 
-Most of the time you would have a simple 1:1 mapping. However, we still recommend to use these conversion functions as a best practice and to help decoupling the data transformation logic from the form component.
+Most of the time you would have simple 1:1 mapping. However, we still recommend using these conversion functions as a best practice and to help decoupling the data transformation logic from the form component.
 
-For instance, the form might only need a couple of fields even though the data object has many mores. By being explicit in the conversion, we ensure that only the necessary data is passed to the form.
+For instance, the form might only need a couple of fields even though the data object has many more. By being explicit in the conversion, we ensure that only the necessary data is passed to the form.
 
 </Info>
 
 # Building a form page
 
-Let's apply what we just learned in our `Channels` application, as we might want to add a page to see and manage a Channel's details.
+Let's apply what we just learned in our `Channels` application, as we might want to add a page to view and manage a Channel's details.
 
 Given that we might want to allow creating new channels and updating existing ones, there will be two different pages with the same form components. Therefore, we can implement the form as a component and re-use it in both the create and details pages. The only difference is that the form for the create page will be initially empty and the form for the details page will have some data.
 
@@ -381,7 +381,7 @@ const ChannelsCreate = () => {
 }
 ```
 
-On the "details" page, we would need to fetch the data first, then initialize the form with the data.
+On the "details" page, we need to fetch the data first, then initialize the form with the data.
 
 ```js title="channels-details.js"
 import { useCallback } from 'react';
@@ -649,7 +649,7 @@ const ChannelsForm = (props) => {
 }
 ```
 
-One of the advantages of splitting up the form fields is the encapsulation of the logic. You might notice that we don't explicitly pass any props to these components. Instead, each component can access the form data that they need from the form context, using Formik's `useField` hook.
+One of the advantages of splitting up the form fields is to encapsulate the logic. You might notice that we don't explicitly pass any props to these components. Instead, each component can access the form data that they need from the form context, using Formik's `useField` hook.
 
 ```js title="form-channel-name.js"
 import { useField } from 'formik';
