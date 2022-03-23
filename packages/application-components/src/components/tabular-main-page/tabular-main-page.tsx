@@ -60,6 +60,7 @@ const TabularMainPage = (props: TTabularMainPageProps) => (
             title={props.title}
             subtitle={props.subtitle}
             titleSize="big"
+            truncate={false}
           />
         )}
         <ControlsContainter
@@ -92,6 +93,9 @@ TabularMainPage.defaultProps = defaultProps;
 TabularMainPage.FormPrimaryButton = FormPrimaryButton;
 TabularMainPage.FormSecondaryButton = FormSecondaryButton;
 TabularMainPage.FormDeleteButton = FormDeleteButton;
+// Static export of pre-configured page header title component to easily
+// recreate a default title as part of a custom title row
+TabularMainPage.PageHeaderTitle = PageHeaderTitle;
 // This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
 TabularMainPage.Intl = sharedMessages;
 

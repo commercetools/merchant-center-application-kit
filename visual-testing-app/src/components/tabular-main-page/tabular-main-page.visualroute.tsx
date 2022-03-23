@@ -182,6 +182,29 @@ export const Component = () => (
         <Content />
       </TabularMainPageContainer>
     </Spec>
+    <Spec
+      label="TabularMainPage - with static exposed page header title and side content as parts of Custom Title Row"
+      size="xl"
+    >
+      <TabularMainPageContainer
+        customTitleRow={
+          <Spacings.Inline scale="m" justifyContent="space-between">
+            <TabularMainPage.PageHeaderTitle
+              title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+              titleSize="big"
+              truncate={false}
+            />
+            <Spacings.Inline alignItems="center">
+              <Text.Body isBold truncate>
+                Lorem ipsum dolor sit amet.
+              </Text.Body>
+            </Spacings.Inline>
+          </Spacings.Inline>
+        }
+      >
+        <Content />
+      </TabularMainPageContainer>
+    </Spec>
     <Spec label="TabularMainPage - with hidden controls" size="xl">
       <TabularMainPageContainer
         formControls={

@@ -33,6 +33,32 @@ const exampleCustomTitleRow = (
   </Spacings.Inline>
 );
 
+const exampleCustomTitleRowWithTitleAndSideForm = (
+  <Spacings.Inline scale="m" justifyContent="space-between">
+    <TabularMainPage.PageHeaderTitle
+      title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      titleSize="big"
+      truncate={false}
+    />
+    <Spacings.Inline alignItems="center">
+      <Text.Body isBold truncate>
+        Lorem ipsum dolor sit amet.
+      </Text.Body>
+    </Spacings.Inline>
+  </Spacings.Inline>
+);
+
+const getCustomTitleRow = (useCustomTitleRow) => {
+  switch (useCustomTitleRow) {
+    case 'custom-form':
+      return exampleCustomTitleRow;
+    case 'custom-title-and-side-content':
+      return exampleCustomTitleRowWithTitleAndSideForm;
+    default:
+      break;
+  }
+};
+
 const TabularMainPageExample = (props) => {
   return (
     <RouterWrapper>
@@ -66,7 +92,11 @@ const TabularMainPageExample = (props) => {
               label: 'Title Row',
               valueOptions: [
                 { value: 'default', label: 'Default' },
-                { value: 'custom', label: 'Custom (form example)' },
+                { value: 'custom-form', label: 'Custom (form example)' },
+                {
+                  value: 'custom-title-and-side-content',
+                  label: 'Custom (title and side content example)',
+                },
               ],
               initialValue: 'default',
             },
@@ -103,9 +133,7 @@ const TabularMainPageExample = (props) => {
                   />
                 </>
               }
-              customTitleRow={
-                values.useCustomTitleRow === 'custom' && exampleCustomTitleRow
-              }
+              customTitleRow={getCustomTitleRow(values.useCustomTitleRow)}
               formControls={
                 <>
                   <TabularMainPage.FormSecondaryButton
