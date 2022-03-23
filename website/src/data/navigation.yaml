@@ -28,8 +28,8 @@
       path: /development/data-fetching
     - title: UI Components
       path: /development/ui-components
-    # - title: Forms
-    #   path: /development/forms
+    - title: Forms
+      path: /development/forms
     # - title: Notifications
     #   path: /development/notifications
     - title: Testing
