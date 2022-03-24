@@ -16,11 +16,11 @@
   },
   "bin": "./bin/cli.js",
   "dependencies": {
-    "@babel/core": "^7.16.10",
+    "@babel/core": "^7.17.8",
     "execa": "5.1.1",
     "listr": "0.14.3",
     "mri": "1.2.0",
-    "prettier": "2.5.1",
+    "prettier": "2.6.0",
     "rcfile": "1.0.3",
     "semver": "7.3.5"
   },

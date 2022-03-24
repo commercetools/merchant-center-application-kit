@@ -13,7 +13,7 @@
     "deploy": "vercel --scope=commercetools --confirm --no-clipboard"
   },
   "dependencies": {
-    "@commercetools-docs/ui-kit": "18.4.0",
+    "@commercetools-docs/ui-kit": "18.5.0",
     "@commercetools-frontend/actions-global": "21.2.1",
     "@commercetools-frontend/application-components": "21.2.1",
     "@commercetools-frontend/application-shell": "21.2.1",
@@ -24,16 +24,16 @@
     "@commercetools-frontend/l10n": "21.2.1",
     "@commercetools-frontend/permissions": "21.2.1",
     "@commercetools-frontend/sdk": "21.2.1",
-    "@commercetools-uikit/checkbox-input": "^14.0.1",
+    "@commercetools-uikit/checkbox-input": "^14.0.2",
     "@commercetools-uikit/constraints": "^14.0.1",
-    "@commercetools-uikit/data-table": "^14.0.1",
-    "@commercetools-uikit/flat-button": "^14.0.1",
+    "@commercetools-uikit/data-table": "^14.0.3",
+    "@commercetools-uikit/flat-button": "^14.0.2",
     "@commercetools-uikit/grid": "^14.0.0",
     "@commercetools-uikit/icons": "^14.0.1",
     "@commercetools-uikit/link": "^14.0.1",
     "@commercetools-uikit/loading-spinner": "^14.0.1",
     "@commercetools-uikit/notifications": "^14.0.1",
-    "@commercetools-uikit/pagination": "^14.0.1",
+    "@commercetools-uikit/pagination": "^14.0.2",
     "@commercetools-uikit/primary-button": "^14.0.1",
     "@commercetools-uikit/spacings": "^14.0.1",
     "@commercetools-uikit/text": "^14.0.1",
@@ -44,13 +44,13 @@
     "react-dom": "17.0.2",
     "react-intl": "5.24.7",
     "react-router-dom": "5.3.0",
-    "vercel": "23.1.2"
+    "vercel": "24.0.1"
   },
   "devDependencies": {
     "@commercetools-backend/express": "21.2.1",
     "@commercetools-frontend/mc-dev-authentication": "21.0.0",
     "@commercetools-frontend/mc-scripts": "21.2.1",
     "@formatjs/cli": "4.8.2",
-    "@vercel/node": "^1.12.1"
+    "@vercel/node": "^1.14.0"
   }
 }
