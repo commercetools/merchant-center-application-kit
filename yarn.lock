@@ -2850,7 +2850,7 @@ __metadata:
     msw: 0.39.2
     postcss: 8.4.12
     postcss-custom-media: 8.0.0
-    postcss-custom-properties: 12.1.5
+    postcss-custom-properties: 12.1.4
     postcss-import: 14.1.0
     postcss-loader: 6.2.1
     postcss-reporter: 7.0.5
@@ -26195,14 +26195,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-custom-properties@npm:12.1.5":
-  version: 12.1.5
-  resolution: "postcss-custom-properties@npm:12.1.5"
+"postcss-custom-properties@npm:12.1.4":
+  version: 12.1.4
+  resolution: "postcss-custom-properties@npm:12.1.4"
   dependencies:
     postcss-value-parser: ^4.2.0
   peerDependencies:
     postcss: ^8.4
-  checksum: de43ef9fe8f61fc3d2eccb45e1d7359ce69908732bfd8e0155c5ad29b1caff2586f1e77a246c46748233b39020b41b4ea756da977ab5625449689bd953fa25b5
+  checksum: c5ef5c5ff126a65adcae9f1842b6c82df8adc337481497a405de5dfb2121c799d381e75aed3dbfe855f4258e9d90927e77801012166fb667ea5c8f7d79562ada
   languageName: node
   linkType: hard
 

@@ -52,7 +52,7 @@
     "mri": "1.2.0",
     "postcss": "8.4.12",
     "postcss-custom-media": "8.0.0",
-    "postcss-custom-properties": "12.1.5",
+    "postcss-custom-properties": "12.1.4",
     "postcss-import": "14.1.0",
     "postcss-loader": "6.2.1",
     "postcss-reporter": "7.0.5",
