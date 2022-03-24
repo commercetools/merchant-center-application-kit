@@ -72,17 +72,17 @@ const ChannelsForm = () => {
 
 # Field and input components
 
-The commercetools UIKit library provides several UI components for working with forms. Most of the time you should use the field components as they provide all the recommended features for rendering form elements.
+The commercetools UI Kit library provides several UI components for working with forms. Most of the time you should use the field components as they provide all the recommended features for rendering form elements.
 
 ![Form field example](/images/form-field.png 'Form field example')
 
 A field component consists of an input element wrapped with other field elements (such as label, description, error message, hint, and badge).
 
-Depending on the use case, you might want to use a date field, a text field, or a select field. In the UIKit library, there are many components that cover different use cases. For more information about field and input components check their related packages in the [commercetools/ui-kit](https://github.com/commercetools/ui-kit) repository.
+Depending on the use case, you might want to use a date field, a text field, or a select field. In the UI Kit library, there are many components that cover different use cases. For more information about field and input components check their related packages in the [commercetools/ui-kit](https://github.com/commercetools/ui-kit) repository.
 
 <Info>
 
-All UIKit field components have a related input component, for example `<TextField>` -> `<TextInput>`.
+All UI Kit field components have a related input component, for example `<TextField>` -> `<TextInput>`.
 
 </Info>
 
@@ -222,7 +222,7 @@ export const docToFormValues = (doc, languages) => ({
 
 <Info>
 
-Most UI-Kit field and input components expose some static methods to ease data conversion and validation. Make sure to check if these methods are available in either the field or the input component.
+Most UI Kit field and input components expose some static methods to ease data conversion and validation. Make sure to check if these methods are available in either the field or the input component.
 
 For example, to validate if a text field is empty, use `TextInput.isEmpty()`.
 
@@ -610,7 +610,7 @@ Sometimes a form contains many different fields, resulting in the form component
 
 One way to improve that is to split the form component into multiple smaller components. As a rule of thumb you can create one separate component for each form field. For example a `<FormChannelNameField>`, a `<FormChannelKeyField>`, and so on.
 
-These components are simple wrapper components of the UI-Kit field components but they contain and encapsulate all the logic related to the specific field. As a result, your form component can look like this:
+These components are simple wrapper components of the UI Kit field components but they contain and encapsulate all the logic related to the specific field. As a result, your form component can look like this:
 
 ```jsx title="channels-form.js"
 import { useFormik } from 'formik';
@@ -675,4 +675,4 @@ const FormChannelNameField = () => {
 }
 ```
 
-The `field` object can be spread to the UI-Kit field component (it contains the props like `name`, `onChange`, etc.) and the `meta` object contains things like `touched` and `error` values of the specific field.
+The `field` object can be spread to the UI Kit field component (it contains the props like `name`, `onChange`, etc.) and the `meta` object contains things like `touched` and `error` values of the specific field.
