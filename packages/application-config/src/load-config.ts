@@ -38,7 +38,7 @@ const loadJsModule: LoaderSync = (filePath) => {
 };
 
 const moduleName = 'custom-application-config';
-const explorer = cosmiconfigSync(moduleName, {
+export const explorer = cosmiconfigSync(moduleName, {
   // Restrict the supported file formats / names
   searchPlaces: [
     `.${moduleName}rc`,

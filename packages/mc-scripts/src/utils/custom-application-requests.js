@@ -27,7 +27,7 @@ const fetchCustomApplication = async ({
       OrganizationExtensionForCustomApplication,
       variables
     );
-    return customAppData;
+    return customAppData.organizationExtensionForCustomApplication;
   } catch (error) {
     throw new Error(error);
   }
@@ -77,7 +77,7 @@ const createCustomApplication = async ({
       CreateCustomApplication,
       variables
     );
-    return createdCustomAppsData;
+    return createdCustomAppsData.createCustomApplication;
   } catch (error) {
     throw new Error(error);
   }

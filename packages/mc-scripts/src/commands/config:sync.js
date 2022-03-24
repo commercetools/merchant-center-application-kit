@@ -10,6 +10,7 @@ const {
   updateCustomApplication,
   createCustomApplication,
 } = require('../utils/custom-application-requests');
+const updateApplicationIdInCustomApplicationConfig = require('../utils/update-application-id-in-custom-application-config');
 
 const credentialsStorage = new CredentialsStorage();
 
@@ -25,8 +26,6 @@ const configSync = async () => {
   const { data: localCustomAppData } = applicationConfig;
   const { mcApiUrl } = applicationConfig.env;
 
-  console.log(localCustomAppData);
-
   if (!credentialsStorage.isSessionValid(mcApiUrl)) {
     throw new Error(
       `You don't have a valid session for the ${mcApiUrl} environment. Please login\n`
@@ -39,11 +38,10 @@ const configSync = async () => {
     token,
     entryPointUriPath: localCustomAppData.entryPointUriPath,
   });
-  // TODO: add applicationID to custom-application-config file
 
-  if (!fetchedCustomApplication.organizationExtensionForCustomApplication) {
+  if (!fetchedCustomApplication) {
     console.log(
-      "You don't have custom application for this entrypoint. We will create one for you. \n"
+      "You don't have custom application for this entrypoint. We will create one for you."
     );
     const userResponse = await read({ prompt: 'Is this OK? ', default: 'yes' });
     if (userResponse.toLowerCase().charAt(0) !== 'y') {
@@ -55,18 +53,18 @@ const configSync = async () => {
         organizationId,
         data: omit(localCustomAppData, ['id']),
       });
-      console.log({ createdCustomApplication });
       console.log(chalk.green(`Config created successfully.\n`));
-      // TODO: add applicationID to custom-application-config file
+      // update applicationID in the custom-application-config file
+      updateApplicationIdInCustomApplicationConfig(createdCustomApplication.id);
     }
     return;
   }
-  const savedApplicationConfig =
-    fetchedCustomApplication.organizationExtensionForCustomApplication
-      .application;
+  // update applicationID in the custom-application-config file
+  updateApplicationIdInCustomApplicationConfig(
+    fetchedCustomApplication.application.id
+  );
 
   // TODO: show diff (followup)
-
   const userResponse = await read({
     prompt:
       'Are you sure your want to overwrite your remote config with the local config? ',
@@ -81,7 +79,7 @@ const configSync = async () => {
     token,
     organizationId,
     data: omit(localCustomAppData, ['id']),
-    applicationId: savedApplicationConfig.id,
+    applicationId: fetchedCustomApplication.application.id,
   });
   console.log(chalk.green(`Config updated successfully.\n`));
 };
