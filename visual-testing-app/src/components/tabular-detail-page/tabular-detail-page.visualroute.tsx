@@ -184,7 +184,7 @@ export const Component = () => (
       </TabularDetailPageContainer>
     </Spec>
     <Spec
-      label="TabularMainPage - with static exposed page header title and side content as parts of Custom Title Row"
+      label="TabularDetailPage - with static exposed page header title and side content as parts of Custom Title Row"
       size="xl"
     >
       <TabularDetailPageContainer
@@ -205,7 +205,7 @@ export const Component = () => (
         <Content />
       </TabularDetailPageContainer>
     </Spec>
-    <Spec label="TabularMainPage - with hidden controls" size="xl">
+    <Spec label="TabularDetailPage - with hidden controls" size="xl">
       <TabularDetailPageContainer
         formControls={
           <>
