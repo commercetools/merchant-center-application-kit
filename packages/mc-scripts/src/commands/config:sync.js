@@ -24,11 +24,11 @@ const configSync = async () => {
   const { organizationId } = flags;
   const applicationConfig = processConfig();
   const { data: localCustomAppData } = applicationConfig;
-  const { mcApiUrl } = applicationConfig.env;
+  const { mcApiUrl, location } = applicationConfig.env;
 
   if (!credentialsStorage.isSessionValid(mcApiUrl)) {
     throw new Error(
-      `You don't have a valid session for the ${mcApiUrl} environment. Please login\n`
+      `You don't have a valid session for the ${mcApiUrl} environment. Please, run the “mc-scripts login” to login\n`
     );
   }
 
@@ -41,7 +41,7 @@ const configSync = async () => {
 
   if (!fetchedCustomApplication) {
     console.log(
-      "You don't have custom application for this entrypoint. We will create one for you."
+      `You are about to create the configuration for organization with id ${organizationId} for the ${location} environment.`
     );
     const userResponse = await read({ prompt: 'Is this OK? ', default: 'yes' });
     if (userResponse.toLowerCase().charAt(0) !== 'y') {
@@ -53,9 +53,13 @@ const configSync = async () => {
         organizationId,
         data: omit(localCustomAppData, ['id']),
       });
-      console.log(chalk.green(`Config created successfully.\n`));
       // update applicationID in the custom-application-config file
       updateApplicationIdInCustomApplicationConfig(createdCustomApplication.id);
+      console.log(
+        chalk.green(
+          `You have successfully created the configuration for organization with id ${organizationId} for the ${location} environment. Your local configuration has been updated with the new created application identifier: ${createdCustomApplication.id}.\n`
+        )
+      );
     }
     return;
   }
@@ -65,11 +69,10 @@ const configSync = async () => {
   );
 
   // TODO: show diff (followup)
-  const userResponse = await read({
-    prompt:
-      'Are you sure your want to overwrite your remote config with the local config? ',
-    default: 'yes',
-  });
+  console.log(
+    `You are about to update the configuration for organization with id ${organizationId} for the ${location} environment.`
+  );
+  const userResponse = await read({ prompt: 'Is this OK? ', default: 'yes' });
   if (userResponse.toLowerCase().charAt(0) !== 'y') {
     console.log('Aborted.');
     return;
@@ -81,7 +84,11 @@ const configSync = async () => {
     data: omit(localCustomAppData, ['id']),
     applicationId: fetchedCustomApplication.application.id,
   });
-  console.log(chalk.green(`Config updated successfully.\n`));
+  console.log(
+    chalk.green(
+      `You have successfully updated the configuration for organization with id ${organizationId} for the ${location} environment.`
+    )
+  );
 };
 
 configSync().catch((error) => {
