@@ -193,7 +193,6 @@ export const Component = () => (
             <TabularDetailPage.PageHeaderTitle
               title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
               titleSize="big"
-              truncate={false}
             />
             <Spacings.Inline alignItems="center">
               <Text.Body isBold truncate>

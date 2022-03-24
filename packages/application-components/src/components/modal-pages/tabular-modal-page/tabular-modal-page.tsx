@@ -73,7 +73,11 @@ const TabularModalPage = (props: Props) => (
     <TabularPageContainer color="neutral">
       <Spacings.Stack>
         {props.customTitleRow || (
-          <PageHeaderTitle title={props.title} subtitle={props.subtitle} />
+          <PageHeaderTitle
+            title={props.title}
+            subtitle={props.subtitle}
+            truncate
+          />
         )}
         <ControlsContainter
           tabControls={props.tabControls}

@@ -23,7 +23,7 @@ const PageHeader = (props: Props) => (
       }
     `}
   >
-    <PageHeaderTitle title={props.title} subtitle={props.subtitle} />
+    <PageHeaderTitle title={props.title} subtitle={props.subtitle} truncate />
     {props.children}
   </div>
 );

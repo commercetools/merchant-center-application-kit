@@ -13,7 +13,7 @@ type Props = {
 };
 const defaultProps: Pick<Props, 'titleSize' | 'truncate'> = {
   titleSize: 'small',
-  truncate: true,
+  truncate: false,
 };
 
 const SubtitleWrapper = styled.div`
@@ -40,7 +40,10 @@ const renderTitle = (props: RenderTitleProps) => {
   }
 };
 
-const renderSubtitle = (subtitle?: Props['subtitle']) => {
+const renderSubtitle = (
+  subtitle?: Props['subtitle'],
+  truncate: Props['truncate'] = false
+) => {
   if (!subtitle) {
     return null;
   }
@@ -49,7 +52,7 @@ const renderSubtitle = (subtitle?: Props['subtitle']) => {
   }
   return (
     <SubtitleWrapper>
-      <Text.Body title={subtitle} truncate>
+      <Text.Body title={subtitle} truncate={truncate}>
         {subtitle}
       </Text.Body>
     </SubtitleWrapper>
@@ -59,7 +62,7 @@ const renderSubtitle = (subtitle?: Props['subtitle']) => {
 const PageHeaderTitle = (props: Props) => {
   const { titleSize, title, truncate } = props;
   const renderedTitle = renderTitle({ titleSize, title, truncate });
-  const renderedSubtitle = renderSubtitle(props.subtitle);
+  const renderedSubtitle = renderSubtitle(props.subtitle, truncate);
   return (
     <div
       css={css`

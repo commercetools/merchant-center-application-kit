@@ -60,7 +60,6 @@ const TabularMainPage = (props: TTabularMainPageProps) => (
             title={props.title}
             subtitle={props.subtitle}
             titleSize="big"
-            truncate={false}
           />
         )}
         <ControlsContainter
