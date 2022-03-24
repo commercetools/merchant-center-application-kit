@@ -80,8 +80,8 @@
     ]
   },
   "dependencies": {
-    "@babel/cli": "^7.16.8",
-    "@babel/core": "^7.16.10",
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.8",
     "@changesets/changelog-github": "0.4.3",
     "@changesets/cli": "2.21.1",
     "@commercetools-docs/writing-style": "3.0.12",
@@ -115,7 +115,7 @@
     "@types/uuid": "8.3.4",
     "@types/webpack-env": "1.16.3",
     "apollo-server-errors": "3.3.1",
-    "autoprefixer": "^10.4.2",
+    "autoprefixer": "^10.4.4",
     "babel-plugin-import-graphql": "^2.8.1",
     "babel-plugin-transform-rename-import": "^2.3.0",
     "babel-plugin-typescript-to-proptypes": "1.4.2",

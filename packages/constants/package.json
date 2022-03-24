@@ -18,7 +18,7 @@
   "module": "dist/commercetools-frontend-constants.esm.js",
   "files": ["dist", "package.json", "LICENSE", "README.md"],
   "dependencies": {
-    "@babel/runtime": "^7.16.7",
-    "@babel/runtime-corejs3": "^7.16.8"
+    "@babel/runtime": "^7.17.8",
+    "@babel/runtime-corejs3": "^7.17.8"
   }
 }
