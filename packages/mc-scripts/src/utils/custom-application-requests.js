@@ -5,41 +5,86 @@ const requireGraphql = requireGraphqlHelper(__dirname);
 const graphQLClient = (uri, token) =>
   new GraphQLClient(`${uri}/graphql`, {
     headers: {
-      Cookie: `mcAccessToken=${token}`,
       'x-graphql-target': 'settings',
+      'x-mc-cli-access-token': token,
     },
   });
 
-const fetchCustomApplications = async ({ uri, token }) => {
+const fetchCustomApplication = async ({
+  mcApiUrl,
+  token,
+  entryPointUriPath,
+}) => {
   const variables = {
-    organizationId: '7100d799-f572-4c92-b0de-024663b29ad5',
+    entryPointUriPath,
   };
 
   const OrganizationExtensionForCustomApplication = requireGraphql(
-    './fetch-custom-applications.settings.graphql'
+    './fetch-custom-application.settings.graphql'
   );
-  const customAppsData = await graphQLClient(uri, token).request(
-    OrganizationExtensionForCustomApplication,
-    variables
-  );
-  return customAppsData;
+  try {
+    const customAppData = await graphQLClient(mcApiUrl, token).request(
+      OrganizationExtensionForCustomApplication,
+      variables
+    );
+    return customAppData;
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
-const updateCustomApplicationsConfig = async ({
-  uri,
+const updateCustomApplication = async ({
+  mcApiUrl,
   token,
-  newConfig,
   applicationId,
   organizationId,
+  data,
 }) => {
-  // const variables = {
-  //   organizationId,
-  //   applicationId,
-  //   data: newConfig
-  // }
-  // const UpdateCustomApplication = requireGraphql('./update-custom-application.settings.graphql')
-  // const updatedCustomAppsData = await graphQLClient(uri, token).request(UpdateCustomApplication, variables)
-  // return updatedCustomAppsData
+  const variables = {
+    organizationId,
+    applicationId,
+    data,
+  };
+  const UpdateCustomApplication = requireGraphql(
+    './update-custom-application.settings.graphql'
+  );
+  try {
+    const updatedCustomAppsData = await graphQLClient(mcApiUrl, token).request(
+      UpdateCustomApplication,
+      variables
+    );
+    return updatedCustomAppsData;
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
-module.exports = { fetchCustomApplications, updateCustomApplicationsConfig };
+const createCustomApplication = async ({
+  mcApiUrl,
+  token,
+  organizationId,
+  data,
+}) => {
+  const variables = {
+    organizationId,
+    data,
+  };
+  const CreateCustomApplication = requireGraphql(
+    './register-custom-application.settings.graphql'
+  );
+  try {
+    const createdCustomAppsData = await graphQLClient(mcApiUrl, token).request(
+      CreateCustomApplication,
+      variables
+    );
+    return createdCustomAppsData;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+module.exports = {
+  fetchCustomApplication,
+  updateCustomApplication,
+  createCustomApplication,
+};

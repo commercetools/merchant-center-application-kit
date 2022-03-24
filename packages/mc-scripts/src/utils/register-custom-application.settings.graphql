@@ -1,0 +1,8 @@
+mutation RegisterCustomApplication(
+  $organizationId: String!
+  $data: CustomApplicationDraftDataInput!
+) {
+  createCustomApplication(organizationId: $organizationId, data: $data) {
+    id
+  }
+}

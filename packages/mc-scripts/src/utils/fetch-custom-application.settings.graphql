@@ -1,0 +1,34 @@
+query OrganizationExtensionForCustomApplication($entryPointUriPath: String!) {
+  organizationExtensionForCustomApplication(
+    entryPointUriPath: $entryPointUriPath
+  ) {
+    application {
+      id
+      entryPointUriPath
+      name
+      description
+      url
+      icon
+      permissions {
+        name
+        oAuthScopes
+      }
+      mainMenuLink {
+        defaultLabel
+        labelAllLocales {
+          locale
+          value
+        }
+      }
+      submenuLinks {
+        uriPath
+        defaultLabel
+        permissions
+        labelAllLocales {
+          locale
+          value
+        }
+      }
+    }
+  }
+}

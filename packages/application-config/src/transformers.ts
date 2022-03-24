@@ -1,11 +1,11 @@
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 import type { CustomApplicationData } from './types';
-import { entryPointUriPathToPermissionKeys } from './formatters';
+import { entryPointUriPathToResourceAccesses } from './formatters';
 
 function transformCustomApplicationConfigToData(
   appConfig: JSONSchemaForCustomApplicationConfigurationFiles
 ): CustomApplicationData {
-  const permissionKeys = entryPointUriPathToPermissionKeys(
+  const permissionKeys = entryPointUriPathToResourceAccesses(
     appConfig.entryPointUriPath
   );
 
@@ -17,11 +17,11 @@ function transformCustomApplicationConfigToData(
     url: appConfig.env.production.url,
     permissions: [
       {
-        name: permissionKeys.View,
+        name: permissionKeys.view,
         oAuthScopes: appConfig.oAuthScopes.view,
       },
       {
-        name: permissionKeys.Manage,
+        name: permissionKeys.manage,
         oAuthScopes: appConfig.oAuthScopes.manage,
       },
     ],

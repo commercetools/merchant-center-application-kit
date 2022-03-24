@@ -114,7 +114,11 @@ const applicationDirectory = fs.realpathSync(process.cwd());
       case 'config:sync': {
         // Do this as the first thing so that any code reading it knows the right env.
         process.env.NODE_ENV = 'production';
-        proxyCommand(command);
+
+        // Get specific flag for this command.
+        const commandArgs = getArgsForCommand(['organizationId']);
+
+        proxyCommand(command, { commandArgs });
         break;
       }
       default:
