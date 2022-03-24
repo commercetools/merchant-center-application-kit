@@ -15,6 +15,7 @@ const defaultConfig = {
     /.*CellMeasurerCache should only measure a cell's width or height.*/,
     /.*\[React Intl\] "defaultRichTextElements" was specified but "message" was not pre-compiled.*/,
     /.*util function is now deprecated and has been moved to Jest repository.*/,
+    /.*"importFrom" and "exportTo" will be removed in a future version of postcss-custom-properties.*/,
   ],
   notThrowWarnings: [
     /.*@commercetools-frontend\/permissions.*/,
