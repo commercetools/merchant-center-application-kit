@@ -19,7 +19,7 @@
   "dependencies": {
     "@commercetools-frontend/babel-preset-mc-app": "21.0.0",
     "@sheerun/mutationobserver-shim": "0.3.3",
-    "@testing-library/jest-dom": "5.16.2",
+    "@testing-library/jest-dom": "5.16.3",
     "babel-jest": "27.5.1",
     "colors": "1.4.0",
     "cosmiconfig": "7.0.1",
