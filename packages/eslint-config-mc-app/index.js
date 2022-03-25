@@ -5,12 +5,19 @@ require('@rushstack/eslint-patch/modern-module-resolution');
 
 const { statusCode, allSupportedExtensions } = require('./helpers/eslint');
 const hasJsxRuntime = require('./helpers/has-jsx-runtime');
+const { craRules } = require('./helpers/rules-presets');
 
 /**
  * @type {import("eslint").Linter.Config}
  */
 module.exports = {
+  root: true,
+
+  parser: '@babel/eslint-parser',
+
   parserOptions: {
+    sourceType: 'module',
+    requireConfigFile: false,
     babelOptions: {
       presets: [
         require.resolve(
@@ -19,13 +26,19 @@ module.exports = {
       ],
     },
   },
+
+  env: {
+    browser: true,
+    commonjs: true,
+    es6: true,
+    jest: true,
+    node: true,
+  },
+
   extends: [
-    // https://github.com/facebook/create-react-app/tree/master/packages/eslint-config-react-app
-    'react-app',
-    'react-app/jest',
     // https://github.com/cypress-io/eslint-plugin-cypress
     'plugin:cypress/recommended',
-    // https://github.com/benmosher/eslint-plugin-import
+    // https://github.com/import-js/eslint-plugin-import
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
@@ -39,13 +52,37 @@ module.exports = {
     // NOTE: this should go last.
     'prettier',
   ],
+
   plugins: [
+    // https://github.com/import-js/eslint-plugin-import
+    'import',
+    // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y
+    'jsx-a11y',
+    // https://github.com/yannickcr/eslint-plugin-react
+    'react',
+    // https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks
+    'react-hooks',
+    // https://github.com/testing-library/eslint-plugin-testing-library
+    'testing-library',
+    // https://github.com/jest-community/eslint-plugin-jest
+    'jest',
     // https://github.com/testing-library/eslint-plugin-jest-dom
     'jest-dom',
     // https://github.com/prettier/prettier-eslint
     'prettier',
   ],
+
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: allSupportedExtensions,
+      },
+    },
+  },
+
   rules: {
+    ...craRules.base,
+
     // NOTE: The regular rule does not support do-expressions. The equivalent rule of babel does.
     'no-unused-expressions': statusCode.off,
 
@@ -95,24 +132,36 @@ module.exports = {
       'react/react-in-jsx-scope': statusCode.off,
     }),
   },
-  settings: {
-    'import/resolver': {
-      node: {
-        extensions: allSupportedExtensions,
-      },
-    },
-  },
+
   overrides: [
     {
       files: ['*.{spec,test}.*'],
+      env: {
+        'jest/globals': true,
+      },
       rules: {
         'react/display-name': statusCode.off,
+
+        ...craRules.jest,
       },
     },
     {
       files: ['**/*.ts?(x)'],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        ecmaVersion: 2018,
+        sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true,
+        },
+        // typescript-eslint specific options
+        warnOnUnsupportedTypeScriptVersion: true,
+      },
+      plugins: ['@typescript-eslint'],
       extends: ['prettier'],
       rules: {
+        ...craRules.typescript,
+
         // TypeScript
         '@typescript-eslint/ban-types': statusCode.off,
         '@typescript-eslint/naming-convention': statusCode.off,
