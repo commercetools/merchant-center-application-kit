@@ -1,5 +1,4 @@
 const omit = require('lodash/omit');
-const mri = require('mri');
 const { promisify } = require('util');
 const read = promisify(require('read'));
 const chalk = require('react-dev-utils/chalk');
@@ -14,14 +13,7 @@ const updateApplicationIdInCustomApplicationConfig = require('../utils/update-ap
 
 const credentialsStorage = new CredentialsStorage();
 
-const flags = mri(process.argv.slice(2));
-
 const configSync = async () => {
-  if (!flags.organizationId) {
-    throw Error('organizationId argument is required.');
-  }
-
-  const { organizationId } = flags;
   const applicationConfig = processConfig();
   const { data: localCustomAppData } = applicationConfig;
   const { mcApiUrl, location } = applicationConfig.env;
@@ -39,6 +31,10 @@ const configSync = async () => {
     entryPointUriPath: localCustomAppData.entryPointUriPath,
   });
 
+  // This is temporary. We will replace the code below by fetching the organizations the user belongs to.
+  const organizationId = await read({
+    prompt: 'What is your OrganizationId?: ',
+  });
   if (!fetchedCustomApplication) {
     console.log(
       `You are about to create the configuration for organization with id ${organizationId} for the ${location} environment.`

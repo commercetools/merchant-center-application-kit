@@ -45,7 +45,6 @@ Commands:
   login                       Log in to your Merchant Center account through the CLI, using the cloud environment information from the Custom Application config file. An API token is generated and stored in a configuration file for the related cloud environment, and valid for 36 hours.
 
   config:sync                 Synchronizes the local custom application config with the one stored on the merchant center cloud. 
-    --organizationId          (required) It specifies the organization the custom application configuration is to be uploaded 
   `);
   process.exit(0);
 }
@@ -117,10 +116,7 @@ const applicationDirectory = fs.realpathSync(process.cwd());
         // Do this as the first thing so that any code reading it knows the right env.
         process.env.NODE_ENV = 'production';
 
-        // Get specific flag for this command.
-        const commandArgs = getArgsForCommand(['organizationId']);
-
-        proxyCommand(command, { commandArgs });
+        proxyCommand(command);
         break;
       }
       default:
