@@ -1,5 +1,4 @@
 /// <reference types="@emotion/react/types/css-prop" />
-/// <reference types="vite/types/importMeta" />
 
 import { css } from '@emotion/react';
 import InlineSvg from '@commercetools-uikit/icons/inline-svg';
