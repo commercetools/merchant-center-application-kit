@@ -25,6 +25,12 @@ const Index = () => (
       <li>
         <Link to="tabular-modal-page">{'<TabularModalPage>'}</Link>
       </li>
+      <li>
+        <Link to="tabular-main-page">{'<TabularMainPage>'}</Link>
+      </li>
+      <li>
+        <Link to="tabular-detail-page">{'<TabularDetailPage>'}</Link>
+      </li>
     </ul>
   </div>
 );

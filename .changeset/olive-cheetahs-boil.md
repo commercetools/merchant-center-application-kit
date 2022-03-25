@@ -6,16 +6,23 @@
 ---
 
 Add a new `<TabHeader>` component.
-A composition of those components is meant to be used in the `<TabularModalPage>` component passed as `tabControls` prop. See example below:
+
+This component should be used to render tab elements within the tabular components, for example `<TabularModalPage>`.
+A `<TabHeader>` is rendered as a link and it assumes the "tab content" is controlled and rendered using `<Route>` components.
 
 ```jsx
+import {
+  TabularModalPage,
+  TabHeader,
+} from '@commercetools-frontend/application-components';
+
 <TabularModalPage
-    tabControls={
-        <>
-            <TabHeader to="/tab-one" label="Tab One" />
-            <TabHeader to="/tab-two" label="Tab Two" />
-        </>
-    }
-    ...
-/>
+  tabControls={
+    <>
+      <TabHeader to="/tab-one" label="Tab One" />
+      <TabHeader to="/tab-two" label="Tab Two" />
+    </>
+  }
+  // ...
+/>;
 ```

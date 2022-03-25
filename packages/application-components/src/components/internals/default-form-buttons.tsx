@@ -1,11 +1,11 @@
-import { SyntheticEvent } from 'react';
+import type { SyntheticEvent } from 'react';
 import { useIntl } from 'react-intl';
 import PrimaryButton from '@commercetools-uikit/primary-button';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import IconButton from '@commercetools-uikit/icon-button';
 import { BinLinearIcon } from '@commercetools-uikit/icons';
 import { sharedMessages } from '@commercetools-frontend/i18n';
-import filterDataAttributes from '../../../utils/filter-data-attributes';
+import filterDataAttributes from '../../utils/filter-data-attributes';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin

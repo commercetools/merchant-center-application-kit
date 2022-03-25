@@ -1,18 +1,21 @@
 import type { CSSObject } from '@emotion/react';
 
 import { ReactElement, ReactNode, SyntheticEvent } from 'react';
-import { css } from '@emotion/react';
-import { customProperties } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import ModalPage from '../internals/modal-page';
-import ModalPageHeaderTitle from '../internals/modal-page-header-title';
-import { ContentWrapper } from '../internals/modal-page.styles';
+import PageHeaderTitle from '../../internals/page-header-title';
 import {
   FormPrimaryButton,
   FormSecondaryButton,
   FormDeleteButton,
-} from '../internals/default-form-buttons';
+} from '../../internals/default-form-buttons';
+import {
+  ControlsContainter,
+  TabularPageContainer,
+  FormControlsContainer,
+} from '../../internals/tabular-page';
+import { ContentWrapper } from '../../internals/page.styles';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin
@@ -67,46 +70,29 @@ const TabularModalPage = (props: Props) => (
     shouldDelayOnClose={props.shouldDelayOnClose}
     afterOpenStyles={props.afterOpenStyles}
   >
-    <div
-      css={css`
-        background-color: ${customProperties.colorNeutral95};
-        padding: ${customProperties.spacingM} ${customProperties.spacingM} 0;
-        border-bottom: 1px ${customProperties.colorNeutral} solid;
-      `}
-    >
+    <TabularPageContainer color="neutral">
       <Spacings.Stack>
         {props.customTitleRow || (
-          <ModalPageHeaderTitle title={props.title} subtitle={props.subtitle} />
+          <PageHeaderTitle
+            title={props.title}
+            subtitle={props.subtitle}
+            truncate
+          />
         )}
-        <div
-          css={css`
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-          `}
-        >
-          <div
-            css={css`
-              margin-top: 8px;
-            `}
-            role="tablist"
-          >
-            {props.tabControls}
-          </div>
-          <div
-            css={css`
-              margin-bottom: 16px;
-            `}
-          >
-            {!props.hideControls && props.formControls && (
-              <Spacings.Inline alignItems="flex-end">
-                {props.formControls}
-              </Spacings.Inline>
-            )}
-          </div>
-        </div>
+        <ControlsContainter
+          tabControls={props.tabControls}
+          formControls={
+            <FormControlsContainer>
+              {!props.hideControls && props.formControls && (
+                <Spacings.Inline alignItems="flex-end">
+                  {props.formControls}
+                </Spacings.Inline>
+              )}
+            </FormControlsContainer>
+          }
+        />
       </Spacings.Stack>
-    </div>
+    </TabularPageContainer>
     <ContentWrapper>{props.children}</ContentWrapper>
   </ModalPage>
 );

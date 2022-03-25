@@ -1,7 +1,7 @@
-import { ReactElement, ReactNode } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 import { customProperties } from '@commercetools-uikit/design-system';
 import { css } from '@emotion/react';
-import ModalPageHeaderTitle from './modal-page-header-title';
+import PageHeaderTitle from './page-header-title';
 
 type Props = {
   title: string;
@@ -9,7 +9,7 @@ type Props = {
   children?: ReactNode;
 };
 
-const ModalPageHeader = (props: Props) => (
+const PageHeader = (props: Props) => (
   <div
     css={css`
       display: flex;
@@ -23,10 +23,10 @@ const ModalPageHeader = (props: Props) => (
       }
     `}
   >
-    <ModalPageHeaderTitle title={props.title} subtitle={props.subtitle} />
+    <PageHeaderTitle title={props.title} subtitle={props.subtitle} truncate />
     {props.children}
   </div>
 );
-ModalPageHeader.displayName = 'ModalPageHeader';
+PageHeader.displayName = 'PageHeader';
 
-export default ModalPageHeader;
+export default PageHeader;
