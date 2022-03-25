@@ -15,15 +15,16 @@
     "access": "public"
   },
   "dependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/eslint-parser": "^7.17.0",
     "@commercetools-frontend/babel-preset-mc-app": "^21.0.0",
     "@rushstack/eslint-patch": "^1.1.1",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
+    "confusing-browser-globals": "^1.0.11",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-config-react-app": "^7.0.0",
     "eslint-import-resolver-typescript": "^2.7.0",
     "eslint-plugin-cypress": "^2.12.1",
-    "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jest": "^25.7.0",
     "eslint-plugin-jest-dom": "^4.0.1",
