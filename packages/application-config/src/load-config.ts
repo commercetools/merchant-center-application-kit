@@ -38,7 +38,7 @@ const loadJsModule: LoaderSync = (filePath) => {
 };
 
 const moduleName = 'custom-application-config';
-export const explorer = cosmiconfigSync(moduleName, {
+const explorer = cosmiconfigSync(moduleName, {
   // Restrict the supported file formats / names
   searchPlaces: [
     `.${moduleName}rc`,
@@ -61,6 +61,16 @@ export const explorer = cosmiconfigSync(moduleName, {
     '.ts': loadJsModule,
   },
 });
+
+export const getCustomApplicationConfigPath = () => {
+  const configFile = explorer.search();
+  if (!configFile) {
+    throw new Error(
+      `Missing or invalid Custom Application configuration file.`
+    );
+  }
+  return configFile.filepath;
+};
 
 const loadConfig = (
   applicationPath: string

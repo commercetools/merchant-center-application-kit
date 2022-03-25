@@ -2,20 +2,12 @@ const fs = require('fs');
 const rcfile = require('rcfile');
 const prettier = require('prettier');
 const babel = require('@babel/core');
-const { explorer } = require('@commercetools-frontend/application-config');
-
-const getCustomAppConfigPath = () => {
-  const configFile = explorer.search();
-  if (!configFile) {
-    throw new Error(
-      `Missing or invalid Custom Application configuration file.`
-    );
-  }
-  return configFile.filepath;
-};
+const {
+  getCustomApplicationConfigPath,
+} = require('@commercetools-frontend/application-config');
 
 function updateApplicationIdInCustomApplicationConfig(applicationId) {
-  const filePath = getCustomAppConfigPath();
+  const filePath = getCustomApplicationConfigPath();
   const result = babel.transformFileSync(filePath, {
     plugins: [
       function replaceCustomApplicationConfig() {
