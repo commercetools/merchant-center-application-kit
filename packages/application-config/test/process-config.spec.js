@@ -38,11 +38,11 @@ describe('processing a simple config', () => {
         url: 'https://avengers.app',
         permissions: [
           {
-            name: 'ViewAvengers',
+            name: 'viewAvengers',
             oAuthScopes: ['view_products'],
           },
           {
-            name: 'ManageAvengers',
+            name: 'manageAvengers',
             oAuthScopes: [],
           },
         ],
@@ -111,11 +111,11 @@ describe('processing a simple config', () => {
           url: 'https://avengers.app',
           permissions: [
             {
-              name: 'ViewAvengers',
+              name: 'viewAvengers',
               oAuthScopes: ['view_products'],
             },
             {
-              name: 'ManageAvengers',
+              name: 'manageAvengers',
               oAuthScopes: [],
             },
           ],
@@ -171,11 +171,11 @@ describe('processing a simple config', () => {
           url: 'https://avengers.app',
           permissions: [
             {
-              name: 'ViewAvengers',
+              name: 'viewAvengers',
               oAuthScopes: ['view_products'],
             },
             {
-              name: 'ManageAvengers',
+              name: 'manageAvengers',
               oAuthScopes: [],
             },
           ],
@@ -248,11 +248,11 @@ describe('processing a simple config', () => {
           url: 'https://avengers.app',
           permissions: [
             {
-              name: 'ViewAvengers',
+              name: 'viewAvengers',
               oAuthScopes: ['view_products'],
             },
             {
-              name: 'ManageAvengers',
+              name: 'manageAvengers',
               oAuthScopes: [],
             },
           ],
@@ -306,11 +306,11 @@ describe('processing a full config', () => {
         url: 'https://avengers.app',
         permissions: [
           {
-            name: 'ViewAvengers',
+            name: 'viewAvengers',
             oAuthScopes: ['view_products'],
           },
           {
-            name: 'ManageAvengers',
+            name: 'manageAvengers',
             oAuthScopes: [],
           },
         ],
@@ -390,11 +390,11 @@ describe('processing a full config', () => {
           url: 'https://avengers.app',
           permissions: [
             {
-              name: 'ViewAvengers',
+              name: 'viewAvengers',
               oAuthScopes: ['view_products'],
             },
             {
-              name: 'ManageAvengers',
+              name: 'manageAvengers',
               oAuthScopes: [],
             },
           ],
@@ -463,11 +463,11 @@ describe('processing a full config', () => {
           url: 'https://avengers.app',
           permissions: [
             {
-              name: 'ViewAvengers',
+              name: 'viewAvengers',
               oAuthScopes: ['view_products'],
             },
             {
-              name: 'ManageAvengers',
+              name: 'manageAvengers',
               oAuthScopes: [],
             },
           ],
@@ -549,11 +549,11 @@ describe('processing a full config', () => {
           url: 'https://avengers.app',
           permissions: [
             {
-              name: 'ViewAvengers',
+              name: 'viewAvengers',
               oAuthScopes: ['view_products'],
             },
             {
-              name: 'ManageAvengers',
+              name: 'manageAvengers',
               oAuthScopes: [],
             },
           ],
@@ -630,11 +630,11 @@ describe('processing a config with environment variable placeholders', () => {
         url: 'https://avengers.app',
         permissions: [
           {
-            name: 'ViewAvengers',
+            name: 'viewAvengers',
             oAuthScopes: ['view_products'],
           },
           {
-            name: 'ManageAvengers',
+            name: 'manageAvengers',
             oAuthScopes: [],
           },
         ],
@@ -707,11 +707,11 @@ describe('processing a config with environment variable placeholders', () => {
           url: 'https://avengers.app',
           permissions: [
             {
-              name: 'ViewAvengers',
+              name: 'viewAvengers',
               oAuthScopes: ['view_products'],
             },
             {
-              name: 'ManageAvengers',
+              name: 'manageAvengers',
               oAuthScopes: [],
             },
           ],
@@ -771,11 +771,11 @@ describe('processing a config with environment variable placeholders', () => {
           url: 'https://avengers.app',
           permissions: [
             {
-              name: 'ViewAvengers',
+              name: 'viewAvengers',
               oAuthScopes: ['view_products'],
             },
             {
-              name: 'ManageAvengers',
+              name: 'manageAvengers',
               oAuthScopes: [],
             },
           ],
@@ -852,11 +852,11 @@ describe('processing a config with environment variable placeholders', () => {
           url: 'https://avengers.app',
           permissions: [
             {
-              name: 'ViewAvengers',
+              name: 'viewAvengers',
               oAuthScopes: ['view_products'],
             },
             {
-              name: 'ManageAvengers',
+              name: 'manageAvengers',
               oAuthScopes: [],
             },
           ],
@@ -910,11 +910,11 @@ describe('processing a config with intl variable placeholders', () => {
         url: 'https://my-app.com',
         permissions: [
           {
-            name: 'ViewAvengers',
+            name: 'viewAvengers',
             oAuthScopes: ['view_products'],
           },
           {
-            name: 'ManageAvengers',
+            name: 'manageAvengers',
             oAuthScopes: [],
           },
         ],
@@ -1014,11 +1014,11 @@ describe('processing a config with file path variable placeholders', () => {
         url: 'https://my-app.com',
         permissions: [
           {
-            name: 'ViewAvengers',
+            name: 'viewAvengers',
             oAuthScopes: ['view_products'],
           },
           {
-            name: 'ManageAvengers',
+            name: 'manageAvengers',
             oAuthScopes: [],
           },
         ],
@@ -1104,11 +1104,11 @@ describe('processing a config with OIDC', () => {
         url: 'https://avengers.app',
         permissions: [
           {
-            name: 'ViewAvengers',
+            name: 'viewAvengers',
             oAuthScopes: ['view_orders', 'view_states'],
           },
           {
-            name: 'ManageAvengers',
+            name: 'manageAvengers',
             oAuthScopes: ['manage_orders'],
           },
         ],
@@ -1180,11 +1180,11 @@ describe('processing a config with OIDC', () => {
           url: 'https://avengers.app',
           permissions: [
             {
-              name: 'ViewAvengers',
+              name: 'viewAvengers',
               oAuthScopes: ['view_orders', 'view_states'],
             },
             {
-              name: 'ManageAvengers',
+              name: 'manageAvengers',
               oAuthScopes: ['manage_orders'],
             },
           ],
