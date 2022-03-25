@@ -2858,6 +2858,7 @@ __metadata:
   resolution: "@commercetools-frontend/mc-scripts@workspace:packages/mc-scripts"
   dependencies:
     "@babel/plugin-transform-runtime": ^7.17.0
+    "@babel/core": ^7.16.10
     "@babel/preset-env": ^7.16.11
     "@babel/runtime": ^7.17.8
     "@babel/runtime-corejs3": ^7.17.8
@@ -2892,7 +2893,9 @@ __metadata:
     postcss-import: 14.1.0
     postcss-loader: 6.2.1
     postcss-reporter: 7.0.5
+    prettier: 2.5.1
     querystring-es3: ^0.2.1
+    rcfile: 1.0.3
     react-dev-utils: 12.0.0
     react-refresh: 0.12.0
     read: ^1.0.7
