@@ -76,7 +76,8 @@
       "!packages/jest-stylelint-runner",
       "!packages/mc-dev-authentication",
       "!packages/mc-html-template",
-      "!packages/mc-scripts"
+      "!packages/mc-scripts",
+      "!packages-backend/eslint-config-node"
     ]
   },
   "dependencies": {
