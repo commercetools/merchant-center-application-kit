@@ -29,6 +29,10 @@
       "updateTypes": ["minor", "patch"],
       "groupName": "all dependencies",
       "groupSlug": "all"
+    },
+    {
+      "matchPackageNames": ["postcss-custom-properties"],
+      "allowedVersions": "<=12.1.4"
     }
   ],
   "lockFileMaintenance": {
