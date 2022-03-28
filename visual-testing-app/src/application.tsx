@@ -1,72 +1,55 @@
-import { ComponentType, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+/// <reference path="../../node_modules/vite/types/importMeta.d.ts" />
 
-interface ApplicationWindow extends Window {
-  onAppLoaded: () => void;
-}
-declare let window: ApplicationWindow;
+import { ComponentType } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 type TVisualRouteSpec = {
   routePath: string;
   Component: ComponentType;
 };
 
-const visualRoutesContext = require.context(
-  './components/',
-  true,
-  /\.visualroute\.tsx$/
+const visualRoutesModules = import.meta.globEager<TVisualRouteSpec>(
+  './components/**/*.visualroute.tsx'
 );
 
-const visualRoutes = visualRoutesContext
-  .keys()
-  .map<TVisualRouteSpec>((id) => visualRoutesContext(id));
+const allUniqueVisualRouteComponents = Object.values(
+  visualRoutesModules
+).reduce<Record<string, TVisualRouteSpec>>((allComponents, RouteComponent) => {
+  const route = RouteComponent.routePath.substring(1);
+  if (allComponents[route]) {
+    console.error(`Duplicate route generated for: /${route}`);
+  }
+  allComponents[route] = RouteComponent;
+  return allComponents;
+}, {} as Record<string, TVisualRouteSpec>);
+const allSortedComponents = Object.keys(allUniqueVisualRouteComponents)
+  .sort()
+  .map<TVisualRouteSpec>((key) => allUniqueVisualRouteComponents[key]);
 
-const hideAppLoader = () => {
-  /**
-   * NOTE:
-   *   This function is defined in the `index.html` in a script-tag
-   *   by the `html-template.js` in the `mc-scripts`. There are
-   *   alternative ways of acheiving this namely:
-   *   1. Using custom events and dispatching here
-   *     - Not supported in IE11 and would need a polyfill
-   *   2. Removing the DOM node here
-   *     - Both `index.html` and this component would have to
-   *       now the div's id/class. If one would change the index.html
-   *       the app would never show (always show the loading screen)
-   */
-  if (window.onAppLoaded) window.onAppLoaded();
-};
-
-const App = () => {
-  useEffect(() => {
-    hideAppLoader();
-  }, []);
-  return (
-    <Router>
-      <Switch>
-        <Route
-          path="/"
-          exact
-          component={() => (
-            <div>
-              <h1>Visual Testing App</h1>
-              <ul>
-                {visualRoutes.map(({ routePath }) => (
-                  <li key={routePath}>
-                    <a href={routePath}>{routePath}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        />
-        {visualRoutes.map(({ routePath, Component }) => (
-          <Route key={routePath} path={routePath} component={Component} />
-        ))}
-      </Switch>
-    </Router>
-  );
-};
-App.displayName = 'App';
+const App = () => (
+  <Router>
+    <Switch>
+      <Route
+        path="/"
+        exact
+        component={() => (
+          <div>
+            <h1>Visual Testing App</h1>
+            <ul>
+              {allSortedComponents.map(({ routePath }) => (
+                <li key={routePath}>
+                  <a href={routePath}>{routePath}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      />
+      {allSortedComponents.map(({ routePath, Component }) => (
+        <Route key={routePath} path={routePath} component={Component} />
+      ))}
+    </Switch>
+  </Router>
+);
 
 export default App;

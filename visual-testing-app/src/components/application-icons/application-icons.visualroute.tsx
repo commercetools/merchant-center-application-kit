@@ -6,20 +6,22 @@ import Grid from '@commercetools-uikit/grid';
 import { customProperties } from '@commercetools-uikit/design-system';
 import { Suite, Spec } from '../../test-utils';
 
-// Cache object to store references so SVG icons.
-const svgIcons: Record<string, { default: string }> = {};
-const importAllSvgs = (requireContext: ReturnType<typeof require.context>) =>
-  requireContext.keys().forEach((filePath) => {
-    const name = filePath.replace(/\.\/(.*)\.svg$/, '$1') || filePath;
-    svgIcons[name] = requireContext(filePath);
-  });
-importAllSvgs(
-  require.context(
-    '!!raw-loader!@commercetools-frontend/assets/application-icons',
-    false,
-    /.svg$/
-  )
+const svgIconsModules = import.meta.globEager<string>(
+  '/../packages/assets/application-icons/*.svg',
+  {
+    assert: { type: 'raw' },
+  }
 );
+
+const svgIcons = Object.entries<string>(svgIconsModules).reduce<
+  Record<string, string>
+>((allIcons, [filePath, rawSvg]) => {
+  const name = filePath.replace(/\.\/(.*)\.svg$/, '$1') || filePath;
+  return {
+    ...allIcons,
+    [name]: rawSvg,
+  };
+}, {});
 
 const IconsGrid = (props: {
   color:
@@ -38,7 +40,7 @@ const IconsGrid = (props: {
     gridTemplateColumns={`repeat(auto-fill, minmax(calc(${customProperties.spacingXl} * 2), 1fr))`}
   >
     {Object.keys(svgIcons).map((iconName) => {
-      const data = svgIcons[iconName].default;
+      const data = svgIcons[iconName];
       return (
         <Grid.Item key={iconName} justifySelf="center">
           <div

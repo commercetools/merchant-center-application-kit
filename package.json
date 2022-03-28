@@ -36,7 +36,7 @@
     "playground:start:prod:local": "yarn workspace playground start:prod:local",
     "visual-testing-app:start": "yarn workspace @commercetools-local/visual-testing-app start",
     "visual-testing-app:build": "yarn workspace @commercetools-local/visual-testing-app build",
-    "visual-testing-app:serve": "yarn workspace @commercetools-local/visual-testing-app serve",
+    "visual-testing-app:preview": "yarn workspace @commercetools-local/visual-testing-app preview",
     "template-starter:build": "yarn workspace merchant-center-application-template-starter build",
     "template-starter:start": "yarn workspace merchant-center-application-template-starter start",
     "template-starter:start:prod:local": "yarn workspace merchant-center-application-template-starter start:prod:local",
