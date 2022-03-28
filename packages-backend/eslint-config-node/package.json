@@ -6,7 +6,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/commercetools/merchant-center-application-kit.git",
-    "directory": "packages/eslint-config-node"
+    "directory": "packages-backend/eslint-config-node"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
   "keywords": ["javascript", "nodejs", "toolkit", "eslint"],
