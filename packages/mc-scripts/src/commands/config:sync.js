@@ -46,9 +46,9 @@ const configSync = async () => {
     initial: 0,
   });
 
-  const organizationName = organizationChoices.filter(
+  const organizationName = organizationChoices.find(
     ({ value }) => value === organizationId
-  )[0]['title'];
+  ).title;
 
   if (!fetchedCustomApplication) {
     console.log(
