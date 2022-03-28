@@ -4,7 +4,8 @@ const {
   createCustomApplication,
   updateCustomApplication,
   fetchCustomApplication,
-} = require('./custom-application-requests');
+  fetchUserOrganizations,
+} = require('./graphql-requests');
 
 const mockServer = setupServer();
 afterEach(() => {
@@ -56,28 +57,26 @@ describe('fetch custom application data', () => {
     );
   });
   it('should match returned data', async () => {
-    const data = await fetchCustomApplication({
-      entryPointUriPath: 'test-custom-app',
-      mcApiUrl,
-      token: 'test-token',
-    });
+    const organizationExtensionForCustomApplication =
+      await fetchCustomApplication({
+        entryPointUriPath: 'test-custom-app',
+        mcApiUrl,
+        token: 'test-token',
+      });
     expect(
-      data.organizationExtensionForCustomApplication.application
-        .entryPointUriPath
+      organizationExtensionForCustomApplication.application.entryPointUriPath
     ).toEqual('test-custom-app');
-    expect(data.organizationExtensionForCustomApplication.id).toEqual(
-      'test-id'
-    );
+    expect(organizationExtensionForCustomApplication.id).toEqual('test-id');
   });
 });
 
-describe('create custom application', () => {
+describe('register custom application', () => {
   beforeEach(() => {
     mockServer.use(
       graphql.mutation('RegisterCustomApplication', (req, res, ctx) => {
         return res(
           ctx.data({
-            organizationExtensionForCustomApplication: {
+            createCustomApplication: {
               id: 'new-test-id',
               application: {
                 url: 'https://test.com',
@@ -105,18 +104,15 @@ describe('create custom application', () => {
     );
   });
   it('should match returned data', async () => {
-    const data = await createCustomApplication({
+    const createdCustomAppsData = await createCustomApplication({
       entryPointUriPath: 'new-test-custom-app',
       mcApiUrl,
       token: 'new-test-token',
     });
-    expect(
-      data.organizationExtensionForCustomApplication.application
-        .entryPointUriPath
-    ).toEqual('new-test-custom-app');
-    expect(data.organizationExtensionForCustomApplication.id).toEqual(
-      'new-test-id'
+    expect(createdCustomAppsData.application.entryPointUriPath).toEqual(
+      'new-test-custom-app'
     );
+    expect(createdCustomAppsData.id).toEqual('new-test-id');
   });
 });
 
@@ -126,7 +122,7 @@ describe('update custom application', () => {
       graphql.mutation('UpdateCustomApplication', (req, res, ctx) => {
         return res(
           ctx.data({
-            organizationExtensionForCustomApplication: {
+            updateCustomApplication: {
               id: 'test-id',
               application: {
                 url: 'https://test.com',
@@ -154,16 +150,44 @@ describe('update custom application', () => {
     );
   });
   it('should match returned data', async () => {
-    const data = await updateCustomApplication({
+    const updatedCustomAppsData = await updateCustomApplication({
       entryPointUriPath: 'updated-test-custom-app',
       mcApiUrl,
       token: 'test-token',
     });
-    expect(
-      data.organizationExtensionForCustomApplication.application.name
-    ).toEqual('Updated Test name');
-    expect(
-      data.organizationExtensionForCustomApplication.application.description
-    ).toEqual('Updated Test description');
+    expect(updatedCustomAppsData.application.name).toEqual('Updated Test name');
+    expect(updatedCustomAppsData.application.description).toEqual(
+      'Updated Test description'
+    );
+  });
+});
+
+describe('fetch user organizations', () => {
+  beforeEach(() => {
+    mockServer.use(
+      graphql.query('Organizations', (req, res, ctx) => {
+        return res(
+          ctx.data({
+            myOrganizations: {
+              total: 1,
+              results: [
+                {
+                  id: 'test-organization-id',
+                  name: 'test-organization-name',
+                },
+              ],
+            },
+          })
+        );
+      })
+    );
+  });
+  it('should match returned data', async () => {
+    const data = await fetchUserOrganizations({
+      mcApiUrl,
+      token: 'test-token',
+    });
+    expect(data.results[0].id).toEqual('test-organization-id');
+    expect(data.results[0].name).toEqual('test-organization-name');
   });
 });

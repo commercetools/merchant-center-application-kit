@@ -1,5 +1,4 @@
-const { promisify } = require('util');
-const read = promisify(require('read'));
+const prompts = require('prompts');
 const chalk = require('react-dev-utils/chalk');
 const { processConfig } = require('@commercetools-frontend/application-config');
 const CredentialsStorage = require('../utils/credentials-storage');
@@ -18,8 +17,16 @@ const login = async () => {
     return;
   }
 
-  const email = await read({ prompt: 'Email: ' });
-  const password = await read({ prompt: 'Password (hidden): ', silent: true });
+  const { email } = await prompts({
+    type: 'text',
+    name: 'email',
+    message: 'Email',
+  });
+  const { password } = await prompts({
+    type: 'invisible',
+    name: 'password',
+    message: 'Password (hidden)',
+  });
 
   const credentials = await getAuthToken(mcApiUrl, {
     email,

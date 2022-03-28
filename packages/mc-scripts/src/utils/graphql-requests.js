@@ -2,10 +2,10 @@ const { GraphQLClient } = require('graphql-request');
 const requireGraphqlHelper = require('./require-graphql');
 const requireGraphql = requireGraphqlHelper(__dirname);
 
-const graphQLClient = (uri, token) =>
+const graphQLClient = (uri, token, target = 'settings') =>
   new GraphQLClient(`${uri}/graphql`, {
     headers: {
-      'x-graphql-target': 'settings',
+      'x-graphql-target': target,
       'x-mc-cli-access-token': token,
     },
   });
@@ -29,7 +29,7 @@ const fetchCustomApplication = async ({
     );
     return customAppData.organizationExtensionForCustomApplication;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error.response.message);
   }
 };
 
@@ -53,9 +53,9 @@ const updateCustomApplication = async ({
       UpdateCustomApplication,
       variables
     );
-    return updatedCustomAppsData;
+    return updatedCustomAppsData.updateCustomApplication;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error.response.message);
   }
 };
 
@@ -79,7 +79,23 @@ const createCustomApplication = async ({
     );
     return createdCustomAppsData.createCustomApplication;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error.response.message);
+  }
+};
+
+const fetchUserOrganizations = async ({ mcApiUrl, token }) => {
+  const Organizations = requireGraphql(
+    './fetch-user-organizations.core.graphql'
+  );
+  try {
+    const userOrganizations = await graphQLClient(
+      mcApiUrl,
+      token,
+      'administration'
+    ).request(Organizations);
+    return userOrganizations.myOrganizations;
+  } catch (error) {
+    throw new Error(error.response.message);
   }
 };
 
@@ -87,4 +103,5 @@ module.exports = {
   fetchCustomApplication,
   updateCustomApplication,
   createCustomApplication,
+  fetchUserOrganizations,
 };
