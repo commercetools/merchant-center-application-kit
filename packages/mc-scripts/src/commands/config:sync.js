@@ -13,6 +13,12 @@ const updateApplicationIdInCustomApplicationConfig = require('../utils/update-ap
 
 const credentialsStorage = new CredentialsStorage();
 
+const getMcUrlLink = (mcApiUrl, organizationId, applicationId) => {
+  const mcUrl = mcApiUrl.replace('mc-api', 'mc');
+  const customAppLink = `${mcUrl}/account/organizations/${organizationId}/custom-applications/owned/${applicationId}`;
+  return customAppLink;
+};
+
 const configSync = async () => {
   const applicationConfig = processConfig();
   const { data: localCustomAppData } = applicationConfig;
@@ -33,31 +39,37 @@ const configSync = async () => {
 
   const userOrganizations = await fetchUserOrganizations({ mcApiUrl, token });
 
-  const organizationChoices = userOrganizations.results.map((organization) => ({
-    title: organization.name,
-    value: organization.id,
-  }));
+  let organizationId, organizationName;
 
-  const { organizationId } = await prompts({
-    type: 'select',
-    name: 'organizationId',
-    message: 'Select Organization',
-    choices: organizationChoices,
-    initial: 0,
-  });
+  if (userOrganizations.total > 1) {
+    const organizationChoices = userOrganizations.results.map(
+      (organization) => ({
+        title: organization.name,
+        value: organization.id,
+      })
+    );
 
-  const organizationName = organizationChoices.find(
-    ({ value }) => value === organizationId
-  ).title;
+    organizationId = await prompts({
+      type: 'select',
+      name: 'organizationId',
+      message: 'Select Organization',
+      choices: organizationChoices,
+      initial: 0,
+    })['organizationId'];
+
+    organizationName = organizationChoices.find(
+      ({ value }) => value === organizationId
+    ).title;
+  } else {
+    organizationId = userOrganizations.results[0].id;
+    organizationName = userOrganizations.results[0].name;
+  }
 
   if (!fetchedCustomApplication) {
-    console.log(
-      `You are about to create the configuration in the ${organizationName} organization in environment ${location}.`
-    );
     const { confirmation } = await prompts({
       type: 'text',
       name: 'confirmation',
-      message: 'Is this OK?',
+      message: `You are about to create the configuration in the "${organizationName}" organization in environment ${location}. Are you sure you want to proceed?`,
       initial: 'yes',
     });
     if (confirmation.toLowerCase().charAt(0) !== 'y') {
@@ -71,9 +83,14 @@ const configSync = async () => {
       });
       // update applicationID in the custom-application-config file
       updateApplicationIdInCustomApplicationConfig(createdCustomApplication.id);
+      const customAppLink = getMcUrlLink(
+        mcApiUrl,
+        organizationId,
+        createdCustomApplication.id
+      );
       console.log(
         chalk.green(
-          `You have successfully created the configuration in the ${organizationName} organization in environment ${location}. Your local configuration has also been updated with the newly created application identifier: ${createdCustomApplication.id}.`
+          `You have successfully created the configuration in the "${organizationName}" organization in environment ${location}.\nYour local configuration has also been updated with the newly created application identifier: ${createdCustomApplication.id}.\nLink to the created custom application is ${customAppLink}`
         )
       );
     }
@@ -84,15 +101,12 @@ const configSync = async () => {
     fetchedCustomApplication.application.id
   );
 
-  // TODO: show diff (followup)
+  // TODO: show diff (followup task)
 
-  console.log(
-    `You are about to update the configuration in the ${organizationName} organization in environment ${location}.`
-  );
   const { confirmation } = await prompts({
     type: 'text',
     name: 'confirmation',
-    message: 'Is this OK?',
+    message: `You are about to update the configuration in the "${organizationName}" organization in environment ${location}. Are you sure you want to proceed?`,
     initial: 'yes',
   });
   if (confirmation.toLowerCase().charAt(0) !== 'y') {
@@ -106,9 +120,14 @@ const configSync = async () => {
     data: omit(localCustomAppData, ['id']),
     applicationId: fetchedCustomApplication.application.id,
   });
+  const customAppLink = getMcUrlLink(
+    mcApiUrl,
+    organizationId,
+    fetchedCustomApplication.application.id
+  );
   console.log(
     chalk.green(
-      `You have successfully updated the configuration in the ${organizationName} organization in environment ${location}.`
+      `You have successfully updated the configuration in the "${organizationName}" organization in environment ${location}.\nLink to the created custom application is ${customAppLink}`
     )
   );
 };
