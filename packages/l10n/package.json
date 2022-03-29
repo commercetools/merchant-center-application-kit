@@ -26,7 +26,7 @@
     "@commercetools-frontend/sentry": "21.2.1",
     "@emotion/react": "11.8.2",
     "@types/prop-types": "^15.7.4",
-    "@types/react": "^17.0.42",
+    "@types/react": "^17.0.43",
     "lodash": "4.17.21",
     "moment": "^2.29.1",
     "prop-types": "15.8.1"

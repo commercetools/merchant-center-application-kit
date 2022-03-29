@@ -2219,8 +2219,8 @@ __metadata:
     "@babel/preset-env": ^7.16.11
     "@babel/preset-typescript": ^7.16.7
     "@rushstack/eslint-patch": ^1.1.1
-    "@typescript-eslint/eslint-plugin": ^5.16.0
-    "@typescript-eslint/parser": ^5.16.0
+    "@typescript-eslint/eslint-plugin": ^5.17.0
+    "@typescript-eslint/parser": ^5.17.0
     eslint: 8.12.0
     eslint-config-prettier: ^8.5.0
     eslint-import-resolver-typescript: ^2.7.0
@@ -2411,8 +2411,8 @@ __metadata:
     "@commercetools-frontend/constants": 21.0.0
     "@commercetools-frontend/notifications": 21.2.1
     "@commercetools-frontend/sentry": 21.2.1
-    "@types/lodash": ^4.14.180
-    "@types/react": ^17.0.42
+    "@types/lodash": ^4.14.181
+    "@types/react": ^17.0.43
     "@types/react-redux": ^7.1.23
     lodash: 4.17.21
     react: 17.0.2
@@ -2453,9 +2453,9 @@ __metadata:
     "@emotion/react": 11.8.2
     "@emotion/styled": 11.8.1
     "@types/history": 4.7.11
-    "@types/lodash": ^4.14.180
+    "@types/lodash": ^4.14.181
     "@types/prop-types": ^15.7.4
-    "@types/react": ^17.0.42
+    "@types/react": ^17.0.43
     "@types/react-dom": ^17.0.14
     "@types/react-modal": ^3.13.1
     history: 4.10.1
@@ -2503,9 +2503,9 @@ __metadata:
     "@commercetools-frontend/sentry": 21.2.1
     "@emotion/react": 11.8.2
     "@testing-library/react": 12.1.4
-    "@types/lodash": ^4.14.180
+    "@types/lodash": ^4.14.181
     "@types/prop-types": ^15.7.4
-    "@types/react": ^17.0.42
+    "@types/react": ^17.0.43
     graphql: 15.8.0
     lodash: 4.17.21
     moment-timezone: ^0.5.34
@@ -2554,16 +2554,16 @@ __metadata:
     "@emotion/styled": 11.8.1
     "@flopflip/combine-adapters": 0.0.29
     "@flopflip/http-adapter": 0.0.19
-    "@flopflip/launchdarkly-adapter": 5.0.23
+    "@flopflip/launchdarkly-adapter": 5.0.24
     "@flopflip/react-broadcast": 12.2.15
     "@flopflip/types": 4.1.21
     "@testing-library/react": 12.1.4
     "@testing-library/react-hooks": 7.0.2
     "@types/common-tags": ^1.8.1
     "@types/history": 4.7.11
-    "@types/lodash": ^4.14.180
+    "@types/lodash": ^4.14.181
     "@types/prop-types": ^15.7.4
-    "@types/react": ^17.0.42
+    "@types/react": ^17.0.43
     "@types/react-dom": ^17.0.14
     "@types/react-redux": ^7.1.23
     "@types/react-router": ^5.1.18
@@ -2716,8 +2716,8 @@ __metadata:
     "@babel/eslint-parser": ^7.17.0
     "@commercetools-frontend/babel-preset-mc-app": ^21.0.0
     "@rushstack/eslint-patch": ^1.1.1
-    "@typescript-eslint/eslint-plugin": ^5.16.0
-    "@typescript-eslint/parser": ^5.16.0
+    "@typescript-eslint/eslint-plugin": ^5.17.0
+    "@typescript-eslint/parser": ^5.17.0
     confusing-browser-globals: ^1.0.11
     eslint: 8.12.0
     eslint-config-prettier: ^8.5.0
@@ -2729,7 +2729,7 @@ __metadata:
     eslint-plugin-jsx-a11y: ^6.5.1
     eslint-plugin-prettier: ^4.0.0
     eslint-plugin-react: ^7.29.4
-    eslint-plugin-react-hooks: ^4.3.0
+    eslint-plugin-react-hooks: ^4.4.0
     eslint-plugin-testing-library: ^5.1.0
   peerDependencies:
     eslint: 8.x
@@ -2749,7 +2749,7 @@ __metadata:
     "@formatjs/cli": 4.8.3
     "@formatjs/icu-messageformat-parser": 2.0.19
     "@types/prop-types": ^15.7.4
-    "@types/react": ^17.0.42
+    "@types/react": ^17.0.43
     moment: ^2.29.1
     prop-types: 15.8.1
     react: 17.0.2
@@ -2810,7 +2810,7 @@ __metadata:
     "@emotion/react": 11.8.2
     "@testing-library/react-hooks": 7.0.2
     "@types/prop-types": ^15.7.4
-    "@types/react": ^17.0.42
+    "@types/react": ^17.0.43
     chalk: 4.1.2
     cldr: 7.1.1
     deep-diff: 1.0.2
@@ -2933,9 +2933,9 @@ __metadata:
     "@commercetools-frontend/application-shell-connectors": 21.2.1
     "@commercetools-frontend/sentry": 21.2.1
     "@emotion/react": 11.8.2
-    "@types/lodash": ^4.14.180
+    "@types/lodash": ^4.14.181
     "@types/prop-types": ^15.7.4
-    "@types/react": ^17.0.42
+    "@types/react": ^17.0.43
     lodash: 4.17.21
     prop-types: 15.8.1
     react: 17.0.2
@@ -2964,9 +2964,9 @@ __metadata:
     "@emotion/styled": 11.8.1
     "@testing-library/react": 12.1.4
     "@types/history": 4.7.11
-    "@types/lodash": ^4.14.180
+    "@types/lodash": ^4.14.181
     "@types/prop-types": ^15.7.4
-    "@types/react": ^17.0.42
+    "@types/react": ^17.0.43
     "@types/react-dom": ^17.0.14
     "@types/react-redux": ^7.1.23
     "@types/react-router": ^5.1.18
@@ -3005,7 +3005,7 @@ __metadata:
     "@testing-library/react": 12.1.4
     "@types/node-fetch": 2.6.1
     "@types/prop-types": ^15.7.4
-    "@types/react": ^17.0.42
+    "@types/react": ^17.0.43
     "@types/react-redux": ^7.1.23
     "@types/uuid": 8.3.4
     fast-equals: 2.0.4
@@ -3033,7 +3033,7 @@ __metadata:
     "@commercetools-frontend/constants": 21.0.0
     "@sentry/browser": 6.19.2
     "@types/prop-types": ^15.7.4
-    "@types/react": ^17.0.42
+    "@types/react": ^17.0.43
     prop-types: 15.8.1
     react: 17.0.2
     sentry-testkit: 3.3.7
@@ -4666,21 +4666,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@flopflip/launchdarkly-adapter@npm:5.0.23":
-  version: 5.0.23
-  resolution: "@flopflip/launchdarkly-adapter@npm:5.0.23"
+"@flopflip/launchdarkly-adapter@npm:5.0.24":
+  version: 5.0.24
+  resolution: "@flopflip/launchdarkly-adapter@npm:5.0.24"
   dependencies:
     "@babel/runtime": 7.17.8
     "@flopflip/adapter-utilities": 1.0.25
     "@flopflip/types": 4.1.21
-    "@types/merge-deep": 3.0.0
     debounce-fn: 4.0.0
-    launchdarkly-js-client-sdk: 2.20.2
+    launchdarkly-js-client-sdk: 2.21.0
     lodash: 4.17.21
-    merge-deep: 3.0.3
     mitt: 3.0.0
     tiny-warning: 1.0.3
-  checksum: f7a878e6f633bd38382aaf367e7df2a38e680e15175eedfe8c451a1c83387ba5f25bb5d48c3b23abcfe88c7caa448f129ef87c7ea8ca7d24cdbf4b32df5eebc1
+    ts-deepmerge: 2.0.1
+  checksum: c84135e179eaa35d19291a3757285c843106aa1f11a2de3b6c8a12f3b1fa48a01e61bc50c1bbb5a2bf00d38c10ea343692762ac451a1de15478595449f03b74d
   languageName: node
   linkType: hard
 
@@ -4708,21 +4707,20 @@ __metadata:
   linkType: hard
 
 "@flopflip/react@npm:^11.1.26":
-  version: 11.1.26
-  resolution: "@flopflip/react@npm:11.1.26"
+  version: 11.1.27
+  resolution: "@flopflip/react@npm:11.1.27"
   dependencies:
     "@babel/runtime": 7.17.8
     "@flopflip/types": 4.1.21
-    "@types/merge-deep": 3.0.0
     "@types/react-is": 17.0.3
     lodash: 4.17.21
-    merge-deep: 3.0.3
     react-is: 17.0.2
     tiny-warning: 1.0.3
+    ts-deepmerge: 2.0.1
   peerDependencies:
     react: ^16.8 || ^17.0
     react-dom: ^16.8 || ^17.0
-  checksum: 9229444d7e280d10e13948e04c3bd85fd21825871e4ede3fe06365c2fb34a7812e465c45631dd7567929b32c9e7a8279f0c43f1b3184e8606b656e56f9146c86
+  checksum: f311f4db38c898796e84814eace0b72d4efdc48eef002e4524566760e74235540f6da8d058c1bce280a7136495e821b7683ea3ba17c7edda9edc6eb2765c55e4
   languageName: node
   linkType: hard
 
@@ -8914,10 +8912,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.14.180":
-  version: 4.14.180
-  resolution: "@types/lodash@npm:4.14.180"
-  checksum: fc42ae3473695cac6e91553f832fef8eb51a31c1c0381cafa81b00dc3efe18e279786bdda77caf0b90a8340ba2ba7aa46ae6541d69870565f775d04c89128bc1
+"@types/lodash@npm:^4.14.181":
+  version: 4.14.181
+  resolution: "@types/lodash@npm:4.14.181"
+  checksum: 0d1863d8383fd2f8bb42e9e3fc1d6255bb88ff034d6df848941063698944313dae944fc1270315613e3d303fae7c7a9a86085ad3235ed6204c56c4b0b3699aa9
   languageName: node
   linkType: hard
 
@@ -8927,13 +8925,6 @@ __metadata:
   dependencies:
     "@types/unist": "*"
   checksum: 3f587bfc0a9a2403ecadc220e61031b01734fedaf82e27eb4d5ba039c0eb54db8c85681ccc070ab4df3f7ec711b736a82b990e69caa14c74bf7ac0ccf2ac7313
-  languageName: node
-  linkType: hard
-
-"@types/merge-deep@npm:3.0.0":
-  version: 3.0.0
-  resolution: "@types/merge-deep@npm:3.0.0"
-  checksum: b1f8659a92be98b92375a91ba12a44f93250e1c4802f946f3ce1f85df711c18431a3836c211b0cf3873d6eea00f2ef29d0325079b8b01809a18246a37d025653
   languageName: node
   linkType: hard
 
@@ -15722,6 +15713,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-plugin-react-hooks@npm:^4.4.0":
+  version: 4.4.0
+  resolution: "eslint-plugin-react-hooks@npm:4.4.0"
+  peerDependencies:
+    eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
+  checksum: 350b50d45677cb2df682b9e54475912746bd2f56fc342e4d47fad78d71eb1b2b742e702f1e6c04ab2196346d3d7a2e327b5eee826f5b96bfb84b5c41d35e44e9
+  languageName: node
+  linkType: hard
+
 "eslint-plugin-react@npm:^7.29.2, eslint-plugin-react@npm:^7.29.4":
   version: 7.29.4
   resolution: "eslint-plugin-react@npm:7.29.4"
@@ -22447,6 +22447,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"launchdarkly-js-client-sdk@npm:2.21.0":
+  version: 2.21.0
+  resolution: "launchdarkly-js-client-sdk@npm:2.21.0"
+  dependencies:
+    escape-string-regexp: ^1.0.5
+    launchdarkly-js-sdk-common: 3.5.1
+  checksum: 75dc7a6baca404513abcec59e82943d251a6dba30db53dd576dd9e38fa1eb13297111ab54e1ebc187dc4e05cc4a6ef26b8bc4caf4393bd5ba97caf98925dc2b3
+  languageName: node
+  linkType: hard
+
 "launchdarkly-js-sdk-common@npm:3.5.1":
   version: 3.5.1
   resolution: "launchdarkly-js-sdk-common@npm:3.5.1"
@@ -23927,7 +23937,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"merge-deep@npm:3.0.3, merge-deep@npm:^3.0.3":
+"merge-deep@npm:^3.0.3":
   version: 3.0.3
   resolution: "merge-deep@npm:3.0.3"
   dependencies:
@@ -31715,6 +31725,13 @@ __metadata:
   version: 2.2.1
   resolution: "true-case-path@npm:2.2.1"
   checksum: fd5f1c2a87a122a65ffb1f84b580366be08dac7f552ea0fa4b5a6ab0a013af950b0e752beddb1c6c1652e6d6a2b293b7b3fd86a5a1706242ad365b68f1b5c6f1
+  languageName: node
+  linkType: hard
+
+"ts-deepmerge@npm:2.0.1":
+  version: 2.0.1
+  resolution: "ts-deepmerge@npm:2.0.1"
+  checksum: 1d41981364192b521ce375740646ac2e00d7e3815c066624159309d3a2e43100449bc05c56d51938a1e5be444b0ca88ad9ce599fc489719805b9a2e9d4153194
   languageName: node
   linkType: hard
 
