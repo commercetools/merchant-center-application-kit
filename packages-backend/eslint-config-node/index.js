@@ -2,7 +2,6 @@
 require('@rushstack/eslint-patch/modern-module-resolution');
 
 const { statusCode, allSupportedExtensions } = require('./helpers/eslint');
-// const { craRules } = require('./helpers/rules-presets');
 
 /**
  * @type {import("eslint").Linter.Config}
