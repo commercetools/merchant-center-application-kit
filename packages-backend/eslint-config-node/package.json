@@ -1,0 +1,41 @@
+{
+  "name": "@commercetools-backend/eslint-config-node",
+  "version": "1.0.0",
+  "description": "ESLint config for Node.js projects.",
+  "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/commercetools/merchant-center-application-kit.git",
+    "directory": "packages-backend/eslint-config-node"
+  },
+  "homepage": "https://docs.commercetools.com/custom-applications",
+  "keywords": ["javascript", "nodejs", "toolkit", "eslint"],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/eslint-parser": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@rushstack/eslint-patch": "^1.1.1",
+    "@typescript-eslint/eslint-plugin": "^5.16.0",
+    "@typescript-eslint/parser": "^5.16.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^2.7.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^25.7.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0"
+  },
+  "peerDependencies": {
+    "eslint": "8.x"
+  },
+  "devDependencies": {
+    "eslint": "8.11.0"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
