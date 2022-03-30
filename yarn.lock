@@ -2254,7 +2254,7 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.17.8
     "@babel/runtime-corejs3": ^7.17.8
-    "@sentry/node": 6.19.2
+    "@sentry/node": 6.19.3
     "@types/triple-beam": 1.3.2
     express: 4.17.3
     express-winston: 4.2.0
@@ -2552,11 +2552,11 @@ __metadata:
     "@commercetools/http-user-agent": 2.1.2
     "@emotion/react": 11.8.2
     "@emotion/styled": 11.8.1
-    "@flopflip/combine-adapters": 0.0.29
-    "@flopflip/http-adapter": 0.0.19
-    "@flopflip/launchdarkly-adapter": 5.0.24
-    "@flopflip/react-broadcast": 12.2.15
-    "@flopflip/types": 4.1.21
+    "@flopflip/combine-adapters": 0.0.30
+    "@flopflip/http-adapter": 0.0.20
+    "@flopflip/launchdarkly-adapter": 5.0.25
+    "@flopflip/react-broadcast": 12.2.16
+    "@flopflip/types": 4.1.22
     "@testing-library/react": 12.1.4
     "@testing-library/react-hooks": 7.0.2
     "@types/common-tags": ^1.8.1
@@ -3031,7 +3031,7 @@ __metadata:
     "@babel/runtime": ^7.17.8
     "@babel/runtime-corejs3": ^7.17.8
     "@commercetools-frontend/constants": 21.0.0
-    "@sentry/browser": 6.19.2
+    "@sentry/browser": 6.19.3
     "@types/prop-types": ^15.7.4
     "@types/react": ^17.0.43
     prop-types: 15.8.1
@@ -4623,95 +4623,95 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@flopflip/adapter-utilities@npm:1.0.25":
-  version: 1.0.25
-  resolution: "@flopflip/adapter-utilities@npm:1.0.25"
+"@flopflip/adapter-utilities@npm:1.0.26":
+  version: 1.0.26
+  resolution: "@flopflip/adapter-utilities@npm:1.0.26"
   dependencies:
     "@babel/runtime": 7.17.8
-    "@flopflip/types": 4.1.21
+    "@flopflip/types": 4.1.22
     globalthis: 1.0.2
     lodash: 4.17.21
   peerDependencies:
     typescript: 4.x
-  checksum: a6541a5c94c9ce2163b883ead80abcff812b1dc1456277d1001ed4c9d39b4ddcad980ac3fccbea0f0b805035d9d8b7ad41f4aaba17a4764b584936456e756a9a
+  checksum: 4c18d7c524f994b9731497283e90c3c33ab90d2c4430e88a6596608eb0e81d3417b8ab518b244f7c017d98c950ecfee1e1709bee5749f55758d0d5f2c9b4263b
   languageName: node
   linkType: hard
 
-"@flopflip/combine-adapters@npm:0.0.29":
-  version: 0.0.29
-  resolution: "@flopflip/combine-adapters@npm:0.0.29"
+"@flopflip/combine-adapters@npm:0.0.30":
+  version: 0.0.30
+  resolution: "@flopflip/combine-adapters@npm:0.0.30"
   dependencies:
     "@babel/runtime": 7.17.8
-    "@flopflip/adapter-utilities": 1.0.25
-    "@flopflip/types": 4.1.21
+    "@flopflip/adapter-utilities": 1.0.26
+    "@flopflip/types": 4.1.22
     mitt: 3.0.0
     tiny-warning: 1.0.3
-  checksum: 20ccb8b7d8d9a500d0878b72475c6ab0570976a6f3d4d7d48d93c2eb0f08cebc2be352fcf5c00b9cea341c7e212e6b70f82a868f4d92421625dbb667359b5722
+  checksum: fcfe70f7ca7d604c023e038accd8bf443d98912701992c77c53aeb1ea6b3d1983c6f81ee45ad127cd2d7895a071e26ace0a65372191092ef6c0c513dab550534
   languageName: node
   linkType: hard
 
-"@flopflip/http-adapter@npm:0.0.19":
-  version: 0.0.19
-  resolution: "@flopflip/http-adapter@npm:0.0.19"
+"@flopflip/http-adapter@npm:0.0.20":
+  version: 0.0.20
+  resolution: "@flopflip/http-adapter@npm:0.0.20"
   dependencies:
     "@babel/runtime": 7.17.8
-    "@flopflip/adapter-utilities": 1.0.25
-    "@flopflip/localstorage-cache": 1.0.25
-    "@flopflip/sessionstorage-cache": 1.0.25
-    "@flopflip/types": 4.1.21
+    "@flopflip/adapter-utilities": 1.0.26
+    "@flopflip/localstorage-cache": 1.0.26
+    "@flopflip/sessionstorage-cache": 1.0.26
+    "@flopflip/types": 4.1.22
     lodash: 4.17.21
     mitt: 3.0.0
     tiny-warning: 1.0.3
-  checksum: 51d4db4621d2e9ab3817a17cc7093aa01e5e71eacd4bad55f091381abda99ce74bc8e8d6b8572ca4902c984d46e8cbe3584ddee3e1ca1b4a4b677aa78ade74b1
+  checksum: a354042c97e864882a0f1684c02e212254aced34ac9579d4d38d8b087cf63eb7a66b9beacdf27433f3a77ec938fc0e689a45e2ada3c8b2507a274659b4c16fd3
   languageName: node
   linkType: hard
 
-"@flopflip/launchdarkly-adapter@npm:5.0.24":
-  version: 5.0.24
-  resolution: "@flopflip/launchdarkly-adapter@npm:5.0.24"
+"@flopflip/launchdarkly-adapter@npm:5.0.25":
+  version: 5.0.25
+  resolution: "@flopflip/launchdarkly-adapter@npm:5.0.25"
   dependencies:
     "@babel/runtime": 7.17.8
-    "@flopflip/adapter-utilities": 1.0.25
-    "@flopflip/types": 4.1.21
+    "@flopflip/adapter-utilities": 1.0.26
+    "@flopflip/types": 4.1.22
     debounce-fn: 4.0.0
     launchdarkly-js-client-sdk: 2.21.0
     lodash: 4.17.21
     mitt: 3.0.0
     tiny-warning: 1.0.3
     ts-deepmerge: 2.0.1
-  checksum: c84135e179eaa35d19291a3757285c843106aa1f11a2de3b6c8a12f3b1fa48a01e61bc50c1bbb5a2bf00d38c10ea343692762ac451a1de15478595449f03b74d
+  checksum: 759ce388a2156ea3c9ca15832b7c5bd684ee3c89d275571364267302ea72a418591a9928275f911e553c625019e99ec7ea695bae82eed3631a52aeb71fbe4799
   languageName: node
   linkType: hard
 
-"@flopflip/localstorage-cache@npm:1.0.25":
-  version: 1.0.25
-  resolution: "@flopflip/localstorage-cache@npm:1.0.25"
+"@flopflip/localstorage-cache@npm:1.0.26":
+  version: 1.0.26
+  resolution: "@flopflip/localstorage-cache@npm:1.0.26"
   dependencies:
-    "@flopflip/types": 4.1.21
-  checksum: 361ad9f624e13dbbc92327af9921226c02ff01e64810fbce6ec5b06063f7134b22c63f7de58934121f5fc704a9a1d2a4be64efd3a529354c8740a03c0b3ac490
+    "@flopflip/types": 4.1.22
+  checksum: a050c6671c9994b407cd311eff6eaea272206a7d053f99a3bfe23c9bc56f3266dc3615a3822ee7adf356424bc627105607cac27110f4f96ade054d5cff87665d
   languageName: node
   linkType: hard
 
-"@flopflip/react-broadcast@npm:12.2.15":
-  version: 12.2.15
-  resolution: "@flopflip/react-broadcast@npm:12.2.15"
+"@flopflip/react-broadcast@npm:12.2.16":
+  version: 12.2.16
+  resolution: "@flopflip/react-broadcast@npm:12.2.16"
   dependencies:
     "@babel/runtime": 7.17.8
-    "@flopflip/react": ^11.1.26
-    "@flopflip/types": 4.1.21
+    "@flopflip/react": ^11.1.28
+    "@flopflip/types": 4.1.22
   peerDependencies:
     react: ^16.8 || ^17.0
     react-dom: ^16.8 || ^17.0
-  checksum: e0aaf20ac5e6ee1acbca6f64fb8f1eeee38a99992df7f53be64516b27fa656e63e62b3bebf21fae404b2fe7446925b572be42502b69d7309bccfbb984ecf6a7e
+  checksum: fcb951c772383dd92eecc06c45296e248a541995a37b1db6cbecf5463ef9578fb376ee5aca92356c8e78e6d4dcbac221bac67e5b0fb9cb2580be4a6f6434537f
   languageName: node
   linkType: hard
 
-"@flopflip/react@npm:^11.1.26":
-  version: 11.1.27
-  resolution: "@flopflip/react@npm:11.1.27"
+"@flopflip/react@npm:^11.1.28":
+  version: 11.1.28
+  resolution: "@flopflip/react@npm:11.1.28"
   dependencies:
     "@babel/runtime": 7.17.8
-    "@flopflip/types": 4.1.21
+    "@flopflip/types": 4.1.22
     "@types/react-is": 17.0.3
     lodash: 4.17.21
     react-is: 17.0.2
@@ -4720,27 +4720,27 @@ __metadata:
   peerDependencies:
     react: ^16.8 || ^17.0
     react-dom: ^16.8 || ^17.0
-  checksum: f311f4db38c898796e84814eace0b72d4efdc48eef002e4524566760e74235540f6da8d058c1bce280a7136495e821b7683ea3ba17c7edda9edc6eb2765c55e4
+  checksum: e56e782f789a5f6d9867a2110fcf5caddf2e45d8885e83d2c9bdf86aceef5d31a98f3593213099a7c39befef2a3a62d7990c99add3a4d9e18e940796f8042a5d
   languageName: node
   linkType: hard
 
-"@flopflip/sessionstorage-cache@npm:1.0.25":
-  version: 1.0.25
-  resolution: "@flopflip/sessionstorage-cache@npm:1.0.25"
+"@flopflip/sessionstorage-cache@npm:1.0.26":
+  version: 1.0.26
+  resolution: "@flopflip/sessionstorage-cache@npm:1.0.26"
   dependencies:
-    "@flopflip/types": 4.1.21
-  checksum: 8e0c3605f287c82326635d6af5e5402da6c3ee0be28ba6cc9368e3a340e29be75359673d91348b679a78a0cbab270c901db221952e699edf01b24a387a6a7f3f
+    "@flopflip/types": 4.1.22
+  checksum: 653374f7e9d7454533c9d5b15265abd1a9142fa00c06e392aa749d38fe38202845a2e5a287be40f013859a4281dc3a552d687e74e0f7e85de8228c3718337a2d
   languageName: node
   linkType: hard
 
-"@flopflip/types@npm:4.1.21":
-  version: 4.1.21
-  resolution: "@flopflip/types@npm:4.1.21"
+"@flopflip/types@npm:4.1.22":
+  version: 4.1.22
+  resolution: "@flopflip/types@npm:4.1.22"
   dependencies:
-    launchdarkly-js-client-sdk: 2.20.2
+    launchdarkly-js-client-sdk: 2.21.0
   peerDependencies:
     typescript: 4.x
-  checksum: 18085903e685bcf78336c146ef102446d5bd206b2dc77763586e448ca16709a9103c3a5b6b7f2a8ab4dc4b4bf73a61e68eef64ce7e8673d5210cb321bd5ce9aa
+  checksum: f9240189233477423bc083e88c1a410bd37e4e4276b12721154b7a74b18e5ef12586c29df0fd114c8c399f606546d9ad8835dfd9ef8943f54cd464e8c82b3482
   languageName: node
   linkType: hard
 
@@ -7854,15 +7854,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/browser@npm:6.19.2":
-  version: 6.19.2
-  resolution: "@sentry/browser@npm:6.19.2"
+"@sentry/browser@npm:6.19.3":
+  version: 6.19.3
+  resolution: "@sentry/browser@npm:6.19.3"
   dependencies:
-    "@sentry/core": 6.19.2
-    "@sentry/types": 6.19.2
-    "@sentry/utils": 6.19.2
+    "@sentry/core": 6.19.3
+    "@sentry/types": 6.19.3
+    "@sentry/utils": 6.19.3
     tslib: ^1.9.3
-  checksum: d84ed8bed929f8c5628d68f13e688b266b1dbabbc89e316ef13e5b595bf0707cade996911e1665b052245f2bc9b86145946f364edbe05fbb84c917333e8904c8
+  checksum: f7a1cc648948f460dab50f853f9fd3e08a5cd78ed8b9b5343cf5df9863cb6000b189586415be475f0984ee5ac0b5e5465192b54c26b42dae0e86bf00a12e0ea2
   languageName: node
   linkType: hard
 
@@ -7879,16 +7879,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/core@npm:6.19.2":
-  version: 6.19.2
-  resolution: "@sentry/core@npm:6.19.2"
+"@sentry/core@npm:6.19.3":
+  version: 6.19.3
+  resolution: "@sentry/core@npm:6.19.3"
   dependencies:
-    "@sentry/hub": 6.19.2
-    "@sentry/minimal": 6.19.2
-    "@sentry/types": 6.19.2
-    "@sentry/utils": 6.19.2
+    "@sentry/hub": 6.19.3
+    "@sentry/minimal": 6.19.3
+    "@sentry/types": 6.19.3
+    "@sentry/utils": 6.19.3
     tslib: ^1.9.3
-  checksum: 0b683287973d14b98a6a7b09bb8a30e1fbad5cbd144b34bb999fe9b9ffb15bfbfe3fc7eccdb8b308ab707c9a243b561feb3ccea196b10e01e27bc85385b87b13
+  checksum: a4fd7a9724387ed760867e2779b457398c12122530b2d946e3cde3e88d92dd93045aa638ff07771b922536766322b5a824ff123dc594cc4cb17b2f29e8d05631
   languageName: node
   linkType: hard
 
@@ -7903,14 +7903,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/hub@npm:6.19.2":
-  version: 6.19.2
-  resolution: "@sentry/hub@npm:6.19.2"
+"@sentry/hub@npm:6.19.3":
+  version: 6.19.3
+  resolution: "@sentry/hub@npm:6.19.3"
   dependencies:
-    "@sentry/types": 6.19.2
-    "@sentry/utils": 6.19.2
+    "@sentry/types": 6.19.3
+    "@sentry/utils": 6.19.3
     tslib: ^1.9.3
-  checksum: 22ff7103d0313395e47cb667ee7dc0efec239329c4bd513c6cc1dce2a03ccbd6f821d40b2dd3b944300aa857bf8c4e4e6591d40f0f5ddee983d717e28ea1419f
+  checksum: c11435dabe6d53e741539dfb88267de152bfb37170425ee91354b17cf1fd1f23a57d87e5a7468c6c9e5e7bc3a7a63f0e5023ea35421fb562910f0efc7248ff84
   languageName: node
   linkType: hard
 
@@ -7925,30 +7925,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/minimal@npm:6.19.2":
-  version: 6.19.2
-  resolution: "@sentry/minimal@npm:6.19.2"
+"@sentry/minimal@npm:6.19.3":
+  version: 6.19.3
+  resolution: "@sentry/minimal@npm:6.19.3"
   dependencies:
-    "@sentry/hub": 6.19.2
-    "@sentry/types": 6.19.2
+    "@sentry/hub": 6.19.3
+    "@sentry/types": 6.19.3
     tslib: ^1.9.3
-  checksum: a81344497cf86a7f94a79571a05da3915d9c2a05e15c7ea5fc3dddfec19390b49b18fcfcf71530cec0b18ce5b76bf2c1600346ec5545244d8b2a2c56a7d15c86
+  checksum: 6cde9b7a3fe3e6121e237681340d137a5725554ba01558d8b44e32e3f4604e833fb7c835ab5c26fe19b7bce318a57efe8eb2b44454e763a947d9ee6abf21926b
   languageName: node
   linkType: hard
 
-"@sentry/node@npm:6.19.2":
-  version: 6.19.2
-  resolution: "@sentry/node@npm:6.19.2"
+"@sentry/node@npm:6.19.3":
+  version: 6.19.3
+  resolution: "@sentry/node@npm:6.19.3"
   dependencies:
-    "@sentry/core": 6.19.2
-    "@sentry/hub": 6.19.2
-    "@sentry/types": 6.19.2
-    "@sentry/utils": 6.19.2
+    "@sentry/core": 6.19.3
+    "@sentry/hub": 6.19.3
+    "@sentry/types": 6.19.3
+    "@sentry/utils": 6.19.3
     cookie: ^0.4.1
     https-proxy-agent: ^5.0.0
     lru_map: ^0.3.3
     tslib: ^1.9.3
-  checksum: 6c38c8cea0611c9c2dd267c5d43f806c7c06bbfa4506930b0027277dfae71b7b754f18b1141d75d102e366369068941e6f9c2f889cca0c571e0304b559c7aa80
+  checksum: 06307c1a6543b2121382fa308f7dbfecffb99d62e5aff44fb28bd8767c33f68dbf5b9375098bb28f2f92d2a0ad2eb6222565c16465d1411ce87f48315ba9c0c3
   languageName: node
   linkType: hard
 
@@ -7959,10 +7959,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/types@npm:6.19.2":
-  version: 6.19.2
-  resolution: "@sentry/types@npm:6.19.2"
-  checksum: 4a22891c1549ad345abbe873b093898e4b9310ec0a53a0aa68055dc21e52bd2d4014e7b5c9da4106bccded29ae1a3f0ac04ba119eaf3371fe469de4f87e56e39
+"@sentry/types@npm:6.19.3":
+  version: 6.19.3
+  resolution: "@sentry/types@npm:6.19.3"
+  checksum: 8a2705eed16fb7fa660c36417a41ca4106829821024be534f74b40a00b6c96b27a84343b101c7478e0b4458f71c280d4fa508d10928a3eccdb30baff49f5827e
   languageName: node
   linkType: hard
 
@@ -7976,13 +7976,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/utils@npm:6.19.2":
-  version: 6.19.2
-  resolution: "@sentry/utils@npm:6.19.2"
+"@sentry/utils@npm:6.19.3":
+  version: 6.19.3
+  resolution: "@sentry/utils@npm:6.19.3"
   dependencies:
-    "@sentry/types": 6.19.2
+    "@sentry/types": 6.19.3
     tslib: ^1.9.3
-  checksum: 9e1c95bb50e874f4d2e1b650dd1d8e3a19ba25789158756e7d296da41ddf44619adcfe027b7af0e7354bdf60953bffa157a69765c15c63345f0a2841646b5205
+  checksum: 6c0dd60a24554e9dbe11d5acd18d808f5a0f4c648c45b74818fbf009c9404c6e0d943cfbe62dea6a94c70fec9e1a0aedbd5579b8981f85fcfe0103527c9c5c5a
   languageName: node
   linkType: hard
 
@@ -22434,16 +22434,6 @@ __metadata:
   dependencies:
     package-json: ^6.3.0
   checksum: fbc72b071eb66c40f652441fd783a9cca62f08bf42433651937f078cd9ef94bf728ec7743992777826e4e89305aef24f234b515e6030503a2cbee7fc9bdc2c0f
-  languageName: node
-  linkType: hard
-
-"launchdarkly-js-client-sdk@npm:2.20.2":
-  version: 2.20.2
-  resolution: "launchdarkly-js-client-sdk@npm:2.20.2"
-  dependencies:
-    escape-string-regexp: ^1.0.5
-    launchdarkly-js-sdk-common: 3.5.1
-  checksum: 9b5a60ed5f14a8275aa4751d8883105a40666d3fbab389433d1064c4b5f3203c9bfa20f23200c1e3d1abf7e9b7ca69e47a03493975cbbb4fe6d9c626137e5081
   languageName: node
   linkType: hard
 
