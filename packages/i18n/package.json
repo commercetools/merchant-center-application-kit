@@ -38,16 +38,16 @@
     "@commercetools-frontend/sentry": "21.2.1",
     "@commercetools-uikit/i18n": "^14.0.0",
     "@emotion/react": "11.8.2",
-    "@formatjs/icu-messageformat-parser": "2.0.18",
+    "@formatjs/icu-messageformat-parser": "2.0.19",
     "@types/prop-types": "^15.7.4",
-    "@types/react": "^17.0.42",
+    "@types/react": "^17.0.43",
     "moment": "^2.29.1",
     "prop-types": "15.8.1"
   },
   "devDependencies": {
-    "@formatjs/cli": "4.8.2",
+    "@formatjs/cli": "4.8.3",
     "react": "17.0.2",
-    "react-intl": "5.24.7"
+    "react-intl": "5.24.8"
   },
   "peerDependencies": {
     "react": "17.x",

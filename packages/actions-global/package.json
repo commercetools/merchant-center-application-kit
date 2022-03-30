@@ -24,8 +24,8 @@
     "@commercetools-frontend/constants": "21.0.0",
     "@commercetools-frontend/notifications": "21.2.1",
     "@commercetools-frontend/sentry": "21.2.1",
-    "@types/lodash": "^4.14.180",
-    "@types/react": "^17.0.42",
+    "@types/lodash": "^4.14.181",
+    "@types/react": "^17.0.43",
     "@types/react-redux": "^7.1.23",
     "lodash": "4.17.21",
     "redux-thunk": "2.4.1"

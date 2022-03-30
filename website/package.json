@@ -18,17 +18,17 @@
     "@commercetools-uikit/spacings-stack": "^14.0.1",
     "@emotion/react": "11.8.2",
     "@emotion/styled": "11.8.1",
-    "gatsby": "4.10.3",
-    "gatsby-cli": "4.10.2",
+    "gatsby": "4.11.0",
+    "gatsby-cli": "4.11.0",
     "prop-types": "15.8.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-intl": "5.24.7"
+    "react-intl": "5.24.8"
   },
   "devDependencies": {
     "@svgr/cli": "6.2.1",
     "linkinator": "3.0.3",
-    "prettier": "2.6.0",
+    "prettier": "2.6.1",
     "start-server-and-test": "1.14.0"
   }
 }
