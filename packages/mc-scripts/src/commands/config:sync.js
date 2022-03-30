@@ -1,6 +1,6 @@
 const omit = require('lodash/omit');
 const prompts = require('prompts');
-const chalk = require('react-dev-utils/chalk');
+const chalk = require('chalk');
 const { processConfig } = require('@commercetools-frontend/application-config');
 const CredentialsStorage = require('../utils/credentials-storage');
 const {
@@ -72,7 +72,7 @@ const configSync = async () => {
       initial: 'yes',
     });
     if (confirmation.toLowerCase().charAt(0) !== 'y') {
-      console.log('Aborted.');
+      console.log(chalk.red('Aborted.'));
     } else {
       const createdCustomApplication = await createCustomApplication({
         mcApiUrl,
@@ -108,7 +108,7 @@ const configSync = async () => {
     initial: 'yes',
   });
   if (confirmation.toLowerCase().charAt(0) !== 'y') {
-    console.log('Aborted.');
+    console.log(chalk.red('Aborted.'));
     return;
   }
   await updateCustomApplication({
@@ -131,6 +131,6 @@ const configSync = async () => {
 };
 
 configSync().catch((error) => {
-  console.error(error);
+  console.log(chalk.red(error));
   process.exit(1);
 });

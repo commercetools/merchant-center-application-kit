@@ -1,5 +1,5 @@
 const prompts = require('prompts');
-const chalk = require('react-dev-utils/chalk');
+const chalk = require('chalk');
 const { processConfig } = require('@commercetools-frontend/application-config');
 const CredentialsStorage = require('../utils/credentials-storage');
 const { getAuthToken } = require('../utils/auth');
@@ -40,6 +40,6 @@ const login = async () => {
 };
 
 login().catch((error) => {
-  console.error(error);
+  console.log(chalk.red(error));
   process.exit(1);
 });
