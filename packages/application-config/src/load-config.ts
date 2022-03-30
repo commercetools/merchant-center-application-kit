@@ -62,7 +62,7 @@ const explorer = cosmiconfigSync(moduleName, {
   },
 });
 
-export const getCustomApplicationConfigPath = () => {
+export const getConfigPath = () => {
   const configFile = explorer.search();
   if (!configFile) {
     throw new Error(

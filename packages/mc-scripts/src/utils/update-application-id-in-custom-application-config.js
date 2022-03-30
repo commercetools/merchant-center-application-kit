@@ -2,12 +2,10 @@ const fs = require('fs');
 const rcfile = require('rcfile');
 const prettier = require('prettier');
 const babel = require('@babel/core');
-const {
-  getCustomApplicationConfigPath,
-} = require('@commercetools-frontend/application-config');
+const { getConfigPath } = require('@commercetools-frontend/application-config');
 
 function updateApplicationIdInCustomApplicationConfig(applicationId) {
-  const filePath = getCustomApplicationConfigPath();
+  const filePath = getConfigPath();
   const result = babel.transformFileSync(filePath, {
     plugins: [
       function replaceCustomApplicationConfig() {
