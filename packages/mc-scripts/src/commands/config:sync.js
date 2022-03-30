@@ -22,11 +22,11 @@ const getMcUrlLink = (mcApiUrl, organizationId, applicationId) => {
 const configSync = async () => {
   const applicationConfig = processConfig();
   const { data: localCustomAppData } = applicationConfig;
-  const { mcApiUrl, location } = applicationConfig.env;
+  const { mcApiUrl } = applicationConfig.env;
 
   if (!credentialsStorage.isSessionValid(mcApiUrl)) {
     throw new Error(
-      `You don't have a valid session for the ${mcApiUrl} environment. Please, run the “mc-scripts login” to login.`
+      `You don't have a valid session for the ${mcApiUrl} environment. Please, run the "mc-scripts login" command to authenticate yourself.`
     );
   }
 
@@ -69,7 +69,7 @@ const configSync = async () => {
     const { confirmation } = await prompts({
       type: 'text',
       name: 'confirmation',
-      message: `You are about to create the configuration in the "${organizationName}" organization in environment ${location}. Are you sure you want to proceed?`,
+      message: `You are about to create a new Custom Application in the "${organizationName}" organization for the ${mcApiUrl} environment. Are you sure you want to proceed?`,
       initial: 'yes',
     });
     if (confirmation.toLowerCase().charAt(0) !== 'y') {
@@ -90,7 +90,7 @@ const configSync = async () => {
       );
       console.log(
         chalk.green(
-          `You have successfully created the configuration in the "${organizationName}" organization in environment ${location}.\nYour local configuration has also been updated with the newly created application identifier: ${createdCustomApplication.id}.\nLink to the created custom application is ${customAppLink}`
+          `Custom Application created.\nThe "applicationId" in your local Custom Application config file has been updated with the application ID.\nYou can see the Custom Application data in the Merchant Center at ${customAppLink}.`
         )
       );
     }
@@ -102,11 +102,10 @@ const configSync = async () => {
   );
 
   // TODO: show diff (followup task)
-
   const { confirmation } = await prompts({
     type: 'text',
     name: 'confirmation',
-    message: `You are about to update the configuration in the "${organizationName}" organization in environment ${location}. Are you sure you want to proceed?`,
+    message: `You are about to update the Custom Application "${localCustomAppData.entryPointUriPath}" in the ${mcApiUrl} environment. Are you sure you want to proceed?`,
     initial: 'yes',
   });
   if (confirmation.toLowerCase().charAt(0) !== 'y') {
@@ -127,7 +126,7 @@ const configSync = async () => {
   );
   console.log(
     chalk.green(
-      `You have successfully updated the configuration in the "${organizationName}" organization in environment ${location}.\nLink to the created custom application is ${customAppLink}`
+      `Custom Application updated.\nYou can see the Custom Application data in the Merchant Center at ${customAppLink}.`
     )
   );
 };
