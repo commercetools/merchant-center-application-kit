@@ -6,6 +6,19 @@ const { getConfigPath } = require('@commercetools-frontend/application-config');
 
 function updateApplicationIdInCustomApplicationConfig(applicationId) {
   const filePath = getConfigPath();
+  if (filePath.endsWith('.json')) {
+    const customApplicationConfig = require(filePath);
+    customApplicationConfig.env.production.applicationId = applicationId;
+    fs.writeFileSync(
+      filePath,
+      JSON.stringify(customApplicationConfig, null, 2),
+      {
+        encoding: 'utf8',
+      }
+    );
+    return;
+  }
+
   const result = babel.transformFileSync(filePath, {
     plugins: [
       function replaceCustomApplicationConfig() {
