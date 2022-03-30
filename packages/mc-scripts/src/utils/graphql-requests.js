@@ -87,7 +87,7 @@ const createCustomApplication = async ({
 };
 
 const fetchUserOrganizations = async ({ mcApiUrl, token }) => {
-  const Organizations = requireGraphql(
+  const FetchCustomApplicationFromCli = requireGraphql(
     './fetch-user-organizations.core.graphql'
   );
   try {
@@ -95,7 +95,7 @@ const fetchUserOrganizations = async ({ mcApiUrl, token }) => {
       mcApiUrl,
       token,
       GRAPHQL_TARGETS.ADMINISTRATION_SERVICE
-    ).request(Organizations);
+    ).request(FetchCustomApplicationFromCli);
     return userOrganizations.myOrganizations;
   } catch (error) {
     throw new Error(error.response.message);

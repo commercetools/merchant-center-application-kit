@@ -166,7 +166,7 @@ describe('update custom application', () => {
 describe('fetch user organizations', () => {
   beforeEach(() => {
     mockServer.use(
-      graphql.query('Organizations', (req, res, ctx) => {
+      graphql.query('FetchCustomApplicationFromCli', (req, res, ctx) => {
         return res(
           ctx.data({
             myOrganizations: {
