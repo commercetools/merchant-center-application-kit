@@ -1,12 +1,15 @@
 const { GraphQLClient } = require('graphql-request');
+const { GRAPHQL_TARGETS } = require('@commercetools-frontend/constants');
+const userAgent = require('./user-agent');
 const requireGraphqlHelper = require('./require-graphql');
 const requireGraphql = requireGraphqlHelper(__dirname);
 
-const graphQLClient = (uri, token, target = 'settings') =>
+const graphQLClient = (uri, token, target = GRAPHQL_TARGETS.SETTINGS_SERVICE) =>
   new GraphQLClient(`${uri}/graphql`, {
     headers: {
       'x-graphql-target': target,
       'x-mc-cli-access-token': token,
+      'x-user-agent': userAgent,
     },
   });
 
@@ -91,7 +94,7 @@ const fetchUserOrganizations = async ({ mcApiUrl, token }) => {
     const userOrganizations = await graphQLClient(
       mcApiUrl,
       token,
-      'administration'
+      GRAPHQL_TARGETS.ADMINISTRATION_SERVICE
     ).request(Organizations);
     return userOrganizations.myOrganizations;
   } catch (error) {
