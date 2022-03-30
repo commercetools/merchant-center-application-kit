@@ -359,7 +359,7 @@ export type TCustomersListViewTableInput = {
 export type TDashboardView = {
   __typename?: 'DashboardView';
   createdAt: Scalars['DateTime'];
-  currencyCode: Scalars['String'];
+  currencyCode?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   isActive: Scalars['Boolean'];
   layout?: Maybe<Array<TLayoutCard>>;
@@ -801,6 +801,35 @@ export type TLayoutCardWhereInput = {
   yPosition_lte?: InputMaybe<Scalars['Int']>;
   yPosition_not?: InputMaybe<Scalars['Int']>;
   yPosition_not_in?: InputMaybe<Array<Scalars['Int']>>;
+};
+
+export type TLegacyCustomApplication = {
+  __typename?: 'LegacyCustomApplication';
+  createdAt: Scalars['DateTime'];
+  description?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  isActive?: Maybe<Scalars['Boolean']>;
+  name: Scalars['String'];
+  navbarMenu?: Maybe<TNavbarMenu>;
+  oAuthScopes: Array<Scalars['String']>;
+  project: TProjectExtension;
+  updatedAt: Scalars['DateTime'];
+  url: Scalars['String'];
+};
+
+export type TLegacyCustomApplicationQueryInput = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<Scalars['String']>;
+};
+
+export type TLegacyCustomApplicationsPagedQueryResult = {
+  __typename?: 'LegacyCustomApplicationsPagedQueryResult';
+  count: Scalars['Int'];
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
+  results: Array<TLegacyCustomApplication>;
+  total: Scalars['Int'];
 };
 
 export type TLocalizedField = {
@@ -1864,6 +1893,8 @@ export type TQuery = {
   /** @deprecated Experimental feature - For internal usage only */
   allCustomApplications: TCustomApplicationsPagedQueryResult;
   /** @deprecated Experimental feature - For internal usage only */
+  allLegacyCustomApplications: TLegacyCustomApplicationsPagedQueryResult;
+  /** @deprecated Experimental feature - For internal usage only */
   allOrganizationExtensions: Array<TOrganizationExtension>;
   allProjectExtensions: Array<TProjectExtension>;
   cartDiscountsCustomView?: Maybe<TDiscountsCustomView>;
@@ -1880,6 +1911,8 @@ export type TQuery = {
   discountCodesListView?: Maybe<TDiscountCodesListView>;
   /** @deprecated Experimental feature - For internal usage only */
   globalOrganizationExtension?: Maybe<TOrganizationExtension>;
+  /** @deprecated Experimental feature - For internal usage only */
+  legacyCustomApplication?: Maybe<TLegacyCustomApplication>;
   ordersListView?: Maybe<TOrdersListView>;
   ordersListViews: Array<Maybe<TOrdersListView>>;
   organizationExtension?: Maybe<TOrganizationExtension>;
@@ -1911,6 +1944,11 @@ export type TQuery_AllAppliedCustomApplicationPermissionsArgs = {
 
 export type TQuery_AllCustomApplicationsArgs = {
   params?: InputMaybe<TCustomApplicationQueryInput>;
+};
+
+
+export type TQuery_AllLegacyCustomApplicationsArgs = {
+  params?: InputMaybe<TLegacyCustomApplicationQueryInput>;
 };
 
 
@@ -1946,6 +1984,11 @@ export type TQuery_DiscountCodesCustomViewArgs = {
 
 export type TQuery_GlobalOrganizationExtensionArgs = {
   organizationId: Scalars['String'];
+};
+
+
+export type TQuery_LegacyCustomApplicationArgs = {
+  applicationId: Scalars['ID'];
 };
 
 
@@ -2478,7 +2521,7 @@ export type TOrganizationExtensionForCustomApplicationQueryVariables = Exact<{
 }>;
 
 
-export type TOrganizationExtensionForCustomApplicationQuery = { __typename?: 'Query', organizationExtensionForCustomApplication?: { __typename?: 'OrganizationExtensionForCustomApplication', application: { __typename?: 'RestrictedCustomApplicationForOrganization', id: string, entryPointUriPath: string, name: string, description?: string | null, url: string, icon: string, permissions: Array<{ __typename?: 'CustomApplicationPermission', name: string, oAuthScopes: Array<string> }>, mainMenuLink: { __typename?: 'CustomApplicationMenuLink', defaultLabel: string, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }, submenuLinks: Array<{ __typename?: 'CustomApplicationSubmenuLink', uriPath: string, defaultLabel: string, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }> } } | null };
+export type TOrganizationExtensionForCustomApplicationQuery = { __typename?: 'Query', organizationExtensionForCustomApplication?: { __typename?: 'OrganizationExtensionForCustomApplication', organizationId: string, application: { __typename?: 'RestrictedCustomApplicationForOrganization', id: string, entryPointUriPath: string, name: string, description?: string | null, url: string, icon: string, permissions: Array<{ __typename?: 'CustomApplicationPermission', name: string, oAuthScopes: Array<string> }>, mainMenuLink: { __typename?: 'CustomApplicationMenuLink', defaultLabel: string, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }, submenuLinks: Array<{ __typename?: 'CustomApplicationSubmenuLink', uriPath: string, defaultLabel: string, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }> } } | null };
 
 export type TRegisterCustomApplicationMutationVariables = Exact<{
   organizationId: Scalars['String'];
