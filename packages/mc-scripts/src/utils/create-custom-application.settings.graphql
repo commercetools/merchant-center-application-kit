@@ -1,4 +1,4 @@
-mutation RegisterCustomApplication(
+mutation CreateCustomApplicationFromCli(
   $organizationId: String!
   $data: CustomApplicationDraftDataInput!
 ) {

@@ -22,12 +22,12 @@ const fetchCustomApplication = async ({
     entryPointUriPath,
   };
 
-  const OrganizationExtensionForCustomApplication = requireGraphql(
+  const FetchCustomApplicationFromCli = requireGraphql(
     './fetch-custom-application.settings.graphql'
   );
   try {
     const customAppData = await graphQLClient(mcApiUrl, token).request(
-      OrganizationExtensionForCustomApplication,
+      FetchCustomApplicationFromCli,
       variables
     );
     return customAppData.organizationExtensionForCustomApplication;
@@ -48,12 +48,12 @@ const updateCustomApplication = async ({
     applicationId,
     data,
   };
-  const UpdateCustomApplication = requireGraphql(
+  const UpdateCustomApplicationFromCli = requireGraphql(
     './update-custom-application.settings.graphql'
   );
   try {
     const updatedCustomAppsData = await graphQLClient(mcApiUrl, token).request(
-      UpdateCustomApplication,
+      UpdateCustomApplicationFromCli,
       variables
     );
     return updatedCustomAppsData.updateCustomApplication;
@@ -72,15 +72,15 @@ const createCustomApplication = async ({
     organizationId,
     data,
   };
-  const CreateCustomApplication = requireGraphql(
-    './register-custom-application.settings.graphql'
+  const CreateCustomApplicationFromCli = requireGraphql(
+    './create-custom-application.settings.graphql'
   );
   try {
-    const createdCustomAppsData = await graphQLClient(mcApiUrl, token).request(
-      CreateCustomApplication,
+    const createdCustomAppData = await graphQLClient(mcApiUrl, token).request(
+      CreateCustomApplicationFromCli,
       variables
     );
-    return createdCustomAppsData.createCustomApplication;
+    return createdCustomAppData.createCustomApplication;
   } catch (error) {
     throw new Error(error.response.message);
   }

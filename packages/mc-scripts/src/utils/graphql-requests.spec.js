@@ -23,38 +23,35 @@ const mcApiUrl = 'https://mc-api.europe-west1.gcp.commercetools.com';
 describe('fetch custom application data', () => {
   beforeEach(() => {
     mockServer.use(
-      graphql.query(
-        'OrganizationExtensionForCustomApplication',
-        (req, res, ctx) => {
-          return res(
-            ctx.data({
-              organizationExtensionForCustomApplication: {
-                id: 'test-id',
-                organizationId: 'org-id',
-                application: {
-                  url: 'https://test.com',
-                  name: 'Test name',
-                  description: 'Test description',
-                  entryPointUriPath: 'test-custom-app',
-                  icon: '<svg><path fill="#000000"></path></svg>',
-                  submenuLinks: [],
-                  mainMenuLink: [],
-                  permissions: [
-                    {
-                      oAuthScopes: ['view_products', 'view_customers'],
-                      name: 'viewTestCustomApp',
-                    },
-                    {
-                      oAuthScopes: [],
-                      name: 'manageTestCustomApp',
-                    },
-                  ],
-                },
+      graphql.query('FetchCustomApplicationFromCli', (req, res, ctx) => {
+        return res(
+          ctx.data({
+            organizationExtensionForCustomApplication: {
+              id: 'test-id',
+              organizationId: 'org-id',
+              application: {
+                url: 'https://test.com',
+                name: 'Test name',
+                description: 'Test description',
+                entryPointUriPath: 'test-custom-app',
+                icon: '<svg><path fill="#000000"></path></svg>',
+                submenuLinks: [],
+                mainMenuLink: [],
+                permissions: [
+                  {
+                    oAuthScopes: ['view_products', 'view_customers'],
+                    name: 'viewTestCustomApp',
+                  },
+                  {
+                    oAuthScopes: [],
+                    name: 'manageTestCustomApp',
+                  },
+                ],
               },
-            })
-          );
-        }
-      )
+            },
+          })
+        );
+      })
     );
   });
   it('should match returned data', async () => {
@@ -77,7 +74,7 @@ describe('fetch custom application data', () => {
 describe('register custom application', () => {
   beforeEach(() => {
     mockServer.use(
-      graphql.mutation('RegisterCustomApplication', (req, res, ctx) => {
+      graphql.mutation('CreateCustomApplicationFromCli', (req, res, ctx) => {
         return res(
           ctx.data({
             createCustomApplication: {
@@ -123,7 +120,7 @@ describe('register custom application', () => {
 describe('update custom application', () => {
   beforeEach(() => {
     mockServer.use(
-      graphql.mutation('UpdateCustomApplication', (req, res, ctx) => {
+      graphql.mutation('UpdateCustomApplicationFromCli', (req, res, ctx) => {
         return res(
           ctx.data({
             updateCustomApplication: {

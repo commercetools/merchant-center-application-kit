@@ -1,4 +1,4 @@
-mutation UpdateCustomApplication(
+mutation UpdateCustomApplicationFromCli(
   $organizationId: String!
   $data: CustomApplicationDraftDataInput!
   $applicationId: ID!

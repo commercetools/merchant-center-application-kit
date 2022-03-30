@@ -1,4 +1,4 @@
-query OrganizationExtensionForCustomApplication($entryPointUriPath: String!) {
+query FetchCustomApplicationFromCli($entryPointUriPath: String!) {
   organizationExtensionForCustomApplication(
     entryPointUriPath: $entryPointUriPath
   ) {
