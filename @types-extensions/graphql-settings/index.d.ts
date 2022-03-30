@@ -18,18 +18,18 @@ declare module '*/fetch-project-extensions-navbar.settings.graphql' {
   export default defaultDocument;
 }
 
-declare module '*/fetch-custom-application.settings.graphql' {
+declare module '*/create-custom-application.settings.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
-  export const OrganizationExtensionForCustomApplication: DocumentNode;
+  export const CreateCustomApplicationFromCli: DocumentNode;
 
   export default defaultDocument;
 }
 
-declare module '*/register-custom-application.settings.graphql' {
+declare module '*/fetch-custom-application.settings.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
-  export const RegisterCustomApplication: DocumentNode;
+  export const FetchCustomApplicationFromCli: DocumentNode;
 
   export default defaultDocument;
 }
@@ -37,7 +37,7 @@ declare module '*/register-custom-application.settings.graphql' {
 declare module '*/update-custom-application.settings.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
-  export const UpdateCustomApplication: DocumentNode;
+  export const UpdateCustomApplicationFromCli: DocumentNode;
 
   export default defaultDocument;
 }
