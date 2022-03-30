@@ -37,35 +37,34 @@ const configSync = async () => {
     entryPointUriPath: localCustomAppData.entryPointUriPath,
   });
 
-  const userOrganizations = await fetchUserOrganizations({ mcApiUrl, token });
-
-  let organizationId, organizationName;
-
-  if (userOrganizations.total > 1) {
-    const organizationChoices = userOrganizations.results.map(
-      (organization) => ({
-        title: organization.name,
-        value: organization.id,
-      })
-    );
-
-    organizationId = await prompts({
-      type: 'select',
-      name: 'organizationId',
-      message: 'Select Organization',
-      choices: organizationChoices,
-      initial: 0,
-    })['organizationId'];
-
-    organizationName = organizationChoices.find(
-      ({ value }) => value === organizationId
-    ).title;
-  } else {
-    organizationId = userOrganizations.results[0].id;
-    organizationName = userOrganizations.results[0].name;
-  }
-
   if (!fetchedCustomApplication) {
+    const userOrganizations = await fetchUserOrganizations({ mcApiUrl, token });
+
+    let organizationId, organizationName;
+    if (userOrganizations.total > 1) {
+      const organizationChoices = userOrganizations.results.map(
+        (organization) => ({
+          title: organization.name,
+          value: organization.id,
+        })
+      );
+
+      organizationId = await prompts({
+        type: 'select',
+        name: 'organizationId',
+        message: 'Select Organization',
+        choices: organizationChoices,
+        initial: 0,
+      })['organizationId'];
+
+      organizationName = organizationChoices.find(
+        ({ value }) => value === organizationId
+      ).title;
+    } else {
+      organizationId = userOrganizations.results[0].id;
+      organizationName = userOrganizations.results[0].name;
+    }
+
     const { confirmation } = await prompts({
       type: 'text',
       name: 'confirmation',
@@ -115,13 +114,13 @@ const configSync = async () => {
   await updateCustomApplication({
     mcApiUrl,
     token,
-    organizationId,
+    organizationId: fetchedCustomApplication.organizationId,
     data: omit(localCustomAppData, ['id']),
     applicationId: fetchedCustomApplication.application.id,
   });
   const customAppLink = getMcUrlLink(
     mcApiUrl,
-    organizationId,
+    fetchedCustomApplication.organizationId,
     fetchedCustomApplication.application.id
   );
   console.log(

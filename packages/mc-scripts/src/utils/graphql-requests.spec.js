@@ -30,6 +30,7 @@ describe('fetch custom application data', () => {
             ctx.data({
               organizationExtensionForCustomApplication: {
                 id: 'test-id',
+                organizationId: 'org-id',
                 application: {
                   url: 'https://test.com',
                   name: 'Test name',
@@ -67,6 +68,9 @@ describe('fetch custom application data', () => {
       organizationExtensionForCustomApplication.application.entryPointUriPath
     ).toEqual('test-custom-app');
     expect(organizationExtensionForCustomApplication.id).toEqual('test-id');
+    expect(organizationExtensionForCustomApplication.organizationId).toEqual(
+      'org-id'
+    );
   });
 });
 

@@ -2,6 +2,7 @@ query OrganizationExtensionForCustomApplication($entryPointUriPath: String!) {
   organizationExtensionForCustomApplication(
     entryPointUriPath: $entryPointUriPath
   ) {
+    organizationId
     application {
       id
       entryPointUriPath
