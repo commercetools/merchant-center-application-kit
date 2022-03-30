@@ -4,6 +4,19 @@ const userAgent = require('./user-agent');
 const requireGraphqlHelper = require('./require-graphql');
 const requireGraphql = requireGraphqlHelper(__dirname);
 
+const FetchCustomApplicationFromCli = requireGraphql(
+  './fetch-custom-application.settings.graphql'
+);
+const UpdateCustomApplicationFromCli = requireGraphql(
+  './update-custom-application.settings.graphql'
+);
+const CreateCustomApplicationFromCli = requireGraphql(
+  './create-custom-application.settings.graphql'
+);
+const FetchMyOrganizationsFromCli = requireGraphql(
+  './fetch-user-organizations.core.graphql'
+);
+
 const graphQLClient = (uri, token, target = GRAPHQL_TARGETS.SETTINGS_SERVICE) =>
   new GraphQLClient(`${uri}/graphql`, {
     headers: {
@@ -22,9 +35,6 @@ const fetchCustomApplication = async ({
     entryPointUriPath,
   };
 
-  const FetchCustomApplicationFromCli = requireGraphql(
-    './fetch-custom-application.settings.graphql'
-  );
   try {
     const customAppData = await graphQLClient(mcApiUrl, token).request(
       FetchCustomApplicationFromCli,
@@ -48,9 +58,7 @@ const updateCustomApplication = async ({
     applicationId,
     data,
   };
-  const UpdateCustomApplicationFromCli = requireGraphql(
-    './update-custom-application.settings.graphql'
-  );
+
   try {
     const updatedCustomAppsData = await graphQLClient(mcApiUrl, token).request(
       UpdateCustomApplicationFromCli,
@@ -72,9 +80,7 @@ const createCustomApplication = async ({
     organizationId,
     data,
   };
-  const CreateCustomApplicationFromCli = requireGraphql(
-    './create-custom-application.settings.graphql'
-  );
+
   try {
     const createdCustomAppData = await graphQLClient(mcApiUrl, token).request(
       CreateCustomApplicationFromCli,
@@ -87,15 +93,12 @@ const createCustomApplication = async ({
 };
 
 const fetchUserOrganizations = async ({ mcApiUrl, token }) => {
-  const FetchCustomApplicationFromCli = requireGraphql(
-    './fetch-user-organizations.core.graphql'
-  );
   try {
     const userOrganizations = await graphQLClient(
       mcApiUrl,
       token,
       GRAPHQL_TARGETS.ADMINISTRATION_SERVICE
-    ).request(FetchCustomApplicationFromCli);
+    ).request(FetchMyOrganizationsFromCli);
     return userOrganizations.myOrganizations;
   } catch (error) {
     throw new Error(error.response.message);

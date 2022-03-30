@@ -1,4 +1,4 @@
-query FetchCustomApplicationFromCli {
+query FetchMyOrganizationsFromCli {
   myOrganizations {
     total
     results {
