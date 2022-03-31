@@ -22,7 +22,7 @@
     "development": ["last 2 firefox versions", "last 2 chrome versions"]
   },
   "scripts": {
-    "build": "rimraf build && babel src --out-dir build",
+    "build": "rimraf build && babel src --out-dir build && ../../scripts/copy-graphql-files.mjs src build",
     "build:bundles:watch": "yarn build -w"
   },
   "dependencies": {
