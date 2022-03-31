@@ -28,6 +28,10 @@ const login = async () => {
     message: 'Password (hidden)',
   });
 
+  if (!email || !password) {
+    throw new Error(`Missing email or password values. Aborting.`);
+  }
+
   const credentials = await getAuthToken(mcApiUrl, {
     email,
     password,

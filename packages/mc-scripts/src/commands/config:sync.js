@@ -1,5 +1,6 @@
 const omit = require('lodash/omit');
 const prompts = require('prompts');
+const mri = require('mri');
 const chalk = require('chalk');
 const { processConfig } = require('@commercetools-frontend/application-config');
 const CredentialsStorage = require('../utils/credentials-storage');
@@ -10,6 +11,10 @@ const {
   fetchUserOrganizations,
 } = require('../utils/graphql-requests');
 const updateApplicationIdInCustomApplicationConfig = require('../utils/update-application-id-in-custom-application-config');
+
+const flags = mri(process.argv.slice(2), {
+  boolean: ['dry-run'],
+});
 
 const credentialsStorage = new CredentialsStorage();
 
@@ -46,30 +51,36 @@ const configSync = async () => {
       throw new Error(
         `It seems you are not an admin of any Organization. Please make sure to be part of the Administrators team of the Organization you want the Custom Application to be configured to.`
       );
+    }
+
+    if (userOrganizations.total === 1) {
+      const [organization] = userOrganizations.results;
+      organizationId = organization.id;
+      organizationName = organization.name;
     } else {
-      if (userOrganizations.total === 1) {
-        organizationId = userOrganizations.results[0].id;
-        organizationName = userOrganizations.results[0].name;
-      } else {
-        const organizationChoices = userOrganizations.results.map(
-          (organization) => ({
-            title: organization.name,
-            value: organization.id,
-          })
-        );
+      const organizationChoices = userOrganizations.results.map(
+        (organization) => ({
+          title: organization.name,
+          value: organization.id,
+        })
+      );
 
-        organizationId = await prompts({
-          type: 'select',
-          name: 'organizationId',
-          message: 'Select Organization',
-          choices: organizationChoices,
-          initial: 0,
-        })['organizationId'];
+      const { organizationId: selectedOrganizationId } = await prompts({
+        type: 'select',
+        name: 'organizationId',
+        message: 'Select Organization',
+        choices: organizationChoices,
+        initial: 0,
+      });
 
-        organizationName = organizationChoices.find(
-          ({ value }) => value === organizationId
-        ).title;
+      if (!selectedOrganizationId) {
+        throw new Error(`No Organization selected, aborting.`);
       }
+
+      organizationId = selectedOrganizationId;
+      organizationName = organizationChoices.find(
+        ({ value }) => value === organizationId
+      ).title;
     }
 
     const { confirmation } = await prompts({
@@ -80,26 +91,38 @@ const configSync = async () => {
     });
     if (confirmation.toLowerCase().charAt(0) !== 'y') {
       console.log(chalk.red('Aborted.'));
-    } else {
-      const createdCustomApplication = await createCustomApplication({
-        mcApiUrl,
-        token,
-        organizationId,
-        data: omit(localCustomAppData, ['id']),
-      });
-      // update applicationID in the custom-application-config file
-      updateApplicationIdInCustomApplicationConfig(createdCustomApplication.id);
-      const customAppLink = getMcUrlLink(
-        mcApiUrl,
-        organizationId,
-        createdCustomApplication.id
-      );
-      console.log(
-        chalk.green(
-          `Custom Application created.\nThe "applicationId" in your local Custom Application config file has been updated with the application ID.\nYou can see the Custom Application data in the Merchant Center at ${customAppLink}.`
-        )
-      );
+      return;
     }
+
+    const data = omit(localCustomAppData, ['id']);
+    if (flags['dry-run']) {
+      console.log(chalk.gray('DRY RUN mode'));
+      console.log(
+        `A new Custom Application would be created for the Organization ${organizationName} with the following payload:`
+      );
+      console.log(JSON.stringify(data));
+      return;
+    }
+    const createdCustomApplication = await createCustomApplication({
+      mcApiUrl,
+      token,
+      organizationId,
+      data,
+    });
+
+    // update applicationID in the custom-application-config file
+    updateApplicationIdInCustomApplicationConfig(createdCustomApplication.id);
+
+    const customAppLink = getMcUrlLink(
+      mcApiUrl,
+      organizationId,
+      createdCustomApplication.id
+    );
+    console.log(
+      chalk.green(
+        `Custom Application created.\nThe "applicationId" in your local Custom Application config file has been updated with the application ID.\nYou can see the Custom Application data in the Merchant Center at ${customAppLink}.`
+      )
+    );
     return;
   }
 
@@ -115,6 +138,17 @@ const configSync = async () => {
     console.log(chalk.red('Aborted.'));
     return;
   }
+
+  const data = omit(localCustomAppData, ['id']);
+  if (flags['dry-run']) {
+    console.log(chalk.gray('DRY RUN mode'));
+    console.log(
+      `The Custom Application ${data.name} would be updated with the following payload:`
+    );
+    console.log(JSON.stringify(data));
+    return;
+  }
+
   await updateCustomApplication({
     mcApiUrl,
     token,
@@ -122,6 +156,7 @@ const configSync = async () => {
     data: omit(localCustomAppData, ['id']),
     applicationId: fetchedCustomApplication.application.id,
   });
+
   const customAppLink = getMcUrlLink(
     mcApiUrl,
     fetchedCustomApplication.organizationId,
