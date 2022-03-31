@@ -102,12 +102,9 @@ const configSync = async () => {
     }
     return;
   }
-  // update applicationID in the custom-application-config file
-  updateApplicationIdInCustomApplicationConfig(
-    fetchedCustomApplication.application.id
-  );
 
   // TODO: show diff (followup task)
+
   const { confirmation } = await prompts({
     type: 'text',
     name: 'confirmation',
