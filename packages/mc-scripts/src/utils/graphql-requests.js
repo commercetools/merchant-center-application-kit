@@ -20,6 +20,8 @@ const FetchMyOrganizationsFromCli = requireGraphql(
 const graphQLClient = (uri, token, target = GRAPHQL_TARGETS.SETTINGS_SERVICE) =>
   new GraphQLClient(`${uri}/graphql`, {
     headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
       'x-graphql-target': target,
       'x-mc-cli-access-token': token,
       'x-user-agent': userAgent,

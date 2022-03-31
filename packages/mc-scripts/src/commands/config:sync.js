@@ -41,28 +41,35 @@ const configSync = async () => {
     const userOrganizations = await fetchUserOrganizations({ mcApiUrl, token });
 
     let organizationId, organizationName;
-    if (userOrganizations.total > 1) {
-      const organizationChoices = userOrganizations.results.map(
-        (organization) => ({
-          title: organization.name,
-          value: organization.id,
-        })
+
+    if (userOrganizations.total === 0) {
+      throw new Error(
+        `It seems you are not an admin of any Organization. Please make sure to be part of the Administrators team of the Organization you want the Custom Application to be configured to.`
       );
-
-      organizationId = await prompts({
-        type: 'select',
-        name: 'organizationId',
-        message: 'Select Organization',
-        choices: organizationChoices,
-        initial: 0,
-      })['organizationId'];
-
-      organizationName = organizationChoices.find(
-        ({ value }) => value === organizationId
-      ).title;
     } else {
-      organizationId = userOrganizations.results[0].id;
-      organizationName = userOrganizations.results[0].name;
+      if (userOrganizations.total === 1) {
+        organizationId = userOrganizations.results[0].id;
+        organizationName = userOrganizations.results[0].name;
+      } else {
+        const organizationChoices = userOrganizations.results.map(
+          (organization) => ({
+            title: organization.name,
+            value: organization.id,
+          })
+        );
+
+        organizationId = await prompts({
+          type: 'select',
+          name: 'organizationId',
+          message: 'Select Organization',
+          choices: organizationChoices,
+          initial: 0,
+        })['organizationId'];
+
+        organizationName = organizationChoices.find(
+          ({ value }) => value === organizationId
+        ).title;
+      }
     }
 
     const { confirmation } = await prompts({

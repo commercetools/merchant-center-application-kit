@@ -9,13 +9,14 @@ function updateApplicationIdInCustomApplicationConfig(applicationId) {
   if (filePath.endsWith('.json')) {
     const customApplicationConfig = require(filePath);
     customApplicationConfig.env.production.applicationId = applicationId;
-    fs.writeFileSync(
-      filePath,
-      JSON.stringify(customApplicationConfig, null, 2),
-      {
-        encoding: 'utf8',
-      }
+    const prettierConfig = rcfile('prettier');
+    const formattedData = prettier.format(
+      JSON.stringify(customApplicationConfig),
+      { ...prettierConfig, parser: 'json' }
     );
+    fs.writeFileSync(filePath, formattedData, {
+      encoding: 'utf8',
+    });
     return;
   }
 

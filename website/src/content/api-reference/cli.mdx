@@ -128,13 +128,17 @@ Developers can use the `config:sync` command to automatically manage the configu
 
 If a new Custom Application needs to be created, an interactive prompt will ask the user to select the Organization where the Custom Application should be configured to.
 
-Additionally, the Custom Application ID is automatically synced when running the `config:sync` command.
+Additionally, the [Custom Application ID](/api-reference/application-config#envproductionapplicationid) is automatically synced when running the `config:sync` command.
 
 Note that this command requires a valid API token. You can get one by using the `mc-scripts login` command.
 
 ```console
 mc-scripts config:sync
 ```
+
+<Info>
+The command uses the [cloud Region](/concepts/merchant-center-api#cloud-regions) environment information from the Custom Application config.
+</Info>
 -->
 
 # Using dotenv files
