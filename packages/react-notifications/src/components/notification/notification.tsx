@@ -17,6 +17,8 @@ import {
   NOTIFICATION_DOMAINS,
   NOTIFICATION_KINDS_SIDE,
 } from '@commercetools-frontend/constants';
+import { createSequentialId } from '@commercetools-uikit/utils';
+import { useFieldId } from '@commercetools-uikit/hooks';
 import filterDataAttributes from '../../utils/filter-data-attributes';
 import messages from './messages';
 import {
@@ -24,6 +26,8 @@ import {
   getStylesForContent,
   getStylesForNotification,
 } from './notification.styles';
+
+const sequentialId = createSequentialId('notification-');
 
 type PropsIcon = {
   type: TAppNotificationKind;
@@ -64,9 +68,17 @@ const defaultProps: Pick<Props, 'fixed'> = {
 
 const Notification = (props: Props) => {
   const intl = useIntl();
+  const id = useFieldId(undefined, sequentialId);
   return (
-    <div css={getStylesForNotification(props)} {...filterDataAttributes(props)}>
-      <div css={getStylesForContent(props)}>{props.children}</div>
+    <div
+      role="alertdialog"
+      aria-describedby={id}
+      css={getStylesForNotification(props)}
+      {...filterDataAttributes(props)}
+    >
+      <div id={id} css={getStylesForContent(props)}>
+        {props.children}
+      </div>
       {props.onCloseClick ? (
         <div>
           <IconButton
