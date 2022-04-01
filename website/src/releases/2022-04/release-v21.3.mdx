@@ -1,0 +1,21 @@
+---
+date: 2022-04-01
+title: Custom Applications v21.3
+description: The Application Kit packages have been released with several new features.
+type: feature
+topics:
+  - CLI
+  - Configuration
+  - UI Components
+---
+
+The Application Kit packages have been released with a minor version `v21.3`.
+
+This release includes several new features that we would like to present:
+
+* New CLI commands [`login`](/api-reference/cli#login) and [`config:sync`](/api-reference/cli#configsync) to help maintaining Custom Applications.
+* New layout UI components [`<TabularMainPage>`](/api-reference/commercetools-frontend-application-components#tabularmainpage) and [`<TabularDetailPage>`](/api-reference/commercetools-frontend-application-components#tabulardetailpage). In addition to that, a new `<TabHeader>` component is exported from the `@commercetools-frontend/application-components` package to be used in the tabular UI components `<TabularModalPage>`, `<TabularMainPage>` and `<TabularDetailPage>`.
+* New ESLint config `@commercetools-backend/eslint-config-node` for Node.js projects with built-in TypeScript support.
+* The notification components now support the aria role `alertdialog` and the `aria-describedby` attributes. This helps in particular to write more specific and relevant selector in tests.
+
+As always, if you have questions or feedback you can open a [GitHub Discussion](https://github.com/commercetools/merchant-center-application-kit/discussions) or a [GitHub Issue](https://github.com/commercetools/merchant-center-application-kit/issues).
