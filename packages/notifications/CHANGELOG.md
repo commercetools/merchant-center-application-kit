@@ -1,5 +1,11 @@
 # @commercetools-frontend/notifications
 
+## 21.3.0
+
+### Patch Changes
+
+- [#2520](https://github.com/commercetools/merchant-center-application-kit/pull/2520) [`6f3a2083`](https://github.com/commercetools/merchant-center-application-kit/commit/6f3a2083efac387e9a2994fbaaeb18914e739aa8) Thanks [@renovate](https://github.com/apps/renovate)! - Upgrade dependencies
+
 ## 21.2.1
 
 ### Patch Changes

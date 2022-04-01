@@ -1,5 +1,17 @@
 # @commercetools-frontend/cypress
 
+## 21.3.0
+
+### Patch Changes
+
+- [#2520](https://github.com/commercetools/merchant-center-application-kit/pull/2520) [`6f3a2083`](https://github.com/commercetools/merchant-center-application-kit/commit/6f3a2083efac387e9a2994fbaaeb18914e739aa8) Thanks [@renovate](https://github.com/apps/renovate)! - Upgrade dependencies
+
+* [#2528](https://github.com/commercetools/merchant-center-application-kit/pull/2528) [`9235a721`](https://github.com/commercetools/merchant-center-application-kit/commit/9235a721df2be2ca5753994cd11312d577d0b293) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+* Updated dependencies [[`bf57dc32`](https://github.com/commercetools/merchant-center-application-kit/commit/bf57dc3228438f5928e9312fdaa8250580bc6bf0), [`6f3a2083`](https://github.com/commercetools/merchant-center-application-kit/commit/6f3a2083efac387e9a2994fbaaeb18914e739aa8), [`9235a721`](https://github.com/commercetools/merchant-center-application-kit/commit/9235a721df2be2ca5753994cd11312d577d0b293), [`ea1bee4c`](https://github.com/commercetools/merchant-center-application-kit/commit/ea1bee4c8ac0a5bba82dfc596935d4d166faa779)]:
+  - @commercetools-frontend/application-config@21.3.0
+  - @commercetools-frontend/application-shell@21.3.0
+
 ## 21.2.1
 
 ### Patch Changes

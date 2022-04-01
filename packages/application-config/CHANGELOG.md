@@ -1,5 +1,20 @@
 # @commercetools-frontend/application-config
 
+## 21.3.0
+
+### Minor Changes
+
+- [#2524](https://github.com/commercetools/merchant-center-application-kit/pull/2524) [`ea1bee4c`](https://github.com/commercetools/merchant-center-application-kit/commit/ea1bee4c8ac0a5bba82dfc596935d4d166faa779) Thanks [@Rhotimee](https://github.com/Rhotimee)! - Expose a new function `getConfigPath` to return the absolute file path of the Custom Application config file.
+
+### Patch Changes
+
+- [#2522](https://github.com/commercetools/merchant-center-application-kit/pull/2522) [`bf57dc32`](https://github.com/commercetools/merchant-center-application-kit/commit/bf57dc3228438f5928e9312fdaa8250580bc6bf0) Thanks [@emmenko](https://github.com/emmenko)! - Parsing the application config now exposes a new field `data` that contains the mapped Custom Application data representation.
+
+* [#2520](https://github.com/commercetools/merchant-center-application-kit/pull/2520) [`6f3a2083`](https://github.com/commercetools/merchant-center-application-kit/commit/6f3a2083efac387e9a2994fbaaeb18914e739aa8) Thanks [@renovate](https://github.com/apps/renovate)! - Upgrade dependencies
+
+* Updated dependencies [[`6f3a2083`](https://github.com/commercetools/merchant-center-application-kit/commit/6f3a2083efac387e9a2994fbaaeb18914e739aa8)]:
+  - @commercetools-frontend/babel-preset-mc-app@21.3.0
+
 ## 21.2.1
 
 ### Patch Changes
