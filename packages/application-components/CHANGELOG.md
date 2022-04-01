@@ -1,5 +1,117 @@
 # @commercetools-frontend/application-components
 
+## 21.3.0
+
+### Minor Changes
+
+- [#2503](https://github.com/commercetools/merchant-center-application-kit/pull/2503) [`421cc68b`](https://github.com/commercetools/merchant-center-application-kit/commit/421cc68b834a41b070f68d03fe072f00f5ee074e) Thanks [@kark](https://github.com/kark)! - Add a new `<TabHeader>` component.
+
+  This component should be used to render tab elements within the tabular components, for example `<TabularModalPage>`.
+  A `<TabHeader>` is rendered as a link and it assumes the "tab content" is controlled and rendered using `<Route>` components.
+
+  ```jsx
+  import {
+    TabularModalPage,
+    TabHeader,
+  } from '@commercetools-frontend/application-components';
+
+  <TabularModalPage
+    tabControls={
+      <>
+        <TabHeader to="/tab-one" label="Tab One" />
+        <TabHeader to="/tab-two" label="Tab Two" />
+      </>
+    }
+    // ...
+  />;
+  ```
+
+* [#2517](https://github.com/commercetools/merchant-center-application-kit/pull/2517) [`9511e378`](https://github.com/commercetools/merchant-center-application-kit/commit/9511e378c91a710c4ad28b8c2360a8b7552e0258) Thanks [@kark](https://github.com/kark)! - Add two new layout components: `<TabularMainPage>` and `<TabularDetailPage>`.
+
+  These components are similar to the `<TabularModalPage>` but they are not rendered as a modal. However, the layout itself is very similar between all the tabular components.
+
+  Tabs must be rendered using the `<TabHeader>` component via the `tabControls` prop. A `<TabHeader>` is rendered as a link and it assumes the "tab content" is controlled and rendered using `<Route>` components.
+
+  # Usage
+
+  As the name implies, these components are meant to be used in different places.
+
+  The `<TabularMainPage>` is supposed to be used in one of the main application landing pages, as the top level component page. From a hierarchy point of view, there should be no parent pages.
+  The layout of this page can be recognized by the white background header and the gray content background.
+
+  Example:
+
+  ```jsx
+  import {
+    TabularMainPage,
+    TabHeader,
+  } from '@commercetools-frontend/application-components';
+
+  <TabularMainPage
+    title="Main page"
+    tabControls={
+      <>
+        <TabHeader to="/tab-one" label="Tab One" />
+        <TabHeader to="/tab-two" label="Tab Two" />
+      </>
+    }
+  >
+    <Switch>
+      <Route path={`/tab-one`}>
+        <Tab1 />
+      </Route>
+      <Route path={`/tab-two`}>
+        <Tab2 />
+      </Route>
+    </Switch>
+  </TabularMainPage>;
+  ```
+
+  The `<TabularDetailPage>` is supposed to be used as a direct child of one of the main pages. Typically it's used as a detail page with multiple sub-pages (tabs).
+  The layout of this page can be recognized by the gray background header and the white content background. A back link in the header section is also required.
+
+  Example:
+
+  ```jsx
+  import {
+    TabularDetailPage,
+    TabHeader,
+  } from '@commercetools-frontend/application-components';
+
+  <TabularDetailPage
+    title="Detail page"
+    onPreviousPathClick={() => history.push('/main')}
+    previousPathLabel="Go back"
+    tabControls={
+      <>
+        <TabHeader to="/detail/tab-one" label="Tab One" />
+        <TabHeader to="/detail/tab-two" label="Tab Two" />
+      </>
+    }
+  >
+    <Switch>
+      <Route path={`/detail/tab-one`}>
+        <Tab1 />
+      </Route>
+      <Route path={`/detail/tab-two`}>
+        <Tab2 />
+      </Route>
+    </Switch>
+  </TabularDetailPage>;
+  ```
+
+### Patch Changes
+
+- [#2520](https://github.com/commercetools/merchant-center-application-kit/pull/2520) [`6f3a2083`](https://github.com/commercetools/merchant-center-application-kit/commit/6f3a2083efac387e9a2994fbaaeb18914e739aa8) Thanks [@renovate](https://github.com/apps/renovate)! - Upgrade dependencies
+
+* [#2528](https://github.com/commercetools/merchant-center-application-kit/pull/2528) [`9235a721`](https://github.com/commercetools/merchant-center-application-kit/commit/9235a721df2be2ca5753994cd11312d577d0b293) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+* Updated dependencies [[`6f3a2083`](https://github.com/commercetools/merchant-center-application-kit/commit/6f3a2083efac387e9a2994fbaaeb18914e739aa8), [`9235a721`](https://github.com/commercetools/merchant-center-application-kit/commit/9235a721df2be2ca5753994cd11312d577d0b293)]:
+  - @commercetools-frontend/application-shell-connectors@21.3.0
+  - @commercetools-frontend/constants@21.3.0
+  - @commercetools-frontend/i18n@21.3.0
+  - @commercetools-frontend/l10n@21.3.0
+
 ## 21.2.1
 
 ### Patch Changes

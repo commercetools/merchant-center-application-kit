@@ -1,5 +1,41 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.3.0
+
+### Minor Changes
+
+- [#2524](https://github.com/commercetools/merchant-center-application-kit/pull/2524) [`ea1bee4c`](https://github.com/commercetools/merchant-center-application-kit/commit/ea1bee4c8ac0a5bba82dfc596935d4d166faa779) Thanks [@Rhotimee](https://github.com/Rhotimee)! - Add new CLI command `mc-script config:sync`
+
+  This command allows users to synchronize the local Custom Application config with the Merchant Center. The sync implies that a new Custom Application will be created or an existing one will be updated.
+
+  Developers can use the `config:sync` command to automatically manage the configuration of a Custom Application from the config file instead of having to manually fill out the information in the Merchant Center.
+
+  If a new Custom Application needs to be created, an interactive prompt will ask the user to select the Organization where the Custom Application should be configured to.
+
+  Additionally, the Custom Application ID is automatically synced when running the `config:sync` command.
+
+  Note that this command requires a valid API token. You can get one by using the `mc-scripts login` command.
+
+  The command also supports a `--dry-run` option. If enabled, the command is exectured but does not send any mutation request. Instead, the request payload is logged.
+
+* [#2506](https://github.com/commercetools/merchant-center-application-kit/pull/2506) [`b842c498`](https://github.com/commercetools/merchant-center-application-kit/commit/b842c498b04d4f24fbfa5880ceb92ff0edb34bae) Thanks [@Rhotimee](https://github.com/Rhotimee)! - Add a new CLI command `mc-scripts login`.
+
+  This command enables users to log in to their Merchant Center account through the CLI. An interactive prompt will be displayed asking the user to enter the login credentials.
+
+  Upon login, an API token is stored in the user's home directory `$HOME/.commercetools/mc-credentials.json`. The API token will be used by other CLI commands that require a valid API token.
+
+### Patch Changes
+
+- [#2520](https://github.com/commercetools/merchant-center-application-kit/pull/2520) [`6f3a2083`](https://github.com/commercetools/merchant-center-application-kit/commit/6f3a2083efac387e9a2994fbaaeb18914e739aa8) Thanks [@renovate](https://github.com/apps/renovate)! - Upgrade dependencies
+
+* [#2528](https://github.com/commercetools/merchant-center-application-kit/pull/2528) [`9235a721`](https://github.com/commercetools/merchant-center-application-kit/commit/9235a721df2be2ca5753994cd11312d577d0b293) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+* Updated dependencies [[`bf57dc32`](https://github.com/commercetools/merchant-center-application-kit/commit/bf57dc3228438f5928e9312fdaa8250580bc6bf0), [`6f3a2083`](https://github.com/commercetools/merchant-center-application-kit/commit/6f3a2083efac387e9a2994fbaaeb18914e739aa8), [`ea1bee4c`](https://github.com/commercetools/merchant-center-application-kit/commit/ea1bee4c8ac0a5bba82dfc596935d4d166faa779)]:
+  - @commercetools-frontend/application-config@21.3.0
+  - @commercetools-frontend/babel-preset-mc-app@21.3.0
+  - @commercetools-frontend/constants@21.3.0
+  - @commercetools-frontend/mc-html-template@21.3.0
+
 ## 21.2.1
 
 ### Patch Changes

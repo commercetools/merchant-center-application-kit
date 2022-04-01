@@ -1,5 +1,20 @@
 # @commercetools-frontend/eslint-config-mc-app
 
+## 21.3.0
+
+### Patch Changes
+
+- [#2526](https://github.com/commercetools/merchant-center-application-kit/pull/2526) [`e336802f`](https://github.com/commercetools/merchant-center-application-kit/commit/e336802f173f7e919604b3edc922ba096a2b85e5) Thanks [@emmenko](https://github.com/emmenko)! - Merge `eslint-config-react-app` into our `@commercetools-frontend/eslint-config-mc-app`. This should avoid any ESLint error related to merging different configs.
+
+* [#2520](https://github.com/commercetools/merchant-center-application-kit/pull/2520) [`6f3a2083`](https://github.com/commercetools/merchant-center-application-kit/commit/6f3a2083efac387e9a2994fbaaeb18914e739aa8) Thanks [@renovate](https://github.com/apps/renovate)! - Upgrade dependencies
+
+- [#2521](https://github.com/commercetools/merchant-center-application-kit/pull/2521) [`913459f3`](https://github.com/commercetools/merchant-center-application-kit/commit/913459f3eb2b2faafba06b585e7c02776002888b) Thanks [@emmenko](https://github.com/emmenko)! - Define the `BABEL_ENV` variable in the ESLint config, to ensure VSCode is able to parse the Babel config.
+
+* [#2528](https://github.com/commercetools/merchant-center-application-kit/pull/2528) [`9235a721`](https://github.com/commercetools/merchant-center-application-kit/commit/9235a721df2be2ca5753994cd11312d577d0b293) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+* Updated dependencies [[`6f3a2083`](https://github.com/commercetools/merchant-center-application-kit/commit/6f3a2083efac387e9a2994fbaaeb18914e739aa8)]:
+  - @commercetools-frontend/babel-preset-mc-app@21.3.0
+
 ## 21.2.1
 
 ### Patch Changes

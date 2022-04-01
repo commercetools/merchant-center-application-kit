@@ -1,5 +1,23 @@
 # @commercetools-frontend/react-notifications
 
+## 21.3.0
+
+### Minor Changes
+
+- [#2530](https://github.com/commercetools/merchant-center-application-kit/pull/2530) [`766f3df1`](https://github.com/commercetools/merchant-center-application-kit/commit/766f3df18979a1a14d9985c1c8cb6b323cc56e52) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - `Notification` component has been updated to use the `alertdialog` aria role and `aria-describedby` attribute to improve its accessibility.
+
+### Patch Changes
+
+- [#2520](https://github.com/commercetools/merchant-center-application-kit/pull/2520) [`6f3a2083`](https://github.com/commercetools/merchant-center-application-kit/commit/6f3a2083efac387e9a2994fbaaeb18914e739aa8) Thanks [@renovate](https://github.com/apps/renovate)! - Upgrade dependencies
+
+* [#2528](https://github.com/commercetools/merchant-center-application-kit/pull/2528) [`9235a721`](https://github.com/commercetools/merchant-center-application-kit/commit/9235a721df2be2ca5753994cd11312d577d0b293) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+* Updated dependencies [[`6f3a2083`](https://github.com/commercetools/merchant-center-application-kit/commit/6f3a2083efac387e9a2994fbaaeb18914e739aa8), [`9235a721`](https://github.com/commercetools/merchant-center-application-kit/commit/9235a721df2be2ca5753994cd11312d577d0b293)]:
+  - @commercetools-frontend/actions-global@21.3.0
+  - @commercetools-frontend/constants@21.3.0
+  - @commercetools-frontend/notifications@21.3.0
+  - @commercetools-frontend/sentry@21.3.0
+
 ## 21.2.1
 
 ### Patch Changes

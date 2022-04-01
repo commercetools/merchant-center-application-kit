@@ -1,5 +1,26 @@
 # merchant-center-application-template-starter
 
+## 19.1.2
+
+### Patch Changes
+
+- [#2520](https://github.com/commercetools/merchant-center-application-kit/pull/2520) [`6f3a2083`](https://github.com/commercetools/merchant-center-application-kit/commit/6f3a2083efac387e9a2994fbaaeb18914e739aa8) Thanks [@renovate](https://github.com/apps/renovate)! - Upgrade dependencies
+
+* [#2528](https://github.com/commercetools/merchant-center-application-kit/pull/2528) [`9235a721`](https://github.com/commercetools/merchant-center-application-kit/commit/9235a721df2be2ca5753994cd11312d577d0b293) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+* Updated dependencies [[`e336802f`](https://github.com/commercetools/merchant-center-application-kit/commit/e336802f173f7e919604b3edc922ba096a2b85e5), [`bf57dc32`](https://github.com/commercetools/merchant-center-application-kit/commit/bf57dc3228438f5928e9312fdaa8250580bc6bf0), [`ea1bee4c`](https://github.com/commercetools/merchant-center-application-kit/commit/ea1bee4c8ac0a5bba82dfc596935d4d166faa779), [`6f3a2083`](https://github.com/commercetools/merchant-center-application-kit/commit/6f3a2083efac387e9a2994fbaaeb18914e739aa8), [`421cc68b`](https://github.com/commercetools/merchant-center-application-kit/commit/421cc68b834a41b070f68d03fe072f00f5ee074e), [`913459f3`](https://github.com/commercetools/merchant-center-application-kit/commit/913459f3eb2b2faafba06b585e7c02776002888b), [`9511e378`](https://github.com/commercetools/merchant-center-application-kit/commit/9511e378c91a710c4ad28b8c2360a8b7552e0258), [`9235a721`](https://github.com/commercetools/merchant-center-application-kit/commit/9235a721df2be2ca5753994cd11312d577d0b293), [`b842c498`](https://github.com/commercetools/merchant-center-application-kit/commit/b842c498b04d4f24fbfa5880ceb92ff0edb34bae)]:
+  - @commercetools-frontend/eslint-config-mc-app@21.3.0
+  - @commercetools-frontend/application-shell@21.3.0
+  - @commercetools-frontend/mc-scripts@21.3.0
+  - @commercetools-frontend/actions-global@21.3.0
+  - @commercetools-frontend/application-components@21.3.0
+  - @commercetools-frontend/application-shell-connectors@21.3.0
+  - @commercetools-frontend/constants@21.3.0
+  - @commercetools-frontend/i18n@21.3.0
+  - @commercetools-frontend/jest-preset-mc-app@21.3.0
+  - @commercetools-frontend/permissions@21.3.0
+  - @commercetools-frontend/sdk@21.3.0
+
 ## 19.1.1
 
 ### Patch Changes
