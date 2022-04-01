@@ -13,3 +13,5 @@ If a new Custom Application needs to be created, an interactive prompt will ask 
 Additionally, the Custom Application ID is automatically synced when running the `config:sync` command.
 
 Note that this command requires a valid API token. You can get one by using the `mc-scripts login` command.
+
+The command also supports a `--dry-run` option. If enabled, the command is exectured but does not send any mutation request. Instead, the request payload is logged.
