@@ -1,0 +1,8 @@
+mutation CreateCustomApplicationFromCli(
+  $organizationId: String!
+  $data: CustomApplicationDraftDataInput!
+) {
+  createCustomApplication(organizationId: $organizationId, data: $data) {
+    id
+  }
+}

@@ -1,6 +1,5 @@
-const { promisify } = require('util');
-const read = promisify(require('read'));
-const chalk = require('react-dev-utils/chalk');
+const prompts = require('prompts');
+const chalk = require('chalk');
 const { processConfig } = require('@commercetools-frontend/application-config');
 const CredentialsStorage = require('../utils/credentials-storage');
 const { getAuthToken } = require('../utils/auth');
@@ -18,8 +17,20 @@ const login = async () => {
     return;
   }
 
-  const email = await read({ prompt: 'Email: ' });
-  const password = await read({ prompt: 'Password (hidden): ', silent: true });
+  const { email } = await prompts({
+    type: 'text',
+    name: 'email',
+    message: 'Email',
+  });
+  const { password } = await prompts({
+    type: 'invisible',
+    name: 'password',
+    message: 'Password (hidden)',
+  });
+
+  if (!email || !password) {
+    throw new Error(`Missing email or password values. Aborting.`);
+  }
 
   const credentials = await getAuthToken(mcApiUrl, {
     email,
@@ -33,6 +44,6 @@ const login = async () => {
 };
 
 login().catch((error) => {
-  console.error(error);
+  console.log(chalk.red(error));
   process.exit(1);
 });

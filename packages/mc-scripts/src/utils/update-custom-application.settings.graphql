@@ -1,0 +1,13 @@
+mutation UpdateCustomApplicationFromCli(
+  $organizationId: String!
+  $data: CustomApplicationDraftDataInput!
+  $applicationId: ID!
+) {
+  updateCustomApplication(
+    organizationId: $organizationId
+    data: $data
+    applicationId: $applicationId
+  ) {
+    id
+  }
+}

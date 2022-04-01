@@ -120,6 +120,27 @@ The command uses the [cloud Region](/concepts/merchant-center-api#cloud-regions)
 </Info>
 -->
 
+<!-- ## config:sync
+
+This command allows users to synchronize the local Custom Application config with the Merchant Center. The sync implies that a new Custom Application will be created or an existing one will be updated.
+
+Developers can use the `config:sync` command to automatically manage the configuration of a Custom Application from the config file instead of having to manually fill out the information in the Merchant Center.
+
+If a new Custom Application needs to be created, an interactive prompt will ask the user to select the Organization where the Custom Application should be configured to.
+
+Additionally, the [Custom Application ID](/api-reference/application-config#envproductionapplicationid) is automatically synced when running the `config:sync` command.
+
+Note that this command requires a valid API token. You can get one by using the `mc-scripts login` command.
+
+```console
+mc-scripts config:sync
+```
+
+<Info>
+The command uses the [cloud Region](/concepts/merchant-center-api#cloud-regions) environment information from the Custom Application config.
+</Info>
+-->
+
 # Using dotenv files
 
 The `mc-scripts` CLI has the dotenv features built-in.

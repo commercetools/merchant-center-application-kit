@@ -1,0 +1,9 @@
+query FetchMyOrganizationsFromCli {
+  myOrganizations {
+    total
+    results {
+      id
+      name
+    }
+  }
+}
