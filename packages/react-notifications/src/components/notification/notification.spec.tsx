@@ -38,7 +38,7 @@ describe('rendering', () => {
   it('should render children', async () => {
     const props = createTestProps();
     renderComponent(props);
-    await screen.findByText('Test');
+    await screen.findByRole('alertdialog');
 
     fireEvent.click(screen.getByLabelText('Hide notification'));
 
