@@ -89,7 +89,7 @@ const configSync = async () => {
       message: `You are about to create a new Custom Application in the "${organizationName}" organization for the ${mcApiUrl} environment. Are you sure you want to proceed?`,
       initial: 'yes',
     });
-    if (confirmation.toLowerCase().charAt(0) !== 'y') {
+    if (!confirmation || confirmation.toLowerCase().charAt(0) !== 'y') {
       console.log(chalk.red('Aborted.'));
       return;
     }
@@ -134,7 +134,7 @@ const configSync = async () => {
     message: `You are about to update the Custom Application "${localCustomAppData.entryPointUriPath}" in the ${mcApiUrl} environment. Are you sure you want to proceed?`,
     initial: 'yes',
   });
-  if (confirmation.toLowerCase().charAt(0) !== 'y') {
+  if (!confirmation || confirmation.toLowerCase().charAt(0) !== 'y') {
     console.log(chalk.red('Aborted.'));
     return;
   }
