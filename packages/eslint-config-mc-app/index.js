@@ -42,12 +42,8 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
-    // https://github.com/jest-community/eslint-plugin-jest
-    'plugin:jest/recommended',
     // https://github.com/yannickcr/eslint-plugin-react
     'plugin:react/recommended',
-    // https://github.com/testing-library/eslint-plugin-testing-library
-    'plugin:testing-library/react',
     // https://github.com/prettier/prettier-eslint
     // NOTE: this should go last.
     'prettier',
@@ -62,12 +58,6 @@ module.exports = {
     'react',
     // https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks
     'react-hooks',
-    // https://github.com/testing-library/eslint-plugin-testing-library
-    'testing-library',
-    // https://github.com/jest-community/eslint-plugin-jest
-    'jest',
-    // https://github.com/testing-library/eslint-plugin-jest-dom
-    'jest-dom',
     // https://github.com/prettier/prettier-eslint
     'prettier',
   ],
@@ -110,19 +100,6 @@ module.exports = {
     'import/no-named-as-default-member': statusCode.off,
     'import/no-unresolved': statusCode.error,
 
-    // Jest
-    'jest/expect-expect': statusCode.off,
-    'jest/no-identical-title': statusCode.warn,
-    'jest/no-focused-tests': statusCode.error,
-
-    // RTL
-    'testing-library/prefer-presence-queries': statusCode.error,
-    'testing-library/await-async-query': statusCode.error,
-    // Enabling these would be a breaking change to the config
-    'testing-library/render-result-naming-convention': statusCode.off,
-    'testing-library/prefer-screen-queries': statusCode.off,
-    'testing-library/no-container': statusCode.warn,
-
     // React
     'react/jsx-uses-vars': statusCode.error,
     'react/no-deprecated': statusCode.error,
@@ -139,10 +116,42 @@ module.exports = {
       env: {
         'jest/globals': true,
       },
+      extends: [
+        // https://github.com/jest-community/eslint-plugin-jest
+        'plugin:jest/recommended',
+        // https://github.com/testing-library/eslint-plugin-testing-library
+        'plugin:testing-library/react',
+        // https://github.com/prettier/prettier-eslint
+        // NOTE: this should go last.
+        'prettier',
+      ],
+      plugins: [
+        'testing-library',
+        // https://github.com/jest-community/eslint-plugin-jest
+        'jest',
+        // https://github.com/testing-library/eslint-plugin-jest-dom
+        'jest-dom',
+        // https://github.com/prettier/prettier-eslint
+        'prettier',
+      ],
       rules: {
+        ...craRules.jest,
+
+        // React
         'react/display-name': statusCode.off,
 
-        ...craRules.jest,
+        // Jest
+        'jest/expect-expect': statusCode.off,
+        'jest/no-identical-title': statusCode.warn,
+        'jest/no-focused-tests': statusCode.error,
+
+        // RTL
+        'testing-library/prefer-presence-queries': statusCode.error,
+        'testing-library/await-async-query': statusCode.error,
+        // Enabling these would be a breaking change to the config
+        'testing-library/render-result-naming-convention': statusCode.off,
+        'testing-library/prefer-screen-queries': statusCode.off,
+        'testing-library/no-container': statusCode.warn,
       },
     },
     {
