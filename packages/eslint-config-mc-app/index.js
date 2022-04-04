@@ -42,12 +42,8 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
-    // https://github.com/jest-community/eslint-plugin-jest
-    'plugin:jest/recommended',
     // https://github.com/yannickcr/eslint-plugin-react
     'plugin:react/recommended',
-    // https://github.com/testing-library/eslint-plugin-testing-library
-    'plugin:testing-library/react',
     // https://github.com/prettier/prettier-eslint
     // NOTE: this should go last.
     'prettier',
@@ -62,12 +58,6 @@ module.exports = {
     'react',
     // https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks
     'react-hooks',
-    // https://github.com/testing-library/eslint-plugin-testing-library
-    'testing-library',
-    // https://github.com/jest-community/eslint-plugin-jest
-    'jest',
-    // https://github.com/testing-library/eslint-plugin-jest-dom
-    'jest-dom',
     // https://github.com/prettier/prettier-eslint
     'prettier',
   ],
@@ -126,6 +116,24 @@ module.exports = {
       env: {
         'jest/globals': true,
       },
+      extends: [
+        // https://github.com/jest-community/eslint-plugin-jest
+        'plugin:jest/recommended',
+        // https://github.com/testing-library/eslint-plugin-testing-library
+        'plugin:testing-library/react',
+        // https://github.com/prettier/prettier-eslint
+        // NOTE: this should go last.
+        'prettier',
+      ],
+      plugins: [
+        'testing-library',
+        // https://github.com/jest-community/eslint-plugin-jest
+        'jest',
+        // https://github.com/testing-library/eslint-plugin-jest-dom
+        'jest-dom',
+        // https://github.com/prettier/prettier-eslint
+        'prettier',
+      ],
       rules: {
         ...craRules.jest,
 
