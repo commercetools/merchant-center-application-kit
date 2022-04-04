@@ -2,6 +2,7 @@ const omit = require('lodash/omit');
 const prompts = require('prompts');
 const mri = require('mri');
 const chalk = require('chalk');
+const jsonDiff = require('json-diff');
 const { processConfig } = require('@commercetools-frontend/application-config');
 const CredentialsStorage = require('../utils/credentials-storage');
 const {
@@ -122,12 +123,35 @@ const configSync = async () => {
     return;
   }
 
-  // TODO: show diff (followup task)
+  const customAppLink = getMcUrlLink(
+    mcApiUrl,
+    fetchedCustomApplication.organizationId,
+    fetchedCustomApplication.application.id
+  );
+
+  // Sanitize SVG to be consistent with the one in MC
+  localCustomAppData.icon = sanitizeSvg(localCustomAppData.icon);
+
+  const configDiff = jsonDiff.diffString(
+    fetchedCustomApplication.application,
+    localCustomAppData
+  );
+
+  if (!configDiff) {
+    console.log(
+      chalk.green(
+        `Custom Application is already up to date.\nYou can see the Custom Application data in the Merchant Center at ${customAppLink}.`
+      )
+    );
+    return;
+  }
+
+  console.log(configDiff);
 
   const { confirmation } = await prompts({
     type: 'text',
     name: 'confirmation',
-    message: `You are about to update the Custom Application "${localCustomAppData.entryPointUriPath}" in the ${mcApiUrl} environment. Are you sure you want to proceed?`,
+    message: `You are about to update the Custom Application "${localCustomAppData.entryPointUriPath}" with the changes above, in the ${mcApiUrl} environment. Are you sure you want to proceed?`,
     initial: 'yes',
   });
   if (!confirmation || confirmation.toLowerCase().charAt(0) !== 'y') {
@@ -153,11 +177,6 @@ const configSync = async () => {
     applicationId: fetchedCustomApplication.application.id,
   });
 
-  const customAppLink = getMcUrlLink(
-    mcApiUrl,
-    fetchedCustomApplication.organizationId,
-    fetchedCustomApplication.application.id
-  );
   console.log(
     chalk.green(
       `Custom Application updated.\nYou can see the Custom Application data in the Merchant Center at ${customAppLink}.`
