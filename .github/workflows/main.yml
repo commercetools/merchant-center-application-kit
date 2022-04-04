@@ -65,6 +65,14 @@ jobs:
           CI: true
           RTL_ASYNC_UTIL_TIMEOUT: 5000
 
+      - name: Testing Starter application development server
+        run: yarn start-server-and-test 'yarn template-starter:start' 3001 'exit 0'
+        env:
+          HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
+          APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
+          MC_API_URL: ${{ secrets.MC_API_URL }}
+          CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
+
       - name: Building Visual Regression Tests application for UI components
         run: yarn visual-testing-app:build
 
