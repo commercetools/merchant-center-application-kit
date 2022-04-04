@@ -2708,7 +2708,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/eslint-config-mc-app@21.3.0, @commercetools-frontend/eslint-config-mc-app@workspace:packages/eslint-config-mc-app":
+"@commercetools-frontend/eslint-config-mc-app@21.3.1, @commercetools-frontend/eslint-config-mc-app@workspace:packages/eslint-config-mc-app":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/eslint-config-mc-app@workspace:packages/eslint-config-mc-app"
   dependencies:
@@ -2853,7 +2853,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/mc-scripts@21.3.0, @commercetools-frontend/mc-scripts@workspace:packages/mc-scripts":
+"@commercetools-frontend/mc-scripts@21.3.1, @commercetools-frontend/mc-scripts@workspace:packages/mc-scripts":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/mc-scripts@workspace:packages/mc-scripts"
   dependencies:
@@ -23906,11 +23906,11 @@ __metadata:
     "@commercetools-frontend/application-shell-connectors": 21.3.0
     "@commercetools-frontend/assets": 21.0.0
     "@commercetools-frontend/constants": 21.3.0
-    "@commercetools-frontend/eslint-config-mc-app": 21.3.0
+    "@commercetools-frontend/eslint-config-mc-app": 21.3.1
     "@commercetools-frontend/i18n": 21.3.0
     "@commercetools-frontend/jest-preset-mc-app": 21.3.0
     "@commercetools-frontend/mc-dev-authentication": 21.0.0
-    "@commercetools-frontend/mc-scripts": 21.3.0
+    "@commercetools-frontend/mc-scripts": 21.3.1
     "@commercetools-frontend/permissions": 21.3.0
     "@commercetools-frontend/sdk": 21.3.0
     "@commercetools-test-data/commons": 2.4.1
@@ -26334,7 +26334,7 @@ __metadata:
     "@commercetools-frontend/i18n": 21.3.0
     "@commercetools-frontend/l10n": 21.3.0
     "@commercetools-frontend/mc-dev-authentication": 21.0.0
-    "@commercetools-frontend/mc-scripts": 21.3.0
+    "@commercetools-frontend/mc-scripts": 21.3.1
     "@commercetools-frontend/permissions": 21.3.0
     "@commercetools-frontend/sdk": 21.3.0
     "@commercetools-uikit/checkbox-input": ^14.0.2

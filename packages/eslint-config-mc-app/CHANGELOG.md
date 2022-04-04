@@ -1,5 +1,11 @@
 # @commercetools-frontend/eslint-config-mc-app
 
+## 21.3.1
+
+### Patch Changes
+
+- [#2532](https://github.com/commercetools/merchant-center-application-kit/pull/2532) [`4ae0e602`](https://github.com/commercetools/merchant-center-application-kit/commit/4ae0e6020b67ed343b59c7a9280a11eec8054da5) Thanks [@emmenko](https://github.com/emmenko)! - Fix regression of overriding test specific rules.
+
 ## 21.3.0
 
 ### Patch Changes
