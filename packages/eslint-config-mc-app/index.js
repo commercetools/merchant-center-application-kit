@@ -110,19 +110,6 @@ module.exports = {
     'import/no-named-as-default-member': statusCode.off,
     'import/no-unresolved': statusCode.error,
 
-    // Jest
-    'jest/expect-expect': statusCode.off,
-    'jest/no-identical-title': statusCode.warn,
-    'jest/no-focused-tests': statusCode.error,
-
-    // RTL
-    'testing-library/prefer-presence-queries': statusCode.error,
-    'testing-library/await-async-query': statusCode.error,
-    // Enabling these would be a breaking change to the config
-    'testing-library/render-result-naming-convention': statusCode.off,
-    'testing-library/prefer-screen-queries': statusCode.off,
-    'testing-library/no-container': statusCode.warn,
-
     // React
     'react/jsx-uses-vars': statusCode.error,
     'react/no-deprecated': statusCode.error,
@@ -140,9 +127,23 @@ module.exports = {
         'jest/globals': true,
       },
       rules: {
+        ...craRules.jest,
+
+        // React
         'react/display-name': statusCode.off,
 
-        ...craRules.jest,
+        // Jest
+        'jest/expect-expect': statusCode.off,
+        'jest/no-identical-title': statusCode.warn,
+        'jest/no-focused-tests': statusCode.error,
+
+        // RTL
+        'testing-library/prefer-presence-queries': statusCode.error,
+        'testing-library/await-async-query': statusCode.error,
+        // Enabling these would be a breaking change to the config
+        'testing-library/render-result-naming-convention': statusCode.off,
+        'testing-library/prefer-screen-queries': statusCode.off,
+        'testing-library/no-container': statusCode.warn,
       },
     },
     {
