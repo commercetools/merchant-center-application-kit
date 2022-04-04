@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.3.1
+
+### Patch Changes
+
+- [#2534](https://github.com/commercetools/merchant-center-application-kit/pull/2534) [`6b25e4ee`](https://github.com/commercetools/merchant-center-application-kit/commit/6b25e4ee9468f934e66b3ddf16883c0338bb35ea) Thanks [@emmenko](https://github.com/emmenko)! - Downgrade `react-refresh` to `v0.11.0`. This fixes a problem with starting the development server.
+
 ## 21.3.0
 
 ### Minor Changes
