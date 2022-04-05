@@ -28,7 +28,6 @@ const Content = () => (
 const renderTabularMainPage = (additionalProps = {}) =>
   renderComponent(
     <TabularMainPage
-      title="Test page"
       tabControls={
         <>
           <TabHeader to="/tab-one" label="Tab One" />
@@ -44,7 +43,7 @@ const renderTabularMainPage = (additionalProps = {}) =>
 
 describe('rendering', () => {
   it('should render "tab one" as active by default and the content that it leads to', () => {
-    renderTabularMainPage();
+    renderTabularMainPage({ title: 'Test page' });
 
     screen.getByText(/curabitur nec turpis in risus elementum fringilla/i);
   });
@@ -57,7 +56,7 @@ describe('rendering', () => {
 });
 describe('navigation', () => {
   it('should navigate to the other tab when clicked and show content that it leads to', async () => {
-    const { history } = renderTabularMainPage();
+    const { history } = renderTabularMainPage({ title: 'Test page' });
 
     fireEvent.click(screen.getByRole('tab', { name: /tab two/i }));
     await waitFor(() => {

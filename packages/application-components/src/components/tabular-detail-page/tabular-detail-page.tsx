@@ -3,6 +3,7 @@ import Spacings from '@commercetools-uikit/spacings';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import PageHeaderTitle from '../internals/page-header-title';
 import PageTopBar from '../internals/page-top-bar';
+import { warning } from '@commercetools-uikit/utils';
 import {
   ControlsContainter,
   TabularPageContainer,
@@ -29,7 +30,7 @@ type TTabularDetailPageProps = {
   /**
    * The title of the page.
    */
-  title: string;
+  title?: string;
   /**
    * The subtitle of the page.
    */
@@ -72,39 +73,46 @@ const defaultProps: Pick<TTabularDetailPageProps, 'hideControls'> = {
   hideControls: false,
 };
 
-const TabularDetailPage = (props: TTabularDetailPageProps) => (
-  <PageWrapper>
-    <TabularPageContainer color="neutral">
-      <Spacings.Stack>
-        <PageTopBar
-          color="neutral"
-          previousPathLabel={props.previousPathLabel}
-          onClick={props.onPreviousPathClick}
-        />
-        {props.customTitleRow || (
-          <PageHeaderTitle
-            title={props.title}
-            subtitle={props.subtitle}
-            titleSize="big"
+const TabularDetailPage = (props: TTabularDetailPageProps) => {
+  warning(
+    props.title !== undefined || props.customTitleRow !== undefined,
+    'TabHeader: one of either `title` or `customTitleRow` is required but both their values are `undefined`'
+  );
+
+  return (
+    <PageWrapper>
+      <TabularPageContainer color="neutral">
+        <Spacings.Stack>
+          <PageTopBar
+            color="neutral"
+            previousPathLabel={props.previousPathLabel}
+            onClick={props.onPreviousPathClick}
           />
-        )}
-        <ControlsContainter
-          tabControls={props.tabControls}
-          formControls={
-            <FormControlsContainer>
-              {!props.hideControls && props.formControls && (
-                <Spacings.Inline alignItems="flex-end">
-                  {props.formControls}
-                </Spacings.Inline>
-              )}
-            </FormControlsContainer>
-          }
-        />
-      </Spacings.Stack>
-    </TabularPageContainer>
-    <ContentWrapper>{props.children}</ContentWrapper>
-  </PageWrapper>
-);
+          {props.customTitleRow || (
+            <PageHeaderTitle
+              title={props.title ?? ''}
+              subtitle={props.subtitle}
+              titleSize="big"
+            />
+          )}
+          <ControlsContainter
+            tabControls={props.tabControls}
+            formControls={
+              <FormControlsContainer>
+                {!props.hideControls && props.formControls && (
+                  <Spacings.Inline alignItems="flex-end">
+                    {props.formControls}
+                  </Spacings.Inline>
+                )}
+              </FormControlsContainer>
+            }
+          />
+        </Spacings.Stack>
+      </TabularPageContainer>
+      <ContentWrapper>{props.children}</ContentWrapper>
+    </PageWrapper>
+  );
+};
 TabularDetailPage.displayName = 'TabularDetailPage';
 TabularDetailPage.defaultProps = defaultProps;
 // Static export of pre-configured form control buttons to easily re-use

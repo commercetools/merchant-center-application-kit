@@ -28,7 +28,6 @@ const Content = () => (
 const renderTabularDetailPage = (additionalProps = {}) =>
   renderComponent(
     <TabularDetailPage
-      title="Test page"
       tabControls={
         <>
           <TabHeader to="/tab-one" label="Tab One" />
@@ -43,11 +42,11 @@ const renderTabularDetailPage = (additionalProps = {}) =>
     </TabularDetailPage>
   );
 
-const TabularDetailPageWithHistory = () => {
+const TabularDetailPageWithHistory = (additionalProps = {}) => {
   const history = useHistory();
   return (
     <TabularDetailPage
-      title="Title"
+      title="Test page"
       subtitle="Subtitle"
       tabControls={
         <>
@@ -57,6 +56,7 @@ const TabularDetailPageWithHistory = () => {
         </>
       }
       onPreviousPathClick={() => history.push('/start')}
+      {...additionalProps}
     >
       <Content />
     </TabularDetailPage>
@@ -65,7 +65,7 @@ const TabularDetailPageWithHistory = () => {
 
 describe('rendering', () => {
   it('should render "tab one" as active by default and the content that it leads to', () => {
-    renderTabularDetailPage();
+    renderTabularDetailPage({ title: 'Test page' });
 
     screen.getByText(/curabitur nec turpis in risus elementum fringilla/i);
   });
@@ -78,7 +78,7 @@ describe('rendering', () => {
 });
 describe('navigation', () => {
   it('should navigate to the other tab when clicked and show content that it leads to', async () => {
-    const { history } = renderTabularDetailPage();
+    const { history } = renderTabularDetailPage({ title: 'Test page' });
 
     fireEvent.click(screen.getByRole('tab', { name: /tab two/i }));
     await waitFor(() => {
