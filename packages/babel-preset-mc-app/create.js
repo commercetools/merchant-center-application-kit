@@ -85,7 +85,7 @@ module.exports = function createBabePresetConfigForMcApp(api, opts = {}, env) {
       // use the `@emotion/babel-plugin` plugin.
       // https://emotion.sh/docs/@emotion/babel-preset-css-prop
       options.runtime !== 'automatic' && [
-        '@emotion/babel-preset-css-prop',
+        require('@emotion/babel-preset-css-prop').default,
         {
           sourceMap: isEnvDevelopment,
           autoLabel: 'dev-only',
