@@ -76,7 +76,7 @@ const defaultProps: Pick<TTabularDetailPageProps, 'hideControls'> = {
 const TabularDetailPage = (props: TTabularDetailPageProps) => {
   warning(
     props.title !== undefined || props.customTitleRow !== undefined,
-    'TabHeader: one of either `title` or `customTitleRow` is required but both their values are `undefined`'
+    'TabularDetailPage: one of either `title` or `customTitleRow` is required but both their values are `undefined`'
   );
 
   return (
