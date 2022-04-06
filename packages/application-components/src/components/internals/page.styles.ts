@@ -3,6 +3,7 @@ import { customProperties } from '@commercetools-uikit/design-system';
 
 export const ContentWrapper = styled.div`
   flex: 1;
+  flex-basis: 0;
   padding: ${customProperties.spacingM};
   overflow: auto;
 `;
