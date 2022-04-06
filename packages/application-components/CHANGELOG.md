@@ -1,5 +1,15 @@
 # @commercetools-frontend/application-components
 
+## 21.3.2
+
+### Patch Changes
+
+- [#2536](https://github.com/commercetools/merchant-center-application-kit/pull/2536) [`6a2c4195`](https://github.com/commercetools/merchant-center-application-kit/commit/6a2c419526672df45b9cc9c95abc010cd65a832f) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Make the `title` prop optional for the components `<TabularMainPage>` and `<TabularDetailPage>`.
+
+  A warning will be logged if neither the `title` or the `customTitleRow` props are provided.
+
+* [#2537](https://github.com/commercetools/merchant-center-application-kit/pull/2537) [`c392de3d`](https://github.com/commercetools/merchant-center-application-kit/commit/c392de3d5b481047b4d29915a44cb7015a80f6cf) Thanks [@emmenko](https://github.com/emmenko)! - Page components with tabs should only let the content be scrollable
+
 ## 21.3.0
 
 ### Minor Changes

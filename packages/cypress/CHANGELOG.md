@@ -1,5 +1,13 @@
 # @commercetools-frontend/cypress
 
+## 21.3.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@21.3.2
+  - @commercetools-frontend/application-shell@21.3.2
+
 ## 21.3.0
 
 ### Patch Changes
