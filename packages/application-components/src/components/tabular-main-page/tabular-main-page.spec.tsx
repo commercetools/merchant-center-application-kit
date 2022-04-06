@@ -53,6 +53,12 @@ describe('rendering', () => {
 
     screen.getByText(/custom/i);
   });
+  it('should throw an error if no title nor custom title row are provided', () => {
+    // The error is only thrown in development and test environments.
+    expect(() => renderTabularMainPage()).toThrowError(
+      'TabularMainPage: one of either `title` or `customTitleRow` is required but both their values are `undefined`'
+    );
+  });
 });
 describe('navigation', () => {
   it('should navigate to the other tab when clicked and show content that it leads to', async () => {
