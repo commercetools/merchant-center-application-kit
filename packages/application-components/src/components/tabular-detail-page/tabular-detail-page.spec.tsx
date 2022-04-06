@@ -1,9 +1,15 @@
 import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
 import Text from '@commercetools-uikit/text';
 import Spacings from '@commercetools-uikit/spacings';
+import { warning } from '@commercetools-uikit/utils';
 import { screen, renderComponent, fireEvent, waitFor } from '../../test-utils';
 import TabHeader from '../tab-header/tab-header';
 import TabularDetailPage from './tabular-detail-page';
+
+jest.mock('@commercetools-uikit/utils', () => ({
+  ...jest.requireActual('@commercetools-uikit/utils'),
+  warning: jest.fn(),
+}));
 
 const Content = () => (
   <Spacings.Stack scale="m">
@@ -75,9 +81,11 @@ describe('rendering', () => {
 
     screen.getByText(/custom/i);
   });
-  it('should throw an error if no title nor custom title row are provided', () => {
-    // The error is only thrown in development and test environments.
-    expect(() => renderTabularDetailPage()).toThrowError(
+  it('should warn if no title nor custom title row are provided', () => {
+    renderTabularDetailPage();
+
+    expect(warning).toHaveBeenCalledWith(
+      false,
       'TabularDetailPage: one of either `title` or `customTitleRow` is required but both their values are `undefined`'
     );
   });
