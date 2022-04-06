@@ -1,5 +1,11 @@
 # @commercetools-frontend/babel-preset-mc-app
 
+## 21.3.2
+
+### Patch Changes
+
+- [#2538](https://github.com/commercetools/merchant-center-application-kit/pull/2538) [`cc7c19d0`](https://github.com/commercetools/merchant-center-application-kit/commit/cc7c19d06e25002e0d35c072b6f9388dd61f87cb) Thanks [@emmenko](https://github.com/emmenko)! - Fix flaky resolution of `@emotion/babel-preset-css-prop`
+
 ## 21.3.0
 
 ### Patch Changes
