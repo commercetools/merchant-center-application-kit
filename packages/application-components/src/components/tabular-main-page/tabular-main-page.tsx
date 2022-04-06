@@ -3,6 +3,7 @@ import Spacings from '@commercetools-uikit/spacings';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import { css } from '@emotion/react';
 import { customProperties } from '@commercetools-uikit/design-system';
+import { warning } from '@commercetools-uikit/utils';
 import PageHeaderTitle from '../internals/page-header-title';
 import {
   ControlsContainter,
@@ -20,7 +21,7 @@ type TTabularMainPageProps = {
   /**
    * The title of the page.
    */
-  title: string;
+  title?: string;
   /**
    * The subtitle of the page.
    */
@@ -51,40 +52,47 @@ const defaultProps: Pick<TTabularMainPageProps, 'hideControls'> = {
   hideControls: false,
 };
 
-const TabularMainPage = (props: TTabularMainPageProps) => (
-  <PageWrapper>
-    <TabularPageContainer color="surface">
-      <Spacings.Stack>
-        {props.customTitleRow || (
-          <PageHeaderTitle
-            title={props.title}
-            subtitle={props.subtitle}
-            titleSize="big"
+const TabularMainPage = (props: TTabularMainPageProps) => {
+  warning(
+    props.title !== undefined || props.customTitleRow !== undefined,
+    'TabularMainPage: one of either `title` or `customTitleRow` is required but both their values are `undefined`'
+  );
+
+  return (
+    <PageWrapper>
+      <TabularPageContainer color="surface">
+        <Spacings.Stack>
+          {props.customTitleRow || (
+            <PageHeaderTitle
+              title={props.title ?? ''}
+              subtitle={props.subtitle}
+              titleSize="big"
+            />
+          )}
+          <ControlsContainter
+            tabControls={props.tabControls}
+            formControls={
+              <FormControlsContainer>
+                {!props.hideControls && props.formControls && (
+                  <Spacings.Inline alignItems="flex-end">
+                    {props.formControls}
+                  </Spacings.Inline>
+                )}
+              </FormControlsContainer>
+            }
           />
-        )}
-        <ControlsContainter
-          tabControls={props.tabControls}
-          formControls={
-            <FormControlsContainer>
-              {!props.hideControls && props.formControls && (
-                <Spacings.Inline alignItems="flex-end">
-                  {props.formControls}
-                </Spacings.Inline>
-              )}
-            </FormControlsContainer>
-          }
-        />
-      </Spacings.Stack>
-    </TabularPageContainer>
-    <ContentWrapper
-      css={css`
-        background-color: ${customProperties.colorNeutral95};
-      `}
-    >
-      {props.children}
-    </ContentWrapper>
-  </PageWrapper>
-);
+        </Spacings.Stack>
+      </TabularPageContainer>
+      <ContentWrapper
+        css={css`
+          background-color: ${customProperties.colorNeutral95};
+        `}
+      >
+        {props.children}
+      </ContentWrapper>
+    </PageWrapper>
+  );
+};
 TabularMainPage.displayName = 'TabularMainPage';
 TabularMainPage.defaultProps = defaultProps;
 // Static export of pre-configured form control buttons to easily re-use

@@ -1,9 +1,15 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Text from '@commercetools-uikit/text';
 import Spacings from '@commercetools-uikit/spacings';
+import { warning } from '@commercetools-uikit/utils';
 import { screen, renderComponent, fireEvent, waitFor } from '../../test-utils';
 import TabHeader from '../tab-header/tab-header';
 import TabularMainPage from './tabular-main-page';
+
+jest.mock('@commercetools-uikit/utils', () => ({
+  ...jest.requireActual('@commercetools-uikit/utils'),
+  warning: jest.fn(),
+}));
 
 const Content = () => (
   <Spacings.Stack scale="m">
@@ -28,7 +34,6 @@ const Content = () => (
 const renderTabularMainPage = (additionalProps = {}) =>
   renderComponent(
     <TabularMainPage
-      title="Test page"
       tabControls={
         <>
           <TabHeader to="/tab-one" label="Tab One" />
@@ -44,7 +49,7 @@ const renderTabularMainPage = (additionalProps = {}) =>
 
 describe('rendering', () => {
   it('should render "tab one" as active by default and the content that it leads to', () => {
-    renderTabularMainPage();
+    renderTabularMainPage({ title: 'Test page' });
 
     screen.getByText(/curabitur nec turpis in risus elementum fringilla/i);
   });
@@ -54,10 +59,18 @@ describe('rendering', () => {
 
     screen.getByText(/custom/i);
   });
+  it('should warn if no title nor custom title row are provided', () => {
+    renderTabularMainPage();
+
+    expect(warning).toHaveBeenCalledWith(
+      false,
+      'TabularMainPage: one of either `title` or `customTitleRow` is required but both their values are `undefined`'
+    );
+  });
 });
 describe('navigation', () => {
   it('should navigate to the other tab when clicked and show content that it leads to', async () => {
-    const { history } = renderTabularMainPage();
+    const { history } = renderTabularMainPage({ title: 'Test page' });
 
     fireEvent.click(screen.getByRole('tab', { name: /tab two/i }));
     await waitFor(() => {

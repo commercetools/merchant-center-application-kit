@@ -1,9 +1,15 @@
 import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
 import Text from '@commercetools-uikit/text';
 import Spacings from '@commercetools-uikit/spacings';
+import { warning } from '@commercetools-uikit/utils';
 import { screen, renderComponent, fireEvent, waitFor } from '../../test-utils';
 import TabHeader from '../tab-header/tab-header';
 import TabularDetailPage from './tabular-detail-page';
+
+jest.mock('@commercetools-uikit/utils', () => ({
+  ...jest.requireActual('@commercetools-uikit/utils'),
+  warning: jest.fn(),
+}));
 
 const Content = () => (
   <Spacings.Stack scale="m">
@@ -28,7 +34,6 @@ const Content = () => (
 const renderTabularDetailPage = (additionalProps = {}) =>
   renderComponent(
     <TabularDetailPage
-      title="Test page"
       tabControls={
         <>
           <TabHeader to="/tab-one" label="Tab One" />
@@ -43,11 +48,11 @@ const renderTabularDetailPage = (additionalProps = {}) =>
     </TabularDetailPage>
   );
 
-const TabularDetailPageWithHistory = () => {
+const TabularDetailPageWithHistory = (additionalProps = {}) => {
   const history = useHistory();
   return (
     <TabularDetailPage
-      title="Title"
+      title="Test page"
       subtitle="Subtitle"
       tabControls={
         <>
@@ -57,6 +62,7 @@ const TabularDetailPageWithHistory = () => {
         </>
       }
       onPreviousPathClick={() => history.push('/start')}
+      {...additionalProps}
     >
       <Content />
     </TabularDetailPage>
@@ -65,7 +71,7 @@ const TabularDetailPageWithHistory = () => {
 
 describe('rendering', () => {
   it('should render "tab one" as active by default and the content that it leads to', () => {
-    renderTabularDetailPage();
+    renderTabularDetailPage({ title: 'Test page' });
 
     screen.getByText(/curabitur nec turpis in risus elementum fringilla/i);
   });
@@ -75,10 +81,18 @@ describe('rendering', () => {
 
     screen.getByText(/custom/i);
   });
+  it('should warn if no title nor custom title row are provided', () => {
+    renderTabularDetailPage();
+
+    expect(warning).toHaveBeenCalledWith(
+      false,
+      'TabularDetailPage: one of either `title` or `customTitleRow` is required but both their values are `undefined`'
+    );
+  });
 });
 describe('navigation', () => {
   it('should navigate to the other tab when clicked and show content that it leads to', async () => {
-    const { history } = renderTabularDetailPage();
+    const { history } = renderTabularDetailPage({ title: 'Test page' });
 
     fireEvent.click(screen.getByRole('tab', { name: /tab two/i }));
     await waitFor(() => {
