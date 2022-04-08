@@ -70,6 +70,7 @@ import messages from './messages';
 import useLoadingMenuLayoutEffect from './use-loading-menu-layout-effect';
 import useNavbarStateManager from './use-navbar-state-manager';
 import nonNullable from './non-nullable';
+import trackingEvents from './tracking-events';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import compiledStyles from /* preval */ './navbar.styles';
 
@@ -149,27 +150,47 @@ IconSwitcher.displayName = 'IconSwitcher';
 type MenuExpanderProps = {
   isVisible: boolean;
   onClick: MouseEventHandler<HTMLDivElement>;
+  isMenuOpen: boolean;
 };
-const MenuExpander = (props: MenuExpanderProps) => (
-  <li
-    key="expander"
-    className={classnames(styles['list-item'], styles.expander, {
-      [styles.hidden]: !props.isVisible,
-    })}
-  >
-    <div
-      onClick={props.onClick}
-      className={styles['expand-icon']}
-      data-testid="menu-expander"
+const MenuExpander = (props: MenuExpanderProps) => {
+  const gtmTracking = useContext(GtmContext);
+  return (
+    <li
+      key="expander"
+      className={classnames(styles['list-item'], styles.expander, {
+        [styles.hidden]: !props.isVisible,
+      })}
     >
-      {/*
-        FIXME: define hover effect.
-        https://github.com/commercetools/merchant-center-frontend/issues/2216
-      */}
-      <BackIcon color="surface" size="big" />
-    </div>
-  </li>
-);
+      <div
+        onClick={(event) => {
+          // Since the menu is currently open, we track when the button is clicked to close the menu
+          if (props.isMenuOpen) {
+            gtmTracking.track(
+              trackingEvents.collapseMainNav.event,
+              trackingEvents.collapseMainNav.category,
+              trackingEvents.collapseMainNav.label
+            );
+          } else {
+            gtmTracking.track(
+              trackingEvents.expandMainNav.event,
+              trackingEvents.expandMainNav.category,
+              trackingEvents.expandMainNav.label
+            );
+          }
+          props.onClick(event);
+        }}
+        className={styles['expand-icon']}
+        data-testid="menu-expander"
+      >
+        {/*
+          FIXME: define hover effect.
+          https://github.com/commercetools/merchant-center-frontend/issues/2216
+        */}
+        <BackIcon color="surface" size="big" />
+      </div>
+    </li>
+  );
+};
 MenuExpander.displayName = 'MenuExpander';
 
 type MenuGroupProps = {
@@ -624,6 +645,7 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
     props.environment.useFullRedirectsForLinks
   );
   const location = useLocation();
+  const gtmTracking = useContext(GtmContext);
 
   const projectPermissions: TProjectPermissions = useMemo(
     () => ({
@@ -679,6 +701,11 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
             isActive={false}
             isMenuOpen={isMenuOpen}
             onClick={() => {
+              gtmTracking.track(
+                trackingEvents.goToSupport.event,
+                trackingEvents.goToSupport.category,
+                trackingEvents.goToSupport.label
+              );
               handleToggleItem('fixed-support');
             }}
             onMouseEnter={
@@ -710,6 +737,7 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
           <MenuExpander
             isVisible={isExpanderVisible}
             onClick={handleToggleMenu}
+            isMenuOpen={isMenuOpen}
           />
         </div>
       </MenuGroup>
