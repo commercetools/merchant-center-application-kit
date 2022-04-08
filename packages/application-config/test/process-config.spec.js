@@ -938,7 +938,7 @@ describe('processing a config with intl variable placeholders', () => {
             defaultLabel: 'Add avenger',
             labelAllLocales: [],
             permissions: ['ManageAvengers'],
-            uriPath: 'new',
+            uriPath: 'avengers/new',
           },
         ],
       },
@@ -971,7 +971,7 @@ describe('processing a config with intl variable placeholders', () => {
             permissions: ['ViewAvengers'],
             submenuLinks: [
               {
-                uriPath: 'new',
+                uriPath: 'avengers/new',
                 defaultLabel: 'Add avenger',
                 labelAllLocales: [],
                 permissions: ['ManageAvengers'],

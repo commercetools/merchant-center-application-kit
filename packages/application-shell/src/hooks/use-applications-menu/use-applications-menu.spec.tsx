@@ -141,7 +141,7 @@ const createTestNavBarMenuLinksConfig = (
   permissions: [],
   submenuLinks: [
     {
-      uriPath: 'new',
+      uriPath: 'avengers/new',
       defaultLabel: 'Add avenger',
       labelAllLocales: [{ locale: 'en', value: 'Add avenger' }],
       permissions: [],

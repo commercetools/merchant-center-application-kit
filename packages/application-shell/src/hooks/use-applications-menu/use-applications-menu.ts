@@ -100,17 +100,7 @@ const mapApplicationMenuConfigToGraqhQLQueryResult = (
               submenu: menuLinks.submenuLinks.map((submenuLink) => ({
                 __typename: 'BaseMenu',
                 key: `${entryPointUriPath}-${submenuLink.uriPath}`,
-                // The `uriPath` of each submenu link is supposed to be defined relative
-                // to the entry point URI path.
-                // However, when rendering the link, we need to provide the full uri path.
-                // Special case when the value is `/`: it means that the link is supposed to be
-                // treated the same as the entry point uri path. In this case, the return value
-                // should not contain any unnecessary trailing slash and therefore we return the
-                // main value `entryPointUriPath`.
-                uriPath:
-                  submenuLink.uriPath === '/'
-                    ? entryPointUriPath
-                    : `${entryPointUriPath}/${submenuLink.uriPath}`,
+                uriPath: submenuLink.uriPath,
                 labelAllLocales: mapLabelAllLocalesWithDefaults(
                   submenuLink.labelAllLocales,
                   submenuLink.defaultLabel
