@@ -1,18 +1,18 @@
 import { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { InfoModalPage } from '@commercetools-frontend/application-components';
 import {
   GtmContext,
   useMcQuery,
 } from '@commercetools-frontend/application-shell';
-import { ListIcon, CheckBoldIcon } from '@commercetools-uikit/icons';
+import { CheckBoldIcon } from '@commercetools-uikit/icons';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import Grid from '@commercetools-uikit/grid';
 import Constraints from '@commercetools-uikit/constraints';
-import FlatButton from '@commercetools-uikit/flat-button';
 import {
   formatLocalizedString,
   transformLocalizedFieldToLocalizedString,
@@ -37,6 +37,7 @@ const getStateName = (state, dataLocale, projectLanguages) =>
   ) || 'n/a';
 
 const StateMachinesDetails = (props) => {
+  const params = useParams();
   const { dataLocale, projectLanguages } = useApplicationContext((context) => ({
     dataLocale: context.dataLocale,
     projectLanguages: context.project.languages,
@@ -44,7 +45,7 @@ const StateMachinesDetails = (props) => {
 
   const { data, error, loading } = useMcQuery(FetchStateQuery, {
     variables: {
-      id: props.id,
+      id: params.id,
     },
     context: {
       target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
@@ -57,56 +58,46 @@ const StateMachinesDetails = (props) => {
     track('rendered', 'State machine details');
   }, [track]);
 
-  if (error) {
-    return (
-      <ContentNotification type="error">
-        <Text.Body>{getErrorMessage(error)}</Text.Body>
-      </ContentNotification>
-    );
-  }
-
   return (
-    <Spacings.Inset scale="m">
+    <InfoModalPage
+      isOpen
+      title={
+        data ? getStateName(data.state, dataLocale, projectLanguages) : 'asd'
+      }
+      onClose={props.goToStateMachinesList}
+    >
       <Spacings.Stack scale="l">
         {loading && <LoadingSpinner />}
+        {error && (
+          <ContentNotification type="error">
+            <Text.Body>{getErrorMessage(error)}</Text.Body>
+          </ContentNotification>
+        )}
         {data && (
-          <>
-            <FlatButton
-              as={Link}
-              icon={<ListIcon />}
-              label="Back to list"
-              to={props.backToListPath}
-            />
-            <Spacings.Stack scale="xs">
-              <Text.Headline as="h2">
-                {getStateName(data?.state, dataLocale, projectLanguages)}
-              </Text.Headline>
-              <Text.Detail>{data.state.key}</Text.Detail>
-            </Spacings.Stack>
-            <Constraints.Horizontal max={7}>
-              <Grid
-                gridGap="16px"
-                gridAutoColumns="1fr"
-                gridTemplateColumns="repeat(2, 1fr)"
-              >
-                <Text.Body>{'Type'}</Text.Body>
-                <Text.Body>{data.state.type}</Text.Body>
-                <Text.Body>{'Built In'}</Text.Body>
-                <span>{data.state.builtIn ? <CheckBoldIcon /> : ''}</span>
-                <Text.Body>{'Initial'}</Text.Body>
-                <span>{data.state.initial ? <CheckBoldIcon /> : ''}</span>
-              </Grid>
-            </Constraints.Horizontal>
-          </>
+          <Constraints.Horizontal max={7}>
+            <Grid
+              gridGap="16px"
+              gridAutoColumns="1fr"
+              gridTemplateColumns="repeat(2, 1fr)"
+            >
+              <Text.Body>{'Key'}</Text.Body>
+              <Text.Body>{data.state.key}</Text.Body>
+              <Text.Body>{'Type'}</Text.Body>
+              <Text.Body>{data.state.type}</Text.Body>
+              <Text.Body>{'Built In'}</Text.Body>
+              <span>{data.state.builtIn ? <CheckBoldIcon /> : ''}</span>
+              <Text.Body>{'Initial'}</Text.Body>
+              <span>{data.state.initial ? <CheckBoldIcon /> : ''}</span>
+            </Grid>
+          </Constraints.Horizontal>
         )}
       </Spacings.Stack>
-    </Spacings.Inset>
+    </InfoModalPage>
   );
 };
 StateMachinesDetails.displayName = 'StateMachinesDetails';
 StateMachinesDetails.propTypes = {
-  id: PropTypes.string.isRequired,
-  backToListPath: PropTypes.string.isRequired,
+  goToStateMachinesList: PropTypes.func.isRequired,
 };
 
 export default StateMachinesDetails;

@@ -77,19 +77,16 @@ const StateMachinesList = (props) => {
     !loading && data?.states.results && data?.states.total === 0
   );
 
-  if (error) {
-    return (
-      <ContentNotification type="error">
-        <Text.Body>{getErrorMessage(error)}</Text.Body>
-      </ContentNotification>
-    );
-  }
-
   return (
     <Spacings.Inset scale="m">
       <Spacings.Stack scale="m">
         <Text.Headline as="h2" intlMessage={messages.title} />
         {loading && <LoadingSpinner />}
+        {error && (
+          <ContentNotification type="error">
+            <Text.Body>{getErrorMessage(error)}</Text.Body>
+          </ContentNotification>
+        )}
         {hasNoResults && (
           <div className={styles['empty-results']}>
             <Text.Body intlMessage={messages.noResultsText} />
@@ -119,6 +116,7 @@ const StateMachinesList = (props) => {
             />
           </Spacings.Stack>
         )}
+        {props.children}
       </Spacings.Stack>
     </Spacings.Inset>
   );
@@ -126,6 +124,7 @@ const StateMachinesList = (props) => {
 StateMachinesList.displayName = 'StateMachinesList';
 StateMachinesList.propTypes = {
   goToStateMachineDetail: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default StateMachinesList;

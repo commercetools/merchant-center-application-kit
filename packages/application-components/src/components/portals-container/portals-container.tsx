@@ -43,8 +43,6 @@ const PortalsContainer = (props: TPortalsContainerProps) => (
           width: 100%;
           top: ${props.offsetTop};
           bottom: 0;
-          left: 0;
-          right: 0;
           z-index: ${props.zIndex};
         }
       `}
