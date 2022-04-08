@@ -1,5 +1,17 @@
 # @commercetools-frontend/application-components
 
+## 21.3.3
+
+### Patch Changes
+
+- [#2541](https://github.com/commercetools/merchant-center-application-kit/pull/2541) [`3853d77e`](https://github.com/commercetools/merchant-center-application-kit/commit/3853d77ece84ef8be552dd79e538f66902c7ac1f) Thanks [@emmenko](https://github.com/emmenko)! - Fix layout issue with modal components when the underlying page has a scrolling position, causing the modal container position to "scroll" with the page position.
+
+  The expected behavior is for the modal page to always be correctly positioned and visible, regardless of the scrolling position of the underlying page.
+
+  To fix that, the `<PortalsContainer>` now uses `position: fixed` when a modal container opens.
+
+  The component now accepts some props to allow consumers to adjust the layout accordingly. However, for Custom Applications everything is pre-configured, so there is no action required.
+
 ## 21.3.2
 
 ### Patch Changes
