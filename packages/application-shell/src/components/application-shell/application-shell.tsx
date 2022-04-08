@@ -26,6 +26,7 @@ import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import version from '../../version';
 import internalReduxStore from '../../configure-store';
 import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
+import { HEIGHTS } from '../../constants';
 import ProjectDataLocale from '../project-data-locale';
 import ApplicationShellProvider from '../application-shell-provider';
 import { getBrowserLocale } from '../application-shell-provider/utils';
@@ -239,7 +240,7 @@ export const RestrictedApplication = <
                         css={css`
                           height: 100vh;
                           display: grid;
-                          grid-template-rows: auto 43px 1fr;
+                          grid-template-rows: auto ${HEIGHTS.header} 1fr;
                           grid-template-columns: auto 1fr;
                         `}
                       >
@@ -402,7 +403,7 @@ export const RestrictedApplication = <
                                 }
                               `}
                             >
-                              <PortalsContainer />
+                              <PortalsContainer offsetTop={HEIGHTS.header} />
                               <Switch>
                                 <Redirect
                                   from="/profile"
@@ -507,10 +508,6 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
         styles={css`
           #app {
             height: 100%;
-          }
-          .ReactModal__Body--open main {
-            /* When a modal is open, we should prevent the content to be scrollable */
-            overflow: hidden;
           }
         `}
       />

@@ -1,3 +1,7 @@
+export const HEIGHTS = {
+  header: '43px',
+} as const;
+
 export const SUPPORTED_HEADERS = {
   ACCEPT_VERSION: 'Accept-version',
   AUTHORIZATION: 'Authorization',

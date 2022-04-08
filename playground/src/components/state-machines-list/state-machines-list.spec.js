@@ -5,13 +5,12 @@ import {
   screen,
   waitFor,
   fireEvent,
-  mapResourceAccessToAppliedPermissions,
 } from '@commercetools-frontend/application-shell/test-utils';
 import { GtmContext } from '@commercetools-frontend/application-shell';
-import { entryPointUriPath, PERMISSIONS } from '../../constants';
+import { entryPointUriPath } from '../../constants';
 import { renderApplicationWithRedux } from '../../test-utils';
 import * as StateMock from '../../test-utils/test-data/state';
-import { ApplicationStateMachines } from '../entry-point';
+import ApplicationPlaygroundRoutes from '../../routes';
 
 const mockServer = setupServer();
 afterEach(() => mockServer.resetHandlers());
@@ -27,18 +26,12 @@ const renderApp = (options = {}) => {
   const gtmMock = { track: jest.fn(), getHierarchy: jest.fn() };
   const { history } = renderApplicationWithRedux(
     <GtmContext.Provider value={gtmMock}>
-      <ApplicationStateMachines />
+      <ApplicationPlaygroundRoutes />
     </GtmContext.Provider>,
     {
       route,
       environment: {
         entryPointUriPath,
-      },
-      project: {
-        allAppliedPermissions: mapResourceAccessToAppliedPermissions([
-          PERMISSIONS.View,
-          PERMISSIONS.Manage,
-        ]),
       },
       ...options,
     }
@@ -104,7 +97,7 @@ describe('list view', () => {
 describe('details view', () => {
   describe('when request is successful', () => {
     it('should render data on page', async () => {
-      mockServer.use(fetchState());
+      mockServer.use(fetchAllStates(), fetchState());
       renderApp({
         route: `/my-project/${entryPointUriPath}/2`,
       });
@@ -112,7 +105,7 @@ describe('details view', () => {
       await screen.findByText(/state-key-2/i);
     });
     it('should retrigger request if id changes', async () => {
-      mockServer.use(fetchState());
+      mockServer.use(fetchAllStates(), fetchState());
       const { history, gtmMock } = renderApp({
         route: `/my-project/${entryPointUriPath}/1`,
       });
@@ -135,6 +128,7 @@ describe('details view', () => {
     });
     it('should render notification error message', async () => {
       mockServer.use(
+        fetchAllStates(),
         graphql.query('FetchState', (req, res, ctx) => {
           return res(
             ctx.errors([

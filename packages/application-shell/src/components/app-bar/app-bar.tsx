@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 import Spacings from '@commercetools-uikit/spacings';
 import { customProperties } from '@commercetools-uikit/design-system';
 import LogoSVG from '@commercetools-frontend/assets/images/logo.svg';
-import { CONTAINERS } from '../../constants';
+import { CONTAINERS, HEIGHTS } from '../../constants';
 import { getPreviousProjectKey } from '../../utils';
 import UserSettingsMenu from '../user-settings-menu';
 import ProjectSwitcher from '../project-switcher';
@@ -26,8 +26,9 @@ const AppBar = (props: Props) => {
   return (
     <div
       css={css`
+        background-color: ${customProperties.colorSurface};
         box-shadow: ${customProperties.shadow1};
-        min-height: 43px;
+        min-height: ${HEIGHTS.header};
         position: relative;
         width: 100%;
         z-index: 20000;
@@ -103,7 +104,7 @@ const AppBar = (props: Props) => {
           <div
             css={css`
               border-left: 1px ${customProperties.colorNeutral90} solid;
-              height: 43px;
+              height: ${HEIGHTS.header};
             `}
           />
           {props.user ? (
