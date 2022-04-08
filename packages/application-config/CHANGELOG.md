@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-config
 
+## 21.3.3
+
+### Patch Changes
+
+- [#2540](https://github.com/commercetools/merchant-center-application-kit/pull/2540) [`602822c0`](https://github.com/commercetools/merchant-center-application-kit/commit/602822c03e7ee0bbefdf1385c6120ab3069efe80) Thanks [@emmenko](https://github.com/emmenko)! - Fix computing submenu link `uriPath` when parsing local Custom Application config.
+
 ## 21.3.2
 
 ### Patch Changes
