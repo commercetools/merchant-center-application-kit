@@ -37,7 +37,7 @@
     "@commercetools-uikit/primary-button": "^14.0.1",
     "@commercetools-uikit/spacings": "^14.0.1",
     "@commercetools-uikit/text": "^14.0.1",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "moment-timezone": "^0.5.34",
     "prop-types": "15.8.1",
     "react": "17.0.2",

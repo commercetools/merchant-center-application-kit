@@ -41,7 +41,7 @@
     "@types/react-router": "^5.1.18",
     "@types/react-router-dom": "^5.3.3",
     "lodash": "4.17.21",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "moment-timezone": "^0.5.34",
     "prop-types": "15.8.1",
     "reselect": "4.1.5"

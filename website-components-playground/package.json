@@ -31,7 +31,7 @@
     "gatsby-cli": "4.11.0",
     "gatsby-plugin-emotion": "7.11.0",
     "gatsby-source-filesystem": "4.11.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "moment-timezone": "^0.5.34",
     "prop-types": "15.8.1",
     "react": "17.0.2",
