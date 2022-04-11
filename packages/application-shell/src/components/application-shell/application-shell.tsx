@@ -26,7 +26,7 @@ import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import version from '../../version';
 import internalReduxStore from '../../configure-store';
 import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
-import { HEIGHTS } from '../../constants';
+import { DIMENSIONS } from '../../constants';
 import ProjectDataLocale from '../project-data-locale';
 import ApplicationShellProvider from '../application-shell-provider';
 import { getBrowserLocale } from '../application-shell-provider/utils';
@@ -240,7 +240,7 @@ export const RestrictedApplication = <
                         css={css`
                           height: 100vh;
                           display: grid;
-                          grid-template-rows: auto ${HEIGHTS.header} 1fr;
+                          grid-template-rows: auto ${DIMENSIONS.header} 1fr;
                           grid-template-columns: auto 1fr;
                         `}
                       >
@@ -403,7 +403,13 @@ export const RestrictedApplication = <
                                 }
                               `}
                             >
-                              <PortalsContainer offsetTop={HEIGHTS.header} />
+                              <PortalsContainer
+                                offsetTop={DIMENSIONS.header}
+                                offsetLeft={DIMENSIONS.navMenu}
+                                offsetLeftOnExpandedMenu={
+                                  DIMENSIONS.navMenuExpanded
+                                }
+                              />
                               <Switch>
                                 <Redirect
                                   from="/profile"
