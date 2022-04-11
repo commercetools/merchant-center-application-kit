@@ -1,16 +1,16 @@
 export default {
   collapseMainNav: {
-    event: 'CollapseMainNav',
+    action: 'CollapseMainNav',
     category: 'Main-Navigation',
     label: 'Collapse Main Navigation',
   },
   expandMainNav: {
-    event: 'ExpandMainNav',
+    action: 'ExpandMainNav',
     category: 'Main-Navigation',
     label: 'Expand Main Navigation',
   },
   goToSupport: {
-    event: 'GoToSupport',
+    action: 'GoToSupport',
     category: 'Main-Navigation',
     label: '	Go to Support',
   },

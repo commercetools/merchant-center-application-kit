@@ -166,13 +166,13 @@ const MenuExpander = (props: MenuExpanderProps) => {
           // Since the menu is currently open, we track when the button is clicked to close the menu
           if (props.isMenuOpen) {
             gtmTracking.track(
-              trackingEvents.collapseMainNav.event,
+              trackingEvents.collapseMainNav.action,
               trackingEvents.collapseMainNav.category,
               trackingEvents.collapseMainNav.label
             );
           } else {
             gtmTracking.track(
-              trackingEvents.expandMainNav.event,
+              trackingEvents.expandMainNav.action,
               trackingEvents.expandMainNav.category,
               trackingEvents.expandMainNav.label
             );
@@ -702,7 +702,7 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
             isMenuOpen={isMenuOpen}
             onClick={() => {
               gtmTracking.track(
-                trackingEvents.goToSupport.event,
+                trackingEvents.goToSupport.action,
                 trackingEvents.goToSupport.category,
                 trackingEvents.goToSupport.label
               );
