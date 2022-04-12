@@ -1,5 +1,19 @@
 # @commercetools-frontend/application-components
 
+## 21.3.4
+
+### Patch Changes
+
+- [#2549](https://github.com/commercetools/merchant-center-application-kit/pull/2549) [`54018ddf`](https://github.com/commercetools/merchant-center-application-kit/commit/54018ddf8a953ff9409c82ab3fe3d63feb158500) Thanks [@emmenko](https://github.com/emmenko)! - Fix portals layout width based on left nav menu.
+
+* [#2546](https://github.com/commercetools/merchant-center-application-kit/pull/2546) [`dc76e5a9`](https://github.com/commercetools/merchant-center-application-kit/commit/dc76e5a9a7f875dadf2ed5a11c48a1ddff7b431c) Thanks [@renovate](https://github.com/apps/renovate)! - Upgrade dependencies
+
+* Updated dependencies [[`dc76e5a9`](https://github.com/commercetools/merchant-center-application-kit/commit/dc76e5a9a7f875dadf2ed5a11c48a1ddff7b431c)]:
+  - @commercetools-frontend/application-shell-connectors@21.3.4
+  - @commercetools-frontend/constants@21.3.4
+  - @commercetools-frontend/i18n@21.3.4
+  - @commercetools-frontend/l10n@21.3.4
+
 ## 21.3.3
 
 ### Patch Changes
