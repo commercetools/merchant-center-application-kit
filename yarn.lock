@@ -3533,6 +3533,69 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@commercetools-uikit/localized-text-field@npm:^14.0.3":
+  version: 14.0.3
+  resolution: "@commercetools-uikit/localized-text-field@npm:14.0.3"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+    "@babel/runtime-corejs3": ^7.17.2
+    "@commercetools-uikit/constraints": 14.0.1
+    "@commercetools-uikit/design-system": 14.0.0
+    "@commercetools-uikit/field-errors": 14.0.1
+    "@commercetools-uikit/field-label": 14.0.2
+    "@commercetools-uikit/localized-text-input": 14.0.3
+    "@commercetools-uikit/spacings": 14.0.1
+    "@commercetools-uikit/utils": 14.0.1
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    prop-types: 15.8.1
+    react-intl: ^5.24.6
+  peerDependencies:
+    react: 17.x
+  checksum: a0167683ad12f14b89a2f0b573f4b85592828e44aaa9ae72b0fd83c327f527bcc7a1f0bd2ab5041bc9fbe81aa81f1155f32bb05dec8abbe717412b455db6d342
+  languageName: node
+  linkType: hard
+
+"@commercetools-uikit/localized-text-input@npm:14.0.3, @commercetools-uikit/localized-text-input@npm:^14.0.3":
+  version: 14.0.3
+  resolution: "@commercetools-uikit/localized-text-input@npm:14.0.3"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+    "@babel/runtime-corejs3": ^7.17.2
+    "@commercetools-uikit/constraints": 14.0.1
+    "@commercetools-uikit/design-system": 14.0.0
+    "@commercetools-uikit/flat-button": 14.0.2
+    "@commercetools-uikit/hooks": 14.0.3
+    "@commercetools-uikit/icons": 14.0.1
+    "@commercetools-uikit/input-utils": 14.0.2
+    "@commercetools-uikit/localized-utils": 14.0.1
+    "@commercetools-uikit/messages": 14.0.1
+    "@commercetools-uikit/spacings-stack": 14.0.1
+    "@commercetools-uikit/text": 14.0.1
+    "@commercetools-uikit/text-input": 14.0.2
+    "@commercetools-uikit/utils": 14.0.1
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    prop-types: 15.8.1
+  peerDependencies:
+    react: 17.x
+    react-intl: 5.x
+  checksum: 4e21bd33a6b46f2272498c36dd30fb00a6ed02c7b9b38c35b8a7bd16a1b606a8ee1fdba0b554fcee9dd043416b82c1fd2baefc65bd0064517f0a8f564d496e52
+  languageName: node
+  linkType: hard
+
+"@commercetools-uikit/localized-utils@npm:14.0.1":
+  version: 14.0.1
+  resolution: "@commercetools-uikit/localized-utils@npm:14.0.1"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+    "@babel/runtime-corejs3": ^7.17.2
+    "@commercetools-uikit/utils": 14.0.1
+    lodash: 4.17.21
+  checksum: 410f42a5cbc03501bde355dcd55db282e6442d264379e2d909740c4fc610f992507c845d5c58312acde7431d759029fad3849e45fa3073c7db12f59d8baf0a00
+  languageName: node
+  linkType: hard
+
 "@commercetools-uikit/messages@npm:14.0.1, @commercetools-uikit/messages@npm:^14.0.1":
   version: 14.0.1
   resolution: "@commercetools-uikit/messages@npm:14.0.1"
@@ -4105,6 +4168,23 @@ __metadata:
   version: 6.2.0
   resolution: "@commercetools/sdk-middleware-http@npm:6.2.0"
   checksum: 4fffee9c30a41100ea45d14c04105cc012c92067d92c4c5ea75f99f5e441caef312507537e0f74cd066e874dc9d8fbeaf66dc33f6a62766dd15033cd1fb833b9
+  languageName: node
+  linkType: hard
+
+"@commercetools/sync-actions@npm:^4.10.1":
+  version: 4.10.1
+  resolution: "@commercetools/sync-actions@npm:4.10.1"
+  dependencies:
+    fast-equals: ^2.0.0
+    jsondiffpatch: ^0.4.0
+    lodash.flatten: ^4.4.0
+    lodash.foreach: ^4.5.0
+    lodash.isequal: ^4.5.0
+    lodash.isnil: ^4.0.0
+    lodash.shuffle: ^4.2.0
+    lodash.sortby: ^4.7.0
+    lodash.uniqwith: ^4.5.0
+  checksum: 2e28f9f276f83ca7a5087710aca672990aa348cb6694a00eadbb574b9aa2d3ce0a26cdc5e8c40876dcb4afead757a19f15328f76118588978209d2caf4428c14
   languageName: node
   linkType: hard
 
@@ -12134,7 +12214,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:2.4.2, chalk@npm:^2.0.0, chalk@npm:^2.1.0, chalk@npm:^2.4.1, chalk@npm:^2.4.2":
+"chalk@npm:2.4.2, chalk@npm:^2.0.0, chalk@npm:^2.1.0, chalk@npm:^2.3.0, chalk@npm:^2.4.1, chalk@npm:^2.4.2":
   version: 2.4.2
   resolution: "chalk@npm:2.4.2"
   dependencies:
@@ -14449,6 +14529,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"diff-match-patch@npm:^1.0.0":
+  version: 1.0.5
+  resolution: "diff-match-patch@npm:1.0.5"
+  checksum: 841522d01b09cccbc4e4402cf61514a81b906349a7d97b67222390f2d35cf5df277cb23959eeed212d5e46afb5629cebab41b87918672c5a05c11c73688630e3
+  languageName: node
+  linkType: hard
+
 "diff-sequences@npm:^27.4.0":
   version: 27.4.0
   resolution: "diff-sequences@npm:27.4.0"
@@ -16528,7 +16615,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-equals@npm:2.0.4":
+"fast-equals@npm:2.0.4, fast-equals@npm:^2.0.0":
   version: 2.0.4
   resolution: "fast-equals@npm:2.0.4"
   checksum: 1aac8a2e16b33e5e402bb5cd46be65f1ca331903c2c44e3bd75324e8472ee04f0acdbc6889e45fc28f9707ca3964f2a86789b32305d4d8b85dc97f61e446ef4b
@@ -22186,6 +22273,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jsondiffpatch@npm:^0.4.0":
+  version: 0.4.1
+  resolution: "jsondiffpatch@npm:0.4.1"
+  dependencies:
+    chalk: ^2.3.0
+    diff-match-patch: ^1.0.0
+  bin:
+    jsondiffpatch: ./bin/jsondiffpatch
+  checksum: 2062d188cc7f60f9d84e7bf497a7d89233d2f8ec21d085c26cdb24c2b7c5f4f7231ad9b978355e319c00820de0863499ba881c6c6b1bd92313db1a7d16d6ab1d
+  languageName: node
+  linkType: hard
+
 "jsonexport@npm:^3.2.0":
   version: 3.2.0
   resolution: "jsonexport@npm:3.2.0"
@@ -22970,10 +23069,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash.isequal@npm:^4.5.0":
+  version: 4.5.0
+  resolution: "lodash.isequal@npm:4.5.0"
+  checksum: da27515dc5230eb1140ba65ff8de3613649620e8656b19a6270afe4866b7bd461d9ba2ac8a48dcc57f7adac4ee80e1de9f965d89d4d81a0ad52bb3eec2609644
+  languageName: node
+  linkType: hard
+
 "lodash.isinteger@npm:^4.0.4":
   version: 4.0.4
   resolution: "lodash.isinteger@npm:4.0.4"
   checksum: 6034821b3fc61a2ffc34e7d5644bb50c5fd8f1c0121c554c21ac271911ee0c0502274852845005f8651d51e199ee2e0cfebfe40aaa49c7fe617f603a8a0b1691
+  languageName: node
+  linkType: hard
+
+"lodash.isnil@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "lodash.isnil@npm:4.0.0"
+  checksum: ebf8df69879badd6ad99c4f64c54c470248df5cf92b208ca730861b1d8ac058da7b632ac811d18b0929d93cbac8d8fc866e781ee816b0142c56952e85edc682f
   languageName: node
   linkType: hard
 
@@ -23068,10 +23181,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash.shuffle@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "lodash.shuffle@npm:4.2.0"
+  checksum: 3d451e16c18cd7e7c4c265199c87f0a1fff2976b8bf14d94de20a445e76f61a5c39b62181e5660e8f3a1602518b15a3d7d54732067cdef9d446e47d1e8f48938
+  languageName: node
+  linkType: hard
+
 "lodash.some@npm:^4.4.0":
   version: 4.6.0
   resolution: "lodash.some@npm:4.6.0"
   checksum: 4469e76a389446d1166a29f844fb21398c36060d00258ce799710e046c55ed3c1af150c31b4856504e252bc813ba3fdcb6f255c490d9846738dd363a44665322
+  languageName: node
+  linkType: hard
+
+"lodash.sortby@npm:^4.7.0":
+  version: 4.7.0
+  resolution: "lodash.sortby@npm:4.7.0"
+  checksum: db170c9396d29d11fe9a9f25668c4993e0c1331bcb941ddbd48fb76f492e732add7f2a47cfdf8e9d740fa59ac41bbfaf931d268bc72aab3ab49e9f89354d718c
   languageName: node
   linkType: hard
 
@@ -23100,6 +23227,13 @@ __metadata:
   version: 4.5.0
   resolution: "lodash.uniq@npm:4.5.0"
   checksum: a4779b57a8d0f3c441af13d9afe7ecff22dd1b8ce1129849f71d9bbc8e8ee4e46dfb4b7c28f7ad3d67481edd6e51126e4e2a6ee276e25906d10f7140187c392d
+  languageName: node
+  linkType: hard
+
+"lodash.uniqwith@npm:^4.5.0":
+  version: 4.5.0
+  resolution: "lodash.uniqwith@npm:4.5.0"
+  checksum: d49a4565ed64efd86674127d321622673c29cde3e060baebc0f30372f22886c61b2ead44709db8c890053db1b9660e8ed689689812c1a485eb5703caa94d1150
   languageName: node
   linkType: hard
 
@@ -23923,10 +24057,16 @@ __metadata:
     "@commercetools-uikit/icons": ^14.0.1
     "@commercetools-uikit/link": ^14.0.1
     "@commercetools-uikit/loading-spinner": ^14.0.1
+    "@commercetools-uikit/localized-text-field": ^14.0.3
+    "@commercetools-uikit/localized-text-input": ^14.0.3
     "@commercetools-uikit/notifications": ^14.0.1
     "@commercetools-uikit/pagination": ^14.0.2
+    "@commercetools-uikit/select-field": ^14.0.2
     "@commercetools-uikit/spacings": ^14.0.1
     "@commercetools-uikit/text": ^14.0.1
+    "@commercetools-uikit/text-field": ^14.0.2
+    "@commercetools-uikit/text-input": ^14.0.2
+    "@commercetools/sync-actions": ^4.10.1
     "@formatjs/cli": 4.8.3
     "@manypkg/cli": 0.19.1
     "@testing-library/react": 12.1.4
@@ -23937,6 +24077,7 @@ __metadata:
     jest-runner-eslint: 1.0.0
     jest-watch-typeahead: 1.0.0
     msw: 0.39.2
+    omit-empty-es: 1.1.3
     prettier: 2.6.1
     prop-types: 15.8.1
     react: 17.0.2
