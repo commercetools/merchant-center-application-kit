@@ -33,8 +33,8 @@
   },
   "dependencies": {
     "@babel/register": "^7.17.7",
-    "@babel/runtime": "^7.17.8",
-    "@babel/runtime-corejs3": "^7.17.8",
+    "@babel/runtime": "^7.17.9",
+    "@babel/runtime-corejs3": "^7.17.9",
     "@commercetools-frontend/babel-preset-mc-app": "21.3.2",
     "ajv": "8.11.0",
     "core-js": "^3.21.1",
