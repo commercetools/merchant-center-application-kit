@@ -26,9 +26,9 @@
     "build:bundles:watch": "yarn build -w"
   },
   "dependencies": {
-    "@babel/core": "^7.17.8",
-    "@babel/runtime": "^7.17.8",
-    "@babel/runtime-corejs3": "^7.17.8",
+    "@babel/core": "^7.17.9",
+    "@babel/runtime": "^7.17.9",
+    "@babel/runtime-corejs3": "^7.17.9",
     "@commercetools-frontend/application-config": "21.3.3",
     "@commercetools-frontend/assets": "21.0.0",
     "@commercetools-frontend/babel-preset-mc-app": "21.3.2",
@@ -47,7 +47,7 @@
     "dotenv": "16.0.0",
     "dotenv-expand": "8.0.3",
     "fs-extra": "10.0.1",
-    "graphql-request": "^4.1.0",
+    "graphql-request": "^4.2.0",
     "graphql-tag": "^2.12.6",
     "html-webpack-plugin": "5.5.0",
     "json-loader": "0.5.7",
@@ -60,7 +60,7 @@
     "postcss-import": "14.1.0",
     "postcss-loader": "6.2.1",
     "postcss-reporter": "7.0.5",
-    "prettier": "2.6.1",
+    "prettier": "2.6.2",
     "prompts": "^2.4.2",
     "querystring-es3": "^0.2.1",
     "rcfile": "1.0.3",
@@ -73,9 +73,9 @@
     "terser-webpack-plugin": "5.3.1",
     "thread-loader": "3.0.4",
     "url": "^0.11.0",
-    "webpack": "5.70.0",
+    "webpack": "5.72.0",
     "webpack-bundle-analyzer": "4.5.0",
-    "webpack-dev-server": "4.7.4",
+    "webpack-dev-server": "4.8.1",
     "webpackbar": "5.0.2"
   },
   "devDependencies": {
