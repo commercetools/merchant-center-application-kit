@@ -163,20 +163,11 @@ const MenuExpander = (props: MenuExpanderProps) => {
     >
       <div
         onClick={(event) => {
-          // Since the menu is currently open, we track when the button is clicked to close the menu
-          if (props.isMenuOpen) {
-            gtmTracking.track(
-              trackingEvents.collapseMainNav.action,
-              trackingEvents.collapseMainNav.category,
-              trackingEvents.collapseMainNav.label
-            );
-          } else {
-            gtmTracking.track(
-              trackingEvents.expandMainNav.action,
-              trackingEvents.expandMainNav.category,
-              trackingEvents.expandMainNav.label
-            );
-          }
+          const { action, category, label } =
+            trackingEvents[
+              props.isMenuOpen ? 'collapseMainNav' : 'expandMainNav'
+            ];
+          gtmTracking.track(action, category, label);
           props.onClick(event);
         }}
         className={styles['expand-icon']}
