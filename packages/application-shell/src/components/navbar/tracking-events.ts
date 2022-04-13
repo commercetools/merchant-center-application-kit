@@ -12,6 +12,6 @@ export default {
   goToSupport: {
     action: 'GoToSupport',
     category: 'Main-Navigation',
-    label: '	Go to Support',
+    label: 'Go to Support',
   },
 } as const;
