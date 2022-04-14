@@ -4,9 +4,20 @@ import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 type TPortalsContainerProps = {
   /**
    * The offset value for positioning the container from the top, when opened.
-   * Usually this is corresponds to the height of the header section.
+   * Usually this corresponds to the height of the header section.
    */
   offsetTop: string;
+  /**
+   * The offset value for positioning the container from the left, when opened.
+   * Usually this corresponds to the min width of the nav menu.
+   */
+  offsetLeft: string;
+  /**
+   * The offset value for positioning the container from the left, when opened.
+   * The value is only applied when the `.body__menu-open` global class is added to the DOM.
+   * Usually this corresponds to the width of the expanded nav menu.
+   */
+  offsetLeftOnExpandedMenu: string;
   /**
    * The CSS selector to apply the `overflow: hidden` style to (preventing scrolling)
    * when a modal container is open.
@@ -19,9 +30,15 @@ type TPortalsContainerProps = {
 };
 const defaultProps: Pick<
   TPortalsContainerProps,
-  'offsetTop' | 'containerSelectorToPreventScrollingOnOpen' | 'zIndex'
+  | 'offsetTop'
+  | 'offsetLeft'
+  | 'offsetLeftOnExpandedMenu'
+  | 'containerSelectorToPreventScrollingOnOpen'
+  | 'zIndex'
 > = {
   offsetTop: '0',
+  offsetLeft: '0',
+  offsetLeftOnExpandedMenu: '0',
   containerSelectorToPreventScrollingOnOpen: 'main',
   zIndex: 10000,
 };
@@ -40,10 +57,15 @@ const PortalsContainer = (props: TPortalsContainerProps) => (
         .ReactModal__Body--open #${PORTALS_CONTAINER_ID} {
           position: fixed;
           height: calc(100% - ${props.offsetTop});
-          width: 100%;
+          width: calc(100% - ${props.offsetLeft});
           top: ${props.offsetTop};
+          right: 0;
           bottom: 0;
           z-index: ${props.zIndex};
+        }
+
+        .ReactModal__Body--open.body__menu-open #${PORTALS_CONTAINER_ID} {
+          width: calc(100% - ${props.offsetLeftOnExpandedMenu});
         }
       `}
     />

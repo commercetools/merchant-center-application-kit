@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/sdk",
-  "version": "21.3.0",
+  "version": "21.3.4",
   "description": "Tools for declarative fetching",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -21,17 +21,17 @@
   "module": "dist/commercetools-frontend-sdk.esm.js",
   "files": ["dist", "test-utils", "package.json", "LICENSE", "README.md"],
   "dependencies": {
-    "@babel/runtime": "^7.17.8",
-    "@babel/runtime-corejs3": "^7.17.8",
-    "@commercetools-frontend/constants": "21.3.0",
+    "@babel/runtime": "^7.17.9",
+    "@babel/runtime-corejs3": "^7.17.9",
+    "@commercetools-frontend/constants": "21.3.4",
     "@commercetools/api-request-builder": "5.6.3",
     "@commercetools/http-user-agent": "2.1.2",
     "@commercetools/sdk-client": "2.1.2",
     "@commercetools/sdk-middleware-correlation-id": "2.1.4",
     "@commercetools/sdk-middleware-http": "6.2.0",
     "@types/node-fetch": "2.6.1",
-    "@types/prop-types": "^15.7.4",
-    "@types/react": "^17.0.43",
+    "@types/prop-types": "^15.7.5",
+    "@types/react": "^17.0.44",
     "@types/react-redux": "^7.1.23",
     "fast-equals": "2.0.4",
     "prop-types": "15.8.1",
@@ -40,10 +40,10 @@
     "uuid": "8.3.2"
   },
   "devDependencies": {
-    "@testing-library/react": "12.1.4",
+    "@testing-library/react": "12.1.5",
     "@types/uuid": "8.3.4",
     "react": "17.0.2",
-    "react-redux": "7.2.6",
+    "react-redux": "7.2.8",
     "redux": "4.1.2",
     "redux-thunk": "2.4.1"
   },

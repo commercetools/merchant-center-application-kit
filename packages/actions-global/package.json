@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/actions-global",
-  "version": "21.3.0",
+  "version": "21.3.4",
   "description": "Global redux actions for a MC application",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -18,21 +18,21 @@
   "module": "dist/commercetools-frontend-actions-global.esm.js",
   "files": ["dist", "package.json", "LICENSE", "README.md"],
   "dependencies": {
-    "@babel/runtime": "^7.17.8",
-    "@babel/runtime-corejs3": "^7.17.8",
-    "@commercetools-frontend/browser-history": "21.3.0",
-    "@commercetools-frontend/constants": "21.3.0",
-    "@commercetools-frontend/notifications": "21.3.0",
-    "@commercetools-frontend/sentry": "21.3.0",
+    "@babel/runtime": "^7.17.9",
+    "@babel/runtime-corejs3": "^7.17.9",
+    "@commercetools-frontend/browser-history": "21.3.4",
+    "@commercetools-frontend/constants": "21.3.4",
+    "@commercetools-frontend/notifications": "21.3.4",
+    "@commercetools-frontend/sentry": "21.3.4",
     "@types/lodash": "^4.14.181",
-    "@types/react": "^17.0.43",
+    "@types/react": "^17.0.44",
     "@types/react-redux": "^7.1.23",
     "lodash": "4.17.21",
     "redux-thunk": "2.4.1"
   },
   "devDependencies": {
     "react": "17.0.2",
-    "react-redux": "7.2.6",
+    "react-redux": "7.2.8",
     "redux": "4.1.2"
   },
   "peerDependencies": {
