@@ -49,6 +49,12 @@ const config = {
   },
   submenuLinks: [
     {
+      uriPath: 'notifications',
+      permissions: [PERMISSIONS.View],
+      defaultLabel: 'Notifications',
+      labelAllLocales: [],
+    },
+    {
       uriPath: 'echo-server',
       permissions: [PERMISSIONS.View],
       defaultLabel: '${intl:en:Menu.EchoServer}',

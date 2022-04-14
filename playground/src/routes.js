@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { Route, Switch, useRouteMatch, useHistory } from 'react-router-dom';
 import StateMachinesList from './components/state-machines-list';
 import StateMachinesDetails from './components/state-machines-details';
+import NotificationsPlayground from './components/notifications-playground';
 import EchoServer from './components/echo-server';
 
 const ApplicationRoutes = () => {
@@ -21,6 +22,9 @@ const ApplicationRoutes = () => {
     <Switch>
       <Route path={`${match.path}/echo-server`}>
         <EchoServer />
+      </Route>
+      <Route path={`${match.path}/notifications`}>
+        <NotificationsPlayground />
       </Route>
       <Route>
         <StateMachinesList goToStateMachineDetail={goToStateMachineDetail}>
