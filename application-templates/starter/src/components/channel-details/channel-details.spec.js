@@ -176,16 +176,18 @@ describe('rendering', () => {
     screen.getByRole('combobox', { name: /channel roles/i });
     screen.getByDisplayValue(/primary/i);
   });
-  it('should reset form values on "revert changes" button click', async () => {
+  it('should reset form values on "revert" button click', async () => {
     useMockServerHandlers(fetchChannelDetailsQueryHandler);
     renderApp();
 
     const resetButton = await screen.findByRole('button', {
-      name: /revert changes/i,
+      name: /revert/i,
     });
     expect(resetButton).toBeDisabled();
 
-    const keyInput = screen.getByRole('textbox', { name: /channel key/i });
+    const keyInput = screen.getByRole('textbox', {
+      name: /channel key/i,
+    });
     expect(keyInput.value).toBe(key);
 
     fireEvent.focus(keyInput);
@@ -207,9 +209,7 @@ describe('rendering', () => {
     );
     renderApp({}, false);
 
-    await screen.findByText(/view access only/i);
-
-    const keyInput = screen.getByRole('textbox', {
+    const keyInput = await screen.findByRole('textbox', {
       name: /channel key/i,
     });
     expect(keyInput.hasAttribute('readonly')).toBeTruthy();

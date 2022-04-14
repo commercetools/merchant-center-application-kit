@@ -8,7 +8,7 @@ import {
 import { DOMAINS } from '@commercetools-frontend/constants';
 import { Notifier } from '@commercetools-frontend/react-notifications';
 import { useChannelDetailsFetcher } from '../../hooks/use-channel-details-connector';
-import ChannelDetailsForm from './channel-details-form';
+import ChannelDetailsUpdate from './channel-details-update';
 import messages from './messages';
 
 const ChannelDetails = (props) => {
@@ -36,7 +36,7 @@ const ChannelDetails = (props) => {
       </InfoModalPage>
     );
   return channel ? (
-    <ChannelDetailsForm onClose={props.onClose} channel={channel} />
+    <ChannelDetailsUpdate onClose={props.onClose} channel={channel} />
   ) : null;
 };
 ChannelDetails.displayName = 'ChannelDetails';
