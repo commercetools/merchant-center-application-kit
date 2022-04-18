@@ -55,7 +55,7 @@ or its [entry point](/api-reference/application-config#entrypointuripath).
 
 ### custom configuration
 
-It is important to note that your custom application configuration is also exposed within the `context.environment` property.<br/>
+It is important to note that your Custom Application configuration is also exposed within the `context.environment` property.<br/>
 Any property you add to your application configuration file under the prop [`additionalEnv`](/api-reference/application-config#additionalenv) will also be available in the `context.environment` object.
 
 Let's say you have something like this `custom-application-config.mjs` file in your project:
@@ -144,7 +144,7 @@ You should use it as the selected language in components like [LocalizedTextFiel
 ```
 
 
-## useApplicationContext (hook)
+## useApplicationContext
 
 This is a custom hook which allows to access the `ApplicationContext` from any component (or other hooks).
 
@@ -170,7 +170,7 @@ export default DisplayLocale;
 ```
 
 
-## withApplicationContext (HOC)
+## withApplicationContext
 
 This is a High Order Component which allows to access the `ApplicationContext` from any component.
 It is meant to be used if you have a class based component where you need to read context data.
@@ -214,7 +214,7 @@ The provider will load the configuration and make it available with the componen
 | Props                           | Type                       | Required | Values            | Default   | Description                                                              |
 | ------------------------------- | -------------------------- | :------: | ----------------- | --------- | -------------------------------------------------------------------------|
 | `children`                      | `ReactNode`                |    ✅    | -                 | -         | Components that should be rendered within the scope of this provider.    |
-| `skip`                          | `boolean`                  |    -     | -                 | false     | Disable loading images configuration.                                   |
+| `skip`                          | `boolean`                  |    -     | -                 | false     | Disables loading images configuration.                                   |
 
 
 ## GetProjectExtensionImageRegex
@@ -285,7 +285,7 @@ type TImageRegexContext = {
 ```
 
 
-## withProjectExtensionImageRegex (HOC)
+## withProjectExtensionImageRegex
 
 In case you are using a class based component, you can use this HOC to access the project images configuration.
 
@@ -314,6 +314,6 @@ function MyApp() {
 
 ### Properties
 
-| Props                           | Type                               | Required | Values            | Default                  | Description                                                                                    |
-| ------------------------------- | ---------------------------------- | :------: | ----------------- | ------------------------ | -----------------------------------------------------------------------------------------------|
-| `propKey`                       | `string`                           |    -     | -                 | 'imageRegexData'         | Name of the prop where the image regex context data will be provided to the wrapped component. |
+| Props                           | Type                               | Required | Values            | Default                  | Description                                                                                                 |
+| ------------------------------- | ---------------------------------- | :------: | ----------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------|
+| `propKey`                       | `string`                           |    -     | -                 | 'imageRegexData'         | Name of the prop where the image regular expression context data will be provided to the wrapped component. |
