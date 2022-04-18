@@ -40,8 +40,8 @@ To read more about the data in the context, read the following;
 
 ### environment
 
-An object holding environment installation information for the Custom Application such its [ID](/custom-applications/api-reference/application-config#envproductionapplicationid))]
-or its [entry point](/custom-applications/api-reference/application-config#entrypointuripath).
+An object holding environment installation information for the Custom Application such its [ID](/api-reference/application-config#envproductionapplicationid))]
+or its [entry point](/api-reference/application-config#entrypointuripath).
 
 ```json
 {
@@ -56,7 +56,7 @@ or its [entry point](/custom-applications/api-reference/application-config#entry
 ### custom configuration
 
 It is important to note that your custom application configuration is also exposed within the `context.environment` property.<br/>
-Any property you add to your application configuration file under the prop [`additionalEnv`](/custom-applications/api-reference/application-config#additionalenv) will also be available in the `context.environment` object.
+Any property you add to your application configuration file under the prop [`additionalEnv`](/api-reference/application-config#additionalenv) will also be available in the `context.environment` object.
 
 Let's say you have something like this `custom-application-config.mjs` file in your project:
 
@@ -87,7 +87,7 @@ Your `context.environment` object will look like this:
 
 <Info>
 
-More information about accessing your custom configuration can found [here](/custom-applications/api-reference/application-config#runtime-application-environment)
+More information about accessing your custom configuration can found [here](/api-reference/application-config#runtime-application-environment)
 
 </Info>
 
