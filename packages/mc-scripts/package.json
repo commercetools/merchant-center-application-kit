@@ -54,7 +54,6 @@
     "graphql-tag": "^2.12.6",
     "html-webpack-plugin": "5.5.0",
     "jsdom": "^19.0.0",
-    "json-diff": "^0.7.3",
     "json-loader": "0.5.7",
     "mini-css-extract-plugin": "2.6.0",
     "moment-locales-webpack-plugin": "1.2.0",

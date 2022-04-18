@@ -3083,7 +3083,6 @@ __metadata:
     graphql-tag: ^2.12.6
     html-webpack-plugin: 5.5.0
     jsdom: ^19.0.0
-    json-diff: ^0.7.3
     json-loader: 0.5.7
     mini-css-extract-plugin: 2.6.0
     mock-fs: ^5.1.2
@@ -16026,15 +16025,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"difflib@npm:~0.2.1":
-  version: 0.2.4
-  resolution: "difflib@npm:0.2.4"
-  dependencies:
-    heap: ">= 0.2.0"
-  checksum: 4f4237b026263ce7471b77d9019b901c2f358a7da89401a80a84a8c3cdc1643a8e70b7495ccbe686cb4d95492eaf5dac119cd9ecbffe5f06bfc175fbe5c20a27
-  languageName: node
-  linkType: hard
-
 "dir-glob@npm:^2.2.2":
   version: 2.2.2
   resolution: "dir-glob@npm:2.2.2"
@@ -16343,15 +16333,6 @@ __metadata:
   peerDependencies:
     react: ">=16.12.0"
   checksum: 0904ed8f285d31ee00e471dcddd57e72468bee354b191167bcaebe690ec292647fe4c31f483665094d750e72dd71e5d7db695acef33ab5dba6a39fed0112bab6
-  languageName: node
-  linkType: hard
-
-"dreamopt@npm:~0.8.0":
-  version: 0.8.0
-  resolution: "dreamopt@npm:0.8.0"
-  dependencies:
-    wordwrap: ">=0.0.2"
-  checksum: 701134807c4a2cc6d111888e1faa7ea6b5ac73cb2cc0f49d852844f7ade3f8bfd03249845841ff2786ffeb6cff9ba8d8cf39c152c24341fd67ef93a0cf7c9287
   languageName: node
   linkType: hard
 
@@ -20962,13 +20943,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"heap@npm:>= 0.2.0":
-  version: 0.2.7
-  resolution: "heap@npm:0.2.7"
-  checksum: b0f3963a799e02173f994c452921a777f2b895b710119df999736bfed7477235c2860c423d9aea18a9f3b3d065cb1114d605c208cfcb8d0ac550f97ec5d28cb0
-  languageName: node
-  linkType: hard
-
 "history-query-enhancer@npm:1.0.4":
   version: 1.0.4
   resolution: "history-query-enhancer@npm:1.0.4"
@@ -23810,19 +23784,6 @@ __metadata:
   version: 3.0.1
   resolution: "json-buffer@npm:3.0.1"
   checksum: 9026b03edc2847eefa2e37646c579300a1f3a4586cfb62bf857832b60c852042d0d6ae55d1afb8926163fa54c2b01d83ae24705f34990348bdac6273a29d4581
-  languageName: node
-  linkType: hard
-
-"json-diff@npm:^0.7.3":
-  version: 0.7.3
-  resolution: "json-diff@npm:0.7.3"
-  dependencies:
-    cli-color: ^2.0.0
-    difflib: ~0.2.1
-    dreamopt: ~0.8.0
-  bin:
-    json-diff: bin/json-diff.js
-  checksum: d1b9e0bd9b0d0173118fc86aca860ed1f4364fe6aae54553768af22e268e2ef29b337e493d3166e111922ca8604d6b9300e69cfdf5ea5e7588a66545e80d4e81
   languageName: node
   linkType: hard
 
@@ -35682,13 +35643,6 @@ __metadata:
   version: 1.2.3
   resolution: "word-wrap@npm:1.2.3"
   checksum: 30b48f91fcf12106ed3186ae4fa86a6a1842416df425be7b60485de14bec665a54a68e4b5156647dec3a70f25e84d270ca8bc8cd23182ed095f5c7206a938c1f
-  languageName: node
-  linkType: hard
-
-"wordwrap@npm:>=0.0.2":
-  version: 1.0.0
-  resolution: "wordwrap@npm:1.0.0"
-  checksum: 2a44b2788165d0a3de71fd517d4880a8e20ea3a82c080ce46e294f0b68b69a2e49cff5f99c600e275c698a90d12c5ea32aff06c311f0db2eb3f1201f3e7b2a04
   languageName: node
   linkType: hard
 

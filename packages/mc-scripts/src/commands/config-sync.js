@@ -2,7 +2,6 @@ const omit = require('lodash/omit');
 const prompts = require('prompts');
 const mri = require('mri');
 const chalk = require('chalk');
-const jsonDiff = require('json-diff');
 const { processConfig } = require('@commercetools-frontend/application-config');
 const CredentialsStorage = require('../utils/credentials-storage');
 const {
@@ -11,6 +10,7 @@ const {
   createCustomApplication,
   fetchUserOrganizations,
 } = require('../utils/graphql-requests');
+const getConfigDiff = require('../utils/get-config-diff');
 
 const flags = mri(process.argv.slice(2), {
   boolean: ['dry-run'],
@@ -41,6 +41,9 @@ const configSync = async () => {
     token,
     entryPointUriPath: localCustomAppData.entryPointUriPath,
   });
+
+  console.log({ localCustomAppData });
+  console.log({ fetchedCustomApplication });
 
   if (!fetchedCustomApplication) {
     const userOrganizations = await fetchUserOrganizations({ mcApiUrl, token });
@@ -129,10 +132,7 @@ const configSync = async () => {
     fetchedCustomApplication.application.id
   );
 
-  // Sanitize SVG to be consistent with the one in MC
-  localCustomAppData.icon = sanitizeSvg(localCustomAppData.icon);
-
-  const configDiff = jsonDiff.diffString(
+  const configDiff = getConfigDiff(
     fetchedCustomApplication.application,
     localCustomAppData
   );
