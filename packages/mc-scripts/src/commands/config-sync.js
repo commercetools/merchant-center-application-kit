@@ -42,9 +42,6 @@ const configSync = async () => {
     entryPointUriPath: localCustomAppData.entryPointUriPath,
   });
 
-  console.log({ localCustomAppData });
-  console.log({ fetchedCustomApplication });
-
   if (!fetchedCustomApplication) {
     const userOrganizations = await fetchUserOrganizations({ mcApiUrl, token });
 
