@@ -1,5 +1,5 @@
 import {
-  URL_STATE_MACHINES_ID,
+  URL_APP_KIT_PLAYGROUND_STATE_MACHINES_ID,
   ENTRY_POINT_APP_KIT_PLAYGROUND,
 } from '../../support/urls';
 
@@ -18,7 +18,7 @@ describe('State machines', () => {
   it('should render list view and go to details page', () => {
     // Go to details page
     cy.findAllByText('Initial').first().click();
-    cy.url().should('include', URL_STATE_MACHINES_ID);
+    cy.url().should('include', URL_APP_KIT_PLAYGROUND_STATE_MACHINES_ID);
     cy.findByText('LineItemState').should('exist');
     cy.findByText('Processing...').should('not.exist');
     cy.percySnapshot();
