@@ -682,6 +682,7 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
                 applicationLocale={props.applicationLocale}
                 projectKey={props.projectKey}
                 useFullRedirectsForLinks={useFullRedirectsForLinks}
+                onMenuItemClick={props.onMenuItemClick}
               />
             );
           })}
