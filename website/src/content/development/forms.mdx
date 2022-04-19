@@ -610,43 +610,47 @@ Sometimes a form contains many different fields, resulting in the form component
 
 One way to improve that is to split the form component into multiple smaller components. As a rule of thumb you can create one separate component for each form field. For example a `<FormChannelNameField>`, a `<FormChannelKeyField>`, and so on.
 
-These components are simple wrapper components of the UI Kit field components but they contain and encapsulate all the logic related to the specific field. As a result, your form component can look like this:
+These components are simple wrapper components of the UI Kit field components but they contain and encapsulate all the logic related to the specific field. 
+
+Beforehand, our Channels form must be refactored to use `<Formik>` component as a context provider. As a result, the form component can look like this:
 
 ```jsx title="channels-form.js"
-import { useFormik } from 'formik';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { Formik } from 'formik';
 import Spacings from '@commercetools-uikit/spacings';
 import FormChannelNameField from './form-channel-name-field';
 import FormChannelKeyField from './form-channel-key-field';
 import validate from './validate';
 
 const ChannelsForm = (props) => {
-  const dataLocale = useApplicationContext((context) => context.dataLocale);
-  const formik = useFormik({
-    // Pass initial values from the parent component.
-    initialValues: props.initialValues,
-    // Handle form submission in the parent component.
-    onSubmit: props.onSubmit
-    validate,
-    enableReinitialize: true,
-  });
+  return (
+    <Formik
+      // Pass initial values from the parent component.
+      initialValues={props.initialValues}
+      // Handle form submission in the parent component.
+      onSubmit={props.onSubmit}
+      validate={validate}
+      enableReinitialize={true}
+    >
+      {(formikProps) => {
+        // Only contains the form elements, no buttons.
+        const formElements = (
+          <Spacings.Stack scale="l">
+            <FormChannelNameField />
+            <FormChannelKeyField />
+          </Spacings.Stack>
+        );
 
-  // Only contains the form elements, no buttons.
-  const formElements = (
-    <Spacings.Stack scale="l">
-      <FormChannelNameField />
-      <FormChannelKeyField />
-    </Spacings.Stack>
+        return props.children({
+          formElements,
+          isDirty: formikProps.dirty,
+          isSubmitting: formikProps.isSubmitting,
+          submitForm: formikProps.handleSubmit,
+          resetForm: formikProps.resetForm,
+        });
+      }}
+    </Formik>
   );
-
-  return props.children({
-    formElements,
-    isDirty: formik.dirty,
-    isSubmitting: formik.isSubmitting,
-    submitForm: formik.handleSubmit,
-    handleCancel: formik.handleReset,
-  });
-}
+};
 ```
 
 One of the advantages of splitting up the form fields is to encapsulate the logic. You might notice that we don't explicitly pass any props to these components. Instead, each component can access the form data that they need from the form context, using Formik's `useField` hook.

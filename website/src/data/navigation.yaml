@@ -87,6 +87,8 @@
       path: /api-reference/commercetools-frontend-constants
     - title: '@/cypress'
       path: /api-reference/commercetools-frontend-cypress
+    - title: '@/actions-global'
+      path: /api-reference/commercetools-frontend-actions-global
     # - title: '@/i18n'
     #   path: /api-reference/commercetools-frontend-i18n
     # - title: '@/l10n'

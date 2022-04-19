@@ -1,0 +1,319 @@
+---
+title: "@/actions-global"
+---
+
+<Subtitle>
+
+Global Redux actions and hooks for handling user notifications.
+
+</Subtitle>
+
+# Installation
+
+```
+yarn add @commercetools-frontend/actions-global
+
+# or
+
+npm --save install @commercetools-frontend/actions-global
+```
+
+Additionally install the peer dependencies (if not present)
+
+```
+yarn add react redux react-redux
+
+# or
+
+npm --save install react redux react-redux
+```
+
+# Notification system
+
+[Application shell](https://docs.commercetools.com/custom-applications/api-reference/commercetools-frontend-application-shell) comes with an included general-purpose notification system built on top of Redux.
+`"@commercetools-frontend/actions-global"` package provides [Redux action creators](https://redux.js.org/understanding/thinking-in-redux/glossary#action-creator) and hooks to facilitate the use of notifications.
+
+## Action creators and hooks
+
+`"@commercetools-frontend/actions-global"` package exposes both action creators (e.g. `showNotification`) and hooks (e.g. `useShowNotification`) that invoke the corresponding action creators under the hood.
+
+<Info>
+
+Whenever possible, we recommend using the hooks which have Redux store's `dispatch` method bound within the hook rather than the action creators directly. 
+
+</Info>
+
+## showNotification
+
+Dispatch a notification.
+
+
+```js
+import {
+  useShowNotification
+} from '@commercetools-frontend/actions-global';
+import {
+  NOTIFICATION_DOMAINS,
+  NOTIFICATION_KINDS_SIDE,
+} from '@commercetools-frontend/constants';
+
+const showSuccessNotification = useShowNotification();
+showSuccessNotification({
+  domain: NOTIFICATION_DOMAINS.SIDE,
+  kind: NOTIFICATION_KINDS_SIDE.success,
+  text: "All good!",
+});
+```
+
+<Info>
+
+We recommend displaying `success` notifications in `side` domain.<br />
+API errors that refer to particular form fields should be mapped to field-level validation errors rather than notifications.<br />
+As a rule of thumb, `error` notifications should be diplayed in `page` domain rather than `side` domain.
+
+</Info>
+
+<Warning>
+
+Be mindful of Custom Application users when dispatching notifications. Excessive and confusing notifications may lead to poor user experience.
+
+</Warning>
+
+
+## showApiErrorNotification
+
+Dispatch an API error notification.
+
+```js
+import {
+  useShowApiErrorNotification
+} from '@commercetools-frontend/actions-global';
+
+const errors = [
+  {
+    message:
+      "A duplicate value '\"Test channel\"' exists for field 'key'.",
+    code: "DuplicateField",
+  },
+];
+const showApiErrorNotification = useShowApiErrorNotification();
+showApiErrorNotification({ errors });
+```
+
+## showUnexpectedErrorNotification
+
+Dispatch an unexpected error notification.
+
+```js
+import { 
+  useShowUnexpectedErrorNotification
+} from '@commercetools-frontend/actions-global';
+
+const showUnexpectedErrorNotification = useShowUnexpectedErrorNotification();
+showUnexpectedErrorNotification({ errorId: "DuplicateField" });
+```
+
+## handleActionError
+
+Dispatch [`showApiErrorNotification`](#showapierrornotification) if the error is an API error or dispatch [`showUnexpectedErrorNotification`](#showunexpectederrornotification) otherwise.
+
+```js
+import { useOnActionError } from '@commercetools-frontend/actions-global';
+
+const error = {
+  statusCode: 404,
+  body: {
+    message: "This is an error",
+    errors: [
+      {
+        message:
+          "A duplicate value '\"Test channel\"' exists for field 'key'.",
+        code: "DuplicateField",
+      },
+    ],
+  },
+}
+const showErrorNotification = useOnActionError();
+showErrorNotification(error)
+```
+
+<Info>
+
+Error object with `statusCode: 401` passed to `showErrorNotification` call will result in logout of the currently logged user.<br />
+Error object with `statusCode: 404` passed to `showErrorNotification` call will not result in displaying a notification.
+
+</Info>
+
+
+## hideAllPageNotifications
+
+Hide all active notifications in the `page` domain.
+
+
+```js
+import { 
+  useHideAllPageNotifications
+} from '@commercetools-frontend/actions-global';
+
+const hideAllPageNotifications = useHideAllPageNotifications();
+hideAllPageNotifications()
+```
+
+# Usage with React function components
+
+```jsx title="channel-updater.js" highlightLines="4-7,23-24,30-34,39-41"
+import { useCallback } from 'react';
+import { useMcMutation } from '@commercetools-frontend/application-shell';
+import { useFormik } from 'formik';
+import {
+  useShowNotification,
+  useShowApiErrorNotification,
+} from '@commercetools-frontend/actions-global';
+import { DOMAINS } from '@commercetools-frontend/constants';
+import TextField from '@commercetools-uikit/text-field';
+import Spacings from '@commercetools-uikit/spacings';
+import PrimaryButton from '@commercetools-uikit/primary-button';
+import UpdateChannelDetailsMutation from './update-channel-details.ctp.graphql';
+
+const ChannelDetailsUpdater = (props) => {
+  const [updateChannelDetails] = useMcMutation(UpdateChannelDetailsMutation, {
+    context: {
+      // ...
+    },
+    variables: {
+      // ...
+    },
+  });
+  const showNotification = useShowNotification();
+  const showApiErrorNotification = useShowApiErrorNotification();
+
+  const handleSubmit = useCallback(
+    (formikValues) => {
+      updateChannelDetails(formikValues).then(
+        () => {
+          showNotification({
+            kind: 'success',
+            domain: DOMAINS.SIDE,
+            text: 'Channel updated! 🎉',
+          });
+        },
+        (graphQLErrors) => {
+          const errors = Array.isArray(graphQLErrors) ? graphQLErrors : [graphQLErrors];
+          if (errors.length > 0)
+            showApiErrorNotification({
+              errors,
+            });
+        }
+      );
+    },
+    [updateChannelDetails]
+  );
+
+  const formik = useFormik({
+    initialValues: { key: '' },
+    onSubmit: handleSubmit,
+    enableReinitialize: true,
+  });
+
+  return (
+    <Spacings.Stack scale="l">
+      <TextField
+        name="key"
+        title="Channel key"
+        value={formik.values.key}
+        errors={formik.errors.key}
+        touched={formik.touched.key}
+        onChange={formik.handleChange}
+        // ...
+      />
+      <PrimaryButton label="Submit" onClick={formik.submitForm} />
+    </Spacings.Stack>
+  );
+};
+```
+
+# Usage with React class components
+
+If for some reason a notification must be dispatched from a class component we cannot use hooks exposed from the `"@commercetools-frontend/actions-global"` package.
+Instead, we should use a Redux action directly.
+
+```jsx title="channel-updater.js" highlightLines="3-7,17-23,28-32,74"
+import { Component } from 'react';
+import { Formik } from 'formik';
+import { connect } from 'react-redux';
+import {
+  showNotification,
+  showApiErrorNotification,
+} from '@commercetools-frontend/actions-global';
+import { DOMAINS } from '@commercetools-frontend/constants';
+import TextField from '@commercetools-uikit/text-field';
+import Spacings from '@commercetools-uikit/spacings';
+import PrimaryButton from '@commercetools-uikit/primary-button';
+
+class ChannelDetailsUpdater extends Component {
+  handleSubmit = (update) => (formikValues) => {
+    update(formikValues).then(
+      () => {
+        this.props.dispatch(
+          showNotification({
+            kind: 'success',
+            domain: DOMAINS.SIDE,
+            text: 'Channel updated! 🎉',
+          })
+        );
+      },
+      (graphQLErrors) => {
+        const errors = Array.isArray(graphQLErrors) ? graphQLErrors : [graphQLErrors];
+        if (errors.length > 0) {
+          this.props.dispatch(
+            showApiErrorNotification({
+              errors,
+            })
+          );
+        }
+      }
+    );
+  };
+
+  render() {
+    return (
+      <Updater {/* a component exposing `update` function as a render prop to execute the mutation */} >
+        {({ update }) => {
+          return (
+            <Formik
+              initialValues={{ key: '' }}
+              onSubmit={this.handleSubmit(update)}
+            >
+              {(formikProps) => {
+                return (
+                  <Spacings.Stack scale="l">
+                    <TextField
+                      name="key"
+                      title="Channel key"
+                      value={formikProps.values.key}
+                      errors={formikProps.errors.key}
+                      touched={formikProps.touched.key}
+                      onChange={formikProps.handleChange}
+                      // ...
+                    />
+                    <PrimaryButton
+                      label="Submit"
+                      onClick={formikProps.submitForm}
+                    />
+                  </Spacings.Stack>
+                );
+              }}
+            </Formik>
+          );
+        }}
+      </Updater>
+    );
+  }
+}
+
+export default connect()(ChannelDetailsUpdater);
+```
+
+# Testing
+
+As notifications rely on Redux use [`renderAppWithRedux`](https://docs.commercetools.com/custom-applications/api-reference/commercetools-frontend-application-shell#renderappwithredux) wrapper to render components for the sake of testing. 
