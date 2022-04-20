@@ -173,7 +173,7 @@ It is meant to be used if you have a class based component where you need to rea
 ```jsx
 import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 
-const DisplayLocale = () => {
+class DisplayLocale extends React.Component {
   render() {
     return (
       <div>
@@ -282,13 +282,16 @@ type TImageRegexContext = {
 In case you are using a class based component, you can use this HOC to access the project images configuration.
 
 ```jsx
-function MyComponent({ imageRegexData }) {
-  return (
-    <div>
-      <h2>Project images regex is loading?: {imageRegexData.isLoading}</h2>
-      <h2>Project images regex: {imageRegexData.imageRegex}</h2>
-    </div>
-  );
+class MyComponent extends React.Component {
+  render() {
+    const { imageRegexData } = this.props;
+    return (
+      <div>
+        <h2>Project images regex is loading?: {imageRegexData.isLoading}</h2>
+        <h2>Project images regex: {imageRegexData.imageRegex}</h2>
+      </div>
+    );
+  }
 }
 
 const WrappedComponent = withProjectExtensionImageRegex()(MyComponent);
