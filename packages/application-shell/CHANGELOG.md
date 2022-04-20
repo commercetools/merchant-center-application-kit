@@ -1,5 +1,19 @@
 # @commercetools-frontend/application-shell
 
+## 21.3.5
+
+### Patch Changes
+
+- [#2554](https://github.com/commercetools/merchant-center-application-kit/pull/2554) [`8e170c65`](https://github.com/commercetools/merchant-center-application-kit/commit/8e170c6574e8d52738b3a00022fedc8df03ce048) Thanks [@emmenko](https://github.com/emmenko)! - Fix offset calculation for modal pages when notifications are opened.
+
+* [#2543](https://github.com/commercetools/merchant-center-application-kit/pull/2543) [`ab3cbd23`](https://github.com/commercetools/merchant-center-application-kit/commit/ab3cbd2386fb14b6dd25556262d00da71fc78588) Thanks [@Rhotimee](https://github.com/Rhotimee)! - Add tracking for some nav menu items (Support link, expand toggle).
+
+  Fix passing `onMenuItemClick` prop to the nav menu.
+
+* Updated dependencies [[`8e170c65`](https://github.com/commercetools/merchant-center-application-kit/commit/8e170c6574e8d52738b3a00022fedc8df03ce048)]:
+  - @commercetools-frontend/application-components@21.3.5
+  - @commercetools-frontend/react-notifications@21.3.5
+
 ## 21.3.4
 
 ### Patch Changes
