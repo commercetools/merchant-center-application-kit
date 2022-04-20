@@ -139,8 +139,9 @@ const getMainMenuLinkDiff = (oldMainMenuLink, newMainMenuLink) => {
     )
   );
 
-  if (mainMenuLinkDiff.filter(Boolean).length > 1)
-    return mainMenuLinkDiff.join('\n');
+  const filteredMainMenuLinkDiff = mainMenuLinkDiff.filter(Boolean);
+  if (filteredMainMenuLinkDiff.length > 1)
+    return filteredMainMenuLinkDiff.join('\n');
 };
 
 const getSubmenuLinksDiff = (oldSubmenuLinks, newSubmenuLinks) => {
@@ -187,7 +188,7 @@ const getSubmenuLinksDiff = (oldSubmenuLinks, newSubmenuLinks) => {
         }
       });
       delete mappedSubmenuLinks[newSubmenuLink.uriPath];
-      if (submenuLinkDiff.length > 1) {
+      if (submenuLinkDiff.filter(Boolean).length > 1) {
         submenuLinksDiff.push(submenuLinkDiff.join('\n'));
       }
     } else {
