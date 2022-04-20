@@ -2,6 +2,6 @@
 '@commercetools-frontend/application-shell': patch
 ---
 
-GA Tracking for Main Navigation.
-Track Support, Expand and collapse click in the main navigation.
-Expose `onMenuItemClick` prop on ApplicationShell
+Add tracking for some nav menu items (Support link, expand toggle).
+
+Fix passing `onMenuItemClick` prop to the nav menu.
