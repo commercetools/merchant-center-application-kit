@@ -13,7 +13,7 @@ const getStyles = (props: StyleProps) => {
     color: ${customProperties.colorSurface};
     position: relative;
     width: 100%;
-    z-index: 10000;
+    z-index: 19999;
   `;
 
   switch (props.domain) {

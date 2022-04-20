@@ -6,7 +6,13 @@ import type { TApplicationContext } from '@commercetools-frontend/application-sh
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import type { TrackingList } from '../../utils/gtm';
 
-import { ReactNode, SyntheticEvent, useEffect } from 'react';
+import {
+  type ReactNode,
+  type RefObject,
+  type SyntheticEvent,
+  useEffect,
+  useRef,
+} from 'react';
 import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import { ApolloClient } from '@apollo/client';
 import { Global, css } from '@emotion/react';
@@ -149,6 +155,17 @@ export const RestrictedApplication = <
   // However, every route change will trigger a re-render. This is probably
   // ok-ish but we might want to look into a more performant solution.
   const location = useLocation();
+
+  const notificationsGlobalRef = useRef<HTMLDivElement>(null);
+  const notificationsPageRef = useRef<HTMLDivElement>(null);
+  const layoutRefs = useRef<{
+    notificationsGlobalRef: RefObject<HTMLDivElement>;
+    notificationsPageRef: RefObject<HTMLDivElement>;
+  }>({
+    notificationsGlobalRef,
+    notificationsPageRef,
+  });
+
   return (
     <FetchUser>
       {({ isLoading: isLoadingUser, user, error }) => {
@@ -245,6 +262,7 @@ export const RestrictedApplication = <
                         `}
                       >
                         <div
+                          ref={notificationsGlobalRef}
                           role="global-notifications"
                           css={css`
                             grid-row: 1;
@@ -358,7 +376,7 @@ export const RestrictedApplication = <
                                       // The permissions for the Navbar are resolved separately, within
                                       // a different React context.
                                     >
-                                      <NavBar<AdditionalEnvironmentProperties>
+                                      <NavBar
                                         applicationLocale={locale}
                                         projectKey={projectKeyFromUrl}
                                         project={project}
@@ -379,7 +397,9 @@ export const RestrictedApplication = <
                           </MainContainer>
                         ) : (
                           <MainContainer role="main">
-                            <NotificationsList domain={DOMAINS.PAGE} />
+                            <div ref={notificationsPageRef}>
+                              <NotificationsList domain={DOMAINS.PAGE} />
+                            </div>
                             <NotificationsList domain={DOMAINS.SIDE} />
                             <div
                               css={css`
@@ -404,10 +424,16 @@ export const RestrictedApplication = <
                               `}
                             >
                               <PortalsContainer
+                                // @ts-ignore
+                                ref={layoutRefs}
                                 offsetTop={DIMENSIONS.header}
-                                offsetLeft={DIMENSIONS.navMenu}
+                                offsetLeft={
+                                  projectKeyFromUrl ? DIMENSIONS.navMenu : '0px'
+                                }
                                 offsetLeftOnExpandedMenu={
-                                  DIMENSIONS.navMenuExpanded
+                                  projectKeyFromUrl
+                                    ? DIMENSIONS.navMenuExpanded
+                                    : '0px'
                                 }
                               />
                               <Switch>

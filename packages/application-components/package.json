@@ -49,6 +49,7 @@
     "@commercetools-uikit/utils": "^14.0.1",
     "@emotion/react": "11.9.0",
     "@emotion/styled": "11.8.1",
+    "@react-hook/resize-observer": "1.2.5",
     "@types/history": "4.7.11",
     "@types/lodash": "^4.14.181",
     "@types/prop-types": "^15.7.5",
