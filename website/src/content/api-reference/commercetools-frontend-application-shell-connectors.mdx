@@ -4,7 +4,7 @@ title: "@/application-shell-connectors"
 
 <Subtitle>
 
-Components to work with the `@commercetools-frontend/application-shell` package to access and subscribe to specific data within the AppShell.
+Complementary tools for the [`@commercetools-frontend/application-shell`](/api-reference/commercetools-frontend-application-shell).
 
 </Subtitle>
 
@@ -28,20 +28,17 @@ yarn add react @apollo/client
 npm --save install react @apollo/client
 ```
 
-# Context
+# Application context
 
-In this section we describe the type of information you will find in the main application context and how to access it.
+This section describes different parts of information provided through the application context and how it can be accessed.
 
-## ApplicationContext
+## Application properties
 
-This is the main React context for the application and it holds global information regarding user, permissions, project, etc.
+This is the list of the main properties you can access in the application context.
 
-To read more about the data in the context, read the following;
+### `environment`
 
-### environment
-
-An object holding environment installation information for the Custom Application such its [ID](/api-reference/application-config#envproductionapplicationid))]
-or its [entry point](/api-reference/application-config#entrypointuripath).
+An object containing information about the environment of the Custom Application such as the [ID](/api-reference/application-config#envproductionapplicationid))] of the Custom Application or its [entry point](/api-reference/application-config#entrypointuripath).
 
 ```json
 {
@@ -53,9 +50,61 @@ or its [entry point](/api-reference/application-config#entrypointuripath).
 }
 ```
 
-### custom configuration
+### `user`
 
-It is important to note that your Custom Application configuration is also exposed within the `context.environment` property.<br/>
+Logged in user information.
+
+```json
+{
+  "user": {
+    "id": "3mj76c04-f910-4223-84e1-f97b0fe291c2",
+    "email": "john.doe@domain.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "businessRole": "Consultant",
+    "locale": "en-GB",
+    "timeZone": "Europe/Berlin",
+    "projects": [
+      { "key": "my-project-A", "name": "My Project A" },
+      { "key": "my-project-B", "name": "My Project B" }
+    ]
+  }
+}
+```
+
+
+### `project`
+
+Current selected project information.
+
+```json
+{
+  "project": {
+    "countries": ["DE", "US"],
+    "currencies": ["EUR", "USD"],
+    "key": "project-a",
+    "languages": ["de-DE", "en-US"],
+    "name": "Project A",
+    "ownerId": "3mj76c04-f910-4223-84e1-f97b0fe291c2",
+    "ownerName": "My Organization"
+  }
+}
+```
+
+### `dataLocale`
+
+This property contains the information about the selected locale that is used to render localized data in your application.
+You should use it as the selected language in components such as [LocalizedTextField](https://uikit.commercetools.com/?path=/story/components-fields--localizedtextfield).
+
+```json
+{
+  "dataLocale": "de"
+}
+```
+
+## Custom user properties
+
+It is important to note that your Custom Application configuration properties are also exposed within the `context.environment` property.<br/>
 Any property you add to your application configuration file under the prop [`additionalEnv`](/api-reference/application-config#additionalenv) will also be available in the `context.environment` object.
 
 Let's say you have something like this `custom-application-config.mjs` file in your project:
@@ -91,64 +140,11 @@ More information about accessing your custom configuration can found [here](/api
 
 </Info>
 
-### user
+## Usage
 
-Logged in user information.
-
-```json
-{
-  "user": {
-    "id": "3mj76c04-f910-4223-84e1-f97b0fe291c2",
-    "email": "john.doe@domain.com",
-    "firstName": "John",
-    "lastName": "Doe",
-    "businessRole": "Consultant",
-    "locale": "en-GB",
-    "timeZone": "Europe/Berlin",
-    "projects": [
-      { "key": "my-project-A", "name": "My Project A" },
-      { "key": "my-project-B", "name": "My Project B" }
-    ]
-  }
-}
-```
-
-
-### project
-
-Current selected project information.
-
-```json
-{
-  "project": {
-    "countries": ["DE", "US"],
-    "currencies": ["EUR", "USD"],
-    "key": "project-a",
-    "languages": ["de-DE", "en-US"],
-    "name": "Project A",
-    "ownerId": "3mj76c04-f910-4223-84e1-f97b0fe291c2",
-    "ownerName": "My Organization"
-  }
-}
-```
-
-### dataLocale
-
-This property holds the information about the selected locale that is used to render localized data in your application.
-You should use it as the selected language in components like [LocalizedTextField](https://uikit.commercetools.com/?path=/story/components-fields--localizedtextfield).
-
-```json
-{
-  "dataLocale": "de"
-}
-```
-
-
-## useApplicationContext
+### useApplicationContext
 
 This is a custom hook which allows to access the `ApplicationContext` from any component (or other hooks).
-
-### Usage
 
 ```jsx
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
@@ -160,7 +156,7 @@ const DisplayLocale = () => {
   render() {
     return (
       <div>
-        <h2>Current locale: {locale}</h1>
+        <h1>Current locale: {locale}</h1>
       </div>
     );
   }
@@ -169,13 +165,10 @@ const DisplayLocale = () => {
 export default DisplayLocale;
 ```
 
-
-## withApplicationContext
+### withApplicationContext
 
 This is a High Order Component which allows to access the `ApplicationContext` from any component.
 It is meant to be used if you have a class based component where you need to read context data.
-
-### Usage
 
 ```jsx
 import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
@@ -184,7 +177,7 @@ const DisplayLocale = () => {
   render() {
     return (
       <div>
-        <h2>Current locale: {this.props.locale}</h1>
+        <h1>Current locale: {this.props.locale}</h1>
       </div>
     );
   }
@@ -195,7 +188,7 @@ export default withApplicationContext((applicationContext) => ({
 }))(DisplayLocale);
 ```
 
-# Project Images
+# Project image settings
 
 When using your images for your projects you are expected to upload them to our platform. However, you can also choose to host your images in another service.<br/>
 If this is the case, we don't show them by default to prevent for huge images to be loaded in the browser that could impact Merchat Center performance.
@@ -203,13 +196,14 @@ If this is the case, we don't show them by default to prevent for huge images to
 To enable the rendering of those images you need to set up a project-level configuration where you specify rewrite rules for different images sizes.<br/>
 You can find this configuration in the settings section of your projects in the Merchant Center (**Settings > Project Settings > Miscellaneous**).
 
+## Usage
 
-## ProjectExtensionProviderForImageRegex
+### ProjectExtensionProviderForImageRegex
 
 If you need to access the rewrite rules for your project images, you need to use this provider in your component's tree.<br/>
-The provider will load the configuration and make it available with the components listes below.
+The provider will load the configuration and make it available using the components listed below.
 
-### Properties
+#### Properties
 
 | Props                           | Type                       | Required | Values            | Default   | Description                                                              |
 | ------------------------------- | -------------------------- | :------: | ----------------- | --------- | -------------------------------------------------------------------------|
@@ -217,12 +211,10 @@ The provider will load the configuration and make it available with the componen
 | `skip`                          | `boolean`                  |    -     | -                 | false     | Disables loading images configuration.                                   |
 
 
-## GetProjectExtensionImageRegex
+### GetProjectExtensionImageRegex
 
 Use this component to access the project images configuration provider.<br/>
 It exposes a render prop function which will return the project images configuration.
-
-### Usage
 
 ```jsx
 function MyComponent() {
@@ -233,7 +225,7 @@ function MyComponent() {
 
         return (
           <div>
-            <h2>Project images regex: {imageRegex}</h2>
+            <h1>Project images regex: {imageRegex}</h1>
           </div>
         );
       }}
@@ -250,13 +242,13 @@ function MyApp() {
 }
 ```
 
-### Properties
+#### Properties
 
 | Props                           | Type                                                 | Required | Values            | Default   | Description                                                               |
 | ------------------------------- | ---------------------------------------------------- | :------: | ----------------- | --------- | --------------------------------------------------------------------------|
 | `render`                        | `Function`<br/>[See signature.](#signature-render)   |    ✅    | -                 | -         | Function to render children component with the image regex configuration. |
 
-### Signature `render`
+#### Signature `render`
 
 ```ts
 (
@@ -285,11 +277,9 @@ type TImageRegexContext = {
 ```
 
 
-## withProjectExtensionImageRegex
+### withProjectExtensionImageRegex
 
 In case you are using a class based component, you can use this HOC to access the project images configuration.
-
-### Usage
 
 ```jsx
 function MyComponent({ imageRegexData }) {
@@ -312,7 +302,7 @@ function MyApp() {
 }
 ```
 
-### Properties
+#### Properties
 
 | Props                           | Type                               | Required | Values            | Default                  | Description                                                                                                 |
 | ------------------------------- | ---------------------------------- | :------: | ----------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------|
