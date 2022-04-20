@@ -296,12 +296,14 @@ class MyComponent extends React.Component {
 
 const WrappedComponent = withProjectExtensionImageRegex()(MyComponent);
 
-function MyApp() {
-  return (
-    <ProjectExtensionProviderForImageRegex>
-      <MyComponent />
-    </ProjectExtensionProviderForImageRegex>
-  );
+class MyApp extends React.Component {
+  render() {
+    return (
+      <ProjectExtensionProviderForImageRegex>
+        <MyComponent />
+      </ProjectExtensionProviderForImageRegex>
+    );
+  }
 }
 ```
 
