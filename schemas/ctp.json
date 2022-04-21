@@ -21347,7 +21347,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "CustomObjectDraft",
-        "description": null,
+        "description": "An input object used to create a new, or update an existing Custom Object.\n\nThe value should be passed in a form of escaped JSON.\n\nExample for `value` field:\n\n```\n\"{ \\\"stringField\\\": \\\"myVal\\\", \\\"numberField\\\": 123, \\\"boolField\\\": false, \\\"nestedObject\\\": { \\\"nestedObjectKey\\\": \\\"anotherValue\\\" }, \\\"dateField\\\": \\\"2018-10-12T14:00:00.000Z\\\" }\"\n```",
         "fields": null,
         "inputFields": [
           {
@@ -21384,7 +21384,7 @@
           },
           {
             "name": "value",
-            "description": "The value should be passed in a form of escaped JSON",
+            "description": "The value should be passed in a form of escaped JSON.\n\nExample for `value` field:\n\n```\n\"{ \\\"stringField\\\": \\\"myVal\\\", \\\"numberField\\\": 123, \\\"boolField\\\": false, \\\"nestedObject\\\": { \\\"nestedObjectKey\\\": \\\"anotherValue\\\" }, \\\"dateField\\\": \\\"2018-10-12T14:00:00.000Z\\\" }\"\n```",
             "type": {
               "kind": "NON_NULL",
               "name": null,

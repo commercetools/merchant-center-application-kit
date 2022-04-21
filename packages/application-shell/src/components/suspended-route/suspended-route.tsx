@@ -1,17 +1,18 @@
-import PropTypes from 'prop-types';
-import { Suspense } from 'react';
+import { Suspense, type ReactNode } from 'react';
 import { Route } from 'react-router-dom';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 
-const SuspendedRoute = (props) => (
+type SuspendedRouteProps = {
+  children: ReactNode;
+  path?: string;
+};
+
+const SuspendedRoute = (props: SuspendedRouteProps) => (
   <Route {...props}>
     <Suspense fallback={<LoadingSpinner />}>{props.children}</Suspense>
   </Route>
 );
 
 SuspendedRoute.displayName = 'SuspendedRoute';
-SuspendedRoute.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export default SuspendedRoute;

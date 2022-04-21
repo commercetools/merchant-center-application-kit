@@ -2381,10 +2381,29 @@ export type TCustomObject = TReferenceExpandable & TVersioned & {
   version: Scalars['Long'];
 };
 
+/**
+ * An input object used to create a new, or update an existing Custom Object.
+ *
+ * The value should be passed in a form of escaped JSON.
+ *
+ * Example for `value` field:
+ *
+ * ```
+ * "{ \"stringField\": \"myVal\", \"numberField\": 123, \"boolField\": false, \"nestedObject\": { \"nestedObjectKey\": \"anotherValue\" }, \"dateField\": \"2018-10-12T14:00:00.000Z\" }"
+ * ```
+ */
 export type TCustomObjectDraft = {
   container: Scalars['String'];
   key: Scalars['String'];
-  /** The value should be passed in a form of escaped JSON */
+  /**
+   * The value should be passed in a form of escaped JSON.
+   *
+   * Example for `value` field:
+   *
+   * ```
+   * "{ \"stringField\": \"myVal\", \"numberField\": 123, \"boolField\": false, \"nestedObject\": { \"nestedObjectKey\": \"anotherValue\" }, \"dateField\": \"2018-10-12T14:00:00.000Z\" }"
+   * ```
+   */
   value: Scalars['String'];
   version?: InputMaybe<Scalars['Long']>;
 };
@@ -12620,6 +12639,15 @@ export type TFetchChannelDetailsQueryVariables = Exact<{
 
 export type TFetchChannelDetailsQuery = { __typename?: 'Query', channel?: { __typename?: 'Channel', id: string, version: number, key: string, roles: Array<TChannelRole>, nameAllLocales?: Array<{ __typename?: 'LocalizedString', locale: string, value: string }> | null } | null };
 
+export type TFetchChannelsQueryVariables = Exact<{
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
+  sort?: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
+}>;
+
+
+export type TFetchChannelsQuery = { __typename?: 'Query', channels: { __typename?: 'ChannelQueryResult', total: number, count: number, offset: number, results: Array<{ __typename?: 'Channel', id: string, key: string, roles: Array<TChannelRole>, nameAllLocales?: Array<{ __typename?: 'LocalizedString', locale: string, value: string }> | null }> } };
+
 export type TUpdateChannelDetailsMutationVariables = Exact<{
   channelId: Scalars['String'];
   version: Scalars['Long'];
@@ -12628,15 +12656,6 @@ export type TUpdateChannelDetailsMutationVariables = Exact<{
 
 
 export type TUpdateChannelDetailsMutation = { __typename?: 'Mutation', updateChannel?: { __typename?: 'Channel', id: string, version: number, key: string, roles: Array<TChannelRole>, nameAllLocales?: Array<{ __typename?: 'LocalizedString', locale: string, value: string }> | null } | null };
-
-export type TFetchChannelsQueryVariables = Exact<{
-  limit: Scalars['Int'];
-  offset: Scalars['Int'];
-  sort?: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
-}>;
-
-
-export type TFetchChannelsQuery = { __typename?: 'Query', channels: { __typename?: 'ChannelQueryResult', total: number, count: number, offset: number, results: Array<{ __typename?: 'Channel', id: string, version: number, key: string, roles: Array<TChannelRole>, nameAllLocales?: Array<{ __typename?: 'LocalizedString', locale: string, value: string }> | null }> } };
 
 export type TQuickAccessProductQueryVariables = Exact<{
   productId: Scalars['String'];

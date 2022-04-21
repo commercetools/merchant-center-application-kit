@@ -6,16 +6,6 @@ export default defineMessages({
     description: 'Back to channels list text',
     defaultMessage: 'Back to channels list',
   },
-  save: {
-    id: 'ChannelDetails.form.save',
-    description: 'Save button label',
-    defaultMessage: 'Save',
-  },
-  revert: {
-    id: 'ChannelDetails.form.revert',
-    description: 'Revert changes button label',
-    defaultMessage: 'Revert changes',
-  },
   duplicateKey: {
     id: 'ChannelDetails.duplicateKey',
     description: '',
@@ -40,31 +30,6 @@ export default defineMessages({
     id: 'ChannelDetails.channelRolesLabel',
     description: 'The label for the channel roles input',
     defaultMessage: 'Channel roles',
-  },
-  inventorySupply: {
-    id: 'ChannelDetails.roles.inventorySupply',
-    description: 'Inventory Supply role',
-    defaultMessage: 'InventorySupply',
-  },
-  productDistribution: {
-    id: 'ChannelDetails.roles.productDistribution',
-    description: 'Product Distribution role',
-    defaultMessage: 'ProductDistribution',
-  },
-  orderExport: {
-    id: 'ChannelDetails.roles.orderExport',
-    description: 'OrderExport role',
-    defaultMessage: 'OrderExport',
-  },
-  orderImport: {
-    id: 'ChannelDetails.roles.orderImport',
-    description: 'OrderImport role',
-    defaultMessage: 'OrderImport',
-  },
-  primary: {
-    id: 'ChannelDetails.roles.primary',
-    description: 'Primary role',
-    defaultMessage: 'Primary',
   },
   hint: {
     id: 'ChannelDetails.hint',

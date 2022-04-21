@@ -2,4 +2,6 @@
 'merchant-center-application-template-starter': minor
 ---
 
-Update MC application template starter to showcase i.e. using forms, notifications and updating data via GraphQL by adding an implementation of the channel details page.
+Improve the Custom Applications starter template to include a detail page for Channels and the ability to update some of its fields.
+
+These new changes focus on showcasing using forms and notifications.

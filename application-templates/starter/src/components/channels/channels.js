@@ -22,12 +22,12 @@ import { ContentNotification } from '@commercetools-uikit/notifications';
 import { Pagination } from '@commercetools-uikit/pagination';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
+import { SuspendedRoute } from '@commercetools-frontend/application-shell';
 import {
   formatLocalizedString,
   transformLocalizedFieldToLocalizedString,
 } from '@commercetools-frontend/l10n';
 import messages from './messages';
-import SuspendedRoute from '../suspended-route';
 import { useChannelsFetcher } from '../../hooks/use-channels-connector';
 import { getErrorMessage } from '../../helpers';
 
@@ -68,7 +68,7 @@ const Channels = (props) => {
     dataLocale: context.dataLocale,
     projectLanguages: context.project.languages,
   }));
-  const { channels, error, loading } = useChannelsFetcher({
+  const { channelsPaginatedResult, error, loading } = useChannelsFetcher({
     page,
     perPage,
     tableSorting,
@@ -102,12 +102,12 @@ const Channels = (props) => {
 
       {loading && <LoadingSpinner />}
 
-      {channels ? (
+      {channelsPaginatedResult ? (
         <Spacings.Stack scale="l">
           <DataTable
             isCondensed
             columns={columns}
-            rows={channels.results}
+            rows={channelsPaginatedResult.results}
             itemRenderer={(item, column) =>
               itemRenderer(item, column, dataLocale, projectLanguages)
             }
@@ -122,7 +122,7 @@ const Channels = (props) => {
             onPageChange={page.onChange}
             perPage={perPage.value}
             onPerPageChange={perPage.onChange}
-            totalItems={channels.total}
+            totalItems={channelsPaginatedResult.total}
           />
           <Switch>
             <SuspendedRoute path={`${match.url}/:id`}>

@@ -18,6 +18,8 @@ const mockServer = setupServer();
 afterEach(() => mockServer.resetHandlers());
 beforeAll(() => {
   mockServer.listen({
+    // for debugging reasons we force an error when the test fires a request with a query or mutation which is not mocked
+    // more: https://mswjs.io/docs/api/setup-worker/start#onunhandledrequest
     onUnhandledRequest: 'error',
   });
   jest.spyOn(console, 'error').mockImplementation(jest.fn()); // we're silencing the expected console.error calls
@@ -109,6 +111,7 @@ const updateChannelDetailsHandlerWithDuplicateFieldError = graphql.mutation(
         {
           extensions: {
             code: 'DuplicateField',
+            field: 'key',
           },
         },
       ])
@@ -185,7 +188,7 @@ describe('rendering', () => {
     });
     expect(resetButton).toBeDisabled();
 
-    const keyInput = screen.getByRole('textbox', {
+    const keyInput = await screen.findByRole('textbox', {
       name: /channel key/i,
     });
     expect(keyInput.value).toBe(key);
@@ -252,7 +255,7 @@ describe('rendering', () => {
     });
     expect(keyInput.value).toBe(newKey);
 
-    // updating chanel details
+    // updating channel details
     const saveButton = screen.getByRole('button', { name: /save/i });
     fireEvent.click(saveButton);
 
@@ -295,7 +298,7 @@ describe('notifications', () => {
     screen.getByText('InventorySupply').click();
     screen.getByDisplayValue(/InventorySupply/i);
 
-    // updating chanel details
+    // updating channel details
     const saveButton = screen.getByRole('button', { name: /save/i });
     fireEvent.click(saveButton);
     const notification = await screen.findByRole('alertdialog');
@@ -304,8 +307,7 @@ describe('notifications', () => {
   it('should render an error notification if fetching channel details resulted in an error', async () => {
     useMockServerHandlers(fetchChannelDetailsQueryHandlerWithError);
     renderApp();
-    const notification = await screen.findByRole('alertdialog');
-    within(notification).getByText(
+    await screen.findByText(
       /please check your connection, the provided channel ID and try again/i
     );
   });
@@ -326,7 +328,7 @@ describe('notifications', () => {
       target: { value: 'not relevant' },
     });
 
-    // updating chanel details
+    // updating channel details
     const saveButton = screen.getByRole('button', { name: /save/i });
     fireEvent.click(saveButton);
 

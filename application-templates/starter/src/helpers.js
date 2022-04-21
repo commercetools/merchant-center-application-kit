@@ -19,14 +19,12 @@ const getNameFromPayload = (payload) => ({
   name: transformLocalizedStringToLocalizedField(payload.name),
 });
 
-const convertAction = (actionName, actionPayload) => {
-  if (actionName === 'changeName') {
-    return {
-      [actionName]: getNameFromPayload(actionPayload),
-    };
-  }
-  return { [actionName]: actionPayload };
-};
+const convertAction = (actionName, actionPayload) => ({
+  [actionName]:
+    actionName === 'changeName'
+      ? getNameFromPayload(actionPayload)
+      : actionPayload,
+});
 
 export const createGraphQlUpdateActions = (actions) =>
   actions.reduce(

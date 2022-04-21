@@ -15,6 +15,8 @@ const mockServer = setupServer();
 afterEach(() => mockServer.resetHandlers());
 beforeAll(() =>
   mockServer.listen({
+    // for debugging reasons we force an error when the test fires a request with a query or mutation which is not mocked
+    // more: https://mswjs.io/docs/api/setup-worker/start#onunhandledrequest
     onUnhandledRequest: 'error',
   })
 );
