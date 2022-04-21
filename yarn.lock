@@ -2591,7 +2591,7 @@ __metadata:
     prop-types: 15.8.1
     react: 17.0.2
     react-dom: 17.0.2
-    react-intl: 5.24.8
+    react-intl: ^5.25.0
     react-modal: 3.14.4
     react-router-dom: 5.3.0
   peerDependencies:
@@ -2719,7 +2719,7 @@ __metadata:
     qss: 2.0.3
     react: 17.0.2
     react-dom: 17.0.2
-    react-intl: 5.24.8
+    react-intl: ^5.25.0
     react-redux: 7.2.8
     react-required-if: 1.0.3
     react-router-dom: 5.3.0
@@ -2881,7 +2881,7 @@ __metadata:
     moment: ^2.29.2
     prop-types: 15.8.1
     react: 17.0.2
-    react-intl: 5.24.8
+    react-intl: ^5.25.0
   peerDependencies:
     react: 17.x
     react-intl: 5.x
@@ -3113,7 +3113,7 @@ __metadata:
     prop-types: 15.8.1
     react: 17.0.2
     react-dom: 17.0.2
-    react-intl: 5.24.8
+    react-intl: ^5.25.0
     react-redux: 7.2.8
     react-router-dom: 5.3.0
     reselect: 4.1.5
@@ -3212,7 +3212,7 @@ __metadata:
     formik: 2.2.9
     react: 17.0.2
     react-dom: 17.0.2
-    react-intl: 5.24.8
+    react-intl: ^5.25.0
     react-redux: 7.2.8
     react-router-dom: 5.3.0
     rimraf: 3.0.2
@@ -4352,7 +4352,7 @@ __metadata:
     prop-types: 15.8.1
     react: 17.0.2
     react-dom: 17.0.2
-    react-intl: 5.24.8
+    react-intl: ^5.25.0
     react-router-dom: 5.3.0
   languageName: unknown
   linkType: soft
@@ -4376,7 +4376,7 @@ __metadata:
     prop-types: 15.8.1
     react: 17.0.2
     react-dom: 17.0.2
-    react-intl: 5.24.8
+    react-intl: ^5.25.0
     start-server-and-test: 1.14.0
   languageName: unknown
   linkType: soft
@@ -5247,9 +5247,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl@npm:2.1.1":
-  version: 2.1.1
-  resolution: "@formatjs/intl@npm:2.1.1"
+"@formatjs/intl@npm:2.2.0":
+  version: 2.2.0
+  resolution: "@formatjs/intl@npm:2.2.0"
   dependencies:
     "@formatjs/ecma402-abstract": 1.11.4
     "@formatjs/fast-memoize": 1.2.1
@@ -5263,7 +5263,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 6046cfdc71a3def398e4a94edcf0384fb428ce5dc504cdb1af91d8644ae38e5e8aabdb9187e22d8253045d38f24534996bbd70c2d8e5f0106f0cb05bed2e44ca
+  checksum: 750bbb4721e2694efe294cd93936805b38f7c43c5944a13360074be47a66fc1f4901049e14ca8b8cd84fc306175b5e3b7b32f3330a2668ccc1b0819012f83867
   languageName: node
   linkType: hard
 
@@ -24394,7 +24394,7 @@ __metadata:
     prop-types: 15.8.1
     react: 17.0.2
     react-dom: 17.0.2
-    react-intl: 5.24.8
+    react-intl: ^5.25.0
     react-redux: 7.2.8
     react-router-dom: 5.3.0
     redux: 4.1.2
@@ -26803,7 +26803,7 @@ __metadata:
     prop-types: 15.8.1
     react: 17.0.2
     react-dom: 17.0.2
-    react-intl: 5.24.8
+    react-intl: ^5.25.0
     react-router-dom: 5.3.0
     vercel: 24.1.0
   languageName: unknown
@@ -28325,27 +28325,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-intl@npm:5.24.8":
-  version: 5.24.8
-  resolution: "react-intl@npm:5.24.8"
+"react-intl@npm:^5.24.6, react-intl@npm:^5.25.0, react-intl@npm:^5.7.0":
+  version: 5.25.0
+  resolution: "react-intl@npm:5.25.0"
   dependencies:
     "@formatjs/ecma402-abstract": 1.11.4
     "@formatjs/icu-messageformat-parser": 2.0.19
-    "@formatjs/intl": 2.1.1
+    "@formatjs/intl": 2.2.0
     "@formatjs/intl-displaynames": 5.4.3
     "@formatjs/intl-listformat": 6.5.3
     "@types/hoist-non-react-statics": ^3.3.1
-    "@types/react": 16 || 17
+    "@types/react": 16 || 17 || 18
     hoist-non-react-statics: ^3.3.2
     intl-messageformat: 9.12.0
     tslib: ^2.1.0
   peerDependencies:
-    react: ^16.3.0 || 17
+    react: ^16.3.0 || 17 || 18
     typescript: ^4.5
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: d321745ebec6012cc97d57d9502cca990f93a29b75436752cd5cbd885b799eba16fb76222c06549c91617a75d9cfd05db520069211f4141503e184f994da19b0
+  checksum: 9ba7feeb5621ebc7b885261cac7693f553d6db6ea114230e15abd091af849edef765d8f4412e870b14d0b6b88176af75e7892ad8f2a3ce708f03cabe4f72d88c
   languageName: node
   linkType: hard
 
