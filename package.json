@@ -71,6 +71,7 @@
       "!packages/assets",
       "!packages/babel-preset-mc-app",
       "!packages/create-mc-app",
+      "!packages/codemod",
       "!packages/eslint-config-mc-app",
       "!packages/jest-preset-mc-app",
       "!packages/jest-stylelint-runner",

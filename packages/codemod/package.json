@@ -1,0 +1,30 @@
+{
+  "name": "@commercetools-frontend/codemod",
+  "version": "1.0.0",
+  "description": "Codemod transformations for Custom Applications",
+  "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/commercetools/merchant-center-application-kit.git",
+    "directory": "packages/codemod"
+  },
+  "homepage": "https://docs.commercetools.com/custom-applications",
+  "keywords": ["javascript", "frontend", "codemod", "toolkit"],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": ["build", "package.json", "LICENSE", "README.md"],
+  "bin": {
+    "mc-codemod": "./bin/cli.js"
+  },
+  "dependencies": {
+    "glob": "8.0.1",
+    "is-git-clean": "1.1.0",
+    "jscodeshift": "0.13.1",
+    "mri": "1.2.0"
+  },
+  "devDependencies": {
+    "@types/jscodeshift": "0.11.0"
+  }
+}
