@@ -8285,6 +8285,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rollup/plugin-graphql@npm:1.1.0":
+  version: 1.1.0
+  resolution: "@rollup/plugin-graphql@npm:1.1.0"
+  dependencies:
+    "@rollup/pluginutils": ^4.0.0
+    graphql-tag: ^2.2.2
+  peerDependencies:
+    graphql: ">=0.9.0"
+    rollup: ^1.20.0 || ^2.0.0
+  checksum: 82074572667add479c4f26901c9bec472e83ab8b5eafee73c8224c46272643371367de8b4327e51ee846ee5a7b1afa2d69421a490c69ec51a31d0bea06bb1df1
+  languageName: node
+  linkType: hard
+
 "@rollup/plugin-json@npm:^4.1.0":
   version: 4.1.0
   resolution: "@rollup/plugin-json@npm:4.1.0"
@@ -8334,6 +8347,16 @@ __metadata:
   peerDependencies:
     rollup: ^1.20.0||^2.0.0
   checksum: 8be16e27863c219edbb25a4e6ec2fe0e1e451d9e917b6a43cf2ae5bc025a6b8faaa40f82a6e53b66d0de37b58ff472c6c3d57a83037ae635041f8df959d6d9aa
+  languageName: node
+  linkType: hard
+
+"@rollup/pluginutils@npm:^4.0.0":
+  version: 4.2.1
+  resolution: "@rollup/pluginutils@npm:4.2.1"
+  dependencies:
+    estree-walker: ^2.0.1
+    picomatch: ^2.2.2
+  checksum: 6bc41f22b1a0f1efec3043899e4d3b6b1497b3dea4d94292d8f83b4cf07a1073ecbaedd562a22d11913ff7659f459677b01b09e9598a98936e746780ecc93a12
   languageName: node
   linkType: hard
 
@@ -20102,7 +20125,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql-tag@npm:^2.11.0, graphql-tag@npm:^2.12.3, graphql-tag@npm:^2.12.6, graphql-tag@npm:^2.9.2":
+"graphql-tag@npm:^2.11.0, graphql-tag@npm:^2.12.3, graphql-tag@npm:^2.12.6, graphql-tag@npm:^2.2.2, graphql-tag@npm:^2.9.2":
   version: 2.12.6
   resolution: "graphql-tag@npm:2.12.6"
   dependencies:
@@ -25237,8 +25260,10 @@ __metadata:
     "@commercetools/sync-actions": ^4.10.1
     "@formatjs/cli": 4.8.3
     "@manypkg/cli": 0.19.1
+    "@rollup/plugin-graphql": 1.1.0
     "@testing-library/react": 12.1.5
     "@testing-library/react-hooks": 7.0.2
+    "@vitejs/plugin-react": 1.3.0
     eslint: 8.13.0
     eslint-formatter-pretty: 4.1.0
     jest: 27.5.1
@@ -25254,6 +25279,7 @@ __metadata:
     react-redux: 7.2.8
     react-router-dom: 5.3.0
     redux: 4.1.2
+    vite: 2.9.1
   languageName: unknown
   linkType: soft
 
