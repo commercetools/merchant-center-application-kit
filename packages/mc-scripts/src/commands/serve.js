@@ -16,7 +16,7 @@ const server = http.createServer((request, response) => {
         destination: '/favicon.png',
       },
       {
-        source: '/login',
+        source: '/login*',
         destination: '/login.html',
       },
       {

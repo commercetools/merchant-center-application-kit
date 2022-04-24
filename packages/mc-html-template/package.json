@@ -17,6 +17,7 @@
   "main": "./build/index.js",
   "files": [
     "build",
+    "html-docs",
     "html-scripts",
     "html-styles",
     "webpack.js",

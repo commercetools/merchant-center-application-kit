@@ -3011,7 +3011,9 @@ __metadata:
     "@commercetools-frontend/mc-dev-authentication": 21.0.0
     "@commercetools-frontend/mc-html-template": 21.3.4
     "@pmmmwh/react-refresh-webpack-plugin": 0.5.4
+    "@rollup/plugin-graphql": 1.1.0
     "@svgr/webpack": 6.2.1
+    "@vitejs/plugin-react": 1.3.0
     autoprefixer: ^10.4.4
     babel-loader: 8.2.4
     browserslist: ^4.20.2
@@ -3051,6 +3053,7 @@ __metadata:
     terser-webpack-plugin: 5.3.1
     thread-loader: 3.0.4
     url: ^0.11.0
+    vite: 2.9.1
     webpack: 5.72.0
     webpack-bundle-analyzer: 4.5.0
     webpack-dev-server: 4.8.1
@@ -25260,10 +25263,8 @@ __metadata:
     "@commercetools/sync-actions": ^4.10.1
     "@formatjs/cli": 4.8.3
     "@manypkg/cli": 0.19.1
-    "@rollup/plugin-graphql": 1.1.0
     "@testing-library/react": 12.1.5
     "@testing-library/react-hooks": 7.0.2
-    "@vitejs/plugin-react": 1.3.0
     eslint: 8.13.0
     eslint-formatter-pretty: 4.1.0
     jest: 27.5.1
@@ -25279,7 +25280,6 @@ __metadata:
     react-redux: 7.2.8
     react-router-dom: 5.3.0
     redux: 4.1.2
-    vite: 2.9.1
   languageName: unknown
   linkType: soft
 

@@ -30,21 +30,24 @@ const replaceHtmlPlaceholders = (indexHtmlContent, options) =>
       trimTrailingSlash(options.env.mcApiUrl)
     )
     .replace(
-      new RegExp('__APP_ENVIRONMENT__', 'g'),
+      new RegExp('__APPLICATION_ENVIRONMENT__', 'g'),
       sanitizeAppEnvironment(options.env)
     )
     .replace(
       new RegExp('__GTM_SCRIPT__', 'g'),
       getGtmTrackingScript(options.env.trackingGtm)
     )
-    .replace(new RegExp('__DATALAYER_JS__', 'g'), htmlScripts.dataLayer)
+    .replace(
+      new RegExp('__DATALAYER_JS__', 'g'),
+      `<script>${htmlScripts.dataLayer}</script>`
+    )
     .replace(
       new RegExp('__LOADING_SCREEN_JS__', 'g'),
-      htmlScripts.loadingScreen
+      `<script>${htmlScripts.loadingScreen}</script>`
     )
     .replace(
       new RegExp('__LOADING_SCREEN_CSS__', 'g'),
-      htmlStyles.loadingScreen
+      `<style>${htmlStyles.loadingScreen}</style>`
     );
 
 module.exports = replaceHtmlPlaceholders;
