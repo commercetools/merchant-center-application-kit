@@ -2,16 +2,36 @@ const { red, green } = require('chalk');
 
 const notNestedKeySet = new Set(['name', 'description', 'url', 'icon']);
 
-const t = (tabs) => '\t'.repeat(tabs);
+const t = (indentLevel) => '  '.repeat(indentLevel);
 
-const getStringDiff = (oldStr, newStr, key, tabs = 0) => {
+const getStringDiff = (oldStr, newStr, label, indentLevel = 0) => {
   if (!oldStr && newStr) {
-    return `${t(tabs)}${key} added: ${green(newStr)}`;
+    return `${t(indentLevel)}${label} added: ${green(newStr)}`;
   } else if (oldStr && !newStr) {
-    return `${t(tabs)}${key} removed: ${red(oldStr)}`;
+    return `${t(indentLevel)}${label} removed: ${red(oldStr)}`;
   } else if (oldStr && newStr && oldStr !== newStr) {
-    return `${t(tabs)}${key} changed: ${red(oldStr)} => ${green(newStr)}`;
+    return `${t(indentLevel)}${label} changed: ${red(oldStr)} => ${green(
+      newStr
+    )}`;
   }
+};
+
+const getArrayDiff = (oldArray, newArray, indentLevel = 0) => {
+  const oldArraySet = new Set(oldArray);
+  const arrayDiff = [];
+
+  newArray?.forEach((item) => {
+    if (oldArraySet.has(item)) {
+      oldArraySet.delete(item);
+    } else {
+      arrayDiff.push(`${t(indentLevel)}Item with "${green(item)}" added`);
+    }
+  });
+  oldArraySet.forEach((item) => {
+    arrayDiff.push(`${t(indentLevel)}Item with "${red(item)}" removed`);
+  });
+
+  return arrayDiff.join('\n');
 };
 
 const getPermissionsDiff = (oldPermissions, newPermissions) => {
@@ -23,10 +43,10 @@ const getPermissionsDiff = (oldPermissions, newPermissions) => {
   });
 
   newPermissions.forEach((newPermission) => {
-    const currDiff = [`\t${newPermission.name} changed`];
+    const currDiff = [`${t(1)}${newPermission.name} changed`];
     // if the permission name is not in the old config, it means it is a new addition.
     if (!mappedOldPermission[newPermission.name]) {
-      permissionDiff.push(`\t"${green(newPermission.name)}" was added`);
+      permissionDiff.push(`${t(1)}"${green(newPermission.name)}" was added`);
     }
 
     // if permission name is in the old config, now we check if there was a change
@@ -47,37 +67,19 @@ const getPermissionsDiff = (oldPermissions, newPermissions) => {
 
   // if there are old permissions left, it means they were deleted in the new Permissions.
   Object.keys(mappedOldPermission).forEach((oldPermissionName) => {
-    permissionDiff.push(`\t"${red(oldPermissionName)}" was removed`);
+    permissionDiff.push(`${t(1)}"${red(oldPermissionName)}" was removed`);
   });
 
   if (permissionDiff.length > 1) return permissionDiff.join('\n');
 };
 
-const getArrayDiff = (oldArray, newArray, tabs = 0) => {
-  const oldArraySet = new Set(oldArray);
-  const arrayDiff = [];
-
-  newArray?.forEach((item) => {
-    if (oldArraySet.has(item)) {
-      oldArraySet.delete(item);
-    } else {
-      arrayDiff.push(`${t(tabs)}Item with "${green(item)}" added`);
-    }
-  });
-  oldArraySet.forEach((item) => {
-    arrayDiff.push(`${t(tabs)}Item with "${red(item)}" removed`);
-  });
-
-  return arrayDiff.join('\n');
-};
-
 const getLabelAllLocalesDiff = (
   oldLabelAllLocales,
   newLabelAllLocales,
-  tabs = 0
+  indentLevel = 0
 ) => {
   const mappedOldLabelAllLocales = {};
-  const labelAllLocalesDiff = [`${t(tabs - 1)}labelAllLocales changed`];
+  const labelAllLocalesDiff = [`${t(indentLevel - 1)}labelAllLocales changed`];
 
   oldLabelAllLocales?.forEach(({ locale, value }) => {
     mappedOldLabelAllLocales[locale] = value;
@@ -88,7 +90,7 @@ const getLabelAllLocalesDiff = (
       const oldLocaleValue = mappedOldLabelAllLocales[newLabelAllLocale.locale];
       if (oldLocaleValue !== newLabelAllLocale.value) {
         labelAllLocalesDiff.push(
-          `${t(tabs)}locale with "${
+          `${t(indentLevel)}locale with "${
             newLabelAllLocale.locale
           }" was changed: ${red(oldLocaleValue)} => ${green(
             newLabelAllLocale.value
@@ -98,13 +100,17 @@ const getLabelAllLocalesDiff = (
       delete mappedOldLabelAllLocales[newLabelAllLocale.locale];
     } else {
       labelAllLocalesDiff.push(
-        `${t(tabs)}locale with "${green(newLabelAllLocale.locale)}" was added`
+        `${t(indentLevel)}locale with "${green(
+          newLabelAllLocale.locale
+        )}" was added`
       );
     }
   });
 
   Object.keys(mappedOldLabelAllLocales).forEach((key) => {
-    labelAllLocalesDiff.push(`${t(tabs)}locale with "${red(key)}" was removed`);
+    labelAllLocalesDiff.push(
+      `${t(indentLevel)}locale with "${red(key)}" was removed`
+    );
   });
 
   if (labelAllLocalesDiff.length > 1) return labelAllLocalesDiff.join('\n');
@@ -127,7 +133,7 @@ const getMainMenuLinkDiff = (oldMainMenuLink, newMainMenuLink) => {
     2
   );
   if (mainMenuLinkPermissionsDiff.length > 0) {
-    mainMenuLinkDiff.push('\tpermission changed');
+    mainMenuLinkDiff.push(`${t(1)}permission changed`);
     mainMenuLinkDiff.push(mainMenuLinkPermissionsDiff);
   }
 
