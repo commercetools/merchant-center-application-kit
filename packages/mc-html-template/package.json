@@ -15,16 +15,7 @@
     "access": "public"
   },
   "main": "./build/index.js",
-  "files": [
-    "build",
-    "html-docs",
-    "html-scripts",
-    "html-styles",
-    "webpack.js",
-    "package.json",
-    "LICENSE",
-    "README.md"
-  ],
+  "files": ["build", "webpack.js", "package.json", "LICENSE", "README.md"],
   "scripts": {
     "build": "rimraf build && babel src --out-dir build",
     "build:bundles:watch": "yarn build -w"
@@ -42,6 +33,7 @@
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
+    "babel-plugin-preval": "^5.1.0",
     "rimraf": "3.0.2"
   },
   "engines": {
@@ -62,6 +54,7 @@
       ]
     ],
     "plugins": [
+      "preval",
       [
         "@babel/plugin-transform-runtime",
         {
