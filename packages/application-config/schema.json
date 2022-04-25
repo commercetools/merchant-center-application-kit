@@ -221,6 +221,7 @@
       "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#submenulinks",
       "default": [],
       "type": "array",
+      "uniqueItemProperties": ["uriPath"],
       "items": {
         "type": "object",
         "properties": {

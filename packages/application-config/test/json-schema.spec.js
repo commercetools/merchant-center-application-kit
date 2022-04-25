@@ -173,4 +173,28 @@ describe('invalid configurations', () => {
       `" must have required property 'mainMenuLink'"`
     );
   });
+  it('should validate that "uriPath" for "submenuLinks" is unique', () => {
+    expect(() =>
+      validateConfig({
+        ...fixtureConfigSimple,
+        submenuLinks: [
+          {
+            uriPath: 'custom-app/avengers',
+            defaultLabel: 'avengers',
+            permissions: [],
+            labelAllLocales: [],
+          },
+
+          {
+            uriPath: 'custom-app/avengers',
+            defaultLabel: 'justice-league',
+            permissions: [],
+            labelAllLocales: [],
+          },
+        ],
+      })
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"/submenuLinks must pass \\"uniqueItemProperties\\" keyword validation"`
+    );
+  });
 });

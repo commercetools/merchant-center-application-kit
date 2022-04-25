@@ -9,6 +9,8 @@ type ErrorAdditionalProperty = ErrorObject<
 type ErrorEnum = ErrorObject<'enum', { allowedValues: string[] }>;
 
 const ajv = new Ajv({ strict: true, useDefaults: true });
+require('ajv-keywords')(ajv, 'uniqueItemProperties');
+
 const validate =
   ajv.compile<JSONSchemaForCustomApplicationConfigurationFiles>(schemaJson);
 

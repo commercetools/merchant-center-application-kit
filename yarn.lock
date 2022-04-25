@@ -2611,6 +2611,7 @@ __metadata:
     "@babel/runtime-corejs3": ^7.17.9
     "@commercetools-frontend/babel-preset-mc-app": 21.3.4
     ajv: 8.11.0
+    ajv-keywords: ^5.1.0
     core-js: ^3.21.1
     cosmiconfig: 7.0.1
     json-schema-to-typescript: 10.1.5
@@ -10702,7 +10703,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv-keywords@npm:^5.0.0":
+"ajv-keywords@npm:^5.0.0, ajv-keywords@npm:^5.1.0":
   version: 5.1.0
   resolution: "ajv-keywords@npm:5.1.0"
   dependencies:
