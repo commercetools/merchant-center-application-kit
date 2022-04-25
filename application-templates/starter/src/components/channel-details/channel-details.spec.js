@@ -44,7 +44,7 @@ const renderApp = (options = {}, includeManagePermissions = true) => {
       allAppliedPermissions: mapResourceAccessToAppliedPermissions(
         [
           PERMISSIONS.View,
-          includeManagePermissions ? PERMISSIONS.Manage : '',
+          includeManagePermissions && PERMISSIONS.Manage,
         ].filter(Boolean)
       ),
     },
@@ -168,16 +168,14 @@ describe('rendering', () => {
     useMockServerHandlers(fetchChannelDetailsQueryHandler);
     renderApp();
 
-    const keyInput = await screen.findByRole('textbox', {
-      name: /channel key/i,
-    });
+    const keyInput = await screen.findByLabelText(/channel key/i);
     expect(keyInput.value).toBe(key);
 
     const nameInput = screen.getByRole('textbox', { name: /en/i });
     expect(nameInput.value).toBe(name);
 
     screen.getByRole('combobox', { name: /channel roles/i });
-    screen.getByDisplayValue(/primary/i);
+    expect(screen.getByDisplayValue(/primary/i)).toBeInTheDocument();
   });
   it('should reset form values on "revert" button click', async () => {
     useMockServerHandlers(fetchChannelDetailsQueryHandler);
@@ -188,12 +186,9 @@ describe('rendering', () => {
     });
     expect(resetButton).toBeDisabled();
 
-    const keyInput = await screen.findByRole('textbox', {
-      name: /channel key/i,
-    });
+    const keyInput = await screen.findByLabelText(/channel key/i);
     expect(keyInput.value).toBe(key);
 
-    fireEvent.focus(keyInput);
     fireEvent.change(keyInput, {
       target: { value: newKey },
     });
@@ -205,30 +200,28 @@ describe('rendering', () => {
       expect(keyInput.value).toBe(key);
     });
   });
-  it('should render all inputs as "readonly" and "save" button "disabled" if "manage" permission is not applied', async () => {
-    useMockServerHandlers(
-      fetchChannelDetailsQueryHandler,
-      updateChannelDetailsHandler
-    );
-    renderApp({}, false);
+  describe('when user has no manage permission', () => {
+    it('should render the form as read-only and keep the "save" button "disabled"', async () => {
+      useMockServerHandlers(
+        fetchChannelDetailsQueryHandler,
+        updateChannelDetailsHandler
+      );
+      renderApp({}, false);
 
-    const keyInput = await screen.findByRole('textbox', {
-      name: /channel key/i,
+      const keyInput = await screen.findByLabelText(/channel key/i);
+      expect(keyInput.hasAttribute('readonly')).toBeTruthy();
+
+      const nameInput = screen.getByLabelText(/en/i);
+      expect(nameInput.hasAttribute('readonly')).toBeTruthy();
+
+      const rolesSelect = screen.getByRole('combobox', {
+        name: /channel roles/i,
+      });
+      expect(rolesSelect.hasAttribute('readonly')).toBeTruthy();
+
+      const saveButton = screen.getByRole('button', { name: /save/i });
+      expect(saveButton).toBeDisabled();
     });
-    expect(keyInput.hasAttribute('readonly')).toBeTruthy();
-    expect(keyInput.hasAttribute('required')).toBeFalsy();
-
-    const nameInput = screen.getByRole('textbox', { name: /en/i });
-    expect(nameInput.hasAttribute('readonly')).toBeTruthy();
-
-    const rolesSelect = screen.getByRole('combobox', {
-      name: /channel roles/i,
-    });
-    expect(rolesSelect.hasAttribute('readonly')).toBeTruthy();
-    expect(keyInput.hasAttribute('required')).toBeFalsy();
-
-    const saveButton = screen.getByRole('button', { name: /save/i });
-    expect(saveButton).toBeDisabled();
   });
   it('should display a "page not found" information if the fetched channel details data is null (without an error)', async () => {
     useMockServerHandlers(fetchChannelDetailsQueryHandlerWithNullData);
@@ -245,11 +238,8 @@ describe('rendering', () => {
     );
     renderApp();
 
-    const keyInput = await screen.findByRole('textbox', {
-      name: /channel key/i,
-    });
+    const keyInput = await screen.findByLabelText(/channel key/i);
 
-    fireEvent.focus(keyInput);
     fireEvent.change(keyInput, {
       target: { value: newKey },
     });
@@ -270,12 +260,9 @@ describe('notifications', () => {
     );
     renderApp();
 
-    const keyInput = await screen.findByRole('textbox', {
-      name: /channel key/i,
-    });
+    const keyInput = await screen.findByLabelText(/channel key/i);
     expect(keyInput.value).toBe(key);
 
-    fireEvent.focus(keyInput);
     fireEvent.change(keyInput, {
       target: { value: newKey },
     });
@@ -296,7 +283,7 @@ describe('notifications', () => {
     fireEvent.focus(rolesSelect);
     fireEvent.keyDown(rolesSelect, { key: 'ArrowDown' });
     screen.getByText('InventorySupply').click();
-    screen.getByDisplayValue(/InventorySupply/i);
+    expect(screen.getByDisplayValue(/InventorySupply/i)).toBeInTheDocument();
 
     // updating channel details
     const saveButton = screen.getByRole('button', { name: /save/i });
@@ -318,12 +305,9 @@ describe('notifications', () => {
     );
     renderApp();
 
-    const keyInput = await screen.findByRole('textbox', {
-      name: /channel key/i,
-    });
+    const keyInput = await screen.findByLabelText(/channel key/i);
 
     // we're firing the input change to enable the save button, the value itself is not relevant
-    fireEvent.focus(keyInput);
     fireEvent.change(keyInput, {
       target: { value: 'not relevant' },
     });

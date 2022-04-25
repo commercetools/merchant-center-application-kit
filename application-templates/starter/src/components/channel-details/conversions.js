@@ -5,7 +5,8 @@ import {
 } from '@commercetools-frontend/l10n';
 
 export const docToFormValues = (channel, languages) => ({
-  ...channel,
+  key: channel?.key ?? '',
+  roles: channel?.roles ?? [],
   name: LocalizedTextInput.createLocalizedString(
     languages,
     transformLocalizedFieldToLocalizedString(channel?.nameAllLocales ?? [])

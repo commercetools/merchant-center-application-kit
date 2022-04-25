@@ -1,13 +1,10 @@
 import PropTypes from 'prop-types';
 import { useFormik } from 'formik';
 import { useIntl } from 'react-intl';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import LocalizedTextField from '@commercetools-uikit/localized-text-field';
 import TextField from '@commercetools-uikit/text-field';
 import Spacings from '@commercetools-uikit/spacings';
-import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import SelectField from '@commercetools-uikit/select-field';
-import { PERMISSIONS } from '../../constants';
 import { CHANNEL_ROLES } from './constants';
 import validate from './validate';
 import messages from './messages';
@@ -19,17 +16,11 @@ const getRoleOptions = Object.keys(CHANNEL_ROLES).map((key) => ({
 
 const ChannelDetailsForm = (props) => {
   const intl = useIntl();
-  const { dataLocale } = useApplicationContext((context) => ({
-    dataLocale: context.dataLocale,
-  }));
   const formik = useFormik({
     initialValues: props.initialValues,
     onSubmit: props.onSubmit,
     validate,
     enableReinitialize: true,
-  });
-  const canManage = useIsAuthorized({
-    demandedPermissions: [PERMISSIONS.Manage],
   });
 
   const formElements = (
@@ -37,12 +28,12 @@ const ChannelDetailsForm = (props) => {
       <TextField
         name="key"
         title={intl.formatMessage(messages.channelKeyLabel)}
-        value={formik.values.key ?? ''}
+        value={formik.values.key}
         errors={formik.errors.key}
         touched={formik.touched.key}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-        isReadOnly={!canManage}
+        isReadOnly={props.isReadOnly}
         renderError={(errorKey) => {
           switch (errorKey) {
             case 'duplicate':
@@ -61,8 +52,8 @@ const ChannelDetailsForm = (props) => {
         touched={Boolean(formik.touched.name)}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-        selectedLanguage={dataLocale}
-        isReadOnly={!canManage}
+        selectedLanguage={props.dataLocale}
+        isReadOnly={props.isReadOnly}
       />
       <SelectField
         name="roles"
@@ -74,7 +65,7 @@ const ChannelDetailsForm = (props) => {
         onBlur={formik.handleBlur}
         isMulti
         options={getRoleOptions}
-        isReadOnly={!canManage}
+        isReadOnly={props.isReadOnly}
         isRequired
       />
     </Spacings.Stack>
@@ -98,6 +89,8 @@ ChannelDetailsForm.propTypes = {
     version: PropTypes.number,
     roles: PropTypes.arrayOf(PropTypes.string.isRequired),
   }),
+  isReadOnly: PropTypes.bool.isRequired,
+  dataLocale: PropTypes.string.isRequired,
 };
 
 export default ChannelDetailsForm;

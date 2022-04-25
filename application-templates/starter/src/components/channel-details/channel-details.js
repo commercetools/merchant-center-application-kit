@@ -11,10 +11,7 @@ import Spacings from '@commercetools-uikit/spacings';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import { useCallback } from 'react';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import {
-  formatLocalizedString,
-  transformLocalizedFieldToLocalizedString,
-} from '@commercetools-frontend/l10n';
+import { formatLocalizedString } from '@commercetools-frontend/l10n';
 import { DOMAINS, NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import {
@@ -74,23 +71,30 @@ const ChannelDetails = (props) => {
         formikHelpers.setErrors(transformedErrors.formErrors);
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [channelDetailsUpdater]
+    [
+      channel,
+      channelDetailsUpdater,
+      dataLocale,
+      intl,
+      projectLanguages,
+      showApiErrorNotification,
+      showNotification,
+    ]
   );
 
   return (
     <ChannelsDetailsForm
       initialValues={docToFormValues(channel, projectLanguages)}
       onSubmit={handleSubmit}
+      isReadOnly={!canManage}
+      dataLocale={dataLocale}
     >
       {(formProps) => {
         return (
           <FormModalPage
             title={formatLocalizedString(
               {
-                name: transformLocalizedFieldToLocalizedString(
-                  channel?.nameAllLocales ?? []
-                ),
+                name: formProps.values?.name,
               },
               {
                 key: 'name',
@@ -115,16 +119,14 @@ const ChannelDetails = (props) => {
                 <LoadingSpinner />
               </Spacings.Stack>
             )}
-            {error ? (
+            {error && (
               <ContentNotification type="error">
                 <Text.Body>
                   {intl.formatMessage(messages.channelDetailsErrorMessage)}
                 </Text.Body>
               </ContentNotification>
-            ) : channel === null ? (
-              <PageNotFound />
-            ) : null}
-            {channel && formProps.formElements}
+            )}
+            {channel ? formProps.formElements : <PageNotFound />}
           </FormModalPage>
         );
       }}

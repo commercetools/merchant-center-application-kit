@@ -4,7 +4,7 @@
 
 Add a new `<SuspendedRoute>` component.
 
-This component should be used to render a lazy loaded component.
+This component is exactly like the `<Route>` component of `react-router` but it wraps the children with `React.Suspense`, allowing the children to be dynamically loaded with `React.lazy`. This can be used for code splitting components at the route level.
 
 ```jsx
 import { Switch } from 'react-router-dom';
