@@ -2528,9 +2528,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-docs/writing-style@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@commercetools-docs/writing-style@npm:3.1.0"
+"@commercetools-docs/writing-style@npm:3.1.1":
+  version: 3.1.1
+  resolution: "@commercetools-docs/writing-style@npm:3.1.1"
   dependencies:
     7zip-bin: 5.1.1
     node-fetch: 2.6.7
@@ -2538,7 +2538,7 @@ __metadata:
   bin:
     commercetools-vale: bin/commercetools-vale.js
     commercetools-vale-bin: bin/commercetools-vale-bin.js
-  checksum: 42db6f3c6256ed67d072e994aca65766ae3fbcdb693140dc576fb7be4c99c19ad8f73a3f7d9ef4e90d93a5f64de85393be65b198532261a99c8c1b3eacd36f97
+  checksum: e4d52f3f0fd64ba7cfd13ca96866d8d67132f0e05a7da769726872abe8655002f686002034d141177bd7ff2f8ee6890248d5176899c7f4117e980cc2f30bdcd1
   languageName: node
   linkType: hard
 
@@ -24988,7 +24988,7 @@ __metadata:
     "@babel/core": ^7.17.9
     "@changesets/changelog-github": 0.4.4
     "@changesets/cli": 2.22.0
-    "@commercetools-docs/writing-style": 3.1.0
+    "@commercetools-docs/writing-style": 3.1.1
     "@commercetools-test-data/core": 3.0.0
     "@commercetools-uikit/design-system": ^14.0.0
     "@commercetools/github-labels": 1.1.0
