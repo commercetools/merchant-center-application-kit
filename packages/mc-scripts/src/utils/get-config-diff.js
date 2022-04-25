@@ -1,7 +1,5 @@
 const { red, green } = require('chalk');
 
-const notNestedKeySet = new Set(['name', 'description', 'url', 'icon']);
-
 const t = (indentLevel) => '  '.repeat(indentLevel);
 
 const getStringDiff = (oldStr, newStr, label, indentLevel = 0) => {
@@ -215,7 +213,7 @@ const getConfigDiff = (oldConfig, newConfig) => {
   const diff = [];
 
   Object.keys(oldConfig).forEach((key) => {
-    if (notNestedKeySet.has(key)) {
+    if (typeof oldConfig[key] === 'string') {
       diff.push(getStringDiff(oldConfig[key], newConfig[key], key));
     }
 
