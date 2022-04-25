@@ -1,5 +1,11 @@
 # @commercetools-frontend/react-notifications
 
+## 21.3.5
+
+### Patch Changes
+
+- [#2554](https://github.com/commercetools/merchant-center-application-kit/pull/2554) [`8e170c65`](https://github.com/commercetools/merchant-center-application-kit/commit/8e170c6574e8d52738b3a00022fedc8df03ce048) Thanks [@emmenko](https://github.com/emmenko)! - Fix offset calculation for modal pages when notifications are opened.
+
 ## 21.3.4
 
 ### Patch Changes

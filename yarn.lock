@@ -2553,7 +2553,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/application-components@21.3.4, @commercetools-frontend/application-components@workspace:packages/application-components":
+"@commercetools-frontend/application-components@21.3.5, @commercetools-frontend/application-components@workspace:packages/application-components":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/application-components@workspace:packages/application-components"
   dependencies:
@@ -2579,6 +2579,7 @@ __metadata:
     "@commercetools-uikit/utils": ^14.0.1
     "@emotion/react": 11.9.0
     "@emotion/styled": 11.8.1
+    "@react-hook/resize-observer": 1.2.5
     "@types/history": 4.7.11
     "@types/lodash": ^4.14.181
     "@types/prop-types": ^15.7.5
@@ -2590,7 +2591,7 @@ __metadata:
     prop-types: 15.8.1
     react: 17.0.2
     react-dom: 17.0.2
-    react-intl: 5.24.8
+    react-intl: ^5.25.0
     react-modal: 3.14.4
     react-router-dom: 5.3.0
   peerDependencies:
@@ -2644,7 +2645,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/application-shell@21.3.4, @commercetools-frontend/application-shell@workspace:packages/application-shell":
+"@commercetools-frontend/application-shell@21.3.5, @commercetools-frontend/application-shell@workspace:packages/application-shell":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/application-shell@workspace:packages/application-shell"
   dependencies:
@@ -2652,7 +2653,7 @@ __metadata:
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
     "@commercetools-frontend/actions-global": 21.3.4
-    "@commercetools-frontend/application-components": 21.3.4
+    "@commercetools-frontend/application-components": 21.3.5
     "@commercetools-frontend/application-config": 21.3.4
     "@commercetools-frontend/application-shell-connectors": 21.3.4
     "@commercetools-frontend/assets": 21.0.0
@@ -2662,7 +2663,7 @@ __metadata:
     "@commercetools-frontend/l10n": 21.3.4
     "@commercetools-frontend/notifications": 21.3.4
     "@commercetools-frontend/permissions": 21.3.4
-    "@commercetools-frontend/react-notifications": 21.3.4
+    "@commercetools-frontend/react-notifications": 21.3.5
     "@commercetools-frontend/sdk": 21.3.4
     "@commercetools-frontend/sentry": 21.3.4
     "@commercetools-frontend/url-utils": 21.3.4
@@ -2718,7 +2719,7 @@ __metadata:
     qss: 2.0.3
     react: 17.0.2
     react-dom: 17.0.2
-    react-intl: 5.24.8
+    react-intl: ^5.25.0
     react-redux: 7.2.8
     react-required-if: 1.0.3
     react-router-dom: 5.3.0
@@ -2826,7 +2827,7 @@ __metadata:
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
     "@commercetools-frontend/application-config": 21.3.4
-    "@commercetools-frontend/application-shell": 21.3.4
+    "@commercetools-frontend/application-shell": 21.3.5
     "@manypkg/get-packages": 1.1.3
     cypress: 9.5.4
     uuid: 8.3.2
@@ -2880,7 +2881,7 @@ __metadata:
     moment: ^2.29.2
     prop-types: 15.8.1
     react: 17.0.2
-    react-intl: 5.24.8
+    react-intl: ^5.25.0
   peerDependencies:
     react: 17.x
     react-intl: 5.x
@@ -3079,7 +3080,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/react-notifications@21.3.4, @commercetools-frontend/react-notifications@workspace:packages/react-notifications":
+"@commercetools-frontend/react-notifications@21.3.5, @commercetools-frontend/react-notifications@workspace:packages/react-notifications":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/react-notifications@workspace:packages/react-notifications"
   dependencies:
@@ -3112,7 +3113,7 @@ __metadata:
     prop-types: 15.8.1
     react: 17.0.2
     react-dom: 17.0.2
-    react-intl: 5.24.8
+    react-intl: ^5.25.0
     react-redux: 7.2.8
     react-router-dom: 5.3.0
     reselect: 4.1.5
@@ -3191,10 +3192,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-local/visual-testing-app@workspace:visual-testing-app"
   dependencies:
-    "@commercetools-frontend/application-components": 21.3.4
+    "@commercetools-frontend/application-components": 21.3.5
     "@commercetools-frontend/assets": 21.0.0
     "@commercetools-frontend/constants": 21.3.4
-    "@commercetools-frontend/react-notifications": 21.3.4
+    "@commercetools-frontend/react-notifications": 21.3.5
     "@commercetools-uikit/accessible-button": ^14.0.1
     "@commercetools-uikit/design-system": ^14.0.0
     "@commercetools-uikit/grid": ^14.0.0
@@ -3211,7 +3212,7 @@ __metadata:
     formik: 2.2.9
     react: 17.0.2
     react-dom: 17.0.2
-    react-intl: 5.24.8
+    react-intl: ^5.25.0
     react-redux: 7.2.8
     react-router-dom: 5.3.0
     rimraf: 3.0.2
@@ -4325,7 +4326,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-website/components-playground@workspace:website-components-playground"
   dependencies:
-    "@commercetools-frontend/application-components": 21.3.4
+    "@commercetools-frontend/application-components": 21.3.5
     "@commercetools-frontend/i18n": 21.3.4
     "@commercetools-uikit/design-system": ^14.0.0
     "@commercetools-uikit/icon-button": ^14.0.6
@@ -4351,7 +4352,7 @@ __metadata:
     prop-types: 15.8.1
     react: 17.0.2
     react-dom: 17.0.2
-    react-intl: 5.24.8
+    react-intl: ^5.25.0
     react-router-dom: 5.3.0
   languageName: unknown
   linkType: soft
@@ -4375,7 +4376,7 @@ __metadata:
     prop-types: 15.8.1
     react: 17.0.2
     react-dom: 17.0.2
-    react-intl: 5.24.8
+    react-intl: ^5.25.0
     start-server-and-test: 1.14.0
   languageName: unknown
   linkType: soft
@@ -5246,9 +5247,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl@npm:2.1.1":
-  version: 2.1.1
-  resolution: "@formatjs/intl@npm:2.1.1"
+"@formatjs/intl@npm:2.2.0":
+  version: 2.2.0
+  resolution: "@formatjs/intl@npm:2.2.0"
   dependencies:
     "@formatjs/ecma402-abstract": 1.11.4
     "@formatjs/fast-memoize": 1.2.1
@@ -5262,7 +5263,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 6046cfdc71a3def398e4a94edcf0384fb428ce5dc504cdb1af91d8644ae38e5e8aabdb9187e22d8253045d38f24534996bbd70c2d8e5f0106f0cb05bed2e44ca
+  checksum: 750bbb4721e2694efe294cd93936805b38f7c43c5944a13360074be47a66fc1f4901049e14ca8b8cd84fc306175b5e3b7b32f3330a2668ccc1b0819012f83867
   languageName: node
   linkType: hard
 
@@ -6871,6 +6872,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@juggle/resize-observer@npm:^3.3.1":
+  version: 3.3.1
+  resolution: "@juggle/resize-observer@npm:3.3.1"
+  checksum: ddabc4044276a2cb57d469c4917206c7e39f2463aa8e3430e33e4eda554412afe29c22afa40e6708b49dad5d56768dc83acd68a704b1dcd49a0906bb96b991b2
+  languageName: node
+  linkType: hard
+
 "@leichtgewicht/ip-codec@npm:^2.0.1":
   version: 2.0.3
   resolution: "@leichtgewicht/ip-codec@npm:2.0.3"
@@ -8119,6 +8127,39 @@ __metadata:
     pirates: ^4.0.1
     source-map-support: ^0.5.16
   checksum: 5043b0d8a09d370f955b713d350fa01d3f4d9a6f2c8a88019ba239d584981e6610e6eda75fb235aab00839afd23ded6bfcfdc0a492d73e697bd58b3cf2bc534e
+  languageName: node
+  linkType: hard
+
+"@react-hook/latest@npm:^1.0.2":
+  version: 1.0.3
+  resolution: "@react-hook/latest@npm:1.0.3"
+  peerDependencies:
+    react: ">=16.8"
+  checksum: 2408c9cd35c5cfa7697b6da3bc5eebef254a932ade70955074c474f23be7dd3e2f81bbba12edcc9208bd0f89c6ed366d6b11d4f6d7b1052877a0bac8f74afad4
+  languageName: node
+  linkType: hard
+
+"@react-hook/passive-layout-effect@npm:^1.2.0":
+  version: 1.2.1
+  resolution: "@react-hook/passive-layout-effect@npm:1.2.1"
+  peerDependencies:
+    react: ">=16.8"
+  checksum: 217cb8aa90fb8e677672319a9a466d7752890cf4357c76df000b207696e9cc717cf2ee88080671cc9dae238a82f92093ab4f61ab2f6032d2a8db958fc7d99b5d
+  languageName: node
+  linkType: hard
+
+"@react-hook/resize-observer@npm:1.2.5":
+  version: 1.2.5
+  resolution: "@react-hook/resize-observer@npm:1.2.5"
+  dependencies:
+    "@juggle/resize-observer": ^3.3.1
+    "@react-hook/latest": ^1.0.2
+    "@react-hook/passive-layout-effect": ^1.2.0
+    "@types/raf-schd": ^4.0.0
+    raf-schd: ^4.0.2
+  peerDependencies:
+    react: ">=16.8"
+  checksum: a2f3b333e344adb3d7a4cfd2bc77fd75054b07063fba706d57bef0c497650c3e82038eafb64fa4148c08527e8b0a34f2f70392da1700a7a0d9676ee8ba795c16
   languageName: node
   linkType: hard
 
@@ -9473,6 +9514,13 @@ __metadata:
   version: 6.9.7
   resolution: "@types/qs@npm:6.9.7"
   checksum: 7fd6f9c25053e9b5bb6bc9f9f76c1d89e6c04f7707a7ba0e44cc01f17ef5284adb82f230f542c2d5557d69407c9a40f0f3515e8319afd14e1e16b5543ac6cdba
+  languageName: node
+  linkType: hard
+
+"@types/raf-schd@npm:^4.0.0":
+  version: 4.0.1
+  resolution: "@types/raf-schd@npm:4.0.1"
+  checksum: 0babaa85541aadc6e5f8aa64ec79cd68bf67ea56abb7610c8daf3ca5f4b1a75d12e4e147a0b5434938a4031650ebddc733021ec4e7db4f11f7955390ec32c917
   languageName: node
   linkType: hard
 
@@ -24306,8 +24354,8 @@ __metadata:
   dependencies:
     "@apollo/client": 3.5.10
     "@commercetools-frontend/actions-global": 21.3.4
-    "@commercetools-frontend/application-components": 21.3.4
-    "@commercetools-frontend/application-shell": 21.3.4
+    "@commercetools-frontend/application-components": 21.3.5
+    "@commercetools-frontend/application-shell": 21.3.5
     "@commercetools-frontend/application-shell-connectors": 21.3.4
     "@commercetools-frontend/assets": 21.0.0
     "@commercetools-frontend/constants": 21.3.4
@@ -24346,7 +24394,7 @@ __metadata:
     prop-types: 15.8.1
     react: 17.0.2
     react-dom: 17.0.2
-    react-intl: 5.24.8
+    react-intl: ^5.25.0
     react-redux: 7.2.8
     react-router-dom: 5.3.0
     redux: 4.1.2
@@ -26724,8 +26772,8 @@ __metadata:
     "@commercetools-backend/express": 21.3.4
     "@commercetools-docs/ui-kit": 18.5.0
     "@commercetools-frontend/actions-global": 21.3.4
-    "@commercetools-frontend/application-components": 21.3.4
-    "@commercetools-frontend/application-shell": 21.3.4
+    "@commercetools-frontend/application-components": 21.3.5
+    "@commercetools-frontend/application-shell": 21.3.5
     "@commercetools-frontend/application-shell-connectors": 21.3.4
     "@commercetools-frontend/assets": 21.0.0
     "@commercetools-frontend/constants": 21.3.4
@@ -26755,7 +26803,7 @@ __metadata:
     prop-types: 15.8.1
     react: 17.0.2
     react-dom: 17.0.2
-    react-intl: 5.24.8
+    react-intl: ^5.25.0
     react-router-dom: 5.3.0
     vercel: 24.1.0
   languageName: unknown
@@ -28032,6 +28080,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"raf-schd@npm:^4.0.2":
+  version: 4.0.3
+  resolution: "raf-schd@npm:4.0.3"
+  checksum: 45514041c5ad31fa96aef3bb3c572a843b92da2f2cd1cb4a47c9ad58e48761d3a4126e18daa32b2bfa0bc2551a42d8f324a0e40e536cb656969929602b4e8b58
+  languageName: node
+  linkType: hard
+
 "raf@npm:3.4.1":
   version: 3.4.1
   resolution: "raf@npm:3.4.1"
@@ -28270,27 +28325,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-intl@npm:5.24.8":
-  version: 5.24.8
-  resolution: "react-intl@npm:5.24.8"
+"react-intl@npm:^5.24.6, react-intl@npm:^5.25.0, react-intl@npm:^5.7.0":
+  version: 5.25.0
+  resolution: "react-intl@npm:5.25.0"
   dependencies:
     "@formatjs/ecma402-abstract": 1.11.4
     "@formatjs/icu-messageformat-parser": 2.0.19
-    "@formatjs/intl": 2.1.1
+    "@formatjs/intl": 2.2.0
     "@formatjs/intl-displaynames": 5.4.3
     "@formatjs/intl-listformat": 6.5.3
     "@types/hoist-non-react-statics": ^3.3.1
-    "@types/react": 16 || 17
+    "@types/react": 16 || 17 || 18
     hoist-non-react-statics: ^3.3.2
     intl-messageformat: 9.12.0
     tslib: ^2.1.0
   peerDependencies:
-    react: ^16.3.0 || 17
+    react: ^16.3.0 || 17 || 18
     typescript: ^4.5
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: d321745ebec6012cc97d57d9502cca990f93a29b75436752cd5cbd885b799eba16fb76222c06549c91617a75d9cfd05db520069211f4141503e184f994da19b0
+  checksum: 9ba7feeb5621ebc7b885261cac7693f553d6db6ea114230e15abd091af849edef765d8f4412e870b14d0b6b88176af75e7892ad8f2a3ce708f03cabe4f72d88c
   languageName: node
   linkType: hard
 
