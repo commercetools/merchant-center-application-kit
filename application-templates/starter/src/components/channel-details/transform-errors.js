@@ -2,6 +2,18 @@ import omitEmpty from 'omit-empty-es';
 
 const DUPLICATE_FIELD_ERROR_CODE = 'DuplicateField';
 
+const setFieldValidationError = ({
+  formErrors,
+  fieldName,
+  validationError,
+}) => {
+  if (fieldName in formErrors) {
+    formErrors[fieldName][validationError] = true;
+  } else {
+    formErrors[fieldName] = { [validationError]: true };
+  }
+};
+
 /**
  * TransformedErrors: { unmappedErrors: [], formError: [] }
  *
@@ -14,15 +26,19 @@ export const transformErrors = (graphQlErrors) => {
     ? graphQlErrors
     : [graphQlErrors];
 
-  const formErrors = { key: {} }; // will be mappped to form field error messages
+  const formErrors = {}; // will be mappped to form field error messages
   const unmappedErrors = []; // will result in dispatching `showApiErrorNotification`
 
   errorsToMap.forEach((graphQlError) => {
     const errorCode = graphQlError?.extensions?.code ?? graphQlError.code;
+    const fieldName = graphQlError?.extensions?.field ?? graphQlError.field;
+
     if (errorCode === DUPLICATE_FIELD_ERROR_CODE) {
-      formErrors[
-        graphQlError?.extensions?.field ?? graphQlError.field
-      ].duplicate = true;
+      setFieldValidationError({
+        formErrors,
+        fieldName,
+        validationError: 'duplicate',
+      });
     } else {
       unmappedErrors.push(graphQlError);
     }
