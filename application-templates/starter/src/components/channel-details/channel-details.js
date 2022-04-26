@@ -126,11 +126,8 @@ const ChannelDetails = (props) => {
                 </Text.Body>
               </ContentNotification>
             )}
-            {channel !== null ? (
-              channel !== undefined && formProps.formElements
-            ) : (
-              <PageNotFound />
-            )}
+            {channel && formProps.formElements}
+            {channel === null && <PageNotFound />}
           </FormModalPage>
         );
       }}

@@ -43,6 +43,7 @@ const ChannelDetailsForm = (props) => {
           }
         }}
         isRequired
+        horizontalConstraint={13}
       />
       <LocalizedTextField
         name="name"
@@ -54,6 +55,7 @@ const ChannelDetailsForm = (props) => {
         onBlur={formik.handleBlur}
         selectedLanguage={props.dataLocale}
         isReadOnly={props.isReadOnly}
+        horizontalConstraint={13}
       />
       <SelectField
         name="roles"
@@ -67,12 +69,14 @@ const ChannelDetailsForm = (props) => {
         options={getRoleOptions}
         isReadOnly={props.isReadOnly}
         isRequired
+        horizontalConstraint={13}
       />
     </Spacings.Stack>
   );
 
   return props.children({
     formElements,
+    values: formik.values,
     isDirty: formik.dirty,
     isSubmitting: formik.isSubmitting,
     submitForm: formik.handleSubmit,
