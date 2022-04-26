@@ -46,11 +46,12 @@ const processHeaders = (applicationConfig) => {
   // List hashes for injected inline scripts.
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src
   const htmlScriptsHashes = [
-    createAssetHash(htmlScripts.dataLayer),
     createAssetHash(htmlScripts.loadingScreen),
     createAssetHash(
       `window.app = ${sanitizeAppEnvironment(applicationConfig.env)};`
     ),
+    createAssetHash(htmlScripts.publicPath),
+    createAssetHash(htmlScripts.dataLayer),
   ];
 
   // // List hashes for injected inline styles.

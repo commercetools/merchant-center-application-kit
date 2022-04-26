@@ -1,10 +1,13 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 const fs = require('fs-extra');
 const path = require('path');
 const { build } = require('vite');
 const pluginGraphql = require('@rollup/plugin-graphql');
 const pluginReact = require('@vitejs/plugin-react').default;
+const { useDynamicPublicPath } = require('vite-plugin-dynamic-publicpath');
 const {
   generateTemplate,
+  htmlScripts,
 } = require('@commercetools-frontend/mc-html-template');
 const {
   packageLocation: applicationStaticAssetsPath,
@@ -23,10 +26,23 @@ const pluginCustomApplication = () => {
       // Ensure to use the `cdnUrl` value when loading the entry point.
       // NOTE: with Webpack this is done by setting the `__webpack_public_path__`.
       const html = rawHtml.replace(
-        new RegExp(`<script type="module"(.*) src="/(.*)">`, 'g'),
+        new RegExp(`<script type="module"(.*) src="(.*)">`, 'g'),
         `<script type="module"$1 src="__CDN_URL__$2">`
       );
-      return html;
+
+      return {
+        html,
+        tags: [
+          {
+            tag: 'script',
+            // Inject the functions to dynamically change the public path.
+            // This is also used for the `cdnUrl` and is the equivalent
+            // of Webpack's `__webpack_public_path__`.
+            children: htmlScripts.publicPath,
+            injectTo: 'body',
+          },
+        ],
+      };
     },
   };
 };
@@ -51,6 +67,7 @@ const execute = async () => {
   await build({
     configFile: false,
     root: paths.appRoot,
+    base: '', // <-- Very important, otherwise asset URLs start with `/`.
     define: {
       'process.env.DEBUG': JSON.stringify(false),
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
@@ -78,6 +95,14 @@ const execute = async () => {
         },
       }),
       pluginCustomApplication(),
+      // This plugin allows to change the public path on runtime.
+      // This is the equivalent of Webpack's `__webpack_public_path__`.
+      // See original issue: https://github.com/vitejs/vite/issues/3522#issuecomment-874377284
+      useDynamicPublicPath({
+        dynamicImportHandler: 'window.__dynamicImportHandler__',
+        dynamicImportPreload: 'window.__dynamicImportPreload__',
+        assetsBase: '.',
+      }),
     ],
   });
 
