@@ -1,6 +1,7 @@
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 import Ajv, { type ErrorObject } from 'ajv';
 import schemaJson from '../schema.json';
+import type { CustomApplicationData } from './types';
 
 type ErrorAdditionalProperty = ErrorObject<
   'additionalProperty',
@@ -9,7 +10,6 @@ type ErrorAdditionalProperty = ErrorObject<
 type ErrorEnum = ErrorObject<'enum', { allowedValues: string[] }>;
 
 const ajv = new Ajv({ strict: true, useDefaults: true });
-require('ajv-keywords')(ajv, 'uniqueItemProperties');
 
 const validate =
   ajv.compile<JSONSchemaForCustomApplicationConfigurationFiles>(schemaJson);
@@ -48,3 +48,17 @@ const validateConfig = (
 };
 
 export default validateConfig;
+
+export const validateSubmenuLinks = (
+  submenuLinks: CustomApplicationData['submenuLinks']
+) => {
+  const uriPathSet = new Set();
+  submenuLinks.forEach(({ uriPath }) => {
+    if (uriPathSet.has(uriPath)) {
+      throw new Error(
+        'Duplicate URI path. Every submenu link must have a unique URI path value'
+      );
+    }
+    uriPathSet.add(uriPath);
+  });
+};

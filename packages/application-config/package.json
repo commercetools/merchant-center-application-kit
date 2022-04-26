@@ -37,7 +37,6 @@
     "@babel/runtime-corejs3": "^7.17.9",
     "@commercetools-frontend/babel-preset-mc-app": "21.3.4",
     "ajv": "8.11.0",
-    "ajv-keywords": "^5.1.0",
     "core-js": "^3.21.1",
     "cosmiconfig": "7.0.1",
     "lodash": "4.17.21",

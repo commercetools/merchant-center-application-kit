@@ -1,6 +1,7 @@
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 import type { CustomApplicationData } from './types';
 import { entryPointUriPathToResourceAccesses } from './formatters';
+import { validateSubmenuLinks } from './validate-config';
 
 // The `uriPath` of each submenu link is supposed to be defined relative
 // to the `entryPointUriPath`. Computing the full path is done internally to keep
@@ -23,6 +24,8 @@ function transformCustomApplicationConfigToData(
   const permissionKeys = entryPointUriPathToResourceAccesses(
     appConfig.entryPointUriPath
   );
+
+  validateSubmenuLinks(appConfig.submenuLinks);
 
   return {
     id: appConfig.env.production.applicationId,
