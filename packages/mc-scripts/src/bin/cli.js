@@ -72,7 +72,7 @@ const applicationDirectory = fs.realpathSync(process.cwd());
         process.env.NODE_ENV = 'production';
 
         const shouldUseExperimentalBundler =
-          process.env.ENABLE_EXPERIMENTAL_BUNDLER === 'true';
+          process.env.ENABLE_EXPERIMENTAL_VITE_BUNDLER === 'true';
         const shouldAlsoCompile = !flags['build-only'];
 
         proxyCommand(command, {
@@ -111,7 +111,7 @@ const applicationDirectory = fs.realpathSync(process.cwd());
         process.env.NODE_ENV = 'development';
 
         const shouldUseExperimentalBundler =
-          process.env.ENABLE_EXPERIMENTAL_BUNDLER === 'true';
+          process.env.ENABLE_EXPERIMENTAL_VITE_BUNDLER === 'true';
 
         proxyCommand(command, {
           fileName: shouldUseExperimentalBundler ? 'start-vite' : 'start',
