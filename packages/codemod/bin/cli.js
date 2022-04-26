@@ -19,7 +19,7 @@ Global options:
 
 Transforms:
 
-  react-js-to-jsx       Rename ".js" files using React JSX syntax to ".jsx".
+  rename-js-to-jsx       Rename ".js" files using React JSX syntax to ".jsx".
   `);
   process.exit(0);
 }
@@ -29,7 +29,7 @@ const [transform, globPattern] = commands;
 const files = glob.sync(globPattern);
 
 switch (transform) {
-  case 'react-js-to-jsx':
+  case 'rename-js-to-jsx':
     break;
   default:
     throw new Error(`Unknown transform ${transform}.`);

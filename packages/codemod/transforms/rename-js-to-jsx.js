@@ -3,7 +3,7 @@ const fs = require('fs');
 /**
  * @type {import('jscodeshift').Transform}
  */
-function transformer(file, api, options) {
+function renameJsToJsx(file, api, options) {
   const j = api.jscodeshift;
   const root = j(file.source);
 
@@ -22,4 +22,4 @@ function transformer(file, api, options) {
   return root.toSource(options);
 }
 
-module.exports = transformer;
+module.exports = renameJsToJsx;

@@ -14,10 +14,10 @@ $ npx @commercetools-frontend/codemod <transform> <glob_pattern>
 
 ## Transforms
 
-### `react-js-to-jsx`
+### `rename-js-to-jsx`
 
 Rename `.js` files using React JSX syntax to `.jsx`.
 
 ```
-$ npx @commercetools-frontend/codemod react-js-to-jsx 'src/**/*.js'
+$ npx @commercetools-frontend/codemod rename-js-to-jsx 'src/**/*.js'
 ```
