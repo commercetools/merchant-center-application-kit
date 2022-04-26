@@ -7,15 +7,11 @@ const setFieldValidationError = ({
   fieldName,
   validationError,
 }) => {
-  if (fieldName in formErrors) {
-    formErrors[fieldName][validationError] = true;
-  } else {
-    formErrors[fieldName] = { [validationError]: true };
-  }
+  formErrors[fieldName] = { [validationError]: true };
 };
 
 /**
- * TransformedErrors: { unmappedErrors: [], formError: [] }
+ * TransformedErrors: { unmappedErrors: [], formErrors: {} }
  *
  * @param  Object graphqlError
  * @return Object TransformedErrors

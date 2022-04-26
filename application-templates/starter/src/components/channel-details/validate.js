@@ -2,7 +2,10 @@ import TextInput from '@commercetools-uikit/text-input';
 import omitEmpty from 'omit-empty-es';
 
 const validate = (formikValues) => {
-  const errors = {};
+  const errors = {
+    key: {},
+    roles: {},
+  };
 
   if (TextInput.isEmpty(formikValues.key)) {
     errors.key.missing = true;
