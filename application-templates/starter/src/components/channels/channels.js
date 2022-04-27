@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
+import { lazy } from 'react';
 import { useIntl } from 'react-intl';
-import { Link as RouterLink } from 'react-router-dom';
-import { useMcQuery } from '@commercetools-frontend/application-shell';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
-  GRAPHQL_TARGETS,
-  NO_VALUE_FALLBACK,
-} from '@commercetools-frontend/constants';
+  Link as RouterLink,
+  Switch,
+  useHistory,
+  useRouteMatch,
+} from 'react-router-dom';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
 import {
   usePaginationState,
   useDataTableSortingState,
@@ -20,15 +22,16 @@ import { ContentNotification } from '@commercetools-uikit/notifications';
 import { Pagination } from '@commercetools-uikit/pagination';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
+import { SuspendedRoute } from '@commercetools-frontend/application-shell';
 import {
   formatLocalizedString,
   transformLocalizedFieldToLocalizedString,
 } from '@commercetools-frontend/l10n';
-import FetchChannelsQuery from './fetch-channels.ctp.graphql';
 import messages from './messages';
+import { useChannelsFetcher } from '../../hooks/use-channels-connector';
+import { getErrorMessage } from '../../helpers';
 
-const getErrorMessage = (error) =>
-  error.graphQLErrors?.map((e) => e.message).join('\n') || error.message;
+const ChannelDetails = lazy(() => import('../channel-details'));
 
 const columns = [
   { key: 'name', label: 'Channel name' },
@@ -57,21 +60,18 @@ const itemRenderer = (item, column, dataLocale, projectLanguages) => {
 
 const Channels = (props) => {
   const intl = useIntl();
+  const match = useRouteMatch();
+  const { push } = useHistory();
   const { page, perPage } = usePaginationState();
   const tableSorting = useDataTableSortingState({ key: 'key', order: 'asc' });
   const { dataLocale, projectLanguages } = useApplicationContext((context) => ({
     dataLocale: context.dataLocale,
     projectLanguages: context.project.languages,
   }));
-  const { data, error, loading } = useMcQuery(FetchChannelsQuery, {
-    variables: {
-      limit: perPage.value,
-      offset: (page.value - 1) * perPage.value,
-      sort: [`${tableSorting.value.key} ${tableSorting.value.order}`],
-    },
-    context: {
-      target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
-    },
+  const { channelsPaginatedResult, error, loading } = useChannelsFetcher({
+    page,
+    perPage,
+    tableSorting,
   });
 
   if (error) {
@@ -102,12 +102,12 @@ const Channels = (props) => {
 
       {loading && <LoadingSpinner />}
 
-      {data?.channels ? (
+      {channelsPaginatedResult ? (
         <Spacings.Stack scale="l">
           <DataTable
             isCondensed
             columns={columns}
-            rows={data.channels.results}
+            rows={channelsPaginatedResult.results}
             itemRenderer={(item, column) =>
               itemRenderer(item, column, dataLocale, projectLanguages)
             }
@@ -115,14 +115,20 @@ const Channels = (props) => {
             sortedBy={tableSorting.value.key}
             sortDirection={tableSorting.value.order}
             onSortChange={tableSorting.onChange}
+            onRowClick={(row) => push(`${match.url}/${row.id}`)}
           />
           <Pagination
             page={page.value}
             onPageChange={page.onChange}
             perPage={perPage.value}
             onPerPageChange={perPage.onChange}
-            totalItems={data.channels.total}
+            totalItems={channelsPaginatedResult.total}
           />
+          <Switch>
+            <SuspendedRoute path={`${match.url}/:id`}>
+              <ChannelDetails onClose={() => push(`${match.url}`)} />
+            </SuspendedRoute>
+          </Switch>
         </Spacings.Stack>
       ) : null}
     </Spacings.Stack>

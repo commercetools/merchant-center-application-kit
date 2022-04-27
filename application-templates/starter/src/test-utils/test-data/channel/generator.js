@@ -1,6 +1,6 @@
 import { sequence, fake, Generator } from '@commercetools-test-data/core';
 import { LocalizedString } from '@commercetools-test-data/commons';
-import { roles } from './constants';
+import { CHANNEL_ROLES } from '../../../components/channel-details/constants';
 
 // https://docs.commercetools.com/api/projects/channels#channel
 const generator = Generator({
@@ -13,7 +13,7 @@ const generator = Generator({
     createdBy: null,
     lastModifiedAt: fake((f) => f.date.recent(2)),
     lastModifiedBy: null,
-    roles: [roles.Primary],
+    roles: [CHANNEL_ROLES.primary],
     name: fake(() => LocalizedString.random()),
     description: fake(() => LocalizedString.random()),
     address: null,
