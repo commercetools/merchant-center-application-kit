@@ -30,11 +30,17 @@ npm --save install react redux react-redux
 
 # Notification system
 
-Custom Applications come with an built-in notification system built on top of [Redux](https://redux.js.org).
+Custom Applications come with a built-in notification system built on top of [Redux](https://redux.js.org).
 
 The `@commercetools-frontend/actions-global` package provides Redux action creators and React hooks to facilitate dispatching notifications within Custom Applications.
 
 # Action creators
+
+<Info>
+
+Rather than using the action creators directly we recommend using the corresponding React hooks. The hooks have the `dispatch` method of the Redux store bound internally. 
+
+</Info>
 
 ## showNotification
 
