@@ -1,0 +1,12 @@
+query FetchChannelDetails($channelId: String!) {
+  channel(id: $channelId) {
+    id
+    version
+    key
+    roles
+    nameAllLocales {
+      locale
+      value
+    }
+  }
+}
