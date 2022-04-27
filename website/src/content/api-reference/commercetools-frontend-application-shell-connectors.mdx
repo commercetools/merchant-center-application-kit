@@ -38,7 +38,7 @@ This is the list of the main properties you can access in the application contex
 
 ### `environment`
 
-An object containing information about the environment of the Custom Application such as the [ID](/api-reference/application-config#envproductionapplicationid))] of the Custom Application or its [entry point](/api-reference/application-config#entrypointuripath).
+The information about the runtime application environment such as the [application ID](/api-reference/application-config#envproductionapplicationid) or the [application entry point](/api-reference/application-config#entrypointuripath).
 
 ```json
 {
@@ -52,7 +52,7 @@ An object containing information about the environment of the Custom Application
 
 ### `user`
 
-Logged in user information.
+The information about the logged in user.
 
 ```json
 {
@@ -75,7 +75,7 @@ Logged in user information.
 
 ### `project`
 
-Current selected project information.
+The information about the currently selected project.
 
 ```json
 {
@@ -93,7 +93,7 @@ Current selected project information.
 
 ### `dataLocale`
 
-This property contains the information about the selected locale that is used to render localized data in your application.
+The selected data locale that is used to render localized data in your application.
 You should use it as the selected language in components such as [LocalizedTextField](https://uikit.commercetools.com/?path=/story/components-fields--localizedtextfield).
 
 ```json
@@ -102,28 +102,32 @@ You should use it as the selected language in components such as [LocalizedTextF
 }
 ```
 
+<Info>
+
+This is not the value used for the Merchant Center language, which is based on the `user.locale`.
+
+</Info>
+
 ## Custom user properties
 
-It is important to note that your Custom Application configuration properties are also exposed within the `context.environment` property.<br/>
-Any property you add to your application configuration file under the prop [`additionalEnv`](/api-reference/application-config#additionalenv) will also be available in the `context.environment` object.
+On top of the default properties in the `context.environment` object, any property defined in the [`additionalEnv`](/api-reference/application-config#additionalenv) object will be available in the `context.environment` object as well.
 
-Let's say you have something like this `custom-application-config.mjs` file in your project:
+This is useful to inject values specific to your application. For example:
 
-```json
+```json title="custom-application-config.json" highlightLines="5-7"
 {
   "name": "My Custom Application",
   "entryPointUriPath": "my-custom-application",
   "cloudIdentifier": "gcp-eu",
   "additionalEnv": {
     "trackingSentry": "https://000@sentry.io/000",
-  },
-  ... // rest of your configuration
+  }
 }
 ```
 
-Your `context.environment` object will look like this:
+The `context.environment` object will then include the `trackingSentry` property:
 
-```json
+```json highlightLines="6"
 {
   "environment": {
     "applicationId": "ckw3vt1hv034901uzio4bkzc3:my-custom-application",
@@ -134,29 +138,23 @@ Your `context.environment` object will look like this:
 }
 ```
 
-<Info>
-
-More information about accessing your custom configuration can found [here](/api-reference/application-config#runtime-application-environment)
-
-</Info>
-
 ## Usage
 
 ### useApplicationContext
 
-This is a custom hook which allows to access the `ApplicationContext` from any component (or other hooks).
+A React hook that allows to access the `ApplicationContext` and selectively pick the necessary properties.
 
-```jsx
+```jsx highlightLines="4-6"
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 
 const DisplayLocale = () => {
-  const { locale } = useApplicationContext((context) => ({
-    locale: applicationContext.dataLocale
-  }));
+  const dataLocale = useApplicationContext((context) =>
+    applicationContext.dataLocale
+  );
   render() {
     return (
       <div>
-        <h1>Current locale: {locale}</h1>
+        <h1>Current data locale: {dataLocale}</h1>
       </div>
     );
   }
@@ -167,41 +165,47 @@ export default DisplayLocale;
 
 ### withApplicationContext
 
-This is a High Order Component which allows to access the `ApplicationContext` from any component.
-It is meant to be used if you have a class based component where you need to read context data.
+A higher-order component (HOC) that allows to access the `ApplicationContext` and selectively pick the necessary properties. This is the equivalent of the React hook `useApplicationContext`.
 
-```jsx
+```jsx highlightLines="13-15"
 import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 
 class DisplayLocale extends React.Component {
   render() {
     return (
       <div>
-        <h1>Current locale: {this.props.locale}</h1>
+        <h1>Current data locale: {this.props.dataLocale}</h1>
       </div>
     );
   }
 }
 
 export default withApplicationContext((applicationContext) => ({
-  locale: applicationContext.dataLocale
+  dataLocale: applicationContext.dataLocale
 }))(DisplayLocale);
 ```
 
 # Project image settings
 
-When using your images for your projects you are expected to upload them to our platform. However, you can also choose to host your images in another service.<br/>
-If this is the case, we don't show them by default to prevent for huge images to be loaded in the browser that could impact Merchat Center performance.
+Product images can be uploaded to the commercetools platform or can be referenced from external sources.
 
-To enable the rendering of those images you need to set up a project-level configuration where you specify rewrite rules for different images sizes.<br/>
-You can find this configuration in the settings section of your projects in the Merchant Center (**Settings > Project Settings > Miscellaneous**).
+By default, images referenced from external sources are not displayed in the Merchant Center. This is primarily due to avoid possible performance issues in case the size of those images is big.
+
+In order to show images referenced from external sources, you need to define a configuration to rewrite the URL of the images to versions of the image that has a smaller size. You can configure that in the Merchant Center **Settings > Project Settings > Miscellaneous**.
+
+This configuration can be fetched from your Custom Application using the following components.
 
 ## Usage
 
 ### ProjectExtensionProviderForImageRegex
 
-If you need to access the rewrite rules for your project images, you need to use this provider in your component's tree.<br/>
-The provider will load the configuration and make it available using the components listed below.
+This is the React context provider that loads the image regex configuration and expose it in the React context so that children can access the configuration.
+
+<Info>
+
+This component is required to be defined in a parent component where children of this component need to access the configuration.
+
+</Info>
 
 #### Properties
 
@@ -213,8 +217,7 @@ The provider will load the configuration and make it available using the compone
 
 ### GetProjectExtensionImageRegex
 
-Use this component to access the project images configuration provider.<br/>
-It exposes a render prop function which will return the project images configuration.
+Use this component to access the project images configuration, using a `render` prop function.
 
 ```jsx
 function MyComponent() {
@@ -279,7 +282,7 @@ type TImageRegexContext = {
 
 ### withProjectExtensionImageRegex
 
-In case you are using a class based component, you can use this HOC to access the project images configuration.
+A higher-order component (HOC) to access the image regex configuration.
 
 ```jsx
 class MyComponent extends React.Component {
