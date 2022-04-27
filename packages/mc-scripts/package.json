@@ -76,7 +76,6 @@
     "thread-loader": "3.0.4",
     "url": "^0.11.0",
     "vite": "2.9.1",
-    "vite-plugin-dynamic-publicpath": "1.1.2",
     "webpack": "5.72.0",
     "webpack-bundle-analyzer": "4.5.0",
     "webpack-dev-server": "4.8.1",

@@ -3055,7 +3055,6 @@ __metadata:
     thread-loader: 3.0.4
     url: ^0.11.0
     vite: 2.9.1
-    vite-plugin-dynamic-publicpath: 1.1.2
     webpack: 5.72.0
     webpack-bundle-analyzer: 4.5.0
     webpack-dev-server: 4.8.1
@@ -16332,13 +16331,6 @@ __metadata:
     string.prototype.trimstart: ^1.0.4
     unbox-primitive: ^1.0.1
   checksum: b6be8410672c5364db3fb01eb786e30c7b4bb32b4af63d381c08840f4382c4a168e7855cd338bf59d4f1a1a1138f4d748d1fd40ec65aaa071876f9e9fbfed949
-  languageName: node
-  linkType: hard
-
-"es-module-lexer@npm:^0.6.0":
-  version: 0.6.0
-  resolution: "es-module-lexer@npm:0.6.0"
-  checksum: ef04832d0f118e07c5aafc3824f274df380e9f86915a2d665884d9498f580b1f5607bc633504460a6c6247b7689aaa774b024d6733de28614d1fab72991a6fc3
   languageName: node
   linkType: hard
 
@@ -34516,15 +34508,6 @@ __metadata:
     unist-util-stringify-position: ^2.0.0
     vfile-message: ^2.0.0
   checksum: ee5726e10d170472cde778fc22e0f7499caa096eb85babea5d0ce0941455b721037ee1c9e6ae506ca2803250acd313d0f464328ead0b55cfe7cb6315f1b462d6
-  languageName: node
-  linkType: hard
-
-"vite-plugin-dynamic-publicpath@npm:1.1.2":
-  version: 1.1.2
-  resolution: "vite-plugin-dynamic-publicpath@npm:1.1.2"
-  dependencies:
-    es-module-lexer: ^0.6.0
-  checksum: c631149bb006af3e5a6c00ef4cf891b33cc1e6d7839a5b940f671e798a8382196c5fe3a4782f047f7f37a65a76691a8e3c2eab62117be0a685f2287a32a47771
   languageName: node
   linkType: hard
 

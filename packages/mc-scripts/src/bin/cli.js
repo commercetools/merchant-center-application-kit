@@ -71,9 +71,16 @@ const applicationDirectory = fs.realpathSync(process.cwd());
         process.env.BABEL_ENV = 'production';
         process.env.NODE_ENV = 'production';
 
+        const shouldAlsoCompile = !flags['build-only'];
         const shouldUseExperimentalBundler =
           process.env.ENABLE_EXPERIMENTAL_VITE_BUNDLER === 'true';
-        const shouldAlsoCompile = !flags['build-only'];
+        if (shouldUseExperimentalBundler) {
+          console.log('Experimental Vite bundler enabled! 🚀');
+          console.warn(
+            'NOTE that the "cdnURL" value is not supported at the moment when using Vite.'
+          );
+          console.log('');
+        }
 
         proxyCommand(command, {
           noExit: shouldAlsoCompile,
@@ -81,6 +88,7 @@ const applicationDirectory = fs.realpathSync(process.cwd());
         });
 
         if (shouldAlsoCompile) {
+          console.log('');
           proxyCommand('compile-html');
         }
 
@@ -112,6 +120,10 @@ const applicationDirectory = fs.realpathSync(process.cwd());
 
         const shouldUseExperimentalBundler =
           process.env.ENABLE_EXPERIMENTAL_VITE_BUNDLER === 'true';
+        if (shouldUseExperimentalBundler) {
+          console.log('Experimental Vite bundler enabled');
+          console.log('');
+        }
 
         proxyCommand(command, {
           fileName: shouldUseExperimentalBundler ? 'start-vite' : 'start',
