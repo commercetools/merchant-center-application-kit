@@ -13,8 +13,9 @@ function createMcDevAuthenticationMiddleware(applicationConfig) {
   const htmlLogin = compileLoginView({ env: applicationConfig.env });
   const htmlLogout = compileLogoutView({ env: applicationConfig.env });
 
-  const areAuthRoutesOfDevServerDisabled =
-    String(applicationConfig.env.disableAuthRoutesOfDevServer) === 'true';
+  const isDevAuthenticationMiddlewareDisabled =
+    String(applicationConfig.env.disableAuthRoutesOfDevServer) === 'true' ||
+    applicationConfig.env.servedByProxy;
 
   /**
    * @type {import('express').RequestHandler}
@@ -39,10 +40,7 @@ function createMcDevAuthenticationMiddleware(applicationConfig) {
         )
       ) {
         if (request.originalUrl.startsWith('/login/authorize')) {
-          if (
-            areAuthRoutesOfDevServerDisabled ||
-            applicationConfig.env.servedByProxy
-          ) {
+          if (isDevAuthenticationMiddlewareDisabled) {
             next();
           } else {
             response.end(htmlLogin);
@@ -52,10 +50,7 @@ function createMcDevAuthenticationMiddleware(applicationConfig) {
       }
     } else {
       if (request.originalUrl === '/login') {
-        if (
-          areAuthRoutesOfDevServerDisabled ||
-          applicationConfig.env.servedByProxy
-        ) {
+        if (isDevAuthenticationMiddlewareDisabled) {
           next();
         } else {
           response.end(htmlLogin);
@@ -65,10 +60,7 @@ function createMcDevAuthenticationMiddleware(applicationConfig) {
       if (request.originalUrl === '/logout') {
         logout(response);
 
-        if (
-          areAuthRoutesOfDevServerDisabled ||
-          applicationConfig.env.servedByProxy
-        ) {
+        if (isDevAuthenticationMiddlewareDisabled) {
           next();
         } else {
           response.end(htmlLogout);
