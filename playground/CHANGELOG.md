@@ -1,5 +1,24 @@
 # playground
 
+## 19.2.0
+
+### Minor Changes
+
+- [#2572](https://github.com/commercetools/merchant-center-application-kit/pull/2572) [`5b06e97a`](https://github.com/commercetools/merchant-center-application-kit/commit/5b06e97a65b48255d45f4d66acb6d52548025cc4) Thanks [@emmenko](https://github.com/emmenko)! - Bump uikit packages to v15.
+
+### Patch Changes
+
+- [#2563](https://github.com/commercetools/merchant-center-application-kit/pull/2563) [`238bd34a`](https://github.com/commercetools/merchant-center-application-kit/commit/238bd34a6045fd4cda443585b714ac0689ecd335) Thanks [@kark](https://github.com/kark)! - Update `react-intl` to version `^5.25.0`
+
+* [#2568](https://github.com/commercetools/merchant-center-application-kit/pull/2568) [`5bcf106a`](https://github.com/commercetools/merchant-center-application-kit/commit/5bcf106a1b82cb2854550a78280554abf1004c62) Thanks [@emmenko](https://github.com/emmenko)! - Rename files using JSX to `.jsx`
+
+- [#2568](https://github.com/commercetools/merchant-center-application-kit/pull/2568) [`5bcf106a`](https://github.com/commercetools/merchant-center-application-kit/commit/5bcf106a1b82cb2854550a78280554abf1004c62) Thanks [@emmenko](https://github.com/emmenko)! - Use new experimental bundler
+
+- Updated dependencies [[`238bd34a`](https://github.com/commercetools/merchant-center-application-kit/commit/238bd34a6045fd4cda443585b714ac0689ecd335), [`5b06e97a`](https://github.com/commercetools/merchant-center-application-kit/commit/5b06e97a65b48255d45f4d66acb6d52548025cc4), [`1065e661`](https://github.com/commercetools/merchant-center-application-kit/commit/1065e661f4bd7bd9b6096fdc6296c0341129f301)]:
+  - @commercetools-frontend/application-components@21.4.0
+  - @commercetools-frontend/application-shell@21.4.0
+  - @commercetools-frontend/i18n@21.4.0
+
 ## 19.1.6
 
 ### Patch Changes

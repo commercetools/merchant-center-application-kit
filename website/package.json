@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-website/custom-applications",
-  "version": "18.5.1",
+  "version": "18.6.0",
   "private": true,
   "scripts": {
     "clean": "gatsby clean",
