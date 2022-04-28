@@ -8,10 +8,7 @@ yarn compile-intl
 if [ "$1" = "--watch" ]; then
 
   echo "Building packages in watch mode."
-  preconstruct watch & \
-  NODE_ENV=production yarn workspace @commercetools-frontend/codemod build:bundles:watch & \
-  NODE_ENV=production yarn workspace @commercetools-frontend/mc-html-template build:bundles:watch & \
-  NODE_ENV=production yarn workspace @commercetools-frontend/mc-scripts build:bundles:watch
+  preconstruct watch
 
 else
 

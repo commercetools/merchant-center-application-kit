@@ -11,3 +11,10 @@ export type TCliFlags = {
   help: boolean;
   'dry-run': boolean;
 };
+
+export type TCliCommand = 'rename-js-to-jsx';
+
+export type TCliCommandArguments = [
+  transform: TCliCommand,
+  globPattern: string
+];

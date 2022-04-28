@@ -3,7 +3,7 @@ import mri from 'mri';
 import glob from 'glob';
 // @ts-ignore internal module
 import Runner from 'jscodeshift/src/Runner';
-import type { TRunnerOptions, TCliFlags } from './types';
+import type { TRunnerOptions, TCliFlags, TCliCommandArguments } from './types';
 
 export const run = () => {
   const flags = mri<TCliFlags>(process.argv.slice(2), {
@@ -27,7 +27,7 @@ Transforms:
     process.exit(0);
   }
 
-  const [transform, globPattern] = commands;
+  const [transform, globPattern] = commands as TCliCommandArguments;
 
   const files = glob.sync(globPattern);
 
