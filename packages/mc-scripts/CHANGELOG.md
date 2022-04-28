@@ -1,5 +1,47 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.4.0
+
+### Minor Changes
+
+- [#2568](https://github.com/commercetools/merchant-center-application-kit/pull/2568) [`5bcf106a`](https://github.com/commercetools/merchant-center-application-kit/commit/5bcf106a1b82cb2854550a78280554abf1004c62) Thanks [@emmenko](https://github.com/emmenko)! - Enable opt-in support for using [Vite.js](https://vitejs.dev/) bundler. To enable it, set the environment variable `ENABLE_EXPERIMENTAL_VITE_BUNDLER="true"` in your dotenv file.
+
+  # Why Vite
+
+  Vite (French word for "quick", pronounced /vit/, like "veet") is a build tool that aims to provide a faster and leaner development experience for modern web projects.
+
+  You can learn more about the rationale behind the project in the [Why Vite](https://vitejs.dev/guide/why.html) documentation.
+
+  # Native ES Modules support
+
+  Vite is optimized for using native [ES Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) via `<script type="module">` tags and ES Modules dynamic import.
+
+  # CLI compatibility
+
+  All the `mc-scripts` CLI commands are fully compatible with the new bundler, so you can continue using them as before.
+
+  ## Unsupported features
+
+  The `cdnUrl` value is not supported at the moment when using Vite.
+
+  # Required file extensions
+
+  Vite relies on the file extensions to determine how to process the file in the best possible way. For example, a file using JSX should use the extension `.jsx`, or `.tsx` for TypeScript.
+
+  Up until now we didn't enforce this with Webpack, so using `.js` or `.jsx` works in both cases. If you are still using `.js` for files including the JSX syntax, you need to rename the file to `.jsx`.
+
+  To help with the renaming, you can use our codemod `rename-js-to-jsx`:
+
+  ```
+  npx @commercetools-frontend/codemod rename-js-to-jsx 'src/**/*.js'
+  ```
+
+### Patch Changes
+
+- Updated dependencies [[`5bcf106a`](https://github.com/commercetools/merchant-center-application-kit/commit/5bcf106a1b82cb2854550a78280554abf1004c62), [`5bcf106a`](https://github.com/commercetools/merchant-center-application-kit/commit/5bcf106a1b82cb2854550a78280554abf1004c62), [`5bcf106a`](https://github.com/commercetools/merchant-center-application-kit/commit/5bcf106a1b82cb2854550a78280554abf1004c62)]:
+  - @commercetools-frontend/mc-dev-authentication@21.4.0
+  - @commercetools-frontend/mc-html-template@21.4.0
+
 ## 21.3.4
 
 ### Patch Changes
