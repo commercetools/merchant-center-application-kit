@@ -38,6 +38,8 @@ const generateStatic = async () => {
 };
 
 generateStatic().catch((error) => {
-  console.error(error);
+  if (error && error.message) {
+    console.error(error.message);
+  }
   process.exit(1);
 });

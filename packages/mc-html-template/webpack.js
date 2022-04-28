@@ -24,5 +24,13 @@ module.exports = (templateParams) => {
       fileName.replace(/^\//, '')
   );
 
-  return generateTemplate({ cssChunks, scriptChunks });
+  const cssImports = cssChunks.map(
+    (chunkPath) =>
+      `<link href="__CDN_URL__${chunkPath}" rel='stylesheet' type='text/css'>`
+  );
+  const scriptImports = scriptChunks.map(
+    (chunkPath) => `<script src="__CDN_URL__${chunkPath}"></script>`
+  );
+
+  return generateTemplate({ cssImports, scriptImports });
 };

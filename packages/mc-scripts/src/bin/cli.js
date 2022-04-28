@@ -61,6 +61,10 @@ const applicationDirectory = fs.realpathSync(process.cwd());
 
 (async () => {
   try {
+    // Load dotenv files into the process environment.
+    // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
+    loadDotEnvFiles(flags);
+
     switch (command) {
       case 'build': {
         // Do this as the first thing so that any code reading it knows the right env.
@@ -68,12 +72,23 @@ const applicationDirectory = fs.realpathSync(process.cwd());
         process.env.NODE_ENV = 'production';
 
         const shouldAlsoCompile = !flags['build-only'];
+        const shouldUseExperimentalBundler =
+          process.env.ENABLE_EXPERIMENTAL_VITE_BUNDLER === 'true';
+        if (shouldUseExperimentalBundler) {
+          console.log('Experimental Vite bundler enabled! 🚀');
+          console.warn(
+            'NOTE that the "cdnURL" value is not supported at the moment when using Vite.'
+          );
+          console.log('');
+        }
 
         proxyCommand(command, {
           noExit: shouldAlsoCompile,
+          fileName: shouldUseExperimentalBundler ? 'build-vite' : 'build',
         });
 
         if (shouldAlsoCompile) {
+          console.log('');
           proxyCommand('compile-html');
         }
 
@@ -103,7 +118,16 @@ const applicationDirectory = fs.realpathSync(process.cwd());
         process.env.BABEL_ENV = 'development';
         process.env.NODE_ENV = 'development';
 
-        proxyCommand(command);
+        const shouldUseExperimentalBundler =
+          process.env.ENABLE_EXPERIMENTAL_VITE_BUNDLER === 'true';
+        if (shouldUseExperimentalBundler) {
+          console.log('Experimental Vite bundler enabled');
+          console.log('');
+        }
+
+        proxyCommand(command, {
+          fileName: shouldUseExperimentalBundler ? 'start-vite' : 'start',
+        });
         break;
       }
       case 'login': {
@@ -151,10 +175,6 @@ function getArgsForCommand(allowedFlags = []) {
 }
 
 function proxyCommand(commandName, { commandArgs, fileName, noExit } = {}) {
-  // Load dotenv files into the process environment.
-  // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
-  loadDotEnvFiles(flags);
-
   // Spawn the actual command.
   const result = spawn.sync(
     'node',

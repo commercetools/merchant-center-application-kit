@@ -331,7 +331,11 @@ module.exports = function createWebpackConfigForProduction(options = {}) {
             return (
               // Use this only for plain CSS.
               // For css-modules, see loader above.
-              fileName.endsWith('.css') && !fileName.endsWith('.mod.css')
+              fileName.endsWith('.css') &&
+              !(
+                fileName.endsWith('.mod.css') ||
+                fileName.endsWith('.module.css')
+              )
             );
           },
           // "postcss" loader applies autoprefixer to our CSS.

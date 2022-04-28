@@ -7,19 +7,15 @@
  */
 const fs = require('fs');
 const path = require('path');
-const uglifycss = require('uglifycss');
 
-const loadStyleAsString = (fileName) => {
+const loadHtmlDocAsString = (fileName) => {
   const content = fs.readFileSync(
-    path.join(__dirname, '../html-styles', fileName),
+    path.join(__dirname, '../html-docs', fileName),
     { encoding: 'utf8' }
   );
-  if (process.env.NODE_ENV !== 'production') return content;
-
-  // Minify styles for production usage
-  return uglifycss.processString(content);
+  return content;
 };
 
 module.exports = {
-  loadingScreen: loadStyleAsString('loading-screen.css'),
+  application: loadHtmlDocAsString('application.html'),
 };

@@ -80,7 +80,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
   )
   .catch((err) => {
     if (err && err.message) {
-      console.log(err.message);
+      console.error(err.message);
     }
     process.exit(1);
   });

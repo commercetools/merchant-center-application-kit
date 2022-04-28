@@ -26,7 +26,7 @@
     "strict": true,
     "strictNullChecks": true,
     "stripInternal": true,
-    "target": "ES2019",
+    "target": "ES2022",
     "allowJs": false,
     "typeRoots": ["@types", "@types-extensions", "node_modules/@types"]
   }
