@@ -10,9 +10,9 @@ To facilitate the use of notifications, Custom Applications come with a built-in
 
 Notifications are an important way of providing feedback in response to user actions.
 Submission of a form might end with a success, but for various reasons it might also fail.
-Either way, a user action should be informed what was the end result of the action.
+Either way, a user should be informed what was the end result of the action.
 
-The Custom Applications built-in notification system provides a way of showing a certain type of notification by dispatching Redux actions throught bound action creators or React hooks exposed from the [`@commercetools-frontend/actions-global`](/api-reference/commercetools-frontend-actions-global) package.
+The Custom Application built-in notification system provides a way of showing notifications by dispatching Redux actions throught bound action creators or React hooks exposed from the [`@commercetools-frontend/actions-global`](/api-reference/commercetools-frontend-actions-global) package.
 Notifications can be dispatched in one of the predefined placement options (referred to as **domains**, for instance `page` or `side`) and in one of various kinds depending on the domain (for instance `error`, `warning` or `success`).
 
 <Info>
@@ -21,13 +21,15 @@ For defining the domain and the type of a notification we recommend using the va
 
 </Info>
 
+## Side notifications
+
+![Side notifications](/images/notifications-side.png)
+
+## Page notifications
+
+![Page notifications](/images/notifications-api-error.png)
+
 # Notifications best practices
-
-<Warning>
-
-Be mindful of Custom Application users convenience when dispatching notifications. Excessive and confusing notifications may lead to poor user experience.
-
-</Warning>
 
 <Info>
 
@@ -36,12 +38,11 @@ As a rule of thumb, `error` notifications should be diplayed in the `page` domai
 
 </Info>
 
-## Side notifications
+<Warning>
 
-![Side notifications](/images/notifications-side.png)
+Be mindful of Custom Application users convenience when dispatching notifications. Excessive and confusing notifications may lead to poor user experience.
 
-## Page notifications
-![Page notifications](/images/notifications-api-error.png)
+</Warning>
 
 # Success notifications in the Channels application
 
@@ -125,7 +126,7 @@ More information about GraphQL errors can be found on the [GraphQL API page](htt
 
 </Info>
 
-The basic implementation of dispatching error notification in the `Channels` application might look like this:
+The basic implementation of dispatching error notifications in the `Channels` application might look like this:
 ```js title="channels-details.js" highlightLines="2,6,13-19"
 // ...
 import { useShowApiErrorNotification } from '@commercetools-frontend/actions-global';
@@ -156,7 +157,7 @@ const ChannelsDetails = (props) => {
 ```
 
 Following our [best practies](#notifications-best-practices), not all GraphQL errors should lead to dispatching an error notification.
-For instance, to provide users with the best experience we encourage to map errors related to particular form fields to field validation errors (rather than dispatching a notification).
+For instance, to provide users with the best experience we encourage to map errors related to particular form fields to field error messages (rather than dispatching a notification).
 
 <Info>
 
@@ -167,7 +168,7 @@ More information about API errors can be found on the [API errors page](https://
 
 </Info>
 
-Having that in mind, we might for instance want to notify the user directly in the `<TextField>` in case they try to submit a value that has already been used.
+Having that in mind, we might for instance want to notify the user directly in the `<TextField>` error message in case they try to submit a value that has already been used.
 
 For this purpose, we recommend creating an error transforming function:
 
@@ -238,7 +239,7 @@ Now `DuplicateField` errors related to the `key` field will be transformed to fo
 
 ## REST
 
-For providing users with relevant information in case of HTTP requests sent to REST API we may follow the same pattern as we used for [GraphQL](#graphql):
+For HTTP requests sent to REST API we may follow the same pattern as we used for [GraphQL](#graphql):
 
 ```js title="channels-details-rest.js" highlightLines="4-8,12-13,28-32,35"
 import { useEffect } from "react";
@@ -289,7 +290,7 @@ const ChannelsDetails = (props) => {
 
 # Usage with React class components
 
-If for some reason a notification must be dispatched from a React class component we cannot use React hooks exposed from the `"@commercetools-frontend/actions-global"` package.
+If for some reason a notification must be dispatched from a React class component we cannot use React hooks exposed from the `@commercetools-frontend/actions-global` package.
 Instead, we should use a Redux action directly.
 
 At a bare minimum dispatching notifications could look like this:
