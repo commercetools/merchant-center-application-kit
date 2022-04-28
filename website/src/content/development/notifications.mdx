@@ -1,0 +1,342 @@
+---
+title: Notifications
+---
+
+In the previous sections, we learned how to develop forms. In this section we focus on providing users with relevant information in response to a successful or failed form submission.
+
+To facilitate the use of notifications, Custom Applications come with a built-in [notification system](https://docs.commercetools.com/custom-applications/api-reference/commercetools-frontend-actions-global#notification-system).
+
+# Notification system
+
+Notifications are an important way of providing feedback in response to user actions.
+Submission of a form might end with a success, but for various reasons it might also fail.
+Either way, a user action should be informed what was the end result of the action.
+
+The Custom Applications built-in notification system provides a way of showing a certain type of notification by dispatching Redux actions throught bound action creators or React hooks exposed from the [`@commercetools-frontend/actions-global`](/api-reference/commercetools-frontend-actions-global) package.
+Notifications can be dispatched in one of the predefined placement options (referred to as **domains**, for instance `page` or `side`) and in one of various kinds depending on the domain (for instance `error`, `warning` or `success`).
+
+<Info>
+
+For defining the domain and the type of a notification we recommend using the values exposed from `@commercetools-frontend/constants`.
+
+</Info>
+
+# Notifications best practices
+
+<Warning>
+
+Be mindful of Custom Application users convenience when dispatching notifications. Excessive and confusing notifications may lead to poor user experience.
+
+</Warning>
+
+<Info>
+
+We recommend displaying `success` notifications in the `side` domain.<br />
+As a rule of thumb, `error` notifications should be diplayed in the `page` domain rather than the `side` domain.<br />
+
+</Info>
+
+## Side notifications
+
+![Side notifications](/images/notifications-side.png)
+
+## Page notifications
+![Page notifications](/images/notifications-api-error.png)
+
+# Success notifications in the Channels application
+
+Let's apply the notifications in the `Channels` application:
+
+```js title="channels-details.js" highlightLines="6-7,20,26-30"
+import { useCallback } from 'react';
+import { useRouteMatch } from 'react-router-dom';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { FormModalPage } from '@commercetools-frontend/application-components';
+import LoadingSpinner from '@commercetools-uikit/loading-spinner';
+import { useShowNotification } from '@commercetools-frontend/actions-global';
+import { DOMAINS } from '@commercetools-frontend/constants';
+import useChannelsFetcher from './use-channels-fetcher';
+import useChannelsUpdater from './use-channels-updater';
+import { docToFormValues, formValuesToDoc } from './conversions';
+import ChannelsForm from './channels-form';
+
+const ChannelsDetails = (props) => {
+  const match = useRouteMatch();
+  const languages = useApplicationContext(
+    (context) => context.project.languages
+  );
+  const { data: channel } = useChannelsFetcher(match.params.id);
+  const { updateChannel } = useChannelsUpdater(match.params.id);
+  const showNotification = useShowNotification();
+  const handleSubmit = useCallback(
+    async (formValues) => {
+      const data = formValuesToDoc(formValues);
+      try {
+        await updateChannel(data);
+        showNotification({
+          kind: 'success',
+          domain: DOMAINS.SIDE,
+          text: 'Channel updated! 🎉',
+        });
+      } catch (graphQLErrors) {
+        // show an error notification
+      }
+    },
+    [showNotification, updateChannel]
+  );
+
+  if (!channel) {
+    return <LoadingSpinner />;
+  }
+
+  return (
+    <ChannelsForm
+      initialValues={docToFormValues(channel, languages)}
+      onSubmit={handleSubmit}
+    >
+      {(formProps) => {
+        return (
+          <FormModalPage
+            title="Manage Channel"
+            isOpen
+            onClose={props.onClose}
+            isPrimaryButtonDisabled={formProps.isSubmitting}
+            onSecondaryButtonClick={formProps.handleCancel}
+            onPrimaryButtonClick={formProps.submitForm}
+          >
+            {formProps.formElements}
+          </FormModalPage>
+        );
+      }}
+    </ChannelsForm>
+  );
+};
+```
+
+# Error handling
+
+Most of the time dispatching error notifications is associated with HTTP request handling. In this section we cover handling both GraphQL and REST APIs errors.
+
+## GraphQL
+
+<Info>
+
+More information about GraphQL errors can be found on the [GraphQL API page](https://docs.commercetools.com/api/graphql#error-response-format).
+
+</Info>
+
+The basic implementation of dispatching error notification in the `Channels` application might look like this:
+```js title="channels-details.js" highlightLines="2,6,13-19"
+// ...
+import { useShowApiErrorNotification } from '@commercetools-frontend/actions-global';
+
+const ChannelsDetails = (props) => {
+  // ...
+  const showApiErrorNotification = useShowApiErrorNotification();
+  const handleSubmit = useCallback(
+    async (formValues) => {
+      const data = formValuesToDoc(formValues);
+      try {
+        // ...
+      } catch (graphQLErrors) {
+        const errors = Array.isArray(graphQLErrors)
+          ? graphQLErrors
+          : [graphQLErrors];
+        if (errors.length > 0)
+          showApiErrorNotification({
+            errors,
+          });
+      }
+    },
+    [showApiErrorNotification, /* ... */ ]
+  );
+
+  // ...
+};
+```
+
+Following our [best practies](#notifications-best-practices), not all GraphQL errors should lead to dispatching an error notification.
+For instance, to provide users with the best experience we encourage to map errors related to particular form fields to field validation errors (rather than dispatching a notification).
+
+<Info>
+
+In the following code snippet we take advantage of the fact that a `Channel`'s `key` value [must be unique](https://docs.commercetools.com/api/projects/channels#channel).
+A request to update `Channel`'s `key` to a duplicated value results in error with `DuplicateField` error code.
+
+More information about API errors can be found on the [API errors page](https://docs.commercetools.com/api/errors).
+
+</Info>
+
+Having that in mind, we might for instance want to notify the user directly in the `<TextField>` in case they try to submit a value that has already been used.
+
+For this purpose, we recommend creating an error transforming function:
+
+```js title="transform-errors.js"
+import omitEmpty from 'omit-empty-es';
+
+const DUPLICATE_FIELD_ERROR_CODE = 'DuplicateField'; // A particular error code returned by API that we wish to map to form field validation error
+
+export const transformErrors = (graphQlErrors) => {
+  const errorsToMap = Array.isArray(graphQlErrors)
+    ? graphQlErrors
+    : [graphQlErrors];
+
+  const { formErrors, unmappedErrors } = errorsToMap.reduce(
+    (transformedErrors, graphQlError) => {
+      const errorCode = graphQlError?.extensions?.code ?? graphQlError.code;
+      const fieldName = graphQlError?.extensions?.field ?? graphQlError.field;
+
+      if (errorCode === DUPLICATE_FIELD_ERROR_CODE) {
+        transformedErrors.formErrors[fieldName] = { duplicate: true };
+      } else {
+        transformedErrors.unmappedErrors.push(graphQlError);
+      }
+      return transformedErrors;
+    },
+    {
+      formErrors: {}, // will be mappped to form field error messages
+      unmappedErrors: [], // will result in dispatching `showApiErrorNotification`
+    }
+  );
+
+  return {
+    formErrors: omitEmpty(formErrors),
+    unmappedErrors,
+  };
+};
+```
+
+And then use it in the `<ChannelsDetails>` component:
+```js title="channels-details.js" highlightLines="2,7,12-18"
+// ...
+import { transformErrors } from './transform-errors';
+
+const ChannelsDetails = (props) => {
+  // ...
+  const handleSubmit = useCallback(
+    async (formValues, formikHelpers) => {
+      const data = formValuesToDoc(formValues);
+      try {
+        // ...
+      } catch (graphQLErrors) {
+        const transformedErrors = transformErrors(graphQLErrors);
+        if (transformedErrors.unmappedErrors.length > 0)
+          showApiErrorNotification({
+            errors: transformedErrors.unmappedErrors,
+          });
+
+        formikHelpers.setErrors(transformedErrors.formErrors);
+      }
+    },
+    [ /* ... */ ]
+  );
+  // ...
+};
+```
+
+Now `DuplicateField` errors related to the `key` field will be transformed to form validation errors and all other errors to API error notifications.
+
+## REST
+
+For providing users with relevant information in case of HTTP requests sent to REST API we may follow the same pattern as we used for [GraphQL](#graphql):
+
+```js title="channels-details-rest.js" highlightLines="4-8,12-13,28-32,35"
+import { useEffect } from "react";
+import { useAsyncDispatch, actions } from "@commercetools-frontend/sdk";
+import { MC_API_PROXY_TARGETS } from "@commercetools-frontend/constants";
+import {
+  useShowNotification,
+  useShowApiErrorNotification,
+} from "@commercetools-frontend/actions-global";
+import { DOMAINS } from "@commercetools-frontend/constants";
+
+const ChannelsDetails = (props) => {
+  const dispatch = useAsyncDispatch();
+  const showNotification = useShowNotification();
+  const showApiErrorNotification = useShowApiErrorNotification();
+  useEffect(() => {
+    async function execute() {
+      try {
+        const result = await dispatch(
+          actions.post({
+            mcApiProxyTarget: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
+            service: "channels",
+            options: { /* ... */ },
+            payload: {
+              // ...
+            },
+          })
+        );
+        // Update state with `result`
+        showNotification({
+          kind: "success",
+          domain: DOMAINS.SIDE,
+          text: "Channel updated! 🎉",
+        });
+      } catch (error) {
+        // Update state with `error`
+        showApiErrorNotification({ errors: error.body?.errors ?? [] });
+      }
+    }
+    execute();
+  }, [dispatch]);
+
+  return (
+    // ...
+  );
+};
+```
+
+# Usage with React class components
+
+If for some reason a notification must be dispatched from a React class component we cannot use React hooks exposed from the `"@commercetools-frontend/actions-global"` package.
+Instead, we should use a Redux action directly.
+
+At a bare minimum dispatching notifications could look like this:
+
+```jsx title="channel-updater.js" highlightLines="2-6,14-20,26-30,40"
+import { Component } from 'react';
+import { connect } from 'react-redux';
+import {
+  showNotification,
+  showApiErrorNotification,
+} from '@commercetools-frontend/actions-global';
+import { DOMAINS } from '@commercetools-frontend/constants';
+// ...
+
+class ChannelsDetails extends Component {
+  handleSubmit = (update) => async (formikValues) => {
+    try {
+      await update(formikValues);
+      this.props.dispatch(
+        showNotification({
+          kind: 'success',
+          domain: DOMAINS.SIDE,
+          text: 'Channel updated! 🎉',
+        })
+      );
+    } catch (graphQLErrors) {
+      const errors = Array.isArray(graphQLErrors)
+        ? graphQLErrors
+        : [graphQLErrors];
+      if (errors.length > 0) {
+        this.props.dispatch(
+          showApiErrorNotification({
+            errors,
+          })
+        );
+      }
+    }
+  };
+  render() {
+    return (
+      // ...
+    );
+  }
+}
+export default connect()(ChannelsDetails);
+```
+
+# Testing
+
+As Custom Application notification system relies on Redux use [`renderAppWithRedux`](https://docs.commercetools.com/custom-applications/api-reference/commercetools-frontend-application-shell#renderappwithredux) wrapper to render components for the sake of testing.

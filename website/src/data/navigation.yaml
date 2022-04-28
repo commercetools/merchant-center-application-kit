@@ -30,8 +30,8 @@
       path: /development/ui-components
     - title: Forms
       path: /development/forms
-    # - title: Notifications
-    #   path: /development/notifications
+    - title: Notifications
+      path: /development/notifications
     - title: Testing
       path: /development/testing
     - title: Translations
