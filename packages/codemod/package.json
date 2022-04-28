@@ -14,17 +14,27 @@
   "publishConfig": {
     "access": "public"
   },
-  "files": ["build", "package.json", "LICENSE", "README.md"],
+  "main": "./build/cli.js",
+  "files": ["bin", "build", "package.json", "LICENSE", "README.md"],
   "bin": {
-    "mc-codemod": "./bin/cli.js"
+    "mc-codemod": "./bin/mc-codemod.js"
+  },
+  "scripts": {
+    "build": "rimraf build && tsc",
+    "build:bundles:watch": "yarn build -w"
   },
   "dependencies": {
     "glob": "8.0.1",
-    "is-git-clean": "1.1.0",
     "jscodeshift": "0.13.1",
     "mri": "1.2.0"
   },
   "devDependencies": {
-    "@types/jscodeshift": "0.11.0"
+    "@tsconfig/node14": "^1.0.1",
+    "@types/jscodeshift": "0.11.0",
+    "rimraf": "3.0.2",
+    "typescript": "4.6.3"
+  },
+  "engines": {
+    "node": ">=14"
   }
 }
