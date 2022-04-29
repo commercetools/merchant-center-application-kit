@@ -1,0 +1,228 @@
+<html>
+  <head>
+    <title>Login (development only)</title>
+    <style>
+      html,
+      body {
+        font: 1em sans-serif;
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 32px;
+      }
+
+      body > * + * {
+        margin-top: 32px;
+      }
+
+      .title {
+        width: 355px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 355px;
+      }
+
+      form > * + * {
+        margin: 16px 0 0;
+      }
+
+      .field {
+        border: 0;
+      }
+
+      .field > * + * {
+        margin: 8px 0 0;
+      }
+
+      label {
+        display: block;
+      }
+
+      input {
+        width: 100%;
+        height: 24px;
+        outline: none;
+      }
+
+      input:focus {
+        border: 1px solid cornflowerblue;
+      }
+
+      input:focus:invalid {
+        border-color: red;
+      }
+
+      abbr {
+        text-decoration: none;
+        color: orangered;
+      }
+
+      #errors > div {
+        background-color: red;
+        color: #eee;
+        padding: 8px;
+        border-radius: 4px;
+      }
+
+      .info {
+        background-color: #b5e1fd;
+        padding: 8px;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="title">
+      <h3>
+        Welcome to the Merchant Center authorization page for local development
+      </h3>
+      <small>
+        This page is only available in development mode and is necessary to
+        authenticate yourself. In production environment, we use our own
+        authentication service.
+      </small>
+    </div>
+    <form id="login">
+      <div id="errors"></div>
+      <div class="field">
+        <label for="email">
+          Email<abbr title="This field is mandatory">*</abbr>
+        </label>
+        <input id="email" name="email" type="text" required="required" />
+      </div>
+      <div class="field">
+        <label for="password">
+          Password<abbr title="This field is mandatory">*</abbr>
+        </label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          required="required"
+        />
+      </div>
+      <div>
+        <button type="submit" aria-label="Sign in">Sign in 🚀</button>
+      </div>
+      <div class="info">
+        <small>
+          Note that Single Sign On is not supported at the moment for the
+          development login page. If you are interested in this functionality,
+          let us know and open a
+          <a
+            href="https://github.com/commercetools/merchant-center-application-kit/issues/new/choose"
+            target="_blank"
+            rel="noopener noreferrer"
+            >support issue</a
+          >.
+        </small>
+      </div>
+    </form>
+    <script>
+      /* eslint-disable no-var,vars-on-top */
+      /**
+       * NOTE:
+       *   This code is only used in development mode.
+       *   It authenticates a developer using the same mechanisms
+       *   as when not running in development. However,
+       *   this runs on the same domain as the developer.
+       */
+      window.addEventListener('load', function loaded() {
+        var form = document.getElementById('login');
+        form.addEventListener('submit', function onSubmit(event) {
+          event.preventDefault();
+          authorize();
+        });
+
+        function authorize() {
+          var data = new FormData(form);
+          var payload = {
+            email: data.get('email'),
+            password: data.get('password'),
+          };
+
+          var queryParams = new URLSearchParams(window.location.search);
+          if (queryParams.has('response_type')) {
+            // OIDC params
+            payload.client_id = queryParams.get('client_id');
+            payload.response_type = queryParams.get('response_type');
+            payload.scope = queryParams.get('scope');
+            payload.state = queryParams.get('state');
+            payload.nonce = queryParams.get('nonce');
+          }
+
+          var container = document.getElementById('errors');
+          // Clean up error message elements
+          while (container.firstChild) {
+            container.removeChild(container.firstChild);
+          }
+
+          const url = '__MC_API_URL__/tokens';
+
+          window
+            .fetch(url, {
+              method: 'POST',
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+              },
+              credentials: 'include',
+              body: JSON.stringify(payload),
+            })
+            .then(function handleResponse(response) {
+              if (response.ok) {
+                return response.json().then(function onSuccess(result) {
+                  // Handle OIDC redirect.
+                  if (queryParams.has('response_type')) {
+                    window.location.replace(result.redirectTo);
+                  } else {
+                    window.localStorage.setItem('isAuthenticated', true);
+                    var searchParams = new URLSearchParams(
+                      window.location.search
+                    );
+                    var redirectTo = searchParams.get('redirectTo') || '/';
+                    window.location.replace(redirectTo);
+                  }
+                });
+              }
+              return response.text().then(function onError(responseText) {
+                var message;
+                try {
+                  var parsedResponse = JSON.parse(responseText);
+                  message = parsedResponse.message;
+                } catch (e) {
+                  console.warn(
+                    `Failed to parse error response for ${url}:`,
+                    responseText
+                  );
+
+                  message = responseText;
+                }
+                var errorMessage = document.createTextNode(message);
+                var errorContainer = document.createElement('div');
+                errorContainer.appendChild(errorMessage);
+                container.appendChild(errorContainer, container);
+              });
+            })
+            .catch(function onNetworkError(error) {
+              var errorMessage = document.createTextNode(error.message);
+              var errorContainer = document.createElement('div');
+              errorContainer.appendChild(errorMessage);
+              container.appendChild(errorContainer, container);
+            });
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -14,8 +14,23 @@
   "publishConfig": {
     "access": "public"
   },
+  "main": "dist/commercetools-frontend-mc-dev-authentication.cjs.js",
+  "module": "dist/commercetools-frontend-mc-dev-authentication.esm.js",
+  "files": [
+    "dist",
+    "transformer-local.js",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "dependencies": {
-    "pug": "3.0.2"
+    "@babel/runtime": "^7.17.9",
+    "@babel/runtime-corejs3": "^7.17.9"
+  },
+  "devDependencies": {
+    "@commercetools-frontend/application-config": "21.3.4",
+    "@tsconfig/node14": "^1.0.1",
+    "express": "4.17.3"
   },
   "engines": {
     "node": ">=14"
