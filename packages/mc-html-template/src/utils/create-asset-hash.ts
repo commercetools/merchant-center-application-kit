@@ -1,6 +1,6 @@
-const crypto = require('crypto');
+import crypto from 'crypto';
 
-module.exports = (content) => {
+function createAssetHash(content: string) {
   const sha256Hash = crypto
     .createHash('sha256')
     .update(content)
@@ -14,4 +14,6 @@ module.exports = (content) => {
    *   For more information head to: developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#Sources
    */
   return `sha256-${sha256Hash}`;
-};
+}
+
+export default createAssetHash;

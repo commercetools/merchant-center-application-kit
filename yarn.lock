@@ -3028,15 +3028,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/mc-html-template@workspace:packages/mc-html-template"
   dependencies:
-    "@babel/plugin-transform-runtime": ^7.17.0
-    "@babel/preset-env": ^7.16.11
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
     "@commercetools-frontend/application-config": 21.3.4
     "@commercetools-frontend/constants": 21.3.4
-    babel-plugin-preval: ^5.1.0
-    core-js: ^3.21.1
-    rimraf: 3.0.2
+    "@tsconfig/node14": ^1.0.1
+    "@types/serialize-javascript": ^5.0.2
+    html-webpack-plugin: 5.5.0
     serialize-javascript: 6.0.0
     uglify-js: 3.15.4
     uglifycss: 0.0.29
@@ -10059,6 +10057,13 @@ __metadata:
   version: 6.2.3
   resolution: "@types/semver@npm:6.2.3"
   checksum: 83c86d7005b229df9c4c0d6d13825b839a01932895504596140aea19e2b88f63ac27ab1575347451b50eedb63f72309e845ce1a0ca78360c4f719bbb38371594
+  languageName: node
+  linkType: hard
+
+"@types/serialize-javascript@npm:^5.0.2":
+  version: 5.0.2
+  resolution: "@types/serialize-javascript@npm:5.0.2"
+  checksum: eb14df7716b88740d6322e1c17863fa08350287d9594fae99e686aae9d584ac9d7f9e5498e06e20f5c292e214bc56a23cbf2a954ff804b97be6ff5b0af642ec8
   languageName: node
   linkType: hard
 
