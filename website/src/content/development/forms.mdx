@@ -610,9 +610,13 @@ Sometimes a form contains many different fields, resulting in the form component
 
 One way to improve that is to split the form component into multiple smaller components. As a rule of thumb you can create one separate component for each form field. For example a `<FormChannelNameField>`, a `<FormChannelKeyField>`, and so on.
 
-These components are simple wrapper components of the UI Kit field components but they contain and encapsulate all the logic related to the specific field. 
+<Info>
 
-Beforehand, our Channels form must be refactored to use `<Formik>` component as a context provider. As a result, the form component can look like this:
+To use the `useField` hook the form must be initialized using the `<Formik>` component instead of using the `useFormik` hook, so that the React context is properly defined.
+
+</Info>
+
+As a result, the form component can look like this:
 
 ```jsx title="channels-form.js"
 import { Formik } from 'formik';

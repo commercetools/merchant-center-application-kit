@@ -44,7 +44,25 @@ Rather than using the action creators directly we recommend using the correspond
 
 ## showNotification
 
-An action creator to dispatch any kind of notification.
+An action creator to dispatch any kind of notification.<br />
+Takes 2 arguments: `notification` object (required) and `meta` object (optional).
+
+- `notification` object properties
+
+| Property            | Type       | Required | Values                                                                                | Default | Description                                        |
+| ------------------- | ---------- | :------: | ------------------------------------------------------------------------------------- | ------- | -------------------------------------------------- |
+| `kind`              | `string`   |    ✅    | `success`, `error`, `warning`, `info`, `unexpected-error`, `api-error`                | -       | The kind of the notification.                      |
+| `domain`            | `string`   |    ✅    | `side`, `global`, `page`                                                              | -       | The domain of the notification.                    |
+| `text`              | `string`   |    -     | -                                                                                     | -       | The text content of the notification.              |
+
+
+- `meta` object properties
+
+| Property            | Type       | Required | Values         | Default                                           | Description                                                                            |
+| ------------------- | ---------- | :------: | -------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `dismissAfter`      | `number`   |     -    | -              | `5000` (only for the `sucess` notification)       | Delay (in milliseconds) between the appearing and the closing of the notification.     |
+| `onDismiss`         | `function` |     -    | -              | -                                                 | Called when the notification closes. Receives notification `id` as an argument.        |
+
 
 ## showApiErrorNotification
 
