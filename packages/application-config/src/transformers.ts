@@ -25,7 +25,7 @@ function transformCustomApplicationConfigToData(
     appConfig.entryPointUriPath
   );
 
-  validateSubmenuLinks(appConfig.submenuLinks);
+  validateSubmenuLinks(appConfig);
 
   return {
     id: appConfig.env.production.applicationId,

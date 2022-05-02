@@ -1,7 +1,6 @@
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 import Ajv, { type ErrorObject } from 'ajv';
 import schemaJson from '../schema.json';
-import type { CustomApplicationData } from './types';
 
 type ErrorAdditionalProperty = ErrorObject<
   'additionalProperty',
@@ -48,10 +47,10 @@ export const validateConfig = (
 };
 
 export const validateSubmenuLinks = (
-  submenuLinks: CustomApplicationData['submenuLinks']
+  config: JSONSchemaForCustomApplicationConfigurationFiles
 ) => {
   const uriPathSet = new Set();
-  submenuLinks.forEach(({ uriPath }) => {
+  config.submenuLinks.forEach(({ uriPath }) => {
     if (uriPathSet.has(uriPath)) {
       throw new Error(
         'Duplicate URI path. Every submenu link must have a unique URI path value'

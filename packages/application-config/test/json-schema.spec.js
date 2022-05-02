@@ -175,21 +175,23 @@ describe('invalid configurations', () => {
   });
   it('should validate that "uriPath" for "submenuLinks" is unique', () => {
     expect(() =>
-      validateSubmenuLinks([
-        {
-          uriPath: 'custom-app/avengers',
-          defaultLabel: 'avengers',
-          permissions: [],
-          labelAllLocales: [],
-        },
-
-        {
-          uriPath: 'custom-app/avengers',
-          defaultLabel: 'justice-league',
-          permissions: [],
-          labelAllLocales: [],
-        },
-      ])
+      validateSubmenuLinks({
+        ...fixtureConfigSimple,
+        submenuLinks: [
+          {
+            uriPath: 'custom-app/avengers',
+            defaultLabel: 'avengers',
+            permissions: [],
+            labelAllLocales: [],
+          },
+          {
+            uriPath: 'custom-app/avengers',
+            defaultLabel: 'justice-league',
+            permissions: [],
+            labelAllLocales: [],
+          },
+        ],
+      })
     ).toThrowErrorMatchingInlineSnapshot(
       `"Duplicate URI path. Every submenu link must have a unique URI path value"`
     );
