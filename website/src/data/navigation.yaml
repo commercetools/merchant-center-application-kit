@@ -79,8 +79,8 @@
 
     - title: '@/application-shell'
       path: /api-reference/commercetools-frontend-application-shell
-    # - title: '@/application-shell-connectors'
-    #   path: /api-reference/commercetools-frontend-application-shell-connectors
+    - title: '@/application-shell-connectors'
+      path: /api-reference/commercetools-frontend-application-shell-connectors
     - title: '@/application-components'
       path: /api-reference/commercetools-frontend-application-components
     - title: '@/constants'
