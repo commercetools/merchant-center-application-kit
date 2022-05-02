@@ -27,10 +27,9 @@ const ModalPageWithPortalParentSelector = ({
   <>
     <div id={portalId} style={{ position: 'relative', height: '750px' }} />
     <TabularModalPage
+      isOpen
       title="Lorem ipsum"
       subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-      level={1}
-      isOpen={true}
       onClose={() => undefined}
       getParentSelector={() =>
         document.querySelector(`#${portalId}`) as HTMLElement

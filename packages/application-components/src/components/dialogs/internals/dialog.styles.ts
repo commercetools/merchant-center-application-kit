@@ -3,6 +3,7 @@ import { customProperties } from '@commercetools-uikit/design-system';
 
 type StyleProps = {
   size: 'm' | 'l' | 7 | 8 | 9 | 10 | 'scale';
+  zIndex?: number;
 };
 
 const getConstraintForGridStyle = (size: StyleProps['size']) => {
@@ -73,9 +74,13 @@ export const getModalContentStyles = (props: StyleProps) => {
   return baseStyles;
 };
 
-export const getModalOverlayStyles = () => css`
+export const getOverlayStyles = (props: StyleProps) => css`
   display: flex;
   position: absolute;
+  z-index: ${typeof props.zIndex === 'number'
+    ? // Use `!important` to overwrite the default value assigned by the Stacking Layer System.
+      `${props.zIndex} !important`
+    : 'auto'};
   top: 0;
   width: 100%;
   height: 100%;

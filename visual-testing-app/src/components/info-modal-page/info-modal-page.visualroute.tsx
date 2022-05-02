@@ -15,9 +15,8 @@ const ModalPageWithPortalParentSelector = ({
   <>
     <div id={portalId} style={{ position: 'relative', height: '750px' }} />
     <InfoModalPage
+      isOpen
       title="Lorem ipsum"
-      level={1}
-      isOpen={true}
       onClose={() => undefined}
       subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       getParentSelector={() =>
@@ -61,9 +60,8 @@ export const Component = () => (
     <Spec label="InfoModalPage - Nested" size="xl">
       <ModalPageWithPortalParentSelector portalId="info-modal-two">
         <InfoModalPage
+          isOpen
           title="Second Level Modal"
-          level={2}
-          isOpen={true}
           onClose={() => undefined}
           topBarCurrentPathLabel="Nested Modal"
           topBarPreviousPathLabel="First Level Modal"
@@ -83,36 +81,32 @@ export const Component = () => (
     <Spec label="InfoModalPage - Multiple Nesting" size="xl">
       <ModalPageWithPortalParentSelector portalId="info-modal-nested">
         <InfoModalPage
+          isOpen
           title="Second Level Modal"
-          level={2}
-          isOpen={true}
           onClose={() => undefined}
           getParentSelector={() =>
             document.querySelector(`#info-modal-nested`) as HTMLElement
           }
         >
           <InfoModalPage
+            isOpen
             title="Third Level Modal"
-            level={3}
-            isOpen={true}
             onClose={() => undefined}
             getParentSelector={() =>
               document.querySelector(`#info-modal-nested`) as HTMLElement
             }
           >
             <InfoModalPage
+              isOpen
               title="Fourth Level Modal"
-              level={4}
-              isOpen={true}
               onClose={() => undefined}
               getParentSelector={() =>
                 document.querySelector(`#info-modal-nested`) as HTMLElement
               }
             >
               <InfoModalPage
+                isOpen
                 title="Fifth Level Modal"
-                level={5}
-                isOpen={true}
                 onClose={() => undefined}
                 getParentSelector={() =>
                   document.querySelector(`#info-modal-nested`) as HTMLElement
