@@ -60,7 +60,7 @@ Takes 2 arguments: `notification` object (required) and `meta` object (optional)
 
 | Property            | Type       | Required | Values         | Default                                           | Description                                                                            |
 | ------------------- | ---------- | :------: | -------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `dismissAfter`      | `number`   |     -    | -              | `5000` (only for the `sucess` notification)       | Delay (in milliseconds) between the appearing and the closing of the notification.     |
+| `dismissAfter`      | `number`   |     -    | -              | `5000` (only for the `success` notification)      | Delay (in milliseconds) between the appearing and the closing of the notification.     |
 | `onDismiss`         | `function` |     -    | -              | -                                                 | Called when the notification closes. Receives notification `id` as an argument.        |
 
 
@@ -87,13 +87,13 @@ import {
   useShowNotification
 } from '@commercetools-frontend/actions-global';
 import {
-  NOTIFICATION_DOMAINS,
+  DOMAINS,
   NOTIFICATION_KINDS_SIDE,
 } from '@commercetools-frontend/constants';
 
 const showSuccessNotification = useShowNotification();
 showSuccessNotification({
-  domain: NOTIFICATION_DOMAINS.SIDE,
+  domain: DOMAINS.SIDE,
   kind: NOTIFICATION_KINDS_SIDE.success,
   text: "All good!",
 });
