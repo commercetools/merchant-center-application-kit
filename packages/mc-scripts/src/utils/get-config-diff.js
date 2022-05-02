@@ -1,5 +1,7 @@
 const { red, green } = require('chalk');
 
+const keysToSkip = new Set(['id']);
+
 const t = (indentLevel) => '  '.repeat(indentLevel);
 
 const getStringDiff = (oldStr, newStr, label, indentLevel = 0) => {
@@ -213,7 +215,7 @@ const getConfigDiff = (oldConfig, newConfig) => {
   const diff = [];
 
   Object.keys(oldConfig).forEach((key) => {
-    if (typeof oldConfig[key] === 'string') {
+    if (typeof oldConfig[key] === 'string' && !keysToSkip.has(key)) {
       diff.push(getStringDiff(oldConfig[key], newConfig[key], key));
     }
 
