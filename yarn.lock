@@ -9690,6 +9690,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/jscodeshift@npm:0.11.0":
+  version: 0.11.0
+  resolution: "@types/jscodeshift@npm:0.11.0"
+  dependencies:
+    ast-types: ^0.14.1
+    recast: ^0.20.3
+  checksum: af3f721580c5a11f8aec033ede379dbb637b493568505ef13202bb60a208bcbccafac3d7bf0e6c8c807bfce924caa867a6be461f414bfccbe6e91671209fcc82
+  languageName: node
+  linkType: hard
+
 "@types/jsdom@npm:^16.2.14":
   version: 16.2.14
   resolution: "@types/jsdom@npm:16.2.14"
@@ -16229,7 +16239,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dompurify@npm:2.3.6":
+"dompurify@npm:2.3.6, dompurify@npm:^2.3.6":
   version: 2.3.6
   resolution: "dompurify@npm:2.3.6"
   checksum: 4b2bbf6bc68ebd776aec4a533cef74a5ae30391eed528f3df748af71da318afdc298b6f40449bef093b7454ffd2ae82656636560474de5a3b34316b762c85b12
@@ -21393,7 +21403,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"iconv-lite@npm:0.6, iconv-lite@npm:^0.6.2":
+"iconv-lite@npm:0.6, iconv-lite@npm:0.6.3, iconv-lite@npm:^0.6.2":
   version: 0.6.3
   resolution: "iconv-lite@npm:0.6.3"
   dependencies:
