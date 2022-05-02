@@ -2,39 +2,54 @@
 title: Notifications
 ---
 
-In the previous sections, we learned how to develop forms. In this section we focus on providing users with relevant information in response to a successful or failed form submission.
+In the previous sections, we learned how to develop forms. In this section we look at how to communicate feedback to users using notifications, in particular in response to user actions.
 
-To facilitate the use of notifications, Custom Applications come with a built-in [notification system](https://docs.commercetools.com/custom-applications/api-reference/commercetools-frontend-actions-global#notification-system).
+To facilitate the use of notifications, Custom Applications come with a built-in notification system.
 
 # Notification system
 
 Notifications are an important way of providing feedback in response to user actions.
-Submission of a form might end with a success, but for various reasons it might also fail.
-Either way, a user should be informed what was the end result of the action.
+For example submitting a form might succeed or fail and as a result the user should be notified about that in a way that is understandable and easy to find.
 
-The Custom Application built-in notification system provides a way of showing notifications by dispatching Redux actions throught bound action creators or React hooks exposed from the [`@commercetools-frontend/actions-global`](/api-reference/commercetools-frontend-actions-global) package.
-Notifications can be dispatched in one of the predefined placement options (referred to as **domains**, for instance `page` or `side`) and in one of various kinds depending on the domain (for instance `error`, `warning` or `success`).
+Notifications are grouped by what we call "domains". A domain indicates where the notification should be displayed on the page.
+
+Notifications are also of different types: `success`, `error`, `warning`, `info`. Depending on the specific use case you would choose the appropriate type. For example, if a form has been successfully submitted, you would show a "side" notification of type `success`.
+
+Triggering notifications is done by dispatching global actions. Please refer to the package [`@commercetools-frontend/actions-global`](/api-reference/commercetools-frontend-actions-global) for implementation details.
 
 <Info>
 
 For defining the domain and the type of a notification we recommend using the values exposed from `@commercetools-frontend/constants`.
 
-</Info>
+For instance:
 
-## Side notifications
+```js
+import {
+  useShowNotification
+} from '@commercetools-frontend/actions-global';
+import { 
+  DOMAINS, 
+  NOTIFICATION_KINDS_SIDE,
+  NOTIFICATION_KINDS_PAGE
+} from '@commercetools-frontend/constants';
 
-![Side notifications](/images/notifications-side.png)
+const showNotification = useShowNotification();
 
-## Page notifications
+// success notification in side domain
+showNotification({
+  kind: NOTIFICATION_KINDS_SIDE.success,
+  domain: DOMAINS.SIDE,
+  text: 'Success 🎉',
+});
 
-![Page notifications](/images/notifications-api-error.png)
+// warning notification in page domain
+showNotification({
+  kind: NOTIFICATION_KINDS_PAGE.warning,
+  domain: DOMAINS.PAGE,
+  text: 'Warning ⚠️',
+});
 
-# Notifications best practices
-
-<Info>
-
-We recommend displaying `success` notifications in the `side` domain.<br />
-As a rule of thumb, `error` notifications should be diplayed in the `page` domain rather than the `side` domain.<br />
+```
 
 </Info>
 
@@ -44,9 +59,36 @@ Be mindful of Custom Application users convenience when dispatching notification
 
 </Warning>
 
-# Success notifications in the Channels application
+## Page notifications
 
-Let's apply the notifications in the `Channels` application:
+Page notifications are displayed on top of the content page. They have to be manually closed by default.
+
+<Info>
+
+As a rule of thumb, `error` notifications should be diplayed in the `page` domain rather than the `side` domain.<br />
+
+</Info>
+
+![Page notifications](/images/notifications-api-error.png)
+
+## Side notifications
+
+Side notifications are smaller than page notifications and they slide in from the right side of the page.
+Success notifications in the `side` domain by default disappear after 5 seconds.
+
+<Info>
+
+We recommend displaying `success` notifications in the `side` domain.<br />
+
+</Info>
+
+![Side notifications](/images/notifications-side.png)
+
+# Using notifications in a form
+
+Let's apply notifications in the `Channels` application.
+
+## Form submitted successfully
 
 ```js title="channels-details.js" highlightLines="6-7,20,26-30"
 import { useCallback } from 'react';
@@ -55,7 +97,7 @@ import { useApplicationContext } from '@commercetools-frontend/application-shell
 import { FormModalPage } from '@commercetools-frontend/application-components';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import { useShowNotification } from '@commercetools-frontend/actions-global';
-import { DOMAINS } from '@commercetools-frontend/constants';
+import { DOMAINS, NOTIFICATION_KINDS_SIDE } from '@commercetools-frontend/constants';
 import useChannelsFetcher from './use-channels-fetcher';
 import useChannelsUpdater from './use-channels-updater';
 import { docToFormValues, formValuesToDoc } from './conversions';
@@ -75,7 +117,7 @@ const ChannelsDetails = (props) => {
       try {
         await updateChannel(data);
         showNotification({
-          kind: 'success',
+          kind: NOTIFICATION_KINDS_SIDE.success,
           domain: DOMAINS.SIDE,
           text: 'Channel updated! 🎉',
         });
@@ -114,11 +156,11 @@ const ChannelsDetails = (props) => {
 };
 ```
 
-# Error handling
+## Form submitted with errors
 
-Most of the time dispatching error notifications is associated with HTTP request handling. In this section we cover handling both GraphQL and REST APIs errors.
+Most of the time dispatching error notifications is associated with HTTP request handling. In this section we cover handling both GraphQL and REST APIs error on submitting a form.
 
-## GraphQL
+### GraphQL
 
 <Info>
 
@@ -127,9 +169,11 @@ More information about GraphQL errors can be found on the [GraphQL API page](htt
 </Info>
 
 The basic implementation of dispatching error notifications in the `Channels` application might look like this:
-```js title="channels-details.js" highlightLines="2,6,13-19"
+```js title="channels-details.js" highlightLines="3,8,15-21"
 // ...
-import { useShowApiErrorNotification } from '@commercetools-frontend/actions-global';
+import { 
+  useShowApiErrorNotification 
+} from '@commercetools-frontend/actions-global';
 
 const ChannelsDetails = (props) => {
   // ...
@@ -156,8 +200,8 @@ const ChannelsDetails = (props) => {
 };
 ```
 
-Following our [best practies](#notifications-best-practices), not all GraphQL errors should lead to dispatching an error notification.
-For instance, to provide users with the best experience we encourage to map errors related to particular form fields to field error messages (rather than dispatching a notification).
+Following our recommendations, not all GraphQL errors should lead to dispatching an error notification.
+For instance, to provide users with the best experience we encourage to map known errors related to particular form fields to field error messages (rather than dispatching a notification).
 
 <Info>
 
@@ -237,7 +281,7 @@ const ChannelsDetails = (props) => {
 
 Now `DuplicateField` errors related to the `key` field will be transformed to form validation errors and all other errors to API error notifications.
 
-## REST
+### REST
 
 For HTTP requests sent to REST API we may follow the same pattern as we used for [GraphQL](#graphql):
 
@@ -249,7 +293,7 @@ import {
   useShowNotification,
   useShowApiErrorNotification,
 } from "@commercetools-frontend/actions-global";
-import { DOMAINS } from "@commercetools-frontend/constants";
+import { DOMAINS, NOTIFICATION_KINDS_SIDE } from "@commercetools-frontend/constants";
 
 const ChannelsDetails = (props) => {
   const dispatch = useAsyncDispatch();
@@ -270,7 +314,7 @@ const ChannelsDetails = (props) => {
         );
         // Update state with `result`
         showNotification({
-          kind: "success",
+          kind: NOTIFICATION_KINDS_SIDE.success,
           domain: DOMAINS.SIDE,
           text: "Channel updated! 🎉",
         });
@@ -302,7 +346,7 @@ import {
   showNotification,
   showApiErrorNotification,
 } from '@commercetools-frontend/actions-global';
-import { DOMAINS } from '@commercetools-frontend/constants';
+import { DOMAINS, NOTIFICATION_KINDS_SIDE } from '@commercetools-frontend/constants';
 // ...
 
 class ChannelsDetails extends Component {
@@ -311,7 +355,7 @@ class ChannelsDetails extends Component {
       await update(formikValues);
       this.props.dispatch(
         showNotification({
-          kind: 'success',
+          kind: NOTIFICATION_KINDS_SIDE.success,
           domain: DOMAINS.SIDE,
           text: 'Channel updated! 🎉',
         })
