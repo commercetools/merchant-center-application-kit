@@ -15,6 +15,7 @@ export { GtmContext } from './components/gtm-booter';
 export { default as GtmUserLogoutTracker } from './components/gtm-user-logout-tracker';
 export { default as SetupFlopFlipProvider } from './components/setup-flop-flip-provider';
 export { default as ConfigureIntlProvider } from './components/configure-intl-provider';
+export { default as SuspendedRoute } from './components/suspended-route';
 export {
   useMcQuery,
   useMcLazyQuery,

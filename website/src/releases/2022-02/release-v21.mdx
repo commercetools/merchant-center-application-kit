@@ -193,7 +193,7 @@ Check out the [deployment examples](/deployment-examples) pages for more informa
 
 The `@commercetools-frontend/application-shell/test-utils` has the following breaking changes:
 
-- The `disableApolloMocks` option has been removed. By default, the [Apollo mocks](https://www.apollographql.com/docs/react/development-testing/testing/) are disabled. This is to encourage mocking via [Mock Service Worker](https://mswjs.io/). To opt into the usage of Apollo mocks, you only need to pass the `mocks` property with a non-empty array. See [Testing](/development/testing) for more information.
+- The `disableApolloMocks` option has been removed. By default, the [Apollo mocks](https://www.apollographql.com/docs/react/development-testing/testing/) are deactivated. This is to encourage mocking via [Mock Service Worker](https://mswjs.io/). To opt into the usage of Apollo mocks, you only need to pass the `mocks` property with a non-empty array. See [Testing](/development/testing) for more information.
 - The `disableAutomaticEntryPointRoutes` option now defaults to `false`. This means that when rendering the `<ApplicationShell>`, you should not use the `render` function but pass the application component using `children`.
 
   ```js title="entry-point.js"

@@ -38,7 +38,7 @@ const NotificationsListGlobal = (props: Props) => {
     selectGlobalNotifications
   );
   return (
-    <div css={getStyles(props)}>
+    <div id={`notifications-${props.domain}`} css={getStyles(props)}>
       {notifications.map((notification) => {
         // 1. Check if there is a custom notification component first
         const CustomNotificationComponent =
@@ -107,7 +107,7 @@ const NotificationsListPage = (props: Props) => {
     selectPageNotifications
   );
   return (
-    <div css={getStyles(props)}>
+    <div id={`notifications-${props.domain}`} css={getStyles(props)}>
       {notifications.map((notification) => {
         // 1. Check if there is a custom notification component first
         const CustomNotificationComponent =
@@ -185,7 +185,7 @@ const NotificationsListSide = (props: Props) => {
     selectSideNotifications
   );
   return (
-    <div css={getStyles(props)}>
+    <div id={`notifications-${props.domain}`} css={getStyles(props)}>
       {notifications.map((notification) => {
         // 1. Check if there is a custom notification component first
         const CustomNotificationComponent =

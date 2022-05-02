@@ -21,7 +21,7 @@ import {
 import { Pagination } from '@commercetools-uikit/pagination';
 import { ContentNotification } from '@commercetools-uikit/notifications';
 import messages from './messages';
-import styles from './state-machines-list.mod.css';
+import styles from './state-machines-list.module.css';
 import FetchStatesQuery from './fetch-states.ctp.graphql';
 import { getErrorMessage } from '../../utils/get-error-message';
 

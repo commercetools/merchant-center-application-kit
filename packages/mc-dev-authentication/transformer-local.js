@@ -24,18 +24,6 @@ module.exports = ({ env }) => {
   const loginViewHtml = compileLoginView({ env });
   const logoutViewHtml = compileLogoutView({ env });
 
-  fs.copyFileSync(
-    path.join(__dirname, 'views', 'login.css'),
-    path.join(paths.appBuild, 'login.css')
-  );
-  fs.copyFileSync(
-    path.join(__dirname, 'views', 'login.js'),
-    path.join(paths.appBuild, 'login.js')
-  );
-  fs.copyFileSync(
-    path.join(__dirname, 'views', 'logout.js'),
-    path.join(paths.appBuild, 'logout.js')
-  );
   fs.writeFileSync(
     path.join(paths.appBuild, 'login.html'),
     loginViewHtml,
