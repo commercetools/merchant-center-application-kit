@@ -1,4 +1,4 @@
-import validateConfig, { validateSubmenuLinks } from '../src/validate-config';
+import { validateConfig, validateSubmenuLinks } from '../src/validations';
 import fixtureConfigSimple from './fixtures/config-simple.json';
 import fixtureConfigFull from './fixtures/config-full.json';
 import fixtureConfigOidc from './fixtures/config-oidc.json';

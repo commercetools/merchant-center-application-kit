@@ -1,6 +1,5 @@
 ---
-'@commercetools-frontend/application-config': minor
+'@commercetools-frontend/application-config': patch
 ---
 
-SubmenuLinks are meant to be "unique" based on the `uriPath`
-An error is thrown if there are duplicate uriPath in the submenuLinks.
+- Enforce uniqueness for `uriPath` of the submenu links.

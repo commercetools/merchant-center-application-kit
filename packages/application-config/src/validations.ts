@@ -38,7 +38,7 @@ const printErrors = (errors?: ErrorObject[] | null) => {
     .join('\n');
 };
 
-const validateConfig = (
+export const validateConfig = (
   config: JSONSchemaForCustomApplicationConfigurationFiles
 ): void => {
   const valid = validate(config);
@@ -46,8 +46,6 @@ const validateConfig = (
     throw new Error(printErrors(validate.errors));
   }
 };
-
-export default validateConfig;
 
 export const validateSubmenuLinks = (
   submenuLinks: CustomApplicationData['submenuLinks']

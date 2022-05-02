@@ -10,7 +10,7 @@ import type {
 import fs from 'fs';
 import omitEmpty from 'omit-empty-es';
 import loadConfig from './load-config';
-import validate from './validate-config';
+import { validateConfig } from './validations';
 import substituteVariablePlaceholders from './substitute-variable-placeholders';
 import {
   mapCloudIdentifierToApiUrl,
@@ -54,7 +54,7 @@ const processConfig = ({
   if (cachedConfig && !disableCache) return cachedConfig;
 
   const rawConfig = loadConfig(applicationPath);
-  validate(rawConfig);
+  validateConfig(rawConfig);
   const appConfig =
     substituteVariablePlaceholders<JSONSchemaForCustomApplicationConfigurationFiles>(
       rawConfig,

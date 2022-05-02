@@ -1,7 +1,7 @@
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 import type { CustomApplicationData } from './types';
 import { entryPointUriPathToResourceAccesses } from './formatters';
-import { validateSubmenuLinks } from './validate-config';
+import { validateSubmenuLinks } from './validations';
 
 // The `uriPath` of each submenu link is supposed to be defined relative
 // to the `entryPointUriPath`. Computing the full path is done internally to keep
