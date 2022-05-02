@@ -18,7 +18,7 @@ yarn add @commercetools-frontend/application-shell-connectors
 npm --save install @commercetools-frontend/application-shell-connectors
 ```
 
-Additionally install the peer dependencies (if not present)
+Additionally install the peer dependencies (if not present).
 
 ```
 yarn add react @apollo/client
@@ -30,7 +30,7 @@ npm --save install react @apollo/client
 
 # Application context
 
-This section describes different parts of information provided through the application context and how it can be accessed.
+This section describes different parts of the information provided through the application context and how to access them.
 
 ## Application properties
 
@@ -94,7 +94,7 @@ The information about the currently selected project.
 ### `dataLocale`
 
 The selected data locale that is used to render localized data in your application.
-You should use it as the selected language in components such as [LocalizedTextField](https://uikit.commercetools.com/?path=/story/components-fields--localizedtextfield).
+You should include it as the selected language in components like [LocalizedTextField](https://uikit.commercetools.com/?path=/story/components-fields--localizedtextfield).
 
 ```json
 {
@@ -187,11 +187,11 @@ export default withApplicationContext((applicationContext) => ({
 
 # Project image settings
 
-Product images can be uploaded to the commercetools platform or can be referenced from external sources.
+Product images can be uploaded to the commercetools Platform or referenced from external sources.
 
-By default, images referenced from external sources are not displayed in the Merchant Center. This is primarily due to avoid possible performance issues in case the size of those images is big.
+By default, images referenced from external sources are not displayed in the Merchant Center. This avoids possible performance issues in case the size of those images is big.
 
-In order to show images referenced from external sources, you need to define a configuration to rewrite the URL of the images to versions of the image that has a smaller size. You can configure that in the Merchant Center **Settings > Project Settings > Miscellaneous**.
+To display images referenced from external sources, you must define a configuration that rewrites the URL of the images to versions of the image that have a smaller size. You can configure that in the Merchant Center **Settings > Project settings > Miscellaneous**.
 
 This configuration can be fetched from your Custom Application using the following components.
 
@@ -203,7 +203,7 @@ This is the React context provider that loads the image regex configuration and 
 
 <Info>
 
-This component is required to be defined in a parent component where children of this component need to access the configuration.
+This component must be defined in a parent component where children of this component need to access the configuration.
 
 </Info>
 
@@ -249,7 +249,7 @@ function MyApp() {
 
 | Props                           | Type                                                 | Required | Values            | Default   | Description                                                               |
 | ------------------------------- | ---------------------------------------------------- | :------: | ----------------- | --------- | --------------------------------------------------------------------------|
-| `render`                        | `Function`<br/>[See signature.](#signature-render)   |    ✅    | -                 | -         | Function to render children component with the image regex configuration. |
+| `render`                        | `Function`<br/>See [signature](#signature-render).   |    ✅    | -                 | -         | Function to render children component with the image regex configuration. |
 
 #### Signature `render`
 
@@ -259,7 +259,7 @@ function MyApp() {
 ) => void
 ```
 
-This is the shape of the param provided in the render prop:
+This is the shape of the parameter provided in the render prop:
 
 ```ts
 type TImageRegexContext = {
@@ -312,6 +312,6 @@ class MyApp extends React.Component {
 
 #### Properties
 
-| Props                           | Type                               | Required | Values            | Default                  | Description                                                                                                 |
-| ------------------------------- | ---------------------------------- | :------: | ----------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------|
-| `propKey`                       | `string`                           |    -     | -                 | `imageRegexData`         | Name of the prop where the image regular expression context data will be provided to the wrapped component. |
+| Props                           | Type                               | Required | Values            | Default                  | Description                                                                                                            |
+| ------------------------------- | ---------------------------------- | :------: | ----------------- | ------------------------ | -----------------------------------------------------------------------------------------------------------------------|
+| `propKey`                       | `string`                           |    -     | -                 | `imageRegexData`         | Name of the prop in which the context data of the regular expression for the image is passed to the wrapped component. |
