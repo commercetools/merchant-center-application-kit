@@ -14,53 +14,34 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./build/index.js",
-  "files": ["build", "webpack.js", "package.json", "LICENSE", "README.md"],
-  "scripts": {
-    "build": "rimraf build && babel src --out-dir build",
-    "build:bundles:watch": "yarn build -w"
+  "main": "dist/commercetools-frontend-mc-html-template.cjs.js",
+  "module": "dist/commercetools-frontend-mc-html-template.esm.js",
+  "preconstruct": {
+    "entrypoints": ["./index.ts", "./webpack-html-template.ts"]
   },
+  "files": [
+    "dist",
+    "webpack-html-template",
+    "webpack.js",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "dependencies": {
     "@babel/runtime": "^7.17.9",
     "@babel/runtime-corejs3": "^7.17.9",
     "@commercetools-frontend/application-config": "21.3.4",
     "@commercetools-frontend/constants": "21.3.4",
-    "core-js": "^3.21.1",
     "serialize-javascript": "6.0.0",
     "uglify-js": "3.15.4",
     "uglifycss": "0.0.29"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.17.0",
-    "@babel/preset-env": "^7.16.11",
-    "babel-plugin-preval": "^5.1.0",
-    "rimraf": "3.0.2"
+    "@tsconfig/node14": "^1.0.1",
+    "@types/serialize-javascript": "^5.0.2",
+    "html-webpack-plugin": "5.5.0"
   },
   "engines": {
     "node": ">=14"
-  },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "14"
-          },
-          "modules": "commonjs",
-          "useBuiltIns": "usage",
-          "corejs": 3
-        }
-      ]
-    ],
-    "plugins": [
-      "preval",
-      [
-        "@babel/plugin-transform-runtime",
-        {
-          "corejs": 3
-        }
-      ]
-    ]
   }
 }

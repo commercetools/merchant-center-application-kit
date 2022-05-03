@@ -1,10 +1,18 @@
-const htmlScripts = require('../load-html-scripts');
-const htmlStyles = require('../load-html-styles');
-const sanitizeAppEnvironment = require('./sanitize-app-environment');
+import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
+import sanitizeAppEnvironment from './utils/sanitize-app-environment';
+// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
+import htmlScripts from /* preval */ './load-html-scripts';
+// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
+import htmlStyles from /* preval */ './load-html-styles';
 
-const trimTrailingSlash = (value) => value.replace(/\/$/, '');
+type TReplaceHtmlPlaceholdersOptions = {
+  env: ApplicationRuntimeConfig['env'];
+  headers: Record<string, string | undefined>;
+};
 
-const getGtmTrackingScript = (gtmId) => {
+const trimTrailingSlash = (value: string) => value.replace(/\/$/, '');
+
+const getGtmTrackingScript = (gtmId?: string) => {
   if (!gtmId) return '';
   const url = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
   return `
@@ -12,11 +20,14 @@ const getGtmTrackingScript = (gtmId) => {
   `;
 };
 
-const replaceHtmlPlaceholders = (indexHtmlContent, options) =>
+const replaceHtmlPlaceholders = (
+  indexHtmlContent: string,
+  options: TReplaceHtmlPlaceholdersOptions
+) =>
   indexHtmlContent
     .replace(
       new RegExp('__CSP__', 'g'),
-      options.headers ? options.headers['Content-Security-Policy'] : ''
+      options.headers?.['Content-Security-Policy'] ?? ''
     )
     .replace(
       new RegExp('__CDN_URL__', 'g'),
@@ -50,4 +61,4 @@ const replaceHtmlPlaceholders = (indexHtmlContent, options) =>
       `<style>${htmlStyles.loadingScreen}</style>`
     );
 
-module.exports = replaceHtmlPlaceholders;
+export default replaceHtmlPlaceholders;

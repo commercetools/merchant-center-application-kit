@@ -1,12 +1,18 @@
-const { HTTP_SECURITY_HEADERS } = require('@commercetools-frontend/constants');
-const createAssetHash = require('./utils/create-asset-hash');
-const sanitizeAppEnvironment = require('./utils/sanitize-app-environment');
-const htmlScripts = require('./load-html-scripts');
-// const htmlStyles = require('./load-html-styles');
+import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
+import { HTTP_SECURITY_HEADERS } from '@commercetools-frontend/constants';
+import createAssetHash from './utils/create-asset-hash';
+import sanitizeAppEnvironment from './utils/sanitize-app-environment';
+// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
+import htmlScripts from /* preval */ './load-html-scripts';
 
-const toArray = (value) => (Array.isArray(value) ? value : [value]);
-const mergeCspDirectives = (...csps) =>
-  csps.reduce(
+type TCspDirectiveValue = string | string[] | undefined;
+type TCspDirective = Record<string, TCspDirectiveValue>;
+
+const toArray = (value: TCspDirectiveValue) =>
+  Array.isArray(value) ? value : [value];
+
+const mergeCspDirectives = (...directives: TCspDirective[]) =>
+  directives.reduce(
     (mergedCsp, csp) =>
       Object.assign(
         mergedCsp,
@@ -25,14 +31,14 @@ const mergeCspDirectives = (...csps) =>
       ),
     {}
   );
-const toHeaderString = (directives = {}) =>
+const toHeaderString = (directives: TCspDirective = {}) =>
   Object.entries(directives)
     .map(
       ([directive, value]) =>
         `${directive} ${Array.isArray(value) ? value.join(' ') : value}`
     )
     .join('; ');
-const toStructuredHeaderString = (directives = {}) =>
+const toStructuredHeaderString = (directives: TCspDirective = {}) =>
   Object.entries(directives)
     .map(
       ([directive, value]) =>
@@ -40,7 +46,9 @@ const toStructuredHeaderString = (directives = {}) =>
     )
     .join(', ');
 
-const processHeaders = (applicationConfig) => {
+const processHeaders = (
+  applicationConfig: ApplicationRuntimeConfig
+): Record<string, string | undefined> => {
   const isMcDevEnv = applicationConfig.env.env === 'development';
 
   // List hashes for injected inline scripts.
@@ -118,7 +126,7 @@ const processHeaders = (applicationConfig) => {
   // Recursively merge the directives
   const mergedCsp = mergeCspDirectives(
     cspDirectives,
-    applicationConfig.headers.csp ?? {}
+    applicationConfig.headers?.csp ?? {}
   );
 
   return {
@@ -130,7 +138,7 @@ const processHeaders = (applicationConfig) => {
     'Content-Security-Policy': toHeaderString(mergedCsp),
 
     // Allow to extend the `Strict-Transport-Security` header.
-    ...(applicationConfig.headers.strictTransportSecurity && {
+    ...(applicationConfig.headers?.strictTransportSecurity && {
       'Strict-Transport-Security': [
         HTTP_SECURITY_HEADERS['Strict-Transport-Security'],
         ...applicationConfig.headers.strictTransportSecurity,
@@ -138,19 +146,19 @@ const processHeaders = (applicationConfig) => {
     }),
 
     // Allow to extend the `Feature-Policy` header.
-    ...(applicationConfig.headers.featurePolicies && {
+    ...(applicationConfig.headers?.featurePolicies && {
       'Feature-Policy': toHeaderString(
-        applicationConfig.headers.featurePolicies
+        applicationConfig.headers.featurePolicies as TCspDirective
       ),
     }),
 
     // Allow to extend the `Permissions-Policy` header.
-    ...(applicationConfig.headers.permissionsPolicies && {
+    ...(applicationConfig.headers?.permissionsPolicies && {
       'Permissions-Policy': toStructuredHeaderString(
-        applicationConfig.headers.permissionsPolicies
+        applicationConfig.headers.permissionsPolicies as TCspDirective
       ),
     }),
   };
 };
 
-module.exports = processHeaders;
+export default processHeaders;

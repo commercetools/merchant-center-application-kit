@@ -23,6 +23,5 @@ else
 
   echo "Building CLI packages."
   NODE_ENV=production yarn workspace @commercetools-frontend/codemod build
-  NODE_ENV=production yarn workspace @commercetools-frontend/mc-html-template build
   NODE_ENV=production yarn workspace @commercetools-frontend/mc-scripts build
 fi

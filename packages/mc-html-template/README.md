@@ -4,7 +4,7 @@
   <a href="https://www.npmjs.com/package/@commercetools-frontend/mc-html-template"><img src="https://badgen.net/npm/v/@commercetools-frontend/mc-html-template" alt="Latest release (latest dist-tag)" /></a> <a href="https://www.npmjs.com/package/@commercetools-frontend/mc-html-template"><img src="https://badgen.net/npm/v/@commercetools-frontend/mc-html-template/next" alt="Latest release (next dist-tag)" /></a> <a href="https://bundlephobia.com/result?p=@commercetools-frontend/mc-html-template"><img src="https://badgen.net/bundlephobia/minzip/@commercetools-frontend/mc-html-template" alt="Minified + GZipped size" /></a> <a href="https://github.com/commercetools/merchant-center-application-kit/blob/main/LICENSE"><img src="https://badgen.net/github/license/commercetools/merchant-center-application-kit" alt="GitHub license" /></a>
 </p>
 
-This package contains utils and scripts related to the `index.html` for a MC application in production.
+This package contains utils and scripts related to the `index.html` for a Custom Application.
 
 ## Install
 
@@ -14,13 +14,25 @@ $ npm install --save @commercetools-frontend/mc-html-template
 
 ## API
 
-#### `generateTemplate({ cssChunks: Array<cssPath>, scriptChunks: Array<scriptPath> }): String`
+### `generateTemplate`
 
-This method will return the compiled HTML document with the CSS/JS scripts injected.
+This method will return the template HTML document with the provided CSS/JS scripts injected.
 
 > NOTE that the HTML document will still have the **placeholders** (see `replaceHtmlPlaceholders`)
 
-#### `replaceHtmlPlaceholders(html: String, { env: Object, headers: Object, cliFlags: Object }): String`
+```ts
+type TGenerateTemplateOptions = {
+  cssImports?: string[];
+  scriptImports?: string[];
+};
+
+function generateTemplate({
+  cssImports = [],
+  scriptImports = [],
+}: TGenerateTemplateOptions);
+```
+
+### `replaceHtmlPlaceholders`
 
 This method will replace the **placeholders** defined in the HTML document based on the application config.
 
@@ -37,7 +49,35 @@ At the moment we define the following placeholders:
 - `__GTM_SCRIPT__`: the actual GTM script, in case the `trackingGtm` is defined in the `additionalEnv` property of the application config
 - `__CSP__`: the generated `Content-Security-Policy` directives, defined as an HTML meta tag
 
-#### `processHeaders(applicationConfig: Object, { env: Object, headers: Object }): Object`
+```ts
+type TReplaceHtmlPlaceholdersOptions = {
+  env: ApplicationRuntimeConfig['env'];
+  headers: Record<string, string | undefined>;
+};
+
+function replaceHtmlPlaceholders(
+  indexHtmlContent: string,
+  options: TReplaceHtmlPlaceholdersOptions
+): string;
+```
+
+### `compileHtml`
+
+This method will compile the template HTML document.
+
+```ts
+type TCompileHtmlResult = {
+  env: ApplicationRuntimeConfig['env'];
+  headers: Record<string, string | undefined>;
+  indexHtmlContent: string;
+};
+
+async function compileHtml(
+  indexHtmlTemplatePath: string
+): Promise<TCompileHtmlResult>;
+```
+
+### `processHeaders`
 
 This method will return the security headers to be used on the server response, serving the `index.html`.
 
@@ -55,6 +95,12 @@ The return value of the `processHeaders` function contains the following ready-t
   "Content-Security-Policy": "...",
   "Feature-Policies": "..."
 }
+```
+
+```ts
+function processHeaders(
+  applicationConfig: ApplicationRuntimeConfig
+): Record<string, string | undefined>;
 ```
 
 ## Bundler entry points
