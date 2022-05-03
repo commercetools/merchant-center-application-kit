@@ -38,7 +38,7 @@ The `@commercetools-frontend/actions-global` package provides Redux action creat
 
 <Info>
 
-Rather than using the action creators directly we recommend using the corresponding React hooks. The hooks have the `dispatch` method of the Redux store bound internally. 
+Rather than using the action creators directly **we recommend using the corresponding React hooks**. The hooks have the `dispatch` method of the Redux store bound internally. 
 
 </Info>
 
@@ -86,7 +86,7 @@ const domain = DOMAINS.SIDE;
 An action creator to dispatch an (page) error notification for [API errors](https://docs.commercetools.com/api/errors) of the commercetools platform API.
 Takes as an argument an object with `errors` property being an error object or an array of error objects.
 
-Some sources or errors (for instance GraphQL APIs) return an array or object. `showApiErrorNotification` action creator accepts either as the value of `errors` property. 
+Some sources of errors (for instance GraphQL APIs) return an array or object. `showApiErrorNotification` action creator accepts either as the value of `errors` property. 
 
 ```js
 const errors = [
@@ -107,7 +107,7 @@ dispatch(showApiErrorNotification({ errors })); // dispatch method from Redux st
 
 An action creator that attempts to handle a generic error and dispatch the appropriate (page) notification error if possible. Use this if you simply need to ensure a notification error is shown without knowing what the exact error is.
 
-Takes an error object as an argument:
+It takes only one parameter that can be either of these types:
 
 - API error - an error object containing `statusCode` and `body` object
 ```js
@@ -119,7 +119,7 @@ const error = {
     errors: [
       {
         message:
-          "This is an error",
+          "This is an error", // this message will be displayed as notification text
         code: "Invalid",
       },
     ],
@@ -132,7 +132,33 @@ dispatch(handleActionError(error)); // dispatch method from Redux store
 <Info>
 
 `statusCode: 401` will result in logout of the currently logged user.<br />
-`statusCode: 404` will be ignored and no notification will be displayed.
+
+`statusCode: 404` will be ignored and no notification will be displayed.<br />
+
+In case errors array contains multiple error objects, the displayed notification will contain all of the error messages.
+
+For instance:
+
+```js
+const error = {
+  // ...
+  body: {
+    // ...
+    errors: [
+      {
+        message:
+          "This is the first error", // displayed as the notification text
+        code: "Invalid",
+      },
+      {
+        message:
+          "This is the second error", // also displayed as the notification text
+        code: "Invalid",
+      },
+    ],
+  },
+}
+```
 
 </Info>
 
