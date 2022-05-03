@@ -40,9 +40,11 @@ export type CustomApplicationData = {
 };
 
 // The object result after processing the config file
-export type ApplicationRuntimeConfig = {
+export type ApplicationRuntimeConfig<
+  AdditionalEnvironmentProperties extends {} = {}
+> = {
   data: CustomApplicationData;
-  env: ApplicationWindow['app'];
+  env: AdditionalEnvironmentProperties & ApplicationWindow['app'];
   headers: JSONSchemaForCustomApplicationConfigurationFiles['headers'];
 };
 

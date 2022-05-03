@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>Logout (development only)</title>
+    <script>
+      window.localStorage.removeItem('isAuthenticated');
+      window.localStorage.removeItem('loginStrategy');
+      window.localStorage.removeItem('activeProjectKey');
+    </script>
+  </head>
+  <body>
+    <div>
+      <h3>This is the logout page for local development.</h3>
+      <p>
+        Be aware that you might still have an active session as the cookie is
+        assigned to a production domain (e.g. commercetools.com) which we can't
+        unset from localhost. This is only a problem on local development and we
+        intend fix this in the future.
+      </p>
+      <p>
+        You can
+        <a href="#" onclick="window.location='/login'+window.location.search;"
+          >go to the login page</a
+        >
+        now.
+      </p>
+    </div>
+  </body>
+</html>

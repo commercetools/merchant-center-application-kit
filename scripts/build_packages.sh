@@ -17,7 +17,7 @@ else
 
   else
     echo "Building packages (Preconstruct)."
-    preconstruct build
+    time preconstruct build
 
   fi
 

@@ -1,26 +1,25 @@
-const path = require('path');
-const pug = require('pug');
-const { logout } = require('../routes');
+import type { Request, Response, NextFunction } from 'express';
+import type { TCustomApplicationRuntimeConfig } from './types';
+import { logout } from './routes';
+// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
+import pages from /* preval */ './pages';
 
-const compileLoginView = pug.compileFile(
-  path.join(__dirname, '../views/login.pug')
-);
-const compileLogoutView = pug.compileFile(
-  path.join(__dirname, '../views/logout.pug')
-);
+const trimTrailingSlash = (value: string) => value.replace(/\/$/, '');
 
-function createMcDevAuthenticationMiddleware(applicationConfig) {
-  const htmlLogin = compileLoginView({ env: applicationConfig.env });
-  const htmlLogout = compileLogoutView({ env: applicationConfig.env });
+function createMcDevAuthenticationMiddleware(
+  applicationConfig: TCustomApplicationRuntimeConfig
+) {
+  const htmlLogin = pages.loginPage.replace(
+    new RegExp('__MC_API_URL__', 'g'),
+    trimTrailingSlash(applicationConfig.env.mcApiUrl)
+  );
+  const htmlLogout = pages.logoutPage;
 
   const isDevAuthenticationMiddlewareDisabled =
     String(applicationConfig.env.disableAuthRoutesOfDevServer) === 'true' ||
     applicationConfig.env.servedByProxy;
 
-  /**
-   * @type {import('express').RequestHandler}
-   */
-  return (request, response, next) => {
+  return (request: Request, response: Response, next: NextFunction) => {
     if (request.originalUrl === '/api/graphql') {
       response.statusCode = 404;
       response.setHeader('Content-Type', 'application/json');
@@ -73,4 +72,4 @@ function createMcDevAuthenticationMiddleware(applicationConfig) {
   };
 }
 
-module.exports = createMcDevAuthenticationMiddleware;
+export default createMcDevAuthenticationMiddleware;
