@@ -30,7 +30,9 @@ describe('getConfigDiff', () => {
       ...newConfig,
       name: 'updated test name',
     };
-    expect(getConfigDiff(oldConfig, updatedNewConfig)).toMatchSnapshot();
+    expect(getConfigDiff(oldConfig, updatedNewConfig)).toMatchInlineSnapshot(
+      `"name changed: [31mtest name[39m => [32mupdated test name[39m"`
+    );
   });
 
   it('should display diff for name, description, icon, url', () => {
@@ -41,7 +43,12 @@ describe('getConfigDiff', () => {
       url: 'https://updated-test.com',
       icon: '<svg><path fill="#ffffff"></path></svg>',
     };
-    expect(getConfigDiff(oldConfig, updatedNewConfig)).toMatchSnapshot();
+    expect(getConfigDiff(oldConfig, updatedNewConfig)).toMatchInlineSnapshot(`
+      "name changed: [31mtest name[39m => [32mupdated test name[39m
+      description changed: [31mtest description[39m => [32mupdated description[39m
+      url changed: [31mhttps://test.com[39m => [32mhttps://updated-test.com[39m
+      icon changed: [31m<svg><path fill=\\"#000000\\"></path></svg>[39m => [32m<svg><path fill=\\"#ffffff\\"></path></svg>[39m"
+    `);
   });
 
   it('should display diff for permissions', () => {
@@ -73,7 +80,15 @@ describe('getConfigDiff', () => {
       ],
     };
 
-    expect(getConfigDiff(updatedOldConfig, updatedNewConfig)).toMatchSnapshot();
+    expect(getConfigDiff(updatedOldConfig, updatedNewConfig))
+      .toMatchInlineSnapshot(`
+      "permissions changed
+        manageTestCustomApp changed
+          Item with \\"[32mmanage_customer[39m\\" added
+          Item with \\"[31mmanage_product[39m\\" removed
+        \\"[32mviewTestCustomApps[39m\\" was added
+        \\"[31mviewTestCustomApp[39m\\" was removed"
+    `);
   });
 
   it('should display diff for mainMenuLink', () => {
@@ -113,7 +128,18 @@ describe('getConfigDiff', () => {
       },
     };
 
-    expect(getConfigDiff(updatedOldConfig, updatedNewConfig)).toMatchSnapshot();
+    expect(getConfigDiff(updatedOldConfig, updatedNewConfig))
+      .toMatchInlineSnapshot(`
+      "mainMenuLink changed
+        defaultLabel changed: [31mAvengers[39m => [32mJustice league[39m
+        permission changed
+          Item with \\"[32mmanageTestCustomApps[39m\\" added
+          Item with \\"[31mviewTestCustomApps[39m\\" removed
+        labelAllLocales changed
+          locale with \\"[32mfr[39m\\" was added
+          locale with \\"en\\" was changed: [31mipsum[39m => [32mlorem ipsum[39m
+          locale with \\"[31mde[39m\\" was removed"
+    `);
   });
 
   it('should display diff for submenuLink', () => {
@@ -179,6 +205,20 @@ describe('getConfigDiff', () => {
       ],
     };
 
-    expect(getConfigDiff(updatedOldConfig, updatedNewConfig)).toMatchSnapshot();
+    expect(getConfigDiff(updatedOldConfig, updatedNewConfig))
+      .toMatchInlineSnapshot(`
+      "submenuLink changed
+        Item with \\"custom-app/hello\\" was changed
+          defaultLabel changed: [31mhello[39m => [32mhello world[39m
+          permission changed
+            Item with \\"[32mManageCustomApp[39m\\" added
+            Item with \\"[31mManageOldCustomApp[39m\\" removed
+          labelAllLocales changed
+            locale with \\"de\\" was changed: [31mlorem[39m => [32mipsum[39m
+            locale with \\"[32mes[39m\\" was added
+            locale with \\"[31men[39m\\" was removed
+        Item with \\"[32mcustom-app/ipsum[39m\\" was added
+        Item with \\"[31mcustom-app/lorem[39m\\" was removed"
+    `);
   });
 });
