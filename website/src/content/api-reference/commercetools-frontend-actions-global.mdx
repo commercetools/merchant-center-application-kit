@@ -55,6 +55,23 @@ Takes 2 arguments: `notification` object (required) and `meta` object (optional)
 | `domain`            | `string`   |    ✅    | `side`, `global`, `page`                                                              | -       | The domain of the notification.                    |
 | `text`              | `string`   |    -     | -                                                                                     | -       | The text content of the notification.              |
 
+<Info>
+
+For defining the domain and the kind of a notification we recommend using the values exposed from `@commercetools-frontend/constants`.
+
+For instance:
+
+```js
+import { 
+  DOMAINS, 
+  NOTIFICATION_KINDS_SIDE
+} from '@commercetools-frontend/constants';
+
+const kind = NOTIFICATION_KINDS_SIDE.success;
+const domain = DOMAINS.SIDE;
+```
+
+</Info>
 
 - `meta` object properties
 
@@ -67,14 +84,79 @@ Takes 2 arguments: `notification` object (required) and `meta` object (optional)
 ## showApiErrorNotification
 
 An action creator to dispatch an (page) error notification for [API errors](https://docs.commercetools.com/api/errors) of the commercetools platform API.
+Takes as an argument an object with `errors` property being an error object or an array of error objects.
+
+Some sources or errors (for instance GraphQL APIs) return an array or object. `showApiErrorNotification` action creator accepts either as the value of `errors` property. 
+
+```js
+const errors = [
+  {
+    message:
+      "A duplicate value '\"Test channel\"' exists for field 'key'.",
+    code: "DuplicateField",
+    extensions: {
+      code: "DuplicateField";
+    };
+  },
+];
+// ...
+dispatch(showApiErrorNotification({ errors })); // dispatch method from Redux store
+```
 
 ## handleActionError
 
 An action creator that attempts to handle a generic error and dispatch the appropriate (page) notification error if possible. Use this if you simply need to ensure a notification error is shown without knowing what the exact error is.
 
+Takes an error object as an argument:
+
+- API error - an error object containing `statusCode` and `body` object
+```js
+import { STATUS_CODES } from '@commercetools-frontend/constants';
+const error = {
+  statusCode: STATUS_CODES.FORBIDDEN, // statusCode: 403
+  body: {
+    message: "This is an error",
+    errors: [
+      {
+        message:
+          "This is an error",
+        code: "Invalid",
+      },
+    ],
+  },
+}
+// ...
+dispatch(handleActionError(error)); // dispatch method from Redux store
+```
+
+<Info>
+
+`statusCode: 401` will result in logout of the currently logged user.<br />
+`statusCode: 404` will be ignored and no notification will be displayed.
+
+</Info>
+
+- an instance of any error extended from `Error` class
+
+```js
+class CustomError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "CustomError";
+  }
+}
+const error = new CustomError("error");
+dispatch(handleActionError(error)); // dispatch method from Redux store
+```
+
 ## hideAllPageNotifications
 
 An action creator to hide all active page notifications.
+Does not take any arguments.
+
+```js
+dispatch(hideAllPageNotifications()); // dispatch method from Redux store
+```
 
 # Hooks
 
@@ -123,10 +205,11 @@ showApiErrorNotification({ errors });
 A React hook to dispatch [`handleActionError`](#handleactionerror) action. 
 
 ```js
+import { STATUS_CODES } from '@commercetools-frontend/constants';
 import { useOnActionError } from '@commercetools-frontend/actions-global';
 
 const error = {
-  statusCode: 400,
+  statusCode: STATUS_CODES.FORBIDDEN, // statusCode: 403
   body: {
     message: "This is an error",
     errors: [
