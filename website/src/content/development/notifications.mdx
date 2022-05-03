@@ -2,7 +2,7 @@
 title: Notifications
 ---
 
-In the previous sections, we learned how to develop forms. In this section we look at how to communicate feedback to users using notifications, in particular in response to user actions.
+In the previous section, we learned how to develop forms. In this section we look at how to communicate feedback to users using notifications, in particular in response to user actions.
 
 To facilitate the use of notifications, Custom Applications come with a built-in notification system.
 
@@ -11,11 +11,11 @@ To facilitate the use of notifications, Custom Applications come with a built-in
 Notifications are an important way of providing feedback in response to user actions.
 For example submitting a form might succeed or fail and as a result the user should be notified about that in a way that is understandable and easy to find.
 
-Notifications are grouped by what we call "domains". A domain indicates where the notification should be displayed on the page.
+Notifications are grouped by what we call "domains." A domain indicates where the notification should be displayed on the page (for instance `page` and `side`).
 
-Notifications are also of different types: `success`, `error`, `warning`, `info`. Depending on the specific use case you would choose the appropriate type. For example, if a form has been successfully submitted, you would show a "side" notification of type `success`.
+Notifications are also of different types: `success`, `error`, `warning`, `info`. Depending on the specific use case you would choose the appropriate type. For example, if a form has been successfully submitted, you would show a "side" notification of kind `success`.
 
-Triggering notifications is done by dispatching global actions. Please refer to the package [`@commercetools-frontend/actions-global`](/api-reference/commercetools-frontend-actions-global) for implementation details.
+Triggering notifications is done by using some custom React hooks. Please refer to the package [`@commercetools-frontend/actions-global`](/api-reference/commercetools-frontend-actions-global) for implementation details.
 
 <Info>
 
@@ -29,8 +29,8 @@ import {
 } from '@commercetools-frontend/actions-global';
 import { 
   DOMAINS, 
-  NOTIFICATION_KINDS_SIDE,
-  NOTIFICATION_KINDS_PAGE
+  NOTIFICATION_KINDS_SIDE, // `error`, `warning`, `info`, `success`
+  NOTIFICATION_KINDS_PAGE // `error`, `warning`, `info`, `success`, `unexpected-error`, `api-error`
 } from '@commercetools-frontend/constants';
 
 const showNotification = useShowNotification();
@@ -65,7 +65,7 @@ Page notifications are displayed on top of the content page. They have to be man
 
 <Info>
 
-As a rule of thumb, `error` notifications should be diplayed in the `page` domain rather than the `side` domain.<br />
+As a rule of thumb, `error` notifications should be diplayed in the `page` domain rather than the `side` domain.
 
 </Info>
 
@@ -78,7 +78,7 @@ Success notifications in the `side` domain by default disappear after 5 seconds.
 
 <Info>
 
-We recommend displaying `success` notifications in the `side` domain.<br />
+We recommend displaying `success` notifications in the `side` domain.
 
 </Info>
 
@@ -86,7 +86,7 @@ We recommend displaying `success` notifications in the `side` domain.<br />
 
 # Using notifications in a form
 
-Let's apply notifications in the `Channels` application.
+Let's implement notifications in the details page of the `Channels` application.
 
 ## Form submitted successfully
 
@@ -158,13 +158,13 @@ const ChannelsDetails = (props) => {
 
 ## Form submitted with errors
 
-Most of the time dispatching error notifications is associated with HTTP request handling. In this section we cover handling both GraphQL and REST APIs error on submitting a form.
+Most of the time displaying error notifications is a result of handling API errors. For example, submitting a form is rejected by the API. In this section we look at some example of handling API errors for GraphQL and REST API requests.
 
 ### GraphQL
 
 <Info>
 
-More information about GraphQL errors can be found on the [GraphQL API page](https://docs.commercetools.com/api/graphql#error-response-format).
+More information about GraphQL errors can be found in the [Apollo Client docs](https://www.apollographql.com/docs/react/data/error-handling/).
 
 </Info>
 
@@ -201,18 +201,16 @@ const ChannelsDetails = (props) => {
 ```
 
 Following our recommendations, not all GraphQL errors should lead to dispatching an error notification.
-For instance, to provide users with the best experience we encourage to map known errors related to particular form fields to field error messages (rather than dispatching a notification).
+For instance, instead of showing an error notification we can try to map specific errors to their related form fields.
 
 <Info>
 
-In the following code snippet we take advantage of the fact that a `Channel`'s `key` value [must be unique](https://docs.commercetools.com/api/projects/channels#channel).
-A request to update `Channel`'s `key` to a duplicated value results in error with `DuplicateField` error code.
+In the following code snippet we take advantage of the fact that a Channel's `key` value [must be unique](https://docs.commercetools.com/api/projects/channels#channel).
+A request to update the Channel's `key` to a duplicated value results in an error with the `DuplicateField` error code.
 
 More information about API errors can be found on the [API errors page](https://docs.commercetools.com/api/errors).
 
 </Info>
-
-Having that in mind, we might for instance want to notify the user directly in the `<TextField>` error message in case they try to submit a value that has already been used.
 
 For this purpose, we recommend creating an error transforming function:
 
@@ -251,7 +249,8 @@ export const transformErrors = (graphQlErrors) => {
 };
 ```
 
-And then use it in the `<ChannelsDetails>` component:
+In the form `onSubmit` handler we can then transform the errors, render them in the form (if needed) and dispatch an error notification.
+
 ```js title="channels-details.js" highlightLines="2,7,12-18"
 // ...
 import { transformErrors } from './transform-errors';
@@ -384,4 +383,4 @@ export default connect()(ChannelsDetails);
 
 # Testing
 
-As Custom Application notification system relies on Redux use [`renderAppWithRedux`](https://docs.commercetools.com/custom-applications/api-reference/commercetools-frontend-application-shell#renderappwithredux) wrapper to render components for the sake of testing.
+We recommend using the test render function [`renderAppWithRedux`](https://docs.commercetools.com/custom-applications/api-reference/commercetools-frontend-application-shell#renderappwithredux) when testing notifications, as they rely on Redux.
