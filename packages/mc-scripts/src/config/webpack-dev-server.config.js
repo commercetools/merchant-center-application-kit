@@ -1,6 +1,8 @@
 const { processConfig } = require('@commercetools-frontend/application-config');
 const { processHeaders } = require('@commercetools-frontend/mc-html-template');
-const devAuthentication = require('@commercetools-frontend/mc-dev-authentication');
+const {
+  createMcDevAuthenticationMiddleware,
+} = require('@commercetools-frontend/mc-dev-authentication');
 
 const applicationConfig = processConfig();
 const compiledHeaders = processHeaders(applicationConfig);
@@ -50,11 +52,7 @@ module.exports = ({ port, publicPath }) => ({
       throw new Error('webpack-dev-server is not defined');
     }
 
-    middlewares.push(
-      devAuthentication.middlewares.createMcDevAuthenticationMiddleware(
-        applicationConfig
-      )
-    );
+    middlewares.push(createMcDevAuthenticationMiddleware(applicationConfig));
 
     return middlewares;
   },

@@ -9,7 +9,9 @@ const {
   processHeaders,
   generateTemplate,
 } = require('@commercetools-frontend/mc-html-template');
-const devAuthentication = require('@commercetools-frontend/mc-dev-authentication');
+const {
+  createMcDevAuthenticationMiddleware,
+} = require('@commercetools-frontend/mc-dev-authentication');
 const {
   packageLocation: applicationStaticAssetsPath,
 } = require('@commercetools-frontend/assets');
@@ -42,9 +44,7 @@ const pluginCustomApplication = (applicationConfig) => {
 
         // Handle auth routes for internal local development.
         server.middlewares.use(
-          devAuthentication.middlewares.createMcDevAuthenticationMiddleware(
-            applicationConfig
-          )
+          createMcDevAuthenticationMiddleware(applicationConfig)
         );
       };
     },
