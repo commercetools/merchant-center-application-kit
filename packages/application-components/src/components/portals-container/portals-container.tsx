@@ -18,7 +18,29 @@ type TObservableElementDimensions = {
   height: number;
   width: number;
 };
-type TStackingLayer = { stackingLevel: number; indentationLevel: number };
+
+/**
+ * Stacking layers keep track of how many (React Modal) child nodes are defined
+ * within the portals container.
+ * Every child nodes gets assigned a sequential number (level) to ensure
+ * that every layer has the correct `z-index` defined.
+ * Furtermore, the indentation level (for modal pages) is also calculated based
+ * on the (React Modal) child nodes that are currently active.
+ */
+type TStackingLayer = {
+  /**
+   * A sequential number to indicate the level of each child node of the portals container.
+   * The value is then assigned to each child (React Modal container) using a `data-level` attribute
+   * and targeted using CSS selectors.
+   */
+  stackingLevel: number;
+  /**
+   * A sequential number to indicate the indentation level for modal pages.
+   * The value is defined and applied only to active modal pages.
+   */
+  indentationLevel: number;
+};
+
 type TPortalsContainerProps = {
   /**
    * The offset value for positioning the container from the top, when opened.
@@ -100,12 +122,6 @@ const PortalsContainer = forwardRef<TLayoutRefs, TPortalsContainerProps>(
       (ref as MutableRefObject<TLayoutRefs>)?.current?.notificationsPageRef
     );
 
-    // Stacking layers keep track of how many (React Modal) child nodes are defined
-    // within the portals container.
-    // Every child nodes gets assigned a sequential number (level) to ensure
-    // that every layer has the correct `z-index` defined.
-    // Furtermore, the indentation level (for modal pages) is also calculated based
-    // on the (React Modal) child nodes that are currently active.
     const [stackingLayers, setStackingLayers] = useState<TStackingLayer[]>([]);
     // The mutation observer gets triggered every time a child node gets added or
     // removed from the portals container.
@@ -173,6 +189,7 @@ const PortalsContainer = forwardRef<TLayoutRefs, TPortalsContainerProps>(
                 width: calc(100% - ${props.offsetLeftOnExpandedMenu});
               }
             `,
+            // Apply styles for stacking layers.
             ...stackingLayers.map(
               /**
                * Every "overlay" container gets assigned a sequential `z-index` level.
