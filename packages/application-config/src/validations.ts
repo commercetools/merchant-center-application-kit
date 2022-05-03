@@ -9,6 +9,7 @@ type ErrorAdditionalProperty = ErrorObject<
 type ErrorEnum = ErrorObject<'enum', { allowedValues: string[] }>;
 
 const ajv = new Ajv({ strict: true, useDefaults: true });
+
 const validate =
   ajv.compile<JSONSchemaForCustomApplicationConfigurationFiles>(schemaJson);
 
@@ -36,7 +37,7 @@ const printErrors = (errors?: ErrorObject[] | null) => {
     .join('\n');
 };
 
-const validateConfig = (
+export const validateConfig = (
   config: JSONSchemaForCustomApplicationConfigurationFiles
 ): void => {
   const valid = validate(config);
@@ -45,4 +46,16 @@ const validateConfig = (
   }
 };
 
-export default validateConfig;
+export const validateSubmenuLinks = (
+  config: JSONSchemaForCustomApplicationConfigurationFiles
+) => {
+  const uriPathSet = new Set();
+  config.submenuLinks.forEach(({ uriPath }) => {
+    if (uriPathSet.has(uriPath)) {
+      throw new Error(
+        'Duplicate URI path. Every submenu link must have a unique URI path value'
+      );
+    }
+    uriPathSet.add(uriPath);
+  });
+};

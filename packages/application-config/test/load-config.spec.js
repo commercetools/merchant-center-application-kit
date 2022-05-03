@@ -1,6 +1,6 @@
 import path from 'path';
 import loadConfig from '../src/load-config';
-import validateConfig from '../src/validate-config';
+import { validateConfig } from '../src/validations';
 
 describe.each`
   extension | fixtureApp
