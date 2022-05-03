@@ -36,16 +36,19 @@ const getArrayDiff = (oldArray, newArray, indentLevel = 0) => {
 
 const getPermissionsDiff = (oldPermissions, newPermissions) => {
   const permissionDiff = ['permissions changed'];
-  const mappedOldPermission = {};
 
-  oldPermissions.forEach(({ name, oAuthScopes }) => {
-    mappedOldPermission[name] = oAuthScopes;
-  });
+  const mappedOldPermissions = oldPermissions.reduce(
+    (acc, { name, oAuthScopes }) => ({
+      ...acc,
+      [name]: oAuthScopes,
+    }),
+    {}
+  );
 
   newPermissions.forEach((newPermission) => {
     const currDiff = [`${t(1)}${newPermission.name} changed`];
     // if the permission name is not in the old config, it means it is a new addition.
-    if (!mappedOldPermission[newPermission.name]) {
+    if (!mappedOldPermissions[newPermission.name]) {
       permissionDiff.push(`${t(1)}"${green(newPermission.name)}" was added`);
     }
 
@@ -53,12 +56,12 @@ const getPermissionsDiff = (oldPermissions, newPermissions) => {
     else {
       currDiff.push(
         getArrayDiff(
-          mappedOldPermission[newPermission.name],
+          mappedOldPermissions[newPermission.name],
           newPermission.oAuthScopes,
           2
         )
       );
-      delete mappedOldPermission[newPermission.name];
+      delete mappedOldPermissions[newPermission.name];
     }
 
     currDiff.filter(Boolean).length > 1 &&
@@ -66,7 +69,7 @@ const getPermissionsDiff = (oldPermissions, newPermissions) => {
   });
 
   // if there are old permissions left, it means they were deleted in the new Permissions.
-  Object.keys(mappedOldPermission).forEach((oldPermissionName) => {
+  Object.keys(mappedOldPermissions).forEach((oldPermissionName) => {
     permissionDiff.push(`${t(1)}"${red(oldPermissionName)}" was removed`);
   });
 
@@ -78,12 +81,16 @@ const getLabelAllLocalesDiff = (
   newLabelAllLocales,
   indentLevel = 0
 ) => {
-  const mappedOldLabelAllLocales = {};
   const labelAllLocalesDiff = [`${t(indentLevel - 1)}labelAllLocales changed`];
 
-  oldLabelAllLocales?.forEach(({ locale, value }) => {
-    mappedOldLabelAllLocales[locale] = value;
-  });
+  const mappedOldLabelAllLocales =
+    oldLabelAllLocales?.reduce(
+      (acc, { locale, value }) => ({
+        ...acc,
+        [locale]: value,
+      }),
+      {}
+    ) ?? {};
 
   newLabelAllLocales?.forEach((newLabelAllLocale) => {
     if (newLabelAllLocale.locale in mappedOldLabelAllLocales) {
@@ -121,15 +128,15 @@ const getMainMenuLinkDiff = (oldMainMenuLink, newMainMenuLink) => {
 
   mainMenuLinkDiff.push(
     getStringDiff(
-      oldMainMenuLink['defaultLabel'],
-      newMainMenuLink['defaultLabel'],
+      oldMainMenuLink.defaultLabel,
+      newMainMenuLink.defaultLabel,
       'defaultLabel',
       1
     )
   );
   const mainMenuLinkPermissionsDiff = getArrayDiff(
-    oldMainMenuLink['permissions'],
-    newMainMenuLink['permissions'],
+    oldMainMenuLink.permissions,
+    newMainMenuLink.permissions,
     2
   );
   if (mainMenuLinkPermissionsDiff.length > 0) {
@@ -139,8 +146,8 @@ const getMainMenuLinkDiff = (oldMainMenuLink, newMainMenuLink) => {
 
   mainMenuLinkDiff.push(
     getLabelAllLocalesDiff(
-      oldMainMenuLink['labelAllLocales'],
-      newMainMenuLink['labelAllLocales'],
+      oldMainMenuLink.labelAllLocales,
+      newMainMenuLink.labelAllLocales,
       2
     )
   );
@@ -152,10 +159,14 @@ const getMainMenuLinkDiff = (oldMainMenuLink, newMainMenuLink) => {
 
 const getSubmenuLinksDiff = (oldSubmenuLinks, newSubmenuLinks) => {
   const submenuLinksDiff = ['submenuLink changed'];
-  const mappedSubmenuLinks = {};
-  oldSubmenuLinks.forEach((oldSubmenuLink) => {
-    mappedSubmenuLinks[oldSubmenuLink.uriPath] = oldSubmenuLink;
-  });
+
+  const mappedSubmenuLinks = oldSubmenuLinks.reduce(
+    (acc, oldSubmenuLink) => ({
+      ...acc,
+      [oldSubmenuLink.uriPath]: oldSubmenuLink,
+    }),
+    {}
+  );
 
   newSubmenuLinks.forEach((newSubmenuLink) => {
     const oldSubMenuLink = mappedSubmenuLinks[newSubmenuLink.uriPath];
@@ -186,16 +197,17 @@ const getSubmenuLinksDiff = (oldSubmenuLinks, newSubmenuLinks) => {
         } else if (key === 'labelAllLocales') {
           submenuLinkDiff.push(
             getLabelAllLocalesDiff(
-              oldSubMenuLink['labelAllLocales'],
-              newSubmenuLink['labelAllLocales'],
+              oldSubMenuLink.labelAllLocales,
+              newSubmenuLink.labelAllLocales,
               3
             )
           );
         }
       });
       delete mappedSubmenuLinks[newSubmenuLink.uriPath];
-      if (submenuLinkDiff.filter(Boolean).length > 1) {
-        submenuLinksDiff.push(submenuLinkDiff.join('\n'));
+      const filteredSubmenuLinksDiff = submenuLinkDiff.filter(Boolean);
+      if (filteredSubmenuLinksDiff.length > 1) {
+        submenuLinksDiff.push(filteredSubmenuLinksDiff.join('\n'));
       }
     } else {
       submenuLinksDiff.push(
@@ -207,7 +219,6 @@ const getSubmenuLinksDiff = (oldSubmenuLinks, newSubmenuLinks) => {
   Object.keys(mappedSubmenuLinks).forEach((key) => {
     submenuLinksDiff.push(`${t(1)}Item with "${red(key)}" was removed`);
   });
-
   if (submenuLinksDiff.length > 1) return submenuLinksDiff.join('\n');
 };
 
@@ -222,23 +233,17 @@ const getConfigDiff = (oldConfig, newConfig) => {
     switch (key) {
       case 'permissions':
         diff.push(
-          getPermissionsDiff(oldConfig['permissions'], newConfig['permissions'])
+          getPermissionsDiff(oldConfig.permissions, newConfig.permissions)
         );
         break;
       case 'mainMenuLink':
         diff.push(
-          getMainMenuLinkDiff(
-            oldConfig['mainMenuLink'],
-            newConfig['mainMenuLink']
-          )
+          getMainMenuLinkDiff(oldConfig.mainMenuLink, newConfig.mainMenuLink)
         );
         break;
       case 'submenuLinks':
         diff.push(
-          getSubmenuLinksDiff(
-            oldConfig['submenuLinks'],
-            newConfig['submenuLinks']
-          )
+          getSubmenuLinksDiff(oldConfig.submenuLinks, newConfig.submenuLinks)
         );
         break;
       default:
