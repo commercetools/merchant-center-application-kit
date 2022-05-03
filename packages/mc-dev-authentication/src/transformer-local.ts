@@ -16,7 +16,7 @@ const paths = {
 };
 
 // This transformer will generate a development `login` and `logout` HTML files
-// and copy them to the application public foder.
+// and copy them to the application public folder.
 // This is necessary to run the application locally in production mode.
 const transformerLocal = (compiledHtml: TCompiledHtml) => {
   const htmlLogin = pages.loginPage.replace(
