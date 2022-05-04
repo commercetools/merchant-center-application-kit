@@ -2,14 +2,14 @@
 title: Notifications
 ---
 
-In the previous section, we learned how to develop forms. In this section we look at how to communicate feedback to users using notifications, in particular in response to user actions.
+In the previous section, we learned how to develop forms. In this section we look at how to communicate feedback to users using notifications, particularly in response to user actions.
 
 To facilitate the use of notifications, Custom Applications come with a built-in notification system.
 
 # Notification system
 
 Notifications are an important way of providing feedback in response to user actions.
-For example submitting a form might succeed or fail and as a result the user should be notified about that in a way that is understandable and easy to find.
+For example submitting a form might succeed or fail. As a result the user should be notified about that in a way that is understandable and easy to find.
 
 Notifications are grouped by what we call "domains." A domain indicates where the notification should be displayed on the page (for instance `page` and `side`).
 
@@ -19,7 +19,7 @@ Triggering notifications is done by using some custom React hooks. Please refer 
 
 <Info>
 
-For defining the domain and the type of a notification we recommend using the values exposed from `@commercetools-frontend/constants`.
+For defining the domain and the type of a notification, we recommend using the values exposed from `@commercetools-frontend/constants`.
 
 For instance:
 
@@ -65,7 +65,7 @@ Page notifications are displayed on top of the content page. They have to be man
 
 <Info>
 
-As a rule of thumb, `error` notifications should be diplayed in the `page` domain rather than the `side` domain.
+As a rule of thumb, `error` notifications should be displayed in the `page` domain rather than the `side` domain.
 
 </Info>
 
@@ -333,10 +333,10 @@ const ChannelsDetails = (props) => {
 
 # Usage with React class components
 
-If for some reason a notification must be dispatched from a React class component we cannot use React hooks exposed from the `@commercetools-frontend/actions-global` package.
+If for some reason a notification must be dispatched from a React class component, we cannot use React hooks exposed from the `@commercetools-frontend/actions-global` package.
 Instead, we should use a Redux action directly.
 
-At a bare minimum dispatching notifications could look like this:
+At a bare minimum, dispatching notifications could look like this:
 
 ```jsx title="channel-updater.js" highlightLines="2-6,14-20,26-30,40"
 import { Component } from 'react';
