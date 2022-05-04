@@ -10,7 +10,6 @@ const {
   createCustomApplication,
   fetchUserOrganizations,
 } = require('../utils/graphql-requests');
-const updateApplicationIdInCustomApplicationConfig = require('../utils/update-application-id-in-custom-application-config');
 
 const flags = mri(process.argv.slice(2), {
   boolean: ['dry-run'],
@@ -109,9 +108,6 @@ const configSync = async () => {
       organizationId,
       data,
     });
-
-    // update applicationID in the custom-application-config file
-    updateApplicationIdInCustomApplicationConfig(createdCustomApplication.id);
 
     const customAppLink = getMcUrlLink(
       mcApiUrl,
