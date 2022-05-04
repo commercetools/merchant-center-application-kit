@@ -4,11 +4,11 @@ const chalk = require('chalk');
 // during tests the color used is appended before the string instead of coloring it.
 const isTest = process.env.NODE_ENV === 'test';
 const red = (str) => {
-  if (isTest) return 'red-' + str;
+  if (isTest) return `red(${str})`;
   return chalk.red(str);
 };
 const green = (str) => {
-  if (isTest) return 'green-' + str;
+  if (isTest) return `green(${str})`;
   return chalk.green(str);
 };
 

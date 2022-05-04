@@ -31,7 +31,7 @@ describe('getConfigDiff', () => {
       name: 'updated test name',
     };
     expect(getConfigDiff(oldConfig, updatedNewConfig)).toMatchInlineSnapshot(
-      `"name changed: red-test name => green-updated test name"`
+      `"name changed: red(test name) => green(updated test name)"`
     );
   });
 
@@ -44,10 +44,10 @@ describe('getConfigDiff', () => {
       icon: '<svg><path fill="#ffffff"></path></svg>',
     };
     expect(getConfigDiff(oldConfig, updatedNewConfig)).toMatchInlineSnapshot(`
-      "name changed: red-test name => green-updated test name
-      description changed: red-test description => green-updated description
-      url changed: red-https://test.com => green-https://updated-test.com
-      icon changed: red-<svg><path fill=\\"#000000\\"></path></svg> => green-<svg><path fill=\\"#ffffff\\"></path></svg>"
+      "name changed: red(test name) => green(updated test name)
+      description changed: red(test description) => green(updated description)
+      url changed: red(https://test.com) => green(https://updated-test.com)
+      icon changed: red(<svg><path fill=\\"#000000\\"></path></svg>) => green(<svg><path fill=\\"#ffffff\\"></path></svg>)"
     `);
   });
 
@@ -84,10 +84,10 @@ describe('getConfigDiff', () => {
       .toMatchInlineSnapshot(`
       "permissions changed
         manageTestCustomApp changed
-          Item with \\"green-manage_customer\\" added
-          Item with \\"red-manage_product\\" removed
-        \\"green-viewTestCustomApps\\" was added
-        \\"red-viewTestCustomApp\\" was removed"
+          Item with \\"green(manage_customer)\\" added
+          Item with \\"red(manage_product)\\" removed
+        \\"green(viewTestCustomApps)\\" was added
+        \\"red(viewTestCustomApp)\\" was removed"
     `);
   });
 
@@ -131,14 +131,14 @@ describe('getConfigDiff', () => {
     expect(getConfigDiff(updatedOldConfig, updatedNewConfig))
       .toMatchInlineSnapshot(`
       "mainMenuLink changed
-        defaultLabel changed: red-Avengers => green-Justice league
+        defaultLabel changed: red(Avengers) => green(Justice league)
         permission changed
-          Item with \\"green-manageTestCustomApps\\" added
-          Item with \\"red-viewTestCustomApps\\" removed
+          Item with \\"green(manageTestCustomApps)\\" added
+          Item with \\"red(viewTestCustomApps)\\" removed
         labelAllLocales changed
-          locale with \\"green-fr\\" was added
-          locale with \\"en\\" was changed: red-ipsum => green-lorem ipsum
-          locale with \\"red-de\\" was removed"
+          locale with \\"green(fr)\\" was added
+          locale with \\"en\\" was changed: red(ipsum) => green(lorem ipsum)
+          locale with \\"red(de)\\" was removed"
     `);
   });
 
@@ -209,16 +209,16 @@ describe('getConfigDiff', () => {
       .toMatchInlineSnapshot(`
       "submenuLink changed
         Item with \\"custom-app/hello\\" was changed
-          defaultLabel changed: red-hello => green-hello world
+          defaultLabel changed: red(hello) => green(hello world)
           permission changed
-            Item with \\"green-ManageCustomApp\\" added
-            Item with \\"red-ManageOldCustomApp\\" removed
+            Item with \\"green(ManageCustomApp)\\" added
+            Item with \\"red(ManageOldCustomApp)\\" removed
           labelAllLocales changed
-            locale with \\"de\\" was changed: red-lorem => green-ipsum
-            locale with \\"green-es\\" was added
-            locale with \\"red-en\\" was removed
-        Item with \\"green-custom-app/ipsum\\" was added
-        Item with \\"red-custom-app/lorem\\" was removed"
+            locale with \\"de\\" was changed: red(lorem) => green(ipsum)
+            locale with \\"green(es)\\" was added
+            locale with \\"red(en)\\" was removed
+        Item with \\"green(custom-app/ipsum)\\" was added
+        Item with \\"red(custom-app/lorem)\\" was removed"
     `);
   });
 });
