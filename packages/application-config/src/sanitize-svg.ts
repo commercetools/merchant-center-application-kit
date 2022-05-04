@@ -1,6 +1,3 @@
-/* eslint-disable import/first */
-import { TextEncoder } from 'util';
-global.TextEncoder = TextEncoder;
 import createDOMPurify from 'dompurify';
 import { JSDOM } from 'jsdom';
 
