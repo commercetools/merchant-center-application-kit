@@ -1,4 +1,15 @@
-const { red, green } = require('chalk');
+const chalk = require('chalk');
+
+// Since not all terminal supports colors, to make things more consistent for testing purposes, the color used is appended before the string instead of coloring it.
+const isTest = process.env.NODE_ENV === 'test';
+const red = (str) => {
+  if (isTest) return 'red-' + str;
+  return chalk.red(str);
+};
+const green = (str) => {
+  if (isTest) return 'green-' + str;
+  return chalk.green(str);
+};
 
 const keysToSkip = new Set(['id']);
 

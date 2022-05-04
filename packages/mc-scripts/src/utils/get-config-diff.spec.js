@@ -35,7 +35,7 @@ describe('getConfigDiff', () => {
       name: 'updated test name',
     };
     expect(getConfigDiff(oldConfig, updatedNewConfig)).toMatchInlineSnapshot(
-      `"name changed: [31mtest name[39m => [32mupdated test name[39m"`
+      `"name changed: red-test name => green-updated test name"`
     );
   });
 
@@ -48,10 +48,10 @@ describe('getConfigDiff', () => {
       icon: '<svg><path fill="#ffffff"></path></svg>',
     };
     expect(getConfigDiff(oldConfig, updatedNewConfig)).toMatchInlineSnapshot(`
-      "name changed: [31mtest name[39m => [32mupdated test name[39m
-      description changed: [31mtest description[39m => [32mupdated description[39m
-      url changed: [31mhttps://test.com[39m => [32mhttps://updated-test.com[39m
-      icon changed: [31m<svg><path fill=\\"#000000\\"></path></svg>[39m => [32m<svg><path fill=\\"#ffffff\\"></path></svg>[39m"
+      "name changed: red-test name => green-updated test name
+      description changed: red-test description => green-updated description
+      url changed: red-https://test.com => green-https://updated-test.com
+      icon changed: red-<svg><path fill=\\"#000000\\"></path></svg> => green-<svg><path fill=\\"#ffffff\\"></path></svg>"
     `);
   });
 
@@ -88,10 +88,10 @@ describe('getConfigDiff', () => {
       .toMatchInlineSnapshot(`
       "permissions changed
         manageTestCustomApp changed
-          Item with \\"[32mmanage_customer[39m\\" added
-          Item with \\"[31mmanage_product[39m\\" removed
-        \\"[32mviewTestCustomApps[39m\\" was added
-        \\"[31mviewTestCustomApp[39m\\" was removed"
+          Item with \\"green-manage_customer\\" added
+          Item with \\"red-manage_product\\" removed
+        \\"green-viewTestCustomApps\\" was added
+        \\"red-viewTestCustomApp\\" was removed"
     `);
   });
 
@@ -135,14 +135,14 @@ describe('getConfigDiff', () => {
     expect(getConfigDiff(updatedOldConfig, updatedNewConfig))
       .toMatchInlineSnapshot(`
       "mainMenuLink changed
-        defaultLabel changed: [31mAvengers[39m => [32mJustice league[39m
+        defaultLabel changed: red-Avengers => green-Justice league
         permission changed
-          Item with \\"[32mmanageTestCustomApps[39m\\" added
-          Item with \\"[31mviewTestCustomApps[39m\\" removed
+          Item with \\"green-manageTestCustomApps\\" added
+          Item with \\"red-viewTestCustomApps\\" removed
         labelAllLocales changed
-          locale with \\"[32mfr[39m\\" was added
-          locale with \\"en\\" was changed: [31mipsum[39m => [32mlorem ipsum[39m
-          locale with \\"[31mde[39m\\" was removed"
+          locale with \\"green-fr\\" was added
+          locale with \\"en\\" was changed: red-ipsum => green-lorem ipsum
+          locale with \\"red-de\\" was removed"
     `);
   });
 
@@ -213,16 +213,16 @@ describe('getConfigDiff', () => {
       .toMatchInlineSnapshot(`
       "submenuLink changed
         Item with \\"custom-app/hello\\" was changed
-          defaultLabel changed: [31mhello[39m => [32mhello world[39m
+          defaultLabel changed: red-hello => green-hello world
           permission changed
-            Item with \\"[32mManageCustomApp[39m\\" added
-            Item with \\"[31mManageOldCustomApp[39m\\" removed
+            Item with \\"green-ManageCustomApp\\" added
+            Item with \\"red-ManageOldCustomApp\\" removed
           labelAllLocales changed
-            locale with \\"de\\" was changed: [31mlorem[39m => [32mipsum[39m
-            locale with \\"[32mes[39m\\" was added
-            locale with \\"[31men[39m\\" was removed
-        Item with \\"[32mcustom-app/ipsum[39m\\" was added
-        Item with \\"[31mcustom-app/lorem[39m\\" was removed"
+            locale with \\"de\\" was changed: red-lorem => green-ipsum
+            locale with \\"green-es\\" was added
+            locale with \\"red-en\\" was removed
+        Item with \\"green-custom-app/ipsum\\" was added
+        Item with \\"red-custom-app/lorem\\" was removed"
     `);
   });
 });
