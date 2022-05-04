@@ -20,10 +20,6 @@ const newConfig = {
   submenuLinks: [],
 };
 
-beforeAll(() => {
-  process.env.FORCE_COLOR = 3;
-});
-
 describe('getConfigDiff', () => {
   it('should display no diff', () => {
     expect(getConfigDiff(oldConfig, newConfig)).toBe('');
