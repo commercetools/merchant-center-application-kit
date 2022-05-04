@@ -1,7 +1,8 @@
-import createDOMPurify from 'dompurify';
-import { JSDOM } from 'jsdom';
+/* eslint-disable import/first */
 import { TextEncoder } from 'util';
 global.TextEncoder = TextEncoder;
+import createDOMPurify from 'dompurify';
+import { JSDOM } from 'jsdom';
 
 const jsdom = new JSDOM('');
 // @ts-expect-error: jsdom returns DOMWindow, which doesn't match Window dompurify expects
