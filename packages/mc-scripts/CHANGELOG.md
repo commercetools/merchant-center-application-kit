@@ -1,5 +1,14 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.5.0
+
+### Patch Changes
+
+- Updated dependencies [[`3094da2f`](https://github.com/commercetools/merchant-center-application-kit/commit/3094da2fbe03fd8d5731836fa822d609dfccc84e), [`b38854ec`](https://github.com/commercetools/merchant-center-application-kit/commit/b38854ec1d65ba0afbf687bd1a38ca99579cc922), [`3180de7f`](https://github.com/commercetools/merchant-center-application-kit/commit/3180de7fc6a4da6b1925311b9e38bc8aad897e98), [`3180de7f`](https://github.com/commercetools/merchant-center-application-kit/commit/3180de7fc6a4da6b1925311b9e38bc8aad897e98)]:
+  - @commercetools-frontend/application-config@21.5.0
+  - @commercetools-frontend/mc-html-template@21.5.0
+  - @commercetools-frontend/mc-dev-authentication@21.5.0
+
 ## 21.4.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/mc-html-template",
-  "version": "21.4.0",
+  "version": "21.5.0",
   "description": "Everything related to render the index.html for a MC application",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -30,7 +30,7 @@
   "dependencies": {
     "@babel/runtime": "^7.17.9",
     "@babel/runtime-corejs3": "^7.17.9",
-    "@commercetools-frontend/application-config": "21.3.4",
+    "@commercetools-frontend/application-config": "21.5.0",
     "@commercetools-frontend/constants": "21.3.4",
     "serialize-javascript": "6.0.0",
     "uglify-js": "3.15.4",
