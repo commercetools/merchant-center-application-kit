@@ -21,27 +21,27 @@ type TPortalsContainerProps = {
    * The offset value for positioning the container from the top, when opened.
    * Usually this corresponds to the height of the header section.
    */
-  offsetTop: string;
+  offsetTop?: string;
   /**
    * The offset value for positioning the container from the left, when opened.
    * Usually this corresponds to the min width of the nav menu.
    */
-  offsetLeft: string;
+  offsetLeft?: string;
   /**
    * The offset value for positioning the container from the left, when opened.
    * The value is only applied when the `.body__menu-open` global class is added to the DOM.
    * Usually this corresponds to the width of the expanded nav menu.
    */
-  offsetLeftOnExpandedMenu: string;
+  offsetLeftOnExpandedMenu?: string;
   /**
    * The CSS selector to apply the `overflow: hidden` style to (preventing scrolling)
    * when a modal container is open.
    */
-  containerSelectorToPreventScrollingOnOpen: string;
+  containerSelectorToPreventScrollingOnOpen?: string;
   /**
    * The `z-index` value to apply to the portal container. Default to `10000`.
    */
-  zIndex: number;
+  zIndex?: number;
 };
 
 const useObserverElementDimensions = (
