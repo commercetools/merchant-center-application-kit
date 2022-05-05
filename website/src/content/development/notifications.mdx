@@ -19,7 +19,7 @@ Triggering notifications is done by using some custom React hooks. Please refer 
 
 <Info>
 
-For defining the domain and the type of a notification, we recommend using the values exposed from `@commercetools-frontend/constants`.
+For defining the `domain` and the `kind` of a notification, we recommend using the values exposed from `@commercetools-frontend/constants`.
 
 For instance:
 
@@ -67,7 +67,7 @@ Page notifications are displayed on top of the content page. They have to be man
 
 As a rule of thumb, `error` notifications should be displayed in the `page` domain rather than the `side` domain.
 
-For defining the kind of page notification we recommend using `NOTIFICATION_KINDS_PAGE` constant exposed from `@commercetools-frontend/constants`.
+For defining the `kind` of page notification we recommend using `NOTIFICATION_KINDS_PAGE` constant exposed from `@commercetools-frontend/constants`.
 The available values defined by the constant are `error`, `warning`, `info`, `success`, `unexpected-error` and `api-error`.
 
 </Info>
@@ -83,7 +83,7 @@ Success notifications in the `side` domain by default disappear after 5 seconds.
 
 We recommend displaying `success` notifications in the `side` domain.
 
-For defining the kind of side notification we recommend using `NOTIFICATION_KINDS_SIDE` constant exposed from `@commercetools-frontend/constants`.
+For defining the `kind` of side notification we recommend using `NOTIFICATION_KINDS_SIDE` constant exposed from `@commercetools-frontend/constants`.
 The available values defined by the constant are `error`, `warning`, `info` and `success`.
 
 </Info>
