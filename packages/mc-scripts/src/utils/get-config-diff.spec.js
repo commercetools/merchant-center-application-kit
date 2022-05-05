@@ -1,17 +1,6 @@
 const getConfigDiff = require('./get-config-diff');
 
-const createOldTestConfig = (customConfig) => ({
-  name: 'test name',
-  description: 'test description',
-  url: 'https://test.com',
-  icon: '<svg><path fill="#000000"></path></svg>',
-  permissions: [],
-  mainMenuLink: {},
-  submenuLinks: [],
-  ...customConfig,
-});
-
-const createNewTestConfig = (customConfig) => ({
+const createTestConfig = (customConfig) => ({
   name: 'test name',
   description: 'test description',
   url: 'https://test.com',
@@ -24,30 +13,28 @@ const createNewTestConfig = (customConfig) => ({
 
 describe('getConfigDiff', () => {
   it('should display no diff', () => {
-    expect(getConfigDiff(createOldTestConfig(), createNewTestConfig())).toBe(
-      ''
-    );
+    expect(getConfigDiff(createTestConfig(), createTestConfig())).toBe('');
   });
 
   it('should display name diff', () => {
-    const updatedNewConfig = createNewTestConfig({
+    const updatedNewConfig = createTestConfig({
       name: 'updated test name',
     });
     expect(
-      getConfigDiff(createOldTestConfig(), updatedNewConfig)
+      getConfigDiff(createTestConfig(), updatedNewConfig)
     ).toMatchInlineSnapshot(
       `"name changed: <color-red>test name)</color-red> => <color-green>(updated test name)</color-green>"`
     );
   });
 
   it('should display diff for name, description, icon, url', () => {
-    const updatedNewConfig = createNewTestConfig({
+    const updatedNewConfig = createTestConfig({
       name: 'updated test name',
       description: 'updated description',
       url: 'https://updated-test.com',
       icon: '<svg><path fill="#ffffff"></path></svg>',
     });
-    expect(getConfigDiff(createOldTestConfig(), updatedNewConfig))
+    expect(getConfigDiff(createTestConfig(), updatedNewConfig))
       .toMatchInlineSnapshot(`
       "name changed: <color-red>test name)</color-red> => <color-green>(updated test name)</color-green>
       description changed: <color-red>test description)</color-red> => <color-green>(updated description)</color-green>
@@ -57,7 +44,7 @@ describe('getConfigDiff', () => {
   });
 
   it('should display diff for permissions', () => {
-    const updatedOldConfig = createOldTestConfig({
+    const updatedOldConfig = createTestConfig({
       permissions: [
         {
           oAuthScopes: ['manage_product'],
@@ -70,7 +57,7 @@ describe('getConfigDiff', () => {
       ],
     });
 
-    const updatedNewConfig = createNewTestConfig({
+    const updatedNewConfig = createTestConfig({
       permissions: [
         {
           oAuthScopes: ['manage_customer'],
@@ -95,7 +82,7 @@ describe('getConfigDiff', () => {
   });
 
   it('should display diff for mainMenuLink', () => {
-    const updatedOldConfig = createOldTestConfig({
+    const updatedOldConfig = createTestConfig({
       mainMenuLink: {
         defaultLabel: 'Avengers',
         permissions: ['viewTestCustomApps'],
@@ -112,7 +99,7 @@ describe('getConfigDiff', () => {
       },
     });
 
-    const updatedNewConfig = createNewTestConfig({
+    const updatedNewConfig = createTestConfig({
       mainMenuLink: {
         defaultLabel: 'Justice league',
         permissions: ['manageTestCustomApps'],
@@ -144,7 +131,7 @@ describe('getConfigDiff', () => {
   });
 
   it('should display diff for submenuLink', () => {
-    const updatedOldConfig = createOldTestConfig({
+    const updatedOldConfig = createTestConfig({
       submenuLinks: [
         {
           uriPath: 'custom-app/hello',
@@ -174,7 +161,7 @@ describe('getConfigDiff', () => {
       ],
     });
 
-    const updatedNewConfig = createNewTestConfig({
+    const updatedNewConfig = createTestConfig({
       submenuLinks: [
         {
           uriPath: 'custom-app/hello',
