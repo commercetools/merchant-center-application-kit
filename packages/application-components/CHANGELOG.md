@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-components
 
+## 21.5.0
+
+### Patch Changes
+
+- [#2586](https://github.com/commercetools/merchant-center-application-kit/pull/2586) [`2f58b2d6`](https://github.com/commercetools/merchant-center-application-kit/commit/2f58b2d619fbc9d30e7d89604aba97f0c0ac9325) Thanks [@emmenko](https://github.com/emmenko)! - Fix type declarations for `<PortalsContainer>` as `defaultProps` and `forwardRef` do not work well together.
+
 ## 21.4.0
 
 ### Minor Changes

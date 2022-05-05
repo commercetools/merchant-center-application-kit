@@ -1,5 +1,18 @@
 # @commercetools-frontend/mc-dev-authentication
 
+## 21.5.0
+
+### Minor Changes
+
+- [#2578](https://github.com/commercetools/merchant-center-application-kit/pull/2578) [`3180de7f`](https://github.com/commercetools/merchant-center-application-kit/commit/3180de7fc6a4da6b1925311b9e38bc8aad897e98) Thanks [@emmenko](https://github.com/emmenko)! - Migrate package to TypeScript.
+
+  To note that the package exports changed to:
+
+  - `createMcDevAuthenticationMiddleware`
+  - `transformerLocal`
+
+  > This package is only meant to be used internally and therefore we don't consider this a breaking change.
+
 ## 21.4.0
 
 ### Minor Changes

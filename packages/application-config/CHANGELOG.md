@@ -1,5 +1,34 @@
 # @commercetools-frontend/application-config
 
+## 21.5.0
+
+### Patch Changes
+
+- [#2567](https://github.com/commercetools/merchant-center-application-kit/pull/2567) [`3094da2f`](https://github.com/commercetools/merchant-center-application-kit/commit/3094da2fbe03fd8d5731836fa822d609dfccc84e) Thanks [@Rhotimee](https://github.com/Rhotimee)! - Enforce uniqueness for `uriPath` of the submenu links.
+
+* [#2578](https://github.com/commercetools/merchant-center-application-kit/pull/2578) [`3180de7f`](https://github.com/commercetools/merchant-center-application-kit/commit/3180de7fc6a4da6b1925311b9e38bc8aad897e98) Thanks [@emmenko](https://github.com/emmenko)! - Allow to extend the environment types of the `ApplicationRuntimeConfig`.
+  This is useful if you want to have the `additionalEnv` properties typed.
+
+  For example, given the following config:
+
+  ```json
+  {
+    "additionalEnv": {
+      "trackingSentry": "https://000@sentry.io/000"
+    }
+  }
+  ```
+
+  You can extend the type as following:
+
+  ```ts
+  import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
+
+  type TMyApplicationRuntimeConfig = ApplicationRuntimeConfig<{
+    trackingSentry: string;
+  }>;
+  ```
+
 ## 21.3.4
 
 ### Patch Changes
