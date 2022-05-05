@@ -43,20 +43,6 @@ type TPortalsContainerProps = {
    */
   zIndex: number;
 };
-const defaultProps: Pick<
-  TPortalsContainerProps,
-  | 'offsetTop'
-  | 'offsetLeft'
-  | 'offsetLeftOnExpandedMenu'
-  | 'containerSelectorToPreventScrollingOnOpen'
-  | 'zIndex'
-> = {
-  offsetTop: '0px',
-  offsetLeft: '0px',
-  offsetLeftOnExpandedMenu: '0px',
-  containerSelectorToPreventScrollingOnOpen: 'main',
-  zIndex: 10000,
-};
 
 const useObserverElementDimensions = (
   element: RefObject<HTMLDivElement> | null
@@ -79,6 +65,17 @@ const useObserverElementDimensions = (
 // All modal components expect to be rendered inside this container.
 const PortalsContainer = forwardRef<TLayoutRefs, TPortalsContainerProps>(
   (props, ref) => {
+    // Initialize props with default values.
+    // NOTE: using `defaultProps` with `forwardRef` results in the type declarations
+    // to ignore the `defaultProps`. Therefore, the default props are typed
+    // as optional and we initialize the value here with the default values.
+    const offsetTop = props.offsetTop ?? '0px';
+    const offsetLeft = props.offsetLeft ?? '0px';
+    const offsetLeftOnExpandedMenu = props.offsetLeftOnExpandedMenu ?? '0px';
+    const containerSelectorToPreventScrollingOnOpen =
+      props.containerSelectorToPreventScrollingOnOpen ?? 'main';
+    const zIndex = props.zIndex ?? 10000;
+
     const globalNotificationsElementDimensions = useObserverElementDimensions(
       (ref as MutableRefObject<TLayoutRefs>)?.current?.notificationsGlobalRef
     );
@@ -92,30 +89,29 @@ const PortalsContainer = forwardRef<TLayoutRefs, TPortalsContainerProps>(
           // Apply some global styles, based on the `.ReactModal__Body--open` class.
           styles={css`
             .ReactModal__Body--open
-              ${props.containerSelectorToPreventScrollingOnOpen} {
+              ${containerSelectorToPreventScrollingOnOpen} {
               overflow: hidden;
             }
 
             .ReactModal__Body--open #${PORTALS_CONTAINER_ID} {
               position: fixed;
               height: calc(
-                100% - ${props.offsetTop} -
+                100% - ${offsetTop} -
                   ${globalNotificationsElementDimensions.height}px -
                   ${pageNotificationsElementDimensions.height}px
               );
-              width: calc(100% - ${props.offsetLeft});
+              width: calc(100% - ${offsetLeft});
               top: calc(
-                ${props.offsetTop} +
-                  ${globalNotificationsElementDimensions.height}px +
+                ${offsetTop} + ${globalNotificationsElementDimensions.height}px +
                   ${pageNotificationsElementDimensions.height}px
               );
               right: 0;
               bottom: 0;
-              z-index: ${props.zIndex};
+              z-index: ${zIndex};
             }
 
             .ReactModal__Body--open.body__menu-open #${PORTALS_CONTAINER_ID} {
-              width: calc(100% - ${props.offsetLeftOnExpandedMenu});
+              width: calc(100% - ${offsetLeftOnExpandedMenu});
             }
           `}
         />
@@ -133,6 +129,5 @@ const PortalsContainer = forwardRef<TLayoutRefs, TPortalsContainerProps>(
   }
 );
 PortalsContainer.displayName = 'PortalsContainer';
-PortalsContainer.defaultProps = defaultProps;
 
 export default PortalsContainer;
