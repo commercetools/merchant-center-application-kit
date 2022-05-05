@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-components
 
+## 21.5.1
+
+### Patch Changes
+
+- [#2588](https://github.com/commercetools/merchant-center-application-kit/pull/2588) [`787692ac`](https://github.com/commercetools/merchant-center-application-kit/commit/787692accfed47c5dc50ef9b711e38d76ae97a87) Thanks [@emmenko](https://github.com/emmenko)! - Leftover of https://github.com/commercetools/merchant-center-application-kit/pull/2586
+
 ## 21.5.0
 
 ### Patch Changes
