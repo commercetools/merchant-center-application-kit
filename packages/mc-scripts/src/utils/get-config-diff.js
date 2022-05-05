@@ -4,16 +4,17 @@ const chalk = require('chalk');
 // during tests the color used is appended before the string instead of coloring it.
 const isTest = process.env.NODE_ENV === 'test';
 const red = (str) => {
-  if (isTest) return `red(${str})`;
+  if (isTest) return `<color-red>${str})</color-red>`;
   return chalk.red(str);
 };
 const green = (str) => {
-  if (isTest) return `green(${str})`;
+  if (isTest) return `<color-green>(${str})</color-green>`;
   return chalk.green(str);
 };
 
 const keysToSkip = new Set(['id']);
 
+// Two spaces are used for indentation.
 const t = (indentLevel) => '  '.repeat(indentLevel);
 
 const getStringDiff = (oldStr, newStr, label, indentLevel = 0) => {
@@ -50,8 +51,8 @@ const getPermissionsDiff = (oldPermissions, newPermissions) => {
   const permissionDiff = ['permissions changed'];
 
   const mappedOldPermissions = oldPermissions.reduce(
-    (acc, { name, oAuthScopes }) => ({
-      ...acc,
+    (previousPermission, { name, oAuthScopes }) => ({
+      ...previousPermission,
       [name]: oAuthScopes,
     }),
     {}
@@ -97,8 +98,8 @@ const getLabelAllLocalesDiff = (
 
   const mappedOldLabelAllLocales =
     oldLabelAllLocales?.reduce(
-      (acc, { locale, value }) => ({
-        ...acc,
+      (previousLabelAllLocale, { locale, value }) => ({
+        ...previousLabelAllLocale,
         [locale]: value,
       }),
       {}
@@ -173,9 +174,9 @@ const getSubmenuLinksDiff = (oldSubmenuLinks, newSubmenuLinks) => {
   const submenuLinksDiff = ['submenuLink changed'];
 
   const mappedSubmenuLinks = oldSubmenuLinks.reduce(
-    (acc, oldSubmenuLink) => ({
-      ...acc,
-      [oldSubmenuLink.uriPath]: oldSubmenuLink,
+    (previousSubmenuLink, currentSubmenuLink) => ({
+      ...previousSubmenuLink,
+      [currentSubmenuLink.uriPath]: currentSubmenuLink,
     }),
     {}
   );
