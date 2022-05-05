@@ -116,7 +116,7 @@ const configSync = async () => {
     );
     console.log(
       chalk.green(
-        `Custom Application created.\nThe "applicationId" in your local Custom Application config file has been updated with the application ID.\nYou can see the Custom Application data in the Merchant Center at ${customAppLink}.`
+        `Custom Application created.\nThe "applicationId" in your local Custom Application config file should be updated with the application ID: ${createdCustomApplication.id}.\nYou can see the Custom Application data in the Merchant Center at ${customAppLink}.`
       )
     );
     return;
