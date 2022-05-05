@@ -1,6 +1,6 @@
 const getConfigDiff = require('./get-config-diff');
 
-const oldConfig = {
+const createOldTestConfig = (customConfig) => ({
   name: 'test name',
   description: 'test description',
   url: 'https://test.com',
@@ -8,9 +8,10 @@ const oldConfig = {
   permissions: [],
   mainMenuLink: {},
   submenuLinks: [],
-};
+  ...customConfig,
+});
 
-const newConfig = {
+const createNewTestConfig = (customConfig) => ({
   name: 'test name',
   description: 'test description',
   url: 'https://test.com',
@@ -18,42 +19,45 @@ const newConfig = {
   permissions: [],
   mainMenuLink: {},
   submenuLinks: [],
-};
+  ...customConfig,
+});
 
 describe('getConfigDiff', () => {
   it('should display no diff', () => {
-    expect(getConfigDiff(oldConfig, newConfig)).toBe('');
+    expect(getConfigDiff(createOldTestConfig(), createNewTestConfig())).toBe(
+      ''
+    );
   });
 
   it('should display name diff', () => {
-    const updatedNewConfig = {
-      ...newConfig,
+    const updatedNewConfig = createNewTestConfig({
       name: 'updated test name',
-    };
-    expect(getConfigDiff(oldConfig, updatedNewConfig)).toMatchInlineSnapshot(
-      `"name changed: red(test name) => green(updated test name)"`
+    });
+    expect(
+      getConfigDiff(createOldTestConfig(), updatedNewConfig)
+    ).toMatchInlineSnapshot(
+      `"name changed: <color-red>test name)</color-red> => <color-green>(updated test name)</color-green>"`
     );
   });
 
   it('should display diff for name, description, icon, url', () => {
-    const updatedNewConfig = {
-      ...newConfig,
+    const updatedNewConfig = createNewTestConfig({
       name: 'updated test name',
       description: 'updated description',
       url: 'https://updated-test.com',
       icon: '<svg><path fill="#ffffff"></path></svg>',
-    };
-    expect(getConfigDiff(oldConfig, updatedNewConfig)).toMatchInlineSnapshot(`
-      "name changed: red(test name) => green(updated test name)
-      description changed: red(test description) => green(updated description)
-      url changed: red(https://test.com) => green(https://updated-test.com)
-      icon changed: red(<svg><path fill=\\"#000000\\"></path></svg>) => green(<svg><path fill=\\"#ffffff\\"></path></svg>)"
+    });
+    expect(getConfigDiff(createOldTestConfig(), updatedNewConfig))
+      .toMatchInlineSnapshot(`
+      "name changed: <color-red>test name)</color-red> => <color-green>(updated test name)</color-green>
+      description changed: <color-red>test description)</color-red> => <color-green>(updated description)</color-green>
+      url changed: <color-red>https://test.com)</color-red> => <color-green>(https://updated-test.com)</color-green>
+      icon changed: <color-red><svg><path fill=\\"#000000\\"></path></svg>)</color-red> => <color-green>(<svg><path fill=\\"#ffffff\\"></path></svg>)</color-green>"
     `);
   });
 
   it('should display diff for permissions', () => {
-    const updatedOldConfig = {
-      ...oldConfig,
+    const updatedOldConfig = createOldTestConfig({
       permissions: [
         {
           oAuthScopes: ['manage_product'],
@@ -64,10 +68,9 @@ describe('getConfigDiff', () => {
           name: 'viewTestCustomApp',
         },
       ],
-    };
+    });
 
-    const updatedNewConfig = {
-      ...newConfig,
+    const updatedNewConfig = createNewTestConfig({
       permissions: [
         {
           oAuthScopes: ['manage_customer'],
@@ -78,22 +81,21 @@ describe('getConfigDiff', () => {
           name: 'viewTestCustomApps',
         },
       ],
-    };
+    });
 
     expect(getConfigDiff(updatedOldConfig, updatedNewConfig))
       .toMatchInlineSnapshot(`
       "permissions changed
         manageTestCustomApp changed
-          Item with \\"green(manage_customer)\\" added
-          Item with \\"red(manage_product)\\" removed
-        \\"green(viewTestCustomApps)\\" was added
-        \\"red(viewTestCustomApp)\\" was removed"
+          Item with \\"<color-green>(manage_customer)</color-green>\\" added
+          Item with \\"<color-red>manage_product)</color-red>\\" removed
+        \\"<color-green>(viewTestCustomApps)</color-green>\\" was added
+        \\"<color-red>viewTestCustomApp)</color-red>\\" was removed"
     `);
   });
 
   it('should display diff for mainMenuLink', () => {
-    const updatedOldConfig = {
-      ...newConfig,
+    const updatedOldConfig = createOldTestConfig({
       mainMenuLink: {
         defaultLabel: 'Avengers',
         permissions: ['viewTestCustomApps'],
@@ -108,10 +110,9 @@ describe('getConfigDiff', () => {
           },
         ],
       },
-    };
+    });
 
-    const updatedNewConfig = {
-      ...newConfig,
+    const updatedNewConfig = createNewTestConfig({
       mainMenuLink: {
         defaultLabel: 'Justice league',
         permissions: ['manageTestCustomApps'],
@@ -126,25 +127,24 @@ describe('getConfigDiff', () => {
           },
         ],
       },
-    };
+    });
 
     expect(getConfigDiff(updatedOldConfig, updatedNewConfig))
       .toMatchInlineSnapshot(`
       "mainMenuLink changed
-        defaultLabel changed: red(Avengers) => green(Justice league)
+        defaultLabel changed: <color-red>Avengers)</color-red> => <color-green>(Justice league)</color-green>
         permission changed
-          Item with \\"green(manageTestCustomApps)\\" added
-          Item with \\"red(viewTestCustomApps)\\" removed
+          Item with \\"<color-green>(manageTestCustomApps)</color-green>\\" added
+          Item with \\"<color-red>viewTestCustomApps)</color-red>\\" removed
         labelAllLocales changed
-          locale with \\"green(fr)\\" was added
-          locale with \\"en\\" was changed: red(ipsum) => green(lorem ipsum)
-          locale with \\"red(de)\\" was removed"
+          locale with \\"<color-green>(fr)</color-green>\\" was added
+          locale with \\"en\\" was changed: <color-red>ipsum)</color-red> => <color-green>(lorem ipsum)</color-green>
+          locale with \\"<color-red>de)</color-red>\\" was removed"
     `);
   });
 
   it('should display diff for submenuLink', () => {
-    const updatedOldConfig = {
-      ...oldConfig,
+    const updatedOldConfig = createOldTestConfig({
       submenuLinks: [
         {
           uriPath: 'custom-app/hello',
@@ -172,10 +172,9 @@ describe('getConfigDiff', () => {
           labelAllLocales: [],
         },
       ],
-    };
+    });
 
-    const updatedNewConfig = {
-      ...newConfig,
+    const updatedNewConfig = createNewTestConfig({
       submenuLinks: [
         {
           uriPath: 'custom-app/hello',
@@ -203,22 +202,22 @@ describe('getConfigDiff', () => {
           labelAllLocales: [],
         },
       ],
-    };
+    });
 
     expect(getConfigDiff(updatedOldConfig, updatedNewConfig))
       .toMatchInlineSnapshot(`
       "submenuLink changed
         Item with \\"custom-app/hello\\" was changed
-          defaultLabel changed: red(hello) => green(hello world)
+          defaultLabel changed: <color-red>hello)</color-red> => <color-green>(hello world)</color-green>
           permission changed
-            Item with \\"green(ManageCustomApp)\\" added
-            Item with \\"red(ManageOldCustomApp)\\" removed
+            Item with \\"<color-green>(ManageCustomApp)</color-green>\\" added
+            Item with \\"<color-red>ManageOldCustomApp)</color-red>\\" removed
           labelAllLocales changed
-            locale with \\"de\\" was changed: red(lorem) => green(ipsum)
-            locale with \\"green(es)\\" was added
-            locale with \\"red(en)\\" was removed
-        Item with \\"green(custom-app/ipsum)\\" was added
-        Item with \\"red(custom-app/lorem)\\" was removed"
+            locale with \\"de\\" was changed: <color-red>lorem)</color-red> => <color-green>(ipsum)</color-green>
+            locale with \\"<color-green>(es)</color-green>\\" was added
+            locale with \\"<color-red>en)</color-red>\\" was removed
+        Item with \\"<color-green>(custom-app/ipsum)</color-green>\\" was added
+        Item with \\"<color-red>custom-app/lorem)</color-red>\\" was removed"
     `);
   });
 });
