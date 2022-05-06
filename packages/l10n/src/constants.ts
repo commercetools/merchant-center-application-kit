@@ -1,6 +1,18 @@
-import type { timeZone_blocklist } from './types';
-
-export const TIMEZONE_BLOCKLIST: timeZone_blocklist = [
+/**
+ * This is a list of all timezones in the output of `moment.tz.names()`
+ * that we want to exclude from the final compiled time zone data.
+ *
+ * The `extractTimeZoneDataForLocale` function in `scripts/generate-l10n-data`
+ * consumes this list of excluded timezones, and an object of locale-specific
+ * long-form translations.  If a timezone is present in the output of
+ * `moment.tz.names()`, but either is not in the excluded list or does not
+ * have a translation, that timezone is considered a new timezone.
+ *
+ * If a new timezone is encountered, the user running the CLI command
+ * will be prompted via the shell whether they would like to accept
+ * the new timezone, or add that timezone to this excluded list.
+ */
+export const EXCLUDED_TIME_ZONES = [
   'Etc/GMT+12',
   'Etc/GMT+11',
   'Pacific/Pago_Pago',

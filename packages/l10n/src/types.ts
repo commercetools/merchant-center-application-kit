@@ -37,5 +37,3 @@ export type FormatLocalizedStringOptions<T> = {
   fallbackOrder?: string[];
   fallback?: string;
 };
-
-export type timeZone_blocklist = string[];
