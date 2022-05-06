@@ -31,6 +31,15 @@ const Index = () => (
       <li>
         <Link to="tabular-detail-page">{'<TabularDetailPage>'}</Link>
       </li>
+      <li>
+        <Link to="info-detail-page">{'<InfoDetailPage>'}</Link>
+      </li>
+      <li>
+        <Link to="custom-form-detail-page">{'<CustomFormDetailPage>'}</Link>
+      </li>
+      <li>
+        <Link to="form-detail-page">{'<FormDetailPage>'}</Link>
+      </li>
     </ul>
   </div>
 );

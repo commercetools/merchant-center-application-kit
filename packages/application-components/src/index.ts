@@ -16,6 +16,11 @@ export { default as FormModalPage } from './components/modal-pages/form-modal-pa
 export { default as TabularModalPage } from './components/modal-pages/tabular-modal-page';
 export { default as CustomFormModalPage } from './components/modal-pages/custom-form-modal-page';
 
+// Detail Pages
+export { default as CustomFormDetailPage } from './components/detail-pages/custom-form-detail-page';
+export { default as FormDetailPage } from './components/detail-pages/form-detail-page';
+export { default as InfoDetailPage } from './components/detail-pages/info-detail-page';
+
 // Public page
 export { default as PublicPageLayout } from './components/public-page-layout';
 
