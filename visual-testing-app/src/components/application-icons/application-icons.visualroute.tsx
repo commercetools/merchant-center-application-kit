@@ -8,9 +8,7 @@ import { Suite, Spec } from '../../test-utils';
 
 const svgIconsModules = import.meta.globEager<string>(
   '/../packages/assets/application-icons/*.svg',
-  {
-    assert: { type: 'raw' },
-  }
+  { as: 'raw' }
 );
 
 const svgIcons = Object.entries<string>(svgIconsModules).reduce<

@@ -45,30 +45,36 @@ type TPortalsContainerProps = {
   /**
    * The offset value for positioning the container from the top, when opened.
    * Usually this corresponds to the height of the header section.
+   * Defaults to `0px`.
    */
   offsetTop?: string;
   /**
    * The offset value for positioning the container from the left, when opened.
    * Usually this corresponds to the min width of the nav menu.
+   * Defaults to `0px`.
    */
   offsetLeft?: string;
   /**
    * The offset value for positioning the container from the left, when opened.
    * The value is only applied when the `.body__menu-open` global class is added to the DOM.
    * Usually this corresponds to the width of the expanded nav menu.
+   * Defaults to `0px`.
    */
   offsetLeftOnExpandedMenu?: string;
   /**
    * The CSS selector to apply the `overflow: hidden` style to (preventing scrolling)
    * when a modal container is open.
+   * Defaults to `main`.
    */
   containerSelectorToPreventScrollingOnOpen?: string;
   /**
-   * The `z-index` value to apply to the portal container. Default to `10000`.
+   * The `z-index` value to apply to the portal container..
+   * Defaults to `10000`.
    */
   zIndex?: number;
   /**
-   * The base `z-index` value to apply to each modal container. Default to `1000`.
+   * The base `z-index` value to apply to each modal container.
+   * Defaults to `1000`.
    */
   baseModalZIndex?: number;
 };
@@ -192,13 +198,15 @@ const PortalsContainer = forwardRef<TLayoutRefs, TPortalsContainerProps>(
                * the correct indentation level width.
                */
               (stackingLayer) => css`
-                .ReactModalPortal[data-level='${stackingLayer.stackingLevel}']
+                #${PORTALS_CONTAINER_ID}
+                  .ReactModalPortal[data-level='${stackingLayer.stackingLevel}']
                   [data-role$='overlay'] {
                   z-index: calc(
                     ${baseModalZIndex} + ${stackingLayer.stackingLevel}
                   );
                 }
-                .ReactModalPortal[data-level='${stackingLayer.stackingLevel}']
+                #${PORTALS_CONTAINER_ID}
+                  .ReactModalPortal[data-level='${stackingLayer.stackingLevel}']
                   [data-role='modal-overlay']
                   [role='dialog'] {
                   width: calc(
