@@ -21,6 +21,7 @@ export const EXCLUDED_TIME_ZONES = [
   'HST',
   'Pacific/Johnston',
   'US/Hawaii',
+  'America/Atka',
   'Etc/GMT+9',
   'US/Aleutian',
   'America/Juneau',
