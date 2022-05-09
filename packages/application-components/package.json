@@ -61,13 +61,13 @@
     "lodash": "4.17.21",
     "prop-types": "15.8.1",
     "raf-schd": "^4.0.3",
-    "react-modal": "3.14.4"
+    "react-modal": "3.15.1"
   },
   "devDependencies": {
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-intl": "^5.25.0",
-    "react-router-dom": "5.3.0"
+    "react-router-dom": "5.3.1"
   },
   "peerDependencies": {
     "react": "17.x",
