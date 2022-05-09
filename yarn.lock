@@ -2400,11 +2400,13 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
+    "@types/express-unless": ^0.5.3
+    "@types/jsonwebtoken": ^8.5.8
     "@types/node": 16.11.26
-    express: 4.17.3
-    express-jwt: 6.1.1
+    express: 4.18.1
+    express-jwt: 7.7.0
     jose: 2.0.5
-    jwks-rsa: 2.0.5
+    jwks-rsa: 2.1.1
     msw: 0.39.2
   languageName: unknown
   linkType: soft
@@ -2417,7 +2419,7 @@ __metadata:
     "@babel/runtime-corejs3": ^7.17.9
     "@sentry/node": 6.19.6
     "@types/triple-beam": 1.3.2
-    express: 4.17.3
+    express: 4.18.1
     express-winston: 4.2.0
     fast-safe-stringify: 2.1.1
     lodash: 4.17.21
@@ -3026,7 +3028,7 @@ __metadata:
     "@babel/runtime-corejs3": ^7.17.9
     "@commercetools-frontend/application-config": 21.5.0
     "@tsconfig/node14": ^1.0.1
-    express: 4.17.3
+    express: 4.18.1
   languageName: unknown
   linkType: soft
 
@@ -8209,136 +8211,127 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@percy/cli-build@npm:1.0.0-beta.76":
-  version: 1.0.0-beta.76
-  resolution: "@percy/cli-build@npm:1.0.0-beta.76"
+"@percy/cli-build@npm:1.1.2":
+  version: 1.1.2
+  resolution: "@percy/cli-build@npm:1.1.2"
   dependencies:
-    "@percy/cli-command": 1.0.0-beta.76
-    "@percy/logger": 1.0.0-beta.76
-  checksum: 265848ae21855ee54a911c1d6d604c7ec5af896733094c83fd29e6e3c92ee24b8e742c971e8910e337d7e26970f8123d8e0d367f71b156fd08b1167ca36f606b
+    "@percy/cli-command": 1.1.2
+  checksum: 16e82d202f49243ea3993e9c01a574adc5461e373072ea2603bff6ba65034566c991547451b543165cabfdc68e57876c17341c0d2029d16e39f442b032ce75aa
   languageName: node
   linkType: hard
 
-"@percy/cli-command@npm:1.0.0-beta.76":
-  version: 1.0.0-beta.76
-  resolution: "@percy/cli-command@npm:1.0.0-beta.76"
+"@percy/cli-command@npm:1.1.2":
+  version: 1.1.2
+  resolution: "@percy/cli-command@npm:1.1.2"
   dependencies:
-    "@percy/config": 1.0.0-beta.76
-    "@percy/core": 1.0.0-beta.76
-    "@percy/logger": 1.0.0-beta.76
+    "@percy/config": 1.1.2
+    "@percy/core": 1.1.2
+    "@percy/logger": 1.1.2
   bin:
-    percy-cli-readme: bin/readme
-  checksum: a6506178db1dd83e5d9ec0f5cb0efbc750061361c968393a71c1d558bfb8b6510ce7b17c8580d6c1b223bf8009c847391769db1f4c45c91bacde3f06b9c51cd7
+    percy-cli-readme: bin/readme.js
+  checksum: c6e0ad4bbcbb7a4da2c9d5b1d217cd21f4d6ab458349c15f34bf4a09afac7de2643037422bbd9b9a0c0483559b86044bcd8e764c8ce5c97ae85bca57533ca8ae
   languageName: node
   linkType: hard
 
-"@percy/cli-config@npm:1.0.0-beta.76":
-  version: 1.0.0-beta.76
-  resolution: "@percy/cli-config@npm:1.0.0-beta.76"
+"@percy/cli-config@npm:1.1.2":
+  version: 1.1.2
+  resolution: "@percy/cli-config@npm:1.1.2"
   dependencies:
-    "@percy/cli-command": 1.0.0-beta.76
-    "@percy/config": 1.0.0-beta.76
-  checksum: 2a4106432129d5377d349dae1e73f94e0cd597c1f864e0c711d12d269a3b6ea10c2f13634ef2175e872fed3a3cca6447cbe4229fd6c866073c37ce9ff25e2853
+    "@percy/cli-command": 1.1.2
+  checksum: 2a88615974be456962ae4db874cde2d6597020bd6d99edec05c0893afa8345fc0114b00781c51ee40a3a66e94a82354aa2e68ce53f861da96ca1d7c9aaf4ca60
   languageName: node
   linkType: hard
 
-"@percy/cli-exec@npm:1.0.0-beta.76":
-  version: 1.0.0-beta.76
-  resolution: "@percy/cli-exec@npm:1.0.0-beta.76"
+"@percy/cli-exec@npm:1.1.2":
+  version: 1.1.2
+  resolution: "@percy/cli-exec@npm:1.1.2"
   dependencies:
-    "@percy/cli-command": 1.0.0-beta.76
-    "@percy/core": 1.0.0-beta.76
+    "@percy/cli-command": 1.1.2
     cross-spawn: ^7.0.3
     which: ^2.0.2
-  checksum: 766f10bdafc7b30626959b0cd810cb2162e60788bd21a1c18d9a9f3aa933fe6baa705da4d7f2afec535b6b29d0b587c16a1d2a90255a48b055483ee4d8bd2a74
+  checksum: cd3ffb88da735b107568e1f2dae8de41de25859b6c8c6861c7f06481e60188524b3af20048f01dd183460d31a5299632736b0ddc92c3d60d8d9ec8c91f2b496e
   languageName: node
   linkType: hard
 
-"@percy/cli-snapshot@npm:1.0.0-beta.76":
-  version: 1.0.0-beta.76
-  resolution: "@percy/cli-snapshot@npm:1.0.0-beta.76"
+"@percy/cli-snapshot@npm:1.1.2":
+  version: 1.1.2
+  resolution: "@percy/cli-snapshot@npm:1.1.2"
   dependencies:
-    "@percy/cli-command": 1.0.0-beta.76
-    "@percy/config": 1.0.0-beta.76
-    "@percy/core": 1.0.0-beta.76
-    globby: ^11.0.4
-    path-to-regexp: ^6.2.0
-    picomatch: ^2.3.0
-    serve-handler: ^6.1.3
-    yaml: ^1.10.0
-  checksum: 94c74035488a7c7f6a91a6aad9db05a99def23256ef90e38b6a76b41ae304c3b2ff5a1bad631e4dfcd87e34fc11dd0802990877f97954a9d29b5e5d322b1d40b
+    "@percy/cli-command": 1.1.2
+    yaml: ^2.0.0
+  checksum: 6a24cda083010b53a4c9d9e07d73e44ba4ce912cc023f0ec828b5673b5f835c530c27520c8084a918e914367fbc11e59cbcc7442c11117029c3e63e4dd7b3acc
   languageName: node
   linkType: hard
 
-"@percy/cli-upload@npm:1.0.0-beta.76":
-  version: 1.0.0-beta.76
-  resolution: "@percy/cli-upload@npm:1.0.0-beta.76"
+"@percy/cli-upload@npm:1.1.2":
+  version: 1.1.2
+  resolution: "@percy/cli-upload@npm:1.1.2"
   dependencies:
-    "@percy/cli-command": 1.0.0-beta.76
-    "@percy/client": 1.0.0-beta.76
-    "@percy/logger": 1.0.0-beta.76
-    globby: ^11.0.4
+    "@percy/cli-command": 1.1.2
+    fast-glob: ^3.2.11
     image-size: ^1.0.0
-  checksum: 2e8141f6e5cabd487d7abc5c3333a7635dc6e353a8df04979aaad0f384479d4e7089b184cd6d4fc4e90319232af607afaa81fdcb16aa2a930d76d7fb20d2f290
+  checksum: 738b696926387f9a40c61f91cbf899913d962b1febb77351deb97bfe85a127b701d4b0f791dd5f87d1fcf985e4ddce41a2a08e74b5db1b585bc6fb4f58b938ba
   languageName: node
   linkType: hard
 
-"@percy/cli@npm:1.0.0-beta.76":
-  version: 1.0.0-beta.76
-  resolution: "@percy/cli@npm:1.0.0-beta.76"
+"@percy/cli@npm:1.1.2":
+  version: 1.1.2
+  resolution: "@percy/cli@npm:1.1.2"
   dependencies:
-    "@percy/cli-build": 1.0.0-beta.76
-    "@percy/cli-command": 1.0.0-beta.76
-    "@percy/cli-config": 1.0.0-beta.76
-    "@percy/cli-exec": 1.0.0-beta.76
-    "@percy/cli-snapshot": 1.0.0-beta.76
-    "@percy/cli-upload": 1.0.0-beta.76
-    "@percy/client": 1.0.0-beta.76
-    "@percy/logger": 1.0.0-beta.76
+    "@percy/cli-build": 1.1.2
+    "@percy/cli-command": 1.1.2
+    "@percy/cli-config": 1.1.2
+    "@percy/cli-exec": 1.1.2
+    "@percy/cli-snapshot": 1.1.2
+    "@percy/cli-upload": 1.1.2
+    "@percy/client": 1.1.2
+    "@percy/logger": 1.1.2
   bin:
-    percy: bin/run
-  checksum: 419721a0811d905c78c6e9799d1a5bf1f5d47481e6ca9e5a281097822f16e1018c165728a276f622779e4eb439f2fa193676dc72cf2148b5c6fd62182a41d5db
+    percy: bin/run.cjs
+  checksum: cff9a61360909e7367e33b5440a68d91832a5061b05526495cb8014d45f973e1e54f4b74a064e31f1c4436fc3c0d9f999db77fb76708ea43cbdee13587ca53ee
   languageName: node
   linkType: hard
 
-"@percy/client@npm:1.0.0-beta.76":
-  version: 1.0.0-beta.76
-  resolution: "@percy/client@npm:1.0.0-beta.76"
+"@percy/client@npm:1.1.2":
+  version: 1.1.2
+  resolution: "@percy/client@npm:1.1.2"
   dependencies:
-    "@percy/env": 1.0.0-beta.76
-    "@percy/logger": 1.0.0-beta.76
-  checksum: c09f3e134d5ee3825322f43536c268c3d96178a3bf72eacc2fe7dca1d90935ffc454fe5691a50dc65e947c1ac29df6f45014ef63f3b53b605edee8c72677c276
+    "@percy/env": 1.1.2
+    "@percy/logger": 1.1.2
+  checksum: 22a065e9e328004b72de8c3d4dd9d1a5ee990693d55f69792f308ce1e611377626ab844355dbd122d5fc2bd8761ab4e03e876ceb6ef475a08b2f8b15700f2e1d
   languageName: node
   linkType: hard
 
-"@percy/config@npm:1.0.0-beta.76":
-  version: 1.0.0-beta.76
-  resolution: "@percy/config@npm:1.0.0-beta.76"
+"@percy/config@npm:1.1.2":
+  version: 1.1.2
+  resolution: "@percy/config@npm:1.1.2"
   dependencies:
-    "@percy/logger": 1.0.0-beta.76
+    "@percy/logger": 1.1.2
     ajv: ^8.6.2
     cosmiconfig: ^7.0.0
-    yaml: ^1.10.0
-  checksum: 98b1c8544c70e22fa0b248935c89f1320351692795163fca43dc2b5c569347a7f1d7c9dbb329481807e2462fc692272a83c0305d2acf2a693107f2f352745d9b
+    yaml: ^2.0.0
+  checksum: aa7965c790ec0ca83761db8efbce218dc6c17310cce00560dc05688a8e3a8ec223adb7a65996699e7a64dbfa84270d91662aaf4521f710ee127445934ea4318f
   languageName: node
   linkType: hard
 
-"@percy/core@npm:1.0.0-beta.76":
-  version: 1.0.0-beta.76
-  resolution: "@percy/core@npm:1.0.0-beta.76"
+"@percy/core@npm:1.1.2":
+  version: 1.1.2
+  resolution: "@percy/core@npm:1.1.2"
   dependencies:
-    "@percy/client": 1.0.0-beta.76
-    "@percy/config": 1.0.0-beta.76
-    "@percy/dom": 1.0.0-beta.76
-    "@percy/logger": 1.0.0-beta.76
+    "@percy/client": 1.1.2
+    "@percy/config": 1.1.2
+    "@percy/dom": 1.1.2
+    "@percy/logger": 1.1.2
     content-disposition: ^0.5.4
     cross-spawn: ^7.0.3
     extract-zip: ^2.0.1
+    fast-glob: ^3.2.11
+    micromatch: ^4.0.4
     mime-types: ^2.1.34
     path-to-regexp: ^6.2.0
     rimraf: ^3.0.2
     ws: ^8.0.0
-  checksum: 2794e3f3361b72215b9fc664f0bc11824153a5ac8905cd8687606ab1f8f730264783367ea56147a4b3575fdb31d6e5ef1121385cde7f168cb1a20e05c66f7772
+  checksum: abfbce23a9b701a6b9521fcb846b3b3eb875b246a9a10585df83a1e3b3cb17d0d7c45f186c1ef74a6b9fbb4e0ae299a0078496ea556ebe311f8bba6aa77cffc1
   languageName: node
   linkType: hard
 
@@ -8353,17 +8346,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@percy/dom@npm:1.0.0-beta.76":
-  version: 1.0.0-beta.76
-  resolution: "@percy/dom@npm:1.0.0-beta.76"
-  checksum: 8fc86300fa1715d81a58e923fd06e7d9f410c2ddf1a066f7088b076fe8ede1a2af287bd4b7e5a3a57fb9f0608ef2c53f986bb0aa9c247806c2ebc7861db9e5ad
+"@percy/dom@npm:1.1.2":
+  version: 1.1.2
+  resolution: "@percy/dom@npm:1.1.2"
+  checksum: 141dbf662b3f362820fc1e660ee21cf8d3d0909bb96ac35339a95f4866c6acff999b1592f70585db62569fb826acc38067a225ac77811a64599cb00ac794cac7
   languageName: node
   linkType: hard
 
-"@percy/env@npm:1.0.0-beta.76":
-  version: 1.0.0-beta.76
-  resolution: "@percy/env@npm:1.0.0-beta.76"
-  checksum: b93628f66db244d7dc37571e22b66101a66c14fdc50d826e4f52fa8d0e5d14e6926836dce511d19966f4ddaa0654660f7caa0afff5b3c8aa75aa064af2fe660d
+"@percy/env@npm:1.1.2":
+  version: 1.1.2
+  resolution: "@percy/env@npm:1.1.2"
+  checksum: 96ce1af4bdc0213b8325867a3345c6eda5c780d9062012814d7dc2f378f3fe1eea0aa478545bc699a8836b7edc1a47d4fff0bc7c00af9df578d8d12db60bd25a
   languageName: node
   linkType: hard
 
@@ -8374,10 +8367,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@percy/logger@npm:1.0.0-beta.76":
-  version: 1.0.0-beta.76
-  resolution: "@percy/logger@npm:1.0.0-beta.76"
-  checksum: 9d5744fd8c9a7c29036063c1f44f00b05e3be662719a2ebc6bd8d2e7f07f8d84d27ab35a3db7676a84d55699358273daab52393c3eefb5ee921f6490ebfeb1ae
+"@percy/logger@npm:1.1.2":
+  version: 1.1.2
+  resolution: "@percy/logger@npm:1.1.2"
+  checksum: b9e222a141ad0f1584520af7840babcdcd26d20aab204bd97157ce8799c514d6d33ff2859a8243bcdd5af7c0e2936a1edd966be63a8cf25b0eec896ae3863500
   languageName: node
   linkType: hard
 
@@ -8392,7 +8385,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@percy/sdk-utils@npm:^1.0.0-beta.32, @percy/sdk-utils@npm:^1.0.0-beta.44":
+"@percy/sdk-utils@npm:^1.0.0-beta.32":
+  version: 1.1.2
+  resolution: "@percy/sdk-utils@npm:1.1.2"
+  checksum: 5a907cab1ce7c4ae97c3862bd33d961e3e72cb7b2f231ab5edcb8bbea61122d7218fea78932c79327dbf3f286d4825b902b2e66786b11393eba3fc4750c7ea21
+  languageName: node
+  linkType: hard
+
+"@percy/sdk-utils@npm:^1.0.0-beta.44":
   version: 1.0.0-beta.73
   resolution: "@percy/sdk-utils@npm:1.0.0-beta.73"
   dependencies:
@@ -9476,16 +9476,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/express-jwt@npm:0.0.42":
-  version: 0.0.42
-  resolution: "@types/express-jwt@npm:0.0.42"
-  dependencies:
-    "@types/express": "*"
-    "@types/express-unless": "*"
-  checksum: b69148367b40c74876e77438a7a2449d3478d222a6094bce008308cf87ea43dcce5d74ebaef5d28bb224b0f0dd695bcf25a634a69d3c186575458eb1a1a6e4f8
-  languageName: node
-  linkType: hard
-
 "@types/express-serve-static-core@npm:*, @types/express-serve-static-core@npm:^4.17.18":
   version: 4.17.28
   resolution: "@types/express-serve-static-core@npm:4.17.28"
@@ -9497,12 +9487,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/express-unless@npm:*":
-  version: 0.5.2
-  resolution: "@types/express-unless@npm:0.5.2"
+"@types/express-unless@npm:^0.5.3":
+  version: 0.5.3
+  resolution: "@types/express-unless@npm:0.5.3"
   dependencies:
     "@types/express": "*"
-  checksum: 31446f1871e29fb3c576f909c3770e167ac219f9dde94c82c236fe0da45f97bd509fd9dc8bb302caaf5b9b41589b0cb27b53309c8b8459b3904b0e3c98f215f7
+  checksum: 5c76425ff7490123f3c072c942ae6d18bb3cbf91d5d9857c52fca1f9a3d11b72413dbfb3e4af28fdd7f745d1a443f90daadbcf7daff714d608eef10bd7c8763c
   languageName: node
   linkType: hard
 
@@ -9728,7 +9718,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jsonwebtoken@npm:^8.5.0":
+"@types/jsonwebtoken@npm:^8.5.0, @types/jsonwebtoken@npm:^8.5.8":
   version: 8.5.8
   resolution: "@types/jsonwebtoken@npm:8.5.8"
   dependencies:
@@ -11672,7 +11662,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"async@npm:1.5.2, async@npm:^1.5.0":
+"async@npm:1.5.2":
   version: 1.5.2
   resolution: "async@npm:1.5.2"
   checksum: fe5d6214d8f15bd51eee5ae8ec5079b228b86d2d595f47b16369dec2e11b3ff75a567bb5f70d12d79006665fbbb7ee0a7ec0e388524eefd454ecbe651c124ebd
@@ -12424,6 +12414,26 @@ __metadata:
     raw-body: 2.4.3
     type-is: ~1.6.18
   checksum: 7f777ea65670e2622ca4a785b5dcb2a68451b3bb8d4d0f41091d307d56b640dba588a9ae04d85dda2cdd5e42788266a783528d5417e5643720fd611fd52522e7
+  languageName: node
+  linkType: hard
+
+"body-parser@npm:1.20.0":
+  version: 1.20.0
+  resolution: "body-parser@npm:1.20.0"
+  dependencies:
+    bytes: 3.1.2
+    content-type: ~1.0.4
+    debug: 2.6.9
+    depd: 2.0.0
+    destroy: 1.2.0
+    http-errors: 2.0.0
+    iconv-lite: 0.4.24
+    on-finished: 2.4.1
+    qs: 6.10.3
+    raw-body: 2.5.1
+    type-is: ~1.6.18
+    unpipe: 1.0.0
+  checksum: 12fffdeac82fe20dddcab7074215d5156e7d02a69ae90cbe9fee1ca3efa2f28ef52097cbea76685ee0a1509c71d85abd0056a08e612c09077cad6277a644cf88
   languageName: node
   linkType: hard
 
@@ -13990,6 +14000,13 @@ __metadata:
   version: 0.4.2
   resolution: "cookie@npm:0.4.2"
   checksum: a00833c998bedf8e787b4c342defe5fa419abd96b32f4464f718b91022586b8f1bafbddd499288e75c037642493c83083da426c6a9080d309e3bd90fd11baa9b
+  languageName: node
+  linkType: hard
+
+"cookie@npm:0.5.0":
+  version: 0.5.0
+  resolution: "cookie@npm:0.5.0"
+  checksum: 1f4bd2ca5765f8c9689a7e8954183f5332139eb72b6ff783d8947032ec1fdf43109852c178e21a953a30c0dd42257828185be01b49d1eb1a67fd054ca588a180
   languageName: node
   linkType: hard
 
@@ -15792,6 +15809,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"depd@npm:2.0.0":
+  version: 2.0.0
+  resolution: "depd@npm:2.0.0"
+  checksum: abbe19c768c97ee2eed6282d8ce3031126662252c58d711f646921c9623f9052e3e1906443066beec1095832f534e57c523b7333f8e7e0d93051ab6baef5ab3a
+  languageName: node
+  linkType: hard
+
 "depd@npm:^1.1.2, depd@npm:~1.1.2":
   version: 1.1.2
   resolution: "depd@npm:1.1.2"
@@ -15817,6 +15841,13 @@ __metadata:
   version: 1.0.0
   resolution: "dequal@npm:1.0.0"
   checksum: c5b3e64bfaaf54a6d9fe059f38c9567c5a7dd56846d27aeef02f633790cfd1465608ccbb7151cf743ac32d810c255254e8b2e2b69db8012de9939a1633c011d1
+  languageName: node
+  linkType: hard
+
+"destroy@npm:1.2.0":
+  version: 1.2.0
+  resolution: "destroy@npm:1.2.0"
+  checksum: 0acb300b7478a08b92d810ab229d5afe0d2f4399272045ab22affa0d99dbaf12637659411530a6fcd597a9bdac718fc94373a61a95b4651bbc7b83684a565e38
   languageName: node
   linkType: hard
 
@@ -17806,15 +17837,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express-jwt@npm:6.1.1":
-  version: 6.1.1
-  resolution: "express-jwt@npm:6.1.1"
+"express-jwt@npm:7.7.0":
+  version: 7.7.0
+  resolution: "express-jwt@npm:7.7.0"
   dependencies:
-    async: ^1.5.0
     express-unless: ^1.0.0
-    jsonwebtoken: ^8.1.0
-    lodash: ^4.17.21
-  checksum: 91b3da4c2bb080a2c3d125327a492f6f2b90a55c3b0fbdf51c78e979b636a6c94cb73fd2dbcebbdd5eedd9dcfe858f2b4ea4ce9c1285e60547f246546d31d9c1
+    jsonwebtoken: ^8.5.1
+  checksum: 05a52eed40944d05d60e4fa3d1451f002a92065325373f23480d1295297156e274b16f0330bed595a5d723296b23ba7fd8839bc630285f67e288b4be8cad6f7d
   languageName: node
   linkType: hard
 
@@ -17837,41 +17866,42 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express@npm:4.17.3, express@npm:^4.17.3":
-  version: 4.17.3
-  resolution: "express@npm:4.17.3"
+"express@npm:4.18.1":
+  version: 4.18.1
+  resolution: "express@npm:4.18.1"
   dependencies:
     accepts: ~1.3.8
     array-flatten: 1.1.1
-    body-parser: 1.19.2
+    body-parser: 1.20.0
     content-disposition: 0.5.4
     content-type: ~1.0.4
-    cookie: 0.4.2
+    cookie: 0.5.0
     cookie-signature: 1.0.6
     debug: 2.6.9
-    depd: ~1.1.2
+    depd: 2.0.0
     encodeurl: ~1.0.2
     escape-html: ~1.0.3
     etag: ~1.8.1
-    finalhandler: ~1.1.2
+    finalhandler: 1.2.0
     fresh: 0.5.2
+    http-errors: 2.0.0
     merge-descriptors: 1.0.1
     methods: ~1.1.2
-    on-finished: ~2.3.0
+    on-finished: 2.4.1
     parseurl: ~1.3.3
     path-to-regexp: 0.1.7
     proxy-addr: ~2.0.7
-    qs: 6.9.7
+    qs: 6.10.3
     range-parser: ~1.2.1
     safe-buffer: 5.2.1
-    send: 0.17.2
-    serve-static: 1.14.2
+    send: 0.18.0
+    serve-static: 1.15.0
     setprototypeof: 1.2.0
-    statuses: ~1.5.0
+    statuses: 2.0.1
     type-is: ~1.6.18
     utils-merge: 1.0.1
     vary: ~1.1.2
-  checksum: 967e53b74a37eafdf9789b9938c8df86102928b4985b1ad5e385c709deeab405a364de95ca744bc2cc5d05b5d9cc1efc69ae2ae17688a462038648d5a924bfad
+  checksum: c3d44c92e48226ef32ec978becfedb0ecf0ca21316bfd33674b3c5d20459840584f2325726a4f17f33d9c99f769636f728982d1c5433a5b6fe6eb95b8cf0c854
   languageName: node
   linkType: hard
 
@@ -17910,6 +17940,44 @@ __metadata:
     utils-merge: 1.0.1
     vary: ~1.1.2
   checksum: 1535d56d20e65a1a39b5f056c025dd635290a744478ac69cc47633aeb4b2ce51458f8eb4080cfb7ba47c853ba5cfd794d404cff822a25127f1556b726ec3914a
+  languageName: node
+  linkType: hard
+
+"express@npm:^4.17.3":
+  version: 4.17.3
+  resolution: "express@npm:4.17.3"
+  dependencies:
+    accepts: ~1.3.8
+    array-flatten: 1.1.1
+    body-parser: 1.19.2
+    content-disposition: 0.5.4
+    content-type: ~1.0.4
+    cookie: 0.4.2
+    cookie-signature: 1.0.6
+    debug: 2.6.9
+    depd: ~1.1.2
+    encodeurl: ~1.0.2
+    escape-html: ~1.0.3
+    etag: ~1.8.1
+    finalhandler: ~1.1.2
+    fresh: 0.5.2
+    merge-descriptors: 1.0.1
+    methods: ~1.1.2
+    on-finished: ~2.3.0
+    parseurl: ~1.3.3
+    path-to-regexp: 0.1.7
+    proxy-addr: ~2.0.7
+    qs: 6.9.7
+    range-parser: ~1.2.1
+    safe-buffer: 5.2.1
+    send: 0.17.2
+    serve-static: 1.14.2
+    setprototypeof: 1.2.0
+    statuses: ~1.5.0
+    type-is: ~1.6.18
+    utils-merge: 1.0.1
+    vary: ~1.1.2
+  checksum: 967e53b74a37eafdf9789b9938c8df86102928b4985b1ad5e385c709deeab405a364de95ca744bc2cc5d05b5d9cc1efc69ae2ae17688a462038648d5a924bfad
   languageName: node
   linkType: hard
 
@@ -18350,6 +18418,21 @@ __metadata:
   version: 1.1.0
   resolution: "filter-obj@npm:1.1.0"
   checksum: cf2104a7c45ff48e7f505b78a3991c8f7f30f28bd8106ef582721f321f1c6277f7751aacd5d83026cb079d9d5091082f588d14a72e7c5d720ece79118fa61e10
+  languageName: node
+  linkType: hard
+
+"finalhandler@npm:1.2.0":
+  version: 1.2.0
+  resolution: "finalhandler@npm:1.2.0"
+  dependencies:
+    debug: 2.6.9
+    encodeurl: ~1.0.2
+    escape-html: ~1.0.3
+    on-finished: 2.4.1
+    parseurl: ~1.3.3
+    statuses: 2.0.1
+    unpipe: ~1.0.0
+  checksum: 92effbfd32e22a7dff2994acedbd9bcc3aa646a3e919ea6a53238090e87097f8ef07cced90aa2cc421abdf993aefbdd5b00104d55c7c5479a8d00ed105b45716
   languageName: node
   linkType: hard
 
@@ -21080,6 +21163,19 @@ __metadata:
     statuses: ">= 1.5.0 < 2"
     toidentifier: 1.0.1
   checksum: d3c7e7e776fd51c0a812baff570bdf06fe49a5dc448b700ab6171b1250e4cf7db8b8f4c0b133e4bfe2451022a5790c1ca6c2cae4094dedd6ac8304a1267f91d2
+  languageName: node
+  linkType: hard
+
+"http-errors@npm:2.0.0":
+  version: 2.0.0
+  resolution: "http-errors@npm:2.0.0"
+  dependencies:
+    depd: 2.0.0
+    inherits: 2.0.4
+    setprototypeof: 1.2.0
+    statuses: 2.0.1
+    toidentifier: 1.0.1
+  checksum: 9b0a3782665c52ce9dc658a0d1560bcb0214ba5699e4ea15aefb2a496e2ca83db03ebc42e1cce4ac1f413e4e0d2d736a3fd755772c556a9a06853ba2a0b7d920
   languageName: node
   linkType: hard
 
@@ -23829,7 +23925,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsonwebtoken@npm:^8.1.0, jsonwebtoken@npm:^8.5.1":
+"jsonwebtoken@npm:^8.5.1":
   version: 8.5.1
   resolution: "jsonwebtoken@npm:8.5.1"
   dependencies:
@@ -23892,16 +23988,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jwks-rsa@npm:2.0.5":
-  version: 2.0.5
-  resolution: "jwks-rsa@npm:2.0.5"
+"jwks-rsa@npm:2.1.1":
+  version: 2.1.1
+  resolution: "jwks-rsa@npm:2.1.1"
   dependencies:
-    "@types/express-jwt": 0.0.42
-    debug: ^4.3.2
+    "@types/express": ^4.17.13
+    debug: ^4.3.4
     jose: ^2.0.5
     limiter: ^1.1.5
     lru-memoizer: ^2.1.4
-  checksum: c96d66f16971952826d81299ef027144761b5982e622d17994f57ab76d677fbfd1b4660d8e1bf48a9a92bfb3ab949e35d60a3894cca93b69161daa196acd8942
+  checksum: d856e51596e148064e70f74d111392bab037f432ee258a927e399c0f04b6b2c4504ae7f2aef5101089e965c54fa17447d9287a5bd1e63a54f492e9ff74cf0ba9
   languageName: node
   linkType: hard
 
@@ -25461,7 +25557,7 @@ __metadata:
     "@graphql-codegen/typescript-graphql-files-modules": 2.1.1
     "@graphql-codegen/typescript-operations": 2.3.5
     "@manypkg/cli": 0.19.1
-    "@percy/cli": 1.0.0-beta.76
+    "@percy/cli": 1.1.2
     "@percy/cypress": 3.1.1
     "@percy/puppeteer": 2.0.0
     "@preconstruct/cli": 2.1.5
@@ -26985,6 +27081,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"on-finished@npm:2.4.1":
+  version: 2.4.1
+  resolution: "on-finished@npm:2.4.1"
+  dependencies:
+    ee-first: 1.1.1
+  checksum: d20929a25e7f0bb62f937a425b5edeb4e4cde0540d77ba146ec9357f00b0d497cdb3b9b05b9c8e46222407d1548d08166bff69cc56dfa55ba0e4469228920ff0
+  languageName: node
+  linkType: hard
+
 "on-finished@npm:^2.3.0, on-finished@npm:~2.3.0":
   version: 2.3.0
   resolution: "on-finished@npm:2.3.0"
@@ -27892,7 +27997,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"picomatch@npm:^2.0.4, picomatch@npm:^2.2.1, picomatch@npm:^2.2.2, picomatch@npm:^2.2.3, picomatch@npm:^2.3.0":
+"picomatch@npm:^2.0.4, picomatch@npm:^2.2.1, picomatch@npm:^2.2.2, picomatch@npm:^2.2.3":
   version: 2.3.1
   resolution: "picomatch@npm:2.3.1"
   checksum: 050c865ce81119c4822c45d3c84f1ced46f93a0126febae20737bd05ca20589c564d6e9226977df859ed5e03dc73f02584a2b0faad36e896936238238b0446cf
@@ -29083,6 +29188,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"qs@npm:6.10.3, qs@npm:^6.9.4":
+  version: 6.10.3
+  resolution: "qs@npm:6.10.3"
+  dependencies:
+    side-channel: ^1.0.4
+  checksum: 0fac5e6c7191d0295a96d0e83c851aeb015df7e990e4d3b093897d3ac6c94e555dbd0a599739c84d7fa46d7fee282d94ba76943983935cf33bba6769539b8019
+  languageName: node
+  linkType: hard
+
 "qs@npm:6.9.6":
   version: 6.9.6
   resolution: "qs@npm:6.9.6"
@@ -29094,15 +29208,6 @@ __metadata:
   version: 6.9.7
   resolution: "qs@npm:6.9.7"
   checksum: 5bbd263332ccf320a1f36d04a2019a5834dc20bcb736431eaccde2a39dcba03fb26d2fd00174f5d7bc26aaad1cad86124b18440883ac042ea2a0fca6170c1bf1
-  languageName: node
-  linkType: hard
-
-"qs@npm:^6.9.4":
-  version: 6.10.3
-  resolution: "qs@npm:6.10.3"
-  dependencies:
-    side-channel: ^1.0.4
-  checksum: 0fac5e6c7191d0295a96d0e83c851aeb015df7e990e4d3b093897d3ac6c94e555dbd0a599739c84d7fa46d7fee282d94ba76943983935cf33bba6769539b8019
   languageName: node
   linkType: hard
 
@@ -29243,6 +29348,18 @@ __metadata:
     iconv-lite: 0.4.24
     unpipe: 1.0.0
   checksum: d2961fa3c71c9c22dc2c3fd60ff377bf36dfed7d7a748f2b25d585934a3e9df565bb9aa5bc2e3a716ea941f4bc2a6ddc795c8b0cf7219fb071029b59b1985394
+  languageName: node
+  linkType: hard
+
+"raw-body@npm:2.5.1":
+  version: 2.5.1
+  resolution: "raw-body@npm:2.5.1"
+  dependencies:
+    bytes: 3.1.2
+    http-errors: 2.0.0
+    iconv-lite: 0.4.24
+    unpipe: 1.0.0
+  checksum: 5362adff1575d691bb3f75998803a0ffed8c64eabeaa06e54b4ada25a0cd1b2ae7f4f5ec46565d1bec337e08b5ac90c76eaa0758de6f72a633f025d754dec29e
   languageName: node
   linkType: hard
 
@@ -31026,6 +31143,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"send@npm:0.18.0":
+  version: 0.18.0
+  resolution: "send@npm:0.18.0"
+  dependencies:
+    debug: 2.6.9
+    depd: 2.0.0
+    destroy: 1.2.0
+    encodeurl: ~1.0.2
+    escape-html: ~1.0.3
+    etag: ~1.8.1
+    fresh: 0.5.2
+    http-errors: 2.0.0
+    mime: 1.6.0
+    ms: 2.1.3
+    on-finished: 2.4.1
+    range-parser: ~1.2.1
+    statuses: 2.0.1
+  checksum: 74fc07ebb58566b87b078ec63e5a3e41ecd987e4272ba67b7467e86c6ad51bc6b0b0154133b6d8b08a2ddda360464f71382f7ef864700f34844a76c8027817a8
+  languageName: node
+  linkType: hard
+
 "sentence-case@npm:^2.1.0":
   version: 2.1.1
   resolution: "sentence-case@npm:2.1.1"
@@ -31085,7 +31223,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"serve-handler@npm:6.1.3, serve-handler@npm:^6.1.3":
+"serve-handler@npm:6.1.3":
   version: 6.1.3
   resolution: "serve-handler@npm:6.1.3"
   dependencies:
@@ -31125,6 +31263,18 @@ __metadata:
     parseurl: ~1.3.3
     send: 0.17.2
   checksum: d97f3183b1dfcd8ce9c0e37e18e87fd31147ed6c8ee0b2c3a089d795e44ee851ca5061db01574f806d54f4e4b70bc694d9ca64578653514e04a28cbc97a1de05
+  languageName: node
+  linkType: hard
+
+"serve-static@npm:1.15.0":
+  version: 1.15.0
+  resolution: "serve-static@npm:1.15.0"
+  dependencies:
+    encodeurl: ~1.0.2
+    escape-html: ~1.0.3
+    parseurl: ~1.3.3
+    send: 0.18.0
+  checksum: af57fc13be40d90a12562e98c0b7855cf6e8bd4c107fe9a45c212bf023058d54a1871b1c89511c3958f70626fff47faeb795f5d83f8cf88514dbaeb2b724464d
   languageName: node
   linkType: hard
 
@@ -31971,17 +32121,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"statuses@npm:2.0.1, statuses@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "statuses@npm:2.0.1"
+  checksum: 18c7623fdb8f646fb213ca4051be4df7efb3484d4ab662937ca6fbef7ced9b9e12842709872eb3020cc3504b93bde88935c9f6417489627a7786f24f8031cbcb
+  languageName: node
+  linkType: hard
+
 "statuses@npm:>= 1.4.0 < 2, statuses@npm:>= 1.5.0 < 2, statuses@npm:~1.5.0":
   version: 1.5.0
   resolution: "statuses@npm:1.5.0"
   checksum: c469b9519de16a4bb19600205cffb39ee471a5f17b82589757ca7bd40a8d92ebb6ed9f98b5a540c5d302ccbc78f15dc03cc0280dd6e00df1335568a5d5758a5c
-  languageName: node
-  linkType: hard
-
-"statuses@npm:^2.0.0":
-  version: 2.0.1
-  resolution: "statuses@npm:2.0.1"
-  checksum: 18c7623fdb8f646fb213ca4051be4df7efb3484d4ab662937ca6fbef7ced9b9e12842709872eb3020cc3504b93bde88935c9f6417489627a7786f24f8031cbcb
   languageName: node
   linkType: hard
 
@@ -35699,6 +35849,13 @@ __metadata:
   version: 1.10.2
   resolution: "yaml@npm:1.10.2"
   checksum: ce4ada136e8a78a0b08dc10b4b900936912d15de59905b2bf415b4d33c63df1d555d23acb2a41b23cf9fb5da41c256441afca3d6509de7247daa062fd2c5ea5f
+  languageName: node
+  linkType: hard
+
+"yaml@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "yaml@npm:2.0.1"
+  checksum: 23f95ff0d646c894048ac5072b5b6d393a398af1b2553916f0de276d62dbb3279ae3c969d7fcefe7a213be4efc9b4aa3ae1439c97095d3d3765fc6bc424807ac
   languageName: node
   linkType: hard
 
