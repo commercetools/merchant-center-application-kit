@@ -1,3 +1,3 @@
 # CustomFormModalPage
 
-Check out the [documentation](https://docs.commercetools.com/custom-applications/api-reference/commercetools-frontend-application-components#customformdetailpage) for more information.
+Check out the [documentation](https://docs.commercetools.com/custom-applications/components/custom-form-modal-page) for more information.

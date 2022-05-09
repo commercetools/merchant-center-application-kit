@@ -1,3 +1,3 @@
 # CustomFormDetailPage
 
-Check out the [documentation](https://docs.commercetools.com/custom-applications/components/custom-form-detail-page) for more information.
+Check out the [documentation](https://docs.commercetools.com/custom-applications/api-reference/commercetools-frontend-application-components#customformdetailpage) for more information.
