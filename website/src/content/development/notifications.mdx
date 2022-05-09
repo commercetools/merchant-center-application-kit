@@ -2,26 +2,26 @@
 title: Notifications
 ---
 
-In the previous section, we learned how to develop forms. In this section we look at how to communicate feedback to users using notifications, particularly in response to user actions.
+In the previous section, we learned how to develop forms. In this section, we'll look at how to provide feedback to users using notifications, especially in response to user actions.
 
-To facilitate the use of notifications, Custom Applications come with a built-in notification system.
+To facilitate the use of notifications, Custom Applications have a built-in notification system.
 
 # Notification system
 
-Notifications are an important way of providing feedback in response to user actions.
-For example submitting a form might succeed or fail. As a result the user should be notified about that in a way that is understandable and easy to find.
+Notifications are an important means of providing feedback in response to user actions.
+For example, the submission of a form may succeed or fail. The user should be informed about this in an understandable and easy-to-find way.
 
-Notifications are grouped by what we call "domains." A domain indicates where the notification should be displayed on the page (for instance `page` and `side`).
+Notifications are grouped by so-called `domains`. A domain specifies where the notification should be displayed on the page (for instance `page` and `side`).
 
-Notifications are also of different types: `success`, `error`, `warning`, `info`. Depending on the specific use case you would choose the appropriate type. For example, if a form has been successfully submitted, you would show a "side" notification of kind `success`.
+Various types of notifications are available: `success`, `error`, `warning`, `info`. Depending on the use case you choose the appropriate type. For example, if a form was submitted successfully, you would display a side notification of the type `success`.
 
-Triggering notifications is done by using some custom React hooks. Please refer to the package [`@commercetools-frontend/actions-global`](/api-reference/commercetools-frontend-actions-global) for implementation details.
+Triggering notifications is done using some custom React hooks. Please refer to the [`@commercetools-frontend/actions-global`](/api-reference/commercetools-frontend-actions-global) package for implementation details.
 
 <Info>
 
 For defining the `domain` and the `kind` of a notification, we recommend using the values exposed from `@commercetools-frontend/constants`.
 
-For instance:
+For example:
 
 ```js
 import {
@@ -61,13 +61,13 @@ Be mindful of Custom Application users convenience when dispatching notification
 
 ## Page notifications
 
-Page notifications are displayed on top of the content page. They have to be manually closed by default.
+Page notifications are displayed on top of the content page. By default, they must be closed manually.
 
 <Info>
 
-As a rule of thumb, `error` notifications should be displayed in the `page` domain rather than the `side` domain.
+Generally `error` notifications should be displayed in the `page` domain rather than the `side` domain.
 
-For defining the `kind` of page notification we recommend using `NOTIFICATION_KINDS_PAGE` constant exposed from `@commercetools-frontend/constants`.
+For defining the `kind` of page notification, we recommend using the `NOTIFICATION_KINDS_PAGE` constant exposed from `@commercetools-frontend/constants`.
 The available values defined by the constant are `error`, `warning`, `info`, `success`, `unexpected-error` and `api-error`.
 
 </Info>
@@ -164,13 +164,13 @@ const ChannelsDetails = (props) => {
 
 ## Form submitted with errors
 
-Most of the time displaying error notifications is a result of handling API errors. For example, submitting a form is rejected by the API. In this section we look at some example of handling API errors for GraphQL and REST API requests.
+In most cases, displaying error notifications is the result of handling API errors. For example, submitting a form is rejected by the API. In this section, we will look at some examples of API error handling for GraphQL and REST API requests.
 
 ### GraphQL
 
 <Info>
 
-More information about GraphQL errors can be found in the [Apollo Client docs](https://www.apollographql.com/docs/react/data/error-handling/).
+Find more information about GraphQL errors in the [Apollo Client docs](https://www.apollographql.com/docs/react/data/error-handling/).
 
 </Info>
 
@@ -207,14 +207,14 @@ const ChannelsDetails = (props) => {
 ```
 
 Following our recommendations, not all GraphQL errors should lead to dispatching an error notification.
-For instance, instead of showing an error notification we can try to map specific errors to their related form fields.
+For example, instead of displaying an error notification, we can try to map specific errors to their related form fields.
 
 <Info>
 
-In the following code snippet we take advantage of the fact that a Channel's `key` value [must be unique](https://docs.commercetools.com/api/projects/channels#channel).
+In the following code snippet, we take advantage of the fact that a Channel's `key` value [must be unique](https://docs.commercetools.com/api/projects/channels#channel).
 A request to update the Channel's `key` to a duplicated value results in an error with the `DuplicateField` error code.
 
-More information about API errors can be found on the [API errors page](https://docs.commercetools.com/api/errors).
+Find more information about API errors on the [API errors page](https://docs.commercetools.com/api/errors).
 
 </Info>
 
