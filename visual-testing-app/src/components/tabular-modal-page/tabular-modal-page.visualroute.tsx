@@ -261,6 +261,11 @@ export const Component = () => (
               <Content />
               <Content />
               <Content />
+              <Content />
+              <Content />
+              <Content />
+              <Content />
+              <Content />
             </ModalPageWithPortalParentSelector>
           ),
         },
