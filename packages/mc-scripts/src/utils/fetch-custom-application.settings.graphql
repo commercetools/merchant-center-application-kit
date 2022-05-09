@@ -16,6 +16,7 @@ query FetchCustomApplicationFromCli($entryPointUriPath: String!) {
       }
       mainMenuLink {
         defaultLabel
+        permissions
         labelAllLocales {
           locale
           value

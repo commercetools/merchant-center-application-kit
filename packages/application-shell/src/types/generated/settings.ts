@@ -365,6 +365,7 @@ export type TDashboardView = {
   layout?: Maybe<Array<TLayoutCard>>;
   nameAllLocales?: Maybe<Array<TLocalizedField>>;
   projectKey: Scalars['String'];
+  timeZone?: Maybe<Scalars['String']>;
   updatedAt: Scalars['DateTime'];
   userId: Scalars['String'];
 };
@@ -395,6 +396,7 @@ export type TDashboardViewInput = {
   currencyCode?: InputMaybe<Scalars['String']>;
   layout: Array<TLayoutCardInput>;
   nameAllLocales: Array<TLocalizedFieldCreateInput>;
+  timeZone?: InputMaybe<Scalars['String']>;
 };
 
 export enum TDateFilterType {
@@ -2529,7 +2531,7 @@ export type TFetchCustomApplicationFromCliQueryVariables = Exact<{
 }>;
 
 
-export type TFetchCustomApplicationFromCliQuery = { __typename?: 'Query', organizationExtensionForCustomApplication?: { __typename?: 'OrganizationExtensionForCustomApplication', organizationId: string, application: { __typename?: 'RestrictedCustomApplicationForOrganization', id: string, entryPointUriPath: string, name: string, description?: string | null, url: string, icon: string, permissions: Array<{ __typename?: 'CustomApplicationPermission', name: string, oAuthScopes: Array<string> }>, mainMenuLink: { __typename?: 'CustomApplicationMenuLink', defaultLabel: string, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }, submenuLinks: Array<{ __typename?: 'CustomApplicationSubmenuLink', uriPath: string, defaultLabel: string, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }> } } | null };
+export type TFetchCustomApplicationFromCliQuery = { __typename?: 'Query', organizationExtensionForCustomApplication?: { __typename?: 'OrganizationExtensionForCustomApplication', organizationId: string, application: { __typename?: 'RestrictedCustomApplicationForOrganization', id: string, entryPointUriPath: string, name: string, description?: string | null, url: string, icon: string, permissions: Array<{ __typename?: 'CustomApplicationPermission', name: string, oAuthScopes: Array<string> }>, mainMenuLink: { __typename?: 'CustomApplicationMenuLink', defaultLabel: string, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }, submenuLinks: Array<{ __typename?: 'CustomApplicationSubmenuLink', uriPath: string, defaultLabel: string, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }> } } | null };
 
 export type TUpdateCustomApplicationFromCliMutationVariables = Exact<{
   organizationId: Scalars['String'];
