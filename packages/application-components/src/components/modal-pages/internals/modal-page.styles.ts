@@ -4,17 +4,15 @@ import { customProperties } from '@commercetools-uikit/design-system';
 export const TRANSITION_DURATION = 200;
 
 type StyleProps = {
-  level: number;
   zIndex?: number;
-  baseZIndex: number;
 };
 
-export const getContainerStyles = (props: StyleProps) => css`
+export const getContainerStyles = (_props: StyleProps) => css`
   position: absolute;
   top: 0;
   right: 0;
   height: 100%;
-  width: calc(100% - (48px * ${props.level}));
+  width: 100%;
   display: flex;
   flex-direction: column;
   background-color: ${customProperties.colorSurface};
@@ -27,8 +25,9 @@ export const getContainerStyles = (props: StyleProps) => css`
 export const getOverlayStyles = (props: StyleProps) => css`
   position: absolute;
   z-index: ${typeof props.zIndex === 'number'
-    ? props.zIndex
-    : props.baseZIndex + props.level};
+    ? // Use `!important` to overwrite the default value assigned by the Stacking Layer System.
+      `${props.zIndex} !important`
+    : 'auto'};
   top: 0;
   left: 0;
   width: 100%;

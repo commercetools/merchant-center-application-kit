@@ -2620,6 +2620,7 @@ __metadata:
     "@commercetools-uikit/utils": ^15.0.0
     "@emotion/react": 11.9.0
     "@emotion/styled": 11.8.1
+    "@react-hook/latest": 1.0.3
     "@react-hook/resize-observer": 1.2.5
     "@types/history": 4.7.11
     "@types/lodash": ^4.14.181
@@ -2630,6 +2631,7 @@ __metadata:
     history: 4.10.1
     lodash: 4.17.21
     prop-types: 15.8.1
+    raf-schd: ^4.0.3
     react: 17.0.2
     react-dom: 17.0.2
     react-intl: ^5.25.0
@@ -8504,7 +8506,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-hook/latest@npm:^1.0.2":
+"@react-hook/latest@npm:1.0.3, @react-hook/latest@npm:^1.0.2":
   version: 1.0.3
   resolution: "@react-hook/latest@npm:1.0.3"
   peerDependencies:
@@ -29181,7 +29183,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"raf-schd@npm:^4.0.2":
+"raf-schd@npm:^4.0.2, raf-schd@npm:^4.0.3":
   version: 4.0.3
   resolution: "raf-schd@npm:4.0.3"
   checksum: 45514041c5ad31fa96aef3bb3c572a843b92da2f2cd1cb4a47c9ad58e48761d3a4126e18daa32b2bfa0bc2551a42d8f324a0e40e536cb656969929602b4e8b58

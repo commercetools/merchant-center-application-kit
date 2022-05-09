@@ -35,7 +35,6 @@ const InfoModalPageExample = (props) => (
         >
           {({ isOpen, setIsOpen }) => (
             <InfoModalPage
-              level={1}
               title={values.title}
               isOpen={isOpen}
               onClose={() => setIsOpen(false)}
@@ -53,7 +52,6 @@ const InfoModalPageExample = (props) => (
                 {({ isOpen, setIsOpen }) => (
                   <InfoModalPage
                     title="Second Level Modal"
-                    level={2}
                     isOpen={isOpen}
                     subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     onClose={() => setIsOpen(false)}
@@ -70,7 +68,6 @@ const InfoModalPageExample = (props) => (
                       {({ isOpen, setIsOpen }) => (
                         <InfoModalPage
                           title="Third Level Modal"
-                          level={3}
                           isOpen={isOpen}
                           subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                           onClose={() => setIsOpen(false)}
@@ -87,7 +84,6 @@ const InfoModalPageExample = (props) => (
                             {({ isOpen, setIsOpen }) => (
                               <InfoModalPage
                                 title="Fourth Level Modal"
-                                level={4}
                                 isOpen={isOpen}
                                 subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                                 onClose={() => setIsOpen(false)}
@@ -104,7 +100,6 @@ const InfoModalPageExample = (props) => (
                                   {({ isOpen, setIsOpen }) => (
                                     <InfoModalPage
                                       title="Fifth Level Modal"
-                                      level={5}
                                       isOpen={isOpen}
                                       subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                                       onClose={() => setIsOpen(false)}
