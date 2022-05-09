@@ -6,7 +6,7 @@
 
 Add three new layout components: `<InfoDetailPage>`, `<FormDetailPage>` and `<CustomFormDetailPage>`.
 
-These components are similar to the `<InfoModalPage>`, `<FormModalPage>` and `<CustomFormModalPage>` respecitively but they are not rendered as modals.
+These components are similar to the `<InfoModalPage>`, `<FormModalPage>` and `<CustomFormModalPage>` respectively but they are not rendered as modals.
 
 # Usage
 
