@@ -47,19 +47,23 @@ If you are interested in more advanced functionalities, let us know and open a [
 
 </Info>
 
-# Using a testing environment
+# I want to use a test or staging environment for my Custom Application
 
 During the development cycle of new features for a Custom Application, it can be helpful to showcase or test those new features before publishing them to the production environment.
 
-Merchant Center platform has only one environment where Custom Applications are installed to, but a similar goal can be achieved by setting up the Custom Application configuration so it uses a different [`entryPointUriPath`](/api-reference/application-config#entrypointuripath) configuration property per its installation deployments.
+Normally this can be achieved using preview deployments, where you can inspect different versions of the Custom Application. As of now, the Merchant Center does not support this feature yet.
+
+The only option to emulate this setup is to create multiple Custom Applications in the Merchant Center, each one with a different [`entryPointUriPath`](/api-reference/application-config#entrypointuripath).
+
+However, the Custom Application must be configured to support "dynamic" values for the `entryPointUriPath` and build different versions of it.
 
 <Info>
 
-More information about how to set environment specific Custom Applications cofiguration properties can be found in [this section](/api-reference/application-config#environment-variable-references).
+Custom Applications "dynamic" configurations (per environment) setup are further explained in [this section](/api-reference/application-config#environment-variable-references).
 
 </Info>
 
-The very same Custom Application can be deployed several times and set its [configuration file](/api-reference/application-config) to use different `entryPointUriPath` values.
+The very same Custom Application can be deployed several times and set its [configuration file](/api-reference/application-config) to use different `entryPointUriPath` values by taking advantage of environment variables for every deployment.
 
 Let's say there are two deployments of the same application: `A` and `B`. We can assign an environment value for the `entryPointUriPath` property in its configuration.
 
@@ -96,8 +100,13 @@ Using this pattern, different `entryPointUriPath` values can be defined for diff
 
 With this setup, a new preview version of the Custom Application can be deployed to `B` environment and showcasing/testing can be done without affecting the production environment.
 
-However, there is an important update necessary to be applied to the Custom Application source code.
-Since we recommend having a constants file where the `entryPointUriPath` should be defined (as it is done is our [starter template](https://github.com/commercetools/merchant-center-application-kit/blob/main/application-templates/starter/src/constants.js#L4)) and that value would be used both at build time (when parsing the [configuration file](https://github.com/commercetools/merchant-center-application-kit/blob/main/application-templates/starter/custom-application-config.mjs#L8)) and at runtime, the initialization of that constant can be static but we need to get it from the environment:
+There is also another needed update to be applied to the Custom Application source code related to user permissions.
+
+Every Custom Application has its own pair of permissions (reading and writing) and its names are derived from the configured `entryPointUriPath` (as explained in [this section](/migrating-from-project-level-custom-applications#choose-the-entrypointuripath)).
+Since there will be different entry points by deployment, we need to update the permissions setup accordingly.
+
+We do recommend setting up a constants file where both the `entryPointUriPath` and the derived permissions are defined as explained in the [permissions section](/custom-applications/development/permissions#defining-constants).<br/>
+There is a caveat though since the `entryPointUriPath` is not a static value in this scenario so we would need to tailor the source code to calculate it accordingly as we showcase in the next example.
 
 ```js highlightLines="4-5"
 // Make sure to import the helper functions from the `ssr` entry point.
