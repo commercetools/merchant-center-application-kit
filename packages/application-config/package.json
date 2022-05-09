@@ -22,7 +22,7 @@
   "files": [
     "dist",
     "ssr",
-    "scripts",
+    "loaders",
     "schema.json",
     "package.json",
     "LICENSE",
