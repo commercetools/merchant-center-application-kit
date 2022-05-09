@@ -98,24 +98,30 @@ Using this pattern, different `entryPointUriPath` values can be defined for diff
 * `A` environment: `my-application-entry-point`
 * `B` environment: `my-application-entry-point-test`
 
-With this setup, a new preview version of the Custom Application can be deployed to `B` environment and showcasing/testing can be done without affecting the production environment.
+With this setup, preview versions of the Custom Application can be deployed to the `B` environment and tested using the application `my-application-entry-point-test` entry point path.
 
-However, there is also another needed update to be applied to the Custom Application source code related to user permissions.
+However, besides using different `entryPointUriPath` values, the logic of verifying the user permissions in the Custom Application source code must also be adjusted accordingly.
 
-Every Custom Application has its own pair of permissions (reading and writing) and its names are derived from the configured `entryPointUriPath` (as explained in [this section](/migrating-from-project-level-custom-applications#choose-the-entrypointuripath)).
-Since there will be different entry points by deployment, we need to update the permissions setup accordingly.
+As [explained in this section](/migrating-from-project-level-custom-applications#choose-the-entrypointuripath), the permission names of a Custom Application are derived from the `entryPointUriPath` value. Therefore, using different `entryPointUriPath` values require to change the permission names as well.
 
-We do recommend setting up a constants file where both the `entryPointUriPath` and the derived permissions are defined as explained in the [permissions section](/custom-applications/development/permissions#defining-constants).<br/>
-Nevertheless is a caveat though since the `entryPointUriPath` is not a static value in this scenario so we would need to tailor the source code to calculate it accordingly as we showcase in the next example.
+We recommend to use the helper function `entryPointUriPathToPermissionKeys` to compute the permission names from the `entryPointUriPath`.
 
-```js highlightLines="4-5"
+Find more information about applying user permissions in the [Permissions](/development/permissions) documentation.
+
+<Info>
+
+In this scenario the `entryPointUriPath` value cannot be defined statically but it's injected using an environment variable.
+
+Therefore, reading the value from the source code must take into account both server-side and client-side logic.
+
+```js highlightLines="4-6"
 // Make sure to import the helper functions from the `ssr` entry point.
 import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-shell/ssr';
 
-export const entryPointUriPath = typeof window === 'undefined' ?
-  process.env.ENTRY_POINT_URI_PATH : window.app.ENTRY_POINT_URI_PATH;
+export const entryPointUriPath = typeof window === 'undefined'
+  ? process.env.ENTRY_POINT_URI_PATH
+  : window.app.ENTRY_POINT_URI_PATH;
 
 export const PERMISSIONS = entryPointUriPathToPermissionKeys(entryPointUriPath);
 ```
-
-The value is read from the environment at build time and from the `window.app` object at runtime (that property is automatically populated by the Custom Application iternals).
+</Info>
