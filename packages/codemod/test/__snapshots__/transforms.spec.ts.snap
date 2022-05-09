@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing transform "remove-deprecated-modal-level-props" transforms correctly 1`] = `
+"import {
+  InfoModalPage,
+  FormModalPage,
+  CustomFormModalPage,
+  TabularModalPage,
+  TabHeader,
+} from '@commercetools-frontend/application-components';
+
+function Modal() {
+  return <>
+    <InfoModalPage isOpen title=\\"Hello\\" onClose={() => {}}>
+      Hello
+    </InfoModalPage>
+    <FormModalPage
+      isOpen
+      title=\\"Hello\\"
+      onPrimaryButtonClick={() => {}}
+      onSecondaryButtonClick={() => {}}
+      onClose={() => {}}>
+      Hello
+    </FormModalPage>
+    <CustomFormModalPage isOpen title=\\"Hello\\" onClose={() => {}}>
+      Hello
+    </CustomFormModalPage>
+    <TabularModalPage
+      isOpen
+      title=\\"Hello\\"
+      tabControls={
+        <>
+          <TabHeader to=\\"/one\\" label=\\"One\\" />
+          <TabHeader to=\\"/two\\" label=\\"Two\\" />
+        </>
+      }
+      onClose={() => {}}>
+      Hello
+    </TabularModalPage>
+  </>;
+}
+
+export default Modal;"
+`;

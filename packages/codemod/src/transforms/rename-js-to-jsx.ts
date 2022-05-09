@@ -20,7 +20,7 @@ function renameJsToJsx(file: FileInfo, api: API, options: TRunnerOptions) {
     }
   }
 
-  return root.toSource(options);
+  return null;
 }
 
 export default renameJsToJsx;

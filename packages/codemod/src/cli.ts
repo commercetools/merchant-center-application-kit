@@ -22,7 +22,8 @@ Global options:
 
 Transforms:
 
-  rename-js-to-jsx       Rename ".js" files using React JSX syntax to ".jsx".
+  remove-deprecated-modal-level-props     Remove deprecated "level" and "baseZIndex" props from modal page components.
+  rename-js-to-jsx                        Rename ".js" files using React JSX syntax to ".jsx".
   `);
     process.exit(0);
   }
@@ -41,6 +42,7 @@ Transforms:
 
   const execute = async () => {
     switch (transform) {
+      case 'remove-deprecated-modal-level-props':
       case 'rename-js-to-jsx': {
         const transformPath = path.join(
           __dirname,
@@ -56,6 +58,7 @@ Transforms:
             '**/build/**',
           ],
           parser: 'tsx',
+          verbose: 0,
           dry: flags['dry-run'],
         });
         break;
