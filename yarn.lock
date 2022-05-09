@@ -2400,11 +2400,13 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
+    "@types/express-unless": ^0.5.3
+    "@types/jsonwebtoken": ^8.5.8
     "@types/node": 16.11.26
     express: 4.17.3
-    express-jwt: 6.1.1
+    express-jwt: 7.7.0
     jose: 2.0.5
-    jwks-rsa: 2.0.5
+    jwks-rsa: 2.1.1
     msw: 0.39.2
   languageName: unknown
   linkType: soft
@@ -9474,16 +9476,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/express-jwt@npm:0.0.42":
-  version: 0.0.42
-  resolution: "@types/express-jwt@npm:0.0.42"
-  dependencies:
-    "@types/express": "*"
-    "@types/express-unless": "*"
-  checksum: b69148367b40c74876e77438a7a2449d3478d222a6094bce008308cf87ea43dcce5d74ebaef5d28bb224b0f0dd695bcf25a634a69d3c186575458eb1a1a6e4f8
-  languageName: node
-  linkType: hard
-
 "@types/express-serve-static-core@npm:*, @types/express-serve-static-core@npm:^4.17.18":
   version: 4.17.28
   resolution: "@types/express-serve-static-core@npm:4.17.28"
@@ -9495,12 +9487,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/express-unless@npm:*":
-  version: 0.5.2
-  resolution: "@types/express-unless@npm:0.5.2"
+"@types/express-unless@npm:^0.5.3":
+  version: 0.5.3
+  resolution: "@types/express-unless@npm:0.5.3"
   dependencies:
     "@types/express": "*"
-  checksum: 31446f1871e29fb3c576f909c3770e167ac219f9dde94c82c236fe0da45f97bd509fd9dc8bb302caaf5b9b41589b0cb27b53309c8b8459b3904b0e3c98f215f7
+  checksum: 5c76425ff7490123f3c072c942ae6d18bb3cbf91d5d9857c52fca1f9a3d11b72413dbfb3e4af28fdd7f745d1a443f90daadbcf7daff714d608eef10bd7c8763c
   languageName: node
   linkType: hard
 
@@ -9726,7 +9718,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jsonwebtoken@npm:^8.5.0":
+"@types/jsonwebtoken@npm:^8.5.0, @types/jsonwebtoken@npm:^8.5.8":
   version: 8.5.8
   resolution: "@types/jsonwebtoken@npm:8.5.8"
   dependencies:
@@ -11670,7 +11662,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"async@npm:1.5.2, async@npm:^1.5.0":
+"async@npm:1.5.2":
   version: 1.5.2
   resolution: "async@npm:1.5.2"
   checksum: fe5d6214d8f15bd51eee5ae8ec5079b228b86d2d595f47b16369dec2e11b3ff75a567bb5f70d12d79006665fbbb7ee0a7ec0e388524eefd454ecbe651c124ebd
@@ -17804,15 +17796,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express-jwt@npm:6.1.1":
-  version: 6.1.1
-  resolution: "express-jwt@npm:6.1.1"
+"express-jwt@npm:7.7.0":
+  version: 7.7.0
+  resolution: "express-jwt@npm:7.7.0"
   dependencies:
-    async: ^1.5.0
     express-unless: ^1.0.0
-    jsonwebtoken: ^8.1.0
-    lodash: ^4.17.21
-  checksum: 91b3da4c2bb080a2c3d125327a492f6f2b90a55c3b0fbdf51c78e979b636a6c94cb73fd2dbcebbdd5eedd9dcfe858f2b4ea4ce9c1285e60547f246546d31d9c1
+    jsonwebtoken: ^8.5.1
+  checksum: 05a52eed40944d05d60e4fa3d1451f002a92065325373f23480d1295297156e274b16f0330bed595a5d723296b23ba7fd8839bc630285f67e288b4be8cad6f7d
   languageName: node
   linkType: hard
 
@@ -23827,7 +23817,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsonwebtoken@npm:^8.1.0, jsonwebtoken@npm:^8.5.1":
+"jsonwebtoken@npm:^8.5.1":
   version: 8.5.1
   resolution: "jsonwebtoken@npm:8.5.1"
   dependencies:
@@ -23890,16 +23880,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jwks-rsa@npm:2.0.5":
-  version: 2.0.5
-  resolution: "jwks-rsa@npm:2.0.5"
+"jwks-rsa@npm:2.1.1":
+  version: 2.1.1
+  resolution: "jwks-rsa@npm:2.1.1"
   dependencies:
-    "@types/express-jwt": 0.0.42
-    debug: ^4.3.2
+    "@types/express": ^4.17.13
+    debug: ^4.3.4
     jose: ^2.0.5
     limiter: ^1.1.5
     lru-memoizer: ^2.1.4
-  checksum: c96d66f16971952826d81299ef027144761b5982e622d17994f57ab76d677fbfd1b4660d8e1bf48a9a92bfb3ab949e35d60a3894cca93b69161daa196acd8942
+  checksum: d856e51596e148064e70f74d111392bab037f432ee258a927e399c0f04b6b2c4504ae7f2aef5101089e965c54fa17447d9287a5bd1e63a54f492e9ff74cf0ba9
   languageName: node
   linkType: hard
 
