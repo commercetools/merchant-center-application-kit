@@ -8370,18 +8370,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@percy/puppeteer@npm:2.0.1":
-  version: 2.0.1
-  resolution: "@percy/puppeteer@npm:2.0.1"
+"@percy/puppeteer@npm:2.0.0":
+  version: 2.0.0
+  resolution: "@percy/puppeteer@npm:2.0.0"
   dependencies:
-    "@percy/sdk-utils": ^1.0.0
+    "@percy/sdk-utils": ^1.0.0-beta.32
   peerDependencies:
     puppeteer: ">=1"
-  checksum: e1a6adbed3eb57d44cf07addab7bff0586fe6bada59a1f4c87091997f14741a8395fce2f920b9cb799cd3de5249837541a0919e4bdcd009da95f9bb8d2d731c0
+  checksum: 6041289d06eb1c237f15c38e1cacd46e614be76202c27593e7b03cb3f828d9b31c6530f8f83a5d10c2fe05a059632896c69626f5bd6238b56c710b7612703806
   languageName: node
   linkType: hard
 
-"@percy/sdk-utils@npm:^1.0.0":
+"@percy/sdk-utils@npm:^1.0.0-beta.32":
   version: 1.1.2
   resolution: "@percy/sdk-utils@npm:1.1.2"
   checksum: 5a907cab1ce7c4ae97c3862bd33d961e3e72cb7b2f231ab5edcb8bbea61122d7218fea78932c79327dbf3f286d4825b902b2e66786b11393eba3fc4750c7ea21
@@ -25459,7 +25459,7 @@ __metadata:
     "@manypkg/cli": 0.19.1
     "@percy/cli": 1.1.2
     "@percy/cypress": 3.1.1
-    "@percy/puppeteer": 2.0.1
+    "@percy/puppeteer": 2.0.0
     "@preconstruct/cli": 2.1.5
     "@svgr/cli": 6.2.1
     "@svgr/plugin-jsx": 6.2.1

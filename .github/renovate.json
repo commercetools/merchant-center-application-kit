@@ -31,6 +31,10 @@
       "groupSlug": "all"
     },
     {
+      "matchPackageNames": ["@percy/puppeteer"],
+      "allowedVersions": "<=2.0.0"
+    },
+    {
       "matchPackageNames": ["postcss-custom-properties"],
       "allowedVersions": "<=12.1.4"
     }
