@@ -10,7 +10,6 @@ const {
   createCustomApplication,
   fetchUserOrganizations,
 } = require('../utils/graphql-requests');
-const updateApplicationIdInCustomApplicationConfig = require('../utils/update-application-id-in-custom-application-config');
 
 const flags = mri(process.argv.slice(2), {
   boolean: ['dry-run'],
@@ -110,9 +109,6 @@ const configSync = async () => {
       data,
     });
 
-    // update applicationID in the custom-application-config file
-    updateApplicationIdInCustomApplicationConfig(createdCustomApplication.id);
-
     const customAppLink = getMcUrlLink(
       mcApiUrl,
       organizationId,
@@ -120,7 +116,7 @@ const configSync = async () => {
     );
     console.log(
       chalk.green(
-        `Custom Application created.\nThe "applicationId" in your local Custom Application config file has been updated with the application ID.\nYou can see the Custom Application data in the Merchant Center at ${customAppLink}.`
+        `Custom Application created.\nThe "applicationId" in your local Custom Application config file should be updated with the application ID: ${createdCustomApplication.id}.\nYou can see the Custom Application data in the Merchant Center at ${customAppLink}.`
       )
     );
     return;

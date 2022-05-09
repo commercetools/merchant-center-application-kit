@@ -15,12 +15,18 @@ type MessageDescriptor = {
 };
 type Label = string | MessageDescriptor;
 type Props = {
+  /**
+   * @deprecated Not used anymore, as the value is controlled via the Stacking Layer System.
+   */
   level?: number;
   title: string;
   isOpen: boolean;
   onClose?: (event: SyntheticEvent) => void;
   children: ReactNode;
   zIndex?: number;
+  /**
+   * @deprecated Not used anymore, as the value is controlled via the Stacking Layer System.
+   */
   baseZIndex?: number;
   getParentSelector?: () => HTMLElement;
   shouldDelayOnClose?: boolean;
@@ -34,12 +40,10 @@ type Props = {
 
 const InfoModalPage = (props: Props) => (
   <ModalPage
-    level={props.level}
     title={props.title}
     isOpen={props.isOpen}
     zIndex={props.zIndex}
     onClose={props.onClose}
-    baseZIndex={props.baseZIndex}
     currentPathLabel={props.topBarCurrentPathLabel || props.title}
     previousPathLabel={props.topBarPreviousPathLabel}
     shouldDelayOnClose={props.shouldDelayOnClose}

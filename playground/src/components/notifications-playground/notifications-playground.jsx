@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
+import { Route, useRouteMatch, useHistory } from 'react-router-dom';
 import { useShowNotification } from '@commercetools-frontend/actions-global';
 import {
   InfoModalPage,
+  InfoDialog,
   useModalState,
 } from '@commercetools-frontend/application-components';
 import FlatButton from '@commercetools-uikit/flat-button';
@@ -59,7 +61,9 @@ const NotificationsTriggers = () => {
 };
 
 const NotificationsPlayground = (props) => {
-  const modalState = useModalState();
+  const dialogState = useModalState();
+  const route = useRouteMatch();
+  const history = useHistory();
 
   return (
     <Spacings.Inset>
@@ -67,17 +71,33 @@ const NotificationsPlayground = (props) => {
         <NotificationsTriggers />
         <FlatButton
           label={`Open modal ${props.level}`}
-          onClick={modalState.openModal}
+          onClick={() => {
+            history.push(`${route.url}/${props.level}`);
+          }}
+        />
+        <FlatButton
+          label={`Open dialog ${props.level}`}
+          onClick={dialogState.openModal}
         />
 
-        <InfoModalPage
-          isOpen={modalState.isModalOpen}
-          title={`Modal page ${props.level}`}
-          onClose={modalState.closeModal}
-          level={props.level}
+        <Route path={`${route.path}/${props.level}`}>
+          <InfoModalPage
+            isOpen
+            title={`Modal page ${props.level}`}
+            onClose={() => {
+              history.push(route.url);
+            }}
+          >
+            <NotificationsPlayground level={props.level + 1} />
+          </InfoModalPage>
+        </Route>
+        <InfoDialog
+          isOpen={dialogState.isModalOpen}
+          title={`Dialog ${props.level}`}
+          onClose={dialogState.closeModal}
         >
-          <NotificationsPlayground level={props.level + 1} />
-        </InfoModalPage>
+          Hello
+        </InfoDialog>
       </Spacings.Stack>
     </Spacings.Inset>
   );
