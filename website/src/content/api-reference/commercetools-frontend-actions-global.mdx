@@ -18,7 +18,7 @@ yarn add @commercetools-frontend/actions-global
 npm --save install @commercetools-frontend/actions-global
 ```
 
-Additionally install the peer dependencies (if not present)
+Additionally install the peer dependencies (if not present).
 
 ```
 yarn add react redux react-redux
@@ -30,7 +30,7 @@ npm --save install react redux react-redux
 
 # Notification system
 
-Custom Applications come with a built-in notification system built on top of [Redux](https://redux.js.org).
+Custom Applications have a built-in notification system built on top of [Redux](https://redux.js.org).
 
 The `@commercetools-frontend/actions-global` package provides Redux action creators and React hooks to facilitate dispatching notifications within Custom Applications.
 
@@ -38,7 +38,7 @@ The `@commercetools-frontend/actions-global` package provides Redux action creat
 
 <Info>
 
-Rather than using the action creators directly **we recommend using the corresponding React hooks**. The hooks have the `dispatch` method of the Redux store bound internally. 
+Rather than using the action creators directly, we recommend using the corresponding React hooks. The hooks have the `dispatch` method of the Redux store bound internally.
 
 </Info>
 
@@ -83,10 +83,10 @@ const domain = DOMAINS.SIDE;
 
 ## showApiErrorNotification
 
-An action creator to dispatch an (page) error notification for [API errors](https://docs.commercetools.com/api/errors) of the commercetools platform API.
-Takes as an argument an object with `errors` property being an error object or an array of error objects.
+An action creator to dispatch a (page) error notification for [API errors](https://docs.commercetools.com/api/errors) of the commercetools HTTP API.
+Takes as argument an object with `errors` property, which is an error object or an array of error objects.
 
-Some sources of errors (for instance GraphQL APIs) return an array or object. `showApiErrorNotification` action creator accepts either as the value of `errors` property. 
+Some error sources (for example, GraphQL APIs) return an array or object. The `showApiErrorNotification` action creator accepts both as the value of `errors` property.
 
 ```js
 const errors = [
@@ -105,7 +105,7 @@ dispatch(showApiErrorNotification({ errors })); // dispatch method from Redux st
 
 ## handleActionError
 
-An action creator that attempts to handle a generic error and dispatch the appropriate (page) notification error if possible. Use this if you simply need to ensure a notification error is shown without knowing what the exact error is.
+An action creator that attempts to handle a generic error and dispatch the appropriate (page) notification error if possible. Use this when you simply need to ensure that a notification error is displayed without knowing the exact error.
 
 It takes only one parameter that can be either of these types:
 
@@ -135,9 +135,9 @@ dispatch(handleActionError(error)); // dispatch method from Redux store
 
 `statusCode: 404` will be ignored and no notification will be displayed.<br />
 
-In case errors array contains multiple error objects, the displayed notification will contain all of the error messages.
+If the errors array contains multiple error objects, the displayed notification will contain all error messages.
 
-For instance:
+For example:
 
 ```js
 const error = {
