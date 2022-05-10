@@ -6,6 +6,11 @@ import type {
   SyntheticEvent,
 } from 'react';
 import { sharedMessages } from '@commercetools-frontend/i18n';
+
+import {
+  FormPrimaryButton,
+  FormSecondaryButton,
+} from '../../internals/default-form-buttons';
 import PageHeaderTitle from '../../internals/page-header-title';
 import CustomFormDetailPage from '../custom-form-detail-page';
 
@@ -90,6 +95,8 @@ type FormDetailPageProps = {
    * Hides the form controls.
    */
   hideControls: boolean;
+  onSubmit: () => void;
+  onReset?: () => void;
 };
 
 const defaultProps: Pick<
@@ -100,35 +107,38 @@ const defaultProps: Pick<
   showPageTopBar: true,
 };
 
-const FormDetailPage = (props: FormDetailPageProps) => (
-  <CustomFormDetailPage
-    title={props.title}
-    subtitle={props.subtitle}
-    customTitleRow={props.customTitleRow}
-    showPageTopBar={props.showPageTopBar}
-    previousPathLabel={props.previousPathLabel}
-    onPreviousPathClick={props.onPreviousPathClick}
-    hideControls={props.hideControls}
-    formControls={
-      <>
-        <CustomFormDetailPage.FormSecondaryButton
-          label={props.labelSecondaryButton}
-          onClick={props.onSecondaryButtonClick}
-          isDisabled={props.isSecondaryButtonDisabled}
-          dataAttributes={props.dataAttributesSecondaryButton}
-        />
-        <CustomFormDetailPage.FormPrimaryButton
-          label={props.labelPrimaryButton}
-          onClick={props.onPrimaryButtonClick}
-          isDisabled={props.isPrimaryButtonDisabled}
-          dataAttributes={props.dataAttributesPrimaryButton}
-        />
-      </>
-    }
-  >
-    {props.children}
-  </CustomFormDetailPage>
-);
+const FormDetailPage = (props: FormDetailPageProps) => {
+  return (
+    <CustomFormDetailPage
+      title={props.title}
+      subtitle={props.subtitle}
+      customTitleRow={props.customTitleRow}
+      showPageTopBar={props.showPageTopBar}
+      previousPathLabel={props.previousPathLabel}
+      onPreviousPathClick={props.onPreviousPathClick}
+      onSubmit={props.onSubmit}
+      onReset={props.onReset}
+      formControls={
+        <>
+          <FormSecondaryButton
+            label={props.labelSecondaryButton}
+            onClick={props.onSecondaryButtonClick}
+            isDisabled={props.isSecondaryButtonDisabled}
+            dataAttributes={props.dataAttributesSecondaryButton}
+          />
+          <FormPrimaryButton
+            label={props.labelPrimaryButton}
+            onClick={props.onPrimaryButtonClick}
+            isDisabled={props.isPrimaryButtonDisabled}
+            dataAttributes={props.dataAttributesPrimaryButton}
+          />
+        </>
+      }
+    >
+      {props.children}
+    </CustomFormDetailPage>
+  );
+};
 FormDetailPage.displayName = 'FormDetailPage';
 FormDetailPage.defaultProps = defaultProps;
 // This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.

@@ -1,6 +1,6 @@
 import type { ReactElement, ReactNode, MouseEvent, KeyboardEvent } from 'react';
 import PageHeaderTitle from '../../internals/page-header-title';
-import CustomFormDetailPage from '../custom-form-detail-page';
+import DetailPage from '../detail-page';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin
@@ -52,7 +52,7 @@ const defaultProps: Pick<InfoDetailPageProps, 'showPageTopBar'> = {
 };
 
 const InfoDetailPage = (props: InfoDetailPageProps) => (
-  <CustomFormDetailPage
+  <DetailPage
     title={props.title}
     subtitle={props.subtitle}
     customTitleRow={props.customTitleRow}
@@ -61,7 +61,7 @@ const InfoDetailPage = (props: InfoDetailPageProps) => (
     onPreviousPathClick={props.onPreviousPathClick}
   >
     {props.children}
-  </CustomFormDetailPage>
+  </DetailPage>
 );
 InfoDetailPage.displayName = 'InfoDetailPage';
 InfoDetailPage.defaultProps = defaultProps;

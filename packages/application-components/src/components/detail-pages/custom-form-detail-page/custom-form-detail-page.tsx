@@ -1,28 +1,15 @@
 import type { ReactElement, ReactNode, MouseEvent, KeyboardEvent } from 'react';
 import { sharedMessages } from '@commercetools-frontend/i18n';
-import { warning } from '@commercetools-uikit/utils';
-import styled from '@emotion/styled';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { createSequentialId, warning } from '@commercetools-uikit/utils';
+import { useFieldId } from '@commercetools-uikit/hooks';
+import Spacings from '@commercetools-uikit/spacings';
 import {
   FormPrimaryButton,
   FormSecondaryButton,
   FormDeleteButton,
 } from '../../internals/default-form-buttons';
-import Spacings from '@commercetools-uikit/spacings';
 import PageHeaderTitle from '../../internals/page-header-title';
-import PageTopBar from '../../internals/page-top-bar';
-import { ContentWrapper, PageWrapper } from '../../internals/page.styles';
-
-const noop = () => {};
-
-const DetailPageContainer = styled.div`
-  background-color: ${customProperties.colorNeutral95};
-  padding: ${customProperties.spacingM};
-  border-bottom: 1px ${customProperties.colorNeutral} solid;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-`;
+import DetailPage from '../detail-page';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin
@@ -77,6 +64,9 @@ type CustomFormDetailPageProps = {
   onPreviousPathClick?: (
     event: MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>
   ) => void;
+
+  onSubmit: () => void;
+  onReset?: () => void;
 };
 
 const defaultProps: Pick<
@@ -86,6 +76,8 @@ const defaultProps: Pick<
   showPageTopBar: true,
   hideControls: false,
 };
+
+const sequentialId = createSequentialId('form-detail-page-');
 
 const CustomFormDetailPage = (props: CustomFormDetailPageProps) => {
   warning(
@@ -99,33 +91,29 @@ const CustomFormDetailPage = (props: CustomFormDetailPageProps) => {
     );
   }
 
+  const formId = useFieldId('', sequentialId);
+
   return (
-    <PageWrapper>
-      <DetailPageContainer>
-        <Spacings.Stack>
-          {props.showPageTopBar && (
-            <PageTopBar
-              color="neutral"
-              previousPathLabel={props.previousPathLabel}
-              onClick={props.onPreviousPathClick ?? noop}
-            />
-          )}
-          {props.customTitleRow || (
-            <PageHeaderTitle
-              title={props.title ?? ''}
-              subtitle={props.subtitle}
-              titleSize="big"
-            />
-          )}
-        </Spacings.Stack>
-        {!props.hideControls && props.formControls && (
+    <DetailPage
+      title={props.title}
+      subtitle={props.subtitle}
+      customTitleRow={props.customTitleRow}
+      showPageTopBar={props.showPageTopBar}
+      previousPathLabel={props.previousPathLabel}
+      onPreviousPathClick={props.onPreviousPathClick}
+      headerExtraContent={
+        !props.hideControls &&
+        props.formControls && (
           <Spacings.Inline alignItems="flex-end">
             {props.formControls}
           </Spacings.Inline>
-        )}
-      </DetailPageContainer>
-      <ContentWrapper>{props.children}</ContentWrapper>
-    </PageWrapper>
+        )
+      }
+    >
+      <form id={formId} onReset={props.onReset} onSubmit={props.onSubmit}>
+        {props.children}
+      </form>
+    </DetailPage>
   );
 };
 CustomFormDetailPage.displayName = 'CustomFormDetailPage';
