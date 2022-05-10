@@ -59,7 +59,7 @@
     "@jest/types": "27.5.1",
     "@manypkg/cli": "0.19.1",
     "@testing-library/react": "12.1.5",
-    "@testing-library/react-hooks": "7.0.2",
+    "@testing-library/react-hooks": "8.0.0",
     "eslint": "8.23.1",
     "eslint-formatter-pretty": "4.1.0",
     "eslint-plugin-graphql": "^4.0.0",
