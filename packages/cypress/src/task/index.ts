@@ -56,34 +56,32 @@ const loadAllCustomApplicationConfigs = async (
   }
 
   const { packages } = await getPackages(process.cwd());
-  cachedAllCustomApplicationConfigs = await packages.reduce<
-    Promise<AllCustomApplicationConfigs>
-  >(async (allConfigsPromise, packageInfo) => {
-    const allConfigs = await allConfigsPromise;
-    const processEnv = loadEnvironmentVariables(packageInfo.dir, options);
-    try {
-      const processedConfig = await processConfig({
-        disableCache: true,
-        processEnv,
-        applicationPath: packageInfo.dir,
-      });
-      console.log(
-        `Found Custom Application config for ${packageInfo.packageJson.name}`
-      );
-      return {
-        ...allConfigs,
-        [processedConfig.env.entryPointUriPath]: processedConfig.env,
-      };
-    } catch (error) {
-      // Ignore packages that do not have a valid config file, either because
-      // the package is not a Custom Application or because the config file
-      // is invalid.
-      if (error instanceof MissingOrInvalidConfigError) {
-        return allConfigs;
+  cachedAllCustomApplicationConfigs =
+    packages.reduce<AllCustomApplicationConfigs>((allConfigs, packageInfo) => {
+      const processEnv = loadEnvironmentVariables(packageInfo.dir, options);
+      try {
+        const processedConfig = processConfig({
+          disableCache: true,
+          processEnv,
+          applicationPath: packageInfo.dir,
+        });
+        console.log(
+          `Found Custom Application config for ${packageInfo.packageJson.name}`
+        );
+        return {
+          ...allConfigs,
+          [processedConfig.env.entryPointUriPath]: processedConfig.env,
+        };
+      } catch (error) {
+        // Ignore packages that do not have a valid config file, either because
+        // the package is not a Custom Application or because the config file
+        // is invalid.
+        if (error instanceof MissingOrInvalidConfigError) {
+          return allConfigs;
+        }
+        throw error;
       }
-      throw error;
-    }
-  }, Promise.resolve({}));
+    }, {});
 
   return cachedAllCustomApplicationConfigs;
 };

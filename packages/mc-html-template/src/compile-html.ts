@@ -15,7 +15,7 @@ type TCompileHtmlResult = {
 async function compileHtml(
   indexHtmlTemplatePath: string
 ): Promise<TCompileHtmlResult> {
-  const applicationConfig = await processConfig();
+  const applicationConfig = processConfig();
   const compiledHeaders = processHeaders(applicationConfig);
 
   const indexHtmlTemplateContent = fs.readFileSync(

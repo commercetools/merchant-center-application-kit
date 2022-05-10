@@ -80,7 +80,7 @@ const pluginCustomApplication = (applicationConfig) => {
 
 const execute = async () => {
   // Load the Custom Application config file first.
-  const applicationConfig = await processConfig();
+  const applicationConfig = processConfig();
 
   // Ensure the `/public` folder exists.
   fs.mkdirSync(paths.appBuild, { recursive: true });

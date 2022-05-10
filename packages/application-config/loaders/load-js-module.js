@@ -9,11 +9,10 @@
 
 const get = require('lodash/get');
 
-async function requireModule(filePath) {
+function requireModule(filePath) {
   // Load JS modules using Babel, as we need to load
   // the config synchronously with `require`, no `await import`.
-  const register = require('@babel/register');
-  register({
+  require('@babel/register')({
     babelrc: false,
     extensions: ['.js', '.cjs', '.mjs', '.ts'],
     presets: [
