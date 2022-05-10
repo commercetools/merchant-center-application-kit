@@ -108,7 +108,7 @@
     "@testing-library/cypress": "8.0.2",
     "@testing-library/react": "12.1.5",
     "@types/faker": "5.5.9",
-    "@types/jest-environment-puppeteer": "4.4.1",
+    "@types/jest-environment-puppeteer": "5.0.2",
     "@types/jquery": "3.5.14",
     "@types/node": "16.11.33",
     "@types/puppeteer": "5.4.6",
