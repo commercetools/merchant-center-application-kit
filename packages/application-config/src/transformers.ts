@@ -1,6 +1,8 @@
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 import type { CustomApplicationData } from './types';
 import { entryPointUriPathToResourceAccesses } from './formatters';
+import { validateSubmenuLinks } from './validations';
+import sanitizeSvg from './sanitize-svg';
 
 // The `uriPath` of each submenu link is supposed to be defined relative
 // to the `entryPointUriPath`. Computing the full path is done internally to keep
@@ -24,6 +26,8 @@ function transformCustomApplicationConfigToData(
     appConfig.entryPointUriPath
   );
 
+  validateSubmenuLinks(appConfig);
+
   return {
     id: appConfig.env.production.applicationId,
     name: appConfig.name,
@@ -40,7 +44,7 @@ function transformCustomApplicationConfigToData(
         oAuthScopes: appConfig.oAuthScopes.manage,
       },
     ],
-    icon: appConfig.icon,
+    icon: sanitizeSvg(appConfig.icon),
     mainMenuLink: appConfig.mainMenuLink,
     submenuLinks: appConfig.submenuLinks.map((submenuLink) => ({
       ...submenuLink,

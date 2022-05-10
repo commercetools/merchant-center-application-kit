@@ -1,4 +1,4 @@
-import validateConfig from '../src/validate-config';
+import { validateConfig, validateSubmenuLinks } from '../src/validations';
 import fixtureConfigSimple from './fixtures/config-simple.json';
 import fixtureConfigFull from './fixtures/config-full.json';
 import fixtureConfigOidc from './fixtures/config-oidc.json';
@@ -171,6 +171,29 @@ describe('invalid configurations', () => {
       })
     ).toThrowErrorMatchingInlineSnapshot(
       `" must have required property 'mainMenuLink'"`
+    );
+  });
+  it('should validate that "uriPath" for "submenuLinks" is unique', () => {
+    expect(() =>
+      validateSubmenuLinks({
+        ...fixtureConfigSimple,
+        submenuLinks: [
+          {
+            uriPath: 'custom-app/avengers',
+            defaultLabel: 'avengers',
+            permissions: [],
+            labelAllLocales: [],
+          },
+          {
+            uriPath: 'custom-app/avengers',
+            defaultLabel: 'justice-league',
+            permissions: [],
+            labelAllLocales: [],
+          },
+        ],
+      })
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"Duplicate URI path. Every submenu link must have a unique URI path value"`
     );
   });
 });

@@ -1,5 +1,33 @@
 # @commercetools-website/components-playground
 
+## 17.4.2
+
+### Patch Changes
+
+- Updated dependencies [[`787692ac`](https://github.com/commercetools/merchant-center-application-kit/commit/787692accfed47c5dc50ef9b711e38d76ae97a87)]:
+  - @commercetools-frontend/application-components@21.5.1
+
+## 17.4.1
+
+### Patch Changes
+
+- Updated dependencies [[`2f58b2d6`](https://github.com/commercetools/merchant-center-application-kit/commit/2f58b2d619fbc9d30e7d89604aba97f0c0ac9325)]:
+  - @commercetools-frontend/application-components@21.5.0
+
+## 17.4.0
+
+### Minor Changes
+
+- [#2572](https://github.com/commercetools/merchant-center-application-kit/pull/2572) [`5b06e97a`](https://github.com/commercetools/merchant-center-application-kit/commit/5b06e97a65b48255d45f4d66acb6d52548025cc4) Thanks [@emmenko](https://github.com/emmenko)! - Bump uikit packages to v15.
+
+### Patch Changes
+
+- [#2563](https://github.com/commercetools/merchant-center-application-kit/pull/2563) [`238bd34a`](https://github.com/commercetools/merchant-center-application-kit/commit/238bd34a6045fd4cda443585b714ac0689ecd335) Thanks [@kark](https://github.com/kark)! - Update `react-intl` to version `^5.25.0`
+
+- Updated dependencies [[`238bd34a`](https://github.com/commercetools/merchant-center-application-kit/commit/238bd34a6045fd4cda443585b714ac0689ecd335), [`5b06e97a`](https://github.com/commercetools/merchant-center-application-kit/commit/5b06e97a65b48255d45f4d66acb6d52548025cc4)]:
+  - @commercetools-frontend/application-components@21.4.0
+  - @commercetools-frontend/i18n@21.4.0
+
 ## 17.3.4
 
 ### Patch Changes

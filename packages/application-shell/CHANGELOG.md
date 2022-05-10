@@ -1,5 +1,52 @@
 # @commercetools-frontend/application-shell
 
+## 21.5.1
+
+### Patch Changes
+
+- Updated dependencies [[`787692ac`](https://github.com/commercetools/merchant-center-application-kit/commit/787692accfed47c5dc50ef9b711e38d76ae97a87)]:
+  - @commercetools-frontend/application-components@21.5.1
+
+## 21.5.0
+
+### Patch Changes
+
+- Updated dependencies [[`3094da2f`](https://github.com/commercetools/merchant-center-application-kit/commit/3094da2fbe03fd8d5731836fa822d609dfccc84e), [`3180de7f`](https://github.com/commercetools/merchant-center-application-kit/commit/3180de7fc6a4da6b1925311b9e38bc8aad897e98), [`2f58b2d6`](https://github.com/commercetools/merchant-center-application-kit/commit/2f58b2d619fbc9d30e7d89604aba97f0c0ac9325)]:
+  - @commercetools-frontend/application-config@21.5.0
+  - @commercetools-frontend/application-components@21.5.0
+
+## 21.4.0
+
+### Minor Changes
+
+- [#2572](https://github.com/commercetools/merchant-center-application-kit/pull/2572) [`5b06e97a`](https://github.com/commercetools/merchant-center-application-kit/commit/5b06e97a65b48255d45f4d66acb6d52548025cc4) Thanks [@emmenko](https://github.com/emmenko)! - Bump uikit packages to v15.
+
+* [#2550](https://github.com/commercetools/merchant-center-application-kit/pull/2550) [`1065e661`](https://github.com/commercetools/merchant-center-application-kit/commit/1065e661f4bd7bd9b6096fdc6296c0341129f301) Thanks [@kark](https://github.com/kark)! - Add a new `<SuspendedRoute>` component.
+
+  This component is exactly like the `<Route>` component of `react-router` but it wraps the children with `React.Suspense`, allowing the children to be dynamically loaded with `React.lazy`. This can be used for code splitting components at the route level.
+
+  ```jsx
+  import { Switch } from 'react-router-dom';
+  import { lazy } from 'react';
+
+  const LazyLoadedComponent = lazy(() => import('./lazy-loaded-component'));
+
+  <Switch>
+    <SuspendedRoute>
+      <LazyLoadedComponent />
+    </SuspendedRoute>
+  </Switch>;
+  ```
+
+### Patch Changes
+
+- [#2563](https://github.com/commercetools/merchant-center-application-kit/pull/2563) [`238bd34a`](https://github.com/commercetools/merchant-center-application-kit/commit/238bd34a6045fd4cda443585b714ac0689ecd335) Thanks [@kark](https://github.com/kark)! - Update `react-intl` to version `^5.25.0`
+
+- Updated dependencies [[`238bd34a`](https://github.com/commercetools/merchant-center-application-kit/commit/238bd34a6045fd4cda443585b714ac0689ecd335), [`5b06e97a`](https://github.com/commercetools/merchant-center-application-kit/commit/5b06e97a65b48255d45f4d66acb6d52548025cc4)]:
+  - @commercetools-frontend/application-components@21.4.0
+  - @commercetools-frontend/i18n@21.4.0
+  - @commercetools-frontend/react-notifications@21.4.0
+
 ## 21.3.5
 
 ### Patch Changes

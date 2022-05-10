@@ -128,7 +128,7 @@ Developers can use the `config:sync` command to automatically manage the configu
 
 If a new Custom Application needs to be created, an interactive prompt will ask the user to select the Organization where the Custom Application should be configured to.
 
-Additionally, the [Custom Application ID](/api-reference/application-config#envproductionapplicationid) is automatically synced when running the `config:sync` command.
+Additionally, after creating a new Custom Application using the `config:sync` command, you must add the generated [Custom Application ID](/api-reference/application-config#envproductionapplicationid) to the application config file, following the instructions in the terminal.
 
 Note that this command requires a valid API token. You can get one by using the `mc-scripts login` command.
 

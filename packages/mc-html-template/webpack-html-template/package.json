@@ -1,0 +1,4 @@
+{
+  "main": "dist/commercetools-frontend-mc-html-template-webpack-html-template.cjs.js",
+  "module": "dist/commercetools-frontend-mc-html-template-webpack-html-template.esm.js"
+}

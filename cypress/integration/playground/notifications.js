@@ -48,3 +48,28 @@ describe('Notifications', () => {
     cy.percySnapshot();
   });
 });
+
+describe('Stacking layers', () => {
+  beforeEach(() => {
+    cy.loginByOidc({
+      entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND,
+      initialRoute: URL_APP_KIT_PLAYGROUND_NOTIFICATIONS,
+    });
+  });
+  it('should correctly stack modal pages', () => {
+    cy.findByLabelText('Open modal 1').should('be.visible').click();
+    cy.findByLabelText('Open modal 2').should('be.visible').click();
+    cy.findByLabelText('Open modal 3').should('be.visible').click();
+    cy.findByLabelText('Open modal 4').should('be.visible').click();
+
+    cy.findByLabelText('Open dialog 5').should('be.visible').click();
+    cy.percySnapshot();
+  });
+
+  it('should correctly stack modal pages when opening nested page', () => {
+    cy.visit(`${URL_APP_KIT_PLAYGROUND_NOTIFICATIONS}/1/2/3/4/5`);
+
+    cy.findByLabelText('Open dialog 6').should('be.visible').click();
+    cy.percySnapshot();
+  });
+});

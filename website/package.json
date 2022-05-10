@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-website/custom-applications",
-  "version": "18.5.1",
+  "version": "18.6.0",
   "private": true,
   "scripts": {
     "clean": "gatsby clean",
@@ -13,9 +13,9 @@
   "dependencies": {
     "@commercetools-docs/gatsby-theme-docs": "18.6.0",
     "@commercetools-docs/ui-kit": "18.6.0",
-    "@commercetools-uikit/card": "^14.0.1",
-    "@commercetools-uikit/spacings-inline": "^14.0.6",
-    "@commercetools-uikit/spacings-stack": "^14.0.6",
+    "@commercetools-uikit/card": "^15.0.0",
+    "@commercetools-uikit/spacings-inline": "^15.0.0",
+    "@commercetools-uikit/spacings-stack": "^15.0.0",
     "@emotion/react": "11.9.0",
     "@emotion/styled": "11.8.1",
     "gatsby": "4.11.3",

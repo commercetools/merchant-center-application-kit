@@ -21,11 +21,13 @@
     "@babel/runtime": "^7.17.9",
     "@babel/runtime-corejs3": "^7.17.9",
     "@types/node": "16.11.26",
-    "express": "4.17.3",
-    "express-jwt": "6.1.1",
-    "jwks-rsa": "2.0.5"
+    "express": "4.18.1",
+    "express-jwt": "7.7.0",
+    "jwks-rsa": "2.1.1"
   },
   "devDependencies": {
+    "@types/express-unless": "^0.5.3",
+    "@types/jsonwebtoken": "^8.5.8",
     "jose": "2.0.5",
     "msw": "0.39.2"
   }

@@ -9,6 +9,7 @@ import fixtureConfigIntlVariables from './fixtures/config-intl-variables.json';
 import fixtureConfigFilePathVariables from './fixtures/config-file-path-variables.json';
 
 jest.mock('../src/load-config');
+jest.mock('../src/sanitize-svg', () => (str) => str);
 
 const createTestOptions = (options) => ({
   disableCache: true,

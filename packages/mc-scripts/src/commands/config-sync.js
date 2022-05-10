@@ -10,7 +10,7 @@ const {
   createCustomApplication,
   fetchUserOrganizations,
 } = require('../utils/graphql-requests');
-const updateApplicationIdInCustomApplicationConfig = require('../utils/update-application-id-in-custom-application-config');
+const getConfigDiff = require('../utils/get-config-diff');
 
 const flags = mri(process.argv.slice(2), {
   boolean: ['dry-run'],
@@ -110,9 +110,6 @@ const configSync = async () => {
       data,
     });
 
-    // update applicationID in the custom-application-config file
-    updateApplicationIdInCustomApplicationConfig(createdCustomApplication.id);
-
     const customAppLink = getMcUrlLink(
       mcApiUrl,
       organizationId,
@@ -120,18 +117,38 @@ const configSync = async () => {
     );
     console.log(
       chalk.green(
-        `Custom Application created.\nThe "applicationId" in your local Custom Application config file has been updated with the application ID.\nYou can see the Custom Application data in the Merchant Center at ${customAppLink}.`
+        `Custom Application created.\nThe "applicationId" in your local Custom Application config file should be updated with the application ID: ${createdCustomApplication.id}.\nYou can see the Custom Application data in the Merchant Center at ${customAppLink}.`
       )
     );
     return;
   }
 
-  // TODO: show diff (followup task)
+  const customAppLink = getMcUrlLink(
+    mcApiUrl,
+    fetchedCustomApplication.organizationId,
+    fetchedCustomApplication.application.id
+  );
+
+  const configDiff = getConfigDiff(
+    fetchedCustomApplication.application,
+    localCustomAppData
+  );
+
+  if (!configDiff) {
+    console.log(
+      chalk.green(
+        `Custom Application is already up to date.\nYou can see the Custom Application data in the Merchant Center at ${customAppLink}.`
+      )
+    );
+    return;
+  }
+
+  console.log(configDiff);
 
   const { confirmation } = await prompts({
     type: 'text',
     name: 'confirmation',
-    message: `You are about to update the Custom Application "${localCustomAppData.entryPointUriPath}" in the ${mcApiUrl} environment. Are you sure you want to proceed?`,
+    message: `You are about to update the Custom Application "${localCustomAppData.entryPointUriPath}" with the changes above, in the ${mcApiUrl} environment. Are you sure you want to proceed?`,
     initial: 'yes',
   });
   if (!confirmation || confirmation.toLowerCase().charAt(0) !== 'y') {
@@ -157,11 +174,6 @@ const configSync = async () => {
     applicationId: fetchedCustomApplication.application.id,
   });
 
-  const customAppLink = getMcUrlLink(
-    mcApiUrl,
-    fetchedCustomApplication.organizationId,
-    fetchedCustomApplication.application.id
-  );
   console.log(
     chalk.green(
       `Custom Application updated.\nYou can see the Custom Application data in the Merchant Center at ${customAppLink}.`

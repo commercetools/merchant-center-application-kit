@@ -1,5 +1,17 @@
 # @commercetools-website/custom-applications
 
+## 18.6.0
+
+### Minor Changes
+
+- [#2572](https://github.com/commercetools/merchant-center-application-kit/pull/2572) [`5b06e97a`](https://github.com/commercetools/merchant-center-application-kit/commit/5b06e97a65b48255d45f4d66acb6d52548025cc4) Thanks [@emmenko](https://github.com/emmenko)! - Bump uikit packages to v15.
+
+### Patch Changes
+
+- [#2563](https://github.com/commercetools/merchant-center-application-kit/pull/2563) [`238bd34a`](https://github.com/commercetools/merchant-center-application-kit/commit/238bd34a6045fd4cda443585b714ac0689ecd335) Thanks [@kark](https://github.com/kark)! - Update `react-intl` to version `^5.25.0`
+
+* [#2561](https://github.com/commercetools/merchant-center-application-kit/pull/2561) [`dcd50aca`](https://github.com/commercetools/merchant-center-application-kit/commit/dcd50acaebe50921d6c9fff60333f541846cf96e) Thanks [@timonrey](https://github.com/timonrey)! - Update all docs dependencies.
+
 ## 18.5.1
 
 ### Patch Changes
