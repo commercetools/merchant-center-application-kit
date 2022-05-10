@@ -22,7 +22,6 @@
   "files": [
     "dist",
     "ssr",
-    "loaders",
     "schema.json",
     "package.json",
     "LICENSE",

@@ -1,34 +1,52 @@
 import fs from 'fs';
-import path from 'path';
+import getInObject from 'lodash/get';
+import { transformSync } from '@babel/core';
 import { cosmiconfigSync, defaultLoaders, type LoaderSync } from 'cosmiconfig';
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 import { MissingOrInvalidConfigError } from './errors';
 
-// Helper function to find the package root path from the current location,
-// for instance in respect to both source files and dist files.
-const findPackageRootPath = (dir: string): string => {
-  const packageJsonPath = path.join(dir, 'package.json');
-  if (fs.existsSync(packageJsonPath)) {
-    return dir;
-  }
-  const parentDir = path.join(dir, '..');
-  return findPackageRootPath(parentDir);
-};
+/**
+ * Custom JS module loader.
+ * This loader is used to load Custom Application config files that are not JSON files,
+ * for example any JS or TS files.
+ * To load the file, we need to make sure that we use our Babel preset to allow parsing
+ * the file with the supported features. TypeScript files are also loaded via the preset.
+ * Futhermore, we need to load the config file as a module, meaning that the exported
+ * Custom Application config can potentially contain JS functions.
+ * To do that, we need to first compile the file via Babel and then `require` it via Node.
+ * To keep things simple, we write a temporary file to the file system with the compiled code,
+ * require it and remove the compiled file again.
+ */
+const loadJsModule: LoaderSync = (filePath, content) => {
+  // Compile the config file with our Babel preset.
+  const transformResult = transformSync(content, {
+    filename: filePath,
+    babelrc: false,
+    presets: [
+      require.resolve('@commercetools-frontend/babel-preset-mc-app/production'),
+    ],
+  });
 
-const loadJsModule: LoaderSync = (filePath) => {
-  const packageRootPath = findPackageRootPath(
-    // Start from the parent folder
-    path.join(__dirname, '..')
-  );
-  // Load the JS module using a separate module loader. This is primarly to avoid
-  // unwanted behaviors using `@babel/register` in the main process.
-  // The loader script does the actual `require` of the given `filePath`
-  // and uses `@babel/register` to correctly parse and execute the file.
-  const requireModule = require(path.join(
-    packageRootPath,
-    'loaders/load-js-module'
-  ));
-  return requireModule(filePath);
+  if (!transformResult?.code) {
+    throw new Error(
+      `Failed to read Custom Application config file "${filePath}".`
+    );
+  }
+
+  const compiledConfigFilePath = `${filePath}.compiled`;
+  // Write the compiled config file.
+  fs.writeFileSync(compiledConfigFilePath, transformResult.code, {
+    encoding: 'utf8',
+  });
+
+  // Require the compiled module.
+  const moduleExport = require(compiledConfigFilePath);
+
+  // Remove the compiled module.
+  fs.rmSync(compiledConfigFilePath, { force: true });
+
+  // In case we are loading an ES module, we need to pick the `default` export.
+  return getInObject(moduleExport, 'default', moduleExport);
 };
 
 const moduleName = 'custom-application-config';
