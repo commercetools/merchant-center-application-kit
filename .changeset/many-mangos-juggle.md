@@ -26,4 +26,10 @@ To solve this issue, a Custom Application now implements a **Stacking Layer Syst
 
 Therefore, it is not necessary anymore to explicitly provide the `zIndex` and `level` props to the modal pages or dialog components. The following props have been deprecated: `level` and `baseZIndex` (modal pages).
 
+To remove the deprecated props you can run the codemod `remove-deprecated-modal-level-props`:
+
+```
+$ npx @commercetools-frontend/codemod remove-deprecated-modal-level-props 'src/**/*.js'
+```
+
 For backwards compatibility, the `zIndex` prop is still supported and, if defined, it will overwrite the `z-index` value using `!important`. Therefore we recommend to only define it if absolutely necessary, otherwise it's safe to remove it.
