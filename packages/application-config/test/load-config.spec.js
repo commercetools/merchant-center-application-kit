@@ -2,6 +2,10 @@ import path from 'path';
 import loadConfig from '../src/load-config';
 import { validateConfig } from '../src/validations';
 
+// Try to fix an issue on CI
+// ReferenceError: You are trying to `import` a file after the Jest environment has been torn down. From packages/application-config/test/load-config.spec.js
+jest.useFakeTimers();
+
 describe.each`
   extension | fixtureApp
   ${'.js'}  | ${'app-js'}
