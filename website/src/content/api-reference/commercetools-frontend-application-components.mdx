@@ -765,6 +765,7 @@ const DetailPage = () => {
 Tab Headers facilitate navigation within a tabular page.
 
 In a tabular page, tabs must be rendered using the `<TabHeader>` component via the `tabControls` prop. A `<TabHeader>` is rendered as a link and it assumes the "tab content" is controlled and rendered using `<Route>` components.
+`<TabHeader>` tracks the route changes internally and a tab is active if the `to` prop matches the current route.
 
 ### Properties
 
