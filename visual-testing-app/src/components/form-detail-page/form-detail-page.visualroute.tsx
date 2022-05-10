@@ -20,6 +20,8 @@ const DetailPageContainer = (props: ContainerProps) => (
         <FormDetailPage
           title="Lorem ipsum"
           subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+          showPageTopBar
+          onPreviousPathClick={() => alert('Go back clicked')}
           onSecondaryButtonClick={() => undefined}
           onPrimaryButtonClick={() => undefined}
           isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
@@ -66,11 +68,8 @@ export const Component = () => (
     <Spec label="FormDetailPage - With hidden controls" size="xl">
       <DetailPageContainer hideControls={true} />
     </Spec>
-    <Spec label="FormDetailPage - With top bar" size="xl">
-      <DetailPageContainer
-        showPageTopBar
-        onPreviousPathClick={() => alert('Go back clicked')}
-      />
+    <Spec label="FormDetailPage - Without the top bar" size="xl">
+      <DetailPageContainer showPageTopBar={false} />
     </Spec>
   </Suite>
 );

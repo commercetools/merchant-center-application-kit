@@ -79,6 +79,14 @@ type CustomFormDetailPageProps = {
   ) => void;
 };
 
+const defaultProps: Pick<
+  CustomFormDetailPageProps,
+  'showPageTopBar' | 'hideControls'
+> = {
+  showPageTopBar: true,
+  hideControls: false,
+};
+
 const CustomFormDetailPage = (props: CustomFormDetailPageProps) => {
   warning(
     props.title !== undefined || props.customTitleRow !== undefined,
@@ -121,13 +129,6 @@ const CustomFormDetailPage = (props: CustomFormDetailPageProps) => {
   );
 };
 CustomFormDetailPage.displayName = 'CustomFormDetailPage';
-const defaultProps: Pick<
-  CustomFormDetailPageProps,
-  'showPageTopBar' | 'hideControls'
-> = {
-  showPageTopBar: false,
-  hideControls: false,
-};
 CustomFormDetailPage.defaultProps = defaultProps;
 // Static export of pre-configured page header title component to easily
 // use as part of a custom title row

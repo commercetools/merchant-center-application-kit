@@ -92,8 +92,12 @@ type FormDetailPageProps = {
   hideControls: boolean;
 };
 
-const defaultProps: Pick<FormDetailPageProps, 'hideControls'> = {
+const defaultProps: Pick<
+  FormDetailPageProps,
+  'hideControls' | 'showPageTopBar'
+> = {
   hideControls: false,
+  showPageTopBar: true,
 };
 
 const FormDetailPage = (props: FormDetailPageProps) => (

@@ -26,6 +26,7 @@ const CustomFormDetailPageContainer = (props: ContainerProps) => (
         <CustomFormDetailPage
           title="Lorem ipsum"
           subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+          onPreviousPathClick={() => alert('Go back clicked')}
           {...props}
         >
           <TextField
@@ -121,10 +122,9 @@ export const Component = () => (
         }
       />
     </Spec>
-    <Spec label="CustomFormDetailPage - with top bar" size="xl">
+    <Spec label="CustomFormDetailPage - without the top bar" size="xl">
       <CustomFormDetailPageContainer
-        showPageTopBar
-        onPreviousPathClick={() => alert('Go back clicked')}
+        showPageTopBar={false}
         formControls={
           <>
             <CustomFormDetailPage.FormSecondaryButton

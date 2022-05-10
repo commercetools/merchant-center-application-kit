@@ -47,6 +47,10 @@ type InfoDetailPageProps = {
   ) => void;
 };
 
+const defaultProps: Pick<InfoDetailPageProps, 'showPageTopBar'> = {
+  showPageTopBar: true,
+};
+
 const InfoDetailPage = (props: InfoDetailPageProps) => (
   <CustomFormDetailPage
     title={props.title}
@@ -60,6 +64,7 @@ const InfoDetailPage = (props: InfoDetailPageProps) => (
   </CustomFormDetailPage>
 );
 InfoDetailPage.displayName = 'InfoDetailPage';
+InfoDetailPage.defaultProps = defaultProps;
 // Static export of pre-configured page header title component to easily
 // use as part of a custom title row
 InfoDetailPage.PageHeaderTitle = PageHeaderTitle;

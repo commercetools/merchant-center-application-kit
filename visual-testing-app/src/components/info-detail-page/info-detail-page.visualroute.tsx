@@ -11,6 +11,7 @@ const DetailPageContainer = (props: ContainerProps) => (
     <InfoDetailPage
       title="Lorem ipsum"
       subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      onPreviousPathClick={() => alert('Go back clicked')}
       {...props}
     >
       {props.children}
@@ -21,7 +22,7 @@ DetailPageContainer.displayName = 'DetailPageContainer';
 
 export const Component = () => (
   <Suite>
-    <Spec label="InfoDetailPage - First Level" size="xl">
+    <Spec label="InfoDetailPage" size="xl">
       <DetailPageContainer>
         <Text.Body>
           {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec turpis in risus elementum fringilla. Vestibulum nec vulputate metus, fringilla luctus nisl. Vestibulum mattis ultricies augue sagittis vestibulum. Nulla facilisi. Quisque tempor pulvinar efficitur. Praesent interdum ultrices leo. Vivamus non ex maximus justo egestas suscipit eget sed purus. Aliquam ut venenatis nulla. Fusce ac ligula viverra, blandit augue eget, congue turpis. Curabitur a sagittis leo. Nunc sed quam dictum, placerat nunc quis, luctus erat.`}
@@ -44,41 +45,8 @@ export const Component = () => (
         </Text.Body>
       </DetailPageContainer>
     </Spec>
-    <Spec label="InfoDetailPage - Nested" size="xl">
-      <DetailPageContainer>
-        <InfoDetailPage title="Second Level Page">
-          <Text.Body>
-            {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec turpis in risus elementum fringilla. Vestibulum nec vulputate metus, fringilla luctus nisl. Vestibulum mattis ultricies augue sagittis vestibulum. Nulla facilisi. Quisque tempor pulvinar efficitur. Praesent interdum ultrices leo. Vivamus non ex maximus justo egestas suscipit eget sed purus. Aliquam ut venenatis nulla. Fusce ac ligula viverra, blandit augue eget, congue turpis. Curabitur a sagittis leo. Nunc sed quam dictum, placerat nunc quis, luctus erat.`}
-          </Text.Body>
-          <Text.Body>
-            {`Nam id orci ut risus accumsan pellentesque. Quisque efficitur eu arcu ut tristique. Praesent ornare varius leo, ut consequat lacus rutrum vel. Donec mollis leo id lectus vehicula tempor. Nulla facilisi. Fusce fringilla tellus ac ligula consequat suscipit. Sed consectetur molestie quam eu pulvinar. Interdum et malesuada fames ac ante ipsum primis in faucibus. In hac habitasse platea dictumst.`}
-          </Text.Body>
-        </InfoDetailPage>
-      </DetailPageContainer>
-    </Spec>
-    <Spec label="InfoDetailPage - Multiple Nesting" size="xl">
-      <DetailPageContainer>
-        <InfoDetailPage title="Second Level Page">
-          <InfoDetailPage title="Third Level Page">
-            <InfoDetailPage title="Fourth Level Page">
-              <InfoDetailPage title="Fifth Level Page">
-                <Text.Body>
-                  {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec turpis in risus elementum fringilla. Vestibulum nec vulputate metus, fringilla luctus nisl. Vestibulum mattis ultricies augue sagittis vestibulum. Nulla facilisi. Quisque tempor pulvinar efficitur. Praesent interdum ultrices leo. Vivamus non ex maximus justo egestas suscipit eget sed purus. Aliquam ut venenatis nulla. Fusce ac ligula viverra, blandit augue eget, congue turpis. Curabitur a sagittis leo. Nunc sed quam dictum, placerat nunc quis, luctus erat.`}
-                </Text.Body>
-                <Text.Body>
-                  {`Nam id orci ut risus accumsan pellentesque. Quisque efficitur eu arcu ut tristique. Praesent ornare varius leo, ut consequat lacus rutrum vel. Donec mollis leo id lectus vehicula tempor. Nulla facilisi. Fusce fringilla tellus ac ligula consequat suscipit. Sed consectetur molestie quam eu pulvinar. Interdum et malesuada fames ac ante ipsum primis in faucibus. In hac habitasse platea dictumst.`}
-                </Text.Body>
-              </InfoDetailPage>
-            </InfoDetailPage>
-          </InfoDetailPage>
-        </InfoDetailPage>
-      </DetailPageContainer>
-    </Spec>
-    <Spec label="InfoDetailPage - With top bar" size="xl">
-      <DetailPageContainer
-        showPageTopBar
-        onPreviousPathClick={() => alert('Go back clicked')}
-      >
+    <Spec label="InfoDetailPage - Without the top bar" size="xl">
+      <DetailPageContainer showPageTopBar={false}>
         <Text.Body>
           {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec turpis in risus elementum fringilla. Vestibulum nec vulputate metus, fringilla luctus nisl. Vestibulum mattis ultricies augue sagittis vestibulum. Nulla facilisi. Quisque tempor pulvinar efficitur. Praesent interdum ultrices leo. Vivamus non ex maximus justo egestas suscipit eget sed purus. Aliquam ut venenatis nulla. Fusce ac ligula viverra, blandit augue eget, congue turpis. Curabitur a sagittis leo. Nunc sed quam dictum, placerat nunc quis, luctus erat.`}
         </Text.Body>
