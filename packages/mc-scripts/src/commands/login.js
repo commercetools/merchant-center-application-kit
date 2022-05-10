@@ -7,7 +7,7 @@ const { getAuthToken } = require('../utils/auth');
 const credentialsStorage = new CredentialsStorage();
 
 const login = async () => {
-  const applicationConfig = processConfig();
+  const applicationConfig = await processConfig();
   const { mcApiUrl } = applicationConfig.env;
 
   if (credentialsStorage.isSessionValid(mcApiUrl)) {

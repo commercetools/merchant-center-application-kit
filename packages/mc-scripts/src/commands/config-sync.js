@@ -25,7 +25,7 @@ const getMcUrlLink = (mcApiUrl, organizationId, applicationId) => {
 };
 
 const configSync = async () => {
-  const applicationConfig = processConfig();
+  const applicationConfig = await processConfig();
   const { data: localCustomAppData } = applicationConfig;
   const { mcApiUrl } = applicationConfig.env;
 

@@ -46,14 +46,14 @@ const omitDevConfigIfEmpty = (
 // again will result in returning the cached value.
 let cachedConfig: ApplicationRuntimeConfig;
 
-const processConfig = ({
+const processConfig = async ({
   disableCache = false,
   processEnv = process.env,
   applicationPath = fs.realpathSync(process.cwd()),
-}: ProcessConfigOptions = {}): ApplicationRuntimeConfig => {
+}: ProcessConfigOptions = {}): Promise<ApplicationRuntimeConfig> => {
   if (cachedConfig && !disableCache) return cachedConfig;
 
-  const rawConfig = loadConfig(applicationPath);
+  const rawConfig = await loadConfig(applicationPath);
   validateConfig(rawConfig);
   const appConfig =
     substituteVariablePlaceholders<JSONSchemaForCustomApplicationConfigurationFiles>(

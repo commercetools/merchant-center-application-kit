@@ -1,22 +1,24 @@
 import fs from 'fs';
 import path from 'path';
-import { cosmiconfigSync, defaultLoaders, type LoaderSync } from 'cosmiconfig';
+import { cosmiconfig, defaultLoaders, type Loader } from 'cosmiconfig';
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 import { MissingOrInvalidConfigError } from './errors';
 
 // Helper function to find the package root path from the current location,
 // for instance in respect to both source files and dist files.
-const findPackageRootPath = (dir: string): string => {
+const findPackageRootPath = async (dir: string): Promise<string> => {
   const packageJsonPath = path.join(dir, 'package.json');
-  if (fs.existsSync(packageJsonPath)) {
+  try {
+    await fs.promises.access(packageJsonPath, fs.constants.F_OK);
     return dir;
+  } catch (err) {
+    const parentDir = path.join(dir, '..');
+    return findPackageRootPath(parentDir);
   }
-  const parentDir = path.join(dir, '..');
-  return findPackageRootPath(parentDir);
 };
 
-const loadJsModule: LoaderSync = (filePath) => {
-  const packageRootPath = findPackageRootPath(
+const loadJsModule: Loader = async (filePath) => {
+  const packageRootPath = await findPackageRootPath(
     // Start from the parent folder
     path.join(__dirname, '..')
   );
@@ -28,11 +30,11 @@ const loadJsModule: LoaderSync = (filePath) => {
     packageRootPath,
     'loaders/load-js-module'
   ));
-  return requireModule(filePath);
+  return await requireModule(filePath);
 };
 
 const moduleName = 'custom-application-config';
-const explorer = cosmiconfigSync(moduleName, {
+const explorer = cosmiconfig(moduleName, {
   // Restrict the supported file formats / names
   searchPlaces: [
     `.${moduleName}rc`,
@@ -56,8 +58,8 @@ const explorer = cosmiconfigSync(moduleName, {
   },
 });
 
-export const getConfigPath = () => {
-  const configFile = explorer.search();
+export const getConfigPath = async (): Promise<string> => {
+  const configFile = await explorer.search();
   if (!configFile) {
     throw new Error(
       `Missing or invalid Custom Application configuration file.`
@@ -66,10 +68,10 @@ export const getConfigPath = () => {
   return configFile.filepath;
 };
 
-const loadConfig = (
+const loadConfig = async (
   applicationPath: string
-): JSONSchemaForCustomApplicationConfigurationFiles => {
-  const configFile = explorer.search(applicationPath);
+): Promise<JSONSchemaForCustomApplicationConfigurationFiles> => {
+  const configFile = await explorer.search(applicationPath);
 
   if (!configFile || !configFile.config) {
     throw new MissingOrInvalidConfigError(

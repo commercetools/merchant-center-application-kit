@@ -28,8 +28,8 @@ describe('processing a simple config', () => {
   beforeEach(() => {
     loadConfig.mockReturnValue(fixtureConfigSimple);
   });
-  it('should process the config and prepare the application environment and headers', () => {
-    const result = processConfig(createTestOptions());
+  it('should process the config and prepare the application environment and headers', async () => {
+    const result = await processConfig(createTestOptions());
     expect(result).toEqual({
       data: {
         id: 'app-id-123',
@@ -95,8 +95,8 @@ describe('processing a simple config', () => {
     });
   });
   describe('with NODE_ENV=production', () => {
-    it('should process the config as if for production', () => {
-      const result = processConfig(
+    it('should process the config as if for production', async () => {
+      const result = await processConfig(
         createTestOptions({
           processEnv: {
             NODE_ENV: 'production',
@@ -154,8 +154,8 @@ describe('processing a simple config', () => {
     });
   });
   describe('with MC_APP_ENV=development and NODE_ENV=production', () => {
-    it('should process the config where the MC_APP_ENV variable takes precedence over NODE_ENV', () => {
-      const result = processConfig(
+    it('should process the config where the MC_APP_ENV variable takes precedence over NODE_ENV', async () => {
+      const result = await processConfig(
         createTestOptions({
           processEnv: {
             NODE_ENV: 'production',
@@ -231,8 +231,8 @@ describe('processing a simple config', () => {
     });
   });
   describe('with MC_APP_ENV=staging and NODE_ENV=production', () => {
-    it('should process the config in production mode', () => {
-      const result = processConfig(
+    it('should process the config in production mode', async () => {
+      const result = await processConfig(
         createTestOptions({
           processEnv: {
             NODE_ENV: 'production',
@@ -296,8 +296,8 @@ describe('processing a full config', () => {
   beforeEach(() => {
     loadConfig.mockReturnValue(fixtureConfigFull);
   });
-  it('should process the config and prepare the application environment and headers', () => {
-    const result = processConfig(createTestOptions());
+  it('should process the config and prepare the application environment and headers', async () => {
+    const result = await processConfig(createTestOptions());
     expect(result).toEqual({
       data: {
         id: 'app-id-123',
@@ -374,8 +374,8 @@ describe('processing a full config', () => {
     });
   });
   describe('with NODE_ENV=production', () => {
-    it('should process the config as if for production', () => {
-      const result = processConfig(
+    it('should process the config as if for production', async () => {
+      const result = await processConfig(
         createTestOptions({
           processEnv: {
             NODE_ENV: 'production',
@@ -446,8 +446,8 @@ describe('processing a full config', () => {
     });
   });
   describe('with MC_APP_ENV=development and NODE_ENV=production', () => {
-    it('should process the config where the MC_APP_ENV variable takes precedence over NODE_ENV', () => {
-      const result = processConfig(
+    it('should process the config where the MC_APP_ENV variable takes precedence over NODE_ENV', async () => {
+      const result = await processConfig(
         createTestOptions({
           processEnv: {
             NODE_ENV: 'production',
@@ -532,8 +532,8 @@ describe('processing a full config', () => {
     });
   });
   describe('with MC_APP_ENV=staging and NODE_ENV=production', () => {
-    it('should process the config in production mode', () => {
-      const result = processConfig(
+    it('should process the config in production mode', async () => {
+      const result = await processConfig(
         createTestOptions({
           processEnv: {
             NODE_ENV: 'production',
@@ -610,8 +610,8 @@ describe('processing a config with environment variable placeholders', () => {
   beforeEach(() => {
     loadConfig.mockReturnValue(fixtureConfigEnvVariables);
   });
-  it('should process the config and prepare the application environment and headers', () => {
-    const result = processConfig(
+  it('should process the config and prepare the application environment and headers', async () => {
+    const result = await processConfig(
       createTestOptions({
         processEnv: {
           ENTRY_POINT_URI_PATH: 'avengers',
@@ -687,8 +687,8 @@ describe('processing a config with environment variable placeholders', () => {
     });
   });
   describe('with NODE_ENV=production', () => {
-    it('should process the config as if for production', () => {
-      const result = processConfig(
+    it('should process the config as if for production', async () => {
+      const result = await processConfig(
         createTestOptions({
           processEnv: {
             ENTRY_POINT_URI_PATH: 'avengers',
@@ -750,8 +750,8 @@ describe('processing a config with environment variable placeholders', () => {
     });
   });
   describe('with MC_APP_ENV=development and NODE_ENV=production', () => {
-    it('should process the config where the MC_APP_ENV variable takes precedence over NODE_ENV', () => {
-      const result = processConfig(
+    it('should process the config where the MC_APP_ENV variable takes precedence over NODE_ENV', async () => {
+      const result = await processConfig(
         createTestOptions({
           processEnv: {
             ENTRY_POINT_URI_PATH: 'avengers',
@@ -831,8 +831,8 @@ describe('processing a config with environment variable placeholders', () => {
     });
   });
   describe('with MC_APP_ENV=staging and NODE_ENV=production', () => {
-    it('should process the config in production mode', () => {
-      const result = processConfig(
+    it('should process the config in production mode', async () => {
+      const result = await processConfig(
         createTestOptions({
           processEnv: {
             ENTRY_POINT_URI_PATH: 'avengers',
@@ -900,8 +900,8 @@ describe('processing a config with intl variable placeholders', () => {
   beforeEach(() => {
     loadConfig.mockReturnValue(fixtureConfigIntlVariables);
   });
-  it('should process the config and correctly parse the translations', () => {
-    const result = processConfig(createTestOptions());
+  it('should process the config and correctly parse the translations', async () => {
+    const result = await processConfig(createTestOptions());
     expect(result).toEqual({
       data: {
         id: 'app-id-123',
@@ -1004,8 +1004,8 @@ describe('processing a config with file path variable placeholders', () => {
   beforeEach(() => {
     loadConfig.mockReturnValue(fixtureConfigFilePathVariables);
   });
-  it('should process the config and correctly parse the file content', () => {
-    const result = processConfig(createTestOptions());
+  it('should process the config and correctly parse the file content', async () => {
+    const result = await processConfig(createTestOptions());
     expect(result).toEqual({
       data: {
         id: 'app-id-123',
@@ -1086,8 +1086,8 @@ describe('processing a config with OIDC', () => {
   beforeEach(() => {
     loadConfig.mockReturnValue(fixtureConfigOidc);
   });
-  it('should process the config and prepare the application environment and headers, as well as the __DEVELOPMENT__ object', () => {
-    const result = processConfig(
+  it('should process the config and prepare the application environment and headers, as well as the __DEVELOPMENT__ object', async () => {
+    const result = await processConfig(
       createTestOptions({
         processEnv: {
           APP_URL: 'https://avengers.app',
@@ -1162,8 +1162,8 @@ describe('processing a config with OIDC', () => {
     });
   });
   describe('with NODE_ENV=production', () => {
-    it('should process the config as if for production without the __DEVELOPMENT__ object', () => {
-      const result = processConfig(
+    it('should process the config as if for production without the __DEVELOPMENT__ object', async () => {
+      const result = await processConfig(
         createTestOptions({
           processEnv: {
             APP_URL: 'https://avengers.app',
@@ -1237,8 +1237,8 @@ describe('when app URL is malformed', () => {
       },
     });
   });
-  it('should throw', () => {
-    expect(() =>
+  it('should throw', async () => {
+    await expect(
       processConfig(
         createTestOptions({
           processEnv: {
@@ -1246,8 +1246,8 @@ describe('when app URL is malformed', () => {
           },
         })
       )
-    ).toThrowErrorMatchingInlineSnapshot(
-      `"Invalid application URL: \\"wrong url\\""`
+    ).rejects.toMatchInlineSnapshot(
+      `[Error: Invalid application URL: "wrong url"]`
     );
   });
 });
@@ -1264,8 +1264,8 @@ describe('when CDN URL is malformed', () => {
       },
     });
   });
-  it('should throw', () => {
-    expect(() =>
+  it('should throw', async () => {
+    await expect(
       processConfig(
         createTestOptions({
           processEnv: {
@@ -1273,8 +1273,8 @@ describe('when CDN URL is malformed', () => {
           },
         })
       )
-    ).toThrowErrorMatchingInlineSnapshot(
-      `"Invalid application CDN URL: \\"wrong url\\""`
+    ).rejects.toMatchInlineSnapshot(
+      `[Error: Invalid application CDN URL: "wrong url"]`
     );
   });
 });
@@ -1285,11 +1285,9 @@ describe('when MC API URL is malformed', () => {
       mcApiUrl: 'wrong url',
     });
   });
-  it('should throw', () => {
-    expect(() =>
+  it('should throw', async () => {
+    await expect(
       processConfig(createTestOptions())
-    ).toThrowErrorMatchingInlineSnapshot(
-      `"Invalid MC API URL: \\"wrong url\\""`
-    );
+    ).rejects.toMatchInlineSnapshot(`[Error: Invalid MC API URL: "wrong url"]`);
   });
 });
