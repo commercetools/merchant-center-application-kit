@@ -113,13 +113,16 @@ const FormDetailPageExample = (props) => {
           },
           {
             kind: 'select',
-            name: 'showPageTopBar',
-            label: 'Show Top Bar?',
+            name: 'onPreviousPathClick',
+            label: 'onPreviousPathClick',
             valueOptions: [
-              { value: false, label: 'No' },
-              { value: true, label: 'Yes' },
+              { value: undefined, label: 'undefined' },
+              {
+                value: () => alert('Go back clicked'),
+                label: 'Pass a click event handler',
+              },
             ],
-            initialValue: true,
+            initialValue: () => alert('Go back clicked'),
           },
         ]}
       >
@@ -139,8 +142,7 @@ const FormDetailPageExample = (props) => {
               <FormDetailPage
                 title={values.title}
                 subtitle={values.subtitle}
-                showPageTopBar={values.showPageTopBar}
-                onPreviousPathClick={() => window.alert('Back button clicked')}
+                onPreviousPathClick={values.onPreviousPathClick}
                 customTitleRow={getCustomTitleRow(values.useCustomTitleRow)}
                 isPrimaryButtonDisabled={formikProps.isSubmitting}
                 isSecondaryButtonDisabled={formikProps.isSubmitting}

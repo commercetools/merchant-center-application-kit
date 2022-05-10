@@ -20,8 +20,6 @@ const DetailPageContainer = (props: ContainerProps) => (
         <FormDetailPage
           title="Lorem ipsum"
           subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          showPageTopBar
-          onPreviousPathClick={() => alert('Go back clicked')}
           onSecondaryButtonClick={() => undefined}
           onPrimaryButtonClick={() => undefined}
           isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
@@ -51,25 +49,37 @@ DetailPageContainer.displayName = 'DetailPageContainer';
 export const Component = () => (
   <Suite>
     <Spec label="FormDetailPage" size="xl">
-      <DetailPageContainer />
+      <DetailPageContainer
+        onPreviousPathClick={() => alert('Go back clicked')}
+      />
     </Spec>
     <Spec label="FormDetailPage - Primary button disabled" size="xl">
-      <DetailPageContainer isPrimaryButtonDisabled />
+      <DetailPageContainer
+        isPrimaryButtonDisabled
+        onPreviousPathClick={() => alert('Go back clicked')}
+      />
     </Spec>
     <Spec label="FormDetailPage - Secondary button disabled" size="xl">
-      <DetailPageContainer isSecondaryButtonDisabled />
+      <DetailPageContainer
+        isSecondaryButtonDisabled
+        onPreviousPathClick={() => alert('Go back clicked')}
+      />
     </Spec>
     <Spec label="FormDetailPage - Long title and subtitle" size="xl">
       <DetailPageContainer
         title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
         subtitle="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        onPreviousPathClick={() => alert('Go back clicked')}
       />
     </Spec>
     <Spec label="FormDetailPage - With hidden controls" size="xl">
-      <DetailPageContainer hideControls={true} />
+      <DetailPageContainer
+        hideControls={true}
+        onPreviousPathClick={() => alert('Go back clicked')}
+      />
     </Spec>
     <Spec label="FormDetailPage - Without the top bar" size="xl">
-      <DetailPageContainer showPageTopBar={false} />
+      <DetailPageContainer />
     </Spec>
   </Suite>
 );

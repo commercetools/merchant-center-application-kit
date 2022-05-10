@@ -13,8 +13,6 @@ import PageHeaderTitle from '../../internals/page-header-title';
 import PageTopBar from '../../internals/page-top-bar';
 import { ContentWrapper, PageWrapper } from '../../internals/page.styles';
 
-const noop = () => {};
-
 const DetailPageContainer = styled.div`
   background-color: ${customProperties.colorNeutral95};
   padding: ${customProperties.spacingM};
@@ -61,12 +59,6 @@ type CustomFormDetailPageProps = {
    * Determines if the form controls should be rendered.
    */
   hideControls?: boolean;
-
-  // PageTopBar props:
-  /**
-   * Makes page top bar visible
-   */
-  showPageTopBar?: boolean;
   /**
    * A return route path label.
    */
@@ -79,11 +71,7 @@ type CustomFormDetailPageProps = {
   ) => void;
 };
 
-const defaultProps: Pick<
-  CustomFormDetailPageProps,
-  'showPageTopBar' | 'hideControls'
-> = {
-  showPageTopBar: true,
+const defaultProps: Pick<CustomFormDetailPageProps, 'hideControls'> = {
   hideControls: false,
 };
 
@@ -92,22 +80,16 @@ const CustomFormDetailPage = (props: CustomFormDetailPageProps) => {
     props.title !== undefined || props.customTitleRow !== undefined,
     'DetailPage: one of either `title` or `customTitleRow` is required but both their values are `undefined`'
   );
-  if (props.showPageTopBar) {
-    warning(
-      Boolean(props.onPreviousPathClick),
-      'DetailPage: `onPreviousPathClick` is required when page top bar is visible.'
-    );
-  }
 
   return (
     <PageWrapper>
       <DetailPageContainer>
         <Spacings.Stack>
-          {props.showPageTopBar && (
+          {props.onPreviousPathClick && (
             <PageTopBar
               color="neutral"
               previousPathLabel={props.previousPathLabel}
-              onClick={props.onPreviousPathClick ?? noop}
+              onClick={props.onPreviousPathClick}
             />
           )}
           {props.customTitleRow || (

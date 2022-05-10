@@ -39,10 +39,6 @@ type FormDetailPageProps = {
 
   // PageTopBar props:
   /**
-   * Makes page top bar visible
-   */
-  showPageTopBar?: boolean;
-  /**
    * A return route path label.
    */
   previousPathLabel?: string | MessageDescriptor;
@@ -52,8 +48,6 @@ type FormDetailPageProps = {
   onPreviousPathClick?: (
     event: MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>
   ) => void;
-
-  // Controls Props
   /**
    * Indicates whether the primary button is deactivated or not.
    */
@@ -92,12 +86,8 @@ type FormDetailPageProps = {
   hideControls: boolean;
 };
 
-const defaultProps: Pick<
-  FormDetailPageProps,
-  'hideControls' | 'showPageTopBar'
-> = {
+const defaultProps: Pick<FormDetailPageProps, 'hideControls'> = {
   hideControls: false,
-  showPageTopBar: true,
 };
 
 const FormDetailPage = (props: FormDetailPageProps) => (
@@ -105,7 +95,6 @@ const FormDetailPage = (props: FormDetailPageProps) => (
     title={props.title}
     subtitle={props.subtitle}
     customTitleRow={props.customTitleRow}
-    showPageTopBar={props.showPageTopBar}
     previousPathLabel={props.previousPathLabel}
     onPreviousPathClick={props.onPreviousPathClick}
     hideControls={props.hideControls}

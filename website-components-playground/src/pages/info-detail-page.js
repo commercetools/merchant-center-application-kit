@@ -89,13 +89,16 @@ const InfoDetailPageExample = (props) => {
           },
           {
             kind: 'select',
-            name: 'showPageTopBar',
-            label: 'Show Top Bar?',
+            name: 'onPreviousPathClick',
+            label: 'onPreviousPathClick',
             valueOptions: [
-              { value: false, label: 'No' },
-              { value: true, label: 'Yes' },
+              { value: undefined, label: 'undefined' },
+              {
+                value: () => alert('Go back clicked'),
+                label: 'Pass a click event handler',
+              },
             ],
-            initialValue: true,
+            initialValue: () => alert('Go back clicked'),
           },
         ]}
       >
@@ -104,8 +107,7 @@ const InfoDetailPageExample = (props) => {
             title={values.title}
             subtitle={values.subtitle}
             customTitleRow={getCustomTitleRow(values.useCustomTitleRow)}
-            showPageTopBar={values.showPageTopBar}
-            onPreviousPathClick={() => window.alert('Back button clicked')}
+            onPreviousPathClick={values.onPreviousPathClick}
           >
             <Text.Body>
               {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec turpis in risus elementum fringilla. Vestibulum nec vulputate metus, fringilla luctus nisl. Vestibulum mattis ultricies augue sagittis vestibulum. Nulla facilisi. Quisque tempor pulvinar efficitur. Praesent interdum ultrices leo. Vivamus non ex maximus justo egestas suscipit eget sed purus. Aliquam ut venenatis nulla. Fusce ac ligula viverra, blandit augue eget, congue turpis. Curabitur a sagittis leo. Nunc sed quam dictum, placerat nunc quis, luctus erat.`}

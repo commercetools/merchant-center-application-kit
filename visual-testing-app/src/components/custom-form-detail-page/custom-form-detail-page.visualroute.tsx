@@ -26,7 +26,6 @@ const CustomFormDetailPageContainer = (props: ContainerProps) => (
         <CustomFormDetailPage
           title="Lorem ipsum"
           subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          onPreviousPathClick={() => alert('Go back clicked')}
           {...props}
         >
           <TextField
@@ -52,13 +51,16 @@ CustomFormDetailPageContainer.displayName = 'CustomFormDetailPageContainer';
 export const Component = () => (
   <Suite>
     <Spec label="CustomFormDetailPage" size="xl">
-      <CustomFormDetailPageContainer />
+      <CustomFormDetailPageContainer
+        onPreviousPathClick={() => alert('Go back clicked')}
+      />
     </Spec>
     <Spec
       label="CustomFormDetailPage - with the static exposed form controls"
       size="xl"
     >
       <CustomFormDetailPageContainer
+        onPreviousPathClick={() => alert('Go back clicked')}
         formControls={
           <>
             <CustomFormDetailPage.FormSecondaryButton
@@ -72,6 +74,7 @@ export const Component = () => (
     </Spec>
     <Spec label="CustomFormDetailPage - with other custom controls" size="xl">
       <CustomFormDetailPageContainer
+        onPreviousPathClick={() => alert('Go back clicked')}
         formControls={
           <>
             <IconButton
@@ -95,6 +98,7 @@ export const Component = () => (
     </Spec>
     <Spec label="CustomFormDetailPage - with hidden controls" size="xl">
       <CustomFormDetailPageContainer
+        onPreviousPathClick={() => alert('Go back clicked')}
         formControls={
           <>
             <CustomFormDetailPage.FormSecondaryButton
@@ -111,6 +115,7 @@ export const Component = () => (
       <CustomFormDetailPageContainer
         title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
         subtitle="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        onPreviousPathClick={() => alert('Go back clicked')}
         formControls={
           <>
             <CustomFormDetailPage.FormSecondaryButton
@@ -124,7 +129,6 @@ export const Component = () => (
     </Spec>
     <Spec label="CustomFormDetailPage - without the top bar" size="xl">
       <CustomFormDetailPageContainer
-        showPageTopBar={false}
         formControls={
           <>
             <CustomFormDetailPage.FormSecondaryButton

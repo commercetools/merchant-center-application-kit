@@ -15,7 +15,7 @@ The layout of those pages can be recognized by the gray background header and th
 
 ## InfoDetailPage
 
-Form Detail pages are controlled components used to render a page with detailed data.
+Info Detail pages are controlled components used to render a page with detailed data.
 
 ```jsx
 import { useHistory } from 'react-router-dom';
@@ -26,7 +26,6 @@ const DetailPage = () => {
   return (
     <InfoDetailPage
       title="Detail page"
-      showPageTopBar
       onPreviousPathClick={() => history.push('/starting-page')}
       previousPathLabel="Go back"
     >
@@ -67,7 +66,6 @@ const AccountPage = () => {
   return (
     <FormDetailPage
       title="Manage your account"
-      showPageTopBar
       onPreviousPathClick={() => history.push('/starting-page')}
       isPrimaryButtonDisabled={formik.isSubmitting}
       onSecondaryButtonClick={() => {
@@ -122,7 +120,6 @@ const AccountPage = () => {
   return (
     <CustomFormDetailPage
       title="Manage your account"
-      showPageTopBar
       onPreviousPathClick={() => history.push('/starting-page')}
       formControls={
         <>

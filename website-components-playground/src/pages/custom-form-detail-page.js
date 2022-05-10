@@ -101,13 +101,16 @@ const CustomFormDetailPageExample = (props) => {
           },
           {
             kind: 'select',
-            name: 'showPageTopBar',
-            label: 'Show Top Bar?',
+            name: 'onPreviousPathClick',
+            label: 'onPreviousPathClick',
             valueOptions: [
-              { value: false, label: 'No' },
-              { value: true, label: 'Yes' },
+              { value: undefined, label: 'undefined' },
+              {
+                value: () => alert('Go back clicked'),
+                label: 'Pass a click event handler',
+              },
             ],
-            initialValue: true,
+            initialValue: () => alert('Go back clicked'),
           },
         ]}
       >
@@ -128,8 +131,7 @@ const CustomFormDetailPageExample = (props) => {
                 title={values.title}
                 subtitle={values.subtitle}
                 customTitleRow={getCustomTitleRow(values.useCustomTitleRow)}
-                showPageTopBar={values.showPageTopBar}
-                onPreviousPathClick={() => window.alert('Back button clicked')}
+                onPreviousPathClick={values.onPreviousPathClick}
                 hideControls={values.hideControls}
                 formControls={
                   <>

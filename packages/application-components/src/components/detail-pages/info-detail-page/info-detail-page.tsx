@@ -29,12 +29,6 @@ type InfoDetailPageProps = {
    * Any React node displayed as the content within the page.
    */
   children: ReactNode;
-
-  // PageTopBar props:
-  /**
-   * Makes page top bar visible
-   */
-  showPageTopBar?: boolean;
   /**
    * A return route path label.
    */
@@ -47,16 +41,11 @@ type InfoDetailPageProps = {
   ) => void;
 };
 
-const defaultProps: Pick<InfoDetailPageProps, 'showPageTopBar'> = {
-  showPageTopBar: true,
-};
-
 const InfoDetailPage = (props: InfoDetailPageProps) => (
   <CustomFormDetailPage
     title={props.title}
     subtitle={props.subtitle}
     customTitleRow={props.customTitleRow}
-    showPageTopBar={props.showPageTopBar}
     previousPathLabel={props.previousPathLabel}
     onPreviousPathClick={props.onPreviousPathClick}
   >
@@ -64,7 +53,6 @@ const InfoDetailPage = (props: InfoDetailPageProps) => (
   </CustomFormDetailPage>
 );
 InfoDetailPage.displayName = 'InfoDetailPage';
-InfoDetailPage.defaultProps = defaultProps;
 // Static export of pre-configured page header title component to easily
 // use as part of a custom title row
 InfoDetailPage.PageHeaderTitle = PageHeaderTitle;
