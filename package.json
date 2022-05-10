@@ -168,6 +168,7 @@
     "@types/react-router": "5.1.18",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",
+    "core-js-compat": "^3.22.4",
     "graphql": "15.8.0",
     "intl-messageformat-parser": "6.4.4"
   },
