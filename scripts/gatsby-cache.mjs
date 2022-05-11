@@ -20,10 +20,6 @@ import mri from 'mri';
 import { getPackages } from '@manypkg/get-packages';
 import { findRootSync } from '@manypkg/find-root';
 
-if (!process.env.VERCEL) {
-  throw new Error(`This script is only meant to run on Vercel builds.`);
-}
-
 const flags = mri(process.argv.slice(2), { alias: { help: ['h'] } });
 const commands = flags._;
 
