@@ -136,9 +136,7 @@ const CustomFormDetailPageExample = (props) => {
                 formControls={
                   <>
                     <CustomFormDetailPage.FormSecondaryButton
-                      onClick={() => {
-                        formikProps.resetForm();
-                      }}
+                      onClick={formikProps.resetForm}
                     />
                     <CustomFormDetailPage.FormPrimaryButton
                       onClick={formikProps.handleSubmit}

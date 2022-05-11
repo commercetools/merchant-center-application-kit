@@ -4,7 +4,7 @@
 '@commercetools-website/components-playground': minor
 ---
 
-Add three new layout components: `<InfoDetailPage>`, `<FormDetailPage>` and `<CustomFormDetailPage>`.
+Adds three new layout components: `<InfoDetailPage>`, `<FormDetailPage>` and `<CustomFormDetailPage>`.
 
 These components are similar to the `<InfoModalPage>`, `<FormModalPage>` and `<CustomFormModalPage>` respectively but they are not rendered as modals.
 
@@ -68,9 +68,7 @@ const AccountPage = () => {
       title="Manage your account"
       onPreviousPathClick={() => history.push('/starting-page')}
       isPrimaryButtonDisabled={formik.isSubmitting}
-      onSecondaryButtonClick={() => {
-        formik.resetForm();
-      }}
+      onSecondaryButtonClick={formik.resetForm}
       onPrimaryButtonClick={formik.handleSubmit}
     >
       <TextField
@@ -124,9 +122,7 @@ const AccountPage = () => {
       formControls={
         <>
           <CustomFormDetailPage.FormSecondaryButton
-            onClick={() => {
-              formik.resetForm();
-            }}
+            onClick={formik.resetForm}
           />
           <CustomFormDetailPage.FormPrimaryButton
             onClick={formik.handleSubmit}
