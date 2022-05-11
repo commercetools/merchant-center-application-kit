@@ -43,7 +43,7 @@
     "build": "./scripts/build_packages.sh",
     "build:watch": "yarn build --watch",
     "build:website": "./scripts/build_website.sh",
-    "vercel-build": "yarn build:website",
+    "vercel-build": "echo \"Nothing to do, the build and deployment is managed in GH actions.\"",
     "labels:sync": "github-labels sync",
     "generate-types:mc": "graphql-codegen -r dotenv/config --config codegen.mc.yml",
     "generate-types:ctp": "graphql-codegen -r dotenv/config --config codegen.ctp.yml",
