@@ -30,7 +30,7 @@
       "oneOf": [
         {
           "type": "string",
-          "pattern": "^[^\\-_]([0-9a-z]|[\\-_](?![\\-_])){2,64}[^\\-_]$"
+          "pattern": "^[^\\-_#]([0-9a-z]|[\\-_](?![\\-_])){0,62}[^\\-_#]$"
         },
         {
           "$ref": "#/definitions/envVariablePlaceholder"

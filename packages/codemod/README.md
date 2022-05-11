@@ -12,7 +12,19 @@ Codemod transformations for Custom Applications.
 $ npx @commercetools-frontend/codemod <transform> <glob_pattern>
 ```
 
+We recommend to run `prettier` on the modified files to preserve the formatting configured on your project. For example, you can run `prettier --write $(git diff --name-only)`.
+
+> If you are using `lint-staged` there is a high chance that you already run `prettier` on the staged files. Therefore, you don't need to run it manually.
+
 ## Transforms
+
+### `remove-deprecated-modal-level-props`
+
+Remove deprecated `level` and `baseZIndex` props from modal page components.
+
+```
+$ npx @commercetools-frontend/codemod remove-deprecated-modal-level-props 'src/**/*.js'
+```
 
 ### `rename-js-to-jsx`
 

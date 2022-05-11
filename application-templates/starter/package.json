@@ -19,7 +19,7 @@
     "versions:uikit": "manypkg upgrade @commercetools-uikit"
   },
   "dependencies": {
-    "@apollo/client": "3.5.10",
+    "@apollo/client": "3.6.2",
     "@commercetools-frontend/actions-global": "21.3.4",
     "@commercetools-frontend/application-components": "21.5.1",
     "@commercetools-frontend/application-shell": "21.5.1",
@@ -33,8 +33,8 @@
     "@commercetools-frontend/mc-scripts": "21.5.0",
     "@commercetools-frontend/permissions": "21.3.4",
     "@commercetools-frontend/sdk": "21.3.4",
-    "@commercetools-test-data/commons": "3.0.0",
-    "@commercetools-test-data/core": "3.0.0",
+    "@commercetools-test-data/commons": "3.0.2",
+    "@commercetools-test-data/core": "3.0.2",
     "@commercetools-uikit/constraints": "^15.0.0",
     "@commercetools-uikit/data-table": "^15.0.0",
     "@commercetools-uikit/flat-button": "^15.0.0",
@@ -53,15 +53,15 @@
     "@commercetools-uikit/text-field": "^15.0.0",
     "@commercetools-uikit/text-input": "^15.0.0",
     "@commercetools/sync-actions": "^4.10.1",
-    "@formatjs/cli": "4.8.3",
+    "@formatjs/cli": "4.8.4",
     "@manypkg/cli": "0.19.1",
     "@testing-library/react": "12.1.5",
     "@testing-library/react-hooks": "7.0.2",
-    "eslint": "8.13.0",
+    "eslint": "8.15.0",
     "eslint-formatter-pretty": "4.1.0",
     "jest": "27.5.1",
     "jest-runner-eslint": "1.0.0",
-    "jest-watch-typeahead": "1.0.0",
+    "jest-watch-typeahead": "1.1.0",
     "msw": "0.39.2",
     "omit-empty-es": "1.1.3",
     "prettier": "2.6.2",
@@ -70,7 +70,7 @@
     "react-dom": "17.0.2",
     "react-intl": "^5.25.0",
     "react-redux": "7.2.8",
-    "react-router-dom": "5.3.0",
-    "redux": "4.1.2"
+    "react-router-dom": "5.3.1",
+    "redux": "4.2.0"
   }
 }
