@@ -47,23 +47,23 @@ If you are interested in more advanced functionalities, let us know and open a [
 
 </Info>
 
-# I want to use a test or staging environment for my Custom Application
+# Using a test or staging environment for my Custom Application
 
 During the development cycle of new features for a Custom Application, it can be helpful to showcase or test those new features before publishing them to the production environment.
 
-This generally can be achieved using preview deployments, where you can inspect different versions of the Custom Application. As of now, the Merchant Center does not support this feature yet.
+This can usually be accomplished using preview deployments, where you can inspect different versions of the Custom Application. As of now, the Merchant Center does not support this feature yet.
 
-The only option to emulate this setup is to create multiple Custom Applications in the Merchant Center, each one with a different [`entryPointUriPath`](/api-reference/application-config#entrypointuripath).
+The only option to emulate this setup is to create multiple Custom Applications in the Merchant Center, each with a different [`entryPointUriPath`](/api-reference/application-config#entrypointuripath).
 
-However, the Custom Application must be configured to support "dynamic" values for the `entryPointUriPath` and build different versions of it.
+However, the Custom Application must be configured to support dynamic values for the `entryPointUriPath` and build different versions of it.
 
 <Info>
 
-Custom Applications "dynamic" configurations (per environment) setup are further explained in [this section](/api-reference/application-config#environment-variable-references).
+Setting up dynamic configurations of Custom Applications (per environment) is further explained in [this section](/api-reference/application-config#environment-variable-references).
 
 </Info>
 
-The very same Custom Application can be deployed several times and set its [configuration file](/api-reference/application-config) to use different `entryPointUriPath` values by taking advantage of environment variables for every deployment.
+The same Custom Application can be deployed several times and have its [configuration file](/api-reference/application-config) set to use different `entryPointUriPath` values by taking advantage of environment variables for each deployment.
 
 Let's say there are two deployments of the same application: `A` and `B`. We can assign an environment value for the `entryPointUriPath` property in its configuration.
 
@@ -73,16 +73,16 @@ Let's say there are two deployments of the same application: `A` and `B`. We can
 }
 ```
 
-The `ENTRY_POINT_URI_PATH` environment variable can be provided in different ways:
+The `ENTRY_POINT_URI_PATH` environment variable can be provided in different ways.
 
 For example:
-- as an inline environment variable when running a script command
+- as an inline environment variable when running a script command.
 
   ```console
   ENTRY_POINT_URI_PATH=my-application-entry-point mc-scripts start
   ```
 
-- using a [dotenv](https://github.com/motdotla/dotenv) file
+- using a [dotenv](https://github.com/motdotla/dotenv) file.
 
   ```bash title=".env-A"
   ENTRY_POINT_URI_PATH=my-application-entry-point
@@ -92,7 +92,7 @@ For example:
   mc-scripts --env .env-A start
   ```
 
-- by defining the environment variables in your CI service
+- by defining the environment variables in your CI service.
 
 Using this pattern, different `entryPointUriPath` values can be defined for different environments:
 * `A` environment: `my-application-entry-point`
@@ -102,17 +102,17 @@ With this setup, preview versions of the Custom Application can be deployed to t
 
 However, besides using different `entryPointUriPath` values, the logic of verifying the user permissions in the Custom Application source code must also be adjusted accordingly.
 
-As [explained in this section](/migrating-from-project-level-custom-applications#choose-the-entrypointuripath), the permission names of a Custom Application are derived from the `entryPointUriPath` value. Therefore, using different `entryPointUriPath` values require to change the permission names as well.
+As [explained in this section](/migrating-from-project-level-custom-applications#choose-the-entrypointuripath), the permission names of a Custom Application are derived from the `entryPointUriPath` value. Therefore, when using different `entryPointUriPath` values, the permission names must also be changed.
 
-We recommend to use the helper function `entryPointUriPathToPermissionKeys` to compute the permission names from the `entryPointUriPath`.
+We recommend using the helper function `entryPointUriPathToPermissionKeys` to compute the permission names from the `entryPointUriPath`.
 
-Find more information about applying user permissions in the [Permissions](/development/permissions) documentation.
+Find more information on how to apply user permissions in the [Permissions](/development/permissions) documentation.
 
 <Info>
 
 In this scenario the `entryPointUriPath` value cannot be defined statically but it's injected using an environment variable.
 
-Therefore, reading the value from the source code must take into account both server-side and client-side logic.
+Therefore, both server-side and client-side logic must be considered when reading the value from the source code.
 
 ```js highlightLines="4-6"
 // Make sure to import the helper functions from the `ssr` entry point.
