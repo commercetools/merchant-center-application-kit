@@ -17,9 +17,6 @@ const DetailPageContainer = styled.div`
   background-color: ${customProperties.colorNeutral95};
   padding: ${customProperties.spacingM};
   border-bottom: 1px ${customProperties.colorNeutral} solid;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
 `;
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
@@ -99,12 +96,12 @@ const CustomFormDetailPage = (props: CustomFormDetailPageProps) => {
               titleSize="big"
             />
           )}
+          {!props.hideControls && props.formControls && (
+            <Spacings.Inline justifyContent="flex-end">
+              {props.formControls}
+            </Spacings.Inline>
+          )}
         </Spacings.Stack>
-        {!props.hideControls && props.formControls && (
-          <Spacings.Inline alignItems="flex-end">
-            {props.formControls}
-          </Spacings.Inline>
-        )}
       </DetailPageContainer>
       <ContentWrapper>{props.children}</ContentWrapper>
     </PageWrapper>
