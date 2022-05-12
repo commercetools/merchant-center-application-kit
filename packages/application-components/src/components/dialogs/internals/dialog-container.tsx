@@ -1,11 +1,11 @@
-import { ReactNode, SyntheticEvent } from 'react';
-import Modal from 'react-modal';
+import type { ReactNode, SyntheticEvent } from 'react';
+import Modal, { type Props as ModalProps } from 'react-modal';
 import { css, ClassNames } from '@emotion/react';
 import styled from '@emotion/styled';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import { customProperties } from '@commercetools-uikit/design-system';
 import Card from '@commercetools-uikit/card';
-import { getModalOverlayStyles, getModalContentStyles } from './dialog.styles';
+import { getOverlayStyles, getModalContentStyles } from './dialog.styles';
 
 // When running tests, we don't render the AppShell. Instead we mock the
 // application context to make the data available to the application under
@@ -27,18 +27,28 @@ const getDefaultParentSelector = () =>
         `#${PORTALS_CONTAINER_ID}`
       ) as HTMLElement);
 
+const getOverlayElement: ModalProps['overlayElement'] = (
+  props,
+  contentElement
+) => (
+  // Assign the `data-role` to the overlay container, which is used as
+  // the CSS selector in the `<PortalsContainer>`.
+  <div {...props} data-role="dialog-overlay">
+    {contentElement}
+  </div>
+);
+
 type Props = {
   isOpen: boolean;
   onClose?: (event: SyntheticEvent) => void;
   size: 'm' | 'l' | 7 | 8 | 9 | 10 | 'scale';
-  zIndex: number;
+  zIndex?: number;
   title: string;
   children: ReactNode;
   getParentSelector: typeof getDefaultParentSelector;
 };
-const defaultProps: Pick<Props, 'size' | 'zIndex' | 'getParentSelector'> = {
+const defaultProps: Pick<Props, 'size' | 'getParentSelector'> = {
   size: 10,
-  zIndex: 1000,
   getParentSelector: getDefaultParentSelector,
 };
 
@@ -66,17 +76,12 @@ const DialogContainer = (props: Props) => (
         onRequestClose={props.onClose}
         shouldCloseOnOverlayClick={Boolean(props.onClose)}
         shouldCloseOnEsc={Boolean(props.onClose)}
-        overlayClassName={makeClassName(getModalOverlayStyles())}
+        overlayElement={getOverlayElement}
+        overlayClassName={makeClassName(getOverlayStyles(props))}
         className={makeClassName(getModalContentStyles(props))}
         contentLabel={props.title}
         parentSelector={props.getParentSelector}
         ariaHideApp={false}
-        style={{
-          // stylelint-disable-next-line selector-type-no-unknown
-          overlay: {
-            zIndex: props.zIndex,
-          },
-        }}
       >
         <GridArea name="top" />
         <GridArea name="left" />

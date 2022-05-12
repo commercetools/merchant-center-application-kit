@@ -1,15 +1,13 @@
-import type { CSSObject } from '@emotion/react';
-
 import {
-  ReactNode,
-  SyntheticEvent,
+  type ReactNode,
+  type SyntheticEvent,
   useCallback,
   useEffect,
   useRef,
   useState,
 } from 'react';
-import Modal from 'react-modal';
-import { ClassNames } from '@emotion/react';
+import Modal, { type Props as ModalProps } from 'react-modal';
+import { ClassNames, type CSSObject } from '@emotion/react';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import {
   TRANSITION_DURATION,
@@ -42,6 +40,17 @@ const getDefaultParentSelector = () =>
         `#${PORTALS_CONTAINER_ID}`
       ) as HTMLElement);
 
+const getOverlayElement: ModalProps['overlayElement'] = (
+  props,
+  contentElement
+) => (
+  // Assign the `data-role` to the overlay container, which is used as
+  // the CSS selector in the `<PortalsContainer>`.
+  <div {...props} data-role="modal-overlay">
+    {contentElement}
+  </div>
+);
+
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin
 // does not recognize the object shape.
@@ -52,13 +61,19 @@ type MessageDescriptor = {
 };
 type Label = string | MessageDescriptor;
 type Props = {
-  level: number;
+  /**
+   * @deprecated Not used anymore, as the value is controlled via the Stacking Layer System.
+   */
+  level?: number;
   title: string;
   isOpen: boolean;
   onClose?: (event: SyntheticEvent) => void;
   children: ReactNode;
   zIndex?: number;
-  baseZIndex: number;
+  /**
+   * @deprecated Not used anymore, as the value is controlled via the Stacking Layer System.
+   */
+  baseZIndex?: number;
   getParentSelector: typeof getDefaultParentSelector;
   shouldDelayOnClose: boolean;
   afterOpenStyles?: string | CSSObject;
@@ -67,12 +82,7 @@ type Props = {
   currentPathLabel?: string;
   previousPathLabel?: Label;
 };
-const defaultProps: Pick<
-  Props,
-  'level' | 'baseZIndex' | 'getParentSelector' | 'shouldDelayOnClose'
-> = {
-  level: 1,
-  baseZIndex: 1000,
+const defaultProps: Pick<Props, 'getParentSelector' | 'shouldDelayOnClose'> = {
   getParentSelector: getDefaultParentSelector,
   shouldDelayOnClose: true,
 };
@@ -113,6 +123,7 @@ const ModalPage = (props: Props) => {
           onRequestClose={handleClose}
           shouldCloseOnOverlayClick={Boolean(props.onClose)}
           shouldCloseOnEsc={Boolean(props.onClose)}
+          overlayElement={getOverlayElement}
           overlayClassName={{
             base: makeClassName(getOverlayStyles(props)),
             afterOpen: makeClassName(getAfterOpenOverlayAnimation()),

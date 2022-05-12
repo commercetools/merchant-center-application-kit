@@ -30,8 +30,8 @@
       path: /development/ui-components
     - title: Forms
       path: /development/forms
-    # - title: Notifications
-    #   path: /development/notifications
+    - title: Notifications
+      path: /development/notifications
     - title: Testing
       path: /development/testing
     - title: Translations
@@ -77,6 +77,8 @@
     # - title: Jest Preset MC App
     #   path: /api-reference/jest-preset-mc-app
 
+    - title: '@/actions-global'
+      path: /api-reference/commercetools-frontend-actions-global
     - title: '@/application-shell'
       path: /api-reference/commercetools-frontend-application-shell
     - title: '@/application-shell-connectors'

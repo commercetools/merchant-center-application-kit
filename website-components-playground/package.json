@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-website/components-playground",
-  "version": "17.4.0",
+  "version": "17.4.2",
   "private": true,
   "scripts": {
     "clean": "gatsby clean",
@@ -10,7 +10,7 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
-    "@commercetools-frontend/application-components": "21.4.0",
+    "@commercetools-frontend/application-components": "21.5.1",
     "@commercetools-frontend/i18n": "21.4.0",
     "@commercetools-uikit/design-system": "^15.0.0",
     "@commercetools-uikit/icon-button": "^15.0.0",
@@ -27,16 +27,16 @@
     "@fontsource/open-sans": "4.5.8",
     "core-js": "^3.21.1",
     "formik": "2.2.9",
-    "gatsby": "4.11.3",
-    "gatsby-cli": "4.11.2",
-    "gatsby-plugin-emotion": "7.11.0",
-    "gatsby-source-filesystem": "4.11.1",
+    "gatsby": "4.13.1",
+    "gatsby-cli": "4.13.0",
+    "gatsby-plugin-emotion": "7.13.0",
+    "gatsby-source-filesystem": "4.13.0",
     "moment": "^2.29.2",
     "moment-timezone": "^0.5.34",
     "prop-types": "15.8.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-intl": "^5.25.0",
-    "react-router-dom": "5.3.0"
+    "react-router-dom": "5.3.1"
   }
 }

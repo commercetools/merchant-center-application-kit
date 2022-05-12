@@ -1,4 +1,4 @@
-import { SyntheticEvent } from 'react';
+import type { SyntheticEvent } from 'react';
 import { css } from '@emotion/react';
 import { CloseIcon } from '@commercetools-uikit/icons';
 import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';

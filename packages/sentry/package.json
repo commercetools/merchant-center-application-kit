@@ -21,7 +21,7 @@
     "@babel/runtime": "^7.17.9",
     "@babel/runtime-corejs3": "^7.17.9",
     "@commercetools-frontend/constants": "21.3.4",
-    "@sentry/browser": "6.19.6",
+    "@sentry/browser": "6.19.7",
     "@types/prop-types": "^15.7.5",
     "@types/react": "^17.0.44",
     "prop-types": "15.8.1"

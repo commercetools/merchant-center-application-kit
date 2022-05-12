@@ -18,6 +18,11 @@
   "module": "./jest-preset.js",
   "dependencies": {
     "@commercetools-frontend/babel-preset-mc-app": "21.3.4",
+    "@formatjs/intl-getcanonicallocales": "^1.9.2",
+    "@formatjs/intl-listformat": "^6.5.3",
+    "@formatjs/intl-locale": "^2.4.47",
+    "@formatjs/intl-numberformat": "^7.4.3",
+    "@formatjs/intl-pluralrules": "^4.3.3",
     "@sheerun/mutationobserver-shim": "0.3.3",
     "@testing-library/jest-dom": "5.16.4",
     "babel-jest": "27.5.1",
@@ -29,8 +34,7 @@
     "jest-mock": "^27.5.1",
     "jest-silent-reporter": "0.5.0",
     "jest-transform-graphql": "2.1.0",
-    "jest-watch-typeahead": "1.0.0",
-    "make-plural": "7.1.0",
+    "jest-watch-typeahead": "1.1.0",
     "raf": "3.4.1",
     "setimmediate": "1.0.5",
     "unfetch": "4.2.0"

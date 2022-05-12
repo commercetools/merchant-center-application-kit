@@ -1,5 +1,7 @@
 import ReactDOM from 'react-dom';
 import { css, Global } from '@emotion/react';
+import { customProperties } from '@commercetools-uikit/design-system';
+import { PortalsContainer } from '@commercetools-frontend/application-components';
 import Application from './application';
 
 ReactDOM.render(
@@ -14,8 +16,8 @@ ReactDOM.render(
 
         html,
         body {
-          color: var(--color-solid);
-          font-family: 'Open Sans', sans-serif;
+          color: ${customProperties.colorSolid};
+          font-family: ${customProperties.fontFamilyDefault};
           font-size: 13px;
           margin: 0;
           padding: 0;
@@ -27,6 +29,7 @@ ReactDOM.render(
         }
       `}
     />
+    <PortalsContainer />
     <Application />
   </>,
   document.getElementById('app')

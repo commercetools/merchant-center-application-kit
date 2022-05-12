@@ -5,7 +5,10 @@ import type {
 } from './types';
 
 import jwksRsa from 'jwks-rsa';
-import expressJwtMiddleware from 'express-jwt';
+import {
+  expressjwt as expressJwtMiddleware,
+  type GetVerificationKey,
+} from 'express-jwt';
 import {
   CLOUD_IDENTIFIERS,
   MC_API_URLS,
@@ -179,7 +182,7 @@ function createSessionAuthVerifier<Request extends TBaseRequest>(
           ...(options.jwks || {}),
           // This should be set by the middleware, no matter what.
           jwksUri: `${issuer}/.well-known/jwks.json`,
-        }),
+        }) as GetVerificationKey,
         requestProperty: decodedTokenKey,
         // Validate the audience and the issuer.
         audience,
