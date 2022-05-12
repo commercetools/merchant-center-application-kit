@@ -45,13 +45,13 @@ Managing Custom Applications is done now on Organization level rather than the P
 
 # OAuth Scopes and user permissions
 
-Project-level Custom Applications weren't able to define which [OAuth Scopes](https://docs.commercetools.com/api/scopes) of the commercetools Platform were needed and could only rely on the implicit OAuth Scopes defined for user permissions of the _default_ Merchant Center applications (**Organizations > Teams > Permissions**).
+Project-level Custom Applications weren't able to define which [OAuth Scopes](https://docs.commercetools.com/api/scopes) of the commercetools Composable Commerce API were needed and could only rely on the implicit OAuth Scopes defined for user permissions of the _default_ Merchant Center applications (**Organizations > Teams > Permissions**).
 
 Let us look at an example. The user permission `ViewProducts` maps internally to some OAuth Scopes, like `view_products`, `view_states`, `view_types`. If a Custom Application has to use the [States API](https://docs.commercetools.com/api/projects/states), it would need to use the `ViewProducts` permission to properly authorize the user to perform the API requests.
 Therefore, using the `ViewProducts` permission makes the Custom Application work by chance to be able to interact with the States API.
 
 What if this mapping of user permissions and OAuth Scopes would change? Custom Applications relying on this undocumented and implicit behavior would stop working.
-Furthermore, if a Custom Application would require to use a Platform API with OAuth Scopes that are not mapped to any user permissions, it wouldn't be even possible.
+Furthermore, if a Custom Application would require to use a Composable Commerce API with OAuth Scopes that are not mapped to any user permissions, it wouldn't be even possible.
 
 With the introduction of Org-level Custom Applications we intend to change this behavior and empower Custom Applications to take control of their requirements.
 
@@ -139,7 +139,7 @@ See [Custom Application config](/api-reference/application-config) for more info
 
 ## Choose the `entryPointUriPath`
 
-The `entryPointUriPath` is the identifier of the Custom Application similar to the `projectKey` of the commercetools Platform.
+The `entryPointUriPath` is the identifier of the Custom Application similar to the `projectKey` used in Composable Commerce APIs.
 
 <Info>
 
