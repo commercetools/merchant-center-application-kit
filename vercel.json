@@ -10,11 +10,11 @@
     },
     {
       "source": "/custom-applications/legacy",
-      "destination": "https://mc-custom-applications-legacy.vercel.app"
+      "destination": "https://mc-custom-applications-legacy.commercetools.vercel.app"
     },
     {
       "source": "/custom-applications/legacy/(.*)",
-      "destination": "https://mc-custom-applications-legacy.vercel.app/$1"
+      "destination": "https://mc-custom-applications-legacy.commercetools.vercel.app/$1"
     },
     {
       "source": "/custom-applications/(.*)",
