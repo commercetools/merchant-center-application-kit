@@ -165,6 +165,16 @@ Note that the list can be extended at any time. _Last update 2022-01-01_.
 
 </Warning>
 
+<Info>
+
+Even though the `entryPointUriPath` is a unique identifier of a Custom Application, and thus should be defined statically in the source code, it can also be defined dynamically via environment variables using the [environment placeholders](#using-variable-placeholders).
+
+This may be the case if the Custom Application is to be deployed in different environments.
+
+We explain this further in the [help section](/help-needed/#using-a-test-or-staging-environment-for-my-custom-application).
+
+</Info>
+
 ## `cloudIdentifier`
 
 The [identifier of the cloud Region](/concepts/merchant-center-api#cloud-identifiers) that the Custom Application uses to connect to the commercetools Platform. The values map to the actual Merchant Center API URL for that Region.

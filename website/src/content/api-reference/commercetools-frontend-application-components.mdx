@@ -42,6 +42,7 @@ npm --save install react react-dom react-intl
 * [TabularModalPage](#tabularmodalpage)
 * [TabularMainPage](#tabularmainpage)
 * [TabularDetailPage](#tabulardetailpage)
+* [TabHeader](#tabheader)
 
 ## InfoDialog
 
@@ -1036,6 +1037,23 @@ const DetailPage = () => {
 
   This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
   The Intl messages can for instance be used for button labels.
+
+## TabHeader
+
+Tab Headers facilitate navigation within a tabular page.
+
+In a tabular page, tabs must be rendered using the `<TabHeader>` component via the `tabControls` prop. A `<TabHeader>` is rendered as a link and it assumes the "tab content" is controlled and rendered using `<Route>` components.
+`<TabHeader>` tracks the route changes internally and a tab is active if the `to` prop matches the current route.
+
+### Properties
+
+| Props                           | Type                             | Required | Default                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------------------- | -------------------------------- | :------: | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `to`                            | `string` or `LocationDescriptor` |   ✅     | -                        | A route path to redirect to when the tab is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `label`                         | `string`                         |   -      | -                        | The label of the tab. Required if `intlMessage` is not provided.                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `intlMessage`                   | `Intl message`                   |   -      | -                        | The label of the tab, using an `intl` message object. Required if `label` is not provided.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `isDisabled`                    | `boolean`                        |   -      | `false`                  | Indicates whether the tab is deactivated or not.                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `exactPathMatch`                | `boolean`                        |   -      | `false`                  | If `true`, marks the tab as active if the link matches exactly the route.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                                             |
 
 # Hooks
 
