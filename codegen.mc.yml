@@ -2,7 +2,7 @@ schema:
   - '${MC_API_URL}':
       headers:
         X-Graphql-Target: mc
-documents: '**/*.mc.graphql'
+documents: 'packages/**/*.mc.graphql'
 extensions:
   codegen:
     generates:

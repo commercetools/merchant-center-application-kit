@@ -4,7 +4,7 @@ schema:
         Cookie: mcAccessToken=${MC_ACCESS_TOKEN}
         X-Graphql-Target: ctp
         X-Project-Key: ${CTP_PROJECT_KEY}
-documents: '**/*.ctp.graphql'
+documents: 'packages/**/*.ctp.graphql'
 extensions:
   codegen:
     generates:

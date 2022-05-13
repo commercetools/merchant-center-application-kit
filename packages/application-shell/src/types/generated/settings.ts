@@ -1387,6 +1387,32 @@ export type TMutation_VerifyCustomApplicationsMaintainerContactEmailArgs = {
   token: Scalars['String'];
 };
 
+export type TMyCustomApplication = {
+  __typename?: 'MyCustomApplication';
+  createdAt: Scalars['DateTime'];
+  description?: Maybe<Scalars['String']>;
+  entryPointUriPath: Scalars['String'];
+  icon: Scalars['String'];
+  id: Scalars['ID'];
+  mainMenuLink: TCustomApplicationMenuLink;
+  name: Scalars['String'];
+  organizationId: Scalars['String'];
+  organizationName: Scalars['String'];
+  permissions: Array<TCustomApplicationPermission>;
+  status: TCustomApplicationStatus;
+  submenuLinks: Array<TCustomApplicationSubmenuLink>;
+  updatedAt: Scalars['DateTime'];
+  url: Scalars['String'];
+};
+
+export type TMyCustomApplicationQueryInput = {
+  where?: InputMaybe<TMyCustomApplicationQueryWhereInput>;
+};
+
+export type TMyCustomApplicationQueryWhereInput = {
+  status?: InputMaybe<TCustomApplicationStatus>;
+};
+
 export type TNavbarMenu = {
   __typename?: 'NavbarMenu';
   createdAt: Scalars['DateTime'];
@@ -1753,6 +1779,7 @@ export type TOrganizationExtensionForCustomApplication = {
   application: TRestrictedCustomApplicationForOrganization;
   id: Scalars['ID'];
   organizationId: Scalars['String'];
+  organizationName?: Maybe<Scalars['String']>;
 };
 
 export type TPimSearchListView = {
@@ -1915,6 +1942,7 @@ export type TQuery = {
   globalOrganizationExtension?: Maybe<TOrganizationExtension>;
   /** @deprecated Experimental feature - For internal usage only */
   legacyCustomApplication?: Maybe<TLegacyCustomApplication>;
+  myCustomApplications: Array<TMyCustomApplication>;
   ordersListView?: Maybe<TOrdersListView>;
   ordersListViews: Array<Maybe<TOrdersListView>>;
   organizationExtension?: Maybe<TOrganizationExtension>;
@@ -1991,6 +2019,11 @@ export type TQuery_GlobalOrganizationExtensionArgs = {
 
 export type TQuery_LegacyCustomApplicationArgs = {
   applicationId: Scalars['ID'];
+};
+
+
+export type TQuery_MyCustomApplicationsArgs = {
+  params?: InputMaybe<TMyCustomApplicationQueryInput>;
 };
 
 

@@ -32,6 +32,18 @@ module.exports = {
       },
     },
     {
+      files: ['**/*.core.graphql'],
+      rules: {
+        'graphql/template-strings': [
+          'error',
+          {
+            env: 'literal',
+            schemaJson: require('./schemas/core.json'),
+          },
+        ],
+      },
+    },
+    {
       files: ['**/*.settings.graphql'],
       rules: {
         'graphql/template-strings': [
