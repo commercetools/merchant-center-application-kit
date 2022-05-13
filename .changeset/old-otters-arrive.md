@@ -11,7 +11,7 @@ These components are similar to the `<InfoModalPage>`, `<FormModalPage>` and `<C
 # Usage
 
 The detail pages are supposed to be used as a direct child of one of the main pages.
-The layout of those pages can be recognized by the gray background header and the white content background. A back link in the header section of each of the pages is optional.
+The layout of those pages can be recognized by the gray background header and the white content background. A back link in the header section of each of the pages is required.
 
 ## InfoDetailPage
 

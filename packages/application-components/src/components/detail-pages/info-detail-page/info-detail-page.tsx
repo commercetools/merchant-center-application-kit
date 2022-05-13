@@ -36,7 +36,7 @@ type InfoDetailPageProps = {
   /**
    * Function called when back button is pressed.
    */
-  onPreviousPathClick?: (
+  onPreviousPathClick: (
     event: MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>
   ) => void;
 };

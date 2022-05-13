@@ -87,19 +87,6 @@ const InfoDetailPageExample = (props) => {
             ],
             initialValue: 'default',
           },
-          {
-            kind: 'select',
-            name: 'onPreviousPathClick',
-            label: 'onPreviousPathClick',
-            valueOptions: [
-              { value: undefined, label: 'undefined' },
-              {
-                value: () => alert('Go back clicked'),
-                label: 'Pass a click event handler',
-              },
-            ],
-            initialValue: () => alert('Go back clicked'),
-          },
         ]}
       >
         {({ values }) => (
@@ -107,7 +94,7 @@ const InfoDetailPageExample = (props) => {
             title={values.title}
             subtitle={values.subtitle}
             customTitleRow={getCustomTitleRow(values.useCustomTitleRow)}
-            onPreviousPathClick={values.onPreviousPathClick}
+            onPreviousPathClick={() => alert('Go back clicked')}
           >
             <Text.Body>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur

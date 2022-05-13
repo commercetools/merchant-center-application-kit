@@ -63,7 +63,7 @@ type CustomFormDetailPageProps = {
   /**
    * Function called when back button is pressed.
    */
-  onPreviousPathClick?: (
+  onPreviousPathClick: (
     event: MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>
   ) => void;
 };
@@ -82,13 +82,11 @@ const CustomFormDetailPage = (props: CustomFormDetailPageProps) => {
     <PageWrapper>
       <DetailPageContainer>
         <Spacings.Stack>
-          {props.onPreviousPathClick && (
-            <PageTopBar
-              color="neutral"
-              previousPathLabel={props.previousPathLabel}
-              onClick={props.onPreviousPathClick}
-            />
-          )}
+          <PageTopBar
+            color="neutral"
+            previousPathLabel={props.previousPathLabel}
+            onClick={props.onPreviousPathClick}
+          />
           {props.customTitleRow || (
             <PageHeaderTitle
               title={props.title ?? ''}

@@ -11,6 +11,7 @@ const DetailPageContainer = (props: ContainerProps) => (
     <InfoDetailPage
       title="Lorem ipsum"
       subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      onPreviousPathClick={() => alert('Go back clicked')}
       {...props}
     >
       {props.children}
@@ -22,7 +23,7 @@ DetailPageContainer.displayName = 'DetailPageContainer';
 export const Component = () => (
   <Suite>
     <Spec label="InfoDetailPage" size="xl">
-      <DetailPageContainer onPreviousPathClick={() => alert('Go back clicked')}>
+      <DetailPageContainer>
         <Text.Body>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec
           turpis in risus elementum fringilla. Vestibulum nec vulputate metus,
@@ -47,7 +48,6 @@ export const Component = () => (
       <DetailPageContainer
         title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
         subtitle="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        onPreviousPathClick={() => alert('Go back clicked')}
       >
         <Text.Body>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec

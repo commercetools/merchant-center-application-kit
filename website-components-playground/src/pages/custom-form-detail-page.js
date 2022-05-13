@@ -99,19 +99,6 @@ const CustomFormDetailPageExample = (props) => {
             ],
             initialValue: false,
           },
-          {
-            kind: 'select',
-            name: 'onPreviousPathClick',
-            label: 'onPreviousPathClick',
-            valueOptions: [
-              { value: undefined, label: 'undefined' },
-              {
-                value: () => alert('Go back clicked'),
-                label: 'Pass a click event handler',
-              },
-            ],
-            initialValue: () => alert('Go back clicked'),
-          },
         ]}
       >
         {({ values }) => (
@@ -131,7 +118,7 @@ const CustomFormDetailPageExample = (props) => {
                 title={values.title}
                 subtitle={values.subtitle}
                 customTitleRow={getCustomTitleRow(values.useCustomTitleRow)}
-                onPreviousPathClick={values.onPreviousPathClick}
+                onPreviousPathClick={() => alert('Go back clicked')}
                 hideControls={values.hideControls}
                 formControls={
                   <>
