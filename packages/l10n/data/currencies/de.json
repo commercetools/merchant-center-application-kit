@@ -40,7 +40,7 @@
     "symbol": "₼"
   },
   "BAM": {
-    "label": "Bosnien und Herzegowina Konvertierbare Mark",
+    "label": "Konvertible Mark Bosnien und Herzegowina",
     "symbol": "КМ"
   },
   "BBD": {
@@ -132,7 +132,7 @@
     "symbol": "$"
   },
   "CNH": {
-    "label": "Renminbi Yuan (Off–Shore)",
+    "label": "Renminbi-Yuan (Offshore)",
     "symbol": "CNH"
   },
   "CNY": {
@@ -448,7 +448,7 @@
     "symbol": "S/"
   },
   "PGK": {
-    "label": "Papua-Neuguineischer Kina",
+    "label": "Papua-neuguineischer Kina",
     "symbol": "K"
   },
   "PHP": {
@@ -512,7 +512,7 @@
     "symbol": "$"
   },
   "SHP": {
-    "label": "St. Helena-Pfund",
+    "label": "St.-Helena-Pfund",
     "symbol": "£"
   },
   "SLL": {
@@ -564,7 +564,7 @@
     "symbol": "₺"
   },
   "TTD": {
-    "label": "Trinidad und Tobago-Dollar",
+    "label": "Trinidad-und-Tobago-Dollar",
     "symbol": "$"
   },
   "TWD": {
