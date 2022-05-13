@@ -33,10 +33,6 @@
     "production": [">1%", "not op_mini all", "not dead"],
     "development": ["last 2 firefox versions", "last 2 chrome versions"]
   },
-  "scripts": {
-    "build": "rimraf build && babel src --out-dir build && ../../scripts/copy-graphql-files.mjs src build",
-    "build:bundles:watch": "yarn build -w"
-  },
   "dependencies": {
     "@babel/core": "^7.17.9",
     "@babel/runtime": "^7.17.9",
