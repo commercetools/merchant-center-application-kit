@@ -91,7 +91,6 @@
   },
   "devDependencies": {
     "@types/moment-locales-webpack-plugin": "^1.2.3",
-    "@types/react-dev-utils": "^9.0.10",
     "@types/serve-handler": "^6.1.1",
     "mock-fs": "^5.1.2",
     "msw": "0.39.2",

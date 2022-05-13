@@ -101,12 +101,13 @@ async function run() {
               err['postcssNode'].selector;
           }
           messages = formatWebpackMessages({
+            // @ts-ignore
             errors: [errMessage],
             warnings: [],
           });
         } else {
           messages = formatWebpackMessages(
-            stats?.toJson({ all: false, warnings: true, errors: true })
+            stats?.toJson({ all: false, warnings: true, errors: true }) as Stats
           );
         }
         if (messages.errors.length) {
