@@ -124,20 +124,6 @@ async function run() {
   );
 
   server.printUrls();
-
-  // // For running processes, we need to wrap the logic into a `Promise` and
-  // // only resolve the promise when the underlying process exits.
-  // await new Promise<void>((resolve, reject) => {
-  //   server.httpServer?.on('exit', () => {
-  //     server.httpServer?.close((error) => {
-  //       if (error) {
-  //         reject(error);
-  //       } else {
-  //         resolve();
-  //       }
-  //     });
-  //   });
-  // });
 }
 
 export default run;

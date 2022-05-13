@@ -78,52 +78,12 @@ async function run() {
   console.log(chalk.cyan('Starting the development server...\n'));
   openBrowser(urls.localUrlForBrowser);
 
-  // // For running processes, we need to wrap the logic into a `Promise` and
-  // // only resolve the promise when the underlying process exits.
-  // await new Promise<void>((resolve, reject) => {
-  //   // Launch WebpackDevServer.
-  //   devServer.startCallback((error) => {
-  //     if (error) {
-  //       reject(error);
-  //       return;
-  //     }
-
-  //     if (isInteractive) {
-  //       clearConsole();
-  //     }
-
-  //     console.log(chalk.cyan('Starting the development server...\n'));
-  //     openBrowser(urls.localUrlForBrowser);
-  //   });
-
   ['SIGINT', 'SIGTERM'].forEach((sig) => {
     process.on(sig, () => {
       devServer.close();
       process.exit();
-      // devServer.stopCallback((error) => {
-      //   if (error) {
-      //     reject(error);
-      //   } else {
-      //     resolve();
-      //   }
-      // });
     });
   });
-
-  //   if (process.env.CI !== 'true') {
-  //     // Gracefully exit when stdin ends
-  //     process.stdin.on('end', function () {
-  //       devServer.stopCallback((error) => {
-  //         if (error) {
-  //           reject(error);
-  //         } else {
-  //           resolve();
-  //         }
-  //       });
-  //       resolve();
-  //     });
-  //   }
-  // });
 }
 
 export default run;
