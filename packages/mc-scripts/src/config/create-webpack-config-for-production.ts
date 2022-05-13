@@ -1,53 +1,57 @@
-/* eslint-disable prettier/prettier */
-const path = require('path');
-const webpack = require('webpack');
-const WebpackBar = require('webpackbar');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const paths = require('./paths');
-const vendorsToTranspile = require('./vendors-to-transpile');
-const createPostcssConfig = require('./create-postcss-config');
-const hasJsxRuntime = require('./has-jsx-runtime');
+import webpack, {
+  type WebpackPluginInstance,
+  type Configuration,
+} from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+// @ts-ignore
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import MomentLocalesPlugin from 'moment-locales-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
+import type {
+  TWebpackConfigToggleFlagsForProduction,
+  TWebpackConfigOptions,
+} from '../types';
+import FinalStatsWriterPlugin from '../webpack-plugins/final-stats-writer-plugin';
+import paths from './paths';
+import vendorsToTranspile from './vendors-to-transpile';
+import createPostcssConfig from './create-postcss-config';
+import hasJsxRuntime from './has-jsx-runtime';
 
-const defaultToggleFlags = {
+const defaultToggleFlags: TWebpackConfigToggleFlagsForProduction = {
+  // Allow to disable CSS extraction in case it's not necessary (e.g. for Storybook)
+  enableExtractCss: true,
   // Allow to disable index.html generation in case it's not necessary (e.g. for Storybook)
   generateIndexHtml: true,
+  // Some plugins spawn workers to speed up the build. However this can cause trouble on
+  // certain machines local and CI. This flag set to limit or disable any parallelism.
+  // Options:
+  //    `true` to default to the machines number of CPUs
+  //    `false` to disable any paralelism
+  //    `int` for a specific number of CPUs
+  parallelism: true,
   // Some environemnts do not require `core-js` and can hence disable
   // it explicitely. This will disable `core-js` for `preset-env` and the
   // `plugin-transform-runtime`.
   disableCoreJs: false,
 };
-const defaultOptions = {
+const defaultOptions: TWebpackConfigOptions<'production'> = {
   entryPoint: paths.entryPoint,
   sourceFolders: paths.sourceFolders,
   postcssOptions: {},
   toggleFlags: defaultToggleFlags,
 };
 
-// Whether or not `react-refresh` is enabled, `react-refresh` is not 100% stable at this time,
-// which is why it's disabled by default.
-const hasReactRefresh = process.env.FAST_REFRESH === 'true';
-const webpackDevClientEntry = require.resolve(
-  'react-dev-utils/webpackHotDevClient'
-);
-const reactRefreshOverlayEntry = require.resolve(
-  'react-dev-utils/refreshOverlayInterop'
-);
-
 /**
  * This is a factory function to create the default webpack config
- * for a MC Application in `development` mode.
+ * for a MC Application in `production` mode.
  * The function requires the file path to the related application
  * "entry point".
- *
- * @param {Object} options - Options to configure the Webpack config
- * @param {string} options.entryPoint - The absolute path to the application entry point file.
- * @param {string[]} options.sourceFolders[] - A list of folders where Webpack should look for source files.
- * @param {Object} options.postcssOptions - Options related to Postcss plugins. See `createPostcssConfig` function.
- * @param {Object} options.toggleFlags - Options to enable/disable certain functionalities of the Webpack config.
  */
-module.exports = function createWebpackConfigForDevelopment(options = {}) {
+function createWebpackConfigForProduction(
+  options: TWebpackConfigOptions<'production'> = {}
+): Configuration {
   const mergedOptions = {
     ...defaultOptions,
     ...options,
@@ -55,30 +59,69 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
       ...defaultToggleFlags,
       ...options.toggleFlags,
     },
-  };
+  } as Required<TWebpackConfigOptions<'production'>>;
 
   return {
-    // https://webpack.js.org/concepts/#mode
-    mode: 'development',
+    // Don't attempt to continue if there are any errors.
+    bail: true,
 
-    // Using `cheap-module-source-map` doesn't provide the original source when
-    // errors happen but it is still recommended as using `eval-source-map` leads
-    // to CORS errors when an error happens
+    // https://webpack.js.org/concepts/#mode
+    mode: 'production',
+
+    // We generate sourcemaps in production. This is slow but gives good results.
+    // Sourcemaps are pushed to Google Storage and Sentry.
     // https://webpack.js.org/configuration/devtool/#devtool
-    // https://reactjs.org/docs/cross-origin-errors.html#source-maps
-    devtool: 'cheap-module-source-map',
+    devtool: 'source-map',
 
     // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
     // https://medium.com/webpack/webpack-4-mode-and-optimization-5423a6bc597a
     optimization: {
-      // Automatically split vendor and commons
-      // https://twitter.com/wSokra/status/969633336732905474
-      splitChunks: {
-        chunks: 'all',
-      },
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            parse: {
+              // we want terser to parse ecma 8 code. However, we don't want it
+              // to apply any minification steps that turns valid ecma 5 code
+              // into invalid ecma 5 code. This is why the 'compress' and 'output'
+              // sections only apply transformations that are ecma 5 safe
+              // https://github.com/facebook/create-react-app/pull/4234
+              ecma: 2018,
+            },
+            compress: {
+              ecma: 5,
+              warnings: false,
+              // Disabled because of an issue with Uglify breaking seemingly valid code:
+              // https://github.com/facebook/create-react-app/issues/2376
+              // Pending further investigation:
+              // https://github.com/mishoo/UglifyJS2/issues/2011
+              comparisons: false,
+              // Disabled because of an issue with Terser breaking valid code:
+              // https://github.com/facebook/create-react-app/issues/5250
+              // Pending futher investigation:
+              // https://github.com/terser-js/terser/issues/120
+              inline: 2,
+            },
+            mangle: {
+              safari10: true,
+            },
+            // Added for profiling in devtools
+            keep_classnames: true,
+            keep_fnames: true,
+            output: {
+              ecma: 5,
+              comments: false,
+              // Turned on because emoji and regex is not minified properly using default
+              // https://github.com/facebook/create-react-app/issues/2488
+              ascii_only: true,
+            },
+          },
+          // Use multi-process parallel running to improve the build speed
+          // Default number of concurrent runs: os.cpus().length - 1
+          parallel: mergedOptions.toggleFlags.parallelism,
+        }),
+        mergedOptions.toggleFlags.enableExtractCss && new CssMinimizerPlugin(),
+      ].filter(Boolean) as WebpackPluginInstance[],
       // Keep the runtime chunk separated to enable long term caching
-      // https://twitter.com/wSokra/status/969679223278505985
-      // https://github.com/facebook/create-react-app/issues/5358
       runtimeChunk: {
         name: 'runtime',
       },
@@ -102,59 +145,35 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
       // however now it's not the case anymore.
       // See also related work in CRA: https://github.com/facebook/create-react-app/pull/11764
       fallback: {
-        url: require.resolve('url/'),
         querystring: require.resolve('querystring-es3'),
       },
     },
 
+    // In production, we only want to load the polyfills and the app code.
     entry: {
       app: [
-        require.resolve('./application-runtime'),
+        require.resolve(
+          '@commercetools-frontend/mc-scripts/application-runtime'
+        ),
         !mergedOptions.toggleFlags.disableCoreJs &&
           require.resolve('core-js/stable'),
-        // When using the experimental `react-refresh` integration,
-        // the webpack plugin takes care of injecting the dev client for us.
-        !hasReactRefresh &&
-          // Include an alternative client for WebpackDevServer. A client's job is to
-          // connect to WebpackDevServer by a socket and get notified about changes.
-          // When you save a file, the client will either apply hot updates (in case
-          // of CSS changes), or refresh the page (in case of JS changes). When you
-          // make a syntax error, this client will display a syntax error overlay.
-          // Note: instead of the default WebpackDevServer client, we use a custom one
-          // to bring better experience for Create React App users. You can replace
-          // the line below with these two lines if you prefer the stock client:
-          //
-          // require.resolve('webpack-dev-server/client') + '?/',
-          // require.resolve('webpack/hot/dev-server'),
-          webpackDevClientEntry,
-        // Finally, this is your app's code
         mergedOptions.entryPoint,
-        // We include the app code last so that if there is a runtime error during
-        // initialization, it doesn't blow up the WebpackDevServer client, and
-        // changing JS code would still trigger a refresh.
-      ].filter(Boolean),
+      ].filter(Boolean) as string[],
     },
 
     output: {
-      // This does not produce a real file. It's just the virtual path that is
-      // served by WebpackDevServer in development. This is the JS bundle
-      // containing code from all our entry points, and the Webpack runtime.
-      filename: '[name].js',
-      // There are also additional JS chunk files when using code splitting.
-      chunkFilename: '[name].chunk.js',
+      // Generated JS file names (with nested folders).
+      // There will be one main bundle, and one file per asynchronous chunk.
+      filename: '[name].[chunkhash].js',
+      chunkFilename: '[id].[name].[chunkhash].js',
       // The build folder.
       path: paths.appBuild,
-      // Add /* filename */ comments to generated require()s in the output.
-      pathinfo: true,
-      // This is the URL that app is served from. We use "/" in development.
-      publicPath: '/',
-      // Point sourcemap entries to the original disk location (format as URL on Windows)
-      devtoolModuleFilenameTemplate: (info) =>
-        path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
+      pathinfo: false,
+      // Will be injected on runtime. See `packages/application-shell/src/public-path.js`
+      publicPath: '',
     },
 
     plugins: [
-      new WebpackBar(),
       // Allows to "assign" custom options to the `webpack` object.
       // At the moment, this is used to share some props with `postcss.config`.
       new webpack.LoaderOptionsPlugin({
@@ -164,49 +183,45 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
         },
       }),
       // Makes some environment variables available to the JS code, for example:
-      // if (process.env.NODE_ENV === 'development') { ... }.
+      // if (process.env.NODE_ENV === 'production') { ... }.
       new webpack.DefinePlugin({
-        __DEV__: 'true',
+        __DEV__: 'false',
         'process.env': {
-          NODE_ENV: JSON.stringify('development'),
+          NODE_ENV: JSON.stringify('production'),
         },
+      }),
+      // Strip all locales except `en`, `de`
+      // (`en` is built into Moment and can't be removed)
+      new MomentLocalesPlugin({
+        localesToKeep: ['de', 'es', 'fr', 'zh-cn', 'ja'],
+      }),
+
+      // Generate a `stats.json` file containing information and paths to
+      // the assets that webpack created.
+      // This is necessary to programmatically refer to the correct bundle path
+      // in the `index.html`.
+      new FinalStatsWriterPlugin({
+        outputPath: paths.appBuild,
+        includeFields: ['entrypoints', 'assets', 'publicPath', 'time'],
       }),
       mergedOptions.toggleFlags.generateIndexHtml &&
         new HtmlWebpackPlugin({
           inject: false,
-          filename: paths.appIndexHtml,
+          filename: 'index.html.template',
           template: require.resolve(
             '@commercetools-frontend/mc-html-template/webpack'
           ),
         }),
-      mergedOptions.toggleFlags.generateIndexHtml &&
-        (() => {
-          // eslint-disable-next-line global-require
-          const LocalHtmlWebpackPlugin = require('../webpack-plugins/local-html-webpack-plugin');
-          return new LocalHtmlWebpackPlugin();
-        })(),
-      // Strip all locales except `en`, `de`
-      // (`en` is built into Moment and can't be removed).
-      new MomentLocalesPlugin({
-        localesToKeep: ['de', 'es', 'fr', 'zh-cn', 'ja'],
-      }),
-      // This is necessary to emit hot updates (CSS and Fast Refresh):
-      new webpack.HotModuleReplacementPlugin(),
-      // Experimental hot reloading for React .
-      // https://github.com/facebook/react/tree/master/packages/react-refresh
-      hasReactRefresh &&
-        new ReactRefreshWebpackPlugin({
-          overlay: {
-            entry: webpackDevClientEntry,
-            // The expected exports are slightly different from what the overlay exports,
-            // so an interop is included here to enable feedback on module-level errors.
-            module: reactRefreshOverlayEntry,
-            // Since we ship a custom dev client and overlay integration,
-            // the bundled socket handling logic can be eliminated.
-            sockIntegration: false,
-          },
+      mergedOptions.toggleFlags.enableExtractCss && // Extracts CSS into one CSS file to mimic CSS order in dev
+        new MiniCssExtractPlugin({
+          filename: '[name].[chunkhash].css',
+          chunkFilename: '[id].[name].[chunkhash].css',
         }),
-    ].filter(Boolean),
+      process.env.ANALYZE_BUNDLE === 'true' &&
+        new BundleAnalyzerPlugin({
+          defaultSizes: 'gzip',
+        }),
+    ].filter(Boolean) as WebpackPluginInstance[],
 
     module: {
       // Makes missing exports an error instead of warning.
@@ -264,7 +279,7 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
         // For normal svg files (not icons) we should load the file normally
         // and simply use it as a `<img src/>`.
         {
-          test: function testForNormalSvgFiles(fileName) {
+          test: function testForNormalSvgFiles(fileName: string) {
             return (
               // Use this only for plain SVG.
               // For SVG as React components, see loader above.
@@ -284,11 +299,17 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
         // "postcss" loader applies autoprefixer to our CSS
         // "css" loader resolves paths in CSS and adds assets as dependencies.
         // "style" loader turns CSS into JS modules that inject <style> tags.
+        // In production, we use MiniCSSExtractPlugin to extract that CSS
+        // to a file, but in development "style" loader enables hot editing
+        // of CSS.
+        // By default we support CSS Modules with the extension `.mod.css` and `.module.css`.
         {
           test: /\.(mod|module)\.css$/,
           include: mergedOptions.sourceFolders,
           use: [
-            require.resolve('style-loader'),
+            mergedOptions.toggleFlags.enableExtractCss
+              ? MiniCssExtractPlugin.loader
+              : require.resolve('style-loader'),
             {
               loader: require.resolve('css-loader'),
               options: {
@@ -311,7 +332,7 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
           ],
         },
         {
-          test: function testForNormalCssFiles(fileName) {
+          test: function testForNormalCssFiles(fileName: string) {
             return (
               // Use this only for plain CSS.
               // For css-modules, see loader above.
@@ -324,13 +345,15 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
           },
           // "postcss" loader applies autoprefixer to our CSS.
           // "css" loader resolves paths in CSS and adds assets as dependencies.
-          // "style" loader turns CSS into JS modules that inject <style> tags.
+          // "MiniCssExtractPlugin" or "style" loader extracts css to one file per css file.
           oneOf: [
             {
               // Use "postcss" for all the included source folders.
               include: mergedOptions.sourceFolders,
               use: [
-                require.resolve('style-loader'),
+                mergedOptions.toggleFlags.enableExtractCss
+                  ? MiniCssExtractPlugin.loader
+                  : require.resolve('style-loader'),
                 {
                   loader: require.resolve('css-loader'),
                   options: {
@@ -352,9 +375,12 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
             },
             {
               // For all other vendor CSS, do not use "postcss" loader.
+              // But still use MiniCssExtractPlugin :)
               include: /node_modules/,
               use: [
-                require.resolve('style-loader'),
+                mergedOptions.toggleFlags.enableExtractCss
+                  ? MiniCssExtractPlugin.loader
+                  : require.resolve('style-loader'),
                 {
                   loader: require.resolve('css-loader'),
                   options: {
@@ -378,7 +404,7 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
             fullySpecified: false,
           },
         },
-        // Process JS with Babel.
+        // Process application JavaScript with Babel.
         {
           test: /\.(js|mjs|cjs|jsx|ts|tsx)$/,
           use: [
@@ -387,7 +413,9 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
             {
               loader: require.resolve('thread-loader'),
               options: {
-                poolTimeout: Infinity, // keep workers alive for more effective watch mode
+                ...(Number.isInteger(mergedOptions.toggleFlags.parallelism)
+                  ? { workers: mergedOptions.toggleFlags.parallelism }
+                  : {}),
               },
             },
             {
@@ -406,9 +434,6 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
                     },
                   ],
                 ],
-                plugins: [
-                  hasReactRefresh && require.resolve('react-refresh/babel'),
-                ].filter(Boolean),
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
                 // directory for faster rebuilds.
@@ -425,17 +450,15 @@ module.exports = function createWebpackConfigForDevelopment(options = {}) {
         {
           test: /\.graphql$/,
           include: mergedOptions.sourceFolders,
+          exclude: /node_modules/,
           use: [require.resolve('graphql-tag/loader')],
         },
-      ],
+      ].filter(Boolean),
     },
     // Turn off performance processing because we utilize
     // our own hints via the FileSizeReporter
     performance: false,
-
-    // For dev server
-    infrastructureLogging: {
-      level: 'none',
-    },
   };
-};
+}
+
+export default createWebpackConfigForProduction;

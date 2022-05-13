@@ -1,15 +1,16 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 const moduleFileExtensions = ['js', 'mjs', 'cjs', 'jsx', 'ts', 'tsx'];
 
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebook/create-react-app/issues/637
 const appDirectory = fs.realpathSync(process.cwd());
-const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
+const resolveApp = (relativePath: string) =>
+  path.resolve(appDirectory, relativePath);
 
 // Resolve file paths in the order given
-const resolveModule = (resolveFn, filePath) => {
+const resolveModule = (resolveFn: typeof resolveApp, filePath: string) => {
   const extension = moduleFileExtensions.find((extension) =>
     fs.existsSync(resolveFn(`${filePath}.${extension}`))
   );
@@ -38,4 +39,4 @@ const paths = {
   sourceFolders: [resolveApp('src')],
 };
 
-module.exports = paths;
+export default paths;

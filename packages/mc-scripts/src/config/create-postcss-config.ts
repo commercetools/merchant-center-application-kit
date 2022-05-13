@@ -1,5 +1,6 @@
-const path = require('path');
-const { browserslist } = require('../../package.json');
+import path from 'path';
+import pkgJson from '../../package.json';
+import type { TPostcssConfigOptions } from '../types';
 
 // This function aims to return the same result as `require.resolve`.
 // However, resolving a path to a `.css` file does not return the real
@@ -7,23 +8,17 @@ const { browserslist } = require('../../package.json');
 // of the `identity-obj-proxy` resolver.
 // Therefore, we trick it by resolving the package entry point and
 // constructing the real path manually.
-const safeResolvePath = (packageName, fileRelativePath) => {
+const safeResolvePath = (packageName: string, fileRelativePath: string) => {
   const defaultPackageEntryPoint = require.resolve(packageName);
   const [pathToPackage] = defaultPackageEntryPoint.split('dist');
   return path.join(pathToPackage, fileRelativePath);
 };
 
-/**
- * @param {Object} options - Configuration options to extend the default configuration
- * @param {string[]} options.postcssImportPaths[] - A list of paths where to look for files used by the `@import` statements.
- * @param {string[]} options.postcssCustomMediaPaths[] - A list of paths where to look for files with custom media queries.
- * @param {string[]} options.postcssCustomPropertiesPaths[] - A list of paths where to look for files with custom properties.
- */
-module.exports = function createPostcssConfig({
+function createPostcssConfig({
   postcssImportPaths = [],
   postcssCustomMediaPaths = [],
   postcssCustomPropertiesPaths = [],
-} = {}) {
+}: TPostcssConfigOptions = {}) {
   return {
     parser: false,
     map: false,
@@ -47,8 +42,8 @@ module.exports = function createPostcssConfig({
         grid: 'autoplace',
         overrideBrowserslist:
           process.env.NODE_ENV === 'production'
-            ? browserslist.production
-            : browserslist.development,
+            ? pkgJson.browserslist.production
+            : pkgJson.browserslist.development,
       }),
       /**
        * Plugin to enable Custom Media Queries in CSS, following
@@ -87,4 +82,6 @@ module.exports = function createPostcssConfig({
       require('postcss-reporter')(),
     ],
   };
-};
+}
+
+export default createPostcssConfig;

@@ -1,33 +1,26 @@
-const fs = require('fs-extra');
-const path = require('path');
-const { createServer } = require('vite');
-const pluginGraphql = require('@rollup/plugin-graphql');
-const pluginReact = require('@vitejs/plugin-react').default;
-const { processConfig } = require('@commercetools-frontend/application-config');
-const {
+import fs from 'fs-extra';
+import path from 'path';
+import { createServer, type Plugin, type Connect } from 'vite';
+import pluginGraphql from '@rollup/plugin-graphql';
+import pluginReact from '@vitejs/plugin-react';
+import {
+  type ApplicationRuntimeConfig,
+  processConfig,
+} from '@commercetools-frontend/application-config';
+import {
   replaceHtmlPlaceholders,
   processHeaders,
   generateTemplate,
-} = require('@commercetools-frontend/mc-html-template');
-const {
-  createMcDevAuthenticationMiddleware,
-} = require('@commercetools-frontend/mc-dev-authentication');
-const {
-  packageLocation: applicationStaticAssetsPath,
-} = require('@commercetools-frontend/assets');
-const paths = require('../config/paths');
+} from '@commercetools-frontend/mc-html-template';
+import { createMcDevAuthenticationMiddleware } from '@commercetools-frontend/mc-dev-authentication';
+import { packageLocation as applicationStaticAssetsPath } from '@commercetools-frontend/assets';
+import paths from '../config/paths';
 
-const DEFAULT_PORT = parseInt(process.env.HTTP_PORT, 10) || 3001;
-
-const pluginCustomApplication = (applicationConfig) => {
-  /**
-   * @type {import('vite').Plugin}
-   */
+const pluginCustomApplication = (
+  applicationConfig: ApplicationRuntimeConfig
+): Plugin => {
   return {
     name: 'custom-application',
-    /**
-     * @type {import('vite').ServerHook}
-     */
     configureServer(server) {
       return () => {
         // Users do not need to have/maintain the `index.html` (as expected by Vite)
@@ -35,7 +28,7 @@ const pluginCustomApplication = (applicationConfig) => {
         // Therefore, the generated `index.html` (template) is written into the `/public`
         // folder so that it's gitignored.
         // As a result, we need to make sure to point the URI path to the correct location.
-        server.middlewares.use((req, res, next) => {
+        server.middlewares.use((req, _res, next) => {
           if (req.url === '/index.html') {
             req.url = '/public/index.html';
           }
@@ -44,7 +37,9 @@ const pluginCustomApplication = (applicationConfig) => {
 
         // Handle auth routes for internal local development.
         server.middlewares.use(
-          createMcDevAuthenticationMiddleware(applicationConfig)
+          createMcDevAuthenticationMiddleware(
+            applicationConfig
+          ) as Connect.NextHandleFunction
         );
       };
     },
@@ -78,7 +73,9 @@ const pluginCustomApplication = (applicationConfig) => {
   };
 };
 
-const execute = async () => {
+async function run() {
+  const DEFAULT_PORT = parseInt(String(process.env.HTTP_PORT), 10) || 3001;
+
   // Load the Custom Application config file first.
   const applicationConfig = processConfig();
 
@@ -107,7 +104,7 @@ const execute = async () => {
       port: DEFAULT_PORT,
     },
     plugins: [
-      pluginGraphql(),
+      pluginGraphql() as Plugin,
       pluginReact({
         jsxImportSource: '@emotion/react',
         babel: {
@@ -127,11 +124,20 @@ const execute = async () => {
   );
 
   server.printUrls();
-};
 
-execute().catch((error) => {
-  if (error && error.message) {
-    console.error(error.message);
-  }
-  process.exit(1);
-});
+  // For running processes, we need to wrap the logic into a `Promise` and
+  // only resolve the promise when the underlying process exits.
+  await new Promise<void>((resolve, reject) => {
+    server.httpServer?.on('exit', () => {
+      server.httpServer?.close((error) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve();
+        }
+      });
+    });
+  });
+}
+
+export default run;

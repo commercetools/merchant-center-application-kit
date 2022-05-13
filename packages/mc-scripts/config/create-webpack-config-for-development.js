@@ -1,2 +1,3 @@
 // For backwards compatibilty
-module.exports = require('../build/config/create-webpack-config-for-development');
+const { createWebpackConfigForDevelopment } = require('../');
+module.exports = createWebpackConfigForDevelopment;

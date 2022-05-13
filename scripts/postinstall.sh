@@ -20,5 +20,5 @@ yarn prettier --write --parser json '**/package.json' &>/dev/null
 echo "Patching packages"
 yarn patch-package
 
-echo "Compiling CSS modules"
-yarn compile-css-modules
+# echo "Compiling CSS modules"
+# yarn compile-css-modules

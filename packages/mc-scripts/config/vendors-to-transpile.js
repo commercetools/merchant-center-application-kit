@@ -1,2 +1,3 @@
 // For backwards compatibilty
-module.exports = require('../build/config/vendors-to-transpile');
+const { vendorsToTranspile } = require('../');
+module.exports = vendorsToTranspile;

@@ -14,8 +14,20 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./build/index.js",
-  "files": ["build", "config", "package.json", "LICENSE", "README.md"],
+  "main": "dist/commercetools-frontend-mc-scripts.cjs.js",
+  "module": "dist/commercetools-frontend-mc-scripts.esm.js",
+  "preconstruct": {
+    "entrypoints": ["./index.ts", "./application-runtime.ts"]
+  },
+  "files": [
+    "bin",
+    "dist",
+    "config",
+    "application-runtime",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "bin": "./bin/cli.js",
   "browserslist": {
     "production": [">1%", "not op_mini all", "not dead"],
@@ -82,36 +94,14 @@
     "webpackbar": "5.0.2"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.17.0",
-    "@babel/preset-env": "^7.16.11",
+    "@types/moment-locales-webpack-plugin": "^1.2.3",
+    "@types/react-dev-utils": "^9.0.10",
+    "@types/serve-handler": "^6.1.1",
     "mock-fs": "^5.1.2",
     "msw": "0.39.2",
     "rimraf": "3.0.2"
   },
   "engines": {
     "node": ">=14"
-  },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "14"
-          },
-          "modules": "commonjs",
-          "useBuiltIns": "usage",
-          "corejs": 3
-        }
-      ]
-    ],
-    "plugins": [
-      [
-        "@babel/plugin-transform-runtime",
-        {
-          "corejs": 3
-        }
-      ]
-    ]
   }
 }

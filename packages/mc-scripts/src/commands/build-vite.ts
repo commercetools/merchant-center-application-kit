@@ -1,20 +1,15 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-const fs = require('fs-extra');
-const path = require('path');
-const { build } = require('vite');
-const pluginGraphql = require('@rollup/plugin-graphql');
-const pluginReact = require('@vitejs/plugin-react').default;
-const {
-  generateTemplate,
-} = require('@commercetools-frontend/mc-html-template');
-const {
-  packageLocation: applicationStaticAssetsPath,
-} = require('@commercetools-frontend/assets');
-const paths = require('../config/paths');
+import fs from 'fs-extra';
+import path from 'path';
+import { build, type Plugin } from 'vite';
+import pluginGraphql from '@rollup/plugin-graphql';
+import pluginReact from '@vitejs/plugin-react';
+import { generateTemplate } from '@commercetools-frontend/mc-html-template';
+import { packageLocation as applicationStaticAssetsPath } from '@commercetools-frontend/assets';
+import paths from '../config/paths';
 
-const DEFAULT_PORT = parseInt(process.env.HTTP_PORT, 10) || 3001;
+async function run() {
+  const DEFAULT_PORT = parseInt(String(process.env.HTTP_PORT), 10) || 3001;
 
-const execute = async () => {
   // Ensure the `/public` folder exists.
   fs.mkdirSync(paths.appBuild, { recursive: true });
 
@@ -49,7 +44,7 @@ const execute = async () => {
       port: DEFAULT_PORT,
     },
     plugins: [
-      pluginGraphql(),
+      pluginGraphql() as Plugin,
       pluginReact({
         jsxImportSource: '@emotion/react',
         babel: {
@@ -77,11 +72,6 @@ const execute = async () => {
     paths.appBuild,
     { dereference: true }
   );
-};
+}
 
-execute().catch((error) => {
-  if (error && error.message) {
-    console.error(error.message);
-  }
-  process.exit(1);
-});
+export default run;

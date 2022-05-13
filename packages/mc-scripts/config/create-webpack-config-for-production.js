@@ -1,2 +1,3 @@
 // For backwards compatibilty
-module.exports = require('../build/config/create-webpack-config-for-production');
+const { createWebpackConfigForProduction } = require('../');
+module.exports = createWebpackConfigForProduction;

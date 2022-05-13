@@ -1,16 +1,24 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import type { Compiler, Stats } from 'webpack';
+
+type TFinalStatsWriterPluginOptions = {
+  outputPath: string;
+  includeFields: string[];
+};
 
 class FinalStatsWriterPlugin {
+  config: TFinalStatsWriterPluginOptions;
+
   // Expected options:
   // - `outputPath`
   // - `includeFields`
-  constructor(config) {
+  constructor(config: TFinalStatsWriterPluginOptions) {
     if (!config) throw new Error('Missing config options');
     this.config = config;
   }
 
-  apply(compiler) {
+  apply(compiler: Compiler) {
     // This is the only hook that return the `stats` plugin
     // with the `time` info. It also contains all the stats that
     // we would get from the original `emit` hook.
@@ -22,11 +30,12 @@ class FinalStatsWriterPlugin {
         this.writeStats.bind(this)
       );
     } else {
+      // @ts-ignore
       compiler.plugin('done', this.writeStats.bind(this));
     }
   }
 
-  writeStats(stats) {
+  writeStats(stats: Stats) {
     let finalStats = stats.toJson();
 
     // Filter only included fields
@@ -42,7 +51,7 @@ class FinalStatsWriterPlugin {
     }
 
     try {
-      fs.accessSync(this.config.outputPath, fs.F_OK);
+      fs.accessSync(this.config.outputPath, fs.constants.F_OK);
       fs.writeFileSync(
         path.join(this.config.outputPath, 'stats.json'),
         JSON.stringify(finalStats, null, 2)
@@ -56,4 +65,4 @@ class FinalStatsWriterPlugin {
   }
 }
 
-module.exports = FinalStatsWriterPlugin;
+export default FinalStatsWriterPlugin;

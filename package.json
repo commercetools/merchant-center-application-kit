@@ -76,7 +76,6 @@
       "!packages/eslint-config-mc-app",
       "!packages/jest-preset-mc-app",
       "!packages/jest-stylelint-runner",
-      "!packages/mc-scripts",
       "!packages-backend/eslint-config-node"
     ]
   },

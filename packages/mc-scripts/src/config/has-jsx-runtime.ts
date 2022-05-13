@@ -11,4 +11,4 @@ function hasJsxRuntime() {
   }
 }
 
-module.exports = hasJsxRuntime;
+export default hasJsxRuntime;
