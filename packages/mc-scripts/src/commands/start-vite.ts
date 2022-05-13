@@ -98,7 +98,7 @@ async function run() {
     root: paths.appRoot,
     define: {
       'process.env.DEBUG': JSON.stringify(false),
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.NODE_ENV': JSON.stringify('development'),
     },
     server: {
       port: DEFAULT_PORT,
@@ -125,19 +125,19 @@ async function run() {
 
   server.printUrls();
 
-  // For running processes, we need to wrap the logic into a `Promise` and
-  // only resolve the promise when the underlying process exits.
-  await new Promise<void>((resolve, reject) => {
-    server.httpServer?.on('exit', () => {
-      server.httpServer?.close((error) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve();
-        }
-      });
-    });
-  });
+  // // For running processes, we need to wrap the logic into a `Promise` and
+  // // only resolve the promise when the underlying process exits.
+  // await new Promise<void>((resolve, reject) => {
+  //   server.httpServer?.on('exit', () => {
+  //     server.httpServer?.close((error) => {
+  //       if (error) {
+  //         reject(error);
+  //       } else {
+  //         resolve();
+  //       }
+  //     });
+  //   });
+  // });
 }
 
 export default run;

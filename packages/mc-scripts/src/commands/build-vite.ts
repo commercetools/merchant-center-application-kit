@@ -27,7 +27,7 @@ async function run() {
     root: paths.appRoot,
     define: {
       'process.env.DEBUG': JSON.stringify(false),
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.NODE_ENV': JSON.stringify('production'),
     },
     build: {
       outDir: 'public',

@@ -35,21 +35,8 @@ async function run() {
     });
   });
 
-  // For running processes, we need to wrap the logic into a `Promise` and
-  // only resolve the promise when the underlying process exits.
-  await new Promise<void>((resolve, reject) => {
-    server.listen(port, () => {
-      console.log(`Running at http://localhost:${port}`);
-    });
-    server.on('exit', () => {
-      server.close((error) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve();
-        }
-      });
-    });
+  server.listen(port, () => {
+    console.log(`Running at http://localhost:${port}`);
   });
 }
 

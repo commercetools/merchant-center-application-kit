@@ -3106,8 +3106,6 @@ __metadata:
   resolution: "@commercetools-frontend/mc-scripts@workspace:packages/mc-scripts"
   dependencies:
     "@babel/core": ^7.17.9
-    "@babel/plugin-transform-runtime": ^7.17.0
-    "@babel/preset-env": ^7.16.11
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
     "@commercetools-frontend/application-config": 21.7.0
@@ -3126,6 +3124,7 @@ __metadata:
     autoprefixer: ^10.4.4
     babel-loader: 8.2.5
     browserslist: ^4.20.2
+    cac: 6.7.12
     chalk: 4.1.2
     core-js: ^3.21.1
     css-loader: 6.7.1
@@ -3140,7 +3139,6 @@ __metadata:
     mini-css-extract-plugin: 2.6.0
     mock-fs: ^5.1.2
     moment-locales-webpack-plugin: 1.2.0
-    mri: 1.2.0
     msw: 0.39.2
     postcss: 8.4.13
     postcss-custom-media: 8.0.0
@@ -13423,6 +13421,13 @@ __metadata:
   version: 3.1.2
   resolution: "bytes@npm:3.1.2"
   checksum: e4bcd3948d289c5127591fbedf10c0b639ccbf00243504e4e127374a15c3bc8eed0d28d4aaab08ff6f1cf2abc0cce6ba3085ed32f4f90e82a5683ce0014e1b6e
+  languageName: node
+  linkType: hard
+
+"cac@npm:6.7.12":
+  version: 6.7.12
+  resolution: "cac@npm:6.7.12"
+  checksum: c0d4129eb30fc43449e9078ac37bb3b837aab6261236a6642a6fb9d839bb6a41e191e1f2776f87569535db07dcbf4937680419126215b4c17c9dba4351d1bd5e
   languageName: node
   linkType: hard
 

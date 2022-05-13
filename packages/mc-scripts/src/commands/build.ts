@@ -1,6 +1,3 @@
-// NOTE: `react-dev-utils` does not currently fully support Webpack v5.
-// Most of the imports work, however we might bump into some edge cases.
-// In any case, once they release a compatible version, we should't have problems.
 import path from 'path';
 import fs from 'fs-extra';
 import webpack, { type Configuration, type Stats } from 'webpack';

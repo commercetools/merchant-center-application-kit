@@ -1,28 +1,19 @@
-export type TCliFlags = {
-  // global
-  help: boolean;
-  env: string | string[];
-  // config:sync
-  'dry-run': boolean;
-  // build
-  'build-only': boolean;
-  // compile-html
-  transformer: string;
-  'print-security-headers': boolean;
+export type TCliGlobalOptions = {
+  '--'?: string[];
+  env?: string[];
 };
 
-export type TCliCommand =
-  | 'build'
-  | 'compile-html'
-  | 'start'
-  | 'serve'
-  | 'login'
-  | 'config:sync';
+export type TCliCommandBuildOptions = {
+  'build-only'?: boolean;
+};
 
-export type TProxyCommandOptions = {
-  commandFlags?: TCliFlags;
-  fileName?: string;
-  noExit?: boolean;
+export type TCliCommandCompileHtmlOptions = {
+  transformer?: string;
+  'print-security-headers'?: boolean;
+};
+
+export type TCliCommandConfigSyncOptions = {
+  'dry-run'?: boolean;
 };
 
 /**
