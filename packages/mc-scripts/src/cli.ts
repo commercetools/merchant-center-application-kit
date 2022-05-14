@@ -3,13 +3,13 @@ import path from 'path';
 import { cac } from 'cac';
 import dotenv from 'dotenv';
 import dotenvExpand from 'dotenv-expand';
-import pkgJson from '../../package.json';
+import pkgJson from '../package.json';
 import type {
   TCliGlobalOptions,
   TCliCommandBuildOptions,
   TCliCommandCompileHtmlOptions,
   TCliCommandConfigSyncOptions,
-} from '../types';
+} from './types';
 
 const cli = cac('mc-scripts');
 
@@ -23,7 +23,7 @@ process.on('unhandledRejection', (err) => {
 // Get the current directory where the CLI is executed from. Usually this is the application folder.
 const applicationDirectory = fs.realpathSync(process.cwd());
 
-export const run = () => {
+const run = () => {
   cli.option(
     '--env <path>',
     `(optional) Parses the file path as a dotenv file and adds the variables to the environment. Multiple flags are allowed.`
@@ -58,8 +58,8 @@ export const run = () => {
       }
 
       const startCommand = shouldUseExperimentalBundler
-        ? await import('../commands/start-vite')
-        : await import('../commands/start');
+        ? await import('./commands/start-vite')
+        : await import('./commands/start');
       await startCommand.default();
     });
 
@@ -94,14 +94,14 @@ export const run = () => {
       }
 
       const buildCommand = shouldUseExperimentalBundler
-        ? await import('../commands/build-vite')
-        : await import('../commands/build');
+        ? await import('./commands/build-vite')
+        : await import('./commands/build');
       await buildCommand.default();
 
       const shouldAlsoCompile = !options['build-only'];
       if (shouldAlsoCompile) {
         console.log('');
-        const compileHtmlCommand = await import('../commands/compile-html');
+        const compileHtmlCommand = await import('./commands/compile-html');
         await compileHtmlCommand.default();
       }
     });
@@ -129,7 +129,7 @@ export const run = () => {
         // Do this as the first thing so that any code reading it knows the right env.
         process.env.NODE_ENV = 'production';
 
-        const compileHtmlCommand = await import('../commands/compile-html');
+        const compileHtmlCommand = await import('./commands/compile-html');
         await compileHtmlCommand.default(options);
       }
     );
@@ -148,7 +148,7 @@ export const run = () => {
       // Do this as the first thing so that any code reading it knows the right env.
       process.env.NODE_ENV = 'production';
 
-      const serveCommand = await import('../commands/serve');
+      const serveCommand = await import('./commands/serve');
       await serveCommand.default();
     });
 
@@ -242,3 +242,5 @@ function loadDotEnvFiles(globalOptions: TCliGlobalOptions) {
     }
   });
 }
+
+export { run, loadDotEnvFiles };

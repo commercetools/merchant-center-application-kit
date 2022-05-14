@@ -1,3 +1,3 @@
 #!/usr/bin/env node
 
-require('../').run();
+require('@commercetools-frontend/mc-scripts/cli').run();

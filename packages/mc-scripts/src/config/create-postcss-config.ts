@@ -1,4 +1,5 @@
 import path from 'path';
+import type { Config } from 'postcss-load-config';
 import pkgJson from '../../package.json';
 import type { TPostcssConfigOptions } from '../types';
 
@@ -18,7 +19,7 @@ function createPostcssConfig({
   postcssImportPaths = [],
   postcssCustomMediaPaths = [],
   postcssCustomPropertiesPaths = [],
-}: TPostcssConfigOptions = {}) {
+}: TPostcssConfigOptions = {}): Config {
   return {
     parser: false,
     map: false,

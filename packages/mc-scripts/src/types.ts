@@ -66,7 +66,7 @@ export type TWebpackConfigToggleFlagsForProduction =
     parallelism: true;
   };
 
-export type TWebpackConfigOptions<mode extends TWebpackConfigMode> = {
+export type TWebpackConfigOptions<ConfigMode extends TWebpackConfigMode> = {
   /**
    * The absolute path to the application entry point file.
    */
@@ -82,9 +82,9 @@ export type TWebpackConfigOptions<mode extends TWebpackConfigMode> = {
   /**
    * Options to enable/disable certain functionalities of the Webpack config.
    */
-  toggleFlags?: mode extends 'development'
+  toggleFlags?: ConfigMode extends 'development'
     ? TWebpackConfigToggleFlagsForDevelopment
-    : mode extends 'production'
+    : ConfigMode extends 'production'
     ? TWebpackConfigToggleFlagsForProduction
     : never;
 };

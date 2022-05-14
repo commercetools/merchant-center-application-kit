@@ -17,13 +17,22 @@
   "main": "dist/commercetools-frontend-mc-scripts.cjs.js",
   "module": "dist/commercetools-frontend-mc-scripts.esm.js",
   "preconstruct": {
-    "entrypoints": ["./index.ts", "./application-runtime.ts"]
+    "entrypoints": [
+      "./index.ts",
+      "./application-runtime.ts",
+      "./cli.ts",
+      "./postcss.ts",
+      "./webpack.ts"
+    ]
   },
   "files": [
     "bin",
+    "cli",
     "dist",
     "config",
     "application-runtime",
+    "postcss",
+    "webpack",
     "package.json",
     "LICENSE",
     "README.md"
