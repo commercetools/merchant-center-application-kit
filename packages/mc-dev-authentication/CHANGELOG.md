@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-dev-authentication
 
+## 21.6.0
+
+### Patch Changes
+
+- [#2598](https://github.com/commercetools/merchant-center-application-kit/pull/2598) [`b1515054`](https://github.com/commercetools/merchant-center-application-kit/commit/b15150542ee221a921f15896b7eda2267628ea57) Thanks [@emmenko](https://github.com/emmenko)! - Update `express` and `express-jwt` packages
+
 ## 21.5.0
 
 ### Minor Changes

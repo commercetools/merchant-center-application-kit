@@ -1,5 +1,22 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.6.0
+
+### Minor Changes
+
+- [#2535](https://github.com/commercetools/merchant-center-application-kit/pull/2535) [`dc5b02eb`](https://github.com/commercetools/merchant-center-application-kit/commit/dc5b02eb6d18e5f8e3904ce609f67306ef5c514c) Thanks [@Rhotimee](https://github.com/Rhotimee)! - The `config:sync` command now shows the diff changes before updating an existing Custom Application config.
+
+### Patch Changes
+
+- [#2555](https://github.com/commercetools/merchant-center-application-kit/pull/2555) [`0b7a3743`](https://github.com/commercetools/merchant-center-application-kit/commit/0b7a3743207172ace7f2b6893b9c7d61c351967b) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+* [#2585](https://github.com/commercetools/merchant-center-application-kit/pull/2585) [`8d3b7dd5`](https://github.com/commercetools/merchant-center-application-kit/commit/8d3b7dd558c90d41bd51e0a10666ab474bb0825d) Thanks [@Rhotimee](https://github.com/Rhotimee)! - Remove automatically updating local config application ID after a Custom Application is created.
+  Instruct users to update the application ID themselves.
+* Updated dependencies [[`b1515054`](https://github.com/commercetools/merchant-center-application-kit/commit/b15150542ee221a921f15896b7eda2267628ea57), [`5d0a461d`](https://github.com/commercetools/merchant-center-application-kit/commit/5d0a461d73d23938d4c42d48f985d28b2722019c), [`dc5b02eb`](https://github.com/commercetools/merchant-center-application-kit/commit/dc5b02eb6d18e5f8e3904ce609f67306ef5c514c)]:
+  - @commercetools-frontend/mc-dev-authentication@21.6.0
+  - @commercetools-frontend/application-config@21.6.0
+  - @commercetools-frontend/mc-html-template@21.6.0
+
 ## 21.5.0
 
 ### Patch Changes

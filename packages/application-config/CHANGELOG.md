@@ -1,5 +1,13 @@
 # @commercetools-frontend/application-config
 
+## 21.6.0
+
+### Patch Changes
+
+- [#2601](https://github.com/commercetools/merchant-center-application-kit/pull/2601) [`5d0a461d`](https://github.com/commercetools/merchant-center-application-kit/commit/5d0a461d73d23938d4c42d48f985d28b2722019c) Thanks [@ddouglasz](https://github.com/ddouglasz)! - validating entry point uri path should allow two characters
+
+* [#2535](https://github.com/commercetools/merchant-center-application-kit/pull/2535) [`dc5b02eb`](https://github.com/commercetools/merchant-center-application-kit/commit/dc5b02eb6d18e5f8e3904ce609f67306ef5c514c) Thanks [@Rhotimee](https://github.com/Rhotimee)! - Sanitize Icon svg in application config
+
 ## 21.5.0
 
 ### Patch Changes
