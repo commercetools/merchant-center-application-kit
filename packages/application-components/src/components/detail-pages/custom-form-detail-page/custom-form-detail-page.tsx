@@ -1,20 +1,23 @@
 import type { ReactElement, ReactNode, MouseEvent, KeyboardEvent } from 'react';
-import Spacings from '@commercetools-uikit/spacings';
 import { sharedMessages } from '@commercetools-frontend/i18n';
-import PageHeaderTitle from '../internals/page-header-title';
-import PageTopBar from '../internals/page-top-bar';
 import { warning } from '@commercetools-uikit/utils';
-import {
-  ControlsContainter,
-  TabularPageContainer,
-  FormControlsContainer,
-} from '../internals/tabular-page';
-import { ContentWrapper, PageWrapper } from '../internals/page.styles';
+import styled from '@emotion/styled';
+import { customProperties } from '@commercetools-uikit/design-system';
 import {
   FormPrimaryButton,
   FormSecondaryButton,
   FormDeleteButton,
-} from '../internals/default-form-buttons';
+} from '../../internals/default-form-buttons';
+import Spacings from '@commercetools-uikit/spacings';
+import PageHeaderTitle from '../../internals/page-header-title';
+import PageTopBar from '../../internals/page-top-bar';
+import { ContentWrapper, PageWrapper } from '../../internals/page.styles';
+
+const DetailPageContainer = styled.div`
+  background-color: ${customProperties.colorNeutral95};
+  padding: ${customProperties.spacingM};
+  border-bottom: 1px ${customProperties.colorNeutral} solid;
+`;
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin
@@ -26,7 +29,7 @@ type MessageDescriptor = {
   values?: Record<string, ReactNode>;
 };
 
-type TTabularDetailPageProps = {
+type CustomFormDetailPageProps = {
   /**
    * The title of the page.
    */
@@ -40,13 +43,11 @@ type TTabularDetailPageProps = {
    */
   customTitleRow?: ReactNode;
   /**
-   * Any React node displayed as the tab panel.
+   * Any React node displayed as the content within the page.
    */
   children: ReactNode;
-  /**
-   * A composition of tab components.
-   */
-  tabControls: ReactNode;
+
+  // Controls Props
   /**
    * Any React node to be rendered as the form controls
    */
@@ -54,9 +55,7 @@ type TTabularDetailPageProps = {
   /**
    * Determines if the form controls should be rendered.
    */
-  hideControls: boolean;
-
-  // PageTopBar props:
+  hideControls?: boolean;
   /**
    * A return route path label.
    */
@@ -69,19 +68,19 @@ type TTabularDetailPageProps = {
   ) => void;
 };
 
-const defaultProps: Pick<TTabularDetailPageProps, 'hideControls'> = {
+const defaultProps: Pick<CustomFormDetailPageProps, 'hideControls'> = {
   hideControls: false,
 };
 
-const TabularDetailPage = (props: TTabularDetailPageProps) => {
+const CustomFormDetailPage = (props: CustomFormDetailPageProps) => {
   warning(
     props.title !== undefined || props.customTitleRow !== undefined,
-    'TabularDetailPage: one of either `title` or `customTitleRow` is required but both their values are `undefined`'
+    'DetailPage: one of either `title` or `customTitleRow` is required but both their values are `undefined`'
   );
 
   return (
     <PageWrapper>
-      <TabularPageContainer color="neutral">
+      <DetailPageContainer>
         <Spacings.Stack>
           <PageTopBar
             color="neutral"
@@ -95,35 +94,29 @@ const TabularDetailPage = (props: TTabularDetailPageProps) => {
               titleSize="big"
             />
           )}
-          <ControlsContainter
-            tabControls={props.tabControls}
-            formControls={
-              <FormControlsContainer>
-                {!props.hideControls && props.formControls && (
-                  <Spacings.Inline alignItems="flex-end">
-                    {props.formControls}
-                  </Spacings.Inline>
-                )}
-              </FormControlsContainer>
-            }
-          />
+          {!props.hideControls && props.formControls && (
+            <Spacings.Inline justifyContent="flex-end">
+              {props.formControls}
+            </Spacings.Inline>
+          )}
         </Spacings.Stack>
-      </TabularPageContainer>
+      </DetailPageContainer>
       <ContentWrapper>{props.children}</ContentWrapper>
     </PageWrapper>
   );
 };
-TabularDetailPage.displayName = 'TabularDetailPage';
-TabularDetailPage.defaultProps = defaultProps;
-// Static export of pre-configured form control buttons to easily re-use
-// them in the custom controls.
-TabularDetailPage.FormPrimaryButton = FormPrimaryButton;
-TabularDetailPage.FormSecondaryButton = FormSecondaryButton;
-TabularDetailPage.FormDeleteButton = FormDeleteButton;
+CustomFormDetailPage.displayName = 'CustomFormDetailPage';
+CustomFormDetailPage.defaultProps = defaultProps;
 // Static export of pre-configured page header title component to easily
 // use as part of a custom title row
-TabularDetailPage.PageHeaderTitle = PageHeaderTitle;
+CustomFormDetailPage.PageHeaderTitle = PageHeaderTitle;
+// Static export of pre-configured form control buttons to easily re-use
+// them in the custom controls.
+CustomFormDetailPage.FormPrimaryButton = FormPrimaryButton;
+CustomFormDetailPage.FormSecondaryButton = FormSecondaryButton;
+CustomFormDetailPage.FormDeleteButton = FormDeleteButton;
 // This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
-TabularDetailPage.Intl = sharedMessages;
+// The Intl messages can be used for button labels.
+CustomFormDetailPage.Intl = sharedMessages;
 
-export default TabularDetailPage;
+export default CustomFormDetailPage;

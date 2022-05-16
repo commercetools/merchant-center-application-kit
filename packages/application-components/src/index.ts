@@ -3,7 +3,6 @@ export { default as version } from './version';
 // TabHeader & Tabular pages
 export { default as TabHeader } from './components/tab-header';
 export { default as TabularMainPage } from './components/tabular-main-page';
-export { default as TabularDetailPage } from './components/tabular-detail-page';
 
 // Dialogs
 export { default as InfoDialog } from './components/dialogs/info-dialog';
@@ -15,6 +14,12 @@ export { default as InfoModalPage } from './components/modal-pages/info-modal-pa
 export { default as FormModalPage } from './components/modal-pages/form-modal-page';
 export { default as TabularModalPage } from './components/modal-pages/tabular-modal-page';
 export { default as CustomFormModalPage } from './components/modal-pages/custom-form-modal-page';
+
+// Detail Pages
+export { default as CustomFormDetailPage } from './components/detail-pages/custom-form-detail-page';
+export { default as FormDetailPage } from './components/detail-pages/form-detail-page';
+export { default as InfoDetailPage } from './components/detail-pages/info-detail-page';
+export { default as TabularDetailPage } from './components/detail-pages/tabular-detail-page';
 
 // Public page
 export { default as PublicPageLayout } from './components/public-page-layout';

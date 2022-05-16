@@ -36,6 +36,9 @@ npm --save install react react-dom react-intl
 * [InfoModalPage](#infomodalpage)
 * [FormModalPage](#formmodalpage)
 * [CustomFormModalPage](#customformmodalpage)
+* [InfoDetailPage](#infodetailpage)
+* [FormDetailPage](#formdetailpage)
+* [CustomFormDetailPage](#customformdetailpage)
 * [TabularModalPage](#tabularmodalpage)
 * [TabularMainPage](#tabularmainpage)
 * [TabularDetailPage](#tabulardetailpage)
@@ -360,11 +363,13 @@ const AccountPage = () => {
 | `topBarCurrentPathLabel`        | `string`                   |          | The `title` prop         | Label to appear as the current path of the top bar of the modal.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | `topBarPreviousPathLabel`       | `string`                   |          | `"Go Back"` (translated) | Label to appear as the previous path of the top bar of the modal.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | `children`                      | `node`                     |    ✅    | -                        | Content rendered within the page. If the content is long in height (depending on the screen size) a scrollbar will appear.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `hideControls`                  | `boolean`                  |    -     | `false`                  | Hides the form controls.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `labelSecondaryButton`                | `string` \| `Intl message` |        | -                 | `Cancel`  | The label for the secondary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#static-properties-2).                                                     |
 | `labelPrimaryButton`                  | `string` \| `Intl message` |        | -                 | `Save` | The label for the primary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#static-properties-2).                                                                                  |
 | `onSecondaryButtonClick`        | `function`                 |    ✅    | -                        | Called when the secondary button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | `onPrimaryButtonClick`          | `function`                 |    ✅    | -                        | Called when the primary button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `isPrimaryButtonDisabled`       | `boolean`                  |    -     | `false`                  | Indicates whether the primary button is deactivated or not.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `isSecondaryButtonDisabled`     | `boolean`                  |    -     | `false`                  | Indicates whether the secondary button is deactivated or not.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | `dataAttributesSecondaryButton` | `object`                   |    -     | -                        | Use this prop to pass `data-` attributes to the secondary button.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | `dataAttributesPrimaryButton`   | `object`                   |    -     | -                        | Use this prop to pass `data-` attributes to the primary button.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `getParentSelector`             | `function`                 |    -     | -                        | The function should return an HTML element that will be used as the parent container to hold the modal DOM tree. If no function is provided, it's expected that an HTML element with the `id="parent-container"` is present in the DOM. In the `NODE_ENV=test` environment, the default HTML element is `body`.                                                                                                                                                                                                            |
@@ -498,6 +503,283 @@ const AccountPage = () => {
       <CustomFormModalPage.FormSecondaryButton
         // other props...
         label={CustomFormModalPage.Intl.revert}
+      />
+    }
+  />
+  ```
+
+## InfoDetailPage
+
+<Playground urlPath="info-detail-page" />
+
+Info Detail pages are controlled components used to render a page to show more information about a particular feature. Similar to `<InfoModalPage>` but not rendered as a modal.
+
+The `<InfoDetailPage>` may be used as a direct child of one of the main pages. A back link in the header section is also required.
+The layout of this page can be recognized by the gray background header and the white content background.
+
+### Usage
+
+```jsx
+import { useHistory } from 'react-router-dom'
+import { InfoDetailPage } from '@commercetools-frontend/application-components';
+import Text from '@commercetools-uikit/text';
+
+const DetailPage = () => {
+  const history = useHistory();
+
+  return (
+    <InfoDetailPage
+      title="Detail page"
+      onPreviousPathClick={() => history.push('/starting-page')}
+      previousPathLabel="Go back"
+    >
+      <Text.Body>{'Lorem ipsum ...'}</Text.Body>
+    </InfoDetailPage>
+  );
+}
+```
+
+### Properties
+
+| Props                           | Type                            | Required | Default                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------------------- | ------------------------------- | :------: | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`                         | `string`                        |    -     | -                                  | The title of the page.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `subtitle`                      | `node` or `string`              |    -     | -                                  | The subtitle of the page, usually a React component. If a string is passed, it's rendered as a paragraph.                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `customTitleRow`                | `node`                          |    -     | -                                  | Pass a React.node to be used in place of the `title` and `subtitle`.                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `children`                      | `node`                          |    ✅    | -                                  | Content rendered within the page. It's expected to have its style fully customized.                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `previousPathLabel`             | `string` or `Intl message`      |    -     | `"Go back"` (translated)           | Label to appear as the previous path of the top bar of the page.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `onPreviousPathClick`           | `function`                      |    ✅    | -                                  | Called when the back button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+
+### Static properties
+
+* Page Header title
+
+  Pre-configured page header title component to use as part of a custom title row.
+
+  ```js
+  InfoDetailPage.PageHeaderTitle = PageHeaderTitle;
+  ```
+
+## FormDetailPage
+
+<Playground urlPath="form-detail-page" />
+
+Form Detail pages are controlled components used to render a page with a form or something that requires user input. Similar to `<FormModalPage>` but not rendered as a modal.
+The header includes buttons to control the submission or cancellation of the form. These buttons can be overwritten with custom controls by using the `<CustomFormDetailPage>` component.
+
+The `<FormDetailPage>` may be used as a direct child of one of the main pages. A back link in the header section is also required.
+The layout of this page can be recognized by the gray background header and the white content background.
+
+### Usage
+
+```jsx
+import { useHistory } from 'react-router-dom'
+import { useFormik } from "formik";
+import TextField from "@commercetools-uikit/text-field";
+import TextInput from "@commercetools-uikit/text-input";
+import { FormDetailPage } from "@commercetools-frontend/application-components";
+
+const AccountPage = () => {
+  const history = useHistory();
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    validate: (formikValues) => {
+      if (TextInput.isEmpty(formikValues.email)) {
+        return { email: { missing: true } };
+      }
+      return {};
+    },
+    onSubmit: async (formikValues) => {
+      alert(`email: ${formikValues.email}`);
+      // Do something async
+    },
+  });
+
+  return (
+    <FormDetailPage
+      title="Manage your account"
+      onPreviousPathClick={() => history.push('/starting-page')}
+      isPrimaryButtonDisabled={formik.isSubmitting}
+      onSecondaryButtonClick={() => {
+        formik.resetForm();
+      }}
+      onPrimaryButtonClick={formik.handleSubmit}
+    >
+      <TextField
+        name="email"
+        title="Email"
+        isRequired={true}
+        value={formik.values.email}
+        errors={formik.errors.email}
+        touched={formik.touched.email}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+      />
+    </FormDetailPage>
+  );
+};
+```
+
+### Properties
+
+| Props                           | Type                            | Required | Default                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------------------- | ------------------------------- | :------: | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`                         | `string`                        |    -     | -                                  | The title of the page.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `subtitle`                      | `node` or `string`              |    -     | -                                  | The subtitle of the page, usually a React component. If a string is passed, it's rendered as a paragraph.                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `customTitleRow`                | `node`                          |    -     | -                                  | Pass a React.node to be used in place of the `title` and `subtitle`.                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `children`                      | `node`                          |    ✅    | -                                  | Content rendered within the page. It's expected to have its style fully customized.                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `previousPathLabel`             | `string` or `Intl message`      |    -     | `"Go back"` (translated)           | Label to appear as the previous path of the top bar of the page.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `onPreviousPathClick`           | `function`                      |    ✅    | -                                  | Called when the back button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `labelSecondaryButton`          | `string` or `Intl message`      |          | `Cancel`                           | The label for the secondary button as a string, or as an Intl message (`{ id, defaultMessage }`).                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `labelPrimaryButton`            | `string` or `Intl message`      |          | `Save`                             | The label for the primary button as a string, or as an Intl message (`{ id, defaultMessage }`).                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `onPrimaryButtonClick`          | `function`                      |    ✅    | -                                  | Called when the primary button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `onSecondaryButtonClick`        | `function`                      |    ✅    | -                                  | Called when the secondary button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `isPrimaryButtonDisabled`       | `boolean`                       |    -     | `false`                            | Indicates whether the primary button is deactivated or not.                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `isSecondaryButtonDisabled`     | `boolean`                       |    -     | `false`                            | Indicates whether the secondary button is deactivated or not.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `dataAttributesSecondaryButton` | `object`                        |    -     | -                                  | Use this prop to pass `data-` attributes to the secondary button.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `dataAttributesPrimaryButton`   | `object`                        |    -     | -                                  | Use this prop to pass `data-` attributes to the primary button.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `hideControls`                  | `boolean`                       |    -     | `false`                            | Hides the form controls.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | 
+
+### Static properties
+
+* Page Header title
+
+  Pre-configured page header title component to use as part of a custom title row.
+
+  ```js
+  FormDetailPage.PageHeaderTitle = PageHeaderTitle;
+  ```
+* `FormDetailPage.Intl`
+
+  This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+  The Intl messages can be used for button labels.
+
+  ```jsx
+  <FormDetailPage
+    // other props...
+    labelSecondaryButton={FormDetailPage.Intl.revert}
+  />
+  ```
+
+## CustomFormDetailPage
+
+<Playground urlPath="custom-form-detail-page" />
+
+Custom Form Detail pages are a variation of the `<FormDetailPage>` that allow passing custom control elements via `formControls`.
+This is useful in case the detail page needs different control elements than the default ones (primary and secondary button).
+
+The `<CustomFormDetailPage>` may be used as a direct child of one of the main pages. A back link in the header section is also required.
+The layout of this page can be recognized by the gray background header and the white content background.
+
+### Usage
+
+```jsx
+import { useHistory } from 'react-router-dom'
+import { useFormik } from "formik";
+import TextField from "@commercetools-uikit/text-field";
+import TextInput from "@commercetools-uikit/text-input";
+import { 
+  CustomFormDetailPage 
+} from "@commercetools-frontend/application-components";
+
+const AccountPage = () => {
+  const history = useHistory();
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    validate: (formikValues) => {
+      if (TextInput.isEmpty(formikValues.email)) {
+        return { email: { missing: true } };
+      }
+      return {};
+    },
+    onSubmit: async (formikValues) => {
+      alert(`email: ${formikValues.email}`);
+      // Do something async
+    },
+  });
+
+  return (
+    <CustomFormDetailPage
+      title="Manage your account"
+      onPreviousPathClick={() => history.push('/starting-page')}
+      formControls={
+        <>
+          <CustomFormDetailPage.FormSecondaryButton
+            onClick={() => {
+              formik.resetForm();
+            }}
+          />
+          <CustomFormDetailPage.FormPrimaryButton
+            onClick={formik.handleSubmit}
+          />
+          <CustomFormDetailPage.FormDeleteButton onClick={handleDelete} />
+        </>
+      }
+    >
+      <TextField
+        name="email"
+        title="Email"
+        isRequired={true}
+        value={formik.values.email}
+        errors={formik.errors.email}
+        touched={formik.touched.email}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+      />
+    </CustomFormDetailPage>
+  );
+};
+```
+
+### Properties
+
+| Props                           | Type                            | Required | Default                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------------------- | ------------------------------- | :------: | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`                         | `string`                        |    -     | -                                  | The title of the page.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `subtitle`                      | `node` or `string`              |    -     | -                                  | The subtitle of the page, usually a React component. If a string is passed, it's rendered as a paragraph.                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `customTitleRow`                | `node`                          |    -     | -                                  | Pass a React.node to be used in place of the `title` and `subtitle`.                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `children`                      | `node`                          |    ✅    | -                                  | Content rendered within the page. It's expected to have its style fully customized.                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `previousPathLabel`             | `string` or `Intl message`      |    -     | `"Go back"` (translated)           | Label to appear as the previous path of the top bar of the page.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `onPreviousPathClick`           | `function`                      |    ✅    | -                                  | Called when the back button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `formControls`                  | `node`                          |    -     | -                                  | Pass a React.node with form controls. You can use the pre-made form buttons exposed by this component or you can use your own.                                                                                                                                                                                                                                                                                                                                                                                             |
+| `hideControls`                  | `boolean`                       |    -     | `false`                            | Hides the form controls.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+
+### Static properties
+
+* Form Control Buttons
+
+  Pre-configured form control buttons to easily re-use them in the custom controls.
+
+  ```js
+  CustomFormDetailPage.FormPrimaryButton = FormPrimaryButton;
+  CustomFormDetailPage.FormSecondaryButton = FormSecondaryButton;
+  CustomFormDetailPage.FormDeleteButton = FormDeleteButton;
+  ```
+
+* Page Header title
+
+  Pre-configured page header title component to use as part of a custom title row.
+
+  ```js
+  CustomFormDetailPage.PageHeaderTitle = PageHeaderTitle;
+  ```
+
+* `CustomFormModalPage.Intl`
+
+  This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+  The Intl messages can be used for button labels.
+
+  ```jsx
+  <CustomFormDetailPage
+    // other props...
+    formControls={
+      <CustomFormDetailPage.FormSecondaryButton
+        // other props...
+        label={CustomFormDetailPage.Intl.revert}
       />
     }
   />
