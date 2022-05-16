@@ -313,6 +313,5 @@ const EXCLUDED_TIME_ZONES = [
   'W-SU',
   'WET',
   'Zulu',
-  'zzspace/mars',
 ];
 module.exports = EXCLUDED_TIME_ZONES;
