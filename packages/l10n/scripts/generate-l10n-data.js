@@ -1,13 +1,14 @@
 /* eslint-disable no-console */
 const fs = require('fs');
 const path = require('path');
-const readline = require('readline');
 const shell = require('shelljs');
 const cldr = require('cldr');
 const chalk = require('chalk');
 const fetch = require('node-fetch');
 const moment = require('moment-timezone');
 const deepDiff = require('deep-diff');
+const EXCLUDED_TIME_ZONES = require('./excluded-time-zones');
+const parseNewTimeZones = require('./parse-new-time-zones');
 
 const L10N_KEYS = {
   COUNTRY: 'country',
@@ -295,12 +296,10 @@ const mapDiffToWarnings = (oldData, newData) => {
     .filter(Boolean);
 };
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-const updateTimeZoneTranslations = async (key) => {
+const updateTimeZoneData = async (key) => {
+  // const allTimeZoneIds = moment.tz.names();
+  const fakeTimeZones = ['zzspace/moon', 'zzspace/mars', 'zzspace/jupiter'];
+  const allTimeZoneIds = moment.tz.names().concat(fakeTimeZones);
   const targetTranslationsFolder = path.join(
     __dirname,
     '..',
@@ -310,60 +309,94 @@ const updateTimeZoneTranslations = async (key) => {
     targetTranslationsFolder,
     'core.json'
   );
-  /**
-   * This is a list of all timezones in the output of `moment.tz.names()`
-   * that we want to exclude from the final compiled time zone data.
-   *
-   * The `extractTimeZoneDataForLocale` function in `scripts/generate-l10n-data`
-   * consumes this list of excluded timezones, and an object of locale-specific
-   * long-form translations.  If a timezone is present in the output of
-   * `moment.tz.names()`, but either is not in the excluded list or does not
-   * have a translation, that timezone is considered a new timezone.
-   *
-   * If a new timezone is encountered, the user running the CLI command
-   * will be prompted via the shell whether they would like to accept
-   * the new timezone, or add that timezone to this excluded list.
-   */
-  const targetExcludedTimeZonesFile = path.join(
-    targetTranslationsFolder,
-    'excluded_time_zones.json'
+  await fs.accessSync(targetTranslationsFile, fs.constants.F_OK);
+  const translatedTimeZones = JSON.parse(
+    fs.readFileSync(targetTranslationsFile, { encoding: 'utf8' })
   );
-
-  moment.tz.setDefault('Etc/GMT');
-
-  // const allTimeZoneIds = moment.tz.names();
-  const fakeTimeZones = ['space/moon', 'space/mars', 'space/jupiter'];
-  const allTimeZoneIds = moment.tz.names().concat(fakeTimeZones);
+  const translatedTimeZoneIds = Object.keys(translatedTimeZones);
 
   console.log(
-    `[${key}]: Checking moment-timezone for new IANA timezone identifiers`
+    `[${key}]: Checking moment-timezone for new IANA timezone identifiers\n`
   );
-  try {
-    fs.accessSync(targetTranslationsFile, fs.F_OK);
-    fs.accessSync(targetExcludedTimeZonesFile, fs.F_OK);
-    const currentTranslationsFile = JSON.parse(
-      fs.readFileSync(targetTranslationsFile, { encoding: 'utf8' })
+  const newTimeZoneIds = allTimeZoneIds.filter(
+    (id) =>
+      !(translatedTimeZoneIds.includes(id) || EXCLUDED_TIME_ZONES.includes(id))
+  );
+  if (newTimeZoneIds.length) {
+    console.log(
+      `[${key}]: Found ${chalk.cyan(
+        newTimeZoneIds.length
+      )} new time zones: ${newTimeZoneIds.map(
+        (id) => ` ${chalk.underline(chalk.cyan(id))}`
+      )}\n`
     );
-    const currentExcludedTimeZonesFile = JSON.parse(
-      fs.readFileSync(targetExcludedTimeZonesFile, {
-        encoding: 'utf8',
-      })
-    );
-    const currentTranslatedTimeZoneIds = Object.keys(currentTranslationsFile);
-    const currentExcludedTimeZoneIds =
-      currentExcludedTimeZonesFile.EXCLUDED_TIME_ZONES;
 
-    const newTimeZones = allTimeZoneIds.filter(
-      (id) =>
-        !(
-          currentTranslatedTimeZoneIds.includes(id) ||
-          currentExcludedTimeZoneIds.includes(id)
+    const results = await parseNewTimeZones(newTimeZoneIds);
+
+    if (results.addToTranslations.length) {
+      const updatedTranslationData = results.addToTranslations.reduce(
+        (translationData, newTranslationId) => {
+          return {
+            ...translationData,
+            [newTranslationId]: 'ADD NEW TRANSLATION',
+          };
+        },
+        translatedTimeZones
+      );
+
+      const updatedTranslationsFile = Object.keys(updatedTranslationData)
+        .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
+        .reduce((acc, key) => {
+          return {
+            ...acc,
+            [key]: updatedTranslationData[key],
+          };
+        }, {});
+
+      shell.mkdir('-p', targetTranslationsFolder);
+      fs.writeFileSync(
+        targetTranslationsFile,
+        JSON.stringify(updatedTranslationsFile, null, 2)
+      );
+      console.log(
+        `[${key}]: ${results.addToTranslations.length} timezones added to TRANSLATIONS ${targetTranslationsFile}`
+      );
+    }
+    if (results.addToExclusions.length) {
+      const updatedExclusionsFile = results.addToExclusions
+        .reduce(
+          (EXCLUDED_TIME_ZONES, excludedId) => [
+            ...EXCLUDED_TIME_ZONES,
+            excludedId,
+          ],
+          EXCLUDED_TIME_ZONES
         )
-    );
+        .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
 
-    console.log(JSON.stringify(newTimeZones));
-  } catch (error) {
-    throw new Error(error);
+      const targetExcludedTimeZonesFile = path.join(
+        __dirname,
+        'excluded-time-zones.js'
+      );
+
+      shell.mkdir('-p', './');
+      fs.writeFileSync(
+        targetExcludedTimeZonesFile,
+        `const EXCLUDED_TIME_ZONES = ${JSON.stringify(
+          updatedExclusionsFile,
+          null,
+          2
+        )}; module.exports = EXCLUDED_TIME_ZONES`
+      );
+
+      console.log(
+        `[${key}]: ${results.addToTranslations.length} timezones added to EXCLUSIONS file ${targetExcludedTimeZonesFile}`
+      );
+    }
+    if (results.ignore.length) {
+      console.log(
+        `[${key}]: ${results.addToTranslations.length} timezones ignored`
+      );
+    }
   }
   return Promise.resolve();
 };
@@ -411,9 +444,9 @@ const updateLocaleData = async (key, locales) => {
 
 const run = async (key) => {
   if (key === L10N_KEYS.TIMEZONE) {
-    await updateTimeZoneTranslations(key);
+    await updateTimeZoneData(key);
   } else {
-    await updateLocaleData(key, supportedLocales);
+    // await updateLocaleData(key, supportedLocales);
   }
 };
 
