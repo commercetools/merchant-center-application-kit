@@ -29,6 +29,7 @@
     "@types/react": "^17.0.44",
     "lodash": "4.17.21",
     "moment": "^2.29.2",
+    "moment-timezone": "^0.5.34",
     "prop-types": "15.8.1"
   },
   "devDependencies": {
@@ -36,7 +37,6 @@
     "chalk": "4.1.2",
     "cldr": "7.2.0",
     "deep-diff": "1.0.2",
-    "moment-timezone": "^0.5.34",
     "node-fetch": "2.6.7",
     "react": "17.0.2",
     "rimraf": "3.0.2",
