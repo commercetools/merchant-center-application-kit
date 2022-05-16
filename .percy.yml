@@ -2,4 +2,6 @@ version: 2
 snapshot:
   widths:
     - 1024
-  min-height: 1024
+  minHeight: 1024
+discovery:
+  networkIdleTimeout: 750
