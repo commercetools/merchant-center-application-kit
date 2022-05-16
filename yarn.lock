@@ -1966,16 +1966,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime-corejs3@npm:7.14.7":
-  version: 7.14.7
-  resolution: "@babel/runtime-corejs3@npm:7.14.7"
-  dependencies:
-    core-js-pure: ^3.15.0
-    regenerator-runtime: ^0.13.4
-  checksum: 9e49fc27e4de9fd5a97069aeeb0746cf0e42afe2068fa717a8abec740782a58d6bb1dc635c37a7bd47c40f3945fabad6308a44915520e15c7651f34b24b89d6f
-  languageName: node
-  linkType: hard
-
 "@babel/runtime-corejs3@npm:^7.10.2, @babel/runtime-corejs3@npm:^7.12.5, @babel/runtime-corejs3@npm:^7.16.8":
   version: 7.16.8
   resolution: "@babel/runtime-corejs3@npm:7.16.8"
@@ -2003,15 +1993,6 @@ __metadata:
     core-js-pure: ^3.20.2
     regenerator-runtime: ^0.13.4
   checksum: c0893eb1ba4fd8a5a0e43d0fd5c3ad61c020dc5953bb74a76e9e10a0adfde7a5d8fd7e78d59b08dce3a0774948c6c40c81df0fdd0a1130c414fd3535fae365cb
-  languageName: node
-  linkType: hard
-
-"@babel/runtime@npm:7.14.6":
-  version: 7.14.6
-  resolution: "@babel/runtime@npm:7.14.6"
-  dependencies:
-    regenerator-runtime: ^0.13.4
-  checksum: 927ffed7871f2ed29f967a8dad7a72aa10662f93b6735a89d664a161fa4dc2074b8947ca159a8a0a49cec9a71c8de473d7c2b22d3de0ee4d7dd06d24a7f98018
   languageName: node
   linkType: hard
 
@@ -2496,13 +2477,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-community-kit/i18n@npm:^0.2.7":
-  version: 0.2.7
-  resolution: "@commercetools-community-kit/i18n@npm:0.2.7"
+"@commercetools-community-kit/i18n@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@commercetools-community-kit/i18n@npm:0.3.0"
   dependencies:
-    "@babel/runtime": 7.14.6
-    "@babel/runtime-corejs3": 7.14.7
-  checksum: 84f8fac045bebdee4ac7334063d0883c517d967440d409a3b5ba1b944000e7d08cd3fe91bed551c0535ec422b8e6f9792ad41caf8e6cd59b3d1839f02f8751a8
+    "@babel/runtime": ^7.17.9
+    "@babel/runtime-corejs3": ^7.17.9
+  checksum: e5df6b617a0b23b27e4f95bce90ed8cdad34395cc68c7a44781e42658fb849d94cf81d1c04d7b609a0809502f4aad3e06fb3631f49ce4df1c0c10a1ba9e150cb
   languageName: node
   linkType: hard
 
@@ -3001,7 +2982,7 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
-    "@commercetools-community-kit/i18n": ^0.2.7
+    "@commercetools-community-kit/i18n": ^0.3.0
     "@commercetools-frontend/sentry": 21.3.4
     "@commercetools-uikit/i18n": ^15.0.0
     "@emotion/react": 11.9.0
@@ -14654,7 +14635,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js-pure@npm:^3.15.0, core-js-pure@npm:^3.20.2, core-js-pure@npm:^3.8.1":
+"core-js-pure@npm:^3.20.2, core-js-pure@npm:^3.8.1":
   version: 3.20.3
   resolution: "core-js-pure@npm:3.20.3"
   checksum: a8ec44390849bcf0502f20e6349fa087944bb88ac83d796d7fd5ace837d242308aae54b247a6a56bec463e5ab9be08dfad48d389673c34e8e31cc0a661a17a95
