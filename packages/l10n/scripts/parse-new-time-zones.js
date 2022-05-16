@@ -34,18 +34,18 @@ module.exports = async function parseNewTimeZones(timeZones) {
       if (result.toUpperCase() === 'A') {
         addToTranslations.push(tz);
         console.log(
-          `[${chalk.cyan(tz)}]: ${chalk.green('ADDED')} to core.json\n`
+          `[${chalk.cyan(tz)}]: will be ${chalk.green('ADDED')} to core.json\n`
         );
       } else if (result.toUpperCase() === 'E') {
         addToExclusions.push(tz);
         console.log(
-          `[${chalk.cyan(tz)}]: ${chalk.red(
+          `[${chalk.cyan(tz)}]: will be ${chalk.red(
             'EXCLUDED'
           )} in excluded-time-zones.js\n`
         );
       } else {
         console.log(
-          `[${chalk.cyan(tz)}]: ${chalk.yellow(
+          `[${chalk.cyan(tz)}]: will be ${chalk.yellow(
             'IGNORED'
           )} - this time zone will be handled next time this script is run\n`
         );
