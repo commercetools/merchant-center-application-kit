@@ -19,6 +19,8 @@ export type TimeZone = {
 };
 export type TimeZones = Record<string, TimeZone>;
 
+export type TimeZoneTranslations = Record<string, string>;
+
 export type LocalizedField = {
   locale: string;
   value: string;
