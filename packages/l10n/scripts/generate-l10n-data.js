@@ -311,7 +311,6 @@ const updateTimeZoneData = async (key) => {
   console.log(
     `[${key}]: Checking moment-timezone for new IANA timezone identifiers`
   );
-
   const newTimeZoneIds = allTimeZoneIds.filter(
     (id) =>
       !(translatedTimeZoneIds.includes(id) || EXCLUDED_TIME_ZONES.includes(id))
