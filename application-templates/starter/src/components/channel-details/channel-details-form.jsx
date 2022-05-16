@@ -80,7 +80,7 @@ const ChannelDetailsForm = (props) => {
     isDirty: formik.dirty,
     isSubmitting: formik.isSubmitting,
     submitForm: formik.handleSubmit,
-    resetForm: formik.resetForm,
+    handleReset: formik.handleReset,
   });
 };
 ChannelDetailsForm.displayName = 'ChannelDetailsForm';

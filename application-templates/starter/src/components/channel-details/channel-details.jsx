@@ -109,7 +109,7 @@ const ChannelDetails = (props) => {
               formProps.isSubmitting || !formProps.isDirty || !canManage
             }
             isSecondaryButtonDisabled={!formProps.isDirty}
-            onSecondaryButtonClick={formProps.resetForm}
+            onSecondaryButtonClick={formProps.handleReset}
             onPrimaryButtonClick={formProps.submitForm}
             labelPrimaryButton={FormModalPage.Intl.save}
             labelSecondaryButton={FormModalPage.Intl.revert}

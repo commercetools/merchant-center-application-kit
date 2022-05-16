@@ -68,7 +68,7 @@ const AccountPage = () => {
       title="Manage your account"
       onPreviousPathClick={() => history.push('/starting-page')}
       isPrimaryButtonDisabled={formik.isSubmitting}
-      onSecondaryButtonClick={formik.resetForm}
+      onSecondaryButtonClick={formik.handleReset}
       onPrimaryButtonClick={formik.handleSubmit}
     >
       <TextField
@@ -122,7 +122,7 @@ const AccountPage = () => {
       formControls={
         <>
           <CustomFormDetailPage.FormSecondaryButton
-            onClick={formik.resetForm}
+            onClick={formik.handleReset}
           />
           <CustomFormDetailPage.FormPrimaryButton
             onClick={formik.handleSubmit}

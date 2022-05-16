@@ -66,10 +66,7 @@ const CustomFormModalPageExample = () => (
                   formControls={
                     <>
                       <CustomFormModalPage.FormSecondaryButton
-                        onClick={() => {
-                          formikProps.resetForm();
-                          setIsOpen(false);
-                        }}
+                        onClick={formikProps.handleReset}
                       />
                       <CustomFormModalPage.FormPrimaryButton
                         onClick={formikProps.handleSubmit}
