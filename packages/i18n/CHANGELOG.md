@@ -1,5 +1,16 @@
 # @commercetools-frontend/i18n
 
+## 21.6.0
+
+### Patch Changes
+
+- [#2555](https://github.com/commercetools/merchant-center-application-kit/pull/2555) [`0b7a3743`](https://github.com/commercetools/merchant-center-application-kit/commit/0b7a3743207172ace7f2b6893b9c7d61c351967b) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+* [#2617](https://github.com/commercetools/merchant-center-application-kit/pull/2617) [`7622b6f9`](https://github.com/commercetools/merchant-center-application-kit/commit/7622b6f911826d5c2cf2edec649d3a684b89ac25) Thanks [@emmenko](https://github.com/emmenko)! - Update dependency of community-kit i18n messages"
+
+* Updated dependencies [[`0b7a3743`](https://github.com/commercetools/merchant-center-application-kit/commit/0b7a3743207172ace7f2b6893b9c7d61c351967b)]:
+  - @commercetools-frontend/sentry@21.6.0
+
 ## 21.4.0
 
 ### Minor Changes

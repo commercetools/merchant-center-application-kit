@@ -1,5 +1,24 @@
 # @commercetools-frontend/application-shell
 
+## 21.6.0
+
+### Patch Changes
+
+- [#2555](https://github.com/commercetools/merchant-center-application-kit/pull/2555) [`0b7a3743`](https://github.com/commercetools/merchant-center-application-kit/commit/0b7a3743207172ace7f2b6893b9c7d61c351967b) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+- Updated dependencies [[`0b7a3743`](https://github.com/commercetools/merchant-center-application-kit/commit/0b7a3743207172ace7f2b6893b9c7d61c351967b), [`7622b6f9`](https://github.com/commercetools/merchant-center-application-kit/commit/7622b6f911826d5c2cf2edec649d3a684b89ac25), [`339abbca`](https://github.com/commercetools/merchant-center-application-kit/commit/339abbca536b7fa5f7e80c1cf69d32d33cd45cec), [`d20638ef`](https://github.com/commercetools/merchant-center-application-kit/commit/d20638effe2d5ab2b4c6c851cae8ed70f8e3a080), [`5d0a461d`](https://github.com/commercetools/merchant-center-application-kit/commit/5d0a461d73d23938d4c42d48f985d28b2722019c), [`dc5b02eb`](https://github.com/commercetools/merchant-center-application-kit/commit/dc5b02eb6d18e5f8e3904ce609f67306ef5c514c)]:
+  - @commercetools-frontend/actions-global@21.6.0
+  - @commercetools-frontend/application-components@21.6.0
+  - @commercetools-frontend/application-shell-connectors@21.6.0
+  - @commercetools-frontend/i18n@21.6.0
+  - @commercetools-frontend/l10n@21.6.0
+  - @commercetools-frontend/notifications@21.6.0
+  - @commercetools-frontend/react-notifications@21.6.0
+  - @commercetools-frontend/sdk@21.6.0
+  - @commercetools-frontend/sentry@21.6.0
+  - @commercetools-frontend/application-config@21.6.0
+  - @commercetools-frontend/permissions@21.6.0
+
 ## 21.5.1
 
 ### Patch Changes

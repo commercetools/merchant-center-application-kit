@@ -1,5 +1,186 @@
 # @commercetools-website/components-playground
 
+## 17.5.0
+
+### Minor Changes
+
+- [#2581](https://github.com/commercetools/merchant-center-application-kit/pull/2581) [`339abbca`](https://github.com/commercetools/merchant-center-application-kit/commit/339abbca536b7fa5f7e80c1cf69d32d33cd45cec) Thanks [@emmenko](https://github.com/emmenko)! - Introducing the **Stacking Layer System**.
+
+  # Background
+
+  Components such as modal pages, dialogs, etc. are rendered using a "modal" container. These containers are then rendered within a special container called `portals-container`.
+
+  Up until now, rendering these components required to define things like `zIndex` or `level` props, to imperatively determine how the component will be visible.
+  This was required as the modal containers are positioned `absolute` and finding the correct `z-index` value is important.
+
+  However, it's the responsibility of the developer to "pick" the correct values which is error prone. In fact, choosing a wrong `z-index` results in the modal to not be visible and thus leading to UI bugs.
+
+  A better and more reliable approach would be for the Custom Application to automatically determine the correct `z-index` values for every modal container rendered on the page.
+
+  # Stacking Layer System
+
+  To solve this issue, a Custom Application now implements a **Stacking Layer System** to automatically determine and apply the correct `z-index` values for every modal container.
+
+  Therefore, it is not necessary anymore to explicitly provide the `zIndex` and `level` props to the modal pages or dialog components. The following props have been deprecated: `level` and `baseZIndex` (modal pages).
+
+  To remove the deprecated props you can run the codemod `remove-deprecated-modal-level-props`:
+
+  ```
+  $ npx @commercetools-frontend/codemod remove-deprecated-modal-level-props 'src/**/*.js'
+  ```
+
+  For backwards compatibility, the `zIndex` prop is still supported and, if defined, it will overwrite the `z-index` value using `!important`. Therefore we recommend to only define it if absolutely necessary, otherwise it's safe to remove it.
+
+* [#2594](https://github.com/commercetools/merchant-center-application-kit/pull/2594) [`d20638ef`](https://github.com/commercetools/merchant-center-application-kit/commit/d20638effe2d5ab2b4c6c851cae8ed70f8e3a080) Thanks [@kark](https://github.com/kark)! - Adds three new layout components: `<InfoDetailPage>`, `<FormDetailPage>` and `<CustomFormDetailPage>`.
+
+  These components are similar to the `<InfoModalPage>`, `<FormModalPage>` and `<CustomFormModalPage>` respectively but they are not rendered as modals.
+
+  # Usage
+
+  The detail pages are supposed to be used as a direct child of one of the main pages.
+  The layout of those pages can be recognized by the gray background header and the white content background. A back link in the header section of each of the pages is required.
+
+  ## InfoDetailPage
+
+  Info Detail pages are controlled components used to render a page with detailed data.
+
+  ```jsx
+  import { useHistory } from 'react-router-dom';
+  import { InfoDetailPage } from '@commercetools-frontend/application-components';
+  import Text from '@commercetools-uikit/text';
+  const DetailPage = () => {
+    const history = useHistory();
+    return (
+      <InfoDetailPage
+        title="Detail page"
+        onPreviousPathClick={() => history.push('/starting-page')}
+        previousPathLabel="Go back"
+      >
+        <Text.Body>{'Lorem ipsum ...'}</Text.Body>
+      </InfoDetailPage>
+    );
+  };
+  ```
+
+  ## FormDetailPage
+
+  Form Detail pages are controlled components used to render a form with predefined control elements (primary and secondary button).
+
+  ```jsx
+  import { useHistory } from 'react-router-dom';
+  import { useFormik } from 'formik';
+  import TextField from '@commercetools-uikit/text-field';
+  import TextInput from '@commercetools-uikit/text-input';
+  import { FormDetailPage } from '@commercetools-frontend/application-components';
+
+  const AccountPage = () => {
+    const history = useHistory();
+    const formik = useFormik({
+      initialValues: {
+        email: '',
+      },
+      validate: (formikValues) => {
+        if (TextInput.isEmpty(formikValues.email)) {
+          return { email: { missing: true } };
+        }
+        return {};
+      },
+      onSubmit: async (formikValues) => {
+        alert(`email: ${formikValues.email}`);
+        // Do something async
+      },
+    });
+    return (
+      <FormDetailPage
+        title="Manage your account"
+        onPreviousPathClick={() => history.push('/starting-page')}
+        isPrimaryButtonDisabled={formik.isSubmitting}
+        onSecondaryButtonClick={formik.handleReset}
+        onPrimaryButtonClick={formik.handleSubmit}
+      >
+        <TextField
+          name="email"
+          title="Email"
+          isRequired={true}
+          value={formik.values.email}
+          errors={formik.errors.email}
+          touched={formik.touched.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+      </FormDetailPage>
+    );
+  };
+  ```
+
+  # CustomFormDetailPage
+
+  Custom Form Detail pages are a variation of the `<FormDetailPage>` that allow passing custom control elements via `formControls`.
+  This is useful in case the detail page needs different control elements than the default ones (primary and secondary button).
+
+  ```jsx
+  import { useHistory } from 'react-router-dom';
+  import { useFormik } from 'formik';
+  import TextField from '@commercetools-uikit/text-field';
+  import TextInput from '@commercetools-uikit/text-input';
+  import { CustomFormDetailPage } from '@commercetools-frontend/application-components';
+
+  const AccountPage = () => {
+    const history = useHistory();
+    const formik = useFormik({
+      initialValues: {
+        email: '',
+      },
+      validate: (formikValues) => {
+        if (TextInput.isEmpty(formikValues.email)) {
+          return { email: { missing: true } };
+        }
+        return {};
+      },
+      onSubmit: async (formikValues) => {
+        alert(`email: ${formikValues.email}`);
+        // Do something async
+      },
+    });
+    return (
+      <CustomFormDetailPage
+        title="Manage your account"
+        onPreviousPathClick={() => history.push('/starting-page')}
+        formControls={
+          <>
+            <CustomFormDetailPage.FormSecondaryButton
+              onClick={formik.handleReset}
+            />
+            <CustomFormDetailPage.FormPrimaryButton
+              onClick={formik.handleSubmit}
+            />
+            <CustomFormDetailPage.FormDeleteButton onClick={handleDelete} />
+          </>
+        }
+      >
+        <TextField
+          name="email"
+          title="Email"
+          isRequired={true}
+          value={formik.values.email}
+          errors={formik.errors.email}
+          touched={formik.touched.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+      </CustomFormDetailPage>
+    );
+  };
+  ```
+
+### Patch Changes
+
+- [#2555](https://github.com/commercetools/merchant-center-application-kit/pull/2555) [`0b7a3743`](https://github.com/commercetools/merchant-center-application-kit/commit/0b7a3743207172ace7f2b6893b9c7d61c351967b) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+- Updated dependencies [[`0b7a3743`](https://github.com/commercetools/merchant-center-application-kit/commit/0b7a3743207172ace7f2b6893b9c7d61c351967b), [`7622b6f9`](https://github.com/commercetools/merchant-center-application-kit/commit/7622b6f911826d5c2cf2edec649d3a684b89ac25), [`339abbca`](https://github.com/commercetools/merchant-center-application-kit/commit/339abbca536b7fa5f7e80c1cf69d32d33cd45cec), [`d20638ef`](https://github.com/commercetools/merchant-center-application-kit/commit/d20638effe2d5ab2b4c6c851cae8ed70f8e3a080)]:
+  - @commercetools-frontend/application-components@21.6.0
+  - @commercetools-frontend/i18n@21.6.0
+
 ## 17.4.2
 
 ### Patch Changes
