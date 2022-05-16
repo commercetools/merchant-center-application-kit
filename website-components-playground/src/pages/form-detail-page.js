@@ -135,9 +135,7 @@ const FormDetailPageExample = (props) => {
                 isSecondaryButtonDisabled={formikProps.isSubmitting}
                 labelSecondaryButton={values.labelSecondaryButton}
                 labelPrimaryButton={values.labelPrimaryButton}
-                onSecondaryButtonClick={() => {
-                  formikProps.resetForm();
-                }}
+                onSecondaryButtonClick={formikProps.handleReset}
                 onPrimaryButtonClick={formikProps.handleSubmit}
                 hideControls={values.hideControls}
               >

@@ -81,10 +81,7 @@ const FormModalPageExample = (props) => (
                   isSecondaryButtonDisabled={formikProps.isSubmitting}
                   labelSecondaryButton={values.labelSecondaryButton}
                   labelPrimaryButton={values.labelPrimaryButton}
-                  onSecondaryButtonClick={() => {
-                    formikProps.resetForm();
-                    setIsOpen(false);
-                  }}
+                  onSecondaryButtonClick={formikProps.handleReset}
                   onPrimaryButtonClick={formikProps.handleSubmit}
                   getParentSelector={() =>
                     document.querySelector(`#${containerId}`)

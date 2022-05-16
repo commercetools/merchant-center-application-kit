@@ -61,10 +61,7 @@ const FormDialogExample = (props) => (
                   onClose={() => setIsOpen(false)}
                   size={values.size}
                   isPrimaryButtonDisabled={formikProps.isSubmitting}
-                  onSecondaryButtonClick={() => {
-                    formikProps.resetForm();
-                    setIsOpen(false);
-                  }}
+                  onSecondaryButtonClick={formikProps.handleReset}
                   onPrimaryButtonClick={formikProps.handleSubmit}
                   getParentSelector={() =>
                     document.querySelector(`#${containerId}`)

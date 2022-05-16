@@ -193,10 +193,7 @@ const EmailForm = () => {
       isOpen={formModalState.isModalOpen}
       onClose={formModalState.closeModal}
       isPrimaryButtonDisabled={formik.isSubmitting}
-      onSecondaryButtonClick={() => {
-        formik.resetForm();
-        formModalState.closeModal()
-      }}
+      onSecondaryButtonClick={formik.handleReset}
       onPrimaryButtonClick={formik.handleSubmit}
     >
       <TextField
@@ -330,10 +327,7 @@ const AccountPage = () => {
       isOpen={formModalState.isModalOpen}
       onClose={formModalState.closeModal}
       isPrimaryButtonDisabled={formik.isSubmitting}
-      onSecondaryButtonClick={() => {
-        formik.resetForm();
-        formModalState.closeModal()
-      }}
+      onSecondaryButtonClick={formik.handleReset}
       onPrimaryButtonClick={formik.handleSubmit}
     >
       <TextField
@@ -428,20 +422,9 @@ const AccountPage = () => {
       title="Manage your account"
       isOpen={formModalState.isModalOpen}
       onClose={formModalState.closeModal}
-      isPrimaryButtonDisabled={formik.isSubmitting}
-      onSecondaryButtonClick={() => {
-        formik.resetForm();
-        formModalState.closeModal()
-      }}
-      onPrimaryButtonClick={formik.handleSubmit}
       formControls={
         <>
-          <CustomFormModalPage.FormSecondaryButton
-            onClick={() => {
-              formik.resetForm();
-              formModalState.closeModal()
-            }}
-          />
+          <CustomFormModalPage.FormSecondaryButton onClick={formik.handleReset} />
           <CustomFormModalPage.FormPrimaryButton onClick={formik.handleSubmit} />
           <CustomFormModalPage.FormDeleteButton onClick={handleDelete} />
         </>
@@ -602,9 +585,7 @@ const AccountPage = () => {
       title="Manage your account"
       onPreviousPathClick={() => history.push('/starting-page')}
       isPrimaryButtonDisabled={formik.isSubmitting}
-      onSecondaryButtonClick={() => {
-        formik.resetForm();
-      }}
+      onSecondaryButtonClick={formik.handleReset}
       onPrimaryButtonClick={formik.handleSubmit}
     >
       <TextField
@@ -640,7 +621,7 @@ const AccountPage = () => {
 | `isSecondaryButtonDisabled`     | `boolean`                       |    -     | `false`                            | Indicates whether the secondary button is deactivated or not.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | `dataAttributesSecondaryButton` | `object`                        |    -     | -                                  | Use this prop to pass `data-` attributes to the secondary button.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | `dataAttributesPrimaryButton`   | `object`                        |    -     | -                                  | Use this prop to pass `data-` attributes to the primary button.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| `hideControls`                  | `boolean`                       |    -     | `false`                            | Hides the form controls.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | 
+| `hideControls`                  | `boolean`                       |    -     | `false`                            | Hides the form controls.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
 ### Static properties
 
@@ -680,8 +661,8 @@ import { useHistory } from 'react-router-dom'
 import { useFormik } from "formik";
 import TextField from "@commercetools-uikit/text-field";
 import TextInput from "@commercetools-uikit/text-input";
-import { 
-  CustomFormDetailPage 
+import {
+  CustomFormDetailPage
 } from "@commercetools-frontend/application-components";
 
 const AccountPage = () => {
@@ -708,14 +689,8 @@ const AccountPage = () => {
       onPreviousPathClick={() => history.push('/starting-page')}
       formControls={
         <>
-          <CustomFormDetailPage.FormSecondaryButton
-            onClick={() => {
-              formik.resetForm();
-            }}
-          />
-          <CustomFormDetailPage.FormPrimaryButton
-            onClick={formik.handleSubmit}
-          />
+          <CustomFormDetailPage.FormSecondaryButton onClick={formik.handleReset} />
+          <CustomFormDetailPage.FormPrimaryButton onClick={formik.handleSubmit} />
           <CustomFormDetailPage.FormDeleteButton onClick={handleDelete} />
         </>
       }
