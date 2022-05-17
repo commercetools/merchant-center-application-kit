@@ -125,31 +125,6 @@ const extractCurrencyDataForLocale = async (locale) => {
   );
 };
 
-const extractTimeZoneDataForLocale = (/* locale */) => {
-  moment.tz.setDefault('Etc/GMT');
-  const timeZoneNames = moment.tz.names();
-  return Promise.resolve(
-    timeZoneNames
-      .map((name) => ({
-        name,
-        abbr: moment().tz(name).zoneAbbr(),
-        offset: moment().tz(name).format('Z'),
-      }))
-      .sort(
-        (a, b) =>
-          parseFloat(a.offset.replace(':', '.')) -
-          parseFloat(b.offset.replace(':', '.'))
-      )
-      .reduce(
-        (acc, zone) =>
-          Object.assign({}, acc, {
-            [zone.name]: zone,
-          }),
-        {}
-      )
-  );
-};
-
 const extractLanguageDataForLocale = (locale) => {
   // Get the list of all languages.
   const languages = cldr.extractLanguageSupplementalData(locale);
@@ -257,7 +232,6 @@ const DATA_DIR = {
   },
   [L10N_KEYS.TIMEZONE]: {
     path: './data/time-zones',
-    transform: extractTimeZoneDataForLocale,
   },
   [L10N_KEYS.LANGUAGE]: {
     path: './data/languages',
@@ -297,10 +271,10 @@ const mapDiffToWarnings = (oldData, newData) => {
 };
 
 const updateTimeZoneData = async (key) => {
-  // const allTimeZoneIds = moment.tz.names();
+  const allTimeZoneIds = moment.tz.names();
   // uncomment for testing/review purposes, will be removed once PR is out of draft
-  const fakeTimeZones = ['zzspace/moon', 'zzspace/mars', 'zzspace/jupiter'];
-  const allTimeZoneIds = moment.tz.names().concat(fakeTimeZones);
+  // const fakeTimeZones = ['zzspace/moon', 'zzspace/mars', 'zzspace/jupiter'];
+  // const allTimeZoneIds = moment.tz.names().concat(fakeTimeZones);
   const dataFolderPath = path.join(__dirname, '..', DATA_DIR[key].path);
   const sourceDataFilePath = path.join(dataFolderPath, 'core.json');
   fs.accessSync(sourceDataFilePath, fs.constants.F_OK);
