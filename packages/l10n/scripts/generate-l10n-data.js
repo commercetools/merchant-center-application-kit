@@ -8,7 +8,7 @@ const fetch = require('node-fetch');
 const moment = require('moment-timezone');
 const deepDiff = require('deep-diff');
 const EXCLUDED_TIME_ZONES = require('./excluded-time-zones');
-const parseNewTimeZones = require('./parse-new-time-zones');
+const parseUnhandledTimeZones = require('./parse-unhandled-time-zones');
 
 const L10N_KEYS = {
   COUNTRY: 'country',
@@ -297,13 +297,13 @@ const mapDiffToWarnings = (oldData, newData) => {
 };
 
 const updateTimeZoneData = async (key) => {
-  const allTimeZoneIds = moment.tz.names();
+  // const allTimeZoneIds = moment.tz.names();
   // uncomment for testing/review purposes, will be removed once PR is out of draft
-  // const fakeTimeZones = ['zzspace/moon', 'zzspace/mars', 'zzspace/jupiter'];
-  // const allTimeZoneIds = moment.tz.names().concat(fakeTimeZones);
+  const fakeTimeZones = ['zzspace/moon', 'zzspace/mars', 'zzspace/jupiter'];
+  const allTimeZoneIds = moment.tz.names().concat(fakeTimeZones);
   const dataFolderPath = path.join(__dirname, '..', DATA_DIR[key].path);
   const sourceDataFilePath = path.join(dataFolderPath, 'core.json');
-  await fs.accessSync(sourceDataFilePath, fs.constants.F_OK);
+  fs.accessSync(sourceDataFilePath, fs.constants.F_OK);
   const translatedTimeZones = JSON.parse(
     fs.readFileSync(sourceDataFilePath, { encoding: 'utf8' })
   );
@@ -311,46 +311,31 @@ const updateTimeZoneData = async (key) => {
   console.log(
     `[${key}]: Checking moment-timezone for new IANA timezone identifiers`
   );
-  const newTimeZoneIds = allTimeZoneIds.filter(
+  const unhandledTimeZoneIds = allTimeZoneIds.filter(
     (id) =>
       !(translatedTimeZoneIds.includes(id) || EXCLUDED_TIME_ZONES.includes(id))
   );
-  /** If there are IANA timezone identifiers returned by moment-timezone
-   *  that are not in the translations or exclusions list,
-   *  we must get user input as to whether those time zones should be:
-   *  a) translated,
-   *  b) excluded from being displayed/translated, or
-   *  c) ignored until the next time this script is run.
-   */
-  if (newTimeZoneIds.length) {
+  if (unhandledTimeZoneIds.length) {
     console.log(
       `\n[${key}]: Found ${chalk.cyan(
-        newTimeZoneIds.length
-      )} new time zones: ${newTimeZoneIds.map(
+        unhandledTimeZoneIds.length
+      )} new time zones: ${unhandledTimeZoneIds.map(
         (id) => ` ${chalk.underline(chalk.cyan(id))}`
       )}\n`
     );
     // parse user feedback for each timezone
-    const results = await parseNewTimeZones(newTimeZoneIds);
+    const results = await parseUnhandledTimeZones(unhandledTimeZoneIds);
 
-    if (results.addToTranslations.length) {
-      // add timezones to be tranlated to translations object
-      const updatedTranslationData = results.addToTranslations.reduce(
-        (translationData, newTranslationId) => {
-          return {
-            ...translationData,
-            [newTranslationId]: 'ADD NEW TRANSLATION',
-          };
-        },
-        translatedTimeZones
-      );
-      // sort translations alphabetically
-      const updatedTranslationsFile = Object.keys(updatedTranslationData)
+    if (results.timeZonesToTranslate.length) {
+      const updatedTranslationsFile = translatedTimeZoneIds
+        .concat(results.timeZonesToTranslate)
         .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
-        .reduce((acc, key) => {
+        .reduce((acc, id) => {
           return {
             ...acc,
-            [key]: updatedTranslationData[key],
+            [id]: translatedTimeZones[id]
+              ? translatedTimeZones[id]
+              : 'ADD TRANSLATION',
           };
         }, {});
       // write new translations file
@@ -360,20 +345,14 @@ const updateTimeZoneData = async (key) => {
         JSON.stringify(updatedTranslationsFile, null, 2)
       );
       console.log(
-        `[${key}]: ${results.addToTranslations.length} timezones added to TRANSLATIONS ${sourceDataFilePath}`
+        `[${key}]: writing ${results.timeZonesToTranslate.length} timezones to ${sourceDataFilePath}`
       );
     }
-    if (results.addToExclusions.length) {
+    if (results.timeZonesToExclude.length) {
       // add timezones to be excluded to exclusions array, and sort array alphabetically
-      const updatedExclusionsFile = results.addToExclusions
-        .reduce(
-          (EXCLUDED_TIME_ZONES, excludedId) => [
-            ...EXCLUDED_TIME_ZONES,
-            excludedId,
-          ],
-          EXCLUDED_TIME_ZONES
-        )
-        .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+      const updatedExclusionsFile = EXCLUDED_TIME_ZONES.concat(
+        results.timeZonesToExclude
+      ).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
       // get path for file to write
       const excludedTimeZonesFilePath = path.join(
         __dirname,
@@ -390,12 +369,12 @@ const updateTimeZoneData = async (key) => {
         )}; module.exports = EXCLUDED_TIME_ZONES`
       );
       console.log(
-        `[${key}]: ${results.addToTranslations.length} timezones added to EXCLUSIONS file ${excludedTimeZonesFilePath}`
+        `[${key}]: writing ${results.timeZonesToExclude.length} timezones to ${excludedTimeZonesFilePath}`
       );
     }
-    if (results.ignore.length) {
+    if (results.timeZonesToIgnore.length) {
       console.log(
-        `[${key}]: ${results.addToTranslations.length} timezones ignored`
+        `[${key}]: ${results.timeZonesToIgnore.length} timezones ignored`
       );
     }
   } else {
