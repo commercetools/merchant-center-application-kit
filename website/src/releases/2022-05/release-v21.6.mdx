@@ -1,0 +1,50 @@
+---
+date: 2022-05-16
+title: Custom Applications v21.6
+description: The Application Kit packages have been released with several new features.
+type: feature
+topics:
+  - CLI
+  - Configuration
+  - UI Components
+---
+
+The Application Kit packages have been released with a minor version `v21.6`.
+
+This release includes several new features that we would like to present:
+
+* A new built-in **Stacking Layer System** to automatically and consistently calculate `z-index` values of stacked modal containers.
+* New layout UI components [`<InfoDetailPage>`](/api-reference/commercetools-frontend-application-components#infodetailpage), [`<FormDetailPage>`](/api-reference/commercetools-frontend-application-components#formdetailpage) and [`<CustomFormDetailPage>`](/api-reference/commercetools-frontend-application-components#customformdetailpage).
+* The CLI commands [`config:sync`](/api-reference/cli#configsync) now lists changes when updating an existing Custom Application configuration.
+* The Jest preset `@commercetools-backend/jest-preset-mc-app` contains more [Intl polyfills](https://formatjs.io/docs/polyfills/).
+
+As always, if you have questions or feedback you can open a [GitHub Discussion](https://github.com/commercetools/merchant-center-application-kit/discussions) or a [GitHub Issue](https://github.com/commercetools/merchant-center-application-kit/issues).
+
+<!-- more -->
+
+Introducing the **Stacking Layer System**.
+
+# Background
+
+Components such as modal pages, dialogs, etc. are rendered using a "modal" container. These containers are then rendered within a special container called `portals-container`.
+
+Up until now, rendering these components required to define things like `zIndex` or `level` props, to imperatively determine how the component will be visible.
+This was required as the modal containers are positioned `absolute` and finding the correct `z-index` value is important.
+
+However, it's the responsibility of the developer to "pick" the correct values which is error prone. In fact, choosing a wrong `z-index` results in the modal to not be visible and thus leading to UI bugs.
+
+A better and more reliable approach would be for the Custom Application to automatically determine the correct `z-index` values for every modal container rendered on the page.
+
+# Stacking Layer System
+
+To solve this issue, a Custom Application now implements a **Stacking Layer System** to automatically determine and apply the correct `z-index` values for every modal container.
+
+Therefore, it is not necessary anymore to explicitly provide the `zIndex` and `level` props to the modal pages or dialog components. The following props have been deprecated: `level` and `baseZIndex` (modal pages).
+
+To remove the deprecated props you can run the codemod `remove-deprecated-modal-level-props`:
+
+```
+$ npx @commercetools-frontend/codemod remove-deprecated-modal-level-props 'src/**/*.js'
+```
+
+For backwards compatibility, the `zIndex` prop is still supported and, if defined, it will overwrite the `z-index` value using `!important`. Therefore we recommend to only define it if absolutely necessary, otherwise it's safe to remove it.
