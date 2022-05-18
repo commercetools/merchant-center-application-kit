@@ -9,14 +9,25 @@
     "directory": "packages/l10n"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
   "main": "dist/commercetools-frontend-l10n.cjs.js",
   "module": "dist/commercetools-frontend-l10n.esm.js",
-  "files": ["data", "dist", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "data",
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "generate-data": "node ./scripts/generate-l10n-data.js"
   },
@@ -40,8 +51,7 @@
     "deep-diff": "1.0.2",
     "node-fetch": "2.6.7",
     "react": "17.0.2",
-    "rimraf": "3.0.2",
-    "shelljs": "0.8.5"
+    "rimraf": "3.0.2"
   },
   "peerDependencies": {
     "react": "17.x"

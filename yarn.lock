@@ -3070,7 +3070,6 @@ __metadata:
     prop-types: 15.8.1
     react: 17.0.2
     rimraf: 3.0.2
-    shelljs: 0.8.5
   peerDependencies:
     react: 17.x
   languageName: unknown

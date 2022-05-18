@@ -1,6 +1,6 @@
 const prompts = require('prompts');
 
-const ANSWER_TYPES = {
+const ANSWER_OPTIONS = {
   ADD: 'ADD',
   EXCLUDE: 'EXCLUDE',
   IGNORE: 'IGNORE',
@@ -10,14 +10,14 @@ const sortAnswers = (answers) =>
   Object.entries(answers).reduce(
     (sortedAnswers, [id, answer]) => {
       switch (answer) {
-        case ANSWER_TYPES.ADD:
+        case ANSWER_OPTIONS.ADD:
           sortedAnswers.timeZonesToTranslate.push(id);
           break;
-        case ANSWER_TYPES.EXCLUDE:
+        case ANSWER_OPTIONS.EXCLUDE:
           sortedAnswers.timeZonesToExclude.push(id);
           break;
         default:
-        case ANSWER_TYPES.IGNORE:
+        case ANSWER_OPTIONS.IGNORE:
           sortedAnswers.timeZonesToIgnore.push(id);
           break;
       }
@@ -45,17 +45,17 @@ module.exports = async function parseUnhandledTimeZones(unhandledTimeZones) {
       {
         title: 'Translate',
         description: `Add ${timeZone} to core.json for translation`,
-        value: ANSWER_TYPES.ADD,
+        value: ANSWER_OPTIONS.ADD,
       },
       {
         title: 'Exclude',
         description: `Add ${timeZone} to excluded-time-zones.js so it will not be translated`,
-        value: ANSWER_TYPES.EXCLUDE,
+        value: ANSWER_OPTIONS.EXCLUDE,
       },
       {
         title: 'Ignore',
         description: `Do nothing for ${timeZone}`,
-        value: ANSWER_TYPES.IGNORE,
+        value: ANSWER_OPTIONS.IGNORE,
       },
     ],
   }));
