@@ -20,7 +20,7 @@ type TranslationData = {
  * Build offset and abbreviation data for each timezone at runtime from moment-timezone
  * in order to return accurate offset values for timezones that have daylight time.
  */
-const getTimeZoneData = (module: TranslationData): ImportData => ({
+const augmentTimeZoneData = (module: TranslationData): ImportData => ({
   default: Object.entries(module.default)
     .map(([id, label]) => ({
       id,
@@ -34,12 +34,12 @@ const getTimeZoneData = (module: TranslationData): ImportData => ({
         parseFloat(b.offset.replace(':', '.'))
     )
     .reduce(
-      (acc, zone) => ({
-        ...acc,
-        [zone.id]: {
-          label: zone.label,
-          abbr: zone.abbr,
-          offset: zone.offset,
+      (previousTimeZones, timeZone) => ({
+        ...previousTimeZones,
+        [timeZone.id]: {
+          label: timeZone.label,
+          abbr: timeZone.abbr,
+          offset: timeZone.offset,
         },
       }),
       {}
@@ -93,19 +93,12 @@ const getTimeZonesForLocale = async (locale: string): Promise<TimeZones> => {
   // Use default webpackMode (lazy) so that we generate one file per locale.
   // The files are named like "time-zone-data-en-json.chunk.js" after compilation
   // https://webpack.js.org/api/module-methods/#import-
-  let localeTranslations = await getImportChunk(supportedLocale);
-  // if there are no translations for the desired locale, fall back to en/default
-  if (
-    !localeTranslations.default ||
-    Object.keys(localeTranslations.default).length === 0
-  ) {
-    localeTranslations = await getImportChunk('en');
-  }
+  const localeTranslations = await getImportChunk(supportedLocale);
   // create time zone object with abbreviations and offsets
-  const timeZones = getTimeZoneData(localeTranslations);
+  const augmentedLocaleTranslations = augmentTimeZoneData(localeTranslations);
   // Prefer loading `default` (for ESM bundles) and
   // fall back to normal import (for CJS bundles).
-  return timeZones.default || timeZones;
+  return augmentedLocaleTranslations.default;
 };
 
 export const withTimeZones = createL10NInjector<TimeZones>({
