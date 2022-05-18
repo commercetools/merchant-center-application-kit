@@ -1,0 +1,1 @@
+# @commercetools-frontend/tsconfig
