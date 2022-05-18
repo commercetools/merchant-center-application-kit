@@ -33,8 +33,8 @@ const ChannelDetails = (props) => {
   const params = useParams();
   const { loading, error, channel } = useChannelDetailsFetcher(params.id);
   const { dataLocale, projectLanguages } = useApplicationContext((context) => ({
-    dataLocale: context.dataLocale,
-    projectLanguages: context.project.languages,
+    dataLocale: context.dataLocale ?? '',
+    projectLanguages: context.project?.languages ?? [],
   }));
   const canManage = useIsAuthorized({
     demandedPermissions: [PERMISSIONS.Manage],
@@ -44,31 +44,33 @@ const ChannelDetails = (props) => {
   const channelDetailsUpdater = useChannelDetailsUpdater();
   const handleSubmit = useCallback(
     async (formikValues, formikHelpers) => {
-      const data = formValuesToDoc(formikValues);
-      try {
-        await channelDetailsUpdater.execute({
-          originalDraft: channel,
-          nextDraft: data,
-        });
-        showNotification({
-          kind: 'success',
-          domain: DOMAINS.SIDE,
-          text: intl.formatMessage(messages.channelUpdated, {
-            channelName: formatLocalizedString(formikValues, {
-              key: 'name',
-              locale: dataLocale,
-              fallbackOrder: projectLanguages,
-            }),
-          }),
-        });
-      } catch (graphQLErrors) {
-        const transformedErrors = transformErrors(graphQLErrors);
-        if (transformedErrors.unmappedErrors.length > 0)
-          showApiErrorNotification({
-            errors: transformedErrors.unmappedErrors,
+      if (channel) {
+        const data = formValuesToDoc(formikValues);
+        try {
+          await channelDetailsUpdater.execute({
+            originalDraft: channel,
+            nextDraft: data,
           });
+          showNotification({
+            kind: 'success',
+            domain: DOMAINS.SIDE,
+            text: intl.formatMessage(messages.channelUpdated, {
+              channelName: formatLocalizedString(formikValues, {
+                key: 'name',
+                locale: dataLocale,
+                fallbackOrder: projectLanguages,
+              }),
+            }),
+          });
+        } catch (graphQLErrors) {
+          const transformedErrors = transformErrors(graphQLErrors);
+          if (transformedErrors.unmappedErrors.length > 0)
+            showApiErrorNotification({
+              errors: transformedErrors.unmappedErrors,
+            });
 
-        formikHelpers.setErrors(transformedErrors.formErrors);
+          formikHelpers.setErrors(transformedErrors.formErrors);
+        }
       }
     },
     [

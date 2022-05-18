@@ -6,7 +6,7 @@ export type FormValues = {
   roles: TChannelRole[];
 };
 
-export type ActionKeys = {
+export type ActionData = {
   [key in
     | 'key'
     | 'name'

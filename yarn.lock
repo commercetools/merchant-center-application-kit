@@ -3362,6 +3362,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@commercetools-test-data/channel@npm:3.1.0":
+  version: 3.1.0
+  resolution: "@commercetools-test-data/channel@npm:3.1.0"
+  dependencies:
+    "@babel/runtime": ^7.17.9
+    "@babel/runtime-corejs3": ^7.17.9
+    "@commercetools-test-data/commons": 3.1.0
+    "@commercetools-test-data/core": 3.1.0
+    "@commercetools-test-data/utils": 3.1.0
+    "@commercetools/platform-sdk": ^2.7.0
+    "@faker-js/faker": ^6.2.0
+  checksum: 9b50116b0ab4b9a9b7253c0f85f326386b5bfd2b701e5d5b24b5582a634ca5f4f5f92910e77bc44c0f19437797ea22a814e54324c0df9ae0d8afbabd1ca58bc8
+  languageName: node
+  linkType: hard
+
 "@commercetools-test-data/commons@npm:3.0.2":
   version: 3.0.2
   resolution: "@commercetools-test-data/commons@npm:3.0.2"
@@ -3376,6 +3391,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@commercetools-test-data/commons@npm:3.1.0":
+  version: 3.1.0
+  resolution: "@commercetools-test-data/commons@npm:3.1.0"
+  dependencies:
+    "@babel/runtime": ^7.17.9
+    "@babel/runtime-corejs3": ^7.17.9
+    "@commercetools-test-data/core": 3.1.0
+    "@commercetools/platform-sdk": ^2.7.0
+    "@faker-js/faker": ^6.2.0
+    lodash: ^4.17.21
+  checksum: 44fb2e5d1f1bd6c39b7e724daef52411c05b73c2847e77386d5d9d1f3ad53a7f66075487e185ae9da22c2778291e36ed76b78a205403ebfb154d1f7114cf1ab4
+  languageName: node
+  linkType: hard
+
 "@commercetools-test-data/core@npm:3.0.2":
   version: 3.0.2
   resolution: "@commercetools-test-data/core@npm:3.0.2"
@@ -3386,6 +3415,30 @@ __metadata:
     "@types/lodash": ^4.14.182
     lodash: ^4.17.21
   checksum: 0e943bc038fd8a79b13d3179e310dfc6b661aa11f6da00a4c9d30c933b83b981f7861ab52cdcf09625eb0f5596e867150794470efa0318c199d7aced90822f99
+  languageName: node
+  linkType: hard
+
+"@commercetools-test-data/core@npm:3.1.0":
+  version: 3.1.0
+  resolution: "@commercetools-test-data/core@npm:3.1.0"
+  dependencies:
+    "@babel/runtime": ^7.17.9
+    "@babel/runtime-corejs3": ^7.17.9
+    "@faker-js/faker": ^6.2.0
+    "@types/lodash": ^4.14.182
+    lodash: ^4.17.21
+  checksum: 8511acaa65e265e4e79435f0c5d03d8d6ca55254f51d3feec7a178e2438819af6a096a2749e88886ceddac7827f518aa83b2d680d6ed1c1424469c8e45408467
+  languageName: node
+  linkType: hard
+
+"@commercetools-test-data/utils@npm:3.1.0":
+  version: 3.1.0
+  resolution: "@commercetools-test-data/utils@npm:3.1.0"
+  dependencies:
+    "@babel/runtime": ^7.17.9
+    "@babel/runtime-corejs3": ^7.17.9
+    "@faker-js/faker": ^6.2.0
+  checksum: 6045ecaed1a5c6296555349e62e71a1ba8ecf6416c2bf9ec8624c451263e39541b336c98632e22bf018482eaf1f3a535d81a53a63c47fa5508d667980bd8a639
   languageName: node
   linkType: hard
 
@@ -26491,6 +26544,7 @@ __metadata:
     "@commercetools-frontend/permissions": 21.6.0
     "@commercetools-frontend/sdk": 21.6.0
     "@commercetools-frontend/tsconfig": 0.1.0
+    "@commercetools-test-data/channel": 3.1.0
     "@commercetools-test-data/commons": 3.0.2
     "@commercetools-test-data/core": 3.0.2
     "@commercetools-uikit/constraints": ^15.0.0
@@ -26518,6 +26572,7 @@ __metadata:
     "@graphql-codegen/typescript": 2.4.11
     "@graphql-codegen/typescript-graphql-files-modules": 2.1.1
     "@graphql-codegen/typescript-operations": 2.4.0
+    "@jest/types": 27.5.1
     "@manypkg/cli": 0.19.1
     "@testing-library/react": 12.1.5
     "@testing-library/react-hooks": 7.0.2

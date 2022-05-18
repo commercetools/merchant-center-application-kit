@@ -1,3 +1,4 @@
 {
-  "extends": "@commercetools-frontend/tsconfig"
+  "extends": "@commercetools-frontend/tsconfig",
+  "include": ["./jest.test.setup.ts"]
 }

@@ -1,4 +1,4 @@
-import { graphql } from 'msw';
+import { graphql, type GraphQLHandler } from 'msw';
 import { setupServer } from 'msw/node';
 import {
   fireEvent,
@@ -9,7 +9,11 @@ import {
 } from '@commercetools-frontend/application-shell/test-utils';
 import { buildGraphqlList } from '@commercetools-test-data/core';
 import { LocalizedString } from '@commercetools-test-data/commons';
-import { renderApplicationWithRedux } from '../../test-utils';
+import {
+  renderApplicationWithRedux,
+  type TRenderAppWithReduxPartialOptions,
+} from '../../test-utils';
+import type { TChannel } from '@commercetools-test-data/channel/dist/declarations/src/types';
 import * as ChannelMock from '../../test-utils/test-data/channel';
 import { entryPointUriPath, PERMISSIONS } from '../../constants';
 import ApplicationRoutes from '../../routes';
@@ -35,7 +39,10 @@ const newKey = 'new-test-key';
 const name = 'test-name';
 const newName = 'new-test-name';
 
-const renderApp = (options = {}, includeManagePermissions = true) => {
+const renderApp = (
+  options: TRenderAppWithReduxPartialOptions = {},
+  includeManagePermissions = true
+) => {
   const route =
     options.route || `/my-project/${entryPointUriPath}/channels/${id}`;
   const { history } = renderApplicationWithRedux(<ApplicationRoutes />, {
@@ -44,7 +51,7 @@ const renderApp = (options = {}, includeManagePermissions = true) => {
       allAppliedPermissions: mapResourceAccessToAppliedPermissions(
         [
           PERMISSIONS.View,
-          includeManagePermissions && PERMISSIONS.Manage,
+          includeManagePermissions ? PERMISSIONS.Manage : '',
         ].filter(Boolean)
       ),
     },
@@ -134,51 +141,49 @@ const updateChannelDetailsHandlerWithARandomError = graphql.mutation(
   }
 );
 
-const useMockServerHandlers = (
-  fetchChannelDetailsQueryHandler,
-  updateChannelDetailsMutationHandler
-) => {
+const useMockServerHandlers = (handlers: GraphQLHandler[]) => {
   mockServer.use(
-    ...[
-      graphql.query('FetchChannels', (_req, res, ctx) => {
-        const totalItems = 2;
+    graphql.query('FetchChannels', (_req, res, ctx) => {
+      const totalItems = 2;
 
-        return res(
-          ctx.data({
-            channels: buildGraphqlList(
-              Array.from({ length: totalItems }).map((_, index) =>
-                ChannelMock.random().key(`channel-key-${index}`)
-              ),
-              {
-                name: 'Channel',
-                total: totalItems,
-              }
+      return res(
+        ctx.data({
+          channels: buildGraphqlList<TChannel>(
+            Array.from({ length: totalItems }).map((_, index) =>
+              ChannelMock.random().key(`channel-key-${index}`)
             ),
-          })
-        );
-      }),
-      fetchChannelDetailsQueryHandler,
-      updateChannelDetailsMutationHandler,
-    ].filter(Boolean)
+            {
+              name: 'Channel',
+              total: totalItems,
+            }
+          ),
+        })
+      );
+    }),
+    ...handlers
   );
 };
 
 describe('rendering', () => {
   it('should render channel details', async () => {
-    useMockServerHandlers(fetchChannelDetailsQueryHandler);
+    useMockServerHandlers([fetchChannelDetailsQueryHandler]);
     renderApp();
 
-    const keyInput = await screen.findByLabelText(/channel key/i);
+    const keyInput: HTMLInputElement = await screen.findByLabelText(
+      /channel key/i
+    );
     expect(keyInput.value).toBe(key);
 
-    const nameInput = screen.getByRole('textbox', { name: /en/i });
+    const nameInput: HTMLInputElement = screen.getByRole('textbox', {
+      name: /en/i,
+    });
     expect(nameInput.value).toBe(name);
 
     screen.getByRole('combobox', { name: /channel roles/i });
     expect(screen.getByDisplayValue(/primary/i)).toBeInTheDocument();
   });
   it('should reset form values on "revert" button click', async () => {
-    useMockServerHandlers(fetchChannelDetailsQueryHandler);
+    useMockServerHandlers([fetchChannelDetailsQueryHandler]);
     renderApp();
 
     const resetButton = await screen.findByRole('button', {
@@ -186,7 +191,9 @@ describe('rendering', () => {
     });
     expect(resetButton).toBeDisabled();
 
-    const keyInput = await screen.findByLabelText(/channel key/i);
+    const keyInput: HTMLInputElement = await screen.findByLabelText(
+      /channel key/i
+    );
     expect(keyInput.value).toBe(key);
 
     fireEvent.change(keyInput, {
@@ -202,10 +209,10 @@ describe('rendering', () => {
   });
   describe('when user has no manage permission', () => {
     it('should render the form as read-only and keep the "save" button "disabled"', async () => {
-      useMockServerHandlers(
+      useMockServerHandlers([
         fetchChannelDetailsQueryHandler,
-        updateChannelDetailsHandler
-      );
+        updateChannelDetailsHandler,
+      ]);
       renderApp({}, false);
 
       const keyInput = await screen.findByLabelText(/channel key/i);
@@ -224,7 +231,7 @@ describe('rendering', () => {
     });
   });
   it('should display a "page not found" information if the fetched channel details data is null (without an error)', async () => {
-    useMockServerHandlers(fetchChannelDetailsQueryHandlerWithNullData);
+    useMockServerHandlers([fetchChannelDetailsQueryHandlerWithNullData]);
     renderApp();
 
     await screen.findByRole('heading', {
@@ -232,13 +239,15 @@ describe('rendering', () => {
     });
   });
   it('should display a key field validation message if the submitted key value is duplicated', async () => {
-    useMockServerHandlers(
+    useMockServerHandlers([
       fetchChannelDetailsQueryHandler,
-      updateChannelDetailsHandlerWithDuplicateFieldError
-    );
+      updateChannelDetailsHandlerWithDuplicateFieldError,
+    ]);
     renderApp();
 
-    const keyInput = await screen.findByLabelText(/channel key/i);
+    const keyInput: HTMLInputElement = await screen.findByLabelText(
+      /channel key/i
+    );
 
     fireEvent.change(keyInput, {
       target: { value: newKey },
@@ -254,13 +263,15 @@ describe('rendering', () => {
 });
 describe('notifications', () => {
   it('should render a success notification after an update', async () => {
-    useMockServerHandlers(
+    useMockServerHandlers([
       fetchChannelDetailsQueryHandler,
-      updateChannelDetailsHandler
-    );
+      updateChannelDetailsHandler,
+    ]);
     renderApp();
 
-    const keyInput = await screen.findByLabelText(/channel key/i);
+    const keyInput: HTMLInputElement = await screen.findByLabelText(
+      /channel key/i
+    );
     expect(keyInput.value).toBe(key);
 
     fireEvent.change(keyInput, {
@@ -268,7 +279,9 @@ describe('notifications', () => {
     });
     expect(keyInput.value).toBe(newKey);
 
-    const nameInput = screen.getByRole('textbox', { name: /en/i });
+    const nameInput: HTMLInputElement = screen.getByRole('textbox', {
+      name: /en/i,
+    });
     expect(nameInput.value).toBe(name);
 
     fireEvent.focus(nameInput);
@@ -282,7 +295,9 @@ describe('notifications', () => {
     });
     fireEvent.focus(rolesSelect);
     fireEvent.keyDown(rolesSelect, { key: 'ArrowDown' });
-    screen.getByText('InventorySupply').click();
+    const inventorySupplyOption = await screen.findByText('InventorySupply');
+
+    inventorySupplyOption.click();
     expect(screen.getByDisplayValue(/InventorySupply/i)).toBeInTheDocument();
 
     // updating channel details
@@ -292,17 +307,17 @@ describe('notifications', () => {
     within(notification).getByText(/channel new-test-name updated/i);
   });
   it('should render an error notification if fetching channel details resulted in an error', async () => {
-    useMockServerHandlers(fetchChannelDetailsQueryHandlerWithError);
+    useMockServerHandlers([fetchChannelDetailsQueryHandlerWithError]);
     renderApp();
     await screen.findByText(
       /please check your connection, the provided channel ID and try again/i
     );
   });
   it('should display an error notification if an update resulted in an unmapped error', async () => {
-    useMockServerHandlers(
+    useMockServerHandlers([
       fetchChannelDetailsQueryHandler,
-      updateChannelDetailsHandlerWithARandomError
-    );
+      updateChannelDetailsHandlerWithARandomError,
+    ]);
     renderApp();
 
     const keyInput = await screen.findByLabelText(/channel key/i);

@@ -1,10 +1,10 @@
 import { sequence, fake, Generator } from '@commercetools-test-data/core';
 import { LocalizedString } from '@commercetools-test-data/commons';
+import type { TChannel } from '@commercetools-test-data/channel/dist/declarations/src/types';
 import { CHANNEL_ROLES } from '../../../components/channel-details/constants';
 
 // https://docs.commercetools.com/api/projects/channels#channel
-const generator = Generator({
-  name: 'Channel',
+const generator = Generator<TChannel>({
   fields: {
     id: fake((f) => f.datatype.uuid()),
     key: fake((f) => f.lorem.slug(2)),

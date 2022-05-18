@@ -12,10 +12,11 @@ import type {
   TChannel,
   TFetchChannelDetailsQueryVariables,
 } from '../../../@types/generated/ctp';
-import type { ActionKeys } from '../../components/channel-details/types';
+import type { ActionData } from '../../components/channel-details/types';
 import {
   createGraphQlUpdateActions,
   extractErrorFromGraphQlResponse,
+  convertToActionData,
 } from '../../helpers';
 import FetchChannelsQuery from './fetch-channels.ctp.graphql';
 import FetchChannelDetailsQuery from './fetch-channel-details.ctp.graphql';
@@ -99,10 +100,13 @@ export const useChannelDetailsUpdater = () => {
 
   type TExecuteProps = {
     originalDraft: TChannel;
-    nextDraft: ActionKeys;
+    nextDraft: ActionData;
   };
   const execute = async ({ originalDraft, nextDraft }: TExecuteProps) => {
-    const actions = syncStores.buildActions(nextDraft, originalDraft);
+    const actions = syncStores.buildActions(
+      nextDraft,
+      convertToActionData(originalDraft)
+    );
     try {
       return await updateChannelDetails({
         context: {

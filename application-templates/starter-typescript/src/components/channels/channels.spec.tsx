@@ -6,7 +6,11 @@ import {
   mapResourceAccessToAppliedPermissions,
 } from '@commercetools-frontend/application-shell/test-utils';
 import { buildGraphqlList } from '@commercetools-test-data/core';
-import { renderApplicationWithRedux } from '../../test-utils';
+import {
+  renderApplicationWithRedux,
+  type TRenderAppWithReduxPartialOptions,
+} from '../../test-utils';
+import type { TChannel } from '@commercetools-test-data/channel/dist/declarations/src/types';
 import * as ChannelMock from '../../test-utils/test-data/channel';
 import { entryPointUriPath, PERMISSIONS } from '../../constants';
 import ApplicationRoutes from '../../routes';
@@ -22,7 +26,7 @@ beforeAll(() =>
 );
 afterAll(() => mockServer.close());
 
-const renderApp = (options = {}) => {
+const renderApp = (options: TRenderAppWithReduxPartialOptions = {}) => {
   const route = options.route || `/my-project/${entryPointUriPath}/channels`;
   const { history } = renderApplicationWithRedux(<ApplicationRoutes />, {
     route,
@@ -46,7 +50,7 @@ it('should render channels and paginate to second page', async () => {
 
       return res(
         ctx.data({
-          channels: buildGraphqlList(
+          channels: buildGraphqlList<TChannel>(
             Array.from({ length: itemsPerPage }).map((_, index) =>
               ChannelMock.random().key(
                 `channel-key-${offset === 0 ? index : 20 + index}`

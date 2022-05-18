@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
@@ -6,7 +7,10 @@ import Channels from './components/channels';
 import Welcome from './components/welcome';
 import { PERMISSIONS } from './constants';
 
-const ApplicationRoutes = () => {
+type ApplicationRoutesProps = {
+  children?: ReactNode;
+};
+const ApplicationRoutes = (_props: ApplicationRoutesProps) => {
   const match = useRouteMatch();
 
   // We can evaluate the user permissions and use the information to restrict

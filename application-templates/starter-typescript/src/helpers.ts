@@ -1,26 +1,26 @@
-import { transformLocalizedStringToLocalizedField } from '@commercetools-frontend/l10n';
-import type { ApolloError, ServerError } from '@apollo/client';
+import {
+  transformLocalizedStringToLocalizedField,
+  transformLocalizedFieldToLocalizedString,
+} from '@commercetools-frontend/l10n';
+import { ApolloError, type ServerError } from '@apollo/client';
+import type { TChannel } from '../@types/generated/ctp';
 
 export const getErrorMessage = (error: ApolloError) =>
   error.graphQLErrors?.map((e) => e.message).join('\n') || error.message;
 
-const isApolloError = (error: unknown): error is ApolloError => {
-  return (error as ApolloError).graphQLErrors !== undefined;
-};
-
 const isServerError = (
   error: ApolloError['networkError']
 ): error is ServerError => {
-  return (error as ServerError).result !== undefined;
+  return Boolean((error as ServerError)?.result);
 };
 
 export const extractErrorFromGraphQlResponse = (graphQlResponse: unknown) => {
-  if (isApolloError(graphQlResponse)) {
+  if (graphQlResponse instanceof ApolloError) {
     if (
       isServerError(graphQlResponse.networkError) &&
-      graphQlResponse.networkError.result?.errors?.length > 0
+      graphQlResponse.networkError?.result?.errors.length > 0
     ) {
-      return graphQlResponse.networkError.result.errors;
+      return graphQlResponse?.networkError?.result.errors;
     }
 
     if (graphQlResponse.graphQLErrors?.length > 0) {
@@ -42,10 +42,10 @@ const getNameFromPayload = (payload: TActionPayloadWithNameProperty) => ({
   name: transformLocalizedStringToLocalizedField(payload.name),
 });
 
-const hasActionPaloadNameProperty = (
+const hasActionPayloadNameProperty = (
   actionPayload: Record<string, unknown>
 ): actionPayload is TActionPayloadWithNameProperty => {
-  return (actionPayload as TActionPayloadWithNameProperty).name !== undefined;
+  return Boolean((actionPayload as TActionPayloadWithNameProperty)?.name);
 };
 
 type Action = { action: string; [x: string]: unknown };
@@ -55,7 +55,7 @@ const convertAction = (
   actionPayload: Record<string, unknown>
 ) => ({
   [actionName]:
-    actionName === 'changeName' && hasActionPaloadNameProperty(actionPayload)
+    actionName === 'changeName' && hasActionPayloadNameProperty(actionPayload)
       ? getNameFromPayload(actionPayload)
       : actionPayload,
 });
@@ -69,3 +69,8 @@ export const createGraphQlUpdateActions = (actions: Action[]) =>
     ],
     []
   );
+
+export const convertToActionData = (draft: TChannel) => ({
+  ...draft,
+  name: transformLocalizedFieldToLocalizedString(draft.nameAllLocales || []),
+});

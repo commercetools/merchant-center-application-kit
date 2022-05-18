@@ -10,7 +10,6 @@ import loadMessages from '../../load-messages';
 // Splitting by route is usually recommended and you can potentially have a splitting
 // point for each route. More info at https://reactjs.org/docs/code-splitting.html
 const AsyncApplicationRoutes = lazy(
-  // @ts-ignore
   () => import('../../routes' /* webpackChunkName: "routes" */)
 );
 
