@@ -1,13 +1,17 @@
 /* eslint-disable no-console */
+const prettier = require('prettier');
 const fs = require('fs');
 const path = require('path');
 const cldr = require('cldr');
 const chalk = require('chalk');
+const rcfile = require('rcfile');
 const fetch = require('node-fetch');
 const moment = require('moment-timezone');
 const deepDiff = require('deep-diff');
 const EXCLUDED_TIME_ZONES = require('./excluded-time-zones');
 const parseUnhandledTimeZones = require('./parse-unhandled-time-zones');
+
+const prettierConfig = rcfile('prettier');
 
 const L10N_KEYS = {
   COUNTRY: 'country',
@@ -282,17 +286,26 @@ function readTranslatedTimeZones(sourceFilePath) {
   return JSON.parse(fs.readFileSync(sourceFilePath, { encoding: 'utf8' }));
 }
 function writeTranslatedTimeZones(sourceFilePath, updatedTranslations) {
-  JSON.stringify(updatedTranslations, null, 2);
+  const json = JSON.stringify(updatedTranslations, null, 2);
+  const formatted = prettier.format(json, {
+    ...prettierConfig,
+    parser: 'json',
+  });
+
+  fs.writeFileSync(sourceFilePath, formatted, { encoding: 'utf8' });
 }
 function writeExcludedTimeZones(excludedTimeZonesFilePath, updatedExclusions) {
-  fs.writeFileSync(
-    excludedTimeZonesFilePath,
-    `const EXCLUDED_TIME_ZONES = ${JSON.stringify(
-      updatedExclusions,
-      null,
-      2
-    )}; module.exports = EXCLUDED_TIME_ZONES`
-  );
+  const js = `const EXCLUDED_TIME_ZONES = ${JSON.stringify(
+    updatedExclusions,
+    null,
+    2
+  )}; module.exports = EXCLUDED_TIME_ZONES`;
+  const formatted = prettier.format(js, {
+    ...prettierConfig,
+    parser: 'babel',
+  });
+
+  fs.writeFileSync(excludedTimeZonesFilePath, formatted);
 }
 function getUnhandledTimeZoneIds(allTimeZoneIds, translatedTimeZoneIds) {
   return allTimeZoneIds.filter(
@@ -313,8 +326,8 @@ function ensureDirectoryExists(dir) {
 async function updateTimeZoneData(key) {
   const allTimeZoneIds = moment.tz.names();
   // uncomment for testing/review purposes, will be removed once PR is out of draft
-  // const fakeTimeZones = ['zzspace/moon', 'zzspace/mars', 'zzspace/jupiter'];
-  // const allTimeZoneIds = moment.tz.names().concat(fakeTimeZones);
+  //const fakeTimeZones = ['zzspace/moon', 'zzspace/mars', 'zzspace/jupiter'];
+  //const allTimeZoneIds = moment.tz.names().concat(fakeTimeZones);
   const dataFolderPath = path.join(__dirname, '..', DATA_DIR[key].path);
   const sourceDataFilePath = path.join(dataFolderPath, 'core.json');
   const excludedTimeZonesFilePath = path.join(
