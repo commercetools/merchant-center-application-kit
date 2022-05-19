@@ -580,7 +580,7 @@ To make the application config more reusable across different environments, you 
 
 References are specified with a special expansion-like syntax `${}` together with the prefix key `env:`. For example, to load an environment variable called `APP_URL`, you would use `${env:APP_URL}`.
 
-Imagine developing a Custom Application that can be used in the Composable Commerce Europe Region and North America Region. We can assign the `${env:CLOUD_IDENTIFIER}` reference to the field `cloudIdentifier` and pass the actual value using environment variables.
+Imagine developing a Custom Application that can be used in the same Regions (Europe and North America) as the Composable Commerce APIs. We can assign the `${env:CLOUD_IDENTIFIER}` reference to the field `cloudIdentifier` and pass the actual value using environment variables.
 
 ```json
 {
