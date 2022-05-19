@@ -2,31 +2,31 @@
 title: Merchant Center API
 ---
 
-Custom Applications need to fetch data from different APIs in the commercetools Platform. Examples are fetching channel information or updating product data.
+Custom Applications need to fetch data from different APIs in Composable Commerce. Examples are fetching channel information or updating product data.
 
 Accessing these API requires some sort of authentication mechanism. For security reasons, client-side applications **cannot be trusted** with sensitive credentials, which makes it difficult to connect to an API directly from the browser.
 
-To solve these issues, the Merchant Center provides an HTTP API that handles authentication and authorization to all commercetools Platform APIs. You can think about it as an **API Gateway**.
+To solve these issues, the Merchant Center provides an HTTP API that handles authentication and authorization to all Composable Commerce APIs. You can think about it as an **API Gateway**.
 
-Therefore, Custom Applications use the Merchant Center API to make requests to one of the commercetools Platform APIs. The way you select the API in your requests depends on the [API Gateway endpoints](#api-gateway-endpoints).
+Therefore, Custom Applications use the Merchant Center API to make requests to the Composable Commerce APIs. The way you select the API in your requests depends on the [API Gateway endpoints](#api-gateway-endpoints).
 
 ![Merchant Center API](/images/merchant-center-api.png 'Merchant Center API')
 
 # Cloud Regions
 
-The commercetools Platform is available in [multiple cloud Regions](https://docs.commercetools.com/api/general-concepts#regions).
+Composable Commerce is available in [multiple cloud Regions](https://docs.commercetools.com/api/general-concepts#regions).
 These Regions are completely isolated from each other and no data is transferred between them.
 
 <Info>
 
-Platform accounts created for one Region are not valid for the other Regions. A [signup](https://docs.commercetools.com/tutorials/getting-started) is required for each Region individually.
+Composable Commerce accounts created for one Region are not valid for the other Regions. A [signup](https://docs.commercetools.com/tutorials/getting-started) is required for each Region individually.
 In case you need advice in which Region your Project should be located, please contact [commercetools support](https://support.commercetools.com).
 
 </Info>
 
 ## Hostnames
 
-The Merchant Center and the Merchant Center API Gateway are available at the same cloud Regions where the commercetools Platform runs.
+The Merchant Center and the Merchant Center API Gateway are available in the same cloud Regions where Composable Commerce runs.
 
 All hostnames are subdomains of `commercetools.com` and follow a specific naming format, including the cloud provider, the cloud Region, and the Merchant Center service name.
 
@@ -116,11 +116,11 @@ However, there are multiple target GraphQL APIs that Custom Applications can use
 
 The following targets are available:
 
-* `ctp`: Proxies requests to the [commercetools Platform GraphQL API](https://docs.commercetools.com/api/graphql).
-* `change-history`: Proxies requests to the [commercetools Platform History API](https://docs.commercetools.com/api/history/change-history).
+* `ctp`: Proxies requests to the [Composable Commerce GraphQL API](https://docs.commercetools.com/api/graphql).
+* `change-history`: Proxies requests to the [Composable Commerce Change History API](https://docs.commercetools.com/api/history/change-history).
 * `mc`: Proxies requests to the Merchant Center GraphQL API.
 
-Normally you would only need to use the official [commercetools Platform GraphQL API](https://docs.commercetools.com/api/graphql) as other APIs are mostly for internal usage and not documented.
+Normally, you would only need to use the official [Composable Commerce GraphQL API](https://docs.commercetools.com/api/graphql) as other APIs are mostly for internal usage and not documented.
 
 To learn more how to use the target values, check out the [Data Fetching documentation](/development/data-fetching) for developing Custom Applications.
 
@@ -134,7 +134,7 @@ https://mc-api.<cloud-region>.commercetools.com/proxy/*
 
 The following proxy endpoints are available:
 
-* `/proxy/ctp/*`: Proxies requests to the [commercetools Platform HTTP API](https://docs.commercetools.com/api).
+* `/proxy/ctp/*`: Proxies requests to the [Composable Commerce HTTP API](https://docs.commercetools.com/api).
 * `/proxy/ml/*`: Proxies requests to the [Machine Learning API](https://docs.commercetools.com/api/ml).
 * `/proxy/import/*`: Proxies requests to the [Import Export API](https://docs.commercetools.com/import-export).
 * `/proxy/forward-to`: See [Integrate with your own API](/concepts/integrate-with-your-own-api).
