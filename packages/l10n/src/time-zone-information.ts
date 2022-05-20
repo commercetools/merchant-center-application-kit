@@ -4,6 +4,7 @@ import * as PropTypes from 'prop-types';
 import moment from 'moment-timezone';
 import { createL10NInjector, createL10NHook } from './create-l10n-injector';
 import { getSupportedLocale, mapLocaleToIntlLocale } from './utils';
+import { EXCLUDED_TIME_ZONES_FALLBACK_MAP } from '../scripts/excluded-time-zones-fallback-map';
 
 type ImportData = {
   default: TimeZones;
@@ -40,6 +41,7 @@ const augmentTimeZoneData = (module: TranslationData): ImportData => ({
           label: timeZone.label,
           abbr: timeZone.abbr,
           offset: timeZone.offset,
+          fallbackFor: EXCLUDED_TIME_ZONES_FALLBACK_MAP[timeZone.id],
         },
       }),
       {}
