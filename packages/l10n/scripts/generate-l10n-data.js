@@ -283,9 +283,11 @@ function throwIfSourceFileDoesNotExit(sourceFilePath) {
     );
   }
 }
+
 function readTranslatedTimeZones(sourceFilePath) {
   return JSON.parse(fs.readFileSync(sourceFilePath, { encoding: 'utf8' }));
 }
+
 function writeTranslatedTimeZones(sourceFilePath, updatedTranslations) {
   const json = JSON.stringify(updatedTranslations, null, 2);
   const formatted = prettier.format(json, {
@@ -295,11 +297,8 @@ function writeTranslatedTimeZones(sourceFilePath, updatedTranslations) {
 
   fs.writeFileSync(sourceFilePath, formatted, { encoding: 'utf8' });
 }
-function writeExcludedTimeZones(
-  excludedTimeZonesFilePath,
-  updatedExclusions,
-  key
-) {
+
+function writeExcludedTimeZones(excludedTimeZonesFilePath, updatedExclusions) {
   const js = `const EXCLUDED_TIME_ZONES = ${JSON.stringify(
     updatedExclusions,
     null,
@@ -312,6 +311,7 @@ function writeExcludedTimeZones(
 
   fs.writeFileSync(excludedTimeZonesFilePath, formatted);
 }
+
 function writeTranslationsForExcludedTimeZonesMap(newExcludedTimeZones, key) {
   const translationsToExcludedTimeZonesMapFilePath = path.join(
     __dirname,
@@ -343,15 +343,18 @@ function writeTranslationsForExcludedTimeZonesMap(newExcludedTimeZones, key) {
     } timezones to ${translationsToExcludedTimeZonesMapFilePath}`
   );
 }
+
 function getUnhandledTimeZoneIds(allTimeZoneIds, translatedTimeZoneIds) {
   return allTimeZoneIds.filter(
     (id) =>
       !(translatedTimeZoneIds.includes(id) || EXCLUDED_TIME_ZONES.includes(id))
   );
 }
+
 function timeZoneCompareFn(a, b) {
   return (a, b) => a.toLowerCase().localeCompare(b.toLowerCase());
 }
+
 function ensureDirectoryExists(dir) {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, {
@@ -359,6 +362,7 @@ function ensureDirectoryExists(dir) {
     });
   }
 }
+
 function writeTranslatedTimeZonesForLocale(
   sourceFilePath,
   newTranslations,
@@ -385,11 +389,12 @@ function writeTranslatedTimeZonesForLocale(
     } timezones to ${sourceFilePath}`
   );
 }
+
 async function updateTimeZoneData(key, supportedLocales) {
-  // const allTimeZoneIds = moment.tz.names();
+  const allTimeZoneIds = moment.tz.names();
   // uncomment for testing/review purposes, will be removed once PR is out of draft
-  const fakeTimeZones = ['zzspace/moon', 'zzspace/mars', 'zzspace/jupiter'];
-  const allTimeZoneIds = moment.tz.names().concat(fakeTimeZones);
+  // const fakeTimeZones = ['zzspace/moon', 'zzspace/mars', 'zzspace/jupiter'];
+  // const allTimeZoneIds = moment.tz.names().concat(fakeTimeZones);
   const dataFolderPath = path.join(__dirname, '..', DATA_DIR[key].path);
   const sourceDataFilePath = path.join(dataFolderPath, 'core.json');
   /**TO CONSIDER:
