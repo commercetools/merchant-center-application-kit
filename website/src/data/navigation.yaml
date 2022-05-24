@@ -38,6 +38,8 @@
       path: /development/translations
     - title: Permissions
       path: /development/permissions
+    - title: TypeScript
+      path: /development/typescript
     - title: Going to Production
       path: /development/going-to-production
 - chapter-title: Deployment Examples
