@@ -1300,18 +1300,6 @@
                 "defaultValue": null,
                 "isDeprecated": false,
                 "deprecationReason": null
-              },
-              {
-                "name": "origin",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
               }
             ],
             "type": {
@@ -1480,18 +1468,6 @@
                 "defaultValue": null,
                 "isDeprecated": false,
                 "deprecationReason": null
-              },
-              {
-                "name": "origin",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
               }
             ],
             "type": {
@@ -1509,20 +1485,7 @@
           {
             "name": "sendLinkToDeleteAccount",
             "description": null,
-            "args": [
-              {
-                "name": "origin",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
+            "args": [],
             "type": {
               "kind": "OBJECT",
               "name": "DeleteAccountRequest",
@@ -1546,18 +1509,6 @@
                     "name": "String",
                     "ofType": null
                   }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "origin",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
                 },
                 "defaultValue": null,
                 "isDeprecated": false,
@@ -1606,18 +1557,6 @@
               },
               {
                 "name": "language",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "origin",
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
@@ -2351,6 +2290,12 @@
             "deprecationReason": null
           },
           {
+            "name": "manage_attribute_groups",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "manage_audit_log",
             "description": null,
             "isDeprecated": false,
@@ -2465,6 +2410,12 @@
             "deprecationReason": null
           },
           {
+            "name": "manage_product_selections",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "manage_products",
             "description": null,
             "isDeprecated": false,
@@ -2490,6 +2441,12 @@
           },
           {
             "name": "manage_shopping_lists",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "manage_standalone_prices",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -2526,6 +2483,12 @@
           },
           {
             "name": "view_api_clients",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "view_attribute_groups",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -2615,6 +2578,12 @@
             "deprecationReason": null
           },
           {
+            "name": "view_product_selections",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "view_products",
             "description": null,
             "isDeprecated": false,
@@ -2646,6 +2615,12 @@
           },
           {
             "name": "view_shopping_lists",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "view_standalone_prices",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null

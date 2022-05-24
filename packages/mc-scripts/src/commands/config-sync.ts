@@ -1,16 +1,17 @@
-const omit = require('lodash/omit');
-const prompts = require('prompts');
-const mri = require('mri');
-const chalk = require('chalk');
-const { processConfig } = require('@commercetools-frontend/application-config');
-const CredentialsStorage = require('../utils/credentials-storage');
-const {
+import omit from 'lodash/omit';
+import prompts from 'prompts';
+import mri from 'mri';
+import chalk from 'chalk';
+import { processConfig, type CustomApplicationData } from '@commercetools-frontend/application-config';
+import CredentialsStorage from '../utils/credentials-storage';
+import {
   fetchCustomApplication,
   updateCustomApplication,
   createCustomApplication,
   fetchUserOrganizations,
-} = require('../utils/graphql-requests');
-const getConfigDiff = require('../utils/get-config-diff');
+} from '../utils/graphql-requests';
+import getConfigDiff from '../utils/get-config-diff';
+
 
 const flags = mri(process.argv.slice(2), {
   boolean: ['dry-run'],
@@ -18,7 +19,7 @@ const flags = mri(process.argv.slice(2), {
 
 const credentialsStorage = new CredentialsStorage();
 
-const getMcUrlLink = (mcApiUrl, organizationId, applicationId) => {
+const getMcUrlLink = (mcApiUrl: string, organizationId: string, applicationId: string) => {
   const mcUrl = mcApiUrl.replace('mc-api', 'mc');
   const customAppLink = `${mcUrl}/account/organizations/${organizationId}/custom-applications/owned/${applicationId}`;
   return customAppLink;
@@ -45,7 +46,7 @@ const configSync = async () => {
   if (!fetchedCustomApplication) {
     const userOrganizations = await fetchUserOrganizations({ mcApiUrl, token });
 
-    let organizationId, organizationName;
+    let organizationId: string, organizationName: string;
 
     if (userOrganizations.total === 0) {
       throw new Error(
@@ -78,9 +79,9 @@ const configSync = async () => {
       }
 
       organizationId = selectedOrganizationId;
-      organizationName = organizationChoices.find(
+      organizationName = (organizationChoices.find(
         ({ value }) => value === organizationId
-      ).title;
+      ) as { title: string}).title;
     }
 
     const { confirmation } = await prompts({
@@ -110,6 +111,8 @@ const configSync = async () => {
       data,
     });
 
+    if (!createdCustomApplication) return;
+
     const customAppLink = getMcUrlLink(
       mcApiUrl,
       organizationId,
@@ -130,7 +133,7 @@ const configSync = async () => {
   );
 
   const configDiff = getConfigDiff(
-    fetchedCustomApplication.application,
+    fetchedCustomApplication.application as CustomApplicationData,
     localCustomAppData
   );
 

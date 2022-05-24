@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { CustomApplicationData } from '@commercetools-frontend/application-config';
+import type { CustomApplicationData } from '@commercetools-frontend/application-config';
 
 // Since not all terminal supports colors, to make things more consistent for testing purposes,
 // during tests the color used is appended before the string instead of coloring it.
@@ -416,4 +416,4 @@ const getConfigDiff = (
   return diff.filter(Boolean).join('\n');
 };
 
-module.exports = getConfigDiff;
+export default getConfigDiff
