@@ -1,4 +1,4 @@
-const getConfigDiff = require('./get-config-diff');
+import getConfigDiff from './get-config-diff';
 
 const createTestConfig = (customConfig) => ({
   entryPointUriPath: 'my-test-app',

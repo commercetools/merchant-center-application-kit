@@ -1,5 +1,5 @@
-const mock = require('mock-fs');
-const CredentialsStorage = require('./credentials-storage');
+import mock from 'mock-fs';
+import CredentialsStorage from './credentials-storage';
 
 afterEach(() => {
   mock.restore();

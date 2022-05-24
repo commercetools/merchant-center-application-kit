@@ -1,7 +1,12 @@
-const fetch = require('node-fetch');
-const userAgent = require('./user-agent');
+import fetch from 'node-fetch';
+import userAgent from './user-agent';
 
-const getAuthToken = async (mcApiUrl, payload) => {
+type TAuthPayload = {
+  email: string;
+  password: string;
+};
+
+export const getAuthToken = async (mcApiUrl: string, payload: TAuthPayload) => {
   const response = await fetch(`${mcApiUrl}/tokens/cli`, {
     method: 'POST',
     headers: {
@@ -25,5 +30,3 @@ const getAuthToken = async (mcApiUrl, payload) => {
   const authToken = await response.json();
   return authToken;
 };
-
-exports.getAuthToken = getAuthToken;

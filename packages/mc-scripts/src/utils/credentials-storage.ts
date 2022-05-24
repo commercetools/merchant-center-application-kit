@@ -1,7 +1,13 @@
-const fs = require('fs');
-const path = require('path');
-const homedir = require('os').homedir();
+import fs from 'fs';
+import path from 'path';
+import os from 'os';
 
+type TCredentials = {
+  token: string;
+  expiresAt: number;
+};
+
+const homedir = os.homedir();
 const credentialsFolderPath = path.join(homedir, `.commercetools`);
 const credentialsFilePath = path.join(
   credentialsFolderPath,
@@ -20,7 +26,7 @@ class CredentialsStorage {
     }
   }
 
-  _writeCredentials(credentials) {
+  _writeCredentials(credentials: TCredentials | {}) {
     fs.writeFileSync(
       credentialsFilePath,
       JSON.stringify(credentials, null, 2),
@@ -33,7 +39,7 @@ class CredentialsStorage {
     return JSON.parse(data);
   }
 
-  getToken(environmentKey) {
+  getToken(environmentKey: string) {
     const allCredentials = this._loadCredentials();
     if (!this.isSessionValid(environmentKey)) {
       return null;
@@ -41,13 +47,13 @@ class CredentialsStorage {
     return allCredentials[environmentKey].token;
   }
 
-  setToken(environmentKey, credentials) {
+  setToken(environmentKey: string, credentials: TCredentials) {
     const allCredentials = this._loadCredentials();
     allCredentials[environmentKey] = credentials;
     this._writeCredentials(allCredentials);
   }
 
-  isSessionValid(environmentKey) {
+  isSessionValid(environmentKey: string) {
     const allCredentials = this._loadCredentials();
     const credentials = allCredentials[environmentKey];
     if (!credentials) {
@@ -58,4 +64,4 @@ class CredentialsStorage {
   }
 }
 
-module.exports = CredentialsStorage;
+export default CredentialsStorage;

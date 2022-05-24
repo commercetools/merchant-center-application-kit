@@ -1,11 +1,11 @@
-const { graphql } = require('msw');
-const { setupServer } = require('msw/node');
-const {
+import { graphql } from 'msw';
+import { setupServer } from 'msw/node';
+import {
   createCustomApplication,
   updateCustomApplication,
   fetchCustomApplication,
   fetchUserOrganizations,
-} = require('./graphql-requests');
+} from './graphql-requests';
 
 const mockServer = setupServer();
 afterEach(() => {

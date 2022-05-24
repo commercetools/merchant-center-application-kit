@@ -1,26 +1,34 @@
-const chalk = require('chalk');
+import chalk from 'chalk';
+import { CustomApplicationData } from '@commercetools-frontend/application-config';
 
 // Since not all terminal supports colors, to make things more consistent for testing purposes,
 // during tests the color used is appended before the string instead of coloring it.
 const isTest = process.env.NODE_ENV === 'test';
-const red = (str) => {
+const red = (str: string) => {
   if (isTest) return `<color-red>${str}</color-red>`;
   return chalk.red(str);
 };
-const green = (str) => {
+const green = (str: string) => {
   if (isTest) return `<color-green>${str}</color-green>`;
   return chalk.green(str);
 };
 
 // Two spaces are used for indentation.
-const indent = (indentLevel) => '  '.repeat(indentLevel);
+const indent = (indentLevel: number) => '  '.repeat(indentLevel);
+
+type TGetStringDiffParams = {
+  previousValue?: string;
+  nextValue?: string;
+  label: string;
+  indentLevel?: number;
+};
 
 const getStringDiff = ({
   previousValue,
   nextValue,
   label,
   indentLevel = 0,
-}) => {
+}: TGetStringDiffParams) => {
   if (!previousValue && nextValue) {
     return `${indent(indentLevel)}${label} added: ${green(nextValue)}`;
   }
@@ -35,10 +43,21 @@ const getStringDiff = ({
   return null;
 };
 
+type TGetArrayDiffParams = {
+  previousValue: string[];
+  nextValue: string[];
+  label: string;
+  indentLevel?: number;
+};
 // NOTE: this assumes that the array values are scalar values (not objects).
-const getArrayDiff = ({ previousValue, nextValue, label, indentLevel = 0 }) => {
+const getArrayDiff = ({
+  previousValue,
+  nextValue,
+  label,
+  indentLevel = 0,
+}: TGetArrayDiffParams) => {
   const oldArraySet = new Set(previousValue);
-  const arrayDiff = [];
+  const arrayDiff: (string | null)[] = [];
 
   nextValue?.forEach((item) => {
     if (oldArraySet.has(item)) {
@@ -54,10 +73,18 @@ const getArrayDiff = ({ previousValue, nextValue, label, indentLevel = 0 }) => {
   return arrayDiff.join('\n');
 };
 
-const getPermissionsDiff = ({ previousValue, nextValue }) => {
+type TPermissions = CustomApplicationData['permissions'];
+type TGetPermissionsDiffParams = {
+  previousValue: TPermissions;
+  nextValue: TPermissions;
+};
+const getPermissionsDiff = ({
+  previousValue,
+  nextValue,
+}: TGetPermissionsDiffParams) => {
   const permissionDiff = ['permissions changed'];
 
-  const mappedOldPermissions = previousValue.reduce(
+  const mappedOldPermissions = previousValue.reduce<Record<string, string[]>>(
     (previousPermission, { name, oAuthScopes }) => ({
       ...previousPermission,
       [name]: oAuthScopes,
@@ -103,19 +130,29 @@ const getPermissionsDiff = ({ previousValue, nextValue }) => {
   });
 
   if (permissionDiff.length > 1) return permissionDiff.join('\n');
+  return null;
+};
+
+type TLabelAllLocales =
+  CustomApplicationData['mainMenuLink']['labelAllLocales'];
+
+type TGetLabelAllLocalesDiffParams = {
+  previousValue: TLabelAllLocales;
+  nextValue: TLabelAllLocales;
+  indentLevel: number;
 };
 
 const getLabelAllLocalesDiff = ({
   previousValue,
   nextValue,
   indentLevel = 0,
-}) => {
-  const labelAllLocalesDiff = [
+}: TGetLabelAllLocalesDiffParams) => {
+  const labelAllLocalesDiff: (string | null)[] = [
     `${indent(indentLevel - 1)}labelAllLocales changed`,
   ];
 
   const mappedOldLabelAllLocales =
-    previousValue?.reduce(
+    previousValue?.reduce<Record<string, string>>(
       (previousLabelAllLocale, { locale, value }) => ({
         ...previousLabelAllLocale,
         [locale]: value,
@@ -158,10 +195,20 @@ const getLabelAllLocalesDiff = ({
   });
 
   if (labelAllLocalesDiff.length > 1) return labelAllLocalesDiff.join('\n');
+  return null;
 };
 
-const getMainMenuLinkDiff = ({ previousValue, nextValue }) => {
-  const mainMenuLinkDiff = ['mainMenuLink changed'];
+type TMainMenuLink = CustomApplicationData['mainMenuLink'];
+type TGetMainMenuLinkDiffParams = {
+  previousValue: TMainMenuLink;
+  nextValue: TMainMenuLink;
+};
+
+const getMainMenuLinkDiff = ({
+  previousValue,
+  nextValue,
+}: TGetMainMenuLinkDiffParams) => {
+  const mainMenuLinkDiff: (string | null)[] = ['mainMenuLink changed'];
 
   mainMenuLinkDiff.push(
     getStringDiff({
@@ -193,12 +240,29 @@ const getMainMenuLinkDiff = ({ previousValue, nextValue }) => {
   const filteredMainMenuLinkDiff = mainMenuLinkDiff.filter(Boolean);
   if (filteredMainMenuLinkDiff.length > 1)
     return filteredMainMenuLinkDiff.join('\n');
+  return null;
 };
 
-const getSubmenuLinksDiff = ({ previousValue, nextValue }) => {
-  const submenuLinksDiff = ['submenuLink changed'];
+type TSubmenuLinks = {
+  uriPath: string;
+  defaultLabel: string;
+  labelAllLocales: TLabelAllLocales;
+  permissions: string[];
+};
 
-  const mappedSubmenuLinks = previousValue.reduce(
+type TGetSubmenuLinksDiffParams = {
+  previousValue: TSubmenuLinks[];
+  nextValue: TSubmenuLinks[];
+};
+const getSubmenuLinksDiff = ({
+  previousValue,
+  nextValue,
+}: TGetSubmenuLinksDiffParams) => {
+  const submenuLinksDiff: (string | null)[] = ['submenuLink changed'];
+
+  const mappedSubmenuLinks = previousValue.reduce<
+    Record<string, TSubmenuLinks>
+  >(
     (previousSubmenuLink, currentSubmenuLink) => ({
       ...previousSubmenuLink,
       [currentSubmenuLink.uriPath]: currentSubmenuLink,
@@ -209,7 +273,7 @@ const getSubmenuLinksDiff = ({ previousValue, nextValue }) => {
   nextValue.forEach((newSubmenuLink) => {
     const oldSubMenuLink = mappedSubmenuLinks[newSubmenuLink.uriPath];
     if (newSubmenuLink.uriPath in mappedSubmenuLinks) {
-      const submenuLinkDiff = [
+      const submenuLinkDiff: (string | null)[] = [
         `${indent(1)}menu link "${newSubmenuLink.uriPath}" changed`,
       ];
       Object.keys(mappedSubmenuLinks[newSubmenuLink.uriPath]).forEach((key) => {
@@ -278,12 +342,16 @@ const getSubmenuLinksDiff = ({ previousValue, nextValue }) => {
     );
   });
   if (submenuLinksDiff.length > 1) return submenuLinksDiff.join('\n');
+  return null;
 };
 
 // Compute diff changes of the Custom Application config.
 // NOTE: Only known keys are evaluated.
-const getConfigDiff = (oldConfig, newConfig) => {
-  const diff = [];
+const getConfigDiff = (
+  oldConfig: CustomApplicationData,
+  newConfig: CustomApplicationData
+) => {
+  const diff: (string | null)[] = [];
 
   // Name
   diff.push(
