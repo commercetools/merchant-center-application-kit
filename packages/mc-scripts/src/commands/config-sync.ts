@@ -2,7 +2,10 @@ import omit from 'lodash/omit';
 import prompts from 'prompts';
 import mri from 'mri';
 import chalk from 'chalk';
-import { processConfig, type CustomApplicationData } from '@commercetools-frontend/application-config';
+import {
+  processConfig,
+  type CustomApplicationData,
+} from '@commercetools-frontend/application-config';
 import CredentialsStorage from '../utils/credentials-storage';
 import {
   fetchCustomApplication,
@@ -12,14 +15,17 @@ import {
 } from '../utils/graphql-requests';
 import getConfigDiff from '../utils/get-config-diff';
 
-
 const flags = mri(process.argv.slice(2), {
   boolean: ['dry-run'],
 });
 
 const credentialsStorage = new CredentialsStorage();
 
-const getMcUrlLink = (mcApiUrl: string, organizationId: string, applicationId: string) => {
+const getMcUrlLink = (
+  mcApiUrl: string,
+  organizationId: string,
+  applicationId: string
+) => {
   const mcUrl = mcApiUrl.replace('mc-api', 'mc');
   const customAppLink = `${mcUrl}/account/organizations/${organizationId}/custom-applications/owned/${applicationId}`;
   return customAppLink;
@@ -79,9 +85,11 @@ const configSync = async () => {
       }
 
       organizationId = selectedOrganizationId;
-      organizationName = (organizationChoices.find(
-        ({ value }) => value === organizationId
-      ) as { title: string}).title;
+      organizationName = (
+        organizationChoices.find(({ value }) => value === organizationId) as {
+          title: string;
+        }
+      ).title;
     }
 
     const { confirmation } = await prompts({

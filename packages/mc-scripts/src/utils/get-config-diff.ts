@@ -416,4 +416,4 @@ const getConfigDiff = (
   return diff.filter(Boolean).join('\n');
 };
 
-export default getConfigDiff
+export default getConfigDiff;
