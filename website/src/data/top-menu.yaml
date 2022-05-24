@@ -1,0 +1,29 @@
+- menu-title: Composable Commerce
+  items:
+    - label: Getting Started
+      href: /../getting-started/
+    - label: Merchant Center
+      href: /../merchant-center
+    - label: Tutorials
+      href: /../tutorials
+    - label: HTTP API
+      href: /../api
+    - label: GraphQL API
+      href: /../api/graphql
+    - label: Import & Export
+      href: /../import-export
+    - label: SDKs & Client Libraries
+      href: /../sdk
+    - label: Custom Applications
+      href: /../custom-applications
+      beta: true
+- menu-title: Frontend
+  items:
+    - label: Getting Started
+      href: https://docs.frontastic.cloud/docs/whats-frontastic
+    - label: Studio
+      href: https://docs.frontastic.cloud/docs/whats-the-frontastic-studio
+    - label: Developing
+      href: https://docs.frontastic.cloud/docs/developing-your-site-with-frontastic
+    - label: HTTP API
+      href: https://docs.frontastic.cloud/reference
