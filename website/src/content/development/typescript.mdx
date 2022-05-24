@@ -29,7 +29,7 @@ TypeScript's main advantages are:
 - compile-time error checking
 - code readability and self-documentation
 - great developer experience due to rich IntelliSense support
-- availability of new JavaScript features without native browser support
+- availability of new JavaScript features without current browser support
 
 TypeScript also has some disadvantages:
 
@@ -53,7 +53,7 @@ Certain configuration steps are required for enabling TypeScript support in Cust
 
 ## TypeScript configuration
 
-In order to work with TypeScript a configuration file named [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) is required.
+The [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) file is required to work with TypeScript.
 It enables numerous [configuration options](https://www.typescriptlang.org/tsconfig). To simplify the initial setup we provide a base `tsconfig.json` file in `@commercetools-frontend/tsconfig` package to extend from in your Custom Application.
 
 ### Installation
@@ -85,7 +85,7 @@ To compile TypeScript files to JavaScript files [Babel](https://babeljs.io/) (si
 
 Custom Applications by default have a preconfigured Babel support to compile TypeScript.
 
-In order to make sure that Babel configuration is set properly check if `babel.config.js` contains `@commercetools-frontend/babel-preset-mc-app` as a preset, and that the package is listed as the application dependency in `package.json`.
+To make sure that Babel configuration is set properly check if `babel.config.js` contains `@commercetools-frontend/babel-preset-mc-app` as a preset, and that the package is listed as the application dependency in `package.json`.
 
 `tsc` CLI is only used as a type checking tool, for example, run as `yarn typecheck` script:
 
@@ -126,7 +126,7 @@ To run prettier as a script add the following contents to your `package.json`:
 
 Custom Applications by default have a preconfigured code linting for TypeScript files with ESLint. 
 
-In order to make sure that ESLint configuration is set properly check if `.eslintrc.js` extends `@commercetools-frontend/eslint-config-mc-app`, and that the package is listed as an application dependency in `package.json`.
+To make sure that ESLint configuration is set properly check if `.eslintrc.js` extends `@commercetools-frontend/eslint-config-mc-app`, and that the package is listed as an application dependency in `package.json`.
 
 To run ESLint as a script edit the contents of `jest.eslint.config.js` configuration file in the root folder of the application:
 
