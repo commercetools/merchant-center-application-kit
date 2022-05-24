@@ -1,8 +1,8 @@
-const prompts = require('prompts');
-const chalk = require('chalk');
-const { processConfig } = require('@commercetools-frontend/application-config');
-const CredentialsStorage = require('../utils/credentials-storage');
-const { getAuthToken } = require('../utils/auth');
+import prompts from 'prompts';
+import chalk from 'chalk';
+import { processConfig } from '@commercetools-frontend/application-config';
+import CredentialsStorage from '../utils/credentials-storage';
+import { getAuthToken } from '../utils/auth';
 
 const credentialsStorage = new CredentialsStorage();
 

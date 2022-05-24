@@ -3122,6 +3122,7 @@ __metadata:
     "@svgr/webpack": 6.2.1
     "@tsconfig/node16": ^1.0.2
     "@types/moment-locales-webpack-plugin": ^1.2.3
+    "@types/prompts": ^2.0.14
     "@types/serve-handler": ^6.1.1
     "@vitejs/plugin-react": 1.3.2
     autoprefixer: ^10.4.4
@@ -10399,6 +10400,13 @@ __metadata:
   version: 2.4.3
   resolution: "@types/prettier@npm:2.4.3"
   checksum: b240434daabac54700c862b0bb52a83fec396e0e9c847447119ba41fd8404d79aadfa174e6306fb094b29efadac586344b7606c3a71c286b71755ab2579d54df
+  languageName: node
+  linkType: hard
+
+"@types/prompts@npm:^2.0.14":
+  version: 2.4.0
+  resolution: "@types/prompts@npm:2.4.0"
+  checksum: ec75655f07fbc3cb2df60a3e3bdd13bfda0554a16f5541285c4b1cc0610756838a2863dccfc911cbb1385492054c07210512164e3dbef272ec638d631783b278
   languageName: node
   linkType: hard
 
