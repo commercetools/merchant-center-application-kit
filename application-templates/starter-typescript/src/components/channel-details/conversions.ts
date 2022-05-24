@@ -1,6 +1,6 @@
 import LocalizedTextInput from '@commercetools-uikit/localized-text-input';
 import { transformLocalizedFieldToLocalizedString } from '@commercetools-frontend/l10n';
-import type { TChannel } from '../../../@types/generated/ctp';
+import type { TChannel } from '../../../types/generated/ctp';
 import type { FormValues, ActionData } from './types';
 
 export const docToFormValues = (

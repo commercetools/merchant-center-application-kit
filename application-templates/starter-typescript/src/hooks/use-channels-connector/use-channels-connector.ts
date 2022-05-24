@@ -11,7 +11,7 @@ import type {
   TFetchChannelsQueryVariables,
   TChannel,
   TFetchChannelDetailsQueryVariables,
-} from '../../../@types/generated/ctp';
+} from '../../../types/generated/ctp';
 import type { ActionData } from '../../components/channel-details/types';
 import {
   createGraphQlUpdateActions,

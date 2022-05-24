@@ -29,7 +29,7 @@ import {
 import messages from './messages';
 import { useChannelsFetcher } from '../../hooks/use-channels-connector';
 import { getErrorMessage } from '../../helpers';
-import type { TChannel } from '../../../@types/generated/ctp';
+import type { TChannel } from '../../../types/generated/ctp';
 
 const ChannelDetails = lazy(() => import('../channel-details'));
 

@@ -15,7 +15,7 @@ extensions:
           - add:
               content: '/* eslint-disable import/no-duplicates */'
           - typescript-graphql-files-modules
-      "@types/generated/ctp.ts":
+      "types/generated/ctp.ts":
         plugins:
           - typescript
           - typescript-operations

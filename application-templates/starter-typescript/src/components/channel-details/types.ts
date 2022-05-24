@@ -1,4 +1,4 @@
-import type { TChannelRole } from '../../../@types/generated/ctp';
+import type { TChannelRole } from '../../../types/generated/ctp';
 
 export type FormValues = {
   key: string;
