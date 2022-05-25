@@ -29,7 +29,7 @@ TypeScript's main advantages are:
 - compile-time error checking
 - code readability and self-documentation
 - great developer experience due to rich IntelliSense support
-- availability of new JavaScript features without current browser support
+- availability of new JavaScript features without current browser support.
 
 TypeScript also has some disadvantages:
 
@@ -54,7 +54,7 @@ Certain configuration steps are required for enabling TypeScript support in Cust
 ## TypeScript configuration
 
 The [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) file is required to work with TypeScript.
-It enables numerous [configuration options](https://www.typescriptlang.org/tsconfig). To simplify the initial setup we provide a base `tsconfig.json` file in `@commercetools-frontend/tsconfig` package to extend from in your Custom Application.
+It enables numerous [configuration options](https://www.typescriptlang.org/tsconfig). To simplify the initial setup we provide a base `tsconfig.json` file in the `@commercetools-frontend/tsconfig` package to extend from in your Custom Application.
 
 ### Installation
 
@@ -68,7 +68,7 @@ npm --save install @commercetools-frontend/tsconfig
 
 ### Usage
 
-Create a `tsconfig.json` file in the root directory of your application and add contents:
+Create a `tsconfig.json` file in the root directory of your application and add the contents:
 
 ```json
 {
@@ -83,7 +83,7 @@ To compile TypeScript files to JavaScript files [Babel](https://babeljs.io/) (si
 
 <Info>
 
-Custom Applications by default have a preconfigured Babel support to compile TypeScript.
+Custom Applications are preconfigured to use Babel compilation to TypeScript.
 
 To make sure that Babel configuration is set properly check if `babel.config.js` contains `@commercetools-frontend/babel-preset-mc-app` as a preset, and that the package is listed as the application dependency in `package.json`.
 
@@ -124,11 +124,11 @@ To run prettier as a script add the following contents to your `package.json`:
 
 ## ESLint configuration
 
-Custom Applications by default have a preconfigured code linting for TypeScript files with ESLint. 
+Custom Applications are preconfigured to lint TypeScript files with ESLint. 
 
 To make sure that ESLint configuration is set properly check if `.eslintrc.js` extends `@commercetools-frontend/eslint-config-mc-app`, and that the package is listed as an application dependency in `package.json`.
 
-To run ESLint as a script edit the contents of `jest.eslint.config.js` configuration file in the root folder of the application:
+To run ESLint as a script edit the contents of the `jest.eslint.config.js` configuration file in the root folder of the application:
 
 ```js title="jest.eslint.config.js"
 module.exports = {
@@ -185,7 +185,7 @@ Two key recommendations for a successful migration:
 
 Please mind that with the recommended `tsconfig.json` configuration any type checking errors will not prevent the compilation, so don't be discouraged by the missing types as the application remains functional.
 
-If the configuration seems too strict to start with it might be loosen up by, for example, allowing explicit `any` type. In such case edit `tsconfig.json`:
+If the recommended configuration seems too strict to start with it might be loosen up by, for example, allowing explicit `any` type. In such case edit `tsconfig.json`:
 ```json title="tsconfig.json"
 {
   "extends": "@commercetools-frontend/tsconfig",
