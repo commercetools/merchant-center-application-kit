@@ -17,7 +17,8 @@
     "/.+/import-export",
     "/.+/merchant-center",
     "/.+/sdk",
-    "/.+/tutorials"
+    "/.+/tutorials",
+    "/.+/getting-started/initial-setup"
   ],
   "verbosity": "error",
   "retry": true,
