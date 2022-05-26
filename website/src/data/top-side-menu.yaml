@@ -1,7 +1,7 @@
 - label: Sign up
-  href: /../getting-started/initial-setup
+  href: https://docs.commercetools.com/getting-started/initial-setup
 - label: Log in
-  href: /../docs/login
+  href: https://docs.commercetools.com/docs/login
 - label: Tech Blog
   href: https://techblog.commercetools.com
 - label: Integrations

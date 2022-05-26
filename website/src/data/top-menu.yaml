@@ -1,21 +1,21 @@
 - menu-title: Composable Commerce
   items:
     - label: Getting Started
-      href: /../getting-started/
+      href: https://docs.commercetools.com/getting-started/
     - label: Merchant Center
-      href: /../merchant-center
+      href: https://docs.commercetools.com/merchant-center
     - label: Tutorials
-      href: /../tutorials
+      href: https://docs.commercetools.com/tutorials
     - label: HTTP API
-      href: /../api
+      href: https://docs.commercetools.com/api
     - label: GraphQL API
-      href: /../api/graphql
+      href: https://docs.commercetools.com/api/graphql
     - label: Import & Export
-      href: /../import-export
+      href: https://docs.commercetools.com/import-export
     - label: SDKs & Client Libraries
-      href: /../sdk
+      href: https://docs.commercetools.com/sdk
     - label: Custom Applications
-      href: /../custom-applications
+      href: https://docs.commercetools.com/custom-applications
       beta: true
 - menu-title: Frontend
   items:

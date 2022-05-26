@@ -8,6 +8,7 @@
     "https://support.commercetools.com",
     "https://developers.cloudflare.com",
     "https://dash.cloudflare.com",
+    "https://frontastic.freshdesk.com/",
     "/.+/api$",
     "/.+/api/",
     "/.+/custom-applications/legacy",
