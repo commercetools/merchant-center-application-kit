@@ -4,12 +4,20 @@
   <a href="https://www.npmjs.com/package/@commercetools-frontend/jest-preset-mc-app"><img src="https://badgen.net/npm/v/@commercetools-frontend/jest-preset-mc-app" alt="Latest release (latest dist-tag)" /></a> <a href="https://www.npmjs.com/package/@commercetools-frontend/jest-preset-mc-app"><img src="https://badgen.net/npm/v/@commercetools-frontend/jest-preset-mc-app/next" alt="Latest release (next dist-tag)" /></a> <a href="https://bundlephobia.com/result?p=@commercetools-frontend/jest-preset-mc-app"><img src="https://badgen.net/bundlephobia/minzip/@commercetools-frontend/jest-preset-mc-app" alt="Minified + GZipped size" /></a> <a href="https://github.com/commercetools/merchant-center-application-kit/blob/main/LICENSE"><img src="https://badgen.net/github/license/commercetools/merchant-center-application-kit" alt="GitHub license" /></a>
 </p>
 
-Jest preset used by a MC application.
+Jest preset used by a Custom Application.
 
 ## Install
 
 ```bash
 $ npm install --save @commercetools-frontend/jest-preset-mc-app
+```
+
+## Usage
+
+```js
+module.exports = {
+  preset: '@commercetools-frontend/jest-preset-mc-app',
+};
 ```
 
 ## Custom config
@@ -33,15 +41,13 @@ Supported options are:
 
 ## TypeScript support
 
-If you need to use the Jest preset with additional TypeScript support, you need to import `@commercetools-frontend/jest-preset-mc-app/jest-preset-for-typescript.js` in your Jest config.
+If you need to use the Jest preset with additional TypeScript support, you need to point to the `@commercetools-frontend/jest-preset-mc-app/typescript` preset in your Jest config.
 
 For example:
 
 ```js
-const jestPresetForTypeScript = require('@commercetools-frontend/jest-preset-mc-app/jest-preset-for-typescript');
-
 module.exports = {
-  ...jestPresetForTypeScript,
+  preset: '@commercetools-frontend/jest-preset-mc-app/typescript',
 };
 ```
 
@@ -82,7 +88,7 @@ module.exports = {
 };
 ```
 
-Similarly, you can use the `@commercetools-frontend/jest-preset-mc-app/jest-preset-for-typescript` instead of the `@commercetools-frontend/jest-preset-mc-app`.
+Similarly, you can use the `@commercetools-frontend/jest-preset-mc-app/typescript` instead of the `@commercetools-frontend/jest-preset-mc-app`.
 
 ### Enzyme 17
 
@@ -117,4 +123,4 @@ module.exports = {
 };
 ```
 
-Similarly, you can use the `@commercetools-frontend/jest-preset-mc-app/jest-preset-for-typescript` instead of the `@commercetools-frontend/jest-preset-mc-app`.
+Similarly, you can use the `@commercetools-frontend/jest-preset-mc-app/typescript` instead of the `@commercetools-frontend/jest-preset-mc-app`.

@@ -1,6 +1,6 @@
 process.env.ENABLE_NEW_JSX_TRANSFORM = 'true';
 
-const jestPresetForTypescript = require('./packages/jest-preset-mc-app/jest-preset-for-typescript');
+const jestPresetForTypescript = require('./packages/jest-preset-mc-app/typescript');
 
 /**
  * @type {import('@jest/types').Config.ProjectConfig}
