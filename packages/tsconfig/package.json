@@ -1,0 +1,29 @@
+{
+  "name": "@commercetools-frontend/tsconfig",
+  "version": "0.1.0",
+  "description": "Shared TypeScript config for Custom Applications",
+  "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/commercetools/merchant-center-application-kit.git",
+    "directory": "packages/tsconfig"
+  },
+  "homepage": "https://docs.commercetools.com/custom-applications",
+  "keywords": [
+    "config",
+    "configuration",
+    "javascript",
+    "frontend",
+    "toolkit",
+    "tsconfig",
+    "typescript",
+    "ts"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": "14.x || 16.x || 17.x"
+  }
+}
