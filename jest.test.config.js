@@ -4,7 +4,7 @@ process.env.ENABLE_NEW_JSX_TRANSFORM = 'true';
  * @type {import('@jest/types').Config.ProjectConfig}
  */
 module.exports = {
-  preset: './packages/jest-preset-mc-app/jest-preset-for-typescript',
+  preset: '@commercetools-frontend/jest-preset-mc-app/typescript',
   moduleDirectories: [
     'application-templates',
     'packages',
