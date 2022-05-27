@@ -10,7 +10,7 @@ extensions:
       schemas/core.json:
         plugins:
           - introspection
-      '@types-extensions/graphql-core.d.ts':
+      '@types-extensions/graphql-core/index.d.ts':
         plugins:
           - add:
               content: /* THIS IS A GENERATED FILE */

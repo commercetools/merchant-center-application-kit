@@ -16,6 +16,12 @@ export type TCliCommandConfigSyncOptions = {
   'dry-run'?: boolean;
 };
 
+export type TMcCliAuthToken = {
+  token: string;
+  expiresAt: number;
+};
+export type TMcCliCredentialsStorage = Record<string, TMcCliAuthToken>;
+
 /**
  * Configuration options to extend the default configuration
  */

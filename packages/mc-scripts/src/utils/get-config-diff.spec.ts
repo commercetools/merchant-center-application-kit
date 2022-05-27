@@ -1,13 +1,18 @@
 import getConfigDiff from './get-config-diff';
 
-const createTestConfig = (customConfig) => ({
+const createTestConfig = (customConfig = {}) => ({
+  id: 'id',
   entryPointUriPath: 'my-test-app',
   name: 'test name',
   description: 'test description',
   url: 'https://test.com',
   icon: '<svg><path fill="#000000"></path></svg>',
   permissions: [],
-  mainMenuLink: {},
+  mainMenuLink: {
+    defaultLabel: 'Test',
+    labelAllLocales: [],
+    permissions: [],
+  },
   submenuLinks: [],
   ...customConfig,
 });

@@ -143,24 +143,23 @@ type TGetLabelAllLocalesDiffParams = {
 };
 
 const getLabelAllLocalesDiff = ({
-  previousValue,
-  nextValue,
+  previousValue = [],
+  nextValue = [],
   indentLevel = 0,
 }: TGetLabelAllLocalesDiffParams) => {
-  const labelAllLocalesDiff: (string | null)[] = [
+  const labelAllLocalesDiff: string[] = [
     `${indent(indentLevel - 1)}labelAllLocales changed`,
   ];
 
-  const mappedOldLabelAllLocales =
-    previousValue?.reduce<Record<string, string>>(
-      (previousLabelAllLocale, { locale, value }) => ({
-        ...previousLabelAllLocale,
-        [locale]: value,
-      }),
-      {}
-    ) ?? {};
+  const mappedOldLabelAllLocales = previousValue.reduce<Record<string, string>>(
+    (previousLabelAllLocale, { locale, value }) => ({
+      ...previousLabelAllLocale,
+      [locale]: value,
+    }),
+    {}
+  );
 
-  nextValue?.forEach((newLabelAllLocale) => {
+  nextValue.forEach((newLabelAllLocale) => {
     if (newLabelAllLocale.locale in mappedOldLabelAllLocales) {
       const oldLocaleValue = mappedOldLabelAllLocales[newLabelAllLocale.locale];
       if (oldLocaleValue !== newLabelAllLocale.value) {
@@ -174,24 +173,26 @@ const getLabelAllLocalesDiff = ({
       }
       delete mappedOldLabelAllLocales[newLabelAllLocale.locale];
     } else {
-      labelAllLocalesDiff.push(
-        getStringDiff({
-          nextValue: newLabelAllLocale.locale,
-          label: 'locale',
-          indentLevel,
-        })
-      );
+      const localeDiff = getStringDiff({
+        nextValue: newLabelAllLocale.locale,
+        label: 'locale',
+        indentLevel,
+      });
+      if (localeDiff) {
+        labelAllLocalesDiff.push(localeDiff);
+      }
     }
   });
 
   Object.keys(mappedOldLabelAllLocales).forEach((key) => {
-    labelAllLocalesDiff.push(
-      getStringDiff({
-        previousValue: key,
-        label: 'locale',
-        indentLevel,
-      })
-    );
+    const localeDiff = getStringDiff({
+      previousValue: key,
+      label: 'locale',
+      indentLevel,
+    });
+    if (localeDiff) {
+      labelAllLocalesDiff.push(localeDiff);
+    }
   });
 
   if (labelAllLocalesDiff.length > 1) return labelAllLocalesDiff.join('\n');
@@ -208,16 +209,18 @@ const getMainMenuLinkDiff = ({
   previousValue,
   nextValue,
 }: TGetMainMenuLinkDiffParams) => {
-  const mainMenuLinkDiff: (string | null)[] = ['mainMenuLink changed'];
+  const mainMenuLinkDiff: string[] = ['mainMenuLink changed'];
 
-  mainMenuLinkDiff.push(
-    getStringDiff({
-      previousValue: previousValue.defaultLabel,
-      nextValue: nextValue.defaultLabel,
-      label: 'defaultLabel',
-      indentLevel: 1,
-    })
-  );
+  const menuDiff = getStringDiff({
+    previousValue: previousValue.defaultLabel,
+    nextValue: nextValue.defaultLabel,
+    label: 'defaultLabel',
+    indentLevel: 1,
+  });
+  if (menuDiff) {
+    mainMenuLinkDiff.push(menuDiff);
+  }
+
   const mainMenuLinkPermissionsDiff = getArrayDiff({
     previousValue: previousValue.permissions,
     nextValue: nextValue.permissions,
@@ -229,13 +232,14 @@ const getMainMenuLinkDiff = ({
     mainMenuLinkDiff.push(mainMenuLinkPermissionsDiff);
   }
 
-  mainMenuLinkDiff.push(
-    getLabelAllLocalesDiff({
-      previousValue: previousValue.labelAllLocales,
-      nextValue: nextValue.labelAllLocales,
-      indentLevel: 2,
-    })
-  );
+  const menuLabelsDiff = getLabelAllLocalesDiff({
+    previousValue: previousValue.labelAllLocales,
+    nextValue: nextValue.labelAllLocales,
+    indentLevel: 2,
+  });
+  if (menuLabelsDiff) {
+    mainMenuLinkDiff.push(menuLabelsDiff);
+  }
 
   const filteredMainMenuLinkDiff = mainMenuLinkDiff.filter(Boolean);
   if (filteredMainMenuLinkDiff.length > 1)
@@ -258,7 +262,7 @@ const getSubmenuLinksDiff = ({
   previousValue,
   nextValue,
 }: TGetSubmenuLinksDiffParams) => {
-  const submenuLinksDiff: (string | null)[] = ['submenuLink changed'];
+  const submenuLinksDiff: string[] = ['submenuLink changed'];
 
   const mappedSubmenuLinks = previousValue.reduce<
     Record<string, TSubmenuLinks>
@@ -273,20 +277,21 @@ const getSubmenuLinksDiff = ({
   nextValue.forEach((newSubmenuLink) => {
     const oldSubMenuLink = mappedSubmenuLinks[newSubmenuLink.uriPath];
     if (newSubmenuLink.uriPath in mappedSubmenuLinks) {
-      const submenuLinkDiff: (string | null)[] = [
+      const submenuLinkDiff: string[] = [
         `${indent(1)}menu link "${newSubmenuLink.uriPath}" changed`,
       ];
       Object.keys(mappedSubmenuLinks[newSubmenuLink.uriPath]).forEach((key) => {
         switch (key) {
           case 'defaultLabel': {
-            submenuLinkDiff.push(
-              getStringDiff({
-                previousValue: oldSubMenuLink.defaultLabel,
-                nextValue: newSubmenuLink.defaultLabel,
-                label: 'defaultLabel',
-                indentLevel: 2,
-              })
-            );
+            const labelDiff = getStringDiff({
+              previousValue: oldSubMenuLink.defaultLabel,
+              nextValue: newSubmenuLink.defaultLabel,
+              label: 'defaultLabel',
+              indentLevel: 2,
+            });
+            if (labelDiff) {
+              submenuLinkDiff.push(labelDiff);
+            }
             break;
           }
           case 'permissions': {
@@ -303,13 +308,14 @@ const getSubmenuLinksDiff = ({
             break;
           }
           case 'labelAllLocales': {
-            submenuLinkDiff.push(
-              getLabelAllLocalesDiff({
-                previousValue: oldSubMenuLink.labelAllLocales,
-                nextValue: newSubmenuLink.labelAllLocales,
-                indentLevel: 3,
-              })
-            );
+            const labelsDiff = getLabelAllLocalesDiff({
+              previousValue: oldSubMenuLink.labelAllLocales,
+              nextValue: newSubmenuLink.labelAllLocales,
+              indentLevel: 3,
+            });
+            if (labelsDiff) {
+              submenuLinkDiff.push(labelsDiff);
+            }
             break;
           }
           default:
@@ -317,29 +323,30 @@ const getSubmenuLinksDiff = ({
         }
       });
       delete mappedSubmenuLinks[newSubmenuLink.uriPath];
+
       const filteredSubmenuLinksDiff = submenuLinkDiff.filter(Boolean);
       if (filteredSubmenuLinksDiff.length > 1) {
         submenuLinksDiff.push(filteredSubmenuLinksDiff.join('\n'));
       }
     } else {
-      submenuLinksDiff.push(
-        getStringDiff({
-          nextValue: newSubmenuLink.uriPath,
-          label: 'menu link',
-          indentLevel: 1,
-        })
-      );
+      const linksDiff = getStringDiff({
+        nextValue: newSubmenuLink.uriPath,
+        label: 'menu link',
+        indentLevel: 1,
+      });
+      if (linksDiff) {
+        submenuLinksDiff.push(linksDiff);
+      }
     }
   });
 
   Object.keys(mappedSubmenuLinks).forEach((key) => {
-    submenuLinksDiff.push(
-      getStringDiff({
-        previousValue: key,
-        label: 'menu link',
-        indentLevel: 1,
-      })
-    );
+    const linksDiff = getStringDiff({
+      previousValue: key,
+      label: 'menu link',
+      indentLevel: 1,
+    });
+    if (linksDiff) submenuLinksDiff.push(linksDiff);
   });
   if (submenuLinksDiff.length > 1) return submenuLinksDiff.join('\n');
   return null;
@@ -351,69 +358,76 @@ const getConfigDiff = (
   oldConfig: CustomApplicationData,
   newConfig: CustomApplicationData
 ) => {
-  const diff: (string | null)[] = [];
+  const diff: string[] = [];
 
   // Name
-  diff.push(
-    getStringDiff({
-      previousValue: oldConfig.name,
-      nextValue: newConfig.name,
-      label: 'name',
-    })
-  );
+  const nameDiff = getStringDiff({
+    previousValue: oldConfig.name,
+    nextValue: newConfig.name,
+    label: 'name',
+  });
+  if (nameDiff) {
+    diff.push(nameDiff);
+  }
 
   // Description
-  diff.push(
-    getStringDiff({
-      previousValue: oldConfig.description,
-      nextValue: newConfig.description,
-      label: 'description',
-    })
-  );
+  const descriptionDiff = getStringDiff({
+    previousValue: oldConfig.description,
+    nextValue: newConfig.description,
+    label: 'description',
+  });
+  if (descriptionDiff) {
+    diff.push(descriptionDiff);
+  }
 
   // URL
-  diff.push(
-    getStringDiff({
-      previousValue: oldConfig.url,
-      nextValue: newConfig.url,
-      label: 'url',
-    })
-  );
+  const urlDiff = getStringDiff({
+    previousValue: oldConfig.url,
+    nextValue: newConfig.url,
+    label: 'url',
+  });
+  if (urlDiff) {
+    diff.push(urlDiff);
+  }
 
   // Icon
-  diff.push(
-    getStringDiff({
-      previousValue: oldConfig.icon,
-      nextValue: newConfig.icon,
-      label: 'icon',
-    })
-  );
+  const iconDiff = getStringDiff({
+    previousValue: oldConfig.icon,
+    nextValue: newConfig.icon,
+    label: 'icon',
+  });
+  if (iconDiff) {
+    diff.push(iconDiff);
+  }
 
   // Permissions
-  diff.push(
-    getPermissionsDiff({
-      previousValue: oldConfig.permissions,
-      nextValue: newConfig.permissions,
-    })
-  );
+  const permissionsDiff = getPermissionsDiff({
+    previousValue: oldConfig.permissions,
+    nextValue: newConfig.permissions,
+  });
+  if (permissionsDiff) {
+    diff.push(permissionsDiff);
+  }
 
   // Main menu link
-  diff.push(
-    getMainMenuLinkDiff({
-      previousValue: oldConfig.mainMenuLink,
-      nextValue: newConfig.mainMenuLink,
-    })
-  );
+  const mainMenuDiff = getMainMenuLinkDiff({
+    previousValue: oldConfig.mainMenuLink,
+    nextValue: newConfig.mainMenuLink,
+  });
+  if (mainMenuDiff) {
+    diff.push(mainMenuDiff);
+  }
 
   // Submenu links
-  diff.push(
-    getSubmenuLinksDiff({
-      previousValue: oldConfig.submenuLinks,
-      nextValue: newConfig.submenuLinks,
-    })
-  );
+  const submenuDiff = getSubmenuLinksDiff({
+    previousValue: oldConfig.submenuLinks,
+    nextValue: newConfig.submenuLinks,
+  });
+  if (submenuDiff) {
+    diff.push(submenuDiff);
+  }
 
-  return diff.filter(Boolean).join('\n');
+  return diff.join('\n');
 };
 
 export default getConfigDiff;

@@ -6,7 +6,7 @@ type TAuthPayload = {
   password: string;
 };
 
-export const getAuthToken = async (mcApiUrl: string, payload: TAuthPayload) => {
+const getAuthToken = async (mcApiUrl: string, payload: TAuthPayload) => {
   const response = await fetch(`${mcApiUrl}/tokens/cli`, {
     method: 'POST',
     headers: {
@@ -30,3 +30,5 @@ export const getAuthToken = async (mcApiUrl: string, payload: TAuthPayload) => {
   const authToken = await response.json();
   return authToken;
 };
+
+export { getAuthToken };

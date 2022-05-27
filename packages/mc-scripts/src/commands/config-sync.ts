@@ -1,6 +1,5 @@
 import omit from 'lodash/omit';
 import prompts from 'prompts';
-import mri from 'mri';
 import chalk from 'chalk';
 import {
   processConfig,
@@ -14,10 +13,7 @@ import {
   fetchUserOrganizations,
 } from '../utils/graphql-requests';
 import getConfigDiff from '../utils/get-config-diff';
-
-const flags = mri(process.argv.slice(2), {
-  boolean: ['dry-run'],
-});
+import type { TCliCommandConfigSyncOptions } from '../types';
 
 const credentialsStorage = new CredentialsStorage();
 
@@ -31,18 +27,18 @@ const getMcUrlLink = (
   return customAppLink;
 };
 
-const configSync = async () => {
+async function run(options: TCliCommandConfigSyncOptions = {}) {
   const applicationConfig = processConfig();
   const { data: localCustomAppData } = applicationConfig;
   const { mcApiUrl } = applicationConfig.env;
 
-  if (!credentialsStorage.isSessionValid(mcApiUrl)) {
+  const token = credentialsStorage.getToken(mcApiUrl);
+  if (!token) {
     throw new Error(
       `You don't have a valid session for the ${mcApiUrl} environment. Please, run the "mc-scripts login" command to authenticate yourself.`
     );
   }
 
-  const token = credentialsStorage.getToken(mcApiUrl);
   const fetchedCustomApplication = await fetchCustomApplication({
     mcApiUrl,
     token,
@@ -104,7 +100,7 @@ const configSync = async () => {
     }
 
     const data = omit(localCustomAppData, ['id']);
-    if (flags['dry-run']) {
+    if (options['dry-run']) {
       console.log(chalk.gray('DRY RUN mode'));
       console.log(
         `A new Custom Application would be created for the Organization ${organizationName} with the following payload:`
@@ -168,7 +164,7 @@ const configSync = async () => {
   }
 
   const data = omit(localCustomAppData, ['id']);
-  if (flags['dry-run']) {
+  if (options['dry-run']) {
     console.log(chalk.gray('DRY RUN mode'));
     console.log(
       `The Custom Application ${data.name} would be updated with the following payload:`
@@ -190,9 +186,6 @@ const configSync = async () => {
       `Custom Application updated.\nYou can see the Custom Application data in the Merchant Center at ${customAppLink}.`
     )
   );
-};
+}
 
-configSync().catch((error) => {
-  console.log(chalk.red(error));
-  process.exit(1);
-});
+export default run;

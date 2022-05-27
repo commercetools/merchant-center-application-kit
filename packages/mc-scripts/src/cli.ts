@@ -166,8 +166,8 @@ const run = () => {
       // Do this as the first thing so that any code reading it knows the right env.
       process.env.NODE_ENV = 'production';
 
-      // const loginCommand = await import('../commands/login');
-      // await loginCommand.default();
+      const loginCommand = await import('./commands/login');
+      await loginCommand.default();
     });
 
   // Command: config:sync
@@ -189,8 +189,8 @@ const run = () => {
         // Do this as the first thing so that any code reading it knows the right env.
         process.env.NODE_ENV = 'production';
 
-        // const configSyncCommand = await import('../commands/config-sync');
-        // await configSyncCommand.default(options);
+        const configSyncCommand = await import('./commands/config-sync');
+        await configSyncCommand.default(options);
       }
     );
 

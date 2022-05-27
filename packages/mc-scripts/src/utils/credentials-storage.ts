@@ -1,11 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
-
-type TCredentials = {
-  token: string;
-  expiresAt: number;
-};
+import type { TMcCliAuthToken, TMcCliCredentialsStorage } from '../types';
 
 const homedir = os.homedir();
 const credentialsFolderPath = path.join(homedir, `.commercetools`);
@@ -22,19 +18,19 @@ class CredentialsStorage {
     if (!fs.existsSync(credentialsFilePath)) {
       fs.mkdirSync(credentialsFolderPath, { recursive: true });
       // Initialize with an empty object
-      this._writeCredentials({});
+      this._writeCredentials();
     }
   }
 
-  _writeCredentials(credentials: TCredentials | {}) {
+  _writeCredentials(credentials?: TMcCliCredentialsStorage) {
     fs.writeFileSync(
       credentialsFilePath,
-      JSON.stringify(credentials, null, 2),
+      JSON.stringify(credentials || {}, null, 2),
       { encoding: 'utf8' }
     );
   }
 
-  _loadCredentials() {
+  _loadCredentials(): TMcCliCredentialsStorage {
     const data = fs.readFileSync(credentialsFilePath, { encoding: 'utf8' });
     return JSON.parse(data);
   }
@@ -47,7 +43,7 @@ class CredentialsStorage {
     return allCredentials[environmentKey].token;
   }
 
-  setToken(environmentKey: string, credentials: TCredentials) {
+  setToken(environmentKey: string, credentials: TMcCliAuthToken) {
     const allCredentials = this._loadCredentials();
     allCredentials[environmentKey] = credentials;
     this._writeCredentials(allCredentials);

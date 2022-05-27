@@ -1,8 +1,9 @@
-const { rest } = require('msw');
-const { setupServer } = require('msw/node');
-const { getAuthToken } = require('./auth');
+import { rest } from 'msw';
+import { setupServer } from 'msw/node';
+import { getAuthToken } from './auth';
 
 const mockServer = setupServer();
+
 afterEach(() => {
   mockServer.resetHandlers();
 });
@@ -18,7 +19,7 @@ const mcApiUrl = 'https://mc-api.europe-west1.gcp.commercetools.com';
 describe('when login details are correct', () => {
   beforeEach(() => {
     mockServer.use(
-      rest.post(`${mcApiUrl}/tokens/cli`, (req, res, ctx) => {
+      rest.post(`${mcApiUrl}/tokens/cli`, (_req, res, ctx) => {
         return res(
           ctx.status(200),
           ctx.json({
@@ -50,7 +51,7 @@ describe('when login details are correct', () => {
 describe('when login details are incorrect', () => {
   beforeEach(() => {
     mockServer.use(
-      rest.post(`${mcApiUrl}/tokens/cli`, (req, res, ctx) => {
+      rest.post(`${mcApiUrl}/tokens/cli`, (_req, res, ctx) => {
         return res(
           ctx.status(400),
           ctx.json({

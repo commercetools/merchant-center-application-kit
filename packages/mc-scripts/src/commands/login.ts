@@ -6,7 +6,7 @@ import { getAuthToken } from '../utils/auth';
 
 const credentialsStorage = new CredentialsStorage();
 
-const login = async () => {
+async function run() {
   const applicationConfig = processConfig();
   const { mcApiUrl } = applicationConfig.env;
 
@@ -41,9 +41,6 @@ const login = async () => {
   console.log(
     chalk.green(`Login successful for the ${mcApiUrl} environment.\n`)
   );
-};
+}
 
-login().catch((error) => {
-  console.log(chalk.red(error));
-  process.exit(1);
-});
+export default run;

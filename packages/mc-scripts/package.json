@@ -101,6 +101,7 @@
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.2",
+    "@types/mock-fs": "^4.13.1",
     "@types/moment-locales-webpack-plugin": "^1.2.3",
     "@types/serve-handler": "^6.1.1",
     "mock-fs": "^5.1.2",

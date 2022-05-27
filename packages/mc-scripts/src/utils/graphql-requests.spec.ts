@@ -13,7 +13,7 @@ afterEach(() => {
 });
 beforeAll(() =>
   mockServer.listen({
-    onUnhandledRequest: 'bypass',
+    onUnhandledRequest: 'error',
   })
 );
 afterAll(() => mockServer.close());
@@ -23,13 +23,13 @@ const mcApiUrl = 'https://mc-api.europe-west1.gcp.commercetools.com';
 describe('fetch custom application data', () => {
   beforeEach(() => {
     mockServer.use(
-      graphql.query('FetchCustomApplicationFromCli', (req, res, ctx) => {
+      graphql.query('FetchCustomApplicationFromCli', (_req, res, ctx) => {
         return res(
           ctx.data({
             organizationExtensionForCustomApplication: {
-              id: 'test-id',
-              organizationId: 'org-id',
+              organizationId: 'organization-id',
               application: {
+                id: 'application-id',
                 url: 'https://test.com',
                 name: 'Test name',
                 description: 'Test description',
@@ -62,11 +62,13 @@ describe('fetch custom application data', () => {
         token: 'test-token',
       });
     expect(
-      organizationExtensionForCustomApplication.application.entryPointUriPath
+      organizationExtensionForCustomApplication?.application.entryPointUriPath
     ).toEqual('test-custom-app');
-    expect(organizationExtensionForCustomApplication.id).toEqual('test-id');
-    expect(organizationExtensionForCustomApplication.organizationId).toEqual(
-      'org-id'
+    expect(organizationExtensionForCustomApplication?.application.id).toEqual(
+      'application-id'
+    );
+    expect(organizationExtensionForCustomApplication?.organizationId).toEqual(
+      'organization-id'
     );
   });
 });
@@ -74,30 +76,28 @@ describe('fetch custom application data', () => {
 describe('register custom application', () => {
   beforeEach(() => {
     mockServer.use(
-      graphql.mutation('CreateCustomApplicationFromCli', (req, res, ctx) => {
+      graphql.mutation('CreateCustomApplicationFromCli', (_req, res, ctx) => {
         return res(
           ctx.data({
             createCustomApplication: {
-              id: 'new-test-id',
-              application: {
-                url: 'https://test.com',
-                name: 'New Test name',
-                description: 'Test description',
-                entryPointUriPath: 'new-test-custom-app',
-                icon: '<svg><path fill="#000000"></path></svg>',
-                submenuLinks: [],
-                mainMenuLink: [],
-                permissions: [
-                  {
-                    oAuthScopes: ['view_products', 'view_customers'],
-                    name: 'viewNewTestCustomApp',
-                  },
-                  {
-                    oAuthScopes: [],
-                    name: 'manageNewTestCustomApp',
-                  },
-                ],
-              },
+              id: 'application-id',
+              url: 'https://test.com',
+              name: 'New Test name',
+              description: 'Test description',
+              entryPointUriPath: 'new-test-custom-app',
+              icon: '<svg><path fill="#000000"></path></svg>',
+              submenuLinks: [],
+              mainMenuLink: [],
+              permissions: [
+                {
+                  oAuthScopes: ['view_products', 'view_customers'],
+                  name: 'viewNewTestCustomApp',
+                },
+                {
+                  oAuthScopes: [],
+                  name: 'manageNewTestCustomApp',
+                },
+              ],
             },
           })
         );
@@ -106,44 +106,45 @@ describe('register custom application', () => {
   });
   it('should match returned data', async () => {
     const createdCustomAppsData = await createCustomApplication({
-      entryPointUriPath: 'new-test-custom-app',
       mcApiUrl,
-      token: 'new-test-token',
+      token: 'token',
+      organizationId: 'organization-id',
+      data: {
+        url: 'https://test.com',
+        name: 'New Test name',
+        description: 'Test description',
+        entryPointUriPath: 'new-test-custom-app',
+        icon: '<svg><path fill="#000000"></path></svg>',
+        submenuLinks: [],
+        mainMenuLink: {
+          defaultLabel: 'Test',
+          labelAllLocales: [],
+          permissions: [],
+        },
+        permissions: [
+          {
+            oAuthScopes: ['view_products', 'view_customers'],
+            name: 'viewNewTestCustomApp',
+          },
+          {
+            oAuthScopes: [],
+            name: 'manageNewTestCustomApp',
+          },
+        ],
+      },
     });
-    expect(createdCustomAppsData.application.entryPointUriPath).toEqual(
-      'new-test-custom-app'
-    );
-    expect(createdCustomAppsData.id).toEqual('new-test-id');
+    expect(createdCustomAppsData?.id).toEqual('application-id');
   });
 });
 
 describe('update custom application', () => {
   beforeEach(() => {
     mockServer.use(
-      graphql.mutation('UpdateCustomApplicationFromCli', (req, res, ctx) => {
+      graphql.mutation('UpdateCustomApplicationFromCli', (_req, res, ctx) => {
         return res(
           ctx.data({
             updateCustomApplication: {
-              id: 'test-id',
-              application: {
-                url: 'https://test.com',
-                name: 'Updated Test name',
-                description: 'Updated Test description',
-                entryPointUriPath: 'updated-test-custom-app',
-                icon: '<svg><path fill="#000000"></path></svg>',
-                submenuLinks: [],
-                mainMenuLink: [],
-                permissions: [
-                  {
-                    oAuthScopes: ['view_products', 'view_customers'],
-                    name: 'viewNewTestCustomApp',
-                  },
-                  {
-                    oAuthScopes: [],
-                    name: 'manageNewTestCustomApp',
-                  },
-                ],
-              },
+              id: 'application-id',
             },
           })
         );
@@ -152,21 +153,42 @@ describe('update custom application', () => {
   });
   it('should match returned data', async () => {
     const updatedCustomAppsData = await updateCustomApplication({
-      entryPointUriPath: 'updated-test-custom-app',
       mcApiUrl,
-      token: 'test-token',
+      token: 'token',
+      organizationId: 'organization-id',
+      applicationId: 'application-id',
+      data: {
+        url: 'https://test.com',
+        name: 'New Test name',
+        description: 'Test description',
+        entryPointUriPath: 'new-test-custom-app',
+        icon: '<svg><path fill="#000000"></path></svg>',
+        submenuLinks: [],
+        mainMenuLink: {
+          defaultLabel: 'Test',
+          labelAllLocales: [],
+          permissions: [],
+        },
+        permissions: [
+          {
+            oAuthScopes: ['view_products', 'view_customers'],
+            name: 'viewNewTestCustomApp',
+          },
+          {
+            oAuthScopes: [],
+            name: 'manageNewTestCustomApp',
+          },
+        ],
+      },
     });
-    expect(updatedCustomAppsData.application.name).toEqual('Updated Test name');
-    expect(updatedCustomAppsData.application.description).toEqual(
-      'Updated Test description'
-    );
+    expect(updatedCustomAppsData?.id).toEqual('application-id');
   });
 });
 
 describe('fetch user organizations', () => {
   beforeEach(() => {
     mockServer.use(
-      graphql.query('FetchMyOrganizationsFromCli', (req, res, ctx) => {
+      graphql.query('FetchMyOrganizationsFromCli', (_req, res, ctx) => {
         return res(
           ctx.data({
             myOrganizations: {

@@ -3121,6 +3121,7 @@ __metadata:
     "@rollup/plugin-graphql": 1.1.0
     "@svgr/webpack": 6.2.1
     "@tsconfig/node16": ^1.0.2
+    "@types/mock-fs": ^4.13.1
     "@types/moment-locales-webpack-plugin": ^1.2.3
     "@types/prompts": ^2.0.14
     "@types/serve-handler": ^6.1.1
@@ -10292,6 +10293,15 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: 21e6681ee18cee6314dbe0f57ada48981912b76de8266f438ba2573770d60aaa8dd376baad3f20e2346696a7cca84b0aadd1737222341553a0091831a46e6ad1
+  languageName: node
+  linkType: hard
+
+"@types/mock-fs@npm:^4.13.1":
+  version: 4.13.1
+  resolution: "@types/mock-fs@npm:4.13.1"
+  dependencies:
+    "@types/node": "*"
+  checksum: a5fcf8212daa270e6aa560019a4bd28a66e6fa49c55c1373746d5894f4aa1aafa5588335194953cf014de3c77df6be67a041fb6638ead7124307370985880b6c
   languageName: node
   linkType: hard
 
