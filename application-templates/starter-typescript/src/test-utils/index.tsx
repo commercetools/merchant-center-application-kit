@@ -5,8 +5,6 @@ import {
   renderAppWithRedux,
   type TRenderAppOptions,
   type TRenderAppWithReduxOptions,
-  // type TRenderAppResult,
-  // type TRenderAppWithReduxResult,
 } from '@commercetools-frontend/application-shell/test-utils';
 import ApplicationRoutes from '../routes';
 import { entryPointUriPath } from '../constants';

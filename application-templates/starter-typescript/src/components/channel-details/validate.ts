@@ -1,11 +1,8 @@
 import TextInput from '@commercetools-uikit/text-input';
 import omitEmpty from 'omit-empty-es';
-import type { FormikErrors } from 'formik';
 import type { FormValues } from './types';
 
-type TValidate = (
-  values: FormValues
-) => void | Promise<FormikErrors<FormValues>>;
+type TValidate = (values: FormValues) => void;
 
 type TErrors = {
   key: { missing?: boolean };

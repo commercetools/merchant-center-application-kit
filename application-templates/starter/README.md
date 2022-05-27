@@ -29,7 +29,7 @@ $ create-mc-app <folder_name> --template starter
 
 ## Configuring the Custom Application
 
-Once the template has been installed, you need to check and adjust the `custom-application-config.json` file accordingly. [Reference: Custom Application Config](https://docs.commercetools.com/custom-applications/development/application-config).
+Once the template has been installed, you need to check and adjust the `custom-application-config.mjs` file accordingly. [Reference: Custom Application Config](https://docs.commercetools.com/custom-applications/development/application-config).
 
 > You can additionally configure [editor support](https://docs.commercetools.com/custom-applications/development/application-config#editor-support) to provide hints and code completion.
 
@@ -41,12 +41,12 @@ To develop the Custom Application in development mode, use the `start` command i
 
 Important commands:
 
-* `test`: runs tests using Jest.
-* `build`: [builds the production bundles](https://docs.commercetools.com/custom-applications/development/available-scripts#mc-scripts-build) and outputs them in `dist`.
-* `compile-html`: [compiles the application](https://docs.commercetools.com/custom-applications/development/available-scripts#mc-scripts-compile-html) `index.html` based on the application config.
-* `extract-intl`: extracts [messages for translations](https://docs.commercetools.com/custom-applications/development/translations).
+- `test`: runs tests using Jest.
+- `build`: [builds the production bundles](https://docs.commercetools.com/custom-applications/development/available-scripts#mc-scripts-build) and outputs them in `dist`.
+- `compile-html`: [compiles the application](https://docs.commercetools.com/custom-applications/development/available-scripts#mc-scripts-compile-html) `index.html` based on the application config.
+- `extract-intl`: extracts [messages for translations](https://docs.commercetools.com/custom-applications/development/translations).
 
 Other useful commands:
 
-* `compile-html:local` and `start:prod:local`: use these commands to test the application locally in production mode.
-* `versions:*`: use these commands to update dependency versions in bulk related to Custom Applications.
+- `compile-html:local` and `start:prod:local`: use these commands to test the application locally in production mode.
+- `versions:*`: use these commands to update dependency versions in bulk related to Custom Applications.

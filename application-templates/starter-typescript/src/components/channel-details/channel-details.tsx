@@ -22,6 +22,7 @@ import {
   useShowApiErrorNotification,
   type TApiErrorNotificationOptions,
 } from '@commercetools-frontend/actions-global';
+import type { TChannel } from '../../../types/generated/ctp';
 import { PERMISSIONS } from '../../constants';
 import {
   useChannelDetailsUpdater,
@@ -53,34 +54,32 @@ const ChannelDetails = (props: ChannelDetailsProps) => {
   const channelDetailsUpdater = useChannelDetailsUpdater();
   const handleSubmit = useCallback(
     async (formikValues, formikHelpers) => {
-      if (channel) {
-        const data = formValuesToDoc(formikValues);
-        try {
-          await channelDetailsUpdater.execute({
-            originalDraft: channel,
-            nextDraft: data,
-          });
-          showNotification({
-            kind: 'success',
-            domain: DOMAINS.SIDE,
-            text: intl.formatMessage(messages.channelUpdated, {
-              channelName: formatLocalizedString(formikValues, {
-                key: 'name',
-                locale: dataLocale,
-                fallbackOrder: projectLanguages,
-              }),
+      const data = formValuesToDoc(formikValues);
+      try {
+        await channelDetailsUpdater.execute({
+          originalDraft: channel || ({} as TChannel),
+          nextDraft: data,
+        });
+        showNotification({
+          kind: 'success',
+          domain: DOMAINS.SIDE,
+          text: intl.formatMessage(messages.channelUpdated, {
+            channelName: formatLocalizedString(formikValues, {
+              key: 'name',
+              locale: dataLocale,
+              fallbackOrder: projectLanguages,
             }),
+          }),
+        });
+      } catch (graphQLErrors) {
+        const transformedErrors = transformErrors(graphQLErrors);
+        if (transformedErrors.unmappedErrors.length > 0)
+          showApiErrorNotification({
+            errors:
+              transformedErrors.unmappedErrors as TApiErrorNotificationOptions['errors'],
           });
-        } catch (graphQLErrors) {
-          const transformedErrors = transformErrors(graphQLErrors);
-          if (transformedErrors.unmappedErrors.length > 0)
-            showApiErrorNotification({
-              errors:
-                transformedErrors.unmappedErrors as TApiErrorNotificationOptions['errors'],
-            });
 
-          formikHelpers.setErrors(transformedErrors.formErrors);
-        }
+        formikHelpers.setErrors(transformedErrors.formErrors);
       }
     },
     [

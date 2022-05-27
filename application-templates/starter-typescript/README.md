@@ -5,7 +5,7 @@
   <b>Custom Application Starter in TypeScript</b>
 </p>
 
-This is the `starter` template to [develop Custom Applications](https://docs.commercetools.com/custom-applications/) for the Merchant Center.
+This is the [typescript](https://www.typescriptlang.org/) `starter` template to [develop Custom Applications](https://docs.commercetools.com/custom-applications/) for the Merchant Center.
 
 ## Installation
 
@@ -29,7 +29,7 @@ $ create-mc-app <folder_name> --template starter-typescript
 
 ## Configuring the Custom Application
 
-Once the template has been installed, you need to check and adjust the `custom-application-config.mjs` (or alternatively `custom-application-config.json`) file accordingly. [Reference: Custom Application Config](https://docs.commercetools.com/custom-applications/development/application-config).
+Once the template has been installed, you need to check and adjust the `custom-application-config.mjs` file accordingly. [Reference: Custom Application Config](https://docs.commercetools.com/custom-applications/development/application-config).
 
 > You can additionally configure [editor support](https://docs.commercetools.com/custom-applications/development/application-config#editor-support) to provide hints and code completion.
 
