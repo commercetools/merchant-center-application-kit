@@ -3301,6 +3301,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@commercetools-frontend/tsconfig@workspace:packages/tsconfig":
+  version: 0.0.0-use.local
+  resolution: "@commercetools-frontend/tsconfig@workspace:packages/tsconfig"
+  languageName: unknown
+  linkType: soft
+
 "@commercetools-frontend/url-utils@21.3.4, @commercetools-frontend/url-utils@workspace:packages/url-utils":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/url-utils@workspace:packages/url-utils"
