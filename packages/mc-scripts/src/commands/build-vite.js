@@ -28,11 +28,7 @@ const execute = async () => {
   // Write `index.html` (template) into the `/public` folder.
   fs.writeFileSync(paths.appIndexHtml, html, { encoding: 'utf8' });
 
-  // TODO: allow to pass additional config options.
-  // * `define`
-  // * `plugins`
   await build({
-    configFile: false,
     root: paths.appRoot,
     define: {
       'process.env.DEBUG': JSON.stringify(false),
