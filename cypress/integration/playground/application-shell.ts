@@ -40,9 +40,11 @@ describe('navigation menu', () => {
   it('should stay collapsed for small viewports', () => {
     cy.viewport(900, 800);
     cy.findAllByText('Initial').should('exist');
-    cy.percySnapshot(cy.state('runnable').fullTitle(), {
-      widths: [900],
-    });
+    cy.percySnapshot(
+      // @ts-ignore
+      cy.state('runnable').fullTitle(),
+      { widths: [900] }
+    );
   });
   it('should expand menu when clicking on the expand button', () => {
     cy.findAllByText('Initial').should('exist');
