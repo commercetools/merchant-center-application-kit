@@ -47,7 +47,6 @@ packages/
   react-notifications/
   sdk/
   sentry/
-  tsconfig/
   url-utils/
 ```
 
@@ -115,10 +114,6 @@ This package contains React components to render notification (e.g. error messag
 #### [sdk](./packages/sdk)
 
 This package contains React components to perform requests in a declarative way. Underneath it uses our [js-sdk](https://commercetools.github.io/nodejs/sdk/) to perform the network requests.
-
-#### [tsconfig](./packages/tsconfig)
-
-This package contains a TSConfig file used by a Merchant Center application in TypeScript.
 
 ## Setting up a local copy
 
