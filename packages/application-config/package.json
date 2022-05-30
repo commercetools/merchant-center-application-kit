@@ -22,6 +22,7 @@
   "files": [
     "dist",
     "ssr",
+    "tsconfig",
     "scripts",
     "schema.json",
     "package.json",
