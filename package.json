@@ -76,8 +76,7 @@
       "!packages/jest-preset-mc-app",
       "!packages/jest-stylelint-runner",
       "!packages/mc-scripts",
-      "!packages-backend/eslint-config-node",
-      "!packages/tsconfig"
+      "!packages-backend/eslint-config-node"
     ]
   },
   "dependencies": {
