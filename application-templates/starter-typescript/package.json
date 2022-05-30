@@ -35,7 +35,6 @@
     "@commercetools-frontend/mc-scripts": "21.6.0",
     "@commercetools-frontend/permissions": "21.6.0",
     "@commercetools-frontend/sdk": "21.6.0",
-    "@commercetools-frontend/tsconfig": "0.1.0",
     "@commercetools-test-data/channel": "3.1.0",
     "@commercetools-test-data/commons": "3.0.2",
     "@commercetools-test-data/core": "3.0.2",

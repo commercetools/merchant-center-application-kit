@@ -116,10 +116,6 @@ This package contains React components to render notification (e.g. error messag
 
 This package contains React components to perform requests in a declarative way. Underneath it uses our [js-sdk](https://commercetools.github.io/nodejs/sdk/) to perform the network requests.
 
-#### [tsconfig](./packages/tsconfig)
-
-This package contains a TSConfig file used by a Merchant Center application in TypeScript.
-
 ## Setting up a local copy
 
 1. Clone the repository

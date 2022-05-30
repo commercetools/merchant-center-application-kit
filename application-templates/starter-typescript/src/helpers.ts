@@ -36,22 +36,22 @@ type LocalizedField = {
   value: string;
 };
 
-type TActionPayloadWithNameProperty = Record<'name', LocalizedField>;
+type TChangeNameActionPayload = Record<'name', LocalizedField>;
+type SyncAction = { action: string; [x: string]: unknown };
+type GraphqlUpdateAction = Record<string, Record<string, unknown>>;
 
-const getNameFromPayload = (payload: TActionPayloadWithNameProperty) => ({
+const getNameFromPayload = (payload: TChangeNameActionPayload) => ({
   name: transformLocalizedStringToLocalizedField(payload.name),
 });
 
 const hasActionPayloadNameProperty = (
   actionPayload: Record<string, unknown>
-): actionPayload is TActionPayloadWithNameProperty => {
-  return Boolean((actionPayload as TActionPayloadWithNameProperty)?.name);
+): actionPayload is TChangeNameActionPayload => {
+  return Boolean((actionPayload as TChangeNameActionPayload)?.name);
 };
 
-type Action = { action: string; [x: string]: unknown };
-
 const convertAction = (
-  actionName: Action['action'],
+  actionName: SyncAction['action'],
   actionPayload: Record<string, unknown>
 ) => ({
   [actionName]:
@@ -60,9 +60,8 @@ const convertAction = (
       : actionPayload,
 });
 
-type ConvertedAction = Record<Action['action'], Record<string, unknown>>;
-export const createGraphQlUpdateActions = (actions: Action[]) =>
-  actions.reduce<ConvertedAction[]>(
+export const createGraphQlUpdateActions = (actions: SyncAction[]) =>
+  actions.reduce<GraphqlUpdateAction[]>(
     (previousActions, { action: actionName, ...actionPayload }) => [
       ...previousActions,
       convertAction(actionName, actionPayload),
