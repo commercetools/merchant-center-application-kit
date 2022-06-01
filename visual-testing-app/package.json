@@ -14,6 +14,7 @@
     "@commercetools-frontend/constants": "21.3.4",
     "@commercetools-frontend/react-notifications": "21.6.0",
     "@commercetools-uikit/accessible-button": "^15.0.0",
+    "@commercetools-uikit/card": "^15.0.0",
     "@commercetools-uikit/design-system": "^15.0.0",
     "@commercetools-uikit/grid": "^15.0.0",
     "@commercetools-uikit/icon-button": "^15.0.0",

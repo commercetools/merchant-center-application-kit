@@ -87,15 +87,17 @@ const PublicPageLayout: FC<TProps> = (props) => {
         <Spacings.Stack scale="s">
           <PublicPageLayoutContent {...props} />
 
-          <Spacings.Stack
-            scale="xs"
-            alignItems={props.contentScale === 'wide' ? 'center' : 'stretch'}
-          >
-            {props.legalMessage && (
-              <Text.Body tone="inverted">{props.legalMessage}</Text.Body>
-            )}
-            <Text.Body tone="inverted">{`${year} © commercetools`}</Text.Body>
-          </Spacings.Stack>
+          <PublicPageLayoutContent contentScale={props.contentScale}>
+            <Spacings.Stack
+              scale="xs"
+              alignItems={props.contentScale === 'wide' ? 'center' : 'stretch'}
+            >
+              {props.legalMessage && (
+                <Text.Body tone="inverted">{props.legalMessage}</Text.Body>
+              )}
+              <Text.Body tone="inverted">{`${year} © commercetools`}</Text.Body>
+            </Spacings.Stack>
+          </PublicPageLayoutContent>
         </Spacings.Stack>
       </Spacings.Stack>
     </Container>
