@@ -3823,7 +3823,7 @@ __metadata:
   peerDependencies:
     "@apollo/client": 3.x
     "@testing-library/react": 12.x
-    "@testing-library/react-hooks": 8.x
+    "@testing-library/react-hooks": 7.x || 8.x
     react: 17.x
     react-dom: 17.x
     react-intl: 5.x
