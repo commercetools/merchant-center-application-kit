@@ -44,27 +44,27 @@ const getNameFromPayload = (payload: TChangeNameActionPayload) => ({
   name: transformLocalizedStringToLocalizedField(payload.name),
 });
 
-const hasActionPayloadNameProperty = (
+const isChangeNameActionPayload = (
   actionPayload: Record<string, unknown>
 ): actionPayload is TChangeNameActionPayload => {
   return Boolean((actionPayload as TChangeNameActionPayload)?.name);
 };
 
-const convertAction = (
-  actionName: SyncAction['action'],
-  actionPayload: Record<string, unknown>
-) => ({
-  [actionName]:
-    actionName === 'changeName' && hasActionPayloadNameProperty(actionPayload)
-      ? getNameFromPayload(actionPayload)
-      : actionPayload,
-});
+const convertAction = (action: SyncAction): GraphqlUpdateAction => {
+  const { action: actionName, ...actionPayload } = action;
+  return {
+    [actionName]:
+      actionName === 'changeName' && isChangeNameActionPayload(actionPayload)
+        ? getNameFromPayload(actionPayload as TChangeNameActionPayload)
+        : actionPayload,
+  };
+};
 
 export const createGraphQlUpdateActions = (actions: SyncAction[]) =>
   actions.reduce<GraphqlUpdateAction[]>(
-    (previousActions, { action: actionName, ...actionPayload }) => [
+    (previousActions, syncAction) => [
       ...previousActions,
-      convertAction(actionName, actionPayload),
+      convertAction(syncAction),
     ],
     []
   );

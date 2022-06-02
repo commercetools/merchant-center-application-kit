@@ -26,7 +26,7 @@ beforeAll(() => {
     // more: https://mswjs.io/docs/api/setup-worker/start#onunhandledrequest
     onUnhandledRequest: 'error',
   });
-  jest.spyOn(console, 'error').mockImplementation(jest.fn()); // we're silencing the expected console.error calls
+  jest.spyOn(console, 'error').mockImplementation(jest.fn()); // This is to silence logs raised by the tests where we mock a response error from the server
 });
 afterAll(() => {
   mockServer.close();
