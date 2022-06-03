@@ -2,18 +2,12 @@
 '@commercetools-frontend/application-config': minor
 ---
 
-Expose a base `tsconfig.json` file to extend in Custom Applications.
+Expose a base `tsconfig-mc-app.json` file to be used in a Custom Application TypeScript project.
 
-Install:
-
-```bash
-$ npm install --save @commercetools-frontend/application-config
-```
-
-Add to your `tsconfig.json`:
+In your `tsconfig.json` file, extend the base config from the `@commercetools-frontend/application-config` package:
 
 ```json
 {
-  "extends": "@commercetools-frontend/application-config/tsconfig/tsconfig.json"
+  "extends": "@commercetools-frontend/application-config/tsconfig-mc-app.json"
 }
 ```

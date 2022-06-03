@@ -1,11 +1,12 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Custom Application",
+
   "compilerOptions": {
+    "allowJs": false,
     "allowSyntheticDefaultImports": true,
-    "emitDecoratorMetadata": false,
-    "experimentalDecorators": false,
     "esModuleInterop": true,
     "importHelpers": true,
-    // See https://devblogs.microsoft.com/typescript/typescript-and-babel-7/
     "isolatedModules": true,
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
@@ -15,19 +16,16 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
-    "resolveJsonModule": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "preserveSymlinks": true,
-    "pretty": true,
     "removeComments": true,
+    "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
     "strictNullChecks": true,
     "stripInternal": true,
-    "target": "ES2022",
-    "allowJs": false,
-    "typeRoots": ["@types", "@types-extensions", "node_modules/@types"]
+    "target": "ES2022"
   }
 }
