@@ -76,7 +76,7 @@ jobs:
 
       - name: Initialize GitHub Deployment
         if: ${{ env.DEPLOY_DOCS_ENV == 'Preview' }}
-        uses: bobheadxi/deployments@v1.1.0
+        uses: bobheadxi/deployments@v1.2.0
         id: start-deployment
         with:
           step: start
@@ -103,10 +103,12 @@ jobs:
 
       - name: Update GitHub Deployment Status
         if: ${{ env.DEPLOY_DOCS_ENV == 'Preview' }}
-        uses: bobheadxi/deployments@v1.1.0
+        uses: bobheadxi/deployments@v1.2.0
         id: finish_deployment
         with:
           step: finish
+          override: false
+          auto_inactive: false
           token: ${{ secrets.GITHUB_TOKEN }}
           status: ${{ job.status }}
           env: ${{ steps.start-deployment.outputs.env }}
