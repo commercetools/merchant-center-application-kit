@@ -23,7 +23,7 @@ function createMcDevAuthenticationMiddleware(
     if (request.originalUrl === '/api/graphql') {
       response.statusCode = 404;
       response.setHeader('Content-Type', 'application/json');
-      response.end(
+      response.send(
         JSON.stringify({
           message: `This GraphQL endpoint is only available in production in the [Merchant Center Proxy Router](https://docs.commercetools.com/custom-applications/concepts/merchant-center-proxy-router). Please check that you are not calling this endpoint in development mode.`,
         })
@@ -42,7 +42,7 @@ function createMcDevAuthenticationMiddleware(
           if (isDevAuthenticationMiddlewareDisabled) {
             next();
           } else {
-            response.end(htmlLogin);
+            response.send(htmlLogin);
           }
           return;
         }
@@ -52,7 +52,7 @@ function createMcDevAuthenticationMiddleware(
         if (isDevAuthenticationMiddlewareDisabled) {
           next();
         } else {
-          response.end(htmlLogin);
+          response.send(htmlLogin);
         }
         return;
       }
@@ -62,7 +62,7 @@ function createMcDevAuthenticationMiddleware(
         if (isDevAuthenticationMiddlewareDisabled) {
           next();
         } else {
-          response.end(htmlLogout);
+          response.send(htmlLogout);
         }
         return;
       }
