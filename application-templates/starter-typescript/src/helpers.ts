@@ -2,6 +2,7 @@ import {
   transformLocalizedStringToLocalizedField,
   transformLocalizedFieldToLocalizedString,
 } from '@commercetools-frontend/l10n';
+import type { LocalizedString } from '@commercetools-frontend/l10n/dist/declarations/src/types';
 import { ApolloError, type ServerError } from '@apollo/client';
 import type { TChannel } from '../types/generated/ctp';
 
@@ -31,12 +32,7 @@ export const extractErrorFromGraphQlResponse = (graphQlResponse: unknown) => {
   return graphQlResponse;
 };
 
-type LocalizedField = {
-  locale: string;
-  value: string;
-};
-
-type TChangeNameActionPayload = Record<'name', LocalizedField>;
+type TChangeNameActionPayload = Record<'name', LocalizedString>;
 type SyncAction = { action: string; [x: string]: unknown };
 type GraphqlUpdateAction = Record<string, Record<string, unknown>>;
 
@@ -55,7 +51,7 @@ const convertAction = (action: SyncAction): GraphqlUpdateAction => {
   return {
     [actionName]:
       actionName === 'changeName' && isChangeNameActionPayload(actionPayload)
-        ? getNameFromPayload(actionPayload as TChangeNameActionPayload)
+        ? getNameFromPayload(actionPayload)
         : actionPayload,
   };
 };
