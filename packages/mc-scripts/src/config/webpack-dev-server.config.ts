@@ -56,7 +56,9 @@ const createWebpackDevServerConfig = ({
         throw new Error('webpack-dev-server is not defined');
       }
 
-      devServer.app?.use(createMcDevAuthenticationMiddleware(applicationConfig));
+      devServer.app?.use(
+        createMcDevAuthenticationMiddleware(applicationConfig)
+      );
 
       return middlewares;
     },
