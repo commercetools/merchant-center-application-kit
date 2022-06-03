@@ -47,7 +47,6 @@ packages/
   react-notifications/
   sdk/
   sentry/
-  tsconfig/
   url-utils/
 ```
 

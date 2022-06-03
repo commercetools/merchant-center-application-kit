@@ -6,7 +6,7 @@
 
 Adds a new Custom Application starter template in TypeScript including the bare minimum configuration setup:
 
-- `tsconfig.json` extended from `@commercetools-frontend/application-config/tsconfig/tsconfig.json`
+- `tsconfig.json` extended from `@commercetools-frontend/application-config/tsconfig-mc-app.json`
 - `prettier` config
 - `jest` config
 - linters adjustments to include TS file extensions `ts, tsx`
