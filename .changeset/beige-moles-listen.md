@@ -2,7 +2,7 @@
 '@commercetools-frontend/application-config': minor
 ---
 
-Expose a base `tsconfig.json` file to extend in Custom Applications.
+Exposes a base `tsconfig.json` file to extend in Custom Applications.
 
 Install:
 

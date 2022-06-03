@@ -21,9 +21,9 @@
   },
   "files": [
     "dist",
+    "scripts",
     "ssr",
     "tsconfig",
-    "scripts",
     "schema.json",
     "tsconfig-mc-app.json",
     "package.json",
