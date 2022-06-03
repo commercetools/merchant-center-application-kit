@@ -1,6 +1,5 @@
 import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 
-import { Link } from 'react-router-dom';
 import { css } from '@emotion/react';
 import Spacings from '@commercetools-uikit/spacings';
 import { customProperties } from '@commercetools-uikit/design-system';
@@ -51,9 +50,9 @@ const AppBar = (props: Props) => {
           {!props.user ? (
             <img src={LogoSVG} width="100%" alt="Logo" />
           ) : (
-            <Link to={`/${previousProjectKey || ''}`}>
+            <a href={`/${previousProjectKey || ''}`}>
               <img src={LogoSVG} width="100%" alt="Logo" />
-            </Link>
+            </a>
           )}
         </div>
 
