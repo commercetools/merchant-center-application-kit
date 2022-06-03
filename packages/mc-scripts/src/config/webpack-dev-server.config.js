@@ -45,14 +45,12 @@ module.exports = ({ port, publicPath }) => ({
   hot: true,
   https: false,
   port,
-  // Enable HTTPS if the HTTPS environment variable is set to 'true'
-  // `proxy` is run between `before` and `after` `webpack-dev-server` hooks
   setupMiddlewares(middlewares, devServer) {
     if (!devServer) {
       throw new Error('webpack-dev-server is not defined');
     }
 
-    middlewares.push(createMcDevAuthenticationMiddleware(applicationConfig));
+    devServer.app.use(createMcDevAuthenticationMiddleware(applicationConfig));
 
     return middlewares;
   },
