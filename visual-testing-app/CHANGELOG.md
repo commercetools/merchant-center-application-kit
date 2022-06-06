@@ -1,5 +1,14 @@
 # @commercetools-local/visual-testing-app
 
+## 19.4.1
+
+### Patch Changes
+
+- [#2633](https://github.com/commercetools/merchant-center-application-kit/pull/2633) [`7e343017`](https://github.com/commercetools/merchant-center-application-kit/commit/7e343017f8ebe12da3bf56a27c40541561925857) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Fix alignment of public page footer element.
+
+- Updated dependencies [[`7e343017`](https://github.com/commercetools/merchant-center-application-kit/commit/7e343017f8ebe12da3bf56a27c40541561925857)]:
+  - @commercetools-frontend/application-components@21.7.0
+
 ## 19.4.0
 
 ### Minor Changes

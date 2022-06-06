@@ -1,5 +1,20 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.7.0
+
+### Patch Changes
+
+- [#2626](https://github.com/commercetools/merchant-center-application-kit/pull/2626) [`eea4f5fa`](https://github.com/commercetools/merchant-center-application-kit/commit/eea4f5fa49f82b9065ca34d3aadb507449784e9f) Thanks [@emmenko](https://github.com/emmenko)! - Fix dev middleware usage for local login flow (internal usage only)"
+
+* [#2630](https://github.com/commercetools/merchant-center-application-kit/pull/2630) [`c0516c5b`](https://github.com/commercetools/merchant-center-application-kit/commit/c0516c5be783faca108d2d9e7e112210de353465) Thanks [@emmenko](https://github.com/emmenko)! - > These changes are only relevant when using the experimental Vite bundler (`ENABLE_EXPERIMENTAL_VITE_BUNDLER=true`).
+
+  Allow to load a Vite config in addition to the default config. This is useful for using extra Rollup/Vite plugins, or other Vite options.
+
+* Updated dependencies [[`0b3ea758`](https://github.com/commercetools/merchant-center-application-kit/commit/0b3ea7585116df5e981609fc219491dc279b3028), [`eea4f5fa`](https://github.com/commercetools/merchant-center-application-kit/commit/eea4f5fa49f82b9065ca34d3aadb507449784e9f)]:
+  - @commercetools-frontend/application-config@21.7.0
+  - @commercetools-frontend/mc-dev-authentication@21.7.0
+  - @commercetools-frontend/mc-html-template@21.7.0
+
 ## 21.6.0
 
 ### Minor Changes

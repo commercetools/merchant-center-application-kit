@@ -1,5 +1,19 @@
 # @commercetools-frontend/application-config
 
+## 21.7.0
+
+### Minor Changes
+
+- [#2628](https://github.com/commercetools/merchant-center-application-kit/pull/2628) [`0b3ea758`](https://github.com/commercetools/merchant-center-application-kit/commit/0b3ea7585116df5e981609fc219491dc279b3028) Thanks [@kark](https://github.com/kark)! - Expose a base `tsconfig-mc-app.json` file to be used in a Custom Application TypeScript project.
+
+  In your `tsconfig.json` file, extend the base config from the `@commercetools-frontend/application-config` package:
+
+  ```json
+  {
+    "extends": "@commercetools-frontend/application-config/tsconfig-mc-app.json"
+  }
+  ```
+
 ## 21.6.0
 
 ### Patch Changes
