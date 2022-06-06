@@ -1,5 +1,22 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 21.7.0
+
+### Patch Changes
+
+- [#2627](https://github.com/commercetools/merchant-center-application-kit/pull/2627) [`5a8c301d`](https://github.com/commercetools/merchant-center-application-kit/commit/5a8c301d5627df1e8bb6dcf8870575c6ca32c0a7) Thanks [@emmenko](https://github.com/emmenko)! - Add proper entry point for Jest preset for `typescript`.
+
+  ```diff
+  -const jestPresetForTypeScript = require('@commercetools-frontend/jest-preset-mc-app/jest-preset-for-typescript');
+
+  module.exports = {
+  -  ...jestPresetForTypeScript,
+  +  preset: '@commercetools-frontend/jest-preset-mc-app/typescript'
+  };
+  ```
+
+  The import `@commercetools-frontend/jest-preset-mc-app/jest-preset-for-typescript` still works for backwards compatibility.
+
 ## 21.6.0
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-dev-authentication
 
+## 21.7.0
+
+### Patch Changes
+
+- [#2626](https://github.com/commercetools/merchant-center-application-kit/pull/2626) [`eea4f5fa`](https://github.com/commercetools/merchant-center-application-kit/commit/eea4f5fa49f82b9065ca34d3aadb507449784e9f) Thanks [@emmenko](https://github.com/emmenko)! - Fix dev middleware usage for local login flow (internal usage only)"
+
 ## 21.6.0
 
 ### Patch Changes
