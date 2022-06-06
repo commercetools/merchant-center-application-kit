@@ -125,7 +125,7 @@ const Channels = (props) => {
             totalItems={channelsPaginatedResult.total}
           />
           <Switch>
-            <SuspendedRoute path={`${match.url}/:id`}>
+            <SuspendedRoute path={`${match.path}/:id`}>
               <ChannelDetails onClose={() => push(`${match.url}`)} />
             </SuspendedRoute>
           </Switch>
