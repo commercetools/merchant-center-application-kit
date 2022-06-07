@@ -3356,83 +3356,56 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-test-data/channel@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@commercetools-test-data/channel@npm:3.1.0"
+"@commercetools-test-data/channel@npm:3.1.1":
+  version: 3.1.1
+  resolution: "@commercetools-test-data/channel@npm:3.1.1"
   dependencies:
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
-    "@commercetools-test-data/commons": 3.1.0
-    "@commercetools-test-data/core": 3.1.0
-    "@commercetools-test-data/utils": 3.1.0
+    "@commercetools-test-data/commons": 3.1.1
+    "@commercetools-test-data/core": 3.1.1
+    "@commercetools-test-data/utils": 3.1.1
     "@commercetools/platform-sdk": ^2.7.0
-    "@faker-js/faker": ^6.2.0
-  checksum: 9b50116b0ab4b9a9b7253c0f85f326386b5bfd2b701e5d5b24b5582a634ca5f4f5f92910e77bc44c0f19437797ea22a814e54324c0df9ae0d8afbabd1ca58bc8
+    "@faker-js/faker": ^7.0.0
+  checksum: ef1dba22b73d6c9b87e453c9b6bc69c4be75ac4975cd42e436c1d3f02ac3671824a865d829f71d3ecf84185abac2aaed06981e79b73ccbea43cd71c054d6ccc4
   languageName: node
   linkType: hard
 
-"@commercetools-test-data/commons@npm:3.0.2":
-  version: 3.0.2
-  resolution: "@commercetools-test-data/commons@npm:3.0.2"
+"@commercetools-test-data/commons@npm:3.1.1":
+  version: 3.1.1
+  resolution: "@commercetools-test-data/commons@npm:3.1.1"
   dependencies:
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
-    "@commercetools-test-data/core": 3.0.2
+    "@commercetools-test-data/core": 3.1.1
     "@commercetools/platform-sdk": ^2.7.0
-    "@faker-js/faker": ^6.2.0
+    "@faker-js/faker": ^7.0.0
     lodash: ^4.17.21
-  checksum: 3434bcf4b76526f41007def2bda216cf6006f0af61882b214905c5eb55e57d5d92c298b34c5632d7620a02c52c4dc6a3a9d8bbdab6956ae4c19c2db4cc5eeb29
+  checksum: 8c5a0403bc6e6170d1e7ffa030f8cb0b96a8f40f49f73ddbb0197c18edb063aa0668e03b8a073b3d04f35d84a40f637a6bb456bd028f7d45f982f05b16fb889b
   languageName: node
   linkType: hard
 
-"@commercetools-test-data/commons@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@commercetools-test-data/commons@npm:3.1.0"
+"@commercetools-test-data/core@npm:3.1.1":
+  version: 3.1.1
+  resolution: "@commercetools-test-data/core@npm:3.1.1"
   dependencies:
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
-    "@commercetools-test-data/core": 3.1.0
-    "@commercetools/platform-sdk": ^2.7.0
-    "@faker-js/faker": ^6.2.0
-    lodash: ^4.17.21
-  checksum: 44fb2e5d1f1bd6c39b7e724daef52411c05b73c2847e77386d5d9d1f3ad53a7f66075487e185ae9da22c2778291e36ed76b78a205403ebfb154d1f7114cf1ab4
-  languageName: node
-  linkType: hard
-
-"@commercetools-test-data/core@npm:3.0.2":
-  version: 3.0.2
-  resolution: "@commercetools-test-data/core@npm:3.0.2"
-  dependencies:
-    "@babel/runtime": ^7.17.9
-    "@babel/runtime-corejs3": ^7.17.9
-    "@faker-js/faker": ^6.2.0
+    "@faker-js/faker": ^7.0.0
     "@types/lodash": ^4.14.182
     lodash: ^4.17.21
-  checksum: 0e943bc038fd8a79b13d3179e310dfc6b661aa11f6da00a4c9d30c933b83b981f7861ab52cdcf09625eb0f5596e867150794470efa0318c199d7aced90822f99
+  checksum: ce2cf036bf5db03053d90d8d54a771f4555061527d2c708eae7344785c10b90ee8e2317973d0ef1637f1027c6628664f788090989d4e9474ea9bc3ed7d80cea0
   languageName: node
   linkType: hard
 
-"@commercetools-test-data/core@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@commercetools-test-data/core@npm:3.1.0"
+"@commercetools-test-data/utils@npm:3.1.1":
+  version: 3.1.1
+  resolution: "@commercetools-test-data/utils@npm:3.1.1"
   dependencies:
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
-    "@faker-js/faker": ^6.2.0
-    "@types/lodash": ^4.14.182
-    lodash: ^4.17.21
-  checksum: 8511acaa65e265e4e79435f0c5d03d8d6ca55254f51d3feec7a178e2438819af6a096a2749e88886ceddac7827f518aa83b2d680d6ed1c1424469c8e45408467
-  languageName: node
-  linkType: hard
-
-"@commercetools-test-data/utils@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@commercetools-test-data/utils@npm:3.1.0"
-  dependencies:
-    "@babel/runtime": ^7.17.9
-    "@babel/runtime-corejs3": ^7.17.9
-    "@faker-js/faker": ^6.2.0
-  checksum: 6045ecaed1a5c6296555349e62e71a1ba8ecf6416c2bf9ec8624c451263e39541b336c98632e22bf018482eaf1f3a535d81a53a63c47fa5508d667980bd8a639
+    "@faker-js/faker": ^7.0.0
+  checksum: 0cf54c9551faf75405fe3260587002d227c0e477462008ab90c69ae5d42bf32386b54ad9d63060949e17b053c6bf4d007be14ade1d6b3895b4de9b4d6c7833e5
   languageName: node
   linkType: hard
 
@@ -5469,10 +5442,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@faker-js/faker@npm:^6.2.0":
-  version: 6.3.1
-  resolution: "@faker-js/faker@npm:6.3.1"
-  checksum: 05071e952248f4565218a95b089ef8f616130c6ff914bb416ba7c891f81d123b637c2abe8aa2eb7b207b5d4b8bd9c75c8c2133019d2d11db4176948737a95813
+"@faker-js/faker@npm:^7.0.0":
+  version: 7.2.0
+  resolution: "@faker-js/faker@npm:7.2.0"
+  checksum: 550d5bc4ae3b8764903aa67101aa0a3f48189332c633605850c70fb16ee25e44a00ab3ce73fa30a3b346c92e7c509bd4f1a2709bdcf2abaa4cdf28bd2990a455
   languageName: node
   linkType: hard
 
@@ -26446,7 +26419,7 @@ __metadata:
     "@changesets/changelog-github": 0.4.4
     "@changesets/cli": 2.22.0
     "@commercetools-docs/writing-style": 3.1.1
-    "@commercetools-test-data/core": 3.0.2
+    "@commercetools-test-data/core": 3.1.1
     "@commercetools-uikit/design-system": ^15.0.0
     "@commercetools/github-labels": 1.1.0
     "@commitlint/cli": 16.2.4
@@ -26537,9 +26510,9 @@ __metadata:
     "@commercetools-frontend/mc-scripts": 21.6.0
     "@commercetools-frontend/permissions": 21.6.0
     "@commercetools-frontend/sdk": 21.6.0
-    "@commercetools-test-data/channel": 3.1.0
-    "@commercetools-test-data/commons": 3.0.2
-    "@commercetools-test-data/core": 3.0.2
+    "@commercetools-test-data/channel": 3.1.1
+    "@commercetools-test-data/commons": 3.1.1
+    "@commercetools-test-data/core": 3.1.1
     "@commercetools-uikit/constraints": ^15.0.0
     "@commercetools-uikit/data-table": ^15.0.0
     "@commercetools-uikit/flat-button": ^15.0.0
@@ -26605,8 +26578,9 @@ __metadata:
     "@commercetools-frontend/mc-scripts": 21.7.0
     "@commercetools-frontend/permissions": 21.6.0
     "@commercetools-frontend/sdk": 21.6.0
-    "@commercetools-test-data/commons": 3.0.2
-    "@commercetools-test-data/core": 3.0.2
+    "@commercetools-test-data/channel": 3.1.1
+    "@commercetools-test-data/commons": 3.1.1
+    "@commercetools-test-data/core": 3.1.1
     "@commercetools-uikit/constraints": ^15.0.0
     "@commercetools-uikit/data-table": ^15.0.0
     "@commercetools-uikit/flat-button": ^15.0.0

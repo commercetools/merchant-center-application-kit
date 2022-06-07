@@ -8,9 +8,8 @@ import {
   mapResourceAccessToAppliedPermissions,
 } from '@commercetools-frontend/application-shell/test-utils';
 import { buildGraphqlList } from '@commercetools-test-data/core';
-import { LocalizedString } from '@commercetools-test-data/commons';
 import { renderApplicationWithRedux } from '../../test-utils';
-import * as ChannelMock from '../../test-utils/test-data/channel';
+import * as Channel from '@commercetools-test-data/channel';
 import { entryPointUriPath, PERMISSIONS } from '../../constants';
 import ApplicationRoutes from '../../routes';
 
@@ -23,6 +22,7 @@ beforeAll(() => {
     onUnhandledRequest: 'error',
   });
   jest.spyOn(console, 'error').mockImplementation(jest.fn()); // This is to silence logs raised by the tests where we mock a response error from the server
+  jest.spyOn(console, 'warn').mockImplementation(jest.fn()); // This is to silence warnings raised by faker
 });
 afterAll(() => {
   mockServer.close();
@@ -32,8 +32,6 @@ afterAll(() => {
 const id = 'b8a40b99-0c11-43bc-8680-fc570d624747';
 const key = 'test-key';
 const newKey = 'new-test-key';
-const name = 'test-name';
-const newName = 'new-test-name';
 
 const renderApp = (options = {}, includeManagePermissions = true) => {
   const route =
@@ -58,10 +56,7 @@ const fetchChannelDetailsQueryHandler = graphql.query(
   (_req, res, ctx) => {
     return res(
       ctx.data({
-        channel: ChannelMock.random()
-          .key(key)
-          .name(LocalizedString.presets.empty().en(name))
-          .buildGraphql(),
+        channel: Channel.random().key(key).buildGraphql(),
       })
     );
   }
@@ -93,10 +88,7 @@ const updateChannelDetailsHandler = graphql.mutation(
   (_req, res, ctx) => {
     return res(
       ctx.data({
-        updateChannel: ChannelMock.random()
-          .key(key)
-          .name(LocalizedString.presets.empty().en(name))
-          .buildGraphql(),
+        updateChannel: Channel.random().key(key).buildGraphql(),
       })
     );
   }
@@ -147,7 +139,7 @@ const useMockServerHandlers = (
           ctx.data({
             channels: buildGraphqlList(
               Array.from({ length: totalItems }).map((_, index) =>
-                ChannelMock.random().key(`channel-key-${index}`)
+                Channel.random().key(`channel-key-${index}`)
               ),
               {
                 name: 'Channel',
@@ -170,9 +162,6 @@ describe('rendering', () => {
 
     const keyInput = await screen.findByLabelText(/channel key/i);
     expect(keyInput.value).toBe(key);
-
-    const nameInput = screen.getByRole('textbox', { name: /en/i });
-    expect(nameInput.value).toBe(name);
 
     screen.getByRole('combobox', { name: /channel roles/i });
     expect(screen.getByDisplayValue(/primary/i)).toBeInTheDocument();
@@ -268,15 +257,6 @@ describe('notifications', () => {
     });
     expect(keyInput.value).toBe(newKey);
 
-    const nameInput = screen.getByRole('textbox', { name: /en/i });
-    expect(nameInput.value).toBe(name);
-
-    fireEvent.focus(nameInput);
-    fireEvent.change(nameInput, {
-      target: { value: newName },
-    });
-    expect(nameInput.value).toBe(newName);
-
     const rolesSelect = screen.getByRole('combobox', {
       name: /channel roles/i,
     });
@@ -289,7 +269,7 @@ describe('notifications', () => {
     const saveButton = screen.getByRole('button', { name: /save/i });
     fireEvent.click(saveButton);
     const notification = await screen.findByRole('alertdialog');
-    within(notification).getByText(/channel new-test-name updated/i);
+    within(notification).getByText(/channel .+ updated/i);
   });
   it('should render an error notification if fetching channel details resulted in an error', async () => {
     useMockServerHandlers(fetchChannelDetailsQueryHandlerWithError);
