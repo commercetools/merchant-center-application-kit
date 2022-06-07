@@ -22,7 +22,6 @@ import {
   useShowApiErrorNotification,
   type TApiErrorNotificationOptions,
 } from '@commercetools-frontend/actions-global';
-import type { TChannel } from '../../../types/generated/ctp';
 import { PERMISSIONS } from '../../constants';
 import {
   useChannelDetailsUpdater,
@@ -57,7 +56,7 @@ const ChannelDetails = (props: ChannelDetailsProps) => {
       const data = formValuesToDoc(formikValues);
       try {
         await channelDetailsUpdater.execute({
-          originalDraft: channel || ({} as TChannel),
+          originalDraft: channel!,
           nextDraft: data,
         });
         showNotification({

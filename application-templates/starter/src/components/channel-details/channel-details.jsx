@@ -47,7 +47,7 @@ const ChannelDetails = (props) => {
       const data = formValuesToDoc(formikValues);
       try {
         await channelDetailsUpdater.execute({
-          originalDraft: channel || {},
+          originalDraft: channel,
           nextDraft: data,
         });
         showNotification({
