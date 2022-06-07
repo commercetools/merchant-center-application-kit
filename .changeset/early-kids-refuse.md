@@ -1,7 +1,7 @@
 ---
 'merchant-center-application-template-starter-typescript': minor
 '@commercetools-frontend/create-mc-app': minor
-'merchant-center-application-template-starter': patch
+'merchant-center-application-template-starter': minor
 ---
 
 Adds a new Custom Application starter template in TypeScript including the bare minimum configuration setup:

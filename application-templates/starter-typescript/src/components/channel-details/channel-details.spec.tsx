@@ -205,7 +205,7 @@ describe('rendering', () => {
       const keyInput = await screen.findByLabelText(/channel key/i);
       expect(keyInput.hasAttribute('readonly')).toBeTruthy();
 
-      const nameInput = screen.getByLabelText(/en/i);
+      const nameInput = screen.getByLabelText(/en/i, { selector: 'input' });
       expect(nameInput.hasAttribute('readonly')).toBeTruthy();
 
       const rolesSelect = screen.getByRole('combobox', {
