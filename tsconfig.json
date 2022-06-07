@@ -29,5 +29,6 @@
     "target": "ES2022",
     "allowJs": false,
     "typeRoots": ["@types", "@types-extensions", "node_modules/@types"]
-  }
+  },
+  "include": ["packages", "packages-backend", "visual-testing-app"]
 }
