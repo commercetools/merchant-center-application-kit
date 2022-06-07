@@ -54,16 +54,16 @@ Certain configuration steps are required for enabling TypeScript support in Cust
 ## TypeScript configuration
 
 The [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) file is required to work with TypeScript.
-It enables numerous [configuration options](https://www.typescriptlang.org/tsconfig). To simplify the initial setup we provide a base `tsconfig.json` file in the `@commercetools-frontend/tsconfig` package to extend from in your Custom Application.
+It enables numerous [configuration options](https://www.typescriptlang.org/tsconfig). To simplify the initial setup we provide a base `tsconfig-mc-app.json` file in the `@commercetools-frontend/application-config` package to extend from in your Custom Application.
 
 ### Installation
 
 ```
-yarn add @commercetools-frontend/tsconfig
+yarn add @commercetools-frontend/application-config
 
 # or
 
-npm --save install @commercetools-frontend/tsconfig
+npm --save install @commercetools-frontend/application-config
 ```
 
 ### Usage
@@ -72,7 +72,7 @@ Create a `tsconfig.json` file in the root directory of your application and add 
 
 ```json
 {
-  "extends": "@commercetools-frontend/tsconfig"
+  "extends": "@commercetools-frontend/application-config/tsconfig-mc-app.json"
 }
 ```
 
@@ -151,12 +151,11 @@ To run ESLint run the following script from your `package.json`:
 
 ## Jest configuration
 
-For enabling Jest-based tests in TypeScript `@commercetools-frontend/jest-preset-mc-app` must be a installed as a dependency and configured as below in the `jest.test.config.js` file in the root folder of the application:
+For enabling Jest-based tests in TypeScript `@commercetools-frontend/jest-preset-mc-app` must be installed as a dependency and configured as below in the `jest.test.config.js` file in the root folder of the application:
 
 ```js title="jest.test.config.js"
-const jestPresetForTypeScript = require('@commercetools-frontend/jest-preset-mc-app/jest-preset-for-typescript');
 module.exports = {
-  ...jestPresetForTypeScript,
+  preset: '@commercetools-frontend/jest-preset-mc-app/typescript',
 };
 ```
 
@@ -188,7 +187,7 @@ Please mind that with the recommended `tsconfig.json` configuration any type che
 If the recommended configuration seems too strict to start with it might be loosen up by, for example, allowing explicit `any` type. In such case edit `tsconfig.json`:
 ```json title="tsconfig.json"
 {
-  "extends": "@commercetools-frontend/tsconfig",
+  "extends": "@commercetools-frontend/application-config/tsconfig-mc-app.json",
   "compilerOptions": {
     "noExplicitAny": false,
     "strict": false
