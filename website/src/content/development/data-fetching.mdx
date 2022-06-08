@@ -22,24 +22,10 @@ The Apollo Client provides some React hooks to [query data](https://www.apollogr
 
 Using the hooks in your React component is as simple as this:
 
-```js title="channels.js" highlightLines="5-9"
-import { useQuery } from '@apollo/client/react';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-
-const Channels = (props) => {
-  const { data } = useQuery(FetchChannelsQuery, {
-    context: {
-      target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
-    }
-  });
-
-  return (
-    <div>
-      {/* Do something with `data` */}
-    </div>
-  );
-};
-```
+<MultiCodeExample title="Channels">
+  <CodeExample path="data-fetching/channels.js" highlightLines={[5,6,7,8,9]} />
+  <CodeExample path="data-fetching/channels.tsx" highlightLines={[5,6,7,8,9]} />
+</MultiCodeExample>
 
 Notice here that we define the `context.target`. This is how you configure the [GraphQL target for the Merchant Center API](/concepts/merchant-center-api#graphql).
 
