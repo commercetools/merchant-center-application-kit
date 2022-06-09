@@ -1,5 +1,4 @@
 import type { MockedResponse } from '@apollo/client/testing';
-import type { TImageRegexContext } from './project-extension-image-regex';
 
 import {
   screen,
@@ -10,29 +9,22 @@ import { MockedProvider as ApolloMockProvider } from '@apollo/client/testing';
 import {
   ProjectExtensionProviderForImageRegex,
   GetProjectExtensionImageRegex,
+  useProjectExtensionImageRegex,
 } from './project-extension-image-regex';
 import FetchProjectExtensionImageRegex from './fetch-project-extension-image-regex.settings.graphql';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 
 jest.mock('@commercetools-frontend/sentry');
 
-type TestProps = {
-  imageRegex: TImageRegexContext['imageRegex'];
+const TestComponent = () => {
+  const { imageRegex } = useProjectExtensionImageRegex();
+  return (
+    <>
+      <div>{imageRegex?.small?.replace}</div>
+      <div>{imageRegex?.thumb?.replace}</div>
+    </>
+  );
 };
-const TestComponent = (props: TestProps) => (
-  <>
-    <div>
-      {props.imageRegex &&
-        props.imageRegex.small &&
-        props.imageRegex.small.replace}
-    </div>
-    <div>
-      {props.imageRegex &&
-        props.imageRegex.thumb &&
-        props.imageRegex.thumb.replace}
-    </div>
-  </>
-);
 
 const renderComponent = (
   mocks: ReadonlyArray<MockedResponse>,
@@ -50,9 +42,7 @@ const renderComponent = (
               if (!imageRegexContext.imageRegex) {
                 return <div>{'Not found'}</div>;
               }
-              return (
-                <TestComponent imageRegex={imageRegexContext.imageRegex} />
-              );
+              return <TestComponent />;
             }}
           />
         </div>
@@ -70,7 +60,7 @@ const renderComponentWithoutProvider = () =>
           if (!imageRegexContext.imageRegex) {
             return <div>{'Not found'}</div>;
           }
-          return <TestComponent imageRegex={imageRegexContext.imageRegex} />;
+          return <TestComponent />;
         }}
       />
     </div>

@@ -4,7 +4,7 @@ import type {
   TImageRegexOptions,
 } from '../../types/generated/settings';
 
-import { ComponentType, createContext, ReactNode } from 'react';
+import { ComponentType, createContext, ReactNode, useContext } from 'react';
 import { useQuery } from '@apollo/client/react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
@@ -61,16 +61,10 @@ const GetProjectExtensionImageRegex = (props: ConsumerProps) => (
 );
 GetProjectExtensionImageRegex.displayName = 'GetProjectExtensionImageRegex';
 
-function withProjectExtensionImageRegex<Props extends {}>(
-  propKey = 'imageRegexData'
-) {
+function withProjectExtensionImageRegex<Props extends {}>() {
   return (Component: ComponentType<Props>) => {
     const WrappedComponent = (props: Props) => (
-      <GetProjectExtensionImageRegex
-        render={(imageRegexData) => (
-          <Component {...props} {...{ [propKey]: imageRegexData }} />
-        )}
-      />
+      <GetProjectExtensionImageRegex render={() => <Component {...props} />} />
     );
     WrappedComponent.displayName = `withProjectExtensionImageRegex(${getDisplayName<Props>(
       Component
@@ -79,9 +73,15 @@ function withProjectExtensionImageRegex<Props extends {}>(
   };
 }
 
+const useProjectExtensionImageRegex = () => {
+  const { isLoading, imageRegex } = useContext(Context);
+  return { isLoading, imageRegex };
+};
+
 // Exports
 export {
   GetProjectExtensionImageRegex,
   ProjectExtensionProviderForImageRegex,
   withProjectExtensionImageRegex,
+  useProjectExtensionImageRegex,
 };
