@@ -24,7 +24,7 @@ Using the hooks in your React component is as simple as this:
 
 <MultiCodeExample title="Channels">
   <CodeExample path="data-fetching/channels.js" highlightLines={[5,6,7,8,9]} />
-  <CodeExample path="data-fetching/channels.tsx" highlightLines={[5,6,7,8,9]} />
+  <CodeExample path="data-fetching/channels.tsx" highlightLines={[13,14,15,16,17,18,19,20]} />
 </MultiCodeExample>
 
 Notice here that we define the `context.target`. This is how you configure the [GraphQL target for the Merchant Center API](/concepts/merchant-center-api#graphql).
@@ -76,43 +76,19 @@ The Apollo Client hooks provide an `error` object that we can use in our compone
 
 For example, we can render a content notification error instead of rendering the component.
 
-```js title="channels.js" highlightLines="7,13-19"
-import { useQuery } from '@apollo/client/react';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { ContentNotification } from '@commercetools-uikit/notifications';
-import Text from '@commercetools-uikit/text';
-
-const Channels = (props) => {
-  const { data, error } = useQuery(FetchChannelsQuery, {
-    context: {
-      target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
-    }
-  });
-
-  if (error) {
-    return (
-      <ContentNotification type="error">
-        <Text.Body>{getErrorMessage(error)}</Text.Body>
-      </ContentNotification>
-    );
-  }
-
-  return (
-    <div>
-      {/* Do something with `data` */}
-    </div>
-  );
-};
-```
+<MultiCodeExample title="Channels">
+  <CodeExample path="data-fetching/error-handling.js" highlightLines={[7,13,14,15,16,17,18,19]} />
+  <CodeExample path="data-fetching/error-handling.tsx" highlightLines={[15,24,25,26,27,28,29,30]} />
+</MultiCodeExample>
 
 For more information about using the `error` from Apollo Client, see [Error handling](https://www.apollographql.com/docs/react/data/error-handling/).
 
 In our case we just want to print the `error.graphQLErrors`. We can attempt to do that by implementing a helper function like this:
 
-```js title="channels.js"
-const getErrorMessage = (error) =>
-  error.graphQLErrors?.map((e) => e.message).join('\n') || error.message;
-```
+<MultiCodeExample title="Channels">
+  <CodeExample path="data-fetching/error-message.js" />
+  <CodeExample path="data-fetching/error-message.tsx" />
+</MultiCodeExample>
 
 # Advanced usage
 
@@ -127,24 +103,10 @@ A connector hook is a React hook that implements most of the data requirements (
 For example, we can extract the fetching of Channels into a connector hook named `useChannelsFetcher`.
 This hook can be put into a file named `use-channels-connector.js`.
 
-```js title="use-channels-connector.js"
-import { useQuery } from '@apollo/client/react';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-
-export const useChannelsFetcher = () => {
-  const { data, error, loading } = useQuery(FetchChannelsQuery, {
-    context: {
-      target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
-    }
-  });
-
-  return {
-    channels: data?.channels,
-    error,
-    loading,
-  };
-};
-```
+<MultiCodeExample title="use-channels-connector">
+  <CodeExample path="data-fetching/connector-hook.js" />
+  <CodeExample path="data-fetching/connector-hook.tsx" />
+</MultiCodeExample>
 
 <Info>
 
@@ -154,29 +116,10 @@ Note that the `use-channels-connector.js` file can contain multiple connector ho
 
 We would then use our connector hook in the `Channels` component instead of directly using the Apollo Client hooks. Therefore, there is less code in the React component as most of the logic and configuration is abstracted away in the connector hook.
 
-```js title="channels.js" highlightLines="3,6"
-import { ContentNotification } from '@commercetools-uikit/notifications';
-import Text from '@commercetools-uikit/text';
-import { useChannelsFetcher } from '../../hooks/use-channels-connector';
-
-const Channels = (props) => {
-  const { channels, error } = useChannelsFetcher();
-
-  if (error) {
-    return (
-      <ContentNotification type="error">
-        <Text.Body>{getErrorMessage(error)}</Text.Body>
-      </ContentNotification>
-    );
-  }
-
-  return (
-    <div>
-      {/* Do something with `channels` */}
-    </div>
-  );
-};
-```
+<MultiCodeExample title="Channels">
+  <CodeExample path="data-fetching/connector-hook-usage.js" highlightLines={[3,6]} />
+  <CodeExample path="data-fetching/connector-hook-usage.tsx" highlightLines={[3,10]} />
+</MultiCodeExample>
 
 <!-- TODO: ## Using fetch policy -->
 <!-- TODO: ## Customizing Apollo Cache -->
@@ -188,26 +131,10 @@ This can be achieved by using the `context` option of Apollo Client, which allow
 
 The `@commercetools-frontend/application-shell` package now exposes a `createApolloContextForProxyForwardTo` to construct a predefined context object specific to the `/proxy/forward-to`.
 
-```jsx highlightLines="2,10-12"
-import {
-  createApolloContextForProxyForwardTo,
-  useMcQuery,
-} from '@commercetools-frontend/application-shell';
-import Text from '@commercetools-uikit/text';
-import HelloWorldQuery from './hello-world.graphql';
-
-const HelloWorld = () => {
-  const { loading, data, error } = useMcQuery(HelloWorldQuery, {
-    context: createApolloContextForProxyForwardTo({
-      uri: 'https://my-custom-app.com/graphql',
-    }),
-  });
-
-  if (loading) return 'Loading...';
-  if (error) return `Error! ${error.message}`;
-  return <Text.Headline as="h1">{data.title}</Text.Headline>;
-}
-```
+<MultiCodeExample>
+  <CodeExample path="data-fetching/external-graphql-api.js" highlightLines={[2,10,11,12]} />
+  <CodeExample path="data-fetching/external-graphql-api.tsx" highlightLines={[2,13,14,15]} />
+</MultiCodeExample>
 
 <!-- TODO: see [@/application-shell](/api-reference/commercetools-frontend-application-shell) for more information. -->
 
@@ -225,36 +152,10 @@ The SDK library comes already pre-configured in a Custom Application to connect 
 
 The SDK library is built using Redux actions, meaning that you dispatch an action describing the request and the library takes care of handling the request.
 
-```js title="channels.js"
-import { useAsyncDispatch, actions } from '@commercetools-frontend/sdk';
-import { MC_API_PROXY_TARGETS } from '@commercetools-frontend/constants';
-
-const Channels = (props) => {
-  const dispatch = useAsyncDispatch();
-  useEffect(() => {
-    async function execute() {
-      try {
-        const result = await dispatch(
-          actions.get({
-            mcApiProxyTarget: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
-            service: 'channels',
-          });
-        );
-        // Update state with `result`
-      } catch (error) {
-        // Update state with `error`
-      }
-    }
-    execute();
-  }, [dispatch])
-
-  return (
-    <div>
-      {/* Do something with the state */}
-    </div>
-  );
-};
-```
+<MultiCodeExample title="Channels">
+  <CodeExample path="data-fetching/rest-api.js" />
+  <CodeExample path="data-fetching/rest-api.tsx" />
+</MultiCodeExample>
 
 Notice here that we define the `mcApiProxyTarget`. This is how you configure the proxy target for the [Merchant Center API](/concepts/merchant-center-api#proxytarget).
 

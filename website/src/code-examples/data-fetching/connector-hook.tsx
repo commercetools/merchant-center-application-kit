@@ -5,12 +5,8 @@ import type {
   TFetchChannelsQueryVariables,
 } from '../../../types/generated/ctp';
 
-type TChannelsProps = {
-  // component props types
-};
-
-const Channels = (props: TChannelsProps) => {
-  const { data } = useQuery<
+export const useChannelsFetcher = () => {
+  const { data, error, loading } = useQuery<
     { channels: TChannelQueryResult },
     TFetchChannelsQueryVariables
   >(FetchChannelsQuery, {
@@ -19,5 +15,9 @@ const Channels = (props: TChannelsProps) => {
     },
   });
 
-  return <div>{/* Do something with `data` */}</div>;
+  return {
+    channels: data?.channels,
+    error,
+    loading,
+  };
 };

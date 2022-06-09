@@ -1,5 +1,7 @@
 import { useQuery } from '@apollo/client/react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import { ContentNotification } from '@commercetools-uikit/notifications';
+import Text from '@commercetools-uikit/text';
 import type {
   TChannelQueryResult,
   TFetchChannelsQueryVariables,
@@ -10,7 +12,7 @@ type TChannelsProps = {
 };
 
 const Channels = (props: TChannelsProps) => {
-  const { data } = useQuery<
+  const { data, error } = useQuery<
     { channels: TChannelQueryResult },
     TFetchChannelsQueryVariables
   >(FetchChannelsQuery, {
@@ -18,6 +20,14 @@ const Channels = (props: TChannelsProps) => {
       target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
     },
   });
+
+  if (error) {
+    return (
+      <ContentNotification type="error">
+        <Text.Body>{getErrorMessage(error)}</Text.Body>
+      </ContentNotification>
+    );
+  }
 
   return <div>{/* Do something with `data` */}</div>;
 };
