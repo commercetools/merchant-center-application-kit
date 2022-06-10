@@ -2735,6 +2735,7 @@ __metadata:
     moment-timezone: ^0.5.34
     prop-types: 15.8.1
     react: 17.0.2
+    tiny-warning: ^1.0.3
   peerDependencies:
     "@apollo/client": 3.x
     react: 17.x

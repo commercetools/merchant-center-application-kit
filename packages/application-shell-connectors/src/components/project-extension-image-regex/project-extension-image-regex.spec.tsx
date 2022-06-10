@@ -82,6 +82,10 @@ const renderTestComponent = ({
   );
 };
 
+beforeEach(() => {
+  jest.spyOn(console, 'warn').mockImplementation(() => {});
+});
+
 describe.each([
   [HookTestComponent],
   [WrappedTestComponent],
