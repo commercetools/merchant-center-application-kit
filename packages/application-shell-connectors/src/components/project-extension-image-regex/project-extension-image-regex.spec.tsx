@@ -18,6 +18,7 @@ import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import type { ComponentType } from 'react';
 
 jest.mock('@commercetools-frontend/sentry');
+jest.mock('tiny-warning');
 
 type TBasicTestComponentProps = {
   imageRegexData: TImageRegexContext;
@@ -81,10 +82,6 @@ const renderTestComponent = ({
     </ApolloMockProvider>
   );
 };
-
-beforeEach(() => {
-  jest.spyOn(console, 'warn').mockImplementation(() => {});
-});
 
 describe.each([
   [HookTestComponent],
