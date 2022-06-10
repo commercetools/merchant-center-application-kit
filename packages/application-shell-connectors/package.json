@@ -33,7 +33,7 @@
     "lodash": "4.17.21",
     "moment-timezone": "^0.5.34",
     "prop-types": "15.8.1",
-    "tiny-warning": "^1.0.3"
+    "tiny-warning": "1.0.3"
   },
   "devDependencies": {
     "@apollo/client": "3.6.2",
