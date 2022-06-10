@@ -28,4 +28,4 @@ function MyApp() {
 }
 ```
 
-Both GetProjectExtensionImageRegex component and withProjectExtensionImageRegex still exists for backwards compatibility but have been marked as deprecated.
+Both `GetProjectExtensionImageRegex` component and `withProjectExtensionImageRegex` still exists for backwards compatibility but have been marked as deprecated.
