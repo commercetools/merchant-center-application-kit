@@ -1,4 +1,3 @@
-//@ts-nocheck
 import type { MockedResponse } from '@apollo/client/testing';
 
 import {
@@ -46,9 +45,9 @@ const HookTestComponent = () => {
 };
 
 const WrappedTestComponent =
-  withProjectExtensionImageRegex<TBasicTestComponentProps>('imageRegexData')(
+  withProjectExtensionImageRegex<TBasicTestComponentProps>()(
     BasicTestComponent
-  );
+  ) as ComponentType<unknown>;
 
 const RenderPropTestComponent = () => {
   return (

@@ -74,10 +74,9 @@ ProjectExtensionProviderForImageRegex.displayName =
   'ProjectExtensionProviderForImageRegex';
 
 const GetProjectExtensionImageRegex = (props: ConsumerProps) => {
-  //TODO: add a descriptive possible deprecation warning for moving from HOC to Hooks in the future
   useWarning(
     false,
-    `@commercetools-frontend/application-shell-connectors: ...`
+    `@commercetools-frontend/application-shell-connectors: It is not recommended to use the 'GetProjectExtensionImageRegex' anymore. Please use the 'useProjectExtensionImageRegex' hook instead.`
   );
 
   return (
@@ -89,10 +88,14 @@ const GetProjectExtensionImageRegex = (props: ConsumerProps) => {
 GetProjectExtensionImageRegex.displayName = 'GetProjectExtensionImageRegex';
 
 function withProjectExtensionImageRegex<Props extends {}>(
-  propKey: 'imageRegexData'
+  propKey = 'imageRegexData'
 ) {
   return (Component: ComponentType<Props>) => {
     const WrappedComponent = (props: Props) => {
+      useWarning(
+        false,
+        `@commercetools-frontend/application-shell-connectors: It is not recommended to use the 'withProjectExtensionImageRegex' high order component anymore. Please use the 'useProjectExtensionImageRegex' hook instead.`
+      );
       const imageregexContext = useProjectExtensionImageRegex();
       return (
         <GetProjectExtensionImageRegex
