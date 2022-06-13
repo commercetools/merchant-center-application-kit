@@ -6,9 +6,9 @@ import type {
 import warning from 'tiny-warning';
 
 import {
-  ComponentType,
+  type ComponentType,
+  type ReactNode,
   createContext,
-  ReactNode,
   useContext,
   useEffect,
 } from 'react';

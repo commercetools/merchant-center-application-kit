@@ -84,9 +84,9 @@ const renderTestComponent = ({
 };
 
 describe.each([
-  [HookTestComponent],
-  [WrappedTestComponent],
-  [RenderPropTestComponent],
+  HookTestComponent,
+  WrappedTestComponent,
+  RenderPropTestComponent,
 ])('rendering #%#', (Component) => {
   describe('when image regex is defined', () => {
     it('should render regex info', async () => {
