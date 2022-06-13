@@ -33,16 +33,17 @@ afterAll(() => {
   jest.restoreAllMocks();
 });
 
-const id = 'b8a40b99-0c11-43bc-8680-fc570d624747';
-const key = 'test-key';
-const newKey = 'new-test-key';
+const TEST_CHANNEL_ID = 'b8a40b99-0c11-43bc-8680-fc570d624747';
+const TEST_CHANNEL_KEY = 'test-key';
+const TEST_CHANNEL_NEW_KEY = 'new-test-key';
 
 const renderApp = (
   options: TRenderAppWithReduxPartialOptions = {},
   includeManagePermissions = true
 ) => {
   const route =
-    options.route || `/my-project/${entryPointUriPath}/channels/${id}`;
+    options.route ||
+    `/my-project/${entryPointUriPath}/channels/${TEST_CHANNEL_ID}`;
   const { history } = renderApplicationWithRedux(<ApplicationRoutes />, {
     route,
     project: {
@@ -63,7 +64,7 @@ const fetchChannelDetailsQueryHandler = graphql.query(
   (_req, res, ctx) => {
     return res(
       ctx.data({
-        channel: Channel.random().key(key).buildGraphql(),
+        channel: Channel.random().key(TEST_CHANNEL_KEY).buildGraphql(),
       })
     );
   }
@@ -95,7 +96,7 @@ const updateChannelDetailsHandler = graphql.mutation(
   (_req, res, ctx) => {
     return res(
       ctx.data({
-        updateChannel: Channel.random().key(key).buildGraphql(),
+        updateChannel: Channel.random().key(TEST_CHANNEL_KEY).buildGraphql(),
       })
     );
   }
@@ -164,7 +165,7 @@ describe('rendering', () => {
     const keyInput: HTMLInputElement = await screen.findByLabelText(
       /channel key/i
     );
-    expect(keyInput.value).toBe(key);
+    expect(keyInput.value).toBe(TEST_CHANNEL_KEY);
 
     screen.getByRole('combobox', { name: /channel roles/i });
     expect(screen.getByDisplayValue(/primary/i)).toBeInTheDocument();
@@ -181,17 +182,17 @@ describe('rendering', () => {
     const keyInput: HTMLInputElement = await screen.findByLabelText(
       /channel key/i
     );
-    expect(keyInput.value).toBe(key);
+    expect(keyInput.value).toBe(TEST_CHANNEL_KEY);
 
     fireEvent.change(keyInput, {
-      target: { value: newKey },
+      target: { value: TEST_CHANNEL_NEW_KEY },
     });
-    expect(keyInput.value).toBe(newKey);
+    expect(keyInput.value).toBe(TEST_CHANNEL_NEW_KEY);
 
     fireEvent.click(resetButton);
 
     await waitFor(() => {
-      expect(keyInput.value).toBe(key);
+      expect(keyInput.value).toBe(TEST_CHANNEL_KEY);
     });
   });
   describe('when user has no manage permission', () => {
@@ -237,9 +238,9 @@ describe('rendering', () => {
     );
 
     fireEvent.change(keyInput, {
-      target: { value: newKey },
+      target: { value: TEST_CHANNEL_NEW_KEY },
     });
-    expect(keyInput.value).toBe(newKey);
+    expect(keyInput.value).toBe(TEST_CHANNEL_NEW_KEY);
 
     // updating channel details
     const saveButton = screen.getByRole('button', { name: /save/i });
@@ -259,12 +260,12 @@ describe('notifications', () => {
     const keyInput: HTMLInputElement = await screen.findByLabelText(
       /channel key/i
     );
-    expect(keyInput.value).toBe(key);
+    expect(keyInput.value).toBe(TEST_CHANNEL_KEY);
 
     fireEvent.change(keyInput, {
-      target: { value: newKey },
+      target: { value: TEST_CHANNEL_NEW_KEY },
     });
-    expect(keyInput.value).toBe(newKey);
+    expect(keyInput.value).toBe(TEST_CHANNEL_NEW_KEY);
 
     const rolesSelect = screen.getByRole('combobox', {
       name: /channel roles/i,
