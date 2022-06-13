@@ -13,8 +13,8 @@ When developing a Custom Application you might want to enforce these user permis
 The user permissions can be computed using the `entryPointUriPathToPermissionKeys` function, to avoid defining them manually. We recommend to define them in a `constants.js` file.
 
 <MultiCodeExample title="constants">
-  <CodeExample language="js" path="permissions/defining-constants.js" />
-  <CodeExample language="ts" path="permissions/defining-constants.ts" />
+  <CodeExample language="js" path="development/permissions/defining-constants.js" />
+  <CodeExample language="ts" path="development/permissions/defining-constants.ts" />
 </MultiCodeExample>
 
 The `PERMISSIONS` variable contains a `View` and `Manage` properties, with the values being the computed values based on the `entryPointUriPath`:
@@ -50,8 +50,8 @@ This determines which links should be visible or not, depending on the permissio
 In case you defined the permissions in a `constants` file, we recommend to reference them in the Custom Application config as well. To do so, the config file needs to be converted to a JS file (instead of JSON), for example using the `.mjs` file extension.
 
 <MultiCodeExample title="custom-application-config">
-  <CodeExample language="js" path="permissions/menu-links-permissions.js" />
-  <CodeExample language="ts" path="permissions/menu-links-permissions.ts" />
+  <CodeExample language="js" path="development/permissions/menu-links-permissions.js" />
+  <CodeExample language="ts" path="development/permissions/menu-links-permissions.ts" />
 </MultiCodeExample>
 
 ## In routes
@@ -61,8 +61,8 @@ In case certain routes should not be accessible without proper user permissions,
 To do so you can use the `useIsAuthorized` React hook from the `@commercetools-frontend/permissions` package.
 
 <MultiCodeExample title="routes">
-  <CodeExample language="js" path="permissions/routes-permissions.js" highlightLines={[10,11,12]} />
-  <CodeExample language="ts" path="permissions/routes-permissions.ts" highlightLines={[10,11,12]} />
+  <CodeExample language="js" path="development/permissions/routes-permissions.js" highlightLines={[10,11,12]} />
+  <CodeExample language="ts" path="development/permissions/routes-permissions.tsx" highlightLines={[10,11,12]} />
 </MultiCodeExample>
 
 
@@ -71,6 +71,6 @@ To do so you can use the `useIsAuthorized` React hook from the `@commercetools-f
 Similarly, you can also evaluate user permissions in your React components, for example to deactivate a button.
 
 <MultiCodeExample title="component">
-  <CodeExample language="js" path="permissions/components-permissions.js" />
-  <CodeExample language="ts" path="permissions/components-permissions.ts" />
+  <CodeExample language="js" path="development/permissions/components-permissions.js" />
+  <CodeExample language="ts" path="development/permissions/components-permissions.tsx" />
 </MultiCodeExample>
