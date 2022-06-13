@@ -1,0 +1,5 @@
+createApolloClient({
+  cache: {
+    // ...
+  },
+});

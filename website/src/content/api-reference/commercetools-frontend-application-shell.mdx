@@ -41,34 +41,18 @@ We recommend to render the application content as `children` of `<ApplicationShe
 
 This allows the `<ApplicationShell>` to pre-configure the application entry point routes. In addition to that, the entry point route is protected by the basic `View` permission check. This means that a user without permissions of your Custom Application won't be able to access the Custom Application route.
 
-```jsx title="entry-point.js"
-import { ApplicationShell } from '@commercetools-frontend/application-shell';
+<MultiCodeExample title="entry-point">
+  <CodeExample language="js" path="api-reference/commercetools-frontend-application-shell/app-shell-usage.js" />
+  <CodeExample language="ts" path="api-reference/commercetools-frontend-application-shell/app-shell-usage.tsx" />
+</MultiCodeExample>
 
-const loadMessages = async (locale) => {
-  // ...
-}
-
-const AsyncApplicationRoutes = React.lazy(
-  () => import('../../routes' /* webpackChunkName: "avengers" */)
-);
-
-const EntryPoint = () => (
-  <ApplicationShell
-    environment={window.app}
-    applicationMessages={loadMessages}
-  >
-    <AsyncApplicationRoutes />
-  </ApplicationShell>
-);
-export default EntryPoint;
-```
 
 ### Properties
 
 | Props                            | Type               |        Required         | Default | Description                                                                                                                                                                                                                                                                                                                                                                      |
 | -------------------------------- | ------------------ | :---------------------: | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `applicationMessages`            | `object` or `func` |           ✅            | -       | This is either an object containing all the translated messages, grouped by locale (`{ "en": { "Welcome": "Welcome" }, "de": { "Welcome": "Wilkommen" }}`), or a function that returns a Promise that resolves to such an object. The function is called with a `locale` parameter. See [Importing translations](/development/translations#importing-translations).                                                                                                                                                                |
-| `environment`                  | `object`           |           ✅            | -       | The application runtime environment, which is exposed in `window.app`. See [Runtime configuration](/api-reference/application-config#runtime-application-environment).                                                                                                                                                                                                                                                                                                                                                       |
+| `environment`                  | `object`           |           ✅            | -       | The application runtime environment, which is exposed in `window.app`. See [Runtime configuration](/api-reference/commercetools-frontend-application-shell/application-config#runtime-application-environment).                                                                                                                                                                                                                                                                                                                                                       |
 | `children`                         | `node`             |           ✅ (*)            | -       | Instead of using the `render` prop, render your application component as children of `<ApplicationShell>`. By doing so, the `<ApplicationShell>` pre-configures the main application routes according to the `entryPointUriPath` defined in the `custom-application-config.json`. This is an opt-int behavior as a replacement of the `render` prop, to simplify the entry point setup.                                                                                                                                                                                                                                    |
 | `render`                         | `func`             |            (*)           | -       | The render function is called when the `<ApplicationShell>` is ready to render the actual application. This is the case when the required data (user, project) has been fetched and the application context has been initialized. It's **recommended to use the `children`** prop to benefit from a simpler setup.                                                                                                                                                                                                                                  |
 | `apolloClient`         | `ApolloClient`           |                       | -       | An optional instance of [ApolloClient](https://www.apollographql.com/docs/react/) to be used instead of the default one. This is usually the case when you need to configure the Apollo cache. See [`createApolloClient`](#createapolloclient).                                                                                                                                                                                                                                        |
@@ -93,108 +77,47 @@ A React hook that wraps the [`useMutation`](https://www.apollographql.com/docs/r
 
 Configures global event listeners to catch unexpected errors and report them to Sentry. Make sure to render this in the `entry-point` file.
 
-```js title="entry-point.js"
-import {
-  setupGlobalErrorListener,
-  ApplicationShell,
-} from '@commercetools-frontend/application-shell';
+<MultiCodeExample title="entry-point">
+  <CodeExample language="js" path="api-reference/commercetools-frontend-application-shell/setup-global-error-listener.js" highlightLines={[8]} />
+  <CodeExample language="ts" path="api-reference/commercetools-frontend-application-shell/setup-global-error-listener.tsx" highlightLines={[8]} />
+</MultiCodeExample>
 
-const EntryPoint = () => {
-  return (
-    <ApplicationShell
-      apolloClient={apolloClient}
-      // ...other props
-    />
-  );
-};
-```
 
 ## createApolloClient
 
 Creates a new instance of the Apollo Client. Use this if you need to [configure the Apollo cache](https://www.apollographql.com/docs/react/caching/cache-configuration).
 
-```js
-createApolloClient({
-  cache: {
-    // ...
-  },
-})
-```
+<MultiCodeExample>
+  <CodeExample language="js" path="api-reference/commercetools-frontend-application-shell/create-apollo-client.js" />
+  <CodeExample language="ts" path="api-reference/commercetools-frontend-application-shell/create-apollo-client.tsx" />
+</MultiCodeExample>
+
 
 The new Apollo Client instance must be explicitly passed to the `<ApplicationShell>`.
 
-```js title="entry-point.js"
-import {
-  createApolloClient,
-  ApplicationShell,
-} from '@commercetools-frontend/application-shell';
+<MultiCodeExample title="entry-point">
+  <CodeExample language="js" path="api-reference/commercetools-frontend-application-shell/use-apollo-client-in-app.js" highlightLines={[6,7,10,11,16]} />
+  <CodeExample language="ts" path="api-reference/commercetools-frontend-application-shell/use-apollo-client-in-app.tsx" highlightLines={[6,7,10,11,16]} />
+</MultiCodeExample>
 
-const apolloClient = createApolloClient({
-  cache: {
-    // Your custom configuration, according to the Apollo cache documentation.
-    // https://www.apollographql.com/docs/react/caching/cache-configuration/
-  },
-});
-
-const EntryPoint = () => {
-  return (
-    <ApplicationShell
-      apolloClient={apolloClient}
-      // ...other props
-    />
-  );
-};
-```
 
 Furthermore, in your tests you also need to create a new instance of your custom Apollo Client and pass it to the test utils.
 
-```js
-import { createApolloClient } from '@commercetools-frontend/application-shell';
-import { renderAppWithRedux } from '@commercetools-frontend/application-shell/test-utils';
+<MultiCodeExample>
+  <CodeExample language="ts" path="api-reference/commercetools-frontend-application-shell/use-apollo-client-in-tests.ts" />
+  <CodeExample language="js" path="api-reference/commercetools-frontend-application-shell/use-apollo-client-in-tests.js" />
+</MultiCodeExample>
 
-renderAppWithRedux({
-  apolloClient: createApolloClient(),
-  // ...
-});
-```
 
 ## createApolloContextForProxyForwardTo
 
 Creates the Apollo `context` object with all the required options for using the `/forward-to` endpoint. See [Integrate with your own API](/concepts/integrate-with-your-own-api).
 
-```js highlightLines="2,14-21"
-import {
-  createApolloContextForProxyForwardTo,
-  useMcQuery,
-} from '@commercetools-frontend/application-shell';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+<MultiCodeExample>
+  <CodeExample language="js" path="api-reference/commercetools-frontend-application-shell/create-apollo-context-for-proxy-forward-to.js" highlightLines={[2,14,16,18,19,20]} />
+  <CodeExample language="ts" path="api-reference/commercetools-frontend-application-shell/create-apollo-context-for-proxy-forward-to.ts" highlightLines={[2,14,16,18,19,20]} />
+</MultiCodeExample>
 
-const useExternalApiFetcher = () => {
-  // Assuming that the `custom-application-config.json` contains the custom value:
-  // `{ additionalEnv: { externalApiUrl: 'https://my-custom-app.com/graphql'} }`
-  const externalApiUrl = useApplicationContext(
-    context => context.environment.externalApiUrl
-  );
-  const { loading, data, error } = useMcQuery(MyQuery, {
-    context: createApolloContextForProxyForwardTo({
-      // The URL to your external API
-      uri: externalApiUrl,
-      // Optionally pass custom HTTP headers
-      headers: {
-        'x-foo': 'bar',
-      },
-      // Optionally define the audience policy
-      audiencePolicy: 'forward-url-full-path',
-    }),
-  });
-
-  return {
-    loading,
-    data,
-    error,
-  }
-};
-```
 
 Available options are:
 
@@ -230,23 +153,11 @@ A wrapper around the [`render`](https://testing-library.com/docs/react-testing-l
 
 ### Usage
 
-```js
-import {
-  renderApp,
-  screen,
-} from '@commercetools-frontend/application-shell/test-utils';
+<MultiCodeExample title="entry-point">
+  <CodeExample language="js" path="api-reference/commercetools-frontend-application-shell/tests-render-app.js" highlightLines={[8,9,10,12]} />
+  <CodeExample language="ts" path="api-reference/commercetools-frontend-application-shell/tests-render-app.tsx" highlightLines={[8,9,10,12]} />
+</MultiCodeExample>
 
-describe('rendering', () => {
-  it('should render the authenticated users first name', async () => {
-    renderApp(<FirstName />, {
-      user: {
-        firstName: 'Leonard',
-      },
-    });
-    await screen.findByText('First name: Leonard');
-  });
-});
-```
 
 ### Options
 
@@ -282,23 +193,11 @@ A wrapper around the [`renderApp`](#renderapp) method with the additional suppor
 
 ### Usage
 
-```js
-import {
-  renderAppWithRedux,
-  screen,
-} from '@commercetools-frontend/application-shell/test-utils';
+<MultiCodeExample>
+  <CodeExample language="js" path="api-reference/commercetools-frontend-application-shell/tests-render-app-with-redux.js" highlightLines={[8,9,10,12]} />
+  <CodeExample language="ts" path="api-reference/commercetools-frontend-application-shell/tests-render-app-with-redux.tsx" highlightLines={[8,9,10,12]} />
+</MultiCodeExample>
 
-describe('rendering', () => {
-  it('should render the authenticated users first name', async () => {
-    renderAppWithRedux(<FirstName />, {
-      user: {
-        firstName: 'Leonard',
-      },
-    });
-    await screen.findByText('First name: Leonard');
-  });
-});
-```
 
 ### Options
 
