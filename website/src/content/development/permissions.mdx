@@ -12,13 +12,10 @@ When developing a Custom Application you might want to enforce these user permis
 
 The user permissions can be computed using the `entryPointUriPathToPermissionKeys` function, to avoid defining them manually. We recommend to define them in a `constants.js` file.
 
-```js title="constants.js"
-import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-shell/ssr';
-
-export const entryPointUriPath = 'channels';
-
-export const PERMISSIONS = entryPointUriPathToPermissionKeys(entryPointUriPath);
-```
+<MultiCodeExample title="constants">
+  <CodeExample language="js" path="permissions/defining-constants.js" />
+  <CodeExample language="ts" path="permissions/defining-constants.ts" />
+</MultiCodeExample>
 
 The `PERMISSIONS` variable contains a `View` and `Manage` properties, with the values being the computed values based on the `entryPointUriPath`:
 
@@ -52,18 +49,10 @@ This determines which links should be visible or not, depending on the permissio
 
 In case you defined the permissions in a `constants` file, we recommend to reference them in the Custom Application config as well. To do so, the config file needs to be converted to a JS file (instead of JSON), for example using the `.mjs` file extension.
 
-```js title="custom-application-config.mjs"
-import { entryPointUriPath, PERMISSIONS } from './src/constants';
-
-const config = {
-  entryPointUriPath,
-  mainMenuLink: {
-    permissions: [PERMISSIONS.View]
-  },
-  // ...
-};
-export default config;
-```
+<MultiCodeExample title="custom-application-config">
+  <CodeExample language="js" path="permissions/menu-links-permissions.js" />
+  <CodeExample language="ts" path="permissions/menu-links-permissions.ts" />
+</MultiCodeExample>
 
 ## In routes
 
@@ -71,58 +60,17 @@ In case certain routes should not be accessible without proper user permissions,
 
 To do so you can use the `useIsAuthorized` React hook from the `@commercetools-frontend/permissions` package.
 
-```js title="routes.js" highlightLines="10-12"
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
-import { useIsAuthorized } from '@commercetools-frontend/permissions';
-import { PageUnauthorized } from '@commercetools-frontend/application-components';
-import { PERMISSIONS } from './constants';
-import ChannelsCreate from './components/channels-create';
-import ChannelsList from './components/channels-list';
+<MultiCodeExample title="routes">
+  <CodeExample language="js" path="permissions/routes-permissions.js" highlightLines={[10,11,12]} />
+  <CodeExample language="ts" path="permissions/routes-permissions.ts" highlightLines={[10,11,12]} />
+</MultiCodeExample>
 
-const ApplicationRoutes = () => {
-  const match = useRouteMatch();
-  const canManage = useIsAuthorized({
-    demandedPermissions: [PERMISSIONS.Manage],
-  });
-
-  return (
-    <Switch>
-      <Route path={`${match.path}/new`}>
-        {canManage ? (
-          <ChannelsCreate />
-        ) : (
-          <PageUnauthorized />
-        )}
-      </Route>
-      <Route>
-        <ChannelsList>
-      </Route>
-    </Switch>
-  );
-};
-```
 
 ## In components
 
 Similarly, you can also evaluate user permissions in your React components, for example to deactivate a button.
 
-```jsx
-import { useIsAuthorized } from '@commercetools-frontend/permissions';
-import PrimaryButton from '@commercetools-uikit/primary-button';
-import { PERMISSIONS } from '../constants';
-
-const MyComponent = () => {
-  const canManage = useIsAuthorized({
-    demandedPermissions: [PERMISSIONS.Manage],
-  });
-
-  return (
-    <div>
-      <PrimaryButton
-        label="Create channel"
-        isDisabled={!canManage}
-      />
-    </div>
-  )
-}
-```
+<MultiCodeExample title="component">
+  <CodeExample language="js" path="permissions/components-permissions.js" />
+  <CodeExample language="ts" path="permissions/components-permissions.ts" />
+</MultiCodeExample>
