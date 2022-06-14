@@ -687,16 +687,10 @@ It is recommended to always pass the value to the `<ApplicationShell>`.
 
 The `environment` prop is parsed and injected into a React Context, making it available to the entire application. To access it, use the `@commercetools-frontend/application-shell-connectors` package.
 
-```jsx
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-
-const MyComponent = () => {
-  const applicationName = useApplicationContext(
-    context => context.environment.applicationName
-  );
-  return (<div>{`Welcome to the application ${applicationName}!`}</div>);
-};
-```
+<MultiCodeExample>
+  <CodeExample language="jsx" path="api-reference/application-config/environment-prop.js" />
+  <CodeExample language="tsx" path="api-reference/application-config/environment-prop.tsx" />
+</MultiCodeExample>
 
 <Info>
 

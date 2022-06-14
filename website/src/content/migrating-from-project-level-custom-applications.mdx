@@ -190,28 +190,19 @@ Use the `entryPointUriPathToPermissionKeys` to automatically compute the permiss
 
 </Info>
 
-```js title="constants.js"
-import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-shell/ssr';
-
-export const entryPointUriPath = 'avengers';
-
-export const PERMISSIONS = entryPointUriPathToPermissionKeys(entryPointUriPath);
-```
+<MultiCodeExample title="Constants">
+  <CodeExample language="js" path="migrating-from-project-level-custom-applications/constants.js" />
+  <CodeExample language="ts" path="migrating-from-project-level-custom-applications/constants.ts" />
+</MultiCodeExample>
 
 The `PERMISSIONS` variable contains a `View` and `Manage` properties, with the values being the computed values based on the `entryPointUriPath`.
 
 Next, replace the user permissions with the `PERMISSIONS` variable.
 
-```js highlightLines="6"
-import { useIsAuthorized } from '@commercetools-frontend/permissions';
-import { PERMISSIONS } from '../../constants';
-
-const MyComponent = () => {
-  const canView = useIsAuthorized({
-    demandedPermissions: [PERMISSIONS.View],
-  });
-};
-```
+<MultiCodeExample>
+  <CodeExample language="jsx" path="migrating-from-project-level-custom-applications/permissions.js" highlightLines={[6]} />
+  <CodeExample language="tsx" path="migrating-from-project-level-custom-applications/permissions.tsx" highlightLines={[6]} />
+</MultiCodeExample>
 
 Furthermore, replace the user permissions in the menu links `permissions` field in the Custom Application config.
 
@@ -225,20 +216,12 @@ Furthermore, replace the user permissions in the menu links `permissions` field 
 
 <Info>
 
-Given that you have defined the `constants` variables as described above, to avoid duplicating and hardcoding the `entryPointUriPath` and user permission values you can choose to use the `.mjs` extension for the Custom Application config file, instead of `.json`. This allows you to import the variables from the `constants` file and reference them in the configuration. See [supported file extensions](/api-reference/application-config#supported-file-extensions) for more information.
+Given that you have defined the `constants` variables as described above, to avoid duplicating and hardcoding the `entryPointUriPath` and user permission values you can choose to use the `.mjs` (or `.ts`) extension for the Custom Application config file, instead of `.json`. This allows you to import the variables from the `constants` file and reference them in the configuration. See [supported file extensions](/api-reference/application-config#supported-file-extensions) for more information.
 
-```js title="custom-application-config.mjs"
-import { entryPointUriPath, PERMISSIONS } from './src/constants';
-
-const config = {
-  entryPointUriPath,
-  mainMenuLink: {
-    permissions: [PERMISSIONS.View]
-  },
-  // ...
-};
-export default config;
-```
+<MultiCodeExample title="custom-application-config">
+  <CodeExample language="js" path="migrating-from-project-level-custom-applications/custom-application-config.js" />
+  <CodeExample language="ts" path="migrating-from-project-level-custom-applications/custom-application-config.ts" />
+</MultiCodeExample>
 
 </Info>
 
