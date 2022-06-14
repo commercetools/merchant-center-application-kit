@@ -144,46 +144,19 @@ The `context.environment` object will then include the `trackingSentry` property
 
 A React hook that allows to access the `ApplicationContext` and selectively pick the necessary properties.
 
-```jsx highlightLines="4-6"
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-
-const DisplayLocale = () => {
-  const dataLocale = useApplicationContext((context) =>
-    applicationContext.dataLocale
-  );
-  render() {
-    return (
-      <div>
-        <h1>Current data locale: {dataLocale}</h1>
-      </div>
-    );
-  }
-}
-
-export default DisplayLocale;
-```
+<MultiCodeExample>
+  <CodeExample language="jsx" path="api-reference/commercetools-frontend-application-shell-connectors/use-application-context.js" highlightLines={[4,5,6]} />
+  <CodeExample language="tsx" path="api-reference/commercetools-frontend-application-shell-connectors/use-application-context.tsx" highlightLines={[4,5,6]} />
+</MultiCodeExample>
 
 ### withApplicationContext
 
 A higher-order component (HOC) that allows to access the `ApplicationContext` and selectively pick the necessary properties. This is the equivalent of the React hook `useApplicationContext`.
 
-```jsx highlightLines="13-15"
-import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-
-class DisplayLocale extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Current data locale: {this.props.dataLocale}</h1>
-      </div>
-    );
-  }
-}
-
-export default withApplicationContext((applicationContext) => ({
-  dataLocale: applicationContext.dataLocale
-}))(DisplayLocale);
-```
+<MultiCodeExample>
+  <CodeExample language="jsx" path="api-reference/commercetools-frontend-application-shell-connectors/with-application-context.js" highlightLines={[14,15,16]} />
+  <CodeExample language="tsx" path="api-reference/commercetools-frontend-application-shell-connectors/with-application-context.tsx" highlightLines={[25,26,27,28,29]} />
+</MultiCodeExample>
 
 # Project image settings
 
@@ -247,31 +220,10 @@ function MyApp() {
 
 Use this component to access the project images configuration, using a `render` prop function.
 
-```jsx
-function MyComponent() {
-  return (
-    <GetProjectExtensionImageRegex
-      render={({ isLoading, imageRegex }) => {
-        if (isLoading) return <LoadingSpinner />;
-
-        return (
-          <div>
-            <h1>Project images regex: {imageRegex}</h1>
-          </div>
-        );
-      }}
-    />
-  );
-}
-
-function MyApp() {
-  return (
-    <ProjectExtensionProviderForImageRegex>
-      <MyComponent />
-    </ProjectExtensionProviderForImageRegex>
-  );
-}
-```
+<MultiCodeExample>
+  <CodeExample language="jsx" path="api-reference/commercetools-frontend-application-shell-connectors/get-project-extension-image-regex.js" />
+  <CodeExample language="tsx" path="api-reference/commercetools-frontend-application-shell-connectors/get-project-extension-image-regex.tsx" />
+</MultiCodeExample>
 
 #### Properties
 
@@ -312,31 +264,10 @@ type TImageRegexContext = {
 
 A higher-order component (HOC) to access the image regex configuration.
 
-```jsx
-class MyComponent extends React.Component {
-  render() {
-    const { imageRegexData } = this.props;
-    return (
-      <div>
-        <h2>Project images regex is loading?: {imageRegexData.isLoading}</h2>
-        <h2>Project images regex: {imageRegexData.imageRegex}</h2>
-      </div>
-    );
-  }
-}
-
-const WrappedComponent = withProjectExtensionImageRegex()(MyComponent);
-
-class MyApp extends React.Component {
-  render() {
-    return (
-      <ProjectExtensionProviderForImageRegex>
-        <MyComponent />
-      </ProjectExtensionProviderForImageRegex>
-    );
-  }
-}
-```
+<MultiCodeExample>
+  <CodeExample language="jsx" path="api-reference/commercetools-frontend-application-shell-connectors/with-project-extension-image-regex.js" />
+  <CodeExample language="tsx" path="api-reference/commercetools-frontend-application-shell-connectors/with-project-extension-image-regex.tsx" />
+</MultiCodeExample>
 
 #### Properties
 
