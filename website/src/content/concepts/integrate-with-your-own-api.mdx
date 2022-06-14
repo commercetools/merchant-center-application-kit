@@ -188,24 +188,10 @@ The middleware requires some options:
 
 You can use the middleware as following:
 
-```js highlightLines="3,9-12"
-const express = require('express');
-const {
-  createSessionMiddleware,
-  CLOUD_IDENTIFIERS,
-} = require('@commercetools-backend/express');
-
-const app = express();
-app.use(
-  createSessionMiddleware({
-    audience: 'https://my-api-server.com',
-    issuer: CLOUD_IDENTIFIERS.GCP_EU,
-  })
-);
-app.use((request, response, next) => {
-  // `request.session` contains the useful information
-});
-```
+<MultiCodeExample>
+  <CodeExample language="js" path="concepts/integrate-with-your-own-api/middleware-usage.js" highlightLines={[3,9,10,11,12]} />
+  <CodeExample language="ts" path="concepts/integrate-with-your-own-api/middleware-usage.ts" highlightLines={[7,13,14,15,16]} />
+</MultiCodeExample>
 
 ### Usage for Serverless Functions
 
@@ -215,57 +201,19 @@ The options to configure the function are the same as the Express.js middleware.
 
 Below is an example of validating the JWT for Google Cloud Functions:
 
-```js highlightLines="2,6-9,12-17"
-const {
-  createSessionAuthVerifier,
-  CLOUD_IDENTIFIERS,
-} = require('@commercetools-backend/express');
-
-const sessionAuthVerifier = createSessionAuthVerifier({
-  audience: 'https://my-api-server.com',
-  issuer: CLOUD_IDENTIFIERS.GCP_EU,
-});
-
-exports.handler = async function (request, response) {
-  try {
-    await sessionAuthVerifier(request, response);
-  } catch (error) {
-    response.status(401).send(JSON.stringify({ message: 'Unauthorized' }));
-    return;
-  }
-  // `request.session` contains the useful information
-};
-```
+<MultiCodeExample>
+  <CodeExample language="js" path="concepts/integrate-with-your-own-api/middleware-usage-with-google-cloud-functions.js" highlightLines={[2,6,7,8,9,12,13,14,15,16,17]} />
+  <CodeExample language="ts" path="concepts/integrate-with-your-own-api/middleware-usage-with-google-cloud-functions.ts" highlightLines={[2,7,8,9,10,13,14,15,16,17,18]} />
+</MultiCodeExample>
 
 Other cloud providers might not use a standard Node.js/Express `request` object. For example AWS Lambda functions receive an [`event` object](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html) with different properties.
 
 In these cases you need to implement the `getRequestUrl` function to correctly map the expected URL (URI path + query string). The following example shows how to map an AWS Lambda function [event](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html).
 
-```js highlightLines="10"
-const {
-  createSessionAuthVerifier,
-  CLOUD_IDENTIFIERS,
-} = require('@commercetools-backend/express');
-
-const sessionAuthVerifier = createSessionAuthVerifier({
-  audience: 'https://my-api-server.com',
-  issuer: CLOUD_IDENTIFIERS.GCP_EU,
-  // This example assumes that the `event` is based on Lambda v2 of the payload format.
-  getRequestUrl: (event) => `${event.rawPath}${event.rawQueryString ? '?' + event.rawQueryString : ''}`
-});
-
-exports.handler = async function (event, context) {
-  try {
-    await sessionAuthVerifier(event, context);
-  } catch (error) {
-    return {
-      statusCode: 401,
-      body: JSON.stringify({ message: 'Unauthorized' }),
-    };
-  }
-  // `event.session` contains the useful information
-};
-```
+<MultiCodeExample>
+  <CodeExample language="js" path="concepts/integrate-with-your-own-api/middleware-usage-with-aws-lambda-functions.js" highlightLines={[9,10]} />
+  <CodeExample language="ts" path="concepts/integrate-with-your-own-api/middleware-usage-with-aws-lambda-functions.ts" highlightLines={[10,11]} />
+</MultiCodeExample>
 
 
 ## Using JSON Web Key Set endpoint
