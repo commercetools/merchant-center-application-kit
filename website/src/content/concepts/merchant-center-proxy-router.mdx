@@ -26,10 +26,36 @@ For example, the user tries to access the `/:projectKey/products` URL. The reque
 The same principle applies to any Custom Application:
 1. Matching of the `entryPointUriPath`.
 2. Loading configuration of Custom Application based on the Project access.
-3. Forwarding of request to Custom Application URL.
+3. Forwarding of request to Custom Application URL. *(see [section below](#url-rewrites) for more information)*
 4. Serving of `index.html`.
 
 ![Architecture Diagram](/images/merchant-center-proxy-router.png 'Merchant Center Proxy Router architecture')
+
+# URL rewrites
+
+Bear in mind that, when **Merchant Center Proxy Router** forwards the request to the Custom Application configured URL, it will include the pathname (`/:projectKey/products` in the example above) as well as the query parameters.
+
+This is because the Custom Application handles client-side routing and it needs the path to properly render the page and it will use the `projectKey` internally.
+
+You need to setup your deployment service to return the `index.html` file no matter which pathname exists in the Custom Application URL.
+
+### Example
+
+Let's say you have deployed a Custom Application with these info:
+* Application URL: `https://my-app.netlify.app/`
+* Application entry-point: `my-app`
+* Installed in project: `my-project`
+
+You will access the Merchant Center to load your Custom Application and the URL you will see in the browser would be like this: `https://mc.<cloud-region>.commercetools.com/my-project/my-app`.
+Internally, the **Merchant Center Proxy Router** will send a request to this URL: `https://my-app.netlify.app/my-project/my-app`.
+
+All of these requests should return the same file (`index.html`):
+* https://my-app.netlify.app/
+* https://my-app.netlify.app/my-project/my-app
+* https://my-app.netlify.app/my-project/my-app/channels
+
+Every deployment service has its own configuration in this regard and we try to provide hints for the most common cases.
+(*check the [Deployment Examples](/deployment-examples) section*)
 
 # Security Headers
 
