@@ -1,5 +1,5 @@
 const prompts = require('prompts');
-const EXCLUDED_TIME_ZONES_FALLBACK_MAP = require('./excluded-time-zones-fallback-map');
+const TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP = require('./translations-for-excluded-time-zones-map');
 
 const SELECT_OPTIONS = {
   TRANSLATE: 'TRANSLATE',
@@ -67,9 +67,9 @@ function generatePromptsForTimeZone(timeZone) {
       message: MESSAGES.CORRELATED_TIMEZONE(timeZone),
       validate: (input) => {
         if (input && input.length) {
-          if (!EXCLUDED_TIME_ZONES_FALLBACK_MAP[input]) {
+          if (!TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP[input]) {
             return `You must enter a valid IANA identifier for a currently translated time zone`;
-          } else if (EXCLUDED_TIME_ZONES_FALLBACK_MAP[input]) {
+          } else if (TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP[input]) {
             return true;
           }
         } else {
@@ -83,6 +83,8 @@ function generatePromptsForTimeZone(timeZone) {
 const sortAnswersForTimeZone = (answers, timeZone) => {
   switch (answers[NAMES.SELECT_OPTION]) {
     case SELECT_OPTIONS.TRANSLATE:
+      // add tz to translations map so tz's excluded in subsequent prompts can be mapped to this tz
+      TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP[timeZone] = [];
       return {
         [timeZone]: {
           [NAMES.SELECT_OPTION]: SELECT_OPTIONS.TRANSLATE,
@@ -152,6 +154,7 @@ const sortAllTimeZoneAnswers = (answers) =>
       [SELECT_OPTIONS.IGNORE]: [],
     }
   );
+
 /** If there are IANA timezone identifiers returned by moment-timezone
  *  that are not in the translations or exclusions list,
  *  we must get user input as to whether those time zones should be:

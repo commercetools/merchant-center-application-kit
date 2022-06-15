@@ -8,8 +8,9 @@ const rcfile = require('rcfile');
 const fetch = require('node-fetch');
 const moment = require('moment-timezone');
 const deepDiff = require('deep-diff');
-const EXCLUDED_TIME_ZONES = require('./excluded-time-zones');
-const EXCLUDED_TIME_ZONES_FALLBACK_MAP = require('./excluded-time-zones-fallback-map');
+const isEqual = require('lodash/isEqual');
+const difference = require('lodash/difference');
+const TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP = require('./translations-for-excluded-time-zones-map');
 const parseUnhandledTimeZones = require('./parse-unhandled-time-zones');
 
 const prettierConfig = rcfile('prettier');
@@ -274,7 +275,7 @@ const mapDiffToWarnings = (oldData, newData) => {
     .filter(Boolean);
 };
 
-function throwIfSourceFileDoesNotExit(sourceFilePath) {
+function throwIfSourceFileDoesNotExist(sourceFilePath) {
   try {
     fs.accessSync(sourceFilePath, fs.constants.F_OK);
   } catch (e) {
@@ -282,6 +283,10 @@ function throwIfSourceFileDoesNotExit(sourceFilePath) {
       `File ${sourceFilePath} does not exist. Ensure it exists before running the script.`
     );
   }
+}
+
+function timeZoneCompareFn(a, b) {
+  return a.toLowerCase().localeCompare(b.toLowerCase());
 }
 
 function readTranslatedTimeZones(sourceFilePath) {
@@ -298,61 +303,101 @@ function writeTranslatedTimeZones(sourceFilePath, updatedTranslations) {
   fs.writeFileSync(sourceFilePath, formatted, { encoding: 'utf8' });
 }
 
-function writeExcludedTimeZones(excludedTimeZonesFilePath, updatedExclusions) {
-  const js = `const EXCLUDED_TIME_ZONES = ${JSON.stringify(
-    updatedExclusions,
+function writeTranslationsForExcludedTimeZonesMap(updatedTranslationsMap) {
+  const translationsForExcludedTimeZonesMapFilePath = path.join(
+    __dirname,
+    'translations-for-excluded-time-zones-map.js'
+  );
+  const js = `const TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP = ${JSON.stringify(
+    updatedTranslationsMap,
     null,
     2
-  )}; module.exports = EXCLUDED_TIME_ZONES`;
+  )}; module.exports = TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP`;
   const formatted = prettier.format(js, {
     ...prettierConfig,
     parser: 'babel',
   });
 
-  fs.writeFileSync(excludedTimeZonesFilePath, formatted);
+  fs.writeFileSync(translationsForExcludedTimeZonesMapFilePath, formatted);
 }
 
-function writeTranslationsForExcludedTimeZonesMap(newExcludedTimeZones, key) {
-  const translationsToExcludedTimeZonesMapFilePath = path.join(
-    __dirname,
-    'excluded-time-zones-fallback-map.js'
+function writeTranslatedTimeZoneIdsToExcludedTimeZonesMap(
+  newTranslations,
+  key
+) {
+  const newTranslationIds = Object.keys(newTranslations);
+  const includedTimeZoneIds = getIncludedTimeZoneIds();
+  const updatedTranslationsMap = includedTimeZoneIds
+    .concat(newTranslationIds)
+    .sort(timeZoneCompareFn)
+    .reduce((mappedTimeZones, timeZoneId) => {
+      return {
+        ...mappedTimeZones,
+        [timeZoneId]: TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP[timeZoneId]
+          ? TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP[timeZoneId]
+          : [],
+      };
+    }, {});
+
+  writeTranslationsForExcludedTimeZonesMap(updatedTranslationsMap);
+  console.log(
+    `[${key}]: writing ${
+      Object.keys(newTranslations).length
+    } translated timezones to translations-for-excluded-time-zones-map.js`
   );
+}
+
+function writeExcludedTimeZoneIdsToExcludedTimeZonesMap(
+  newExcludedTimeZones,
+  key
+) {
   Object.entries(newExcludedTimeZones).forEach(
     ([excludedTimeZone, translatedTimeZone]) => {
-      if (EXCLUDED_TIME_ZONES_FALLBACK_MAP[translatedTimeZone]) {
-        EXCLUDED_TIME_ZONES_FALLBACK_MAP[translatedTimeZone].push(
+      if (TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP[translatedTimeZone]) {
+        TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP[translatedTimeZone].push(
           excludedTimeZone
         );
       }
     }
   );
-  const js = `const EXCLUDED_TIME_ZONES_FALLBACK_MAP = ${JSON.stringify(
-    EXCLUDED_TIME_ZONES_FALLBACK_MAP,
-    null,
-    2
-  )}; module.exports = EXCLUDED_TIME_ZONES_FALLBACK_MAP`;
-  const formatted = prettier.format(js, {
-    ...prettierConfig,
-    parser: 'babel',
-  });
+  const updatedTranslationsMap = Object.keys(
+    TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP
+  )
+    .sort(timeZoneCompareFn)
+    .reduce((sortedTranslationsMap, timeZoneId) => {
+      sortedTranslationsMap[timeZoneId] =
+        TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP[timeZoneId];
+      return sortedTranslationsMap;
+    }, {});
 
-  fs.writeFileSync(translationsToExcludedTimeZonesMapFilePath, formatted);
+  writeTranslationsForExcludedTimeZonesMap(updatedTranslationsMap);
   console.log(
     `[${key}]: writing ${
       Object.keys(newExcludedTimeZones).length
-    } timezones to ${translationsToExcludedTimeZonesMapFilePath}`
+    } excluded timezones to translations-for-excluded-time-zones-map.js`
   );
 }
 
-function getUnhandledTimeZoneIds(allTimeZoneIds, translatedTimeZoneIds) {
+function getExcludedTimeZoneIds() {
+  return Object.values(TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP).reduce(
+    (allExcludedTimeZones, mappedTimeZones) =>
+      allExcludedTimeZones.concat(mappedTimeZones),
+    []
+  );
+}
+
+function getIncludedTimeZoneIds() {
+  return Object.keys(TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP);
+}
+
+function getUnhandledTimeZoneIds(allTimeZoneIds) {
   return allTimeZoneIds.filter(
     (id) =>
-      !(translatedTimeZoneIds.includes(id) || EXCLUDED_TIME_ZONES.includes(id))
+      !(
+        getIncludedTimeZoneIds().includes(id) ||
+        getExcludedTimeZoneIds().includes(id)
+      )
   );
-}
-
-function timeZoneCompareFn(a, b) {
-  return (a, b) => a.toLowerCase().localeCompare(b.toLowerCase());
 }
 
 function ensureDirectoryExists(dir) {
@@ -363,12 +408,29 @@ function ensureDirectoryExists(dir) {
   }
 }
 
+function throwIfIncludedTimeZoneIsNotTranslated(translatedTimeZoneIds) {
+  const includedTimeZoneIds = getIncludedTimeZoneIds();
+  if (!isEqual(translatedTimeZoneIds.sort(), includedTimeZoneIds.sort())) {
+    throw new Error(
+      translatedTimeZoneIds.length > includedTimeZoneIds.length
+        ? `The following time zones are translated but not mapped: ${difference(
+            translatedTimeZoneIds,
+            includedTimeZoneIds
+          )}`
+        : `The following time zones are mapped but not translated: ${difference(
+            includedTimeZoneIds,
+            translatedTimeZoneIds
+          )}`
+    );
+  }
+}
+
 function writeTranslatedTimeZonesForLocale(
   sourceFilePath,
   newTranslations,
   key
 ) {
-  throwIfSourceFileDoesNotExit(sourceFilePath);
+  throwIfSourceFileDoesNotExist(sourceFilePath);
   const translationsForLocale = readTranslatedTimeZones(sourceFilePath);
   const translatedTimeZoneIds = Object.keys(translationsForLocale);
   const updatedTranslations = translatedTimeZoneIds
@@ -392,38 +454,19 @@ function writeTranslatedTimeZonesForLocale(
 
 async function updateTimeZoneData(key, supportedLocales) {
   const allTimeZoneIds = moment.tz.names();
-  // uncomment for testing/review purposes, will be removed once PR is out of draft
-  // const fakeTimeZones = ['zzspace/moon', 'zzspace/mars', 'zzspace/jupiter'];
-  // const allTimeZoneIds = moment.tz.names().concat(fakeTimeZones);
   const dataFolderPath = path.join(__dirname, '..', DATA_DIR[key].path);
   const sourceDataFilePath = path.join(dataFolderPath, 'core.json');
-  /**TO CONSIDER:
-   * Once we have each excluded translation mapped to a fallback in excluded-time-zones-fallback,
-   * we could reduce/concat those ID's into the excluded list when this script is run,
-   * and use EXCLUDED_TIME_ZONES_FALLBACK_MAP as the only excluded timezones file.
-   *
-   * Then, when a translation is added for a new IANA identifier, we could add that IANA
-   * id to EXCLUDED_TIME_ZONES_FALLBACK_MAP, which would insure that we are always able to
-   * handle translating any timezones that might be returned by `moment.tz.guess()` that we
-   * do not return a translation for.
-   */
-  const excludedTimeZonesFilePath = path.join(
-    __dirname,
-    'excluded-time-zones.js'
-  );
+  throwIfSourceFileDoesNotExist(sourceDataFilePath);
 
-  throwIfSourceFileDoesNotExit(sourceDataFilePath);
   const translatedTimeZones = readTranslatedTimeZones(sourceDataFilePath);
   const translatedTimeZoneIds = Object.keys(translatedTimeZones);
+  throwIfIncludedTimeZoneIsNotTranslated(translatedTimeZoneIds);
 
   console.log(
     `[${key}]: Checking moment-timezone for new IANA timezone identifiers`
   );
 
-  const unhandledTimeZoneIds = getUnhandledTimeZoneIds(
-    allTimeZoneIds,
-    translatedTimeZoneIds
-  );
+  const unhandledTimeZoneIds = getUnhandledTimeZoneIds(allTimeZoneIds);
   // Given we have unhandled timezone ids, we need to determine what to do with them.
   if (unhandledTimeZoneIds.length) {
     console.log(
@@ -441,8 +484,7 @@ async function updateTimeZoneData(key, supportedLocales) {
     const { TRANSLATE, EXCLUDE, IGNORE } = await parseUnhandledTimeZones(
       unhandledTimeZoneIds
     );
-
-    // Given timezones unhandled timezones should be translated they are added to the translations file(s).
+    // Unhandled timezones with translation strings are added to the translations file(s).
     if (Object.keys(TRANSLATE).length) {
       ensureDirectoryExists(dataFolderPath);
       const translationFilePaths = [
@@ -454,17 +496,14 @@ async function updateTimeZoneData(key, supportedLocales) {
       translationFilePaths.map((sourceFilePath) =>
         writeTranslatedTimeZonesForLocale(sourceFilePath, TRANSLATE, key)
       );
+      ensureDirectoryExists('./');
+      writeTranslatedTimeZoneIdsToExcludedTimeZonesMap(TRANSLATE, key);
     }
-
     // Given timezones were excluded the file with the exclusion list needs to be written to disk.
     if (Object.keys(EXCLUDE).length) {
-      // Add timezones to be excluded to exclusions array, and sort array alphabetically
-      const updatedExclusions = EXCLUDED_TIME_ZONES.concat(
-        Object.keys(EXCLUDE)
-      ).sort(timeZoneCompareFn);
+      // Add timezones to be excluded to translation map
       ensureDirectoryExists('./');
-      writeExcludedTimeZones(excludedTimeZonesFilePath, updatedExclusions, key);
-      writeTranslationsForExcludedTimeZonesMap(EXCLUDE, key);
+      writeExcludedTimeZoneIdsToExcludedTimeZonesMap(EXCLUDE, key);
     }
     if (IGNORE.length) {
       console.log(`[${key}]: ${IGNORE.length} timezones ignored`);
