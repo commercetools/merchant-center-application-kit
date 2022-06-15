@@ -17,4 +17,5 @@ export {
   GetProjectExtensionImageRegex,
   ProjectExtensionProviderForImageRegex,
   withProjectExtensionImageRegex,
+  useProjectExtensionImageRegex,
 } from './components/project-extension-image-regex';

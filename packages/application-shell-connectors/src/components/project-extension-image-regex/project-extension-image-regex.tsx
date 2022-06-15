@@ -3,8 +3,15 @@ import type {
   TFetchProjectExtensionImageRegexQueryVariables,
   TImageRegexOptions,
 } from '../../types/generated/settings';
+import warning from 'tiny-warning';
 
-import { ComponentType, createContext, ReactNode } from 'react';
+import {
+  type ComponentType,
+  type ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+} from 'react';
 import { useQuery } from '@apollo/client/react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
@@ -27,7 +34,19 @@ type ConsumerProps = {
   children?: never;
 };
 
+const useWarning = (condition: boolean, message: string) => {
+  useEffect(() => {
+    warning(condition, message);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+};
+
 const Context = createContext<TImageRegexContext>({ isLoading: false });
+
+const useProjectExtensionImageRegex = () => {
+  const { isLoading, imageRegex } = useContext(Context);
+  return { isLoading, imageRegex };
+};
 
 const ProjectExtensionProviderForImageRegex = (props: ProviderProps) => {
   const { loading, data } = useQuery<
@@ -54,24 +73,39 @@ const ProjectExtensionProviderForImageRegex = (props: ProviderProps) => {
 ProjectExtensionProviderForImageRegex.displayName =
   'ProjectExtensionProviderForImageRegex';
 
-const GetProjectExtensionImageRegex = (props: ConsumerProps) => (
-  <Context.Consumer>
-    {(imageRegexContext) => props.render(imageRegexContext)}
-  </Context.Consumer>
-);
+const GetProjectExtensionImageRegex = (props: ConsumerProps) => {
+  useWarning(
+    false,
+    `@commercetools-frontend/application-shell-connectors: It is not recommended to use the 'GetProjectExtensionImageRegex' anymore. Please use the 'useProjectExtensionImageRegex' hook instead.`
+  );
+
+  return (
+    <Context.Consumer>
+      {(imageRegexContext) => props.render(imageRegexContext)}
+    </Context.Consumer>
+  );
+};
 GetProjectExtensionImageRegex.displayName = 'GetProjectExtensionImageRegex';
 
 function withProjectExtensionImageRegex<Props extends {}>(
   propKey = 'imageRegexData'
 ) {
   return (Component: ComponentType<Props>) => {
-    const WrappedComponent = (props: Props) => (
-      <GetProjectExtensionImageRegex
-        render={(imageRegexData) => (
-          <Component {...props} {...{ [propKey]: imageRegexData }} />
-        )}
-      />
-    );
+    const WrappedComponent = (props: Props) => {
+      useWarning(
+        false,
+        `@commercetools-frontend/application-shell-connectors: It is not recommended to use the 'withProjectExtensionImageRegex' high order component anymore. Please use the 'useProjectExtensionImageRegex' hook instead.`
+      );
+      const imageregexContext = useProjectExtensionImageRegex();
+      return (
+        <GetProjectExtensionImageRegex
+          render={() => (
+            <Component {...props} {...{ [propKey]: imageregexContext }} />
+          )}
+        />
+      );
+    };
+
     WrappedComponent.displayName = `withProjectExtensionImageRegex(${getDisplayName<Props>(
       Component
     )})`;
@@ -84,4 +118,5 @@ export {
   GetProjectExtensionImageRegex,
   ProjectExtensionProviderForImageRegex,
   withProjectExtensionImageRegex,
+  useProjectExtensionImageRegex,
 };
