@@ -4,8 +4,7 @@ import * as PropTypes from 'prop-types';
 import moment from 'moment-timezone';
 import { createL10NInjector, createL10NHook } from './create-l10n-injector';
 import { getSupportedLocale, mapLocaleToIntlLocale } from './utils';
-const TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP = require('../scripts/translations-for-excluded-time-zones-map');
-
+import * as TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP from '../scripts/translations-for-excluded-time-zones-map';
 type ImportData = {
   default: TimeZones;
 };
