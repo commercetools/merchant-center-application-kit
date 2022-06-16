@@ -16,11 +16,13 @@ export type TimeZone = {
   name: string;
   abbr: string;
   offset: string;
-  translationFor: TimeZoneTranslations;
+  translationFor: TimeZoneTranslationsMap;
 };
 export type TimeZones = Record<string, TimeZone>;
 
 export type TimeZoneTranslations = Record<string, string>;
+
+export type TimeZoneTranslationsMap = Record<string, Array<string>>;
 
 export type LocalizedField = {
   locale: string;

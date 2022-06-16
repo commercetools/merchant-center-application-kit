@@ -1,5 +1,4 @@
 const prompts = require('prompts');
-const TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP = require('./translations-for-excluded-time-zones-map');
 
 const SELECT_OPTIONS = {
   TRANSLATE: 'TRANSLATE',
@@ -28,7 +27,7 @@ const DESCRIPTIONS = {
   SELECT_IGNORE: (timeZone) => `Do nothing for ${timeZone}`,
 };
 
-function generatePromptsForTimeZone(timeZone) {
+function generatePromptsForTimeZone(timeZone, translationsMap) {
   return [
     {
       type: 'select',
@@ -67,9 +66,9 @@ function generatePromptsForTimeZone(timeZone) {
       message: MESSAGES.CORRELATED_TIMEZONE(timeZone),
       validate: (input) => {
         if (input && input.length) {
-          if (!TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP[input]) {
+          if (!translationsMap[input]) {
             return `You must enter a valid IANA identifier for a currently translated time zone`;
-          } else if (TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP[input]) {
+          } else if (translationsMap[input]) {
             return true;
           }
         } else {
@@ -80,11 +79,11 @@ function generatePromptsForTimeZone(timeZone) {
   ];
 }
 
-const sortAnswersForTimeZone = (answers, timeZone) => {
+const sortAnswersForTimeZone = (answers, timeZone, translationsMap) => {
   switch (answers[NAMES.SELECT_OPTION]) {
     case SELECT_OPTIONS.TRANSLATE:
       // add tz to translations map so tz's excluded in subsequent prompts can be mapped to this tz
-      TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP[timeZone] = [];
+      translationsMap[timeZone] = [];
       return {
         [timeZone]: {
           [NAMES.SELECT_OPTION]: SELECT_OPTIONS.TRANSLATE,
@@ -93,6 +92,8 @@ const sortAnswersForTimeZone = (answers, timeZone) => {
       };
 
     case SELECT_OPTIONS.EXCLUDE:
+      // add tz to correlated tz's array in translation map
+      translationsMap[answers[NAMES.CORRELATED_TIMEZONE]].push(timeZone);
       return {
         [timeZone]: {
           [NAMES.SELECT_OPTION]: SELECT_OPTIONS.EXCLUDE,
@@ -110,9 +111,11 @@ const sortAnswersForTimeZone = (answers, timeZone) => {
   }
 };
 
-async function getAnswersForTimeZone(timeZone) {
-  const answers = await prompts(generatePromptsForTimeZone(timeZone));
-  return sortAnswersForTimeZone(answers, timeZone);
+async function getAnswersForTimeZone(timeZone, translationsMap) {
+  const answers = await prompts(
+    generatePromptsForTimeZone(timeZone, translationsMap)
+  );
+  return sortAnswersForTimeZone(answers, timeZone, translationsMap);
 }
 
 const sortAllTimeZoneAnswers = (answers) =>
@@ -130,10 +133,10 @@ const sortAllTimeZoneAnswers = (answers) =>
         case SELECT_OPTIONS.EXCLUDE:
           return {
             ...sortedAnswers,
-            [SELECT_OPTIONS.EXCLUDE]: {
+            [SELECT_OPTIONS.EXCLUDE]: [
               ...sortedAnswers[SELECT_OPTIONS.EXCLUDE],
-              [timeZone]: answer[NAMES.CORRELATED_TIMEZONE],
-            },
+              timeZone,
+            ],
           };
 
         case SELECT_OPTIONS.IGNORE:
@@ -150,7 +153,7 @@ const sortAllTimeZoneAnswers = (answers) =>
     },
     {
       [SELECT_OPTIONS.TRANSLATE]: {},
-      [SELECT_OPTIONS.EXCLUDE]: {},
+      [SELECT_OPTIONS.EXCLUDE]: [],
       [SELECT_OPTIONS.IGNORE]: [],
     }
   );
@@ -162,10 +165,16 @@ const sortAllTimeZoneAnswers = (answers) =>
  *  b) excluded from being displayed/translated, or
  *  c) ignored until the next time this script is run.
  */
-module.exports = async function parseUnhandledTimeZones(unhandledTimeZones) {
+module.exports = async function parseUnhandledTimeZones(
+  unhandledTimeZones,
+  translationsMap
+) {
   let answers = {};
   for (let i = 0; i < unhandledTimeZones.length; i++) {
-    let answer = await getAnswersForTimeZone(unhandledTimeZones[i]);
+    let answer = await getAnswersForTimeZone(
+      unhandledTimeZones[i],
+      translationsMap
+    );
     answers = { ...answers, ...answer };
   }
   return sortAllTimeZoneAnswers(answers);
