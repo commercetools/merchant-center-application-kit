@@ -19,16 +19,10 @@ To facilitate managing source messages and translations we provide some built-in
 
 As a first step, we recommend defining source messages in the `messages.js` file next to your React component.
 
-```js title="messages.js"
-import { defineMessages } from 'react-intl';
-
-export default defineMessages({
-  title: {
-    id: 'Channels.title',
-    defaultMessage: 'Channels list',
-  },
-});
-```
+<MultiCodeExample title="messages">
+  <CodeExample language="jsx" path="development/translations/messages.js" />
+  <CodeExample language="tsx" path="development/translations/messages.tsx" />
+</MultiCodeExample>
 
 Source messages are defined as named objects by [`react-intl`](https://formatjs.io/docs/react-intl), a library with React abstractions on top of the [ECMAScript Internationalization API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl).
 
@@ -45,45 +39,19 @@ Below you will find some examples of consuming the Intl messages.
 
 The `react-intl` library provides several React components to render the message, like `<FormattedMessage>`.
 
-```js title="channels.js" highlightLines="1,10"
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
-
-const Channels = () => {
-  // ...
-  return (
-    <Spacings.Stack scale="l">
-      <Spacings.Stack scale="s">
-        <Text.Headline as="h2">
-          <FormattedMessage message={messages.title}>
-        </Text.Headline>
-      </Spacings.Stack>
-      {/* ... */}
-    </Spacings.Stack>
-  )
-};
-```
+<MultiCodeExample title="channels">
+  <CodeExample language="jsx" path="development/translations/channels.js"  highlightLines="1,10" />
+  <CodeExample language="tsx" path="development/translations/channels.tsx"  highlightLines="1,10" />
+</MultiCodeExample>
 
 <Info>
 
 Most of the UI Kit components support formatting messages via the prop `intlMessage`. You can pass your raw message and the component takes care of rendering the message.
 
-```js title="channels.js" highlightLines="9"
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
-
-const Channels = () => {
-  // ...
-  return (
-    <Spacings.Stack scale="l">
-      <Spacings.Stack scale="s">
-        <Text.Headline as="h2" intlMessage={messages.title} />
-      </Spacings.Stack>
-      {/* ... */}
-    </Spacings.Stack>
-  )
-};
-```
+<MultiCodeExample title="channels">
+  <CodeExample language="jsx" path="development/translations/intl-message.js" highlightLines="9" />
+  <CodeExample language="tsx" path="development/translations/intl-message.tsx" highlightLines="9" />
+</MultiCodeExample>
 
 </Info>
 
@@ -93,19 +61,10 @@ The `react-intl` library also provides an [imperative API](https://formatjs.io/d
 
 Using the `intl` object is usually necessary for props that only accept strings, for example `aria-label`, `title`, etc.
 
-```js
-import { useIntl } from 'react-intl';
-
-const Button = () => {
-  const intl = useIntl();
-  return (
-    <FlatButton
-      label={intl.formatMessage(messages.save)}
-      // ...
-    />
-  )
-}
-```
+<MultiCodeExample>
+  <CodeExample language="jsx" path="development/translations/use-intl-hook.js" />
+  <CodeExample language="tsx" path="development/translations/use-intl-hook.tsx" />
+</MultiCodeExample>
 
 # Extracting messages for translations
 
@@ -162,46 +121,10 @@ To keep the bundle size low, the application should only load the messages for a
 
 Given the translation messages are located in the `i18n/data` folder, you can define a function to dynamically load the messages:
 
-```js title="entry-point.js"
-const loadMessages = lang => {
-  let loadAppI18nPromise;
-  switch (lang) {
-    case 'de':
-      loadAppI18nPromise = import(
-        '../../i18n/data/de.json' /* webpackChunkName: "app-i18n-de" */
-      );
-      break;
-    case 'es':
-      loadAppI18nPromise = import(
-        '../../i18n/data/es.json' /* webpackChunkName: "app-i18n-es" */
-      );
-      break;
-    default:
-      loadAppI18nPromise = import(
-        '../../i18n/data/en.json' /* webpackChunkName: "app-i18n-en" */
-      );
-  }
-
-  return loadAppI18nPromise.then(
-    result => result.default,
-    error => {
-      console.warn(
-        `Something went wrong while loading the app messages for ${lang}`,
-        error
-      );
-
-      return {};
-    }
-  );
-};
-
-const EntryPoint = () => (
-  <ApplicationShell
-    applicationMessages={loadMessages}
-    // ...
-  />
-);
-```
+<MultiCodeExample title="entry-point">
+  <CodeExample language="jsx" path="development/translations/dynamically-load-messages.js" />
+  <CodeExample language="tsx" path="development/translations/dynamically-load-messages.tsx" />
+</MultiCodeExample>
 
 <!-- # Advanced usage
 
