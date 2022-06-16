@@ -40,18 +40,10 @@ In our Custom Application we recommend to implement the following approaches:
 
 Let's set things up. First, we need to configure Mock Service Worker to create a mock server.
 
-```js title="channels.spec.js"
-import { setupServer } from 'msw/node';
-
-const mockServer = setupServer();
-afterEach(() => mockServer.resetHandlers());
-beforeAll(() =>
-  mockServer.listen({
-    onUnhandledRequest: 'error',
-  })
-);
-afterAll(() => mockServer.close());
-```
+<MultiCodeExample title='channels.spec'>
+  <CodeExample language="jsx" path="development/testing/configure-mock-service-worker.js" />
+  <CodeExample language="tsx" path="development/testing/configure-mock-service-worker.tsx" />
+</MultiCodeExample>
 
 In our test we then mock all necessary API requests. If a network request is not properly mocked, Mock Service Worker will let you know.<br />
 Our Channels page sends a `FetchChannels` GraphQL query, therefore we need to use the `graphql.query` handler matching the name of the query: `FetchChannels`.
@@ -59,58 +51,20 @@ Our Channels page sends a `FetchChannels` GraphQL query, therefore we need to us
 ```js title="channels.spec.js"
 import { graphql } from 'msw';
 
-it('should render channels', async () => {
-  mockServer.use(
-    graphql.query('FetchChannels', (req, res, ctx) => {
-      return res(
-        ctx.data({
-          channels: {
-            // Mocked data
-          }
-        })
-      );
-    })
-  );
-
-  // Actual test...
-});
-```
+<MultiCodeExample title='channels.spec'>
+  <CodeExample language="jsx" path="development/testing/mock-api-request.js" />
+  <CodeExample language="tsx" path="development/testing/mock-api-request.tsx" />
+</MultiCodeExample>
 
 The mocked data that we need to return should match the shape of the fields we are requesting in our GraphQL query.<br />
 In theory we can simply hardcode some random object but this does not scale well as your Custom Application grows.
 
 A better way to fulfill the data requirements is to use a [Test Data model](https://github.com/commercetools/test-data) for a `Channel`.
 
-```js title="channels.spec.js" highlightLines="2-3,8-9,13-21"
-import { graphql } from 'msw';
-import { buildGraphqlList } from '@commercetools-test-data/core';
-import * as ChannelMock from '@commercetools-test-data/channel';
-
-it('should render channels', async () => {
-  mockServer.use(
-    graphql.query('FetchChannels', (req, res, ctx) => {
-      const totalItems = 20;
-      const itemsPerPage = 5;
-
-      return res(
-        ctx.data({
-          channels: buildGraphqlList(
-            Array.from({ length: itemsPerPage }).map((_, index) =>
-              ChannelMock.random().key(`channel-key-${index}`)
-            ),
-            {
-              name: 'Channel',
-              total: totalItems,
-            }
-          ),
-        })
-      );
-    })
-  );
-
-  // Actual test...
-});
-```
+<MultiCodeExample title='channels.spec'>
+  <CodeExample language="jsx" path="development/testing/use-test-data-model.js"  highlightLines='2-3,8-9,13-21'/>
+  <CodeExample language="tsx" path="development/testing/use-test-data-model.tsx"  highlightLines='2-3,8-9,13-21'/>
+</MultiCodeExample>
 
 ## Testing the application
 
@@ -120,33 +74,10 @@ Most of the time you want to render your application from one of the top-level c
 
 We recommend writing a function, for example `renderApp`, to encapsulate the basic test setup, so that your actual test remains as clean as possible.
 
-```js title="channels.spec.js"
-import {
-  fireEvent,
-  screen,
-  renderAppWithRedux,
-} from '@commercetools-frontend/application-shell/test-utils';
-import { entryPointUriPath } from '../../constants/application';
-import ApplicationRoutes from '../../routes';
-
-const renderApp = (options = {}) => {
-  const route = options.route || `/my-project/${entryPointUriPath}/channels`;
-  renderApplicationWithRedux(<ApplicationRoutes />, {
-    route,
-    entryPointUriPath,
-    // ...
-    ...options,
-  });
-};
-
-it('should render channels', async () => {
-  mockServer.use(/* See mock setup */);
-
-  renderApp();
-
-  await screen.findByText('channel-key-0');
-});
-```
+<MultiCodeExample title='channels.spec'>
+  <CodeExample language="jsx" path="development/testing/use-test-utils.js" />
+  <CodeExample language="tsx" path="development/testing/use-test-utils.tsx" />
+</MultiCodeExample>
 
 With this simple test we implicitly have tested the following things:
 
@@ -165,47 +96,10 @@ You get the idea.
 
 Let's enhance our test to paginate to page two. First we need to adjust our GraphQL mock to return results based on the `offset` from the query variables. Then we need to interact with the pagination button to go to the next page.
 
-```js title="channels.spec.js" highlightLines="1,5-7,14,30-31,34,37-38"
-it('should render channels and paginate to second page', async () => {
-  mockServer.use(
-    graphql.query('FetchChannels', (req, res, ctx) => {
-      // Simulate a server side pagination.
-      const { offset } = req.variables;
-      const totalItems = 25; // 2 pages
-      const itemsPerPage = offset === 0 ? 20 : 5;
-
-      return res(
-        ctx.data({
-          channels: buildGraphqlList(
-            Array.from({ length: itemsPerPage }).map((_, index) =>
-              ChannelMock.random().key(
-                `channel-key-${offset === 0 ? index : 20 + index}`
-              )
-            ),
-            {
-              name: 'Channel',
-              total: totalItems,
-            }
-          ),
-        })
-      );
-    })
-  );
-
-  renderApp();
-
-  // First page
-  await screen.findByText('channel-key-0');
-  expect(screen.queryByText('channel-key-22')).not.toBeInTheDocument();
-
-  // Go to second page
-  fireEvent.click(screen.getByLabelText('Next page'));
-
-  // Second page
-  await screen.findByText('channel-key-22');
-  expect(screen.queryByText('channel-key-0')).not.toBeInTheDocument();
-});
-```
+<MultiCodeExample title='channels.spec'>
+  <CodeExample language="jsx" path="development/testing/pagination-and-button-interaction.js" highlightLines="1,5-7,14,30-31,34,37-38"/>
+  <CodeExample language="tsx" path="development/testing/pagination-and-button-interaction.tsx" highlightLines="1,5-7,14,30-31,34,37-38"/>
+</MultiCodeExample>
 
 This should give you a basic idea on how you can approach testing your Custom Application.
 
@@ -222,28 +116,10 @@ By default, the [`test-utils`](/api-reference/commercetools-frontend-application
 
 In our example application, we can apply this as following:
 
-```js title="channels.spec.js" highlightLines="10-17"
-import { renderAppWithRedux } from '@commercetools-frontend/application-shell/test-utils';
-import { entryPointUriPath } from '../../constants/application';
-import ApplicationRoutes from '../../routes';
-
-const renderApp = (options = {}) => {
-  const route = options.route || `/my-project/${entryPointUriPath}/channels`;
-  renderApplicationWithRedux(<ApplicationRoutes />, {
-    route,
-    entryPointUriPath,
-    project: {
-      allAppliedPermissions: [
-        {
-          name: 'canViewChannels',
-          value: true,
-        },
-      ],
-    },
-    ...options,
-  });
-};
-```
+<MultiCodeExample title='channels.spec'>
+  <CodeExample language="jsx" path="development/testing/user-permissions.js" highlightLines="10-17"/>
+  <CodeExample language="tsx" path="development/testing/user-permissions.tsx" highlightLines="10-17"/>
+</MultiCodeExample>
 
 To help define the list of applied permissions, you can use the helper function [`mapResourceAccessToAppliedPermissions`](/api-reference/commercetools-frontend-application-shell#mapresourceaccesstoappliedpermissions).
 
@@ -269,6 +145,11 @@ const renderApp = (options = {}) => {
   });
 };
 ```
+
+<MultiCodeExample title='channels.spec'>
+  <CodeExample language="jsx" path="development/testing/define-applied-permissions-list.js" highlightLines="3,5,13-15"/>
+  <CodeExample language="tsx" path="development/testing/define-applied-permissions-list.tsx" highlightLines="3,6,14-16"/>
+</MultiCodeExample>
 
 # End-to-End
 
@@ -297,64 +178,31 @@ The `.env` file should be git ignored. On CI, you can define environment variabl
 
 In the `cypress/plugins/index.js` file, you need to configure the `task` for Custom Applications and to load the environment variables:
 
-```js title="cypress/plugins/index.js"
-const customApplications = require('@commercetools-frontend/cypress/task');
+<MultiCodeExample title='cypress/plugins/index'>
+  <CodeExample language="jsx" path="development/testing/configure-cypress-plugin.js" />
+  <CodeExample language="tsx" path="development/testing/configure-cypress-plugin.tsx" />
+</MultiCodeExample>
 
-module.exports = (on, cypressConfig) => {
-  // Load the config
-  if (!process.env.CI) {
-    const path = require('path');
-    const envPath = path.join(__dirname, '../.env');
-    require('dotenv').config({ path: envPath });
-  }
-
-  on('task', {
-    ...customApplications,
-  });
-
-  return {
-    ...cypressConfig,
-    env: {
-      ...cypressConfig.env,
-      LOGIN_USER: process.env.CYPRESS_LOGIN_USER,
-      LOGIN_PASSWORD: process.env.CYPRESS_LOGIN_PASSWORD,
-      PROJECT_KEY: process.env.CYPRESS_PROJECT_KEY,
-    },
-  };
-};
-```
 
 In the `cypress/support/commands.js` you need to import the following commands:
 
-```js title="cypress/support/commands.js"
-import '@testing-library/cypress/add-commands';
-import '@commercetools-frontend/cypress/add-commands';
-```
+<MultiCodeExample title='cypress/support/commands'>
+  <CodeExample language="jsx" path="development/testing/cypress-support-commands.js" />
+  <CodeExample language="tsx" path="development/testing/cypress-support-commands.tsx" />
+</MultiCodeExample>
 
 We also recommend to define some constants:
 
-```js title="cypress/support/constants.js"
-export const projectKey = Cypress.env('PROJECT_KEY');
-
-// TODO: define the actual `entryPointUriPath` of your Custom Application
-export const entryPointUriPath = '';
-
-export const applicationBaseRoute = `/${projectKey}/${entryPointUriPath}`;
-```
+<MultiCodeExample title='cypress/support/constants'>
+  <CodeExample language="jsx" path="development/testing/cypress-support-constants.js" />
+  <CodeExample language="tsx" path="development/testing/cypress-support-constants.tsx" />
+</MultiCodeExample>
 
 Finally, in the `cypress.json` you should set the `baseUrl` to `http://localhost:3001`.
 
 At this point the setup is done. You can start writing your tests.
 
-```js title="cypress/integration/channels.js"
-import { entryPointUriPath } from '../support/constants';
-
-describe('Channels', () => {
-  beforeEach(() => {
-    cy.loginByOidc({ entryPointUriPath });
-  });
-  it('should render page', () => {
-    cy.findByText('Channels list').should('exist');
-  });
-});
-```
+<MultiCodeExample title='cypress/integration/channels'>
+  <CodeExample language="jsx" path="development/testing/cypress-integration-channels.js" />
+  <CodeExample language="tsx" path="development/testing/cypress-integration-channels.tsx" />
+</MultiCodeExample>
