@@ -78,6 +78,7 @@ export const timeZonesShape = PropTypes.objectOf(
     label: PropTypes.string,
     abbr: PropTypes.string,
     offset: PropTypes.string,
+    translationFor: PropTypes.array,
   })
 );
 

@@ -16,7 +16,7 @@ export type TimeZone = {
   name: string;
   abbr: string;
   offset: string;
-  fallbackFor: string[];
+  translationFor: TimeZoneTranslations;
 };
 export type TimeZones = Record<string, TimeZone>;
 
