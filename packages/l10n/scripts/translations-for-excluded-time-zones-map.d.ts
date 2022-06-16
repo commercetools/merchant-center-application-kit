@@ -1,5 +1,2 @@
-declare const translationMap: {
-  [index: string]: Array<string>;
-};
-
-export = translationMap;
+declare const TranslationExclusionMap: Record<string, Array<string>>;
+export = TranslationExclusionMap;
