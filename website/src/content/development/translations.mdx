@@ -20,8 +20,8 @@ To facilitate managing source messages and translations we provide some built-in
 As a first step, we recommend defining source messages in the `messages.js` file next to your React component.
 
 <MultiCodeExample title="messages">
-  <CodeExample language="jsx" path="development/translations/messages.js" />
-  <CodeExample language="tsx" path="development/translations/messages.tsx" />
+  <CodeExample path="development/translations/messages.jsx" />
+  <CodeExample path="development/translations/messages.tsx" />
 </MultiCodeExample>
 
 Source messages are defined as named objects by [`react-intl`](https://formatjs.io/docs/react-intl), a library with React abstractions on top of the [ECMAScript Internationalization API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl).
@@ -40,8 +40,8 @@ Below you will find some examples of consuming the Intl messages.
 The `react-intl` library provides several React components to render the message, like `<FormattedMessage>`.
 
 <MultiCodeExample title="channels">
-  <CodeExample language="jsx" path="development/translations/channels.js"  highlightLines="1,10" />
-  <CodeExample language="tsx" path="development/translations/channels.tsx"  highlightLines="1,10" />
+  <CodeExample path="development/translations/channels.jsx"  highlightLines="1,10" />
+  <CodeExample path="development/translations/channels.tsx"  highlightLines="1,10" />
 </MultiCodeExample>
 
 <Info>
@@ -49,8 +49,8 @@ The `react-intl` library provides several React components to render the message
 Most of the UI Kit components support formatting messages via the prop `intlMessage`. You can pass your raw message and the component takes care of rendering the message.
 
 <MultiCodeExample title="channels">
-  <CodeExample language="jsx" path="development/translations/intl-message.js" highlightLines="9" />
-  <CodeExample language="tsx" path="development/translations/intl-message.tsx" highlightLines="9" />
+  <CodeExample path="development/translations/intl-message.jsx" highlightLines="9" />
+  <CodeExample path="development/translations/intl-message.tsx" highlightLines="9" />
 </MultiCodeExample>
 
 </Info>
@@ -62,8 +62,8 @@ The `react-intl` library also provides an [imperative API](https://formatjs.io/d
 Using the `intl` object is usually necessary for props that only accept strings, for example `aria-label`, `title`, etc.
 
 <MultiCodeExample>
-  <CodeExample language="jsx" path="development/translations/use-intl-hook.js" />
-  <CodeExample language="tsx" path="development/translations/use-intl-hook.tsx" />
+  <CodeExample path="development/translations/use-intl-hook.jsx" />
+  <CodeExample path="development/translations/use-intl-hook.tsx" />
 </MultiCodeExample>
 
 # Extracting messages for translations
@@ -122,8 +122,8 @@ To keep the bundle size low, the application should only load the messages for a
 Given the translation messages are located in the `i18n/data` folder, you can define a function to dynamically load the messages:
 
 <MultiCodeExample title="entry-point">
-  <CodeExample language="jsx" path="development/translations/dynamically-load-messages.js" />
-  <CodeExample language="tsx" path="development/translations/dynamically-load-messages.tsx" />
+  <CodeExample path="development/translations/dynamically-load-messages.jsx" />
+  <CodeExample path="development/translations/dynamically-load-messages.tsx" />
 </MultiCodeExample>
 
 <!-- # Advanced usage
