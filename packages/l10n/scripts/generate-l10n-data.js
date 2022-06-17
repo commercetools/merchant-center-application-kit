@@ -10,9 +10,7 @@ const moment = require('moment-timezone');
 const deepDiff = require('deep-diff');
 const isEqual = require('lodash/isEqual');
 const difference = require('lodash/difference');
-const TRANSLATIONS_FOR_EXCLUDED_TIME_ZONES_MAP = require('./translations-for-excluded-time-zones-map');
 const parseUnhandledTimeZones = require('./parse-unhandled-time-zones');
-const { map } = require('lodash');
 
 const prettierConfig = rcfile('prettier');
 
@@ -393,10 +391,7 @@ function writeTranslatedTimeZonesForLocale(
 }
 
 async function updateTimeZoneData(key, supportedLocales) {
-  // const allTimeZoneIds = moment.tz.names();
-  // uncomment for testing/review purposes, will be removed once PR is out of draft
-  const fakeTimeZones = ['aaspace/moon', 'aaspace/mars', 'aaspace/jupiter'];
-  const allTimeZoneIds = moment.tz.names().concat(fakeTimeZones);
+  const allTimeZoneIds = moment.tz.names();
   const dataFolderPath = path.join(__dirname, '..', DATA_DIR[key].path);
   const sourceDataFilePath = path.join(dataFolderPath, 'core.json');
   const translationsMapFilePath = path.join(

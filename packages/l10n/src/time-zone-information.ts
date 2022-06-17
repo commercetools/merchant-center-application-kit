@@ -116,7 +116,7 @@ const getTimeZonesForLocale = async (locale: string): Promise<TimeZones> => {
   );
   // Prefer loading `default` (for ESM bundles) and
   // fall back to normal import (for CJS bundles).
-  return augmentedLocaleTranslations.default;
+  return augmentedLocaleTranslations.default || augmentedLocaleTranslations;
 };
 
 export const withTimeZones = createL10NInjector<TimeZones>({
