@@ -62,8 +62,8 @@ In theory we can simply hardcode some random object but this does not scale well
 A better way to fulfill the data requirements is to use a [Test Data model](https://github.com/commercetools/test-data) for a `Channel`.
 
 <MultiCodeExample title='channels.spec'>
-  <CodeExample path="development/testing/use-test-data-model.jsx"  highlightLines='2-3,8-9,13-21'/>
-  <CodeExample path="development/testing/use-test-data-model.tsx"  highlightLines='2-3,8-9,13-21'/>
+  <CodeExample path="development/testing/use-test-data-model.jsx"  highlightLines={[2-3,8-9,13,14,15,16,17,18,19,20,21]} />
+  <CodeExample path="development/testing/use-test-data-model.tsx"  highlightLines={[2,3,8,9,13,14,15,16,17,18,19,20,21]} />
 </MultiCodeExample>
 
 ## Testing the application
@@ -97,8 +97,8 @@ You get the idea.
 Let's enhance our test to paginate to page two. First we need to adjust our GraphQL mock to return results based on the `offset` from the query variables. Then we need to interact with the pagination button to go to the next page.
 
 <MultiCodeExample title='channels.spec'>
-  <CodeExample path="development/testing/pagination-and-button-interaction.jsx" highlightLines="1,5-7,14,30-31,34,37-38"/>
-  <CodeExample path="development/testing/pagination-and-button-interaction.tsx" highlightLines="1,5-7,14,30-31,34,37-38"/>
+  <CodeExample path="development/testing/pagination-and-button-interaction.jsx" highlightLines={["1,5,6,7,14,30,31,34,37,38]} />
+  <CodeExample path="development/testing/pagination-and-button-interaction.tsx" highlightLines={[1,5,6,7,14,30,31,34,37,38]} />
 </MultiCodeExample>
 
 This should give you a basic idea on how you can approach testing your Custom Application.
@@ -117,8 +117,8 @@ By default, the [`test-utils`](/api-reference/commercetools-frontend-application
 In our example application, we can apply this as following:
 
 <MultiCodeExample title='channels.spec'>
-  <CodeExample path="development/testing/user-permissions.jsx" highlightLines="10-17"/>
-  <CodeExample path="development/testing/user-permissions.tsx" highlightLines="10-17"/>
+  <CodeExample path="development/testing/user-permissions.jsx" highlightLines={[10,11,12,13,14,15,16,17]} />
+  <CodeExample path="development/testing/user-permissions.tsx" highlightLines={[10,11,12,13,14,15,16,17]} />
 </MultiCodeExample>
 
 To help define the list of applied permissions, you can use the helper function [`mapResourceAccessToAppliedPermissions`](/api-reference/commercetools-frontend-application-shell#mapresourceaccesstoappliedpermissions).
@@ -147,8 +147,8 @@ const renderApp = (options = {}) => {
 ```
 
 <MultiCodeExample title='channels.spec'>
-  <CodeExample path="development/testing/define-applied-permissions-list.jsx" highlightLines="3,5,13-15"/>
-  <CodeExample path="development/testing/define-applied-permissions-list.tsx" highlightLines="3,6,14-16"/>
+  <CodeExample path="development/testing/define-applied-permissions-list.jsx" highlightLines={[3,5,13,14,15]} />
+  <CodeExample path="development/testing/define-applied-permissions-list.tsx" highlightLines={[3,6,14,15,16]} />
 </MultiCodeExample>
 
 # End-to-End
