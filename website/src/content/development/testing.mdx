@@ -48,9 +48,6 @@ Let's set things up. First, we need to configure Mock Service Worker to create a
 In our test we then mock all necessary API requests. If a network request is not properly mocked, Mock Service Worker will let you know.<br />
 Our Channels page sends a `FetchChannels` GraphQL query, therefore we need to use the `graphql.query` handler matching the name of the query: `FetchChannels`.
 
-```js title="channels.spec.js"
-import { graphql } from 'msw';
-
 <MultiCodeExample title='channels.spec'>
   <CodeExample path="development/testing/mock-api-request.jsx" />
   <CodeExample path="development/testing/mock-api-request.tsx" />
@@ -97,7 +94,7 @@ You get the idea.
 Let's enhance our test to paginate to page two. First we need to adjust our GraphQL mock to return results based on the `offset` from the query variables. Then we need to interact with the pagination button to go to the next page.
 
 <MultiCodeExample title='channels.spec'>
-  <CodeExample path="development/testing/pagination-and-button-interaction.jsx" highlightLines={["1,5,6,7,14,30,31,34,37,38]} />
+  <CodeExample path="development/testing/pagination-and-button-interaction.jsx" highlightLines={[1,5,6,7,14,30,31,34,37,38]} />
   <CodeExample path="development/testing/pagination-and-button-interaction.tsx" highlightLines={[1,5,6,7,14,30,31,34,37,38]} />
 </MultiCodeExample>
 
