@@ -11,8 +11,8 @@
     "generate-icons": "svgr -d src/icons/generated -- src/icons/svg && prettier --write '**/generated/*.js'"
   },
   "dependencies": {
-    "@commercetools-docs/gatsby-theme-code-examples": "19.0.0",
-    "@commercetools-docs/gatsby-theme-docs": "19.0.1",
+    "@commercetools-docs/gatsby-theme-code-examples": "19.2.0",
+    "@commercetools-docs/gatsby-theme-docs": "19.1.0",
     "@commercetools-docs/ui-kit": "18.6.0",
     "@commercetools-uikit/card": "^15.0.0",
     "@commercetools-uikit/spacings-inline": "^15.0.0",
