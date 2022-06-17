@@ -34,6 +34,7 @@ const augmentTimeZoneData = (
       label,
       abbr: moment().tz(id).zoneAbbr(),
       offset: moment().tz(id).format('Z'),
+      translationFor: translationsMap.default[id],
     }))
     .sort(
       (a, b) =>
@@ -44,10 +45,7 @@ const augmentTimeZoneData = (
       (previousTimeZones, timeZone) => ({
         ...previousTimeZones,
         [timeZone.id]: {
-          label: timeZone.label,
-          abbr: timeZone.abbr,
-          offset: timeZone.offset,
-          translationFor: translationsMap.default[timeZone.id],
+          ...timeZone,
         },
       }),
       {}

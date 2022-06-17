@@ -13,6 +13,7 @@ export type Language = {
 export type Languages = Record<string, Language>;
 
 export type TimeZone = {
+  id: string;
   name: string;
   abbr: string;
   offset: string;
