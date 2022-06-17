@@ -42,8 +42,8 @@ We recommend to render the application content as `children` of `<ApplicationShe
 This allows the `<ApplicationShell>` to pre-configure the application entry point routes. In addition to that, the entry point route is protected by the basic `View` permission check. This means that a user without permissions of your Custom Application won't be able to access the Custom Application route.
 
 <MultiCodeExample title="entry-point">
-  <CodeExample language="jsx" path="api-reference/commercetools-frontend-application-shell/app-shell-usage.js" />
-  <CodeExample language="tsx" path="api-reference/commercetools-frontend-application-shell/app-shell-usage.tsx" />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/app-shell-usage.jsx" />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/app-shell-usage.tsx" />
 </MultiCodeExample>
 
 
@@ -78,8 +78,8 @@ A React hook that wraps the [`useMutation`](https://www.apollographql.com/docs/r
 Configures global event listeners to catch unexpected errors and report them to Sentry. Make sure to render this in the `entry-point` file.
 
 <MultiCodeExample title="entry-point">
-  <CodeExample language="jsx" path="api-reference/commercetools-frontend-application-shell/setup-global-error-listener.js" highlightLines={[8]} />
-  <CodeExample language="tsx" path="api-reference/commercetools-frontend-application-shell/setup-global-error-listener.tsx" highlightLines={[8]} />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/setup-global-error-listener.jsx" highlightLines={[8]} />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/setup-global-error-listener.tsx" highlightLines={[8]} />
 </MultiCodeExample>
 
 
@@ -88,24 +88,24 @@ Configures global event listeners to catch unexpected errors and report them to 
 Creates a new instance of the Apollo Client. Use this if you need to [configure the Apollo cache](https://www.apollographql.com/docs/react/caching/cache-configuration).
 
 <MultiCodeExample>
-  <CodeExample language="jsx" path="api-reference/commercetools-frontend-application-shell/create-apollo-client.js" />
-  <CodeExample language="tsx" path="api-reference/commercetools-frontend-application-shell/create-apollo-client.tsx" />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/create-apollo-client.js" />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/create-apollo-client.ts" />
 </MultiCodeExample>
 
 
 The new Apollo Client instance must be explicitly passed to the `<ApplicationShell>`.
 
 <MultiCodeExample title="entry-point">
-  <CodeExample language="jsx" path="api-reference/commercetools-frontend-application-shell/use-apollo-client-in-app.js" highlightLines={[6,7,10,11,16]} />
-  <CodeExample language="tsx" path="api-reference/commercetools-frontend-application-shell/use-apollo-client-in-app.tsx" highlightLines={[6,7,10,11,16]} />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/use-apollo-client-in-app.jsx" highlightLines={[6,7,10,11,16]} />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/use-apollo-client-in-app.tsx" highlightLines={[6,7,10,11,16]} />
 </MultiCodeExample>
 
 
 Furthermore, in your tests you also need to create a new instance of your custom Apollo Client and pass it to the test utils.
 
 <MultiCodeExample>
-  <CodeExample language="ts" path="api-reference/commercetools-frontend-application-shell/use-apollo-client-in-tests.ts" />
-  <CodeExample language="js" path="api-reference/commercetools-frontend-application-shell/use-apollo-client-in-tests.js" />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/use-apollo-client-in-tests.js" />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/use-apollo-client-in-tests.ts" />
 </MultiCodeExample>
 
 
@@ -114,8 +114,8 @@ Furthermore, in your tests you also need to create a new instance of your custom
 Creates the Apollo `context` object with all the required options for using the `/forward-to` endpoint. See [Integrate with your own API](/concepts/integrate-with-your-own-api).
 
 <MultiCodeExample>
-  <CodeExample language="js" path="api-reference/commercetools-frontend-application-shell/create-apollo-context-for-proxy-forward-to.js" highlightLines={[2,14,16,18,19,20]} />
-  <CodeExample language="ts" path="api-reference/commercetools-frontend-application-shell/create-apollo-context-for-proxy-forward-to.ts" highlightLines={[2,14,16,18,19,20]} />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/create-apollo-context-for-proxy-forward-to.jsx" highlightLines={[2,14,16,18,19,20]} />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/create-apollo-context-for-proxy-forward-to.tsx" highlightLines={[2,14,16,18,19,20]} />
 </MultiCodeExample>
 
 
@@ -154,8 +154,8 @@ A wrapper around the [`render`](https://testing-library.com/docs/react-testing-l
 ### Usage
 
 <MultiCodeExample title="entry-point">
-  <CodeExample language="jsx" path="api-reference/commercetools-frontend-application-shell/tests-render-app.js" highlightLines={[8,9,10,12]} />
-  <CodeExample language="tsx" path="api-reference/commercetools-frontend-application-shell/tests-render-app.tsx" highlightLines={[8,9,10,12]} />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/tests-render-app.jsx" highlightLines={[8,9,10,11,12]} />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/tests-render-app.tsx" highlightLines={[8,9,10,11,12]} />
 </MultiCodeExample>
 
 
@@ -194,8 +194,8 @@ A wrapper around the [`renderApp`](#renderapp) method with the additional suppor
 ### Usage
 
 <MultiCodeExample>
-  <CodeExample language="jsx" path="api-reference/commercetools-frontend-application-shell/tests-render-app-with-redux.js" highlightLines={[8,9,10,11,12]} />
-  <CodeExample language="tsx" path="api-reference/commercetools-frontend-application-shell/tests-render-app-with-redux.tsx" highlightLines={[8,9,10,11,12]} />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/tests-render-app-with-redux.jsx" highlightLines={[8,9,10,11,12]} />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/tests-render-app-with-redux.tsx" highlightLines={[8,9,10,11,12]} />
 </MultiCodeExample>
 
 
