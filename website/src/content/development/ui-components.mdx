@@ -27,8 +27,8 @@ A simple layout might look something like this:
 We can already see here that most of the elements are vertically stacked. Therefore, we can start using the `Stack` component.
 
 <MultiCodeExample title="Channels">
-  <CodeExample language="jsx" path="development/ui-components/stack.js" highlightLines={[3,6]} />
-  <CodeExample language="tsx" path="development/ui-components/stack.tsx" highlightLines={[3,6]} />
+  <CodeExample path="development/ui-components/stack.jsx" highlightLines={[3,6]} />
+  <CodeExample path="development/ui-components/stack.tsx" highlightLines={[3,6]} />
 </MultiCodeExample>
 
 By default, the `Stack` component has a default `scale` of `s`. The `scale` determines the "space" between each child.<br />
@@ -36,8 +36,8 @@ By default, the `Stack` component has a default `scale` of `s`. The `scale` dete
 In our `Channels` component we want some of the elements to be "closer" or "farther" away. To do so, we can nest multiple `Stack` components with different `scale` values.
 
 <MultiCodeExample title="Channels">
-  <CodeExample language="jsx" path="development/ui-components/nested-stack.js" highlightLines={[6,7,11]} />
-  <CodeExample language="tsx" path="development/ui-components/nested-stack.tsx" highlightLines={[6,7,11]} />
+  <CodeExample path="development/ui-components/nested-stack.jsx" highlightLines={[6,7,11]} />
+  <CodeExample path="development/ui-components/nested-stack.tsx" highlightLines={[6,7,11]} />
 </MultiCodeExample>
 
 The changes we made can be translated as:
@@ -74,8 +74,8 @@ You can think about these in the following way:
 Let's try to adopt them in our `Channels` component:
 
 <MultiCodeExample title="Channels">
-  <CodeExample language="jsx" path="development/ui-components/headline-and-body.js" highlightLines={[9,10]} />
-  <CodeExample language="tsx" path="development/ui-components/headline-and-body.tsx" highlightLines={[9,10]} />
+  <CodeExample path="development/ui-components/headline-and-body.jsx" highlightLines={[9,10]} />
+  <CodeExample path="development/ui-components/headline-and-body.tsx" highlightLines={[9,10]} />
 </MultiCodeExample>
 
 # Rendering data in tables
@@ -89,8 +89,8 @@ The best way to render data in a table is to use the `<DataTable>` component, wh
 As a first step, you need to define the columns of the table.
 
 <MultiCodeExample>
-  <CodeExample language="js" path="development/ui-components/table-columns.js" />
-  <CodeExample language="ts" path="development/ui-components/table-columns.ts" />
+  <CodeExample path="development/ui-components/table-columns.js" />
+  <CodeExample path="development/ui-components/table-columns.ts" />
 </MultiCodeExample>
 
 Here we define three columns with the `key` as the identifier, a `label`, and we make the `key` column sortable.
@@ -98,8 +98,8 @@ Here we define three columns with the `key` as the identifier, a `label`, and we
 We can then go ahead and render the table.
 
 <MultiCodeExample>
-  <CodeExample language="jsx" path="development/ui-components/table-rendering.js" highlightLines={[11,12,13,14,15,16,17,18,19,20,21,22,23,34,35,36,37,38]} />
-  <CodeExample language="tsx" path="development/ui-components/table-rendering.tsx" highlightLines={[12,13,14,15,16,17,18,19,20,21,22,23,24,35,36,37,38,39]} />
+  <CodeExample path="development/ui-components/table-rendering.jsx" highlightLines={[11,12,13,14,15,16,17,18,19,20,21,22,23,34,35,36,37,38]} />
+  <CodeExample path="development/ui-components/table-rendering.tsx" highlightLines={[12,13,14,15,16,17,18,19,20,21,22,23,24,35,36,37,38,39]} />
 </MultiCodeExample>
 
 The `itemRenderer` is the main function used to render the table cell values. It can be a simple string or some React components.

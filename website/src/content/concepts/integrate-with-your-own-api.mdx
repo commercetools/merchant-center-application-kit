@@ -189,8 +189,8 @@ The middleware requires some options:
 You can use the middleware as following:
 
 <MultiCodeExample>
-  <CodeExample language="js" path="concepts/integrate-with-your-own-api/middleware-usage.js" highlightLines={[3,9,10,11,12]} />
-  <CodeExample language="ts" path="concepts/integrate-with-your-own-api/middleware-usage.ts" highlightLines={[7,13,14,15,16]} />
+  <CodeExample path="concepts/integrate-with-your-own-api/middleware-usage.js" highlightLines={[3,9,10,11,12]} />
+  <CodeExample path="concepts/integrate-with-your-own-api/middleware-usage.ts" highlightLines={[7,13,14,15,16]} />
 </MultiCodeExample>
 
 ### Usage for Serverless Functions
@@ -202,8 +202,8 @@ The options to configure the function are the same as the Express.js middleware.
 Below is an example of validating the JWT for Google Cloud Functions:
 
 <MultiCodeExample>
-  <CodeExample language="js" path="concepts/integrate-with-your-own-api/middleware-usage-with-google-cloud-functions.js" highlightLines={[2,6,7,8,9,12,13,14,15,16,17]} />
-  <CodeExample language="ts" path="concepts/integrate-with-your-own-api/middleware-usage-with-google-cloud-functions.ts" highlightLines={[2,7,8,9,10,13,14,15,16,17,18]} />
+  <CodeExample path="concepts/integrate-with-your-own-api/middleware-usage-with-google-cloud-functions.js" highlightLines={[2,6,7,8,9,12,13,14,15,16,17]} />
+  <CodeExample path="concepts/integrate-with-your-own-api/middleware-usage-with-google-cloud-functions.ts" highlightLines={[2,7,8,9,10,13,14,15,16,17,18]} />
 </MultiCodeExample>
 
 Other cloud providers might not use a standard Node.js/Express `request` object. For example AWS Lambda functions receive an [`event` object](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html) with different properties.
@@ -211,8 +211,8 @@ Other cloud providers might not use a standard Node.js/Express `request` object.
 In these cases you need to implement the `getRequestUrl` function to correctly map the expected URL (URI path + query string). The following example shows how to map an AWS Lambda function [event](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html).
 
 <MultiCodeExample>
-  <CodeExample language="js" path="concepts/integrate-with-your-own-api/middleware-usage-with-aws-lambda-functions.js" highlightLines={[9,10]} />
-  <CodeExample language="ts" path="concepts/integrate-with-your-own-api/middleware-usage-with-aws-lambda-functions.ts" highlightLines={[10,11]} />
+  <CodeExample path="concepts/integrate-with-your-own-api/middleware-usage-with-aws-lambda-functions.js" highlightLines={[9,10]} />
+  <CodeExample path="concepts/integrate-with-your-own-api/middleware-usage-with-aws-lambda-functions.ts" highlightLines={[10,11]} />
 </MultiCodeExample>
 
 
