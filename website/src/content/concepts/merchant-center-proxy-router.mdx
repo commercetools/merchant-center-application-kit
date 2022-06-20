@@ -19,43 +19,59 @@ This way it looks like you are using one single web application even though unde
 # Routing
 
 Every initial request to render the page goes through a server component called **Merchant Center Proxy Router**.<br />
-This server is primarily responsible for matching the incoming request to the appropriate Custom Application and to forward the request to the actual location of the Custom Application. The response then should be serving the `index.html` of the Custom Application.
+This server is primarily responsible for matching the incoming request to the appropriate Custom Application and to forward the request to the actual URL location of the Custom Application. The response then should be serving the `index.html` of the Custom Application.
 
 For example, the user tries to access the `/:projectKey/products` URL. The request goes through the Proxy Router which successfully matches the `products` identifier. The Proxy Router then loads the related configuration for the Products application (assuming that the application is installed for the given `projectKey`) and forwards the request to the location where the Custom Application is hosted. The `index.html` is then returned as a response and the Proxy Router forwards that to the browser. The Products application renders.
+
+<Info>
+
+A Custom Application is a Single-Page Application that uses client-side routing. Therefore, you need to instruct your hosting provider to rewrite all requests to serve the `index.html`.
+
+</Info>
 
 The same principle applies to any Custom Application:
 1. Matching of the `entryPointUriPath`.
 2. Loading configuration of Custom Application based on the Project access.
-3. Forwarding of request to Custom Application URL. *(see [section below](#url-rewrites) for more information)*
+3. [Forwarding of request](#forwarding-requests) to Custom Application URL.
 4. Serving of `index.html`.
 
 ![Architecture Diagram](/images/merchant-center-proxy-router.png 'Merchant Center Proxy Router architecture')
 
-# URL rewrites
+## Forwarding requests
 
-Bear in mind that, when **Merchant Center Proxy Router** forwards the request to the Custom Application configured URL, it will include the pathname (`/:projectKey/products` in the example above) as well as the query parameters.
+The Merchant Center Proxy Router forwards the original request URI to the Custom Application configured URL as-is.
 
-This is because the Custom Application handles client-side routing and it needs the path to properly render the page and it will use the `projectKey` internally.
+```
+# FROM
+https://mc.<cloud-region>.commercetools.com/:projectKey/:entryPointUriPath/*
 
-You need to setup your deployment service to return the `index.html` file no matter which pathname exists in the Custom Application URL.
+# TO
+https://<app-url>/:projectKey/:entryPointUriPath/*
+```
 
-## Example
+The `<app-url>` is the Custom Application [production URL](/api-reference/application-config#envproductionurl).
 
-Let's say you have deployed a Custom Application with these info:
-* Application URL: `https://my-app.netlify.app/`
-* Application entry-point: `my-app`
-* Installed in project: `my-project`
+Therefore, the hosting server of the Custom Application must configure URL rewrite rules to handle all requests and serve the `index.html`, as is customary to do for Single-Page Applications.
 
-You will access the Merchant Center to load your Custom Application and the URL you will see in the browser would be like this: `https://mc.<cloud-region>.commercetools.com/my-project/my-app`.
-Internally, the **Merchant Center Proxy Router** will send a request to this URL: `https://my-app.netlify.app/my-project/my-app`.
+For example, given the following data:
+* Application production URL: `https://avengers.netlify.app`
+* Application `entryPointUriPath`: `avengers`
 
-All of these requests should return the same file (`index.html`):
-* https://my-app.netlify.app/
-* https://my-app.netlify.app/my-project/my-app
-* https://my-app.netlify.app/my-project/my-app/channels
+When the user accesses the application in the Merchant Center at `https://mc.<cloud-region>.commercetools.com/:projectKey/avengers`, the Merchant Center Proxy Router forwards the request to the URL `https://avengers.netlify.app/:projectKey/avengers`.
 
-Every deployment service has its own configuration in this regard and we try to provide hints for the most common cases.
-(*check the [Deployment Examples](/deployment-examples) section*)
+Similarly, any of the following example URLs should always return the `index.html`:
+* `https://avengers.netlify.app`
+* `https://avengers.netlify.app/:projectKey/avengers`
+* `https://avengers.netlify.app/:projectKey/avengers/new`
+* `https://avengers.netlify.app/:projectKey/avengers/123/teams`
+
+<Info>
+
+Configuring rewrite rules is specific to each hosting provider but the concept is the same.
+
+Check out the [Deployment Examples](/deployment-examples) section for more information about configuring the rewrite rules for each hosting provider.
+
+</Info>
 
 # Security Headers
 

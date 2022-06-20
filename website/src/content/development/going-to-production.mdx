@@ -42,12 +42,13 @@ Deploying and hosting Custom Applications is managed by you. This allows you to 
 
 See [Deployment Examples](/deployment-examples) to quickly get up and running with some of the common cloud hosting providers.
 
-<Info>
+## Configuring rewrite rules
 
-One important thing to remember when hosting the static assets is that a Custom Application is a Single-Page Application, meaning that all requests must be handled to serve the `index.html` file.<br />
-The client-side routing then does the rest of the work once the Custom Application has been rendered in the browser.
+A Custom Application is a Single-Page Application that uses client-side routing. Therefore, you need to instruct your hosting provider to rewrite all requests to serve the `index.html`.
 
-</Info>
+Most of the [Deployment Examples](/deployment-examples) explain how to do that in regards to the hosting provider.
+
+See [Merchant Center Proxy Router](/concepts/merchant-center-proxy-router) for more information on how the Merchant Center serves Custom Applications.
 
 # About Static Assets
 
