@@ -69,18 +69,11 @@ const fetchCustomApplication = async ({
     entryPointUriPath,
   };
 
-  try {
-    const customAppData = await graphQLClient(mcApiUrl, token).request<
-      TFetchCustomApplicationFromCliQuery,
-      TFetchCustomApplicationFromCliQueryVariables
-    >(FetchCustomApplicationFromCli, variables);
-    return customAppData.organizationExtensionForCustomApplication;
-  } catch (error) {
-    if (error instanceof Error) {
-      throw new Error(error.message);
-    }
-    throw error;
-  }
+  const customAppData = await graphQLClient(mcApiUrl, token).request<
+    TFetchCustomApplicationFromCliQuery,
+    TFetchCustomApplicationFromCliQueryVariables
+  >(FetchCustomApplicationFromCli, variables);
+  return customAppData.organizationExtensionForCustomApplication;
 };
 
 const updateCustomApplication = async ({
@@ -96,18 +89,11 @@ const updateCustomApplication = async ({
     data,
   };
 
-  try {
-    const updatedCustomAppsData = await graphQLClient(mcApiUrl, token).request<
-      TUpdateCustomApplicationFromCliMutation,
-      TUpdateCustomApplicationFromCliMutationVariables
-    >(UpdateCustomApplicationFromCli, variables);
-    return updatedCustomAppsData.updateCustomApplication;
-  } catch (error) {
-    if (error instanceof Error) {
-      throw new Error(error.message);
-    }
-    throw error;
-  }
+  const updatedCustomAppsData = await graphQLClient(mcApiUrl, token).request<
+    TUpdateCustomApplicationFromCliMutation,
+    TUpdateCustomApplicationFromCliMutationVariables
+  >(UpdateCustomApplicationFromCli, variables);
+  return updatedCustomAppsData.updateCustomApplication;
 };
 
 const createCustomApplication = async ({
@@ -121,40 +107,26 @@ const createCustomApplication = async ({
     data,
   };
 
-  try {
-    const createdCustomAppData = await graphQLClient(mcApiUrl, token).request<
-      TCreateCustomApplicationFromCliMutation,
-      TCreateCustomApplicationFromCliMutationVariables
-    >(CreateCustomApplicationFromCli, variables);
-    return createdCustomAppData.createCustomApplication;
-  } catch (error) {
-    if (error instanceof Error) {
-      throw new Error(error.message);
-    }
-    throw error;
-  }
+  const createdCustomAppData = await graphQLClient(mcApiUrl, token).request<
+    TCreateCustomApplicationFromCliMutation,
+    TCreateCustomApplicationFromCliMutationVariables
+  >(CreateCustomApplicationFromCli, variables);
+  return createdCustomAppData.createCustomApplication;
 };
 
 const fetchUserOrganizations = async ({
   mcApiUrl,
   token,
 }: TFetchUserOrganizationsOptions) => {
-  try {
-    const userOrganizations = await graphQLClient(
-      mcApiUrl,
-      token,
-      GRAPHQL_TARGETS.ADMINISTRATION_SERVICE
-    ).request<
-      TFetchMyOrganizationsFromCliQuery,
-      TFetchMyOrganizationsFromCliQueryVariables
-    >(FetchMyOrganizationsFromCli);
-    return userOrganizations.myOrganizations;
-  } catch (error) {
-    if (error instanceof Error) {
-      throw new Error(error.message);
-    }
-    throw error;
-  }
+  const userOrganizations = await graphQLClient(
+    mcApiUrl,
+    token,
+    GRAPHQL_TARGETS.ADMINISTRATION_SERVICE
+  ).request<
+    TFetchMyOrganizationsFromCliQuery,
+    TFetchMyOrganizationsFromCliQueryVariables
+  >(FetchMyOrganizationsFromCli);
+  return userOrganizations.myOrganizations;
 };
 
 export {

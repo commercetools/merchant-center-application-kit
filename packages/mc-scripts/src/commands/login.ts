@@ -17,6 +17,10 @@ async function run() {
     return;
   }
 
+  console.log(
+    chalk.gray(`Enter the login credentials for the ${mcApiUrl} environment.\n`)
+  );
+
   const { email } = await prompts({
     type: 'text',
     name: 'email',
@@ -38,9 +42,7 @@ async function run() {
   });
   credentialsStorage.setToken(mcApiUrl, credentials);
 
-  console.log(
-    chalk.green(`Login successful for the ${mcApiUrl} environment.\n`)
-  );
+  console.log(chalk.green(`Login successful.\n`));
 }
 
 export default run;

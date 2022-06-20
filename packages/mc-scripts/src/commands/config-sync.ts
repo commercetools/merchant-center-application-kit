@@ -115,7 +115,13 @@ async function run(options: TCliCommandConfigSyncOptions = {}) {
       data,
     });
 
-    if (!createdCustomApplication) return;
+    // This check is technically not necessary, as the `graphql-request` client
+    // throws an error in case of GraphQL errors.
+    // However, the generated TypeScript data related to the GraphQL query has the
+    // field typed as optional, thus having an extra check for type correctness.
+    if (!createdCustomApplication) {
+      throw new Error('Failed to create the Custom Application.');
+    }
 
     const customAppLink = getMcUrlLink(
       mcApiUrl,
