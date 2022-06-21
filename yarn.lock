@@ -2428,6 +2428,7 @@ __metadata:
     "@babel/preset-env": ^7.16.11
     "@babel/preset-typescript": ^7.16.7
     "@rushstack/eslint-patch": ^1.1.2
+    "@tsconfig/node16": ^1.0.2
     "@typescript-eslint/eslint-plugin": ^5.19.0
     "@typescript-eslint/parser": ^5.19.0
     eslint: 8.15.0
@@ -2448,6 +2449,7 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
+    "@tsconfig/node16": ^1.0.2
     "@types/express-unless": ^0.5.3
     "@types/jsonwebtoken": ^8.5.8
     "@types/node": 16.11.33
@@ -2466,6 +2468,7 @@ __metadata:
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
     "@sentry/node": 6.19.7
+    "@tsconfig/node16": ^1.0.2
     "@types/triple-beam": 1.3.2
     express: 4.18.1
     express-winston: 4.2.0
@@ -2896,7 +2899,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/codemod@workspace:packages/codemod"
   dependencies:
-    "@tsconfig/node14": ^1.0.1
+    "@tsconfig/node16": ^1.0.2
     "@types/jscodeshift": 0.11.5
     glob: 8.0.1
     jscodeshift: 0.13.1
@@ -3079,7 +3082,7 @@ __metadata:
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
     "@commercetools-frontend/application-config": 21.7.0
-    "@tsconfig/node14": ^1.0.1
+    "@tsconfig/node16": ^1.0.2
     express: 4.18.1
   languageName: unknown
   linkType: soft
@@ -3092,7 +3095,7 @@ __metadata:
     "@babel/runtime-corejs3": ^7.17.9
     "@commercetools-frontend/application-config": 21.7.0
     "@commercetools-frontend/constants": 21.3.4
-    "@tsconfig/node14": ^1.0.1
+    "@tsconfig/node16": ^1.0.2
     "@types/serialize-javascript": ^5.0.2
     html-webpack-plugin: 5.5.0
     serialize-javascript: 6.0.0
@@ -3106,8 +3109,6 @@ __metadata:
   resolution: "@commercetools-frontend/mc-scripts@workspace:packages/mc-scripts"
   dependencies:
     "@babel/core": ^7.17.9
-    "@babel/plugin-transform-runtime": ^7.17.0
-    "@babel/preset-env": ^7.16.11
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
     "@commercetools-frontend/application-config": 21.7.0
@@ -3116,13 +3117,22 @@ __metadata:
     "@commercetools-frontend/constants": 21.3.4
     "@commercetools-frontend/mc-dev-authentication": 21.7.0
     "@commercetools-frontend/mc-html-template": 21.7.0
+    "@commercetools/http-user-agent": 2.1.2
     "@pmmmwh/react-refresh-webpack-plugin": 0.5.5
     "@rollup/plugin-graphql": 1.1.0
     "@svgr/webpack": 6.2.1
+    "@tsconfig/node16": ^1.0.2
+    "@types/lodash": ^4.14.181
+    "@types/mock-fs": ^4.13.1
+    "@types/moment-locales-webpack-plugin": ^1.2.3
+    "@types/node-fetch": 2.6.1
+    "@types/prompts": ^2.0.14
+    "@types/serve-handler": ^6.1.1
     "@vitejs/plugin-react": 1.3.2
     autoprefixer: ^10.4.4
     babel-loader: 8.2.5
     browserslist: ^4.20.2
+    cac: 6.7.12
     chalk: 4.1.2
     core-js: ^3.21.1
     css-loader: 6.7.1
@@ -3134,11 +3144,12 @@ __metadata:
     graphql-tag: ^2.12.6
     html-webpack-plugin: 5.5.0
     json-loader: 0.5.7
+    lodash: 4.17.21
     mini-css-extract-plugin: 2.6.0
     mock-fs: ^5.1.2
     moment-locales-webpack-plugin: 1.2.0
-    mri: 1.2.0
     msw: 0.39.2
+    node-fetch: 2.6.7
     postcss: 8.4.13
     postcss-custom-media: 8.0.0
     postcss-custom-properties: 12.1.4
@@ -9733,7 +9744,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tsconfig/node14@npm:^1.0.0, @tsconfig/node14@npm:^1.0.1":
+"@tsconfig/node14@npm:^1.0.0":
   version: 1.0.1
   resolution: "@tsconfig/node14@npm:1.0.1"
   checksum: 976345e896c0f059867f94f8d0f6ddb8b1844fb62bf36b727de8a9a68f024857e5db97ed51d3325e23e0616a5e48c034ff51a8d595b3fe7e955f3587540489be
@@ -10290,6 +10301,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/mock-fs@npm:^4.13.1":
+  version: 4.13.1
+  resolution: "@types/mock-fs@npm:4.13.1"
+  dependencies:
+    "@types/node": "*"
+  checksum: a5fcf8212daa270e6aa560019a4bd28a66e6fa49c55c1373746d5894f4aa1aafa5588335194953cf014de3c77df6be67a041fb6638ead7124307370985880b6c
+  languageName: node
+  linkType: hard
+
+"@types/moment-locales-webpack-plugin@npm:^1.2.3":
+  version: 1.2.3
+  resolution: "@types/moment-locales-webpack-plugin@npm:1.2.3"
+  dependencies:
+    "@types/node": "*"
+    tapable: ^2.2.0
+    webpack: ^5
+  checksum: 08ea58cf50d275575de837763b7adab5b66b43c1403c6982282dee24d5b0903f2bcfc72e041312479f84461d910479d58f2734005df47421045f7b711b72fe3a
+  languageName: node
+  linkType: hard
+
 "@types/node-fetch@npm:2":
   version: 2.5.12
   resolution: "@types/node-fetch@npm:2.5.12"
@@ -10384,6 +10415,13 @@ __metadata:
   version: 2.4.3
   resolution: "@types/prettier@npm:2.4.3"
   checksum: b240434daabac54700c862b0bb52a83fec396e0e9c847447119ba41fd8404d79aadfa174e6306fb094b29efadac586344b7606c3a71c286b71755ab2579d54df
+  languageName: node
+  linkType: hard
+
+"@types/prompts@npm:^2.0.14":
+  version: 2.4.0
+  resolution: "@types/prompts@npm:2.4.0"
+  checksum: ec75655f07fbc3cb2df60a3e3bdd13bfda0554a16f5541285c4b1cc0610756838a2863dccfc911cbb1385492054c07210512164e3dbef272ec638d631783b278
   languageName: node
   linkType: hard
 
@@ -10610,6 +10648,15 @@ __metadata:
   version: 5.0.2
   resolution: "@types/serialize-javascript@npm:5.0.2"
   checksum: eb14df7716b88740d6322e1c17863fa08350287d9594fae99e686aae9d584ac9d7f9e5498e06e20f5c292e214bc56a23cbf2a954ff804b97be6ff5b0af642ec8
+  languageName: node
+  linkType: hard
+
+"@types/serve-handler@npm:^6.1.1":
+  version: 6.1.1
+  resolution: "@types/serve-handler@npm:6.1.1"
+  dependencies:
+    "@types/node": "*"
+  checksum: f519f83b18d7dea80f188f387a56dfe30fe944196849c470902fabf9db344c083c470f67e3362ad3f2294512950bc55924282c5c7a911ec8d507c37c6861d8ce
   languageName: node
   linkType: hard
 
@@ -13278,6 +13325,13 @@ __metadata:
   version: 3.1.2
   resolution: "bytes@npm:3.1.2"
   checksum: e4bcd3948d289c5127591fbedf10c0b639ccbf00243504e4e127374a15c3bc8eed0d28d4aaab08ff6f1cf2abc0cce6ba3085ed32f4f90e82a5683ce0014e1b6e
+  languageName: node
+  linkType: hard
+
+"cac@npm:6.7.12":
+  version: 6.7.12
+  resolution: "cac@npm:6.7.12"
+  checksum: c0d4129eb30fc43449e9078ac37bb3b837aab6261236a6642a6fb9d839bb6a41e191e1f2776f87569535db07dcbf4937680419126215b4c17c9dba4351d1bd5e
   languageName: node
   linkType: hard
 
@@ -17154,6 +17208,16 @@ __metadata:
     graceful-fs: ^4.2.4
     tapable: ^2.2.0
   checksum: 792b7a01abb4ee4433b658c71f92d5948675938e0c03cad1732abe843b87395f15cb880ace4f819f78ead94163278283afc79b8be63c0eddca8ab45f7d8c515d
+  languageName: node
+  linkType: hard
+
+"enhanced-resolve@npm:^5.9.3":
+  version: 5.9.3
+  resolution: "enhanced-resolve@npm:5.9.3"
+  dependencies:
+    graceful-fs: ^4.2.4
+    tapable: ^2.2.0
+  checksum: 64c2dbbdd608d1a4df93b6e60786c603a1faf3b2e66dfd051d62cf4cfaeeb5e800166183685587208d62e9f7afff3f78f3d5978e32cd80125ba0c83b59a79d78
   languageName: node
   linkType: hard
 
@@ -24424,7 +24488,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json-parse-even-better-errors@npm:^2.3.0":
+"json-parse-even-better-errors@npm:^2.3.0, json-parse-even-better-errors@npm:^2.3.1":
   version: 2.3.1
   resolution: "json-parse-even-better-errors@npm:2.3.1"
   checksum: 798ed4cf3354a2d9ccd78e86d2169515a0097a5c133337807cdf7f1fc32e1391d207ccfc276518cc1d7d8d4db93288b8a50ba4293d212ad1336e52a8ec0a941f
@@ -36220,6 +36284,43 @@ __metadata:
   bin:
     webpack: bin/webpack.js
   checksum: 8365f1466d0f7adbf80ebc9b780f263a28eeeabcd5fb515249bfd9a56ab7fe8d29ea53df3d9364d0732ab39ae774445eb28abce694ed375b13882a6b2fe93ffc
+  languageName: node
+  linkType: hard
+
+"webpack@npm:^5":
+  version: 5.72.1
+  resolution: "webpack@npm:5.72.1"
+  dependencies:
+    "@types/eslint-scope": ^3.7.3
+    "@types/estree": ^0.0.51
+    "@webassemblyjs/ast": 1.11.1
+    "@webassemblyjs/wasm-edit": 1.11.1
+    "@webassemblyjs/wasm-parser": 1.11.1
+    acorn: ^8.4.1
+    acorn-import-assertions: ^1.7.6
+    browserslist: ^4.14.5
+    chrome-trace-event: ^1.0.2
+    enhanced-resolve: ^5.9.3
+    es-module-lexer: ^0.9.0
+    eslint-scope: 5.1.1
+    events: ^3.2.0
+    glob-to-regexp: ^0.4.1
+    graceful-fs: ^4.2.9
+    json-parse-even-better-errors: ^2.3.1
+    loader-runner: ^4.2.0
+    mime-types: ^2.1.27
+    neo-async: ^2.6.2
+    schema-utils: ^3.1.0
+    tapable: ^2.1.1
+    terser-webpack-plugin: ^5.1.3
+    watchpack: ^2.3.1
+    webpack-sources: ^3.2.3
+  peerDependenciesMeta:
+    webpack-cli:
+      optional: true
+  bin:
+    webpack: bin/webpack.js
+  checksum: d1eff085eee1c67a68f7bf1d077ea202c1e68a0de0e0866274984769838c3f224fbc64e847e1a1bbc6eba9fb6a9965098809cc0be9292b573767bb5d8d2df96e
   languageName: node
   linkType: hard
 

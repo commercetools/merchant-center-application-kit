@@ -5,6 +5,9 @@ set -e
 echo "Compiling i18n data."
 yarn compile-intl
 
+echo "Compiling CSS modules."
+yarn compile-css-modules
+
 if [ "$1" = "--watch" ]; then
 
   echo "Building packages in watch mode."
@@ -23,5 +26,4 @@ else
 
   echo "Building CLI packages."
   NODE_ENV=production yarn workspace @commercetools-frontend/codemod build
-  NODE_ENV=production yarn workspace @commercetools-frontend/mc-scripts build
 fi

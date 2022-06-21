@@ -33,6 +33,7 @@
     "eslint": "8.x"
   },
   "devDependencies": {
+    "@tsconfig/node16": "^1.0.2",
     "eslint": "8.15.0"
   },
   "engines": {

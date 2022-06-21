@@ -1,5 +1,5 @@
 schema: '${MC_PROXY_URL}'
-documents: '**/*.proxy.graphql'
+documents: 'packages/**/*.proxy.graphql'
 extensions:
   codegen:
     generates:
@@ -20,3 +20,6 @@ extensions:
         config:
           typesPrefix: T
           addUnderscoreToArgsType: true
+    hooks:
+      afterAllFileWrite:
+        - prettier --write

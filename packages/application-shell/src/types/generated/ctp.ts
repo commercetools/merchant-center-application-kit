@@ -1148,7 +1148,9 @@ export enum TCartOrigin {
   /** The cart was created by the customer. This is the default value */
   Customer = 'Customer',
   /** The cart was created by the merchant on behalf of the customer */
-  Merchant = 'Merchant'
+  Merchant = 'Merchant',
+  /** The cart was created by our platform and belongs to a Quote */
+  Quote = 'Quote'
 }
 
 /** Fields to access carts. Includes direct access to a single cart and searching for carts. */
@@ -4392,11 +4394,6 @@ export type TMessagesConfigurationDraft = {
   enabled: Scalars['Boolean'];
 };
 
-export type TMissingFacetInput = {
-  alias?: InputMaybe<Scalars['String']>;
-  path: Scalars['String'];
-};
-
 export type TMissingFilterInput = {
   path: Scalars['String'];
 };
@@ -6836,6 +6833,7 @@ export type TProductPrice = {
   customerGroupRef?: Maybe<TReference>;
   discounted?: Maybe<TDiscountedProductPriceValue>;
   id?: Maybe<Scalars['String']>;
+  key?: Maybe<Scalars['String']>;
   tiers?: Maybe<Array<TProductPriceTier>>;
   validFrom?: Maybe<Scalars['DateTime']>;
   validUntil?: Maybe<Scalars['DateTime']>;
@@ -6847,6 +6845,7 @@ export type TProductPriceDataInput = {
   country?: InputMaybe<Scalars['Country']>;
   custom?: InputMaybe<TCustomFieldsDraft>;
   customerGroup?: InputMaybe<TReferenceInput>;
+  key?: InputMaybe<Scalars['String']>;
   tiers?: InputMaybe<Array<TProductPriceTierInput>>;
   validFrom?: InputMaybe<Scalars['DateTime']>;
   validUntil?: InputMaybe<Scalars['DateTime']>;
@@ -6890,6 +6889,7 @@ export type TProductPriceSearch = {
   customerGroupRef?: Maybe<TReference>;
   discounted?: Maybe<TDiscountedProductSearchPriceValue>;
   id?: Maybe<Scalars['String']>;
+  key?: Maybe<Scalars['String']>;
   tiers?: Maybe<Array<TProductSearchPriceTier>>;
   validFrom?: Maybe<Scalars['DateTime']>;
   validUntil?: Maybe<Scalars['DateTime']>;
@@ -8924,12 +8924,8 @@ export type TSearchFacetInput = {
 };
 
 export type TSearchFacetModelInput = {
-  missing?: InputMaybe<TMissingFacetInput>;
   range?: InputMaybe<TRangeFacetInput>;
   terms?: InputMaybe<TTermsFacetInput>;
-  tree?: InputMaybe<TTreeFacetInput>;
-  value?: InputMaybe<TValueFacetInput>;
-  valueCount?: InputMaybe<TValueCountFacetInput>;
 };
 
 export type TSearchFilterInput = {
@@ -11581,12 +11577,31 @@ export type TStandalonePrice = TVersioned & {
   version: Scalars['Long'];
 };
 
+export type TStandalonePriceCreated = TMessagePayload & {
+  __typename?: 'StandalonePriceCreated';
+  standalonePrice: TStandalonePrice;
+  type: Scalars['String'];
+};
+
 /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
 export type TStandalonePriceCustomField = {
   fields: TCustomFieldsDraft;
   type?: InputMaybe<TResourceIdentifierInput>;
   typeId?: InputMaybe<Scalars['String']>;
   typeKey?: InputMaybe<Scalars['String']>;
+};
+
+export type TStandalonePriceDeleted = TMessagePayload & {
+  __typename?: 'StandalonePriceDeleted';
+  priceId: Scalars['String'];
+  type: Scalars['String'];
+};
+
+export type TStandalonePriceDiscountSet = TMessagePayload & {
+  __typename?: 'StandalonePriceDiscountSet';
+  discounted?: Maybe<TDiscountedProductPriceValue>;
+  priceId: Scalars['String'];
+  type: Scalars['String'];
 };
 
 export type TStandalonePriceQueryResult = {
@@ -11603,6 +11618,13 @@ export type TStandalonePriceUpdateAction = {
   changeValue?: InputMaybe<TChangeStandalonePriceValue>;
   setCustomField?: InputMaybe<TSetStandalonePriceCustomFields>;
   setCustomType?: InputMaybe<TCustomFieldsDraft>;
+};
+
+export type TStandalonePriceValueChanged = TMessagePayload & {
+  __typename?: 'StandalonePriceValueChanged';
+  priceId: Scalars['String'];
+  type: Scalars['String'];
+  value: TBaseMoney;
 };
 
 /** [State](https://docs.commercetools.com/api/projects/states) */
@@ -12271,14 +12293,6 @@ export type TTransitionStagedOrderStateOutput = TStagedOrderUpdateActionOutput &
   type: Scalars['String'];
 };
 
-export type TTreeFacetInput = {
-  alias?: InputMaybe<Scalars['String']>;
-  countProducts?: Scalars['Boolean'];
-  path: Scalars['String'];
-  rootValues: Array<Scalars['String']>;
-  subTreeValues: Array<Scalars['String']>;
-};
-
 export type TTreeFilterInput = {
   path: Scalars['String'];
   rootValues: Array<Scalars['String']>;
@@ -12288,11 +12302,13 @@ export type TTreeFilterInput = {
 export type TTrigger = {
   __typename?: 'Trigger';
   actions: Array<TActionType>;
+  condition?: Maybe<Scalars['String']>;
   resourceTypeId: Scalars['String'];
 };
 
 export type TTriggerInput = {
   actions?: InputMaybe<Array<TActionType>>;
+  condition?: InputMaybe<Scalars['String']>;
   resourceTypeId: Scalars['String'];
 };
 
@@ -12427,18 +12443,6 @@ export type TUserProvidedIdentifiers = {
 export type TUserProvidedIdentifiers_SlugArgs = {
   acceptLanguage?: InputMaybe<Array<Scalars['Locale']>>;
   locale?: InputMaybe<Scalars['Locale']>;
-};
-
-export type TValueCountFacetInput = {
-  alias?: InputMaybe<Scalars['String']>;
-  path: Scalars['String'];
-};
-
-export type TValueFacetInput = {
-  alias?: InputMaybe<Scalars['String']>;
-  countProducts?: Scalars['Boolean'];
-  path: Scalars['String'];
-  values: Array<Scalars['String']>;
 };
 
 export type TValueFacetResult = TFacetResult & {
@@ -12632,31 +12636,6 @@ export type TSetKey = {
   key?: InputMaybe<Scalars['String']>;
 };
 
-export type TFetchChannelDetailsQueryVariables = Exact<{
-  channelId: Scalars['String'];
-}>;
-
-
-export type TFetchChannelDetailsQuery = { __typename?: 'Query', channel?: { __typename?: 'Channel', id: string, version: number, key: string, roles: Array<TChannelRole>, nameAllLocales?: Array<{ __typename?: 'LocalizedString', locale: string, value: string }> | null } | null };
-
-export type TFetchChannelsQueryVariables = Exact<{
-  limit: Scalars['Int'];
-  offset: Scalars['Int'];
-  sort?: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
-}>;
-
-
-export type TFetchChannelsQuery = { __typename?: 'Query', channels: { __typename?: 'ChannelQueryResult', total: number, count: number, offset: number, results: Array<{ __typename?: 'Channel', id: string, key: string, roles: Array<TChannelRole>, nameAllLocales?: Array<{ __typename?: 'LocalizedString', locale: string, value: string }> | null }> } };
-
-export type TUpdateChannelDetailsMutationVariables = Exact<{
-  channelId: Scalars['String'];
-  version: Scalars['Long'];
-  actions: Array<TChannelUpdateAction> | TChannelUpdateAction;
-}>;
-
-
-export type TUpdateChannelDetailsMutation = { __typename?: 'Mutation', updateChannel?: { __typename?: 'Channel', id: string, version: number, key: string, roles: Array<TChannelRole>, nameAllLocales?: Array<{ __typename?: 'LocalizedString', locale: string, value: string }> | null } | null };
-
 export type TQuickAccessProductQueryVariables = Exact<{
   productId: Scalars['String'];
 }>;
@@ -12673,19 +12652,3 @@ export type TQuickAccessQueryVariables = Exact<{
 
 
 export type TQuickAccessQuery = { __typename?: 'Query', productsByIds: { __typename?: 'ProductQueryResult', results: Array<{ __typename?: 'Product', id: string, masterData: { __typename?: 'ProductCatalogData', staged?: { __typename?: 'ProductData', nameAllLocales: Array<{ __typename?: 'LocalizedString', locale: string, value: string }> } | null } }> }, productById?: { __typename?: 'Product', id: string, masterData: { __typename?: 'ProductCatalogData', staged?: { __typename?: 'ProductData', nameAllLocales: Array<{ __typename?: 'LocalizedString', locale: string, value: string }> } | null } } | null, productByKey?: { __typename?: 'Product', id: string, masterData: { __typename?: 'ProductCatalogData', staged?: { __typename?: 'ProductData', nameAllLocales: Array<{ __typename?: 'LocalizedString', locale: string, value: string }> } | null } } | null, productByVariantSku?: { __typename?: 'Product', id: string, masterData: { __typename?: 'ProductCatalogData', staged?: { __typename?: 'ProductData', nameAllLocales: Array<{ __typename?: 'LocalizedString', locale: string, value: string }>, variant?: { __typename?: 'ProductVariant', sku?: string | null, key?: string | null, id: number } | null } | null } } | null, productByVariantKey?: { __typename?: 'Product', id: string, masterData: { __typename?: 'ProductCatalogData', staged?: { __typename?: 'ProductData', nameAllLocales: Array<{ __typename?: 'LocalizedString', locale: string, value: string }>, variant?: { __typename?: 'ProductVariant', sku?: string | null, key?: string | null, id: number } | null } | null } } | null };
-
-export type TFetchStateQueryVariables = Exact<{
-  id: Scalars['String'];
-}>;
-
-
-export type TFetchStateQuery = { __typename?: 'Query', state?: { __typename?: 'State', id: string, key?: string | null, type: TStateType, initial: boolean, builtIn: boolean, nameAllLocales?: Array<{ __typename?: 'LocalizedString', locale: string, value: string }> | null } | null };
-
-export type TFetchStatesQueryVariables = Exact<{
-  limit: Scalars['Int'];
-  offset: Scalars['Int'];
-  sort?: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
-}>;
-
-
-export type TFetchStatesQuery = { __typename?: 'Query', states: { __typename?: 'StateQueryResult', total: number, count: number, offset: number, results: Array<{ __typename?: 'State', id: string, key?: string | null, nameAllLocales?: Array<{ __typename?: 'LocalizedString', locale: string, value: string }> | null }> } };

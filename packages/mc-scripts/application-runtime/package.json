@@ -1,0 +1,4 @@
+{
+  "main": "dist/commercetools-frontend-mc-scripts-application-runtime.cjs.js",
+  "module": "dist/commercetools-frontend-mc-scripts-application-runtime.esm.js"
+}

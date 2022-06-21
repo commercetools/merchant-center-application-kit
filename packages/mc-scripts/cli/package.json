@@ -1,0 +1,4 @@
+{
+  "main": "dist/commercetools-frontend-mc-scripts-cli.cjs.js",
+  "module": "dist/commercetools-frontend-mc-scripts-cli.esm.js"
+}

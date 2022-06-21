@@ -1,4 +1,5 @@
 export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
@@ -53,7 +54,7 @@ export type TCartClassificationValue = {
 };
 
 export type TChangeUserBusinessRole = {
-  businessRole?: Maybe<Scalars['String']>;
+  businessRole?: InputMaybe<Scalars['String']>;
 };
 
 export type TChangeUserLanguage = {
@@ -103,7 +104,7 @@ export type TInvitationInput = {
 
 export type TInvitationOrganizationInput = {
   id: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
   version: Scalars['Int'];
 };
 
@@ -191,7 +192,6 @@ export type TMutation_CreateOAuthClientArgs = {
 
 export type TMutation_DeleteAccountArgs = {
   jwt: Scalars['String'];
-  origin?: Maybe<Scalars['String']>;
 };
 
 
@@ -202,7 +202,7 @@ export type TMutation_DeleteOAuthClientArgs = {
 
 export type TMutation_InviteArgs = {
   draft: TInvitationInput;
-  origin?: Maybe<Scalars['String']>;
+  origin?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -214,26 +214,18 @@ export type TMutation_RandomArgs = {
 export type TMutation_ResetPasswordArgs = {
   draft: TResetPasswordDraft;
   jwt: Scalars['String'];
-  origin?: Maybe<Scalars['String']>;
-};
-
-
-export type TMutation_SendLinkToDeleteAccountArgs = {
-  origin?: Maybe<Scalars['String']>;
 };
 
 
 export type TMutation_SendLinkToResetPasswordArgs = {
   email: Scalars['String'];
-  origin?: Maybe<Scalars['String']>;
 };
 
 
 export type TMutation_SendLinkToSignUpArgs = {
-  additionalInfo?: Maybe<TAdditionalUserInfo>;
+  additionalInfo?: InputMaybe<TAdditionalUserInfo>;
   email: Scalars['String'];
-  language?: Maybe<Scalars['String']>;
-  origin?: Maybe<Scalars['String']>;
+  language?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -323,6 +315,7 @@ export enum TPermissionScope {
   GetPermissionForAnyProject = 'get_permission_for_any_project',
   IntrospectOauthTokens = 'introspect_oauth_tokens',
   ManageApiClients = 'manage_api_clients',
+  ManageAttributeGroups = 'manage_attribute_groups',
   ManageAuditLog = 'manage_audit_log',
   ManageCartDiscounts = 'manage_cart_discounts',
   ManageCategories = 'manage_categories',
@@ -342,17 +335,20 @@ export enum TPermissionScope {
   ManageOrderEdits = 'manage_order_edits',
   ManageOrders = 'manage_orders',
   ManagePayments = 'manage_payments',
+  ManageProductSelections = 'manage_product_selections',
   ManageProducts = 'manage_products',
   ManageProject = 'manage_project',
   ManageProjectSettings = 'manage_project_settings',
   ManageShippingMethods = 'manage_shipping_methods',
   ManageShoppingLists = 'manage_shopping_lists',
+  ManageStandalonePrices = 'manage_standalone_prices',
   ManageStates = 'manage_states',
   ManageStores = 'manage_stores',
   ManageSubscriptions = 'manage_subscriptions',
   ManageTaxCategories = 'manage_tax_categories',
   ManageTypes = 'manage_types',
   ViewApiClients = 'view_api_clients',
+  ViewAttributeGroups = 'view_attribute_groups',
   ViewAuditLog = 'view_audit_log',
   ViewCartDiscounts = 'view_cart_discounts',
   ViewCategories = 'view_categories',
@@ -367,12 +363,14 @@ export enum TPermissionScope {
   ViewOrderEdits = 'view_order_edits',
   ViewOrders = 'view_orders',
   ViewPayments = 'view_payments',
+  ViewProductSelections = 'view_product_selections',
   ViewProducts = 'view_products',
   ViewProjectSettings = 'view_project_settings',
   ViewProjects = 'view_projects',
   ViewPublishedProducts = 'view_published_products',
   ViewShippingMethods = 'view_shipping_methods',
   ViewShoppingLists = 'view_shopping_lists',
+  ViewStandalonePrices = 'view_standalone_prices',
   ViewStates = 'view_states',
   ViewStores = 'view_stores',
   ViewTaxCategories = 'view_tax_categories',
@@ -408,10 +406,10 @@ export type TProject = TMetaData & {
 export type TProjectDraftType = {
   countries: Array<Scalars['String']>;
   currencies: Array<Scalars['String']>;
-  deleteDaysAfterCreation?: Maybe<Scalars['Int']>;
+  deleteDaysAfterCreation?: InputMaybe<Scalars['Int']>;
   key: Scalars['String'];
   languages: Array<Scalars['String']>;
-  messagesEnabled?: Maybe<Scalars['Boolean']>;
+  messagesEnabled?: InputMaybe<Scalars['Boolean']>;
   name: Scalars['String'];
   ownerId: Scalars['String'];
 };
@@ -439,8 +437,8 @@ export type TProjectPermission = {
 
 export type TProjectPermissionInput = {
   key: TPermissionScope;
-  projectKey?: Maybe<Scalars['String']>;
-  storeKey?: Maybe<Scalars['String']>;
+  projectKey?: InputMaybe<Scalars['String']>;
+  storeKey?: InputMaybe<Scalars['String']>;
 };
 
 export type TProjectQueryResult = TQueryResult & {
@@ -487,13 +485,13 @@ export type TQuery = {
 
 
 export type TQuery_AllImpliedOAuthScopesArgs = {
-  onlyConfiguredOnTrustedClient?: Maybe<Scalars['Boolean']>;
+  onlyConfiguredOnTrustedClient?: InputMaybe<Scalars['Boolean']>;
   resourceAccessPermissions: Array<Scalars['String']>;
 };
 
 
 export type TQuery_InvitationArgs = {
-  where?: Maybe<TInvitationWhereInput>;
+  where?: InputMaybe<TInvitationWhereInput>;
 };
 
 
@@ -503,20 +501,20 @@ export type TQuery_OAuthClientArgs = {
 
 
 export type TQuery_OAuthClientsArgs = {
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  sort?: Maybe<Array<Scalars['String']>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<Array<Scalars['String']>>;
 };
 
 
 export type TQuery_ProjectArgs = {
-  key?: Maybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
 };
 
 
 export type TQuery_ReleasesArgs = {
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
   origin: TReleaseOrigin;
 };
 
@@ -556,8 +554,8 @@ export type TReleaseHistory = {
 
 
 export type TReleaseHistory_EntriesArgs = {
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
 };
 
 export enum TReleaseOrigin {
@@ -589,7 +587,7 @@ export type TResetUser = {
 
 export type TSetUserTimeZone = {
   /** NOTE: This is optional as not passing it unsets the timezone. */
-  timeZone?: Maybe<Scalars['String']>;
+  timeZone?: InputMaybe<Scalars['String']>;
 };
 
 export type TShippingRateInputType = {
@@ -674,19 +672,19 @@ export type TUser = TMetaData & {
 };
 
 export type TUserDraft = {
-  businessRole?: Maybe<Scalars['String']>;
+  businessRole?: InputMaybe<Scalars['String']>;
   firstName: Scalars['String'];
   lastName: Scalars['String'];
   password: Scalars['String'];
 };
 
 export type TUserUpdateAction = {
-  changeBusinessRole?: Maybe<TChangeUserBusinessRole>;
-  changeLanguage?: Maybe<TChangeUserLanguage>;
-  changeName?: Maybe<TChangeUserName>;
-  changeNumberFormat?: Maybe<TChangeUserNumberFormat>;
-  changePassword?: Maybe<TChangeUserPassword>;
-  setTimeZone?: Maybe<TSetUserTimeZone>;
+  changeBusinessRole?: InputMaybe<TChangeUserBusinessRole>;
+  changeLanguage?: InputMaybe<TChangeUserLanguage>;
+  changeName?: InputMaybe<TChangeUserName>;
+  changeNumberFormat?: InputMaybe<TChangeUserNumberFormat>;
+  changePassword?: InputMaybe<TChangeUserPassword>;
+  setTimeZone?: InputMaybe<TSetUserTimeZone>;
 };
 
 export type TAmILoggedInQueryVariables = Exact<{ [key: string]: never; }>;
@@ -699,24 +697,24 @@ export type TFetchProjectQueryVariables = Exact<{
 }>;
 
 
-export type TFetchProjectQuery = { __typename?: 'Query', project?: { __typename?: 'Project', key: string, version?: number | null | undefined, name: string, countries: Array<string>, currencies: Array<string>, languages: Array<string>, initialized: boolean, expiry: { __typename?: 'ProjectExpiry', isActive: boolean, daysLeft?: number | null | undefined }, suspension: { __typename?: 'ProjectSuspension', isActive: boolean, reason?: TProjectSuspensionReason | null | undefined }, allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }>, allPermissionsForAllApplications: { __typename?: 'AllPermissionsForAllApplications', allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedMenuVisibilities: Array<{ __typename?: 'AppliedMenuVisibilities', name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }> }, owner: { __typename?: 'Organization', id: string, name: string } } | null | undefined };
+export type TFetchProjectQuery = { __typename?: 'Query', project?: { __typename?: 'Project', key: string, version?: number | null, name: string, countries: Array<string>, currencies: Array<string>, languages: Array<string>, initialized: boolean, expiry: { __typename?: 'ProjectExpiry', isActive: boolean, daysLeft?: number | null }, suspension: { __typename?: 'ProjectSuspension', isActive: boolean, reason?: TProjectSuspensionReason | null }, allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }>, allPermissionsForAllApplications: { __typename?: 'AllPermissionsForAllApplications', allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedMenuVisibilities: Array<{ __typename?: 'AppliedMenuVisibilities', name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }> }, owner: { __typename?: 'Organization', id: string, name: string } } | null };
 
 export type TFetchLoggedInUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TFetchLoggedInUserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, email: string, gravatarHash: string, firstName: string, lastName: string, language: string, numberFormat: string, timeZone?: string | null | undefined, launchdarklyTrackingId: string, launchdarklyTrackingGroup: string, launchdarklyTrackingSubgroup?: string | null | undefined, launchdarklyTrackingTeam?: Array<string> | null | undefined, launchdarklyTrackingTenant: string, defaultProjectKey?: string | null | undefined, businessRole?: string | null | undefined, projects: { __typename?: 'ProjectQueryResult', total: number, results: Array<{ __typename?: 'Project', name: string, key: string, suspension: { __typename?: 'ProjectSuspension', isActive: boolean }, expiry: { __typename?: 'ProjectExpiry', isActive: boolean } }> } } | null | undefined };
+export type TFetchLoggedInUserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, email: string, gravatarHash: string, firstName: string, lastName: string, language: string, numberFormat: string, timeZone?: string | null, launchdarklyTrackingId: string, launchdarklyTrackingGroup: string, launchdarklyTrackingSubgroup?: string | null, launchdarklyTrackingTeam?: Array<string> | null, launchdarklyTrackingTenant: string, defaultProjectKey?: string | null, businessRole?: string | null, projects: { __typename?: 'ProjectQueryResult', total: number, results: Array<{ __typename?: 'Project', name: string, key: string, suspension: { __typename?: 'ProjectSuspension', isActive: boolean }, expiry: { __typename?: 'ProjectExpiry', isActive: boolean } }> } } | null };
 
 export type TFetchUserProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TFetchUserProjectsQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, projects: { __typename?: 'ProjectQueryResult', results: Array<{ __typename?: 'Project', name: string, key: string, suspension: { __typename?: 'ProjectSuspension', isActive: boolean }, expiry: { __typename?: 'ProjectExpiry', isActive: boolean } }> } } | null | undefined };
+export type TFetchUserProjectsQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, projects: { __typename?: 'ProjectQueryResult', results: Array<{ __typename?: 'Project', name: string, key: string, suspension: { __typename?: 'ProjectSuspension', isActive: boolean }, expiry: { __typename?: 'ProjectExpiry', isActive: boolean } }> } } | null };
 
 export type TAllFeaturesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TAllFeaturesQuery = { __typename?: 'Query', allFeatures: Array<{ __typename?: 'Feature', name: string, value: boolean, reason?: string | null | undefined }> };
+export type TAllFeaturesQuery = { __typename?: 'Query', allFeatures: Array<{ __typename?: 'Feature', name: string, value: boolean, reason?: string | null }> };
 
 export type TFetchUserIdQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TFetchUserIdQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string } | null | undefined };
+export type TFetchUserIdQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string } | null };

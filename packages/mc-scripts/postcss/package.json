@@ -1,0 +1,4 @@
+{
+  "main": "dist/commercetools-frontend-mc-scripts-postcss.cjs.js",
+  "module": "dist/commercetools-frontend-mc-scripts-postcss.esm.js"
+}

@@ -3,7 +3,7 @@ schema:
       headers:
         Cookie: mcAccessToken=${MC_ACCESS_TOKEN}
         X-Graphql-Target: settings
-documents: '**/*.settings.graphql'
+documents: 'packages/**/*.settings.graphql'
 extensions:
   codegen:
     generates:
@@ -37,3 +37,16 @@ extensions:
           scalars:
             DateTime: string
             Json: '{ [key: string]: unknown }'
+      packages/mc-scripts/src/generated/settings.ts:
+        plugins:
+          - typescript
+          - typescript-operations
+        config:
+          typesPrefix: T
+          addUnderscoreToArgsType: true
+          scalars:
+            DateTime: string
+            Json: '{ [key: string]: unknown }'
+    hooks:
+      afterAllFileWrite:
+        - prettier --write
