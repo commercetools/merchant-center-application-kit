@@ -2,7 +2,7 @@ import fs from 'fs';
 import chalk from 'chalk';
 import { compileHtml } from '@commercetools-frontend/mc-html-template';
 import paths from '../config/paths';
-import { TCliCommandCompileHtmlOptions } from '../types';
+import type { TCliCommandCompileHtmlOptions } from '../types';
 
 const appDirectory = fs.realpathSync(process.cwd());
 
