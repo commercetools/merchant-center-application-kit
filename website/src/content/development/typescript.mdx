@@ -85,8 +85,6 @@ To compile TypeScript files to JavaScript files [Babel](https://babeljs.io/) (si
 
 Custom Applications are preconfigured to use Babel compilation to TypeScript.
 
-To make sure that Babel configuration is set properly check if `babel.config.js` contains `@commercetools-frontend/babel-preset-mc-app` as a preset, and that the package is listed as the application dependency in `package.json`.
-
 `tsc` CLI is only used as a type checking tool, for example, run as `yarn typecheck` script:
 
 ```json title="package.json"
@@ -126,9 +124,9 @@ To run prettier as a script add the following contents to your `package.json`:
 
 Custom Applications are preconfigured to lint TypeScript files with ESLint. 
 
-To make sure that ESLint configuration is set properly check if `.eslintrc.js` extends `@commercetools-frontend/eslint-config-mc-app`, and that the package is listed as an application dependency in `package.json`.
+To make sure that ESLint configuration is set properly check if `.eslintrc.js` extends `@commercetools-frontend/eslint-config-mc-app`, and that the package is listed as the application dependency in `package.json`.
 
-To run ESLint as a script edit the contents of the `jest.eslint.config.js` configuration file in the root folder of the application:
+To run ESLint as a script, edit the contents of the `jest.eslint.config.js` configuration file in the root folder of the application:
 
 ```js title="jest.eslint.config.js"
 module.exports = {
