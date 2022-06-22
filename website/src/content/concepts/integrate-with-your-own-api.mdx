@@ -251,29 +251,33 @@ The setup described above is not needed when using the `@commercetools-backend/e
 
 </Info>
 
-# Local development of a Custom Application with external API
+# Local development using a secure tunnel
 
 Developing a Custom Application locally, together with an external API, has some limitations.
-For example, using the `forward-to` endpoint of the Merchant Center API Gateway with a target URL pointing to `http` is not allowed. Only `https` targets are allowed.
-Furthermore, the Merchant Center API Gateway cannot proxy a request to `localhost`.
+For example, using the `/proxy/forward-to` endpoint of the Merchant Center API Gateway with a target URL pointing to `http` is not allowed. Only `https` targets are allowed.
 
 The most straighforward solution is using the production URL of the external API, which may be inconvenient in the development processs.
 
-Therefore, some kind of local tunnel solution can be used to develop both Custom Application and external API together, locally.
+Therefore, some kind of secure tunnel solution can be used to develop both Custom Application and external API together, locally.
 
 ## ngrok
 
-One of possible solutions is using the [ngrok](https://ngrok.com/) service. `ngrok` is a reverse proxy allowing to establish an encrypted tunnel between the `ngrok` agent application running locally and the upstream service.
+One of the most popular secure tunnel solutions is [ngrok](https://ngrok.com/), which is a reverse proxy allowing to establish an encrypted tunnel between the `ngrok` agent application running locally and the upstream service.
 
 Please follow the [instructions](https://ngrok.com/download) to sign up and download the agent application. Once installed, start the agent application by running:
+
 ```console
 ngrok http <desired_port>
 ```
+
 where `<desired_port>` is the port bound to your server application (for example `6000`).
 
 The exposed external URL of the created tunnel:
+
 ![ngrok agent](/images/ngrok.png) 
-can be further passed to the session middleware verifying the JWT audience claim.
+
+must be provided to the session middleware verifying the JWT audience claim.
+
 ```js highlightLines="10"
 const express = require("express");
 const {
@@ -288,7 +292,7 @@ app.use(
     issuer: CLOUD_IDENTIFIERS.GCP_EU,
   })
 );
-app.post("/", (req, res) => {
+app.post("/echo", (req, res) => {
   res.send("It works 🙌");
 });
 
@@ -299,70 +303,24 @@ app.listen(6000, () => {
 module.exports = app;
 ```
 
-To verify the tunneling service, configure the additonal environment variable `echoServerApiUrl` in your Custom Application:
-```js title="custom-application-config.mjs" highlightLines="4"
-const config = {
-  // ...
-  additionalEnv: {
-    echoServerApiUrl: "https://33ea-87-183-162-9.eu.ngrok.io",
-  },
+In your Custom Application, we recommend configuring the external API URL through an environment variable, referenced in the application config through a [variable placeholder](/api-reference/application-config#using-variable-placeholders).
+That would allow to keep the value for the development environment and for the production environment separated.
+
+In the development environment configured with the external API URL exposed from `ngrok`, HTTP POST requests to `/proxy/forward-to` including the header:
+
 ```
-and use it in requests sent to the `/proxy/forward-to` endpoint:
-
-```jsx title="echo-server.jsx" highlightLines="8-10,12,19"
-import { useCallback } from 'react';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { useAsyncDispatch, actions } from '@commercetools-frontend/sdk';
-
-const EchoServer = () => {
-  // ...
-  const dispatch = useAsyncDispatch();
-  const echoServerApiUrl = useApplicationContext(
-    (context) => context.environment.echoServerApiUrl
-  );
-  const handleSendRequest = useCallback(() => {
-    const forwardToUrl = new URL(echoServerApiUrl);
-    // ...
-
-    async function ping() {
-      try {
-        const result = await dispatch(
-          actions.forwardTo.post({
-            uri: forwardToUrl.toString(),
-            // ...
-          })
-        );
-        // ...
-      } catch (error) {
-        // ...
-      }
-    }
-    // ...
-    ping();
-  }, [
-    dispatch,
-    echoServerApiUrl,
-    // ...
-  ]);
-}
+x-forward-to: https://33ea-87-183-162-9.eu.ngrok.io/echo
 ```
-<Info>
 
-The entire implementation can be found under the following [link](https://github.com/commercetools/merchant-center-application-kit/blob/main/playground/src/components/echo-server/echo-server.jsx)
-
-</Info>
-
-In result, HTTP POST requests with a `x-forward-to` header, for example:
-```
-x-forward-to: https://33ea-87-183-162-9.eu.ngrok.io/?hello=world
-```
 should result in a response:
+
 ```
 It works 🙌
 ```
+
 <Info>
 
-The details of all requests tunneled via `ngrok` can be investigated in the web application running at `http://localhost:4040/`
+`ngrok` agent application starts along with a monitoring web application running at `http://localhost:4040/`, which can be helpful in the process of debugging of the tunnelled HTTP requests.
 
 </Info>
 
@@ -370,9 +328,11 @@ The details of all requests tunneled via `ngrok` can be investigated in the web 
 
 As an alternative, you might want to use the [Cloudflare Tunnel](https://developers.cloudflare.com/pages/how-to/preview-with-cloudflare-tunnel/) service.
 After installing the `cloudflared` application and running it:
+
 ```console
 cloudflared tunnel --url http://localhost:<desired_port>
 ```
+
 The server application can be reached via the provided URL:
 ![cloudflared](/images/cloudflared.png) 
 
