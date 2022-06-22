@@ -1,3 +1,4 @@
+/// <reference path="../../../@types/commercetools__sync-actions/index.d.ts" />
 /// <reference path="../../../@types-extensions/graphql-ctp/index.d.ts" />
 
 import type { ApolloError } from '@apollo/client';
