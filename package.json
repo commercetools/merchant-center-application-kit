@@ -16,6 +16,7 @@
     "lint:text": "jest --config jest.text.config.js",
     "typecheck": "tsc --noEmit",
     "typecheck:cypress": "yarn typecheck -p cypress",
+    "typecheck:starter": "yarn typecheck -p application-templates/starter-typescript",
     "format": "yarn format:js && yarn format:css && yarn format:md && yarn format:yaml && yarn format:graphql",
     "format:js": "prettier --write '**/*.{js,ts,tsx}'",
     "format:css": "prettier --write --parser css '**/*.css'",

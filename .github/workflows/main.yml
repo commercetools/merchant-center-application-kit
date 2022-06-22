@@ -39,6 +39,9 @@ jobs:
       - name: Running static type checking (Cypress)
         run: yarn typecheck:cypress
 
+      - name: Running static type checking (Starter Template)
+        run: yarn typecheck:starter
+
       - name: Running linters and tests
         run: yarn jest --projects jest.{eslint,stylelint,test,text}.config.js --reporters jest-silent-reporter
         env:
