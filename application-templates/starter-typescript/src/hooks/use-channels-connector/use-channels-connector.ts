@@ -1,3 +1,5 @@
+/// <reference path="../../../@types-extensions/graphql-ctp/index.d.ts" />
+
 import type { ApolloError } from '@apollo/client';
 import {
   useMcQuery,
@@ -7,12 +9,13 @@ import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { createSyncChannels } from '@commercetools/sync-actions';
 import type { TDataTableSortingState } from '@commercetools-uikit/hooks';
 import type {
-  TChannelQueryResult,
+  TFetchChannelsQuery,
   TFetchChannelsQueryVariables,
-  TChannel,
+  TFetchChannelDetailsQuery,
   TFetchChannelDetailsQueryVariables,
+  TUpdateChannelDetailsMutation,
+  TUpdateChannelDetailsMutationVariables,
 } from '../../../types/generated/ctp';
-import type { ActionData } from '../../components/channel-details/types';
 import {
   createGraphQlUpdateActions,
   extractErrorFromGraphQlResponse,
@@ -22,6 +25,8 @@ import FetchChannelsQuery from './fetch-channels.ctp.graphql';
 import FetchChannelDetailsQuery from './fetch-channel-details.ctp.graphql';
 import UpdateChannelDetailsMutation from './update-channel-details.ctp.graphql';
 
+const syncChannels = createSyncChannels();
+
 type PaginationAndSortingProps = {
   page: { value: number };
   perPage: { value: number };
@@ -30,8 +35,8 @@ type PaginationAndSortingProps = {
 type TUseChannelsFetcher = (
   paginationAndSortingProps: PaginationAndSortingProps
 ) => {
-  channelsPaginatedResult: TChannelQueryResult | undefined;
-  error: ApolloError | undefined;
+  channelsPaginatedResult?: TFetchChannelsQuery['channels'];
+  error?: ApolloError;
   loading: boolean;
 };
 
@@ -41,7 +46,7 @@ export const useChannelsFetcher: TUseChannelsFetcher = ({
   tableSorting,
 }) => {
   const { data, error, loading } = useMcQuery<
-    { channels: TChannelQueryResult },
+    TFetchChannelsQuery,
     TFetchChannelsQueryVariables
   >(FetchChannelsQuery, {
     variables: {
@@ -62,8 +67,8 @@ export const useChannelsFetcher: TUseChannelsFetcher = ({
 };
 
 type TUseChannelDetailsFetcher = (channelId: string) => {
-  channel: TChannel | undefined;
-  error: ApolloError | undefined;
+  channel?: TFetchChannelDetailsQuery['channel'];
+  error?: ApolloError;
   loading: boolean;
 };
 
@@ -71,9 +76,7 @@ export const useChannelDetailsFetcher: TUseChannelDetailsFetcher = (
   channelId
 ) => {
   const { data, error, loading } = useMcQuery<
-    {
-      channel: TChannel;
-    },
+    TFetchChannelDetailsQuery,
     TFetchChannelDetailsQueryVariables
   >(FetchChannelDetailsQuery, {
     variables: {
@@ -92,18 +95,19 @@ export const useChannelDetailsFetcher: TUseChannelDetailsFetcher = (
 };
 
 export const useChannelDetailsUpdater = () => {
-  const [updateChannelDetails, { loading }] = useMcMutation(
-    UpdateChannelDetailsMutation
-  );
+  const [updateChannelDetails, { loading }] = useMcMutation<
+    TUpdateChannelDetailsMutation,
+    TUpdateChannelDetailsMutationVariables
+  >(UpdateChannelDetailsMutation);
 
-  const syncStores = createSyncChannels();
-
-  type TExecuteProps = {
-    originalDraft: TChannel;
-    nextDraft: ActionData;
-  };
-  const execute = async ({ originalDraft, nextDraft }: TExecuteProps) => {
-    const actions = syncStores.buildActions(
+  const execute = async ({
+    originalDraft,
+    nextDraft,
+  }: {
+    originalDraft: NonNullable<TFetchChannelDetailsQuery['channel']>;
+    nextDraft: unknown;
+  }) => {
+    const actions = syncChannels.buildActions(
       nextDraft,
       convertToActionData(originalDraft)
     );

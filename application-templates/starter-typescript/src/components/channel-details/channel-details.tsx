@@ -1,4 +1,3 @@
-import type { SyntheticEvent } from 'react';
 import { useIntl } from 'react-intl';
 import { useParams } from 'react-router-dom';
 import {
@@ -32,12 +31,11 @@ import ChannelsDetailsForm from './channel-details-form';
 import { transformErrors } from './transform-errors';
 import messages from './messages';
 
-type TSyntheticEventHandler = (event: SyntheticEvent) => void;
-type ChannelDetailsProps = {
-  onClose: TSyntheticEventHandler;
+type TChannelDetailsProps = {
+  onClose: () => void;
 };
 
-const ChannelDetails = (props: ChannelDetailsProps) => {
+const ChannelDetails = (props: TChannelDetailsProps) => {
   const intl = useIntl();
   const params = useParams<{ id: string }>();
   const { loading, error, channel } = useChannelDetailsFetcher(params.id);
@@ -121,12 +119,8 @@ const ChannelDetails = (props: ChannelDetailsProps) => {
               formProps.isSubmitting || !formProps.isDirty || !canManage
             }
             isSecondaryButtonDisabled={!formProps.isDirty}
-            onSecondaryButtonClick={
-              formProps.resetForm as TSyntheticEventHandler
-            }
-            onPrimaryButtonClick={
-              formProps.submitForm as TSyntheticEventHandler
-            }
+            onSecondaryButtonClick={formProps.handleReset}
+            onPrimaryButtonClick={() => formProps.submitForm()}
             labelPrimaryButton={FormModalPage.Intl.save}
             labelSecondaryButton={FormModalPage.Intl.revert}
           >

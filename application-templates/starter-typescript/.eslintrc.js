@@ -5,8 +5,19 @@ process.env.ENABLE_NEW_JSX_TRANSFORM = 'true';
  */
 module.exports = {
   extends: ['@commercetools-frontend/eslint-config-mc-app'],
-  rules: {
-    'react/jsx-uses-react': 'off',
-    'react/react-in-jsx-scope': 'off',
-  },
+  plugins: ['graphql'],
+  overrides: [
+    {
+      files: ['**/*.ctp.graphql'],
+      rules: {
+        'graphql/template-strings': [
+          'error',
+          {
+            env: 'literal',
+            schemaJson: require('./schemas/ctp.json'),
+          },
+        ],
+      },
+    },
+  ],
 };

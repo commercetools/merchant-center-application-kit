@@ -16,7 +16,7 @@ import { BackIcon } from '@commercetools-uikit/icons';
 import Constraints from '@commercetools-uikit/constraints';
 import FlatButton from '@commercetools-uikit/flat-button';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
-import DataTable, { type TColumn } from '@commercetools-uikit/data-table';
+import DataTable from '@commercetools-uikit/data-table';
 import { ContentNotification } from '@commercetools-uikit/notifications';
 import { Pagination } from '@commercetools-uikit/pagination';
 import Spacings from '@commercetools-uikit/spacings';
@@ -26,10 +26,10 @@ import {
   formatLocalizedString,
   transformLocalizedFieldToLocalizedString,
 } from '@commercetools-frontend/l10n';
-import messages from './messages';
+import type { TFetchChannelsQuery } from '../../../types/generated/ctp';
 import { useChannelsFetcher } from '../../hooks/use-channels-connector';
 import { getErrorMessage } from '../../helpers';
-import type { TChannel } from '../../../types/generated/ctp';
+import messages from './messages';
 
 const ChannelDetails = lazy(() => import('../channel-details'));
 
@@ -39,39 +39,11 @@ const columns = [
   { key: 'roles', label: 'Roles' },
 ];
 
-const itemRenderer = (
-  item: TChannel,
-  column: TColumn<TChannel>,
-  dataLocale: string | null,
-  projectLanguages: string[] | undefined
-) => {
-  switch (column.key) {
-    case 'roles':
-      return item.roles.join(', ');
-    case 'name':
-      return formatLocalizedString(
-        {
-          name: transformLocalizedFieldToLocalizedString(
-            item.nameAllLocales ?? []
-          ),
-        },
-        {
-          key: 'name',
-          locale: dataLocale,
-          fallbackOrder: projectLanguages,
-          fallback: NO_VALUE_FALLBACK,
-        }
-      );
-    default:
-      return item[column.key as keyof TChannel];
-  }
-};
-
-type ChannelsProps = {
+type TChannelsProps = {
   linkToWelcome: string;
 };
 
-const Channels = (props: ChannelsProps) => {
+const Channels = (props: TChannelsProps) => {
   const intl = useIntl();
   const match = useRouteMatch();
   const { push } = useHistory();
@@ -117,13 +89,34 @@ const Channels = (props: ChannelsProps) => {
 
       {channelsPaginatedResult ? (
         <Spacings.Stack scale="l">
-          <DataTable
+          <DataTable<NonNullable<TFetchChannelsQuery['channels']['results']>[0]>
             isCondensed
             columns={columns}
             rows={channelsPaginatedResult.results}
-            itemRenderer={(item, column) =>
-              itemRenderer(item, column, dataLocale, projectLanguages)
-            }
+            itemRenderer={(item, column) => {
+              switch (column.key) {
+                case 'key':
+                  return item.key;
+                case 'roles':
+                  return item.roles.join(', ');
+                case 'name':
+                  return formatLocalizedString(
+                    {
+                      name: transformLocalizedFieldToLocalizedString(
+                        item.nameAllLocales ?? []
+                      ),
+                    },
+                    {
+                      key: 'name',
+                      locale: dataLocale,
+                      fallbackOrder: projectLanguages,
+                      fallback: NO_VALUE_FALLBACK,
+                    }
+                  );
+                default:
+                  return null;
+              }
+            }}
             maxHeight={600}
             sortedBy={tableSorting.value.key}
             sortDirection={tableSorting.value.order}

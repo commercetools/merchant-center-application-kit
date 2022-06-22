@@ -65,7 +65,7 @@ export const createGraphQlUpdateActions = (actions: SyncAction[]) =>
     []
   );
 
-export const convertToActionData = (draft: TChannel) => ({
+export const convertToActionData = (draft: Partial<TChannel>) => ({
   ...draft,
   name: transformLocalizedFieldToLocalizedString(draft.nameAllLocales || []),
 });

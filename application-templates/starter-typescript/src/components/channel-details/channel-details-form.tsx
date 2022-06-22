@@ -1,14 +1,14 @@
 import type { ReactElement } from 'react';
-import { useFormik, type FormikHelpers, type FormikState } from 'formik';
+import { useFormik, type FormikHelpers } from 'formik';
 import { useIntl } from 'react-intl';
 import LocalizedTextField from '@commercetools-uikit/localized-text-field';
 import TextField from '@commercetools-uikit/text-field';
 import Spacings from '@commercetools-uikit/spacings';
 import SelectField from '@commercetools-uikit/select-field';
+import type { TFormValues } from '../../types';
 import { CHANNEL_ROLES } from './constants';
 import validate from './validate';
 import messages from './messages';
-import type { FormValues } from './types';
 
 type TChannelRole = keyof typeof CHANNEL_ROLES;
 const getRoleOptions = Object.keys(CHANNEL_ROLES).map((key) => ({
@@ -23,15 +23,15 @@ type FormProps = {
   isDirty: Formik['dirty'];
   isSubmitting: Formik['isSubmitting'];
   submitForm: Formik['handleSubmit'];
-  resetForm: (nextState?: Partial<FormikState<FormValues>>) => void;
+  handleReset: Formik['handleReset'];
 };
 
 type ChannelDetailsFormProps = {
   onSubmit: (
-    values: FormValues,
-    formikHelpers: FormikHelpers<FormValues>
+    values: TFormValues,
+    formikHelpers: FormikHelpers<TFormValues>
   ) => void | Promise<unknown>;
-  initialValues: FormValues;
+  initialValues: TFormValues;
   isReadOnly: boolean;
   dataLocale: string;
   children: (formProps: FormProps) => JSX.Element;
@@ -39,7 +39,7 @@ type ChannelDetailsFormProps = {
 
 const ChannelDetailsForm = (props: ChannelDetailsFormProps) => {
   const intl = useIntl();
-  const formik = useFormik<FormValues>({
+  const formik = useFormik<TFormValues>({
     initialValues: props.initialValues,
     onSubmit: props.onSubmit,
     validate,
@@ -52,7 +52,7 @@ const ChannelDetailsForm = (props: ChannelDetailsFormProps) => {
         name="key"
         title={intl.formatMessage(messages.channelKeyLabel)}
         value={formik.values.key}
-        errors={TextField.toFieldErrors<FormValues>(formik.errors).key}
+        errors={TextField.toFieldErrors<TFormValues>(formik.errors).key}
         touched={formik.touched.key}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
@@ -72,7 +72,7 @@ const ChannelDetailsForm = (props: ChannelDetailsFormProps) => {
         name="name"
         title={intl.formatMessage(messages.channelNameLabel)}
         value={formik.values.name}
-        errors={TextField.toFieldErrors<FormValues>(formik.errors).name}
+        errors={TextField.toFieldErrors<TFormValues>(formik.errors).name}
         touched={Boolean(formik.touched.name)}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
@@ -84,7 +84,7 @@ const ChannelDetailsForm = (props: ChannelDetailsFormProps) => {
         name="roles"
         title={intl.formatMessage(messages.channelRolesLabel)}
         value={formik.values.roles}
-        errors={SelectField.toFieldErrors<FormValues>(formik.errors).roles}
+        errors={SelectField.toFieldErrors<TFormValues>(formik.errors).roles}
         touched={formik.touched.roles}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
@@ -103,7 +103,7 @@ const ChannelDetailsForm = (props: ChannelDetailsFormProps) => {
     isDirty: formik.dirty,
     isSubmitting: formik.isSubmitting,
     submitForm: formik.handleSubmit,
-    resetForm: formik.resetForm,
+    handleReset: formik.handleReset,
   });
 };
 ChannelDetailsForm.displayName = 'ChannelDetailsForm';

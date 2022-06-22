@@ -1,4 +1,4 @@
-schema: '${MC_PROXY_URL}'
+schema: '${MC_PROXY_API_URL}/api/graphql'
 documents: 'packages/**/*.proxy.graphql'
 extensions:
   codegen:

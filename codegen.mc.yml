@@ -1,5 +1,5 @@
 schema:
-  - '${MC_API_URL}':
+  - '${MC_GRAPHQL_API_URL}/graphql':
       headers:
         X-Graphql-Target: mc
 documents: 'packages/**/*.mc.graphql'

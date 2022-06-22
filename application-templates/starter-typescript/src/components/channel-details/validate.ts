@@ -1,8 +1,8 @@
 import TextInput from '@commercetools-uikit/text-input';
 import omitEmpty from 'omit-empty-es';
-import type { FormValues } from './types';
+import type { TFormValues } from '../../types';
 
-type TValidate = (values: FormValues) => void;
+type TValidate = (values: TFormValues) => void;
 
 type TErrors = {
   key: { missing?: boolean };

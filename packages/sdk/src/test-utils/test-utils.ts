@@ -1,10 +1,9 @@
-import type { Action, Dispatch } from 'redux';
-import type { HttpErrorType } from '@commercetools/sdk-client';
-import type { TSdkAction, Json } from '../types';
-
 import { deepEqual } from 'fast-equals';
 // eslint-disable-next-line import/named
 import { v4 as uuid } from 'uuid';
+import type { Action, Dispatch } from 'redux';
+import type { HttpErrorType } from '@commercetools/sdk-client';
+import type { TSdkAction, Json } from '../types';
 
 interface TSdkMockBase {
   action: TSdkAction;
