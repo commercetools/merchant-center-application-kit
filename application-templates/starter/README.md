@@ -12,7 +12,7 @@ This is the `starter` template to [develop Custom Applications](https://docs.com
 Install the template using the `npx` command. Replace `<folder_name>` with the name of the folder where the template should be installed into.
 
 ```bash
-$ npx @commercetools-frontend/create-mc-app <folder_name> --template starter
+$ npx @commercetools-frontend/create-mc-app@latest <folder_name> --template starter
 ```
 
 You can also install the `@commercetools-frontend/create-mc-app` CLI globally:

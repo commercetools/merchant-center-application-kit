@@ -5,14 +5,14 @@
   <b>Custom Application Starter in TypeScript</b>
 </p>
 
-This is the [typescript](https://www.typescriptlang.org/) `starter` template to [develop Custom Applications](https://docs.commercetools.com/custom-applications/) for the Merchant Center.
+This is the [TypeScript](https://www.typescriptlang.org/) version of the `starter` template to [develop Custom Applications](https://docs.commercetools.com/custom-applications/) for the Merchant Center.
 
 ## Installation
 
 Install the template using the `npx` command. Replace `<folder_name>` with the name of the folder where the template should be installed into.
 
 ```bash
-$ npx @commercetools-frontend/create-mc-app <folder_name> --template starter-typescript
+$ npx @commercetools-frontend/create-mc-app@latest <folder_name> --template starter-typescript
 ```
 
 You can also install the `@commercetools-frontend/create-mc-app` CLI globally:

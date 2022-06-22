@@ -17,5 +17,5 @@ Adds a new Custom Application starter template in TypeScript including the bare 
 The template can be installed using the `npx` command. Replace `<folder_name>` with the name of the folder where the template should be installed into.
 
 ```bash
-$ npx @commercetools-frontend/create-mc-app <folder_name> --template starter-typescript
+$ npx @commercetools-frontend/create-mc-app@latest <folder_name> --template starter-typescript
 ```
