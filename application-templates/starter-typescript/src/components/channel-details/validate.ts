@@ -1,15 +1,14 @@
 import TextInput from '@commercetools-uikit/text-input';
 import omitEmpty from 'omit-empty-es';
+import type { FormikErrors } from 'formik';
 import type { TFormValues } from '../../types';
-
-type TValidate = (values: TFormValues) => void;
 
 type TErrors = {
   key: { missing?: boolean };
   roles: { missing?: boolean };
 };
 
-const validate: TValidate = (formikValues) => {
+const validate = (formikValues: TFormValues): FormikErrors<TFormValues> => {
   const errors: TErrors = {
     key: {},
     roles: {},

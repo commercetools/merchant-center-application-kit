@@ -3,8 +3,10 @@ import {
   ApplicationShell,
   setupGlobalErrorListener,
 } from '@commercetools-frontend/application-shell';
-import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import loadMessages from '../../load-messages';
+
+declare let window: ApplicationWindow;
 
 // Here we split up the main (app) bundle with the actual application business logic.
 // Splitting by route is usually recommended and you can potentially have a splitting
@@ -16,10 +18,6 @@ const AsyncApplicationRoutes = lazy(
 // Ensure to setup the global error listener before any React component renders
 // in order to catch possible errors on rendering/mounting.
 setupGlobalErrorListener();
-
-declare const window: typeof Window & {
-  app: TApplicationContext<{}>['environment'];
-};
 
 const EntryPoint = () => (
   <ApplicationShell environment={window.app} applicationMessages={loadMessages}>
