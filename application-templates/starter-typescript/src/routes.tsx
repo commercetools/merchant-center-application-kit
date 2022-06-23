@@ -1,11 +1,8 @@
 import type { ReactNode } from 'react';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
-import { useIsAuthorized } from '@commercetools-frontend/permissions';
-import { PageUnauthorized } from '@commercetools-frontend/application-components';
 import Spacings from '@commercetools-uikit/spacings';
 import Channels from './components/channels';
 import Welcome from './components/welcome';
-import { PERMISSIONS } from './constants';
 
 type ApplicationRoutesProps = {
   children?: ReactNode;
@@ -13,23 +10,22 @@ type ApplicationRoutesProps = {
 const ApplicationRoutes = (_props: ApplicationRoutesProps) => {
   const match = useRouteMatch();
 
-  // We can evaluate the user permissions and use the information to restrict
-  // certain parts of the application.
-  // For example, we can show an unauthorized page if the user does not have
-  // the permission to `view` products.
-  const canView = useIsAuthorized({
-    demandedPermissions: [PERMISSIONS.View],
-  });
+  /**
+   * When using routes, there is a good chance that you might want to
+   * restrict the access to a certain route based on the user permissions.
+   * You can evaluate user permissions using the `useIsAuthorized` hook.
+   * For more information see https://docs.commercetools.com/custom-applications/development/permissions
+   *
+   * NOTE that by default the Custom Application implicitly checks for a "View" permission,
+   * otherwise it won't render. Therefore, checking for "View" permissions here
+   * is redundant and not strictly necessary.
+   */
 
   return (
     <Spacings.Inset scale="l">
       <Switch>
         <Route path={`${match.path}/channels`}>
-          {canView ? (
-            <Channels linkToWelcome={match.url} />
-          ) : (
-            <PageUnauthorized />
-          )}
+          <Channels linkToWelcome={match.url} />
         </Route>
         <Route>
           <Welcome />

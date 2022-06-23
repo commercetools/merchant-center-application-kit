@@ -1,29 +1,29 @@
-const loadMessages = (lang) => {
-  let loadAppI18nPromise;
-  switch (lang) {
+const getChunkImport = (locale) => {
+  switch (locale) {
     case 'de':
-      loadAppI18nPromise = import(
-        './i18n/data/de.json' /* webpackChunkName: "app-i18n-de" */
+      return import(
+        /* webpackChunkName: "app-i18n-de" */ './i18n/data/de.json'
       );
-      break;
     default:
-      loadAppI18nPromise = import(
-        './i18n/data/en.json' /* webpackChunkName: "app-i18n-en" */
+      return import(
+        /* webpackChunkName: "app-i18n-en" */ './i18n/data/en.json'
       );
   }
+};
 
-  return loadAppI18nPromise.then(
-    (result) => result.default,
-    (error) => {
-      // eslint-disable-next-line no-console
-      console.warn(
-        `Something went wrong while loading the app messages for ${lang}`,
-        error
-      );
-
-      return {};
-    }
-  );
+const loadMessages = async (locale) => {
+  try {
+    const chunkImport = await getChunkImport(locale);
+    // Prefer loading `default` (for ESM bundles) and
+    // fall back to normal import (for CJS bundles).
+    return chunkImport.default || chunkImport;
+  } catch (error) {
+    console.warn(
+      `Something went wrong while loading the app messages for ${locale}`,
+      error
+    );
+    return {};
+  }
 };
 
 export default loadMessages;
