@@ -2767,16 +2767,19 @@ __metadata:
     "@commercetools-frontend/sdk": 21.6.0
     "@commercetools-frontend/sentry": 21.6.0
     "@commercetools-frontend/url-utils": 21.3.4
+    "@commercetools-uikit/accessible-hidden": ^15.0.0
     "@commercetools-uikit/avatar": ^15.0.0
     "@commercetools-uikit/card": ^15.0.0
     "@commercetools-uikit/design-system": ^15.0.0
     "@commercetools-uikit/flat-button": ^15.0.0
+    "@commercetools-uikit/hooks": ^15.0.0
     "@commercetools-uikit/icons": ^15.0.0
     "@commercetools-uikit/loading-spinner": ^15.0.0
     "@commercetools-uikit/notifications": ^15.0.0
     "@commercetools-uikit/select-input": ^15.0.0
     "@commercetools-uikit/spacings": ^15.0.0
     "@commercetools-uikit/text": ^15.0.0
+    "@commercetools-uikit/utils": ^15.0.0
     "@commercetools/http-user-agent": 2.1.2
     "@emotion/react": 11.9.0
     "@emotion/styled": 11.8.1
@@ -3419,6 +3422,20 @@ __metadata:
   peerDependencies:
     react: 17.x
   checksum: e40c5b4a0b13ca890bd0afc1f5b9c620e9d325d0b601fe9715efaf95913bf03d1467208e72b5f41eb7ef6bb522d48519b5c6ddcc3624d8f199a74ed794c9344e
+  languageName: node
+  linkType: hard
+
+"@commercetools-uikit/accessible-hidden@npm:^15.0.0":
+  version: 15.0.0
+  resolution: "@commercetools-uikit/accessible-hidden@npm:15.0.0"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+    "@babel/runtime-corejs3": ^7.17.2
+    "@emotion/react": ^11.4.0
+    prop-types: 15.8.1
+  peerDependencies:
+    react: 17.x
+  checksum: 5b5610af0da5c5e70fafa1be190eaad7006793e90b3adb8ab6835254c2f504609042701b1ea9568210f8ae8d344522d70f5b82d6090af3d877c097546f4acc71
   languageName: node
   linkType: hard
 
