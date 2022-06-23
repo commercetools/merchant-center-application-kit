@@ -125,3 +125,15 @@ export const entryPointUriPath = typeof window === 'undefined'
 export const PERMISSIONS = entryPointUriPathToPermissionKeys(entryPointUriPath);
 ```
 </Info>
+
+
+# Current Limitations
+
+As we continue developing Custom Applications further introducing more and more developer-friendly features, our solution still has some limitations. Please find below the list of things we don’t support at the moment:
+
+* Changing OAuth Scopes for a Custom Application. The changes to permission scopes are not allowed in the “Ready” state for Custom Applications. At the moment, to apply such changes, a user needs to change the state of a Custom Application to “Draft”, update permissions, and then move it back to the “Ready” state to continue working with the application.
+* With a new project created, permissions for already existing Custom Applications are not updated. The current workaround involves reinstalling the application and installing again for all required projects.
+* Only View/Manage permissions are available for Custom Applications at the moment. Decoupling from the internal permission scopes was an important part of the migration of Custom Applications to the Organizaiton level. This allows us to continue developing the functionality without the project-level limitations.
+
+Please [reach out to us](https://github.com/commercetools/merchant-center-application-kit/discussions) in case you found any workaround for the aforementioned limitations and constraints. We are always happy to hear your ideas and general feedback about using Custom Applications.
+
