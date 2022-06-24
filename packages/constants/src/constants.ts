@@ -141,6 +141,7 @@ export const MC_API_PROXY_TARGETS = {
   ORDER_SEARCH: 'order-search',
   MC_METRICS: 'mc-metrics',
   IMPORT: 'import',
+  EXPORT: 'export',
 } as const;
 export type TMcApiProxyTargets =
   typeof MC_API_PROXY_TARGETS[keyof typeof MC_API_PROXY_TARGETS];
