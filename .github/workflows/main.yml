@@ -27,7 +27,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: ./.github/actions/ci
+      - name: Install dependencies and build packages
+        uses: ./.github/actions/ci
 
       - name: Check for unmet constraints (fix w/ "yarn constraints --fix")
         run: yarn constraints
@@ -53,7 +54,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: ./.github/actions/ci
+      - name: Install dependencies and build packages
+        uses: ./.github/actions/ci
 
       - name: Building Visual Regression Tests application for UI components
         run: yarn visual-testing-app:build
@@ -79,7 +81,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: ./.github/actions/ci
+      - name: Install dependencies and build packages
+        uses: ./.github/actions/ci
 
       - name: Testing Starter application development server
         run: yarn start-server-and-test 'yarn template-starter:start' 3001 'exit 0'
@@ -133,7 +136,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: ./.github/actions/ci
+      - name: Install dependencies and build packages
+        uses: ./.github/actions/ci
 
       - name: Preparing tarballs of packages for testing templates installation
         run: node ./scripts/build-tarballs.js
@@ -160,7 +164,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: ./.github/actions/ci
+      - name: Install dependencies and build packages
+        uses: ./.github/actions/ci
 
       - name: Building Playground application
         run: yarn playground:build
