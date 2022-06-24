@@ -6,12 +6,12 @@ import {
   mapResourceAccessToAppliedPermissions,
 } from '@commercetools-frontend/application-shell/test-utils';
 import { buildGraphqlList } from '@commercetools-test-data/core';
+import type { TChannel } from '@commercetools-test-data/channel';
+import * as Channel from '@commercetools-test-data/channel';
 import {
   renderApplicationWithRedux,
   type TRenderAppWithReduxPartialOptions,
 } from '../../test-utils';
-import type { TChannel } from '@commercetools-test-data/channel/dist/declarations/src/types';
-import * as Channel from '@commercetools-test-data/channel';
 import { entryPointUriPath, PERMISSIONS } from '../../constants';
 import ApplicationRoutes from '../../routes';
 
@@ -23,11 +23,9 @@ beforeAll(() => {
     // more: https://mswjs.io/docs/api/setup-worker/start#onunhandledrequest
     onUnhandledRequest: 'error',
   });
-  jest.spyOn(console, 'warn').mockImplementation(jest.fn()); // This is to silence warnings raised by faker
 });
 afterAll(() => {
   mockServer.close();
-  jest.restoreAllMocks();
 });
 
 const renderApp = (options: TRenderAppWithReduxPartialOptions = {}) => {

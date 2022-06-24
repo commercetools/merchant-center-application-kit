@@ -19,11 +19,9 @@ beforeAll(() => {
     // more: https://mswjs.io/docs/api/setup-worker/start#onunhandledrequest
     onUnhandledRequest: 'error',
   });
-  jest.spyOn(console, 'warn').mockImplementation(jest.fn()); // This is to silence warnings raised by faker
 });
 afterAll(() => {
   mockServer.close();
-  jest.restoreAllMocks();
 });
 
 const renderApp = (options = {}) => {

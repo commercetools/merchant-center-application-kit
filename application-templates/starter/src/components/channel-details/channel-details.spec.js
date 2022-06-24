@@ -7,11 +7,14 @@ import {
   within,
   mapResourceAccessToAppliedPermissions,
 } from '@commercetools-frontend/application-shell/test-utils';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { buildGraphqlList } from '@commercetools-test-data/core';
 import { renderApplicationWithRedux } from '../../test-utils';
 import * as Channel from '@commercetools-test-data/channel';
 import { entryPointUriPath, PERMISSIONS } from '../../constants';
 import ApplicationRoutes from '../../routes';
+
+jest.mock('@commercetools-frontend/sentry');
 
 const mockServer = setupServer();
 afterEach(() => mockServer.resetHandlers());
@@ -21,12 +24,9 @@ beforeAll(() => {
     // more: https://mswjs.io/docs/api/setup-worker/start#onunhandledrequest
     onUnhandledRequest: 'error',
   });
-  jest.spyOn(console, 'error').mockImplementation(jest.fn()); // This is to silence logs raised by the tests where we mock a response error from the server
-  jest.spyOn(console, 'warn').mockImplementation(jest.fn()); // This is to silence warnings raised by faker
 });
 afterAll(() => {
   mockServer.close();
-  jest.restoreAllMocks();
 });
 
 const id = 'b8a40b99-0c11-43bc-8680-fc570d624747';
@@ -298,5 +298,7 @@ describe('notifications', () => {
 
     const notification = await screen.findByRole('alertdialog');
     within(notification).getByText(/some fake error message/i);
+
+    expect(reportErrorToSentry).toHaveBeenCalled();
   });
 });
