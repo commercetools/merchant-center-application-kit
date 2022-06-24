@@ -14,7 +14,7 @@ jobs:
   lint_and_test:
     runs-on: ubuntu-latest
 
-    timeout-minutes: 15
+    timeout-minutes: 10
 
     # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
     env:
@@ -48,7 +48,7 @@ jobs:
   test_visual:
     runs-on: ubuntu-latest
 
-    timeout-minutes: 15
+    timeout-minutes: 10
 
     steps:
       - name: Checkout
@@ -68,7 +68,7 @@ jobs:
   test_starter_template:
     runs-on: ubuntu-latest
 
-    timeout-minutes: 15
+    timeout-minutes: 10
 
     # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
     env:
@@ -130,7 +130,7 @@ jobs:
 
     if: github.ref != 'refs/heads/main'
 
-    timeout-minutes: 15
+    timeout-minutes: 10
 
     steps:
       - name: Checkout
@@ -151,7 +151,7 @@ jobs:
   test_playground:
     runs-on: ubuntu-latest
 
-    timeout-minutes: 15
+    timeout-minutes: 10
 
     # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
     env:
