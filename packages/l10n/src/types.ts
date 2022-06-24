@@ -17,13 +17,13 @@ export type TimeZone = {
   name: string;
   abbr: string;
   offset: string;
-  translationFor: TimeZoneTranslationsMap;
+  translationFor: string[];
 };
 export type TimeZones = Record<string, TimeZone>;
 
 export type TimeZoneTranslations = Record<string, string>;
 
-export type TimeZoneTranslationsMap = Record<string, Array<string>>;
+export type TimeZoneTranslationsMap = Record<string, string[]>;
 
 export type LocalizedField = {
   locale: string;

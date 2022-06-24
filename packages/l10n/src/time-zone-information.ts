@@ -1,56 +1,57 @@
+import PropTypes from 'prop-types';
+import moment from 'moment-timezone';
 import type {
+  TimeZone,
   TimeZones,
   TimeZoneTranslations,
   TimeZoneTranslationsMap,
 } from './types';
-
-import * as PropTypes from 'prop-types';
-import moment from 'moment-timezone';
 import { createL10NInjector, createL10NHook } from './create-l10n-injector';
 import { getSupportedLocale, mapLocaleToIntlLocale } from './utils';
-
-type ImportData = {
-  default: TimeZones;
-};
 
 type TranslationsData = {
   default: TimeZoneTranslations;
 };
 
-type TranslationsMapData = {
-  default: TimeZoneTranslationsMap;
+const getTranslationsMapChunk = async (): Promise<TimeZoneTranslationsMap> => {
+  const translationsMapChunk = await import(
+    /* webpackChunkName: "time-zone-translations-map" */ '../data/time-zones/translations-map.json'
+  );
+  // Prefer loading `default` (for ESM bundles) and
+  // fall back to normal import (for CJS bundles).
+  return translationsMapChunk.default || translationsMapChunk;
 };
+
 /**
  * Build offset and abbreviation data for each timezone at runtime from moment-timezone
  * in order to return accurate offset values for timezones that have daylight time.
  */
-const augmentTimeZoneData = (
-  module: TranslationsData,
-  translationsMap: TranslationsMapData
-): ImportData => ({
-  default: Object.entries(module.default)
-    .map(([id, label]) => ({
+const augmentTimeZoneData = async (
+  timeZones: TimeZoneTranslations
+): Promise<TimeZones> => {
+  const translationsMap = await getTranslationsMapChunk();
+
+  return Object.entries(timeZones)
+    .map<TimeZone>(([id, name]) => ({
       id,
-      label,
+      name,
       abbr: moment().tz(id).zoneAbbr(),
       offset: moment().tz(id).format('Z'),
-      translationFor: translationsMap.default[id],
+      translationFor: translationsMap[id],
     }))
     .sort(
       (a, b) =>
         parseFloat(a.offset.replace(':', '.')) -
         parseFloat(b.offset.replace(':', '.'))
     )
-    .reduce(
+    .reduce<TimeZones>(
       (previousTimeZones, timeZone) => ({
         ...previousTimeZones,
-        [timeZone.id]: {
-          ...timeZone,
-        },
+        [timeZone.id]: timeZone,
       }),
-      {}
-    ),
-});
+      {} as TimeZones
+    );
+};
 
 const getImportChunk = (locale: string): Promise<TranslationsData> => {
   const intlLocale = mapLocaleToIntlLocale(locale);
@@ -91,11 +92,6 @@ export const timeZonesShape = PropTypes.objectOf(
   })
 );
 
-const getTranslationsMapChunk = (): Promise<TranslationsMapData> =>
-  import(
-    /* webpackChunkName: "time-zone-translations-map" */ '../data/time-zones/translations-map.json'
-  );
-
 /**
  * If running through webpack, code splitting makes `getTimeZonesForLocale`
  * a function that asynchronously loads the country data.
@@ -105,16 +101,14 @@ const getTimeZonesForLocale = async (locale: string): Promise<TimeZones> => {
   // Use default webpackMode (lazy) so that we generate one file per locale.
   // The files are named like "time-zone-data-en-json.chunk.js" after compilation
   // https://webpack.js.org/api/module-methods/#import-
-  const localeTranslations = await getImportChunk(supportedLocale);
-  const translationsMap = await getTranslationsMapChunk();
-  // create time zone object with abbreviations and offsets
-  const augmentedLocaleTranslations = augmentTimeZoneData(
-    localeTranslations,
-    translationsMap
-  );
+  const timeZonesChunk = await getImportChunk(supportedLocale);
   // Prefer loading `default` (for ESM bundles) and
   // fall back to normal import (for CJS bundles).
-  return augmentedLocaleTranslations.default || augmentedLocaleTranslations;
+  const timeZones = timeZonesChunk.default || timeZonesChunk;
+
+  // create time zone object with abbreviations and offsets
+  const timeZoneData = await augmentTimeZoneData(timeZones);
+  return timeZoneData;
 };
 
 export const withTimeZones = createL10NInjector<TimeZones>({
