@@ -253,7 +253,6 @@ export const RestrictedApplication = <
                         userBusinessRole={user?.businessRole ?? undefined}
                       />
                       <div
-                        role="application-layout"
                         css={css`
                           height: 100vh;
                           display: grid;
@@ -263,7 +262,8 @@ export const RestrictedApplication = <
                       >
                         <div
                           ref={notificationsGlobalRef}
-                          role="global-notifications"
+                          role="region"
+                          aria-live="polite"
                           css={css`
                             grid-row: 1;
                             grid-column: 1/3;
@@ -321,7 +321,6 @@ export const RestrictedApplication = <
                         </Route>
 
                         <header
-                          role="header"
                           css={css`
                             grid-row: 2;
                             grid-column: 1/3;
@@ -334,7 +333,6 @@ export const RestrictedApplication = <
                         </header>
 
                         <aside
-                          role="aside"
                           css={css`
                             position: relative;
                             grid-row: 3;
