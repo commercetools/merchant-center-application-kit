@@ -2772,14 +2772,12 @@ __metadata:
     "@commercetools-uikit/card": ^15.0.0
     "@commercetools-uikit/design-system": ^15.0.0
     "@commercetools-uikit/flat-button": ^15.0.0
-    "@commercetools-uikit/hooks": ^15.0.0
     "@commercetools-uikit/icons": ^15.0.0
     "@commercetools-uikit/loading-spinner": ^15.0.0
     "@commercetools-uikit/notifications": ^15.0.0
     "@commercetools-uikit/select-input": ^15.0.0
     "@commercetools-uikit/spacings": ^15.0.0
     "@commercetools-uikit/text": ^15.0.0
-    "@commercetools-uikit/utils": ^15.0.0
     "@commercetools/http-user-agent": 2.1.2
     "@emotion/react": 11.9.0
     "@emotion/styled": 11.8.1
