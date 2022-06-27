@@ -171,7 +171,7 @@ const ProjectSwitcher = (props: Props) => {
       <SelectInput
         value={props.projectKey || ''}
         name="project-switcher"
-        aria-labelledby="project-switcher"
+        aria-label={intl.formatMessage(messages.projectsLabel)}
         onChange={(event) => {
           const selectedProjectKey = event.target.value as string;
           if (selectedProjectKey !== props.projectKey) {

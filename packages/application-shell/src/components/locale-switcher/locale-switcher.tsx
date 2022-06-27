@@ -1,9 +1,11 @@
 import type { SingleValueProps, ValueContainerProps } from 'react-select';
 import { useCallback } from 'react';
 import { css } from '@emotion/react';
+import { useIntl } from 'react-intl';
 import SelectInput from '@commercetools-uikit/select-input';
 import { WorldIcon } from '@commercetools-uikit/icons';
 import { customProperties } from '@commercetools-uikit/design-system';
+import messages from './messages';
 
 type CustomSingleValueProps = SingleValueProps & {
   localeCount: number;
@@ -60,6 +62,7 @@ const PatchedValueContainer = (props: ValueContainerProps) => (
 PatchedValueContainer.displayName = 'PatchedValueContainer';
 
 const LocaleSwitcher = (props: Props) => {
+  const intl = useIntl();
   const { setProjectDataLocale } = props;
   const handleSelection = useCallback(
     (event) => {
@@ -78,7 +81,7 @@ const LocaleSwitcher = (props: Props) => {
       <SelectInput
         value={props.projectDataLocale}
         name="locale-switcher"
-        aria-labelledby="locale-switcher"
+        aria-label={intl.formatMessage(messages.localesLabel)}
         onChange={handleSelection}
         options={props.availableLocales.map((locale) => ({
           label: locale,
