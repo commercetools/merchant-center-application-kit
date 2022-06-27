@@ -42,7 +42,7 @@ export const getLinkStyles = (
   isActive &&
     css`
       ${getBottomBorderStyles(customProperties.colorPrimary)}
-      > * {
+      & h4 {
         color: ${customProperties.colorPrimary} !important;
       }
     `,
@@ -63,7 +63,7 @@ export const getLinkStyles = (
       :hover,
       :focus,
       :active {
-        > * {
+        & h4 {
           color: ${customProperties.colorPrimary} !important;
         }
       }
