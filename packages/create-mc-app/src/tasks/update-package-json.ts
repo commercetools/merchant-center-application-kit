@@ -1,9 +1,11 @@
-const os = require('os');
-const fs = require('fs');
-const path = require('path');
-const { slugify } = require('../utils');
+import os from 'os';
+import fs from 'fs';
+import path from 'path';
+import { ListrTask } from 'listr2';
+import { slugify } from '../utils';
+import type { TCliTaskOptions } from '../types';
 
-module.exports = function updatePackageJson(options) {
+function updatePackageJson(options: TCliTaskOptions): ListrTask {
   return {
     title: 'Updating package.json',
     task: () => {
@@ -32,4 +34,6 @@ module.exports = function updatePackageJson(options) {
       );
     },
   };
-};
+}
+
+export default updatePackageJson;

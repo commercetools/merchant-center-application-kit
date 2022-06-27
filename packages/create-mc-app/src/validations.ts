@@ -1,10 +1,11 @@
-const fs = require('fs');
-const path = require('path');
-const { isSemVer } = require('./utils');
+import fs from 'fs';
+import path from 'path';
+import semver from 'semver';
+import { isSemVer } from './utils';
 
 const availableTemplates = ['starter', 'starter-typescript'];
 
-const throwIfTemplateIsNotSupported = (templateName) => {
+const throwIfTemplateIsNotSupported = (templateName: string) => {
   if (!availableTemplates.includes(templateName)) {
     throw new Error(
       `The provided template name "${templateName}" does not exist. Available templates are "${availableTemplates.toString()}". Make sure you are also using the latest version of "@commercetools-frontend/create-mc-app".`
@@ -12,7 +13,7 @@ const throwIfTemplateIsNotSupported = (templateName) => {
   }
 };
 
-const throwIfProjectDirectoryExists = (dirName, dirPath) => {
+const throwIfProjectDirectoryExists = (dirName: string, dirPath: string) => {
   if (fs.existsSync(dirPath)) {
     throw new Error(
       `A directory named "${dirName}" already exists at this location "${dirPath}". Please choose a different project name or remove the directory, then try running the command again.`
@@ -21,9 +22,9 @@ const throwIfProjectDirectoryExists = (dirName, dirPath) => {
 };
 
 const throwIfTemplateVersionDoesNotExist = (
-  templateName,
-  templateFolderPath,
-  versionToCheck
+  templateName: string,
+  templateFolderPath: string,
+  versionToCheck: string
 ) => {
   if (!fs.existsSync(templateFolderPath)) {
     throw new Error(
@@ -47,15 +48,32 @@ const throwIfTemplateVersionDoesNotExist = (
   }
 };
 
-const throwIfInitialProjectKeyIsMissing = (initialProjectKey) => {
+const throwIfInitialProjectKeyIsMissing = (initialProjectKey?: string) => {
   if (!initialProjectKey) {
     throw new Error(`Provide a valid project key that you have access to.`);
   }
 };
 
-module.exports = {
+const throwIfNodeVersionIsNotSupported = (
+  currentNodeVersion: string,
+  expectedVersionRange: string
+) => {
+  const hasValidNodeVersion = semver.satisfies(
+    currentNodeVersion,
+    expectedVersionRange
+  );
+
+  if (!hasValidNodeVersion) {
+    throw new Error(
+      `You are running Node ${currentNodeVersion} but create-mc-app requires Node ${expectedVersionRange}. Please update your version of Node.`
+    );
+  }
+};
+
+export {
   throwIfTemplateIsNotSupported,
   throwIfProjectDirectoryExists,
   throwIfTemplateVersionDoesNotExist,
   throwIfInitialProjectKeyIsMissing,
+  throwIfNodeVersionIsNotSupported,
 };

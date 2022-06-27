@@ -1,18 +1,17 @@
-const semver = require('semver');
-const execa = require('execa');
+import semver from 'semver';
+import execa from 'execa';
 
-module.exports = function hintOutdatedVersion(currentVersion) {
+function hintOutdatedVersion(currentVersion: string) {
   try {
-    const packageInfoForTagLatest = JSON.parse(
-      execa.sync(
-        'npm',
-        ['view', '@commercetools-frontend/create-mc-app', '--json'],
-        {
-          encoding: 'utf-8',
-          stdio: 'ignore',
-        }
-      )
+    const commandResult = execa.commandSync(
+      'npm view @commercetools-frontend/create-mc-app --json',
+      {
+        encoding: 'utf-8',
+        stdio: 'ignore',
+      }
     );
+
+    const packageInfoForTagLatest = JSON.parse(commandResult.stdout);
 
     const hasBeenReleastedInLatestTag = semver.gt(
       packageInfoForTagLatest.version,
@@ -31,4 +30,6 @@ module.exports = function hintOutdatedVersion(currentVersion) {
   } catch (error) {
     // Ignore errors, as this function should not affect the exit code of the command
   }
-};
+}
+
+export default hintOutdatedVersion;

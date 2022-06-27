@@ -1,34 +1,36 @@
-/* eslint-disable no-console */
-const path = require('path');
-const readline = require('readline');
-const crypto = require('crypto');
-const {
+import path from 'path';
+import readline from 'readline';
+import crypto from 'crypto';
+import {
   throwIfTemplateIsNotSupported,
   throwIfProjectDirectoryExists,
   throwIfInitialProjectKeyIsMissing,
-} = require('./validations');
-const { isSemVer } = require('./utils');
+} from './validations';
+import { isSemVer } from './utils';
+import type { TCliCommandOptions, TCliTaskOptions } from './types';
 
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
-const question = (query) =>
-  new Promise((resolve) => rl.question(query, resolve));
+const question = (value: string) =>
+  new Promise<string>((resolve) => rl.question(value, resolve));
 
-const getTemplateName = (flags) => flags.template || 'starter';
-const getEntryPointUriPath = async (flags) => {
-  if (flags['entry-point-uri-path']) {
-    return flags['entry-point-uri-path'];
+const getTemplateName = (options: TCliCommandOptions) =>
+  options.template || 'starter';
+
+const getEntryPointUriPath = async (options: TCliCommandOptions) => {
+  if (options['entry-point-uri-path']) {
+    return options['entry-point-uri-path'];
   }
 
-  const templateName = getTemplateName(flags);
+  const templateName = getTemplateName(options);
   const randomEntryPointUriPath = `${templateName}-${crypto
     .randomBytes(3)
     .toString('hex')}`;
 
-  if (flags.yes) {
+  if (options.yes) {
     return randomEntryPointUriPath;
   }
 
@@ -37,9 +39,10 @@ const getEntryPointUriPath = async (flags) => {
   );
   return answerEntryPointUriPath || randomEntryPointUriPath;
 };
-const getInitialProjectKey = async (flags) => {
-  if (flags['initial-project-key']) {
-    return flags['initial-project-key'];
+
+const getInitialProjectKey = async (options: TCliCommandOptions) => {
+  if (options['initial-project-key']) {
+    return options['initial-project-key'];
   }
 
   const initialProjectKey = await question(
@@ -51,16 +54,18 @@ const getInitialProjectKey = async (flags) => {
   return initialProjectKey;
 };
 
-module.exports = async function parseArguments(flags) {
-  const [projectDirectoryName] = flags._;
+async function processOptions(
+  projectDirectoryName: string,
+  options: TCliCommandOptions
+): Promise<TCliTaskOptions> {
   if (!projectDirectoryName) {
-    throw new Error('Missing required argument "<project-directory>"');
+    throw new Error('Missing required argument "[project-directory]"');
   }
   const projectDirectoryPath = path.resolve(projectDirectoryName);
 
   // Parse options
-  const templateName = getTemplateName(flags);
-  let tagOrBranchVersion = flags['template-version'] || 'main';
+  const templateName = getTemplateName(options);
+  let tagOrBranchVersion = options['template-version'] || 'main';
   tagOrBranchVersion =
     isSemVer(tagOrBranchVersion) && !tagOrBranchVersion.startsWith('v')
       ? `v${tagOrBranchVersion}`
@@ -71,8 +76,8 @@ module.exports = async function parseArguments(flags) {
   throwIfTemplateIsNotSupported(templateName);
 
   // Read prompts
-  const entryPointUriPath = await getEntryPointUriPath(flags);
-  const initialProjectKey = await getInitialProjectKey(flags);
+  const entryPointUriPath = await getEntryPointUriPath(options);
+  const initialProjectKey = await getInitialProjectKey(options);
 
   rl.close();
 
@@ -84,4 +89,6 @@ module.exports = async function parseArguments(flags) {
     entryPointUriPath,
     initialProjectKey,
   };
-};
+}
+
+export default processOptions;
