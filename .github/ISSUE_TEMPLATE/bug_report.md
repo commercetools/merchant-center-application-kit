@@ -7,6 +7,10 @@ labels:
 assignees: ''
 ---
 
+<!---
+Before you submit, please search open/closed issues since someone might have asked something similar before.
+-->
+
 **Describe the issue**
 
 <!-- A clear and concise description of what's not working. -->
