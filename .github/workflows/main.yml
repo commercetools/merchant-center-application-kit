@@ -151,6 +151,92 @@ jobs:
           TEMPLATE_NAME: starter
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
+  test_starter_template_typescript:
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 10
+
+    # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
+    env:
+      # prevents extra Cypress installation progress messages
+      CI: 1
+      # avoid warnings like "tput: No value for $TERM and no -T specified"
+      TERM: xterm
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install dependencies and build packages
+        uses: ./.github/actions/ci
+
+      - name: Testing Starter application development server
+        run: yarn start-server-and-test 'yarn template-starter-typescript:start' 3001 'exit 0'
+        env:
+          HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
+          APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
+          MC_API_URL: ${{ secrets.MC_API_URL }}
+          CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
+
+      - name: Building Starter template application
+        run: yarn template-starter-typescript:build
+        env:
+          CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
+
+      - name: Running static type checking
+        run: yarn typecheck:starter
+
+      # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L23-L30
+      # https://github.com/marketplace/actions/cypress-io#custom-install
+      - name: Restoring Cypress cache
+        # restore / cache the binary ourselves on Linux
+        # see https://github.com/actions/cache
+        id: cache-cypress
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/Cypress
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+
+      - name: Installing Cypress binary
+        run: yarn cypress install && yarn cypress cache list
+
+      - name: Running End-to-End tests for Starter template application
+        run: yarn start-server-and-test 'yarn template-starter-typescript:start:prod:local' 3001 'yarn percy exec -- yarn test:e2e:template-starter-typescript'
+        env:
+          NODE_ENV: test
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_E2E_STARTER }}
+          CYPRESS_CI: "true"
+          CYPRESS_LOGIN_USER: ${{ secrets.CYPRESS_LOGIN_USER }}
+          CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
+          CYPRESS_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
+          HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
+          APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
+          MC_API_URL: ${{ secrets.MC_API_URL }}
+          CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
+
+  test_starter_template_typescript_installation:
+    runs-on: ubuntu-latest
+
+    if: github.ref != 'refs/heads/main'
+
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install dependencies and build packages
+        uses: ./.github/actions/ci
+
+      - name: Preparing tarballs of packages for testing templates installation
+        run: node ./scripts/build-tarballs.js
+
+      - name: Installing and building template starter
+        run: node ./scripts/install-template.js
+        env:
+          TEMPLATE_NAME: starter-typescript
+          CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
+
   test_playground:
     runs-on: ubuntu-latest
 
