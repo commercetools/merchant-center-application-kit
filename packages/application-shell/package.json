@@ -48,6 +48,7 @@
     "@commercetools-frontend/sdk": "21.6.0",
     "@commercetools-frontend/sentry": "21.6.0",
     "@commercetools-frontend/url-utils": "21.3.4",
+    "@commercetools-uikit/accessible-hidden": "^15.0.0",
     "@commercetools-uikit/avatar": "^15.0.0",
     "@commercetools-uikit/card": "^15.0.0",
     "@commercetools-uikit/design-system": "^15.0.0",

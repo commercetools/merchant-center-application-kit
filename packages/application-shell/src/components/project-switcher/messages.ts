@@ -1,10 +1,10 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  projects: {
-    id: 'ProjectSwitcher.projects',
+  projectsLabel: {
+    id: 'ProjectSwitcher.projectsLabel',
     description: 'The label for project dropdown switcher',
-    defaultMessage: 'Projects',
+    defaultMessage: 'Projects menu',
   },
   searchPlaceholder: {
     id: 'ProjectSwitcher.searchPlaceholder',

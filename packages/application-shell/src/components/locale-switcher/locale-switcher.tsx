@@ -1,9 +1,12 @@
 import type { SingleValueProps, ValueContainerProps } from 'react-select';
 import { useCallback } from 'react';
 import { css } from '@emotion/react';
+import { FormattedMessage } from 'react-intl';
+import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import SelectInput from '@commercetools-uikit/select-input';
 import { WorldIcon } from '@commercetools-uikit/icons';
 import { customProperties } from '@commercetools-uikit/design-system';
+import messages from './messages';
 
 type CustomSingleValueProps = SingleValueProps & {
   localeCount: number;
@@ -13,6 +16,8 @@ type Props = {
   setProjectDataLocale: (locale: string) => void;
   availableLocales: string[];
 };
+
+const LOCALE_SWITCHER_LABEL_ID = 'locale-switcher-label';
 
 export const SingleValue = (props: CustomSingleValueProps) => (
   <div
@@ -75,10 +80,15 @@ const LocaleSwitcher = (props: Props) => {
       `}
       data-track-component="LocaleSwitch"
     >
+      <AccessibleHidden>
+        <span id={LOCALE_SWITCHER_LABEL_ID}>
+          <FormattedMessage {...messages.localesLabel} />
+        </span>
+      </AccessibleHidden>
       <SelectInput
         value={props.projectDataLocale}
         name="locale-switcher"
-        aria-labelledby="locale-switcher"
+        aria-labelledby={LOCALE_SWITCHER_LABEL_ID}
         onChange={handleSelection}
         options={props.availableLocales.map((locale) => ({
           label: locale,
