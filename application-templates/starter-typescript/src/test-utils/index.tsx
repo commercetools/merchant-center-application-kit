@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ReactElement } from 'react';
 import { createApolloClient } from '@commercetools-frontend/application-shell';
 import {
   renderApp,
@@ -8,10 +8,6 @@ import {
 } from '@commercetools-frontend/application-shell/test-utils';
 import ApplicationRoutes from '../routes';
 import { entryPointUriPath } from '../constants';
-
-export type TRenderAppPartialOptions = Partial<TRenderAppOptions>;
-export type TRenderAppWithReduxPartialOptions =
-  Partial<TRenderAppWithReduxOptions>;
 
 const mergeWithDefaultOptions = (
   options: Partial<TRenderAppOptions> | Partial<TRenderAppWithReduxOptions> = {}
@@ -24,20 +20,26 @@ const mergeWithDefaultOptions = (
   apolloClient: createApolloClient(),
 });
 
-export const renderApplication = (
-  ui: ReactNode,
+const renderApplication = (
+  ui: ReactElement,
   options: Partial<TRenderAppOptions>
-) =>
-  renderApp(
-    <ApplicationRoutes>{ui}</ApplicationRoutes>,
-    mergeWithDefaultOptions(options)
-  );
+) => renderApp(ui, mergeWithDefaultOptions(options));
 
-export const renderApplicationWithRedux = (
-  ui: ReactNode,
-  options: Partial<TRenderAppWithReduxOptions> = {}
-) =>
-  renderAppWithRedux(
-    <ApplicationRoutes>{ui}</ApplicationRoutes>,
-    mergeWithDefaultOptions(options)
-  );
+const renderApplicationWithRedux = (
+  ui: ReactElement,
+  options: Partial<TRenderAppWithReduxOptions>
+) => renderAppWithRedux(ui, mergeWithDefaultOptions(options));
+
+const renderApplicationWithRoutes = (options: Partial<TRenderAppOptions>) =>
+  renderApplication(<ApplicationRoutes />, options);
+
+const renderApplicationWithRoutesAndRedux = (
+  options: Partial<TRenderAppWithReduxOptions>
+) => renderApplicationWithRedux(<ApplicationRoutes />, options);
+
+export {
+  renderApplication,
+  renderApplicationWithRedux,
+  renderApplicationWithRoutes,
+  renderApplicationWithRoutesAndRedux,
+};

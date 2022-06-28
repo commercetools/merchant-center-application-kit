@@ -9,10 +9,9 @@ import {
 } from '@commercetools-frontend/application-shell/test-utils';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { buildGraphqlList } from '@commercetools-test-data/core';
-import { renderApplicationWithRedux } from '../../test-utils';
+import { renderApplicationWithRoutesAndRedux } from '../../test-utils';
 import * as Channel from '@commercetools-test-data/channel';
 import { entryPointUriPath, PERMISSIONS } from '../../constants';
-import ApplicationRoutes from '../../routes';
 
 jest.mock('@commercetools-frontend/sentry');
 
@@ -36,7 +35,7 @@ const newKey = 'new-test-key';
 const renderApp = (options = {}, includeManagePermissions = true) => {
   const route =
     options.route || `/my-project/${entryPointUriPath}/channels/${id}`;
-  const { history } = renderApplicationWithRedux(<ApplicationRoutes />, {
+  const { history } = renderApplicationWithRoutesAndRedux({
     route,
     project: {
       allAppliedPermissions: mapResourceAccessToAppliedPermissions(

@@ -62,7 +62,7 @@ shelljs.exec(
   [
     binaryPath,
     applicationName,
-    '--template=starter',
+    `--template=${templateName}`,
     `--template-version=${branchName}`,
     `--initial-project-key=${initialProjectKey}`,
     `--yes`,
@@ -107,18 +107,18 @@ console.log('Installing the application dependencies');
 shelljs.exec('yarn install --no-lockfile', { cwd: applicationPath });
 
 console.log(
-  `Building the production bundle for the application ${applicationName}, using the tempalte ${templateName}`
+  `Building the production bundle for the application ${applicationName}, using the template ${templateName}`
 );
 shelljs.exec('yarn build', { cwd: applicationPath });
 
 console.log(
-  `Testing the application ${applicationName}, using the tempalte ${templateName}`
+  `Testing the application ${applicationName}, using the template ${templateName}`
 );
 shelljs.exec('yarn test', { cwd: applicationPath });
 
 if (templateName.endsWith('-typescript')) {
   console.log(
-    `Type check the application ${applicationName}, using the tempalte ${templateName}`
+    `Type check the application ${applicationName}, using the template ${templateName}`
   );
   shelljs.exec('yarn typecheck', { cwd: applicationPath });
 }

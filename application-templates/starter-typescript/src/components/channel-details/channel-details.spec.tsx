@@ -6,17 +6,14 @@ import {
   waitFor,
   within,
   mapResourceAccessToAppliedPermissions,
+  type TRenderAppWithReduxOptions,
 } from '@commercetools-frontend/application-shell/test-utils';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { buildGraphqlList } from '@commercetools-test-data/core';
 import type { TChannel } from '@commercetools-test-data/channel';
 import * as Channel from '@commercetools-test-data/channel';
-import {
-  renderApplicationWithRedux,
-  type TRenderAppWithReduxPartialOptions,
-} from '../../test-utils';
+import { renderApplicationWithRoutesAndRedux } from '../../test-utils';
 import { entryPointUriPath, PERMISSIONS } from '../../constants';
-import ApplicationRoutes from '../../routes';
 
 jest.mock('@commercetools-frontend/sentry');
 
@@ -38,13 +35,13 @@ const TEST_CHANNEL_KEY = 'test-key';
 const TEST_CHANNEL_NEW_KEY = 'new-test-key';
 
 const renderApp = (
-  options: TRenderAppWithReduxPartialOptions = {},
+  options: Partial<TRenderAppWithReduxOptions> = {},
   includeManagePermissions = true
 ) => {
   const route =
     options.route ||
     `/my-project/${entryPointUriPath}/channels/${TEST_CHANNEL_ID}`;
-  const { history } = renderApplicationWithRedux(<ApplicationRoutes />, {
+  const { history } = renderApplicationWithRoutesAndRedux({
     route,
     project: {
       allAppliedPermissions: mapResourceAccessToAppliedPermissions(
