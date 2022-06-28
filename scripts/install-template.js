@@ -2,6 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const shelljs = require('shelljs');
 
+shelljs.set('-e');
+
 const matchingPackages = /^@commercetools-frontend\/(?!ui-kit)(.*)/;
 const applicationName = 'my-starter-app';
 const rootPath = path.join(__dirname, '..');

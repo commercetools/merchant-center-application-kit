@@ -1,6 +1,8 @@
-const { getPackages } = require('@manypkg/get-packages');
 const path = require('path');
 const shelljs = require('shelljs');
+const { getPackages } = require('@manypkg/get-packages');
+
+shelljs.set('-e');
 
 const rootPath = path.join(__dirname, '..');
 const tarballsDistPath = path.join(rootPath, 'dist-tarballs');
