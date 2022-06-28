@@ -119,10 +119,17 @@ export const getConfiguredAudience = <Request extends TBaseRequest>(
 ) => {
   // remove the trailing slash
   const url = new URL(`${options.audience.replace(/\/?$/, '')}${requestPath}`);
-  if (requestPath === '/') {
-    return url.origin;
+
+  switch (options.audiencePolicy) {
+    case 'forward-url-origin':
+      return url.origin;
+    default: {
+      if (requestPath === '/') {
+        return url.origin;
+      }
+      return `${url.origin}${url.pathname}`;
+    }
   }
-  return `${url.origin}${url.pathname}`;
 };
 
 function createSessionAuthVerifier<Request extends TBaseRequest>(

@@ -11,6 +11,7 @@ export const SUPPORTED_HEADERS = {
   X_CORRELATION_ID: 'X-Correlation-Id',
   X_FEATURE_FLAG: 'X-Feature-Flag',
   X_FORWARD_TO: 'X-Forward-To',
+  X_FORWARD_TO_AUDIENCE_POLICY: 'X-Forward-To-Audience-Policy',
   X_GRAPHQL_TARGET: 'X-Graphql-Target',
   X_GRAPHQL_OPERATION_NAME: 'X-Graphql-Operation-Name',
   X_PROJECT_KEY: 'X-Project-Key',

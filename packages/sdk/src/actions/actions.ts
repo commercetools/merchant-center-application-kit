@@ -65,6 +65,8 @@ const enhancePayloadForForwardToProxy = (payload: TSdkActionPayloadForUri) => {
       ),
       'Accept-version': 'v2',
       'X-Forward-To': payload.uri,
+      'X-Forward-To-Audience-Policy':
+        payload.audiencePolicy || 'forward-url-full-path',
     },
   };
 };

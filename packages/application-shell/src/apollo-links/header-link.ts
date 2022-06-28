@@ -59,6 +59,8 @@ const getAppliedForwardToHeaders = (
       ),
       [SUPPORTED_HEADERS.ACCEPT_VERSION]: apolloContext.forwardToConfig.version,
       [SUPPORTED_HEADERS.X_FORWARD_TO]: apolloContext.forwardToConfig.uri,
+      [SUPPORTED_HEADERS.X_FORWARD_TO_AUDIENCE_POLICY]:
+        apolloContext.forwardToConfig.audiencePolicy,
     };
   }
 

@@ -103,7 +103,7 @@ The supported `options` can be found in the `api-request-builder`'s documentatio
 ## Action creators for external API usage
 
 By default, all requests with the SDK are configured to be sent to the MC API.
-However, Custom Applications using the [Proxy to external API](https://docs.commercetools.com/custom-applications/main-concepts/proxy-to-external-api) need to configure the request a bit differently, and send additional headers.
+However, Custom Applications using the [Proxy to external API](https://docs.commercetools.com/custom-applications/concepts/integrate-with-your-own-api) need to configure the request a bit differently, and send additional headers.
 
 To make it easier to make requests to the proxy endpoint using the SDK, there is a new action creator wrapper that comes with built-in configuration options.
 
@@ -120,10 +120,11 @@ The options for the action creators are the same as the **Usage with `uri`**, ex
 
 The `forwardTo` action creators additionally set the following headers:
 
-- `X-Forward-To`
 - `Accept-version`
+- `X-Forward-To`
+- `X-Forward-To-Audience-Policy`
 
-For more information, check the [Proxy to external API](https://docs.commercetools.com/custom-applications/main-concepts/proxy-to-external-api) documentation.
+For more information, check the [Proxy to external API](https://docs.commercetools.com/custom-applications/concepts/integrate-with-your-own-api) documentation.
 
 ## Error handling
 
@@ -131,7 +132,7 @@ Failed requests will result in a rejected promise. The `sdk-client`'s error hand
 
 The `sdk` package does not provide any error handling out of the box. It's the application's responsibility to handle errors (e.g. show a notification, track the error).
 
-The MC has a `handleActionError` function which is what we currently use for error handling. It logs the error to the tracking tool (Sentry) and shows a notification to the client. This should be used whenever a more special error handling is not necessary.
+The Merchant Center has a `handleActionError` function which is what we currently use for error handling. It logs the error to the tracking tool (Sentry) and shows a notification to the client. This should be used whenever a more special error handling is not necessary.
 
 ## Example
 

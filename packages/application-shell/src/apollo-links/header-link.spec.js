@@ -269,6 +269,7 @@ describe('configuring header link', () => {
             context: {
               target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
               forwardToConfig: {
+                audiencePolicy: 'forward-url-origin-full-path',
                 version: 'v2',
                 uri: 'https://avengers.app',
               },
@@ -282,6 +283,7 @@ describe('configuring header link', () => {
           Object {
             "credentials": "include",
             "forwardToConfig": Object {
+              "audiencePolicy": "forward-url-origin-full-path",
               "uri": "https://avengers.app",
               "version": "v2",
             },
@@ -289,6 +291,7 @@ describe('configuring header link', () => {
               "Accept-version": "v2",
               "X-Correlation-Id": "test-correlation-id",
               "X-Forward-To": "https://avengers.app",
+              "X-Forward-To-Audience-Policy": "forward-url-origin-full-path",
               "X-Graphql-Operation-Name": "Test",
               "X-Graphql-Target": "mc",
               "X-Project-Key": "project-1",
@@ -315,6 +318,7 @@ describe('configuring header link', () => {
             context: {
               target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
               forwardToConfig: {
+                audiencePolicy: 'forward-url-origin-full-path',
                 version: 'v2',
                 uri: 'https://avengers.app',
                 headers: {
@@ -332,6 +336,7 @@ describe('configuring header link', () => {
           Object {
             "credentials": "include",
             "forwardToConfig": Object {
+              "audiencePolicy": "forward-url-origin-full-path",
               "headers": Object {
                 "accept-language": "*",
                 "x-foo": "bar",
@@ -343,6 +348,7 @@ describe('configuring header link', () => {
               "Accept-version": "v2",
               "X-Correlation-Id": "test-correlation-id",
               "X-Forward-To": "https://avengers.app",
+              "X-Forward-To-Audience-Policy": "forward-url-origin-full-path",
               "X-Graphql-Operation-Name": "Test",
               "X-Graphql-Target": "mc",
               "X-Project-Key": "project-1",
