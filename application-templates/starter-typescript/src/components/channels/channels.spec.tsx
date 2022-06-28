@@ -4,14 +4,12 @@ import {
   fireEvent,
   screen,
   mapResourceAccessToAppliedPermissions,
+  type TRenderAppWithReduxOptions,
 } from '@commercetools-frontend/application-shell/test-utils';
 import { buildGraphqlList } from '@commercetools-test-data/core';
 import type { TChannel } from '@commercetools-test-data/channel';
 import * as Channel from '@commercetools-test-data/channel';
-import {
-  renderApplicationWithRedux,
-  type TRenderAppWithReduxPartialOptions,
-} from '../../test-utils';
+import { renderApplicationWithRedux } from '../../test-utils';
 import { entryPointUriPath, PERMISSIONS } from '../../constants';
 import ApplicationRoutes from '../../routes';
 
@@ -28,7 +26,7 @@ afterAll(() => {
   mockServer.close();
 });
 
-const renderApp = (options: TRenderAppWithReduxPartialOptions = {}) => {
+const renderApp = (options: Partial<TRenderAppWithReduxOptions> = {}) => {
   const route = options.route || `/my-project/${entryPointUriPath}/channels`;
   const { history } = renderApplicationWithRedux(<ApplicationRoutes />, {
     route,

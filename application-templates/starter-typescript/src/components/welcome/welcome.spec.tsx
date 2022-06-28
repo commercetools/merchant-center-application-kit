@@ -1,15 +1,13 @@
 import {
   screen,
   mapResourceAccessToAppliedPermissions,
+  type TRenderAppWithReduxOptions,
 } from '@commercetools-frontend/application-shell/test-utils';
-import {
-  renderApplicationWithRedux,
-  type TRenderAppWithReduxPartialOptions,
-} from '../../test-utils';
+import { renderApplicationWithRedux } from '../../test-utils';
 import { entryPointUriPath, PERMISSIONS } from '../../constants';
 import ApplicationRoutes from '../../routes';
 
-const renderApp = (options: TRenderAppWithReduxPartialOptions = {}) => {
+const renderApp = (options: Partial<TRenderAppWithReduxOptions> = {}) => {
   const route = options.route || `/my-project/${entryPointUriPath}`;
   const { history } = renderApplicationWithRedux(<ApplicationRoutes />, {
     route,
