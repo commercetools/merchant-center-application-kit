@@ -27,7 +27,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install dependencies and build packages
+      - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
 
       - name: Check for unmet constraints (fix w/ "yarn constraints --fix")
@@ -57,7 +57,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install dependencies and build packages
+      - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
 
       - name: Building Visual Regression Tests application for UI components
@@ -84,7 +84,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install dependencies and build packages
+      - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
 
       - name: Testing Starter application development server
@@ -139,7 +139,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install dependencies and build packages
+      - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
 
       - name: Preparing tarballs of packages for testing templates installation
@@ -167,7 +167,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install dependencies and build packages
+      - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
 
       - name: Testing Starter application development server
@@ -225,7 +225,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install dependencies and build packages
+      - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
 
       - name: Preparing tarballs of packages for testing templates installation
@@ -253,7 +253,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install dependencies and build packages
+      - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
 
       - name: Building Playground application

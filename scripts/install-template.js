@@ -111,14 +111,9 @@ console.log(
 );
 shelljs.exec('yarn build', { cwd: applicationPath });
 
-console.log(
-  `Testing the application ${applicationName}, using the template ${templateName}`
-);
-shelljs.exec('yarn test', { cwd: applicationPath });
-
 if (templateName.endsWith('-typescript')) {
   console.log(
-    `Type check the application ${applicationName}, using the template ${templateName}`
+    `Type checking the application ${applicationName}, using the template ${templateName}`
   );
   shelljs.exec('yarn typecheck', { cwd: applicationPath });
 }
