@@ -108,3 +108,15 @@ console.log(
   `Building the production bundle for the application ${applicationName}, using the tempalte ${templateName}`
 );
 shelljs.exec('yarn build', { cwd: applicationPath });
+
+console.log(
+  `Testing the application ${applicationName}, using the tempalte ${templateName}`
+);
+shelljs.exec('yarn test', { cwd: applicationPath });
+
+if (templateName.endsWith('-typescript')) {
+  console.log(
+    `Type check the application ${applicationName}, using the tempalte ${templateName}`
+  );
+  shelljs.exec('yarn typecheck', { cwd: applicationPath });
+}
