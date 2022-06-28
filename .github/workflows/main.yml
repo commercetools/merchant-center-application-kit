@@ -133,7 +133,7 @@ jobs:
 
     if: github.ref != 'refs/heads/main'
 
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
       - name: Checkout
@@ -219,7 +219,7 @@ jobs:
 
     if: github.ref != 'refs/heads/main'
 
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
       - name: Checkout
