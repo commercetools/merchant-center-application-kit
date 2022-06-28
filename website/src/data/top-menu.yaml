@@ -16,7 +16,6 @@
       href: https://docs.commercetools.com/sdk
     - label: Custom Applications
       href: https://docs.commercetools.com/custom-applications
-      beta: true
 - menu-title: Frontend
   items:
     - label: Getting Started
