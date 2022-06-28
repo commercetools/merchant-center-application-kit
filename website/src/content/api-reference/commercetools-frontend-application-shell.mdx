@@ -183,6 +183,8 @@ const useExternalApiFetcher = () => {
       headers: {
         'x-foo': 'bar',
       },
+      // Optionally define the audience policy
+      audiencePolicy: 'forward-url-full-path',
     }),
   });
 
@@ -191,6 +193,20 @@ const useExternalApiFetcher = () => {
     data,
     error,
   }
+};
+```
+
+Available options are:
+
+```ts
+type TForwardToAudiencePolicy =
+  | 'forward-url-full-path'
+  | 'forward-url-origin';
+
+type TApolloContextProxyForwardTo = {
+  uri: string;
+  headers?: Record<string, string>;
+  audiencePolicy?: TForwardToAudiencePolicy;
 };
 ```
 
