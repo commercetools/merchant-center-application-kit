@@ -155,10 +155,10 @@
     "language": "Baschkirisch"
   },
   "be": {
-    "language": "Weißrussisch"
+    "language": "Belarussisch"
   },
   "be-BY": {
-    "language": "Weißrussisch",
+    "language": "Belarussisch",
     "country": "Belarus"
   },
   "bg": {
@@ -995,7 +995,7 @@
     "country": "Irland"
   },
   "gd": {
-    "language": "Schottisches Gälisch"
+    "language": "Gälisch (Schottland)"
   },
   "gl": {
     "language": "Galicisch"
@@ -1251,10 +1251,10 @@
     "country": "Lettland"
   },
   "mg": {
-    "language": "Madagassisch"
+    "language": "Malagasy"
   },
   "mg-MG": {
-    "language": "Madagassisch",
+    "language": "Malagasy",
     "country": "Madagaskar"
   },
   "mh": {
@@ -1265,10 +1265,10 @@
     "country": "Marshallinseln"
   },
   "mi": {
-    "language": "Maori"
+    "language": "Māori"
   },
   "mi-NZ": {
-    "language": "Maori",
+    "language": "Māori",
     "country": "Neuseeland"
   },
   "mk": {
@@ -1328,14 +1328,14 @@
     "country": "Nauru"
   },
   "nb": {
-    "language": "Norwegisch Bokmål"
+    "language": "Norwegisch (Bokmål)"
   },
   "nb-NO": {
-    "language": "Norwegisch Bokmål",
+    "language": "Norwegisch (Bokmål)",
     "country": "Norwegen"
   },
   "nb-SJ": {
-    "language": "Norwegisch Bokmål",
+    "language": "Norwegisch (Bokmål)",
     "country": "Spitzbergen und Jan Mayen"
   },
   "nd": {
@@ -1368,7 +1368,7 @@
   },
   "nl-BQ": {
     "language": "Niederländisch",
-    "country": "Bonaire, Sint Eustatius und Saba"
+    "country": "Karibische Niederlande"
   },
   "nl-CW": {
     "language": "Niederländisch",
@@ -1387,10 +1387,17 @@
     "country": "Sint Maarten"
   },
   "nn": {
-    "language": "Norwegisch Nynorsk"
+    "language": "Norwegisch (Nynorsk)"
   },
   "nn-NO": {
-    "language": "Norwegisch Nynorsk",
+    "language": "Norwegisch (Nynorsk)",
+    "country": "Norwegen"
+  },
+  "no": {
+    "language": "Norwegisch"
+  },
+  "no-NO": {
+    "language": "Norwegisch",
     "country": "Norwegen"
   },
   "nr": {
@@ -1863,9 +1870,6 @@
   },
   "sh": {
     "language": "Serbo-Kroatisch"
-  },
-  "no": {
-    "language": "Norwegisch"
   },
   "tl": {
     "language": "Tagalog"

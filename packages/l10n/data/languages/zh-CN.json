@@ -1393,6 +1393,13 @@
     "language": "挪威尼诺斯克语",
     "country": "挪威"
   },
+  "no": {
+    "language": "挪威语"
+  },
+  "no-NO": {
+    "language": "挪威语",
+    "country": "挪威"
+  },
   "nr": {
     "language": "南恩德贝勒语"
   },
@@ -1863,9 +1870,6 @@
   },
   "sh": {
     "language": "塞尔维亚-克罗地亚语"
-  },
-  "no": {
-    "language": "挪威语"
   },
   "tl": {
     "language": "他加禄语"

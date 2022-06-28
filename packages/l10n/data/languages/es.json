@@ -396,7 +396,7 @@
   },
   "en-GG": {
     "language": "inglés",
-    "country": "Guernsey"
+    "country": "Guernesey"
   },
   "en-GH": {
     "language": "inglés",
@@ -1189,7 +1189,7 @@
     "language": "kanuri"
   },
   "ks": {
-    "language": "cachemiro"
+    "language": "cachemir"
   },
   "ku": {
     "language": "kurdo"
@@ -1279,7 +1279,7 @@
     "country": "Macedonia del Norte"
   },
   "ml": {
-    "language": "malayalam"
+    "language": "malayálam"
   },
   "mn": {
     "language": "mongol"
@@ -1391,6 +1391,13 @@
   },
   "nn-NO": {
     "language": "noruego nynorsk",
+    "country": "Noruega"
+  },
+  "no": {
+    "language": "noruego"
+  },
+  "no-NO": {
+    "language": "noruego",
     "country": "Noruega"
   },
   "nr": {
@@ -1667,7 +1674,7 @@
   },
   "sv-AX": {
     "language": "sueco",
-    "country": "Islas Åland"
+    "country": "Islas Aland"
   },
   "sv-FI": {
     "language": "sueco",
@@ -1863,9 +1870,6 @@
   },
   "sh": {
     "language": "serbocroata"
-  },
-  "no": {
-    "language": "noruego"
   },
   "tl": {
     "language": "tagalo"
