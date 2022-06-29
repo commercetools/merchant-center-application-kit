@@ -50,7 +50,6 @@ shelljs.exec(
   [
     'yarn add',
     `file:${path.join(tarballsDistPath, createMcAppTarballName)}`,
-    '--no-lockfile',
   ].join(' '),
   { cwd: sandboxPath, stdio: 'ignore' }
 );
@@ -110,10 +109,3 @@ console.log(
   `Building the production bundle for the application ${applicationName}, using the template ${templateName}`
 );
 shelljs.exec('yarn build', { cwd: applicationPath });
-
-if (templateName.endsWith('-typescript')) {
-  console.log(
-    `Type checking the application ${applicationName}, using the template ${templateName}`
-  );
-  shelljs.exec('yarn typecheck', { cwd: applicationPath });
-}
