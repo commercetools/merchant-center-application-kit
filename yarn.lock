@@ -26484,6 +26484,7 @@ __metadata:
     "@apollo/client": 3.6.2
     "@commercetools-frontend/actions-global": 21.6.0
     "@commercetools-frontend/application-components": 21.7.0
+    "@commercetools-frontend/application-config": 21.7.0
     "@commercetools-frontend/application-shell": 21.7.0
     "@commercetools-frontend/application-shell-connectors": 21.6.0
     "@commercetools-frontend/assets": 21.0.0
