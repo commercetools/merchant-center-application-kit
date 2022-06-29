@@ -21,6 +21,7 @@
   },
   "files": [
     "dist",
+    "scripts",
     "ssr",
     "client.d.ts",
     "schema.json",
