@@ -25,7 +25,7 @@ export type TSessionMiddlewareOptions<Request extends TBaseRequest> = {
    */
   audience: TAudience;
   /**
-   * How the audience value should be exchange between the server and the client.
+   * How the audience value should be exchanged between the server and the client.
    * By default it uses the full URL (origin + pathname).
    */
   audiencePolicy?: TAudiencePolicy;

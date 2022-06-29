@@ -15,5 +15,9 @@ createSessionAuthVerifier({
   // ...
 });
 
-// "X-Forward-To-Audience-Policy": "forward-url-origin"
+createSessionMiddleware({
+  audiencePolicy: 'forward-url-origin',
+  // ...
+});
+
 ```
