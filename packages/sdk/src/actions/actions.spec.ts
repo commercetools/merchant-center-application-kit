@@ -111,6 +111,7 @@ describe.each`
           headers: {
             'Accept-version': 'v2',
             'X-Forward-To': uri,
+            'X-Forward-To-Audience-Policy': 'forward-url-full-path',
             'x-forward-header-accept-language': '*',
             'x-forward-header-x-foo': 'bar',
           },

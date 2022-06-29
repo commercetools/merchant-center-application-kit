@@ -30,7 +30,7 @@ const reducer = (state, action) => {
 const getLinkDocs = (msg) => (
   <Link
     isExternal
-    to="https://docs.commercetools.com/custom-applications/main-concepts/proxy-to-external-api"
+    to="https://docs.commercetools.com/custom-applications/concepts/integrate-with-your-own-api"
   >
     {msg}
   </Link>
