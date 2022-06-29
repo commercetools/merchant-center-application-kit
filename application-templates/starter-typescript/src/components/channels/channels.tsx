@@ -26,7 +26,7 @@ import {
   formatLocalizedString,
   transformLocalizedFieldToLocalizedString,
 } from '@commercetools-frontend/l10n';
-import type { TFetchChannelsQuery } from '../../../types/generated/ctp';
+import type { TFetchChannelsQuery } from '../../types/generated/ctp';
 import { useChannelsFetcher } from '../../hooks/use-channels-connector';
 import { getErrorMessage } from '../../helpers';
 import messages from './messages';

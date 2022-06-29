@@ -3,7 +3,7 @@ import {
   transformLocalizedFieldToLocalizedString,
 } from '@commercetools-frontend/l10n';
 import { ApolloError, type ServerError } from '@apollo/client';
-import type { TChannel } from '../types/generated/ctp';
+import type { TChannel } from './types/generated/ctp';
 import type {
   TGraphqlUpdateAction,
   TSyncAction,

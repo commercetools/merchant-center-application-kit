@@ -16,7 +16,7 @@ import type {
   TFetchChannelDetailsQueryVariables,
   TUpdateChannelDetailsMutation,
   TUpdateChannelDetailsMutationVariables,
-} from '../../../types/generated/ctp';
+} from '../../types/generated/ctp';
 import {
   createGraphQlUpdateActions,
   extractErrorFromGraphQlResponse,

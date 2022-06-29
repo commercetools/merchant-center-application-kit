@@ -4,18 +4,21 @@
 'merchant-center-application-template-starter': minor
 ---
 
-Adds a new Custom Application starter template in TypeScript including the bare minimum configuration setup:
+There is a new starter template to develop Custom Applications in TypeScript!
 
-- `tsconfig.json` extended from `@commercetools-frontend/application-config/tsconfig-mc-app.json`
-- `prettier` config
-- `jest` config
-- linters adjustments to include TS file extensions `ts, tsx`
-- custom @types declarations
-- missing type declarations for JS-only modules
-- graphql generated types
-
-The template can be installed using the `npx` command. Replace `<folder_name>` with the name of the folder where the template should be installed into.
+To install it via the `@commercetools-frontend/create-mc-app` CLI:
 
 ```bash
-$ npx @commercetools-frontend/create-mc-app@latest <folder_name> --template starter-typescript
+$ npx @commercetools-frontend/create-mc-app@latest <folder_name> \
+  --template starter-typescript
 ```
+
+The TypeScript starter template is the same as the standard JS starter template in terms of functionality
+but it includes the additional TypeScript setup.
+
+If you already have a Custom Application in TypeScript or are planning to migrate an existing one to it
+we recommend to take a look at the tooling setup of the TypeScript starter template, in particular:
+
+- `.prettierrc` for using the `typescript` parser.
+- `jest.*.config.js` to include the file extensions `.ts` and `.tsx`.
+- `tsconfig.json`
