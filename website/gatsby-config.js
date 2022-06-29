@@ -24,7 +24,7 @@ module.exports = {
       options: {
         websiteKey: 'custom-applications',
         colorPreset: colorPresets.merchantCenterDeveloperDocs.key,
-        beta: true,
+        beta: false,
         excludeFromSearchIndex: false,
         gaTrackingId: 'UA-38285631-3',
         globalNotification: {
