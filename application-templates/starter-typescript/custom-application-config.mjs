@@ -1,7 +1,9 @@
 import { PERMISSIONS, entryPointUriPath } from './src/constants';
-import type { ConfigOptions } from '@commercetools-frontend/application-config';
 
-const config: ConfigOptions = {
+/**
+ * @type {import('@commercetools-frontend/application-config').ConfigOptions}
+ */
+const config = {
   name: 'Custom Application Template Starter',
   entryPointUriPath,
   cloudIdentifier: 'gcp-eu',
