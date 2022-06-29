@@ -1,10 +1,8 @@
 // Make sure to import the helper functions from the `ssr` entry point.
 import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-shell/ssr';
-import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
-declare const window: typeof Window & {
-  app: TApplicationContext<{}>['environment'];
-};
+declare let window: ApplicationWindow;
 
 export const entryPointUriPath =
   typeof window === 'undefined'

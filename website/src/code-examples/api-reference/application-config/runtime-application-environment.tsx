@@ -1,8 +1,6 @@
-import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
-declare const window: typeof Window & {
-  app: TApplicationContext<{}>['environment'];
-};
+declare let window: ApplicationWindow;
 
 const EntryPoint = () => (
   <ApplicationShell

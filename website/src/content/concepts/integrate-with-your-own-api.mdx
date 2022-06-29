@@ -243,30 +243,10 @@ The URL `https://<identifier>.ngrok.io` can now be used as the URL of the server
 
 This is also the value of the `audience` to be configured in your session middleware when using the `@commercetools-backend/express` package.
 
-```js highlightLines="10"
-const express = require("express");
-const {
-  createSessionMiddleware,
-  CLOUD_IDENTIFIERS,
-} = require("@commercetools-backend/express");
-
-const app = express();
-app.use(
-  createSessionMiddleware({
-    audience: "https://33ea-87-183-162-9.eu.ngrok.io",
-    issuer: CLOUD_IDENTIFIERS.GCP_EU,
-  })
-);
-app.post("/echo", (req, res) => {
-  res.send("It works 🙌");
-});
-
-app.listen(6000, () => {
-  console.log("Running on port 6000.");
-});
-
-module.exports = app;
-```
+<MultiCodeExample>
+  <CodeExample path="concepts/integrate-with-your-own-api/local-development.js" highlightLines={[10]} />
+  <CodeExample path="concepts/integrate-with-your-own-api/local-development.ts" highlightLines={[10]} />
+</MultiCodeExample>
 
 We recommend configuring the external API URL using environment variables to be able to define different values for development (using a secure tunnel) and production.
 In the Custom Application config you can specify the external API URL as an [`additionalEnv`](/api-reference/application-config#additionalenv) property using a [variable placeholder](/api-reference/application-config#using-variable-placeholders).

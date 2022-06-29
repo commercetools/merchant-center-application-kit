@@ -2,7 +2,7 @@ import {
   withProjectExtensionImageRegex,
   ProjectExtensionProviderForImageRegex,
 } from '@commercetools-frontend/application-shell-connectors';
-import type { TImageRegexContext } from '@commercetools-frontend/application-shell-connectors/dist/declarations/src/components/project-extension-image-regex/project-extension-image-regex';
+import type { TImageRegexContext } from '@commercetools-frontend/application-shell-connectors';
 import { Component } from 'react';
 
 type TOwnProps = {
