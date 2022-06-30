@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { isSemVer } = require('./utils');
 
-const availableTemplates = ['starter'];
+const availableTemplates = ['starter', 'starter-typescript'];
 
 const throwIfTemplateIsNotSupported = (templateName) => {
   if (!availableTemplates.includes(templateName)) {

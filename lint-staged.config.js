@@ -32,7 +32,8 @@ module.exports = {
     //
     // For that reason, we move the `--onlyChanged` flag next to it.
     'yarn lint:js --reporters=jest-silent-reporter --onlyChanged',
-    'tsc-files --noEmit',
+    // Always include the `client.d.ts` file.
+    'tsc-files --noEmit packages/application-config/client.d.ts',
   ],
   'cypress/**/*.ts': [
     'prettier --write',

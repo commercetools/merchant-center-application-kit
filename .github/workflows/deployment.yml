@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install dependencies and build packages
+      - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
 
       - name: Building Playground application

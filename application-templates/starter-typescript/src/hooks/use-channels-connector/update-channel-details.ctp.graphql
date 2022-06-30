@@ -1,0 +1,16 @@
+mutation UpdateChannelDetails(
+  $channelId: String!
+  $version: Long!
+  $actions: [ChannelUpdateAction!]!
+) {
+  updateChannel(id: $channelId, version: $version, actions: $actions) {
+    id
+    version
+    key
+    roles
+    nameAllLocales {
+      locale
+      value
+    }
+  }
+}

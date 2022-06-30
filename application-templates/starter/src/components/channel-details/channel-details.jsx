@@ -33,8 +33,8 @@ const ChannelDetails = (props) => {
   const params = useParams();
   const { loading, error, channel } = useChannelDetailsFetcher(params.id);
   const { dataLocale, projectLanguages } = useApplicationContext((context) => ({
-    dataLocale: context.dataLocale,
-    projectLanguages: context.project.languages,
+    dataLocale: context.dataLocale ?? '',
+    projectLanguages: context.project?.languages ?? [],
   }));
   const canManage = useIsAuthorized({
     demandedPermissions: [PERMISSIONS.Manage],
@@ -63,10 +63,11 @@ const ChannelDetails = (props) => {
         });
       } catch (graphQLErrors) {
         const transformedErrors = transformErrors(graphQLErrors);
-        if (transformedErrors.unmappedErrors.length > 0)
+        if (transformedErrors.unmappedErrors.length > 0) {
           showApiErrorNotification({
             errors: transformedErrors.unmappedErrors,
           });
+        }
 
         formikHelpers.setErrors(transformedErrors.formErrors);
       }

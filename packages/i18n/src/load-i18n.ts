@@ -10,10 +10,10 @@ import {
 type MomentImportData = {
   default: moment.Locale;
 };
-type I18NImportData = {
+export type I18NImportData = {
   default: Record<string, string> | Record<string, MessageFormatElement[]>;
 };
-type MergedMessages =
+export type MergedMessages =
   | Record<string, string>
   | Record<string, MessageFormatElement[]>;
 

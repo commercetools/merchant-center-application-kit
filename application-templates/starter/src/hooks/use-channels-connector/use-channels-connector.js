@@ -7,6 +7,7 @@ import { createSyncChannels } from '@commercetools/sync-actions';
 import {
   createGraphQlUpdateActions,
   extractErrorFromGraphQlResponse,
+  convertToActionData,
 } from '../../helpers';
 import FetchChannelsQuery from './fetch-channels.ctp.graphql';
 import FetchChannelDetailsQuery from './fetch-channel-details.ctp.graphql';
@@ -55,7 +56,10 @@ export const useChannelDetailsUpdater = () => {
 
   const syncStores = createSyncChannels();
   const execute = async ({ originalDraft, nextDraft }) => {
-    const actions = syncStores.buildActions(nextDraft, originalDraft);
+    const actions = syncStores.buildActions(
+      nextDraft,
+      convertToActionData(originalDraft)
+    );
     try {
       return await updateChannelDetails({
         context: {
