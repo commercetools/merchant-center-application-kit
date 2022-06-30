@@ -28,12 +28,18 @@ Requests to that endpoint should additionally pass the following HTTP headers:
 
 - `Accept-version: v2`: See [Versioning](#versioning).
 - `X-Forward-To: <url>`: The URL to your external API.
-- `X-Forward-To-Audience-Policy: <policy>`: The policy used to determine how the `audience` value is exchanged between the Merchant Center API Gateway and the external API. By default it uses `forward-url-full-path`.
+- `X-Forward-To-Audience-Policy: <policy>`: See [Configuring the audience policy](#configuring-the-audience-policy).
 - `X-Project-Key: <project-key>`: The key of the commercetools Project currently being used by the Custom Application. The Merchant Center API Gateway will perform a validation check to ensure that the user has access to the Project, then forward the request to your server only if the check was successful.
 
 To facilitate the usage of the [built-in Apollo client and the SDK actions](/development/data-fetching), we provide some helpers to integrate with the request configuration for the HTTP headers listed above.
 
 ## Configuring the audience policy
+
+<Info>
+
+This feature is available from version `>= 21.8.0`.
+
+</Info>
 
 The audience policy can be used to determine how the `audience` value is exchanged between the Merchant Center API Gateway and the external API.
 
