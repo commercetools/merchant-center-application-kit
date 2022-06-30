@@ -28,9 +28,24 @@ Requests to that endpoint should additionally pass the following HTTP headers:
 
 - `Accept-version: v2`: See [Versioning](#versioning).
 - `X-Forward-To: <url>`: The URL to your external API.
+- `X-Forward-To-Audience-Policy: <policy>`: The policy used to determine how the `audience` value is exchanged between the Merchant Center API Gateway and the external API. By default it uses `forward-url-full-path`.
 - `X-Project-Key: <project-key>`: The key of the commercetools Project currently being used by the Custom Application. The Merchant Center API Gateway will perform a validation check to ensure that the user has access to the Project, then forward the request to your server only if the check was successful.
 
 To facilitate the usage of the [built-in Apollo client and the SDK actions](/development/data-fetching), we provide some helpers to integrate with the request configuration for the HTTP headers listed above.
+
+## Configuring the audience policy
+
+The audience policy can be used to determine how the `audience` value is exchanged between the Merchant Center API Gateway and the external API.
+
+Supported values are:
+
+- `forward-url-full-path`: This is the **default** policy. It sets the `audience` using the full URL (origin + pathname).
+- `forward-url-origin`: This is the alternative policy. It sets the `audience` using only the origin URL part.
+
+For example, given the forward-to URL `https://my-custom-app.com/api/123`, the `audience` for each policy is determined as following:
+
+- `forward-url-full-path`: `https://my-custom-app.com/api/123`
+- `forward-url-origin`: `https://my-custom-app.com`
 
 ## Sending custom HTTP headers
 
@@ -68,6 +83,12 @@ actions.forwardTo.get({
   headers: {
     'x-foo': 'bar',
   },
+});
+
+// To change the audience policy:
+actions.forwardTo.get({
+  uri: 'https://my-custom-app.com/api',
+  audiencePolicy: 'forward-url-origin',
 });
 ```
 
@@ -113,7 +134,7 @@ The Exchange token structure consist of **Registered Claim Names** and **Private
 - `exp`: The **expiration time** on or after which the exchange token must not be accepted for processing.
 - `sub`: The **subject identifier** is the unique user identifier of a Merchant Center account, specifically the ID of the logged in user.
 - `iss`: The **issuer identifier** is the URL identifier of the server that issued the JWT. In this particular case is the URL of the [Merchant Center API Gateway](/concepts/merchant-center-api).
-- `aud`: The **audience** is the value that the exchange token is intended for. In this particular case is the exact URL passed to the `X-Forward-To` HTTP header.
+- `aud`: The **audience** is the value that the exchange token is intended for. The value depends on the [audience policy](#configuring-the-audience-policy).
 - `iat`: This value represents the time at which the JWT was issued.
 - `type`: This value is a **private claim** and is always set to `exchange`.
 - `<iss>/claims/project_key`: This value represents the Project key that the request is associated to. The claim is a **public claim** prefixed by a collision-resistant namespace, as per the JWT specification.
@@ -144,6 +165,8 @@ The middleware requires some options:
 - `audience` (_string_): The public-facing URL of your API server. The value should only contain the origin URL (protocol, hostname, port), the request path is inferred from the incoming request.
 
   For example, given the external API is hosted at `https://my-api-server.com`, the `audience` value must be set to `https://my-api-server.com`.
+
+- `audiencePolicy` (_string_): See [audience policy](#configuring-the-audience-policy).
 
 - `issuer` (_string_): Either a [cloud identifier](/concepts/merchant-center-api#cloud-identifiers) or a valid URL to the Merchant Center API Gateway.
 
@@ -256,7 +279,7 @@ The setup described above is not needed when using the `@commercetools-backend/e
 Developing a Custom Application locally, together with an external API, has some limitations.
 For example, using the `/proxy/forward-to` endpoint of the Merchant Center API Gateway with a target URL pointing to `http` is not allowed. Only `https` targets are allowed.
 
-The most straighforward solution is using the production URL of the external API, which may be inconvenient in the development processs.
+The most straightforward solution is using the production URL of the external API, which may be inconvenient in the development process.
 
 Therefore, some kind of secure tunnel solution can be used to develop both Custom Application and external API together, locally.
 
@@ -276,7 +299,7 @@ where `<desired_port>` is the port bound to your server application (for example
 
 The exposed external URL of the created tunnel:
 
-![ngrok agent](/images/ngrok.png) 
+![ngrok agent](/images/ngrok.png)
 
 The secure tunnel provides a unique URL that points to the local running HTTP server.
 
@@ -324,7 +347,7 @@ In the application code you can then access the value using the [application con
 
 <Info>
 
-`ngrok` agent application starts along with a monitoring web application running at `http://localhost:4040/`, which can be helpful in the process of debugging of the tunnelled HTTP requests.
+A monitoring web application running at `http://localhost:4040/` is available when running the `ngrok` agent, which can be helpful to debug the incoming HTTP requests.
 
 </Info>
 
@@ -338,7 +361,7 @@ cloudflared tunnel --url http://localhost:<desired_port>
 ```
 
 The server application can be reached via the provided URL:
-![cloudflared](/images/cloudflared.png) 
+![cloudflared](/images/cloudflared.png)
 
 The same setup as `ngrok` applies here as well.
 
