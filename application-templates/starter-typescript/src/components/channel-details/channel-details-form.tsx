@@ -11,11 +11,6 @@ import validate from './validate';
 import messages from './messages';
 
 type TChannelRole = keyof typeof CHANNEL_ROLES;
-const getRoleOptions = Object.keys(CHANNEL_ROLES).map((key) => ({
-  label: CHANNEL_ROLES[key as TChannelRole],
-  value: CHANNEL_ROLES[key as TChannelRole],
-}));
-
 type Formik = ReturnType<typeof useFormik>;
 type FormProps = {
   formElements: ReactElement;
@@ -25,8 +20,7 @@ type FormProps = {
   submitForm: Formik['handleSubmit'];
   handleReset: Formik['handleReset'];
 };
-
-type ChannelDetailsFormProps = {
+type TChannelDetailsFormProps = {
   onSubmit: (
     values: TFormValues,
     formikHelpers: FormikHelpers<TFormValues>
@@ -37,7 +31,12 @@ type ChannelDetailsFormProps = {
   children: (formProps: FormProps) => JSX.Element;
 };
 
-const ChannelDetailsForm = (props: ChannelDetailsFormProps) => {
+const getRoleOptions = Object.keys(CHANNEL_ROLES).map((key) => ({
+  label: CHANNEL_ROLES[key as TChannelRole],
+  value: CHANNEL_ROLES[key as TChannelRole],
+}));
+
+const ChannelDetailsForm = (props: TChannelDetailsFormProps) => {
   const intl = useIntl();
   const formik = useFormik<TFormValues>({
     initialValues: props.initialValues,
@@ -58,12 +57,10 @@ const ChannelDetailsForm = (props: ChannelDetailsFormProps) => {
         onBlur={formik.handleBlur}
         isReadOnly={props.isReadOnly}
         renderError={(errorKey) => {
-          switch (errorKey) {
-            case 'duplicate':
-              return intl.formatMessage(messages.duplicateKey);
-            default:
-              return null;
+          if (errorKey === 'duplicate') {
+            return intl.formatMessage(messages.duplicateKey);
           }
+          return null;
         }}
         isRequired
         horizontalConstraint={13}
