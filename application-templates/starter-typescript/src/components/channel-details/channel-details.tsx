@@ -70,11 +70,12 @@ const ChannelDetails = (props: TChannelDetailsProps) => {
         });
       } catch (graphQLErrors) {
         const transformedErrors = transformErrors(graphQLErrors);
-        if (transformedErrors.unmappedErrors.length > 0)
+        if (transformedErrors.unmappedErrors.length > 0) {
           showApiErrorNotification({
             errors:
               transformedErrors.unmappedErrors as TApiErrorNotificationOptions['errors'],
           });
+        }
 
         formikHelpers.setErrors(transformedErrors.formErrors);
       }

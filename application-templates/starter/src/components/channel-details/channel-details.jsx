@@ -63,10 +63,11 @@ const ChannelDetails = (props) => {
         });
       } catch (graphQLErrors) {
         const transformedErrors = transformErrors(graphQLErrors);
-        if (transformedErrors.unmappedErrors.length > 0)
+        if (transformedErrors.unmappedErrors.length > 0) {
           showApiErrorNotification({
             errors: transformedErrors.unmappedErrors,
           });
+        }
 
         formikHelpers.setErrors(transformedErrors.formErrors);
       }
