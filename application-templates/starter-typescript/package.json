@@ -76,5 +76,11 @@
     "react-router-dom": "5.3.1",
     "redux": "4.2.0",
     "typescript": "4.6.4"
+  },
+  "resolutions": {
+    "@types/eslint": "<9",
+    "@types/react": "<18",
+    "@types/react-dom": "<18",
+    "@types/react-router": "<6"
   }
 }
