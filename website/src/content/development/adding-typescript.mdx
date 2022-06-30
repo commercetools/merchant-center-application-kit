@@ -8,7 +8,7 @@ Custom Applications have full support for developing applications in TypeScript.
 
 <Info>
 
-This feature is available from version `>= 21.8.0`.
+This feature is available from version `21.8.0` onwards.
 
 </Info>
 
@@ -20,11 +20,11 @@ npx @commercetools-frontend/create-mc-app@latest \
   --template starter-typescript
 ```
 
-The TypeScript starter template is the same as the standard JS starter template in terms of functionality but it includes the additional TypeScript setup.
+The TypeScript starter template is the same as the standard JavaScript starter template in terms of functionality but it also includes the additional TypeScript setup.
 
 # Configuration
 
-Every TypeScript project requires a `tsconfig.json` file to instruct TypeScript on how to compile the project.
+Every TypeScript project requires a `tsconfig.json` file to instruct TypeScript how to compile the project.
 
 Therefore, we provide a base TSConfig to be used in your `tsconfig.json` file:
 
@@ -53,7 +53,7 @@ By default, this is included in the TypeScript starter template `src/index.tsx` 
 </Info>
 
 You can also include this in the `tsconfig.json` file in the `compilerOptions.types` field but we don't recommend
-to use that unless you are very familiar with the [implications of using the `types` field](https://www.typescriptlang.org/tsconfig#types).
+doing so unless you are very familiar with the [implications of using the `types` field](https://www.typescriptlang.org/tsconfig#types).
 
 Additional adjustments to other config files are also required, in particular:
 
@@ -69,20 +69,20 @@ The TypeScript setup is already preconfigured when using the TypeScript starter 
 
 # Migrate to TypeScript
 
-If you have an existing Custom Application project and would like to migrate it to TypeScript, you need to do the following:
+If you have an existing Custom Application project and want to migrate to TypeScript, you should do the following:
 
 * Install the `typescript` dependency.
 * Add a `tsconfig.json` file. See [configuration](#configuration) for the tooling setup.
-* Migrate the JavaScript files to TypeScript, either `.ts` or `.tsx` (if a file contains JSX syntax).
+* Migrate the JavaScript files to TypeScript, using either `.ts` or `.tsx` (if a file contains JSX syntax).
 
   <Info>
 
-  Migrating source files to TypeScript can be done incrementally. We recommend starting from the "leaf files" and work your way up to the application entry point.
-  The [migrating from JavaScript documentation](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html) can help with setting up a basic plan.
+  Migrating source files to TypeScript can be done incrementally. We recommend starting from the "leaf files" and working up to the application entry point.
+  The [migrating from JavaScript documentation](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html) can help you set up a basic plan.
 
   All UI Kit and ApplicationKit packages provide declaration files and export useful types when necessary.
 
-  During the migration you might need to loosen up the types strictness, for example by allowing explicit `any` types.
+  During migration you might need to loosen up the types strictness, for example by allowing explicit `any` types.
 
   ```json title="tsconfig.json"
   {
@@ -94,8 +94,8 @@ If you have an existing Custom Application project and would like to migrate it 
   }
   ```
 
-  Please remember to revert that once the migration is over, as using `any` should be avoided.
+  You should revert these once migration is complete, as using `any` should be avoided.
 
   </Info>
 
-* Add a script command `"typecheck": "tsc --noEmit"` in your `package.json` to run the type checks of the application.
+* Add the script command `"typecheck": "tsc --noEmit"` to your `package.json` to run the type checks of the application.
