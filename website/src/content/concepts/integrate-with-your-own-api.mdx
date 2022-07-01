@@ -241,7 +241,7 @@ Other cloud providers might not use a standard Node.js/Express `request` object.
 
 In these cases you need to implement the `getRequestUrl` function to correctly map the expected URL (URI path + query string). The following example shows how to map an AWS Lambda function [event](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html).
 
-```js highlightLines="9"
+```js highlightLines="10"
 const {
   createSessionAuthVerifier,
   CLOUD_IDENTIFIERS,
@@ -250,6 +250,7 @@ const {
 const sessionAuthVerifier = createSessionAuthVerifier({
   audience: 'https://my-api-server.com',
   issuer: CLOUD_IDENTIFIERS.GCP_EU,
+  // This example assumes that the `event` is based on Lambda v2 of the payload format.
   getRequestUrl: (event) => `${event.rawPath}${event.rawQueryString ? '?' + event.rawQueryString : ''}`
 });
 
