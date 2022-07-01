@@ -73,7 +73,13 @@ describe.each`
             issuer,
             audience: 'http://test-server/foo/bar',
           })}`,
-          'x-mc-api-cloud-identifier': cloudIdentifier,
+          // The following headers are validated as they are expected to be present
+          // in the incoming request.
+          // To ensure we can correctly read the header values no matter if the
+          // header key is lowercase or not, we test both headers variations:
+          // * one with upper/camel case key
+          // * one with lowercase key
+          'X-MC-API-Cloud-Identifier': cloudIdentifier,
           'x-mc-api-forward-to-version': 'v2',
         },
         originalUrl: '/foo/bar',
