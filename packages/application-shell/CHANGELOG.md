@@ -1,5 +1,58 @@
 # @commercetools-frontend/application-shell
 
+## 21.8.0
+
+### Minor Changes
+
+- [#2667](https://github.com/commercetools/merchant-center-application-kit/pull/2667) [`1d8c71f1`](https://github.com/commercetools/merchant-center-application-kit/commit/1d8c71f1fed656bb6dedb3379198cc6fcdb5363f) Thanks [@emmenko](https://github.com/emmenko)! - Add support for setting the `audience` policy. The policy can be used to determine how the `audience` value is exchanged between the Merchant Center API and the external API.
+
+  Supported values are:
+
+  - `forward-url-full-path`: This is the default policy. It sets the `audience` using the full URL (origin + pathname).
+  - `forward-url-origin`: This is the alternative policy. It sets the `audience` using only the origin URL part.
+
+  ```js
+  createApolloContextForProxyForwardTo({
+    audiencePolicy: 'forward-url-origin',
+    // ...
+  });
+
+  // "X-Forward-To-Audience-Policy": "forward-url-origin"
+  ```
+
+### Patch Changes
+
+- [#2661](https://github.com/commercetools/merchant-center-application-kit/pull/2661) [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed) Thanks [@emmenko](https://github.com/emmenko)! - Drop the copyright year from the license files
+
+* [#2651](https://github.com/commercetools/merchant-center-application-kit/pull/2651) [`f7ec746b`](https://github.com/commercetools/merchant-center-application-kit/commit/f7ec746bfe9742a8bae5ea513db93614cce457c9) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Fixed aria role names.
+
+  We were using invalid role names in some of the component's elements.
+
+  Special mention to the element wrapping the notifications as it now uses the aria-live [attribute](https://www.w3.org/TR/wai-aria/#aria-live) (with **polite** value).
+
+- [#2665](https://github.com/commercetools/merchant-center-application-kit/pull/2665) [`a98f9fb5`](https://github.com/commercetools/merchant-center-application-kit/commit/a98f9fb56a8066d2d64f1fa0f176bf130adb5227) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Fix `ApplicationShell` header selectors a11y issues
+
+* [#2671](https://github.com/commercetools/merchant-center-application-kit/pull/2671) [`1d63e7b6`](https://github.com/commercetools/merchant-center-application-kit/commit/1d63e7b6e0a77f5aa0af4ab38030455d6abedf12) Thanks [@emmenko](https://github.com/emmenko)! - Update Flopflip dependencies
+
+- [#2655](https://github.com/commercetools/merchant-center-application-kit/pull/2655) [`1cc471e8`](https://github.com/commercetools/merchant-center-application-kit/commit/1cc471e8872313867afc413598b9808507dd0677) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Fix `ApplicationShell` header a11y issues in user menu dropdown
+
+- Updated dependencies [[`78de0ec6`](https://github.com/commercetools/merchant-center-application-kit/commit/78de0ec6b569b7daa23edf4fd21cae0842857ca8), [`d6bfecf1`](https://github.com/commercetools/merchant-center-application-kit/commit/d6bfecf17c0a6a38330943cc5f195f1854248770), [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed), [`d6bfecf1`](https://github.com/commercetools/merchant-center-application-kit/commit/d6bfecf17c0a6a38330943cc5f195f1854248770), [`c56498ca`](https://github.com/commercetools/merchant-center-application-kit/commit/c56498ca105272d31ca4a6197c16870f4b0e32e6), [`f3cc395d`](https://github.com/commercetools/merchant-center-application-kit/commit/f3cc395d1e29e25f694345c03a7b6376b2d88d20), [`20e648d2`](https://github.com/commercetools/merchant-center-application-kit/commit/20e648d2d69ac9b909ae90946c4fe2274cdf7332), [`405aa67b`](https://github.com/commercetools/merchant-center-application-kit/commit/405aa67bb55dd61e39f0856c120614030e9c8398), [`1d8c71f1`](https://github.com/commercetools/merchant-center-application-kit/commit/1d8c71f1fed656bb6dedb3379198cc6fcdb5363f), [`d6bfecf1`](https://github.com/commercetools/merchant-center-application-kit/commit/d6bfecf17c0a6a38330943cc5f195f1854248770)]:
+  - @commercetools-frontend/application-shell-connectors@21.8.0
+  - @commercetools-frontend/application-config@21.8.0
+  - @commercetools-frontend/actions-global@21.8.0
+  - @commercetools-frontend/assets@21.8.0
+  - @commercetools-frontend/browser-history@21.8.0
+  - @commercetools-frontend/constants@21.8.0
+  - @commercetools-frontend/i18n@21.8.0
+  - @commercetools-frontend/l10n@21.8.0
+  - @commercetools-frontend/notifications@21.8.0
+  - @commercetools-frontend/permissions@21.8.0
+  - @commercetools-frontend/react-notifications@21.8.0
+  - @commercetools-frontend/sdk@21.8.0
+  - @commercetools-frontend/sentry@21.8.0
+  - @commercetools-frontend/url-utils@21.8.0
+  - @commercetools-frontend/application-components@21.8.0
+
 ## 21.7.0
 
 ### Patch Changes

@@ -1,5 +1,34 @@
 # @commercetools-frontend/create-mc-app
 
+## 21.8.0
+
+### Minor Changes
+
+- [#2615](https://github.com/commercetools/merchant-center-application-kit/pull/2615) [`d6bfecf1`](https://github.com/commercetools/merchant-center-application-kit/commit/d6bfecf17c0a6a38330943cc5f195f1854248770) Thanks [@kark](https://github.com/kark)! - There is a new starter template to develop Custom Applications in TypeScript!
+
+  To install it via the `@commercetools-frontend/create-mc-app` CLI:
+
+  ```bash
+  $ npx @commercetools-frontend/create-mc-app@latest <folder_name> \
+    --template starter-typescript
+  ```
+
+  The TypeScript starter template is the same as the standard JS starter template in terms of functionality
+  but it includes the additional TypeScript setup.
+
+  If you already have a Custom Application in TypeScript or are planning to migrate an existing one to it
+  we recommend to take a look at the tooling setup of the TypeScript starter template, in particular:
+
+  - `.prettierrc` for using the `typescript` parser.
+  - `jest.*.config.js` to include the file extensions `.ts` and `.tsx`.
+  - `tsconfig.json`
+
+### Patch Changes
+
+- [#2661](https://github.com/commercetools/merchant-center-application-kit/pull/2661) [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed) Thanks [@emmenko](https://github.com/emmenko)! - Drop the copyright year from the license files
+
+* [#2676](https://github.com/commercetools/merchant-center-application-kit/pull/2676) [`d691e60a`](https://github.com/commercetools/merchant-center-application-kit/commit/d691e60a0b884a4b0f9b7b7cf3f019b025583577) Thanks [@emmenko](https://github.com/emmenko)! - Fix file formatting when patching constants file
+
 ## 21.6.0
 
 ### Patch Changes

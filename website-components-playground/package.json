@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-website/components-playground",
-  "version": "17.5.1",
+  "version": "17.5.2",
   "private": true,
   "scripts": {
     "clean": "gatsby clean",
@@ -10,8 +10,8 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
-    "@commercetools-frontend/application-components": "21.7.0",
-    "@commercetools-frontend/i18n": "21.6.0",
+    "@commercetools-frontend/application-components": "21.8.0",
+    "@commercetools-frontend/i18n": "21.8.0",
     "@commercetools-uikit/design-system": "^15.0.0",
     "@commercetools-uikit/icon-button": "^15.0.0",
     "@commercetools-uikit/icons": "^15.0.0",
