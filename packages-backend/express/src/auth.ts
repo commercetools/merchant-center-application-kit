@@ -14,7 +14,7 @@ import {
   MC_API_URLS,
   MC_API_PROXY_HEADERS,
 } from './constants';
-import { getFirstOrThrow } from './utils';
+import { getFirstHeaderValueOrThrow } from './utils';
 
 type TDecodedJWT = {
   sub: string;
@@ -142,8 +142,9 @@ function createSessionAuthVerifier<Request extends TBaseRequest>(
   // Returns an async HTTP handler.
   return async (request: Request, response?: unknown) => {
     // Get the cloud identifier header, forwarded by the `/proxy/forward-to` endpoint.
-    const cloudIdentifierHeader = getFirstOrThrow(
-      request.headers[MC_API_PROXY_HEADERS.CLOUD_IDENTIFIER],
+    const cloudIdentifierHeader = getFirstHeaderValueOrThrow(
+      request.headers,
+      MC_API_PROXY_HEADERS.CLOUD_IDENTIFIER,
       `Missing "X-MC-API-Cloud-Identifier" header.`
     );
 
@@ -155,8 +156,9 @@ function createSessionAuthVerifier<Request extends TBaseRequest>(
 
     // Get the `Accept-version` header, forwarded by the `/proxy/forward-to` endpoint.
     // The version should be sent by the client making the request, to use the features of v2.
-    const proxyForwardVersion = getFirstOrThrow(
-      request.headers[MC_API_PROXY_HEADERS.FORWARD_TO_VERSION],
+    const proxyForwardVersion = getFirstHeaderValueOrThrow(
+      request.headers,
+      MC_API_PROXY_HEADERS.FORWARD_TO_VERSION,
       `Missing "X-MC-API-Forward-To-Version" header.`
     );
     if (proxyForwardVersion === 'v1') {
