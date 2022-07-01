@@ -1,5 +1,13 @@
 # @commercetools-frontend/assets
 
+## 21.8.0
+
+### Patch Changes
+
+- [#2661](https://github.com/commercetools/merchant-center-application-kit/pull/2661) [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed) Thanks [@emmenko](https://github.com/emmenko)! - Drop the copyright year from the license files
+
+* [#2613](https://github.com/commercetools/merchant-center-application-kit/pull/2613) [`20e648d2`](https://github.com/commercetools/merchant-center-application-kit/commit/20e648d2d69ac9b909ae90946c4fe2274cdf7332) Thanks [@emmenko](https://github.com/emmenko)! - Convert entry point to typescript
+
 ## 21.0.0
 
 ### Patch Changes

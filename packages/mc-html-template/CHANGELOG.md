@@ -1,5 +1,17 @@
 # @commercetools-frontend/mc-html-template
 
+## 21.8.0
+
+### Patch Changes
+
+- [#2661](https://github.com/commercetools/merchant-center-application-kit/pull/2661) [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed) Thanks [@emmenko](https://github.com/emmenko)! - Drop the copyright year from the license files
+
+* [#2652](https://github.com/commercetools/merchant-center-application-kit/pull/2652) [`81df396d`](https://github.com/commercetools/merchant-center-application-kit/commit/81df396daf0d28c6d3284436ae970d568fecc822) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Removed _user-scalable=no_ property from `viewport` meta tag as it is a problem from the [accessibility point of view](https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag#viewport_basics).
+
+* Updated dependencies [[`d6bfecf1`](https://github.com/commercetools/merchant-center-application-kit/commit/d6bfecf17c0a6a38330943cc5f195f1854248770), [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed)]:
+  - @commercetools-frontend/application-config@21.8.0
+  - @commercetools-frontend/constants@21.8.0
+
 ## 21.7.0
 
 ### Patch Changes

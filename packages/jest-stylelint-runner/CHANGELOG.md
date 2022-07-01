@@ -1,5 +1,7 @@
 # @commercetools-frontend/jest-stylelint-runner
 
+## 21.8.0
+
 ## 21.6.0
 
 ### Patch Changes
