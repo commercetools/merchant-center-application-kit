@@ -131,7 +131,7 @@ jobs:
   test_starter_template_installation:
     runs-on: ubuntu-latest
 
-    if: github.ref != 'refs/heads/main'
+    if: github.ref != 'refs/heads/main' && github.head_ref != 'changeset-release/main'
 
     timeout-minutes: 15
 
@@ -217,7 +217,7 @@ jobs:
   test_starter_template_typescript_installation:
     runs-on: ubuntu-latest
 
-    if: github.ref != 'refs/heads/main'
+    if: github.ref != 'refs/heads/main' && github.head_ref != 'changeset-release/main'
 
     timeout-minutes: 15
 
