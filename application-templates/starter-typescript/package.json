@@ -10,7 +10,7 @@
     "compile-html": "mc-scripts compile-html",
     "compile-html:local": "MC_APP_ENV=development mc-scripts compile-html --transformer @commercetools-frontend/mc-dev-authentication/transformer-local.js",
     "start:prod:local": "yarn compile-html:local && mc-scripts serve",
-    "extract-intl": "formatjs extract --format=./intl-formatter.js --out-file=./src/i18n/data/core.json 'src/**/!(*.spec).js'",
+    "extract-intl": "formatjs extract --format=./intl-formatter.js --out-file=./src/i18n/data/core.json 'src/**/!(*.spec).(ts|tsx)'",
     "test": "jest --config jest.test.config.js",
     "test:watch": "jest --config jest.test.config.js --watch",
     "lint": "jest --config jest.eslint.config.js",
