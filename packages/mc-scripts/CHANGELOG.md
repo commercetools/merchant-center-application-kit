@@ -1,5 +1,19 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.8.1
+
+### Patch Changes
+
+- [#2680](https://github.com/commercetools/merchant-center-application-kit/pull/2680) [`3c15d48c`](https://github.com/commercetools/merchant-center-application-kit/commit/3c15d48cbda9e92e50e91bafa34045c652a20550) Thanks [@emmenko](https://github.com/emmenko)! - Fix parsing of CLI options casing
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@21.8.1
+  - @commercetools-frontend/assets@21.8.1
+  - @commercetools-frontend/babel-preset-mc-app@21.8.1
+  - @commercetools-frontend/constants@21.8.1
+  - @commercetools-frontend/mc-dev-authentication@21.8.1
+  - @commercetools-frontend/mc-html-template@21.8.1
+
 ## 21.8.0
 
 ### Minor Changes
