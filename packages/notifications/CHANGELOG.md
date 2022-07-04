@@ -1,5 +1,7 @@
 # @commercetools-frontend/notifications
 
+## 21.8.1
+
 ## 21.8.0
 
 ### Patch Changes

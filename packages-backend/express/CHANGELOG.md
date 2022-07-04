@@ -1,5 +1,11 @@
 # @commercetools-backend/express
 
+## 21.8.1
+
+### Patch Changes
+
+- [#2678](https://github.com/commercetools/merchant-center-application-kit/pull/2678) [`54b4ce3e`](https://github.com/commercetools/merchant-center-application-kit/commit/54b4ce3ee1d05f12c8926a2e6288a94c6b90e95c) Thanks [@emmenko](https://github.com/emmenko)! - Improve validation check for using `getRequestUrl` and clarify Lambda v2 usage.
+
 ## 21.8.0
 
 ### Minor Changes
