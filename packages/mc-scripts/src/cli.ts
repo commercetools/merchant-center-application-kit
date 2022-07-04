@@ -74,7 +74,8 @@ const run = () => {
     )
     .option(
       '--build-only',
-      '(optional) If defined, the command only creates the production bundles without compiling the "index.html".'
+      '(optional) If defined, the command only creates the production bundles without compiling the "index.html".',
+      { default: false }
     )
     .action(async (options: TCliCommandBuildOptions & TCliGlobalOptions) => {
       // Load dotenv files into the process environment.
@@ -101,11 +102,11 @@ const run = () => {
         : await import('./commands/build');
       await buildCommand.default();
 
-      const shouldAlsoCompile = !options['build-only'];
+      const shouldAlsoCompile = !options.buildOnly;
       if (shouldAlsoCompile) {
         console.log('');
         const compileHtmlCommand = await import('./commands/compile-html');
-        await compileHtmlCommand.default();
+        await compileHtmlCommand.default({ printSecurityHeaders: false });
       }
     });
 
@@ -121,7 +122,8 @@ const run = () => {
     )
     .option(
       '--print-security-headers',
-      '(optional) If defined, the compiled security headers are printed to stdout.'
+      '(optional) If defined, the compiled security headers are printed to stdout.',
+      { default: false }
     )
     .action(
       async (options: TCliCommandCompileHtmlOptions & TCliGlobalOptions) => {
@@ -181,7 +183,8 @@ const run = () => {
     )
     .option(
       '--dry-run',
-      '(optional) Executes the command but does not send any mutation request.'
+      '(optional) Executes the command but does not send any mutation request.',
+      { default: false }
     )
     .action(
       async (options: TCliCommandConfigSyncOptions & TCliGlobalOptions) => {

@@ -27,7 +27,7 @@ const getMcUrlLink = (
   return customAppLink;
 };
 
-async function run(options: TCliCommandConfigSyncOptions = {}) {
+async function run(options: TCliCommandConfigSyncOptions) {
   const applicationConfig = processConfig();
   const { data: localCustomAppData } = applicationConfig;
   const { mcApiUrl } = applicationConfig.env;
@@ -100,7 +100,7 @@ async function run(options: TCliCommandConfigSyncOptions = {}) {
     }
 
     const data = omit(localCustomAppData, ['id']);
-    if (options['dry-run']) {
+    if (options.dryRun) {
       console.log(chalk.gray('DRY RUN mode'));
       console.log(
         `A new Custom Application would be created for the Organization ${organizationName} with the following payload:`
@@ -170,7 +170,7 @@ async function run(options: TCliCommandConfigSyncOptions = {}) {
   }
 
   const data = omit(localCustomAppData, ['id']);
-  if (options['dry-run']) {
+  if (options.dryRun) {
     console.log(chalk.gray('DRY RUN mode'));
     console.log(
       `The Custom Application ${data.name} would be updated with the following payload:`
