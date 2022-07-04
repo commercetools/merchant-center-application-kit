@@ -5,6 +5,12 @@ set -e
 echo "Preparing production builds"
 
 yarn compile-intl
+
+# Import moment.js locale metadata files.
+mkdir -p ./packages/i18n/compiled-data/moment/locales
+cp -R node_modules/moment/dist/locale/*.js ./packages/i18n/compiled-data/moment/locales
+find ./packages/i18n/compiled-data/moment/locales -name '*.js' -exec sed -i '' -e 's/..\/moment/moment/g' {} \;
+
 yarn node scripts/gatsby-cache.mjs pre
 
 echo "Building Gatsby websites"
