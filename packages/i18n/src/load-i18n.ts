@@ -1,15 +1,7 @@
 import type { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
 
-import moment from 'moment';
-import {
-  mergeMessages,
-  mapLocaleToMomentLocale,
-  mapLocaleToIntlLocale,
-} from './utils';
+import { mergeMessages, mapLocaleToIntlLocale } from './utils';
 
-type MomentImportData = {
-  default: moment.Locale;
-};
 type I18NImportData = {
   default: Record<string, string> | Record<string, MessageFormatElement[]>;
 };
@@ -17,33 +9,26 @@ type MergedMessages =
   | Record<string, string>
   | Record<string, MessageFormatElement[]>;
 
-const getMomentChunkImport = (locale: string): Promise<MomentImportData> => {
-  const momentLocale = mapLocaleToMomentLocale(locale);
-  switch (momentLocale) {
-    case 'de':
-      return import(
-        /* webpackChunkName: "i18n-moment-locale-de" */ 'moment/locale/de'
+const MOMENT_INCLUDED_METADATA_LOCALE = 'en';
+
+const loadMomentLocaleMetadata = async (locale: string) => {
+  // Default English is already included in moment default package
+  // so we don't need to load it explicitly
+  if (locale === MOMENT_INCLUDED_METADATA_LOCALE) return Promise.resolve();
+
+  try {
+    await import(
+      /* webpackChunkName: "i18n-moment-locale-[name]" */ `../compiled-data/moment/locales/${locale}.js`
+    );
+  } catch (error) {
+    // If not-found locale was a regional one, we use the main language by default,
+    // otherwise we use the default locale (already included).
+    const [language, region] = locale.split('-');
+    if (region && language !== MOMENT_INCLUDED_METADATA_LOCALE) {
+      await import(
+        /* webpackChunkName: "i18n-moment-locale-[name]" */ `../compiled-data/moment/locales/${language}.js`
       );
-    case 'es':
-      return import(
-        /* webpackChunkName: "i18n-moment-locale-es" */ 'moment/locale/es'
-      );
-    case 'fr':
-      return import(
-        /* webpackChunkName: "i18n-moment-locale-fr" */ 'moment/locale/fr'
-      );
-    case 'zh-cn':
-      return import(
-        /* webpackChunkName: "i18n-moment-locale-zh-cn" */ 'moment/locale/zh-cn'
-      );
-    case 'ja':
-      return import(
-        /* webpackChunkName: "i18n-moment-locale-ja" */ 'moment/locale/ja'
-      );
-    default:
-      return import(
-        /* webpackChunkName: "i18n-moment-locale-en-gb" */ 'moment/locale/en-gb'
-      );
+    }
   }
 };
 
@@ -145,7 +130,7 @@ export default async function loadI18n(
   locale: string
 ): Promise<MergedMessages> {
   // Load moment localizations
-  await getMomentChunkImport(locale);
+  await loadMomentLocaleMetadata(locale);
 
   // Load ui-kit translations
   const uiKitChunkImport = await getUiKitChunkImport(locale);
