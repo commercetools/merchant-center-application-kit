@@ -29,7 +29,7 @@
     "README.md"
   ],
   "scripts": {
-    "compile-data": "formatjs compile-folder --format=./transifex-transformer.js --ast data compiled-data"
+    "compile-data": "./scripts/import-moment-locales.sh && formatjs compile-folder --format=./transifex-transformer.js --ast data compiled-data"
   },
   "dependencies": {
     "@babel/runtime": "^7.17.9",
