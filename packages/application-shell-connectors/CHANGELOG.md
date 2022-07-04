@@ -1,5 +1,45 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 21.8.0
+
+### Patch Changes
+
+- [#2639](https://github.com/commercetools/merchant-center-application-kit/pull/2639) [`78de0ec6`](https://github.com/commercetools/merchant-center-application-kit/commit/78de0ec6b569b7daa23edf4fd21cae0842857ca8) Thanks [@ddouglasz](https://github.com/ddouglasz)! - There is a new React hook which you can use to access the Project Images rewrite configuration [see documentation](https://docs.commercetools.com/custom-applications/api-reference/commercetools-frontend-application-shell-connectors#project-image-settings).
+
+  You would use it like this:
+
+  ```js
+  function MyComponent() {
+    const { isLoading, imageRegex } = useProjectExtensionImageRegex();
+
+    if (isLoading) return <LoadingSpinner />;
+
+    return (
+      <div>
+        <h1>Project images regex: {imageRegex}</h1>
+      </div>
+    );
+  }
+
+  function MyApp() {
+    return (
+      <ProjectExtensionProviderForImageRegex>
+        <MyComponent />
+      </ProjectExtensionProviderForImageRegex>
+    );
+  }
+  ```
+
+  Both `GetProjectExtensionImageRegex` component and `withProjectExtensionImageRegex` still exists for backwards compatibility but have been marked as deprecated.
+
+* [#2661](https://github.com/commercetools/merchant-center-application-kit/pull/2661) [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed) Thanks [@emmenko](https://github.com/emmenko)! - Drop the copyright year from the license files
+
+- [#2653](https://github.com/commercetools/merchant-center-application-kit/pull/2653) [`405aa67b`](https://github.com/commercetools/merchant-center-application-kit/commit/405aa67bb55dd61e39f0856c120614030e9c8398) Thanks [@kark](https://github.com/kark)! - Export `TImageRegexContext` type
+
+- Updated dependencies [[`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed)]:
+  - @commercetools-frontend/constants@21.8.0
+  - @commercetools-frontend/sentry@21.8.0
+
 ## 21.6.0
 
 ### Patch Changes

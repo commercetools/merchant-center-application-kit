@@ -1,0 +1,48 @@
+---
+date: 2022-07-01
+title: Custom Applications v21.8
+description: The Application Kit packages have been released with several new features.
+type: feature
+topics:
+  - CLI
+  - Configuration
+  - Templates
+  - UI Components
+---
+
+The Application Kit packages have been released with a minor version `v21.8`.
+
+This release includes several new features that we would like to present:
+
+* Official support for developing Custom Applications in [TypeScript](https://www.typescriptlang.org/), including a new starter template. Read more about TypeScript in the [Adding TypeScript](/development/adding-typescript) page.
+* New policy option for configuring the `audience` field when [integrating your Custom Application with an external API](/concepts/integrate-with-your-own-api#configuring-the-audience-policy).
+* Improved accessibility of different elements using ARIA attributes.
+* Simpler and more readable list of time zone data, available from the `@commercetools-frontend/l10n` package.
+* New React hook `useProjectExtensionImageRegex` for accessing the project images configuration, available from the `@commercetools-frontend/application-shell-connectors` package.
+
+As always, if you have questions or feedback you can open a [GitHub Discussion](https://github.com/commercetools/merchant-center-application-kit/discussions) or a [GitHub Issue](https://github.com/commercetools/merchant-center-application-kit/issues).
+
+<!--more-->
+
+# Deprecations
+
+The `mc-scripts` CLI has deprecated some entry points.
+
+Importing the function `createPostcssConfig` from the main entry point `@commercetools-frontend/mc-scripts` is now deprecated. Use the entry point `@commercetools-frontend/mc-scripts/postcss` instead.
+
+```diff
+const {
+  createPostcssConfig,
+-} = require('@commercetools-frontend/mc-scripts');
++} = require('@commercetools-frontend/mc-scripts/postcss');
+```
+
+Importing the functions `createWebpackConfigForDevelopment` and `createWebpackConfigForProduction` from the main entry point `@commercetools-frontend/mc-scripts` is now deprecated. Use the entry point `@commercetools-frontend/mc-scripts/webpack` instead.
+
+```diff
+const {
+  createWebpackConfigForDevelopment,
+  createWebpackConfigForProduction,
+-} = require('@commercetools-frontend/mc-scripts');
++} = require('@commercetools-frontend/mc-scripts/webpack');
+```

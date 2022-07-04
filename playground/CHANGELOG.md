@@ -1,5 +1,21 @@
 # playground
 
+## 19.3.2
+
+### Patch Changes
+
+- Updated dependencies [[`1d8c71f1`](https://github.com/commercetools/merchant-center-application-kit/commit/1d8c71f1fed656bb6dedb3379198cc6fcdb5363f), [`78de0ec6`](https://github.com/commercetools/merchant-center-application-kit/commit/78de0ec6b569b7daa23edf4fd21cae0842857ca8), [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed), [`d6bfecf1`](https://github.com/commercetools/merchant-center-application-kit/commit/d6bfecf17c0a6a38330943cc5f195f1854248770), [`c56498ca`](https://github.com/commercetools/merchant-center-application-kit/commit/c56498ca105272d31ca4a6197c16870f4b0e32e6), [`f3cc395d`](https://github.com/commercetools/merchant-center-application-kit/commit/f3cc395d1e29e25f694345c03a7b6376b2d88d20), [`f7ec746b`](https://github.com/commercetools/merchant-center-application-kit/commit/f7ec746bfe9742a8bae5ea513db93614cce457c9), [`20e648d2`](https://github.com/commercetools/merchant-center-application-kit/commit/20e648d2d69ac9b909ae90946c4fe2274cdf7332), [`a98f9fb5`](https://github.com/commercetools/merchant-center-application-kit/commit/a98f9fb56a8066d2d64f1fa0f176bf130adb5227), [`405aa67b`](https://github.com/commercetools/merchant-center-application-kit/commit/405aa67bb55dd61e39f0856c120614030e9c8398), [`1d63e7b6`](https://github.com/commercetools/merchant-center-application-kit/commit/1d63e7b6e0a77f5aa0af4ab38030455d6abedf12), [`1d8c71f1`](https://github.com/commercetools/merchant-center-application-kit/commit/1d8c71f1fed656bb6dedb3379198cc6fcdb5363f), [`1cc471e8`](https://github.com/commercetools/merchant-center-application-kit/commit/1cc471e8872313867afc413598b9808507dd0677), [`d6bfecf1`](https://github.com/commercetools/merchant-center-application-kit/commit/d6bfecf17c0a6a38330943cc5f195f1854248770)]:
+  - @commercetools-frontend/application-shell@21.8.0
+  - @commercetools-frontend/application-shell-connectors@21.8.0
+  - @commercetools-frontend/actions-global@21.8.0
+  - @commercetools-frontend/assets@21.8.0
+  - @commercetools-frontend/constants@21.8.0
+  - @commercetools-frontend/i18n@21.8.0
+  - @commercetools-frontend/l10n@21.8.0
+  - @commercetools-frontend/permissions@21.8.0
+  - @commercetools-frontend/sdk@21.8.0
+  - @commercetools-frontend/application-components@21.8.0
+
 ## 19.3.1
 
 ### Patch Changes

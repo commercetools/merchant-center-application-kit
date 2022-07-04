@@ -1,7 +1,6 @@
-import type { TProject } from './types';
-
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { fake, sequence, Generator } from '@commercetools-test-data/core';
+import type { TProject } from './types';
 
 const generator = Generator<TProject>({
   fields: {

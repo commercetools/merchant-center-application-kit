@@ -1,5 +1,34 @@
 # @commercetools-frontend/sdk
 
+## 21.8.0
+
+### Minor Changes
+
+- [#2667](https://github.com/commercetools/merchant-center-application-kit/pull/2667) [`1d8c71f1`](https://github.com/commercetools/merchant-center-application-kit/commit/1d8c71f1fed656bb6dedb3379198cc6fcdb5363f) Thanks [@emmenko](https://github.com/emmenko)! - Add support for setting the `audience` policy. The policy can be used to determine how the `audience` value is exchanged between the Merchant Center API and the external API.
+
+  Supported values are:
+
+  - `forward-url-full-path`: This is the default policy. It sets the `audience` using the full URL (origin + pathname).
+  - `forward-url-origin`: This is the alternative policy. It sets the `audience` using only the origin URL part.
+
+  ```js
+  actions.forwardTo.get({
+    audiencePolicy: 'forward-url-origin',
+    // ...
+  });
+
+  // "X-Forward-To-Audience-Policy": "forward-url-origin"
+  ```
+
+### Patch Changes
+
+- [#2661](https://github.com/commercetools/merchant-center-application-kit/pull/2661) [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed) Thanks [@emmenko](https://github.com/emmenko)! - Drop the copyright year from the license files
+
+* [#2615](https://github.com/commercetools/merchant-center-application-kit/pull/2615) [`d6bfecf1`](https://github.com/commercetools/merchant-center-application-kit/commit/d6bfecf17c0a6a38330943cc5f195f1854248770) Thanks [@kark](https://github.com/kark)! - Refine internal types
+
+* Updated dependencies [[`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed)]:
+  - @commercetools-frontend/constants@21.8.0
+
 ## 21.6.0
 
 ### Patch Changes

@@ -1,5 +1,46 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.8.0
+
+### Minor Changes
+
+- [#2613](https://github.com/commercetools/merchant-center-application-kit/pull/2613) [`20e648d2`](https://github.com/commercetools/merchant-center-application-kit/commit/20e648d2d69ac9b909ae90946c4fe2274cdf7332) Thanks [@emmenko](https://github.com/emmenko)! - Migrate CLI to TypeScript.
+
+  Internally, the CLI now uses [cac](https://github.com/cacjs/cac) to handle CLI commands and options.
+
+  # Deprecated entry points
+
+  Importing the function `createPostcssConfig` from the main entry point `@commercetools-frontend/mc-scripts` is now deprecated. Use the entry point `@commercetools-frontend/mc-scripts/postcss` instead.
+
+  ```diff
+  const {
+    createPostcssConfig,
+  -} = require('@commercetools-frontend/mc-scripts');
+  +} = require('@commercetools-frontend/mc-scripts/postcss');
+  ```
+
+  Importing the functions `createWebpackConfigForDevelopment` and `createWebpackConfigForProduction` from the main entry point `@commercetools-frontend/mc-scripts` is now deprecated. Use the entry point `@commercetools-frontend/mc-scripts/webpack` instead.
+
+  ```diff
+  const {
+    createWebpackConfigForDevelopment,
+    createWebpackConfigForProduction,
+  -} = require('@commercetools-frontend/mc-scripts');
+  +} = require('@commercetools-frontend/mc-scripts/webpack');
+  ```
+
+### Patch Changes
+
+- [#2661](https://github.com/commercetools/merchant-center-application-kit/pull/2661) [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed) Thanks [@emmenko](https://github.com/emmenko)! - Drop the copyright year from the license files
+
+- Updated dependencies [[`d6bfecf1`](https://github.com/commercetools/merchant-center-application-kit/commit/d6bfecf17c0a6a38330943cc5f195f1854248770), [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed), [`20e648d2`](https://github.com/commercetools/merchant-center-application-kit/commit/20e648d2d69ac9b909ae90946c4fe2274cdf7332), [`81df396d`](https://github.com/commercetools/merchant-center-application-kit/commit/81df396daf0d28c6d3284436ae970d568fecc822)]:
+  - @commercetools-frontend/application-config@21.8.0
+  - @commercetools-frontend/assets@21.8.0
+  - @commercetools-frontend/babel-preset-mc-app@21.8.0
+  - @commercetools-frontend/constants@21.8.0
+  - @commercetools-frontend/mc-html-template@21.8.0
+  - @commercetools-frontend/mc-dev-authentication@21.8.0
+
 ## 21.7.0
 
 ### Patch Changes

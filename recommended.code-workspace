@@ -32,12 +32,9 @@
       "typescriptreact",
       "graphql"
     ],
-    "vscode-vale.path": "${workspaceFolder}/node_modules/.bin/commercetools-vale",
-    "vscode-vale.fileExtensions": [
-      "md",
-      "markdown",
-      "mdx"
-    ],
+    "vale.core.useCLI": true,
+    "vale.valeCLI.path": "${workspaceFolder}/node_modules/.bin/commercetools-vale-bin",
+    "vale.valeCLI.config": "${workspaceFolder}/node_modules/@commercetools-docs/writing-style/.vale.ini",
     "spellright.notificationClass": "error",
     "spellright.language": [
       "en"
@@ -58,7 +55,8 @@
         ],
         "url": "./packages/application-config/schema.json"
       }
-    ]
+    ],
+    "typescript.tsdk": "node_modules/typescript/lib"
   },
   "extensions": {
     "recommendations": [

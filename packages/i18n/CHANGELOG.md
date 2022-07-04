@@ -1,5 +1,16 @@
 # @commercetools-frontend/i18n
 
+## 21.8.0
+
+### Patch Changes
+
+- [#2661](https://github.com/commercetools/merchant-center-application-kit/pull/2661) [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed) Thanks [@emmenko](https://github.com/emmenko)! - Drop the copyright year from the license files
+
+* [#2615](https://github.com/commercetools/merchant-center-application-kit/pull/2615) [`d6bfecf1`](https://github.com/commercetools/merchant-center-application-kit/commit/d6bfecf17c0a6a38330943cc5f195f1854248770) Thanks [@kark](https://github.com/kark)! - Export additional types
+
+* Updated dependencies [[`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed)]:
+  - @commercetools-frontend/sentry@21.8.0
+
 ## 21.6.0
 
 ### Patch Changes

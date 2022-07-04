@@ -215,6 +215,34 @@ This component must be defined in a parent component where children of this comp
 | `skip`                          | `boolean`                  |    -     | -                 | false     | Disables loading images configuration.                                   |
 
 
+### useProjectExtensionImageRegex
+
+A React hook that allows accessing the project images configuration.
+
+```jsx highlightLines="4-6"
+import { useProjectExtensionImageRegex } from '@commercetools-frontend/application-shell-connectors';
+
+function MyComponent() {
+  const { isLoading, imageRegex } = useProjectExtensionImageRegex();
+
+  if (isLoading) return <LoadingSpinner />;
+
+  return (
+    <div>
+      <h1>Project images regex: {JSON.stringify(imageRegex)}</h1>
+    </div>
+  );
+}
+
+function MyApp() {
+  return (
+    <ProjectExtensionProviderForImageRegex>
+      <MyComponent />
+    </ProjectExtensionProviderForImageRegex>
+  );
+}
+```
+
 ### GetProjectExtensionImageRegex
 
 Use this component to access the project images configuration, using a `render` prop function.

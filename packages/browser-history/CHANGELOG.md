@@ -1,5 +1,11 @@
 # @commercetools-frontend/browser-history
 
+## 21.8.0
+
+### Patch Changes
+
+- [#2661](https://github.com/commercetools/merchant-center-application-kit/pull/2661) [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed) Thanks [@emmenko](https://github.com/emmenko)! - Drop the copyright year from the license files
+
 ## 21.3.4
 
 ### Patch Changes

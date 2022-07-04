@@ -3117,7 +3117,7 @@ $ create-mc-app my-new-custom-application-project --template starter
 
 # or
 
-$ npx @commercetools-frontend/create-mc-app my-new-custom-application-project --template starter
+$ npx @commercetools-frontend/create-mc-app@latest my-new-custom-application-project --template starter
 ```
 
 #### ⛑ Type: Refactoring

@@ -1,5 +1,5 @@
 import { Factory } from 'rosie';
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 
 const Project = new Factory()
   .sequence('sequenceId')

@@ -2,6 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const shelljs = require('shelljs');
 
+shelljs.set('-e');
+
 const matchingPackages = /^@commercetools-frontend\/(?!ui-kit)(.*)/;
 const applicationName = 'my-starter-app';
 const rootPath = path.join(__dirname, '..');
@@ -48,7 +50,6 @@ shelljs.exec(
   [
     'yarn add',
     `file:${path.join(tarballsDistPath, createMcAppTarballName)}`,
-    '--no-lockfile',
   ].join(' '),
   { cwd: sandboxPath, stdio: 'ignore' }
 );
@@ -60,7 +61,7 @@ shelljs.exec(
   [
     binaryPath,
     applicationName,
-    '--template=starter',
+    `--template=${templateName}`,
     `--template-version=${branchName}`,
     `--initial-project-key=${initialProjectKey}`,
     `--yes`,
@@ -105,6 +106,6 @@ console.log('Installing the application dependencies');
 shelljs.exec('yarn install --no-lockfile', { cwd: applicationPath });
 
 console.log(
-  `Building the production bundle for the application ${applicationName}, using the tempalte ${templateName}`
+  `Building the production bundle for the application ${applicationName}, using the template ${templateName}`
 );
 shelljs.exec('yarn build', { cwd: applicationPath });

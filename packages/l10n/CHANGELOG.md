@@ -1,5 +1,18 @@
 # @commercetools-frontend/l10n
 
+## 21.8.0
+
+### Minor Changes
+
+- [#2612](https://github.com/commercetools/merchant-center-application-kit/pull/2612) [`c56498ca`](https://github.com/commercetools/merchant-center-application-kit/commit/c56498ca105272d31ca4a6197c16870f4b0e32e6) Thanks [@ByronDWall](https://github.com/ByronDWall)! - The localized data has been updated. In particular, the time zones data has been updated and restructured to be more usable and readable.
+
+### Patch Changes
+
+- [#2661](https://github.com/commercetools/merchant-center-application-kit/pull/2661) [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed) Thanks [@emmenko](https://github.com/emmenko)! - Drop the copyright year from the license files
+
+- Updated dependencies [[`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed)]:
+  - @commercetools-frontend/sentry@21.8.0
+
 ## 21.6.0
 
 ### Patch Changes

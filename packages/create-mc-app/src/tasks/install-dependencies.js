@@ -3,7 +3,7 @@ const { shouldUseYarn } = require('../utils');
 
 module.exports = function installDependencies(options) {
   return {
-    title: 'Installing dependencies',
+    title: 'Installing dependencies (this might take a while)',
     task: () => {
       const useYarn = shouldUseYarn();
       const packageManager = useYarn ? 'yarn' : 'npm';

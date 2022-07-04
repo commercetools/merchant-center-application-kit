@@ -1,5 +1,34 @@
 # @commercetools-backend/express
 
+## 21.8.0
+
+### Minor Changes
+
+- [#2667](https://github.com/commercetools/merchant-center-application-kit/pull/2667) [`1d8c71f1`](https://github.com/commercetools/merchant-center-application-kit/commit/1d8c71f1fed656bb6dedb3379198cc6fcdb5363f) Thanks [@emmenko](https://github.com/emmenko)! - Add support for setting the `audience` policy. The policy can be used to determine how the `audience` value is exchanged between the Merchant Center API and the external API.
+
+  Supported values are:
+
+  - `forward-url-full-path`: This is the default policy. It sets the `audience` using the full URL (origin + pathname).
+  - `forward-url-origin`: This is the alternative policy. It sets the `audience` using only the origin URL part.
+
+  ```js
+  createSessionAuthVerifier({
+    audiencePolicy: 'forward-url-origin',
+    // ...
+  });
+
+  createSessionMiddleware({
+    audiencePolicy: 'forward-url-origin',
+    // ...
+  });
+  ```
+
+### Patch Changes
+
+- [#2661](https://github.com/commercetools/merchant-center-application-kit/pull/2661) [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed) Thanks [@emmenko](https://github.com/emmenko)! - Drop the copyright year from the license files
+
+* [#2675](https://github.com/commercetools/merchant-center-application-kit/pull/2675) [`cb608529`](https://github.com/commercetools/merchant-center-application-kit/commit/cb608529de2373be6926b0317a0376690c339148) Thanks [@emmenko](https://github.com/emmenko)! - Fix reading and validating case sensitive `X-MC-API-*` headers
+
 ## 21.6.0
 
 ### Patch Changes

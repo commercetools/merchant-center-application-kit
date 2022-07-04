@@ -2,10 +2,10 @@ import type { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
 
 import { mergeMessages, mapLocaleToIntlLocale } from './utils';
 
-type I18NImportData = {
+export type I18NImportData = {
   default: Record<string, string> | Record<string, MessageFormatElement[]>;
 };
-type MergedMessages =
+export type MergedMessages =
   | Record<string, string>
   | Record<string, MessageFormatElement[]>;
 

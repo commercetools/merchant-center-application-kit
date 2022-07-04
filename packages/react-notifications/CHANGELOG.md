@@ -1,5 +1,17 @@
 # @commercetools-frontend/react-notifications
 
+## 21.8.0
+
+### Patch Changes
+
+- [#2661](https://github.com/commercetools/merchant-center-application-kit/pull/2661) [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed) Thanks [@emmenko](https://github.com/emmenko)! - Drop the copyright year from the license files
+
+- Updated dependencies [[`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed)]:
+  - @commercetools-frontend/actions-global@21.8.0
+  - @commercetools-frontend/constants@21.8.0
+  - @commercetools-frontend/notifications@21.8.0
+  - @commercetools-frontend/sentry@21.8.0
+
 ## 21.6.0
 
 ### Patch Changes
