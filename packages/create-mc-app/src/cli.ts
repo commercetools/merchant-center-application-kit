@@ -20,9 +20,6 @@ process.on('unhandledRejection', (err) => {
 });
 
 const run = () => {
-  cli.help();
-  cli.version(pkgJson.version);
-
   // Default command
   cli
     .command('[project-directory]')
@@ -31,30 +28,39 @@ const run = () => {
     )
     .option(
       '--template <name>',
-      '(optional) The name of the template to install [default "starter"]'
+      '(optional) The name of the template to install.',
+      { default: 'starter' }
     )
     .option(
       '--template-version <version>',
-      '(optional) The version of the template to install [default "main"]'
+      '(optional) The version of the template to install (either a git tag or a git branch of the "commercetools/merchant-center-application-kit" repository).',
+      { default: 'main' }
     )
     .option(
       '--skip-install',
-      '(optional) Skip installing the dependencies after cloning the template [default "false"]'
+      '(optional) Skip installing the dependencies after cloning the template.',
+      { default: false }
     )
     .option(
       '--yes',
-      '(optional) If set, the prompt options with default values will be skipped. [default "false"]'
+      '(optional) If set, the prompt options with default values will be skipped.',
+      { default: false }
     )
     .option(
       '--entry-point-uri-path <value>',
-      '(optional) The version of the template to install [default "starter-<hash>"]'
+      '(optional) The version of the template to install. (default: starter-<hash>)'
     )
     .option(
       '--initial-project-key <value>',
       '(optional) A commercetools project key used for the initial login in development. By default, the value is prompted in the terminal.'
     )
     .action(async (projectDirectory, options: TCliCommandOptions) => {
-      hintOutdatedVersion(pkgJson.version);
+      if (!projectDirectory) {
+        cli.outputHelp();
+        return;
+      }
+
+      await hintOutdatedVersion(pkgJson.version);
 
       console.log('');
       console.log(
@@ -70,7 +76,7 @@ const run = () => {
           tasks.updatePackageJson(taskOptions),
           tasks.updateCustomApplicationConfig(taskOptions),
           tasks.updateApplicationConstants(taskOptions),
-          !options['skip-install'] && tasks.installDependencies(taskOptions),
+          !options.skipInstall && tasks.installDependencies(taskOptions),
         ].filter(Boolean) as ListrTask[]
       );
 
@@ -84,7 +90,7 @@ const run = () => {
       console.log('');
       console.log(`To get started:`);
       console.log(`$ cd ${taskOptions.projectDirectoryName}`);
-      if (options['skip-install']) {
+      if (options.skipInstall) {
         console.log(`$ ${useYarn ? 'yarn' : 'npm'} install`);
       }
       console.log(`$ ${useYarn ? 'yarn' : 'npm'} start`);
@@ -93,6 +99,9 @@ const run = () => {
         `Visit https://docs.commercetools.com/custom-applications for more info about developing Custom Applications. Enjoy 🚀`
       );
     });
+
+  cli.help();
+  cli.version(pkgJson.version);
 
   cli.parse();
 };

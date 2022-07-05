@@ -1,15 +1,26 @@
 import fs from 'fs';
 import path from 'path';
 import semver from 'semver';
+import { TCliCommandOptions } from './types';
 import { isSemVer } from './utils';
 
-const availableTemplates = ['starter', 'starter-typescript'];
+const availableTemplates = {
+  starter: 'starter',
+  'starter-typescript': 'starter-typescript',
+} as const;
 
-const throwIfTemplateIsNotSupported = (templateName: string) => {
-  if (!availableTemplates.includes(templateName)) {
-    throw new Error(
-      `The provided template name "${templateName}" does not exist. Available templates are "${availableTemplates.toString()}". Make sure you are also using the latest version of "@commercetools-frontend/create-mc-app".`
-    );
+const throwIfTemplateIsNotSupported = (
+  templateName: TCliCommandOptions['template']
+) => {
+  switch (templateName) {
+    case availableTemplates.starter:
+    case availableTemplates['starter-typescript']:
+      break;
+    default:
+      const templateNamesList = Object.keys(availableTemplates).toString();
+      throw new Error(
+        `The provided template name "${templateName}" does not exist. Available templates are "${templateNamesList}". Make sure you are also using the latest version of "@commercetools-frontend/create-mc-app".`
+      );
   }
 };
 

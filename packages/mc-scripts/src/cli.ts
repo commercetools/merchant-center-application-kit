@@ -24,9 +24,6 @@ process.on('unhandledRejection', (err) => {
 const applicationDirectory = fs.realpathSync(process.cwd());
 
 const run = () => {
-  cli.help();
-  cli.version(pkgJson.version);
-
   cli.option(
     '--env <path>',
     `(optional) Parses the file path as a dotenv file and adds the variables to the environment. Multiple flags are allowed.`
@@ -198,6 +195,9 @@ const run = () => {
         await configSyncCommand.default(options);
       }
     );
+
+  cli.help();
+  cli.version(pkgJson.version);
 
   cli.parse();
 };

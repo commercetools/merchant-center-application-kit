@@ -1,5 +1,5 @@
 import path from 'path';
-import readline from 'readline';
+import readline, { type Interface } from 'readline';
 import crypto from 'crypto';
 import {
   throwIfTemplateIsNotSupported,
@@ -9,24 +9,18 @@ import {
 import { isSemVer } from './utils';
 import type { TCliCommandOptions, TCliTaskOptions } from './types';
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-const question = (value: string) =>
+const question = (rl: Interface, value: string) =>
   new Promise<string>((resolve) => rl.question(value, resolve));
 
-const getTemplateName = (options: TCliCommandOptions) =>
-  options.template || 'starter';
-
-const getEntryPointUriPath = async (options: TCliCommandOptions) => {
-  if (options['entry-point-uri-path']) {
-    return options['entry-point-uri-path'];
+const getEntryPointUriPath = async (
+  rl: Interface,
+  options: TCliCommandOptions
+) => {
+  if (options.entryPointUriPath) {
+    return options.entryPointUriPath;
   }
 
-  const templateName = getTemplateName(options);
-  const randomEntryPointUriPath = `${templateName}-${crypto
+  const randomEntryPointUriPath = `${options.template}-${crypto
     .randomBytes(3)
     .toString('hex')}`;
 
@@ -35,17 +29,22 @@ const getEntryPointUriPath = async (options: TCliCommandOptions) => {
   }
 
   const answerEntryPointUriPath = await question(
+    rl,
     `Provide the Custom Application entryPointUriPath (default "${randomEntryPointUriPath}"): `
   );
   return answerEntryPointUriPath || randomEntryPointUriPath;
 };
 
-const getInitialProjectKey = async (options: TCliCommandOptions) => {
-  if (options['initial-project-key']) {
-    return options['initial-project-key'];
+const getInitialProjectKey = async (
+  rl: Interface,
+  options: TCliCommandOptions
+) => {
+  if (options.initialProjectKey) {
+    return options.initialProjectKey;
   }
 
   const initialProjectKey = await question(
+    rl,
     `Provide the initial project key for local development: `
   );
 
@@ -64,21 +63,25 @@ async function processOptions(
   const projectDirectoryPath = path.resolve(projectDirectoryName);
 
   // Parse options
-  const templateName = getTemplateName(options);
-  let tagOrBranchVersion = options['template-version'] || 'main';
+  let tagOrBranchVersion = options.templateVersion || 'main';
   tagOrBranchVersion =
     isSemVer(tagOrBranchVersion) && !tagOrBranchVersion.startsWith('v')
       ? `v${tagOrBranchVersion}`
       : tagOrBranchVersion;
+
+  const templateName = options.template;
 
   // Validate options
   throwIfProjectDirectoryExists(projectDirectoryName, projectDirectoryPath);
   throwIfTemplateIsNotSupported(templateName);
 
   // Read prompts
-  const entryPointUriPath = await getEntryPointUriPath(options);
-  const initialProjectKey = await getInitialProjectKey(options);
-
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+  const entryPointUriPath = await getEntryPointUriPath(rl, options);
+  const initialProjectKey = await getInitialProjectKey(rl, options);
   rl.close();
 
   return {
