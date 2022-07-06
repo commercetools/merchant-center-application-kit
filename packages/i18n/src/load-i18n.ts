@@ -1,6 +1,6 @@
 import type { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
-
 import { mergeMessages, mapLocaleToIntlLocale } from './utils';
+import loadMomentLocales from './moment-locales';
 
 export type I18NImportData = {
   default: Record<string, string> | Record<string, MessageFormatElement[]>;
@@ -8,29 +8,6 @@ export type I18NImportData = {
 export type MergedMessages =
   | Record<string, string>
   | Record<string, MessageFormatElement[]>;
-
-const MOMENT_INCLUDED_METADATA_LOCALE = 'en';
-
-const loadMomentLocaleMetadata = async (locale: string) => {
-  // Default English is already included in moment default package
-  // so we don't need to load it explicitly
-  if (locale === MOMENT_INCLUDED_METADATA_LOCALE) return Promise.resolve();
-
-  try {
-    await import(
-      /* webpackChunkName: "i18n-moment-locale-[name]" */ `../compiled-data/moment/locales/${locale}.js`
-    );
-  } catch (error) {
-    // If not-found locale was a regional one, we use the main language by default,
-    // otherwise we use the default locale (already included).
-    const [language, region] = locale.split('-');
-    if (region && language !== MOMENT_INCLUDED_METADATA_LOCALE) {
-      await import(
-        /* webpackChunkName: "i18n-moment-locale-[name]" */ `../compiled-data/moment/locales/${language}.js`
-      );
-    }
-  }
-};
 
 const getUiKitChunkImport = (locale: string): Promise<I18NImportData> => {
   const intlLocale = mapLocaleToIntlLocale(locale);
@@ -130,7 +107,7 @@ export default async function loadI18n(
   locale: string
 ): Promise<MergedMessages> {
   // Load moment localizations
-  await loadMomentLocaleMetadata(locale);
+  await loadMomentLocales(locale);
 
   // Load ui-kit translations
   const uiKitChunkImport = await getUiKitChunkImport(locale);
