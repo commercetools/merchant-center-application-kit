@@ -82,7 +82,9 @@ function generateMomentLocaleImports() {
   const allAvailableLocalesWithMatchingMomentLocale =
     getListOfAvailableLocalesWithMatchingMomentLocale();
 
-  const code = `/* THIS IS A GENERATED FILE */
+  const code = `/// <reference path="../moment-locales.d.ts" />
+
+/* THIS IS A GENERATED FILE */
 
 async function loadMomentLocales(locale: string): Promise<void> {
   const lowercaseLocale = locale.toLowerCase();
@@ -92,7 +94,7 @@ async function loadMomentLocales(locale: string): Promise<void> {
     .map(
       ({ locale, momentLocale }) => `
     case '${locale}':
-      import('moment/locale/${momentLocale}');
+      await import('moment/locale/${momentLocale}');
       break;`
     )
     .join('\n')}
