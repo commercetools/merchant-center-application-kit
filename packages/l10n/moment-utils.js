@@ -94,7 +94,7 @@ async function loadMomentLocales(locale: string): Promise<void> {
     .map(
       ({ locale, momentLocale }) => `
     case '${locale}':
-      await import('moment/locale/${momentLocale}');
+      await import('moment/dist/locale/${momentLocale}');
       break;`
     )
     .join('\n')}
