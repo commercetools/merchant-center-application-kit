@@ -27,6 +27,7 @@
     "@commercetools-uikit/checkbox-input": "^15.0.0",
     "@commercetools-uikit/constraints": "^15.0.0",
     "@commercetools-uikit/data-table": "^15.0.0",
+    "@commercetools-uikit/date-time-input": "^15.0.0",
     "@commercetools-uikit/flat-button": "^15.0.0",
     "@commercetools-uikit/grid": "^15.0.0",
     "@commercetools-uikit/icons": "^15.0.0",
