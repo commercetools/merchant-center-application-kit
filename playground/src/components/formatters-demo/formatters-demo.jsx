@@ -85,7 +85,7 @@ function FormattersDemo() {
               {appLocale}
             </Example>
             <Example label={messages.fullDateLabel}>
-              {formatDate(date.toISOString(), 'en')}
+              {formatDate(date.toISOString(), appLocale)}
             </Example>
             <Example label={messages.dateSelectorLabel}>
               <DateTimeInput
