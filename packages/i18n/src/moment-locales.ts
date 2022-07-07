@@ -1,5 +1,5 @@
-/// <reference path="../moment-locales.d.ts" />
 
+// @ts-nocheck
 /* THIS IS A GENERATED FILE */
 
 async function loadMomentLocales(locale: string): Promise<void> {

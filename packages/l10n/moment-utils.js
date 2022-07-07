@@ -82,8 +82,8 @@ function generateMomentLocaleImports() {
   const allAvailableLocalesWithMatchingMomentLocale =
     getListOfAvailableLocalesWithMatchingMomentLocale();
 
-  const code = `/// <reference path="../moment-locales.d.ts" />
-
+  const code = `
+// @ts-nocheck
 /* THIS IS A GENERATED FILE */
 
 async function loadMomentLocales(locale: string): Promise<void> {
