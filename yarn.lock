@@ -29169,6 +29169,7 @@ __metadata:
     "@commercetools-frontend/mc-scripts": 21.8.0
     "@commercetools-frontend/permissions": 21.8.0
     "@commercetools-frontend/sdk": 21.8.0
+    "@commercetools-uikit/card": ^15.0.0
     "@commercetools-uikit/checkbox-input": ^15.0.0
     "@commercetools-uikit/constraints": ^15.0.0
     "@commercetools-uikit/data-table": ^15.0.0
@@ -29176,7 +29177,6 @@ __metadata:
     "@commercetools-uikit/flat-button": ^15.0.0
     "@commercetools-uikit/grid": ^15.0.0
     "@commercetools-uikit/icons": ^15.0.0
-    "@commercetools-uikit/link": ^15.0.0
     "@commercetools-uikit/loading-spinner": ^15.0.0
     "@commercetools-uikit/notifications": ^15.0.0
     "@commercetools-uikit/pagination": ^15.0.0

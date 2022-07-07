@@ -16,7 +16,7 @@
   "StateMachines.ListView.objectsInCache": "There are {count} objects in the cache.",
   "StateMachines.ListView.title": "State Machines",
   "StateMachines.FormattersDemo.title": "Formatters Demo",
-  "StateMachines.FormattersDemo.subtitle": "You can see here bow dates and numbers are formatted based on your locale. You can change it from the <profileLink>profile page</profileLink>.",
+  "StateMachines.FormattersDemo.subtitle": "You can see here formatted dates and numbers with different locales.",
   "StateMachines.FormattersDemo.localeLabel": "Current locale",
   "StateMachines.FormattersDemo.fullDateLabel": "Full date",
   "StateMachines.FormattersDemo.dateSelectorLabel": "Date selector",

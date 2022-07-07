@@ -8,7 +8,7 @@ export default defineMessages({
   subtitle: {
     id: 'StateMachines.FormattersDemo.subtitle',
     defaultMessage:
-      'You can see here dates and numbers are formatted. Bear in mind that formats depend on the locale of the application. You can change it from the profile page.',
+      'You can see here formatted dates and numbers with different locales.',
   },
   localeLabel: {
     id: 'StateMachines.FormattersDemo.localeLabel',
