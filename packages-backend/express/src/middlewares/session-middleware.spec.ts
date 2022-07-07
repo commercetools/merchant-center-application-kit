@@ -7,7 +7,7 @@ import { createSessionAuthVerifier } from '../auth';
 import { CLOUD_IDENTIFIERS } from '../constants';
 import { TBaseRequest } from '../types';
 
-interface TMockAWSLambdaRequest extends TBaseRequest {
+interface TMockAWSLambdaRequestV2 extends TBaseRequest {
   rawPath: string;
   rawQueryString?: string;
 }
@@ -106,10 +106,10 @@ describe.each`
       expect(fakeRequest).not.toHaveProperty('decoded_token');
     });
 
-    it('should resolve the original url externally when a resolver is provided', async () => {
+    it('should resolve the original url externally when a resolver is provided (using lambda v2)', async () => {
       const { sessionMiddleware, fakeRequest, fakeResponse } = setupTest({
         middlewareOptions: {
-          getRequestUrl: (request: TMockAWSLambdaRequest) => {
+          getRequestUrl: (request: TMockAWSLambdaRequestV2) => {
             return `${request.rawPath}${
               request.rawQueryString ? '?' + request.rawQueryString : ''
             }`;
@@ -147,7 +147,23 @@ describe.each`
       await expect(
         waitForSessionMiddleware(sessionMiddleware, fakeRequest, fakeResponse)
       ).rejects.toMatchObject({
-        message: expect.stringContaining('Invalid request URI path.'),
+        message: expect.stringContaining(
+          'Invalid request URI path "undefined".'
+        ),
+      });
+    });
+
+    it('should fail if the resolved request URI does not have a leading "/"', async () => {
+      const { sessionMiddleware, fakeRequest, fakeResponse } = setupTest({
+        middlewareOptions: {
+          getRequestUrl: () => `foo/bar`, // <-- missing leading "/"
+        },
+      });
+
+      await expect(
+        waitForSessionMiddleware(sessionMiddleware, fakeRequest, fakeResponse)
+      ).rejects.toMatchObject({
+        message: expect.stringContaining('Invalid request URI path "foo/bar".'),
       });
     });
 

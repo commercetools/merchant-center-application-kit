@@ -1,5 +1,7 @@
 # @commercetools-frontend/create-mc-app
 
+## 21.8.1
+
 ## 21.8.0
 
 ### Minor Changes

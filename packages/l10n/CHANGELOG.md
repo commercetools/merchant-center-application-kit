@@ -1,5 +1,12 @@
 # @commercetools-frontend/l10n
 
+## 21.8.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@21.8.1
+
 ## 21.8.0
 
 ### Minor Changes

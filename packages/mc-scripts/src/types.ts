@@ -4,16 +4,16 @@ export type TCliGlobalOptions = {
 };
 
 export type TCliCommandBuildOptions = {
-  'build-only'?: boolean;
+  buildOnly: boolean;
 };
 
 export type TCliCommandCompileHtmlOptions = {
   transformer?: string;
-  'print-security-headers'?: boolean;
+  printSecurityHeaders: boolean;
 };
 
 export type TCliCommandConfigSyncOptions = {
-  'dry-run'?: boolean;
+  dryRun: boolean;
 };
 
 export type TMcCliAuthToken = {
