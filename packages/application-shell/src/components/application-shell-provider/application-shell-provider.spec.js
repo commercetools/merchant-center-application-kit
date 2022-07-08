@@ -10,6 +10,10 @@ import hasCachedAuthenticationState from '../authenticated/has-cached-authentica
 import { getBrowserLocale } from './utils';
 import ApplicationShellProvider from './application-shell-provider';
 
+// Need to mock the moment locale we try to load in these tests
+// since those files are ESM and not supported in jest.
+// (and we don't need its content for these tests)
+jest.mock('moment/dist/locale/de', () => {});
 jest.mock('../authenticated/has-cached-authentication-state');
 jest.mock('../authenticated/am-i-logged-in');
 jest.mock('./utils');

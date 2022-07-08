@@ -12,6 +12,7 @@ module.exports = {
     'dist/',
     'public/',
     'generated',
+    'compiled-data',
   ],
   testMatch: ['<rootDir>/**/*.js', '<rootDir>/**/*.ts', '<rootDir>/**/*.tsx'],
   watchPlugins: [

@@ -3489,6 +3489,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@commercetools-uikit/calendar-time-utils@npm:15.0.2":
+  version: 15.0.2
+  resolution: "@commercetools-uikit/calendar-time-utils@npm:15.0.2"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+    "@babel/runtime-corejs3": ^7.17.2
+    "@commercetools-uikit/utils": 15.0.0
+  peerDependencies:
+    moment-timezone: 0.5.x
+  checksum: 2e6f25a37a602677b02dfd44618df7e13872a74e080cc01b36eda5a99b2275030179473e75c36a86cb2a669d5b68d7c88dfaa9daae762ac53d1a5055ed6d9bdc
+  languageName: node
+  linkType: hard
+
 "@commercetools-uikit/calendar-utils@npm:14.0.3":
   version: 14.0.3
   resolution: "@commercetools-uikit/calendar-utils@npm:14.0.3"
@@ -3514,6 +3527,34 @@ __metadata:
     react: 17.x
     react-intl: 5.x
   checksum: 93b8cbcca474da5b21620024fcab4dedafc81d656595368240d3922cd20a396474ee42cbf78b5f57da9e5c10ca916d32804793d4c0f0c234814b49cbf20bb8aa
+  languageName: node
+  linkType: hard
+
+"@commercetools-uikit/calendar-utils@npm:15.0.0":
+  version: 15.0.0
+  resolution: "@commercetools-uikit/calendar-utils@npm:15.0.0"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+    "@babel/runtime-corejs3": ^7.17.2
+    "@commercetools-uikit/accessible-button": 15.0.0
+    "@commercetools-uikit/design-system": 15.0.0
+    "@commercetools-uikit/hooks": 15.0.0
+    "@commercetools-uikit/icons": 15.0.0
+    "@commercetools-uikit/input-utils": 15.0.0
+    "@commercetools-uikit/secondary-icon-button": 15.0.0
+    "@commercetools-uikit/spacings-inline": 15.0.0
+    "@commercetools-uikit/text": 15.0.0
+    "@commercetools-uikit/tooltip": 15.0.0
+    "@commercetools-uikit/utils": 15.0.0
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    prop-types: 15.8.1
+    react-select: 5.3.0
+  peerDependencies:
+    moment: 2.x
+    react: 17.x
+    react-intl: 5.x
+  checksum: 8010ef072998624e535ec3d6676d36ba9351d03e33b08019453548a4f114425a68d305f87b209ccbf836ff726cca85201153965c36e48ebbe67a29fb3a063511
   languageName: node
   linkType: hard
 
@@ -3683,6 +3724,39 @@ __metadata:
     react: 17.x
     react-intl: 5.x
   checksum: 3fd8e3a7f40ae95cdf6df152810943ac4526f43c16f0760b37ac258c91ef30478607f1abe52abcd8a9a9897e9d5fa19f5474e41b0b62798b0a47efbfdf8ec103
+  languageName: node
+  linkType: hard
+
+"@commercetools-uikit/date-time-input@npm:^15.0.0":
+  version: 15.0.2
+  resolution: "@commercetools-uikit/date-time-input@npm:15.0.2"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+    "@babel/runtime-corejs3": ^7.17.2
+    "@commercetools-uikit/accessible-button": 15.0.0
+    "@commercetools-uikit/calendar-time-utils": 15.0.2
+    "@commercetools-uikit/calendar-utils": 15.0.0
+    "@commercetools-uikit/constraints": 15.0.0
+    "@commercetools-uikit/design-system": 15.0.0
+    "@commercetools-uikit/hooks": 15.0.0
+    "@commercetools-uikit/icons": 15.0.0
+    "@commercetools-uikit/secondary-icon-button": 15.0.0
+    "@commercetools-uikit/select-utils": 15.0.0
+    "@commercetools-uikit/spacings-inline": 15.0.0
+    "@commercetools-uikit/text": 15.0.0
+    "@commercetools-uikit/tooltip": 15.0.0
+    "@commercetools-uikit/utils": 15.0.0
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    downshift: 6.1.7
+    prop-types: 15.8.1
+    react-is: 17.0.2
+    warning: 4.0.3
+  peerDependencies:
+    moment: 2.x
+    react: 17.x
+    react-intl: 5.x
+  checksum: 0702ac4773648afdb1bab0dd58afddbec95d17c0bad1266d78f8125fd894b38c74f9c7e2182a809a6798de99a666af37d011b3df83841f5a9b1997cca7761d51
   languageName: node
   linkType: hard
 
@@ -29095,13 +29169,14 @@ __metadata:
     "@commercetools-frontend/mc-scripts": 21.8.1
     "@commercetools-frontend/permissions": 21.8.1
     "@commercetools-frontend/sdk": 21.8.1
+    "@commercetools-uikit/card": ^15.0.0
     "@commercetools-uikit/checkbox-input": ^15.0.0
     "@commercetools-uikit/constraints": ^15.0.0
     "@commercetools-uikit/data-table": ^15.0.0
+    "@commercetools-uikit/date-time-input": ^15.0.0
     "@commercetools-uikit/flat-button": ^15.0.0
     "@commercetools-uikit/grid": ^15.0.0
     "@commercetools-uikit/icons": ^15.0.0
-    "@commercetools-uikit/link": ^15.0.0
     "@commercetools-uikit/loading-spinner": ^15.0.0
     "@commercetools-uikit/notifications": ^15.0.0
     "@commercetools-uikit/pagination": ^15.0.0

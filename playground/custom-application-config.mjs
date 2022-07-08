@@ -69,6 +69,12 @@ const config = {
         },
       ],
     },
+    {
+      uriPath: 'formatters',
+      permissions: [PERMISSIONS.View],
+      defaultLabel: 'Formatters',
+      labelAllLocales: [],
+    }
   ],
 };
 

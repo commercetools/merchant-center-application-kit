@@ -13,6 +13,8 @@ import paths from './paths';
 import vendorsToTranspile from './vendors-to-transpile';
 import createPostcssConfig from './create-postcss-config';
 import hasJsxRuntime from './has-jsx-runtime';
+// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
+import momentLocalesToKeep from /* preval */ './moment-locales';
 
 const defaultToggleFlags: TWebpackConfigToggleFlagsForDevelopment = {
   generateIndexHtml: true,
@@ -179,10 +181,9 @@ function createWebpackConfigForDevelopment(
         }),
       mergedOptions.toggleFlags.generateIndexHtml &&
         new LocalHtmlWebpackPlugin(),
-      // Strip all locales except `en`, `de`
-      // (`en` is built into Moment and can't be removed).
+      // Only keep locales that are available in the Merchant Center.
       new MomentLocalesPlugin({
-        localesToKeep: ['de', 'es', 'fr', 'zh-cn', 'ja'],
+        localesToKeep: momentLocalesToKeep,
       }),
       // This is necessary to emit hot updates (CSS and Fast Refresh):
       new webpack.HotModuleReplacementPlugin(),
