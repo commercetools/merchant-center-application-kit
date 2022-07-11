@@ -24,7 +24,7 @@ const DEMO_MONEY_PRICE = {
 function getSampleDate() {
   const now = new Date();
   now.setDate(20);
-  now.setHours(9, 15, 0, 0);
+  now.setUTCHours(7, 15, 0, 0);
   return now;
 }
 
