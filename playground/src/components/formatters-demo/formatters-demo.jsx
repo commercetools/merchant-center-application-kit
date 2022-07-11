@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { IntlProvider, useIntl } from 'react-intl';
 import Spacings from '@commercetools-uikit/spacings';
 import Constraints from '@commercetools-uikit/constraints';
@@ -13,6 +13,8 @@ import messages from './messages';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 
 const DEMO_LOCALES = ['en', 'en-GB', 'en-AU', 'de', 'de-AT', 'es', 'es-MX', 'fr-FR'];
+
+const DEMO_TIMEZONE = 'Europe/Berlin';
 
 const DEMO_MONEY_PRICE = {
   centAmount: 1036250,
@@ -40,7 +42,7 @@ function formatMoney(moneyValue, intl) {
 }
 
 function formatDate(dateString, locale) {
-  return moment(dateString).locale(locale).format('L LT');
+  return moment(dateString).tz(DEMO_TIMEZONE).locale(locale).format('L LT');
 }
 
 function ExampleItem({ label, children }) {
@@ -73,7 +75,7 @@ function LocaleExample({ locale }) {
         </ExampleItem>
         <ExampleItem label={messages.dateSelectorLabel}>
           <DateTimeInput
-            timeZone="Europe/Berlin"
+            timeZone={DEMO_TIMEZONE}
             value={date.toISOString()}
             onChange={(event) => {
               setDate(new Date(event.target.value));
