@@ -94,11 +94,13 @@ LocaleExample.propTypes = {
 
 function LocaleExampleWrapper({ locale }) {
   return (
-    <IntlProvider locale={locale}>
-      <AsyncLocaleData locale={locale} applicationMessages={{}}>
-        {({ isLoading }) => !isLoading ? <LocaleExample locale={locale} /> : null}
-      </AsyncLocaleData>
-    </IntlProvider>
+    <div data-testid={`locale-example-${locale}`}>
+      <IntlProvider locale={locale}>
+        <AsyncLocaleData locale={locale} applicationMessages={{}}>
+          {({ isLoading }) => !isLoading ? <LocaleExample locale={locale} /> : null}
+        </AsyncLocaleData>
+      </IntlProvider>
+    </div>
   );
 }
 LocaleExampleWrapper.propTypes = {
