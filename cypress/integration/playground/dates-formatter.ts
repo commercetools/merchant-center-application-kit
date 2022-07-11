@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from 'moment-timezone';
 import {
   ENTRY_POINT_APP_KIT_PLAYGROUND,
   URL_APP_KIT_PLAYGROUND_DATES_FORMATTERS,
@@ -15,6 +15,8 @@ const DEMO_LOCALES = [
   'fr-FR',
 ];
 
+const DEMO_TIMEZONE = 'Europe/Berlin';
+
 function getSampleDate() {
   const now = new Date();
   now.setDate(20);
@@ -23,7 +25,7 @@ function getSampleDate() {
 }
 
 function formatDate(dateString, locale) {
-  return moment(dateString).locale(locale).format('L LT');
+  return moment(dateString).tz(DEMO_TIMEZONE).locale(locale).format('L LT');
 }
 
 describe('Dates formatter', () => {
