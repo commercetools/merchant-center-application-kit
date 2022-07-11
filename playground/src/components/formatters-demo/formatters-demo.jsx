@@ -12,7 +12,7 @@ import Card from '@commercetools-uikit/card';
 import messages from './messages';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 
-const DEMO_LOCALES = ['en', 'en-GB', 'en-AU', 'de', 'de-AT', 'es', 'es-MX', 'fr'];
+const DEMO_LOCALES = ['en', 'en-GB', 'en-AU', 'de', 'de-AT', 'es', 'es-MX', 'fr-FR'];
 
 const DEMO_MONEY_PRICE = {
   centAmount: 1036250,
@@ -23,9 +23,8 @@ const DEMO_MONEY_PRICE = {
 
 function getSampleDate() {
   const now = new Date();
-  now.setUTCDate(20);
-  now.setUTCSeconds(0);
-  now.setUTCMilliseconds(0);
+  now.setDate(20);
+  now.setHours(9, 15, 0, 0);
   return now;
 }
 

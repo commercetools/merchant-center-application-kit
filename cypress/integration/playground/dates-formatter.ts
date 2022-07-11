@@ -12,14 +12,13 @@ const DEMO_LOCALES = [
   'de-AT',
   'es',
   'es-MX',
-  'fr',
+  'fr-FR',
 ];
 
 function getSampleDate() {
   const now = new Date();
-  now.setUTCDate(20);
-  now.setUTCSeconds(0);
-  now.setUTCMilliseconds(0);
+  now.setDate(20);
+  now.setHours(9, 15, 0, 0);
   return now;
 }
 
@@ -39,9 +38,11 @@ describe('Dates formatter', () => {
     const sampleDate = getSampleDate();
 
     for (const locale of DEMO_LOCALES) {
-      cy.findByTestId('locale-example-en').should('exist');
+      cy.findByTestId(`locale-example-${locale}`).should('exist');
       cy.findByTestId(`locale-example-${locale}`).within(() => {
-        cy.findByText(formatDate(sampleDate, locale)).should('exist');
+        cy.findByText(formatDate(sampleDate.toISOString(), locale)).should(
+          'exist'
+        );
       });
     }
 
