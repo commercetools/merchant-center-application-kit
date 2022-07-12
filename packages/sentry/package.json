@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "react": "17.0.2",
-    "sentry-testkit": "3.3.7",
+    "sentry-testkit": "3.3.8",
     "wait-for-expect": "3.0.2"
   },
   "peerDependencies": {

@@ -20,16 +20,16 @@
   "dependencies": {
     "@babel/runtime": "^7.17.9",
     "@babel/runtime-corejs3": "^7.17.9",
-    "@types/node": "16.11.33",
+    "@types/node": "16.11.43",
     "express": "4.18.1",
-    "express-jwt": "7.7.0",
-    "jwks-rsa": "2.1.1"
+    "express-jwt": "7.7.5",
+    "jwks-rsa": "2.1.4"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.2",
     "@types/express-unless": "^0.5.3",
     "@types/jsonwebtoken": "^8.5.8",
     "jose": "2.0.5",
-    "msw": "0.39.2"
+    "msw": "0.43.1"
   }
 }
