@@ -3,6 +3,7 @@ import path from 'path';
 import { createServer, type Plugin, type Connect } from 'vite';
 import pluginGraphql from '@rollup/plugin-graphql';
 import pluginReact from '@vitejs/plugin-react';
+import pluginSvgr from 'vite-plugin-svgr';
 import {
   type ApplicationRuntimeConfig,
   processConfig,
@@ -109,6 +110,26 @@ async function run() {
         jsxImportSource: '@emotion/react',
         babel: {
           plugins: ['@emotion/babel-plugin'],
+        },
+      }),
+      pluginSvgr({
+        include: '**/*.react.svg',
+        exportAsDefault: true,
+        svgrOptions: {
+          icon: false,
+          svgoConfig: {
+            plugins: [
+              {
+                // https://github.com/svg/svgo#default-preset
+                name: 'preset-default',
+                params: {
+                  overrides: {
+                    removeViewBox: false,
+                  },
+                },
+              },
+            ],
+          },
         },
       }),
       pluginCustomApplication(applicationConfig),

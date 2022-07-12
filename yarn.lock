@@ -3872,6 +3872,7 @@ __metadata:
     thread-loader: 3.0.4
     url: ^0.11.0
     vite: 2.9.8
+    vite-plugin-svgr: 2.2.0
     webpack: 5.72.0
     webpack-bundle-analyzer: 4.5.0
     webpack-dev-server: 4.9.0
@@ -37188,6 +37189,18 @@ __metadata:
     unist-util-stringify-position: ^2.0.0
     vfile-message: ^2.0.0
   checksum: ee5726e10d170472cde778fc22e0f7499caa096eb85babea5d0ce0941455b721037ee1c9e6ae506ca2803250acd313d0f464328ead0b55cfe7cb6315f1b462d6
+  languageName: node
+  linkType: hard
+
+"vite-plugin-svgr@npm:2.2.0":
+  version: 2.2.0
+  resolution: "vite-plugin-svgr@npm:2.2.0"
+  dependencies:
+    "@rollup/pluginutils": ^4.2.1
+    "@svgr/core": ^6.2.1
+  peerDependencies:
+    vite: ^2.6.0 || 3
+  checksum: 43fdab89f3fc61687ec97a50cd96f966110000420dd2d9a12bb70806bc71bed02500df229b2f170cda1be9e01f4c7f6f7f667064af22d63e46fc276021f93c3e
   languageName: node
   linkType: hard
 
