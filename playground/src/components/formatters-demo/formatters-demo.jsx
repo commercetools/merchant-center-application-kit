@@ -18,7 +18,6 @@ const DEMO_LOCALES = ['en', 'en-GB', 'en-AU', 'de', 'de-AT', 'es', 'es-MX', 'fr-
 const DEMO_TIMEZONE = 'Europe/Berlin';
 
 const DEMO_MONEY_PRICE = {
-  centAmount: 1036250,
   currencyCode: 'EUR',
   fractionDigits: 2,
   fractionedAmount: 10362.50,
