@@ -17,8 +17,8 @@
   "StateMachines.ListView.title": "State Machines",
   "StateMachines.FormattersDemo.title": "Formatters Demo",
   "StateMachines.FormattersDemo.subtitle": "You can see here formatted dates and numbers with different locales.",
-  "StateMachines.FormattersDemo.localeLabel": "Current locale",
-  "StateMachines.FormattersDemo.fullDateLabel": "Full date",
-  "StateMachines.FormattersDemo.dateSelectorLabel": "Date selector",
-  "StateMachines.FormattersDemo.moneyLabel": "Money"
+  "StateMachines.FormattersDemo.localeLabel": "Current locale:",
+  "StateMachines.FormattersDemo.fullDateLabel": "Full date:",
+  "StateMachines.FormattersDemo.dateSelectorLabel": "Date selector:",
+  "StateMachines.FormattersDemo.moneyLabel": "Money:"
 }
