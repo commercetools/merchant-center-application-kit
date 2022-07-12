@@ -3,7 +3,7 @@ import {
   screen,
 } from '@commercetools-frontend/application-shell/test-utils';
 
-import { LocaleExampleWrapper, DEMO_LOCALES } from './formatters-demo';
+import { LocaleExampleWrapper } from './formatters-demo';
 
 // Mock moment locale metadata file imports
 jest.mock('moment/dist/locale/en-gb', () => {});
@@ -17,45 +17,9 @@ jest.mock('moment/dist/locale/fr', () => {});
 const demoDate = new Date('2022-07-15T07:15:22.000Z');
 const demoTimeZone = 'Europe/Berlin';
 const demoMoney = {
-  centAmount: 1036250,
   currencyCode: 'EUR',
   fractionDigits: 2,
   fractionedAmount: 10362.5,
-};
-
-const expectedFormatResults = {
-  en: {
-    date: '07/15/2022 9:15 AM',
-    money: '€10,362.50',
-  },
-  'en-GB': {
-    date: '15/07/2022 09:15',
-    money: '€10,362.50',
-  },
-  'en-AU': {
-    date: '15/07/2022 9:15 AM',
-    money: 'EUR 10,362.50',
-  },
-  de: {
-    date: '15.07.2022 09:15',
-    money: '10.362,50 €',
-  },
-  'de-AT': {
-    date: '15.07.2022 09:15',
-    money: '€ 10.362,50',
-  },
-  es: {
-    date: '15/07/2022 9:15',
-    money: '10.362,50 €',
-  },
-  'es-MX': {
-    date: '15/07/2022 9:15',
-    money: 'EUR 10,362.50',
-  },
-  'fr-FR': {
-    date: '15/07/2022 09:15',
-    money: '10 362,50 €',
-  },
 };
 
 describe('Formatters demo', () => {
@@ -63,9 +27,19 @@ describe('Formatters demo', () => {
     console.error = jest.fn();
   });
 
-  it.each(DEMO_LOCALES)(
+  it.each`
+    locale     | expectedDate            | expectedMoney
+    ${'en'}    | ${'07/15/2022 9:15 AM'} | ${'€10,362.50'}
+    ${'en-GB'} | ${'15/07/2022 09:15'}   | ${'€10,362.50'}
+    ${'en-AU'} | ${'15/07/2022 9:15 AM'} | ${'EUR 10,362.50'}
+    ${'de'}    | ${'15.07.2022 09:15'}   | ${'10.362,50 €'}
+    ${'de-AT'} | ${'15.07.2022 09:15'}   | ${'€ 10.362,50'}
+    ${'es'}    | ${'15/07/2022 9:15'}    | ${'10.362,50 €'}
+    ${'es-MX'} | ${'15/07/2022 9:15'}    | ${'EUR 10,362.50'}
+    ${'fr-FR'} | ${'15/07/2022 09:15'}   | ${'10 362,50 €'}
+  `(
     'should render examples based on different locales (%s)',
-    async (locale) => {
+    async ({ locale, expectedDate, expectedMoney }) => {
       render(
         <LocaleExampleWrapper
           locale={locale}
@@ -80,11 +54,9 @@ describe('Formatters demo', () => {
 
       // Validate date and money rendered format
       expect(screen.getByLabelText('Full date:')).toHaveTextContent(
-        expectedFormatResults[locale].date
+        expectedDate
       );
-      expect(screen.getByLabelText('Money:')).toHaveTextContent(
-        expectedFormatResults[locale].money
-      );
+      expect(screen.getByLabelText('Money:')).toHaveTextContent(expectedMoney);
     }
   );
 });

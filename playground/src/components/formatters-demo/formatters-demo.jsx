@@ -13,7 +13,7 @@ import Label from '@commercetools-uikit/label';
 
 import messages from './messages';
 
-export const DEMO_LOCALES = ['en', 'en-GB', 'en-AU', 'de', 'de-AT', 'es', 'es-MX', 'fr-FR'];
+const DEMO_LOCALES = ['en', 'en-GB', 'en-AU', 'de', 'de-AT', 'es', 'es-MX', 'fr-FR'];
 
 const DEMO_TIMEZONE = 'Europe/Berlin';
 
