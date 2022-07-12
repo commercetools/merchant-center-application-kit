@@ -4042,7 +4042,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/label@npm:15.0.0":
+"@commercetools-uikit/label@npm:15.0.0, @commercetools-uikit/label@npm:^15.0.0":
   version: 15.0.0
   resolution: "@commercetools-uikit/label@npm:15.0.0"
   dependencies:
@@ -29177,6 +29177,7 @@ __metadata:
     "@commercetools-uikit/flat-button": ^15.0.0
     "@commercetools-uikit/grid": ^15.0.0
     "@commercetools-uikit/icons": ^15.0.0
+    "@commercetools-uikit/label": ^15.0.0
     "@commercetools-uikit/loading-spinner": ^15.0.0
     "@commercetools-uikit/notifications": ^15.0.0
     "@commercetools-uikit/pagination": ^15.0.0

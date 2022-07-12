@@ -12,18 +12,18 @@ export default defineMessages({
   },
   localeLabel: {
     id: 'StateMachines.FormattersDemo.localeLabel',
-    defaultMessage: 'Current locale',
+    defaultMessage: 'Current locale:',
   },
   fullDateLabel: {
     id: 'StateMachines.FormattersDemo.fullDateLabel',
-    defaultMessage: 'Full date',
+    defaultMessage: 'Full date:',
   },
   dateSelectorLabel: {
     id: 'StateMachines.FormattersDemo.dateSelectorLabel',
-    defaultMessage: 'Date selector',
+    defaultMessage: 'Date selector:',
   },
   moneyLabel: {
     id: 'StateMachines.FormattersDemo.moneyLabel',
-    defaultMessage: 'Money',
+    defaultMessage: 'Money:',
   },
 });
