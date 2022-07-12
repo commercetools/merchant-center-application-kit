@@ -38,7 +38,7 @@
     "@commercetools-frontend/sentry": "21.8.1",
     "@commercetools-uikit/i18n": "^15.0.0",
     "@emotion/react": "11.9.3",
-    "@formatjs/icu-messageformat-parser": "2.1.4",
+    "@formatjs/icu-messageformat-parser": "^2.1.4",
     "@types/prop-types": "^15.7.5",
     "@types/react": "^17.0.44",
     "moment": "^2.29.2",
