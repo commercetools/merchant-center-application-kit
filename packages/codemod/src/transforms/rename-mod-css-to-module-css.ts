@@ -30,6 +30,7 @@ function renameModCssToModuleCss(
         node.source.value = nextCssModulesFilePath;
         hasModifications = true;
 
+        // Side effect for renaming the actual CSS module file.
         fs.renameSync(
           path.join(path.dirname(file.path), previousCssModulesFilePath),
           path.join(path.dirname(file.path), nextCssModulesFilePath)
@@ -39,13 +40,7 @@ function renameModCssToModuleCss(
   }
 
   const root = j(file.source);
-  root
-    .find(j.ImportDeclaration, {
-      source: {
-        type: 'StringLiteral',
-      },
-    })
-    .forEach(renameImportModCssToModuleCss);
+  root.find(j.ImportDeclaration).forEach(renameImportModCssToModuleCss);
 
   return hasModifications ? root.toSource(options) : null;
 }

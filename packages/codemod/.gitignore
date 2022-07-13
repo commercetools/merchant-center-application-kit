@@ -1,1 +1,4 @@
 build
+test/fixtures/rename-js-to-jsx.js
+test/fixtures/styles.mod.css
+test/fixtures/styles.module.css
