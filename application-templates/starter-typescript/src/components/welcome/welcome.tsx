@@ -7,7 +7,7 @@ import { AngleRightIcon } from '@commercetools-uikit/icons';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import messages from './messages';
-import styles from './welcome.mod.css';
+import styles from './welcome.module.css';
 import WebDeveloperSvg from './web-developer.svg';
 
 type TWrapWithProps = {
