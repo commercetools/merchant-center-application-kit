@@ -4,20 +4,21 @@
 
 export type EnvVariablePlaceholder = string;
 export type CspDirective = string[];
+export type PathVariablePlaceholder = string;
 
 export interface JSONSchemaForCustomApplicationConfigurationFiles {
   /**
    * See https://docs.commercetools.com/custom-applications/api-reference/application-config#name
    */
-  name: string;
+  name: EnvVariablePlaceholder;
   /**
    * See https://docs.commercetools.com/custom-applications/api-reference/application-config#description
    */
-  description?: string;
+  description?: EnvVariablePlaceholder;
   /**
    * See https://docs.commercetools.com/custom-applications/api-reference/application-config#entrypointuripath
    */
-  entryPointUriPath: string;
+  entryPointUriPath: EnvVariablePlaceholder;
   /**
    * See https://docs.commercetools.com/custom-applications/api-reference/application-config#cloudidentifier
    */
@@ -25,7 +26,7 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
   /**
    * See https://docs.commercetools.com/custom-applications/api-reference/application-config#mcapiurl
    */
-  mcApiUrl?: string;
+  mcApiUrl?: EnvVariablePlaceholder;
   /**
    * See https://docs.commercetools.com/custom-applications/api-reference/application-config#oauthscopes
    */
@@ -47,22 +48,22 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
       /**
        * See https://docs.commercetools.com/custom-applications/api-reference/application-config#envdevelopmentinitialprojectkey
        */
-      initialProjectKey: string;
-      teamId?: string;
+      initialProjectKey: EnvVariablePlaceholder;
+      teamId?: EnvVariablePlaceholder;
     };
     production: {
       /**
        * See https://docs.commercetools.com/custom-applications/api-reference/application-config#envproductionapplicationid
        */
-      applicationId: string;
+      applicationId: EnvVariablePlaceholder;
       /**
        * See https://docs.commercetools.com/custom-applications/api-reference/application-config#envproductionurl
        */
-      url: string;
+      url: EnvVariablePlaceholder;
       /**
        * See https://docs.commercetools.com/custom-applications/api-reference/application-config#envproductioncdnurl
        */
-      cdnUrl?: string;
+      cdnUrl?: EnvVariablePlaceholder;
     };
   };
   /**
@@ -106,7 +107,7 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
   /**
    * See https://docs.commercetools.com/custom-applications/api-reference/application-config#icon
    */
-  icon: string;
+  icon: PathVariablePlaceholder;
   /**
    * See https://docs.commercetools.com/custom-applications/api-reference/application-config#mainmenulink
    */

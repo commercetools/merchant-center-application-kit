@@ -33,6 +33,10 @@
     {
       "matchPackageNames": ["postcss-custom-properties"],
       "allowedVersions": "<=12.1.4"
+    },
+    {
+      "matchPackageNames": ["create-jest-runner"],
+      "allowedVersions": "<=0.10.0"
     }
   ],
   "lockFileMaintenance": {

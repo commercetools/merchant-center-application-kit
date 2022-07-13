@@ -1,4 +1,5 @@
 /// <reference types="@emotion/react/types/css-prop" />
+/// <reference types="vite/client" />
 
 import { css } from '@emotion/react';
 import InlineSvg from '@commercetools-uikit/icons/inline-svg';
@@ -6,9 +7,9 @@ import Grid from '@commercetools-uikit/grid';
 import { customProperties } from '@commercetools-uikit/design-system';
 import { Suite, Spec } from '../../test-utils';
 
-const svgIconsModules = import.meta.globEager<string>(
+const svgIconsModules = import.meta.glob<string>(
   '/../packages/assets/application-icons/*.svg',
-  { as: 'raw' }
+  { as: 'raw', eager: true }
 );
 
 const svgIcons = Object.entries<string>(svgIconsModules).reduce<

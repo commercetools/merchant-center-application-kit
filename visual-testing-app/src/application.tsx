@@ -1,4 +1,4 @@
-/// <reference path="../../node_modules/vite/types/importMeta.d.ts" />
+/// <reference types="vite/client" />
 
 import { ComponentType } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -8,8 +8,9 @@ type TVisualRouteSpec = {
   Component: ComponentType;
 };
 
-const visualRoutesModules = import.meta.globEager<TVisualRouteSpec>(
-  './components/**/*.visualroute.tsx'
+const visualRoutesModules = import.meta.glob<TVisualRouteSpec>(
+  './components/**/*.visualroute.tsx',
+  { eager: true }
 );
 
 const allUniqueVisualRouteComponents = Object.values(
