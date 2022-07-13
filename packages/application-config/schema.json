@@ -4,14 +4,6 @@
   "title": "JSON schema for Custom Application configuration files",
   "type": "object",
   "definitions": {
-    "envVariablePlaceholder": {
-      "type": "string",
-      "pattern": "(\\$\\{env:\\w+\\})+"
-    },
-    "pathVariablePlaceholder": {
-      "type": "string",
-      "pattern": "(\\$\\{path:\\w+\\})+"
-    },
     "cspDirective": {
       "type": "array",
       "items": {
@@ -23,59 +15,23 @@
   "properties": {
     "name": {
       "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#name",
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "$ref": "#/definitions/envVariablePlaceholder"
-        }
-      ]
+      "type": "string"
     },
     "description": {
       "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#description",
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "$ref": "#/definitions/envVariablePlaceholder"
-        }
-      ]
+      "type": "string"
     },
     "entryPointUriPath": {
       "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#entrypointuripath",
-      "oneOf": [
-        {
-          "type": "string",
-          "pattern": "^[^\\-_#]([0-9a-z]|[\\-_](?![\\-_])){0,62}[^\\-_#]$"
-        },
-        {
-          "$ref": "#/definitions/envVariablePlaceholder"
-        }
-      ]
+      "type": "string"
     },
     "cloudIdentifier": {
       "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#cloudidentifier",
-      "oneOf": [
-        {
-          "enum": ["gcp-au", "gcp-eu", "gcp-us", "aws-fra", "aws-ohio"]
-        },
-        {
-          "$ref": "#/definitions/envVariablePlaceholder"
-        }
-      ]
+      "type": "string"
     },
     "mcApiUrl": {
       "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#mcapiurl",
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "$ref": "#/definitions/envVariablePlaceholder"
-        }
-      ]
+      "type": "string"
     },
     "oAuthScopes": {
       "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#oauthscopes",
@@ -114,24 +70,10 @@
           "properties": {
             "initialProjectKey": {
               "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#envdevelopmentinitialprojectkey",
-              "oneOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "$ref": "#/definitions/envVariablePlaceholder"
-                }
-              ]
+              "type": "string"
             },
             "teamId": {
-              "oneOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "$ref": "#/definitions/envVariablePlaceholder"
-                }
-              ]
+              "type": "string"
             }
           },
           "additionalProperties": false,
@@ -142,36 +84,15 @@
           "properties": {
             "applicationId": {
               "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#envproductionapplicationid",
-              "oneOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "$ref": "#/definitions/envVariablePlaceholder"
-                }
-              ]
+              "type": "string"
             },
             "url": {
               "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#envproductionurl",
-              "oneOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "$ref": "#/definitions/envVariablePlaceholder"
-                }
-              ]
+              "type": "string"
             },
             "cdnUrl": {
               "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#envproductioncdnurl",
-              "oneOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "$ref": "#/definitions/envVariablePlaceholder"
-                }
-              ]
+              "type": "string"
             }
           },
           "additionalProperties": false,
@@ -236,14 +157,7 @@
     },
     "icon": {
       "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#icon",
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "$ref": "#/definitions/pathVariablePlaceholder"
-        }
-      ]
+      "type": "string"
     },
     "mainMenuLink": {
       "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#mainmenulink",
