@@ -9,10 +9,11 @@ module.exports = {
     '.yarn',
     '.cache',
     'build/',
+    'code-examples/',
+    'compiled-data/',
+    'generated/',
     'dist/',
     'public/',
-    'generated',
-    'compiled-data',
   ],
   testMatch: ['<rootDir>/**/*.js', '<rootDir>/**/*.ts', '<rootDir>/**/*.tsx'],
   watchPlugins: [

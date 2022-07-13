@@ -74,29 +74,10 @@ We can leverage the `context` option for Apollo queries to adjust how request is
 By default, all requests with the SDK actions are configured to be sent to the Merchant Center API Gateway.
 When making requests to the external API using the SDK actions, you can now use the `forwardTo` object, which wraps the normal action creators and configures them with the required HTTP headers.
 
-```js
-actions.forwardTo.get({ uri: 'https://my-custom-app.com/graphql' });
-actions.forwardTo.del({ uri: 'https://my-custom-app.com/graphql' });
-actions.forwardTo.head({ uri: 'https://my-custom-app.com/graphql' });
-actions.forwardTo.post({
-  uri: 'https://my-custom-app.com/graphql',
-  payload: { say: 'Hello' },
-});
-
-// You can also pass custom HTTP headers, for example:
-actions.forwardTo.get({
-  uri: 'https://my-custom-app.com/graphql',
-  headers: {
-    'x-foo': 'bar',
-  },
-});
-
-// To change the audience policy:
-actions.forwardTo.get({
-  uri: 'https://my-custom-app.com/api',
-  audiencePolicy: 'forward-url-origin',
-});
-```
+<MultiCodeExample>
+  <CodeExample path="concepts/integrate-with-your-own-api/sdk-actions.js" />
+  <CodeExample path="concepts/integrate-with-your-own-api/sdk-actions.ts" />
+</MultiCodeExample>
 
 <Info>
 
@@ -188,24 +169,10 @@ The middleware requires some options:
 
 You can use the middleware as following:
 
-```js highlightLines="3,9-12"
-const express = require('express');
-const {
-  createSessionMiddleware,
-  CLOUD_IDENTIFIERS,
-} = require('@commercetools-backend/express');
-
-const app = express();
-app.use(
-  createSessionMiddleware({
-    audience: 'https://my-api-server.com',
-    issuer: CLOUD_IDENTIFIERS.GCP_EU,
-  })
-);
-app.use((request, response, next) => {
-  // `request.session` contains the useful information
-});
-```
+<MultiCodeExample>
+  <CodeExample path="concepts/integrate-with-your-own-api/middleware-usage.js" highlightLines={[3,9,10,11,12]} />
+  <CodeExample path="concepts/integrate-with-your-own-api/middleware-usage.ts" highlightLines={[7,13,14,15,16]} />
+</MultiCodeExample>
 
 ### Usage for Serverless Functions
 
@@ -215,57 +182,19 @@ The options to configure the function are the same as the Express.js middleware.
 
 Below is an example of validating the JWT for Google Cloud Functions:
 
-```js highlightLines="2,6-9,12-17"
-const {
-  createSessionAuthVerifier,
-  CLOUD_IDENTIFIERS,
-} = require('@commercetools-backend/express');
-
-const sessionAuthVerifier = createSessionAuthVerifier({
-  audience: 'https://my-api-server.com',
-  issuer: CLOUD_IDENTIFIERS.GCP_EU,
-});
-
-exports.handler = async function (request, response) {
-  try {
-    await sessionAuthVerifier(request, response);
-  } catch (error) {
-    response.status(401).send(JSON.stringify({ message: 'Unauthorized' }));
-    return;
-  }
-  // `request.session` contains the useful information
-};
-```
+<MultiCodeExample>
+  <CodeExample path="concepts/integrate-with-your-own-api/middleware-usage-with-google-cloud-functions.js" highlightLines={[2,6,7,8,9,12,13,14,15,16,17]} />
+  <CodeExample path="concepts/integrate-with-your-own-api/middleware-usage-with-google-cloud-functions.ts" highlightLines={[2,7,8,9,10,13,14,15,16,17,18]} />
+</MultiCodeExample>
 
 Other cloud providers might not use a standard Node.js/Express `request` object. For example AWS Lambda functions receive an [`event` object](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html) with different properties.
 
 In these cases you need to implement the `getRequestUrl` function to correctly map the expected URL (URI path + query string). The following example shows how to map an AWS Lambda function [event](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html).
 
-```js highlightLines="10"
-const {
-  createSessionAuthVerifier,
-  CLOUD_IDENTIFIERS,
-} = require('@commercetools-backend/express');
-
-const sessionAuthVerifier = createSessionAuthVerifier({
-  audience: 'https://my-api-server.com',
-  issuer: CLOUD_IDENTIFIERS.GCP_EU,
-  // This example assumes that the `event` is based on Lambda v2 of the payload format.
-  getRequestUrl: (event) => `${event.rawPath}${event.rawQueryString ? '?' + event.rawQueryString : ''}`
-});
-
-exports.handler = async function (event, context) {
-  try {
-    await sessionAuthVerifier(event, context);
-  } catch (error) {
-    return {
-      statusCode: 401,
-      body: JSON.stringify({ message: 'Unauthorized' }),
-    };
-  }
-  // `event.session` contains the useful information
-};
-```
+<MultiCodeExample>
+  <CodeExample path="concepts/integrate-with-your-own-api/middleware-usage-with-aws-lambda-functions.js" highlightLines={[9,10]} />
+  <CodeExample path="concepts/integrate-with-your-own-api/middleware-usage-with-aws-lambda-functions.ts" highlightLines={[10,11]} />
+</MultiCodeExample>
 
 
 ## Using JSON Web Key Set endpoint
@@ -314,30 +243,10 @@ The URL `https://<identifier>.ngrok.io` can now be used as the URL of the server
 
 This is also the value of the `audience` to be configured in your session middleware when using the `@commercetools-backend/express` package.
 
-```js highlightLines="10"
-const express = require("express");
-const {
-  createSessionMiddleware,
-  CLOUD_IDENTIFIERS,
-} = require("@commercetools-backend/express");
-
-const app = express();
-app.use(
-  createSessionMiddleware({
-    audience: "https://33ea-87-183-162-9.eu.ngrok.io",
-    issuer: CLOUD_IDENTIFIERS.GCP_EU,
-  })
-);
-app.post("/echo", (req, res) => {
-  res.send("It works 🙌");
-});
-
-app.listen(6000, () => {
-  console.log("Running on port 6000.");
-});
-
-module.exports = app;
-```
+<MultiCodeExample>
+  <CodeExample path="concepts/integrate-with-your-own-api/local-development.js" highlightLines={[10]} />
+  <CodeExample path="concepts/integrate-with-your-own-api/local-development.ts" highlightLines={[10]} />
+</MultiCodeExample>
 
 We recommend configuring the external API URL using environment variables to be able to define different values for development (using a secure tunnel) and production.
 In the Custom Application config you can specify the external API URL as an [`additionalEnv`](/api-reference/application-config#additionalenv) property using a [variable placeholder](/api-reference/application-config#using-variable-placeholders).

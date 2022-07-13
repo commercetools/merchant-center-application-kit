@@ -41,27 +41,11 @@ We recommend to render the application content as `children` of `<ApplicationShe
 
 This allows the `<ApplicationShell>` to pre-configure the application entry point routes. In addition to that, the entry point route is protected by the basic `View` permission check. This means that a user without permissions of your Custom Application won't be able to access the Custom Application route.
 
-```jsx title="entry-point.js"
-import { ApplicationShell } from '@commercetools-frontend/application-shell';
+<MultiCodeExample title="entry-point">
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/app-shell-usage.jsx" />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/app-shell-usage.tsx" />
+</MultiCodeExample>
 
-const loadMessages = async (locale) => {
-  // ...
-}
-
-const AsyncApplicationRoutes = React.lazy(
-  () => import('../../routes' /* webpackChunkName: "avengers" */)
-);
-
-const EntryPoint = () => (
-  <ApplicationShell
-    environment={window.app}
-    applicationMessages={loadMessages}
-  >
-    <AsyncApplicationRoutes />
-  </ApplicationShell>
-);
-export default EntryPoint;
-```
 
 ### Properties
 
@@ -93,108 +77,47 @@ A React hook that wraps the [`useMutation`](https://www.apollographql.com/docs/r
 
 Configures global event listeners to catch unexpected errors and report them to Sentry. Make sure to render this in the `entry-point` file.
 
-```js title="entry-point.js"
-import {
-  setupGlobalErrorListener,
-  ApplicationShell,
-} from '@commercetools-frontend/application-shell';
+<MultiCodeExample title="entry-point">
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/setup-global-error-listener.jsx" highlightLines={[8]} />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/setup-global-error-listener.tsx" highlightLines={[8]} />
+</MultiCodeExample>
 
-const EntryPoint = () => {
-  return (
-    <ApplicationShell
-      apolloClient={apolloClient}
-      // ...other props
-    />
-  );
-};
-```
 
 ## createApolloClient
 
 Creates a new instance of the Apollo Client. Use this if you need to [configure the Apollo cache](https://www.apollographql.com/docs/react/caching/cache-configuration).
 
-```js
-createApolloClient({
-  cache: {
-    // ...
-  },
-})
-```
+<MultiCodeExample>
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/create-apollo-client.js" />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/create-apollo-client.ts" />
+</MultiCodeExample>
+
 
 The new Apollo Client instance must be explicitly passed to the `<ApplicationShell>`.
 
-```js title="entry-point.js"
-import {
-  createApolloClient,
-  ApplicationShell,
-} from '@commercetools-frontend/application-shell';
+<MultiCodeExample title="entry-point">
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/use-apollo-client-in-app.jsx" highlightLines={[6,7,10,11,16]} />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/use-apollo-client-in-app.tsx" highlightLines={[6,7,10,11,16]} />
+</MultiCodeExample>
 
-const apolloClient = createApolloClient({
-  cache: {
-    // Your custom configuration, according to the Apollo cache documentation.
-    // https://www.apollographql.com/docs/react/caching/cache-configuration/
-  },
-});
-
-const EntryPoint = () => {
-  return (
-    <ApplicationShell
-      apolloClient={apolloClient}
-      // ...other props
-    />
-  );
-};
-```
 
 Furthermore, in your tests you also need to create a new instance of your custom Apollo Client and pass it to the test utils.
 
-```js
-import { createApolloClient } from '@commercetools-frontend/application-shell';
-import { renderAppWithRedux } from '@commercetools-frontend/application-shell/test-utils';
+<MultiCodeExample>
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/use-apollo-client-in-tests.js" />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/use-apollo-client-in-tests.ts" />
+</MultiCodeExample>
 
-renderAppWithRedux({
-  apolloClient: createApolloClient(),
-  // ...
-});
-```
 
 ## createApolloContextForProxyForwardTo
 
 Creates the Apollo `context` object with all the required options for using the `/forward-to` endpoint. See [Integrate with your own API](/concepts/integrate-with-your-own-api).
 
-```js highlightLines="2,14-21"
-import {
-  createApolloContextForProxyForwardTo,
-  useMcQuery,
-} from '@commercetools-frontend/application-shell';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+<MultiCodeExample>
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/create-apollo-context-for-proxy-forward-to.jsx" highlightLines={[2,14,16,18,19,20]} />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/create-apollo-context-for-proxy-forward-to.tsx" highlightLines={[2,14,16,18,19,20]} />
+</MultiCodeExample>
 
-const useExternalApiFetcher = () => {
-  // Assuming that the `custom-application-config.json` contains the custom value:
-  // `{ additionalEnv: { externalApiUrl: 'https://my-custom-app.com/graphql'} }`
-  const externalApiUrl = useApplicationContext(
-    context => context.environment.externalApiUrl
-  );
-  const { loading, data, error } = useMcQuery(MyQuery, {
-    context: createApolloContextForProxyForwardTo({
-      // The URL to your external API
-      uri: externalApiUrl,
-      // Optionally pass custom HTTP headers
-      headers: {
-        'x-foo': 'bar',
-      },
-      // Optionally define the audience policy
-      audiencePolicy: 'forward-url-full-path',
-    }),
-  });
-
-  return {
-    loading,
-    data,
-    error,
-  }
-};
-```
 
 Available options are:
 
@@ -230,23 +153,11 @@ A wrapper around the [`render`](https://testing-library.com/docs/react-testing-l
 
 ### Usage
 
-```js
-import {
-  renderApp,
-  screen,
-} from '@commercetools-frontend/application-shell/test-utils';
+<MultiCodeExample title="entry-point">
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/tests-render-app.jsx" highlightLines={[8,9,10,11,12]} />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/tests-render-app.tsx" highlightLines={[8,9,10,11,12]} />
+</MultiCodeExample>
 
-describe('rendering', () => {
-  it('should render the authenticated users first name', async () => {
-    renderApp(<FirstName />, {
-      user: {
-        firstName: 'Leonard',
-      },
-    });
-    await screen.findByText('First name: Leonard');
-  });
-});
-```
 
 ### Options
 
@@ -282,23 +193,11 @@ A wrapper around the [`renderApp`](#renderapp) method with the additional suppor
 
 ### Usage
 
-```js
-import {
-  renderAppWithRedux,
-  screen,
-} from '@commercetools-frontend/application-shell/test-utils';
+<MultiCodeExample>
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/tests-render-app-with-redux.jsx" highlightLines={[8,9,10,11,12]} />
+  <CodeExample path="api-reference/commercetools-frontend-application-shell/tests-render-app-with-redux.tsx" highlightLines={[8,9,10,11,12]} />
+</MultiCodeExample>
 
-describe('rendering', () => {
-  it('should render the authenticated users first name', async () => {
-    renderAppWithRedux(<FirstName />, {
-      user: {
-        firstName: 'Leonard',
-      },
-    });
-    await screen.findByText('First name: Leonard');
-  });
-});
-```
 
 ### Options
 

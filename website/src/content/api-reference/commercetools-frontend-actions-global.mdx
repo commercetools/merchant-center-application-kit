@@ -61,15 +61,10 @@ For defining the domain and the kind of a notification we recommend using the va
 
 For instance:
 
-```js
-import { 
-  DOMAINS, 
-  NOTIFICATION_KINDS_SIDE
-} from '@commercetools-frontend/constants';
-
-const kind = NOTIFICATION_KINDS_SIDE.success;
-const domain = DOMAINS.SIDE;
-```
+<MultiCodeExample>
+  <CodeExample path="api-reference/commercetools-frontend-actions-global/show-notification.jsx" />
+  <CodeExample path="api-reference/commercetools-frontend-actions-global/show-notification.tsx" />
+</MultiCodeExample>
 
 </Info>
 
@@ -88,20 +83,10 @@ Takes as argument an object with `errors` property, which is an error object or 
 
 Some error sources (for example, GraphQL APIs) return an array or object. The `showApiErrorNotification` action creator accepts both as the value of `errors` property.
 
-```js
-const errors = [
-  {
-    message:
-      "A duplicate value '\"Test channel\"' exists for field 'key'.",
-    code: "DuplicateField",
-    extensions: {
-      code: "DuplicateField";
-    };
-  },
-];
-// ...
-dispatch(showApiErrorNotification({ errors })); // dispatch method from Redux store
-```
+<MultiCodeExample>
+  <CodeExample path="api-reference/commercetools-frontend-actions-global/show-api-error-notification.jsx" />
+  <CodeExample path="api-reference/commercetools-frontend-actions-global/show-api-error-notification.tsx" />
+</MultiCodeExample>
 
 ## handleActionError
 
@@ -110,24 +95,11 @@ An action creator that attempts to handle a generic error and dispatch the appro
 It takes only one parameter that can be either of these types:
 
 - API error - an error object containing `statusCode` and `body` object
-```js
-import { STATUS_CODES } from '@commercetools-frontend/constants';
-const error = {
-  statusCode: STATUS_CODES.FORBIDDEN, // statusCode: 403
-  body: {
-    message: "This is an error",
-    errors: [
-      {
-        message:
-          "This is an error", // this message will be displayed as notification text
-        code: "Invalid",
-      },
-    ],
-  },
-}
-// ...
-dispatch(handleActionError(error)); // dispatch method from Redux store
-```
+
+<MultiCodeExample>
+  <CodeExample path="api-reference/commercetools-frontend-actions-global/handle-action-error.jsx" />
+  <CodeExample path="api-reference/commercetools-frontend-actions-global/handle-action-error.tsx" />
+</MultiCodeExample>
 
 <Info>
 
@@ -139,41 +111,19 @@ If the errors array contains multiple error objects, the displayed notification 
 
 For example:
 
-```js
-const error = {
-  // ...
-  body: {
-    // ...
-    errors: [
-      {
-        message:
-          "This is the first error", // displayed as the notification text
-        code: "Invalid",
-      },
-      {
-        message:
-          "This is the second error", // also displayed as the notification text
-        code: "Invalid",
-      },
-    ],
-  },
-}
-```
+<MultiCodeExample>
+  <CodeExample path="api-reference/commercetools-frontend-actions-global/handle-multiple-action-error.jsx" />
+  <CodeExample path="api-reference/commercetools-frontend-actions-global/handle-multiple-action-error.tsx" />
+</MultiCodeExample>
 
 </Info>
 
 - an instance of any error extended from `Error` class
 
-```js
-class CustomError extends Error {
-  constructor(message) {
-    super(message);
-    this.name = "CustomError";
-  }
-}
-const error = new CustomError("error");
-dispatch(handleActionError(error)); // dispatch method from Redux store
-```
+<MultiCodeExample>
+  <CodeExample path="api-reference/commercetools-frontend-actions-global/handle-action-error-instance.jsx" />
+  <CodeExample path="api-reference/commercetools-frontend-actions-global/handle-action-error-instance.tsx" />
+</MultiCodeExample>
 
 ## hideAllPageNotifications
 
@@ -190,77 +140,34 @@ dispatch(hideAllPageNotifications()); // dispatch method from Redux store
 
 A React hook to dispatch [`showNotification`](#shownotification) action.
 
-```js
-import {
-  useShowNotification
-} from '@commercetools-frontend/actions-global';
-import {
-  DOMAINS,
-  NOTIFICATION_KINDS_SIDE,
-} from '@commercetools-frontend/constants';
-
-const showSuccessNotification = useShowNotification();
-showSuccessNotification({
-  domain: DOMAINS.SIDE,
-  kind: NOTIFICATION_KINDS_SIDE.success,
-  text: "All good!",
-});
-```
+<MultiCodeExample>
+  <CodeExample path="api-reference/commercetools-frontend-actions-global/use-show-notification.jsx" />
+  <CodeExample path="api-reference/commercetools-frontend-actions-global/use-show-notification.tsx" />
+</MultiCodeExample>
 
 ## useShowApiErrorNotification
 
 A React hook to dispatch [`showApiErrorNotification`](#showapierrornotification) action.
 
-```js
-import {
-  useShowApiErrorNotification
-} from '@commercetools-frontend/actions-global';
+<MultiCodeExample>
+  <CodeExample path="api-reference/commercetools-frontend-actions-global/use-show-api-error-notification.jsx" />
+  <CodeExample path="api-reference/commercetools-frontend-actions-global/use-show-api-error-notification.tsx" />
+</MultiCodeExample>
 
-const errors = [
-  {
-    message:
-      "A duplicate value '\"Test channel\"' exists for field 'key'.",
-    code: "DuplicateField",
-  },
-];
-const showApiErrorNotification = useShowApiErrorNotification();
-showApiErrorNotification({ errors });
-```
  ## useOnActionError
  
 A React hook to dispatch [`handleActionError`](#handleactionerror) action. 
 
-```js
-import { STATUS_CODES } from '@commercetools-frontend/constants';
-import { useOnActionError } from '@commercetools-frontend/actions-global';
-
-const error = {
-  statusCode: STATUS_CODES.FORBIDDEN, // statusCode: 403
-  body: {
-    message: "This is an error",
-    errors: [
-      {
-        message:
-          "This is an error",
-        code: "Invalid",
-      },
-    ],
-  },
-}
-const onActionError = useOnActionError();
-onActionError(error)
-```
+<MultiCodeExample>
+  <CodeExample path="api-reference/commercetools-frontend-actions-global/use-on-action-error.jsx" />
+  <CodeExample path="api-reference/commercetools-frontend-actions-global/use-on-action-error.tsx" />
+</MultiCodeExample>
 
 ## useHideAllPageNotifications
 
 A React hook to dispatch [`hideAllPageNotifications`](#hideallpagenotifications) action.
 
-```js
-import { 
-  useHideAllPageNotifications
-} from '@commercetools-frontend/actions-global';
-
-const hideAllPageNotifications = useHideAllPageNotifications();
-hideAllPageNotifications()
-```
-
+<MultiCodeExample>
+  <CodeExample path="api-reference/commercetools-frontend-actions-global/use-hide-all-page-notifications.jsx" />
+  <CodeExample path="api-reference/commercetools-frontend-actions-global/use-hide-all-page-notifications.tsx" />
+</MultiCodeExample>

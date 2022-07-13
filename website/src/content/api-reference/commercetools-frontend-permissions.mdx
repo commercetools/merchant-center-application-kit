@@ -36,21 +36,10 @@ A React hook that evaluates the [Custom Application requested user permissions](
 
 ### Usage
 
-```jsx
-import { useIsAuthorized } from '@commercetools-frontend/permissions';
-
-const CreateButton = () => {
-  const canManage = useIsAuthorized({
-    demandedPermissions: ['ManageAvengers']
-  });
-  return (
-    <PrimaryButton
-      isDisabled={!canManage}
-      // ...
-    />
-  );
-}
-```
+<MultiCodeExample>
+  <CodeExample path="api-reference/commercetools-frontend-permissions/use-is-authorized.jsx" />
+  <CodeExample path="api-reference/commercetools-frontend-permissions/use-is-authorized.tsx" />
+</MultiCodeExample>
 
 ### Options
 

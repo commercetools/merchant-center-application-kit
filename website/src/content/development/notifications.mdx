@@ -23,33 +23,10 @@ For defining the `domain` and the `kind` of a notification, we recommend using t
 
 For example:
 
-```js
-import {
-  useShowNotification
-} from '@commercetools-frontend/actions-global';
-import { 
-  DOMAINS, 
-  NOTIFICATION_KINDS_SIDE,
-  NOTIFICATION_KINDS_PAGE
-} from '@commercetools-frontend/constants';
-
-const showNotification = useShowNotification();
-
-// success notification in side domain
-showNotification({
-  kind: NOTIFICATION_KINDS_SIDE.success,
-  domain: DOMAINS.SIDE,
-  text: 'Success 🎉',
-});
-
-// warning notification in page domain
-showNotification({
-  kind: NOTIFICATION_KINDS_PAGE.warning,
-  domain: DOMAINS.PAGE,
-  text: 'Warning ⚠️',
-});
-
-```
+<MultiCodeExample>
+  <CodeExample path="development/notifications/domain-and-kind.jsx" />
+  <CodeExample path="development/notifications/domain-and-kind.tsx" />
+</MultiCodeExample>
 
 </Info>
 
@@ -96,71 +73,10 @@ Let's implement notifications in the details page of the `Channels` application.
 
 ## Form submitted successfully
 
-```js title="channels-details.js" highlightLines="6-7,20,26-30"
-import { useCallback } from 'react';
-import { useRouteMatch } from 'react-router-dom';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { FormModalPage } from '@commercetools-frontend/application-components';
-import LoadingSpinner from '@commercetools-uikit/loading-spinner';
-import { useShowNotification } from '@commercetools-frontend/actions-global';
-import { DOMAINS, NOTIFICATION_KINDS_SIDE } from '@commercetools-frontend/constants';
-import useChannelsFetcher from './use-channels-fetcher';
-import useChannelsUpdater from './use-channels-updater';
-import { docToFormValues, formValuesToDoc } from './conversions';
-import ChannelsForm from './channels-form';
-
-const ChannelsDetails = (props) => {
-  const match = useRouteMatch();
-  const languages = useApplicationContext(
-    (context) => context.project.languages
-  );
-  const { data: channel } = useChannelsFetcher(match.params.id);
-  const { updateChannel } = useChannelsUpdater(match.params.id);
-  const showNotification = useShowNotification();
-  const handleSubmit = useCallback(
-    async (formValues) => {
-      const data = formValuesToDoc(formValues);
-      try {
-        await updateChannel(data);
-        showNotification({
-          kind: NOTIFICATION_KINDS_SIDE.success,
-          domain: DOMAINS.SIDE,
-          text: 'Channel updated! 🎉',
-        });
-      } catch (graphQLErrors) {
-        // show an error notification
-      }
-    },
-    [showNotification, updateChannel]
-  );
-
-  if (!channel) {
-    return <LoadingSpinner />;
-  }
-
-  return (
-    <ChannelsForm
-      initialValues={docToFormValues(channel, languages)}
-      onSubmit={handleSubmit}
-    >
-      {(formProps) => {
-        return (
-          <FormModalPage
-            title="Manage Channel"
-            isOpen
-            onClose={props.onClose}
-            isPrimaryButtonDisabled={formProps.isSubmitting}
-            onSecondaryButtonClick={formProps.handleCancel}
-            onPrimaryButtonClick={formProps.submitForm}
-          >
-            {formProps.formElements}
-          </FormModalPage>
-        );
-      }}
-    </ChannelsForm>
-  );
-};
-```
+<MultiCodeExample title="channels-details">
+  <CodeExample path="development/notifications/submitted-successfully.jsx" highlightLines={[6,7,20,26,27,28,29,30]}/>
+  <CodeExample path="development/notifications/submitted-successfully.tsx" highlightLines={[6,7,31,37,38,39,40,41]}/>
+</MultiCodeExample>
 
 ## Form submitted with errors
 
@@ -175,36 +91,11 @@ Find more information about GraphQL errors in the [Apollo Client docs](https://w
 </Info>
 
 The basic implementation of dispatching error notifications in the `Channels` application might look like this:
-```js title="channels-details.js" highlightLines="3,8,15-21"
-// ...
-import { 
-  useShowApiErrorNotification 
-} from '@commercetools-frontend/actions-global';
 
-const ChannelsDetails = (props) => {
-  // ...
-  const showApiErrorNotification = useShowApiErrorNotification();
-  const handleSubmit = useCallback(
-    async (formValues) => {
-      const data = formValuesToDoc(formValues);
-      try {
-        // ...
-      } catch (graphQLErrors) {
-        const errors = Array.isArray(graphQLErrors)
-          ? graphQLErrors
-          : [graphQLErrors];
-        if (errors.length > 0)
-          showApiErrorNotification({
-            errors,
-          });
-      }
-    },
-    [showApiErrorNotification, /* ... */ ]
-  );
-
-  // ...
-};
-```
+<MultiCodeExample title="channels-details">
+  <CodeExample path="development/notifications/submitted-with-errors.jsx" highlightLines={[3,9,16,17,18,19,20,22]}/>
+  <CodeExample path="development/notifications/submitted-with-errors.tsx" highlightLines={[3,12,19,20,21,22,23,24,25]}/>
+</MultiCodeExample>
 
 Following our recommendations, not all GraphQL errors should lead to dispatching an error notification.
 For example, instead of displaying an error notification, we can try to map specific errors to their related form fields.
@@ -220,69 +111,17 @@ Find more information about API errors on the [API errors page](https://docs.com
 
 For this purpose, we recommend creating an error transforming function:
 
-```js title="transform-errors.js"
-import omitEmpty from 'omit-empty-es';
-
-const DUPLICATE_FIELD_ERROR_CODE = 'DuplicateField'; // A particular error code returned by API that we wish to map to form field validation error
-
-export const transformErrors = (graphQlErrors) => {
-  const errorsToMap = Array.isArray(graphQlErrors)
-    ? graphQlErrors
-    : [graphQlErrors];
-
-  const { formErrors, unmappedErrors } = errorsToMap.reduce(
-    (transformedErrors, graphQlError) => {
-      const errorCode = graphQlError?.extensions?.code ?? graphQlError.code;
-      const fieldName = graphQlError?.extensions?.field ?? graphQlError.field;
-
-      if (errorCode === DUPLICATE_FIELD_ERROR_CODE) {
-        transformedErrors.formErrors[fieldName] = { duplicate: true };
-      } else {
-        transformedErrors.unmappedErrors.push(graphQlError);
-      }
-      return transformedErrors;
-    },
-    {
-      formErrors: {}, // will be mappped to form field error messages
-      unmappedErrors: [], // will result in dispatching `showApiErrorNotification`
-    }
-  );
-
-  return {
-    formErrors: omitEmpty(formErrors),
-    unmappedErrors,
-  };
-};
-```
+<MultiCodeExample title="transform-errors">
+  <CodeExample path="development/notifications/transform-errors.jsx" />
+  <CodeExample path="development/notifications/transform-errors.tsx" />
+</MultiCodeExample>
 
 In the form `onSubmit` handler we can then transform the errors, render them in the form (if needed) and dispatch an error notification.
 
-```js title="channels-details.js" highlightLines="2,7,12-18"
-// ...
-import { transformErrors } from './transform-errors';
-
-const ChannelsDetails = (props) => {
-  // ...
-  const handleSubmit = useCallback(
-    async (formValues, formikHelpers) => {
-      const data = formValuesToDoc(formValues);
-      try {
-        // ...
-      } catch (graphQLErrors) {
-        const transformedErrors = transformErrors(graphQLErrors);
-        if (transformedErrors.unmappedErrors.length > 0)
-          showApiErrorNotification({
-            errors: transformedErrors.unmappedErrors,
-          });
-
-        formikHelpers.setErrors(transformedErrors.formErrors);
-      }
-    },
-    [ /* ... */ ]
-  );
-  // ...
-};
-```
+<MultiCodeExample title="channels-details">
+  <CodeExample path="development/notifications/render-transformed-errors.jsx" highlightLines={[2,7,12,13,14,15,16,17,18]}/>
+  <CodeExample path="development/notifications/render-transformed-errors.tsx" highlightLines={[2,10,15,16,17,18,19,20,21]}/>
+</MultiCodeExample>
 
 Now `DuplicateField` errors related to the `key` field will be transformed to form validation errors and all other errors to API error notifications.
 
@@ -290,52 +129,10 @@ Now `DuplicateField` errors related to the `key` field will be transformed to fo
 
 For HTTP requests sent to REST API we may follow the same pattern as we used for [GraphQL](#graphql):
 
-```js title="channels-details-rest.js" highlightLines="4-8,12-13,28-32,35"
-import { useEffect } from "react";
-import { useAsyncDispatch, actions } from "@commercetools-frontend/sdk";
-import { MC_API_PROXY_TARGETS } from "@commercetools-frontend/constants";
-import {
-  useShowNotification,
-  useShowApiErrorNotification,
-} from "@commercetools-frontend/actions-global";
-import { DOMAINS, NOTIFICATION_KINDS_SIDE } from "@commercetools-frontend/constants";
-
-const ChannelsDetails = (props) => {
-  const dispatch = useAsyncDispatch();
-  const showNotification = useShowNotification();
-  const showApiErrorNotification = useShowApiErrorNotification();
-  useEffect(() => {
-    async function execute() {
-      try {
-        const result = await dispatch(
-          actions.post({
-            mcApiProxyTarget: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
-            service: "channels",
-            options: { /* ... */ },
-            payload: {
-              // ...
-            },
-          })
-        );
-        // Update state with `result`
-        showNotification({
-          kind: NOTIFICATION_KINDS_SIDE.success,
-          domain: DOMAINS.SIDE,
-          text: "Channel updated! 🎉",
-        });
-      } catch (error) {
-        // Update state with `error`
-        showApiErrorNotification({ errors: error.body?.errors ?? [] });
-      }
-    }
-    execute();
-  }, [dispatch]);
-
-  return (
-    // ...
-  );
-};
-```
+<MultiCodeExample title="channels-details-rest">
+  <CodeExample path="development/notifications/rest-api.jsx" highlightLines={[4,5,6,7,8,12,13,28,29,30,31,32,35]}/>
+  <CodeExample path="development/notifications/rest-api.tsx" highlightLines={[4,5,6,7,8,16,17,32,33,34,35,36,39]}/>
+</MultiCodeExample>
 
 # Usage with React class components
 
@@ -344,48 +141,10 @@ Instead, we should use a Redux action directly.
 
 At a bare minimum, dispatching notifications could look like this:
 
-```jsx title="channel-updater.js" highlightLines="2-6,14-20,26-30,40"
-import { Component } from 'react';
-import { connect } from 'react-redux';
-import {
-  showNotification,
-  showApiErrorNotification,
-} from '@commercetools-frontend/actions-global';
-import { DOMAINS, NOTIFICATION_KINDS_SIDE } from '@commercetools-frontend/constants';
-// ...
-
-class ChannelsDetails extends Component {
-  handleSubmit = (update) => async (formikValues) => {
-    try {
-      await update(formikValues);
-      this.props.dispatch(
-        showNotification({
-          kind: NOTIFICATION_KINDS_SIDE.success,
-          domain: DOMAINS.SIDE,
-          text: 'Channel updated! 🎉',
-        })
-      );
-    } catch (graphQLErrors) {
-      const errors = Array.isArray(graphQLErrors)
-        ? graphQLErrors
-        : [graphQLErrors];
-      if (errors.length > 0) {
-        this.props.dispatch(
-          showApiErrorNotification({
-            errors,
-          })
-        );
-      }
-    }
-  };
-  render() {
-    return (
-      // ...
-    );
-  }
-}
-export default connect()(ChannelsDetails);
-```
+<MultiCodeExample title="channel-updater">
+  <CodeExample path="development/notifications/react-class-component.jsx" highlightLines={[2,3,4,5,6,17,18,19,20,212,2,23,29,30,32,33,43]}/>
+  <CodeExample path="development/notifications/react-class-component.tsx" highlightLines={[2,3,4,5,6,37,38,39,40,41,42,41,42,43,49,50,51,52,53,63]}/>
+</MultiCodeExample>
 
 # Testing
 

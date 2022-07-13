@@ -1,4 +1,7 @@
 const colorPresets = require('@commercetools-docs/gatsby-theme-docs/color-presets');
+const {
+  configureThemeWithAddOns,
+} = require('@commercetools-docs/gatsby-theme-docs/configure-theme');
 
 module.exports = {
   // https://www.gatsbyjs.com/docs/reference/release-notes/v2.28/#feature-flags-in-gatsby-configjs
@@ -19,21 +22,19 @@ module.exports = {
   },
   plugins: [
     // Docs theme
-    {
-      resolve: '@commercetools-docs/gatsby-theme-docs',
-      options: {
-        websiteKey: 'custom-applications',
-        colorPreset: colorPresets.merchantCenterDeveloperDocs.key,
-        beta: false,
-        excludeFromSearchIndex: false,
-        gaTrackingId: 'UA-38285631-3',
-        globalNotification: {
-          notificationType: 'info',
-          content:
-            'This is the new documentation of Custom Applications. You can still visit the [legacy documentation](https://docs.commercetools.com/custom-applications/legacy) during the [migration](/migrating-from-project-level-custom-applications) from Project-level Custom Applications.',
-        },
-        overrideDefaultConfigurationData: ['**/top-*'],
+    ...configureThemeWithAddOns({
+      websiteKey: 'custom-applications',
+      colorPreset: colorPresets.merchantCenterDeveloperDocs.key,
+      beta: false,
+      excludeFromSearchIndex: false,
+      gaTrackingId: 'UA-38285631-3',
+      globalNotification: {
+        notificationType: 'info',
+        content:
+          'This is the new documentation of Custom Applications. You can still visit the [legacy documentation](https://docs.commercetools.com/custom-applications/legacy) during the [migration](/migrating-from-project-level-custom-applications) from Project-level Custom Applications.',
       },
-    },
+      overrideDefaultConfigurationData: ['**/top-*'],
+      addOns: ['@commercetools-docs/gatsby-theme-code-examples'],
+    }),
   ],
 };
