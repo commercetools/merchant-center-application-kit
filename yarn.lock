@@ -3871,7 +3871,7 @@ __metadata:
     node-fetch: 2.6.7
     postcss: 8.4.14
     postcss-custom-media: 8.0.2
-    postcss-custom-properties: 12.1.8
+    postcss-custom-properties: 12.1.4
     postcss-import: 14.1.0
     postcss-loader: 6.2.1
     postcss-reporter: 7.0.5
@@ -30139,14 +30139,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-custom-properties@npm:12.1.8":
-  version: 12.1.8
-  resolution: "postcss-custom-properties@npm:12.1.8"
+"postcss-custom-properties@npm:12.1.4":
+  version: 12.1.4
+  resolution: "postcss-custom-properties@npm:12.1.4"
   dependencies:
     postcss-value-parser: ^4.2.0
   peerDependencies:
     postcss: ^8.4
-  checksum: 4615b8181fe61c2df9f3a739b3257a9d76d00088c8fc3c502a59de52b25ab90be3d65ece8d372bcd1f9f8ba6bb99da5075707f9f11cb3522826a5d3553265ee5
+  checksum: c5ef5c5ff126a65adcae9f1842b6c82df8adc337481497a405de5dfb2121c799d381e75aed3dbfe855f4258e9d90927e77801012166fb667ea5c8f7d79562ada
   languageName: node
   linkType: hard
 
