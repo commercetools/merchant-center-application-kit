@@ -3,6 +3,7 @@ import path from 'path';
 import { build, type Plugin } from 'vite';
 import pluginGraphql from '@rollup/plugin-graphql';
 import pluginReact from '@vitejs/plugin-react';
+import pluginSvgr from 'vite-plugin-svgr';
 import { generateTemplate } from '@commercetools-frontend/mc-html-template';
 import { packageLocation as applicationStaticAssetsPath } from '@commercetools-frontend/assets';
 import paths from '../config/paths';
@@ -49,6 +50,26 @@ async function run() {
         jsxImportSource: '@emotion/react',
         babel: {
           plugins: ['@emotion/babel-plugin'],
+        },
+      }),
+      pluginSvgr({
+        include: '**/*.react.svg',
+        exportAsDefault: true,
+        svgrOptions: {
+          icon: false,
+          svgoConfig: {
+            plugins: [
+              {
+                // https://github.com/svg/svgo#default-preset
+                name: 'preset-default',
+                params: {
+                  overrides: {
+                    removeViewBox: false,
+                  },
+                },
+              },
+            ],
+          },
         },
       }),
     ],
