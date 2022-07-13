@@ -9,7 +9,7 @@ Codemod transformations for Custom Applications.
 ## Usage
 
 ```bash
-$ npx @commercetools-frontend/codemod <transform> <glob_pattern>
+$ npx @commercetools-frontend/codemod@latest <transform> <glob_pattern>
 ```
 
 We recommend to run `prettier` on the modified files to preserve the formatting configured on your project. For example, you can run `prettier --write $(git diff --name-only)`.
@@ -23,7 +23,7 @@ We recommend to run `prettier` on the modified files to preserve the formatting 
 Remove deprecated `level` and `baseZIndex` props from modal page components.
 
 ```
-$ npx @commercetools-frontend/codemod remove-deprecated-modal-level-props 'src/**/*.js'
+$ npx @commercetools-frontend/codemod@latest remove-deprecated-modal-level-props 'src/**/*.{js,jsx,ts,tsx}'
 ```
 
 ### `rename-js-to-jsx`
@@ -31,5 +31,13 @@ $ npx @commercetools-frontend/codemod remove-deprecated-modal-level-props 'src/*
 Rename `.js` files using React JSX syntax to `.jsx`.
 
 ```
-$ npx @commercetools-frontend/codemod rename-js-to-jsx 'src/**/*.js'
+$ npx @commercetools-frontend/codemod@latest rename-js-to-jsx 'src/**/*.js'
+```
+
+### `rename-mod-css-to-module-css`
+
+Rename `.mod.css` files to `.module.css` and update imports.
+
+```
+$ npx @commercetools-frontend/codemod@latest rename-mod-css-to-module-css 'src/**/*.{js,jsx,ts,tsx}'
 ```

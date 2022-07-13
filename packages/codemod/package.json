@@ -14,7 +14,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./build/cli.js",
+  "main": "./build/src/index.js",
   "files": ["bin", "build", "package.json", "LICENSE", "README.md"],
   "bin": {
     "mc-codemod": "./bin/mc-codemod.js"
@@ -24,9 +24,9 @@
     "build:bundles:watch": "yarn build -w"
   },
   "dependencies": {
+    "cac": "6.7.12",
     "glob": "8.0.1",
-    "jscodeshift": "0.13.1",
-    "mri": "1.2.0"
+    "jscodeshift": "0.13.1"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.2",

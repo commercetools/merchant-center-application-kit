@@ -1,35 +1,38 @@
 import path from 'path';
-import mri from 'mri';
+import cac from 'cac';
 import glob from 'glob';
 // @ts-ignore internal module
 import Runner from 'jscodeshift/src/Runner';
-import type { TRunnerOptions, TCliFlags, TCliCommandArguments } from './types';
+import type {
+  TRunnerOptions,
+  TCliGlobalOptions,
+  TCliTransformName,
+} from './types';
+import pkgJson from '../package.json';
 
-export const run = () => {
-  const flags = mri<TCliFlags>(process.argv.slice(2), {
-    alias: { help: ['h'] },
-    boolean: ['dry-run'],
-  });
-  const commands = flags._;
+const cli = cac('mc-codemod');
 
-  if (commands.length === 0 || (flags.help && commands.length === 0)) {
-    console.log(`
-Usage: mc-codemod [global-options] [transform] [glob-pattern]
+const transforms: { name: TCliTransformName; description: string }[] = [
+  {
+    name: 'remove-deprecated-modal-level-props',
+    description:
+      'Remove deprecated "level" and "baseZIndex" props from modal page components.',
+  },
+  {
+    name: 'rename-js-to-jsx',
+    description: 'Rename ".js" files using React JSX syntax to ".jsx".',
+  },
+  {
+    name: 'rename-mod-css-to-module-css',
+    description: 'Rename ".mod.css" files to ".module.css" and update imports.',
+  },
+];
 
-Global options:
-
-  --dry-run             (optional) Executes the command but does not send any mutation request.
-
-Transforms:
-
-  remove-deprecated-modal-level-props     Remove deprecated "level" and "baseZIndex" props from modal page components.
-  rename-js-to-jsx                        Rename ".js" files using React JSX syntax to ".jsx".
-  `);
-    process.exit(0);
-  }
-
-  const [transform, globPattern] = commands as TCliCommandArguments;
-
+const executeCodemod = async (
+  transform: TCliTransformName,
+  globPattern: string,
+  globalOptions: TCliGlobalOptions
+) => {
   const files = glob.sync(globPattern);
 
   const runJscodeshift = async (
@@ -39,37 +42,60 @@ Transforms:
   ) => {
     await Runner.run(transformPath, filePaths, options);
   };
+  switch (transform) {
+    case 'remove-deprecated-modal-level-props':
+    case 'rename-js-to-jsx':
+    case 'rename-mod-css-to-module-css': {
+      const transformPath = path.join(__dirname, `transforms/${transform}.js`);
 
-  const execute = async () => {
-    switch (transform) {
-      case 'remove-deprecated-modal-level-props':
-      case 'rename-js-to-jsx': {
-        const transformPath = path.join(
-          __dirname,
-          `transforms/${transform}.js`
-        );
-
-        await runJscodeshift(transformPath, files, {
-          extensions: 'tsx,ts,jsx,js',
-          ignorePattern: [
-            '**/node_modules/**',
-            '**/public/**',
-            '**/dist/**',
-            '**/build/**',
-          ],
-          parser: 'tsx',
-          verbose: 0,
-          dry: flags['dry-run'],
-        });
-        break;
-      }
-      default:
-        throw new Error(`Unknown transform ${transform}.`);
+      await runJscodeshift(transformPath, files, {
+        extensions: 'tsx,ts,jsx,js',
+        ignorePattern: [
+          '**/node_modules/**',
+          '**/public/**',
+          '**/dist/**',
+          '**/build/**',
+        ],
+        parser: 'tsx',
+        verbose: 0,
+        dry: globalOptions.dryRun,
+      });
+      break;
     }
-  };
-
-  execute().catch((error) => {
-    console.error(error.stack || error.message || error);
-    process.exit(1);
-  });
+    default:
+      throw new Error(`Unknown transform ${transform}.`);
+  }
 };
+
+export const run = () => {
+  cli.option(
+    '--dry-run',
+    `(optional) Executes the command but does not send any mutation request.`,
+    { default: false }
+  );
+
+  // Default command
+  cli
+    .command('')
+    .usage('\n\n  Codemods for updating Custom Applications.')
+    .action(() => {
+      cli.outputHelp();
+    });
+
+  // Transform commands
+  transforms.forEach((transform) => {
+    cli
+      .command(`${transform.name} <glob-pattern>`, transform.description)
+      .usage(`${transform.name} <glob-pattern>\n\n  ${transform.description}`)
+      .action((globPattern: string, globalOptions: TCliGlobalOptions) =>
+        executeCodemod(transform.name, globPattern, globalOptions)
+      );
+  });
+
+  cli.help();
+  cli.version(pkgJson.version);
+
+  cli.parse();
+};
+
+export default run;

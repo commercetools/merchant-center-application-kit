@@ -1,5 +1,3 @@
-const micromatch = require('micromatch');
-
 module.exports = {
   '*.md': ['prettier --write --parser markdown'],
   '*.yaml': ['prettier --write --parser yaml'],
@@ -9,7 +7,7 @@ module.exports = {
   '*.ctp.graphql': () => 'yarn generate-types:ctp',
   '*.settings.graphql': () => 'yarn generate-types:settings',
   '*.proxy.graphql': () => 'yarn generate-types:proxy',
-  '*.js': [
+  '*.{js,jsx}': [
     'prettier --write',
     // NOTE: apparently if you pass some argument that is not a flag AFTER the `reporters`
     // flag, jest does not seem correctly parse the arguments.

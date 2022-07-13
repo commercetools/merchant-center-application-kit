@@ -2911,9 +2911,9 @@ __metadata:
   dependencies:
     "@tsconfig/node16": ^1.0.2
     "@types/jscodeshift": 0.11.5
+    cac: 6.7.12
     glob: 8.0.1
     jscodeshift: 0.13.1
-    mri: 1.2.0
     rimraf: 3.0.2
     typescript: 4.6.4
   bin:
