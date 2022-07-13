@@ -36,4 +36,9 @@
 '@commercetools-website/components-playground': patch
 ---
 
-Update dependencies
+Update dependencies. Notable updates include:
+
+- `@sentry/*` to `v7`
+- `jsdom` to `v20`
+- `msw` to `v0.44`
+- `vite` to `v3` (_experimental opt-in_)

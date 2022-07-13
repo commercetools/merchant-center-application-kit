@@ -1,4 +1,4 @@
-/// <reference types="vite/client" />
+/// <reference path="../../node_modules/vite/types/importMeta.d.ts" />
 
 import { ComponentType } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
