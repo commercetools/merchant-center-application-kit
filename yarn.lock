@@ -3684,7 +3684,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/jest-stylelint-runner@workspace:packages/jest-stylelint-runner"
   dependencies:
-    create-jest-runner: 0.11.1
+    create-jest-runner: 0.10.0
     postcss: 8.4.14
     postcss-load-config: 3.1.4
     stylelint: 14.9.1
@@ -15892,24 +15892,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"create-jest-runner@npm:0.11.1":
-  version: 0.11.1
-  resolution: "create-jest-runner@npm:0.11.1"
+"create-jest-runner@npm:0.10.0":
+  version: 0.10.0
+  resolution: "create-jest-runner@npm:0.10.0"
   dependencies:
     chalk: ^4.1.0
-    jest-worker: ^28.0.2
+    jest-worker: ^27.0.6
     throat: ^6.0.1
   peerDependencies:
-    "@jest/test-result": ^28.0.0
-    jest-runner: ^28.0.0
+    "@jest/test-result": ^27.0.0
+    "@jest/types": ^27.0.0
+    jest-runner: ^27.0.0
   peerDependenciesMeta:
     "@jest/test-result":
+      optional: true
+    "@jest/types":
       optional: true
     jest-runner:
       optional: true
   bin:
     create-jest-runner: generator/index.js
-  checksum: 6fc69d9fe3cd852155f73fbb423e834ba88e33d9f2f6f5bf76fbddc18ed54f73d3e037e83fe0c3f0a279b34f6b83555cd7a43557e20f58aa001c08fe5b3ccb0d
+  checksum: 4d4087acc7a8e6395e01a77a40df1810ed9794b690cbd6cf1d76f869c511b2e842a7a091c05752154b116cc4addd7badd092153474840373f106916c1ef802d8
   languageName: node
   linkType: hard
 
@@ -25468,7 +25471,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-worker@npm:^27.4.5, jest-worker@npm:^27.5.1":
+"jest-worker@npm:^27.0.6, jest-worker@npm:^27.4.5, jest-worker@npm:^27.5.1":
   version: 27.5.1
   resolution: "jest-worker@npm:27.5.1"
   dependencies:
@@ -25476,17 +25479,6 @@ __metadata:
     merge-stream: ^2.0.0
     supports-color: ^8.0.0
   checksum: 98cd68b696781caed61c983a3ee30bf880b5bd021c01d98f47b143d4362b85d0737f8523761e2713d45e18b4f9a2b98af1eaee77afade4111bb65c77d6f7c980
-  languageName: node
-  linkType: hard
-
-"jest-worker@npm:^28.0.2":
-  version: 28.1.1
-  resolution: "jest-worker@npm:28.1.1"
-  dependencies:
-    "@types/node": "*"
-    merge-stream: ^2.0.0
-    supports-color: ^8.0.0
-  checksum: 28519c43b4007e60a3756d27f1e7884192ee9161b6a9587383a64b6535f820cc4868e351a67775e0feada41465f48ccf323a8db34ae87e15a512ddac5d1424b2
   languageName: node
   linkType: hard
 
