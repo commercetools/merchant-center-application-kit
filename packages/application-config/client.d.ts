@@ -1,13 +1,5 @@
 type CSSModuleClasses = { readonly [key: string]: string };
 
-declare namespace NodeJS {
-  // Used for global variable replacements.
-  interface ProcessEnv {
-    readonly DEBUG: 'true' | 'false';
-    readonly NODE_ENV: 'development' | 'production' | 'test';
-  }
-}
-
 declare module '*.mod.css' {
   const classes: CSSModuleClasses;
   export default classes;
