@@ -50,7 +50,9 @@ function removeDeprecatedModalLevelProps(
 
   root.find(j.JSXOpeningElement).forEach(removeDepreactedPropsFromComponent);
 
-  return hasModifications ? root.toSource(options) : null;
+  return hasModifications
+    ? root.toSource({ ...options, quote: 'single' })
+    : null;
 }
 
 export default removeDeprecatedModalLevelProps;

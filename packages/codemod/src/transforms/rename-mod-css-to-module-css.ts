@@ -42,7 +42,9 @@ function renameModCssToModuleCss(
   const root = j(file.source);
   root.find(j.ImportDeclaration).forEach(renameImportModCssToModuleCss);
 
-  return hasModifications ? root.toSource(options) : null;
+  return hasModifications
+    ? root.toSource({ ...options, quote: 'single' })
+    : null;
 }
 
 export default renameModCssToModuleCss;

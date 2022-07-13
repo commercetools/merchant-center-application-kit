@@ -47,5 +47,5 @@ exports[`testing transform "rename-js-to-jsx" transforms correctly 1`] = `""`;
 
 exports[`testing transform "rename-mod-css-to-module-css" transforms correctly 1`] = `
 "// eslint-disable-next-line import/extensions, import/no-unresolved, no-unused-vars
-import styles from \\"./styles.module.css\\";"
+import styles from './styles.module.css';"
 `;
