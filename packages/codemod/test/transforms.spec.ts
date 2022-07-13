@@ -11,6 +11,7 @@ const fixturesPath = path.join(__dirname, 'fixtures');
 describe.each`
   transformName                            | fixtureName
   ${'remove-deprecated-modal-level-props'} | ${'remove-deprecated-modal-level-props.tsx'}
+  ${'rename-mod-css-to-module-css'}        | ${'rename-mod-css-to-module-css.jsx'}
 `('testing transform "$transformName"', ({ transformName, fixtureName }) => {
   // Assumes transform is one level up from __tests__ directory
   const module = require(path.join(
