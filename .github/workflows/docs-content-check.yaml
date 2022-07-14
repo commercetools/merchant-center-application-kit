@@ -1,0 +1,42 @@
+name: Documentation content check
+
+# The `vale` GitHub action does not work on PR events so this is triggered on all pushes.
+on: [pull_request]
+
+jobs:
+  writing_style:
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node (uses version in .nvmrc)
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Download .vale.ini from @commercetools-docs/writing-style
+        run: |
+          package_version=$(node -e "console.log(require('./package.json').dependencies['$INSTALL_PACKAGE'])")
+          echo "Removing package.json and yarn.lock to avoid installation issues"
+          rm package.json yarn.lock
+          echo "Installing $INSTALL_PACKAGE@$package_version"
+          npm install --no-save "$INSTALL_PACKAGE@$package_version"
+        env:
+          SKIP_POSTINSTALL_DEV_SETUP: true
+          INSTALL_PACKAGE: '@commercetools-docs/writing-style'
+
+      - name: Check content (generates GitHub comments via `reviewdog`)
+        uses: errata-ai/vale-action@reviewdog
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: '["website"]'
+          reporter: github-pr-review
+          filter_mode: diff_context
+          fail_on_error: true
+          vale_flags: '--config=node_modules/@commercetools-docs/writing-style/.vale.ini'
+          debug: true
