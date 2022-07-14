@@ -3323,8 +3323,8 @@ __metadata:
     "@commercetools-uikit/spacings": ^15.1.0
     "@commercetools-uikit/text": ^15.1.0
     "@commercetools-uikit/utils": ^15.1.0
-    "@emotion/react": 11.9.0
-    "@emotion/styled": 11.8.1
+    "@emotion/react": 11.9.3
+    "@emotion/styled": 11.9.3
     "@react-hook/latest": 1.0.3
     "@react-hook/resize-observer": 1.2.5
     "@types/history": ^4.7.11
@@ -3380,7 +3380,7 @@ __metadata:
     "@babel/runtime-corejs3": ^7.18.6
     "@commercetools-frontend/constants": 21.8.1
     "@commercetools-frontend/sentry": 21.8.1
-    "@emotion/react": 11.9.0
+    "@emotion/react": 11.9.3
     "@testing-library/react": 12.1.5
     "@types/lodash": ^4.14.182
     "@types/prop-types": ^15.7.5
@@ -3431,8 +3431,8 @@ __metadata:
     "@commercetools-uikit/spacings": ^15.1.0
     "@commercetools-uikit/text": ^15.1.0
     "@commercetools/http-user-agent": 2.1.2
-    "@emotion/react": 11.9.0
-    "@emotion/styled": 11.8.1
+    "@emotion/react": 11.9.3
+    "@emotion/styled": 11.9.3
     "@flopflip/combine-adapters": 0.0.32
     "@flopflip/http-adapter": 0.0.22
     "@flopflip/launchdarkly-adapter": 5.0.27
@@ -3642,7 +3642,7 @@ __metadata:
     "@commercetools-community-kit/i18n": ^0.3.0
     "@commercetools-frontend/sentry": 21.8.1
     "@commercetools-uikit/i18n": ^15.1.0
-    "@emotion/react": 11.9.0
+    "@emotion/react": 11.9.3
     "@formatjs/cli": 4.8.4
     "@formatjs/icu-messageformat-parser": 2.1.4
     "@types/prop-types": ^15.7.5
@@ -3708,7 +3708,7 @@ __metadata:
     "@babel/runtime": ^7.18.6
     "@babel/runtime-corejs3": ^7.18.6
     "@commercetools-frontend/sentry": 21.8.1
-    "@emotion/react": 11.9.0
+    "@emotion/react": 11.9.3
     "@testing-library/react-hooks": 7.0.2
     "@types/prop-types": ^15.7.5
     "@types/react": ^17.0.47
@@ -3857,7 +3857,7 @@ __metadata:
     "@babel/runtime-corejs3": ^7.18.6
     "@commercetools-frontend/application-shell-connectors": 21.8.1
     "@commercetools-frontend/sentry": 21.8.1
-    "@emotion/react": 11.9.0
+    "@emotion/react": 11.9.3
     "@types/lodash": ^4.14.182
     "@types/prop-types": ^15.7.5
     "@types/react": ^17.0.47
@@ -3887,8 +3887,8 @@ __metadata:
     "@commercetools-uikit/icons": ^15.1.0
     "@commercetools-uikit/spacings": ^15.1.0
     "@commercetools-uikit/utils": ^15.1.0
-    "@emotion/react": 11.9.0
-    "@emotion/styled": 11.8.1
+    "@emotion/react": 11.9.3
+    "@emotion/styled": 11.9.3
     "@testing-library/react": 12.1.5
     "@types/history": ^4.7.11
     "@types/lodash": ^4.14.182
@@ -3998,8 +3998,8 @@ __metadata:
     "@commercetools-uikit/text": ^15.1.0
     "@commercetools-uikit/text-field": ^15.1.0
     "@commercetools-uikit/text-input": ^15.1.0
-    "@emotion/react": 11.9.0
-    "@emotion/styled": 11.8.1
+    "@emotion/react": 11.9.3
+    "@emotion/styled": 11.9.3
     "@vitejs/plugin-react": 2.0.0
     formik: 2.2.9
     react: 17.0.2
@@ -5081,8 +5081,8 @@ __metadata:
     "@commercetools-uikit/text": ^15.1.0
     "@commercetools-uikit/text-field": ^15.1.0
     "@commercetools-uikit/text-input": ^15.1.0
-    "@emotion/react": 11.9.0
-    "@emotion/styled": 11.8.1
+    "@emotion/react": 11.9.3
+    "@emotion/styled": 11.9.3
     "@fontsource/open-sans": 4.5.8
     core-js: ^3.23.4
     formik: 2.2.9
@@ -5109,8 +5109,8 @@ __metadata:
     "@commercetools-uikit/card": ^15.1.0
     "@commercetools-uikit/spacings-inline": ^15.1.0
     "@commercetools-uikit/spacings-stack": ^15.1.0
-    "@emotion/react": 11.9.0
-    "@emotion/styled": 11.8.1
+    "@emotion/react": 11.9.3
+    "@emotion/styled": 11.9.3
     "@svgr/cli": 6.2.1
     gatsby: 4.18.2
     gatsby-cli: 4.18.1
@@ -5577,6 +5577,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@emotion/cache@npm:^11.9.3":
+  version: 11.9.3
+  resolution: "@emotion/cache@npm:11.9.3"
+  dependencies:
+    "@emotion/memoize": ^0.7.4
+    "@emotion/sheet": ^1.1.1
+    "@emotion/utils": ^1.0.0
+    "@emotion/weak-memoize": ^0.2.5
+    stylis: 4.0.13
+  checksum: 6e0aab2fa5b9b6b0b9bf66b5328ed44265c23ced16b46c13d2602c3497fabd95299f6cf2c87cbc02b630452aa3cff599c194c538125d744aa135824129698ccc
+  languageName: node
+  linkType: hard
+
 "@emotion/hash@npm:^0.8.0":
   version: 0.8.0
   resolution: "@emotion/hash@npm:0.8.0"
@@ -5584,7 +5597,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/is-prop-valid@npm:1.1.3":
+"@emotion/is-prop-valid@npm:1.1.3, @emotion/is-prop-valid@npm:^1.1.3":
   version: 1.1.3
   resolution: "@emotion/is-prop-valid@npm:1.1.3"
   dependencies:
@@ -5609,7 +5622,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/react@npm:11.9.0, @emotion/react@npm:^11.4.0, @emotion/react@npm:^11.7.1, @emotion/react@npm:^11.8.1":
+"@emotion/react@npm:11.9.3":
+  version: 11.9.3
+  resolution: "@emotion/react@npm:11.9.3"
+  dependencies:
+    "@babel/runtime": ^7.13.10
+    "@emotion/babel-plugin": ^11.7.1
+    "@emotion/cache": ^11.9.3
+    "@emotion/serialize": ^1.0.4
+    "@emotion/utils": ^1.1.0
+    "@emotion/weak-memoize": ^0.2.5
+    hoist-non-react-statics: ^3.3.1
+  peerDependencies:
+    "@babel/core": ^7.0.0
+    react: ">=16.8.0"
+  peerDependenciesMeta:
+    "@babel/core":
+      optional: true
+    "@types/react":
+      optional: true
+  checksum: 19bc7205e85e87cadebbe5a926d45103b836af70ab6972ea4c333c8dd01b463fc9646d4e4097a36f145a05dd4bc388739667437b990f8cf7f7f925f9610d1aa8
+  languageName: node
+  linkType: hard
+
+"@emotion/react@npm:^11.4.0, @emotion/react@npm:^11.7.1, @emotion/react@npm:^11.8.1":
   version: 11.9.0
   resolution: "@emotion/react@npm:11.9.0"
   dependencies:
@@ -5658,6 +5694,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@emotion/serialize@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "@emotion/serialize@npm:1.0.4"
+  dependencies:
+    "@emotion/hash": ^0.8.0
+    "@emotion/memoize": ^0.7.4
+    "@emotion/unitless": ^0.7.5
+    "@emotion/utils": ^1.0.0
+    csstype: ^3.0.2
+  checksum: e8cc342056734e176ea837fe44035126dea174962db40852a7ced499d258c0056b0fd3c298743c446f9ba0f2647cb42dfb623b8e5783c265deb9eb20138d68e7
+  languageName: node
+  linkType: hard
+
 "@emotion/server@npm:^11.4.0":
   version: 11.4.0
   resolution: "@emotion/server@npm:11.4.0"
@@ -5682,7 +5731,36 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/styled@npm:11.8.1, @emotion/styled@npm:^11.3.0, @emotion/styled@npm:^11.6.0":
+"@emotion/sheet@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@emotion/sheet@npm:1.1.1"
+  checksum: b916ac665735ef6dfda26b09f2d3493789d432d649733db9da18c4db0115e7fdadeb8d45f6490320248916bb13d978bba74c914b711ac96f659b76a5e52d5cd2
+  languageName: node
+  linkType: hard
+
+"@emotion/styled@npm:11.9.3":
+  version: 11.9.3
+  resolution: "@emotion/styled@npm:11.9.3"
+  dependencies:
+    "@babel/runtime": ^7.13.10
+    "@emotion/babel-plugin": ^11.7.1
+    "@emotion/is-prop-valid": ^1.1.3
+    "@emotion/serialize": ^1.0.4
+    "@emotion/utils": ^1.1.0
+  peerDependencies:
+    "@babel/core": ^7.0.0
+    "@emotion/react": ^11.0.0-rc.0
+    react: ">=16.8.0"
+  peerDependenciesMeta:
+    "@babel/core":
+      optional: true
+    "@types/react":
+      optional: true
+  checksum: 16d9ef8c5840b13ec47f91f9963b64ec8a94197fe99bb3bd4e9f7404a09bb65a333e9ab6590af97c0090360816db70e8c920731198c3a30fbb2c2cfd5e8d8a65
+  languageName: node
+  linkType: hard
+
+"@emotion/styled@npm:^11.3.0, @emotion/styled@npm:^11.6.0":
   version: 11.8.1
   resolution: "@emotion/styled@npm:11.8.1"
   dependencies:
