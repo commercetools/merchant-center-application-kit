@@ -21,15 +21,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apidevtools/json-schema-ref-parser@npm:9.0.9":
-  version: 9.0.9
-  resolution: "@apidevtools/json-schema-ref-parser@npm:9.0.9"
+"@apidevtools/json-schema-ref-parser@https://github.com/bcherny/json-schema-ref-parser.git#984282d34a2993e5243aa35100fe32a63699164d":
+  version: 0.0.0-dev
+  resolution: "@apidevtools/json-schema-ref-parser@https://github.com/bcherny/json-schema-ref-parser.git#commit=984282d34a2993e5243aa35100fe32a63699164d"
   dependencies:
     "@jsdevtools/ono": ^7.1.3
     "@types/json-schema": ^7.0.6
     call-me-maybe: ^1.0.1
     js-yaml: ^4.1.0
-  checksum: b21f6bdd37d2942c3967ee77569bc74fadd1b922f688daf5ef85057789a2c3a7f4afc473aa2f3a93ec950dabb6ef365f8bd9cf51e4e062a1ee1e59b989f8f9b4
+  checksum: 9a7fa9625c443bfa8fe63acb2674814a344631c9229289446210991eee7c22c3bb254b4cdd7cf477d22af28a2f1ae2d90c345a221f83deff96e6e9865651e299
   languageName: node
   linkType: hard
 
@@ -3412,7 +3412,7 @@ __metadata:
     cosmiconfig: 7.0.1
     dompurify: ^2.3.6
     jsdom: ^19.0.0
-    json-schema-to-typescript: 10.1.5
+    json-schema-to-typescript: 11.0.1
     lodash: 4.17.21
     omit-empty-es: 1.1.3
     shelljs: 0.8.5
@@ -10917,7 +10917,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/glob@npm:*, @types/glob@npm:^7.1.1":
+"@types/glob@npm:*, @types/glob@npm:^7.1.1, @types/glob@npm:^7.1.3":
   version: 7.2.0
   resolution: "@types/glob@npm:7.2.0"
   dependencies:
@@ -11092,6 +11092,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/json-schema@npm:^7.0.11":
+  version: 7.0.11
+  resolution: "@types/json-schema@npm:7.0.11"
+  checksum: 527bddfe62db9012fccd7627794bd4c71beb77601861055d87e3ee464f2217c85fca7a4b56ae677478367bbd248dbde13553312b7d4dbc702a2f2bbf60c4018d
+  languageName: node
+  linkType: hard
+
 "@types/json-stable-stringify@npm:^1.0.32":
   version: 1.0.33
   resolution: "@types/json-stable-stringify@npm:1.0.33"
@@ -11124,13 +11131,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.14.168, @types/lodash@npm:^4.14.92":
-  version: 4.14.178
-  resolution: "@types/lodash@npm:4.14.178"
-  checksum: a69a04a60bfc5257c3130a554b4efa0c383f0141b7b3db8ab7cf07ad2a46ea085fce66d0242da41da7e5647b133d5dfb2c15add9cbed8d7fef955e4a1e5b3128
-  languageName: node
-  linkType: hard
-
 "@types/lodash@npm:^4.14.181":
   version: 4.14.181
   resolution: "@types/lodash@npm:4.14.181"
@@ -11142,6 +11142,13 @@ __metadata:
   version: 4.14.182
   resolution: "@types/lodash@npm:4.14.182"
   checksum: 7dd137aa9dbabd632408bd37009d984655164fa1ecc3f2b6eb94afe35bf0a5852cbab6183148d883e9c73a958b7fec9a9bcf7c8e45d41195add6a18c34958209
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:^4.14.92":
+  version: 4.14.178
+  resolution: "@types/lodash@npm:4.14.178"
+  checksum: a69a04a60bfc5257c3130a554b4efa0c383f0141b7b3db8ab7cf07ad2a46ea085fce66d0242da41da7e5647b133d5dfb2c15add9cbed8d7fef955e4a1e5b3128
   languageName: node
   linkType: hard
 
@@ -11298,6 +11305,13 @@ __metadata:
   version: 2.4.3
   resolution: "@types/prettier@npm:2.4.3"
   checksum: b240434daabac54700c862b0bb52a83fec396e0e9c847447119ba41fd8404d79aadfa174e6306fb094b29efadac586344b7606c3a71c286b71755ab2579d54df
+  languageName: node
+  linkType: hard
+
+"@types/prettier@npm:^2.6.1":
+  version: 2.6.3
+  resolution: "@types/prettier@npm:2.6.3"
+  checksum: e1836699ca189fff6d2a73dc22e028b6a6f693ed1180d5998ac29fa197caf8f85aa92cb38db642e4a370e616b451cb5722ad2395dab11c78e025a1455f37d1f0
   languageName: node
   linkType: hard
 
@@ -14943,16 +14957,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cli-color@npm:^2.0.0":
-  version: 2.0.1
-  resolution: "cli-color@npm:2.0.1"
+"cli-color@npm:^2.0.2":
+  version: 2.0.3
+  resolution: "cli-color@npm:2.0.3"
   dependencies:
     d: ^1.0.1
-    es5-ext: ^0.10.53
+    es5-ext: ^0.10.61
     es6-iterator: ^2.0.3
     memoizee: ^0.4.15
     timers-ext: ^0.1.7
-  checksum: d79c118a09eba8566704f3f7e6cfb519f6f142ff08a6a2243f72499ba691ea9bee7a9ffc2ea2a9d61422573c3a6298ec91f1e5ef4967795b4e9f92c9ccd88ce4
+  checksum: b1c5f3d0ec29cbe22be7a01d90bd0cfa080ffed6f1c321ea20ae3f10c6041f0e411e28ee2b98025945bee3548931deed1ae849b53c21b523ba74efef855cd73d
   languageName: node
   linkType: hard
 
@@ -18384,6 +18398,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"es5-ext@npm:^0.10.61":
+  version: 0.10.61
+  resolution: "es5-ext@npm:0.10.61"
+  dependencies:
+    es6-iterator: ^2.0.3
+    es6-symbol: ^3.1.3
+    next-tick: ^1.1.0
+  checksum: 2f2034e91e77fe247d94f0fd13a94bcf113273b7cc4650794d6795e377267ffb2425d3a891bd8c4d9c8b990e16e17dd7c28f12dbd3fa4b0909d0874892f491bf
+  languageName: node
+  linkType: hard
+
 "es6-iterator@npm:^2.0.3, es6-iterator@npm:~2.0.3":
   version: 2.0.3
   resolution: "es6-iterator@npm:2.0.3"
@@ -18409,7 +18434,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"es6-symbol@npm:^3.1.1, es6-symbol@npm:~3.1.3":
+"es6-symbol@npm:^3.1.1, es6-symbol@npm:^3.1.3, es6-symbol@npm:~3.1.3":
   version: 3.1.3
   resolution: "es6-symbol@npm:3.1.3"
   dependencies:
@@ -21817,14 +21842,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob-promise@npm:^3.4.0":
-  version: 3.4.0
-  resolution: "glob-promise@npm:3.4.0"
+"glob-promise@npm:^4.2.2":
+  version: 4.2.2
+  resolution: "glob-promise@npm:4.2.2"
   dependencies:
-    "@types/glob": "*"
+    "@types/glob": ^7.1.3
   peerDependencies:
-    glob: "*"
-  checksum: 84a2c076e7581c9f8aa7a8a151ad5f9352c4118ba03c5673ecfcf540f4c53aa75f8d32fe493c2286d471dccd7a75932b9bfe97bf782564c1f4a50b9c7954e3b6
+    glob: ^7.1.6
+  checksum: c1a3d95f7c8393e4151d4899ec4e42bb2e8237160f840ad1eccbe9247407da8b6c13e28f463022e011708bc40862db87b9b77236d35afa3feb8aa86d518f2dfe
   languageName: node
   linkType: hard
 
@@ -25570,37 +25595,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json-schema-ref-parser@npm:^9.0.6":
-  version: 9.0.9
-  resolution: "json-schema-ref-parser@npm:9.0.9"
+"json-schema-to-typescript@npm:11.0.1":
+  version: 11.0.1
+  resolution: "json-schema-to-typescript@npm:11.0.1"
   dependencies:
-    "@apidevtools/json-schema-ref-parser": 9.0.9
-  checksum: e05166a84c702f54f192edb2eb2e39236c3b03c30561777d63fd156ecd3aa3d2fffc0806a5703384bfba3c78800b1dc05f8da1ea25e6470b35a823210f7d48c4
-  languageName: node
-  linkType: hard
-
-"json-schema-to-typescript@npm:10.1.5":
-  version: 10.1.5
-  resolution: "json-schema-to-typescript@npm:10.1.5"
-  dependencies:
-    "@types/json-schema": ^7.0.6
-    "@types/lodash": ^4.14.168
-    "@types/prettier": ^2.1.5
-    cli-color: ^2.0.0
+    "@apidevtools/json-schema-ref-parser": "https://github.com/bcherny/json-schema-ref-parser.git#984282d34a2993e5243aa35100fe32a63699164d"
+    "@types/json-schema": ^7.0.11
+    "@types/lodash": ^4.14.182
+    "@types/prettier": ^2.6.1
+    cli-color: ^2.0.2
     get-stdin: ^8.0.0
     glob: ^7.1.6
-    glob-promise: ^3.4.0
-    is-glob: ^4.0.1
-    json-schema-ref-parser: ^9.0.6
-    json-stringify-safe: ^5.0.1
-    lodash: ^4.17.20
-    minimist: ^1.2.5
+    glob-promise: ^4.2.2
+    is-glob: ^4.0.3
+    lodash: ^4.17.21
+    minimist: ^1.2.6
     mkdirp: ^1.0.4
     mz: ^2.7.0
-    prettier: ^2.2.0
+    prettier: ^2.6.2
   bin:
     json2ts: dist/src/cli.js
-  checksum: ab154931ca6b3804497e25b204a568edbd16b9a9a996881a512be9125f84ce19d7a09122a9f282113921edec8272e8ed67b780c15d86f72293a0d06b6ac35a4a
+  checksum: 55b112b5a7ea233bf8b4a807f23366bd8bfb08023232fd51c93cf68e5d7854705e5738d9c85546a4322ca44a14c95403edfe785795aa5b24751bbc6c6970d524
   languageName: node
   linkType: hard
 
@@ -25648,7 +25663,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json-stringify-safe@npm:^5.0.1, json-stringify-safe@npm:~5.0.1":
+"json-stringify-safe@npm:~5.0.1":
   version: 5.0.1
   resolution: "json-stringify-safe@npm:5.0.1"
   checksum: 48ec0adad5280b8a96bb93f4563aa1667fd7a36334f79149abd42446d0989f2ddc58274b479f4819f1f00617957e6344c886c55d05a4e15ebb4ab931e4a6a8ee
@@ -30899,12 +30914,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.2.0, prettier@npm:^2.4.0":
+"prettier@npm:^2.4.0":
   version: 2.5.1
   resolution: "prettier@npm:2.5.1"
   bin:
     prettier: bin-prettier.js
   checksum: 21b9408476ea1c544b0e45d51ceb94a84789ff92095abb710942d780c862d0daebdb29972d47f6b4d0f7ebbfb0ffbf56cc2cfa3e3e9d1cca54864af185b15b66
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^2.6.2":
+  version: 2.7.1
+  resolution: "prettier@npm:2.7.1"
+  bin:
+    prettier: bin-prettier.js
+  checksum: 55a4409182260866ab31284d929b3cb961e5fdb91fe0d2e099dac92eaecec890f36e524b4c19e6ceae839c99c6d7195817579cdffc8e2c80da0cb794463a748b
   languageName: node
   linkType: hard
 
