@@ -6052,17 +6052,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/ecma402-abstract@npm:1.11.4":
-  version: 1.11.4
-  resolution: "@formatjs/ecma402-abstract@npm:1.11.4"
-  dependencies:
-    "@formatjs/intl-localematcher": 0.2.25
-    tslib: ^2.1.0
-  checksum: 05dbe1c6457acfe9cdc0fc770940260e19fa588be6c655b1ff1697506348dac1eee9b249b64e6544531174d07a5a74a9e75f68430947cfdc074ebe8e3c86f86f
-  languageName: node
-  linkType: hard
-
-"@formatjs/ecma402-abstract@npm:1.11.8":
+"@formatjs/ecma402-abstract@npm:^1.11.8":
   version: 1.11.8
   resolution: "@formatjs/ecma402-abstract@npm:1.11.8"
   dependencies:
