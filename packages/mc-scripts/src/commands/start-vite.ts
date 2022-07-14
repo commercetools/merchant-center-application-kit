@@ -48,24 +48,7 @@ async function run() {
           plugins: ['@emotion/babel-plugin'],
         },
       }),
-      pluginSvgr({
-        svgrOptions: {
-          icon: false,
-          svgoConfig: {
-            plugins: [
-              {
-                // https://github.com/svg/svgo#default-preset
-                name: 'preset-default',
-                params: {
-                  overrides: {
-                    removeViewBox: false,
-                  },
-                },
-              },
-            ],
-          },
-        },
-      }),
+      pluginSvgr(),
       pluginCustomApplication(applicationConfig),
     ],
   });
