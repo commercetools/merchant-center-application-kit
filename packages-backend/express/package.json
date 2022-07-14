@@ -26,7 +26,7 @@
     "jwks-rsa": "2.1.1"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^1.0.2",
+    "@tsconfig/node16": "^1.0.3",
     "@types/express-unless": "^0.5.3",
     "@types/jsonwebtoken": "^8.5.8",
     "jose": "2.0.5",
