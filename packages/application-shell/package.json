@@ -31,8 +31,8 @@
     "compile-css-modules": "./scripts/compile-styles.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.17.9",
-    "@babel/runtime-corejs3": "^7.17.9",
+    "@babel/runtime": "^7.18.6",
+    "@babel/runtime-corejs3": "^7.18.6",
     "@commercetools-frontend/actions-global": "21.8.1",
     "@commercetools-frontend/application-components": "21.8.1",
     "@commercetools-frontend/application-config": "21.8.1",

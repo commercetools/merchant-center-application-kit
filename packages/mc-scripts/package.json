@@ -43,9 +43,9 @@
     "development": ["last 2 firefox versions", "last 2 chrome versions"]
   },
   "dependencies": {
-    "@babel/core": "^7.17.9",
-    "@babel/runtime": "^7.17.9",
-    "@babel/runtime-corejs3": "^7.17.9",
+    "@babel/core": "^7.18.6",
+    "@babel/runtime": "^7.18.6",
+    "@babel/runtime-corejs3": "^7.18.6",
     "@commercetools-frontend/application-config": "21.8.1",
     "@commercetools-frontend/assets": "21.8.1",
     "@commercetools-frontend/babel-preset-mc-app": "21.8.1",
@@ -63,7 +63,7 @@
     "browserslist": "^4.20.2",
     "cac": "6.7.12",
     "chalk": "4.1.2",
-    "core-js": "^3.21.1",
+    "core-js": "^3.23.4",
     "css-loader": "6.7.1",
     "css-minimizer-webpack-plugin": "3.4.1",
     "dotenv": "16.0.0",
