@@ -8,8 +8,9 @@ type TVisualRouteSpec = {
   Component: ComponentType;
 };
 
-const visualRoutesModules = import.meta.globEager<TVisualRouteSpec>(
-  './components/**/*.visualroute.tsx'
+const visualRoutesModules = import.meta.glob<TVisualRouteSpec>(
+  './components/**/*.visualroute.tsx',
+  { eager: true }
 );
 
 const allUniqueVisualRouteComponents = Object.values(
