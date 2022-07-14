@@ -129,7 +129,7 @@
     "eslint": "8.15.0",
     "eslint-formatter-pretty": "4.1.0",
     "eslint-plugin-graphql": "4.0.0",
-    "graphql": "15.8.0",
+    "graphql": "16.5.0",
     "husky": "7.0.4",
     "jest": "27.5.1",
     "jest-each": "27.5.1",
@@ -171,7 +171,6 @@
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",
     "core-js-compat": "^3.22.4",
-    "graphql": "15.8.0",
     "intl-messageformat-parser": "6.4.4"
   },
   "engines": {

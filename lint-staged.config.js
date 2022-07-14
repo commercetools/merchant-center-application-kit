@@ -29,7 +29,7 @@ module.exports = {
     //   Error: An error occurred while adding the reporter at path "/path/to/file".Reporter is not a constructor
     //
     // For that reason, we move the `--onlyChanged` flag next to it.
-    'yarn lint:js --reporters=jest-silent-reporter --onlyChanged',
+    'yarn lint:js --passWithNoTests --reporters=jest-silent-reporter --onlyChanged',
     // Always include the `client.d.ts` file.
     'tsc-files --noEmit packages/application-config/client.d.ts',
   ],

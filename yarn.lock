@@ -2742,7 +2742,7 @@ __metadata:
     "@types/lodash": ^4.14.181
     "@types/prop-types": ^15.7.5
     "@types/react": ^17.0.44
-    graphql: 15.8.0
+    graphql: 16.5.0
     lodash: 4.17.21
     moment-timezone: ^0.5.34
     prop-types: 15.8.1
@@ -2814,7 +2814,7 @@ __metadata:
     debounce-async: 0.0.2
     downshift: 6.1.7
     fuse.js: 6.6.1
-    graphql: 15.8.0
+    graphql: 16.5.0
     history: 4.10.1
     is-retina: 1.0.3
     jwt-decode: 3.1.2
@@ -3150,7 +3150,7 @@ __metadata:
     dotenv: 16.0.0
     dotenv-expand: 8.0.3
     fs-extra: 10.1.0
-    graphql-request: ^4.2.0
+    graphql-request: ^4.3.0
     graphql-tag: ^2.12.6
     html-webpack-plugin: 5.5.0
     json-loader: 0.5.7
@@ -21296,16 +21296,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql-request@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "graphql-request@npm:4.2.0"
+"graphql-request@npm:^4.3.0":
+  version: 4.3.0
+  resolution: "graphql-request@npm:4.3.0"
   dependencies:
     cross-fetch: ^3.1.5
     extract-files: ^9.0.0
     form-data: ^3.0.0
   peerDependencies:
     graphql: 14 - 16
-  checksum: c508705ebdbb94ce4599c9236c06993dd19481d1765b8f316c8ad6eee81c18afaaf9362fa4f6f00227f26e793b4ec38a6aea44708da0ca4a1b4324f41691bbdc
+  checksum: 3124afd01aee781cd5a2e9ac30063526b677a6754032566104fc36270b5f9be03f17a32e49f34c71ca968d533151550c37f7a0194d11c36ff59977bd73e2abc3
   languageName: node
   linkType: hard
 
@@ -21356,7 +21356,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql@npm:15.8.0":
+"graphql@npm:16.5.0, graphql@npm:^16.3.0":
+  version: 16.5.0
+  resolution: "graphql@npm:16.5.0"
+  checksum: a82a926d085818934d04fdf303a269af170e79de943678bd2726370a96194f9454ade9d6d76c2de69afbd7b9f0b4f8061619baecbbddbe82125860e675ac219e
+  languageName: node
+  linkType: hard
+
+"graphql@npm:^15.7.2":
   version: 15.8.0
   resolution: "graphql@npm:15.8.0"
   checksum: 423325271db8858428641b9aca01699283d1fe5b40ef6d4ac622569ecca927019fce8196208b91dd1d8eb8114f00263fe661d241d0eb40c10e5bfd650f86ec5e
@@ -26527,7 +26534,7 @@ __metadata:
     eslint: 8.15.0
     eslint-formatter-pretty: 4.1.0
     eslint-plugin-graphql: 4.0.0
-    graphql: 15.8.0
+    graphql: 16.5.0
     husky: 7.0.4
     jest: 27.5.1
     jest-each: 27.5.1
