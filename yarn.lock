@@ -3832,7 +3832,7 @@ __metadata:
     "@types/serve-handler": ^6.1.1
     "@types/svgo": ^2.6.3
     "@vitejs/plugin-react": 1.3.2
-    autoprefixer: ^10.4.4
+    autoprefixer: ^10.4.7
     babel-loader: 8.2.5
     browserslist: ^4.20.2
     cac: 6.7.12
@@ -13260,12 +13260,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autoprefixer@npm:^10.4.4":
-  version: 10.4.4
-  resolution: "autoprefixer@npm:10.4.4"
+"autoprefixer@npm:^10.4.7":
+  version: 10.4.7
+  resolution: "autoprefixer@npm:10.4.7"
   dependencies:
-    browserslist: ^4.20.2
-    caniuse-lite: ^1.0.30001317
+    browserslist: ^4.20.3
+    caniuse-lite: ^1.0.30001335
     fraction.js: ^4.2.0
     normalize-range: ^0.1.2
     picocolors: ^1.0.0
@@ -13274,7 +13274,7 @@ __metadata:
     postcss: ^8.1.0
   bin:
     autoprefixer: bin/autoprefixer
-  checksum: bd42e23d71af0228b6b0b27d0d0b33c95e67562e55eb4ca0e221cf795a06482c90d565d6544a5f4090d8e303b09b200845fa2bcaaa707d1e8777974250dffe1f
+  checksum: 0e55d0d19806c672ec0c79cc23c27cf77e90edf2600670735266ba33ec5294458f404baaa2f7cd4cfe359cf7a97b3c86f01886bdbdc129a4f2f76ca5977a91af
   languageName: node
   linkType: hard
 
@@ -14133,7 +14133,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browserslist@npm:^4.21.1":
+"browserslist@npm:^4.20.3, browserslist@npm:^4.21.1":
   version: 4.21.2
   resolution: "browserslist@npm:4.21.2"
   dependencies:
@@ -14559,7 +14559,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.30001366":
+"caniuse-lite@npm:^1.0.30001335, caniuse-lite@npm:^1.0.30001366":
   version: 1.0.30001366
   resolution: "caniuse-lite@npm:1.0.30001366"
   checksum: eeb878e0be4090a4247dd3de5392ff1a864d086e5401790c7c81697918ce6ce3dac75956a21f9404b5ac770bfdabdb18619d0f920dc2295f3211ee893355f697
@@ -27498,7 +27498,7 @@ __metadata:
     "@types/uuid": 8.3.4
     "@types/webpack-env": 1.16.4
     apollo-server-errors: 3.3.1
-    autoprefixer: ^10.4.4
+    autoprefixer: ^10.4.7
     babel-plugin-import-graphql: ^2.8.1
     babel-plugin-transform-rename-import: ^2.3.0
     babel-plugin-typescript-to-proptypes: 1.4.2
