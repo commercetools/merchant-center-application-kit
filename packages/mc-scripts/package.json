@@ -79,7 +79,7 @@
     "mini-css-extract-plugin": "2.6.0",
     "moment-locales-webpack-plugin": "1.2.0",
     "node-fetch": "2.6.7",
-    "postcss": "8.4.13",
+    "postcss": "8.4.14",
     "postcss-custom-media": "8.0.0",
     "postcss-custom-properties": "12.1.4",
     "postcss-import": "14.1.0",
