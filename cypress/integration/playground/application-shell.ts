@@ -1,10 +1,6 @@
 import { encode } from 'qss';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
-import {
-  URL_BASE,
-  URL_APP_KIT_PLAYGROUND,
-  ENTRY_POINT_APP_KIT_PLAYGROUND,
-} from '../../support/urls';
+import { URL_BASE, ENTRY_POINT_APP_KIT_PLAYGROUND } from '../../support/urls';
 
 describe('when user is authenticated', () => {
   beforeEach(() => {
@@ -54,24 +50,5 @@ describe('navigation menu', () => {
       expect(win.localStorage.getItem('isForcedMenuOpen')).to.equal('true')
     );
     cy.percySnapshot();
-  });
-});
-
-describe('failed OIDC authentication', () => {
-  describe('when sessionToken is missing', () => {
-    it('should show oidc callback error page', () => {
-      cy.visit(`/${URL_APP_KIT_PLAYGROUND}/oidc/callback`);
-      cy.findByText('Authentication error');
-      cy.findByText(/missing sessionToken/i);
-      cy.percySnapshot();
-    });
-  });
-  describe('when sessionToken is invalid', () => {
-    it('should show oidc callback error page', () => {
-      cy.visit(`/${URL_APP_KIT_PLAYGROUND}/oidc/callback#sessionToken=123`);
-      cy.findByText('Authentication error');
-      cy.findByText(/invalid token specified/i);
-      cy.percySnapshot();
-    });
   });
 });
