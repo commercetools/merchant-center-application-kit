@@ -22,7 +22,7 @@ module.exports = {
       active: true,
       notificationType: 'info',
       content:
-        'This is the new documentation of Custom Applications. You can still visit the [legacy documentation](https://docs.commercetools.com/custom-applications/legacy) during the [migration](/migrating-from-project-level-custom-applications) from Project-level Custom Applications.',
+        'This is the new documentation of Custom Applications. You can still visit the [legacy documentation](https://docs.commercetools.com/custom-applications/legacy) during the [migration](https://docs.commercetools.com/custom-applications/migrating-from-project-level-custom-applications) from Project-level Custom Applications.',
     },
   },
   plugins: [
