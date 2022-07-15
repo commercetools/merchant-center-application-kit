@@ -18,16 +18,17 @@ jobs:
         with:
           node-version-file: '.nvmrc'
 
-      - name: Download .vale.ini from @commercetools-docs/writing-style
+      - name: Download .vale.ini and style rules from @commercetools-docs/writing-style
         run: |
-          package_version=$(node -e "console.log(require('./package.json').dependencies['$INSTALL_PACKAGE'])")
+          package_version=$(node -e "console.log(require('./package.json').dependencies['$PACKAGE_NAME'])")
+
           echo "Removing package.json and yarn.lock to avoid installation issues"
           rm package.json yarn.lock
-          echo "Installing $INSTALL_PACKAGE@$package_version"
-          npm install --no-save "$INSTALL_PACKAGE@$package_version"
+
+          echo "Installing $PACKAGE_NAME@$package_version"
+          npm install --no-save "$PACKAGE_NAME@$package_version"
         env:
-          SKIP_POSTINSTALL_DEV_SETUP: true
-          INSTALL_PACKAGE: '@commercetools-docs/writing-style'
+          PACKAGE_NAME: '@commercetools-docs/writing-style'
 
       - name: Check content (generates GitHub comments via `reviewdog`)
         uses: errata-ai/vale-action@reviewdog
