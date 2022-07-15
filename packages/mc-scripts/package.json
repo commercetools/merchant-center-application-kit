@@ -106,11 +106,11 @@
     "webpackbar": "5.0.2"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^1.0.2",
-    "@types/lodash": "^4.14.181",
+    "@tsconfig/node16": "^1.0.3",
+    "@types/lodash": "^4.14.182",
     "@types/mock-fs": "^4.13.1",
     "@types/moment-locales-webpack-plugin": "^1.2.3",
-    "@types/node-fetch": "2.6.1",
+    "@types/node-fetch": "2.6.2",
     "@types/serve-handler": "^6.1.1",
     "mock-fs": "^5.1.2",
     "msw": "0.39.2",
