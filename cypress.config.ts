@@ -5,7 +5,6 @@ export default defineConfig({
   e2e: {
     baseUrl: 'http://localhost:3001',
     retries: 1,
-    supportFile: 'cypress/support/e2e.ts',
     async setupNodeEvents(on, cypressConfig) {
       // Load the config
       if (!process.env.CI) {
