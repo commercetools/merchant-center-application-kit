@@ -1,5 +1,15 @@
 # @commercetools-frontend/mc-html-template
 
+## 21.9.0
+
+### Patch Changes
+
+- [#2702](https://github.com/commercetools/merchant-center-application-kit/pull/2702) [`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413) Thanks [@emmenko](https://github.com/emmenko)! - Update Babel dependencies
+
+- Updated dependencies [[`22fcb200`](https://github.com/commercetools/merchant-center-application-kit/commit/22fcb2007879bd8b10b0a5b70d02490162554e57), [`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413), [`8367e1b7`](https://github.com/commercetools/merchant-center-application-kit/commit/8367e1b71777b29d328e037148439418a66c0a72)]:
+  - @commercetools-frontend/application-config@21.9.0
+  - @commercetools-frontend/constants@21.9.0
+
 ## 21.8.1
 
 ### Patch Changes

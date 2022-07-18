@@ -1,5 +1,19 @@
 # @commercetools-frontend/codemod
 
+## 0.3.0
+
+### Minor Changes
+
+- [#2693](https://github.com/commercetools/merchant-center-application-kit/pull/2693) [`6a01bda7`](https://github.com/commercetools/merchant-center-application-kit/commit/6a01bda7129d786f439fd01fdbb654761de71a70) Thanks [@emmenko](https://github.com/emmenko)! - Add new codemod `rename-mod-css-to-module-css` to migrate `.mod.css` to `.module.css` files.
+
+  ```
+  $ npx @commercetools-frontend/codemod@latest rename-mod-css-to-module-css 'src/**/*.{js,jsx,ts,tsx}'
+  ```
+
+### Patch Changes
+
+- [#2705](https://github.com/commercetools/merchant-center-application-kit/pull/2705) [`abe2c475`](https://github.com/commercetools/merchant-center-application-kit/commit/abe2c475be2aff3781ac6151178aede1e0801f77) Thanks [@emmenko](https://github.com/emmenko)! - Update typescript dependencies
+
 ## 0.2.0
 
 ### Minor Changes
