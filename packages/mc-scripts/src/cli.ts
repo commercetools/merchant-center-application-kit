@@ -88,12 +88,8 @@ const run = () => {
 
       const shouldUseExperimentalBundler =
         process.env.ENABLE_EXPERIMENTAL_VITE_BUNDLER === 'true';
-
       if (shouldUseExperimentalBundler) {
         console.log('Experimental Vite bundler enabled! 🚀');
-        console.warn(
-          'NOTE that the "cdnURL" value is not supported at the moment when using Vite.'
-        );
         console.log('');
       }
 
