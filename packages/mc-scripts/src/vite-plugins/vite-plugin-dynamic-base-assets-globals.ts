@@ -16,7 +16,6 @@ function vitePluginDynamicBaseAssetsGlobals(): Plugin {
             tag: 'script',
             attrs: { type: 'module' },
             children: dynamicBaseAssetsCode,
-            injectTo: 'body',
           },
         ];
       }
