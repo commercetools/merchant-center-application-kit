@@ -1,5 +1,35 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.9.0
+
+### Minor Changes
+
+- [#2695](https://github.com/commercetools/merchant-center-application-kit/pull/2695) [`de0980f9`](https://github.com/commercetools/merchant-center-application-kit/commit/de0980f9d151f3f0a98ddbf06e0629aaf03f5239) Thanks [@emmenko](https://github.com/emmenko)! - Update dependency `graphql` to `v16`.
+
+### Patch Changes
+
+- [#2687](https://github.com/commercetools/merchant-center-application-kit/pull/2687) [`2f414585`](https://github.com/commercetools/merchant-center-application-kit/commit/2f414585cc324cb483b49c8d1040845d3f231ba3) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Fix loading missing `moment` locale metadata for certain user locales. Now dates are correctly formatted according to the selected locale.
+
+* [#2705](https://github.com/commercetools/merchant-center-application-kit/pull/2705) [`abe2c475`](https://github.com/commercetools/merchant-center-application-kit/commit/abe2c475be2aff3781ac6151178aede1e0801f77) Thanks [@emmenko](https://github.com/emmenko)! - Update typescript dependencies
+
+- [#2711](https://github.com/commercetools/merchant-center-application-kit/pull/2711) [`f0e79e44`](https://github.com/commercetools/merchant-center-application-kit/commit/f0e79e44ef15d305692f4292b78c3ff1b388f74d) Thanks [@emmenko](https://github.com/emmenko)! - Update experimental Vite support to v3.
+
+* [#2706](https://github.com/commercetools/merchant-center-application-kit/pull/2706) [`28de0b59`](https://github.com/commercetools/merchant-center-application-kit/commit/28de0b59e8f3944eaef9000b517b384acfc4b98d) Thanks [@emmenko](https://github.com/emmenko)! - Update `msw` to `v0.44.0`
+
+- [#2710](https://github.com/commercetools/merchant-center-application-kit/pull/2710) [`b34b0a4c`](https://github.com/commercetools/merchant-center-application-kit/commit/b34b0a4c23d57cc3210a20f77fea847915512543) Thanks [@emmenko](https://github.com/emmenko)! - Update PostCSS and Stylelint dependencies
+
+* [#2702](https://github.com/commercetools/merchant-center-application-kit/pull/2702) [`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413) Thanks [@emmenko](https://github.com/emmenko)! - Update Babel dependencies
+
+- [#2691](https://github.com/commercetools/merchant-center-application-kit/pull/2691) [`8367e1b7`](https://github.com/commercetools/merchant-center-application-kit/commit/8367e1b71777b29d328e037148439418a66c0a72) Thanks [@emmenko](https://github.com/emmenko)! - Add support in Vite config (experimental feature) to load `.react.svg` files as React components using the SVGR plugin.
+
+- Updated dependencies [[`22fcb200`](https://github.com/commercetools/merchant-center-application-kit/commit/22fcb2007879bd8b10b0a5b70d02490162554e57), [`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413), [`8367e1b7`](https://github.com/commercetools/merchant-center-application-kit/commit/8367e1b71777b29d328e037148439418a66c0a72)]:
+  - @commercetools-frontend/application-config@21.9.0
+  - @commercetools-frontend/babel-preset-mc-app@21.9.0
+  - @commercetools-frontend/constants@21.9.0
+  - @commercetools-frontend/mc-dev-authentication@21.9.0
+  - @commercetools-frontend/mc-html-template@21.9.0
+  - @commercetools-frontend/assets@21.9.0
+
 ## 21.8.1
 
 ### Patch Changes

@@ -1,5 +1,18 @@
 # @commercetools-frontend/sentry
 
+## 21.9.0
+
+### Patch Changes
+
+- [#2705](https://github.com/commercetools/merchant-center-application-kit/pull/2705) [`abe2c475`](https://github.com/commercetools/merchant-center-application-kit/commit/abe2c475be2aff3781ac6151178aede1e0801f77) Thanks [@emmenko](https://github.com/emmenko)! - Update typescript dependencies
+
+* [#2702](https://github.com/commercetools/merchant-center-application-kit/pull/2702) [`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413) Thanks [@emmenko](https://github.com/emmenko)! - Update Babel dependencies
+
+- [#2704](https://github.com/commercetools/merchant-center-application-kit/pull/2704) [`8ab624e5`](https://github.com/commercetools/merchant-center-application-kit/commit/8ab624e593d6f9e56efe5d1f8562788bf93a3a62) Thanks [@emmenko](https://github.com/emmenko)! - Update Sentry dependencies to v7"
+
+- Updated dependencies [[`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413)]:
+  - @commercetools-frontend/constants@21.9.0
+
 ## 21.8.1
 
 ### Patch Changes

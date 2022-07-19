@@ -1,5 +1,44 @@
 # merchant-center-application-template-starter-typescript
 
+## 0.3.0
+
+### Minor Changes
+
+- [#2693](https://github.com/commercetools/merchant-center-application-kit/pull/2693) [`6a01bda7`](https://github.com/commercetools/merchant-center-application-kit/commit/6a01bda7129d786f439fd01fdbb654761de71a70) Thanks [@emmenko](https://github.com/emmenko)! - Add new codemod `rename-mod-css-to-module-css` to migrate `.mod.css` to `.module.css` files.
+
+  ```
+  $ npx @commercetools-frontend/codemod@latest rename-mod-css-to-module-css 'src/**/*.{js,jsx,ts,tsx}'
+  ```
+
+### Patch Changes
+
+- [#2707](https://github.com/commercetools/merchant-center-application-kit/pull/2707) [`d0584935`](https://github.com/commercetools/merchant-center-application-kit/commit/d058493588821ee249333db6f11beced11594c74) Thanks [@emmenko](https://github.com/emmenko)! - Update Apollo dependency to `v3.6.9`
+
+* [#2705](https://github.com/commercetools/merchant-center-application-kit/pull/2705) [`abe2c475`](https://github.com/commercetools/merchant-center-application-kit/commit/abe2c475be2aff3781ac6151178aede1e0801f77) Thanks [@emmenko](https://github.com/emmenko)! - Update typescript dependencies
+
+- [#2706](https://github.com/commercetools/merchant-center-application-kit/pull/2706) [`28de0b59`](https://github.com/commercetools/merchant-center-application-kit/commit/28de0b59e8f3944eaef9000b517b384acfc4b98d) Thanks [@emmenko](https://github.com/emmenko)! - Update `msw` to `v0.44.0`
+
+* [#2708](https://github.com/commercetools/merchant-center-application-kit/pull/2708) [`bc1137f1`](https://github.com/commercetools/merchant-center-application-kit/commit/bc1137f1e40cfc947245c7e9c23df896d8a40fd8) Thanks [@emmenko](https://github.com/emmenko)! - Update ESLint dependencies
+
+- [#2709](https://github.com/commercetools/merchant-center-application-kit/pull/2709) [`d0618b0a`](https://github.com/commercetools/merchant-center-application-kit/commit/d0618b0a61490ddb1d8f0b1aa26b5d03da7da38c) Thanks [@emmenko](https://github.com/emmenko)! - Update `moment` and `react-intl` dependencies
+
+* [#2700](https://github.com/commercetools/merchant-center-application-kit/pull/2700) [`21d98709`](https://github.com/commercetools/merchant-center-application-kit/commit/21d98709f12696f2f7bfd22d5d1c18cee40a4845) Thanks [@emmenko](https://github.com/emmenko)! - Update UI Kit dependencies to `v15.1.0`.
+
+* Updated dependencies [[`d0584935`](https://github.com/commercetools/merchant-center-application-kit/commit/d058493588821ee249333db6f11beced11594c74), [`2f414585`](https://github.com/commercetools/merchant-center-application-kit/commit/2f414585cc324cb483b49c8d1040845d3f231ba3), [`abe2c475`](https://github.com/commercetools/merchant-center-application-kit/commit/abe2c475be2aff3781ac6151178aede1e0801f77), [`22fcb200`](https://github.com/commercetools/merchant-center-application-kit/commit/22fcb2007879bd8b10b0a5b70d02490162554e57), [`8cd781a6`](https://github.com/commercetools/merchant-center-application-kit/commit/8cd781a6f2d626fd564e6e1fd0be30991c27b4ea), [`f0e79e44`](https://github.com/commercetools/merchant-center-application-kit/commit/f0e79e44ef15d305692f4292b78c3ff1b388f74d), [`28de0b59`](https://github.com/commercetools/merchant-center-application-kit/commit/28de0b59e8f3944eaef9000b517b384acfc4b98d), [`b34b0a4c`](https://github.com/commercetools/merchant-center-application-kit/commit/b34b0a4c23d57cc3210a20f77fea847915512543), [`bc1137f1`](https://github.com/commercetools/merchant-center-application-kit/commit/bc1137f1e40cfc947245c7e9c23df896d8a40fd8), [`d0618b0a`](https://github.com/commercetools/merchant-center-application-kit/commit/d0618b0a61490ddb1d8f0b1aa26b5d03da7da38c), [`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413), [`8367e1b7`](https://github.com/commercetools/merchant-center-application-kit/commit/8367e1b71777b29d328e037148439418a66c0a72), [`21d98709`](https://github.com/commercetools/merchant-center-application-kit/commit/21d98709f12696f2f7bfd22d5d1c18cee40a4845), [`de0980f9`](https://github.com/commercetools/merchant-center-application-kit/commit/de0980f9d151f3f0a98ddbf06e0629aaf03f5239)]:
+  - @commercetools-frontend/application-shell@21.9.0
+  - @commercetools-frontend/application-shell-connectors@21.9.0
+  - @commercetools-frontend/i18n@21.9.0
+  - @commercetools-frontend/mc-scripts@21.9.0
+  - @commercetools-frontend/actions-global@21.9.0
+  - @commercetools-frontend/application-components@21.9.0
+  - @commercetools-frontend/eslint-config-mc-app@21.9.0
+  - @commercetools-frontend/permissions@21.9.0
+  - @commercetools-frontend/application-config@21.9.0
+  - @commercetools-frontend/constants@21.9.0
+  - @commercetools-frontend/mc-dev-authentication@21.9.0
+  - @commercetools-frontend/jest-preset-mc-app@21.9.0
+  - @commercetools-frontend/assets@21.9.0
+
 ## 0.2.1
 
 ### Patch Changes
