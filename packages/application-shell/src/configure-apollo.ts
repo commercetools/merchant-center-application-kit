@@ -10,13 +10,13 @@ import {
   ApolloLink,
 } from '@apollo/client';
 // import { version as apolloVersion } from '@apollo/client/version';
+import { getMcApiUrl } from '@commercetools-frontend/application-shell-connectors';
 import {
   errorLink,
   headerLink,
   tokenRetryLink,
   loggerLink,
 } from './apollo-links';
-import { getMcApiUrl } from './utils';
 import { isLoggerEnabled } from './utils/logger';
 
 type TApolloClientOptions = {
