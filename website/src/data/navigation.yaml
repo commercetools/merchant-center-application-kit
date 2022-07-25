@@ -54,7 +54,7 @@
       path: /deployment-examples/render
     - title: Deploying to AWS with S3 and CloudFront
       path: /deployment-examples/aws-s3-cloudfront
-    - title: Deploying to Microsoft Azure
+    - title: Deploying to Microsoft Azure with Static Web Apps
       path: /deployment-examples/azure
     - title: Deploying to Surge
       path: /deployment-examples/surge
