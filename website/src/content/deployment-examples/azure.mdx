@@ -62,15 +62,15 @@ In the Static Web App setup process you need to configure the following things:
 
 * Select your organization, repository and branch.
 * In the **Build details** section select `Custom` as the build preset.
-* Provide the following build settings: 
-    * App location: `/` 
+* Provide the following build settings:
+    * App location: `/`
     * Output location: `public`
 
 <Info>
 
-In case you decide to use environment variables, create them in the Microsoft Azure application settings: **Home > Static Web Apps > Your project name > Configuration > Application Settings**.
+If your Custom Application config [requires environment variables](#using-environment-variables), make sure to provide them in your **Home > Static Web Apps > Your project name > Configuration > Application Settings**.
 
-Make sure then to provide the created environment variables in the [GitHub Action workflow file](https://docs.microsoft.com/en-us/azure/static-web-apps/build-configuration?tabs=github-actions#environment-variables) provisioned by the Microsoft Azure in your GitHub repository.
+Alternatively, when using the [GitHub Action workflow file](https://docs.microsoft.com/en-us/azure/static-web-apps/build-configuration?tabs=github-actions#environment-variables) you need to provide the environment variables there.
 
 </Info>
 
