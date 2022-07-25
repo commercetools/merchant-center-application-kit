@@ -29,6 +29,21 @@ Moreover, you need to provide the [production URL](/api-reference/application-co
 }
 ```
 
+## Using environment variables
+
+In case you want to avoid hardcoding certain values, for example the Application ID, or the Project key, you can [use variable placeholders](/api-reference/application-config#using-variable-placeholders) in your Custom Application config.
+
+```json title="custom-application-config.json" highlightLines="4"
+{
+  "env": {
+    "production": {
+      "applicationId": "${env:APPLICATION_ID}",
+      "url": "https://<project>.1.azurestaticapps.net"
+    }
+  }
+}
+```
+
 # Connect Microsoft Azure with GitHub
 
 The easiest way to deploy to Microsoft Azure is to use [Static Web Apps](https://azure.microsoft.com/en-us/services/app-service/static/#overview) deployment service. This service enables first-class GitHub integration.
@@ -51,6 +66,14 @@ In the Static Web App setup process you need to configure the following things:
     * App location: `/` 
     * Output location: `public`
 
+<Info>
+
+In case you decide to use environment variables, create them in the Microsoft Azure application settings: **Home > Static Web Apps > Your project name > Configuration > Application Settings**.
+
+Make sure then to provide the created environment variables in the [GitHub Action workflow file](https://docs.microsoft.com/en-us/azure/static-web-apps/build-configuration?tabs=github-actions#environment-variables) provisioned by the Microsoft Azure in your GitHub repository.
+
+</Info>
+
 ## Configuring rewrite rules
 
 A Custom Application is a Single-Page Application that uses client-side routing. Therefore, we need to [instruct Microsoft Azure](https://docs.microsoft.com/en-us/azure/static-web-apps/configuration#defining-routes) to rewrite all requests to serve the `index.html`.
@@ -66,25 +89,6 @@ For this purpose, create `staticwebapp.config.json` file in the root directory o
   }
 }
 ```
-
-## Using environment variables
-
-In case you want to avoid hardcoding certain values, for example the Application ID, or the Project key, you can [use variable placeholders](/api-reference/application-config#using-variable-placeholders) in your Custom Application config.
-
-```json title="custom-application-config.json" highlightLines="4"
-{
-  "env": {
-    "production": {
-      "applicationId": "${env:APPLICATION_ID}",
-      "url": "https://<project>.1.azurestaticapps.net"
-    }
-  }
-}
-```
-
-Create the environment variables in the Microsoft Azure application settings: **Home > Static Web Apps > Your project name > Configuration > Application Settings**.
-
-Make sure then to provide the created environment variables in the [GitHub Action workflow file](https://docs.microsoft.com/en-us/azure/static-web-apps/build-configuration?tabs=github-actions#environment-variables) provisioned by the Microsoft Azure in your GitHub repository.
 
 # Test your deployment
 

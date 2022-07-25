@@ -29,6 +29,21 @@ Moreover, you need to provide the [production URL](/api-reference/application-co
 }
 ```
 
+## Using environment variables
+
+In case you want to avoid hardcoding certain values, for example the Application ID, or the Project key, you can [use variable placeholders](/api-reference/application-config#using-variable-placeholders) in your Custom Application config.
+
+```json title="custom-application-config.json" highlightLines="4"
+{
+  "env": {
+    "production": {
+      "applicationId": "${env:APPLICATION_ID}",
+      "url": "https://<project>.pages.dev"
+    }
+  }
+}
+```
+
 # Connect Cloudflare with GitHub
 
 The easiest way to deploy to Cloudflare is to use the [GitHub integration](https://developers.cloudflare.com/pages/platform/git-integration).
@@ -65,22 +80,11 @@ In the Cloudflare Pages setup process you need to configure the following things
 * Override the *Output directory* with: `public`.
 * If possible, select or specify the *Node.js Version*. Recommended version is `>= v14`.
 
-## Using environment variables
+<Info>
 
-In case you want to avoid hardcoding certain values, for example the Application ID, or the Project key, you can [use variable placeholders](/api-reference/application-config#using-variable-placeholders) in your Custom Application config.
+In case you decide to use environment variables, make sure then to provide them in your **Account Home > Pages > Pages project > Settings > Environment variables**.
 
-```json title="custom-application-config.json" highlightLines="4"
-{
-  "env": {
-    "production": {
-      "applicationId": "${env:APPLICATION_ID}",
-      "url": "https://<project>.pages.dev"
-    }
-  }
-}
-```
-
-Make sure then to provide the environment variables in your **Account Home > Pages > Pages project > Settings > Environment variables**.
+</Info>
 
 # Test your deployment
 

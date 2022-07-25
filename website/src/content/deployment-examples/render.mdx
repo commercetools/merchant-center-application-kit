@@ -29,6 +29,23 @@ Moreover, you need to provide the [production URL](/api-reference/application-co
 }
 ```
 
+## Using environment variables
+
+In case you want to avoid hardcoding certain values, for example the Application ID, or the Project key, you can [use variable placeholders](/api-reference/application-config#using-variable-placeholders) in your Custom Application config.
+
+```json title="custom-application-config.json" highlightLines="4"
+{
+  "env": {
+    "production": {
+      "applicationId": "${env:APPLICATION_ID}",
+      "url": "https://<site>.onrender.com"
+    }
+  }
+}
+```
+
+Make sure then to provide the environment variables in your **Render site > Environment**.
+
 # Connect Render with GitHub
 
 The easiest way to deploy to Render is to use the [GitHub integration](https://render.com/docs/github).
@@ -64,6 +81,12 @@ In the Render setup process you need to configure the following things:
 * Override the *Publish directory* with: `public`.
 * If possible, select or specify the *Node.js Version*. Recommended version is `>= v14`.
 
+<Info>
+
+In case you decide to use environment variables, make sure then to provide them in your **Render site > Environment**.
+
+</Info>
+
 ## Configuring rewrite rules
 
 A Custom Application is a Single-Page Application that uses client-side routing. Therefore, we need to [instruct Render](https://render.com/docs/deploy-create-react-app#using-client-side-routing) to rewrite all requests to serve the `index.html`.
@@ -71,23 +94,6 @@ A Custom Application is a Single-Page Application that uses client-side routing.
 ```
 /* --> /index.html
 ```
-
-## Using environment variables
-
-In case you want to avoid hardcoding certain values, for example the Application ID, or the Project key, you can [use variable placeholders](/api-reference/application-config#using-variable-placeholders) in your Custom Application config.
-
-```json title="custom-application-config.json" highlightLines="4"
-{
-  "env": {
-    "production": {
-      "applicationId": "${env:APPLICATION_ID}",
-      "url": "https://<site>.onrender.com"
-    }
-  }
-}
-```
-
-Make sure then to provide the environment variables in your **Render site > Environment**.
 
 # Test your deployment
 
