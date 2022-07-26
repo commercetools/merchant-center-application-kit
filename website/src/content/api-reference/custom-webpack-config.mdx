@@ -21,9 +21,9 @@ To create a custom webpack configuration for a Merchant Center application, you 
 These are factory functions used to create a default webpack config. They both accept some optional arguments.
 
 ## Production
-For production mode, you should create a webpack.config.prod.(cjs, js) file and use the function `createWebpackConfigForProduction` to create a default webpack config.
+For production mode, you should create a `webpack.config.prod.(cjs, js)` file and use the function `createWebpackConfigForProduction` to create a default webpack config.
 
-```tsx
+```tsx title="webpack.config.prod.cjs"
 const { createWebpackConfigForProduction } = require("@commercetools-frontend/mc-scripts");
 
 const config = createWebpackConfigForProduction(options: TWebpackConfigOptions);
@@ -34,7 +34,7 @@ config.devtool: 'cheap-source-map'
 module.exports = config; 
 ```
 
-### Options
+### options
 ```ts
 type TWebpackConfigOptions = {
   /**
@@ -61,8 +61,8 @@ type TWebpackConfigToggleFlagsForProduction = {
    */
   generateIndexHtml?: boolean;
   /**
-   * Some environemnts do not require `core-js` and can hence disable
-   * it explicitely. This will disable `core-js` for `preset-env` and the
+   * Some environments do not require `core-js` and can hence disable
+   * it explicitly. This will disable `core-js` for `preset-env` and the
    * `plugin-transform-runtime`.
    */
   disableCoreJs?: boolean;
@@ -75,7 +75,7 @@ type TWebpackConfigToggleFlagsForProduction = {
     * certain machines local and CI. This flag set to limit or disable any parallelism.
     * Options:
     *    `true` to default to the machines number of CPUs
-    *    `false` to disable any paralelism
+    *    `false` to disable any parallelism
     *    `int` for a specific number of CPUs
     */
   parallelism: true;
@@ -93,9 +93,9 @@ type TPostcssConfigOptions = {
 
 
 ## For Development
-For development mode, you should create a webpack.config.dev.(cjs, js) file and use the function `createWebpackConfigForDevelopment` to create a default webpack config.
+For development mode, you should create a `webpack.config.dev.(cjs, js)` file and use the function `createWebpackConfigForDevelopment` to create a default webpack config.
 
-```ts
+```tsx title="webpack.config.dev.cjs"
 const { createWebpackConfigForDevelopment } = require("@commercetools-frontend/mc-scripts");
 
 const config = createWebpackConfigForDevelopment(options: TWebpackConfigOptions);
@@ -106,7 +106,7 @@ config.devtool: 'cheap-source-map'
 module.exports = config; 
 ```
 
-### Options
+### options
 ```ts
 type TWebpackConfigOptions {
   // The absolute path to the application entry point file.
