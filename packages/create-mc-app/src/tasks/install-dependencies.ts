@@ -1,7 +1,9 @@
-const execa = require('execa');
-const { shouldUseYarn } = require('../utils');
+import execa from 'execa';
+import type { ListrTask } from 'listr2';
+import { shouldUseYarn } from '../utils';
+import type { TCliTaskOptions } from '../types';
 
-module.exports = function installDependencies(options) {
+function installDependencies(options: TCliTaskOptions): ListrTask {
   return {
     title: 'Installing dependencies (this might take a while)',
     task: () => {
@@ -15,4 +17,6 @@ module.exports = function installDependencies(options) {
       });
     },
   };
-};
+}
+
+export default installDependencies;

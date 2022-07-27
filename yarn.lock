@@ -3578,9 +3578,11 @@ __metadata:
   resolution: "@commercetools-frontend/create-mc-app@workspace:packages/create-mc-app"
   dependencies:
     "@babel/core": ^7.18.6
+    "@babel/runtime": ^7.18.6
+    "@babel/runtime-corejs3": ^7.18.6
+    cac: 6.7.12
     execa: 5.1.1
-    listr: 0.14.3
-    mri: 1.2.0
+    listr2: 4.0.5
     prettier: 2.6.2
     rcfile: 1.0.3
     semver: 7.3.7
@@ -26010,6 +26012,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"listr2@npm:4.0.5":
+  version: 4.0.5
+  resolution: "listr2@npm:4.0.5"
+  dependencies:
+    cli-truncate: ^2.1.0
+    colorette: ^2.0.16
+    log-update: ^4.0.0
+    p-map: ^4.0.0
+    rfdc: ^1.3.0
+    rxjs: ^7.5.5
+    through: ^2.3.8
+    wrap-ansi: ^7.0.0
+  peerDependencies:
+    enquirer: ">= 2.3.0 < 3"
+  peerDependenciesMeta:
+    enquirer:
+      optional: true
+  checksum: 7af31851abe25969ef0581c6db808117e36af15b131401795182427769d9824f451ba9e8aff6ccd25b6a4f6c8796f816292caf08e5f1f9b1775e8e9c313dc6c5
+  languageName: node
+  linkType: hard
+
 "listr2@npm:^3.12.2, listr2@npm:^3.8.3":
   version: 3.14.0
   resolution: "listr2@npm:3.14.0"
@@ -26031,7 +26054,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"listr@npm:0.14.3, listr@npm:^0.14.3":
+"listr@npm:^0.14.3":
   version: 0.14.3
   resolution: "listr@npm:0.14.3"
   dependencies:
@@ -32922,6 +32945,15 @@ __metadata:
   dependencies:
     tslib: ^2.1.0
   checksum: daf1fe7289de500b25d822fd96cde3c138c7902e8bf0e6aa12a3e70847a5cabeeb4d677f10e19387e1db44b12c5b1be0ff5c79b8cd63ed6ce891d765e566cf4d
+  languageName: node
+  linkType: hard
+
+"rxjs@npm:^7.5.5":
+  version: 7.5.5
+  resolution: "rxjs@npm:7.5.5"
+  dependencies:
+    tslib: ^2.1.0
+  checksum: e034f60805210cce756dd2f49664a8108780b117cf5d0e2281506e9e6387f7b4f1532d974a8c8b09314fa7a16dd2f6cff3462072a5789672b5dcb45c4173f3c6
   languageName: node
   linkType: hard
 

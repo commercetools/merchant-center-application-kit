@@ -1,13 +1,14 @@
-const fs = require('fs');
-const os = require('os');
-const path = require('path');
-const execa = require('execa');
-const Listr = require('listr');
-const { throwIfTemplateVersionDoesNotExist } = require('../validations');
+import fs from 'fs';
+import os from 'os';
+import path from 'path';
+import execa from 'execa';
+import { Listr, type ListrTask } from 'listr2';
+import { throwIfTemplateVersionDoesNotExist } from '../validations';
+import type { TCliTaskOptions } from '../types';
 
 const filesToBeRemoved = ['CHANGELOG.md'];
 
-module.exports = function downloadTemplate(options) {
+function downloadTemplate(options: TCliTaskOptions): ListrTask {
   return {
     title: 'Downloading template',
     task: () => {
@@ -121,4 +122,6 @@ module.exports = function downloadTemplate(options) {
       ]);
     },
   };
-};
+}
+
+export default downloadTemplate;
