@@ -2,7 +2,7 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import execa from 'execa';
-import { Listr, ListrTask } from 'listr2';
+import { Listr, type ListrTask } from 'listr2';
 import { throwIfTemplateVersionDoesNotExist } from '../validations';
 import type { TCliTaskOptions } from '../types';
 

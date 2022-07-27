@@ -5,7 +5,7 @@ import path from 'path';
 import rcfile from 'rcfile';
 import prettier from 'prettier';
 import { transformFileSync, types, type PluginItem } from '@babel/core';
-import { ListrTask } from 'listr2';
+import type { ListrTask } from 'listr2';
 import { wordify, resolveFilePathByExtension } from '../utils';
 import type { TCliTaskOptions } from '../types';
 

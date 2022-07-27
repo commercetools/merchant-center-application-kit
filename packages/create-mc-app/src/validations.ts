@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import semver from 'semver';
-import { TCliCommandOptions } from './types';
+import type { TCliCommandOptions } from './types';
 import { isSemVer } from './utils';
 
 const availableTemplates = {

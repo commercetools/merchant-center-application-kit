@@ -1,7 +1,7 @@
 import os from 'os';
 import fs from 'fs';
 import path from 'path';
-import { ListrTask } from 'listr2';
+import type { ListrTask } from 'listr2';
 import { slugify } from '../utils';
 import type { TCliTaskOptions } from '../types';
 

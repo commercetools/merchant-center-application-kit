@@ -1,5 +1,5 @@
 import execa from 'execa';
-import { ListrTask } from 'listr2';
+import type { ListrTask } from 'listr2';
 import { shouldUseYarn } from '../utils';
 import type { TCliTaskOptions } from '../types';
 
