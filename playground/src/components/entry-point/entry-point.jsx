@@ -4,6 +4,7 @@ import {
   setupGlobalErrorListener,
 } from '@commercetools-frontend/application-shell';
 import loadMessages from '../../messages';
+import configureApolloClient from '../../apollo-client';
 
 // Here we split up the main (app) bundle with the actual application business logic.
 // Splitting by route is usually recommended and you can potentially have a splitting
@@ -16,8 +17,14 @@ const AsyncPlaygroundRoutes = lazy(
 // in order to catch possible errors on rendering/mounting.
 setupGlobalErrorListener();
 
+const apolloClient = configureApolloClient();
+
 const EntryPoint = () => (
-  <ApplicationShell environment={window.app} applicationMessages={loadMessages}>
+  <ApplicationShell
+    environment={window.app}
+    applicationMessages={loadMessages}
+    apolloClient={apolloClient}
+  >
     <AsyncPlaygroundRoutes />
   </ApplicationShell>
 );

@@ -6,7 +6,7 @@ import DataTable from '@commercetools-uikit/data-table';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import {
-  GRAPHQL_TARGETS,
+  MC_API_PROXY_TARGETS,
   NO_VALUE_FALLBACK,
 } from '@commercetools-frontend/constants';
 import { useMcQuery } from '@commercetools-frontend/application-shell';
@@ -55,21 +55,31 @@ const itemRenderer = (item, column, dataLocale, projectLanguages) => {
 };
 
 const StateMachinesList = (props) => {
-  const { dataLocale, projectLanguages } = useApplicationContext((context) => ({
-    dataLocale: context.dataLocale,
-    projectLanguages: context.project.languages,
-  }));
+  const { dataLocale, projectLanguages, projectKey } = useApplicationContext(
+    (context) => ({
+      dataLocale: context.dataLocale,
+      projectLanguages: context.project.languages,
+      projectKey: context.project.key,
+    })
+  );
   const { page, perPage } = usePaginationState();
   const tableSorting = useDataTableSortingState({ key: 'key', order: 'asc' });
 
+  const searchParams = new URLSearchParams({
+    limit: perPage.value,
+    offset: (page.value - 1) * perPage.value,
+    sort: `${tableSorting.value.key} ${tableSorting.value.order}`,
+  });
+
   const { data, error, loading } = useMcQuery(FetchStatesQuery, {
+    fetchPolicy: 'cache-and-network',
     variables: {
-      limit: perPage.value,
-      offset: (page.value - 1) * perPage.value,
-      sort: [`${tableSorting.value.key} ${tableSorting.value.order}`],
+      endpoint: `/proxy/${
+        MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM
+      }/${projectKey}/states?${searchParams.toString()}`,
     },
     context: {
-      target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+      skipGraphQlTargetCheck: true,
     },
   });
 

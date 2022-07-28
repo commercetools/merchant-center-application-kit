@@ -17,6 +17,10 @@ import * as oidcStorage from '../utils/oidc-storage';
 
 declare let window: ApplicationWindow;
 
+type ApolloContextAfterResponse = TApolloContext & {
+  response?: Response;
+  restResponses?: Response[];
+};
 type QueryVariables = {
   /**
    * @deprecated: Use `{ context: { target } }`
@@ -60,6 +64,30 @@ const getAppliedForwardToHeaders = (
   }
 
   return {};
+};
+
+const extractSessionTokenFromResponse = (
+  context: ApolloContextAfterResponse
+): string | null => {
+  const refreshedSessionToken = context.response?.headers?.get(
+    'x-refreshed-session-token'
+  );
+  if (refreshedSessionToken) {
+    return refreshedSessionToken ?? null;
+  }
+
+  const restResponseWithRefreshTokenHeader = context.restResponses?.find(
+    (response) => response.headers?.has('x-refreshed-session-token')
+  );
+  if (restResponseWithRefreshTokenHeader) {
+    return (
+      restResponseWithRefreshTokenHeader.headers.get(
+        'x-refreshed-session-token'
+      ) ?? null
+    );
+  }
+
+  return null;
 };
 
 /* eslint-disable import/prefer-default-export */
@@ -119,11 +147,10 @@ const headerLink = new ApolloLink((operation, forward) => {
     }),
   });
   return forward(operation).map((response) => {
-    const context = operation.getContext();
+    const context = operation.getContext() as ApolloContextAfterResponse;
 
-    const refreshedSessionToken = context.response?.headers?.get(
-      'x-refreshed-session-token'
-    );
+    const refreshedSessionToken = extractSessionTokenFromResponse(context);
+
     if (refreshedSessionToken) {
       oidcStorage.setActiveSession(refreshedSessionToken);
     }

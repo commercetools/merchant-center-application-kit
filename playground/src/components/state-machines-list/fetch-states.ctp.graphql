@@ -1,12 +1,12 @@
-query FetchStates($limit: Int!, $offset: Int!, $sort: [String!]) {
-  states(limit: $limit, offset: $offset, sort: $sort) {
+query FetchStatesRest($endpoint: String!) {
+  states @rest(type: "StateQueryResult", path: $endpoint) {
     total
     count
     offset
-    results {
+    results @type(name: "State") {
       id
       key
-      nameAllLocales {
+      nameAllLocales @type(name: "LocalizedString") {
         locale
         value
       }
