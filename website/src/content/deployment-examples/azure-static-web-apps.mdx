@@ -68,21 +68,21 @@ In the Static Web App setup process you need to configure the following things:
 
 <Info>
 
-If your Custom Application config [requires environment variables](#using-environment-variables), make sure to provide them to your GitHub repository secrets and update the [GitHub Action workflow file](https://docs.microsoft.com/en-us/azure/static-web-apps/build-configuration?tabs=github-actions#environment-variables) accordingly.
+If your Custom Application config [requires environment variables](#using-environment-variables), make sure to provide them in the [GitHub Action workflow file](https://docs.microsoft.com/en-us/azure/static-web-apps/build-configuration?tabs=github-actions#environment-variables). You can define the environment variables either as plain text or using [GitHub encrypted secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
 
-For instance, when using `APPLICATION_ID` environment variable in your Custom Application, add `APPLICATION_ID` repository secret in GitHub settings and edit the GitHub Action workflow file:
+See example below for defining environment variables for the GitHub action:
 
-```yaml highlightLines="9-10"
-...
-
-with:
-  ...
-  action: "upload"
-  app_location: "/"
-  api_location: ""
-  output_location: "public"
-env:
-  APPLICATION_ID: ${{ secrets.APPLICATION_ID }}
+```yaml title="deployment.yml" highlightLines="9-10"
+- name: Build And Deploy
+  uses: Azure/static-web-apps-deploy@v1
+  with:
+    action: "upload"
+    app_location: "/"
+    api_location: ""
+    output_location: "public"
+  env:
+    APPLICATION_ID: ${{ secrets.APPLICATION_ID }}
+    CLOUD_IDENTIFIER: gcp-eu
 ```
 
 </Info>
