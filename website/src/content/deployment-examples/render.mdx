@@ -14,9 +14,9 @@ Before you get started, you need to have:
 
 # Configuration
 
-In your Custom Application config, make sure to provide the [Custom Application ID](/api-reference/application-config#envproductionapplicationid) that you got when you configured the Custom Application in the Merchant Center.
+In your Custom Application config, provide the [Custom Application ID](/api-reference/application-config#envproductionapplicationid) you got when you configured the Custom Application in the Merchant Center.
 
-Moreover, you need to provide the [production URL](/api-reference/application-config#envproductionurl) from your Render site. You can keep the standard Render URL `https://<site>.onrender.com` or provide your own custom domain.
+Moreover, you need to provide the [production URL](/api-reference/application-config#envproductionurl) from your Render site. You can keep the standard Render URL `https://<site>.onrender.com` or provide your custom domain.
 
 ```json title="custom-application-config.json"
 {
@@ -43,8 +43,6 @@ In case you want to avoid hardcoding certain values, for example the Application
   }
 }
 ```
-
-Make sure then to provide the environment variables in your **Render site > Environment**.
 
 # Connect Render with GitHub
 
@@ -80,6 +78,12 @@ In the Render setup process you need to configure the following things:
 
 * Override the *Publish directory* with: `public`.
 * If possible, select or specify the *Node.js Version*. Recommended version is `>= v14`.
+
+<Info>
+
+If your Custom Application config [requires environment variables](#using-environment-variables), make sure to provide them in your **Render site > Environment**.
+
+</Info>
 
 ## Configuring rewrite rules
 
