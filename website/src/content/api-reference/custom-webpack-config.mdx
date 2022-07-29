@@ -2,136 +2,81 @@
 title: "Custom Webpack Config"
 ---
 
-<Subtitle>
-The utilities allows you create a custom webpack configuration for a Merchant Center Application.
-</Subtitle> 
-
-# Installation
-
-```
-yarn add @commercetools-frontend/mc-scripts
-
-# or
-
-npm --save install @commercetools-frontend/mc-scripts
-```
+By default Custom Applications include a webpack configuration to handle most of the common features like code transformation via Babel, loading CSS modules, loading images and SVGs, loading GraphQL documents, etc.
+However, it could be that your application requires some extra functionality like loading a particular file type, using a specific webpack plugin or simply include other source files in your repository.
+In order to extend the functionalities of webpack, you can define specific files in the root of your Custom Application project.
 
 # Usage
-To create a custom webpack configuration for a Merchant Center application, you can use `createWebpackConfigForProduction` for production and `createWebpackConfigForDevelopment` for development.
-These are factory functions used to create a default webpack config. They both accept some optional arguments.
+The webpack configuration can be customized for both development and production.
 
-## Production
-For production mode, you should create a `webpack.config.prod.(cjs, js)` file and use the function `createWebpackConfigForProduction` to create a default webpack config.
+# Development
+For development mode, create a `webpack.config.dev.{js,cjs}` file and use the function `createWebpackConfigForDevelopment` to create and enhance the webpack configuration.
+The Custom Application CLI will then use the configuration exported from this file instead of the default one.
 
-```tsx title="webpack.config.prod.cjs"
-const { createWebpackConfigForProduction } = require("@commercetools-frontend/mc-scripts");
+```js title="webpack.config.dev.cjs"
+const { createWebpackConfigForDevelopment } = require("@commercetools-frontend/mc-scripts/webpack");
 
-const config = createWebpackConfigForProduction(options: TWebpackConfigOptions);
+// Create the default config
+const config = createWebpackConfigForDevelopment();
 
-// you can include your webpack config by updating the default config object
-config.devtool: 'cheap-source-map'
+// Customize the config
+config.module.rules = config.module.rules.concat({
+  test: /\.scss$/,
+  use: [
+    require.resolve('style-loader'),
+    require.resolve('css-loader'),
+    require.resolve('sass-loader'),
+  ],
+});
 
+// Export the config
 module.exports = config; 
 ```
 
-### options
-```ts
-type TWebpackConfigOptions = {
-  /**
-   * The absolute path to the application entry point file.
-   */
-  entryPoint?: string;
-  /**
-   * A list of folders where Webpack should look for source files.
-   */
-  sourceFolders?: string[];
-  /**
-   * Options related to Postcss plugins. See `createPostcssConfig` function.
-   */
-  postcssOptions?: TPostcssConfigOptions;
-  /**
-   * Options to enable/disable certain functionalities of the Webpack config.
-   */
-  toggleFlags?: TWebpackConfigToggleFlagsForProduction
-}
+# Production
+For production mode, create a `webpack.config.prod.{js,cjs}` file and use the function `createWebpackConfigForProduction` to create and enhance the webpack configuration.
+The Custom Application CLI will then use the configuration exported from this file instead of the default one.
 
-type TWebpackConfigToggleFlagsForProduction = {
-  /**
-   * Allow to disable index.html generation in case it's not necessary (e.g. for Storybook)
-   */
-  generateIndexHtml?: boolean;
-  /**
-   * Some environments do not require `core-js` and can hence disable
-   * it explicitly. This will disable `core-js` for `preset-env` and the
-   * `plugin-transform-runtime`.
-   */
-  disableCoreJs?: boolean;
-  /**
-    * Allow to disable CSS extraction in case it's not necessary (e.g. for Storybook)
-    */
-  enableExtractCss?: boolean;
-  /**
-    * Some plugins spawn workers to speed up the build. However this can cause trouble on
-    * certain machines local and CI. This flag set to limit or disable any parallelism.
-    * Options:
-    *    `true` to default to the machines number of CPUs
-    *    `false` to disable any parallelism
-    *    `int` for a specific number of CPUs
-    */
-  parallelism: true;
-}
+```js title="webpack.config.prod.cjs"
+const { createWebpackConfigForProduction } = require("@commercetools-frontend/mc-scripts/webpack");
 
-type TPostcssConfigOptions = {
-  // A list of paths where to look for files used by the `@import` statements.
-  postcssImportPaths?: string[];
-  // A list of paths where to look for files with custom media queries.
-  postcssCustomMediaPaths?: string[];
-  // A list of paths where to look for files with custom properties.
-  postcssCustomPropertiesPaths?: string[];
-}
-```
+// Create the default config
+const config = createWebpackConfigForProduction();
 
+// Customize the config
+config.module.rules = config.module.rules.concat({
+  test: /\.scss$/,
+  use: [
+    require.resolve('style-loader'),
+    require.resolve('css-loader'),
+    require.resolve('sass-loader'),
+  ],
+});
 
-## For Development
-For development mode, you should create a `webpack.config.dev.(cjs, js)` file and use the function `createWebpackConfigForDevelopment` to create a default webpack config.
-
-```tsx title="webpack.config.dev.cjs"
-const { createWebpackConfigForDevelopment } = require("@commercetools-frontend/mc-scripts");
-
-const config = createWebpackConfigForDevelopment(options: TWebpackConfigOptions);
-
-// you can include your webpack config by updating the default config object
-config.devtool: 'cheap-source-map'
-
+// Export the config
 module.exports = config; 
 ```
 
-### options
+# Options
+
+## Include additional source folders
+You can list folders where Webpack should look for source files.
+
 ```ts
-type TWebpackConfigOptions {
-  // The absolute path to the application entry point file.
-  entryPoint?: string;
-  // A list of folders where Webpack should look for source files.
   sourceFolders?: string[];
-  // Options related to Postcss plugins. See `createPostcssConfig` function.
-  postcssOptions?: TPostcssConfigOptions;
-  // Options to enable/disable certain functionalities of the Webpack config.
-  toggleFlags?: TWebpackConfigToggleFlagsForDevelopment
-}
+  ...
+```
 
-type TWebpackConfigToggleFlagsForDevelopment = {
-   // Allow to disable index.html generation in case it's not necessary (e.g. for Storybook)
-  generateIndexHtml?: boolean;
-   // This will disable `core-js` for `preset-env` and the plugin-transform-runtime.
-  disableCoreJs?: boolean;
-}
+## Example
+```js title="webpack.config.dev.cjs"
+const path = require('path');
 
-type TPostcssConfigOptions = {
-  // A list of paths where to look for files used by the `@import` statements.
-  postcssImportPaths?: string[];
-   // A list of paths where to look for files with custom media queries.
-  postcssCustomMediaPaths?: string[];
-   // A list of paths where to look for files with custom properties.
-  postcssCustomPropertiesPaths?: string[];
-};
+const sourceFolders = [
+  path.resolve(__dirname, 'first-package'),
+  path.resolve(__dirname, 'second-package'),
+];
+
+const config = createWebpackConfigForDevelopment({ sourceFolders });
+
+module.exports = config; 
 ```
