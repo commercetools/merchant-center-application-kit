@@ -24,12 +24,19 @@ To be able to validate that the request comes from an authenticated user, the Me
 /proxy/forward-to
 ```
 
+## HTTP headers
+
 Requests to that endpoint should additionally pass the following HTTP headers:
 
-- `Accept-version: v2`: See [Versioning](#versioning).
-- `X-Forward-To: <url>`: The URL to your external API.
-- `X-Forward-To-Audience-Policy: <policy>`: See [Configuring the audience policy](#configuring-the-audience-policy).
-- `X-Project-Key: <project-key>`: The key of the commercetools Project currently being used by the Custom Application. The Merchant Center API Gateway will perform a validation check to ensure that the user has access to the Project, then forward the request to your server only if the check was successful.
+- `Accept-version`: Required.<br/>
+  See [Versioning](#versioning).
+- `X-Forward-To`: Required.<br/>
+  Set it to the external API URL.
+- `X-Forward-To-Audience-Policy`: Required<br/>.
+  See [Configuring the audience policy](#configuring-the-audience-policy).
+* `X-Project-Key`: Required.<br/>
+  The key of the commercetools Project currently being used by the Custom Application. The Merchant Center API Gateway will perform a validation check to ensure that the user has access to the Project, then forward the request to your server only if the check was successful.<br/>
+  The project key can be retrieved from the [Application context](/api-reference/commercetools-frontend-application-shell-connectors#application-context).
 
 To facilitate the usage of the [built-in Apollo client and the SDK actions](/development/data-fetching), we provide some helpers to integrate with the request configuration for the HTTP headers listed above.
 
@@ -53,7 +60,7 @@ For example, given the forward-to URL `https://my-custom-app.com/api/123`, the `
 - `forward-url-full-path`: `https://my-custom-app.com/api/123`
 - `forward-url-origin`: `https://my-custom-app.com`
 
-## Sending custom HTTP headers
+## Custom HTTP headers
 
 <Info>
 
@@ -61,9 +68,17 @@ This feature is available from version `20.2.0` onwards.
 
 </Info>
 
-In case you need to send certain HTTP headers to the external API, you can do so for both the Apollo client and the SDK actions. See the examples below on how to configure the HTTP headers for both scenarios.
+You can send HTTP headers specific to the external API by prefixing them with `x-forward-header-`.
 
-All custom HTTP headers are sent to the Merchant Center API with a prefix `x-forward-header-`, as it allows the Merchant Center API to allow requests with those headers to be forwarded. However, the request forwarded to the external API contains the correct headers without the prefix.
+```js
+{
+  headers: {
+    'x-forward-header-x-foo': 'bar'
+  }
+}
+```
+
+The Merchant Center API will then remove the prefix before forwarding the request to the external API.
 
 ## Usage for Apollo
 
@@ -388,25 +403,20 @@ Versions follow an incremental number in the format `v1`, `v2`, etc.
 
 The current version refers to the **default** version used by the API, if no `Accept-version` header is provided.
 
-When we introduce a new version, the default version enters a **deprecation period**, after which the version is marked as deprecated and the new version becomes the **default** version.
-
-| Feature maturity     | Deprecation period |
-| -------------------- | ------------------ |
-| Beta                 | 4 months           |
-| General Availability | 12 months          |
+When we introduce a new version, the default version enters a **deprecation period** up to 12 months, after which the version is marked as deprecated and the new version becomes the **default** version.
 
 The following table lists all the supported versions and the possible start date for their deprecation period:
 
 | Version  | Is default |  Deprecated from  |
 | -------- | ---------- | ---------- |
-| `v1` | ✅ | 2020-08-25 |
-| `v2` |  |  |
+| `v2` | ✅ |  |
+| `v1` | | 2020-08-25 |
 
 ## Migrating to new versions
 
 We want to make the migration to a new version as simple as possible and abstract away the changes into the packages provided by the application-kit repository.
 
-For instance, changes related to `v2` are all included in the package `@commercetools-backend/express` and the data fetching components improvements (see [Proxying requests to the external API](#proxying-requests-to-the-external-api)).
+For instance, changes related to `v2` are all included in the package `@commercetools-backend/express` and the data fetching components improvements.
 If you use those packages, you only need to follow the instructions in the release notes to update to new versions for the packages.
 
 # Related
