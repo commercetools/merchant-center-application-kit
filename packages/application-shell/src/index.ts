@@ -27,7 +27,6 @@ export {
   createHttpClientOptions,
   executeHttpClientRequest,
 } from './utils/http-client';
-export { getSessionToken } from './utils/oidc-storage';
 
 export {
   entryPointUriPathToPermissionKeys,

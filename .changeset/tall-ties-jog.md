@@ -28,13 +28,10 @@ const userAgent = createHttpUserAgent({
 });
 
 // Simple example using `fetch`.
-const data = await executeHttpClientRequest(async (headers) => {
+const data = await executeHttpClientRequest({ userAgent }, async (options) => {
   const res = await fetch(buildApiUrl('/proxy/ctp/channels'), {
     method: 'GET',
-    ...createHttpClientOptions({
-      headers,
-      userAgent,
-    }),
+    ...options,
   });
   const data = await res.json();
 

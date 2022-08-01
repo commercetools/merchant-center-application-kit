@@ -4,6 +4,7 @@
  */
 
 import omitEmpty from 'omit-empty-es';
+import createHttpUserAgent from '@commercetools/http-user-agent';
 import {
   type ApplicationWindow,
   STATUS_CODES,
@@ -75,18 +76,24 @@ export type TFetcherResponse<Data> = {
   getHeader: (headerName: string) => string | null;
 };
 export type TFetcher<Data> = (
-  headers?: THeaders
+  options: TOptions
 ) => Promise<TFetcherResponse<Data>>;
+
+const defaultUserAgent = createHttpUserAgent({
+  name: 'unknown-http-client',
+  libraryName: window.app.applicationName,
+});
 
 function buildApiUrl(endpoint: string) {
   const apiUrl = getMcApiUrl().replace(/\/$/, '');
   return `${apiUrl}${endpoint}`;
 }
 
-function createHttpClientOptions(config: TConfig): TOptions {
+function createHttpClientOptions(config: TConfig = {}): TOptions {
   const sessionToken = oidcStorage.getSessionToken();
   const projectKey = selectProjectKeyFromUrl();
   const userId = selectUserId();
+  const userAgent = config?.userAgent || defaultUserAgent;
 
   return {
     credentials: 'include',
@@ -99,7 +106,7 @@ function createHttpClientOptions(config: TConfig): TOptions {
       [SUPPORTED_HEADERS.X_APPLICATION_ID]: window.app.applicationId,
       [SUPPORTED_HEADERS.X_CORRELATION_ID]: getCorrelationId({ userId }),
       [SUPPORTED_HEADERS.X_PROJECT_KEY]: projectKey,
-      [SUPPORTED_HEADERS.X_USER_AGENT]: config.userAgent,
+      [SUPPORTED_HEADERS.X_USER_AGENT]: userAgent,
     }),
   };
 }
@@ -115,16 +122,23 @@ class RenewTokenError extends Error {
 }
 
 async function executeHttpClientRequest<Data>(
+  config: TConfig = {},
   fetcher: TFetcher<Data>
 ): Promise<Data> {
   // Wrapper function to be called again (once) on retry.
   async function sendRequest({
     shouldRenewToken,
   }: { shouldRenewToken?: boolean } = {}) {
-    const response = await fetcher(
-      // Passing this header forces a token renewal.
-      omitEmpty({ [SUPPORTED_HEADERS.X_TOKEN_RETRY]: shouldRenewToken })
-    );
+    const requestOptions = createHttpClientOptions(config);
+
+    const response = await fetcher({
+      ...requestOptions,
+      headers: omitEmpty({
+        ...requestOptions.headers,
+        // Passing this header forces a token renewal.
+        [SUPPORTED_HEADERS.X_TOKEN_RETRY]: shouldRenewToken,
+      }),
+    });
     if (response.statusCode === STATUS_CODES.UNAUTHORIZED) {
       throw new RenewTokenError(`Unauthorized response, attempting retry.`);
     }

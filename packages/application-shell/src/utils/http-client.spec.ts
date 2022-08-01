@@ -65,16 +65,14 @@ describe('Custom HTTP client (fetch)', () => {
     );
 
     const data = await executeHttpClientRequest<{ message: string }>(
-      async (headers) => {
-        const defaultOptions = createHttpClientOptions({
-          headers: {
-            'Content-Type': 'application/json',
-            ...headers,
-          },
-          userAgent: 'hello',
-        });
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+      async (options) => {
         const res = await fetch(buildApiUrl('/users'), {
-          ...defaultOptions,
+          ...options,
           method: 'GET',
         });
         const data = await res.json();
