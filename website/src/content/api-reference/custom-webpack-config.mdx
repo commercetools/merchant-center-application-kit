@@ -62,13 +62,7 @@ module.exports = config;
 # Options
 
 ## Include additional source folders
-You can pass a list of folders where Webpack should look for source files as a named argument `sourceFolders`. 
-The passed `sourceFolders` argument overrides the default `sourceFolders`. 
-
-```ts
-  sourceFolders?: string[];
-  ...
-```
+You can provide a list of folders path to be included when webpack scans your project for source files by making use of the `sourceFolders` property. The Provided list of folders overrides the default source folders in the config.
 
 ## Example
 ```js title="webpack.config.dev.cjs"
