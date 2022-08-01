@@ -56,6 +56,8 @@
       path: /deployment-examples/aws-s3-cloudfront
     - title: Deploying to Azure with Static Web Apps
       path: /deployment-examples/azure-static-web-apps
+    - title: Deploying to Azure with Blob Storage
+      path: /deployment-examples/azure-blob-storage
     - title: Deploying to Surge
       path: /deployment-examples/surge
     - title: Deploying to Cloudflare Pages
