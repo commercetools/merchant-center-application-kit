@@ -63,18 +63,21 @@ module.exports = config;
 
 # Options
 
-## Include additional source folders
-You can provide a list of folders path to be included when webpack scans your project for source files by making use of the `sourceFolders` property. 
+## Use custom source folders
+You can provide a list of folders path to be included when webpack scans your project for source files by making use of the `sourceFolders` option. 
 
-The Provided list of folders overrides the default source folders in the config.
+<Info>
+The default folders configuration includes the `./src` folder.
 
-## Example
+Passing the `sourceFolders` option will override the default value.
+</Info>
+
 ```js title="webpack.config.dev.cjs"
 const path = require('path');
 
 const sourceFolders = [
-  path.resolve(__dirname, 'first-package'),
-  path.resolve(__dirname, 'second-package'),
+  path.resolve(__dirname, 'src'),
+  path.resolve(__dirname, '../shared'),
 ];
 
 const config = createWebpackConfigForDevelopment({ sourceFolders });
