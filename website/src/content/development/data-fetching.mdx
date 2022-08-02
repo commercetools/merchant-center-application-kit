@@ -266,7 +266,6 @@ const userAgent = createHttpUserAgent({
 
 const fetcher = async (url, config = {}) => {
   const data = await executeHttpClientRequest(
-    { userAgent, headers: config.headers },
     async (options) => {
       const res = await fetch(buildApiUrl(url), options);
       const data = res.json();
@@ -275,7 +274,8 @@ const fetcher = async (url, config = {}) => {
         statusCode: res.status,
         getHeader: (key) => res.headers.get(key),
       };
-    }
+    },
+    { userAgent, headers: config.headers }
   );
   return data;
 };
@@ -318,7 +318,6 @@ const userAgent = createHttpUserAgent({
 
 const fetcher = async (url, config = {}) => {
   const data = await executeHttpClientRequest(
-    { userAgent, headers: config.headers },
     async (options) => {
       const res = await axios(buildApiUrl(url), {
         ...config,
@@ -331,7 +330,8 @@ const fetcher = async (url, config = {}) => {
         statusCode: res.status,
         getHeader: (key) => res.headers[key],
       };
-    }
+    },
+    { userAgent, headers: config.headers }
   );
   return data;
 };
@@ -374,7 +374,6 @@ const userAgent = createHttpUserAgent({
 
 const fetcher = async (url, config = {}) => {
   const data = await executeHttpClientRequest(
-    { userAgent, headers: config.headers },
     async (options) => {
       const res = await fetch(buildApiUrl(url), options);
       const data = res.json();
@@ -383,7 +382,8 @@ const fetcher = async (url, config = {}) => {
         statusCode: res.status,
         getHeader: (key) => res.headers.get(key),
       };
-    }
+    },
+    { userAgent, headers: config.headers }
   );
   return data;
 };
@@ -416,7 +416,6 @@ const userAgent = createHttpUserAgent({
 
 const fetcher = async (url, config = {}) => {
   const data = await executeHttpClientRequest(
-    { userAgent, headers: config.headers },
     async (options) => {
       const res = await ky(buildApiUrl(url), options);
       const data = res.json();
@@ -425,7 +424,8 @@ const fetcher = async (url, config = {}) => {
         statusCode: res.statusCode,
         getHeader: (key) => res.headers.get(key),
       };
-    }
+    },
+    { userAgent, headers: config.headers }
   );
   return data;
 };
