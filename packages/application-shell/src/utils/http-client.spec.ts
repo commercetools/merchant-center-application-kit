@@ -65,11 +65,6 @@ describe('Custom HTTP client (fetch)', () => {
     );
 
     const data = await executeHttpClientRequest<{ message: string }>(
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      },
       async (options) => {
         const res = await fetch(buildApiUrl('/users'), {
           ...options,
@@ -82,6 +77,11 @@ describe('Custom HTTP client (fetch)', () => {
           statusCode: res.status,
           getHeader: (key) => res.headers.get(key),
         };
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
       }
     );
 

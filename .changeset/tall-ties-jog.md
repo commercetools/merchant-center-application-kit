@@ -28,19 +28,22 @@ const userAgent = createHttpUserAgent({
 });
 
 // Simple example using `fetch`.
-const data = await executeHttpClientRequest({ userAgent }, async (options) => {
-  const res = await fetch(buildApiUrl('/proxy/ctp/channels'), {
-    method: 'GET',
-    ...options,
-  });
-  const data = await res.json();
+const data = await executeHttpClientRequest(
+  async (options) => {
+    const res = await fetch(buildApiUrl('/proxy/ctp/channels'), {
+      method: 'GET',
+      ...options,
+    });
+    const data = await res.json();
 
-  return {
-    data,
-    statusCode: res.status,
-    getHeader: (key) => res.headers.get(key),
-  };
-});
+    return {
+      data,
+      statusCode: res.status,
+      getHeader: (key) => res.headers.get(key),
+    };
+  },
+  { userAgent }
+);
 ```
 
 The implementation example includes all the recommended functionalities such as:

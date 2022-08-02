@@ -122,8 +122,8 @@ class RenewTokenError extends Error {
 }
 
 async function executeHttpClientRequest<Data>(
-  config: TConfig = {},
-  fetcher: TFetcher<Data>
+  fetcher: TFetcher<Data>,
+  config: TConfig = {}
 ): Promise<Data> {
   // Wrapper function to be called again (once) on retry.
   async function sendRequest({
