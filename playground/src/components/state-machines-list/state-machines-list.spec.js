@@ -52,7 +52,7 @@ const fetchState = () => {
 };
 
 const fetchAllStates = () => {
-  return graphql.query('FetchStates', (req, res, ctx) =>
+  return graphql.query('FetchStatesRest', (req, res, ctx) =>
     res(
       ctx.data({
         states: buildGraphqlList(
