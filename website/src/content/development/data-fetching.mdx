@@ -204,10 +204,11 @@ This function acts as a wrapper to whatever HTTP client is used and provides all
 - Defining the required/recommended [HTTP headers for the Merchant Center API](/concepts/merchant-center-api#http-headers).
 - Automatically renewing the token to access a particular API.
 
-The function accepts an object for the HTTP headers configuration and a callback function to execute the request. The callback function returns the configured HTTP options, including the pre-configured HTTP headers.
+The function accepts a callback function `THttpClientFetcher` to execute the request and an optional object `THttpClientConfig` for the HTTP request configuration.<br/>
+The callback function `THttpClientFetcher` is passed one argument with the configured request options `THttpClientOptions` that you would use to configure the HTTP request for your HTTP client.
 
 ```ts
-type TOptions = {
+type THttpClientOptions = {
   credentials: 'include';
 
   /**
@@ -235,13 +236,13 @@ type TFetcherResponse<Data> = {
    */
   getHeader: (headerName: string) => string | null;
 }
-type TFetcher<Data> = (
-  options: TOptions
-) => Promise<TFetcherResponse<Data>>;
+type THttpClientFetcher<Data> = (
+  options: THttpClientOptions
+) => Promise<THttpClientFetcherResponse<Data>>;
 
 async function executeHttpClientRequest<Data>(
-  config?: TConfig,
-  fetcher: TFetcher<Data>
+  fetcher: THttpClientFetcher<Data>,
+  config?: THttpClientConfig
 ): Promise<Data>;
 ```
 
@@ -431,7 +432,17 @@ const fetcher = async (url, config = {}) => {
 };
 
 const Channels = () => {
-  const { data, error } = useSWR('/proxy/ctp/channels', fetcher);
+  useEffect(() => {
+    async function execute() {
+      try {
+        const result = await fetcher('/proxy/ctp/channels');
+        // Update state with `result`
+      } catch (error) {
+        // Update state with `error`
+      }
+    }
+    execute();
+  }, [dispatch])
   // ...
 };
 ```
