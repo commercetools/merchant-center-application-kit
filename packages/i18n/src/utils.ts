@@ -16,6 +16,5 @@ export const mapLocaleToIntlLocale = (locale: string): string => {
   if (locale.startsWith('es')) return 'es';
   if (locale.startsWith('fr')) return 'fr-FR';
   if (locale === 'zh-CN') return 'zh-CN';
-  if (locale.startsWith('ja')) return 'ja';
   return 'en';
 };
