@@ -142,6 +142,7 @@ export type TAddCartLineItem = {
   externalPrice?: InputMaybe<TBaseMoneyInput>;
   externalTaxRate?: InputMaybe<TExternalTaxRateDraft>;
   externalTotalPrice?: InputMaybe<TExternalLineItemTotalPriceDraft>;
+  inventoryMode?: InputMaybe<TInventoryMode>;
   productId?: InputMaybe<Scalars['String']>;
   quantity?: InputMaybe<Scalars['Long']>;
   shippingDetails?: InputMaybe<TItemShippingDetailsDraft>;
@@ -382,6 +383,7 @@ export type TAddStagedOrderLineItem = {
   externalPrice?: InputMaybe<TBaseMoneyInput>;
   externalTaxRate?: InputMaybe<TExternalTaxRateDraft>;
   externalTotalPrice?: InputMaybe<TExternalLineItemTotalPriceDraft>;
+  inventoryMode?: InputMaybe<TInventoryMode>;
   productId?: InputMaybe<Scalars['String']>;
   quantity?: InputMaybe<Scalars['Long']>;
   shippingDetails?: InputMaybe<TItemShippingDetailsDraftType>;
@@ -608,6 +610,10 @@ export type TApplyCartDeltaToCustomLineItemShippingDetailsTargets = {
 export type TApplyCartDeltaToLineItemShippingDetailsTargets = {
   lineItemId: Scalars['String'];
   targetsDelta: Array<TShippingTargetDraft>;
+};
+
+export type TApplyStagedChanges = {
+  dummy?: InputMaybe<Scalars['String']>;
 };
 
 export type TAsset = {
@@ -3116,6 +3122,7 @@ export type TDiscountCodeUpdateAction = {
 
 export type TDiscountedLineItemPortion = {
   __typename?: 'DiscountedLineItemPortion';
+  /** Expands the CartDiscount associated to cart, if the discounts on the cart are of type DirectDiscount, this field will be empty */
   discount?: Maybe<TCartDiscount>;
   discountRef: TReference;
   discountedAmount: TBaseMoney;
@@ -4000,7 +4007,7 @@ export type TLineItem = {
   distributionChannel?: Maybe<TChannel>;
   distributionChannelRef?: Maybe<TReference>;
   id: Scalars['String'];
-  inventoryMode?: Maybe<TItemShippingDetails>;
+  inventoryMode?: Maybe<TInventoryMode>;
   lastModifiedAt?: Maybe<Scalars['DateTime']>;
   lineItemMode: TLineItemMode;
   name?: Maybe<Scalars['String']>;
@@ -4065,6 +4072,7 @@ export type TLineItemDraft = {
   externalPrice?: InputMaybe<TBaseMoneyInput>;
   externalTaxRate?: InputMaybe<TExternalTaxRateDraft>;
   externalTotalPrice?: InputMaybe<TExternalLineItemTotalPriceDraft>;
+  inventoryMode?: InputMaybe<TInventoryMode>;
   productId?: InputMaybe<Scalars['String']>;
   quantity?: InputMaybe<Scalars['Long']>;
   shippingDetails?: InputMaybe<TItemShippingDetailsDraft>;
@@ -4081,6 +4089,7 @@ export type TLineItemDraftOutput = {
   externalPrice?: Maybe<TBaseMoney>;
   externalTaxRate?: Maybe<TExternalTaxRateDraftOutput>;
   externalTotalPrice?: Maybe<TExternalLineItemTotalPrice>;
+  inventoryMode?: Maybe<TInventoryMode>;
   productId?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['Long']>;
   shippingDetails?: Maybe<TItemShippingDetailsDraftOutput>;
@@ -6766,7 +6775,6 @@ export type TPriceSelectorInput = {
   country?: InputMaybe<Scalars['Country']>;
   currency: Scalars['Currency'];
   customerGroup?: InputMaybe<TReferenceInput>;
-  /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
   date?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -12262,6 +12270,7 @@ export type TStandalonePrice = TVersioned & {
   custom?: Maybe<TCustomFieldsType>;
   customerGroupRef?: Maybe<TReference>;
   discounted?: Maybe<TDiscountedProductPriceValue>;
+  expiresAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['String'];
   key?: Maybe<Scalars['String']>;
   lastModifiedAt: Scalars['DateTime'];
@@ -12316,7 +12325,14 @@ export type TStandalonePriceQueryResult = {
   total: Scalars['Long'];
 };
 
+export type TStandalonePriceStagedChangesApplied = TMessagePayload & {
+  __typename?: 'StandalonePriceStagedChangesApplied';
+  stagedChanges: TStagedPriceValue;
+  type: Scalars['String'];
+};
+
 export type TStandalonePriceUpdateAction = {
+  applyStagedChanges?: InputMaybe<TApplyStagedChanges>;
   changeValue?: InputMaybe<TChangeStandalonePriceValue>;
   setCustomField?: InputMaybe<TSetStandalonePriceCustomFields>;
   setCustomType?: InputMaybe<TCustomFieldsDraft>;
@@ -12466,7 +12482,6 @@ export type TStoreDeleted = TMessagePayload & {
   type: Scalars['String'];
 };
 
-/** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
 export type TStoreDistributionChannelsChanged = TMessagePayload & {
   __typename?: 'StoreDistributionChannelsChanged';
   addedDistributionChannels: Array<TChannel>;

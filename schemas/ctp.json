@@ -954,6 +954,18 @@
             "deprecationReason": null
           },
           {
+            "name": "inventoryMode",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "InventoryMode",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "productId",
             "description": null,
             "type": {
@@ -3148,6 +3160,18 @@
             "deprecationReason": null
           },
           {
+            "name": "inventoryMode",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "InventoryMode",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "productId",
             "description": null,
             "type": {
@@ -5250,6 +5274,29 @@
                   }
                 }
               }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ApplyStagedChanges",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "dummy",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -27973,7 +28020,7 @@
         "fields": [
           {
             "name": "discount",
-            "description": null,
+            "description": "Expands the CartDiscount associated to cart, if the discounts on the cart are of type DirectDiscount, this field will be empty",
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -35570,8 +35617,8 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "ItemShippingDetails",
+              "kind": "ENUM",
+              "name": "InventoryMode",
               "ofType": null
             },
             "isDeprecated": false,
@@ -36032,6 +36079,18 @@
             "deprecationReason": null
           },
           {
+            "name": "inventoryMode",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "InventoryMode",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "productId",
             "description": null,
             "type": {
@@ -36180,6 +36239,18 @@
             "type": {
               "kind": "OBJECT",
               "name": "ExternalLineItemTotalPrice",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "inventoryMode",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "ENUM",
+              "name": "InventoryMode",
               "ofType": null
             },
             "isDeprecated": false,
@@ -39849,6 +39920,11 @@
           {
             "kind": "OBJECT",
             "name": "StandalonePriceExternalDiscountSet",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "StandalonePriceStagedChangesApplied",
             "ofType": null
           },
           {
@@ -58557,7 +58633,7 @@
           },
           {
             "name": "date",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "DateTime",
@@ -106100,6 +106176,18 @@
             "deprecationReason": null
           },
           {
+            "name": "expiresAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
             "description": null,
             "args": [],
@@ -106606,11 +106694,72 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "StandalonePriceStagedChangesApplied",
+        "description": null,
+        "fields": [
+          {
+            "name": "stagedChanges",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "StagedPriceValue",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "INPUT_OBJECT",
         "name": "StandalonePriceUpdateAction",
         "description": null,
         "fields": null,
         "inputFields": [
+          {
+            "name": "applyStagedChanges",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ApplyStagedChanges",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "changeValue",
             "description": null,
@@ -108151,7 +108300,7 @@
       {
         "kind": "OBJECT",
         "name": "StoreDistributionChannelsChanged",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": [
           {
             "name": "addedDistributionChannels",

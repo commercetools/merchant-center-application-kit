@@ -39,6 +39,8 @@
     "@commercetools-uikit/primary-button": "^15.1.0",
     "@commercetools-uikit/spacings": "^15.1.0",
     "@commercetools-uikit/text": "^15.1.0",
+    "apollo-link-rest": "^0.9.0-rc.1",
+    "graphql-anywhere": "^4.2.7",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.34",
     "prop-types": "15.8.1",
