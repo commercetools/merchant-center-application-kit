@@ -1,5 +1,14 @@
 # @commercetools-frontend/l10n
 
+## 21.10.0
+
+### Patch Changes
+
+- [#2741](https://github.com/commercetools/merchant-center-application-kit/pull/2741) [`fc3fd602`](https://github.com/commercetools/merchant-center-application-kit/commit/fc3fd6022031e3fe132cf890cb2a8b71f4ae0731) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - remove japanese locale support
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@21.10.0
+
 ## 21.9.0
 
 ### Patch Changes

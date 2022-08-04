@@ -1,5 +1,13 @@
 # @commercetools-frontend/permissions
 
+## 21.10.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell-connectors@21.10.0
+  - @commercetools-frontend/sentry@21.10.0
+
 ## 21.9.0
 
 ### Patch Changes

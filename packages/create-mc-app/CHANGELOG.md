@@ -1,5 +1,11 @@
 # @commercetools-frontend/create-mc-app
 
+## 21.10.0
+
+### Minor Changes
+
+- [#2666](https://github.com/commercetools/merchant-center-application-kit/pull/2666) [`f1ac3f0b`](https://github.com/commercetools/merchant-center-application-kit/commit/f1ac3f0b35eed8e3bb7e0003242cc5fa5d7d6944) Thanks [@emmenko](https://github.com/emmenko)! - Migrate CLI to TypeScript
+
 ## 21.9.0
 
 ### Patch Changes

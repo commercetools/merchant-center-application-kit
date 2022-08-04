@@ -1,5 +1,15 @@
 # @commercetools-website/components-playground
 
+## 17.5.5
+
+### Patch Changes
+
+- [#2741](https://github.com/commercetools/merchant-center-application-kit/pull/2741) [`fc3fd602`](https://github.com/commercetools/merchant-center-application-kit/commit/fc3fd6022031e3fe132cf890cb2a8b71f4ae0731) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - remove japanese locale support
+
+- Updated dependencies [[`fc3fd602`](https://github.com/commercetools/merchant-center-application-kit/commit/fc3fd6022031e3fe132cf890cb2a8b71f4ae0731), [`dac14c2b`](https://github.com/commercetools/merchant-center-application-kit/commit/dac14c2bf0800eed6ddd1977d988a31b23a9c47e), [`d0e10a3f`](https://github.com/commercetools/merchant-center-application-kit/commit/d0e10a3fbc893d55e15ffff8fe16911784425930)]:
+  - @commercetools-frontend/i18n@21.10.0
+  - @commercetools-frontend/application-components@21.10.0
+
 ## 17.5.4
 
 ### Patch Changes

@@ -1,5 +1,18 @@
 # @commercetools-frontend/i18n
 
+## 21.10.0
+
+### Patch Changes
+
+- [#2741](https://github.com/commercetools/merchant-center-application-kit/pull/2741) [`fc3fd602`](https://github.com/commercetools/merchant-center-application-kit/commit/fc3fd6022031e3fe132cf890cb2a8b71f4ae0731) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - remove japanese locale support
+
+* [#2735](https://github.com/commercetools/merchant-center-application-kit/pull/2735) [`dac14c2b`](https://github.com/commercetools/merchant-center-application-kit/commit/dac14c2bf0800eed6ddd1977d988a31b23a9c47e) Thanks [@transifex-integration](https://github.com/apps/transifex-integration)! - Update translations for `es`.
+
+- [#2737](https://github.com/commercetools/merchant-center-application-kit/pull/2737) [`d0e10a3f`](https://github.com/commercetools/merchant-center-application-kit/commit/d0e10a3fbc893d55e15ffff8fe16911784425930) Thanks [@transifex-integration](https://github.com/apps/transifex-integration)! - Update translations for `de`.
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@21.10.0
+
 ## 21.9.0
 
 ### Patch Changes
