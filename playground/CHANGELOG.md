@@ -1,5 +1,25 @@
 # playground
 
+## 19.4.0
+
+### Minor Changes
+
+- [#2733](https://github.com/commercetools/merchant-center-application-kit/pull/2733) [`67b0329a`](https://github.com/commercetools/merchant-center-application-kit/commit/67b0329aeccf281e6219c657a3c35f2ca34fc465) Thanks [@emmenko](https://github.com/emmenko)! - Refactor fetching states using the `@rest` directive.
+
+### Patch Changes
+
+- Updated dependencies [[`67b0329a`](https://github.com/commercetools/merchant-center-application-kit/commit/67b0329aeccf281e6219c657a3c35f2ca34fc465), [`fc3fd602`](https://github.com/commercetools/merchant-center-application-kit/commit/fc3fd6022031e3fe132cf890cb2a8b71f4ae0731), [`73977f3f`](https://github.com/commercetools/merchant-center-application-kit/commit/73977f3fcc52acd6195b698c37b8a9a80547670d), [`dac14c2b`](https://github.com/commercetools/merchant-center-application-kit/commit/dac14c2bf0800eed6ddd1977d988a31b23a9c47e), [`d0e10a3f`](https://github.com/commercetools/merchant-center-application-kit/commit/d0e10a3fbc893d55e15ffff8fe16911784425930), [`e10b1b75`](https://github.com/commercetools/merchant-center-application-kit/commit/e10b1b758314783d364f5b6da9b1ddc466476e1c)]:
+  - @commercetools-frontend/application-shell@21.10.0
+  - @commercetools-frontend/i18n@21.10.0
+  - @commercetools-frontend/l10n@21.10.0
+  - @commercetools-frontend/constants@21.10.0
+  - @commercetools-frontend/application-components@21.10.0
+  - @commercetools-frontend/actions-global@21.10.0
+  - @commercetools-frontend/application-shell-connectors@21.10.0
+  - @commercetools-frontend/sdk@21.10.0
+  - @commercetools-frontend/permissions@21.10.0
+  - @commercetools-frontend/assets@21.10.0
+
 ## 19.3.4
 
 ### Patch Changes
