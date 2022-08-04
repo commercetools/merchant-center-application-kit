@@ -212,6 +212,73 @@ type TApolloContextProxyForwardTo = {
 
 For more information see [configuring the audience policy](/concepts/integrate-with-your-own-api#configuring-the-audience-policy).
 
+## executeHttpClientRequest
+
+<Info>
+
+This feature is available from version `21.10.0` onwards.
+
+</Info>
+
+This function should be used for configuring [custom HTTP clients](/development/data-fetching#custom-http-client) to provide all the recommended functionalities such as:
+
+- Defining the required/recommended [HTTP headers for the Merchant Center API](/concepts/merchant-center-api#http-headers).
+- Automatically renewing the token to access a particular API.
+
+```js
+import {
+  executeHttpClientRequest,
+} from '@commercetools-frontend/application-shell';
+```
+
+The function accepts a callback function `THttpClientFetcher` to execute the request and an optional object `THttpClientConfig` for the HTTP request configuration.<br/>
+The callback function `THttpClientFetcher` is passed one argument with the configured request options `THttpClientOptions` that you would use to configure the HTTP request for your HTTP client.
+
+```ts
+type THttpClientOptions = {
+  credentials: 'include';
+
+  /**
+   * The HTTP headers included by default are:
+   * - Accept
+   * - Authorization (only in development)
+   * - X-Application-Id
+   * - X-Correlation-Id
+   * - X-Project-Key
+   * - X-User-Agent
+   */
+  headers: THeaders;
+};
+type TFetcherResponse<Data> = {
+  /**
+   * The parsed response from the server.
+   */
+  data: Data;
+  /**
+   * The HTTP status code from the server response.
+   */
+  statusCode: number;
+  /**
+   * Implement a function to access the HTTP headers from the server response.
+   */
+  getHeader: (headerName: string) => string | null;
+}
+type THttpClientFetcher<Data> = (
+  options: THttpClientOptions
+) => Promise<THttpClientFetcherResponse<Data>>;
+
+async function executeHttpClientRequest<Data>(
+  fetcher: THttpClientFetcher<Data>,
+  config?: THttpClientConfig
+): Promise<Data>;
+```
+
+You can see some examples of integrating this with different HTTP clients:
+* [Example using Fetch](/development/data-fetching#example-using-fetch)
+* [Example using Axios](/development/data-fetching#example-using-axios)
+* [Example using SWR](/development/data-fetching#example-using-swr)
+* [Example using Ky](/development/data-fetching#example-using-ky)
+
 # Test utils
 
 The package provides a separate entry point with utilities for testing Custom Applications.

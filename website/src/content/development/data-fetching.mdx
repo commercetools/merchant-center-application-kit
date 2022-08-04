@@ -191,70 +191,16 @@ However, you could use any other HTTP client of your choice, for example [Fetch]
 
 The main problem with that is the fact that you need to configure these clients on your own, in particular regarding the [HTTP headers that should be sent with every request](/concepts/merchant-center-api#http-headers).
 
-To make it easier to configure your HTTP client with the necessary HTTP headers, we provide some dedicated utility functions, in particular the `executeHttpClientRequest`.
-
-```js
-import {
-  executeHttpClientRequest,
-} from '@commercetools-frontend/application-shell';
-```
-
-This function acts as a wrapper to whatever HTTP client is used and provides all the recommended functionalities such as:
-
-- Defining the required/recommended [HTTP headers for the Merchant Center API](/concepts/merchant-center-api#http-headers).
-- Automatically renewing the token to access a particular API.
-
-The function accepts a callback function `THttpClientFetcher` to execute the request and an optional object `THttpClientConfig` for the HTTP request configuration.<br/>
-The callback function `THttpClientFetcher` is passed one argument with the configured request options `THttpClientOptions` that you would use to configure the HTTP request for your HTTP client.
-
-```ts
-type THttpClientOptions = {
-  credentials: 'include';
-
-  /**
-   * The HTTP headers included by default are:
-   * - Accept
-   * - Authorization (only in development)
-   * - X-Application-Id
-   * - X-Correlation-Id
-   * - X-Project-Key
-   * - X-User-Agent
-   */
-  headers: THeaders;
-};
-type TFetcherResponse<Data> = {
-  /**
-   * The parsed response from the server.
-   */
-  data: Data;
-  /**
-   * The HTTP status code from the server response.
-   */
-  statusCode: number;
-  /**
-   * Implement a function to access the HTTP headers from the server response.
-   */
-  getHeader: (headerName: string) => string | null;
-}
-type THttpClientFetcher<Data> = (
-  options: THttpClientOptions
-) => Promise<THttpClientFetcherResponse<Data>>;
-
-async function executeHttpClientRequest<Data>(
-  fetcher: THttpClientFetcher<Data>,
-  config?: THttpClientConfig
-): Promise<Data>;
-```
+To make it easier to configure your HTTP client with the necessary HTTP headers, we provide some dedicated utility functions, in particular the [executeHttpClientRequest](/api-reference/commercetools-frontend-application-shell#executehttpclientrequest).
 
 ## Example using Fetch
 
 The example below uses the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
 
-```js highlightLines="9,16-27"
+```js highlightLines="8,15-26"
 import createHttpUserAgent from '@commercetools/http-user-agent';
 import {
   buildApiUrl,
-  createHttpClientOptions,
   executeHttpClientRequest,
 } from '@commercetools-frontend/application-shell';
 
@@ -301,12 +247,11 @@ const Channels = () => {
 
 The example below uses the [Axios](https://axios-http.com/) HTTP client.
 
-```js highlightLines="10,17-32"
+```js highlightLines="9,16-31"
 import axios from 'axios';
 import createHttpUserAgent from '@commercetools/http-user-agent';
 import {
   buildApiUrl,
-  createHttpClientOptions,
   executeHttpClientRequest,
 } from '@commercetools-frontend/application-shell';
 
@@ -357,12 +302,11 @@ const Channels = () => {
 
 The example below uses the [SWR](https://swr.vercel.app/) React hook.
 
-```js highlightLines="10,17-28"
+```js highlightLines="9,16-27"
 import useSWR from 'swr';
 import createHttpUserAgent from '@commercetools/http-user-agent';
 import {
   buildApiUrl,
-  createHttpClientOptions,
   executeHttpClientRequest,
 } from '@commercetools-frontend/application-shell';
 
@@ -399,12 +343,11 @@ const Channels = () => {
 
 The example below uses the [Ky](https://github.com/sindresorhus/ky) HTTP client.
 
-```js highlightLines="10,17-28"
+```js highlightLines="9,16-27"
 import ky from 'ky';
 import createHttpUserAgent from '@commercetools/http-user-agent';
 import {
   buildApiUrl,
-  createHttpClientOptions,
   executeHttpClientRequest,
 } from '@commercetools-frontend/application-shell';
 
