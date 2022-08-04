@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
 import { useAsyncLocaleData } from '@commercetools-frontend/i18n';
 
-const availableLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN', 'ja'];
+const availableLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN'];
 
 const namifyLocale = (locale) => {
   switch (locale) {
@@ -17,8 +17,6 @@ const namifyLocale = (locale) => {
       return 'Français';
     case 'zh-CN':
       return '简化字';
-    case 'ja':
-      return '日本人';
     default:
       return locale;
   }
