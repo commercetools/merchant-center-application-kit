@@ -1,13 +1,11 @@
-import type { NormalizedCacheObject } from '@apollo/client';
 import type {
   ApplicationWindow,
   TGraphQLTargets,
 } from '@commercetools-frontend/constants';
-import type { TApolloContext, THeaders } from '../utils/apollo-context';
-
-import { ApolloClient, ApolloLink } from '@apollo/client';
+import { ApolloLink } from '@apollo/client';
 import omitEmpty from 'omit-empty-es';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import type { TApolloContext, THeaders } from '../utils/apollo-context';
 import { SUPPORTED_HEADERS } from '../constants';
 import {
   getCorrelationId,
@@ -19,9 +17,6 @@ import * as oidcStorage from '../utils/oidc-storage';
 
 declare let window: ApplicationWindow;
 
-type ApolloContextWithInMemoryCache = TApolloContext & {
-  cache: ApolloClient<NormalizedCacheObject>;
-};
 type QueryVariables = {
   /**
    * @deprecated: Use `{ context: { target } }`
@@ -45,7 +40,7 @@ const isKnownGraphQlTarget = (target?: TGraphQLTargets) =>
   target ? Object.values(GRAPHQL_TARGETS).includes(target) : false;
 
 const getAppliedForwardToHeaders = (
-  apolloContext: ApolloContextWithInMemoryCache
+  apolloContext: TApolloContext
 ): THeaders => {
   if (apolloContext.forwardToConfig) {
     return {
@@ -70,8 +65,7 @@ const getAppliedForwardToHeaders = (
 /* eslint-disable import/prefer-default-export */
 // Use a middleware to update the request headers with the correct params.
 const headerLink = new ApolloLink((operation, forward) => {
-  const apolloContext =
-    operation.getContext() as ApolloContextWithInMemoryCache;
+  const apolloContext = operation.getContext() as TApolloContext;
 
   const variables = operation.variables as QueryVariables;
 
@@ -86,7 +80,7 @@ const headerLink = new ApolloLink((operation, forward) => {
 
   /**
    * NOTE:
-   *   The project key is read from the url in a project related appliation context.
+   *   The project key is read from the url in a project related application context.
    *   This holds for most applications like `application-categories`, `application-discounts` etc.
    *   However, the `application-account` does not run with the project key being part of the url.
    *   As a result we allow passing the project key as a variable on the operation allowing
