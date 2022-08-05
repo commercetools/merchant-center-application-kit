@@ -12,7 +12,7 @@ export type TFormMainPageLayoutProps = {
   /**
    * The title of the page.
    */
-  title: string;
+  title?: string;
   /**
    * The title of the header.
    */
@@ -69,9 +69,11 @@ const FormMainPageLayout = (props: TFormMainPageLayoutProps) => {
   return (
     <div>
       <Spacings.Stack scale="l">
-        <Text.Headline as="h2" title={props.title}>
-          {props.title}
-        </Text.Headline>
+        {props.title && (
+          <Text.Headline as="h2" title={props.title}>
+            {props.title}
+          </Text.Headline>
+        )}
         {props.customHeaderRow || (
           <Spacings.Inline justifyContent="space-between" alignItems="center">
             <Spacings.Inline scale="m" alignItems="center">
