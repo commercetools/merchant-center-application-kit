@@ -93,11 +93,13 @@ A React hook that wraps the [`useMutation`](https://www.apollographql.com/docs/r
 
 Configures global event listeners to catch unexpected errors and report them to Sentry. Make sure to render this in the `entry-point` file.
 
-```js title="entry-point.js"
+```js title="entry-point.js" highlightLines="6"
 import {
   setupGlobalErrorListener,
   ApplicationShell,
 } from '@commercetools-frontend/application-shell';
+
+setupGlobalErrorListener();
 
 const EntryPoint = () => {
   return (
@@ -121,20 +123,30 @@ createApolloClient({
 })
 ```
 
+We recommend creating a separate file, for example `src/apollo-client.js`, and define the configuration there.
+
+```js title="apollo-client.js"
+import { createApolloClient } from '@commercetools-frontend/application-shell';
+
+const configureApollo = () =>
+  createApolloClient({
+    cache: {
+      // ...
+    }
+  })
+
+export default configureApollo
+```
+
 The new Apollo Client instance must be explicitly passed to the `<ApplicationShell>`.
 
 ```js title="entry-point.js"
 import {
-  createApolloClient,
   ApplicationShell,
 } from '@commercetools-frontend/application-shell';
+import configureApolloClient from '../../apollo-client';
 
-const apolloClient = createApolloClient({
-  cache: {
-    // Your custom configuration, according to the Apollo cache documentation.
-    // https://www.apollographql.com/docs/react/caching/cache-configuration/
-  },
-});
+const apolloClient = configureApolloClient();
 
 const EntryPoint = () => {
   return (
@@ -149,11 +161,11 @@ const EntryPoint = () => {
 Furthermore, in your tests you also need to create a new instance of your custom Apollo Client and pass it to the test utils.
 
 ```js
-import { createApolloClient } from '@commercetools-frontend/application-shell';
 import { renderAppWithRedux } from '@commercetools-frontend/application-shell/test-utils';
+import configureApolloClient from '../../apollo-client';
 
 renderAppWithRedux({
-  apolloClient: createApolloClient(),
+  apolloClient: configureApolloClient(),
   // ...
 });
 ```
@@ -198,19 +210,10 @@ const useExternalApiFetcher = () => {
 
 Available options are:
 
-```ts
-type TForwardToAudiencePolicy =
-  | 'forward-url-full-path'
-  | 'forward-url-origin';
-
-type TApolloContextProxyForwardTo = {
-  uri: string;
-  headers?: Record<string, string>;
-  audiencePolicy?: TForwardToAudiencePolicy;
-};
-```
-
-For more information see [configuring the audience policy](/concepts/integrate-with-your-own-api#configuring-the-audience-policy).
+* `uri` (required): The URL to request to from the external API.
+* `headers` (optional): Additional HTTP headers to be included in the request to the external API.
+* `audiencePolicy` (optional): See [configuring the audience policy](/concepts/integrate-with-your-own-api#configuring-the-audience-policy).
+* `version` (optional): See [versioning](/concepts/integrate-with-your-own-api#versioning).
 
 ## executeHttpClientRequest
 
@@ -272,6 +275,29 @@ async function executeHttpClientRequest<Data>(
   config?: THttpClientConfig
 ): Promise<Data>;
 ```
+
+The `THttpClientConfig` object accepts the following options:
+
+* `userAgent` (optional): A custom user agent to identify the HTTP client.<br/>
+  We recommend to use the `@commercetools/http-user-agent` package.
+
+  ```js
+  import createHttpUserAgent from '@commercetools/http-user-agent';
+
+  const userAgent = createHttpUserAgent({
+    name: 'fetch-client',
+    version: '2.6.0',
+    libraryName: window.app.applicationName,
+    contactEmail: 'support@my-company.com',
+  });
+  ```
+* `headers` (optional): Additional HTTP headers to be included in the request. The provided recommended headers won't be overwritten.
+* `forwardToConfig` (optional): Configuration for using the `/proxy/forward-to` endpoint to [connect to an external API](/concepts/integrate-with-your-own-api#usage-for-custom-http-client).
+  * `uri` (required): The URL to request to from the external API.
+  * `headers` (optional): Additional HTTP headers to be included in the request to the external API.
+  * `audiencePolicy` (optional): See [configuring the audience policy](/concepts/integrate-with-your-own-api#configuring-the-audience-policy).
+  * `version` (optional): See [versioning](/concepts/integrate-with-your-own-api#versioning).
+
 
 You can see some examples of integrating this with different HTTP clients:
 * [Example using Fetch](/development/data-fetching#example-using-fetch)
