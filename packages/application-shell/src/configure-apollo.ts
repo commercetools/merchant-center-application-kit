@@ -1,12 +1,8 @@
-import type {
-  NormalizedCacheObject,
-  InMemoryCacheConfig,
-  FieldMergeFunction,
-  Reference,
-} from '@apollo/client';
-import type { ApplicationWindow } from '@commercetools-frontend/constants';
-
 import {
+  type NormalizedCacheObject,
+  type InMemoryCacheConfig,
+  type FieldMergeFunction,
+  type Reference,
   ApolloClient,
   from,
   createHttpLink,
@@ -14,7 +10,6 @@ import {
   ApolloLink,
 } from '@apollo/client';
 // import { version as apolloVersion } from '@apollo/client/version';
-import createHttpUserAgent from '@commercetools/http-user-agent';
 import {
   errorLink,
   headerLink,
@@ -23,30 +18,14 @@ import {
 } from './apollo-links';
 import { getMcApiUrl } from './utils';
 import { isLoggerEnabled } from './utils/logger';
-import version from './version';
-
-declare let window: ApplicationWindow;
 
 type TApolloClientOptions = {
   cache?: InMemoryCacheConfig;
   restLink?: ApolloLink;
 };
 
-const userAgent = createHttpUserAgent({
-  name: 'apollo-client',
-  // version: apolloVersion,
-  libraryName: [window.app.applicationName, 'application-shell'].join('/'),
-  libraryVersion: version,
-  contactUrl: 'https://git.io/fjuyC', // points to the appkit repo issues
-  contactEmail: 'support@commercetools.com',
-});
-
 const httpLink = createHttpLink({
   uri: `${getMcApiUrl()}/graphql`,
-  headers: {
-    accept: 'application/json',
-    'x-user-agent': userAgent,
-  },
   fetch,
 });
 

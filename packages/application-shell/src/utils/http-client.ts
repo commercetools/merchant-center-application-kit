@@ -20,13 +20,25 @@ declare let window: ApplicationWindow;
 
 export type THeaders = Record<string, string>;
 
+export type TForwardToAudiencePolicy =
+  | 'forward-url-full-path'
+  | 'forward-url-origin';
+
+export type TForwardToConfigVersion = 'v1' | 'v2';
+
+export type TForwardToConfig = {
+  uri: string;
+  headers?: THeaders;
+  audiencePolicy?: TForwardToAudiencePolicy;
+  version?: TForwardToConfigVersion;
+};
+
 export type TConfig = {
   /**
    * A custom user agent to identify the HTTP client.
    * We recommend to use the `@commercetools/http-user-agent` package.
    *
    * @example
-   *
    * import createHttpUserAgent from '@commercetools/http-user-agent';
    *
    * const userAgent = createHttpUserAgent({
@@ -44,9 +56,33 @@ export type TConfig = {
    * See `TOptions.headers`.
    */
   headers?: THeaders;
+
+  /**
+   * Configuration for using the `/proxy/forward-to` endpoint
+   * to connect to an external API.
+   * {@link https://docs.commercetools.com/custom-applications/concepts/integrate-with-your-own-api}
+   *
+   * @example
+   * {
+   *   forwardToConfig: {
+   *     uri: 'https://my-api.com/my-endpoint',
+   *   }
+   * }
+   */
+  forwardToConfig?: TForwardToConfig;
+
+  /**
+   * The project key to be assigned to the `x-project-key` header.
+   * By default the project key is extracted from the URL.
+   * We do not recommend to use this option unless you know what you are doing.
+   */
+  projectKey?: string;
 };
 
 export type TOptions = {
+  /**
+   * Include user credentials (session token).
+   */
   credentials: 'include';
 
   /**
@@ -84,21 +120,50 @@ const defaultUserAgent = createHttpUserAgent({
   libraryName: window.app.applicationName,
 });
 
+const defaultForwardToVersion: TForwardToConfigVersion = 'v2';
+const defaultForwardToAudiencePolicy: TForwardToAudiencePolicy =
+  'forward-url-full-path';
+
 function buildApiUrl(endpoint: string) {
   const apiUrl = getMcApiUrl().replace(/\/$/, '');
   return `${apiUrl}${endpoint}`;
 }
 
+const getAppliedForwardToHeaders = (
+  forwardToConfig?: TForwardToConfig
+): THeaders => {
+  if (!forwardToConfig) {
+    return {};
+  }
+  return {
+    ...Object.entries(forwardToConfig.headers ?? {}).reduce(
+      (customForwardHeaders, [headerName, headerValue]) => ({
+        ...customForwardHeaders,
+        // Prefix headers so that the MC API can allow and forward them.
+        [`x-forward-header-${headerName}`]: headerValue,
+      }),
+      {}
+    ),
+    [SUPPORTED_HEADERS.ACCEPT_VERSION]:
+      forwardToConfig.version ?? defaultForwardToVersion,
+    [SUPPORTED_HEADERS.X_FORWARD_TO]: forwardToConfig.uri,
+    [SUPPORTED_HEADERS.X_FORWARD_TO_AUDIENCE_POLICY]:
+      forwardToConfig.audiencePolicy ?? defaultForwardToAudiencePolicy,
+  };
+};
+
 function createHttpClientOptions(config: TConfig = {}): TOptions {
   const sessionToken = oidcStorage.getSessionToken();
-  const projectKey = selectProjectKeyFromUrl();
+  const projectKey = config.projectKey ?? selectProjectKeyFromUrl();
   const userId = selectUserId();
   const userAgent = config?.userAgent || defaultUserAgent;
 
   return {
     credentials: 'include',
     headers: omitEmpty<THeaders>({
+      // Other headers that are allowed in the CORS rules of the MC API.
       ...config.headers,
+      // Required headers
       [SUPPORTED_HEADERS.ACCEPT]: 'application/json',
       [SUPPORTED_HEADERS.AUTHORIZATION]: sessionToken
         ? `Bearer ${sessionToken}`
@@ -107,6 +172,8 @@ function createHttpClientOptions(config: TConfig = {}): TOptions {
       [SUPPORTED_HEADERS.X_CORRELATION_ID]: getCorrelationId({ userId }),
       [SUPPORTED_HEADERS.X_PROJECT_KEY]: projectKey,
       [SUPPORTED_HEADERS.X_USER_AGENT]: userAgent,
+      // Additional headers for the forward-to feature.
+      ...getAppliedForwardToHeaders(config.forwardToConfig),
     }),
   };
 }
