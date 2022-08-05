@@ -238,7 +238,7 @@ const Channels = () => {
       }
     }
     execute();
-  }, [dispatch])
+  }, [])
   // ...
 };
 ```
@@ -293,7 +293,7 @@ const Channels = () => {
       }
     }
     execute();
-  }, [dispatch])
+  }, [])
   // ...
 };
 ```
@@ -385,7 +385,7 @@ const Channels = () => {
       }
     }
     execute();
-  }, [dispatch])
+  }, [])
   // ...
 };
 ```
@@ -457,11 +457,11 @@ const Channels = (props) => {
 <!-- TODO: ## Using fetch policy -->
 <!-- TODO: ## Customizing Apollo Cache -->
 
-## Connecting to an external GraphQL API
+## Connecting to an external API
 
-In case your Custom Application needs to connect to an [external GraphQL API](/concepts/integrate-with-your-own-api), in addition to the commercetools GraphQL APIs, the Apollo Client needs to be reconfigured to connect to the `/proxy/forward-to` endpoint with the appropriate headers.
-This can be achieved by using the `context` option of Apollo Client, which allows passing configuration options to the Apollo Links.
+In case your Custom Application needs to connect to an [external API](/concepts/integrate-with-your-own-api), in addition to the Composable Commerce APIs, the HTTP client has to be reconfigured to connect to the `/proxy/forward-to` endpoint with the appropriate headers.
 
+When using the [Apollo client](#graphql-http-client), you need to pass some configuration options to the `context` object.<br/>
 The `@commercetools-frontend/application-shell` package now exposes a [createApolloContextForProxyForwardTo](/api-reference/commercetools-frontend-application-shell#createapollocontextforproxyforwardto) to construct a predefined context object specific to the `/proxy/forward-to`.
 
 ```jsx highlightLines="2,10-12"
@@ -482,6 +482,53 @@ const HelloWorld = () => {
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
   return <Text.Headline as="h1">{data.title}</Text.Headline>;
+}
+```
+
+Similarly, when [using a custom HTTP client](/concepts/integrate-with-your-own-api#usage-for-custom-http-client), you can pass an additional configuration object `forwardToConfig`.<br/>
+
+```jsx highlightLines="21-23"
+import createHttpUserAgent from '@commercetools/http-user-agent';
+import {
+  buildApiUrl,
+  executeHttpClientRequest,
+} from '@commercetools-frontend/application-shell';
+
+const fetcherForwardTo = async (targetUrl, config = {}) => {
+  const data = await executeHttpClientRequest(
+    async (options) => {
+      const res = await fetch(buildApiUrl('/proxy/forward-to'), options);
+      const data = res.json();
+      return {
+        data,
+        statusCode: res.status,
+        getHeader: (key) => res.headers.get(key),
+      };
+    },
+    {
+      userAgent,
+      headers: config.headers,
+      forwardToConfig: {
+        uri: targetUrl
+      }
+    }
+  );
+  return data;
+};
+
+const HelloWorld = () => {
+  useEffect(() => {
+    async function execute() {
+      try {
+        const result = await fetcherForwardTo('https://my-custom-app.com/api');
+        // Update state with `result`
+      } catch (error) {
+        // Update state with `error`
+      }
+    }
+    execute();
+  }, [])
+  // ...
 }
 ```
 

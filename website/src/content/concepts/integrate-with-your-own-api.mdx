@@ -28,13 +28,17 @@ To be able to validate that the request comes from an authenticated user, the Me
 
 Requests to that endpoint should additionally pass the following HTTP headers:
 
-- `Accept-version` (required): See [Versioning](#versioning).
-- `X-Forward-To` (required): Set it to the external API URL.
-- `X-Forward-To-Audience-Policy` (required): See [Configuring the audience policy](#configuring-the-audience-policy).
-- `X-Project-Key` (required): The key of the commercetools Project currently being used by the Custom Application. The Merchant Center API Gateway will perform a validation check to ensure that the user has access to the Project, then forward the request to your server only if the check was successful.<br/>
+- `Accept-version` (**required**): See [Versioning](#versioning).
+- `X-Forward-To` (**required**): Set it to the external API URL.
+- `X-Forward-To-Audience-Policy` (**required**): See [Configuring the audience policy](#configuring-the-audience-policy).
+- `X-Project-Key` (**required**): The key of the commercetools Project currently being used by the Custom Application. The Merchant Center API Gateway will perform a validation check to ensure that the user has access to the Project, then forward the request to your server only if the check was successful.<br/>
 The project key can be retrieved from the [Application context](/api-reference/commercetools-frontend-application-shell-connectors#application-context).
 
-To facilitate the usage of the [built-in Apollo client and the SDK actions](/development/data-fetching), we provide some helpers to integrate with the request configuration for the HTTP headers listed above.
+<Info>
+
+To facilitate the configuration of these headers we provide some helpers when configuring the request with an HTTP client. See [Data fetching](/development/data-fetching) for more information.
+
+</Info>
 
 ## Configuring the audience policy
 
@@ -114,6 +118,17 @@ actions.forwardTo.get({
 As a reminder, action creators can be dispatched using the `useAsyncDispatch` React hook. See [Data Fetching for REST APIs](/development/data-fetching#rest-http-client) for more information.
 
 </Info>
+
+## Usage for custom HTTP client
+
+<Info>
+
+This feature is available from version `21.11.0` onwards.
+
+</Info>
+
+When using a [custom HTTP client](/development/data-fetching#custom-http-client) you can pass an additional configuration object `forwardToConfig`. See [`executeHttpClientRequest`](/api-reference/commercetools-frontend-application-shell#executehttpclientrequest).
+
 
 # Authenticating requests from the external API
 
