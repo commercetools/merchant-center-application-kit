@@ -1,3 +1,5 @@
+// Used from MSW
+import type { Headers } from 'headers-polyfill';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import {
@@ -17,6 +19,22 @@ beforeAll(() => {
 afterAll(() => {
   mockServer.close();
 });
+
+const throwIfMissingHeader = (
+  headers: Headers,
+  expectedHeaderName: string,
+  expectedHeaderValue: string
+) => {
+  const matchingHeader = headers.get(expectedHeaderName);
+  if (!matchingHeader) {
+    throw new Error(`Missing "${expectedHeaderName}" header`);
+  }
+  if (matchingHeader !== expectedHeaderValue) {
+    throw new Error(
+      `Invalid "${expectedHeaderName}" header value "${expectedHeaderValue}"`
+    );
+  }
+};
 
 describe('Custom HTTP client (fetch)', () => {
   it('should send required headers', async () => {
@@ -47,7 +65,62 @@ describe('Custom HTTP client (fetch)', () => {
       ...defaultOptions,
       method: 'GET',
     });
-    await res.json();
+    await expect(res.json()).resolves.toEqual({ message: 'Hello' });
+  });
+
+  it('should send required headers (for /forward-to)', async () => {
+    mockServer.use(
+      rest.get(buildApiUrl('/proxy/forward-to'), (req, res, ctx) => {
+        try {
+          throwIfMissingHeader(req.headers, 'x-forward-header-foo', 'bar');
+          throwIfMissingHeader(
+            req.headers,
+            'x-forward-to',
+            'https://my-api.com'
+          );
+          throwIfMissingHeader(req.headers, 'accept-version', 'v2');
+          throwIfMissingHeader(
+            req.headers,
+            'x-forward-to-audience-policy',
+            'forward-url-full-path'
+          );
+        } catch (error) {
+          if (error instanceof Error)
+            return res(ctx.status(400), ctx.json({ message: error.message }));
+        }
+
+        return res(ctx.status(200), ctx.json({ message: 'Hello' }));
+      })
+    );
+
+    const defaultOptions = createHttpClientOptions({
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      userAgent: 'hello',
+      forwardToConfig: {
+        uri: 'https://my-api.com',
+        headers: {
+          foo: 'bar',
+        },
+      },
+    });
+
+    expect(defaultOptions).toEqual({
+      credentials: 'include',
+      headers: expect.objectContaining({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'X-Correlation-Id': expect.stringContaining('mc/'),
+        'X-User-Agent': 'hello',
+      }),
+    });
+
+    const res = await fetch(buildApiUrl('/proxy/forward-to'), {
+      ...defaultOptions,
+      method: 'GET',
+    });
+    await expect(res.json()).resolves.toEqual({ message: 'Hello' });
   });
 
   it('should execute request and renew token', async () => {
