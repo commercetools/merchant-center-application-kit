@@ -13,16 +13,16 @@ import {
   getCorrelationId,
   selectProjectKeyFromUrl,
   selectTeamIdFromLocalStorage,
+  selectUserId,
 } from '../utils';
 import * as oidcStorage from '../utils/oidc-storage';
 import headerLink from './header-link';
 
-jest.mock('../utils/', () => ({
-  getCorrelationId: jest.fn(() => 'test-correlation-id'),
-  selectProjectKeyFromUrl: jest.fn(() => 'project-1'),
-  selectTeamIdFromLocalStorage: jest.fn(() => 'team-1'),
-  selectUserId: jest.fn(() => 'user-1'),
-}));
+jest.mock('@commercetools/http-user-agent', () => jest.fn(() => 'user-agent'));
+jest.mock('../utils/get-correlation-id');
+jest.mock('../utils/select-project-key-from-url');
+jest.mock('../utils/select-team-id-from-local-storage');
+jest.mock('../utils/select-user-id');
 jest.mock('../utils/oidc-storage');
 
 describe('headerLink', () => {
@@ -32,6 +32,12 @@ describe('headerLink', () => {
 });
 
 const mockServer = setupServer();
+beforeEach(() => {
+  getCorrelationId.mockImplementation(() => 'test-correlation-id');
+  selectProjectKeyFromUrl.mockImplementation(() => 'project-1');
+  selectTeamIdFromLocalStorage.mockImplementation(() => 'team-1');
+  selectUserId.mockImplementation(() => 'user-1');
+});
 afterEach(() => {
   mockServer.resetHandlers();
 });
@@ -87,12 +93,14 @@ describe('configuring header link', () => {
       Object {
         "credentials": "include",
         "headers": Object {
+          "Accept": "application/json",
           "X-Correlation-Id": "test-correlation-id",
           "X-Feature-Flag": "test-feature-a",
           "X-Graphql-Operation-Name": "Test",
           "X-Graphql-Target": "mc",
           "X-Project-Key": "project-1",
           "X-Team-Id": "team-1",
+          "X-User-Agent": "user-agent",
         },
       }
     `);
@@ -162,11 +170,13 @@ describe('configuring header link', () => {
         Object {
           "credentials": "include",
           "headers": Object {
+            "Accept": "application/json",
             "X-Correlation-Id": "test-correlation-id",
             "X-Graphql-Operation-Name": "Test",
             "X-Graphql-Target": "mc",
             "X-Project-Key": "test-project-key",
             "X-Team-Id": "team-1",
+            "X-User-Agent": "user-agent",
           },
         }
       `);
@@ -201,11 +211,13 @@ describe('configuring header link', () => {
         Object {
           "credentials": "include",
           "headers": Object {
+            "Accept": "application/json",
             "X-Correlation-Id": "test-correlation-id",
             "X-Graphql-Operation-Name": "Test",
             "X-Graphql-Target": "mc",
             "X-Project-Key": "project-1",
             "X-Team-Id": "test-team-id",
+            "X-User-Agent": "user-agent",
           },
         }
       `);
@@ -240,12 +252,14 @@ describe('configuring header link', () => {
         Object {
           "credentials": "include",
           "headers": Object {
+            "Accept": "application/json",
             "X-Correlation-Id": "test-correlation-id",
             "X-Feature-Flag": "test-feature-flag",
             "X-Graphql-Operation-Name": "Test",
             "X-Graphql-Target": "mc",
             "X-Project-Key": "project-1",
             "X-Team-Id": "team-1",
+            "X-User-Agent": "user-agent",
           },
         }
       `);
@@ -288,6 +302,7 @@ describe('configuring header link', () => {
               "version": "v2",
             },
             "headers": Object {
+              "Accept": "application/json",
               "Accept-version": "v2",
               "X-Correlation-Id": "test-correlation-id",
               "X-Forward-To": "https://avengers.app",
@@ -296,6 +311,7 @@ describe('configuring header link', () => {
               "X-Graphql-Target": "mc",
               "X-Project-Key": "project-1",
               "X-Team-Id": "team-1",
+              "X-User-Agent": "user-agent",
             },
           }
         `);
@@ -345,6 +361,7 @@ describe('configuring header link', () => {
               "version": "v2",
             },
             "headers": Object {
+              "Accept": "application/json",
               "Accept-version": "v2",
               "X-Correlation-Id": "test-correlation-id",
               "X-Forward-To": "https://avengers.app",
@@ -353,6 +370,7 @@ describe('configuring header link', () => {
               "X-Graphql-Target": "mc",
               "X-Project-Key": "project-1",
               "X-Team-Id": "team-1",
+              "X-User-Agent": "user-agent",
               "x-forward-header-accept-language": "*",
               "x-forward-header-x-foo": "bar",
             },
@@ -391,12 +409,14 @@ describe('configuring header link', () => {
         Object {
           "credentials": "include",
           "headers": Object {
+            "Accept": "application/json",
             "Authorization": "Bearer jwt-token",
             "X-Correlation-Id": "test-correlation-id",
             "X-Graphql-Operation-Name": "Test",
             "X-Graphql-Target": "mc",
             "X-Project-Key": "project-1",
             "X-Team-Id": "team-1",
+            "X-User-Agent": "user-agent",
           },
         }
       `);
@@ -416,8 +436,10 @@ describe('configuring header link', () => {
     const projectKey = undefined;
 
     beforeEach(async () => {
-      selectProjectKeyFromUrl.mockReturnValueOnce(null);
-      selectTeamIdFromLocalStorage.mockReturnValueOnce(null);
+      selectProjectKeyFromUrl.mockClear();
+      selectTeamIdFromLocalStorage.mockClear();
+      selectProjectKeyFromUrl.mockImplementation(() => null);
+      selectTeamIdFromLocalStorage.mockImplementation(() => null);
 
       await waitFor(
         execute(link, {

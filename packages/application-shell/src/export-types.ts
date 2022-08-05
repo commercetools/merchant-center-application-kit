@@ -1,13 +1,11 @@
-import type {
-  TApolloContext as ApolloContext,
-  TForwardToAudiencePolicy as ForwardToAudiencePolicy,
-} from './utils/apollo-context';
+import type { TApolloContext as ApolloContext } from './utils/apollo-context';
 import type {
   TFetcher,
   TFetcherResponse,
   THeaders,
   TConfig,
   TOptions,
+  TForwardToAudiencePolicy as ForwardToAudiencePolicy,
 } from './utils/http-client';
 
 export type TApolloContext = ApolloContext;
