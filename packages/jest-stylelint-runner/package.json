@@ -18,7 +18,7 @@
   "main": "index.js",
   "module": "index.js",
   "dependencies": {
-    "create-jest-runner": "0.10.0",
+    "create-jest-runner": "0.11.1",
     "postcss-load-config": "3.1.4"
   },
   "devDependencies": {

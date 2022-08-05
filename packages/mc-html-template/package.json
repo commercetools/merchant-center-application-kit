@@ -33,7 +33,7 @@
     "@commercetools-frontend/application-config": "21.10.0",
     "@commercetools-frontend/constants": "21.10.0",
     "serialize-javascript": "6.0.0",
-    "uglify-js": "3.15.4",
+    "uglify-js": "3.16.3",
     "uglifycss": "0.0.29"
   },
   "devDependencies": {
