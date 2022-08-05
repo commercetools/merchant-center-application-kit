@@ -1,5 +1,69 @@
 # @commercetools-frontend/application-shell
 
+## 21.11.0
+
+### Minor Changes
+
+- [#2743](https://github.com/commercetools/merchant-center-application-kit/pull/2743) [`eb056ebe`](https://github.com/commercetools/merchant-center-application-kit/commit/eb056ebec81d32284bfc39ba0757705849abc924) Thanks [@emmenko](https://github.com/emmenko)! - Extend the utility functions to configure custom HTTP clients to support the configuration for the `/proxy/forward-to` endpoint.
+
+  ```js
+  import createHttpUserAgent from '@commercetools/http-user-agent';
+  import {
+    buildApiUrl,
+    createHttpClientOptions,
+    executeHttpClientRequest,
+  } from '@commercetools-frontend/application-shell';
+
+  const userAgent = createHttpUserAgent({
+    name: 'fetch-client',
+    version: '2.6.0',
+    libraryName: window.app.applicationName,
+    contactEmail: 'support@my-company.com',
+  });
+
+  // Simple example using `fetch`.
+  const data = await executeHttpClientRequest(
+    async (options) => {
+      const res = await fetch(buildApiUrl('/proxy/forward-to'), {
+        method: 'GET',
+        ...options,
+      });
+      const data = await res.json();
+
+      return {
+        data,
+        statusCode: res.status,
+        getHeader: (key) => res.headers.get(key),
+      };
+    },
+    {
+      userAgent,
+      forwardToConfig: {
+        uri: 'https://my-api.com/my-endpoint',
+      },
+    }
+  );
+  ```
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@21.11.0
+  - @commercetools-frontend/application-components@21.11.0
+  - @commercetools-frontend/application-config@21.11.0
+  - @commercetools-frontend/application-shell-connectors@21.11.0
+  - @commercetools-frontend/assets@21.11.0
+  - @commercetools-frontend/browser-history@21.11.0
+  - @commercetools-frontend/constants@21.11.0
+  - @commercetools-frontend/i18n@21.11.0
+  - @commercetools-frontend/l10n@21.11.0
+  - @commercetools-frontend/notifications@21.11.0
+  - @commercetools-frontend/permissions@21.11.0
+  - @commercetools-frontend/react-notifications@21.11.0
+  - @commercetools-frontend/sdk@21.11.0
+  - @commercetools-frontend/sentry@21.11.0
+  - @commercetools-frontend/url-utils@21.11.0
+
 ## 21.10.0
 
 ### Minor Changes
