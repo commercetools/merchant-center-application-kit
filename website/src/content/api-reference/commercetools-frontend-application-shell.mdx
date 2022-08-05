@@ -210,7 +210,7 @@ const useExternalApiFetcher = () => {
 
 Available options are:
 
-* `uri` (required): The URL to request to from the external API.
+* `uri` (**required**): The URL to request to from the external API.
 * `headers` (optional): Additional HTTP headers to be included in the request to the external API.
 * `audiencePolicy` (optional): See [configuring the audience policy](/concepts/integrate-with-your-own-api#configuring-the-audience-policy).
 * `version` (optional): See [versioning](/concepts/integrate-with-your-own-api#versioning).
@@ -293,10 +293,10 @@ The `THttpClientConfig` object accepts the following options:
   ```
 * `headers` (optional): Additional HTTP headers to be included in the request. The provided recommended headers won't be overwritten.
 * `forwardToConfig` (optional): Configuration for using the `/proxy/forward-to` endpoint to [connect to an external API](/concepts/integrate-with-your-own-api#usage-for-custom-http-client).
-  * `uri` (required): The URL to request to from the external API.
+  * `uri` (**required**): The URL to request to from the external API.
   * `headers` (optional): Additional HTTP headers to be included in the request to the external API.
   * `audiencePolicy` (optional): See [configuring the audience policy](/concepts/integrate-with-your-own-api#configuring-the-audience-policy).
-  * `version` (optional): See [versioning](/concepts/integrate-with-your-own-api#versioning).
+  * `version` (recommended): See [versioning](/concepts/integrate-with-your-own-api#versioning).
 
 
 You can see some examples of integrating this with different HTTP clients:

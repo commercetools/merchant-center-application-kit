@@ -105,12 +105,12 @@ When you develop a Custom Application all authentication logic is handled implic
 
 Accessing the Merchant Center API requires to include certain HTTP headers in the HTTP request.
 
-- `Accept` (required): Set it to `application/json`.
-- `Authorization` (required only in development): See [authentication](#authentication).
-- `Content-Type` (required when sending a payload): Set it to `application/json` when sending JSON data.
-- `X-Application-ID` (required): The identifier of the Custom Application. Set it to `<applicationId>:<entryPointUriPath>` (see [Application config](/api-reference/application-config) for `applicationId` and `entryPointUriPath`).
+- `Accept` (**required**): Set it to `application/json`.
+- `Authorization` (**required only in development**): See [authentication](#authentication).
+- `Content-Type` (**required when sending a payload**): Set it to `application/json` when sending JSON data.
+- `X-Application-ID` (**required**): The identifier of the Custom Application. Set it to `<applicationId>:<entryPointUriPath>` (see [Application config](/api-reference/application-config) for `applicationId` and `entryPointUriPath`).
 - `X-Correlation-ID` (recommended): A unique identifier of the request. Set it to `mc/<projectKey>/<userId>/<randomHash>`. The `randomHash` can be generated using the [uuid](https://www.npmjs.com/package/uuid) library.
-- `X-Project-Key` (required): The key of the commercetools Project currently being used by the Custom Application. The Merchant Center API Gateway will perform a validation check to ensure that the user has access to the Project, then forward the request to your server only if the check was successful.<br/>
+- `X-Project-Key` (**required**): The key of the commercetools Project currently being used by the Custom Application. The Merchant Center API Gateway will perform a validation check to ensure that the user has access to the Project, then forward the request to your server only if the check was successful.<br/>
 The project key can be retrieved from the [Application context](/api-reference/commercetools-frontend-application-shell-connectors#application-context).
 - `X-User-Agent` (recommended): Set it to a custom user-agent identifying the HTTP client, for example using the [HTTP user-agent](https://www.npmjs.com/package/@commercetools/http-user-agent) library.
 

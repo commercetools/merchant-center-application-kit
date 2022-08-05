@@ -28,10 +28,10 @@ To be able to validate that the request comes from an authenticated user, the Me
 
 Requests to that endpoint should additionally pass the following HTTP headers:
 
-- `Accept-version` (required): See [Versioning](#versioning).
-- `X-Forward-To` (required): Set it to the external API URL.
-- `X-Forward-To-Audience-Policy` (required): See [Configuring the audience policy](#configuring-the-audience-policy).
-- `X-Project-Key` (required): The key of the commercetools Project currently being used by the Custom Application. The Merchant Center API Gateway will perform a validation check to ensure that the user has access to the Project, then forward the request to your server only if the check was successful.<br/>
+- `Accept-version` (**required**): See [Versioning](#versioning).
+- `X-Forward-To` (**required**): Set it to the external API URL.
+- `X-Forward-To-Audience-Policy` (**required**): See [Configuring the audience policy](#configuring-the-audience-policy).
+- `X-Project-Key` (**required**): The key of the commercetools Project currently being used by the Custom Application. The Merchant Center API Gateway will perform a validation check to ensure that the user has access to the Project, then forward the request to your server only if the check was successful.<br/>
 The project key can be retrieved from the [Application context](/api-reference/commercetools-frontend-application-shell-connectors#application-context).
 
 <Info>
