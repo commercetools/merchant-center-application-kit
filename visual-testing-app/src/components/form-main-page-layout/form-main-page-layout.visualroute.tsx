@@ -1,5 +1,7 @@
 import { BinLinearIcon } from '@commercetools-uikit/icons';
 import { FormMainPageLayout } from '@commercetools-frontend/application-components';
+import TextField from '@commercetools-uikit/text-field';
+import Spacings from '@commercetools-uikit/spacings';
 import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/form-main-page-layout';
@@ -16,8 +18,13 @@ export const Component = () => (
         headerTitle="John Doe"
         headerIcon={<BinLinearIcon />}
       >
-        <input />
-        <button>Submit</button>
+        <Spacings.Inline scale="l">
+          <TextField title="First Name" value="foo" onChange={() => {}} />
+          <TextField title="Last Name" value="foo" onChange={() => {}} />
+        </Spacings.Inline>
+        ;
+        <TextField title="Email Address" value="foo" onChange={() => {}} />
+        <TextField title="Business Role" value="foo" onChange={() => {}} />
       </FormMainPageLayout>
     </Spec>
     <Spec label="FormMainPageLayout with customHeaderRow">
@@ -26,8 +33,13 @@ export const Component = () => (
         onSubmit={() => {}}
         customHeaderRow={<div>John Doe</div>}
       >
-        <input />
-        <button>Submit</button>
+        <Spacings.Inline scale="l">
+          <TextField title="First Name" value="foo" onChange={() => {}} />
+          <TextField title="Last Name" value="foo" onChange={() => {}} />
+        </Spacings.Inline>
+        ;
+        <TextField title="Email Address" value="foo" onChange={() => {}} />
+        <TextField title="Business Role" value="foo" onChange={() => {}} />
       </FormMainPageLayout>
     </Spec>
   </Suite>
