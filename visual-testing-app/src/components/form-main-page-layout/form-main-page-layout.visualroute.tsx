@@ -6,6 +6,17 @@ import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/form-main-page-layout';
 
+const Content = () => (
+  <Spacings.Stack scale="l">
+    <Spacings.Inline scale="l">
+      <TextField title="First Name" value="foo" onChange={() => {}} />
+      <TextField title="Last Name" value="foo" onChange={() => {}} />
+    </Spacings.Inline>
+    <TextField title="Email Address" value="foo" onChange={() => {}} />
+    <TextField title="Business Role" value="foo" onChange={() => {}} />
+  </Spacings.Stack>
+);
+
 export const Component = () => (
   <Suite>
     <Spec label="FormMainPageLayout">
@@ -18,13 +29,7 @@ export const Component = () => (
         headerTitle="John Doe"
         headerIcon={<BinLinearIcon />}
       >
-        <Spacings.Inline scale="l">
-          <TextField title="First Name" value="foo" onChange={() => {}} />
-          <TextField title="Last Name" value="foo" onChange={() => {}} />
-        </Spacings.Inline>
-        ;
-        <TextField title="Email Address" value="foo" onChange={() => {}} />
-        <TextField title="Business Role" value="foo" onChange={() => {}} />
+        <Content />
       </FormMainPageLayout>
     </Spec>
     <Spec label="FormMainPageLayout with customHeaderRow">
@@ -33,13 +38,7 @@ export const Component = () => (
         onSubmit={() => {}}
         customHeaderRow={<div>John Doe</div>}
       >
-        <Spacings.Inline scale="l">
-          <TextField title="First Name" value="foo" onChange={() => {}} />
-          <TextField title="Last Name" value="foo" onChange={() => {}} />
-        </Spacings.Inline>
-        ;
-        <TextField title="Email Address" value="foo" onChange={() => {}} />
-        <TextField title="Business Role" value="foo" onChange={() => {}} />
+        <Content />
       </FormMainPageLayout>
     </Spec>
   </Suite>
