@@ -55,6 +55,6 @@
     "@commercetools-frontend/mc-dev-authentication": "21.11.0",
     "@commercetools-frontend/mc-scripts": "21.11.0",
     "@formatjs/cli": "4.8.4",
-    "@vercel/node": "^1.14.1"
+    "@vercel/node": "^2.0.0"
   }
 }
