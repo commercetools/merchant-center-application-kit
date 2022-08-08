@@ -52,7 +52,7 @@ describe('rendering', () => {
 
   it('should render customHeaderRow', () => {
     renderFormMainPageLayout({
-      customHeaderRow: <div>Test Header Row</div>,
+      customTitleRow: <div>Test Header Row</div>,
     });
     screen.getByText('Test Header Row');
   });

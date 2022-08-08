@@ -36,7 +36,7 @@ export const Component = () => (
       <FormMainPageLayout
         title="My Profile"
         onSubmit={() => {}}
-        customHeaderRow={<div>John Doe</div>}
+        customTitleRow={<div>John Doe</div>}
       >
         <Content />
       </FormMainPageLayout>

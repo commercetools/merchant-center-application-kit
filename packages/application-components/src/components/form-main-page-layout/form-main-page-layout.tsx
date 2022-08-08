@@ -24,7 +24,7 @@ export type TFormMainPageLayoutProps = {
   /**
    * Replaces the title/subtitle row with a custom one (for special use cases)
    */
-  customHeaderRow?: ReactNode;
+  customTitleRow?: ReactNode;
   /**
    * Any React node displayed as the content within the page.
    */
@@ -57,8 +57,8 @@ export type TFormMainPageLayoutProps = {
 
 const FormMainPageLayout = (props: TFormMainPageLayoutProps) => {
   warning(
-    props.headerTitle !== undefined || props.customHeaderRow !== undefined,
-    'FormMainPageLayout: one of either `headerTitle` or `customHeaderRow` is required but both their values are `undefined`'
+    props.title !== undefined || props.customTitleRow !== undefined,
+    'FormMainPageLayout: one of either `title` or `customTitleRow` is required but both their values are `undefined`'
   );
 
   const handleSubmit = (event: FormEvent) => {
@@ -69,36 +69,36 @@ const FormMainPageLayout = (props: TFormMainPageLayoutProps) => {
   return (
     <div>
       <Spacings.Stack scale="l">
-        {props.title && (
-          <Text.Headline as="h2" title={props.title}>
-            {props.title}
-          </Text.Headline>
-        )}
-        {props.customHeaderRow || (
-          <Spacings.Inline justifyContent="space-between" alignItems="center">
-            <Spacings.Inline scale="m" alignItems="center">
-              {props.gravatarHash && (
-                <Avatar
-                  gravatarHash={props.gravatarHash}
-                  firstName={props.firstName}
-                  lastName={props.lastName}
-                  size="l"
+        {props.customTitleRow || (
+          <>
+            <Text.Headline as="h2" title={props.title}>
+              {props.title}
+            </Text.Headline>
+            <Spacings.Inline justifyContent="space-between" alignItems="center">
+              <Spacings.Inline scale="m" alignItems="center">
+                {props.gravatarHash && (
+                  <Avatar
+                    gravatarHash={props.gravatarHash}
+                    firstName={props.firstName}
+                    lastName={props.lastName}
+                    size="l"
+                  />
+                )}
+                <PageHeaderTitle
+                  title={props.headerTitle ?? ''}
+                  subtitle={props.headerSubtitle}
+                  titleSize="big"
+                />
+              </Spacings.Inline>
+              {props.headerIcon && (
+                <IconButton
+                  icon={props.headerIcon}
+                  label="A label text"
+                  onClick={() => alert('Button clicked')}
                 />
               )}
-              <PageHeaderTitle
-                title={props.headerTitle ?? ''}
-                subtitle={props.headerSubtitle}
-                titleSize="big"
-              />
             </Spacings.Inline>
-            {props.headerIcon && (
-              <IconButton
-                icon={props.headerIcon}
-                label="A label text"
-                onClick={() => alert('Button clicked')}
-              />
-            )}
-          </Spacings.Inline>
+          </>
         )}
         <hr
           css={css`
