@@ -52,9 +52,40 @@ Make sure you are the owner and administrator of your domain.
 
 <Info>
 
-Merchant Center only allows accessing your Custom Application using a secure protocol (HTTPS) so your domain must support it with a valid [SSL certificate](https://support.google.com/domains/answer/7630973?hl=en&visit_id=637951191082633113-3999318342&rd=1) .
+Merchant Center only allows accessing your Custom Application using a secure protocol (HTTPS) so your domain must support it with a valid [SSL certificate](https://support.google.com/domains/answer/7630973?hl=en&visit_id=637951191082633113-3999318342&rd=1).
 
 </Info>
+
+
+# Connect Google cloud with GitHub Actions
+
+One of the ways to deploy to google cloud is to use [Cloud Build](https://cloud.google.com/build/docs/automating-builds/create-manage-triggers#connect_repo) deployment service. This service enables GitHub integration.
+
+<Info>
+
+Make sure to also install the [Google Cloud GitHub App](https://github.com/apps/google-cloud-build) to grant access to your repository.
+
+</Info>
+
+## Configuring build settings
+
+In the Google Cloud setup process you need to configure the following things:
+
+* Override the *Build command* with: `yarn build`.
+
+  <Info>
+
+  In your `package.json` make sure to have the following scripts defined:
+
+  ```json title="package.json"
+  {
+    "scripts": {
+      "build": "mc-scripts build"
+    }
+  }
+  ```
+
+  </Info>
 
 
 ## Configuring rewrite rules

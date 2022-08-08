@@ -62,7 +62,7 @@
       path: /deployment-examples/surge
     - title: Deploying to Cloudflare Pages
       path: /deployment-examples/cloudflare
-    - title: Deploying to Google Cloud
+    - title: Deploying to Google Cloud with Cloud Storage
       path: /deployment-examples/google-cloud-storage
 - chapter-title: API Reference
   pages:
