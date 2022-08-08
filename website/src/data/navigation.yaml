@@ -54,6 +54,10 @@
       path: /deployment-examples/render
     - title: Deploying to AWS with S3 and CloudFront
       path: /deployment-examples/aws-s3-cloudfront
+    - title: Deploying to Azure with Static Web Apps
+      path: /deployment-examples/azure-static-web-apps
+    - title: Deploying to Azure with Blob Storage
+      path: /deployment-examples/azure-blob-storage
     - title: Deploying to Surge
       path: /deployment-examples/surge
     - title: Deploying to Cloudflare Pages
@@ -66,8 +70,8 @@
       path: /api-reference/application-config
     - title: Create MC App
       path: /api-reference/create-mc-app
-    # - title: Custom Webpack Config
-    #   path: /api-reference/custom-webpack-config
+    - title: Custom Webpack Config
+      path: /api-reference/custom-webpack-config
     # - title: Security Headers
     #   path: /api-reference/security-headers
     # - title: I18N

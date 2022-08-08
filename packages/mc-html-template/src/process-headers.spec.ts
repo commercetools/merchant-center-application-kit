@@ -147,6 +147,8 @@ describe('strictTransportSecurity', () => {
 
     expect(
       processedApplicationConfig['Strict-Transport-Security']
-    ).toMatchInlineSnapshot(`"max-age=31536000; includeSubDomains"`);
+    ).toMatchInlineSnapshot(
+      `"max-age=31536000; includeSubDomains; preload; includeSubDomains"`
+    );
   });
 });

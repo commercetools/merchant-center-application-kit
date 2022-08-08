@@ -14,7 +14,7 @@ jobs:
   build_and_deploy_docs:
     runs-on: ubuntu-latest
 
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
     env:
@@ -76,7 +76,7 @@ jobs:
 
       - name: Initialize GitHub Deployment
         if: ${{ env.DEPLOY_DOCS_ENV == 'Preview' }}
-        uses: bobheadxi/deployments@v1.2.0
+        uses: bobheadxi/deployments@v1.3.0
         id: start-deployment
         with:
           step: start
@@ -103,7 +103,7 @@ jobs:
 
       - name: Update GitHub Deployment Status
         if: ${{ env.DEPLOY_DOCS_ENV == 'Preview' }}
-        uses: bobheadxi/deployments@v1.2.0
+        uses: bobheadxi/deployments@v1.3.0
         id: finish_deployment
         with:
           step: finish
@@ -131,7 +131,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Check links
-        uses: JustinBeckwith/linkinator-action@v1.10.0
+        uses: JustinBeckwith/linkinator-action@v1.10.2
         with:
           paths: https://appkit-sha-${{ github.sha }}.commercetools.vercel.app/custom-applications
           config: website/linkinator.config.json

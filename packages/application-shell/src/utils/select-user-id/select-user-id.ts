@@ -1,5 +1,4 @@
 import type { TFetchUserIdQuery } from '../../types/generated/mc';
-
 import { getCachedApolloClient } from '../apollo-client-runtime-cache';
 import { FetchUserId } from './select-user-id.mc.graphql';
 

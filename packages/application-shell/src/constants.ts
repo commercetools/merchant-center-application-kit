@@ -5,8 +5,10 @@ export const DIMENSIONS = {
 } as const;
 
 export const SUPPORTED_HEADERS = {
+  ACCEPT: 'Accept',
   ACCEPT_VERSION: 'Accept-version',
   AUTHORIZATION: 'Authorization',
+  CONTENT_TYPE: 'Content-Type',
   X_APPLICATION_ID: 'X-Application-Id',
   X_CORRELATION_ID: 'X-Correlation-Id',
   X_FEATURE_FLAG: 'X-Feature-Flag',
@@ -17,6 +19,7 @@ export const SUPPORTED_HEADERS = {
   X_PROJECT_KEY: 'X-Project-Key',
   X_TEAM_ID: 'X-Team-Id',
   X_TOKEN_RETRY: 'X-Force-Token',
+  X_USER_AGENT: 'X-User-Agent',
 } as const;
 
 export const CONTAINERS = {

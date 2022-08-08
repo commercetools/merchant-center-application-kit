@@ -1,5 +1,43 @@
 # @commercetools-local/visual-testing-app
 
+## 19.4.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@21.11.0
+  - @commercetools-frontend/assets@21.11.0
+  - @commercetools-frontend/constants@21.11.0
+  - @commercetools-frontend/react-notifications@21.11.0
+
+## 19.4.5
+
+### Patch Changes
+
+- Updated dependencies [[`73977f3f`](https://github.com/commercetools/merchant-center-application-kit/commit/73977f3fcc52acd6195b698c37b8a9a80547670d)]:
+  - @commercetools-frontend/constants@21.10.0
+  - @commercetools-frontend/application-components@21.10.0
+  - @commercetools-frontend/react-notifications@21.10.0
+  - @commercetools-frontend/assets@21.10.0
+
+## 19.4.4
+
+### Patch Changes
+
+- [#2703](https://github.com/commercetools/merchant-center-application-kit/pull/2703) [`8cd781a6`](https://github.com/commercetools/merchant-center-application-kit/commit/8cd781a6f2d626fd564e6e1fd0be30991c27b4ea) Thanks [@emmenko](https://github.com/emmenko)! - Update Emotion dependencies to `v11.9.3`
+
+* [#2711](https://github.com/commercetools/merchant-center-application-kit/pull/2711) [`f0e79e44`](https://github.com/commercetools/merchant-center-application-kit/commit/f0e79e44ef15d305692f4292b78c3ff1b388f74d) Thanks [@emmenko](https://github.com/emmenko)! - Update experimental Vite support to v3.
+
+- [#2709](https://github.com/commercetools/merchant-center-application-kit/pull/2709) [`d0618b0a`](https://github.com/commercetools/merchant-center-application-kit/commit/d0618b0a61490ddb1d8f0b1aa26b5d03da7da38c) Thanks [@emmenko](https://github.com/emmenko)! - Update `moment` and `react-intl` dependencies
+
+* [#2700](https://github.com/commercetools/merchant-center-application-kit/pull/2700) [`21d98709`](https://github.com/commercetools/merchant-center-application-kit/commit/21d98709f12696f2f7bfd22d5d1c18cee40a4845) Thanks [@emmenko](https://github.com/emmenko)! - Update UI Kit dependencies to `v15.1.0`.
+
+* Updated dependencies [[`abe2c475`](https://github.com/commercetools/merchant-center-application-kit/commit/abe2c475be2aff3781ac6151178aede1e0801f77), [`8cd781a6`](https://github.com/commercetools/merchant-center-application-kit/commit/8cd781a6f2d626fd564e6e1fd0be30991c27b4ea), [`d0618b0a`](https://github.com/commercetools/merchant-center-application-kit/commit/d0618b0a61490ddb1d8f0b1aa26b5d03da7da38c), [`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413), [`21d98709`](https://github.com/commercetools/merchant-center-application-kit/commit/21d98709f12696f2f7bfd22d5d1c18cee40a4845)]:
+  - @commercetools-frontend/application-components@21.9.0
+  - @commercetools-frontend/react-notifications@21.9.0
+  - @commercetools-frontend/constants@21.9.0
+  - @commercetools-frontend/assets@21.9.0
+
 ## 19.4.3
 
 ### Patch Changes

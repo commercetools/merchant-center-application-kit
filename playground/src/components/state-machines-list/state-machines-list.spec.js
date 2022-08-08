@@ -5,6 +5,7 @@ import {
   screen,
   waitFor,
   fireEvent,
+  within,
 } from '@commercetools-frontend/application-shell/test-utils';
 import { GtmContext } from '@commercetools-frontend/application-shell';
 import { entryPointUriPath } from '../../constants';
@@ -51,7 +52,7 @@ const fetchState = () => {
 };
 
 const fetchAllStates = () => {
-  return graphql.query('FetchStates', (req, res, ctx) =>
+  return graphql.query('FetchStatesRest', (req, res, ctx) =>
     res(
       ctx.data({
         states: buildGraphqlList(
@@ -90,7 +91,9 @@ describe('list view', () => {
         `/my-project/${entryPointUriPath}/1`
       );
     });
-    await screen.findByText(/state-key-1/i);
+
+    const dialog = await screen.findByRole('dialog');
+    await within(dialog).findByText(/state-key-1/i);
   });
 });
 
@@ -102,14 +105,17 @@ describe('details view', () => {
         route: `/my-project/${entryPointUriPath}/2`,
       });
 
-      await screen.findByText(/state-key-2/i);
+      const dialog = await screen.findByRole('dialog');
+      await within(dialog).findByText(/state-key-2/i);
     });
     it('should retrigger request if id changes', async () => {
       mockServer.use(fetchAllStates(), fetchState());
       const { history, gtmMock } = renderApp({
         route: `/my-project/${entryPointUriPath}/1`,
       });
-      await screen.findByText(/state-key-1/i);
+
+      const dialog = await screen.findByRole('dialog');
+      await within(dialog).findByText(/state-key-1/i);
       await waitFor(() => {
         expect(gtmMock.track).toHaveBeenCalledWith(
           'rendered',
@@ -118,7 +124,7 @@ describe('details view', () => {
       });
 
       history.push(`/my-project/${entryPointUriPath}/2`);
-      await screen.findByText(/state-key-2/i);
+      await within(dialog).findByText(/state-key-2/i);
     });
   });
 

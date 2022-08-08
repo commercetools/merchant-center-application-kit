@@ -4,17 +4,23 @@ title: Data Fetching
 
 In client-side applications, data fetching is not always easy and it usually involves a lot of boilerplate code around implementation, state management, data normalization, etc.
 
+A Custom Application uses the [Merchant Center API](/concepts/merchant-center-api) to connect to any of the Composable Commerce APIs.
+
+To make it easier to connect to these APIs, we provide some pre-configured HTTP clients for both [GraphQL and REST APIs](/concepts/merchant-center-api#api-gateway-endpoints).
+
+# GraphQL HTTP client
+
 The Composable Commerce APIs and the Merchant Center have first-class support for GraphQL. We strongly recommend building your Custom Application using GraphQL whenever possible.
 
-To handle requests to the [GraphQL APIs](/concepts/merchant-center-api#graphql) we use the built-in [Apollo GraphQL Client](https://www.apollographql.com/docs/react/).
+Custom Applications provide a pre-configured [Apollo GraphQL Client](https://www.apollographql.com/docs/react/) to perform requests to the GraphQL APIs.
 
 <Info>
 
-The Apollo Client comes already pre-configured in a Custom Application to connect to the `/graphql` endpoint of the [Merchant Center API](/concepts/merchant-center-api#graphql).
+A custom instance of the Apollo client can be created using the [createApolloClient](/api-reference/commercetools-frontend-application-shell#createapolloclient) function.
 
 </Info>
 
-# Using React hooks
+## Using React hooks
 
 The preferred way of fetching data in a React component is to use [React hooks](https://reactjs.org/docs/hooks-intro.html).
 
@@ -45,7 +51,7 @@ Notice here that we define the `context.target`. This is how you configure the [
 
 The available GraphQL targets are exposed as a `GRAPHQL_TARGETS` constant in the [`@commercetools-frontend/constants`](/api-reference/commercetools-frontend-constants) package.
 
-# Using GraphQL documents
+## Using GraphQL documents
 
 In Custom Applications you define your queries and mutations in dedicated `.graphql` files that you can `import` in your component file.
 
@@ -82,7 +88,7 @@ And import it from the React component file:
 import FetchChannelsQuery from './fetch-channels.ctp.graphql';
 ```
 
-# Error handling
+## Error handling
 
 Of course we need to handle situations where requests fail for whatever reason (network errors, schema validation errors, etc.).
 
@@ -126,6 +132,262 @@ In our case we just want to print the `error.graphQLErrors`. We can attempt to d
 ```js title="channels.js"
 const getErrorMessage = (error) =>
   error.graphQLErrors?.map((e) => e.message).join('\n') || error.message;
+```
+
+# REST HTTP client
+
+Some endpoints or APIs might not be available as GraphQL but as a standard HTTP REST endpoint instead.
+
+Custom Applications provide a pre-configured declarative fetching library [`@commercetools-frontend/sdk`](https://www.npmjs.com/package/@commercetools-frontend/sdk), which builds on top of the [JS SDK client](https://commercetools.github.io/nodejs/sdk/api/sdkClient.html) and [Redux](https://redux.js.org/)
+
+The SDK library is built using Redux actions, meaning that you dispatch an action describing the request and the library takes care of handling the request.
+
+```js title="channels.js"
+import { useAsyncDispatch, actions } from '@commercetools-frontend/sdk';
+import { MC_API_PROXY_TARGETS } from '@commercetools-frontend/constants';
+
+const Channels = (props) => {
+  const dispatch = useAsyncDispatch();
+  useEffect(() => {
+    async function execute() {
+      try {
+        const result = await dispatch(
+          actions.get({
+            mcApiProxyTarget: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
+            service: 'channels',
+          });
+        );
+        // Update state with `result`
+      } catch (error) {
+        // Update state with `error`
+      }
+    }
+    execute();
+  }, [dispatch])
+
+  return (
+    <div>
+      {/* Do something with the state */}
+    </div>
+  );
+};
+```
+
+Notice here that we define the `mcApiProxyTarget`. This is how you configure the proxy target for the [Merchant Center API](/concepts/merchant-center-api#proxytarget).
+
+The available proxy targets are exposed as a `MC_API_PROXY_TARGETS` constant in the [`@commercetools-frontend/constants`](/api-reference/commercetools-frontend-constants) package.
+
+<Warning>
+
+The SDK library does not include features like data normalization, caching, etc. You will need to build these on your own.
+
+</Warning>
+
+# Custom HTTP client
+
+By default Custom Applications provide pre-configured HTTP clients for [GraphQL](#graphql-http-client) and [REST](#rest-http-client) API requests.
+
+However, you could use any other HTTP client of your choice, for example [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API), [Axios](https://axios-http.com/), [Stale-While-Revalidate (SWR)](https://swr.vercel.app/), etc.
+
+The main problem with that is the fact that you need to configure these clients on your own, in particular regarding the [HTTP headers that should be sent with every request](/concepts/merchant-center-api#http-headers).
+
+To make it easier to configure your HTTP client with the necessary HTTP headers, we provide some dedicated utility functions, in particular the [executeHttpClientRequest](/api-reference/commercetools-frontend-application-shell#executehttpclientrequest).
+
+## Example using Fetch
+
+The example below uses the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
+
+```js highlightLines="8,15-26"
+import createHttpUserAgent from '@commercetools/http-user-agent';
+import {
+  buildApiUrl,
+  executeHttpClientRequest,
+} from '@commercetools-frontend/application-shell';
+
+const userAgent = createHttpUserAgent({
+  name: 'fetch-client',
+  version: '1.0.0',
+  libraryName: window.app.applicationName,
+  contactEmail: 'support@my-company.com',
+});
+
+const fetcher = async (url, config = {}) => {
+  const data = await executeHttpClientRequest(
+    async (options) => {
+      const res = await fetch(buildApiUrl(url), options);
+      const data = res.json();
+      return {
+        data,
+        statusCode: res.status,
+        getHeader: (key) => res.headers.get(key),
+      };
+    },
+    { userAgent, headers: config.headers }
+  );
+  return data;
+};
+
+const Channels = () => {
+  useEffect(() => {
+    async function execute() {
+      try {
+        const result = await fetcher('/proxy/ctp/channels');
+        // Update state with `result`
+      } catch (error) {
+        // Update state with `error`
+      }
+    }
+    execute();
+  }, [])
+  // ...
+};
+```
+
+## Example using Axios
+
+The example below uses the [Axios](https://axios-http.com/) HTTP client.
+
+```js highlightLines="9,16-31"
+import axios from 'axios';
+import createHttpUserAgent from '@commercetools/http-user-agent';
+import {
+  buildApiUrl,
+  executeHttpClientRequest,
+} from '@commercetools-frontend/application-shell';
+
+const userAgent = createHttpUserAgent({
+  name: 'axios-client',
+  version: '1.0.0',
+  libraryName: window.app.applicationName,
+  contactEmail: 'support@my-company.com',
+});
+
+const fetcher = async (url, config = {}) => {
+  const data = await executeHttpClientRequest(
+    async (options) => {
+      const res = await axios(buildApiUrl(url), {
+        ...config,
+        headers: options.headers,
+        withCredentials: options.credentials === 'include',
+      });
+      const data = res.json();
+      return {
+        data: res.data,
+        statusCode: res.status,
+        getHeader: (key) => res.headers[key],
+      };
+    },
+    { userAgent, headers: config.headers }
+  );
+  return data;
+};
+
+const Channels = () => {
+  useEffect(() => {
+    async function execute() {
+      try {
+        const result = await fetcher('/proxy/ctp/channels');
+        // Update state with `result`
+      } catch (error) {
+        // Update state with `error`
+      }
+    }
+    execute();
+  }, [])
+  // ...
+};
+```
+
+## Example using SWR
+
+The example below uses the [SWR](https://swr.vercel.app/) React hook.
+
+```js highlightLines="9,16-27"
+import useSWR from 'swr';
+import createHttpUserAgent from '@commercetools/http-user-agent';
+import {
+  buildApiUrl,
+  executeHttpClientRequest,
+} from '@commercetools-frontend/application-shell';
+
+const userAgent = createHttpUserAgent({
+  name: 'swr-client',
+  version: '1.0.0',
+  libraryName: window.app.applicationName,
+  contactEmail: 'support@my-company.com',
+});
+
+const fetcher = async (url, config = {}) => {
+  const data = await executeHttpClientRequest(
+    async (options) => {
+      const res = await fetch(buildApiUrl(url), options);
+      const data = res.json();
+      return {
+        data,
+        statusCode: res.status,
+        getHeader: (key) => res.headers.get(key),
+      };
+    },
+    { userAgent, headers: config.headers }
+  );
+  return data;
+};
+
+const Channels = () => {
+  const { data, error } = useSWR('/proxy/ctp/channels', fetcher);
+  // ...
+};
+```
+
+## Example using Ky
+
+The example below uses the [Ky](https://github.com/sindresorhus/ky) HTTP client.
+
+```js highlightLines="9,16-27"
+import ky from 'ky';
+import createHttpUserAgent from '@commercetools/http-user-agent';
+import {
+  buildApiUrl,
+  executeHttpClientRequest,
+} from '@commercetools-frontend/application-shell';
+
+const userAgent = createHttpUserAgent({
+  name: 'ky-client',
+  version: '1.0.0',
+  libraryName: window.app.applicationName,
+  contactEmail: 'support@my-company.com',
+});
+
+const fetcher = async (url, config = {}) => {
+  const data = await executeHttpClientRequest(
+    async (options) => {
+      const res = await ky(buildApiUrl(url), options);
+      const data = res.json();
+      return {
+        data,
+        statusCode: res.statusCode,
+        getHeader: (key) => res.headers.get(key),
+      };
+    },
+    { userAgent, headers: config.headers }
+  );
+  return data;
+};
+
+const Channels = () => {
+  useEffect(() => {
+    async function execute() {
+      try {
+        const result = await fetcher('/proxy/ctp/channels');
+        // Update state with `result`
+      } catch (error) {
+        // Update state with `error`
+      }
+    }
+    execute();
+  }, [])
+  // ...
+};
 ```
 
 # Advanced usage
@@ -195,12 +457,12 @@ const Channels = (props) => {
 <!-- TODO: ## Using fetch policy -->
 <!-- TODO: ## Customizing Apollo Cache -->
 
-## Connecting to an external GraphQL API
+## Connecting to an external API
 
-In case your Custom Application needs to connect to an [external GraphQL API](/concepts/integrate-with-your-own-api), in addition to the commercetools GraphQL APIs, the Apollo Client needs to be reconfigured to connect to the `/proxy/forward-to` endpoint with the appropriate headers.
-This can be achieved by using the `context` option of Apollo Client, which allows passing configuration options to the Apollo Links.
+In case your Custom Application needs to connect to an [external API](/concepts/integrate-with-your-own-api), in addition to the Composable Commerce APIs, the HTTP client has to be reconfigured to connect to the `/proxy/forward-to` endpoint with the appropriate headers.
 
-The `@commercetools-frontend/application-shell` package now exposes a `createApolloContextForProxyForwardTo` to construct a predefined context object specific to the `/proxy/forward-to`.
+When using the [Apollo client](#graphql-http-client), you need to pass some configuration options to the `context` object.<br/>
+The `@commercetools-frontend/application-shell` package now exposes a [createApolloContextForProxyForwardTo](/api-reference/commercetools-frontend-application-shell#createapollocontextforproxyforwardto) to construct a predefined context object specific to the `/proxy/forward-to`.
 
 ```jsx highlightLines="2,10-12"
 import {
@@ -223,70 +485,58 @@ const HelloWorld = () => {
 }
 ```
 
-<!-- TODO: see [@/application-shell](/api-reference/commercetools-frontend-application-shell) for more information. -->
+Similarly, when [using a custom HTTP client](/concepts/integrate-with-your-own-api#usage-for-custom-http-client), you can pass an additional configuration object `forwardToConfig`.<br/>
 
-## Requests to REST APIs
+```jsx highlightLines="21-23"
+import createHttpUserAgent from '@commercetools/http-user-agent';
+import {
+  buildApiUrl,
+  executeHttpClientRequest,
+} from '@commercetools-frontend/application-shell';
 
-Some endpoints or APIs might not be available as GraphQL but as a standard HTTP REST endpoint instead.
+const fetcherForwardTo = async (targetUrl, config = {}) => {
+  const data = await executeHttpClientRequest(
+    async (options) => {
+      const res = await fetch(buildApiUrl('/proxy/forward-to'), options);
+      const data = res.json();
+      return {
+        data,
+        statusCode: res.status,
+        getHeader: (key) => res.headers.get(key),
+      };
+    },
+    {
+      userAgent,
+      headers: config.headers,
+      forwardToConfig: {
+        uri: targetUrl
+      }
+    }
+  );
+  return data;
+};
 
-In theory you can use any HTTP client library of your choice to do so. However, for Custom Applications we provide a declarative fetching library [`@commercetools-frontend/sdk`](https://www.npmjs.com/package/@commercetools-frontend/sdk), which builds on top of the [JS SDK client](https://commercetools.github.io/nodejs/sdk/api/sdkClient.html) and [Redux](https://redux.js.org/)
-
-<Info>
-
-The SDK library comes already pre-configured in a Custom Application to connect to the `/proxy/:target/*` endpoints of the [Merchant Center API](/concepts/merchant-center-api#proxytarget).
-
-</Info>
-
-The SDK library is built using Redux actions, meaning that you dispatch an action describing the request and the library takes care of handling the request.
-
-```js title="channels.js"
-import { useAsyncDispatch, actions } from '@commercetools-frontend/sdk';
-import { MC_API_PROXY_TARGETS } from '@commercetools-frontend/constants';
-
-const Channels = (props) => {
-  const dispatch = useAsyncDispatch();
+const HelloWorld = () => {
   useEffect(() => {
     async function execute() {
       try {
-        const result = await dispatch(
-          actions.get({
-            mcApiProxyTarget: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
-            service: 'channels',
-          });
-        );
+        const result = await fetcherForwardTo('https://my-custom-app.com/api');
         // Update state with `result`
       } catch (error) {
         // Update state with `error`
       }
     }
     execute();
-  }, [dispatch])
-
-  return (
-    <div>
-      {/* Do something with the state */}
-    </div>
-  );
-};
+  }, [])
+  // ...
+}
 ```
 
-Notice here that we define the `mcApiProxyTarget`. This is how you configure the proxy target for the [Merchant Center API](/concepts/merchant-center-api#proxytarget).
-
-The available proxy targets are exposed as a `MC_API_PROXY_TARGETS` constant in the [`@commercetools-frontend/constants`](/api-reference/commercetools-frontend-constants) package.
-
-<Warning>
-
-The SDK library does not include features like data normalization, caching, etc. You will need to build these on your own.
-
-</Warning>
-
-<!-- TODO: ### Using your own HTTP client -->
-
-### Using file uploads
+## Using file uploads
 
 In case you need to deal with file uploads, you will probably use [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
 
-The `FormData` object can then be sent as the request HTTP body.
+The `FormData` object can then be sent as the HTTP request body.
 
 It is important to properly configure the `Content-Type` HTTP header, which usually must be set to `multipart/form-data`. However, you also need to provide a `boundary` [directive](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type#directives).
 

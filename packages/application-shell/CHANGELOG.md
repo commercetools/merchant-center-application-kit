@@ -1,5 +1,186 @@
 # @commercetools-frontend/application-shell
 
+## 21.11.0
+
+### Minor Changes
+
+- [#2743](https://github.com/commercetools/merchant-center-application-kit/pull/2743) [`eb056ebe`](https://github.com/commercetools/merchant-center-application-kit/commit/eb056ebec81d32284bfc39ba0757705849abc924) Thanks [@emmenko](https://github.com/emmenko)! - Extend the utility functions to configure custom HTTP clients to support the configuration for the `/proxy/forward-to` endpoint.
+
+  ```js
+  import createHttpUserAgent from '@commercetools/http-user-agent';
+  import {
+    buildApiUrl,
+    createHttpClientOptions,
+    executeHttpClientRequest,
+  } from '@commercetools-frontend/application-shell';
+
+  const userAgent = createHttpUserAgent({
+    name: 'fetch-client',
+    version: '2.6.0',
+    libraryName: window.app.applicationName,
+    contactEmail: 'support@my-company.com',
+  });
+
+  // Simple example using `fetch`.
+  const data = await executeHttpClientRequest(
+    async (options) => {
+      const res = await fetch(buildApiUrl('/proxy/forward-to'), {
+        method: 'GET',
+        ...options,
+      });
+      const data = await res.json();
+
+      return {
+        data,
+        statusCode: res.status,
+        getHeader: (key) => res.headers.get(key),
+      };
+    },
+    {
+      userAgent,
+      forwardToConfig: {
+        uri: 'https://my-api.com/my-endpoint',
+      },
+    }
+  );
+  ```
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@21.11.0
+  - @commercetools-frontend/application-components@21.11.0
+  - @commercetools-frontend/application-config@21.11.0
+  - @commercetools-frontend/application-shell-connectors@21.11.0
+  - @commercetools-frontend/assets@21.11.0
+  - @commercetools-frontend/browser-history@21.11.0
+  - @commercetools-frontend/constants@21.11.0
+  - @commercetools-frontend/i18n@21.11.0
+  - @commercetools-frontend/l10n@21.11.0
+  - @commercetools-frontend/notifications@21.11.0
+  - @commercetools-frontend/permissions@21.11.0
+  - @commercetools-frontend/react-notifications@21.11.0
+  - @commercetools-frontend/sdk@21.11.0
+  - @commercetools-frontend/sentry@21.11.0
+  - @commercetools-frontend/url-utils@21.11.0
+
+## 21.10.0
+
+### Minor Changes
+
+- [#2734](https://github.com/commercetools/merchant-center-application-kit/pull/2734) [`e10b1b75`](https://github.com/commercetools/merchant-center-application-kit/commit/e10b1b758314783d364f5b6da9b1ddc466476e1c) Thanks [@emmenko](https://github.com/emmenko)! - New utility functions to configure HTTP requests when using custom HTTP clients.
+
+  By default Custom Applications provide [preconfigured HTTP clients](https://docs.commercetools.com/custom-applications/development/data-fetching) for GraphQL and REST API requests.
+
+  However, you could use any other HTTP client of your choice, for example `fetch`, `axios`, `swr`, etc.
+
+  The main problem with that is the fact that you need to configure these clients on your own, in particular regarding the HTTP headers that should be sent with every request.
+
+  This is now possible using some dedicated utility functions. See example usage below:
+
+  ```js
+  import createHttpUserAgent from '@commercetools/http-user-agent';
+  import {
+    buildApiUrl,
+    createHttpClientOptions,
+    executeHttpClientRequest,
+  } from '@commercetools-frontend/application-shell';
+
+  const userAgent = createHttpUserAgent({
+    name: 'fetch-client',
+    version: '2.6.0',
+    libraryName: window.app.applicationName,
+    contactEmail: 'support@my-company.com',
+  });
+
+  // Simple example using `fetch`.
+  const data = await executeHttpClientRequest(
+    async (options) => {
+      const res = await fetch(buildApiUrl('/proxy/ctp/channels'), {
+        method: 'GET',
+        ...options,
+      });
+      const data = await res.json();
+
+      return {
+        data,
+        statusCode: res.status,
+        getHeader: (key) => res.headers.get(key),
+      };
+    },
+    { userAgent }
+  );
+  ```
+
+  The implementation example includes all the recommended functionalities such as:
+
+  - Defining the required/recommended HTTP headers for the Merchant Center API.
+  - Automatically renewing the token.
+
+  For more information check the [Data fetching](https://docs.commercetools.com/custom-applications/development/data-fetching) documentation.
+
+### Patch Changes
+
+- [#2733](https://github.com/commercetools/merchant-center-application-kit/pull/2733) [`67b0329a`](https://github.com/commercetools/merchant-center-application-kit/commit/67b0329aeccf281e6219c657a3c35f2ca34fc465) Thanks [@emmenko](https://github.com/emmenko)! - Add option to `createApolloClient` to pass the Apollo Rest Link. See [documentation](https://docs.commercetools.com/custom-applications/api-reference/commercetools-frontend-application-shell#createapolloclient) for more information.
+
+- Updated dependencies [[`fc3fd602`](https://github.com/commercetools/merchant-center-application-kit/commit/fc3fd6022031e3fe132cf890cb2a8b71f4ae0731), [`73977f3f`](https://github.com/commercetools/merchant-center-application-kit/commit/73977f3fcc52acd6195b698c37b8a9a80547670d), [`dac14c2b`](https://github.com/commercetools/merchant-center-application-kit/commit/dac14c2bf0800eed6ddd1977d988a31b23a9c47e), [`d0e10a3f`](https://github.com/commercetools/merchant-center-application-kit/commit/d0e10a3fbc893d55e15ffff8fe16911784425930)]:
+  - @commercetools-frontend/i18n@21.10.0
+  - @commercetools-frontend/l10n@21.10.0
+  - @commercetools-frontend/constants@21.10.0
+  - @commercetools-frontend/application-components@21.10.0
+  - @commercetools-frontend/actions-global@21.10.0
+  - @commercetools-frontend/application-shell-connectors@21.10.0
+  - @commercetools-frontend/react-notifications@21.10.0
+  - @commercetools-frontend/sdk@21.10.0
+  - @commercetools-frontend/sentry@21.10.0
+  - @commercetools-frontend/permissions@21.10.0
+  - @commercetools-frontend/application-config@21.10.0
+  - @commercetools-frontend/assets@21.10.0
+  - @commercetools-frontend/browser-history@21.10.0
+  - @commercetools-frontend/notifications@21.10.0
+  - @commercetools-frontend/url-utils@21.10.0
+
+## 21.9.0
+
+### Minor Changes
+
+- [#2695](https://github.com/commercetools/merchant-center-application-kit/pull/2695) [`de0980f9`](https://github.com/commercetools/merchant-center-application-kit/commit/de0980f9d151f3f0a98ddbf06e0629aaf03f5239) Thanks [@emmenko](https://github.com/emmenko)! - Update dependency `graphql` to `v16`.
+
+### Patch Changes
+
+- [#2707](https://github.com/commercetools/merchant-center-application-kit/pull/2707) [`d0584935`](https://github.com/commercetools/merchant-center-application-kit/commit/d058493588821ee249333db6f11beced11594c74) Thanks [@emmenko](https://github.com/emmenko)! - Update Apollo dependency to `v3.6.9`
+
+* [#2687](https://github.com/commercetools/merchant-center-application-kit/pull/2687) [`2f414585`](https://github.com/commercetools/merchant-center-application-kit/commit/2f414585cc324cb483b49c8d1040845d3f231ba3) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Fix loading missing `moment` locale metadata for certain user locales. Now dates are correctly formatted according to the selected locale.
+
+- [#2705](https://github.com/commercetools/merchant-center-application-kit/pull/2705) [`abe2c475`](https://github.com/commercetools/merchant-center-application-kit/commit/abe2c475be2aff3781ac6151178aede1e0801f77) Thanks [@emmenko](https://github.com/emmenko)! - Update typescript dependencies
+
+* [#2703](https://github.com/commercetools/merchant-center-application-kit/pull/2703) [`8cd781a6`](https://github.com/commercetools/merchant-center-application-kit/commit/8cd781a6f2d626fd564e6e1fd0be30991c27b4ea) Thanks [@emmenko](https://github.com/emmenko)! - Update Emotion dependencies to `v11.9.3`
+
+- [#2706](https://github.com/commercetools/merchant-center-application-kit/pull/2706) [`28de0b59`](https://github.com/commercetools/merchant-center-application-kit/commit/28de0b59e8f3944eaef9000b517b384acfc4b98d) Thanks [@emmenko](https://github.com/emmenko)! - Update `msw` to `v0.44.0`
+
+* [#2709](https://github.com/commercetools/merchant-center-application-kit/pull/2709) [`d0618b0a`](https://github.com/commercetools/merchant-center-application-kit/commit/d0618b0a61490ddb1d8f0b1aa26b5d03da7da38c) Thanks [@emmenko](https://github.com/emmenko)! - Update `moment` and `react-intl` dependencies
+
+- [#2702](https://github.com/commercetools/merchant-center-application-kit/pull/2702) [`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413) Thanks [@emmenko](https://github.com/emmenko)! - Update Babel dependencies
+
+* [#2700](https://github.com/commercetools/merchant-center-application-kit/pull/2700) [`21d98709`](https://github.com/commercetools/merchant-center-application-kit/commit/21d98709f12696f2f7bfd22d5d1c18cee40a4845) Thanks [@emmenko](https://github.com/emmenko)! - Update UI Kit dependencies to `v15.1.0`.
+
+* Updated dependencies [[`d0584935`](https://github.com/commercetools/merchant-center-application-kit/commit/d058493588821ee249333db6f11beced11594c74), [`2f414585`](https://github.com/commercetools/merchant-center-application-kit/commit/2f414585cc324cb483b49c8d1040845d3f231ba3), [`abe2c475`](https://github.com/commercetools/merchant-center-application-kit/commit/abe2c475be2aff3781ac6151178aede1e0801f77), [`22fcb200`](https://github.com/commercetools/merchant-center-application-kit/commit/22fcb2007879bd8b10b0a5b70d02490162554e57), [`8cd781a6`](https://github.com/commercetools/merchant-center-application-kit/commit/8cd781a6f2d626fd564e6e1fd0be30991c27b4ea), [`d0618b0a`](https://github.com/commercetools/merchant-center-application-kit/commit/d0618b0a61490ddb1d8f0b1aa26b5d03da7da38c), [`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413), [`8ab624e5`](https://github.com/commercetools/merchant-center-application-kit/commit/8ab624e593d6f9e56efe5d1f8562788bf93a3a62), [`8367e1b7`](https://github.com/commercetools/merchant-center-application-kit/commit/8367e1b71777b29d328e037148439418a66c0a72), [`21d98709`](https://github.com/commercetools/merchant-center-application-kit/commit/21d98709f12696f2f7bfd22d5d1c18cee40a4845), [`de0980f9`](https://github.com/commercetools/merchant-center-application-kit/commit/de0980f9d151f3f0a98ddbf06e0629aaf03f5239)]:
+  - @commercetools-frontend/application-shell-connectors@21.9.0
+  - @commercetools-frontend/i18n@21.9.0
+  - @commercetools-frontend/l10n@21.9.0
+  - @commercetools-frontend/actions-global@21.9.0
+  - @commercetools-frontend/application-components@21.9.0
+  - @commercetools-frontend/browser-history@21.9.0
+  - @commercetools-frontend/permissions@21.9.0
+  - @commercetools-frontend/react-notifications@21.9.0
+  - @commercetools-frontend/sdk@21.9.0
+  - @commercetools-frontend/sentry@21.9.0
+  - @commercetools-frontend/application-config@21.9.0
+  - @commercetools-frontend/constants@21.9.0
+  - @commercetools-frontend/notifications@21.9.0
+  - @commercetools-frontend/url-utils@21.9.0
+  - @commercetools-frontend/assets@21.9.0
+
 ## 21.8.1
 
 ### Patch Changes

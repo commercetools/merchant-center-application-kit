@@ -1,5 +1,26 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 21.11.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.11.0
+
+## 21.10.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.10.0
+
+## 21.9.0
+
+### Patch Changes
+
+- Updated dependencies [[`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413)]:
+  - @commercetools-frontend/babel-preset-mc-app@21.9.0
+
 ## 21.8.1
 
 ### Patch Changes

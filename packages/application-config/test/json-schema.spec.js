@@ -1,4 +1,8 @@
-import { validateConfig, validateSubmenuLinks } from '../src/validations';
+import {
+  validateConfig,
+  validateEntryPointUriPath,
+  validateSubmenuLinks,
+} from '../src/validations';
 import fixtureConfigSimple from './fixtures/config-simple.json';
 import fixtureConfigFull from './fixtures/config-full.json';
 import fixtureConfigOidc from './fixtures/config-oidc.json';
@@ -28,11 +32,10 @@ describe.each`
   ${'avengers01'}
   ${'avengers-01'}
   ${'avengers_01'}
-  ${'${env:APP_ENTRY_POINT_URI_PATH}'}
 `('validating "entryPointUriPath"', ({ entryPointUriPath }) => {
   it(`should validate "${entryPointUriPath}" correctly`, () => {
     expect(() =>
-      validateConfig({
+      validateEntryPointUriPath({
         ...fixtureConfigSimple,
         entryPointUriPath,
       })
@@ -98,25 +101,21 @@ describe('invalid configurations', () => {
   `('validating "entryPointUriPath"', ({ entryPointUriPath }) => {
     it(`should validate "${entryPointUriPath}" wrong value`, () => {
       expect(() =>
-        validateConfig({
+        validateEntryPointUriPath({
           ...fixtureConfigSimple,
           entryPointUriPath,
         })
-      ).toThrowError(/\/entryPointUriPath must match pattern/);
+      ).toThrowError(/The value may be between 2 and 64 characters/);
     });
   });
-  it('should validate that "cloudIdentifier" is one of the expected values', () => {
+  it('should validate that "cloudIdentifier" is defined', () => {
     expect(() =>
       validateConfig({
         ...fixtureConfigSimple,
-        cloudIdentifier: 'wrong',
+        cloudIdentifier: undefined,
       })
-    ).toThrowError(
-      expect.objectContaining({
-        message: expect.stringContaining(
-          'cloudIdentifier must be equal to one of the allowed values: gcp-au,gcp-eu,gcp-us,aws-fra,aws-ohio'
-        ),
-      })
+    ).toThrowErrorMatchingInlineSnapshot(
+      `" must have required property 'cloudIdentifier'"`
     );
   });
   it('should validate that "oAuthScopes" is defined', () => {

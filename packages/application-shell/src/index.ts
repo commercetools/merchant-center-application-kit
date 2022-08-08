@@ -1,3 +1,4 @@
+export * from './export-types';
 export { default as version } from './version';
 export { default as ApplicationShell } from './components/application-shell';
 export { default as ApplicationShellProvider } from './components/application-shell-provider';
@@ -21,6 +22,11 @@ export {
   useMcLazyQuery,
   useMcMutation,
 } from './hooks/apollo-hooks';
+export {
+  buildApiUrl,
+  createHttpClientOptions,
+  executeHttpClientRequest,
+} from './utils/http-client';
 
 export {
   entryPointUriPathToPermissionKeys,

@@ -14,7 +14,7 @@ jobs:
   lint_and_test:
     runs-on: ubuntu-latest
 
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
     env:
@@ -43,7 +43,7 @@ jobs:
         run: yarn typecheck:starter
 
       - name: Running linters and tests
-        run: yarn jest --projects jest.{eslint,stylelint,test,text}.config.js --reporters jest-silent-reporter
+        run: yarn jest --projects jest.{eslint,stylelint,test}.config.js --reporters jest-silent-reporter
         env:
           CI: true
           RTL_ASYNC_UTIL_TIMEOUT: 5000
@@ -71,7 +71,7 @@ jobs:
   test_starter_template:
     runs-on: ubuntu-latest
 
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
     env:
@@ -154,7 +154,7 @@ jobs:
   test_starter_template_typescript:
     runs-on: ubuntu-latest
 
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
     env:
@@ -240,7 +240,7 @@ jobs:
   test_playground:
     runs-on: ubuntu-latest
 
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
     env:

@@ -1,4 +1,5 @@
 {
   "baseUrl": "http://localhost:3001",
-  "retries": 1
+  "retries": 1,
+  "video": false
 }

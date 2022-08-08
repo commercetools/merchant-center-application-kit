@@ -1,5 +1,15 @@
 # @commercetools-frontend/jest-stylelint-runner
 
+## 21.11.0
+
+## 21.10.0
+
+## 21.9.0
+
+### Patch Changes
+
+- [#2710](https://github.com/commercetools/merchant-center-application-kit/pull/2710) [`b34b0a4c`](https://github.com/commercetools/merchant-center-application-kit/commit/b34b0a4c23d57cc3210a20f77fea847915512543) Thanks [@emmenko](https://github.com/emmenko)! - Update PostCSS and Stylelint dependencies
+
 ## 21.8.1
 
 ## 21.8.0
