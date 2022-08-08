@@ -34,7 +34,7 @@ export const transformLocalizedFieldToLocalizedString = (
  * { sv: 'Hej' } -> [{ locale: 'sv', value: 'Hej' }]
  */
 export const transformLocalizedStringToLocalizedField = (
-  localizedString: LocalizedString
+  localizedString?: LocalizedString
 ): LocalizedField[] => {
   if (!localizedString || Object.keys(localizedString).length === 0) return [];
   const sorted = Object.keys(localizedString).sort();
@@ -57,7 +57,7 @@ export const transformLocalizedStringToLocalizedField = (
  *
  * @param objectWithLocalizedFields
  * the object with `LocalizedField` fields
- * that need to be transformed into `LocalizedStrings`
+ * that need to be transformed into `LocalizedString`s
  * @param fieldNames
  * An array of objects with following shape:
  *   * `from`: the field to transform and to remove after
@@ -84,6 +84,46 @@ export const applyTransformedLocalizedFields = <
   const namesToOmit = fieldNames.map((fieldName) => fieldName.from);
   const objectWithouLocalizedFields = omit<Input>(
     objectWithLocalizedFields,
+    namesToOmit
+  );
+  return {
+    ...objectWithouLocalizedFields,
+    ...transformedFieldDefinitions,
+  } as Output;
+};
+
+/**
+ * Given a list of localized string names to map, replace the fields in the
+ * format of `LocalizedString` to a `LocalizedField` object.
+ * The existing "localized" strings (the list version) will be removed.
+ *
+ * @param objectWithLocalizedStrings
+ * the object with `LocalizedString` fields
+ * that need to be transformed into `LocalizedField`s
+ * @param fieldNames
+ * An array of objects with following shape:
+ *   * `from`: the field to transform and to remove after
+ *   * `to`: the target field to write the transformed shape
+ */
+export const applyTransformedLocalizedStrings = <
+  Input extends Record<string, unknown>,
+  Output extends Record<string, unknown>
+>(
+  objectWithLocalizedStrings: Input,
+  fieldNames: FieldNameTranformationMapping[]
+): Output => {
+  const transformedFieldDefinitions = fieldNames.reduce(
+    (nextTransformed, fieldName) => ({
+      ...nextTransformed,
+      [fieldName.to]: transformLocalizedStringToLocalizedField(
+        objectWithLocalizedStrings[fieldName.from] as LocalizedString
+      ),
+    }),
+    {}
+  );
+  const namesToOmit = fieldNames.map((fieldName) => fieldName.from);
+  const objectWithouLocalizedFields = omit<Input>(
+    objectWithLocalizedStrings,
     namesToOmit
   );
   return {

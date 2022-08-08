@@ -1,32 +1,6 @@
-import omit from 'lodash/omit';
 import { RestLink } from 'apollo-link-rest';
 import { createApolloClient } from '@commercetools-frontend/application-shell';
-import { transformLocalizedStringToLocalizedField } from '@commercetools-frontend/l10n';
-
-// TODO: move to `l10n` package.
-const applyTransformedLocalizedStrings = (
-  objectWithLocalizedStrings,
-  fieldNames
-) => {
-  const transformedFieldDefinitions = fieldNames.reduce(
-    (nextTransformed, fieldName) => ({
-      ...nextTransformed,
-      [fieldName.to]: transformLocalizedStringToLocalizedField(
-        objectWithLocalizedStrings[fieldName.from]
-      ),
-    }),
-    {}
-  );
-  const namesToOmit = fieldNames.map((fieldName) => fieldName.from);
-  const objectWithouLocalizedFields = omit(
-    objectWithLocalizedStrings,
-    namesToOmit
-  );
-  return {
-    ...objectWithouLocalizedFields,
-    ...transformedFieldDefinitions,
-  };
-};
+import { applyTransformedLocalizedStrings } from '@commercetools-frontend/l10n';
 
 const restLink = new RestLink({
   uri: window.app.mcApiUrl,
