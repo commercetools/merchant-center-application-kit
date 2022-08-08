@@ -9,9 +9,9 @@ import {
   type ApplicationWindow,
   STATUS_CODES,
 } from '@commercetools-frontend/constants';
-import { getMcApiUrl } from '@commercetools-frontend/application-shell-connectors';
 import { SUPPORTED_HEADERS } from '../constants';
 import * as oidcStorage from './oidc-storage';
+import getMcApiUrl from './get-mc-api-url';
 import getCorrelationId from './get-correlation-id';
 import selectProjectKeyFromUrl from './select-project-key-from-url';
 import selectUserId from './select-user-id';

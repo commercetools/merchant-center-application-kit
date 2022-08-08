@@ -1,6 +1,6 @@
 import type { TGraphQLTargets } from '@commercetools-frontend/constants';
 import type { THeaders, TForwardToConfig } from './http-client';
-import { getMcApiUrl } from '@commercetools-frontend/application-shell-connectors';
+import getMcApiUrl from './get-mc-api-url';
 
 export type TApolloContext = {
   uri?: string;
