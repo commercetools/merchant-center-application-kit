@@ -1,5 +1,16 @@
 # @commercetools-frontend/l10n
 
+## 21.12.0
+
+### Minor Changes
+
+- [#2749](https://github.com/commercetools/merchant-center-application-kit/pull/2749) [`fbdf2a68`](https://github.com/commercetools/merchant-center-application-kit/commit/fbdf2a686061f32eb5130af9a4286b8e1ab2af32) Thanks [@emmenko](https://github.com/emmenko)! - Expose utility function `applyTransformedLocalizedStrings`.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@21.12.0
+
 ## 21.11.0
 
 ### Patch Changes
