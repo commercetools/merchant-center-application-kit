@@ -11,8 +11,8 @@ import {
 } from '@commercetools-frontend/constants';
 import { SUPPORTED_HEADERS } from '../constants';
 import * as oidcStorage from './oidc-storage';
-import getCorrelationId from './get-correlation-id';
 import getMcApiUrl from './get-mc-api-url';
+import getCorrelationId from './get-correlation-id';
 import selectProjectKeyFromUrl from './select-project-key-from-url';
 import selectUserId from './select-user-id';
 

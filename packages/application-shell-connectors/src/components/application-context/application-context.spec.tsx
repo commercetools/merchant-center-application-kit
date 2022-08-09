@@ -141,9 +141,7 @@ describe('mapEnvironmentToApplicationContextEnvironment', () => {
       expect(
         mapEnvironmentToApplicationContextEnvironment(
           createTestEnvironment({ servedByProxy: true }),
-          {
-            origin: 'https://mc.europe-west1.gcp.commercetools.com',
-          }
+          'https://mc.europe-west1.gcp.commercetools.com'
         )
       ).toEqual({
         revision: expect.any(String),

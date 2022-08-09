@@ -79,11 +79,11 @@ export const mapEnvironmentToApplicationContextEnvironment = <
   AdditionalEnvironmentProperties extends {}
 >(
   environment: AdditionalEnvironmentProperties & TApplicationContextEnvironment,
-  partialWindow: Pick<Window, 'origin'> = window
+  origin?: string
 ) => ({
   ...environment,
   // NOTE: The `mcApiUrl` depends on `servedByProxy`
-  mcApiUrl: getMcApiUrl(environment, partialWindow),
+  mcApiUrl: getMcApiUrl(environment, origin),
 });
 
 // Expose only certain fields as some of them are only meant to
