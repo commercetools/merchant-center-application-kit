@@ -113,17 +113,33 @@ const EntryPoint = () => {
 
 ## createApolloClient
 
-Creates a new instance of the Apollo Client. Use this if you need to [configure the Apollo cache](https://www.apollographql.com/docs/react/caching/cache-configuration).
+Creates a new instance of the Apollo Client. Use this to extend certain functionalities of the preconfigured Apollo Client.
 
 ```js
+import { createApolloClient } from '@commercetools-frontend/application-shell';
+
 createApolloClient({
-  cache: {
-    // ...
-  },
+  // ...
 })
 ```
 
-We recommend creating a separate file, for example `src/apollo-client.js`, and define the configuration there.
+Available options are:
+
+* `cache` (optional): Configuration of the [Apollo cache](https://www.apollographql.com/docs/react/caching/cache-configuration) in relation to the data requirements of your Custom Application.
+
+* `restLink` (optional): Instance of the [Apollo REST link](https://www.apollographql.com/docs/react/api/link/apollo-link-rest/).
+
+  <Info>
+
+  This feature is available from version `21.10.0` onwards.
+
+  The `apollo-link-rest` and its related dependencies are not included in the `@commercetools-frontend/application-shell` package and must be installed separately.
+
+  When configuring the REST link, we recommend setting the `uri` using the [getMcApiUrl()](#getmcapiurl) utility function.
+
+  </Info>
+
+To allow reusing the custom Apollo Client instance in different places, we recommend creating a separate file, for example `src/apollo-client.js`, and define the configuration there.
 
 ```js title="apollo-client.js"
 import { createApolloClient } from '@commercetools-frontend/application-shell';
@@ -304,6 +320,32 @@ You can see some examples of integrating this with different HTTP clients:
 * [Example using Axios](/development/data-fetching#example-using-axios)
 * [Example using Stale-While-Revalidate (SWR)](/development/data-fetching#example-using-swr)
 * [Example using Ky](/development/data-fetching#example-using-ky)
+
+## getMcApiUrl
+
+Returns the URL of the [Merchant Center API](/concepts/merchant-center-api). This is useful to configure HTTP clients that should connect to that API.
+
+```js
+import {
+  getMcApiUrl,
+} from '@commercetools-frontend/application-shell';
+
+const mcApiUrl = getMcApiUrl();
+// https://mc-api.<region>.commercetools.com
+```
+
+## buildApiUrl
+
+Returns a URL of the [Merchant Center API](/concepts/merchant-center-api) for the given URI path. This is useful to configure the request URL without having to get the URL of the Merchant Center API.
+
+```js
+import {
+  buildApiUrl,
+} from '@commercetools-frontend/application-shell';
+
+const apiEndpoint = buildApiUrl('/proxy/ctp/channels');
+// https://mc-api.<region>.commercetools.com/proxy/ctp/channels
+```
 
 # Test utils
 
