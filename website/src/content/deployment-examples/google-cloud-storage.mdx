@@ -8,7 +8,7 @@ This deployment example refers to [Google cloud Static Web Apps](https://codelab
 
 Before you get started, you need to have:
 
-- A [google](https://accounts.google.com/SignUp) account.
+- A [Google](https://accounts.google.com/SignUp) account.
 - A custom domain
 - A [commercetools](https://docs.commercetools.com/getting-started) account and a Project.
 - A Custom Application [configured in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications).
@@ -46,24 +46,23 @@ In case you want to avoid hardcoding certain values, for example the Application
 
 # Set up Google Cloud
 
-To host the production bundles of your Custom Application you need to create a [Cloud Storage bucket](https://console.cloud.google.com/storage) in Google cloud and [configure](https://cloud.google.com/storage/docs/hosting-static-website#create-bucket) the bucket.
+To host the production bundles of your Custom Application you need to create a [Cloud Storage bucket](https://console.cloud.google.com/storage) in Google Cloud and [configure](https://codelabs.developers.google.com/codelabs/cloud-webapp-hosting-gcs#3) the bucket.
+
+Depending on the access options you choose, if you want to configure permissions, select the created bucket, go to the permissions tab and click on the `Add` link. For the `New principals` field, select `AllUsers` and for the `Role`, search for `Storage Object Viewer`. Click on `Save` to make bucket publicly accessible.
+
+# Have a valid domain
 
 Make sure you are the owner and administrator of your domain.
 
-<Info>
-
-Merchant Center only allows accessing your Custom Application using a secure protocol (HTTPS) so your domain must support it with a valid [SSL certificate](https://support.google.com/domains/answer/7630973?hl=en&visit_id=637951191082633113-3999318342&rd=1).
-
-</Info>
-
+Merchant Center only allows accessing your Custom Application using a secure protocol (HTTPS) so your domain must support it with a valid [SSL certificate](https://support.google.com/domains/answer/7630973?hl=en&visit_id=637951191082633113-3999318342&rd=1). Google does not provide one automatically
 
 # Connect Google cloud with GitHub Actions
 
-One of the ways to deploy to google cloud is to use [Cloud Build](https://cloud.google.com/build/docs/automating-builds/create-manage-triggers#connect_repo) deployment service. This service enables GitHub integration.
+One of the ways to deploy to google cloud is to use [Github actions](https://github.com/google-github-actions/upload-cloud-storage) deployment service. This service enables GitHub integration.
 
 <Info>
 
-Make sure to also install the [Google Cloud GitHub App](https://github.com/apps/google-cloud-build) to grant access to your repository.
+Make sure to also install the Google Cloud Storage uploader [GitHub App](https://github.com/marketplace/actions/cloud-storage-uploader) to grant access to your repository.
 
 </Info>
 
