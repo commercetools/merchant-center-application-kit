@@ -135,7 +135,7 @@ Available options are:
 
   The `apollo-link-rest` and its related dependencies are not included in the `@commercetools-frontend/application-shell` package and must be installed separately.
 
-  When configuring the REST link, we recommend setting the `uri` using the `getMcApiUrl()` utility function.
+  When configuring the REST link, we recommend setting the `uri` using the [getMcApiUrl()](#getmcapiurl) utility function.
 
   </Info>
 
@@ -320,6 +320,32 @@ You can see some examples of integrating this with different HTTP clients:
 * [Example using Axios](/development/data-fetching#example-using-axios)
 * [Example using Stale-While-Revalidate (SWR)](/development/data-fetching#example-using-swr)
 * [Example using Ky](/development/data-fetching#example-using-ky)
+
+## getMcApiUrl
+
+Returns the URL of the [Merchant Center API](/concepts/merchant-center-api). This is useful to configure HTTP clients that should connect to that API.
+
+```js
+import {
+  getMcApiUrl,
+} from '@commercetools-frontend/application-shell';
+
+const mcApiUrl = getMcApiUrl();
+// https://mc-api.<region>.commercetools.com
+```
+
+## buildApiUrl
+
+Returns a URL of the [Merchant Center API](/concepts/merchant-center-api) for the given URI path. This is useful to configure the request URL without having to get URL of the Merchant Center API.
+
+```js
+import {
+  buildApiUrl,
+} from '@commercetools-frontend/application-shell';
+
+const apiEndpoint = buildApiUrl('/proxy/ctp/channels');
+// https://mc-api.<region>.commercetools.com/proxy/ctp/channels
+```
 
 # Test utils
 
