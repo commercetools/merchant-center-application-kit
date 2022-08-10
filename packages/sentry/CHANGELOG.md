@@ -1,5 +1,12 @@
 # @commercetools-frontend/sentry
 
+## 21.12.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.12.0
+
 ## 21.11.0
 
 ### Patch Changes
