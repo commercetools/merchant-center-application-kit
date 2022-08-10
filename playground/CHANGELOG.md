@@ -1,5 +1,25 @@
 # playground
 
+## 19.5.0
+
+### Minor Changes
+
+- [#2749](https://github.com/commercetools/merchant-center-application-kit/pull/2749) [`fbdf2a68`](https://github.com/commercetools/merchant-center-application-kit/commit/fbdf2a686061f32eb5130af9a4286b8e1ab2af32) Thanks [@emmenko](https://github.com/emmenko)! - Expose utility function `applyTransformedLocalizedStrings`.
+
+### Patch Changes
+
+- Updated dependencies [[`bcb5e167`](https://github.com/commercetools/merchant-center-application-kit/commit/bcb5e167bbc8dc660ba7fb11c94f7cf3918736f0), [`fbdf2a68`](https://github.com/commercetools/merchant-center-application-kit/commit/fbdf2a686061f32eb5130af9a4286b8e1ab2af32), [`e40fcd6c`](https://github.com/commercetools/merchant-center-application-kit/commit/e40fcd6cda229fd8f7af8b33f6a5c3541f361aa0)]:
+  - @commercetools-frontend/sdk@21.12.0
+  - @commercetools-frontend/l10n@21.12.0
+  - @commercetools-frontend/application-shell@21.12.0
+  - @commercetools-frontend/application-shell-connectors@21.12.0
+  - @commercetools-frontend/application-components@21.12.0
+  - @commercetools-frontend/permissions@21.12.0
+  - @commercetools-frontend/actions-global@21.12.0
+  - @commercetools-frontend/assets@21.12.0
+  - @commercetools-frontend/constants@21.12.0
+  - @commercetools-frontend/i18n@21.12.0
+
 ## 19.4.1
 
 ### Patch Changes

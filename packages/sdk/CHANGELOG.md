@@ -1,5 +1,16 @@
 # @commercetools-frontend/sdk
 
+## 21.12.0
+
+### Patch Changes
+
+- [#2750](https://github.com/commercetools/merchant-center-application-kit/pull/2750) [`bcb5e167`](https://github.com/commercetools/merchant-center-application-kit/commit/bcb5e167bbc8dc660ba7fb11c94f7cf3918736f0) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Added required `Buffer` polyfill dependency.
+
+* [#2723](https://github.com/commercetools/merchant-center-application-kit/pull/2723) [`e40fcd6c`](https://github.com/commercetools/merchant-center-application-kit/commit/e40fcd6cda229fd8f7af8b33f6a5c3541f361aa0) Thanks [@emmenko](https://github.com/emmenko)! - Better reuse the `getMcApiUrl` function and do some maintenance on it.
+
+* Updated dependencies []:
+  - @commercetools-frontend/constants@21.12.0
+
 ## 21.11.0
 
 ### Patch Changes
