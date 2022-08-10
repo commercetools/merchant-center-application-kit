@@ -3070,6 +3070,129 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@commercetools-applications/merchant-center-template-starter-typescript@workspace:application-templates/starter-typescript":
+  version: 0.0.0-use.local
+  resolution: "@commercetools-applications/merchant-center-template-starter-typescript@workspace:application-templates/starter-typescript"
+  dependencies:
+    "@apollo/client": 3.6.9
+    "@commercetools-frontend/actions-global": 21.12.0
+    "@commercetools-frontend/application-components": 21.12.0
+    "@commercetools-frontend/application-config": 21.12.0
+    "@commercetools-frontend/application-shell": 21.12.0
+    "@commercetools-frontend/application-shell-connectors": 21.12.0
+    "@commercetools-frontend/assets": 21.12.0
+    "@commercetools-frontend/constants": 21.12.0
+    "@commercetools-frontend/eslint-config-mc-app": 21.12.0
+    "@commercetools-frontend/i18n": 21.12.0
+    "@commercetools-frontend/jest-preset-mc-app": 21.12.0
+    "@commercetools-frontend/mc-dev-authentication": 21.12.0
+    "@commercetools-frontend/mc-scripts": 21.12.0
+    "@commercetools-frontend/permissions": 21.12.0
+    "@commercetools-test-data/channel": 3.1.2
+    "@commercetools-test-data/commons": 3.1.2
+    "@commercetools-test-data/core": 3.1.2
+    "@commercetools-uikit/constraints": ^15.1.0
+    "@commercetools-uikit/data-table": ^15.1.0
+    "@commercetools-uikit/flat-button": ^15.1.0
+    "@commercetools-uikit/grid": ^15.1.0
+    "@commercetools-uikit/hooks": ^15.1.0
+    "@commercetools-uikit/icons": ^15.1.0
+    "@commercetools-uikit/link": ^15.1.0
+    "@commercetools-uikit/loading-spinner": ^15.1.0
+    "@commercetools-uikit/localized-text-field": ^15.1.0
+    "@commercetools-uikit/localized-text-input": ^15.1.0
+    "@commercetools-uikit/notifications": ^15.1.0
+    "@commercetools-uikit/pagination": ^15.1.0
+    "@commercetools-uikit/select-field": ^15.1.0
+    "@commercetools-uikit/spacings": ^15.1.0
+    "@commercetools-uikit/text": ^15.1.0
+    "@commercetools-uikit/text-field": ^15.1.0
+    "@commercetools-uikit/text-input": ^15.1.0
+    "@commercetools/sync-actions": ^4.10.1
+    "@formatjs/cli": 4.8.4
+    "@jest/types": 27.5.1
+    "@manypkg/cli": 0.19.1
+    "@testing-library/react": 12.1.5
+    "@testing-library/react-hooks": 7.0.2
+    eslint: 8.19.0
+    eslint-formatter-pretty: 4.1.0
+    eslint-plugin-graphql: ^4.0.0
+    jest: 27.5.1
+    jest-runner-eslint: 1.0.1
+    jest-watch-typeahead: 1.1.0
+    msw: 0.44.0
+    omit-empty-es: 1.1.3
+    prettier: 2.6.2
+    react: 17.0.2
+    react-dom: 17.0.2
+    react-intl: ^5.25.1
+    react-redux: 7.2.8
+    react-router-dom: 5.3.1
+    redux: 4.2.0
+    typescript: 4.7.4
+  languageName: unknown
+  linkType: soft
+
+"@commercetools-applications/merchant-center-template-starter@workspace:application-templates/starter":
+  version: 0.0.0-use.local
+  resolution: "@commercetools-applications/merchant-center-template-starter@workspace:application-templates/starter"
+  dependencies:
+    "@apollo/client": 3.6.9
+    "@commercetools-frontend/actions-global": 21.12.0
+    "@commercetools-frontend/application-components": 21.12.0
+    "@commercetools-frontend/application-shell": 21.12.0
+    "@commercetools-frontend/application-shell-connectors": 21.12.0
+    "@commercetools-frontend/assets": 21.12.0
+    "@commercetools-frontend/constants": 21.12.0
+    "@commercetools-frontend/eslint-config-mc-app": 21.12.0
+    "@commercetools-frontend/i18n": 21.12.0
+    "@commercetools-frontend/jest-preset-mc-app": 21.12.0
+    "@commercetools-frontend/mc-dev-authentication": 21.12.0
+    "@commercetools-frontend/mc-scripts": 21.12.0
+    "@commercetools-frontend/permissions": 21.12.0
+    "@commercetools-test-data/channel": 3.1.2
+    "@commercetools-test-data/commons": 3.1.2
+    "@commercetools-test-data/core": 3.1.2
+    "@commercetools-uikit/constraints": ^15.1.0
+    "@commercetools-uikit/data-table": ^15.1.0
+    "@commercetools-uikit/flat-button": ^15.1.0
+    "@commercetools-uikit/grid": ^15.1.0
+    "@commercetools-uikit/hooks": ^15.1.0
+    "@commercetools-uikit/icons": ^15.1.0
+    "@commercetools-uikit/link": ^15.1.0
+    "@commercetools-uikit/loading-spinner": ^15.1.0
+    "@commercetools-uikit/localized-text-field": ^15.1.0
+    "@commercetools-uikit/localized-text-input": ^15.1.0
+    "@commercetools-uikit/notifications": ^15.1.0
+    "@commercetools-uikit/pagination": ^15.1.0
+    "@commercetools-uikit/select-field": ^15.1.0
+    "@commercetools-uikit/spacings": ^15.1.0
+    "@commercetools-uikit/text": ^15.1.0
+    "@commercetools-uikit/text-field": ^15.1.0
+    "@commercetools-uikit/text-input": ^15.1.0
+    "@commercetools/sync-actions": ^4.10.1
+    "@formatjs/cli": 4.8.4
+    "@manypkg/cli": 0.19.1
+    "@testing-library/react": 12.1.5
+    "@testing-library/react-hooks": 7.0.2
+    eslint: 8.19.0
+    eslint-formatter-pretty: 4.1.0
+    jest: 27.5.1
+    jest-runner-eslint: 1.0.1
+    jest-watch-typeahead: 1.1.0
+    msw: 0.44.0
+    omit-empty-es: 1.1.3
+    prettier: 2.6.2
+    prop-types: 15.8.1
+    react: 17.0.2
+    react-dom: 17.0.2
+    react-intl: ^5.25.1
+    react-redux: 7.2.8
+    react-router-dom: 5.3.1
+    redux: 4.2.0
+  languageName: unknown
+  linkType: soft
+
 "@commercetools-backend/eslint-config-node@workspace:packages-backend/eslint-config-node":
   version: 0.0.0-use.local
   resolution: "@commercetools-backend/eslint-config-node@workspace:packages-backend/eslint-config-node"
@@ -3979,6 +4102,59 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.18.6
     "@babel/runtime-corejs3": ^7.18.6
+  languageName: unknown
+  linkType: soft
+
+"@commercetools-local/playground@workspace:playground":
+  version: 0.0.0-use.local
+  resolution: "@commercetools-local/playground@workspace:playground"
+  dependencies:
+    "@commercetools-backend/express": 21.12.0
+    "@commercetools-docs/ui-kit": 19.3.0
+    "@commercetools-frontend/actions-global": 21.12.0
+    "@commercetools-frontend/application-components": 21.12.0
+    "@commercetools-frontend/application-shell": 21.12.0
+    "@commercetools-frontend/application-shell-connectors": 21.12.0
+    "@commercetools-frontend/assets": 21.12.0
+    "@commercetools-frontend/constants": 21.12.0
+    "@commercetools-frontend/i18n": 21.12.0
+    "@commercetools-frontend/l10n": 21.12.0
+    "@commercetools-frontend/mc-dev-authentication": 21.12.0
+    "@commercetools-frontend/mc-scripts": 21.12.0
+    "@commercetools-frontend/permissions": 21.12.0
+    "@commercetools-frontend/sdk": 21.12.0
+    "@commercetools-uikit/card": ^15.1.0
+    "@commercetools-uikit/checkbox-input": ^15.1.0
+    "@commercetools-uikit/constraints": ^15.1.0
+    "@commercetools-uikit/data-table": ^15.1.0
+    "@commercetools-uikit/date-time-input": ^15.1.0
+    "@commercetools-uikit/flat-button": ^15.1.0
+    "@commercetools-uikit/grid": ^15.1.0
+    "@commercetools-uikit/icons": ^15.1.0
+    "@commercetools-uikit/label": ^15.1.0
+    "@commercetools-uikit/loading-spinner": ^15.1.0
+    "@commercetools-uikit/notifications": ^15.1.0
+    "@commercetools-uikit/pagination": ^15.1.0
+    "@commercetools-uikit/primary-button": ^15.1.0
+    "@commercetools-uikit/spacings": ^15.1.0
+    "@commercetools-uikit/text": ^15.1.0
+    "@formatjs/cli": 4.8.4
+    "@types/dotenv-flow": ^3.2.0
+    "@vercel/node": ^2.0.0
+    apollo-link-rest: ^0.9.0-rc.1
+    dotenv-flow: ^3.2.0
+    express: 4.18.1
+    graphql-anywhere: ^4.2.7
+    moment: ^2.29.4
+    moment-timezone: ^0.5.34
+    prop-types: 15.8.1
+    react: 17.0.2
+    react-dom: 17.0.2
+    react-intl: ^5.25.1
+    react-router-dom: 5.3.1
+    ts-node: ^10.9.1
+    typescript: 4.7.4
+    vercel: 24.2.1
   languageName: unknown
   linkType: soft
 
@@ -27827,129 +28003,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"merchant-center-application-template-starter-typescript@workspace:application-templates/starter-typescript":
-  version: 0.0.0-use.local
-  resolution: "merchant-center-application-template-starter-typescript@workspace:application-templates/starter-typescript"
-  dependencies:
-    "@apollo/client": 3.6.9
-    "@commercetools-frontend/actions-global": 21.12.0
-    "@commercetools-frontend/application-components": 21.12.0
-    "@commercetools-frontend/application-config": 21.12.0
-    "@commercetools-frontend/application-shell": 21.12.0
-    "@commercetools-frontend/application-shell-connectors": 21.12.0
-    "@commercetools-frontend/assets": 21.12.0
-    "@commercetools-frontend/constants": 21.12.0
-    "@commercetools-frontend/eslint-config-mc-app": 21.12.0
-    "@commercetools-frontend/i18n": 21.12.0
-    "@commercetools-frontend/jest-preset-mc-app": 21.12.0
-    "@commercetools-frontend/mc-dev-authentication": 21.12.0
-    "@commercetools-frontend/mc-scripts": 21.12.0
-    "@commercetools-frontend/permissions": 21.12.0
-    "@commercetools-test-data/channel": 3.1.2
-    "@commercetools-test-data/commons": 3.1.2
-    "@commercetools-test-data/core": 3.1.2
-    "@commercetools-uikit/constraints": ^15.1.0
-    "@commercetools-uikit/data-table": ^15.1.0
-    "@commercetools-uikit/flat-button": ^15.1.0
-    "@commercetools-uikit/grid": ^15.1.0
-    "@commercetools-uikit/hooks": ^15.1.0
-    "@commercetools-uikit/icons": ^15.1.0
-    "@commercetools-uikit/link": ^15.1.0
-    "@commercetools-uikit/loading-spinner": ^15.1.0
-    "@commercetools-uikit/localized-text-field": ^15.1.0
-    "@commercetools-uikit/localized-text-input": ^15.1.0
-    "@commercetools-uikit/notifications": ^15.1.0
-    "@commercetools-uikit/pagination": ^15.1.0
-    "@commercetools-uikit/select-field": ^15.1.0
-    "@commercetools-uikit/spacings": ^15.1.0
-    "@commercetools-uikit/text": ^15.1.0
-    "@commercetools-uikit/text-field": ^15.1.0
-    "@commercetools-uikit/text-input": ^15.1.0
-    "@commercetools/sync-actions": ^4.10.1
-    "@formatjs/cli": 4.8.4
-    "@jest/types": 27.5.1
-    "@manypkg/cli": 0.19.1
-    "@testing-library/react": 12.1.5
-    "@testing-library/react-hooks": 7.0.2
-    eslint: 8.19.0
-    eslint-formatter-pretty: 4.1.0
-    eslint-plugin-graphql: ^4.0.0
-    jest: 27.5.1
-    jest-runner-eslint: 1.0.1
-    jest-watch-typeahead: 1.1.0
-    msw: 0.44.0
-    omit-empty-es: 1.1.3
-    prettier: 2.6.2
-    react: 17.0.2
-    react-dom: 17.0.2
-    react-intl: ^5.25.1
-    react-redux: 7.2.8
-    react-router-dom: 5.3.1
-    redux: 4.2.0
-    typescript: 4.7.4
-  languageName: unknown
-  linkType: soft
-
-"merchant-center-application-template-starter@workspace:application-templates/starter":
-  version: 0.0.0-use.local
-  resolution: "merchant-center-application-template-starter@workspace:application-templates/starter"
-  dependencies:
-    "@apollo/client": 3.6.9
-    "@commercetools-frontend/actions-global": 21.12.0
-    "@commercetools-frontend/application-components": 21.12.0
-    "@commercetools-frontend/application-shell": 21.12.0
-    "@commercetools-frontend/application-shell-connectors": 21.12.0
-    "@commercetools-frontend/assets": 21.12.0
-    "@commercetools-frontend/constants": 21.12.0
-    "@commercetools-frontend/eslint-config-mc-app": 21.12.0
-    "@commercetools-frontend/i18n": 21.12.0
-    "@commercetools-frontend/jest-preset-mc-app": 21.12.0
-    "@commercetools-frontend/mc-dev-authentication": 21.12.0
-    "@commercetools-frontend/mc-scripts": 21.12.0
-    "@commercetools-frontend/permissions": 21.12.0
-    "@commercetools-test-data/channel": 3.1.2
-    "@commercetools-test-data/commons": 3.1.2
-    "@commercetools-test-data/core": 3.1.2
-    "@commercetools-uikit/constraints": ^15.1.0
-    "@commercetools-uikit/data-table": ^15.1.0
-    "@commercetools-uikit/flat-button": ^15.1.0
-    "@commercetools-uikit/grid": ^15.1.0
-    "@commercetools-uikit/hooks": ^15.1.0
-    "@commercetools-uikit/icons": ^15.1.0
-    "@commercetools-uikit/link": ^15.1.0
-    "@commercetools-uikit/loading-spinner": ^15.1.0
-    "@commercetools-uikit/localized-text-field": ^15.1.0
-    "@commercetools-uikit/localized-text-input": ^15.1.0
-    "@commercetools-uikit/notifications": ^15.1.0
-    "@commercetools-uikit/pagination": ^15.1.0
-    "@commercetools-uikit/select-field": ^15.1.0
-    "@commercetools-uikit/spacings": ^15.1.0
-    "@commercetools-uikit/text": ^15.1.0
-    "@commercetools-uikit/text-field": ^15.1.0
-    "@commercetools-uikit/text-input": ^15.1.0
-    "@commercetools/sync-actions": ^4.10.1
-    "@formatjs/cli": 4.8.4
-    "@manypkg/cli": 0.19.1
-    "@testing-library/react": 12.1.5
-    "@testing-library/react-hooks": 7.0.2
-    eslint: 8.19.0
-    eslint-formatter-pretty: 4.1.0
-    jest: 27.5.1
-    jest-runner-eslint: 1.0.1
-    jest-watch-typeahead: 1.1.0
-    msw: 0.44.0
-    omit-empty-es: 1.1.3
-    prettier: 2.6.2
-    prop-types: 15.8.1
-    react: 17.0.2
-    react-dom: 17.0.2
-    react-intl: ^5.25.1
-    react-redux: 7.2.8
-    react-router-dom: 5.3.1
-    redux: 4.2.0
-  languageName: unknown
-  linkType: soft
-
 "merge-deep@npm:^3.0.3":
   version: 3.0.3
   resolution: "merge-deep@npm:3.0.3"
@@ -30463,59 +30516,6 @@ __metadata:
   checksum: 6f472a09c61d418c7e26c1c16d0bdc029549d512dbec6526216a1e59ec68100d07007d0097dcba69dddad883d6f2a83361b4bdfe0094a3d9a2af24158643d85e
   languageName: node
   linkType: hard
-
-"playground@workspace:playground":
-  version: 0.0.0-use.local
-  resolution: "playground@workspace:playground"
-  dependencies:
-    "@commercetools-backend/express": 21.12.0
-    "@commercetools-docs/ui-kit": 19.3.0
-    "@commercetools-frontend/actions-global": 21.12.0
-    "@commercetools-frontend/application-components": 21.12.0
-    "@commercetools-frontend/application-shell": 21.12.0
-    "@commercetools-frontend/application-shell-connectors": 21.12.0
-    "@commercetools-frontend/assets": 21.12.0
-    "@commercetools-frontend/constants": 21.12.0
-    "@commercetools-frontend/i18n": 21.12.0
-    "@commercetools-frontend/l10n": 21.12.0
-    "@commercetools-frontend/mc-dev-authentication": 21.12.0
-    "@commercetools-frontend/mc-scripts": 21.12.0
-    "@commercetools-frontend/permissions": 21.12.0
-    "@commercetools-frontend/sdk": 21.12.0
-    "@commercetools-uikit/card": ^15.1.0
-    "@commercetools-uikit/checkbox-input": ^15.1.0
-    "@commercetools-uikit/constraints": ^15.1.0
-    "@commercetools-uikit/data-table": ^15.1.0
-    "@commercetools-uikit/date-time-input": ^15.1.0
-    "@commercetools-uikit/flat-button": ^15.1.0
-    "@commercetools-uikit/grid": ^15.1.0
-    "@commercetools-uikit/icons": ^15.1.0
-    "@commercetools-uikit/label": ^15.1.0
-    "@commercetools-uikit/loading-spinner": ^15.1.0
-    "@commercetools-uikit/notifications": ^15.1.0
-    "@commercetools-uikit/pagination": ^15.1.0
-    "@commercetools-uikit/primary-button": ^15.1.0
-    "@commercetools-uikit/spacings": ^15.1.0
-    "@commercetools-uikit/text": ^15.1.0
-    "@formatjs/cli": 4.8.4
-    "@types/dotenv-flow": ^3.2.0
-    "@vercel/node": ^2.0.0
-    apollo-link-rest: ^0.9.0-rc.1
-    dotenv-flow: ^3.2.0
-    express: 4.18.1
-    graphql-anywhere: ^4.2.7
-    moment: ^2.29.4
-    moment-timezone: ^0.5.34
-    prop-types: 15.8.1
-    react: 17.0.2
-    react-dom: 17.0.2
-    react-intl: ^5.25.1
-    react-router-dom: 5.3.1
-    ts-node: ^10.9.1
-    typescript: 4.7.4
-    vercel: 24.2.1
-  languageName: unknown
-  linkType: soft
 
 "please-upgrade-node@npm:^3.2.0":
   version: 3.2.0
