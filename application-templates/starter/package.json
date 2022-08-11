@@ -1,5 +1,5 @@
 {
-  "name": "merchant-center-application-template-starter",
+  "name": "@commercetools-applications/merchant-center-template-starter",
   "version": "19.5.3",
   "description": "A starter example for the bare minimum setup to develop a Merchant Center Application",
   "private": true,

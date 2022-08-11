@@ -56,13 +56,24 @@ jobs:
       - name: Building packages
         run: yarn build
 
-      - name: Create Release Pull Request or Publish to npm
+      - name: Storing release version for changeset
+        id: release_version
+        run: echo "::set-output name=value::$(./scripts/print_release_version.sh)"
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
+
+      - name: Creating release pull request or publishing release to npm registry
         id: changesets
-        uses: changesets/action@v1.3.0
+        # uses: changesets/action@v1.3.0
+        uses: dotansimha/changesets-action@v1.3.3
         with:
           publish: yarn changeset publish
           version: yarn changeset:version-and-format
           commit: 'ci(changesets): version packages'
+          createGithubReleases: aggregate
+          githubReleaseName: v${{ steps.release_version.outputs.value }}
+          githubTagName: v${{ steps.release_version.outputs.value }}
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
           SKIP_POSTINSTALL_DEV_SETUP: true
