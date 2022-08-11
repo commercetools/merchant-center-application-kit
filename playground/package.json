@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "build": "mc-scripts build",
+    "start:server": "NODE_ENV=development && ts-node ./src/server.ts",
     "start": "mc-scripts start",
     "compile-html": "mc-scripts compile-html",
     "compile-html:local": "MC_APP_ENV=development mc-scripts compile-html --transformer @commercetools-frontend/mc-dev-authentication/transformer-local.js",
@@ -55,6 +56,11 @@
     "@commercetools-frontend/mc-dev-authentication": "21.12.0",
     "@commercetools-frontend/mc-scripts": "21.12.0",
     "@formatjs/cli": "4.8.4",
-    "@vercel/node": "^2.0.0"
+    "@types/dotenv-flow": "^3.2.0",
+    "@vercel/node": "^2.0.0",
+    "dotenv-flow": "^3.2.0",
+    "express": "4.18.1",
+    "ts-node": "^10.9.1",
+    "typescript": "4.7.4"
   }
 }
