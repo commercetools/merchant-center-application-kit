@@ -23,6 +23,7 @@ import ErrorBoundary from '../error-boundary';
 import GlobalStyles from './global-styles';
 import { getBrowserLocale } from './utils';
 import useCoercedEnvironmentValues from './use-coerced-environment-values';
+import ApplicationPageTitle from '../application-page-title';
 
 type Props<AdditionalEnvironmentProperties extends {}> = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;
@@ -59,30 +60,32 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
               <Suspense fallback={<ApplicationLoader />}>
                 <Router history={ApplicationShellProvider.history}>
                   <GtmBooter trackingEventList={props.trackingEventList || {}}>
-                    <Authenticated
-                      locale={browserLocale}
-                      applicationMessages={props.applicationMessages}
-                      render={({ isAuthenticated }) => {
-                        if (isAuthenticated)
-                          return props.children({ isAuthenticated });
+                    <ApplicationPageTitle>
+                      <Authenticated
+                        locale={browserLocale}
+                        applicationMessages={props.applicationMessages}
+                        render={({ isAuthenticated }) => {
+                          if (isAuthenticated)
+                            return props.children({ isAuthenticated });
 
-                        return (
-                          <AsyncLocaleData
-                            locale={browserLocale}
-                            applicationMessages={props.applicationMessages}
-                          >
-                            {({ locale, messages }) => (
-                              <ConfigureIntlProvider
-                                locale={locale}
-                                messages={messages}
-                              >
-                                {props.children({ isAuthenticated })}
-                              </ConfigureIntlProvider>
-                            )}
-                          </AsyncLocaleData>
-                        );
-                      }}
-                    />
+                          return (
+                            <AsyncLocaleData
+                              locale={browserLocale}
+                              applicationMessages={props.applicationMessages}
+                            >
+                              {({ locale, messages }) => (
+                                <ConfigureIntlProvider
+                                  locale={locale}
+                                  messages={messages}
+                                >
+                                  {props.children({ isAuthenticated })}
+                                </ConfigureIntlProvider>
+                              )}
+                            </AsyncLocaleData>
+                          );
+                        }}
+                      />
+                    </ApplicationPageTitle>
                   </GtmBooter>
                 </Router>
               </Suspense>
