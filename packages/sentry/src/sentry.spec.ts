@@ -36,7 +36,7 @@ describe('reporting to sentry', () => {
     Sentry.init({
       dsn: DUMMY_DSN,
       release: 'test',
-      transport: () => new sentryTransport(),
+      transport: sentryTransport as sentryTestkit.V7TransportFunction,
     });
   });
 
