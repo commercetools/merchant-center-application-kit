@@ -9,8 +9,7 @@ This deployment example refers to [Google cloud Static Web Apps](https://codelab
 Before you get started, you need to have:
 
 - A [Google](https://accounts.google.com/SignUp) account.
-- A custom domain
-- A [commercetools](https://docs.commercetools.com/getting-started) account and a Project.
+- A [valid domain](https://codelabs.developers.google.com/codelabs/cloud-webapp-hosting-gcs#1) that you own or manage.- A [commercetools](https://docs.commercetools.com/getting-started) account and a Project.
 - A Custom Application [configured in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications).
 
 # Configuration
@@ -48,46 +47,27 @@ In case you want to avoid hardcoding certain values, for example the Application
 
 To host the production bundles of your Custom Application you need to create a [Cloud Storage bucket](https://console.cloud.google.com/storage) in Google Cloud and [configure](https://codelabs.developers.google.com/codelabs/cloud-webapp-hosting-gcs#3) the bucket.
 
-# Configuration
+## Configuring the bucket
 
-Depending on the access options you choose, if you want to configure permissions, select the created bucket, go to the permissions tab and click the `Add` link. For the `New principals` field, select `AllUsers` and for the `Role`, search for `Storage Object Viewer`. Click `Save` to make bucket publicly accessible.
+Depending on the access options you choose, if you want to configure permissions, select the created bucket, go to the permissions tab and click the `Add` link. For the `New principals` field, select `AllUsers` and for the `Role`, search for `Storage Object Viewer`. Click `Save` to make the bucket publicly accessible.
 
-# Have a valid domain
+# Domain verification
 
-Make sure you are the owner and administrator of your domain.
-
-Merchant Center only allows accessing your Custom Application using a secure protocol (HTTPS) so your domain must support it with a valid [SSL certificate](https://support.google.com/domains/answer/7630973?hl=en&visit_id=637951191082633113-3999318342&rd=1). Google does not provide one automatically
-
-# Connect Google cloud with GitHub Actions
-
-One of the ways to deploy to google cloud is to use [Github actions](https://github.com/google-github-actions/upload-cloud-storage) deployment service. This service enables GitHub integration.
+Creating buckets with domain names requires to verify the ownership of the domain.
 
 <Info>
 
-Make sure to also install the Google Cloud Storage uploader [GitHub App](https://github.com/marketplace/actions/cloud-storage-uploader) to grant access to your repository.
+Google does not provide a domain by default when using Google Cloud Storage. If you don't have an existing domain, then there are many services through which you can register a new domain, such as [Google Domains](https://domains.google.com/).
 
 </Info>
 
-## Configuring build settings
+We recommend following the instructions for [Domain-named bucket verification](https://cloud.google.com/storage/docs/domain-name-verification) to configure things properly.
 
-In the Google Cloud setup process you need to configure the following things:
+Another way to verify your domain is by using a [load balancer](https://cloud.google.com/storage/docs/hosting-static-website#lb-ssl). You have the chance to upload an SSL certificate to your load balancer. If you are using a google DNS, in your domain [configuration](https://codelabs.developers.google.com/codelabs/cloud-webapp-hosting-gcs#2), add a new record that points your domain to the IP address of the load balancer you created.
 
-* Override the *Build command* with: `yarn build`.
+# Connect Google cloud with GitHub Actions
 
-  <Info>
-
-  In your `package.json` make sure to have the following scripts defined:
-
-  ```json title="package.json"
-  {
-    "scripts": {
-      "build": "mc-scripts build"
-    }
-  }
-  ```
-
-  </Info>
-
+One of the ways to deploy to Google Cloud Storage (GCS) is to use [Cloud Storage Uploader](https://github.com/google-github-actions/upload-cloud-storage) GitHub Action. Follow the instructions to integrate it with your repository CI.
 
 ## Configuring rewrite rules
 
