@@ -14,7 +14,7 @@ type Props<Query extends {} = {}> = {
   children: React.ReactNode;
 };
 
-const maxTitleCharLength = 60;
+const maxTitleCharLength = 24;
 
 const compilePath = (paths: string[], hasTruncatedPaths = false): string[] => {
   if (hasTruncatedPaths) {
@@ -33,7 +33,7 @@ const getLimitedPaths = (
   }
 
   // Calculate the length projection
-  const pathsProjection = paths.join(' > ');
+  const pathsProjection = paths.join(' - ');
 
   // If the length exceeds the max allowed length, we need to remove one of the paths
   // from the list, except from the first and last.
