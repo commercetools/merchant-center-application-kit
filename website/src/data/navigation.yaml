@@ -62,8 +62,8 @@
       path: /deployment-examples/surge
     - title: Deploying to Cloudflare Pages
       path: /deployment-examples/cloudflare
-    - title: Deploying to Google Cloud with Cloud Storage
-      path: /deployment-examples/google-cloud-storage
+    - title: Deploying to Google Cloud with Cloud with Static Web Apps
+      path: /deployment-examples/google-cloud-static-web-apps
 - chapter-title: API Reference
   pages:
     - title: CLI
