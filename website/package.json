@@ -16,19 +16,19 @@
     "@commercetools-uikit/card": "^15.1.0",
     "@commercetools-uikit/spacings-inline": "^15.1.0",
     "@commercetools-uikit/spacings-stack": "^15.1.0",
-    "@emotion/react": "11.9.3",
-    "@emotion/styled": "11.9.3",
-    "gatsby": "4.18.2",
-    "gatsby-cli": "4.18.1",
+    "@emotion/react": "11.10.0",
+    "@emotion/styled": "11.10.0",
+    "gatsby": "4.20.0",
+    "gatsby-cli": "4.20.0",
     "prop-types": "15.8.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-intl": "^5.25.1"
   },
   "devDependencies": {
-    "@svgr/cli": "6.2.1",
+    "@svgr/cli": "6.3.1",
     "linkinator": "4.0.2",
-    "prettier": "2.6.2",
+    "prettier": "2.7.1",
     "start-server-and-test": "1.14.0"
   }
 }
