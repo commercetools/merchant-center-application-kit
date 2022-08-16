@@ -1,7 +1,7 @@
-diff --git a/node_modules/babel-plugin-typescript-to-proptypes/lib/convertBabelToPropTypes.js b/node_modules/babel-plugin-typescript-to-proptypes/lib/convertBabelToPropTypes.js
-index 4d3252f..c939b42 100644
---- a/node_modules/babel-plugin-typescript-to-proptypes/lib/convertBabelToPropTypes.js
-+++ b/node_modules/babel-plugin-typescript-to-proptypes/lib/convertBabelToPropTypes.js
+diff --git a/lib/convertBabelToPropTypes.js b/lib/convertBabelToPropTypes.js
+index 4d3252fb8d0f2d4c69eb4320fbf65ce9cffed707..c939b42e849db5d417d8e0b2c8245c8190baab56 100644
+--- a/lib/convertBabelToPropTypes.js
++++ b/lib/convertBabelToPropTypes.js
 @@ -141,6 +141,13 @@ function convert(type, state, depth) {
          }
          else if (NATIVE_BUILT_INS.includes(name)) {

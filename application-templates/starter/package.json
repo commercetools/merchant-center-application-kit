@@ -57,7 +57,7 @@
     "@manypkg/cli": "0.19.1",
     "@testing-library/react": "12.1.5",
     "@testing-library/react-hooks": "7.0.2",
-    "eslint": "8.21.0",
+    "eslint": "8.22.0",
     "eslint-formatter-pretty": "4.1.0",
     "jest": "27.5.1",
     "jest-runner-eslint": "1.0.1",
