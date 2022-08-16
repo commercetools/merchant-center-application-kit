@@ -90,35 +90,12 @@ const compilePageTitle = <Query extends {}>(
   };
 };
 
-const convertToReadablePrefix = (prefix: string): string => {
-  switch (prefix) {
-    case 'app-kit-playground':
-      return 'App Kit Playground';
-    case 'dashboard':
-      return 'DashBoard';
-    case 'products':
-      return 'Products';
-    case 'orders':
-      return 'Orders';
-    case 'settings':
-      return 'Settings';
-    case 'projects':
-      return 'Projects';
-    case 'login':
-      return 'Login';
-    case 'account':
-      return 'Account';
-    default:
-      return startCase(prefix);
-  }
-};
-
 const ApplicationPageTitle = <Query extends {} = {}>(props: Props<Query>) => {
   const location = useLocation();
   const breadcrumb = compilePageTitle(location as TEnhancedLocation<Query>);
   const pageTitle = props.renderPageTitle
     ? props.renderPageTitle(breadcrumb)
-    : `${convertToReadablePrefix(breadcrumb.paths[0])} - ${breadcrumb.suffix}`;
+    : `${startCase(breadcrumb.paths[0])} - ${breadcrumb.suffix}`;
 
   useEffect(() => {
     document.title = pageTitle;
