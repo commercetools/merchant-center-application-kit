@@ -97,7 +97,7 @@
     "shelljs": "0.8.5",
     "style-loader": "3.3.1",
     "svg-url-loader": "7.1.1",
-    "terser-webpack-plugin": "5.3.4",
+    "terser-webpack-plugin": "5.3.1",
     "thread-loader": "3.0.4",
     "url": "^0.11.0",
     "vite": "3.0.7",
