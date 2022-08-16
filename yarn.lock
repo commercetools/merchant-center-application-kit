@@ -252,7 +252,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.18.5":
+"@babel/core@npm:^7.18.10, @babel/core@npm:^7.18.5":
   version: 7.18.10
   resolution: "@babel/core@npm:7.18.10"
   dependencies:
@@ -777,6 +777,13 @@ __metadata:
   version: 7.18.6
   resolution: "@babel/helper-plugin-utils@npm:7.18.6"
   checksum: 3dbfceb6c10fdf6c78a0e57f24e991ff8967b8a0bd45fe0314fb4a8ccf7c8ad4c3778c319a32286e7b1f63d507173df56b4e69fb31b71e1b447a73efa1ca723e
+  languageName: node
+  linkType: hard
+
+"@babel/helper-plugin-utils@npm:^7.18.9":
+  version: 7.18.9
+  resolution: "@babel/helper-plugin-utils@npm:7.18.9"
+  checksum: ebae876cd60f1fe238c7210986093845fa5c4cad5feeda843ea4d780bf068256717650376d3af2a5e760f2ed6a35c065ae144f99c47da3e54aa6cba99d8804e0
   languageName: node
   linkType: hard
 
@@ -2205,6 +2212,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/plugin-transform-react-jsx@npm:^7.18.10":
+  version: 7.18.10
+  resolution: "@babel/plugin-transform-react-jsx@npm:7.18.10"
+  dependencies:
+    "@babel/helper-annotate-as-pure": ^7.18.6
+    "@babel/helper-module-imports": ^7.18.6
+    "@babel/helper-plugin-utils": ^7.18.9
+    "@babel/plugin-syntax-jsx": ^7.18.6
+    "@babel/types": ^7.18.10
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 1aacfb0286d5b95c45bbda6cf026f9e81a261298b5921cd55b357581c9b3681fe70ba56846fae86cf63908ea8e07d0e3dd8192d663d6bddd75a7fe4c091cd724
+  languageName: node
+  linkType: hard
+
 "@babel/plugin-transform-react-jsx@npm:^7.18.6":
   version: 7.18.6
   resolution: "@babel/plugin-transform-react-jsx@npm:7.18.6"
@@ -3292,7 +3314,7 @@ __metadata:
     react-dom: 17.0.2
     react-intl: ^5.25.1
     react-redux: 7.2.8
-    react-router-dom: 5.3.1
+    react-router-dom: 5.3.3
     redux: 4.2.0
     typescript: 4.7.4
   languageName: unknown
@@ -3353,7 +3375,7 @@ __metadata:
     react-dom: 17.0.2
     react-intl: ^5.25.1
     react-redux: 7.2.8
-    react-router-dom: 5.3.1
+    react-router-dom: 5.3.3
     redux: 4.2.0
   languageName: unknown
   linkType: soft
@@ -3548,9 +3570,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-docs/writing-style@npm:3.1.1":
-  version: 3.1.1
-  resolution: "@commercetools-docs/writing-style@npm:3.1.1"
+"@commercetools-docs/writing-style@npm:3.2.0":
+  version: 3.2.0
+  resolution: "@commercetools-docs/writing-style@npm:3.2.0"
   dependencies:
     7zip-bin: 5.1.1
     node-fetch: 2.6.7
@@ -3558,7 +3580,7 @@ __metadata:
   bin:
     commercetools-vale: bin/commercetools-vale.js
     commercetools-vale-bin: bin/commercetools-vale-bin.js
-  checksum: e4d52f3f0fd64ba7cfd13ca96866d8d67132f0e05a7da769726872abe8655002f686002034d141177bd7ff2f8ee6890248d5176899c7f4117e980cc2f30bdcd1
+  checksum: 363ed66d36d01d69e14ae260aafc4b7b877b96ce9c5f72c2e12863ef3e3f19e2f7578f4de3914831653bde65d550bce798d19486e08c0059b409122d9c7f9eea
   languageName: node
   linkType: hard
 
@@ -3629,7 +3651,7 @@ __metadata:
     react-dom: 17.0.2
     react-intl: ^5.25.1
     react-modal: 3.15.1
-    react-router-dom: 5.3.1
+    react-router-dom: 5.3.3
   peerDependencies:
     react: 17.x
     react-dom: 17.x
@@ -3743,7 +3765,7 @@ __metadata:
     classnames: ^2.3.1
     common-tags: 1.8.2
     debounce-async: 0.0.2
-    downshift: 6.1.7
+    downshift: 6.1.9
     fuse.js: 6.6.2
     graphql: 16.5.0
     history: 4.10.1
@@ -3763,8 +3785,8 @@ __metadata:
     react-intl: ^5.25.1
     react-redux: 7.2.8
     react-required-if: 1.0.3
-    react-router-dom: 5.3.1
-    react-select: 5.3.2
+    react-router-dom: 5.3.3
+    react-select: 5.4.0
     redux: 4.2.0
     redux-logger: 3.0.6
     redux-thunk: 2.4.1
@@ -4075,7 +4097,7 @@ __metadata:
     "@types/prompts": ^2.0.14
     "@types/serve-handler": ^6.1.1
     "@types/svgo": ^2.6.3
-    "@vitejs/plugin-react": 2.0.0
+    "@vitejs/plugin-react": 2.0.1
     autoprefixer: ^10.4.7
     babel-loader: 8.2.5
     browserslist: ^4.20.2
@@ -4108,7 +4130,7 @@ __metadata:
     querystring-es3: ^0.2.1
     rcfile: 1.0.3
     react-dev-utils: 12.0.1
-    react-refresh: 0.13.0
+    react-refresh: 0.14.0
     rimraf: 3.0.2
     serve-handler: 6.1.3
     shelljs: 0.8.5
@@ -4196,8 +4218,8 @@ __metadata:
     react-dom: 17.0.2
     react-intl: ^5.25.1
     react-redux: 7.2.8
-    react-router-dom: 5.3.1
-    reselect: 4.1.5
+    react-router-dom: 5.3.3
+    reselect: 4.1.6
   peerDependencies:
     react: 17.x
     react-dom: 17.x
@@ -4316,7 +4338,7 @@ __metadata:
     react: 17.0.2
     react-dom: 17.0.2
     react-intl: ^5.25.1
-    react-router-dom: 5.3.1
+    react-router-dom: 5.3.3
     ts-node: ^10.9.1
     typescript: 4.7.4
     vercel: 24.2.5
@@ -4344,13 +4366,13 @@ __metadata:
     "@commercetools-uikit/text-input": ^15.1.0
     "@emotion/react": 11.9.3
     "@emotion/styled": 11.9.3
-    "@vitejs/plugin-react": 2.0.0
+    "@vitejs/plugin-react": 2.0.1
     formik: 2.2.9
     react: 17.0.2
     react-dom: 17.0.2
     react-intl: ^5.25.1
     react-redux: 7.2.8
-    react-router-dom: 5.3.1
+    react-router-dom: 5.3.3
     rimraf: 3.0.2
     vite: 3.0.0
   languageName: unknown
@@ -5440,7 +5462,7 @@ __metadata:
     react: 17.0.2
     react-dom: 17.0.2
     react-intl: ^5.25.1
-    react-router-dom: 5.3.1
+    react-router-dom: 5.3.3
   languageName: unknown
   linkType: soft
 
@@ -10610,15 +10632,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/cypress@npm:8.0.2":
-  version: 8.0.2
-  resolution: "@testing-library/cypress@npm:8.0.2"
+"@testing-library/cypress@npm:8.0.3":
+  version: 8.0.3
+  resolution: "@testing-library/cypress@npm:8.0.3"
   dependencies:
     "@babel/runtime": ^7.14.6
     "@testing-library/dom": ^8.1.0
   peerDependencies:
-    cypress: ^2.1.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0
-  checksum: 41561f68d3cb72348791734984510b5c3a5294ddb4d09f4f06be4c44cefccc67453de49c876de382794f3dd1232d2e8a7a44da198fa24e83902ad799bc7eac3b
+    cypress: ^2.1.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
+  checksum: 319f6c7297f85e5673882a71009b5d5b576006f986d87a6ca6f2f8c679d96d9779f3ddbc01654b5a943407fa91192814f250835ce01f153e33ef24818cf1bf20
   languageName: node
   linkType: hard
 
@@ -11550,12 +11572,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:17.0.16":
-  version: 17.0.16
-  resolution: "@types/react-dom@npm:17.0.16"
+"@types/react-dom@npm:17.0.17":
+  version: 17.0.17
+  resolution: "@types/react-dom@npm:17.0.17"
   dependencies:
     "@types/react": ^17
-  checksum: 2f41a45ef955c8f68a7bcd22343715f15e1560a5e5ba941568b3c970d9151f78fe0975ecf4df7f691339af546555e0f23fa423a0a5bcd7ea4dd4f9c245509936
+  checksum: 23caf98aa03e968811560f92a2c8f451694253ebe16b670929b24eaf0e7fa62ba549abe9db0ac028a9d8a9086acd6ab9c6c773f163fa21224845edbc00ba6232
   languageName: node
   linkType: hard
 
@@ -11640,14 +11662,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:17.0.45":
-  version: 17.0.45
-  resolution: "@types/react@npm:17.0.45"
+"@types/react@npm:17.0.48":
+  version: 17.0.48
+  resolution: "@types/react@npm:17.0.48"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: 3cc13a02824c13f6fa4807a83abd065ac1d9943359e76bd995cc7cd2b4148c1176ebd54a30a9f4eb8a0f141ff359d712876f256c4fee707e4290607ef8410b3e
+  checksum: b683fa33f751ced0b8c8715df9f40de15513c1d7ce66064a75cdfb8805cc913b0b214a2e7022ef0b724bd62a1e8651d040cd265dd0452bde03cca9b8e495742d
   languageName: node
   linkType: hard
 
@@ -12362,12 +12384,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitejs/plugin-react@npm:2.0.0":
-  version: 2.0.0
-  resolution: "@vitejs/plugin-react@npm:2.0.0"
+"@vitejs/plugin-react@npm:2.0.1":
+  version: 2.0.1
+  resolution: "@vitejs/plugin-react@npm:2.0.1"
   dependencies:
-    "@babel/core": ^7.18.6
-    "@babel/plugin-transform-react-jsx": ^7.18.6
+    "@babel/core": ^7.18.10
+    "@babel/plugin-transform-react-jsx": ^7.18.10
     "@babel/plugin-transform-react-jsx-development": ^7.18.6
     "@babel/plugin-transform-react-jsx-self": ^7.18.6
     "@babel/plugin-transform-react-jsx-source": ^7.18.6
@@ -12375,7 +12397,7 @@ __metadata:
     react-refresh: ^0.14.0
   peerDependencies:
     vite: ^3.0.0
-  checksum: 27e7968a46c04dffcd32e3a3cce5e0506b6d31544e18964224abcc688ccfa74d8fe99397f99489acf72c324f5a12cb7df39d3f261259603e256b296d5c6f4a89
+  checksum: 90702768ee34bd7e5021398ab827c682cfe1ebfce0988a532a678b664d80b9ad991d1c24f81045626b811c9aa2aae7d9d0fd563db5c6b7b8fd36c8eecdfc04b9
   languageName: node
   linkType: hard
 
@@ -18482,6 +18504,21 @@ __metadata:
   peerDependencies:
     react: ">=16.12.0"
   checksum: 0904ed8f285d31ee00e471dcddd57e72468bee354b191167bcaebe690ec292647fe4c31f483665094d750e72dd71e5d7db695acef33ab5dba6a39fed0112bab6
+  languageName: node
+  linkType: hard
+
+"downshift@npm:6.1.9":
+  version: 6.1.9
+  resolution: "downshift@npm:6.1.9"
+  dependencies:
+    "@babel/runtime": ^7.14.8
+    compute-scroll-into-view: ^1.0.17
+    prop-types: ^15.7.2
+    react-is: ^17.0.2
+    tslib: ^2.3.0
+  peerDependencies:
+    react: ">=16.12.0"
+  checksum: 5b888b6ebd2083334758d49e9e7b669eb8d0475273cdb5af2aa5f8c363b62f56c79aeca43758c99642056e94f68cbd8086f79a0a96726b3e8b8726cb24fd1d1b
   languageName: node
   linkType: hard
 
@@ -28407,7 +28444,7 @@ __metadata:
     "@babel/core": ^7.18.6
     "@changesets/changelog-github": 0.4.6
     "@changesets/cli": 2.24.3
-    "@commercetools-docs/writing-style": 3.1.1
+    "@commercetools-docs/writing-style": 3.2.0
     "@commercetools-test-data/core": 3.1.2
     "@commercetools-uikit/design-system": ^15.1.0
     "@commercetools/github-labels": 1.1.0
@@ -28429,7 +28466,7 @@ __metadata:
     "@svgr/cli": 6.3.1
     "@svgr/plugin-jsx": 6.3.1
     "@svgr/plugin-svgo": 6.3.1
-    "@testing-library/cypress": 8.0.2
+    "@testing-library/cypress": 8.0.3
     "@testing-library/react": 12.1.5
     "@tsconfig/cypress": ^1.0.0
     "@types/jest-environment-puppeteer": ^5.0.2
@@ -32566,14 +32603,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-refresh@npm:0.13.0":
-  version: 0.13.0
-  resolution: "react-refresh@npm:0.13.0"
-  checksum: 1cf2b87ed99e1d388aa3923078bc30cd3ce43ee86e8936944e961d3643c6e85da41ebed6a0996e8bdad75a0d2ce3b7e10638b45018231380d4a174f63a451f75
-  languageName: node
-  linkType: hard
-
-"react-refresh@npm:^0.14.0":
+"react-refresh@npm:0.14.0, react-refresh@npm:^0.14.0":
   version: 0.14.0
   resolution: "react-refresh@npm:0.14.0"
   checksum: dc69fa8c993df512f42dd0f1b604978ae89bd747c0ed5ec595c0cc50d535fb2696619ccd98ae28775cc01d0a7c146a532f0f7fb81dc22e1977c242a4912312f4
@@ -32611,20 +32641,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:5.3.1":
-  version: 5.3.1
-  resolution: "react-router-dom@npm:5.3.1"
+"react-router-dom@npm:5.3.3":
+  version: 5.3.3
+  resolution: "react-router-dom@npm:5.3.3"
   dependencies:
     "@babel/runtime": ^7.12.13
     history: ^4.9.0
     loose-envify: ^1.3.1
     prop-types: ^15.6.2
-    react-router: 5.3.1
+    react-router: 5.3.3
     tiny-invariant: ^1.0.2
     tiny-warning: ^1.0.0
   peerDependencies:
     react: ">=15"
-  checksum: efbf80c91d64bf51e61fa5dd9e4b7e9c350a0a560d575992d3ee214e0e48da38210b5d8a03c6b270a21f8fd6fa020d076f2af191db5a722c28a68fcad9cefde6
+  checksum: e1998918e391611f09b967bce0cb88bc9794aa3d8dc5f86453467a1226ae2ace648a1f401f5282f19c84a3a61fa6a3207e2a6fdfe8c8efae0b255244631febeb
   languageName: node
   linkType: hard
 
@@ -32661,9 +32691,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router@npm:5.3.1":
-  version: 5.3.1
-  resolution: "react-router@npm:5.3.1"
+"react-router@npm:5.3.3":
+  version: 5.3.3
+  resolution: "react-router@npm:5.3.3"
   dependencies:
     "@babel/runtime": ^7.12.13
     history: ^4.9.0
@@ -32677,7 +32707,7 @@ __metadata:
     tiny-warning: ^1.0.0
   peerDependencies:
     react: ">=15"
-  checksum: b85c7b4dee5a011f542a654a673489bdedb8cd217e32838d13bc9b2c93f068fd37777bc7ef6cbebd6675cadc4e89add75f5e52e452be6c5b1f92070ad7f7e505
+  checksum: 52a9f28fa97577fda18a8ed2922b658704eafe873e444fe07202640d55d9e81e67c03efd2b2a5b80e3a80e8be8352df826a227ce5f42b33b91bef853c74d4841
   languageName: node
   linkType: hard
 
@@ -32707,6 +32737,24 @@ __metadata:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
   checksum: c8c0ecd75704098ef1010fba4df68bcc5e7d76ffcd6d3bac40bc3017758a9c035a887fa82ead9105dc719c14e04c4164d8b7a8e8fa61d0ed39e4bdf48ee3bf1c
+  languageName: node
+  linkType: hard
+
+"react-select@npm:5.4.0":
+  version: 5.4.0
+  resolution: "react-select@npm:5.4.0"
+  dependencies:
+    "@babel/runtime": ^7.12.0
+    "@emotion/cache": ^11.4.0
+    "@emotion/react": ^11.8.1
+    "@types/react-transition-group": ^4.4.0
+    memoize-one: ^5.0.0
+    prop-types: ^15.6.0
+    react-transition-group: ^4.3.0
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: da896f0f8b3c7f6250148ce9ded1ace60abb35b812be50d34cf7ba980b12ca75533c3bbfd9e722530cc0e70c17e8997c3c7e93743877d84c00b0d90e4da521e6
   languageName: node
   linkType: hard
 
@@ -33558,10 +33606,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"reselect@npm:4.1.5":
-  version: 4.1.5
-  resolution: "reselect@npm:4.1.5"
-  checksum: 54c13c1e795b2ea70cba8384138aebe78adda00cbea303cc94b64da0a70d74c896cc9a03115ae38b8bff990e7a60dcd6452ab68cbec01b0b38c1afda70714cf0
+"reselect@npm:4.1.6":
+  version: 4.1.6
+  resolution: "reselect@npm:4.1.6"
+  checksum: 3ea1058422904063ec93c8f4693fe33dcb2178bbf417ace8db5b2c797a5875cf357d9308d11ed3942ee22507dd34ecfbf1f3a21340a4f31c206cab1d36ceef31
   languageName: node
   linkType: hard
 
