@@ -6,7 +6,7 @@ const Project = new Factory()
   .attr('__typename', 'Project')
   .attr('key', () => faker.random.alphaNumeric(4))
   .attr('version', () => faker.datatype.number())
-  .attr('name', () => faker.company.companyName())
+  .attr('name', () => faker.company.name())
   .attr('countries', ['de'])
   .attr('currencies', ['EUR', 'USD'])
   .attr('languages', ['en', 'de'])
@@ -33,7 +33,7 @@ const Project = new Factory()
   .attr('owner', () => ({
     __typename: 'Organization',
     id: faker.datatype.uuid(),
-    name: faker.company.companyName(),
+    name: faker.company.name(),
   }));
 
 export default Project;
