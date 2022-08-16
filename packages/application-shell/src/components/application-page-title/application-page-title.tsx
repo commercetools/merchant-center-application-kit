@@ -2,6 +2,7 @@ import type { TEnhancedLocation } from '@commercetools-frontend/browser-history'
 
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import startCase from 'lodash/startCase';
 
 type Breadcrumb<Query extends {} = {}> = {
   suffix: string;
@@ -10,6 +11,10 @@ type Breadcrumb<Query extends {} = {}> = {
 };
 type Props<Query extends {} = {}> = {
   // Allow to render a custom page title.
+  /**
+   * Overrides default page title with the format:
+   * <?resource_name(manually inputed)> - <?page_location> - <application_identifier> - <project_key> - Merchant Center
+   */
   renderPageTitle?: (breadcrumb: Breadcrumb<Query>) => string;
   children: React.ReactNode;
 };
@@ -49,24 +54,18 @@ const getLimitedPaths = (
   }
   return compilePath(paths, hasTruncatedPaths);
 };
-const getPageSuffix = (path: string): string => {
-  switch (path) {
-    case 'login':
-    case 'logout':
-      return 'Merchant Center';
-    case 'account':
-      return 'Account';
-    default:
-      return path;
-  }
+
+const isStaticPath = (path: string) => {
+  const reservedStaticPaths = ['account', 'login'];
+  return reservedStaticPaths.includes(path);
 };
 
 /**
- * Converts a URI path into a human readable string of both generated and manually composed string.
- * Format is something like this: <?resource_name(manually inputed)> - <?page_location> - <application_identifier> - <project_key> - Merchant Center
+ * Converts a URI path into a default mapping.
+ * Format is something like this: <?page_location> - <project_key> - Merchant Center
  *
  * Example:
- *   <product name> - Products - almond-40 - Merchant Center
+ *   /almond-40/products/<id> should display as <product name> - Products - almond-40 - Merchant Center
  */
 
 const compilePageTitle = <Query extends {}>(
@@ -74,10 +73,16 @@ const compilePageTitle = <Query extends {}>(
 ): Breadcrumb<Query> => {
   const [, projectKeyOrStaticPath, ...locationPaths] =
     location.pathname.split('/');
-  const suffix = getPageSuffix(projectKeyOrStaticPath);
-  const paths = getLimitedPaths(
-    locationPaths.length === 0 ? [projectKeyOrStaticPath] : locationPaths
-  );
+
+  const suffix = isStaticPath(projectKeyOrStaticPath)
+    ? ' Merchant Center'
+    : `${projectKeyOrStaticPath} - Merchant Center`;
+
+  const paths = isStaticPath(projectKeyOrStaticPath)
+    ? getLimitedPaths([projectKeyOrStaticPath])
+    : getLimitedPaths(
+        locationPaths.length === 0 ? [projectKeyOrStaticPath] : locationPaths
+      );
   return {
     suffix,
     paths,
@@ -85,12 +90,35 @@ const compilePageTitle = <Query extends {}>(
   };
 };
 
+const convertToReadablePrefix = (prefix: string): string => {
+  switch (prefix) {
+    case 'app-kit-playground':
+      return 'App Kit Playground';
+    case 'dashboard':
+      return 'DashBoard';
+    case 'products':
+      return 'Products';
+    case 'orders':
+      return 'Orders';
+    case 'settings':
+      return 'Settings';
+    case 'projects':
+      return 'Projects';
+    case 'login':
+      return 'Login';
+    case 'account':
+      return 'Account';
+    default:
+      return startCase(prefix);
+  }
+};
+
 const ApplicationPageTitle = <Query extends {} = {}>(props: Props<Query>) => {
   const location = useLocation();
   const breadcrumb = compilePageTitle(location as TEnhancedLocation<Query>);
   const pageTitle = props.renderPageTitle
     ? props.renderPageTitle(breadcrumb)
-    : `${breadcrumb.paths.join(' - ')} - ${breadcrumb.suffix}`;
+    : `${convertToReadablePrefix(breadcrumb.paths[0])} - ${breadcrumb.suffix}`;
 
   useEffect(() => {
     document.title = pageTitle;
