@@ -4004,7 +4004,7 @@ __metadata:
   resolution: "@commercetools-frontend/jest-stylelint-runner@workspace:packages/jest-stylelint-runner"
   dependencies:
     create-jest-runner: 0.11.2
-    postcss: 8.4.14
+    postcss: 8.4.16
     postcss-load-config: 3.1.4
     stylelint: 14.10.0
   peerDependencies:
@@ -4119,8 +4119,8 @@ __metadata:
     moment-locales-webpack-plugin: 1.2.0
     msw: 0.44.2
     node-fetch: 2.6.7
-    postcss: 8.4.14
-    postcss-custom-media: 8.0.0
+    postcss: 8.4.16
+    postcss-custom-media: 8.0.2
     postcss-custom-properties: 12.1.4
     postcss-import: 14.1.0
     postcss-loader: 6.2.1
@@ -28617,7 +28617,7 @@ __metadata:
     jest-watch-typeahead: 1.1.0
     lint-staged: 11.2.6
     mri: 1.2.0
-    postcss: 8.4.14
+    postcss: 8.4.16
     postcss-load-config: 3.1.4
     postcss-modules: 4.3.1
     prettier: 2.7.1
@@ -31312,12 +31312,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-custom-media@npm:8.0.0":
-  version: 8.0.0
-  resolution: "postcss-custom-media@npm:8.0.0"
+"postcss-custom-media@npm:8.0.2":
+  version: 8.0.2
+  resolution: "postcss-custom-media@npm:8.0.2"
+  dependencies:
+    postcss-value-parser: ^4.2.0
   peerDependencies:
-    postcss: ^8.1.0
-  checksum: 11c22e1b8cd5ec13093cb563a3a44817b38127e7f97bde954027f377a6848976092fb5482b96ef0f8b3f716038d9804a01a928eebe98c2d8a1fa9806ff4d3436
+    postcss: ^8.3
+  checksum: 887bbbacf6f8fab688123796e5dc1e8283b99f21e4c674235bd929dc8018c50df8634ea08932033ec93baaca32670ef2b87e6632863e0b4d84847375dbde9366
   languageName: node
   linkType: hard
 
@@ -31800,14 +31802,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:8.4.14, postcss@npm:^8.4.14":
-  version: 8.4.14
-  resolution: "postcss@npm:8.4.14"
+"postcss@npm:8.4.16, postcss@npm:^8.4.16":
+  version: 8.4.16
+  resolution: "postcss@npm:8.4.16"
   dependencies:
     nanoid: ^3.3.4
     picocolors: ^1.0.0
     source-map-js: ^1.0.2
-  checksum: fe58766ff32e4becf65a7d57678995cfd239df6deed2fe0557f038b47c94e4132e7e5f68b5aa820c13adfec32e523b693efaeb65798efb995ce49ccd83953816
+  checksum: 10eee25efd77868036403858577da0cefaf2e0905feeaba5770d5438ccdddba3d01cba8063e96b8aac4c6daa0ed413dd5ae0554a433a3c4db38df1d134cffc1f
   languageName: node
   linkType: hard
 
@@ -31822,14 +31824,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.16":
-  version: 8.4.16
-  resolution: "postcss@npm:8.4.16"
+"postcss@npm:^8.4.14":
+  version: 8.4.14
+  resolution: "postcss@npm:8.4.14"
   dependencies:
     nanoid: ^3.3.4
     picocolors: ^1.0.0
     source-map-js: ^1.0.2
-  checksum: 10eee25efd77868036403858577da0cefaf2e0905feeaba5770d5438ccdddba3d01cba8063e96b8aac4c6daa0ed413dd5ae0554a433a3c4db38df1d134cffc1f
+  checksum: fe58766ff32e4becf65a7d57678995cfd239df6deed2fe0557f038b47c94e4132e7e5f68b5aa820c13adfec32e523b693efaeb65798efb995ce49ccd83953816
   languageName: node
   linkType: hard
 
