@@ -3636,7 +3636,7 @@ __metadata:
     "@emotion/react": 11.9.3
     "@emotion/styled": 11.9.3
     "@react-hook/latest": 1.0.3
-    "@react-hook/resize-observer": 1.2.5
+    "@react-hook/resize-observer": 1.2.6
     "@types/history": ^4.7.11
     "@types/lodash": ^4.14.182
     "@types/prop-types": ^15.7.5
@@ -9885,18 +9885,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-hook/resize-observer@npm:1.2.5":
-  version: 1.2.5
-  resolution: "@react-hook/resize-observer@npm:1.2.5"
+"@react-hook/resize-observer@npm:1.2.6":
+  version: 1.2.6
+  resolution: "@react-hook/resize-observer@npm:1.2.6"
   dependencies:
     "@juggle/resize-observer": ^3.3.1
     "@react-hook/latest": ^1.0.2
     "@react-hook/passive-layout-effect": ^1.2.0
-    "@types/raf-schd": ^4.0.0
-    raf-schd: ^4.0.2
   peerDependencies:
     react: ">=16.8"
-  checksum: a2f3b333e344adb3d7a4cfd2bc77fd75054b07063fba706d57bef0c497650c3e82038eafb64fa4148c08527e8b0a34f2f70392da1700a7a0d9676ee8ba795c16
+  checksum: d2ff6c50e847514acad774f2a4010fb1e6782a231ae00c9507c1a98028b3a26399e35f094170918f11b1eeafc581d60da7641bc178d496abf00c56eee8a6b36b
   languageName: node
   linkType: hard
 
@@ -11546,13 +11544,6 @@ __metadata:
   version: 6.9.7
   resolution: "@types/qs@npm:6.9.7"
   checksum: 7fd6f9c25053e9b5bb6bc9f9f76c1d89e6c04f7707a7ba0e44cc01f17ef5284adb82f230f542c2d5557d69407c9a40f0f3515e8319afd14e1e16b5543ac6cdba
-  languageName: node
-  linkType: hard
-
-"@types/raf-schd@npm:^4.0.0":
-  version: 4.0.1
-  resolution: "@types/raf-schd@npm:4.0.1"
-  checksum: 0babaa85541aadc6e5f8aa64ec79cd68bf67ea56abb7610c8daf3ca5f4b1a75d12e4e147a0b5434938a4031650ebddc733021ec4e7db4f11f7955390ec32c917
   languageName: node
   linkType: hard
 
@@ -32376,7 +32367,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"raf-schd@npm:^4.0.2, raf-schd@npm:^4.0.3":
+"raf-schd@npm:^4.0.3":
   version: 4.0.3
   resolution: "raf-schd@npm:4.0.3"
   checksum: 45514041c5ad31fa96aef3bb3c572a843b92da2f2cd1cb4a47c9ad58e48761d3a4126e18daa32b2bfa0bc2551a42d8f324a0e40e536cb656969929602b4e8b58

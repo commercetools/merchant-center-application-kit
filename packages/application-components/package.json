@@ -50,7 +50,7 @@
     "@emotion/react": "11.9.3",
     "@emotion/styled": "11.9.3",
     "@react-hook/latest": "1.0.3",
-    "@react-hook/resize-observer": "1.2.5",
+    "@react-hook/resize-observer": "1.2.6",
     "@types/history": "^4.7.11",
     "@types/lodash": "^4.14.182",
     "@types/prop-types": "^15.7.5",
