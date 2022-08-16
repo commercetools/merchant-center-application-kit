@@ -18102,10 +18102,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"devtools-protocol@npm:0.0.982423":
-  version: 0.0.982423
-  resolution: "devtools-protocol@npm:0.0.982423"
-  checksum: c144574b9c2092f38a1a9153e5d723f0bf4ad4f4363d9d2ea5bdd3d7e0e1416d1a71a77256120ba0e0dd524bc101845d42aa0b723aaedc0b6b4023137da76cf3
+"devtools-protocol@npm:0.0.1001819":
+  version: 0.0.1001819
+  resolution: "devtools-protocol@npm:0.0.1001819"
+  checksum: 156e7c6703ec6c203e0bc1d68393fcd768de45bf225ca7b2d6bd106d8dc4ab0e8f38c518ce158c73d83a96db8ef32ae06dc9b4edd70e94660253dc2622619947
   languageName: node
   linkType: hard
 
@@ -20350,7 +20350,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expect-puppeteer@npm:^6.1.0":
+"expect-puppeteer@npm:^6.1.1":
   version: 6.1.1
   resolution: "expect-puppeteer@npm:6.1.1"
   checksum: c2e306494126ef64bcd69582b216c981fed1ef89cc0ecc08dc63ab6daee63dd9f8ca5498f1abd2d6ad0a97f20f0fcad557682d00ff79b595874f21da2da093af
@@ -25725,7 +25725,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-environment-puppeteer@npm:^6.0.3":
+"jest-environment-puppeteer@npm:^6.1.1":
   version: 6.1.1
   resolution: "jest-environment-puppeteer@npm:6.1.1"
   dependencies:
@@ -25932,15 +25932,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-puppeteer@npm:6.1.0":
-  version: 6.1.0
-  resolution: "jest-puppeteer@npm:6.1.0"
+"jest-puppeteer@npm:6.1.1":
+  version: 6.1.1
+  resolution: "jest-puppeteer@npm:6.1.1"
   dependencies:
-    expect-puppeteer: ^6.1.0
-    jest-environment-puppeteer: ^6.0.3
+    expect-puppeteer: ^6.1.1
+    jest-environment-puppeteer: ^6.1.1
   peerDependencies:
     puppeteer: ">= 1.5.0"
-  checksum: 1bc25c24eedcd4872bdd78a784db6b7f809f13e688864d627294655349e8a1f40bee78760af55e49331e4f75c35fb5f1c98c453389677db8688c3aa71bff1713
+  checksum: 339b688bf52769c3226bde9e8f8f40e65c2abe48276819f15359de4d05f7a90a86291f7383352edc9e38dfdddb4b3db37957d09161d53bf0ac33df8c3f37d79f
   languageName: node
   linkType: hard
 
@@ -28520,7 +28520,7 @@ __metadata:
     husky: 7.0.4
     jest: 27.5.1
     jest-each: 27.5.1
-    jest-puppeteer: 6.1.0
+    jest-puppeteer: 6.1.1
     jest-runner-eslint: 1.0.1
     jest-runner-executor: 1.0.0
     jest-silent-reporter: 0.5.0
@@ -28531,7 +28531,7 @@ __metadata:
     postcss-load-config: 3.1.4
     postcss-modules: 4.3.1
     prettier: 2.7.1
-    puppeteer: 14.1.0
+    puppeteer: 14.4.1
     rcfile: 1.0.3
     replace: 1.2.1
     rosie: 2.1.0
@@ -32141,13 +32141,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"puppeteer@npm:14.1.0":
-  version: 14.1.0
-  resolution: "puppeteer@npm:14.1.0"
+"puppeteer@npm:14.4.1":
+  version: 14.4.1
+  resolution: "puppeteer@npm:14.4.1"
   dependencies:
     cross-fetch: 3.1.5
     debug: 4.3.4
-    devtools-protocol: 0.0.982423
+    devtools-protocol: 0.0.1001819
     extract-zip: 2.0.1
     https-proxy-agent: 5.0.1
     pkg-dir: 4.2.0
@@ -32156,8 +32156,8 @@ __metadata:
     rimraf: 3.0.2
     tar-fs: 2.1.1
     unbzip2-stream: 1.4.3
-    ws: 8.6.0
-  checksum: d88b8c3a2496ed1cc62bec09cf071bf98e13ce7190b22f66062a5c0007ef84824b9ecdeed013a1db39b3013173989ab972ee3296bab9749a5eb1b0532c00b3c3
+    ws: 8.7.0
+  checksum: 21566e220dbbc8df8c59209b71de83630bf7ba8f9fa117c9f2452370430471fa3bbeb9c19bbfb95bc8078d65454d9000240441050ba6c9880de1954038af0a08
   languageName: node
   linkType: hard
 
@@ -39017,9 +39017,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:8.6.0":
-  version: 8.6.0
-  resolution: "ws@npm:8.6.0"
+"ws@npm:8.7.0":
+  version: 8.7.0
+  resolution: "ws@npm:8.7.0"
   peerDependencies:
     bufferutil: ^4.0.1
     utf-8-validate: ^5.0.2
@@ -39028,7 +39028,7 @@ __metadata:
       optional: true
     utf-8-validate:
       optional: true
-  checksum: e2fca82059f1e087d0c78e2f37135e1b8332bc804fce46f83c2db1cb8571685abf9d2c99b964bab3752536ad90b99b46fb8d1428899aed3e560684ab4641bffd
+  checksum: 078fa2dbc06b31a45e0057b19e2930d26c222622e355955afe019c9b9b25f62eb2a8eff7cceabdad04910ecd2bd6ef4fa48e6f3673f2fdddff02a6e4c2459584
   languageName: node
   linkType: hard
 
