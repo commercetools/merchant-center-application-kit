@@ -1,6 +1,6 @@
 import type { TEnhancedLocation } from '@commercetools-frontend/browser-history';
 
-import React, { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import startCase from 'lodash/startCase';
 
@@ -10,13 +10,12 @@ type Breadcrumb<Query extends {} = {}> = {
   location: TEnhancedLocation<Query>;
 };
 type Props<Query extends {} = {}> = {
-  // Allow to render a custom page title.
   /**
+   * Allow to render a custom page title.
    * Overrides default page title with the format:
    * <?resource_name(manually inputed)> - <?page_location> - <application_identifier> - <project_key> - Merchant Center
    */
   renderPageTitle?: (breadcrumb: Breadcrumb<Query>) => string;
-  children: React.ReactNode;
 };
 
 const maxTitleCharLength = 24;
@@ -56,8 +55,8 @@ const getLimitedPaths = (
 };
 
 const isStaticPath = (path: string) => {
-  const reservedStaticPaths = ['account', 'login'];
-  return reservedStaticPaths.includes(path);
+  const staticPaths = ['account', 'login'];
+  return staticPaths.includes(path);
 };
 
 /**
@@ -65,7 +64,7 @@ const isStaticPath = (path: string) => {
  * Format is something like this: <?page_location> - <project_key> - Merchant Center
  *
  * Example:
- *   /almond-40/products/<id> should display as <product name> - Products - almond-40 - Merchant Center
+ *   /almond-40/products/<id> should display as: Products - almond-40 - Merchant Center
  */
 
 const compilePageTitle = <Query extends {}>(
@@ -97,11 +96,11 @@ const ApplicationPageTitle = <Query extends {} = {}>(props: Props<Query>) => {
     ? props.renderPageTitle(breadcrumb)
     : `${startCase(breadcrumb.paths[0])} - ${breadcrumb.suffix}`;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.title = pageTitle;
   }, [pageTitle]);
 
-  return <>{props.children}</>;
+  return <></>;
 };
 ApplicationPageTitle.displayName = 'ApplicationPageTitle';
 

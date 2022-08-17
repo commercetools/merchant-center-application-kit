@@ -60,32 +60,31 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
               <Suspense fallback={<ApplicationLoader />}>
                 <Router history={ApplicationShellProvider.history}>
                   <GtmBooter trackingEventList={props.trackingEventList || {}}>
-                    <ApplicationPageTitle>
-                      <Authenticated
-                        locale={browserLocale}
-                        applicationMessages={props.applicationMessages}
-                        render={({ isAuthenticated }) => {
-                          if (isAuthenticated)
-                            return props.children({ isAuthenticated });
+                    <ApplicationPageTitle />
+                    <Authenticated
+                      locale={browserLocale}
+                      applicationMessages={props.applicationMessages}
+                      render={({ isAuthenticated }) => {
+                        if (isAuthenticated)
+                          return props.children({ isAuthenticated });
 
-                          return (
-                            <AsyncLocaleData
-                              locale={browserLocale}
-                              applicationMessages={props.applicationMessages}
-                            >
-                              {({ locale, messages }) => (
-                                <ConfigureIntlProvider
-                                  locale={locale}
-                                  messages={messages}
-                                >
-                                  {props.children({ isAuthenticated })}
-                                </ConfigureIntlProvider>
-                              )}
-                            </AsyncLocaleData>
-                          );
-                        }}
-                      />
-                    </ApplicationPageTitle>
+                        return (
+                          <AsyncLocaleData
+                            locale={browserLocale}
+                            applicationMessages={props.applicationMessages}
+                          >
+                            {({ locale, messages }) => (
+                              <ConfigureIntlProvider
+                                locale={locale}
+                                messages={messages}
+                              >
+                                {props.children({ isAuthenticated })}
+                              </ConfigureIntlProvider>
+                            )}
+                          </AsyncLocaleData>
+                        );
+                      }}
+                    />
                   </GtmBooter>
                 </Router>
               </Suspense>
