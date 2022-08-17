@@ -3640,6 +3640,7 @@ __metadata:
     "@types/history": ^4.7.11
     "@types/lodash": ^4.14.182
     "@types/prop-types": ^15.7.5
+    "@types/raf-schd": ^4.0.1
     "@types/react": ^17.0.47
     "@types/react-dom": ^17.0.17
     "@types/react-modal": ^3.13.1
@@ -11544,6 +11545,13 @@ __metadata:
   version: 6.9.7
   resolution: "@types/qs@npm:6.9.7"
   checksum: 7fd6f9c25053e9b5bb6bc9f9f76c1d89e6c04f7707a7ba0e44cc01f17ef5284adb82f230f542c2d5557d69407c9a40f0f3515e8319afd14e1e16b5543ac6cdba
+  languageName: node
+  linkType: hard
+
+"@types/raf-schd@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "@types/raf-schd@npm:4.0.1"
+  checksum: 0babaa85541aadc6e5f8aa64ec79cd68bf67ea56abb7610c8daf3ca5f4b1a75d12e4e147a0b5434938a4031650ebddc733021ec4e7db4f11f7955390ec32c917
   languageName: node
   linkType: hard
 
