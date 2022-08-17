@@ -14,7 +14,7 @@ const User = new Factory()
   .attr('timeZone', 'Europe/Berlin')
   .attr('launchdarklyTrackingId', () => faker.random.alphaNumeric(16))
   .attr('launchdarklyTrackingGroup', () =>
-    faker.helpers.slugify(faker.company.companyName())
+    faker.helpers.slugify(faker.company.name())
   )
   .attr('launchdarklyTrackingSubgroup', () => 'dev')
   .attr('launchdarklyTrackingTeam', () => [faker.random.word()])
