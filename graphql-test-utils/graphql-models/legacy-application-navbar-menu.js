@@ -1,6 +1,6 @@
 import { Factory } from 'rosie';
 import { faker } from '@faker-js/faker';
-import ApplicationSubmenu from './application-navbar-submenu';
+import LegacyApplicationSubmenu from './legacy-application-navbar-submenu';
 
 const ApplicationNavbarMenu = new Factory()
   .sequence('sequenceId')
@@ -19,6 +19,6 @@ const ApplicationNavbarMenu = new Factory()
   .attr('permissions', [])
   .attr('dataFences', null)
   .attr('actionRights', null)
-  .attr('submenu', () => ApplicationSubmenu.buildList(1));
+  .attr('submenu', () => LegacyApplicationSubmenu.buildList(1));
 
 export default ApplicationNavbarMenu;

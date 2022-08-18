@@ -24,11 +24,12 @@ import LockedDiamondSVG from '@commercetools-frontend/assets/images/locked-diamo
 import {
   UserMock,
   ProjectMock,
-  ApplicationAppbarMenuMock,
-  ApplicationNavbarMenuMock,
-  ApplicationNavbarSubmenuMock,
   ProjectExtensionMock,
-  CustomApplicationMock,
+  ApplicationAppbarMenuMock,
+  LegacyApplicationNavbarMenuMock,
+  LegacyApplicationNavbarSubmenuMock,
+  LegacyCustomApplicationMock,
+  CustomApplicationInstallationMock,
 } from '../../../../../graphql-test-utils';
 import { STORAGE_KEYS } from '../../constants';
 import { location } from '../../utils/location';
@@ -891,8 +892,8 @@ describe('navbar menu links interactions', () => {
           return res(
             ctx.data({
               projectExtension: ProjectExtensionMock.build({
-                applications: CustomApplicationMock.buildList(1, {
-                  navbarMenu: ApplicationNavbarMenuMock.build({
+                applications: LegacyCustomApplicationMock.buildList(1, {
+                  navbarMenu: LegacyApplicationNavbarMenuMock.build({
                     labelAllLocales: [
                       {
                         __typename: 'LocalizedField',
@@ -900,7 +901,7 @@ describe('navbar menu links interactions', () => {
                         value: 'Marvel',
                       },
                     ],
-                    submenu: ApplicationNavbarSubmenuMock.buildList(1, {
+                    submenu: LegacyApplicationNavbarSubmenuMock.buildList(1, {
                       labelAllLocales: [
                         {
                           __typename: 'LocalizedField',
@@ -911,8 +912,8 @@ describe('navbar menu links interactions', () => {
                     }),
                   }),
                 }),
-                // TODO: also test installed applications!
-                installedApplications: [],
+                installedApplications:
+                  CustomApplicationInstallationMock.buildList(1),
               }),
             })
           );
@@ -925,7 +926,7 @@ describe('navbar menu links interactions', () => {
                 applicationsMenu: {
                   __typename: 'ApplicationsMenu',
                   appBar: ApplicationAppbarMenuMock.buildList(1),
-                  navBar: ApplicationNavbarMenuMock.buildList(1, {
+                  navBar: LegacyApplicationNavbarMenuMock.buildList(1, {
                     labelAllLocales: [
                       {
                         __typename: 'LocalizedField',
@@ -933,7 +934,7 @@ describe('navbar menu links interactions', () => {
                         value: 'Products',
                       },
                     ],
-                    submenu: ApplicationNavbarSubmenuMock.buildList(1, {
+                    submenu: LegacyApplicationNavbarSubmenuMock.buildList(1, {
                       labelAllLocales: [
                         {
                           __typename: 'LocalizedField',
@@ -976,12 +977,20 @@ describe('navbar menu links interactions', () => {
         mainSubmenuLabel: { value: 'Add product' },
       });
 
-      // Check links from custom applications menu
+      // Check links from (legacy) custom applications menu
       await checkLinksInteractions({
         container,
         findByLeftNavigation,
         mainMenuLabel: { value: 'Marvel' },
         mainSubmenuLabel: { value: 'Avengers' },
+      });
+
+      // Check links from custom applications menu
+      await checkLinksInteractions({
+        container,
+        findByLeftNavigation,
+        mainMenuLabel: { value: 'My application' },
+        mainSubmenuLabel: { value: 'Something new' },
       });
     });
   });

@@ -131,32 +131,29 @@ const useNavbarStateManager = (props: HookProps) => {
             // This is to ensure that the menu object is the same from the proxy
             // config and the custom apps config, thus allowing them to be
             // concatenated and rendered the same way.
-            if (!application.menuLinks) return;
             return {
               key: application.id,
               uriPath: application.entryPointUriPath,
-              labelAllLocales: application.menuLinks.labelAllLocales || [],
-              icon: application.menuLinks.icon,
-              permissions: application.menuLinks.permissions as string[],
-              defaultLabel: application.menuLinks.defaultLabel,
+              labelAllLocales: application.mainMenuLink.labelAllLocales || [],
+              icon: application.icon,
+              permissions: application.mainMenuLink.permissions as string[],
+              defaultLabel: application.mainMenuLink.defaultLabel,
               featureToggle: undefined,
               menuVisibility: undefined,
               actionRights: undefined,
               dataFences: undefined,
               shouldRenderDivider: false,
-              submenu: (application.menuLinks.submenuLinks || []).map(
-                (submenuLink) => ({
-                  key: submenuLink.id,
-                  uriPath: submenuLink.uriPath,
-                  labelAllLocales: submenuLink.labelAllLocales || [],
-                  permissions: submenuLink.permissions as string[],
-                  defaultLabel: submenuLink.defaultLabel,
-                  featureToggle: undefined,
-                  menuVisibility: undefined,
-                  actionRights: undefined,
-                  dataFences: undefined,
-                })
-              ),
+              submenu: (application.submenuLinks || []).map((submenuLink) => ({
+                key: submenuLink.id,
+                uriPath: submenuLink.uriPath,
+                labelAllLocales: submenuLink.labelAllLocales || [],
+                permissions: submenuLink.permissions as string[],
+                defaultLabel: submenuLink.defaultLabel,
+                featureToggle: undefined,
+                menuVisibility: undefined,
+                actionRights: undefined,
+                dataFences: undefined,
+              })),
             };
           })
           .filter(nonNullable)

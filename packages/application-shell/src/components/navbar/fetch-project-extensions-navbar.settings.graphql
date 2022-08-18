@@ -31,24 +31,24 @@ query FetchProjectExtensionsNavbar {
       application {
         id
         entryPointUriPath
-        menuLinks {
+        icon
+        mainMenuLink {
           id
-          icon
           permissions
           defaultLabel
           labelAllLocales {
             locale
             value
           }
-          submenuLinks {
-            id
-            uriPath
-            permissions
-            defaultLabel
-            labelAllLocales {
-              locale
-              value
-            }
+        }
+        submenuLinks {
+          id
+          uriPath
+          permissions
+          defaultLabel
+          labelAllLocales {
+            locale
+            value
           }
         }
       }

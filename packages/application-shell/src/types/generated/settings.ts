@@ -153,20 +153,6 @@ export enum TBestSellingLimit {
   Ten = 'TEN'
 }
 
-export type TCartDiscountsListView = {
-  __typename?: 'CartDiscountsListView';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
-  projectKey: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
-  userId: Scalars['String'];
-  visibleColumns: Array<Scalars['String']>;
-};
-
-export type TCartDiscountsListViewInput = {
-  visibleColumns: Array<Scalars['String']>;
-};
-
 export enum TCategoryRecommendationSearchProperty {
   Attribute = 'Attribute',
   MachineLearning = 'MachineLearning',
@@ -446,20 +432,6 @@ export enum TDateFilterType {
   Year = 'YEAR'
 }
 
-export type TDiscountCodesListView = {
-  __typename?: 'DiscountCodesListView';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
-  projectKey: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
-  userId: Scalars['String'];
-  visibleColumns: Array<Scalars['String']>;
-};
-
-export type TDiscountCodesListViewInput = {
-  visibleColumns: Array<Scalars['String']>;
-};
-
 export enum TDiscountType {
   CartDiscount = 'CartDiscount',
   DiscountCode = 'DiscountCode',
@@ -682,6 +654,7 @@ export type TLayoutCard_NameAllLocalesArgs = {
 export type TLayoutCardInput = {
   averageOrderValueConfiguration?: InputMaybe<TAverageOrderValueConfigurationInput>;
   height: Scalars['Int'];
+  id?: InputMaybe<Scalars['ID']>;
   key: TMetricCardType;
   maxHeight?: InputMaybe<Scalars['Int']>;
   maxWidth?: InputMaybe<Scalars['Int']>;
@@ -1020,16 +993,13 @@ export type TMutation = {
   activateProjectExtensionApplication?: Maybe<TProjectExtension>;
   changeCustomApplicationStatus?: Maybe<TRestrictedCustomApplicationForOrganization>;
   createCartDiscountsCustomView: TDiscountsCustomView;
-  createCartDiscountsListView?: Maybe<TCartDiscountsListView>;
   createCustomApplication?: Maybe<TRestrictedCustomApplicationForOrganization>;
   createCustomersListView: TCustomersListView;
   createDashboardView: TDashboardView;
   createDiscountCodesCustomView: TDiscountsCustomView;
-  createDiscountCodesListView?: Maybe<TDiscountCodesListView>;
   createOrdersListView: TOrdersListView;
   createPimSearchListView: TPimSearchListView;
   createProductDiscountsCustomView: TDiscountsCustomView;
-  createProductDiscountsListView?: Maybe<TProductDiscountsListView>;
   createProductTypeAttributesView: TProductTypeAttributesView;
   createVariantPricesListView?: Maybe<TVariantPricesListView>;
   deactivateCartDiscountsCustomView?: Maybe<TDiscountsCustomView>;
@@ -1058,13 +1028,39 @@ export type TMutation = {
   /** @deprecated Experimental feature - For internal usage only */
   migrateCustomersListViews?: Maybe<TMigrationResult>;
   /** @deprecated Experimental feature - For internal usage only */
+  migrateDashboardViews?: Maybe<TMigrationResult>;
+  /** @deprecated Experimental feature - For internal usage only */
+  migrateDiscountsListViews?: Maybe<TMigrationResult>;
+  /** @deprecated Experimental feature - For internal usage only */
   migrateOrdersListViews?: Maybe<TMigrationResult>;
+  /** @deprecated Experimental feature - For internal usage only */
+  migrateOrganizationExtensionsOidcSsoConfig: TMigrationResult;
+  /** @deprecated Experimental feature - For internal usage only */
+  migratePimSearchListViews?: Maybe<TMigrationResult>;
+  /** @deprecated Experimental feature - For internal usage only */
+  migrateProductTypeAttributesViews?: Maybe<TMigrationResult>;
   /** @deprecated Experimental feature - For internal usage only */
   migrateProjectExtensions: TMigrationResult;
   /** @deprecated Experimental feature - For internal usage only */
-  revertCustomersListViewsMigration: TRevertionResult;
+  migrateRuleBuilderQuickSelectionValues?: Maybe<TMigrationResult>;
   /** @deprecated Experimental feature - For internal usage only */
-  revertOrdersListViewsMigration: TRevertionResult;
+  migrateVariantPricesListViews?: Maybe<TMigrationResult>;
+  /** @deprecated Experimental feature - For internal usage only */
+  revertCustomersListViewsMigration: TReversionResult;
+  /** @deprecated Experimental feature - For internal usage only */
+  revertDashboardViewsMigration: TReversionResult;
+  /** @deprecated Experimental feature - For internal usage only */
+  revertDiscountsListViewsMigration: TReversionResult;
+  /** @deprecated Experimental feature - For internal usage only */
+  revertOrdersListViewsMigration: TReversionResult;
+  /** @deprecated Experimental feature - For internal usage only */
+  revertPimSearchListViewsMigration: TReversionResult;
+  /** @deprecated Experimental feature - For internal usage only */
+  revertProductTypeAttributesViewsMigration: TReversionResult;
+  /** @deprecated Experimental feature - For internal usage only */
+  revertRuleBuilderQuickSelectionValuesMigration: TReversionResult;
+  /** @deprecated Experimental feature - For internal usage only */
+  revertVariantPricesListViewsMigration: TReversionResult;
   sendLinkToVerifyCustomApplicationsMaintainerContactEmail?: Maybe<TCustomApplicationsMaintainerContactEmailVerificationRequest>;
   setCustomApplicationsMaintainerContactInformation?: Maybe<TOrganizationExtension>;
   setOrganizationExtensionOidcSsoConfig?: Maybe<TOrganizationExtension>;
@@ -1073,17 +1069,14 @@ export type TMutation = {
   setProjectExtensionOrderStatesVisibility?: Maybe<TProjectExtension>;
   uninstallCustomApplication?: Maybe<TRestrictedCustomApplicationInstallationForOrganization>;
   updateCartDiscountsCustomView?: Maybe<TDiscountsCustomView>;
-  updateCartDiscountsListView?: Maybe<TCartDiscountsListView>;
   updateCustomApplication?: Maybe<TRestrictedCustomApplicationForOrganization>;
   updateCustomApplicationProjectsInstallation?: Maybe<TRestrictedCustomApplicationInstallationForOrganization>;
   updateCustomersListView?: Maybe<TCustomersListView>;
   updateDashboardView?: Maybe<TDashboardView>;
   updateDiscountCodesCustomView?: Maybe<TDiscountsCustomView>;
-  updateDiscountCodesListView?: Maybe<TDiscountCodesListView>;
   updateOrdersListView?: Maybe<TOrdersListView>;
   updatePimSearchListView?: Maybe<TPimSearchListView>;
   updateProductDiscountsCustomView?: Maybe<TDiscountsCustomView>;
-  updateProductDiscountsListView?: Maybe<TProductDiscountsListView>;
   updateProductTypeAttributesView: TProductTypeAttributesView;
   updateProjectExtensionApplication?: Maybe<TProjectExtension>;
   updateRuleBuilderQuickSelectionValues?: Maybe<TRuleBuilderQuickSelectionValues>;
@@ -1156,11 +1149,6 @@ export type TMutation_CreateCartDiscountsCustomViewArgs = {
 };
 
 
-export type TMutation_CreateCartDiscountsListViewArgs = {
-  data: TCartDiscountsListViewInput;
-};
-
-
 export type TMutation_CreateCustomApplicationArgs = {
   data: TCustomApplicationDraftDataInput;
   organizationId: Scalars['String'];
@@ -1182,11 +1170,6 @@ export type TMutation_CreateDiscountCodesCustomViewArgs = {
 };
 
 
-export type TMutation_CreateDiscountCodesListViewArgs = {
-  data: TDiscountCodesListViewInput;
-};
-
-
 export type TMutation_CreateOrdersListViewArgs = {
   data: TOrdersListViewInput;
 };
@@ -1199,11 +1182,6 @@ export type TMutation_CreatePimSearchListViewArgs = {
 
 export type TMutation_CreateProductDiscountsCustomViewArgs = {
   data: TDiscountsCustomViewInput;
-};
-
-
-export type TMutation_CreateProductDiscountsListViewArgs = {
-  data: TProductDiscountsListViewInput;
 };
 
 
@@ -1326,27 +1304,128 @@ export type TMutation_InstallCustomApplicationArgs = {
 
 
 export type TMutation_MigrateCustomersListViewsArgs = {
+  dryRun?: InputMaybe<Scalars['Boolean']>;
   projectKeys?: InputMaybe<Array<Scalars['String']>>;
+  userEmail: Scalars['String'];
+};
+
+
+export type TMutation_MigrateDashboardViewsArgs = {
+  dryRun?: InputMaybe<Scalars['Boolean']>;
+  projectKeys?: InputMaybe<Array<Scalars['String']>>;
+  userEmail: Scalars['String'];
+};
+
+
+export type TMutation_MigrateDiscountsListViewsArgs = {
+  dryRun?: InputMaybe<Scalars['Boolean']>;
+  projectKeys?: InputMaybe<Array<Scalars['String']>>;
+  userEmail: Scalars['String'];
 };
 
 
 export type TMutation_MigrateOrdersListViewsArgs = {
+  dryRun?: InputMaybe<Scalars['Boolean']>;
   projectKeys?: InputMaybe<Array<Scalars['String']>>;
+  userEmail: Scalars['String'];
+};
+
+
+export type TMutation_MigrateOrganizationExtensionsOidcSsoConfigArgs = {
+  dryRun?: InputMaybe<Scalars['Boolean']>;
+  projectKeys?: InputMaybe<Array<Scalars['String']>>;
+  userEmail: Scalars['String'];
+};
+
+
+export type TMutation_MigratePimSearchListViewsArgs = {
+  dryRun?: InputMaybe<Scalars['Boolean']>;
+  projectKeys?: InputMaybe<Array<Scalars['String']>>;
+  userEmail: Scalars['String'];
+};
+
+
+export type TMutation_MigrateProductTypeAttributesViewsArgs = {
+  dryRun?: InputMaybe<Scalars['Boolean']>;
+  projectKeys?: InputMaybe<Array<Scalars['String']>>;
+  userEmail: Scalars['String'];
 };
 
 
 export type TMutation_MigrateProjectExtensionsArgs = {
+  dryRun?: InputMaybe<Scalars['Boolean']>;
   projectKeys?: InputMaybe<Array<Scalars['String']>>;
+  userEmail: Scalars['String'];
+};
+
+
+export type TMutation_MigrateRuleBuilderQuickSelectionValuesArgs = {
+  dryRun?: InputMaybe<Scalars['Boolean']>;
+  projectKeys?: InputMaybe<Array<Scalars['String']>>;
+  userEmail: Scalars['String'];
+};
+
+
+export type TMutation_MigrateVariantPricesListViewsArgs = {
+  dryRun?: InputMaybe<Scalars['Boolean']>;
+  projectKeys?: InputMaybe<Array<Scalars['String']>>;
+  userEmail: Scalars['String'];
 };
 
 
 export type TMutation_RevertCustomersListViewsMigrationArgs = {
+  dryRun?: InputMaybe<Scalars['Boolean']>;
   projectKeys?: InputMaybe<Array<Scalars['String']>>;
+  userEmail: Scalars['String'];
+};
+
+
+export type TMutation_RevertDashboardViewsMigrationArgs = {
+  dryRun?: InputMaybe<Scalars['Boolean']>;
+  projectKeys?: InputMaybe<Array<Scalars['String']>>;
+  userEmail: Scalars['String'];
+};
+
+
+export type TMutation_RevertDiscountsListViewsMigrationArgs = {
+  dryRun?: InputMaybe<Scalars['Boolean']>;
+  projectKeys?: InputMaybe<Array<Scalars['String']>>;
+  userEmail: Scalars['String'];
 };
 
 
 export type TMutation_RevertOrdersListViewsMigrationArgs = {
+  dryRun?: InputMaybe<Scalars['Boolean']>;
   projectKeys?: InputMaybe<Array<Scalars['String']>>;
+  userEmail: Scalars['String'];
+};
+
+
+export type TMutation_RevertPimSearchListViewsMigrationArgs = {
+  dryRun?: InputMaybe<Scalars['Boolean']>;
+  projectKeys?: InputMaybe<Array<Scalars['String']>>;
+  userEmail: Scalars['String'];
+};
+
+
+export type TMutation_RevertProductTypeAttributesViewsMigrationArgs = {
+  dryRun?: InputMaybe<Scalars['Boolean']>;
+  projectKeys?: InputMaybe<Array<Scalars['String']>>;
+  userEmail: Scalars['String'];
+};
+
+
+export type TMutation_RevertRuleBuilderQuickSelectionValuesMigrationArgs = {
+  dryRun?: InputMaybe<Scalars['Boolean']>;
+  projectKeys?: InputMaybe<Array<Scalars['String']>>;
+  userEmail: Scalars['String'];
+};
+
+
+export type TMutation_RevertVariantPricesListViewsMigrationArgs = {
+  dryRun?: InputMaybe<Scalars['Boolean']>;
+  projectKeys?: InputMaybe<Array<Scalars['String']>>;
+  userEmail: Scalars['String'];
 };
 
 
@@ -1394,12 +1473,6 @@ export type TMutation_UpdateCartDiscountsCustomViewArgs = {
 };
 
 
-export type TMutation_UpdateCartDiscountsListViewArgs = {
-  data: TCartDiscountsListViewInput;
-  id: Scalars['ID'];
-};
-
-
 export type TMutation_UpdateCustomApplicationArgs = {
   applicationId: Scalars['ID'];
   data: TCustomApplicationDraftDataInput;
@@ -1432,12 +1505,6 @@ export type TMutation_UpdateDiscountCodesCustomViewArgs = {
 };
 
 
-export type TMutation_UpdateDiscountCodesListViewArgs = {
-  data: TDiscountCodesListViewInput;
-  id: Scalars['ID'];
-};
-
-
 export type TMutation_UpdateOrdersListViewArgs = {
   data: TOrdersListViewInput;
   id: Scalars['ID'];
@@ -1452,12 +1519,6 @@ export type TMutation_UpdatePimSearchListViewArgs = {
 
 export type TMutation_UpdateProductDiscountsCustomViewArgs = {
   data: TDiscountsCustomViewInput;
-  id: Scalars['ID'];
-};
-
-
-export type TMutation_UpdateProductDiscountsListViewArgs = {
-  data: TProductDiscountsListViewInput;
   id: Scalars['ID'];
 };
 
@@ -1936,20 +1997,6 @@ export type TPimSearchListViewTableInput = {
   visibleColumns: Array<Scalars['String']>;
 };
 
-export type TProductDiscountsListView = {
-  __typename?: 'ProductDiscountsListView';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
-  projectKey: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
-  userId: Scalars['String'];
-  visibleColumns: Array<Scalars['String']>;
-};
-
-export type TProductDiscountsListViewInput = {
-  visibleColumns: Array<Scalars['String']>;
-};
-
 export type TProductTypeAttributesView = {
   __typename?: 'ProductTypeAttributesView';
   createdAt: Scalars['DateTime'];
@@ -2041,7 +2088,6 @@ export type TQuery = {
   allProjectExtensions: Array<TProjectExtension>;
   cartDiscountsCustomView?: Maybe<TDiscountsCustomView>;
   cartDiscountsCustomViews: Array<Maybe<TDiscountsCustomView>>;
-  cartDiscountsListView?: Maybe<TCartDiscountsListView>;
   /** @deprecated Experimental feature - For internal usage only */
   customApplication?: Maybe<TCustomApplication>;
   customersListView?: Maybe<TCustomersListView>;
@@ -2050,7 +2096,6 @@ export type TQuery = {
   dashboardViews: Array<Maybe<TDashboardView>>;
   discountCodesCustomView?: Maybe<TDiscountsCustomView>;
   discountCodesCustomViews: Array<Maybe<TDiscountsCustomView>>;
-  discountCodesListView?: Maybe<TDiscountCodesListView>;
   /** @deprecated Experimental feature - For internal usage only */
   globalOrganizationExtension?: Maybe<TOrganizationExtension>;
   /** @deprecated Experimental feature - For internal usage only */
@@ -2066,7 +2111,6 @@ export type TQuery = {
   pimSearchListViews: Array<Maybe<TPimSearchListView>>;
   productDiscountsCustomView?: Maybe<TDiscountsCustomView>;
   productDiscountsCustomViews: Array<Maybe<TDiscountsCustomView>>;
-  productDiscountsListView?: Maybe<TProductDiscountsListView>;
   productTypeAttributesView?: Maybe<TProductTypeAttributesView>;
   productTypeAttributesViews?: Maybe<Array<Maybe<TProductTypeAttributesView>>>;
   projectExtension?: Maybe<TProjectExtension>;
@@ -2298,9 +2342,10 @@ export type TRestrictedCustomApplicationInstallationForProject = {
   updatedAt: Scalars['DateTime'];
 };
 
-export type TRevertionResult = {
-  __typename?: 'RevertionResult';
+export type TReversionResult = {
+  __typename?: 'ReversionResult';
   revertedIds?: Maybe<Array<Scalars['ID']>>;
+  skipped?: Maybe<Scalars['Int']>;
 };
 
 export type TRuleBuilderQuickSelectCreatefunctionsInput = {
@@ -2671,7 +2716,7 @@ export type TImageRegexFragment = { __typename?: 'ImageRegexOptions', flag?: str
 export type TFetchProjectExtensionsNavbarQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TFetchProjectExtensionsNavbarQuery = { __typename?: 'Query', projectExtension?: { __typename?: 'ProjectExtension', id: string, applications?: Array<{ __typename?: 'ApplicationExtension', id: string, navbarMenu?: { __typename?: 'NavbarMenu', id: string, key: string, uriPath: string, icon: string, featureToggle?: string | null, permissions: Array<TOAuthScope>, labelAllLocales?: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> | null, submenu?: Array<{ __typename?: 'NavbarSubmenu', id: string, key: string, uriPath: string, permissions: Array<TOAuthScope>, featureToggle?: string | null, labelAllLocales?: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> | null }> | null } | null }> | null, installedApplications?: Array<{ __typename?: 'RestrictedCustomApplicationInstallationForProject', application: { __typename?: 'RestrictedCustomApplicationForProject', id: string, entryPointUriPath: string, menuLinks?: { __typename?: 'CustomApplicationMenuLink', id: string, icon: string, permissions: Array<string>, defaultLabel: string, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }>, submenuLinks: Array<{ __typename?: 'CustomApplicationSubmenuLink', id: string, uriPath: string, permissions: Array<string>, defaultLabel: string, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }> } | null } }> | null } | null };
+export type TFetchProjectExtensionsNavbarQuery = { __typename?: 'Query', projectExtension?: { __typename?: 'ProjectExtension', id: string, applications?: Array<{ __typename?: 'ApplicationExtension', id: string, navbarMenu?: { __typename?: 'NavbarMenu', id: string, key: string, uriPath: string, icon: string, featureToggle?: string | null, permissions: Array<TOAuthScope>, labelAllLocales?: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> | null, submenu?: Array<{ __typename?: 'NavbarSubmenu', id: string, key: string, uriPath: string, permissions: Array<TOAuthScope>, featureToggle?: string | null, labelAllLocales?: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> | null }> | null } | null }> | null, installedApplications?: Array<{ __typename?: 'RestrictedCustomApplicationInstallationForProject', application: { __typename?: 'RestrictedCustomApplicationForProject', id: string, entryPointUriPath: string, icon: string, mainMenuLink: { __typename?: 'CustomApplicationMenuLink', id: string, permissions: Array<string>, defaultLabel: string, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }, submenuLinks: Array<{ __typename?: 'CustomApplicationSubmenuLink', id: string, uriPath: string, permissions: Array<string>, defaultLabel: string, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }> } }> | null } | null };
 
 export type TCreateCustomApplicationFromCliMutationVariables = Exact<{
   organizationId: Scalars['String'];
