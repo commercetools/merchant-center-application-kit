@@ -198,8 +198,8 @@ const MenuGroup = (props: MenuGroupProps) => {
     props.level === 2 && props.isActive && !props.isExpanded;
   return (
     <ul
-      id={`${props.id}-group`}
-      data-testid={`${props.id}-group`}
+      id={`group-${props.id}`}
+      data-testid={`group-${props.id}`}
       role="menu"
       aria-expanded={
         isSublistActiveWhileIsMenuExpanded ||
@@ -424,11 +424,11 @@ const MenuLabel = (props: MenuLabelProps) => {
 };
 
 type TMenuWithDefaultLabel = TNavbarMenu & {
-  // derives from `projectExtensionsQuery.installedApplications.application.menu`
+  // derives from `projectExtensionsQuery.installedApplications.application.mainMenuLink`
   defaultLabel?: string;
 };
 type TSubmenuWithDefaultLabel = TBaseMenu & {
-  // derives from `projectExtensionsQuery.installedApplications.application.menu`
+  // derives from `projectExtensionsQuery.installedApplications.application.mainMenuLink`
   defaultLabel?: string;
 };
 
@@ -523,7 +523,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
               </div>
               <div
                 className={styles.title}
-                aria-owns={`${props.menu.key}-group`}
+                aria-owns={`group-${props.menu.key}`}
               >
                 <MenuLabel
                   labelAllLocales={props.menu.labelAllLocales}
