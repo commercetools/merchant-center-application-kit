@@ -104,7 +104,7 @@
     "@graphql-codegen/typescript-operations": "2.5.3",
     "@manypkg/cli": "0.19.1",
     "@percy/cli": "1.1.4",
-    "@percy/cypress": "3.1.1",
+    "@percy/cypress": "3.1.2",
     "@percy/puppeteer": "2.0.2",
     "@preconstruct/cli": "2.2.1",
     "@svgr/cli": "6.3.1",
