@@ -18,7 +18,6 @@ const safeResolvePath = (packageName: string, fileRelativePath: string) => {
 function createPostcssConfig({
   postcssImportPaths = [],
   postcssCustomMediaPaths = [],
-  postcssCustomPropertiesPaths = [],
 }: TPostcssConfigOptions = {}): Config {
   return {
     parser: false,
@@ -58,21 +57,6 @@ function createPostcssConfig({
             'materials/media-queries.css'
           ),
           ...postcssCustomMediaPaths,
-        ],
-      }),
-      /**
-       * Plugin to enable Custom Properties in CSS, following
-       * the [CSS Custom Properties](https://www.w3.org/TR/css-variables-1/) specification.
-       * https://github.com/postcss/postcss-custom-properties
-       */
-      require('postcss-custom-properties')({
-        preserve: false,
-        importFrom: [
-          safeResolvePath(
-            '@commercetools-uikit/design-system',
-            'materials/custom-properties.css'
-          ),
-          ...postcssCustomPropertiesPaths,
         ],
       }),
       /**

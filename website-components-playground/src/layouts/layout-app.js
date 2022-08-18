@@ -5,7 +5,10 @@ import '@fontsource/open-sans/latin-700.css';
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { css, Global } from '@emotion/react';
-import { customProperties } from '@commercetools-uikit/design-system';
+import {
+  customProperties,
+  ThemeProvider,
+} from '@commercetools-uikit/design-system';
 import useWindowHeight from '../hooks/use-window-height';
 
 const LayoutApp = (props) => {
@@ -14,7 +17,7 @@ const LayoutApp = (props) => {
     window.parent.postMessage(['playground-height', height], '*');
   }, [height]);
   return (
-    <>
+    <ThemeProvider>
       <Global
         styles={css`
           *,
@@ -35,7 +38,7 @@ const LayoutApp = (props) => {
         `}
       />
       {props.children}
-    </>
+    </ThemeProvider>
   );
 };
 LayoutApp.propTypes = {

@@ -12,6 +12,7 @@ import { Provider as ReduxProvider } from 'react-redux';
 import history from '@commercetools-frontend/browser-history';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
+import { ThemeProvider } from '@commercetools-uikit/design-system';
 import { setCachedApolloClient } from '../../utils/apollo-client-runtime-cache';
 import createApolloClient from '../../configure-apollo';
 import internalReduxStore from '../../configure-store';
@@ -49,7 +50,7 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
     );
   const browserLocale = getBrowserLocale(window);
   return (
-    <>
+    <ThemeProvider>
       <GlobalStyles />
       <ErrorBoundary>
         <ApplicationContextProvider<AdditionalEnvironmentProperties>
@@ -92,7 +93,7 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
           </ReduxProvider>
         </ApplicationContextProvider>
       </ErrorBoundary>
-    </>
+    </ThemeProvider>
   );
 };
 

@@ -1,11 +1,14 @@
 import ReactDOM from 'react-dom';
 import { css, Global } from '@emotion/react';
-import { customProperties } from '@commercetools-uikit/design-system';
+import {
+  customProperties,
+  ThemeProvider,
+} from '@commercetools-uikit/design-system';
 import { PortalsContainer } from '@commercetools-frontend/application-components';
 import Application from './application';
 
 ReactDOM.render(
-  <>
+  <ThemeProvider>
     <Global
       styles={css`
         *,
@@ -31,6 +34,6 @@ ReactDOM.render(
     />
     <PortalsContainer />
     <Application />
-  </>,
+  </ThemeProvider>,
   document.getElementById('app')
 );
