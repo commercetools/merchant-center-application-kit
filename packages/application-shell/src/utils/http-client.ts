@@ -27,9 +27,21 @@ export type TForwardToAudiencePolicy =
 export type TForwardToConfigVersion = 'v1' | 'v2';
 
 export type TForwardToConfig = {
+  /**
+   * The URL of the external API to forward the request to.
+   */
   uri: string;
+  /**
+   * Additional HTTP headers to be included in the request to the external API.
+   */
   headers?: THeaders;
+  /**
+   * The audience policy for verifying the incoming request from the Merchant Center API.
+   */
   audiencePolicy?: TForwardToAudiencePolicy;
+  /**
+   * The version of the `/proxy/forward-to` endpoint to use.
+   */
   version?: TForwardToConfigVersion;
 };
 
@@ -134,6 +146,9 @@ const getAppliedForwardToHeaders = (
 ): THeaders => {
   if (!forwardToConfig) {
     return {};
+  }
+  if (!forwardToConfig.uri) {
+    throw new Error(`Missing required "uri" option.`);
   }
   return {
     ...Object.entries(forwardToConfig.headers ?? {}).reduce(
