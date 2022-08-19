@@ -1,5 +1,32 @@
 # @commercetools-frontend/application-shell
 
+## 21.13.0
+
+### Patch Changes
+
+- [#2772](https://github.com/commercetools/merchant-center-application-kit/pull/2772) [`f66199e79`](https://github.com/commercetools/merchant-center-application-kit/commit/f66199e793c58628ab8b6c76cef8ddd0dad46260) Thanks [@emmenko](https://github.com/emmenko)! - Validate that `forwardToConfig.uri` is defined, when using a custom HTTP client.
+
+* [#2761](https://github.com/commercetools/merchant-center-application-kit/pull/2761) [`d012420e5`](https://github.com/commercetools/merchant-center-application-kit/commit/d012420e563b34a1678693f19905bdd79b2317e2) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update all dependencies
+
+- [#2767](https://github.com/commercetools/merchant-center-application-kit/pull/2767) [`5614ec9d8`](https://github.com/commercetools/merchant-center-application-kit/commit/5614ec9d8b9fc9c40c92ff1fde0beacbc3290e5e) Thanks [@emmenko](https://github.com/emmenko)! - Avoid using deprecated fields when fetching application menu links
+
+- Updated dependencies [[`d012420e5`](https://github.com/commercetools/merchant-center-application-kit/commit/d012420e563b34a1678693f19905bdd79b2317e2), [`5614ec9d8`](https://github.com/commercetools/merchant-center-application-kit/commit/5614ec9d8b9fc9c40c92ff1fde0beacbc3290e5e), [`7d97b459e`](https://github.com/commercetools/merchant-center-application-kit/commit/7d97b459e69186cec1df9d837aa265923176e34e)]:
+  - @commercetools-frontend/application-components@21.13.0
+  - @commercetools-frontend/application-config@21.13.0
+  - @commercetools-frontend/react-notifications@21.13.0
+  - @commercetools-frontend/sentry@21.13.0
+  - @commercetools-frontend/application-shell-connectors@21.13.0
+  - @commercetools-frontend/actions-global@21.13.0
+  - @commercetools-frontend/i18n@21.13.0
+  - @commercetools-frontend/l10n@21.13.0
+  - @commercetools-frontend/permissions@21.13.0
+  - @commercetools-frontend/assets@21.13.0
+  - @commercetools-frontend/browser-history@21.13.0
+  - @commercetools-frontend/constants@21.13.0
+  - @commercetools-frontend/notifications@21.13.0
+  - @commercetools-frontend/sdk@21.13.0
+  - @commercetools-frontend/url-utils@21.13.0
+
 ## 21.12.0
 
 ### Patch Changes

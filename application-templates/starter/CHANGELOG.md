@@ -1,5 +1,25 @@
 # merchant-center-application-template-starter
 
+## 21.13.0
+
+### Patch Changes
+
+- [#2761](https://github.com/commercetools/merchant-center-application-kit/pull/2761) [`d012420e5`](https://github.com/commercetools/merchant-center-application-kit/commit/d012420e563b34a1678693f19905bdd79b2317e2) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update all dependencies
+
+- Updated dependencies [[`f66199e79`](https://github.com/commercetools/merchant-center-application-kit/commit/f66199e793c58628ab8b6c76cef8ddd0dad46260), [`d012420e5`](https://github.com/commercetools/merchant-center-application-kit/commit/d012420e563b34a1678693f19905bdd79b2317e2), [`5614ec9d8`](https://github.com/commercetools/merchant-center-application-kit/commit/5614ec9d8b9fc9c40c92ff1fde0beacbc3290e5e)]:
+  - @commercetools-frontend/application-shell@21.13.0
+  - @commercetools-frontend/application-components@21.13.0
+  - @commercetools-frontend/eslint-config-mc-app@21.13.0
+  - @commercetools-frontend/jest-preset-mc-app@21.13.0
+  - @commercetools-frontend/mc-scripts@21.13.0
+  - @commercetools-frontend/application-shell-connectors@21.13.0
+  - @commercetools-frontend/mc-dev-authentication@21.13.0
+  - @commercetools-frontend/actions-global@21.13.0
+  - @commercetools-frontend/i18n@21.13.0
+  - @commercetools-frontend/permissions@21.13.0
+  - @commercetools-frontend/assets@21.13.0
+  - @commercetools-frontend/constants@21.13.0
+
 ## 19.5.3
 
 ### Patch Changes

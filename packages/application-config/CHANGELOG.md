@@ -1,5 +1,16 @@
 # @commercetools-frontend/application-config
 
+## 21.13.0
+
+### Patch Changes
+
+- [#2761](https://github.com/commercetools/merchant-center-application-kit/pull/2761) [`d012420e5`](https://github.com/commercetools/merchant-center-application-kit/commit/d012420e563b34a1678693f19905bdd79b2317e2) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update all dependencies
+
+* [#2771](https://github.com/commercetools/merchant-center-application-kit/pull/2771) [`7d97b459e`](https://github.com/commercetools/merchant-center-application-kit/commit/7d97b459e69186cec1df9d837aa265923176e34e) Thanks [@emmenko](https://github.com/emmenko)! - Downgrade `jsdom` to `v16`, until we are able to upgrade to Jest `v28+`
+
+* Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.13.0
+
 ## 21.12.0
 
 ### Patch Changes
