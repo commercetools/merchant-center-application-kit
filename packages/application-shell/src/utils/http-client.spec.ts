@@ -161,4 +161,21 @@ describe('Custom HTTP client (fetch)', () => {
     expect(data).toEqual({ message: 'Hello' });
     expect(oidcStorage.setActiveSession).toHaveBeenCalledWith('12345');
   });
+
+  it('should throw an error if the "uri" option of "forwardToConfig" is missing', async () => {
+    expect(() =>
+      createHttpClientOptions({
+        headers: {
+          'Content-Type': 'application/json',
+        },
+
+        userAgent: 'hello',
+        forwardToConfig: {
+          uri: '',
+        },
+      })
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"Missing required \\"uri\\" option."`
+    );
+  });
 });
