@@ -1,5 +1,13 @@
 # @commercetools-website/custom-applications
 
+## 21.13.0
+
+### Patch Changes
+
+- [#2772](https://github.com/commercetools/merchant-center-application-kit/pull/2772) [`f66199e79`](https://github.com/commercetools/merchant-center-application-kit/commit/f66199e793c58628ab8b6c76cef8ddd0dad46260) Thanks [@emmenko](https://github.com/emmenko)! - Validate that `forwardToConfig.uri` is defined, when using a custom HTTP client.
+
+* [#2761](https://github.com/commercetools/merchant-center-application-kit/pull/2761) [`d012420e5`](https://github.com/commercetools/merchant-center-application-kit/commit/d012420e563b34a1678693f19905bdd79b2317e2) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update all dependencies
+
 ## 18.7.2
 
 ### Patch Changes

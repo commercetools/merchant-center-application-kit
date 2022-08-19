@@ -1,5 +1,7 @@
 # @commercetools-frontend/assets
 
+## 21.13.0
+
 ## 21.12.0
 
 ## 21.11.0
