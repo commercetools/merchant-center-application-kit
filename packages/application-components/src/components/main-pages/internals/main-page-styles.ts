@@ -10,3 +10,7 @@ export const Divider = styled.hr`
   height: 1px;
   border: 0;
 `;
+
+export const MainPageContent = styled.div`
+  overflow: auto;
+`;

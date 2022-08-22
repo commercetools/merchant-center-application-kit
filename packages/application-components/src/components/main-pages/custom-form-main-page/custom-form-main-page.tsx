@@ -1,4 +1,5 @@
 import type { ReactElement, ReactNode } from 'react';
+import { warning } from '@commercetools-uikit/utils';
 import Spacings from '@commercetools-uikit/spacings';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import {
@@ -8,8 +9,11 @@ import {
 } from '../../internals/default-form-buttons';
 import { PageWrapper } from '../../internals/page.styles';
 import PageHeaderTitle from '../../internals/page-header-title';
-
-import { Divider, MainPageContainer } from '../internals/main-page-styles';
+import {
+  Divider,
+  MainPageContainer,
+  MainPageContent,
+} from '../internals/main-page-styles';
 
 type CustomFormMainPageProps = {
   /**
@@ -45,6 +49,11 @@ const defaultProps: Pick<CustomFormMainPageProps, 'hideControls'> = {
 };
 
 const CustomFormMainPage = (props: CustomFormMainPageProps) => {
+  warning(
+    props.title !== undefined || props.customTitleRow !== undefined,
+    'CustomFormMainPage: one of either `title` or `customTitleRow` is required but both their values are `undefined`'
+  );
+
   return (
     <PageWrapper>
       <MainPageContainer>
@@ -62,7 +71,7 @@ const CustomFormMainPage = (props: CustomFormMainPageProps) => {
             </Spacings.Inline>
           )}
           <Divider />
-          <main>{props.children}</main>
+          <MainPageContent>{props.children}</MainPageContent>
         </Spacings.Stack>
       </MainPageContainer>
     </PageWrapper>
@@ -71,6 +80,10 @@ const CustomFormMainPage = (props: CustomFormMainPageProps) => {
 
 CustomFormMainPage.displayName = 'CustomFormMainPage';
 CustomFormMainPage.defaultProps = defaultProps;
+
+// Static export of pre-configured page header title component to easily
+// use as part of a custom title row
+CustomFormMainPage.PageHeaderTitle = PageHeaderTitle;
 
 // Static export of pre-configured form control buttons to easily re-use
 // them in the custom controls.
