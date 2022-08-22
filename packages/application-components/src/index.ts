@@ -24,9 +24,10 @@ export { default as TabularDetailPage } from './components/detail-pages/tabular-
 // Public page
 export { default as PublicPageLayout } from './components/public-page-layout';
 
-// Form Main Layout Page
+// Main Layout Page
 export { default as FormMainPage } from './components/main-pages/form-main-page';
 export { default as CustomFormMainPage } from './components/main-pages/custom-form-main-page';
+export { default as InfoMainPage } from './components/main-pages/info-main-page';
 
 // Maintenance pages
 export { default as MaintenancePageLayout } from './components/maintenance-page-layout';
