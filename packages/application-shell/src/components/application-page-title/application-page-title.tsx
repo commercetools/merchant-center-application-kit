@@ -3,19 +3,20 @@ import type { TEnhancedLocation } from '@commercetools-frontend/browser-history'
 import { useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import startCase from 'lodash/startCase';
+import capitalize from 'lodash/capitalize';
 
 type Breadcrumb<Query extends {} = {}> = {
   suffix: string;
   paths: string[];
   location: TEnhancedLocation<Query>;
 };
-type Props<Query extends {} = {}> = {
+type Props = {
   /**
    * Allow to render a custom page title.
    * Overrides default page title with the format:
    * <?resource_name(manually inputed)> - <?page_location> - <application_identifier> - <project_key> - Merchant Center
    */
-  renderPageTitle?: (breadcrumb: Breadcrumb<Query>) => string;
+  renderPageTitle?: string[];
 };
 
 const maxTitleCharLength = 24;
@@ -37,7 +38,7 @@ const getLimitedPaths = (
   }
 
   // Calculate the length projection
-  const pathsProjection = paths.join(' - ');
+  const pathsProjection = paths.join('-');
 
   // If the length exceeds the max allowed length, we need to remove one of the paths
   // from the list, except from the first and last.
@@ -89,15 +90,29 @@ const compilePageTitle = <Query extends {}>(
   };
 };
 
-const ApplicationPageTitle = <Query extends {} = {}>(props: Props<Query>) => {
+const ApplicationPageTitle = <Query extends {} = {}>(props: Props) => {
   const location = useLocation();
   const breadcrumb = compilePageTitle(location as TEnhancedLocation<Query>);
+  const defaultMapping = `${startCase(breadcrumb.paths[0])} - ${
+    breadcrumb.suffix
+  }`;
   const pageTitle = props.renderPageTitle
-    ? props.renderPageTitle(breadcrumb)
-    : `${startCase(breadcrumb.paths[0])} - ${breadcrumb.suffix}`;
+    ? `${props.renderPageTitle
+        .join(' - ')
+        .replace(/\w+/g, capitalize)} - ${defaultMapping}`
+    : defaultMapping;
+
+  const truncatePageTitle = (pageTitle: string) => {
+    if (pageTitle.length > maxTitleCharLength) {
+      return `${pageTitle.slice(0, 12)} ... ${pageTitle.slice(
+        pageTitle.length - 12
+      )}`;
+    }
+    return pageTitle;
+  };
 
   useLayoutEffect(() => {
-    document.title = pageTitle;
+    document.title = truncatePageTitle(pageTitle);
   }, [pageTitle]);
 
   return <></>;
