@@ -59,7 +59,7 @@ type FormMainPageProps = {
    */
   labelSecondaryButton?: Label;
   /**
-   * Called when the primary button is clicked.
+   * The Icon for the secondary button label
    */
   labelSecondaryButtonIcon?: ReactElement;
   /**
