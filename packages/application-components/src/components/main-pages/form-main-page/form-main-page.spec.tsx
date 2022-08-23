@@ -3,11 +3,6 @@ import Spacings from '@commercetools-uikit/spacings';
 import { screen, renderComponent } from '../../../test-utils';
 import FormMainPage from './form-main-page';
 
-jest.mock('@commercetools-uikit/utils', () => ({
-  ...jest.requireActual('@commercetools-uikit/utils'),
-  warning: jest.fn(),
-}));
-
 const Content = () => (
   <Spacings.Stack>
     <Text.Body>
