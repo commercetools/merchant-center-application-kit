@@ -103,12 +103,17 @@ const ApplicationPageTitle = <Query extends {} = {}>(props: Props) => {
     : defaultMapping;
 
   const truncatePageTitle = (pageTitle: string) => {
-    if (pageTitle.length > maxTitleCharLength) {
-      return `${pageTitle.slice(0, 12)} ... ${pageTitle.slice(
-        pageTitle.length - 12
-      )}`;
-    }
-    return pageTitle;
+    return pageTitle
+      .split(' - ')
+      .map((title) => {
+        if (title.length > maxTitleCharLength) {
+          return (title = `${title.slice(0, 12)} ... ${title.slice(
+            title.length - 12
+          )}`);
+        }
+        return title;
+      })
+      .join(' - ');
   };
 
   useLayoutEffect(() => {
