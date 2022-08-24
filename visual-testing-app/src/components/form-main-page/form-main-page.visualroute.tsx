@@ -1,4 +1,4 @@
-import { BinLinearIcon } from '@commercetools-uikit/icons';
+import { RevertIcon } from '@commercetools-uikit/icons';
 import { FormMainPage } from '@commercetools-frontend/application-components';
 import TextField from '@commercetools-uikit/text-field';
 import Spacings from '@commercetools-uikit/spacings';
@@ -25,7 +25,7 @@ export const Component = () => (
         subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         labelPrimaryButton="Save"
         labelSecondaryButton="Revert changes"
-        labelSecondaryButtonIcon={<BinLinearIcon />}
+        labelSecondaryButtonIcon={<RevertIcon />}
         onSecondaryButtonClick={() => {}}
         onPrimaryButtonClick={() => {}}
       >

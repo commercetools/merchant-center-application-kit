@@ -1,4 +1,4 @@
-import { BinLinearIcon } from '@commercetools-uikit/icons';
+import { RevertIcon } from '@commercetools-uikit/icons';
 import { CustomFormMainPage } from '@commercetools-frontend/application-components';
 import TextField from '@commercetools-uikit/text-field';
 import Spacings from '@commercetools-uikit/spacings';
@@ -27,7 +27,7 @@ export const Component = () => (
           <>
             <CustomFormMainPage.FormSecondaryButton
               label="Revert changes"
-              iconLeft={<BinLinearIcon />}
+              iconLeft={<RevertIcon />}
               onClick={() => {}}
             />
             <CustomFormMainPage.FormPrimaryButton
@@ -47,7 +47,7 @@ export const Component = () => (
           <>
             <CustomFormMainPage.FormSecondaryButton
               label="Revert changes"
-              iconLeft={<BinLinearIcon />}
+              iconLeft={<RevertIcon />}
               onClick={() => {}}
             />
             <CustomFormMainPage.FormPrimaryButton
