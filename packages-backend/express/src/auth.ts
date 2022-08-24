@@ -24,18 +24,24 @@ type TDecodedJWT = {
 
 const decodedTokenKey = 'decoded_token';
 // Assign a session object to the request object.
-const writeSessionContext = <Request extends TBaseRequest>(
+export const writeSessionContext = <Request extends TBaseRequest>(
   request: Request & { decoded_token?: TDecodedJWT; session?: TSession }
 ) => {
   const decodedToken = request[decodedTokenKey];
 
   if (decodedToken) {
     const publicClaimForProjectKey = `${decodedToken.iss}/claims/project_key`;
+    const publicClaimForUserPermissionsKey = `${decodedToken.iss}/claims/user_permissions`;
 
     request.session = {
       userId: decodedToken.sub,
       projectKey: decodedToken[publicClaimForProjectKey],
     };
+
+    const userPermissions = decodedToken[publicClaimForUserPermissionsKey];
+    if (Boolean(userPermissions?.length)) {
+      request.session.userPermissions = userPermissions.split(',');
+    }
   }
 
   // Remove the field used by the JWT middleware.

@@ -57,4 +57,5 @@ export type TSessionMiddlewareOptions<Request extends TBaseRequest> = {
 export type TSession = {
   userId: string;
   projectKey: string;
+  userPermissions?: string[];
 };

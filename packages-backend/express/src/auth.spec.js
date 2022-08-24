@@ -1,4 +1,4 @@
-import { getConfiguredAudience } from './auth';
+import { getConfiguredAudience, writeSessionContext } from './auth';
 
 describe('getConfiguredAudience', () => {
   describe('when audience policy is "request-url-full-path"', () => {
@@ -45,5 +45,57 @@ describe('getConfiguredAudience', () => {
         });
       }
     );
+  });
+});
+
+describe('writeSessionContext', () => {
+  const mockIssuer = 'https://mc-api.nowhere.com';
+
+  it('should not include anything in request session if no "decoded_token" exists in the request', () => {
+    const request = {};
+
+    writeSessionContext(request);
+
+    expect(request).not.toHaveProperty('session');
+  });
+
+  it('should write "userId" and "projectKey" in request session property', () => {
+    const mockDecodedToken = {
+      iss: mockIssuer,
+      sub: 'user-id-1',
+      [`${mockIssuer}/claims/project_key`]: 'almond-40',
+    };
+    const request = {
+      decoded_token: mockDecodedToken,
+    };
+
+    writeSessionContext(request);
+
+    expect(request.session).toHaveProperty('userId', mockDecodedToken.sub);
+    expect(request.session).toHaveProperty('projectKey', 'almond-40');
+    expect(request).not.toHaveProperty('decoded_token');
+  });
+
+  it('should write "userPermissions" in request session if received in exchange JWT', () => {
+    const mockUserPermissions = ['viewOrders', 'manageProducts'];
+    const mockDecodedToken = {
+      iss: mockIssuer,
+      sub: 'user-id-1',
+      [`${mockIssuer}/claims/project_key`]: 'almond-40',
+      [`${mockIssuer}/claims/user_permissions`]: mockUserPermissions.join(','),
+    };
+    const request = {
+      decoded_token: mockDecodedToken,
+    };
+
+    writeSessionContext(request);
+
+    expect(request.session).toHaveProperty('userId', mockDecodedToken.sub);
+    expect(request.session).toHaveProperty('projectKey', 'almond-40');
+    expect(request.session).toHaveProperty(
+      'userPermissions',
+      mockUserPermissions
+    );
+    expect(request).not.toHaveProperty('decoded_token');
   });
 });
