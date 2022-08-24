@@ -5,10 +5,9 @@ import { useLocation } from 'react-router-dom';
 import startCase from 'lodash/startCase';
 import capitalize from 'lodash/capitalize';
 
-type Breadcrumb<Query extends {} = {}> = {
+type Breadcrumb = {
   suffix: string;
   paths: string[];
-  location?: TEnhancedLocation<Query>;
 };
 type Props = {
   /**
@@ -61,16 +60,17 @@ const isStaticPath = (path: string) => {
 };
 
 /**
- * Converts a URI path into a default mapping.
- * Format is something like this: <?page_location> - <project_key> - Merchant Center
+ * Allows to extend the page title.
+ * When provided, the array items will be used as a prefix for the default title this component will generate.
  *
- * Example:
- *   /almond-40/products/<id> should display as: Products - almond-40 - Merchant Center
+ * It will follow a pattern like this:
+ * <renderPageTitle.join(' - ')> - <?page_location> - <application_identifier> - <project_key> - Merchant Center
+ *
  */
 
 const compilePageTitle = <Query extends {}>(
   location: TEnhancedLocation<Query>
-): Breadcrumb<Query> => {
+): Breadcrumb => {
   const [, projectKeyOrStaticPath, ...locationPaths] =
     location.pathname.split('/');
 
