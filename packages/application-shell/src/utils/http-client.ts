@@ -24,6 +24,8 @@ export type TForwardToAudiencePolicy =
   | 'forward-url-full-path'
   | 'forward-url-origin';
 
+export type TForwardToExchangeTokenClaim = 'permissions';
+
 export type TForwardToConfigVersion = 'v1' | 'v2';
 
 export type TForwardToConfig = {
@@ -39,6 +41,10 @@ export type TForwardToConfig = {
    * The audience policy for verifying the incoming request from the Merchant Center API.
    */
   audiencePolicy?: TForwardToAudiencePolicy;
+  /**
+   * The claims to be included in the exchange JWT sent to the external API.
+   */
+  exchangeTokenClaims?: TForwardToExchangeTokenClaim[];
   /**
    * The version of the `/proxy/forward-to` endpoint to use.
    */
@@ -127,6 +133,8 @@ export type TFetcher<Data> = (
   options: TOptions
 ) => Promise<TFetcherResponse<Data>>;
 
+const allowedForwardToExchangeClaims = ['permissions'];
+
 const defaultUserAgent = createHttpUserAgent({
   name: 'unknown-http-client',
   libraryName: window.app.applicationName,
@@ -164,6 +172,15 @@ const getAppliedForwardToHeaders = (
     [SUPPORTED_HEADERS.X_FORWARD_TO]: forwardToConfig.uri,
     [SUPPORTED_HEADERS.X_FORWARD_TO_AUDIENCE_POLICY]:
       forwardToConfig.audiencePolicy ?? defaultForwardToAudiencePolicy,
+    ...(Boolean(forwardToConfig.exchangeTokenClaims?.length)
+      ? {
+          [SUPPORTED_HEADERS.X_FORWARD_TO_CLAIMS]: forwardToConfig
+            .exchangeTokenClaims!.filter((token) =>
+              allowedForwardToExchangeClaims.includes(token)
+            )
+            .join(' '),
+        }
+      : {}),
   };
 };
 

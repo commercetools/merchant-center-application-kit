@@ -2,10 +2,12 @@
 import type { Headers } from 'headers-polyfill';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
+import { SUPPORTED_HEADERS } from '../constants';
 import {
   buildApiUrl,
   createHttpClientOptions,
   executeHttpClientRequest,
+  TForwardToExchangeTokenClaim,
 } from './http-client';
 import * as oidcStorage from './oidc-storage';
 
@@ -84,6 +86,9 @@ describe('Custom HTTP client (fetch)', () => {
             'x-forward-to-audience-policy',
             'forward-url-full-path'
           );
+          expect(req.headers.get(SUPPORTED_HEADERS.X_FORWARD_TO_CLAIMS)).toBe(
+            null
+          );
         } catch (error) {
           if (error instanceof Error)
             return res(ctx.status(400), ctx.json({ message: error.message }));
@@ -121,6 +126,43 @@ describe('Custom HTTP client (fetch)', () => {
       method: 'GET',
     });
     await expect(res.json()).resolves.toEqual({ message: 'Hello' });
+  });
+
+  it('should include "X-Forward-To-Claims" header when config is provided (for /forward-to)', async () => {
+    const mockResponseData = { message: 'Hello' };
+    mockServer.use(
+      rest.get(buildApiUrl('/proxy/forward-to'), (req, res, ctx) => {
+        throwIfMissingHeader(
+          req.headers,
+          SUPPORTED_HEADERS.X_FORWARD_TO_CLAIMS,
+          'permissions'
+        );
+
+        return res(ctx.status(200), ctx.json(mockResponseData));
+      })
+    );
+
+    const httpRequestOptions = createHttpClientOptions({
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      userAgent: 'hello',
+      forwardToConfig: {
+        uri: 'https://my-api.com',
+        // Force casting here to allow adding a non valid claim to check it will
+        // not be included in the header
+        exchangeTokenClaims: [
+          'permissions',
+          'imaginary-claim',
+        ] as TForwardToExchangeTokenClaim[],
+      },
+    });
+
+    const res = await fetch(buildApiUrl('/proxy/forward-to'), {
+      ...httpRequestOptions,
+      method: 'GET',
+    });
+    await expect(res.json()).resolves.toEqual(mockResponseData);
   });
 
   it('should execute request and renew token', async () => {
