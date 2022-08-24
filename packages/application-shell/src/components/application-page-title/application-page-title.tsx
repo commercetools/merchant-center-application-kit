@@ -8,7 +8,7 @@ import capitalize from 'lodash/capitalize';
 type Breadcrumb<Query extends {} = {}> = {
   suffix: string;
   paths: string[];
-  location: TEnhancedLocation<Query>;
+  location?: TEnhancedLocation<Query>;
 };
 type Props = {
   /**
@@ -86,39 +86,39 @@ const compilePageTitle = <Query extends {}>(
   return {
     suffix,
     paths,
-    location,
   };
+};
+
+const truncatePageTitle = (pageTitle: string) => {
+  return pageTitle
+    .split(' - ')
+    .map((title) => {
+      if (title.length > maxTitleCharLength) {
+        return (title = `${title.slice(0, 12)} ... ${title.slice(
+          title.length - 12
+        )}`);
+      }
+      return title;
+    })
+    .join(' - ');
 };
 
 const ApplicationPageTitle = <Query extends {} = {}>(props: Props) => {
   const location = useLocation();
-  const breadcrumb = compilePageTitle(location as TEnhancedLocation<Query>);
-  const defaultMapping = `${startCase(breadcrumb.paths[0])} - ${
-    breadcrumb.suffix
-  }`;
-  const pageTitle = props.renderPageTitle
-    ? `${props.renderPageTitle
-        .join(' - ')
-        .replace(/\w+/g, capitalize)} - ${defaultMapping}`
-    : defaultMapping;
-
-  const truncatePageTitle = (pageTitle: string) => {
-    return pageTitle
-      .split(' - ')
-      .map((title) => {
-        if (title.length > maxTitleCharLength) {
-          return (title = `${title.slice(0, 12)} ... ${title.slice(
-            title.length - 12
-          )}`);
-        }
-        return title;
-      })
-      .join(' - ');
-  };
 
   useLayoutEffect(() => {
+    const breadcrumb = compilePageTitle(location as TEnhancedLocation<Query>);
+    const defaultMapping = `${startCase(breadcrumb.paths[0])} - ${
+      breadcrumb.suffix
+    }`;
+    const pageTitle =
+      props.renderPageTitle && props.renderPageTitle.length > 0
+        ? `${props.renderPageTitle
+            .join(' - ')
+            .replace(/\w+/g, capitalize)} - ${defaultMapping}`
+        : defaultMapping;
     document.title = truncatePageTitle(pageTitle);
-  }, [pageTitle]);
+  }, [location, props.renderPageTitle]);
 
   return <></>;
 };
