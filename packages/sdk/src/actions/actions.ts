@@ -13,6 +13,8 @@ import type {
   TSdkActionPostForService,
 } from '../types';
 
+const allowedForwardToExchangeClaims = ['permissions'];
+
 export function get(payload: TSdkActionPayloadForUri): TSdkActionGetForUri;
 export function get(
   payload: TSdkActionPayloadForService
@@ -67,6 +69,15 @@ const enhancePayloadForForwardToProxy = (payload: TSdkActionPayloadForUri) => {
       'X-Forward-To': payload.uri,
       'X-Forward-To-Audience-Policy':
         payload.audiencePolicy || 'forward-url-full-path',
+      ...(Boolean(payload.exchangeTokenClaims?.length)
+        ? {
+            'X-Forward-To-Claims': payload
+              .exchangeTokenClaims!.filter((token) =>
+                allowedForwardToExchangeClaims.includes(token)
+              )
+              .join(' '),
+          }
+        : {}),
     },
   };
 };
