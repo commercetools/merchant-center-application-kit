@@ -1,3 +1,4 @@
+import omitEmpty from 'omit-empty-es';
 import type {
   TSdkActionPayload,
   TSdkActionPayloadBody,
@@ -14,7 +15,7 @@ import type {
   TForwardToExchangeTokenClaim,
 } from '../types';
 
-const allowedForwardToExchangeClaims = ['permissions'];
+export type THeaders = Record<string, string>;
 
 export function get(payload: TSdkActionPayloadForUri): TSdkActionGetForUri;
 export function get(
@@ -63,7 +64,7 @@ const enhancePayloadForForwardToProxy = (payload: TSdkActionPayloadForUri) => {
   return {
     uri: '/proxy/forward-to',
     mcApiProxyTarget: undefined,
-    headers: {
+    headers: omitEmpty<THeaders>({
       ...Object.entries(headers).reduce(
         (customForwardHeaders, [headerName, headerValue]) => ({
           ...customForwardHeaders,
@@ -76,14 +77,8 @@ const enhancePayloadForForwardToProxy = (payload: TSdkActionPayloadForUri) => {
       'X-Forward-To': payload.uri,
       'X-Forward-To-Audience-Policy':
         payload.audiencePolicy || 'forward-url-full-path',
-      ...(Boolean(exchangeTokenClaims?.length)
-        ? {
-            'X-Forward-To-Claims': exchangeTokenClaims!
-              .filter((token) => allowedForwardToExchangeClaims.includes(token))
-              .join(' '),
-          }
-        : {}),
-    },
+      'X-Forward-To-Claims': exchangeTokenClaims.join(' '),
+    }),
   };
 };
 export const forwardTo = {
