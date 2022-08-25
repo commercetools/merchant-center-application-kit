@@ -50,7 +50,8 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
     );
   const browserLocale = getBrowserLocale(window);
   return (
-    <ThemeProvider>
+    <>
+      <ThemeProvider />
       <GlobalStyles />
       <ErrorBoundary>
         <ApplicationContextProvider<AdditionalEnvironmentProperties>
@@ -93,7 +94,7 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
           </ReduxProvider>
         </ApplicationContextProvider>
       </ErrorBoundary>
-    </ThemeProvider>
+    </>
   );
 };
 

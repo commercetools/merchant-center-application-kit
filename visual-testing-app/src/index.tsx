@@ -8,7 +8,8 @@ import { PortalsContainer } from '@commercetools-frontend/application-components
 import Application from './application';
 
 ReactDOM.render(
-  <ThemeProvider>
+  <>
+    <ThemeProvider />
     <Global
       styles={css`
         *,
@@ -34,6 +35,6 @@ ReactDOM.render(
     />
     <PortalsContainer />
     <Application />
-  </ThemeProvider>,
+  </>,
   document.getElementById('app')
 );

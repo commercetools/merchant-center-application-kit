@@ -17,7 +17,8 @@ const LayoutApp = (props) => {
     window.parent.postMessage(['playground-height', height], '*');
   }, [height]);
   return (
-    <ThemeProvider>
+    <>
+      <ThemeProvider />
       <Global
         styles={css`
           *,
@@ -38,7 +39,7 @@ const LayoutApp = (props) => {
         `}
       />
       {props.children}
-    </ThemeProvider>
+    </>
   );
 };
 LayoutApp.propTypes = {
