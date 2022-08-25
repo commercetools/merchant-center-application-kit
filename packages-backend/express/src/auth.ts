@@ -24,7 +24,7 @@ type TDecodedJWT = {
 
 const decodedTokenKey = 'decoded_token';
 // Assign a session object to the request object.
-export const writeSessionContext = <Request extends TBaseRequest>(
+const writeSessionContext = <Request extends TBaseRequest>(
   request: Request & { decoded_token?: TDecodedJWT; session?: TSession }
 ) => {
   const decodedToken = request[decodedTokenKey];
@@ -218,4 +218,4 @@ function createSessionAuthVerifier<Request extends TBaseRequest>(
   };
 }
 
-export { createSessionAuthVerifier };
+export { createSessionAuthVerifier, writeSessionContext };
