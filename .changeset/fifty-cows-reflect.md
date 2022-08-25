@@ -14,7 +14,7 @@ const useExternalApiFetcher = () => {
   const { loading, data, error } = useMcQuery(MyQuery, {
     context: createApolloContextForProxyForwardTo({
       uri: externalApiUrl,
-      exchangeTokenClaims: ['permissions'],
+      includeUserPermissions: true,
     }),
   });
 
@@ -46,7 +46,7 @@ const data = await executeHttpClientRequest(
     userAgent,
     forwardToConfig: {
       uri: 'https://my-api.com/my-endpoint',
-      exchangeTokenClaims: ['permissions'],
+      includeUserPermissions: true,
     },
   }
 );

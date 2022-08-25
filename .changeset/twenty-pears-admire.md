@@ -10,6 +10,5 @@ actions.forwardTo.get({
   exchangeTokenClaims: ['permissions'],
   // ...
 });
-```
-
 // "X-Forward-To-Claims": "permissions"
+```
