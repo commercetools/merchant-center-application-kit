@@ -7,7 +7,6 @@ import {
   buildApiUrl,
   createHttpClientOptions,
   executeHttpClientRequest,
-  TForwardToExchangeTokenClaim,
 } from './http-client';
 import * as oidcStorage from './oidc-storage';
 
@@ -149,12 +148,7 @@ describe('Custom HTTP client (fetch)', () => {
       userAgent: 'hello',
       forwardToConfig: {
         uri: 'https://my-api.com',
-        // Force casting here to allow adding a non valid claim to check it will
-        // not be included in the header
-        exchangeTokenClaims: [
-          'permissions',
-          'imaginary-claim',
-        ] as TForwardToExchangeTokenClaim[],
+        includeUserPermissions: true,
       },
     });
 

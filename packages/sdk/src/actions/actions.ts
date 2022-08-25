@@ -11,6 +11,7 @@ import type {
   TSdkActionHeadForService,
   TSdkActionPostForUri,
   TSdkActionPostForService,
+  TForwardToExchangeTokenClaim,
 } from '../types';
 
 const allowedForwardToExchangeClaims = ['permissions'];
@@ -53,6 +54,12 @@ export function post(payload: TSdkActionPayload & TSdkActionPayloadBody) {
 
 const enhancePayloadForForwardToProxy = (payload: TSdkActionPayloadForUri) => {
   const headers = payload.headers ?? {};
+  const exchangeTokenClaims: TForwardToExchangeTokenClaim[] = [];
+
+  if (payload.includeUserPermissions) {
+    exchangeTokenClaims.push('permissions');
+  }
+
   return {
     uri: '/proxy/forward-to',
     mcApiProxyTarget: undefined,
@@ -69,12 +76,10 @@ const enhancePayloadForForwardToProxy = (payload: TSdkActionPayloadForUri) => {
       'X-Forward-To': payload.uri,
       'X-Forward-To-Audience-Policy':
         payload.audiencePolicy || 'forward-url-full-path',
-      ...(Boolean(payload.exchangeTokenClaims?.length)
+      ...(Boolean(exchangeTokenClaims?.length)
         ? {
-            'X-Forward-To-Claims': payload
-              .exchangeTokenClaims!.filter((token) =>
-                allowedForwardToExchangeClaims.includes(token)
-              )
+            'X-Forward-To-Claims': exchangeTokenClaims!
+              .filter((token) => allowedForwardToExchangeClaims.includes(token))
               .join(' '),
           }
         : {}),

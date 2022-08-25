@@ -1,4 +1,3 @@
-import { TForwardToExchangeTokenClaim } from '../types';
 import * as actions from './actions';
 
 describe.each`
@@ -127,12 +126,7 @@ describe.each`
           'x-foo': 'bar',
           'accept-language': '*',
         },
-        // Force casting here to allow adding a non valid claim to check it will
-        // not be included in the header
-        exchangeTokenClaims: [
-          'permissions',
-          'imaginary-claim',
-        ] as TForwardToExchangeTokenClaim[],
+        includeUserPermissions: true,
       };
       const payloadWithBody = {
         ...payloadWithoutBody,
@@ -160,7 +154,7 @@ describe.each`
       expect(result).toEqual({
         type: 'SDK',
         payload: {
-          exchangeTokenClaims: ['permissions', 'imaginary-claim'],
+          includeUserPermissions: true,
           method,
           uri: '/proxy/forward-to',
           mcApiProxyTarget: undefined,

@@ -42,9 +42,10 @@ export type TForwardToConfig = {
    */
   audiencePolicy?: TForwardToAudiencePolicy;
   /**
-   * The claims to be included in the exchange JWT sent to the external API.
+   * Request the Merchange Center API to include the user permission in the
+   * exchange token sent in the forwarded request to the external API.
    */
-  exchangeTokenClaims?: TForwardToExchangeTokenClaim[];
+  includeUserPermissions?: boolean;
   /**
    * The version of the `/proxy/forward-to` endpoint to use.
    */
@@ -158,6 +159,12 @@ const getAppliedForwardToHeaders = (
   if (!forwardToConfig.uri) {
     throw new Error(`Missing required "uri" option.`);
   }
+
+  const exchangeTokenClaims: TForwardToExchangeTokenClaim[] = [];
+  if (forwardToConfig.includeUserPermissions) {
+    exchangeTokenClaims.push('permissions');
+  }
+
   return {
     ...Object.entries(forwardToConfig.headers ?? {}).reduce(
       (customForwardHeaders, [headerName, headerValue]) => ({
@@ -172,12 +179,10 @@ const getAppliedForwardToHeaders = (
     [SUPPORTED_HEADERS.X_FORWARD_TO]: forwardToConfig.uri,
     [SUPPORTED_HEADERS.X_FORWARD_TO_AUDIENCE_POLICY]:
       forwardToConfig.audiencePolicy ?? defaultForwardToAudiencePolicy,
-    ...(Boolean(forwardToConfig.exchangeTokenClaims?.length)
+    ...(Boolean(exchangeTokenClaims?.length)
       ? {
-          [SUPPORTED_HEADERS.X_FORWARD_TO_CLAIMS]: forwardToConfig
-            .exchangeTokenClaims!.filter((token) =>
-              allowedForwardToExchangeClaims.includes(token)
-            )
+          [SUPPORTED_HEADERS.X_FORWARD_TO_CLAIMS]: exchangeTokenClaims!
+            .filter((token) => allowedForwardToExchangeClaims.includes(token))
             .join(' '),
         }
       : {}),

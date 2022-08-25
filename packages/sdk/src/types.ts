@@ -23,7 +23,7 @@ export interface TSdkActionPayloadBase {
 export interface TSdkActionPayloadForUri extends TSdkActionPayloadBase {
   uri: string;
   audiencePolicy?: TForwardToAudiencePolicy;
-  exchangeTokenClaims?: TForwardToExchangeTokenClaim[];
+  includeUserPermissions?: boolean;
 }
 
 export interface TSdkActionPayloadForService extends TSdkActionPayloadBase {
