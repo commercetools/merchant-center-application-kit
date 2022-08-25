@@ -63,7 +63,7 @@ describe('writeSessionContext', () => {
     const mockDecodedToken = {
       iss: mockIssuer,
       sub: 'user-id-1',
-      [`${mockIssuer}/claims/project_key`]: 'almond-40',
+      [`${mockIssuer}/claims/project_key`]: 'fake-project-key',
     };
     const request = {
       decoded_token: mockDecodedToken,
@@ -72,7 +72,7 @@ describe('writeSessionContext', () => {
     writeSessionContext(request);
 
     expect(request.session).toHaveProperty('userId', mockDecodedToken.sub);
-    expect(request.session).toHaveProperty('projectKey', 'almond-40');
+    expect(request.session).toHaveProperty('projectKey', 'fake-project-key');
     expect(request).not.toHaveProperty('decoded_token');
   });
 
@@ -81,7 +81,7 @@ describe('writeSessionContext', () => {
     const mockDecodedToken = {
       iss: mockIssuer,
       sub: 'user-id-1',
-      [`${mockIssuer}/claims/project_key`]: 'almond-40',
+      [`${mockIssuer}/claims/project_key`]: 'fake-project-key',
       [`${mockIssuer}/claims/user_permissions`]: mockUserPermissions,
     };
     const request = {
@@ -91,7 +91,7 @@ describe('writeSessionContext', () => {
     writeSessionContext(request);
 
     expect(request.session).toHaveProperty('userId', mockDecodedToken.sub);
-    expect(request.session).toHaveProperty('projectKey', 'almond-40');
+    expect(request.session).toHaveProperty('projectKey', 'fake-project-key');
     expect(request.session).toHaveProperty(
       'userPermissions',
       mockUserPermissions
