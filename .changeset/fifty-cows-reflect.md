@@ -5,16 +5,16 @@
 Add support for requesting specific `claims` to be included in the exchange JWT sent from Merchant Center API to an external API.
 Currently we only support requesting a custom claim with logged in user's permissions.
 
-```
+```js
 // Apollo example
 const useExternalApiFetcher = () => {
   const externalApiUrl = useApplicationContext(
-    context => context.environment.externalApiUrl
+    (context) => context.environment.externalApiUrl
   );
   const { loading, data, error } = useMcQuery(MyQuery, {
     context: createApolloContextForProxyForwardTo({
       uri: externalApiUrl,
-      exchangeTokenClaims: ['permissions']
+      exchangeTokenClaims: ['permissions'],
     }),
   });
 
@@ -22,11 +22,11 @@ const useExternalApiFetcher = () => {
     loading,
     data,
     error,
-  }
+  };
 };
 ```
 
-```
+```js
 // Custom HTTP client example (using `fetch`)
 const data = await executeHttpClientRequest(
   async (options) => {
@@ -46,7 +46,7 @@ const data = await executeHttpClientRequest(
     userAgent,
     forwardToConfig: {
       uri: 'https://my-api.com/my-endpoint',
-      exchangeTokenClaims: ['permissions']
+      exchangeTokenClaims: ['permissions'],
     },
   }
 );
