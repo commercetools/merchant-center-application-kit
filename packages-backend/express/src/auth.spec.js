@@ -82,7 +82,7 @@ describe('writeSessionContext', () => {
       iss: mockIssuer,
       sub: 'user-id-1',
       [`${mockIssuer}/claims/project_key`]: 'almond-40',
-      [`${mockIssuer}/claims/user_permissions`]: mockUserPermissions.join(','),
+      [`${mockIssuer}/claims/user_permissions`]: mockUserPermissions,
     };
     const request = {
       decoded_token: mockDecodedToken,

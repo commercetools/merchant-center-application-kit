@@ -19,7 +19,7 @@ import { getFirstHeaderValueOrThrow } from './utils';
 type TDecodedJWT = {
   sub: string;
   iss: string;
-  [property: string]: string;
+  [property: string]: string | string[];
 };
 
 const decodedTokenKey = 'decoded_token';
@@ -35,12 +35,12 @@ export const writeSessionContext = <Request extends TBaseRequest>(
 
     request.session = {
       userId: decodedToken.sub,
-      projectKey: decodedToken[publicClaimForProjectKey],
+      projectKey: decodedToken[publicClaimForProjectKey] as string,
     };
 
     const userPermissions = decodedToken[publicClaimForUserPermissionsKey];
     if (Boolean(userPermissions?.length)) {
-      request.session.userPermissions = userPermissions.split(',');
+      request.session.userPermissions = userPermissions as string[];
     }
   }
 
