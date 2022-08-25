@@ -48,16 +48,16 @@ describe.each`
   });
 });
 
-describe('when using the custom "renderPageTitle" function to override default mapping', () => {
+describe('when using the custom "content" to override default mapping', () => {
   it('should render the custom value', async () => {
     render(
       <Router history={memoryHistory('/login/new')}>
-        <ApplicationPageTitle renderPageTitle={['Create a new account']} />
+        <ApplicationPageTitle content={['Create a new account']} />
       </Router>
     );
     await waitFor(() => {
       expect(document.title).toBe(
-        'Create A New Account - Login - Merchant Center'
+        'Create a new account - Login - Merchant Center'
       );
     });
   });
@@ -71,13 +71,13 @@ describe('when using the custom "renderPageTitle" function to override default m
           )}
         >
           <ApplicationPageTitle
-            renderPageTitle={['Some product very long product name']}
+            content={['Some product very long product name']}
           />
         </Router>
       );
       await waitFor(() => {
         expect(document.title).toBe(
-          'Some Product ... Product Name - Products - almond-40 - Merchant Center'
+          'Some product...product name - Products - almond-40 - Merchant Center'
         );
       });
     });

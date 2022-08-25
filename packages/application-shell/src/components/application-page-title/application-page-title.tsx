@@ -3,7 +3,6 @@ import type { TEnhancedLocation } from '@commercetools-frontend/browser-history'
 import { useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import startCase from 'lodash/startCase';
-import capitalize from 'lodash/capitalize';
 
 type Breadcrumb = {
   suffix: string;
@@ -15,7 +14,10 @@ type Props = {
    * Overrides default page title with the format:
    * <?resource_name(manually inputed)> - <?page_location> - <application_identifier> - <project_key> - Merchant Center
    */
-  renderPageTitle?: string[];
+  content?: string[];
+};
+type TPathname = {
+  pathname: string;
 };
 
 const maxTitleCharLength = 24;
@@ -54,8 +56,9 @@ const getLimitedPaths = (
   return compilePath(paths, hasTruncatedPaths);
 };
 
+const staticPaths = ['account', 'login'];
+
 const isStaticPath = (path: string) => {
-  const staticPaths = ['account', 'login'];
   return staticPaths.includes(path);
 };
 
@@ -64,14 +67,12 @@ const isStaticPath = (path: string) => {
  * When provided, the array items will be used as a prefix for the default title this component will generate.
  *
  * It will follow a pattern like this:
- * <renderPageTitle.join(' - ')> - <?page_location> - <application_identifier> - <project_key> - Merchant Center
+ * <content.join(' - ')> - <?page_location> - <application_identifier> - <project_key> - Merchant Center
  *
  */
 
-const compilePageTitle = <Query extends {}>(
-  location: TEnhancedLocation<Query>
-): Breadcrumb => {
-  const [, projectKeyOrStaticPath, ...locationPaths] =
+const compilePageTitle = (location: TPathname): Breadcrumb => {
+  const [, projectKeyOrStaticPath, entryPointUriPath] =
     location.pathname.split('/');
 
   const suffix = isStaticPath(projectKeyOrStaticPath)
@@ -81,7 +82,9 @@ const compilePageTitle = <Query extends {}>(
   const paths = isStaticPath(projectKeyOrStaticPath)
     ? getLimitedPaths([projectKeyOrStaticPath])
     : getLimitedPaths(
-        locationPaths.length === 0 ? [projectKeyOrStaticPath] : locationPaths
+        entryPointUriPath.length === 0
+          ? [projectKeyOrStaticPath]
+          : [entryPointUriPath]
       );
   return {
     suffix,
@@ -89,38 +92,42 @@ const compilePageTitle = <Query extends {}>(
   };
 };
 
-const truncatePageTitle = (pageTitle: string) => {
-  return pageTitle
-    .split(' - ')
-    .map((title) => {
-      if (title.length > maxTitleCharLength) {
-        return (title = `${title.slice(0, 12)} ... ${title.slice(
-          title.length - 12
-        )}`);
-      }
-      return title;
-    })
-    .join(' - ');
-};
-
 const ApplicationPageTitle = <Query extends {} = {}>(props: Props) => {
   const location = useLocation();
 
   useLayoutEffect(() => {
     const breadcrumb = compilePageTitle(location as TEnhancedLocation<Query>);
-    const defaultMapping = `${startCase(breadcrumb.paths[0])} - ${
-      breadcrumb.suffix
-    }`;
-    const pageTitle =
-      props.renderPageTitle && props.renderPageTitle.length > 0
-        ? `${props.renderPageTitle
-            .join(' - ')
-            .replace(/\w+/g, capitalize)} - ${defaultMapping}`
-        : defaultMapping;
-    document.title = truncatePageTitle(pageTitle);
-  }, [location, props.renderPageTitle]);
 
-  return <></>;
+    const truncatedPageTitle = () => {
+      if (props.content && props.content.length > 0) {
+        const titleParts = [
+          ...props.content,
+          startCase(breadcrumb.paths[0]),
+          breadcrumb.suffix,
+        ];
+
+        return titleParts
+          .map((title) => {
+            if (
+              title.length > maxTitleCharLength &&
+              title.split(' - ')[1] !== 'Merchant Center' //We do not want to truncate the suffix
+            ) {
+              return (title = `${title.slice(0, 12)} ... ${title.slice(
+                title.length - 12
+              )}`);
+            }
+            return title;
+          })
+          .join(' - ');
+      } else {
+        return `${startCase(breadcrumb.paths[0])} - ${breadcrumb.suffix}`;
+      }
+    };
+
+    document.title = truncatedPageTitle();
+  }, [location, props.content]);
+
+  return null;
 };
 ApplicationPageTitle.displayName = 'ApplicationPageTitle';
 

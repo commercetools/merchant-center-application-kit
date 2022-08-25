@@ -60,7 +60,13 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
               <Suspense fallback={<ApplicationLoader />}>
                 <Router history={ApplicationShellProvider.history}>
                   <GtmBooter trackingEventList={props.trackingEventList || {}}>
-                    <ApplicationPageTitle />
+                    <ApplicationPageTitle
+                      content={[
+                        'A very long sentence that can be truncated',
+                        'Some red short text also kind of long',
+                      ]}
+                    />
+                    {/* <ApplicationPageTitle /> */}
                     <Authenticated
                       locale={browserLocale}
                       applicationMessages={props.applicationMessages}
