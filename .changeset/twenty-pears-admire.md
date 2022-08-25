@@ -7,7 +7,7 @@ Currently we only support requesting a custom claim with logged in user's permis
 
 ```js
 actions.forwardTo.get({
-  exchangeTokenClaims: ['permissions'],
+  includeUserPermissions: true,
   // ...
 });
 // "X-Forward-To-Claims": "permissions"
