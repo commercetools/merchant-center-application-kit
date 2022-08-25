@@ -43,9 +43,9 @@ npm --save install react react-dom react-intl
 * [TabularMainPage](#tabularmainpage)
 * [TabularDetailPage](#tabulardetailpage)
 * [TabHeader](#tabheader)
-* [CustomFormMainPage](#customformmainpage)
-* [FormMainPage](#formmainpage)
 * [InfoMainPage](#infomainpage)
+* [FormMainPage](#formmainpage)
+* [CustomFormMainPage](#customformmainpage)
 
 ## InfoDialog
 
@@ -1085,7 +1085,9 @@ const MainPage = () => {
 
 <Playground urlPath="form-main-page" />
 
-Form Main pages are controlled components used to render a page with a form or something that requires user input. Similar to `<FormModalPage>` but not rendered as a modal. The header includes buttons to control the submission or cancellation of the form. These buttons can be overwritten with custom controls by using the `<CustomFormMainPage>` component.
+Form Main pages are controlled components used to render a page with a form or something that requires user input. Similar to `<FormModalPage>` but not rendered as a modal. The header includes buttons to control the submission or cancellation of the form.
+
+If you need to customize these buttons, you will need to use the `<CustomFormMainPage>` component instead.
 
 ### Usage
 

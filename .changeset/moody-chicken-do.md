@@ -27,7 +27,7 @@ const MainPage = () => {
 
 ## FormMainPage
 
-`<FormMainPage>` is a controlled components used to render a page with a form or something that requires user input.
+`<FormMainPage>` is a controlled component used to render a page with a form or something that requires user input.
 
 ```jsx
 import { useFormik } from 'formik';
