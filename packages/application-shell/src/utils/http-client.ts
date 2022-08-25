@@ -42,8 +42,7 @@ export type TForwardToConfig = {
    */
   audiencePolicy?: TForwardToAudiencePolicy;
   /**
-   * Request the Merchange Center API to include the user permission in the
-   * exchange token sent in the forwarded request to the external API.
+   * A list of user permissions to be included in the request to the external API.
    */
   includeUserPermissions?: boolean;
   /**
@@ -134,8 +133,6 @@ export type TFetcher<Data> = (
   options: TOptions
 ) => Promise<TFetcherResponse<Data>>;
 
-const allowedForwardToExchangeClaims = ['permissions'];
-
 const defaultUserAgent = createHttpUserAgent({
   name: 'unknown-http-client',
   libraryName: window.app.applicationName,
@@ -179,13 +176,7 @@ const getAppliedForwardToHeaders = (
     [SUPPORTED_HEADERS.X_FORWARD_TO]: forwardToConfig.uri,
     [SUPPORTED_HEADERS.X_FORWARD_TO_AUDIENCE_POLICY]:
       forwardToConfig.audiencePolicy ?? defaultForwardToAudiencePolicy,
-    ...(Boolean(exchangeTokenClaims?.length)
-      ? {
-          [SUPPORTED_HEADERS.X_FORWARD_TO_CLAIMS]: exchangeTokenClaims!
-            .filter((token) => allowedForwardToExchangeClaims.includes(token))
-            .join(' '),
-        }
-      : {}),
+    [SUPPORTED_HEADERS.X_FORWARD_TO_CLAIMS]: exchangeTokenClaims.join(' '),
   };
 };
 
