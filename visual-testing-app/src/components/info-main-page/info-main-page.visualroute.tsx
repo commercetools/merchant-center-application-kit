@@ -8,11 +8,11 @@ export const routePath = '/info-main-page';
 const Content = () => (
   <Spacings.Stack scale="l">
     <Spacings.Inline scale="l">
-      <TextField title="First Name" value="foo" />
-      <TextField title="Last Name" value="foo" />
+      <TextField title="First Name" value="foo" onChange={() => {}} />
+      <TextField title="Last Name" value="foo" onChange={() => {}} />
     </Spacings.Inline>
-    <TextField title="Email Address" value="foo" />
-    <TextField title="Business Role" value="foo" />
+    <TextField title="Email Address" value="foo" onChange={() => {}} />
+    <TextField title="Business Role" value="foo" onChange={() => {}} />
   </Spacings.Stack>
 );
 
