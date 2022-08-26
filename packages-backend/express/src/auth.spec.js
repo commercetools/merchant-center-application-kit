@@ -59,37 +59,32 @@ describe('writeSessionContext', () => {
     expect(request).not.toHaveProperty('session');
   });
 
-  it.each`
-    publicClaims | sessionProperties
-    ${{
-  [`${mockIssuer}/claims/project_key`]: 'fake-project-key',
-}} | ${['projectKey']}
-    ${{
-  [`${mockIssuer}/claims/project_key`]: 'fake-project-key',
-  [`${mockIssuer}/claims/user_permissions`]: ['viewOrders', 'manageProducts'],
-}} | ${['projectKey', 'userPermissions']}
+  describe.each`
+    claimKey                                   | claimValue                          | expectedSessionPropertyKey
+    ${`sub`}                                   | ${'user-id-1'}                      | ${'userId'}
+    ${`${mockIssuer}/claims/project_key`}      | ${'fake-project-key'}               | ${'projectKey'}
+    ${`${mockIssuer}/claims/user_permissions`} | ${['viewOrders', 'manageProducts']} | ${'userPermissions'}
   `(
-    'should write session data in the request with new a property for every public claim',
-    ({ publicClaims, sessionProperties }) => {
-      const mockDecodedToken = {
-        iss: mockIssuer,
-        sub: 'user-id-1',
-        ...publicClaims,
-      };
-      const request = {
-        decoded_token: mockDecodedToken,
-      };
+    'decoding public claims',
+    ({ claimKey, claimValue, expectedSessionPropertyKey }) => {
+      it(`should write session property "${expectedSessionPropertyKey}" for the claim "${claimKey}"`, () => {
+        const mockDecodedToken = {
+          iss: mockIssuer,
+          [claimKey]: claimValue,
+        };
+        const request = {
+          decoded_token: mockDecodedToken,
+        };
 
-      writeSessionContext(request);
+        writeSessionContext(request);
 
-      expect(request.session).toHaveProperty('userId', mockDecodedToken.sub);
-      Object.values(publicClaims).forEach((claimValue, index) => {
         expect(request.session).toHaveProperty(
-          sessionProperties[index],
+          expectedSessionPropertyKey,
           claimValue
         );
+
+        expect(request).not.toHaveProperty('decoded_token');
       });
-      expect(request).not.toHaveProperty('decoded_token');
     }
   );
 });
