@@ -59,43 +59,37 @@ describe('writeSessionContext', () => {
     expect(request).not.toHaveProperty('session');
   });
 
-  it('should write "userId" and "projectKey" in request session property', () => {
-    const mockDecodedToken = {
-      iss: mockIssuer,
-      sub: 'user-id-1',
-      [`${mockIssuer}/claims/project_key`]: 'fake-project-key',
-    };
-    const request = {
-      decoded_token: mockDecodedToken,
-    };
+  it.each`
+    publicClaims | sessionProperties
+    ${{
+  [`${mockIssuer}/claims/project_key`]: 'fake-project-key',
+}} | ${['projectKey']}
+    ${{
+  [`${mockIssuer}/claims/project_key`]: 'fake-project-key',
+  [`${mockIssuer}/claims/user_permissions`]: ['viewOrders', 'manageProducts'],
+}} | ${['projectKey', 'userPermissions']}
+  `(
+    'should write session data in the request with new a property for every public claim',
+    ({ publicClaims, sessionProperties }) => {
+      const mockDecodedToken = {
+        iss: mockIssuer,
+        sub: 'user-id-1',
+        ...publicClaims,
+      };
+      const request = {
+        decoded_token: mockDecodedToken,
+      };
 
-    writeSessionContext(request);
+      writeSessionContext(request);
 
-    expect(request.session).toHaveProperty('userId', mockDecodedToken.sub);
-    expect(request.session).toHaveProperty('projectKey', 'fake-project-key');
-    expect(request).not.toHaveProperty('decoded_token');
-  });
-
-  it('should write "userPermissions" in request session if received in exchange JWT', () => {
-    const mockUserPermissions = ['viewOrders', 'manageProducts'];
-    const mockDecodedToken = {
-      iss: mockIssuer,
-      sub: 'user-id-1',
-      [`${mockIssuer}/claims/project_key`]: 'fake-project-key',
-      [`${mockIssuer}/claims/user_permissions`]: mockUserPermissions,
-    };
-    const request = {
-      decoded_token: mockDecodedToken,
-    };
-
-    writeSessionContext(request);
-
-    expect(request.session).toHaveProperty('userId', mockDecodedToken.sub);
-    expect(request.session).toHaveProperty('projectKey', 'fake-project-key');
-    expect(request.session).toHaveProperty(
-      'userPermissions',
-      mockUserPermissions
-    );
-    expect(request).not.toHaveProperty('decoded_token');
-  });
+      expect(request.session).toHaveProperty('userId', mockDecodedToken.sub);
+      Object.values(publicClaims).forEach((claimValue, index) => {
+        expect(request.session).toHaveProperty(
+          sessionProperties[index],
+          claimValue
+        );
+      });
+      expect(request).not.toHaveProperty('decoded_token');
+    }
+  );
 });
