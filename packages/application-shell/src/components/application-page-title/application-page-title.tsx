@@ -1,8 +1,6 @@
-import type { TEnhancedLocation } from '@commercetools-frontend/browser-history';
-
 import { useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import startCase from 'lodash/startCase';
+import upperFirst from 'lodash/upperFirst';
 
 type Breadcrumb = {
   suffix: string;
@@ -15,9 +13,6 @@ type Props = {
    * <?resource_name(manually inputed)> - <?page_location> - <application_identifier> - <project_key> - Merchant Center
    */
   content?: string[];
-};
-type TPathname = {
-  pathname: string;
 };
 
 const maxTitleCharLength = 24;
@@ -71,61 +66,64 @@ const isStaticPath = (path: string) => {
  *
  */
 
-const compilePageTitle = (location: TPathname): Breadcrumb => {
+const ApplicationPageTitle = (props: Props) => {
+  const location = useLocation();
+
   const [, projectKeyOrStaticPath, entryPointUriPath] =
     location.pathname.split('/');
 
-  const suffix = isStaticPath(projectKeyOrStaticPath)
-    ? ' Merchant Center'
-    : `${projectKeyOrStaticPath} - Merchant Center`;
-
-  const paths = isStaticPath(projectKeyOrStaticPath)
-    ? getLimitedPaths([projectKeyOrStaticPath])
-    : getLimitedPaths(
-        entryPointUriPath.length === 0
-          ? [projectKeyOrStaticPath]
-          : [entryPointUriPath]
-      );
-  return {
-    suffix,
-    paths,
-  };
-};
-
-const ApplicationPageTitle = <Query extends {} = {}>(props: Props) => {
-  const location = useLocation();
-
   useLayoutEffect(() => {
-    const breadcrumb = compilePageTitle(location as TEnhancedLocation<Query>);
+    const compilePageTitle = (): Breadcrumb => {
+      const suffix = isStaticPath(projectKeyOrStaticPath)
+        ? ' Merchant Center'
+        : `${projectKeyOrStaticPath} - Merchant Center`;
 
+      const paths = isStaticPath(projectKeyOrStaticPath)
+        ? getLimitedPaths([projectKeyOrStaticPath])
+        : getLimitedPaths(
+            entryPointUriPath.length === 0
+              ? [projectKeyOrStaticPath]
+              : [entryPointUriPath]
+          );
+      return {
+        suffix,
+        paths,
+      };
+    };
+
+    const breadcrumb = compilePageTitle();
     const truncatedPageTitle = () => {
       if (props.content && props.content.length > 0) {
-        const titleParts = [
-          ...props.content,
-          startCase(breadcrumb.paths[0]),
-          breadcrumb.suffix,
-        ];
+        const customTitleParts = props.content.map((titlePart: string) => {
+          if (titlePart.length <= maxTitleCharLength) {
+            return titlePart;
+          }
+          return [
+            titlePart.slice(0, maxTitleCharLength / 2),
+            titlePart.slice(titlePart.length - maxTitleCharLength / 2),
+          ].join('...');
+        });
 
-        return titleParts
-          .map((title) => {
-            if (
-              title.length > maxTitleCharLength &&
-              title.split(' - ')[1] !== 'Merchant Center' //We do not want to truncate the suffix
-            ) {
-              return (title = `${title.slice(0, 12)} ... ${title.slice(
-                title.length - 12
-              )}`);
-            }
-            return title;
-          })
-          .join(' - ');
-      } else {
-        return `${startCase(breadcrumb.paths[0])} - ${breadcrumb.suffix}`;
+        if (staticPaths.includes(projectKeyOrStaticPath)) {
+          return [
+            ...customTitleParts,
+            upperFirst(projectKeyOrStaticPath),
+            'Merchant Center',
+          ].join(' - ');
+        }
+
+        return [
+          ...customTitleParts,
+          upperFirst(entryPointUriPath),
+          projectKeyOrStaticPath,
+          'Merchant Center',
+        ].join(' - ');
       }
+      return `${upperFirst(breadcrumb.paths[0])} - ${breadcrumb.suffix}`;
     };
 
     document.title = truncatedPageTitle();
-  }, [location, props.content]);
+  }, [entryPointUriPath, location, projectKeyOrStaticPath, props.content]);
 
   return null;
 };

@@ -8,33 +8,33 @@ const memoryHistory = (route: string) =>
   createMemoryHistory({ initialEntries: [route] });
 
 describe.each`
-  route                                                                         | title
-  ${`/almond-40/dashboard`}                                                     | ${`Dashboard - almond-40 - Merchant Center`}
-  ${`/almond-40/products`}                                                      | ${`Products - almond-40 - Merchant Center`}
-  ${`/almond-40/products/new`}                                                  | ${`Products - almond-40 - Merchant Center`}
-  ${`/almond-40/products/<id>`}                                                 | ${`Products - almond-40 - Merchant Center`}
-  ${`/almond-40/products/<id>/variants`}                                        | ${`Products - almond-40 - Merchant Center`}
-  ${`/almond-40/products/<id>/variants/<id>`}                                   | ${`Products - almond-40 - Merchant Center`}
-  ${`/almond-40/products/<id>/variants/<id>/prices`}                            | ${`Products - almond-40 - Merchant Center`}
-  ${`/almond-40/orders/<id>`}                                                   | ${`Orders - almond-40 - Merchant Center`}
-  ${`/almond-40/settings/project/international`}                                | ${`Settings - almond-40 - Merchant Center`}
-  ${`/almond-40/settings/project/stores`}                                       | ${`Settings - almond-40 - Merchant Center`}
-  ${`/almond-40/settings/project/stores/<id>`}                                  | ${`Settings - almond-40 - Merchant Center`}
-  ${`/almond-40/settings/product-types`}                                        | ${`Settings - almond-40 - Merchant Center`}
-  ${`/almond-40/settings/product-types/<id>`}                                   | ${`Settings - almond-40 - Merchant Center`}
-  ${`/almond-40/settings/product-types/<id>/attribute-definitions/detail/<id>`} | ${`Settings - almond-40 - Merchant Center`}
-  ${`/account/projects`}                                                        | ${`Account - Merchant Center`}
-  ${`/account/organizations`}                                                   | ${`Account - Merchant Center`}
-  ${`/account/organizations/<id>/teams`}                                        | ${`Account - Merchant Center`}
-  ${`/account/organizations/<id>/teams/<id>/permissions/<id>`}                  | ${`Account - Merchant Center`}
-  ${`/account/organizations/<id>/custom-applications`}                          | ${`Account - Merchant Center`}
-  ${`/account/organizations/<id>/custom-applications/owned/<id>`}               | ${`Account - Merchant Center`}
-  ${`/account/organizations/<id>/custom-applications/installations/<id>`}       | ${`Account - Merchant Center`}
-  ${`/login`}                                                                   | ${`Login - Merchant Center`}
-  ${`/login/new`}                                                               | ${`Login - Merchant Center`}
-  ${`/login/sso`}                                                               | ${`Login - Merchant Center`}
-  ${`/login/forgot`}                                                            | ${`Login - Merchant Center`}
-  ${`/login/choose`}                                                            | ${`Login - Merchant Center`}
+  route                                                                              | title
+  ${`/my-project-key/dashboard`}                                                     | ${`Dashboard - my-project-key - Merchant Center`}
+  ${`/my-project-key/products`}                                                      | ${`Products - my-project-key - Merchant Center`}
+  ${`/my-project-key/products/new`}                                                  | ${`Products - my-project-key - Merchant Center`}
+  ${`/my-project-key/products/<id>`}                                                 | ${`Products - my-project-key - Merchant Center`}
+  ${`/my-project-key/products/<id>/variants`}                                        | ${`Products - my-project-key - Merchant Center`}
+  ${`/my-project-key/products/<id>/variants/<id>`}                                   | ${`Products - my-project-key - Merchant Center`}
+  ${`/my-project-key/products/<id>/variants/<id>/prices`}                            | ${`Products - my-project-key - Merchant Center`}
+  ${`/my-project-key/orders/<id>`}                                                   | ${`Orders - my-project-key - Merchant Center`}
+  ${`/my-project-key/settings/project/international`}                                | ${`Settings - my-project-key - Merchant Center`}
+  ${`/my-project-key/settings/project/stores`}                                       | ${`Settings - my-project-key - Merchant Center`}
+  ${`/my-project-key/settings/project/stores/<id>`}                                  | ${`Settings - my-project-key - Merchant Center`}
+  ${`/my-project-key/settings/product-types`}                                        | ${`Settings - my-project-key - Merchant Center`}
+  ${`/my-project-key/settings/product-types/<id>`}                                   | ${`Settings - my-project-key - Merchant Center`}
+  ${`/my-project-key/settings/product-types/<id>/attribute-definitions/detail/<id>`} | ${`Settings - my-project-key - Merchant Center`}
+  ${`/account/projects`}                                                             | ${`Account - Merchant Center`}
+  ${`/account/organizations`}                                                        | ${`Account - Merchant Center`}
+  ${`/account/organizations/<id>/teams`}                                             | ${`Account - Merchant Center`}
+  ${`/account/organizations/<id>/teams/<id>/permissions/<id>`}                       | ${`Account - Merchant Center`}
+  ${`/account/organizations/<id>/custom-applications`}                               | ${`Account - Merchant Center`}
+  ${`/account/organizations/<id>/custom-applications/owned/<id>`}                    | ${`Account - Merchant Center`}
+  ${`/account/organizations/<id>/custom-applications/installations/<id>`}            | ${`Account - Merchant Center`}
+  ${`/login`}                                                                        | ${`Login - Merchant Center`}
+  ${`/login/new`}                                                                    | ${`Login - Merchant Center`}
+  ${`/login/sso`}                                                                    | ${`Login - Merchant Center`}
+  ${`/login/forgot`}                                                                 | ${`Login - Merchant Center`}
+  ${`/login/choose`}                                                                 | ${`Login - Merchant Center`}
 `(`when location is "$route"`, ({ route, title }) => {
   it('should render default page title', async () => {
     render(
@@ -67,7 +67,7 @@ describe('when using the custom "content" to override default mapping', () => {
       render(
         <Router
           history={memoryHistory(
-            '/almond-40/products/productid12345/variants/variantid12345'
+            '/my-project-key/products/productid12345/variants/variantid12345'
           )}
         >
           <ApplicationPageTitle
@@ -77,7 +77,7 @@ describe('when using the custom "content" to override default mapping', () => {
       );
       await waitFor(() => {
         expect(document.title).toBe(
-          'Some product...product name - Products - almond-40 - Merchant Center'
+          'Some product...product name - Products - my-project-key - Merchant Center'
         );
       });
     });
