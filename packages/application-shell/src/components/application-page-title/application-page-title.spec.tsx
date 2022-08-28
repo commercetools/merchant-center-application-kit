@@ -48,38 +48,48 @@ describe.each`
   });
 });
 
-describe('when using the custom "content" to override default mapping', () => {
+describe.each`
+  content                                                                                                                  | title
+  ${[`Lemon shoes`]}                                                                                                       | ${`Lemon shoes - Products - my-project-key - Merchant Center`}
+  ${[`Some product, a very long product name`]}                                                                            | ${`Some product...product name - Products - my-project-key - Merchant Center`}
+  ${['short description1', 'short description2']}                                                                          | ${`short description1 - short description2 - Products - my-project-key - Merchant Center`}
+  ${['first description of product, a very long product name', 'second description of product, a very long product name']} | ${`first descri...product name - second descr...product name - Products - my-project-key - Merchant Center`}
+`(`'when the custom "content" is "$content"`, ({ content, title }) => {
   it('should render the custom value', async () => {
     render(
-      <Router history={memoryHistory('/login/new')}>
-        <ApplicationPageTitle content={['Create a new account']} />
+      <Router
+        history={memoryHistory(
+          '/my-project-key/products/productid12345/variants/variantid12345'
+        )}
+      >
+        <ApplicationPageTitle content={content} />
+      </Router>
+    );
+    await waitFor(() => {
+      expect(document.title).toBe(title);
+    });
+  });
+});
+describe('when page title component content is nested in another component', () => {
+  it('should render a page title from the child pagetitle component', async () => {
+    render(
+      <Router
+        history={memoryHistory(
+          '/my-project-key/products/productid12345/variants/variantid12345'
+        )}
+      >
+        <ApplicationPageTitle />
+        <div>
+          <ApplicationPageTitle
+            content={['Some product very long product name']}
+          />
+        </div>
       </Router>
     );
     await waitFor(() => {
       expect(document.title).toBe(
-        'Create a new account - Login - Merchant Center'
+        'Some product...product name - Products - my-project-key - Merchant Center'
       );
-    });
-  });
-
-  describe('when the page title is too long', () => {
-    it('should render a truncated readable page title', async () => {
-      render(
-        <Router
-          history={memoryHistory(
-            '/my-project-key/products/productid12345/variants/variantid12345'
-          )}
-        >
-          <ApplicationPageTitle
-            content={['Some product very long product name']}
-          />
-        </Router>
-      );
-      await waitFor(() => {
-        expect(document.title).toBe(
-          'Some product...product name - Products - my-project-key - Merchant Center'
-        );
-      });
     });
   });
 });
