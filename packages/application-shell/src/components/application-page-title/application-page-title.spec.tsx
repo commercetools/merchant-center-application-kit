@@ -49,11 +49,11 @@ describe.each`
 });
 
 describe.each`
-  content                                                                                                                  | title
-  ${[`Lemon shoes`]}                                                                                                       | ${`Lemon shoes - Products - my-project-key - Merchant Center`}
-  ${[`Some product, a very long product name`]}                                                                            | ${`Some product...product name - Products - my-project-key - Merchant Center`}
-  ${['short description1', 'short description2']}                                                                          | ${`short description1 - short description2 - Products - my-project-key - Merchant Center`}
-  ${['first description of product, a very long product name', 'second description of product, a very long product name']} | ${`first descri...product name - second descr...product name - Products - my-project-key - Merchant Center`}
+  content                                                                                                      | title
+  ${[`Short title`]}                                                                                           | ${`Short title - Products - my-project-key - Merchant Center`}
+  ${[`Short title, a very long product name`]}                                                                 | ${`Short title,...product name - Products - my-project-key - Merchant Center`}
+  ${['Short title1', 'Short title2']}                                                                          | ${`Short title1 - Short title2 - Products - my-project-key - Merchant Center`}
+  ${['First title of product, a very long product name', 'Second title of product, a very long product name']} | ${`First title ...product name - Second title...product name - Products - my-project-key - Merchant Center`}
 `(`'when the custom "content" is "$content"`, ({ content, title }) => {
   it('should render the custom value', async () => {
     render(
