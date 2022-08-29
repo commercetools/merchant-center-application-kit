@@ -52,11 +52,7 @@ describe('rendering', () => {
       isSecondaryButtonDisabled: true,
     });
 
-    expect(
-      screen.getByText('Test Primary Button').closest('button')
-    ).toBeDisabled();
-    expect(
-      screen.getByText('Test Secondary Button').closest('button')
-    ).toBeDisabled();
+    expect(screen.getByLabelText('Test Primary Button')).toBeDisabled();
+    expect(screen.getByLabelText('Test Secondary Button')).toBeDisabled();
   });
 });
