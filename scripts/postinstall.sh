@@ -4,8 +4,8 @@ set -e
 
 if [ -n "$SKIP_POSTINSTALL_DEV_SETUP" ]; then
   echo "Skipping development setup."
-elif [[ $CI == "true" ]]; then
-  echo "Running on CI, skipping post install."
+elif [[ $YARN_ENABLE_SCRIPTS == "0" ]]; then
+  echo "Yarn scripts disabled, skipping post install."
 else
   echo "Preparing development setup."
 
