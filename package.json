@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "auth": "npm_config_registry=https://registry.npmjs.org npm whoami",
+    "setup": "yarn husky install && yarn manypkg check && yarn preconstruct dev",
     "clean": "manypkg exec rm -rf build dist test-utils/dist experimental/dist task/dist add-commands/dist",
     "extract-intl": "formatjs extract --format=./packages/i18n/transifex-transformer.js --out-file=./packages/i18n/data/core.json 'packages/**/*messages.ts'",
     "compile-intl": "yarn workspace @commercetools-frontend/i18n compile-data",

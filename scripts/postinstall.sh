@@ -4,14 +4,12 @@ set -e
 
 if [ -n "$SKIP_POSTINSTALL_DEV_SETUP" ]; then
   echo "Skipping development setup."
-elif [[ $NPM_CONFIG_CACHE =~ "renovate" ]]; then
-  echo "Renovate update detected, skipping post install."
+elif [[ $CI == "true" ]]; then
+  echo "Running on CI, skipping post install."
 else
   echo "Preparing development setup."
-  yarn husky install
-  yarn manypkg check
-  yarn preconstruct dev
 
+  yarn setup
 fi
 
 echo "Running prettier on package.json files"

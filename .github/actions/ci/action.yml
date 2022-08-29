@@ -31,6 +31,10 @@ runs:
         CYPRESS_INSTALL_BINARY: "0"
       shell: bash
 
+    - name: Setup
+      run: yarn setup
+      shell: bash
+
     - name: Building packages
       run: yarn build
       shell: bash
