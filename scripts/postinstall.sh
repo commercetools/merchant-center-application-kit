@@ -4,8 +4,9 @@ set -e
 
 if [ -n "$SKIP_POSTINSTALL_DEV_SETUP" ]; then
   echo "Skipping development setup."
-elif [[ $YARN_ENABLE_SCRIPTS == "0" ]]; then
-  echo "Yarn scripts disabled, skipping post install."
+# https://github.com/renovatebot/renovate/discussions/17442#discussioncomment-3499129
+elif [ "$BUILDPACK" == "true" ]; then
+  echo "Running in Renovate. Skipping post install steps."
 else
   echo "Preparing development setup."
 
