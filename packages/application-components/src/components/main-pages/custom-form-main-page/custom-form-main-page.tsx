@@ -13,7 +13,7 @@ import {
   Divider,
   MainPageContainer,
   MainPageContent,
-} from '../internals/main-page-styles';
+} from '../internals/main-page.styles';
 
 type CustomFormMainPageProps = {
   /**
