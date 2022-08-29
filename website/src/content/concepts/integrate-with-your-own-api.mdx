@@ -138,7 +138,7 @@ actions.forwardTo.get({
 // To make the MC API Gateway include the user permissions in the exchange JWT
 actions.forwardTo.get({
   uri: 'https://my-custom-app.com/api',
-  exchangeTokenClaims: ['permissions'],
+  includeUserPermissions: true,
 });
 ```
 
