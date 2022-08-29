@@ -54,5 +54,17 @@ describe('rendering', () => {
 
     expect(screen.getByLabelText('Test Primary Button')).toBeDisabled();
     expect(screen.getByLabelText('Test Secondary Button')).toBeDisabled();
+    screen.getByText('button icon');
+  });
+
+  it('should show secondaryButton Icon', () => {
+    renderFormMainPage({
+      title: 'Test title',
+      labelPrimaryButton: 'Test Primary Button',
+      labelSecondaryButton: 'Test Secondary Button',
+      labelSecondaryButtonIcon: <div>button icon</div>,
+    });
+
+    screen.getByText('button icon');
   });
 });
