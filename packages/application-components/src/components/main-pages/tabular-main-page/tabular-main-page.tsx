@@ -4,18 +4,18 @@ import { sharedMessages } from '@commercetools-frontend/i18n';
 import { css } from '@emotion/react';
 import { customProperties } from '@commercetools-uikit/design-system';
 import { warning } from '@commercetools-uikit/utils';
-import PageHeaderTitle from '../internals/page-header-title';
+import PageHeaderTitle from '../../internals/page-header-title';
 import {
   ControlsContainter,
   TabularPageContainer,
   FormControlsContainer,
-} from '../internals/tabular-page';
-import { ContentWrapper, PageWrapper } from '../internals/page.styles';
+} from '../../internals/tabular-page';
+import { ContentWrapper, PageWrapper } from '../../internals/page.styles';
 import {
   FormPrimaryButton,
   FormSecondaryButton,
   FormDeleteButton,
-} from '../internals/default-form-buttons';
+} from '../../internals/default-form-buttons';
 
 type TTabularMainPageProps = {
   /**
