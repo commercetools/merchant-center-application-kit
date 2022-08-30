@@ -25,7 +25,7 @@ type TApplicationPageTitleProps = {
 const maxTitleCharLength = 24;
 const staticPaths = ['account', 'login'];
 
-const defaultProps: Pick<TApplicationPageTitleProps, 'additionalParts'> = {
+const defaultProps: TApplicationPageTitleProps = {
   additionalParts: [],
 };
 
