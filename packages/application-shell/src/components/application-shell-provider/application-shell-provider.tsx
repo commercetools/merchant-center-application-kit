@@ -18,6 +18,7 @@ import internalReduxStore from '../../configure-store';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import Authenticated from '../authenticated';
 import GtmBooter from '../gtm-booter';
+import ApplicationPageTitle from '../application-page-title';
 import ApplicationLoader from '../application-loader';
 import ErrorBoundary from '../error-boundary';
 import GlobalStyles from './global-styles';
@@ -59,6 +60,7 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
               <Suspense fallback={<ApplicationLoader />}>
                 <Router history={ApplicationShellProvider.history}>
                   <GtmBooter trackingEventList={props.trackingEventList || {}}>
+                    <ApplicationPageTitle />
                     <Authenticated
                       locale={browserLocale}
                       applicationMessages={props.applicationMessages}
