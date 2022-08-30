@@ -31,7 +31,7 @@ Requests to that endpoint should additionally pass the following HTTP headers:
 - `Accept-version` (**required**): See [Versioning](#versioning).
 - `X-Forward-To` (**required**): Set it to the external API URL.
 - `X-Forward-To-Audience-Policy` (**required**): See [Configuring the audience policy](#configuring-the-audience-policy).
-- `X-Forward-To-Claims` (optional): See [Configuring custom claims](#configuring-custom-claims)
+- `X-Forward-To-Claims` (optional): See [Configuring custom claims](#configuring-custom-claims).
 - `X-Project-Key` (**required**): The key of the commercetools Project currently being used by the Custom Application. The Merchant Center API Gateway will perform a validation check to ensure that the user has access to the Project, then forward the request to your server only if the check was successful.<br/>
 The project key can be retrieved from the [Application context](/api-reference/commercetools-frontend-application-shell-connectors#application-context).
 
@@ -63,22 +63,23 @@ For example, given the forward-to URL `https://my-custom-app.com/api/123`, the `
 
 ## Configuring custom claims
 
+This header can be used to make the Merchant Center API Gateway to include extra public claims in the exchange token sent along with forwarded requests.
+
+The value must be a list of the claims separated by an empty space.
+
+The following claims are supported:
+* **permissions**: Optionally includes the list of applied permissions for the logged in user. The permission values are defined in the format `can<permission-name>`, for example `canViewAvengers`.
+
+```
+"X-Forward-To-Claims": "permissions"
+```
+
 <Info>
 
 This feature is available from version `21.14.0` onwards.
 
 </Info>
 
-This header can be used to make the Merchant Center API Gateway to include extra public claims in the exchange token sent along with forwarded requests.
-
-The value must be a list of the claims separated by an empty space.
-
-Currently we support this optional claims:
-* **permissions**: Will make the Merchant Center API Gateway to include the logged in Merchant Center user permissions.
-
-```
-"X-Forward-To-Claims": "permissions"
-```
 
 You can find more information about how to include this header in the request using our helpers in the sections below.
 
@@ -188,7 +189,7 @@ The Exchange token structure consist of **Registered Claim Names** and **Private
   "aud": "<audience-url>",
   "type": "exchange",
   "<hostname>/claims/project_key": "<project-key>",
-  "<hostname>/claims/user_permissions": "<permission-1>,<permission-2>,...",
+  "<hostname>/claims/user_permissions": ["can<permission-1>", "can<permission-2>"],
   "iat": 1600092341
 }
 ```
@@ -200,7 +201,7 @@ The Exchange token structure consist of **Registered Claim Names** and **Private
 - `iat`: This value represents the time at which the JWT was issued.
 - `type`: This value is a **private claim** and is always set to `exchange`.
 - `<iss>/claims/project_key`: This value represents the Project key that the request is associated to. The claim is a **public claim** prefixed by a collision-resistant namespace, as per the JWT specification.
-- `<iss>/claims/user_permissions` (optional): This value will contain a comma separated list of the permissions names the Merchant Center user which issued the requests has available. This is an optional feature you can opt-in by providing a custom header when sending the request from your Custom Application (see [Configuring custom claims](#configuring-custom-claims)).
+- `<iss>/claims/user_permissions` (optional): This value contains a list of the permissions names that are applied to the given logged in user. See [Configuring custom claims](#configuring-custom-claims). The claim is a **public claim** prefixed by a collision-resistant namespace, as per the JWT specification.
 
 
 ## Validating the JSON Web Token
