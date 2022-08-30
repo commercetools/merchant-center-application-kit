@@ -18,12 +18,12 @@ import internalReduxStore from '../../configure-store';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import Authenticated from '../authenticated';
 import GtmBooter from '../gtm-booter';
+import ApplicationPageTitle from '../application-page-title';
 import ApplicationLoader from '../application-loader';
 import ErrorBoundary from '../error-boundary';
 import GlobalStyles from './global-styles';
 import { getBrowserLocale } from './utils';
 import useCoercedEnvironmentValues from './use-coerced-environment-values';
-import ApplicationPageTitle from '../application-page-title';
 
 type Props<AdditionalEnvironmentProperties extends {}> = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;

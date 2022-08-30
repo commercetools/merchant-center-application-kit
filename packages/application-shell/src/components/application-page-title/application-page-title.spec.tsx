@@ -1,8 +1,8 @@
+import { createMemoryHistory } from 'history';
+import { Router } from 'react-router';
+import { render } from '@testing-library/react';
 import { waitFor } from '../../test-utils';
 import ApplicationPageTitle from './application-page-title';
-import { render } from '@testing-library/react';
-import { Router } from 'react-router';
-import { createMemoryHistory } from 'history';
 
 const memoryHistory = (route: string) =>
   createMemoryHistory({ initialEntries: [route] });
@@ -59,10 +59,10 @@ describe.each`
     render(
       <Router
         history={memoryHistory(
-          '/my-project-key/products/productid12345/variants/variantid12345'
+          '/my-project-key/products/product-id/variants/variant-id'
         )}
       >
-        <ApplicationPageTitle content={content} />
+        <ApplicationPageTitle additionalParts={content} />
       </Router>
     );
     await waitFor(() => {
@@ -71,24 +71,40 @@ describe.each`
   });
 });
 describe('when page title component content is nested in another component', () => {
-  it('should render a page title from the child pagetitle component', async () => {
+  it('should render a page title from the last child component', async () => {
     render(
       <Router
         history={memoryHistory(
-          '/my-project-key/products/productid12345/variants/variantid12345'
+          '/my-project-key/products/product-id/variants/variant-id'
         )}
       >
         <ApplicationPageTitle />
         <div>
           <ApplicationPageTitle
-            content={['Some product very long product name']}
+            additionalParts={[
+              'Level 1 with some product very long product name',
+            ]}
           />
+          <div>
+            <ApplicationPageTitle
+              additionalParts={[
+                'Level 2 with some product very long product name',
+              ]}
+            />
+            <div>
+              <ApplicationPageTitle
+                additionalParts={[
+                  'Level 3 with some product very long product name',
+                ]}
+              />
+            </div>
+          </div>
         </div>
       </Router>
     );
     await waitFor(() => {
       expect(document.title).toBe(
-        'Some product...product name - Products - my-project-key - Merchant Center'
+        'Level 3 with...product name - Products - my-project-key - Merchant Center'
       );
     });
   });

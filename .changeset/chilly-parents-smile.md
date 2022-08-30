@@ -2,44 +2,22 @@
 '@commercetools-frontend/application-shell': minor
 ---
 
-Every Merchant Center page now ideally display a human-readable title describing as detailed as possible, the location or context of the page.
+Custom Applications now display a more useful page title based on the page location. The following format is used:
 
-Some important details captured in the title include:
-
-- The project the user is in.
-- Being in the products application.
-- The product name the user is currently looking at.
-
-You can optionally override the title value by rendering the `<ApplicationPageTitle>` component anywhere in your application (nested components take precedence in writing the value) and provide a `content` prop.
-
-The `content` prop is an array that should take a string of description or strings of several descriptions you want to add to the title:
-
-```ts
-type ApplicationPageTitleProps = {
-  content?: string[];
-};
+```
+<Entry-point-uri-path> - <project-key> - Merchant Center
 ```
 
-For example:
+You can optionally add more contextual information to the default page title by rendering the `<ApplicationPageTitle>` component and passing additional values.
+The values are prepended to the default page title and concatenated with a `-` separator. If each additional value exceeds 24 characters length, it will be truncated in the middle.
+
+Overwriting the default page title is recommended in detail pages where there is a human-readable resource identifier, for example a product name.
 
 ```js
 import { ApplicationPageTitle } from '@commercetools-frontend/application-shell';
-const MyComponent = () => (
-  <ApplicationPageTitle content={['Custom title', 'Another custom title']}>
-    <div>Hello</div>
-  </ApplicationPageTitle>
-);
+
+<ApplicationPageTitle additionalParts={['T-Shirt red']} />;
+// T-Shirt red - Products - my-shop - Merchant Center
 ```
 
-Some examples of the formats should look like this:
-
-| Syntax                     | Description                               | Human readable application mapping (per page)             |
-| -------------------------- | ----------------------------------------- | --------------------------------------------------------- |
-| /project-key/dashboard     | Dashboard - project-key - Merchant Center |                                                           |
-| /project-key/products      | Products - project-key - Merchant Center  |                                                           |
-| /project-key/products/new  | Products - project-key - Merchant Center  |                                                           |
-| /project-key/products/<id> | Products - project-key - Merchant Center  | <product name> - Products - project-key - Merchant Center |
-| /project-key/orders/<id>   | Orders - project-key - Merchant Center    | <order number> - Orders - project-key - Merchant Center   |
-| /account/organizations     | Account - Merchant Center                 | Organizations - Account - Merchant Center                 |
-| /login                     | Login - Merchant Center                   | Organizations - Account - Merchant Center                 |
-| /login/forgot              | Login - Merchant Center                   | Forgot password - Merchant Center                         |
+The `<ApplicationPageTitle>` component can be rendered multiple times and the last one rendered will overwrite the other ones.
