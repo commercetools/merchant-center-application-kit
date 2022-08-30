@@ -1,4 +1,4 @@
-import type { SyntheticEvent } from 'react';
+import type { ReactElement, SyntheticEvent } from 'react';
 import { useIntl } from 'react-intl';
 import PrimaryButton from '@commercetools-uikit/primary-button';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
@@ -55,8 +55,12 @@ const FormPrimaryButton = (props: Props) => {
 FormPrimaryButton.displayName = 'FormPrimaryButton';
 FormPrimaryButton.defaultProps = primaryDefaultProps;
 
+type SecondaryButtonProps = {
+  iconLeft?: ReactElement;
+} & Props;
+
 const secondaryDefaultProps: Pick<
-  Props,
+  SecondaryButtonProps,
   'label' | 'isDisabled' | 'dataAttributes'
 > = {
   label: sharedMessages.cancel,
@@ -64,7 +68,7 @@ const secondaryDefaultProps: Pick<
   dataAttributes: {},
 };
 
-const FormSecondaryButton = (props: Props) => {
+const FormSecondaryButton = (props: SecondaryButtonProps) => {
   const label = useFormattedLabel(props.label);
 
   return (
@@ -72,6 +76,7 @@ const FormSecondaryButton = (props: Props) => {
       label={label}
       onClick={props.onClick}
       isDisabled={props.isDisabled}
+      iconLeft={props.iconLeft}
       {...filterDataAttributes(props.dataAttributes)}
     />
   );

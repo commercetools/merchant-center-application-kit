@@ -84,6 +84,10 @@ type FormDetailPageProps = {
    * Hides the form controls.
    */
   hideControls: boolean;
+  /**
+   * The Icon for the secondary button label
+   */
+  labelSecondaryButtonIcon?: ReactElement;
 };
 
 const defaultProps: Pick<FormDetailPageProps, 'hideControls'> = {
@@ -105,6 +109,7 @@ const FormDetailPage = (props: FormDetailPageProps) => (
           onClick={props.onSecondaryButtonClick}
           isDisabled={props.isSecondaryButtonDisabled}
           dataAttributes={props.dataAttributesSecondaryButton}
+          iconLeft={props.labelSecondaryButtonIcon}
         />
         <CustomFormDetailPage.FormPrimaryButton
           label={props.labelPrimaryButton}

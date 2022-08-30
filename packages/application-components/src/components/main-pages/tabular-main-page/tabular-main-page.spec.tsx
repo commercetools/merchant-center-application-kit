@@ -2,8 +2,13 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Text from '@commercetools-uikit/text';
 import Spacings from '@commercetools-uikit/spacings';
 import { warning } from '@commercetools-uikit/utils';
-import { screen, renderComponent, fireEvent, waitFor } from '../../test-utils';
-import TabHeader from '../tab-header/tab-header';
+import {
+  screen,
+  renderComponent,
+  fireEvent,
+  waitFor,
+} from '../../../test-utils';
+import TabHeader from '../../tab-header/tab-header';
 import TabularMainPage from './tabular-main-page';
 
 jest.mock('@commercetools-uikit/utils', () => ({

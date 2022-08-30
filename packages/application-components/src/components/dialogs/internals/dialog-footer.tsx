@@ -1,4 +1,4 @@
-import { SyntheticEvent } from 'react';
+import type { ReactElement, SyntheticEvent } from 'react';
 import { useIntl, type IntlShape } from 'react-intl';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import PrimaryButton from '@commercetools-uikit/primary-button';
@@ -23,6 +23,7 @@ type Props = {
   dataAttributesPrimaryButton: { [key: string]: string };
   dataAttributesSecondaryButton: { [key: string]: string };
   children?: never;
+  labelSecondaryButtonIcon?: ReactElement;
 };
 const defaultProps: Pick<
   Props,
@@ -45,6 +46,7 @@ const DialogFooter = (props: Props) => {
       <SecondaryButton
         label={getFormattedLabel(props.labelSecondary, intl)}
         onClick={props.onCancel}
+        iconLeft={props.labelSecondaryButtonIcon}
         {...filterDataAttributes(props.dataAttributesSecondaryButton)}
       />
       <PrimaryButton

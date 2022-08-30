@@ -81,4 +81,24 @@ describe('rendering', () => {
 
     expect(screen.queryByText(/Close dialog/i)).not.toBeInTheDocument();
   });
+
+  it('should show secondaryButton Icon', () => {
+    renderComponent(
+      <DialogController>
+        {() => (
+          <FormDialog
+            title="Lorem ipsus"
+            isOpen={true}
+            onSecondaryButtonClick={() => {}}
+            onPrimaryButtonClick={() => {}}
+            labelSecondaryButtonIcon={<div>button icon</div>}
+          >
+            {'Hello'}
+          </FormDialog>
+        )}
+      </DialogController>
+    );
+
+    screen.getByText('button icon');
+  });
 });
