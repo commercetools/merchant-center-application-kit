@@ -19,7 +19,7 @@ import { getFirstHeaderValueOrThrow } from './utils';
 type TDecodedJWT = {
   sub: string;
   iss: string;
-  [property: string]: string;
+  [property: string]: string | string[];
 };
 
 const decodedTokenKey = 'decoded_token';
@@ -31,11 +31,17 @@ const writeSessionContext = <Request extends TBaseRequest>(
 
   if (decodedToken) {
     const publicClaimForProjectKey = `${decodedToken.iss}/claims/project_key`;
+    const publicClaimForUserPermissionsKey = `${decodedToken.iss}/claims/user_permissions`;
 
     request.session = {
       userId: decodedToken.sub,
-      projectKey: decodedToken[publicClaimForProjectKey],
+      projectKey: decodedToken[publicClaimForProjectKey] as string,
     };
+
+    const userPermissions = decodedToken[publicClaimForUserPermissionsKey];
+    if (Boolean(userPermissions?.length)) {
+      request.session.userPermissions = userPermissions as string[];
+    }
   }
 
   // Remove the field used by the JWT middleware.
@@ -212,4 +218,4 @@ function createSessionAuthVerifier<Request extends TBaseRequest>(
   };
 }
 
-export { createSessionAuthVerifier };
+export { createSessionAuthVerifier, writeSessionContext };
