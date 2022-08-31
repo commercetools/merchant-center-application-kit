@@ -63,12 +63,12 @@ For example, given the forward-to URL `https://my-custom-app.com/api/123`, the `
 
 ## Configuring custom claims
 
-This header can be used to make the Merchant Center API Gateway to include extra public claims in the exchange token sent along with forwarded requests.
+Use the `X-Forward-To-Claims` header to make the Merchant Center API Gateway include extra public claims in the exchange token sent along with forwarded requests.
 
-The value must be a list of the claims separated by an empty space.
+The value must be a list of the claims separated by a space.
 
 The following claims are supported:
-* **permissions**: Optionally includes the list of applied permissions for the logged in user. The permission values are defined in the format `can<permission-name>`, for example `canViewAvengers`.
+* **permissions**: Optionally includes the list of applied permissions for the logged in user. The permission values are formatted as `can<permission-name>`, for example `canViewAvengers`.
 
   ```
   "X-Forward-To-Claims": "permissions"
@@ -81,7 +81,7 @@ The following claims are supported:
   </Info>
 
 
-You can find more information about how to include this header in the request using our helpers in the sections below.
+Learn more about using this header in the helpers sections below.
 
 
 ## Custom HTTP headers
@@ -201,7 +201,7 @@ The Exchange token structure consist of **Registered Claim Names** and **Private
 - `iat`: This value represents the time at which the JWT was issued.
 - `type`: This value is a **private claim** and is always set to `exchange`.
 - `<iss>/claims/project_key`: This value represents the Project key that the request is associated to. The claim is a **public claim** prefixed by a collision-resistant namespace, as per the JWT specification.
-- `<iss>/claims/user_permissions` (optional): This value contains a list of the permissions names that are applied to the given logged in user. See [Configuring custom claims](#configuring-custom-claims). The claim is a **public claim** prefixed by a collision-resistant namespace, as per the JWT specification.
+- `<iss>/claims/user_permissions` (optional): This value contains a list of permissions names that are applied to the logged-in user. See [Configuring custom claims](#configuring-custom-claims). The claim is a **public claim** prefixed by a collision-resistant namespace, as per the JWT specification.
 
 
 ## Validating the JSON Web Token

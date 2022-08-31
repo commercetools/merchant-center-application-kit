@@ -190,7 +190,7 @@ renderAppWithRedux({
 
 Creates the Apollo `context` object with all the required options for using the `/forward-to` endpoint. See [Integrate with your own API](/concepts/integrate-with-your-own-api).
 
-```js highlightLines="2,14-21"
+```js highlightLines="2,14-25"
 import {
   createApolloContextForProxyForwardTo,
   useMcQuery,
@@ -207,13 +207,13 @@ const useExternalApiFetcher = () => {
     context: createApolloContextForProxyForwardTo({
       // The URL to your external API
       uri: externalApiUrl,
-      // Optionally pass custom HTTP headers
+      // Provide custom HTTP headers (optional)
       headers: {
         'x-foo': 'bar',
       },
-      // Optionally define the audience policy
+      // Define the audience policy (optional)
       audiencePolicy: 'forward-url-full-path',
-      // Optionally ask for users permissions to be included in exchange JWT
+      // Ask for users permissions to be included in exchange JWT (optional)
       includeUserPermissions: true
     }),
   });
