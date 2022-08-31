@@ -1,5 +1,100 @@
 # @commercetools-frontend/application-shell
 
+## 21.14.0
+
+### Minor Changes
+
+- [#2758](https://github.com/commercetools/merchant-center-application-kit/pull/2758) [`1be3924d8`](https://github.com/commercetools/merchant-center-application-kit/commit/1be3924d8f01ad97c2448c311e0d161fe5d5dc66) Thanks [@ddouglasz](https://github.com/ddouglasz)! - Custom Applications now display a more useful page title based on the page location. The following format is used:
+
+  ```
+  <Entry-point-uri-path> - <project-key> - Merchant Center
+  ```
+
+  You can optionally add more contextual information to the default page title by rendering the `<ApplicationPageTitle>` component and passing additional values.
+  The values are prepended to the default page title and concatenated with a `-` separator. If each additional value exceeds 24 characters length, it will be truncated in the middle.
+
+  Overwriting the default page title is recommended in detail pages where there is a human-readable resource identifier, for example a product name.
+
+  ```js
+  import { ApplicationPageTitle } from '@commercetools-frontend/application-shell';
+
+  <ApplicationPageTitle additionalParts={['T-Shirt red']} />;
+  // T-Shirt red - Products - my-shop - Merchant Center
+  ```
+
+  The `<ApplicationPageTitle>` component can be rendered multiple times and the last one rendered will overwrite the other ones.
+
+### Patch Changes
+
+- [#2781](https://github.com/commercetools/merchant-center-application-kit/pull/2781) [`571eda725`](https://github.com/commercetools/merchant-center-application-kit/commit/571eda725b5ab44ca25bc4f75a691f7bea62d574) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Add support for requesting specific `claims` to be included in the exchange JWT sent from Merchant Center API to an external API.
+  Currently we only support requesting a custom claim with logged in user's permissions.
+
+  ```js
+  // Apollo example
+  const useExternalApiFetcher = () => {
+    const externalApiUrl = useApplicationContext(
+      (context) => context.environment.externalApiUrl
+    );
+    const { loading, data, error } = useMcQuery(MyQuery, {
+      context: createApolloContextForProxyForwardTo({
+        uri: externalApiUrl,
+        includeUserPermissions: true,
+      }),
+    });
+
+    return {
+      loading,
+      data,
+      error,
+    };
+  };
+  ```
+
+  ```js
+  // Custom HTTP client example (using `fetch`)
+  const data = await executeHttpClientRequest(
+    async (options) => {
+      const res = await fetch(buildApiUrl('/proxy/forward-to'), {
+        method: 'GET',
+        ...options,
+      });
+      const data = await res.json();
+
+      return {
+        data,
+        statusCode: res.status,
+        getHeader: (key) => res.headers.get(key),
+      };
+    },
+    {
+      userAgent,
+      forwardToConfig: {
+        uri: 'https://my-api.com/my-endpoint',
+        includeUserPermissions: true,
+      },
+    }
+  );
+  ```
+
+* [#2778](https://github.com/commercetools/merchant-center-application-kit/pull/2778) [`02600391a`](https://github.com/commercetools/merchant-center-application-kit/commit/02600391a90c0e17f25c25826025612e186f8d50) Thanks [@tdeekens](https://github.com/tdeekens)! - Update flopflip dependencies
+
+* Updated dependencies [[`3239eed53`](https://github.com/commercetools/merchant-center-application-kit/commit/3239eed53a84d398e8416fc83a6813867aac86ad), [`6f15c52b1`](https://github.com/commercetools/merchant-center-application-kit/commit/6f15c52b1bafccf09e94d3b62df60fec031ffe0c), [`571eda725`](https://github.com/commercetools/merchant-center-application-kit/commit/571eda725b5ab44ca25bc4f75a691f7bea62d574)]:
+  - @commercetools-frontend/application-components@21.14.0
+  - @commercetools-frontend/sdk@21.14.0
+  - @commercetools-frontend/actions-global@21.14.0
+  - @commercetools-frontend/application-config@21.14.0
+  - @commercetools-frontend/application-shell-connectors@21.14.0
+  - @commercetools-frontend/assets@21.14.0
+  - @commercetools-frontend/browser-history@21.14.0
+  - @commercetools-frontend/constants@21.14.0
+  - @commercetools-frontend/i18n@21.14.0
+  - @commercetools-frontend/l10n@21.14.0
+  - @commercetools-frontend/notifications@21.14.0
+  - @commercetools-frontend/permissions@21.14.0
+  - @commercetools-frontend/react-notifications@21.14.0
+  - @commercetools-frontend/sentry@21.14.0
+  - @commercetools-frontend/url-utils@21.14.0
+
 ## 21.13.1
 
 ### Patch Changes

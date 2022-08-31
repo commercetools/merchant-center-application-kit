@@ -1,5 +1,11 @@
 # @commercetools-backend/express
 
+## 21.14.0
+
+### Patch Changes
+
+- [#2782](https://github.com/commercetools/merchant-center-application-kit/pull/2782) [`670230add`](https://github.com/commercetools/merchant-center-application-kit/commit/670230adde7929842821028554ddc7d136fd50c5) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Now that users can request the Merchant Center API to include logged in user's permissions in the exchange JWT included in proxied requests, our _auth_ middleware will check for that information in the token and will make it available in the `request.session` object under a new property named **userPermissions** (reference [documentation](https://docs.commercetools.com/custom-applications/concepts/integrate-with-your-own-api#validating-the-json-web-token)).
+
 ## 21.13.1
 
 ### Patch Changes

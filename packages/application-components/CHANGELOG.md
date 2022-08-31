@@ -1,5 +1,149 @@
 # @commercetools-frontend/application-components
 
+## 21.14.0
+
+### Minor Changes
+
+- [#2745](https://github.com/commercetools/merchant-center-application-kit/pull/2745) [`3239eed53`](https://github.com/commercetools/merchant-center-application-kit/commit/3239eed53a84d398e8416fc83a6813867aac86ad) Thanks [@Rhotimee](https://github.com/Rhotimee)! - Add new components for Main Page Layout.
+
+  - `<InfoMainPage>`
+  - `<FormMainPage>`
+  - `<CustomFormMainPage>`
+
+  ## InfoMainPage
+
+  The `<InfoMainPage>` is a controlled component used to render a page to show more information about a particular feature.
+
+  ```jsx
+  import { InfoMainPage } from '@commercetools-frontend/application-components';
+  import Text from '@commercetools-uikit/text';
+
+  const MainPage = () => {
+    return (
+      <InfoMainPage title="Main page">
+        <Text.Body>{'Lorem ipsum ...'}</Text.Body>
+      </InfoMainPage>
+    );
+  };
+  ```
+
+  ## FormMainPage
+
+  `<FormMainPage>` is a controlled component used to render a page with a form or something that requires user input.
+
+  ```jsx
+  import { useFormik } from 'formik';
+  import TextField from '@commercetools-uikit/text-field';
+  import TextInput from '@commercetools-uikit/text-input';
+  import { FormMainPage } from '@commercetools-frontend/application-components';
+
+  const MainPage = () => {
+    const formik = useFormik({
+      initialValues: {
+        email: '',
+      },
+      validate: (formikValues) => {
+        if (TextInput.isEmpty(formikValues.email)) {
+          return { email: { missing: true } };
+        }
+        return {};
+      },
+      onSubmit: async (formikValues) => {
+        alert(`email: ${formikValues.email}`);
+        // Do something async
+      },
+    });
+
+    return (
+      <FormMainPage
+        title="Manage your account"
+        isPrimaryButtonDisabled={formik.isSubmitting}
+        onSecondaryButtonClick={formik.handleReset}
+        onPrimaryButtonClick={formik.handleSubmit}
+      >
+        <TextField
+          name="email"
+          title="Email"
+          isRequired={true}
+          value={formik.values.email}
+          errors={formik.errors.email}
+          touched={formik.touched.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+      </FormMainPage>
+    );
+  };
+  ```
+
+  ## CustomFormMainPage
+
+  `<CustomFormMainPage>` is a variation of the <FormMainPage> that allow passing custom control elements via formControls. This is useful in case the main page needs different control elements than the default ones (primary and secondary button).
+
+  ```jsx
+  import { useFormik } from 'formik';
+  import TextField from '@commercetools-uikit/text-field';
+  import TextInput from '@commercetools-uikit/text-input';
+  import { CustomFormMainPage } from '@commercetools-frontend/application-components';
+
+  const AccountPage = () => {
+    const formik = useFormik({
+      initialValues: {
+        email: '',
+      },
+      validate: (formikValues) => {
+        if (TextInput.isEmpty(formikValues.email)) {
+          return { email: { missing: true } };
+        }
+        return {};
+      },
+      onSubmit: async (formikValues) => {
+        alert(`email: ${formikValues.email}`);
+        // Do something async
+      },
+    });
+
+    return (
+      <CustomFormMainPage
+        title="Manage your account"
+        formControls={
+          <>
+            <CustomFormMainPage.FormSecondaryButton
+              onClick={formik.handleReset}
+            />
+            <CustomFormMainPage.FormPrimaryButton
+              onClick={formik.handleSubmit}
+            />
+            <CustomFormMainPage.FormDeleteButton onClick={handleDelete} />
+          </>
+        }
+      >
+        <TextField
+          name="email"
+          title="Email"
+          isRequired={true}
+          value={formik.values.email}
+          errors={formik.errors.email}
+          touched={formik.touched.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+      </CustomFormMainPage>
+    );
+  };
+  ```
+
+### Patch Changes
+
+- [#2792](https://github.com/commercetools/merchant-center-application-kit/pull/2792) [`6f15c52b1`](https://github.com/commercetools/merchant-center-application-kit/commit/6f15c52b1bafccf09e94d3b62df60fec031ffe0c) Thanks [@Rhotimee](https://github.com/Rhotimee)! - Rename labelSecondaryButtonIcon prop in Form pages to iconLeftSecondaryButton
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell-connectors@21.14.0
+  - @commercetools-frontend/assets@21.14.0
+  - @commercetools-frontend/constants@21.14.0
+  - @commercetools-frontend/i18n@21.14.0
+  - @commercetools-frontend/l10n@21.14.0
+
 ## 21.13.1
 
 ### Patch Changes

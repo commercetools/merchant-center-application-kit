@@ -1,5 +1,23 @@
 # @commercetools-frontend/sdk
 
+## 21.14.0
+
+### Patch Changes
+
+- [#2781](https://github.com/commercetools/merchant-center-application-kit/pull/2781) [`571eda725`](https://github.com/commercetools/merchant-center-application-kit/commit/571eda725b5ab44ca25bc4f75a691f7bea62d574) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Add support for requesting specific `claims` to be included in the exchange JWT sent from Merchant Center API to an external API.
+  Currently we only support requesting a custom claim with logged in user's permissions.
+
+  ```js
+  actions.forwardTo.get({
+    includeUserPermissions: true,
+    // ...
+  });
+  // "X-Forward-To-Claims": "permissions"
+  ```
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.14.0
+
 ## 21.13.1
 
 ### Patch Changes
