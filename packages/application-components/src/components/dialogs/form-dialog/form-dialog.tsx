@@ -29,7 +29,7 @@ type Props = {
   dataAttributesSecondaryButton?: { [key: string]: string };
   dataAttributesPrimaryButton?: { [key: string]: string };
   getParentSelector?: () => HTMLElement;
-  labelSecondaryButtonIcon?: ReactElement;
+  iconLeftSecondaryButton?: ReactElement;
 };
 const defaultProps: Pick<Props, 'labelSecondary' | 'labelPrimary'> = {
   labelSecondary: sharedMessages.cancel,
@@ -55,7 +55,7 @@ const FormDialog = (props: Props) => (
       onConfirm={props.onPrimaryButtonClick}
       dataAttributesSecondaryButton={props.dataAttributesSecondaryButton}
       dataAttributesPrimaryButton={props.dataAttributesPrimaryButton}
-      labelSecondaryButtonIcon={props.labelSecondaryButtonIcon}
+      iconLeftSecondaryButton={props.iconLeftSecondaryButton}
     />
   </DialogContainer>
 );
