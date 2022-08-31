@@ -23,7 +23,7 @@ type Props = {
   dataAttributesPrimaryButton: { [key: string]: string };
   dataAttributesSecondaryButton: { [key: string]: string };
   children?: never;
-  labelSecondaryButtonIcon?: ReactElement;
+  iconLeftSecondaryButton?: ReactElement;
 };
 const defaultProps: Pick<
   Props,
@@ -46,7 +46,7 @@ const DialogFooter = (props: Props) => {
       <SecondaryButton
         label={getFormattedLabel(props.labelSecondary, intl)}
         onClick={props.onCancel}
-        iconLeft={props.labelSecondaryButtonIcon}
+        iconLeft={props.iconLeftSecondaryButton}
         {...filterDataAttributes(props.dataAttributesSecondaryButton)}
       />
       <PrimaryButton

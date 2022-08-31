@@ -61,7 +61,7 @@ describe('rendering', () => {
       title: 'Test title',
       labelPrimaryButton: 'Test Primary Button',
       labelSecondaryButton: 'Test Secondary Button',
-      labelSecondaryButtonIcon: <div>button icon</div>,
+      iconLeftSecondaryButton: <div>button icon</div>,
     });
 
     screen.getByText('button icon');

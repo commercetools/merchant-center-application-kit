@@ -61,7 +61,7 @@ type FormMainPageProps = {
   /**
    * The Icon for the secondary button label
    */
-  labelSecondaryButtonIcon?: ReactElement;
+  iconLeftSecondaryButton?: ReactElement;
   /**
    * Called when the primary button is clicked.
    */
@@ -90,7 +90,7 @@ const FormMainPage = (props: FormMainPageProps) => {
             onClick={props.onSecondaryButtonClick}
             isDisabled={props.isSecondaryButtonDisabled}
             dataAttributes={props.dataAttributesSecondaryButton}
-            iconLeft={props.labelSecondaryButtonIcon}
+            iconLeft={props.iconLeftSecondaryButton}
           />
           <CustomFormMainPage.FormPrimaryButton
             label={props.labelPrimaryButton}

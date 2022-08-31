@@ -25,7 +25,7 @@ export const Component = () => (
         subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         labelPrimaryButton="Save"
         labelSecondaryButton="Revert changes"
-        labelSecondaryButtonIcon={<RevertIcon />}
+        iconLeftSecondaryButton={<RevertIcon />}
         onSecondaryButtonClick={() => {}}
         onPrimaryButtonClick={() => {}}
       >

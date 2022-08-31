@@ -91,7 +91,7 @@ describe('rendering', () => {
             isOpen={true}
             onSecondaryButtonClick={() => {}}
             onPrimaryButtonClick={() => {}}
-            labelSecondaryButtonIcon={<div>button icon</div>}
+            iconLeftSecondaryButton={<div>button icon</div>}
           >
             {'Hello'}
           </FormDialog>
