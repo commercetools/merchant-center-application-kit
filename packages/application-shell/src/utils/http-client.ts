@@ -24,6 +24,8 @@ export type TForwardToAudiencePolicy =
   | 'forward-url-full-path'
   | 'forward-url-origin';
 
+export type TForwardToExchangeTokenClaim = 'permissions';
+
 export type TForwardToConfigVersion = 'v1' | 'v2';
 
 export type TForwardToConfig = {
@@ -39,6 +41,10 @@ export type TForwardToConfig = {
    * The audience policy for verifying the incoming request from the Merchant Center API.
    */
   audiencePolicy?: TForwardToAudiencePolicy;
+  /**
+   * A list of user permissions to be included in the request to the external API.
+   */
+  includeUserPermissions?: boolean;
   /**
    * The version of the `/proxy/forward-to` endpoint to use.
    */
@@ -150,6 +156,12 @@ const getAppliedForwardToHeaders = (
   if (!forwardToConfig.uri) {
     throw new Error(`Missing required "uri" option.`);
   }
+
+  const exchangeTokenClaims: TForwardToExchangeTokenClaim[] = [];
+  if (forwardToConfig.includeUserPermissions) {
+    exchangeTokenClaims.push('permissions');
+  }
+
   return {
     ...Object.entries(forwardToConfig.headers ?? {}).reduce(
       (customForwardHeaders, [headerName, headerValue]) => ({
@@ -164,6 +176,7 @@ const getAppliedForwardToHeaders = (
     [SUPPORTED_HEADERS.X_FORWARD_TO]: forwardToConfig.uri,
     [SUPPORTED_HEADERS.X_FORWARD_TO_AUDIENCE_POLICY]:
       forwardToConfig.audiencePolicy ?? defaultForwardToAudiencePolicy,
+    [SUPPORTED_HEADERS.X_FORWARD_TO_CLAIMS]: exchangeTokenClaims.join(' '),
   };
 };
 

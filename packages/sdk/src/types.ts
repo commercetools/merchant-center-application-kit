@@ -8,6 +8,8 @@ export type TForwardToAudiencePolicy =
   | 'forward-url-full-path'
   | 'forward-url-origin';
 
+export type TForwardToExchangeTokenClaim = 'permissions';
+
 export type TSdkActionPayloadMethod<Method extends THttpMethod> = {
   method: Method;
 };
@@ -21,6 +23,7 @@ export interface TSdkActionPayloadBase {
 export interface TSdkActionPayloadForUri extends TSdkActionPayloadBase {
   uri: string;
   audiencePolicy?: TForwardToAudiencePolicy;
+  includeUserPermissions?: boolean;
 }
 
 export interface TSdkActionPayloadForService extends TSdkActionPayloadBase {
