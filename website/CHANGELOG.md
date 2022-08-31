@@ -1,5 +1,11 @@
 # @commercetools-website/custom-applications
 
+## 21.14.0
+
+### Patch Changes
+
+- [#2792](https://github.com/commercetools/merchant-center-application-kit/pull/2792) [`6f15c52b1`](https://github.com/commercetools/merchant-center-application-kit/commit/6f15c52b1bafccf09e94d3b62df60fec031ffe0c) Thanks [@Rhotimee](https://github.com/Rhotimee)! - Rename labelSecondaryButtonIcon prop in Form pages to iconLeftSecondaryButton
+
 ## 21.13.1
 
 ### Patch Changes

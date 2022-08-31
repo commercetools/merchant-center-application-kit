@@ -1,5 +1,17 @@
 # @commercetools-local/visual-testing-app
 
+## 21.14.0
+
+### Patch Changes
+
+- [#2792](https://github.com/commercetools/merchant-center-application-kit/pull/2792) [`6f15c52b1`](https://github.com/commercetools/merchant-center-application-kit/commit/6f15c52b1bafccf09e94d3b62df60fec031ffe0c) Thanks [@Rhotimee](https://github.com/Rhotimee)! - Rename labelSecondaryButtonIcon prop in Form pages to iconLeftSecondaryButton
+
+- Updated dependencies [[`3239eed53`](https://github.com/commercetools/merchant-center-application-kit/commit/3239eed53a84d398e8416fc83a6813867aac86ad), [`6f15c52b1`](https://github.com/commercetools/merchant-center-application-kit/commit/6f15c52b1bafccf09e94d3b62df60fec031ffe0c)]:
+  - @commercetools-frontend/application-components@21.14.0
+  - @commercetools-frontend/assets@21.14.0
+  - @commercetools-frontend/constants@21.14.0
+  - @commercetools-frontend/react-notifications@21.14.0
+
 ## 21.13.1
 
 ### Patch Changes

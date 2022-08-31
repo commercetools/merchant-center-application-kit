@@ -1,5 +1,23 @@
 # merchant-center-application-template-starter
 
+## 21.14.0
+
+### Patch Changes
+
+- Updated dependencies [[`1be3924d8`](https://github.com/commercetools/merchant-center-application-kit/commit/1be3924d8f01ad97c2448c311e0d161fe5d5dc66), [`571eda725`](https://github.com/commercetools/merchant-center-application-kit/commit/571eda725b5ab44ca25bc4f75a691f7bea62d574), [`3239eed53`](https://github.com/commercetools/merchant-center-application-kit/commit/3239eed53a84d398e8416fc83a6813867aac86ad), [`6f15c52b1`](https://github.com/commercetools/merchant-center-application-kit/commit/6f15c52b1bafccf09e94d3b62df60fec031ffe0c), [`02600391a`](https://github.com/commercetools/merchant-center-application-kit/commit/02600391a90c0e17f25c25826025612e186f8d50)]:
+  - @commercetools-frontend/application-shell@21.14.0
+  - @commercetools-frontend/application-components@21.14.0
+  - @commercetools-frontend/actions-global@21.14.0
+  - @commercetools-frontend/application-shell-connectors@21.14.0
+  - @commercetools-frontend/assets@21.14.0
+  - @commercetools-frontend/constants@21.14.0
+  - @commercetools-frontend/eslint-config-mc-app@21.14.0
+  - @commercetools-frontend/i18n@21.14.0
+  - @commercetools-frontend/jest-preset-mc-app@21.14.0
+  - @commercetools-frontend/mc-dev-authentication@21.14.0
+  - @commercetools-frontend/mc-scripts@21.14.0
+  - @commercetools-frontend/permissions@21.14.0
+
 ## 21.13.1
 
 ### Patch Changes
