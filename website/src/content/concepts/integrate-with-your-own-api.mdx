@@ -68,7 +68,7 @@ Use the `X-Forward-To-Claims` header to make the Merchant Center API Gateway inc
 The value must be a list of the claims separated by a space.
 
 The following claims are supported:
-* **permissions**: Includes the list of applied permissions for the logged in user. The permission values are formatted as `can<permission-name>`, for example `canViewAvengers`.
+* **permissions**: Includes the list of applied permissions for the logged-in user. The permission values are formatted as `can<permission-name>`, for example `canViewAvengers`.
 
   ```
   "X-Forward-To-Claims": "permissions"
@@ -81,8 +81,7 @@ The following claims are supported:
   </Info>
 
 
-Learn more about using this header in the helpers sections below.
-
+Learn more about using this header in the sections below.
 
 ## Custom HTTP headers
 
@@ -195,7 +194,7 @@ The Exchange token structure consist of **Registered Claim Names** and **Private
 ```
 
 - `exp`: The **expiration time** on or after which the exchange token must not be accepted for processing.
-- `sub`: The **subject identifier** is the unique user identifier of a Merchant Center account, specifically the ID of the logged in user.
+- `sub`: The **subject identifier** is the unique user identifier of a Merchant Center account, specifically the ID of the logged-in user.
 - `iss`: The **issuer identifier** is the URL identifier of the server that issued the JWT. In this particular case is the URL of the [Merchant Center API Gateway](/concepts/merchant-center-api).
 - `aud`: The **audience** is the value that the exchange token is intended for. The value depends on the [audience policy](#configuring-the-audience-policy).
 - `iat`: **issued at** represents the time at which the JWT was issued.
