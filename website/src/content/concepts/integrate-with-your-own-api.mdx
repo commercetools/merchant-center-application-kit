@@ -31,6 +31,7 @@ Requests to that endpoint should additionally pass the following HTTP headers:
 - `Accept-version` (**required**): See [Versioning](#versioning).
 - `X-Forward-To` (**required**): Set it to the external API URL.
 - `X-Forward-To-Audience-Policy` (**required**): See [Configuring the audience policy](#configuring-the-audience-policy).
+- `X-Forward-To-Claims` (optional): See [Configuring custom claims](#configuring-custom-claims).
 - `X-Project-Key` (**required**): The key of the commercetools Project currently being used by the Custom Application. The Merchant Center API Gateway will perform a validation check to ensure that the user has access to the Project, then forward the request to your server only if the check was successful.<br/>
 The project key can be retrieved from the [Application context](/api-reference/commercetools-frontend-application-shell-connectors#application-context).
 
@@ -59,6 +60,29 @@ For example, given the forward-to URL `https://my-custom-app.com/api/123`, the `
 
 - `forward-url-full-path`: `https://my-custom-app.com/api/123`
 - `forward-url-origin`: `https://my-custom-app.com`
+
+## Configuring custom claims
+
+Use the `X-Forward-To-Claims` header to make the Merchant Center API Gateway include extra public claims in the exchange token sent along with forwarded requests.
+
+The value must be a list of the claims separated by a space.
+
+The following claims are supported:
+* **permissions**: Includes the list of applied permissions for the logged in user. The permission values are formatted as `can<permission-name>`, for example `canViewAvengers`.
+
+  ```
+  "X-Forward-To-Claims": "permissions"
+  ```
+
+  <Info>
+
+  This feature is available from version `21.14.0` onwards.
+
+  </Info>
+
+
+Learn more about using this header in the helpers sections below.
+
 
 ## Custom HTTP headers
 
@@ -111,6 +135,12 @@ actions.forwardTo.get({
   uri: 'https://my-custom-app.com/api',
   audiencePolicy: 'forward-url-origin',
 });
+
+// To make the MC API Gateway include the user permissions in the exchange JWT
+actions.forwardTo.get({
+  uri: 'https://my-custom-app.com/api',
+  includeUserPermissions: true,
+});
 ```
 
 <Info>
@@ -159,6 +189,7 @@ The Exchange token structure consist of **Registered Claim Names** and **Private
   "aud": "<audience-url>",
   "type": "exchange",
   "<hostname>/claims/project_key": "<project-key>",
+  "<hostname>/claims/user_permissions": ["can<permission-1>", "can<permission-2>"],
   "iat": 1600092341
 }
 ```
@@ -167,9 +198,11 @@ The Exchange token structure consist of **Registered Claim Names** and **Private
 - `sub`: The **subject identifier** is the unique user identifier of a Merchant Center account, specifically the ID of the logged in user.
 - `iss`: The **issuer identifier** is the URL identifier of the server that issued the JWT. In this particular case is the URL of the [Merchant Center API Gateway](/concepts/merchant-center-api).
 - `aud`: The **audience** is the value that the exchange token is intended for. The value depends on the [audience policy](#configuring-the-audience-policy).
-- `iat`: This value represents the time at which the JWT was issued.
+- `iat`: **issued at** represents the time at which the JWT was issued.
 - `type`: This value is a **private claim** and is always set to `exchange`.
-- `<iss>/claims/project_key`: This value represents the Project key that the request is associated to. The claim is a **public claim** prefixed by a collision-resistant namespace, as per the JWT specification.
+- `<iss>/claims/project_key`: Represents the Project key associated with the request. The claim is a **public claim** prefixed by a collision-resistant namespace, as per the JWT specification.
+- `<iss>/claims/user_permissions` (optional): Contains a list of permissions names that are applied to the logged-in user. See [Configuring custom claims](#configuring-custom-claims). The claim is a **public claim** prefixed by a collision-resistant namespace, as per the JWT specification.
+
 
 ## Validating the JSON Web Token
 
@@ -189,6 +222,7 @@ The package includes an async Express.js middleware that performs the token vali
 type TSession = {
   userId: string;
   projectKey: string;
+  userPermissions?: string[];
 };
 ```
 

@@ -190,7 +190,7 @@ renderAppWithRedux({
 
 Creates the Apollo `context` object with all the required options for using the `/forward-to` endpoint. See [Integrate with your own API](/concepts/integrate-with-your-own-api).
 
-```js highlightLines="2,14-21"
+```js highlightLines="2,14-25"
 import {
   createApolloContextForProxyForwardTo,
   useMcQuery,
@@ -207,12 +207,14 @@ const useExternalApiFetcher = () => {
     context: createApolloContextForProxyForwardTo({
       // The URL to your external API
       uri: externalApiUrl,
-      // Optionally pass custom HTTP headers
+      // Provide custom HTTP headers (optional)
       headers: {
         'x-foo': 'bar',
       },
-      // Optionally define the audience policy
+      // Set `"X-Forward-To-Audience-Policy"` header in the request with provided value (optional)
       audiencePolicy: 'forward-url-full-path',
+      // Set `"X-Forward-To-Claims": "permissions"` header in the request (optional)
+      includeUserPermissions: true
     }),
   });
 
@@ -229,6 +231,7 @@ Available options are:
 * `uri` (**required**): The URL of the external API to forward the request to.
 * `headers` (optional): Additional HTTP headers to be included in the request to the external API.
 * `audiencePolicy` (optional): See [configuring the audience policy](/concepts/integrate-with-your-own-api#configuring-the-audience-policy).
+* `includeUserPermissions` (optional): See [configuring custom claims](/concepts/integrate-with-your-own-api#configuring-custom-claims).
 * `version` (optional): See [versioning](/concepts/integrate-with-your-own-api#versioning).
 
 ## executeHttpClientRequest
@@ -312,6 +315,7 @@ The `THttpClientConfig` object accepts the following options:
   * `uri` (**required**): The URL of the external API to forward the request to.
   * `headers` (optional): Additional HTTP headers to be included in the request to the external API.
   * `audiencePolicy` (optional): See [configuring the audience policy](/concepts/integrate-with-your-own-api#configuring-the-audience-policy).
+  * `includeUserPermissions` (optional): See [configuring custom claims](/concepts/integrate-with-your-own-api#configuring-custom-claims).
   * `version` (recommended): See [versioning](/concepts/integrate-with-your-own-api#versioning).
 
 
