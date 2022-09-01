@@ -211,9 +211,9 @@ const useExternalApiFetcher = () => {
       headers: {
         'x-foo': 'bar',
       },
-      // Define the audience policy (optional)
+      // Set `"X-Forward-To-Audience-Policy"` header in the request with provided value (optional)
       audiencePolicy: 'forward-url-full-path',
-      // Ask for users permissions to be included in exchange JWT (optional)
+      // Set `"X-Forward-To-Claims": "permissions"` header in the request (optional)
       includeUserPermissions: true
     }),
   });

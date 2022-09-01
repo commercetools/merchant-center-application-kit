@@ -198,10 +198,10 @@ The Exchange token structure consist of **Registered Claim Names** and **Private
 - `sub`: The **subject identifier** is the unique user identifier of a Merchant Center account, specifically the ID of the logged in user.
 - `iss`: The **issuer identifier** is the URL identifier of the server that issued the JWT. In this particular case is the URL of the [Merchant Center API Gateway](/concepts/merchant-center-api).
 - `aud`: The **audience** is the value that the exchange token is intended for. The value depends on the [audience policy](#configuring-the-audience-policy).
-- `iat`: This value represents the time at which the JWT was issued.
+- `iat`: **issued at** represents the time at which the JWT was issued.
 - `type`: This value is a **private claim** and is always set to `exchange`.
-- `<iss>/claims/project_key`: This value represents the Project key that the request is associated to. The claim is a **public claim** prefixed by a collision-resistant namespace, as per the JWT specification.
-- `<iss>/claims/user_permissions` (optional): This value contains a list of permissions names that are applied to the logged-in user. See [Configuring custom claims](#configuring-custom-claims). The claim is a **public claim** prefixed by a collision-resistant namespace, as per the JWT specification.
+- `<iss>/claims/project_key`: Represents the Project key associated with the request. The claim is a **public claim** prefixed by a collision-resistant namespace, as per the JWT specification.
+- `<iss>/claims/user_permissions` (optional): Contains a list of permissions names that are applied to the logged-in user. See [Configuring custom claims](#configuring-custom-claims). The claim is a **public claim** prefixed by a collision-resistant namespace, as per the JWT specification.
 
 
 ## Validating the JSON Web Token
