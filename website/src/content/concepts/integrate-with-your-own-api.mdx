@@ -68,7 +68,7 @@ Use the `X-Forward-To-Claims` header to make the Merchant Center API Gateway inc
 The value must be a list of the claims separated by a space.
 
 The following claims are supported:
-* **permissions**: Optionally includes the list of applied permissions for the logged in user. The permission values are formatted as `can<permission-name>`, for example `canViewAvengers`.
+* **permissions**: Includes the list of applied permissions for the logged in user. The permission values are formatted as `can<permission-name>`, for example `canViewAvengers`.
 
   ```
   "X-Forward-To-Claims": "permissions"
