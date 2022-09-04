@@ -29,7 +29,7 @@
     "@tsconfig/node16": "^1.0.3",
     "@types/express-unless": "^0.5.3",
     "@types/jsonwebtoken": "^8.5.8",
-    "jose": "2.0.5",
-    "msw": "0.44.2"
+    "jose": "2.0.6",
+    "msw": "0.47.0"
   }
 }
