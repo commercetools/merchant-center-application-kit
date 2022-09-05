@@ -4,7 +4,7 @@
 import { css } from '@emotion/react';
 import InlineSvg from '@commercetools-uikit/icons/inline-svg';
 import Grid from '@commercetools-uikit/grid';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import { Suite, Spec } from '../../test-utils';
 
 const svgIconsModules = import.meta.glob<string>(
@@ -34,9 +34,9 @@ const IconsGrid = (props: {
     | 'error';
 }) => (
   <Grid
-    gridGap={customProperties.spacingS}
+    gridGap={designTokens.spacingS}
     gridAutoColumns="1fr"
-    gridTemplateColumns={`repeat(auto-fill, minmax(calc(${customProperties.spacingXl} * 2), 1fr))`}
+    gridTemplateColumns={`repeat(auto-fill, minmax(calc(${designTokens.spacingXl} * 2), 1fr))`}
   >
     {Object.keys(svgIcons).map((iconName) => {
       const data = svgIcons[iconName];
@@ -44,9 +44,9 @@ const IconsGrid = (props: {
         <Grid.Item key={iconName} justifySelf="center">
           <div
             css={css`
-              padding: ${customProperties.spacingS};
-              width: calc(${customProperties.spacingXl} * 2);
-              height: calc(${customProperties.spacingXl} * 2);
+              padding: ${designTokens.spacingS};
+              width: calc(${designTokens.spacingXl} * 2);
+              height: calc(${designTokens.spacingXl} * 2);
             `}
           >
             <InlineSvg data={data} size="scale" color={props.color} />

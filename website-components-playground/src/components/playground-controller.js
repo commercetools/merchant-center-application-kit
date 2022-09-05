@@ -5,24 +5,23 @@ import { AngleRightIcon, AngleDownIcon } from '@commercetools-uikit/icons';
 import IconButton from '@commercetools-uikit/icon-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import IntlController from './intl-controller';
 import KnobsController from './knobs-controller';
 
 const PlaygroundContainer = styled.div`
-  background-color: ${customProperties.colorNeutral95};
-  border: 16px solid ${customProperties.colorNeutral95};
-  border-radius: ${customProperties.borderRadius6};
+  background-color: ${designTokens.colorNeutral95};
+  border: 16px solid ${designTokens.colorNeutral95};
+  border-radius: ${designTokens.borderRadius6};
 `;
 const PreviewContainer = styled.div`
   position: relative;
   width: 100%;
   overflow: hidden;
   height: ${(props) => props.height};
-  background-color: ${customProperties.colorSurface};
-  border-radius: ${customProperties.borderRadius4}
-    ${customProperties.borderRadius4} 0 0;
-  border-bottom: 1px solid ${customProperties.colorNeutral90};
+  background-color: ${designTokens.colorSurface};
+  border-radius: ${designTokens.borderRadius4} ${designTokens.borderRadius4} 0 0;
+  border-bottom: 1px solid ${designTokens.colorNeutral90};
 `;
 
 const PlaygroundController = (props) => {

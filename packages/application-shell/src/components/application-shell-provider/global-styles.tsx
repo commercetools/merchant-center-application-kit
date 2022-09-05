@@ -1,5 +1,5 @@
 import { Global, css } from '@emotion/react';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 
 const gridStyles = css`
 .row
@@ -53,7 +53,7 @@ const resetStyles = css`
 
   html,
   body {
-    color: ${customProperties.colorSolid};
+    color: ${designTokens.colorSolid};
     font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     margin: 0;
@@ -79,14 +79,14 @@ const resetStyles = css`
   }
 
   a {
-    color: ${customProperties.colorPrimary};
+    color: ${designTokens.colorPrimary};
     cursor: pointer;
     text-decoration: none;
     transition: color 0.2s ease-in;
   }
 
   p {
-    color: ${customProperties.colorSolid};
+    color: ${designTokens.colorSolid};
     margin: 0;
   }
 `;

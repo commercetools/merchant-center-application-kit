@@ -3,7 +3,7 @@ import Modal, { type Props as ModalProps } from 'react-modal';
 import { css, ClassNames } from '@emotion/react';
 import styled from '@emotion/styled';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import Card from '@commercetools-uikit/card';
 import { getOverlayStyles, getModalContentStyles } from './dialog.styles';
 
@@ -124,7 +124,7 @@ const DialogContainer = (props: Props) => (
                 min-height: 0;
 
                 > * + * {
-                  margin: ${customProperties.spacingM} 0 0;
+                  margin: ${designTokens.spacingM} 0 0;
                 }
               `}
             >

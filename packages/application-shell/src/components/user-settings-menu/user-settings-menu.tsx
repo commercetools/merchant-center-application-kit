@@ -13,7 +13,7 @@ import Avatar from '@commercetools-uikit/avatar';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import { CaretDownIcon } from '@commercetools-uikit/icons';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import {
   LOGOUT_REASONS,
@@ -115,16 +115,16 @@ const renderLabel = (
 const MenuItem = styled.div<MenuItemProps>`
   width: 100%;
   cursor: pointer;
-  color: ${customProperties.colorSolid};
+  color: ${designTokens.colorSolid};
 
   :hover {
-    background-color: ${customProperties.colorNeutral90};
+    background-color: ${designTokens.colorNeutral90};
   }
 
   ${(props) =>
     props.hasDivider === true
       ? css`
-          border-bottom: 1px solid ${customProperties.colorNeutral};
+          border-bottom: 1px solid ${designTokens.colorNeutral};
         `
       : ''};
 `;
@@ -160,14 +160,14 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
       }}
       css={css`
         position: absolute;
-        background: ${customProperties.colorSurface};
-        border: 1px ${customProperties.colorPrimary40} solid;
-        border-radius: ${customProperties.borderRadius6};
-        box-shadow: ${customProperties.shadow7};
+        background: ${designTokens.colorSurface};
+        border: 1px ${designTokens.colorPrimary40} solid;
+        border-radius: ${designTokens.borderRadius6};
+        box-shadow: ${designTokens.shadow7};
         width: 315px;
         right: 14px;
         top: 40px;
-        padding: ${customProperties.spacingXs};
+        padding: ${designTokens.spacingXs};
         overflow: hidden;
       `}
     >

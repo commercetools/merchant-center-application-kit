@@ -1,7 +1,7 @@
 import type { TAppNotificationDomain } from '@commercetools-frontend/constants';
 
 import { css } from '@emotion/react';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import { NOTIFICATION_DOMAINS } from '@commercetools-frontend/constants';
 
 type StyleProps = {
@@ -10,7 +10,7 @@ type StyleProps = {
 
 const getStyles = (props: StyleProps) => {
   const baseStyles = css`
-    color: ${customProperties.colorSurface};
+    color: ${designTokens.colorSurface};
     position: relative;
     width: 100%;
     z-index: 19999;

@@ -1,5 +1,5 @@
 import { isValidElement, type ReactElement } from 'react';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import Text from '@commercetools-uikit/text';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -17,7 +17,7 @@ const defaultProps: Pick<Props, 'titleSize' | 'truncate'> = {
 };
 
 const SubtitleWrapper = styled.div`
-  margin-top: ${customProperties.spacingM};
+  margin-top: ${designTokens.spacingM};
 `;
 
 type RenderTitleProps = Pick<Props, 'titleSize' | 'title' | 'truncate'>;

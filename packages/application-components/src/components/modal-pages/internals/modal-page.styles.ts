@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 
 export const TRANSITION_DURATION = 200;
 
@@ -15,8 +15,8 @@ export const getContainerStyles = (_props: StyleProps) => css`
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: ${customProperties.colorSurface};
-  box-shadow: ${customProperties.shadow4}, ${customProperties.shadow6};
+  background-color: ${designTokens.colorSurface};
+  box-shadow: ${designTokens.shadow4}, ${designTokens.shadow6};
   outline: 0;
   transform: translate3d(30px, 0, 0);
   transition: transform ${TRANSITION_DURATION}ms ease;

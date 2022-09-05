@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 
 type StyleProps = {
   size: 'm' | 'l' | 7 | 8 | 9 | 10 | 'scale';
@@ -10,18 +10,18 @@ const getConstraintForGridStyle = (size: StyleProps['size']) => {
   switch (size) {
     case 7:
     case 'm':
-      return customProperties.constraint7;
+      return designTokens.constraint7;
     case 8:
-      return customProperties.constraint8;
+      return designTokens.constraint8;
     case 9:
-      return customProperties.constraint9;
+      return designTokens.constraint9;
     case 10:
     case 'l':
-      return customProperties.constraint10;
+      return designTokens.constraint10;
     case 'scale':
-      return customProperties.constraintScale;
+      return designTokens.constraintScale;
     default:
-      return customProperties.constraintScale;
+      return designTokens.constraintScale;
   }
 };
 
@@ -31,33 +31,27 @@ export const getModalContentStyles = (props: StyleProps) => {
     props.size === 'scale'
       ? css`
           grid:
-            [row1-start] 'top top top' minmax(
-              ${customProperties.spacingXl},
-              1fr
-            )
+            [row1-start] 'top top top' minmax(${designTokens.spacingXl}, 1fr)
             [row1-end]
             [row2-start] 'left main right' minmax(0, 100%) [row2-end]
             [row3-start] 'bottom bottom bottom' minmax(
-              ${customProperties.spacingXl},
+              ${designTokens.spacingXl},
               1fr
             )
-            [row3-end] / ${customProperties.spacingXl} 1fr ${customProperties.spacingXl};
+            [row3-end] / ${designTokens.spacingXl} 1fr ${designTokens.spacingXl};
         `
       : css`
           grid:
-            [row1-start] 'top top top' minmax(
-              ${customProperties.spacingXl},
-              1fr
-            )
+            [row1-start] 'top top top' minmax(${designTokens.spacingXl}, 1fr)
             [row1-end]
             [row2-start] 'left main right' minmax(0, 100%) [row2-end]
             [row3-start] 'bottom bottom bottom' minmax(
-              ${customProperties.spacingXl},
+              ${designTokens.spacingXl},
               1fr
             )
-            [row3-end] / minmax(${customProperties.spacingXl}, 1fr)
+            [row3-end] / minmax(${designTokens.spacingXl}, 1fr)
             ${sizeConstraint}
-            minmax(${customProperties.spacingXl}, 1fr);
+            minmax(${designTokens.spacingXl}, 1fr);
         `;
 
   // To ensure that the mouse click on the overlay surface goes "through"

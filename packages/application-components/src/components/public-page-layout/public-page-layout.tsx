@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import CommercetoolsLogoSvg from '@commercetools-frontend/assets/logos/commercetools_primary-logo_horizontal_white-text_RGB.svg';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
@@ -38,17 +38,17 @@ const Container = styled.div`
   width: 100%;
   min-height: 100vh;
   display: flex;
-  padding-top: ${customProperties.spacingXl};
+  padding-top: ${designTokens.spacingXl};
   justify-content: center;
   background-size: cover;
   background-image: url(data:image/png;base64,${base64Background});
   background-position: center;
 `;
 const ContainerColumn = styled.div`
-  width: calc(${customProperties.constraint15} / 2);
+  width: calc(${designTokens.constraint15} / 2);
 `;
 const ContainerColumnWide = styled.div`
-  width: ${customProperties.constraint15};
+  width: ${designTokens.constraint15};
 `;
 
 const PublicPageLayoutContent: FC<TProps> = (props) => {
@@ -76,7 +76,7 @@ const PublicPageLayout: FC<TProps> = (props) => {
             <Text.Headline as="h2">
               <div
                 css={css`
-                  color: ${customProperties.colorSurface};
+                  color: ${designTokens.colorSurface};
                 `}
               >
                 {props.welcomeMessage}

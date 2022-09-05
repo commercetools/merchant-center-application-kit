@@ -28,13 +28,13 @@ If you use CSS Modules, the Design Tokens are already available in scope (via Po
 }
 ```
 
-If you use CSS-in-JS, the Design Tokens can be imported from the `customProperties` export:
+If you use CSS-in-JS, the Design Tokens can be imported from the `designTokens` export:
 
 ```js
 import { css } from '@emotion/react';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 
 const styles = css`
-  padding: ${customProperties.spacingL};
+  padding: ${designTokens.spacingL};
 `;
 ```

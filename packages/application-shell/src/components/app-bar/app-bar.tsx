@@ -2,7 +2,7 @@ import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 
 import { css } from '@emotion/react';
 import Spacings from '@commercetools-uikit/spacings';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import LogoSVG from '@commercetools-frontend/assets/images/logo.svg';
 import { CONTAINERS, DIMENSIONS } from '../../constants';
 import { getPreviousProjectKey } from '../../utils';
@@ -25,8 +25,8 @@ const AppBar = (props: Props) => {
   return (
     <div
       css={css`
-        background-color: ${customProperties.colorSurface};
-        box-shadow: ${customProperties.shadow1};
+        background-color: ${designTokens.colorSurface};
+        box-shadow: ${designTokens.shadow1};
         min-height: ${DIMENSIONS.header};
         position: relative;
         width: 100%;
@@ -70,7 +70,7 @@ const AppBar = (props: Props) => {
           float: right;
           font-weight: normal;
           font-size: 1rem;
-          margin-right: ${customProperties.spacingM};
+          margin-right: ${designTokens.spacingM};
           display: flex;
           align-items: center;
         `}
@@ -102,7 +102,7 @@ const AppBar = (props: Props) => {
           </Spacings.Inline>
           <div
             css={css`
-              border-left: 1px ${customProperties.colorNeutral90} solid;
+              border-left: 1px ${designTokens.colorNeutral90} solid;
               height: ${DIMENSIONS.header};
             `}
           />

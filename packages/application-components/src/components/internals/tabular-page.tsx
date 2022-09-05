@@ -1,10 +1,10 @@
 import type { ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 
 const TabControls = styled.div`
-  margin-top: ${customProperties.spacingS};
+  margin-top: ${designTokens.spacingS};
 `;
 
 type TControlsContainterProps = {
@@ -36,10 +36,10 @@ const TabularPageContainer = (props: TTabularPageContainerProps) => (
   <div
     css={css`
       background-color: ${props.color === 'surface'
-        ? customProperties.colorSurface
-        : customProperties.colorNeutral95};
-      padding: ${customProperties.spacingM} ${customProperties.spacingM} 0;
-      border-bottom: 1px ${customProperties.colorNeutral} solid;
+        ? designTokens.colorSurface
+        : designTokens.colorNeutral95};
+      padding: ${designTokens.spacingM} ${designTokens.spacingM} 0;
+      border-bottom: 1px ${designTokens.colorNeutral} solid;
     `}
   >
     {props.children}
@@ -52,7 +52,7 @@ const defaultProps: Pick<TTabularPageContainerProps, 'color'> = {
 TabularPageContainer.defaultProps = defaultProps;
 
 const FormControlsContainer = styled.div`
-  margin-bottom: ${customProperties.spacingM};
+  margin-bottom: ${designTokens.spacingM};
 `;
 
 export { ControlsContainter, TabularPageContainer, FormControlsContainer };

@@ -1,6 +1,6 @@
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 
 type Props = {
   shape: 'dot' | 'rect';
@@ -9,10 +9,10 @@ type Props = {
 
 const animationPulse = keyframes`
   0% {
-    background-color: ${customProperties.colorNeutral};
+    background-color: ${designTokens.colorNeutral};
   }
   100% {
-    background-color: ${customProperties.colorNeutral95};
+    background-color: ${designTokens.colorNeutral95};
   }
 `;
 
@@ -21,13 +21,13 @@ const getWidthBySize = (props: Props) => {
     case 'dot':
       switch (props.size) {
         case 's':
-          return customProperties.spacingS;
+          return designTokens.spacingS;
         case 'm':
-          return customProperties.spacingM;
+          return designTokens.spacingM;
         case 'l':
-          return customProperties.spacingL;
+          return designTokens.spacingL;
         case 'xl':
-          return customProperties.spacingXl;
+          return designTokens.spacingXl;
         default:
           return 'auto';
       }
@@ -63,7 +63,7 @@ const getRadiusBySize = (props: Props) => {
     case 'dot':
       switch (props.size) {
         case 's':
-          return customProperties.borderRadius4;
+          return designTokens.borderRadius4;
         case 'm':
           return '8px';
         case 'l':
@@ -74,14 +74,14 @@ const getRadiusBySize = (props: Props) => {
           return 'none';
       }
     case 'rect':
-      return customProperties.borderRadius4;
+      return designTokens.borderRadius4;
     default:
       return 'none';
   }
 };
 
 const LoadingPlaceholder = styled.div<Props>`
-  background-color: ${customProperties.colorNeutral};
+  background-color: ${designTokens.colorNeutral};
   animation-name: ${animationPulse};
   animation-duration: 1s;
   animation-timing-function: ease-out;

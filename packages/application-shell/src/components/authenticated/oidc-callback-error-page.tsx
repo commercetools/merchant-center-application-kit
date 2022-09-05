@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import styled from '@emotion/styled';
 import FailedAuthenticationSVG from '@commercetools-frontend/assets/images/locked-diamond.svg';
 import { PublicPageLayout } from '@commercetools-frontend/application-components';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import { ContentNotification } from '@commercetools-uikit/notifications';
 import Spacings from '@commercetools-uikit/spacings';
 import Card from '@commercetools-uikit/card';
@@ -28,7 +28,7 @@ const Divider = styled.div`
   border: 0;
   border-style: solid;
   border-top-width: 1px;
-  border-top-color: ${customProperties.colorNeutral};
+  border-top-color: ${designTokens.colorNeutral};
 `;
 
 const AuthCallbackErrorPage = (props: TProps) => {

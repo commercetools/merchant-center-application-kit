@@ -3,7 +3,7 @@ import Spacings from '@commercetools-uikit/spacings';
 import { ContentNotification } from '@commercetools-uikit/notifications';
 import Text from '@commercetools-uikit/text';
 import Card from '@commercetools-uikit/card';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import useIsServedByProxy from '../../hooks/use-is-served-by-proxy';
 import { location } from '../../utils/location';
 
@@ -29,8 +29,8 @@ export const RedirectToProjectCreate = () => {
     <div
       css={css`
         align-self: center;
-        margin-top: ${customProperties.spacingXl};
-        max-width: ${customProperties.constraint10};
+        margin-top: ${designTokens.spacingXl};
+        max-width: ${designTokens.constraint10};
       `}
     >
       <Card type="flat" theme="dark">

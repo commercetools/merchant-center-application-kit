@@ -2,7 +2,7 @@ import type { ReactElement, ReactNode } from 'react';
 import Spacings from '@commercetools-uikit/spacings';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import { css } from '@emotion/react';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import { warning } from '@commercetools-uikit/utils';
 import PageHeaderTitle from '../../internals/page-header-title';
 import {
@@ -85,7 +85,7 @@ const TabularMainPage = (props: TTabularMainPageProps) => {
       </TabularPageContainer>
       <ContentWrapper
         css={css`
-          background-color: ${customProperties.colorNeutral95};
+          background-color: ${designTokens.colorNeutral95};
         `}
       >
         {props.children}

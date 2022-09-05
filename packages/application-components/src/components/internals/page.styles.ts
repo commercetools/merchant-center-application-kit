@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 
 export const ContentWrapper = styled.div`
   flex: 1;
   flex-basis: 0;
-  padding: ${customProperties.spacingM};
+  padding: ${designTokens.spacingM};
   overflow: auto;
 `;
 

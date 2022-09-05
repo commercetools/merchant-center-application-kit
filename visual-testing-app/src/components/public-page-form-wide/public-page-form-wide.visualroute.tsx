@@ -3,7 +3,7 @@ import { PublicPageLayout } from '@commercetools-frontend/application-components
 import DoorsClosedSvg from '@commercetools-frontend/assets/images/project-not-initialized.svg';
 import Link from '@commercetools-uikit/link';
 import Spacings from '@commercetools-uikit/spacings';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import Text from '@commercetools-uikit/text';
 import Card from '@commercetools-uikit/card';
 import { Suite, Spec } from '../../test-utils';
@@ -37,20 +37,20 @@ export const Component = () => (
             css={css`
               display: flex;
               > * + * {
-                padding: ${customProperties.spacingM};
+                padding: ${designTokens.spacingM};
               }
             `}
           >
             <div
               css={css`
-                width: calc(${customProperties.constraint15} / 2);
+                width: calc(${designTokens.constraint15} / 2);
               `}
             >
               <div
                 style={{
-                  backgroundColor: customProperties.colorNeutral95,
-                  borderTopLeftRadius: customProperties.borderRadius6,
-                  borderBottomLeftRadius: customProperties.borderRadius6,
+                  backgroundColor: designTokens.colorNeutral95,
+                  borderTopLeftRadius: designTokens.borderRadius6,
+                  borderBottomLeftRadius: designTokens.borderRadius6,
                 }}
               >
                 <Spacings.Inset>
@@ -63,7 +63,7 @@ export const Component = () => (
 
             <div
               css={css`
-                width: calc(${customProperties.constraint15} / 2);
+                width: calc(${designTokens.constraint15} / 2);
               `}
             >
               <Spacings.Stack>

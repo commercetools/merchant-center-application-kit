@@ -6,7 +6,7 @@ import { CloseIcon, AngleLeftIcon } from '@commercetools-uikit/icons';
 import FlatButton from '@commercetools-uikit/flat-button';
 import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';
 import Text from '@commercetools-uikit/text';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import messages from '../../internals/messages';
 
 // Component to have a larger clickable surface
@@ -54,16 +54,16 @@ const ModalPageTopBar = (props: Props) => {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: ${customProperties.spacingS} ${customProperties.spacingM};
+        padding: ${designTokens.spacingS} ${designTokens.spacingM};
         background-color: ${props.color === 'neutral'
-          ? customProperties.colorNeutral95
-          : customProperties.colorSurface};
+          ? designTokens.colorNeutral95
+          : designTokens.colorSurface};
         border-bottom: 1px solid
           ${props.color === 'neutral'
-            ? customProperties.colorSurface
-            : customProperties.colorNeutral};
+            ? designTokens.colorSurface
+            : designTokens.colorNeutral};
         & * + * {
-          margin-left: ${customProperties.spacingS};
+          margin-left: ${designTokens.spacingS};
         }
 
         /* FIXME: these "dirty" styles should be removed when the new Breadcrumbs component is implemented */

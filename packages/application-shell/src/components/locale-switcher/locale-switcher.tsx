@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import SelectInput from '@commercetools-uikit/select-input';
 import { WorldIcon } from '@commercetools-uikit/icons';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import messages from './messages';
 
 type CustomSingleValueProps = SingleValueProps & {
@@ -32,7 +32,7 @@ export const SingleValue = (props: CustomSingleValueProps) => (
       css={css`
         margin-left: 2px;
         flex: 1;
-        color: ${customProperties.colorAccent};
+        color: ${designTokens.colorAccent};
       `}
     >
       {props.children}
@@ -42,8 +42,8 @@ export const SingleValue = (props: CustomSingleValueProps) => (
         width: 22px;
         height: 22px;
         border-radius: 100%;
-        background: ${customProperties.colorAccent40};
-        color: ${customProperties.colorSurface};
+        background: ${designTokens.colorAccent40};
+        color: ${designTokens.colorSurface};
         font-size: 0.9rem;
         display: flex;
         justify-content: center;
@@ -76,7 +76,7 @@ const LocaleSwitcher = (props: Props) => {
     <div
       css={css`
         position: relative;
-        width: ${customProperties.constraint3};
+        width: ${designTokens.constraint3};
       `}
       data-track-component="LocaleSwitch"
     >

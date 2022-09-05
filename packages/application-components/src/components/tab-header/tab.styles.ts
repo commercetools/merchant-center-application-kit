@@ -4,7 +4,7 @@ import {
   type Interpolation,
   type Theme,
 } from '@emotion/react';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 
 const getBottomBorderStyles = (background: string): SerializedStyles => css`
   :after {
@@ -14,9 +14,9 @@ const getBottomBorderStyles = (background: string): SerializedStyles => css`
     left: 0;
     right: 0;
     height: 4px;
-    border-radius: ${customProperties.borderRadius2};
+    border-radius: ${designTokens.borderRadius2};
     background-color: ${background};
-    transition: background-color ${customProperties.transitionEaseinout150Ms};
+    transition: background-color ${designTokens.transitionEaseinout150Ms};
   }
 `;
 
@@ -25,8 +25,8 @@ export const getLinkStyles = (
   isDisabled: boolean
 ): Interpolation<Theme> => [
   css`
-    font-size: ${customProperties.fontSizeDefault};
-    padding: ${customProperties.spacingS} ${customProperties.spacingM};
+    font-size: ${designTokens.fontSizeDefault};
+    padding: ${designTokens.spacingS} ${designTokens.spacingM};
     position: relative;
     text-align: center;
     display: inline-block;
@@ -41,9 +41,9 @@ export const getLinkStyles = (
   `,
   isActive &&
     css`
-      ${getBottomBorderStyles(customProperties.colorPrimary)}
+      ${getBottomBorderStyles(designTokens.colorPrimary)}
       & h4 {
-        color: ${customProperties.colorPrimary} !important;
+        color: ${designTokens.colorPrimary} !important;
       }
     `,
   isDisabled &&
@@ -64,7 +64,7 @@ export const getLinkStyles = (
       :focus,
       :active {
         & h4 {
-          color: ${customProperties.colorPrimary} !important;
+          color: ${designTokens.colorPrimary} !important;
         }
       }
     `,

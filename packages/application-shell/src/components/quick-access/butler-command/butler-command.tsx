@@ -3,7 +3,7 @@ import type { Command } from '../types';
 import { MouseEventHandler } from 'react';
 import { css } from '@emotion/react';
 import { AngleThinRightIcon } from '@commercetools-uikit/icons';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 
 type Props = {
   command: Command;
@@ -19,7 +19,7 @@ const ButlerCommand = (props: Props) => (
     aria-current={props.isSelected === true ? 'true' : 'false'}
     css={css`
       display: flex;
-      padding: 0 ${customProperties.spacingM};
+      padding: 0 ${designTokens.spacingM};
       height: 36px;
       font-size: 16px;
       font-weight: 200;
@@ -27,8 +27,8 @@ const ButlerCommand = (props: Props) => (
       cursor: default;
       ${props.isSelected === true
         ? `
-            background: ${customProperties.colorAccent};
-            color: ${customProperties.colorSurface};
+            background: ${designTokens.colorAccent};
+            color: ${designTokens.colorSurface};
           `
         : ''}
     `}

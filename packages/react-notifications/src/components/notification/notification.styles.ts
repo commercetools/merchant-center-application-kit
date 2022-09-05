@@ -4,7 +4,7 @@ import type {
 } from '@commercetools-frontend/constants';
 
 import { css, keyframes } from '@emotion/react';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import {
   NOTIFICATION_DOMAINS,
   NOTIFICATION_KINDS_SIDE,
@@ -19,13 +19,13 @@ type StyleProps = {
 const getColorByType = (value: TAppNotificationKind) => {
   switch (value) {
     case NOTIFICATION_KINDS_SIDE.success:
-      return customProperties.colorPrimary;
+      return designTokens.colorPrimary;
     case NOTIFICATION_KINDS_SIDE.info:
-      return customProperties.colorInfo;
+      return designTokens.colorInfo;
     case NOTIFICATION_KINDS_SIDE.error:
-      return customProperties.colorError;
+      return designTokens.colorError;
     case NOTIFICATION_KINDS_SIDE.warning:
-      return customProperties.colorWarning;
+      return designTokens.colorWarning;
     default:
       return 'transparent';
   }
@@ -60,7 +60,7 @@ const getStylesForIcon = (props: StyleProps) => css`
   top: 0;
   width: 48px;
   height: 100%;
-  color: ${customProperties.colorSurface};
+  color: ${designTokens.colorSurface};
   border-radius: 3px 0 0 3px;
   background: ${getColorByType(props.type)};
 `;
@@ -68,12 +68,12 @@ const getStylesForIcon = (props: StyleProps) => css`
 const getStylesForContent = (props: StyleProps) => {
   const fontColor =
     props.domain === NOTIFICATION_DOMAINS.SIDE
-      ? customProperties.colorSolid
-      : customProperties.colorSurface;
+      ? designTokens.colorSolid
+      : designTokens.colorSurface;
   return css`
     flex-basis: 100%;
     flex-grow: 1;
-    padding: 0 ${customProperties.spacingS};
+    padding: 0 ${designTokens.spacingS};
     margin: 0;
     font-size: ${props.domain === NOTIFICATION_DOMAINS.SIDE
       ? '0.929rem'
@@ -96,8 +96,8 @@ const getStylesForNotification = (props: StyleProps) => {
     position: relative;
     display: flex;
     align-items: flex-start;
-    padding: ${customProperties.spacingM};
-    color: ${customProperties.colorSurface};
+    padding: ${designTokens.spacingM};
+    color: ${designTokens.colorSurface};
   `;
   const pageStyles = css`
     ${baseStyles};
@@ -108,7 +108,7 @@ const getStylesForNotification = (props: StyleProps) => {
       : getColorByType(props.type)};
 
     > * + * {
-      margin-left: ${customProperties.spacingS};
+      margin-left: ${designTokens.spacingS};
     }
   `;
 
@@ -124,13 +124,13 @@ const getStylesForNotification = (props: StyleProps) => {
       const sideStyles = css`
         ${baseStyles};
         animation: ${showNotificationAnimation} 0.3s forwards;
-        padding: ${customProperties.spacingM} ${customProperties.spacingM}
-          ${customProperties.spacingM} 50px !important;
+        padding: ${designTokens.spacingM} ${designTokens.spacingM}
+          ${designTokens.spacingM} 50px !important;
         text-align: left;
-        background: ${customProperties.colorSurface};
+        background: ${designTokens.colorSurface};
         border: 1px solid ${getColorByType(props.type)};
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
-        border-radius: ${customProperties.borderRadius6};
+        border-radius: ${designTokens.borderRadius6};
         word-break: break-word;
         hyphens: auto; /* still not supported on Chrome */
       `;
@@ -141,8 +141,8 @@ const getStylesForNotification = (props: StyleProps) => {
         animation: ${showNotificationSideAnimation} 0.3s forwards;
         position: relative;
         z-index: 10000;
-        margin-top: ${customProperties.spacingL} !important;
-        right: ${customProperties.spacingXl};
+        margin-top: ${designTokens.spacingL} !important;
+        right: ${designTokens.spacingXl};
         float: right;
         clear: both;
         max-width: 50%;

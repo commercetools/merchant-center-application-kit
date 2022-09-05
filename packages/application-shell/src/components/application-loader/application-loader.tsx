@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import CTLogoSVG from '@commercetools-frontend/assets/images/ct-logo.svg';
 
 type Props = {
@@ -16,10 +16,10 @@ const ApplicationLoader = (props: Props) => (
       flex: 1;
       flex-direction: column;
       height: 100vh;
-      padding: ${customProperties.spacingL};
+      padding: ${designTokens.spacingL};
 
       > * + * {
-        margin: ${customProperties.spacingL} 0 0;
+        margin: ${designTokens.spacingL} 0 0;
       }
     `}
     data-testid="application-loader"

@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import InlineSvg from '@commercetools-uikit/icons/inline-svg';
 import Spacings from '@commercetools-uikit/spacings';
 import Grid from '@commercetools-uikit/grid';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import { Markdown } from '@commercetools-docs/ui-kit';
 
 // Cache object to store references so SVG icons.
@@ -22,9 +22,9 @@ importAllSvgs(
 
 const ApplicationIcons = () => (
   <Grid
-    gridGap={customProperties.spacingS}
+    gridGap={designTokens.spacingS}
     gridAutoColumns="1fr"
-    gridTemplateColumns={`repeat(auto-fill, minmax(calc(${customProperties.spacingXl} * 4), 1fr))`}
+    gridTemplateColumns={`repeat(auto-fill, minmax(calc(${designTokens.spacingXl} * 4), 1fr))`}
   >
     {Object.keys(svgIcons).map((iconName, index) => {
       const data = svgIcons[iconName].default;
@@ -33,8 +33,8 @@ const ApplicationIcons = () => (
           <Spacings.Stack alignItems="center">
             <div
               css={css`
-                width: calc(${customProperties.spacingXl} * 1.5);
-                height: calc(${customProperties.spacingXl} * 1.5);
+                width: calc(${designTokens.spacingXl} * 1.5);
+                height: calc(${designTokens.spacingXl} * 1.5);
               `}
             >
               <InlineSvg data={data} size="scale" color="solid" />
