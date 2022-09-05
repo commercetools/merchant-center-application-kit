@@ -4671,18 +4671,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/design-system@https://uikit-theming.netlify.app/commercetools-uikit-design-system-15.2.0.tgz":
-  version: 15.2.0
-  resolution: "@commercetools-uikit/design-system@https://uikit-theming.netlify.app/commercetools-uikit-design-system-15.2.0.tgz"
+"@commercetools-uikit/design-system@https://uikit-theming.netlify.app/commercetools-uikit-design-system-15.2.1.tgz":
+  version: 15.2.1
+  resolution: "@commercetools-uikit/design-system@https://uikit-theming.netlify.app/commercetools-uikit-design-system-15.2.1.tgz"
   dependencies:
     "@babel/runtime": ^7.17.2
     "@babel/runtime-corejs3": ^7.17.2
-    "@commercetools-uikit/utils": 15.2.0
+    "@commercetools-uikit/utils": 15.2.1
     "@emotion/react": ^11.4.0
     lodash: 4.17.21
     prop-types: 15.8.1
     react: 17.0.2
-  checksum: 49f09acd4711ad68e2d94ed305f48e330447d25402c2dd874a6128851ac023a3cf5b97aa7f4a1a957116d5fe13309c9de8178229d76a7623178d98834681ae48
+  checksum: c3cf06550c967dafde6421175bb14164e570be0e8c3312a239f7668179d171eff545c90a105782f9bf0562dc9a743ff28975dc9d523f569bc313eec18cebb021
   languageName: node
   linkType: hard
 
@@ -5438,16 +5438,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/utils@npm:15.2.0":
-  version: 15.2.0
-  resolution: "@commercetools-uikit/utils@npm:15.2.0"
+"@commercetools-uikit/utils@npm:15.2.1":
+  version: 15.2.1
+  resolution: "@commercetools-uikit/utils@npm:15.2.1"
   dependencies:
     "@babel/runtime": ^7.17.2
     "@babel/runtime-corejs3": ^7.17.2
-    "@emotion/is-prop-valid": 1.1.3
+    "@emotion/is-prop-valid": 1.2.0
     "@types/warning": ^3.0.0
     warning: 4.0.3
-  checksum: 037d40b9a203a939030ae26bf059c4a21981e8b1c0301bc8e1396a6b6994500d8e151a8650133fa5842006def5835ca90450fc265b3f0e92af16872e2b2192e3
+  checksum: 9d7beaffac5c57d429dae2e90b70e011077617b2018ccaf9209d353b353a2d8e8063bfc07f9241ef35dc0b5ccf2533149658e72015797f0acd27d4670e9da4c1
   languageName: node
   linkType: hard
 
@@ -5995,10 +5995,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@emotion/is-prop-valid@npm:1.2.0":
+  version: 1.2.0
+  resolution: "@emotion/is-prop-valid@npm:1.2.0"
+  dependencies:
+    "@emotion/memoize": ^0.8.0
+  checksum: cc7a19850a4c5b24f1514665289442c8c641709e6f7711067ad550e05df331da0692a16148e85eda6f47e31b3261b64d74c5e25194d053223be16231f969d633
+  languageName: node
+  linkType: hard
+
 "@emotion/memoize@npm:^0.7.4, @emotion/memoize@npm:^0.7.5":
   version: 0.7.5
   resolution: "@emotion/memoize@npm:0.7.5"
   checksum: 83da8d4a7649a92c72f960817692bc6be13cc13e107b9f7e878d63766525ed4402881bfeb3cda61145c050281e7e260f114a0a2870515527346f2ef896b915b3
+  languageName: node
+  linkType: hard
+
+"@emotion/memoize@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "@emotion/memoize@npm:0.8.0"
+  checksum: c87bb110b829edd8e1c13b90a6bc37cebc39af29c7599a1e66a48e06f9bec43e8e53495ba86278cc52e7589549492c8dfdc81d19f4fdec0cee6ba13d2ad2c928
   languageName: node
   linkType: hard
 
