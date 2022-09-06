@@ -75,6 +75,7 @@
   },
   "resolutions": {
     "@commercetools-uikit/design-system": "https://uikit-theming.netlify.app/commercetools-uikit-design-system-15.2.1.tgz",
-    "@commercetools-uikit/input-utils": "https://uikit-theming.netlify.app/commercetools-uikit-input-utils-15.2.1.tgz"
+    "@commercetools-uikit/input-utils": "https://uikit-theming.netlify.app/commercetools-uikit-input-utils-15.2.1.tgz",
+    "@commercetools-uikit/select-utils": "https://uikit-theming.netlify.app/commercetools-uikit-select-utils-15.2.1.tgz"
   }
 }

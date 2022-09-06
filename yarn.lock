@@ -5285,27 +5285,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/select-utils@npm:15.1.0":
-  version: 15.1.0
-  resolution: "@commercetools-uikit/select-utils@npm:15.1.0"
+"@commercetools-uikit/select-utils@https://uikit-theming.netlify.app/commercetools-uikit-select-utils-15.2.1.tgz":
+  version: 15.2.1
+  resolution: "@commercetools-uikit/select-utils@https://uikit-theming.netlify.app/commercetools-uikit-select-utils-15.2.1.tgz"
   dependencies:
     "@babel/runtime": ^7.17.2
     "@babel/runtime-corejs3": ^7.17.2
-    "@commercetools-uikit/accessible-button": 15.1.0
-    "@commercetools-uikit/design-system": 15.1.0
-    "@commercetools-uikit/icons": 15.1.0
-    "@commercetools-uikit/spacings": 15.1.0
-    "@commercetools-uikit/text": 15.1.0
-    "@commercetools-uikit/utils": 15.1.0
+    "@commercetools-uikit/accessible-button": 15.2.1
+    "@commercetools-uikit/design-system": 15.2.1
+    "@commercetools-uikit/icons": 15.2.1
+    "@commercetools-uikit/spacings": 15.2.1
+    "@commercetools-uikit/text": 15.2.1
+    "@commercetools-uikit/utils": 15.2.1
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     lodash: 4.17.21
     prop-types: 15.8.1
-    react-select: 5.3.2
+    react-select: 5.4.0
   peerDependencies:
     react: 17.x
     react-intl: 5.x
-  checksum: d7443e262a6d5eb31cc0d4759cb20eb062abfa2c9dc1be8e71298c3a62cfcb4e0fa85ec1d359e42fdfd5aa5ca9a2c4db03fa4b25181c2ca383b8aa2fc45ebc27
+  checksum: 9f2c13dbfc6c0e0026c93f39697ea7a3e74102909da1a19b4179323dd827d67a0050564cba38cd6069c0335d51ef83bcfbe2b8008eda3b63cbcc6948a34c4398
   languageName: node
   linkType: hard
 
@@ -5357,6 +5357,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@commercetools-uikit/spacings-inset-squish@npm:15.2.1":
+  version: 15.2.1
+  resolution: "@commercetools-uikit/spacings-inset-squish@npm:15.2.1"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+    "@babel/runtime-corejs3": ^7.17.2
+    "@commercetools-uikit/design-system": 15.2.1
+    "@commercetools-uikit/utils": 15.2.1
+    "@emotion/react": ^11.4.0
+    prop-types: 15.8.1
+  peerDependencies:
+    react: 17.x
+  checksum: 07a32d96341ebc305f83481ca345565b4aca2b1832b7e5b4cd0cdb83d1213f31ecbe53103994ec49a2c3796195d9c15bb29a349b8019f92f18413ea993103482
+  languageName: node
+  linkType: hard
+
 "@commercetools-uikit/spacings-inset@npm:15.1.0":
   version: 15.1.0
   resolution: "@commercetools-uikit/spacings-inset@npm:15.1.0"
@@ -5370,6 +5386,22 @@ __metadata:
   peerDependencies:
     react: 17.x
   checksum: 7b9c34ce6ef178a8f9660674cfff2911734a0b481bcc6ed753f91bb8e41137be3465638ca9dab3ca741030e93c267c1eeff4387ed46eaa1384c68cc99eae80ce
+  languageName: node
+  linkType: hard
+
+"@commercetools-uikit/spacings-inset@npm:15.2.1":
+  version: 15.2.1
+  resolution: "@commercetools-uikit/spacings-inset@npm:15.2.1"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+    "@babel/runtime-corejs3": ^7.17.2
+    "@commercetools-uikit/design-system": 15.2.1
+    "@commercetools-uikit/utils": 15.2.1
+    "@emotion/react": ^11.4.0
+    prop-types: 15.8.1
+  peerDependencies:
+    react: 17.x
+  checksum: 64abc1d2cd2147be42280c048066d5e8e93a141eee2378a62db4b73f8db21db245e394bab5e7f757deb895f46cc4403b6901dddd8465e090d30fcd22ef3bac58
   languageName: node
   linkType: hard
 
@@ -5389,6 +5421,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@commercetools-uikit/spacings-stack@npm:15.2.1":
+  version: 15.2.1
+  resolution: "@commercetools-uikit/spacings-stack@npm:15.2.1"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+    "@babel/runtime-corejs3": ^7.17.2
+    "@commercetools-uikit/design-system": 15.2.1
+    "@commercetools-uikit/utils": 15.2.1
+    "@emotion/react": ^11.4.0
+    prop-types: 15.8.1
+  peerDependencies:
+    react: 17.x
+  checksum: 4ad336d0dc866723459e5ed156e629d635e2af128555fb4371b805baf439c7e641ac6b8f8c98406af5a42e5221e17b6376e3b895be131dac4c2381759349fe77
+  languageName: node
+  linkType: hard
+
 "@commercetools-uikit/spacings@npm:15.1.0, @commercetools-uikit/spacings@npm:^15.1.0":
   version: 15.1.0
   resolution: "@commercetools-uikit/spacings@npm:15.1.0"
@@ -5402,6 +5450,22 @@ __metadata:
   peerDependencies:
     react: 17.x
   checksum: e471ca5f602b095257598c520df9ad07480af8f1812baf56b1fb056a02e438efbf40e2861f283e7c743de1e2209540f3fdf1662adcaa264493b16568f69de6f7
+  languageName: node
+  linkType: hard
+
+"@commercetools-uikit/spacings@npm:15.2.1":
+  version: 15.2.1
+  resolution: "@commercetools-uikit/spacings@npm:15.2.1"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+    "@babel/runtime-corejs3": ^7.17.2
+    "@commercetools-uikit/spacings-inline": 15.2.1
+    "@commercetools-uikit/spacings-inset": 15.2.1
+    "@commercetools-uikit/spacings-inset-squish": 15.2.1
+    "@commercetools-uikit/spacings-stack": 15.2.1
+  peerDependencies:
+    react: 17.x
+  checksum: 5bd4c797b059f45bb7cfe6b991f470ac4e9c4f54c0be19528e2d9c6a9ab7bbe4073973709c9ae2cff41e0acefad5b7e3bdb2df599f1909d30651ec15c7441d00
   languageName: node
   linkType: hard
 

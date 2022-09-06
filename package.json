@@ -173,7 +173,8 @@
     "intl-messageformat-parser": "6.4.4",
     "babel-plugin-typescript-to-proptypes@1.4.2": "patch:babel-plugin-typescript-to-proptypes@npm:1.4.2#.yarn/patches/babel-plugin-typescript-to-proptypes-npm-1.4.2-81920f5edd.patch",
     "@commercetools-uikit/design-system": "https://uikit-theming.netlify.app/commercetools-uikit-design-system-15.2.1.tgz",
-    "@commercetools-uikit/input-utils": "https://uikit-theming.netlify.app/commercetools-uikit-input-utils-15.2.1.tgz"
+    "@commercetools-uikit/input-utils": "https://uikit-theming.netlify.app/commercetools-uikit-input-utils-15.2.1.tgz",
+    "@commercetools-uikit/select-utils": "https://uikit-theming.netlify.app/commercetools-uikit-select-utils-15.2.1.tgz"
   },
   "engines": {
     "node": ">=14",
