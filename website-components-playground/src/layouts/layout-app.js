@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { css, Global } from '@emotion/react';
 import {
-  customProperties,
+  designTokens,
   ThemeProvider,
 } from '@commercetools-uikit/design-system';
 import useWindowHeight from '../hooks/use-window-height';
@@ -32,7 +32,7 @@ const LayoutApp = (props) => {
             padding: 0;
             margin: 0;
             height: auto;
-            color: ${customProperties.colorSolid};
+            color: ${designTokens.colorSolid};
             font-family: 'Open Sans', sans-serif;
             font-size: 13px;
           }

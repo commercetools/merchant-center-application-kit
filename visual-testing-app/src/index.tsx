@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import { css, Global } from '@emotion/react';
 import {
-  customProperties,
+  designTokens,
   ThemeProvider,
 } from '@commercetools-uikit/design-system';
 import { PortalsContainer } from '@commercetools-frontend/application-components';
@@ -20,8 +20,8 @@ ReactDOM.render(
 
         html,
         body {
-          color: ${customProperties.colorSolid};
-          font-family: ${customProperties.fontFamilyDefault};
+          color: ${designTokens.colorSolid};
+          font-family: ${designTokens.fontFamilyDefault};
           font-size: 13px;
           margin: 0;
           padding: 0;
