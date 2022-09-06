@@ -74,6 +74,7 @@
     "redux": "4.2.0"
   },
   "resolutions": {
-    "@commercetools-uikit/design-system": "https://uikit-theming.netlify.app/commercetools-uikit-design-system-15.2.1.tgz"
+    "@commercetools-uikit/design-system": "https://uikit-theming.netlify.app/commercetools-uikit-design-system-15.2.1.tgz",
+    "@commercetools-uikit/input-utils": "https://uikit-theming.netlify.app/commercetools-uikit-input-utils-15.2.1.tgz"
   }
 }

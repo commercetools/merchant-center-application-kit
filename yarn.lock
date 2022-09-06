@@ -4453,6 +4453,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@commercetools-uikit/accessible-button@npm:15.2.1":
+  version: 15.2.1
+  resolution: "@commercetools-uikit/accessible-button@npm:15.2.1"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+    "@babel/runtime-corejs3": ^7.17.2
+    "@commercetools-uikit/design-system": 15.2.1
+    "@commercetools-uikit/utils": 15.2.1
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    "@types/react-is": ^17.0.0
+    lodash: 4.17.21
+    prop-types: 15.8.1
+    react-is: 17.0.2
+  peerDependencies:
+    react: 17.x
+  checksum: fb376ea7175482599398c49526e46f945292c63271f8d2abedf3fd7728bc07923565d6e885eada7a6761cd62091c122d418699264577cd143ad0e50406d86c08
+  languageName: node
+  linkType: hard
+
 "@commercetools-uikit/accessible-hidden@npm:^15.1.0":
   version: 15.1.0
   resolution: "@commercetools-uikit/accessible-hidden@npm:15.1.0"
@@ -4749,6 +4769,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@commercetools-uikit/flat-button@npm:15.2.1":
+  version: 15.2.1
+  resolution: "@commercetools-uikit/flat-button@npm:15.2.1"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+    "@babel/runtime-corejs3": ^7.17.2
+    "@commercetools-uikit/accessible-button": 15.2.1
+    "@commercetools-uikit/design-system": 15.2.1
+    "@commercetools-uikit/spacings-inline": 15.2.1
+    "@commercetools-uikit/text": 15.2.1
+    "@commercetools-uikit/utils": 15.2.1
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    lodash: 4.17.21
+    prop-types: 15.8.1
+    react-intl: ^5.24.6
+  peerDependencies:
+    react: 17.x
+  checksum: ded5f2b632216e2911e0ec9d7753d96fe60dfd7ff857e26491bee48af0a3283982dacfef374731e6b2943622fedecdca94e647ba47382073592edd7c95855241
+  languageName: node
+  linkType: hard
+
 "@commercetools-uikit/grid@npm:^15.1.0":
   version: 15.1.0
   resolution: "@commercetools-uikit/grid@npm:15.1.0"
@@ -4830,23 +4872,43 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/input-utils@npm:15.1.0":
-  version: 15.1.0
-  resolution: "@commercetools-uikit/input-utils@npm:15.1.0"
+"@commercetools-uikit/icons@npm:15.2.1":
+  version: 15.2.1
+  resolution: "@commercetools-uikit/icons@npm:15.2.1"
   dependencies:
     "@babel/runtime": ^7.17.2
     "@babel/runtime-corejs3": ^7.17.2
-    "@commercetools-uikit/design-system": 15.1.0
-    "@commercetools-uikit/flat-button": 15.1.0
-    "@commercetools-uikit/icons": 15.1.0
-    "@commercetools-uikit/utils": 15.1.0
+    "@commercetools-uikit/design-system": 15.2.1
+    "@commercetools-uikit/utils": 15.2.1
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    "@types/dompurify": ^2.3.1
+    dompurify: 2.3.10
+    prop-types: 15.8.1
+    react-from-dom: 0.6.2
+  peerDependencies:
+    react: 17.x
+  checksum: 93976fb01817aed97f04113720574c9a3586917b0525ec1bd31cb47d633012f0795a75149346cc1f8c68789b3a0254bcbb9a9395b8c7fc7d561240eb42cca7fb
+  languageName: node
+  linkType: hard
+
+"@commercetools-uikit/input-utils@https://uikit-theming.netlify.app/commercetools-uikit-input-utils-15.2.1.tgz":
+  version: 15.2.1
+  resolution: "@commercetools-uikit/input-utils@https://uikit-theming.netlify.app/commercetools-uikit-input-utils-15.2.1.tgz"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+    "@babel/runtime-corejs3": ^7.17.2
+    "@commercetools-uikit/design-system": 15.2.1
+    "@commercetools-uikit/flat-button": 15.2.1
+    "@commercetools-uikit/icons": 15.2.1
+    "@commercetools-uikit/utils": 15.2.1
     "@emotion/react": ^11.4.0
     prop-types: 15.8.1
     react-textarea-autosize: 8.3.4
   peerDependencies:
     react: 17.x
     react-intl: 5.x
-  checksum: 677028d2c507b2c20b0fa8fac301d4c79e9bfe6184cda2506d00ea596a3ecb8af4812e3036168a54e0a330a3325757760c55438a82043b745170b6e1fdaa6419
+  checksum: f56c32ca964a240662589c60fc02a0e1b1e841ad0d991f234c1bcf612eaa4ff51cf88905fb994b6252b9c35181e92c048175a1d43de98df92f0f7fc8d6e850f2
   languageName: node
   linkType: hard
 
@@ -5263,6 +5325,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@commercetools-uikit/spacings-inline@npm:15.2.1":
+  version: 15.2.1
+  resolution: "@commercetools-uikit/spacings-inline@npm:15.2.1"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+    "@babel/runtime-corejs3": ^7.17.2
+    "@commercetools-uikit/design-system": 15.2.1
+    "@commercetools-uikit/utils": 15.2.1
+    "@emotion/react": ^11.4.0
+    prop-types: 15.8.1
+  peerDependencies:
+    react: 17.x
+  checksum: 28850b00b76cc9cac0b2878bba41c244984a081b79f0e72942207236179a052fde3150db7afe2905f3f7c01af4a84fa25642d4239fe444a8feb4dd7d440d206a
+  languageName: node
+  linkType: hard
+
 "@commercetools-uikit/spacings-inset-squish@npm:15.1.0":
   version: 15.1.0
   resolution: "@commercetools-uikit/spacings-inset-squish@npm:15.1.0"
@@ -5400,6 +5478,25 @@ __metadata:
     react: 17.x
     react-intl: 5.x
   checksum: 3159659d4c4f8543cee3029590c9cf0d32c9b4dc39851614f8a6e95181b72d78fccbd525a2a99bb0e6e875d6dcefa72bb107b1269dfe63faf4c8dc381580cb6b
+  languageName: node
+  linkType: hard
+
+"@commercetools-uikit/text@npm:15.2.1":
+  version: 15.2.1
+  resolution: "@commercetools-uikit/text@npm:15.2.1"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+    "@babel/runtime-corejs3": ^7.17.2
+    "@commercetools-uikit/design-system": 15.2.1
+    "@commercetools-uikit/utils": 15.2.1
+    "@emotion/react": ^11.4.0
+    lodash: 4.17.21
+    prop-types: 15.8.1
+    warning: 4.0.3
+  peerDependencies:
+    react: 17.x
+    react-intl: 5.x
+  checksum: 0e85b9a0025e0e8df653269dc1052b5ea154e23a2d75bf9793bbb1f0c96b5e0e6238b7b6c37adce063f363cefa2934ec6eeaabeb652018f6563eb8bfd967cfc2
   languageName: node
   linkType: hard
 
@@ -18203,6 +18300,13 @@ __metadata:
   dependencies:
     domelementtype: ^2.3.0
   checksum: 0f58f4a6af63e6f3a4320aa446d28b5790a009018707bce2859dcb1d21144c7876482b5188395a188dfa974238c019e0a1e610d2fc269a12b2c192ea2b0b131c
+  languageName: node
+  linkType: hard
+
+"dompurify@npm:2.3.10":
+  version: 2.3.10
+  resolution: "dompurify@npm:2.3.10"
+  checksum: ee343876b4c065e82d194818c66af76a6d2290264c7db583ad71761c11781fd626f0245f9f4670175d5707c4b8fcfb89adae80bed0418a9426a47ee7f36b0ffc
   languageName: node
   linkType: hard
 
