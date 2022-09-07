@@ -15,6 +15,18 @@
     "view": ["view_orders", "view_states"],
     "manage": ["manage_orders"]
   },
+  "additionalOAuthScopes": [
+    {
+      "name": "movies",
+      "view": ["view_products"],
+      "manage": []
+    },
+    {
+      "name": "merch",
+      "view": [],
+      "manage": ["manage_channels"]
+    }
+  ],
   "icon": "<svg><path fill=\"#000000\" /></svg>",
   "mainMenuLink": {
     "defaultLabel": "Avengers",
