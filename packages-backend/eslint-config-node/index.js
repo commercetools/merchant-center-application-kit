@@ -117,7 +117,6 @@ module.exports = {
         'jest/no-identical-title': statusCode.error,
         'jest/no-interpolation-in-snapshots': statusCode.error,
         'jest/no-jasmine-globals': statusCode.error,
-        'jest/no-jest-import': statusCode.error,
         'jest/no-mocks-import': statusCode.error,
         'jest/valid-describe-callback': statusCode.error,
         'jest/valid-expect': statusCode.error,
