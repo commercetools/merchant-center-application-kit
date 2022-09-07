@@ -61,6 +61,43 @@
       "additionalProperties": false,
       "required": ["view", "manage"]
     },
+    "additionalOAuthScopes": {
+      "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#additionaloauthscopes",
+      "type": "array",
+      "default": [],
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#additionaloauthscopesname",
+            "type": "string"
+          },
+          "view": {
+            "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#additionaloauthscopesview",
+            "type": "array",
+            "default": [],
+            "items": {
+              "type": "string",
+              "pattern": "view_(.*)"
+            },
+            "uniqueItems": true
+          },
+          "manage": {
+            "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#additionaloauthscopesmanage",
+            "type": "array",
+            "default": [],
+            "items": {
+              "type": "string",
+              "pattern": "manage_(.*)"
+            },
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false,
+        "required": ["name", "view", "manage"]
+      }
+    },
     "env": {
       "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#env",
       "type": "object",

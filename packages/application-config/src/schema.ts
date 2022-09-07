@@ -39,6 +39,23 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
     manage: string[];
   };
   /**
+   * See https://docs.commercetools.com/custom-applications/api-reference/application-config#additionaloauthscopes
+   */
+  additionalOAuthScopes?: {
+    /**
+     * See https://docs.commercetools.com/custom-applications/api-reference/application-config#additionaloauthscopesname
+     */
+    name: string;
+    /**
+     * See https://docs.commercetools.com/custom-applications/api-reference/application-config#additionaloauthscopesview
+     */
+    view: string[];
+    /**
+     * See https://docs.commercetools.com/custom-applications/api-reference/application-config#additionaloauthscopesmanage
+     */
+    manage: string[];
+  }[];
+  /**
    * See https://docs.commercetools.com/custom-applications/api-reference/application-config#env
    */
   env: {
