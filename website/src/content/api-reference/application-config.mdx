@@ -355,6 +355,78 @@ Using `manage_` OAuth Scopes always imply the corresponding `view_` OAuth Scope.
 
 </Info>
 
+## `additionalOAuthScopes`
+
+The configuration for additional OAuth Scopes and user permissions extending [oAuthScopes configuration](#oauthscopes).
+
+## `additionalOAuthScopes.name`
+
+A name used to build the permission keys based on the default permissions pair. 
+
+## `additionalOAuthScopes.view`
+
+A list of "view-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated to the `View` permission.
+
+The following configuration:
+
+```json
+{
+  "additionalOAuthScopes": [
+    {
+      "name": "movies",
+      "view": ["view_products"],
+      "manage": []
+    },
+    {
+      "name": "merch",
+      "view": ["view_channels"],
+      "manage": []
+    }
+  ]
+}
+```
+
+allows to send the additional permission information as claims scoped to each permission group:
+
+```
+view/movies:view_products view/merch:view_channels
+```
+
+## `additionalOAuthScopes.manage`
+
+A list of "manage-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated with the `Manage` permission.
+
+The following configuration:
+
+```json
+{
+  "additionalOAuthScopes": [
+    {
+      "name": "movies",
+      "view": [],
+      "manage": ["manage_products"]
+    },
+    {
+      "name": "merch",
+      "view": [],
+      "manage": ["manage_channels"]
+    }
+  ]
+}
+```
+
+allows to send the additional permission information as claims scoped to each permission group:
+
+```
+manage/movies:manage_products manage/merch:manage_channels
+```
+
+<Info>
+
+Using `manage_` OAuth Scopes always imply the corresponding `view_` OAuth Scope.
+
+</Info>
+
 ## `headers`
 
 An optional object to configure HTTP headers used by the Custom Application.
