@@ -129,6 +129,7 @@ const processConfig = ({
                 : appConfig.env.development.initialProjectKey,
             teamId: appConfig.env.development?.teamId,
             oAuthScopes: appConfig.oAuthScopes,
+            additionalOAuthScopes: appConfig?.additionalOAuthScopes,
           }),
           menuLinks: {
             icon: customApplicationData.icon,
