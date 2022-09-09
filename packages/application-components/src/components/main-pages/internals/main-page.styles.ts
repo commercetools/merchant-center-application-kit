@@ -12,5 +12,7 @@ export const Divider = styled.hr`
 `;
 
 export const MainPageContent = styled.div`
+  flex: 1;
+  flex-basis: 0;
   overflow: auto;
 `;
