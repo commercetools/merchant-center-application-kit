@@ -18,9 +18,9 @@
   "module": "dist/commercetools-backend-express.esm.js",
   "files": ["dist", "package.json", "LICENSE", "README.md"],
   "dependencies": {
-    "@babel/runtime": "^7.18.6",
-    "@babel/runtime-corejs3": "^7.18.6",
-    "@types/node": "^16.11.33",
+    "@babel/runtime": "^7.19.0",
+    "@babel/runtime-corejs3": "^7.19.0",
+    "@types/node": "^16.11.58",
     "express": "4.18.1",
     "express-jwt": "7.7.5",
     "jwks-rsa": "2.1.4"
@@ -28,7 +28,7 @@
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3",
     "@types/express-unless": "^0.5.3",
-    "@types/jsonwebtoken": "^8.5.8",
+    "@types/jsonwebtoken": "^8.5.9",
     "jose": "2.0.6",
     "msw": "0.47.0"
   }

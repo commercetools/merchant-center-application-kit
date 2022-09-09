@@ -13,17 +13,17 @@
     "@commercetools-frontend/assets": "21.14.1",
     "@commercetools-frontend/constants": "21.14.1",
     "@commercetools-frontend/react-notifications": "21.14.1",
-    "@commercetools-uikit/accessible-button": "^15.1.0",
-    "@commercetools-uikit/card": "^15.1.0",
-    "@commercetools-uikit/design-system": "^15.1.0",
-    "@commercetools-uikit/grid": "^15.1.0",
-    "@commercetools-uikit/icon-button": "^15.1.0",
-    "@commercetools-uikit/icons": "^15.1.0",
-    "@commercetools-uikit/link": "^15.1.0",
-    "@commercetools-uikit/spacings": "^15.1.0",
-    "@commercetools-uikit/text": "^15.1.0",
-    "@commercetools-uikit/text-field": "^15.1.0",
-    "@commercetools-uikit/text-input": "^15.1.0",
+    "@commercetools-uikit/accessible-button": "^15.2.2",
+    "@commercetools-uikit/card": "^15.2.2",
+    "@commercetools-uikit/design-system": "^15.2.2",
+    "@commercetools-uikit/grid": "^15.2.2",
+    "@commercetools-uikit/icon-button": "^15.2.2",
+    "@commercetools-uikit/icons": "^15.2.2",
+    "@commercetools-uikit/link": "^15.2.2",
+    "@commercetools-uikit/spacings": "^15.2.2",
+    "@commercetools-uikit/text": "^15.2.2",
+    "@commercetools-uikit/text-field": "^15.2.2",
+    "@commercetools-uikit/text-input": "^15.2.2",
     "@emotion/react": "11.10.4",
     "@emotion/styled": "11.10.4",
     "formik": "2.2.9",
@@ -34,8 +34,8 @@
     "react-router-dom": "5.3.3"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "2.0.1",
+    "@vitejs/plugin-react": "2.1.0",
     "rimraf": "3.0.2",
-    "vite": "3.0.9"
+    "vite": "3.1.0"
   }
 }
