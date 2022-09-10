@@ -9,7 +9,6 @@ import {
   type Middleware,
   type StoreEnhancer,
 } from '@reduxjs/toolkit';
-// This dependency is implicitly included in the `@reduxjs/toolkit` package.
 import thunk from 'redux-thunk';
 import omitEmpty from 'omit-empty-es';
 import {

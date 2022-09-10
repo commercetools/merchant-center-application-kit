@@ -3815,6 +3815,7 @@ __metadata:
     react-select: 5.4.0
     redux: 4.2.0
     redux-logger: 3.0.6
+    redux-thunk: 2.4.1
     tiny-invariant: 1.2.0
     unfetch: 4.2.0
     uuid: 8.3.2
