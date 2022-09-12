@@ -29,13 +29,10 @@ const defaultProps: TApplicationPageTitleProps = {
   additionalParts: [],
 };
 
-const usePageTitle = (props: TApplicationPageTitleProps) => {
-  const location = useLocation();
+const getPageTitle = (pathname: string, additionalParts: string[]) => {
+  const [, projectKeyOrStaticPath, entryPointUriPath] = pathname.split('/');
 
-  const [, projectKeyOrStaticPath, entryPointUriPath] =
-    location.pathname.split('/');
-
-  const customTitleParts = props.additionalParts.map((titlePart: string) => {
+  const customTitleParts = additionalParts.map((titlePart: string) => {
     if (titlePart.length <= maxTitleCharLength) {
       return titlePart;
     }
@@ -62,11 +59,12 @@ const usePageTitle = (props: TApplicationPageTitleProps) => {
 };
 
 const ApplicationPageTitle = (props: TApplicationPageTitleProps) => {
-  const pageTitle = usePageTitle(props);
+  const location = useLocation();
 
   useLayoutEffect(() => {
+    const pageTitle = getPageTitle(location.pathname, props.additionalParts);
     document.title = pageTitle;
-  }, [pageTitle]);
+  }, [location.pathname, props.additionalParts]);
 
   return null;
 };
