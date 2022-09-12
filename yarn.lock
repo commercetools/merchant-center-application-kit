@@ -3299,9 +3299,9 @@ __metadata:
     "@commercetools-frontend/mc-dev-authentication": 21.14.1
     "@commercetools-frontend/mc-scripts": 21.14.1
     "@commercetools-frontend/permissions": 21.14.1
-    "@commercetools-test-data/channel": 4.1.0
-    "@commercetools-test-data/commons": 4.1.0
-    "@commercetools-test-data/core": 4.1.0
+    "@commercetools-test-data/channel": 4.1.1
+    "@commercetools-test-data/commons": 4.1.1
+    "@commercetools-test-data/core": 4.1.1
     "@commercetools-uikit/constraints": ^15.2.2
     "@commercetools-uikit/data-table": ^15.2.2
     "@commercetools-uikit/flat-button": ^15.2.2
@@ -3361,9 +3361,9 @@ __metadata:
     "@commercetools-frontend/mc-dev-authentication": 21.14.1
     "@commercetools-frontend/mc-scripts": 21.14.1
     "@commercetools-frontend/permissions": 21.14.1
-    "@commercetools-test-data/channel": 4.1.0
-    "@commercetools-test-data/commons": 4.1.0
-    "@commercetools-test-data/core": 4.1.0
+    "@commercetools-test-data/channel": 4.1.1
+    "@commercetools-test-data/commons": 4.1.1
+    "@commercetools-test-data/core": 4.1.1
     "@commercetools-uikit/constraints": ^15.2.2
     "@commercetools-uikit/data-table": ^15.2.2
     "@commercetools-uikit/flat-button": ^15.2.2
@@ -4405,56 +4405,56 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-test-data/channel@npm:4.1.0":
-  version: 4.1.0
-  resolution: "@commercetools-test-data/channel@npm:4.1.0"
+"@commercetools-test-data/channel@npm:4.1.1":
+  version: 4.1.1
+  resolution: "@commercetools-test-data/channel@npm:4.1.1"
   dependencies:
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
-    "@commercetools-test-data/commons": 4.1.0
-    "@commercetools-test-data/core": 4.1.0
-    "@commercetools-test-data/utils": 4.1.0
-    "@commercetools/platform-sdk": ^2.7.0
+    "@commercetools-test-data/commons": 4.1.1
+    "@commercetools-test-data/core": 4.1.1
+    "@commercetools-test-data/utils": 4.1.1
+    "@commercetools/platform-sdk": ^3.0.0
     "@faker-js/faker": ^7.4.0
-  checksum: e163153e63e3865d6f51250a92ab8216fad518fead207d4c829597660b3479aec5a37a10dc1a946ae9659bc39eb7040db1b4b4494da794a487704a41cb365eee
+  checksum: 7b9118afd3eb54912eb6e9b841c6a5891fea8df79aeec0ec912581c0ef0f17529dda30e7c38c157b463dabd0027afc7a62053cc4081a29f8cc8a6d0c084e32a6
   languageName: node
   linkType: hard
 
-"@commercetools-test-data/commons@npm:4.1.0":
-  version: 4.1.0
-  resolution: "@commercetools-test-data/commons@npm:4.1.0"
+"@commercetools-test-data/commons@npm:4.1.1":
+  version: 4.1.1
+  resolution: "@commercetools-test-data/commons@npm:4.1.1"
   dependencies:
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
-    "@commercetools-test-data/core": 4.1.0
-    "@commercetools/platform-sdk": ^2.7.0
+    "@commercetools-test-data/core": 4.1.1
+    "@commercetools/platform-sdk": ^3.0.0
     "@faker-js/faker": ^7.4.0
     lodash: ^4.17.21
-  checksum: 66ab9003686ca2550f51c3c4ed5b4f3ac07b38f6662c8f037923a1ab3455aa309207ab46392949d4cd4e4cce358bd538240cbed783f11b5d1c3a80702f16ab42
+  checksum: 29bace2ea1186238236d3dd0b598a5658770a80bda1c4ddfd6a46f56271070f6fa6a219add3e483c96c9ba3973620e4a9f2c1a0a5a9f42c3b7529922689890bb
   languageName: node
   linkType: hard
 
-"@commercetools-test-data/core@npm:4.1.0":
-  version: 4.1.0
-  resolution: "@commercetools-test-data/core@npm:4.1.0"
+"@commercetools-test-data/core@npm:4.1.1":
+  version: 4.1.1
+  resolution: "@commercetools-test-data/core@npm:4.1.1"
   dependencies:
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
     "@faker-js/faker": ^7.4.0
     "@types/lodash": ^4.14.182
     lodash: ^4.17.21
-  checksum: 8f1322bf39178ed112cad6c61781935ce563c22d1bdb6f901118fe496c41cecd09765efa500c8ffb4817fd0aad251d6bae48e2025d5bb3a863f7ca61411b9474
+  checksum: fe28588a46c753d819982b53fdb071de882c2aa304dd9b7900e617baec667091cd8eecaa7ad2f38571b582090b288ddbe5e29a31b3bb9deeeaf246382921f4e6
   languageName: node
   linkType: hard
 
-"@commercetools-test-data/utils@npm:4.1.0":
-  version: 4.1.0
-  resolution: "@commercetools-test-data/utils@npm:4.1.0"
+"@commercetools-test-data/utils@npm:4.1.1":
+  version: 4.1.1
+  resolution: "@commercetools-test-data/utils@npm:4.1.1"
   dependencies:
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
     "@faker-js/faker": ^7.4.0
-  checksum: cfa3e8d0ef3e98f02ff9d6038011c054a26e74c50222800dbd027061fe484c98d36752239482166a075f3aa91ef9bbd92e481e7957a14ccd8eceebdbc39379b0
+  checksum: f4fdf96fd47e4adaa793402dea6922ed9c5aaaf5484d01af38b2256fa1574669e24b6d2461e1de841ef85f690bdeb7a84b10db1a9942d5fcaa6265168bc6dcce
   languageName: node
   linkType: hard
 
@@ -5981,16 +5981,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools/platform-sdk@npm:^2.7.0":
-  version: 2.7.0
-  resolution: "@commercetools/platform-sdk@npm:2.7.0"
+"@commercetools/platform-sdk@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@commercetools/platform-sdk@npm:3.0.0"
   dependencies:
     "@commercetools/sdk-client-v2": ^1.4.0
     "@commercetools/sdk-middleware-auth": ^6.0.4
     "@commercetools/sdk-middleware-http": ^6.0.4
     "@commercetools/sdk-middleware-logger": ^2.1.1
     querystring: ^0.2.1
-  checksum: 975bcf9e87b8b2e262e9fd34bd90e335de236a76b437dbbd2692b57346e5e022c0af446d338c13a710e09eae7e72b7c3ddbaaa2fb5659d6a53e31e025f6cddf8
+  checksum: 00a796cc65e739e298048ec548a5c9bd67456f67e0d5e8dde5e7714c71d60a485d3f6e1de42322141b66939e275e0e11b6b58882007086cd54b2bae65ccb92b9
   languageName: node
   linkType: hard
 
@@ -29088,7 +29088,7 @@ __metadata:
     "@changesets/changelog-github": 0.4.6
     "@changesets/cli": 2.24.4
     "@commercetools-docs/writing-style": 3.2.0
-    "@commercetools-test-data/core": 4.1.0
+    "@commercetools-test-data/core": 4.1.1
     "@commercetools-uikit/design-system": ^15.2.2
     "@commercetools/github-labels": 1.1.0
     "@commitlint/cli": 17.1.2

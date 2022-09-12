@@ -89,7 +89,7 @@
     "@changesets/changelog-github": "0.4.6",
     "@changesets/cli": "2.24.4",
     "@commercetools-docs/writing-style": "3.2.0",
-    "@commercetools-test-data/core": "4.1.0",
+    "@commercetools-test-data/core": "4.1.1",
     "@commercetools-uikit/design-system": "^15.2.2",
     "@commercetools/github-labels": "1.1.0",
     "@commitlint/cli": "17.1.2",
