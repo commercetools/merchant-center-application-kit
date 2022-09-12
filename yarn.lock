@@ -3325,13 +3325,13 @@ __metadata:
     "@manypkg/cli": 0.19.1
     "@testing-library/react": 12.1.5
     "@testing-library/react-hooks": 7.0.2
-    eslint: 8.23.0
+    eslint: 8.23.1
     eslint-formatter-pretty: 4.1.0
     eslint-plugin-graphql: ^4.0.0
     jest: 27.5.1
     jest-runner-eslint: 1.1.0
     jest-watch-typeahead: 1.1.0
-    msw: 0.47.0
+    msw: 0.47.1
     omit-empty-es: 1.1.3
     prettier: 2.7.1
     react: 17.0.2
@@ -3386,12 +3386,12 @@ __metadata:
     "@manypkg/cli": 0.19.1
     "@testing-library/react": 12.1.5
     "@testing-library/react-hooks": 7.0.2
-    eslint: 8.23.0
+    eslint: 8.23.1
     eslint-formatter-pretty: 4.1.0
     jest: 27.5.1
     jest-runner-eslint: 1.1.0
     jest-watch-typeahead: 1.1.0
-    msw: 0.47.0
+    msw: 0.47.1
     omit-empty-es: 1.1.3
     prettier: 2.7.1
     prop-types: 15.8.1
@@ -3416,7 +3416,7 @@ __metadata:
     "@tsconfig/node16": ^1.0.3
     "@typescript-eslint/eslint-plugin": ^5.36.2
     "@typescript-eslint/parser": ^5.36.2
-    eslint: 8.23.0
+    eslint: 8.23.1
     eslint-config-prettier: ^8.5.0
     eslint-import-resolver-typescript: ^3.5.1
     eslint-plugin-import: ^2.26.0
@@ -3442,7 +3442,7 @@ __metadata:
     express-jwt: 7.7.5
     jose: 2.0.6
     jwks-rsa: 2.1.4
-    msw: 0.47.0
+    msw: 0.47.1
   languageName: unknown
   linkType: soft
 
@@ -3618,7 +3618,7 @@ __metadata:
     "@commercetools-frontend/constants": 21.14.1
     "@commercetools-frontend/notifications": 21.14.1
     "@commercetools-frontend/sentry": 21.14.1
-    "@types/lodash": ^4.14.184
+    "@types/lodash": ^4.14.185
     "@types/react": ^17.0.49
     "@types/react-redux": ^7.1.24
     lodash: 4.17.21
@@ -3662,7 +3662,7 @@ __metadata:
     "@react-hook/latest": 1.0.3
     "@react-hook/resize-observer": 1.2.6
     "@types/history": ^4.7.11
-    "@types/lodash": ^4.14.184
+    "@types/lodash": ^4.14.185
     "@types/prop-types": ^15.7.5
     "@types/raf-schd": ^4.0.1
     "@types/react": ^17.0.49
@@ -3717,7 +3717,7 @@ __metadata:
     "@commercetools-frontend/sentry": 21.14.1
     "@emotion/react": 11.10.4
     "@testing-library/react": 12.1.5
-    "@types/lodash": ^4.14.184
+    "@types/lodash": ^4.14.185
     "@types/prop-types": ^15.7.5
     "@types/react": ^17.0.49
     graphql: 16.6.0
@@ -3778,7 +3778,7 @@ __metadata:
     "@testing-library/react-hooks": 7.0.2
     "@types/common-tags": ^1.8.1
     "@types/history": ^4.7.11
-    "@types/lodash": ^4.14.184
+    "@types/lodash": ^4.14.185
     "@types/prop-types": ^15.7.5
     "@types/react": ^17.0.49
     "@types/react-dom": ^17.0.17
@@ -3801,7 +3801,7 @@ __metadata:
     memoize-one: 5.2.1
     moment: ^2.29.4
     moment-timezone: ^0.5.37
-    msw: 0.47.0
+    msw: 0.47.1
     omit-empty-es: 1.1.3
     perfume.js: 6.4.0
     prop-types: 15.8.1
@@ -3954,7 +3954,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.36.2
     "@typescript-eslint/parser": ^5.36.2
     confusing-browser-globals: ^1.0.11
-    eslint: 8.23.0
+    eslint: 8.23.1
     eslint-config-prettier: ^8.5.0
     eslint-import-resolver-typescript: ^3.5.1
     eslint-plugin-cypress: ^2.12.1
@@ -3965,7 +3965,7 @@ __metadata:
     eslint-plugin-prettier: ^4.2.1
     eslint-plugin-react: ^7.31.8
     eslint-plugin-react-hooks: ^4.6.0
-    eslint-plugin-testing-library: ^5.6.2
+    eslint-plugin-testing-library: ^5.6.3
   peerDependencies:
     eslint: 8.x
   languageName: unknown
@@ -4116,7 +4116,7 @@ __metadata:
     "@svgr/core": ^6.3.1
     "@svgr/webpack": ^6.3.1
     "@tsconfig/node16": ^1.0.3
-    "@types/lodash": ^4.14.184
+    "@types/lodash": ^4.14.185
     "@types/mock-fs": ^4.13.1
     "@types/moment-locales-webpack-plugin": ^1.2.3
     "@types/node-fetch": 2.6.2
@@ -4124,7 +4124,7 @@ __metadata:
     "@types/serve-handler": ^6.1.1
     "@types/svgo": ^2.6.4
     "@vitejs/plugin-react": 2.1.0
-    autoprefixer: ^10.4.8
+    autoprefixer: ^10.4.9
     babel-loader: 8.2.5
     browserslist: ^4.21.3
     cac: 6.7.14
@@ -4143,7 +4143,7 @@ __metadata:
     mini-css-extract-plugin: 2.6.1
     mock-fs: ^5.1.4
     moment-locales-webpack-plugin: 1.2.0
-    msw: 0.47.0
+    msw: 0.47.1
     node-fetch: 2.6.7
     postcss: 8.4.16
     postcss-custom-media: 8.0.2
@@ -4196,7 +4196,7 @@ __metadata:
     "@commercetools-frontend/application-shell-connectors": 21.14.1
     "@commercetools-frontend/sentry": 21.14.1
     "@emotion/react": 11.10.4
-    "@types/lodash": ^4.14.184
+    "@types/lodash": ^4.14.185
     "@types/prop-types": ^15.7.5
     "@types/react": ^17.0.49
     lodash: 4.17.21
@@ -4229,7 +4229,7 @@ __metadata:
     "@emotion/styled": 11.10.4
     "@testing-library/react": 12.1.5
     "@types/history": ^4.7.11
-    "@types/lodash": ^4.14.184
+    "@types/lodash": ^4.14.185
     "@types/prop-types": ^15.7.5
     "@types/react": ^17.0.49
     "@types/react-dom": ^17.0.17
@@ -6790,7 +6790,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/eslintrc@npm:^1.3.1":
+"@eslint/eslintrc@npm:^1.3.2":
   version: 1.3.2
   resolution: "@eslint/eslintrc@npm:1.3.2"
   dependencies:
@@ -11870,7 +11870,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.14.184":
+"@types/lodash@npm:^4.14.185":
   version: 4.14.185
   resolution: "@types/lodash@npm:4.14.185"
   checksum: f81d13da5ecab110ca9c5c7cc2bedc3c9802a6acf668576aecd1b8f4b134ed81d06c15f1e600fb08f05975098280a0d97d30cddfc2cb39ec1c6b56e971ca53b3
@@ -14278,7 +14278,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autoprefixer@npm:^10.4.8":
+"autoprefixer@npm:^10.4.9":
   version: 10.4.9
   resolution: "autoprefixer@npm:10.4.9"
   dependencies:
@@ -15634,10 +15634,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.30001370, caniuse-lite@npm:^1.0.30001394":
+"caniuse-lite@npm:^1.0.30001370":
   version: 1.0.30001399
   resolution: "caniuse-lite@npm:1.0.30001399"
   checksum: dd105b06fbbdc89867780a2f4debc3ecb184cff82f35b34aaac486628fcc9cf6bacf37573a9cc22dedc661178d460fa8401374a933cb9d2f8ee67316d98b2a8f
+  languageName: node
+  linkType: hard
+
+"caniuse-lite@npm:^1.0.30001394":
+  version: 1.0.30001397
+  resolution: "caniuse-lite@npm:1.0.30001397"
+  checksum: 29b31780397221303b8fadda535e71f20319216df75028c60527f10f1aba1237ec81fa9c1d6b8fb3a0a83c201c01af8090e9cbb292da08c2538f367b1148a7ba
   languageName: node
   linkType: hard
 
@@ -20418,14 +20425,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-testing-library@npm:^5.6.2":
-  version: 5.6.4
-  resolution: "eslint-plugin-testing-library@npm:5.6.4"
+"eslint-plugin-testing-library@npm:^5.6.3":
+  version: 5.6.3
+  resolution: "eslint-plugin-testing-library@npm:5.6.3"
   dependencies:
     "@typescript-eslint/utils": ^5.13.0
   peerDependencies:
     eslint: ^7.5.0 || ^8.0.0
-  checksum: dae759c3669fdb200699cfcf6e76d2839745aefd1eba2171ad4589047a4f2d95781b3f93384cb7f994c775e858c720698e2003237a232d8512009e382f410397
+  checksum: 4076cc83918a68126d2b278133fda3a8604e3f426a881541f5e931487cf02514ae2171081186d5f97f188f0ca373ebee00cee1b0cb56ab89bab9a2abec3baa4a
   languageName: node
   linkType: hard
 
@@ -20521,11 +20528,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:8.23.0":
-  version: 8.23.0
-  resolution: "eslint@npm:8.23.0"
+"eslint@npm:8.23.1":
+  version: 8.23.1
+  resolution: "eslint@npm:8.23.1"
   dependencies:
-    "@eslint/eslintrc": ^1.3.1
+    "@eslint/eslintrc": ^1.3.2
     "@humanwhocodes/config-array": ^0.10.4
     "@humanwhocodes/gitignore-to-minimatch": ^1.0.2
     "@humanwhocodes/module-importer": ^1.0.1
@@ -20544,7 +20551,6 @@ __metadata:
     fast-deep-equal: ^3.1.3
     file-entry-cache: ^6.0.1
     find-up: ^5.0.0
-    functional-red-black-tree: ^1.0.1
     glob-parent: ^6.0.1
     globals: ^13.15.0
     globby: ^11.1.0
@@ -20553,6 +20559,7 @@ __metadata:
     import-fresh: ^3.0.0
     imurmurhash: ^0.1.4
     is-glob: ^4.0.0
+    js-sdsl: ^4.1.4
     js-yaml: ^4.1.0
     json-stable-stringify-without-jsonify: ^1.0.1
     levn: ^0.4.1
@@ -20566,7 +20573,7 @@ __metadata:
     text-table: ^0.2.0
   bin:
     eslint: bin/eslint.js
-  checksum: ff6075daa28d817a7ac4508f31bc108a04d9ab5056608c8651b5bf9cfea5d708ca16dea6cdab2c3c0ae99b0bf0e726af8504eaa8e17c8e12e242cb68237ead64
+  checksum: a727e15492786a03b438bcf021db49f715680679846a7b8d79b98ad34576f2a570404ffe882d3c3e26f6359bff7277ef11fae5614bfe8629adb653f20d018c71
   languageName: node
   linkType: hard
 
@@ -27040,6 +27047,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"js-sdsl@npm:^4.1.4":
+  version: 4.1.4
+  resolution: "js-sdsl@npm:4.1.4"
+  checksum: 1977cea4ab18e0e03e28bdf0371d8b443fad65ca0988e0faa216406faf6bb943714fe8f7cc7a5bfe5f35ba3d94ddae399f4d10200f547f2c3320688b0670d726
+  languageName: node
+  linkType: hard
+
 "js-tokens@npm:^3.0.0 || ^4.0.0, js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -29117,14 +29131,14 @@ __metadata:
     "@types/uuid": 8.3.4
     "@types/webpack-env": 1.18.0
     apollo-server-errors: 3.3.1
-    autoprefixer: ^10.4.8
+    autoprefixer: ^10.4.9
     babel-plugin-import-graphql: ^2.8.1
     babel-plugin-transform-rename-import: ^2.3.0
     babel-plugin-typescript-to-proptypes: 1.4.2
     cross-env: 7.0.3
     cypress: 10.7.0
     dotenv: 16.0.2
-    eslint: 8.23.0
+    eslint: 8.23.1
     eslint-formatter-pretty: 4.1.0
     eslint-plugin-graphql: ^4.0.0
     graphql: 16.6.0
@@ -29828,9 +29842,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:0.47.0":
-  version: 0.47.0
-  resolution: "msw@npm:0.47.0"
+"msw@npm:0.47.1":
+  version: 0.47.1
+  resolution: "msw@npm:0.47.1"
   dependencies:
     "@mswjs/cookies": ^0.2.2
     "@mswjs/interceptors": ^0.17.2
@@ -29859,7 +29873,7 @@ __metadata:
       optional: true
   bin:
     msw: cli/index.js
-  checksum: d48cd73327da0e44700595ebaaf0b8ee5f1b6c56c081d65ceed52dd8f49b64ce7a6734c84f8ab1093594e0c87b2554b6c35f7f92894c93148540dbfac826c441
+  checksum: 37c99836014181ad52267fe031bb9dec355d3728b9f57abbf239340dcbe9c75d29a959c627fb812b353c4ed292dbc51d557f0d0ef0108e439dfec0e8962ddd83
   languageName: node
   linkType: hard
 

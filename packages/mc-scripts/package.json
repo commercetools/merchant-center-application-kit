@@ -62,7 +62,7 @@
     "@types/prompts": "^2.4.0",
     "@types/svgo": "^2.6.4",
     "@vitejs/plugin-react": "2.1.0",
-    "autoprefixer": "^10.4.8",
+    "autoprefixer": "^10.4.9",
     "babel-loader": "8.2.5",
     "browserslist": "^4.21.3",
     "cac": "6.7.14",
@@ -108,13 +108,13 @@
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3",
-    "@types/lodash": "^4.14.184",
+    "@types/lodash": "^4.14.185",
     "@types/mock-fs": "^4.13.1",
     "@types/moment-locales-webpack-plugin": "^1.2.3",
     "@types/node-fetch": "2.6.2",
     "@types/serve-handler": "^6.1.1",
     "mock-fs": "^5.1.4",
-    "msw": "0.47.0",
+    "msw": "0.47.1",
     "rimraf": "3.0.2"
   },
   "engines": {
