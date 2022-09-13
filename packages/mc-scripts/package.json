@@ -114,7 +114,7 @@
     "@types/node-fetch": "2.6.2",
     "@types/serve-handler": "^6.1.1",
     "mock-fs": "^5.1.4",
-    "msw": "0.47.1",
+    "msw": "0.47.2",
     "rimraf": "3.0.2"
   },
   "engines": {
