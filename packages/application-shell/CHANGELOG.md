@@ -1,5 +1,32 @@
 # @commercetools-frontend/application-shell
 
+## 21.14.1
+
+### Patch Changes
+
+- [#2802](https://github.com/commercetools/merchant-center-application-kit/pull/2802) [`66e4f3296`](https://github.com/commercetools/merchant-center-application-kit/commit/66e4f329679f92483bad96d2ed10184a56cdef0c) Thanks [@ddouglasz](https://github.com/ddouglasz)! - Fix issue with page title still rendering previous title even after navigating to a new location.
+
+* [#2791](https://github.com/commercetools/merchant-center-application-kit/pull/2791) [`ea9d188bf`](https://github.com/commercetools/merchant-center-application-kit/commit/ea9d188bf301366e7738e6d18b5bc99e7783dda2) Thanks [@dependabot](https://github.com/apps/dependabot)! - Security patch of `moment-timezone`
+
+- [#2798](https://github.com/commercetools/merchant-center-application-kit/pull/2798) [`abdb1843e`](https://github.com/commercetools/merchant-center-application-kit/commit/abdb1843ec5574903cb23ea8de288f40d9107b08) Thanks [@ddouglasz](https://github.com/ddouglasz)! - Export `<ApplicationPageTitle>` component
+
+- Updated dependencies [[`cb327cb2e`](https://github.com/commercetools/merchant-center-application-kit/commit/cb327cb2e518b039f878e255202b6d77a5080d16), [`ea9d188bf`](https://github.com/commercetools/merchant-center-application-kit/commit/ea9d188bf301366e7738e6d18b5bc99e7783dda2), [`91c0da4f9`](https://github.com/commercetools/merchant-center-application-kit/commit/91c0da4f9afa92e44a22c8c3af38f545488d5e44)]:
+  - @commercetools-frontend/application-components@21.14.1
+  - @commercetools-frontend/application-shell-connectors@21.14.1
+  - @commercetools-frontend/l10n@21.14.1
+  - @commercetools-frontend/react-notifications@21.14.1
+  - @commercetools-frontend/application-config@21.14.1
+  - @commercetools-frontend/permissions@21.14.1
+  - @commercetools-frontend/actions-global@21.14.1
+  - @commercetools-frontend/assets@21.14.1
+  - @commercetools-frontend/browser-history@21.14.1
+  - @commercetools-frontend/constants@21.14.1
+  - @commercetools-frontend/i18n@21.14.1
+  - @commercetools-frontend/notifications@21.14.1
+  - @commercetools-frontend/sdk@21.14.1
+  - @commercetools-frontend/sentry@21.14.1
+  - @commercetools-frontend/url-utils@21.14.1
+
 ## 21.14.0
 
 ### Minor Changes

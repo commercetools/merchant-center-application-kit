@@ -1,5 +1,18 @@
 # @commercetools-frontend/application-components
 
+## 21.14.1
+
+### Patch Changes
+
+- [#2800](https://github.com/commercetools/merchant-center-application-kit/pull/2800) [`cb327cb2e`](https://github.com/commercetools/merchant-center-application-kit/commit/cb327cb2e518b039f878e255202b6d77a5080d16) Thanks [@Rhotimee](https://github.com/Rhotimee)! - Fix main page components to use available height space.
+
+- Updated dependencies [[`ea9d188bf`](https://github.com/commercetools/merchant-center-application-kit/commit/ea9d188bf301366e7738e6d18b5bc99e7783dda2)]:
+  - @commercetools-frontend/application-shell-connectors@21.14.1
+  - @commercetools-frontend/l10n@21.14.1
+  - @commercetools-frontend/assets@21.14.1
+  - @commercetools-frontend/constants@21.14.1
+  - @commercetools-frontend/i18n@21.14.1
+
 ## 21.14.0
 
 ### Minor Changes

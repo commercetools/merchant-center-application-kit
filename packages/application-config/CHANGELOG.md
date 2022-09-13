@@ -1,5 +1,14 @@
 # @commercetools-frontend/application-config
 
+## 21.14.1
+
+### Patch Changes
+
+- [#2796](https://github.com/commercetools/merchant-center-application-kit/pull/2796) [`91c0da4f9`](https://github.com/commercetools/merchant-center-application-kit/commit/91c0da4f9afa92e44a22c8c3af38f545488d5e44) Thanks [@emmenko](https://github.com/emmenko)! - Allow to pass additional permission group names to the "entry point formatters". Additionally, refine the inferred types.
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.14.1
+
 ## 21.14.0
 
 ### Patch Changes
