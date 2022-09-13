@@ -6,8 +6,9 @@ import {
   mapResourceAccessToAppliedPermissions,
 } from '@commercetools-frontend/application-shell/test-utils';
 import { buildGraphqlList } from '@commercetools-test-data/core';
-import { renderApplicationWithRedux } from '../../test-utils';
 import * as Channel from '@commercetools-test-data/channel';
+import { LocalizedString } from '@commercetools-test-data/commons';
+import { renderApplicationWithRedux } from '../../test-utils';
 import { entryPointUriPath, PERMISSIONS } from '../../constants';
 import ApplicationRoutes from '../../routes';
 
@@ -50,9 +51,9 @@ it('should render channels and paginate to second page', async () => {
         ctx.data({
           channels: buildGraphqlList(
             Array.from({ length: itemsPerPage }).map((_, index) =>
-              Channel.random().key(
-                `channel-key-${offset === 0 ? index : 20 + index}`
-              )
+              Channel.random()
+                .name(LocalizedString.random())
+                .key(`channel-key-${offset === 0 ? index : 20 + index}`)
             ),
             {
               name: 'Channel',
