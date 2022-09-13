@@ -1,5 +1,5 @@
 ---
-'@commercetools-frontend/application-shell': minor
+'@commercetools-frontend/application-shell': patch
 ---
 
-expose application page title component
+Export `<ApplicationPageTitle>` component
