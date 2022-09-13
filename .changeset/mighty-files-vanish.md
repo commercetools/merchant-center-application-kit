@@ -2,4 +2,4 @@
 '@commercetools-frontend/application-components': patch
 ---
 
-Fix height cropping issue on customFormMainPage
+Fix main page components to use available height space.
