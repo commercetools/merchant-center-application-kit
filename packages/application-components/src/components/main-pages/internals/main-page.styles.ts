@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { customProperties } from '@commercetools-uikit/design-system';
 
 export const MainPageContainer = styled.div`
-  padding: ${customProperties.spacingL};
+  padding: ${customProperties.spacingM};
 `;
 
 export const Divider = styled.hr`
@@ -15,5 +15,5 @@ export const MainPageContent = styled.div`
   flex: 1;
   flex-basis: 0;
   overflow: auto;
-  padding: ${customProperties.spacingL};
+  padding: ${customProperties.spacingM};
 `;
