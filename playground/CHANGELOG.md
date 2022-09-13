@@ -1,5 +1,23 @@
 # playground
 
+## 21.14.1
+
+### Patch Changes
+
+- [#2791](https://github.com/commercetools/merchant-center-application-kit/pull/2791) [`ea9d188bf`](https://github.com/commercetools/merchant-center-application-kit/commit/ea9d188bf301366e7738e6d18b5bc99e7783dda2) Thanks [@dependabot](https://github.com/apps/dependabot)! - Security patch of `moment-timezone`
+
+- Updated dependencies [[`66e4f3296`](https://github.com/commercetools/merchant-center-application-kit/commit/66e4f329679f92483bad96d2ed10184a56cdef0c), [`cb327cb2e`](https://github.com/commercetools/merchant-center-application-kit/commit/cb327cb2e518b039f878e255202b6d77a5080d16), [`ea9d188bf`](https://github.com/commercetools/merchant-center-application-kit/commit/ea9d188bf301366e7738e6d18b5bc99e7783dda2), [`abdb1843e`](https://github.com/commercetools/merchant-center-application-kit/commit/abdb1843ec5574903cb23ea8de288f40d9107b08)]:
+  - @commercetools-frontend/application-shell@21.14.1
+  - @commercetools-frontend/application-components@21.14.1
+  - @commercetools-frontend/application-shell-connectors@21.14.1
+  - @commercetools-frontend/l10n@21.14.1
+  - @commercetools-frontend/permissions@21.14.1
+  - @commercetools-frontend/actions-global@21.14.1
+  - @commercetools-frontend/assets@21.14.1
+  - @commercetools-frontend/constants@21.14.1
+  - @commercetools-frontend/i18n@21.14.1
+  - @commercetools-frontend/sdk@21.14.1
+
 ## 21.14.0
 
 ### Patch Changes

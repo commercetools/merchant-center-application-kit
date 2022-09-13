@@ -1,5 +1,15 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 21.14.1
+
+### Patch Changes
+
+- [#2791](https://github.com/commercetools/merchant-center-application-kit/pull/2791) [`ea9d188bf`](https://github.com/commercetools/merchant-center-application-kit/commit/ea9d188bf301366e7738e6d18b5bc99e7783dda2) Thanks [@dependabot](https://github.com/apps/dependabot)! - Security patch of `moment-timezone`
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.14.1
+  - @commercetools-frontend/sentry@21.14.1
+
 ## 21.14.0
 
 ### Patch Changes

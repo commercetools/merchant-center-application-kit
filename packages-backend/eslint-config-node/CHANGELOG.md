@@ -1,5 +1,13 @@
 # @commercetools-backend/eslint-config-node
 
+## 21.14.1
+
+### Patch Changes
+
+- [#2797](https://github.com/commercetools/merchant-center-application-kit/pull/2797) [`03e9772de`](https://github.com/commercetools/merchant-center-application-kit/commit/03e9772def9106107a192c9c93a05f4e49e5f124) Thanks [@tdeekens](https://github.com/tdeekens)! - Remove `jest/no-jest-import` rule from ESLint configs.
+
+  This allows consumers of our configs to update to `eslint-plugin-jest` v27 which removes the rule as a breaking change.
+
 ## 21.14.0
 
 ## 21.13.1
