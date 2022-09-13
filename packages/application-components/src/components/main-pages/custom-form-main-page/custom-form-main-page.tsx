@@ -71,9 +71,9 @@ const CustomFormMainPage = (props: CustomFormMainPageProps) => {
             </Spacings.Inline>
           )}
           <Divider />
-          <MainPageContent>{props.children}</MainPageContent>
         </Spacings.Stack>
       </MainPageContainer>
+      <MainPageContent>{props.children}</MainPageContent>
     </PageWrapper>
   );
 };
