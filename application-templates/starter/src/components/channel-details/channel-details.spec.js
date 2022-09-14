@@ -9,8 +9,9 @@ import {
 } from '@commercetools-frontend/application-shell/test-utils';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { buildGraphqlList } from '@commercetools-test-data/core';
-import { renderApplicationWithRoutesAndRedux } from '../../test-utils';
 import * as Channel from '@commercetools-test-data/channel';
+import { LocalizedString } from '@commercetools-test-data/commons';
+import { renderApplicationWithRoutesAndRedux } from '../../test-utils';
 import { entryPointUriPath, PERMISSIONS } from '../../constants';
 
 jest.mock('@commercetools-frontend/sentry');
@@ -55,7 +56,10 @@ const fetchChannelDetailsQueryHandler = graphql.query(
   (_req, res, ctx) => {
     return res(
       ctx.data({
-        channel: Channel.random().key(key).buildGraphql(),
+        channel: Channel.random()
+          .name(LocalizedString.random())
+          .key(key)
+          .buildGraphql(),
       })
     );
   }
@@ -87,7 +91,10 @@ const updateChannelDetailsHandler = graphql.mutation(
   (_req, res, ctx) => {
     return res(
       ctx.data({
-        updateChannel: Channel.random().key(key).buildGraphql(),
+        updateChannel: Channel.random()
+          .name(LocalizedString.random())
+          .key(key)
+          .buildGraphql(),
       })
     );
   }
@@ -138,7 +145,9 @@ const useMockServerHandlers = (
           ctx.data({
             channels: buildGraphqlList(
               Array.from({ length: totalItems }).map((_, index) =>
-                Channel.random().key(`channel-key-${index}`)
+                Channel.random()
+                  .name(LocalizedString.random())
+                  .key(`channel-key-${index}`)
               ),
               {
                 name: 'Channel',

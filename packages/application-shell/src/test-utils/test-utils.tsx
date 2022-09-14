@@ -1,36 +1,41 @@
-import type { MockedResponse } from '@apollo/client/testing';
-import type { TFlags } from '@flopflip/types';
-import type { TProviderProps } from '@commercetools-frontend/application-shell-connectors';
-import type { TMapNotificationToComponentProps } from '@commercetools-frontend/react-notifications';
-import type { TSdkMock } from '@commercetools-frontend/sdk/test-utils';
-
 import {
   JSXElementConstructor,
   createElement,
-  ReactElement,
-  ReactNode,
   Suspense,
+  type ReactElement,
+  type ReactNode,
 } from 'react';
 import PropTypes from 'prop-types';
 import { Router } from 'react-router-dom';
 import invariant from 'tiny-invariant';
-import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
+import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client/react';
-import { MockedProvider as ApolloMockProvider } from '@apollo/client/testing';
+import {
+  MockedProvider as ApolloMockProvider,
+  type MockedResponse,
+} from '@apollo/client/testing';
 import * as rtl from '@testing-library/react';
 import * as rtlHooks from '@testing-library/react-hooks';
 import { createMemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
 import { TestProviderFlopFlip } from '@flopflip/react-broadcast';
+import type { TFlags } from '@flopflip/types';
 import { Provider as StoreProvider } from 'react-redux';
 import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
-import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
+import {
+  ApplicationContextProvider,
+  type TProviderProps,
+} from '@commercetools-frontend/application-shell-connectors';
 import {
   NotificationsList,
   NotificationProviderForCustomComponent,
+  type TMapNotificationToComponentProps,
 } from '@commercetools-frontend/react-notifications';
 import { DOMAINS } from '@commercetools-frontend/constants';
-import { createTestMiddleware as createSdkTestMiddleware } from '@commercetools-frontend/sdk/test-utils';
+import {
+  createTestMiddleware as createSdkTestMiddleware,
+  type TSdkMock,
+} from '@commercetools-frontend/sdk/test-utils';
 import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-config/ssr';
 import ApplicationEntryPoint from '../components/application-entry-point';
 import { createReduxStore } from '../configure-store';
@@ -264,32 +269,38 @@ const ApolloProviderWrapper = (props: TApolloProviderWrapperProps) => {
 //
 //  We can add these things as we go and when we need them.
 
-export type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
-  locale: string;
-  mocks?: ReadonlyArray<MockedResponse>;
-  apolloClient?: ApolloClient<NormalizedCacheObject>;
-  route: string;
-  disableRoutePermissionCheck: boolean;
-  disableAutomaticEntryPointRoutes: boolean;
-  history: ReturnType<typeof createEnhancedHistory>;
-  flags: TFlags;
-  environment: Partial<
-    TProviderProps<AdditionalEnvironmentProperties>['environment']
-  >;
-  user: Partial<TProviderProps<AdditionalEnvironmentProperties>['user']>;
-  project: Partial<TProviderProps<AdditionalEnvironmentProperties>['project']>;
-  dataLocale: TProviderProps<AdditionalEnvironmentProperties>['projectDataLocale'];
-} & rtl.RenderOptions;
-type TRenderAppResult<AdditionalEnvironmentProperties = {}> = rtl.RenderResult &
-  Pick<
-    TRenderAppOptions<AdditionalEnvironmentProperties>,
-    'history' | 'user' | 'project' | 'environment'
-  >;
+export type TRenderAppOptions<AdditionalEnvironmentProperties extends {} = {}> =
+  {
+    locale: string;
+    mocks?: ReadonlyArray<MockedResponse>;
+    apolloClient?: ApolloClient<NormalizedCacheObject>;
+    route: string;
+    disableRoutePermissionCheck: boolean;
+    disableAutomaticEntryPointRoutes: boolean;
+    history: ReturnType<typeof createEnhancedHistory>;
+    flags: TFlags;
+    environment: Partial<
+      TProviderProps<AdditionalEnvironmentProperties>['environment']
+    >;
+    user: Partial<TProviderProps<AdditionalEnvironmentProperties>['user']>;
+    project: Partial<
+      TProviderProps<AdditionalEnvironmentProperties>['project']
+    >;
+    dataLocale: TProviderProps<AdditionalEnvironmentProperties>['projectDataLocale'];
+  } & rtl.RenderOptions;
+type TRenderAppResult<AdditionalEnvironmentProperties extends {} = {}> =
+  rtl.RenderResult &
+    Pick<
+      TRenderAppOptions<AdditionalEnvironmentProperties>,
+      'history' | 'user' | 'project' | 'environment'
+    >;
 type TApplicationProvidersProps = {
   children: ReactNode;
 };
 
-function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
+function createApplicationProviders<
+  AdditionalEnvironmentProperties extends {} = {}
+>({
   // application
   disableAutomaticEntryPointRoutes = false,
   disableRoutePermissionCheck = false,
@@ -387,7 +398,7 @@ function createApplicationProviders<AdditionalEnvironmentProperties = {}>({
 
 // Inspired by
 // https://github.com/kentcdodds/react-testing-library-course/blob/2a5b1560656790bb1d9c055fba3845780b2c2c97/src/__tests__/react-router-03.js
-function renderApp<AdditionalEnvironmentProperties = {}>(
+function renderApp<AdditionalEnvironmentProperties extends {} = {}>(
   ui: ReactElement,
   options: Partial<TRenderAppOptions<AdditionalEnvironmentProperties>> = {}
 ): TRenderAppResult<AdditionalEnvironmentProperties> {
@@ -427,8 +438,8 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
 }
 
 export type TRenderAppWithReduxOptions<
-  AdditionalEnvironmentProperties = {},
-  StoreState = {}
+  AdditionalEnvironmentProperties extends {} = {},
+  StoreState extends {} = {}
 > = {
   store: ReturnType<typeof createReduxStore>;
   storeState: StoreState;
@@ -436,8 +447,8 @@ export type TRenderAppWithReduxOptions<
   mapNotificationToComponent: TMapNotificationToComponentProps['mapNotificationToComponent'];
 } & TRenderAppOptions<AdditionalEnvironmentProperties>;
 type TRenderAppWithReduxResult<
-  AdditionalEnvironmentProperties = {},
-  StoreState = {}
+  AdditionalEnvironmentProperties extends {} = {},
+  StoreState extends {} = {}
 > = TRenderAppResult<AdditionalEnvironmentProperties> &
   Pick<
     TRenderAppWithReduxOptions<AdditionalEnvironmentProperties, StoreState>,
@@ -445,8 +456,8 @@ type TRenderAppWithReduxResult<
   >;
 
 function createReduxProviders<
-  AdditionalEnvironmentProperties = {},
-  StoreState = {}
+  AdditionalEnvironmentProperties extends {} = {},
+  StoreState extends {} = {}
 >({
   // The store option is kept around to keep the API open as not all use-cases
   // are known yet. Meanwhile storeState and sdkMocks provide convenient ways
@@ -540,8 +551,8 @@ function createReduxProviders<
 // We expose a sophisticated function because we plan to get rid of Redux
 // Use this function only when your test actually needs Redux
 function renderAppWithRedux<
-  AdditionalEnvironmentProperties = {},
-  StoreState = {}
+  AdditionalEnvironmentProperties extends {} = {},
+  StoreState extends {} = {}
 >(
   ui: ReactElement,
   options: Partial<
@@ -571,16 +582,16 @@ function renderAppWithRedux<
 
 export type TRenderHookOptions<
   RenderedHookProps,
-  AdditionalEnvironmentProperties = {},
-  StoreState = {}
+  AdditionalEnvironmentProperties extends {} = {},
+  StoreState extends {} = {}
 > = TRenderAppWithReduxOptions<AdditionalEnvironmentProperties, StoreState> &
   rtlHooks.RenderHookOptions<RenderedHookProps>;
 
 export type TRenderHookResult<
   RenderHookCallbackProps,
   RenderHookCallbackValue,
-  AdditionalEnvironmentProperties = {},
-  StoreState = {}
+  AdditionalEnvironmentProperties extends {} = {},
+  StoreState extends {} = {}
 > = rtlHooks.RenderHookResult<
   RenderHookCallbackProps,
   RenderHookCallbackValue
@@ -593,8 +604,8 @@ export type TRenderHookResult<
 function renderHook<
   RenderedHookProps,
   RenderedHookResult,
-  AdditionalEnvironmentProperties = {},
-  StoreState = {}
+  AdditionalEnvironmentProperties extends {} = {},
+  StoreState extends {} = {}
 >(
   callback: (props: RenderedHookProps) => RenderedHookResult,
   options: Partial<

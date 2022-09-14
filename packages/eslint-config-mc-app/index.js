@@ -108,6 +108,15 @@ module.exports = {
       'react/jsx-uses-react': statusCode.off,
       'react/react-in-jsx-scope': statusCode.off,
     }),
+    'react/no-unknown-property': [
+      statusCode.error,
+      {
+        ignore: [
+          // To allow using Emotion's `css` prop: https://emotion.sh/docs/css-prop
+          'css',
+        ],
+      },
+    ],
   },
 
   overrides: [
