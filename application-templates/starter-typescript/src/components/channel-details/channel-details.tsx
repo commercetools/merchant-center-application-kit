@@ -30,6 +30,7 @@ import { docToFormValues, formValuesToDoc } from './conversions';
 import ChannelsDetailsForm from './channel-details-form';
 import { transformErrors } from './transform-errors';
 import messages from './messages';
+import { ApplicationPageTitle } from '@commercetools-frontend/application-shell';
 
 type TChannelDetailsProps = {
   onClose: () => void;
@@ -92,57 +93,76 @@ const ChannelDetails = (props: TChannelDetailsProps) => {
   );
 
   return (
-    <ChannelsDetailsForm
-      initialValues={docToFormValues(channel, projectLanguages)}
-      onSubmit={handleSubmit}
-      isReadOnly={!canManage}
-      dataLocale={dataLocale}
-    >
-      {(formProps) => {
-        return (
-          <FormModalPage
-            title={formatLocalizedString(
-              {
-                name: transformLocalizedFieldToLocalizedString(
-                  channel?.nameAllLocales ?? []
-                ),
-              },
-              {
-                key: 'name',
-                locale: dataLocale,
-                fallbackOrder: projectLanguages,
-                fallback: NO_VALUE_FALLBACK,
-              }
-            )}
-            isOpen
-            onClose={props.onClose}
-            isPrimaryButtonDisabled={
-              formProps.isSubmitting || !formProps.isDirty || !canManage
+    <>
+      <ApplicationPageTitle
+        additionalParts={[
+          `${formatLocalizedString(
+            {
+              name: transformLocalizedFieldToLocalizedString(
+                channel?.nameAllLocales ?? []
+              ),
+            },
+            {
+              key: 'name',
+              locale: dataLocale,
+              fallbackOrder: projectLanguages,
+              fallback: NO_VALUE_FALLBACK,
             }
-            isSecondaryButtonDisabled={!formProps.isDirty}
-            onSecondaryButtonClick={formProps.handleReset}
-            onPrimaryButtonClick={() => formProps.submitForm()}
-            labelPrimaryButton={FormModalPage.Intl.save}
-            labelSecondaryButton={FormModalPage.Intl.revert}
-          >
-            {loading && (
-              <Spacings.Stack alignItems="center">
-                <LoadingSpinner />
-              </Spacings.Stack>
-            )}
-            {error && (
-              <ContentNotification type="error">
-                <Text.Body>
-                  {intl.formatMessage(messages.channelDetailsErrorMessage)}
-                </Text.Body>
-              </ContentNotification>
-            )}
-            {channel && formProps.formElements}
-            {channel === null && <PageNotFound />}
-          </FormModalPage>
-        );
-      }}
-    </ChannelsDetailsForm>
+          )}`,
+        ]}
+      />
+      <ChannelsDetailsForm
+        initialValues={docToFormValues(channel, projectLanguages)}
+        onSubmit={handleSubmit}
+        isReadOnly={!canManage}
+        dataLocale={dataLocale}
+      >
+        {(formProps) => {
+          return (
+            <FormModalPage
+              title={formatLocalizedString(
+                {
+                  name: transformLocalizedFieldToLocalizedString(
+                    channel?.nameAllLocales ?? []
+                  ),
+                },
+                {
+                  key: 'name',
+                  locale: dataLocale,
+                  fallbackOrder: projectLanguages,
+                  fallback: NO_VALUE_FALLBACK,
+                }
+              )}
+              isOpen
+              onClose={props.onClose}
+              isPrimaryButtonDisabled={
+                formProps.isSubmitting || !formProps.isDirty || !canManage
+              }
+              isSecondaryButtonDisabled={!formProps.isDirty}
+              onSecondaryButtonClick={formProps.handleReset}
+              onPrimaryButtonClick={() => formProps.submitForm()}
+              labelPrimaryButton={FormModalPage.Intl.save}
+              labelSecondaryButton={FormModalPage.Intl.revert}
+            >
+              {loading && (
+                <Spacings.Stack alignItems="center">
+                  <LoadingSpinner />
+                </Spacings.Stack>
+              )}
+              {error && (
+                <ContentNotification type="error">
+                  <Text.Body>
+                    {intl.formatMessage(messages.channelDetailsErrorMessage)}
+                  </Text.Body>
+                </ContentNotification>
+              )}
+              {channel && formProps.formElements}
+              {channel === null && <PageNotFound />}
+            </FormModalPage>
+          );
+        }}
+      </ChannelsDetailsForm>
+    </>
   );
 };
 ChannelDetails.displayName = 'ChannelDetails';
