@@ -122,10 +122,7 @@ export const createReduxStore = (
       sdkMiddleware,
       ...getDefaultMiddleware({
         // https://redux-toolkit.js.org/usage/usage-guide#working-with-non-serializable-data
-        serializableCheck: {
-          // Ignore these field paths in all actions
-          ignoredActionPaths: ['dismiss'],
-        },
+        serializableCheck: false,
       }),
       loggerMiddleware,
     ],
