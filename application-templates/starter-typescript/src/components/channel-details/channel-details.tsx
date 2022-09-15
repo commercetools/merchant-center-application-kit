@@ -91,26 +91,21 @@ const ChannelDetails = (props: TChannelDetailsProps) => {
       showNotification,
     ]
   );
-
+  const channelName = formatLocalizedString(
+    {
+      name: transformLocalizedFieldToLocalizedString(
+        channel?.nameAllLocales ?? []
+      ),
+    },
+    {
+      key: 'name',
+      locale: dataLocale,
+      fallbackOrder: projectLanguages,
+      fallback: NO_VALUE_FALLBACK,
+    }
+  )
   return (
     <>
-      <ApplicationPageTitle
-        additionalParts={[
-          `${formatLocalizedString(
-            {
-              name: transformLocalizedFieldToLocalizedString(
-                channel?.nameAllLocales ?? []
-              ),
-            },
-            {
-              key: 'name',
-              locale: dataLocale,
-              fallbackOrder: projectLanguages,
-              fallback: NO_VALUE_FALLBACK,
-            }
-          )}`,
-        ]}
-      />
       <ChannelsDetailsForm
         initialValues={docToFormValues(channel, projectLanguages)}
         onSubmit={handleSubmit}
@@ -120,19 +115,7 @@ const ChannelDetails = (props: TChannelDetailsProps) => {
         {(formProps) => {
           return (
             <FormModalPage
-              title={formatLocalizedString(
-                {
-                  name: transformLocalizedFieldToLocalizedString(
-                    channel?.nameAllLocales ?? []
-                  ),
-                },
-                {
-                  key: 'name',
-                  locale: dataLocale,
-                  fallbackOrder: projectLanguages,
-                  fallback: NO_VALUE_FALLBACK,
-                }
-              )}
+              title={channelName}
               isOpen
               onClose={props.onClose}
               isPrimaryButtonDisabled={
@@ -157,6 +140,7 @@ const ChannelDetails = (props: TChannelDetailsProps) => {
                 </ContentNotification>
               )}
               {channel && formProps.formElements}
+              {channel && <ApplicationPageTitle additionalParts={[channelName]} />}
               {channel === null && <PageNotFound />}
             </FormModalPage>
           );

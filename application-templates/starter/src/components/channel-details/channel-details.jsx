@@ -110,46 +110,48 @@ const ChannelDetails = (props) => {
         dataLocale={dataLocale}
       >
         {(formProps) => {
-          return (
-            <FormModalPage
-              title={formatLocalizedString(
-                {
-                  name: formProps.values?.name,
-                },
-                {
-                  key: 'name',
-                  locale: dataLocale,
-                  fallbackOrder: projectLanguages,
-                  fallback: NO_VALUE_FALLBACK,
-                }
-              )}
-              isOpen
-              onClose={props.onClose}
-              isPrimaryButtonDisabled={
-                formProps.isSubmitting || !formProps.isDirty || !canManage
-              }
-              isSecondaryButtonDisabled={!formProps.isDirty}
-              onSecondaryButtonClick={formProps.handleReset}
-              onPrimaryButtonClick={formProps.submitForm}
-              labelPrimaryButton={FormModalPage.Intl.save}
-              labelSecondaryButton={FormModalPage.Intl.revert}
-            >
-              {loading && (
-                <Spacings.Stack alignItems="center">
-                  <LoadingSpinner />
-                </Spacings.Stack>
-              )}
-              {error && (
-                <ContentNotification type="error">
-                  <Text.Body>
-                    {intl.formatMessage(messages.channelDetailsErrorMessage)}
-                  </Text.Body>
-                </ContentNotification>
-              )}
-              {channel && formProps.formElements}
-              {channel === null && <PageNotFound />}
-            </FormModalPage>
-          );
+         const channelName = formatLocalizedString(
+          {
+            name: formProps.values?.name,
+          },
+          {
+            key: 'name',
+            locale: dataLocale,
+            fallbackOrder: projectLanguages,
+            fallback: NO_VALUE_FALLBACK,
+          }
+        );
+        return (
+          <FormModalPage
+            title={channelName}
+            isOpen
+            onClose={props.onClose}
+            isPrimaryButtonDisabled={
+              formProps.isSubmitting || !formProps.isDirty || !canManage
+            }
+            isSecondaryButtonDisabled={!formProps.isDirty}
+            onSecondaryButtonClick={formProps.handleReset}
+            onPrimaryButtonClick={formProps.submitForm}
+            labelPrimaryButton={FormModalPage.Intl.save}
+            labelSecondaryButton={FormModalPage.Intl.revert}
+          >
+            {loading && (
+              <Spacings.Stack alignItems="center">
+                <LoadingSpinner />
+              </Spacings.Stack>
+            )}
+            {error && (
+              <ContentNotification type="error">
+                <Text.Body>
+                  {intl.formatMessage(messages.channelDetailsErrorMessage)}
+                </Text.Body>
+              </ContentNotification>
+            )}
+            {channel && formProps.formElements}
+            {channel && <ApplicationPageTitle additionalParts={[channelName]} />}
+            {channel === null && <PageNotFound />}
+          </FormModalPage>
+        );
         }}
       </ChannelsDetailsForm>
     </>
