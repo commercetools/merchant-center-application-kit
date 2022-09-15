@@ -13,7 +13,7 @@ describe('Channels', () => {
     cy.findByText('Store Munich').should('exist').click();
     cy.title().should(
       'eq',
-      'Store Munich - Template starter - mc-e2e-app-kit-01 - Merchant Center'
+      'Store Munich - Template-starter - mc-e2e-app-kit-01 - Merchant Center'
     );
     cy.percySnapshot();
   });
