@@ -5,4 +5,8 @@
 '@commercetools-frontend/cypress': minor
 ---
 
-Enable passing additional OAuth Scopes in the OIDC flow for local development.
+WIP:
+
+Enable configuring additional permissions in Custom Applications.
+
+Additional permissions are defined with `additionalOAuthScopes` field in the Custom Application. [See docs](https://docs.commercetools.com/custom-applications/concepts/oauth-scopes-and-user-permissions#additional-oauth-scopes).
