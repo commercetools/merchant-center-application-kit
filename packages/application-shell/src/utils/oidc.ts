@@ -5,6 +5,7 @@ import { OIDC_CLAIMS } from '../constants';
 type BuilOidcScopeOptions = {
   projectKey?: ApplicationOidcForDevelopmentConfig['initialProjectKey'];
   oAuthScopes?: ApplicationOidcForDevelopmentConfig['oAuthScopes'];
+  additionalOAuthScopes?: ApplicationOidcForDevelopmentConfig['additionalOAuthScopes'];
   teamId?: ApplicationOidcForDevelopmentConfig['teamId'];
 };
 
@@ -27,6 +28,21 @@ const buildOidcScope = (options: BuilOidcScopeOptions): string => {
       (scope) => `${OIDC_CLAIMS.MANAGE}:${scope}`
     )
   );
+  // Set additional OAuth scopes
+  if (options?.additionalOAuthScopes) {
+    options.additionalOAuthScopes.forEach((additionalOAuthScope) => {
+      claims.push(
+        ...(additionalOAuthScope.view ?? []).map(
+          (viewOAuthScope) =>
+            `view/${additionalOAuthScope.name}:${viewOAuthScope}`
+        ),
+        ...(additionalOAuthScope.manage ?? []).map(
+          (manageOAuthScope) =>
+            `manage/${additionalOAuthScope.name}:${manageOAuthScope}`
+        )
+      );
+    });
+  }
 
   // Set the teamId
   if (options.teamId) {

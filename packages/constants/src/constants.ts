@@ -169,6 +169,11 @@ export type ApplicationOidcForDevelopmentConfig = {
     view: string[];
     manage: string[];
   };
+  additionalOAuthScopes?: {
+    name: string;
+    view: string[];
+    manage: string[];
+  }[];
 };
 
 // Global application environment on window object

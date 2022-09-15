@@ -1130,6 +1130,16 @@ describe('processing a config with OIDC', () => {
               manage: ['manage_orders'],
               view: ['view_orders', 'view_states'],
             },
+            additionalOAuthScopes: [
+              {
+                name: 'movies',
+                view: ['view_products'], // mind that `"manage": []` is filtered out by `omitEmpty` as no additional `manage_` scope should be requested for this group
+              },
+              {
+                name: 'merch',
+                manage: ['manage_channels'], // mind that `"view": []` is filtered out by `omitEmpty` as no additional `view_` scope should be requested for this group
+              },
+            ],
           },
           accountLinks: undefined,
           menuLinks: {
