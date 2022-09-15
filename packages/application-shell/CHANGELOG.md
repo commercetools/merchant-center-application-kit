@@ -1,5 +1,28 @@
 # @commercetools-frontend/application-shell
 
+## 21.14.3
+
+### Patch Changes
+
+- [#2807](https://github.com/commercetools/merchant-center-application-kit/pull/2807) [`3ab502be1`](https://github.com/commercetools/merchant-center-application-kit/commit/3ab502be18358045b25be48a557d353985ea17b3) Thanks [@emmenko](https://github.com/emmenko)! - Disable Redux serializable check
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@21.14.3
+  - @commercetools-frontend/application-components@21.14.3
+  - @commercetools-frontend/application-config@21.14.3
+  - @commercetools-frontend/application-shell-connectors@21.14.3
+  - @commercetools-frontend/assets@21.14.3
+  - @commercetools-frontend/browser-history@21.14.3
+  - @commercetools-frontend/constants@21.14.3
+  - @commercetools-frontend/i18n@21.14.3
+  - @commercetools-frontend/l10n@21.14.3
+  - @commercetools-frontend/notifications@21.14.3
+  - @commercetools-frontend/permissions@21.14.3
+  - @commercetools-frontend/react-notifications@21.14.3
+  - @commercetools-frontend/sdk@21.14.3
+  - @commercetools-frontend/sentry@21.14.3
+  - @commercetools-frontend/url-utils@21.14.3
+
 ## 21.14.2
 
 ### Patch Changes
