@@ -327,7 +327,7 @@ You can have "view-only" or "manage-only" OAuth Scopes and leave the other list 
 
 ## `oAuthScopes.view`
 
-A list of "view-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated to the `View` permission.
+A list of "view-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated with the `View` permission.
 
 ```json
 {
@@ -346,6 +346,62 @@ A list of "manage-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes
   "oAuthScopes": {
     "manage": ["manage_orders"]
   }
+}
+```
+
+<Info>
+
+Using `manage_` OAuth Scopes always imply the corresponding `view_` OAuth Scope.
+
+</Info>
+
+## `additionalOAuthScopes`
+
+The configuration for [additional OAuth Scopes and user permissions](/concepts/oauth-scopes-and-user-permissions#additional-oauth-scopes) extending [oAuthScopes configuration](#oauthscopes).
+
+## `additionalOAuthScopes.name`
+
+A name used to build the permission keys based on the default permissions pair. 
+
+## `additionalOAuthScopes.view`
+
+A list of "view-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated with the `View` permission scoped to the respective permission group.
+
+```json
+{
+  "additionalOAuthScopes": [
+    {
+      "name": "movies",
+      "view": ["view_products"],
+      "manage": []
+    },
+    {
+      "name": "merch",
+      "view": ["view_categories"],
+      "manage": []
+    }
+  ]
+}
+```
+
+## `additionalOAuthScopes.manage`
+
+A list of "manage-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated with the `Manage` permission scoped to the respective permission group.
+
+```json
+{
+  "additionalOAuthScopes": [
+    {
+      "name": "movies",
+      "view": [],
+      "manage": ["manage_products"]
+    },
+    {
+      "name": "merch",
+      "view": [],
+      "manage": ["manage_categories"]
+    }
+  ]
 }
 ```
 

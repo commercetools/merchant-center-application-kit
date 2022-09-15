@@ -30,6 +30,37 @@ Notice here how the OAuth Scopes are grouped by the two fields `view` and `manag
 
 This grouping determines the **mapping and relation between OAuth Scopes and user permissions**.
 
+# Additional OAuth Scopes
+
+Defining `oAuthScopes` in the Custom Application config allows using permissions limited to 1 unique pair (view/manage) specific to the Custom Application.
+
+For more granular permissions, for example, to allow the team access to only certain parts or functionality of the Custom Application, [additional OAuth Scopes](https://docs.commercetools.com/api/scopes) can be requested as part of various permission groups. 
+
+These additional OAuth Scopes must be specified in your Custom Application config, using the [`additionalOAuthScopes` field](/api-reference/application-config#additionaloauthscopes).
+
+In the following example, permission group named `team_a` allows to manage orders but not see discount codes, while permission group named `team_b` allows both.
+
+```json title="custom-application-config.json" highlightLines="6-17"
+{
+  "oAuthScopes": {
+    "view": ["view_products", "view_customers"],
+    "manage": ["manage_products"]
+  },
+  "additionalOAuthScopes": [
+    {
+      "name": "team_a",
+      "view": [],
+      "manage": ["manage_orders"]
+    },
+    {
+      "name": "team_b",
+      "view": ["view_discount_codes"],
+      "manage": ["manage_orders"]
+    }
+  ]
+}
+```
+
 # User permissions
 
 In the Merchant Center, you can assign user permissions to Teams to grant or restrict access to certain parts and functionalities of the Merchant Center. See [user permissions in Merchant Center](https://docs.commercetools.com/merchant-center/user-permissions) for more information.<br />
