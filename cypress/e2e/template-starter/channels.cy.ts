@@ -10,16 +10,11 @@ describe('Channels', () => {
       cy.findByText('Channels list').should('exist');
     });
     cy.findByText('Store Berlin').should('exist');
-    cy.findByText('Store Munich').should('exist');
-    cy.percySnapshot();
-  });
-  it('should render readable page title', () => {
-    cy.findByText('Fetching channels').click();
-    cy.get('main').within(() => {
-      cy.findByText('Channels list').should('exist');
-    });
     cy.findByText('Store Munich').should('exist').click();
-    cy.findByText('Store Munich - Template starter - mc-e2e-app-kit-01 - Merchant Center').should('exist');
+    cy.title().should(
+      'eq',
+      'Store Munich - Template starter - mc-e2e-app-kit-01 - Merchant Center'
+    );
     cy.percySnapshot();
   });
 });
