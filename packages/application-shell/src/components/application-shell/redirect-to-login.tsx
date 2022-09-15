@@ -58,6 +58,8 @@ const RedirectToLogin = () => {
     const requestedScope = buildOidcScope({
       projectKey: nextProjectKey ?? undefined,
       oAuthScopes: window.app.__DEVELOPMENT__?.oidc?.oAuthScopes,
+      additionalOAuthScopes:
+        window.app.__DEVELOPMENT__?.oidc?.additionalOAuthScopes,
       teamId: window.app.__DEVELOPMENT__?.oidc?.teamId,
     });
 

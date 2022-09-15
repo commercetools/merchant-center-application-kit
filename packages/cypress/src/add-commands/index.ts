@@ -81,6 +81,8 @@ Cypress.Commands.add(
       const sessionScope = buildOidcScope({
         projectKey,
         oAuthScopes: appConfig.__DEVELOPMENT__?.oidc?.oAuthScopes,
+        additionalOAuthScopes:
+          appConfig.__DEVELOPMENT__?.oidc?.additionalOAuthScopes,
         teamId: appConfig.__DEVELOPMENT__?.oidc?.teamId,
       });
       const userCredentials = commandOptions.login ?? {
