@@ -103,7 +103,7 @@ const ChannelDetails = (props: TChannelDetailsProps) => {
       fallbackOrder: projectLanguages,
       fallback: NO_VALUE_FALLBACK,
     }
-  )
+  );
   return (
     <>
       <ChannelsDetailsForm
@@ -140,7 +140,9 @@ const ChannelDetails = (props: TChannelDetailsProps) => {
                 </ContentNotification>
               )}
               {channel && formProps.formElements}
-              {channel && <ApplicationPageTitle additionalParts={[channelName]} />}
+              {channel && (
+                <ApplicationPageTitle additionalParts={[channelName]} />
+              )}
               {channel === null && <PageNotFound />}
             </FormModalPage>
           );
