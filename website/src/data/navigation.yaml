@@ -42,8 +42,8 @@
       path: /development/adding-typescript
     - title: Going to Production
       path: /development/going-to-production
-    - title: Adding Human-Readable Page Title
-      path: /development/adding-human-readable-page-title
+    - title: Human-Readable Page Title
+      path: /development/human-readable-page-title
 - chapter-title: Deployment Examples
   pages:
     - title: Overview
