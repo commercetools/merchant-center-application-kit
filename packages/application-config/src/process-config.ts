@@ -25,8 +25,7 @@ type ProcessConfigOptions = Partial<LoadingConfigOptions> & {
   disableCache?: boolean;
 };
 
-// TODO: make it configurable.
-const developmentPort = 3001;
+const developmentPort = parseInt(String(process.env.HTTP_PORT), 10) || 3001;
 const developmentAppUrl = `http://localhost:${developmentPort}`;
 
 const omitDevConfigIfEmpty = (
