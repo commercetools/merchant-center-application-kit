@@ -28,7 +28,7 @@
     "@commercetools/http-user-agent": "3.0.0",
     "@commercetools/sdk-client": "3.0.0",
     "@commercetools/sdk-middleware-correlation-id": "3.0.0",
-    "@commercetools/sdk-middleware-http": "7.0.0",
+    "@commercetools/sdk-middleware-http": "7.0.1",
     "@types/node-fetch": "2.6.2",
     "@types/prop-types": "^15.7.5",
     "@types/react": "^17.0.49",
