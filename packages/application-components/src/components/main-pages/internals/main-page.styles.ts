@@ -17,3 +17,7 @@ export const MainPageContent = styled.div`
   overflow: auto;
   padding: ${customProperties.spacingM};
 `;
+
+export const FormControlContainer = styled.div`
+  align-self: flex-end;
+`;

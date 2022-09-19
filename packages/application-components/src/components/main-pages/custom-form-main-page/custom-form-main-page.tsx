@@ -13,6 +13,7 @@ import {
   Divider,
   MainPageContainer,
   MainPageContent,
+  FormControlContainer,
 } from '../internals/main-page.styles';
 
 type CustomFormMainPageProps = {
@@ -58,18 +59,22 @@ const CustomFormMainPage = (props: CustomFormMainPageProps) => {
     <PageWrapper>
       <MainPageContainer>
         <Spacings.Stack scale="l">
-          {props.customTitleRow || (
-            <PageHeaderTitle
-              title={props.title ?? ''}
-              subtitle={props.subtitle}
-              titleSize="big"
-            />
-          )}
-          {!props.hideControls && props.formControls && (
-            <Spacings.Inline justifyContent="flex-end">
-              {props.formControls}
-            </Spacings.Inline>
-          )}
+          <Spacings.Inline scale="l" justifyContent="space-between">
+            {props.customTitleRow || (
+              <PageHeaderTitle
+                title={props.title ?? ''}
+                subtitle={props.subtitle}
+                titleSize="big"
+              />
+            )}
+            {!props.hideControls && props.formControls && (
+              <FormControlContainer>
+                <Spacings.Inline justifyContent="flex-end">
+                  {props.formControls}
+                </Spacings.Inline>
+              </FormControlContainer>
+            )}
+          </Spacings.Inline>
           <Divider />
         </Spacings.Stack>
       </MainPageContainer>
