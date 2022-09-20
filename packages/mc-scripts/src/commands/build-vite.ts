@@ -34,6 +34,7 @@ async function run() {
     },
     build: {
       outDir: 'public',
+      sourcemap: true,
       rollupOptions: {
         // This is necessary to instruct Vite that the `index.html` (template)
         // is located in the `/public` folder.
