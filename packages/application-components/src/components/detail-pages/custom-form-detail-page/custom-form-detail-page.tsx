@@ -12,6 +12,7 @@ import Spacings from '@commercetools-uikit/spacings';
 import PageHeaderTitle from '../../internals/page-header-title';
 import PageTopBar from '../../internals/page-top-bar';
 import { ContentWrapper, PageWrapper } from '../../internals/page.styles';
+import { FormControlContainer } from '../../internals/form-control.styles';
 
 const DetailPageContainer = styled.div`
   background-color: ${customProperties.colorNeutral95};
@@ -87,18 +88,22 @@ const CustomFormDetailPage = (props: CustomFormDetailPageProps) => {
             previousPathLabel={props.previousPathLabel}
             onClick={props.onPreviousPathClick}
           />
-          {props.customTitleRow || (
-            <PageHeaderTitle
-              title={props.title ?? ''}
-              subtitle={props.subtitle}
-              titleSize="big"
-            />
-          )}
-          {!props.hideControls && props.formControls && (
-            <Spacings.Inline justifyContent="flex-end">
-              {props.formControls}
-            </Spacings.Inline>
-          )}
+          <Spacings.Inline scale="l" justifyContent="space-between">
+            {props.customTitleRow || (
+              <PageHeaderTitle
+                title={props.title ?? ''}
+                subtitle={props.subtitle}
+                titleSize="big"
+              />
+            )}
+            {!props.hideControls && props.formControls && (
+              <FormControlContainer>
+                <Spacings.Inline justifyContent="flex-end">
+                  {props.formControls}
+                </Spacings.Inline>
+              </FormControlContainer>
+            )}
+          </Spacings.Inline>
         </Spacings.Stack>
       </DetailPageContainer>
       <ContentWrapper>{props.children}</ContentWrapper>

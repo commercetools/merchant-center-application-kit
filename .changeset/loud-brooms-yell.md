@@ -2,4 +2,4 @@
 '@commercetools-frontend/application-components': patch
 ---
 
-Remove unnecessary form control margin space
+Move form control to the same line as title row.
