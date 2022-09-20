@@ -1,5 +1,30 @@
 # merchant-center-application-template-starter-typescript
 
+## 21.15.0
+
+### Minor Changes
+
+- [#2804](https://github.com/commercetools/merchant-center-application-kit/pull/2804) [`be618c88a`](https://github.com/commercetools/merchant-center-application-kit/commit/be618c88aafa85dea2c98b0c0cd8f70863ba25c0) Thanks [@ddouglasz](https://github.com/ddouglasz)! - Add human readable page title override reference in the starter kit
+
+### Patch Changes
+
+- [#2810](https://github.com/commercetools/merchant-center-application-kit/pull/2810) [`0e49a78f8`](https://github.com/commercetools/merchant-center-application-kit/commit/0e49a78f8e3b228a9b0bb3d90781aa8e940de4bc) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies [[`0e49a78f8`](https://github.com/commercetools/merchant-center-application-kit/commit/0e49a78f8e3b228a9b0bb3d90781aa8e940de4bc)]:
+  - @commercetools-frontend/application-shell@21.15.0
+  - @commercetools-frontend/mc-scripts@21.15.0
+  - @commercetools-frontend/actions-global@21.15.0
+  - @commercetools-frontend/application-shell-connectors@21.15.0
+  - @commercetools-frontend/i18n@21.15.0
+  - @commercetools-frontend/permissions@21.15.0
+  - @commercetools-frontend/application-components@21.15.0
+  - @commercetools-frontend/application-config@21.15.0
+  - @commercetools-frontend/assets@21.15.0
+  - @commercetools-frontend/constants@21.15.0
+  - @commercetools-frontend/eslint-config-mc-app@21.15.0
+  - @commercetools-frontend/jest-preset-mc-app@21.15.0
+  - @commercetools-frontend/mc-dev-authentication@21.15.0
+
 ## 21.14.3
 
 ### Patch Changes

@@ -1,5 +1,7 @@
 # @commercetools-frontend/constants
 
+## 21.15.0
+
 ## 21.14.3
 
 ## 21.14.2
