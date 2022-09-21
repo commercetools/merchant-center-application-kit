@@ -120,4 +120,5 @@ function entryPointUriPathToPermissionKeys<PermissionName extends string>(
 export {
   entryPointUriPathToResourceAccesses,
   entryPointUriPathToPermissionKeys,
+  formatEntryPointUriPathToResourceAccessKey,
 };

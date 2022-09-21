@@ -1111,6 +1111,22 @@ describe('processing a config with OIDC', () => {
             name: 'manageAvengers',
             oAuthScopes: ['manage_orders'],
           },
+          {
+            name: 'viewAvengersMovies',
+            oAuthScopes: ['view_products'],
+          },
+          {
+            name: 'manageAvengersMovies',
+            oAuthScopes: [],
+          },
+          {
+            name: 'viewAvengersMerch',
+            oAuthScopes: [],
+          },
+          {
+            name: 'manageAvengersMerch',
+            oAuthScopes: ['manage_channels'],
+          },
         ],
         icon: '<svg><path fill="#000000"></path></svg>',
         mainMenuLink: {
@@ -1196,6 +1212,22 @@ describe('processing a config with OIDC', () => {
             {
               name: 'manageAvengers',
               oAuthScopes: ['manage_orders'],
+            },
+            {
+              name: 'viewAvengersMovies',
+              oAuthScopes: ['view_products'],
+            },
+            {
+              name: 'manageAvengersMovies',
+              oAuthScopes: [],
+            },
+            {
+              name: 'viewAvengersMerch',
+              oAuthScopes: [],
+            },
+            {
+              name: 'manageAvengersMerch',
+              oAuthScopes: ['manage_channels'],
             },
           ],
           icon: '<svg><path fill="#000000"></path></svg>',
