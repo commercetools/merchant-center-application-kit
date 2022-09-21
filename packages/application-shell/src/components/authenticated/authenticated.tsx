@@ -1,22 +1,22 @@
+import { Route, Switch } from 'react-router-dom';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
-
-import { Route, Switch } from 'react-router-dom';
 import hasCachedAuthenticationState from './has-cached-authentication-state';
 import AmILoggedIn from './am-i-logged-in';
-import OidcCallback from './oidc-callback';
+import OidcCallback from './oidc-callback.async';
+import SuspendedRoute from '../suspended-route';
 
 declare let window: ApplicationWindow;
 
 type RenderFnArgs = { isAuthenticated: boolean };
-export type TProps = {
+export type TAuthenticatedProps = {
   render: (args: RenderFnArgs) => JSX.Element;
   locale: string;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   children?: never;
 };
 
-const Authenticated = (props: TProps) => {
+const Authenticated = (props: TAuthenticatedProps) => {
   // We attempt to see if the user was already authenticated by looking
   // at the "cached" flag in local storage.
   const cachedAuthenticationState = hasCachedAuthenticationState();
@@ -36,20 +36,22 @@ const Authenticated = (props: TProps) => {
 };
 Authenticated.displayName = 'Authenticated';
 
-const AuthenticationRoutes = (props: TProps) => (
+const AuthenticationRoutes = (props: TAuthenticatedProps) => (
   <Switch>
-    <Route path={`/account/oidc/callback`}>
+    <SuspendedRoute path={`/account/oidc/callback`}>
       <OidcCallback
         locale={props.locale}
         applicationMessages={props.applicationMessages}
       />
-    </Route>
-    <Route path={`/:projectKey/${window.app.entryPointUriPath}/oidc/callback`}>
+    </SuspendedRoute>
+    <SuspendedRoute
+      path={`/:projectKey/${window.app.entryPointUriPath}/oidc/callback`}
+    >
       <OidcCallback
         locale={props.locale}
         applicationMessages={props.applicationMessages}
       />
-    </Route>
+    </SuspendedRoute>
     <Route>
       <Authenticated {...props} />
     </Route>

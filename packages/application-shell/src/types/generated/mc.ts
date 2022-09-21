@@ -704,7 +704,7 @@ export type TAmILoggedInQueryVariables = Exact<{ [key: string]: never; }>;
 export type TAmILoggedInQuery = { __typename?: 'Query', amILoggedIn: boolean };
 
 export type TFetchProjectQueryVariables = Exact<{
-  projectKey: Scalars['String'];
+  projectKey?: InputMaybe<Scalars['String']>;
 }>;
 
 

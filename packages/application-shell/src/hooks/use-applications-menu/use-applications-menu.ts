@@ -134,14 +134,19 @@ const mapApplicationMenuConfigToGraqhQLQueryResult = (
   };
 };
 
+type TAdditionalEnvironmentProperties = {
+  mcProxyApiUrl?: string;
+};
+
 function useApplicationsMenu<Key extends MenuKey>(
   menuKey: Key,
   config: Config
 ): MenuLoaderResult<Key> | undefined {
   const apolloClient = useApolloClient();
-  const mcProxyApiUrl = useApplicationContext(
-    (context) => context.environment.mcProxyApiUrl
-  );
+  const mcProxyApiUrl = useApplicationContext<
+    TAdditionalEnvironmentProperties['mcProxyApiUrl'],
+    TAdditionalEnvironmentProperties
+  >((context) => context.environment.mcProxyApiUrl);
 
   const [hasWrittenToCache, setHasWrittenToCache] = useState(false);
 

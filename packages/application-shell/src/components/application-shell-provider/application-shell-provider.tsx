@@ -25,17 +25,15 @@ import GlobalStyles from './global-styles';
 import { getBrowserLocale } from './utils';
 import useCoercedEnvironmentValues from './use-coerced-environment-values';
 
-type Props<AdditionalEnvironmentProperties extends {}> = {
+type TApplicationShellProviderProps = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;
-  environment: TApplicationContext<AdditionalEnvironmentProperties>['environment'];
+  environment: TApplicationContext<{}>['environment'];
   trackingEventList?: TrackingList;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   children: (args: { isAuthenticated: boolean }) => JSX.Element;
 };
 
-const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
-  props: Props<AdditionalEnvironmentProperties>
-) => {
+const ApplicationShellProvider = (props: TApplicationShellProviderProps) => {
   const apolloClient = useMemo(
     () => props.apolloClient ?? createApolloClient(),
     [props.apolloClient]
@@ -43,18 +41,15 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
   useEffect(() => {
     setCachedApolloClient(apolloClient);
   }, [apolloClient]);
-  const coercedEnvironmentValues =
-    useCoercedEnvironmentValues<AdditionalEnvironmentProperties>(
-      props.environment
-    );
+  const coercedEnvironmentValues = useCoercedEnvironmentValues(
+    props.environment
+  );
   const browserLocale = getBrowserLocale(window);
   return (
     <>
       <GlobalStyles />
       <ErrorBoundary>
-        <ApplicationContextProvider<AdditionalEnvironmentProperties>
-          environment={coercedEnvironmentValues}
-        >
+        <ApplicationContextProvider environment={coercedEnvironmentValues}>
           <ReduxProvider store={internalReduxStore}>
             <ApolloProvider client={apolloClient}>
               <Suspense fallback={<ApplicationLoader />}>

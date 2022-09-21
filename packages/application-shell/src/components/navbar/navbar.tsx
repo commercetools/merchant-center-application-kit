@@ -610,16 +610,16 @@ const NavBarLayout = forwardRef<HTMLElement, NavBarLayoutProps>(
 );
 NavBarLayout.displayName = 'NavBarLayout';
 
-type NavbarProps<AdditionalEnvironmentProperties extends {}> = {
+type NavbarProps = {
   applicationLocale: string;
   projectKey: string;
-  environment: TApplicationContext<AdditionalEnvironmentProperties>['environment'];
+  environment: TApplicationContext<{
+    useFullRedirectsForLinks?: boolean;
+  }>['environment'];
   project: TFetchProjectQuery['project'];
   onMenuItemClick?: MenuItemLinkProps['onClick'];
 };
-const NavBar = <AdditionalEnvironmentProperties extends {}>(
-  props: NavbarProps<AdditionalEnvironmentProperties>
-) => {
+const NavBar = (props: NavbarProps) => {
   const {
     navBarNode,
     isMenuOpen,

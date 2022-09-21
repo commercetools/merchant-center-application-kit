@@ -1,10 +1,9 @@
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import type {
   TFetchAllMenuFeatureTogglesQuery,
   TFetchAllMenuFeatureTogglesQueryVariables,
 } from '../../types/generated/proxy';
-
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { useMcQuery } from '../../hooks/apollo-hooks';
 import useIsServedByProxy from '../../hooks/use-is-served-by-proxy';
 import { FetchAllMenuFeatureToggles } from './fetch-all-menu-feature-toggles.proxy.graphql';
@@ -19,11 +18,17 @@ const getDefaultedFeatureToggles = (allFeatureToggles: string[]) =>
     }),
     {}
   );
+
+type TAdditionalEnvironmentProperties = {
+  mcProxyApiUrl?: string;
+};
+
 const useAllMenuFeatureToggles = () => {
   const servedByProxy = useIsServedByProxy();
-  const mcProxyApiUrl = useApplicationContext(
-    (applicationContext) => applicationContext.environment.mcProxyApiUrl
-  );
+  const mcProxyApiUrl = useApplicationContext<
+    TAdditionalEnvironmentProperties['mcProxyApiUrl'],
+    TAdditionalEnvironmentProperties
+  >((applicationContext) => applicationContext.environment.mcProxyApiUrl);
 
   const { data, refetch, loading } = useMcQuery<
     TFetchAllMenuFeatureTogglesQuery,

@@ -5,7 +5,7 @@ import trackingEvents from './tracking-events';
 import ButlerContainer from './butler-container';
 import pimIndexerStates from './pim-indexer-states';
 
-type Props = {
+type TQuickAccessProps = {
   onChangeProjectDataLocale?: (locale: string) => void;
 };
 
@@ -13,7 +13,7 @@ const QuickAccess = lazy(
   () => import('./quick-access' /* webpackChunkName: "quick-access" */)
 );
 
-const QuickAccessTrigger = (props: Props) => {
+const QuickAccessTrigger = (props: TQuickAccessProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const open = useCallback(() => {
     setIsVisible(true);

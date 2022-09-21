@@ -15,11 +15,11 @@ type RenderFnArgs = {
   error?: ApolloError;
   user: TFetchLoggedInUserQuery['user'];
 };
-type Props = {
+type TFetchUserProps = {
   children: (args: RenderFnArgs) => ReactNode;
 };
 
-const FetchUser = (props: Props) => {
+const FetchUser = (props: TFetchUserProps) => {
   const { loading, data, error } = useMcQuery<
     TFetchLoggedInUserQuery,
     TFetchLoggedInUserQueryVariables
