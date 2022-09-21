@@ -6,6 +6,7 @@ import pluginReact from '@vitejs/plugin-react';
 import { generateTemplate } from '@commercetools-frontend/mc-html-template';
 import { packageLocation as applicationStaticAssetsPath } from '@commercetools-frontend/assets';
 import paths from '../config/paths';
+import { manualChunks } from '../config/optimizations';
 import pluginSvgr from '../vite-plugins/vite-plugin-svgr';
 import pluginDynamicBaseAssetsGlobals from '../vite-plugins/vite-plugin-dynamic-base-assets-globals';
 
@@ -40,6 +41,7 @@ async function run() {
         // NOTE that after the build, Vite will write the `index.html` (template)
         // at the `/public/public/index.html` location. See `fs.renameSync` below.
         input: paths.appIndexHtml,
+        output: { manualChunks },
       },
     },
     server: {

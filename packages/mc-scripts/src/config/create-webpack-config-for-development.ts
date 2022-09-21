@@ -13,6 +13,7 @@ import paths from './paths';
 import vendorsToTranspile from './vendors-to-transpile';
 import createPostcssConfig from './create-postcss-config';
 import hasJsxRuntime from './has-jsx-runtime';
+import { manualChunks } from './optimizations';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import momentLocalesToKeep from /* preval */ './moment-locales';
 
@@ -69,11 +70,6 @@ function createWebpackConfigForDevelopment(
     // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
     // https://medium.com/webpack/webpack-4-mode-and-optimization-5423a6bc597a
     optimization: {
-      // Automatically split vendor and commons
-      // https://twitter.com/wSokra/status/969633336732905474
-      splitChunks: {
-        chunks: 'all',
-      },
       // Keep the runtime chunk separated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
       // https://github.com/facebook/create-react-app/issues/5358
@@ -82,6 +78,23 @@ function createWebpackConfigForDevelopment(
       },
       moduleIds: 'named',
       chunkIds: 'deterministic',
+      splitChunks: {
+        cacheGroups: Object.entries(manualChunks).reduce(
+          (previousChunks, [chunkName, vendors]) => {
+            return {
+              ...previousChunks,
+              [chunkName]: {
+                test: new RegExp(
+                  `[\\/]node_modules[\\/](${vendors.join('|')})[\\/]`
+                ),
+                name: chunkName,
+                chunks: 'all',
+              },
+            };
+          },
+          {}
+        ),
+      },
     },
 
     resolve: {

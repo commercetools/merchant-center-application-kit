@@ -18,6 +18,7 @@ import paths from './paths';
 import vendorsToTranspile from './vendors-to-transpile';
 import createPostcssConfig from './create-postcss-config';
 import hasJsxRuntime from './has-jsx-runtime';
+import { manualChunks } from './optimizations';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import momentLocalesToKeep from /* preval */ './moment-locales';
 
@@ -129,6 +130,23 @@ function createWebpackConfigForProduction(
       },
       moduleIds: 'named',
       chunkIds: 'deterministic',
+      splitChunks: {
+        cacheGroups: Object.entries(manualChunks).reduce(
+          (previousChunks, [chunkName, vendors]) => {
+            return {
+              ...previousChunks,
+              [chunkName]: {
+                test: new RegExp(
+                  `[\\/]node_modules[\\/](${vendors.join('|')})[\\/]`
+                ),
+                name: chunkName,
+                chunks: 'all',
+              },
+            };
+          },
+          {}
+        ),
+      },
     },
 
     resolve: {
