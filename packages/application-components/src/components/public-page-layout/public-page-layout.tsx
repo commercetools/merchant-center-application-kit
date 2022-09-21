@@ -2,11 +2,10 @@ import { FC, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import CommercetoolsLogoSvg from '@commercetools-frontend/assets/logos/commercetools_primary-logo_horizontal_white-text_RGB.svg';
+import publicBackgroundUrl from '@commercetools-frontend/assets/images/public-background.png';
 import { customProperties } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
-import base64Background from /* preval */ './public-background';
 
 const year = new Date().getUTCFullYear();
 
@@ -41,7 +40,7 @@ const Container = styled.div`
   padding-top: ${customProperties.spacingXl};
   justify-content: center;
   background-size: cover;
-  background-image: url(data:image/png;base64,${base64Background});
+  background-image: url(${publicBackgroundUrl});
   background-position: center;
 `;
 const ContainerColumn = styled.div`
