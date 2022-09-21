@@ -1,1 +1,10 @@
-export { default } from './state-machines-list';
+import { lazy } from 'react';
+
+const StateMachinesList = lazy(
+  () =>
+    import(
+      './state-machines-list' /* webpackChunkName: "state-machines-list" */
+    )
+);
+
+export default StateMachinesList;
