@@ -1,17 +1,15 @@
-import type { TProps } from './authenticated';
+import { mocked } from 'jest-mock';
+import { graphql } from 'msw';
+import { setupServer } from 'msw/node';
 import type {
   TAmILoggedInQuery,
   TAmILoggedInQueryVariables,
 } from '../../types/generated/mc';
-
-import { mocked } from 'jest-mock';
-import { graphql } from 'msw';
-import { setupServer } from 'msw/node';
 import { renderApp, waitFor } from '../../test-utils';
 import { STORAGE_KEYS } from '../../constants';
-import Authenticated from './authenticated';
+import Authenticated, { type TAuthenticatedProps } from './authenticated';
 
-const createTestProps = (custom: Partial<TProps> = {}) => ({
+const createTestProps = (custom: Partial<TAuthenticatedProps> = {}) => ({
   render: jest.fn(() => <div />),
   locale: 'en',
   applicationMessages: {},
