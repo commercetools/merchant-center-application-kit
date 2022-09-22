@@ -73,11 +73,12 @@ Cypress.Commands.add(
         password: Cypress.env('LOGIN_PASSWORD'),
       };
       const sessionKey = [
+        'loginByForm',
         userCredentials.email,
         commandOptions.entryPointUriPath,
       ];
       const mcUrl = new URL(appConfig.mcApiUrl);
-      const mcFrontendHostname = mcUrl.hostname.replace('mc-api', '');
+      const mcFrontendHostname = mcUrl.hostname.replace('mc-api', 'mc');
 
       // https://www.cypress.io/blog/2021/08/04/authenticate-faster-in-tests-cy-session-command/
       cy.session(
@@ -220,38 +221,37 @@ Cypress.Commands.add(
       cy.request(requestOptions).then(
         (res: { body: { redirectTo: string } }) => {
           const sessionKey = [
+            'loginByOidc',
             userCredentials.email,
             commandOptions.entryPointUriPath,
           ];
 
           function authCallback() {
-            // https://www.cypress.io/blog/2021/08/04/authenticate-faster-in-tests-cy-session-command/
-            cy.session(sessionKey, () => {
-              cy.visit(res.body.redirectTo, {
-                onBeforeLoad(win: Window) {
-                  win.localStorage.setItem(
-                    STORAGE_KEYS.ACTIVE_PROJECT_KEY,
-                    projectKey
-                  );
-                  win.sessionStorage.setItem(
-                    `${STORAGE_KEYS.NONCE}_${sessionNonce}`,
-                    JSON.stringify({ applicationId, query: {} })
-                  );
-                  win.sessionStorage.setItem(
-                    STORAGE_KEYS.SESSION_SCOPE,
-                    sessionScope
-                  );
+            cy.visit(res.body.redirectTo, {
+              onBeforeLoad(win: Window) {
+                win.localStorage.setItem(
+                  STORAGE_KEYS.ACTIVE_PROJECT_KEY,
+                  projectKey
+                );
+                win.sessionStorage.setItem(
+                  `${STORAGE_KEYS.NONCE}_${sessionNonce}`,
+                  JSON.stringify({ applicationId, query: {} })
+                );
+                win.sessionStorage.setItem(
+                  STORAGE_KEYS.SESSION_SCOPE,
+                  sessionScope
+                );
 
-                  if (commandOptions.onBeforeLoad) {
-                    commandOptions.onBeforeLoad(win);
-                  }
-                },
-              });
+                if (commandOptions.onBeforeLoad) {
+                  commandOptions.onBeforeLoad(win);
+                }
+              },
             });
           }
 
           // For backwards compatibility.
           if (Cypress.config('experimentalSessionAndOrigin')) {
+            // https://www.cypress.io/blog/2021/08/04/authenticate-faster-in-tests-cy-session-command/
             cy.session(sessionKey, authCallback);
           } else {
             cy.log(

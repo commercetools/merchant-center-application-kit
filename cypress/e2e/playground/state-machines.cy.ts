@@ -6,7 +6,7 @@ import {
 
 describe('State machines', () => {
   beforeEach(() => {
-    cy.loginByOidc({ entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND });
+    cy.loginByForm({ entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND });
     cy.visit(URL_APP_KIT_PLAYGROUND);
   });
   it('should render list view', () => {
