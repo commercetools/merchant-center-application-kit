@@ -48,11 +48,11 @@ const ApplicationShellProvider = (props: TApplicationShellProviderProps) => {
   return (
     <>
       <GlobalStyles />
-      <ErrorBoundary>
-        <ApplicationContextProvider environment={coercedEnvironmentValues}>
-          <ReduxProvider store={internalReduxStore}>
-            <ApolloProvider client={apolloClient}>
-              <Suspense fallback={<ApplicationLoader />}>
+      <Suspense fallback={<ApplicationLoader />}>
+        <ErrorBoundary>
+          <ApplicationContextProvider environment={coercedEnvironmentValues}>
+            <ReduxProvider store={internalReduxStore}>
+              <ApolloProvider client={apolloClient}>
                 <Router history={ApplicationShellProvider.history}>
                   <GtmBooter trackingEventList={props.trackingEventList || {}}>
                     <ApplicationPageTitle />
@@ -82,11 +82,11 @@ const ApplicationShellProvider = (props: TApplicationShellProviderProps) => {
                     />
                   </GtmBooter>
                 </Router>
-              </Suspense>
-            </ApolloProvider>
-          </ReduxProvider>
-        </ApplicationContextProvider>
-      </ErrorBoundary>
+              </ApolloProvider>
+            </ReduxProvider>
+          </ApplicationContextProvider>
+        </ErrorBoundary>
+      </Suspense>
     </>
   );
 };
