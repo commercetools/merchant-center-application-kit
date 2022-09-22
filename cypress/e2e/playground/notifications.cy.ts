@@ -5,10 +5,10 @@ import {
 
 describe('Notifications', () => {
   beforeEach(() => {
-    cy.loginByOidc({
+    cy.loginByForm({
       entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND,
-      initialRoute: URL_APP_KIT_PLAYGROUND_NOTIFICATIONS,
     });
+    cy.visit(URL_APP_KIT_PLAYGROUND_NOTIFICATIONS);
   });
   it('should adjust layout when notifications are open', () => {
     cy.findByLabelText('Open modal 1');
@@ -51,12 +51,12 @@ describe('Notifications', () => {
 
 describe('Stacking layers', () => {
   beforeEach(() => {
-    cy.loginByOidc({
+    cy.loginByForm({
       entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND,
-      initialRoute: URL_APP_KIT_PLAYGROUND_NOTIFICATIONS,
     });
   });
   it('should correctly stack modal pages', () => {
+    cy.visit(URL_APP_KIT_PLAYGROUND_NOTIFICATIONS);
     cy.findByLabelText('Open modal 1').should('be.visible').click();
     cy.findByLabelText('Open modal 2').should('be.visible').click();
     cy.findByLabelText('Open modal 3').should('be.visible').click();

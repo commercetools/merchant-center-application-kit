@@ -1,10 +1,13 @@
 import path from 'path';
 import { defineConfig } from 'cypress';
+import { customApplicationConfig } from '@commercetools-frontend/cypress/task';
 
 export default defineConfig({
   retries: 1,
   video: false,
   e2e: {
+    // https://cypress.io/blog/2022/04/25/cypress-9-6-0-easily-test-multi-domain-workflows-with-cy-origin/
+    experimentalSessionAndOrigin: true,
     // We've imported your old cypress plugins here.
     // You may want to clean this up later by importing these.
     async setupNodeEvents(on, cypressConfig) {
@@ -15,10 +18,6 @@ export default defineConfig({
         const dotenv = await import('dotenv');
         dotenv.config({ path: envPath });
       }
-
-      const { customApplicationConfig } = await import(
-        '@commercetools-frontend/cypress/task'
-      );
 
       on('task', {
         customApplicationConfig,
