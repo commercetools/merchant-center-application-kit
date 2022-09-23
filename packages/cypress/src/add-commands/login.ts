@@ -253,7 +253,7 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
 /* Utilities */
 
 function validateUserSession(mcApiUrl: string) {
-  // Validate that the session in valid by sending the `amILoggedIn` request.
+  // Validate that the session is valid by sending the `amILoggedIn` request.
   cy.request({
     method: 'POST',
     url: `${mcApiUrl}/graphql`,

@@ -9,7 +9,7 @@ Make sure to have the option `experimentalSessionAndOrigin` turned on (in your C
 
 Additionally, there is a new command `cy.loginToMerchantCenter` as a replacement of `cy.loginByOidc` (marked as _deprecated_).
 
-The `cy.loginToMerchantCenter` command detects whether the application is running on localhost or on production and choses the appropriate login mechanism.
+The `cy.loginToMerchantCenter` command detects whether the application is running on localhost or on production and chooses the appropriate login mechanism.
 
 - When the application runs locally, the same mechanism used in the `cy.loginByOidc` is used.
 - When the application runs on production, a normal login flow is used where the user credentials are typed into the login form.

@@ -3,7 +3,7 @@ declare namespace Cypress {
     /**
      * Log into the Custom Application.
      * The command detects whether the application is running on localhost or on production
-     * and choses the appropriate login mechanism.
+     * and chooses the appropriate login mechanism.
      *
      * @example
      *    cy.loginToMerchantCenter({ entryPointUriPath: 'template-starter' })
