@@ -8,8 +8,10 @@ import {
 
 describe('when user is authenticated', () => {
   beforeEach(() => {
-    cy.loginByForm({ entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND });
-    cy.visit(URL_APP_KIT_PLAYGROUND);
+    cy.loginToMerchantCenter({
+      entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND,
+      initialRoute: URL_APP_KIT_PLAYGROUND,
+    });
   });
   it('should log out with reason "user"', () => {
     cy.findByRole('button', { name: /open user settings menu/i }).click();
@@ -36,8 +38,10 @@ describe('when user is authenticated', () => {
 
 describe('navigation menu', () => {
   beforeEach(() => {
-    cy.loginByForm({ entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND });
-    cy.visit(URL_APP_KIT_PLAYGROUND);
+    cy.loginToMerchantCenter({
+      entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND,
+      initialRoute: URL_APP_KIT_PLAYGROUND,
+    });
   });
   it('should stay collapsed for small viewports', () => {
     cy.viewport(900, 800);

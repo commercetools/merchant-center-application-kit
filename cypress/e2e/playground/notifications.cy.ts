@@ -5,10 +5,10 @@ import {
 
 describe('Notifications', () => {
   beforeEach(() => {
-    cy.loginByForm({
+    cy.loginToMerchantCenter({
       entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND,
+      initialRoute: URL_APP_KIT_PLAYGROUND_NOTIFICATIONS,
     });
-    cy.visit(URL_APP_KIT_PLAYGROUND_NOTIFICATIONS);
   });
   it('should adjust layout when notifications are open', () => {
     cy.findByLabelText('Open modal 1');
@@ -51,7 +51,7 @@ describe('Notifications', () => {
 
 describe('Stacking layers', () => {
   beforeEach(() => {
-    cy.loginByForm({
+    cy.loginToMerchantCenter({
       entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND,
     });
   });

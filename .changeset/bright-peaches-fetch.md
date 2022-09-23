@@ -2,17 +2,14 @@
 '@commercetools-frontend/cypress': minor
 ---
 
-Add new command `cy.loginByForm`.
+Implement [`cy.session`](https://www.cypress.io/blog/2021/08/04/authenticate-faster-in-tests-cy-session-command/) in the login commands, which caches and restores the user session between test runs.
+This ultimately results in subsequent tests to run much faster (by restoring the previous session) and makes the test behave as if the user is already authenticated.
 
-This command uses the [Cypress functionality to test across origins](https://cypress.io/blog/2022/04/25/cypress-9-6-0-easily-test-multi-domain-workflows-with-cy-origin/), available from Cypress `v9.6.0`.
+Make sure to have the option `experimentalSessionAndOrigin` turned on (in your Cypress config) to enable that.
 
-For Custom Applications it allows to authenticate the user via the login form (instead of authenticating the user in the background using the API), by following the redirect to the login page (different origin), filling out the form and redirecting back to `localhost`.
+Additionally, there is a new command `cy.loginToMerchantCenter` as a replacement of `cy.loginByOidc` (marked as _deprecated_).
 
-In addition to that, both commands `cy.loginByForm` and `cy.loginByOidc` implement [`cy.session`](https://www.cypress.io/blog/2021/08/04/authenticate-faster-in-tests-cy-session-command/), which caches and restores the user session between test runs.
-This ultimately results in subsequent tests to run much faster as the test starts as if the user is already authenticated.
+The `cy.loginToMerchantCenter` command detects whether the application is running on localhost or on production and choses the appropriate login mechanism.
 
-Make sure to have the option `experimentalSessionAndOrigin` turned on to benefit from using `cy.session` and `cy.origin`.
-If the option is turned off:
-
-- The `cy.loginByOidc` command will log a warning and fall back to not using `cy.session`.
-- The `cy.loginByForm` command will fail to run.
+- When the application runs locally, the same mechanism used in the `cy.loginByOidc` is used.
+- When the application runs on production, a normal login flow is used where the user credentials are typed into the login form.

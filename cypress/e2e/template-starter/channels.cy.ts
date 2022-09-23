@@ -5,8 +5,10 @@ import {
 
 describe('Channels', () => {
   beforeEach(() => {
-    cy.loginByForm({ entryPointUriPath: ENTRY_POINT_TEMPLATE_STARTER });
-    cy.visit(URL_TEMPLATE_STARTER);
+    cy.loginToMerchantCenter({
+      entryPointUriPath: ENTRY_POINT_TEMPLATE_STARTER,
+      initialRoute: URL_TEMPLATE_STARTER,
+    });
   });
   it('should render page', () => {
     cy.findByText('Fetching channels').click();
