@@ -34,7 +34,7 @@ describe('Notifications', () => {
     );
   });
 
-  it.only('should adjust layout for modals when notifications are open', () => {
+  it('should adjust layout for modals when notifications are open', () => {
     // Open modal
     cy.findByLabelText('Open modal 1').click();
     // Open a second modal
