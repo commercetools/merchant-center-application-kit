@@ -57,11 +57,9 @@ export type CommandLoginOptions = {
 export type CommandLoginByOidcOptions = CommandLoginOptions;
 
 function loginByForm(commandOptions: CommandLoginOptions) {
-  const baseUrl = new URL(Cypress.config('baseUrl'));
-
-  if (baseUrl.hostname === 'localhost') {
+  if (isLocalhost()) {
     throw new Error(
-      `At the moment, the "loginByForm" command only works when testing a Merchant Center production URL. Testing an application running on localhost ("${baseUrl}") is not supported due to issues with "cy.origin".`
+      `At the moment, the "loginByForm" command only works when testing a Merchant Center production URL. Testing an application running on localhost is not supported due to issues with "cy.origin".`
     );
   }
 
@@ -142,9 +140,7 @@ function loginByForm(commandOptions: CommandLoginOptions) {
 }
 
 function loginByOidc(commandOptions: CommandLoginOptions) {
-  const baseUrl = new URL(Cypress.config('baseUrl'));
-
-  if (baseUrl.hostname !== 'localhost') {
+  if (!isLocalhost()) {
     throw new Error(
       `The "loginByOidc" command only works when testing a Custom Application running on localhost.`
     );
@@ -254,7 +250,7 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
   });
 }
 
-// Utilities
+/* Utilities */
 
 function validateUserSession(mcApiUrl: string) {
   // Validate that the session in valid by sending the `amILoggedIn` request.
@@ -268,6 +264,9 @@ function validateUserSession(mcApiUrl: string) {
       accept: 'application/json',
       'content-type': 'application/json',
       'x-graphql-target': 'mc',
+      ...(isLocalhost()
+        ? { authorization: `Bearer ${sessionStorage.getItem('sessionToken')}` }
+        : {}),
     },
   })
     .its('body')
@@ -282,4 +281,10 @@ function fillLoginForm(userCredentials: LoginCredentials) {
   cy.get('button').contains('Sign in').click();
 }
 
-export { loginByForm, loginByOidc };
+function isLocalhost() {
+  const baseUrl = new URL(Cypress.config('baseUrl'));
+
+  return baseUrl.hostname === 'localhost';
+}
+
+export { loginByForm, loginByOidc, isLocalhost };

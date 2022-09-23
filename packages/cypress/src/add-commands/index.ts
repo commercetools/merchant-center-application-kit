@@ -1,6 +1,7 @@
 import {
   loginByForm,
   loginByOidc,
+  isLocalhost,
   type CommandLoginOptions as TCommandLoginOptions,
 } from './login';
 
@@ -16,9 +17,7 @@ Cypress.Commands.add(
   (commandOptions: CommandLoginOptions) => {
     Cypress.log({ name: 'loginToMerchantCenter' });
 
-    const baseUrl = new URL(Cypress.config('baseUrl'));
-
-    if (baseUrl.hostname === 'localhost') {
+    if (isLocalhost()) {
       loginByOidc(commandOptions);
     } else {
       loginByForm(commandOptions);
