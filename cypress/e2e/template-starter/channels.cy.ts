@@ -18,9 +18,14 @@ describe('Channels', () => {
     cy.findByText('Store Berlin').should('exist');
     cy.findByText('Store Munich').should('exist').click();
     cy.findByRole('dialog', { name: 'Store Munich' }).should('exist');
+    cy.get('[role=dialog]').within(() => {
+      cy.findByLabelText(/channel key/i).should('have.value', 'store-munich');
+    });
     cy.title().should(
       'eq',
-      'Store Munich - Template-starter - mc-e2e-app-kit-01 - Merchant Center'
+      `Store Munich - Template-starter - ${Cypress.env(
+        'PROJECT_KEY'
+      )} - Merchant Center`
     );
     cy.percySnapshot();
   });
