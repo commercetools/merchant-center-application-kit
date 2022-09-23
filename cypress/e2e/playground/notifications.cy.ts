@@ -23,15 +23,7 @@ describe('Notifications', () => {
     cy.findByLabelText('Side notification').click();
     cy.findAllByText('ok').should('have.length', 2);
 
-    cy.percySnapshot(
-      // @ts-ignore
-      cy.state('runnable').fullTitle(),
-      {
-        // NOTE: Attempt to help making the test more stable to allow the notifications
-        // to "push down" the page layout.
-        enableJavaScript: true,
-      }
-    );
+    cy.percySnapshot();
   });
 
   it('should adjust layout for modals when notifications are open', () => {
