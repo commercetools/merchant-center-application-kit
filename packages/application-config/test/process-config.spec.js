@@ -305,14 +305,12 @@ describe('processing a full config', () => {
         entryPointUriPath: 'avengers',
         url: 'https://avengers.app',
         permissions: [
-          {
-            name: 'viewAvengers',
-            oAuthScopes: ['view_products'],
-          },
-          {
-            name: 'manageAvengers',
-            oAuthScopes: [],
-          },
+          { name: 'viewAvengers', oAuthScopes: ['view_products'] },
+          { name: 'manageAvengers', oAuthScopes: [] },
+          { name: 'viewAvengersMovies', oAuthScopes: ['view_products'] },
+          { name: 'manageAvengersMovies', oAuthScopes: [] },
+          { name: 'viewAvengersMerch', oAuthScopes: ['view_channels'] },
+          { name: 'manageAvengersMerch', oAuthScopes: ['manage_channels'] },
         ],
         icon: '<svg><path fill="#000000"></path></svg>',
         mainMenuLink: {
@@ -350,6 +348,17 @@ describe('processing a full config', () => {
             oAuthScopes: {
               view: ['view_products'],
             },
+            additionalOAuthScopes: [
+              {
+                name: 'movies',
+                view: ['view_products'],
+              },
+              {
+                name: 'merch',
+                view: ['view_channels'],
+                manage: ['manage_channels'],
+              },
+            ],
           },
         },
       },
@@ -389,14 +398,12 @@ describe('processing a full config', () => {
           entryPointUriPath: 'avengers',
           url: 'https://avengers.app',
           permissions: [
-            {
-              name: 'viewAvengers',
-              oAuthScopes: ['view_products'],
-            },
-            {
-              name: 'manageAvengers',
-              oAuthScopes: [],
-            },
+            { name: 'viewAvengers', oAuthScopes: ['view_products'] },
+            { name: 'manageAvengers', oAuthScopes: [] },
+            { name: 'viewAvengersMovies', oAuthScopes: ['view_products'] },
+            { name: 'manageAvengersMovies', oAuthScopes: [] },
+            { name: 'viewAvengersMerch', oAuthScopes: ['view_channels'] },
+            { name: 'manageAvengersMerch', oAuthScopes: ['manage_channels'] },
           ],
           icon: '<svg><path fill="#000000"></path></svg>',
           mainMenuLink: {
@@ -462,14 +469,12 @@ describe('processing a full config', () => {
           entryPointUriPath: 'avengers',
           url: 'https://avengers.app',
           permissions: [
-            {
-              name: 'viewAvengers',
-              oAuthScopes: ['view_products'],
-            },
-            {
-              name: 'manageAvengers',
-              oAuthScopes: [],
-            },
+            { name: 'viewAvengers', oAuthScopes: ['view_products'] },
+            { name: 'manageAvengers', oAuthScopes: [] },
+            { name: 'viewAvengersMovies', oAuthScopes: ['view_products'] },
+            { name: 'manageAvengersMovies', oAuthScopes: [] },
+            { name: 'viewAvengersMerch', oAuthScopes: ['view_channels'] },
+            { name: 'manageAvengersMerch', oAuthScopes: ['manage_channels'] },
           ],
           icon: '<svg><path fill="#000000"></path></svg>',
           mainMenuLink: {
@@ -507,6 +512,17 @@ describe('processing a full config', () => {
               oAuthScopes: {
                 view: ['view_products'],
               },
+              additionalOAuthScopes: [
+                {
+                  name: 'movies',
+                  view: ['view_products'],
+                },
+                {
+                  name: 'merch',
+                  view: ['view_channels'],
+                  manage: ['manage_channels'],
+                },
+              ],
             },
           },
         },
@@ -548,14 +564,12 @@ describe('processing a full config', () => {
           entryPointUriPath: 'avengers',
           url: 'https://avengers.app',
           permissions: [
-            {
-              name: 'viewAvengers',
-              oAuthScopes: ['view_products'],
-            },
-            {
-              name: 'manageAvengers',
-              oAuthScopes: [],
-            },
+            { name: 'viewAvengers', oAuthScopes: ['view_products'] },
+            { name: 'manageAvengers', oAuthScopes: [] },
+            { name: 'viewAvengersMovies', oAuthScopes: ['view_products'] },
+            { name: 'manageAvengersMovies', oAuthScopes: [] },
+            { name: 'viewAvengersMerch', oAuthScopes: ['view_channels'] },
+            { name: 'manageAvengersMerch', oAuthScopes: ['manage_channels'] },
           ],
           icon: '<svg><path fill="#000000"></path></svg>',
           mainMenuLink: {

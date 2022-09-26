@@ -1,9 +1,6 @@
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 import type { CustomApplicationData } from './types';
-import {
-  entryPointUriPathToResourceAccesses,
-  formatEntryPointUriPathToResourceAccessKey,
-} from './formatters';
+import { getPermissions } from './formatters';
 import {
   validateEntryPointUriPath,
   validateSubmenuLinks,
@@ -26,14 +23,6 @@ const computeUriPath = (uriPath: string, entryPointUriPath: string) => {
   return `${entryPointUriPath}/${uriPath}`;
 };
 
-type TResourceAccessPermissionName<PermissionName extends string = ''> =
-  | `view${Capitalize<PermissionName>}`
-  | `manage${Capitalize<PermissionName>}`;
-
-type TImplicitCustomApplicationResourceAccesses<
-  PermissionName extends string = ''
-> = Record<TResourceAccessPermissionName<PermissionName>, string[]>;
-
 function transformCustomApplicationConfigToData(
   appConfig: JSONSchemaForCustomApplicationConfigurationFiles
 ): CustomApplicationData {
@@ -41,53 +30,13 @@ function transformCustomApplicationConfigToData(
   validateSubmenuLinks(appConfig);
   validateAdditionalOAuthScopes(appConfig);
 
-  const additionalResourceAccessKeyToOauthScopeMap = (
-    appConfig.additionalOAuthScopes || []
-  ).reduce((previousOauthScope, { name, view, manage }) => {
-    const formattedResourceKey =
-      formatEntryPointUriPathToResourceAccessKey(name);
-    return {
-      ...previousOauthScope,
-      [`view${formattedResourceKey}`]: view,
-      [`manage${formattedResourceKey}`]: manage,
-    };
-  }, {} as TImplicitCustomApplicationResourceAccesses<PermissionName>);
-
-  const additionalPermissionNames =
-    appConfig.additionalOAuthScopes?.map(({ name }) => name) || [];
-
-  const permissionKeys = entryPointUriPathToResourceAccesses(
-    appConfig.entryPointUriPath,
-    additionalPermissionNames
-  );
-
-  const additionalPermissions = (
-    Object.keys(
-      additionalResourceAccessKeyToOauthScopeMap || []
-    ) as TResourceAccessPermissionName<PermissionName>[]
-  ).map((additionalResourceAccessKey) => ({
-    name: permissionKeys[additionalResourceAccessKey],
-    oAuthScopes:
-      additionalResourceAccessKeyToOauthScopeMap[additionalResourceAccessKey],
-  }));
-
   return {
     id: appConfig.env.production.applicationId,
     name: appConfig.name,
     description: appConfig.description,
     entryPointUriPath: appConfig.entryPointUriPath,
     url: appConfig.env.production.url,
-    permissions: [
-      {
-        name: permissionKeys.view,
-        oAuthScopes: appConfig.oAuthScopes.view,
-      },
-      {
-        name: permissionKeys.manage,
-        oAuthScopes: appConfig.oAuthScopes.manage,
-      },
-      ...additionalPermissions,
-    ],
+    permissions: getPermissions(appConfig),
     icon: sanitizeSvg(appConfig.icon),
     mainMenuLink: appConfig.mainMenuLink,
     submenuLinks: appConfig.submenuLinks.map((submenuLink) => ({
