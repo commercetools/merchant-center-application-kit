@@ -4,7 +4,11 @@ import {
   entryPointUriPathToResourceAccesses,
   formatEntryPointUriPathToResourceAccessKey,
 } from './formatters';
-import { validateEntryPointUriPath, validateSubmenuLinks } from './validations';
+import {
+  validateEntryPointUriPath,
+  validateSubmenuLinks,
+  validateAdditionalOAuthScopes,
+} from './validations';
 import sanitizeSvg from './sanitize-svg';
 
 // The `uriPath` of each submenu link is supposed to be defined relative
@@ -35,17 +39,19 @@ function transformCustomApplicationConfigToData(
 ): CustomApplicationData {
   validateEntryPointUriPath(appConfig);
   validateSubmenuLinks(appConfig);
+  validateAdditionalOAuthScopes(appConfig);
 
   const additionalResourceAccessKeyToOauthScopeMap = (
     appConfig.additionalOAuthScopes || []
-  ).reduce(
-    (previousOauthScope, { name, view, manage }) => ({
+  ).reduce((previousOauthScope, { name, view, manage }) => {
+    const formattedResourceKey =
+      formatEntryPointUriPathToResourceAccessKey(name);
+    return {
       ...previousOauthScope,
-      [`view${formatEntryPointUriPathToResourceAccessKey(name)}`]: view,
-      [`manage${formatEntryPointUriPathToResourceAccessKey(name)}`]: manage,
-    }),
-    {} as TImplicitCustomApplicationResourceAccesses<PermissionName>
-  );
+      [`view${formattedResourceKey}`]: view,
+      [`manage${formattedResourceKey}`]: manage,
+    };
+  }, {} as TImplicitCustomApplicationResourceAccesses<PermissionName>);
 
   const additionalPermissionNames =
     appConfig.additionalOAuthScopes?.map(({ name }) => name) || [];

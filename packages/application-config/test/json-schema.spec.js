@@ -2,6 +2,7 @@ import {
   validateConfig,
   validateEntryPointUriPath,
   validateSubmenuLinks,
+  validateAdditionalOAuthScopes,
 } from '../src/validations';
 import fixtureConfigSimple from './fixtures/config-simple.json';
 import fixtureConfigFull from './fixtures/config-full.json';
@@ -250,6 +251,27 @@ describe('invalid configurations', () => {
       })
     ).toThrowErrorMatchingInlineSnapshot(
       `"Duplicate URI path. Every submenu link must have a unique URI path value"`
+    );
+  });
+  it('should validate that additionalOauthScope name is unique', () => {
+    expect(() =>
+      validateAdditionalOAuthScopes({
+        ...fixtureConfigSimple,
+        additionalOAuthScopes: [
+          {
+            name: 'movies',
+            view: ['view_products'],
+            manage: [],
+          },
+          {
+            name: 'movies',
+            view: ['view_channels'],
+            manage: [],
+          },
+        ],
+      })
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"Duplicate additional permission. Every additional permission must have a unique name"`
     );
   });
 });

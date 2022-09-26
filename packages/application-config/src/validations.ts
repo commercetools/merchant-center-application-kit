@@ -70,3 +70,17 @@ export const validateSubmenuLinks = (
     uriPathSet.add(uriPath);
   });
 };
+
+export const validateAdditionalOAuthScopes = (
+  config: JSONSchemaForCustomApplicationConfigurationFiles
+) => {
+  const additionalPermissionNames = new Set();
+  config.additionalOAuthScopes?.forEach(({ name }) => {
+    if (additionalPermissionNames.has(name)) {
+      throw new Error(
+        'Duplicate additional permission. Every additional permission must have a unique name'
+      );
+    }
+    additionalPermissionNames.add(name);
+  });
+};
