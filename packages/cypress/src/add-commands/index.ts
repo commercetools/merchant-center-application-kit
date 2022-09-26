@@ -28,7 +28,7 @@ Cypress.Commands.add(
 Cypress.Commands.add('loginByOidc', (commandOptions: CommandLoginOptions) => {
   Cypress.log({ name: 'loginByOidc' });
   cy.log(
-    'We recommend to not to use the command "cy.loginByOidc" directly. Instead use the more generic "cy.loginToMerchantCenter" command as it automatically detects which login mechanism to use.'
+    'We recommend not to use the command "cy.loginByOidc" directly. Instead, use the more generic "cy.loginToMerchantCenter" command as it automatically detects which login mechanism to use.'
   );
 
   loginByOidc(commandOptions);
