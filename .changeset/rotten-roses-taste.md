@@ -20,7 +20,7 @@
 '@commercetools-frontend/react-notifications': patch
 '@commercetools-frontend/sdk': patch
 '@commercetools-frontend/sentry': patch
-'playground': patch
+'@commercetools-local/playground': patch
 '@commercetools-local/visual-testing-app': patch
 '@commercetools-website/custom-applications': patch
 '@commercetools-website/components-playground': patch
