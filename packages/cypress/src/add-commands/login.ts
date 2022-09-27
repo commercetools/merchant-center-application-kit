@@ -11,7 +11,7 @@ declare const cy: any;
 export type LoginCredentials = {
   /**
    * The user email.
-   * Defaults to `Cypress.env('LOGIN_EMAIL') ?? Cypress.env('LOGIN_USER')`.
+   * Defaults to `Cypress.env('LOGIN_EMAIL') || Cypress.env('LOGIN_USER')`.
    */
   email: string;
   /**
@@ -59,7 +59,7 @@ export type CommandLoginByOidcOptions = CommandLoginOptions;
 function loginByForm(commandOptions: CommandLoginOptions) {
   if (isLocalhost()) {
     throw new Error(
-      `At the moment, the "loginByForm" command only works when testing a Merchant Center production URL. Testing an application running on localhost is not supported due to issues with "cy.origin".`
+      `At the moment, the "loginByForm" command only works when testing a Merchant Center production URL. Using form login in an application running on localhost is not supported due to issues with "cy.origin".`
     );
   }
 
@@ -87,7 +87,7 @@ function loginByForm(commandOptions: CommandLoginOptions) {
     });
 
     const userCredentials = commandOptions.login ?? {
-      email: Cypress.env('LOGIN_EMAIL') ?? Cypress.env('LOGIN_USER'),
+      email: Cypress.env('LOGIN_EMAIL') || Cypress.env('LOGIN_USER'),
       password: Cypress.env('LOGIN_PASSWORD'),
     };
     const sessionKey = [
@@ -120,11 +120,7 @@ function loginByForm(commandOptions: CommandLoginOptions) {
     // For backwards compatibility.
     if (Cypress.config('experimentalSessionAndOrigin')) {
       // https://www.cypress.io/blog/2021/08/04/authenticate-faster-in-tests-cy-session-command/
-      cy.session(sessionKey, authCallback, {
-        validate() {
-          validateUserSession(appConfig.mcApiUrl);
-        },
-      });
+      cy.session(sessionKey, authCallback);
     } else {
       cy.log(
         `We recommend turning on the flag "experimentalSessionAndOrigin" to be able to use "cy.session" and thus reduce the time to log in between tests.`
@@ -175,7 +171,7 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
       teamId: appConfig.__DEVELOPMENT__?.oidc?.teamId,
     });
     const userCredentials = commandOptions.login ?? {
-      email: Cypress.env('LOGIN_EMAIL') ?? Cypress.env('LOGIN_USER'),
+      email: Cypress.env('LOGIN_EMAIL') || Cypress.env('LOGIN_USER'),
       password: Cypress.env('LOGIN_PASSWORD'),
     };
     // Perform the login using the API, then store some required values into the browser storage
@@ -230,11 +226,7 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
       // For backwards compatibility.
       if (Cypress.config('experimentalSessionAndOrigin')) {
         // https://www.cypress.io/blog/2021/08/04/authenticate-faster-in-tests-cy-session-command/
-        cy.session(sessionKey, authCallback, {
-          validate() {
-            validateUserSession(appConfig.mcApiUrl);
-          },
-        });
+        cy.session(sessionKey, authCallback);
       } else {
         cy.log(
           `We recommend turning on the flag "experimentalSessionAndOrigin" to be able to use "cy.session" and thus reduce the time to log in between tests.`
@@ -251,27 +243,6 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
 }
 
 /* Utilities */
-
-function validateUserSession(mcApiUrl: string) {
-  // Validate that the session is valid by sending the `amILoggedIn` request.
-  cy.request({
-    method: 'POST',
-    url: `${mcApiUrl}/graphql`,
-    body: {
-      query: `query VerifyAmILoggedIn { amILoggedIn }`,
-    },
-    headers: {
-      accept: 'application/json',
-      'content-type': 'application/json',
-      'x-graphql-target': 'mc',
-      ...(isLocalhost()
-        ? { authorization: `Bearer ${sessionStorage.getItem('sessionToken')}` }
-        : {}),
-    },
-  })
-    .its('body')
-    .should('deep.equal', { data: { amILoggedIn: true } });
-}
 
 function fillLoginForm(userCredentials: LoginCredentials) {
   cy.get('input[name=email]').type(userCredentials.email);
