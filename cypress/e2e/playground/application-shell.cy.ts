@@ -1,10 +1,17 @@
 import { encode } from 'qss';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
-import { URL_BASE, ENTRY_POINT_APP_KIT_PLAYGROUND } from '../../support/urls';
+import {
+  URL_BASE,
+  ENTRY_POINT_APP_KIT_PLAYGROUND,
+  URL_APP_KIT_PLAYGROUND,
+} from '../../support/urls';
 
 describe('when user is authenticated', () => {
   beforeEach(() => {
-    cy.loginByOidc({ entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND });
+    cy.loginToMerchantCenter({
+      entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND,
+      initialRoute: URL_APP_KIT_PLAYGROUND,
+    });
   });
   it('should log out with reason "user"', () => {
     cy.findByRole('button', { name: /open user settings menu/i }).click();
@@ -31,7 +38,10 @@ describe('when user is authenticated', () => {
 
 describe('navigation menu', () => {
   beforeEach(() => {
-    cy.loginByOidc({ entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND });
+    cy.loginToMerchantCenter({
+      entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND,
+      initialRoute: URL_APP_KIT_PLAYGROUND,
+    });
   });
   it('should stay collapsed for small viewports', () => {
     cy.viewport(900, 800);
