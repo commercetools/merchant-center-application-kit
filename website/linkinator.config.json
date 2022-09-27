@@ -12,7 +12,6 @@
     "https://surge.sh",
     "/.+/api$",
     "/.+/api/",
-    "/.+/custom-applications/legacy",
     "/.+/custom-applications/playground",
     "/.+/docs/login",
     "/.+/import-export",
