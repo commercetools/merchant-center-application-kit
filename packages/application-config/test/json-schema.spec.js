@@ -274,4 +274,20 @@ describe('invalid configurations', () => {
       `"Duplicate additional permission. Every additional permission must have a unique name"`
     );
   });
+  it('should validate the additional permission names matches the entry point regex', () => {
+    expect(() =>
+      validateAdditionalOAuthScopes({
+        ...fixtureConfigSimple,
+        additionalOAuthScopes: [
+          {
+            name: '-movies',
+            view: ['view_products'],
+            manage: [],
+          },
+        ],
+      })
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"Additional permission name \\"-movies\\" is invalid. The value may be between 2 and 64 characters and only contain alphanumeric lowercase characters, non-consecutive underscores and hyphens. Leading and trailing underscore and hyphens are also not allowed"`
+    );
+  });
 });
