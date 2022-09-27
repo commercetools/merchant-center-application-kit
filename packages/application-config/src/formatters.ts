@@ -1,5 +1,4 @@
 import upperFirst from 'lodash/upperFirst';
-import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 
 type TImplicitCustomApplicationResourceAccesses<
   PermissionName extends string = ''
@@ -118,58 +117,8 @@ function entryPointUriPathToPermissionKeys<PermissionName extends string>(
   );
 }
 
-type TResourceAccessPermissionName<PermissionName extends string = ''> =
-  | `view${Capitalize<PermissionName>}`
-  | `manage${Capitalize<PermissionName>}`;
-
-const getPermissions = (
-  appConfig: JSONSchemaForCustomApplicationConfigurationFiles
-) => {
-  const additionalResourceAccessKeyToOauthScopeMap = (
-    appConfig.additionalOAuthScopes || []
-  ).reduce((previousOauthScope, { name, view, manage }) => {
-    const formattedResourceKey =
-      formatEntryPointUriPathToResourceAccessKey(name);
-    return {
-      ...previousOauthScope,
-      [`view${formattedResourceKey}`]: view,
-      [`manage${formattedResourceKey}`]: manage,
-    };
-  }, {} as Record<TResourceAccessPermissionName<PermissionName>, string[]>);
-
-  const additionalPermissionNames =
-    appConfig.additionalOAuthScopes?.map(({ name }) => name) || [];
-
-  const permissionKeys = entryPointUriPathToResourceAccesses(
-    appConfig.entryPointUriPath,
-    additionalPermissionNames
-  );
-
-  const additionalPermissions = (
-    Object.keys(
-      additionalResourceAccessKeyToOauthScopeMap || []
-    ) as TResourceAccessPermissionName<PermissionName>[]
-  ).map((additionalResourceAccessKey) => ({
-    name: permissionKeys[additionalResourceAccessKey],
-    oAuthScopes:
-      additionalResourceAccessKeyToOauthScopeMap[additionalResourceAccessKey],
-  }));
-
-  return [
-    {
-      name: permissionKeys.view,
-      oAuthScopes: appConfig.oAuthScopes.view,
-    },
-    {
-      name: permissionKeys.manage,
-      oAuthScopes: appConfig.oAuthScopes.manage,
-    },
-    ...additionalPermissions,
-  ];
-};
-
 export {
   entryPointUriPathToResourceAccesses,
   entryPointUriPathToPermissionKeys,
-  getPermissions,
+  formatEntryPointUriPathToResourceAccessKey,
 };

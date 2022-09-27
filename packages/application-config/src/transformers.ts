@@ -1,6 +1,9 @@
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 import type { CustomApplicationData } from './types';
-import { getPermissions } from './formatters';
+import {
+  entryPointUriPathToResourceAccesses,
+  formatEntryPointUriPathToResourceAccessKey,
+} from './formatters';
 import {
   validateEntryPointUriPath,
   validateSubmenuLinks,
@@ -21,6 +24,50 @@ const computeUriPath = (uriPath: string, entryPointUriPath: string) => {
   if (uriPath.startsWith(`${entryPointUriPath}/`)) return uriPath;
   // Return the full path including the `entryPointUriPath` as a prefix.
   return `${entryPointUriPath}/${uriPath}`;
+};
+
+const getPermissions = (
+  appConfig: JSONSchemaForCustomApplicationConfigurationFiles
+) => {
+  const additionalResourceAccessKeyToOauthScopeMap = (
+    appConfig.additionalOAuthScopes || []
+  ).reduce((previousOauthScope, { name, view, manage }) => {
+    const formattedResourceKey =
+      formatEntryPointUriPathToResourceAccessKey(name);
+    return {
+      ...previousOauthScope,
+      [`view${formattedResourceKey}`]: view,
+      [`manage${formattedResourceKey}`]: manage,
+    };
+  }, {} as Record<string, string[]>);
+
+  const additionalPermissionNames =
+    appConfig.additionalOAuthScopes?.map(({ name }) => name) || [];
+
+  const permissionKeys = entryPointUriPathToResourceAccesses(
+    appConfig.entryPointUriPath,
+    additionalPermissionNames
+  ) as Record<string, string>;
+
+  const additionalPermissions = Object.keys(
+    additionalResourceAccessKeyToOauthScopeMap
+  ).map((additionalResourceAccessKey) => ({
+    name: permissionKeys[additionalResourceAccessKey],
+    oAuthScopes:
+      additionalResourceAccessKeyToOauthScopeMap[additionalResourceAccessKey],
+  }));
+
+  return [
+    {
+      name: permissionKeys.view,
+      oAuthScopes: appConfig.oAuthScopes.view,
+    },
+    {
+      name: permissionKeys.manage,
+      oAuthScopes: appConfig.oAuthScopes.manage,
+    },
+    ...additionalPermissions,
+  ];
 };
 
 function transformCustomApplicationConfigToData(
