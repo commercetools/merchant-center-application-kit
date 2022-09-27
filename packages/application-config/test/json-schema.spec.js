@@ -263,6 +263,7 @@ describe('invalid configurations', () => {
             view: ['view_products'],
             manage: [],
           },
+
           {
             name: 'movies',
             view: ['view_channels'],
@@ -271,7 +272,7 @@ describe('invalid configurations', () => {
         ],
       })
     ).toThrowErrorMatchingInlineSnapshot(
-      `"Duplicate additional permission. Every additional permission must have a unique name"`
+      `"Duplicate additional permission \\"movies\\". Every additional permission must have a unique name"`
     );
   });
   it('should validate the additional permission names matches the entry point regex', () => {

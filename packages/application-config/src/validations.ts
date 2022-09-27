@@ -78,7 +78,7 @@ export const validateAdditionalOAuthScopes = (
   config.additionalOAuthScopes?.forEach(({ name }) => {
     if (additionalPermissionNames.has(name)) {
       throw new Error(
-        'Duplicate additional permission. Every additional permission must have a unique name'
+        `Duplicate additional permission "${name}". Every additional permission must have a unique name`
       );
     }
     if (!name.match(ENTRY_POINT_URI_PATH_REGEX)) {
