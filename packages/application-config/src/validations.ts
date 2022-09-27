@@ -70,3 +70,22 @@ export const validateSubmenuLinks = (
     uriPathSet.add(uriPath);
   });
 };
+
+export const validateAdditionalOAuthScopes = (
+  config: JSONSchemaForCustomApplicationConfigurationFiles
+) => {
+  const additionalPermissionNames = new Set();
+  config.additionalOAuthScopes?.forEach(({ name }) => {
+    if (additionalPermissionNames.has(name)) {
+      throw new Error(
+        `Duplicate additional permission "${name}". Every additional permission must have a unique name`
+      );
+    }
+    if (!name.match(ENTRY_POINT_URI_PATH_REGEX)) {
+      throw new Error(
+        `Additional permission name "${name}" is invalid. The value may be between 2 and 64 characters and only contain alphanumeric lowercase characters, non-consecutive underscores and hyphens. Leading and trailing underscore and hyphens are also not allowed`
+      );
+    }
+    additionalPermissionNames.add(name);
+  });
+};

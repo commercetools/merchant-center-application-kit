@@ -143,4 +143,5 @@ function entryPointUriPathToPermissionKeys<PermissionGroupName extends string>(
 export {
   entryPointUriPathToResourceAccesses,
   entryPointUriPathToPermissionKeys,
+  formatEntryPointUriPathToResourceAccessKey,
 };
