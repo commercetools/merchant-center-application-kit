@@ -10,7 +10,12 @@ describe('Channels', () => {
       cy.findByText('Channels list').should('exist');
     });
     cy.findByText('Store Berlin').should('exist');
-    cy.findByText('Store Munich').should('exist');
+    cy.findByText('Store Munich').should('exist').click();
+    cy.findByRole('dialog', { name: 'Store Munich' }).should('exist');
+    cy.title().should(
+      'eq',
+      'Store Munich - Template-starter - mc-e2e-app-kit-01 - Merchant Center'
+    );
     cy.percySnapshot();
   });
 });

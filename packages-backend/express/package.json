@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-backend/express",
-  "version": "21.14.3",
+  "version": "21.15.0",
   "description": "Zero-config HTTP server as Express.js to facilitate development",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -30,6 +30,6 @@
     "@types/express-unless": "^0.5.3",
     "@types/jsonwebtoken": "^8.5.9",
     "jose": "2.0.6",
-    "msw": "0.47.2"
+    "msw": "0.47.3"
   }
 }

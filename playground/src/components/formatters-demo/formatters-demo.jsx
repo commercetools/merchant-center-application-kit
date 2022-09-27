@@ -13,14 +13,23 @@ import Label from '@commercetools-uikit/label';
 
 import messages from './messages';
 
-const DEMO_LOCALES = ['en', 'en-GB', 'en-AU', 'de', 'de-AT', 'es', 'es-MX', 'fr-FR'];
+const DEMO_LOCALES = [
+  'en',
+  'en-GB',
+  'en-AU',
+  'de',
+  'de-AT',
+  'es',
+  'es-MX',
+  'fr-FR',
+];
 
 const DEMO_TIMEZONE = 'Europe/Berlin';
 
 const DEMO_MONEY_PRICE = {
   currencyCode: 'EUR',
   fractionDigits: 2,
-  fractionedAmount: 10362.50,
+  fractionedAmount: 10362.5,
 };
 
 function getSampleDate() {
@@ -31,14 +40,11 @@ function getSampleDate() {
 }
 
 function formatMoney(moneyValue, intl) {
-  return intl.formatNumber(
-    moneyValue.fractionedAmount,
-    {
-      style: 'currency',
-      currency: moneyValue.currencyCode,
-      minimumFractionDigits: moneyValue.fractionDigits,
-    }
-  );
+  return intl.formatNumber(moneyValue.fractionedAmount, {
+    style: 'currency',
+    currency: moneyValue.currencyCode,
+    minimumFractionDigits: moneyValue.fractionDigits,
+  });
 }
 
 function formatDate(dateString, locale) {
@@ -51,7 +57,9 @@ function ExampleItem({ label, locale, children }) {
 
   return (
     <Spacings.Stack>
-      <Label isBold id={itemId}>{intl.formatMessage(label)}</Label>
+      <Label isBold id={itemId}>
+        {intl.formatMessage(label)}
+      </Label>
       <span aria-labelledby={itemId}>{children}</span>
     </Spacings.Stack>
   );
@@ -101,19 +109,22 @@ LocaleExample.propTypes = {
 export function LocaleExampleWrapper({ locale, date, timeZone, money }) {
   return (
     <div data-testid={`locale-example-${locale}`}>
-        <AsyncLocaleData locale={locale} applicationMessages={{}}>
-          {({ isLoading, messages }) => !isLoading ?
+      <AsyncLocaleData locale={locale} applicationMessages={{}}>
+        {({ isLoading, messages }) =>
+          !isLoading ? (
             <IntlProvider locale={locale} messages={messages}>
               <LocaleExample
                 locale={locale}
                 date={date}
                 timeZone={timeZone}
                 money={money}
-                />
+              />
             </IntlProvider>
-            :
-            <span>loading...</span>}
-        </AsyncLocaleData>
+          ) : (
+            <span>loading...</span>
+          )
+        }
+      </AsyncLocaleData>
     </div>
   );
 }

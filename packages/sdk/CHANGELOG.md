@@ -1,5 +1,16 @@
 # @commercetools-frontend/sdk
 
+## 21.15.0
+
+### Patch Changes
+
+- [#2810](https://github.com/commercetools/merchant-center-application-kit/pull/2810) [`0e49a78f8`](https://github.com/commercetools/merchant-center-application-kit/commit/0e49a78f8e3b228a9b0bb3d90781aa8e940de4bc) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- [#2819](https://github.com/commercetools/merchant-center-application-kit/pull/2819) [`30d8324bc`](https://github.com/commercetools/merchant-center-application-kit/commit/30d8324bce8c04cb67bbb3af97175861b663aef0) Thanks [@emmenko](https://github.com/emmenko)! - Fix `useAsyncDispatch` to return a fixed reference
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.15.0
+
 ## 21.14.3
 
 ### Patch Changes

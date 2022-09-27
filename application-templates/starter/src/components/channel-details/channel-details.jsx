@@ -27,6 +27,7 @@ import { docToFormValues, formValuesToDoc } from './conversions';
 import ChannelsDetailsForm from './channel-details-form';
 import { transformErrors } from './transform-errors';
 import messages from './messages';
+import { ApplicationPageTitle } from '@commercetools-frontend/application-shell';
 
 const ChannelDetails = (props) => {
   const intl = useIntl();
@@ -91,19 +92,20 @@ const ChannelDetails = (props) => {
       dataLocale={dataLocale}
     >
       {(formProps) => {
+        const channelName = formatLocalizedString(
+          {
+            name: formProps.values?.name,
+          },
+          {
+            key: 'name',
+            locale: dataLocale,
+            fallbackOrder: projectLanguages,
+            fallback: NO_VALUE_FALLBACK,
+          }
+        );
         return (
           <FormModalPage
-            title={formatLocalizedString(
-              {
-                name: formProps.values?.name,
-              },
-              {
-                key: 'name',
-                locale: dataLocale,
-                fallbackOrder: projectLanguages,
-                fallback: NO_VALUE_FALLBACK,
-              }
-            )}
+            title={channelName}
             isOpen
             onClose={props.onClose}
             isPrimaryButtonDisabled={
@@ -128,6 +130,9 @@ const ChannelDetails = (props) => {
               </ContentNotification>
             )}
             {channel && formProps.formElements}
+            {channel && (
+              <ApplicationPageTitle additionalParts={[channelName]} />
+            )}
             {channel === null && <PageNotFound />}
           </FormModalPage>
         );

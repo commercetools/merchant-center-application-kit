@@ -1,13 +1,16 @@
 import type { Dispatch } from 'redux';
+import { useDispatch } from 'react-redux';
 import type { TSdkAction } from '../types';
 
-import { useDispatch } from 'react-redux';
+type TAsyncDispatch<Action extends TSdkAction, Data> = (
+  action: Action
+) => Promise<Data>;
 
 // Wraps `dispatch` and cast the return type to a Promise, as the middleware
 // returns a Promise.
 function useAsyncDispatch<Action extends TSdkAction, Data>() {
   const dispatch = useDispatch<Dispatch<Action>>();
-  return (action: Action) => dispatch(action) as unknown as Promise<Data>;
+  return dispatch as unknown as TAsyncDispatch<Action, Data>;
 }
 
 export default useAsyncDispatch;

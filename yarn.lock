@@ -2777,12 +2777,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:7.18.9, @babel/runtime@npm:^7.7.6":
-  version: 7.18.9
-  resolution: "@babel/runtime@npm:7.18.9"
+"@babel/runtime@npm:7.19.0, @babel/runtime@npm:^7.18.9, @babel/runtime@npm:^7.19.0":
+  version: 7.19.0
+  resolution: "@babel/runtime@npm:7.19.0"
   dependencies:
     regenerator-runtime: ^0.13.4
-  checksum: 36dd736baba7164e82b3cc9d43e081f0cb2d05ff867ad39cac515d99546cee75b7f782018b02a3dcf5f2ef3d27f319faa68965fdfec49d4912c60c6002353a2e
+  checksum: fa69c351bb05e1db3ceb9a02fdcf620c234180af68cdda02152d3561015f6d55277265d3109815992f96d910f3db709458cae4f8df1c3def66f32e0867d82294
   languageName: node
   linkType: hard
 
@@ -2822,12 +2822,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.18.9, @babel/runtime@npm:^7.19.0":
-  version: 7.19.0
-  resolution: "@babel/runtime@npm:7.19.0"
+"@babel/runtime@npm:^7.7.6":
+  version: 7.18.9
+  resolution: "@babel/runtime@npm:7.18.9"
   dependencies:
     regenerator-runtime: ^0.13.4
-  checksum: fa69c351bb05e1db3ceb9a02fdcf620c234180af68cdda02152d3561015f6d55277265d3109815992f96d910f3db709458cae4f8df1c3def66f32e0867d82294
+  checksum: 36dd736baba7164e82b3cc9d43e081f0cb2d05ff867ad39cac515d99546cee75b7f782018b02a3dcf5f2ef3d27f319faa68965fdfec49d4912c60c6002353a2e
   languageName: node
   linkType: hard
 
@@ -3286,19 +3286,19 @@ __metadata:
   resolution: "@commercetools-applications/merchant-center-template-starter-typescript@workspace:application-templates/starter-typescript"
   dependencies:
     "@apollo/client": 3.6.9
-    "@commercetools-frontend/actions-global": 21.14.3
-    "@commercetools-frontend/application-components": 21.14.3
-    "@commercetools-frontend/application-config": 21.14.3
-    "@commercetools-frontend/application-shell": 21.14.3
-    "@commercetools-frontend/application-shell-connectors": 21.14.3
-    "@commercetools-frontend/assets": 21.14.3
-    "@commercetools-frontend/constants": 21.14.3
-    "@commercetools-frontend/eslint-config-mc-app": 21.14.3
-    "@commercetools-frontend/i18n": 21.14.3
-    "@commercetools-frontend/jest-preset-mc-app": 21.14.3
-    "@commercetools-frontend/mc-dev-authentication": 21.14.3
-    "@commercetools-frontend/mc-scripts": 21.14.3
-    "@commercetools-frontend/permissions": 21.14.3
+    "@commercetools-frontend/actions-global": 21.15.0
+    "@commercetools-frontend/application-components": 21.15.0
+    "@commercetools-frontend/application-config": 21.15.0
+    "@commercetools-frontend/application-shell": 21.15.0
+    "@commercetools-frontend/application-shell-connectors": 21.15.0
+    "@commercetools-frontend/assets": 21.15.0
+    "@commercetools-frontend/constants": 21.15.0
+    "@commercetools-frontend/eslint-config-mc-app": 21.15.0
+    "@commercetools-frontend/i18n": 21.15.0
+    "@commercetools-frontend/jest-preset-mc-app": 21.15.0
+    "@commercetools-frontend/mc-dev-authentication": 21.15.0
+    "@commercetools-frontend/mc-scripts": 21.15.0
+    "@commercetools-frontend/permissions": 21.15.0
     "@commercetools-test-data/channel": 4.1.1
     "@commercetools-test-data/commons": 4.1.1
     "@commercetools-test-data/core": 4.1.1
@@ -3331,7 +3331,7 @@ __metadata:
     jest: 27.5.1
     jest-runner-eslint: 1.1.0
     jest-watch-typeahead: 1.1.0
-    msw: 0.47.2
+    msw: 0.47.3
     omit-empty-es: 1.1.3
     prettier: 2.7.1
     react: 17.0.2
@@ -3349,18 +3349,18 @@ __metadata:
   resolution: "@commercetools-applications/merchant-center-template-starter@workspace:application-templates/starter"
   dependencies:
     "@apollo/client": 3.6.9
-    "@commercetools-frontend/actions-global": 21.14.3
-    "@commercetools-frontend/application-components": 21.14.3
-    "@commercetools-frontend/application-shell": 21.14.3
-    "@commercetools-frontend/application-shell-connectors": 21.14.3
-    "@commercetools-frontend/assets": 21.14.3
-    "@commercetools-frontend/constants": 21.14.3
-    "@commercetools-frontend/eslint-config-mc-app": 21.14.3
-    "@commercetools-frontend/i18n": 21.14.3
-    "@commercetools-frontend/jest-preset-mc-app": 21.14.3
-    "@commercetools-frontend/mc-dev-authentication": 21.14.3
-    "@commercetools-frontend/mc-scripts": 21.14.3
-    "@commercetools-frontend/permissions": 21.14.3
+    "@commercetools-frontend/actions-global": 21.15.0
+    "@commercetools-frontend/application-components": 21.15.0
+    "@commercetools-frontend/application-shell": 21.15.0
+    "@commercetools-frontend/application-shell-connectors": 21.15.0
+    "@commercetools-frontend/assets": 21.15.0
+    "@commercetools-frontend/constants": 21.15.0
+    "@commercetools-frontend/eslint-config-mc-app": 21.15.0
+    "@commercetools-frontend/i18n": 21.15.0
+    "@commercetools-frontend/jest-preset-mc-app": 21.15.0
+    "@commercetools-frontend/mc-dev-authentication": 21.15.0
+    "@commercetools-frontend/mc-scripts": 21.15.0
+    "@commercetools-frontend/permissions": 21.15.0
     "@commercetools-test-data/channel": 4.1.1
     "@commercetools-test-data/commons": 4.1.1
     "@commercetools-test-data/core": 4.1.1
@@ -3391,7 +3391,7 @@ __metadata:
     jest: 27.5.1
     jest-runner-eslint: 1.1.0
     jest-watch-typeahead: 1.1.0
-    msw: 0.47.2
+    msw: 0.47.3
     omit-empty-es: 1.1.3
     prettier: 2.7.1
     prop-types: 15.8.1
@@ -3428,7 +3428,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-backend/express@21.14.3, @commercetools-backend/express@workspace:packages-backend/express":
+"@commercetools-backend/express@21.15.0, @commercetools-backend/express@workspace:packages-backend/express":
   version: 0.0.0-use.local
   resolution: "@commercetools-backend/express@workspace:packages-backend/express"
   dependencies:
@@ -3442,7 +3442,7 @@ __metadata:
     express-jwt: 7.7.5
     jose: 2.0.6
     jwks-rsa: 2.1.4
-    msw: 0.47.2
+    msw: 0.47.3
   languageName: unknown
   linkType: soft
 
@@ -3452,7 +3452,7 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@sentry/node": 7.12.1
+    "@sentry/node": 7.13.0
     "@tsconfig/node16": ^1.0.3
     "@types/triple-beam": 1.3.2
     express: 4.18.1
@@ -3608,16 +3608,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-frontend/actions-global@21.14.3, @commercetools-frontend/actions-global@workspace:packages/actions-global":
+"@commercetools-frontend/actions-global@21.15.0, @commercetools-frontend/actions-global@workspace:packages/actions-global":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/actions-global@workspace:packages/actions-global"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/browser-history": 21.14.3
-    "@commercetools-frontend/constants": 21.14.3
-    "@commercetools-frontend/notifications": 21.14.3
-    "@commercetools-frontend/sentry": 21.14.3
+    "@commercetools-frontend/browser-history": 21.15.0
+    "@commercetools-frontend/constants": 21.15.0
+    "@commercetools-frontend/notifications": 21.15.0
+    "@commercetools-frontend/sentry": 21.15.0
     "@types/lodash": ^4.14.185
     "@types/react": ^17.0.49
     "@types/react-redux": ^7.1.24
@@ -3633,17 +3633,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/application-components@21.14.3, @commercetools-frontend/application-components@workspace:packages/application-components":
+"@commercetools-frontend/application-components@21.15.0, @commercetools-frontend/application-components@workspace:packages/application-components":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/application-components@workspace:packages/application-components"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/application-shell-connectors": 21.14.3
-    "@commercetools-frontend/assets": 21.14.3
-    "@commercetools-frontend/constants": 21.14.3
-    "@commercetools-frontend/i18n": 21.14.3
-    "@commercetools-frontend/l10n": 21.14.3
+    "@commercetools-frontend/application-shell-connectors": 21.15.0
+    "@commercetools-frontend/assets": 21.15.0
+    "@commercetools-frontend/constants": 21.15.0
+    "@commercetools-frontend/i18n": 21.15.0
+    "@commercetools-frontend/l10n": 21.15.0
     "@commercetools-uikit/card": ^15.2.2
     "@commercetools-uikit/constraints": ^15.2.2
     "@commercetools-uikit/design-system": ^15.2.2
@@ -3685,14 +3685,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/application-config@21.14.3, @commercetools-frontend/application-config@workspace:packages/application-config":
+"@commercetools-frontend/application-config@21.15.0, @commercetools-frontend/application-config@workspace:packages/application-config":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/application-config@workspace:packages/application-config"
   dependencies:
     "@babel/register": ^7.18.9
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/babel-preset-mc-app": 21.14.3
+    "@commercetools-frontend/babel-preset-mc-app": 21.15.0
     "@types/jsdom": ^16.2.15
     ajv: 8.11.0
     core-js: ^3.25.1
@@ -3706,15 +3706,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/application-shell-connectors@21.14.3, @commercetools-frontend/application-shell-connectors@workspace:packages/application-shell-connectors":
+"@commercetools-frontend/application-shell-connectors@21.15.0, @commercetools-frontend/application-shell-connectors@workspace:packages/application-shell-connectors":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/application-shell-connectors@workspace:packages/application-shell-connectors"
   dependencies:
     "@apollo/client": 3.6.9
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/constants": 21.14.3
-    "@commercetools-frontend/sentry": 21.14.3
+    "@commercetools-frontend/constants": 21.15.0
+    "@commercetools-frontend/sentry": 21.15.0
     "@emotion/react": 11.10.4
     "@testing-library/react": 12.1.5
     "@types/lodash": ^4.14.185
@@ -3732,28 +3732,28 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/application-shell@21.14.3, @commercetools-frontend/application-shell@workspace:packages/application-shell":
+"@commercetools-frontend/application-shell@21.15.0, @commercetools-frontend/application-shell@workspace:packages/application-shell":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/application-shell@workspace:packages/application-shell"
   dependencies:
     "@apollo/client": 3.6.9
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/actions-global": 21.14.3
-    "@commercetools-frontend/application-components": 21.14.3
-    "@commercetools-frontend/application-config": 21.14.3
-    "@commercetools-frontend/application-shell-connectors": 21.14.3
-    "@commercetools-frontend/assets": 21.14.3
-    "@commercetools-frontend/browser-history": 21.14.3
-    "@commercetools-frontend/constants": 21.14.3
-    "@commercetools-frontend/i18n": 21.14.3
-    "@commercetools-frontend/l10n": 21.14.3
-    "@commercetools-frontend/notifications": 21.14.3
-    "@commercetools-frontend/permissions": 21.14.3
-    "@commercetools-frontend/react-notifications": 21.14.3
-    "@commercetools-frontend/sdk": 21.14.3
-    "@commercetools-frontend/sentry": 21.14.3
-    "@commercetools-frontend/url-utils": 21.14.3
+    "@commercetools-frontend/actions-global": 21.15.0
+    "@commercetools-frontend/application-components": 21.15.0
+    "@commercetools-frontend/application-config": 21.15.0
+    "@commercetools-frontend/application-shell-connectors": 21.15.0
+    "@commercetools-frontend/assets": 21.15.0
+    "@commercetools-frontend/browser-history": 21.15.0
+    "@commercetools-frontend/constants": 21.15.0
+    "@commercetools-frontend/i18n": 21.15.0
+    "@commercetools-frontend/l10n": 21.15.0
+    "@commercetools-frontend/notifications": 21.15.0
+    "@commercetools-frontend/permissions": 21.15.0
+    "@commercetools-frontend/react-notifications": 21.15.0
+    "@commercetools-frontend/sdk": 21.15.0
+    "@commercetools-frontend/sentry": 21.15.0
+    "@commercetools-frontend/url-utils": 21.15.0
     "@commercetools-uikit/accessible-hidden": ^15.2.2
     "@commercetools-uikit/avatar": ^15.2.2
     "@commercetools-uikit/card": ^15.2.2
@@ -3768,11 +3768,11 @@ __metadata:
     "@commercetools/http-user-agent": 3.0.0
     "@emotion/react": 11.10.4
     "@emotion/styled": 11.10.4
-    "@flopflip/combine-adapters": 0.0.35
-    "@flopflip/http-adapter": 0.0.25
-    "@flopflip/launchdarkly-adapter": 5.0.30
-    "@flopflip/react-broadcast": 12.3.3
-    "@flopflip/types": 4.1.26
+    "@flopflip/combine-adapters": 0.0.36
+    "@flopflip/http-adapter": 0.0.26
+    "@flopflip/launchdarkly-adapter": 5.0.31
+    "@flopflip/react-broadcast": 12.3.4
+    "@flopflip/types": 4.1.27
     "@reduxjs/toolkit": 1.8.5
     "@testing-library/react": 12.1.5
     "@testing-library/react-hooks": 8.0.1
@@ -3791,7 +3791,7 @@ __metadata:
     classnames: ^2.3.2
     common-tags: 1.8.2
     debounce-async: 0.0.2
-    downshift: 6.1.9
+    downshift: 6.1.11
     fuse.js: 6.6.2
     graphql: 16.6.0
     history: 4.10.1
@@ -3801,7 +3801,7 @@ __metadata:
     memoize-one: 5.2.1
     moment: ^2.29.4
     moment-timezone: ^0.5.37
-    msw: 0.47.2
+    msw: 0.47.3
     omit-empty-es: 1.1.3
     perfume.js: 6.4.0
     prop-types: 15.8.1
@@ -3833,13 +3833,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/assets@21.14.3, @commercetools-frontend/assets@workspace:packages/assets":
+"@commercetools-frontend/assets@21.15.0, @commercetools-frontend/assets@workspace:packages/assets":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/assets@workspace:packages/assets"
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/babel-preset-mc-app@21.14.3, @commercetools-frontend/babel-preset-mc-app@^21.14.3, @commercetools-frontend/babel-preset-mc-app@workspace:packages/babel-preset-mc-app":
+"@commercetools-frontend/babel-preset-mc-app@21.15.0, @commercetools-frontend/babel-preset-mc-app@^21.15.0, @commercetools-frontend/babel-preset-mc-app@workspace:packages/babel-preset-mc-app":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/babel-preset-mc-app@workspace:packages/babel-preset-mc-app"
   dependencies:
@@ -3871,7 +3871,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/browser-history@21.14.3, @commercetools-frontend/browser-history@workspace:packages/browser-history":
+"@commercetools-frontend/browser-history@21.15.0, @commercetools-frontend/browser-history@workspace:packages/browser-history":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/browser-history@workspace:packages/browser-history"
   dependencies:
@@ -3900,7 +3900,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/constants@21.14.3, @commercetools-frontend/constants@workspace:packages/constants":
+"@commercetools-frontend/constants@21.15.0, @commercetools-frontend/constants@workspace:packages/constants":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/constants@workspace:packages/constants"
   dependencies:
@@ -3933,23 +3933,23 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/application-config": 21.14.3
-    "@commercetools-frontend/application-shell": 21.14.3
+    "@commercetools-frontend/application-config": 21.15.0
+    "@commercetools-frontend/application-shell": 21.15.0
     "@manypkg/get-packages": 1.1.3
-    cypress: 10.7.0
+    cypress: 10.8.0
     uuid: 8.3.2
   peerDependencies:
     cypress: 8.x || 9.x || 10.x
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/eslint-config-mc-app@21.14.3, @commercetools-frontend/eslint-config-mc-app@workspace:packages/eslint-config-mc-app":
+"@commercetools-frontend/eslint-config-mc-app@21.15.0, @commercetools-frontend/eslint-config-mc-app@workspace:packages/eslint-config-mc-app":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/eslint-config-mc-app@workspace:packages/eslint-config-mc-app"
   dependencies:
     "@babel/core": ^7.19.0
     "@babel/eslint-parser": ^7.18.9
-    "@commercetools-frontend/babel-preset-mc-app": ^21.14.3
+    "@commercetools-frontend/babel-preset-mc-app": ^21.15.0
     "@rushstack/eslint-patch": ^1.1.4
     "@typescript-eslint/eslint-plugin": ^5.37.0
     "@typescript-eslint/parser": ^5.37.0
@@ -3971,14 +3971,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/i18n@21.14.3, @commercetools-frontend/i18n@workspace:packages/i18n":
+"@commercetools-frontend/i18n@21.15.0, @commercetools-frontend/i18n@workspace:packages/i18n":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/i18n@workspace:packages/i18n"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
     "@commercetools-community-kit/i18n": ^0.3.0
-    "@commercetools-frontend/sentry": 21.14.3
+    "@commercetools-frontend/sentry": 21.15.0
     "@commercetools-uikit/i18n": ^15.2.2
     "@emotion/react": 11.10.4
     "@formatjs/cli": 4.8.4
@@ -3995,11 +3995,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/jest-preset-mc-app@21.14.3, @commercetools-frontend/jest-preset-mc-app@workspace:packages/jest-preset-mc-app":
+"@commercetools-frontend/jest-preset-mc-app@21.15.0, @commercetools-frontend/jest-preset-mc-app@workspace:packages/jest-preset-mc-app":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/jest-preset-mc-app@workspace:packages/jest-preset-mc-app"
   dependencies:
-    "@commercetools-frontend/babel-preset-mc-app": 21.14.3
+    "@commercetools-frontend/babel-preset-mc-app": 21.15.0
     "@formatjs/intl-getcanonicallocales": ^1.9.2
     "@formatjs/intl-listformat": ^6.5.3
     "@formatjs/intl-locale": ^2.4.47
@@ -4029,23 +4029,23 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/jest-stylelint-runner@workspace:packages/jest-stylelint-runner"
   dependencies:
-    create-jest-runner: 0.12.0
+    create-jest-runner: 0.12.2
     postcss: 8.4.16
     postcss-load-config: 3.1.4
-    stylelint: 14.11.0
+    stylelint: 14.12.0
   peerDependencies:
     postcss: 8.x
     stylelint: 14.x
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/l10n@21.14.3, @commercetools-frontend/l10n@workspace:packages/l10n":
+"@commercetools-frontend/l10n@21.15.0, @commercetools-frontend/l10n@workspace:packages/l10n":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/l10n@workspace:packages/l10n"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/sentry": 21.14.3
+    "@commercetools-frontend/sentry": 21.15.0
     "@emotion/react": 11.10.4
     "@testing-library/react-hooks": 8.0.1
     "@types/prop-types": ^15.7.5
@@ -4066,26 +4066,26 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/mc-dev-authentication@21.14.3, @commercetools-frontend/mc-dev-authentication@workspace:packages/mc-dev-authentication":
+"@commercetools-frontend/mc-dev-authentication@21.15.0, @commercetools-frontend/mc-dev-authentication@workspace:packages/mc-dev-authentication":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/mc-dev-authentication@workspace:packages/mc-dev-authentication"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/application-config": 21.14.3
+    "@commercetools-frontend/application-config": 21.15.0
     "@tsconfig/node16": ^1.0.3
     express: 4.18.1
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/mc-html-template@21.14.3, @commercetools-frontend/mc-html-template@workspace:packages/mc-html-template":
+"@commercetools-frontend/mc-html-template@21.15.0, @commercetools-frontend/mc-html-template@workspace:packages/mc-html-template":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/mc-html-template@workspace:packages/mc-html-template"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/application-config": 21.14.3
-    "@commercetools-frontend/constants": 21.14.3
+    "@commercetools-frontend/application-config": 21.15.0
+    "@commercetools-frontend/constants": 21.15.0
     "@tsconfig/node16": ^1.0.3
     "@types/serialize-javascript": ^5.0.2
     html-webpack-plugin: 5.5.0
@@ -4095,19 +4095,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/mc-scripts@21.14.3, @commercetools-frontend/mc-scripts@workspace:packages/mc-scripts":
+"@commercetools-frontend/mc-scripts@21.15.0, @commercetools-frontend/mc-scripts@workspace:packages/mc-scripts":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/mc-scripts@workspace:packages/mc-scripts"
   dependencies:
     "@babel/core": ^7.19.0
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/application-config": 21.14.3
-    "@commercetools-frontend/assets": 21.14.3
-    "@commercetools-frontend/babel-preset-mc-app": 21.14.3
-    "@commercetools-frontend/constants": 21.14.3
-    "@commercetools-frontend/mc-dev-authentication": 21.14.3
-    "@commercetools-frontend/mc-html-template": 21.14.3
+    "@commercetools-frontend/application-config": 21.15.0
+    "@commercetools-frontend/assets": 21.15.0
+    "@commercetools-frontend/babel-preset-mc-app": 21.15.0
+    "@commercetools-frontend/constants": 21.15.0
+    "@commercetools-frontend/mc-dev-authentication": 21.15.0
+    "@commercetools-frontend/mc-html-template": 21.15.0
     "@commercetools/http-user-agent": 3.0.0
     "@pmmmwh/react-refresh-webpack-plugin": 0.5.7
     "@rollup/plugin-graphql": 1.1.0
@@ -4143,7 +4143,7 @@ __metadata:
     mini-css-extract-plugin: 2.6.1
     mock-fs: ^5.1.4
     moment-locales-webpack-plugin: 1.2.0
-    msw: 0.47.2
+    msw: 0.47.3
     node-fetch: 2.6.7
     postcss: 8.4.16
     postcss-custom-media: 8.0.2
@@ -4165,7 +4165,7 @@ __metadata:
     terser-webpack-plugin: 5.3.6
     thread-loader: 3.0.4
     url: ^0.11.0
-    vite: 3.1.0
+    vite: 3.1.2
     webpack: 5.74.0
     webpack-bundle-analyzer: 4.6.1
     webpack-dev-server: 4.11.0
@@ -4175,7 +4175,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/notifications@21.14.3, @commercetools-frontend/notifications@workspace:packages/notifications":
+"@commercetools-frontend/notifications@21.15.0, @commercetools-frontend/notifications@workspace:packages/notifications":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/notifications@workspace:packages/notifications"
   dependencies:
@@ -4187,14 +4187,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/permissions@21.14.3, @commercetools-frontend/permissions@workspace:packages/permissions":
+"@commercetools-frontend/permissions@21.15.0, @commercetools-frontend/permissions@workspace:packages/permissions":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/permissions@workspace:packages/permissions"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/application-shell-connectors": 21.14.3
-    "@commercetools-frontend/sentry": 21.14.3
+    "@commercetools-frontend/application-shell-connectors": 21.15.0
+    "@commercetools-frontend/sentry": 21.15.0
     "@emotion/react": 11.10.4
     "@types/lodash": ^4.14.185
     "@types/prop-types": ^15.7.5
@@ -4209,16 +4209,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/react-notifications@21.14.3, @commercetools-frontend/react-notifications@workspace:packages/react-notifications":
+"@commercetools-frontend/react-notifications@21.15.0, @commercetools-frontend/react-notifications@workspace:packages/react-notifications":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/react-notifications@workspace:packages/react-notifications"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/actions-global": 21.14.3
-    "@commercetools-frontend/constants": 21.14.3
-    "@commercetools-frontend/notifications": 21.14.3
-    "@commercetools-frontend/sentry": 21.14.3
+    "@commercetools-frontend/actions-global": 21.15.0
+    "@commercetools-frontend/constants": 21.15.0
+    "@commercetools-frontend/notifications": 21.15.0
+    "@commercetools-frontend/sentry": 21.15.0
     "@commercetools-uikit/design-system": ^15.2.2
     "@commercetools-uikit/hooks": ^15.2.2
     "@commercetools-uikit/icon-button": ^15.2.2
@@ -4255,18 +4255,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/sdk@21.14.3, @commercetools-frontend/sdk@workspace:packages/sdk":
+"@commercetools-frontend/sdk@21.15.0, @commercetools-frontend/sdk@workspace:packages/sdk":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/sdk@workspace:packages/sdk"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/constants": 21.14.3
+    "@commercetools-frontend/constants": 21.15.0
     "@commercetools/api-request-builder": 6.0.0
     "@commercetools/http-user-agent": 3.0.0
     "@commercetools/sdk-client": 3.0.0
     "@commercetools/sdk-middleware-correlation-id": 3.0.0
-    "@commercetools/sdk-middleware-http": 7.0.0
+    "@commercetools/sdk-middleware-http": 7.0.1
     "@testing-library/react": 12.1.5
     "@types/node-fetch": 2.6.2
     "@types/prop-types": ^15.7.5
@@ -4291,14 +4291,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/sentry@21.14.3, @commercetools-frontend/sentry@workspace:packages/sentry":
+"@commercetools-frontend/sentry@21.15.0, @commercetools-frontend/sentry@workspace:packages/sentry":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/sentry@workspace:packages/sentry"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/constants": 21.14.3
-    "@sentry/browser": 7.12.1
+    "@commercetools-frontend/constants": 21.15.0
+    "@sentry/browser": 7.13.0
     "@types/prop-types": ^15.7.5
     "@types/react": ^17.0.49
     prop-types: 15.8.1
@@ -4310,7 +4310,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/url-utils@21.14.3, @commercetools-frontend/url-utils@workspace:packages/url-utils":
+"@commercetools-frontend/url-utils@21.15.0, @commercetools-frontend/url-utils@workspace:packages/url-utils":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/url-utils@workspace:packages/url-utils"
   dependencies:
@@ -4323,20 +4323,20 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-local/playground@workspace:playground"
   dependencies:
-    "@commercetools-backend/express": 21.14.3
+    "@commercetools-backend/express": 21.15.0
     "@commercetools-docs/ui-kit": 19.3.0
-    "@commercetools-frontend/actions-global": 21.14.3
-    "@commercetools-frontend/application-components": 21.14.3
-    "@commercetools-frontend/application-shell": 21.14.3
-    "@commercetools-frontend/application-shell-connectors": 21.14.3
-    "@commercetools-frontend/assets": 21.14.3
-    "@commercetools-frontend/constants": 21.14.3
-    "@commercetools-frontend/i18n": 21.14.3
-    "@commercetools-frontend/l10n": 21.14.3
-    "@commercetools-frontend/mc-dev-authentication": 21.14.3
-    "@commercetools-frontend/mc-scripts": 21.14.3
-    "@commercetools-frontend/permissions": 21.14.3
-    "@commercetools-frontend/sdk": 21.14.3
+    "@commercetools-frontend/actions-global": 21.15.0
+    "@commercetools-frontend/application-components": 21.15.0
+    "@commercetools-frontend/application-shell": 21.15.0
+    "@commercetools-frontend/application-shell-connectors": 21.15.0
+    "@commercetools-frontend/assets": 21.15.0
+    "@commercetools-frontend/constants": 21.15.0
+    "@commercetools-frontend/i18n": 21.15.0
+    "@commercetools-frontend/l10n": 21.15.0
+    "@commercetools-frontend/mc-dev-authentication": 21.15.0
+    "@commercetools-frontend/mc-scripts": 21.15.0
+    "@commercetools-frontend/permissions": 21.15.0
+    "@commercetools-frontend/sdk": 21.15.0
     "@commercetools-uikit/card": ^15.2.2
     "@commercetools-uikit/checkbox-input": ^15.2.2
     "@commercetools-uikit/constraints": ^15.2.2
@@ -4376,10 +4376,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-local/visual-testing-app@workspace:visual-testing-app"
   dependencies:
-    "@commercetools-frontend/application-components": 21.14.3
-    "@commercetools-frontend/assets": 21.14.3
-    "@commercetools-frontend/constants": 21.14.3
-    "@commercetools-frontend/react-notifications": 21.14.3
+    "@commercetools-frontend/application-components": 21.15.0
+    "@commercetools-frontend/assets": 21.15.0
+    "@commercetools-frontend/constants": 21.15.0
+    "@commercetools-frontend/react-notifications": 21.15.0
     "@commercetools-uikit/accessible-button": ^15.2.2
     "@commercetools-uikit/card": ^15.2.2
     "@commercetools-uikit/design-system": ^15.2.2
@@ -4401,7 +4401,7 @@ __metadata:
     react-redux: 7.2.8
     react-router-dom: 5.3.3
     rimraf: 3.0.2
-    vite: 3.1.0
+    vite: 3.1.2
   languageName: unknown
   linkType: soft
 
@@ -5887,8 +5887,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-website/components-playground@workspace:website-components-playground"
   dependencies:
-    "@commercetools-frontend/application-components": 21.14.3
-    "@commercetools-frontend/i18n": 21.14.3
+    "@commercetools-frontend/application-components": 21.15.0
+    "@commercetools-frontend/i18n": 21.15.0
     "@commercetools-uikit/design-system": ^15.2.2
     "@commercetools-uikit/icon-button": ^15.2.2
     "@commercetools-uikit/icons": ^15.2.2
@@ -6028,10 +6028,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools/sdk-middleware-http@npm:7.0.0":
-  version: 7.0.0
-  resolution: "@commercetools/sdk-middleware-http@npm:7.0.0"
-  checksum: 16b78004e6055770eb13e6bf934fdce70c2544de1ffbb00f44bb8e0975901232c2ee5c39dd5b6e779996ac57666e2c1709981dea483a6974119627aed3500251
+"@commercetools/sdk-middleware-http@npm:7.0.1":
+  version: 7.0.1
+  resolution: "@commercetools/sdk-middleware-http@npm:7.0.1"
+  checksum: 76fc562b889cf593e1cda5b2d42f1ebb34e7228e461125e4df4fb6d071a17b2a66cac6dbbe9951ca96c9697b03d0daa194ccc2a96dcd01ac6b86e2c29c3b7e8a
   languageName: node
   linkType: hard
 
@@ -6655,125 +6655,125 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@flopflip/adapter-utilities@npm:1.0.31":
-  version: 1.0.31
-  resolution: "@flopflip/adapter-utilities@npm:1.0.31"
+"@flopflip/adapter-utilities@npm:1.0.32":
+  version: 1.0.32
+  resolution: "@flopflip/adapter-utilities@npm:1.0.32"
   dependencies:
-    "@babel/runtime": 7.18.9
-    "@flopflip/types": 4.1.26
+    "@babel/runtime": 7.19.0
+    "@flopflip/types": 4.1.27
     globalthis: 1.0.3
     lodash: 4.17.21
   peerDependencies:
     typescript: 4.x
-  checksum: 13b076a0396e368412201ab06fed9478be30ee51c64e8d3f65efff3e888f51783b85ff9823006bdcdf17703bb123a9191cb2a10cf0e031cf3781ed59405b7e9e
+  checksum: afa9d2c9de860d8791518217180874fb31d83e316b2bb4b529b117b8c556c3d2d53a8f4d02640d4609b61963bb1e24cd81c2afc8858dbd7b940ae4c10fcb167f
   languageName: node
   linkType: hard
 
-"@flopflip/combine-adapters@npm:0.0.35":
-  version: 0.0.35
-  resolution: "@flopflip/combine-adapters@npm:0.0.35"
+"@flopflip/combine-adapters@npm:0.0.36":
+  version: 0.0.36
+  resolution: "@flopflip/combine-adapters@npm:0.0.36"
   dependencies:
-    "@babel/runtime": 7.18.9
-    "@flopflip/adapter-utilities": 1.0.31
-    "@flopflip/types": 4.1.26
+    "@babel/runtime": 7.19.0
+    "@flopflip/adapter-utilities": 1.0.32
+    "@flopflip/types": 4.1.27
     mitt: 3.0.0
     tiny-warning: 1.0.3
-  checksum: bdfb0fb00c18539ccbd2f0de58a367c952aeb6e33085c09218b58853ac1f559b358dff6f6c52682057831083eca812d713c7e523a5f958d703ce3fee75e0b087
+  checksum: 646c0ae80199977f57f2a92db7089aab01e74714e2a5d1647431a57d09cb2a419fd88a7707949598bd2492a2dbf1d99d6a87f733f9ac521d744259ceac1469cc
   languageName: node
   linkType: hard
 
-"@flopflip/http-adapter@npm:0.0.25":
-  version: 0.0.25
-  resolution: "@flopflip/http-adapter@npm:0.0.25"
+"@flopflip/http-adapter@npm:0.0.26":
+  version: 0.0.26
+  resolution: "@flopflip/http-adapter@npm:0.0.26"
   dependencies:
-    "@babel/runtime": 7.18.9
-    "@flopflip/adapter-utilities": 1.0.31
-    "@flopflip/localstorage-cache": 1.0.30
-    "@flopflip/sessionstorage-cache": 1.0.30
-    "@flopflip/types": 4.1.26
+    "@babel/runtime": 7.19.0
+    "@flopflip/adapter-utilities": 1.0.32
+    "@flopflip/localstorage-cache": 1.0.31
+    "@flopflip/sessionstorage-cache": 1.0.31
+    "@flopflip/types": 4.1.27
     lodash: 4.17.21
     mitt: 3.0.0
     tiny-warning: 1.0.3
-  checksum: 4101fa760a102ed7b235fefc97d1165557795400354aeed7fe0bfe3b015d974f01cbb60815073e89fe43a4d0aad19b2bbe19fce6da442d508ac99d69752d04a3
+  checksum: 174301fa18c69fcdd2155737ab86e4eaa0b3e34633c003ab6e62b6914d9d8901c728f1f0e06a96575bb808426c428aab6e1eeb52f18271b4536e7839d05ccac0
   languageName: node
   linkType: hard
 
-"@flopflip/launchdarkly-adapter@npm:5.0.30":
-  version: 5.0.30
-  resolution: "@flopflip/launchdarkly-adapter@npm:5.0.30"
+"@flopflip/launchdarkly-adapter@npm:5.0.31":
+  version: 5.0.31
+  resolution: "@flopflip/launchdarkly-adapter@npm:5.0.31"
   dependencies:
-    "@babel/runtime": 7.18.9
-    "@flopflip/adapter-utilities": 1.0.31
-    "@flopflip/types": 4.1.26
+    "@babel/runtime": 7.19.0
+    "@flopflip/adapter-utilities": 1.0.32
+    "@flopflip/types": 4.1.27
     debounce-fn: 4.0.0
     launchdarkly-js-client-sdk: 2.22.1
     lodash: 4.17.21
     mitt: 3.0.0
     tiny-warning: 1.0.3
-    ts-deepmerge: 3.0.0
-  checksum: 1cf963dc4e1dc724cf42164eb04cbbb1fc9e40b4b657ee30c5e339afa96c8129a2c01aae810eb9cc560cc8af03bb9d06c2d6ff8213e9411a5d33bdbc81921366
+    ts-deepmerge: 4.0.0
+  checksum: 5b81495adb34253000532f26ec81cbb7c5ff3dcbbd5a61984ea1f797bb1f5a6d14e32c4a5395cb4763e96c9314b213dc6da1e14fbadf06b55625738c71f07233
   languageName: node
   linkType: hard
 
-"@flopflip/localstorage-cache@npm:1.0.30":
-  version: 1.0.30
-  resolution: "@flopflip/localstorage-cache@npm:1.0.30"
+"@flopflip/localstorage-cache@npm:1.0.31":
+  version: 1.0.31
+  resolution: "@flopflip/localstorage-cache@npm:1.0.31"
   dependencies:
-    "@flopflip/types": 4.1.26
-  checksum: 2c4cb75272f73711e6e14818876b53b561ea1cd9763699bc1fc6b33e19f5bbc1e3cca56f5ba98d86e21fed473285516dd0bf2ecfba2766a59b8696e7dde5a8ef
+    "@flopflip/types": 4.1.27
+  checksum: 423dabc03e9d170c41c9924a8f3c5efd6e03c5c039fdcf58a70bb3cba9deeaecc2064a46ba195b31a892005172954646e0103da2d986abc3a4edae35c5a2a7e7
   languageName: node
   linkType: hard
 
-"@flopflip/react-broadcast@npm:12.3.3":
-  version: 12.3.3
-  resolution: "@flopflip/react-broadcast@npm:12.3.3"
+"@flopflip/react-broadcast@npm:12.3.4":
+  version: 12.3.4
+  resolution: "@flopflip/react-broadcast@npm:12.3.4"
   dependencies:
-    "@babel/runtime": 7.18.9
-    "@flopflip/react": ^11.3.3
-    "@flopflip/types": 4.1.26
+    "@babel/runtime": 7.19.0
+    "@flopflip/react": ^11.3.4
+    "@flopflip/types": 4.1.27
     use-sync-external-store: 1.2.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0.0
     react-dom: ^16.8 || ^17.0 || ^18.0.0
-  checksum: 4e2da6c4e5c4bfd97aa3522c3741f54eaf62c47bd0da93efb9a653a3ae18c36cd0b0281866b86f2e176e292f1eb9591d61e29da958cbf0f06b545809b335256b
+  checksum: afa7de88639c49ec9f270476855bc853f514853cf86511a572e94dc159d37484735361a45e8589f64c5a394a2e5dc51f617e1f3d4bc6dbf2657c96bbe40d2387
   languageName: node
   linkType: hard
 
-"@flopflip/react@npm:^11.3.3":
-  version: 11.3.3
-  resolution: "@flopflip/react@npm:11.3.3"
+"@flopflip/react@npm:^11.3.4":
+  version: 11.3.4
+  resolution: "@flopflip/react@npm:11.3.4"
   dependencies:
-    "@babel/runtime": 7.18.9
-    "@flopflip/types": 4.1.26
+    "@babel/runtime": 7.19.0
+    "@flopflip/types": 4.1.27
     "@types/react-is": 17.0.3
     lodash: 4.17.21
     react-is: 18.2.0
     tiny-warning: 1.0.3
-    ts-deepmerge: 3.0.0
+    ts-deepmerge: 4.0.0
   peerDependencies:
     react: ^16.8 || ^17.0 || ^18.0.0
     react-dom: ^16.8 || ^17.0 || ^18.0.0
-  checksum: 58456110b7313d8fa80e6e3a7a906b626ce97aa5ae11d363d6aa12dcd686422e4649ef6318aea811728ff8964662a2fa62e49536245e4fa243e5f7ab37fac24d
+  checksum: 6125d7b4ec416ddef917471bed6baf318e870cdd399f1373a4eaa4dde0954c47e934ba692fb57435aee5d27f878bef495600b7e689c31c7af00d19b636ee8b99
   languageName: node
   linkType: hard
 
-"@flopflip/sessionstorage-cache@npm:1.0.30":
-  version: 1.0.30
-  resolution: "@flopflip/sessionstorage-cache@npm:1.0.30"
+"@flopflip/sessionstorage-cache@npm:1.0.31":
+  version: 1.0.31
+  resolution: "@flopflip/sessionstorage-cache@npm:1.0.31"
   dependencies:
-    "@flopflip/types": 4.1.26
-  checksum: 72f893e6dda0e648aef075970aa1012c07988d7895bcb6610d7e5ffac37176cc02f6df591d16299d4a21ae2e92406e57c0f14139bffad2b8904195d993920f33
+    "@flopflip/types": 4.1.27
+  checksum: 32f683e80c3e5f11533513e08eb37383c6faaf65269c740a413a64267736ae51aacb74f94ab699b70cbf2e60ff602308874922293a033d1591efe291da799f61
   languageName: node
   linkType: hard
 
-"@flopflip/types@npm:4.1.26":
-  version: 4.1.26
-  resolution: "@flopflip/types@npm:4.1.26"
+"@flopflip/types@npm:4.1.27":
+  version: 4.1.27
+  resolution: "@flopflip/types@npm:4.1.27"
   dependencies:
     launchdarkly-js-client-sdk: 2.22.1
   peerDependencies:
     typescript: 4.x
-  checksum: fe181ec275b14b411b62606267cb23c41ac95c8c00c14d740e6c037d4f7c025e476ace6f826527f964442d187a9ec0830522cfdd0fab7499eae8b501ad3dd02a
+  checksum: 71434420edb114b3ca043e6f5db3dc6f70c6da560c17d8c5b1d81f638d31f7c09d77d1d4196bfb5cee16fb2f54c9b08ece350797c7a43d450f3934ccb49f53ab
   languageName: node
   linkType: hard
 
@@ -9228,19 +9228,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mswjs/interceptors@npm:^0.17.2":
-  version: 0.17.3
-  resolution: "@mswjs/interceptors@npm:0.17.3"
+"@mswjs/interceptors@npm:^0.17.5":
+  version: 0.17.5
+  resolution: "@mswjs/interceptors@npm:0.17.5"
   dependencies:
     "@open-draft/until": ^1.0.3
     "@types/debug": ^4.1.7
     "@xmldom/xmldom": ^0.7.5
     debug: ^4.3.3
-    headers-polyfill: ^3.0.4
+    headers-polyfill: ^3.1.0
     outvariant: ^1.2.1
     strict-event-emitter: ^0.2.4
     web-encoding: ^1.1.5
-  checksum: 1c879fe78e2e19e29f610d3572f22990b67f3f892719530ed1d8b0191a644e03461b812ed8137586ab126e66c49dbfd53ea1ff830696589d1b1ad238df40f206
+  checksum: 0293ccc56c1c85fb7334cd5902574f7df20c26be74d633c83fde64ffd7620f81e08253fe7985c6b5ad3b64c04ad53c3610e9b9c07621518aabd977343026bb2b
   languageName: node
   linkType: hard
 
@@ -9919,128 +9919,128 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@percy/cli-app@npm:1.10.2":
-  version: 1.10.2
-  resolution: "@percy/cli-app@npm:1.10.2"
+"@percy/cli-app@npm:1.10.3":
+  version: 1.10.3
+  resolution: "@percy/cli-app@npm:1.10.3"
   dependencies:
-    "@percy/cli-command": 1.10.2
-    "@percy/cli-exec": 1.10.2
-  checksum: b0bbbddec42f99e4783eec54b44d1c81a159aaee0a6a840bd4118cad7f6237c614191303973d8a2d73656fe0bce2f3b63a76443e96803707f754df027e547696
+    "@percy/cli-command": 1.10.3
+    "@percy/cli-exec": 1.10.3
+  checksum: f98b4e650acda1244fb06db5b94ce99f7b1ea860aae255a4e55f8c783c8c5c21d6a0e5aa7e62338137a61cc8875d8a0d215f50f584f0d5ce156d87cd4b8b37b7
   languageName: node
   linkType: hard
 
-"@percy/cli-build@npm:1.10.2":
-  version: 1.10.2
-  resolution: "@percy/cli-build@npm:1.10.2"
+"@percy/cli-build@npm:1.10.3":
+  version: 1.10.3
+  resolution: "@percy/cli-build@npm:1.10.3"
   dependencies:
-    "@percy/cli-command": 1.10.2
-  checksum: f5ac91772d4932940b504a7313191666d642caae25b8209d0f8845d803527ec4738b909f43f0a4df3beda57bc706bfc3c3ef4ec731be234857c296416c957e4a
+    "@percy/cli-command": 1.10.3
+  checksum: a701197105c6d4d07357aa0c825fc29272729f871d1e40a9dc89b16c7ead45f32467de0d2720674e8a1a2e8c9faf7b0e6a4a8994e9aa04938e3e3956a29eef12
   languageName: node
   linkType: hard
 
-"@percy/cli-command@npm:1.10.2":
-  version: 1.10.2
-  resolution: "@percy/cli-command@npm:1.10.2"
+"@percy/cli-command@npm:1.10.3":
+  version: 1.10.3
+  resolution: "@percy/cli-command@npm:1.10.3"
   dependencies:
-    "@percy/config": 1.10.2
-    "@percy/core": 1.10.2
-    "@percy/logger": 1.10.2
+    "@percy/config": 1.10.3
+    "@percy/core": 1.10.3
+    "@percy/logger": 1.10.3
   bin:
     percy-cli-readme: bin/readme.js
-  checksum: 696e47411ad72de3b249bdc714d98620976aa174787786028aa420beac6f6c15c19c9e250a89b65446a85aaad7d8126d2bf25394099b96d293eee8782c79313d
+  checksum: e088f3031c22c16363246544d430bcd8d1babffc9e9c58de934c41f2a80ce11353165f077ce6cb011238971ee917c880899b8590f3da814d7bf99f90a87567a9
   languageName: node
   linkType: hard
 
-"@percy/cli-config@npm:1.10.2":
-  version: 1.10.2
-  resolution: "@percy/cli-config@npm:1.10.2"
+"@percy/cli-config@npm:1.10.3":
+  version: 1.10.3
+  resolution: "@percy/cli-config@npm:1.10.3"
   dependencies:
-    "@percy/cli-command": 1.10.2
-  checksum: 235b6f64569855fc363655b3e10bcdd5dbde23030866f74043b3b67023653e435b5ab37cc2c0f522150919f62d98eb4a658df8d840e3d978ba3ac03ce4e09dac
+    "@percy/cli-command": 1.10.3
+  checksum: 1d337ac01c47fd3090c98bf9b3dcb85fa3054de7c4e19dd56bfb9358b96c2ffba8cec8764098872c0f515759869b27d49c7072f41ed90e4db86c84f4fa7da69d
   languageName: node
   linkType: hard
 
-"@percy/cli-exec@npm:1.10.2":
-  version: 1.10.2
-  resolution: "@percy/cli-exec@npm:1.10.2"
+"@percy/cli-exec@npm:1.10.3":
+  version: 1.10.3
+  resolution: "@percy/cli-exec@npm:1.10.3"
   dependencies:
-    "@percy/cli-command": 1.10.2
+    "@percy/cli-command": 1.10.3
     cross-spawn: ^7.0.3
     which: ^2.0.2
-  checksum: 7a3b4f3292a17bf385c178c88d505f09dd1688ff80324d3d0f18a77ab1fe617fddb32ab7163cd80a1fbc49264532a4a56fdc460d91855aba2a9b27d93062a0fd
+  checksum: a199dd2ce83679628950430ba2d78a3e81561ba47f960f2c4574c730f01bb4db47528455ef351bc6b694579ad33dd21bf45d288e0d30b5c01f9ee41dccc14aa8
   languageName: node
   linkType: hard
 
-"@percy/cli-snapshot@npm:1.10.2":
-  version: 1.10.2
-  resolution: "@percy/cli-snapshot@npm:1.10.2"
+"@percy/cli-snapshot@npm:1.10.3":
+  version: 1.10.3
+  resolution: "@percy/cli-snapshot@npm:1.10.3"
   dependencies:
-    "@percy/cli-command": 1.10.2
+    "@percy/cli-command": 1.10.3
     yaml: ^2.0.0
-  checksum: 9c1649193acb9fff61a384d3df9fa474a8fe96f25427e10e4f1e954415291ce752e4931ab4f65dccff99e1d02497d8ebf532d670c3f703b2ea6441dc946e838e
+  checksum: 93a1954023f9f39984fab485e5eee3dec05722456800b3ccac8dee38933b79836fe32df841d12d6bf16a324bf21915d63e6eddb71531d74d5933f558d9f00e18
   languageName: node
   linkType: hard
 
-"@percy/cli-upload@npm:1.10.2":
-  version: 1.10.2
-  resolution: "@percy/cli-upload@npm:1.10.2"
+"@percy/cli-upload@npm:1.10.3":
+  version: 1.10.3
+  resolution: "@percy/cli-upload@npm:1.10.3"
   dependencies:
-    "@percy/cli-command": 1.10.2
+    "@percy/cli-command": 1.10.3
     fast-glob: ^3.2.11
     image-size: ^1.0.0
-  checksum: 032646d26bbea480abe0114a0fc45faecfcd314ceab09b352280c2a02b5ce97f9aa3f39882e85ad514a5f53abb1d5dd158703ede831c31951f33a2b28be470c7
+  checksum: a13aea74ed067860067e81049919d12f2dba96e982143bb2bff6329ca734321fdecf4db101641639b544abd1f249d57391afe599e8be0dde7614175a635182b3
   languageName: node
   linkType: hard
 
-"@percy/cli@npm:1.10.2":
-  version: 1.10.2
-  resolution: "@percy/cli@npm:1.10.2"
+"@percy/cli@npm:1.10.3":
+  version: 1.10.3
+  resolution: "@percy/cli@npm:1.10.3"
   dependencies:
-    "@percy/cli-app": 1.10.2
-    "@percy/cli-build": 1.10.2
-    "@percy/cli-command": 1.10.2
-    "@percy/cli-config": 1.10.2
-    "@percy/cli-exec": 1.10.2
-    "@percy/cli-snapshot": 1.10.2
-    "@percy/cli-upload": 1.10.2
-    "@percy/client": 1.10.2
-    "@percy/logger": 1.10.2
+    "@percy/cli-app": 1.10.3
+    "@percy/cli-build": 1.10.3
+    "@percy/cli-command": 1.10.3
+    "@percy/cli-config": 1.10.3
+    "@percy/cli-exec": 1.10.3
+    "@percy/cli-snapshot": 1.10.3
+    "@percy/cli-upload": 1.10.3
+    "@percy/client": 1.10.3
+    "@percy/logger": 1.10.3
   bin:
     percy: bin/run.cjs
-  checksum: 1d75dc9115daa502cfafc6581241d75ebda1691c50eb4f3b88214f6a6fd925d424d6b56c4dd33a569036ef330f1f79ac2469cb5b86fc91c77eb70651c3072d36
+  checksum: d8ea4ddda3511009ac168c9363299703faf7b8f59e15a2a62c85ff4923dad91a68b167a3d5c05c71a4f4bae739afaa82d2a3c4a2c04770d904ffcc653fbadd8a
   languageName: node
   linkType: hard
 
-"@percy/client@npm:1.10.2":
-  version: 1.10.2
-  resolution: "@percy/client@npm:1.10.2"
+"@percy/client@npm:1.10.3":
+  version: 1.10.3
+  resolution: "@percy/client@npm:1.10.3"
   dependencies:
-    "@percy/env": 1.10.2
-    "@percy/logger": 1.10.2
-  checksum: 023bda9547eb2a262422a046508bdd718968576892ceac690070b62757c9d738bce4c8a48c93eb2e0564c1ecbfaa0260bb599ad388a034de30c9d4387baacf25
+    "@percy/env": 1.10.3
+    "@percy/logger": 1.10.3
+  checksum: 6a03af7bb1644c60b5a56e9976585616a80d98047a7887d0125251072d616282e2ff8fd59c6aad02fb3ff96cd23ae4d8c073f937e7a8f2589e0a2d09f4289d49
   languageName: node
   linkType: hard
 
-"@percy/config@npm:1.10.2":
-  version: 1.10.2
-  resolution: "@percy/config@npm:1.10.2"
+"@percy/config@npm:1.10.3":
+  version: 1.10.3
+  resolution: "@percy/config@npm:1.10.3"
   dependencies:
-    "@percy/logger": 1.10.2
+    "@percy/logger": 1.10.3
     ajv: ^8.6.2
     cosmiconfig: ^7.0.0
     yaml: ^2.0.0
-  checksum: f464a34f2ae335e0c2f3072e82d9ab2cc7b58351d72bcc9beef459b159318b7793690102bf15b1a9e95f9e952c1228469829a9d78a3c56acc90e33024b5496fd
+  checksum: 176acdabcd91e8dd566690d48fe31015797fe368259c0eda27808f35370ea18450db57e484d3b50d71bdcc3611955660ba6584eb7197930927181a2efe3fdeee
   languageName: node
   linkType: hard
 
-"@percy/core@npm:1.10.2":
-  version: 1.10.2
-  resolution: "@percy/core@npm:1.10.2"
+"@percy/core@npm:1.10.3":
+  version: 1.10.3
+  resolution: "@percy/core@npm:1.10.3"
   dependencies:
-    "@percy/client": 1.10.2
-    "@percy/config": 1.10.2
-    "@percy/dom": 1.10.2
-    "@percy/logger": 1.10.2
+    "@percy/client": 1.10.3
+    "@percy/config": 1.10.3
+    "@percy/dom": 1.10.3
+    "@percy/logger": 1.10.3
     content-disposition: ^0.5.4
     cross-spawn: ^7.0.3
     extract-zip: ^2.0.1
@@ -10050,7 +10050,7 @@ __metadata:
     path-to-regexp: ^6.2.0
     rimraf: ^3.0.2
     ws: ^8.0.0
-  checksum: 14f64bb40bbe7bebdc4403e343e78ba49b8a021034bb8f357dca3aa03483f4d8869347fb8ae43b6133f9a7658de601d423ad250d1dc238b7cc52611bff87875b
+  checksum: f3ddc6bd854f7a1880c0bc840c8c53f2f44687ed7e3db9dea842b3285b31e11be952a87fb1a6b92851db4beeb4bfb320be6b94675dc0aefac8295f60930b5f39
   languageName: node
   linkType: hard
 
@@ -10065,24 +10065,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@percy/dom@npm:1.10.2":
-  version: 1.10.2
-  resolution: "@percy/dom@npm:1.10.2"
-  checksum: f215bb23463ba8bc77129fc8cc1631bc78dbd8f51a1d74655c736b89d08f8c67222bc18fb056fa89b862a13be9447f8e18bebf65186dc25fb48a2e2be31dfb56
+"@percy/dom@npm:1.10.3":
+  version: 1.10.3
+  resolution: "@percy/dom@npm:1.10.3"
+  checksum: 80e6b2e91d30466b56fff84ba732949a5e5d8ce88f895fd936d94071cf9ffb42fbaab841b868ea5aba8ddb68bf1166804ecde263c05fb648de499628d6c628a7
   languageName: node
   linkType: hard
 
-"@percy/env@npm:1.10.2":
-  version: 1.10.2
-  resolution: "@percy/env@npm:1.10.2"
-  checksum: 44de98d21b08cfaf8897a9016c490d0e8fde760b1c193abcacc28c6a5ded5a3420e006a0afbd509026ea4dd62c4c93b9013e4041fa3d20b769551943775945d5
+"@percy/env@npm:1.10.3":
+  version: 1.10.3
+  resolution: "@percy/env@npm:1.10.3"
+  checksum: 45d07e8ec7d62c7e189322253fc180eff2b948ea5f72e1babee41483c7cf7617527ea5e07831e4b0b3974c5f4d25afaa7bb35bdb56aa18aee3928ba812de8c52
   languageName: node
   linkType: hard
 
-"@percy/logger@npm:1.10.2":
-  version: 1.10.2
-  resolution: "@percy/logger@npm:1.10.2"
-  checksum: 430ef643e96dbac25c25d290cee943a9ef27b2562f1daa0cd56036873e47db15613aca1f75aef0492093eff44db242a18001442c4ff2bcecba1c9edfdf8dd614
+"@percy/logger@npm:1.10.3":
+  version: 1.10.3
+  resolution: "@percy/logger@npm:1.10.3"
+  checksum: 93d2d7247a7ffad76258cd3578c1bdc81032a2037466e2a874e0a4ee57a0c7acaa706b881119d081bf62a8025a14a06fc9e5d073192ecd633d105f8177ba3468
   languageName: node
   linkType: hard
 
@@ -10450,15 +10450,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/browser@npm:7.12.1":
-  version: 7.12.1
-  resolution: "@sentry/browser@npm:7.12.1"
+"@sentry/browser@npm:7.13.0":
+  version: 7.13.0
+  resolution: "@sentry/browser@npm:7.13.0"
   dependencies:
-    "@sentry/core": 7.12.1
-    "@sentry/types": 7.12.1
-    "@sentry/utils": 7.12.1
+    "@sentry/core": 7.13.0
+    "@sentry/types": 7.13.0
+    "@sentry/utils": 7.13.0
     tslib: ^1.9.3
-  checksum: 7aba4ea056a2aa1b8d619f85f0f20643392fb288598e4399c6d83dd35991f174311030979a5f7a61a9e57a4ecc43c0989ba4e0fae98554bed2528e095071e8e2
+  checksum: 693cc983330cd6eaee2354ee33d42166072eab35ef632ed9bcaafe9649c977c6996674647076025af9b5e83a40e002b2f405c65ae5c950c8f39decaeecb07098
   languageName: node
   linkType: hard
 
@@ -10474,15 +10474,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/core@npm:7.12.1":
-  version: 7.12.1
-  resolution: "@sentry/core@npm:7.12.1"
+"@sentry/core@npm:7.13.0":
+  version: 7.13.0
+  resolution: "@sentry/core@npm:7.13.0"
   dependencies:
-    "@sentry/hub": 7.12.1
-    "@sentry/types": 7.12.1
-    "@sentry/utils": 7.12.1
+    "@sentry/hub": 7.13.0
+    "@sentry/types": 7.13.0
+    "@sentry/utils": 7.13.0
     tslib: ^1.9.3
-  checksum: c8cd62220a327bb4f7b1a97503c19b40710da0d880d7b881384e224aa470c983410c836d5dd85a2cd88166301771a0cea3fd2f93b53d17b29e82457282bb7d01
+  checksum: 8fd5b0eab630a54ea1beec1b3fe7deb388e95ca3312c1f0eaffa32090882ca7792287b5e7d157fc1c408a0ec1bfb769ac45a77a5385068dcd8fc6f3e6949f8a1
   languageName: node
   linkType: hard
 
@@ -10497,30 +10497,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/hub@npm:7.12.1":
-  version: 7.12.1
-  resolution: "@sentry/hub@npm:7.12.1"
+"@sentry/hub@npm:7.13.0":
+  version: 7.13.0
+  resolution: "@sentry/hub@npm:7.13.0"
   dependencies:
-    "@sentry/types": 7.12.1
-    "@sentry/utils": 7.12.1
+    "@sentry/types": 7.13.0
+    "@sentry/utils": 7.13.0
     tslib: ^1.9.3
-  checksum: f6607969a0dd16e6892ec56675a5dadcde20f39a031a39541816ae1a56a65cc4f26b942859c85ce40992c8a0959020bf0c27e4bd68bdc96adcf499ce6f147252
+  checksum: 690f1eecd4d9f0a87ca4344b551b990df234ec7197b21175293fb713f917c6171ed44f35042af5b83a0bae5e0963a520490bfd905d48bd040a2f2532247e04d6
   languageName: node
   linkType: hard
 
-"@sentry/node@npm:7.12.1":
-  version: 7.12.1
-  resolution: "@sentry/node@npm:7.12.1"
+"@sentry/node@npm:7.13.0":
+  version: 7.13.0
+  resolution: "@sentry/node@npm:7.13.0"
   dependencies:
-    "@sentry/core": 7.12.1
-    "@sentry/hub": 7.12.1
-    "@sentry/types": 7.12.1
-    "@sentry/utils": 7.12.1
+    "@sentry/core": 7.13.0
+    "@sentry/hub": 7.13.0
+    "@sentry/types": 7.13.0
+    "@sentry/utils": 7.13.0
     cookie: ^0.4.1
     https-proxy-agent: ^5.0.0
     lru_map: ^0.3.3
     tslib: ^1.9.3
-  checksum: 57a06fb397ce72ff7df10c9397022c4ae109ade63bc3df530ac1be94f2fd3c3ef2b78ae0f2820ce9c52710cb8b44e382cd72d001e6429964bb6e70c7d4901d02
+  checksum: 36de86c7bb8e62fe93c0cc72dfbd0d77925ef18b6abd98a034b676853c9cca705be276fee617ddcedbf89659454055cd79ab82f3f7b77d465617810787d8775d
   languageName: node
   linkType: hard
 
@@ -10531,10 +10531,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/types@npm:7.12.1":
-  version: 7.12.1
-  resolution: "@sentry/types@npm:7.12.1"
-  checksum: 5a60d8c92ecf4f69a5e584441312d42acbc87f7865e78079e8f8757474874b0deae69707f2d0e74ea0e6bf1665b1d7887e201a53154ddfecb2630a0d5a200342
+"@sentry/types@npm:7.13.0":
+  version: 7.13.0
+  resolution: "@sentry/types@npm:7.13.0"
+  checksum: 8bd94d1cf735af61a3cea77e7e925e487dc84b925fa1e1a0aa9a566096e5d99d3bb72c6ea2f03c20d7894824f35edbb8b25352b3a1c78e62729a77a93a1abf71
   languageName: node
   linkType: hard
 
@@ -10548,13 +10548,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/utils@npm:7.12.1":
-  version: 7.12.1
-  resolution: "@sentry/utils@npm:7.12.1"
+"@sentry/utils@npm:7.13.0":
+  version: 7.13.0
+  resolution: "@sentry/utils@npm:7.13.0"
   dependencies:
-    "@sentry/types": 7.12.1
+    "@sentry/types": 7.13.0
     tslib: ^1.9.3
-  checksum: 22fa506c6e3116ec950a10aaf98929b70264c90fa83bfb4752da779753f312277a44f705c45102ce06b1781d99db2ea4e4e66662d0fde1792e8cae2559e63b5b
+  checksum: e655e2bd444c9f8aedac4bc52e9a75bf74ef0086ffb1b9efc9cf6670aab9b0deca45e9d7c808e7d19e51ff4b40bcd178b6c5b2ea55e8cfb81da630db6b75bfe2
   languageName: node
   linkType: hard
 
@@ -12031,13 +12031,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-router@npm:5.1.18":
-  version: 5.1.18
-  resolution: "@types/react-router@npm:5.1.18"
+"@types/react-router@npm:5.1.19":
+  version: 5.1.19
+  resolution: "@types/react-router@npm:5.1.19"
   dependencies:
     "@types/history": ^4.7.11
     "@types/react": "*"
-  checksum: f08b37ee822f9f9ff904ffd0778fe2bb7c717ed3ee311610382ee024d02a35169bd3301ecde863cac21aae8fdee919501e8ea22bad0260c02c10cfbdba5c71be
+  checksum: 3536c3dec7af1f12fed2bea246eb143bd893ee66d4e58c1d3fe734cbd67d8a0aedac0bba9255c58fc69dbd32ae17ad280d6866916aee32653a705178e4a544dc
   languageName: node
   linkType: hard
 
@@ -12050,14 +12050,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:17.0.49":
-  version: 17.0.49
-  resolution: "@types/react@npm:17.0.49"
+"@types/react@npm:17.0.50":
+  version: 17.0.50
+  resolution: "@types/react@npm:17.0.50"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: e2e8001bb16fdf52dc92dbc2f64c8e49b1c6ab5d5da4725c0f27e3d925939e42b835554fecc306ca6b0951801eb784288b63c924bd703834662bbaccf89cb68a
+  checksum: b5629dff7c2f3e9fcba95a19b2b3bfd78d7cacc33ba5fc26413dba653d34afcac3b93ddabe563e8062382688a1eac7db68e93739bb8e712d27637a03aaafbbb8
   languageName: node
   linkType: hard
 
@@ -16687,13 +16687,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"create-jest-runner@npm:0.12.0":
-  version: 0.12.0
-  resolution: "create-jest-runner@npm:0.12.0"
+"create-jest-runner@npm:0.12.2":
+  version: 0.12.2
+  resolution: "create-jest-runner@npm:0.12.2"
   dependencies:
     chalk: ^4.1.0
     jest-worker: ^29.0.0
-    throat: ^6.0.1
+    p-limit: ^3.1.0
   peerDependencies:
     "@jest/test-result": ^28.0.0 || ^29.0.0
     jest-runner: ^28.0.0 || ^29.0.0
@@ -16704,7 +16704,7 @@ __metadata:
       optional: true
   bin:
     create-jest-runner: generator/index.js
-  checksum: 0f10dc4a681a8ab83e414b26a8a27f7940a8f055ff76dbe92d2ae6fec5c56d7cfa143d3aca292b5558db21405c32256682c2d75aea418b2b35ba4315013e32ea
+  checksum: f181f14888837f6b7ae0393d4883bf0a4bbf4e61ca76fa0fd0bb2b064d65cd25cb10dd005152ed693e809438cc752290fb9367180b0372c26ff4a95ef27460e6
   languageName: node
   linkType: hard
 
@@ -17226,9 +17226,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:10.7.0":
-  version: 10.7.0
-  resolution: "cypress@npm:10.7.0"
+"cypress@npm:10.8.0":
+  version: 10.8.0
+  resolution: "cypress@npm:10.8.0"
   dependencies:
     "@cypress/request": ^2.88.10
     "@cypress/xvfb": ^1.2.4
@@ -17249,7 +17249,7 @@ __metadata:
     dayjs: ^1.10.4
     debug: ^4.3.2
     enquirer: ^2.3.6
-    eventemitter2: ^6.4.3
+    eventemitter2: 6.4.7
     execa: 4.1.0
     executable: ^4.1.1
     extract-zip: 2.0.1
@@ -17274,7 +17274,7 @@ __metadata:
     yauzl: ^2.10.0
   bin:
     cypress: bin/cypress
-  checksum: ef8a5ae54f3404f7926e1e248ba7a27c7f66e654a9603bf9df6366731d8dd75455f6ec9cc34d7e55e1a8c3cb8e0e36ce59add81b7b14466f2063cfe45e6c00f4
+  checksum: c052690049980e7721e6fca563b724fde839d87d83c1478dfe26ce7d230992717c2c4028e7157bfb39ec274473e51929f49e5aab6a23c2b25cde2a439b1c3cf9
   languageName: node
   linkType: hard
 
@@ -18877,6 +18877,21 @@ __metadata:
   version: 8.6.0
   resolution: "dotenv@npm:8.6.0"
   checksum: 38e902c80b0666ab59e9310a3d24ed237029a7ce34d976796349765ac96b8d769f6df19090f1f471b77a25ca391971efde8a1ea63bb83111bd8bec8e5cc9b2cd
+  languageName: node
+  linkType: hard
+
+"downshift@npm:6.1.11":
+  version: 6.1.11
+  resolution: "downshift@npm:6.1.11"
+  dependencies:
+    "@babel/runtime": ^7.14.8
+    compute-scroll-into-view: ^1.0.17
+    prop-types: ^15.7.2
+    react-is: ^17.0.2
+    tslib: ^2.3.0
+  peerDependencies:
+    react: ">=16.12.0"
+  checksum: 96d58ddcaf19cf41bb11e8d6f8e78db9eca1eca6e4dd2c6a43204283d4f442f37f445769443869698ad4d45db3926987ff39a95dbe785283f236088f53c08592
   languageName: node
   linkType: hard
 
@@ -20573,10 +20588,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eventemitter2@npm:^6.4.3":
-  version: 6.4.5
-  resolution: "eventemitter2@npm:6.4.5"
-  checksum: 84504f9cf0cc30205cdd46783fe9df3733435e5097f13070b678023110b5ef07847651808ae280cd94c42cd5976880211c7a40321a8ff8fa56f7c5f9c5c11960
+"eventemitter2@npm:6.4.7":
+  version: 6.4.7
+  resolution: "eventemitter2@npm:6.4.7"
+  checksum: 1b36a77e139d6965ebf3a36c01fa00c089ae6b80faa1911e52888f40b3a7057b36a2cc45dcd1ad87cda3798fe7b97a0aabcbb8175a8b96092a23bb7d0f039e66
   languageName: node
   linkType: hard
 
@@ -21081,6 +21096,19 @@ __metadata:
     merge2: ^1.3.0
     micromatch: ^4.0.4
   checksum: f473105324a7780a20c06de842e15ddbb41d3cb7e71d1e4fe6e8373204f22245d54f5ab9e2061e6a1c613047345954d29b022e0e76f5c28b1df9858179a0e6d7
+  languageName: node
+  linkType: hard
+
+"fast-glob@npm:^3.2.12":
+  version: 3.2.12
+  resolution: "fast-glob@npm:3.2.12"
+  dependencies:
+    "@nodelib/fs.stat": ^2.0.2
+    "@nodelib/fs.walk": ^1.2.3
+    glob-parent: ^5.1.2
+    merge2: ^1.3.0
+    micromatch: ^4.0.4
+  checksum: 0b1990f6ce831c7e28c4d505edcdaad8e27e88ab9fa65eedadb730438cfc7cde4910d6c975d6b7b8dc8a73da4773702ebcfcd6e3518e73938bb1383badfe01c2
   languageName: node
   linkType: hard
 
@@ -24037,10 +24065,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"headers-polyfill@npm:^3.0.4":
-  version: 3.0.4
-  resolution: "headers-polyfill@npm:3.0.4"
-  checksum: cdfe5f40b033e89f31a1ce9018864a54ba3efc7ef05c9ad220851bbf65ac78bfc81f12f669994936c040a4404a885004f5d370acbf954f40147c9e4bb189cc43
+"headers-polyfill@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "headers-polyfill@npm:3.1.0"
+  checksum: a95257065684653b7185efbb9a380c547ea832002991b5adf0d90cd222073da2701be9dc2849d1970ecf15e8c35b383984358566afe6e76ca8ff1dbd7cdce3af
   languageName: node
   linkType: hard
 
@@ -28846,7 +28874,7 @@ __metadata:
     "@graphql-codegen/typescript-graphql-files-modules": 2.2.1
     "@graphql-codegen/typescript-operations": 2.5.3
     "@manypkg/cli": 0.19.1
-    "@percy/cli": 1.10.2
+    "@percy/cli": 1.10.3
     "@percy/cypress": 3.1.2
     "@percy/puppeteer": 2.0.2
     "@preconstruct/cli": 2.2.1
@@ -28866,7 +28894,7 @@ __metadata:
     babel-plugin-transform-rename-import: ^2.3.0
     babel-plugin-typescript-to-proptypes: 1.4.2
     cross-env: 7.0.3
-    cypress: 10.7.0
+    cypress: 10.8.0
     dotenv: 16.0.2
     eslint: 8.23.1
     eslint-formatter-pretty: 4.1.0
@@ -28892,7 +28920,7 @@ __metadata:
     rosie: 2.1.0
     shelljs: 0.8.5
     start-server-and-test: 1.14.0
-    stylelint: 14.11.0
+    stylelint: 14.12.0
     stylelint-config-prettier: 9.0.3
     stylelint-config-standard: 26.0.0
     stylelint-order: 5.0.0
@@ -29572,12 +29600,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:0.47.2":
-  version: 0.47.2
-  resolution: "msw@npm:0.47.2"
+"msw@npm:0.47.3":
+  version: 0.47.3
+  resolution: "msw@npm:0.47.3"
   dependencies:
     "@mswjs/cookies": ^0.2.2
-    "@mswjs/interceptors": ^0.17.2
+    "@mswjs/interceptors": ^0.17.5
     "@open-draft/until": ^1.0.3
     "@types/cookie": ^0.4.1
     "@types/js-levenshtein": ^1.1.1
@@ -29585,7 +29613,7 @@ __metadata:
     chokidar: ^3.4.2
     cookie: ^0.4.2
     graphql: ^15.0.0 || ^16.0.0
-    headers-polyfill: ^3.0.4
+    headers-polyfill: ^3.1.0
     inquirer: ^8.2.0
     is-node-process: ^1.0.1
     js-levenshtein: ^1.1.6
@@ -29603,7 +29631,7 @@ __metadata:
       optional: true
   bin:
     msw: cli/index.js
-  checksum: fece2a473a3b1a768518db9d8ded6ca0cea5255ede5bce2b780cdfdfacb6fccbcdab773ba872d8e75b8212b8900f06024b6d7816c677d82bd2433b424627aadb
+  checksum: 1be018c7b2eff982409967cccb5c604e45f65710ee9698bab57fbe794f8426d1a4d33e52b75ef395c6d226948c799241c7c2c7748ec4f5b741e7f25bcbafbd1e
   languageName: node
   linkType: hard
 
@@ -30739,7 +30767,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"p-limit@npm:3.1.0, p-limit@npm:^3.0.2":
+"p-limit@npm:3.1.0, p-limit@npm:^3.0.2, p-limit@npm:^3.1.0":
   version: 3.1.0
   resolution: "p-limit@npm:3.1.0"
   dependencies:
@@ -36135,9 +36163,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint@npm:14.11.0":
-  version: 14.11.0
-  resolution: "stylelint@npm:14.11.0"
+"stylelint@npm:14.12.0":
+  version: 14.12.0
+  resolution: "stylelint@npm:14.12.0"
   dependencies:
     "@csstools/selector-specificity": ^2.0.2
     balanced-match: ^2.0.0
@@ -36145,7 +36173,7 @@ __metadata:
     cosmiconfig: ^7.0.1
     css-functions-list: ^3.1.0
     debug: ^4.3.4
-    fast-glob: ^3.2.11
+    fast-glob: ^3.2.12
     fastest-levenshtein: ^1.0.16
     file-entry-cache: ^6.0.1
     global-modules: ^2.0.0
@@ -36172,14 +36200,14 @@ __metadata:
     string-width: ^4.2.3
     strip-ansi: ^6.0.1
     style-search: ^0.1.0
-    supports-hyperlinks: ^2.2.0
+    supports-hyperlinks: ^2.3.0
     svg-tags: ^1.0.0
     table: ^6.8.0
     v8-compile-cache: ^2.3.0
     write-file-atomic: ^4.0.2
   bin:
     stylelint: bin/stylelint.js
-  checksum: 23fe2cb55453551f004b01a732e0aff82d8d98d0ac1f4c95c1d605f0fbd0f09d9079fc8d07c9da2796d6287985167a6c59791d7b1af2c4e8a1caa08dd591b980
+  checksum: 154fa112af3f1c7763b5083b1659d6be6977a4410e69444b38541f84dadf1a1840f6595a9a30f063ac31a205b69497a403cd6866ec44df008b03e97dd708fbd4
   languageName: node
   linkType: hard
 
@@ -36262,13 +36290,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"supports-hyperlinks@npm:^2.0.0, supports-hyperlinks@npm:^2.2.0":
+"supports-hyperlinks@npm:^2.0.0":
   version: 2.2.0
   resolution: "supports-hyperlinks@npm:2.2.0"
   dependencies:
     has-flag: ^4.0.0
     supports-color: ^7.0.0
   checksum: aef04fb41f4a67f1bc128f7c3e88a81b6cf2794c800fccf137006efe5bafde281da3e42e72bf9206c2fcf42e6438f37e3a820a389214d0a88613ca1f2d36076a
+  languageName: node
+  linkType: hard
+
+"supports-hyperlinks@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "supports-hyperlinks@npm:2.3.0"
+  dependencies:
+    has-flag: ^4.0.0
+    supports-color: ^7.0.0
+  checksum: 9ee0de3c8ce919d453511b2b1588a8205bd429d98af94a01df87411391010fe22ca463f268c84b2ce2abad019dfff8452aa02806eeb5c905a8d7ad5c4f4c52b8
   languageName: node
   linkType: hard
 
@@ -37072,10 +37110,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-deepmerge@npm:3.0.0":
-  version: 3.0.0
-  resolution: "ts-deepmerge@npm:3.0.0"
-  checksum: 72288c11fd181fe547d2980da7aa97ac9169cd056fc43ac0a90d3973c16d8082f2e8d80719f9af654ac4223f6a8e9e84c6e115b36d02cf57ad29f5f42f565093
+"ts-deepmerge@npm:4.0.0":
+  version: 4.0.0
+  resolution: "ts-deepmerge@npm:4.0.0"
+  checksum: f0b3102a411895f1b2dce4387a94ea15a5ba0ca010e532ee3b88f942725d7c8d228ec9be20f4f7e95ebfd7aa1078cd8ac0dfa335358553423ee8b473d83a8d66
   languageName: node
   linkType: hard
 
@@ -38507,9 +38545,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:3.1.0":
-  version: 3.1.0
-  resolution: "vite@npm:3.1.0"
+"vite@npm:3.1.2":
+  version: 3.1.2
+  resolution: "vite@npm:3.1.2"
   dependencies:
     esbuild: ^0.15.6
     fsevents: ~2.3.2
@@ -38535,7 +38573,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 1a343e3d46450181f79f34ff49cca5ff59bb7472de51ea2c4a042aa076f597d27d25c49f48405e82f607af7d8c1c13a9e789402ccb1b23570132382132ec3903
+  checksum: 90f645853f53efaddfa216eaf42ed93afe6b43f849889a7716ef9c04623b9ae244f391ed17ed0c41189422060cad5e78eb17583ac5a3759988f54b7412e18cb7
   languageName: node
   linkType: hard
 

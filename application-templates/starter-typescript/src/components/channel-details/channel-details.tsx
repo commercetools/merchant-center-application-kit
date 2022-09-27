@@ -10,10 +10,7 @@ import Spacings from '@commercetools-uikit/spacings';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import { useCallback } from 'react';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import {
-  formatLocalizedString,
-  transformLocalizedFieldToLocalizedString,
-} from '@commercetools-frontend/l10n';
+import { formatLocalizedString } from '@commercetools-frontend/l10n';
 import { DOMAINS, NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import {
@@ -30,6 +27,7 @@ import { docToFormValues, formValuesToDoc } from './conversions';
 import ChannelsDetailsForm from './channel-details-form';
 import { transformErrors } from './transform-errors';
 import messages from './messages';
+import { ApplicationPageTitle } from '@commercetools-frontend/application-shell';
 
 type TChannelDetailsProps = {
   onClose: () => void;
@@ -90,7 +88,6 @@ const ChannelDetails = (props: TChannelDetailsProps) => {
       showNotification,
     ]
   );
-
   return (
     <ChannelsDetailsForm
       initialValues={docToFormValues(channel, projectLanguages)}
@@ -99,21 +96,20 @@ const ChannelDetails = (props: TChannelDetailsProps) => {
       dataLocale={dataLocale}
     >
       {(formProps) => {
+        const channelName = formatLocalizedString(
+          {
+            name: formProps.values?.name,
+          },
+          {
+            key: 'name',
+            locale: dataLocale,
+            fallbackOrder: projectLanguages,
+            fallback: NO_VALUE_FALLBACK,
+          }
+        );
         return (
           <FormModalPage
-            title={formatLocalizedString(
-              {
-                name: transformLocalizedFieldToLocalizedString(
-                  channel?.nameAllLocales ?? []
-                ),
-              },
-              {
-                key: 'name',
-                locale: dataLocale,
-                fallbackOrder: projectLanguages,
-                fallback: NO_VALUE_FALLBACK,
-              }
-            )}
+            title={channelName}
             isOpen
             onClose={props.onClose}
             isPrimaryButtonDisabled={
@@ -138,6 +134,9 @@ const ChannelDetails = (props: TChannelDetailsProps) => {
               </ContentNotification>
             )}
             {channel && formProps.formElements}
+            {channel && (
+              <ApplicationPageTitle additionalParts={[channelName]} />
+            )}
             {channel === null && <PageNotFound />}
           </FormModalPage>
         );
