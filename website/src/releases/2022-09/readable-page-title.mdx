@@ -1,7 +1,7 @@
 ---
 date: 2022-09-29
 title: Readable page title component
-description: Provide improved support for a Human-readable page title
+description: We now have a component that can be used to overwrite the default document's `<title>`, to provide improved support for a Human-readable page title
 type: feature
 topics:
   - Merchant Center
@@ -15,7 +15,8 @@ You can now use the [`<ApplicationPageTitle>` component](/api-reference/commerce
 an array of strings carrying different descriptions of the features of the page. This provides more readability and context to the page title.
 
 ```js
+import { ApplicationPageTitle } from '@commercetools-frontend/application-shell';
+
 <ApplicationPageTitle additionalParts={['Red shoes']} />
 // Red shoes - Products - almond-40 - Merchant Center
 ```
-
