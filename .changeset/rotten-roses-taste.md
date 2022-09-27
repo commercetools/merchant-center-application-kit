@@ -1,5 +1,5 @@
 ---
-'merchant-center-application-template-starter': patch
+'@commercetools-applications/merchant-center-template-starter': patch
 '@commercetools-backend/eslint-config-node': patch
 '@commercetools-backend/express': patch
 '@commercetools-backend/loggers': patch
