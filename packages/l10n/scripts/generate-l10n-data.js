@@ -11,6 +11,7 @@ const deepDiff = require('deep-diff');
 const isEqual = require('lodash/isEqual');
 const difference = require('lodash/difference');
 const parseUnhandledTimeZones = require('./parse-unhandled-time-zones');
+const missingCountries = require('./missing-countries');
 
 const prettierConfig = rcfile('prettier');
 
@@ -51,6 +52,25 @@ const getNorthernIrelandCountryCode = (locale) => {
   }
 };
 
+const getMissingCountries = (locale) => {
+  switch (locale) {
+    case 'en':
+      return missingCountries.en;
+    case 'de':
+      return missingCountries.de;
+    case 'es':
+      return missingCountries.es;
+    case 'fr-FR':
+      return missingCountries['fr-FR'];
+    case 'zh_hans_cn':
+      return missingCountries['zh-CN'];
+    case 'ja':
+      return missingCountries['ja'];
+    default:
+      return missingCountries.en;
+  }
+};
+
 const mapLocaleToCldrLocale = (locale) => {
   switch (locale) {
     case 'zh-CN':
@@ -69,6 +89,7 @@ const extractCountryDataForLocale = (locale) => {
   const countryNames = {
     ...cldr.extractTerritoryDisplayNames(locale),
     ...getNorthernIrelandCountryCode(locale),
+    ...getMissingCountries(locale),
   };
   // We only support ISO 3166-1 country code (https://en.wikipedia.org/wiki/ISO_3166-1)
   // there is alpha-2 (two-letter) , alpha-3 (three-letter) , and numeric (three-digit) representation
