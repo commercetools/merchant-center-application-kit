@@ -8,15 +8,8 @@ topics:
   - UI Components
 ---
 
-We now have a `Human-readable page title` feature describing as detailed as possible,
+We now have a [`Human-readable page title`](/development/human-readable-page-title) feature describing as detailed as possible,
 the location or context of the page a user is currently on.
 
-You can now use the [`<ApplicationPageTitle>` component](/api-reference/commercetools-frontend-application-shell#applicationpagetitle) to overwrite the default page title by providing more details about a page by passing an `additionalParts` props,
+You can now use the [`<ApplicationPageTitle>`](/api-reference/commercetools-frontend-application-shell#applicationpagetitle) component to overwrite the default page title by providing more details about a page by passing an `additionalParts` props,
 an array of strings carrying different descriptions of the features of the page. This provides more readability and context to the page title.
-
-```js
-import { ApplicationPageTitle } from '@commercetools-frontend/application-shell';
-
-<ApplicationPageTitle additionalParts={['Red shoes']} />
-// Red shoes - Products - almond-40 - Merchant Center
-```
