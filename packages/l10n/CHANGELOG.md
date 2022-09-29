@@ -1,5 +1,14 @@
 # @commercetools-frontend/l10n
 
+## 21.16.0
+
+### Patch Changes
+
+- [#2580](https://github.com/commercetools/merchant-center-application-kit/pull/2580) [`1c40c40c9`](https://github.com/commercetools/merchant-center-application-kit/commit/1c40c40c947574ba24b411c9376640bb18c489ac) Thanks [@renovate](https://github.com/apps/renovate)! - Update `@testing-library/react-hooks` package to version `8.0.0`.
+
+- Updated dependencies [[`1c40c40c9`](https://github.com/commercetools/merchant-center-application-kit/commit/1c40c40c947574ba24b411c9376640bb18c489ac), [`11192ad4b`](https://github.com/commercetools/merchant-center-application-kit/commit/11192ad4bf186ff529255c68e95193a362308620)]:
+  - @commercetools-frontend/sentry@21.16.0
+
 ## 21.15.0
 
 ### Patch Changes

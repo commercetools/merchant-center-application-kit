@@ -1,5 +1,31 @@
 # @commercetools-frontend/cypress
 
+## 21.16.0
+
+### Minor Changes
+
+- [#2823](https://github.com/commercetools/merchant-center-application-kit/pull/2823) [`1d9f3d438`](https://github.com/commercetools/merchant-center-application-kit/commit/1d9f3d4389357b9a446adfe7f1fd53290205a1d0) Thanks [@emmenko](https://github.com/emmenko)! - Implement [`cy.session`](https://www.cypress.io/blog/2021/08/04/authenticate-faster-in-tests-cy-session-command/) in the login commands, which caches and restores the user session between test runs.
+  This ultimately results in subsequent tests to run much faster (by restoring the previous session) and makes the test behave as if the user is already authenticated.
+
+  Make sure to have the option `experimentalSessionAndOrigin` turned on (in your Cypress config) to enable that.
+
+  Additionally, there is a new command `cy.loginToMerchantCenter` as a replacement of `cy.loginByOidc` (marked as _deprecated_).
+
+  The `cy.loginToMerchantCenter` command detects whether the application is running on localhost or on production and chooses the appropriate login mechanism.
+
+  - When the application runs locally, the same mechanism used in the `cy.loginByOidc` is used.
+  - When the application runs on production, a normal login flow is used where the user credentials are typed into the login form.
+
+- [#2830](https://github.com/commercetools/merchant-center-application-kit/pull/2830) [`98a698148`](https://github.com/commercetools/merchant-center-application-kit/commit/98a698148f38fce1808e85ba64e571f17842749c) Thanks [@emmenko](https://github.com/emmenko)! - By default caching the session is enabled across spec files when using the `loginToMerchantCenter` command. You can opt out of this by setting `disableCacheAcrossSpecs: true`.
+
+### Patch Changes
+
+- [#2580](https://github.com/commercetools/merchant-center-application-kit/pull/2580) [`1c40c40c9`](https://github.com/commercetools/merchant-center-application-kit/commit/1c40c40c947574ba24b411c9376640bb18c489ac) Thanks [@renovate](https://github.com/apps/renovate)! - Update `@testing-library/react-hooks` package to version `8.0.0`.
+
+- Updated dependencies [[`1c40c40c9`](https://github.com/commercetools/merchant-center-application-kit/commit/1c40c40c947574ba24b411c9376640bb18c489ac), [`11192ad4b`](https://github.com/commercetools/merchant-center-application-kit/commit/11192ad4bf186ff529255c68e95193a362308620)]:
+  - @commercetools-frontend/application-shell@21.16.0
+  - @commercetools-frontend/application-config@21.16.0
+
 ## 21.15.0
 
 ### Patch Changes

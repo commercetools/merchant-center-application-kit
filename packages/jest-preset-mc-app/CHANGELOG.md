@@ -1,5 +1,16 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 21.16.0
+
+### Patch Changes
+
+- [#2820](https://github.com/commercetools/merchant-center-application-kit/pull/2820) [`1af9292da`](https://github.com/commercetools/merchant-center-application-kit/commit/1af9292daf3a09224551383918c2d00da43bbbee) Thanks [@emmenko](https://github.com/emmenko)! - Improve output of console usage in tests
+
+- [#2580](https://github.com/commercetools/merchant-center-application-kit/pull/2580) [`1c40c40c9`](https://github.com/commercetools/merchant-center-application-kit/commit/1c40c40c947574ba24b411c9376640bb18c489ac) Thanks [@renovate](https://github.com/apps/renovate)! - Update `@testing-library/react-hooks` package to version `8.0.0`.
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.16.0
+
 ## 21.15.0
 
 ### Patch Changes
