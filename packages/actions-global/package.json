@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "react": "17.0.2",
-    "react-redux": "7.2.8",
+    "react-redux": "7.2.9",
     "redux": "4.2.0"
   },
   "peerDependencies": {
