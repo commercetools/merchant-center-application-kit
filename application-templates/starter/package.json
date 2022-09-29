@@ -54,10 +54,10 @@
     "@commercetools-uikit/text-input": "^15.2.2",
     "@commercetools/sync-actions": "^5.1.0",
     "@formatjs/cli": "4.8.4",
-    "@manypkg/cli": "0.19.1",
+    "@manypkg/cli": "0.19.2",
     "@testing-library/react": "12.1.5",
     "@testing-library/react-hooks": "8.0.1",
-    "eslint": "8.23.1",
+    "eslint": "8.24.0",
     "eslint-formatter-pretty": "4.1.0",
     "jest": "27.5.1",
     "jest-runner-eslint": "1.1.0",
@@ -69,7 +69,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-intl": "^5.25.1",
-    "react-redux": "7.2.8",
+    "react-redux": "7.2.9",
     "react-router-dom": "5.3.3",
     "redux": "4.2.0"
   }
