@@ -71,7 +71,7 @@ import '@commercetools-frontend/cypress/add-commands';
 
 ## cy.loginToMerchantCenter
 
-This command performs the user login to the Merchant Center. It automatically detects the whether the application is running on localhost or on production and chooses the appropriate login mechanism.<br/>
+This command performs the user login to the Merchant Center. It automatically detects whether the application is running on localhost or on production and chooses the appropriate login mechanism.<br/>
 
 - When the application runs locally, the same mechanism used in the `cy.loginByOidc` is used.
 - When the application runs on production, a normal login flow is used where the user credentials are typed into the login form.
@@ -108,7 +108,7 @@ By default, the `.env` and `.env.local` files are attempted to be loaded from th
 
 <Info>
 
-The command also requires the following environment variables to be available: `PROJECT_KEY`, `LOGIN_USER`, `LOGIN_PASSWORD`.
+Make sure that the following environment variables are available in case the related options are not explicitly provided: `PROJECT_KEY`, `LOGIN_USER`, `LOGIN_PASSWORD`.
 
 </Info>
 
