@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import semver from 'semver';
 import { buildOidcScope } from '@commercetools-frontend/application-shell/ssr';
 import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
 import { STORAGE_KEYS, OIDC_RESPONSE_TYPES } from '../constants';
@@ -54,11 +55,16 @@ export type CommandLoginOptions = {
   login?: LoginCredentials;
   /**
    * Turn off caching the session across specs.
+   * This is only relevant for Cypress version >= `10.9.0`.
    */
   disableCacheAcrossSpecs?: boolean;
 };
 // Alias for backwards compatibility
 export type CommandLoginByOidcOptions = CommandLoginOptions;
+
+function isFeatureSupported(expectedVersion: string) {
+  return semver.gte(Cypress.version, expectedVersion);
+}
 
 function loginByForm(commandOptions: CommandLoginOptions) {
   if (isLocalhost()) {
@@ -124,12 +130,18 @@ function loginByForm(commandOptions: CommandLoginOptions) {
     // For backwards compatibility.
     if (Cypress.config('experimentalSessionAndOrigin')) {
       // https://www.cypress.io/blog/2021/08/04/authenticate-faster-in-tests-cy-session-command/
-      cy.session(sessionKey, authCallback, {
-        cacheAcrossSpecs:
-          typeof commandOptions.disableCacheAcrossSpecs === 'boolean'
-            ? !commandOptions.disableCacheAcrossSpecs
-            : true,
-      });
+      cy.session(
+        sessionKey,
+        authCallback,
+        isFeatureSupported('10.9.0')
+          ? {
+              cacheAcrossSpecs:
+                typeof commandOptions.disableCacheAcrossSpecs === 'boolean'
+                  ? !commandOptions.disableCacheAcrossSpecs
+                  : true,
+            }
+          : undefined
+      );
     } else {
       cy.log(
         `We recommend turning on the flag "experimentalSessionAndOrigin" to be able to use "cy.session" and thus reduce the time to log in between tests.`
@@ -235,12 +247,18 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
       // For backwards compatibility.
       if (Cypress.config('experimentalSessionAndOrigin')) {
         // https://www.cypress.io/blog/2021/08/04/authenticate-faster-in-tests-cy-session-command/
-        cy.session(sessionKey, authCallback, {
-          cacheAcrossSpecs:
-            typeof commandOptions.disableCacheAcrossSpecs === 'boolean'
-              ? !commandOptions.disableCacheAcrossSpecs
-              : true,
-        });
+        cy.session(
+          sessionKey,
+          authCallback,
+          isFeatureSupported('10.9.0')
+            ? {
+                cacheAcrossSpecs:
+                  typeof commandOptions.disableCacheAcrossSpecs === 'boolean'
+                    ? !commandOptions.disableCacheAcrossSpecs
+                    : true,
+              }
+            : undefined
+        );
       } else {
         cy.log(
           `We recommend turning on the flag "experimentalSessionAndOrigin" to be able to use "cy.session" and thus reduce the time to log in between tests.`

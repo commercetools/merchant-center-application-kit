@@ -40,6 +40,7 @@
     "@commercetools-frontend/application-config": "21.16.0",
     "@commercetools-frontend/application-shell": "21.16.0",
     "@manypkg/get-packages": "1.1.3",
+    "semver": "7.3.7",
     "uuid": "8.3.2"
   },
   "devDependencies": {
