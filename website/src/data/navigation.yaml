@@ -38,6 +38,8 @@
       path: /development/translations
     - title: Permissions
       path: /development/permissions
+    - title: Human-readable Page Title
+      path: /development/human-readable-page-title
     - title: Adding TypeScript
       path: /development/adding-typescript
     - title: Going to Production
