@@ -30,7 +30,7 @@ type TImplicitCustomApplicationPermissionKeys<
  * - avengers --> Avengers
  * - the-avengers --> TheAvengers
  * - the_avengers --> The_Avengers
- * - avengers-01 --> Avengers01
+ * - avengers-01 --> Avengers/01
  * - avengers_01 --> Avengers_01
  */
 const formatEntryPointUriPathToResourceAccessKey = (
@@ -40,12 +40,44 @@ const formatEntryPointUriPathToResourceAccessKey = (
     // Splits the string by underscore.
     .split('_')
     // Uppercase the first character of each word split.
-    .map((word) => upperFirst(word))
+    .map(upperFirst)
     // Join the words by an underscore.
     .join('_')
     // Each word is split by a hyphen.
     .split('-')
-    .map((word) => upperFirst(word))
+    .map((word, i) => {
+      // Regex below checking if the character is numeric.
+      // If the word after the hyphen is numeric, replace the hyphen with a forward slash.
+      // If not, omit the hyphen and uppercase the first character
+      if (i > 0 && /^-?\d+$/.test(word[0])) {
+        return `/${word}`;
+      }
+      return upperFirst(word);
+    })
+    .join('');
+
+/**
+ * The function formats the `permissionName` to a resource access key.
+ * It makes the first character of the string and the next character after a special character an uppercase.
+ *
+ * @example
+ * - avengers --> Avengers
+ * - the-avengers --> TheAvengers
+ * - the_avengers --> The_Avengers
+ * - avengers-01 --> Avengers01 [ℹ️ mind the difference here compared to `formatEntryPointUriPathToResourceAccessKey`]
+ * - avengers_01 --> Avengers_01
+ */
+const formatPermissionNameToResourceAccessKey = (permissionName: string) =>
+  permissionName
+    // Splits the string by underscore.
+    .split('_')
+    // Uppercase the first character of each word split.
+    .map(upperFirst)
+    // Join the words by an underscore.
+    .join('_')
+    // Each word is split by a hyphen.
+    .split('-')
+    .map(upperFirst)
     .join('');
 
 function entryPointUriPathToResourceAccesses(
@@ -70,7 +102,7 @@ function entryPointUriPathToResourceAccesses<PermissionName extends string>(
   const additionalResourceAccesses = (additionalPermissionNames ?? []).reduce(
     (resourceAccesses, permissionName) => {
       const additionalResourceAccessKey =
-        formatEntryPointUriPathToResourceAccessKey(permissionName);
+        formatPermissionNameToResourceAccessKey(permissionName);
       return {
         ...resourceAccesses,
         [`view${additionalResourceAccessKey}`]: `${defaultResourceAccesses.view}${additionalResourceAccessKey}`,

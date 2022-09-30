@@ -5,7 +5,7 @@ describe.each`
   ${'avengers'}     | ${'Avengers'}
   ${'the-avengers'} | ${'TheAvengers'}
   ${'the_avengers'} | ${'The_Avengers'}
-  ${'avengers-01'}  | ${'Avengers01'}
+  ${'avengers-01'}  | ${'Avengers/01'}
   ${'avengers_01'}  | ${'Avengers_01'}
 `(
   'formatting the entryPointUriPath "$entryPointUriPath" to a resource access key "$formattedResourceAccessKey"',
@@ -26,7 +26,7 @@ describe.each`
   ${'avengers'}     | ${'Avengers'}              | ${['books']}              | ${'AvengersBooks'}
   ${'the-avengers'} | ${'TheAvengers'}           | ${['the-books']}          | ${'TheAvengersTheBooks'}
   ${'the_avengers'} | ${'The_Avengers'}          | ${['the_books']}          | ${'The_AvengersThe_Books'}
-  ${'avengers-01'}  | ${'Avengers01'}            | ${['books-01']}           | ${'Avengers01Books01'}
+  ${'avengers-01'}  | ${'Avengers/01'}           | ${['books-01']}           | ${'Avengers/01Books01'}
   ${'avengers_01'}  | ${'Avengers_01'}           | ${['books_01']}           | ${'Avengers_01Books_01'}
 `(
   'formatting the entryPointUriPath "$entryPointUriPath" with additional permission names "$additionalPermissionNames" to a resource access key "$formattedResourceAccessKey" and "$formattedResourceAccessKeyAdditionalNames"',
