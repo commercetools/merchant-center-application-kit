@@ -1,12 +1,13 @@
 import upperFirst from 'lodash/upperFirst';
+import type { CamelCase } from './types';
 
 type TImplicitCustomApplicationResourceAccesses<
   PermissionName extends string = ''
 > = Record<
   | `view`
   | `manage`
-  | `view${Capitalize<PermissionName>}`
-  | `manage${Capitalize<PermissionName>}`,
+  | `view${Capitalize<CamelCase<PermissionName>>}`
+  | `manage${Capitalize<CamelCase<PermissionName>>}`,
   string
 >;
 
@@ -15,8 +16,8 @@ type TImplicitCustomApplicationPermissionKeys<
 > = Record<
   | `View`
   | `Manage`
-  | `View${Capitalize<PermissionName>}`
-  | `Manage${Capitalize<PermissionName>}`,
+  | `View${Capitalize<CamelCase<PermissionName>>}`
+  | `Manage${Capitalize<CamelCase<PermissionName>>}`,
   string
 >;
 
@@ -29,7 +30,7 @@ type TImplicitCustomApplicationPermissionKeys<
  * - avengers --> Avengers
  * - the-avengers --> TheAvengers
  * - the_avengers --> The_Avengers
- * - avengers-01 --> Avengers/01
+ * - avengers-01 --> Avengers01
  * - avengers_01 --> Avengers_01
  */
 const formatEntryPointUriPathToResourceAccessKey = (
@@ -44,15 +45,7 @@ const formatEntryPointUriPathToResourceAccessKey = (
     .join('_')
     // Each word is split by a hyphen.
     .split('-')
-    .map((word, i) => {
-      // Regex below checking if the character is numeric.
-      // If the word after the hyphen is numeric, replace the hyphen with a forward slash.
-      // If not, omit the hyphen and uppercase the first character
-      if (i > 0 && /^-?\d+$/.test(word[0])) {
-        return `/${word}`;
-      }
-      return upperFirst(word);
-    })
+    .map((word) => upperFirst(word))
     .join('');
 
 function entryPointUriPathToResourceAccesses(
