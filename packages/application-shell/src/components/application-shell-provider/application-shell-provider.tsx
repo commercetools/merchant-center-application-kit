@@ -21,7 +21,6 @@ import GtmBooter from '../gtm-booter';
 import ApplicationPageTitle from '../application-page-title';
 import ApplicationLoader from '../application-loader';
 import ErrorBoundary from '../error-boundary';
-import GlobalStyles from './global-styles';
 import { getBrowserLocale } from './utils';
 import useCoercedEnvironmentValues from './use-coerced-environment-values';
 
@@ -50,7 +49,6 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
   const browserLocale = getBrowserLocale(window);
   return (
     <>
-      <GlobalStyles />
       <ErrorBoundary>
         <ApplicationContextProvider<AdditionalEnvironmentProperties>
           environment={coercedEnvironmentValues}

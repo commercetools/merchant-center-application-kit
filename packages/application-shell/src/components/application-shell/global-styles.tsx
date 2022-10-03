@@ -1,6 +1,12 @@
 import { Global, css } from '@emotion/react';
 import { customProperties } from '@commercetools-uikit/design-system';
 
+const appStyles = css`
+  #app {
+    height: 100%;
+  }
+`;
+
 const gridStyles = css`
 .row
   clear: both;
@@ -93,6 +99,7 @@ const resetStyles = css`
 
 const GlobalStyles = () => (
   <>
+    <Global styles={appStyles} />
     <Global styles={gridStyles} />
     <Global styles={resetStyles} />
   </>
