@@ -37,6 +37,19 @@ const createTestEnvironment = (
 });
 
 const testUser = UserMock.random().buildGraphql<TUserGraphql>();
+const testSSOUser = {
+  ...UserMock.random().buildGraphql<TUserGraphql>(),
+  idTokenUserInfo: {
+    iss: '',
+    sub: '',
+    aud: '',
+    exp: 123456789,
+    iat: 987654321,
+    email: 'bill@foster.com',
+    name: 'Bill Foster',
+    additionalClaims: '{"oid":"<ramdom-id>"}',
+  },
+};
 const testProject = ProjectMock.random()
   .name('Ultron')
   .buildGraphql<TProjectGraphql>();
@@ -115,6 +128,35 @@ describe('mapUserToApplicationContextUser', () => {
         results: expect.arrayContaining([
           expect.objectContaining({ key: expect.any(String) }),
         ]),
+      }),
+    });
+  });
+  it('should map fetched SSO user to user context', () => {
+    expect(mapUserToApplicationContextUser(testSSOUser)).toEqual({
+      id: expect.any(String),
+      email: expect.any(String),
+      firstName: expect.any(String),
+      lastName: expect.any(String),
+      locale: expect.any(String),
+      timeZone: expect.any(String),
+      businessRole: expect.any(String),
+      projects: expect.objectContaining({
+        total: 1,
+        results: expect.arrayContaining([
+          expect.objectContaining({ key: expect.any(String) }),
+        ]),
+      }),
+      idTokenUserInfo: expect.objectContaining({
+        issuer: expect.any(String),
+        subject: expect.any(String),
+        audience: expect.any(String),
+        expirationTimestamp: expect.any(Number),
+        creationTimestamp: expect.any(Number),
+        email: expect.any(String),
+        name: expect.any(String),
+        additionalClaims: expect.objectContaining({
+          oid: '<ramdom-id>',
+        }),
       }),
     });
   });

@@ -51,6 +51,23 @@ type TApplicationContextDataFences = Partial<
   >
 >;
 type TApplicationContextEnvironment = ApplicationWindow['app'];
+type TApplicationContextUser = Pick<
+  TFetchedUser,
+  'id' | 'email' | 'firstName' | 'lastName' | 'businessRole' | 'projects'
+> & {
+  locale: string;
+  timeZone: string;
+  idTokenUserInfo?: {
+    issuer: string;
+    subject: string;
+    audience: string;
+    expirationTimestamp: number;
+    creationTimestamp: number;
+    email?: string | null | undefined;
+    name?: string | null | undefined;
+    additionalClaims: Record<string, unknown>;
+  };
+};
 
 const Context = createContext({});
 
@@ -60,7 +77,7 @@ const defaultTimeZone = moment.tz.guess() || 'Etc/UTC';
 // be used internally in the AppShell
 export const mapUserToApplicationContextUser = (user?: TFetchedUser) => {
   if (!user) return null;
-  return {
+  let applicationContextUser: TApplicationContextUser = {
     id: user.id,
     email: user.email,
     firstName: user.firstName,
@@ -72,6 +89,33 @@ export const mapUserToApplicationContextUser = (user?: TFetchedUser) => {
     timeZone: user.timeZone || defaultTimeZone,
     projects: user.projects,
   };
+
+  // This property will only be populated when user has logged in using SSO
+  if (user.idTokenUserInfo) {
+    let additionalClaims: Record<string, unknown> = {};
+    try {
+      additionalClaims = JSON.parse(
+        user.idTokenUserInfo.additionalClaims || ''
+      );
+    } catch (error) {
+      console.warn(
+        '@commercetools-frontend/application-shell-connectors: Could not parse received user sso custom claims from server.',
+        (error as Error).message
+      );
+    }
+    applicationContextUser.idTokenUserInfo = {
+      issuer: user.idTokenUserInfo.iss,
+      subject: user.idTokenUserInfo.sub,
+      audience: user.idTokenUserInfo.aud,
+      expirationTimestamp: user.idTokenUserInfo.exp,
+      creationTimestamp: user.idTokenUserInfo.iat,
+      email: user.idTokenUserInfo.email,
+      name: user.idTokenUserInfo.name,
+      additionalClaims,
+    };
+  }
+
+  return applicationContextUser;
 };
 
 // Adjust certain fields which depend e.g. on the origin

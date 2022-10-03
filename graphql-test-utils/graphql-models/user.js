@@ -21,6 +21,7 @@ const User = new Factory()
   .attr('launchdarklyTrackingTenant', 'gcp-eu')
   .attr('defaultProjectKey', () => null)
   .attr('businessRole', () => faker.name.jobDescriptor())
+  .attr('idTokenUserInfo', () => null)
   .attr('projects', () => ({
     __typename: 'ProjectQueryResult',
     total: 0,
