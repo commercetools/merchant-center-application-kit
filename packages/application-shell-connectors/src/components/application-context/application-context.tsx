@@ -52,7 +52,7 @@ type TApplicationContextDataFences = Partial<
 >;
 type TApplicationContextEnvironment = ApplicationWindow['app'];
 type TApplicationContextUser = Pick<
-  TFetchedUser,
+  NonNullable<TFetchedUser>,
   'id' | 'email' | 'firstName' | 'lastName' | 'businessRole' | 'projects'
 > & {
   locale: string;
