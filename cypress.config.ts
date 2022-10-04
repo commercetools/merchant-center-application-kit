@@ -4,7 +4,7 @@ import { customApplicationConfig } from '@commercetools-frontend/cypress/task';
 
 export default defineConfig({
   retries: 1,
-  video: true,
+  video: false,
   e2e: {
     // https://cypress.io/blog/2022/04/25/cypress-9-6-0-easily-test-multi-domain-workflows-with-cy-origin/
     experimentalSessionAndOrigin: true,
