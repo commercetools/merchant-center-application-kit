@@ -3,6 +3,5 @@ snapshot:
   widths:
     - 1024
   minHeight: 1024
-  enable-javascript: true
 discovery:
   networkIdleTimeout: 750
