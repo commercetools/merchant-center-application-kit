@@ -11,7 +11,8 @@ describe('Date formatters', () => {
     });
   });
   it('should render date formatters view', () => {
-    cy.findByText(/Formatters Demo/i);
+    // This is the latest locale formats card loaded in the view
+    cy.findByText(/fr-FR/i);
     cy.percySnapshot();
   });
 });
