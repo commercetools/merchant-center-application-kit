@@ -40,9 +40,9 @@ const testUser = UserMock.random().buildGraphql<TUserGraphql>();
 const testSSOUser = {
   ...UserMock.random().buildGraphql<TUserGraphql>(),
   idTokenUserInfo: {
-    iss: '',
-    sub: '',
-    aud: '',
+    iss: 'http://merchant-center-backend',
+    sub: '1234-abdc-5678-efgh',
+    aud: 'http://merchant-center-settings',
     exp: 123456789,
     iat: 987654321,
     email: 'bill@foster.com',
@@ -147,11 +147,11 @@ describe('mapUserToApplicationContextUser', () => {
         ]),
       }),
       idTokenUserInfo: expect.objectContaining({
-        issuer: expect.any(String),
-        subject: expect.any(String),
-        audience: expect.any(String),
-        expirationTimestamp: expect.any(Number),
-        creationTimestamp: expect.any(Number),
+        iss: expect.any(String),
+        sub: expect.any(String),
+        aud: expect.any(String),
+        exp: expect.any(Number),
+        iat: expect.any(Number),
         email: expect.any(String),
         name: expect.any(String),
         additionalClaims: expect.objectContaining({

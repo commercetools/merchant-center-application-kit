@@ -2,6 +2,7 @@ import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type {
   TFetchLoggedInUserQuery,
   TFetchProjectQuery,
+  TIdTokenUserInfo,
 } from '../../types/generated/mc';
 
 import { ComponentType, createContext, ReactNode, useContext } from 'react';
@@ -57,14 +58,7 @@ type TApplicationContextUser = Pick<
 > & {
   locale: string;
   timeZone: string;
-  idTokenUserInfo?: {
-    issuer: string;
-    subject: string;
-    audience: string;
-    expirationTimestamp: number;
-    creationTimestamp: number;
-    email?: string | null | undefined;
-    name?: string | null | undefined;
+  idTokenUserInfo?: Omit<TIdTokenUserInfo, 'additionalClaims'> & {
     additionalClaims: Record<string, unknown>;
   };
 };
@@ -104,13 +98,7 @@ export const mapUserToApplicationContextUser = (user?: TFetchedUser) => {
       );
     }
     applicationContextUser.idTokenUserInfo = {
-      issuer: user.idTokenUserInfo.iss,
-      subject: user.idTokenUserInfo.sub,
-      audience: user.idTokenUserInfo.aud,
-      expirationTimestamp: user.idTokenUserInfo.exp,
-      creationTimestamp: user.idTokenUserInfo.iat,
-      email: user.idTokenUserInfo.email,
-      name: user.idTokenUserInfo.name,
+      ...user.idTokenUserInfo,
       additionalClaims,
     };
   }
