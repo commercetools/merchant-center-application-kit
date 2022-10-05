@@ -22,6 +22,16 @@ type TBaseUser = {
   launchdarklyTrackingTenant: string;
   defaultProjectKey: string;
   businessRole: string | undefined;
+  idTokenUserInfo?: {
+    iss: string;
+    sub: string;
+    aud: string;
+    exp: number;
+    iat: number;
+    email?: string | null | undefined;
+    name?: string | null | undefined;
+    additionalClaims?: string;
+  };
 };
 
 export type TUser = TBaseUser & {

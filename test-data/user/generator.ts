@@ -23,6 +23,7 @@ const generator = Generator<TUser>({
     launchdarklyTrackingTeam: '',
     launchdarklyTrackingTenant: '',
     projects: null,
+    idTokenUserInfo: null,
   },
 });
 

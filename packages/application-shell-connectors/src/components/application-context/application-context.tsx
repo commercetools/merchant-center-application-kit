@@ -2,10 +2,12 @@ import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type {
   TFetchLoggedInUserQuery,
   TFetchProjectQuery,
+  TIdTokenUserInfo,
 } from '../../types/generated/mc';
 
 import { ComponentType, createContext, ReactNode, useContext } from 'react';
 import moment from 'moment-timezone';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import getDisplayName from '../../utils/get-display-name';
 import {
   normalizeAllAppliedActionRights,
@@ -51,6 +53,16 @@ type TApplicationContextDataFences = Partial<
   >
 >;
 type TApplicationContextEnvironment = ApplicationWindow['app'];
+type TApplicationContextUser = Pick<
+  NonNullable<TFetchedUser>,
+  'id' | 'email' | 'firstName' | 'lastName' | 'businessRole' | 'projects'
+> & {
+  locale: string;
+  timeZone: string;
+  idTokenUserInfo?: Omit<TIdTokenUserInfo, 'additionalClaims'> & {
+    additionalClaims: Record<string, unknown>;
+  };
+};
 
 const Context = createContext({});
 
@@ -60,7 +72,7 @@ const defaultTimeZone = moment.tz.guess() || 'Etc/UTC';
 // be used internally in the AppShell
 export const mapUserToApplicationContextUser = (user?: TFetchedUser) => {
   if (!user) return null;
-  return {
+  let applicationContextUser: TApplicationContextUser = {
     id: user.id,
     email: user.email,
     firstName: user.firstName,
@@ -72,6 +84,33 @@ export const mapUserToApplicationContextUser = (user?: TFetchedUser) => {
     timeZone: user.timeZone || defaultTimeZone,
     projects: user.projects,
   };
+
+  // This property will only be populated when user has logged in using SSO
+  if (user.idTokenUserInfo) {
+    let additionalClaims: Record<string, unknown> = {};
+    try {
+      additionalClaims = JSON.parse(
+        user.idTokenUserInfo.additionalClaims || ''
+      );
+    } catch (error) {
+      reportErrorToSentry(
+        new Error(
+          '@commercetools-frontend/application-shell-connectors: Could not parse received user sso token additional claims from server.'
+        ),
+        {
+          extra: {
+            receivedAdditionalClaims: user.idTokenUserInfo.additionalClaims,
+          },
+        }
+      );
+    }
+    applicationContextUser.idTokenUserInfo = {
+      ...user.idTokenUserInfo,
+      additionalClaims,
+    };
+  }
+
+  return applicationContextUser;
 };
 
 // Adjust certain fields which depend e.g. on the origin

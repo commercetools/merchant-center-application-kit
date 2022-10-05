@@ -1,4 +1,5 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import type { TProjectGraphql } from '../../../../../test-data/project';
 import type { TUserGraphql } from '../../../../../test-data/user';
 
@@ -15,6 +16,8 @@ import {
   mapProjectToApplicationContextProject,
   mapEnvironmentToApplicationContextEnvironment,
 } from './application-context';
+
+jest.mock('@commercetools-frontend/sentry');
 
 type AdditionalEnvironmentProps = { foo: string };
 
@@ -37,6 +40,19 @@ const createTestEnvironment = (
 });
 
 const testUser = UserMock.random().buildGraphql<TUserGraphql>();
+const testSSOUser = {
+  ...UserMock.random().buildGraphql<TUserGraphql>(),
+  idTokenUserInfo: {
+    iss: 'http://merchant-center-backend',
+    sub: '1234-abdc-5678-efgh',
+    aud: 'http://merchant-center-settings',
+    exp: 123456789,
+    iat: 987654321,
+    email: 'bill@foster.com',
+    name: 'Bill Foster',
+    additionalClaims: '{"oid":"<ramdom-id>"}',
+  },
+};
 const testProject = ProjectMock.random()
   .name('Ultron')
   .buildGraphql<TProjectGraphql>();
@@ -117,6 +133,70 @@ describe('mapUserToApplicationContextUser', () => {
         ]),
       }),
     });
+  });
+  it('should map fetched SSO user to user context', () => {
+    expect(mapUserToApplicationContextUser(testSSOUser)).toEqual({
+      id: expect.any(String),
+      email: expect.any(String),
+      firstName: expect.any(String),
+      lastName: expect.any(String),
+      locale: expect.any(String),
+      timeZone: expect.any(String),
+      businessRole: expect.any(String),
+      projects: expect.objectContaining({
+        total: 1,
+        results: expect.arrayContaining([
+          expect.objectContaining({ key: expect.any(String) }),
+        ]),
+      }),
+      idTokenUserInfo: expect.objectContaining({
+        iss: expect.any(String),
+        sub: expect.any(String),
+        aud: expect.any(String),
+        exp: expect.any(Number),
+        iat: expect.any(Number),
+        email: expect.any(String),
+        name: expect.any(String),
+        additionalClaims: expect.objectContaining({
+          oid: '<ramdom-id>',
+        }),
+      }),
+    });
+  });
+  it('should not fail and report to Sentry if SSO user additional claims cannot be parsed', () => {
+    const mockUser = {
+      ...testSSOUser,
+      idTokenUserInfo: {
+        ...testSSOUser.idTokenUserInfo,
+        additionalClaims: '<invalid_value>',
+      },
+    };
+    expect(mapUserToApplicationContextUser(mockUser)).toEqual({
+      id: expect.any(String),
+      email: expect.any(String),
+      firstName: expect.any(String),
+      lastName: expect.any(String),
+      locale: expect.any(String),
+      timeZone: expect.any(String),
+      businessRole: expect.any(String),
+      projects: expect.objectContaining({
+        total: 1,
+        results: expect.arrayContaining([
+          expect.objectContaining({ key: expect.any(String) }),
+        ]),
+      }),
+      idTokenUserInfo: expect.objectContaining({
+        iss: expect.any(String),
+        sub: expect.any(String),
+        aud: expect.any(String),
+        exp: expect.any(Number),
+        iat: expect.any(Number),
+        email: expect.any(String),
+        name: expect.any(String),
+        additionalClaims: expect.objectContaining({}),
+      }),
+    });
+    expect(reportErrorToSentry).toHaveBeenCalled();
   });
 });
 
