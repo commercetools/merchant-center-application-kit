@@ -67,13 +67,7 @@ function createPostcssConfig({
        */
       require('postcss-custom-properties')({
         preserve: false,
-        importFrom: [
-          safeResolvePath(
-            '@commercetools-uikit/design-system',
-            'materials/custom-properties.css'
-          ),
-          ...postcssCustomPropertiesPaths,
-        ],
+        importFrom: [...postcssCustomPropertiesPaths],
       }),
       /**
        * Plugin to `console.log()` the messages (warnings, etc.)

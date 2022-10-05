@@ -27,6 +27,5 @@ describe('Channels', () => {
         'PROJECT_KEY'
       )} - Merchant Center`
     );
-    cy.percySnapshot();
   });
 });

@@ -15,7 +15,7 @@ import {
 } from 'react';
 import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import { ApolloClient } from '@apollo/client';
-import { Global, css } from '@emotion/react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import {
@@ -29,6 +29,7 @@ import {
 import { PortalsContainer } from '@commercetools-frontend/application-components';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
+import { ThemeProvider } from '@commercetools-uikit/design-system';
 import version from '../../version';
 import internalReduxStore from '../../configure-store';
 import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
@@ -54,6 +55,7 @@ import RedirectToProjectCreate from '../redirect-to-project-create';
 import QuickAccess from '../quick-access';
 import RedirectToLogin from './redirect-to-login';
 import RedirectToLogout from './redirect-to-logout';
+import GlobalStyles from './global-styles';
 
 type Props<AdditionalEnvironmentProperties extends {}> = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;
@@ -534,13 +536,8 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
 
   return (
     <>
-      <Global
-        styles={css`
-          #app {
-            height: 100%;
-          }
-        `}
-      />
+      <ThemeProvider theme="default" />
+      <GlobalStyles />
       <ApplicationShellProvider<AdditionalEnvironmentProperties>
         apolloClient={props.apolloClient}
         environment={props.environment}

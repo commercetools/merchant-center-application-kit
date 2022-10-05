@@ -115,10 +115,9 @@ jobs:
         run: yarn cypress install && yarn cypress cache list
 
       - name: Running End-to-End tests for Starter template application
-        run: yarn start-server-and-test 'yarn template-starter:start:prod:local' 3001 'yarn percy exec -- yarn test:e2e:template-starter'
+        run: yarn start-server-and-test 'yarn template-starter:start:prod:local' 3001 'yarn test:e2e:template-starter'
         env:
           NODE_ENV: test
-          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_E2E_STARTER }}
           CYPRESS_CI: "true"
           CYPRESS_LOGIN_USER: ${{ secrets.CYPRESS_LOGIN_USER }}
           CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
@@ -201,10 +200,9 @@ jobs:
         run: yarn cypress install && yarn cypress cache list
 
       - name: Running End-to-End tests for Starter template application
-        run: yarn start-server-and-test 'yarn template-starter-typescript:start:prod:local' 3001 'yarn percy exec -- yarn test:e2e:template-starter'
+        run: yarn start-server-and-test 'yarn template-starter-typescript:start:prod:local' 3001 'yarn test:e2e:template-starter'
         env:
           NODE_ENV: test
-          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_E2E_STARTER }}
           CYPRESS_CI: "true"
           CYPRESS_LOGIN_USER: ${{ secrets.CYPRESS_LOGIN_USER }}
           CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
