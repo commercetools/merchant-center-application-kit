@@ -7,6 +7,7 @@ import type {
 
 import { ComponentType, createContext, ReactNode, useContext } from 'react';
 import moment from 'moment-timezone';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import getDisplayName from '../../utils/get-display-name';
 import {
   normalizeAllAppliedActionRights,
@@ -92,9 +93,15 @@ export const mapUserToApplicationContextUser = (user?: TFetchedUser) => {
         user.idTokenUserInfo.additionalClaims || ''
       );
     } catch (error) {
-      console.warn(
-        '@commercetools-frontend/application-shell-connectors: Could not parse received user sso custom claims from server.',
-        (error as Error).message
+      reportErrorToSentry(
+        new Error(
+          '@commercetools-frontend/application-shell-connectors: Could not parse received user sso token additional claims from server.'
+        ),
+        {
+          extra: {
+            receivedAdditionalClaims: user.idTokenUserInfo.additionalClaims,
+          },
+        }
       );
     }
     applicationContextUser.idTokenUserInfo = {
