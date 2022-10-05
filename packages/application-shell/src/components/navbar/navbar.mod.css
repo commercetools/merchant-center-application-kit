@@ -4,7 +4,7 @@
   --submenu-margin: calc(var(--icon-size) + var(--spacing-m));
 
   /* Left navigation */
-  --width-leftNavigation: 64px;
+  --width-left-navigation: 64px;
 }
 
 /* Left Nav */
@@ -12,7 +12,7 @@
 .left-navigation {
   display: flex;
   flex-grow: 1;
-  width: var(--width-leftNavigation);
+  width: var(--width-left-navigation);
   z-index: 19999;
   background: var(--color-accent);
 }

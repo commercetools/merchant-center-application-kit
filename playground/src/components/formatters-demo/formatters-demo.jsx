@@ -34,7 +34,7 @@ const DEMO_MONEY_PRICE = {
 
 function getSampleDate() {
   const now = new Date();
-  now.setDate(20);
+  now.setFullYear(2022, 8, 30);
   now.setUTCHours(7, 15, 0, 0);
   return now;
 }
