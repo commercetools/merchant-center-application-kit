@@ -72,6 +72,42 @@ The information about the logged in user.
 }
 ```
 
+If the user logged into the Merchant Center using [Single Sign-On](https://docs.commercetools.com/merchant-center/single-sign-on-beta), we expose an additional property `idTokenUserInfo` which contains some of the user info claims (OpenID Connect) from the user's Identity Provider.
+
+```json highlightedLines="14-22"
+{
+  "user": {
+    "id": "3mj76c04-f910-4223-84e1-f97b0fe291c2",
+    "email": "aHR0cHM6Ly9kZXYt0udXMuYXVLzphdXRoiMDljMjYzZWQwOTg4MmU2OGU=@3241a8e3-cc17-4e7e-b6vz-1d0fdb.sso",
+    "firstName": "John",
+    "lastName": "Doe",
+    "businessRole": "Consultant",
+    "locale": "en-GB",
+    "timeZone": "Europe/Berlin",
+    "projects": [
+      { "key": "my-project-A", "name": "My Project A" },
+      { "key": "my-project-B", "name": "My Project B" }
+    ],
+    "idTokenUserInfo": {
+      "iss": "<the-issuer>",
+      "sub": "<the-subject>",
+      "aud": "<the-audience>",
+      "exp": 1665076522603,
+      "iat": 1665040077648,
+      "email": "john.doe@example.com",
+      "name": "John Doe",
+    }
+  }
+}
+```
+
+<Info>
+
+This feature is available from version `21.17.0` onwards.
+
+</Info>
+
+
 
 ### `project`
 
