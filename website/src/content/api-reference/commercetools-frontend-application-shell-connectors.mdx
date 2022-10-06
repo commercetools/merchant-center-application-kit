@@ -72,6 +72,42 @@ The information about the logged in user.
 }
 ```
 
+For users who have logged-in into the Merchant Center using SSO, there will be another object property (**idTokenUserInfo**) which will contain some standard claims from the id token we get in our backend when processing the OIDC flow with their Identify Provider.
+
+```json
+{
+  "user": {
+    "id": "3mj76c04-f910-4223-84e1-f97b0fe291c2",
+    "email": "aHR0cHM6Ly9kZXYt0udXMuYXVLzphdXRoiMDljMjYzZWQwOTg4MmU2OGU=@3241a8e3-cc17-4e7e-b6vz-1d0fdb.sso",
+    "firstName": "John",
+    "lastName": "Doe",
+    "businessRole": "Consultant",
+    "locale": "en-GB",
+    "timeZone": "Europe/Berlin",
+    "projects": [
+      { "key": "my-project-A", "name": "My Project A" },
+      { "key": "my-project-B", "name": "My Project B" }
+    ],
+    "idTokenUserInfo": {
+      "iss": "https://test-oidc.auth0.com/",
+      "sub": "1d9ca1aa-459c-48bf-bbf2-ca7bb0a6deaa",
+      "aud": "https://mc-api.europe-west1.gcp.escemo.com",
+      "exp": 1665076522603,
+      "iat": 1665040077648,
+      "email": "john.doe@example.com",
+      "name": "John Doe",
+    }
+  }
+}
+```
+
+<Info>
+
+This feature is available from version `21.17.0` onwards.
+
+</Info>
+
+
 
 ### `project`
 
