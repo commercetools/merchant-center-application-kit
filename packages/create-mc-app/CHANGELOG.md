@@ -1,5 +1,7 @@
 # @commercetools-frontend/create-mc-app
 
+## 21.17.0
+
 ## 21.16.0
 
 ### Patch Changes

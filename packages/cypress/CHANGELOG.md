@@ -1,5 +1,15 @@
 # @commercetools-frontend/cypress
 
+## 21.17.0
+
+### Patch Changes
+
+- [#2832](https://github.com/commercetools/merchant-center-application-kit/pull/2832) [`1ddac8ced`](https://github.com/commercetools/merchant-center-application-kit/commit/1ddac8ced2509575c621a7cda10a1305df4bb46a) Thanks [@emmenko](https://github.com/emmenko)! - Fix backwards compatibility with version < `10.9.0`
+
+- Updated dependencies [[`a5e405db4`](https://github.com/commercetools/merchant-center-application-kit/commit/a5e405db45114a5cdd4d6814968bd199e6c8a480), [`f5eb8d77c`](https://github.com/commercetools/merchant-center-application-kit/commit/f5eb8d77c606e624e6cfc2cfad3da1eaeff5fdd6)]:
+  - @commercetools-frontend/application-shell@21.17.0
+  - @commercetools-frontend/application-config@21.17.0
+
 ## 21.16.0
 
 ### Minor Changes

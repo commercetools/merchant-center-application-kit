@@ -1,5 +1,32 @@
 # @commercetools-frontend/application-shell
 
+## 21.17.0
+
+### Minor Changes
+
+- [#2841](https://github.com/commercetools/merchant-center-application-kit/pull/2841) [`a5e405db4`](https://github.com/commercetools/merchant-center-application-kit/commit/a5e405db45114a5cdd4d6814968bd199e6c8a480) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Logged-in [user data](https://docs.commercetools.com/custom-applications/api-reference/commercetools-frontend-application-shell-connectors#user) that can be accessed from the [application context](https://docs.commercetools.com/custom-applications/api-reference/commercetools-frontend-application-shell-connectors#useapplicationcontext) can now optionally include new info for SSO logged-in users (Identity Provider OIDC token claims).
+
+- [#2839](https://github.com/commercetools/merchant-center-application-kit/pull/2839) [`f5eb8d77c`](https://github.com/commercetools/merchant-center-application-kit/commit/f5eb8d77c606e624e6cfc2cfad3da1eaeff5fdd6) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - This is an internal change to restructure how use design tokens, in particular by relying on CSS variables. Consumers are not affected by any of these changes.
+
+### Patch Changes
+
+- Updated dependencies [[`a5e405db4`](https://github.com/commercetools/merchant-center-application-kit/commit/a5e405db45114a5cdd4d6814968bd199e6c8a480), [`f5eb8d77c`](https://github.com/commercetools/merchant-center-application-kit/commit/f5eb8d77c606e624e6cfc2cfad3da1eaeff5fdd6)]:
+  - @commercetools-frontend/application-shell-connectors@21.17.0
+  - @commercetools-frontend/application-components@21.17.0
+  - @commercetools-frontend/i18n@21.17.0
+  - @commercetools-frontend/react-notifications@21.17.0
+  - @commercetools-frontend/permissions@21.17.0
+  - @commercetools-frontend/actions-global@21.17.0
+  - @commercetools-frontend/application-config@21.17.0
+  - @commercetools-frontend/assets@21.17.0
+  - @commercetools-frontend/browser-history@21.17.0
+  - @commercetools-frontend/constants@21.17.0
+  - @commercetools-frontend/l10n@21.17.0
+  - @commercetools-frontend/notifications@21.17.0
+  - @commercetools-frontend/sdk@21.17.0
+  - @commercetools-frontend/sentry@21.17.0
+  - @commercetools-frontend/url-utils@21.17.0
+
 ## 21.16.0
 
 ### Patch Changes

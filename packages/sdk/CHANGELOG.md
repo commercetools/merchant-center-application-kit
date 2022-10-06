@@ -1,5 +1,12 @@
 # @commercetools-frontend/sdk
 
+## 21.17.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.17.0
+
 ## 21.16.0
 
 ### Patch Changes
