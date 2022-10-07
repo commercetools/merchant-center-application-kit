@@ -700,6 +700,7 @@ export type TUser = TMetaData & {
   numberFormat: Scalars['String'];
   projects: TProjectQueryResult;
   timeZone?: Maybe<Scalars['String']>;
+  verificationStatus: Scalars['String'];
   version?: Maybe<Scalars['Int']>;
 };
 
@@ -734,7 +735,7 @@ export type TFetchProjectQuery = { __typename?: 'Query', project?: { __typename?
 export type TFetchLoggedInUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TFetchLoggedInUserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, email: string, gravatarHash: string, firstName: string, lastName: string, language: string, numberFormat: string, timeZone?: string | null, launchdarklyTrackingId: string, launchdarklyTrackingGroup: string, launchdarklyTrackingSubgroup?: string | null, launchdarklyTrackingTeam?: Array<string> | null, launchdarklyTrackingTenant: string, defaultProjectKey?: string | null, businessRole?: string | null, projects: { __typename?: 'ProjectQueryResult', total: number, results: Array<{ __typename?: 'Project', name: string, key: string, suspension: { __typename?: 'ProjectSuspension', isActive: boolean }, expiry: { __typename?: 'ProjectExpiry', isActive: boolean } }> }, idTokenUserInfo?: { __typename?: 'IdTokenUserInfo', iss: string, sub: string, aud: string, exp: number, iat: number, email?: string | null, name?: string | null, additionalClaims?: string | null } | null } | null };
+export type TFetchLoggedInUserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, email: string, gravatarHash: string, firstName: string, lastName: string, language: string, numberFormat: string, timeZone?: string | null, launchdarklyTrackingId: string, launchdarklyTrackingGroup: string, launchdarklyTrackingSubgroup?: string | null, launchdarklyTrackingTeam?: Array<string> | null, launchdarklyTrackingTenant: string, defaultProjectKey?: string | null, businessRole?: string | null, verificationStatus: string, projects: { __typename?: 'ProjectQueryResult', total: number, results: Array<{ __typename?: 'Project', name: string, key: string, suspension: { __typename?: 'ProjectSuspension', isActive: boolean }, expiry: { __typename?: 'ProjectExpiry', isActive: boolean } }> }, idTokenUserInfo?: { __typename?: 'IdTokenUserInfo', iss: string, sub: string, aud: string, exp: number, iat: number, email?: string | null, name?: string | null, additionalClaims?: string | null } | null } | null };
 
 export type TFetchUserProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
