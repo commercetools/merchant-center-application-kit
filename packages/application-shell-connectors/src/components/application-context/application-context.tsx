@@ -15,11 +15,8 @@ import {
   normalizeAllAppliedDataFences,
 } from './normalizers';
 import getMcApiUrl from '../../utils/get-mc-api-url';
-import { VerificationStatus } from '../../../../../test-data/user/types';
 
-type TFetchedUser = TFetchLoggedInUserQuery['user'] & {
-  verificationStatus: VerificationStatus;
-};
+type TFetchedUser = TFetchLoggedInUserQuery['user'];
 type TFetchedProject = TFetchProjectQuery['project'];
 
 type TApplicationContextPermissions = { [key: string]: boolean };
@@ -58,14 +55,19 @@ type TApplicationContextDataFences = Partial<
 type TApplicationContextEnvironment = ApplicationWindow['app'];
 type TApplicationContextUser = Pick<
   NonNullable<TFetchedUser>,
-  'id' | 'email' | 'firstName' | 'lastName' | 'businessRole' | 'projects'
+  | 'id'
+  | 'email'
+  | 'firstName'
+  | 'lastName'
+  | 'businessRole'
+  | 'projects'
+  | 'verificationStatus'
 > & {
   locale: string;
   timeZone: string;
   idTokenUserInfo?: Omit<TIdTokenUserInfo, 'additionalClaims'> & {
     additionalClaims: Record<string, unknown>;
   };
-  verificationStatus: VerificationStatus;
 };
 
 const Context = createContext({});
