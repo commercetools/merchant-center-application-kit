@@ -32,6 +32,7 @@ type TBaseUser = {
     name?: string | null | undefined;
     additionalClaims?: string | null;
   };
+  isVerified: boolean;
 };
 
 export type TUser = TBaseUser & {
