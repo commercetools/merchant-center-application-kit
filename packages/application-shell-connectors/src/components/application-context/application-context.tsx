@@ -15,8 +15,11 @@ import {
   normalizeAllAppliedDataFences,
 } from './normalizers';
 import getMcApiUrl from '../../utils/get-mc-api-url';
+import { VerificationStatus } from '../../../../../test-data/user/types';
 
-type TFetchedUser = TFetchLoggedInUserQuery['user'] & { isVerified: boolean };
+type TFetchedUser = TFetchLoggedInUserQuery['user'] & {
+  verificationStatus: VerificationStatus;
+};
 type TFetchedProject = TFetchProjectQuery['project'];
 
 type TApplicationContextPermissions = { [key: string]: boolean };
@@ -62,7 +65,7 @@ type TApplicationContextUser = Pick<
   idTokenUserInfo?: Omit<TIdTokenUserInfo, 'additionalClaims'> & {
     additionalClaims: Record<string, unknown>;
   };
-  isVerified: boolean;
+  verificationStatus: VerificationStatus;
 };
 
 const Context = createContext({});
@@ -84,7 +87,7 @@ export const mapUserToApplicationContextUser = (user?: TFetchedUser) => {
     locale: user.language,
     timeZone: user.timeZone || defaultTimeZone,
     projects: user.projects,
-    isVerified: user.isVerified,
+    verificationStatus: user.verificationStatus,
   };
 
   // This property will only be populated when user has logged in using SSO

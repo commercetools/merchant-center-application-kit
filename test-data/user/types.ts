@@ -1,6 +1,8 @@
 import type { TBuilder } from '@commercetools-test-data/core';
 import type { TProject, TProjectGraphql } from '../project';
 
+export type VerificationStatus = 'verified' | 'unverified';
+
 export type TCreateUserBuilder = () => TBuilder<TUser>;
 
 type TBaseUser = {
@@ -32,7 +34,7 @@ type TBaseUser = {
     name?: string | null | undefined;
     additionalClaims?: string | null;
   };
-  isVerified: boolean;
+  verificationStatus: VerificationStatus;
 };
 
 export type TUser = TBaseUser & {
