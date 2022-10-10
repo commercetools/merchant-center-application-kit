@@ -4034,7 +4034,7 @@ __metadata:
   dependencies:
     "@commercetools-frontend/babel-preset-mc-app": 21.17.0
     "@formatjs/intl-getcanonicallocales": ^1.9.2
-    "@formatjs/intl-listformat": ^6.5.3
+    "@formatjs/intl-listformat": ^7.0.0
     "@formatjs/intl-locale": ^2.4.47
     "@formatjs/intl-numberformat": ^7.4.3
     "@formatjs/intl-pluralrules": ^4.3.3
@@ -6982,7 +6982,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl-listformat@npm:6.5.3, @formatjs/intl-listformat@npm:^6.5.3":
+"@formatjs/intl-listformat@npm:6.5.3":
   version: 6.5.3
   resolution: "@formatjs/intl-listformat@npm:6.5.3"
   dependencies:
@@ -7001,6 +7001,17 @@ __metadata:
     "@formatjs/intl-localematcher": 0.2.28
     tslib: 2.4.0
   checksum: c439407d665d5a4f441b59ccbc00d74dccb30e9c4aa5cd5b0fe2104ff20b9244a39757057294aa2fa9a1b4da2ac94c53a00480881c4abe6f3cc02c3d23bb5da3
+  languageName: node
+  linkType: hard
+
+"@formatjs/intl-listformat@npm:^7.0.0":
+  version: 7.1.2
+  resolution: "@formatjs/intl-listformat@npm:7.1.2"
+  dependencies:
+    "@formatjs/ecma402-abstract": 1.12.0
+    "@formatjs/intl-localematcher": 0.2.31
+    tslib: 2.4.0
+  checksum: 6c3ecab371d007ccc65929a5dda724e24289a11efc40ee3456f3aba33a1dda735084697f64458d29039ff0a985e360647e108290ba6ad8af6a3bf20b3ffd3c46
   languageName: node
   linkType: hard
 
@@ -7030,6 +7041,15 @@ __metadata:
   dependencies:
     tslib: 2.4.0
   checksum: 5906c3ff997f57b9e8c968b9d3c4cbd94352b9cda58b338f436855091845cf1f364bd261815cccd67f22faa530834d6cb05a0677a1ee6f457e68847cbab928f4
+  languageName: node
+  linkType: hard
+
+"@formatjs/intl-localematcher@npm:0.2.31":
+  version: 0.2.31
+  resolution: "@formatjs/intl-localematcher@npm:0.2.31"
+  dependencies:
+    tslib: 2.4.0
+  checksum: c05bf5854f04ad0cc5ad78436023805c9542d97cdf000c685793e2053b84b585be3603b370e27921a617bbb87ef021239d773bc5326ab99850786c73d46a5156
   languageName: node
   linkType: hard
 

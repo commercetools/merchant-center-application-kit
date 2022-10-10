@@ -19,7 +19,7 @@
   "dependencies": {
     "@commercetools-frontend/babel-preset-mc-app": "21.17.0",
     "@formatjs/intl-getcanonicallocales": "^1.9.2",
-    "@formatjs/intl-listformat": "^6.5.3",
+    "@formatjs/intl-listformat": "^7.0.0",
     "@formatjs/intl-locale": "^2.4.47",
     "@formatjs/intl-numberformat": "^7.4.3",
     "@formatjs/intl-pluralrules": "^4.3.3",
