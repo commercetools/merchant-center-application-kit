@@ -54,19 +54,7 @@ export type LoadingConfigOptions = {
 };
 
 // Utility types
-type WordSeparators = '_' | '-';
-
-/**
-Verifies if input string is convertible to number
-
-@example
-```
-const num: ConvertibleToNumber<"80"> = "80"
-```
-*/
-type ConvertibleToNumber<T extends string> =
-  /* eslint-disable @typescript-eslint/no-unused-vars */
-  T extends `${infer _Result extends number}` ? T : never;
+export type WordSeparators = '-';
 
 /**
 Represents an array of strings split using a given character or character set.
@@ -87,16 +75,7 @@ export type Split<
   S extends string,
   Delimiter extends string
 > = S extends `${infer Head}${Delimiter}${infer Tail}`
-  ? [
-      Delimiter extends '_'
-        ? `${Head}_`
-        : Delimiter extends '-'
-        ? Tail extends ConvertibleToNumber<Tail>
-          ? `${Head}/`
-          : Head
-        : Head,
-      ...Split<Tail, Delimiter>
-    ]
+  ? [Head, ...Split<Tail, Delimiter>]
   : S extends Delimiter
   ? []
   : [S];
