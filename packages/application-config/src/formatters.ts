@@ -68,6 +68,7 @@ const formatPermissionNameToResourceAccessKey = (permissionName: string) =>
   permissionName
     // Each word is split by a hyphen.
     .split('-')
+    .map((word) => word.toLowerCase())
     .map(upperFirst)
     .join('');
 
