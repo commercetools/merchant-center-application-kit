@@ -25,7 +25,7 @@ describe.each`
   entryPointUriPath | formattedResourceAccessKey | additionalPermissionNames | formattedResourceAccessKeyAdditionalNames
   ${'avengers'}     | ${'Avengers'}              | ${['books']}              | ${'AvengersBooks'}
   ${'the-avengers'} | ${'TheAvengers'}           | ${['the-books']}          | ${'TheAvengersTheBooks'}
-  ${'the_avengers'} | ${'The_Avengers'}          | ${['the_books']}          | ${'The_AvengersThe_Books'}
+  ${'the_avengers'} | ${'The_Avengers'}          | ${['the_books']}          | ${'The_AvengersThe_books'}
   ${'avengers-01'}  | ${'Avengers/01'}           | ${['books-01']}           | ${'Avengers/01Books01'}
   ${'avengers_01'}  | ${'Avengers_01'}           | ${['books_01']}           | ${'Avengers_01Books_01'}
 `(
