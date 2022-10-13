@@ -22,18 +22,18 @@ describe.each`
 );
 
 describe.each`
-  entryPointUriPath | formattedResourceAccessKey | additionalPermissionNames | formattedResourceAccessKeyAdditionalNames
-  ${'avengers'}     | ${'Avengers'}              | ${['books']}              | ${'AvengersBooks'}
-  ${'the-avengers'} | ${'TheAvengers'}           | ${['the-books']}          | ${'TheAvengersTheBooks'}
-  ${'the_avengers'} | ${'The_Avengers'}          | ${['the-books']}          | ${'The_AvengersTheBooks'}
-  ${'avengers-01'}  | ${'Avengers/01'}           | ${['books-01']}           | ${'Avengers/01Books01'}
-  ${'avengers_01'}  | ${'Avengers_01'}           | ${['books-01']}           | ${'Avengers_01Books01'}
+  entryPointUriPath | formattedResourceAccessKey | permissionGroupNames | formattedResourceAccessKeyAdditionalNames
+  ${'avengers'}     | ${'Avengers'}              | ${['books']}         | ${'AvengersBooks'}
+  ${'the-avengers'} | ${'TheAvengers'}           | ${['the-books']}     | ${'TheAvengersTheBooks'}
+  ${'the_avengers'} | ${'The_Avengers'}          | ${['the-books']}     | ${'The_AvengersTheBooks'}
+  ${'avengers-01'}  | ${'Avengers/01'}           | ${['the-movies']}    | ${'Avengers/01TheMovies'}
+  ${'avengers_01'}  | ${'Avengers_01'}           | ${['the-movies']}    | ${'Avengers_01TheMovies'}
 `(
-  'formatting the entryPointUriPath "$entryPointUriPath" with additional permission names "$additionalPermissionNames" to a resource access key "$formattedResourceAccessKey" and "$formattedResourceAccessKeyAdditionalNames"',
+  'formatting the entryPointUriPath "$entryPointUriPath" with additional permission group names "$permissionGroupNames" to a resource access key "$formattedResourceAccessKey" and "$formattedResourceAccessKeyAdditionalNames"',
   ({
     entryPointUriPath,
     formattedResourceAccessKey,
-    additionalPermissionNames,
+    permissionGroupNames,
     formattedResourceAccessKeyAdditionalNames,
   }) => {
     it(`should format correctly`, () => {
@@ -44,7 +44,7 @@ describe.each`
       expect(
         entryPointUriPathToPermissionKeys(
           entryPointUriPath,
-          additionalPermissionNames
+          permissionGroupNames
         )
       ).toEqual({
         View: `View${formattedResourceAccessKey}`,
