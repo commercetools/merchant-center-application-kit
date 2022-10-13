@@ -57,18 +57,17 @@ const formatEntryPointUriPathToResourceAccessKey = (
     .join('');
 
 /**
- * The function formats the `permissionName` to a resource access key.
- * It makes the first character of the string and the next character after a special character an uppercase.
+ * The function formats the permission group name to a resource access key.
+ * It makes the first character of the string and the next character after a special character (`-`) an uppercase.
  *
  * @example
- * - avengers --> Avengers
- * - the-avengers --> TheAvengers
- * - avengers-01 --> Avengers01 [ℹ️ mind the difference here compared to `formatEntryPointUriPathToResourceAccessKey`] */
-const formatPermissionNameToResourceAccessKey = (permissionName: string) =>
+ * - books --> Books
+ * - the-books --> TheBooks
+ */
+const formatPermissionGroupNameToResourceAccessKey = (permissionName: string) =>
   permissionName
     // Each word is split by a hyphen.
     .split('-')
-    .map((word) => word.toLowerCase())
     .map(upperFirst)
     .join('');
 
@@ -94,7 +93,7 @@ function entryPointUriPathToResourceAccesses<PermissionName extends string>(
   const additionalResourceAccesses = (additionalPermissionNames ?? []).reduce(
     (resourceAccesses, permissionName) => {
       const additionalResourceAccessKey =
-        formatPermissionNameToResourceAccessKey(permissionName);
+        formatPermissionGroupNameToResourceAccessKey(permissionName);
       return {
         ...resourceAccesses,
         [`view${additionalResourceAccessKey}`]: `${defaultResourceAccesses.view}${additionalResourceAccessKey}`,

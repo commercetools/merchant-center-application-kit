@@ -58,7 +58,6 @@ export type WordSeparators = '-';
 
 /**
 Represents an array of strings split using a given character or character set.
-Underscore characters are omitted.
 
 source: https://github.com/sindresorhus/type-fest/blob/fedbc441a314c1f9f5f6225c993860d0886261da/source/split.d.ts#L22:L29
 
