@@ -74,7 +74,7 @@ export type Split<
   S extends string,
   Delimiter extends string
 > = S extends `${infer Head}${Delimiter}${infer Tail}`
-  ? [Lowercase<Head>, ...Split<Tail, Delimiter>]
+  ? [Head, ...Split<Tail, Delimiter>]
   : S extends Delimiter
   ? []
   : [S];
