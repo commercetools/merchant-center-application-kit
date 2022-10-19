@@ -39,7 +39,7 @@ const renderWithPermissions = (demandedPermissions: string[]) => {
         launchdarklyTrackingId: '111',
         launchdarklyTrackingTeam: undefined,
         launchdarklyTrackingTenant: 'gcp-eu',
-        verificationStatus: 'verified',
+        verificationStatus: 'Verified',
       }}
       project={{
         key: 'foo-1',

@@ -24,7 +24,7 @@ const generator = Generator<TUser>({
     launchdarklyTrackingTenant: '',
     projects: null,
     idTokenUserInfo: null,
-    verificationStatus: 'verified',
+    verificationStatus: 'Verified',
   },
 });
 

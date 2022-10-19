@@ -95,7 +95,7 @@ const defaultUser = {
   launchdarklyTrackingId: '111',
   launchdarklyTrackingTeam: undefined,
   launchdarklyTrackingTenant: 'gcp-eu',
-  verificationStatus: 'verified',
+  verificationStatus: 'Verified',
 };
 
 const defaultEnvironment: Partial<TProviderProps<{}>['environment']> = {
