@@ -3804,6 +3804,7 @@ __metadata:
     "@reduxjs/toolkit": 1.8.6
     "@testing-library/react": 12.1.5
     "@testing-library/react-hooks": 8.0.1
+    "@testing-library/user-event": ^14.4.3
     "@types/common-tags": ^1.8.1
     "@types/history": ^4.7.11
     "@types/lodash": ^4.14.185
@@ -3852,6 +3853,7 @@ __metadata:
     "@apollo/client": 3.x
     "@testing-library/react": 12.x
     "@testing-library/react-hooks": 7.x || 8.x
+    "@testing-library/user-event": ^14.4.3
     react: 17.x
     react-dom: 17.x
     react-intl: 5.x
@@ -10588,6 +10590,15 @@ __metadata:
     react: <18.0.0
     react-dom: <18.0.0
   checksum: 4abd0490405e709a7df584a0db604e508a4612398bb1326e8fa32dd9393b15badc826dcf6d2f7525437886d507871f719f127b9860ed69ddd204d1fa834f576a
+  languageName: node
+  linkType: hard
+
+"@testing-library/user-event@npm:^14.4.3":
+  version: 14.4.3
+  resolution: "@testing-library/user-event@npm:14.4.3"
+  peerDependencies:
+    "@testing-library/dom": ">=7.21.4"
+  checksum: 852c48ea6db1c9471b18276617c84fec4320771e466cd58339a732ca3fd73ad35e5a43ae14f51af51a8d0a150dcf60fcaab049ef367871207bea8f92c4b8195e
   languageName: node
   linkType: hard
 
@@ -27422,6 +27433,7 @@ __metadata:
     "@svgr/plugin-svgo": 6.5.0
     "@testing-library/cypress": 8.0.3
     "@testing-library/react": 12.1.5
+    "@testing-library/user-event": ^14.4.3
     "@tsconfig/cypress": ^1.0.1
     "@types/jest-environment-puppeteer": ^5.0.2
     "@types/node": ^16.11.58

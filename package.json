@@ -112,6 +112,7 @@
     "@svgr/plugin-svgo": "6.5.0",
     "@testing-library/cypress": "8.0.3",
     "@testing-library/react": "12.1.5",
+    "@testing-library/user-event": "^14.4.3",
     "@tsconfig/cypress": "^1.0.1",
     "@types/jest-environment-puppeteer": "^5.0.2",
     "@types/node": "^16.11.58",
