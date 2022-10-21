@@ -58,6 +58,9 @@ jobs:
 
       - name: Building docs website
         run: yarn build:website
+        env:
+          NODE_OPTIONS: '--max-old-space-size=6144'
+          GATSBY_EXPERIMENTAL_QUERY_CONCURRENCY: 32
 
       - name: Detect if is a production deployment (documentation)
         if: github.event_name == 'push' && github.ref_name == 'main'
