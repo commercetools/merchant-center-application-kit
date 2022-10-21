@@ -11,27 +11,29 @@ describe.each`
   'formatting the entryPointUriPath "$entryPointUriPath" to a resource access key "$formattedResourceAccessKey"',
   ({ entryPointUriPath, formattedResourceAccessKey }) => {
     it(`should format correctly`, () => {
-      expect(entryPointUriPathToPermissionKeys(entryPointUriPath)).toEqual({
-        View: `View${formattedResourceAccessKey}`,
-        Manage: `Manage${formattedResourceAccessKey}`,
-      });
+      const resourceAccessKeys =
+        entryPointUriPathToPermissionKeys(entryPointUriPath);
+      expect(resourceAccessKeys.View).toBe(`View${formattedResourceAccessKey}`);
+      expect(resourceAccessKeys.Manage).toBe(
+        `Manage${formattedResourceAccessKey}`
+      );
     });
   }
 );
 
 describe.each`
-  entryPointUriPath | formattedResourceAccessKey | additionalPermissionNames | formattedResourceAccessKeyAdditionalNames
-  ${'avengers'}     | ${'Avengers'}              | ${['books']}              | ${'AvengersBooks'}
-  ${'the-avengers'} | ${'TheAvengers'}           | ${['the-books']}          | ${'TheAvengersTheBooks'}
-  ${'the_avengers'} | ${'The_Avengers'}          | ${['the_books']}          | ${'The_AvengersThe_Books'}
-  ${'avengers-01'}  | ${'Avengers/01'}           | ${['books-01']}           | ${'Avengers/01Books/01'}
-  ${'avengers_01'}  | ${'Avengers_01'}           | ${['books_01']}           | ${'Avengers_01Books_01'}
+  entryPointUriPath | formattedResourceAccessKey | permissionGroupNames | formattedResourceAccessKeyAdditionalNames
+  ${'avengers'}     | ${'Avengers'}              | ${['books']}         | ${'AvengersBooks'}
+  ${'the-avengers'} | ${'TheAvengers'}           | ${['the-books']}     | ${'TheAvengersTheBooks'}
+  ${'the_avengers'} | ${'The_Avengers'}          | ${['the-books']}     | ${'The_AvengersTheBooks'}
+  ${'avengers-01'}  | ${'Avengers/01'}           | ${['the-movies']}    | ${'Avengers/01TheMovies'}
+  ${'avengers_01'}  | ${'Avengers_01'}           | ${['the-movies']}    | ${'Avengers_01TheMovies'}
 `(
-  'formatting the entryPointUriPath "$entryPointUriPath" with additional permission names "$additionalPermissionNames" to a resource access key "$formattedResourceAccessKey" and "$formattedResourceAccessKeyAdditionalNames"',
+  'formatting the entryPointUriPath "$entryPointUriPath" with additional permission group names "$permissionGroupNames" to a resource access key "$formattedResourceAccessKey" and "$formattedResourceAccessKeyAdditionalNames"',
   ({
     entryPointUriPath,
     formattedResourceAccessKey,
-    additionalPermissionNames,
+    permissionGroupNames,
     formattedResourceAccessKeyAdditionalNames,
   }) => {
     it(`should format correctly`, () => {
@@ -42,7 +44,7 @@ describe.each`
       expect(
         entryPointUriPathToPermissionKeys(
           entryPointUriPath,
-          additionalPermissionNames
+          permissionGroupNames
         )
       ).toEqual({
         View: `View${formattedResourceAccessKey}`,
@@ -62,12 +64,11 @@ describe.each`
   'formatting the internal applications group "$internalApplicationGroup" to a resource access key "$formattedResourceAccessKey"',
   ({ internalApplicationGroup, formattedResourceAccessKey }) => {
     it(`should format correctly`, () => {
-      expect(
-        entryPointUriPathToPermissionKeys(internalApplicationGroup)
-      ).toEqual({
-        View: `View${formattedResourceAccessKey}`,
-        Manage: `Manage${formattedResourceAccessKey}`,
-      });
+      const permissionKeys = entryPointUriPathToPermissionKeys(
+        internalApplicationGroup
+      );
+      expect(permissionKeys.View).toBe(`View${formattedResourceAccessKey}`);
+      expect(permissionKeys.Manage).toBe(`Manage${formattedResourceAccessKey}`);
     });
   }
 );

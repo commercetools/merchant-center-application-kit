@@ -1,22 +1,23 @@
 import upperFirst from 'lodash/upperFirst';
+import type { CamelCase } from './types';
 
 type TImplicitCustomApplicationResourceAccesses<
-  PermissionName extends string = ''
+  PermissionGroupName extends string = ''
 > = Record<
   | `view`
   | `manage`
-  | `view${Capitalize<PermissionName>}`
-  | `manage${Capitalize<PermissionName>}`,
+  | `view${Capitalize<CamelCase<PermissionGroupName>>}`
+  | `manage${Capitalize<CamelCase<PermissionGroupName>>}`,
   string
 >;
 
 type TImplicitCustomApplicationPermissionKeys<
-  PermissionName extends string = ''
+  PermissionGroupName extends string = ''
 > = Record<
   | `View`
   | `Manage`
-  | `View${Capitalize<PermissionName>}`
-  | `Manage${Capitalize<PermissionName>}`,
+  | `View${Capitalize<CamelCase<PermissionGroupName>>}`
+  | `Manage${Capitalize<CamelCase<PermissionGroupName>>}`,
   string
 >;
 
@@ -39,7 +40,7 @@ const formatEntryPointUriPathToResourceAccessKey = (
     // Splits the string by underscore.
     .split('_')
     // Uppercase the first character of each word split.
-    .map((word) => upperFirst(word))
+    .map(upperFirst)
     // Join the words by an underscore.
     .join('_')
     // Each word is split by a hyphen.
@@ -55,36 +56,57 @@ const formatEntryPointUriPathToResourceAccessKey = (
     })
     .join('');
 
+/**
+ * The function formats the permission group name to a resource access key.
+ * It makes the first character of the string and the next character after a special character (`-`) an uppercase.
+ *
+ * @example
+ * - books --> Books
+ * - the-books --> TheBooks
+ */
+const formatPermissionGroupNameToResourceAccessKey = (
+  permissionGroupName: string
+) =>
+  permissionGroupName
+    // Each word is split by a hyphen.
+    .split('-')
+    .map(upperFirst)
+    .join('');
+
 function entryPointUriPathToResourceAccesses(
   entryPointUriPath: string
 ): TImplicitCustomApplicationResourceAccesses<''>;
-function entryPointUriPathToResourceAccesses<PermissionName extends string>(
+function entryPointUriPathToResourceAccesses<
+  PermissionGroupName extends string
+>(
   entryPointUriPath: string,
-  additionalPermissionNames: PermissionName[]
-): TImplicitCustomApplicationResourceAccesses<PermissionName>;
-function entryPointUriPathToResourceAccesses<PermissionName extends string>(
+  permissionGroupNames: PermissionGroupName[]
+): TImplicitCustomApplicationResourceAccesses<PermissionGroupName>;
+function entryPointUriPathToResourceAccesses<
+  PermissionGroupName extends string
+>(
   entryPointUriPath: string,
-  additionalPermissionNames?: PermissionName[]
-): TImplicitCustomApplicationResourceAccesses<PermissionName> {
+  permissionGroupNames?: PermissionGroupName[]
+): TImplicitCustomApplicationResourceAccesses<PermissionGroupName> {
   const resourceAccessKey =
     formatEntryPointUriPathToResourceAccessKey(entryPointUriPath);
 
   const defaultResourceAccesses = {
     view: `view${resourceAccessKey}`,
     manage: `manage${resourceAccessKey}`,
-  } as TImplicitCustomApplicationResourceAccesses<PermissionName>;
+  } as TImplicitCustomApplicationResourceAccesses<PermissionGroupName>;
 
-  const additionalResourceAccesses = (additionalPermissionNames ?? []).reduce(
-    (resourceAccesses, permissionName) => {
+  const additionalResourceAccesses = (permissionGroupNames ?? []).reduce(
+    (resourceAccesses, permissionGroupName) => {
       const additionalResourceAccessKey =
-        formatEntryPointUriPathToResourceAccessKey(permissionName);
+        formatPermissionGroupNameToResourceAccessKey(permissionGroupName);
       return {
         ...resourceAccesses,
         [`view${additionalResourceAccessKey}`]: `${defaultResourceAccesses.view}${additionalResourceAccessKey}`,
         [`manage${additionalResourceAccessKey}`]: `${defaultResourceAccesses.manage}${additionalResourceAccessKey}`,
       };
     },
-    {} as TImplicitCustomApplicationResourceAccesses<PermissionName>
+    {} as TImplicitCustomApplicationResourceAccesses<PermissionGroupName>
   );
 
   return {
@@ -96,24 +118,25 @@ function entryPointUriPathToResourceAccesses<PermissionName extends string>(
 function entryPointUriPathToPermissionKeys(
   entryPointUriPath: string
 ): TImplicitCustomApplicationPermissionKeys<''>;
-function entryPointUriPathToPermissionKeys<PermissionName extends string>(
+function entryPointUriPathToPermissionKeys<PermissionGroupName extends string>(
   entryPointUriPath: string,
-  additionalPermissionNames: PermissionName[]
-): TImplicitCustomApplicationPermissionKeys<PermissionName>;
-function entryPointUriPathToPermissionKeys<PermissionName extends string>(
+  permissionGroupNames: PermissionGroupName[]
+): TImplicitCustomApplicationPermissionKeys<PermissionGroupName>;
+function entryPointUriPathToPermissionKeys<PermissionGroupName extends string>(
   entryPointUriPath: string,
-  additionalPermissionNames?: PermissionName[]
-): TImplicitCustomApplicationPermissionKeys<PermissionName> {
-  const resourceAccesses = entryPointUriPathToResourceAccesses<PermissionName>(
-    entryPointUriPath,
-    additionalPermissionNames ?? []
-  );
+  permissionGroupNames?: PermissionGroupName[]
+): TImplicitCustomApplicationPermissionKeys<PermissionGroupName> {
+  const resourceAccesses =
+    entryPointUriPathToResourceAccesses<PermissionGroupName>(
+      entryPointUriPath,
+      permissionGroupNames ?? []
+    );
   return Object.entries(resourceAccesses).reduce(
     (permissionKeys, [resourceAccessKey, resourceAccessValue]) => ({
       ...permissionKeys,
       [upperFirst(resourceAccessKey)]: upperFirst(resourceAccessValue),
     }),
-    {} as TImplicitCustomApplicationPermissionKeys<PermissionName>
+    {} as TImplicitCustomApplicationPermissionKeys<PermissionGroupName>
   );
 }
 
