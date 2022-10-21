@@ -3796,11 +3796,11 @@ __metadata:
     "@commercetools/http-user-agent": 3.0.0
     "@emotion/react": 11.10.4
     "@emotion/styled": 11.10.4
-    "@flopflip/combine-adapters": 0.0.37
-    "@flopflip/http-adapter": 0.0.27
-    "@flopflip/launchdarkly-adapter": 5.0.32
+    "@flopflip/combine-adapters": 12.3.6
+    "@flopflip/http-adapter": 12.3.6
+    "@flopflip/launchdarkly-adapter": 12.3.6
     "@flopflip/react-broadcast": 12.3.6
-    "@flopflip/types": 4.1.28
+    "@flopflip/types": 12.3.6
     "@reduxjs/toolkit": 1.8.6
     "@testing-library/react": 12.1.5
     "@testing-library/react-hooks": 8.0.1
@@ -6267,72 +6267,72 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@flopflip/adapter-utilities@npm:1.0.33":
-  version: 1.0.33
-  resolution: "@flopflip/adapter-utilities@npm:1.0.33"
+"@flopflip/adapter-utilities@npm:12.3.6":
+  version: 12.3.6
+  resolution: "@flopflip/adapter-utilities@npm:12.3.6"
   dependencies:
     "@babel/runtime": 7.19.4
-    "@flopflip/types": 4.1.28
+    "@flopflip/types": 12.3.6
     globalthis: 1.0.3
     lodash: 4.17.21
   peerDependencies:
     typescript: 4.x
-  checksum: b9026c1e112186f2b69d05bf7becc8f73ae6f9d6cc533475939083bcb690a27ec59f7a48eb3a294fd4f5dc863340be64c13bcb0ae8794f048c2e45ac4dfa6397
+  checksum: ebd97c8005b3b37b6f3b32078a8a0084d2eca814957312821790d4fbfac18cfc1e470e0d3f8f412e7a330a85fb7771fb583052e0a125e0814d3e53a4227bf74d
   languageName: node
   linkType: hard
 
-"@flopflip/combine-adapters@npm:0.0.37":
-  version: 0.0.37
-  resolution: "@flopflip/combine-adapters@npm:0.0.37"
+"@flopflip/combine-adapters@npm:12.3.6":
+  version: 12.3.6
+  resolution: "@flopflip/combine-adapters@npm:12.3.6"
   dependencies:
     "@babel/runtime": 7.19.4
-    "@flopflip/adapter-utilities": 1.0.33
-    "@flopflip/types": 4.1.28
+    "@flopflip/adapter-utilities": 12.3.6
+    "@flopflip/types": 12.3.6
     mitt: 3.0.0
     tiny-warning: 1.0.3
-  checksum: 273dce8d575b315919b8a1a9cd747cccb8799e9a633e8989f2eb0e352f9db0c7a1d02daf56cd9778c74db8afbaa6eac406d8c9e367f47375fae460f0109b0708
+  checksum: 27e8cc863c83fdf72a5f2ed3cafb1e8d82c20db3bed0342459e31cb77835621f7fddb0535c727e724cdc507cd0287db64a9e32b0bdfe562e116fe81d474ea3c1
   languageName: node
   linkType: hard
 
-"@flopflip/http-adapter@npm:0.0.27":
-  version: 0.0.27
-  resolution: "@flopflip/http-adapter@npm:0.0.27"
+"@flopflip/http-adapter@npm:12.3.6":
+  version: 12.3.6
+  resolution: "@flopflip/http-adapter@npm:12.3.6"
   dependencies:
     "@babel/runtime": 7.19.4
-    "@flopflip/adapter-utilities": 1.0.33
-    "@flopflip/localstorage-cache": 1.0.32
-    "@flopflip/sessionstorage-cache": 1.0.32
-    "@flopflip/types": 4.1.28
+    "@flopflip/adapter-utilities": 12.3.6
+    "@flopflip/localstorage-cache": 12.3.6
+    "@flopflip/sessionstorage-cache": 12.3.6
+    "@flopflip/types": 12.3.6
     lodash: 4.17.21
     mitt: 3.0.0
     tiny-warning: 1.0.3
-  checksum: 47324c2f514fa754942b2cf5d76cee329d03cc09545fc0040a4a06804cd4982d6ad7cefadc1b759c1c0d3ba9843c54dc64033900d546ebe310b9db90cb7c6018
+  checksum: 8ca6b53c445c29a776098350cbb3ba52d88c0258f3a0a0876906cb4a8cca57281aab461526f7ff2e82f765e576e26f50bc228921242ed89dcbe6f606d7e1f5a8
   languageName: node
   linkType: hard
 
-"@flopflip/launchdarkly-adapter@npm:5.0.32":
-  version: 5.0.32
-  resolution: "@flopflip/launchdarkly-adapter@npm:5.0.32"
+"@flopflip/launchdarkly-adapter@npm:12.3.6":
+  version: 12.3.6
+  resolution: "@flopflip/launchdarkly-adapter@npm:12.3.6"
   dependencies:
     "@babel/runtime": 7.19.4
-    "@flopflip/adapter-utilities": 1.0.33
-    "@flopflip/types": 4.1.28
+    "@flopflip/adapter-utilities": 12.3.6
+    "@flopflip/types": 12.3.6
     debounce-fn: 4.0.0
     launchdarkly-js-client-sdk: 2.24.0
     lodash: 4.17.21
     mitt: 3.0.0
     tiny-warning: 1.0.3
     ts-deepmerge: 4.0.0
-  checksum: 2ee549b07eca70f5606a0f0dd38f5100293896cff8dbcc007d5c7e69efbaece4dd6f531fbf48a48561838f790dd27f1b80f6d20351b5b273183c90ce17bdf1e9
+  checksum: 5fec80e7d199612ae760cfdf62727f7ea9cb04d39481b4ccff0fba99a44130eab942f95edfa82e0f6b8cb35c8dc0e53b8b71907a42ac242b596e90ec3af5935f
   languageName: node
   linkType: hard
 
-"@flopflip/localstorage-cache@npm:1.0.32":
-  version: 1.0.32
-  resolution: "@flopflip/localstorage-cache@npm:1.0.32"
+"@flopflip/localstorage-cache@npm:12.3.6":
+  version: 12.3.6
+  resolution: "@flopflip/localstorage-cache@npm:12.3.6"
   dependencies:
-    "@flopflip/types": 4.1.28
-  checksum: 0a1dbdfa26ad1c120b6615798ce838f2488f2dc7fac489ea05365cbe9ac868c28b9b9937ddc019153035fd831d5b36579a0437f55bb55886cfb247e22f6becf8
+    "@flopflip/types": 12.3.6
+  checksum: dadacd0b5c59a0fb5ba51fce808edc1bc35995ab675c69759ecf3da0f1ac41d7ed4f1645f1e89de6575e13c5f0e0a7c513857c5f1c830db7942bc1e7ec8fd0ed
   languageName: node
   linkType: hard
 
@@ -6369,12 +6369,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@flopflip/sessionstorage-cache@npm:1.0.32":
-  version: 1.0.32
-  resolution: "@flopflip/sessionstorage-cache@npm:1.0.32"
+"@flopflip/sessionstorage-cache@npm:12.3.6":
+  version: 12.3.6
+  resolution: "@flopflip/sessionstorage-cache@npm:12.3.6"
   dependencies:
-    "@flopflip/types": 4.1.28
-  checksum: 433de1cc26e72dbdc1f79c2975a6dac8c41e7395dc931ab3dffb46312cd197f82699333bac0566f45df93f5b8b4359346f53b149a43199e7f6b3796becf9a33f
+    "@flopflip/types": 12.3.6
+  checksum: 2531afade1feb68ac3d91f1d90fc537f24b84be1cfa4ac17bfbb343a970c521e6b1f98bc092714d9858dfcf078a94dae01dbf1074dac4d7fdad2f2451cb4e4ee
   languageName: node
   linkType: hard
 
@@ -6386,17 +6386,6 @@ __metadata:
   peerDependencies:
     typescript: 4.x
   checksum: c566c75e8cf80a919eb6070ba5e2640558a0db901d2f298bcfe4797321b2838184eefad87595f5d6132ca95bad11ef4d198b6be4beea6b77ebd91b0d0fe72fe8
-  languageName: node
-  linkType: hard
-
-"@flopflip/types@npm:4.1.28":
-  version: 4.1.28
-  resolution: "@flopflip/types@npm:4.1.28"
-  dependencies:
-    launchdarkly-js-client-sdk: 2.24.0
-  peerDependencies:
-    typescript: 4.x
-  checksum: 63882e305370369fdb5b4e7f53645b1bf8daeec9ece125f45e01c369b3aa41eac36a9d42d0c1cdae00845083eb6b4d62a041c04d9ad29ec35e01bce1f9b7ffe5
   languageName: node
   linkType: hard
 
