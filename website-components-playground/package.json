@@ -24,10 +24,10 @@
     "@commercetools-uikit/text-input": "^15.3.0",
     "@emotion/react": "11.10.4",
     "@emotion/styled": "11.10.4",
-    "@fontsource/open-sans": "4.5.11",
+    "@fontsource/open-sans": "4.5.13",
     "core-js": "^3.25.1",
     "formik": "2.2.9",
-    "gatsby": "4.24.0",
+    "gatsby": "4.24.4",
     "gatsby-cli": "4.24.0",
     "gatsby-plugin-emotion": "7.24.0",
     "gatsby-source-filesystem": "4.24.0",
@@ -37,6 +37,6 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-intl": "^5.25.1",
-    "react-router-dom": "5.3.3"
+    "react-router-dom": "5.3.4"
   }
 }

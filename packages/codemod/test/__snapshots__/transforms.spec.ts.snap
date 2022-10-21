@@ -10,7 +10,7 @@ exports[`testing transform "remove-deprecated-modal-level-props" transforms corr
 } from '@commercetools-frontend/application-components';
 
 function Modal() {
-  return <>
+  return (<>
     <InfoModalPage isOpen title=\\"Hello\\" onClose={() => {}}>
       Hello
     </InfoModalPage>
@@ -37,7 +37,7 @@ function Modal() {
       onClose={() => {}}>
       Hello
     </TabularModalPage>
-  </>;
+  </>);
 }
 
 export default Modal;"
