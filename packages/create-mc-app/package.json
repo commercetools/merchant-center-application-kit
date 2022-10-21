@@ -22,7 +22,7 @@
     "@babel/runtime": "^7.19.0",
     "@babel/runtime-corejs3": "^7.19.0",
     "cac": "6.7.14",
-    "execa": "5.1.1",
+    "execa": "6.1.0",
     "listr2": "5.0.5",
     "prettier": "2.7.1",
     "rcfile": "1.0.3",
