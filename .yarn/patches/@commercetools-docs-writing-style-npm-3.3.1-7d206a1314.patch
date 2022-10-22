@@ -1,0 +1,13 @@
+diff --git a/.vale.ini b/.vale.ini
+index ca41229fb40f50879dab25dc0da8893abdd72f31..3a06aaa5e4225f8b36b7b6b251c2aa8d499c3e05 100644
+--- a/.vale.ini
++++ b/.vale.ini
+@@ -12,7 +12,7 @@ mdx = md
+ 
+ [*.{md,mdx}]
+ BasedOnStyles = Vale, write-good, Google, commercetools
+-BlockIgnores = (?s)(<[A-Z].*?\/>)
++; BlockIgnores = (?s)(<[A-Z].*?\/>)
+ 
+ # Style.Rule = {YES, NO, suggestion, warning, error} to
+ # enable/disable a rule or change its level.
