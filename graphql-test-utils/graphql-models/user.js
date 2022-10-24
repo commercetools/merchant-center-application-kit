@@ -26,6 +26,7 @@ const User = new Factory()
     __typename: 'ProjectQueryResult',
     total: 0,
     results: [],
-  }));
+  }))
+  .attr('verificationStatus', () => 'Verified');
 
 export default User;
