@@ -54,7 +54,7 @@
       {
         "kind": "OBJECT",
         "name": "AllPermissionsForAllApplications",
-        "description": "Only used by the navbar menu component in ApplicationShell.",
+        "description": null,
         "fields": [
           {
             "name": "allAppliedActionRights",
@@ -429,7 +429,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "ChangeUserName",
-        "description": "NOTE: This is _not_ a username it is the user's name.",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
@@ -688,7 +688,7 @@
         "fields": [
           {
             "name": "additionalClaims",
-            "description": "Additional custom claims. This is a stringified JSON object.",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -716,7 +716,7 @@
           },
           {
             "name": "email",
-            "description": "Claims from scope `email`",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -760,7 +760,7 @@
           },
           {
             "name": "iss",
-            "description": "Standard claims",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -776,7 +776,7 @@
           },
           {
             "name": "name",
-            "description": "Claims from scope `profile`",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -943,7 +943,7 @@
       {
         "kind": "OBJECT",
         "name": "InvitationQueryResult",
-        "description": "Note: you can not brute-force fetch user information\nby trying emails. Only information about the membership itself.",
+        "description": null,
         "fields": [
           {
             "name": "gravatarHash",
@@ -2185,7 +2185,7 @@
       {
         "kind": "OBJECT",
         "name": "Organization",
-        "description": "TODO: use `Reference` instead once there is no more usage of the following fields:\n- name\n- createdAt",
+        "description": null,
         "fields": [
           {
             "name": "createdAt",
@@ -2354,7 +2354,7 @@
       {
         "kind": "OBJECT",
         "name": "OrganizationTeamsCreated",
-        "description": "Note:\n  This is not a `Organization` type as in the future MC schema will not support e.g. expanding on team members on its internal schema.",
+        "description": null,
         "fields": [
           {
             "name": "id",
@@ -4838,7 +4838,7 @@
         "inputFields": [
           {
             "name": "timeZone",
-            "description": "NOTE: This is optional as not passing it unsets the timezone.",
+            "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "String",
@@ -5360,7 +5360,7 @@
           },
           {
             "name": "idTokenUserInfo",
-            "description": "Contains additional claims information from the user id_token.\nThis is only defined when logging in via SSO.",
+            "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -5550,8 +5550,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "ENUM",
+                "name": "VerificationStatus",
                 "ofType": null
               }
             },
@@ -5734,6 +5734,29 @@
         ],
         "interfaces": null,
         "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "VerificationStatus",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "Unverified",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Verified",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "possibleTypes": null
       },
       {
@@ -6764,73 +6787,42 @@
       },
       {
         "name": "rateLimit",
-        "description": null,
+        "description": "Controls the rate of traffic.",
         "isRepeatable": false,
         "locations": [
-          "FIELD_DEFINITION"
+          "FIELD_DEFINITION",
+          "OBJECT"
         ],
         "args": [
           {
-            "name": "arrayLengthField",
-            "description": null,
+            "name": "duration",
+            "description": "Number of seconds before limit is reset.",
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "identityArgs",
-            "description": null,
-            "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               }
             },
-            "defaultValue": null,
+            "defaultValue": "60",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "max",
-            "description": null,
+            "name": "limit",
+            "description": "Number of occurrences allowed over duration.",
             "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
             },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "message",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "window",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
+            "defaultValue": "60",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -6866,7 +6858,7 @@
       },
       {
         "name": "specifiedBy",
-        "description": "Exposes a URL that specifies the behavior of this scalar.",
+        "description": "Exposes a URL that specifies the behaviour of this scalar.",
         "isRepeatable": false,
         "locations": [
           "SCALAR"
@@ -6874,7 +6866,7 @@
         "args": [
           {
             "name": "url",
-            "description": "The URL that specifies the behavior of this scalar.",
+            "description": "The URL that specifies the behaviour of this scalar.",
             "type": {
               "kind": "NON_NULL",
               "name": null,

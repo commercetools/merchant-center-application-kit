@@ -38,6 +38,6 @@ query FetchLoggedInUser {
       name
       additionalClaims
     }
-    verificationStatus @client
+    verificationStatus
   }
 }
