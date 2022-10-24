@@ -1,7 +1,6 @@
 import type { TBuilder } from '@commercetools-test-data/core';
+import { TVerificationStatus } from '../../packages/application-shell/src/types/generated/mc';
 import type { TProject, TProjectGraphql } from '../project';
-
-type VerificationStatus = 'Verified' | 'Unverified';
 
 export type TCreateUserBuilder = () => TBuilder<TUser>;
 
@@ -34,7 +33,7 @@ type TBaseUser = {
     name?: string | null | undefined;
     additionalClaims?: string | null;
   };
-  verificationStatus: VerificationStatus;
+  verificationStatus: TVerificationStatus;
 };
 
 export type TUser = TBaseUser & {
