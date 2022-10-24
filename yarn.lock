@@ -4332,7 +4332,7 @@ __metadata:
     "@types/react": ^17.0.49
     prop-types: 15.8.1
     react: 17.0.2
-    sentry-testkit: 4.1.0
+    sentry-testkit: 5.0.3
     wait-for-expect: 3.0.2
   peerDependencies:
     react: 17.x
@@ -32498,13 +32498,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sentry-testkit@npm:4.1.0":
-  version: 4.1.0
-  resolution: "sentry-testkit@npm:4.1.0"
+"sentry-testkit@npm:5.0.3":
+  version: 5.0.3
+  resolution: "sentry-testkit@npm:5.0.3"
   dependencies:
     body-parser: ^1.19.0
     express: ^4.17.1
-  checksum: 0b96a44cfd66cca13af6fd28c74ba06ecc14f5fcf582a6dce61d6bd90d3e25440f9aa7881ba46836df25b8e4c62a10afe54d6815e4dc09d449d24247b11bb371
+  checksum: 5d78d18b268b32693cdd75852a3c075fd9d3ba04692323371aebdd5fb954ceb7b2b0180e0b9d01b813adbf34dce9646265b6dd5c9b5cc46f5da63aea30fb800a
   languageName: node
   linkType: hard
 
