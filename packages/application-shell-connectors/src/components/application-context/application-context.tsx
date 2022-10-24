@@ -90,7 +90,7 @@ export const mapUserToApplicationContextUser = (user?: TFetchedUser) => {
     let additionalClaims: Record<string, unknown> = {};
     try {
       additionalClaims = JSON.parse(
-        user.idTokenUserInfo.additionalClaims || ''
+        user.idTokenUserInfo.additionalClaims || '{}'
       );
     } catch (error) {
       reportErrorToSentry(

@@ -30,7 +30,7 @@ type TBaseUser = {
     iat: number;
     email?: string | null | undefined;
     name?: string | null | undefined;
-    additionalClaims?: string;
+    additionalClaims?: string | null;
   };
 };
 
