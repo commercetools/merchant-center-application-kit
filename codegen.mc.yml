@@ -30,6 +30,20 @@ extensions:
         config:
           addUnderscoreToArgsType: true
           typesPrefix: T
+      packages/permissions/src/types/generated/mc.ts:
+        plugins:
+          - typescript
+          - typescript-operations
+        config:
+          addUnderscoreToArgsType: true
+          typesPrefix: T
+      test-data/types/generated/mc.ts:
+        plugins:
+          - typescript
+          - typescript-operations
+        config:
+          addUnderscoreToArgsType: true
+          typesPrefix: T
     hooks:
       afterAllFileWrite:
         - prettier --write

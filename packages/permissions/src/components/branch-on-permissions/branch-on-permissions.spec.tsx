@@ -1,7 +1,7 @@
 import { screen, render } from '@testing-library/react';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import branchOnPermissions from './branch-on-permissions';
-import { TVerificationStatus } from '../../../../application-shell/src/types/generated/mc';
+import { TVerificationStatus } from '../../types/generated/mc';
 
 const AuthorizedComponent = () => <div>{'Authorized'}</div>;
 const UnauthorizedComponent = () => <div>{'Not authorized'}</div>;

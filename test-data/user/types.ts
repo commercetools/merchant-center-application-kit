@@ -1,5 +1,5 @@
 import type { TBuilder } from '@commercetools-test-data/core';
-import { TVerificationStatus } from '../../packages/application-shell/src/types/generated/mc';
+import { TVerificationStatus } from '../types/generated/mc';
 import type { TProject, TProjectGraphql } from '../project';
 
 export type TCreateUserBuilder = () => TBuilder<TUser>;
