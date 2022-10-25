@@ -167,7 +167,7 @@ const processConfig = ({
         // otherwise it might create an invalid value when application/CDN URL points to a
         // non-root directory (ex: https://www.my-domain.com/app). This is a valid URL but from
         // the CSP point of view, it will say only the file `app` can be used as a source, so
-        // any other file from that domain will be forbidden. Using the slash (ex: https://www.my-domain.com/app)
+        // any other file from that domain will be forbidden. Using the slash (ex: https://www.my-domain.com/app/)
         // at the end it's like using a wildcard so anything 'below' `app` will be allowed.
         'connect-src': getUniqueValues(
           appConfig.headers?.csp?.['connect-src'],
