@@ -1250,6 +1250,35 @@ describe('when app URL is malformed', () => {
     );
   });
 });
+describe('when app URL has non-root path without ending backslash', () => {
+  const appUrl = 'https://avengers.app/admin';
+  beforeEach(() => {
+    loadConfig.mockReturnValue({
+      ...fixtureConfigSimple,
+      env: {
+        ...fixtureConfigSimple.env,
+        production: {
+          ...fixtureConfigSimple.env.production,
+          url: appUrl,
+        },
+      },
+    });
+  });
+  it('CSP headers should include app URL with a backslash', () => {
+    const result = processConfig(
+      createTestOptions({
+        processEnv: {
+          NODE_ENV: 'production',
+        },
+      })
+    );
+
+    Object.values(result.headers.csp).forEach((cspDirectiveValues) =>
+      expect(cspDirectiveValues).toEqual(expect.arrayContaining([`${appUrl}/`]))
+    );
+  });
+});
+
 describe('when CDN URL is malformed', () => {
   beforeEach(() => {
     loadConfig.mockReturnValue({
@@ -1277,6 +1306,44 @@ describe('when CDN URL is malformed', () => {
     );
   });
 });
+describe('when CDN URL has non-root path without ending backslash', () => {
+  const appUrl = 'https://avengers.app/admin';
+  const cdnUrl = 'https://justice-league.app/inventory';
+  beforeEach(() => {
+    loadConfig.mockReturnValue({
+      ...fixtureConfigSimple,
+      env: {
+        ...fixtureConfigSimple.env,
+        production: {
+          ...fixtureConfigSimple.env.production,
+          url: appUrl,
+          cdnUrl: cdnUrl,
+        },
+      },
+    });
+  });
+  it('CSP headers should include CDN URL with a backslash', () => {
+    const result = processConfig(
+      createTestOptions({
+        processEnv: {
+          NODE_ENV: 'production',
+        },
+      })
+    );
+
+    const cspDirectiveValues = result.headers.csp;
+    expect(cspDirectiveValues['connect-src']).toEqual(
+      expect.arrayContaining([`${appUrl}/`])
+    );
+    expect(cspDirectiveValues['script-src']).toEqual(
+      expect.arrayContaining([`${cdnUrl}/`])
+    );
+    expect(cspDirectiveValues['style-src']).toEqual(
+      expect.arrayContaining([`${cdnUrl}/`])
+    );
+  });
+});
+
 describe('when MC API URL is malformed', () => {
   beforeEach(() => {
     loadConfig.mockReturnValue({

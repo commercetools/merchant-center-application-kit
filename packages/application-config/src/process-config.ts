@@ -29,6 +29,8 @@ type ProcessConfigOptions = Partial<LoadingConfigOptions> & {
 const developmentPort = 3001;
 const developmentAppUrl = `http://localhost:${developmentPort}`;
 
+const trimTrailingSlash = (value: string) => value.replace(/\/$/, '');
+
 const omitDevConfigIfEmpty = (
   devConfig: ApplicationRuntimeConfig['env']['__DEVELOPMENT__']
 ) => {
@@ -161,17 +163,35 @@ const processConfig = ({
       ...appConfig.headers,
       csp: {
         ...appConfig.headers?.csp,
+        // We need to make sure the URL we use in these CSP headers have a slash in the end,
+        // otherwise it might create an invalid value when application/CDN URL points to a
+        // non-root directory (ex: https://www.my-domain.com/app). This is a valid URL but from
+        // the CSP point of view, it will say only the file `app` can be used as a source, so
+        // any other file from that domain will be forbidden. Using the slash (ex: https://www.my-domain.com/app/)
+        // at the end it's like using a wildcard so anything 'below' `app` will be allowed.
         'connect-src': getUniqueValues(
           appConfig.headers?.csp?.['connect-src'],
-          [mcApiUrl.origin].concat(isProd ? [appUrl.href] : [])
+          [mcApiUrl.origin].concat(
+            isProd ? [`${trimTrailingSlash(appUrl.href)}/`] : []
+          )
         ),
         'script-src': getUniqueValues(
           appConfig.headers?.csp?.['script-src'],
-          isProd ? [appUrl.href, cdnUrl.href] : []
+          isProd
+            ? [
+                `${trimTrailingSlash(appUrl.href)}/`,
+                `${trimTrailingSlash(cdnUrl.href)}/`,
+              ]
+            : []
         ),
         'style-src': getUniqueValues(
           appConfig.headers?.csp?.['style-src'],
-          isProd ? [appUrl.href, cdnUrl.href] : []
+          isProd
+            ? [
+                `${trimTrailingSlash(appUrl.href)}/`,
+                `${trimTrailingSlash(cdnUrl.href)}/`,
+              ]
+            : []
         ),
       },
     },
