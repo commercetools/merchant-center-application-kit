@@ -40,6 +40,7 @@ import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/appli
 import ApplicationEntryPoint from '../components/application-entry-point';
 import { createReduxStore } from '../configure-store';
 import createApolloClient from '../configure-apollo';
+import { TVerificationStatus } from '../types/generated/mc';
 
 // These default values get merged with the values provided by the test from
 // the call to "render"
@@ -95,6 +96,7 @@ const defaultUser = {
   launchdarklyTrackingId: '111',
   launchdarklyTrackingTeam: undefined,
   launchdarklyTrackingTenant: 'gcp-eu',
+  verificationStatus: TVerificationStatus.Verified,
 };
 
 const defaultEnvironment: Partial<TProviderProps<{}>['environment']> = {

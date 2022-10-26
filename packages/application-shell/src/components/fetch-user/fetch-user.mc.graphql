@@ -38,5 +38,6 @@ query FetchLoggedInUser {
       name
       additionalClaims
     }
+    verificationStatus
   }
 }
