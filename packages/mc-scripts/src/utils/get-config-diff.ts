@@ -1,6 +1,8 @@
 import chalk from 'chalk';
-import type { CustomApplicationData } from '@commercetools-frontend/application-config';
-import { sanitizeSvg } from '@commercetools-frontend/application-config/ssr';
+import {
+  sanitizeSvg,
+  type CustomApplicationData,
+} from '@commercetools-frontend/application-config';
 
 // Since not all terminal supports colors, to make things more consistent for testing purposes,
 // during tests the color used is appended before the string instead of coloring it.
