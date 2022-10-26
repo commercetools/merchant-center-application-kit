@@ -1,5 +1,6 @@
 import chalk from 'chalk';
 import type { CustomApplicationData } from '@commercetools-frontend/application-config';
+import { sanitizeSvg } from '@commercetools-frontend/application-config/ssr';
 
 // Since not all terminal supports colors, to make things more consistent for testing purposes,
 // during tests the color used is appended before the string instead of coloring it.
@@ -392,8 +393,11 @@ const getConfigDiff = (
 
   // Icon
   const iconDiff = getStringDiff({
+    // This icon stored in the database has already been sanitized.
     previousValue: oldConfig.icon,
-    nextValue: newConfig.icon,
+    // Sanitize the raw icon as-if it was stored in the database,
+    // to ensure the data can be safely compared.
+    nextValue: sanitizeSvg(newConfig.icon),
     label: 'icon',
   });
   if (iconDiff) {
