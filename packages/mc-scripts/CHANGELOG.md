@@ -1,5 +1,21 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.18.0
+
+### Patch Changes
+
+- [#2862](https://github.com/commercetools/merchant-center-application-kit/pull/2862) [`836c86aa1`](https://github.com/commercetools/merchant-center-application-kit/commit/836c86aa187125e0670b2248619a1cbaa094bec2) Thanks [@emmenko](https://github.com/emmenko)! - Sanitize SVG icon only when comparing diffs, as the icon is sanitized in the API. Expose the `sanitizeSvg` logic from the `@commercetools-frontend/application-config`.
+
+- [#2837](https://github.com/commercetools/merchant-center-application-kit/pull/2837) [`3959ed2a0`](https://github.com/commercetools/merchant-center-application-kit/commit/3959ed2a0012077b6366c3a22c749fe7d6e74784) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- Updated dependencies [[`84c29cebe`](https://github.com/commercetools/merchant-center-application-kit/commit/84c29cebee389ff246fb1d48e2997c8c529a4750), [`836c86aa1`](https://github.com/commercetools/merchant-center-application-kit/commit/836c86aa187125e0670b2248619a1cbaa094bec2), [`3959ed2a0`](https://github.com/commercetools/merchant-center-application-kit/commit/3959ed2a0012077b6366c3a22c749fe7d6e74784), [`53d2c287f`](https://github.com/commercetools/merchant-center-application-kit/commit/53d2c287f7572769b3038893469cde81ef987c39)]:
+  - @commercetools-frontend/application-config@21.18.0
+  - @commercetools-frontend/mc-dev-authentication@21.18.0
+  - @commercetools-frontend/mc-html-template@21.18.0
+  - @commercetools-frontend/assets@21.18.0
+  - @commercetools-frontend/babel-preset-mc-app@21.18.0
+  - @commercetools-frontend/constants@21.18.0
+
 ## 21.17.0
 
 ### Patch Changes

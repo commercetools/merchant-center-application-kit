@@ -1,5 +1,18 @@
 # @commercetools-frontend/application-config
 
+## 21.18.0
+
+### Patch Changes
+
+- [#2834](https://github.com/commercetools/merchant-center-application-kit/pull/2834) [`84c29cebe`](https://github.com/commercetools/merchant-center-application-kit/commit/84c29cebee389ff246fb1d48e2997c8c529a4750) Thanks [@kark](https://github.com/kark)! - Enable proper type inference in `entryPointUriPathToResourceAccesses` and `entryPointUriPathToPermissionKeys` functions
+
+- [#2862](https://github.com/commercetools/merchant-center-application-kit/pull/2862) [`836c86aa1`](https://github.com/commercetools/merchant-center-application-kit/commit/836c86aa187125e0670b2248619a1cbaa094bec2) Thanks [@emmenko](https://github.com/emmenko)! - Sanitize SVG icon only when comparing diffs, as the icon is sanitized in the API. Expose the `sanitizeSvg` logic from the `@commercetools-frontend/application-config`.
+
+- [#2860](https://github.com/commercetools/merchant-center-application-kit/pull/2860) [`53d2c287f`](https://github.com/commercetools/merchant-center-application-kit/commit/53d2c287f7572769b3038893469cde81ef987c39) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Fix CSP headers processing at Custom Application build time when using a deployment URL without an ending backslash
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.18.0
+
 ## 21.17.0
 
 ### Patch Changes

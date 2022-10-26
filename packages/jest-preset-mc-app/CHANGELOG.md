@@ -1,5 +1,14 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 21.18.0
+
+### Patch Changes
+
+- [#2845](https://github.com/commercetools/merchant-center-application-kit/pull/2845) [`f8f189de7`](https://github.com/commercetools/merchant-center-application-kit/commit/f8f189de71e8a890465c5164e3adbdc9e2907fae) Thanks [@renovate](https://github.com/apps/renovate)! - Update @formatjs/intl-listformat dependency
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.18.0
+
 ## 21.17.0
 
 ### Patch Changes

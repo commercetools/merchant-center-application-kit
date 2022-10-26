@@ -1,5 +1,34 @@
 # @commercetools-frontend/application-shell
 
+## 21.18.0
+
+### Minor Changes
+
+- [#2844](https://github.com/commercetools/merchant-center-application-kit/pull/2844) [`19ae7155b`](https://github.com/commercetools/merchant-center-application-kit/commit/19ae7155b3fd91ba20050434c045c47665df9504) Thanks [@jaikamat](https://github.com/jaikamat)! - Include new user-related entity information in application context
+
+### Patch Changes
+
+- [#2863](https://github.com/commercetools/merchant-center-application-kit/pull/2863) [`4311f1aaa`](https://github.com/commercetools/merchant-center-application-kit/commit/4311f1aaac7fb51cca204f01307583b6924cd015) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Disable development-only Redux Toolkit default [immutability middleware](https://redux-toolkit.js.org/api/immutabilityMiddleware) check
+
+- [#2837](https://github.com/commercetools/merchant-center-application-kit/pull/2837) [`3959ed2a0`](https://github.com/commercetools/merchant-center-application-kit/commit/3959ed2a0012077b6366c3a22c749fe7d6e74784) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- Updated dependencies [[`19ae7155b`](https://github.com/commercetools/merchant-center-application-kit/commit/19ae7155b3fd91ba20050434c045c47665df9504), [`84c29cebe`](https://github.com/commercetools/merchant-center-application-kit/commit/84c29cebee389ff246fb1d48e2997c8c529a4750), [`836c86aa1`](https://github.com/commercetools/merchant-center-application-kit/commit/836c86aa187125e0670b2248619a1cbaa094bec2), [`3959ed2a0`](https://github.com/commercetools/merchant-center-application-kit/commit/3959ed2a0012077b6366c3a22c749fe7d6e74784), [`53d2c287f`](https://github.com/commercetools/merchant-center-application-kit/commit/53d2c287f7572769b3038893469cde81ef987c39), [`9649818ac`](https://github.com/commercetools/merchant-center-application-kit/commit/9649818ac924b3677203ca9df3e3a4aff6a0b080)]:
+  - @commercetools-frontend/application-shell-connectors@21.18.0
+  - @commercetools-frontend/permissions@21.18.0
+  - @commercetools-frontend/application-config@21.18.0
+  - @commercetools-frontend/application-components@21.18.0
+  - @commercetools-frontend/i18n@21.18.0
+  - @commercetools-frontend/react-notifications@21.18.0
+  - @commercetools-frontend/sentry@21.18.0
+  - @commercetools-frontend/actions-global@21.18.0
+  - @commercetools-frontend/l10n@21.18.0
+  - @commercetools-frontend/assets@21.18.0
+  - @commercetools-frontend/browser-history@21.18.0
+  - @commercetools-frontend/constants@21.18.0
+  - @commercetools-frontend/notifications@21.18.0
+  - @commercetools-frontend/sdk@21.18.0
+  - @commercetools-frontend/url-utils@21.18.0
+
 ## 21.17.0
 
 ### Minor Changes
