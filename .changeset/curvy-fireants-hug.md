@@ -4,4 +4,4 @@
 '@commercetools-frontend/permissions': minor
 ---
 
-Include new user-related entity information
+Include new user-related entity information in application context
