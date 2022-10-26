@@ -123,6 +123,12 @@ export const createReduxStore = (
       ...getDefaultMiddleware({
         // https://redux-toolkit.js.org/usage/usage-guide#working-with-non-serializable-data
         serializableCheck: false,
+        // This default check is logging warnings to console for some MC FE tests, probably
+        // due to lower resources when running tests on CI.
+        // We don't consider this check to be very valuable in this context so we decided
+        // to turn it off.
+        // https://redux-toolkit.js.org/api/immutabilityMiddleware
+        immutableCheck: false,
       }),
       loggerMiddleware,
     ],
