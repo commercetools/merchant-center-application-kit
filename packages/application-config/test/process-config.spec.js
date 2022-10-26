@@ -46,7 +46,7 @@ describe('processing a simple config', () => {
             oAuthScopes: [],
           },
         ],
-        icon: '<svg><path fill="#000000"></path></svg>',
+        icon: '<svg><path fill="#000000" /></svg>',
         mainMenuLink: {
           defaultLabel: 'Avengers',
           labelAllLocales: [],
@@ -69,7 +69,7 @@ describe('processing a simple config', () => {
           accountLinks: undefined,
           menuLinks: {
             defaultLabel: 'Avengers',
-            icon: '<svg><path fill="#000000"></path></svg>',
+            icon: '<svg><path fill="#000000" /></svg>',
             labelAllLocales: [],
             permissions: [],
             submenuLinks: [],
@@ -119,7 +119,7 @@ describe('processing a simple config', () => {
               oAuthScopes: [],
             },
           ],
-          icon: '<svg><path fill="#000000"></path></svg>',
+          icon: '<svg><path fill="#000000" /></svg>',
           mainMenuLink: {
             defaultLabel: 'Avengers',
             labelAllLocales: [],
@@ -179,7 +179,7 @@ describe('processing a simple config', () => {
               oAuthScopes: [],
             },
           ],
-          icon: '<svg><path fill="#000000"></path></svg>',
+          icon: '<svg><path fill="#000000" /></svg>',
           mainMenuLink: {
             defaultLabel: 'Avengers',
             labelAllLocales: [],
@@ -202,7 +202,7 @@ describe('processing a simple config', () => {
             accountLinks: undefined,
             menuLinks: {
               defaultLabel: 'Avengers',
-              icon: '<svg><path fill="#000000"></path></svg>',
+              icon: '<svg><path fill="#000000" /></svg>',
               labelAllLocales: [],
               permissions: [],
               submenuLinks: [],
@@ -256,7 +256,7 @@ describe('processing a simple config', () => {
               oAuthScopes: [],
             },
           ],
-          icon: '<svg><path fill="#000000"></path></svg>',
+          icon: '<svg><path fill="#000000" /></svg>',
           mainMenuLink: {
             defaultLabel: 'Avengers',
             labelAllLocales: [],
@@ -314,7 +314,7 @@ describe('processing a full config', () => {
             oAuthScopes: [],
           },
         ],
-        icon: '<svg><path fill="#000000"></path></svg>',
+        icon: '<svg><path fill="#000000" /></svg>',
         mainMenuLink: {
           defaultLabel: 'Avengers',
           labelAllLocales: [],
@@ -338,7 +338,7 @@ describe('processing a full config', () => {
           accountLinks: undefined,
           menuLinks: {
             defaultLabel: 'Avengers',
-            icon: '<svg><path fill="#000000"></path></svg>',
+            icon: '<svg><path fill="#000000" /></svg>',
             labelAllLocales: [],
             permissions: [],
             submenuLinks: [],
@@ -398,7 +398,7 @@ describe('processing a full config', () => {
               oAuthScopes: [],
             },
           ],
-          icon: '<svg><path fill="#000000"></path></svg>',
+          icon: '<svg><path fill="#000000" /></svg>',
           mainMenuLink: {
             defaultLabel: 'Avengers',
             labelAllLocales: [],
@@ -471,7 +471,7 @@ describe('processing a full config', () => {
               oAuthScopes: [],
             },
           ],
-          icon: '<svg><path fill="#000000"></path></svg>',
+          icon: '<svg><path fill="#000000" /></svg>',
           mainMenuLink: {
             defaultLabel: 'Avengers',
             labelAllLocales: [],
@@ -495,7 +495,7 @@ describe('processing a full config', () => {
             accountLinks: undefined,
             menuLinks: {
               defaultLabel: 'Avengers',
-              icon: '<svg><path fill="#000000"></path></svg>',
+              icon: '<svg><path fill="#000000" /></svg>',
               labelAllLocales: [],
               permissions: [],
               submenuLinks: [],
@@ -557,7 +557,7 @@ describe('processing a full config', () => {
               oAuthScopes: [],
             },
           ],
-          icon: '<svg><path fill="#000000"></path></svg>',
+          icon: '<svg><path fill="#000000" /></svg>',
           mainMenuLink: {
             defaultLabel: 'Avengers',
             labelAllLocales: [],
@@ -638,7 +638,7 @@ describe('processing a config with environment variable placeholders', () => {
             oAuthScopes: [],
           },
         ],
-        icon: '<svg><path fill="#000000"></path></svg>',
+        icon: '<svg><path fill="#000000" /></svg>',
         mainMenuLink: {
           defaultLabel: 'Avengers',
           labelAllLocales: [],
@@ -661,7 +661,7 @@ describe('processing a config with environment variable placeholders', () => {
           accountLinks: undefined,
           menuLinks: {
             defaultLabel: 'Avengers',
-            icon: '<svg><path fill="#000000"></path></svg>',
+            icon: '<svg><path fill="#000000" /></svg>',
             labelAllLocales: [],
             permissions: [],
             submenuLinks: [],
@@ -715,7 +715,7 @@ describe('processing a config with environment variable placeholders', () => {
               oAuthScopes: [],
             },
           ],
-          icon: '<svg><path fill="#000000"></path></svg>',
+          icon: '<svg><path fill="#000000" /></svg>',
           mainMenuLink: {
             defaultLabel: 'Avengers',
             labelAllLocales: [],
@@ -779,7 +779,7 @@ describe('processing a config with environment variable placeholders', () => {
               oAuthScopes: [],
             },
           ],
-          icon: '<svg><path fill="#000000"></path></svg>',
+          icon: '<svg><path fill="#000000" /></svg>',
           mainMenuLink: {
             defaultLabel: 'Avengers',
             labelAllLocales: [],
@@ -802,7 +802,7 @@ describe('processing a config with environment variable placeholders', () => {
             accountLinks: undefined,
             menuLinks: {
               defaultLabel: 'Avengers',
-              icon: '<svg><path fill="#000000"></path></svg>',
+              icon: '<svg><path fill="#000000" /></svg>',
               labelAllLocales: [],
               permissions: [],
               submenuLinks: [],
@@ -860,7 +860,7 @@ describe('processing a config with environment variable placeholders', () => {
               oAuthScopes: [],
             },
           ],
-          icon: '<svg><path fill="#000000"></path></svg>',
+          icon: '<svg><path fill="#000000" /></svg>',
           mainMenuLink: {
             defaultLabel: 'Avengers',
             labelAllLocales: [],
@@ -918,7 +918,7 @@ describe('processing a config with intl variable placeholders', () => {
             oAuthScopes: [],
           },
         ],
-        icon: '<svg><path fill="#000000"></path></svg>',
+        icon: '<svg><path fill="#000000" /></svg>',
         mainMenuLink: {
           defaultLabel: 'Avengers',
           labelAllLocales: [
@@ -1112,7 +1112,7 @@ describe('processing a config with OIDC', () => {
             oAuthScopes: ['manage_orders'],
           },
         ],
-        icon: '<svg><path fill="#000000"></path></svg>',
+        icon: '<svg><path fill="#000000" /></svg>',
         mainMenuLink: {
           defaultLabel: 'Avengers',
           labelAllLocales: [],
@@ -1133,7 +1133,7 @@ describe('processing a config with OIDC', () => {
           },
           accountLinks: undefined,
           menuLinks: {
-            icon: '<svg><path fill="#000000"></path></svg>',
+            icon: '<svg><path fill="#000000" /></svg>',
             defaultLabel: 'Avengers',
             labelAllLocales: [],
             permissions: [],
@@ -1188,7 +1188,7 @@ describe('processing a config with OIDC', () => {
               oAuthScopes: ['manage_orders'],
             },
           ],
-          icon: '<svg><path fill="#000000"></path></svg>',
+          icon: '<svg><path fill="#000000" /></svg>',
           mainMenuLink: {
             defaultLabel: 'Avengers',
             labelAllLocales: [],
