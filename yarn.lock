@@ -5,10 +5,10 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"7zip-bin@npm:5.1.1":
-  version: 5.1.1
-  resolution: "7zip-bin@npm:5.1.1"
-  checksum: 1e58ba3742ac86daa84d2e60c46fd545f235c9f60a00cd36a87a70bf824cc0c821fdc418994f1745081b17e7bc83d155e1e82bd44b06996e7cab0a491ce644c1
+"7zip-bin@npm:5.2.0":
+  version: 5.2.0
+  resolution: "7zip-bin@npm:5.2.0"
+  checksum: 85d3102275342f1f4ba7d17e778e526dee3dbec0f57d29be7afaa6e3c26687d40a6eccf520e9140143f85a51f3353f6b545f760eff3f776c6ffb30dc5252fb7c
   languageName: node
   linkType: hard
 
@@ -3500,11 +3500,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-docs/gatsby-theme-docs@npm:19.6.1":
-  version: 19.6.1
-  resolution: "@commercetools-docs/gatsby-theme-docs@npm:19.6.1"
+"@commercetools-docs/gatsby-theme-docs@npm:19.7.0":
+  version: 19.7.0
+  resolution: "@commercetools-docs/gatsby-theme-docs@npm:19.7.0"
   dependencies:
-    "@commercetools-docs/ui-kit": 19.6.1
+    "@commercetools-docs/ui-kit": 19.7.0
     "@commercetools-uikit/card": ^15.3.0
     "@commercetools-uikit/checkbox-input": ^15.3.0
     "@commercetools-uikit/date-input": ^15.3.0
@@ -3562,7 +3562,7 @@ __metadata:
     raw-loader: 4.0.2
     react-helmet: 6.1.0
     react-intersection-observer: 9.4.0
-    react-intl: ^6.1.2
+    react-intl: ^5.25.1
     react-router-dom: 5.3.4
     rehype-slug: 4.0.1
     remark-emoji: 2.2.0
@@ -3578,13 +3578,13 @@ __metadata:
     react-dom: 17.x
   bin:
     create-docs-release-note: bin/create-release-note.js
-  checksum: 6174fcd51086fd46b9ff609c57172859161dae57db7e044652a80c212b7e0c6c2133ddef9ab1328aef1e4b699869d854c578dd78650e0078b4d47a3986eee9f1
+  checksum: 4e756bf95a2b45b569715443fad27c578de075457f38202cbb97f77eca7a5882d318576ab9bd37a3ddfdf8158b4c5274f81b648dfbbf5e25a91f978d91ac6df1
   languageName: node
   linkType: hard
 
-"@commercetools-docs/ui-kit@npm:19.6.1":
-  version: 19.6.1
-  resolution: "@commercetools-docs/ui-kit@npm:19.6.1"
+"@commercetools-docs/ui-kit@npm:19.7.0":
+  version: 19.7.0
+  resolution: "@commercetools-docs/ui-kit@npm:19.7.0"
   dependencies:
     "@babel/runtime": ^7.19.4
     "@babel/runtime-corejs3": ^7.19.4
@@ -3605,7 +3605,7 @@ __metadata:
     murmurhash: 2.0.1
     prism-react-renderer: 1.3.5
     prop-types: 15.8.1
-    react-intl: ^6.1.2
+    react-intl: ^5.25.1
     react-is: 17.0.2
     rehype-react: 6.2.1
     remark-frontmatter: 3.0.0
@@ -3618,21 +3618,21 @@ __metadata:
   peerDependencies:
     react: 17.x
     react-dom: 17.x
-  checksum: 4f612e5d2cc4169ecf705167464ea2b3bdfddf255faae6c775a311effc9c88e98c0bea2e8c071aae5cdd331a31663be9cbac2e5f516273e09a92db2996d4d303
+  checksum: 1d3c3961fc8a7631f8e24b19bdf0cea76a1586827422e24be9a70263008119a5305a2b34c82e6b3331b7b60ec80d48b1b9a89eb1638988b3ca42a25b4d75bdfd
   languageName: node
   linkType: hard
 
-"@commercetools-docs/writing-style@npm:3.1.1":
-  version: 3.1.1
-  resolution: "@commercetools-docs/writing-style@npm:3.1.1"
+"@commercetools-docs/writing-style@npm:3.3.1":
+  version: 3.3.1
+  resolution: "@commercetools-docs/writing-style@npm:3.3.1"
   dependencies:
-    7zip-bin: 5.1.1
+    7zip-bin: 5.2.0
     node-fetch: 2.6.7
     shelljs: 0.8.5
   bin:
     commercetools-vale: bin/commercetools-vale.js
     commercetools-vale-bin: bin/commercetools-vale-bin.js
-  checksum: e4d52f3f0fd64ba7cfd13ca96866d8d67132f0e05a7da769726872abe8655002f686002034d141177bd7ff2f8ee6890248d5176899c7f4117e980cc2f30bdcd1
+  checksum: bc762fc8dc476138e8dc5e9bb480c324aa7b6dccddf05be0cee4dde6abbf5d60d79745a9b954d7d0cb37eea6344b79ae4ac99efc226d4202c7a82510d758d63d
   languageName: node
   linkType: hard
 
@@ -4353,7 +4353,7 @@ __metadata:
   resolution: "@commercetools-local/playground@workspace:playground"
   dependencies:
     "@commercetools-backend/express": 21.18.0
-    "@commercetools-docs/ui-kit": 19.6.1
+    "@commercetools-docs/ui-kit": 19.7.0
     "@commercetools-frontend/actions-global": 21.18.0
     "@commercetools-frontend/application-components": 21.18.0
     "@commercetools-frontend/application-shell": 21.18.0
@@ -5529,8 +5529,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-website/custom-applications@workspace:website"
   dependencies:
-    "@commercetools-docs/gatsby-theme-docs": 19.6.1
-    "@commercetools-docs/ui-kit": 19.6.1
+    "@commercetools-docs/gatsby-theme-docs": 19.7.0
+    "@commercetools-docs/ui-kit": 19.7.0
     "@commercetools-uikit/card": ^15.3.0
     "@commercetools-uikit/spacings-inline": ^15.3.0
     "@commercetools-uikit/spacings-stack": ^15.3.0
@@ -6455,15 +6455,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/fast-memoize@npm:1.2.6":
-  version: 1.2.6
-  resolution: "@formatjs/fast-memoize@npm:1.2.6"
-  dependencies:
-    tslib: 2.4.0
-  checksum: cdb944a9207b5d74e0b4cdcd047e32d904b52b8f893227809a906f65882a46ae8b342872161d797dffd4fafd565f91efebb18989ffe888786bb5e5d911bc0193
-  languageName: node
-  linkType: hard
-
 "@formatjs/icu-messageformat-parser@npm:2.1.0":
   version: 2.1.0
   resolution: "@formatjs/icu-messageformat-parser@npm:2.1.0"
@@ -6517,17 +6508,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl-displaynames@npm:6.1.4":
-  version: 6.1.4
-  resolution: "@formatjs/intl-displaynames@npm:6.1.4"
-  dependencies:
-    "@formatjs/ecma402-abstract": 1.13.0
-    "@formatjs/intl-localematcher": 0.2.31
-    tslib: 2.4.0
-  checksum: 1c0ababcf4ba7acbed517067526289fab39330b861045d67ed0ce2e6bcb3b5ab18263fd4bb214345de5c7dcfebb0931b09fab2608e9e9a9a3b18c56873192e7c
-  languageName: node
-  linkType: hard
-
 "@formatjs/intl-getcanonicallocales@npm:1.9.2, @formatjs/intl-getcanonicallocales@npm:^1.9.2":
   version: 1.9.2
   resolution: "@formatjs/intl-getcanonicallocales@npm:1.9.2"
@@ -6545,17 +6525,6 @@ __metadata:
     "@formatjs/intl-localematcher": 0.2.25
     tslib: ^2.1.0
   checksum: e641b7f82eb2a9ea8fdfc66783356e4c438c6fdd23fb64e05d2712d0bf06c18fc54ac80f46fadd158c4f3920d2d970bc3ecb4718d30df7abaf5b1de8f6b55f17
-  languageName: node
-  linkType: hard
-
-"@formatjs/intl-listformat@npm:7.1.3":
-  version: 7.1.3
-  resolution: "@formatjs/intl-listformat@npm:7.1.3"
-  dependencies:
-    "@formatjs/ecma402-abstract": 1.13.0
-    "@formatjs/intl-localematcher": 0.2.31
-    tslib: 2.4.0
-  checksum: 36b2f5642da8cc081c16c99d81dc4c4736bf82457f71db06deb73e97951c5e60065ecce6739a797f5fc3a3f77d076690d09ed81466ef160b019a70b927abcc9f
   languageName: node
   linkType: hard
 
@@ -6647,26 +6616,6 @@ __metadata:
     typescript:
       optional: true
   checksum: 35411545e2975b641faede0d58d1afe0f44b90cac6fa37b0d025366c91378dafde6a7ac35a1cc02d0e11c90cb2e57e3b2f6d50044b8f00092bc6d0ef197d4d49
-  languageName: node
-  linkType: hard
-
-"@formatjs/intl@npm:2.5.1":
-  version: 2.5.1
-  resolution: "@formatjs/intl@npm:2.5.1"
-  dependencies:
-    "@formatjs/ecma402-abstract": 1.13.0
-    "@formatjs/fast-memoize": 1.2.6
-    "@formatjs/icu-messageformat-parser": 2.1.10
-    "@formatjs/intl-displaynames": 6.1.4
-    "@formatjs/intl-listformat": 7.1.3
-    intl-messageformat: 10.2.1
-    tslib: 2.4.0
-  peerDependencies:
-    typescript: ^4.7
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: d9c8c9807fa7bd921151bd88c7e6d621692776bf16d9ec8ae42876c431d17474a6686b8042fe316d23430190fbf2a1a68682543300e843deb2b513d83a53516e
   languageName: node
   linkType: hard
 
@@ -23307,18 +23256,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"intl-messageformat@npm:10.2.1":
-  version: 10.2.1
-  resolution: "intl-messageformat@npm:10.2.1"
-  dependencies:
-    "@formatjs/ecma402-abstract": 1.13.0
-    "@formatjs/fast-memoize": 1.2.6
-    "@formatjs/icu-messageformat-parser": 2.1.10
-    tslib: 2.4.0
-  checksum: a2bcbe0166cbd112bba78626a5dc2970f1398e61e1d908e9083a0ef8b6ddd2ef0699904dc60ea3a1d03155b12ca17e80a3caed60e1fd25432868065e4f0032da
-  languageName: node
-  linkType: hard
-
 "intl-messageformat@npm:9.13.0":
   version: 9.13.0
   resolution: "intl-messageformat@npm:9.13.0"
@@ -27024,7 +26961,7 @@ __metadata:
     "@babel/core": ^7.19.0
     "@changesets/changelog-github": 0.4.7
     "@changesets/cli": 2.25.0
-    "@commercetools-docs/writing-style": 3.1.1
+    "@commercetools-docs/writing-style": 3.3.1
     "@commercetools-test-data/core": 4.1.1
     "@commercetools-uikit/design-system": ^15.3.0
     "@commercetools/github-labels": 1.1.0
@@ -30802,30 +30739,6 @@ __metadata:
     typescript:
       optional: true
   checksum: 93876910a68ee13937c405d0a25b5b1ae9c262290fc8aeedc8457b2d63a3b2dff6a86a9d01f1c3e0b1e49e23df37225d84e404ef7ab406ee2e6717fc23f54653
-  languageName: node
-  linkType: hard
-
-"react-intl@npm:^6.1.2":
-  version: 6.2.1
-  resolution: "react-intl@npm:6.2.1"
-  dependencies:
-    "@formatjs/ecma402-abstract": 1.13.0
-    "@formatjs/icu-messageformat-parser": 2.1.10
-    "@formatjs/intl": 2.5.1
-    "@formatjs/intl-displaynames": 6.1.4
-    "@formatjs/intl-listformat": 7.1.3
-    "@types/hoist-non-react-statics": ^3.3.1
-    "@types/react": 16 || 17 || 18
-    hoist-non-react-statics: ^3.3.2
-    intl-messageformat: 10.2.1
-    tslib: 2.4.0
-  peerDependencies:
-    react: ^16.6.0 || 17 || 18
-    typescript: ^4.7
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: 1b87ce7d1ab5d6796f4075422f4b59ecd26214dd7e9c3fa0821b49df244c5d0e876a010f3839cbedeca4f67a70e64b5e473d15036bf06a4bac1bdec8cbd7e5f8
   languageName: node
   linkType: hard
 
