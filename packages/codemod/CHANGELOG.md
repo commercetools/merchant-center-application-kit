@@ -1,5 +1,7 @@
 # @commercetools-frontend/codemod
 
+## 21.18.1
+
 ## 21.18.0
 
 ### Patch Changes
