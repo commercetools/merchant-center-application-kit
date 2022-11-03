@@ -1,5 +1,5 @@
 ---
-"@commercetools-frontend/application-shell": patch
+'@commercetools-frontend/application-shell': patch
 ---
 
-PCM-2794: fix quick access to product list
+Fix QuickAccess component to make it use the right products list URL.
