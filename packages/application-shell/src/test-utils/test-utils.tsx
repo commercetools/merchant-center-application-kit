@@ -659,7 +659,7 @@ function renderHook<
 export * from '@testing-library/react';
 
 // re-export everything from @testing-library/user-event
-export * from '@testing-library/user-event';
+export * as userEvent from '@testing-library/user-event';
 
 // namespace for hooks related helpers
 const hooks = {
