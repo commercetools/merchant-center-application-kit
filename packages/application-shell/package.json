@@ -122,7 +122,7 @@
     "@apollo/client": "3.x",
     "@testing-library/react": "12.x",
     "@testing-library/react-hooks": "7.x || 8.x",
-    "@testing-library/user-event": "^14.4.3",
+    "@testing-library/user-event": "14.x",
     "react": "17.x",
     "react-dom": "17.x",
     "react-intl": "5.x",
