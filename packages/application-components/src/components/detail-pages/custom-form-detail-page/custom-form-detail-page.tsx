@@ -12,11 +12,13 @@ import Spacings from '@commercetools-uikit/spacings';
 import PageHeaderTitle from '../../internals/page-header-title';
 import PageTopBar from '../../internals/page-top-bar';
 import { ContentWrapper, PageWrapper } from '../../internals/page.styles';
+import { appKitDesignTokens } from '../../../theming';
 
 const DetailPageContainer = styled.div`
   background-color: ${customProperties.colorNeutral95};
-  padding: ${customProperties.spacingM};
   border-bottom: 1px ${customProperties.colorNeutral} solid;
+  padding: ${appKitDesignTokens.paddingVerticalForPage}
+    ${appKitDesignTokens.paddingHorizontalForPage};
 `;
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.

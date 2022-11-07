@@ -26,7 +26,10 @@ import {
   ApplicationContextProvider,
   useApplicationContext,
 } from '@commercetools-frontend/application-shell-connectors';
-import { PortalsContainer } from '@commercetools-frontend/application-components';
+import {
+  PortalsContainer,
+  themesOverrides,
+} from '@commercetools-frontend/application-components';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import { ThemeProvider } from '@commercetools-uikit/design-system';
@@ -536,7 +539,7 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
 
   return (
     <>
-      <ThemeProvider theme="default" />
+      <ThemeProvider theme="default" themeOverrides={themesOverrides.default} />
       <GlobalStyles />
       <ApplicationShellProvider<AdditionalEnvironmentProperties>
         apolloClient={props.apolloClient}

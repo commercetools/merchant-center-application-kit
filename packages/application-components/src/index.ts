@@ -37,3 +37,5 @@ export { default as PageUnauthorized } from './components/page-unauthorized';
 // Utilities
 export { default as PortalsContainer } from './components/portals-container';
 export { default as useModalState } from './hooks/use-modal-state';
+
+export * from './theming';
