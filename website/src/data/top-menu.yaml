@@ -19,10 +19,10 @@
 - menu-title: Frontend
   items:
     - label: Getting Started
-      href: https://docs.frontastic.cloud/docs/whats-frontastic
+      href: https://docs.commercetools.com/frontend-getting-started/overview
     - label: Studio
-      href: https://docs.frontastic.cloud/docs/whats-the-frontastic-studio
+      href: https://docs.commercetools.com/frontend-studio/
     - label: Developing
-      href: https://docs.frontastic.cloud/docs/developing-your-site-with-frontastic
+      href: https://docs.commercetools.com/frontend-development/
     - label: HTTP API
-      href: https://docs.frontastic.cloud/reference
+      href: https://docs.commercetools.com/frontend-api/
