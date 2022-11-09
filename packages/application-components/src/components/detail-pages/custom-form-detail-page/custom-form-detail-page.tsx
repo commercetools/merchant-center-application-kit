@@ -17,8 +17,7 @@ import { appKitDesignTokens } from '../../../theming';
 const DetailPageContainer = styled.div`
   background-color: ${customProperties.colorNeutral95};
   border-bottom: 1px ${customProperties.colorNeutral} solid;
-  padding: ${appKitDesignTokens.paddingVerticalForPage}
-    ${appKitDesignTokens.paddingHorizontalForPage};
+  padding: ${appKitDesignTokens.paddingForPage};
 `;
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.

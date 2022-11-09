@@ -3,12 +3,10 @@ import { designTokens } from '@commercetools-uikit/design-system';
 
 export const themesOverrides = {
   default: {
-    paddingVerticalForPage: designTokens.spacingM,
-    paddingHorizontalForPage: designTokens.spacingM,
+    paddingForPage: `${designTokens.spacingM} ${designTokens.spacingM}`,
   },
   test: {
-    paddingVerticalForPage: designTokens.spacingXl,
-    paddingHorizontalForPage: '40px',
+    paddingForPage: `${designTokens.spacingXl} 40px`,
   },
 };
 
