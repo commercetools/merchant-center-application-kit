@@ -18,7 +18,11 @@
     "/.+/merchant-center",
     "/.+/sdk",
     "/.+/tutorials",
-    "/.+/getting-started/initial-setup"
+    "/.+/getting-started/initial-setup",
+    "/.+/frontend-api",
+    "/.+/frontend-studio",
+    "/.+/frontend-development",
+    "/.+/frontend-getting-started/overview"
   ],
   "verbosity": "error",
   "retry": true,

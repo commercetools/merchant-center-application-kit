@@ -1,14 +1,14 @@
 - label: Sign up
-  href: https://docs.commercetools.com/getting-started/initial-setup
+  href: /../getting-started/initial-setup
 - label: Log in
-  href: https://docs.commercetools.com/docs/login
+  href: /../docs/login
 - label: Tech Blog
   href: https://techblog.commercetools.com
 - label: Integrations
   href: https://marketplace.commercetools.com
-- label: Support
+- label: Composable Commerce Support
   href: https://support.commercetools.com
-- label: Status
+- label: Composable Commerce Status
   href: https://status.commercetools.com
 - label: Frontend Support
   href: https://frontastic.freshdesk.com/
