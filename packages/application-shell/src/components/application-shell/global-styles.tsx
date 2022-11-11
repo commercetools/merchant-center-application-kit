@@ -1,56 +1,7 @@
 import { Global, css } from '@emotion/react';
 import { customProperties } from '@commercetools-uikit/design-system';
 
-const appStyles = css`
-  #app {
-    height: 100%;
-  }
-`;
-
-const gridStyles = css`
-.row
-  clear: both;
-  float: left;
-  width: 100%;
-}
-
-.col-3 {
-  float: left;
-  width: 25%;
-}
-
-.col-4 {
-  float: left;
-  width: 33.333%;
-}
-
-.col-5 {
-  float: left;
-  width: 41.666%;
-}
-
-.col-6 {
-  float: left;
-  width: 50%;
-}
-
-.col-7 {
-  float: left;
-  width: 58.333%;
-}
-
-.col-8 {
-  float: left;
-  width: 66.666%;
-}
-
-.col-12 {
-  float: left;
-  width: 100%;
-}
-`;
-
-const resetStyles = css`
+const styles = css`
   *,
   *::before,
   *::after {
@@ -69,6 +20,10 @@ const resetStyles = css`
 
   html {
     box-sizing: border-box;
+  }
+
+  #app {
+    height: 100%;
   }
 
   h1,
@@ -97,12 +52,6 @@ const resetStyles = css`
   }
 `;
 
-const GlobalStyles = () => (
-  <>
-    <Global styles={appStyles} />
-    <Global styles={gridStyles} />
-    <Global styles={resetStyles} />
-  </>
-);
+const GlobalStyles = () => <Global styles={styles} />;
 
 export default GlobalStyles;
