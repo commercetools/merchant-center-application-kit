@@ -1,5 +1,28 @@
 # @commercetools-frontend/application-shell
 
+## 21.19.0
+
+### Patch Changes
+
+- [#2877](https://github.com/commercetools/merchant-center-application-kit/pull/2877) [`671436ba3`](https://github.com/commercetools/merchant-center-application-kit/commit/671436ba322ccbbed3301f54e73c0d669d026e0b) Thanks [@tdeekens](https://github.com/tdeekens)! - Fix to allow disabling Sentry and GTM through setting environment variable to `null`.
+
+- Updated dependencies [[`671436ba3`](https://github.com/commercetools/merchant-center-application-kit/commit/671436ba322ccbbed3301f54e73c0d669d026e0b)]:
+  - @commercetools-frontend/sentry@21.19.0
+  - @commercetools-frontend/actions-global@21.19.0
+  - @commercetools-frontend/application-shell-connectors@21.19.0
+  - @commercetools-frontend/i18n@21.19.0
+  - @commercetools-frontend/l10n@21.19.0
+  - @commercetools-frontend/permissions@21.19.0
+  - @commercetools-frontend/react-notifications@21.19.0
+  - @commercetools-frontend/application-components@21.19.0
+  - @commercetools-frontend/application-config@21.19.0
+  - @commercetools-frontend/assets@21.19.0
+  - @commercetools-frontend/browser-history@21.19.0
+  - @commercetools-frontend/constants@21.19.0
+  - @commercetools-frontend/notifications@21.19.0
+  - @commercetools-frontend/sdk@21.19.0
+  - @commercetools-frontend/url-utils@21.19.0
+
 ## 21.18.1
 
 ### Patch Changes

@@ -1,5 +1,21 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.19.0
+
+### Minor Changes
+
+- [#2864](https://github.com/commercetools/merchant-center-application-kit/pull/2864) [`bbfdd8478`](https://github.com/commercetools/merchant-center-application-kit/commit/bbfdd8478776dca2e4a2a13ce0b5866ec51dbcc8) Thanks [@emmenko](https://github.com/emmenko)! - The CLI command `config:sync` now attempts to automatically refresh the access token.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@21.19.0
+  - @commercetools-frontend/assets@21.19.0
+  - @commercetools-frontend/babel-preset-mc-app@21.19.0
+  - @commercetools-frontend/constants@21.19.0
+  - @commercetools-frontend/mc-dev-authentication@21.19.0
+  - @commercetools-frontend/mc-html-template@21.19.0
+
 ## 21.18.1
 
 ### Patch Changes
