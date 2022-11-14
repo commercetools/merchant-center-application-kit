@@ -72,7 +72,7 @@ export const redactUnsafeEventFields = (event: Event) => {
 };
 
 export const boot = () => {
-  if (window.app.trackingSentry) {
+  if (window.app.trackingSentry && window.app.trackingSentry !== 'null') {
     Sentry.init({
       dsn: window.app.trackingSentry,
       release: window.app.revision,
