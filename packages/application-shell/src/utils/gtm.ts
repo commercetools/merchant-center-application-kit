@@ -31,6 +31,10 @@ const getDataAttribute = (node: Node, key: string) => {
   }
   return undefined;
 };
+const isGtmEnabled = () =>
+  window.dataLayer &&
+  window.app.trackingGtm &&
+  window.app.trackingGtm !== 'null';
 
 // The way that tracking works is like so:
 //
@@ -117,7 +121,7 @@ export const trackTiming = ({
   value: string | number;
   label?: string;
 }) => {
-  if (window.dataLayer && window.app.trackingGtm) {
+  if (isGtmEnabled()) {
     logTracking({
       variable,
       value,
@@ -137,15 +141,13 @@ export const trackTiming = ({
 
 // Track custom dimensions
 export const trackApplicationName = (applicationName: string) => {
-  if (window.dataLayer && window.app.trackingGtm)
-    window.dataLayer.push({ applicationName });
+  if (isGtmEnabled()) window.dataLayer.push({ applicationName });
 };
 export const trackProjectKey = (projectKey?: string) => {
-  if (window.dataLayer && window.app.trackingGtm && projectKey)
-    window.dataLayer.push({ projectKey });
+  if (isGtmEnabled() && projectKey) window.dataLayer.push({ projectKey });
 };
 export const trackUserBusinessRole = (userBusinessRole?: string) => {
-  if (window.dataLayer && window.app.trackingGtm && userBusinessRole) {
+  if (isGtmEnabled() && userBusinessRole) {
     window.dataLayer.push({ userBusinessRole });
   }
 };
@@ -274,11 +276,9 @@ export const boot = (trackingEventList: TrackingList) => {
 };
 
 export const updateUser = (userId: string) => {
-  if (window.dataLayer && window.app.trackingGtm)
-    window.dataLayer.push({ userId });
+  if (isGtmEnabled()) window.dataLayer.push({ userId });
 };
 
 export const stopTrackingUser = () => {
-  if (window.dataLayer && window.app.trackingGtm)
-    window.dataLayer.push({ userId: undefined });
+  if (isGtmEnabled()) window.dataLayer.push({ userId: undefined });
 };
