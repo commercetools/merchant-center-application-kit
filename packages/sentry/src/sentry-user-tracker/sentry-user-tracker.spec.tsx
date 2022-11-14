@@ -1,12 +1,12 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
 import { render } from '@testing-library/react';
-import * as Sentry from '@sentry/browser';
+import * as Sentry from '@sentry/react';
 import SentryUserTracker from './sentry-user-tracker';
 
 declare let window: ApplicationWindow;
 
-jest.mock('@sentry/browser');
+jest.mock('@sentry/react');
 
 describe('rendering', () => {
   describe('when user is not defined', () => {

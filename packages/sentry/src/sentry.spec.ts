@@ -1,4 +1,4 @@
-import * as Sentry from '@sentry/browser';
+import * as Sentry from '@sentry/react';
 import sentryTestkit from 'sentry-testkit';
 import waitForExpect from 'wait-for-expect';
 import { reportErrorToSentry, redactUnsafeEventFields } from './sentry';
@@ -36,7 +36,7 @@ describe('reporting to sentry', () => {
     Sentry.init({
       dsn: DUMMY_DSN,
       release: 'test',
-      transport: sentryTransport as sentryTestkit.V7TransportFunction,
+      transport: sentryTransport,
     });
   });
 

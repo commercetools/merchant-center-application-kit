@@ -1,7 +1,7 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
 import { Component } from 'react';
-import * as Sentry from '@sentry/browser';
+import * as Sentry from '@sentry/react';
 
 declare let window: ApplicationWindow;
 
