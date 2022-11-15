@@ -3,5 +3,10 @@
   "compilerOptions": {
     "typeRoots": ["@types", "@types-extensions", "node_modules/@types"]
   },
-  "include": ["packages", "packages-backend", "visual-testing-app"]
+  "include": [
+    "packages",
+    "packages-backend",
+    "visual-testing-app",
+    "website-components-playground"
+  ]
 }

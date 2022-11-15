@@ -1,3 +1,4 @@
+import type { FormEvent } from 'react';
 import { Formik } from 'formik';
 import { FormDialog } from '@commercetools-frontend/application-components';
 import Spacings from '@commercetools-uikit/spacings';
@@ -9,11 +10,9 @@ import ModalController from '../components/modal-controller';
 
 const containerId = 'form-dialog';
 
-const FormDialogExample = (props) => (
+const FormDialogExample = () => (
   <LayoutApp>
     <PlaygroundController
-      // eslint-disable-next-line react/prop-types
-      {...props.pageContext}
       knobs={[
         {
           kind: 'text',
@@ -42,7 +41,7 @@ const FormDialogExample = (props) => (
           buttonLabel="Open Form Dialog"
         >
           {({ isOpen, setIsOpen }) => (
-            <Formik
+            <Formik<{ email: string }>
               initialValues={{ email: '' }}
               validate={(formikValues) => {
                 if (TextInput.isEmpty(formikValues.email)) {
@@ -54,17 +53,22 @@ const FormDialogExample = (props) => (
                 alert(`email: ${formikValues.email}`);
                 setIsOpen(false);
               }}
-              render={(formikProps) => (
+            >
+              {(formikProps) => (
                 <FormDialog
-                  title={values.title}
+                  title={values.title as string}
                   isOpen={isOpen}
                   onClose={() => setIsOpen(false)}
-                  size={values.size}
+                  size={values.size as 'm' | 'l' | 'scale'}
                   isPrimaryButtonDisabled={formikProps.isSubmitting}
                   onSecondaryButtonClick={formikProps.handleReset}
-                  onPrimaryButtonClick={formikProps.handleSubmit}
+                  onPrimaryButtonClick={(event) =>
+                    formikProps.handleSubmit(
+                      event as FormEvent<HTMLFormElement>
+                    )
+                  }
                   getParentSelector={() =>
-                    document.querySelector(`#${containerId}`)
+                    document.querySelector(`#${containerId}`) as HTMLElement
                   }
                 >
                   <Spacings.Stack scale="m">
@@ -73,7 +77,11 @@ const FormDialogExample = (props) => (
                       title="Email"
                       isRequired={true}
                       value={formikProps.values.email}
-                      errors={formikProps.errors.email}
+                      errors={
+                        TextField.toFieldErrors<{ email: string }>(
+                          formikProps.errors
+                        ).email
+                      }
                       touched={formikProps.touched.email}
                       onChange={formikProps.handleChange}
                       onBlur={formikProps.handleBlur}
@@ -81,7 +89,7 @@ const FormDialogExample = (props) => (
                   </Spacings.Stack>
                 </FormDialog>
               )}
-            />
+            </Formik>
           )}
         </ModalController>
       )}

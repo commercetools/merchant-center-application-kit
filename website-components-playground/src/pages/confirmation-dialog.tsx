@@ -7,11 +7,9 @@ import ModalController from '../components/modal-controller';
 
 const containerId = 'confirmation-dialog';
 
-const ConfirmationDialogExample = (props) => (
+const ConfirmationDialogExample = () => (
   <LayoutApp>
     <PlaygroundController
-      // eslint-disable-next-line react/prop-types
-      {...props.pageContext}
       knobs={[
         {
           kind: 'text',
@@ -47,10 +45,10 @@ const ConfirmationDialogExample = (props) => (
         >
           {({ isOpen, setIsOpen }) => (
             <ConfirmationDialog
-              title={values.title}
+              title={values.title as string}
               isOpen={isOpen}
               onClose={() => setIsOpen(false)}
-              size={values.size}
+              size={values.size as 'm' | 'l' | 'scale'}
               onCancel={() => {
                 setIsOpen(false);
               }}
@@ -59,11 +57,11 @@ const ConfirmationDialogExample = (props) => (
                 setIsOpen(false);
               }}
               getParentSelector={() =>
-                document.querySelector(`#${containerId}`)
+                document.querySelector(`#${containerId}`) as HTMLElement
               }
             >
               <Spacings.Stack scale="m">
-                {values.content.split('\n').map((text, index) => (
+                {(values.content as string).split('\n').map((text, index) => (
                   <Text.Body key={index}>{text}</Text.Body>
                 ))}
               </Spacings.Stack>

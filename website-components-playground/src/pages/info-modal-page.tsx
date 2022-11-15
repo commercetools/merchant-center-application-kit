@@ -6,11 +6,9 @@ import ModalController from '../components/modal-controller';
 
 const containerId = 'info-modal-page';
 
-const InfoModalPageExample = (props) => (
+const InfoModalPageExample = () => (
   <LayoutApp>
     <PlaygroundController
-      // eslint-disable-next-line react/prop-types
-      {...props.pageContext}
       knobs={[
         {
           kind: 'text',
@@ -35,12 +33,12 @@ const InfoModalPageExample = (props) => (
         >
           {({ isOpen, setIsOpen }) => (
             <InfoModalPage
-              title={values.title}
+              title={values.title as string}
               isOpen={isOpen}
               onClose={() => setIsOpen(false)}
-              subtitle={values.subtitle}
+              subtitle={values.subtitle as string}
               getParentSelector={() =>
-                document.querySelector(`#${containerId}`)
+                document.querySelector(`#${containerId}`) as HTMLElement
               }
             >
               <ModalController
@@ -56,7 +54,7 @@ const InfoModalPageExample = (props) => (
                     subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     onClose={() => setIsOpen(false)}
                     getParentSelector={() =>
-                      document.querySelector(`#${containerId}`)
+                      document.querySelector(`#${containerId}`) as HTMLElement
                     }
                   >
                     <ModalController
@@ -72,7 +70,9 @@ const InfoModalPageExample = (props) => (
                           subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                           onClose={() => setIsOpen(false)}
                           getParentSelector={() =>
-                            document.querySelector(`#${containerId}`)
+                            document.querySelector(
+                              `#${containerId}`
+                            ) as HTMLElement
                           }
                         >
                           <ModalController
@@ -88,7 +88,9 @@ const InfoModalPageExample = (props) => (
                                 subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                                 onClose={() => setIsOpen(false)}
                                 getParentSelector={() =>
-                                  document.querySelector(`#${containerId}`)
+                                  document.querySelector(
+                                    `#${containerId}`
+                                  ) as HTMLElement
                                 }
                               >
                                 <ModalController
@@ -106,7 +108,7 @@ const InfoModalPageExample = (props) => (
                                       getParentSelector={() =>
                                         document.querySelector(
                                           `#${containerId}`
-                                        )
+                                        ) as HTMLElement
                                       }
                                     >
                                       <Text.Body>

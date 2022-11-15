@@ -1,5 +1,6 @@
+import type { FormEvent } from 'react';
 import { Formik } from 'formik';
-import { CustomFormDetailPage } from '@commercetools-frontend/application-components';
+import { FormMainPage } from '@commercetools-frontend/application-components';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import TextInput from '@commercetools-uikit/text-input';
@@ -31,7 +32,7 @@ const exampleCustomTitleRow = (
 
 const exampleCustomTitleRowWithTitleAndSideContent = (
   <Spacings.Inline scale="m" justifyContent="space-between">
-    <CustomFormDetailPage.PageHeaderTitle
+    <FormMainPage.PageHeaderTitle
       title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       titleSize="big"
     />
@@ -43,23 +44,21 @@ const exampleCustomTitleRowWithTitleAndSideContent = (
   </Spacings.Inline>
 );
 
-const getCustomTitleRow = (useCustomTitleRow) => {
+const getCustomTitleRow = (useCustomTitleRow: string) => {
   switch (useCustomTitleRow) {
     case 'custom-form':
       return exampleCustomTitleRow;
     case 'custom-title-and-side-content':
       return exampleCustomTitleRowWithTitleAndSideContent;
     default:
-      break;
+      return null;
   }
 };
 
-const CustomFormDetailPageExample = (props) => {
+const FormMainPageExample = () => {
   return (
     <LayoutApp>
       <PlaygroundController
-        // eslint-disable-next-line react/prop-types
-        {...props.pageContext}
         knobs={[
           {
             kind: 'text',
@@ -90,19 +89,31 @@ const CustomFormDetailPageExample = (props) => {
             initialValue: 'default',
           },
           {
+            kind: 'text',
+            name: 'labelPrimaryButton',
+            label: 'Label Primary Button',
+            initialValue: 'Confirm',
+          },
+          {
+            kind: 'text',
+            name: 'labelSecondaryButton',
+            label: 'Label Secondary Button',
+            initialValue: 'Cancel',
+          },
+          {
             kind: 'select',
             name: 'hideControls',
             label: 'Hide Controls?',
             valueOptions: [
-              { value: false, label: 'No' },
-              { value: true, label: 'Yes' },
+              { value: 'false', label: 'No' },
+              { value: 'true', label: 'Yes' },
             ],
-            initialValue: false,
+            initialValue: 'false',
           },
         ]}
       >
         {({ values }) => (
-          <Formik
+          <Formik<{ email: string }>
             initialValues={{ email: '' }}
             validate={(formikValues) => {
               if (TextInput.isEmpty(formikValues.email)) {
@@ -113,46 +124,46 @@ const CustomFormDetailPageExample = (props) => {
             onSubmit={(formikValues) => {
               alert(`email: ${formikValues.email}`);
             }}
-            render={(formikProps) => (
-              <CustomFormDetailPage
-                title={values.title}
-                subtitle={values.subtitle}
-                customTitleRow={getCustomTitleRow(values.useCustomTitleRow)}
-                onPreviousPathClick={() => alert('Go back clicked')}
-                hideControls={values.hideControls}
-                formControls={
-                  <>
-                    <CustomFormDetailPage.FormSecondaryButton
-                      onClick={formikProps.handleReset}
-                    />
-                    <CustomFormDetailPage.FormPrimaryButton
-                      onClick={formikProps.handleSubmit}
-                    />
-                    <CustomFormDetailPage.FormDeleteButton
-                      onClick={() => null}
-                      isDisabled={true}
-                    />
-                  </>
+          >
+            {(formikProps) => (
+              <FormMainPage
+                title={values.title as string}
+                subtitle={values.subtitle as string}
+                customTitleRow={getCustomTitleRow(
+                  values.useCustomTitleRow as string
+                )}
+                isPrimaryButtonDisabled={formikProps.isSubmitting}
+                isSecondaryButtonDisabled={formikProps.isSubmitting}
+                labelSecondaryButton={values.labelSecondaryButton as string}
+                labelPrimaryButton={values.labelPrimaryButton as string}
+                onSecondaryButtonClick={formikProps.handleReset}
+                onPrimaryButtonClick={(event) =>
+                  formikProps.handleSubmit(event as FormEvent<HTMLFormElement>)
                 }
+                hideControls={Boolean(values.hideControls)}
               >
                 <TextField
                   name="email"
                   title="Email"
                   isRequired={true}
                   value={formikProps.values.email}
-                  errors={formikProps.errors.email}
+                  errors={
+                    TextField.toFieldErrors<{ email: string }>(
+                      formikProps.errors
+                    ).email
+                  }
                   touched={formikProps.touched.email}
                   onChange={formikProps.handleChange}
                   onBlur={formikProps.handleBlur}
                 />
-              </CustomFormDetailPage>
+              </FormMainPage>
             )}
-          />
+          </Formik>
         )}
       </PlaygroundController>
     </LayoutApp>
   );
 };
-CustomFormDetailPageExample.displayName = 'CustomFormDetailPageExample';
+FormMainPageExample.displayName = 'FormMainPageExample';
 
-export default CustomFormDetailPageExample;
+export default FormMainPageExample;

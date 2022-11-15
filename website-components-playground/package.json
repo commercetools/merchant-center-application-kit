@@ -3,18 +3,18 @@
   "version": "21.19.0",
   "private": true,
   "scripts": {
-    "clean": "gatsby clean",
-    "build:local": "gatsby build",
-    "build": "gatsby build --prefix-paths --verbose --log-pages",
-    "start": "gatsby develop --port 8001",
-    "serve": "gatsby serve"
+    "start": "vite --port 8001",
+    "build": "vite build",
+    "preview": "vite preview --port 8001"
   },
   "dependencies": {
     "@commercetools-frontend/application-components": "21.19.0",
+    "@commercetools-frontend/browser-history": "21.19.0",
     "@commercetools-frontend/i18n": "21.19.0",
     "@commercetools-uikit/design-system": "^15.3.0",
     "@commercetools-uikit/icon-button": "^15.3.0",
     "@commercetools-uikit/icons": "^15.3.0",
+    "@commercetools-uikit/link": "^15.3.0",
     "@commercetools-uikit/multiline-text-field": "^15.3.0",
     "@commercetools-uikit/secondary-button": "^15.3.0",
     "@commercetools-uikit/select-field": "^15.3.0",
@@ -24,19 +24,16 @@
     "@commercetools-uikit/text-input": "^15.3.0",
     "@emotion/react": "11.10.4",
     "@emotion/styled": "11.10.4",
-    "@fontsource/open-sans": "4.5.13",
-    "core-js": "^3.25.1",
     "formik": "2.2.9",
-    "gatsby": "4.24.4",
-    "gatsby-cli": "4.24.0",
-    "gatsby-plugin-emotion": "7.24.0",
-    "gatsby-source-filesystem": "4.24.0",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.37",
-    "prop-types": "15.8.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-intl": "^5.25.1",
     "react-router-dom": "5.3.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "2.1.0",
+    "vite": "3.1.8"
   }
 }

@@ -1,4 +1,4 @@
-import { InfoDetailPage } from '@commercetools-frontend/application-components';
+import { InfoMainPage } from '@commercetools-frontend/application-components';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import TextInput from '@commercetools-uikit/text-input';
@@ -29,7 +29,7 @@ const exampleCustomTitleRow = (
 
 const exampleCustomTitleRowWithTitleAndSideContent = (
   <Spacings.Inline scale="m" justifyContent="space-between">
-    <InfoDetailPage.PageHeaderTitle
+    <InfoMainPage.PageHeaderTitle
       title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       titleSize="big"
     />
@@ -41,23 +41,21 @@ const exampleCustomTitleRowWithTitleAndSideContent = (
   </Spacings.Inline>
 );
 
-const getCustomTitleRow = (useCustomTitleRow) => {
+const getCustomTitleRow = (useCustomTitleRow: string) => {
   switch (useCustomTitleRow) {
     case 'custom-form':
       return exampleCustomTitleRow;
     case 'custom-title-and-side-content':
       return exampleCustomTitleRowWithTitleAndSideContent;
     default:
-      break;
+      return null;
   }
 };
 
-const InfoDetailPageExample = (props) => {
+const InfoMainPageExample = () => {
   return (
     <LayoutApp>
       <PlaygroundController
-        // eslint-disable-next-line react/prop-types
-        {...props.pageContext}
         knobs={[
           {
             kind: 'text',
@@ -90,11 +88,12 @@ const InfoDetailPageExample = (props) => {
         ]}
       >
         {({ values }) => (
-          <InfoDetailPage
-            title={values.title}
-            subtitle={values.subtitle}
-            customTitleRow={getCustomTitleRow(values.useCustomTitleRow)}
-            onPreviousPathClick={() => alert('Go back clicked')}
+          <InfoMainPage
+            title={values.title as string}
+            subtitle={values.subtitle as string}
+            customTitleRow={getCustomTitleRow(
+              values.useCustomTitleRow as string
+            )}
           >
             <Text.Body>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
@@ -116,12 +115,12 @@ const InfoDetailPageExample = (props) => {
               ac ante ipsum primis in faucibus. In hac habitasse platea
               dictumst.
             </Text.Body>
-          </InfoDetailPage>
+          </InfoMainPage>
         )}
       </PlaygroundController>
     </LayoutApp>
   );
 };
-InfoDetailPageExample.displayName = 'InfoDetailPageExample';
+InfoMainPageExample.displayName = 'InfoMainPageExample';
 
-export default InfoDetailPageExample;
+export default InfoMainPageExample;
