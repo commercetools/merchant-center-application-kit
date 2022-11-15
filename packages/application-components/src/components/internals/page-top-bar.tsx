@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl';
 import { ListIcon } from '@commercetools-uikit/icons';
 import FlatButton from '@commercetools-uikit/flat-button';
 import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens as appKitDesignTokens } from '../../theming';
 import messages from './messages';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
@@ -41,7 +42,7 @@ const PageTopBar = (props: Props) => {
         align-items: center;
         justify-content: space-between;
         background-color: ${props.color === 'neutral'
-          ? customProperties.colorNeutral95
+          ? appKitDesignTokens.backgroundColorForPageHeader
           : customProperties.colorSurface};
       `}
     >
