@@ -1,11 +1,23 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
+import { type ReactNode, useState } from 'react';
 import { IntlProvider } from 'react-intl';
 import { useAsyncLocaleData } from '@commercetools-frontend/i18n';
 
+export type TAvailableLocaleOption = {
+  label: string;
+  value: string;
+};
+export type TIntlControllerFunctionOptions = {
+  locale: string;
+  setLocale: (nextLocale: string) => void;
+  availableLocaleOptions: TAvailableLocaleOption[];
+};
+type TIntlControllerProps = {
+  children: (options: TIntlControllerFunctionOptions) => ReactNode;
+};
+
 const availableLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN'];
 
-const namifyLocale = (locale) => {
+const namifyLocale = (locale: string) => {
   switch (locale) {
     case 'en':
       return 'English';
@@ -29,7 +41,7 @@ const availableLocaleOptions = availableLocales.map((locale) => ({
 
 const loadApplicationMessages = () => Promise.resolve({});
 
-const IntlController = (props) => {
+const IntlController = (props: TIntlControllerProps) => {
   const [activeLocale, setActiveLocale] = useState('en');
   const { messages } = useAsyncLocaleData({
     locale: activeLocale,
@@ -46,8 +58,5 @@ const IntlController = (props) => {
   );
 };
 IntlController.displayName = 'IntlController';
-IntlController.propTypes = {
-  children: PropTypes.func.isRequired,
-};
 
 export default IntlController;
