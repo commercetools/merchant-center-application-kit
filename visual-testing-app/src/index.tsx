@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom';
+import { useState } from 'react';
 import { css, Global } from '@emotion/react';
 import {
   customProperties,
@@ -9,35 +10,50 @@ import {
   themesOverrides,
 } from '@commercetools-frontend/application-components';
 import Application from './application';
+import ThemeSwitcher, {
+  ThemeName,
+} from './components/theme-switcher/theme-switcher';
 
-ReactDOM.render(
-  <>
-    <ThemeProvider theme="default" themeOverrides={themesOverrides.default} />
-    <Global
-      styles={css`
-        *,
-        *::before,
-        *::after {
-          box-sizing: inherit;
-        }
+const Main = () => {
+  const [selectedTheme, updateTheme] = useState<ThemeName>('default');
 
-        html,
-        body {
-          color: ${customProperties.colorSolid};
-          font-family: ${customProperties.fontFamilyDefault};
-          font-size: 13px;
-          margin: 0;
-          padding: 0;
-          height: 100vh;
-        }
+  return (
+    <>
+      <ThemeProvider
+        theme={selectedTheme}
+        themeOverrides={themesOverrides[selectedTheme]}
+      />
+      <ThemeSwitcher
+        selectedTheme={selectedTheme}
+        onThemeChange={(newTheme) => updateTheme(newTheme)}
+      />
+      <Global
+        styles={css`
+          *,
+          *::before,
+          *::after {
+            box-sizing: inherit;
+          }
 
-        html {
-          box-sizing: border-box;
-        }
-      `}
-    />
-    <PortalsContainer />
-    <Application />
-  </>,
-  document.getElementById('app')
-);
+          html,
+          body {
+            color: ${customProperties.colorSolid};
+            font-family: ${customProperties.fontFamilyDefault};
+            font-size: 13px;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+          }
+
+          html {
+            box-sizing: border-box;
+          }
+        `}
+      />
+      <PortalsContainer />
+      <Application />
+    </>
+  );
+};
+
+ReactDOM.render(<Main />, document.getElementById('app'));
