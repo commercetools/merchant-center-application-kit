@@ -16,6 +16,7 @@ import ThemeSwitcher, {
 
 const Main = () => {
   const [selectedTheme, updateTheme] = useState<ThemeName>('default');
+  const isLocalEnvironment = process.env.NODE_ENV === 'development';
 
   return (
     <>
@@ -23,10 +24,12 @@ const Main = () => {
         theme={selectedTheme}
         themeOverrides={themesOverrides[selectedTheme]}
       />
-      <ThemeSwitcher
-        selectedTheme={selectedTheme}
-        onThemeChange={(newTheme) => updateTheme(newTheme)}
-      />
+      {isLocalEnvironment ? (
+        <ThemeSwitcher
+          selectedTheme={selectedTheme}
+          onThemeChange={(newTheme) => updateTheme(newTheme)}
+        />
+      ) : null}
       <Global
         styles={css`
           *,

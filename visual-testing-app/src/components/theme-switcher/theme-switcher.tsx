@@ -15,11 +15,12 @@ const ThemeSwitcher = ({
     <div
       style={{
         position: 'absolute',
-        top: '14px',
-        right: '32px',
+        top: '8px',
+        right: '16px',
         padding: `${designTokens.spacingXs} ${designTokens.spacingS}`,
-        backgroundColor: designTokens.colorNeutral90,
+        backgroundColor: designTokens.colorAccent95,
         border: `1px solid ${designTokens.colorNeutral}`,
+        zIndex: 11000,
       }}
     >
       <label style={{ marginRight: designTokens.spacingS }}>
