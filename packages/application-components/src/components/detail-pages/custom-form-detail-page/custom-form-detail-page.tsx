@@ -19,6 +19,10 @@ const DetailPageContainer = styled.div`
   border-bottom: 1px ${appKitDesignTokens.colorForPageHeaderBottomBorder} solid;
 `;
 
+const HeaderControlsWrapper = styled.div`
+  margin-top: ${appKitDesignTokens.marginTopForPageHeaderControls};
+`;
+
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin
 // does not recognize the object shape.
@@ -81,25 +85,25 @@ const CustomFormDetailPage = (props: CustomFormDetailPageProps) => {
   return (
     <PageWrapper>
       <DetailPageContainer>
-        <Spacings.Stack>
-          <PageTopBar
-            color="neutral"
-            previousPathLabel={props.previousPathLabel}
-            onClick={props.onPreviousPathClick}
+        <PageTopBar
+          color="neutral"
+          previousPathLabel={props.previousPathLabel}
+          onClick={props.onPreviousPathClick}
+        />
+        {props.customTitleRow || (
+          <PageHeaderTitle
+            title={props.title ?? ''}
+            subtitle={props.subtitle}
+            titleSize="big"
           />
-          {props.customTitleRow || (
-            <PageHeaderTitle
-              title={props.title ?? ''}
-              subtitle={props.subtitle}
-              titleSize="big"
-            />
-          )}
-          {!props.hideControls && props.formControls && (
+        )}
+        {!props.hideControls && props.formControls && (
+          <HeaderControlsWrapper>
             <Spacings.Inline justifyContent="flex-end">
               {props.formControls}
             </Spacings.Inline>
-          )}
-        </Spacings.Stack>
+          </HeaderControlsWrapper>
+        )}
       </DetailPageContainer>
       <ContentWrapper>{props.children}</ContentWrapper>
     </PageWrapper>

@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens as appKitDesignTokens } from '../../../theming';
 
 export const MainPageContainer = styled.div`
-  padding: ${customProperties.spacingM};
+  padding: ${appKitDesignTokens.paddingForPageHeader};
 `;
 
 export const Divider = styled.hr`
-  background-color: ${customProperties.colorNeutral60};
+  background-color: ${appKitDesignTokens.backgroundColorForMainPageDivider};
   height: 1px;
   border: 0;
 `;
@@ -15,5 +15,5 @@ export const MainPageContent = styled.div`
   flex: 1;
   flex-basis: 0;
   overflow: auto;
-  padding: ${customProperties.spacingM};
+  padding: ${appKitDesignTokens.paddingForPageContent};
 `;

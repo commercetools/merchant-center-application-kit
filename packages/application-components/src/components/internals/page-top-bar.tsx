@@ -41,6 +41,7 @@ const PageTopBar = (props: Props) => {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin-bottom: ${appKitDesignTokens.marginBottomForPageTopBar};
         background-color: ${props.color === 'neutral'
           ? appKitDesignTokens.backgroundColorForPageHeader
           : customProperties.colorSurface};

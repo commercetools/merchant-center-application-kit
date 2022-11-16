@@ -41,7 +41,8 @@ const Main = () => {
           html,
           body {
             color: ${customProperties.colorSolid};
-            font-family: ${customProperties.fontFamilyDefault};
+            font-family: ${customProperties.fontFamily};
+            /* Waiting for ui-kit to expose fontSizeForBody token*/
             font-size: 13px;
             margin: 0;
             padding: 0;

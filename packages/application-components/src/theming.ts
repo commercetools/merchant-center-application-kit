@@ -8,8 +8,11 @@ export const themesOverrides = {
     colorSolid: '#1a1a1a',
     colorSurface: '#fff',
     colorForPageHeaderBottomBorder: uiKitDesignTokens.colorNeutral,
+    backgroundColorForMainPageDivider: uiKitDesignTokens.colorNeutral60,
     backgroundColorForPageHeader: uiKitDesignTokens.colorNeutral95,
-    paddingForPageHeader: `${uiKitDesignTokens.spacingM} ${uiKitDesignTokens.spacingM}`,
+    marginBottomForPageTopBar: uiKitDesignTokens.spacingS,
+    marginTopForPageHeaderControls: uiKitDesignTokens.spacingS,
+    paddingForPageHeader: `${uiKitDesignTokens.spacingM}`,
     paddingForPageContent: uiKitDesignTokens.spacingM,
   },
   test: {
@@ -18,7 +21,10 @@ export const themesOverrides = {
     colorSolid: '#1a1a1a',
     colorSurface: '#fff',
     colorForPageHeaderBottomBorder: uiKitDesignTokens.colorNeutral90,
+    backgroundColorForMainPageDivider: uiKitDesignTokens.colorNeutral90,
     backgroundColorForPageHeader: uiKitDesignTokens.colorSurface,
+    marginBottomForPageTopBar: uiKitDesignTokens.spacingL,
+    marginTopForPageHeaderControls: uiKitDesignTokens.spacingS,
     // TODO: 40px is to be updated once ui-kit export a new spacing size
     paddingForPageHeader: `${uiKitDesignTokens.spacingXl} 40px`,
     paddingForPageContent: `${uiKitDesignTokens.spacingL} 40px`,
