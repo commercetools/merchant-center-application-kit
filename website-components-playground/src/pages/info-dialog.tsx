@@ -7,11 +7,9 @@ import PlaygroundController from '../components/playground-controller';
 
 const containerId = 'info-dialog';
 
-const InfoDialogExample = (props) => (
+const InfoDialogExample = () => (
   <LayoutApp>
     <PlaygroundController
-      // eslint-disable-next-line react/prop-types
-      {...props.pageContext}
       knobs={[
         {
           kind: 'text',
@@ -47,16 +45,16 @@ const InfoDialogExample = (props) => (
         >
           {({ isOpen, setIsOpen }) => (
             <InfoDialog
-              title={values.title}
-              size={values.size}
+              title={values.title as string}
+              size={values.size as 'm' | 'l' | 'scale'}
               isOpen={isOpen}
               onClose={() => setIsOpen(false)}
               getParentSelector={() =>
-                document.querySelector(`#${containerId}`)
+                document.querySelector(`#${containerId}`) as HTMLElement
               }
             >
               <Spacings.Stack scale="m">
-                {values.content.split('\n').map((text, index) => (
+                {(values.content as string).split('\n').map((text, index) => (
                   <Text.Body key={index}>{text}</Text.Body>
                 ))}
               </Spacings.Stack>

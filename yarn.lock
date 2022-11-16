@@ -3311,19 +3311,19 @@ __metadata:
   resolution: "@commercetools-applications/merchant-center-template-starter-typescript@workspace:application-templates/starter-typescript"
   dependencies:
     "@apollo/client": 3.7.0
-    "@commercetools-frontend/actions-global": 21.18.1
-    "@commercetools-frontend/application-components": 21.18.1
-    "@commercetools-frontend/application-config": 21.18.1
-    "@commercetools-frontend/application-shell": 21.18.1
-    "@commercetools-frontend/application-shell-connectors": 21.18.1
-    "@commercetools-frontend/assets": 21.18.1
-    "@commercetools-frontend/constants": 21.18.1
-    "@commercetools-frontend/eslint-config-mc-app": 21.18.1
-    "@commercetools-frontend/i18n": 21.18.1
-    "@commercetools-frontend/jest-preset-mc-app": 21.18.1
-    "@commercetools-frontend/mc-dev-authentication": 21.18.1
-    "@commercetools-frontend/mc-scripts": 21.18.1
-    "@commercetools-frontend/permissions": 21.18.1
+    "@commercetools-frontend/actions-global": 21.19.0
+    "@commercetools-frontend/application-components": 21.19.0
+    "@commercetools-frontend/application-config": 21.19.0
+    "@commercetools-frontend/application-shell": 21.19.0
+    "@commercetools-frontend/application-shell-connectors": 21.19.0
+    "@commercetools-frontend/assets": 21.19.0
+    "@commercetools-frontend/constants": 21.19.0
+    "@commercetools-frontend/eslint-config-mc-app": 21.19.0
+    "@commercetools-frontend/i18n": 21.19.0
+    "@commercetools-frontend/jest-preset-mc-app": 21.19.0
+    "@commercetools-frontend/mc-dev-authentication": 21.19.0
+    "@commercetools-frontend/mc-scripts": 21.19.0
+    "@commercetools-frontend/permissions": 21.19.0
     "@commercetools-test-data/channel": 4.1.1
     "@commercetools-test-data/commons": 4.1.1
     "@commercetools-test-data/core": 4.1.1
@@ -3374,18 +3374,18 @@ __metadata:
   resolution: "@commercetools-applications/merchant-center-template-starter@workspace:application-templates/starter"
   dependencies:
     "@apollo/client": 3.7.0
-    "@commercetools-frontend/actions-global": 21.18.1
-    "@commercetools-frontend/application-components": 21.18.1
-    "@commercetools-frontend/application-shell": 21.18.1
-    "@commercetools-frontend/application-shell-connectors": 21.18.1
-    "@commercetools-frontend/assets": 21.18.1
-    "@commercetools-frontend/constants": 21.18.1
-    "@commercetools-frontend/eslint-config-mc-app": 21.18.1
-    "@commercetools-frontend/i18n": 21.18.1
-    "@commercetools-frontend/jest-preset-mc-app": 21.18.1
-    "@commercetools-frontend/mc-dev-authentication": 21.18.1
-    "@commercetools-frontend/mc-scripts": 21.18.1
-    "@commercetools-frontend/permissions": 21.18.1
+    "@commercetools-frontend/actions-global": 21.19.0
+    "@commercetools-frontend/application-components": 21.19.0
+    "@commercetools-frontend/application-shell": 21.19.0
+    "@commercetools-frontend/application-shell-connectors": 21.19.0
+    "@commercetools-frontend/assets": 21.19.0
+    "@commercetools-frontend/constants": 21.19.0
+    "@commercetools-frontend/eslint-config-mc-app": 21.19.0
+    "@commercetools-frontend/i18n": 21.19.0
+    "@commercetools-frontend/jest-preset-mc-app": 21.19.0
+    "@commercetools-frontend/mc-dev-authentication": 21.19.0
+    "@commercetools-frontend/mc-scripts": 21.19.0
+    "@commercetools-frontend/permissions": 21.19.0
     "@commercetools-test-data/channel": 4.1.1
     "@commercetools-test-data/commons": 4.1.1
     "@commercetools-test-data/core": 4.1.1
@@ -3453,7 +3453,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-backend/express@21.18.1, @commercetools-backend/express@workspace:packages-backend/express":
+"@commercetools-backend/express@21.19.0, @commercetools-backend/express@workspace:packages-backend/express":
   version: 0.0.0-use.local
   resolution: "@commercetools-backend/express@workspace:packages-backend/express"
   dependencies:
@@ -3477,7 +3477,7 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@sentry/node": 7.16.0
+    "@sentry/node": 7.19.0
     "@tsconfig/node16": ^1.0.3
     "@types/triple-beam": 1.3.2
     express: 4.18.2
@@ -3636,16 +3636,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-frontend/actions-global@21.18.1, @commercetools-frontend/actions-global@workspace:packages/actions-global":
+"@commercetools-frontend/actions-global@21.19.0, @commercetools-frontend/actions-global@workspace:packages/actions-global":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/actions-global@workspace:packages/actions-global"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/browser-history": 21.18.1
-    "@commercetools-frontend/constants": 21.18.1
-    "@commercetools-frontend/notifications": 21.18.1
-    "@commercetools-frontend/sentry": 21.18.1
+    "@commercetools-frontend/browser-history": 21.19.0
+    "@commercetools-frontend/constants": 21.19.0
+    "@commercetools-frontend/notifications": 21.19.0
+    "@commercetools-frontend/sentry": 21.19.0
     "@types/lodash": ^4.14.185
     "@types/react": ^17.0.49
     "@types/react-redux": ^7.1.24
@@ -3661,17 +3661,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/application-components@21.18.1, @commercetools-frontend/application-components@workspace:packages/application-components":
+"@commercetools-frontend/application-components@21.19.0, @commercetools-frontend/application-components@workspace:packages/application-components":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/application-components@workspace:packages/application-components"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/application-shell-connectors": 21.18.1
-    "@commercetools-frontend/assets": 21.18.1
-    "@commercetools-frontend/constants": 21.18.1
-    "@commercetools-frontend/i18n": 21.18.1
-    "@commercetools-frontend/l10n": 21.18.1
+    "@commercetools-frontend/application-shell-connectors": 21.19.0
+    "@commercetools-frontend/assets": 21.19.0
+    "@commercetools-frontend/constants": 21.19.0
+    "@commercetools-frontend/i18n": 21.19.0
+    "@commercetools-frontend/l10n": 21.19.0
     "@commercetools-uikit/card": ^15.3.0
     "@commercetools-uikit/constraints": ^15.3.0
     "@commercetools-uikit/design-system": ^15.3.0
@@ -3713,14 +3713,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/application-config@21.18.1, @commercetools-frontend/application-config@workspace:packages/application-config":
+"@commercetools-frontend/application-config@21.19.0, @commercetools-frontend/application-config@workspace:packages/application-config":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/application-config@workspace:packages/application-config"
   dependencies:
     "@babel/register": ^7.18.9
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/babel-preset-mc-app": 21.18.1
+    "@commercetools-frontend/babel-preset-mc-app": 21.19.0
     "@types/jsdom": ^16.2.15
     ajv: 8.11.0
     core-js: ^3.25.1
@@ -3734,15 +3734,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/application-shell-connectors@21.18.1, @commercetools-frontend/application-shell-connectors@workspace:packages/application-shell-connectors":
+"@commercetools-frontend/application-shell-connectors@21.19.0, @commercetools-frontend/application-shell-connectors@workspace:packages/application-shell-connectors":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/application-shell-connectors@workspace:packages/application-shell-connectors"
   dependencies:
     "@apollo/client": 3.7.0
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/constants": 21.18.1
-    "@commercetools-frontend/sentry": 21.18.1
+    "@commercetools-frontend/constants": 21.19.0
+    "@commercetools-frontend/sentry": 21.19.0
     "@emotion/react": 11.10.4
     "@testing-library/react": 12.1.5
     "@types/lodash": ^4.14.185
@@ -3760,28 +3760,28 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/application-shell@21.18.1, @commercetools-frontend/application-shell@workspace:packages/application-shell":
+"@commercetools-frontend/application-shell@21.19.0, @commercetools-frontend/application-shell@workspace:packages/application-shell":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/application-shell@workspace:packages/application-shell"
   dependencies:
     "@apollo/client": 3.7.0
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/actions-global": 21.18.1
-    "@commercetools-frontend/application-components": 21.18.1
-    "@commercetools-frontend/application-config": 21.18.1
-    "@commercetools-frontend/application-shell-connectors": 21.18.1
-    "@commercetools-frontend/assets": 21.18.1
-    "@commercetools-frontend/browser-history": 21.18.1
-    "@commercetools-frontend/constants": 21.18.1
-    "@commercetools-frontend/i18n": 21.18.1
-    "@commercetools-frontend/l10n": 21.18.1
-    "@commercetools-frontend/notifications": 21.18.1
-    "@commercetools-frontend/permissions": 21.18.1
-    "@commercetools-frontend/react-notifications": 21.18.1
-    "@commercetools-frontend/sdk": 21.18.1
-    "@commercetools-frontend/sentry": 21.18.1
-    "@commercetools-frontend/url-utils": 21.18.1
+    "@commercetools-frontend/actions-global": 21.19.0
+    "@commercetools-frontend/application-components": 21.19.0
+    "@commercetools-frontend/application-config": 21.19.0
+    "@commercetools-frontend/application-shell-connectors": 21.19.0
+    "@commercetools-frontend/assets": 21.19.0
+    "@commercetools-frontend/browser-history": 21.19.0
+    "@commercetools-frontend/constants": 21.19.0
+    "@commercetools-frontend/i18n": 21.19.0
+    "@commercetools-frontend/l10n": 21.19.0
+    "@commercetools-frontend/notifications": 21.19.0
+    "@commercetools-frontend/permissions": 21.19.0
+    "@commercetools-frontend/react-notifications": 21.19.0
+    "@commercetools-frontend/sdk": 21.19.0
+    "@commercetools-frontend/sentry": 21.19.0
+    "@commercetools-frontend/url-utils": 21.19.0
     "@commercetools-uikit/accessible-hidden": ^15.3.0
     "@commercetools-uikit/avatar": ^15.3.0
     "@commercetools-uikit/card": ^15.3.0
@@ -3861,13 +3861,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/assets@21.18.1, @commercetools-frontend/assets@workspace:packages/assets":
+"@commercetools-frontend/assets@21.19.0, @commercetools-frontend/assets@workspace:packages/assets":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/assets@workspace:packages/assets"
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/babel-preset-mc-app@21.18.1, @commercetools-frontend/babel-preset-mc-app@^21.18.1, @commercetools-frontend/babel-preset-mc-app@workspace:packages/babel-preset-mc-app":
+"@commercetools-frontend/babel-preset-mc-app@21.19.0, @commercetools-frontend/babel-preset-mc-app@^21.19.0, @commercetools-frontend/babel-preset-mc-app@workspace:packages/babel-preset-mc-app":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/babel-preset-mc-app@workspace:packages/babel-preset-mc-app"
   dependencies:
@@ -3899,7 +3899,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/browser-history@21.18.1, @commercetools-frontend/browser-history@workspace:packages/browser-history":
+"@commercetools-frontend/browser-history@21.19.0, @commercetools-frontend/browser-history@workspace:packages/browser-history":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/browser-history@workspace:packages/browser-history"
   dependencies:
@@ -3928,7 +3928,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/constants@21.18.1, @commercetools-frontend/constants@workspace:packages/constants":
+"@commercetools-frontend/constants@21.19.0, @commercetools-frontend/constants@workspace:packages/constants":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/constants@workspace:packages/constants"
   dependencies:
@@ -3961,8 +3961,8 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/application-config": 21.18.1
-    "@commercetools-frontend/application-shell": 21.18.1
+    "@commercetools-frontend/application-config": 21.19.0
+    "@commercetools-frontend/application-shell": 21.19.0
     "@manypkg/get-packages": 1.1.3
     cypress: 10.10.0
     semver: 7.3.8
@@ -3972,13 +3972,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/eslint-config-mc-app@21.18.1, @commercetools-frontend/eslint-config-mc-app@workspace:packages/eslint-config-mc-app":
+"@commercetools-frontend/eslint-config-mc-app@21.19.0, @commercetools-frontend/eslint-config-mc-app@workspace:packages/eslint-config-mc-app":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/eslint-config-mc-app@workspace:packages/eslint-config-mc-app"
   dependencies:
     "@babel/core": ^7.19.0
     "@babel/eslint-parser": ^7.18.9
-    "@commercetools-frontend/babel-preset-mc-app": ^21.18.1
+    "@commercetools-frontend/babel-preset-mc-app": ^21.19.0
     "@rushstack/eslint-patch": ^1.1.4
     "@typescript-eslint/eslint-plugin": ^5.37.0
     "@typescript-eslint/parser": ^5.37.0
@@ -4000,14 +4000,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/i18n@21.18.1, @commercetools-frontend/i18n@workspace:packages/i18n":
+"@commercetools-frontend/i18n@21.19.0, @commercetools-frontend/i18n@workspace:packages/i18n":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/i18n@workspace:packages/i18n"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
     "@commercetools-community-kit/i18n": ^0.3.0
-    "@commercetools-frontend/sentry": 21.18.1
+    "@commercetools-frontend/sentry": 21.19.0
     "@commercetools-uikit/i18n": ^15.3.0
     "@emotion/react": 11.10.4
     "@formatjs/cli": 4.8.4
@@ -4024,11 +4024,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/jest-preset-mc-app@21.18.1, @commercetools-frontend/jest-preset-mc-app@workspace:packages/jest-preset-mc-app":
+"@commercetools-frontend/jest-preset-mc-app@21.19.0, @commercetools-frontend/jest-preset-mc-app@workspace:packages/jest-preset-mc-app":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/jest-preset-mc-app@workspace:packages/jest-preset-mc-app"
   dependencies:
-    "@commercetools-frontend/babel-preset-mc-app": 21.18.1
+    "@commercetools-frontend/babel-preset-mc-app": 21.19.0
     "@formatjs/intl-getcanonicallocales": ^1.9.2
     "@formatjs/intl-listformat": ^7.0.0
     "@formatjs/intl-locale": ^2.4.47
@@ -4068,13 +4068,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/l10n@21.18.1, @commercetools-frontend/l10n@workspace:packages/l10n":
+"@commercetools-frontend/l10n@21.19.0, @commercetools-frontend/l10n@workspace:packages/l10n":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/l10n@workspace:packages/l10n"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/sentry": 21.18.1
+    "@commercetools-frontend/sentry": 21.19.0
     "@emotion/react": 11.10.4
     "@testing-library/react-hooks": 8.0.1
     "@types/prop-types": ^15.7.5
@@ -4095,26 +4095,26 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/mc-dev-authentication@21.18.1, @commercetools-frontend/mc-dev-authentication@workspace:packages/mc-dev-authentication":
+"@commercetools-frontend/mc-dev-authentication@21.19.0, @commercetools-frontend/mc-dev-authentication@workspace:packages/mc-dev-authentication":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/mc-dev-authentication@workspace:packages/mc-dev-authentication"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/application-config": 21.18.1
+    "@commercetools-frontend/application-config": 21.19.0
     "@tsconfig/node16": ^1.0.3
     express: 4.18.2
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/mc-html-template@21.18.1, @commercetools-frontend/mc-html-template@workspace:packages/mc-html-template":
+"@commercetools-frontend/mc-html-template@21.19.0, @commercetools-frontend/mc-html-template@workspace:packages/mc-html-template":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/mc-html-template@workspace:packages/mc-html-template"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/application-config": 21.18.1
-    "@commercetools-frontend/constants": 21.18.1
+    "@commercetools-frontend/application-config": 21.19.0
+    "@commercetools-frontend/constants": 21.19.0
     "@tsconfig/node16": ^1.0.3
     "@types/serialize-javascript": ^5.0.2
     html-webpack-plugin: 5.5.0
@@ -4124,19 +4124,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/mc-scripts@21.18.1, @commercetools-frontend/mc-scripts@workspace:packages/mc-scripts":
+"@commercetools-frontend/mc-scripts@21.19.0, @commercetools-frontend/mc-scripts@workspace:packages/mc-scripts":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/mc-scripts@workspace:packages/mc-scripts"
   dependencies:
     "@babel/core": ^7.19.0
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/application-config": 21.18.1
-    "@commercetools-frontend/assets": 21.18.1
-    "@commercetools-frontend/babel-preset-mc-app": 21.18.1
-    "@commercetools-frontend/constants": 21.18.1
-    "@commercetools-frontend/mc-dev-authentication": 21.18.1
-    "@commercetools-frontend/mc-html-template": 21.18.1
+    "@commercetools-frontend/application-config": 21.19.0
+    "@commercetools-frontend/assets": 21.19.0
+    "@commercetools-frontend/babel-preset-mc-app": 21.19.0
+    "@commercetools-frontend/constants": 21.19.0
+    "@commercetools-frontend/mc-dev-authentication": 21.19.0
+    "@commercetools-frontend/mc-html-template": 21.19.0
     "@commercetools/http-user-agent": 3.0.0
     "@pmmmwh/react-refresh-webpack-plugin": 0.5.8
     "@rollup/plugin-graphql": 1.1.0
@@ -4164,7 +4164,8 @@ __metadata:
     dotenv: 16.0.3
     dotenv-expand: 8.0.3
     fs-extra: 10.1.0
-    graphql-request: ^4.3.0
+    graphql: 16.6.0
+    graphql-request: 5.0.0
     graphql-tag: ^2.12.6
     html-webpack-plugin: 5.5.0
     json-loader: 0.5.7
@@ -4204,7 +4205,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/notifications@21.18.1, @commercetools-frontend/notifications@workspace:packages/notifications":
+"@commercetools-frontend/notifications@21.19.0, @commercetools-frontend/notifications@workspace:packages/notifications":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/notifications@workspace:packages/notifications"
   dependencies:
@@ -4216,14 +4217,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/permissions@21.18.1, @commercetools-frontend/permissions@workspace:packages/permissions":
+"@commercetools-frontend/permissions@21.19.0, @commercetools-frontend/permissions@workspace:packages/permissions":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/permissions@workspace:packages/permissions"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/application-shell-connectors": 21.18.1
-    "@commercetools-frontend/sentry": 21.18.1
+    "@commercetools-frontend/application-shell-connectors": 21.19.0
+    "@commercetools-frontend/sentry": 21.19.0
     "@emotion/react": 11.10.4
     "@types/lodash": ^4.14.185
     "@types/prop-types": ^15.7.5
@@ -4238,16 +4239,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/react-notifications@21.18.1, @commercetools-frontend/react-notifications@workspace:packages/react-notifications":
+"@commercetools-frontend/react-notifications@21.19.0, @commercetools-frontend/react-notifications@workspace:packages/react-notifications":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/react-notifications@workspace:packages/react-notifications"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/actions-global": 21.18.1
-    "@commercetools-frontend/constants": 21.18.1
-    "@commercetools-frontend/notifications": 21.18.1
-    "@commercetools-frontend/sentry": 21.18.1
+    "@commercetools-frontend/actions-global": 21.19.0
+    "@commercetools-frontend/constants": 21.19.0
+    "@commercetools-frontend/notifications": 21.19.0
+    "@commercetools-frontend/sentry": 21.19.0
     "@commercetools-uikit/design-system": ^15.3.0
     "@commercetools-uikit/hooks": ^15.3.0
     "@commercetools-uikit/icon-button": ^15.3.0
@@ -4284,13 +4285,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/sdk@21.18.1, @commercetools-frontend/sdk@workspace:packages/sdk":
+"@commercetools-frontend/sdk@21.19.0, @commercetools-frontend/sdk@workspace:packages/sdk":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/sdk@workspace:packages/sdk"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/constants": 21.18.1
+    "@commercetools-frontend/constants": 21.19.0
     "@commercetools/api-request-builder": 6.0.0
     "@commercetools/http-user-agent": 3.0.0
     "@commercetools/sdk-client": 3.0.0
@@ -4320,26 +4321,28 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/sentry@21.18.1, @commercetools-frontend/sentry@workspace:packages/sentry":
+"@commercetools-frontend/sentry@21.19.0, @commercetools-frontend/sentry@workspace:packages/sentry":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/sentry@workspace:packages/sentry"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.0
-    "@commercetools-frontend/constants": 21.18.1
-    "@sentry/browser": 7.14.0
+    "@commercetools-frontend/browser-history": 21.19.0
+    "@commercetools-frontend/constants": 21.19.0
+    "@sentry/react": 7.19.0
+    "@sentry/tracing": 7.19.0
     "@types/prop-types": ^15.7.5
     "@types/react": ^17.0.49
     prop-types: 15.8.1
     react: 17.0.2
-    sentry-testkit: 4.1.0
+    sentry-testkit: 5.0.3
     wait-for-expect: 3.0.2
   peerDependencies:
     react: 17.x
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/url-utils@21.18.1, @commercetools-frontend/url-utils@workspace:packages/url-utils":
+"@commercetools-frontend/url-utils@21.19.0, @commercetools-frontend/url-utils@workspace:packages/url-utils":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/url-utils@workspace:packages/url-utils"
   dependencies:
@@ -4352,20 +4355,20 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-local/playground@workspace:playground"
   dependencies:
-    "@commercetools-backend/express": 21.18.1
+    "@commercetools-backend/express": 21.19.0
     "@commercetools-docs/ui-kit": 19.7.0
-    "@commercetools-frontend/actions-global": 21.18.1
-    "@commercetools-frontend/application-components": 21.18.1
-    "@commercetools-frontend/application-shell": 21.18.1
-    "@commercetools-frontend/application-shell-connectors": 21.18.1
-    "@commercetools-frontend/assets": 21.18.1
-    "@commercetools-frontend/constants": 21.18.1
-    "@commercetools-frontend/i18n": 21.18.1
-    "@commercetools-frontend/l10n": 21.18.1
-    "@commercetools-frontend/mc-dev-authentication": 21.18.1
-    "@commercetools-frontend/mc-scripts": 21.18.1
-    "@commercetools-frontend/permissions": 21.18.1
-    "@commercetools-frontend/sdk": 21.18.1
+    "@commercetools-frontend/actions-global": 21.19.0
+    "@commercetools-frontend/application-components": 21.19.0
+    "@commercetools-frontend/application-shell": 21.19.0
+    "@commercetools-frontend/application-shell-connectors": 21.19.0
+    "@commercetools-frontend/assets": 21.19.0
+    "@commercetools-frontend/constants": 21.19.0
+    "@commercetools-frontend/i18n": 21.19.0
+    "@commercetools-frontend/l10n": 21.19.0
+    "@commercetools-frontend/mc-dev-authentication": 21.19.0
+    "@commercetools-frontend/mc-scripts": 21.19.0
+    "@commercetools-frontend/permissions": 21.19.0
+    "@commercetools-frontend/sdk": 21.19.0
     "@commercetools-uikit/card": ^15.3.0
     "@commercetools-uikit/checkbox-input": ^15.3.0
     "@commercetools-uikit/constraints": ^15.3.0
@@ -4405,10 +4408,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-local/visual-testing-app@workspace:visual-testing-app"
   dependencies:
-    "@commercetools-frontend/application-components": 21.18.1
-    "@commercetools-frontend/assets": 21.18.1
-    "@commercetools-frontend/constants": 21.18.1
-    "@commercetools-frontend/react-notifications": 21.18.1
+    "@commercetools-frontend/application-components": 21.19.0
+    "@commercetools-frontend/assets": 21.19.0
+    "@commercetools-frontend/constants": 21.19.0
+    "@commercetools-frontend/react-notifications": 21.19.0
     "@commercetools-uikit/accessible-button": ^15.3.0
     "@commercetools-uikit/card": ^15.3.0
     "@commercetools-uikit/design-system": ^15.3.0
@@ -4429,7 +4432,6 @@ __metadata:
     react-intl: ^5.25.1
     react-redux: 7.2.9
     react-router-dom: 5.3.4
-    rimraf: 3.0.2
     vite: 3.1.8
   languageName: unknown
   linkType: soft
@@ -5494,11 +5496,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-website/components-playground@workspace:website-components-playground"
   dependencies:
-    "@commercetools-frontend/application-components": 21.18.1
-    "@commercetools-frontend/i18n": 21.18.1
+    "@commercetools-frontend/application-components": 21.19.0
+    "@commercetools-frontend/browser-history": 21.19.0
+    "@commercetools-frontend/i18n": 21.19.0
     "@commercetools-uikit/design-system": ^15.3.0
     "@commercetools-uikit/icon-button": ^15.3.0
     "@commercetools-uikit/icons": ^15.3.0
+    "@commercetools-uikit/link": ^15.3.0
     "@commercetools-uikit/multiline-text-field": ^15.3.0
     "@commercetools-uikit/secondary-button": ^15.3.0
     "@commercetools-uikit/select-field": ^15.3.0
@@ -5508,20 +5512,15 @@ __metadata:
     "@commercetools-uikit/text-input": ^15.3.0
     "@emotion/react": 11.10.4
     "@emotion/styled": 11.10.4
-    "@fontsource/open-sans": 4.5.13
-    core-js: ^3.25.1
+    "@vitejs/plugin-react": 2.1.0
     formik: 2.2.9
-    gatsby: 4.24.4
-    gatsby-cli: 4.24.0
-    gatsby-plugin-emotion: 7.24.0
-    gatsby-source-filesystem: 4.24.0
     moment: ^2.29.4
     moment-timezone: ^0.5.37
-    prop-types: 15.8.1
     react: 17.0.2
     react-dom: 17.0.2
     react-intl: ^5.25.1
     react-router-dom: 5.3.4
+    vite: 3.1.8
   languageName: unknown
   linkType: soft
 
@@ -6386,13 +6385,6 @@ __metadata:
   peerDependencies:
     typescript: 4.x
   checksum: c566c75e8cf80a919eb6070ba5e2640558a0db901d2f298bcfe4797321b2838184eefad87595f5d6132ca95bad11ef4d198b6be4beea6b77ebd91b0d0fe72fe8
-  languageName: node
-  linkType: hard
-
-"@fontsource/open-sans@npm:4.5.13":
-  version: 4.5.13
-  resolution: "@fontsource/open-sans@npm:4.5.13"
-  checksum: f3bebdc1b274c48281e382ff76058fc2e5d45b946f5dcde36151423735b96e381c5152c875433a48667396ccce1c4e179cc33d55f26ec2ce9646fca89478653c
   languageName: node
   linkType: hard
 
@@ -9495,18 +9487,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/browser@npm:7.14.0":
-  version: 7.14.0
-  resolution: "@sentry/browser@npm:7.14.0"
-  dependencies:
-    "@sentry/core": 7.14.0
-    "@sentry/types": 7.14.0
-    "@sentry/utils": 7.14.0
-    tslib: ^1.9.3
-  checksum: e005547751ef5f38a53c85bf1f1d9e727f0d3a9e03aac634412bae52f1513b3a1975619915f97d873cacbe59a3341bfcfee0589bb88e933bb27b56e8406e1476
-  languageName: node
-  linkType: hard
-
 "@sentry/browser@npm:7.15.0":
   version: 7.15.0
   resolution: "@sentry/browser@npm:7.15.0"
@@ -9519,15 +9499,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/core@npm:7.14.0":
-  version: 7.14.0
-  resolution: "@sentry/core@npm:7.14.0"
+"@sentry/browser@npm:7.19.0":
+  version: 7.19.0
+  resolution: "@sentry/browser@npm:7.19.0"
   dependencies:
-    "@sentry/hub": 7.14.0
-    "@sentry/types": 7.14.0
-    "@sentry/utils": 7.14.0
+    "@sentry/core": 7.19.0
+    "@sentry/types": 7.19.0
+    "@sentry/utils": 7.19.0
     tslib: ^1.9.3
-  checksum: 3c8532992c83c99c6fd4bde77620078e8bdeb39fbc1c796cbc7f9701fe373e91e990a9d8740d4c1836167b7eeae5907233feeafe17ab38c74b64e65a8008cdce
+  checksum: c267fe90352174c151c2733b98ec7016c2873fa008d3c498a10bc8e3a5ddca7fe6375482f6b652eef9797d0a4931aeb9acec865a19a256e12b313b29ac24ce6e
   languageName: node
   linkType: hard
 
@@ -9542,47 +9522,56 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/core@npm:7.16.0":
-  version: 7.16.0
-  resolution: "@sentry/core@npm:7.16.0"
+"@sentry/core@npm:7.19.0":
+  version: 7.19.0
+  resolution: "@sentry/core@npm:7.19.0"
   dependencies:
-    "@sentry/types": 7.16.0
-    "@sentry/utils": 7.16.0
+    "@sentry/types": 7.19.0
+    "@sentry/utils": 7.19.0
     tslib: ^1.9.3
-  checksum: 033c775f9e4411dc4506617cea3d780b0696367ded01052d398e4a2e4752bb29de3ad15731cde07115995ed8c3ded2fea1b65231502eba87703cdfb35699d8b0
+  checksum: c75731c51abd28126cc9396852880e9d63b6e3eb7741cd6ba86d03e8ac21b915649fa82f46fcf64cddddbc345b0cfc78eea698c092aaa1435473a2d70c95da5a
   languageName: node
   linkType: hard
 
-"@sentry/hub@npm:7.14.0":
-  version: 7.14.0
-  resolution: "@sentry/hub@npm:7.14.0"
+"@sentry/node@npm:7.19.0":
+  version: 7.19.0
+  resolution: "@sentry/node@npm:7.19.0"
   dependencies:
-    "@sentry/types": 7.14.0
-    "@sentry/utils": 7.14.0
-    tslib: ^1.9.3
-  checksum: 7a8302bfe948d520c3505e1bf4fecc409a058e723797c9f20d6b4e2cd3be9298d623e2b220f254fc39fb8f3f5c243e39b661fc8aeb7a002b6ab45967c02d88a2
-  languageName: node
-  linkType: hard
-
-"@sentry/node@npm:7.16.0":
-  version: 7.16.0
-  resolution: "@sentry/node@npm:7.16.0"
-  dependencies:
-    "@sentry/core": 7.16.0
-    "@sentry/types": 7.16.0
-    "@sentry/utils": 7.16.0
+    "@sentry/core": 7.19.0
+    "@sentry/types": 7.19.0
+    "@sentry/utils": 7.19.0
     cookie: ^0.4.1
     https-proxy-agent: ^5.0.0
     lru_map: ^0.3.3
     tslib: ^1.9.3
-  checksum: 2bd68ec5cbf73b15e479c6a10620bb52046b4400c2906b08891ab440df2d5995c0e7ffff7f35483e4ee98f853ccf0152e2fa42380a331e5ccb3b7918d99a861a
+  checksum: 4a52a9cf8ad5555a024bb5b1f194e0bdf11b03e3f77b68eac34bd4aa88a85aeccdd373c8e1a1ac892e6a717a2c9af7ac46a93ab1c3a5da2e1073bfb267ab6e17
   languageName: node
   linkType: hard
 
-"@sentry/types@npm:7.14.0":
-  version: 7.14.0
-  resolution: "@sentry/types@npm:7.14.0"
-  checksum: daae2f0609790ae619c359b27d6a87269c1e136374514e3b41c87c0fe40ce3171822ebcdc2fbc05fdda86725d42147e1562cf32973c26c9179f2e5ba751d3396
+"@sentry/react@npm:7.19.0":
+  version: 7.19.0
+  resolution: "@sentry/react@npm:7.19.0"
+  dependencies:
+    "@sentry/browser": 7.19.0
+    "@sentry/types": 7.19.0
+    "@sentry/utils": 7.19.0
+    hoist-non-react-statics: ^3.3.2
+    tslib: ^1.9.3
+  peerDependencies:
+    react: 15.x || 16.x || 17.x || 18.x
+  checksum: e2aa6281abd9548389ca4073571b5a4dea8a78e2db0897bb2b0f499ba24401bbfd418a7b88a1bc7574dc31d8d69b2ebafc6579d884605459d9e8beef37c97316
+  languageName: node
+  linkType: hard
+
+"@sentry/tracing@npm:7.19.0":
+  version: 7.19.0
+  resolution: "@sentry/tracing@npm:7.19.0"
+  dependencies:
+    "@sentry/core": 7.19.0
+    "@sentry/types": 7.19.0
+    "@sentry/utils": 7.19.0
+    tslib: ^1.9.3
+  checksum: 510367409d145d2d34a535fb3912a8cbfc4e6365023434f631fbba1e949370bd11599799ff320787816b8422468b8ce5e4f76e38d47fda9bff65ac045ec233b0
   languageName: node
   linkType: hard
 
@@ -9593,20 +9582,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/types@npm:7.16.0":
-  version: 7.16.0
-  resolution: "@sentry/types@npm:7.16.0"
-  checksum: 5474085db149c80c23102ba12063fef27ac873a238963598eb3ca6dfd956672ecd25783f9f38b8a8ba905473e14f9af97e900749778957671861c1ef6d33f81a
-  languageName: node
-  linkType: hard
-
-"@sentry/utils@npm:7.14.0":
-  version: 7.14.0
-  resolution: "@sentry/utils@npm:7.14.0"
-  dependencies:
-    "@sentry/types": 7.14.0
-    tslib: ^1.9.3
-  checksum: f0587a542d1ac3b47e8fabe0237b1339de8e928d9be46e937e33c2b174f8b79aa5520d692ff51377cafd67de297aa052feca11e476b2b7d948d59aa3c81dcf5d
+"@sentry/types@npm:7.19.0":
+  version: 7.19.0
+  resolution: "@sentry/types@npm:7.19.0"
+  checksum: e7a309ff0a23af003f8afbf2c8a7158ce8070e5e63015dc6d06cca11de846fc8c51bea29d9486af0c32191031e6bb42a3c4500f437afe61252fbd20f3c8bfa28
   languageName: node
   linkType: hard
 
@@ -9620,13 +9599,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/utils@npm:7.16.0":
-  version: 7.16.0
-  resolution: "@sentry/utils@npm:7.16.0"
+"@sentry/utils@npm:7.19.0":
+  version: 7.19.0
+  resolution: "@sentry/utils@npm:7.19.0"
   dependencies:
-    "@sentry/types": 7.16.0
+    "@sentry/types": 7.19.0
     tslib: ^1.9.3
-  checksum: decff9f82e7b6b431b1d226f6567762bd2189357ceacb304be20413fcb07be62fad17433979f750e717a07e92625b250bf7493591550f6e146d8adc8d06d6721
+  checksum: 8d1e8c9288e60aed5a1ac22722a5da9606ae821ac39232a0eeba128b1512c48cf22145f7b989f7dca4ad55274bf4e1189871b672bb7387c66866009e0a5f4448
   languageName: node
   linkType: hard
 
@@ -22106,7 +22085,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql-request@npm:^4.0.0, graphql-request@npm:^4.3.0":
+"graphql-request@npm:5.0.0":
+  version: 5.0.0
+  resolution: "graphql-request@npm:5.0.0"
+  dependencies:
+    "@graphql-typed-document-node/core": ^3.1.1
+    cross-fetch: ^3.1.5
+    extract-files: ^9.0.0
+    form-data: ^3.0.0
+  peerDependencies:
+    graphql: 14 - 16
+  checksum: 2e8900d10cded401b253a05650719321123e3b0ad5bc57523288892e0226dccf43668ec937753420084f649fb4e3f998f2547c884b746a3e91fa0a43f93e62d4
+  languageName: node
+  linkType: hard
+
+"graphql-request@npm:^4.0.0":
   version: 4.3.0
   resolution: "graphql-request@npm:4.3.0"
   dependencies:
@@ -32411,13 +32404,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sentry-testkit@npm:4.1.0":
-  version: 4.1.0
-  resolution: "sentry-testkit@npm:4.1.0"
+"sentry-testkit@npm:5.0.3":
+  version: 5.0.3
+  resolution: "sentry-testkit@npm:5.0.3"
   dependencies:
     body-parser: ^1.19.0
     express: ^4.17.1
-  checksum: 0b96a44cfd66cca13af6fd28c74ba06ecc14f5fcf582a6dce61d6bd90d3e25440f9aa7881ba46836df25b8e4c62a10afe54d6815e4dc09d449d24247b11bb371
+  checksum: 5d78d18b268b32693cdd75852a3c075fd9d3ba04692323371aebdd5fb954ceb7b2b0180e0b9d01b813adbf34dce9646265b6dd5c9b5cc46f5da63aea30fb800a
   languageName: node
   linkType: hard
 

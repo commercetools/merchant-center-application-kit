@@ -1,5 +1,4 @@
-import { useLayoutEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import { useLayoutEffect, useState, type ReactNode } from 'react';
 import styled from '@emotion/styled';
 import { AngleRightIcon, AngleDownIcon } from '@commercetools-uikit/icons';
 import IconButton from '@commercetools-uikit/icon-button';
@@ -7,14 +6,22 @@ import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import { customProperties } from '@commercetools-uikit/design-system';
 import IntlController from './intl-controller';
-import KnobsController from './knobs-controller';
+import KnobsController, { type TKnob } from './knobs-controller';
+
+type TPlaygroundControllerFunctionOptions = {
+  values: Record<string, unknown>;
+};
+type TPlaygroundControllerProps = {
+  knobs: TKnob[];
+  children: (options: TPlaygroundControllerFunctionOptions) => ReactNode;
+};
 
 const PlaygroundContainer = styled.div`
   background-color: ${customProperties.colorNeutral95};
   border: 16px solid ${customProperties.colorNeutral95};
   border-radius: ${customProperties.borderRadius6};
 `;
-const PreviewContainer = styled.div`
+const PreviewContainer = styled.div<{ height: string }>`
   position: relative;
   width: 100%;
   overflow: hidden;
@@ -25,7 +32,7 @@ const PreviewContainer = styled.div`
   border-bottom: 1px solid ${customProperties.colorNeutral90};
 `;
 
-const PlaygroundController = (props) => {
+const PlaygroundController = (props: TPlaygroundControllerProps) => {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const togglePanel = () => {
     setIsPanelOpen(!isPanelOpen);
@@ -60,23 +67,6 @@ const PlaygroundController = (props) => {
       )}
     </IntlController>
   );
-};
-PlaygroundController.propTypes = {
-  knobs: PropTypes.arrayOf(
-    PropTypes.shape({
-      kind: PropTypes.oneOf(['text', 'text-multi', 'select']).isRequired,
-      name: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-      initialValue: PropTypes.any.isRequired,
-      valueOptions: PropTypes.arrayOf(
-        PropTypes.shape({
-          value: PropTypes.string.isRequired,
-          label: PropTypes.string.isRequired,
-        }).isRequired
-      ),
-    }).isRequired
-  ).isRequired,
-  children: PropTypes.func.isRequired,
 };
 
 export default PlaygroundController;

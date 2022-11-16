@@ -1,7 +1,8 @@
-import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type { Extra, Extras, Event } from '@sentry/types';
-
-import * as Sentry from '@sentry/browser';
+import * as Sentry from '@sentry/react';
+import { BrowserTracing } from '@sentry/tracing'; // Must import after `@sentry/react`
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
+import history from '@commercetools-frontend/browser-history';
 
 declare let window: ApplicationWindow;
 
@@ -72,7 +73,7 @@ export const redactUnsafeEventFields = (event: Event) => {
 };
 
 export const boot = () => {
-  if (window.app.trackingSentry) {
+  if (window.app.trackingSentry && window.app.trackingSentry !== 'null') {
     Sentry.init({
       dsn: window.app.trackingSentry,
       release: window.app.revision,
@@ -87,7 +88,16 @@ export const boot = () => {
           onunhandledrejection: false,
           onerror: false,
         }),
+        new BrowserTracing({
+          routingInstrumentation: Sentry.reactRouterV5Instrumentation(history),
+        }),
       ],
+      // Sending 20% of transactions. We can adjust that as we see a need to.
+      // Generally we need to find a balance between performance and data volume.
+      // If we need more flexible and dynamic way of gathering important samples,
+      // we can implement the `tracesSampler` function.
+      // https://docs.sentry.io/platforms/javascript/guides/react/configuration/sampling/#sampling-transaction-events
+      tracesSampleRate: 0.2,
       beforeSend(event) {
         return redactUnsafeEventFields(event);
       },

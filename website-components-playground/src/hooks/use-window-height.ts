@@ -4,7 +4,10 @@ const useWindowHeight = () => {
   const [height, setHeight] = useState(0);
 
   const updateHeight = useCallback(() => {
-    setHeight(document.querySelector('body').scrollHeight);
+    const bodyElement = document?.querySelector('body');
+    if (bodyElement) {
+      setHeight(bodyElement.scrollHeight);
+    }
   }, [setHeight]);
 
   useLayoutEffect(() => {

@@ -1,18 +1,17 @@
+import type { FormEvent } from 'react';
 import { Formik } from 'formik';
-import { FormModalPage } from '@commercetools-frontend/application-components';
+import { CustomFormModalPage } from '@commercetools-frontend/application-components';
 import TextInput from '@commercetools-uikit/text-input';
 import TextField from '@commercetools-uikit/text-field';
 import LayoutApp from '../layouts/layout-app';
 import PlaygroundController from '../components/playground-controller';
 import ModalController from '../components/modal-controller';
 
-const containerId = 'form-modal-page';
+const containerId = 'custom-form-modal-page';
 
-const FormModalPageExample = (props) => (
+const CustomFormModalPageExample = () => (
   <LayoutApp>
     <PlaygroundController
-      // eslint-disable-next-line react/prop-types
-      {...props.pageContext}
       knobs={[
         {
           kind: 'text',
@@ -29,37 +28,25 @@ const FormModalPageExample = (props) => (
             'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         },
         {
-          kind: 'text',
-          name: 'labelPrimaryButton',
-          label: 'Label Primary Button',
-          initialValue: 'Confirm',
-        },
-        {
-          kind: 'text',
-          name: 'labelSecondaryButton',
-          label: 'Label Secondary Button',
-          initialValue: 'Cancel',
-        },
-        {
           kind: 'select',
           name: 'hideControls',
           label: 'Hide Controls?',
           valueOptions: [
-            { value: false, label: 'No' },
-            { value: true, label: 'Yes' },
+            { value: 'false', label: 'No' },
+            { value: 'true', label: 'Yes' },
           ],
-          initialValue: false,
+          initialValue: 'false',
         },
       ]}
     >
       {({ values }) => (
         <ModalController
-          title="Open the Form Modal Page by clicking on the button"
-          buttonLabel="Open Form Modal Page"
+          title="Open the Custom Form Modal Page by clicking on the button"
+          buttonLabel="Open Custom Form Modal Page"
           containerId={containerId}
         >
           {({ isOpen, setIsOpen }) => (
-            <Formik
+            <Formik<{ email: string }>
               initialValues={{ email: '' }}
               validate={(formikValues) => {
                 if (TextInput.isEmpty(formikValues.email)) {
@@ -71,36 +58,53 @@ const FormModalPageExample = (props) => (
                 alert(`email: ${formikValues.email}`);
                 setIsOpen(false);
               }}
-              render={(formikProps) => (
-                <FormModalPage
-                  title={values.title}
-                  subtitle={values.subtitle}
+            >
+              {(formikProps) => (
+                <CustomFormModalPage
+                  title={values.title as string}
+                  subtitle={values.subtitle as string}
                   isOpen={isOpen}
                   onClose={() => setIsOpen(false)}
-                  isPrimaryButtonDisabled={formikProps.isSubmitting}
-                  isSecondaryButtonDisabled={formikProps.isSubmitting}
-                  labelSecondaryButton={values.labelSecondaryButton}
-                  labelPrimaryButton={values.labelPrimaryButton}
-                  onSecondaryButtonClick={formikProps.handleReset}
-                  onPrimaryButtonClick={formikProps.handleSubmit}
-                  getParentSelector={() =>
-                    document.querySelector(`#${containerId}`)
+                  formControls={
+                    <>
+                      <CustomFormModalPage.FormSecondaryButton
+                        onClick={formikProps.handleReset}
+                      />
+                      <CustomFormModalPage.FormPrimaryButton
+                        onClick={(event) =>
+                          formikProps.handleSubmit(
+                            event as FormEvent<HTMLFormElement>
+                          )
+                        }
+                      />
+                      <CustomFormModalPage.FormDeleteButton
+                        onClick={() => null}
+                        isDisabled={true}
+                      />
+                    </>
                   }
-                  hideControls={values.hideControls}
+                  hideControls={Boolean(values.hideControls)}
+                  getParentSelector={() =>
+                    document.querySelector(`#${containerId}`) as HTMLElement
+                  }
                 >
                   <TextField
                     name="email"
                     title="Email"
                     isRequired={true}
                     value={formikProps.values.email}
-                    errors={formikProps.errors.email}
+                    errors={
+                      TextField.toFieldErrors<{ email: string }>(
+                        formikProps.errors
+                      ).email
+                    }
                     touched={formikProps.touched.email}
                     onChange={formikProps.handleChange}
                     onBlur={formikProps.handleBlur}
                   />
-                </FormModalPage>
+                </CustomFormModalPage>
               )}
-            />
+            </Formik>
           )}
         </ModalController>
       )}
@@ -108,6 +112,6 @@ const FormModalPageExample = (props) => (
   </LayoutApp>
 );
 
-FormModalPageExample.displayName = 'FormModalPageExample';
+CustomFormModalPageExample.displayName = 'CustomFormModalPageExample';
 
-export default FormModalPageExample;
+export default CustomFormModalPageExample;

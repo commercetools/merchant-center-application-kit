@@ -23,7 +23,7 @@ process.on('unhandledRejection', (err) => {
 // Get the current directory where the CLI is executed from. Usually this is the application folder.
 const applicationDirectory = fs.realpathSync(process.cwd());
 
-const run = () => {
+async function run() {
   cli.option(
     '--env <path>',
     `(optional) Parses the file path as a dotenv file and adds the variables to the environment. Multiple flags are allowed.`
@@ -199,8 +199,9 @@ const run = () => {
   cli.help();
   cli.version(pkgJson.version);
 
-  cli.parse();
-};
+  cli.parse(process.argv, { run: false });
+  await cli.runMatchedCommand();
+}
 
 // Load dotenv files into the process environment.
 // This is essentially what `dotenv-cli` does, but it's now built into this CLI.

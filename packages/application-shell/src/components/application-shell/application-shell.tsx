@@ -26,13 +26,9 @@ import {
   ApplicationContextProvider,
   useApplicationContext,
 } from '@commercetools-frontend/application-shell-connectors';
-import {
-  PortalsContainer,
-  themesOverrides,
-} from '@commercetools-frontend/application-components';
+import { PortalsContainer } from '@commercetools-frontend/application-components';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
-import { ThemeProvider } from '@commercetools-uikit/design-system';
 import version from '../../version';
 import internalReduxStore from '../../configure-store';
 import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
@@ -47,6 +43,7 @@ import ConfigureIntlProvider from '../configure-intl-provider';
 import AppBar from '../app-bar';
 import ProjectContainer from '../project-container';
 import SetupFlopFlipProvider from '../setup-flop-flip-provider';
+import ThemeSwitcher from '../theme-switcher';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
 import GtmUserTracker from '../gtm-user-tracker';
 import GtmApplicationTracker from '../gtm-application-tracker';
@@ -246,6 +243,7 @@ export const RestrictedApplication = <
                     defaultFlags={props.defaultFeatureFlags}
                   >
                     <>
+                      <ThemeSwitcher />
                       <VersionTracker />
                       {/* NOTE: the requests in flight loader will render a loading
                       spinner into the AppBar. */}
@@ -539,7 +537,6 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
 
   return (
     <>
-      <ThemeProvider theme="default" themeOverrides={themesOverrides.default} />
       <GlobalStyles />
       <ApplicationShellProvider<AdditionalEnvironmentProperties>
         apolloClient={props.apolloClient}
