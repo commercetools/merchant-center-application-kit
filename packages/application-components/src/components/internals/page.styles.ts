@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens as appKitDesignTokens } from '../../theming';
 
 export const ContentWrapper = styled.div`
   flex: 1;
   flex-basis: 0;
-  padding: ${customProperties.spacingM};
+  padding: ${appKitDesignTokens.paddingForPageContent};
   overflow: auto;
 `;
 

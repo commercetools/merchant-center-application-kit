@@ -7,17 +7,21 @@ export const themesOverrides = {
     colorPrimary: '#00b39e',
     colorSolid: '#1a1a1a',
     colorSurface: '#fff',
+    colorForPageHeaderBottomBorder: uiKitDesignTokens.colorNeutral,
     backgroundColorForPageHeader: uiKitDesignTokens.colorNeutral95,
-    paddingForPage: `${uiKitDesignTokens.spacingM} ${uiKitDesignTokens.spacingM}`,
+    paddingForPageHeader: `${uiKitDesignTokens.spacingM} ${uiKitDesignTokens.spacingM}`,
+    paddingForPageContent: uiKitDesignTokens.spacingM,
   },
   test: {
     // TODO: To be removed when we update the ui-kit dependency
     colorPrimary: '#00b39e',
     colorSolid: '#1a1a1a',
     colorSurface: '#fff',
+    colorForPageHeaderBottomBorder: uiKitDesignTokens.colorNeutral90,
     backgroundColorForPageHeader: uiKitDesignTokens.colorSurface,
     // TODO: 40px is to be updated once ui-kit export a new spacing size
-    paddingForPage: `${uiKitDesignTokens.spacingXl} 40px`,
+    paddingForPageHeader: `${uiKitDesignTokens.spacingXl} 40px`,
+    paddingForPageContent: `${uiKitDesignTokens.spacingL} 40px`,
   },
 };
 

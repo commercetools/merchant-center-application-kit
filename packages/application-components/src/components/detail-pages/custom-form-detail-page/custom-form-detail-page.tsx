@@ -2,7 +2,6 @@ import type { ReactElement, ReactNode, MouseEvent, KeyboardEvent } from 'react';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import { warning } from '@commercetools-uikit/utils';
 import styled from '@emotion/styled';
-import { customProperties } from '@commercetools-uikit/design-system';
 import {
   FormPrimaryButton,
   FormSecondaryButton,
@@ -16,8 +15,8 @@ import { designTokens as appKitDesignTokens } from '../../../theming';
 
 const DetailPageContainer = styled.div`
   background-color: ${appKitDesignTokens.backgroundColorForPageHeader};
-  border-bottom: 1px ${customProperties.colorNeutral} solid;
-  padding: ${appKitDesignTokens.paddingForPage};
+  padding: ${appKitDesignTokens.paddingForPageHeader};
+  border-bottom: 1px ${appKitDesignTokens.colorForPageHeaderBottomBorder} solid;
 `;
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
