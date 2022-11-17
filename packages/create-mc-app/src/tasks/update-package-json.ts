@@ -5,7 +5,28 @@ import type { ListrTask } from 'listr2';
 import { slugify } from '../utils';
 import type { TCliTaskOptions } from '../types';
 
-function updatePackageJson(options: TCliTaskOptions): ListrTask {
+const replaceApplicationKitPackageVersionWith = (
+  releaseVersion: string,
+  dependencies: Record<string, string> = {}
+) =>
+  Object.entries(dependencies).reduce(
+    (updatedDependencies, [dependencyName, dependencyVersion]) => {
+      const updatedVersion =
+        dependencyVersion === 'workspace:*'
+          ? releaseVersion
+          : dependencyVersion;
+      return {
+        ...updatedDependencies,
+        [dependencyName]: updatedVersion,
+      };
+    },
+    {}
+  );
+
+function updatePackageJson(
+  options: TCliTaskOptions,
+  releaseVersion: string
+): ListrTask {
   return {
     title: 'Updating package.json',
     task: () => {
@@ -25,6 +46,15 @@ function updatePackageJson(options: TCliTaskOptions): ListrTask {
         // as a result the package name potentially needs to be altered when derived.
         name: slugify(options.projectDirectoryName),
         description: '',
+        // Replace the package versions with the `workspace:` syntax to the real version.
+        dependencies: replaceApplicationKitPackageVersionWith(
+          releaseVersion,
+          appPackageJson.dependencies
+        ),
+        devDependencies: replaceApplicationKitPackageVersionWith(
+          releaseVersion,
+          appPackageJson.devDependencies
+        ),
       });
 
       fs.writeFileSync(

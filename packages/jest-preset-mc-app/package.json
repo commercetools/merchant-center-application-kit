@@ -17,7 +17,7 @@
   "main": "./jest-preset.js",
   "module": "./jest-preset.js",
   "dependencies": {
-    "@commercetools-frontend/babel-preset-mc-app": "21.21.0",
+    "@commercetools-frontend/babel-preset-mc-app": "workspace:*",
     "@formatjs/intl-getcanonicallocales": "^1.9.2",
     "@formatjs/intl-listformat": "^7.0.0",
     "@formatjs/intl-locale": "^2.4.47",

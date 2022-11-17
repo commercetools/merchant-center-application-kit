@@ -23,8 +23,8 @@
   "dependencies": {
     "@babel/runtime": "^7.19.0",
     "@babel/runtime-corejs3": "^7.19.0",
-    "@commercetools-frontend/constants": "21.21.0",
-    "@commercetools-frontend/sentry": "21.21.0",
+    "@commercetools-frontend/constants": "workspace:*",
+    "@commercetools-frontend/sentry": "workspace:*",
     "@emotion/react": "11.10.4",
     "@types/lodash": "^4.14.185",
     "@types/prop-types": "^15.7.5",

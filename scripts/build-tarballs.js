@@ -10,7 +10,7 @@ const tarballsDistPath = path.join(rootPath, 'dist-tarballs');
 function extractTarball(packageInfo) {
   if (packageInfo.packageJson.private) return;
 
-  shelljs.exec('npm pack', { cwd: packageInfo.dir, silent: true });
+  shelljs.exec('yarn pack', { cwd: packageInfo.dir, silent: true });
 
   const packageTarName = shelljs
     .ls(packageInfo.dir)

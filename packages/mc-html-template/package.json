@@ -30,8 +30,8 @@
   "dependencies": {
     "@babel/runtime": "^7.19.0",
     "@babel/runtime-corejs3": "^7.19.0",
-    "@commercetools-frontend/application-config": "21.21.0",
-    "@commercetools-frontend/constants": "21.21.0",
+    "@commercetools-frontend/application-config": "workspace:*",
+    "@commercetools-frontend/constants": "workspace:*",
     "serialize-javascript": "6.0.0",
     "uglify-js": "3.17.3",
     "uglifycss": "0.0.29"
