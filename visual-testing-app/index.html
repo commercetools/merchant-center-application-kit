@@ -14,13 +14,24 @@
     />
     <title>App-Kit | Visual testing app</title>
     <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+
       html,
       body {
+        color: var(--color-solid);
+        font-family: var(--font-family);
+        font-size: var(--font-size-for-body);
         margin: 0;
         padding: 0;
-        font-size: 13px;
         height: 100vh;
-        font-family: 'Open Sans', sans-serif;
+      }
+
+      html {
+        box-sizing: border-box;
       }
     </style>
   </head>

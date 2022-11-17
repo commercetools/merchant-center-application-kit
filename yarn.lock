@@ -4489,14 +4489,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/accessible-button@npm:0.0.0-canary-20221115144427, @commercetools-uikit/accessible-button@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/accessible-button@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/accessible-button@npm:0.0.0-canary-20221116191127, @commercetools-uikit/accessible-button@npm:canary":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/accessible-button@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     "@types/react-is": ^17.0.3
@@ -4505,7 +4505,7 @@ __metadata:
     react-is: 17.0.2
   peerDependencies:
     react: 17.x
-  checksum: c997976c3d4d98c757c21cc5f9b8be2bf1bd5c7feb485bdff7f942dc6bf2962fe8702f9affb9793f2974971f078929abeed939d003f4eefbfe0de8b95a31b8ec
+  checksum: abfe4099fd96fed0cf4f3f128896a8ac15e380d43d329ae5e6c26f96d4c1bb2d5f6eccd6e6eaeb7b4639530eadc89f9f124f43eff9671fe124285cb968fb3374
   languageName: node
   linkType: hard
 
@@ -4530,8 +4530,8 @@ __metadata:
   linkType: hard
 
 "@commercetools-uikit/accessible-hidden@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/accessible-hidden@npm:0.0.0-canary-20221115144427"
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/accessible-hidden@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
@@ -4539,37 +4539,37 @@ __metadata:
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
-  checksum: f1f8ef02a1480f1166f657d6789ccec7bbe17c5d81075639af32d0e2cc1c5cb81c9e28673ba190703cb50a429aba6df6b2fdd129cc366c92bcd753a1c37d8ee5
+  checksum: 064450e66b9b6ccb2b8e1f8ad0a14cd1f6e06712ac5fd3ad737ea3b966af11870560286e4d02959bb9d8a349da04b9ed305d7f127799c627477ea123dbf46678
   languageName: node
   linkType: hard
 
 "@commercetools-uikit/avatar@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/avatar@npm:0.0.0-canary-20221115144427"
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/avatar@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
-  checksum: 7d4f6d73d4ace408e90ea21e7388b9e9a919531996f08507e42fbb03a9bac24834a73ff7785f5623866ca77e2de48a4fb995f4b1832ea276755d30f550ecac99
+  checksum: ca3782e74cb3765a5a214d9676a7787ca4139738da6b0a3b6154d39fd0e02f08be3acbf88dccfda7f041559c788e246e60eb29ebb14e9d5fc8576f4b4a9e848f
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/calendar-time-utils@npm:0.0.0-canary-20221115144427":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/calendar-time-utils@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/calendar-time-utils@npm:0.0.0-canary-20221116191127":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/calendar-time-utils@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
   peerDependencies:
     moment-timezone: 0.5.x
-  checksum: ea02e06a1e2640196e68c7ae812ee4cd78b539c9bf82ca07e053eeee68189d74b285dd547c56c5ffd5207b69723b679dd3bfc9aa59342900ed96d7818500d582
+  checksum: f9df9de341214616a21347c31f90d042598310bb3ea97754ac0d98cf9b2205619004cca0135217bd7481058590114d5934e15f18a16bbcb2b18f7dd4e1f96b47
   languageName: node
   linkType: hard
 
@@ -4586,22 +4586,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/calendar-utils@npm:0.0.0-canary-20221115144427":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/calendar-utils@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/calendar-utils@npm:0.0.0-canary-20221116191127":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/calendar-utils@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/accessible-button": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/hooks": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/icons": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/input-utils": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/secondary-icon-button": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings-inline": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/text": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/tooltip": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/accessible-button": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/hooks": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/icons": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/input-utils": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/secondary-icon-button": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings-inline": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/text": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/tooltip": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
@@ -4610,7 +4610,7 @@ __metadata:
     moment: 2.x
     react: 17.x
     react-intl: 5.x
-  checksum: 42d56e6687603ef42194aae63942a47fc92e5971da30df47c25e0eb75125b3b81b3ffccc26e2a97ee2773796eb6b71001c4aafa3b43eebe83ca899e3c388b8ac
+  checksum: d3c156dfcaf56e9a011a0f3c588cbb8750ed4b731311a50e3e17b5df09d0ff8eca89899215b1597ef71f35c4d1215b53d741fb9a326a42aa5ba770c664cb37b6
   languageName: node
   linkType: hard
 
@@ -4661,20 +4661,20 @@ __metadata:
   linkType: hard
 
 "@commercetools-uikit/card@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/card@npm:0.0.0-canary-20221115144427"
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/card@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings-inset": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings-inset": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
-  checksum: 5d69560036f25fda7b4c04e3f21d9215efe960cbfabd79b19ba769465c155610f743e7529485f697fe762f6bde0a31b8df175839d9c299f09be7348f47fb4124
+  checksum: 7c9af2632fbe6c3dada2e7b35517c90eb1acafbbc5e457d0c2aff9dadc66da643aefa42388cd835ef24716a9bde5ad87d00f5270a696fa85afd9500fa4950c1c
   languageName: node
   linkType: hard
 
@@ -4701,41 +4701,41 @@ __metadata:
   linkType: hard
 
 "@commercetools-uikit/checkbox-input@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/checkbox-input@npm:0.0.0-canary-20221115144427"
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/checkbox-input@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/icons": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/input-utils": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/select-utils": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/text": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/icons": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/input-utils": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/select-utils": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/text": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: ac641da94ece41206fa2c1885564281264bac48d67767eac33e47cc89f11fd0c46bd27516dfc0689218351796a2eac05d99427d688e58e38a03885dabecbdce7
+  checksum: 940f48dbe7a5bc8eec0f7f718798e93a3120ed2883c315991d3908a6d1f71841c2d75c5ece85184ab09b2de487defd120f8e536d595b022b99b2b617caf4ac26
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/constraints@npm:0.0.0-canary-20221115144427, @commercetools-uikit/constraints@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/constraints@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/constraints@npm:0.0.0-canary-20221116191127, @commercetools-uikit/constraints@npm:canary":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/constraints@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
-  checksum: 1851b4b9722716001333e343176047512eaa57336ddcda9cdef02d58e50d5d0c05f41585d5da4f4c90e04ef752782be62ec5c9066e851a5346153bcb5dd35edb
+  checksum: e5179782bb5b7020a28fb4dfcedbc4cd4a64f64585d97db06146009f1673087a3bbb2bd82aeac3bf4c4bcafb82578f5456a1d42468a23effe546237619b56208
   languageName: node
   linkType: hard
 
@@ -4757,17 +4757,17 @@ __metadata:
   linkType: hard
 
 "@commercetools-uikit/data-table@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/data-table@npm:0.0.0-canary-20221115144427"
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/data-table@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/accessible-button": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/hooks": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/icons": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/secondary-icon-button": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/accessible-button": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/hooks": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/icons": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/secondary-icon-button": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     lodash: 4.17.21
@@ -4775,7 +4775,7 @@ __metadata:
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: 3b41dc24e4d2d9680f214c23e61afa7b66d4aa42a69aced7e88aed828bf8dd43d7815f40e04418c43117703672d35d980ac57660109ed8f71112c78a4189976c
+  checksum: 28b7c0ac2dc280a5192ebd0db8de543eaddad90206adb6f3c303647dfb2b614cb0745577f0440754675129dc7d00f973913ba1847c0dd5c22c5f6e3ee020b574
   languageName: node
   linkType: hard
 
@@ -4813,24 +4813,24 @@ __metadata:
   linkType: hard
 
 "@commercetools-uikit/date-time-input@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/date-time-input@npm:0.0.0-canary-20221115144427"
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/date-time-input@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/accessible-button": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/calendar-time-utils": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/calendar-utils": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/constraints": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/hooks": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/icons": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/secondary-icon-button": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/select-utils": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings-inline": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/text": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/tooltip": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/accessible-button": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/calendar-time-utils": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/calendar-utils": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/constraints": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/hooks": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/icons": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/secondary-icon-button": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/select-utils": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings-inline": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/text": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/tooltip": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     downshift: 6.1.12
@@ -4841,20 +4841,20 @@ __metadata:
     moment: 2.x
     react: 17.x
     react-intl: 5.x
-  checksum: 46e3df2e860d5581eedbd7c091f79084c66277fcfd03989f7684be853658e87d16b7f48faaffaebc626e5ac840dfbd98474261e765491d394d04ef97959c31a0
+  checksum: 4299cbb6360d077f2d986b21cb9e1d4d4320983e8dfd77d5d622fe77e8c82fe06e2f25532c38c147e300cb4d4423365506be939741fded63562edc70483fc9ef
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/design-system@npm:0.0.0-canary-20221115144427, @commercetools-uikit/design-system@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/design-system@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/design-system@npm:0.0.0-canary-20221116191127, @commercetools-uikit/design-system@npm:canary":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/design-system@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
     lodash: 4.17.21
     prop-types: 15.8.1
     react: 17.0.2
-  checksum: f9095f270ff54a5d8755fe7b8fbfd5a8754392b82b8c027fecfe0a1ec46d4adba83526ec3ba1b918bdcc675575f375a436d4c1bc573a35549c48c37c5ee121fd
+  checksum: 80400192a383e7ca88b52dacb06568a0a5f075bda1a88707045852095a7b4d23eb02366af5dc6177deff65e5ea5eb4ca02ac875d5b422e20141d1b0b9f87511e
   languageName: node
   linkType: hard
 
@@ -4871,58 +4871,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/field-errors@npm:0.0.0-canary-20221115144427":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/field-errors@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/field-errors@npm:0.0.0-canary-20221116191127":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/field-errors@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/messages": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/messages": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
     react-intl: 5.x
-  checksum: 9f43fa54d57e4d538f97b5cf4bba0183541736f346dcb3eaa468b80a94ba0a675803df7c1fb6f618ef171acf2b8cc01bb342b823a1713a4748512bc06546261b
+  checksum: 2c05c21a3ba1acf49dc1d859d9ab4c2e6ea4b8e11ebb396f318c41fc977be2c1c207db9c48ef9f03eec94b6b3c370541b02d37f8c447f40d649abbdc2f3cf334
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/field-label@npm:0.0.0-canary-20221115144427":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/field-label@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/field-label@npm:0.0.0-canary-20221116191127":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/field-label@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/icon-button": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/icons": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/label": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings-inline": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings-stack": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/text": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/constraints": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/icon-button": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/icons": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/label": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings-inline": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings-stack": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/text": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: 7a507f05525342394a27a4ae27d9cfb9a3fe32418e05e7b90e738651e349711774f592bdd34248516398a132b9e786ffb11b1da6277d406fe3d9e1621e0ea6bb
+  checksum: d2c04393baa50c4a4978e65e62fedae05f4cd52c8f3f09136ba755bca40b441250dc5087968c3f990510aa8c3b84b7514b75541f429a5ed779f52ba4dd80b9d0
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/flat-button@npm:0.0.0-canary-20221115144427, @commercetools-uikit/flat-button@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/flat-button@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/flat-button@npm:0.0.0-canary-20221116191127, @commercetools-uikit/flat-button@npm:canary":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/flat-button@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/accessible-button": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings-inline": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/text": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/accessible-button": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings-inline": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/text": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     lodash: 4.17.21
@@ -4930,7 +4930,7 @@ __metadata:
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: d8cc955f69cd5135afa662cb467fe2a843a5b429a6795a1ae40102d38f39ca9871b52be34bf596fbde13b8233849b0e3640789fae73c7f13fc57713db746a6c1
+  checksum: cf739ff672fbd51436dae710f905b21a3feb0e1cf660613db86babff709e3e8c63003e8c85c9a09f68c09fc6436b12514d9b9dc06b1580ac7049a28af46205fc
   languageName: node
   linkType: hard
 
@@ -4957,8 +4957,8 @@ __metadata:
   linkType: hard
 
 "@commercetools-uikit/grid@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/grid@npm:0.0.0-canary-20221115144427"
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/grid@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
@@ -4967,21 +4967,21 @@ __metadata:
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
-  checksum: 2643551b8a6d1936a1f17737b27044e6a4e831e9a58321474a2ee5d8f72537b0c1b978796f92b9d4cc4296a92e7c93ce0bea0df8a8274c1e9b4f990f33c6e4eb
+  checksum: 0d74e5008532f06add77492d1edcf9e02fa24a96effea962b13baef4644a352ebb20094eef12731db0ccce5daf5106de55bba01ff55ad3788cf57f2d138760af
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/hooks@npm:0.0.0-canary-20221115144427, @commercetools-uikit/hooks@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/hooks@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/hooks@npm:0.0.0-canary-20221116191127, @commercetools-uikit/hooks@npm:canary":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/hooks@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     lodash: 4.17.21
   peerDependencies:
     react: 17.x
-  checksum: 81e24f9a36a7cf9fe3d2719f225cf9326fe11fa8739e7cabc09e67a0cbf35f28933fbed8eabd3aff0bb9e76341cadbb8c623bed309c6289a9b92b92725683a17
+  checksum: 6ad90c499d4ca0f78211985882a023aa6ef4c7d073ef449de205f1392e019c8893a018f64f5afdb5416e73d22819194682f5d9779cdac199ebcb85f6a45683d1
   languageName: node
   linkType: hard
 
@@ -5000,26 +5000,26 @@ __metadata:
   linkType: hard
 
 "@commercetools-uikit/i18n@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/i18n@npm:0.0.0-canary-20221115144427"
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/i18n@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-  checksum: 0043c570d285e267dfae0e0e735cab4225ecfabc85e25f4939695c489447a88f5a26859c12a7902c4bddad640cfb3909dbb07ed5b58ebb520e0dee92a0c37bac
+  checksum: ec9e807555901f6954f05f8dbb18cfc7567e3075e9432fe4f659687db86496961b0585cb2e001035b733d72604af0a9115072a10b9bacbb526980c170f2da6c4
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/icon-button@npm:0.0.0-canary-20221115144427, @commercetools-uikit/icon-button@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/icon-button@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/icon-button@npm:0.0.0-canary-20221116191127, @commercetools-uikit/icon-button@npm:canary":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/icon-button@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/accessible-button": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/text": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/accessible-button": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/text": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     lodash: 4.17.21
@@ -5027,7 +5027,7 @@ __metadata:
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: 0eeee7ad1e50b7aa3105c7085ef392fadf047a072697a453a3062b6f71bc22b186bcee6ece0915e279071dd3aa72f3447e454b326ca4015f9440b9d1d5dc5377
+  checksum: e0c8bdfac10c7d920a62daca775eaaaa8417ac22e002e18ead449545ee9de0ecaa2704277d859d69958fb4846c314481d388b4af72ec9ab67393551f4aa95725
   languageName: node
   linkType: hard
 
@@ -5053,14 +5053,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/icons@npm:0.0.0-canary-20221115144427, @commercetools-uikit/icons@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/icons@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/icons@npm:0.0.0-canary-20221116191127, @commercetools-uikit/icons@npm:canary":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/icons@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     "@types/dompurify": ^2.3.4
@@ -5069,7 +5069,7 @@ __metadata:
     react-from-dom: 0.6.2
   peerDependencies:
     react: 17.x
-  checksum: 7e16a8de1744ff3eaace825981ab59a3611fa916c1bef80c7e22f3f109006a7995143e062c5fb6869b5cffd834e5438c46af167f2bf70fc713bb0dd125532f80
+  checksum: 32ffc2d87ecb3fe5dcf0175f4aed49cc387e03e367b36277674f231dd9ab9014df791e96e788601a7320deca98224588d0cccba21f2a70b0446c4970caa96406
   languageName: node
   linkType: hard
 
@@ -5093,23 +5093,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/input-utils@npm:0.0.0-canary-20221115144427":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/input-utils@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/input-utils@npm:0.0.0-canary-20221116191127":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/input-utils@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/flat-button": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/icons": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/flat-button": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/icons": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     prop-types: 15.8.1
     react-textarea-autosize: 8.3.4
   peerDependencies:
     react: 17.x
     react-intl: 5.x
-  checksum: 988a8e20d2156759860343c200b925e73faa0f6e1dc76e37dcf09ec81ca02e0e58e9350c32b36acd66eeabfedf6a4ca6afd581bcb7c0f8834e31a9dbfc1f0d94
+  checksum: 777281dd91d46b1752a8e177c88a604ffa26ee31f38c1a224c492eb30107cd8f775ed3ba44d2f7aaaf57edcb577740cdbd4a9708f72d9eef79dda63003cd2c36
   languageName: node
   linkType: hard
 
@@ -5133,35 +5133,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/label@npm:0.0.0-canary-20221115144427, @commercetools-uikit/label@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/label@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/label@npm:0.0.0-canary-20221116191127, @commercetools-uikit/label@npm:canary":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/label@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/text": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/text": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
     react-intl: 5.x
-  checksum: b031e837497f8bf00725c955b70c172d6596bbd5eb422dcf35b6639f428d6a57e40b4366ec3587b17dc976caf090c0883a7c72f59a8fa0e5a2df7adaa04a1d50
+  checksum: 3041bd745e88c7558174191eed8405755c52bfb95bf2e6347269b520685dc24cb39658e0ef10e861f321cad038997c16fdc56f86178b8cdda63939ec3f87d439
   languageName: node
   linkType: hard
 
 "@commercetools-uikit/link@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/link@npm:0.0.0-canary-20221115144427"
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/link@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/icons": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings-inline": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/icons": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings-inline": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     "@types/history": ^4.7.11
@@ -5172,7 +5172,7 @@ __metadata:
     react: 17.x
     react-intl: 5.x
     react-router-dom: 5.x
-  checksum: 5772b60d823ee1b6bc7f342a5d40e2cb8afcf1822d0690537891843e676404182f895732f2d82db16532dbf51df6b658b5241a10b50530919394709584e9b3fe
+  checksum: 87b6a88cd4992a12857c8398c3e8d7af248ed2dbaf851166f4e8ed0fbf88a3a91e6b6bd66efb7c33b5f79522974e9ac63fe5c3377be103f27c570e624b9c59d7
   languageName: node
   linkType: hard
 
@@ -5196,144 +5196,144 @@ __metadata:
   linkType: hard
 
 "@commercetools-uikit/loading-spinner@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/loading-spinner@npm:0.0.0-canary-20221115144427"
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/loading-spinner@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings-inline": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/text": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings-inline": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/text": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     prop-types: 15.8.1
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: eeb3b5ad3f32cbfbb15f9d8befeb0a8bb105002853014115314a6051c656ce3b0b383312961a9efb866f0da594701cab37b28b4502286137e5872b49590ea90e
+  checksum: d04fc8934fdda43590178eefbf2fe228d552335f0e81985db8ee57dbd287f63a4953700c46eaf1078bd02bf5393737defde6efbe0ef42d70a061ac651a8badfd
   languageName: node
   linkType: hard
 
 "@commercetools-uikit/localized-text-field@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/localized-text-field@npm:0.0.0-canary-20221115144427"
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/localized-text-field@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/field-errors": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/field-label": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/localized-text-input": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/constraints": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/field-errors": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/field-label": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/localized-text-input": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: 792607c6255d16e1f69abff753e8fd7dfad9585010f261e6539cefcdd0f8596c88e918cf79f5740f8682aaf2325428362ca7f32b3888184639b2c2786a81b479
+  checksum: 507724a3a501fcc32c35b39d98439740267a29aa004b6ebcd7a900ad55705dd56c1b08b6f9e6e3c5bf288b01556a742707e6939fc223307c34dca2ebc2478480
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/localized-text-input@npm:0.0.0-canary-20221115144427, @commercetools-uikit/localized-text-input@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/localized-text-input@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/localized-text-input@npm:0.0.0-canary-20221116191127, @commercetools-uikit/localized-text-input@npm:canary":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/localized-text-input@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/flat-button": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/hooks": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/icons": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/input-utils": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/localized-utils": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/messages": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings-stack": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/text": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/text-input": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/constraints": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/flat-button": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/hooks": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/icons": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/input-utils": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/localized-utils": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/messages": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings-stack": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/text": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/text-input": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
     react-intl: 5.x
-  checksum: 9a5d68b6c866ee8fb9e4a7e99b7af7626a1cc38b1ce8f7316bd669af2f16cd514454940d5e98a9288daacd991def8ad51131d3221746e71d0d13b3599dac1ddd
+  checksum: 59263afbe76207142a4c29bbf71f6a5d993d0ef19babb06bbee1d204d00eb0aa5573f594fb89049d143b37c738ae9d6346bd077f1a40c621bc434e18c10168fe
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/localized-utils@npm:0.0.0-canary-20221115144427":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/localized-utils@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/localized-utils@npm:0.0.0-canary-20221116191127":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/localized-utils@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     lodash: 4.17.21
-  checksum: b3a32025ccee7c58fe052d67cfb72c59822b1ae476a50b7ffaafe68f518a17eb9c81d584264ab5b48684dae50c96d9fa54efe430b1a205dc66caa6ad90baf95c
+  checksum: 5fd07763398ab63877f621274b9453ad63f9117de8b0d874e34e8e3a95c99b0e1a50d47c31a574269431aaa009eaefb5d0f7d05d7f290cd1ff9c1678ff0100ab
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/messages@npm:0.0.0-canary-20221115144427, @commercetools-uikit/messages@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/messages@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/messages@npm:0.0.0-canary-20221116191127, @commercetools-uikit/messages@npm:canary":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/messages@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/text": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/text": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: 136689def8f1393aa6f49a5f24fac50f6c5ebc0d90eba989404fb5e8e6542b37ef400130d8d58755906a5f38a579cb25b6a4c3508f1ca668b9bfc46cee2eec63
+  checksum: 245daaf82162d19945ce7efc58a04622578e3874fcdb4077b6611241bc76e2ef0f88eaed28f5075edb85fe6c61a730e21643d05ddb118fb3facf0ac5b5f19b45
   languageName: node
   linkType: hard
 
 "@commercetools-uikit/multiline-text-field@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/multiline-text-field@npm:0.0.0-canary-20221115144427"
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/multiline-text-field@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/field-errors": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/field-label": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/multiline-text-input": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/constraints": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/field-errors": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/field-label": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/multiline-text-input": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: 981b0a912fe6f4f182fe13db8d00a1715b1f2e25f02c19ae4b61f619f5c4ed741229036978248407f1082a231b4cd346554c36564a4b0b48ab513a6aa4f61fa7
+  checksum: 78f885648269132dbeb2734e5382132082753e10a52b1daf0b293f1ab9d0871261c3ce32fd16a9963a257566ccf9fb082bdf0a4ef3b1d0e1331250859b246b8a
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/multiline-text-input@npm:0.0.0-canary-20221115144427":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/multiline-text-input@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/multiline-text-input@npm:0.0.0-canary-20221116191127":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/multiline-text-input@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/flat-button": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/hooks": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/icons": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/input-utils": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings-inline": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings-stack": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/tooltip": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/constraints": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/flat-button": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/hooks": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/icons": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/input-utils": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings-inline": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings-stack": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/tooltip": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     downshift: 6.1.12
@@ -5342,63 +5342,63 @@ __metadata:
   peerDependencies:
     react: 17.x
     react-intl: 5.x
-  checksum: c98daf429b5e55c159d367fe26090f42b3967c9c99142fca123a1cebcbd14ef44a57dcd20369c2a7e3894b2116b2b4b8d435d13e974500dacb2205158a757241
+  checksum: de7ce116256454397036c9497b32cc15fb68606869f56f88a552bcf56edba58dbebc4fc70b2e997b433e431d185dce05170edc3584b68064102903eb13ba55d0
   languageName: node
   linkType: hard
 
 "@commercetools-uikit/notifications@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/notifications@npm:0.0.0-canary-20221115144427"
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/notifications@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/icons": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/icons": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
     react-intl: 5.x
-  checksum: 2c4771704865d3653baee61af688514443879b53a9820b74c8239b6c1a95f874bb053f2487ab4e7cf0776c163693be939172792aece47fd310cab68e55de5af8
+  checksum: 9197954b8319bd13f7e2a0c0a44479df8496e1fd14600a14055cc6966cbf1821ac81d64c4d7cce892678b80814c5484e6cd7644a5813ef87df4911635f79ad29
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/number-input@npm:0.0.0-canary-20221115144427":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/number-input@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/number-input@npm:0.0.0-canary-20221116191127":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/number-input@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/input-utils": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/constraints": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/input-utils": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
-  checksum: 4e62925e16528cff5b6b349d9018ea2a1ed96da2156a24b1b8e9474a6ee9d62cbfe00f907ab5713a2c5ab682b24973748223da2492139f33cb2fae12a482d697
+  checksum: 33290664e11ac42c9333badcf0a44ba9ababffef11280bc21271627d6a415f9276d54ed9faa4d5f0bfee228c38b63d3ec1ce55dc418a84b5cf794f1ab53a9777
   languageName: node
   linkType: hard
 
 "@commercetools-uikit/pagination@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/pagination@npm:0.0.0-canary-20221115144427"
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/pagination@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/icons": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/label": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/number-input": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/secondary-icon-button": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/select-input": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/text": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/constraints": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/icons": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/label": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/number-input": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/secondary-icon-button": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/select-input": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/text": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     formik: ^2.2.9
@@ -5407,21 +5407,21 @@ __metadata:
   peerDependencies:
     react: 17.x
     react-intl: 5.x
-  checksum: 722fc0e1b13e6ee3f3cd497e93249c7fb4c2f05dc2819682f5810ad00fe847682513b78d178269fc470be7b459c6351701f81447a0537a7c33ae19a28c479db3
+  checksum: db93ca458de87ab5c1dfc2ec7720996da06c9b02635e8428d8f79951ca92f19e085f3b291f15ee5abb99d1f5280034b8cb33e23675f0d9d0695d4f1d1018c09f
   languageName: node
   linkType: hard
 
 "@commercetools-uikit/primary-button@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/primary-button@npm:0.0.0-canary-20221115144427"
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/primary-button@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/accessible-button": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings-inline": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/text": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/accessible-button": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings-inline": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/text": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     lodash: 4.17.21
@@ -5429,21 +5429,21 @@ __metadata:
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: 7865a3027b4241a38206ed7cae0bb973cb0b4baf680aa4f79203c8412a1973dfe6fefdfb40bae3f78f03aaad5151143dd35b4a4c9d72202fe4dd4a472773549f
+  checksum: f5b157a1c668e7031f829072d75c20b096cbde0fc6edf0dbf576ce9dcb180ba82fc9e739d828804ca4caa4b093ba596e461960fe2595204b6bee6fd2496b1726
   languageName: node
   linkType: hard
 
 "@commercetools-uikit/secondary-button@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/secondary-button@npm:0.0.0-canary-20221115144427"
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/secondary-button@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/accessible-button": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings-inline": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/text": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/accessible-button": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings-inline": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/text": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     lodash: 4.17.21
@@ -5452,21 +5452,21 @@ __metadata:
     react: 17.x
     react-intl: 5.x
     react-router-dom: 5.x
-  checksum: 7d6dad691ae06f346a3bfdd81c6ccca73ded571e0b0e3e02e8d6d7dc15b97971c1739487fccc5ecd897e4db8e26e9b7a8f4f04f68427a05c434b8b5b8b77dc48
+  checksum: 38c34fff289cc98f538d760431b84b2f936845babb31756f0563ead354dfb9aea60b1379cc39b74c0388136f5c665d25a643ec03cec84f2f3757d6613cb80023
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/secondary-icon-button@npm:0.0.0-canary-20221115144427, @commercetools-uikit/secondary-icon-button@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/secondary-icon-button@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/secondary-icon-button@npm:0.0.0-canary-20221116191127, @commercetools-uikit/secondary-icon-button@npm:canary":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/secondary-icon-button@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/accessible-button": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/text": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/accessible-button": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/text": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     lodash: 4.17.21
@@ -5474,7 +5474,7 @@ __metadata:
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: 25fee7383711614319ad4e767b57e18ec7e05a95431b328e3d6953dd9311535aad78c6802b958a24abeff32405a7355d62a12abadee8807c1ba3f9c397edecb8
+  checksum: 6322b29b4b94d4392dcfdb61d5f125b4c38bd0805a4683c2c24548888933e676a94f02dabbe1393692868f07f4420ab9a0a4994eeed1b41d87f930cc8bac675c
   languageName: node
   linkType: hard
 
@@ -5501,39 +5501,39 @@ __metadata:
   linkType: hard
 
 "@commercetools-uikit/select-field@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/select-field@npm:0.0.0-canary-20221115144427"
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/select-field@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/field-errors": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/field-label": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/select-input": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/constraints": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/field-errors": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/field-label": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/select-input": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: b6ca53c7c82587d7022330fafe9060a6293a0df0df298b786f803370088ad4c50e3a90f95dfa01243f296b9c35c0ef2c6f65b0eaf2fe2d48eb0397fde5ee7a07
+  checksum: 6b524b4a7711a6960504525f164454290ceabc931571cec5cb71af2fb00cb668f16b1258e7c2245e15ede3baa9341ae1dae5d7678c479d0002e68e242620916c
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/select-input@npm:0.0.0-canary-20221115144427, @commercetools-uikit/select-input@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/select-input@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/select-input@npm:0.0.0-canary-20221116191127, @commercetools-uikit/select-input@npm:canary":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/select-input@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/icons": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/select-utils": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/constraints": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/icons": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/select-utils": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/is-prop-valid": 1.2.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
@@ -5543,22 +5543,22 @@ __metadata:
   peerDependencies:
     react: 17.x
     react-intl: 5.x
-  checksum: 5da533ecc04579167d90dbb75516b9ee407f0ba017f478bdac5203931d8f2757cc46506d3f76deb146d9c12d7802e387e5c01c55373adda0dac3b1f9969d469e
+  checksum: 1749633a53565c065fd436cba37a96ff0093a7a0a7fa0a77ab2a86dd7aa1e919ab2c351d0cda838563d4e96ec063c34f2b52b2b58983899a224ffcc7bd71a73d
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/select-utils@npm:0.0.0-canary-20221115144427":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/select-utils@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/select-utils@npm:0.0.0-canary-20221116191127":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/select-utils@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/accessible-button": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/icons": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/text": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/accessible-button": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/icons": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/text": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     lodash: 4.17.21
@@ -5567,7 +5567,7 @@ __metadata:
   peerDependencies:
     react: 17.x
     react-intl: 5.x
-  checksum: 58c78382f5f5306711b0e6587f639e386e6bdfc784e0022e52d4d825b280fa50af159f7aba8834ebb65f8f0a32484ba938a4ceb71c40b004d8417d45bb498e4b
+  checksum: 476f88b2193b9adc62a2aee73f3eddf467186c53e82fe538fa9c55c9d4b9969afb73faf90ca4fbf42fc50c21e985526a7e32d2d4e367dc313dbc397dce617513
   languageName: node
   linkType: hard
 
@@ -5595,19 +5595,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/spacings-inline@npm:0.0.0-canary-20221115144427, @commercetools-uikit/spacings-inline@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/spacings-inline@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/spacings-inline@npm:0.0.0-canary-20221116191127, @commercetools-uikit/spacings-inline@npm:canary":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/spacings-inline@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
-  checksum: c32235a2f9976a104c5e38dcad6ae9b2c466182c1fa7a2db7c5444a1b7a6707a87a0ee3c655a042be6afda24741efa40dd7ac4dee2163fcb9a5c38f9c95850e4
+  checksum: 4c3459ec1debf24c2225574b92a7935f38163813830a2040652395c349c0f68a13bde1b36e06b0b7095c557d351c284dff2c5d43614ffcd3b6461020f3323e39
   languageName: node
   linkType: hard
 
@@ -5627,19 +5627,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/spacings-inset-squish@npm:0.0.0-canary-20221115144427":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/spacings-inset-squish@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/spacings-inset-squish@npm:0.0.0-canary-20221116191127":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/spacings-inset-squish@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
-  checksum: 7844ec5efcc756a08d91d4ee19a5ffffbb05128044f558b384496deb9b28eca8ef0c94d2c638b0971502c06c7db83e3fbdc57696e549e63f3f4fbd9053a79c5b
+  checksum: d35392737c9e96f3f2850258775c26736948ab1dfd284673fed8929d70780e61c01ebed7df2bfb88d8654efce171686d51703ac59269e95d5c63cdd21acf87e4
   languageName: node
   linkType: hard
 
@@ -5659,19 +5659,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/spacings-inset@npm:0.0.0-canary-20221115144427":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/spacings-inset@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/spacings-inset@npm:0.0.0-canary-20221116191127":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/spacings-inset@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
-  checksum: 81bfcf733b7a6ad77d9ef8eaeb70d61734b10416fdae2f9def2a008719d4aae3acecde8d76c01d3285977b0176795abf20f442efb1f5e29e23b89073971e870c
+  checksum: 670db1ab0d3f140c1afbfa193f9f2f1b7cbc050f3eb1e386d56cc0e62be2736c87e0ffbcc65255d28a2c89736925cc92c8b3ce07ba13a2212a340f0e5049c886
   languageName: node
   linkType: hard
 
@@ -5691,19 +5691,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/spacings-stack@npm:0.0.0-canary-20221115144427, @commercetools-uikit/spacings-stack@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/spacings-stack@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/spacings-stack@npm:0.0.0-canary-20221116191127, @commercetools-uikit/spacings-stack@npm:canary":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/spacings-stack@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
-  checksum: 77c5e761de232494786acbce5261473e15eab6836539265867ce31c1cd2b332a9f3a90a61ec3a28c696d7fc1496956bcb0d40033be8fcd931c7f655c3a6ddf90
+  checksum: 8b195d590b17bb0b440633775d0be7879289444b884deceb7bed72fe5b1f1e1df0e89b8215837f86899f58796deda172f7c8b713ed3d61dc6868f0e11a2cc927
   languageName: node
   linkType: hard
 
@@ -5723,19 +5723,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/spacings@npm:0.0.0-canary-20221115144427, @commercetools-uikit/spacings@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/spacings@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/spacings@npm:0.0.0-canary-20221116191127, @commercetools-uikit/spacings@npm:canary":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/spacings@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/spacings-inline": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings-inset": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings-inset-squish": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings-stack": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/spacings-inline": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings-inset": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings-inset-squish": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings-stack": 0.0.0-canary-20221116191127
   peerDependencies:
     react: 17.x
-  checksum: 876fa498f3278485d90e1f094885acb561907c5568265dc8ed189017ee90e3181ad8855d8ff3d82bc119611479703a055d7596d7ff699a49aac4d1b6c918881f
+  checksum: f03da16553a6154a5c270fd6ba2062d70052fb8c48f035ded4f8c562e31b754654d36b81b9105c86fa79b2d345f77d9f4946879d4507a0d43d20460f09fbce43
   languageName: node
   linkType: hard
 
@@ -5771,55 +5771,55 @@ __metadata:
   linkType: hard
 
 "@commercetools-uikit/text-field@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/text-field@npm:0.0.0-canary-20221115144427"
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/text-field@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/field-errors": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/field-label": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/spacings-stack": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/text-input": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/constraints": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/field-errors": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/field-label": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/spacings-stack": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/text-input": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: b57d3b8d1e52be2b2abec7e469da25bf45567a58bb0c2f9d1215f93c7a5af9528e608f98d5cb5e7d270449c843a19a2567bc9cea6e8acc913bd5a44524eb3f2f
+  checksum: 78e606f21a3f6987d357d95f3d3fb41efb5173466bf0e5ddb083400b606d61e3135d4409fae90cfd1d60871fdcbfa494ff2aa1cb262adf6aaaebb8d5b09cab82
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/text-input@npm:0.0.0-canary-20221115144427, @commercetools-uikit/text-input@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/text-input@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/text-input@npm:0.0.0-canary-20221116191127, @commercetools-uikit/text-input@npm:canary":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/text-input@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/input-utils": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/constraints": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/input-utils": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
-  checksum: 5f14be81e627b2fba9af4ea98fbb463c55710636c0f432c47304706d8ae9922dde6c3b35d297e524be1fa4ebe4d241b7e5099575ed309f09e3f62f86571eaf4c
+  checksum: bf7b4508084e52d21da6061963cab66802c04159d901d7cf74c4cb3acb27d4a9ff4e43624ca884a67614a1805f75488ca89967c3ebfcc3b6221b1f93ef02c4b5
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/text@npm:0.0.0-canary-20221115144427, @commercetools-uikit/text@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/text@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/text@npm:0.0.0-canary-20221116191127, @commercetools-uikit/text@npm:canary":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/text@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     lodash: 4.17.21
     prop-types: 15.8.1
@@ -5827,7 +5827,7 @@ __metadata:
   peerDependencies:
     react: 17.x
     react-intl: 5.x
-  checksum: 99e282c503a1ec7d0ff4cd4e3445a7ffd7cef823c4b13cefb61757d63954bf86a137ea4717ee3aef614cccf1d386bfc32fcb4efa008949cceb6c2f7379e7d709
+  checksum: db78dbe53af8c80cbc0a70df4f72f02baf5ddf4586e8585a7cf2b399420e96cee237d1a9da650f7769b9594a81958e053a5d6007f6341ec217fda73cb5639857
   languageName: node
   linkType: hard
 
@@ -5850,16 +5850,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/tooltip@npm:0.0.0-canary-20221115144427":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/tooltip@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/tooltip@npm:0.0.0-canary-20221116191127":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/tooltip@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/design-system": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/hooks": 0.0.0-canary-20221115144427
-    "@commercetools-uikit/utils": 0.0.0-canary-20221115144427
+    "@commercetools-uikit/constraints": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/design-system": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/hooks": 0.0.0-canary-20221116191127
+    "@commercetools-uikit/utils": 0.0.0-canary-20221116191127
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     lodash: 4.17.21
@@ -5868,7 +5868,7 @@ __metadata:
     use-popper: 1.1.6
   peerDependencies:
     react: 17.x
-  checksum: 73a41c351afe0b5b77792ca87bd96823f3fc8ab52a4dcc175fe68369046bf6aa8740b07ff718bc464ec19487e54030defb6b5f2e2ca77c8096bdd3966909af5c
+  checksum: f578dda0945992dc7a2d50cc6db119b36e4ed41bfbd4be5081424ae05ddf3a79bdb39eaf3646d2c2f4d5497795d45f192ff5028c460a316db4db6bd60afa8a03
   languageName: node
   linkType: hard
 
@@ -5894,16 +5894,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/utils@npm:0.0.0-canary-20221115144427, @commercetools-uikit/utils@npm:canary":
-  version: 0.0.0-canary-20221115144427
-  resolution: "@commercetools-uikit/utils@npm:0.0.0-canary-20221115144427"
+"@commercetools-uikit/utils@npm:0.0.0-canary-20221116191127, @commercetools-uikit/utils@npm:canary":
+  version: 0.0.0-canary-20221116191127
+  resolution: "@commercetools-uikit/utils@npm:0.0.0-canary-20221116191127"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
     "@emotion/is-prop-valid": 1.2.0
     "@types/warning": ^3.0.0
     warning: 4.0.3
-  checksum: 44cfa221133902b0c60c1926b4f2336d4467f2f4a035a6471786c0938effbe5d6ab2a9cfe1f7333a23f42a31bf563508c250d75d714f9476e34db6dbcda04ad9
+  checksum: a32e91b2bff950c854ff826e34d19855a65c7a020cd53ef3d9898c5597115189365eaa0456c8100b745a09ff49fff94630f9bff59bf43bb1a84f17be1d9a159a
   languageName: node
   linkType: hard
 

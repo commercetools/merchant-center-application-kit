@@ -1,10 +1,6 @@
 import ReactDOM from 'react-dom';
 import { useState } from 'react';
-import { css, Global } from '@emotion/react';
-import {
-  customProperties,
-  ThemeProvider,
-} from '@commercetools-uikit/design-system';
+import { ThemeProvider } from '@commercetools-uikit/design-system';
 import {
   PortalsContainer,
   themesOverrides,
@@ -30,30 +26,6 @@ const Main = () => {
           onThemeChange={(newTheme) => updateTheme(newTheme)}
         />
       ) : null}
-      <Global
-        styles={css`
-          *,
-          *::before,
-          *::after {
-            box-sizing: inherit;
-          }
-
-          html,
-          body {
-            color: ${customProperties.colorSolid};
-            font-family: ${customProperties.fontFamily};
-            /* Waiting for ui-kit to expose fontSizeForBody token*/
-            font-size: 13px;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-          }
-
-          html {
-            box-sizing: border-box;
-          }
-        `}
-      />
       <PortalsContainer />
       <Application />
     </>
