@@ -1,3 +1,4 @@
+import './globals.css';
 import { lazy } from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import history from '@commercetools-frontend/browser-history';
