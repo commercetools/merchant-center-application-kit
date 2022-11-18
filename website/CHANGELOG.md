@@ -1,5 +1,7 @@
 # @commercetools-website/custom-applications
 
+## 21.20.1
+
 ## 21.20.0
 
 ### Minor Changes

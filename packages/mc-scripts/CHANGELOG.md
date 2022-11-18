@@ -1,5 +1,19 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.20.1
+
+### Patch Changes
+
+- [#2887](https://github.com/commercetools/merchant-center-application-kit/pull/2887) [`b0a35ec80`](https://github.com/commercetools/merchant-center-application-kit/commit/b0a35ec8087cc8f428ccc55afa7a1ed2e83953de) Thanks [@emmenko](https://github.com/emmenko)! - Treat `*.css` imports as side effects in Webpack loaders
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@21.20.1
+  - @commercetools-frontend/assets@21.20.1
+  - @commercetools-frontend/babel-preset-mc-app@21.20.1
+  - @commercetools-frontend/constants@21.20.1
+  - @commercetools-frontend/mc-dev-authentication@21.20.1
+  - @commercetools-frontend/mc-html-template@21.20.1
+
 ## 21.20.0
 
 ### Patch Changes
