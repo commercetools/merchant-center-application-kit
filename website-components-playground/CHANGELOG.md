@@ -1,5 +1,22 @@
 # @commercetools-website/components-playground
 
+## 21.20.0
+
+### Minor Changes
+
+- [#2886](https://github.com/commercetools/merchant-center-application-kit/pull/2886) [`68e1998b4`](https://github.com/commercetools/merchant-center-application-kit/commit/68e1998b4021121fff23e4b549615d506b795226) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update `ui-kit` dependencies and refactor global styles.
+
+### Patch Changes
+
+- [#2886](https://github.com/commercetools/merchant-center-application-kit/pull/2886) [`68e1998b4`](https://github.com/commercetools/merchant-center-application-kit/commit/68e1998b4021121fff23e4b549615d506b795226) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update `ui-kit` dependencies.
+
+- [#2879](https://github.com/commercetools/merchant-center-application-kit/pull/2879) [`93bd1a37d`](https://github.com/commercetools/merchant-center-application-kit/commit/93bd1a37d6dd178ad470b8e363dd597f4d5fe2b2) Thanks [@emmenko](https://github.com/emmenko)! - Migrate to TypeScript and use Vite to build the application instead of Gatsby.
+
+- Updated dependencies [[`93bd1a37d`](https://github.com/commercetools/merchant-center-application-kit/commit/93bd1a37d6dd178ad470b8e363dd597f4d5fe2b2), [`68e1998b4`](https://github.com/commercetools/merchant-center-application-kit/commit/68e1998b4021121fff23e4b549615d506b795226)]:
+  - @commercetools-frontend/application-components@21.20.0
+  - @commercetools-frontend/i18n@21.20.0
+  - @commercetools-frontend/browser-history@21.20.0
+
 ## 21.19.0
 
 ### Patch Changes

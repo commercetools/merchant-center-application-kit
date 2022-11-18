@@ -1,5 +1,22 @@
 # @commercetools-frontend/application-components
 
+## 21.20.0
+
+### Minor Changes
+
+- [#2886](https://github.com/commercetools/merchant-center-application-kit/pull/2886) [`68e1998b4`](https://github.com/commercetools/merchant-center-application-kit/commit/68e1998b4021121fff23e4b549615d506b795226) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update `ui-kit` dependencies.
+
+### Patch Changes
+
+- [#2879](https://github.com/commercetools/merchant-center-application-kit/pull/2879) [`93bd1a37d`](https://github.com/commercetools/merchant-center-application-kit/commit/93bd1a37d6dd178ad470b8e363dd597f4d5fe2b2) Thanks [@emmenko](https://github.com/emmenko)! - Code split `<PublicPageLayout>` component
+
+- Updated dependencies [[`68e1998b4`](https://github.com/commercetools/merchant-center-application-kit/commit/68e1998b4021121fff23e4b549615d506b795226)]:
+  - @commercetools-frontend/i18n@21.20.0
+  - @commercetools-frontend/application-shell-connectors@21.20.0
+  - @commercetools-frontend/l10n@21.20.0
+  - @commercetools-frontend/assets@21.20.0
+  - @commercetools-frontend/constants@21.20.0
+
 ## 21.19.0
 
 ### Patch Changes
