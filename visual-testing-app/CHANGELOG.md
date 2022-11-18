@@ -1,5 +1,23 @@
 # @commercetools-local/visual-testing-app
 
+## 21.20.0
+
+### Minor Changes
+
+- [#2886](https://github.com/commercetools/merchant-center-application-kit/pull/2886) [`68e1998b4`](https://github.com/commercetools/merchant-center-application-kit/commit/68e1998b4021121fff23e4b549615d506b795226) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update `ui-kit` dependencies and refactor global styles.
+
+### Patch Changes
+
+- [#2875](https://github.com/commercetools/merchant-center-application-kit/pull/2875) [`403e072b7`](https://github.com/commercetools/merchant-center-application-kit/commit/403e072b78e7ac63eff58b8e6372c137500fe2a5) Thanks [@emmenko](https://github.com/emmenko)! - Use Google Font v2 API to load fonts.
+
+- [#2886](https://github.com/commercetools/merchant-center-application-kit/pull/2886) [`68e1998b4`](https://github.com/commercetools/merchant-center-application-kit/commit/68e1998b4021121fff23e4b549615d506b795226) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update `ui-kit` dependencies.
+
+- Updated dependencies [[`93bd1a37d`](https://github.com/commercetools/merchant-center-application-kit/commit/93bd1a37d6dd178ad470b8e363dd597f4d5fe2b2), [`68e1998b4`](https://github.com/commercetools/merchant-center-application-kit/commit/68e1998b4021121fff23e4b549615d506b795226)]:
+  - @commercetools-frontend/application-components@21.20.0
+  - @commercetools-frontend/react-notifications@21.20.0
+  - @commercetools-frontend/assets@21.20.0
+  - @commercetools-frontend/constants@21.20.0
+
 ## 21.19.0
 
 ### Patch Changes

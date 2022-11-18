@@ -1,5 +1,15 @@
 # @commercetools-frontend/sentry
 
+## 21.20.0
+
+### Patch Changes
+
+- [#2878](https://github.com/commercetools/merchant-center-application-kit/pull/2878) [`530c97d1f`](https://github.com/commercetools/merchant-center-application-kit/commit/530c97d1f9006559cde3514ffa53165ae74d0b3a) Thanks [@emmenko](https://github.com/emmenko)! - Enable performance tracing for Sentry
+
+- Updated dependencies []:
+  - @commercetools-frontend/browser-history@21.20.0
+  - @commercetools-frontend/constants@21.20.0
+
 ## 21.19.0
 
 ### Patch Changes
