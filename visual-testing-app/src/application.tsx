@@ -1,5 +1,6 @@
 /// <reference path="../../node_modules/vite/types/importMeta.d.ts" />
 
+import './globals.css';
 import { type ComponentType, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
