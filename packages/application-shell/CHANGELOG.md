@@ -1,5 +1,26 @@
 # @commercetools-frontend/application-shell
 
+## 21.20.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@21.20.1
+  - @commercetools-frontend/application-components@21.20.1
+  - @commercetools-frontend/application-config@21.20.1
+  - @commercetools-frontend/application-shell-connectors@21.20.1
+  - @commercetools-frontend/assets@21.20.1
+  - @commercetools-frontend/browser-history@21.20.1
+  - @commercetools-frontend/constants@21.20.1
+  - @commercetools-frontend/i18n@21.20.1
+  - @commercetools-frontend/l10n@21.20.1
+  - @commercetools-frontend/notifications@21.20.1
+  - @commercetools-frontend/permissions@21.20.1
+  - @commercetools-frontend/react-notifications@21.20.1
+  - @commercetools-frontend/sdk@21.20.1
+  - @commercetools-frontend/sentry@21.20.1
+  - @commercetools-frontend/url-utils@21.20.1
+
 ## 21.20.0
 
 ### Minor Changes
