@@ -7,15 +7,15 @@ export const themesOverrides = {
     colorPrimary: '#00b39e',
     colorSolid: '#1a1a1a',
     colorSurface: '#fff',
-    lineHeightForTextAsH1: uiKitDesignTokens.lineHeight60,
-    lineHeightForTextAsH2: uiKitDesignTokens.lineHeight60,
+    lineHeightForTextAsH1: 'inherit',
+    lineHeightForTextAsH2: 'inherit',
 
     colorForPageHeaderBottomBorder: uiKitDesignTokens.colorNeutral,
     backgroundColorForMainPageDivider: uiKitDesignTokens.colorNeutral60,
     backgroundColorForPageHeader: uiKitDesignTokens.colorNeutral95,
     marginBottomForPageTopBar: uiKitDesignTokens.spacingS,
     marginTopForPageHeaderControls: uiKitDesignTokens.spacingS,
-    marginTopForTabControls: uiKitDesignTokens.spacingS,
+    marginTopForTabControls: uiKitDesignTokens.spacingM,
     paddingForPageHeader: `${uiKitDesignTokens.spacingM}`,
     paddingForPageContent: uiKitDesignTokens.spacingM,
 
