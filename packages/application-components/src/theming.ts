@@ -25,6 +25,8 @@ export const themesOverrides = {
     heightForTab: '4px',
     marginTopForPageSubtitle: uiKitDesignTokens.spacingM,
     backgroundColorForTabularMainPageContent: uiKitDesignTokens.colorNeutral95,
+    borderColorForDialogDivider: uiKitDesignTokens.colorNeutral,
+    paddingForDialogContent: `${uiKitDesignTokens.spacingM} 0 ${uiKitDesignTokens.spacingS}`,
   },
   test: {
     // TODO: To be removed when we update the ui-kit dependency
@@ -50,6 +52,8 @@ export const themesOverrides = {
     heightForTab: '2px',
     marginTopForPageSubtitle: uiKitDesignTokens.spacingS,
     backgroundColorForTabularMainPageContent: uiKitDesignTokens.colorSurface,
+    borderColorForDialogDivider: uiKitDesignTokens.colorNeutral90,
+    paddingForDialogContent: `${uiKitDesignTokens.spacingL} 0 ${uiKitDesignTokens.spacingS}`,
   },
 };
 
