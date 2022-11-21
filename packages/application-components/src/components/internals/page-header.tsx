@@ -1,7 +1,8 @@
 import type { ReactElement, ReactNode } from 'react';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { css } from '@emotion/react';
 import PageHeaderTitle from './page-header-title';
+import { designTokens as appKitDesignTokens } from '../../theming';
 
 type Props = {
   title: string;
@@ -15,11 +16,12 @@ const PageHeader = (props: Props) => (
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      margin: 0 ${customProperties.spacingM};
-      padding: ${customProperties.spacingM} 0;
-      border-bottom: 1px solid ${customProperties.colorNeutral60};
+      margin: ${appKitDesignTokens.marginForModalPageHeader};
+      padding: ${uiKitDesignTokens.spacingM} 0;
+      border-bottom: 1px solid
+        ${appKitDesignTokens.borderColorForModalPageHeaderDivider};
       & > * + * {
-        margin-left: ${customProperties.spacingM};
+        margin-left: ${uiKitDesignTokens.spacingM};
       }
     `}
   >

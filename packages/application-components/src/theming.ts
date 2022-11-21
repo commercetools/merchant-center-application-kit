@@ -24,6 +24,11 @@ export const themesOverrides = {
     backgroundColorForTabularMainPageContent: uiKitDesignTokens.colorNeutral95,
     borderColorForDialogDivider: uiKitDesignTokens.colorNeutral,
     paddingForDialogContent: `${uiKitDesignTokens.spacingM} 0 ${uiKitDesignTokens.spacingS}`,
+
+    paddingForModalTopBar: `${uiKitDesignTokens.spacingS} ${uiKitDesignTokens.spacingM}`,
+    marginForModalPageHeader: `0 ${uiKitDesignTokens.spacingM}`,
+    borderColorForModalTopBarWhenSurface: uiKitDesignTokens.colorNeutral,
+    borderColorForModalPageHeaderDivider: uiKitDesignTokens.colorNeutral60,
   },
   test: {
     // TODO: To be removed when we update the ui-kit dependency
@@ -48,6 +53,11 @@ export const themesOverrides = {
     backgroundColorForTabularMainPageContent: uiKitDesignTokens.colorSurface,
     borderColorForDialogDivider: uiKitDesignTokens.colorNeutral90,
     paddingForDialogContent: `${uiKitDesignTokens.spacingL} 0 ${uiKitDesignTokens.spacingS}`,
+
+    paddingForModalTopBar: `${uiKitDesignTokens.spacingL} 40px ${uiKitDesignTokens.spacingS}`,
+    marginForModalPageHeader: `0 40px`,
+    borderColorForModalTopBarWhenSurface: uiKitDesignTokens.colorSurface,
+    borderColorForModalPageHeaderDivider: uiKitDesignTokens.colorNeutral90,
   },
 };
 
