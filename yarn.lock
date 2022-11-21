@@ -3968,7 +3968,7 @@ __metadata:
     semver: 7.3.8
     uuid: 8.3.2
   peerDependencies:
-    cypress: 11.x
+    cypress: ">=8"
   languageName: unknown
   linkType: soft
 
