@@ -82,32 +82,30 @@ const TabularDetailPage = (props: TTabularDetailPageProps) => {
   return (
     <PageWrapper>
       <TabularPageContainer color="neutral">
-        <Spacings.Stack>
-          <PageTopBar
-            color="neutral"
-            previousPathLabel={props.previousPathLabel}
-            onClick={props.onPreviousPathClick}
+        <PageTopBar
+          color="neutral"
+          previousPathLabel={props.previousPathLabel}
+          onClick={props.onPreviousPathClick}
+        />
+        {props.customTitleRow || (
+          <PageHeaderTitle
+            title={props.title ?? ''}
+            subtitle={props.subtitle}
+            titleSize="big"
           />
-          {props.customTitleRow || (
-            <PageHeaderTitle
-              title={props.title ?? ''}
-              subtitle={props.subtitle}
-              titleSize="big"
-            />
-          )}
-          <ControlsContainter
-            tabControls={props.tabControls}
-            formControls={
-              <FormControlsContainer>
-                {!props.hideControls && props.formControls && (
-                  <Spacings.Inline alignItems="flex-end">
-                    {props.formControls}
-                  </Spacings.Inline>
-                )}
-              </FormControlsContainer>
-            }
-          />
-        </Spacings.Stack>
+        )}
+        <ControlsContainter
+          tabControls={props.tabControls}
+          formControls={
+            <FormControlsContainer>
+              {!props.hideControls && props.formControls && (
+                <Spacings.Inline alignItems="flex-end">
+                  {props.formControls}
+                </Spacings.Inline>
+              )}
+            </FormControlsContainer>
+          }
+        />
       </TabularPageContainer>
       <ContentWrapper>{props.children}</ContentWrapper>
     </PageWrapper>

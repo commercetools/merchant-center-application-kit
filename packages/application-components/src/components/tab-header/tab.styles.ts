@@ -4,7 +4,8 @@ import {
   type Interpolation,
   type Theme,
 } from '@emotion/react';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
+import { designTokens as appKitDesignTokens } from '../../theming';
 
 const getBottomBorderStyles = (background: string): SerializedStyles => css`
   :after {
@@ -13,10 +14,10 @@ const getBottomBorderStyles = (background: string): SerializedStyles => css`
     bottom: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    border-radius: ${customProperties.borderRadius2};
+    height: ${appKitDesignTokens.heightForTab};
+    border-radius: ${uiKitDesignTokens.borderRadius2};
     background-color: ${background};
-    transition: background-color ${customProperties.transitionEaseinout150Ms};
+    transition: background-color ${uiKitDesignTokens.transitionEaseinout150Ms};
   }
 `;
 
@@ -25,8 +26,8 @@ export const getLinkStyles = (
   isDisabled: boolean
 ): Interpolation<Theme> => [
   css`
-    font-size: ${customProperties.fontSizeDefault};
-    padding: ${customProperties.spacingS} ${customProperties.spacingM};
+    font-size: ${uiKitDesignTokens.fontSizeDefault};
+    padding: ${uiKitDesignTokens.spacingS} ${uiKitDesignTokens.spacingM};
     position: relative;
     text-align: center;
     display: inline-block;
@@ -34,16 +35,16 @@ export const getLinkStyles = (
     text-decoration: inherit;
 
     &:first-of-type {
-      padding-left: 0;
+      padding-left: ${appKitDesignTokens.paddingLeftForTabAsFirst};
     }
 
     ${getBottomBorderStyles('transparent')}
   `,
   isActive &&
     css`
-      ${getBottomBorderStyles(customProperties.colorPrimary)}
+      ${getBottomBorderStyles(uiKitDesignTokens.colorPrimary)}
       & h4 {
-        color: ${customProperties.colorPrimary} !important;
+        color: ${uiKitDesignTokens.colorPrimary} !important;
       }
     `,
   isDisabled &&
@@ -64,7 +65,7 @@ export const getLinkStyles = (
       :focus,
       :active {
         & h4 {
-          color: ${customProperties.colorPrimary} !important;
+          color: ${uiKitDesignTokens.colorPrimary} !important;
         }
       }
     `,
