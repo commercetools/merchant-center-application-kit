@@ -90,7 +90,7 @@
     "@changesets/cli": "2.25.0",
     "@commercetools-docs/writing-style": "3.1.1",
     "@commercetools-test-data/core": "4.1.1",
-    "@commercetools-uikit/design-system": "^15.4.0",
+    "@commercetools-uikit/design-system": "^15.5.0",
     "@commercetools/github-labels": "1.1.0",
     "@commitlint/cli": "17.1.2",
     "@commitlint/config-conventional": "17.1.0",
