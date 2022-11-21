@@ -1,5 +1,23 @@
 # @commercetools-frontend/mc-html-template
 
+## 21.20.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@21.20.1
+  - @commercetools-frontend/constants@21.20.1
+
+## 21.20.0
+
+### Patch Changes
+
+- [#2875](https://github.com/commercetools/merchant-center-application-kit/pull/2875) [`403e072b7`](https://github.com/commercetools/merchant-center-application-kit/commit/403e072b78e7ac63eff58b8e6372c137500fe2a5) Thanks [@emmenko](https://github.com/emmenko)! - Use Google Font v2 API to load fonts.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@21.20.0
+  - @commercetools-frontend/constants@21.20.0
+
 ## 21.19.0
 
 ### Patch Changes

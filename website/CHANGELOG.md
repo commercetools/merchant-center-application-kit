@@ -1,5 +1,13 @@
 # @commercetools-website/custom-applications
 
+## 21.20.1
+
+## 21.20.0
+
+### Minor Changes
+
+- [#2886](https://github.com/commercetools/merchant-center-application-kit/pull/2886) [`68e1998b4`](https://github.com/commercetools/merchant-center-application-kit/commit/68e1998b4021121fff23e4b549615d506b795226) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update `ui-kit` dependencies.
+
 ## 21.19.0
 
 ## 21.18.1
