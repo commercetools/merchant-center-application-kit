@@ -4,9 +4,6 @@ import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-s
 export const themesOverrides = {
   default: {
     // TODO: To be removed when we update the ui-kit dependency
-    colorPrimary: '#00b39e',
-    colorSolid: '#1a1a1a',
-    colorSurface: '#fff',
     lineHeightForTextAsH1: 'inherit',
     lineHeightForTextAsH2: 'inherit',
 
@@ -30,9 +27,6 @@ export const themesOverrides = {
   },
   test: {
     // TODO: To be removed when we update the ui-kit dependency
-    colorPrimary: '#00b39e',
-    colorSolid: '#1a1a1a',
-    colorSurface: '#fff',
     lineHeightForTextAsH1: uiKitDesignTokens.lineHeight60,
     lineHeightForTextAsH2: uiKitDesignTokens.lineHeight60,
 
