@@ -141,11 +141,8 @@ jobs:
       - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
 
-      - name: Preparing tarballs of packages for testing templates installation
-        run: node ./scripts/build-tarballs.js
-
       - name: Installing and building template starter
-        run: node ./scripts/install-template.js
+        run: node ./scripts/install-template.mjs
         env:
           TEMPLATE_NAME: starter
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
@@ -226,11 +223,8 @@ jobs:
       - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
 
-      - name: Preparing tarballs of packages for testing templates installation
-        run: node ./scripts/build-tarballs.js
-
       - name: Installing and building template starter
-        run: node ./scripts/install-template.js
+        run: node ./scripts/install-template.mjs
         env:
           TEMPLATE_NAME: starter-typescript
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
