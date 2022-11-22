@@ -1,6 +1,9 @@
 import Ajv, { type ErrorObject } from 'ajv';
 import schemaJson from '../schema.json';
-import { ENTRY_POINT_URI_PATH_REGEX } from './constants';
+import {
+  ENTRY_POINT_URI_PATH_REGEX,
+  PERMISSION_GROUP_NAME_REGEX,
+} from './constants';
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 
 type ErrorAdditionalProperty = ErrorObject<
@@ -52,7 +55,7 @@ export const validateEntryPointUriPath = (
 ) => {
   if (!config.entryPointUriPath.match(ENTRY_POINT_URI_PATH_REGEX)) {
     throw new Error(
-      'Invalid "entryPointUriPath". The value may be between 2 and 64 characters and only contain alphanumeric lowercase characters, non-consecutive underscores and hyphens. Leading and trailing underscore and hyphens are also not allowed.'
+      'Invalid "entryPointUriPath". The value may be between 2 and 64 characters and only contain alphanumeric lowercase characters, non-consecutive underscores and hyphens. Leading and trailing underscores and hyphens are also not allowed.'
     );
   }
 };
@@ -78,12 +81,12 @@ export const validateAdditionalOAuthScopes = (
   config.additionalOAuthScopes?.forEach(({ name }) => {
     if (additionalPermissionNames.has(name)) {
       throw new Error(
-        `Duplicate additional permission "${name}". Every additional permission must have a unique name`
+        `Duplicate additional permission group name "${name}". Every additional permission must have a unique name`
       );
     }
-    if (!name.match(ENTRY_POINT_URI_PATH_REGEX)) {
+    if (!name.match(PERMISSION_GROUP_NAME_REGEX)) {
       throw new Error(
-        `Additional permission name "${name}" is invalid. The value may be between 2 and 64 characters and only contain alphanumeric lowercase characters, non-consecutive underscores and hyphens. Leading and trailing underscore and hyphens are also not allowed`
+        `Additional permission group name "${name}" is invalid. The value may be between 2 and 64 characters and only contain alphanumeric lowercase characters and non-consecutive hyphens. Leading and trailing hyphens are also not allowed`
       );
     }
     additionalPermissionNames.add(name);
