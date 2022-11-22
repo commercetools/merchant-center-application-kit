@@ -20,7 +20,7 @@ export const themesOverrides = {
     borderBottomForTabularPageHeader: `1px solid ${uiKitDesignTokens.colorNeutral}`,
     paddingLeftForTabAsFirst: '0',
     heightForTab: '4px',
-    marginTopForPageSubtitle: uiKitDesignTokens.spacingM,
+    marginTopForPageSubtitle: uiKitDesignTokens.spacingS,
     backgroundColorForTabularMainPageContent: uiKitDesignTokens.colorNeutral95,
     borderColorForDialogDivider: uiKitDesignTokens.colorNeutral,
     paddingForDialogContent: `${uiKitDesignTokens.spacingM} 0 ${uiKitDesignTokens.spacingS}`,
@@ -40,7 +40,7 @@ export const themesOverrides = {
     backgroundColorForPageHeader: uiKitDesignTokens.colorSurface,
     marginBottomForPageTopBar: uiKitDesignTokens.spacingL,
     marginTopForPageHeaderControls: uiKitDesignTokens.spacingS,
-    marginTopForTabControls: uiKitDesignTokens.spacingXl,
+    marginTopForTabControls: uiKitDesignTokens.spacingL,
     // TODO: 40px is to be updated once ui-kit export a new spacing size
     paddingForPageHeader: `${uiKitDesignTokens.spacingXl} 40px`,
     paddingForPageContent: `${uiKitDesignTokens.spacingL} 40px`,

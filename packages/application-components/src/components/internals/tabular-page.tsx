@@ -5,7 +5,7 @@ import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-s
 import { designTokens as appKitDesignTokens } from '../../theming';
 
 const TabControls = styled.div`
-  margin-top: ${appKitDesignTokens.marginTopForTabControls};
+  margin-top: ${uiKitDesignTokens.spacingS};
 `;
 
 type TControlsContainterProps = {
@@ -20,6 +20,7 @@ const ControlsContainter = (props: TControlsContainterProps) => (
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
+      margin-top: ${appKitDesignTokens.marginTopForTabControls};
     `}
   >
     <TabControls role="tablist">{props.tabControls}</TabControls>
