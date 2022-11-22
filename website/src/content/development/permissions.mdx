@@ -2,11 +2,13 @@
 title: Permissions
 ---
 
-As we learned in [OAuth Scopes and user permissions](/concepts/oauth-scopes-and-user-permissions), each Custom Application has a unique pair of user permissions at its disposal: "view" and "manage."
+As we learned in [OAuth Scopes and user permissions](/concepts/oauth-scopes-and-user-permissions), each Custom Application has a unique pair of default user permissions at its disposal: "view" and "manage."
 
 The values of the user permissions are derived from the application `entryPointUriPath`.
 
 When developing a Custom Application you might want to enforce these user permissions in some parts of your application. For example, performing certain actions like creating, updating, or deleting a resource should only be possible if the user has "manage" permission.
+
+Furthermore, more granular additional permissions can optionally be used, for example, to allow the team access to only certain parts or functionality of the Custom Application.
 
 # Defining constants
 
@@ -26,6 +28,36 @@ The `PERMISSIONS` variable contains a `View` and `Manage` properties, with the v
 * `PERMISSIONS.Manage`: maps to `ManageChannels`.
 
 You can then use the `PERMISSIONS` variable to reference the permission in the application code.
+
+<Info>
+
+To leverage the optional, more granular permissions, a distinctive name has to be introduced for each of the permission groups.
+
+```js title="constants.js" highlightLines="5-7, 11"
+import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-shell/ssr';
+
+export const entryPointUriPath = 'channels';
+
+export const teamA = "team-a";
+
+export const teamB = "team-b";
+
+export const PERMISSIONS = entryPointUriPathToPermissionKeys(
+  entryPointUriPath,
+  [teamA, teamB]
+);
+```
+
+In this scenario the `PERMISSIONS` variable contains a `View`, `Manage`, `ViewTeamA`, `ManageTeamA`, `ViewTeamB` and `ManageTeamB` properties, with the values being the computed values based on the `entryPointUriPath` and the provided permission group names:
+
+* `PERMISSIONS.View`: maps to `ViewChannels`.
+* `PERMISSIONS.Manage`: maps to `ManageChannels`.
+* `PERMISSIONS.ViewTeamA`: maps to `ViewChannelsTeamA`.
+* `PERMISSIONS.ManageTeamA`: maps to `ManageChannelsTeamA`.
+* `PERMISSIONS.ViewTeamB`: maps to `ViewChannelsTeamB`.
+* `PERMISSIONS.ManageTeamB`: maps to `ManageChannelsTeamB`.
+
+</Info>
 
 # Applying user permissions
 
