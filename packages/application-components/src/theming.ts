@@ -5,10 +5,6 @@ import {
 
 export const themesOverrides = {
   default: {
-    // TODO: To be removed when we update the ui-kit dependency
-    lineHeightForTextAsH1: 'inherit',
-    lineHeightForTextAsH2: 'inherit',
-
     colorForPageHeaderBottomBorder: uiKitDesignTokens.colorNeutral,
     backgroundColorForMainPageDivider: uiKitDesignTokens.colorNeutral60,
     backgroundColorForPageHeader: uiKitDesignTokens.colorNeutral95,
@@ -31,10 +27,6 @@ export const themesOverrides = {
     paddingLeftForTabAsFirst: '0',
   },
   test: {
-    // TODO: To be removed when we update the ui-kit dependency
-    lineHeightForTextAsH1: uiKitDesignTokens.lineHeight60,
-    lineHeightForTextAsH2: uiKitDesignTokens.lineHeight60,
-
     colorForPageHeaderBottomBorder: uiKitDesignTokens.colorNeutral90,
     backgroundColorForMainPageDivider: uiKitDesignTokens.colorNeutral90,
     backgroundColorForPageHeader: uiKitDesignTokens.colorSurface,
@@ -59,5 +51,6 @@ export const themesOverrides = {
 };
 
 export const designTokens = transformTokensToCssVarsReferences(
-  themesOverrides.default
+  themesOverrides.default,
+  { includeDefaultValue: false }
 );
