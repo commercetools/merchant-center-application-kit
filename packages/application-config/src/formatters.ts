@@ -144,4 +144,5 @@ export {
   entryPointUriPathToResourceAccesses,
   entryPointUriPathToPermissionKeys,
   formatEntryPointUriPathToResourceAccessKey,
+  formatPermissionGroupNameToResourceAccessKey,
 };

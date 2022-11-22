@@ -272,7 +272,7 @@ describe('invalid configurations', () => {
         ],
       })
     ).toThrowErrorMatchingInlineSnapshot(
-      `"Duplicate additional permission \\"movies\\". Every additional permission must have a unique name"`
+      `"Duplicate additional permission group name \\"movies\\". Every additional permission must have a unique name"`
     );
   });
   it('should validate the additional permission names matches the entry point regex', () => {
@@ -288,7 +288,7 @@ describe('invalid configurations', () => {
         ],
       })
     ).toThrowErrorMatchingInlineSnapshot(
-      `"Additional permission name \\"-movies\\" is invalid. The value may be between 2 and 64 characters and only contain alphanumeric lowercase characters, non-consecutive underscores and hyphens. Leading and trailing underscore and hyphens are also not allowed"`
+      `"Additional permission group name \\"-movies\\" is invalid. The value may be between 2 and 64 characters and only contain alphanumeric lowercase characters and non-consecutive hyphens. Leading and trailing hyphens are also not allowed"`
     );
   });
 });
