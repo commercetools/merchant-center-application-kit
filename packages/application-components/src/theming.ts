@@ -1,5 +1,7 @@
-import kebabCase from 'lodash/kebabCase';
-import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
+import {
+  transformTokensToCssVarsReferences,
+  designTokens as uiKitDesignTokens,
+} from '@commercetools-uikit/design-system';
 
 export const themesOverrides = {
   default: {
@@ -20,7 +22,7 @@ export const themesOverrides = {
     borderBottomForTabularPageHeader: `1px solid ${uiKitDesignTokens.colorNeutral}`,
     paddingLeftForTabAsFirst: '0',
     heightForTab: '4px',
-    marginTopForPageSubtitle: uiKitDesignTokens.spacingS,
+    marginTopForPageSubtitle: uiKitDesignTokens.spacingM,
     backgroundColorForTabularMainPageContent: uiKitDesignTokens.colorNeutral95,
     borderColorForDialogDivider: uiKitDesignTokens.colorNeutral,
     paddingForDialogContent: `${uiKitDesignTokens.spacingM} 0 ${uiKitDesignTokens.spacingS}`,
@@ -61,9 +63,6 @@ export const themesOverrides = {
   },
 };
 
-export const designTokens = Object.fromEntries(
-  Object.keys(themesOverrides.default).map((tokenName) => [
-    tokenName,
-    `var(--${kebabCase(tokenName)})`,
-  ])
+export const designTokens = transformTokensToCssVarsReferences(
+  themesOverrides.default
 );
