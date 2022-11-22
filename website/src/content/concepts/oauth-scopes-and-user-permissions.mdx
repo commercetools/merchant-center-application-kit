@@ -73,7 +73,7 @@ Each Custom Application gets a **unique pair** of user permissions: "view" and "
 
 <Info>
 
-The permission names are unique to each Custom Application and they derive from the `entryPointUriPath`, based on the following format: `{View,Manage}<EntryPointUriPath>`.
+The permission names are unique to each Custom Application and, by default, they derive from the `entryPointUriPath`, based on the following format: `{View,Manage}<EntryPointUriPath>`.
 
 Here are some examples:
 
@@ -84,6 +84,15 @@ Here are some examples:
 | `the_avengers` | `{View,Manage}The_Avengers` |
 | `avengers-01` | `{View,Manage}Avengers/01` |
 | `avengers_01` | `{View,Manage}Avengers_01` |
+
+Optional additional permissions derive from the `entryPointUriPath` and the provided permission group name, based on the following format: `{View,Manage}<EntryPointUriPath><PermissionGroupName>`
+
+Here are some examples:
+
+| `entryPointUriPath` | Permission group name | User permission |
+| --- | --- | --- |
+| `avengers` | `thor` | `{View,Manage}AvengersThor` |
+| `the-avengers` | `iron-man` | `{View,Manage}TheAvengersIronMan` |
 
 </Info>
 
