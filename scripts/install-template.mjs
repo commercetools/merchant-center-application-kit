@@ -30,9 +30,13 @@ const branchName =
     : 'main';
 
 console.log(
-  `Bootstrapping the application ${applicationName} using the template ${templateName}.`
+  `Bootstrapping the application "${applicationName}" using the template "${templateName}" (branch "${branchName}").`
 );
-shelljs.exec(
+console.log(`Using the following paths:
+  - binary: ${binaryPath}
+  - sandbox: ${sandboxPath}
+`);
+const createAppCmdResult = shelljs.exec(
   [
     binaryPath,
     applicationName,
@@ -44,6 +48,16 @@ shelljs.exec(
   ].join(' '),
   { cwd: sandboxPath }
 );
+if (createAppCmdResult.code > 0) {
+  console.error(
+    'Command "create-mc-app" failed.',
+    createAppCmdResult.stderr || createAppCmdResult.stdout
+  );
+} else {
+  console.log(createAppCmdResult.stdout);
+}
+
+shelljs.ls(applicationPath);
 
 console.log('Running assertions on package.json...');
 const applicationPkgJsonRaw = fs.readFileSync(
