@@ -67,19 +67,3 @@ console.log('==> Assert application version');
 assert.strictEqual(applicationPkgJson.version, '1.0.0');
 console.log('==> Assert dependency versions to not use "workspace:" protocol');
 assert.doesNotMatch(applicationPkgJsonRaw, /workspace:/);
-
-console.log('Running assertions on custom-application-config...');
-const fileExtension = ['.js', '.ts', '.mjs', '.cjs'].find((ext) => {
-  const filePath = `custom-application-config${ext}`;
-  return fs.existsSync(filePath);
-});
-const customAppConfig = require(path.join(
-  applicationPath,
-  `custom-application-config${fileExtension}`
-));
-
-console.log('==> Assert initial project key');
-assert.strictEqual(
-  customAppConfig.env.development.initialProjectKey,
-  initialProjectKey
-);
