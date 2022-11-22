@@ -29,13 +29,12 @@ const branchName =
     ? process.env.GITHUB_HEAD_REF
     : 'main';
 
+console.log(`Ensure the sandbox "${sandboxPath}" folder exists.`);
+fs.mkdirSync(sandboxPath, { recursive: true });
+
 console.log(
   `Bootstrapping the application "${applicationName}" using the template "${templateName}" (branch "${branchName}").`
 );
-console.log(`Using the following paths:
-  - binary: ${binaryPath}
-  - sandbox: ${sandboxPath}
-`);
 const createAppCmdResult = shelljs.exec(
   [
     binaryPath,
@@ -49,15 +48,11 @@ const createAppCmdResult = shelljs.exec(
   { cwd: sandboxPath }
 );
 if (createAppCmdResult.code > 0) {
-  console.error(
-    'Command "create-mc-app" failed.',
-    createAppCmdResult.stderr || createAppCmdResult.stdout
-  );
+  console.error(createAppCmdResult.stderr || createAppCmdResult.stdout);
+  throw new Error('Command "create-mc-app" failed.');
 } else {
   console.log(createAppCmdResult.stdout);
 }
-
-shelljs.ls(applicationPath);
 
 console.log('Running assertions on package.json...');
 const applicationPkgJsonRaw = fs.readFileSync(
