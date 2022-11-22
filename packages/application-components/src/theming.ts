@@ -22,7 +22,7 @@ export const themesOverrides = {
     marginForModalPageHeader: `0 ${uiKitDesignTokens.spacingM}`,
     marginTopForPageHeaderControls: uiKitDesignTokens.spacingS,
     marginTopForPageSubtitle: uiKitDesignTokens.spacingM,
-    marginTopForTabControls: uiKitDesignTokens.spacingM,
+    marginTopForTabControls: uiKitDesignTokens.spacingS,
     paddingForDialogContent: `${uiKitDesignTokens.spacingM} 0 ${uiKitDesignTokens.spacingS}`,
     paddingForModalTopBar: `${uiKitDesignTokens.spacingS} ${uiKitDesignTokens.spacingM}`,
     paddingForPageContent: uiKitDesignTokens.spacingM,
