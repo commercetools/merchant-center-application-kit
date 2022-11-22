@@ -361,7 +361,13 @@ The configuration for [additional OAuth Scopes and user permissions](/concepts/o
 
 ## `additionalOAuthScopes.name`
 
-A name used to build the permission keys based on the default permissions pair. 
+A name used to build the permission keys based on the default permissions pair.
+
+The `additionalOAuthScopes.name` value must adhere to the following restrictions:
+
+* Only lowercase alphabetic characters are allowed.
+* Must be between 2 and 64 characters.
+* Hyphens are allowed except as leading, trailing, and adjacent characters.
 
 ## `additionalOAuthScopes.view`
 
