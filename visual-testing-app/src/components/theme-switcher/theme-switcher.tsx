@@ -16,7 +16,7 @@ const ThemeSwitcher = ({
       style={{
         position: 'absolute',
         top: '8px',
-        right: '16px',
+        right: '80px',
         padding: `${designTokens.spacingXs} ${designTokens.spacingS}`,
         backgroundColor: designTokens.colorAccent95,
         border: `1px solid ${designTokens.colorNeutral}`,
