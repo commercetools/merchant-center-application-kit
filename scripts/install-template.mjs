@@ -50,8 +50,6 @@ const createAppCmdResult = shelljs.exec(
 if (createAppCmdResult.code > 0) {
   console.error(createAppCmdResult.stderr || createAppCmdResult.stdout);
   throw new Error('Command "create-mc-app" failed.');
-} else {
-  console.log(createAppCmdResult.stdout);
 }
 
 console.log('Running assertions on package.json...');
@@ -63,6 +61,25 @@ const applicationPkgJsonRaw = fs.readFileSync(
 );
 const applicationPkgJson = JSON.parse(applicationPkgJsonRaw);
 
+console.log('==> Assert application name');
 assert.strictEqual(applicationPkgJson.name, applicationName);
+console.log('==> Assert application version');
 assert.strictEqual(applicationPkgJson.version, '1.0.0');
+console.log('==> Assert dependency versions to not use "workspace:" protocol');
 assert.doesNotMatch(applicationPkgJsonRaw, /workspace:/);
+
+console.log('Running assertions on custom-application-config...');
+const fileExtension = ['.js', '.ts', '.mjs', '.cjs'].find((ext) => {
+  const filePath = `custom-application-config${ext}`;
+  return fs.existsSync(filePath);
+});
+const customAppConfig = require(path.join(
+  applicationPath,
+  `custom-application-config${fileExtension}`
+));
+
+console.log('==> Assert initial project key');
+assert.strictEqual(
+  customAppConfig.env.development.initialProjectKey,
+  initialProjectKey
+);
