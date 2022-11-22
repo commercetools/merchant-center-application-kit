@@ -23,6 +23,7 @@ const ConfirmationDialogExample = (props: ContainerProps) => (
       getParentSelector={() =>
         document.querySelector(`#${props.portalId}`) as HTMLElement
       }
+      zIndex={10001}
     >
       <Spacings.Stack scale="m">
         <Text.Body>
