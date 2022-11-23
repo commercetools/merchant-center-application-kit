@@ -38,9 +38,9 @@ This feature is available from version `21.21.0` onwards.
 
 </Info>
 
-Defining `oAuthScopes` in the Custom Application config yields the default permision group which allows using permissions limited to 1 unique pair (view/manage) specific to the Custom Application. Default permission pair can cover access control needs of, for example, single-purpose oriented Custom Applications or in case of only one team using the application.
+Defining `oAuthScopes` in the Custom Application config yields the default permision group which allows using permissions limited to 1 unique pair (view/manage) specific to the Custom Application. The default permission pair can cover access control needs of Custom Applications intended to be used by one team.
 
-However, in cases where more granular access control is needed, for example, only one team accross the organization allowed to manage discount codes, the default permission pair is not enough.
+However, in cases where more granular access control is needed, for example, only one team accross the organization is allowed to manage discount codes, the default permission pair is not enough.
 
 For more granular permissions [additional OAuth Scopes](https://docs.commercetools.com/api/scopes) can be requested as part of various additional permission groups. 
 
