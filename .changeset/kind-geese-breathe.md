@@ -2,5 +2,10 @@
 "@commercetools-frontend/application-shell": minor
 ---
 
-Expose [userEvent package](https://www.npmjs.com/package/@testing-library/user-event/v/14.0.1).
-Consumers can now "fire events the same way the user does"
+Expose the `@testing-library/user-event` methods in the test-utils as `userEvent` object.
+
+```js
+import { userEvent } from '@commercetools-frontend/application-shell/test-utils';
+
+userEvent.click()
+```
