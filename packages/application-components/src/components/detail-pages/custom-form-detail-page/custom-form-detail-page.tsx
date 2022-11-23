@@ -15,7 +15,7 @@ import { designTokens as appKitDesignTokens } from '../../../theming';
 
 const DetailPageContainer = styled.div`
   background-color: ${appKitDesignTokens.backgroundColorForPageHeader};
-  padding: ${appKitDesignTokens.paddingForPageHeader};
+  padding: ${appKitDesignTokens.paddingForDetailPageHeader};
   border-bottom: 1px ${appKitDesignTokens.colorForPageHeaderBottomBorder} solid;
 `;
 
