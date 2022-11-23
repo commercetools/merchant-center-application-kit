@@ -17,7 +17,7 @@ const PageHeader = (props: Props) => (
       align-items: flex-end;
       justify-content: space-between;
       margin: ${appKitDesignTokens.marginForModalPageHeader};
-      padding: ${uiKitDesignTokens.spacingM} 0;
+      padding: ${appKitDesignTokens.paddingForModalPageHeader};
       border-bottom: 1px solid
         ${appKitDesignTokens.borderColorForModalPageHeaderDivider};
       & > * + * {
