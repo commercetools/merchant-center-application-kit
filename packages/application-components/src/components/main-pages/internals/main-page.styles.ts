@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { designTokens as appKitDesignTokens } from '../../../theming';
 
 export const MainPageContainer = styled.div`
-  padding: ${appKitDesignTokens.paddingForPageHeader};
+  padding: ${appKitDesignTokens.paddingForMainPageHeader};
 `;
 
 export const Divider = styled.hr`
