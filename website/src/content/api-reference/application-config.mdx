@@ -359,21 +359,37 @@ Using `manage_` OAuth Scopes always imply the corresponding `view_` OAuth Scope.
 
 ## `additionalOAuthScopes`
 
-The configuration for [additional OAuth Scopes and user permissions](/concepts/oauth-scopes-and-user-permissions#additional-oauth-scopes) extending [oAuthScopes configuration](#oauthscopes).
+<Info>
 
-## `additionalOAuthScopes.name`
+This feature is available from version `21.21.0` onwards.
 
-A name used to build the permission keys based on the default permissions pair.
+</Info>
 
-The `additionalOAuthScopes.name` value must adhere to the following restrictions:
+The optional configuration for defining more granular [OAuth Scopes and user permissions](/concepts/oauth-scopes-and-user-permissions#permission-groups).
+
+## `additionalOAuthScopes.*.name`
+
+A unique name for the additional permission group.
+
+```json
+{
+  "additionalOAuthScopes": [
+    {
+      "name": "movies",
+    }
+  ]
+}
+```
+
+The name value must adhere to the following restrictions:
 
 * Only lowercase alphabetic characters are allowed.
 * Must be between 2 and 64 characters.
 * Hyphens are allowed except as leading, trailing, and adjacent characters.
 
-## `additionalOAuthScopes.view`
+## `additionalOAuthScopes.*.view`
 
-A list of "view-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated with the `View` permission scoped to the respective permission group.
+A list of "view-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated with the `View<GroupName>` permission.
 
 ```json
 {
@@ -392,9 +408,9 @@ A list of "view-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) 
 }
 ```
 
-## `additionalOAuthScopes.manage`
+## `additionalOAuthScopes.*.manage`
 
-A list of "manage-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated with the `Manage` permission scoped to the respective permission group.
+A list of "manage-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom Application and associated with the `Manage<GroupName>` permission.
 
 ```json
 {

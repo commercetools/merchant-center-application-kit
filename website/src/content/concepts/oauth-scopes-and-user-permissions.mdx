@@ -30,15 +30,23 @@ Notice here how the OAuth Scopes are grouped by the two fields `view` and `manag
 
 This grouping determines the **mapping and relation between OAuth Scopes and user permissions**.
 
-# Additional OAuth Scopes
+# Permission groups
 
-Defining `oAuthScopes` in the Custom Application config allows using permissions limited to 1 unique pair (view/manage) specific to the Custom Application.
+<Info>
 
-For more granular permissions, for example, to allow the team access to only certain parts or functionality of the Custom Application, [additional OAuth Scopes](https://docs.commercetools.com/api/scopes) can be requested as part of various permission groups. 
+This feature is available from version `21.21.0` onwards.
+
+</Info>
+
+Defining `oAuthScopes` in the Custom Application config yields the default permision group which allows using permissions limited to 1 unique pair (view/manage) specific to the Custom Application. Default permission pair can cover access control needs of, for example, single-purpose oriented Custom Applications or in case of only one team using the application.
+
+However, in cases where more granular access control is needed, for example, only one team accross the organization allowed to manage discount codes, the default permission pair is not enough.
+
+For more granular permissions [additional OAuth Scopes](https://docs.commercetools.com/api/scopes) can be requested as part of various additional permission groups. 
 
 These additional OAuth Scopes must be specified in your Custom Application config, using the [`additionalOAuthScopes` field](/api-reference/application-config#additionaloauthscopes).
 
-In the following example, permission group named `team_a` allows to manage orders but not see discount codes, while permission group named `team_b` allows both.
+In the following example, permission group named `team-a` allows to manage orders but not manage discount codes, while permission group named `team-b` allows both.
 
 ```json title="custom-application-config.json" highlightLines="6-17"
 {
@@ -54,8 +62,8 @@ In the following example, permission group named `team_a` allows to manage order
     },
     {
       "name": "team-b",
-      "view": ["view_discount_codes"],
-      "manage": ["manage_orders"]
+      "view": [],
+      "manage": ["manage_orders", "manage_discount_codes"]
     }
   ]
 }
@@ -85,7 +93,7 @@ Here are some examples:
 | `avengers-01` | `{View,Manage}Avengers/01` |
 | `avengers_01` | `{View,Manage}Avengers_01` |
 
-Optional additional permissions derive from the `entryPointUriPath` and the provided permission group name, based on the following format: `{View,Manage}<EntryPointUriPath><PermissionGroupName>`
+When using additional permission groups, the permission name is derived from the `entryPointUriPath` (same as the default group) plus the group name, based on the following format: `{View,Manage}<EntryPointUriPath><GroupName>`
 
 Here are some examples:
 

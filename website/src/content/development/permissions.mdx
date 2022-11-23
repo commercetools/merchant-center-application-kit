@@ -2,13 +2,11 @@
 title: Permissions
 ---
 
-As we learned in [OAuth Scopes and user permissions](/concepts/oauth-scopes-and-user-permissions), each Custom Application has a unique pair of default user permissions at its disposal: "view" and "manage."
+As we learned in [OAuth Scopes and user permissions](/concepts/oauth-scopes-and-user-permissions), each Custom Application has a unique pair of default user permissions at its disposal: "view" and "manage." Additionally, more granular permission groups can be used to cover more strict business requirements.
 
 The values of the user permissions are derived from the application `entryPointUriPath`.
 
 When developing a Custom Application you might want to enforce these user permissions in some parts of your application. For example, performing certain actions like creating, updating, or deleting a resource should only be possible if the user has "manage" permission.
-
-Furthermore, more granular additional permissions can optionally be used, for example, to allow the team access to only certain parts or functionality of the Custom Application.
 
 # Defining constants
 
@@ -31,20 +29,25 @@ You can then use the `PERMISSIONS` variable to reference the permission in the a
 
 <Info>
 
-To leverage the optional, more granular permissions, a distinctive name has to be introduced for each of the permission groups.
+This feature is available from version `21.21.0` onwards.
+
+When using additional permission groups, the unique group names should be provided to the `entryPointUriPathToPermissionKeys` function to generate the correct permission keys.
+
+The group names can be exported and referenced also in the Custom Application config file.
 
 ```js title="constants.js" highlightLines="5-7, 11"
 import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-shell/ssr';
 
 export const entryPointUriPath = 'channels';
 
-export const teamA = "team-a";
-
-export const teamB = "team-b";
+export const groupNames = {
+  teamA: 'team-a',
+  teamB: 'team-b',
+};
 
 export const PERMISSIONS = entryPointUriPathToPermissionKeys(
   entryPointUriPath,
-  [teamA, teamB]
+  [groupNames.teamA, groupNames.teamB]
 );
 ```
 
