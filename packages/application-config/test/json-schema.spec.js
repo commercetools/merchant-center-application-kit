@@ -288,7 +288,7 @@ describe('invalid configurations', () => {
         ],
       })
     ).toThrowErrorMatchingInlineSnapshot(
-      `"Additional permission group name \\"-movies\\" is invalid. The value may be between 2 and 64 characters and only contain alphanumeric lowercase characters and non-consecutive hyphens. Leading and trailing hyphens are also not allowed"`
+      `"Additional permission group name \\"-movies\\" is invalid. The value may be between 2 and 64 characters and only contain alphabetic lowercase characters and non-consecutive hyphens. Leading and trailing hyphens are also not allowed"`
     );
   });
 });

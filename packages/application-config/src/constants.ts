@@ -1,5 +1,5 @@
 /**
- * The entryPointUriPath may be between 2 and 64 characters and only contain alphanumeric lowercase characters,
+ * The entryPointUriPath may be between 2 and 64 characters and only contain alphabetic lowercase characters,
  * non-consecutive underscores and hyphens. Leading and trailing underscore and hyphens are also not allowed.
  */
 export const ENTRY_POINT_URI_PATH_REGEX =
