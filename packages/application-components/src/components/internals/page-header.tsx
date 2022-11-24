@@ -1,5 +1,4 @@
 import type { ReactElement, ReactNode } from 'react';
-import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { css } from '@emotion/react';
 import PageHeaderTitle from './page-header-title';
 import { designTokens as appKitDesignTokens } from '../../theming';
@@ -21,7 +20,7 @@ const PageHeader = (props: Props) => (
       border-bottom: 1px solid
         ${appKitDesignTokens.borderColorForModalPageHeaderDivider};
       & > * + * {
-        margin-left: ${uiKitDesignTokens.spacingM};
+        margin-left: ${appKitDesignTokens.marginLeftForModalPageHeaderControls};
       }
     `}
   >
