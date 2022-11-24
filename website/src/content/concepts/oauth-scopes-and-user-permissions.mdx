@@ -30,7 +30,14 @@ Notice here how the OAuth Scopes are grouped by the two fields `view` and `manag
 
 This grouping determines the **mapping and relation between OAuth Scopes and user permissions**.
 
-# Permission groups
+## Permission groups
+
+Every Custom Application has a **default permission group** with a pair of view and manage permissions. This group maps to the OAuth Scopes specified in the [oAuthScopes](/api-reference/application-config#oauthscopes) field of the Custom Application config.
+
+However, you might need more granular access control to fulfil specific business requirements. For example, if your Custom Application manages products, discounts and orders, you might want only a group of users to manage products and discounts while another group of users handles orders.<br />
+In this kind of scenario a single permission group (the default one) is not enough as you would need multiple permission groups fulfil the access requirements.
+
+To enable such use cases, you can define additional permission groups that have different access requirements. See [additionalOAuthScopes](/api-reference/application-config#additionaloauthscopes) field in the Custom Application config. 
 
 <Info>
 
@@ -38,15 +45,7 @@ This feature is available from version `21.21.0` onwards.
 
 </Info>
 
-Defining `oAuthScopes` in the Custom Application config yields the default permision group which allows using permissions limited to 1 unique pair (view/manage) specific to the Custom Application. The default permission pair can cover access control needs of Custom Applications intended to be used by one team.
-
-However, in certain cases more granular access control is needed. For example, if multiple teams accross the organization have access to a Custom Application but only one team is allowed to manage discount codes, the default permission pair is not enough.
-
-For more granular permissions [additional OAuth Scopes](https://docs.commercetools.com/api/scopes) can be requested as part of various additional permission groups. 
-
-These additional OAuth Scopes must be specified in your Custom Application config, using the [`additionalOAuthScopes` field](/api-reference/application-config#additionaloauthscopes).
-
-In the following example, permission group named `team-a` allows to manage orders but not manage discount codes, while permission group named `team-b` allows both.
+In the following example, we are defining two additional permission groups. The group `delivery` allows users to manage incoming orders while the group `promotion` enables users to work on discount and promotion campaigns.
 
 ```json title="custom-application-config.json" highlightLines="6-17"
 {
@@ -56,12 +55,12 @@ In the following example, permission group named `team-a` allows to manage order
   },
   "additionalOAuthScopes": [
     {
-      "name": "team-a",
+      "name": "delivery",
       "view": [],
       "manage": ["manage_orders"]
     },
     {
-      "name": "team-b",
+      "name": "promotion",
       "view": [],
       "manage": ["manage_orders", "manage_discount_codes"]
     }
@@ -69,12 +68,22 @@ In the following example, permission group named `team-a` allows to manage order
 }
 ```
 
+<Info>
+
+The default permission group is always defined, even when not adding additional groups.
+
+When additional groups are defined, the default group can be left "empty", without specifying any OAuth Scopes.
+
+Even so, remember that the "view-only" user permission must be enabled to allow access to the Custom Application.
+
+</Info>
+
 # User permissions
 
 In the Merchant Center, you can assign user permissions to Teams to grant or restrict access to certain parts and functionalities of the Merchant Center. See [user permissions in Merchant Center](https://docs.commercetools.com/merchant-center/user-permissions) for more information.<br />
 The same concepts apply for Custom Applications as well. Once your Custom Application has been installed in your Organization, you can assign user permissions for your Custom Application to each specific Team.
 
-Each Custom Application gets a **unique pair** of user permissions: "view" and "manage."
+Each Custom Application gets **unique** "view" and "manage" permissions.
 
 * When assigning "view"-only permission to a Team, only the `view_` OAuth Scopes are used to authorize API requests.
 * When assigning "manage" permission to a Team, both `view_` and `manage_` OAuth Scopes are used to authorize API requests.

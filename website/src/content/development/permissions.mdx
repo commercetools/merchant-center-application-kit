@@ -41,24 +41,24 @@ import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/appli
 export const entryPointUriPath = 'channels';
 
 export const groupNames = {
-  teamA: 'team-a',
-  teamB: 'team-b',
+  delivery: 'delivery',
+  promotion: 'promotion',
 };
 
 export const PERMISSIONS = entryPointUriPathToPermissionKeys(
   entryPointUriPath,
-  [groupNames.teamA, groupNames.teamB]
+  ['delivery', 'promotion']
 );
 ```
 
-In this scenario the `PERMISSIONS` variable contains a `View`, `Manage`, `ViewTeamA`, `ManageTeamA`, `ViewTeamB` and `ManageTeamB` properties, with the values being the computed values based on the `entryPointUriPath` and the provided permission group names:
+In this scenario the `PERMISSIONS` variable contains a `View`, `Manage`, `ViewDelivery`, `ManageDelivery`, `ViewPromotion` and `ManagePromotion` properties, with the values being the computed values based on the `entryPointUriPath` and the provided permission group names:
 
 * `PERMISSIONS.View`: maps to `ViewChannels`.
 * `PERMISSIONS.Manage`: maps to `ManageChannels`.
-* `PERMISSIONS.ViewTeamA`: maps to `ViewChannelsTeamA`.
-* `PERMISSIONS.ManageTeamA`: maps to `ManageChannelsTeamA`.
-* `PERMISSIONS.ViewTeamB`: maps to `ViewChannelsTeamB`.
-* `PERMISSIONS.ManageTeamB`: maps to `ManageChannelsTeamB`.
+* `PERMISSIONS.ViewDelivery`: maps to `ViewChannelsDelivery`.
+* `PERMISSIONS.ManageDelivery`: maps to `ManageChannelsDelivery`.
+* `PERMISSIONS.ViewPromotion`: maps to `ViewChannelsPromotion`.
+* `PERMISSIONS.ManagePromotion`: maps to `ManageChannelsPromotion`.
 
 </Info>
 
