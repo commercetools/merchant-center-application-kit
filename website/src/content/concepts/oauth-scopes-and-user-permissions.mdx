@@ -34,7 +34,7 @@ This grouping determines the **mapping and relation between OAuth Scopes and use
 
 Every Custom Application has a **default permission group** with a pair of view and manage permissions. This group maps to the OAuth Scopes specified in the [oAuthScopes](/api-reference/application-config#oauthscopes) field of the Custom Application config.
 
-However, you might need more granular access control to fulfil specific business requirements. For example, if your Custom Application manages products, discounts and orders, you might want only a group of users to manage products and discounts while another group of users handles orders.<br />
+However, you might need more granular access control to fulfil specific business requirements. For example, if your Custom Application manages products, discounts, and orders, you might want only a group of users to manage products and discounts while another group of users handles orders.<br />
 In this kind of scenario a single permission group (the default one) is not enough as you would need multiple permission groups fulfil the access requirements.
 
 To enable such use cases, you can define additional permission groups that have different access requirements. See [additionalOAuthScopes](/api-reference/application-config#additionaloauthscopes) field in the Custom Application config. 
@@ -72,7 +72,7 @@ In the following example, we are defining two additional permission groups. The 
 
 The default permission group is always defined, even when not adding additional groups.
 
-When additional groups are defined, the default group can be left "empty", without specifying any OAuth Scopes.
+When additional groups are defined, the default group can be left "empty," without specifying any OAuth Scopes.
 
 Even so, remember that the "view-only" user permission must be enabled to allow access to the Custom Application.
 
