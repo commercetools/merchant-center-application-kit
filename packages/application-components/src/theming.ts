@@ -27,6 +27,8 @@ export const themesOverrides = {
     paddingForPageContent: uiKitDesignTokens.spacingM,
     paddingForTabularPageHeader: `${uiKitDesignTokens.spacingM} ${uiKitDesignTokens.spacingM} 0`,
     paddingLeftForTabAsFirst: '0',
+    widthForDialogAsMedium: uiKitDesignTokens.constraint7,
+    widthForDialogAsLarge: uiKitDesignTokens.constraint10,
   },
   test: {
     colorForPageHeaderBottomBorder: uiKitDesignTokens.colorNeutral90,
@@ -51,6 +53,8 @@ export const themesOverrides = {
     paddingForPageContent: `${uiKitDesignTokens.spacingXl} 40px`,
     paddingForTabularPageHeader: `${uiKitDesignTokens.spacingXl} 40px 0`,
     paddingLeftForTabAsFirst: uiKitDesignTokens.spacingM,
+    widthForDialogAsMedium: uiKitDesignTokens.constraint9,
+    widthForDialogAsLarge: uiKitDesignTokens.constraint13,
   },
 };
 

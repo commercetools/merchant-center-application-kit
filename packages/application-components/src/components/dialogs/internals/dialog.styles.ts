@@ -1,27 +1,36 @@
 import { css } from '@emotion/react';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
+import { designTokens as appKitDesignTokens } from '../../../theming';
 
 type StyleProps = {
-  size: 'm' | 'l' | 7 | 8 | 9 | 10 | 'scale';
+  size: 'm' | 'l' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 'scale';
   zIndex?: number;
 };
 
 const getConstraintForGridStyle = (size: StyleProps['size']) => {
   switch (size) {
-    case 7:
     case 'm':
-      return customProperties.constraint7;
+      return appKitDesignTokens.widthForDialogAsMedium;
+    case 7:
+      return uiKitDesignTokens.constraint7;
     case 8:
-      return customProperties.constraint8;
+      return uiKitDesignTokens.constraint8;
     case 9:
-      return customProperties.constraint9;
+      return uiKitDesignTokens.constraint9;
     case 10:
+      return uiKitDesignTokens.constraint10;
+    case 11:
+      return uiKitDesignTokens.constraint11;
+    case 12:
+      return uiKitDesignTokens.constraint12;
+    case 13:
+      return uiKitDesignTokens.constraint13;
     case 'l':
-      return customProperties.constraint10;
+      return appKitDesignTokens.widthForDialogAsLarge;
     case 'scale':
-      return customProperties.constraintScale;
+      return uiKitDesignTokens.constraintScale;
     default:
-      return customProperties.constraintScale;
+      return uiKitDesignTokens.constraintScale;
   }
 };
 
@@ -32,32 +41,32 @@ export const getModalContentStyles = (props: StyleProps) => {
       ? css`
           grid:
             [row1-start] 'top top top' minmax(
-              ${customProperties.spacingXl},
+              ${uiKitDesignTokens.spacingXl},
               1fr
             )
             [row1-end]
             [row2-start] 'left main right' minmax(0, 100%) [row2-end]
             [row3-start] 'bottom bottom bottom' minmax(
-              ${customProperties.spacingXl},
+              ${uiKitDesignTokens.spacingXl},
               1fr
             )
-            [row3-end] / ${customProperties.spacingXl} 1fr ${customProperties.spacingXl};
+            [row3-end] / ${uiKitDesignTokens.spacingXl} 1fr ${uiKitDesignTokens.spacingXl};
         `
       : css`
           grid:
             [row1-start] 'top top top' minmax(
-              ${customProperties.spacingXl},
+              ${uiKitDesignTokens.spacingXl},
               1fr
             )
             [row1-end]
             [row2-start] 'left main right' minmax(0, 100%) [row2-end]
             [row3-start] 'bottom bottom bottom' minmax(
-              ${customProperties.spacingXl},
+              ${uiKitDesignTokens.spacingXl},
               1fr
             )
-            [row3-end] / minmax(${customProperties.spacingXl}, 1fr)
+            [row3-end] / minmax(${uiKitDesignTokens.spacingXl}, 1fr)
             ${sizeConstraint}
-            minmax(${customProperties.spacingXl}, 1fr);
+            minmax(${uiKitDesignTokens.spacingXl}, 1fr);
         `;
 
   // To ensure that the mouse click on the overlay surface goes "through"
