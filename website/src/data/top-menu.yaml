@@ -19,7 +19,7 @@
 - menu-title: Frontend
   items:
     - label: Getting Started
-      href: /../frontend-getting-started/overview
+      href: /../frontend-getting-started/
     - label: Studio
       href: /../frontend-studio/
     - label: Developing
