@@ -275,7 +275,7 @@ describe('invalid configurations', () => {
       `"Duplicate additional permission group name \\"movies\\". Every additional permission must have a unique name"`
     );
   });
-  it('should validate the additional permission names matches the entry point regex', () => {
+  it('should validate the additional permission names matches the regex', () => {
     expect(() =>
       validateAdditionalOAuthScopes({
         ...fixtureConfigSimple,
@@ -289,6 +289,22 @@ describe('invalid configurations', () => {
       })
     ).toThrowErrorMatchingInlineSnapshot(
       `"Additional permission group name \\"-movies\\" is invalid. The value may be between 2 and 64 characters and only contain alphabetic lowercase characters and non-consecutive hyphens. Leading and trailing hyphens are also not allowed"`
+    );
+  });
+  it('should validate that at least one additional OAuth Scope is defined for a permission group', () => {
+    expect(() =>
+      validateAdditionalOAuthScopes({
+        ...fixtureConfigSimple,
+        additionalOAuthScopes: [
+          {
+            name: 'movies',
+            view: [],
+            // mind that `manage` is undefined
+          },
+        ],
+      })
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"At least one OAuth Scope for permission group name \\"movies\\" is required"`
     );
   });
 });

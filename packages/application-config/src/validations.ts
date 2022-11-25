@@ -78,8 +78,15 @@ export const validateAdditionalOAuthScopes = (
   config: JSONSchemaForCustomApplicationConfigurationFiles
 ) => {
   const additionalPermissionNames = new Set();
-  config.additionalOAuthScopes?.forEach(({ name }) => {
-    if (additionalPermissionNames.has(name)) {
+  config.additionalOAuthScopes?.forEach(({ name, view, manage }) => {
+    if (
+      ((Array.isArray(view) && view.length === 0) || !view) &&
+      ((Array.isArray(manage) && manage.length === 0) || !manage)
+    ) {
+      throw new Error(
+        `At least one OAuth Scope for permission group name "${name}" is required`
+      );
+    } else if (additionalPermissionNames.has(name)) {
       throw new Error(
         `Duplicate additional permission group name "${name}". Every additional permission must have a unique name`
       );
