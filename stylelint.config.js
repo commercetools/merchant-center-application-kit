@@ -33,7 +33,7 @@ module.exports = {
     'function-name-case': null,
     'comment-empty-line-before': null,
     'csstools/value-no-unknown-custom-properties': [
-      true,
+      null,
       {
         importFrom: [
           'node_modules/@commercetools-uikit/design-system/materials/custom-properties.css',

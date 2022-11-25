@@ -32,6 +32,8 @@ export const themesOverrides = {
     widthForDialogAsMedium: uiKitDesignTokens.constraint7,
     widthForDialogAsLarge: uiKitDesignTokens.constraint10,
     widthForPageLayoutContentColumn: `calc(${uiKitDesignTokens.constraint15} / 2)`,
+    fontSizeForNavBarLink: uiKitDesignTokens.fontSize40,
+    lineHeightForNavBarLink: uiKitDesignTokens.lineHeight50,
   },
   test: {
     colorForPageHeaderBottomBorder: uiKitDesignTokens.colorNeutral90,
@@ -59,6 +61,8 @@ export const themesOverrides = {
     widthForDialogAsMedium: uiKitDesignTokens.constraint9,
     widthForDialogAsLarge: uiKitDesignTokens.constraint13,
     widthForPageLayoutContentColumn: `calc(${uiKitDesignTokens.constraint16} / 2)`,
+    fontSizeForNavBarLink: uiKitDesignTokens.fontSize20,
+    lineHeightForNavBarLink: uiKitDesignTokens.lineHeight20,
   },
 };
 
