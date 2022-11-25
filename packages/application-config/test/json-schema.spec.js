@@ -275,7 +275,7 @@ describe('invalid configurations', () => {
       `"Duplicate additional permission group name \\"movies\\". Every additional permission must have a unique name"`
     );
   });
-  it('should validate the additional permission names matches the regex', () => {
+  it('should validate the additional permission names match the regex', () => {
     expect(() =>
       validateAdditionalOAuthScopes({
         ...fixtureConfigSimple,
