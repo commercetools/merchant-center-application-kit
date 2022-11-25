@@ -74,7 +74,9 @@
 .list-item .title {
   flex: 1;
   font-weight: 500;
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-size: var(--font-size-for-nav-bar-link);
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   line-height: var(--line-height-for-nav-bar-link);
   color: var(--color-surface);
   display: none;
@@ -151,7 +153,9 @@
 :global(.body__menu-open) .title {
   color: var(--color-surface);
   font-weight: 500;
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-size: var(--font-size-for-nav-bar-link);
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   line-height: var(--line-height-for-nav-bar-link);
 }
 
@@ -203,6 +207,7 @@
 
 :global(.body__menu-open) .title-copy {
   font-weight: 400;
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-size: var(--font-size-for-nav-bar-link);
   color: white;
   text-decoration: none;
@@ -224,6 +229,7 @@
 .sublist {
   padding: 55px var(--spacing-l) var(--spacing-m);
   font-weight: 400;
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-size: var(--font-size-for-nav-bar-link);
   position: absolute;
   background-color: var(--color-accent-30);
@@ -252,7 +258,9 @@
 
 .text {
   font-weight: 400;
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-size: var(--font-size-for-nav-bar-link);
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   line-height: var(--line-height-for-nav-bar-link);
 }
 
