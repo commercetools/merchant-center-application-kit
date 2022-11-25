@@ -1,7 +1,7 @@
 export const DIMENSIONS = {
   header: '43px',
   navMenu: '64px',
-  navMenuExpanded: '264px',
+  navMenuExpanded: '254px',
 } as const;
 
 export const SUPPORTED_HEADERS = {

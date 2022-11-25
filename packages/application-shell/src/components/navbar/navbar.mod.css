@@ -10,8 +10,8 @@
 
   /* Left navigation */
   --width-left-navigation: 64px;
-  --width-left-navigation-when-expanded: 264px;
-  --width-left-navigation-sublist: 200px;
+  --width-left-navigation-when-expanded: 245px;
+  --width-left-navigation-sublist: 205px;
 }
 
 /* Left Nav */
@@ -54,6 +54,9 @@
   width: 100%;
   position: relative;
   display: block;
+}
+.item__active .item-link {
+  padding-right: var(--spacing-l);
 }
 
 .list-item .item-icon-text {
