@@ -5,7 +5,6 @@ import LegacyApplicationSubmenu from './legacy-application-navbar-submenu';
 const ApplicationNavbarMenu = new Factory()
   .sequence('sequenceId')
   .attr('__typename', 'NavbarMenu')
-  .attr('shouldRenderDivider', false)
   .attr('id', () => faker.datatype.uuid())
   .attr('key', () => faker.lorem.slug(1))
   .attr('uriPath', () => faker.lorem.slug(1))

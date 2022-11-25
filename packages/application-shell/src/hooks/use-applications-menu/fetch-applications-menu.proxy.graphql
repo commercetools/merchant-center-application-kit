@@ -1,7 +1,6 @@
 query FetchApplicationsMenu {
   applicationsMenu {
     navBar {
-      shouldRenderDivider
       key
       uriPath
       icon

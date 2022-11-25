@@ -115,7 +115,6 @@ const useNavbarStateManager = (props: HookProps) => {
               menuVisibility: undefined,
               actionRights: undefined,
               dataFences: undefined,
-              shouldRenderDivider: false,
             };
           })
           .filter(nonNullable)
@@ -142,7 +141,6 @@ const useNavbarStateManager = (props: HookProps) => {
               menuVisibility: undefined,
               actionRights: undefined,
               dataFences: undefined,
-              shouldRenderDivider: false,
               submenu: (application.submenuLinks || []).map((submenuLink) => ({
                 key: submenuLink.id,
                 uriPath: submenuLink.uriPath,
@@ -279,7 +277,6 @@ const useNavbarStateManager = (props: HookProps) => {
       labelAllLocales: [{ locale: 'en', value: 'Hello' }],
       permissions: [],
       menuVisibility: null,
-      shouldRenderDivider: true,
       submenu: [],
       uriPath: 'settings',
       __typename: 'NavbarMenu',
