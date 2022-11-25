@@ -38,14 +38,14 @@ ConfirmationDialogExample.displayName = 'ConfirmationDialogExample';
 export const Component = () => (
   <Suite>
     <Spec
-      label="ConfirmationDialog - Size M"
+      label="ConfirmationDialog - Size M (deprecated)"
       size="l"
       contentAlignment="center"
     >
       <ConfirmationDialogExample size="m" portalId="dialog-m" />
     </Spec>
     <Spec
-      label="ConfirmationDialog - Size L"
+      label="ConfirmationDialog - Size L (deprecated)"
       size="l"
       contentAlignment="center"
     >
@@ -80,11 +80,39 @@ export const Component = () => (
       <ConfirmationDialogExample size={10} portalId="dialog-10" />
     </Spec>
     <Spec
+      label="ConfirmationDialog - Size 11"
+      size={11}
+      contentAlignment="center"
+    >
+      <ConfirmationDialogExample size={11} portalId="dialog-11" />
+    </Spec>
+    <Spec
+      label="ConfirmationDialog - Size 12"
+      size={12}
+      contentAlignment="center"
+    >
+      <ConfirmationDialogExample size={12} portalId="dialog-12" />
+    </Spec>
+    <Spec
+      label="ConfirmationDialog - Size 13"
+      size={13}
+      contentAlignment="center"
+    >
+      <ConfirmationDialogExample size={13} portalId="dialog-13" />
+    </Spec>
+    <Spec
       label="ConfirmationDialog - Size Scale"
       size={7}
       contentAlignment="center"
     >
       <ConfirmationDialogExample size="scale" portalId="dialog-scale" />
+    </Spec>
+    <Spec
+      label="ConfirmationDialog - Default size"
+      size={13}
+      contentAlignment="center"
+    >
+      <ConfirmationDialogExample portalId="dialog-default" />
     </Spec>
     <Spec
       label="ConfirmationDialog - Primary button disabled"
