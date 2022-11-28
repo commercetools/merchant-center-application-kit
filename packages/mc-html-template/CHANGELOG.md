@@ -1,5 +1,15 @@
 # @commercetools-frontend/mc-html-template
 
+## 21.20.2
+
+### Patch Changes
+
+- [#2891](https://github.com/commercetools/merchant-center-application-kit/pull/2891) [`66acf9b96`](https://github.com/commercetools/merchant-center-application-kit/commit/66acf9b966c3eaaa410c2298dbfba45d959f528b) Thanks [@emmenko](https://github.com/emmenko)! - Use `preconnect` hints for launchdarkly domains.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@21.20.2
+  - @commercetools-frontend/constants@21.20.2
+
 ## 21.20.1
 
 ### Patch Changes
