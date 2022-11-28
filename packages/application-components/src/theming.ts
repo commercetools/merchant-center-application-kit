@@ -3,6 +3,8 @@ import {
   designTokens as uiKitDesignTokens,
 } from '@commercetools-uikit/design-system';
 
+const spacing40 = '40px';
+
 export const themesOverrides = {
   default: {
     colorForPageHeaderBottomBorder: uiKitDesignTokens.colorNeutral,
@@ -41,17 +43,17 @@ export const themesOverrides = {
     borderColorForModalTopBarWhenSurface: uiKitDesignTokens.colorSurface,
     heightForTab: '2px',
     marginBottomForPageTopBar: uiKitDesignTokens.spacingL,
-    marginForModalPageHeader: `0 40px`,
+    marginForModalPageHeader: `0 ${spacing40}`,
     marginLeftForModalPageHeaderControls: uiKitDesignTokens.spacingXl,
     marginTopForPageSubtitle: uiKitDesignTokens.spacingS,
     marginTopForTabControls: uiKitDesignTokens.spacingL,
-    paddingForDetailPageHeader: `${uiKitDesignTokens.spacingXl} 40px ${uiKitDesignTokens.spacingL}`,
+    paddingForDetailPageHeader: `${uiKitDesignTokens.spacingXl} ${spacing40} ${uiKitDesignTokens.spacingL}`,
     paddingForDialogContent: `${uiKitDesignTokens.spacingL} 0 ${uiKitDesignTokens.spacingS}`,
-    paddingForMainPageHeader: `${uiKitDesignTokens.spacingXl} 40px 0`,
+    paddingForMainPageHeader: `${uiKitDesignTokens.spacingXl} ${spacing40} 0`,
     paddingForModalPageHeader: `${uiKitDesignTokens.spacingM} 0 ${uiKitDesignTokens.spacingL}`,
-    paddingForModalTopBar: `${uiKitDesignTokens.spacingL} 40px ${uiKitDesignTokens.spacingS}`,
-    paddingForPageContent: `${uiKitDesignTokens.spacingXl} 40px`,
-    paddingForTabularPageHeader: `${uiKitDesignTokens.spacingXl} 40px 0`,
+    paddingForModalTopBar: `${uiKitDesignTokens.spacingL} ${spacing40} ${uiKitDesignTokens.spacingS}`,
+    paddingForPageContent: `${uiKitDesignTokens.spacingXl} ${spacing40}`,
+    paddingForTabularPageHeader: `${uiKitDesignTokens.spacingXl} ${spacing40} 0`,
     paddingLeftForTabAsFirst: uiKitDesignTokens.spacingM,
     widthForDialogAsMedium: uiKitDesignTokens.constraint9,
     widthForDialogAsLarge: uiKitDesignTokens.constraint13,
