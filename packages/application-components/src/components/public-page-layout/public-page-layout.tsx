@@ -5,6 +5,7 @@ import CommercetoolsLogoSvg from '@commercetools-frontend/assets/logos/commercet
 import { customProperties } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
+import { designTokens as appKitDesingTokens } from '../../theming';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import base64Background from /* preval */ './public-background';
 
@@ -45,7 +46,7 @@ const Container = styled.div`
   background-position: center;
 `;
 const ContainerColumn = styled.div`
-  width: calc(${customProperties.constraint15} / 2);
+  width: ${appKitDesingTokens.widthForPageLayoutContentColumn};
 `;
 const ContainerColumnWide = styled.div`
   width: ${customProperties.constraint15};

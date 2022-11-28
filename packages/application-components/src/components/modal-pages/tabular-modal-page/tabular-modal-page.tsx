@@ -75,27 +75,25 @@ const TabularModalPage = (props: Props) => (
     afterOpenStyles={props.afterOpenStyles}
   >
     <TabularPageContainer color="neutral">
-      <Spacings.Stack>
-        {props.customTitleRow || (
-          <PageHeaderTitle
-            title={props.title}
-            subtitle={props.subtitle}
-            truncate
-          />
-        )}
-        <ControlsContainter
-          tabControls={props.tabControls}
-          formControls={
-            <FormControlsContainer>
-              {!props.hideControls && props.formControls && (
-                <Spacings.Inline alignItems="flex-end">
-                  {props.formControls}
-                </Spacings.Inline>
-              )}
-            </FormControlsContainer>
-          }
+      {props.customTitleRow || (
+        <PageHeaderTitle
+          title={props.title}
+          subtitle={props.subtitle}
+          truncate
         />
-      </Spacings.Stack>
+      )}
+      <ControlsContainter
+        tabControls={props.tabControls}
+        formControls={
+          <FormControlsContainer>
+            {!props.hideControls && props.formControls && (
+              <Spacings.Inline alignItems="flex-end">
+                {props.formControls}
+              </Spacings.Inline>
+            )}
+          </FormControlsContainer>
+        }
+      />
     </TabularPageContainer>
     <ContentWrapper>{props.children}</ContentWrapper>
   </ModalPage>

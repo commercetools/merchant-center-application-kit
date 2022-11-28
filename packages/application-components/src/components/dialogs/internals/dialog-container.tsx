@@ -41,14 +41,18 @@ const getOverlayElement: ModalProps['overlayElement'] = (
 type Props = {
   isOpen: boolean;
   onClose?: (event: SyntheticEvent) => void;
-  size: 'm' | 'l' | 7 | 8 | 9 | 10 | 'scale';
+  size: 'm' | 'l' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 'scale';
   zIndex?: number;
   title: string;
   children: ReactNode;
   getParentSelector: typeof getDefaultParentSelector;
 };
 const defaultProps: Pick<Props, 'size' | 'getParentSelector'> = {
-  size: 10,
+  // TODO: t-shirt sizes are deprecated but we need to keep using them for
+  // backwards compatibility and to help with styling migration
+  // After the migration is done, we should change this default value to 13.
+  // t-shirt sizes then can be removed in a next breaking change release
+  size: 'l',
   getParentSelector: getDefaultParentSelector,
 };
 

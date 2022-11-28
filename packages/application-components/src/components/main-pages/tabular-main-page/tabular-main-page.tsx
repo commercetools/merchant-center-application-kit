@@ -2,8 +2,8 @@ import type { ReactElement, ReactNode } from 'react';
 import Spacings from '@commercetools-uikit/spacings';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import { css } from '@emotion/react';
-import { customProperties } from '@commercetools-uikit/design-system';
 import { warning } from '@commercetools-uikit/utils';
+import { designTokens as appKitDesignTokens } from '../../../theming';
 import PageHeaderTitle from '../../internals/page-header-title';
 import {
   ControlsContainter,
@@ -61,31 +61,29 @@ const TabularMainPage = (props: TTabularMainPageProps) => {
   return (
     <PageWrapper>
       <TabularPageContainer color="surface">
-        <Spacings.Stack>
-          {props.customTitleRow || (
-            <PageHeaderTitle
-              title={props.title ?? ''}
-              subtitle={props.subtitle}
-              titleSize="big"
-            />
-          )}
-          <ControlsContainter
-            tabControls={props.tabControls}
-            formControls={
-              <FormControlsContainer>
-                {!props.hideControls && props.formControls && (
-                  <Spacings.Inline alignItems="flex-end">
-                    {props.formControls}
-                  </Spacings.Inline>
-                )}
-              </FormControlsContainer>
-            }
+        {props.customTitleRow || (
+          <PageHeaderTitle
+            title={props.title ?? ''}
+            subtitle={props.subtitle}
+            titleSize="big"
           />
-        </Spacings.Stack>
+        )}
+        <ControlsContainter
+          tabControls={props.tabControls}
+          formControls={
+            <FormControlsContainer>
+              {!props.hideControls && props.formControls && (
+                <Spacings.Inline alignItems="flex-end">
+                  {props.formControls}
+                </Spacings.Inline>
+              )}
+            </FormControlsContainer>
+          }
+        />
       </TabularPageContainer>
       <ContentWrapper
         css={css`
-          background-color: ${customProperties.colorNeutral95};
+          background-color: ${appKitDesignTokens.backgroundColorForTabularMainPageContent};
         `}
       >
         {props.children}

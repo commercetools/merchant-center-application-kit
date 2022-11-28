@@ -2,21 +2,26 @@ import type { ReactElement, ReactNode, MouseEvent, KeyboardEvent } from 'react';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import { warning } from '@commercetools-uikit/utils';
 import styled from '@emotion/styled';
-import { customProperties } from '@commercetools-uikit/design-system';
 import {
   FormPrimaryButton,
   FormSecondaryButton,
   FormDeleteButton,
 } from '../../internals/default-form-buttons';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import PageHeaderTitle from '../../internals/page-header-title';
 import PageTopBar from '../../internals/page-top-bar';
 import { ContentWrapper, PageWrapper } from '../../internals/page.styles';
+import { designTokens as appKitDesignTokens } from '../../../theming';
 
 const DetailPageContainer = styled.div`
-  background-color: ${customProperties.colorNeutral95};
-  padding: ${customProperties.spacingM};
-  border-bottom: 1px ${customProperties.colorNeutral} solid;
+  background-color: ${appKitDesignTokens.backgroundColorForPageHeader};
+  padding: ${appKitDesignTokens.paddingForDetailPageHeader};
+  border-bottom: 1px ${appKitDesignTokens.colorForPageHeaderBottomBorder} solid;
+`;
+
+const HeaderControlsWrapper = styled.div`
+  margin-top: ${uiKitDesignTokens.spacingS};
 `;
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
@@ -81,25 +86,25 @@ const CustomFormDetailPage = (props: CustomFormDetailPageProps) => {
   return (
     <PageWrapper>
       <DetailPageContainer>
-        <Spacings.Stack>
-          <PageTopBar
-            color="neutral"
-            previousPathLabel={props.previousPathLabel}
-            onClick={props.onPreviousPathClick}
+        <PageTopBar
+          color="neutral"
+          previousPathLabel={props.previousPathLabel}
+          onClick={props.onPreviousPathClick}
+        />
+        {props.customTitleRow || (
+          <PageHeaderTitle
+            title={props.title ?? ''}
+            subtitle={props.subtitle}
+            titleSize="big"
           />
-          {props.customTitleRow || (
-            <PageHeaderTitle
-              title={props.title ?? ''}
-              subtitle={props.subtitle}
-              titleSize="big"
-            />
-          )}
-          {!props.hideControls && props.formControls && (
+        )}
+        {!props.hideControls && props.formControls && (
+          <HeaderControlsWrapper>
             <Spacings.Inline justifyContent="flex-end">
               {props.formControls}
             </Spacings.Inline>
-          )}
-        </Spacings.Stack>
+          </HeaderControlsWrapper>
+        )}
       </DetailPageContainer>
       <ContentWrapper>{props.children}</ContentWrapper>
     </PageWrapper>

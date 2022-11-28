@@ -29,6 +29,7 @@ const FormDialogExample = (props: ContainerProps) => (
           getParentSelector={() =>
             document.querySelector(`#${props.portalId}`) as HTMLElement
           }
+          zIndex={10001}
         >
           <Spacings.Stack scale="m">
             <TextField
@@ -53,10 +54,18 @@ FormDialogExample.displayName = 'FormDialogExample';
 
 export const Component = () => (
   <Suite>
-    <Spec label="FormDialog - Size M" size="l" contentAlignment="center">
+    <Spec
+      label="FormDialog - Size M (deprecated)"
+      size="l"
+      contentAlignment="center"
+    >
       <FormDialogExample size="m" portalId="dialog-m" />
     </Spec>
-    <Spec label="FormDialog - Size L" size="l" contentAlignment="center">
+    <Spec
+      label="FormDialog - Size L (deprecated)"
+      size="l"
+      contentAlignment="center"
+    >
       <FormDialogExample size="l" portalId="dialog-l" />
     </Spec>
     <Spec label="FormDialog - Size 7" size={7} contentAlignment="center">
@@ -71,8 +80,20 @@ export const Component = () => (
     <Spec label="FormDialog - Size 10" size={10} contentAlignment="center">
       <FormDialogExample size={10} portalId="dialog-10" />
     </Spec>
+    <Spec label="FormDialog - Size 11" size={11} contentAlignment="center">
+      <FormDialogExample size={11} portalId="dialog-11" />
+    </Spec>
+    <Spec label="FormDialog - Size 12" size={12} contentAlignment="center">
+      <FormDialogExample size={12} portalId="dialog-12" />
+    </Spec>
+    <Spec label="FormDialog - Size 13" size={13} contentAlignment="center">
+      <FormDialogExample size={13} portalId="dialog-13" />
+    </Spec>
     <Spec label="FormDialog - Size Scale" size="l" contentAlignment="center">
       <FormDialogExample size="scale" portalId="dialog-scale" />
+    </Spec>
+    <Spec label="FormDialog - Default size" contentAlignment="center">
+      <FormDialogExample portalId="dialog-default" />
     </Spec>
     <Spec
       label="FormDialog - Primary button disabled"

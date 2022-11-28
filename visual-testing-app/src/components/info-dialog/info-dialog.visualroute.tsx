@@ -20,6 +20,7 @@ const InfoDialogExample = (props: ContainerProps) => (
       getParentSelector={() =>
         document.querySelector(`#${props.portalId}`) as HTMLElement
       }
+      zIndex={10001}
     >
       <Spacings.Stack scale="m">
         <Text.Body>
@@ -36,10 +37,18 @@ InfoDialogExample.displayName = 'InfoDialogExample';
 
 export const Component = () => (
   <Suite>
-    <Spec label="InfoDialog - Size M" size="l" contentAlignment="center">
+    <Spec
+      label="InfoDialog - Size M (deprecated)"
+      size="l"
+      contentAlignment="center"
+    >
       <InfoDialogExample size="m" portalId="dialog-m" />
     </Spec>
-    <Spec label="InfoDialog - Size L" size="l" contentAlignment="center">
+    <Spec
+      label="InfoDialog - Size L (deprecated)"
+      size="l"
+      contentAlignment="center"
+    >
       <InfoDialogExample size="l" portalId="dialog-l" />
     </Spec>
     <Spec label="InfoDialog - Size 7" size={7} contentAlignment="center">
@@ -54,8 +63,24 @@ export const Component = () => (
     <Spec label="InfoDialog - Size 10" size={10} contentAlignment="center">
       <InfoDialogExample size={10} portalId="dialog-10" />
     </Spec>
+    <Spec label="InfoDialog - Size 11" size={11} contentAlignment="center">
+      <InfoDialogExample size={11} portalId="dialog-11" />
+    </Spec>
+    <Spec label="InfoDialog - Size 12" size={12} contentAlignment="center">
+      <InfoDialogExample size={12} portalId="dialog-12" />
+    </Spec>
+    <Spec label="InfoDialog - Size 13" size={13} contentAlignment="center">
+      <InfoDialogExample size={13} portalId="dialog-13" />
+    </Spec>
     <Spec label="InfoDialog - Size Scale" size="l" contentAlignment="center">
       <InfoDialogExample size="scale" portalId="dialog-scale" />
+    </Spec>
+    <Spec
+      label="InfoDialog - Default size (L)"
+      size="l"
+      contentAlignment="center"
+    >
+      <InfoDialogExample portalId="dialog-default" />
     </Spec>
   </Suite>
 );
