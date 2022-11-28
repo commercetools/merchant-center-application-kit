@@ -15,7 +15,9 @@ export const themesOverrides = {
     borderColorForDialogDivider: uiKitDesignTokens.colorNeutral,
     borderColorForModalPageHeaderDivider: uiKitDesignTokens.colorNeutral60,
     borderColorForModalTopBarWhenSurface: uiKitDesignTokens.colorNeutral,
+    fontSizeForNavBarLink: uiKitDesignTokens.fontSize40,
     heightForTab: '4px',
+    lineHeightForNavBarLink: uiKitDesignTokens.lineHeight50,
     marginBottomForPageTopBar: uiKitDesignTokens.spacingS,
     marginForModalPageHeader: `0 ${uiKitDesignTokens.spacingM}`,
     marginLeftForModalPageHeaderControls: uiKitDesignTokens.spacingM,
@@ -32,8 +34,6 @@ export const themesOverrides = {
     widthForDialogAsMedium: uiKitDesignTokens.constraint7,
     widthForDialogAsLarge: uiKitDesignTokens.constraint10,
     widthForPageLayoutContentColumn: `calc(${uiKitDesignTokens.constraint15} / 2)`,
-    fontSizeForNavBarLink: uiKitDesignTokens.fontSize40,
-    lineHeightForNavBarLink: uiKitDesignTokens.lineHeight50,
   },
   test: {
     colorForPageHeaderBottomBorder: uiKitDesignTokens.colorNeutral90,
@@ -44,7 +44,9 @@ export const themesOverrides = {
     borderColorForDialogDivider: uiKitDesignTokens.colorNeutral90,
     borderColorForModalPageHeaderDivider: uiKitDesignTokens.colorNeutral90,
     borderColorForModalTopBarWhenSurface: uiKitDesignTokens.colorSurface,
+    fontSizeForNavBarLink: uiKitDesignTokens.fontSize20,
     heightForTab: '2px',
+    lineHeightForNavBarLink: uiKitDesignTokens.lineHeight20,
     marginBottomForPageTopBar: uiKitDesignTokens.spacingL,
     marginForModalPageHeader: `0 ${spacing40}`,
     marginLeftForModalPageHeaderControls: uiKitDesignTokens.spacingXl,
@@ -61,8 +63,6 @@ export const themesOverrides = {
     widthForDialogAsMedium: uiKitDesignTokens.constraint9,
     widthForDialogAsLarge: uiKitDesignTokens.constraint13,
     widthForPageLayoutContentColumn: `calc(${uiKitDesignTokens.constraint16} / 2)`,
-    fontSizeForNavBarLink: uiKitDesignTokens.fontSize20,
-    lineHeightForNavBarLink: uiKitDesignTokens.lineHeight20,
   },
 };
 

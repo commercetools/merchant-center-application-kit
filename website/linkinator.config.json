@@ -22,7 +22,7 @@
     "/.+/frontend-api",
     "/.+/frontend-studio",
     "/.+/frontend-development",
-    "/.+/frontend-getting-started/overview"
+    "/.+/frontend-getting-started"
   ],
   "verbosity": "error",
   "retry": true,
