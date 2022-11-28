@@ -48,6 +48,10 @@ type Props = {
   getParentSelector: typeof getDefaultParentSelector;
 };
 const defaultProps: Pick<Props, 'size' | 'getParentSelector'> = {
+  // TODO: t-shirt sizes are deprecated but we need to keep using them for
+  // backwards compatibility and to help with styling migration
+  // After the migration is done, we should change this default value to 13.
+  // t-shirt sizes then can be removed in a next breaking change release
   size: 'l',
   getParentSelector: getDefaultParentSelector,
 };
