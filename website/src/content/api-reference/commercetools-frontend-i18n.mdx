@@ -1,0 +1,177 @@
+---
+title: "@/i18n"
+---
+<Subtitle>
+
+The internationalization (i18n) messages from the various application-kit packages are contained as JSON data in this package.
+
+</Subtitle>
+
+# Supported locales
+
+- English               `en`
+- German                `de`
+- Spanish               `es`
+- French (France)       `fr-FR`
+- Simplified Chinese    `zh-CN`
+
+# Installation
+
+**Using npm**
+
+```sh
+npm install --save @commercetools/i18n
+```
+**Using yarn**
+
+```sh
+yarn add @commercetools/i18n
+```
+
+# Usage
+
+<Info>
+
+There is no need to explicitly use the `AsyncLocaleData` or the `useAsyncLocaleData` hook, as they are used internally in the [`ApplicationShell`](/api-reference/commercetools-frontend-application-shell/).
+
+</Info>
+
+If you need to load translations files asynchronously, the library exposes the `useAsyncIntlMessages` hook, when used it will additionally load the application-kit and ui-kit translations messages, as well as the moment locales.
+
+## Using a React component with render props
+
+### With static messages
+
+```js
+import { IntlProvider } from 'react-intl';
+import { AsyncLocaleData } from '@commercetools-frontend/i18n';
+
+const myApplicationMessages = {
+  en: {
+    Title: 'Application Title',
+  },
+};
+
+const Application = (props) => (
+  <AsyncLocaleData
+    locale={props.user.locale}
+    applicationMessages={myApplicationMessages}
+  >
+    {({ isLoading, locale, messages }) => {
+      if (isLoading) return null;
+
+      return (
+        <IntlProvider locale={locale} messages={messages}>
+          ...
+        </IntlProvider>
+      );
+    }}
+  </AsyncLocaleData>
+);
+```
+
+### With dynamic loaded messages (code splitting)
+
+```js
+import { IntlProvider } from 'react-intl';
+import { AsyncLocaleData } from '@commercetools-frontend/i18n';
+
+const loadMessages = (lang) => {
+  let loadAppI18nPromise;
+  switch (lang) {
+    case 'de':
+      loadAppI18nPromise = import(
+        './i18n/data/de.json' /* webpackChunkName: "app-i18n-de" */
+      );
+      break;
+    case 'es':
+      loadAppI18nPromise = import(
+        './i18n/data/es.json' /* webpackChunkName: "app-i18n-es" */
+      );
+      break;
+    default:
+      loadAppI18nPromise = import(
+        './i18n/data/en.json' /* webpackChunkName: "app-i18n-en" */
+      );
+  }
+
+  return loadAppI18nPromise.then(
+    (result) => result.default,
+    (error) => {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `Something went wrong while loading the app messages for ${lang}`,
+        error
+      );
+
+      return {};
+    }
+  );
+};
+
+const Application = (props) => (
+  <AsyncLocaleData
+    locale={props.user.locale}
+    applicationMessages={loadMessages}
+  >
+    {({ isLoading, locale, messages }) => {
+      if (isLoading) return null;
+
+      return (
+        <IntlProvider locale={locale} messages={messages}>
+          ...
+        </IntlProvider>
+      );
+    }}
+  </AsyncLocaleData>
+);
+```
+
+## Using a React hook
+
+We expose a React hook that works similarly to `AsyncLocaleData`
+
+```js
+import { IntlProvider } from 'react-intl';
+import { useAsyncLocaleData } from '@commercetools-frontend/i18n';
+
+const Application = (props) => {
+  const { isLoading, locale, messages } = useAsyncLocaleData({
+    locale: props.locale,
+    applicationMessages: loadMessages,
+  });
+
+  if (isLoading) return null;
+  return (
+    <IntlProvider locale={locale} messages={messages}>
+      ...
+    </IntlProvider>
+  );
+};
+```
+
+# Generating translation files
+
+The `intl` messages defined in your React components **must** be extracted into the `core.json` source file. 
+
+This file contains a key-value map of the translation messages `id` and `value`.
+
+
+## Extracting translation messages
+
+This can be achieved by executing the command included in the `mc-scrpts` CLI tool.
+
+```sh
+mc-scripts extract-intl [options]
+```
+
+## Translation sync
+<Info>
+
+We use [Transifex](https://www.transifex.com/) as our localization platform. 
+
+</Info>
+
+Messages included in the `core.json` source file, which are pushed/merged to the `main` branch, are synced using the Transifex Github Integration.
+
+Reviewed translations are automatically pushed back by the Transifex Bot using a Pull Request.
