@@ -31,6 +31,7 @@ export const themesOverrides = {
     paddingLeftForTabAsFirst: '0',
     widthForDialogAsMedium: uiKitDesignTokens.constraint7,
     widthForDialogAsLarge: uiKitDesignTokens.constraint10,
+    widthForPageLayoutContentColumn: `calc(${uiKitDesignTokens.constraint15} / 2)`,
   },
   test: {
     colorForPageHeaderBottomBorder: uiKitDesignTokens.colorNeutral90,
@@ -57,6 +58,7 @@ export const themesOverrides = {
     paddingLeftForTabAsFirst: uiKitDesignTokens.spacingM,
     widthForDialogAsMedium: uiKitDesignTokens.constraint9,
     widthForDialogAsLarge: uiKitDesignTokens.constraint13,
+    widthForPageLayoutContentColumn: `calc(${uiKitDesignTokens.constraint16} / 2)`,
   },
 };
 
