@@ -1,5 +1,17 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.20.2
+
+### Patch Changes
+
+- Updated dependencies [[`66acf9b96`](https://github.com/commercetools/merchant-center-application-kit/commit/66acf9b966c3eaaa410c2298dbfba45d959f528b)]:
+  - @commercetools-frontend/mc-html-template@21.20.2
+  - @commercetools-frontend/application-config@21.20.2
+  - @commercetools-frontend/assets@21.20.2
+  - @commercetools-frontend/babel-preset-mc-app@21.20.2
+  - @commercetools-frontend/constants@21.20.2
+  - @commercetools-frontend/mc-dev-authentication@21.20.2
+
 ## 21.20.1
 
 ### Patch Changes
