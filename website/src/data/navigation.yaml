@@ -103,6 +103,8 @@
     #   path: /api-reference/commercetools-frontend-i18n
     # - title: '@/l10n'
     #   path: /api-reference/commercetools-frontend-l10n
+    - title: '@/i18n'
+      path: /api-reference/commercetools-frontend-i18n
     - title: '@/permissions'
       path: /api-reference/commercetools-frontend-permissions
     # - title: '@/sdk'
