@@ -7,6 +7,7 @@ import {
   FormSecondaryButton,
   FormDeleteButton,
 } from '../../internals/default-form-buttons';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import PageHeaderTitle from '../../internals/page-header-title';
 import PageTopBar from '../../internals/page-top-bar';
@@ -20,7 +21,7 @@ const DetailPageContainer = styled.div`
 `;
 
 const HeaderControlsWrapper = styled.div`
-  margin-top: ${appKitDesignTokens.marginTopForPageHeaderControls};
+  margin-top: ${uiKitDesignTokens.spacingS};
 `;
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
