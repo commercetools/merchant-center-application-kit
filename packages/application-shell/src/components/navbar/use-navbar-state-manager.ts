@@ -115,7 +115,6 @@ const useNavbarStateManager = (props: HookProps) => {
               menuVisibility: undefined,
               actionRights: undefined,
               dataFences: undefined,
-              shouldRenderDivider: false,
             };
           })
           .filter(nonNullable)
@@ -142,7 +141,6 @@ const useNavbarStateManager = (props: HookProps) => {
               menuVisibility: undefined,
               actionRights: undefined,
               dataFences: undefined,
-              shouldRenderDivider: false,
               submenu: (application.submenuLinks || []).map((submenuLink) => ({
                 key: submenuLink.id,
                 uriPath: submenuLink.uriPath,
@@ -267,9 +265,10 @@ const useNavbarStateManager = (props: HookProps) => {
     );
   }, [state.activeItemIndex, state.isMenuOpen]);
 
-  const allApplicationNavbarMenu = (applicationsNavBarMenu || [])
-    .concat(legacyCustomAppsMenu)
-    .concat(organizationCustomAppsMenu);
+  const allInternalApplicationsNavbarMenu = applicationsNavBarMenu || [];
+  const allCustomApplicationsNavbarMenu = legacyCustomAppsMenu.concat(
+    organizationCustomAppsMenu
+  );
 
   return {
     ...state,
@@ -277,7 +276,8 @@ const useNavbarStateManager = (props: HookProps) => {
     handleToggleItem,
     handleToggleMenu,
     shouldCloseMenuFly,
-    allApplicationNavbarMenu,
+    allInternalApplicationsNavbarMenu,
+    allCustomApplicationsNavbarMenu,
   };
 };
 

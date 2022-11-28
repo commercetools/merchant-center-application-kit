@@ -15,9 +15,9 @@ import type {
   TBaseMenu,
 } from '../../types/generated/proxy';
 import type { TFlagVariation } from '@flopflip/types';
-
 import {
   forwardRef,
+  lazy,
   MouseEventHandler,
   ReactNode,
   SyntheticEvent,
@@ -32,23 +32,9 @@ import { useFlagVariation } from '@flopflip/react-broadcast';
 import { Global, css } from '@emotion/react';
 import classnames from 'classnames';
 import {
+  ArrowRightIcon,
   BackIcon,
-  TreeStructureIcon,
-  UserFilledIcon,
-  SpeedometerIcon,
-  TagMultiIcon,
-  CartIcon,
-  BoxIcon,
-  GearIcon,
   SupportIcon,
-  WorldIcon,
-  HeartIcon,
-  PaperclipIcon,
-  PluginIcon,
-  RocketIcon,
-  StarIcon,
-  ConnectedSquareIcon,
-  ListWithSearchIcon,
 } from '@commercetools-uikit/icons';
 import InlineSvg from '@commercetools-uikit/icons/inline-svg';
 import MissingImageSvg from '@commercetools-frontend/assets/images/diagonal-line.svg';
@@ -96,6 +82,16 @@ type TProjectPermissions = {
 </DataMenu>
 */
 
+const HeartIcon = lazy(() => import('./legacy-icons/heart'));
+const PaperclipIcon = lazy(() => import('./legacy-icons/paperclip'));
+const PluginIcon = lazy(() => import('./legacy-icons/plugin'));
+const RocketIcon = lazy(() => import('./legacy-icons/rocket'));
+const StarIcon = lazy(() => import('./legacy-icons/star'));
+const ConnectedSquareIcon = lazy(
+  () => import('./legacy-icons/connected-square')
+);
+const WorldIcon = lazy(() => import('./legacy-icons/world'));
+
 type IconProps = Parameters<typeof BackIcon>[0];
 type IconSwitcherProps = { icon: string } & IconProps;
 // The icon is expected to be the `svg` document as a string.
@@ -108,23 +104,6 @@ const IconSwitcher = ({ icon, ...iconProps }: IconSwitcherProps) => {
   }
   // Backwards compatibility for apps using the "icon name".
   switch (icon) {
-    // Application icons
-    case 'TreeStructureIcon':
-      return <TreeStructureIcon {...iconProps} />;
-    case 'UserFilledIcon':
-      return <UserFilledIcon {...iconProps} />;
-    case 'SpeedometerIcon':
-      return <SpeedometerIcon {...iconProps} />;
-    case 'TagMultiIcon':
-      return <TagMultiIcon {...iconProps} />;
-    case 'CartIcon':
-      return <CartIcon {...iconProps} />;
-    case 'BoxIcon':
-      return <BoxIcon {...iconProps} />;
-    case 'GearIcon':
-      return <GearIcon {...iconProps} />;
-    case 'ListWithSearchIcon':
-      return <ListWithSearchIcon {...iconProps} />;
     // Custom application icons set
     case 'HeartIcon':
       return <HeartIcon {...iconProps} />;
@@ -177,7 +156,7 @@ const MenuExpander = (props: MenuExpanderProps) => {
           FIXME: define hover effect.
           https://github.com/commercetools/merchant-center-frontend/issues/2216
         */}
-        <BackIcon color="surface" size="big" />
+        <ArrowRightIcon color="surface" size="big" />
       </div>
     </li>
   );
@@ -298,13 +277,7 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
 MenuItemLink.displayName = 'MenuItemLink';
 MenuItemLink.defaultProps = menuItemLinkDefaultProps;
 
-// This component just render two divs with borders in order to differentiate
-// the settings plugin from the other ones
-const MenuItemDivider = () => (
-  <div className={styles['divider-first-item']}>
-    <div className={styles['divider-second-item']} />
-  </div>
-);
+const MenuItemDivider = () => <div className={styles.divider} />;
 MenuItemDivider.displayName = 'MenuItemDivider';
 
 const isEveryMenuVisibilitySetToHidden = (
@@ -396,12 +369,9 @@ const RestrictedMenuItem = (props: RestrictedMenuItemProps) => {
 RestrictedMenuItem.displayName = 'RestrictedMenuItem';
 RestrictedMenuItem.defaultProps = restrictedMenuItemDefaultProps;
 
-export const getIconColor = (
-  isActive: boolean,
-  isAlternativeTheme: boolean
-) => {
+export const getIconColor = (isActive: boolean) => {
   if (isActive) return 'primary40';
-  return isAlternativeTheme ? 'neutral60' : 'surface';
+  return 'surface';
 };
 
 const getMenuVisibilitiesOfSubmenus = (menu: TNavbarMenu) =>
@@ -479,108 +449,100 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
     props.isActive;
 
   return (
-    <>
-      {props.menu.shouldRenderDivider && <MenuItemDivider />}
-
-      <RestrictedMenuItem
-        key={props.menu.key}
-        keyOfMenuItem={props.menu.key}
-        featureToggle={props.menu.featureToggle ?? undefined}
-        permissions={props.menu.permissions}
-        actionRights={props.menu.actionRights ?? undefined}
-        dataFences={props.menu.dataFences ?? undefined}
-        projectPermissions={props.projectPermissions}
-        menuVisibilities={props.menuVisibilities}
-        namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
+    <RestrictedMenuItem
+      key={props.menu.key}
+      keyOfMenuItem={props.menu.key}
+      featureToggle={props.menu.featureToggle ?? undefined}
+      permissions={props.menu.permissions}
+      actionRights={props.menu.actionRights ?? undefined}
+      dataFences={props.menu.dataFences ?? undefined}
+      projectPermissions={props.projectPermissions}
+      menuVisibilities={props.menuVisibilities}
+      namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
+    >
+      <MenuItem
+        hasSubmenu={hasSubmenu}
+        isActive={props.isActive}
+        isMenuOpen={props.isMenuOpen}
+        onClick={props.handleToggleItem}
+        onMouseEnter={props.isMenuOpen ? undefined : props.handleToggleItem}
+        onMouseLeave={props.isMenuOpen ? undefined : props.shouldCloseMenuFly}
       >
-        <MenuItem
-          hasSubmenu={hasSubmenu}
-          isActive={props.isActive}
-          isMenuOpen={props.isMenuOpen}
-          onClick={props.handleToggleItem}
-          onMouseEnter={props.isMenuOpen ? undefined : props.handleToggleItem}
-          onMouseLeave={props.isMenuOpen ? undefined : props.shouldCloseMenuFly}
+        <MenuItemLink
+          linkTo={
+            isMainMenuItemALink
+              ? `/${props.projectKey}/${props.menu.uriPath}`
+              : undefined
+          }
+          useFullRedirectsForLinks={props.useFullRedirectsForLinks}
+          onClick={props.onMenuItemClick}
         >
-          <MenuItemLink
-            linkTo={
-              isMainMenuItemALink
-                ? `/${props.projectKey}/${props.menu.uriPath}`
-                : undefined
-            }
-            useFullRedirectsForLinks={props.useFullRedirectsForLinks}
-            onClick={props.onMenuItemClick}
-          >
-            <div className={styles['item-icon-text']}>
+          <div className={styles['item-icon-text']}>
+            <div className={styles['icon-container']}>
               <div className={styles.icon}>
                 <IconSwitcher
                   icon={props.menu.icon}
                   size="scale"
-                  color={getIconColor(
-                    props.isActive || isMainMenuRouteActive,
-                    Boolean(props.menu.shouldRenderDivider)
-                  )}
-                />
-              </div>
-              <div
-                className={styles.title}
-                aria-owns={`group-${props.menu.key}`}
-              >
-                <MenuLabel
-                  labelAllLocales={props.menu.labelAllLocales}
-                  defaultLabel={props.menu.defaultLabel}
-                  applicationLocale={props.applicationLocale}
+                  color={getIconColor(props.isActive || isMainMenuRouteActive)}
                 />
               </div>
             </div>
-          </MenuItemLink>
-          <MenuGroup
-            id={props.menu.key}
-            level={2}
-            isActive={props.isActive}
-            isExpanded={props.isMenuOpen}
-          >
-            {hasSubmenu
-              ? props.menu.submenu.map((submenu: TSubmenuWithDefaultLabel) => (
-                  <RestrictedMenuItem
-                    key={`${props.menu.key}-submenu-${submenu.key}`}
-                    keyOfMenuItem={submenu.key}
-                    featureToggle={submenu.featureToggle ?? undefined}
-                    permissions={submenu.permissions}
-                    actionRights={submenu.actionRights ?? undefined}
-                    dataFences={submenu.dataFences ?? undefined}
-                    projectPermissions={props.projectPermissions}
-                    menuVisibilities={props.menuVisibilities}
-                    namesOfMenuVisibilities={
-                      submenu.menuVisibility
-                        ? [submenu.menuVisibility]
-                        : undefined
-                    }
-                  >
-                    <li className={styles['sublist-item']}>
-                      <div className={styles.text}>
-                        <MenuItemLink
-                          linkTo={`/${props.projectKey}/${submenu.uriPath}`}
-                          exactMatch={true}
-                          useFullRedirectsForLinks={
-                            props.useFullRedirectsForLinks
-                          }
-                          onClick={props.onMenuItemClick}
-                        >
-                          <MenuLabel
-                            labelAllLocales={submenu.labelAllLocales}
-                            defaultLabel={submenu.defaultLabel}
-                            applicationLocale={props.applicationLocale}
-                          />
-                        </MenuItemLink>
-                      </div>
-                    </li>
-                  </RestrictedMenuItem>
-                ))
-              : null}
-          </MenuGroup>
-        </MenuItem>
-      </RestrictedMenuItem>
-    </>
+            <div className={styles.title} aria-owns={`group-${props.menu.key}`}>
+              <MenuLabel
+                labelAllLocales={props.menu.labelAllLocales}
+                defaultLabel={props.menu.defaultLabel}
+                applicationLocale={props.applicationLocale}
+              />
+            </div>
+          </div>
+        </MenuItemLink>
+        <MenuGroup
+          id={props.menu.key}
+          level={2}
+          isActive={props.isActive}
+          isExpanded={props.isMenuOpen}
+        >
+          {hasSubmenu
+            ? props.menu.submenu.map((submenu: TSubmenuWithDefaultLabel) => (
+                <RestrictedMenuItem
+                  key={`${props.menu.key}-submenu-${submenu.key}`}
+                  keyOfMenuItem={submenu.key}
+                  featureToggle={submenu.featureToggle ?? undefined}
+                  permissions={submenu.permissions}
+                  actionRights={submenu.actionRights ?? undefined}
+                  dataFences={submenu.dataFences ?? undefined}
+                  projectPermissions={props.projectPermissions}
+                  menuVisibilities={props.menuVisibilities}
+                  namesOfMenuVisibilities={
+                    submenu.menuVisibility
+                      ? [submenu.menuVisibility]
+                      : undefined
+                  }
+                >
+                  <li className={styles['sublist-item']}>
+                    <div className={styles.text}>
+                      <MenuItemLink
+                        linkTo={`/${props.projectKey}/${submenu.uriPath}`}
+                        exactMatch={true}
+                        useFullRedirectsForLinks={
+                          props.useFullRedirectsForLinks
+                        }
+                        onClick={props.onMenuItemClick}
+                      >
+                        <MenuLabel
+                          labelAllLocales={submenu.labelAllLocales}
+                          defaultLabel={submenu.defaultLabel}
+                          applicationLocale={props.applicationLocale}
+                        />
+                      </MenuItemLink>
+                    </div>
+                  </li>
+                </RestrictedMenuItem>
+              ))
+            : null}
+        </MenuGroup>
+      </MenuItem>
+    </RestrictedMenuItem>
   );
 };
 ApplicationMenu.displayName = 'ApplicationMenu';
@@ -628,7 +590,8 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
     handleToggleItem,
     handleToggleMenu,
     shouldCloseMenuFly,
-    allApplicationNavbarMenu,
+    allInternalApplicationsNavbarMenu,
+    allCustomApplicationsNavbarMenu,
   } = useNavbarStateManager({
     environment: props.environment,
   });
@@ -665,7 +628,29 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
     <NavBarLayout ref={navBarNode}>
       <MenuGroup id="main" level={1}>
         <div className={styles['scrollable-menu']}>
-          {allApplicationNavbarMenu.map((menu) => {
+          {allInternalApplicationsNavbarMenu.map((menu) => {
+            const menuType = 'scrollable';
+            const itemIndex = `${menuType}-${menu.key}`;
+            return (
+              <ApplicationMenu
+                key={menu.key}
+                location={location}
+                menu={menu}
+                isActive={activeItemIndex === itemIndex}
+                handleToggleItem={() => handleToggleItem(itemIndex)}
+                isMenuOpen={isMenuOpen}
+                shouldCloseMenuFly={shouldCloseMenuFly}
+                projectPermissions={projectPermissions}
+                menuVisibilities={menuVisibilities}
+                applicationLocale={props.applicationLocale}
+                projectKey={props.projectKey}
+                useFullRedirectsForLinks={useFullRedirectsForLinks}
+                onMenuItemClick={props.onMenuItemClick}
+              />
+            );
+          })}
+          <MenuItemDivider />
+          {allCustomApplicationsNavbarMenu.map((menu) => {
             const menuType = 'scrollable';
             const itemIndex = `${menuType}-${menu.key}`;
             return (
@@ -711,14 +696,13 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
               target="_blank"
             >
               <div className={styles['item-icon-text']}>
-                <div className={styles.icon}>
-                  <SupportIcon
-                    size="scale"
-                    color={getIconColor(
-                      activeItemIndex === 'fixed-support',
-                      true
-                    )}
-                  />
+                <div className={styles['icon-container']}>
+                  <div className={styles.icon}>
+                    <SupportIcon
+                      size="scale"
+                      color={getIconColor(activeItemIndex === 'fixed-support')}
+                    />
+                  </div>
                 </div>
                 <div className={styles.title}>
                   <FormattedMessage {...messages['NavBar.MCSupport.title']} />

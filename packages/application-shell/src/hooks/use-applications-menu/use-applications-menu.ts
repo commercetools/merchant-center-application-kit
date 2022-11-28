@@ -80,7 +80,6 @@ const mapApplicationMenuConfigToGraqhQLQueryResult = (
         ? [
             {
               __typename: 'NavbarMenu',
-              shouldRenderDivider: false,
               key: entryPointUriPath,
               uriPath: entryPointUriPath,
               icon: menuLinks.icon,

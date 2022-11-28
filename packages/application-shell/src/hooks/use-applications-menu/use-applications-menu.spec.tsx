@@ -129,7 +129,6 @@ const createTestNavBarLegacyMenuJsonConfig = (
       featureToggle: '',
     },
   ],
-  shouldRenderDivider: false,
   ...props,
 });
 const createTestNavBarMenuLinksConfig = (
