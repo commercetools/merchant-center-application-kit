@@ -17,7 +17,6 @@ export type TAdditionalUserInfo = {
   lastName: Scalars['String'];
 };
 
-/** Only used by the navbar menu component in ApplicationShell. */
 export type TAllPermissionsForAllApplications = {
   __typename?: 'AllPermissionsForAllApplications';
   allAppliedActionRights: Array<TAppliedActionRight>;
@@ -61,7 +60,6 @@ export type TChangeUserLanguage = {
   language: Scalars['String'];
 };
 
-/** NOTE: This is _not_ a username it is the user's name. */
 export type TChangeUserName = {
   firstName: Scalars['String'];
   lastName: Scalars['String'];
@@ -96,6 +94,18 @@ export type TFeature = {
   value: Scalars['Boolean'];
 };
 
+export type TIdTokenUserInfo = {
+  __typename?: 'IdTokenUserInfo';
+  additionalClaims?: Maybe<Scalars['String']>;
+  aud: Scalars['String'];
+  email?: Maybe<Scalars['String']>;
+  exp: Scalars['Float'];
+  iat: Scalars['Float'];
+  iss: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
+  sub: Scalars['String'];
+};
+
 export type TInvitationInput = {
   emails: Array<Scalars['String']>;
   organization: TInvitationOrganizationInput;
@@ -108,10 +118,6 @@ export type TInvitationOrganizationInput = {
   version: Scalars['Int'];
 };
 
-/**
- * Note: you can not brute-force fetch user information
- * by trying emails. Only information about the membership itself.
- */
 export type TInvitationQueryResult = {
   __typename?: 'InvitationQueryResult';
   gravatarHash?: Maybe<Scalars['String']>;
@@ -275,11 +281,6 @@ export type TOAuthClientTemplate = {
   oAuthScopes: Array<TPermissionScope>;
 };
 
-/**
- * TODO: use `Reference` instead once there is no more usage of the following fields:
- * - name
- * - createdAt
- */
 export type TOrganization = {
   __typename?: 'Organization';
   /** @deprecated This field will be removed in the future. */
@@ -300,10 +301,6 @@ export type TOrganizationDraftType = {
   ownerId: Scalars['String'];
 };
 
-/**
- * Note:
- *   This is not a `Organization` type as in the future MC schema will not support e.g. expanding on team members on its internal schema.
- */
 export type TOrganizationTeamsCreated = {
   __typename?: 'OrganizationTeamsCreated';
   id: Scalars['String'];
@@ -317,6 +314,7 @@ export enum TPermissionScope {
   ManageApiClients = 'manage_api_clients',
   ManageAttributeGroups = 'manage_attribute_groups',
   ManageAuditLog = 'manage_audit_log',
+  ManageBusinessUnits = 'manage_business_units',
   ManageCartDiscounts = 'manage_cart_discounts',
   ManageCategories = 'manage_categories',
   ManageChangeHistory = 'manage_change_history',
@@ -328,9 +326,12 @@ export enum TPermissionScope {
   ManageImportContainers = 'manage_import_containers',
   ManageImportSinks = 'manage_import_sinks',
   ManageKeyValueDocuments = 'manage_key_value_documents',
+  ManageMyBusinessUnits = 'manage_my_business_units',
   ManageMyOrders = 'manage_my_orders',
   ManageMyPayments = 'manage_my_payments',
   ManageMyProfile = 'manage_my_profile',
+  ManageMyQuoteRequests = 'manage_my_quote_requests',
+  ManageMyQuotes = 'manage_my_quotes',
   ManageMyShoppingLists = 'manage_my_shopping_lists',
   ManageOrderEdits = 'manage_order_edits',
   ManageOrders = 'manage_orders',
@@ -339,8 +340,11 @@ export enum TPermissionScope {
   ManageProducts = 'manage_products',
   ManageProject = 'manage_project',
   ManageProjectSettings = 'manage_project_settings',
+  ManageQuoteRequests = 'manage_quote_requests',
+  ManageQuotes = 'manage_quotes',
   ManageShippingMethods = 'manage_shipping_methods',
   ManageShoppingLists = 'manage_shopping_lists',
+  ManageStagedQuotes = 'manage_staged_quotes',
   ManageStandalonePrices = 'manage_standalone_prices',
   ManageStates = 'manage_states',
   ManageStores = 'manage_stores',
@@ -350,6 +354,7 @@ export enum TPermissionScope {
   ViewApiClients = 'view_api_clients',
   ViewAttributeGroups = 'view_attribute_groups',
   ViewAuditLog = 'view_audit_log',
+  ViewBusinessUnits = 'view_business_units',
   ViewCartDiscounts = 'view_cart_discounts',
   ViewCategories = 'view_categories',
   ViewChangeHistory = 'view_change_history',
@@ -368,8 +373,11 @@ export enum TPermissionScope {
   ViewProjectSettings = 'view_project_settings',
   ViewProjects = 'view_projects',
   ViewPublishedProducts = 'view_published_products',
+  ViewQuoteRequests = 'view_quote_requests',
+  ViewQuotes = 'view_quotes',
   ViewShippingMethods = 'view_shipping_methods',
   ViewShoppingLists = 'view_shopping_lists',
+  ViewStagedQuotes = 'view_staged_quotes',
   ViewStandalonePrices = 'view_standalone_prices',
   ViewStates = 'view_states',
   ViewStores = 'view_stores',
@@ -586,7 +594,6 @@ export type TResetUser = {
 };
 
 export type TSetUserTimeZone = {
-  /** NOTE: This is optional as not passing it unsets the timezone. */
   timeZone?: InputMaybe<Scalars['String']>;
 };
 
@@ -657,6 +664,7 @@ export type TUser = TMetaData & {
   firstName: Scalars['String'];
   gravatarHash: Scalars['String'];
   id: Scalars['ID'];
+  idTokenUserInfo?: Maybe<TIdTokenUserInfo>;
   language: Scalars['String'];
   lastModifiedAt: Scalars['String'];
   lastName: Scalars['String'];
@@ -668,6 +676,7 @@ export type TUser = TMetaData & {
   numberFormat: Scalars['String'];
   projects: TProjectQueryResult;
   timeZone?: Maybe<Scalars['String']>;
+  verificationStatus: TVerificationStatus;
   version?: Maybe<Scalars['Int']>;
 };
 
@@ -687,6 +696,11 @@ export type TUserUpdateAction = {
   setTimeZone?: InputMaybe<TSetUserTimeZone>;
 };
 
+export enum TVerificationStatus {
+  Unverified = 'Unverified',
+  Verified = 'Verified'
+}
+
 export type TAmILoggedInQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -702,7 +716,7 @@ export type TFetchProjectQuery = { __typename?: 'Query', project?: { __typename?
 export type TFetchLoggedInUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TFetchLoggedInUserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, email: string, gravatarHash: string, firstName: string, lastName: string, language: string, numberFormat: string, timeZone?: string | null, launchdarklyTrackingId: string, launchdarklyTrackingGroup: string, launchdarklyTrackingSubgroup?: string | null, launchdarklyTrackingTeam?: Array<string> | null, launchdarklyTrackingTenant: string, defaultProjectKey?: string | null, businessRole?: string | null, projects: { __typename?: 'ProjectQueryResult', total: number, results: Array<{ __typename?: 'Project', name: string, key: string, suspension: { __typename?: 'ProjectSuspension', isActive: boolean }, expiry: { __typename?: 'ProjectExpiry', isActive: boolean } }> } } | null };
+export type TFetchLoggedInUserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, email: string, gravatarHash: string, firstName: string, lastName: string, language: string, numberFormat: string, timeZone?: string | null, launchdarklyTrackingId: string, launchdarklyTrackingGroup: string, launchdarklyTrackingSubgroup?: string | null, launchdarklyTrackingTeam?: Array<string> | null, launchdarklyTrackingTenant: string, defaultProjectKey?: string | null, businessRole?: string | null, verificationStatus: TVerificationStatus, projects: { __typename?: 'ProjectQueryResult', total: number, results: Array<{ __typename?: 'Project', name: string, key: string, suspension: { __typename?: 'ProjectSuspension', isActive: boolean }, expiry: { __typename?: 'ProjectExpiry', isActive: boolean } }> }, idTokenUserInfo?: { __typename?: 'IdTokenUserInfo', iss: string, sub: string, aud: string, exp: number, iat: number, email?: string | null, name?: string | null, additionalClaims?: string | null } | null } | null };
 
 export type TFetchUserProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 

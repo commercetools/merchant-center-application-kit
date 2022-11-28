@@ -1,5 +1,55 @@
 # @commercetools-frontend/assets
 
+## 21.20.1
+
+## 21.20.0
+
+## 21.19.0
+
+## 21.18.1
+
+## 21.18.0
+
+## 21.17.0
+
+## 21.16.0
+
+## 21.15.0
+
+## 21.14.3
+
+## 21.14.2
+
+## 21.14.1
+
+## 21.14.0
+
+## 21.13.1
+
+### Patch Changes
+
+- [`482ad98ee`](https://github.com/commercetools/merchant-center-application-kit/commit/482ad98eeb4570a583d58d476a7902ffe6cc2a94) Thanks [@emmenko](https://github.com/emmenko)! - Nothing changed, the previous release `21.13.0` had an issue publishing to NPM so we're bumping versions to trigger a new release.
+
+## 21.13.0
+
+## 21.12.0
+
+## 21.11.0
+
+## 21.10.0
+
+## 21.9.0
+
+## 21.8.1
+
+## 21.8.0
+
+### Patch Changes
+
+- [#2661](https://github.com/commercetools/merchant-center-application-kit/pull/2661) [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed) Thanks [@emmenko](https://github.com/emmenko)! - Drop the copyright year from the license files
+
+* [#2613](https://github.com/commercetools/merchant-center-application-kit/pull/2613) [`20e648d2`](https://github.com/commercetools/merchant-center-application-kit/commit/20e648d2d69ac9b909ae90946c4fe2274cdf7332) Thanks [@emmenko](https://github.com/emmenko)! - Convert entry point to typescript
+
 ## 21.0.0
 
 ### Patch Changes

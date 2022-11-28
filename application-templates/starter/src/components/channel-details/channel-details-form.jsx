@@ -35,12 +35,10 @@ const ChannelDetailsForm = (props) => {
         onBlur={formik.handleBlur}
         isReadOnly={props.isReadOnly}
         renderError={(errorKey) => {
-          switch (errorKey) {
-            case 'duplicate':
-              return intl.formatMessage(messages.duplicateKey);
-            default:
-              return null;
+          if (errorKey === 'duplicate') {
+            return intl.formatMessage(messages.duplicateKey);
           }
+          return null;
         }}
         isRequired
         horizontalConstraint={13}

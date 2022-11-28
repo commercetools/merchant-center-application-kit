@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/l10n",
-  "version": "21.6.0",
+  "version": "21.20.1",
   "description": "React bindings to load l10n data",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -21,26 +21,26 @@
     "generate-data": "node ./scripts/generate-l10n-data.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.17.9",
-    "@babel/runtime-corejs3": "^7.17.9",
-    "@commercetools-frontend/sentry": "21.6.0",
-    "@emotion/react": "11.9.0",
+    "@babel/runtime": "^7.19.0",
+    "@babel/runtime-corejs3": "^7.19.0",
+    "@commercetools-frontend/sentry": "21.20.1",
+    "@emotion/react": "11.10.4",
     "@types/prop-types": "^15.7.5",
-    "@types/react": "^17.0.44",
+    "@types/react": "^17.0.49",
     "lodash": "4.17.21",
-    "moment": "^2.29.2",
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.37",
     "prop-types": "15.8.1"
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "7.0.2",
+    "@testing-library/react-hooks": "8.0.1",
     "chalk": "4.1.2",
     "cldr": "7.2.0",
     "deep-diff": "1.0.2",
-    "moment-timezone": "^0.5.34",
     "node-fetch": "2.6.7",
+    "prompts": "^2.4.2",
     "react": "17.0.2",
-    "rimraf": "3.0.2",
-    "shelljs": "0.8.5"
+    "rimraf": "3.0.2"
   },
   "peerDependencies": {
     "react": "17.x"

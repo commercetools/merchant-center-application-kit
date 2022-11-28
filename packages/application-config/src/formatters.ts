@@ -1,57 +1,146 @@
 import upperFirst from 'lodash/upperFirst';
+import type { CamelCase } from './types';
 
-// The function converts the entryPointUriPath to resourceAccessKey by
-// removing special characters except underscore.
-// It makes the first character of the string and the next character after a special character an uppercase.
-// It replaces hyphen(-) with a forward slash(/) if the hyphen(-) is followed by a number.
-// Examples:
-// input: foo-bar result: FooBar
-// input: foo_bar result: Foo_Bar
-// input: foo-1bar result: Foo/1bar
+type TImplicitCustomApplicationResourceAccesses<
+  PermissionGroupName extends string = ''
+> = Record<
+  | `view`
+  | `manage`
+  | `view${Capitalize<CamelCase<PermissionGroupName>>}`
+  | `manage${Capitalize<CamelCase<PermissionGroupName>>}`,
+  string
+>;
+
+type TImplicitCustomApplicationPermissionKeys<
+  PermissionGroupName extends string = ''
+> = Record<
+  | `View`
+  | `Manage`
+  | `View${Capitalize<CamelCase<PermissionGroupName>>}`
+  | `Manage${Capitalize<CamelCase<PermissionGroupName>>}`,
+  string
+>;
+
+/**
+ * The function formats the `entryPointUriPath` to a resource access key.
+ * It makes the first character of the string and the next character after a special character an uppercase.
+ * It replaces hyphen(-) with a forward slash(/) if the hyphen(-) is followed by a number.
+ *
+ * @example
+ * - avengers --> Avengers
+ * - the-avengers --> TheAvengers
+ * - the_avengers --> The_Avengers
+ * - avengers-01 --> Avengers/01
+ * - avengers_01 --> Avengers_01
+ */
 const formatEntryPointUriPathToResourceAccessKey = (
   entryPointUriPath: string
-) => {
-  return (
-    entryPointUriPath
-      //Splits the string by underscore.
-      .split('_')
-      // Uppercase the first character of each word split.
-      .map((word) => upperFirst(word))
-      // Join the words by an underscore.
-      .join('_')
-      // Each word is split by a hyphen.
-      .split('-')
-      .map((word, i) => {
-        // Regex below checking if the character is numeric.
-        // If the word after the hyphen is numeric, replace the hyphen with a forward slash.
-        // If not, omit the hyphen and uppercase the first character
-        if (i > 0 && /^-?\d+$/.test(word[0])) {
-          return '/' + word;
-        }
-        return upperFirst(word);
-      })
-      .join('')
-  );
-};
+) =>
+  entryPointUriPath
+    // Splits the string by underscore.
+    .split('_')
+    // Uppercase the first character of each word split.
+    .map(upperFirst)
+    // Join the words by an underscore.
+    .join('_')
+    // Each word is split by a hyphen.
+    .split('-')
+    .map((word, i) => {
+      // Regex below checking if the character is numeric.
+      // If the word after the hyphen is numeric, replace the hyphen with a forward slash.
+      // If not, omit the hyphen and uppercase the first character
+      if (i > 0 && /^-?\d+$/.test(word[0])) {
+        return `/${word}`;
+      }
+      return upperFirst(word);
+    })
+    .join('');
 
-export const entryPointUriPathToResourceAccesses = (
+/**
+ * The function formats the permission group name to a resource access key.
+ * It makes the first character of the string and the next character after a special character (`-`) an uppercase.
+ *
+ * @example
+ * - books --> Books
+ * - the-books --> TheBooks
+ */
+const formatPermissionGroupNameToResourceAccessKey = (
+  permissionGroupName: string
+) =>
+  permissionGroupName
+    // Each word is split by a hyphen.
+    .split('-')
+    .map(upperFirst)
+    .join('');
+
+function entryPointUriPathToResourceAccesses(
   entryPointUriPath: string
-) => {
-  const convertedEntryPointUriPath =
+): TImplicitCustomApplicationResourceAccesses<''>;
+function entryPointUriPathToResourceAccesses<
+  PermissionGroupName extends string
+>(
+  entryPointUriPath: string,
+  permissionGroupNames: PermissionGroupName[]
+): TImplicitCustomApplicationResourceAccesses<PermissionGroupName>;
+function entryPointUriPathToResourceAccesses<
+  PermissionGroupName extends string
+>(
+  entryPointUriPath: string,
+  permissionGroupNames?: PermissionGroupName[]
+): TImplicitCustomApplicationResourceAccesses<PermissionGroupName> {
+  const resourceAccessKey =
     formatEntryPointUriPathToResourceAccessKey(entryPointUriPath);
-  return {
-    view: `view${convertedEntryPointUriPath}`,
-    manage: `manage${convertedEntryPointUriPath}`,
-  };
-};
 
-export const entryPointUriPathToPermissionKeys = (
-  entryPointUriPath: string
-) => {
-  const resourceAccesses =
-    entryPointUriPathToResourceAccesses(entryPointUriPath);
+  const defaultResourceAccesses = {
+    view: `view${resourceAccessKey}`,
+    manage: `manage${resourceAccessKey}`,
+  } as TImplicitCustomApplicationResourceAccesses<PermissionGroupName>;
+
+  const additionalResourceAccesses = (permissionGroupNames ?? []).reduce(
+    (resourceAccesses, permissionGroupName) => {
+      const additionalResourceAccessKey =
+        formatPermissionGroupNameToResourceAccessKey(permissionGroupName);
+      return {
+        ...resourceAccesses,
+        [`view${additionalResourceAccessKey}`]: `${defaultResourceAccesses.view}${additionalResourceAccessKey}`,
+        [`manage${additionalResourceAccessKey}`]: `${defaultResourceAccesses.manage}${additionalResourceAccessKey}`,
+      };
+    },
+    {} as TImplicitCustomApplicationResourceAccesses<PermissionGroupName>
+  );
+
   return {
-    View: upperFirst(resourceAccesses.view),
-    Manage: upperFirst(resourceAccesses.manage),
+    ...defaultResourceAccesses,
+    ...additionalResourceAccesses,
   };
+}
+
+function entryPointUriPathToPermissionKeys(
+  entryPointUriPath: string
+): TImplicitCustomApplicationPermissionKeys<''>;
+function entryPointUriPathToPermissionKeys<PermissionGroupName extends string>(
+  entryPointUriPath: string,
+  permissionGroupNames: PermissionGroupName[]
+): TImplicitCustomApplicationPermissionKeys<PermissionGroupName>;
+function entryPointUriPathToPermissionKeys<PermissionGroupName extends string>(
+  entryPointUriPath: string,
+  permissionGroupNames?: PermissionGroupName[]
+): TImplicitCustomApplicationPermissionKeys<PermissionGroupName> {
+  const resourceAccesses =
+    entryPointUriPathToResourceAccesses<PermissionGroupName>(
+      entryPointUriPath,
+      permissionGroupNames ?? []
+    );
+  return Object.entries(resourceAccesses).reduce(
+    (permissionKeys, [resourceAccessKey, resourceAccessValue]) => ({
+      ...permissionKeys,
+      [upperFirst(resourceAccessKey)]: upperFirst(resourceAccessValue),
+    }),
+    {} as TImplicitCustomApplicationPermissionKeys<PermissionGroupName>
+  );
+}
+
+export {
+  entryPointUriPathToResourceAccesses,
+  entryPointUriPathToPermissionKeys,
 };

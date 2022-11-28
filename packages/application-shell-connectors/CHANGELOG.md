@@ -1,5 +1,233 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 21.20.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.20.1
+  - @commercetools-frontend/sentry@21.20.1
+
+## 21.20.0
+
+### Patch Changes
+
+- Updated dependencies [[`530c97d1f`](https://github.com/commercetools/merchant-center-application-kit/commit/530c97d1f9006559cde3514ffa53165ae74d0b3a)]:
+  - @commercetools-frontend/sentry@21.20.0
+  - @commercetools-frontend/constants@21.20.0
+
+## 21.19.0
+
+### Patch Changes
+
+- Updated dependencies [[`671436ba3`](https://github.com/commercetools/merchant-center-application-kit/commit/671436ba322ccbbed3301f54e73c0d669d026e0b)]:
+  - @commercetools-frontend/sentry@21.19.0
+  - @commercetools-frontend/constants@21.19.0
+
+## 21.18.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.18.1
+  - @commercetools-frontend/sentry@21.18.1
+
+## 21.18.0
+
+### Minor Changes
+
+- [#2844](https://github.com/commercetools/merchant-center-application-kit/pull/2844) [`19ae7155b`](https://github.com/commercetools/merchant-center-application-kit/commit/19ae7155b3fd91ba20050434c045c47665df9504) Thanks [@jaikamat](https://github.com/jaikamat)! - Include new user-related entity information in application context
+
+### Patch Changes
+
+- [#2837](https://github.com/commercetools/merchant-center-application-kit/pull/2837) [`3959ed2a0`](https://github.com/commercetools/merchant-center-application-kit/commit/3959ed2a0012077b6366c3a22c749fe7d6e74784) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- [#2846](https://github.com/commercetools/merchant-center-application-kit/pull/2846) [`9649818ac`](https://github.com/commercetools/merchant-center-application-kit/commit/9649818ac924b3677203ca9df3e3a4aff6a0b080) Thanks [@kark](https://github.com/kark)! - Fix redundant Sentry error reports when SSO user additional claims are falsy
+
+- Updated dependencies [[`3959ed2a0`](https://github.com/commercetools/merchant-center-application-kit/commit/3959ed2a0012077b6366c3a22c749fe7d6e74784)]:
+  - @commercetools-frontend/sentry@21.18.0
+  - @commercetools-frontend/constants@21.18.0
+
+## 21.17.0
+
+### Minor Changes
+
+- [#2841](https://github.com/commercetools/merchant-center-application-kit/pull/2841) [`a5e405db4`](https://github.com/commercetools/merchant-center-application-kit/commit/a5e405db45114a5cdd4d6814968bd199e6c8a480) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Logged-in [user data](https://docs.commercetools.com/custom-applications/api-reference/commercetools-frontend-application-shell-connectors#user) that can be accessed from the [application context](https://docs.commercetools.com/custom-applications/api-reference/commercetools-frontend-application-shell-connectors#useapplicationcontext) can now optionally include new info for SSO logged-in users (Identity Provider OIDC token claims).
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.17.0
+  - @commercetools-frontend/sentry@21.17.0
+
+## 21.16.0
+
+### Patch Changes
+
+- [#2580](https://github.com/commercetools/merchant-center-application-kit/pull/2580) [`1c40c40c9`](https://github.com/commercetools/merchant-center-application-kit/commit/1c40c40c947574ba24b411c9376640bb18c489ac) Thanks [@renovate](https://github.com/apps/renovate)! - Update `@testing-library/react-hooks` package to version `8.0.0`.
+
+- Updated dependencies [[`1c40c40c9`](https://github.com/commercetools/merchant-center-application-kit/commit/1c40c40c947574ba24b411c9376640bb18c489ac), [`11192ad4b`](https://github.com/commercetools/merchant-center-application-kit/commit/11192ad4bf186ff529255c68e95193a362308620)]:
+  - @commercetools-frontend/sentry@21.16.0
+  - @commercetools-frontend/constants@21.16.0
+
+## 21.15.0
+
+### Patch Changes
+
+- Updated dependencies [[`0e49a78f8`](https://github.com/commercetools/merchant-center-application-kit/commit/0e49a78f8e3b228a9b0bb3d90781aa8e940de4bc)]:
+  - @commercetools-frontend/sentry@21.15.0
+  - @commercetools-frontend/constants@21.15.0
+
+## 21.14.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.14.3
+  - @commercetools-frontend/sentry@21.14.3
+
+## 21.14.2
+
+### Patch Changes
+
+- [#2776](https://github.com/commercetools/merchant-center-application-kit/pull/2776) [`00d9edcb4`](https://github.com/commercetools/merchant-center-application-kit/commit/00d9edcb49a144797ba3690db012e429e88a30fa) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies [[`00d9edcb4`](https://github.com/commercetools/merchant-center-application-kit/commit/00d9edcb49a144797ba3690db012e429e88a30fa)]:
+  - @commercetools-frontend/constants@21.14.2
+  - @commercetools-frontend/sentry@21.14.2
+
+## 21.14.1
+
+### Patch Changes
+
+- [#2791](https://github.com/commercetools/merchant-center-application-kit/pull/2791) [`ea9d188bf`](https://github.com/commercetools/merchant-center-application-kit/commit/ea9d188bf301366e7738e6d18b5bc99e7783dda2) Thanks [@dependabot](https://github.com/apps/dependabot)! - Security patch of `moment-timezone`
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.14.1
+  - @commercetools-frontend/sentry@21.14.1
+
+## 21.14.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.14.0
+  - @commercetools-frontend/sentry@21.14.0
+
+## 21.13.1
+
+### Patch Changes
+
+- [`482ad98ee`](https://github.com/commercetools/merchant-center-application-kit/commit/482ad98eeb4570a583d58d476a7902ffe6cc2a94) Thanks [@emmenko](https://github.com/emmenko)! - Nothing changed, the previous release `21.13.0` had an issue publishing to NPM so we're bumping versions to trigger a new release.
+
+- Updated dependencies [[`482ad98ee`](https://github.com/commercetools/merchant-center-application-kit/commit/482ad98eeb4570a583d58d476a7902ffe6cc2a94)]:
+  - @commercetools-frontend/constants@21.13.1
+  - @commercetools-frontend/sentry@21.13.1
+
+## 21.13.0
+
+### Patch Changes
+
+- [#2767](https://github.com/commercetools/merchant-center-application-kit/pull/2767) [`5614ec9d8`](https://github.com/commercetools/merchant-center-application-kit/commit/5614ec9d8b9fc9c40c92ff1fde0beacbc3290e5e) Thanks [@emmenko](https://github.com/emmenko)! - Avoid using deprecated fields when fetching application menu links
+
+- Updated dependencies [[`d012420e5`](https://github.com/commercetools/merchant-center-application-kit/commit/d012420e563b34a1678693f19905bdd79b2317e2)]:
+  - @commercetools-frontend/sentry@21.13.0
+  - @commercetools-frontend/constants@21.13.0
+
+## 21.12.0
+
+### Patch Changes
+
+- [#2723](https://github.com/commercetools/merchant-center-application-kit/pull/2723) [`e40fcd6c`](https://github.com/commercetools/merchant-center-application-kit/commit/e40fcd6cda229fd8f7af8b33f6a5c3541f361aa0) Thanks [@emmenko](https://github.com/emmenko)! - Better reuse the `getMcApiUrl` function and do some maintenance on it.
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.12.0
+  - @commercetools-frontend/sentry@21.12.0
+
+## 21.11.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.11.0
+  - @commercetools-frontend/sentry@21.11.0
+
+## 21.10.0
+
+### Patch Changes
+
+- Updated dependencies [[`73977f3f`](https://github.com/commercetools/merchant-center-application-kit/commit/73977f3fcc52acd6195b698c37b8a9a80547670d)]:
+  - @commercetools-frontend/constants@21.10.0
+  - @commercetools-frontend/sentry@21.10.0
+
+## 21.9.0
+
+### Minor Changes
+
+- [#2695](https://github.com/commercetools/merchant-center-application-kit/pull/2695) [`de0980f9`](https://github.com/commercetools/merchant-center-application-kit/commit/de0980f9d151f3f0a98ddbf06e0629aaf03f5239) Thanks [@emmenko](https://github.com/emmenko)! - Update dependency `graphql` to `v16`.
+
+### Patch Changes
+
+- [#2707](https://github.com/commercetools/merchant-center-application-kit/pull/2707) [`d0584935`](https://github.com/commercetools/merchant-center-application-kit/commit/d058493588821ee249333db6f11beced11594c74) Thanks [@emmenko](https://github.com/emmenko)! - Update Apollo dependency to `v3.6.9`
+
+* [#2705](https://github.com/commercetools/merchant-center-application-kit/pull/2705) [`abe2c475`](https://github.com/commercetools/merchant-center-application-kit/commit/abe2c475be2aff3781ac6151178aede1e0801f77) Thanks [@emmenko](https://github.com/emmenko)! - Update typescript dependencies
+
+- [#2703](https://github.com/commercetools/merchant-center-application-kit/pull/2703) [`8cd781a6`](https://github.com/commercetools/merchant-center-application-kit/commit/8cd781a6f2d626fd564e6e1fd0be30991c27b4ea) Thanks [@emmenko](https://github.com/emmenko)! - Update Emotion dependencies to `v11.9.3`
+
+* [#2702](https://github.com/commercetools/merchant-center-application-kit/pull/2702) [`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413) Thanks [@emmenko](https://github.com/emmenko)! - Update Babel dependencies
+
+* Updated dependencies [[`abe2c475`](https://github.com/commercetools/merchant-center-application-kit/commit/abe2c475be2aff3781ac6151178aede1e0801f77), [`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413), [`8ab624e5`](https://github.com/commercetools/merchant-center-application-kit/commit/8ab624e593d6f9e56efe5d1f8562788bf93a3a62)]:
+  - @commercetools-frontend/sentry@21.9.0
+  - @commercetools-frontend/constants@21.9.0
+
+## 21.8.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.8.1
+  - @commercetools-frontend/sentry@21.8.1
+
+## 21.8.0
+
+### Patch Changes
+
+- [#2639](https://github.com/commercetools/merchant-center-application-kit/pull/2639) [`78de0ec6`](https://github.com/commercetools/merchant-center-application-kit/commit/78de0ec6b569b7daa23edf4fd21cae0842857ca8) Thanks [@ddouglasz](https://github.com/ddouglasz)! - There is a new React hook which you can use to access the Project Images rewrite configuration [see documentation](https://docs.commercetools.com/custom-applications/api-reference/commercetools-frontend-application-shell-connectors#project-image-settings).
+
+  You would use it like this:
+
+  ```js
+  function MyComponent() {
+    const { isLoading, imageRegex } = useProjectExtensionImageRegex();
+
+    if (isLoading) return <LoadingSpinner />;
+
+    return (
+      <div>
+        <h1>Project images regex: {imageRegex}</h1>
+      </div>
+    );
+  }
+
+  function MyApp() {
+    return (
+      <ProjectExtensionProviderForImageRegex>
+        <MyComponent />
+      </ProjectExtensionProviderForImageRegex>
+    );
+  }
+  ```
+
+  Both `GetProjectExtensionImageRegex` component and `withProjectExtensionImageRegex` still exists for backwards compatibility but have been marked as deprecated.
+
+* [#2661](https://github.com/commercetools/merchant-center-application-kit/pull/2661) [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed) Thanks [@emmenko](https://github.com/emmenko)! - Drop the copyright year from the license files
+
+- [#2653](https://github.com/commercetools/merchant-center-application-kit/pull/2653) [`405aa67b`](https://github.com/commercetools/merchant-center-application-kit/commit/405aa67bb55dd61e39f0856c120614030e9c8398) Thanks [@kark](https://github.com/kark)! - Export `TImageRegexContext` type
+
+- Updated dependencies [[`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed)]:
+  - @commercetools-frontend/constants@21.8.0
+  - @commercetools-frontend/sentry@21.8.0
+
 ## 21.6.0
 
 ### Patch Changes

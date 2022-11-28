@@ -10,16 +10,15 @@ async function run() {
   const applicationConfig = processConfig();
   const { mcApiUrl } = applicationConfig.env;
 
+  console.log(`Using Merchant Center environment "${chalk.green(mcApiUrl)}".`);
+  console.log();
+
   if (credentialsStorage.isSessionValid(mcApiUrl)) {
-    console.log(
-      `You already have a valid session for the ${mcApiUrl} environment.\n`
-    );
+    console.log(`You already have a valid session.`);
     return;
   }
 
-  console.log(
-    chalk.gray(`Enter the login credentials for the ${mcApiUrl} environment.\n`)
-  );
+  console.log(`Enter the login credentials:`);
 
   const { email } = await prompts({
     type: 'text',

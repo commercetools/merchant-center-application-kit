@@ -19,10 +19,6 @@ const warnIfMissingContent = (props: TTabHeaderProps) => {
   );
 };
 
-const getDisabledTabHeaderAriaAttributes = (
-  isDisabled: TTabHeaderProps['isDisabled']
-) => (isDisabled ? { 'aria-disabled': true } : {});
-
 const getDisabledLinkAtributes = (isDisabled: TTabHeaderProps['isDisabled']) =>
   isDisabled ? { tabIndex: -1, 'aria-disabled': true } : {};
 
@@ -84,20 +80,16 @@ export const TabHeader = (props: TTabHeaderProps) => {
 
   return (
     <Link
+      role="tab"
+      aria-selected={isActive}
       to={props.to}
       css={getLinkStyles(isActive, isDisabled)}
       {...getDisabledLinkAtributes(isDisabled)}
       {...dataAttributeProps}
     >
-      <div
-        role="tab"
-        aria-selected={isActive}
-        {...getDisabledTabHeaderAriaAttributes(isDisabled)}
-      >
-        <Text.Subheadline as="h4" truncate={true}>
-          {label}
-        </Text.Subheadline>
-      </div>
+      <Text.Subheadline as="h4" truncate={true}>
+        {label}
+      </Text.Subheadline>
     </Link>
   );
 };

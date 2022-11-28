@@ -1,17 +1,11 @@
 import type { TGraphQLTargets } from '@commercetools-frontend/constants';
-
+import type { THeaders, TForwardToConfig } from './http-client';
 import getMcApiUrl from './get-mc-api-url';
-
-export type THeaders = Record<string, string>;
 
 export type TApolloContext = {
   uri?: string;
   headers?: THeaders;
-  forwardToConfig?: {
-    version: string;
-    uri: string;
-    headers?: THeaders;
-  };
+  forwardToConfig?: TForwardToConfig;
   skipGraphQlTargetCheck?: boolean;
   skipTokenRetry?: boolean;
   target?: TGraphQLTargets;
@@ -20,23 +14,13 @@ export type TApolloContext = {
   featureFlag?: string;
 };
 
-type TApolloContextProxyForwardTo = {
-  // The GraphQL endpoint of the external server
-  uri: string;
-  headers?: THeaders;
-};
-
 const createApolloContextForProxyForwardTo = (
-  proxyForwardTocontext: TApolloContextProxyForwardTo
+  proxyForwardTocontext: TForwardToConfig
 ): TApolloContext => ({
   // Send the request to the forward-to endpoint.
   uri: `${getMcApiUrl()}/proxy/forward-to`,
   // Custom properties to be used by the "header-link".
-  forwardToConfig: {
-    version: 'v2',
-    uri: proxyForwardTocontext.uri,
-    headers: proxyForwardTocontext.headers,
-  },
+  forwardToConfig: proxyForwardTocontext,
   skipGraphQlTargetCheck: true,
 });
 

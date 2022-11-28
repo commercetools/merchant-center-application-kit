@@ -23,7 +23,66 @@ require('@formatjs/intl-pluralrules/locale-data/fr');
 
 const { configure: configureRtl } = require('@testing-library/react');
 const loadConfig = require('./load-config');
+const failOnConsole = require('./fail-on-console');
 
 const jestConfig = loadConfig();
 
 configureRtl(jestConfig.rtlConfig);
+
+let additionalSilencedWarnings = [];
+let additionalNonThrowingWarnings = [];
+
+function hasMatchingRegexForMessage(messages, msgRegExps) {
+  return msgRegExps.some((msgRegex) =>
+    messages.some((msg) => msgRegex.test(msg))
+  );
+}
+
+function shouldSilenceWarnings(...messages) {
+  const silencedByJestConfig = hasMatchingRegexForMessage(
+    messages,
+    jestConfig.silenceConsoleWarnings
+  );
+  const additionallySilenced = hasMatchingRegexForMessage(
+    messages,
+    additionalSilencedWarnings
+  );
+
+  return silencedByJestConfig || additionallySilenced;
+}
+
+function shouldNotThrowWarnings(...messages) {
+  const notThrowingByJestConfig = hasMatchingRegexForMessage(
+    messages,
+    jestConfig.notThrowWarnings
+  );
+  const additionallyNonThrowing = hasMatchingRegexForMessage(
+    messages,
+    additionalNonThrowingWarnings
+  );
+
+  return notThrowingByJestConfig || additionallyNonThrowing;
+}
+
+failOnConsole({
+  shouldFailOnLog: true,
+  shouldFailOnInfo: true,
+  shouldFailOnWarn: true,
+  shouldFailOnError: true,
+  silenceMessage: (message) => {
+    if (!process.env.CI) {
+      return false;
+    }
+    return shouldSilenceWarnings(message);
+  },
+  logButNotThrowMessage: (message) => {
+    return shouldNotThrowWarnings(message);
+  },
+});
+
+global.console.config = {};
+
+global.console.config.addSilencedWarning = (rexExp) =>
+  additionalSilencedWarnings.push(rexExp);
+global.console.config.addNonThrowingWarning = (rexExp) =>
+  additionalNonThrowingWarnings.push(rexExp);

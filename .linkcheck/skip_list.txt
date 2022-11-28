@@ -15,7 +15,6 @@ https://www.npmjs.com
 
 \/.+\/api$
 \/.+\/api\/
-\/.+\/custom-applications\/legacy
 \/.+\/custom-applications\/playground
 \/.+\/docs\/login
 \/.+\/import-export

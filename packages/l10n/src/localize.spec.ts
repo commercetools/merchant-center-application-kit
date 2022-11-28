@@ -1,6 +1,7 @@
 import {
   transformLocalizedFieldToLocalizedString,
   transformLocalizedStringToLocalizedField,
+  applyTransformedLocalizedStrings,
   applyTransformedLocalizedFields,
   formatLocalizedString,
 } from './localize';
@@ -75,6 +76,45 @@ describe('transformLocalizedFieldToLocalizedString', () => {
           { locale: 'it', value: 'Ciao' },
         ])
       ).toEqual({ en: 'Hello', it: 'Ciao' });
+    });
+  });
+});
+
+describe('applyTransformedLocalizedStrings', () => {
+  describe('when entity contains localized string field', () => {
+    it('should inject localized field object and remove outdated key', () => {
+      expect(
+        applyTransformedLocalizedStrings(
+          {
+            id: '1',
+            name: { en: 'CD', de: 'CD' },
+          },
+          [{ from: 'name', to: 'nameAllLocales' }]
+        )
+      ).toEqual({
+        id: '1',
+        nameAllLocales: [
+          { locale: 'de', value: 'CD' },
+          { locale: 'en', value: 'CD' },
+        ],
+      });
+    });
+  });
+  describe('when entity does not contain a localized string field', () => {
+    it('should inject localized field object as empty array and remove outdated key', () => {
+      expect(
+        applyTransformedLocalizedStrings({ id: '1', name: null }, [
+          { from: 'name', to: 'nameAllLocales' },
+        ])
+      ).toEqual({ id: '1', nameAllLocales: [] });
+    });
+  });
+
+  describe('when array of field names is empty', () => {
+    it('should not change entity shape', () => {
+      expect(
+        applyTransformedLocalizedFields({ id: '1', version: 2 }, [])
+      ).toEqual({ id: '1', version: 2 });
     });
   });
 });

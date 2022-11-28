@@ -1,6 +1,7 @@
 /// <reference path="../../node_modules/vite/types/importMeta.d.ts" />
 
-import { ComponentType } from 'react';
+import './globals.css';
+import { type ComponentType, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 type TVisualRouteSpec = {
@@ -8,8 +9,9 @@ type TVisualRouteSpec = {
   Component: ComponentType;
 };
 
-const visualRoutesModules = import.meta.globEager<TVisualRouteSpec>(
-  './components/**/*.visualroute.tsx'
+const visualRoutesModules = import.meta.glob<TVisualRouteSpec>(
+  './components/**/*.visualroute.tsx',
+  { eager: true }
 );
 
 const allUniqueVisualRouteComponents = Object.values(
@@ -46,7 +48,11 @@ const App = () => (
         )}
       />
       {allSortedComponents.map(({ routePath, Component }) => (
-        <Route key={routePath} path={routePath} component={Component} />
+        <Route key={routePath} path={routePath}>
+          <Suspense fallback={'Loading...'}>
+            <Component />
+          </Suspense>
+        </Route>
       ))}
     </Switch>
   </Router>

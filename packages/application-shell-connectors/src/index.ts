@@ -1,6 +1,8 @@
 export { default as version } from './version';
 export * from './export-types';
 
+export { default as getMcApiUrl } from './utils/get-mc-api-url';
+
 export {
   Context,
   ApplicationContext,

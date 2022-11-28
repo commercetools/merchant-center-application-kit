@@ -54,7 +54,7 @@
       {
         "kind": "OBJECT",
         "name": "AllPermissionsForAllApplications",
-        "description": "Only used by the navbar menu component in ApplicationShell.",
+        "description": null,
         "fields": [
           {
             "name": "allAppliedActionRights",
@@ -429,7 +429,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "ChangeUserName",
-        "description": "NOTE: This is _not_ a username it is the user's name.",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
@@ -663,11 +663,148 @@
       },
       {
         "kind": "SCALAR",
+        "name": "Float",
+        "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
         "name": "ID",
         "description": "The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"4\"`) or integer (such as `4`) input value will be accepted as an ID.",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "IdTokenUserInfo",
+        "description": null,
+        "fields": [
+          {
+            "name": "additionalClaims",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "aud",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "email",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "exp",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "iat",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "iss",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sub",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -806,7 +943,7 @@
       {
         "kind": "OBJECT",
         "name": "InvitationQueryResult",
-        "description": "Note: you can not brute-force fetch user information\nby trying emails. Only information about the membership itself.",
+        "description": null,
         "fields": [
           {
             "name": "gravatarHash",
@@ -2048,7 +2185,7 @@
       {
         "kind": "OBJECT",
         "name": "Organization",
-        "description": "TODO: use `Reference` instead once there is no more usage of the following fields:\n- name\n- createdAt",
+        "description": null,
         "fields": [
           {
             "name": "createdAt",
@@ -2217,7 +2354,7 @@
       {
         "kind": "OBJECT",
         "name": "OrganizationTeamsCreated",
-        "description": "Note:\n  This is not a `Organization` type as in the future MC schema will not support e.g. expanding on team members on its internal schema.",
+        "description": null,
         "fields": [
           {
             "name": "id",
@@ -2302,6 +2439,12 @@
             "deprecationReason": null
           },
           {
+            "name": "manage_business_units",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "manage_cart_discounts",
             "description": null,
             "isDeprecated": false,
@@ -2368,6 +2511,12 @@
             "deprecationReason": null
           },
           {
+            "name": "manage_my_business_units",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "manage_my_orders",
             "description": null,
             "isDeprecated": false,
@@ -2381,6 +2530,18 @@
           },
           {
             "name": "manage_my_profile",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "manage_my_quote_requests",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "manage_my_quotes",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -2434,6 +2595,18 @@
             "deprecationReason": null
           },
           {
+            "name": "manage_quote_requests",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "manage_quotes",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "manage_shipping_methods",
             "description": null,
             "isDeprecated": false,
@@ -2441,6 +2614,12 @@
           },
           {
             "name": "manage_shopping_lists",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "manage_staged_quotes",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -2495,6 +2674,12 @@
           },
           {
             "name": "view_audit_log",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "view_business_units",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -2608,6 +2793,18 @@
             "deprecationReason": null
           },
           {
+            "name": "view_quote_requests",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "view_quotes",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "view_shipping_methods",
             "description": null,
             "isDeprecated": false,
@@ -2615,6 +2812,12 @@
           },
           {
             "name": "view_shopping_lists",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "view_staged_quotes",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -4635,7 +4838,7 @@
         "inputFields": [
           {
             "name": "timeZone",
-            "description": "NOTE: This is optional as not passing it unsets the timezone.",
+            "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "String",
@@ -5156,6 +5359,18 @@
             "deprecationReason": null
           },
           {
+            "name": "idTokenUserInfo",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "IdTokenUserInfo",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "language",
             "description": null,
             "args": [],
@@ -5323,6 +5538,22 @@
               "kind": "SCALAR",
               "name": "String",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "verificationStatus",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "VerificationStatus",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -5503,6 +5734,29 @@
         ],
         "interfaces": null,
         "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "VerificationStatus",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "Unverified",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Verified",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "possibleTypes": null
       },
       {
@@ -6142,7 +6396,7 @@
       {
         "kind": "OBJECT",
         "name": "__Type",
-        "description": "The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.\n\nDepending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByUrl`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.",
+        "description": "The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.\n\nDepending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByURL`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.",
         "fields": [
           {
             "name": "kind",
@@ -6185,7 +6439,7 @@
             "deprecationReason": null
           },
           {
-            "name": "specifiedByUrl",
+            "name": "specifiedByURL",
             "description": null,
             "args": [],
             "type": {
@@ -6533,73 +6787,42 @@
       },
       {
         "name": "rateLimit",
-        "description": null,
+        "description": "Controls the rate of traffic.",
         "isRepeatable": false,
         "locations": [
-          "FIELD_DEFINITION"
+          "FIELD_DEFINITION",
+          "OBJECT"
         ],
         "args": [
           {
-            "name": "arrayLengthField",
-            "description": null,
+            "name": "duration",
+            "description": "Number of seconds before limit is reset.",
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "identityArgs",
-            "description": null,
-            "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               }
             },
-            "defaultValue": null,
+            "defaultValue": "60",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "max",
-            "description": null,
+            "name": "limit",
+            "description": "Number of occurrences allowed over duration.",
             "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
             },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "message",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "window",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
+            "defaultValue": "60",
             "isDeprecated": false,
             "deprecationReason": null
           }

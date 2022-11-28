@@ -13,9 +13,11 @@ module.exports = {
     title: 'Custom Applications',
     description: 'Develop applications for the Merchant Center',
     author: 'commercetools',
+    beta: false,
     betaLink: 'https://docs.commercetools.com/api/contract#public-beta',
     repositoryUrl:
       'https://github.com/commercetools/merchant-center-application-kit',
+    excludeFromSearchIndex: false,
   },
   plugins: [
     // Docs theme
@@ -24,14 +26,7 @@ module.exports = {
       options: {
         websiteKey: 'custom-applications',
         colorPreset: colorPresets.merchantCenterDeveloperDocs.key,
-        beta: true,
-        excludeFromSearchIndex: false,
         gaTrackingId: 'UA-38285631-3',
-        globalNotification: {
-          notificationType: 'info',
-          content:
-            'This is the new documentation of Custom Applications. You can still visit the [legacy documentation](https://docs.commercetools.com/custom-applications/legacy) during the [migration](/migrating-from-project-level-custom-applications) from Project-level Custom Applications.',
-        },
         overrideDefaultConfigurationData: ['**/top-*'],
       },
     },

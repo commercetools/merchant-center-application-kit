@@ -5,6 +5,7 @@ packages/application-shell/test-utils/index.js
 packages/application-shell-connectors/test-utils/index.js
 packages/application-sdk/test-utils/index.js
 packages/application-config/src/schema.ts
+packages/i18n/src/moment-locales.ts
 **/types/generated/
 schemas/
 .percy.yml

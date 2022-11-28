@@ -1,5 +1,5 @@
 schema:
-  - '${MC_API_URL}':
+  - '${MC_API_URL}/graphql':
       headers:
         Cookie: mcAccessToken=${MC_ACCESS_TOKEN}
         X-Graphql-Target: administration

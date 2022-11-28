@@ -142,6 +142,7 @@ export type TAddCartLineItem = {
   externalPrice?: InputMaybe<TBaseMoneyInput>;
   externalTaxRate?: InputMaybe<TExternalTaxRateDraft>;
   externalTotalPrice?: InputMaybe<TExternalLineItemTotalPriceDraft>;
+  inventoryMode?: InputMaybe<TInventoryMode>;
   productId?: InputMaybe<Scalars['String']>;
   quantity?: InputMaybe<Scalars['Long']>;
   shippingDetails?: InputMaybe<TItemShippingDetailsDraft>;
@@ -275,6 +276,7 @@ export type TAddProductPrice = {
 
 export type TAddProductSelectionProduct = {
   product: TResourceIdentifierInput;
+  variantSelection?: InputMaybe<TProductVariantSelectionDraft>;
 };
 
 export type TAddProductToCategory = {
@@ -381,6 +383,7 @@ export type TAddStagedOrderLineItem = {
   externalPrice?: InputMaybe<TBaseMoneyInput>;
   externalTaxRate?: InputMaybe<TExternalTaxRateDraft>;
   externalTotalPrice?: InputMaybe<TExternalLineItemTotalPriceDraft>;
+  inventoryMode?: InputMaybe<TInventoryMode>;
   productId?: InputMaybe<Scalars['String']>;
   quantity?: InputMaybe<Scalars['Long']>;
   shippingDetails?: InputMaybe<TItemShippingDetailsDraftType>;
@@ -607,6 +610,10 @@ export type TApplyCartDeltaToCustomLineItemShippingDetailsTargets = {
 export type TApplyCartDeltaToLineItemShippingDetailsTargets = {
   lineItemId: Scalars['String'];
   targetsDelta: Array<TShippingTargetDraft>;
+};
+
+export type TApplyStagedChanges = {
+  dummy?: InputMaybe<Scalars['String']>;
 };
 
 export type TAsset = {
@@ -898,6 +905,10 @@ export type TBooleanField = TCustomField & {
 export type TBooleanType = TFieldType & {
   __typename?: 'BooleanType';
   name: Scalars['String'];
+};
+
+export type TCancelQuoteRequest = {
+  dummy?: InputMaybe<Scalars['String']>;
 };
 
 /** A shopping cart holds product variants and can be ordered. Each cart either belongs to a registered customer or is an anonymous cart. */
@@ -1212,6 +1223,7 @@ export type TCartUpdateAction = {
   applyDeltaToCustomLineItemShippingDetailsTargets?: InputMaybe<TApplyCartDeltaToCustomLineItemShippingDetailsTargets>;
   applyDeltaToLineItemShippingDetailsTargets?: InputMaybe<TApplyCartDeltaToLineItemShippingDetailsTargets>;
   changeCustomLineItemMoney?: InputMaybe<TChangeCartCustomLineItemMoney>;
+  changeCustomLineItemPriceMode?: InputMaybe<TChangeCartCustomLineItemPriceMode>;
   changeCustomLineItemQuantity?: InputMaybe<TChangeCartCustomLineItemQuantity>;
   changeLineItemQuantity?: InputMaybe<TChangeCartLineItemQuantity>;
   changeTaxCalculationMode?: InputMaybe<TChangeCartTaxCalculationMode>;
@@ -1519,6 +1531,11 @@ export type TChangeCartCustomLineItemMoney = {
   money: TBaseMoneyInput;
 };
 
+export type TChangeCartCustomLineItemPriceMode = {
+  customLineItemId: Scalars['String'];
+  mode: TCustomLineItemPriceMode;
+};
+
 export type TChangeCartCustomLineItemQuantity = {
   customLineItemId: Scalars['String'];
   quantity: Scalars['Long'];
@@ -1653,6 +1670,10 @@ export type TChangeInventoryEntryQuantity = {
 
 export type TChangeMyCartTaxMode = {
   taxMode: TTaxMode;
+};
+
+export type TChangeMyQuoteMyQuoteState = {
+  quoteState: TMyQuoteState;
 };
 
 export type TChangeOrderPaymentState = {
@@ -1802,6 +1823,14 @@ export type TChangeProjectSettingsShoppingListsConfiguration = {
   shoppingListsConfiguration: TShoppingListsConfigurationInput;
 };
 
+export type TChangeQuoteRequestState = {
+  quoteRequestState: TQuoteRequestState;
+};
+
+export type TChangeQuoteState = {
+  quoteState: TMyQuoteState;
+};
+
 export type TChangeShippingMethodIsDefault = {
   isDefault: Scalars['Boolean'];
 };
@@ -1941,7 +1970,13 @@ export type TChangeStagedOrderTaxRoundingModeOutput = TStagedOrderUpdateActionOu
   type: Scalars['String'];
 };
 
+export type TChangeStagedQuoteState = {
+  stagedQuoteState: TStagedQuoteState;
+};
+
 export type TChangeStandalonePriceValue = {
+  /** default is `false` */
+  staged?: InputMaybe<Scalars['Boolean']>;
   value: TBaseMoneyInput;
 };
 
@@ -2286,6 +2321,7 @@ export type TCustomLineItem = {
   money: TBaseMoney;
   name?: Maybe<Scalars['String']>;
   nameAllLocales: Array<TLocalizedString>;
+  priceMode: TCustomLineItemPriceMode;
   quantity: Scalars['Long'];
   shippingDetails?: Maybe<TItemShippingDetails>;
   slug: Scalars['String'];
@@ -2333,6 +2369,25 @@ export type TCustomLineItemDraftOutput_NameArgs = {
   acceptLanguage?: InputMaybe<Array<Scalars['Locale']>>;
   locale?: InputMaybe<Scalars['Locale']>;
 };
+
+export type TCustomLineItemImportDraft = {
+  custom?: InputMaybe<TCustomFieldsDraft>;
+  money: TBaseMoneyInput;
+  name: Array<TLocalizedStringItemInputType>;
+  quantity: Scalars['Long'];
+  shippingDetails?: InputMaybe<TItemShippingDetailsDraft>;
+  slug: Scalars['String'];
+  state?: InputMaybe<Array<TItemStateDraftType>>;
+  taxCategory?: InputMaybe<TResourceIdentifierInput>;
+  taxRate?: InputMaybe<TTaxRateInput>;
+};
+
+export enum TCustomLineItemPriceMode {
+  /** Cart discounts are deactivated for the custom line items with this price mode. */
+  External = 'External',
+  /** This is the default mode. */
+  Standard = 'Standard'
+}
 
 export type TCustomLineItemReturnItem = TReturnItem & {
   __typename?: 'CustomLineItemReturnItem';
@@ -2896,6 +2951,13 @@ export type TDeliveryAddressSet = TMessagePayload & TOrderMessagePayload & {
   type: Scalars['String'];
 };
 
+export type TDeliveryDraft = {
+  address?: InputMaybe<TAddressInput>;
+  custom?: InputMaybe<TCustomFieldsDraft>;
+  items: Array<TDeliveryItemDraftType>;
+  parcels: Array<TParcelDraft>;
+};
+
 export type TDeliveryItem = {
   __typename?: 'DeliveryItem';
   id: Scalars['String'];
@@ -3060,15 +3122,26 @@ export type TDiscountCodeUpdateAction = {
 
 export type TDiscountedLineItemPortion = {
   __typename?: 'DiscountedLineItemPortion';
+  /** Expands the CartDiscount associated to cart, if the discounts on the cart are of type DirectDiscount, this field will be empty */
   discount?: Maybe<TCartDiscount>;
   discountRef: TReference;
   discountedAmount: TBaseMoney;
+};
+
+export type TDiscountedLineItemPortionDraft = {
+  discount: TReferenceInput;
+  discountedAmount: TBaseMoneyInput;
 };
 
 export type TDiscountedLineItemPrice = {
   __typename?: 'DiscountedLineItemPrice';
   includedDiscounts: Array<TDiscountedLineItemPortion>;
   value: TBaseMoney;
+};
+
+export type TDiscountedLineItemPriceDraft = {
+  includedDiscounts?: InputMaybe<Array<TDiscountedLineItemPortionDraft>>;
+  value: TBaseMoneyInput;
 };
 
 export type TDiscountedLineItemPriceForQuantity = {
@@ -3479,6 +3552,34 @@ export type TImageProductSearch = {
 export type TImportOrderCustomLineItemState = {
   customLineItemId: Scalars['String'];
   state: Array<TItemStateDraftType>;
+};
+
+export type TImportOrderDraft = {
+  billingAddress?: InputMaybe<TAddressInput>;
+  completedAt?: InputMaybe<Scalars['DateTime']>;
+  country?: InputMaybe<Scalars['Country']>;
+  custom?: InputMaybe<TCustomFieldsDraft>;
+  customLineItems?: Array<TCustomLineItemImportDraft>;
+  customerEmail?: InputMaybe<Scalars['String']>;
+  customerGroup?: InputMaybe<TReferenceInput>;
+  customerId?: InputMaybe<Scalars['String']>;
+  inventoryMode?: InputMaybe<TInventoryMode>;
+  itemShippingAddresses?: InputMaybe<Array<TAddressInput>>;
+  lineItems?: Array<TLineItemImportDraft>;
+  orderNumber?: InputMaybe<Scalars['String']>;
+  orderState?: InputMaybe<TOrderState>;
+  origin?: InputMaybe<TCartOrigin>;
+  paymentInfo?: InputMaybe<TReferenceInput>;
+  paymentState?: InputMaybe<TPaymentState>;
+  shipmentState?: InputMaybe<TShipmentState>;
+  shippingAddress?: InputMaybe<TAddressInput>;
+  shippingDetails?: InputMaybe<TItemShippingDetailsDraft>;
+  shippingInfo?: InputMaybe<TShippingInfoImportDraft>;
+  state?: InputMaybe<TReferenceInput>;
+  store?: InputMaybe<TReferenceInput>;
+  taxCalculationMode?: InputMaybe<TTaxCalculationMode>;
+  taxedPrice?: InputMaybe<TTaxedPriceDraft>;
+  totalPrice: TMoneyInput;
 };
 
 export type TImportOrderLineItemState = {
@@ -3906,7 +4007,7 @@ export type TLineItem = {
   distributionChannel?: Maybe<TChannel>;
   distributionChannelRef?: Maybe<TReference>;
   id: Scalars['String'];
-  inventoryMode?: Maybe<TItemShippingDetails>;
+  inventoryMode?: Maybe<TInventoryMode>;
   lastModifiedAt?: Maybe<Scalars['DateTime']>;
   lineItemMode: TLineItemMode;
   name?: Maybe<Scalars['String']>;
@@ -3971,6 +4072,7 @@ export type TLineItemDraft = {
   externalPrice?: InputMaybe<TBaseMoneyInput>;
   externalTaxRate?: InputMaybe<TExternalTaxRateDraft>;
   externalTotalPrice?: InputMaybe<TExternalLineItemTotalPriceDraft>;
+  inventoryMode?: InputMaybe<TInventoryMode>;
   productId?: InputMaybe<Scalars['String']>;
   quantity?: InputMaybe<Scalars['Long']>;
   shippingDetails?: InputMaybe<TItemShippingDetailsDraft>;
@@ -3987,12 +4089,27 @@ export type TLineItemDraftOutput = {
   externalPrice?: Maybe<TBaseMoney>;
   externalTaxRate?: Maybe<TExternalTaxRateDraftOutput>;
   externalTotalPrice?: Maybe<TExternalLineItemTotalPrice>;
+  inventoryMode?: Maybe<TInventoryMode>;
   productId?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['Long']>;
   shippingDetails?: Maybe<TItemShippingDetailsDraftOutput>;
   sku?: Maybe<Scalars['String']>;
   supplyChannelResId?: Maybe<TResourceIdentifier>;
   variantId?: Maybe<Scalars['Int']>;
+};
+
+export type TLineItemImportDraft = {
+  custom?: InputMaybe<TCustomFieldsDraft>;
+  distributionChannel?: InputMaybe<TResourceIdentifierInput>;
+  name: Array<TLocalizedStringItemInputType>;
+  price: TProductPriceDataInput;
+  productId?: InputMaybe<Scalars['String']>;
+  quantity: Scalars['Long'];
+  shippingDetails?: InputMaybe<TItemShippingDetailsDraft>;
+  state?: InputMaybe<Array<TItemStateDraftType>>;
+  supplyChannel?: InputMaybe<TResourceIdentifierInput>;
+  taxRate?: InputMaybe<TTaxRateInput>;
+  variant: TProductVariantImportDraft;
 };
 
 export enum TLineItemMode {
@@ -4221,6 +4338,14 @@ export type TMe = TActiveCartInterface & TCartQueryInterface & TMeQueryInterface
   /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
   payments: TMyPaymentQueryResult;
   /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
+  quote?: Maybe<TQuote>;
+  /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
+  quoteRequest?: Maybe<TQuoteRequest>;
+  /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
+  quoteRequests: TQuoteRequestQueryResult;
+  /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
+  quotes: TQuoteQueryResult;
+  /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
   shoppingList?: Maybe<TShoppingList>;
   /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
   shoppingLists: TShoppingListQueryResult;
@@ -4260,6 +4385,34 @@ export type TMe_PaymentArgs = {
 
 
 export type TMe_PaymentsArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<Array<Scalars['String']>>;
+  where?: InputMaybe<Scalars['String']>;
+};
+
+
+export type TMe_QuoteArgs = {
+  id?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
+};
+
+
+export type TMe_QuoteRequestArgs = {
+  id?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
+};
+
+
+export type TMe_QuoteRequestsArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<Array<Scalars['String']>>;
+  where?: InputMaybe<Scalars['String']>;
+};
+
+
+export type TMe_QuotesArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
   sort?: InputMaybe<Array<Scalars['String']>>;
@@ -4503,21 +4656,28 @@ export type TMutation = {
   /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
   createMyOrderFromCart?: Maybe<TOrder>;
   /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
+  createMyOrderFromQuote?: Maybe<TOrder>;
+  /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
   createMyPayment?: Maybe<TMyPayment>;
+  createMyQuoteRequest?: Maybe<TQuoteRequest>;
   /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
   createMyShoppingList?: Maybe<TShoppingList>;
   createOrUpdateCustomObject?: Maybe<TCustomObject>;
   createOrderEdit?: Maybe<TOrderEdit>;
   createOrderFromCart?: Maybe<TOrder>;
+  createOrderFromQuote?: Maybe<TOrder>;
   createPayment?: Maybe<TPayment>;
   createProduct?: Maybe<TProduct>;
   createProductDiscount?: Maybe<TProductDiscount>;
   /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
   createProductSelection?: Maybe<TProductSelection>;
   createProductType?: Maybe<TProductTypeDefinition>;
+  createQuote?: Maybe<TQuote>;
+  createQuoteRequest?: Maybe<TQuoteRequest>;
   createReview?: Maybe<TReview>;
   createShippingMethod?: Maybe<TShippingMethod>;
   createShoppingList?: Maybe<TShoppingList>;
+  createStagedQuote?: Maybe<TStagedQuote>;
   createStandalonePrice?: Maybe<TStandalonePrice>;
   createState?: Maybe<TState>;
   createStore?: Maybe<TStore>;
@@ -4614,9 +4774,12 @@ export type TMutation = {
   /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
   deleteProductSelection?: Maybe<TProductSelection>;
   deleteProductType?: Maybe<TProductTypeDefinition>;
+  deleteQuote?: Maybe<TQuote>;
+  deleteQuoteRequest?: Maybe<TQuoteRequest>;
   deleteReview?: Maybe<TReview>;
   deleteShippingMethod?: Maybe<TShippingMethod>;
   deleteShoppingList?: Maybe<TShoppingList>;
+  deleteStagedQuote?: Maybe<TStagedQuote>;
   deleteStandalonePrice?: Maybe<TStandalonePrice>;
   deleteState?: Maybe<TState>;
   deleteStore?: Maybe<TStore>;
@@ -4624,6 +4787,7 @@ export type TMutation = {
   deleteTaxCategory?: Maybe<TTaxCategory>;
   deleteTypeDefinition?: Maybe<TTypeDefinition>;
   deleteZone?: Maybe<TZone>;
+  importOrder?: Maybe<TOrder>;
   replicateCart?: Maybe<TCart>;
   /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
   replicateMyCart?: Maybe<TCart>;
@@ -4643,6 +4807,8 @@ export type TMutation = {
   /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
   updateMyCustomer?: Maybe<TCustomer>;
   updateMyPayment?: Maybe<TMyPayment>;
+  updateMyQuote?: Maybe<TQuote>;
+  updateMyQuoteRequest?: Maybe<TQuoteRequest>;
   /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
   updateMyShoppingList?: Maybe<TShoppingList>;
   updateOrder?: Maybe<TOrder>;
@@ -4654,9 +4820,12 @@ export type TMutation = {
   updateProductSelection?: Maybe<TProductSelection>;
   updateProductType?: Maybe<TProductTypeDefinition>;
   updateProject?: Maybe<TProjectProjection>;
+  updateQuote?: Maybe<TQuote>;
+  updateQuoteRequest?: Maybe<TQuoteRequest>;
   updateReview?: Maybe<TReview>;
   updateShippingMethod?: Maybe<TShippingMethod>;
   updateShoppingList?: Maybe<TShoppingList>;
+  updateStagedQuote?: Maybe<TStagedQuote>;
   updateStandalonePrice?: Maybe<TStandalonePrice>;
   updateState?: Maybe<TState>;
   updateStore?: Maybe<TStore>;
@@ -4730,8 +4899,18 @@ export type TMutation_CreateMyOrderFromCartArgs = {
 };
 
 
+export type TMutation_CreateMyOrderFromQuoteArgs = {
+  draft: TOrderMyQuoteCommand;
+};
+
+
 export type TMutation_CreateMyPaymentArgs = {
   draft: TMyPaymentDraft;
+};
+
+
+export type TMutation_CreateMyQuoteRequestArgs = {
+  draft: TMyQuoteRequestDraft;
 };
 
 
@@ -4754,6 +4933,11 @@ export type TMutation_CreateOrderEditArgs = {
 export type TMutation_CreateOrderFromCartArgs = {
   draft: TOrderCartCommand;
   storeKey?: InputMaybe<Scalars['KeyReferenceInput']>;
+};
+
+
+export type TMutation_CreateOrderFromQuoteArgs = {
+  draft: TOrderQuoteCommand;
 };
 
 
@@ -4782,6 +4966,16 @@ export type TMutation_CreateProductTypeArgs = {
 };
 
 
+export type TMutation_CreateQuoteArgs = {
+  draft: TQuoteDraft;
+};
+
+
+export type TMutation_CreateQuoteRequestArgs = {
+  draft: TQuoteRequestDraft;
+};
+
+
 export type TMutation_CreateReviewArgs = {
   draft: TReviewDraft;
 };
@@ -4795,6 +4989,11 @@ export type TMutation_CreateShippingMethodArgs = {
 export type TMutation_CreateShoppingListArgs = {
   draft: TShoppingListDraft;
   storeKey?: InputMaybe<Scalars['KeyReferenceInput']>;
+};
+
+
+export type TMutation_CreateStagedQuoteArgs = {
+  draft: TStagedQuoteDraft;
 };
 
 
@@ -5083,6 +5282,22 @@ export type TMutation_DeleteProductTypeArgs = {
 };
 
 
+export type TMutation_DeleteQuoteArgs = {
+  id?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
+  personalDataErasure?: InputMaybe<Scalars['Boolean']>;
+  version: Scalars['Long'];
+};
+
+
+export type TMutation_DeleteQuoteRequestArgs = {
+  id?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
+  personalDataErasure?: InputMaybe<Scalars['Boolean']>;
+  version: Scalars['Long'];
+};
+
+
 export type TMutation_DeleteReviewArgs = {
   id?: InputMaybe<Scalars['String']>;
   key?: InputMaybe<Scalars['String']>;
@@ -5103,6 +5318,14 @@ export type TMutation_DeleteShoppingListArgs = {
   key?: InputMaybe<Scalars['String']>;
   personalDataErasure?: InputMaybe<Scalars['Boolean']>;
   storeKey?: InputMaybe<Scalars['KeyReferenceInput']>;
+  version: Scalars['Long'];
+};
+
+
+export type TMutation_DeleteStagedQuoteArgs = {
+  id?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
+  personalDataErasure?: InputMaybe<Scalars['Boolean']>;
   version: Scalars['Long'];
 };
 
@@ -5153,6 +5376,11 @@ export type TMutation_DeleteZoneArgs = {
   id?: InputMaybe<Scalars['String']>;
   key?: InputMaybe<Scalars['String']>;
   version: Scalars['Long'];
+};
+
+
+export type TMutation_ImportOrderArgs = {
+  draft: TImportOrderDraft;
 };
 
 
@@ -5270,6 +5498,22 @@ export type TMutation_UpdateMyPaymentArgs = {
 };
 
 
+export type TMutation_UpdateMyQuoteArgs = {
+  actions: Array<TMyQuoteUpdateAction>;
+  id?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
+  version: Scalars['Long'];
+};
+
+
+export type TMutation_UpdateMyQuoteRequestArgs = {
+  actions: Array<TMyQuoteRequestUpdateAction>;
+  id?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
+  version: Scalars['Long'];
+};
+
+
 export type TMutation_UpdateMyShoppingListArgs = {
   actions: Array<TMyShoppingListUpdateAction>;
   id?: InputMaybe<Scalars['String']>;
@@ -5343,6 +5587,22 @@ export type TMutation_UpdateProjectArgs = {
 };
 
 
+export type TMutation_UpdateQuoteArgs = {
+  actions: Array<TQuoteUpdateAction>;
+  id?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
+  version: Scalars['Long'];
+};
+
+
+export type TMutation_UpdateQuoteRequestArgs = {
+  actions: Array<TQuoteRequestUpdateAction>;
+  id?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
+  version: Scalars['Long'];
+};
+
+
 export type TMutation_UpdateReviewArgs = {
   actions: Array<TReviewUpdateAction>;
   id?: InputMaybe<Scalars['String']>;
@@ -5364,6 +5624,14 @@ export type TMutation_UpdateShoppingListArgs = {
   id?: InputMaybe<Scalars['String']>;
   key?: InputMaybe<Scalars['String']>;
   storeKey?: InputMaybe<Scalars['KeyReferenceInput']>;
+  version: Scalars['Long'];
+};
+
+
+export type TMutation_UpdateStagedQuoteArgs = {
+  actions: Array<TStagedQuoteUpdateAction>;
+  id?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
   version: Scalars['Long'];
 };
 
@@ -5559,6 +5827,30 @@ export type TMyPaymentUpdateAction = {
   setMethodInfoName?: InputMaybe<TSetPaymentMethodInfoName>;
 };
 
+export type TMyQuoteRequestDraft = {
+  cartId: Scalars['String'];
+  cartVersion: Scalars['Long'];
+  comment?: InputMaybe<Scalars['String']>;
+};
+
+export type TMyQuoteRequestUpdateAction = {
+  cancelQuoteRequest?: InputMaybe<TCancelQuoteRequest>;
+  setCustomField?: InputMaybe<TSetMyQuoteRequestCustomField>;
+  setCustomType?: InputMaybe<TSetMyQuoteRequestCustomType>;
+};
+
+export enum TMyQuoteState {
+  Accepted = 'Accepted',
+  Declined = 'Declined',
+  Failed = 'Failed'
+}
+
+export type TMyQuoteUpdateAction = {
+  changeMyQuoteState?: InputMaybe<TChangeMyQuoteMyQuoteState>;
+  setCustomField?: InputMaybe<TSetQuoteCustomField>;
+  setCustomType?: InputMaybe<TSetQuoteCustomType>;
+};
+
 export type TMyShoppingListDraft = {
   custom?: InputMaybe<TCustomFieldsDraft>;
   deleteDaysAfterLastModification?: InputMaybe<Scalars['Int']>;
@@ -5661,6 +5953,7 @@ export type TOrder = TReferenceExpandable & TVersioned & {
   id: Scalars['String'];
   inventoryMode: TInventoryMode;
   itemShippingAddresses: Array<TAddress>;
+  /** @deprecated An internal field that should not be used in customer logic */
   lastMessageSequenceNumber: Scalars['Long'];
   lastModifiedAt: Scalars['DateTime'];
   lastModifiedBy?: Maybe<TInitiator>;
@@ -5939,6 +6232,11 @@ export type TOrderMyCartCommand = {
   version: Scalars['Long'];
 };
 
+export type TOrderMyQuoteCommand = {
+  id: Scalars['String'];
+  version: Scalars['Long'];
+};
+
 export type TOrderPaymentAdded = TMessagePayload & TOrderMessagePayload & {
   __typename?: 'OrderPaymentAdded';
   paymentRef: TReference;
@@ -5989,6 +6287,17 @@ export type TOrderQueryResult = {
   offset: Scalars['Int'];
   results: Array<TOrder>;
   total: Scalars['Long'];
+};
+
+export type TOrderQuoteCommand = {
+  custom?: InputMaybe<TCustomFieldsDraft>;
+  orderNumber?: InputMaybe<Scalars['String']>;
+  orderState?: InputMaybe<TOrderState>;
+  paymentState?: InputMaybe<TPaymentState>;
+  quote?: InputMaybe<TResourceIdentifierInput>;
+  shipmentState?: InputMaybe<TShipmentState>;
+  state?: InputMaybe<TReferenceInput>;
+  version: Scalars['Long'];
 };
 
 export type TOrderReturnShipmentStateChanged = TMessagePayload & TOrderMessagePayload & {
@@ -6158,6 +6467,15 @@ export type TParcelData = {
 
 export type TParcelDataDraftType = {
   custom?: InputMaybe<TCustomFieldsDraft>;
+  items?: InputMaybe<Array<TDeliveryItemDraftType>>;
+  measurements?: InputMaybe<TParcelMeasurementsDraftType>;
+  trackingData?: InputMaybe<TTrackingDataDraftType>;
+};
+
+export type TParcelDraft = {
+  createdAt: Scalars['DateTime'];
+  custom?: InputMaybe<TCustomFieldsDraft>;
+  id: Scalars['String'];
   items?: InputMaybe<Array<TDeliveryItemDraftType>>;
   measurements?: InputMaybe<TParcelMeasurementsDraftType>;
   trackingData?: InputMaybe<TTrackingDataDraftType>;
@@ -6441,11 +6759,14 @@ export type TPriceFunctionDraft = {
   function: Scalars['String'];
 };
 
-/** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
+/**
+ * This mode determines which type of Prices the system uses for
+ * Product Price Selection as well as for LineItem Price selection
+ */
 export enum TPriceMode {
-  /** The platform looks up prices from the `prices` field of the ProductVariant inside a Product. */
+  /** The system looks up prices from the `prices` field of the ProductVariant inside a Product. */
   Embedded = 'Embedded',
-  /** The platform looks up prices from Standalone Prices, stored separately from Products. */
+  /** The system looks up prices from Standalone Prices, stored separately from Products. */
   Standalone = 'Standalone'
 }
 
@@ -6454,7 +6775,6 @@ export type TPriceSelectorInput = {
   country?: InputMaybe<Scalars['Country']>;
   currency: Scalars['Currency'];
   customerGroup?: InputMaybe<TReferenceInput>;
-  /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
   date?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -6503,6 +6823,7 @@ export type TProductAssignment = {
   productRef: TReference;
   productSelection?: Maybe<TProductSelection>;
   productSelectionRef: TReference;
+  variantSelection?: Maybe<TProductVariantSelection>;
 };
 
 export type TProductAssignmentQueryResult = {
@@ -6811,6 +7132,7 @@ export type TProductOfSelection = {
   __typename?: 'ProductOfSelection';
   product?: Maybe<TProduct>;
   productRef: TReference;
+  variantSelection?: Maybe<TProductVariantSelection>;
 };
 
 export type TProductOfSelectionQueryResult = {
@@ -7241,6 +7563,7 @@ export type TProductSelectionProductAdded = TMessagePayload & {
   product?: Maybe<TProduct>;
   productRef: TReference;
   type: Scalars['String'];
+  variantSelection?: Maybe<TProductVariantSelection>;
 };
 
 /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
@@ -7303,6 +7626,17 @@ export type TProductSelectionUpdateAction = {
   setCustomField?: InputMaybe<TSetProductSelectionCustomField>;
   setCustomType?: InputMaybe<TSetProductSelectionCustomType>;
   setKey?: InputMaybe<TSetProductSelectionKey>;
+  setVariantSelection?: InputMaybe<TSetProductSelectionVariantSelection>;
+};
+
+/** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
+export type TProductSelectionVariantSelectionChanged = TMessagePayload & {
+  __typename?: 'ProductSelectionVariantSelectionChanged';
+  newVariantSelection?: Maybe<TProductVariantSelection>;
+  oldVariantSelection?: Maybe<TProductVariantSelection>;
+  product?: Maybe<TProduct>;
+  productRef: TReference;
+  type: Scalars['String'];
 };
 
 export type TProductSlugChanged = TMessagePayload & {
@@ -7548,6 +7882,14 @@ export type TProductVariantDeleted = TMessagePayload & {
   variant?: Maybe<TProductVariant>;
 };
 
+export type TProductVariantImportDraft = {
+  attributes?: InputMaybe<Array<TProductAttributeInput>>;
+  id?: InputMaybe<Scalars['Int']>;
+  images?: InputMaybe<Array<TImageInput>>;
+  prices?: InputMaybe<Array<TProductPriceDataInput>>;
+  sku?: InputMaybe<Scalars['String']>;
+};
+
 export type TProductVariantInput = {
   assets?: InputMaybe<Array<TAssetDraftInput>>;
   attributes?: InputMaybe<Array<TProductAttributeInput>>;
@@ -7555,6 +7897,32 @@ export type TProductVariantInput = {
   key?: InputMaybe<Scalars['String']>;
   prices?: InputMaybe<Array<TProductPriceDataInput>>;
   sku?: InputMaybe<Scalars['String']>;
+};
+
+/** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
+export type TProductVariantSelection = {
+  skus: Array<Scalars['String']>;
+  type: Scalars['String'];
+};
+
+/** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
+export type TProductVariantSelectionDraft = {
+  exclusion?: InputMaybe<Array<Scalars['String']>>;
+  inclusion?: InputMaybe<Array<Scalars['String']>>;
+};
+
+/** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
+export type TProductVariantSelectionExclusion = TProductVariantSelection & {
+  __typename?: 'ProductVariantSelectionExclusion';
+  skus: Array<Scalars['String']>;
+  type: Scalars['String'];
+};
+
+/** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
+export type TProductVariantSelectionInclusion = TProductVariantSelection & {
+  __typename?: 'ProductVariantSelectionInclusion';
+  skus: Array<Scalars['String']>;
+  type: Scalars['String'];
 };
 
 /** Contains information about the limits of your project. */
@@ -7694,6 +8062,10 @@ export type TQuery = TCartQueryInterface & TCustomerActiveCartInterface & TCusto
   productTypes: TProductTypeDefinitionQueryResult;
   products: TProductQueryResult;
   project: TProjectProjection;
+  quote?: Maybe<TQuote>;
+  quoteRequest?: Maybe<TQuoteRequest>;
+  quoteRequests: TQuoteRequestQueryResult;
+  quotes: TQuoteQueryResult;
   review?: Maybe<TReview>;
   reviews: TReviewQueryResult;
   shippingMethod?: Maybe<TShippingMethod>;
@@ -7702,9 +8074,17 @@ export type TQuery = TCartQueryInterface & TCustomerActiveCartInterface & TCusto
   shippingMethodsByLocation: Array<TShippingMethod>;
   shoppingList?: Maybe<TShoppingList>;
   shoppingLists: TShoppingListQueryResult;
-  /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
+  stagedQuote?: Maybe<TStagedQuote>;
+  stagedQuotes: TStagedQuoteQueryResult;
+  /**
+   * StandalonePrices are managed and queried through the StandalonePrices API
+   * and associated to a ProductVariant through the sku field.
+   */
   standalonePrice?: Maybe<TStandalonePrice>;
-  /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
+  /**
+   * StandalonePrices are managed and queried through the StandalonePrices API
+   * and associated to a ProductVariant through the sku field.
+   */
   standalonePrices: TStandalonePriceQueryResult;
   state?: Maybe<TState>;
   states: TStateQueryResult;
@@ -8076,6 +8456,34 @@ export type TQuery_ProductsArgs = {
 };
 
 
+export type TQuery_QuoteArgs = {
+  id?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
+};
+
+
+export type TQuery_QuoteRequestArgs = {
+  id?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
+};
+
+
+export type TQuery_QuoteRequestsArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<Array<Scalars['String']>>;
+  where?: InputMaybe<Scalars['String']>;
+};
+
+
+export type TQuery_QuotesArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<Array<Scalars['String']>>;
+  where?: InputMaybe<Scalars['String']>;
+};
+
+
 export type TQuery_ReviewArgs = {
   id?: InputMaybe<Scalars['String']>;
   key?: InputMaybe<Scalars['String']>;
@@ -8123,6 +8531,20 @@ export type TQuery_ShoppingListArgs = {
 
 
 export type TQuery_ShoppingListsArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<Array<Scalars['String']>>;
+  where?: InputMaybe<Scalars['String']>;
+};
+
+
+export type TQuery_StagedQuoteArgs = {
+  id?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
+};
+
+
+export type TQuery_StagedQuotesArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
   sort?: InputMaybe<Array<Scalars['String']>>;
@@ -8230,6 +8652,150 @@ export type TQuery_ZonesArgs = {
 export type TQueryLimitsProjection = {
   __typename?: 'QueryLimitsProjection';
   offset: TLimit;
+};
+
+export type TQuote = TVersioned & {
+  __typename?: 'Quote';
+  billingAddress?: Maybe<TAddress>;
+  country?: Maybe<Scalars['Country']>;
+  createdAt: Scalars['DateTime'];
+  createdBy?: Maybe<TInitiator>;
+  custom?: Maybe<TCustomFieldsType>;
+  customLineItems: Array<TCustomLineItem>;
+  customer?: Maybe<TCustomer>;
+  customerRef?: Maybe<TReference>;
+  id: Scalars['String'];
+  inventoryMode: TInventoryMode;
+  itemShippingAddresses: Array<TAddress>;
+  key?: Maybe<Scalars['String']>;
+  lastModifiedAt: Scalars['DateTime'];
+  lastModifiedBy?: Maybe<TInitiator>;
+  lineItems: Array<TLineItem>;
+  paymentInfo?: Maybe<TPaymentInfo>;
+  quoteRequest?: Maybe<TQuoteRequest>;
+  quoteRequestRef: TReference;
+  quoteState: TQuoteState;
+  shippingAddress?: Maybe<TAddress>;
+  shippingInfo?: Maybe<TShippingInfo>;
+  shippingRateInput?: Maybe<TShippingRateInput>;
+  stagedQuote?: Maybe<TStagedQuote>;
+  stagedQuoteRef: TReference;
+  store?: Maybe<TStore>;
+  storeRef?: Maybe<TKeyReference>;
+  taxCalculationMode: TTaxCalculationMode;
+  taxMode: TTaxMode;
+  taxRoundingMode: TRoundingMode;
+  taxedPrice?: Maybe<TTaxedPrice>;
+  totalPrice: TMoney;
+  validTo?: Maybe<Scalars['DateTime']>;
+  version: Scalars['Long'];
+};
+
+
+export type TQuote_LineItemsArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+export type TQuoteDraft = {
+  custom?: InputMaybe<TCustomFieldsDraft>;
+  key?: InputMaybe<Scalars['String']>;
+  stagedQuote?: InputMaybe<TResourceIdentifierInput>;
+  stagedQuoteVersion?: InputMaybe<Scalars['Long']>;
+};
+
+export type TQuoteQueryResult = {
+  __typename?: 'QuoteQueryResult';
+  count: Scalars['Int'];
+  /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
+  exists: Scalars['Boolean'];
+  offset: Scalars['Int'];
+  results: Array<TQuote>;
+  total: Scalars['Long'];
+};
+
+export type TQuoteRequest = TVersioned & {
+  __typename?: 'QuoteRequest';
+  billingAddress?: Maybe<TAddress>;
+  comment?: Maybe<Scalars['String']>;
+  country?: Maybe<Scalars['Country']>;
+  createdAt: Scalars['DateTime'];
+  createdBy?: Maybe<TInitiator>;
+  custom?: Maybe<TCustomFieldsType>;
+  customLineItems: Array<TCustomLineItem>;
+  customer?: Maybe<TCustomer>;
+  customerRef?: Maybe<TReference>;
+  id: Scalars['String'];
+  inventoryMode: TInventoryMode;
+  itemShippingAddresses: Array<TAddress>;
+  key?: Maybe<Scalars['String']>;
+  lastModifiedAt: Scalars['DateTime'];
+  lastModifiedBy?: Maybe<TInitiator>;
+  lineItems: Array<TLineItem>;
+  paymentInfo?: Maybe<TPaymentInfo>;
+  quoteRequestState: TQuoteRequestState;
+  shippingAddress?: Maybe<TAddress>;
+  shippingInfo?: Maybe<TShippingInfo>;
+  shippingRateInput?: Maybe<TShippingRateInput>;
+  store?: Maybe<TStore>;
+  storeRef?: Maybe<TKeyReference>;
+  taxCalculationMode: TTaxCalculationMode;
+  taxMode: TTaxMode;
+  taxRoundingMode: TRoundingMode;
+  taxedPrice?: Maybe<TTaxedPrice>;
+  totalPrice: TMoney;
+  version: Scalars['Long'];
+};
+
+
+export type TQuoteRequest_LineItemsArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+export type TQuoteRequestDraft = {
+  cart?: InputMaybe<TResourceIdentifierInput>;
+  cartVersion?: InputMaybe<Scalars['Long']>;
+  comment?: InputMaybe<Scalars['String']>;
+  custom?: InputMaybe<TCustomFieldsDraft>;
+  key?: InputMaybe<Scalars['String']>;
+};
+
+export type TQuoteRequestQueryResult = {
+  __typename?: 'QuoteRequestQueryResult';
+  count: Scalars['Int'];
+  /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
+  exists: Scalars['Boolean'];
+  offset: Scalars['Int'];
+  results: Array<TQuoteRequest>;
+  total: Scalars['Long'];
+};
+
+export enum TQuoteRequestState {
+  Accepted = 'Accepted',
+  Cancelled = 'Cancelled',
+  Closed = 'Closed',
+  Rejected = 'Rejected',
+  Submitted = 'Submitted',
+  UnderReview = 'UnderReview'
+}
+
+export type TQuoteRequestUpdateAction = {
+  changeQuoteRequestState?: InputMaybe<TChangeQuoteRequestState>;
+  setCustomField?: InputMaybe<TSetQuoteRequestCustomField>;
+  setCustomType?: InputMaybe<TSetQuoteRequestCustomType>;
+};
+
+export enum TQuoteState {
+  Accepted = 'Accepted',
+  Declined = 'Declined',
+  Failed = 'Failed',
+  Pending = 'Pending',
+  Withdrawn = 'Withdrawn'
+}
+
+export type TQuoteUpdateAction = {
+  changeQuoteState?: InputMaybe<TChangeQuoteState>;
+  setCustomField?: InputMaybe<TSetQuoteCustomField>;
+  setCustomType?: InputMaybe<TSetQuoteCustomType>;
 };
 
 export type TRangeCount = {
@@ -9011,11 +9577,13 @@ export enum TSelectionMode {
   MostExpensive = 'MostExpensive'
 }
 
+/** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
 export type TSelectionOfProduct = {
   __typename?: 'SelectionOfProduct';
   createdAt: Scalars['DateTime'];
   productSelection?: Maybe<TProductSelection>;
   productSelectionRef: TReference;
+  variantSelection?: Maybe<TProductVariantSelection>;
 };
 
 export type TSelectionOfProductQueryResult = {
@@ -9581,6 +10149,18 @@ export type TSetMyCartShippingMethod = {
   shippingMethod?: InputMaybe<TResourceIdentifierInput>;
 };
 
+export type TSetMyQuoteRequestCustomField = {
+  name: Scalars['String'];
+  value?: InputMaybe<Scalars['String']>;
+};
+
+export type TSetMyQuoteRequestCustomType = {
+  fields?: InputMaybe<Array<TCustomFieldInput>>;
+  type?: InputMaybe<TResourceIdentifierInput>;
+  typeId?: InputMaybe<Scalars['String']>;
+  typeKey?: InputMaybe<Scalars['String']>;
+};
+
 export type TSetOrderBillingAddress = {
   address?: InputMaybe<TAddressInput>;
 };
@@ -10081,6 +10661,11 @@ export type TSetProductSelectionKey = {
   key?: InputMaybe<Scalars['String']>;
 };
 
+export type TSetProductSelectionVariantSelection = {
+  product: TResourceIdentifierInput;
+  variantSelection?: InputMaybe<TProductVariantSelectionDraft>;
+};
+
 export type TSetProductSku = {
   sku?: InputMaybe<Scalars['String']>;
   staged?: InputMaybe<Scalars['Boolean']>;
@@ -10104,6 +10689,30 @@ export type TSetProjectSettingsExternalOAuth = {
 
 export type TSetProjectSettingsShippingRateInputType = {
   shippingRateInputType?: InputMaybe<TShippingRateInputTypeInput>;
+};
+
+export type TSetQuoteCustomField = {
+  name: Scalars['String'];
+  value?: InputMaybe<Scalars['String']>;
+};
+
+export type TSetQuoteCustomType = {
+  fields?: InputMaybe<Array<TCustomFieldInput>>;
+  type?: InputMaybe<TResourceIdentifierInput>;
+  typeId?: InputMaybe<Scalars['String']>;
+  typeKey?: InputMaybe<Scalars['String']>;
+};
+
+export type TSetQuoteRequestCustomField = {
+  name: Scalars['String'];
+  value?: InputMaybe<Scalars['String']>;
+};
+
+export type TSetQuoteRequestCustomType = {
+  fields?: InputMaybe<Array<TCustomFieldInput>>;
+  type?: InputMaybe<TResourceIdentifierInput>;
+  typeId?: InputMaybe<Scalars['String']>;
+  typeKey?: InputMaybe<Scalars['String']>;
 };
 
 export type TSetReviewAuthorName = {
@@ -10932,9 +11541,33 @@ export type TSetStagedOrderStoreOutput = TStagedOrderUpdateActionOutput & {
   type: Scalars['String'];
 };
 
+export type TSetStagedQuoteCustomField = {
+  name: Scalars['String'];
+  value?: InputMaybe<Scalars['String']>;
+};
+
+export type TSetStagedQuoteCustomType = {
+  fields?: InputMaybe<Array<TCustomFieldInput>>;
+  type?: InputMaybe<TResourceIdentifierInput>;
+  typeId?: InputMaybe<Scalars['String']>;
+  typeKey?: InputMaybe<Scalars['String']>;
+};
+
+export type TSetStagedQuoteSellerComment = {
+  sellerComment?: InputMaybe<Scalars['String']>;
+};
+
+export type TSetStagedQuoteValidTo = {
+  validTo?: InputMaybe<Scalars['DateTime']>;
+};
+
 export type TSetStandalonePriceCustomFields = {
   name: Scalars['String'];
   value?: InputMaybe<Scalars['String']>;
+};
+
+export type TSetStandalonePriceDiscountedPrice = {
+  discounted?: InputMaybe<TDiscountedProductPriceValueInput>;
 };
 
 export type TSetStateDescription = {
@@ -11042,6 +11675,18 @@ export type TShippingInfo = {
   taxCategoryRef?: Maybe<TReference>;
   taxRate?: Maybe<TTaxRate>;
   taxedPrice?: Maybe<TTaxedItemPrice>;
+};
+
+export type TShippingInfoImportDraft = {
+  deliveries?: Array<TDeliveryDraft>;
+  discountedPrice?: InputMaybe<TDiscountedLineItemPriceDraft>;
+  price: TMoneyInput;
+  shippingMethod?: InputMaybe<TResourceIdentifierInput>;
+  shippingMethodName: Scalars['String'];
+  shippingMethodState?: TShippingMethodState;
+  shippingRate: TShippingRateDraft;
+  taxCategory?: InputMaybe<TResourceIdentifierInput>;
+  taxRate?: InputMaybe<TTaxRateInput>;
 };
 
 export type TShippingMethod = TReferenceExpandable & TVersioned & {
@@ -11555,7 +12200,67 @@ export type TStagedOrderUpdateActionOutput = {
   type: Scalars['String'];
 };
 
-/** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
+export type TStagedPriceValue = {
+  __typename?: 'StagedPriceValue';
+  discounted?: Maybe<TDiscountedProductPriceValue>;
+  value: TBaseMoney;
+};
+
+export type TStagedQuote = TVersioned & {
+  __typename?: 'StagedQuote';
+  createdAt: Scalars['DateTime'];
+  createdBy?: Maybe<TInitiator>;
+  custom?: Maybe<TCustomFieldsType>;
+  customer?: Maybe<TCustomer>;
+  customerRef?: Maybe<TReference>;
+  id: Scalars['String'];
+  key?: Maybe<Scalars['String']>;
+  lastModifiedAt: Scalars['DateTime'];
+  lastModifiedBy?: Maybe<TInitiator>;
+  quotationCart?: Maybe<TCart>;
+  quotationCartRef: TReference;
+  quoteRequest?: Maybe<TQuoteRequest>;
+  quoteRequestRef: TReference;
+  stagedQuoteState: TStagedQuoteState;
+  validTo?: Maybe<Scalars['DateTime']>;
+  version: Scalars['Long'];
+};
+
+export type TStagedQuoteDraft = {
+  custom?: InputMaybe<TCustomFieldsDraft>;
+  key?: InputMaybe<Scalars['String']>;
+  quoteRequest?: InputMaybe<TResourceIdentifierInput>;
+  quoteRequestVersion?: InputMaybe<Scalars['Long']>;
+};
+
+export type TStagedQuoteQueryResult = {
+  __typename?: 'StagedQuoteQueryResult';
+  count: Scalars['Int'];
+  /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
+  exists: Scalars['Boolean'];
+  offset: Scalars['Int'];
+  results: Array<TStagedQuote>;
+  total: Scalars['Long'];
+};
+
+export enum TStagedQuoteState {
+  Closed = 'Closed',
+  InProgress = 'InProgress',
+  Sent = 'Sent'
+}
+
+export type TStagedQuoteUpdateAction = {
+  changeStagedQuoteState?: InputMaybe<TChangeStagedQuoteState>;
+  setCustomField?: InputMaybe<TSetStagedQuoteCustomField>;
+  setCustomType?: InputMaybe<TSetStagedQuoteCustomType>;
+  setSellerComment?: InputMaybe<TSetStagedQuoteSellerComment>;
+  setValidTo?: InputMaybe<TSetStagedQuoteValidTo>;
+};
+
+/**
+ * StandalonePrices are managed and queried through the StandalonePrices API
+ * and associated to a ProductVariant through the sku field.
+ */
 export type TStandalonePrice = TVersioned & {
   __typename?: 'StandalonePrice';
   channelRef?: Maybe<TReference>;
@@ -11565,11 +12270,13 @@ export type TStandalonePrice = TVersioned & {
   custom?: Maybe<TCustomFieldsType>;
   customerGroupRef?: Maybe<TReference>;
   discounted?: Maybe<TDiscountedProductPriceValue>;
+  expiresAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['String'];
   key?: Maybe<Scalars['String']>;
   lastModifiedAt: Scalars['DateTime'];
   lastModifiedBy?: Maybe<TInitiator>;
   sku: Scalars['String'];
+  staged?: Maybe<TStagedPriceValue>;
   tiers?: Maybe<Array<TProductPriceTier>>;
   validFrom?: Maybe<Scalars['DateTime']>;
   validUntil?: Maybe<Scalars['DateTime']>;
@@ -11583,7 +12290,7 @@ export type TStandalonePriceCreated = TMessagePayload & {
   type: Scalars['String'];
 };
 
-/** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
+/** Serves as value of the custom field on a resource or data type customized with a Type. */
 export type TStandalonePriceCustomField = {
   fields: TCustomFieldsDraft;
   type?: InputMaybe<TResourceIdentifierInput>;
@@ -11593,14 +12300,18 @@ export type TStandalonePriceCustomField = {
 
 export type TStandalonePriceDeleted = TMessagePayload & {
   __typename?: 'StandalonePriceDeleted';
-  priceId: Scalars['String'];
   type: Scalars['String'];
 };
 
 export type TStandalonePriceDiscountSet = TMessagePayload & {
   __typename?: 'StandalonePriceDiscountSet';
   discounted?: Maybe<TDiscountedProductPriceValue>;
-  priceId: Scalars['String'];
+  type: Scalars['String'];
+};
+
+export type TStandalonePriceExternalDiscountSet = TMessagePayload & {
+  __typename?: 'StandalonePriceExternalDiscountSet';
+  discounted?: Maybe<TDiscountedProductPriceValue>;
   type: Scalars['String'];
 };
 
@@ -11614,15 +12325,22 @@ export type TStandalonePriceQueryResult = {
   total: Scalars['Long'];
 };
 
+export type TStandalonePriceStagedChangesApplied = TMessagePayload & {
+  __typename?: 'StandalonePriceStagedChangesApplied';
+  stagedChanges: TStagedPriceValue;
+  type: Scalars['String'];
+};
+
 export type TStandalonePriceUpdateAction = {
+  applyStagedChanges?: InputMaybe<TApplyStagedChanges>;
   changeValue?: InputMaybe<TChangeStandalonePriceValue>;
   setCustomField?: InputMaybe<TSetStandalonePriceCustomFields>;
   setCustomType?: InputMaybe<TCustomFieldsDraft>;
+  setDiscountedPrice?: InputMaybe<TSetStandalonePriceDiscountedPrice>;
 };
 
 export type TStandalonePriceValueChanged = TMessagePayload & {
   __typename?: 'StandalonePriceValueChanged';
-  priceId: Scalars['String'];
   type: Scalars['String'];
   value: TBaseMoney;
 };
@@ -11761,6 +12479,15 @@ export type TStoreCreated_NameArgs = {
 
 export type TStoreDeleted = TMessagePayload & {
   __typename?: 'StoreDeleted';
+  type: Scalars['String'];
+};
+
+export type TStoreDistributionChannelsChanged = TMessagePayload & {
+  __typename?: 'StoreDistributionChannelsChanged';
+  addedDistributionChannels: Array<TChannel>;
+  addedDistributionChannelsRef: Array<TReference>;
+  removedDistributionChannels?: Maybe<Array<TChannel>>;
+  removedDistributionChannelsRef: Array<TReference>;
   type: Scalars['String'];
 };
 
@@ -12054,6 +12781,16 @@ export type TTaxRateDraft = {
   subRates?: InputMaybe<Array<TSubRateDraft>>;
 };
 
+export type TTaxRateInput = {
+  amount: Scalars['Float'];
+  country: Scalars['Country'];
+  id?: InputMaybe<Scalars['String']>;
+  includedInPrice: Scalars['Boolean'];
+  name: Scalars['String'];
+  state?: InputMaybe<Scalars['String']>;
+  subRates?: InputMaybe<Array<TSubRateDraft>>;
+};
+
 export type TTaxedItemPrice = {
   __typename?: 'TaxedItemPrice';
   totalGross: TMoney;
@@ -12067,6 +12804,13 @@ export type TTaxedPrice = {
   totalGross: TMoney;
   totalNet: TMoney;
   totalTax?: Maybe<TMoney>;
+};
+
+export type TTaxedPriceDraft = {
+  taxPortions: Array<TTaxPortionDraft>;
+  totalGross: TBaseMoneyInput;
+  totalNet: TBaseMoneyInput;
+  totalTax?: InputMaybe<TBaseMoneyInput>;
 };
 
 export type TTermCount = {

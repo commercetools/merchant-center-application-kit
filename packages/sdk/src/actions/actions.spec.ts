@@ -111,6 +111,58 @@ describe.each`
           headers: {
             'Accept-version': 'v2',
             'X-Forward-To': uri,
+            'X-Forward-To-Audience-Policy': 'forward-url-full-path',
+            'x-forward-header-accept-language': '*',
+            'x-forward-header-x-foo': 'bar',
+          },
+          ...(body ? { payload: body } : {}),
+        },
+      });
+    });
+    it('should include "X-Forward-To-Claims" header', () => {
+      const payloadWithoutBody = {
+        uri,
+        headers: {
+          'x-foo': 'bar',
+          'accept-language': '*',
+        },
+        includeUserPermissions: true,
+      };
+      const payloadWithBody = {
+        ...payloadWithoutBody,
+        payload: body,
+      };
+
+      let result;
+      switch (method) {
+        case 'GET':
+          result = actions.forwardTo.get(payloadWithoutBody);
+          break;
+        case 'DELETE':
+          result = actions.forwardTo.del(payloadWithoutBody);
+          break;
+        case 'HEAD':
+          result = actions.forwardTo.head(payloadWithoutBody);
+          break;
+        case 'POST':
+          result = actions.forwardTo.post(payloadWithBody);
+          break;
+        default:
+          break;
+      }
+
+      expect(result).toEqual({
+        type: 'SDK',
+        payload: {
+          includeUserPermissions: true,
+          method,
+          uri: '/proxy/forward-to',
+          mcApiProxyTarget: undefined,
+          headers: {
+            'Accept-version': 'v2',
+            'X-Forward-To': uri,
+            'X-Forward-To-Audience-Policy': 'forward-url-full-path',
+            'X-Forward-To-Claims': 'permissions',
             'x-forward-header-accept-language': '*',
             'x-forward-header-x-foo': 'bar',
           },

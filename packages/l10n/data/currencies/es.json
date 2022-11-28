@@ -16,7 +16,7 @@
     "symbol": "֏"
   },
   "ANG": {
-    "label": "florín de las Antillas Neerlandesas",
+    "label": "florín antillano",
     "symbol": "NAf."
   },
   "AOA": {
@@ -52,11 +52,11 @@
     "symbol": "৳"
   },
   "BGN": {
-    "label": "lev búlgaro",
+    "label": "leva búlgara",
     "symbol": "лв."
   },
   "BHD": {
-    "label": "dinar bahreiní",
+    "label": "dinar bareiní",
     "symbol": "د.ب.‏"
   },
   "BIF": {
@@ -64,7 +64,7 @@
     "symbol": "FBu"
   },
   "BMD": {
-    "label": "dólar de Bermudas",
+    "label": "dólar bermudeño",
     "symbol": "$"
   },
   "BND": {
@@ -252,7 +252,7 @@
     "symbol": "HRK"
   },
   "HTG": {
-    "label": "gourde haitiano",
+    "label": "gurde haitiano",
     "symbol": "G"
   },
   "HUF": {
@@ -328,7 +328,7 @@
     "symbol": "$"
   },
   "KZT": {
-    "label": "tenge kazako",
+    "label": "tengue kazajo",
     "symbol": "₸"
   },
   "LAK": {
@@ -348,7 +348,7 @@
     "symbol": "$"
   },
   "LSL": {
-    "label": "loti lesothense",
+    "label": "loti lesotense",
     "symbol": "LSL"
   },
   "LYD": {
@@ -420,7 +420,7 @@
     "symbol": "₦"
   },
   "NIO": {
-    "label": "córdoba nicaragüense",
+    "label": "córdoba oro",
     "symbol": "C$"
   },
   "NOK": {

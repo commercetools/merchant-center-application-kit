@@ -15,7 +15,7 @@ import {
 } from 'react';
 import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import { ApolloClient } from '@apollo/client';
-import { Global, css } from '@emotion/react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import {
@@ -43,6 +43,7 @@ import ConfigureIntlProvider from '../configure-intl-provider';
 import AppBar from '../app-bar';
 import ProjectContainer from '../project-container';
 import SetupFlopFlipProvider from '../setup-flop-flip-provider';
+import ThemeSwitcher from '../theme-switcher';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
 import GtmUserTracker from '../gtm-user-tracker';
 import GtmApplicationTracker from '../gtm-application-tracker';
@@ -54,6 +55,7 @@ import RedirectToProjectCreate from '../redirect-to-project-create';
 import QuickAccess from '../quick-access';
 import RedirectToLogin from './redirect-to-login';
 import RedirectToLogout from './redirect-to-logout';
+import GlobalStyles from './global-styles';
 
 type Props<AdditionalEnvironmentProperties extends {}> = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;
@@ -241,6 +243,7 @@ export const RestrictedApplication = <
                     defaultFlags={props.defaultFeatureFlags}
                   >
                     <>
+                      <ThemeSwitcher />
                       <VersionTracker />
                       {/* NOTE: the requests in flight loader will render a loading
                       spinner into the AppBar. */}
@@ -253,7 +256,6 @@ export const RestrictedApplication = <
                         userBusinessRole={user?.businessRole ?? undefined}
                       />
                       <div
-                        role="application-layout"
                         css={css`
                           height: 100vh;
                           display: grid;
@@ -263,7 +265,8 @@ export const RestrictedApplication = <
                       >
                         <div
                           ref={notificationsGlobalRef}
-                          role="global-notifications"
+                          role="region"
+                          aria-live="polite"
                           css={css`
                             grid-row: 1;
                             grid-column: 1/3;
@@ -321,7 +324,6 @@ export const RestrictedApplication = <
                         </Route>
 
                         <header
-                          role="header"
                           css={css`
                             grid-row: 2;
                             grid-column: 1/3;
@@ -334,7 +336,6 @@ export const RestrictedApplication = <
                         </header>
 
                         <aside
-                          role="aside"
                           css={css`
                             position: relative;
                             grid-row: 3;
@@ -536,13 +537,7 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
 
   return (
     <>
-      <Global
-        styles={css`
-          #app {
-            height: 100%;
-          }
-        `}
-      />
+      <GlobalStyles />
       <ApplicationShellProvider<AdditionalEnvironmentProperties>
         apolloClient={props.apolloClient}
         environment={props.environment}

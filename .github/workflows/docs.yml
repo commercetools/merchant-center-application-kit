@@ -53,6 +53,9 @@ jobs:
           # https://github.com/marketplace/actions/cypress-io#custom-install
           CYPRESS_INSTALL_BINARY: 0
 
+      - name: Building packages
+        run: yarn build
+
       - name: Building docs website
         run: yarn build:website
 
@@ -64,7 +67,7 @@ jobs:
       - name: Deploy to Vercel (Production)
         if: ${{ env.DEPLOY_DOCS_ENV == 'Production' }}
         id: deploy-docs-to-vercel-production
-        uses: amondnet/vercel-action@v20
+        uses: amondnet/vercel-action@v25
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           scope: commercetools
@@ -76,7 +79,7 @@ jobs:
 
       - name: Initialize GitHub Deployment
         if: ${{ env.DEPLOY_DOCS_ENV == 'Preview' }}
-        uses: bobheadxi/deployments@v1.2.0
+        uses: bobheadxi/deployments@v1.3.0
         id: start-deployment
         with:
           step: start
@@ -87,7 +90,7 @@ jobs:
       - name: Deploy to Vercel (Preview)
         if: ${{ env.DEPLOY_DOCS_ENV == 'Preview' }}
         id: deploy-docs-to-vercel-preview
-        uses: amondnet/vercel-action@v20
+        uses: amondnet/vercel-action@v25
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           scope: commercetools
@@ -103,7 +106,7 @@ jobs:
 
       - name: Update GitHub Deployment Status
         if: ${{ env.DEPLOY_DOCS_ENV == 'Preview' }}
-        uses: bobheadxi/deployments@v1.2.0
+        uses: bobheadxi/deployments@v1.3.0
         id: finish_deployment
         with:
           step: finish
@@ -124,14 +127,14 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    timeout-minutes: 15
+    timeout-minutes: 10
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: Check links
-        uses: JustinBeckwith/linkinator-action@v1.10.0
+        uses: JustinBeckwith/linkinator-action@v1.10.3
         with:
           paths: https://appkit-sha-${{ github.sha }}.commercetools.vercel.app/custom-applications
           config: website/linkinator.config.json

@@ -1,5 +1,157 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 21.20.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.20.1
+
+## 21.20.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.20.0
+
+## 21.19.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.19.0
+
+## 21.18.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.18.1
+
+## 21.18.0
+
+### Patch Changes
+
+- [#2845](https://github.com/commercetools/merchant-center-application-kit/pull/2845) [`f8f189de7`](https://github.com/commercetools/merchant-center-application-kit/commit/f8f189de71e8a890465c5164e3adbdc9e2907fae) Thanks [@renovate](https://github.com/apps/renovate)! - Update @formatjs/intl-listformat dependency
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.18.0
+
+## 21.17.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.17.0
+
+## 21.16.0
+
+### Patch Changes
+
+- [#2820](https://github.com/commercetools/merchant-center-application-kit/pull/2820) [`1af9292da`](https://github.com/commercetools/merchant-center-application-kit/commit/1af9292daf3a09224551383918c2d00da43bbbee) Thanks [@emmenko](https://github.com/emmenko)! - Improve output of console usage in tests
+
+- [#2580](https://github.com/commercetools/merchant-center-application-kit/pull/2580) [`1c40c40c9`](https://github.com/commercetools/merchant-center-application-kit/commit/1c40c40c947574ba24b411c9376640bb18c489ac) Thanks [@renovate](https://github.com/apps/renovate)! - Update `@testing-library/react-hooks` package to version `8.0.0`.
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.16.0
+
+## 21.15.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.15.0
+
+## 21.14.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.14.3
+
+## 21.14.2
+
+### Patch Changes
+
+- Updated dependencies [[`00d9edcb4`](https://github.com/commercetools/merchant-center-application-kit/commit/00d9edcb49a144797ba3690db012e429e88a30fa)]:
+  - @commercetools-frontend/babel-preset-mc-app@21.14.2
+
+## 21.14.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.14.1
+
+## 21.14.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.14.0
+
+## 21.13.1
+
+### Patch Changes
+
+- [`482ad98ee`](https://github.com/commercetools/merchant-center-application-kit/commit/482ad98eeb4570a583d58d476a7902ffe6cc2a94) Thanks [@emmenko](https://github.com/emmenko)! - Nothing changed, the previous release `21.13.0` had an issue publishing to NPM so we're bumping versions to trigger a new release.
+
+- Updated dependencies [[`482ad98ee`](https://github.com/commercetools/merchant-center-application-kit/commit/482ad98eeb4570a583d58d476a7902ffe6cc2a94)]:
+  - @commercetools-frontend/babel-preset-mc-app@21.13.1
+
+## 21.13.0
+
+### Patch Changes
+
+- [#2761](https://github.com/commercetools/merchant-center-application-kit/pull/2761) [`d012420e5`](https://github.com/commercetools/merchant-center-application-kit/commit/d012420e563b34a1678693f19905bdd79b2317e2) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update all dependencies
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.13.0
+
+## 21.12.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.12.0
+
+## 21.11.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.11.0
+
+## 21.10.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.10.0
+
+## 21.9.0
+
+### Patch Changes
+
+- Updated dependencies [[`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413)]:
+  - @commercetools-frontend/babel-preset-mc-app@21.9.0
+
+## 21.8.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.8.1
+
+## 21.8.0
+
+### Patch Changes
+
+- [#2661](https://github.com/commercetools/merchant-center-application-kit/pull/2661) [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed) Thanks [@emmenko](https://github.com/emmenko)! - Drop the copyright year from the license files
+
+- Updated dependencies [[`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed)]:
+  - @commercetools-frontend/babel-preset-mc-app@21.8.0
+
 ## 21.7.0
 
 ### Patch Changes

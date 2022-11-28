@@ -4,6 +4,7 @@ import StateMachinesList from './components/state-machines-list';
 import StateMachinesDetails from './components/state-machines-details';
 import NotificationsPlayground from './components/notifications-playground';
 import EchoServer from './components/echo-server';
+import FormattersDemo from './components/formatters-demo';
 
 const ApplicationRoutes = () => {
   const match = useRouteMatch();
@@ -25,6 +26,9 @@ const ApplicationRoutes = () => {
       </Route>
       <Route path={`${match.path}/notifications`}>
         <NotificationsPlayground />
+      </Route>
+      <Route path={`${match.path}/formatters`}>
+        <FormattersDemo />
       </Route>
       <Route>
         <StateMachinesList goToStateMachineDetail={goToStateMachineDetail}>

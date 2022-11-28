@@ -1,5 +1,198 @@
 # @commercetools-frontend/application-config
 
+## 21.20.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.20.1
+
+## 21.20.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.20.0
+
+## 21.19.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.19.0
+
+## 21.18.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.18.1
+
+## 21.18.0
+
+### Patch Changes
+
+- [#2834](https://github.com/commercetools/merchant-center-application-kit/pull/2834) [`84c29cebe`](https://github.com/commercetools/merchant-center-application-kit/commit/84c29cebee389ff246fb1d48e2997c8c529a4750) Thanks [@kark](https://github.com/kark)! - Enable proper type inference in `entryPointUriPathToResourceAccesses` and `entryPointUriPathToPermissionKeys` functions
+
+- [#2862](https://github.com/commercetools/merchant-center-application-kit/pull/2862) [`836c86aa1`](https://github.com/commercetools/merchant-center-application-kit/commit/836c86aa187125e0670b2248619a1cbaa094bec2) Thanks [@emmenko](https://github.com/emmenko)! - Sanitize SVG icon only when comparing diffs, as the icon is sanitized in the API. Expose the `sanitizeSvg` logic from the `@commercetools-frontend/application-config`.
+
+- [#2860](https://github.com/commercetools/merchant-center-application-kit/pull/2860) [`53d2c287f`](https://github.com/commercetools/merchant-center-application-kit/commit/53d2c287f7572769b3038893469cde81ef987c39) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Fix CSP headers processing at Custom Application build time when using a deployment URL without an ending backslash
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.18.0
+
+## 21.17.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.17.0
+
+## 21.16.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.16.0
+
+## 21.15.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.15.0
+
+## 21.14.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.14.3
+
+## 21.14.2
+
+### Patch Changes
+
+- [#2776](https://github.com/commercetools/merchant-center-application-kit/pull/2776) [`00d9edcb4`](https://github.com/commercetools/merchant-center-application-kit/commit/00d9edcb49a144797ba3690db012e429e88a30fa) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies [[`00d9edcb4`](https://github.com/commercetools/merchant-center-application-kit/commit/00d9edcb49a144797ba3690db012e429e88a30fa)]:
+  - @commercetools-frontend/babel-preset-mc-app@21.14.2
+
+## 21.14.1
+
+### Patch Changes
+
+- [#2796](https://github.com/commercetools/merchant-center-application-kit/pull/2796) [`91c0da4f9`](https://github.com/commercetools/merchant-center-application-kit/commit/91c0da4f9afa92e44a22c8c3af38f545488d5e44) Thanks [@emmenko](https://github.com/emmenko)! - Allow to pass additional permission group names to the "entry point formatters". Additionally, refine the inferred types.
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.14.1
+
+## 21.14.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.14.0
+
+## 21.13.1
+
+### Patch Changes
+
+- [`482ad98ee`](https://github.com/commercetools/merchant-center-application-kit/commit/482ad98eeb4570a583d58d476a7902ffe6cc2a94) Thanks [@emmenko](https://github.com/emmenko)! - Nothing changed, the previous release `21.13.0` had an issue publishing to NPM so we're bumping versions to trigger a new release.
+
+- Updated dependencies [[`482ad98ee`](https://github.com/commercetools/merchant-center-application-kit/commit/482ad98eeb4570a583d58d476a7902ffe6cc2a94)]:
+  - @commercetools-frontend/babel-preset-mc-app@21.13.1
+
+## 21.13.0
+
+### Patch Changes
+
+- [#2761](https://github.com/commercetools/merchant-center-application-kit/pull/2761) [`d012420e5`](https://github.com/commercetools/merchant-center-application-kit/commit/d012420e563b34a1678693f19905bdd79b2317e2) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update all dependencies
+
+* [#2771](https://github.com/commercetools/merchant-center-application-kit/pull/2771) [`7d97b459e`](https://github.com/commercetools/merchant-center-application-kit/commit/7d97b459e69186cec1df9d837aa265923176e34e) Thanks [@emmenko](https://github.com/emmenko)! - Downgrade `jsdom` to `v16`, until we are able to upgrade to Jest `v28+`
+
+* Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.13.0
+
+## 21.12.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.12.0
+
+## 21.11.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.11.0
+
+## 21.10.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.10.0
+
+## 21.9.0
+
+### Patch Changes
+
+- [#2701](https://github.com/commercetools/merchant-center-application-kit/pull/2701) [`22fcb200`](https://github.com/commercetools/merchant-center-application-kit/commit/22fcb2007879bd8b10b0a5b70d02490162554e57) Thanks [@emmenko](https://github.com/emmenko)! - Simplify JSON schema and move validation out of schema. Export some constant values.
+
+* [#2702](https://github.com/commercetools/merchant-center-application-kit/pull/2702) [`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413) Thanks [@emmenko](https://github.com/emmenko)! - Update Babel dependencies
+
+- [#2691](https://github.com/commercetools/merchant-center-application-kit/pull/2691) [`8367e1b7`](https://github.com/commercetools/merchant-center-application-kit/commit/8367e1b71777b29d328e037148439418a66c0a72) Thanks [@emmenko](https://github.com/emmenko)! - Add support in Vite config (experimental feature) to load `.react.svg` files as React components using the SVGR plugin.
+
+- Updated dependencies [[`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413)]:
+  - @commercetools-frontend/babel-preset-mc-app@21.9.0
+
+## 21.8.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.8.1
+
+## 21.8.0
+
+### Minor Changes
+
+- [#2615](https://github.com/commercetools/merchant-center-application-kit/pull/2615) [`d6bfecf1`](https://github.com/commercetools/merchant-center-application-kit/commit/d6bfecf17c0a6a38330943cc5f195f1854248770) Thanks [@kark](https://github.com/kark)! - Provide better support for developing Custom Applications in TypeScript.
+
+  A shared TSConfig file is now available to be used as a base config in your `tsconfig.json` file:
+
+  ```json
+  {
+    "extends": "@commercetools-frontend/application-config/tsconfig-mc-app.json"
+  }
+  ```
+
+  Furthermore, we provide a `client.d.ts` declaration file with some basic type shims for importing media assets:
+
+  - `.mod.css` and `.module.css`
+  - `.png`
+  - `.svg`
+
+  You can include this using the TypeScript triple-slash directives:
+
+  ```ts
+  /// <reference types="@commercetools-frontend/application-config/client" />
+  ```
+
+  > By default, this is included in the TypeScript starter template `src/index.tsx` entry point file.
+
+  You can also include this in the `tsconfig.json` file in the `compilerOptions.types` field but we don't recommend
+  to use that unless you are very familiar with the [implications of using the `types` field](https://www.typescriptlang.org/tsconfig#types).
+
+### Patch Changes
+
+- [#2661](https://github.com/commercetools/merchant-center-application-kit/pull/2661) [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed) Thanks [@emmenko](https://github.com/emmenko)! - Drop the copyright year from the license files
+
+- Updated dependencies [[`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed)]:
+  - @commercetools-frontend/babel-preset-mc-app@21.8.0
+
 ## 21.7.0
 
 ### Minor Changes

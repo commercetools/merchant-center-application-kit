@@ -1,5 +1,322 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.20.1
+
+### Patch Changes
+
+- [#2887](https://github.com/commercetools/merchant-center-application-kit/pull/2887) [`b0a35ec80`](https://github.com/commercetools/merchant-center-application-kit/commit/b0a35ec8087cc8f428ccc55afa7a1ed2e83953de) Thanks [@emmenko](https://github.com/emmenko)! - Treat `*.css` imports as side effects in Webpack loaders
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@21.20.1
+  - @commercetools-frontend/assets@21.20.1
+  - @commercetools-frontend/babel-preset-mc-app@21.20.1
+  - @commercetools-frontend/constants@21.20.1
+  - @commercetools-frontend/mc-dev-authentication@21.20.1
+  - @commercetools-frontend/mc-html-template@21.20.1
+
+## 21.20.0
+
+### Patch Changes
+
+- Updated dependencies [[`403e072b7`](https://github.com/commercetools/merchant-center-application-kit/commit/403e072b78e7ac63eff58b8e6372c137500fe2a5)]:
+  - @commercetools-frontend/mc-html-template@21.20.0
+  - @commercetools-frontend/application-config@21.20.0
+  - @commercetools-frontend/assets@21.20.0
+  - @commercetools-frontend/babel-preset-mc-app@21.20.0
+  - @commercetools-frontend/constants@21.20.0
+  - @commercetools-frontend/mc-dev-authentication@21.20.0
+
+## 21.19.0
+
+### Minor Changes
+
+- [#2864](https://github.com/commercetools/merchant-center-application-kit/pull/2864) [`bbfdd8478`](https://github.com/commercetools/merchant-center-application-kit/commit/bbfdd8478776dca2e4a2a13ce0b5866ec51dbcc8) Thanks [@emmenko](https://github.com/emmenko)! - The CLI command `config:sync` now attempts to automatically refresh the access token.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@21.19.0
+  - @commercetools-frontend/assets@21.19.0
+  - @commercetools-frontend/babel-preset-mc-app@21.19.0
+  - @commercetools-frontend/constants@21.19.0
+  - @commercetools-frontend/mc-dev-authentication@21.19.0
+  - @commercetools-frontend/mc-html-template@21.19.0
+
+## 21.18.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@21.18.1
+  - @commercetools-frontend/assets@21.18.1
+  - @commercetools-frontend/babel-preset-mc-app@21.18.1
+  - @commercetools-frontend/constants@21.18.1
+  - @commercetools-frontend/mc-dev-authentication@21.18.1
+  - @commercetools-frontend/mc-html-template@21.18.1
+
+## 21.18.0
+
+### Patch Changes
+
+- [#2862](https://github.com/commercetools/merchant-center-application-kit/pull/2862) [`836c86aa1`](https://github.com/commercetools/merchant-center-application-kit/commit/836c86aa187125e0670b2248619a1cbaa094bec2) Thanks [@emmenko](https://github.com/emmenko)! - Sanitize SVG icon only when comparing diffs, as the icon is sanitized in the API. Expose the `sanitizeSvg` logic from the `@commercetools-frontend/application-config`.
+
+- [#2837](https://github.com/commercetools/merchant-center-application-kit/pull/2837) [`3959ed2a0`](https://github.com/commercetools/merchant-center-application-kit/commit/3959ed2a0012077b6366c3a22c749fe7d6e74784) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- Updated dependencies [[`84c29cebe`](https://github.com/commercetools/merchant-center-application-kit/commit/84c29cebee389ff246fb1d48e2997c8c529a4750), [`836c86aa1`](https://github.com/commercetools/merchant-center-application-kit/commit/836c86aa187125e0670b2248619a1cbaa094bec2), [`3959ed2a0`](https://github.com/commercetools/merchant-center-application-kit/commit/3959ed2a0012077b6366c3a22c749fe7d6e74784), [`53d2c287f`](https://github.com/commercetools/merchant-center-application-kit/commit/53d2c287f7572769b3038893469cde81ef987c39)]:
+  - @commercetools-frontend/application-config@21.18.0
+  - @commercetools-frontend/mc-dev-authentication@21.18.0
+  - @commercetools-frontend/mc-html-template@21.18.0
+  - @commercetools-frontend/assets@21.18.0
+  - @commercetools-frontend/babel-preset-mc-app@21.18.0
+  - @commercetools-frontend/constants@21.18.0
+
+## 21.17.0
+
+### Patch Changes
+
+- [#2839](https://github.com/commercetools/merchant-center-application-kit/pull/2839) [`f5eb8d77c`](https://github.com/commercetools/merchant-center-application-kit/commit/f5eb8d77c606e624e6cfc2cfad3da1eaeff5fdd6) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update `ui-kit` dependencies
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@21.17.0
+  - @commercetools-frontend/assets@21.17.0
+  - @commercetools-frontend/babel-preset-mc-app@21.17.0
+  - @commercetools-frontend/constants@21.17.0
+  - @commercetools-frontend/mc-dev-authentication@21.17.0
+  - @commercetools-frontend/mc-html-template@21.17.0
+
+## 21.16.0
+
+### Patch Changes
+
+- [#2580](https://github.com/commercetools/merchant-center-application-kit/pull/2580) [`1c40c40c9`](https://github.com/commercetools/merchant-center-application-kit/commit/1c40c40c947574ba24b411c9376640bb18c489ac) Thanks [@renovate](https://github.com/apps/renovate)! - Update `@testing-library/react-hooks` package to version `8.0.0`.
+
+- [#2826](https://github.com/commercetools/merchant-center-application-kit/pull/2826) [`11192ad4b`](https://github.com/commercetools/merchant-center-application-kit/commit/11192ad4bf186ff529255c68e95193a362308620) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies [[`11192ad4b`](https://github.com/commercetools/merchant-center-application-kit/commit/11192ad4bf186ff529255c68e95193a362308620)]:
+  - @commercetools-frontend/mc-html-template@21.16.0
+  - @commercetools-frontend/application-config@21.16.0
+  - @commercetools-frontend/assets@21.16.0
+  - @commercetools-frontend/babel-preset-mc-app@21.16.0
+  - @commercetools-frontend/constants@21.16.0
+  - @commercetools-frontend/mc-dev-authentication@21.16.0
+
+## 21.15.0
+
+### Patch Changes
+
+- [#2810](https://github.com/commercetools/merchant-center-application-kit/pull/2810) [`0e49a78f8`](https://github.com/commercetools/merchant-center-application-kit/commit/0e49a78f8e3b228a9b0bb3d90781aa8e940de4bc) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@21.15.0
+  - @commercetools-frontend/assets@21.15.0
+  - @commercetools-frontend/babel-preset-mc-app@21.15.0
+  - @commercetools-frontend/constants@21.15.0
+  - @commercetools-frontend/mc-dev-authentication@21.15.0
+  - @commercetools-frontend/mc-html-template@21.15.0
+
+## 21.14.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@21.14.3
+  - @commercetools-frontend/assets@21.14.3
+  - @commercetools-frontend/babel-preset-mc-app@21.14.3
+  - @commercetools-frontend/constants@21.14.3
+  - @commercetools-frontend/mc-dev-authentication@21.14.3
+  - @commercetools-frontend/mc-html-template@21.14.3
+
+## 21.14.2
+
+### Patch Changes
+
+- [#2776](https://github.com/commercetools/merchant-center-application-kit/pull/2776) [`00d9edcb4`](https://github.com/commercetools/merchant-center-application-kit/commit/00d9edcb49a144797ba3690db012e429e88a30fa) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies [[`00d9edcb4`](https://github.com/commercetools/merchant-center-application-kit/commit/00d9edcb49a144797ba3690db012e429e88a30fa)]:
+  - @commercetools-frontend/application-config@21.14.2
+  - @commercetools-frontend/babel-preset-mc-app@21.14.2
+  - @commercetools-frontend/constants@21.14.2
+  - @commercetools-frontend/mc-dev-authentication@21.14.2
+  - @commercetools-frontend/mc-html-template@21.14.2
+  - @commercetools-frontend/assets@21.14.2
+
+## 21.14.1
+
+### Patch Changes
+
+- Updated dependencies [[`91c0da4f9`](https://github.com/commercetools/merchant-center-application-kit/commit/91c0da4f9afa92e44a22c8c3af38f545488d5e44)]:
+  - @commercetools-frontend/application-config@21.14.1
+  - @commercetools-frontend/mc-dev-authentication@21.14.1
+  - @commercetools-frontend/mc-html-template@21.14.1
+  - @commercetools-frontend/assets@21.14.1
+  - @commercetools-frontend/babel-preset-mc-app@21.14.1
+  - @commercetools-frontend/constants@21.14.1
+
+## 21.14.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@21.14.0
+  - @commercetools-frontend/assets@21.14.0
+  - @commercetools-frontend/babel-preset-mc-app@21.14.0
+  - @commercetools-frontend/constants@21.14.0
+  - @commercetools-frontend/mc-dev-authentication@21.14.0
+  - @commercetools-frontend/mc-html-template@21.14.0
+
+## 21.13.1
+
+### Patch Changes
+
+- [`482ad98ee`](https://github.com/commercetools/merchant-center-application-kit/commit/482ad98eeb4570a583d58d476a7902ffe6cc2a94) Thanks [@emmenko](https://github.com/emmenko)! - Nothing changed, the previous release `21.13.0` had an issue publishing to NPM so we're bumping versions to trigger a new release.
+
+- Updated dependencies [[`482ad98ee`](https://github.com/commercetools/merchant-center-application-kit/commit/482ad98eeb4570a583d58d476a7902ffe6cc2a94)]:
+  - @commercetools-frontend/application-config@21.13.1
+  - @commercetools-frontend/assets@21.13.1
+  - @commercetools-frontend/babel-preset-mc-app@21.13.1
+  - @commercetools-frontend/constants@21.13.1
+  - @commercetools-frontend/mc-dev-authentication@21.13.1
+  - @commercetools-frontend/mc-html-template@21.13.1
+
+## 21.13.0
+
+### Patch Changes
+
+- [#2761](https://github.com/commercetools/merchant-center-application-kit/pull/2761) [`d012420e5`](https://github.com/commercetools/merchant-center-application-kit/commit/d012420e563b34a1678693f19905bdd79b2317e2) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update all dependencies
+
+* [#2767](https://github.com/commercetools/merchant-center-application-kit/pull/2767) [`5614ec9d8`](https://github.com/commercetools/merchant-center-application-kit/commit/5614ec9d8b9fc9c40c92ff1fde0beacbc3290e5e) Thanks [@emmenko](https://github.com/emmenko)! - Avoid using deprecated fields when fetching application menu links
+
+* Updated dependencies [[`d012420e5`](https://github.com/commercetools/merchant-center-application-kit/commit/d012420e563b34a1678693f19905bdd79b2317e2), [`7d97b459e`](https://github.com/commercetools/merchant-center-application-kit/commit/7d97b459e69186cec1df9d837aa265923176e34e)]:
+  - @commercetools-frontend/application-config@21.13.0
+  - @commercetools-frontend/mc-html-template@21.13.0
+  - @commercetools-frontend/mc-dev-authentication@21.13.0
+  - @commercetools-frontend/assets@21.13.0
+  - @commercetools-frontend/babel-preset-mc-app@21.13.0
+  - @commercetools-frontend/constants@21.13.0
+
+## 21.12.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@21.12.0
+  - @commercetools-frontend/assets@21.12.0
+  - @commercetools-frontend/babel-preset-mc-app@21.12.0
+  - @commercetools-frontend/constants@21.12.0
+  - @commercetools-frontend/mc-dev-authentication@21.12.0
+  - @commercetools-frontend/mc-html-template@21.12.0
+
+## 21.11.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@21.11.0
+  - @commercetools-frontend/assets@21.11.0
+  - @commercetools-frontend/babel-preset-mc-app@21.11.0
+  - @commercetools-frontend/constants@21.11.0
+  - @commercetools-frontend/mc-dev-authentication@21.11.0
+  - @commercetools-frontend/mc-html-template@21.11.0
+
+## 21.10.0
+
+### Patch Changes
+
+- [#2666](https://github.com/commercetools/merchant-center-application-kit/pull/2666) [`f1ac3f0b`](https://github.com/commercetools/merchant-center-application-kit/commit/f1ac3f0b35eed8e3bb7e0003242cc5fa5d7d6944) Thanks [@emmenko](https://github.com/emmenko)! - Improve commands usage help text
+
+- Updated dependencies [[`73977f3f`](https://github.com/commercetools/merchant-center-application-kit/commit/73977f3fcc52acd6195b698c37b8a9a80547670d)]:
+  - @commercetools-frontend/constants@21.10.0
+  - @commercetools-frontend/mc-html-template@21.10.0
+  - @commercetools-frontend/application-config@21.10.0
+  - @commercetools-frontend/assets@21.10.0
+  - @commercetools-frontend/babel-preset-mc-app@21.10.0
+  - @commercetools-frontend/mc-dev-authentication@21.10.0
+
+## 21.9.0
+
+### Minor Changes
+
+- [#2695](https://github.com/commercetools/merchant-center-application-kit/pull/2695) [`de0980f9`](https://github.com/commercetools/merchant-center-application-kit/commit/de0980f9d151f3f0a98ddbf06e0629aaf03f5239) Thanks [@emmenko](https://github.com/emmenko)! - Update dependency `graphql` to `v16`.
+
+### Patch Changes
+
+- [#2687](https://github.com/commercetools/merchant-center-application-kit/pull/2687) [`2f414585`](https://github.com/commercetools/merchant-center-application-kit/commit/2f414585cc324cb483b49c8d1040845d3f231ba3) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Fix loading missing `moment` locale metadata for certain user locales. Now dates are correctly formatted according to the selected locale.
+
+* [#2705](https://github.com/commercetools/merchant-center-application-kit/pull/2705) [`abe2c475`](https://github.com/commercetools/merchant-center-application-kit/commit/abe2c475be2aff3781ac6151178aede1e0801f77) Thanks [@emmenko](https://github.com/emmenko)! - Update typescript dependencies
+
+- [#2711](https://github.com/commercetools/merchant-center-application-kit/pull/2711) [`f0e79e44`](https://github.com/commercetools/merchant-center-application-kit/commit/f0e79e44ef15d305692f4292b78c3ff1b388f74d) Thanks [@emmenko](https://github.com/emmenko)! - Update experimental Vite support to v3.
+
+* [#2706](https://github.com/commercetools/merchant-center-application-kit/pull/2706) [`28de0b59`](https://github.com/commercetools/merchant-center-application-kit/commit/28de0b59e8f3944eaef9000b517b384acfc4b98d) Thanks [@emmenko](https://github.com/emmenko)! - Update `msw` to `v0.44.0`
+
+- [#2710](https://github.com/commercetools/merchant-center-application-kit/pull/2710) [`b34b0a4c`](https://github.com/commercetools/merchant-center-application-kit/commit/b34b0a4c23d57cc3210a20f77fea847915512543) Thanks [@emmenko](https://github.com/emmenko)! - Update PostCSS and Stylelint dependencies
+
+* [#2702](https://github.com/commercetools/merchant-center-application-kit/pull/2702) [`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413) Thanks [@emmenko](https://github.com/emmenko)! - Update Babel dependencies
+
+- [#2691](https://github.com/commercetools/merchant-center-application-kit/pull/2691) [`8367e1b7`](https://github.com/commercetools/merchant-center-application-kit/commit/8367e1b71777b29d328e037148439418a66c0a72) Thanks [@emmenko](https://github.com/emmenko)! - Add support in Vite config (experimental feature) to load `.react.svg` files as React components using the SVGR plugin.
+
+- Updated dependencies [[`22fcb200`](https://github.com/commercetools/merchant-center-application-kit/commit/22fcb2007879bd8b10b0a5b70d02490162554e57), [`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413), [`8367e1b7`](https://github.com/commercetools/merchant-center-application-kit/commit/8367e1b71777b29d328e037148439418a66c0a72)]:
+  - @commercetools-frontend/application-config@21.9.0
+  - @commercetools-frontend/babel-preset-mc-app@21.9.0
+  - @commercetools-frontend/constants@21.9.0
+  - @commercetools-frontend/mc-dev-authentication@21.9.0
+  - @commercetools-frontend/mc-html-template@21.9.0
+  - @commercetools-frontend/assets@21.9.0
+
+## 21.8.1
+
+### Patch Changes
+
+- [#2680](https://github.com/commercetools/merchant-center-application-kit/pull/2680) [`3c15d48c`](https://github.com/commercetools/merchant-center-application-kit/commit/3c15d48cbda9e92e50e91bafa34045c652a20550) Thanks [@emmenko](https://github.com/emmenko)! - Fix parsing of CLI options casing
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@21.8.1
+  - @commercetools-frontend/assets@21.8.1
+  - @commercetools-frontend/babel-preset-mc-app@21.8.1
+  - @commercetools-frontend/constants@21.8.1
+  - @commercetools-frontend/mc-dev-authentication@21.8.1
+  - @commercetools-frontend/mc-html-template@21.8.1
+
+## 21.8.0
+
+### Minor Changes
+
+- [#2613](https://github.com/commercetools/merchant-center-application-kit/pull/2613) [`20e648d2`](https://github.com/commercetools/merchant-center-application-kit/commit/20e648d2d69ac9b909ae90946c4fe2274cdf7332) Thanks [@emmenko](https://github.com/emmenko)! - Migrate CLI to TypeScript.
+
+  Internally, the CLI now uses [cac](https://github.com/cacjs/cac) to handle CLI commands and options.
+
+  # Deprecated entry points
+
+  Importing the function `createPostcssConfig` from the main entry point `@commercetools-frontend/mc-scripts` is now deprecated. Use the entry point `@commercetools-frontend/mc-scripts/postcss` instead.
+
+  ```diff
+  const {
+    createPostcssConfig,
+  -} = require('@commercetools-frontend/mc-scripts');
+  +} = require('@commercetools-frontend/mc-scripts/postcss');
+  ```
+
+  Importing the functions `createWebpackConfigForDevelopment` and `createWebpackConfigForProduction` from the main entry point `@commercetools-frontend/mc-scripts` is now deprecated. Use the entry point `@commercetools-frontend/mc-scripts/webpack` instead.
+
+  ```diff
+  const {
+    createWebpackConfigForDevelopment,
+    createWebpackConfigForProduction,
+  -} = require('@commercetools-frontend/mc-scripts');
+  +} = require('@commercetools-frontend/mc-scripts/webpack');
+  ```
+
+### Patch Changes
+
+- [#2661](https://github.com/commercetools/merchant-center-application-kit/pull/2661) [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed) Thanks [@emmenko](https://github.com/emmenko)! - Drop the copyright year from the license files
+
+- Updated dependencies [[`d6bfecf1`](https://github.com/commercetools/merchant-center-application-kit/commit/d6bfecf17c0a6a38330943cc5f195f1854248770), [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed), [`20e648d2`](https://github.com/commercetools/merchant-center-application-kit/commit/20e648d2d69ac9b909ae90946c4fe2274cdf7332), [`81df396d`](https://github.com/commercetools/merchant-center-application-kit/commit/81df396daf0d28c6d3284436ae970d568fecc822)]:
+  - @commercetools-frontend/application-config@21.8.0
+  - @commercetools-frontend/assets@21.8.0
+  - @commercetools-frontend/babel-preset-mc-app@21.8.0
+  - @commercetools-frontend/constants@21.8.0
+  - @commercetools-frontend/mc-html-template@21.8.0
+  - @commercetools-frontend/mc-dev-authentication@21.8.0
+
 ## 21.7.0
 
 ### Patch Changes

@@ -1,5 +1,3 @@
-const micromatch = require('micromatch');
-
 module.exports = {
   '*.md': ['prettier --write --parser markdown'],
   '*.yaml': ['prettier --write --parser yaml'],
@@ -9,7 +7,7 @@ module.exports = {
   '*.ctp.graphql': () => 'yarn generate-types:ctp',
   '*.settings.graphql': () => 'yarn generate-types:settings',
   '*.proxy.graphql': () => 'yarn generate-types:proxy',
-  '*.js': [
+  '*.{js,jsx}': [
     'prettier --write',
     // NOTE: apparently if you pass some argument that is not a flag AFTER the `reporters`
     // flag, jest does not seem correctly parse the arguments.
@@ -31,8 +29,9 @@ module.exports = {
     //   Error: An error occurred while adding the reporter at path "/path/to/file".Reporter is not a constructor
     //
     // For that reason, we move the `--onlyChanged` flag next to it.
-    'yarn lint:js --reporters=jest-silent-reporter --onlyChanged',
-    'tsc-files --noEmit',
+    'yarn lint:js --passWithNoTests --reporters=jest-silent-reporter --onlyChanged',
+    // Always include the `client.d.ts` file.
+    'tsc-files --noEmit packages/application-config/client.d.ts',
   ],
   'cypress/**/*.ts': [
     'prettier --write',

@@ -145,10 +145,10 @@
     "country": "Bolivie"
   },
   "az": {
-    "language": "azéri"
+    "language": "azerbaïdjanais"
   },
   "az-AZ": {
-    "language": "azéri",
+    "language": "azerbaïdjanais",
     "country": "Azerbaïdjan"
   },
   "ba": {
@@ -384,7 +384,7 @@
   },
   "en-FM": {
     "language": "anglais",
-    "country": "États fédérés de Micronésie"
+    "country": "Micronésie"
   },
   "en-GB": {
     "language": "anglais",
@@ -468,7 +468,7 @@
   },
   "en-LR": {
     "language": "anglais",
-    "country": "Libéria"
+    "country": "Liberia"
   },
   "en-LS": {
     "language": "anglais",
@@ -512,7 +512,7 @@
   },
   "en-NG": {
     "language": "anglais",
-    "country": "Nigéria"
+    "country": "Nigeria"
   },
   "en-NR": {
     "language": "anglais",
@@ -628,7 +628,7 @@
   },
   "en-VC": {
     "language": "anglais",
-    "country": "Saint-Vincent-et-les-Grenadines"
+    "country": "Saint-Vincent-et-les Grenadines"
   },
   "en-VG": {
     "language": "anglais",
@@ -1008,7 +1008,7 @@
     "country": "Paraguay"
   },
   "gu": {
-    "language": "goudjerati"
+    "language": "goudjarati"
   },
   "gv": {
     "language": "mannois"
@@ -1205,7 +1205,7 @@
   },
   "ky-KG": {
     "language": "kirghize",
-    "country": "Kirghizistan"
+    "country": "Kirghizstan"
   },
   "la": {
     "language": "latin"
@@ -1296,7 +1296,7 @@
   },
   "ms-BN": {
     "language": "malais",
-    "country": "Brunéi Darussalam"
+    "country": "Brunei"
   },
   "ms-MY": {
     "language": "malais",
@@ -1391,6 +1391,13 @@
   },
   "nn-NO": {
     "language": "norvégien nynorsk",
+    "country": "Norvège"
+  },
+  "no": {
+    "language": "norvégien"
+  },
+  "no-NO": {
+    "language": "norvégien",
     "country": "Norvège"
   },
   "nr": {
@@ -1529,7 +1536,7 @@
   },
   "ru-KG": {
     "language": "russe",
-    "country": "Kirghizistan"
+    "country": "Kirghizstan"
   },
   "ru-KZ": {
     "language": "russe",
@@ -1804,7 +1811,7 @@
   },
   "vi-VN": {
     "language": "vietnamien",
-    "country": "Vietnam"
+    "country": "Viêt Nam"
   },
   "vo": {
     "language": "volapük"
@@ -1830,7 +1837,7 @@
   },
   "yo-NG": {
     "language": "yoruba",
-    "country": "Nigéria"
+    "country": "Nigeria"
   },
   "za": {
     "language": "zhuang"
@@ -1863,9 +1870,6 @@
   },
   "sh": {
     "language": "serbo-croate"
-  },
-  "no": {
-    "language": "norvégien"
   },
   "tl": {
     "language": "tagalog"

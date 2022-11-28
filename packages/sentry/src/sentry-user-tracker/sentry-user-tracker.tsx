@@ -1,7 +1,6 @@
-import type { ApplicationWindow } from '@commercetools-frontend/constants';
-
 import { PureComponent } from 'react';
-import * as Sentry from '@sentry/browser';
+import * as Sentry from '@sentry/react';
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
 declare let window: ApplicationWindow;
 

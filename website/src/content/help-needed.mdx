@@ -120,8 +120,48 @@ import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/appli
 
 export const entryPointUriPath = typeof window === 'undefined'
   ? process.env.ENTRY_POINT_URI_PATH
-  : window.app.ENTRY_POINT_URI_PATH;
+  : window.app.entryPointUriPath;
 
 export const PERMISSIONS = entryPointUriPathToPermissionKeys(entryPointUriPath);
 ```
 </Info>
+
+# Session token expiration
+
+In the browser, the session token is stored in a secure cookie named `mcAccessToken` and is valid for 30 days.
+
+
+# Limitations
+
+
+Custom Applications have the following limitations:
+
+## OAuth Scopes cannot be changed in the Ready state
+
+OAuth Scopes cannot be changed when a Custom Application is in the **Ready** state as it can be installed and used while in this state. You can change the list of OAuth Scopes assigned to the Custom Application permissions only in the **Draft** state when [configuring the Custom Application in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications#configuring-custom-applications).
+
+To change the OAuth Scopes:
+
+1. [Move the Custom Application to the **Draft** state](https://docs.commercetools.com/merchant-center/managing-custom-applications#moving-the-custom-applications-to-the-draft-state).
+2. Update the list of OAuth Scopes.
+3. Change the state to **Ready**.
+4. [Install the Custom Application](https://docs.commercetools.com/merchant-center/managing-custom-applications#installing-a-custom-application) again.
+
+<Info>
+
+When a Custom Application state is changed from **Ready** to **Draft**, it is uninstalled from all Organizations and Projects. Thus, when installing the Custom Application again, [Team permissions must be assigned](https://docs.commercetools.com/merchant-center/managing-custom-applications#assigning-team-permissions)  again.
+
+</Info>
+
+## Project access is not automatically updated for newly created Projects
+
+When a new Project is created in the Organization, the Project cannot be accessed despite the **Project access** setting being configured to **Install for all projects of this organization** for an installed Custom Application.
+
+To grant access, [the Project access must be updated manually](https://docs.commercetools.com/merchant-center/managing-custom-applications#updating-projects-access) for the installed Custom Application.
+
+## Custom Applications can have only one set of permissions
+
+Each Custom Application has a [unique pair of user permissions](/concepts/oauth-scopes-and-user-permissions) assigned to them.
+
+This restriction was an important step in being able to release Org-level Custom Application. For more information, see [OAuth Scopes and user permissions](/migrating-from-project-level-custom-applications#oauth-scopes-and-user-permissions).
+

@@ -1,6 +1,5 @@
+import PropTypes from 'prop-types';
 import type { Countries } from './types';
-
-import * as PropTypes from 'prop-types';
 import { createL10NInjector, createL10NHook } from './create-l10n-injector';
 import { getSupportedLocale, mapLocaleToIntlLocale } from './utils';
 
@@ -26,10 +25,6 @@ const getImportChunk = (locale: string): Promise<ImportData> => {
     case 'zh-CN':
       return import(
         /* webpackChunkName: "country-data-zh-CN" */ '../data/countries/zh-CN.json'
-      );
-    case 'ja':
-      return import(
-        /* webpackChunkName: "country-data-ja" */ '../data/countries/ja.json'
       );
     default:
       return import(

@@ -1,5 +1,183 @@
 # @commercetools-frontend/i18n
 
+## 21.20.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@21.20.1
+
+## 21.20.0
+
+### Minor Changes
+
+- [#2886](https://github.com/commercetools/merchant-center-application-kit/pull/2886) [`68e1998b4`](https://github.com/commercetools/merchant-center-application-kit/commit/68e1998b4021121fff23e4b549615d506b795226) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update `ui-kit` dependencies.
+
+### Patch Changes
+
+- Updated dependencies [[`530c97d1f`](https://github.com/commercetools/merchant-center-application-kit/commit/530c97d1f9006559cde3514ffa53165ae74d0b3a)]:
+  - @commercetools-frontend/sentry@21.20.0
+
+## 21.19.0
+
+### Patch Changes
+
+- Updated dependencies [[`671436ba3`](https://github.com/commercetools/merchant-center-application-kit/commit/671436ba322ccbbed3301f54e73c0d669d026e0b)]:
+  - @commercetools-frontend/sentry@21.19.0
+
+## 21.18.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@21.18.1
+
+## 21.18.0
+
+### Patch Changes
+
+- [#2837](https://github.com/commercetools/merchant-center-application-kit/pull/2837) [`3959ed2a0`](https://github.com/commercetools/merchant-center-application-kit/commit/3959ed2a0012077b6366c3a22c749fe7d6e74784) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- Updated dependencies [[`3959ed2a0`](https://github.com/commercetools/merchant-center-application-kit/commit/3959ed2a0012077b6366c3a22c749fe7d6e74784)]:
+  - @commercetools-frontend/sentry@21.18.0
+
+## 21.17.0
+
+### Patch Changes
+
+- [#2839](https://github.com/commercetools/merchant-center-application-kit/pull/2839) [`f5eb8d77c`](https://github.com/commercetools/merchant-center-application-kit/commit/f5eb8d77c606e624e6cfc2cfad3da1eaeff5fdd6) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update `ui-kit` dependencies
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@21.17.0
+
+## 21.16.0
+
+### Patch Changes
+
+- [#2580](https://github.com/commercetools/merchant-center-application-kit/pull/2580) [`1c40c40c9`](https://github.com/commercetools/merchant-center-application-kit/commit/1c40c40c947574ba24b411c9376640bb18c489ac) Thanks [@renovate](https://github.com/apps/renovate)! - Update `@testing-library/react-hooks` package to version `8.0.0`.
+
+- [#2826](https://github.com/commercetools/merchant-center-application-kit/pull/2826) [`11192ad4b`](https://github.com/commercetools/merchant-center-application-kit/commit/11192ad4bf186ff529255c68e95193a362308620) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies [[`1c40c40c9`](https://github.com/commercetools/merchant-center-application-kit/commit/1c40c40c947574ba24b411c9376640bb18c489ac), [`11192ad4b`](https://github.com/commercetools/merchant-center-application-kit/commit/11192ad4bf186ff529255c68e95193a362308620)]:
+  - @commercetools-frontend/sentry@21.16.0
+
+## 21.15.0
+
+### Patch Changes
+
+- Updated dependencies [[`0e49a78f8`](https://github.com/commercetools/merchant-center-application-kit/commit/0e49a78f8e3b228a9b0bb3d90781aa8e940de4bc)]:
+  - @commercetools-frontend/sentry@21.15.0
+
+## 21.14.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@21.14.3
+
+## 21.14.2
+
+### Patch Changes
+
+- [#2776](https://github.com/commercetools/merchant-center-application-kit/pull/2776) [`00d9edcb4`](https://github.com/commercetools/merchant-center-application-kit/commit/00d9edcb49a144797ba3690db012e429e88a30fa) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies [[`00d9edcb4`](https://github.com/commercetools/merchant-center-application-kit/commit/00d9edcb49a144797ba3690db012e429e88a30fa)]:
+  - @commercetools-frontend/sentry@21.14.2
+
+## 21.14.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@21.14.1
+
+## 21.14.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@21.14.0
+
+## 21.13.1
+
+### Patch Changes
+
+- [`482ad98ee`](https://github.com/commercetools/merchant-center-application-kit/commit/482ad98eeb4570a583d58d476a7902ffe6cc2a94) Thanks [@emmenko](https://github.com/emmenko)! - Nothing changed, the previous release `21.13.0` had an issue publishing to NPM so we're bumping versions to trigger a new release.
+
+- Updated dependencies [[`482ad98ee`](https://github.com/commercetools/merchant-center-application-kit/commit/482ad98eeb4570a583d58d476a7902ffe6cc2a94)]:
+  - @commercetools-frontend/sentry@21.13.1
+
+## 21.13.0
+
+### Patch Changes
+
+- Updated dependencies [[`d012420e5`](https://github.com/commercetools/merchant-center-application-kit/commit/d012420e563b34a1678693f19905bdd79b2317e2)]:
+  - @commercetools-frontend/sentry@21.13.0
+
+## 21.12.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@21.12.0
+
+## 21.11.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@21.11.0
+
+## 21.10.0
+
+### Patch Changes
+
+- [#2741](https://github.com/commercetools/merchant-center-application-kit/pull/2741) [`fc3fd602`](https://github.com/commercetools/merchant-center-application-kit/commit/fc3fd6022031e3fe132cf890cb2a8b71f4ae0731) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - remove japanese locale support
+
+* [#2735](https://github.com/commercetools/merchant-center-application-kit/pull/2735) [`dac14c2b`](https://github.com/commercetools/merchant-center-application-kit/commit/dac14c2bf0800eed6ddd1977d988a31b23a9c47e) Thanks [@transifex-integration](https://github.com/apps/transifex-integration)! - Update translations for `es`.
+
+- [#2737](https://github.com/commercetools/merchant-center-application-kit/pull/2737) [`d0e10a3f`](https://github.com/commercetools/merchant-center-application-kit/commit/d0e10a3fbc893d55e15ffff8fe16911784425930) Thanks [@transifex-integration](https://github.com/apps/transifex-integration)! - Update translations for `de`.
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@21.10.0
+
+## 21.9.0
+
+### Patch Changes
+
+- [#2687](https://github.com/commercetools/merchant-center-application-kit/pull/2687) [`2f414585`](https://github.com/commercetools/merchant-center-application-kit/commit/2f414585cc324cb483b49c8d1040845d3f231ba3) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Fix loading missing `moment` locale metadata for certain user locales. Now dates are correctly formatted according to the selected locale.
+
+* [#2705](https://github.com/commercetools/merchant-center-application-kit/pull/2705) [`abe2c475`](https://github.com/commercetools/merchant-center-application-kit/commit/abe2c475be2aff3781ac6151178aede1e0801f77) Thanks [@emmenko](https://github.com/emmenko)! - Update typescript dependencies
+
+- [#2703](https://github.com/commercetools/merchant-center-application-kit/pull/2703) [`8cd781a6`](https://github.com/commercetools/merchant-center-application-kit/commit/8cd781a6f2d626fd564e6e1fd0be30991c27b4ea) Thanks [@emmenko](https://github.com/emmenko)! - Update Emotion dependencies to `v11.9.3`
+
+* [#2709](https://github.com/commercetools/merchant-center-application-kit/pull/2709) [`d0618b0a`](https://github.com/commercetools/merchant-center-application-kit/commit/d0618b0a61490ddb1d8f0b1aa26b5d03da7da38c) Thanks [@emmenko](https://github.com/emmenko)! - Update `moment` and `react-intl` dependencies
+
+- [#2702](https://github.com/commercetools/merchant-center-application-kit/pull/2702) [`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413) Thanks [@emmenko](https://github.com/emmenko)! - Update Babel dependencies
+
+* [#2700](https://github.com/commercetools/merchant-center-application-kit/pull/2700) [`21d98709`](https://github.com/commercetools/merchant-center-application-kit/commit/21d98709f12696f2f7bfd22d5d1c18cee40a4845) Thanks [@emmenko](https://github.com/emmenko)! - Update UI Kit dependencies to `v15.1.0`.
+
+* Updated dependencies [[`abe2c475`](https://github.com/commercetools/merchant-center-application-kit/commit/abe2c475be2aff3781ac6151178aede1e0801f77), [`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413), [`8ab624e5`](https://github.com/commercetools/merchant-center-application-kit/commit/8ab624e593d6f9e56efe5d1f8562788bf93a3a62)]:
+  - @commercetools-frontend/sentry@21.9.0
+
+## 21.8.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@21.8.1
+
+## 21.8.0
+
+### Patch Changes
+
+- [#2661](https://github.com/commercetools/merchant-center-application-kit/pull/2661) [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed) Thanks [@emmenko](https://github.com/emmenko)! - Drop the copyright year from the license files
+
+* [#2615](https://github.com/commercetools/merchant-center-application-kit/pull/2615) [`d6bfecf1`](https://github.com/commercetools/merchant-center-application-kit/commit/d6bfecf17c0a6a38330943cc5f195f1854248770) Thanks [@kark](https://github.com/kark)! - Export additional types
+
+* Updated dependencies [[`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed)]:
+  - @commercetools-frontend/sentry@21.8.0
+
 ## 21.6.0
 
 ### Patch Changes

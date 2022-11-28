@@ -1,0 +1,29 @@
+diff --git a/lib/convertBabelToPropTypes.js b/lib/convertBabelToPropTypes.js
+index 4d3252fb8d0f2d4c69eb4320fbf65ce9cffed707..c939b42e849db5d417d8e0b2c8245c8190baab56 100644
+--- a/lib/convertBabelToPropTypes.js
++++ b/lib/convertBabelToPropTypes.js
+@@ -141,6 +141,13 @@ function convert(type, state, depth) {
+         }
+         else if (NATIVE_BUILT_INS.includes(name)) {
+             return propTypes_1.createCall(core_1.types.identifier('instanceOf'), [core_1.types.identifier(name)], propTypesImportedName);
++            // PATCH: Record<string, string> -> PropTypes.objectOf(PropTypes.string)
++        }
++        else if (name === 'Record') {
++            const result = convert(type.typeParameters.params[1], state, depth);
++            if (result) {
++                return propTypes_1.createCall(core_1.types.identifier('objectOf'), [result], propTypesImportedName);
++            }
+             // inline references
+         }
+         else if (state.referenceTypes[name]) {
+@@ -154,8 +161,8 @@ function convert(type, state, depth) {
+         else if (state.typeChecker) {
+             return convertTSToPropTypes_1.convertSymbolFromSource(state.filePath, name, state);
+         }
+-        // Nothing found, so just omit
+-        return null;
++        // PATCH: return `any` in case a type cannot be mapped. For example, when the prop refers to a generic type.
++        return propTypes_1.createMember(core_1.types.identifier('any'), propTypesImportedName);
+         // [] -> PropTypes.arrayOf(), PropTypes.array
+     }
+     else if (core_1.types.isTSArrayType(type)) {

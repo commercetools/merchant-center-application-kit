@@ -1,11 +1,27 @@
-const getFirstOrThrow = (
-  value: string | string[] | undefined,
-  errorMessage: string
-) => {
-  if (!value) {
-    throw new Error(errorMessage);
+const getHeaderByCaseInsensitiveKey = (
+  headers: Record<string, string | string[] | undefined>,
+  headerKey: string
+): string | undefined => {
+  const matchingHeader = Object.entries(headers).find(
+    ([key]) => headerKey.toLowerCase() === key.toLowerCase()
+  );
+  if (matchingHeader && matchingHeader.length > 0) {
+    const [, headerValue] = matchingHeader;
+    return Array.isArray(headerValue) ? headerValue[0] : headerValue;
   }
-  return Array.isArray(value) ? value[0] : value;
+  return undefined;
 };
 
-export { getFirstOrThrow };
+const getFirstHeaderValueOrThrow = (
+  headers: Record<string, string | string[] | undefined>,
+  headerKey: string,
+  errorMessage: string
+): string => {
+  const headerValue = getHeaderByCaseInsensitiveKey(headers, headerKey);
+  if (!headerValue) {
+    throw new Error(errorMessage);
+  }
+  return headerValue;
+};
+
+export { getHeaderByCaseInsensitiveKey, getFirstHeaderValueOrThrow };

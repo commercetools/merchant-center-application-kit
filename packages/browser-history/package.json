@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/browser-history",
-  "version": "21.3.4",
+  "version": "21.20.1",
   "description": "Enhances browser history",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -18,9 +18,9 @@
   "module": "dist/commercetools-frontend-browser-history.esm.js",
   "files": ["dist", "package.json", "LICENSE", "README.md"],
   "dependencies": {
-    "@babel/runtime": "^7.17.9",
-    "@babel/runtime-corejs3": "^7.17.9",
-    "@types/history": "4.7.11",
+    "@babel/runtime": "^7.19.0",
+    "@babel/runtime-corejs3": "^7.19.0",
+    "@types/history": "^4.7.11",
     "history": "4.10.1",
     "history-query-enhancer": "1.0.4",
     "qss": "2.0.3"

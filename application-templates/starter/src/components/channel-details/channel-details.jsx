@@ -27,14 +27,15 @@ import { docToFormValues, formValuesToDoc } from './conversions';
 import ChannelsDetailsForm from './channel-details-form';
 import { transformErrors } from './transform-errors';
 import messages from './messages';
+import { ApplicationPageTitle } from '@commercetools-frontend/application-shell';
 
 const ChannelDetails = (props) => {
   const intl = useIntl();
   const params = useParams();
   const { loading, error, channel } = useChannelDetailsFetcher(params.id);
   const { dataLocale, projectLanguages } = useApplicationContext((context) => ({
-    dataLocale: context.dataLocale,
-    projectLanguages: context.project.languages,
+    dataLocale: context.dataLocale ?? '',
+    projectLanguages: context.project?.languages ?? [],
   }));
   const canManage = useIsAuthorized({
     demandedPermissions: [PERMISSIONS.Manage],
@@ -63,10 +64,11 @@ const ChannelDetails = (props) => {
         });
       } catch (graphQLErrors) {
         const transformedErrors = transformErrors(graphQLErrors);
-        if (transformedErrors.unmappedErrors.length > 0)
+        if (transformedErrors.unmappedErrors.length > 0) {
           showApiErrorNotification({
             errors: transformedErrors.unmappedErrors,
           });
+        }
 
         formikHelpers.setErrors(transformedErrors.formErrors);
       }
@@ -90,19 +92,20 @@ const ChannelDetails = (props) => {
       dataLocale={dataLocale}
     >
       {(formProps) => {
+        const channelName = formatLocalizedString(
+          {
+            name: formProps.values?.name,
+          },
+          {
+            key: 'name',
+            locale: dataLocale,
+            fallbackOrder: projectLanguages,
+            fallback: NO_VALUE_FALLBACK,
+          }
+        );
         return (
           <FormModalPage
-            title={formatLocalizedString(
-              {
-                name: formProps.values?.name,
-              },
-              {
-                key: 'name',
-                locale: dataLocale,
-                fallbackOrder: projectLanguages,
-                fallback: NO_VALUE_FALLBACK,
-              }
-            )}
+            title={channelName}
             isOpen
             onClose={props.onClose}
             isPrimaryButtonDisabled={
@@ -127,6 +130,9 @@ const ChannelDetails = (props) => {
               </ContentNotification>
             )}
             {channel && formProps.formElements}
+            {channel && (
+              <ApplicationPageTitle additionalParts={[channelName]} />
+            )}
             {channel === null && <PageNotFound />}
           </FormModalPage>
         );

@@ -13,16 +13,10 @@ const render = () => {
       getIsExpired: (key) => key === 'key-3',
     }),
   ];
-  return renderApp(
-    <>
-      <label id="project-switcher">{'Project switcher'}</label>
-      <ProjectSwitcher projectKey="key-0" />
-    </>,
-    {
-      disableRoutePermissionCheck: true,
-      mocks: mockedRequest,
-    }
-  );
+  return renderApp(<ProjectSwitcher projectKey="key-0" />, {
+    disableRoutePermissionCheck: true,
+    mocks: mockedRequest,
+  });
 };
 
 describe('rendering', () => {
@@ -32,8 +26,7 @@ describe('rendering', () => {
 
   it('should search and select a project', async () => {
     render();
-    await screen.findByLabelText('Project switcher');
-    const input = screen.getByLabelText('Project switcher');
+    const input = await screen.findByLabelText('Projects menu');
     fireEvent.focus(input);
     fireEvent.change(input, { target: { value: 'key-1' } });
     fireEvent.keyDown(input, { key: 'Enter', keyCode: 13, which: 13 });
@@ -44,8 +37,7 @@ describe('rendering', () => {
   });
   it('should see no results message when search does not match any project', async () => {
     render();
-    await screen.findByLabelText('Project switcher');
-    const input = screen.getByLabelText('Project switcher');
+    const input = await screen.findByLabelText('Projects menu');
     fireEvent.focus(input);
     fireEvent.change(input, { target: { value: 'not existing' } });
 
@@ -55,8 +47,7 @@ describe('rendering', () => {
   });
   it('should prevent clicking on a suspended project', async () => {
     render();
-    await screen.findByLabelText('Project switcher');
-    const input = screen.getByLabelText('Project switcher');
+    const input = await screen.findByLabelText('Projects menu');
     fireEvent.focus(input);
     fireEvent.keyDown(input, { key: 'ArrowDown' });
     fireEvent.click(screen.getByText(/Suspended/i));
@@ -67,8 +58,7 @@ describe('rendering', () => {
   });
   it('should prevent clicking on an expired project', async () => {
     render();
-    await screen.findByLabelText('Project switcher');
-    const input = screen.getByLabelText('Project switcher');
+    const input = await screen.findByLabelText('Projects menu');
     fireEvent.focus(input);
     fireEvent.keyDown(input, { key: 'ArrowDown' });
     fireEvent.click(screen.getByText(/Expired/i));

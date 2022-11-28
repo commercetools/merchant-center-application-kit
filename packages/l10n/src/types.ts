@@ -13,11 +13,17 @@ export type Language = {
 export type Languages = Record<string, Language>;
 
 export type TimeZone = {
+  id: string;
   name: string;
   abbr: string;
   offset: string;
+  translationFor: string[];
 };
 export type TimeZones = Record<string, TimeZone>;
+
+export type TimeZoneTranslations = Record<string, string>;
+
+export type TimeZoneTranslationsMap = Record<string, string[]>;
 
 export type LocalizedField = {
   locale: string;

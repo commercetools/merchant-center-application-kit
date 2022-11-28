@@ -59,7 +59,6 @@ describe('fetch custom application data', () => {
       await fetchCustomApplication({
         entryPointUriPath: 'test-custom-app',
         mcApiUrl,
-        token: 'test-token',
       });
     expect(
       organizationExtensionForCustomApplication?.application.entryPointUriPath
@@ -107,7 +106,6 @@ describe('register custom application', () => {
   it('should match returned data', async () => {
     const createdCustomAppsData = await createCustomApplication({
       mcApiUrl,
-      token: 'token',
       organizationId: 'organization-id',
       data: {
         url: 'https://test.com',
@@ -154,7 +152,6 @@ describe('update custom application', () => {
   it('should match returned data', async () => {
     const updatedCustomAppsData = await updateCustomApplication({
       mcApiUrl,
-      token: 'token',
       organizationId: 'organization-id',
       applicationId: 'application-id',
       data: {
@@ -208,7 +205,6 @@ describe('fetch user organizations', () => {
   it('should match returned data', async () => {
     const data = await fetchUserOrganizations({
       mcApiUrl,
-      token: 'test-token',
     });
     expect(data.results[0].id).toEqual('test-organization-id');
     expect(data.results[0].name).toEqual('test-organization-name');

@@ -27,26 +27,28 @@ const getMcUrlLink = (
   return customAppLink;
 };
 
-async function run(options: TCliCommandConfigSyncOptions = {}) {
+async function run(options: TCliCommandConfigSyncOptions) {
   const applicationConfig = processConfig();
   const { data: localCustomAppData } = applicationConfig;
   const { mcApiUrl } = applicationConfig.env;
 
-  const token = credentialsStorage.getToken(mcApiUrl);
-  if (!token) {
+  console.log(`Using Merchant Center environment "${chalk.green(mcApiUrl)}".`);
+  console.log();
+
+  const isSessionValid = credentialsStorage.isSessionValid(mcApiUrl);
+  if (!isSessionValid) {
     throw new Error(
-      `You don't have a valid session for the ${mcApiUrl} environment. Please, run the "mc-scripts login" command to authenticate yourself.`
+      `You don't have a valid session. Please, run the "mc-scripts login" command to authenticate yourself.`
     );
   }
 
   const fetchedCustomApplication = await fetchCustomApplication({
     mcApiUrl,
-    token,
     entryPointUriPath: localCustomAppData.entryPointUriPath,
   });
 
   if (!fetchedCustomApplication) {
-    const userOrganizations = await fetchUserOrganizations({ mcApiUrl, token });
+    const userOrganizations = await fetchUserOrganizations({ mcApiUrl });
 
     let organizationId: string, organizationName: string;
 
@@ -71,7 +73,7 @@ async function run(options: TCliCommandConfigSyncOptions = {}) {
       const { organizationId: selectedOrganizationId } = await prompts({
         type: 'select',
         name: 'organizationId',
-        message: 'Select Organization',
+        message: 'Select an Organization',
         choices: organizationChoices,
         initial: 0,
       });
@@ -91,7 +93,15 @@ async function run(options: TCliCommandConfigSyncOptions = {}) {
     const { confirmation } = await prompts({
       type: 'text',
       name: 'confirmation',
-      message: `You are about to create a new Custom Application in the "${organizationName}" organization for the ${mcApiUrl} environment. Are you sure you want to proceed?`,
+      message: [
+        `You are about to create a new Custom Application in the "${chalk.green(
+          organizationName
+        )}" organization. Are you sure you want to proceed?`,
+        options.dryRun &&
+          chalk.gray('Using "--dry-run", no data will be created.'),
+      ]
+        .filter(Boolean)
+        .join('\n'),
       initial: 'yes',
     });
     if (!confirmation || confirmation.toLowerCase().charAt(0) !== 'y') {
@@ -100,17 +110,17 @@ async function run(options: TCliCommandConfigSyncOptions = {}) {
     }
 
     const data = omit(localCustomAppData, ['id']);
-    if (options['dry-run']) {
-      console.log(chalk.gray('DRY RUN mode'));
+    if (options.dryRun) {
+      console.log();
       console.log(
-        `A new Custom Application would be created for the Organization ${organizationName} with the following payload:`
+        `The following payload would be used to create a new Custom Application.`
       );
-      console.log(JSON.stringify(data));
+      console.log();
+      console.log(chalk.gray(JSON.stringify(data, null, 2)));
       return;
     }
     const createdCustomApplication = await createCustomApplication({
       mcApiUrl,
-      token,
       organizationId,
       data,
     });
@@ -130,8 +140,15 @@ async function run(options: TCliCommandConfigSyncOptions = {}) {
     );
     console.log(
       chalk.green(
-        `Custom Application created.\nThe "applicationId" in your local Custom Application config file should be updated with the application ID: ${createdCustomApplication.id}.\nYou can see the Custom Application data in the Merchant Center at ${customAppLink}.`
+        `Custom Application created.\nPlease update the "env.production.applicationId" field in your local Custom Application config file with the following value: "${chalk.green(
+          createdCustomApplication.id
+        )}".`
       )
+    );
+    console.log(
+      `You can inspect the Custom Application data in the Merchant Center at "${chalk.gray(
+        customAppLink
+      )}".`
     );
     return;
   }
@@ -148,20 +165,31 @@ async function run(options: TCliCommandConfigSyncOptions = {}) {
   );
 
   if (!configDiff) {
+    console.log(chalk.green(`Custom Application up-to-date.`));
     console.log(
-      chalk.green(
-        `Custom Application is already up to date.\nYou can see the Custom Application data in the Merchant Center at ${customAppLink}.`
-      )
+      `You can inspect the Custom Application data in the Merchant Center at "${chalk.gray(
+        customAppLink
+      )}".`
     );
     return;
   }
 
+  console.log('Changes detected:');
   console.log(configDiff);
+  console.log();
 
   const { confirmation } = await prompts({
     type: 'text',
     name: 'confirmation',
-    message: `You are about to update the Custom Application "${localCustomAppData.entryPointUriPath}" with the changes above, in the ${mcApiUrl} environment. Are you sure you want to proceed?`,
+    message: [
+      `You are about to update the Custom Application "${chalk.green(
+        localCustomAppData.entryPointUriPath
+      )}" with the changes above. Are you sure you want to proceed?`,
+      options.dryRun &&
+        chalk.gray('Using "--dry-run", no data will be updated.'),
+    ]
+      .filter(Boolean)
+      .join('\n'),
     initial: 'yes',
   });
   if (!confirmation || confirmation.toLowerCase().charAt(0) !== 'y') {
@@ -170,27 +198,30 @@ async function run(options: TCliCommandConfigSyncOptions = {}) {
   }
 
   const data = omit(localCustomAppData, ['id']);
-  if (options['dry-run']) {
-    console.log(chalk.gray('DRY RUN mode'));
+  if (options.dryRun) {
+    console.log();
     console.log(
-      `The Custom Application ${data.name} would be updated with the following payload:`
+      `The following payload would be used to update the Custom Application "${chalk.green(
+        data.entryPointUriPath
+      )}".`
     );
-    console.log(JSON.stringify(data));
+    console.log();
+    console.log(chalk.gray(JSON.stringify(data, null, 2)));
     return;
   }
 
   await updateCustomApplication({
     mcApiUrl,
-    token,
     organizationId: fetchedCustomApplication.organizationId,
     data: omit(localCustomAppData, ['id']),
     applicationId: fetchedCustomApplication.application.id,
   });
 
+  console.log(chalk.green(`Custom Application updated.`));
   console.log(
-    chalk.green(
-      `Custom Application updated.\nYou can see the Custom Application data in the Merchant Center at ${customAppLink}.`
-    )
+    `You can inspect the Custom Application data in the Merchant Center at "${chalk.gray(
+      customAppLink
+    )}".`
   );
 }
 

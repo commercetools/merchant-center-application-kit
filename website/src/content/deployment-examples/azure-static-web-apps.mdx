@@ -1,0 +1,116 @@
+---
+title: Deploying to Azure with Static Web Apps
+---
+
+This deployment example refers to [Azure Static Web Apps](https://azure.microsoft.com/en-us/services/app-service/static/#overview).
+
+# Prerequisites
+
+Before you get started, you need to have:
+
+- An [Azure](https://azure.microsoft.com/free/) account.
+- A [commercetools](https://docs.commercetools.com/getting-started) account and a Project.
+- A Custom Application [configured in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications).
+
+# Configuration
+
+In your Custom Application config, provide the [Custom Application ID](/api-reference/application-config#envproductionapplicationid) you got when you configured the Custom Application in the Merchant Center.
+
+Moreover, you need to provide the [production URL](/api-reference/application-config#envproductionurl) from your Azure project. You can keep the standard Azure Static Web Apps URL `https://<project>.1.azurestaticapps.net` or provide your custom domain.
+
+```json title="custom-application-config.json"
+{
+  "env": {
+    "production": {
+      "applicationId": "ckvtahxl90097sys6har1e6n3",
+      "url": "https://<project>.1.azurestaticapps.net"
+    }
+  }
+}
+```
+
+## Using environment variables
+
+In case you want to avoid hardcoding certain values, for example the Application ID, or the Project key, you can [use variable placeholders](/api-reference/application-config#using-variable-placeholders) in your Custom Application config.
+
+```json title="custom-application-config.json" highlightLines="4"
+{
+  "env": {
+    "production": {
+      "applicationId": "${env:APPLICATION_ID}",
+      "url": "https://<project>.1.azurestaticapps.net"
+    }
+  }
+}
+```
+
+# Connect Azure with GitHub Actions
+
+The easiest way to deploy to Azure is to use [Static Web Apps](https://azure.microsoft.com/en-us/services/app-service/static/#overview) deployment service. This service enables first-class GitHub integration.
+
+Follow the steps in the [Azure Static Web App creator](https://portal.azure.com/#create/Microsoft.StaticApp) to create a new project and select `GitHub` as the deployment source.
+
+<Info>
+
+Make sure to grant Azure access to your repository in the following step.
+
+</Info>
+
+## Configuring build settings
+
+In the Static Web App setup process you need to configure the following things:
+
+* Select your organization, repository and branch.
+* In the **Build details** section select `Custom` as the build preset.
+* Provide the following build settings:
+    * App location: `/`
+    * Output location: `public`
+
+<Info>
+
+If your Custom Application config [requires environment variables](#using-environment-variables), make sure to provide them in the [GitHub Action workflow file](https://docs.microsoft.com/en-us/azure/static-web-apps/build-configuration?tabs=github-actions#environment-variables). You can define the environment variables either as plain text or using [GitHub encrypted secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
+
+See example below for defining environment variables for the GitHub action:
+
+```yaml title="deployment.yml" highlightLines="9-10"
+- name: Build And Deploy
+  uses: Azure/static-web-apps-deploy@v1
+  with:
+    action: "upload"
+    app_location: "/"
+    api_location: ""
+    output_location: "public"
+  env:
+    APPLICATION_ID: ${{ secrets.APPLICATION_ID }}
+    CLOUD_IDENTIFIER: gcp-eu
+```
+
+</Info>
+
+## Configuring rewrite rules
+
+A Custom Application is a Single-Page Application that uses client-side routing. Therefore, we need to [instruct Azure](https://docs.microsoft.com/en-us/azure/static-web-apps/configuration#defining-routes) to rewrite all requests to serve the `index.html`.
+For this purpose, create `staticwebapp.config.json` file in the root directory of your project with the following content:
+
+```json title="staticwebapp.config.json"
+{
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/index.html",
+      "statusCode": 200
+    }
+  }
+}
+```
+
+# Test your deployment
+
+In the Merchant Center you can now [follow the steps to install the Custom Application](https://docs.commercetools.com/merchant-center/managing-custom-applications) and access it in your Projects.
+
+<Warning>
+
+The Custom Application won't render if you try to access it directly via the deployment URL, as it needs to be served within the [Merchant Center Proxy Router](/concepts/merchant-center-proxy-router).
+
+Therefore, Preview deployments are not really useful. If you are interested in this functionality, let us know and open a [support issue](https://github.com/commercetools/merchant-center-application-kit/issues/new/choose).
+
+</Warning>

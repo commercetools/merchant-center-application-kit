@@ -14,12 +14,12 @@ import {
   MC_API_URLS,
   MC_API_PROXY_HEADERS,
 } from './constants';
-import { getFirstOrThrow } from './utils';
+import { getFirstHeaderValueOrThrow } from './utils';
 
 type TDecodedJWT = {
   sub: string;
   iss: string;
-  [property: string]: string;
+  [property: string]: string | string[];
 };
 
 const decodedTokenKey = 'decoded_token';
@@ -31,11 +31,17 @@ const writeSessionContext = <Request extends TBaseRequest>(
 
   if (decodedToken) {
     const publicClaimForProjectKey = `${decodedToken.iss}/claims/project_key`;
+    const publicClaimForUserPermissionsKey = `${decodedToken.iss}/claims/user_permissions`;
 
     request.session = {
       userId: decodedToken.sub,
-      projectKey: decodedToken[publicClaimForProjectKey],
+      projectKey: decodedToken[publicClaimForProjectKey] as string,
     };
+
+    const userPermissions = decodedToken[publicClaimForUserPermissionsKey];
+    if (Boolean(userPermissions?.length)) {
+      request.session.userPermissions = userPermissions as string[];
+    }
   }
 
   // Remove the field used by the JWT middleware.
@@ -119,10 +125,17 @@ export const getConfiguredAudience = <Request extends TBaseRequest>(
 ) => {
   // remove the trailing slash
   const url = new URL(`${options.audience.replace(/\/?$/, '')}${requestPath}`);
-  if (requestPath === '/') {
-    return url.origin;
+
+  switch (options.audiencePolicy) {
+    case 'forward-url-origin':
+      return url.origin;
+    default: {
+      if (requestPath === '/') {
+        return url.origin;
+      }
+      return `${url.origin}${url.pathname}`;
+    }
   }
-  return `${url.origin}${url.pathname}`;
 };
 
 function createSessionAuthVerifier<Request extends TBaseRequest>(
@@ -135,8 +148,9 @@ function createSessionAuthVerifier<Request extends TBaseRequest>(
   // Returns an async HTTP handler.
   return async (request: Request, response?: unknown) => {
     // Get the cloud identifier header, forwarded by the `/proxy/forward-to` endpoint.
-    const cloudIdentifierHeader = getFirstOrThrow(
-      request.headers[MC_API_PROXY_HEADERS.CLOUD_IDENTIFIER],
+    const cloudIdentifierHeader = getFirstHeaderValueOrThrow(
+      request.headers,
+      MC_API_PROXY_HEADERS.CLOUD_IDENTIFIER,
       `Missing "X-MC-API-Cloud-Identifier" header.`
     );
 
@@ -148,8 +162,9 @@ function createSessionAuthVerifier<Request extends TBaseRequest>(
 
     // Get the `Accept-version` header, forwarded by the `/proxy/forward-to` endpoint.
     // The version should be sent by the client making the request, to use the features of v2.
-    const proxyForwardVersion = getFirstOrThrow(
-      request.headers[MC_API_PROXY_HEADERS.FORWARD_TO_VERSION],
+    const proxyForwardVersion = getFirstHeaderValueOrThrow(
+      request.headers,
+      MC_API_PROXY_HEADERS.FORWARD_TO_VERSION,
       `Missing "X-MC-API-Forward-To-Version" header.`
     );
     if (proxyForwardVersion === 'v1') {
@@ -161,9 +176,9 @@ function createSessionAuthVerifier<Request extends TBaseRequest>(
       ? options.getRequestUrl(request)
       : request.originalUrl ?? request.url;
 
-    if (!requestUrlPath) {
+    if (!requestUrlPath || !requestUrlPath.startsWith('/')) {
       throw new Error(
-        'Invalid request URI path. Please make sure that the `request` object has either a property `originalUrl` or `url`. If not, you should implement the `getRequestUrl` function. More info at https://docs.commercetools.com/custom-applications/concepts/integrate-with-your-own-api#validating-the-json-web-token'
+        `Invalid request URI path "${requestUrlPath}". Please make sure that the "request" object has either a property "originalUrl" or "url". If not, you should implement the "getRequestUrl" function and make sure to return a valid URI path value starting with "/". More info at https://docs.commercetools.com/custom-applications/concepts/integrate-with-your-own-api#validating-the-json-web-token`
       );
     }
 
@@ -203,4 +218,4 @@ function createSessionAuthVerifier<Request extends TBaseRequest>(
   };
 }
 
-export { createSessionAuthVerifier };
+export { createSessionAuthVerifier, writeSessionContext };

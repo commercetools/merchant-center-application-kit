@@ -28,5 +28,16 @@ query FetchLoggedInUser {
         }
       }
     }
+    idTokenUserInfo {
+      iss
+      sub
+      aud
+      exp
+      iat
+      email
+      name
+      additionalClaims
+    }
+    verificationStatus
   }
 }

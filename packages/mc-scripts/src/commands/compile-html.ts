@@ -6,7 +6,7 @@ import type { TCliCommandCompileHtmlOptions } from '../types';
 
 const appDirectory = fs.realpathSync(process.cwd());
 
-async function run(options: TCliCommandCompileHtmlOptions = {}) {
+async function run(options: TCliCommandCompileHtmlOptions) {
   console.log('Compiling index.html...');
   const compiled = await compileHtml(paths.appIndexHtmlTemplate);
 
@@ -28,7 +28,7 @@ async function run(options: TCliCommandCompileHtmlOptions = {}) {
         }`
       );
     }
-  } else if (options['print-security-headers']) {
+  } else if (options.printSecurityHeaders) {
     console.log(JSON.stringify(compiled.headers));
   }
 

@@ -14,6 +14,7 @@ import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import { CaretDownIcon } from '@commercetools-uikit/icons';
 import { customProperties } from '@commercetools-uikit/design-system';
+import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import {
   LOGOUT_REASONS,
   NO_VALUE_FALLBACK,
@@ -39,6 +40,8 @@ type MenuItemProps = {
   hasDivider?: boolean;
 };
 type MenuConfig = TFetchApplicationsMenuQuery['applicationsMenu']['appBar'][0];
+
+const MENU_LABEL_ID = 'user-menu-setting-menu-label';
 
 const UserAvatar = (
   props: Pick<Props, 'firstName' | 'lastName' | 'gravatarHash'>
@@ -264,11 +267,15 @@ const UserSettingsMenu = (props: Props) => {
 
   return (
     <div data-test="user-settings-menu">
-      <Downshift stateReducer={stateReducer}>
+      <AccessibleHidden>
+        <span id={MENU_LABEL_ID}>
+          <FormattedMessage {...messages.menuLabel} />
+        </span>
+      </AccessibleHidden>
+      <Downshift stateReducer={stateReducer} labelId={MENU_LABEL_ID}>
         {(downshiftProps) => (
           <div>
             <button
-              role="user-menu-toggle"
               css={css`
                 cursor: pointer;
                 border: none;

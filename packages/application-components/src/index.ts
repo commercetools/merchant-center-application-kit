@@ -2,7 +2,6 @@ export { default as version } from './version';
 
 // TabHeader & Tabular pages
 export { default as TabHeader } from './components/tab-header';
-export { default as TabularMainPage } from './components/tabular-main-page';
 
 // Dialogs
 export { default as InfoDialog } from './components/dialogs/info-dialog';
@@ -23,6 +22,12 @@ export { default as TabularDetailPage } from './components/detail-pages/tabular-
 
 // Public page
 export { default as PublicPageLayout } from './components/public-page-layout';
+
+// Main Layout Page
+export { default as FormMainPage } from './components/main-pages/form-main-page';
+export { default as CustomFormMainPage } from './components/main-pages/custom-form-main-page';
+export { default as InfoMainPage } from './components/main-pages/info-main-page';
+export { default as TabularMainPage } from './components/main-pages/tabular-main-page';
 
 // Maintenance pages
 export { default as MaintenancePageLayout } from './components/maintenance-page-layout';

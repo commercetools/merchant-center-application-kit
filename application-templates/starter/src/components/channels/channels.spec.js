@@ -6,21 +6,24 @@ import {
   mapResourceAccessToAppliedPermissions,
 } from '@commercetools-frontend/application-shell/test-utils';
 import { buildGraphqlList } from '@commercetools-test-data/core';
+import * as Channel from '@commercetools-test-data/channel';
+import { LocalizedString } from '@commercetools-test-data/commons';
 import { renderApplicationWithRedux } from '../../test-utils';
-import * as ChannelMock from '../../test-utils/test-data/channel';
 import { entryPointUriPath, PERMISSIONS } from '../../constants';
 import ApplicationRoutes from '../../routes';
 
 const mockServer = setupServer();
 afterEach(() => mockServer.resetHandlers());
-beforeAll(() =>
+beforeAll(() => {
   mockServer.listen({
     // for debugging reasons we force an error when the test fires a request with a query or mutation which is not mocked
     // more: https://mswjs.io/docs/api/setup-worker/start#onunhandledrequest
     onUnhandledRequest: 'error',
-  })
-);
-afterAll(() => mockServer.close());
+  });
+});
+afterAll(() => {
+  mockServer.close();
+});
 
 const renderApp = (options = {}) => {
   const route = options.route || `/my-project/${entryPointUriPath}/channels`;
@@ -48,9 +51,9 @@ it('should render channels and paginate to second page', async () => {
         ctx.data({
           channels: buildGraphqlList(
             Array.from({ length: itemsPerPage }).map((_, index) =>
-              ChannelMock.random().key(
-                `channel-key-${offset === 0 ? index : 20 + index}`
-              )
+              Channel.random()
+                .name(LocalizedString.random())
+                .key(`channel-key-${offset === 0 ? index : 20 + index}`)
             ),
             {
               name: 'Channel',

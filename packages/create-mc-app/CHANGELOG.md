@@ -1,5 +1,100 @@
 # @commercetools-frontend/create-mc-app
 
+## 21.20.1
+
+## 21.20.0
+
+## 21.19.0
+
+## 21.18.1
+
+## 21.18.0
+
+### Patch Changes
+
+- [#2837](https://github.com/commercetools/merchant-center-application-kit/pull/2837) [`3959ed2a0`](https://github.com/commercetools/merchant-center-application-kit/commit/3959ed2a0012077b6366c3a22c749fe7d6e74784) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+## 21.17.0
+
+## 21.16.0
+
+### Patch Changes
+
+- [#2580](https://github.com/commercetools/merchant-center-application-kit/pull/2580) [`1c40c40c9`](https://github.com/commercetools/merchant-center-application-kit/commit/1c40c40c947574ba24b411c9376640bb18c489ac) Thanks [@renovate](https://github.com/apps/renovate)! - Update `@testing-library/react-hooks` package to version `8.0.0`.
+
+## 21.15.0
+
+## 21.14.3
+
+## 21.14.2
+
+### Patch Changes
+
+- [#2776](https://github.com/commercetools/merchant-center-application-kit/pull/2776) [`00d9edcb4`](https://github.com/commercetools/merchant-center-application-kit/commit/00d9edcb49a144797ba3690db012e429e88a30fa) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+## 21.14.1
+
+## 21.14.0
+
+## 21.13.1
+
+### Patch Changes
+
+- [`482ad98ee`](https://github.com/commercetools/merchant-center-application-kit/commit/482ad98eeb4570a583d58d476a7902ffe6cc2a94) Thanks [@emmenko](https://github.com/emmenko)! - Nothing changed, the previous release `21.13.0` had an issue publishing to NPM so we're bumping versions to trigger a new release.
+
+## 21.13.0
+
+### Patch Changes
+
+- [#2761](https://github.com/commercetools/merchant-center-application-kit/pull/2761) [`d012420e5`](https://github.com/commercetools/merchant-center-application-kit/commit/d012420e563b34a1678693f19905bdd79b2317e2) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update all dependencies
+
+## 21.12.0
+
+## 21.11.0
+
+## 21.10.0
+
+### Minor Changes
+
+- [#2666](https://github.com/commercetools/merchant-center-application-kit/pull/2666) [`f1ac3f0b`](https://github.com/commercetools/merchant-center-application-kit/commit/f1ac3f0b35eed8e3bb7e0003242cc5fa5d7d6944) Thanks [@emmenko](https://github.com/emmenko)! - Migrate CLI to TypeScript
+
+## 21.9.0
+
+### Patch Changes
+
+- [#2702](https://github.com/commercetools/merchant-center-application-kit/pull/2702) [`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413) Thanks [@emmenko](https://github.com/emmenko)! - Update Babel dependencies
+
+## 21.8.1
+
+## 21.8.0
+
+### Minor Changes
+
+- [#2615](https://github.com/commercetools/merchant-center-application-kit/pull/2615) [`d6bfecf1`](https://github.com/commercetools/merchant-center-application-kit/commit/d6bfecf17c0a6a38330943cc5f195f1854248770) Thanks [@kark](https://github.com/kark)! - There is a new starter template to develop Custom Applications in TypeScript!
+
+  To install it via the `@commercetools-frontend/create-mc-app` CLI:
+
+  ```bash
+  $ npx @commercetools-frontend/create-mc-app@latest <folder_name> \
+    --template starter-typescript
+  ```
+
+  The TypeScript starter template is the same as the standard JS starter template in terms of functionality
+  but it includes the additional TypeScript setup.
+
+  If you already have a Custom Application in TypeScript or are planning to migrate an existing one to it
+  we recommend to take a look at the tooling setup of the TypeScript starter template, in particular:
+
+  - `.prettierrc` for using the `typescript` parser.
+  - `jest.*.config.js` to include the file extensions `.ts` and `.tsx`.
+  - `tsconfig.json`
+
+### Patch Changes
+
+- [#2661](https://github.com/commercetools/merchant-center-application-kit/pull/2661) [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed) Thanks [@emmenko](https://github.com/emmenko)! - Drop the copyright year from the license files
+
+* [#2676](https://github.com/commercetools/merchant-center-application-kit/pull/2676) [`d691e60a`](https://github.com/commercetools/merchant-center-application-kit/commit/d691e60a0b884a4b0f9b7b7cf3f019b025583577) Thanks [@emmenko](https://github.com/emmenko)! - Fix file formatting when patching constants file
+
 ## 21.6.0
 
 ### Patch Changes

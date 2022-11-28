@@ -7,7 +7,7 @@ import { createSessionAuthVerifier } from '../auth';
 import { CLOUD_IDENTIFIERS } from '../constants';
 import { TBaseRequest } from '../types';
 
-interface TMockAWSLambdaRequest extends TBaseRequest {
+interface TMockAWSLambdaRequestV2 extends TBaseRequest {
   rawPath: string;
   rawQueryString?: string;
 }
@@ -73,7 +73,13 @@ describe.each`
             issuer,
             audience: 'http://test-server/foo/bar',
           })}`,
-          'x-mc-api-cloud-identifier': cloudIdentifier,
+          // The following headers are validated as they are expected to be present
+          // in the incoming request.
+          // To ensure we can correctly read the header values no matter if the
+          // header key is lowercase or not, we test both headers variations:
+          // * one with upper/camel case key
+          // * one with lowercase key
+          'X-MC-API-Cloud-Identifier': cloudIdentifier,
           'x-mc-api-forward-to-version': 'v2',
         },
         originalUrl: '/foo/bar',
@@ -100,10 +106,10 @@ describe.each`
       expect(fakeRequest).not.toHaveProperty('decoded_token');
     });
 
-    it('should resolve the original url externally when a resolver is provided', async () => {
+    it('should resolve the original url externally when a resolver is provided (using lambda v2)', async () => {
       const { sessionMiddleware, fakeRequest, fakeResponse } = setupTest({
         middlewareOptions: {
-          getRequestUrl: (request: TMockAWSLambdaRequest) => {
+          getRequestUrl: (request: TMockAWSLambdaRequestV2) => {
             return `${request.rawPath}${
               request.rawQueryString ? '?' + request.rawQueryString : ''
             }`;
@@ -141,7 +147,23 @@ describe.each`
       await expect(
         waitForSessionMiddleware(sessionMiddleware, fakeRequest, fakeResponse)
       ).rejects.toMatchObject({
-        message: expect.stringContaining('Invalid request URI path.'),
+        message: expect.stringContaining(
+          'Invalid request URI path "undefined".'
+        ),
+      });
+    });
+
+    it('should fail if the resolved request URI does not have a leading "/"', async () => {
+      const { sessionMiddleware, fakeRequest, fakeResponse } = setupTest({
+        middlewareOptions: {
+          getRequestUrl: () => `foo/bar`, // <-- missing leading "/"
+        },
+      });
+
+      await expect(
+        waitForSessionMiddleware(sessionMiddleware, fakeRequest, fakeResponse)
+      ).rejects.toMatchObject({
+        message: expect.stringContaining('Invalid request URI path "foo/bar".'),
       });
     });
 

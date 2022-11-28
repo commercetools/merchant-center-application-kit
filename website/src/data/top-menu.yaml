@@ -1,29 +1,28 @@
 - menu-title: Composable Commerce
   items:
     - label: Getting Started
-      href: https://docs.commercetools.com/getting-started/
+      href: /../getting-started/
     - label: Merchant Center
-      href: https://docs.commercetools.com/merchant-center
+      href: /../merchant-center
     - label: Tutorials
-      href: https://docs.commercetools.com/tutorials
+      href: /../tutorials
     - label: HTTP API
-      href: https://docs.commercetools.com/api
+      href: /../api
     - label: GraphQL API
-      href: https://docs.commercetools.com/api/graphql
+      href: /../api/graphql
     - label: Import & Export
-      href: https://docs.commercetools.com/import-export
+      href: /../import-export
     - label: SDKs & Client Libraries
-      href: https://docs.commercetools.com/sdk
+      href: /../sdk
     - label: Custom Applications
-      href: https://docs.commercetools.com/custom-applications
-      beta: true
+      href: /../custom-applications
 - menu-title: Frontend
   items:
     - label: Getting Started
-      href: https://docs.frontastic.cloud/docs/whats-frontastic
+      href: /../frontend-getting-started/
     - label: Studio
-      href: https://docs.frontastic.cloud/docs/whats-the-frontastic-studio
+      href: /../frontend-studio/
     - label: Developing
-      href: https://docs.frontastic.cloud/docs/developing-your-site-with-frontastic
+      href: /../frontend-development/
     - label: HTTP API
-      href: https://docs.frontastic.cloud/reference
+      href: /../frontend-api/

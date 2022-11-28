@@ -1,4 +1,5 @@
 import type { TBuilder } from '@commercetools-test-data/core';
+import { TVerificationStatus } from '../types/generated/mc';
 import type { TProject, TProjectGraphql } from '../project';
 
 export type TCreateUserBuilder = () => TBuilder<TUser>;
@@ -22,6 +23,17 @@ type TBaseUser = {
   launchdarklyTrackingTenant: string;
   defaultProjectKey: string;
   businessRole: string | undefined;
+  idTokenUserInfo?: {
+    iss: string;
+    sub: string;
+    aud: string;
+    exp: number;
+    iat: number;
+    email?: string | null | undefined;
+    name?: string | null | undefined;
+    additionalClaims?: string | null;
+  };
+  verificationStatus: TVerificationStatus;
 };
 
 export type TUser = TBaseUser & {

@@ -11,6 +11,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { css } from '@emotion/react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import SelectInput from '@commercetools-uikit/select-input';
 import { ErrorIcon } from '@commercetools-uikit/icons';
 import { customProperties } from '@commercetools-uikit/design-system';
@@ -31,6 +32,8 @@ type OptionType = Pick<TProject, 'key' | 'name' | 'suspension' | 'expiry'> & {
 type CustomValueContainerProps = ValueContainerProps & {
   projectCount: number;
 };
+
+const PROJECT_SWITCHER_LABEL_ID = 'project-switcher-label';
 
 export const ProjectSwitcherValueContainer = ({
   projectCount,
@@ -168,10 +171,15 @@ const ProjectSwitcher = (props: Props) => {
       data-track-component="ProjectSwitch"
       data-track-event="click"
     >
+      <AccessibleHidden>
+        <span id={PROJECT_SWITCHER_LABEL_ID}>
+          <FormattedMessage {...messages.projectsLabel} />
+        </span>
+      </AccessibleHidden>
       <SelectInput
         value={props.projectKey || ''}
         name="project-switcher"
-        aria-labelledby="project-switcher"
+        aria-labelledby={PROJECT_SWITCHER_LABEL_ID}
         onChange={(event) => {
           const selectedProjectKey = event.target.value as string;
           if (selectedProjectKey !== props.projectKey) {

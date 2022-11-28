@@ -1,5 +1,199 @@
 # @commercetools-frontend/cypress
 
+## 21.20.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@21.20.1
+  - @commercetools-frontend/application-shell@21.20.1
+
+## 21.20.0
+
+### Patch Changes
+
+- Updated dependencies [[`403e072b7`](https://github.com/commercetools/merchant-center-application-kit/commit/403e072b78e7ac63eff58b8e6372c137500fe2a5), [`68e1998b4`](https://github.com/commercetools/merchant-center-application-kit/commit/68e1998b4021121fff23e4b549615d506b795226), [`68593a817`](https://github.com/commercetools/merchant-center-application-kit/commit/68593a8173a297c2b95055eaca0269ffa9f53087), [`68e1998b4`](https://github.com/commercetools/merchant-center-application-kit/commit/68e1998b4021121fff23e4b549615d506b795226)]:
+  - @commercetools-frontend/application-shell@21.20.0
+  - @commercetools-frontend/application-config@21.20.0
+
+## 21.19.0
+
+### Patch Changes
+
+- Updated dependencies [[`671436ba3`](https://github.com/commercetools/merchant-center-application-kit/commit/671436ba322ccbbed3301f54e73c0d669d026e0b)]:
+  - @commercetools-frontend/application-shell@21.19.0
+  - @commercetools-frontend/application-config@21.19.0
+
+## 21.18.1
+
+### Patch Changes
+
+- Updated dependencies [[`33260b4f0`](https://github.com/commercetools/merchant-center-application-kit/commit/33260b4f0bba929445eda39e9207478374d984a8)]:
+  - @commercetools-frontend/application-shell@21.18.1
+  - @commercetools-frontend/application-config@21.18.1
+
+## 21.18.0
+
+### Patch Changes
+
+- [#2837](https://github.com/commercetools/merchant-center-application-kit/pull/2837) [`3959ed2a0`](https://github.com/commercetools/merchant-center-application-kit/commit/3959ed2a0012077b6366c3a22c749fe7d6e74784) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- Updated dependencies [[`19ae7155b`](https://github.com/commercetools/merchant-center-application-kit/commit/19ae7155b3fd91ba20050434c045c47665df9504), [`84c29cebe`](https://github.com/commercetools/merchant-center-application-kit/commit/84c29cebee389ff246fb1d48e2997c8c529a4750), [`4311f1aaa`](https://github.com/commercetools/merchant-center-application-kit/commit/4311f1aaac7fb51cca204f01307583b6924cd015), [`836c86aa1`](https://github.com/commercetools/merchant-center-application-kit/commit/836c86aa187125e0670b2248619a1cbaa094bec2), [`3959ed2a0`](https://github.com/commercetools/merchant-center-application-kit/commit/3959ed2a0012077b6366c3a22c749fe7d6e74784), [`53d2c287f`](https://github.com/commercetools/merchant-center-application-kit/commit/53d2c287f7572769b3038893469cde81ef987c39)]:
+  - @commercetools-frontend/application-shell@21.18.0
+  - @commercetools-frontend/application-config@21.18.0
+
+## 21.17.0
+
+### Patch Changes
+
+- [#2832](https://github.com/commercetools/merchant-center-application-kit/pull/2832) [`1ddac8ced`](https://github.com/commercetools/merchant-center-application-kit/commit/1ddac8ced2509575c621a7cda10a1305df4bb46a) Thanks [@emmenko](https://github.com/emmenko)! - Fix backwards compatibility with version < `10.9.0`
+
+- Updated dependencies [[`a5e405db4`](https://github.com/commercetools/merchant-center-application-kit/commit/a5e405db45114a5cdd4d6814968bd199e6c8a480), [`f5eb8d77c`](https://github.com/commercetools/merchant-center-application-kit/commit/f5eb8d77c606e624e6cfc2cfad3da1eaeff5fdd6)]:
+  - @commercetools-frontend/application-shell@21.17.0
+  - @commercetools-frontend/application-config@21.17.0
+
+## 21.16.0
+
+### Minor Changes
+
+- [#2823](https://github.com/commercetools/merchant-center-application-kit/pull/2823) [`1d9f3d438`](https://github.com/commercetools/merchant-center-application-kit/commit/1d9f3d4389357b9a446adfe7f1fd53290205a1d0) Thanks [@emmenko](https://github.com/emmenko)! - Implement [`cy.session`](https://www.cypress.io/blog/2021/08/04/authenticate-faster-in-tests-cy-session-command/) in the login commands, which caches and restores the user session between test runs.
+  This ultimately results in subsequent tests to run much faster (by restoring the previous session) and makes the test behave as if the user is already authenticated.
+
+  Make sure to have the option `experimentalSessionAndOrigin` turned on (in your Cypress config) to enable that.
+
+  Additionally, there is a new command `cy.loginToMerchantCenter` as a replacement of `cy.loginByOidc` (marked as _deprecated_).
+
+  The `cy.loginToMerchantCenter` command detects whether the application is running on localhost or on production and chooses the appropriate login mechanism.
+
+  - When the application runs locally, the same mechanism used in the `cy.loginByOidc` is used.
+  - When the application runs on production, a normal login flow is used where the user credentials are typed into the login form.
+
+- [#2830](https://github.com/commercetools/merchant-center-application-kit/pull/2830) [`98a698148`](https://github.com/commercetools/merchant-center-application-kit/commit/98a698148f38fce1808e85ba64e571f17842749c) Thanks [@emmenko](https://github.com/emmenko)! - By default caching the session is enabled across spec files when using the `loginToMerchantCenter` command. You can opt out of this by setting `disableCacheAcrossSpecs: true`.
+
+### Patch Changes
+
+- [#2580](https://github.com/commercetools/merchant-center-application-kit/pull/2580) [`1c40c40c9`](https://github.com/commercetools/merchant-center-application-kit/commit/1c40c40c947574ba24b411c9376640bb18c489ac) Thanks [@renovate](https://github.com/apps/renovate)! - Update `@testing-library/react-hooks` package to version `8.0.0`.
+
+- Updated dependencies [[`1c40c40c9`](https://github.com/commercetools/merchant-center-application-kit/commit/1c40c40c947574ba24b411c9376640bb18c489ac), [`11192ad4b`](https://github.com/commercetools/merchant-center-application-kit/commit/11192ad4bf186ff529255c68e95193a362308620)]:
+  - @commercetools-frontend/application-shell@21.16.0
+  - @commercetools-frontend/application-config@21.16.0
+
+## 21.15.0
+
+### Patch Changes
+
+- [#2810](https://github.com/commercetools/merchant-center-application-kit/pull/2810) [`0e49a78f8`](https://github.com/commercetools/merchant-center-application-kit/commit/0e49a78f8e3b228a9b0bb3d90781aa8e940de4bc) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies [[`0e49a78f8`](https://github.com/commercetools/merchant-center-application-kit/commit/0e49a78f8e3b228a9b0bb3d90781aa8e940de4bc)]:
+  - @commercetools-frontend/application-shell@21.15.0
+  - @commercetools-frontend/application-config@21.15.0
+
+## 21.14.3
+
+### Patch Changes
+
+- Updated dependencies [[`3ab502be1`](https://github.com/commercetools/merchant-center-application-kit/commit/3ab502be18358045b25be48a557d353985ea17b3)]:
+  - @commercetools-frontend/application-shell@21.14.3
+  - @commercetools-frontend/application-config@21.14.3
+
+## 21.14.2
+
+### Patch Changes
+
+- [#2776](https://github.com/commercetools/merchant-center-application-kit/pull/2776) [`00d9edcb4`](https://github.com/commercetools/merchant-center-application-kit/commit/00d9edcb49a144797ba3690db012e429e88a30fa) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies [[`00d9edcb4`](https://github.com/commercetools/merchant-center-application-kit/commit/00d9edcb49a144797ba3690db012e429e88a30fa)]:
+  - @commercetools-frontend/application-config@21.14.2
+  - @commercetools-frontend/application-shell@21.14.2
+
+## 21.14.1
+
+### Patch Changes
+
+- Updated dependencies [[`66e4f3296`](https://github.com/commercetools/merchant-center-application-kit/commit/66e4f329679f92483bad96d2ed10184a56cdef0c), [`ea9d188bf`](https://github.com/commercetools/merchant-center-application-kit/commit/ea9d188bf301366e7738e6d18b5bc99e7783dda2), [`abdb1843e`](https://github.com/commercetools/merchant-center-application-kit/commit/abdb1843ec5574903cb23ea8de288f40d9107b08), [`91c0da4f9`](https://github.com/commercetools/merchant-center-application-kit/commit/91c0da4f9afa92e44a22c8c3af38f545488d5e44)]:
+  - @commercetools-frontend/application-shell@21.14.1
+  - @commercetools-frontend/application-config@21.14.1
+
+## 21.14.0
+
+### Patch Changes
+
+- Updated dependencies [[`1be3924d8`](https://github.com/commercetools/merchant-center-application-kit/commit/1be3924d8f01ad97c2448c311e0d161fe5d5dc66), [`571eda725`](https://github.com/commercetools/merchant-center-application-kit/commit/571eda725b5ab44ca25bc4f75a691f7bea62d574), [`02600391a`](https://github.com/commercetools/merchant-center-application-kit/commit/02600391a90c0e17f25c25826025612e186f8d50)]:
+  - @commercetools-frontend/application-shell@21.14.0
+  - @commercetools-frontend/application-config@21.14.0
+
+## 21.13.1
+
+### Patch Changes
+
+- [`482ad98ee`](https://github.com/commercetools/merchant-center-application-kit/commit/482ad98eeb4570a583d58d476a7902ffe6cc2a94) Thanks [@emmenko](https://github.com/emmenko)! - Nothing changed, the previous release `21.13.0` had an issue publishing to NPM so we're bumping versions to trigger a new release.
+
+- Updated dependencies [[`482ad98ee`](https://github.com/commercetools/merchant-center-application-kit/commit/482ad98eeb4570a583d58d476a7902ffe6cc2a94)]:
+  - @commercetools-frontend/application-config@21.13.1
+  - @commercetools-frontend/application-shell@21.13.1
+
+## 21.13.0
+
+### Minor Changes
+
+- [#2766](https://github.com/commercetools/merchant-center-application-kit/pull/2766) [`4472a122a`](https://github.com/commercetools/merchant-center-application-kit/commit/4472a122a6ec6bf4655cf9a372b05dc8b2d2960f) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update cypress dependency to `v10`
+
+### Patch Changes
+
+- Updated dependencies [[`f66199e79`](https://github.com/commercetools/merchant-center-application-kit/commit/f66199e793c58628ab8b6c76cef8ddd0dad46260), [`d012420e5`](https://github.com/commercetools/merchant-center-application-kit/commit/d012420e563b34a1678693f19905bdd79b2317e2), [`5614ec9d8`](https://github.com/commercetools/merchant-center-application-kit/commit/5614ec9d8b9fc9c40c92ff1fde0beacbc3290e5e), [`7d97b459e`](https://github.com/commercetools/merchant-center-application-kit/commit/7d97b459e69186cec1df9d837aa265923176e34e)]:
+  - @commercetools-frontend/application-shell@21.13.0
+  - @commercetools-frontend/application-config@21.13.0
+
+## 21.12.0
+
+### Patch Changes
+
+- Updated dependencies [[`e40fcd6c`](https://github.com/commercetools/merchant-center-application-kit/commit/e40fcd6cda229fd8f7af8b33f6a5c3541f361aa0)]:
+  - @commercetools-frontend/application-shell@21.12.0
+  - @commercetools-frontend/application-config@21.12.0
+
+## 21.11.0
+
+### Patch Changes
+
+- Updated dependencies [[`eb056ebe`](https://github.com/commercetools/merchant-center-application-kit/commit/eb056ebec81d32284bfc39ba0757705849abc924)]:
+  - @commercetools-frontend/application-shell@21.11.0
+  - @commercetools-frontend/application-config@21.11.0
+
+## 21.10.0
+
+### Patch Changes
+
+- Updated dependencies [[`67b0329a`](https://github.com/commercetools/merchant-center-application-kit/commit/67b0329aeccf281e6219c657a3c35f2ca34fc465), [`e10b1b75`](https://github.com/commercetools/merchant-center-application-kit/commit/e10b1b758314783d364f5b6da9b1ddc466476e1c)]:
+  - @commercetools-frontend/application-shell@21.10.0
+  - @commercetools-frontend/application-config@21.10.0
+
+## 21.9.0
+
+### Patch Changes
+
+- [#2702](https://github.com/commercetools/merchant-center-application-kit/pull/2702) [`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413) Thanks [@emmenko](https://github.com/emmenko)! - Update Babel dependencies
+
+- Updated dependencies [[`d0584935`](https://github.com/commercetools/merchant-center-application-kit/commit/d058493588821ee249333db6f11beced11594c74), [`2f414585`](https://github.com/commercetools/merchant-center-application-kit/commit/2f414585cc324cb483b49c8d1040845d3f231ba3), [`abe2c475`](https://github.com/commercetools/merchant-center-application-kit/commit/abe2c475be2aff3781ac6151178aede1e0801f77), [`22fcb200`](https://github.com/commercetools/merchant-center-application-kit/commit/22fcb2007879bd8b10b0a5b70d02490162554e57), [`8cd781a6`](https://github.com/commercetools/merchant-center-application-kit/commit/8cd781a6f2d626fd564e6e1fd0be30991c27b4ea), [`28de0b59`](https://github.com/commercetools/merchant-center-application-kit/commit/28de0b59e8f3944eaef9000b517b384acfc4b98d), [`d0618b0a`](https://github.com/commercetools/merchant-center-application-kit/commit/d0618b0a61490ddb1d8f0b1aa26b5d03da7da38c), [`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413), [`8367e1b7`](https://github.com/commercetools/merchant-center-application-kit/commit/8367e1b71777b29d328e037148439418a66c0a72), [`21d98709`](https://github.com/commercetools/merchant-center-application-kit/commit/21d98709f12696f2f7bfd22d5d1c18cee40a4845), [`de0980f9`](https://github.com/commercetools/merchant-center-application-kit/commit/de0980f9d151f3f0a98ddbf06e0629aaf03f5239)]:
+  - @commercetools-frontend/application-shell@21.9.0
+  - @commercetools-frontend/application-config@21.9.0
+
+## 21.8.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@21.8.1
+  - @commercetools-frontend/application-shell@21.8.1
+
+## 21.8.0
+
+### Patch Changes
+
+- Updated dependencies [[`1d8c71f1`](https://github.com/commercetools/merchant-center-application-kit/commit/1d8c71f1fed656bb6dedb3379198cc6fcdb5363f), [`d6bfecf1`](https://github.com/commercetools/merchant-center-application-kit/commit/d6bfecf17c0a6a38330943cc5f195f1854248770), [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed), [`f7ec746b`](https://github.com/commercetools/merchant-center-application-kit/commit/f7ec746bfe9742a8bae5ea513db93614cce457c9), [`a98f9fb5`](https://github.com/commercetools/merchant-center-application-kit/commit/a98f9fb56a8066d2d64f1fa0f176bf130adb5227), [`1d63e7b6`](https://github.com/commercetools/merchant-center-application-kit/commit/1d63e7b6e0a77f5aa0af4ab38030455d6abedf12), [`1cc471e8`](https://github.com/commercetools/merchant-center-application-kit/commit/1cc471e8872313867afc413598b9808507dd0677)]:
+  - @commercetools-frontend/application-shell@21.8.0
+  - @commercetools-frontend/application-config@21.8.0
+
 ## 21.7.0
 
 ### Patch Changes

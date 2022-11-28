@@ -1,7 +1,6 @@
-import type { TProject } from './types';
-
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { fake, sequence, Generator } from '@commercetools-test-data/core';
+import type { TProject } from './types';
 
 const generator = Generator<TProject>({
   fields: {
@@ -9,7 +8,7 @@ const generator = Generator<TProject>({
     version: sequence(),
     createdAt: fake((f) => f.date.recent(2)),
     lastModifiedAt: fake((f) => f.date.recent(1)),
-    name: fake((f) => f.company.companyName()),
+    name: fake((f) => f.company.name()),
     key: '',
     countries: ['de'],
     currencies: ['EUR'],

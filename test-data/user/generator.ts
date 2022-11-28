@@ -1,6 +1,7 @@
 import type { TUser } from './types';
 
 import { fake, sequence, Generator } from '@commercetools-test-data/core';
+import { TVerificationStatus } from '../types/generated/mc';
 
 const generator = Generator<TUser>({
   fields: {
@@ -23,6 +24,8 @@ const generator = Generator<TUser>({
     launchdarklyTrackingTeam: '',
     launchdarklyTrackingTenant: '',
     projects: null,
+    idTokenUserInfo: null,
+    verificationStatus: TVerificationStatus.Verified,
   },
 });
 

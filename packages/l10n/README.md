@@ -19,7 +19,6 @@ $ npm install --save @commercetools-frontend/l10n
 - `es`
 - `fr-FR`
 - `zh-CN`
-- `ja`
 
 ## Hooks
 
@@ -97,6 +96,25 @@ First, download the data (`core.zip`) for a specific version from the [downloads
 Then extract the data and copy the `core` folder to this package, and rename it to e.g. `cldr-v35`. Then point the `cldr` library to the folder location.
 
 Run the script, which uses the new data.
+
+#### Generating Time Zone Data
+
+Translations for time zones are located in `data/time-zones/`. There is a `core.json` and a file for each supported locale (`<locale>.json`). Transifex integration for these translations will be added in a subsequent PR.
+
+Only some time zones have translations. For those time zones that have not been translated, each have been mapped to a time zone that does have a translation in `data/time-zones/translations-map.json`. This ensures that each IANA time zone identifier returned by `moment.tz.names()` will show an accurate translation.
+
+The IANA [peridically updates](https://www.rfc-editor.org/rfc/rfc6557.html) its' [list of timezones](https://www.iana.org/time-zones). When the IANA releases a new set of time zones, [it will be added](https://momentjs.com/docs/#/-project-status/) to `moment-timezone`.
+
+When `generate-l10n-data` is run, it gets the list of all time zones being returned by `moment-timezone` by running `moment.tz.names()`, and compares it to the list of translated (included) and mapped (excluded) time zones in `core.json` and `translations-map.json`.
+
+For each unhandled time zone returned, CLI will prompt the user to either `translate`, `exclude`, or `ignore` it.
+
+If the user selects `translate`, they must enter an english language translation string. That string will then be added to `core.json` and each `<locale>.json` for subsequent translation. It will also be added as a key in `translations-map.json` so that subsequent time zones can be mapped to its' translation if they are excluded.
+
+If the user selects `exclude`, they must enter the IANA time zone id of a time zone that currently has a translation in order to map the time zone to a translation string. The `excluded` translation is then added to the array for the give translated time zone in `translations-map.json`, e.g.:
+`"America/New_York": ["EST", "EDT"]`
+
+If the user selects `ignore`, the unhandled time zone will be ignored until the `generate-l10n-data` script is run again.
 
 ## Utils
 

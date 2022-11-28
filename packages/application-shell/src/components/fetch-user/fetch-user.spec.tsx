@@ -9,15 +9,7 @@ import FetchUser from './fetch-user';
 
 jest.mock('@commercetools-frontend/sentry');
 
-const mockServer = setupServer(
-  graphql.query('FetchLoggedInUser', (_req, res, ctx) =>
-    res.once(
-      ctx.data({
-        user: UserMock.random().firstName('John').buildGraphql<TUserGraphql>(),
-      })
-    )
-  )
-);
+const mockServer = setupServer();
 afterEach(() => {
   mockServer.resetHandlers();
 });
@@ -30,7 +22,15 @@ const renderUser = () =>
       {({ isLoading, error, user }) => {
         if (isLoading) return <div>{'loading...'}</div>;
         if (error) return <div>{`Error: ${error.message}`}</div>;
-        if (user) return <div>{`User: ${user.firstName}`}</div>;
+        if (user)
+          return (
+            <div>
+              <p>{`User: ${user.firstName}`}</p>
+              {user.idTokenUserInfo && (
+                <p>{`User SSO email: ${user.idTokenUserInfo.email}`}</p>
+              )}
+            </div>
+          );
         return null;
       }}
     </FetchUser>,
@@ -42,11 +42,54 @@ const renderUser = () =>
 describe('rendering', () => {
   describe('when fetching user succeeds', () => {
     it('should fetch user and pass data to children function', async () => {
+      mockServer.use(
+        graphql.query('FetchLoggedInUser', (_req, res, ctx) =>
+          res(
+            ctx.data({
+              user: UserMock.random()
+                .firstName('John')
+                .buildGraphql<TUserGraphql>(),
+            })
+          )
+        )
+      );
+
       renderUser();
 
       await waitForElementToBeRemoved(() => screen.queryByText('loading...'));
 
       expect(screen.getByText(/John/i)).toBeInTheDocument();
+    });
+
+    it('should fetch SSO user and pass data to children function', async () => {
+      mockServer.use(
+        graphql.query('FetchLoggedInUser', (_req, res, ctx) =>
+          res(
+            ctx.data({
+              user: UserMock.random()
+                .firstName('Paul')
+                .idTokenUserInfo({
+                  iss: 'issuer',
+                  sub: 'subject',
+                  aud: 'audience',
+                  exp: 123456789,
+                  iat: 987654321,
+                  email: 'p.good@nowhere.com',
+                  name: 'Paul Good',
+                  additionalClaims: '{"oid":"1234-dfdshjk-1232"}',
+                })
+                .buildGraphql<TUserGraphql>(),
+            })
+          )
+        )
+      );
+
+      renderUser();
+
+      await waitForElementToBeRemoved(() => screen.queryByText('loading...'));
+
+      expect(screen.getByText(/Paul/i)).toBeInTheDocument();
+      expect(screen.getByText(/p\.good@nowhere\.com/i)).toBeInTheDocument();
     });
   });
 

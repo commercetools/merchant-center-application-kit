@@ -38,7 +38,8 @@ const isHideAllNotificationsAction = (
 ): action is TNotificationActionHideAll =>
   action.type === HIDE_ALL_PAGE_NOTIFICATIONS;
 
-export default ({ getState }: MiddlewareAPI) =>
+const hideNotificationsMiddleware =
+  ({ getState }: MiddlewareAPI) =>
   (next: Dispatch<Action>) =>
   (action: Action) => {
     if (
@@ -53,3 +54,5 @@ export default ({ getState }: MiddlewareAPI) =>
 
     return next(action);
   };
+
+export default hideNotificationsMiddleware;

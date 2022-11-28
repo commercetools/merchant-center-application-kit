@@ -1,12 +1,14 @@
-import type {
-  ReducersMapObject,
-  Store,
-  Middleware,
-  StoreEnhancer,
-} from 'redux';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import mapValues from 'lodash/mapValues';
-import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
+import {
+  configureStore,
+  combineReducers,
+  applyMiddleware,
+  type ReducersMapObject,
+  type Store,
+  type Middleware,
+  type StoreEnhancer,
+} from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 import omitEmpty from 'omit-empty-es';
 import {
@@ -44,12 +46,10 @@ export type TEnhancedStore = Store & {
   removeReducers: (payload: { id: string }) => void;
 };
 
-const identityStoreEnhancer: StoreEnhancer<unknown, {}> = (noop) => noop;
-
 const mergeObjectValues = <T>(object: { [key: string]: T }) =>
   Object.entries<T>(object).reduce(
     (acc, [, value]) => ({ ...acc, ...value }),
-    {}
+    {} as T
   );
 
 const patchedGetCorrelationId = () =>
@@ -72,6 +72,9 @@ const sdkMiddleware = createSdkMiddleware({
   getAdditionalHeaders,
 });
 
+/**
+ * @deprecated: This function should not be used directly anymore.
+ */
 export const applyDefaultMiddlewares = (...middlewares: Middleware[]) =>
   applyMiddleware(...middlewares, thunk, loggerMiddleware);
 
@@ -106,23 +109,30 @@ export const createReduxStore = (
   // additional middleware, used for testing
   additionalMiddlewares: Middleware[] = []
 ): TEnhancedStore => {
-  const store = createStore(
-    createInternalReducer(undefined, preloadedState),
+  const store = configureStore({
     preloadedState,
-    compose(
-      applyDefaultMiddlewares(
-        ...additionalMiddlewares,
-        hideNotificationsMiddleware,
-        notificationsMiddleware,
-        sdkMiddleware
-      ),
-      window.__REDUX_DEVTOOLS_EXTENSION__
-        ? window.__REDUX_DEVTOOLS_EXTENSION__({
-            actionsBlacklist: [SHOW_LOADING, HIDE_LOADING],
-          })
-        : identityStoreEnhancer
-    )
-  );
+    reducer: createInternalReducer(undefined, preloadedState),
+    devTools: {
+      actionsDenylist: [SHOW_LOADING, HIDE_LOADING],
+    },
+    middleware: (getDefaultMiddleware) => [
+      ...additionalMiddlewares,
+      hideNotificationsMiddleware,
+      notificationsMiddleware,
+      sdkMiddleware,
+      ...getDefaultMiddleware({
+        // https://redux-toolkit.js.org/usage/usage-guide#working-with-non-serializable-data
+        serializableCheck: false,
+        // This default check is logging warnings to console for some MC FE tests, probably
+        // due to lower resources when running tests on CI.
+        // We don't consider this check to be very valuable in this context so we decided
+        // to turn it off.
+        // https://redux-toolkit.js.org/api/immutabilityMiddleware
+        immutableCheck: false,
+      }),
+      loggerMiddleware,
+    ],
+  });
 
   const enhancedStore = store as TEnhancedStore;
 

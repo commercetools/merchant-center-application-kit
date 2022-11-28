@@ -1,6 +1,7 @@
-import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 import Ajv, { type ErrorObject } from 'ajv';
 import schemaJson from '../schema.json';
+import { ENTRY_POINT_URI_PATH_REGEX } from './constants';
+import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 
 type ErrorAdditionalProperty = ErrorObject<
   'additionalProperty',
@@ -43,6 +44,16 @@ export const validateConfig = (
   const valid = validate(config);
   if (!valid) {
     throw new Error(printErrors(validate.errors));
+  }
+};
+
+export const validateEntryPointUriPath = (
+  config: JSONSchemaForCustomApplicationConfigurationFiles
+) => {
+  if (!config.entryPointUriPath.match(ENTRY_POINT_URI_PATH_REGEX)) {
+    throw new Error(
+      'Invalid "entryPointUriPath". The value may be between 2 and 64 characters and only contain alphanumeric lowercase characters, non-consecutive underscores and hyphens. Leading and trailing underscore and hyphens are also not allowed.'
+    );
   }
 };
 

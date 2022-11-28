@@ -14,7 +14,7 @@ In this document we explain what's new, what changed, and how to actually migrat
 
 Please take your time and read this document carefully to familiarize yourself with the changes, new concepts, and steps required to migrate your existing Custom Applications.
 
-**Project-level Custom Applications must be migrated until the end of July 2022**.<br />
+**Project-level Custom Applications must be migrated until Friday, 16 September 2022**.<br />
 During this period, Project-level Custom Applications still work but are considered in **maintenance mode**. **Adding new Project-level Custom Applications won't be possible anymore.**
 
 After the migration deadline, Project-level Custom Applications won't be accessible anymore.
@@ -29,12 +29,6 @@ Before we go into details about the new release and features, let's define some 
 
 * **Org-level Custom Applications** refers to the new release and it's the default functionality from now on. Application Kit packages (`@commercetools-frontend/*`) must use version `>= 21`.
 * **Project-level Custom Applications** refers to the legacy functionality up until now. This is still available in maintenance mode during the migration period and will be removed afterwards.
-
-<Info>
-
-The documentation for Project-level Custom Applications [remains available](https://docs.commercetools.com/custom-applications/legacy) for the migration period.
-
-</Info>
 
 Up until now, Project-level Custom Applications had to be defined on a per Project level (hence the term) under **Settings > Custom Applications**. After registering a new Custom Application you could activate it and start using it.
 The Custom Application was only available for that specific Project. If you wanted to use the Custom Application in another Project, you would need to go through the registration process all over again.
@@ -263,11 +257,11 @@ The session is saved in the `sessionStorage` (not a cookie like in the productio
 
 You can still switch between Projects and the session token is automatically replaced in the background without having to log in again.
 
-<Warning>
+<Info>
 
-Local development and login is only allowed for users being part of the `Administrators` Team of your Organization.
+Local development and login are only allowed for users being part of the `Administrators` Team of your Organization.
 
-</Warning>
+</Info>
 
 ## Assign the Application ID
 

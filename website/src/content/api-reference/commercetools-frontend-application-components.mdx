@@ -43,6 +43,9 @@ npm --save install react react-dom react-intl
 * [TabularMainPage](#tabularmainpage)
 * [TabularDetailPage](#tabulardetailpage)
 * [TabHeader](#tabheader)
+* [InfoMainPage](#infomainpage)
+* [FormMainPage](#formmainpage)
+* [CustomFormMainPage](#customformmainpage)
 
 ## InfoDialog
 
@@ -225,6 +228,7 @@ const EmailForm = () => {
 | `labelPrimary`                  | `string` \| `Intl message` |        | -                 | `Save` | The label for the primary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#static-properties-1).                                                                                  |
 | `onSecondaryButtonClick`        | `function`                 |    ✅    | -                 | -         | Called when the secondary button is clicked.                                                                                                                                                                                                                                                                    |
 | `onPrimaryButtonClick`          | `function`                 |    ✅    | -                 | -         | Called when the primary button is clicked.                                                                                                                                                                                                                                                                      |
+| `iconLeftSecondaryButton`      | `node`                     |    -     | -                 | -         | The icon for the secondary button label.                                                                                                                                                                                                                                                                        |
 | `isPrimaryButtonDisabled`       | `boolean`                  |    -     | -                 | false     | Indicates whether the primary button is deactivated or not.                                                                                                                                                                                                                                                        |
 | `dataAttributesSecondaryButton` | `object`                   |    -     | -                 | -         | Use this prop to pass `data-` attributes to the secondary button.                                                                                                                                                                                                                                               |
 | `dataAttributesPrimaryButton`   | `object`                   |    -     | -                 | -         | Use this prop to pass `data-` attributes to the primary button.                                                                                                                                                                                                                                                 |
@@ -362,6 +366,7 @@ const AccountPage = () => {
 | `labelPrimaryButton`                  | `string` \| `Intl message` |        | -                 | `Save` | The label for the primary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#static-properties-2).                                                                                  |
 | `onSecondaryButtonClick`        | `function`                 |    ✅    | -                        | Called when the secondary button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | `onPrimaryButtonClick`          | `function`                 |    ✅    | -                        | Called when the primary button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `iconLeftSecondaryButton`      | `node`                     |    -     | -                         | The icon for the secondary button label.                                                                                                                                                                                                                                                                        |
 | `isPrimaryButtonDisabled`       | `boolean`                  |    -     | `false`                  | Indicates whether the primary button is deactivated or not.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `isSecondaryButtonDisabled`     | `boolean`                  |    -     | `false`                  | Indicates whether the secondary button is deactivated or not.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | `dataAttributesSecondaryButton` | `object`                   |    -     | -                        | Use this prop to pass `data-` attributes to the secondary button.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
@@ -617,6 +622,7 @@ const AccountPage = () => {
 | `labelPrimaryButton`            | `string` or `Intl message`      |          | `Save`                             | The label for the primary button as a string, or as an Intl message (`{ id, defaultMessage }`).                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `onPrimaryButtonClick`          | `function`                      |    ✅    | -                                  | Called when the primary button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `onSecondaryButtonClick`        | `function`                      |    ✅    | -                                  | Called when the secondary button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `iconLeftSecondaryButton`      | `node`                          |    -     | -                                  | The icon for the secondary button label.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `isPrimaryButtonDisabled`       | `boolean`                       |    -     | `false`                            | Indicates whether the primary button is deactivated or not.                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | `isSecondaryButtonDisabled`     | `boolean`                       |    -     | `false`                            | Indicates whether the secondary button is deactivated or not.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | `dataAttributesSecondaryButton` | `object`                        |    -     | -                                  | Use this prop to pass `data-` attributes to the secondary button.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
@@ -1033,6 +1039,233 @@ In a tabular page, tabs must be rendered using the `<TabHeader>` component via t
 | `intlMessage`                   | `Intl message`                   |   -      | -                        | The label of the tab, using an `intl` message object. Required if `label` is not provided.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | `isDisabled`                    | `boolean`                        |   -      | `false`                  | Indicates whether the tab is deactivated or not.                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | `exactPathMatch`                | `boolean`                        |   -      | `false`                  | If `true`, marks the tab as active if the link matches exactly the route.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                                             |
+
+## InfoMainPage
+
+<Playground urlPath="info-main-page" />
+
+Info Main pages are controlled components used to render a page to show more information about a particular feature. Similar to `<InfoModalPage>` but not rendered as a modal.
+
+### Usage
+
+```jsx
+import { InfoMainPage } from '@commercetools-frontend/application-components';
+import Text from '@commercetools-uikit/text';
+
+const MainPage = () => {
+  return (
+    <InfoMainPage
+      title="Main page"
+    >
+      <Text.Body>{'Lorem ipsum ...'}</Text.Body>
+    </InfoMainPage>
+  );
+}
+```
+
+### Properties
+
+| Props                           | Type                            | Required | Default                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------------------- | ------------------------------- | :------: | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`                         | `string`                        |    -     | -                        | The title of the page.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `subtitle`                      | `node` or `string`              |    -     | -                        | The subtitle of the page, usually a React component. If a string is passed, it's rendered as a paragraph.                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `customTitleRow`                | `node`                          |    -     | -                        | Pass a React.node to be used in place of the `title` and `subtitle`.                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `children`                      | `node`                          |    ✅    | -                        | Content rendered within the page. It's expected to have its style fully customized.                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+
+### Static properties
+
+* Page Header title
+
+  Pre-configured page header title component to use as part of a custom title row.
+
+  ```js
+  InfoMainPage.PageHeaderTitle = PageHeaderTitle;
+  ```
+
+
+## FormMainPage
+
+<Playground urlPath="form-main-page" />
+
+Form Main pages are controlled components used to render a page with a form or something that requires user input. Similar to `<FormModalPage>` but not rendered as a modal. The header includes buttons to control the submission or cancellation of the form.
+
+If you need to customize these buttons, you will need to use the `<CustomFormMainPage>` component instead.
+
+### Usage
+
+```jsx
+import { useFormik } from 'formik';
+import TextField from '@commercetools-uikit/text-field';
+import TextInput from '@commercetools-uikit/text-input';
+import { FormMainPage } from '@commercetools-frontend/application-components';
+
+const MainPage = () => {
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    validate: (formikValues) => {
+      if (TextInput.isEmpty(formikValues.email)) {
+        return { email: { missing: true } };
+      }
+      return {};
+    },
+    onSubmit: async (formikValues) => {
+      alert(`email: ${formikValues.email}`);
+      // Do something async
+    },
+  });
+
+  return (
+    <FormMainPage
+      title="Manage your account"
+      isPrimaryButtonDisabled={formik.isSubmitting}
+      onSecondaryButtonClick={formik.handleReset}
+      onPrimaryButtonClick={formik.handleSubmit}
+    >
+      <TextField
+        name="email"
+        title="Email"
+        isRequired={true}
+        value={formik.values.email}
+        errors={formik.errors.email}
+        touched={formik.touched.email}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+      />
+    </FormMainPage>
+  );
+}
+```
+
+### Properties
+
+| Props                           | Type                            | Required | Default                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------------------- | ------------------------------- | :------: | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`                         | `string`                        |    -     | -                        | The title of the page.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `subtitle`                      | `node` or `string`              |    -     | -                        | The subtitle of the page, usually a React component. If a string is passed, it's rendered as a paragraph.                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `customTitleRow`                | `node`                          |    -     | -                        | Pass a React.node to be used in place of the `title` and `subtitle`.                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `children`                      | `node`                          |    ✅    | -                        | Content rendered within the page. It's expected to have its style fully customized.                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `labelSecondaryButton`          | `string` or `Intl message`      |          | `Cancel`                 | The label for the secondary button as a string, or as an Intl message (`{ id, defaultMessage }`).                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `iconLeftSecondaryButton`       | `node`                          |          |                          | The icon for the secondary button label.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `labelPrimaryButton`            | `string` or `Intl message`      |          | `Save`                   | The label for the primary button as a string, or as an Intl message (`{ id, defaultMessage }`).                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `onPrimaryButtonClick`          | `function`                      |    ✅    | -                        | Called when the primary button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `onSecondaryButtonClick`        | `function`                      |    ✅    | -                        | Called when the secondary button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `isPrimaryButtonDisabled`       | `boolean`                       |    -     | `false`                  | Indicates whether the primary button is deactivated or not.                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `isSecondaryButtonDisabled`     | `boolean`                       |    -     | `false`                  | Indicates whether the secondary button is deactivated or not.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `dataAttributesSecondaryButton` | `object`                        |    -     | -                        | Use this prop to pass `data-` attributes to the secondary button.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `dataAttributesPrimaryButton`   | `object`                        |    -     | -                        | Use this prop to pass `data-` attributes to the primary button.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `hideControls`                  | `boolean`                       |    -     | `false`                  | Hides the form controls.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+
+### Static properties
+
+* Page Header title
+
+  Pre-configured page header title component to use as part of a custom title row.
+
+  ```js
+  FormMainPage.PageHeaderTitle = PageHeaderTitle;
+  ```
+
+* `FormMainPage.Intl`
+
+  This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+  The Intl messages can for instance be used for button labels.
+
+
+## CustomFormMainPage
+
+<Playground urlPath="custom-form-main-page" />
+
+Custom Form Main page is a variation of the `<FormMainPage>` that allow passing custom control elements via formControls. This is useful in case the main page needs different control elements than the default ones (primary and secondary button).
+
+### Usage
+
+```jsx
+import { useFormik } from 'formik';
+import TextField from '@commercetools-uikit/text-field';
+import TextInput from '@commercetools-uikit/text-input';
+import { CustomFormMainPage } from '@commercetools-frontend/application-components';
+
+const AccountPage = () => {
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    validate: (formikValues) => {
+      if (TextInput.isEmpty(formikValues.email)) {
+        return { email: { missing: true } };
+      }
+      return {};
+    },
+    onSubmit: async (formikValues) => {
+      alert(`email: ${formikValues.email}`);
+      // Do something async
+    },
+  });
+
+  return (
+    <CustomFormMainPage
+      title="Manage your account"
+      formControls={
+        <>
+          <CustomFormMainPage.FormSecondaryButton onClick={formik.handleReset} />
+          <CustomFormMainPage.FormPrimaryButton onClick={formik.handleSubmit} />
+          <CustomFormMainPage.FormDeleteButton onClick={handleDelete} />
+        </>
+      }
+    >
+      <TextField
+        name="email"
+        title="Email"
+        isRequired={true}
+        value={formik.values.email}
+        errors={formik.errors.email}
+        touched={formik.touched.email}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+      />
+    </CustomFormMainPage>
+  );
+};
+```
+
+### Properties
+
+| Props                           | Type                            | Required | Default                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------------------- | ------------------------------- | :------: | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`                         | `string`                        |    -     | -                        | The title of the page.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `subtitle`                      | `node` or `string`              |    -     | -                        | The subtitle of the page, usually a React component. If a string is passed, it's rendered as a paragraph.                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `customTitleRow`                | `node`                          |    -     | -                        | Pass a React.node to be used in place of the `title` and `subtitle`.                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `children`                      | `node`                          |    ✅    | -                        | Content rendered within the page. It's expected to have its style fully customized.                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `formControls`                  | `node`                          |    -     | -                        | Pass a React.node with form controls. You can use the pre-made form buttons exposed by this component or you can use your own.                                                                                                                                                                                                                                                                                                                                                                                             |
+| `hideControls`                  | `boolean`                       |    -     | `false`                  | Hides the form controls.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+
+### Static properties
+
+* Form Control Buttons
+
+  Pre-configured form control buttons to easily re-use them in the custom controls.
+
+  ```js
+  CustomFormMainPage.FormPrimaryButton = FormPrimaryButton;
+  CustomFormMainPage.FormSecondaryButton = FormSecondaryButton;
+  CustomFormMainPage.FormDeleteButton = FormDeleteButton;
+  ```
+
+* Page Header title
+
+  Pre-configured page header title component to use as part of a custom title row.
+
+  ```js
+  CustomFormMainPage.PageHeaderTitle = PageHeaderTitle;
+  ```
+
+* `CustomFormMainPage.Intl`
+
+  This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+  The Intl messages can for instance be used for button labels.
+
 
 # Hooks
 

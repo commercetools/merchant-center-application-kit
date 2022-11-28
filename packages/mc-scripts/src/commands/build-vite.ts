@@ -6,6 +6,8 @@ import pluginReact from '@vitejs/plugin-react';
 import { generateTemplate } from '@commercetools-frontend/mc-html-template';
 import { packageLocation as applicationStaticAssetsPath } from '@commercetools-frontend/assets';
 import paths from '../config/paths';
+import pluginSvgr from '../vite-plugins/vite-plugin-svgr';
+import pluginDynamicBaseAssetsGlobals from '../vite-plugins/vite-plugin-dynamic-base-assets-globals';
 
 async function run() {
   const DEFAULT_PORT = parseInt(String(process.env.HTTP_PORT), 10) || 3001;
@@ -25,13 +27,13 @@ async function run() {
 
   await build({
     root: paths.appRoot,
+    base: './', // <-- Important to allow configuring the runtime base path.
     define: {
       'process.env.DEBUG': JSON.stringify(false),
       'process.env.NODE_ENV': JSON.stringify('production'),
     },
     build: {
       outDir: 'public',
-      assetsDir: '.',
       rollupOptions: {
         // This is necessary to instruct Vite that the `index.html` (template)
         // is located in the `/public` folder.
@@ -43,6 +45,15 @@ async function run() {
     server: {
       port: DEFAULT_PORT,
     },
+    experimental: {
+      // https://vitejs.dev/guide/build.html#advanced-base-options
+      renderBuiltUrl(filename, { hostType }) {
+        if (hostType === 'html') {
+          return `__CDN_URL__${filename}`;
+        }
+        return { runtime: `window.__toCdnUrl(${JSON.stringify(filename)})` };
+      },
+    },
     plugins: [
       pluginGraphql() as Plugin,
       pluginReact({
@@ -51,6 +62,8 @@ async function run() {
           plugins: ['@emotion/babel-plugin'],
         },
       }),
+      pluginSvgr(),
+      pluginDynamicBaseAssetsGlobals(),
     ],
   });
 

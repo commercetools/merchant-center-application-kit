@@ -62,7 +62,7 @@ To make it easier to reference the Merchant Center API URL, for example in the [
 
 The Merchant Center API is protected by a session token via the HTTP `Cookie` header, which is set only for `<cloud-region>.commercetools.com` domains.
 
-In the browser, the session token is stored in a secure cookie named `mcAccessToken`.
+In the browser, the session token is stored in a secure cookie named `mcAccessToken` and is valid for 30 days.
 
 ```
 Cookie: mcAccessToken=<jwt>
@@ -72,7 +72,17 @@ Sending the cookie to the Merchant Center API is already configured in the built
 
 <Info>
 
-In local development the authentication is handled a bit differently using a OpenID Connect (OIDC) login workflow. The session token is stored in `sessionStorage` and sent to the Merchant Center API via `Authentication` HTTP header.
+In local development the authentication is handled a bit differently using a OpenID Connect (OIDC) login workflow. The session token is stored in the browser's session storage and sent to the Merchant Center API via the `Authorization` HTTP header.
+
+```
+Authorization: Bearer <token>
+```
+
+The token can be accessed from session storage as following:
+
+```js
+window.sessionStorage.getItem('sessionToken')
+```
 
 </Info>
 
@@ -90,6 +100,19 @@ The Merchant Center API provides two endpoints for authenticating a user:
 When you develop a Custom Application all authentication logic is handled implicitly and you don't need to worry about it.
 
 </Info>
+
+# HTTP headers
+
+Accessing the Merchant Center API requires to include certain HTTP headers in the HTTP request.
+
+- `Accept` (**required**): Set it to `application/json`.
+- `Authorization` (**required only in development**): See [authentication](#authentication).
+- `Content-Type` (**required when sending a payload**): Set it to `application/json` when sending JSON data.
+- `X-Application-ID` (**required**): The identifier of the Custom Application. Set it to `<applicationId>:<entryPointUriPath>` (see [Application config](/api-reference/application-config) for `applicationId` and `entryPointUriPath`).
+- `X-Correlation-ID` (recommended): A unique identifier of the request. Set it to `mc/<projectKey>/<userId>/<randomHash>`. The `randomHash` can be generated using the [uuid](https://www.npmjs.com/package/uuid) library.
+- `X-Project-Key` (**required**): The key of the commercetools Project currently being used by the Custom Application. The Merchant Center API Gateway will perform a validation check to ensure that the user has access to the Project, then forward the request to your server only if the check was successful.<br/>
+The project key can be retrieved from the [Application context](/api-reference/commercetools-frontend-application-shell-connectors#application-context).
+- `X-User-Agent` (recommended): Set it to a custom user-agent identifying the HTTP client, for example using the [HTTP user-agent](https://www.npmjs.com/package/@commercetools/http-user-agent) library.
 
 # API Gateway endpoints
 

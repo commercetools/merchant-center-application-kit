@@ -1,51 +1,13 @@
 import type { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
+import { mergeMessages, mapLocaleToIntlLocale } from './utils';
+import loadMomentLocales from './moment-locales';
 
-import moment from 'moment';
-import {
-  mergeMessages,
-  mapLocaleToMomentLocale,
-  mapLocaleToIntlLocale,
-} from './utils';
-
-type MomentImportData = {
-  default: moment.Locale;
-};
-type I18NImportData = {
+export type I18NImportData = {
   default: Record<string, string> | Record<string, MessageFormatElement[]>;
 };
-type MergedMessages =
+export type MergedMessages =
   | Record<string, string>
   | Record<string, MessageFormatElement[]>;
-
-const getMomentChunkImport = (locale: string): Promise<MomentImportData> => {
-  const momentLocale = mapLocaleToMomentLocale(locale);
-  switch (momentLocale) {
-    case 'de':
-      return import(
-        /* webpackChunkName: "i18n-moment-locale-de" */ 'moment/locale/de'
-      );
-    case 'es':
-      return import(
-        /* webpackChunkName: "i18n-moment-locale-es" */ 'moment/locale/es'
-      );
-    case 'fr':
-      return import(
-        /* webpackChunkName: "i18n-moment-locale-fr" */ 'moment/locale/fr'
-      );
-    case 'zh-cn':
-      return import(
-        /* webpackChunkName: "i18n-moment-locale-zh-cn" */ 'moment/locale/zh-cn'
-      );
-    case 'ja':
-      return import(
-        /* webpackChunkName: "i18n-moment-locale-ja" */ 'moment/locale/ja'
-      );
-    default:
-      return import(
-        /* webpackChunkName: "i18n-moment-locale-en-gb" */ 'moment/locale/en-gb'
-      );
-  }
-};
 
 const getUiKitChunkImport = (locale: string): Promise<I18NImportData> => {
   const intlLocale = mapLocaleToIntlLocale(locale);
@@ -65,10 +27,6 @@ const getUiKitChunkImport = (locale: string): Promise<I18NImportData> => {
     case 'zh-CN':
       return import(
         /* webpackChunkName: "i18n-ui-kit-locale-zh-CN" */ '@commercetools-uikit/i18n/compiled-data/zh-CN.json'
-      );
-    case 'ja':
-      return import(
-        /* webpackChunkName: "i18n-ui-kit-locale-ja" */ '@commercetools-uikit/i18n/compiled-data/ja.json'
       );
     default:
       return import(
@@ -95,10 +53,6 @@ const getAppKitChunkImport = (locale: string): Promise<I18NImportData> => {
     case 'zh-CN':
       return import(
         /* webpackChunkName: "i18n-app-kit-locale-zh-CN" */ '../compiled-data/zh-CN.json'
-      );
-    case 'ja':
-      return import(
-        /* webpackChunkName: "i18n-app-kit-locale-ja" */ '../compiled-data/ja.json'
       );
     default:
       return import(
@@ -128,10 +82,6 @@ const getCommunityKitChunkImport = async (
       return await import(
         /* webpackChunkName: "i18n-community-kit-locale-zh-CN" */ '@commercetools-community-kit/i18n/compiled-data/zh-CN.json'
       );
-    case 'ja':
-      return await import(
-        /* webpackChunkName: "i18n-community-kit-locale-ja" */ '@commercetools-community-kit/i18n/compiled-data/ja.json'
-      );
     default:
       return await import(
         /* webpackChunkName: "i18n-community-kit-locale-en" */ '@commercetools-community-kit/i18n/compiled-data/en.json'
@@ -145,7 +95,7 @@ export default async function loadI18n(
   locale: string
 ): Promise<MergedMessages> {
   // Load moment localizations
-  await getMomentChunkImport(locale);
+  await loadMomentLocales(locale);
 
   // Load ui-kit translations
   const uiKitChunkImport = await getUiKitChunkImport(locale);

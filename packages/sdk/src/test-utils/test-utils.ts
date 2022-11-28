@@ -1,10 +1,39 @@
+import { deepEqual } from 'fast-equals';
+import { v4 as uuid } from 'uuid';
 import type { Action, Dispatch } from 'redux';
-import type { HttpErrorType } from '@commercetools/sdk-client';
 import type { TSdkAction, Json } from '../types';
 
-import { deepEqual } from 'fast-equals';
-// eslint-disable-next-line import/named
-import { v4 as uuid } from 'uuid';
+/**
+ * START -->
+ * Remove once `@commercetools/sdk-client` exposes proper types.
+ */
+export type Headers = { [key: string]: string };
+export type MethodType =
+  | 'GET'
+  | 'POST'
+  | 'DELETE'
+  | 'HEAD'
+  | 'OPTIONS'
+  | 'PUT'
+  | 'PATCH'
+  | 'TRACE';
+export type ClientRequest = {
+  uri: string;
+  method: MethodType;
+  body?: unknown;
+  headers?: Headers;
+};
+export type HttpErrorType = {
+  name: string;
+  message: string;
+  code: number;
+  status: number;
+  statusCode: number;
+  originalRequest: ClientRequest;
+  body?: Json;
+  headers?: Headers;
+};
+/* <-- END */
 
 interface TSdkMockBase {
   action: TSdkAction;

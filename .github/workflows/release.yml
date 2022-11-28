@@ -9,6 +9,8 @@ jobs:
   release:
     runs-on: ubuntu-latest
 
+    timeout-minutes: 15
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -19,28 +21,8 @@ jobs:
           # https://github.community/t/action-does-not-trigger-another-on-push-tag-action/17148/8
           token: ${{ secrets.RELEASE_GITHUB_TOKEN }}
 
-      - name: Setup Node (uses version in .nvmrc)
-        uses: actions/setup-node@v3
-        with:
-          node-version-file: '.nvmrc'
-
-      - name: Get yarn cache
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-
-      - uses: actions/cache@v3
-        with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install dependencies
-        run: yarn install --immutable
-        env:
-          # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L14-L18
-          # https://github.com/marketplace/actions/cypress-io#custom-install
-          CYPRESS_INSTALL_BINARY: 0
+      - name: Installing dependencies and building packages
+        uses: ./.github/actions/ci
 
       - name: Creating .npmrc
         run: |
@@ -51,16 +33,24 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Building packages
-        run: yarn build
+      - name: Storing release version for changeset
+        id: release_version
+        run: echo "::set-output name=value::$(./scripts/print_release_version.sh)"
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
 
-      - name: Create Release Pull Request or Publish to npm
+      - name: Creating release pull request or publishing release to npm registry
         id: changesets
-        uses: changesets/action@v1.2.2
+        # uses: changesets/action@v1.3.0
+        uses: dotansimha/changesets-action@v1.3.3
         with:
           publish: yarn changeset publish
           version: yarn changeset:version-and-format
           commit: 'ci(changesets): version packages'
+          createGithubReleases: aggregate
+          githubReleaseName: v${{ steps.release_version.outputs.value }}
+          githubTagName: v${{ steps.release_version.outputs.value }}
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
           SKIP_POSTINSTALL_DEV_SETUP: true
@@ -74,3 +64,20 @@ jobs:
           yarn changeset publish --tag canary
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
+
+      - name: Building Playground application
+        if: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
+        run: yarn playground:build
+        env:
+          APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
+          MC_API_URL: ${{ secrets.MC_API_URL }}
+          CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
+          HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
+
+      - name: Deploying Playground application to Vercel (production)
+        if: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
+        run: |
+          yarn workspace @commercetools-local/playground run deploy --prod --token="${{ secrets.VERCEL_TOKEN_PLAYGROUND }}"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID_PLAYGROUND }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_PLAYGROUND }}

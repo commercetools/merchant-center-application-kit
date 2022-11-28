@@ -9,14 +9,6 @@
       "destination": "/"
     },
     {
-      "source": "/custom-applications/legacy",
-      "destination": "https://mc-custom-applications-legacy.commercetools.vercel.app"
-    },
-    {
-      "source": "/custom-applications/legacy/(.*)",
-      "destination": "https://mc-custom-applications-legacy.commercetools.vercel.app/$1"
-    },
-    {
       "source": "/custom-applications/(.*)",
       "destination": "/$1"
     }
@@ -29,46 +21,6 @@
     {
       "source": "/custom-applications/getting-started/what-is-a-custom-application",
       "destination": "/custom-applications/what-is-a-custom-application"
-    },
-    {
-      "source": "/custom-applications/getting-started/(.*)",
-      "destination": "/custom-applications/legacy/getting-started/$1"
-    },
-    {
-      "source": "/custom-applications/development/folder-structure",
-      "destination": "/custom-applications/legacy/development/folder-structure"
-    },
-    {
-      "source": "/custom-applications/development/available-scripts",
-      "destination": "/custom-applications/legacy/development/available-scripts"
-    },
-    {
-      "source": "/custom-applications/development/application-config",
-      "destination": "/custom-applications/legacy/development/application-config"
-    },
-    {
-      "source": "/custom-applications/development/menu-links",
-      "destination": "/custom-applications/legacy/development/menu-links"
-    },
-    {
-      "source": "/custom-applications/development/styling",
-      "destination": "/custom-applications/legacy/development/styling"
-    },
-    {
-      "source": "/custom-applications/components/(.*)",
-      "destination": "/custom-applications/legacy/components/$1"
-    },
-    {
-      "source": "/custom-applications/deployment/(.*)",
-      "destination": "/custom-applications/legacy/deployment/$1"
-    },
-    {
-      "source": "/custom-applications/register-applications/(.*)",
-      "destination": "/custom-applications/legacy/register-applications/$1"
-    },
-    {
-      "source": "/custom-applications/main-concepts/(.*)",
-      "destination": "/custom-applications/legacy/main-concepts/$1"
     }
   ]
 }

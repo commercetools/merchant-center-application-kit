@@ -707,9 +707,7 @@ describe('QuickAccess', () => {
     await screen.findByText('Open Products');
     fireEvent.keyUp(searchInput, { key: 'Enter' });
     await waitFor(() => {
-      expect(history.location.pathname).toBe(
-        '/test-with-big-data/products/pim-search'
-      );
+      expect(history.location.pathname).toBe('/test-with-big-data/products');
     });
     // should close quick access
     expect(screen.queryByTestId('quick-access')).not.toBeInTheDocument();

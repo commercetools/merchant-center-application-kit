@@ -6,25 +6,32 @@ import {
 import ApplicationRoutes from '../routes';
 import { entryPointUriPath } from '../constants';
 
-const mergeWithDefaultOptions = (options = {}) => ({
-  ...options,
-  environment: {
-    ...(options.environment || {}),
-    entryPointUriPath,
-  },
-  apolloClient: createApolloClient(),
-});
+const mergeWithDefaultOptions = (options = {}) => {
+  return {
+    ...options,
+    environment: {
+      ...(options.environment || {}),
+      entryPointUriPath,
+    },
+    apolloClient: createApolloClient(),
+  };
+};
 
 const renderApplication = (ui, options) =>
-  renderApp(
-    <ApplicationRoutes>{ui}</ApplicationRoutes>,
-    mergeWithDefaultOptions(options)
-  );
+  renderApp(ui, mergeWithDefaultOptions(options));
 
-const renderApplicationWithRedux = (ui, options = {}) =>
-  renderAppWithRedux(
-    <ApplicationRoutes>{ui}</ApplicationRoutes>,
-    mergeWithDefaultOptions(options)
-  );
+const renderApplicationWithRedux = (ui, options) =>
+  renderAppWithRedux(ui, mergeWithDefaultOptions(options));
 
-export { renderApplication, renderApplicationWithRedux };
+const renderApplicationWithRoutes = (options) =>
+  renderApplication(<ApplicationRoutes />, options);
+
+const renderApplicationWithRoutesAndRedux = (options) =>
+  renderApplicationWithRedux(<ApplicationRoutes />, options);
+
+export {
+  renderApplication,
+  renderApplicationWithRedux,
+  renderApplicationWithRoutes,
+  renderApplicationWithRoutesAndRedux,
+};

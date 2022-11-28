@@ -1,5 +1,5 @@
 schema:
-  - '${MC_API_URL}':
+  - '${MC_API_URL}/graphql':
       headers:
         X-Graphql-Target: mc
 documents: 'packages/**/*.mc.graphql'
@@ -24,6 +24,20 @@ extensions:
           addUnderscoreToArgsType: true
           typesPrefix: T
       packages/application-shell/src/types/generated/mc.ts:
+        plugins:
+          - typescript
+          - typescript-operations
+        config:
+          addUnderscoreToArgsType: true
+          typesPrefix: T
+      packages/permissions/src/types/generated/mc.ts:
+        plugins:
+          - typescript
+          - typescript-operations
+        config:
+          addUnderscoreToArgsType: true
+          typesPrefix: T
+      test-data/types/generated/mc.ts:
         plugins:
           - typescript
           - typescript-operations

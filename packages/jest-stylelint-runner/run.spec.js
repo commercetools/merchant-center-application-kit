@@ -1,6 +1,8 @@
 const path = require('path');
 const run = require('./run');
 
+jest.mock('css-functions-list');
+
 describe('jest-stylelint-runner', () => {
   describe('with CSS files', () => {
     it(

@@ -23,26 +23,26 @@ process.on('unhandledRejection', (err) => {
 // Get the current directory where the CLI is executed from. Usually this is the application folder.
 const applicationDirectory = fs.realpathSync(process.cwd());
 
-const run = () => {
-  cli.help();
-  cli.version(pkgJson.version);
-
+async function run() {
   cli.option(
     '--env <path>',
     `(optional) Parses the file path as a dotenv file and adds the variables to the environment. Multiple flags are allowed.`
   );
 
   // Default command
-  cli.command('').action(() => {
-    cli.outputHelp();
-  });
+  cli
+    .command('')
+    .usage('\n\n  Develop and build Custom Applications.')
+    .action(() => {
+      cli.outputHelp();
+    });
 
   // Command: start
+  const usageStart =
+    'Starts the application in development mode using Webpack Dev Server.';
   cli
-    .command(
-      'start',
-      'Starts the application in development mode using Webpack Dev Server.'
-    )
+    .command('start', usageStart)
+    .usage(`\n\n  ${usageStart}`)
     .alias('dev')
     .action(async (options: TCliGlobalOptions) => {
       // Load dotenv files into the process environment.
@@ -67,14 +67,15 @@ const run = () => {
     });
 
   // Command: build
+  const usageBuild =
+    'Bundles the application in production mode. Outputs a "public" folder.';
   cli
-    .command(
-      'build',
-      'Bundles the application in production mode. Outputs a "public" folder.'
-    )
+    .command('build', usageBuild)
+    .usage(`\n\n  ${usageBuild}`)
     .option(
       '--build-only',
-      '(optional) If defined, the command only creates the production bundles without compiling the "index.html".'
+      '(optional) If defined, the command only creates the production bundles without compiling the "index.html".',
+      { default: false }
     )
     .action(async (options: TCliCommandBuildOptions & TCliGlobalOptions) => {
       // Load dotenv files into the process environment.
@@ -87,12 +88,8 @@ const run = () => {
 
       const shouldUseExperimentalBundler =
         process.env.ENABLE_EXPERIMENTAL_VITE_BUNDLER === 'true';
-
       if (shouldUseExperimentalBundler) {
         console.log('Experimental Vite bundler enabled! 🚀');
-        console.warn(
-          'NOTE that the "cdnURL" value is not supported at the moment when using Vite.'
-        );
         console.log('');
       }
 
@@ -101,27 +98,28 @@ const run = () => {
         : await import('./commands/build');
       await buildCommand.default();
 
-      const shouldAlsoCompile = !options['build-only'];
+      const shouldAlsoCompile = !options.buildOnly;
       if (shouldAlsoCompile) {
         console.log('');
         const compileHtmlCommand = await import('./commands/compile-html');
-        await compileHtmlCommand.default();
+        await compileHtmlCommand.default({ printSecurityHeaders: false });
       }
     });
 
   // Command: compile-html
+  const usageCompileHtml =
+    'Compiles "index.html.template" file into a "index.html" with all the required runtime configuration. The security headers are also compiled and injected into the "index.html".';
   cli
-    .command(
-      'compile-html',
-      'Compiles "index.html.template" file into a "index.html" with all the required runtime configuration. The security headers are also compiled and injected into the "index.html".'
-    )
+    .command('compile-html', usageCompileHtml)
+    .usage(`\n\n  ${usageCompileHtml}`)
     .option(
       '--transformer <path>',
       '(optional) The path to a JS module that can be used to generate a configuration for a specific cloud provider (e.g. Vercel, Netlify).'
     )
     .option(
       '--print-security-headers',
-      '(optional) If defined, the compiled security headers are printed to stdout.'
+      '(optional) If defined, the compiled security headers are printed to stdout.',
+      { default: false }
     )
     .action(
       async (options: TCliCommandCompileHtmlOptions & TCliGlobalOptions) => {
@@ -138,11 +136,11 @@ const run = () => {
     );
 
   // Command: serve
+  const usageServe =
+    'Serves previously built and compiled application from the "public" folder.';
   cli
-    .command(
-      'serve',
-      'Serves previously built and compiled application from the "public" folder.'
-    )
+    .command('serve', usageServe)
+    .usage(`\n\n  ${usageServe}`)
     .action(async (options: TCliGlobalOptions) => {
       // Load dotenv files into the process environment.
       // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
@@ -156,11 +154,11 @@ const run = () => {
     });
 
   // Command: login
+  const usageLogin =
+    'Log in to your Merchant Center account through the CLI, using the cloud environment information from the Custom Application config file. An API token is generated and stored in a configuration file for the related cloud environment, and valid for 36 hours.';
   cli
-    .command(
-      'login',
-      'Log in to your Merchant Center account through the CLI, using the cloud environment information from the Custom Application config file. An API token is generated and stored in a configuration file for the related cloud environment, and valid for 36 hours.'
-    )
+    .command('login', usageLogin)
+    .usage(`\n\n  ${usageLogin}`)
     .action(async (options: TCliGlobalOptions) => {
       // Load dotenv files into the process environment.
       // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
@@ -174,14 +172,15 @@ const run = () => {
     });
 
   // Command: config:sync
+  const usageConfigSync =
+    'Synchronizes the local Custom Application config with the Merchant Center. A new Custom Application will be created if none existed, otherwise it will be updated.';
   cli
-    .command(
-      'config:sync',
-      'Synchronizes the local Custom Application config with the Merchant Center. A new Custom Application will be created if none existed, otherwise it will be updated.'
-    )
+    .command('config:sync', usageConfigSync)
+    .usage(`\n\n  ${usageConfigSync}`)
     .option(
       '--dry-run',
-      '(optional) Executes the command but does not send any mutation request.'
+      '(optional) Executes the command but does not send any mutation request.',
+      { default: false }
     )
     .action(
       async (options: TCliCommandConfigSyncOptions & TCliGlobalOptions) => {
@@ -197,8 +196,12 @@ const run = () => {
       }
     );
 
-  cli.parse();
-};
+  cli.help();
+  cli.version(pkgJson.version);
+
+  cli.parse(process.argv, { run: false });
+  await cli.runMatchedCommand();
+}
 
 // Load dotenv files into the process environment.
 // This is essentially what `dotenv-cli` does, but it's now built into this CLI.

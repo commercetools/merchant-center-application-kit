@@ -1,5 +1,85 @@
 # @commercetools-website/custom-applications
 
+## 21.20.1
+
+## 21.20.0
+
+### Minor Changes
+
+- [#2886](https://github.com/commercetools/merchant-center-application-kit/pull/2886) [`68e1998b4`](https://github.com/commercetools/merchant-center-application-kit/commit/68e1998b4021121fff23e4b549615d506b795226) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update `ui-kit` dependencies.
+
+## 21.19.0
+
+## 21.18.1
+
+## 21.18.0
+
+### Patch Changes
+
+- [#2837](https://github.com/commercetools/merchant-center-application-kit/pull/2837) [`3959ed2a0`](https://github.com/commercetools/merchant-center-application-kit/commit/3959ed2a0012077b6366c3a22c749fe7d6e74784) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+## 21.17.0
+
+### Patch Changes
+
+- [#2839](https://github.com/commercetools/merchant-center-application-kit/pull/2839) [`f5eb8d77c`](https://github.com/commercetools/merchant-center-application-kit/commit/f5eb8d77c606e624e6cfc2cfad3da1eaeff5fdd6) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update `ui-kit` dependencies
+
+## 21.16.0
+
+### Patch Changes
+
+- [#2580](https://github.com/commercetools/merchant-center-application-kit/pull/2580) [`1c40c40c9`](https://github.com/commercetools/merchant-center-application-kit/commit/1c40c40c947574ba24b411c9376640bb18c489ac) Thanks [@renovate](https://github.com/apps/renovate)! - Update `@testing-library/react-hooks` package to version `8.0.0`.
+
+- [#2826](https://github.com/commercetools/merchant-center-application-kit/pull/2826) [`11192ad4b`](https://github.com/commercetools/merchant-center-application-kit/commit/11192ad4bf186ff529255c68e95193a362308620) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+## 21.15.0
+
+## 21.14.3
+
+## 21.14.2
+
+### Patch Changes
+
+- [#2776](https://github.com/commercetools/merchant-center-application-kit/pull/2776) [`00d9edcb4`](https://github.com/commercetools/merchant-center-application-kit/commit/00d9edcb49a144797ba3690db012e429e88a30fa) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+## 21.14.1
+
+## 21.14.0
+
+### Patch Changes
+
+- [#2792](https://github.com/commercetools/merchant-center-application-kit/pull/2792) [`6f15c52b1`](https://github.com/commercetools/merchant-center-application-kit/commit/6f15c52b1bafccf09e94d3b62df60fec031ffe0c) Thanks [@Rhotimee](https://github.com/Rhotimee)! - Rename labelSecondaryButtonIcon prop in Form pages to iconLeftSecondaryButton
+
+## 21.13.1
+
+### Patch Changes
+
+- [`482ad98ee`](https://github.com/commercetools/merchant-center-application-kit/commit/482ad98eeb4570a583d58d476a7902ffe6cc2a94) Thanks [@emmenko](https://github.com/emmenko)! - Nothing changed, the previous release `21.13.0` had an issue publishing to NPM so we're bumping versions to trigger a new release.
+
+## 21.13.0
+
+### Patch Changes
+
+- [#2772](https://github.com/commercetools/merchant-center-application-kit/pull/2772) [`f66199e79`](https://github.com/commercetools/merchant-center-application-kit/commit/f66199e793c58628ab8b6c76cef8ddd0dad46260) Thanks [@emmenko](https://github.com/emmenko)! - Validate that `forwardToConfig.uri` is defined, when using a custom HTTP client.
+
+* [#2761](https://github.com/commercetools/merchant-center-application-kit/pull/2761) [`d012420e5`](https://github.com/commercetools/merchant-center-application-kit/commit/d012420e563b34a1678693f19905bdd79b2317e2) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update all dependencies
+
+## 18.7.2
+
+### Patch Changes
+
+- [#2703](https://github.com/commercetools/merchant-center-application-kit/pull/2703) [`8cd781a6`](https://github.com/commercetools/merchant-center-application-kit/commit/8cd781a6f2d626fd564e6e1fd0be30991c27b4ea) Thanks [@emmenko](https://github.com/emmenko)! - Update Emotion dependencies to `v11.9.3`
+
+* [#2709](https://github.com/commercetools/merchant-center-application-kit/pull/2709) [`d0618b0a`](https://github.com/commercetools/merchant-center-application-kit/commit/d0618b0a61490ddb1d8f0b1aa26b5d03da7da38c) Thanks [@emmenko](https://github.com/emmenko)! - Update `moment` and `react-intl` dependencies
+
+- [#2700](https://github.com/commercetools/merchant-center-application-kit/pull/2700) [`21d98709`](https://github.com/commercetools/merchant-center-application-kit/commit/21d98709f12696f2f7bfd22d5d1c18cee40a4845) Thanks [@emmenko](https://github.com/emmenko)! - Update UI Kit dependencies to `v15.1.0`.
+
+## 18.7.1
+
+### Patch Changes
+
+- [#2678](https://github.com/commercetools/merchant-center-application-kit/pull/2678) [`54b4ce3e`](https://github.com/commercetools/merchant-center-application-kit/commit/54b4ce3ee1d05f12c8926a2e6288a94c6b90e95c) Thanks [@emmenko](https://github.com/emmenko)! - Improve validation check for using `getRequestUrl` and clarify Lambda v2 usage.
+
 ## 18.7.0
 
 ### Minor Changes

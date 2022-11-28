@@ -1,4 +1,4 @@
-import { SyntheticEvent, ReactNode } from 'react';
+import type { SyntheticEvent, ReactNode, ReactElement } from 'react';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import DialogContainer from '../internals/dialog-container';
 import DialogHeader from '../internals/dialog-header';
@@ -29,6 +29,7 @@ type Props = {
   dataAttributesSecondaryButton?: { [key: string]: string };
   dataAttributesPrimaryButton?: { [key: string]: string };
   getParentSelector?: () => HTMLElement;
+  iconLeftSecondaryButton?: ReactElement;
 };
 const defaultProps: Pick<Props, 'labelSecondary' | 'labelPrimary'> = {
   labelSecondary: sharedMessages.cancel,
@@ -54,6 +55,7 @@ const FormDialog = (props: Props) => (
       onConfirm={props.onPrimaryButtonClick}
       dataAttributesSecondaryButton={props.dataAttributesSecondaryButton}
       dataAttributesPrimaryButton={props.dataAttributesPrimaryButton}
+      iconLeftSecondaryButton={props.iconLeftSecondaryButton}
     />
   </DialogContainer>
 );

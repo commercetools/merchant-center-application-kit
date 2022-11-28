@@ -1,4 +1,7 @@
-import { transformLocalizedStringToLocalizedField } from '@commercetools-frontend/l10n';
+import {
+  transformLocalizedStringToLocalizedField,
+  transformLocalizedFieldToLocalizedString,
+} from '@commercetools-frontend/l10n';
 
 export const getErrorMessage = (error) =>
   error.graphQLErrors?.map((e) => e.message).join('\n') || error.message;
@@ -34,3 +37,8 @@ export const createGraphQlUpdateActions = (actions) =>
     ],
     []
   );
+
+export const convertToActionData = (draft) => ({
+  ...draft,
+  name: transformLocalizedFieldToLocalizedString(draft.nameAllLocales || []),
+});

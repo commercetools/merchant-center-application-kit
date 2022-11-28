@@ -46,6 +46,7 @@ type Props = {
   onPrimaryButtonClick: (event: SyntheticEvent) => void;
   onSecondaryButtonClick: (event: SyntheticEvent) => void;
   hideControls: boolean;
+  iconLeftSecondaryButton?: ReactElement;
 };
 
 const defaultProps: Pick<Props, 'hideControls'> = {
@@ -72,6 +73,7 @@ const FormModalPage = (props: Props) => (
           onClick={props.onSecondaryButtonClick}
           isDisabled={props.isSecondaryButtonDisabled}
           dataAttributes={props.dataAttributesSecondaryButton}
+          iconLeft={props.iconLeftSecondaryButton}
         />
         <CustomFormModalPage.FormPrimaryButton
           label={props.labelPrimaryButton}

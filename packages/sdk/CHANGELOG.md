@@ -1,5 +1,198 @@
 # @commercetools-frontend/sdk
 
+## 21.20.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.20.1
+
+## 21.20.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.20.0
+
+## 21.19.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.19.0
+
+## 21.18.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.18.1
+
+## 21.18.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.18.0
+
+## 21.17.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.17.0
+
+## 21.16.0
+
+### Patch Changes
+
+- [#2580](https://github.com/commercetools/merchant-center-application-kit/pull/2580) [`1c40c40c9`](https://github.com/commercetools/merchant-center-application-kit/commit/1c40c40c947574ba24b411c9376640bb18c489ac) Thanks [@renovate](https://github.com/apps/renovate)! - Update `@testing-library/react-hooks` package to version `8.0.0`.
+
+- [#2826](https://github.com/commercetools/merchant-center-application-kit/pull/2826) [`11192ad4b`](https://github.com/commercetools/merchant-center-application-kit/commit/11192ad4bf186ff529255c68e95193a362308620) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.16.0
+
+## 21.15.0
+
+### Patch Changes
+
+- [#2810](https://github.com/commercetools/merchant-center-application-kit/pull/2810) [`0e49a78f8`](https://github.com/commercetools/merchant-center-application-kit/commit/0e49a78f8e3b228a9b0bb3d90781aa8e940de4bc) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- [#2819](https://github.com/commercetools/merchant-center-application-kit/pull/2819) [`30d8324bc`](https://github.com/commercetools/merchant-center-application-kit/commit/30d8324bce8c04cb67bbb3af97175861b663aef0) Thanks [@emmenko](https://github.com/emmenko)! - Fix `useAsyncDispatch` to return a fixed reference
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.15.0
+
+## 21.14.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.14.3
+
+## 21.14.2
+
+### Patch Changes
+
+- [#2776](https://github.com/commercetools/merchant-center-application-kit/pull/2776) [`00d9edcb4`](https://github.com/commercetools/merchant-center-application-kit/commit/00d9edcb49a144797ba3690db012e429e88a30fa) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies [[`00d9edcb4`](https://github.com/commercetools/merchant-center-application-kit/commit/00d9edcb49a144797ba3690db012e429e88a30fa)]:
+  - @commercetools-frontend/constants@21.14.2
+
+## 21.14.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.14.1
+
+## 21.14.0
+
+### Patch Changes
+
+- [#2781](https://github.com/commercetools/merchant-center-application-kit/pull/2781) [`571eda725`](https://github.com/commercetools/merchant-center-application-kit/commit/571eda725b5ab44ca25bc4f75a691f7bea62d574) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Add support for requesting specific `claims` to be included in the exchange JWT sent from Merchant Center API to an external API.
+  Currently we only support requesting a custom claim with logged in user's permissions.
+
+  ```js
+  actions.forwardTo.get({
+    includeUserPermissions: true,
+    // ...
+  });
+  // "X-Forward-To-Claims": "permissions"
+  ```
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.14.0
+
+## 21.13.1
+
+### Patch Changes
+
+- [`482ad98ee`](https://github.com/commercetools/merchant-center-application-kit/commit/482ad98eeb4570a583d58d476a7902ffe6cc2a94) Thanks [@emmenko](https://github.com/emmenko)! - Nothing changed, the previous release `21.13.0` had an issue publishing to NPM so we're bumping versions to trigger a new release.
+
+- Updated dependencies [[`482ad98ee`](https://github.com/commercetools/merchant-center-application-kit/commit/482ad98eeb4570a583d58d476a7902ffe6cc2a94)]:
+  - @commercetools-frontend/constants@21.13.1
+
+## 21.13.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.13.0
+
+## 21.12.0
+
+### Patch Changes
+
+- [#2750](https://github.com/commercetools/merchant-center-application-kit/pull/2750) [`bcb5e167`](https://github.com/commercetools/merchant-center-application-kit/commit/bcb5e167bbc8dc660ba7fb11c94f7cf3918736f0) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Added required `Buffer` polyfill dependency.
+
+* [#2723](https://github.com/commercetools/merchant-center-application-kit/pull/2723) [`e40fcd6c`](https://github.com/commercetools/merchant-center-application-kit/commit/e40fcd6cda229fd8f7af8b33f6a5c3541f361aa0) Thanks [@emmenko](https://github.com/emmenko)! - Better reuse the `getMcApiUrl` function and do some maintenance on it.
+
+* Updated dependencies []:
+  - @commercetools-frontend/constants@21.12.0
+
+## 21.11.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.11.0
+
+## 21.10.0
+
+### Patch Changes
+
+- Updated dependencies [[`73977f3f`](https://github.com/commercetools/merchant-center-application-kit/commit/73977f3fcc52acd6195b698c37b8a9a80547670d)]:
+  - @commercetools-frontend/constants@21.10.0
+
+## 21.9.0
+
+### Patch Changes
+
+- [#2705](https://github.com/commercetools/merchant-center-application-kit/pull/2705) [`abe2c475`](https://github.com/commercetools/merchant-center-application-kit/commit/abe2c475be2aff3781ac6151178aede1e0801f77) Thanks [@emmenko](https://github.com/emmenko)! - Update typescript dependencies
+
+* [#2702](https://github.com/commercetools/merchant-center-application-kit/pull/2702) [`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413) Thanks [@emmenko](https://github.com/emmenko)! - Update Babel dependencies
+
+* Updated dependencies [[`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413)]:
+  - @commercetools-frontend/constants@21.9.0
+
+## 21.8.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.8.1
+
+## 21.8.0
+
+### Minor Changes
+
+- [#2667](https://github.com/commercetools/merchant-center-application-kit/pull/2667) [`1d8c71f1`](https://github.com/commercetools/merchant-center-application-kit/commit/1d8c71f1fed656bb6dedb3379198cc6fcdb5363f) Thanks [@emmenko](https://github.com/emmenko)! - Add support for setting the `audience` policy. The policy can be used to determine how the `audience` value is exchanged between the Merchant Center API and the external API.
+
+  Supported values are:
+
+  - `forward-url-full-path`: This is the default policy. It sets the `audience` using the full URL (origin + pathname).
+  - `forward-url-origin`: This is the alternative policy. It sets the `audience` using only the origin URL part.
+
+  ```js
+  actions.forwardTo.get({
+    audiencePolicy: 'forward-url-origin',
+    // ...
+  });
+
+  // "X-Forward-To-Audience-Policy": "forward-url-origin"
+  ```
+
+### Patch Changes
+
+- [#2661](https://github.com/commercetools/merchant-center-application-kit/pull/2661) [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed) Thanks [@emmenko](https://github.com/emmenko)! - Drop the copyright year from the license files
+
+* [#2615](https://github.com/commercetools/merchant-center-application-kit/pull/2615) [`d6bfecf1`](https://github.com/commercetools/merchant-center-application-kit/commit/d6bfecf17c0a6a38330943cc5f195f1854248770) Thanks [@kark](https://github.com/kark)! - Refine internal types
+
+* Updated dependencies [[`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed)]:
+  - @commercetools-frontend/constants@21.8.0
+
 ## 21.6.0
 
 ### Patch Changes

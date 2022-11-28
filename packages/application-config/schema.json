@@ -4,10 +4,6 @@
   "title": "JSON schema for Custom Application configuration files",
   "type": "object",
   "definitions": {
-    "envVariablePlaceholder": {
-      "type": "string",
-      "pattern": "(\\$\\{env:\\w+\\})+"
-    },
     "cspDirective": {
       "type": "array",
       "items": {
@@ -27,26 +23,11 @@
     },
     "entryPointUriPath": {
       "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#entrypointuripath",
-      "oneOf": [
-        {
-          "type": "string",
-          "pattern": "^[^\\-_#]([0-9a-z]|[\\-_](?![\\-_])){0,62}[^\\-_#]$"
-        },
-        {
-          "$ref": "#/definitions/envVariablePlaceholder"
-        }
-      ]
+      "type": "string"
     },
     "cloudIdentifier": {
       "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#cloudidentifier",
-      "oneOf": [
-        {
-          "enum": ["gcp-au", "gcp-eu", "gcp-us", "aws-fra", "aws-ohio"]
-        },
-        {
-          "$ref": "#/definitions/envVariablePlaceholder"
-        }
-      ]
+      "type": "string"
     },
     "mcApiUrl": {
       "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#mcapiurl",

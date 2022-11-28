@@ -1265,10 +1265,10 @@
     "country": "Marshall Islands"
   },
   "mi": {
-    "language": "Maori"
+    "language": "Māori"
   },
   "mi-NZ": {
-    "language": "Maori",
+    "language": "Māori",
     "country": "New Zealand"
   },
   "mk": {
@@ -1391,6 +1391,13 @@
   },
   "nn-NO": {
     "language": "Norwegian Nynorsk",
+    "country": "Norway"
+  },
+  "no": {
+    "language": "Norwegian"
+  },
+  "no-NO": {
+    "language": "Norwegian",
     "country": "Norway"
   },
   "nr": {
@@ -1863,9 +1870,6 @@
   },
   "sh": {
     "language": "Serbo-Croatian"
-  },
-  "no": {
-    "language": "Norwegian"
   },
   "tl": {
     "language": "Tagalog"

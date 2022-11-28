@@ -1,5 +1,112 @@
 # @commercetools-backend/express
 
+## 21.20.1
+
+## 21.20.0
+
+## 21.19.0
+
+## 21.18.1
+
+## 21.18.0
+
+### Patch Changes
+
+- [#2837](https://github.com/commercetools/merchant-center-application-kit/pull/2837) [`3959ed2a0`](https://github.com/commercetools/merchant-center-application-kit/commit/3959ed2a0012077b6366c3a22c749fe7d6e74784) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+## 21.17.0
+
+## 21.16.0
+
+### Patch Changes
+
+- [#2580](https://github.com/commercetools/merchant-center-application-kit/pull/2580) [`1c40c40c9`](https://github.com/commercetools/merchant-center-application-kit/commit/1c40c40c947574ba24b411c9376640bb18c489ac) Thanks [@renovate](https://github.com/apps/renovate)! - Update `@testing-library/react-hooks` package to version `8.0.0`.
+
+## 21.15.0
+
+### Patch Changes
+
+- [#2810](https://github.com/commercetools/merchant-center-application-kit/pull/2810) [`0e49a78f8`](https://github.com/commercetools/merchant-center-application-kit/commit/0e49a78f8e3b228a9b0bb3d90781aa8e940de4bc) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+## 21.14.3
+
+## 21.14.2
+
+### Patch Changes
+
+- [#2776](https://github.com/commercetools/merchant-center-application-kit/pull/2776) [`00d9edcb4`](https://github.com/commercetools/merchant-center-application-kit/commit/00d9edcb49a144797ba3690db012e429e88a30fa) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+## 21.14.1
+
+## 21.14.0
+
+### Patch Changes
+
+- [#2782](https://github.com/commercetools/merchant-center-application-kit/pull/2782) [`670230add`](https://github.com/commercetools/merchant-center-application-kit/commit/670230adde7929842821028554ddc7d136fd50c5) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Now that users can request the Merchant Center API to include logged in user's permissions in the exchange JWT included in proxied requests, our _auth_ middleware will check for that information in the token and will make it available in the `request.session` object under a new property named **userPermissions** (reference [documentation](https://docs.commercetools.com/custom-applications/concepts/integrate-with-your-own-api#validating-the-json-web-token)).
+
+## 21.13.1
+
+### Patch Changes
+
+- [`482ad98ee`](https://github.com/commercetools/merchant-center-application-kit/commit/482ad98eeb4570a583d58d476a7902ffe6cc2a94) Thanks [@emmenko](https://github.com/emmenko)! - Nothing changed, the previous release `21.13.0` had an issue publishing to NPM so we're bumping versions to trigger a new release.
+
+## 21.13.0
+
+### Patch Changes
+
+- [#2761](https://github.com/commercetools/merchant-center-application-kit/pull/2761) [`d012420e5`](https://github.com/commercetools/merchant-center-application-kit/commit/d012420e563b34a1678693f19905bdd79b2317e2) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update all dependencies
+
+## 21.12.0
+
+## 21.11.0
+
+## 21.10.0
+
+## 21.9.0
+
+### Patch Changes
+
+- [#2705](https://github.com/commercetools/merchant-center-application-kit/pull/2705) [`abe2c475`](https://github.com/commercetools/merchant-center-application-kit/commit/abe2c475be2aff3781ac6151178aede1e0801f77) Thanks [@emmenko](https://github.com/emmenko)! - Update typescript dependencies
+
+* [#2706](https://github.com/commercetools/merchant-center-application-kit/pull/2706) [`28de0b59`](https://github.com/commercetools/merchant-center-application-kit/commit/28de0b59e8f3944eaef9000b517b384acfc4b98d) Thanks [@emmenko](https://github.com/emmenko)! - Update `msw` to `v0.44.0`
+
+- [#2702](https://github.com/commercetools/merchant-center-application-kit/pull/2702) [`69a1fe13`](https://github.com/commercetools/merchant-center-application-kit/commit/69a1fe13362188977c0a9df86754634fdc81a413) Thanks [@emmenko](https://github.com/emmenko)! - Update Babel dependencies
+
+## 21.8.1
+
+### Patch Changes
+
+- [#2678](https://github.com/commercetools/merchant-center-application-kit/pull/2678) [`54b4ce3e`](https://github.com/commercetools/merchant-center-application-kit/commit/54b4ce3ee1d05f12c8926a2e6288a94c6b90e95c) Thanks [@emmenko](https://github.com/emmenko)! - Improve validation check for using `getRequestUrl` and clarify Lambda v2 usage.
+
+## 21.8.0
+
+### Minor Changes
+
+- [#2667](https://github.com/commercetools/merchant-center-application-kit/pull/2667) [`1d8c71f1`](https://github.com/commercetools/merchant-center-application-kit/commit/1d8c71f1fed656bb6dedb3379198cc6fcdb5363f) Thanks [@emmenko](https://github.com/emmenko)! - Add support for setting the `audience` policy. The policy can be used to determine how the `audience` value is exchanged between the Merchant Center API and the external API.
+
+  Supported values are:
+
+  - `forward-url-full-path`: This is the default policy. It sets the `audience` using the full URL (origin + pathname).
+  - `forward-url-origin`: This is the alternative policy. It sets the `audience` using only the origin URL part.
+
+  ```js
+  createSessionAuthVerifier({
+    audiencePolicy: 'forward-url-origin',
+    // ...
+  });
+
+  createSessionMiddleware({
+    audiencePolicy: 'forward-url-origin',
+    // ...
+  });
+  ```
+
+### Patch Changes
+
+- [#2661](https://github.com/commercetools/merchant-center-application-kit/pull/2661) [`43a9df21`](https://github.com/commercetools/merchant-center-application-kit/commit/43a9df2193000b49a0299c02d5218c50d71567ed) Thanks [@emmenko](https://github.com/emmenko)! - Drop the copyright year from the license files
+
+* [#2675](https://github.com/commercetools/merchant-center-application-kit/pull/2675) [`cb608529`](https://github.com/commercetools/merchant-center-application-kit/commit/cb608529de2373be6926b0317a0376690c339148) Thanks [@emmenko](https://github.com/emmenko)! - Fix reading and validating case sensitive `X-MC-API-*` headers
+
 ## 21.6.0
 
 ### Patch Changes

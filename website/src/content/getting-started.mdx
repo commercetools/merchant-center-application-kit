@@ -19,10 +19,18 @@ The easiest way to get started is to use one of the [_starter templates_](https:
 We recommend creating a new Custom Application using [`create-mc-app`](/api-reference/create-mc-app), which automatically sets up one of the starter templates for you.
 
 ```console noPromptLines="2-3"
-npx @commercetools-frontend/create-mc-app \
+npx @commercetools-frontend/create-mc-app@latest \
   my-new-custom-application-project \
   --template starter
 ```
+
+To start with a [TypeScript](https://www.typescriptlang.org/) project, use the `--template=starter-typescript` flag. Read more about TypeScript in the [Adding TypeScript](/development/adding-typescript) page.
+
+<Info>
+
+Local development and login are only allowed for users being part of the `Administrators` Team of your Organization. Therefore, choose a Project that is part of an Organization where you are an administrator of.
+
+</Info>
 
 After the installation is complete, follow the instructions to start the development server:
 

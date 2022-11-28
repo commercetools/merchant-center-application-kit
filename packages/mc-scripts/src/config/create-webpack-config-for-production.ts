@@ -18,6 +18,8 @@ import paths from './paths';
 import vendorsToTranspile from './vendors-to-transpile';
 import createPostcssConfig from './create-postcss-config';
 import hasJsxRuntime from './has-jsx-runtime';
+// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
+import momentLocalesToKeep from /* preval */ './moment-locales';
 
 const defaultToggleFlags: TWebpackConfigToggleFlagsForProduction = {
   // Allow to disable CSS extraction in case it's not necessary (e.g. for Storybook)
@@ -190,10 +192,9 @@ function createWebpackConfigForProduction(
           NODE_ENV: JSON.stringify('production'),
         },
       }),
-      // Strip all locales except `en`, `de`
-      // (`en` is built into Moment and can't be removed)
+      // Only keep locales that are available in the Merchant Center.
       new MomentLocalesPlugin({
-        localesToKeep: ['de', 'es', 'fr', 'zh-cn', 'ja'],
+        localesToKeep: momentLocalesToKeep,
       }),
 
       // Generate a `stats.json` file containing information and paths to
@@ -391,6 +392,11 @@ function createWebpackConfigForProduction(
                   },
                 },
               ],
+              // Don't consider CSS imports dead code even if the
+              // containing package claims to have no side effects.
+              // Remove this when webpack adds a warning or an error for this.
+              // See https://github.com/webpack/webpack/issues/6571
+              sideEffects: true,
             },
           ],
         },

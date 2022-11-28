@@ -7,16 +7,12 @@ export type TRunnerOptions = {
   dry?: boolean;
 };
 
-export type TCliFlags = {
-  help: boolean;
-  'dry-run': boolean;
+export type TCliGlobalOptions = {
+  '--'?: string[];
+  dryRun: boolean;
 };
 
-export type TCliCommand =
+export type TCliTransformName =
   | 'remove-deprecated-modal-level-props'
-  | 'rename-js-to-jsx';
-
-export type TCliCommandArguments = [
-  transform: TCliCommand,
-  globPattern: string
-];
+  | 'rename-js-to-jsx'
+  | 'rename-mod-css-to-module-css';

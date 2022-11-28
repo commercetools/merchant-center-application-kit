@@ -24,25 +24,84 @@ To be able to validate that the request comes from an authenticated user, the Me
 /proxy/forward-to
 ```
 
+## HTTP headers
+
 Requests to that endpoint should additionally pass the following HTTP headers:
 
-- `Accept-version: v2`: See [Versioning](#versioning).
-- `X-Forward-To: <url>`: The URL to your external API.
-- `X-Project-Key: <project-key>`: The key of the commercetools Project currently being used by the Custom Application. The Merchant Center API Gateway will perform a validation check to ensure that the user has access to the Project, then forward the request to your server only if the check was successful.
-
-To facilitate the usage of the [built-in Apollo client and the SDK actions](/development/data-fetching), we provide some helpers to integrate with the request configuration for the HTTP headers listed above.
-
-## Sending custom HTTP headers
+- `Accept-version` (**required**): See [Versioning](#versioning).
+- `X-Forward-To` (**required**): Set it to the external API URL.
+- `X-Forward-To-Audience-Policy` (**required**): See [Configuring the audience policy](#configuring-the-audience-policy).
+- `X-Forward-To-Claims` (optional): See [Configuring custom claims](#configuring-custom-claims).
+- `X-Project-Key` (**required**): The key of the commercetools Project currently being used by the Custom Application. The Merchant Center API Gateway will perform a validation check to ensure that the user has access to the Project, then forward the request to your server only if the check was successful.<br/>
+The project key can be retrieved from the [Application context](/api-reference/commercetools-frontend-application-shell-connectors#application-context).
 
 <Info>
 
-This feature is available from version `>= 20.2.0`.
+To facilitate the configuration of these headers we provide some helpers when configuring the request with an HTTP client. See [Data fetching](/development/data-fetching) for more information.
 
 </Info>
 
-In case you need to send certain HTTP headers to the external API, you can do so for both the Apollo client and the SDK actions. See the examples below on how to configure the HTTP headers for both scenarios.
+## Configuring the audience policy
 
-All custom HTTP headers are sent to the Merchant Center API with a prefix `x-forward-header-`, as it allows the Merchant Center API to allow requests with those headers to be forwarded. However, the request forwarded to the external API contains the correct headers without the prefix.
+<Info>
+
+This feature is available from version `21.8.0` onwards.
+
+</Info>
+
+The audience policy can be used to determine how the `audience` value is exchanged between the Merchant Center API Gateway and the external API.
+
+Supported values are:
+
+- `forward-url-full-path`: This is the **default** policy. It sets the `audience` using the full URL (origin + pathname).
+- `forward-url-origin`: This is the alternative policy. It sets the `audience` using only the origin URL part.
+
+For example, given the forward-to URL `https://my-custom-app.com/api/123`, the `audience` for each policy is determined as following:
+
+- `forward-url-full-path`: `https://my-custom-app.com/api/123`
+- `forward-url-origin`: `https://my-custom-app.com`
+
+## Configuring custom claims
+
+Use the `X-Forward-To-Claims` header to make the Merchant Center API Gateway include extra public claims in the exchange token sent along with forwarded requests.
+
+The value must be a list of the claims separated by a space.
+
+The following claims are supported:
+* **permissions**: Includes the list of applied permissions for the logged-in user. The permission values are formatted as `can<permission-name>`, for example `canViewAvengers`.
+
+  ```
+  "X-Forward-To-Claims": "permissions"
+  ```
+
+  <Info>
+
+  This feature is available from version `21.14.0` onwards.
+
+  </Info>
+
+
+Learn more about using this header in the sections below.
+
+## Custom HTTP headers
+
+<Info>
+
+This feature is available from version `20.2.0` onwards.
+
+</Info>
+
+You can send HTTP headers specific to the external API by prefixing them with `x-forward-header-`.
+
+```js
+{
+  headers: {
+    'x-forward-header-x-foo': 'bar'
+  }
+}
+```
+
+The Merchant Center API will then remove the prefix before forwarding the request to the external API.
 
 ## Usage for Apollo
 
@@ -69,13 +128,36 @@ actions.forwardTo.get({
     'x-foo': 'bar',
   },
 });
+
+// To change the audience policy:
+actions.forwardTo.get({
+  uri: 'https://my-custom-app.com/api',
+  audiencePolicy: 'forward-url-origin',
+});
+
+// To make the MC API Gateway include the user permissions in the exchange JWT
+actions.forwardTo.get({
+  uri: 'https://my-custom-app.com/api',
+  includeUserPermissions: true,
+});
 ```
 
 <Info>
 
-As a reminder, action creators can be dispatched using the `useAsyncDispatch` React hook. See [Data Fetching for REST APIs](/development/data-fetching#requests-to-rest-apis) for more information.
+As a reminder, action creators can be dispatched using the `useAsyncDispatch` React hook. See [Data Fetching for REST APIs](/development/data-fetching#rest-http-client) for more information.
 
 </Info>
+
+## Usage for custom HTTP client
+
+<Info>
+
+This feature is available from version `21.11.0` onwards.
+
+</Info>
+
+When using a [custom HTTP client](/development/data-fetching#custom-http-client) you can pass an additional configuration object `forwardToConfig`. See [`executeHttpClientRequest`](/api-reference/commercetools-frontend-application-shell#executehttpclientrequest).
+
 
 # Authenticating requests from the external API
 
@@ -106,17 +188,20 @@ The Exchange token structure consist of **Registered Claim Names** and **Private
   "aud": "<audience-url>",
   "type": "exchange",
   "<hostname>/claims/project_key": "<project-key>",
+  "<hostname>/claims/user_permissions": ["can<permission-1>", "can<permission-2>"],
   "iat": 1600092341
 }
 ```
 
 - `exp`: The **expiration time** on or after which the exchange token must not be accepted for processing.
-- `sub`: The **subject identifier** is the unique user identifier of a Merchant Center account, specifically the ID of the logged in user.
+- `sub`: The **subject identifier** is the unique user identifier of a Merchant Center account, specifically the ID of the logged-in user.
 - `iss`: The **issuer identifier** is the URL identifier of the server that issued the JWT. In this particular case is the URL of the [Merchant Center API Gateway](/concepts/merchant-center-api).
-- `aud`: The **audience** is the value that the exchange token is intended for. In this particular case is the exact URL passed to the `X-Forward-To` HTTP header.
-- `iat`: This value represents the time at which the JWT was issued.
+- `aud`: The **audience** is the value that the exchange token is intended for. The value depends on the [audience policy](#configuring-the-audience-policy).
+- `iat`: **issued at** represents the time at which the JWT was issued.
 - `type`: This value is a **private claim** and is always set to `exchange`.
-- `<iss>/claims/project_key`: This value represents the Project key that the request is associated to. The claim is a **public claim** prefixed by a collision-resistant namespace, as per the JWT specification.
+- `<iss>/claims/project_key`: Represents the Project key associated with the request. The claim is a **public claim** prefixed by a collision-resistant namespace, as per the JWT specification.
+- `<iss>/claims/user_permissions` (optional): Contains a list of permissions names that are applied to the logged-in user. See [Configuring custom claims](#configuring-custom-claims). The claim is a **public claim** prefixed by a collision-resistant namespace, as per the JWT specification.
+
 
 ## Validating the JSON Web Token
 
@@ -136,6 +221,7 @@ The package includes an async Express.js middleware that performs the token vali
 type TSession = {
   userId: string;
   projectKey: string;
+  userPermissions?: string[];
 };
 ```
 
@@ -144,6 +230,8 @@ The middleware requires some options:
 - `audience` (_string_): The public-facing URL of your API server. The value should only contain the origin URL (protocol, hostname, port), the request path is inferred from the incoming request.
 
   For example, given the external API is hosted at `https://my-api-server.com`, the `audience` value must be set to `https://my-api-server.com`.
+
+- `audiencePolicy` (_string_): See [audience policy](#configuring-the-audience-policy).
 
 - `issuer` (_string_): Either a [cloud identifier](/concepts/merchant-center-api#cloud-identifiers) or a valid URL to the Merchant Center API Gateway.
 
@@ -212,7 +300,7 @@ Other cloud providers might not use a standard Node.js/Express `request` object.
 
 In these cases you need to implement the `getRequestUrl` function to correctly map the expected URL (URI path + query string). The following example shows how to map an AWS Lambda function [event](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html).
 
-```js highlightLines="9"
+```js highlightLines="10"
 const {
   createSessionAuthVerifier,
   CLOUD_IDENTIFIERS,
@@ -221,6 +309,7 @@ const {
 const sessionAuthVerifier = createSessionAuthVerifier({
   audience: 'https://my-api-server.com',
   issuer: CLOUD_IDENTIFIERS.GCP_EU,
+  // This example assumes that the `event` is based on Lambda v2 of the payload format.
   getRequestUrl: (event) => `${event.rawPath}${event.rawQueryString ? '?' + event.rawQueryString : ''}`
 });
 
@@ -256,7 +345,7 @@ The setup described above is not needed when using the `@commercetools-backend/e
 Developing a Custom Application locally, together with an external API, has some limitations.
 For example, using the `/proxy/forward-to` endpoint of the Merchant Center API Gateway with a target URL pointing to `http` is not allowed. Only `https` targets are allowed.
 
-The most straighforward solution is using the production URL of the external API, which may be inconvenient in the development processs.
+The most straightforward solution is using the production URL of the external API, which may be inconvenient in the development process.
 
 Therefore, some kind of secure tunnel solution can be used to develop both Custom Application and external API together, locally.
 
@@ -276,7 +365,7 @@ where `<desired_port>` is the port bound to your server application (for example
 
 The exposed external URL of the created tunnel:
 
-![ngrok agent](/images/ngrok.png) 
+![ngrok agent](/images/ngrok.png)
 
 The secure tunnel provides a unique URL that points to the local running HTTP server.
 
@@ -324,7 +413,7 @@ In the application code you can then access the value using the [application con
 
 <Info>
 
-`ngrok` agent application starts along with a monitoring web application running at `http://localhost:4040/`, which can be helpful in the process of debugging of the tunnelled HTTP requests.
+A monitoring web application running at `http://localhost:4040/` is available when running the `ngrok` agent, which can be helpful to debug the incoming HTTP requests.
 
 </Info>
 
@@ -338,7 +427,7 @@ cloudflared tunnel --url http://localhost:<desired_port>
 ```
 
 The server application can be reached via the provided URL:
-![cloudflared](/images/cloudflared.png) 
+![cloudflared](/images/cloudflared.png)
 
 The same setup as `ngrok` applies here as well.
 
@@ -358,25 +447,20 @@ Versions follow an incremental number in the format `v1`, `v2`, etc.
 
 The current version refers to the **default** version used by the API, if no `Accept-version` header is provided.
 
-When we introduce a new version, the default version enters a **deprecation period**, after which the version is marked as deprecated and the new version becomes the **default** version.
-
-| Feature maturity     | Deprecation period |
-| -------------------- | ------------------ |
-| Beta                 | 4 months           |
-| General Availability | 12 months          |
+When we introduce a new version, the default version enters a **deprecation period** up to 12 months, after which the version is marked as deprecated and the new version becomes the **default** version.
 
 The following table lists all the supported versions and the possible start date for their deprecation period:
 
 | Version  | Is default |  Deprecated from  |
 | -------- | ---------- | ---------- |
-| `v1` | ✅ | 2020-08-25 |
 | `v2` |  |  |
+| `v1` | ✅ | 2020-08-25 |
 
 ## Migrating to new versions
 
 We want to make the migration to a new version as simple as possible and abstract away the changes into the packages provided by the application-kit repository.
 
-For instance, changes related to `v2` are all included in the package `@commercetools-backend/express` and the data fetching components improvements (see [Proxying requests to the external API](#proxying-requests-to-the-external-api)).
+For instance, changes related to `v2` are all included in the package `@commercetools-backend/express` and the data fetching components improvements.
 If you use those packages, you only need to follow the instructions in the release notes to update to new versions for the packages.
 
 # Related

@@ -7,11 +7,13 @@
     }
   ],
   "commit": false,
-  "linked": [
+  "fixed": [
     [
+      "@commercetools-applications/*",
       "@commercetools-backend/*",
       "@commercetools-frontend/*",
-      "!@commercetools-frontend/codemod"
+      "@commercetools-local/*",
+      "@commercetools-website/*"
     ]
   ],
   "access": "restricted",
