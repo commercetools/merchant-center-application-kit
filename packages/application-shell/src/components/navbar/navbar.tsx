@@ -91,6 +91,16 @@ const ConnectedSquareIcon = lazy(
   () => import('./legacy-icons/connected-square')
 );
 const WorldIcon = lazy(() => import('./legacy-icons/world'));
+const TreeStructureIcon = lazy(() => import('./legacy-icons/tree-structure'));
+const UserFilledIcon = lazy(() => import('./legacy-icons/user-filled'));
+const SpeedometerIcon = lazy(() => import('./legacy-icons/speedometer'));
+const TagMultiIcon = lazy(() => import('./legacy-icons/tag-multi'));
+const CartIcon = lazy(() => import('./legacy-icons/cart'));
+const BoxIcon = lazy(() => import('./legacy-icons/box'));
+const GearIcon = lazy(() => import('./legacy-icons/gear'));
+const ListWithSearchIcon = lazy(
+  () => import('./legacy-icons/list-with-search')
+);
 
 type IconProps = Parameters<typeof BackIcon>[0];
 type IconSwitcherProps = { icon: string } & IconProps;
@@ -104,6 +114,25 @@ const IconSwitcher = ({ icon, ...iconProps }: IconSwitcherProps) => {
   }
   // Backwards compatibility for apps using the "icon name".
   switch (icon) {
+    // Legacy application icons
+    // TODO: To be removed once MC applications icons updates are published
+    case 'TreeStructureIcon':
+      return <TreeStructureIcon {...iconProps} />;
+    case 'UserFilledIcon':
+      return <UserFilledIcon {...iconProps} />;
+    case 'SpeedometerIcon':
+      return <SpeedometerIcon {...iconProps} />;
+    case 'TagMultiIcon':
+      return <TagMultiIcon {...iconProps} />;
+    case 'CartIcon':
+      return <CartIcon {...iconProps} />;
+    case 'BoxIcon':
+      return <BoxIcon {...iconProps} />;
+    case 'GearIcon':
+      return <GearIcon {...iconProps} />;
+    case 'ListWithSearchIcon':
+      return <ListWithSearchIcon {...iconProps} />;
+
     // Custom application icons set
     case 'HeartIcon':
       return <HeartIcon {...iconProps} />;
