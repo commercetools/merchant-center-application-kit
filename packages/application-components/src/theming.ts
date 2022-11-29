@@ -4,12 +4,20 @@ import {
 } from '@commercetools-uikit/design-system';
 
 const appKitSpacing55 = '40px';
+// TODO: move to uikit?
+const colorAccent10 = 'hsl(195, 35.2941176471%, 10%)';
+const colorAccent90 = 'hsl(195, 35.2941176471%, 90%)';
 const newShadow1 = '0px 2px 5px 0px rgba(0, 0, 0, 0.15)';
 
 export const themesOverrides = {
   default: {
     colorForPageHeaderBottomBorder: uiKitDesignTokens.colorNeutral,
+    colorForNavbarIcon: uiKitDesignTokens.colorSurface,
+    colorForNavbarIconWhenActive: uiKitDesignTokens.colorPrimary,
+    colorForNavbarLink: uiKitDesignTokens.colorSurface,
+    colorForNavbarLinkWhenActive: uiKitDesignTokens.colorPrimary,
     backgroundColorForMainPageDivider: uiKitDesignTokens.colorNeutral60,
+    backgroundColorForNavbar: uiKitDesignTokens.colorAccent,
     backgroundColorForPageHeader: uiKitDesignTokens.colorNeutral95,
     backgroundColorForTabularMainPageContent: uiKitDesignTokens.colorNeutral95,
     backgroundColorForUserMenuItemWhenHovered: uiKitDesignTokens.colorNeutral90,
@@ -17,7 +25,7 @@ export const themesOverrides = {
     borderColorForDialogDivider: uiKitDesignTokens.colorNeutral,
     borderColorForModalPageHeaderDivider: uiKitDesignTokens.colorNeutral60,
     borderColorForModalTopBarWhenSurface: uiKitDesignTokens.colorNeutral,
-    fontSizeForNavBarLink: uiKitDesignTokens.fontSize40,
+    fontSizeForNavbarLink: uiKitDesignTokens.fontSize40,
     heightForTab: '4px',
     lineHeightForNavBarLink: uiKitDesignTokens.lineHeight50,
     marginBottomForPageTopBar: uiKitDesignTokens.spacing20,
@@ -45,7 +53,17 @@ export const themesOverrides = {
   },
   test: {
     colorForPageHeaderBottomBorder: uiKitDesignTokens.colorNeutral90,
+    // TODO: final color not defined yet.
+    colorForNavbarIcon: colorAccent90,
+    // TODO: final color not defined yet.
+    colorForNavbarIconWhenActive: uiKitDesignTokens.colorSurface,
+    // TODO: final color not defined yet.
+    colorForNavbarLink: colorAccent90,
+    // TODO: final color not defined yet.
+    colorForNavbarLinkWhenActive: uiKitDesignTokens.colorSurface,
     backgroundColorForMainPageDivider: uiKitDesignTokens.colorNeutral90,
+    // TODO: final color not defined yet.
+    backgroundColorForNavbar: colorAccent10,
     backgroundColorForPageHeader: uiKitDesignTokens.colorSurface,
     backgroundColorForTabularMainPageContent: uiKitDesignTokens.colorSurface,
     backgroundColorForUserMenuItemWhenHovered: uiKitDesignTokens.colorNeutral95,
@@ -53,7 +71,7 @@ export const themesOverrides = {
     borderColorForDialogDivider: uiKitDesignTokens.colorNeutral90,
     borderColorForModalPageHeaderDivider: uiKitDesignTokens.colorNeutral90,
     borderColorForModalTopBarWhenSurface: uiKitDesignTokens.colorSurface,
-    fontSizeForNavBarLink: uiKitDesignTokens.fontSize20,
+    fontSizeForNavbarLink: uiKitDesignTokens.fontSize20,
     heightForTab: '2px',
     lineHeightForNavBarLink: uiKitDesignTokens.lineHeight20,
     marginBottomForPageTopBar: uiKitDesignTokens.spacing40,
