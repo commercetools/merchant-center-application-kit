@@ -103,7 +103,7 @@
     "@graphql-codegen/typescript-graphql-files-modules": "2.2.1",
     "@graphql-codegen/typescript-operations": "2.5.5",
     "@manypkg/cli": "0.19.2",
-    "@percy/cli": "1.11.0",
+    "@percy/cli": "1.16.0",
     "@percy/cypress": "3.1.2",
     "@percy/puppeteer": "2.0.2",
     "@preconstruct/cli": "2.2.2",
