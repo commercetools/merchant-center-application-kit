@@ -6,6 +6,7 @@ import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import { customProperties } from '@commercetools-uikit/design-system';
 import Card from '@commercetools-uikit/card';
 import { getOverlayStyles, getModalContentStyles } from './dialog.styles';
+import { designTokens } from '../../../theming';
 
 // When running tests, we don't render the AppShell. Instead we mock the
 // application context to make the data available to the application under
@@ -109,6 +110,7 @@ const DialogContainer = (props: Props) => (
             css={css`
               min-height: 0;
               ${sizeStyles(props)}
+              padding: ${designTokens.paddingForDialogContainer};
 
               > div {
                 display: flex;
