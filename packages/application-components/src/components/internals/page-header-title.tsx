@@ -1,8 +1,9 @@
 import { isValidElement, type ReactElement } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { designTokens as appKitDesignTokens } from '../../theming';
+import { useTheme } from '@commercetools-uikit/design-system';
 import Text from '@commercetools-uikit/text';
+import { designTokens as appKitDesignTokens } from '../../theming';
 
 type Props = {
   title: string;
@@ -20,13 +21,18 @@ const SubtitleWrapper = styled.div`
   margin-top: ${appKitDesignTokens.marginTopForPageSubtitle};
 `;
 
-type RenderTitleProps = Pick<Props, 'titleSize' | 'title' | 'truncate'>;
+type TitleProps = Pick<Props, 'titleSize' | 'title' | 'truncate'>;
 
-const renderTitle = (props: RenderTitleProps) => {
+const Title = (props: TitleProps) => {
+  const { theme } = useTheme();
   switch (props.titleSize) {
     case 'big':
       return (
-        <Text.Headline as="h2" title={props.title} truncate={props.truncate}>
+        <Text.Headline
+          as={theme === 'default' ? 'h2' : 'h1'}
+          title={props.title}
+          truncate={props.truncate}
+        >
           {props.title}
         </Text.Headline>
       );
@@ -40,40 +46,49 @@ const renderTitle = (props: RenderTitleProps) => {
   }
 };
 
-const renderSubtitle = (
-  subtitle?: Props['subtitle'],
-  truncate: Props['truncate'] = false
-) => {
-  if (!subtitle) {
+type SubtitleProps = {
+  subtitle?: Props['subtitle'];
+  truncate: Props['truncate'];
+};
+
+const Subtitle = (props: SubtitleProps) => {
+  const { theme } = useTheme();
+  if (!props.subtitle) {
     return null;
   }
-  if (isValidElement(subtitle)) {
-    return <SubtitleWrapper>{subtitle}</SubtitleWrapper>;
+  if (isValidElement(props.subtitle)) {
+    return <SubtitleWrapper>{props.subtitle}</SubtitleWrapper>;
   }
   return (
     <SubtitleWrapper>
-      <Text.Body title={subtitle} truncate={truncate}>
-        {subtitle}
+      <Text.Body
+        title={props.subtitle}
+        truncate={props.truncate}
+        tone={theme !== 'default' ? 'secondary' : undefined}
+      >
+        {props.subtitle}
       </Text.Body>
     </SubtitleWrapper>
   );
 };
-
-const PageHeaderTitle = (props: Props) => {
-  const { titleSize, title, truncate } = props;
-  const renderedTitle = renderTitle({ titleSize, title, truncate });
-  const renderedSubtitle = renderSubtitle(props.subtitle, truncate);
-  return (
-    <div
-      css={css`
-        overflow: hidden;
-      `}
-    >
-      {renderedTitle}
-      {renderedSubtitle}
-    </div>
-  );
+Subtitle.defaultProps = {
+  truncate: false,
 };
+
+const PageHeaderTitle = (props: Props) => (
+  <div
+    css={css`
+      overflow: hidden;
+    `}
+  >
+    <Title
+      title={props.title}
+      titleSize={props.titleSize}
+      truncate={props.truncate}
+    />
+    <Subtitle subtitle={props.subtitle} truncate={props.truncate} />
+  </div>
+);
 PageHeaderTitle.displayName = 'PageHeaderTitle';
 PageHeaderTitle.defaultProps = defaultProps;
 

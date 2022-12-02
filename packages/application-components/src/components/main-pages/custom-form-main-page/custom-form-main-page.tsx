@@ -42,10 +42,19 @@ type CustomFormMainPageProps = {
    * Determines if the form controls should be rendered.
    */
   hideControls?: boolean;
+  /**
+   * Determines whether the divider between header and content should be rendered.
+   * (default: true)
+   */
+  hideDivider?: boolean;
 };
 
-const defaultProps: Pick<CustomFormMainPageProps, 'hideControls'> = {
+const defaultProps: Pick<
+  CustomFormMainPageProps,
+  'hideControls' | 'hideDivider'
+> = {
   hideControls: false,
+  hideDivider: false,
 };
 
 const CustomFormMainPage = (props: CustomFormMainPageProps) => {
@@ -70,7 +79,7 @@ const CustomFormMainPage = (props: CustomFormMainPageProps) => {
               {props.formControls}
             </Spacings.Inline>
           )}
-          <Divider />
+          {!props.hideDivider && <Divider />}
         </Spacings.Stack>
       </MainPageContainer>
       <MainPageContent>{props.children}</MainPageContent>
