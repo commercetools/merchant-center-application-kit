@@ -64,7 +64,7 @@
     "@vitejs/plugin-react": "2.1.0",
     "autoprefixer": "^10.4.9",
     "babel-loader": "8.2.5",
-    "browserslist": "^4.21.3",
+    "browserslist": "^4.21.4",
     "cac": "6.7.14",
     "chalk": "4.1.2",
     "core-js": "^3.25.1",

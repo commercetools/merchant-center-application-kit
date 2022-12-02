@@ -126,6 +126,11 @@ export const PERMISSIONS = entryPointUriPathToPermissionKeys(entryPointUriPath);
 ```
 </Info>
 
+# The page keeps reloading itself
+
+If the Merchant Center page keeps reloading itself after accessing a Custom Application, most likely there is a misconfiguration of the `entryPointUriPath`.
+See [Page reloading behavior](/concepts/merchant-center-proxy-router#page-reloading-behavior) for more information on how to debug and solve this issue.
+
 # Session token expiration
 
 In the browser, the session token is stored in a secure cookie named `mcAccessToken` and is valid for 30 days.
