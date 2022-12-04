@@ -1,8 +1,14 @@
 {
   "trailingComma": "es5",
   "singleQuote": true,
-  "parser": "typescript",
+  "parser": "babel",
   "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "options": {
+        "parser": "typescript"
+      }
+    },
     {
       "files": "*.json",
       "options": {

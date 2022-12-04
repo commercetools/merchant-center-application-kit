@@ -45,7 +45,10 @@ async function run() {
       pluginReact({
         jsxImportSource: '@emotion/react',
         babel: {
-          plugins: ['@emotion/babel-plugin'],
+          plugins: [
+            '@emotion/babel-plugin',
+            '@babel/plugin-proposal-do-expressions',
+          ],
         },
       }),
       pluginSvgr(),
