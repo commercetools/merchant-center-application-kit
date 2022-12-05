@@ -1,5 +1,19 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.20.4
+
+### Patch Changes
+
+- [#2903](https://github.com/commercetools/merchant-center-application-kit/pull/2903) [`3d46e9fb7`](https://github.com/commercetools/merchant-center-application-kit/commit/3d46e9fb7ddb8cd73f3297fc269771a350f9e19f) Thanks [@emmenko](https://github.com/emmenko)! - Add `@babel/plugin-proposal-do-expressions` plugin to Vite config
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@21.20.4
+  - @commercetools-frontend/assets@21.20.4
+  - @commercetools-frontend/babel-preset-mc-app@21.20.4
+  - @commercetools-frontend/constants@21.20.4
+  - @commercetools-frontend/mc-dev-authentication@21.20.4
+  - @commercetools-frontend/mc-html-template@21.20.4
+
 ## 21.20.3
 
 ### Patch Changes
