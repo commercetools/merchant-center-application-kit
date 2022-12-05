@@ -3,10 +3,9 @@ import Modal, { type Props as ModalProps } from 'react-modal';
 import { css, ClassNames } from '@emotion/react';
 import styled from '@emotion/styled';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
-import { customProperties } from '@commercetools-uikit/design-system';
 import Card from '@commercetools-uikit/card';
 import { getOverlayStyles, getModalContentStyles } from './dialog.styles';
-import { designTokens } from '../../../theming';
+import { designTokens as appKitDesignTokens } from '../../../theming';
 
 // When running tests, we don't render the AppShell. Instead we mock the
 // application context to make the data available to the application under
@@ -110,7 +109,7 @@ const DialogContainer = (props: Props) => (
             css={css`
               min-height: 0;
               ${sizeStyles(props)}
-              padding: ${designTokens.paddingForDialogContainer};
+              padding: ${appKitDesignTokens.paddingForDialogContainer};
 
               > div {
                 display: flex;
@@ -128,10 +127,6 @@ const DialogContainer = (props: Props) => (
                 align-items: stretch;
                 height: 100%;
                 min-height: 0;
-
-                > * + * {
-                  margin: ${customProperties.spacingM} 0 0;
-                }
               `}
             >
               {props.children}

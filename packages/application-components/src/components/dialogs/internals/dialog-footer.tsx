@@ -1,9 +1,11 @@
 import type { ReactElement, SyntheticEvent } from 'react';
 import { useIntl, type IntlShape } from 'react-intl';
+import { css } from '@emotion/react';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import PrimaryButton from '@commercetools-uikit/primary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import filterDataAttributes from '../../../utils/filter-data-attributes';
+import { designTokens as appKitDesignTokens } from '../../../theming';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin
@@ -42,20 +44,26 @@ const getFormattedLabel = (label: Label, intl: IntlShape) =>
 const DialogFooter = (props: Props) => {
   const intl = useIntl();
   return (
-    <Spacings.Inline scale="m" alignItems="center" justifyContent="flex-end">
-      <SecondaryButton
-        label={getFormattedLabel(props.labelSecondary, intl)}
-        onClick={props.onCancel}
-        iconLeft={props.iconLeftSecondaryButton}
-        {...filterDataAttributes(props.dataAttributesSecondaryButton)}
-      />
-      <PrimaryButton
-        label={getFormattedLabel(props.labelPrimary, intl)}
-        onClick={props.onConfirm}
-        isDisabled={props.isPrimaryButtonDisabled}
-        {...filterDataAttributes(props.dataAttributesPrimaryButton)}
-      />
-    </Spacings.Inline>
+    <div
+      css={css`
+        margin-top: ${appKitDesignTokens.marginTopForDialogFooter};
+      `}
+    >
+      <Spacings.Inline scale="m" alignItems="center" justifyContent="flex-end">
+        <SecondaryButton
+          label={getFormattedLabel(props.labelSecondary, intl)}
+          onClick={props.onCancel}
+          iconLeft={props.iconLeftSecondaryButton}
+          {...filterDataAttributes(props.dataAttributesSecondaryButton)}
+        />
+        <PrimaryButton
+          label={getFormattedLabel(props.labelPrimary, intl)}
+          onClick={props.onConfirm}
+          isDisabled={props.isPrimaryButtonDisabled}
+          {...filterDataAttributes(props.dataAttributesPrimaryButton)}
+        />
+      </Spacings.Inline>
+    </div>
   );
 };
 DialogFooter.displayName = 'DialogFooter';
