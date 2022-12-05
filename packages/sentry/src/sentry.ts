@@ -92,12 +92,12 @@ export const boot = () => {
           routingInstrumentation: Sentry.reactRouterV5Instrumentation(history),
         }),
       ],
-      // Sending 20% of transactions. We can adjust that as we see a need to.
+      // Sending 5% of transactions. We can adjust that as we see a need to.
       // Generally we need to find a balance between performance and data volume.
       // If we need more flexible and dynamic way of gathering important samples,
       // we can implement the `tracesSampler` function.
       // https://docs.sentry.io/platforms/javascript/guides/react/configuration/sampling/#sampling-transaction-events
-      tracesSampleRate: 0.2,
+      tracesSampleRate: 0.05,
       beforeSend(event) {
         return redactUnsafeEventFields(event);
       },
