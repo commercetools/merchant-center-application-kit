@@ -43,8 +43,8 @@ type CustomFormMainPageProps = {
    */
   hideControls?: boolean;
   /**
-   * Determines whether the divider between header and content should be rendered.
-   * (default: true)
+   * Determines whether the divider between header and content should be hidden.
+   * (default: false)
    */
   hideDivider?: boolean;
 };
