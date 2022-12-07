@@ -13,16 +13,16 @@ https://mc.<cloud-region>.commercetools.com/:projectKey/orders
 https://mc.<cloud-region>.commercetools.com/:projectKey/avengers
 ```
 
-This way it looks like you are using one single web application even though underneath there are multiple Custom Applications. Let's dig into how this works.
+This way, it looks like you're using a single web application, even though there are multiple Custom Applications underneath. Let's understand how this works.
 
 # Server-side routing
 
 When the user accesses the Merchant Center through the browser, the request to render the page goes through a server component called **Merchant Center Proxy Router**.<br />
-This server is primarily responsible for matching the incoming request to the appropriate Custom Application using the `entryPointUriPath` ([the identifier of the Custom Application](/api-reference/application-config#entrypointuripath)). The request then is [forwarded](#forwarding-requests) to the actual [URL location of the Custom Application](/api-reference/application-config#envproductionurl) which should respond with the `index.html`.
+This server is primarily responsible for matching the incoming request to the appropriate Custom Application using the `entryPointUriPath` ([the identifier of the Custom Application](/api-reference/application-config#entrypointuripath)). The request then is [forwarded](#forwarding-requests) to the actual [URL location of the Custom Application](/api-reference/application-config#envproductionurl), which responds with the `index.html`.
 
 <Info>
 
-A Custom Application is a Single-Page Application that uses client-side routing. Therefore, you need to instruct your hosting provider to rewrite all requests to serve the `index.html`. Conceptually it would mean something like this: `/* --> /index.html`. See [forwarding requests](#forwarding-requests) for more detailed information.
+A Custom Application is a Single-Page Application that uses client-side routing. So, you need to configure your hosting provider to rewrite all requests to serve the `index.html`. Conceptually it would mean something like this: `/* --> /index.html`. See [forwarding requests](#forwarding-requests) for more detailed information.
 
 </Info>
 
@@ -30,16 +30,16 @@ A Custom Application is a Single-Page Application that uses client-side routing.
 
 Given the diagram above, a request goes through the following steps:
 
-1. User tries to access the Merchant Center at the following path `/my-project/my-app`.
-2. The request goes through the Proxy Router which successfully matches the `my-app` identifier for the `my-project` Project.
+1. User accesses the Merchant Center at the following path `/my-project/my-app`.
+2. The request goes through the Proxy Router, which successfully matches the `my-app` identifier for the `my-project` Project.
 3. The configuration for the Custom Application `my-app` is loaded.
-4. The request is [forwarded](#forwarding-requests) to the URL location where the Custom Application is hosted.
+4. The request is [forwarded](#forwarding-requests) to the URL of the server hosting the Custom Application.
 5. The server hosting the Custom Application responds with the `index.html`.
 6. The Custom Application `my-app` is rendered in the browser.
 
 ## Forwarding requests
 
-When the Merchant Center Proxy Router matches a request to a Custom Application, it forwards the original request URI to the Custom Application configured URL.
+When the Merchant Center Proxy Router matches a request to a Custom Application, it forwards the original request URI to the Custom Application's configured URL.
 
 ```
 # FROM
@@ -78,13 +78,13 @@ Check out the [Deployment Examples](/deployment-examples) section for more infor
 
 # Client-side routing
 
-Once the `index.html` is rendered in the browser, the Custom Application uses client-side routing to handle the URI location path.
+After the browser finishes rendering the `index.html`, the Custom Application uses client-side routing to handle the URI location path.
 
-Each Custom Application has a built-in router and a default route match for the path `/:projectKey/:entryPointUriPath`. The value of the `entryPointUriPath` is defined in the [Custom Application config file](/api-reference/application-config) and exposed via the `window.app` [runtime environment](/api-reference/application-config#runtime-application-environment).
+Each Custom Application has a built-in router and a default route match for the path `/:projectKey/:entryPointUriPath`. The value of the `entryPointUriPath` is defined in the [Custom Application config file](/api-reference/application-config) and exposed via the `window.app` [runtime environment](/api-reference/application-config#runtime-application-environment). 
 
-This means that the runtime value of the `entryPointUriPath` must match the value defined in the [Custom Application configuration in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications).
+Hence, the runtime value of the `entryPointUriPath` must match the value defined in the [Custom Application configuration in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications).
 
-For example, given the `entryPointUriPath` to be `avengers`, when the users accesses the URL `/my-project/avengers` the Custom Application renders correctly as the route matches.
+For example, if the `entryPointUriPath` is `avengers` when the user accesses the URL `/my-project/avengers`, the Custom Application renders correctly as the route matches.
 
 ```js
 https://mc.<cloud-region>.commercetools.com/:projectKey/avengers
@@ -96,9 +96,9 @@ window.app.entryPointUriPath
 
 ## Page reloading behavior
 
-Each Custom Application defines its own routes. However, there might be links to other applications that won't be matched by the Custom Application routes. This is also the case when the user clicks on the menu links in the Merchant Center main navigation.
+Each Custom Application defines its routes. However, there might be links to other applications that the Custom Application routes won't match. The same applies when the user clicks on the menu links in the Merchant Center main navigation.
 
-In these situations, when no route matches the new URI path, the Custom Application forces a full page reload and the request goes through the Merchant Center Proxy Router, letting the [server-side router](#server-side-routing) handle the matching of the route. In most cases, this results in a different Custom Application to be rendered.
+When no route matches the new URI path, the Custom Application forces a full page reload, and the request goes through the Merchant Center Proxy Router, letting the [server-side router](#server-side-routing) handle the matching of the route. In most cases, this results in rendering a different Custom Application.
 
 ```mermaid
 sequenceDiagram
@@ -120,12 +120,12 @@ sequenceDiagram
 
 <Warning>
 
-Make sure to use the same `entryPointUriPath` value in the Custom Application config file and in the Merchant Center configuration.
+Use the same `entryPointUriPath` value in the Custom Application config file and the Merchant Center configuration.
 
-If there is a mismatch, the client-side routing will force a page reload to let the Merchant Center Proxy Router handle the route match. The same application is rendered again, thus **causing a new reload**, and so on.
+If there's a mismatch, the client-side routing will force a page reload to let the Merchant Center Proxy Router handle the route match, which renders the same application again, causing infinite reloads.
 <br />
 
-This reloading issue can be detected by inspecting the value of `window.app.entryPointUriPath` in the browser's dev-tools and compare it with the value in the URI path.
+You can detect the reloading issue by inspecting the value of `window.app.entryPointUriPath` in the browser's dev tools and comparing it with the value in the URI path.
 
 ```js
 https://mc.<cloud-region>.commercetools.com/:projectKey/avengers
