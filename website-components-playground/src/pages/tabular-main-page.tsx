@@ -149,15 +149,13 @@ const TabularMainPageExample = () => {
             hideControls={Boolean(values.hideControls)}
           >
             <Switch>
-              <Route exact path={`${match.path}/tabular-main-page/`}>
-                <Redirect to={`${match.url}/tabular-main-page/tab-one`} />
-              </Route>
               <Route path={`${match.path}/tabular-main-page/tab-one`}>
                 <Text.Body>{values['tab-one-content']}</Text.Body>
               </Route>
               <Route path={`${match.path}/tabular-main-page/tab-two`}>
                 <Text.Body>{values['tab-two-content']}</Text.Body>
               </Route>
+              <Redirect to={`${match.url}/tabular-main-page/tab-one`} />
             </Switch>
           </TabularMainPage>
         )}

@@ -1,6 +1,7 @@
 import type { CSSObject } from '@emotion/react';
 
 import { ReactElement, ReactNode, SyntheticEvent } from 'react';
+import { useTheme } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import ModalPage from '../internals/modal-page';
@@ -61,43 +62,47 @@ const defaultProps: Pick<Props, 'hideControls'> = {
   hideControls: false,
 };
 
-const TabularModalPage = (props: Props) => (
-  <ModalPage
-    title={props.title}
-    isOpen={props.isOpen}
-    zIndex={props.zIndex}
-    onClose={props.onClose}
-    topBarColor="neutral"
-    currentPathLabel={props.topBarCurrentPathLabel || props.title}
-    previousPathLabel={props.topBarPreviousPathLabel}
-    getParentSelector={props.getParentSelector}
-    shouldDelayOnClose={props.shouldDelayOnClose}
-    afterOpenStyles={props.afterOpenStyles}
-  >
-    <TabularPageContainer color="neutral">
-      {props.customTitleRow || (
-        <PageHeaderTitle
-          title={props.title}
-          subtitle={props.subtitle}
-          truncate
+const TabularModalPage = (props: Props) => {
+  const { theme } = useTheme();
+  return (
+    <ModalPage
+      title={props.title}
+      isOpen={props.isOpen}
+      zIndex={props.zIndex}
+      onClose={props.onClose}
+      topBarColor="neutral"
+      currentPathLabel={props.topBarCurrentPathLabel || props.title}
+      previousPathLabel={props.topBarPreviousPathLabel}
+      getParentSelector={props.getParentSelector}
+      shouldDelayOnClose={props.shouldDelayOnClose}
+      afterOpenStyles={props.afterOpenStyles}
+    >
+      <TabularPageContainer color="neutral">
+        {props.customTitleRow || (
+          <PageHeaderTitle
+            title={props.title}
+            titleSize={theme === 'default' ? 'small' : 'big'}
+            subtitle={props.subtitle}
+            truncate
+          />
+        )}
+        <ControlsContainter
+          tabControls={props.tabControls}
+          formControls={
+            <FormControlsContainer>
+              {!props.hideControls && props.formControls && (
+                <Spacings.Inline alignItems="flex-end">
+                  {props.formControls}
+                </Spacings.Inline>
+              )}
+            </FormControlsContainer>
+          }
         />
-      )}
-      <ControlsContainter
-        tabControls={props.tabControls}
-        formControls={
-          <FormControlsContainer>
-            {!props.hideControls && props.formControls && (
-              <Spacings.Inline alignItems="flex-end">
-                {props.formControls}
-              </Spacings.Inline>
-            )}
-          </FormControlsContainer>
-        }
-      />
-    </TabularPageContainer>
-    <ContentWrapper>{props.children}</ContentWrapper>
-  </ModalPage>
-);
+      </TabularPageContainer>
+      <ContentWrapper>{props.children}</ContentWrapper>
+    </ModalPage>
+  );
+};
 TabularModalPage.displayName = 'TabularModalPage';
 TabularModalPage.defaultProps = defaultProps;
 // Static export of pre-configured form control buttons to easily re-use

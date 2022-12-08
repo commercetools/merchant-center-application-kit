@@ -6,6 +6,7 @@ import type { LocationDescriptor } from 'history';
 import { warning } from '@commercetools-uikit/utils';
 import Text from '@commercetools-uikit/text';
 import { getLinkStyles } from './tab.styles';
+import { useTheme } from '@commercetools-uikit/design-system';
 
 const pathWithoutSearch = (path: TTabHeaderProps['to']) =>
   typeof path === 'string' ? path.split('?')[0] : path.pathname;
@@ -51,6 +52,24 @@ export type TTabHeaderProps = {
   exactPathMatch: boolean;
 };
 
+const TabLabel = ({ children }: { children?: string }) => {
+  const { theme } = useTheme();
+
+  if (theme === 'default') {
+    return (
+      <Text.Subheadline as="h4" truncate={true}>
+        {children}
+      </Text.Subheadline>
+    );
+  }
+
+  return (
+    <Text.Headline as="h3" truncate={true}>
+      {children}
+    </Text.Headline>
+  );
+};
+
 export const TabHeader = (props: TTabHeaderProps) => {
   const intl = useIntl();
   const location = useLocation();
@@ -87,9 +106,7 @@ export const TabHeader = (props: TTabHeaderProps) => {
       {...getDisabledLinkAtributes(isDisabled)}
       {...dataAttributeProps}
     >
-      <Text.Subheadline as="h4" truncate={true}>
-        {label}
-      </Text.Subheadline>
+      <TabLabel>{label}</TabLabel>
     </Link>
   );
 };

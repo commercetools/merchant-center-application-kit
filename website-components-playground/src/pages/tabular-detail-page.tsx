@@ -150,15 +150,13 @@ const TabularDetailPageExample = () => {
             onPreviousPathClick={() => window.alert('Back button clicked')}
           >
             <Switch>
-              <Route exact path={`${match.path}/tabular-detail-page/`}>
-                <Redirect to={`${match.url}/tabular-detail-page/tab-one`} />
-              </Route>
               <Route path={`${match.path}/tabular-detail-page/tab-one`}>
                 <Text.Body>{values['tab-one-content']}</Text.Body>
               </Route>
               <Route path={`${match.path}/tabular-detail-page/tab-two`}>
                 <Text.Body>{values['tab-two-content']}</Text.Body>
               </Route>
+              <Redirect to={`${match.url}/tabular-detail-page/tab-one`} />
             </Switch>
           </TabularDetailPage>
         )}

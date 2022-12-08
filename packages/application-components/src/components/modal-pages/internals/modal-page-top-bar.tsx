@@ -6,7 +6,10 @@ import { CloseIcon, AngleLeftIcon } from '@commercetools-uikit/icons';
 import FlatButton from '@commercetools-uikit/flat-button';
 import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';
 import Text from '@commercetools-uikit/text';
-import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
+import {
+  designTokens as uiKitDesignTokens,
+  useTheme,
+} from '@commercetools-uikit/design-system';
 import { designTokens as appKitDesignTokens } from '../../../theming';
 import messages from '../../internals/messages';
 
@@ -48,6 +51,7 @@ const defaultProps: Pick<Props, 'color' | 'previousPathLabel'> = {
 
 const ModalPageTopBar = (props: Props) => {
   const intl = useIntl();
+  const { theme } = useTheme();
   return (
     <div
       css={css`
@@ -110,7 +114,7 @@ const ModalPageTopBar = (props: Props) => {
           onClick={props.onClose}
           icon={
             <LargeIconWrapper>
-              <CloseIcon size="medium" />
+              <CloseIcon size={theme === 'default' ? 'medium' : 'big'} />
             </LargeIconWrapper>
           }
         />
