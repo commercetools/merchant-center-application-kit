@@ -1,5 +1,26 @@
 # merchant-center-application-template-starter-typescript
 
+## 21.20.5
+
+### Patch Changes
+
+- [#2905](https://github.com/commercetools/merchant-center-application-kit/pull/2905) [`bba0f8437`](https://github.com/commercetools/merchant-center-application-kit/commit/bba0f8437cf25b022509a651df8a2288bcc9914b) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Refactor page layout components (`FormModalPage`, `InfoDetailPage`,...) to set them up for the upcoming new theme.
+
+- Updated dependencies [[`bba0f8437`](https://github.com/commercetools/merchant-center-application-kit/commit/bba0f8437cf25b022509a651df8a2288bcc9914b)]:
+  - @commercetools-frontend/application-components@21.20.5
+  - @commercetools-frontend/application-shell@21.20.5
+  - @commercetools-frontend/i18n@21.20.5
+  - @commercetools-frontend/actions-global@21.20.5
+  - @commercetools-frontend/application-config@21.20.5
+  - @commercetools-frontend/application-shell-connectors@21.20.5
+  - @commercetools-frontend/assets@21.20.5
+  - @commercetools-frontend/constants@21.20.5
+  - @commercetools-frontend/eslint-config-mc-app@21.20.5
+  - @commercetools-frontend/jest-preset-mc-app@21.20.5
+  - @commercetools-frontend/mc-dev-authentication@21.20.5
+  - @commercetools-frontend/mc-scripts@21.20.5
+  - @commercetools-frontend/permissions@21.20.5
+
 ## 21.20.4
 
 ### Patch Changes
