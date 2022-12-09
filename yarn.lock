@@ -3672,19 +3672,19 @@ __metadata:
     "@commercetools-frontend/constants": "workspace:*"
     "@commercetools-frontend/i18n": "workspace:*"
     "@commercetools-frontend/l10n": "workspace:*"
-    "@commercetools-uikit/card": ^15.4.0
-    "@commercetools-uikit/constraints": ^15.4.0
-    "@commercetools-uikit/design-system": ^15.4.0
-    "@commercetools-uikit/flat-button": ^15.4.0
-    "@commercetools-uikit/icon-button": ^15.4.0
-    "@commercetools-uikit/icons": ^15.4.0
-    "@commercetools-uikit/messages": ^15.4.0
-    "@commercetools-uikit/primary-button": ^15.4.0
-    "@commercetools-uikit/secondary-button": ^15.4.0
-    "@commercetools-uikit/secondary-icon-button": ^15.4.0
-    "@commercetools-uikit/spacings": ^15.4.0
-    "@commercetools-uikit/text": ^15.4.0
-    "@commercetools-uikit/utils": ^15.4.0
+    "@commercetools-uikit/card": ^15.6.0
+    "@commercetools-uikit/constraints": ^15.6.0
+    "@commercetools-uikit/design-system": ^15.6.0
+    "@commercetools-uikit/flat-button": ^15.6.0
+    "@commercetools-uikit/icon-button": ^15.6.0
+    "@commercetools-uikit/icons": ^15.6.0
+    "@commercetools-uikit/messages": ^15.6.0
+    "@commercetools-uikit/primary-button": ^15.6.0
+    "@commercetools-uikit/secondary-button": ^15.6.0
+    "@commercetools-uikit/secondary-icon-button": ^15.6.0
+    "@commercetools-uikit/spacings": ^15.6.0
+    "@commercetools-uikit/text": ^15.6.0
+    "@commercetools-uikit/utils": ^15.6.0
     "@emotion/react": 11.10.4
     "@emotion/styled": 11.10.4
     "@react-hook/latest": 1.0.3
@@ -3782,17 +3782,17 @@ __metadata:
     "@commercetools-frontend/sdk": "workspace:*"
     "@commercetools-frontend/sentry": "workspace:*"
     "@commercetools-frontend/url-utils": "workspace:*"
-    "@commercetools-uikit/accessible-hidden": ^15.4.0
-    "@commercetools-uikit/avatar": ^15.4.0
-    "@commercetools-uikit/card": ^15.4.0
-    "@commercetools-uikit/design-system": ^15.4.0
-    "@commercetools-uikit/flat-button": ^15.4.0
-    "@commercetools-uikit/icons": ^15.4.0
-    "@commercetools-uikit/loading-spinner": ^15.4.0
-    "@commercetools-uikit/notifications": ^15.4.0
-    "@commercetools-uikit/select-input": ^15.4.0
-    "@commercetools-uikit/spacings": ^15.4.0
-    "@commercetools-uikit/text": ^15.4.0
+    "@commercetools-uikit/accessible-hidden": ^15.6.0
+    "@commercetools-uikit/avatar": ^15.6.0
+    "@commercetools-uikit/card": ^15.6.0
+    "@commercetools-uikit/design-system": ^15.6.0
+    "@commercetools-uikit/flat-button": ^15.6.0
+    "@commercetools-uikit/icons": ^15.6.0
+    "@commercetools-uikit/loading-spinner": ^15.6.0
+    "@commercetools-uikit/notifications": ^15.6.0
+    "@commercetools-uikit/select-input": ^15.6.0
+    "@commercetools-uikit/spacings": ^15.6.0
+    "@commercetools-uikit/text": ^15.6.0
     "@commercetools/http-user-agent": 3.0.0
     "@emotion/react": 11.10.4
     "@emotion/styled": 11.10.4
@@ -4008,7 +4008,7 @@ __metadata:
     "@babel/runtime-corejs3": ^7.19.0
     "@commercetools-community-kit/i18n": ^0.3.0
     "@commercetools-frontend/sentry": "workspace:*"
-    "@commercetools-uikit/i18n": ^15.4.0
+    "@commercetools-uikit/i18n": ^15.6.0
     "@emotion/react": 11.10.4
     "@formatjs/cli": 4.8.4
     "@formatjs/icu-messageformat-parser": 2.1.10
@@ -4249,12 +4249,12 @@ __metadata:
     "@commercetools-frontend/constants": "workspace:*"
     "@commercetools-frontend/notifications": "workspace:*"
     "@commercetools-frontend/sentry": "workspace:*"
-    "@commercetools-uikit/design-system": ^15.4.0
-    "@commercetools-uikit/hooks": ^15.4.0
-    "@commercetools-uikit/icon-button": ^15.4.0
-    "@commercetools-uikit/icons": ^15.4.0
-    "@commercetools-uikit/spacings": ^15.4.0
-    "@commercetools-uikit/utils": ^15.4.0
+    "@commercetools-uikit/design-system": ^15.6.0
+    "@commercetools-uikit/hooks": ^15.6.0
+    "@commercetools-uikit/icon-button": ^15.6.0
+    "@commercetools-uikit/icons": ^15.6.0
+    "@commercetools-uikit/spacings": ^15.6.0
+    "@commercetools-uikit/utils": ^15.6.0
     "@emotion/react": 11.10.4
     "@emotion/styled": 11.10.4
     "@testing-library/react": 12.1.5
@@ -4369,21 +4369,21 @@ __metadata:
     "@commercetools-frontend/mc-scripts": "workspace:*"
     "@commercetools-frontend/permissions": "workspace:*"
     "@commercetools-frontend/sdk": "workspace:*"
-    "@commercetools-uikit/card": ^15.4.0
-    "@commercetools-uikit/checkbox-input": ^15.4.0
-    "@commercetools-uikit/constraints": ^15.4.0
-    "@commercetools-uikit/data-table": ^15.4.0
-    "@commercetools-uikit/date-time-input": ^15.4.0
-    "@commercetools-uikit/flat-button": ^15.4.0
-    "@commercetools-uikit/grid": ^15.4.0
-    "@commercetools-uikit/icons": ^15.4.0
-    "@commercetools-uikit/label": ^15.4.0
-    "@commercetools-uikit/loading-spinner": ^15.4.0
-    "@commercetools-uikit/notifications": ^15.4.0
-    "@commercetools-uikit/pagination": ^15.4.0
-    "@commercetools-uikit/primary-button": ^15.4.0
-    "@commercetools-uikit/spacings": ^15.4.0
-    "@commercetools-uikit/text": ^15.4.0
+    "@commercetools-uikit/card": ^15.6.0
+    "@commercetools-uikit/checkbox-input": ^15.6.0
+    "@commercetools-uikit/constraints": ^15.6.0
+    "@commercetools-uikit/data-table": ^15.6.0
+    "@commercetools-uikit/date-time-input": ^15.6.0
+    "@commercetools-uikit/flat-button": ^15.6.0
+    "@commercetools-uikit/grid": ^15.6.0
+    "@commercetools-uikit/icons": ^15.6.0
+    "@commercetools-uikit/label": ^15.6.0
+    "@commercetools-uikit/loading-spinner": ^15.6.0
+    "@commercetools-uikit/notifications": ^15.6.0
+    "@commercetools-uikit/pagination": ^15.6.0
+    "@commercetools-uikit/primary-button": ^15.6.0
+    "@commercetools-uikit/spacings": ^15.6.0
+    "@commercetools-uikit/text": ^15.6.0
     "@formatjs/cli": 4.8.4
     "@types/dotenv-flow": ^3.2.0
     "@vercel/node": ^2.5.14
@@ -4412,17 +4412,17 @@ __metadata:
     "@commercetools-frontend/assets": "workspace:*"
     "@commercetools-frontend/constants": "workspace:*"
     "@commercetools-frontend/react-notifications": "workspace:*"
-    "@commercetools-uikit/accessible-button": ^15.4.0
-    "@commercetools-uikit/card": ^15.4.0
-    "@commercetools-uikit/design-system": ^15.4.0
-    "@commercetools-uikit/grid": ^15.4.0
-    "@commercetools-uikit/icon-button": ^15.4.0
-    "@commercetools-uikit/icons": ^15.4.0
-    "@commercetools-uikit/link": ^15.4.0
-    "@commercetools-uikit/spacings": ^15.4.0
-    "@commercetools-uikit/text": ^15.4.0
-    "@commercetools-uikit/text-field": ^15.4.0
-    "@commercetools-uikit/text-input": ^15.4.0
+    "@commercetools-uikit/accessible-button": ^15.6.0
+    "@commercetools-uikit/card": ^15.6.0
+    "@commercetools-uikit/design-system": ^15.6.0
+    "@commercetools-uikit/grid": ^15.6.0
+    "@commercetools-uikit/icon-button": ^15.6.0
+    "@commercetools-uikit/icons": ^15.6.0
+    "@commercetools-uikit/link": ^15.6.0
+    "@commercetools-uikit/spacings": ^15.6.0
+    "@commercetools-uikit/text": ^15.6.0
+    "@commercetools-uikit/text-field": ^15.6.0
+    "@commercetools-uikit/text-input": ^15.6.0
     "@emotion/react": 11.10.4
     "@emotion/styled": 11.10.4
     "@vitejs/plugin-react": 2.1.0
@@ -4509,7 +4509,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/accessible-button@npm:15.6.0, @commercetools-uikit/accessible-button@npm:^15.4.0":
+"@commercetools-uikit/accessible-button@npm:15.6.0, @commercetools-uikit/accessible-button@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/accessible-button@npm:15.6.0"
   dependencies:
@@ -4529,7 +4529,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/accessible-hidden@npm:^15.4.0":
+"@commercetools-uikit/accessible-hidden@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/accessible-hidden@npm:15.6.0"
   dependencies:
@@ -4543,7 +4543,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/avatar@npm:^15.4.0":
+"@commercetools-uikit/avatar@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/avatar@npm:15.6.0"
   dependencies:
@@ -4660,7 +4660,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/card@npm:^15.4.0, @commercetools-uikit/card@npm:^15.6.0":
+"@commercetools-uikit/card@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/card@npm:15.6.0"
   dependencies:
@@ -4700,7 +4700,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/checkbox-input@npm:^15.4.0":
+"@commercetools-uikit/checkbox-input@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/checkbox-input@npm:15.6.0"
   dependencies:
@@ -4739,7 +4739,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/constraints@npm:15.6.0, @commercetools-uikit/constraints@npm:^15.4.0, @commercetools-uikit/constraints@npm:^15.6.0":
+"@commercetools-uikit/constraints@npm:15.6.0, @commercetools-uikit/constraints@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/constraints@npm:15.6.0"
   dependencies:
@@ -4756,7 +4756,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/data-table@npm:^15.4.0, @commercetools-uikit/data-table@npm:^15.6.0":
+"@commercetools-uikit/data-table@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/data-table@npm:15.6.0"
   dependencies:
@@ -4812,7 +4812,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/date-time-input@npm:^15.4.0":
+"@commercetools-uikit/date-time-input@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/date-time-input@npm:15.6.0"
   dependencies:
@@ -4858,7 +4858,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/design-system@npm:15.6.0, @commercetools-uikit/design-system@npm:^15.4.0, @commercetools-uikit/design-system@npm:^15.6.0":
+"@commercetools-uikit/design-system@npm:15.6.0, @commercetools-uikit/design-system@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/design-system@npm:15.6.0"
   dependencies:
@@ -4934,7 +4934,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/flat-button@npm:15.6.0, @commercetools-uikit/flat-button@npm:^15.4.0, @commercetools-uikit/flat-button@npm:^15.6.0":
+"@commercetools-uikit/flat-button@npm:15.6.0, @commercetools-uikit/flat-button@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/flat-button@npm:15.6.0"
   dependencies:
@@ -4956,7 +4956,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/grid@npm:^15.4.0, @commercetools-uikit/grid@npm:^15.6.0":
+"@commercetools-uikit/grid@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/grid@npm:15.6.0"
   dependencies:
@@ -4985,7 +4985,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/hooks@npm:15.6.0, @commercetools-uikit/hooks@npm:^15.4.0, @commercetools-uikit/hooks@npm:^15.6.0":
+"@commercetools-uikit/hooks@npm:15.6.0, @commercetools-uikit/hooks@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/hooks@npm:15.6.0"
   dependencies:
@@ -4999,7 +4999,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/i18n@npm:^15.4.0":
+"@commercetools-uikit/i18n@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/i18n@npm:15.6.0"
   dependencies:
@@ -5009,7 +5009,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/icon-button@npm:15.6.0, @commercetools-uikit/icon-button@npm:^15.4.0":
+"@commercetools-uikit/icon-button@npm:15.6.0, @commercetools-uikit/icon-button@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/icon-button@npm:15.6.0"
   dependencies:
@@ -5073,7 +5073,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/icons@npm:15.6.0, @commercetools-uikit/icons@npm:^15.4.0, @commercetools-uikit/icons@npm:^15.6.0":
+"@commercetools-uikit/icons@npm:15.6.0, @commercetools-uikit/icons@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/icons@npm:15.6.0"
   dependencies:
@@ -5133,7 +5133,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/label@npm:15.6.0, @commercetools-uikit/label@npm:^15.4.0":
+"@commercetools-uikit/label@npm:15.6.0, @commercetools-uikit/label@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/label@npm:15.6.0"
   dependencies:
@@ -5152,7 +5152,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/link@npm:^15.4.0, @commercetools-uikit/link@npm:^15.6.0":
+"@commercetools-uikit/link@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/link@npm:15.6.0"
   dependencies:
@@ -5195,7 +5195,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/loading-spinner@npm:^15.4.0, @commercetools-uikit/loading-spinner@npm:^15.6.0":
+"@commercetools-uikit/loading-spinner@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/loading-spinner@npm:15.6.0"
   dependencies:
@@ -5277,7 +5277,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/messages@npm:15.6.0, @commercetools-uikit/messages@npm:^15.4.0":
+"@commercetools-uikit/messages@npm:15.6.0, @commercetools-uikit/messages@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/messages@npm:15.6.0"
   dependencies:
@@ -5295,7 +5295,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/multiline-text-field@npm:^15.4.0":
+"@commercetools-uikit/multiline-text-field@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/multiline-text-field@npm:15.6.0"
   dependencies:
@@ -5346,7 +5346,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/notifications@npm:^15.4.0, @commercetools-uikit/notifications@npm:^15.6.0":
+"@commercetools-uikit/notifications@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/notifications@npm:15.6.0"
   dependencies:
@@ -5383,7 +5383,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/pagination@npm:^15.4.0, @commercetools-uikit/pagination@npm:^15.6.0":
+"@commercetools-uikit/pagination@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/pagination@npm:15.6.0"
   dependencies:
@@ -5411,7 +5411,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/primary-button@npm:^15.4.0":
+"@commercetools-uikit/primary-button@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/primary-button@npm:15.6.0"
   dependencies:
@@ -5433,7 +5433,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/secondary-button@npm:^15.4.0":
+"@commercetools-uikit/secondary-button@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/secondary-button@npm:15.6.0"
   dependencies:
@@ -5478,7 +5478,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/secondary-icon-button@npm:15.6.0, @commercetools-uikit/secondary-icon-button@npm:^15.4.0":
+"@commercetools-uikit/secondary-icon-button@npm:15.6.0, @commercetools-uikit/secondary-icon-button@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/secondary-icon-button@npm:15.6.0"
   dependencies:
@@ -5500,7 +5500,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/select-field@npm:^15.4.0, @commercetools-uikit/select-field@npm:^15.6.0":
+"@commercetools-uikit/select-field@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/select-field@npm:15.6.0"
   dependencies:
@@ -5523,7 +5523,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/select-input@npm:15.6.0, @commercetools-uikit/select-input@npm:^15.4.0":
+"@commercetools-uikit/select-input@npm:15.6.0, @commercetools-uikit/select-input@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/select-input@npm:15.6.0"
   dependencies:
@@ -5739,7 +5739,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/spacings@npm:15.6.0, @commercetools-uikit/spacings@npm:^15.4.0, @commercetools-uikit/spacings@npm:^15.6.0":
+"@commercetools-uikit/spacings@npm:15.6.0, @commercetools-uikit/spacings@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/spacings@npm:15.6.0"
   dependencies:
@@ -5770,7 +5770,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/text-field@npm:^15.4.0, @commercetools-uikit/text-field@npm:^15.6.0":
+"@commercetools-uikit/text-field@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/text-field@npm:15.6.0"
   dependencies:
@@ -5793,7 +5793,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/text-input@npm:15.6.0, @commercetools-uikit/text-input@npm:^15.4.0, @commercetools-uikit/text-input@npm:^15.6.0":
+"@commercetools-uikit/text-input@npm:15.6.0, @commercetools-uikit/text-input@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/text-input@npm:15.6.0"
   dependencies:
@@ -5831,7 +5831,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/text@npm:15.6.0, @commercetools-uikit/text@npm:^15.4.0, @commercetools-uikit/text@npm:^15.6.0":
+"@commercetools-uikit/text@npm:15.6.0, @commercetools-uikit/text@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/text@npm:15.6.0"
   dependencies:
@@ -5907,7 +5907,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/utils@npm:15.6.0, @commercetools-uikit/utils@npm:^15.4.0":
+"@commercetools-uikit/utils@npm:15.6.0, @commercetools-uikit/utils@npm:^15.6.0":
   version: 15.6.0
   resolution: "@commercetools-uikit/utils@npm:15.6.0"
   dependencies:
@@ -5927,17 +5927,17 @@ __metadata:
     "@commercetools-frontend/application-components": "workspace:*"
     "@commercetools-frontend/browser-history": "workspace:*"
     "@commercetools-frontend/i18n": "workspace:*"
-    "@commercetools-uikit/design-system": ^15.4.0
-    "@commercetools-uikit/icon-button": ^15.4.0
-    "@commercetools-uikit/icons": ^15.4.0
-    "@commercetools-uikit/link": ^15.4.0
-    "@commercetools-uikit/multiline-text-field": ^15.4.0
-    "@commercetools-uikit/secondary-button": ^15.4.0
-    "@commercetools-uikit/select-field": ^15.4.0
-    "@commercetools-uikit/spacings": ^15.4.0
-    "@commercetools-uikit/text": ^15.4.0
-    "@commercetools-uikit/text-field": ^15.4.0
-    "@commercetools-uikit/text-input": ^15.4.0
+    "@commercetools-uikit/design-system": ^15.6.0
+    "@commercetools-uikit/icon-button": ^15.6.0
+    "@commercetools-uikit/icons": ^15.6.0
+    "@commercetools-uikit/link": ^15.6.0
+    "@commercetools-uikit/multiline-text-field": ^15.6.0
+    "@commercetools-uikit/secondary-button": ^15.6.0
+    "@commercetools-uikit/select-field": ^15.6.0
+    "@commercetools-uikit/spacings": ^15.6.0
+    "@commercetools-uikit/text": ^15.6.0
+    "@commercetools-uikit/text-field": ^15.6.0
+    "@commercetools-uikit/text-input": ^15.6.0
     "@emotion/react": 11.10.4
     "@emotion/styled": 11.10.4
     "@vitejs/plugin-react": 2.1.0
