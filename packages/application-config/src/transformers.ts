@@ -1,7 +1,14 @@
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 import type { CustomApplicationData } from './types';
-import { entryPointUriPathToResourceAccesses } from './formatters';
-import { validateEntryPointUriPath, validateSubmenuLinks } from './validations';
+import {
+  entryPointUriPathToResourceAccesses,
+  formatEntryPointUriPathToResourceAccessKey,
+} from './formatters';
+import {
+  validateEntryPointUriPath,
+  validateSubmenuLinks,
+  validateAdditionalOAuthScopes,
+} from './validations';
 
 // The `uriPath` of each submenu link is supposed to be defined relative
 // to the `entryPointUriPath`. Computing the full path is done internally to keep
@@ -18,15 +25,56 @@ const computeUriPath = (uriPath: string, entryPointUriPath: string) => {
   return `${entryPointUriPath}/${uriPath}`;
 };
 
+const getPermissions = (
+  appConfig: JSONSchemaForCustomApplicationConfigurationFiles
+) => {
+  const additionalResourceAccessKeyToOauthScopeMap = (
+    appConfig.additionalOAuthScopes || []
+  ).reduce((previousOauthScope, { name, view, manage }) => {
+    const formattedResourceKey =
+      formatEntryPointUriPathToResourceAccessKey(name);
+    return {
+      ...previousOauthScope,
+      [`view${formattedResourceKey}`]: view,
+      [`manage${formattedResourceKey}`]: manage,
+    };
+  }, {} as Record<string, string[]>);
+
+  const additionalPermissionNames =
+    appConfig.additionalOAuthScopes?.map(({ name }) => name) || [];
+
+  const permissionKeys = entryPointUriPathToResourceAccesses(
+    appConfig.entryPointUriPath,
+    additionalPermissionNames
+  ) as Record<string, string>;
+
+  const additionalPermissions = Object.keys(
+    additionalResourceAccessKeyToOauthScopeMap
+  ).map((additionalResourceAccessKey) => ({
+    name: permissionKeys[additionalResourceAccessKey],
+    oAuthScopes:
+      additionalResourceAccessKeyToOauthScopeMap[additionalResourceAccessKey],
+  }));
+
+  return [
+    {
+      name: permissionKeys.view,
+      oAuthScopes: appConfig.oAuthScopes.view,
+    },
+    {
+      name: permissionKeys.manage,
+      oAuthScopes: appConfig.oAuthScopes.manage,
+    },
+    ...additionalPermissions,
+  ];
+};
+
 function transformCustomApplicationConfigToData(
   appConfig: JSONSchemaForCustomApplicationConfigurationFiles
 ): CustomApplicationData {
   validateEntryPointUriPath(appConfig);
   validateSubmenuLinks(appConfig);
-
-  const permissionKeys = entryPointUriPathToResourceAccesses(
-    appConfig.entryPointUriPath
-  );
+  validateAdditionalOAuthScopes(appConfig);
 
   return {
     id: appConfig.env.production.applicationId,
@@ -34,16 +82,7 @@ function transformCustomApplicationConfigToData(
     description: appConfig.description,
     entryPointUriPath: appConfig.entryPointUriPath,
     url: appConfig.env.production.url,
-    permissions: [
-      {
-        name: permissionKeys.view,
-        oAuthScopes: appConfig.oAuthScopes.view,
-      },
-      {
-        name: permissionKeys.manage,
-        oAuthScopes: appConfig.oAuthScopes.manage,
-      },
-    ],
+    permissions: getPermissions(appConfig),
     icon: appConfig.icon,
     mainMenuLink: appConfig.mainMenuLink,
     submenuLinks: appConfig.submenuLinks.map((submenuLink) => ({

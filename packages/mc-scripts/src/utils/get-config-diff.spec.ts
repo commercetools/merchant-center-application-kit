@@ -50,36 +50,59 @@ describe('when there are changes', () => {
     const oldConfig = createTestConfig({
       permissions: [
         {
-          oAuthScopes: ['manage_product'],
-          name: 'manageMyTestApp',
-        },
-        {
-          oAuthScopes: ['view_products', 'view_customers'],
           name: 'viewMyTestApp',
+          oAuthScopes: ['view_products', 'view_customers'],
         },
+        { name: 'manageMyTestApp', oAuthScopes: ['manage_product'] },
+        {
+          name: 'viewMyTestAppMovies',
+          oAuthScopes: ['view_products'],
+        },
+        { name: 'manageMyTestAppMovies', oAuthScopes: [] },
+        {
+          name: 'viewMyTestAppMerch',
+          oAuthScopes: ['view_channels'],
+        },
+        { name: 'manageMyTestAppMerch', oAuthScopes: [] },
       ],
     });
 
     const newConfig = createTestConfig({
       permissions: [
         {
-          oAuthScopes: ['manage_customer'],
-          name: 'manageMyTestApp',
+          name: 'viewMyTestApp',
+          oAuthScopes: ['view_products', 'view_channel'],
         },
         {
-          oAuthScopes: ['view_products', 'view_customers', 'view_orders'],
-          name: 'viewMyTestApp',
+          name: 'manageMyTestApp',
+          oAuthScopes: ['manage_product', 'manage_channel'],
         },
+        {
+          name: 'viewMyTestAppMovies',
+          oAuthScopes: ['view_products', 'view_channel'],
+        },
+        { name: 'manageMyTestAppMovies', oAuthScopes: [] },
+        {
+          name: 'viewMyTestAppCharacters',
+          oAuthScopes: ['view_channels'],
+        },
+        { name: 'manageMyTestAppCharacters', oAuthScopes: [] },
       ],
     });
 
     expect(getConfigDiff(oldConfig, newConfig)).toMatchInlineSnapshot(`
       "permissions changed
-        \\"manageMyTestApp\\" changed
-          oauth scope added: <color-green>manage_customer</color-green>
-          oauth scope removed: <color-red>manage_product</color-red>
         \\"viewMyTestApp\\" changed
-          oauth scope added: <color-green>view_orders</color-green>"
+          oauth scope added: <color-green>view_channel</color-green>
+          oauth scope removed: <color-red>view_customers</color-red>
+        \\"manageMyTestApp\\" changed
+          oauth scope added: <color-green>manage_channel</color-green>
+        \\"viewMyTestAppMovies\\" changed
+          oauth scope added: <color-green>view_channel</color-green>
+        \\"<color-green>viewMyTestAppCharacters</color-green>\\" was added
+        \\"<color-green>manageMyTestAppCharacters</color-green>\\" was added
+        \\"<color-red>viewMyTestAppMerch</color-red>\\" was removed
+        \\"<color-red>manageMyTestAppMerch</color-red>\\" was removed"
     `);
   });
 

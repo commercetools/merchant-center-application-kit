@@ -20,6 +20,18 @@
     "view": ["view_products"],
     "manage": []
   },
+  "additionalOAuthScopes": [
+    {
+      "name": "movies",
+      "view": ["view_products"],
+      "manage": []
+    },
+    {
+      "name": "merch",
+      "view": ["view_channels"],
+      "manage": ["manage_channels"]
+    }
+  ],
   "headers": {
     "csp": {
       "script-src": ["https://track.avengers.app"],

@@ -48,6 +48,8 @@ const hasCachedAuthenticationState = (): boolean => {
       const requestedScope = buildOidcScope({
         projectKey: activeProjectKey ?? undefined,
         oAuthScopes: window.app.__DEVELOPMENT__?.oidc?.oAuthScopes,
+        additionalOAuthScopes:
+          window.app.__DEVELOPMENT__?.oidc?.additionalOAuthScopes,
         teamId: window.app.__DEVELOPMENT__?.oidc?.teamId,
       });
       // Omit the project key from the check. This allows to switch projects

@@ -2,6 +2,7 @@ import {
   validateConfig,
   validateEntryPointUriPath,
   validateSubmenuLinks,
+  validateAdditionalOAuthScopes,
 } from '../src/validations';
 import fixtureConfigSimple from './fixtures/config-simple.json';
 import fixtureConfigFull from './fixtures/config-full.json';
@@ -152,6 +153,63 @@ describe('invalid configurations', () => {
       `"/oAuthScopes/manage/0 must match pattern \\"manage_(.*)\\""`
     );
   });
+  it('should validate that "additionalOAuthScopes" is an array', () => {
+    expect(() =>
+      validateConfig({
+        ...fixtureConfigSimple,
+        additionalOAuthScopes: {
+          name: 'movies',
+          view: ['view_products', 'manage_orders'],
+        },
+      })
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"/additionalOAuthScopes must be array"`
+    );
+  });
+  it('should validate that "additionalOAuthScopes[0].name" is provided', () => {
+    expect(() =>
+      validateConfig({
+        ...fixtureConfigSimple,
+        additionalOAuthScopes: [
+          {
+            view: ['view_products'],
+          },
+        ],
+      })
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"/additionalOAuthScopes/0 must have required property 'name'"`
+    );
+  });
+  it('should validate that "additionalOAuthScopes[0].view" contains OAuth Scopes starting with "view_"', () => {
+    expect(() =>
+      validateConfig({
+        ...fixtureConfigSimple,
+        additionalOAuthScopes: [
+          {
+            name: 'movies',
+            view: ['view_products', 'manage_orders'],
+          },
+        ],
+      })
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"/additionalOAuthScopes/0/view/1 must match pattern \\"view_(.*)\\""`
+    );
+  });
+  it('should validate that "additionalOAuthScopes[0].manage" contains OAuth Scopes starting with "manage_"', () => {
+    expect(() =>
+      validateConfig({
+        ...fixtureConfigSimple,
+        additionalOAuthScopes: [
+          {
+            name: 'movies',
+            manage: ['view_products', 'manage_orders'],
+          },
+        ],
+      })
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"/additionalOAuthScopes/0/manage/0 must match pattern \\"manage_(.*)\\""`
+    );
+  });
   it('should validate that "icon" is defined', () => {
     expect(() =>
       validateConfig({
@@ -193,6 +251,60 @@ describe('invalid configurations', () => {
       })
     ).toThrowErrorMatchingInlineSnapshot(
       `"Duplicate URI path. Every submenu link must have a unique URI path value"`
+    );
+  });
+  it('should validate that additionalOauthScope name is unique', () => {
+    expect(() =>
+      validateAdditionalOAuthScopes({
+        ...fixtureConfigSimple,
+        additionalOAuthScopes: [
+          {
+            name: 'movies',
+            view: ['view_products'],
+            manage: [],
+          },
+
+          {
+            name: 'movies',
+            view: ['view_channels'],
+            manage: [],
+          },
+        ],
+      })
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"Duplicate additional permission group name \\"movies\\". Every additional permission must have a unique name"`
+    );
+  });
+  it('should validate the additional permission names match the regex', () => {
+    expect(() =>
+      validateAdditionalOAuthScopes({
+        ...fixtureConfigSimple,
+        additionalOAuthScopes: [
+          {
+            name: '-movies',
+            view: ['view_products'],
+            manage: [],
+          },
+        ],
+      })
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"Additional permission group name \\"-movies\\" is invalid. The value may be between 2 and 64 characters and only contain alphabetic lowercase characters and non-consecutive hyphens. Leading and trailing hyphens are also not allowed"`
+    );
+  });
+  it('should validate that at least one additional OAuth Scope is defined for a permission group', () => {
+    expect(() =>
+      validateAdditionalOAuthScopes({
+        ...fixtureConfigSimple,
+        additionalOAuthScopes: [
+          {
+            name: 'movies',
+            view: [],
+            // mind that `manage` is undefined
+          },
+        ],
+      })
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"At least one OAuth Scope for permission group name \\"movies\\" is required"`
     );
   });
 });

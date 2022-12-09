@@ -305,14 +305,12 @@ describe('processing a full config', () => {
         entryPointUriPath: 'avengers',
         url: 'https://avengers.app',
         permissions: [
-          {
-            name: 'viewAvengers',
-            oAuthScopes: ['view_products'],
-          },
-          {
-            name: 'manageAvengers',
-            oAuthScopes: [],
-          },
+          { name: 'viewAvengers', oAuthScopes: ['view_products'] },
+          { name: 'manageAvengers', oAuthScopes: [] },
+          { name: 'viewAvengersMovies', oAuthScopes: ['view_products'] },
+          { name: 'manageAvengersMovies', oAuthScopes: [] },
+          { name: 'viewAvengersMerch', oAuthScopes: ['view_channels'] },
+          { name: 'manageAvengersMerch', oAuthScopes: ['manage_channels'] },
         ],
         icon: '<svg><path fill="#000000" /></svg>',
         mainMenuLink: {
@@ -350,6 +348,17 @@ describe('processing a full config', () => {
             oAuthScopes: {
               view: ['view_products'],
             },
+            additionalOAuthScopes: [
+              {
+                name: 'movies',
+                view: ['view_products'],
+              },
+              {
+                name: 'merch',
+                view: ['view_channels'],
+                manage: ['manage_channels'],
+              },
+            ],
           },
         },
       },
@@ -389,14 +398,12 @@ describe('processing a full config', () => {
           entryPointUriPath: 'avengers',
           url: 'https://avengers.app',
           permissions: [
-            {
-              name: 'viewAvengers',
-              oAuthScopes: ['view_products'],
-            },
-            {
-              name: 'manageAvengers',
-              oAuthScopes: [],
-            },
+            { name: 'viewAvengers', oAuthScopes: ['view_products'] },
+            { name: 'manageAvengers', oAuthScopes: [] },
+            { name: 'viewAvengersMovies', oAuthScopes: ['view_products'] },
+            { name: 'manageAvengersMovies', oAuthScopes: [] },
+            { name: 'viewAvengersMerch', oAuthScopes: ['view_channels'] },
+            { name: 'manageAvengersMerch', oAuthScopes: ['manage_channels'] },
           ],
           icon: '<svg><path fill="#000000" /></svg>',
           mainMenuLink: {
@@ -462,14 +469,12 @@ describe('processing a full config', () => {
           entryPointUriPath: 'avengers',
           url: 'https://avengers.app',
           permissions: [
-            {
-              name: 'viewAvengers',
-              oAuthScopes: ['view_products'],
-            },
-            {
-              name: 'manageAvengers',
-              oAuthScopes: [],
-            },
+            { name: 'viewAvengers', oAuthScopes: ['view_products'] },
+            { name: 'manageAvengers', oAuthScopes: [] },
+            { name: 'viewAvengersMovies', oAuthScopes: ['view_products'] },
+            { name: 'manageAvengersMovies', oAuthScopes: [] },
+            { name: 'viewAvengersMerch', oAuthScopes: ['view_channels'] },
+            { name: 'manageAvengersMerch', oAuthScopes: ['manage_channels'] },
           ],
           icon: '<svg><path fill="#000000" /></svg>',
           mainMenuLink: {
@@ -507,6 +512,17 @@ describe('processing a full config', () => {
               oAuthScopes: {
                 view: ['view_products'],
               },
+              additionalOAuthScopes: [
+                {
+                  name: 'movies',
+                  view: ['view_products'],
+                },
+                {
+                  name: 'merch',
+                  view: ['view_channels'],
+                  manage: ['manage_channels'],
+                },
+              ],
             },
           },
         },
@@ -548,14 +564,12 @@ describe('processing a full config', () => {
           entryPointUriPath: 'avengers',
           url: 'https://avengers.app',
           permissions: [
-            {
-              name: 'viewAvengers',
-              oAuthScopes: ['view_products'],
-            },
-            {
-              name: 'manageAvengers',
-              oAuthScopes: [],
-            },
+            { name: 'viewAvengers', oAuthScopes: ['view_products'] },
+            { name: 'manageAvengers', oAuthScopes: [] },
+            { name: 'viewAvengersMovies', oAuthScopes: ['view_products'] },
+            { name: 'manageAvengersMovies', oAuthScopes: [] },
+            { name: 'viewAvengersMerch', oAuthScopes: ['view_channels'] },
+            { name: 'manageAvengersMerch', oAuthScopes: ['manage_channels'] },
           ],
           icon: '<svg><path fill="#000000" /></svg>',
           mainMenuLink: {
@@ -1111,6 +1125,22 @@ describe('processing a config with OIDC', () => {
             name: 'manageAvengers',
             oAuthScopes: ['manage_orders'],
           },
+          {
+            name: 'viewAvengersMovies',
+            oAuthScopes: ['view_products'],
+          },
+          {
+            name: 'manageAvengersMovies',
+            oAuthScopes: [],
+          },
+          {
+            name: 'viewAvengersMerch',
+            oAuthScopes: [],
+          },
+          {
+            name: 'manageAvengersMerch',
+            oAuthScopes: ['manage_channels'],
+          },
         ],
         icon: '<svg><path fill="#000000" /></svg>',
         mainMenuLink: {
@@ -1130,6 +1160,16 @@ describe('processing a config with OIDC', () => {
               manage: ['manage_orders'],
               view: ['view_orders', 'view_states'],
             },
+            additionalOAuthScopes: [
+              {
+                name: 'movies',
+                view: ['view_products'], // mind that `"manage": []` is filtered out by `omitEmpty` as no additional `manage_` scope should be requested for this group
+              },
+              {
+                name: 'merch',
+                manage: ['manage_channels'], // mind that `"view": []` is filtered out by `omitEmpty` as no additional `view_` scope should be requested for this group
+              },
+            ],
           },
           accountLinks: undefined,
           menuLinks: {
@@ -1186,6 +1226,22 @@ describe('processing a config with OIDC', () => {
             {
               name: 'manageAvengers',
               oAuthScopes: ['manage_orders'],
+            },
+            {
+              name: 'viewAvengersMovies',
+              oAuthScopes: ['view_products'],
+            },
+            {
+              name: 'manageAvengersMovies',
+              oAuthScopes: [],
+            },
+            {
+              name: 'viewAvengersMerch',
+              oAuthScopes: [],
+            },
+            {
+              name: 'manageAvengersMerch',
+              oAuthScopes: ['manage_channels'],
             },
           ],
           icon: '<svg><path fill="#000000" /></svg>',
