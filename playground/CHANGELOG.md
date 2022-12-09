@@ -1,5 +1,21 @@
 # playground
 
+## 21.21.0
+
+### Patch Changes
+
+- Updated dependencies [[`033d95e08`](https://github.com/commercetools/merchant-center-application-kit/commit/033d95e08143eec0ad36040f4989c744ba30302b)]:
+  - @commercetools-frontend/application-shell@21.21.0
+  - @commercetools-frontend/constants@21.21.0
+  - @commercetools-frontend/actions-global@21.21.0
+  - @commercetools-frontend/application-components@21.21.0
+  - @commercetools-frontend/application-shell-connectors@21.21.0
+  - @commercetools-frontend/sdk@21.21.0
+  - @commercetools-frontend/permissions@21.21.0
+  - @commercetools-frontend/i18n@21.21.0
+  - @commercetools-frontend/l10n@21.21.0
+  - @commercetools-frontend/assets@21.21.0
+
 ## 21.20.5
 
 ### Patch Changes

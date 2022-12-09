@@ -1,5 +1,32 @@
 # @commercetools-frontend/application-shell
 
+## 21.21.0
+
+### Minor Changes
+
+- [#2799](https://github.com/commercetools/merchant-center-application-kit/pull/2799) [`033d95e08`](https://github.com/commercetools/merchant-center-application-kit/commit/033d95e08143eec0ad36040f4989c744ba30302b) Thanks [@kark](https://github.com/kark)! - Enable configuring granular permissions in Custom Applications.
+
+  Additional permissions are defined by adding permission groups in the Custom Application config. [See docs](https://docs.commercetools.com/custom-applications/concepts/oauth-scopes-and-user-permissions#permission-groups).
+
+### Patch Changes
+
+- Updated dependencies [[`033d95e08`](https://github.com/commercetools/merchant-center-application-kit/commit/033d95e08143eec0ad36040f4989c744ba30302b)]:
+  - @commercetools-frontend/application-config@21.21.0
+  - @commercetools-frontend/constants@21.21.0
+  - @commercetools-frontend/actions-global@21.21.0
+  - @commercetools-frontend/application-components@21.21.0
+  - @commercetools-frontend/application-shell-connectors@21.21.0
+  - @commercetools-frontend/react-notifications@21.21.0
+  - @commercetools-frontend/sdk@21.21.0
+  - @commercetools-frontend/sentry@21.21.0
+  - @commercetools-frontend/permissions@21.21.0
+  - @commercetools-frontend/i18n@21.21.0
+  - @commercetools-frontend/l10n@21.21.0
+  - @commercetools-frontend/assets@21.21.0
+  - @commercetools-frontend/browser-history@21.21.0
+  - @commercetools-frontend/notifications@21.21.0
+  - @commercetools-frontend/url-utils@21.21.0
+
 ## 21.20.5
 
 ### Patch Changes
