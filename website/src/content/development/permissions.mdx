@@ -2,7 +2,7 @@
 title: Permissions
 ---
 
-As we learned in [OAuth Scopes and user permissions](/concepts/oauth-scopes-and-user-permissions), each Custom Application has a unique pair of user permissions at its disposal: "view" and "manage."
+As we learned in [OAuth Scopes and user permissions](/concepts/oauth-scopes-and-user-permissions), each Custom Application has a unique pair of default user permissions at its disposal: "view" and "manage." Additionally, you can use more granular permission groups to cover strict business requirements.
 
 The values of the user permissions are derived from the application `entryPointUriPath`.
 
@@ -26,6 +26,41 @@ The `PERMISSIONS` variable contains a `View` and `Manage` properties, with the v
 * `PERMISSIONS.Manage`: maps to `ManageChannels`.
 
 You can then use the `PERMISSIONS` variable to reference the permission in the application code.
+
+<Info>
+
+This feature is available from version `21.21.0` onwards.
+
+When using additional permission groups, you must also provide the unique group to the `entryPointUriPathToPermissionKeys` function to generate the correct permission keys.
+
+The group names can be exported and referenced also in the Custom Application config file.
+
+```js title="constants.js" highlightLines="5-8, 12"
+import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-shell/ssr';
+
+export const entryPointUriPath = 'channels';
+
+export const groupNames = {
+  delivery: 'delivery',
+  promotion: 'promotion',
+};
+
+export const PERMISSIONS = entryPointUriPathToPermissionKeys(
+  entryPointUriPath,
+  ['delivery', 'promotion']
+);
+```
+
+In this scenario, the `PERMISSIONS` variable contains a `View`, `Manage`, `ViewDelivery`, `ManageDelivery`, `ViewPromotion` and `ManagePromotion` properties, with the values being the computed values based on the `entryPointUriPath` and the provided permission group names:
+
+* `PERMISSIONS.View`: maps to `ViewChannels`.
+* `PERMISSIONS.Manage`: maps to `ManageChannels`.
+* `PERMISSIONS.ViewDelivery`: maps to `ViewChannelsDelivery`.
+* `PERMISSIONS.ManageDelivery`: maps to `ManageChannelsDelivery`.
+* `PERMISSIONS.ViewPromotion`: maps to `ViewChannelsPromotion`.
+* `PERMISSIONS.ManagePromotion`: maps to `ManageChannelsPromotion`.
+
+</Info>
 
 # Applying user permissions
 

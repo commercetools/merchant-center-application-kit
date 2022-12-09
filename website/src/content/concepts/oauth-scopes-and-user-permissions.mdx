@@ -30,19 +30,67 @@ Notice here how the OAuth Scopes are grouped by the two fields `view` and `manag
 
 This grouping determines the **mapping and relation between OAuth Scopes and user permissions**.
 
+## Permission groups
+
+Every Custom Application has a **default permission group** with a pair of view and manage permissions. This group maps to the OAuth Scopes specified in the [oAuthScopes](/api-reference/application-config#oauthscopes) field of the Custom Application config.
+
+However, you might need more granular access control to fulfill specific business requirements. Suppose your Custom Application manages products, discounts, and orders, and you want a group of users to only manage products and discounts while another group handles orders. <br />
+In this scenario, more than one permission group (the default one) is needed to fulfill the access requirements.
+
+You can define additional permission groups with different access requirements to enable such use cases. See [additionalOAuthScopes](/api-reference/application-config#additionaloauthscopes) field in the Custom Application config. 
+
+<Info>
+
+This feature is available from version `21.21.0` onwards.
+
+</Info>
+
+In the following example, we're defining two additional permission groups. The group `delivery` allows users to manage incoming orders, while the group `promotion` enables users to work on discount and promotion campaigns.
+
+```json title="custom-application-config.json" highlightLines="6-17"
+{
+  "oAuthScopes": {
+    "view": ["view_products", "view_customers"],
+    "manage": ["manage_products"]
+  },
+  "additionalOAuthScopes": [
+    {
+      "name": "delivery",
+      "view": [],
+      "manage": ["manage_orders"]
+    },
+    {
+      "name": "promotion",
+      "view": [],
+      "manage": ["manage_orders", "manage_discount_codes"]
+    }
+  ]
+}
+```
+
+<Info>
+
+The default permission group is always defined, even when adding additional groups.
+
+When additional groups are defined, the default group can be left empty without specifying any OAuth Scopes.
+
+But still, at least one "view-only" user permission must be enabled to access the Custom Application.
+
+</Info>
+
 # User permissions
 
 In the Merchant Center, you can assign user permissions to Teams to grant or restrict access to certain parts and functionalities of the Merchant Center. See [user permissions in Merchant Center](https://docs.commercetools.com/merchant-center/user-permissions) for more information.<br />
 The same concepts apply for Custom Applications as well. Once your Custom Application has been installed in your Organization, you can assign user permissions for your Custom Application to each specific Team.
 
-Each Custom Application gets a **unique pair** of user permissions: "view" and "manage."
+Each Custom Application gets **unique** "view" and "manage" permissions.
 
 * When assigning "view"-only permission to a Team, only the `view_` OAuth Scopes are used to authorize API requests.
 * When assigning "manage" permission to a Team, both `view_` and `manage_` OAuth Scopes are used to authorize API requests.
 
 <Info>
 
-The permission names are unique to each Custom Application and they derive from the `entryPointUriPath`, based on the following format: `{View,Manage}<EntryPointUriPath>`.
+The permission names are unique to each Custom Application, and, by default, they derive from the `entryPointUriPath`, based on the following format: `{View,Manage}<EntryPointUriPath>`.
 
 Here are some examples:
 
@@ -53,6 +101,15 @@ Here are some examples:
 | `the_avengers` | `{View,Manage}The_Avengers` |
 | `avengers-01` | `{View,Manage}Avengers/01` |
 | `avengers_01` | `{View,Manage}Avengers_01` |
+
+When using additional permission groups, the permission name is derived from the `entryPointUriPath` (same as the default group) plus the group name, based on the following format: `{View,Manage}<EntryPointUriPath><GroupName>`
+
+Here are some examples:
+
+| `entryPointUriPath` | Permission group name | User permission |
+| --- | --- | --- |
+| `avengers` | `thor` | `{View,Manage}AvengersThor` |
+| `the-avengers` | `iron-man` | `{View,Manage}TheAvengersIronMan` |
 
 </Info>
 
