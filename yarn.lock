@@ -4303,6 +4303,7 @@ __metadata:
     "@types/serve-handler": ^6.1.1
     "@types/svgo": ^2.6.4
     "@vitejs/plugin-react": 3.0.0
+    "@vitejs/plugin-react-swc": 3.0.0
     autoprefixer: ^10.4.13
     babel-loader: 8.2.5
     browserslist: ^4.21.4
@@ -10786,6 +10787,117 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@swc/core-darwin-arm64@npm:1.3.22":
+  version: 1.3.22
+  resolution: "@swc/core-darwin-arm64@npm:1.3.22"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@swc/core-darwin-x64@npm:1.3.22":
+  version: 1.3.22
+  resolution: "@swc/core-darwin-x64@npm:1.3.22"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-arm-gnueabihf@npm:1.3.22":
+  version: 1.3.22
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.3.22"
+  conditions: os=linux & cpu=arm
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-arm64-gnu@npm:1.3.22":
+  version: 1.3.22
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.22"
+  conditions: os=linux & cpu=arm64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-arm64-musl@npm:1.3.22":
+  version: 1.3.22
+  resolution: "@swc/core-linux-arm64-musl@npm:1.3.22"
+  conditions: os=linux & cpu=arm64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-x64-gnu@npm:1.3.22":
+  version: 1.3.22
+  resolution: "@swc/core-linux-x64-gnu@npm:1.3.22"
+  conditions: os=linux & cpu=x64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-x64-musl@npm:1.3.22":
+  version: 1.3.22
+  resolution: "@swc/core-linux-x64-musl@npm:1.3.22"
+  conditions: os=linux & cpu=x64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@swc/core-win32-arm64-msvc@npm:1.3.22":
+  version: 1.3.22
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.22"
+  conditions: os=win32 & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@swc/core-win32-ia32-msvc@npm:1.3.22":
+  version: 1.3.22
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.22"
+  conditions: os=win32 & cpu=ia32
+  languageName: node
+  linkType: hard
+
+"@swc/core-win32-x64-msvc@npm:1.3.22":
+  version: 1.3.22
+  resolution: "@swc/core-win32-x64-msvc@npm:1.3.22"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@swc/core@npm:^1.3.21":
+  version: 1.3.22
+  resolution: "@swc/core@npm:1.3.22"
+  dependencies:
+    "@swc/core-darwin-arm64": 1.3.22
+    "@swc/core-darwin-x64": 1.3.22
+    "@swc/core-linux-arm-gnueabihf": 1.3.22
+    "@swc/core-linux-arm64-gnu": 1.3.22
+    "@swc/core-linux-arm64-musl": 1.3.22
+    "@swc/core-linux-x64-gnu": 1.3.22
+    "@swc/core-linux-x64-musl": 1.3.22
+    "@swc/core-win32-arm64-msvc": 1.3.22
+    "@swc/core-win32-ia32-msvc": 1.3.22
+    "@swc/core-win32-x64-msvc": 1.3.22
+  dependenciesMeta:
+    "@swc/core-darwin-arm64":
+      optional: true
+    "@swc/core-darwin-x64":
+      optional: true
+    "@swc/core-linux-arm-gnueabihf":
+      optional: true
+    "@swc/core-linux-arm64-gnu":
+      optional: true
+    "@swc/core-linux-arm64-musl":
+      optional: true
+    "@swc/core-linux-x64-gnu":
+      optional: true
+    "@swc/core-linux-x64-musl":
+      optional: true
+    "@swc/core-win32-arm64-msvc":
+      optional: true
+    "@swc/core-win32-ia32-msvc":
+      optional: true
+    "@swc/core-win32-x64-msvc":
+      optional: true
+  bin:
+    swcx: run_swcx.js
+  checksum: 5c6fa613502cbfae9985c7e97452649120e50e65695c8243111b422f6dddfebabdbc5ec94a9238e199e6a823a86906635e18e731f8ed45470bca8e4964d11659
+  languageName: node
+  linkType: hard
+
 "@swc/helpers@npm:^0.4.2":
   version: 0.4.7
   resolution: "@swc/helpers@npm:0.4.7"
@@ -12653,6 +12765,17 @@ __metadata:
     global: ~4.4.0
     is-function: ^1.0.1
   checksum: 217d3d49f8088461959840f93f0b45d713e6d03254d89352e2eb4bfca9501eee03bac25d0ad878e976c9cbec902039210a86906ef57a5f8d86bfdfa1a3999def
+  languageName: node
+  linkType: hard
+
+"@vitejs/plugin-react-swc@npm:3.0.0":
+  version: 3.0.0
+  resolution: "@vitejs/plugin-react-swc@npm:3.0.0"
+  dependencies:
+    "@swc/core": ^1.3.21
+  peerDependencies:
+    vite: ^4.0.0
+  checksum: 625338ba5c98fd78551b9ad442c6382554ad13f874611a256e7c3175515baf9bf3081b40f055f547e897c1a96faa8f60183b42764c2ba9c6c5c4a60776200a2d
   languageName: node
   linkType: hard
 
