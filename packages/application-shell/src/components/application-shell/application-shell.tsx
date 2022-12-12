@@ -5,6 +5,7 @@ import type { ApolloError } from '@apollo/client/errors';
 import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import type { TrackingList } from '../../utils/gtm';
+import type { TOverwridesPerTheme } from '../theme-switcher';
 
 import {
   type ReactNode,
@@ -87,6 +88,7 @@ type Props<AdditionalEnvironmentProperties extends {}> = {
     track: TrackFn
   ) => void;
   disableRoutePermissionCheck?: boolean;
+  themesOverrides?: TOverwridesPerTheme;
   render?: () => JSX.Element;
   children?: ReactNode;
 };
@@ -243,7 +245,7 @@ export const RestrictedApplication = <
                     defaultFlags={props.defaultFeatureFlags}
                   >
                     <>
-                      <ThemeSwitcher />
+                      <ThemeSwitcher themesOverrides={props.themesOverrides} />
                       <VersionTracker />
                       {/* NOTE: the requests in flight loader will render a loading
                       spinner into the AppBar. */}
