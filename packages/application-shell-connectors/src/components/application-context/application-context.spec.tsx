@@ -133,7 +133,6 @@ describe('mapUserToApplicationContextUser', () => {
           expect.objectContaining({ key: expect.any(String) }),
         ]),
       }),
-      verificationStatus: expect.any(String),
     });
   });
   it('should map fetched SSO user to user context', () => {
@@ -151,7 +150,6 @@ describe('mapUserToApplicationContextUser', () => {
           expect.objectContaining({ key: expect.any(String) }),
         ]),
       }),
-      verificationStatus: expect.any(String),
       idTokenUserInfo: expect.objectContaining({
         iss: expect.any(String),
         sub: expect.any(String),
@@ -195,7 +193,6 @@ describe('mapUserToApplicationContextUser', () => {
         name: expect.any(String),
         additionalClaims: expect.objectContaining({}),
       }),
-      verificationStatus: expect.any(String),
     });
     expect(reportErrorToSentry).not.toHaveBeenCalled();
   });
@@ -228,7 +225,6 @@ describe('mapUserToApplicationContextUser', () => {
         name: expect.any(String),
         additionalClaims: expect.objectContaining({}),
       }),
-      verificationStatus: expect.any(String),
     });
     expect(reportErrorToSentry).not.toHaveBeenCalled();
   });
@@ -261,7 +257,6 @@ describe('mapUserToApplicationContextUser', () => {
         name: expect.any(String),
         additionalClaims: expect.objectContaining({}),
       }),
-      verificationStatus: expect.any(String),
     });
     expect(reportErrorToSentry).toHaveBeenCalled();
   });
