@@ -10,6 +10,7 @@ const SvgGithub = (props) => (
     clipRule="evenodd"
     strokeLinejoin="round"
     strokeMiterlimit={1.414}
+    role="img"
     {...props}
   >
     <path

@@ -7,6 +7,7 @@ const SvgWebDeveloper = (props) => (
     width={1057.994}
     height={557}
     viewBox="0 0 1057.994 557"
+    role="img"
     {...props}
   >
     <path

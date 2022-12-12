@@ -2816,6 +2816,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.11.2":
+  version: 7.20.6
+  resolution: "@babel/runtime@npm:7.20.6"
+  dependencies:
+    regenerator-runtime: ^0.13.11
+  checksum: 42a8504db21031b1859fbc0f52d698a3d2f5ada9519eb76c6f96a7e657d8d555732a18fe71ef428a67cc9fc81ca0d3562fb7afdc70549c5fec343190cbaa9b03
+  languageName: node
+  linkType: hard
+
 "@babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.18.0, @babel/runtime@npm:^7.18.3":
   version: 7.18.6
   resolution: "@babel/runtime@npm:7.18.6"
@@ -3500,9 +3509,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-docs/gatsby-theme-docs@npm:19.7.0":
-  version: 19.7.0
-  resolution: "@commercetools-docs/gatsby-theme-docs@npm:19.7.0"
+"@commercetools-docs/gatsby-theme-docs@npm:19.8.1":
+  version: 19.8.1
+  resolution: "@commercetools-docs/gatsby-theme-docs@npm:19.8.1"
   dependencies:
     "@commercetools-docs/ui-kit": 19.7.0
     "@commercetools-uikit/card": ^15.3.0
@@ -3526,6 +3535,7 @@ __metadata:
     "@mdx-js/react": 1.6.22
     "@sentry/browser": 7.15.0
     "@svgr/webpack": 6.4.0
+    "@videojs/themes": ^1.0.1
     assert: 2.0.0
     cosmiconfig: ^7.0.1
     docsearch.js: 2.6.3
@@ -3571,6 +3581,7 @@ __metadata:
     remark-rehype: 8.1.0
     slugify: 1.6.5
     unist-util-visit: 2.0.3
+    video.js: 7.20.3
   peerDependencies:
     gatsby: 4.x
     gatsby-cli: 4.x
@@ -3578,7 +3589,7 @@ __metadata:
     react-dom: 17.x
   bin:
     create-docs-release-note: bin/create-release-note.js
-  checksum: 4e756bf95a2b45b569715443fad27c578de075457f38202cbb97f77eca7a5882d318576ab9bd37a3ddfdf8158b4c5274f81b648dfbbf5e25a91f978d91ac6df1
+  checksum: 731dd06d838065cc46c5590a38abb934d609b875c17adde11f66d38697147e9cc30b88383fd17916e72ba22a976409738728b8f73b2c25bc399655bf5bb321d5
   languageName: node
   linkType: hard
 
@@ -4155,7 +4166,7 @@ __metadata:
     "@vitejs/plugin-react": 2.1.0
     autoprefixer: ^10.4.9
     babel-loader: 8.2.5
-    browserslist: ^4.21.3
+    browserslist: ^4.21.4
     cac: 6.7.14
     chalk: 4.1.2
     core-js: ^3.25.1
@@ -5956,7 +5967,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-website/custom-applications@workspace:website"
   dependencies:
-    "@commercetools-docs/gatsby-theme-docs": 19.7.0
+    "@commercetools-docs/gatsby-theme-docs": 19.8.1
     "@commercetools-docs/ui-kit": 19.7.0
     "@commercetools-uikit/card": ^15.6.0
     "@commercetools-uikit/spacings-inline": ^15.6.0
@@ -5964,8 +5975,8 @@ __metadata:
     "@emotion/react": 11.10.4
     "@emotion/styled": 11.10.4
     "@svgr/cli": 6.5.0
-    gatsby: 4.24.4
-    gatsby-cli: 4.24.0
+    gatsby: 4.24.8
+    gatsby-cli: 5.2.0
     linkinator: 4.1.0
     prettier: 2.7.1
     prop-types: 15.8.1
@@ -12279,6 +12290,73 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@videojs/http-streaming@npm:2.14.3":
+  version: 2.14.3
+  resolution: "@videojs/http-streaming@npm:2.14.3"
+  dependencies:
+    "@babel/runtime": ^7.12.5
+    "@videojs/vhs-utils": 3.0.5
+    aes-decrypter: 3.1.3
+    global: ^4.4.0
+    m3u8-parser: 4.7.1
+    mpd-parser: 0.21.1
+    mux.js: 6.0.1
+    video.js: ^6 || ^7
+  peerDependencies:
+    video.js: ^6 || ^7
+  checksum: 2f211355cb62e1006404083978749fbee11e815f1a38419f1234873e5696a6db9987a488adfb0a82b67f24ef8f133c9e291dbe69700f0118ad9c385e3c41e276
+  languageName: node
+  linkType: hard
+
+"@videojs/http-streaming@npm:2.15.1":
+  version: 2.15.1
+  resolution: "@videojs/http-streaming@npm:2.15.1"
+  dependencies:
+    "@babel/runtime": ^7.12.5
+    "@videojs/vhs-utils": 3.0.5
+    aes-decrypter: 3.1.3
+    global: ^4.4.0
+    m3u8-parser: 4.8.0
+    mpd-parser: ^0.22.1
+    mux.js: 6.0.1
+    video.js: ^6 || ^7
+  peerDependencies:
+    video.js: ^6 || ^7
+  checksum: 8b3bb74d67cbe0aa6f1ed6f8d38091ac2988d8f2200d20eab9fc1fdb71c33a435d614e2524b214054c7f98fdf15109b5414dfe0b05588b4a4251f76f197efef4
+  languageName: node
+  linkType: hard
+
+"@videojs/themes@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@videojs/themes@npm:1.0.1"
+  dependencies:
+    postcss-inline-svg: ^4.1.0
+  checksum: d0946fda45dc712f2202dfd87a9de9c14765781a69ba3023f99e2be53c325b913c381830409e9024627e5044e4cc182ea994b116b54200bc94d25d31fbce4890
+  languageName: node
+  linkType: hard
+
+"@videojs/vhs-utils@npm:3.0.5, @videojs/vhs-utils@npm:^3.0.4, @videojs/vhs-utils@npm:^3.0.5":
+  version: 3.0.5
+  resolution: "@videojs/vhs-utils@npm:3.0.5"
+  dependencies:
+    "@babel/runtime": ^7.12.5
+    global: ^4.4.0
+    url-toolkit: ^2.2.1
+  checksum: 637dc9a8848027eab4213d6e85439d216577d0cb0346767c15bbb07a5a730aa30545f0b5d7bfd636f40212e490f34bf103e331f0bc180b4d3c245e77f30b437f
+  languageName: node
+  linkType: hard
+
+"@videojs/xhr@npm:2.6.0":
+  version: 2.6.0
+  resolution: "@videojs/xhr@npm:2.6.0"
+  dependencies:
+    "@babel/runtime": ^7.5.5
+    global: ~4.4.0
+    is-function: ^1.0.1
+  checksum: 217d3d49f8088461959840f93f0b45d713e6d03254d89352e2eb4bfca9501eee03bac25d0ad878e976c9cbec902039210a86906ef57a5f8d86bfdfa1a3999def
+  languageName: node
+  linkType: hard
+
 "@vitejs/plugin-react@npm:2.1.0":
   version: 2.1.0
   resolution: "@vitejs/plugin-react@npm:2.1.0"
@@ -12666,6 +12744,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@xmldom/xmldom@npm:^0.7.2":
+  version: 0.7.9
+  resolution: "@xmldom/xmldom@npm:0.7.9"
+  checksum: 66e37b7800132f891b885b2eceeeebc53f60b69789da10276f1584256b963d79a28c7ae2071bc53a9cd842d9b03554c761b2701fe8036d6052f26bcd0ae8f2bb
+  languageName: node
+  linkType: hard
+
 "@xmldom/xmldom@npm:^0.7.5":
   version: 0.7.5
   resolution: "@xmldom/xmldom@npm:0.7.5"
@@ -12677,6 +12762,13 @@ __metadata:
   version: 0.8.2
   resolution: "@xmldom/xmldom@npm:0.8.2"
   checksum: aeea8f670bfa52b3a1b2d355dab3bf4d58ef4969b1fd146a1ab91bf8acbb9d02953022e66e85279015a4e4027205620dfc001ed5d169b1711a09a0a079951e08
+  languageName: node
+  linkType: hard
+
+"@xmldom/xmldom@npm:^0.8.3":
+  version: 0.8.6
+  resolution: "@xmldom/xmldom@npm:0.8.6"
+  checksum: f17ac6d99a971a6aeb831fcfc5cfa86f367664e45815046548814b2deb17ccc421fef4e0d5ba29e66179d112b552f6caa5680064f8e7bd8a389b788a60404c8e
   languageName: node
   linkType: hard
 
@@ -12863,6 +12955,18 @@ __metadata:
   version: 1.1.2
   resolution: "address@npm:1.1.2"
   checksum: d966deee6ab9a0f96ed1d25dc73e91a248f64479c91f9daeb15237b8e3c39a02faac4e6afe8987ef9e5aea60a1593cef5882b7456ab2e6196fc0229a93ec39c2
+  languageName: node
+  linkType: hard
+
+"aes-decrypter@npm:3.1.3":
+  version: 3.1.3
+  resolution: "aes-decrypter@npm:3.1.3"
+  dependencies:
+    "@babel/runtime": ^7.12.5
+    "@videojs/vhs-utils": ^3.0.5
+    global: ^4.4.0
+    pkcs7: ^1.0.4
+  checksum: e634af25c5086894690062a2875d87e80118cd8f7945a162b4f8aaadb4e5c0f0656d2c31c619024c64f935c04938260f30e1531607617ce775430c74a840ca14
   languageName: node
   linkType: hard
 
@@ -14461,6 +14565,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"browserslist@npm:^4.21.4":
+  version: 4.21.4
+  resolution: "browserslist@npm:4.21.4"
+  dependencies:
+    caniuse-lite: ^1.0.30001400
+    electron-to-chromium: ^1.4.251
+    node-releases: ^2.0.6
+    update-browserslist-db: ^1.0.9
+  bin:
+    browserslist: cli.js
+  checksum: 4af3793704dbb4615bcd29059ab472344dc7961c8680aa6c4bb84f05340e14038d06a5aead58724eae69455b8fade8b8c69f1638016e87e5578969d74c078b79
+  languageName: node
+  linkType: hard
+
 "browserslist@npm:^4.6.6":
   version: 4.20.0
   resolution: "browserslist@npm:4.20.0"
@@ -14840,6 +14958,13 @@ __metadata:
   version: 1.0.30001397
   resolution: "caniuse-lite@npm:1.0.30001397"
   checksum: 29b31780397221303b8fadda535e71f20319216df75028c60527f10f1aba1237ec81fa9c1d6b8fb3a0a83c201c01af8090e9cbb292da08c2538f367b1148a7ba
+  languageName: node
+  linkType: hard
+
+"caniuse-lite@npm:^1.0.30001400":
+  version: 1.0.30001435
+  resolution: "caniuse-lite@npm:1.0.30001435"
+  checksum: ec88b9c37f66095e26ddb8b43110e9564ebccb6de77e495b8e8b9d64fdbfe37f7762be8fd2578c3ecc181a183a159578c9bd8e9b90eb15b44b78e8a6d0e92530
   languageName: node
   linkType: hard
 
@@ -16041,6 +16166,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"create-gatsby@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "create-gatsby@npm:3.2.0"
+  dependencies:
+    "@babel/runtime": ^7.15.4
+  bin:
+    create-gatsby: cli.js
+  checksum: dc75b047f4549d717ab7f50595e61e0d4ce4179e43170ecbc3db6e6288be8a04da21ae95bf79d674f52d57c49e289a23f0a6d0cf6ba1467c28efafffe0b8a357
+  languageName: node
+  linkType: hard
+
 "create-jest-runner@npm:0.12.2":
   version: 0.12.2
   resolution: "create-jest-runner@npm:0.12.2"
@@ -16270,6 +16406,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"css-select@npm:^2.0.2":
+  version: 2.1.0
+  resolution: "css-select@npm:2.1.0"
+  dependencies:
+    boolbase: ^1.0.0
+    css-what: ^3.2.1
+    domutils: ^1.7.0
+    nth-check: ^1.0.2
+  checksum: 0c4099910f2411e2a9103cf92ea6a4ad738b57da75bcf73d39ef2c14a00ef36e5f16cb863211c901320618b24ace74da6333442d82995cafd5040077307de462
+  languageName: node
+  linkType: hard
+
 "css-select@npm:^4.1.3":
   version: 4.2.1
   resolution: "css-select@npm:4.2.1"
@@ -16329,6 +16477,13 @@ __metadata:
   version: 2.1.3
   resolution: "css-what@npm:2.1.3"
   checksum: a52d56c591a7e1c37506d0d8c4fdef72537fb8eb4cb68711485997a88d76b5a3342b73a7c79176268f95b428596c447ad7fa3488224a6b8b532e2f1f2ee8545c
+  languageName: node
+  linkType: hard
+
+"css-what@npm:^3.2.1":
+  version: 3.4.2
+  resolution: "css-what@npm:3.4.2"
+  checksum: 26bb5ec3ae718393d418016365c849fa14bd0de408c735dea3ddf58146b6cc54f3b336fb4afd31d95c06ca79583acbcdfec7ee93d31ff5c1a697df135b38dfeb
   languageName: node
   linkType: hard
 
@@ -17891,6 +18046,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dom-serializer@npm:^0.1.1, dom-serializer@npm:~0.1.0":
+  version: 0.1.1
+  resolution: "dom-serializer@npm:0.1.1"
+  dependencies:
+    domelementtype: ^1.3.0
+    entities: ^1.1.1
+  checksum: 4f6a3eff802273741931cfd3c800fab4e683236eed10628d6605f52538a6bc0ce4770f3ca2ad68a27412c103ae9b6cdaed3c0a8e20d2704192bde497bc875215
+  languageName: node
+  linkType: hard
+
 "dom-serializer@npm:^1.0.1, dom-serializer@npm:^1.3.2":
   version: 1.3.2
   resolution: "dom-serializer@npm:1.3.2"
@@ -17910,16 +18075,6 @@ __metadata:
     domhandler: ^5.0.2
     entities: ^4.2.0
   checksum: cd1810544fd8cdfbd51fa2c0c1128ec3a13ba92f14e61b7650b5de421b88205fd2e3f0cc6ace82f13334114addb90ed1c2f23074a51770a8e9c1273acbc7f3e6
-  languageName: node
-  linkType: hard
-
-"dom-serializer@npm:~0.1.0":
-  version: 0.1.1
-  resolution: "dom-serializer@npm:0.1.1"
-  dependencies:
-    domelementtype: ^1.3.0
-    entities: ^1.1.1
-  checksum: 4f6a3eff802273741931cfd3c800fab4e683236eed10628d6605f52538a6bc0ce4770f3ca2ad68a27412c103ae9b6cdaed3c0a8e20d2704192bde497bc875215
   languageName: node
   linkType: hard
 
@@ -18013,7 +18168,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"domutils@npm:^1.5.1":
+"domutils@npm:^1.5.1, domutils@npm:^1.7.0":
   version: 1.7.0
   resolution: "domutils@npm:1.7.0"
   dependencies:
@@ -18247,6 +18402,13 @@ __metadata:
   version: 1.4.248
   resolution: "electron-to-chromium@npm:1.4.248"
   checksum: b90e572aef4ccae6c69a9e0e5bf8e93c6d53d229c478c3f39e094a4792bb48f0ce56322f379f35bbc649d61d58135cbd78d3c68c93e5c6f9f707d31fa8632ef3
+  languageName: node
+  linkType: hard
+
+"electron-to-chromium@npm:^1.4.251":
+  version: 1.4.284
+  resolution: "electron-to-chromium@npm:1.4.284"
+  checksum: be496e9dca6509dbdbb54dc32146fc99f8eb716d28a7ee8ccd3eba0066561df36fc51418d8bd7cf5a5891810bf56c0def3418e74248f51ea4a843d423603d10a
   languageName: node
   linkType: hard
 
@@ -21060,7 +21222,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-cli@npm:4.24.0, gatsby-cli@npm:^4.24.0":
+"gatsby-cli@npm:5.2.0":
+  version: 5.2.0
+  resolution: "gatsby-cli@npm:5.2.0"
+  dependencies:
+    "@babel/code-frame": ^7.14.0
+    "@babel/core": ^7.15.5
+    "@babel/generator": ^7.16.8
+    "@babel/helper-plugin-utils": ^7.16.7
+    "@babel/preset-typescript": ^7.16.7
+    "@babel/runtime": ^7.15.4
+    "@babel/template": ^7.16.7
+    "@babel/types": ^7.16.8
+    "@jridgewell/trace-mapping": ^0.3.13
+    "@types/common-tags": ^1.8.1
+    better-opn: ^2.1.1
+    boxen: ^5.1.2
+    chalk: ^4.1.2
+    clipboardy: ^2.3.0
+    common-tags: ^1.8.2
+    convert-hrtime: ^3.0.0
+    create-gatsby: ^3.2.0
+    envinfo: ^7.8.1
+    execa: ^5.1.1
+    fs-exists-cached: ^1.0.0
+    fs-extra: ^10.1.0
+    gatsby-core-utils: ^4.2.0
+    gatsby-telemetry: ^4.2.0
+    hosted-git-info: ^3.0.8
+    is-valid-path: ^0.1.1
+    joi: ^17.4.2
+    lodash: ^4.17.21
+    node-fetch: ^2.6.6
+    opentracing: ^0.14.5
+    pretty-error: ^2.1.2
+    progress: ^2.0.3
+    prompts: ^2.4.2
+    redux: 4.1.2
+    resolve-cwd: ^3.0.0
+    semver: ^7.3.7
+    signal-exit: ^3.0.6
+    stack-trace: ^0.0.10
+    strip-ansi: ^6.0.1
+    yargs: ^15.4.1
+    yoga-layout-prebuilt: ^1.10.0
+    yurnalist: ^2.1.0
+  bin:
+    gatsby: cli.js
+  checksum: a119490b2adb31663dd1f06675879765f8ad315860c27e72af739552c039927d82e30198a7dc82164e0e7f901c5afda55ca5714dc9b62e8f03c59578888fb21e
+  languageName: node
+  linkType: hard
+
+"gatsby-cli@npm:^4.24.0":
   version: 4.24.0
   resolution: "gatsby-cli@npm:4.24.0"
   dependencies:
@@ -21132,6 +21345,29 @@ __metadata:
     tmp: ^0.2.1
     xdg-basedir: ^4.0.0
   checksum: 1dfd7bc4b01a99693215bbbd88088f842d6a32228ef2122c1602f9d458c2d04054af467c6c0e5f093986d6271740573b5903ae6bcb2d5b6b0d11ea9c56d4dc8d
+  languageName: node
+  linkType: hard
+
+"gatsby-core-utils@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "gatsby-core-utils@npm:4.2.0"
+  dependencies:
+    "@babel/runtime": ^7.15.4
+    ci-info: 2.0.0
+    configstore: ^5.0.1
+    fastq: ^1.13.0
+    file-type: ^16.5.3
+    fs-extra: ^10.1.0
+    got: ^11.8.5
+    import-from: ^4.0.0
+    lmdb: 2.5.3
+    lock: ^1.1.0
+    node-object-hash: ^2.3.10
+    proper-lockfile: ^4.1.2
+    resolve-from: ^5.0.0
+    tmp: ^0.2.1
+    xdg-basedir: ^4.0.0
+  checksum: b4bd39a355573cbb90d6f07ed3ae974fe7167472c9fc6e466545491e27cd6ef7b9d7e867fba47493cd022ce84b9aab9943d969e339920e27eada13a173bff0f6
   languageName: node
   linkType: hard
 
@@ -21637,6 +21873,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gatsby-telemetry@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "gatsby-telemetry@npm:4.2.0"
+  dependencies:
+    "@babel/code-frame": ^7.14.0
+    "@babel/runtime": ^7.15.4
+    "@turist/fetch": ^7.2.0
+    "@turist/time": ^0.0.2
+    boxen: ^4.2.0
+    configstore: ^5.0.1
+    fs-extra: ^10.1.0
+    gatsby-core-utils: ^4.2.0
+    git-up: ^7.0.0
+    is-docker: ^2.2.1
+    lodash: ^4.17.21
+    node-fetch: ^2.6.7
+  checksum: 5cc89af5a369ed75bbe0aeaf0e72ddf39ba700904dabd98b87c996f4ae81d88abd6d00ed2395166d3ae2d034e5e1f68a075b4527cff9821ea750b4d75f24e99a
+  languageName: node
+  linkType: hard
+
 "gatsby-transformer-sharp@npm:4.24.0":
   version: 4.24.0
   resolution: "gatsby-transformer-sharp@npm:4.24.0"
@@ -21681,9 +21937,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby@npm:4.24.4":
-  version: 4.24.4
-  resolution: "gatsby@npm:4.24.4"
+"gatsby@npm:4.24.8":
+  version: 4.24.8
+  resolution: "gatsby@npm:4.24.8"
   dependencies:
     "@babel/code-frame": ^7.14.0
     "@babel/core": ^7.15.5
@@ -21786,6 +22042,7 @@ __metadata:
     graphql: ^15.7.2
     graphql-compose: ^9.0.7
     graphql-playground-middleware-express: ^1.7.22
+    graphql-tag: ^2.12.6
     hasha: ^5.2.2
     invariant: ^2.2.4
     is-relative: ^1.0.0
@@ -21858,7 +22115,7 @@ __metadata:
       optional: true
   bin:
     gatsby: ./cli.js
-  checksum: e67cf944ff94518bbedc9c8277451d779463e17c3104b6ab587d0ae6f26b71af3aedea73d913d1539c7683143ef8c1f1b71d34fc34e4cfdff7a629a60f2ce241
+  checksum: 1a44726d97077f86103e7503e3dba803ca645ffd9a5e15f331368b892ec97943447c786064cfb6972159b53ea00406b732db3a5031a02c2cc55b55b3c788cf1f
   languageName: node
   linkType: hard
 
@@ -22265,7 +22522,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"global@npm:^4.3.2":
+"global@npm:^4.3.1, global@npm:^4.3.2, global@npm:^4.4.0, global@npm:~4.4.0":
   version: 4.4.0
   resolution: "global@npm:4.4.0"
   dependencies:
@@ -23112,7 +23369,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"htmlparser2@npm:^3.9.1":
+"htmlparser2@npm:^3.10.1, htmlparser2@npm:^3.9.1":
   version: 3.10.1
   resolution: "htmlparser2@npm:3.10.1"
   dependencies:
@@ -23559,6 +23816,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"individual@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "individual@npm:2.0.0"
+  checksum: 34f071ade77365e2cdb9e034e7dc92930450ce427415b9ef975a2c2a455b40aa9e071ae7888972f3d2ec7d977a32cf1af46e0b8d602d70d05da5b9bbc9e23392
+  languageName: node
+  linkType: hard
+
 "infer-owner@npm:^1.0.4":
   version: 1.0.4
   resolution: "infer-owner@npm:1.0.4"
@@ -23992,6 +24256,13 @@ __metadata:
   version: 3.0.0
   resolution: "is-fullwidth-code-point@npm:3.0.0"
   checksum: 44a30c29457c7fb8f00297bce733f0a64cd22eca270f83e58c105e0d015e45c019491a4ab2faef91ab51d4738c670daff901c799f6a700e27f7314029e99e348
+  languageName: node
+  linkType: hard
+
+"is-function@npm:^1.0.1":
+  version: 1.0.2
+  resolution: "is-function@npm:1.0.2"
+  checksum: 7d564562e07b4b51359547d3ccc10fb93bb392fd1b8177ae2601ee4982a0ece86d952323fc172a9000743a3971f09689495ab78a1d49a9b14fc97a7e28521dc0
   languageName: node
   linkType: hard
 
@@ -25935,6 +26206,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"keycode@npm:^2.2.0":
+  version: 2.2.1
+  resolution: "keycode@npm:2.2.1"
+  checksum: 7a5c775b2410a3b6d9c07a415ecb70639187a965be239d2c11c71079cb1ca2f9dede94b86426f3ece475dc8ae3debf2367531bbcafc0af8c82f157d9a4f7e6cb
+  languageName: node
+  linkType: hard
+
 "keyv@npm:^3.0.0":
   version: 3.1.0
   resolution: "keyv@npm:3.1.0"
@@ -26931,6 +27209,28 @@ __metadata:
   bin:
     lz-string: bin/bin.js
   checksum: 54e31238a61a84d8f664d9860a9fba7310c5b97a52c444f80543069bc084815eff40b8d4474ae1d93992fdf6c252dca37cf27f6adbeb4dbc3df2f3ac773d0e61
+  languageName: node
+  linkType: hard
+
+"m3u8-parser@npm:4.7.1":
+  version: 4.7.1
+  resolution: "m3u8-parser@npm:4.7.1"
+  dependencies:
+    "@babel/runtime": ^7.12.5
+    "@videojs/vhs-utils": ^3.0.5
+    global: ^4.4.0
+  checksum: 859b5c8701f91687fd9a265a0e188109acaf43f1c99c18f9c256af2bebe0dd6d4f9174991f645f2ddeed6323b90e2a8261c8fa8f73cd865985b6b54fe8baec9b
+  languageName: node
+  linkType: hard
+
+"m3u8-parser@npm:4.8.0":
+  version: 4.8.0
+  resolution: "m3u8-parser@npm:4.8.0"
+  dependencies:
+    "@babel/runtime": ^7.12.5
+    "@videojs/vhs-utils": ^3.0.5
+    global: ^4.4.0
+  checksum: 850a8c5cacdbdc154d4fa18c79af77fdf45ef4afcb3d8a0507d04e8d9ddb5c0a9d18cb48c8e23be707d007c063038cdeab0d3de23100e5c02050a7aff6e2b2b8
   languageName: node
   linkType: hard
 
@@ -28020,6 +28320,34 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mpd-parser@npm:0.21.1":
+  version: 0.21.1
+  resolution: "mpd-parser@npm:0.21.1"
+  dependencies:
+    "@babel/runtime": ^7.12.5
+    "@videojs/vhs-utils": ^3.0.5
+    "@xmldom/xmldom": ^0.7.2
+    global: ^4.4.0
+  bin:
+    mpd-to-m3u8-json: bin/parse.js
+  checksum: 5e8cec29c32dab397eefa1c6c5680e88119bafc69adc0766c16c6212a5e5b2ce297a63071cd3e9545621526fc9abdf6bd0c11ffd0349cc4a13da0ec23963acc9
+  languageName: node
+  linkType: hard
+
+"mpd-parser@npm:0.22.1, mpd-parser@npm:^0.22.1":
+  version: 0.22.1
+  resolution: "mpd-parser@npm:0.22.1"
+  dependencies:
+    "@babel/runtime": ^7.12.5
+    "@videojs/vhs-utils": ^3.0.5
+    "@xmldom/xmldom": ^0.8.3
+    global: ^4.4.0
+  bin:
+    mpd-to-m3u8-json: bin/parse.js
+  checksum: 688e4d6c2353e3e55a9a7841fff263825d92ec44e0d0800e4c9d332fa27f9ffffac201723d9f5793a49813060fd150e9f203f20e840e64f7da2626b49764ba01
+  languageName: node
+  linkType: hard
+
 "mri@npm:1.2.0, mri@npm:^1.1.4":
   version: 1.2.0
   resolution: "mri@npm:1.2.0"
@@ -28161,6 +28489,18 @@ __metadata:
   version: 0.0.8
   resolution: "mute-stream@npm:0.0.8"
   checksum: ff48d251fc3f827e5b1206cda0ffdaec885e56057ee86a3155e1951bc940fd5f33531774b1cc8414d7668c10a8907f863f6561875ee6e8768931a62121a531a1
+  languageName: node
+  linkType: hard
+
+"mux.js@npm:6.0.1":
+  version: 6.0.1
+  resolution: "mux.js@npm:6.0.1"
+  dependencies:
+    "@babel/runtime": ^7.11.2
+    global: ^4.4.0
+  bin:
+    muxjs-transmux: bin/transmux.js
+  checksum: dcf6fb7a3ea5bce741268480fe5ed43ae75c82403ebcaddb2f6d1bd83364e3c70359feea9348112cb7ddd88b02e9c2f9fa0c0a5de9eaf32e8f246a53c6ed8f8a
   languageName: node
   linkType: hard
 
@@ -28710,7 +29050,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nth-check@npm:^1.0.1, nth-check@npm:~1.0.1":
+"nth-check@npm:^1.0.1, nth-check@npm:^1.0.2, nth-check@npm:~1.0.1":
   version: 1.0.2
   resolution: "nth-check@npm:1.0.2"
   dependencies:
@@ -29745,6 +30085,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"picocolors@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "picocolors@npm:0.2.1"
+  checksum: 3b0f441f0062def0c0f39e87b898ae7461c3a16ffc9f974f320b44c799418cabff17780ee647fda42b856a1dc45897e2c62047e1b546d94d6d5c6962f45427b2
+  languageName: node
+  linkType: hard
+
 "picomatch@npm:^2.0.4, picomatch@npm:^2.2.1, picomatch@npm:^2.2.2, picomatch@npm:^2.2.3, picomatch@npm:^2.3.1":
   version: 2.3.1
   resolution: "picomatch@npm:2.3.1"
@@ -29793,6 +30140,17 @@ __metadata:
   version: 4.0.5
   resolution: "pirates@npm:4.0.5"
   checksum: c9994e61b85260bec6c4fc0307016340d9b0c4f4b6550a957afaaff0c9b1ad58fbbea5cfcf083860a25cb27a375442e2b0edf52e2e1e40e69934e08dcc52d227
+  languageName: node
+  linkType: hard
+
+"pkcs7@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "pkcs7@npm:1.0.4"
+  dependencies:
+    "@babel/runtime": ^7.5.5
+  bin:
+    pkcs7: bin/cli.js
+  checksum: 926a713263c7656883d1fcc9fa709e08c26babc76d535dd76ccdf5ad1bc1c5931ecbbe2d7ae6075ad54897e1184be4ec304d295e28953c2ec0f1a04c27f4e838
   languageName: node
   linkType: hard
 
@@ -29969,6 +30327,19 @@ __metadata:
   peerDependencies:
     postcss: ^8.0.0
   checksum: cd45d406e90f67cdab9524352e573cc6b4462b790934a05954e929a6653ebd31288ceebc8ce3c3ed7117ae672d9ebbec57df0bceec0a56e9b259c2e71d47ca86
+  languageName: node
+  linkType: hard
+
+"postcss-inline-svg@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "postcss-inline-svg@npm:4.1.0"
+  dependencies:
+    css-select: ^2.0.2
+    dom-serializer: ^0.1.1
+    htmlparser2: ^3.10.1
+    postcss: ^7.0.17
+    postcss-value-parser: ^4.0.0
+  checksum: eb45306aff0273180eeb8cf9db21779eb29246405366c4f026d7b8a88267e9805a87849c5b2e8a078b0584514a677aa68b7fc9e05a831752fd4d5dac5c0db6da
   languageName: node
   linkType: hard
 
@@ -30390,6 +30761,16 @@ __metadata:
     picocolors: ^1.0.0
     source-map-js: ^1.0.2
   checksum: 9349fd99849b2e3d2e134ff949b7770ecb12375f352723ce2bcc06167eba3850ea7844c1b191a85cd915d6a396b4e8ee9a5267e6cc5d8d003d0cbc7a97555d39
+  languageName: node
+  linkType: hard
+
+"postcss@npm:^7.0.17":
+  version: 7.0.39
+  resolution: "postcss@npm:7.0.39"
+  dependencies:
+    picocolors: ^0.2.1
+    source-map: ^0.6.1
+  checksum: 4ac793f506c23259189064bdc921260d869a115a82b5e713973c5af8e94fbb5721a5cc3e1e26840500d7e1f1fa42a209747c5b1a151918a9bc11f0d7ed9048e3
   languageName: node
   linkType: hard
 
@@ -31701,6 +32082,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"regenerator-runtime@npm:^0.13.11":
+  version: 0.13.11
+  resolution: "regenerator-runtime@npm:0.13.11"
+  checksum: 27481628d22a1c4e3ff551096a683b424242a216fee44685467307f14d58020af1e19660bf2e26064de946bad7eff28950eae9f8209d55723e2d9351e632bbb4
+  languageName: node
+  linkType: hard
+
 "regenerator-runtime@npm:^0.13.4, regenerator-runtime@npm:^0.13.7":
   version: 0.13.9
   resolution: "regenerator-runtime@npm:0.13.9"
@@ -32528,6 +32916,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rust-result@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "rust-result@npm:1.0.0"
+  dependencies:
+    individual: ^2.0.0
+  checksum: ccad2bdf79d3ff29e9f163db3121342b31e6d3008714851900c59da20489175f389dc3309cb92bfa5fa4d8f8842f0287567021912d37afbe5d379880af4bb95b
+  languageName: node
+  linkType: hard
+
 "rw@npm:1":
   version: 1.3.3
   resolution: "rw@npm:1.3.3"
@@ -32582,6 +32979,15 @@ __metadata:
   version: 5.2.1
   resolution: "safe-buffer@npm:5.2.1"
   checksum: b99c4b41fdd67a6aaf280fcd05e9ffb0813654894223afb78a31f14a19ad220bba8aba1cb14eddce1fcfb037155fe6de4e861784eb434f7d11ed58d1e70dd491
+  languageName: node
+  linkType: hard
+
+"safe-json-parse@npm:4.0.0":
+  version: 4.0.0
+  resolution: "safe-json-parse@npm:4.0.0"
+  dependencies:
+    rust-result: ^1.0.0
+  checksum: dab69dee6cfeeb5735447e4bb79da06054ff46954f9ef7504ade0ae8afe4984d44afb16adbd24adf89a83088fac8cdb07cf4ec0abc94422a1f54a4484cdb5c1a
   languageName: node
   linkType: hard
 
@@ -36035,6 +36441,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"update-browserslist-db@npm:^1.0.9":
+  version: 1.0.10
+  resolution: "update-browserslist-db@npm:1.0.10"
+  dependencies:
+    escalade: ^3.1.1
+    picocolors: ^1.0.0
+  peerDependencies:
+    browserslist: ">= 4.21.0"
+  bin:
+    browserslist-lint: cli.js
+  checksum: 12db73b4f63029ac407b153732e7cd69a1ea8206c9100b482b7d12859cd3cd0bc59c602d7ae31e652706189f1acb90d42c53ab24a5ba563ed13aebdddc5561a0
+  languageName: node
+  linkType: hard
+
 "update-notifier@npm:4.1.0":
   version: 4.1.0
   resolution: "update-notifier@npm:4.1.0"
@@ -36144,6 +36564,13 @@ __metadata:
   dependencies:
     prepend-http: ^2.0.0
   checksum: 1040e357750451173132228036aff1fd04abbd43eac1fb3e4fca7495a078bcb8d33cb765fe71ad7e473d9c94d98fd67adca63bd2716c815a2da066198dd37217
+  languageName: node
+  linkType: hard
+
+"url-toolkit@npm:^2.2.1":
+  version: 2.2.5
+  resolution: "url-toolkit@npm:2.2.5"
+  checksum: c784040bd4dbd78647a62218b6b8c1abd9a2f7fd8adce1851daf21dc2d98e2a5d69b78a628ec07dcfa112c16a112a182e109b7c872b6e8a1e4a1547b49b81f7b
   languageName: node
   linkType: hard
 
@@ -36466,6 +36893,64 @@ __metadata:
     unist-util-stringify-position: ^2.0.0
     vfile-message: ^2.0.0
   checksum: ee5726e10d170472cde778fc22e0f7499caa096eb85babea5d0ce0941455b721037ee1c9e6ae506ca2803250acd313d0f464328ead0b55cfe7cb6315f1b462d6
+  languageName: node
+  linkType: hard
+
+"video.js@npm:7.20.3":
+  version: 7.20.3
+  resolution: "video.js@npm:7.20.3"
+  dependencies:
+    "@babel/runtime": ^7.12.5
+    "@videojs/http-streaming": 2.14.3
+    "@videojs/vhs-utils": ^3.0.4
+    "@videojs/xhr": 2.6.0
+    aes-decrypter: 3.1.3
+    global: ^4.4.0
+    keycode: ^2.2.0
+    m3u8-parser: 4.7.1
+    mpd-parser: 0.21.1
+    mux.js: 6.0.1
+    safe-json-parse: 4.0.0
+    videojs-font: 3.2.0
+    videojs-vtt.js: ^0.15.4
+  checksum: 7b6c0391456ec63f75bbb68d8759bb27fc71511041613ca0cdaedc4f81c8bd50cd700e669c379867f80e3094637c2f50f6b3040037fed213069ee02e3e6c518b
+  languageName: node
+  linkType: hard
+
+"video.js@npm:^6 || ^7":
+  version: 7.21.1
+  resolution: "video.js@npm:7.21.1"
+  dependencies:
+    "@babel/runtime": ^7.12.5
+    "@videojs/http-streaming": 2.15.1
+    "@videojs/vhs-utils": ^3.0.4
+    "@videojs/xhr": 2.6.0
+    aes-decrypter: 3.1.3
+    global: ^4.4.0
+    keycode: ^2.2.0
+    m3u8-parser: 4.8.0
+    mpd-parser: 0.22.1
+    mux.js: 6.0.1
+    safe-json-parse: 4.0.0
+    videojs-font: 3.2.0
+    videojs-vtt.js: ^0.15.4
+  checksum: 8eb9c0fd766e7eff3ce777dd9b1c7c335ea3933aa1763a5161943970a2c8a4bd96c8daa60cca87450f6dad2124912a14c257e6f655630979964c883ecd95e20c
+  languageName: node
+  linkType: hard
+
+"videojs-font@npm:3.2.0":
+  version: 3.2.0
+  resolution: "videojs-font@npm:3.2.0"
+  checksum: 3c773d4a64123c237c26029a5d04c51919e3b6e688db0a20c6f9c647198ec815425d96a62dd24989046f27aa583c96cecae715f789f8d98452b4df419c23158a
+  languageName: node
+  linkType: hard
+
+"videojs-vtt.js@npm:^0.15.4":
+  version: 0.15.4
+  resolution: "videojs-vtt.js@npm:0.15.4"
+  dependencies:
+    global: ^4.3.1
+  checksum: 10c6c861621d4314e7d4b60b7bef1afc60f1ac438879f6b3f22e8944d694c8e9dfc809a8187ed72f44e06c39a159044d8fa15e80695b9bf7b9bef99ea2740b70
   languageName: node
   linkType: hard
 
