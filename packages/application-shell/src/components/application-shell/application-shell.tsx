@@ -88,7 +88,7 @@ type Props<AdditionalEnvironmentProperties extends {}> = {
     track: TrackFn
   ) => void;
   disableRoutePermissionCheck?: boolean;
-  themesOverrides?: TOverridesPerTheme;
+  internal_themesOverrides?: TOverridesPerTheme;
   render?: () => JSX.Element;
   children?: ReactNode;
 };
@@ -245,7 +245,9 @@ export const RestrictedApplication = <
                     defaultFlags={props.defaultFeatureFlags}
                   >
                     <>
-                      <ThemeSwitcher themesOverrides={props.themesOverrides} />
+                      <ThemeSwitcher
+                        themesOverrides={props.internal_themesOverrides}
+                      />
                       <VersionTracker />
                       {/* NOTE: the requests in flight loader will render a loading
                       spinner into the AppBar. */}
