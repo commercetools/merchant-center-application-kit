@@ -5,10 +5,10 @@ import { themesOverrides as appKitThemesOverrides } from '@commercetools-fronten
 import { UI_REDESIGN } from '../../feature-toggles';
 
 type TThemeOverrides = Record<string, string>;
-export type TOverwridesPerTheme = Record<string, TThemeOverrides>;
+export type TOverridesPerTheme = Record<string, TThemeOverrides>;
 
 type ThemeSwitcherProps = {
-  themesOverrides?: TOverwridesPerTheme;
+  themesOverrides?: TOverridesPerTheme;
 };
 const ThemeSwitcher = (props: ThemeSwitcherProps) => {
   const isNewThemeEnabled = useFeatureToggle(UI_REDESIGN);
@@ -16,7 +16,7 @@ const ThemeSwitcher = (props: ThemeSwitcherProps) => {
   const mergedThemeOverrides = useMemo(
     () => ({
       ...appKitThemesOverrides[theme],
-      ...props.themesOverrides[theme],
+      ...props.themesOverrides?.[theme] ?? {},
     }),
     [theme, props.themesOverrides]
   );
