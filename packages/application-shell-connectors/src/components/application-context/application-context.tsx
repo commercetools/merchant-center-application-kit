@@ -55,13 +55,7 @@ type TApplicationContextDataFences = Partial<
 type TApplicationContextEnvironment = ApplicationWindow['app'];
 type TApplicationContextUser = Pick<
   NonNullable<TFetchedUser>,
-  | 'id'
-  | 'email'
-  | 'firstName'
-  | 'lastName'
-  | 'businessRole'
-  | 'projects'
-  | 'verificationStatus'
+  'id' | 'email' | 'firstName' | 'lastName' | 'businessRole' | 'projects'
 > & {
   locale: string;
   timeZone: string;
@@ -89,7 +83,6 @@ export const mapUserToApplicationContextUser = (user?: TFetchedUser) => {
     locale: user.language,
     timeZone: user.timeZone || defaultTimeZone,
     projects: user.projects,
-    verificationStatus: user.verificationStatus,
   };
 
   // This property will only be populated when user has logged in using SSO

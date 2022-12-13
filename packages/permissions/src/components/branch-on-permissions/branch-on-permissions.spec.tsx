@@ -1,7 +1,6 @@
 import { screen, render } from '@testing-library/react';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import branchOnPermissions from './branch-on-permissions';
-import { TVerificationStatus } from '../../types/generated/mc';
 
 const AuthorizedComponent = () => <div>{'Authorized'}</div>;
 const UnauthorizedComponent = () => <div>{'Not authorized'}</div>;
@@ -40,7 +39,6 @@ const renderWithPermissions = (demandedPermissions: string[]) => {
         launchdarklyTrackingId: '111',
         launchdarklyTrackingTeam: undefined,
         launchdarklyTrackingTenant: 'gcp-eu',
-        verificationStatus: TVerificationStatus.Verified,
       }}
       project={{
         key: 'foo-1',
