@@ -103,12 +103,6 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
       'frame-src'?: CspDirective;
     };
     /**
-     * See https://docs.commercetools.com/custom-applications/api-reference/application-config#headersfeaturepolicies
-     */
-    featurePolicies?: {
-      [k: string]: unknown;
-    };
-    /**
      * See https://docs.commercetools.com/custom-applications/api-reference/application-config#headerspermissionspolicies
      */
     permissionsPolicies?: {

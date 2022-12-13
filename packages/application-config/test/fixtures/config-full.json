@@ -37,9 +37,6 @@
       "script-src": ["https://track.avengers.app"],
       "connect-src": ["https://track.avengers.app"]
     },
-    "featurePolicies": {
-      "microphone": "none"
-    },
     "permissionsPolicies": {
       "microphone": "()"
     },

@@ -462,27 +462,9 @@ The required [Content Security Policy (CSP)](https://developer.mozilla.org/en-US
 
 </Info>
 
-## `headers.featurePolicies`
-
-An optional object to configure the [HTTP `Feature-Policy` header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy/Using_Feature_Policy).
-
-```json
-{
-  "headers": {
-    "featurePolicies": {
-      "microphone": "'none'",
-      "camera": "'none'",
-      "payment": "'none'",
-      "usb": "'none'",
-      "geolocation": "'none'"
-    }
-  }
-}
-```
-
 ## `headers.permissionsPolicies`
 
-An optional object to configure the [HTTP `Permission-Policy` header](https://github.com/w3c/webappsec-permissions-policy/blob/main/permissions-policy-explainer.md).
+An optional object to configure the [HTTP `Permission-Policy` header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy).
 
 ```json
 {
