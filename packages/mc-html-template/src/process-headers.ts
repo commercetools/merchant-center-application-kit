@@ -145,13 +145,6 @@ const processHeaders = (
       ].join('; '),
     }),
 
-    // Allow to extend the `Feature-Policy` header.
-    ...(applicationConfig.headers?.featurePolicies && {
-      'Feature-Policy': toHeaderString(
-        applicationConfig.headers.featurePolicies as TCspDirective
-      ),
-    }),
-
     // Allow to extend the `Permissions-Policy` header.
     ...(applicationConfig.headers?.permissionsPolicies && {
       'Permissions-Policy': toStructuredHeaderString(

@@ -95,25 +95,6 @@ describe('csp', () => {
     );
   });
 });
-describe('featurePolicies', () => {
-  it('should set the header value', () => {
-    const testApplicationConfig = {
-      ...defaultApplicationConfig,
-      headers: {
-        featurePolicies: {
-          microphone: "'none'",
-          camera: ["'self'", "'https://example.com'"],
-        },
-      },
-    };
-
-    const processedApplicationConfig = processHeaders(testApplicationConfig);
-
-    expect(processedApplicationConfig['Feature-Policy']).toMatchInlineSnapshot(
-      `"microphone 'none'; camera 'self' 'https://example.com'"`
-    );
-  });
-});
 describe('permissionsPolicies', () => {
   it('should set the header value', () => {
     const testApplicationConfig = {

@@ -371,9 +371,6 @@ describe('processing a full config', () => {
           'script-src': ['https://track.avengers.app'],
           'style-src': [],
         },
-        featurePolicies: {
-          microphone: 'none',
-        },
         permissionsPolicies: {
           microphone: '()',
         },
@@ -439,9 +436,6 @@ describe('processing a full config', () => {
               'https://cdn.avengers.app/',
             ],
             'style-src': ['https://avengers.app/', 'https://cdn.avengers.app/'],
-          },
-          featurePolicies: {
-            microphone: 'none',
           },
           permissionsPolicies: {
             microphone: '()',
@@ -535,9 +529,6 @@ describe('processing a full config', () => {
             'script-src': ['https://track.avengers.app'],
             'style-src': [],
           },
-          featurePolicies: {
-            microphone: 'none',
-          },
           permissionsPolicies: {
             microphone: '()',
           },
@@ -605,9 +596,6 @@ describe('processing a full config', () => {
               'https://cdn.avengers.app/',
             ],
             'style-src': ['https://avengers.app/', 'https://cdn.avengers.app/'],
-          },
-          featurePolicies: {
-            microphone: 'none',
           },
           permissionsPolicies: {
             microphone: '()',

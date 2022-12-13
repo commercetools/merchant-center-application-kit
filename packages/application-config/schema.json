@@ -173,10 +173,6 @@
           "additionalProperties": false,
           "required": ["connect-src"]
         },
-        "featurePolicies": {
-          "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#headersfeaturepolicies",
-          "type": "object"
-        },
         "permissionsPolicies": {
           "description": "See https://docs.commercetools.com/custom-applications/api-reference/application-config#headerspermissionspolicies",
           "type": "object"
