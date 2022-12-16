@@ -4,6 +4,7 @@ import {
 } from '@commercetools-uikit/design-system';
 
 const appKitSpacing55 = '40px';
+const newShadow1 = '0px 2px 5px 0px rgba(0, 0, 0, 0.15)';
 
 export const themesOverrides = {
   default: {
@@ -22,6 +23,7 @@ export const themesOverrides = {
     marginForDialogContainerContents: `${uiKitDesignTokens.spacing30} 0`,
     marginForModalPageHeader: `0 ${uiKitDesignTokens.spacing30}`,
     marginLeftForModalPageHeaderControls: uiKitDesignTokens.spacing30,
+    marginRightForAppbar: uiKitDesignTokens.spacing30,
     marginTopForDialogFooter: uiKitDesignTokens.spacing30,
     marginTopForPageSubtitle: uiKitDesignTokens.spacing30,
     marginTopForTabControls: uiKitDesignTokens.spacing20,
@@ -34,6 +36,7 @@ export const themesOverrides = {
     paddingForPageContent: uiKitDesignTokens.spacing30,
     paddingForTabularPageHeader: `${uiKitDesignTokens.spacing30} ${uiKitDesignTokens.spacing30} 0`,
     paddingLeftForTabAsFirst: '0',
+    shadowForAppbar: uiKitDesignTokens.shadow1,
     widthForDialogAsMedium: uiKitDesignTokens.constraint7,
     widthForDialogAsLarge: uiKitDesignTokens.constraint10,
     widthForPageLayoutContentColumn: `calc(${uiKitDesignTokens.constraint15} / 2)`,
@@ -54,6 +57,7 @@ export const themesOverrides = {
     marginForDialogContainerContents: `${uiKitDesignTokens.spacing30} 0 ${uiKitDesignTokens.spacing50} 0`,
     marginForModalPageHeader: `0 ${appKitSpacing55}`,
     marginLeftForModalPageHeaderControls: uiKitDesignTokens.spacing50,
+    marginRightForAppbar: appKitSpacing55,
     marginTopForDialogFooter: uiKitDesignTokens.spacing50,
     marginTopForPageSubtitle: uiKitDesignTokens.spacing20,
     marginTopForTabControls: uiKitDesignTokens.spacing40,
@@ -66,6 +70,7 @@ export const themesOverrides = {
     paddingForPageContent: `${uiKitDesignTokens.spacing50} ${appKitSpacing55}`,
     paddingForTabularPageHeader: `${uiKitDesignTokens.spacing40} ${appKitSpacing55} 0`,
     paddingLeftForTabAsFirst: uiKitDesignTokens.spacing30,
+    shadowForAppbar: newShadow1,
     widthForDialogAsMedium: uiKitDesignTokens.constraint9,
     widthForDialogAsLarge: uiKitDesignTokens.constraint13,
     widthForPageLayoutContentColumn: `calc(${uiKitDesignTokens.constraint16} / 2)`,

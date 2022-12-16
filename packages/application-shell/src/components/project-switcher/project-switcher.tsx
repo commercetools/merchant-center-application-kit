@@ -14,7 +14,7 @@ import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import SelectInput from '@commercetools-uikit/select-input';
 import { ErrorIcon } from '@commercetools-uikit/icons';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import { useMcQuery } from '../../hooks/apollo-hooks';
 import { location } from '../../utils/location';
 import * as oidcStorage from '../../utils/oidc-storage';
@@ -60,8 +60,8 @@ export const ProjectSwitcherValueContainer = ({
         width: 22px;
         height: 22px;
         border-radius: 100%;
-        background: ${customProperties.colorAccent40};
-        color: ${customProperties.colorSurface};
+        background: ${designTokens.colorAccent40};
+        color: ${designTokens.colorSurface};
         font-size: 0.9rem;
         display: flex;
         justify-content: center;
@@ -85,8 +85,8 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
         <div
           css={css`
             color: ${props.isDisabled
-              ? customProperties.colorNeutral
-              : customProperties.colorAccent};
+              ? designTokens.colorNeutral
+              : designTokens.colorAccent};
           `}
         >
           {project.name}
@@ -104,9 +104,7 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
         <div
           css={css`
             font-size: 11px;
-            color: ${props.isDisabled
-              ? customProperties.colorNeutral
-              : 'inherit'};
+            color: ${props.isDisabled ? designTokens.colorNeutral : 'inherit'};
           `}
         >
           {project.key}
@@ -115,7 +113,7 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
           <div
             css={css`
               font-size: 11px;
-              color: ${customProperties.colorError};
+              color: ${designTokens.colorError};
             `}
           >
             <FormattedMessage {...messages.suspended} />
@@ -125,7 +123,7 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
           <div
             css={css`
               font-size: 11px;
-              color: ${customProperties.colorError};
+              color: ${designTokens.colorError};
             `}
           >
             <FormattedMessage {...messages.expired} />
@@ -166,7 +164,7 @@ const ProjectSwitcher = (props: Props) => {
   return (
     <div
       css={css`
-        width: 225px;
+        width: ${designTokens.constraint6};
       `}
       data-track-component="ProjectSwitch"
       data-track-event="click"

@@ -4,6 +4,7 @@ import { css } from '@emotion/react';
 import Spacings from '@commercetools-uikit/spacings';
 import { customProperties } from '@commercetools-uikit/design-system';
 import LogoSVG from '@commercetools-frontend/assets/images/logo.svg';
+import { designTokens } from '@commercetools-frontend/application-components';
 import { CONTAINERS, DIMENSIONS } from '../../constants';
 import { getPreviousProjectKey } from '../../utils';
 import UserSettingsMenu from '../user-settings-menu';
@@ -26,7 +27,7 @@ const AppBar = (props: Props) => {
     <div
       css={css`
         background-color: ${customProperties.colorSurface};
-        box-shadow: ${customProperties.shadow1};
+        box-shadow: ${designTokens.shadowForAppbar};
         min-height: ${DIMENSIONS.header};
         position: relative;
         width: 100%;
@@ -70,13 +71,13 @@ const AppBar = (props: Props) => {
           float: right;
           font-weight: normal;
           font-size: 1rem;
-          margin-right: ${customProperties.spacingM};
+          margin-right: ${designTokens.marginRightForAppbar};
           display: flex;
           align-items: center;
         `}
       >
         <Spacings.Inline scale="m" alignItems="center">
-          <Spacings.Inline alignItems="center">
+          <Spacings.Inline scale="m" alignItems="center">
             {/* This node is used by a react portal */}
             <div id={CONTAINERS.LOCALE_SWITCHER} />
             {(() => {
@@ -103,7 +104,7 @@ const AppBar = (props: Props) => {
           <div
             css={css`
               border-left: 1px ${customProperties.colorNeutral90} solid;
-              height: ${DIMENSIONS.header};
+              height: ${DIMENSIONS.headerItemDivider};
             `}
           />
           {props.user ? (
