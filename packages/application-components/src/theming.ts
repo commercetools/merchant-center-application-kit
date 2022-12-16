@@ -12,6 +12,7 @@ export const themesOverrides = {
     backgroundColorForMainPageDivider: uiKitDesignTokens.colorNeutral60,
     backgroundColorForPageHeader: uiKitDesignTokens.colorNeutral95,
     backgroundColorForTabularMainPageContent: uiKitDesignTokens.colorNeutral95,
+    backgroundColorForUserMenuItemWhenHovered: uiKitDesignTokens.colorNeutral90,
     borderBottomForTabularPageHeader: `1px solid ${uiKitDesignTokens.colorNeutral}`,
     borderColorForDialogDivider: uiKitDesignTokens.colorNeutral,
     borderColorForModalPageHeaderDivider: uiKitDesignTokens.colorNeutral60,
@@ -22,6 +23,7 @@ export const themesOverrides = {
     marginBottomForPageTopBar: uiKitDesignTokens.spacing20,
     marginForDialogContainerContents: `${uiKitDesignTokens.spacing30} 0`,
     marginForModalPageHeader: `0 ${uiKitDesignTokens.spacing30}`,
+    marginForUserMenuItem: '0',
     marginLeftForModalPageHeaderControls: uiKitDesignTokens.spacing30,
     marginRightForAppbar: uiKitDesignTokens.spacing30,
     marginTopForDialogFooter: uiKitDesignTokens.spacing30,
@@ -46,6 +48,7 @@ export const themesOverrides = {
     backgroundColorForMainPageDivider: uiKitDesignTokens.colorNeutral90,
     backgroundColorForPageHeader: uiKitDesignTokens.colorSurface,
     backgroundColorForTabularMainPageContent: uiKitDesignTokens.colorSurface,
+    backgroundColorForUserMenuItemWhenHovered: uiKitDesignTokens.colorNeutral95,
     borderBottomForTabularPageHeader: `1px solid ${uiKitDesignTokens.colorNeutral90}`,
     borderColorForDialogDivider: uiKitDesignTokens.colorNeutral90,
     borderColorForModalPageHeaderDivider: uiKitDesignTokens.colorNeutral90,
@@ -56,6 +59,7 @@ export const themesOverrides = {
     marginBottomForPageTopBar: uiKitDesignTokens.spacing40,
     marginForDialogContainerContents: `${uiKitDesignTokens.spacing30} 0 ${uiKitDesignTokens.spacing50} 0`,
     marginForModalPageHeader: `0 ${appKitSpacing55}`,
+    marginForUserMenuItem: `${uiKitDesignTokens.spacing10} 0`,
     marginLeftForModalPageHeaderControls: uiKitDesignTokens.spacing50,
     marginRightForAppbar: appKitSpacing55,
     marginTopForDialogFooter: uiKitDesignTokens.spacing50,
@@ -77,7 +81,9 @@ export const themesOverrides = {
   },
 };
 
+type DesignTokenOverrides = keyof typeof themesOverrides.default;
+
 export const designTokens = transformTokensToCssVarsReferences(
   themesOverrides.default,
   { includeDefaultValue: false }
-);
+) as Record<DesignTokenOverrides, string>;

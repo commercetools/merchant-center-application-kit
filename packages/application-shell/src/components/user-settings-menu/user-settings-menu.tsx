@@ -25,6 +25,7 @@ import {
   SUPPORT_PORTAL_URL,
 } from '@commercetools-frontend/constants';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { designTokens as appkitDesignTokens } from '@commercetools-frontend/application-components';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import type { TUser } from '../../types/generated/mc';
 import type { TFetchApplicationsMenuQuery } from '../../types/generated/proxy';
@@ -137,19 +138,14 @@ const MenuItem = styled.div<MenuItemProps>`
   color: ${designTokens.colorSolid};
 
   :hover {
-    ${(props) =>
-      `background-color: ${
-        props.theme === 'test'
-          ? designTokens.colorNeutral95
-          : designTokens.colorNeutral90
-      };`}
+    background-color: ${appkitDesignTokens.backgroundColorForUserMenuItemWhenHovered};
   }
 
   ${(props) =>
     props.hasDivider === true
       ? css`
           border-bottom: 1px solid ${designTokens.colorNeutral};
-          margin: ${props.theme === 'test' ? designTokens.spacing10 : '0'} 0;
+          margin: ${appkitDesignTokens.marginForUserMenuItem};
         `
       : ''};
 `;
