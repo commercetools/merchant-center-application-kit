@@ -1,3 +1,4 @@
+// TODO: @redesign cleanup
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useIntl, FormattedMessage } from 'react-intl';
