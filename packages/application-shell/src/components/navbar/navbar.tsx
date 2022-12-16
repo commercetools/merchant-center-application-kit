@@ -48,6 +48,7 @@ import {
   normalizeAllAppliedMenuVisibilities,
   normalizeAllAppliedPermissions,
 } from '@commercetools-frontend/application-shell-connectors';
+import { designTokens as appkitDesignTokens } from '@commercetools-frontend/application-components';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { location } from '../../utils/location';
 import { GtmContext } from '../gtm-booter';
@@ -698,6 +699,20 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
           })}
         </div>
         <div className={styles['fixed-menu']}>
+          <div
+            css={css`
+              position: absolute;
+              top: -32px;
+              height: 32px;
+              width: 100%;
+              background: linear-gradient(
+                0deg,
+                ${appkitDesignTokens.backgroundColorForNavbar} 0%,
+                rgba(0, 0, 0, 0) 100%
+              );
+              z-index: 1;
+            `}
+          />
           <MenuItem
             hasSubmenu={false}
             isActive={false}

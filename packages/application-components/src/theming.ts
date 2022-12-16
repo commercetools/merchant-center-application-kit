@@ -6,6 +6,7 @@ import {
 const appKitSpacing55 = '40px';
 // TODO: move to uikit?
 const colorAccent10 = 'hsl(195, 35.2941176471%, 10%)';
+const colorAccent20 = 'hsl(195, 35.2941176471%, 20%)';
 const colorAccent90 = 'hsl(195, 35.2941176471%, 90%)';
 const newShadow1 = '0px 2px 5px 0px rgba(0, 0, 0, 0.15)';
 
@@ -16,8 +17,11 @@ export const themesOverrides = {
     colorForNavbarIconWhenActive: uiKitDesignTokens.colorPrimary,
     colorForNavbarLink: uiKitDesignTokens.colorSurface,
     colorForNavbarLinkWhenActive: uiKitDesignTokens.colorPrimary,
+    colorForNavbarLinkWhenHovered: uiKitDesignTokens.colorPrimary,
     backgroundColorForMainPageDivider: uiKitDesignTokens.colorNeutral60,
     backgroundColorForNavbar: uiKitDesignTokens.colorAccent,
+    backgroundColorForNavbarWhenActive: uiKitDesignTokens.colorAccent,
+    backgroundColorForNavbarWhenHovered: uiKitDesignTokens.colorAccent,
     backgroundColorForPageHeader: uiKitDesignTokens.colorNeutral95,
     backgroundColorForTabularMainPageContent: uiKitDesignTokens.colorNeutral95,
     backgroundColorForUserMenuItemWhenHovered: uiKitDesignTokens.colorNeutral90,
@@ -26,6 +30,9 @@ export const themesOverrides = {
     borderColorForModalPageHeaderDivider: uiKitDesignTokens.colorNeutral60,
     borderColorForModalTopBarWhenSurface: uiKitDesignTokens.colorNeutral,
     fontSizeForNavbarLink: uiKitDesignTokens.fontSize40,
+    fontWeightForNavbarLink: uiKitDesignTokens.fontWeight500,
+    fontWeightForNavbarLinkWhenActive: uiKitDesignTokens.fontWeight500,
+    fontWeightForNavbarLinkWhenHovered: uiKitDesignTokens.fontWeight500,
     heightForTab: '4px',
     lineHeightForNavBarLink: uiKitDesignTokens.lineHeight50,
     marginBottomForPageTopBar: uiKitDesignTokens.spacing20,
@@ -47,23 +54,22 @@ export const themesOverrides = {
     paddingForTabularPageHeader: `${uiKitDesignTokens.spacing30} ${uiKitDesignTokens.spacing30} 0`,
     paddingLeftForTabAsFirst: '0',
     shadowForAppbar: uiKitDesignTokens.shadow1,
+    shadowForNavbar: '6px 0 10px rgba(0, 0, 0, 0.16)',
     widthForDialogAsMedium: uiKitDesignTokens.constraint7,
     widthForDialogAsLarge: uiKitDesignTokens.constraint10,
     widthForPageLayoutContentColumn: `calc(${uiKitDesignTokens.constraint15} / 2)`,
   },
   test: {
     colorForPageHeaderBottomBorder: uiKitDesignTokens.colorNeutral90,
-    // TODO: final color not defined yet.
     colorForNavbarIcon: colorAccent90,
-    // TODO: final color not defined yet.
     colorForNavbarIconWhenActive: uiKitDesignTokens.colorSurface,
-    // TODO: final color not defined yet.
-    colorForNavbarLink: colorAccent90,
-    // TODO: final color not defined yet.
+    colorForNavbarLink: uiKitDesignTokens.colorNeutral,
     colorForNavbarLinkWhenActive: uiKitDesignTokens.colorSurface,
+    colorForNavbarLinkWhenHovered: uiKitDesignTokens.colorSurface,
     backgroundColorForMainPageDivider: uiKitDesignTokens.colorNeutral90,
-    // TODO: final color not defined yet.
     backgroundColorForNavbar: colorAccent10,
+    backgroundColorForNavbarWhenActive: colorAccent20,
+    backgroundColorForNavbarWhenHovered: colorAccent20,
     backgroundColorForPageHeader: uiKitDesignTokens.colorSurface,
     backgroundColorForTabularMainPageContent: uiKitDesignTokens.colorSurface,
     backgroundColorForUserMenuItemWhenHovered: uiKitDesignTokens.colorNeutral95,
@@ -72,6 +78,9 @@ export const themesOverrides = {
     borderColorForModalPageHeaderDivider: uiKitDesignTokens.colorNeutral90,
     borderColorForModalTopBarWhenSurface: uiKitDesignTokens.colorSurface,
     fontSizeForNavbarLink: uiKitDesignTokens.fontSize20,
+    fontWeightForNavbarLink: uiKitDesignTokens.fontWeight400,
+    fontWeightForNavbarLinkWhenActive: uiKitDesignTokens.fontWeight600,
+    fontWeightForNavbarLinkWhenHovered: uiKitDesignTokens.fontWeight600,
     heightForTab: '2px',
     lineHeightForNavBarLink: uiKitDesignTokens.lineHeight20,
     marginBottomForPageTopBar: uiKitDesignTokens.spacing40,
@@ -93,6 +102,7 @@ export const themesOverrides = {
     paddingForTabularPageHeader: `${uiKitDesignTokens.spacing40} ${appKitSpacing55} 0`,
     paddingLeftForTabAsFirst: uiKitDesignTokens.spacing30,
     shadowForAppbar: newShadow1,
+    shadowForNavbar: 'none',
     widthForDialogAsMedium: uiKitDesignTokens.constraint9,
     widthForDialogAsLarge: uiKitDesignTokens.constraint13,
     widthForPageLayoutContentColumn: `calc(${uiKitDesignTokens.constraint16} / 2)`,
