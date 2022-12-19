@@ -30,6 +30,7 @@ import { FormattedMessage } from 'react-intl';
 import { NavLink, matchPath, useLocation } from 'react-router-dom';
 import { useFlagVariation } from '@flopflip/react-broadcast';
 import { Global, css } from '@emotion/react';
+import styled from '@emotion/styled';
 import classnames from 'classnames';
 import {
   ArrowRightIcon,
@@ -192,6 +193,19 @@ const MenuExpander = (props: MenuExpanderProps) => {
   );
 };
 MenuExpander.displayName = 'MenuExpander';
+
+const Faded = styled.div`
+  position: absolute;
+  top: -32px;
+  height: 32px;
+  width: 100%;
+  background: linear-gradient(
+    0deg,
+    ${appkitDesignTokens.backgroundColorForNavbar} 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  z-index: 1;
+`;
 
 type MenuGroupProps = {
   id: string;
@@ -699,20 +713,7 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
           })}
         </div>
         <div className={styles['fixed-menu']}>
-          <div
-            css={css`
-              position: absolute;
-              top: -32px;
-              height: 32px;
-              width: 100%;
-              background: linear-gradient(
-                0deg,
-                ${appkitDesignTokens.backgroundColorForNavbar} 0%,
-                rgba(0, 0, 0, 0) 100%
-              );
-              z-index: 1;
-            `}
-          />
+          <Faded />
           <MenuItem
             hasSubmenu={false}
             isActive={false}
