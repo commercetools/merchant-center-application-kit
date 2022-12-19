@@ -23,7 +23,7 @@
   "dependencies": {
     "@babel/runtime": "^7.19.0",
     "@babel/runtime-corejs3": "^7.19.0",
-    "@commercetools-frontend/constants": "21.21.0",
+    "@commercetools-frontend/constants": "workspace:*",
     "@commercetools/api-request-builder": "6.0.0",
     "@commercetools/http-user-agent": "3.0.0",
     "@commercetools/sdk-client": "3.0.0",

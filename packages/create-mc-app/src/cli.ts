@@ -3,6 +3,7 @@ import { Listr, type ListrTask } from 'listr2';
 import * as tasks from './tasks';
 import { throwIfNodeVersionIsNotSupported } from './validations';
 import { shouldUseYarn } from './utils';
+import getLatestReleaseVersion from './get-latest-release-version';
 import hintOutdatedVersion from './hint-outdated-version';
 import processOptions from './process-options';
 import type { TCliCommandOptions } from './types';
@@ -60,7 +61,9 @@ const run = () => {
         return;
       }
 
-      await hintOutdatedVersion(pkgJson.version);
+      const releaseVersion = await getLatestReleaseVersion();
+
+      hintOutdatedVersion(pkgJson.version, releaseVersion);
 
       console.log('');
       console.log(
@@ -73,7 +76,7 @@ const run = () => {
       const taskList = new Listr(
         [
           tasks.downloadTemplate(taskOptions),
-          tasks.updatePackageJson(taskOptions),
+          tasks.updatePackageJson(taskOptions, releaseVersion),
           tasks.updateCustomApplicationConfig(taskOptions),
           tasks.updateApplicationConstants(taskOptions),
           !options.skipInstall && tasks.installDependencies(taskOptions),

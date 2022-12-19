@@ -55,9 +55,7 @@
     "generate-types:core": "graphql-codegen -r dotenv/config --config codegen.core.yml",
     "generate-types:settings": "graphql-codegen -r dotenv/config --config codegen.settings.yml",
     "generate-types:proxy": "graphql-codegen -r dotenv/config --config codegen.proxy.yml",
-    "generate-types": "yarn generate-types:mc && yarn generate-types:ctp && yarn generate-types:core && yarn generate-types:settings && yarn generate-types:proxy",
-    "versions:uikit": "manypkg upgrade @commercetools-uikit",
-    "versions:docskit": "manypkg upgrade @commercetools-docs"
+    "generate-types": "yarn generate-types:mc && yarn generate-types:ctp && yarn generate-types:core && yarn generate-types:settings && yarn generate-types:proxy"
   },
   "workspaces": {
     "packages": [
