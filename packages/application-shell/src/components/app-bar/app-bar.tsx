@@ -1,9 +1,10 @@
-import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
-
+// TODO: @redesign cleanup
 import { css } from '@emotion/react';
 import Spacings from '@commercetools-uikit/spacings';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens as uikitDesignTokens } from '@commercetools-uikit/design-system';
 import LogoSVG from '@commercetools-frontend/assets/images/logo.svg';
+import { designTokens as appKitDesignTokens } from '@commercetools-frontend/application-components';
+import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 import { CONTAINERS, DIMENSIONS } from '../../constants';
 import { getPreviousProjectKey } from '../../utils';
 import UserSettingsMenu from '../user-settings-menu';
@@ -25,8 +26,8 @@ const AppBar = (props: Props) => {
   return (
     <div
       css={css`
-        background-color: ${customProperties.colorSurface};
-        box-shadow: ${customProperties.shadow1};
+        background-color: ${uikitDesignTokens.colorSurface};
+        box-shadow: ${appKitDesignTokens.shadowForAppbar};
         min-height: ${DIMENSIONS.header};
         position: relative;
         width: 100%;
@@ -70,13 +71,13 @@ const AppBar = (props: Props) => {
           float: right;
           font-weight: normal;
           font-size: 1rem;
-          margin-right: ${customProperties.spacingM};
+          margin-right: ${appKitDesignTokens.marginRightForAppbar};
           display: flex;
           align-items: center;
         `}
       >
         <Spacings.Inline scale="m" alignItems="center">
-          <Spacings.Inline alignItems="center">
+          <Spacings.Inline scale="m" alignItems="center">
             {/* This node is used by a react portal */}
             <div id={CONTAINERS.LOCALE_SWITCHER} />
             {(() => {
@@ -102,8 +103,8 @@ const AppBar = (props: Props) => {
           </Spacings.Inline>
           <div
             css={css`
-              border-left: 1px ${customProperties.colorNeutral90} solid;
-              height: ${DIMENSIONS.header};
+              border-left: 1px ${uikitDesignTokens.colorNeutral90} solid;
+              height: ${DIMENSIONS.headerItemDivider};
             `}
           />
           {props.user ? (

@@ -1,5 +1,6 @@
 export const DIMENSIONS = {
-  header: '43px',
+  header: '56px',
+  headerItemDivider: '24px',
   navMenu: '64px',
   navMenuExpanded: '245px',
 } as const;

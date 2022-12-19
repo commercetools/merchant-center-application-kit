@@ -4,6 +4,7 @@ import {
 } from '@commercetools-uikit/design-system';
 
 const appKitSpacing55 = '40px';
+const newShadow1 = '0px 2px 5px 0px rgba(0, 0, 0, 0.15)';
 
 export const themesOverrides = {
   default: {
@@ -11,6 +12,7 @@ export const themesOverrides = {
     backgroundColorForMainPageDivider: uiKitDesignTokens.colorNeutral60,
     backgroundColorForPageHeader: uiKitDesignTokens.colorNeutral95,
     backgroundColorForTabularMainPageContent: uiKitDesignTokens.colorNeutral95,
+    backgroundColorForUserMenuItemWhenHovered: uiKitDesignTokens.colorNeutral90,
     borderBottomForTabularPageHeader: `1px solid ${uiKitDesignTokens.colorNeutral}`,
     borderColorForDialogDivider: uiKitDesignTokens.colorNeutral,
     borderColorForModalPageHeaderDivider: uiKitDesignTokens.colorNeutral60,
@@ -21,7 +23,9 @@ export const themesOverrides = {
     marginBottomForPageTopBar: uiKitDesignTokens.spacing20,
     marginForDialogContainerContents: `${uiKitDesignTokens.spacing30} 0`,
     marginForModalPageHeader: `0 ${uiKitDesignTokens.spacing30}`,
+    marginForUserMenuItem: '0',
     marginLeftForModalPageHeaderControls: uiKitDesignTokens.spacing30,
+    marginRightForAppbar: uiKitDesignTokens.spacing30,
     marginTopForDialogFooter: uiKitDesignTokens.spacing30,
     marginTopForPageSubtitle: uiKitDesignTokens.spacing30,
     marginTopForTabControls: uiKitDesignTokens.spacing20,
@@ -34,6 +38,7 @@ export const themesOverrides = {
     paddingForPageContent: uiKitDesignTokens.spacing30,
     paddingForTabularPageHeader: `${uiKitDesignTokens.spacing30} ${uiKitDesignTokens.spacing30} 0`,
     paddingLeftForTabAsFirst: '0',
+    shadowForAppbar: uiKitDesignTokens.shadow1,
     widthForDialogAsMedium: uiKitDesignTokens.constraint7,
     widthForDialogAsLarge: uiKitDesignTokens.constraint10,
     widthForPageLayoutContentColumn: `calc(${uiKitDesignTokens.constraint15} / 2)`,
@@ -43,6 +48,7 @@ export const themesOverrides = {
     backgroundColorForMainPageDivider: uiKitDesignTokens.colorNeutral90,
     backgroundColorForPageHeader: uiKitDesignTokens.colorSurface,
     backgroundColorForTabularMainPageContent: uiKitDesignTokens.colorSurface,
+    backgroundColorForUserMenuItemWhenHovered: uiKitDesignTokens.colorNeutral95,
     borderBottomForTabularPageHeader: `1px solid ${uiKitDesignTokens.colorNeutral90}`,
     borderColorForDialogDivider: uiKitDesignTokens.colorNeutral90,
     borderColorForModalPageHeaderDivider: uiKitDesignTokens.colorNeutral90,
@@ -53,7 +59,9 @@ export const themesOverrides = {
     marginBottomForPageTopBar: uiKitDesignTokens.spacing40,
     marginForDialogContainerContents: `${uiKitDesignTokens.spacing30} 0 ${uiKitDesignTokens.spacing50} 0`,
     marginForModalPageHeader: `0 ${appKitSpacing55}`,
+    marginForUserMenuItem: `${uiKitDesignTokens.spacing10} 0`,
     marginLeftForModalPageHeaderControls: uiKitDesignTokens.spacing50,
+    marginRightForAppbar: appKitSpacing55,
     marginTopForDialogFooter: uiKitDesignTokens.spacing50,
     marginTopForPageSubtitle: uiKitDesignTokens.spacing20,
     marginTopForTabControls: uiKitDesignTokens.spacing40,
@@ -66,13 +74,16 @@ export const themesOverrides = {
     paddingForPageContent: `${uiKitDesignTokens.spacing50} ${appKitSpacing55}`,
     paddingForTabularPageHeader: `${uiKitDesignTokens.spacing40} ${appKitSpacing55} 0`,
     paddingLeftForTabAsFirst: uiKitDesignTokens.spacing30,
+    shadowForAppbar: newShadow1,
     widthForDialogAsMedium: uiKitDesignTokens.constraint9,
     widthForDialogAsLarge: uiKitDesignTokens.constraint13,
     widthForPageLayoutContentColumn: `calc(${uiKitDesignTokens.constraint16} / 2)`,
   },
 };
 
+type DesignTokenOverrides = keyof typeof themesOverrides.default;
+
 export const designTokens = transformTokensToCssVarsReferences(
   themesOverrides.default,
   { includeDefaultValue: false }
-);
+) as Record<DesignTokenOverrides, string>;
