@@ -30,6 +30,7 @@ import { FormattedMessage } from 'react-intl';
 import { NavLink, matchPath, useLocation } from 'react-router-dom';
 import { useFlagVariation } from '@flopflip/react-broadcast';
 import { Global, css } from '@emotion/react';
+import styled from '@emotion/styled';
 import classnames from 'classnames';
 import {
   ArrowRightIcon,
@@ -48,6 +49,7 @@ import {
   normalizeAllAppliedMenuVisibilities,
   normalizeAllAppliedPermissions,
 } from '@commercetools-frontend/application-shell-connectors';
+import { designTokens as appkitDesignTokens } from '@commercetools-frontend/application-components';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { location } from '../../utils/location';
 import { GtmContext } from '../gtm-booter';
@@ -191,6 +193,19 @@ const MenuExpander = (props: MenuExpanderProps) => {
   );
 };
 MenuExpander.displayName = 'MenuExpander';
+
+const Faded = styled.div`
+  position: absolute;
+  top: -32px;
+  height: 32px;
+  width: 100%;
+  background: linear-gradient(
+    0deg,
+    ${appkitDesignTokens.backgroundColorForNavbar} 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  z-index: 1;
+`;
 
 type MenuGroupProps = {
   id: string;
@@ -398,11 +413,6 @@ const RestrictedMenuItem = (props: RestrictedMenuItemProps) => {
 RestrictedMenuItem.displayName = 'RestrictedMenuItem';
 RestrictedMenuItem.defaultProps = restrictedMenuItemDefaultProps;
 
-export const getIconColor = (isActive: boolean) => {
-  if (isActive) return 'primary40';
-  return 'surface';
-};
-
 const getMenuVisibilitiesOfSubmenus = (menu: TNavbarMenu) =>
   menu.submenu.map((submenu) => submenu.menuVisibility).filter(nonNullable);
 const getMenuVisibilityOfMainmenu = (menu: TNavbarMenu) =>
@@ -508,12 +518,13 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
         >
           <div className={styles['item-icon-text']}>
             <div className={styles['icon-container']}>
-              <div className={styles.icon}>
-                <IconSwitcher
-                  icon={props.menu.icon}
-                  size="scale"
-                  color={getIconColor(props.isActive || isMainMenuRouteActive)}
-                />
+              <div
+                className={classnames(styles.icon, {
+                  [styles.icon__active]:
+                    props.isActive || isMainMenuRouteActive,
+                })}
+              >
+                <IconSwitcher icon={props.menu.icon} size="scale" />
               </div>
             </div>
             <div className={styles.title} aria-owns={`group-${props.menu.key}`}>
@@ -702,6 +713,7 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
           })}
         </div>
         <div className={styles['fixed-menu']}>
+          <Faded />
           <MenuItem
             hasSubmenu={false}
             isActive={false}
@@ -726,11 +738,13 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
             >
               <div className={styles['item-icon-text']}>
                 <div className={styles['icon-container']}>
-                  <div className={styles.icon}>
-                    <SupportIcon
-                      size="scale"
-                      color={getIconColor(activeItemIndex === 'fixed-support')}
-                    />
+                  <div
+                    className={classnames(styles.icon, {
+                      [styles.icon__active]:
+                        activeItemIndex === 'fixed-support',
+                    })}
+                  >
+                    <SupportIcon size="scale" />
                   </div>
                 </div>
                 <div className={styles.title}>
