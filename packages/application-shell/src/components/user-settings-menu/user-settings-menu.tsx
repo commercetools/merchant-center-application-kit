@@ -14,7 +14,7 @@ import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import { CaretDownIcon } from '@commercetools-uikit/icons';
 import {
-  designTokens,
+  designTokens as uikitDesignTokens,
   ThemeName,
   useTheme,
 } from '@commercetools-uikit/design-system';
@@ -135,7 +135,7 @@ const renderLabel = (
 const MenuItem = styled.div<MenuItemProps>`
   width: 100%;
   cursor: pointer;
-  color: ${designTokens.colorSolid};
+  color: ${uikitDesignTokens.colorSolid};
 
   :hover {
     background-color: ${appkitDesignTokens.backgroundColorForUserMenuItemWhenHovered};
@@ -144,7 +144,7 @@ const MenuItem = styled.div<MenuItemProps>`
   ${(props) =>
     props.hasDivider === true
       ? css`
-          border-bottom: 1px solid ${designTokens.colorNeutral};
+          border-bottom: 1px solid ${uikitDesignTokens.colorNeutral};
           margin: ${appkitDesignTokens.marginForUserMenuItem};
         `
       : ''};
@@ -155,7 +155,7 @@ const MenuItemLabel = (props: MenuItemLabelProps) => {
     return (
       <div
         css={css`
-          padding: ${designTokens.spacing20} ${designTokens.spacing50};
+          padding: ${uikitDesignTokens.spacing20} ${uikitDesignTokens.spacing50};
         `}
       >
         {props.children}
@@ -172,7 +172,7 @@ const UserSettingsAvatarContainer = (
     return (
       <div
         css={css`
-          padding: ${designTokens.spacing30} ${designTokens.spacing50};
+          padding: ${uikitDesignTokens.spacing30} ${uikitDesignTokens.spacing50};
         `}
       >
         {props.children}
@@ -186,27 +186,27 @@ const getUserSettingsMenuStyles = (theme: ThemeName) => {
   if (theme === 'test') {
     return css`
       position: absolute;
-      background: ${designTokens.colorSurface};
-      border-radius: ${designTokens.borderRadius2};
+      background: ${uikitDesignTokens.colorSurface};
+      border-radius: ${uikitDesignTokens.borderRadius2};
       box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
-      width: ${designTokens.constraint9};
+      width: ${uikitDesignTokens.constraint9};
       right: 40px;
-      top: calc(${DIMENSIONS.header} + ${designTokens.spacing20});
-      padding: 0 0 ${designTokens.spacing10} 0;
+      top: calc(${DIMENSIONS.header} + ${uikitDesignTokens.spacing20});
+      padding: 0 0 ${uikitDesignTokens.spacing10} 0;
       overflow: hidden;
     `;
   }
 
   return css`
     position: absolute;
-    background: ${designTokens.colorSurface};
-    border: 1px ${designTokens.colorPrimary40} solid;
-    border-radius: ${designTokens.borderRadius6};
-    box-shadow: ${designTokens.shadow7};
-    width: ${designTokens.constraint7};
+    background: ${uikitDesignTokens.colorSurface};
+    border: 1px ${uikitDesignTokens.colorPrimary40} solid;
+    border-radius: ${uikitDesignTokens.borderRadius6};
+    box-shadow: ${uikitDesignTokens.shadow7};
+    width: ${uikitDesignTokens.constraint7};
     right: 14px;
-    top: calc(${DIMENSIONS.header} + ${designTokens.spacing20});
-    padding: ${designTokens.spacingXs};
+    top: calc(${DIMENSIONS.header} + ${uikitDesignTokens.spacing20});
+    padding: ${uikitDesignTokens.spacingXs};
     overflow: hidden;
   `;
 };

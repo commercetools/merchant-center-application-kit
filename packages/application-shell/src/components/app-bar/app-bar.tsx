@@ -1,7 +1,7 @@
 // TODO: @redesign cleanup
 import { css } from '@emotion/react';
 import Spacings from '@commercetools-uikit/spacings';
-import { designTokens } from '@commercetools-uikit/design-system';
+import { designTokens as uikitDesignTokens } from '@commercetools-uikit/design-system';
 import LogoSVG from '@commercetools-frontend/assets/images/logo.svg';
 import { designTokens as appKitDesignTokens } from '@commercetools-frontend/application-components';
 import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
@@ -26,7 +26,7 @@ const AppBar = (props: Props) => {
   return (
     <div
       css={css`
-        background-color: ${designTokens.colorSurface};
+        background-color: ${uikitDesignTokens.colorSurface};
         box-shadow: ${appKitDesignTokens.shadowForAppbar};
         min-height: ${DIMENSIONS.header};
         position: relative;
@@ -103,7 +103,7 @@ const AppBar = (props: Props) => {
           </Spacings.Inline>
           <div
             css={css`
-              border-left: 1px ${designTokens.colorNeutral90} solid;
+              border-left: 1px ${uikitDesignTokens.colorNeutral90} solid;
               height: ${DIMENSIONS.headerItemDivider};
             `}
           />
