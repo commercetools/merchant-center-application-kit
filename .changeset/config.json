@@ -18,5 +18,5 @@
   ],
   "access": "restricted",
   "baseBranch": "main",
-  "bumpVersionsWithWorkspaceProtocolOnly": true
+  "bumpVersionsWithWorkspaceProtocolOnly": false
 }
