@@ -1,5 +1,17 @@
 # @commercetools-frontend/actions-global
 
+## 21.21.1
+
+### Patch Changes
+
+- [#2881](https://github.com/commercetools/merchant-center-application-kit/pull/2881) [`e3ffe6c11`](https://github.com/commercetools/merchant-center-application-kit/commit/e3ffe6c11ff993296028219ab8c45562dc294963) Thanks [@emmenko](https://github.com/emmenko)! - Use `workspace:` version syntax for link workspace packages
+
+- Updated dependencies [[`e3ffe6c11`](https://github.com/commercetools/merchant-center-application-kit/commit/e3ffe6c11ff993296028219ab8c45562dc294963)]:
+  - @commercetools-frontend/sentry@21.21.1
+  - @commercetools-frontend/browser-history@21.21.1
+  - @commercetools-frontend/constants@21.21.1
+  - @commercetools-frontend/notifications@21.21.1
+
 ## 21.21.0
 
 ### Patch Changes

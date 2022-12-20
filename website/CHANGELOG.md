@@ -1,5 +1,11 @@
 # @commercetools-website/custom-applications
 
+## 21.21.1
+
+### Patch Changes
+
+- [#2914](https://github.com/commercetools/merchant-center-application-kit/pull/2914) [`63dc7cd5f`](https://github.com/commercetools/merchant-center-application-kit/commit/63dc7cd5f5231a6ae28bad2d64df40a158aa5aab) Thanks [@emmenko](https://github.com/emmenko)! - Remove deprecated and experimental support for `Feature-Policy` header
+
 ## 21.21.0
 
 ## 21.20.5
