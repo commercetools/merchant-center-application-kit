@@ -35,7 +35,7 @@
     "@babel/runtime": "^7.19.0",
     "@babel/runtime-corejs3": "^7.19.0",
     "@commercetools-community-kit/i18n": "^0.3.0",
-    "@commercetools-frontend/sentry": "workspace:*",
+    "@commercetools-frontend/sentry": "21.21.1",
     "@commercetools-uikit/i18n": "^15.6.0",
     "@emotion/react": "11.10.4",
     "@formatjs/icu-messageformat-parser": "2.1.10",

@@ -20,8 +20,8 @@
   "dependencies": {
     "@babel/runtime": "^7.19.0",
     "@babel/runtime-corejs3": "^7.19.0",
-    "@commercetools-frontend/browser-history": "workspace:*",
-    "@commercetools-frontend/constants": "workspace:*",
+    "@commercetools-frontend/browser-history": "21.21.1",
+    "@commercetools-frontend/constants": "21.21.1",
     "@sentry/react": "7.19.0",
     "@sentry/tracing": "7.19.0",
     "@types/prop-types": "^15.7.5",
