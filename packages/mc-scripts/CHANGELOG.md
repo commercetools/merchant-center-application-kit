@@ -1,5 +1,19 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.21.2
+
+### Patch Changes
+
+- [#2918](https://github.com/commercetools/merchant-center-application-kit/pull/2918) [`e52e8a782`](https://github.com/commercetools/merchant-center-application-kit/commit/e52e8a78228677cad28f1649bc4b1af473308a9a) Thanks [@emmenko](https://github.com/emmenko)! - Revert using `workspace:` protocol
+
+- Updated dependencies [[`e52e8a782`](https://github.com/commercetools/merchant-center-application-kit/commit/e52e8a78228677cad28f1649bc4b1af473308a9a)]:
+  - @commercetools-frontend/application-config@21.21.2
+  - @commercetools-frontend/mc-dev-authentication@21.21.2
+  - @commercetools-frontend/mc-html-template@21.21.2
+  - @commercetools-frontend/assets@21.21.2
+  - @commercetools-frontend/babel-preset-mc-app@21.21.2
+  - @commercetools-frontend/constants@21.21.2
+
 ## 21.21.1
 
 ### Patch Changes
