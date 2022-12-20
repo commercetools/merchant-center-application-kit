@@ -9,10 +9,10 @@
     "preview": "vite preview --port 3000"
   },
   "dependencies": {
-    "@commercetools-frontend/application-components": "workspace:*",
-    "@commercetools-frontend/assets": "workspace:*",
-    "@commercetools-frontend/constants": "workspace:*",
-    "@commercetools-frontend/react-notifications": "workspace:*",
+    "@commercetools-frontend/application-components": "21.21.1",
+    "@commercetools-frontend/assets": "21.21.1",
+    "@commercetools-frontend/constants": "21.21.1",
+    "@commercetools-frontend/react-notifications": "21.21.1",
     "@commercetools-uikit/accessible-button": "^15.6.0",
     "@commercetools-uikit/card": "^15.6.0",
     "@commercetools-uikit/design-system": "^15.6.0",
