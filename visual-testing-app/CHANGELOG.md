@@ -1,5 +1,17 @@
 # @commercetools-local/visual-testing-app
 
+## 21.21.1
+
+### Patch Changes
+
+- [#2881](https://github.com/commercetools/merchant-center-application-kit/pull/2881) [`e3ffe6c11`](https://github.com/commercetools/merchant-center-application-kit/commit/e3ffe6c11ff993296028219ab8c45562dc294963) Thanks [@emmenko](https://github.com/emmenko)! - Use `workspace:` version syntax for link workspace packages
+
+- Updated dependencies [[`adb731ab8`](https://github.com/commercetools/merchant-center-application-kit/commit/adb731ab85e6d0e06e813f72f4010a09c8278cc2), [`fbfa2127e`](https://github.com/commercetools/merchant-center-application-kit/commit/fbfa2127e8d5de1838be4639ae23d4bbea9917b5), [`e3ffe6c11`](https://github.com/commercetools/merchant-center-application-kit/commit/e3ffe6c11ff993296028219ab8c45562dc294963)]:
+  - @commercetools-frontend/application-components@21.21.1
+  - @commercetools-frontend/react-notifications@21.21.1
+  - @commercetools-frontend/assets@21.21.1
+  - @commercetools-frontend/constants@21.21.1
+
 ## 21.21.0
 
 ### Patch Changes

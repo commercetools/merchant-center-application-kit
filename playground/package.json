@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-local/playground",
-  "version": "21.21.0",
+  "version": "21.21.1",
   "description": "A playground application to get started developing Merchant Center Applications",
   "private": true,
   "scripts": {

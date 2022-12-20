@@ -1,5 +1,15 @@
 # @commercetools-frontend/cypress
 
+## 21.21.1
+
+### Patch Changes
+
+- [#2881](https://github.com/commercetools/merchant-center-application-kit/pull/2881) [`e3ffe6c11`](https://github.com/commercetools/merchant-center-application-kit/commit/e3ffe6c11ff993296028219ab8c45562dc294963) Thanks [@emmenko](https://github.com/emmenko)! - Use `workspace:` version syntax for link workspace packages
+
+- Updated dependencies [[`adb731ab8`](https://github.com/commercetools/merchant-center-application-kit/commit/adb731ab85e6d0e06e813f72f4010a09c8278cc2), [`fbfa2127e`](https://github.com/commercetools/merchant-center-application-kit/commit/fbfa2127e8d5de1838be4639ae23d4bbea9917b5), [`fb4907897`](https://github.com/commercetools/merchant-center-application-kit/commit/fb4907897356c21e4b24b277db0df740609db870), [`63dc7cd5f`](https://github.com/commercetools/merchant-center-application-kit/commit/63dc7cd5f5231a6ae28bad2d64df40a158aa5aab), [`e3ffe6c11`](https://github.com/commercetools/merchant-center-application-kit/commit/e3ffe6c11ff993296028219ab8c45562dc294963)]:
+  - @commercetools-frontend/application-shell@21.21.1
+  - @commercetools-frontend/application-config@21.21.1
+
 ## 21.21.0
 
 ### Minor Changes
