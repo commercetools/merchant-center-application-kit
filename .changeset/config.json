@@ -17,5 +17,6 @@
     ]
   ],
   "access": "restricted",
-  "baseBranch": "main"
+  "baseBranch": "main",
+  "bumpVersionsWithWorkspaceProtocolOnly": true
 }
