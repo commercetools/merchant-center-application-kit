@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/mc-dev-authentication",
-  "version": "21.21.1",
+  "version": "21.21.2",
   "description": "Authentication views when running webpack-dev-server in development mode",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -28,7 +28,7 @@
     "@babel/runtime-corejs3": "^7.19.0"
   },
   "devDependencies": {
-    "@commercetools-frontend/application-config": "21.21.1",
+    "@commercetools-frontend/application-config": "21.21.2",
     "@tsconfig/node16": "^1.0.3",
     "express": "4.18.2"
   },

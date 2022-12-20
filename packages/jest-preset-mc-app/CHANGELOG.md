@@ -1,5 +1,14 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 21.21.2
+
+### Patch Changes
+
+- [#2918](https://github.com/commercetools/merchant-center-application-kit/pull/2918) [`e52e8a782`](https://github.com/commercetools/merchant-center-application-kit/commit/e52e8a78228677cad28f1649bc4b1af473308a9a) Thanks [@emmenko](https://github.com/emmenko)! - Revert using `workspace:` protocol
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.21.2
+
 ## 21.21.1
 
 ### Patch Changes
