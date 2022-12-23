@@ -36,7 +36,10 @@ const LeftContentColumn = styled.div`
 
 const RightContentColumn = styled.div`
   grid-area: right-column;
-  position: sticky;
+  & > * {
+    position: sticky;
+    top: 0;
+  }
 `;
 
 const Container = styled.div`
