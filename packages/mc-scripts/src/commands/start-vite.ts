@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import path from 'path';
 import { createServer, type Plugin } from 'vite';
 import pluginGraphql from '@rollup/plugin-graphql';
-import pluginReact from '@vitejs/plugin-react';
+import pluginReact from '@vitejs/plugin-react-swc';
 import { processConfig } from '@commercetools-frontend/application-config';
 import { generateTemplate } from '@commercetools-frontend/mc-html-template';
 import { packageLocation as applicationStaticAssetsPath } from '@commercetools-frontend/assets';
@@ -42,15 +42,7 @@ async function run() {
     },
     plugins: [
       pluginGraphql() as Plugin,
-      pluginReact({
-        jsxImportSource: '@emotion/react',
-        babel: {
-          plugins: [
-            '@emotion/babel-plugin',
-            '@babel/plugin-proposal-do-expressions',
-          ],
-        },
-      }),
+      pluginReact(),
       pluginSvgr(),
       pluginCustomApplication(applicationConfig),
     ],
