@@ -10,8 +10,13 @@ const Box = () => {
         width: '100%',
         height: '75vh',
         backgroundColor: 'coral',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
-    />
+    >
+      <h3>Page content container full width</h3>
+    </div>
   );
 };
 

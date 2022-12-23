@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 type NestedPage = {
   path: string;
+  name?: string;
   spec: ReactNode;
 };
 type NestedPagesProps = {
@@ -23,9 +24,9 @@ const NestedPages = (props: NestedPagesProps) => (
         <h1>{props.title}</h1>
         <a href="/">{'All components'}</a>
         <ul>
-          {props.pages.map(({ path }) => (
+          {props.pages.map(({ path, name }) => (
             <li key={path}>
-              <a href={`${props.basePath}/${path}`}>{path}</a>
+              <a href={`${props.basePath}/${path}`}>{name || path}</a>
             </li>
           ))}
         </ul>

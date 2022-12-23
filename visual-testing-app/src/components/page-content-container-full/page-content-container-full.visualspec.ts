@@ -7,7 +7,7 @@ describe('PageContentContainerFull', () => {
   });
 
   it('Default', async () => {
-    await expect(page).toMatch('PageContentContainerFull');
+    await expect(page).toMatch('Page content container full width');
     await percySnapshot(page, 'PageContentContainerFull');
   });
 });

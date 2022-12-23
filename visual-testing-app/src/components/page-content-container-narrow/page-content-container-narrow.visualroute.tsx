@@ -10,8 +10,13 @@ const Box = () => {
         width: '100%',
         height: '75vh',
         backgroundColor: 'coral',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
-    />
+    >
+      <h2>Page content container narrow</h2>
+    </div>
   );
 };
 

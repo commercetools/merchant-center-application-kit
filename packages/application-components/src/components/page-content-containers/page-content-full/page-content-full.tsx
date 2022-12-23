@@ -7,13 +7,13 @@ export type TPageContentFull = {
 
 function PageContentFull(props: TPageContentFull) {
   return (
-    <section
+    <div
       css={css`
         width: 100%;
       `}
     >
-      <div>{props.children}</div>
-    </section>
+      <section>{props.children}</section>
+    </div>
   );
 }
 

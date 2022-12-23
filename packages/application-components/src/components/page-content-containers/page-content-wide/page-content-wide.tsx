@@ -1,5 +1,6 @@
 import { Children, ReactNode } from 'react';
 import styled from '@emotion/styled';
+import { designTokens } from '@commercetools-uikit/design-system';
 
 export type TPageContentWide = {
   columns: '1' | '1/1' | '2/1';
@@ -7,14 +8,10 @@ export type TPageContentWide = {
   children: ReactNode;
 };
 
-const LeftContentMarginColumn = styled.div`
-  grid-area: left-margin;
-`;
-
-const MainContentColumn = styled.div<
+const Content = styled.section<
   Pick<TPageContentWide, 'columns' | 'gapSize' | 'children'>
 >`
-  grid-area: main-content;
+  grid-area: content;
   display: grid;
   grid-template-areas: ${(props) =>
     props.columns === '1' ? 'none' : '"left-column right-column"'};
@@ -28,26 +25,23 @@ const MainContentColumn = styled.div<
         return '1fr';
     }
   }};
-  gap: ${(props) => (props.gapSize === '10' ? '32px' : '64px')};
+  gap: ${(props) =>
+    props.gapSize === '10' ? designTokens.spacing50 : designTokens.spacing70};
   width: 100%;
 `;
 
-const RightContentMarginColumn = styled.div`
-  grid-area: right-margin;
-`;
-
-const LeftContentInnerColumn = styled.div`
+const LeftContentColumn = styled.div`
   grid-area: left-column;
 `;
 
-const RightContentInnerColumn = styled.div`
+const RightContentColumn = styled.div`
   grid-area: right-column;
   position: sticky;
 `;
 
-const MainContainer = styled.section`
+const Container = styled.div`
   display: grid;
-  grid-template-areas: 'left-margin main-content right-margin';
+  grid-template-areas: '. content .';
   grid-template-columns: 1fr minmax(800px, 1200px) 1fr;
   width: 100%;
 `;
@@ -55,24 +49,23 @@ const MainContainer = styled.section`
 function PageContentWide(props: TPageContentWide) {
   const [leftChild, rightChild] = Children.toArray(props.children);
   return (
-    <MainContainer>
-      <LeftContentMarginColumn />
-      <MainContentColumn columns={props.columns} gapSize={props.gapSize}>
+    <Container>
+      <Content columns={props.columns} gapSize={props.gapSize}>
         {props.columns === '1' ? (
-          <div>{leftChild}</div>
+          <>{leftChild}</>
         ) : (
           <>
-            <LeftContentInnerColumn>{leftChild}</LeftContentInnerColumn>
-            <RightContentInnerColumn>{rightChild}</RightContentInnerColumn>
+            <LeftContentColumn>{leftChild}</LeftContentColumn>
+            <RightContentColumn>{rightChild}</RightContentColumn>
           </>
         )}
-      </MainContentColumn>
-      <RightContentMarginColumn />
-    </MainContainer>
+      </Content>
+    </Container>
   );
 }
 
-const defaultProps: Pick<TPageContentWide, 'gapSize'> = {
+const defaultProps: Pick<TPageContentWide, 'columns' | 'gapSize'> = {
+  columns: '1',
   gapSize: '10',
 };
 PageContentWide.defaultProps = defaultProps;
