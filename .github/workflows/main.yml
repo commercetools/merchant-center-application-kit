@@ -251,6 +251,7 @@ jobs:
       - name: Building Playground application
         run: yarn playground:build
         env:
+          NODE_OPTIONS: '--max-old-space-size=6144'
           APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
           MC_API_URL: ${{ secrets.MC_API_URL }}
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
