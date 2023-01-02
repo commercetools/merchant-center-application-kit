@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import styled from '@emotion/styled';
+import { useTheme } from '@commercetools-uikit/design-system';
 
 export type TPageContentNarrow = {
   children: ReactNode;
@@ -17,6 +18,9 @@ const Container = styled.div`
 `;
 
 function PageContentNarrow(props: TPageContentNarrow) {
+  const { isNewTheme } = useTheme();
+  if (!isNewTheme) return <>{props.children}</>;
+
   return (
     <Container>
       <Content>{props.children}</Content>

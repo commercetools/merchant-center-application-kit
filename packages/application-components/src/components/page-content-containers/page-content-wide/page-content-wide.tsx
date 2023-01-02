@@ -1,6 +1,6 @@
 import { Children, ReactNode } from 'react';
 import styled from '@emotion/styled';
-import { designTokens } from '@commercetools-uikit/design-system';
+import { designTokens, useTheme } from '@commercetools-uikit/design-system';
 
 export type TPageContentWide = {
   columns: '1' | '1/1' | '2/1';
@@ -51,6 +51,9 @@ const Container = styled.div`
 `;
 
 function PageContentWide(props: TPageContentWide) {
+  const { isNewTheme } = useTheme();
+  if (!isNewTheme) return <>{props.children}</>;
+
   const [leftChild, rightChild] = Children.toArray(props.children);
   return (
     <Container>

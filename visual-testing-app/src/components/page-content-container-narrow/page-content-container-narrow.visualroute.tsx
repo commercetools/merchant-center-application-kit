@@ -1,4 +1,5 @@
 import { PageContentNarrow } from '@commercetools-frontend/application-components';
+import { ThemeProvider } from '@commercetools-uikit/design-system';
 import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/page-content-container-narrow';
@@ -22,6 +23,7 @@ const Box = () => {
 
 export const Component = () => (
   <Suite>
+    <ThemeProvider theme="test" />
     <Spec label="PageContentContainerNarrow" size="xl">
       <PageContentNarrow>
         <Box />
