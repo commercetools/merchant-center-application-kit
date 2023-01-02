@@ -1,3 +1,4 @@
+// TODO: @redesign cleanup
 import { ReactNode } from 'react';
 import styled from '@emotion/styled';
 import { useTheme } from '@commercetools-uikit/design-system';
