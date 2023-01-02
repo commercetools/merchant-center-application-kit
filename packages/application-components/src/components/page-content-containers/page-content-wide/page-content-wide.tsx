@@ -36,10 +36,11 @@ const LeftContentColumn = styled.div`
 
 const RightContentColumn = styled.div`
   grid-area: right-column;
-  & > * {
-    position: sticky;
-    top: 0;
-  }
+`;
+
+const RightColumnContentWrapper = styled.div<Pick<TPageContentWide, 'columns'>>`
+  top: 0;
+  position: ${(props) => (props.columns === '2/1' ? 'sticky' : 'static')};
 `;
 
 const Container = styled.div`
@@ -59,7 +60,11 @@ function PageContentWide(props: TPageContentWide) {
         ) : (
           <>
             <LeftContentColumn>{leftChild}</LeftContentColumn>
-            <RightContentColumn>{rightChild}</RightContentColumn>
+            <RightContentColumn>
+              <RightColumnContentWrapper columns={props.columns}>
+                {rightChild}
+              </RightColumnContentWrapper>
+            </RightContentColumn>
           </>
         )}
       </Content>

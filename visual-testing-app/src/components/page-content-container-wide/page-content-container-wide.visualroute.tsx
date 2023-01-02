@@ -51,8 +51,8 @@ export const Component = () => (
           path: 'two-columns-half-big-gap',
           spec: (
             <PageContentWide columns="1/1" gapSize="20">
-              <Box />
-              <Box />
+              <Box size="l" />
+              <Box size="s" />
             </PageContentWide>
           ),
         },
