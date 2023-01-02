@@ -10,7 +10,6 @@ https://support.commercetools.com
 https://developers.cloudflare.com
 https://dash.cloudflare.com
 https://www.npmjs.com
-https://www.mend.io
 
 # Exclude links to other microsites
 
