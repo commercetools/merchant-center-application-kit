@@ -55,7 +55,13 @@ type TApplicationContextDataFences = Partial<
 type TApplicationContextEnvironment = ApplicationWindow['app'];
 type TApplicationContextUser = Pick<
   NonNullable<TFetchedUser>,
-  'id' | 'email' | 'firstName' | 'lastName' | 'businessRole' | 'projects'
+  | 'id'
+  | 'email'
+  | 'createdAt'
+  | 'firstName'
+  | 'lastName'
+  | 'businessRole'
+  | 'projects'
 > & {
   locale: string;
   timeZone: string;
@@ -75,6 +81,7 @@ export const mapUserToApplicationContextUser = (user?: TFetchedUser) => {
   let applicationContextUser: TApplicationContextUser = {
     id: user.id,
     email: user.email,
+    createdAt: user.createdAt,
     firstName: user.firstName,
     lastName: user.lastName,
     businessRole: user.businessRole,

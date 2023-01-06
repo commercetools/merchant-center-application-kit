@@ -312,6 +312,7 @@ export enum TPermissionScope {
   GetPermissionForAnyProject = 'get_permission_for_any_project',
   IntrospectOauthTokens = 'introspect_oauth_tokens',
   ManageApiClients = 'manage_api_clients',
+  ManageAssociateRoles = 'manage_associate_roles',
   ManageAttributeGroups = 'manage_attribute_groups',
   ManageAuditLog = 'manage_audit_log',
   ManageBusinessUnits = 'manage_business_units',
@@ -352,6 +353,7 @@ export enum TPermissionScope {
   ManageTaxCategories = 'manage_tax_categories',
   ManageTypes = 'manage_types',
   ViewApiClients = 'view_api_clients',
+  ViewAssociateRoles = 'view_associate_roles',
   ViewAttributeGroups = 'view_attribute_groups',
   ViewAuditLog = 'view_audit_log',
   ViewBusinessUnits = 'view_business_units',
@@ -716,7 +718,7 @@ export type TFetchProjectQuery = { __typename?: 'Query', project?: { __typename?
 export type TFetchLoggedInUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TFetchLoggedInUserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, email: string, gravatarHash: string, firstName: string, lastName: string, language: string, numberFormat: string, timeZone?: string | null, launchdarklyTrackingId: string, launchdarklyTrackingGroup: string, launchdarklyTrackingSubgroup?: string | null, launchdarklyTrackingTeam?: Array<string> | null, launchdarklyTrackingTenant: string, defaultProjectKey?: string | null, businessRole?: string | null, projects: { __typename?: 'ProjectQueryResult', total: number, results: Array<{ __typename?: 'Project', name: string, key: string, suspension: { __typename?: 'ProjectSuspension', isActive: boolean }, expiry: { __typename?: 'ProjectExpiry', isActive: boolean } }> }, idTokenUserInfo?: { __typename?: 'IdTokenUserInfo', iss: string, sub: string, aud: string, exp: number, iat: number, email?: string | null, name?: string | null, additionalClaims?: string | null } | null } | null };
+export type TFetchLoggedInUserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, email: string, createdAt: string, gravatarHash: string, firstName: string, lastName: string, language: string, numberFormat: string, timeZone?: string | null, launchdarklyTrackingId: string, launchdarklyTrackingGroup: string, launchdarklyTrackingSubgroup?: string | null, launchdarklyTrackingTeam?: Array<string> | null, launchdarklyTrackingTenant: string, defaultProjectKey?: string | null, businessRole?: string | null, projects: { __typename?: 'ProjectQueryResult', total: number, results: Array<{ __typename?: 'Project', name: string, key: string, suspension: { __typename?: 'ProjectSuspension', isActive: boolean }, expiry: { __typename?: 'ProjectExpiry', isActive: boolean } }> }, idTokenUserInfo?: { __typename?: 'IdTokenUserInfo', iss: string, sub: string, aud: string, exp: number, iat: number, email?: string | null, name?: string | null, additionalClaims?: string | null } | null } | null };
 
 export type TFetchUserProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
