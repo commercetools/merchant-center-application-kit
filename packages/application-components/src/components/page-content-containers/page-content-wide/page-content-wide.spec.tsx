@@ -1,7 +1,7 @@
 import { ThemeProvider } from '@commercetools-uikit/design-system';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { screen, renderComponent } from '../../../test-utils';
-import PageContentWide, { TPageContentWide } from './page-content-wide';
+import PageContentWide, { type TPageContentWide } from './page-content-wide';
 
 const renderPageContent = (
   children: ReactNode | ReactNode[],
@@ -22,7 +22,7 @@ describe('PageContentWide', () => {
 
       screen.getByText('Text content');
     });
-    it('should single column even when providing several children', () => {
+    it('should render single column even when providing several children', () => {
       renderPageContent([
         <div key="1">1. Text content</div>,
         <div key="2">2. Text content</div>,

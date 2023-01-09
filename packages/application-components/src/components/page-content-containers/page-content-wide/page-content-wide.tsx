@@ -1,5 +1,5 @@
 // TODO: @redesign cleanup
-import { Children, ReactNode } from 'react';
+import { Children, type ReactNode } from 'react';
 import styled from '@emotion/styled';
 import { designTokens, useTheme } from '@commercetools-uikit/design-system';
 
