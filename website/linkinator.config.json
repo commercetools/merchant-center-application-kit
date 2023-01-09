@@ -10,7 +10,6 @@
     "https://dash.cloudflare.com",
     "https://frontastic.freshdesk.com",
     "https://surge.sh",
-    "https://www.mend.io",
     "/.+/api$",
     "/.+/api/",
     "/.+/custom-applications/playground",
