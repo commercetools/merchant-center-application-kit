@@ -1,7 +1,7 @@
 ---
-'@commercetools-frontend/application-shell': minor
-'@commercetools-frontend/application-shell-connectors': minor
-'@commercetools-frontend/permissions': minor
+'@commercetools-frontend/application-shell': patch
+'@commercetools-frontend/application-shell-connectors': patch
+'@commercetools-frontend/permissions': patch
 ---
 
 feat(application-shell): fetch and expose user created date
