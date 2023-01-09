@@ -2,6 +2,7 @@ query FetchLoggedInUser {
   user: me {
     id
     email
+    createdAt
     gravatarHash
     firstName
     lastName

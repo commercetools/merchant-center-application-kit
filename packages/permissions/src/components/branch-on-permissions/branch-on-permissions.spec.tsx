@@ -15,6 +15,7 @@ const renderWithPermissions = (demandedPermissions: string[]) => {
       user={{
         id: 'u1',
         email: 'foo@bar.com',
+        createdAt: '2020-01-01T12:29:33.916Z',
         firstName: 'foo',
         lastName: 'bar',
         language: 'en',

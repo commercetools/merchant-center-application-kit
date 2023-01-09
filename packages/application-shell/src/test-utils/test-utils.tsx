@@ -78,6 +78,7 @@ const defaultProject = {
 const defaultUser = {
   id: 'user-id-1',
   email: 'sheldon.cooper@caltech.edu',
+  createdAt: '2020-01-01T12:29:33.916Z',
   firstName: 'Sheldon',
   lastName: 'Cooper',
   language: 'en',

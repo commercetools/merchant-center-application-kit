@@ -122,6 +122,7 @@ describe('mapUserToApplicationContextUser', () => {
     expect(mapUserToApplicationContextUser(testUser)).toEqual({
       id: expect.any(String),
       email: expect.any(String),
+      createdAt: expect.any(Date),
       firstName: expect.any(String),
       lastName: expect.any(String),
       locale: expect.any(String),
@@ -139,6 +140,7 @@ describe('mapUserToApplicationContextUser', () => {
     expect(mapUserToApplicationContextUser(testSSOUser)).toEqual({
       id: expect.any(String),
       email: expect.any(String),
+      createdAt: expect.any(Date),
       firstName: expect.any(String),
       lastName: expect.any(String),
       locale: expect.any(String),
@@ -172,6 +174,7 @@ describe('mapUserToApplicationContextUser', () => {
     expect(mapUserToApplicationContextUser(mockUser)).toEqual({
       id: expect.any(String),
       email: expect.any(String),
+      createdAt: expect.any(Date),
       firstName: expect.any(String),
       lastName: expect.any(String),
       locale: expect.any(String),
@@ -204,6 +207,7 @@ describe('mapUserToApplicationContextUser', () => {
     expect(mapUserToApplicationContextUser(mockUser)).toEqual({
       id: expect.any(String),
       email: expect.any(String),
+      createdAt: expect.any(Date),
       firstName: expect.any(String),
       lastName: expect.any(String),
       locale: expect.any(String),
@@ -236,6 +240,7 @@ describe('mapUserToApplicationContextUser', () => {
     expect(mapUserToApplicationContextUser(mockUser)).toEqual({
       id: expect.any(String),
       email: expect.any(String),
+      createdAt: expect.any(Date),
       firstName: expect.any(String),
       lastName: expect.any(String),
       locale: expect.any(String),
