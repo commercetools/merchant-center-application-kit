@@ -256,6 +256,7 @@ MenuGroup.displayName = 'MenuGroup';
 type MenuItemProps = {
   hasSubmenu: boolean;
   isActive: boolean;
+  isMainMenuRouteActive?: boolean;
   isMenuOpen: boolean;
   onClick: MouseEventHandler<HTMLElement>;
   onMouseEnter?: MouseEventHandler<HTMLElement>;
@@ -267,6 +268,7 @@ const MenuItem = (props: MenuItemProps) => (
     role="menu-item"
     className={classnames(styles['list-item'], {
       [styles.item__active]: props.isActive,
+      [styles['item_menu__active']]: props.isMainMenuRouteActive ?? false,
       [styles['item_menu-collapsed']]: !props.isMenuOpen,
       [styles['item__no-submenu']]: !props.hasSubmenu,
     })}
@@ -502,6 +504,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
       <MenuItem
         hasSubmenu={hasSubmenu}
         isActive={props.isActive}
+        isMainMenuRouteActive={isMainMenuRouteActive}
         isMenuOpen={props.isMenuOpen}
         onClick={props.handleToggleItem}
         onMouseEnter={props.isMenuOpen ? undefined : props.handleToggleItem}
