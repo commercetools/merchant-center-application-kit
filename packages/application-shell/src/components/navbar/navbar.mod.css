@@ -1,5 +1,6 @@
 :root {
   --expander-height: 50px;
+  --faded-height: 32px;
   --icon-size: 24px;
   --icon-container-offset: 4px;
   --item-height: 56px;
@@ -392,6 +393,7 @@
 
 .scrollable-menu {
   flex: 1 1 0;
+  padding-bottom: var(--faded-height);
 }
 
 .fixed-menu {
