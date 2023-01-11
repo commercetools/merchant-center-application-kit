@@ -1,5 +1,18 @@
 # @commercetools-website/components-playground
 
+## 21.22.0
+
+### Patch Changes
+
+- [#2929](https://github.com/commercetools/merchant-center-application-kit/pull/2929) [`18449d560`](https://github.com/commercetools/merchant-center-application-kit/commit/18449d560df08cc98aba4115f21d3fd478e246fc) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update `ui-kit` dependencies
+
+- [#2911](https://github.com/commercetools/merchant-center-application-kit/pull/2911) [`5db3e57a7`](https://github.com/commercetools/merchant-center-application-kit/commit/5db3e57a7a76b3b608c495fc12fcb9c573c99917) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade Vite to v4 and Rollup to v5
+
+- Updated dependencies [[`18449d560`](https://github.com/commercetools/merchant-center-application-kit/commit/18449d560df08cc98aba4115f21d3fd478e246fc), [`574b53176`](https://github.com/commercetools/merchant-center-application-kit/commit/574b53176070ebcf60502b4370f27bb02072c47c)]:
+  - @commercetools-frontend/application-components@21.22.0
+  - @commercetools-frontend/i18n@21.22.0
+  - @commercetools-frontend/browser-history@21.22.0
+
 ## 21.21.2
 
 ### Patch Changes

@@ -1,5 +1,26 @@
 # merchant-center-application-template-starter-typescript
 
+## 21.22.0
+
+### Patch Changes
+
+- [#2929](https://github.com/commercetools/merchant-center-application-kit/pull/2929) [`18449d560`](https://github.com/commercetools/merchant-center-application-kit/commit/18449d560df08cc98aba4115f21d3fd478e246fc) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update `ui-kit` dependencies
+
+- Updated dependencies [[`caee9e27e`](https://github.com/commercetools/merchant-center-application-kit/commit/caee9e27e76ca6bef05388d8cc11c754bfe773b9), [`af44fa835`](https://github.com/commercetools/merchant-center-application-kit/commit/af44fa8350e5d414acf083055dc853ea7e12daf2), [`8f463adbc`](https://github.com/commercetools/merchant-center-application-kit/commit/8f463adbc840bfb85736086f2ee34ea1cbb4ca14), [`0427a35cf`](https://github.com/commercetools/merchant-center-application-kit/commit/0427a35cfb81e71e807112c89026a885f271ace7), [`18449d560`](https://github.com/commercetools/merchant-center-application-kit/commit/18449d560df08cc98aba4115f21d3fd478e246fc), [`574b53176`](https://github.com/commercetools/merchant-center-application-kit/commit/574b53176070ebcf60502b4370f27bb02072c47c), [`5db3e57a7`](https://github.com/commercetools/merchant-center-application-kit/commit/5db3e57a7a76b3b608c495fc12fcb9c573c99917)]:
+  - @commercetools-frontend/assets@21.22.0
+  - @commercetools-frontend/application-shell@21.22.0
+  - @commercetools-frontend/application-shell-connectors@21.22.0
+  - @commercetools-frontend/permissions@21.22.0
+  - @commercetools-frontend/application-components@21.22.0
+  - @commercetools-frontend/i18n@21.22.0
+  - @commercetools-frontend/mc-scripts@21.22.0
+  - @commercetools-frontend/actions-global@21.22.0
+  - @commercetools-frontend/application-config@21.22.0
+  - @commercetools-frontend/constants@21.22.0
+  - @commercetools-frontend/eslint-config-mc-app@21.22.0
+  - @commercetools-frontend/jest-preset-mc-app@21.22.0
+  - @commercetools-frontend/mc-dev-authentication@21.22.0
+
 ## 21.21.2
 
 ### Patch Changes
