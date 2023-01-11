@@ -34,6 +34,14 @@ export { default as MaintenancePageLayout } from './components/maintenance-page-
 export { default as PageNotFound } from './components/page-not-found';
 export { default as PageUnauthorized } from './components/page-unauthorized';
 
+// Page content containers
+export { default as PageContentNarrow } from './components/page-content-containers/page-content-narrow';
+export type { TPageContentNarrow } from './components/page-content-containers/page-content-narrow';
+export { default as PageContentWide } from './components/page-content-containers/page-content-wide';
+export type { TPageContentWide } from './components/page-content-containers/page-content-wide';
+export { default as PageContentFull } from './components/page-content-containers/page-content-full';
+export type { TPageContentFull } from './components/page-content-containers/page-content-full';
+
 // Utilities
 export { default as PortalsContainer } from './components/portals-container';
 export { default as useModalState } from './hooks/use-modal-state';
