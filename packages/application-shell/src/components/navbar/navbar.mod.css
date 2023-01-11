@@ -199,6 +199,18 @@
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link);
 }
+.list-item:not(.item__active):hover .icon > svg *:not([fill='none']) {
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  fill: var(--color-for-navbar-icon-when-active);
+}
+.list-item .title:hover {
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  color: var(--color-for-navbar-link-when-hovered);
+}
+.list-item:not(.item__active):hover .title {
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  color: var(--color-for-navbar-link-when-hovered);
+}
 
 :global(.body__menu-open) .expand-icon {
   transform: translateX(0) rotateZ(180deg);
@@ -307,7 +319,8 @@
 }
 
 /* Item active */
-.item__active {
+.item__active,
+.item_menu__active {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   background: var(--background-color-for-navbar-when-active);
 }
