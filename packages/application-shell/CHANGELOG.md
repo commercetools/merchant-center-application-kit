@@ -1,5 +1,30 @@
 # @commercetools-frontend/application-shell
 
+## 21.23.0
+
+### Minor Changes
+
+- [#2933](https://github.com/commercetools/merchant-center-application-kit/pull/2933) [`a6f5df3eb`](https://github.com/commercetools/merchant-center-application-kit/commit/a6f5df3ebd2adf527ca0e359e89c81eafc91c4eb) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Revert exposing `@testing-library/user-event` methods in the test-utils.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@21.23.0
+  - @commercetools-frontend/application-components@21.23.0
+  - @commercetools-frontend/application-config@21.23.0
+  - @commercetools-frontend/application-shell-connectors@21.23.0
+  - @commercetools-frontend/assets@21.23.0
+  - @commercetools-frontend/browser-history@21.23.0
+  - @commercetools-frontend/constants@21.23.0
+  - @commercetools-frontend/i18n@21.23.0
+  - @commercetools-frontend/l10n@21.23.0
+  - @commercetools-frontend/notifications@21.23.0
+  - @commercetools-frontend/permissions@21.23.0
+  - @commercetools-frontend/react-notifications@21.23.0
+  - @commercetools-frontend/sdk@21.23.0
+  - @commercetools-frontend/sentry@21.23.0
+  - @commercetools-frontend/url-utils@21.23.0
+
 ## 21.22.1
 
 ### Patch Changes
