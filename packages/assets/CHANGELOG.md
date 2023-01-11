@@ -1,5 +1,11 @@
 # @commercetools-frontend/assets
 
+## 21.22.0
+
+### Patch Changes
+
+- [#2920](https://github.com/commercetools/merchant-center-application-kit/pull/2920) [`caee9e27e`](https://github.com/commercetools/merchant-center-application-kit/commit/caee9e27e76ca6bef05388d8cc11c754bfe773b9) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update shared application icons.
+
 ## 21.21.2
 
 ## 21.21.1

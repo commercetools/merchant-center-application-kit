@@ -1,5 +1,15 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 21.22.0
+
+### Patch Changes
+
+- [#2926](https://github.com/commercetools/merchant-center-application-kit/pull/2926) [`8f463adbc`](https://github.com/commercetools/merchant-center-application-kit/commit/8f463adbc840bfb85736086f2ee34ea1cbb4ca14) Thanks [@stephsprinkle](https://github.com/stephsprinkle)! - feat(application-shell): fetch and expose user created date
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.22.0
+  - @commercetools-frontend/sentry@21.22.0
+
 ## 21.21.2
 
 ### Patch Changes

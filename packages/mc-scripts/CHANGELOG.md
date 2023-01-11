@@ -1,5 +1,19 @@
 # @commercetools-frontend/mc-scripts
 
+## 21.22.0
+
+### Patch Changes
+
+- [#2911](https://github.com/commercetools/merchant-center-application-kit/pull/2911) [`5db3e57a7`](https://github.com/commercetools/merchant-center-application-kit/commit/5db3e57a7a76b3b608c495fc12fcb9c573c99917) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade Vite to v4 and Rollup to v5
+
+- Updated dependencies [[`caee9e27e`](https://github.com/commercetools/merchant-center-application-kit/commit/caee9e27e76ca6bef05388d8cc11c754bfe773b9)]:
+  - @commercetools-frontend/assets@21.22.0
+  - @commercetools-frontend/application-config@21.22.0
+  - @commercetools-frontend/babel-preset-mc-app@21.22.0
+  - @commercetools-frontend/constants@21.22.0
+  - @commercetools-frontend/mc-dev-authentication@21.22.0
+  - @commercetools-frontend/mc-html-template@21.22.0
+
 ## 21.21.2
 
 ### Patch Changes

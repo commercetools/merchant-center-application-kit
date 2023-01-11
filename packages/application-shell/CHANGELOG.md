@@ -1,5 +1,44 @@
 # @commercetools-frontend/application-shell
 
+## 21.22.0
+
+### Minor Changes
+
+- [#2852](https://github.com/commercetools/merchant-center-application-kit/pull/2852) [`af44fa835`](https://github.com/commercetools/merchant-center-application-kit/commit/af44fa8350e5d414acf083055dc853ea7e12daf2) Thanks [@antoniolodias](https://github.com/antoniolodias)! - Expose the `@testing-library/user-event` methods in the test-utils as `userEvent` object.
+
+  ```js
+  import { userEvent } from '@commercetools-frontend/application-shell/test-utils';
+
+  userEvent.click();
+  ```
+
+### Patch Changes
+
+- [#2926](https://github.com/commercetools/merchant-center-application-kit/pull/2926) [`8f463adbc`](https://github.com/commercetools/merchant-center-application-kit/commit/8f463adbc840bfb85736086f2ee34ea1cbb4ca14) Thanks [@stephsprinkle](https://github.com/stephsprinkle)! - feat(application-shell): fetch and expose user created date
+
+- [#2927](https://github.com/commercetools/merchant-center-application-kit/pull/2927) [`0427a35cf`](https://github.com/commercetools/merchant-center-application-kit/commit/0427a35cfb81e71e807112c89026a885f271ace7) Thanks [@emmenko](https://github.com/emmenko)! - Fix bottom spacing to avoid faded container overlap with menu links
+
+- [#2929](https://github.com/commercetools/merchant-center-application-kit/pull/2929) [`18449d560`](https://github.com/commercetools/merchant-center-application-kit/commit/18449d560df08cc98aba4115f21d3fd478e246fc) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update `ui-kit` dependencies
+
+- [#2928](https://github.com/commercetools/merchant-center-application-kit/pull/2928) [`574b53176`](https://github.com/commercetools/merchant-center-application-kit/commit/574b53176070ebcf60502b4370f27bb02072c47c) Thanks [@emmenko](https://github.com/emmenko)! - Fix colors on hover
+
+- Updated dependencies [[`caee9e27e`](https://github.com/commercetools/merchant-center-application-kit/commit/caee9e27e76ca6bef05388d8cc11c754bfe773b9), [`8f463adbc`](https://github.com/commercetools/merchant-center-application-kit/commit/8f463adbc840bfb85736086f2ee34ea1cbb4ca14), [`18449d560`](https://github.com/commercetools/merchant-center-application-kit/commit/18449d560df08cc98aba4115f21d3fd478e246fc), [`574b53176`](https://github.com/commercetools/merchant-center-application-kit/commit/574b53176070ebcf60502b4370f27bb02072c47c)]:
+  - @commercetools-frontend/assets@21.22.0
+  - @commercetools-frontend/application-shell-connectors@21.22.0
+  - @commercetools-frontend/permissions@21.22.0
+  - @commercetools-frontend/application-components@21.22.0
+  - @commercetools-frontend/i18n@21.22.0
+  - @commercetools-frontend/react-notifications@21.22.0
+  - @commercetools-frontend/actions-global@21.22.0
+  - @commercetools-frontend/application-config@21.22.0
+  - @commercetools-frontend/browser-history@21.22.0
+  - @commercetools-frontend/constants@21.22.0
+  - @commercetools-frontend/l10n@21.22.0
+  - @commercetools-frontend/notifications@21.22.0
+  - @commercetools-frontend/sdk@21.22.0
+  - @commercetools-frontend/sentry@21.22.0
+  - @commercetools-frontend/url-utils@21.22.0
+
 ## 21.21.2
 
 ### Patch Changes
