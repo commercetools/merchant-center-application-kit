@@ -1,5 +1,11 @@
 # @commercetools-backend/express
 
+## 21.22.1
+
+### Patch Changes
+
+- [#2931](https://github.com/commercetools/merchant-center-application-kit/pull/2931) [`08dcbbdfd`](https://github.com/commercetools/merchant-center-application-kit/commit/08dcbbdfd5cab60e081143e0259879d4d27f088a) Thanks [@kark](https://github.com/kark)! - Update `express-jwt` dependency
+
 ## 21.22.0
 
 ## 21.21.2

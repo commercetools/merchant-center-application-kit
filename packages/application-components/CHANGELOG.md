@@ -1,5 +1,16 @@
 # @commercetools-frontend/application-components
 
+## 21.22.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell-connectors@21.22.1
+  - @commercetools-frontend/assets@21.22.1
+  - @commercetools-frontend/constants@21.22.1
+  - @commercetools-frontend/i18n@21.22.1
+  - @commercetools-frontend/l10n@21.22.1
+
 ## 21.22.0
 
 ### Patch Changes
