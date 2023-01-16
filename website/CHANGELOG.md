@@ -1,5 +1,7 @@
 # @commercetools-website/custom-applications
 
+## 21.23.1
+
 ## 21.23.0
 
 ## 21.22.1

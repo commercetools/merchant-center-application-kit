@@ -1,5 +1,18 @@
 # @commercetools-frontend/application-components
 
+## 21.23.1
+
+### Patch Changes
+
+- [#2937](https://github.com/commercetools/merchant-center-application-kit/pull/2937) [`695c657a0`](https://github.com/commercetools/merchant-center-application-kit/commit/695c657a0bd1b5fc58b46811e5a8e0c3ccaece2c) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update `PageContentNarrow` component max width style.
+
+- Updated dependencies [[`233c7edfc`](https://github.com/commercetools/merchant-center-application-kit/commit/233c7edfcc8d1df330cf42c7c4dd53631bb20ecf)]:
+  - @commercetools-frontend/assets@21.23.1
+  - @commercetools-frontend/application-shell-connectors@21.23.1
+  - @commercetools-frontend/constants@21.23.1
+  - @commercetools-frontend/i18n@21.23.1
+  - @commercetools-frontend/l10n@21.23.1
+
 ## 21.23.0
 
 ### Patch Changes

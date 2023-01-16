@@ -1,5 +1,11 @@
 # @commercetools-frontend/assets
 
+## 21.23.1
+
+### Patch Changes
+
+- [#2935](https://github.com/commercetools/merchant-center-application-kit/pull/2935) [`233c7edfc`](https://github.com/commercetools/merchant-center-application-kit/commit/233c7edfcc8d1df330cf42c7c4dd53631bb20ecf) Thanks [@Sarah4VT](https://github.com/Sarah4VT)! - Add new no-icon svg for redesign of ImageContainer
+
 ## 21.23.0
 
 ## 21.22.1
