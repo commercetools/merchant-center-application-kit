@@ -14,7 +14,7 @@ const Content = styled.section`
 const Container = styled.div`
   display: grid;
   grid-template-areas: '. content .';
-  grid-template-columns: 1fr minmax(400px, 600px) 1fr;
+  grid-template-columns: 1fr minmax(400px, 742px) 1fr;
   width: 100%;
 `;
 
