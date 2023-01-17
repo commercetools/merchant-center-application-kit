@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 5</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="50" height="50"></rect>
+        <path d="M45,5 L5,45" id="path-3"></path>
+    </defs>
+    <g id="ALL-components" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Shared-/-Image-container" transform="translate(-919.000000, -1107.000000)">
+            <g id="Group-5" transform="translate(919.000000, 1107.000000)">
+                <g id="Image-container-thumbnail-">
+                    <g id="Mask" fill="#D8D8D8" fill-rule="nonzero">
+                        <rect id="path-1" x="0" y="0" width="50" height="50"></rect>
+                    </g>
+                    <g id="Path-Clipped">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="path-1"></g>
+                        <g id="Path" mask="url(#mask-2)">
+                            <g transform="translate(-4.545455, 0.000000)" id="Group">
+                                <path d="M0,3.26994697 C0,1.46400758 1.58283333,0 3.53535606,0 L54.7979545,0 C56.7505303,0 58.3333333,1.46400758 58.3333333,3.26994697 L58.3333333,46.7300758 C58.3333333,48.5359848 56.7505303,50 54.7979545,50 L3.53535606,50 C1.58283333,50 0,48.5359848 0,46.7300758 L0,3.26994697 Z" id="Path" fill="#B4E1FD" fill-rule="nonzero"></path>
+                                <path d="M26.5151515,12.8787879 C26.5151515,15.8075758 24.1409091,18.1818182 21.2121212,18.1818182 C18.2833333,18.1818182 15.9090909,15.8075758 15.9090909,12.8787879 C15.9090909,9.95 18.2833333,7.57575758 21.2121212,7.57575758 C24.1409091,7.57575758 26.5151515,9.95 26.5151515,12.8787879 Z" id="Path" fill="#E8F3FC" fill-rule="nonzero"></path>
+                                <path d="M16.4967424,26.9165152 L0,46.4212121 L0,49.9999992 L58.3333333,49.9999992 L58.3333333,33.8291667 L45.6393182,19.1043939 C44.577803,17.8730303 42.609697,17.8745455 41.5502273,19.1074242 L29.8783333,32.6899242 C28.8316667,33.9079545 26.8934848,33.9268182 25.8212879,32.7293939 L20.5668939,26.8616667 C19.4892424,25.6581818 17.5387879,25.6844697 16.4967424,26.9165152 Z" id="Path" fill="#E8F4FC" fill-rule="nonzero"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g id="Line" stroke-linecap="round" stroke-linejoin="round">
+                    <use stroke="#FFFFFF" stroke-width="6" xlink:href="#path-3"></use>
+                    <use stroke="#E60050" stroke-width="2" xlink:href="#path-3"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
