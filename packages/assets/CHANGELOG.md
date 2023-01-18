@@ -1,5 +1,11 @@
 # @commercetools-frontend/assets
 
+## 21.23.2
+
+### Patch Changes
+
+- [#2938](https://github.com/commercetools/merchant-center-application-kit/pull/2938) [`3c8431579`](https://github.com/commercetools/merchant-center-application-kit/commit/3c8431579d15862dda832373a77fc56d3b425452) Thanks [@Sarah4VT](https://github.com/Sarah4VT)! - add new images for image links and broken images for use with MC redesign
+
 ## 21.23.1
 
 ### Patch Changes
