@@ -24,7 +24,7 @@
     "@babel/runtime": "^7.19.0",
     "@babel/runtime-corejs3": "^7.19.0",
     "@commercetools-frontend/sentry": "21.23.1",
-    "@emotion/react": "11.10.4",
+    "@emotion/react": "11.10.5",
     "@types/prop-types": "^15.7.5",
     "@types/react": "^17.0.49",
     "lodash": "4.17.21",
@@ -35,9 +35,9 @@
   "devDependencies": {
     "@testing-library/react-hooks": "8.0.1",
     "chalk": "4.1.2",
-    "cldr": "7.2.0",
+    "cldr": "7.3.0",
     "deep-diff": "1.0.2",
-    "node-fetch": "2.6.7",
+    "node-fetch": "2.6.8",
     "prompts": "^2.4.2",
     "react": "17.0.2",
     "rimraf": "3.0.2"

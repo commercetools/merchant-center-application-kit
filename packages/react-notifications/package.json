@@ -30,8 +30,8 @@
     "@commercetools-uikit/icons": "^15.9.0",
     "@commercetools-uikit/spacings": "^15.9.0",
     "@commercetools-uikit/utils": "^15.9.0",
-    "@emotion/react": "11.10.4",
-    "@emotion/styled": "11.10.4",
+    "@emotion/react": "11.10.5",
+    "@emotion/styled": "11.10.5",
     "@types/history": "^4.7.11",
     "@types/lodash": "^4.14.185",
     "@types/prop-types": "^15.7.5",
@@ -44,7 +44,7 @@
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.37",
     "prop-types": "15.8.1",
-    "reselect": "4.1.6"
+    "reselect": "4.1.7"
   },
   "devDependencies": {
     "@testing-library/react": "12.1.5",

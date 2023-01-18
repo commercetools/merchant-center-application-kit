@@ -25,14 +25,14 @@
   },
   "dependencies": {
     "cac": "6.7.14",
-    "glob": "8.0.3",
+    "glob": "8.1.0",
     "jscodeshift": "0.14.0"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3",
-    "@types/jscodeshift": "0.11.5",
+    "@types/jscodeshift": "0.11.6",
     "rimraf": "3.0.2",
-    "typescript": "4.8.4"
+    "typescript": "4.9.4"
   },
   "engines": {
     "node": ">=14"
