@@ -39,7 +39,7 @@ const Container = styled.div`
   width: 100%;
   min-height: 100vh;
   display: flex;
-  padding-top: ${customProperties.spacingXl};
+  padding: ${customProperties.spacingXl} 0;
   justify-content: center;
   background-size: cover;
   background-image: url(data:image/png;base64,${base64Background});
