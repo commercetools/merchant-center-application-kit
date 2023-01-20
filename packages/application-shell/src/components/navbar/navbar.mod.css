@@ -59,9 +59,6 @@
   position: relative;
   display: block;
 }
-/* .item__active .item-link {
-  padding-right: var(--spacing-l);
-} */
 
 .list-item .item-icon-text {
   display: flex;
@@ -145,11 +142,6 @@
 
 /* NO SUBMENU */
 
-/* .item__no-submenu,
-.item_menu-collapsed {
-  height: var(--item-height) !important;
-} */
-
 .item_menu-collapsed .item-link {
   text-align: center;
 }
@@ -182,7 +174,6 @@
 :global(.body__menu-open) .list-item {
   height: auto;
   min-height: var(--item-height);
-  /* max-height: 0; */
   transition: max-height 0.15s ease-out;
   overflow: hidden;
 }
