@@ -836,9 +836,13 @@ describe('navbar menu links interactions', () => {
     const groupId = menuTitle.getAttribute('aria-owns');
     // eslint-disable-next-line testing-library/no-node-access, testing-library/no-container
     const submenuContainer = container.querySelector(`#${groupId}`);
-    expect(submenuContainer).toHaveAttribute('aria-expanded', 'false');
+    // The submenu container should not be rendered when the menu is not active.
+    expect(submenuContainer).toBe(null);
+    // expect(submenuContainer).toHaveAttribute('aria-expanded', 'false');
     fireEvent.click(menuTitle);
     await waitFor(() => {
+      // eslint-disable-next-line testing-library/no-node-access, testing-library/no-container
+      const submenuContainer = container.querySelector(`#${groupId}`);
       expect(submenuContainer).toHaveAttribute('aria-expanded', 'true');
     });
     const menuGroupContainer = within(screen.getByTestId(groupId));
