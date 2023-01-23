@@ -212,9 +212,17 @@ type MenuGroupProps = {
   level: 1 | 2;
   isActive?: boolean;
   isExpanded?: boolean;
+  hasSubmenu?: boolean;
   children?: ReactNode;
 };
 const MenuGroup = (props: MenuGroupProps) => {
+  if (
+    props.isExpanded &&
+    ((props.level === 2 && !props.hasSubmenu) ||
+      (props.level === 2 && !props.isActive))
+  ) {
+    return null;
+  }
   const isSublistActiveWhileIsMenuExpanded =
     props.level === 2 && props.isActive && props.isExpanded;
   const isSublistActiveWhileIsMenuCollapsed =
@@ -544,6 +552,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
           level={2}
           isActive={props.isActive}
           isExpanded={props.isMenuOpen}
+          hasSubmenu={hasSubmenu}
         >
           {hasSubmenu
             ? props.menu.submenu.map((submenu: TSubmenuWithDefaultLabel) => (
