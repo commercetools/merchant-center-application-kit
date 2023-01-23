@@ -51,6 +51,7 @@
     "@commercetools-uikit/accessible-hidden": "^15.9.0",
     "@commercetools-uikit/avatar": "^15.9.0",
     "@commercetools-uikit/card": "^15.9.0",
+    "@commercetools-uikit/constraints": "^15.9.0",
     "@commercetools-uikit/design-system": "^15.9.0",
     "@commercetools-uikit/flat-button": "^15.9.0",
     "@commercetools-uikit/icons": "^15.9.0",
