@@ -1,5 +1,18 @@
 # @commercetools-frontend/application-components
 
+## 21.23.3
+
+### Patch Changes
+
+- [#2941](https://github.com/commercetools/merchant-center-application-kit/pull/2941) [`694f060f7`](https://github.com/commercetools/merchant-center-application-kit/commit/694f060f7e36c249d17f64ac93ef45918fca7941) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Add bottom padding for `PublicPageLayout`
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell-connectors@21.23.3
+  - @commercetools-frontend/assets@21.23.3
+  - @commercetools-frontend/constants@21.23.3
+  - @commercetools-frontend/i18n@21.23.3
+  - @commercetools-frontend/l10n@21.23.3
+
 ## 21.23.2
 
 ### Patch Changes

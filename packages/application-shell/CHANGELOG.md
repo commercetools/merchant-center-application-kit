@@ -1,5 +1,30 @@
 # @commercetools-frontend/application-shell
 
+## 21.23.3
+
+### Patch Changes
+
+- [#2945](https://github.com/commercetools/merchant-center-application-kit/pull/2945) [`108b12fe2`](https://github.com/commercetools/merchant-center-application-kit/commit/108b12fe2ea234d9c8dd06999e845efe278f43e7) Thanks [@emmenko](https://github.com/emmenko)! - Fix overflow issue when menu label is long
+
+- [#2944](https://github.com/commercetools/merchant-center-application-kit/pull/2944) [`015ba24a4`](https://github.com/commercetools/merchant-center-application-kit/commit/015ba24a4e45214c189d0d4083cd2acfe7499af9) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Update layout for OIDC callback page
+
+- Updated dependencies [[`694f060f7`](https://github.com/commercetools/merchant-center-application-kit/commit/694f060f7e36c249d17f64ac93ef45918fca7941)]:
+  - @commercetools-frontend/application-components@21.23.3
+  - @commercetools-frontend/actions-global@21.23.3
+  - @commercetools-frontend/application-config@21.23.3
+  - @commercetools-frontend/application-shell-connectors@21.23.3
+  - @commercetools-frontend/assets@21.23.3
+  - @commercetools-frontend/browser-history@21.23.3
+  - @commercetools-frontend/constants@21.23.3
+  - @commercetools-frontend/i18n@21.23.3
+  - @commercetools-frontend/l10n@21.23.3
+  - @commercetools-frontend/notifications@21.23.3
+  - @commercetools-frontend/permissions@21.23.3
+  - @commercetools-frontend/react-notifications@21.23.3
+  - @commercetools-frontend/sdk@21.23.3
+  - @commercetools-frontend/sentry@21.23.3
+  - @commercetools-frontend/url-utils@21.23.3
+
 ## 21.23.2
 
 ### Patch Changes
