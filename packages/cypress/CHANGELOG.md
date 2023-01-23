@@ -1,5 +1,13 @@
 # @commercetools-frontend/cypress
 
+## 21.23.3
+
+### Patch Changes
+
+- Updated dependencies [[`108b12fe2`](https://github.com/commercetools/merchant-center-application-kit/commit/108b12fe2ea234d9c8dd06999e845efe278f43e7), [`015ba24a4`](https://github.com/commercetools/merchant-center-application-kit/commit/015ba24a4e45214c189d0d4083cd2acfe7499af9)]:
+  - @commercetools-frontend/application-shell@21.23.3
+  - @commercetools-frontend/application-config@21.23.3
+
 ## 21.23.2
 
 ### Patch Changes
