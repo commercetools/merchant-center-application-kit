@@ -2,4 +2,4 @@
 '@commercetools-frontend/application-shell': patch
 ---
 
-Updates the layout for Oidc-Callback-Error-Page to match Redesign of login views
+Update layout for OIDC callback page
