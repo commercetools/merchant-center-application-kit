@@ -4405,6 +4405,7 @@ __metadata:
     "@commercetools-uikit/hooks": ^15.9.0
     "@commercetools-uikit/icon-button": ^15.9.0
     "@commercetools-uikit/icons": ^15.9.0
+    "@commercetools-uikit/secondary-icon-button": ^15.9.0
     "@commercetools-uikit/spacings": ^15.9.0
     "@commercetools-uikit/utils": ^15.9.0
     "@emotion/react": 11.10.4
