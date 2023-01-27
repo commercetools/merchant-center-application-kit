@@ -11,6 +11,7 @@ import {
   ErrorIcon,
   WarningIcon,
   InfoIcon,
+  InformationIcon,
   CheckBoldIcon,
 } from '@commercetools-uikit/icons';
 import { useTheme } from '@commercetools-uikit/design-system';
@@ -45,15 +46,23 @@ type PropsIcon = {
     | 'surface'
     | 'primary'
     | 'primary40';
+  isNewTheme: boolean;
 };
 
 const NotificationIcon = (props: PropsIcon) => {
-  if (props.type === NOTIFICATION_KINDS_SIDE.error)
+  if (props.type === NOTIFICATION_KINDS_SIDE.error) {
     return <ErrorIcon color={props.color} />;
-  if (props.type === NOTIFICATION_KINDS_SIDE.info)
-    return <InfoIcon color={props.color} />;
-  if (props.type === NOTIFICATION_KINDS_SIDE.warning)
+  }
+  if (props.type === NOTIFICATION_KINDS_SIDE.info) {
+    return props.isNewTheme ? (
+      <InformationIcon color={props.color} />
+    ) : (
+      <InfoIcon color={props.color} />
+    );
+  }
+  if (props.type === NOTIFICATION_KINDS_SIDE.warning) {
     return <WarningIcon color={props.color} />;
+  }
 
   return <CheckBoldIcon color={props.color} />;
 };
@@ -87,7 +96,7 @@ const Notification = (props: Props) => {
         {props.children}
       </div>
       {props.onCloseClick ? (
-        <div css={getStylesForCloseIcon(isNewTheme)}>
+        <div css={getStylesForCloseIcon({ ...props, isNewTheme })}>
           <Button
             label={intl.formatMessage(messages.hideNotification)}
             onClick={props.onCloseClick}
@@ -98,7 +107,11 @@ const Notification = (props: Props) => {
       ) : null}
       {props.domain === NOTIFICATION_DOMAINS.SIDE ? (
         <div css={getStylesForNotificationIcon(props)}>
-          <NotificationIcon type={props.type} color="surface" />
+          <NotificationIcon
+            type={props.type}
+            color="surface"
+            isNewTheme={isNewTheme}
+          />
         </div>
       ) : null}
     </div>

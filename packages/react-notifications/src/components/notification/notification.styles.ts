@@ -81,8 +81,13 @@ const getStylesForNotificationIcon = (props: StyleProps) => css`
   background: ${getColorByType(props.type)};
 `;
 
-const getStylesForCloseIcon = (isNewTheme = false) => css`
-  ${isNewTheme ? '& svg { width: 12px; height: 12px; }' : ''}
+const getStylesForCloseIcon = (props: StyleProps) => css`
+  display: flex;
+  justify-content: center;
+  ${props.isNewTheme ? '& svg { width: 16px; height: 16px; }' : ''}
+  ${props.isNewTheme && props.domain !== NOTIFICATION_DOMAINS.SIDE
+    ? '& svg { fill: ' + designTokens.colorSurface + '; }'
+    : ''}
 `;
 
 const getStylesForContent = (props: StyleProps) => {
