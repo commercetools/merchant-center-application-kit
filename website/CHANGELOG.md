@@ -1,5 +1,11 @@
 # @commercetools-website/custom-applications
 
+## 21.23.4
+
+### Patch Changes
+
+- [#2952](https://github.com/commercetools/merchant-center-application-kit/pull/2952) [`2e805309c`](https://github.com/commercetools/merchant-center-application-kit/commit/2e805309c526d98e4822757f062a553987d71547) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update `ui-kit` and `react-select` dependencies
+
 ## 21.23.3
 
 ## 21.23.2
