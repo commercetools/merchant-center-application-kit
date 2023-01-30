@@ -3991,7 +3991,7 @@ __metadata:
     react-redux: 7.2.9
     react-required-if: 1.0.3
     react-router-dom: 5.3.4
-    react-select: 5.5.2
+    react-select: 5.7.0
     redux: 4.2.0
     redux-logger: 3.0.6
     redux-thunk: 2.4.1
@@ -32039,26 +32039,6 @@ __metadata:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
   checksum: da896f0f8b3c7f6250148ce9ded1ace60abb35b812be50d34cf7ba980b12ca75533c3bbfd9e722530cc0e70c17e8997c3c7e93743877d84c00b0d90e4da521e6
-  languageName: node
-  linkType: hard
-
-"react-select@npm:5.5.2":
-  version: 5.5.2
-  resolution: "react-select@npm:5.5.2"
-  dependencies:
-    "@babel/runtime": ^7.12.0
-    "@emotion/cache": ^11.4.0
-    "@emotion/react": ^11.8.1
-    "@floating-ui/dom": ^1.0.1
-    "@types/react-transition-group": ^4.4.0
-    memoize-one: ^5.0.0
-    prop-types: ^15.6.0
-    react-transition-group: ^4.3.0
-    use-isomorphic-layout-effect: ^1.1.2
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 3c340052dfe9558f0ef5e8dc84f8cece6ff424c9d6c56da3f3c551c84b563f616f32a8769bbfb5582cfb6e625d817b74e6562646e6218b39b6c450b146a68345
   languageName: node
   linkType: hard
 
