@@ -265,14 +265,14 @@ const Example = () => {
   return (
     <InfoModalPage
       title="Lorem ipsum"
-      isOpen={true}
-      onClose={handleClose}
+      isOpen={pageModalState.isModalOpen}
+      onClose={pageModalState.closeModal}
       subtitle={<Text.Body>{'Lorem ipsum ...'}</Text.Body>}
       topBarCurrentPathLabel="Lorem ipsum"
       topBarPreviousPathLabel="Back"
     >
       <Text.Body>{'Lorem ipsum ...'}</Text.Body>
-    </InfoModalPage>;
+    </InfoModalPage>
   )
 }
 ```
@@ -792,16 +792,16 @@ const AccountPage = () => {
         onClose={tabsModalState.closeModal}
         tabControls={
           <>
-            <TabHeader to="/tab-one" label="Tab One" />
-            <TabHeader to="/tab-two" label="Tab Two" />
+            <TabHeader to={`${match.url}/tab-one`} label="Tab One" />
+            <TabHeader to={`${match.url}/tab-two`} label="Tab Two" />
           </>
         }
       >
         <Switch>
-          <Route path={`${match.path}/tab-1`}>
+          <Route path={`${match.path}/tab-one`}>
             <Tab1 />
           </Route>
-          <Route path={`${match.path}/tab-2`}>
+          <Route path={`${match.path}/tab-two`}>
             <Tab2 />
           </Route>
         </Switch>
