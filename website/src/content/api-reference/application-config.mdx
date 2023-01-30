@@ -539,7 +539,7 @@ Labels can also be references using the i18n translation files. See [Intl messag
 
 ## `mainMenuLink.permissions`
 
-A list of the [user permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions) specific to your Custom Application. Users must have at least one permission to see the link in the Merchant Center main navigation.
+A list of the [user permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions) specific to your Custom Application. Users must have at least one of the specified permissions to see the link in the Merchant Center main navigation. Leaving the list of permissions empty makes the menu link always visible (no restrictions are applied).
 
 ```json
 {
@@ -609,7 +609,7 @@ Labels can also be references using the i18n translation files. See [Intl messag
 
 ## `submenuLinks.*.permissions`
 
-A list of the [user permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions) specific to your Custom Application. Users must have at least one permission to see the link in the Merchant Center main navigation.
+A list of the [user permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions) specific to your Custom Application. Users must have at least one of the specified permissions to see the link in the Merchant Center main navigation. Leaving the list of permissions empty makes the menu link always visible (no restrictions are applied).
 
 ```json
 {

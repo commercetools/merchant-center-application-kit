@@ -31,7 +31,7 @@ You can then use the `PERMISSIONS` variable to reference the permission in the a
 
 This feature is available from version `21.21.0` onwards.
 
-When using additional permission groups, you must also provide the unique group to the `entryPointUriPathToPermissionKeys` function to generate the correct permission keys.
+When using [additional permission groups](/concepts/oauth-scopes-and-user-permissions#permission-groups), you must also provide the unique group to the `entryPointUriPathToPermissionKeys` function to generate the correct permission keys.
 
 The group names can be exported and referenced also in the Custom Application config file.
 
@@ -84,6 +84,12 @@ In the Custom Application config, the menu links allow defining the level of req
 ```
 
 This determines which links should be visible or not, depending on the permissions assigned to the user.
+
+<Info>
+
+Leaving the list of permissions empty makes the menu link always visible (no restrictions are applied).
+
+</Info>
 
 In case you defined the permissions in a `constants` file, we recommend to reference them in the Custom Application config as well. To do so, the config file needs to be converted to a JS file (instead of JSON), for example using the `.mjs` file extension.
 
