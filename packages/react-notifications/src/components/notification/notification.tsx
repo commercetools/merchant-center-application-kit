@@ -1,3 +1,4 @@
+// TODO: @redesign cleanup
 import type {
   TAppNotificationKind,
   TAppNotificationDomain,
@@ -10,9 +11,12 @@ import {
   ErrorIcon,
   WarningIcon,
   InfoIcon,
+  InformationIcon,
   CheckBoldIcon,
 } from '@commercetools-uikit/icons';
+import { useTheme } from '@commercetools-uikit/design-system';
 import IconButton from '@commercetools-uikit/icon-button';
+import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';
 import {
   NOTIFICATION_DOMAINS,
   NOTIFICATION_KINDS_SIDE,
@@ -22,7 +26,8 @@ import { useFieldId } from '@commercetools-uikit/hooks';
 import filterDataAttributes from '../../utils/filter-data-attributes';
 import messages from './messages';
 import {
-  getStylesForIcon,
+  getStylesForNotificationIcon,
+  getStylesForCloseIcon,
   getStylesForContent,
   getStylesForNotification,
 } from './notification.styles';
@@ -41,15 +46,23 @@ type PropsIcon = {
     | 'surface'
     | 'primary'
     | 'primary40';
+  isNewTheme: boolean;
 };
 
 const NotificationIcon = (props: PropsIcon) => {
-  if (props.type === NOTIFICATION_KINDS_SIDE.error)
+  if (props.type === NOTIFICATION_KINDS_SIDE.error) {
     return <ErrorIcon color={props.color} />;
-  if (props.type === NOTIFICATION_KINDS_SIDE.info)
-    return <InfoIcon color={props.color} />;
-  if (props.type === NOTIFICATION_KINDS_SIDE.warning)
+  }
+  if (props.type === NOTIFICATION_KINDS_SIDE.info) {
+    return props.isNewTheme ? (
+      <InformationIcon color={props.color} />
+    ) : (
+      <InfoIcon color={props.color} />
+    );
+  }
+  if (props.type === NOTIFICATION_KINDS_SIDE.warning) {
     return <WarningIcon color={props.color} />;
+  }
 
   return <CheckBoldIcon color={props.color} />;
 };
@@ -69,19 +82,22 @@ const defaultProps: Pick<Props, 'fixed'> = {
 const Notification = (props: Props) => {
   const intl = useIntl();
   const id = useFieldId(undefined, sequentialId);
+  const { isNewTheme, themedValue } = useTheme();
+  const Button = themedValue(IconButton, SecondaryIconButton);
+
   return (
     <div
       role="alertdialog"
       aria-describedby={id}
-      css={getStylesForNotification(props)}
+      css={getStylesForNotification({ ...props, isNewTheme })}
       {...filterDataAttributes(props)}
     >
-      <div id={id} css={getStylesForContent(props)}>
+      <div id={id} css={getStylesForContent({ ...props, isNewTheme })}>
         {props.children}
       </div>
       {props.onCloseClick ? (
-        <div>
-          <IconButton
+        <div css={getStylesForCloseIcon({ ...props, isNewTheme })}>
+          <Button
             label={intl.formatMessage(messages.hideNotification)}
             onClick={props.onCloseClick}
             icon={<CloseBoldIcon />}
@@ -90,8 +106,12 @@ const Notification = (props: Props) => {
         </div>
       ) : null}
       {props.domain === NOTIFICATION_DOMAINS.SIDE ? (
-        <div css={getStylesForIcon(props)}>
-          <NotificationIcon type={props.type} color="surface" />
+        <div css={getStylesForNotificationIcon(props)}>
+          <NotificationIcon
+            type={props.type}
+            color="surface"
+            isNewTheme={isNewTheme}
+          />
         </div>
       ) : null}
     </div>
