@@ -3475,23 +3475,23 @@ __metadata:
     "@commercetools-test-data/channel": 4.1.1
     "@commercetools-test-data/commons": 4.1.1
     "@commercetools-test-data/core": 4.1.1
-    "@commercetools-uikit/constraints": ^15.9.0
-    "@commercetools-uikit/data-table": ^15.9.0
-    "@commercetools-uikit/flat-button": ^15.9.0
-    "@commercetools-uikit/grid": ^15.9.0
-    "@commercetools-uikit/hooks": ^15.9.0
-    "@commercetools-uikit/icons": ^15.9.0
-    "@commercetools-uikit/link": ^15.9.0
-    "@commercetools-uikit/loading-spinner": ^15.9.0
-    "@commercetools-uikit/localized-text-field": ^15.9.0
-    "@commercetools-uikit/localized-text-input": ^15.9.0
-    "@commercetools-uikit/notifications": ^15.9.0
-    "@commercetools-uikit/pagination": ^15.9.0
-    "@commercetools-uikit/select-field": ^15.9.0
-    "@commercetools-uikit/spacings": ^15.9.0
-    "@commercetools-uikit/text": ^15.9.0
-    "@commercetools-uikit/text-field": ^15.9.0
-    "@commercetools-uikit/text-input": ^15.9.0
+    "@commercetools-uikit/constraints": ^15.11.0
+    "@commercetools-uikit/data-table": ^15.11.0
+    "@commercetools-uikit/flat-button": ^15.11.0
+    "@commercetools-uikit/grid": ^15.11.0
+    "@commercetools-uikit/hooks": ^15.11.0
+    "@commercetools-uikit/icons": ^15.11.0
+    "@commercetools-uikit/link": ^15.11.0
+    "@commercetools-uikit/loading-spinner": ^15.11.0
+    "@commercetools-uikit/localized-text-field": ^15.11.0
+    "@commercetools-uikit/localized-text-input": ^15.11.0
+    "@commercetools-uikit/notifications": ^15.11.0
+    "@commercetools-uikit/pagination": ^15.11.0
+    "@commercetools-uikit/select-field": ^15.11.0
+    "@commercetools-uikit/spacings": ^15.11.0
+    "@commercetools-uikit/text": ^15.11.0
+    "@commercetools-uikit/text-field": ^15.11.0
+    "@commercetools-uikit/text-input": ^15.11.0
     "@commercetools/sync-actions": ^5.1.0
     "@formatjs/cli": 4.8.4
     "@jest/types": 27.5.1
@@ -3537,23 +3537,23 @@ __metadata:
     "@commercetools-test-data/channel": 4.1.1
     "@commercetools-test-data/commons": 4.1.1
     "@commercetools-test-data/core": 4.1.1
-    "@commercetools-uikit/constraints": ^15.9.0
-    "@commercetools-uikit/data-table": ^15.9.0
-    "@commercetools-uikit/flat-button": ^15.9.0
-    "@commercetools-uikit/grid": ^15.9.0
-    "@commercetools-uikit/hooks": ^15.9.0
-    "@commercetools-uikit/icons": ^15.9.0
-    "@commercetools-uikit/link": ^15.9.0
-    "@commercetools-uikit/loading-spinner": ^15.9.0
-    "@commercetools-uikit/localized-text-field": ^15.9.0
-    "@commercetools-uikit/localized-text-input": ^15.9.0
-    "@commercetools-uikit/notifications": ^15.9.0
-    "@commercetools-uikit/pagination": ^15.9.0
-    "@commercetools-uikit/select-field": ^15.9.0
-    "@commercetools-uikit/spacings": ^15.9.0
-    "@commercetools-uikit/text": ^15.9.0
-    "@commercetools-uikit/text-field": ^15.9.0
-    "@commercetools-uikit/text-input": ^15.9.0
+    "@commercetools-uikit/constraints": ^15.11.0
+    "@commercetools-uikit/data-table": ^15.11.0
+    "@commercetools-uikit/flat-button": ^15.11.0
+    "@commercetools-uikit/grid": ^15.11.0
+    "@commercetools-uikit/hooks": ^15.11.0
+    "@commercetools-uikit/icons": ^15.11.0
+    "@commercetools-uikit/link": ^15.11.0
+    "@commercetools-uikit/loading-spinner": ^15.11.0
+    "@commercetools-uikit/localized-text-field": ^15.11.0
+    "@commercetools-uikit/localized-text-input": ^15.11.0
+    "@commercetools-uikit/notifications": ^15.11.0
+    "@commercetools-uikit/pagination": ^15.11.0
+    "@commercetools-uikit/select-field": ^15.11.0
+    "@commercetools-uikit/spacings": ^15.11.0
+    "@commercetools-uikit/text": ^15.11.0
+    "@commercetools-uikit/text-field": ^15.11.0
+    "@commercetools-uikit/text-input": ^15.11.0
     "@commercetools/sync-actions": ^5.1.0
     "@formatjs/cli": 4.8.4
     "@manypkg/cli": 0.19.2
@@ -3822,19 +3822,19 @@ __metadata:
     "@commercetools-frontend/constants": 21.23.3
     "@commercetools-frontend/i18n": 21.23.3
     "@commercetools-frontend/l10n": 21.23.3
-    "@commercetools-uikit/card": ^15.9.0
-    "@commercetools-uikit/constraints": ^15.9.0
-    "@commercetools-uikit/design-system": ^15.9.0
-    "@commercetools-uikit/flat-button": ^15.9.0
-    "@commercetools-uikit/icon-button": ^15.9.0
-    "@commercetools-uikit/icons": ^15.9.0
-    "@commercetools-uikit/messages": ^15.9.0
-    "@commercetools-uikit/primary-button": ^15.9.0
-    "@commercetools-uikit/secondary-button": ^15.9.0
-    "@commercetools-uikit/secondary-icon-button": ^15.9.0
-    "@commercetools-uikit/spacings": ^15.9.0
-    "@commercetools-uikit/text": ^15.9.0
-    "@commercetools-uikit/utils": ^15.9.0
+    "@commercetools-uikit/card": ^15.11.0
+    "@commercetools-uikit/constraints": ^15.11.0
+    "@commercetools-uikit/design-system": ^15.11.0
+    "@commercetools-uikit/flat-button": ^15.11.0
+    "@commercetools-uikit/icon-button": ^15.11.0
+    "@commercetools-uikit/icons": ^15.11.0
+    "@commercetools-uikit/messages": ^15.11.0
+    "@commercetools-uikit/primary-button": ^15.11.0
+    "@commercetools-uikit/secondary-button": ^15.11.0
+    "@commercetools-uikit/secondary-icon-button": ^15.11.0
+    "@commercetools-uikit/spacings": ^15.11.0
+    "@commercetools-uikit/text": ^15.11.0
+    "@commercetools-uikit/utils": ^15.11.0
     "@emotion/react": 11.10.4
     "@emotion/styled": 11.10.4
     "@react-hook/latest": 1.0.3
@@ -3932,18 +3932,18 @@ __metadata:
     "@commercetools-frontend/sdk": 21.23.3
     "@commercetools-frontend/sentry": 21.23.3
     "@commercetools-frontend/url-utils": 21.23.3
-    "@commercetools-uikit/accessible-hidden": ^15.9.0
-    "@commercetools-uikit/avatar": ^15.9.0
-    "@commercetools-uikit/card": ^15.9.0
-    "@commercetools-uikit/constraints": ^15.9.0
-    "@commercetools-uikit/design-system": ^15.9.0
-    "@commercetools-uikit/flat-button": ^15.9.0
-    "@commercetools-uikit/icons": ^15.9.0
-    "@commercetools-uikit/loading-spinner": ^15.9.0
-    "@commercetools-uikit/notifications": ^15.9.0
-    "@commercetools-uikit/select-input": ^15.9.0
-    "@commercetools-uikit/spacings": ^15.9.0
-    "@commercetools-uikit/text": ^15.9.0
+    "@commercetools-uikit/accessible-hidden": ^15.11.0
+    "@commercetools-uikit/avatar": ^15.11.0
+    "@commercetools-uikit/card": ^15.11.0
+    "@commercetools-uikit/constraints": ^15.11.0
+    "@commercetools-uikit/design-system": ^15.11.0
+    "@commercetools-uikit/flat-button": ^15.11.0
+    "@commercetools-uikit/icons": ^15.11.0
+    "@commercetools-uikit/loading-spinner": ^15.11.0
+    "@commercetools-uikit/notifications": ^15.11.0
+    "@commercetools-uikit/select-input": ^15.11.0
+    "@commercetools-uikit/spacings": ^15.11.0
+    "@commercetools-uikit/text": ^15.11.0
     "@commercetools/http-user-agent": 3.0.0
     "@emotion/react": 11.10.4
     "@emotion/styled": 11.10.4
@@ -4159,7 +4159,7 @@ __metadata:
     "@babel/runtime-corejs3": ^7.19.0
     "@commercetools-community-kit/i18n": ^0.3.0
     "@commercetools-frontend/sentry": 21.23.3
-    "@commercetools-uikit/i18n": ^15.9.0
+    "@commercetools-uikit/i18n": ^15.11.0
     "@emotion/react": 11.10.4
     "@formatjs/cli": 4.8.4
     "@formatjs/icu-messageformat-parser": 2.1.10
@@ -4401,13 +4401,13 @@ __metadata:
     "@commercetools-frontend/constants": 21.23.3
     "@commercetools-frontend/notifications": 21.23.3
     "@commercetools-frontend/sentry": 21.23.3
-    "@commercetools-uikit/design-system": ^15.9.0
-    "@commercetools-uikit/hooks": ^15.9.0
-    "@commercetools-uikit/icon-button": ^15.9.0
-    "@commercetools-uikit/icons": ^15.9.0
-    "@commercetools-uikit/secondary-icon-button": ^15.9.0
-    "@commercetools-uikit/spacings": ^15.9.0
-    "@commercetools-uikit/utils": ^15.9.0
+    "@commercetools-uikit/design-system": ^15.11.0
+    "@commercetools-uikit/hooks": ^15.11.0
+    "@commercetools-uikit/icon-button": ^15.11.0
+    "@commercetools-uikit/icons": ^15.11.0
+    "@commercetools-uikit/secondary-icon-button": ^15.11.0
+    "@commercetools-uikit/spacings": ^15.11.0
+    "@commercetools-uikit/utils": ^15.11.0
     "@emotion/react": 11.10.4
     "@emotion/styled": 11.10.4
     "@testing-library/react": 12.1.5
@@ -4522,21 +4522,21 @@ __metadata:
     "@commercetools-frontend/mc-scripts": 21.23.3
     "@commercetools-frontend/permissions": 21.23.3
     "@commercetools-frontend/sdk": 21.23.3
-    "@commercetools-uikit/card": ^15.9.0
-    "@commercetools-uikit/checkbox-input": ^15.9.0
-    "@commercetools-uikit/constraints": ^15.9.0
-    "@commercetools-uikit/data-table": ^15.9.0
-    "@commercetools-uikit/date-time-input": ^15.9.0
-    "@commercetools-uikit/flat-button": ^15.9.0
-    "@commercetools-uikit/grid": ^15.9.0
-    "@commercetools-uikit/icons": ^15.9.0
-    "@commercetools-uikit/label": ^15.9.0
-    "@commercetools-uikit/loading-spinner": ^15.9.0
-    "@commercetools-uikit/notifications": ^15.9.0
-    "@commercetools-uikit/pagination": ^15.9.0
-    "@commercetools-uikit/primary-button": ^15.9.0
-    "@commercetools-uikit/spacings": ^15.9.0
-    "@commercetools-uikit/text": ^15.9.0
+    "@commercetools-uikit/card": ^15.11.0
+    "@commercetools-uikit/checkbox-input": ^15.11.0
+    "@commercetools-uikit/constraints": ^15.11.0
+    "@commercetools-uikit/data-table": ^15.11.0
+    "@commercetools-uikit/date-time-input": ^15.11.0
+    "@commercetools-uikit/flat-button": ^15.11.0
+    "@commercetools-uikit/grid": ^15.11.0
+    "@commercetools-uikit/icons": ^15.11.0
+    "@commercetools-uikit/label": ^15.11.0
+    "@commercetools-uikit/loading-spinner": ^15.11.0
+    "@commercetools-uikit/notifications": ^15.11.0
+    "@commercetools-uikit/pagination": ^15.11.0
+    "@commercetools-uikit/primary-button": ^15.11.0
+    "@commercetools-uikit/spacings": ^15.11.0
+    "@commercetools-uikit/text": ^15.11.0
     "@formatjs/cli": 4.8.4
     "@types/dotenv-flow": ^3.2.0
     "@vercel/node": ^2.5.14
@@ -4565,17 +4565,17 @@ __metadata:
     "@commercetools-frontend/assets": 21.23.3
     "@commercetools-frontend/constants": 21.23.3
     "@commercetools-frontend/react-notifications": 21.23.3
-    "@commercetools-uikit/accessible-button": ^15.9.0
-    "@commercetools-uikit/card": ^15.9.0
-    "@commercetools-uikit/design-system": ^15.9.0
-    "@commercetools-uikit/grid": ^15.9.0
-    "@commercetools-uikit/icon-button": ^15.9.0
-    "@commercetools-uikit/icons": ^15.9.0
-    "@commercetools-uikit/link": ^15.9.0
-    "@commercetools-uikit/spacings": ^15.9.0
-    "@commercetools-uikit/text": ^15.9.0
-    "@commercetools-uikit/text-field": ^15.9.0
-    "@commercetools-uikit/text-input": ^15.9.0
+    "@commercetools-uikit/accessible-button": ^15.11.0
+    "@commercetools-uikit/card": ^15.11.0
+    "@commercetools-uikit/design-system": ^15.11.0
+    "@commercetools-uikit/grid": ^15.11.0
+    "@commercetools-uikit/icon-button": ^15.11.0
+    "@commercetools-uikit/icons": ^15.11.0
+    "@commercetools-uikit/link": ^15.11.0
+    "@commercetools-uikit/spacings": ^15.11.0
+    "@commercetools-uikit/text": ^15.11.0
+    "@commercetools-uikit/text-field": ^15.11.0
+    "@commercetools-uikit/text-input": ^15.11.0
     "@emotion/react": 11.10.4
     "@emotion/styled": 11.10.4
     "@vitejs/plugin-react": 3.0.0
@@ -4642,6 +4642,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@commercetools-uikit/accessible-button@npm:15.11.0, @commercetools-uikit/accessible-button@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/accessible-button@npm:15.11.0"
+  dependencies:
+    "@babel/runtime": ^7.19.0
+    "@babel/runtime-corejs3": ^7.19.1
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    "@types/react-is": ^17.0.3
+    lodash: 4.17.21
+    prop-types: 15.8.1
+    react-is: 17.0.2
+  peerDependencies:
+    react: 17.x
+  checksum: 28431023ea92d124ae96775941fe77b8689b776327fe4269a350f7249963cb600aa0059f0bade0e5d4eeb34001ade4dbf204287ee55b7a044f411ccc9ed7023a
+  languageName: node
+  linkType: hard
+
 "@commercetools-uikit/accessible-button@npm:15.3.0":
   version: 15.3.0
   resolution: "@commercetools-uikit/accessible-button@npm:15.3.0"
@@ -4662,29 +4682,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/accessible-button@npm:15.9.0, @commercetools-uikit/accessible-button@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/accessible-button@npm:15.9.0"
-  dependencies:
-    "@babel/runtime": ^7.19.0
-    "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
-    "@emotion/react": ^11.4.0
-    "@emotion/styled": ^11.3.0
-    "@types/react-is": ^17.0.3
-    lodash: 4.17.21
-    prop-types: 15.8.1
-    react-is: 17.0.2
-  peerDependencies:
-    react: 17.x
-  checksum: 4ce194fff920bec58876db6dac73bf3c9f098d50fc64ba2f5a4d2d4889b8d54b10124c6d8e79a24175d847b130cf8b61e420f332a07de536f7a8b0877a706a18
-  languageName: node
-  linkType: hard
-
-"@commercetools-uikit/accessible-hidden@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/accessible-hidden@npm:15.9.0"
+"@commercetools-uikit/accessible-hidden@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/accessible-hidden@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
@@ -4692,24 +4692,37 @@ __metadata:
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
-  checksum: 9a47134262c98c01fa8604df2112011c073e9e3041aa46ac9e52e2064295128bef9a4f997fb2352a6556afb22f28642a4c4be683e14b25bcb88442fe6616e1c5
+  checksum: dc87fa4b1415a8118b8a1318701cf6f79511a50473dbe7c320ba3ac8acb148b72f82377e43151d1e49c90cc223021300a072291ea017683437f6c320d22b5467
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/avatar@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/avatar@npm:15.9.0"
+"@commercetools-uikit/avatar@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/avatar@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
-  checksum: 7a5ed877ca560f198678dfeb3a54b3476fd4826eefe072a340e69c34ada2e5dc44d4a94ec13472c145e053510f8cdc6cbb6ce0870cb01fb8ca5c7fe6e7a042a4
+  checksum: 0b52cead07e4f4eb13dd3879669085a9697a2d22e586befdeb0070fa62ae687ace1b2baee5a48c5d9975690beb5fb0fe9f8952a8413f53e84794f42f23ad295c
+  languageName: node
+  linkType: hard
+
+"@commercetools-uikit/calendar-time-utils@npm:15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/calendar-time-utils@npm:15.11.0"
+  dependencies:
+    "@babel/runtime": ^7.19.0
+    "@babel/runtime-corejs3": ^7.19.1
+    "@commercetools-uikit/utils": 15.11.0
+  peerDependencies:
+    moment-timezone: 0.5.x
+  checksum: 3d60f0e80abbdcfff952f2cf0fdbb54e21da4b357afa994eb94548349cdaf4ae8a5f77c7b06dde83cdcadfba2bef5a566c1dfc6351ece1d1023c731b28f7ab9b
   languageName: node
   linkType: hard
 
@@ -4726,16 +4739,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/calendar-time-utils@npm:15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/calendar-time-utils@npm:15.9.0"
+"@commercetools-uikit/calendar-utils@npm:15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/calendar-utils@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/accessible-button": 15.11.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/hooks": 15.11.0
+    "@commercetools-uikit/icons": 15.11.0
+    "@commercetools-uikit/input-utils": 15.11.0
+    "@commercetools-uikit/secondary-icon-button": 15.11.0
+    "@commercetools-uikit/spacings-inline": 15.11.0
+    "@commercetools-uikit/text": 15.11.0
+    "@commercetools-uikit/tooltip": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    prop-types: 15.8.1
+    react-select: 5.7.0
   peerDependencies:
-    moment-timezone: 0.5.x
-  checksum: 33c9a1b4e865ebd9415b1c0f36582f22d0138486122b659db8a5b9820dfa6d6a5bda9e80ee9d540cadc15231ca2d3827deb97a19a4e06e6b64031031a8bbe72e
+    moment: 2.x
+    react: 17.x
+    react-intl: 5.x
+  checksum: 436f6a90234b2ab4952cc91172a55735898fac0bdf8e8472da7c9d00047eaa23a69c10afcfcc53d6e9b64e4bb2c3bcb3380e3631df81c3ffea1e69fb54524968
   languageName: node
   linkType: hard
 
@@ -4767,31 +4795,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/calendar-utils@npm:15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/calendar-utils@npm:15.9.0"
+"@commercetools-uikit/card@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/card@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/accessible-button": 15.9.0
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/hooks": 15.9.0
-    "@commercetools-uikit/icons": 15.9.0
-    "@commercetools-uikit/input-utils": 15.9.0
-    "@commercetools-uikit/secondary-icon-button": 15.9.0
-    "@commercetools-uikit/spacings-inline": 15.9.0
-    "@commercetools-uikit/text": 15.9.0
-    "@commercetools-uikit/tooltip": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/spacings-inset": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
-    react-select: 5.5.2
   peerDependencies:
-    moment: 2.x
     react: 17.x
-    react-intl: 5.x
-  checksum: ebb066b668b5056ef8fa2d0d8c880b420084e55888b13ddba284bcf8b5740d8472010092e7371f25b5d828a91ce7fd24b0e965467c53d04b83dcc7cb38f16131
+  checksum: e4a9e62964cc4c346ea32f29a485c5738f850213e2ce09a4d267b773fc733eeb2e52ff956b5c8469e578097f1e6a9d2ff4a2b9a9100cafc7b82e604da7637269
   languageName: node
   linkType: hard
 
@@ -4813,21 +4831,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/card@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/card@npm:15.9.0"
+"@commercetools-uikit/checkbox-input@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/checkbox-input@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/spacings-inset": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/icons": 15.11.0
+    "@commercetools-uikit/input-utils": 15.11.0
+    "@commercetools-uikit/select-utils": 15.11.0
+    "@commercetools-uikit/text": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
+    react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: 02b5343dd153e0ce95cdd779716b665b6d87c564364be91a5c48751380f34db8d9ce65928e20c6a0101d3362cab265943998f72c54a8586f77ffee5eff0e7c34
+  checksum: 97d9a2ec971b1acfe764a367e7658be9e5a14c2da6fd815064a1b07e3e9b2fe18e3d443faaac700b324fc592e318188cf96cc7cb3f6b846bc0252621f52a0ef7
   languageName: node
   linkType: hard
 
@@ -4853,25 +4875,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/checkbox-input@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/checkbox-input@npm:15.9.0"
+"@commercetools-uikit/constraints@npm:15.11.0, @commercetools-uikit/constraints@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/constraints@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/icons": 15.9.0
-    "@commercetools-uikit/input-utils": 15.9.0
-    "@commercetools-uikit/select-utils": 15.9.0
-    "@commercetools-uikit/text": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
-    react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: e48c94e70067ed080e304396c056aa3bf6a39e095195474d72285932561138deb4e7ab5a13e18eb0c7139d3b4d1f6777ebc8d5b85bcbd4cc8d6d15371aecf1ee
+  checksum: 66851bf125a6c7a644c34143c9e90f7cd804fc92db6c9b246a91586a19bafb7a84b706c026ddf1f12e5c278b30057c79c4047135e8bc59a8addfa0b902b158e4
   languageName: node
   linkType: hard
 
@@ -4892,35 +4909,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/constraints@npm:15.9.0, @commercetools-uikit/constraints@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/constraints@npm:15.9.0"
+"@commercetools-uikit/data-table@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/data-table@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
-    "@emotion/react": ^11.4.0
-    "@emotion/styled": ^11.3.0
-    prop-types: 15.8.1
-  peerDependencies:
-    react: 17.x
-  checksum: 086f0da4e0f0c8e29f8ef1b764cd79f02394624b18a51ac174270353797b99c3cad4cf3f545138557ed8d415718dca9371943be452ae6763a71c83b51c511aaf
-  languageName: node
-  linkType: hard
-
-"@commercetools-uikit/data-table@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/data-table@npm:15.9.0"
-  dependencies:
-    "@babel/runtime": ^7.19.0
-    "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/accessible-button": 15.9.0
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/hooks": 15.9.0
-    "@commercetools-uikit/icons": 15.9.0
-    "@commercetools-uikit/secondary-icon-button": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/accessible-button": 15.11.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/hooks": 15.11.0
+    "@commercetools-uikit/icons": 15.11.0
+    "@commercetools-uikit/secondary-icon-button": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     lodash: 4.17.21
@@ -4928,7 +4928,7 @@ __metadata:
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: 4c045d003d0a02dac4eaf08c6c9f27c276671897625018915afaf03d2718d25e53d2dd0f7c069f40ccf531c16958edaccd2523bb07051cc466436193f83290d7
+  checksum: 2a59e5c9d8a6af1df2c4512cd8fec381caa9d6a17f79e6f4db7d49709d0025c35b41f6b1ec94d69af6faa2fa5375064151c07f8d890b96b4116d5dc5b923c57b
   languageName: node
   linkType: hard
 
@@ -4965,25 +4965,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/date-time-input@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/date-time-input@npm:15.9.0"
+"@commercetools-uikit/date-time-input@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/date-time-input@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/accessible-button": 15.9.0
-    "@commercetools-uikit/calendar-time-utils": 15.9.0
-    "@commercetools-uikit/calendar-utils": 15.9.0
-    "@commercetools-uikit/constraints": 15.9.0
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/hooks": 15.9.0
-    "@commercetools-uikit/icons": 15.9.0
-    "@commercetools-uikit/secondary-icon-button": 15.9.0
-    "@commercetools-uikit/select-utils": 15.9.0
-    "@commercetools-uikit/spacings-inline": 15.9.0
-    "@commercetools-uikit/text": 15.9.0
-    "@commercetools-uikit/tooltip": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/accessible-button": 15.11.0
+    "@commercetools-uikit/calendar-time-utils": 15.11.0
+    "@commercetools-uikit/calendar-utils": 15.11.0
+    "@commercetools-uikit/constraints": 15.11.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/hooks": 15.11.0
+    "@commercetools-uikit/icons": 15.11.0
+    "@commercetools-uikit/secondary-icon-button": 15.11.0
+    "@commercetools-uikit/select-utils": 15.11.0
+    "@commercetools-uikit/spacings-inline": 15.11.0
+    "@commercetools-uikit/text": 15.11.0
+    "@commercetools-uikit/tooltip": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     downshift: 6.1.12
@@ -4994,7 +4994,21 @@ __metadata:
     moment: 2.x
     react: 17.x
     react-intl: 5.x
-  checksum: 3af930ad3dba75423db7ec3aac25e146281806a67c61fd444f66ac6b2db57fa0fb082fb6772604c363ee1ae0535343553f69aba16fe6792f7a03405cfa76def0
+  checksum: 17c9349d7ed9b24bdc258f77582d313b95497019108de7adb72ad64f3e263de1b39a87708b2cd044dca55c9fffab78a4df95b2b0eb2cad1cc4e2f603564403b3
+  languageName: node
+  linkType: hard
+
+"@commercetools-uikit/design-system@npm:15.11.0, @commercetools-uikit/design-system@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/design-system@npm:15.11.0"
+  dependencies:
+    "@babel/runtime": ^7.19.0
+    "@babel/runtime-corejs3": ^7.19.1
+    "@emotion/react": ^11.4.0
+    lodash: 4.17.21
+    prop-types: 15.8.1
+    react: 17.0.2
+  checksum: d343bdf377763a2c1993d2ce5ba7d755318bdbcc91e99de571ab3d4473698226546fcc8470f0df42f944fde2c11569f27b7742485df648b1329ee4976c1b0e03
   languageName: node
   linkType: hard
 
@@ -5011,58 +5025,67 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/design-system@npm:15.9.0, @commercetools-uikit/design-system@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/design-system@npm:15.9.0"
+"@commercetools-uikit/field-errors@npm:15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/field-errors@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    lodash: 4.17.21
-    prop-types: 15.8.1
-    react: 17.0.2
-  checksum: 14369b23f72e621fd259449118c1e5748d69e7cad241a1efc50a67073439b3c5349f323aaae13ec699ae0630aabfd7172b2b59542842165f60ec7d2463a68148
-  languageName: node
-  linkType: hard
-
-"@commercetools-uikit/field-errors@npm:15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/field-errors@npm:15.9.0"
-  dependencies:
-    "@babel/runtime": ^7.19.0
-    "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/messages": 15.9.0
+    "@commercetools-uikit/messages": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
     react-intl: 5.x
-  checksum: c764be2cb42e5d464dd62b410a3281610c1d6020a58e1c6cb473ce2f3b2cf49202cea868dff52af5bc0d777e3d71220fcac720c2b411f4e85d37aa960222c7ed
+  checksum: 5555a125f097673b63139f6aaa8f7d8fe735eed4231e6d188844577f31ece2795d8dc94c78f731f5ae55978548940a0115177b7c3ab8beaa1346b56195230093
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/field-label@npm:15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/field-label@npm:15.9.0"
+"@commercetools-uikit/field-label@npm:15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/field-label@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 15.9.0
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/icon-button": 15.9.0
-    "@commercetools-uikit/icons": 15.9.0
-    "@commercetools-uikit/label": 15.9.0
-    "@commercetools-uikit/spacings-inline": 15.9.0
-    "@commercetools-uikit/spacings-stack": 15.9.0
-    "@commercetools-uikit/text": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/constraints": 15.11.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/icon-button": 15.11.0
+    "@commercetools-uikit/icons": 15.11.0
+    "@commercetools-uikit/label": 15.11.0
+    "@commercetools-uikit/spacings-inline": 15.11.0
+    "@commercetools-uikit/spacings-stack": 15.11.0
+    "@commercetools-uikit/text": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: 4b5e085b8d6b5bcff7a59ffa1e020caf22aacfe98d87ed104b909245930ffc5253347b78de64625b488703135f6e057c3ff5e5d735773a2ec35c40d6d6bb685b
+  checksum: 1fdf777d8da03929f95990f859736b86b063e15ba283b0076e625c5c8b706c269f8d844cd773865bb9f222ddbe6ef073bd42de972111141f9b37b0911477bf4f
+  languageName: node
+  linkType: hard
+
+"@commercetools-uikit/flat-button@npm:15.11.0, @commercetools-uikit/flat-button@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/flat-button@npm:15.11.0"
+  dependencies:
+    "@babel/runtime": ^7.19.0
+    "@babel/runtime-corejs3": ^7.19.1
+    "@commercetools-uikit/accessible-button": 15.11.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/spacings-inline": 15.11.0
+    "@commercetools-uikit/text": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    lodash: 4.17.21
+    prop-types: 15.8.1
+    react-intl: ^5.25.1
+  peerDependencies:
+    react: 17.x
+  checksum: 9b25ff5668fac0c79253bf985b2606a03dae35505f0e751bcb4db5a71e2e0bd2250390bf5bf1b33b73ee915d4c3d3fa0d7cfabba4fa31779a366ac9cdd7b518d
   languageName: node
   linkType: hard
 
@@ -5088,40 +5111,32 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/flat-button@npm:15.9.0, @commercetools-uikit/flat-button@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/flat-button@npm:15.9.0"
+"@commercetools-uikit/grid@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/grid@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/accessible-button": 15.9.0
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/spacings-inline": 15.9.0
-    "@commercetools-uikit/text": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
-    lodash: 4.17.21
     prop-types: 15.8.1
-    react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: e0d3f699b4cb64f673a1155bdc889ac625c22ca2450b4859990b6bd4eaf56cb7e723e73faa9b34b7e72262efa8382d6f69836c9adbeeb4b5976f0864ed786f61
+  checksum: 0059de8d14e8e38e29fd50d77f01bac4c14d89cf740105fc31433c9f33907299bf1d4098872461ecd7943a4a020441135034c59a7c57cb81e033e65477bb380c
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/grid@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/grid@npm:15.9.0"
+"@commercetools-uikit/hooks@npm:15.11.0, @commercetools-uikit/hooks@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/hooks@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@emotion/react": ^11.4.0
-    "@emotion/styled": ^11.3.0
-    prop-types: 15.8.1
+    "@commercetools-uikit/utils": 15.11.0
+    lodash: 4.17.21
   peerDependencies:
     react: 17.x
-  checksum: f592932f394e986d4b196f50cf0c6465fc732995456f18eeebfbb34d2fd329f37f917df84cb6874f441c04adbdebbd49f9196bb652041ec11698877c48feba3b
+  checksum: 30341e5290d043c1f94d237146dfe57b11837bf7e30cc33bd3550d186a0ef12c4bd0dc2f713f50bea2109a085f18eace29a337c1d003e03898f87112bb588f00
   languageName: node
   linkType: hard
 
@@ -5139,41 +5154,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/hooks@npm:15.9.0, @commercetools-uikit/hooks@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/hooks@npm:15.9.0"
+"@commercetools-uikit/i18n@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/i18n@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/utils": 15.9.0
-    lodash: 4.17.21
-  peerDependencies:
-    react: 17.x
-  checksum: 01a143114c0fe515cae3aff950332bda7c30dddaa5b4a61eff7df9f2d3af4e589b58a58d11a844446c42921051ce132b83f504bdee35ffb48d33da57612d5430
+  checksum: 6b043ebef834b823ed78286fa5c9389918cac5fe6afd4a5e282903cdb65c0cb330da8c9b91695a9951dd5f7890ec3727f8f07a3f997de015018db7d4498d021b
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/i18n@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/i18n@npm:15.9.0"
+"@commercetools-uikit/icon-button@npm:15.11.0, @commercetools-uikit/icon-button@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/icon-button@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-  checksum: 61bf804ad507e3ab797daca5ee82714a573681be88afb099337c0b399718cd726916a7325be09778a3246474c63a726f1c3ac8f72bf68135ba21325d3dbc6d33
-  languageName: node
-  linkType: hard
-
-"@commercetools-uikit/icon-button@npm:15.9.0, @commercetools-uikit/icon-button@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/icon-button@npm:15.9.0"
-  dependencies:
-    "@babel/runtime": ^7.19.0
-    "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/accessible-button": 15.9.0
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/spacings": 15.9.0
-    "@commercetools-uikit/text": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/accessible-button": 15.11.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/spacings": 15.11.0
+    "@commercetools-uikit/text": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     lodash: 4.17.21
@@ -5181,7 +5182,7 @@ __metadata:
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: 6068e16123ab4d127dd72590426eda100d975924a8f8c89da3989e1847e08ed2b724dec80bf4bb07929f9692ea271eb6877193522c90d6a26eb8af107f39803f
+  checksum: 74779436601594517245830efff4bf9962d85bfc109912e5e3604091398bbd0bb7addc1535217221bfa69542a1c5cf77cb1413a2b4af56b3a3116b5c83836270
   languageName: node
   linkType: hard
 
@@ -5207,6 +5208,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@commercetools-uikit/icons@npm:15.11.0, @commercetools-uikit/icons@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/icons@npm:15.11.0"
+  dependencies:
+    "@babel/runtime": ^7.19.0
+    "@babel/runtime-corejs3": ^7.19.1
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    "@types/dompurify": ^2.3.4
+    dompurify: 2.4.3
+    prop-types: 15.8.1
+    react-from-dom: 0.6.2
+  peerDependencies:
+    react: 17.x
+  checksum: 2005cd30c4cab064f751440f9bc8b942a32c35512ef81c171319e89796edd32757b02bfc12447fe3aa31358f09af57e964c38d9fc54c8a721fc408ffadbdedfe
+  languageName: node
+  linkType: hard
+
 "@commercetools-uikit/icons@npm:15.3.0, @commercetools-uikit/icons@npm:^15.3.0":
   version: 15.3.0
   resolution: "@commercetools-uikit/icons@npm:15.3.0"
@@ -5227,23 +5248,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/icons@npm:15.9.0, @commercetools-uikit/icons@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/icons@npm:15.9.0"
+"@commercetools-uikit/input-utils@npm:15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/input-utils@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/flat-button": 15.11.0
+    "@commercetools-uikit/icons": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
-    "@emotion/styled": ^11.3.0
-    "@types/dompurify": ^2.3.4
-    dompurify: 2.4.0
     prop-types: 15.8.1
-    react-from-dom: 0.6.2
+    react-textarea-autosize: 8.4.0
   peerDependencies:
     react: 17.x
-  checksum: 9438c458c325ccbe89e7faa19adaf59280061c71480d7a304bc5edb09221aab469b4f40eb270290666440039238f10b79e530f847ab1c95fccb4a95536d00607
+    react-intl: 5.x
+  checksum: 3e392605e0bfdf4825770b1fb25f81bc2a923ff50e40f23e06090238d98f6652d808980500e234868d371e68cbb86627ee77be62d4ef573b4f18c2857a231225
   languageName: node
   linkType: hard
 
@@ -5267,55 +5288,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/input-utils@npm:15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/input-utils@npm:15.9.0"
+"@commercetools-uikit/label@npm:15.11.0, @commercetools-uikit/label@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/label@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/flat-button": 15.9.0
-    "@commercetools-uikit/icons": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
-    "@emotion/react": ^11.4.0
-    prop-types: 15.8.1
-    react-textarea-autosize: 8.3.4
-  peerDependencies:
-    react: 17.x
-    react-intl: 5.x
-  checksum: 5f7c4ac135f4d5ca25c1ce8190c386295de112f9f7a108de626f224860a4bfb9df5ec93dfea14e3a15038110f6dbef5b833c23db46468c0defe0ea9522c5fee6
-  languageName: node
-  linkType: hard
-
-"@commercetools-uikit/label@npm:15.9.0, @commercetools-uikit/label@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/label@npm:15.9.0"
-  dependencies:
-    "@babel/runtime": ^7.19.0
-    "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/text": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/text": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
     react-intl: 5.x
-  checksum: 3126ce61493c0188e211fd4c175788dd500daeaf22044cc2d8bef19dd8779b848f526dc7e67301a7c42c91b5273b1416e678dc5e9a7d2480558e552f44269376
+  checksum: 4b756cc8e554dd18b7dde5780215e6da7f5cdb3485f7de242858b15a3b63482a74d6984b0c18196709be748ca9581605dd8af2755edbaf4f5506769f8178c049
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/link@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/link@npm:15.9.0"
+"@commercetools-uikit/link@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/link@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/icons": 15.9.0
-    "@commercetools-uikit/spacings-inline": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/icons": 15.11.0
+    "@commercetools-uikit/spacings-inline": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     "@types/history": ^4.7.11
@@ -5326,7 +5327,26 @@ __metadata:
     react: 17.x
     react-intl: 5.x
     react-router-dom: 5.x
-  checksum: 4522df6cc8420dcf1812e6253aeed22d1c23488916b9e379ba03c00f0d9b1a921187ad798c2c4801256e4853eb25710df141f1fe91ab9b5485525d28447231a1
+  checksum: 8a6d4d029356f7eb3bb8c58a965ae780ae0cb9708171b04366c8ef0e443a56935e0577f3acbf37b8192b9907d4e4417c943a5c40ca3a900afd5a2fbd8aa8a1b5
+  languageName: node
+  linkType: hard
+
+"@commercetools-uikit/loading-spinner@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/loading-spinner@npm:15.11.0"
+  dependencies:
+    "@babel/runtime": ^7.19.0
+    "@babel/runtime-corejs3": ^7.19.1
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/spacings-inline": 15.11.0
+    "@commercetools-uikit/text": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
+    "@emotion/react": ^11.4.0
+    prop-types: 15.8.1
+    react-intl: ^5.25.1
+  peerDependencies:
+    react: 17.x
+  checksum: c35e762ee25060ff2533c3fe510d3bb2c68f19d743f437430c223c0530d12c4c0890d2adb1b9237492b0636b09cdaa27a8afd8a9217f9b23115c40af96ae9c87
   languageName: node
   linkType: hard
 
@@ -5349,210 +5369,191 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/loading-spinner@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/loading-spinner@npm:15.9.0"
+"@commercetools-uikit/localized-text-field@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/localized-text-field@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/spacings-inline": 15.9.0
-    "@commercetools-uikit/text": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
-    "@emotion/react": ^11.4.0
-    prop-types: 15.8.1
-    react-intl: ^5.25.1
-  peerDependencies:
-    react: 17.x
-  checksum: 5170746a0856f633358846b1100b79bfc9b1646d71c3eef288bb58f531ee1fef284e897f07a81eac319e974d2f4825d86c20f194f6a9dc4a2c6739145be778b0
-  languageName: node
-  linkType: hard
-
-"@commercetools-uikit/localized-text-field@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/localized-text-field@npm:15.9.0"
-  dependencies:
-    "@babel/runtime": ^7.19.0
-    "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 15.9.0
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/field-errors": 15.9.0
-    "@commercetools-uikit/field-label": 15.9.0
-    "@commercetools-uikit/localized-text-input": 15.9.0
-    "@commercetools-uikit/spacings": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/constraints": 15.11.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/field-errors": 15.11.0
+    "@commercetools-uikit/field-label": 15.11.0
+    "@commercetools-uikit/localized-text-input": 15.11.0
+    "@commercetools-uikit/spacings": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: 14fc3502427c23bbe5be10b3aa3cdb53c933fcdec7603cde14efd17acc636dff22fb730b53ea35d5aad79c7f07cd06abbe09e49812faf4f6695572bf1cf854d6
+  checksum: dcf8922f35ec754f2c745531f75e0f118791ceb28247620b1a9c0367d584ab934273a4e996d04648e8a676d1d18d201a6f1a03e2550936f90dd9e3cb8a0567ce
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/localized-text-input@npm:15.9.0, @commercetools-uikit/localized-text-input@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/localized-text-input@npm:15.9.0"
+"@commercetools-uikit/localized-text-input@npm:15.11.0, @commercetools-uikit/localized-text-input@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/localized-text-input@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 15.9.0
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/flat-button": 15.9.0
-    "@commercetools-uikit/hooks": 15.9.0
-    "@commercetools-uikit/icons": 15.9.0
-    "@commercetools-uikit/input-utils": 15.9.0
-    "@commercetools-uikit/localized-utils": 15.9.0
-    "@commercetools-uikit/messages": 15.9.0
-    "@commercetools-uikit/spacings-stack": 15.9.0
-    "@commercetools-uikit/text": 15.9.0
-    "@commercetools-uikit/text-input": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/constraints": 15.11.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/flat-button": 15.11.0
+    "@commercetools-uikit/hooks": 15.11.0
+    "@commercetools-uikit/icons": 15.11.0
+    "@commercetools-uikit/input-utils": 15.11.0
+    "@commercetools-uikit/localized-utils": 15.11.0
+    "@commercetools-uikit/messages": 15.11.0
+    "@commercetools-uikit/spacings-stack": 15.11.0
+    "@commercetools-uikit/text": 15.11.0
+    "@commercetools-uikit/text-input": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
     react-intl: 5.x
-  checksum: 21617c227fedc10633a6b9ced4304826da7faf191f596e6c3e5a6fb8b5c450e5970e316a6c5a6f7ccc4de72dde5b47c3e78f74613144ce9eb4b1a80d61c88ccc
+  checksum: 183f734bf230f4f77a66396098438fa11dc60d54b627cf13dd2609f8ac4242e194d18b2770a20d59035939c9518ade7f26e1c0808c4fcc875897306f33d2a57a
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/localized-utils@npm:15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/localized-utils@npm:15.9.0"
+"@commercetools-uikit/localized-utils@npm:15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/localized-utils@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/utils": 15.11.0
     lodash: 4.17.21
-  checksum: e6121ad1858608516de8fcd3333f912a9e211b4d32f789e68d6dbef7f32ff79285905381317d0e8133f9b453ece4a6603da85a8408ef9b8cd10a1bfadb674618
+  checksum: ea542cceba43924c3868bb0330968542e1188f1336f7fe51de6643d88d5f6caf0ae7e78291791a9f316958bc7f38daf4c80c3e7d9a3d3a3492a573a9248d58ec
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/messages@npm:15.9.0, @commercetools-uikit/messages@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/messages@npm:15.9.0"
+"@commercetools-uikit/messages@npm:15.11.0, @commercetools-uikit/messages@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/messages@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/text": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/text": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: 21bbd1eb5aa48e0b3763e8bf13957a582041efb2664b9936134a209dd0688d0e773f79c7ebcff9b9428e4eda02fe5d2b021826d4ed2ac4e50acf8af9bc552497
+  checksum: 49eca09130bb23bbd3f92fd70097684f892c357e75b688e7e787ff9c8721f55ec3a399a43d76d711558548fc55bd39441b865ef4c6746ebe4db929544bede22e
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/multiline-text-field@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/multiline-text-field@npm:15.9.0"
+"@commercetools-uikit/multiline-text-field@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/multiline-text-field@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 15.9.0
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/field-errors": 15.9.0
-    "@commercetools-uikit/field-label": 15.9.0
-    "@commercetools-uikit/multiline-text-input": 15.9.0
-    "@commercetools-uikit/spacings": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/constraints": 15.11.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/field-errors": 15.11.0
+    "@commercetools-uikit/field-label": 15.11.0
+    "@commercetools-uikit/multiline-text-input": 15.11.0
+    "@commercetools-uikit/spacings": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: 9efc82fa56a1fe070cb58d2f24e697cfe07b821c5d8dc45dca720a5663ad9b4358342c789b0b47af1746814a4a7d5e00845550e508f9d72da01b882c3c44e72c
+  checksum: 353d3c41f33f73400d35513f4963538f567c672d8254133d67ef719b17db1c6af1489b114d7dc9ed94963a976bdb0d470c2fd97d96e5a856c1f837bb0815cb94
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/multiline-text-input@npm:15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/multiline-text-input@npm:15.9.0"
+"@commercetools-uikit/multiline-text-input@npm:15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/multiline-text-input@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 15.9.0
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/flat-button": 15.9.0
-    "@commercetools-uikit/hooks": 15.9.0
-    "@commercetools-uikit/icons": 15.9.0
-    "@commercetools-uikit/input-utils": 15.9.0
-    "@commercetools-uikit/spacings-inline": 15.9.0
-    "@commercetools-uikit/spacings-stack": 15.9.0
-    "@commercetools-uikit/tooltip": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/constraints": 15.11.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/flat-button": 15.11.0
+    "@commercetools-uikit/hooks": 15.11.0
+    "@commercetools-uikit/icons": 15.11.0
+    "@commercetools-uikit/input-utils": 15.11.0
+    "@commercetools-uikit/spacings-inline": 15.11.0
+    "@commercetools-uikit/spacings-stack": 15.11.0
+    "@commercetools-uikit/tooltip": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     downshift: 6.1.12
     prop-types: 15.8.1
-    react-textarea-autosize: 8.3.4
+    react-textarea-autosize: 8.4.0
   peerDependencies:
     react: 17.x
     react-intl: 5.x
-  checksum: ab8fcb7652f1512b7d94415c54da633ceaa2c20ffd243805463f3ca37dafe42da5d331a0c37dfc204f7bfcc908dd4400e4fe3d11fea655b6725ea1850c46c539
+  checksum: b4845eb07601a193e6769c8b4ec684de909a043cd79d0c6ad9a36868d56d5ee4289f4f885bd4bf63a4986a5ed2c22002dbe9ff8f28a2ec7fa4d4990baa6a6db9
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/notifications@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/notifications@npm:15.9.0"
+"@commercetools-uikit/notifications@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/notifications@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/icons": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/icons": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
     react-intl: 5.x
-  checksum: 305090845e38d8796ad83229e4575230ace976b10139cc335a2b347a1a061aa37b31caa7c895421f524d021d6a392cccd766aabbcad6ac96f8b8be7b3af69835
+  checksum: 0c6ba974045acb030468b5f695ecfa5890acd5ea6a8eea89a442193f89a53ee581feed98d5eb104a819a7008ef2430d558891a92c172839c99efac7a033a7dd1
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/number-input@npm:15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/number-input@npm:15.9.0"
+"@commercetools-uikit/number-input@npm:15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/number-input@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 15.9.0
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/input-utils": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/constraints": 15.11.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/input-utils": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
-  checksum: a66e53deaa19daf0feb306d6ae8964e9266841791936a242028e6a4a4cc551cc355a5ad3cf5e4d518701f1f61a1639f54f38318483814a1976e310cf50dc88b3
+  checksum: fe433958b649156f2e585aceca90125f6dd3af88508f6f459bfa559a3d7fc172e3a57612fb41bf16066c68213ecec686861dc74d92909632d585175d0373bf72
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/pagination@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/pagination@npm:15.9.0"
+"@commercetools-uikit/pagination@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/pagination@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 15.9.0
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/icons": 15.9.0
-    "@commercetools-uikit/label": 15.9.0
-    "@commercetools-uikit/number-input": 15.9.0
-    "@commercetools-uikit/secondary-icon-button": 15.9.0
-    "@commercetools-uikit/select-input": 15.9.0
-    "@commercetools-uikit/spacings": 15.9.0
-    "@commercetools-uikit/text": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/constraints": 15.11.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/icons": 15.11.0
+    "@commercetools-uikit/label": 15.11.0
+    "@commercetools-uikit/number-input": 15.11.0
+    "@commercetools-uikit/secondary-icon-button": 15.11.0
+    "@commercetools-uikit/select-input": 15.11.0
+    "@commercetools-uikit/spacings": 15.11.0
+    "@commercetools-uikit/text": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     formik: ^2.2.9
@@ -5561,21 +5562,21 @@ __metadata:
   peerDependencies:
     react: 17.x
     react-intl: 5.x
-  checksum: 5134e7f5b1fd04af6d10b773af83770759c0cd49922569fc251edfde8a7cd287a7faa7500c20473d92f02d495097bda899a3e98b81a1ef79bda91a91b2c4b437
+  checksum: 9fefcde4060806453c9710f68f1839d573f4c34ef51636d40c3e584749ff9b4d0e1c2cba0dce2d67e3e708f0d29a61d6871583210997b1cfda1860f38b4fd7d3
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/primary-button@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/primary-button@npm:15.9.0"
+"@commercetools-uikit/primary-button@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/primary-button@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/accessible-button": 15.9.0
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/spacings-inline": 15.9.0
-    "@commercetools-uikit/text": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/accessible-button": 15.11.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/spacings-inline": 15.11.0
+    "@commercetools-uikit/text": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     lodash: 4.17.21
@@ -5583,21 +5584,21 @@ __metadata:
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: db61b95b90304cc7c82ecca65e67934e3e90da3677b2ad1b2d43735065b648a023a4f34aecc0d3874473385fa8629030e3849f0972396d7846fed2b2aa0129bb
+  checksum: 12e796d89ed9412ae26ee3a0040c8be3c06c2a05b637082bb000d0c7d5a8c54e82c6529f6eda50637fb3e47fa0421b02b3fb0d1ca9a3149992ef1647e9773ae4
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/secondary-button@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/secondary-button@npm:15.9.0"
+"@commercetools-uikit/secondary-button@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/secondary-button@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/accessible-button": 15.9.0
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/spacings-inline": 15.9.0
-    "@commercetools-uikit/text": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/accessible-button": 15.11.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/spacings-inline": 15.11.0
+    "@commercetools-uikit/text": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     lodash: 4.17.21
@@ -5606,7 +5607,29 @@ __metadata:
     react: 17.x
     react-intl: 5.x
     react-router-dom: 5.x
-  checksum: b4277e666eda74dda1ae41afd40b69d11633015e54a9eea32d8a922021cc3c789563f71dd9af4a1dc601293269c2a757e2ac4f69fbc11418d8ca0999e5d0cfc0
+  checksum: a0fb87b0b5cd54120c706a0af310da32fdd0ee8badece6bbb01fd9abcd63c87a6637a70eddc52a67583cff6f539c4c0ada90c6505f431bfdcefa370d71b420be
+  languageName: node
+  linkType: hard
+
+"@commercetools-uikit/secondary-icon-button@npm:15.11.0, @commercetools-uikit/secondary-icon-button@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/secondary-icon-button@npm:15.11.0"
+  dependencies:
+    "@babel/runtime": ^7.19.0
+    "@babel/runtime-corejs3": ^7.19.1
+    "@commercetools-uikit/accessible-button": 15.11.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/spacings": 15.11.0
+    "@commercetools-uikit/text": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    lodash: 4.17.21
+    prop-types: 15.8.1
+    react-intl: ^5.25.1
+  peerDependencies:
+    react: 17.x
+  checksum: b80da461cea51190466a43c70560e8ca6fd645b7f5bd131d9d41ae250ce1c19913d986abba1553ca17750a553ba47011bf2df3541d33b8d6fd9f57463349a6e9
   languageName: node
   linkType: hard
 
@@ -5632,72 +5655,74 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/secondary-icon-button@npm:15.9.0, @commercetools-uikit/secondary-icon-button@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/secondary-icon-button@npm:15.9.0"
+"@commercetools-uikit/select-field@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/select-field@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/accessible-button": 15.9.0
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/spacings": 15.9.0
-    "@commercetools-uikit/text": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
-    "@emotion/react": ^11.4.0
-    "@emotion/styled": ^11.3.0
-    lodash: 4.17.21
-    prop-types: 15.8.1
-    react-intl: ^5.25.1
-  peerDependencies:
-    react: 17.x
-  checksum: 0738dc6fb5b17f2301687767d9d14dae9df7364249553348c090a57e73855de2a2534959a839428e8481df6a007499aa0c3c084fad70458163587927caebaec2
-  languageName: node
-  linkType: hard
-
-"@commercetools-uikit/select-field@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/select-field@npm:15.9.0"
-  dependencies:
-    "@babel/runtime": ^7.19.0
-    "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 15.9.0
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/field-errors": 15.9.0
-    "@commercetools-uikit/field-label": 15.9.0
-    "@commercetools-uikit/select-input": 15.9.0
-    "@commercetools-uikit/spacings": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/constraints": 15.11.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/field-errors": 15.11.0
+    "@commercetools-uikit/field-label": 15.11.0
+    "@commercetools-uikit/select-input": 15.11.0
+    "@commercetools-uikit/spacings": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: 4f81578bddd30bc7e59b5e39fcadba01e08fdade190e97c0d3259f0fa023ca99cde206c38990fe0015606646ad769ad995b76aa4899efe8e7f83bb32d775ebbf
+  checksum: 75a520adc4eccdea0c8f007dd8b4bfdf06c9d63f009bb5e1dadcd039882bd0a30f0d97111e37ffc215b644900d3090ee582b25f23604d560778bd1c1c5138844
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/select-input@npm:15.9.0, @commercetools-uikit/select-input@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/select-input@npm:15.9.0"
+"@commercetools-uikit/select-input@npm:15.11.0, @commercetools-uikit/select-input@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/select-input@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 15.9.0
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/icons": 15.9.0
-    "@commercetools-uikit/select-utils": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/constraints": 15.11.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/icons": 15.11.0
+    "@commercetools-uikit/select-utils": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/is-prop-valid": 1.2.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     lodash: 4.17.21
     prop-types: 15.8.1
-    react-select: 5.5.2
+    react-select: 5.7.0
   peerDependencies:
     react: 17.x
     react-intl: 5.x
-  checksum: efb94ded9521549e59213b8917f2a02da78458c255b74234b71277a12077d7fdecd10c3fa00bdd615f93850ef4c9edbd3b3a036f3067f4659bdcd1e3833927c3
+  checksum: f58f9742f3245b72e14e0e1c06dc5b42f0ec17f9c7c87707461de336ad92a3f19e4026f49a5d7618ebe72f457cef104dadc96805af029b0886212ddcd43bbc4a
+  languageName: node
+  linkType: hard
+
+"@commercetools-uikit/select-utils@npm:15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/select-utils@npm:15.11.0"
+  dependencies:
+    "@babel/runtime": ^7.19.0
+    "@babel/runtime-corejs3": ^7.19.1
+    "@commercetools-uikit/accessible-button": 15.11.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/icons": 15.11.0
+    "@commercetools-uikit/spacings": 15.11.0
+    "@commercetools-uikit/text": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    lodash: 4.17.21
+    prop-types: 15.8.1
+    react-select: 5.7.0
+  peerDependencies:
+    react: 17.x
+    react-intl: 5.x
+  checksum: 7d2d6298da9a218f9b2651769f892e9b1429c707ce7ba000b5838f40e3d37d2263093abf0fee905e704f61fe498dc8e5b2dda65725ccffe4265df9fbcf8b1228
   languageName: node
   linkType: hard
 
@@ -5725,27 +5750,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/select-utils@npm:15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/select-utils@npm:15.9.0"
+"@commercetools-uikit/spacings-inline@npm:15.11.0, @commercetools-uikit/spacings-inline@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/spacings-inline@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/accessible-button": 15.9.0
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/icons": 15.9.0
-    "@commercetools-uikit/spacings": 15.9.0
-    "@commercetools-uikit/text": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
-    "@emotion/styled": ^11.3.0
-    lodash: 4.17.21
     prop-types: 15.8.1
-    react-select: 5.5.2
   peerDependencies:
     react: 17.x
-    react-intl: 5.x
-  checksum: 4c65dad7a55804fe2b2b997c92a3fa4cef840e91ebb3bac2fca2b982f14a270cf739cc7f707ae0eee31aea71fff18a8370ed40612e28e028a39c7dbe0c9e7b1a
+  checksum: f96ef7aa947cd767a7767d81907e952b4dc25bb33662efe807cbd57b47f87df5ade3c61114c2971809ad100db8d355ea0b1a95f9a7e14e8e9175f85f3b61b6d3
   languageName: node
   linkType: hard
 
@@ -5765,19 +5782,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/spacings-inline@npm:15.9.0, @commercetools-uikit/spacings-inline@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/spacings-inline@npm:15.9.0"
+"@commercetools-uikit/spacings-inset-squish@npm:15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/spacings-inset-squish@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
-  checksum: 582b0f4db0430d1967005c16de5f6eea535deda869b3ea9a699d1ced1d0c6a405a10de074ceefb4a5ec1d7c5e7f6e1f1ecbebf46b4c36d38cf2c66ce9f932a31
+  checksum: a83d8349b1bd3e7cf458e2620915844697609da4171204c1a1fa30e1a6979fd1a1ed95db36aace8be652ddfe75b84ce47eca2ac8400ee9b48d5ebb0eae119737
   languageName: node
   linkType: hard
 
@@ -5797,19 +5814,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/spacings-inset-squish@npm:15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/spacings-inset-squish@npm:15.9.0"
+"@commercetools-uikit/spacings-inset@npm:15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/spacings-inset@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
-  checksum: 6ad0cff3c2efe0d505a669a388b28d037a4f20abf1991d711c5f0e7dac733e718c2088a959c75f1c4eb94dd475735a0ceeb2730e5310ed97d290b9098a02cd73
+  checksum: 1295d5651859e8d2378a3d8dae9720a8e30226ddc0fb7df842636f420ccb450cc40197f8db41ab17c4887dcfa01af2eed65dd6dabac47b9817c382a6c5af5d82
   languageName: node
   linkType: hard
 
@@ -5829,19 +5846,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/spacings-inset@npm:15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/spacings-inset@npm:15.9.0"
+"@commercetools-uikit/spacings-stack@npm:15.11.0, @commercetools-uikit/spacings-stack@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/spacings-stack@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
-  checksum: 15337b0953a03e25be781f9f788768dc65325e3806818a81632547b293881c8631b877b8fd7c2a1cf057879dfac4e61a9c2078b08462ae50b727b3995a0c8306
+  checksum: 78ac62ce07aded42d860ef0cd3993fb1762da395a1daa69f417390fa5e3e244f66f72b625b7f8d1a90a8593ffdb608bc06f332710094ba6d2759797be372293e
   languageName: node
   linkType: hard
 
@@ -5861,19 +5878,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/spacings-stack@npm:15.9.0, @commercetools-uikit/spacings-stack@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/spacings-stack@npm:15.9.0"
+"@commercetools-uikit/spacings@npm:15.11.0, @commercetools-uikit/spacings@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/spacings@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
-    "@emotion/react": ^11.4.0
-    prop-types: 15.8.1
+    "@commercetools-uikit/spacings-inline": 15.11.0
+    "@commercetools-uikit/spacings-inset": 15.11.0
+    "@commercetools-uikit/spacings-inset-squish": 15.11.0
+    "@commercetools-uikit/spacings-stack": 15.11.0
   peerDependencies:
     react: 17.x
-  checksum: d88b83625d1c6b276a2cf0fb827eac8e4dee866180ea512e5af5838201d01332861f092c47686e5d5bd704f5d4a72ba85cee5d52e974cb72c03d5cef5a0c8a47
+  checksum: 51bb98a9f85aec8c6864971324a3ba86d385d7676efffd65e9e0731122cf3f1b062c625b2b8d5b5aba463277321cea87f7de932486143dea0fda74b1244c41ab
   languageName: node
   linkType: hard
 
@@ -5893,22 +5910,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/spacings@npm:15.9.0, @commercetools-uikit/spacings@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/spacings@npm:15.9.0"
-  dependencies:
-    "@babel/runtime": ^7.19.0
-    "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/spacings-inline": 15.9.0
-    "@commercetools-uikit/spacings-inset": 15.9.0
-    "@commercetools-uikit/spacings-inset-squish": 15.9.0
-    "@commercetools-uikit/spacings-stack": 15.9.0
-  peerDependencies:
-    react: 17.x
-  checksum: c41d9dae568392f188e5f5f8b4f82e697bf13cf339b677d1840574b9035446b112ac6871f84a50a53130c897caf740021efadd4e90de8cd43a3f3c5dd503735a
-  languageName: node
-  linkType: hard
-
 "@commercetools-uikit/stamp@npm:^15.3.0":
   version: 15.3.0
   resolution: "@commercetools-uikit/stamp@npm:15.3.0"
@@ -5924,45 +5925,64 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/text-field@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/text-field@npm:15.9.0"
+"@commercetools-uikit/text-field@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/text-field@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 15.9.0
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/field-errors": 15.9.0
-    "@commercetools-uikit/field-label": 15.9.0
-    "@commercetools-uikit/spacings-stack": 15.9.0
-    "@commercetools-uikit/text-input": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/constraints": 15.11.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/field-errors": 15.11.0
+    "@commercetools-uikit/field-label": 15.11.0
+    "@commercetools-uikit/spacings-stack": 15.11.0
+    "@commercetools-uikit/text-input": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
     react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: 70cf779090c2254d87acba1130770105ab0b16f7430d574b3ad7221d90d7d22eebd5be9562f766fa0d496eb590d1e6e55f70eae7a46be328f736ad832ffdc207
+  checksum: 292cc0e74eb40d032c4ed191e27083a7842a7eeaa1d4752141831ea7d8ccd79472c867a82b850fa4b8f8a166f28d280657ae570c9faad97d6b3e426e085ba21b
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/text-input@npm:15.9.0, @commercetools-uikit/text-input@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/text-input@npm:15.9.0"
+"@commercetools-uikit/text-input@npm:15.11.0, @commercetools-uikit/text-input@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/text-input@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 15.9.0
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/input-utils": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/constraints": 15.11.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/input-utils": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
   peerDependencies:
     react: 17.x
-  checksum: 992e040c5f5e2d3e097e32a9875b2f715d772d1429e28ecc6ceb42770b78aa0f280d186b36b6e1f942eac444320c429fa0dbdc89ec1c5b29b40c706f87734c7a
+  checksum: dd5e5ab052f6709ab64942e3267bcb96cca4f2d26cc6349cefe5626cd3518713d9e5e43c01ffe28cc94ea1ec773dd2e9674f6a66db04d41901f28cdc7acb355f
+  languageName: node
+  linkType: hard
+
+"@commercetools-uikit/text@npm:15.11.0, @commercetools-uikit/text@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/text@npm:15.11.0"
+  dependencies:
+    "@babel/runtime": ^7.19.0
+    "@babel/runtime-corejs3": ^7.19.1
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
+    "@emotion/react": ^11.4.0
+    lodash: 4.17.21
+    prop-types: 15.8.1
+    warning: 4.0.3
+  peerDependencies:
+    react: 17.x
+    react-intl: 5.x
+  checksum: b8ce57cb90abe4a5caa92551e3c6214dedf7c6f1f7d24363d756c3ded6728879889356b454314aa2cd33534c39f4ab023af11b1ce93b54762f253be5b240a1e4
   languageName: node
   linkType: hard
 
@@ -5985,22 +6005,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/text@npm:15.9.0, @commercetools-uikit/text@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/text@npm:15.9.0"
+"@commercetools-uikit/tooltip@npm:15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/tooltip@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
+    "@commercetools-uikit/constraints": 15.11.0
+    "@commercetools-uikit/design-system": 15.11.0
+    "@commercetools-uikit/hooks": 15.11.0
+    "@commercetools-uikit/utils": 15.11.0
     "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
     lodash: 4.17.21
     prop-types: 15.8.1
-    warning: 4.0.3
+    react-is: 17.0.2
+    use-popper: 1.1.6
   peerDependencies:
     react: 17.x
-    react-intl: 5.x
-  checksum: 51b8073c7aa19fe1cd0485be0b5b623ddf6e53c3fe1cc48ad2f86c1131b8f46dcca3d474afd13bd4232b516e8a11d978095965c50c862a0b733b6f3bc6cd57f1
+  checksum: 25f004c6a329b958a98e8efad6177d3fa8985733fda7bc8cbf22a81049ea28d95419e68006bc56b86189129b4ed4f459344368840042d9ec0bb18e06d0c83309
   languageName: node
   linkType: hard
 
@@ -6026,25 +6049,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/tooltip@npm:15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/tooltip@npm:15.9.0"
+"@commercetools-uikit/utils@npm:15.11.0, @commercetools-uikit/utils@npm:^15.11.0":
+  version: 15.11.0
+  resolution: "@commercetools-uikit/utils@npm:15.11.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/constraints": 15.9.0
-    "@commercetools-uikit/design-system": 15.9.0
-    "@commercetools-uikit/hooks": 15.9.0
-    "@commercetools-uikit/utils": 15.9.0
-    "@emotion/react": ^11.4.0
-    "@emotion/styled": ^11.3.0
-    lodash: 4.17.21
-    prop-types: 15.8.1
-    react-is: 17.0.2
-    use-popper: 1.1.6
-  peerDependencies:
-    react: 17.x
-  checksum: e6b24c4ba22b00ed7d34ce587a2d71c0e95e4285b77b7c454bd344473575cd4e0a61f73fa7f2e068ed6185cffe42a115e43be6d194d78044ee598bf7311b13d8
+    "@emotion/is-prop-valid": 1.2.0
+    "@types/warning": ^3.0.0
+    warning: 4.0.3
+  checksum: 8a07b7c9450a182fd457acf277d72f8cfa014bd40eb1b0b437ae39b9371870d503e1cece1248441b470a40110d6eef74edd862cdd6d5ef78f564481d85491998
   languageName: node
   linkType: hard
 
@@ -6061,19 +6075,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/utils@npm:15.9.0, @commercetools-uikit/utils@npm:^15.9.0":
-  version: 15.9.0
-  resolution: "@commercetools-uikit/utils@npm:15.9.0"
-  dependencies:
-    "@babel/runtime": ^7.19.0
-    "@babel/runtime-corejs3": ^7.19.1
-    "@emotion/is-prop-valid": 1.2.0
-    "@types/warning": ^3.0.0
-    warning: 4.0.3
-  checksum: efeaa2fee67024d7c58ab46e7ffac3946149281c6204c1c8e644ef26f3158c938aba410350ac732b04986cd234204ddf6b25521491752d7c9404d127ed2b6a2b
-  languageName: node
-  linkType: hard
-
 "@commercetools-website/components-playground@workspace:website-components-playground":
   version: 0.0.0-use.local
   resolution: "@commercetools-website/components-playground@workspace:website-components-playground"
@@ -6081,17 +6082,17 @@ __metadata:
     "@commercetools-frontend/application-components": 21.23.3
     "@commercetools-frontend/browser-history": 21.23.3
     "@commercetools-frontend/i18n": 21.23.3
-    "@commercetools-uikit/design-system": ^15.9.0
-    "@commercetools-uikit/icon-button": ^15.9.0
-    "@commercetools-uikit/icons": ^15.9.0
-    "@commercetools-uikit/link": ^15.9.0
-    "@commercetools-uikit/multiline-text-field": ^15.9.0
-    "@commercetools-uikit/secondary-button": ^15.9.0
-    "@commercetools-uikit/select-field": ^15.9.0
-    "@commercetools-uikit/spacings": ^15.9.0
-    "@commercetools-uikit/text": ^15.9.0
-    "@commercetools-uikit/text-field": ^15.9.0
-    "@commercetools-uikit/text-input": ^15.9.0
+    "@commercetools-uikit/design-system": ^15.11.0
+    "@commercetools-uikit/icon-button": ^15.11.0
+    "@commercetools-uikit/icons": ^15.11.0
+    "@commercetools-uikit/link": ^15.11.0
+    "@commercetools-uikit/multiline-text-field": ^15.11.0
+    "@commercetools-uikit/secondary-button": ^15.11.0
+    "@commercetools-uikit/select-field": ^15.11.0
+    "@commercetools-uikit/spacings": ^15.11.0
+    "@commercetools-uikit/text": ^15.11.0
+    "@commercetools-uikit/text-field": ^15.11.0
+    "@commercetools-uikit/text-input": ^15.11.0
     "@emotion/react": 11.10.4
     "@emotion/styled": 11.10.4
     "@vitejs/plugin-react": 3.0.0
@@ -6112,9 +6113,9 @@ __metadata:
   dependencies:
     "@commercetools-docs/gatsby-theme-docs": 19.8.1
     "@commercetools-docs/ui-kit": 19.7.0
-    "@commercetools-uikit/card": ^15.9.0
-    "@commercetools-uikit/spacings-inline": ^15.9.0
-    "@commercetools-uikit/spacings-stack": ^15.9.0
+    "@commercetools-uikit/card": ^15.11.0
+    "@commercetools-uikit/spacings-inline": ^15.11.0
+    "@commercetools-uikit/spacings-stack": ^15.11.0
     "@emotion/react": 11.10.4
     "@emotion/styled": 11.10.4
     "@svgr/cli": 6.5.0
@@ -18583,6 +18584,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dompurify@npm:2.4.3":
+  version: 2.4.3
+  resolution: "dompurify@npm:2.4.3"
+  checksum: b440981f2a38cada2085759cc3d1e2f94571afc34343d011a8a6aa1ad91ae6abf651adbfa4994b0e2283f0ce81f7891cdb04b67d0b234c8d190cb70e9691f026
+  languageName: node
+  linkType: hard
+
 "domutils@npm:1.5.1":
   version: 1.5.1
   resolution: "domutils@npm:1.5.1"
@@ -27871,6 +27879,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"memoize-one@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "memoize-one@npm:6.0.0"
+  checksum: f185ea69f7cceae5d1cb596266dcffccf545e8e7b4106ec6aa93b71ab9d16460dd118ac8b12982c55f6d6322fcc1485de139df07eacffaae94888b9b3ad7675f
+  languageName: node
+  linkType: hard
+
 "memoizeasync@npm:^1.1.0":
   version: 1.1.0
   resolution: "memoizeasync@npm:1.1.0"
@@ -28004,7 +28019,7 @@ __metadata:
     "@changesets/cli": 2.25.0
     "@commercetools-docs/writing-style": 3.1.1
     "@commercetools-test-data/core": 4.1.1
-    "@commercetools-uikit/design-system": ^15.9.0
+    "@commercetools-uikit/design-system": ^15.11.0
     "@commercetools/github-labels": 1.1.0
     "@commitlint/cli": 17.1.2
     "@commitlint/config-conventional": 17.1.0
@@ -32047,6 +32062,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-select@npm:5.7.0":
+  version: 5.7.0
+  resolution: "react-select@npm:5.7.0"
+  dependencies:
+    "@babel/runtime": ^7.12.0
+    "@emotion/cache": ^11.4.0
+    "@emotion/react": ^11.8.1
+    "@floating-ui/dom": ^1.0.1
+    "@types/react-transition-group": ^4.4.0
+    memoize-one: ^6.0.0
+    prop-types: ^15.6.0
+    react-transition-group: ^4.3.0
+    use-isomorphic-layout-effect: ^1.1.2
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 3d29f7bb6dd66ad55396d820f05da6112f1d21b67526422a8ff5aa6cd47c783804c1b73042ac2949ba0871056a3dc68c06a73a8281abb61571e475d72bbd80dc
+  languageName: node
+  linkType: hard
+
 "react-server-dom-webpack@npm:0.0.0-experimental-c8b778b7f-20220825":
   version: 0.0.0-experimental-c8b778b7f-20220825
   resolution: "react-server-dom-webpack@npm:0.0.0-experimental-c8b778b7f-20220825"
@@ -32080,6 +32115,19 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
   checksum: 87360d4392276d4e87511a73be9b0634b8bcce8f4f648cf659334d993f25ad3d4062f468f1e1944fc614123acae4299580aad00b760c6a96cec190e076f847f5
+  languageName: node
+  linkType: hard
+
+"react-textarea-autosize@npm:8.4.0":
+  version: 8.4.0
+  resolution: "react-textarea-autosize@npm:8.4.0"
+  dependencies:
+    "@babel/runtime": ^7.10.2
+    use-composed-ref: ^1.3.0
+    use-latest: ^1.2.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 055fb51b74e1ab6b286490cfcd8ed77a760f6fc90706053b5dfcb138199d02c56289a1060a1daf9f3ae37ffd66f73e9553f026d0fad446bc2243b713acf48e05
   languageName: node
   linkType: hard
 
