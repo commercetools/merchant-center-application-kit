@@ -1,5 +1,17 @@
 # @commercetools-local/visual-testing-app
 
+## 21.23.4
+
+### Patch Changes
+
+- [#2952](https://github.com/commercetools/merchant-center-application-kit/pull/2952) [`2e805309c`](https://github.com/commercetools/merchant-center-application-kit/commit/2e805309c526d98e4822757f062a553987d71547) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update `ui-kit` and `react-select` dependencies
+
+- Updated dependencies [[`b66401b22`](https://github.com/commercetools/merchant-center-application-kit/commit/b66401b22d87e5455578ab9cf1160614502e6b4b), [`2e805309c`](https://github.com/commercetools/merchant-center-application-kit/commit/2e805309c526d98e4822757f062a553987d71547)]:
+  - @commercetools-frontend/react-notifications@21.23.4
+  - @commercetools-frontend/application-components@21.23.4
+  - @commercetools-frontend/assets@21.23.4
+  - @commercetools-frontend/constants@21.23.4
+
 ## 21.23.3
 
 ### Patch Changes
