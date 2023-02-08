@@ -37,6 +37,17 @@ export const Component = () => (
             </PageContentWide>
           ),
         },
+        {
+          name: 'single column with several children',
+          path: 'single-column-with-several-children',
+          spec: (
+            <PageContentWide>
+              <Box />
+              <Box />
+              <Box />
+            </PageContentWide>
+          ),
+        },
 
         {
           name: 'two columns 1/1',

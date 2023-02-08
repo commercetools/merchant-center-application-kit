@@ -60,7 +60,7 @@ function PageContentWide(props: TPageContentWide) {
     <Container>
       <Content columns={props.columns} gapSize={props.gapSize}>
         {props.columns === '1' ? (
-          <>{leftChild}</>
+          <>{props.children}</>
         ) : (
           <>
             <LeftContentColumn>{leftChild}</LeftContentColumn>

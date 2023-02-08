@@ -22,14 +22,16 @@ describe('PageContentWide', () => {
 
       screen.getByText('Text content');
     });
-    it('should render single column even when providing several children', () => {
+    it('should render single column with several children', () => {
       renderPageContent([
         <div key="1">1. Text content</div>,
         <div key="2">2. Text content</div>,
+        <div key="3">3. Text content</div>,
       ]);
 
       screen.getByText('1. Text content');
-      expect(screen.queryByText('2. Text content')).not.toBeInTheDocument();
+      screen.getByText('2. Text content');
+      screen.getByText('3. Text content');
     });
   });
 
