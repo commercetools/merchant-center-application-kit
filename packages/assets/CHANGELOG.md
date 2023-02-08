@@ -1,5 +1,11 @@
 # @commercetools-frontend/assets
 
+## 21.23.5
+
+### Patch Changes
+
+- [#2954](https://github.com/commercetools/merchant-center-application-kit/pull/2954) [`ff5542f5d`](https://github.com/commercetools/merchant-center-application-kit/commit/ff5542f5d94c5d868b6c7a0cfae72daac362f7ee) Thanks [@jaikumar-tj](https://github.com/jaikumar-tj)! - add new image for the image upload button to use with MC Redesign
+
 ## 21.23.4
 
 ## 21.23.3
