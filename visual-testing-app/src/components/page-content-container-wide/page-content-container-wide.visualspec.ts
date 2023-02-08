@@ -7,6 +7,16 @@ describe('PageContentContainerWide', () => {
     await expect(page).toMatch('Page content container wide');
     await percySnapshot(page, 'PageContentContainerWide_singleColumn');
   });
+  it('Single column with several children', async () => {
+    await page.goto(
+      `${HOST}/page-content-container-wide/single-column-with-several-children`
+    );
+    await expect(page).toMatch('Page content container wide');
+    await percySnapshot(
+      page,
+      'PageContentContainerWide_singleColumnSeveralChildren'
+    );
+  });
   it('Two columns half small gap', async () => {
     await page.goto(`${HOST}/page-content-container-wide/two-columns-half`);
     await expect(page).toMatch('Page content container wide');
