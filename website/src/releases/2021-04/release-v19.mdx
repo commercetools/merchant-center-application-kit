@@ -46,14 +46,14 @@ The equivalent mapping from `constraint` to `max` is as following:
 
 ## Text
 
-For the `<Text.Headline>` and `<Text.Subheadline>` components, the deprecated `elementType` prop has been removed. Now only the `as` prop is used instead.
+For the `<Headline>` and `<Subheadline>` components, the deprecated `elementType` prop has been removed. Now only the `as` prop is used instead.
 
 ```diff
 - <Text.Headline elementType="h2" intlMessage={message} />
 + <Text.Headline as="h2" intlMessage={message} />
 ```
 
-For the `<Text.Body>` and `<Text.Detail>` components, the deprecated `isInline` prop has been removed. Now only the `as` prop can be used instead.
+For the `<Body>` and `<Detail>` components, the deprecated `isInline` prop has been removed. Now only the `as` prop can be used instead.
 
 ```diff
 - <Text.Body isInline={true} intlMessage={message} />
