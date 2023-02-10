@@ -4,7 +4,6 @@ const fs = require('fs');
 const path = require('path');
 const cldr = require('cldr');
 const chalk = require('chalk');
-const rcfile = require('rcfile');
 const fetch = require('node-fetch');
 const moment = require('moment-timezone');
 const deepDiff = require('deep-diff');
@@ -12,7 +11,7 @@ const isEqual = require('lodash/isEqual');
 const difference = require('lodash/difference');
 const parseUnhandledTimeZones = require('./parse-unhandled-time-zones');
 
-const prettierConfig = rcfile('prettier');
+const prettierConfig = prettier.resolveConfig.sync();
 
 const L10N_KEYS = {
   COUNTRY: 'country',

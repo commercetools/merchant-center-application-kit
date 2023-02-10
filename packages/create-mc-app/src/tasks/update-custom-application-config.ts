@@ -1,8 +1,6 @@
 import os from 'os';
 import fs from 'fs';
 import path from 'path';
-// @ts-ignore
-import rcfile from 'rcfile';
 import prettier from 'prettier';
 import { transformFileSync, types, type PluginItem } from '@babel/core';
 import type { ListrTask } from 'listr2';
@@ -57,10 +55,13 @@ function replaceApplicationInfoInCustomApplicationConfig(
   });
 
   if (result?.code) {
-    const prettierConfig = rcfile('prettier', {
-      cwd: options.projectDirectoryPath,
-    });
-    const formattedData = prettier.format(result.code + os.EOL, prettierConfig);
+    const prettierConfig = prettier.resolveConfig.sync(
+      options.projectDirectoryPath
+    );
+    const formattedData = prettier.format(
+      result.code + os.EOL,
+      prettierConfig ?? undefined
+    );
     fs.writeFileSync(filePath, formattedData, {
       encoding: 'utf8',
     });
