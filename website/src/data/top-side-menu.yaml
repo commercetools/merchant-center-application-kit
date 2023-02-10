@@ -2,15 +2,13 @@
   href: /../getting-started/initial-setup
 - label: Log in
   href: /../docs/login
+- label: Support
+  href: /../offering/support
+- label: Status
+  href: /../offering/status
+- label: Offering
+  href: /../offering/
 - label: Tech Blog
   href: https://techblog.commercetools.com
 - label: Integrations
   href: https://marketplace.commercetools.com
-- label: Composable Commerce Support
-  href: https://support.commercetools.com
-- label: Composable Commerce Status
-  href: https://status.commercetools.com
-- label: Frontend Support
-  href: https://frontastic.freshdesk.com/
-- label: Frontend Status
-  href: https://status.frontastic.io/
