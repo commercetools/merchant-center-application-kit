@@ -14,7 +14,7 @@ import ApiErrorMessage from '../api-error-message';
 type Props = {
   notification: TAppNotification<{
     domain: typeof NOTIFICATION_DOMAINS.PAGE;
-    kind: typeof NOTIFICATION_KINDS_PAGE['api-error'];
+    kind: (typeof NOTIFICATION_KINDS_PAGE)['api-error'];
     values: TAppNotificationValuesApiError;
   }>;
   dismiss: (event: SyntheticEvent) => void;

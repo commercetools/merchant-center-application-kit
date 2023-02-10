@@ -11,7 +11,7 @@ import { getMcOrigin } from './helpers';
 declare let window: ApplicationWindow;
 
 type Props = {
-  reason?: typeof LOGOUT_REASONS[keyof typeof LOGOUT_REASONS];
+  reason?: (typeof LOGOUT_REASONS)[keyof typeof LOGOUT_REASONS];
 };
 
 // When the application redirects to this route, we always force a hard redirect

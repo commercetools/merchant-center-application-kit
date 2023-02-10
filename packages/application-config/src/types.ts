@@ -6,7 +6,7 @@ import { CLOUD_IDENTIFIERS } from './constants';
 export type ConfigOptions = JSONSchemaForCustomApplicationConfigurationFiles;
 
 export type CloudIdentifier =
-  typeof CLOUD_IDENTIFIERS[keyof typeof CLOUD_IDENTIFIERS];
+  (typeof CLOUD_IDENTIFIERS)[keyof typeof CLOUD_IDENTIFIERS];
 
 type LocalizedFieldData = {
   locale: string;

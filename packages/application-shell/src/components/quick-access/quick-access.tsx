@@ -155,8 +155,8 @@ const QuickAccess = (props: Props) => {
   >();
   const fetchPimIndexerStatus = useCallback<
     () => Promise<
-      | typeof pimIndexerStates['INDEXED']
-      | typeof pimIndexerStates['NOT_INDEXED']
+      | (typeof pimIndexerStates)['INDEXED']
+      | (typeof pimIndexerStates)['NOT_INDEXED']
     >
   >(async () => {
     if (applicationContext.project && applicationContext.dataLocale) {

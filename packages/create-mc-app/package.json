@@ -18,13 +18,13 @@
   "module": "dist/commercetools-frontend-create-mc-app.esm.js",
   "bin": "./bin/cli.js",
   "dependencies": {
-    "@babel/core": "^7.19.0",
-    "@babel/runtime": "^7.19.0",
-    "@babel/runtime-corejs3": "^7.19.0",
+    "@babel/core": "^7.20.12",
+    "@babel/runtime": "^7.20.13",
+    "@babel/runtime-corejs3": "^7.20.13",
     "cac": "6.7.14",
     "execa": "5.1.1",
-    "listr2": "5.0.5",
-    "prettier": "2.7.1",
+    "listr2": "5.0.7",
+    "prettier": "2.8.4",
     "semver": "7.3.8"
   },
   "engines": {

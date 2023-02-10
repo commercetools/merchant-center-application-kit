@@ -7,7 +7,7 @@ import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import { location } from '../../utils/location';
 
 type QueryParams = {
-  reason?: typeof LOGOUT_REASONS[keyof typeof LOGOUT_REASONS];
+  reason?: (typeof LOGOUT_REASONS)[keyof typeof LOGOUT_REASONS];
   redirectTo?: string;
   client_id?: string;
   response_type?: string;

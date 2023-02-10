@@ -18,11 +18,11 @@
   "module": "dist/commercetools-frontend-notifications.esm.js",
   "files": ["dist", "package.json", "LICENSE", "README.md"],
   "dependencies": {
-    "@babel/runtime": "^7.19.0",
-    "@babel/runtime-corejs3": "^7.19.0"
+    "@babel/runtime": "^7.20.13",
+    "@babel/runtime-corejs3": "^7.20.13"
   },
   "devDependencies": {
-    "redux": "4.2.0"
+    "redux": "4.2.1"
   },
   "peerDependencies": {
     "redux": "4.x"

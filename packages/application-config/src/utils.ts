@@ -3,7 +3,7 @@ import uniq from 'lodash/uniq';
 import { CLOUD_IDENTIFIERS, MC_API_URLS } from './constants';
 
 const mapCloudIdentifierToApiUrl = (
-  key: typeof CLOUD_IDENTIFIERS[keyof typeof CLOUD_IDENTIFIERS]
+  key: (typeof CLOUD_IDENTIFIERS)[keyof typeof CLOUD_IDENTIFIERS]
 ): string => {
   switch (key) {
     case CLOUD_IDENTIFIERS.GCP_AU:

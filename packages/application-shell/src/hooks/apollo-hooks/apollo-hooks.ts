@@ -13,7 +13,7 @@ import { useQuery, useLazyQuery, useMutation } from '@apollo/client/react';
 
 type TQueryOptionsWithContext<
   TData = unknown,
-  TVariables = OperationVariables
+  TVariables extends OperationVariables = OperationVariables
 > = QueryHookOptions<TData, TVariables> & {
   context: TApolloContext;
 };
@@ -24,21 +24,30 @@ type TMutationOptionsWithContext<
   context: TApolloContext;
 };
 
-function useMcQuery<TData = unknown, TVariables = OperationVariables>(
+function useMcQuery<
+  TData = unknown,
+  TVariables extends OperationVariables = OperationVariables
+>(
   query: DocumentNode,
   options?: TQueryOptionsWithContext<TData, TVariables>
 ): QueryResult<TData, TVariables> {
   return useQuery<TData, TVariables>(query, options);
 }
 
-function useMcLazyQuery<TData = unknown, TVariables = OperationVariables>(
+function useMcLazyQuery<
+  TData = unknown,
+  TVariables extends OperationVariables = OperationVariables
+>(
   query: DocumentNode,
   options?: TQueryOptionsWithContext<TData, TVariables>
 ): QueryTuple<TData, TVariables> {
   return useLazyQuery<TData, TVariables>(query, options);
 }
 
-function useMcMutation<TData = unknown, TVariables = OperationVariables>(
+function useMcMutation<
+  TData = unknown,
+  TVariables extends OperationVariables = OperationVariables
+>(
   mutation: DocumentNode,
   options?: TMutationOptionsWithContext<TData, TVariables>
 ): MutationTuple<TData, TVariables, TApolloContext> {

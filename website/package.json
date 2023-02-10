@@ -14,11 +14,11 @@
   "dependencies": {
     "@commercetools-docs/gatsby-theme-docs": "20.1.1",
     "@commercetools-docs/ui-kit": "20.0.0",
-    "@commercetools-uikit/card": "^15.11.0",
-    "@commercetools-uikit/spacings-inline": "^15.11.0",
-    "@commercetools-uikit/spacings-stack": "^15.11.0",
-    "@emotion/react": "11.10.4",
-    "@emotion/styled": "11.10.4",
+    "@commercetools-uikit/card": "^15.11.2",
+    "@commercetools-uikit/spacings-inline": "^15.11.2",
+    "@commercetools-uikit/spacings-stack": "^15.11.2",
+    "@emotion/react": "11.10.5",
+    "@emotion/styled": "11.10.5",
     "gatsby": "4.25.4",
     "gatsby-cli": "4.24.0",
     "prop-types": "15.8.1",
@@ -27,9 +27,9 @@
     "react-intl": "^5.25.1"
   },
   "devDependencies": {
-    "@svgr/cli": "6.5.0",
-    "linkinator": "4.1.0",
-    "prettier": "2.7.1",
-    "start-server-and-test": "1.14.0"
+    "@svgr/cli": "6.5.1",
+    "linkinator": "4.1.2",
+    "prettier": "2.8.4",
+    "start-server-and-test": "1.15.3"
   }
 }

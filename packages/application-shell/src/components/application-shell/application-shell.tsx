@@ -183,7 +183,7 @@ export const RestrictedApplication = <
 
             if (hasUnauthorizedError || hasUserBeenDeletedError) {
               let logoutReason:
-                | typeof LOGOUT_REASONS[keyof typeof LOGOUT_REASONS]
+                | (typeof LOGOUT_REASONS)[keyof typeof LOGOUT_REASONS]
                 | undefined;
               if (hasUnauthorizedError)
                 logoutReason = LOGOUT_REASONS.UNAUTHORIZED;
