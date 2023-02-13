@@ -17,6 +17,7 @@
     "/.+/docs/login",
     "/.+/import-export",
     "/.+/merchant-center",
+    "/.+/offering",
     "/.+/sdk",
     "/.+/tutorials",
     "/.+/getting-started/initial-setup",
