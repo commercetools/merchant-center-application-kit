@@ -57,7 +57,11 @@ For the `<Text.Headline>` and `<Text.Subheadline>` components, the deprecated `e
 + <Text.Headline as="h2" intlMessage={message} />
 ```
 
-For the `<Body>` and `<Detail>` components, the deprecated `isInline` prop has been removed. Now only the `as` prop can be used instead.
+{/* <!-- vale off --> */}
+
+For the `<Text.Body>` and `<Text.Detail>` components, the deprecated `isInline` prop has been removed. Now only the `as` prop can be used instead.
+
+{/* <!-- vale on --> */}
 
 ```diff
 - <Text.Body isInline={true} intlMessage={message} />
