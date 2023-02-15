@@ -28,12 +28,12 @@
     "README.md"
   ],
   "dependencies": {
-    "@babel/runtime": "^7.19.0",
-    "@babel/runtime-corejs3": "^7.19.0",
+    "@babel/runtime": "^7.20.13",
+    "@babel/runtime-corejs3": "^7.20.13",
     "@commercetools-frontend/application-config": "21.23.6",
     "@commercetools-frontend/constants": "21.23.6",
-    "serialize-javascript": "6.0.0",
-    "uglify-js": "3.17.3",
+    "serialize-javascript": "6.0.1",
+    "uglify-js": "3.17.4",
     "uglifycss": "0.0.29"
   },
   "devDependencies": {

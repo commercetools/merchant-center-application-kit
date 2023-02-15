@@ -41,7 +41,7 @@
   },
   "BAM": {
     "label": "Bosnia-Herzegovina Convertible Mark",
-    "symbol": "КМ"
+    "symbol": "KM"
   },
   "BBD": {
     "label": "Barbadian Dollar",
@@ -137,7 +137,7 @@
   },
   "CNY": {
     "label": "Chinese Yuan",
-    "symbol": "¥"
+    "symbol": "￥"
   },
   "COP": {
     "label": "Colombian Peso",
@@ -181,7 +181,7 @@
   },
   "DZD": {
     "label": "Algerian Dinar",
-    "symbol": "د.ج.‏"
+    "symbol": "DA"
   },
   "EGP": {
     "label": "Egyptian Pound",
@@ -193,7 +193,7 @@
   },
   "ETB": {
     "label": "Ethiopian Birr",
-    "symbol": "ብር"
+    "symbol": "Br"
   },
   "EUR": {
     "label": "Euro",
@@ -277,7 +277,7 @@
   },
   "IRR": {
     "label": "Iranian Rial",
-    "symbol": "IRR"
+    "symbol": "ریال"
   },
   "ISK": {
     "label": "Icelandic Króna",
@@ -341,7 +341,7 @@
   },
   "LKR": {
     "label": "Sri Lankan Rupee",
-    "symbol": "රු."
+    "symbol": "Rs."
   },
   "LRD": {
     "label": "Liberian Dollar",
@@ -357,7 +357,7 @@
   },
   "MAD": {
     "label": "Moroccan Dirham",
-    "symbol": "د.م.‏"
+    "symbol": "MAD"
   },
   "MDL": {
     "label": "Moldovan Leu",
@@ -369,7 +369,7 @@
   },
   "MKD": {
     "label": "Macedonian Denar",
-    "symbol": "ден"
+    "symbol": "den"
   },
   "MMK": {
     "label": "Myanmar Kyat",
@@ -385,7 +385,7 @@
   },
   "MRO": {
     "label": "Mauritanian Ouguiya (1973–2017)",
-    "symbol": "أ.م.‏"
+    "symbol": "UM"
   },
   "MUR": {
     "label": "Mauritian Rupee",
@@ -468,7 +468,7 @@
     "symbol": "Gs."
   },
   "QAR": {
-    "label": "Qatari Rial",
+    "label": "Qatari Riyal",
     "symbol": "ر.ق.‏"
   },
   "RON": {
@@ -501,7 +501,7 @@
   },
   "SDG": {
     "label": "Sudanese Pound",
-    "symbol": "ج.س."
+    "symbol": "SDG"
   },
   "SEK": {
     "label": "Swedish Krona",
@@ -516,7 +516,7 @@
     "symbol": "£"
   },
   "SLL": {
-    "label": "Sierra Leonean Leone",
+    "label": "Sierra Leonean Leone (1964—2022)",
     "symbol": "Le"
   },
   "SOS": {
@@ -537,7 +537,7 @@
   },
   "SYP": {
     "label": "Syrian Pound",
-    "symbol": "ل.س.‏"
+    "symbol": "LS"
   },
   "SZL": {
     "label": "Swazi Lilangeni",
@@ -553,7 +553,7 @@
   },
   "TND": {
     "label": "Tunisian Dinar",
-    "symbol": "د.ت.‏"
+    "symbol": "DT"
   },
   "TOP": {
     "label": "Tongan Paʻanga",
@@ -585,7 +585,7 @@
   },
   "USD": {
     "label": "US Dollar",
-    "symbol": "$"
+    "symbol": "US$"
   },
   "USN": {
     "label": "US Dollar (Next day)",
@@ -601,7 +601,7 @@
   },
   "UZS": {
     "label": "Uzbekistani Som",
-    "symbol": "сўм"
+    "symbol": "soʻm"
   },
   "VEF": {
     "label": "Venezuelan Bolívar (2008–2018)",

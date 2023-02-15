@@ -38,16 +38,16 @@ export const NOTIFICATION_KINDS_PAGE = {
   'api-error': 'api-error',
 } as const;
 export type TAppNotificationDomain =
-  typeof NOTIFICATION_DOMAINS[keyof typeof NOTIFICATION_DOMAINS];
+  (typeof NOTIFICATION_DOMAINS)[keyof typeof NOTIFICATION_DOMAINS];
 // Alias to `NOTIFICATION_DOMAINS` for backwards compatibility
 export const DOMAINS = NOTIFICATION_DOMAINS;
 
 export type TAppNotificationKindSide =
-  typeof NOTIFICATION_KINDS_SIDE[keyof typeof NOTIFICATION_KINDS_SIDE];
+  (typeof NOTIFICATION_KINDS_SIDE)[keyof typeof NOTIFICATION_KINDS_SIDE];
 export type TAppNotificationKindGlobal =
-  typeof NOTIFICATION_KINDS_GLOBAL[keyof typeof NOTIFICATION_KINDS_GLOBAL];
+  (typeof NOTIFICATION_KINDS_GLOBAL)[keyof typeof NOTIFICATION_KINDS_GLOBAL];
 export type TAppNotificationKindPage =
-  typeof NOTIFICATION_KINDS_PAGE[keyof typeof NOTIFICATION_KINDS_PAGE];
+  (typeof NOTIFICATION_KINDS_PAGE)[keyof typeof NOTIFICATION_KINDS_PAGE];
 export type TAppNotificationKind =
   | TAppNotificationKindSide
   | TAppNotificationKindGlobal
@@ -110,7 +110,7 @@ export const STATUS_CODES = {
   UNAUTHENTICATED: 299,
   NOT_FOUND: 404,
 } as const;
-export type TStatusCode = typeof STATUS_CODES[keyof typeof STATUS_CODES];
+export type TStatusCode = (typeof STATUS_CODES)[keyof typeof STATUS_CODES];
 
 export const LOGOUT_REASONS = {
   USER: 'user',
@@ -119,7 +119,8 @@ export const LOGOUT_REASONS = {
   DELETED: 'deleted',
   NO_PROJECTS: 'no-projects',
 } as const;
-export type TLogoutReason = typeof LOGOUT_REASONS[keyof typeof LOGOUT_REASONS];
+export type TLogoutReason =
+  (typeof LOGOUT_REASONS)[keyof typeof LOGOUT_REASONS];
 
 export const GRAPHQL_TARGETS = {
   MERCHANT_CENTER_BACKEND: 'mc',
@@ -132,7 +133,7 @@ export const GRAPHQL_TARGETS = {
   ADMINISTRATION_SERVICE: 'administration',
 } as const;
 export type TGraphQLTargets =
-  typeof GRAPHQL_TARGETS[keyof typeof GRAPHQL_TARGETS];
+  (typeof GRAPHQL_TARGETS)[keyof typeof GRAPHQL_TARGETS];
 
 export const MC_API_PROXY_TARGETS = {
   COMMERCETOOLS_PLATFORM: 'ctp',
@@ -143,7 +144,7 @@ export const MC_API_PROXY_TARGETS = {
   IMPORT: 'import',
 } as const;
 export type TMcApiProxyTargets =
-  typeof MC_API_PROXY_TARGETS[keyof typeof MC_API_PROXY_TARGETS];
+  (typeof MC_API_PROXY_TARGETS)[keyof typeof MC_API_PROXY_TARGETS];
 
 export type TLocalizedField = {
   locale: string;

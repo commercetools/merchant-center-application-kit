@@ -7,7 +7,7 @@ export type TAudience = string;
 export type TIssuer = string;
 
 export type TCloudIdentifier =
-  typeof CLOUD_IDENTIFIERS[keyof typeof CLOUD_IDENTIFIERS];
+  (typeof CLOUD_IDENTIFIERS)[keyof typeof CLOUD_IDENTIFIERS];
 
 export type TAudiencePolicy = 'forward-url-full-path' | 'forward-url-origin';
 

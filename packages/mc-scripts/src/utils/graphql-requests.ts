@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import { type DocumentNode, print } from 'graphql';
-import { ClientError, GraphQLClient } from 'graphql-request';
+import { ClientError, GraphQLClient, type Variables } from 'graphql-request';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import type {
   TCreateCustomApplicationFromCliMutation,
@@ -54,7 +54,7 @@ const client = new GraphQLClient(
   }
 );
 
-async function requestWithTokenRetry<Data, QueryVariables>(
+async function requestWithTokenRetry<Data, QueryVariables extends Variables>(
   document: DocumentNode,
   requestOptions: {
     variables?: QueryVariables;
