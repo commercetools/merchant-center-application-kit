@@ -40,7 +40,7 @@
     "unfetch": "4.2.0"
   },
   "devDependencies": {
-    "@testing-library/react": "12.1.5",
+    "@testing-library/react": "13.4.0",
     "jest": "27.5.1"
   }
 }
