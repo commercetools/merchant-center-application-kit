@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@testing-library/react-hooks": "8.0.1",
-    "chalk": "4.1.2",
+    "chalk": "5.2.0",
     "cldr": "7.3.0",
     "deep-diff": "1.0.2",
     "node-fetch": "2.6.9",
