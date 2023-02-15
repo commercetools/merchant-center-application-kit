@@ -1,5 +1,18 @@
 # @commercetools-frontend/l10n
 
+## 21.23.7
+
+### Patch Changes
+
+- [#2958](https://github.com/commercetools/merchant-center-application-kit/pull/2958) [`c8069d85d`](https://github.com/commercetools/merchant-center-application-kit/commit/c8069d85d8218578f1a863a531cb2c3e76551eeb) Thanks [@kark](https://github.com/kark)! - Replace `rcfile` for reading Prettier config with Prettier API
+
+- [#2960](https://github.com/commercetools/merchant-center-application-kit/pull/2960) [`4377b3642`](https://github.com/commercetools/merchant-center-application-kit/commit/4377b3642c08fd9480016a287a18ada780191ad6) Thanks [@emmenko](https://github.com/emmenko)! - Update CLDR data
+
+- [#2960](https://github.com/commercetools/merchant-center-application-kit/pull/2960) [`4377b3642`](https://github.com/commercetools/merchant-center-application-kit/commit/4377b3642c08fd9480016a287a18ada780191ad6) Thanks [@emmenko](https://github.com/emmenko)! - Update dependencies
+
+- Updated dependencies [[`4377b3642`](https://github.com/commercetools/merchant-center-application-kit/commit/4377b3642c08fd9480016a287a18ada780191ad6)]:
+  - @commercetools-frontend/sentry@21.23.7
+
 ## 21.23.6
 
 ### Patch Changes
