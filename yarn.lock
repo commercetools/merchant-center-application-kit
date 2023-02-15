@@ -3595,9 +3595,9 @@ __metadata:
     "@commercetools-frontend/mc-dev-authentication": "workspace:*"
     "@commercetools-frontend/mc-scripts": "workspace:*"
     "@commercetools-frontend/permissions": "workspace:*"
-    "@commercetools-test-data/channel": 4.8.0
-    "@commercetools-test-data/commons": 4.8.0
-    "@commercetools-test-data/core": 4.8.0
+    "@commercetools-test-data/channel": 4.9.0
+    "@commercetools-test-data/commons": 4.9.0
+    "@commercetools-test-data/core": 4.9.0
     "@commercetools-uikit/constraints": ^15.11.2
     "@commercetools-uikit/data-table": ^15.11.2
     "@commercetools-uikit/flat-button": ^15.11.2
@@ -3621,7 +3621,7 @@ __metadata:
     "@manypkg/cli": 0.19.2
     "@testing-library/react": 12.1.5
     "@testing-library/react-hooks": 8.0.1
-    eslint: 8.33.0
+    eslint: 8.34.0
     eslint-formatter-pretty: 4.1.0
     eslint-plugin-graphql: ^4.0.0
     jest: 27.5.1
@@ -3657,9 +3657,9 @@ __metadata:
     "@commercetools-frontend/mc-dev-authentication": "workspace:*"
     "@commercetools-frontend/mc-scripts": "workspace:*"
     "@commercetools-frontend/permissions": "workspace:*"
-    "@commercetools-test-data/channel": 4.8.0
-    "@commercetools-test-data/commons": 4.8.0
-    "@commercetools-test-data/core": 4.8.0
+    "@commercetools-test-data/channel": 4.9.0
+    "@commercetools-test-data/commons": 4.9.0
+    "@commercetools-test-data/core": 4.9.0
     "@commercetools-uikit/constraints": ^15.11.2
     "@commercetools-uikit/data-table": ^15.11.2
     "@commercetools-uikit/flat-button": ^15.11.2
@@ -3682,7 +3682,7 @@ __metadata:
     "@manypkg/cli": 0.19.2
     "@testing-library/react": 12.1.5
     "@testing-library/react-hooks": 8.0.1
-    eslint: 8.33.0
+    eslint: 8.34.0
     eslint-formatter-pretty: 4.1.0
     jest: 27.5.1
     jest-runner-eslint: 1.1.0
@@ -3710,9 +3710,9 @@ __metadata:
     "@babel/preset-typescript": ^7.18.6
     "@rushstack/eslint-patch": ^1.2.0
     "@tsconfig/node16": ^1.0.3
-    "@typescript-eslint/eslint-plugin": ^5.51.0
-    "@typescript-eslint/parser": ^5.51.0
-    eslint: 8.33.0
+    "@typescript-eslint/eslint-plugin": ^5.52.0
+    "@typescript-eslint/parser": ^5.52.0
+    eslint: 8.34.0
     eslint-config-prettier: ^8.6.0
     eslint-import-resolver-typescript: ^3.5.3
     eslint-plugin-import: ^2.27.5
@@ -3748,7 +3748,7 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.20.13
     "@babel/runtime-corejs3": ^7.20.13
-    "@sentry/node": 7.37.0
+    "@sentry/node": 7.37.2
     "@tsconfig/node16": ^1.0.3
     "@types/triple-beam": 1.3.2
     express: 4.18.2
@@ -3771,21 +3771,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-docs/gatsby-theme-docs@npm:20.1.1":
-  version: 20.1.1
-  resolution: "@commercetools-docs/gatsby-theme-docs@npm:20.1.1"
+"@commercetools-docs/gatsby-theme-docs@npm:20.2.0":
+  version: 20.2.0
+  resolution: "@commercetools-docs/gatsby-theme-docs@npm:20.2.0"
   dependencies:
-    "@commercetools-docs/ui-kit": 20.0.0
-    "@commercetools-uikit/card": ^15.3.0
-    "@commercetools-uikit/checkbox-input": ^15.3.0
-    "@commercetools-uikit/design-system": ^15.3.0
-    "@commercetools-uikit/icon-button": ^15.3.0
-    "@commercetools-uikit/icons": ^15.3.0
-    "@commercetools-uikit/loading-spinner": ^15.3.0
-    "@commercetools-uikit/secondary-icon-button": ^15.3.0
-    "@commercetools-uikit/spacings-inline": ^15.3.0
-    "@commercetools-uikit/spacings-stack": ^15.3.0
-    "@commercetools-uikit/stamp": ^15.3.0
+    "@commercetools-docs/ui-kit": 20.2.0
+    "@commercetools-uikit/card": 15.3.0
+    "@commercetools-uikit/checkbox-input": 15.3.0
+    "@commercetools-uikit/design-system": 15.3.0
+    "@commercetools-uikit/icon-button": 15.3.0
+    "@commercetools-uikit/icons": 15.3.0
+    "@commercetools-uikit/loading-spinner": 15.3.0
+    "@commercetools-uikit/secondary-icon-button": 15.3.0
+    "@commercetools-uikit/spacings-inline": 15.3.0
+    "@commercetools-uikit/spacings-stack": 15.3.0
+    "@commercetools-uikit/stamp": 15.3.0
     "@emotion/cache": ^11.10.3
     "@emotion/react": ^11.10.4
     "@emotion/server": ^11.10.0
@@ -3822,7 +3822,9 @@ __metadata:
     intersection-observer: 0.12.2
     lodash.throttle: 4.1.1
     mdast-util-to-string: ^3.1.0
+    moment-locales-webpack-plugin: 1.2.0
     moment-timezone: 0.5.37
+    moment-timezone-data-webpack-plugin: 1.5.1
     prism-react-renderer: 1.3.5
     prismjs: 1.29.0
     prompts: ^2.4.2
@@ -3830,8 +3832,7 @@ __metadata:
     qss: 2.0.3
     raw-loader: 4.0.2
     react-intersection-observer: 9.4.0
-    react-intl: ^5.25.1
-    react-router-dom: 5.3.4
+    react-intl: ^6.2.7
     remark-emoji: 3.0.2
     remark-frontmatter: 3.0.0
     remark-gfm: 1.0.0
@@ -3846,26 +3847,26 @@ __metadata:
   peerDependencies:
     gatsby: 4.x
     gatsby-cli: 4.x
-    react: 17.x
-    react-dom: 17.x
+    react: 18.x
+    react-dom: 18.x
   bin:
     create-docs-release-note: bin/create-release-note.js
-  checksum: a327d1c099f0dea7fc863cd801e626feebbc3b397e51a214fe075ba7d39db7b638246308906887dcb86910cbf2835588bee9abe3350a35f58549504760bf7814
+  checksum: 4632bb4db7570ea16e4027e95622cf516265b7030f448f815beeeb3920a21963080977a9fcfe802760b653709d0080de1522e7cccd131a96cbea55f92ff67797
   languageName: node
   linkType: hard
 
-"@commercetools-docs/ui-kit@npm:20.0.0":
-  version: 20.0.0
-  resolution: "@commercetools-docs/ui-kit@npm:20.0.0"
+"@commercetools-docs/ui-kit@npm:20.2.0":
+  version: 20.2.0
+  resolution: "@commercetools-docs/ui-kit@npm:20.2.0"
   dependencies:
     "@babel/runtime": ^7.19.4
     "@babel/runtime-corejs3": ^7.19.4
-    "@commercetools-uikit/design-system": ^15.3.0
-    "@commercetools-uikit/icons": ^15.3.0
-    "@commercetools-uikit/loading-spinner": ^15.3.0
-    "@commercetools-uikit/spacings-inline": ^15.3.0
-    "@commercetools-uikit/tooltip": ^15.3.0
-    "@commercetools-uikit/utils": ^15.3.0
+    "@commercetools-uikit/design-system": 15.3.0
+    "@commercetools-uikit/icons": 15.3.0
+    "@commercetools-uikit/loading-spinner": 15.3.0
+    "@commercetools-uikit/spacings-inline": 15.3.0
+    "@commercetools-uikit/tooltip": 15.3.0
+    "@commercetools-uikit/utils": 15.3.0
     "@emotion/react": ^11.10.4
     "@emotion/styled": ^11.10.4
     "@types/lodash.kebabcase": 4.1.7
@@ -3877,8 +3878,8 @@ __metadata:
     murmurhash: 2.0.1
     prism-react-renderer: 1.3.5
     prop-types: 15.8.1
-    react-intl: ^5.25.1
-    react-is: 17.0.2
+    react-intl: ^6.2.7
+    react-is: 18.2.0
     rehype-react: 6.2.1
     remark-frontmatter: 3.0.0
     remark-parse: 9.0.0
@@ -3888,9 +3889,9 @@ __metadata:
     unified: 9.2.2
     unist-util-filter: 2.0.3
   peerDependencies:
-    react: 17.x
-    react-dom: 17.x
-  checksum: 5f0ba0d56c00acbc0bc0f8c054d2e918882fb2e64e6ae61d5d1dc4fb21c95523cda6e0bfd9406dc14722e59b47d7e9290cf1effb3180382b255ea9b33b5c5f44
+    react: 18.x
+    react-dom: 18.x
+  checksum: 9aab614b7b4a091db6b8d2ccbc1296229bd258892e421900ec76369d8109c14097f6e68b05f8ef162e0e25b23c4e38bf58c2a137008ce36b9da394d533e08fe0
   languageName: node
   linkType: hard
 
@@ -3966,7 +3967,7 @@ __metadata:
     "@types/prop-types": ^15.7.5
     "@types/raf-schd": ^4.0.1
     "@types/react": ^17.0.53
-    "@types/react-dom": ^17.0.18
+    "@types/react-dom": ^17.0.19
     "@types/react-modal": ^3.13.1
     history: 4.10.1
     lodash: 4.17.21
@@ -3995,9 +3996,9 @@ __metadata:
     "@commercetools-frontend/babel-preset-mc-app": 21.23.6
     "@types/jsdom": ^16.2.15
     ajv: 8.12.0
-    core-js: ^3.27.2
+    core-js: ^3.28.0
     cosmiconfig: 7.1.0
-    dompurify: ^2.4.3
+    dompurify: ^2.4.4
     jsdom: ^16.7.0
     json-schema-to-typescript: 11.0.3
     lodash: 4.17.21
@@ -4082,7 +4083,7 @@ __metadata:
     "@types/lodash": ^4.14.191
     "@types/prop-types": ^15.7.5
     "@types/react": ^17.0.53
-    "@types/react-dom": ^17.0.18
+    "@types/react-dom": ^17.0.19
     "@types/react-redux": ^7.1.25
     "@types/react-router": ^5.1.20
     "@types/react-router-dom": ^5.3.3
@@ -4168,7 +4169,7 @@ __metadata:
     babel-plugin-macros: ^3.1.0
     babel-plugin-preval: ^5.1.0
     babel-plugin-transform-react-remove-prop-types: ^0.4.24
-    core-js: ^3.27.2
+    core-js: ^3.28.0
   languageName: unknown
   linkType: soft
 
@@ -4252,10 +4253,10 @@ __metadata:
     "@babel/eslint-parser": ^7.19.1
     "@commercetools-frontend/babel-preset-mc-app": ^21.23.6
     "@rushstack/eslint-patch": ^1.2.0
-    "@typescript-eslint/eslint-plugin": ^5.51.0
-    "@typescript-eslint/parser": ^5.51.0
+    "@typescript-eslint/eslint-plugin": ^5.52.0
+    "@typescript-eslint/parser": ^5.52.0
     confusing-browser-globals: ^1.0.11
-    eslint: 8.33.0
+    eslint: 8.34.0
     eslint-config-prettier: ^8.6.0
     eslint-import-resolver-typescript: ^3.5.3
     eslint-plugin-cypress: ^2.12.1
@@ -4431,7 +4432,7 @@ __metadata:
     browserslist: ^4.21.5
     cac: 6.7.14
     chalk: 4.1.2
-    core-js: ^3.27.2
+    core-js: ^3.28.0
     css-loader: 6.7.3
     css-minimizer-webpack-plugin: 3.4.1
     dotenv: 16.0.3
@@ -4469,7 +4470,7 @@ __metadata:
     url: ^0.11.0
     vite: 4.1.1
     webpack: 5.75.0
-    webpack-bundle-analyzer: 4.7.0
+    webpack-bundle-analyzer: 4.8.0
     webpack-dev-server: 4.11.1
     webpackbar: 5.0.2
   bin:
@@ -4535,7 +4536,7 @@ __metadata:
     "@types/lodash": ^4.14.191
     "@types/prop-types": ^15.7.5
     "@types/react": ^17.0.53
-    "@types/react-dom": ^17.0.18
+    "@types/react-dom": ^17.0.19
     "@types/react-redux": ^7.1.25
     "@types/react-router": ^5.1.20
     "@types/react-router-dom": ^5.3.3
@@ -4569,7 +4570,7 @@ __metadata:
     "@commercetools/http-user-agent": 3.0.0
     "@commercetools/sdk-client": 3.0.0
     "@commercetools/sdk-middleware-correlation-id": 3.0.0
-    "@commercetools/sdk-middleware-http": 7.0.1
+    "@commercetools/sdk-middleware-http": 7.0.2
     "@testing-library/react": 12.1.5
     "@types/node-fetch": 2.6.2
     "@types/prop-types": ^15.7.5
@@ -4602,8 +4603,8 @@ __metadata:
     "@babel/runtime-corejs3": ^7.20.13
     "@commercetools-frontend/browser-history": 21.23.6
     "@commercetools-frontend/constants": 21.23.6
-    "@sentry/react": 7.37.0
-    "@sentry/tracing": 7.37.0
+    "@sentry/react": 7.37.2
+    "@sentry/tracing": 7.37.2
     "@types/prop-types": ^15.7.5
     "@types/react": ^17.0.53
     prop-types: 15.8.1
@@ -4629,7 +4630,7 @@ __metadata:
   resolution: "@commercetools-local/playground@workspace:playground"
   dependencies:
     "@commercetools-backend/express": 21.23.6
-    "@commercetools-docs/ui-kit": 20.0.0
+    "@commercetools-docs/ui-kit": 20.2.0
     "@commercetools-frontend/actions-global": 21.23.6
     "@commercetools-frontend/application-components": 21.23.6
     "@commercetools-frontend/application-shell": 21.23.6
@@ -4659,7 +4660,7 @@ __metadata:
     "@commercetools-uikit/text": ^15.11.2
     "@formatjs/cli": 4.8.4
     "@types/dotenv-flow": ^3.2.0
-    "@vercel/node": ^2.9.2
+    "@vercel/node": ^2.9.4
     apollo-link-rest: ^0.9.0
     dotenv-flow: ^3.2.0
     express: 4.18.2
@@ -4709,56 +4710,56 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-test-data/channel@npm:4.8.0":
-  version: 4.8.0
-  resolution: "@commercetools-test-data/channel@npm:4.8.0"
+"@commercetools-test-data/channel@npm:4.9.0":
+  version: 4.9.0
+  resolution: "@commercetools-test-data/channel@npm:4.9.0"
   dependencies:
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
-    "@commercetools-test-data/commons": 4.8.0
-    "@commercetools-test-data/core": 4.8.0
-    "@commercetools-test-data/utils": 4.8.0
+    "@commercetools-test-data/commons": 4.9.0
+    "@commercetools-test-data/core": 4.9.0
+    "@commercetools-test-data/utils": 4.9.0
     "@commercetools/platform-sdk": ^4.0.0
     "@faker-js/faker": ^7.4.0
-  checksum: d150fe7645b04db85950ead442aa4f58dba76b5daf60d7642113135ff4d6ee8b2169b6edb714bead0518d5cfe94f4604650a9dd61c4bfa7e9e76ed0882ba7a05
+  checksum: 25115eaea10f2b0fe77f57c67158b149aa642037d9b7abe2bbe2440b528991e77fb6d786e59e6ccbc4e2987e3015e3c59793f8fceb6e791438eb8f1eb2551d8f
   languageName: node
   linkType: hard
 
-"@commercetools-test-data/commons@npm:4.8.0":
-  version: 4.8.0
-  resolution: "@commercetools-test-data/commons@npm:4.8.0"
+"@commercetools-test-data/commons@npm:4.9.0":
+  version: 4.9.0
+  resolution: "@commercetools-test-data/commons@npm:4.9.0"
   dependencies:
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
-    "@commercetools-test-data/core": 4.8.0
+    "@commercetools-test-data/core": 4.9.0
     "@commercetools/platform-sdk": ^4.0.0
     "@faker-js/faker": ^7.4.0
     lodash: ^4.17.21
-  checksum: 0847050cb890dec1b68320e9c968805a536bc632f2abf90008198e320936d949e21a1cb937d2f182b7853537a4b2dc7b6df951c8096d3e61472ced648c4d3574
+  checksum: add86ae374c01da95009eeb515bb82bd1392d3888732a9480fc12acc0651b1a736bf7f994def6812fdcfb76d27ace171d9ff9d56294df0065959e2fb4c04ab18
   languageName: node
   linkType: hard
 
-"@commercetools-test-data/core@npm:4.8.0":
-  version: 4.8.0
-  resolution: "@commercetools-test-data/core@npm:4.8.0"
+"@commercetools-test-data/core@npm:4.9.0":
+  version: 4.9.0
+  resolution: "@commercetools-test-data/core@npm:4.9.0"
   dependencies:
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
     "@faker-js/faker": ^7.4.0
     "@types/lodash": ^4.14.182
     lodash: ^4.17.21
-  checksum: a9c14775dd2ba54a423a1fff8eee64635999c66e39e0daffe6f17fad5d107f7fad5276bbc287a2b8343c8ca83099016a2df5967e9c6127a704f26acf635743f2
+  checksum: fd79647f6a9b455e2454f5b55ca920732ea902f718ea37241204b2fe95d00c78adc55dd23f091c999a473b1253b7b72c3f5ccc5d0c2a47572c5feb1b68174d24
   languageName: node
   linkType: hard
 
-"@commercetools-test-data/utils@npm:4.8.0":
-  version: 4.8.0
-  resolution: "@commercetools-test-data/utils@npm:4.8.0"
+"@commercetools-test-data/utils@npm:4.9.0":
+  version: 4.9.0
+  resolution: "@commercetools-test-data/utils@npm:4.9.0"
   dependencies:
     "@babel/runtime": ^7.17.9
     "@babel/runtime-corejs3": ^7.17.9
     "@faker-js/faker": ^7.4.0
-  checksum: 45955b1eeb7c8b85df61b713bbc5293cc6524316094d701c82d9426e4a39ecdfa6e699196db13941e31e1a7536b1dbf52a369315697b3a7a49fc82f77981e6b6
+  checksum: a532a4b0f17db0c22a4ccd7b3ace977109d2de6764d7a77bf433b84d508b0213db0a92d161c09628d43f54431ab3f1dd0a6b52aafba80d2e62c6cf5ba769968e
   languageName: node
   linkType: hard
 
@@ -4874,6 +4875,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@commercetools-uikit/card@npm:15.3.0":
+  version: 15.3.0
+  resolution: "@commercetools-uikit/card@npm:15.3.0"
+  dependencies:
+    "@babel/runtime": ^7.19.0
+    "@babel/runtime-corejs3": ^7.19.1
+    "@commercetools-uikit/design-system": 15.3.0
+    "@commercetools-uikit/spacings-inset": 15.3.0
+    "@commercetools-uikit/utils": 15.3.0
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    prop-types: 15.8.1
+  peerDependencies:
+    react: 17.x
+  checksum: 943cf6b683582cec84583e5dd5f95d2316daae7fdb6b648e7cee878a17b37f32aaa8c718ce1d3c88bea552c8884738f1a896d6507d064fb5b4e85862a7efb4ae
+  languageName: node
+  linkType: hard
+
 "@commercetools-uikit/card@npm:^15.11.2":
   version: 15.11.2
   resolution: "@commercetools-uikit/card@npm:15.11.2"
@@ -4892,21 +4911,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/card@npm:^15.3.0":
+"@commercetools-uikit/checkbox-input@npm:15.3.0":
   version: 15.3.0
-  resolution: "@commercetools-uikit/card@npm:15.3.0"
+  resolution: "@commercetools-uikit/checkbox-input@npm:15.3.0"
   dependencies:
     "@babel/runtime": ^7.19.0
     "@babel/runtime-corejs3": ^7.19.1
     "@commercetools-uikit/design-system": 15.3.0
-    "@commercetools-uikit/spacings-inset": 15.3.0
+    "@commercetools-uikit/icons": 15.3.0
+    "@commercetools-uikit/input-utils": 15.3.0
+    "@commercetools-uikit/select-utils": 15.3.0
+    "@commercetools-uikit/text": 15.3.0
     "@commercetools-uikit/utils": 15.3.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     prop-types: 15.8.1
+    react-intl: ^5.25.1
   peerDependencies:
     react: 17.x
-  checksum: 943cf6b683582cec84583e5dd5f95d2316daae7fdb6b648e7cee878a17b37f32aaa8c718ce1d3c88bea552c8884738f1a896d6507d064fb5b4e85862a7efb4ae
+  checksum: fcf7b1a337286bea9379af20b90c758350d28cbe14089173f57757182b58dc1dfa0c9fd5fff88345b5321e00726d379fde3120c2457673524e9fd4d26ab01388
   languageName: node
   linkType: hard
 
@@ -4929,28 +4952,6 @@ __metadata:
   peerDependencies:
     react: 17.x
   checksum: 744e12d5705df4438fba391b4b3554159e71cbb9322e6981d59433b6d6d245095a2fa5b190c407d69aa6ff68390ffc8de23f193610048e56d4ffdfc19c08a007
-  languageName: node
-  linkType: hard
-
-"@commercetools-uikit/checkbox-input@npm:^15.3.0":
-  version: 15.3.0
-  resolution: "@commercetools-uikit/checkbox-input@npm:15.3.0"
-  dependencies:
-    "@babel/runtime": ^7.19.0
-    "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 15.3.0
-    "@commercetools-uikit/icons": 15.3.0
-    "@commercetools-uikit/input-utils": 15.3.0
-    "@commercetools-uikit/select-utils": 15.3.0
-    "@commercetools-uikit/text": 15.3.0
-    "@commercetools-uikit/utils": 15.3.0
-    "@emotion/react": ^11.4.0
-    "@emotion/styled": ^11.3.0
-    prop-types: 15.8.1
-    react-intl: ^5.25.1
-  peerDependencies:
-    react: 17.x
-  checksum: fcf7b1a337286bea9379af20b90c758350d28cbe14089173f57757182b58dc1dfa0c9fd5fff88345b5321e00726d379fde3120c2457673524e9fd4d26ab01388
   languageName: node
   linkType: hard
 
@@ -5058,7 +5059,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/design-system@npm:15.3.0, @commercetools-uikit/design-system@npm:^15.3.0":
+"@commercetools-uikit/design-system@npm:15.3.0":
   version: 15.3.0
   resolution: "@commercetools-uikit/design-system@npm:15.3.0"
   dependencies:
@@ -5232,7 +5233,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/icon-button@npm:^15.3.0":
+"@commercetools-uikit/icon-button@npm:15.3.0":
   version: 15.3.0
   resolution: "@commercetools-uikit/icon-button@npm:15.3.0"
   dependencies:
@@ -5274,7 +5275,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/icons@npm:15.3.0, @commercetools-uikit/icons@npm:^15.3.0":
+"@commercetools-uikit/icons@npm:15.3.0":
   version: 15.3.0
   resolution: "@commercetools-uikit/icons@npm:15.3.0"
   dependencies:
@@ -5377,6 +5378,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@commercetools-uikit/loading-spinner@npm:15.3.0":
+  version: 15.3.0
+  resolution: "@commercetools-uikit/loading-spinner@npm:15.3.0"
+  dependencies:
+    "@babel/runtime": ^7.19.0
+    "@babel/runtime-corejs3": ^7.19.1
+    "@commercetools-uikit/design-system": 15.3.0
+    "@commercetools-uikit/spacings-inline": 15.3.0
+    "@commercetools-uikit/text": 15.3.0
+    "@commercetools-uikit/utils": 15.3.0
+    "@emotion/react": ^11.4.0
+    prop-types: 15.8.1
+    react-intl: ^5.25.1
+  peerDependencies:
+    react: 17.x
+  checksum: f47064b7f89d0813e407447429b80c2eb402472d34e63d52def866c5a9640fcd6c590427baf521b4e84c0cc3ac053a3f979a0e42c287741d60231943ac5e2ad5
+  languageName: node
+  linkType: hard
+
 "@commercetools-uikit/loading-spinner@npm:^15.11.2":
   version: 15.11.2
   resolution: "@commercetools-uikit/loading-spinner@npm:15.11.2"
@@ -5393,25 +5413,6 @@ __metadata:
   peerDependencies:
     react: 17.x
   checksum: 109dad29fe523c8c4bd01a949d219d8bfc456d2be5d34f4c2c4520ef8d82e9f8e8be3882ae5311ef4660a350f3f87485c7a429828d820f3618b3c335c3f444eb
-  languageName: node
-  linkType: hard
-
-"@commercetools-uikit/loading-spinner@npm:^15.3.0":
-  version: 15.3.0
-  resolution: "@commercetools-uikit/loading-spinner@npm:15.3.0"
-  dependencies:
-    "@babel/runtime": ^7.19.0
-    "@babel/runtime-corejs3": ^7.19.1
-    "@commercetools-uikit/design-system": 15.3.0
-    "@commercetools-uikit/spacings-inline": 15.3.0
-    "@commercetools-uikit/text": 15.3.0
-    "@commercetools-uikit/utils": 15.3.0
-    "@emotion/react": ^11.4.0
-    prop-types: 15.8.1
-    react-intl: ^5.25.1
-  peerDependencies:
-    react: 17.x
-  checksum: f47064b7f89d0813e407447429b80c2eb402472d34e63d52def866c5a9640fcd6c590427baf521b4e84c0cc3ac053a3f979a0e42c287741d60231943ac5e2ad5
   languageName: node
   linkType: hard
 
@@ -5679,7 +5680,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/secondary-icon-button@npm:^15.3.0":
+"@commercetools-uikit/secondary-icon-button@npm:15.3.0":
   version: 15.3.0
   resolution: "@commercetools-uikit/secondary-icon-button@npm:15.3.0"
   dependencies:
@@ -5812,7 +5813,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/spacings-inline@npm:15.3.0, @commercetools-uikit/spacings-inline@npm:^15.3.0":
+"@commercetools-uikit/spacings-inline@npm:15.3.0":
   version: 15.3.0
   resolution: "@commercetools-uikit/spacings-inline@npm:15.3.0"
   dependencies:
@@ -5908,7 +5909,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/spacings-stack@npm:15.3.0, @commercetools-uikit/spacings-stack@npm:^15.3.0":
+"@commercetools-uikit/spacings-stack@npm:15.3.0":
   version: 15.3.0
   resolution: "@commercetools-uikit/spacings-stack@npm:15.3.0"
   dependencies:
@@ -5956,7 +5957,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/stamp@npm:^15.3.0":
+"@commercetools-uikit/stamp@npm:15.3.0":
   version: 15.3.0
   resolution: "@commercetools-uikit/stamp@npm:15.3.0"
   dependencies:
@@ -6073,7 +6074,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/tooltip@npm:^15.3.0":
+"@commercetools-uikit/tooltip@npm:15.3.0":
   version: 15.3.0
   resolution: "@commercetools-uikit/tooltip@npm:15.3.0"
   dependencies:
@@ -6108,7 +6109,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools-uikit/utils@npm:15.3.0, @commercetools-uikit/utils@npm:^15.3.0":
+"@commercetools-uikit/utils@npm:15.3.0":
   version: 15.3.0
   resolution: "@commercetools-uikit/utils@npm:15.3.0"
   dependencies:
@@ -6157,8 +6158,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@commercetools-website/custom-applications@workspace:website"
   dependencies:
-    "@commercetools-docs/gatsby-theme-docs": 20.1.1
-    "@commercetools-docs/ui-kit": 20.0.0
+    "@commercetools-docs/gatsby-theme-docs": 20.2.0
+    "@commercetools-docs/ui-kit": 20.2.0
     "@commercetools-uikit/card": ^15.11.2
     "@commercetools-uikit/spacings-inline": ^15.11.2
     "@commercetools-uikit/spacings-stack": ^15.11.2
@@ -6166,14 +6167,14 @@ __metadata:
     "@emotion/styled": 11.10.5
     "@svgr/cli": 6.5.1
     gatsby: 4.25.4
-    gatsby-cli: 4.24.0
+    gatsby-cli: 4.25.0
     linkinator: 4.1.2
     prettier: 2.8.4
     prop-types: 15.8.1
     react: 17.0.2
     react-dom: 17.0.2
     react-intl: ^5.25.1
-    start-server-and-test: 1.15.3
+    start-server-and-test: 1.15.4
   languageName: unknown
   linkType: soft
 
@@ -6263,7 +6264,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commercetools/sdk-middleware-http@npm:7.0.1, @commercetools/sdk-middleware-http@npm:^7.0.0":
+"@commercetools/sdk-middleware-http@npm:7.0.2":
+  version: 7.0.2
+  resolution: "@commercetools/sdk-middleware-http@npm:7.0.2"
+  checksum: cbd08443c0dfe12f078654c4b00621069d46efef5ffec55bec30a6d84a1771a34cf7a88fb44546d094bfc087500b931db63d25a4547a55ebbf4be0d36ab1c734
+  languageName: node
+  linkType: hard
+
+"@commercetools/sdk-middleware-http@npm:^7.0.0":
   version: 7.0.1
   resolution: "@commercetools/sdk-middleware-http@npm:7.0.1"
   checksum: 76fc562b889cf593e1cda5b2d42f1ebb34e7228e461125e4df4fb6d071a17b2a66cac6dbbe9951ca96c9697b03d0daa194ccc2a96dcd01ac6b86e2c29c3b7e8a
@@ -6294,12 +6302,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/cli@npm:17.4.2":
-  version: 17.4.2
-  resolution: "@commitlint/cli@npm:17.4.2"
+"@commitlint/cli@npm:17.4.3":
+  version: 17.4.3
+  resolution: "@commitlint/cli@npm:17.4.3"
   dependencies:
     "@commitlint/format": ^17.4.0
-    "@commitlint/lint": ^17.4.2
+    "@commitlint/lint": ^17.4.3
     "@commitlint/load": ^17.4.2
     "@commitlint/read": ^17.4.2
     "@commitlint/types": ^17.4.0
@@ -6310,16 +6318,16 @@ __metadata:
     yargs: ^17.0.0
   bin:
     commitlint: cli.js
-  checksum: a2d0ecd2c5a770b3d3be1214020ed4298f3d7685f5c065ed2f1565b02b9a1608abd00d114c8b9b17e84741cde0d977bb2c2afc1074176565b6b63e9cde0d2e25
+  checksum: 352020caefb383cef8d26048ce540c87065df1c0647b6c3c08c9f9782db450b0d30341b52151f41ae94eaa36b99b3f63c24484a8082713b1e3bc9d02041c7320
   languageName: node
   linkType: hard
 
-"@commitlint/config-conventional@npm:17.4.2":
-  version: 17.4.2
-  resolution: "@commitlint/config-conventional@npm:17.4.2"
+"@commitlint/config-conventional@npm:17.4.3":
+  version: 17.4.3
+  resolution: "@commitlint/config-conventional@npm:17.4.3"
   dependencies:
     conventional-changelog-conventionalcommits: ^5.0.0
-  checksum: 517dd3b3395774084503606b5c5f9acb0e92db6cd5dd237716993b9858eb9e7e10da981e2a68f99aa2f48afb4d3597b04449c9e2bfde8af2690a0b40ea40115e
+  checksum: 29e3fdf21e5d091d50863c386edfa355ea9c6a1201a3a8d08def7d0e3ecd1c317a19ae87186bd3c5a9879e97e77604a4a5c12273cedbbe7e7e2a231184c583cd
   languageName: node
   linkType: hard
 
@@ -6374,15 +6382,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/lint@npm:^17.4.2":
-  version: 17.4.2
-  resolution: "@commitlint/lint@npm:17.4.2"
+"@commitlint/lint@npm:^17.4.3":
+  version: 17.4.3
+  resolution: "@commitlint/lint@npm:17.4.3"
   dependencies:
     "@commitlint/is-ignored": ^17.4.2
     "@commitlint/parse": ^17.4.2
-    "@commitlint/rules": ^17.4.2
+    "@commitlint/rules": ^17.4.3
     "@commitlint/types": ^17.4.0
-  checksum: efcb5fbee6f8cad5b619deabde598f1f1ac253cf1162eeda4de01e41ae13b7caa651d6fe5eea75d32a20fa7975bb27d13d9e0c9a422ebd158485311e6fb8c8a9
+  checksum: 9f9702970ec62e220ed2b2d954a727c72c3f02477e04f228f6a571558b431f6c6ca2b03c0d530b05bf507b54fca768060d5aa233bcbe8bfb813422b15ebfa014
   languageName: node
   linkType: hard
 
@@ -6453,16 +6461,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/rules@npm:^17.4.2":
-  version: 17.4.2
-  resolution: "@commitlint/rules@npm:17.4.2"
+"@commitlint/rules@npm:^17.4.3":
+  version: 17.4.3
+  resolution: "@commitlint/rules@npm:17.4.3"
   dependencies:
     "@commitlint/ensure": ^17.4.0
     "@commitlint/message": ^17.4.2
     "@commitlint/to-lines": ^17.4.0
     "@commitlint/types": ^17.4.0
     execa: ^5.0.0
-  checksum: 2d53f470b511c41359b66886db054cb43fff748281a236a860bf21c3ba666b9d0b346932e8f0ac90e0dfc5ccdea10abda855ea9faa0f3fe3ef0f3fbc6992c141
+  checksum: 99bb701e419b61863a59c235b0c3582277622a7b65beeb027ffb6825a782002f90e200827acadb36d41179f3139e12cc127992b5fb2ed89b37a08e819970990c
   languageName: node
   linkType: hard
 
@@ -6554,6 +6562,13 @@ __metadata:
     enabled: 2.0.x
     kuler: ^2.0.0
   checksum: 4d95cc31249a840b6cc3dba3dc4345a9295265413456068a0d07b69fa0ec6a5a5bc2c39e56ec04c6509ac1f4d9c17fc80baaaddd5caa1abcdd3aaeffe2b63cec
+  languageName: node
+  linkType: hard
+
+"@discoveryjs/json-ext@npm:0.5.7":
+  version: 0.5.7
+  resolution: "@discoveryjs/json-ext@npm:0.5.7"
+  checksum: 2176d301cc258ea5c2324402997cf8134ebb212469c0d397591636cea8d3c02f2b3cf9fd58dcb748c7a0dade77ebdc1b10284fa63e608c033a1db52fddc69918
   languageName: node
   linkType: hard
 
@@ -7251,6 +7266,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@formatjs/fast-memoize@npm:1.2.8":
+  version: 1.2.8
+  resolution: "@formatjs/fast-memoize@npm:1.2.8"
+  dependencies:
+    tslib: ^2.4.0
+  checksum: 19f7f04657363d3ca4854ba3e5ecf4ae5bf0575c12ba8b2b24a7128131b38d91cf2692aeab778d42e9aa2e27cd2ea3b1e23cabf8ce4dff42988dcf65582c3a94
+  languageName: node
+  linkType: hard
+
 "@formatjs/icu-messageformat-parser@npm:2.1.0":
   version: 2.1.0
   resolution: "@formatjs/icu-messageformat-parser@npm:2.1.0"
@@ -7304,6 +7328,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@formatjs/intl-displaynames@npm:6.2.4":
+  version: 6.2.4
+  resolution: "@formatjs/intl-displaynames@npm:6.2.4"
+  dependencies:
+    "@formatjs/ecma402-abstract": 1.14.3
+    "@formatjs/intl-localematcher": 0.2.32
+    tslib: ^2.4.0
+  checksum: 17cee1a7f81260a2b6bab1606bc3fa3eea777f454fb7d233a8d50befa9e02a1b3bf5ce5a4a6030a3ad86f60ea65cdce273e1d562dab1fdbe2dd42b254e31320f
+  languageName: node
+  linkType: hard
+
 "@formatjs/intl-getcanonicallocales@npm:1.9.2, @formatjs/intl-getcanonicallocales@npm:^1.9.2":
   version: 1.9.2
   resolution: "@formatjs/intl-getcanonicallocales@npm:1.9.2"
@@ -7324,7 +7359,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl-listformat@npm:^7.1.7":
+"@formatjs/intl-listformat@npm:7.1.7, @formatjs/intl-listformat@npm:^7.1.7":
   version: 7.1.7
   resolution: "@formatjs/intl-listformat@npm:7.1.7"
   dependencies:
@@ -7403,6 +7438,26 @@ __metadata:
     typescript:
       optional: true
   checksum: 35411545e2975b641faede0d58d1afe0f44b90cac6fa37b0d025366c91378dafde6a7ac35a1cc02d0e11c90cb2e57e3b2f6d50044b8f00092bc6d0ef197d4d49
+  languageName: node
+  linkType: hard
+
+"@formatjs/intl@npm:2.6.5":
+  version: 2.6.5
+  resolution: "@formatjs/intl@npm:2.6.5"
+  dependencies:
+    "@formatjs/ecma402-abstract": 1.14.3
+    "@formatjs/fast-memoize": 1.2.8
+    "@formatjs/icu-messageformat-parser": 2.2.0
+    "@formatjs/intl-displaynames": 6.2.4
+    "@formatjs/intl-listformat": 7.1.7
+    intl-messageformat: 10.3.0
+    tslib: ^2.4.0
+  peerDependencies:
+    typescript: ^4.7
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: c0c8ccbc8bcffc245a5ec6654271dc99dd48359c6dfa21666824be55a7e2b0be8e6f0a1277d1e539064fa2eb72c5349d9ea7ae6ab207191a3adf00c68b1eab7f
   languageName: node
   linkType: hard
 
@@ -10496,16 +10551,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/browser@npm:7.37.0":
-  version: 7.37.0
-  resolution: "@sentry/browser@npm:7.37.0"
+"@sentry/browser@npm:7.37.2":
+  version: 7.37.2
+  resolution: "@sentry/browser@npm:7.37.2"
   dependencies:
-    "@sentry/core": 7.37.0
-    "@sentry/replay": 7.37.0
-    "@sentry/types": 7.37.0
-    "@sentry/utils": 7.37.0
+    "@sentry/core": 7.37.2
+    "@sentry/replay": 7.37.2
+    "@sentry/types": 7.37.2
+    "@sentry/utils": 7.37.2
     tslib: ^1.9.3
-  checksum: 7fa6ed50349bcc392f0f5cd4e47cdc7839920678eae1fe00164a5ad8522dccf72570dd22bbc389082b503d6994074b15f4fd3ad28940e87783474ec45e8ee665
+  checksum: b43a7d6f4c1f23dc98a35142dea83e54d4c930963fa8e52b35f78998b7f43a1c6bc99bb487247213c2708f79b53c60c1efacb1390a5542b6971617069c52fa5e
   languageName: node
   linkType: hard
 
@@ -10520,67 +10575,67 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/core@npm:7.37.0":
-  version: 7.37.0
-  resolution: "@sentry/core@npm:7.37.0"
+"@sentry/core@npm:7.37.2":
+  version: 7.37.2
+  resolution: "@sentry/core@npm:7.37.2"
   dependencies:
-    "@sentry/types": 7.37.0
-    "@sentry/utils": 7.37.0
+    "@sentry/types": 7.37.2
+    "@sentry/utils": 7.37.2
     tslib: ^1.9.3
-  checksum: ec3ef143aa8d38c51207bc85841416d20cf6c6bd2ef9cdb072f7f06084e6505ede0b58a086eea37bb35169fb593b1119502c3ac7f9eaf8e1513887f75feae7ae
+  checksum: 7a84af7bdd95c217a592188a036cbaf15ae7243a91a7565b74fdab55a9145de88ee57d086138908471e71c644fbab335606988bd99f09f2a6062791433e4ab23
   languageName: node
   linkType: hard
 
-"@sentry/node@npm:7.37.0":
-  version: 7.37.0
-  resolution: "@sentry/node@npm:7.37.0"
+"@sentry/node@npm:7.37.2":
+  version: 7.37.2
+  resolution: "@sentry/node@npm:7.37.2"
   dependencies:
-    "@sentry/core": 7.37.0
-    "@sentry/types": 7.37.0
-    "@sentry/utils": 7.37.0
+    "@sentry/core": 7.37.2
+    "@sentry/types": 7.37.2
+    "@sentry/utils": 7.37.2
     cookie: ^0.4.1
     https-proxy-agent: ^5.0.0
     lru_map: ^0.3.3
     tslib: ^1.9.3
-  checksum: c013ed890017c1318c6de016293e4de4b06499243126a9e13dd86c053f8d0e2d95a07748dc2014e162191b7f51e7f1f34d12895d500747d7eef2d6fa385116fb
+  checksum: e4f972763c91ea91988f76c375671f386bd8d642373759c84a6b3d6c7d01912679820e8a51d6ba17904cde1f8eeb981790a936945c1c2fa9bccc369381da8397
   languageName: node
   linkType: hard
 
-"@sentry/react@npm:7.37.0":
-  version: 7.37.0
-  resolution: "@sentry/react@npm:7.37.0"
+"@sentry/react@npm:7.37.2":
+  version: 7.37.2
+  resolution: "@sentry/react@npm:7.37.2"
   dependencies:
-    "@sentry/browser": 7.37.0
-    "@sentry/types": 7.37.0
-    "@sentry/utils": 7.37.0
+    "@sentry/browser": 7.37.2
+    "@sentry/types": 7.37.2
+    "@sentry/utils": 7.37.2
     hoist-non-react-statics: ^3.3.2
     tslib: ^1.9.3
   peerDependencies:
     react: 15.x || 16.x || 17.x || 18.x
-  checksum: 6a6dfe31f0b483da483dd02efb60af043dfa45d750ff7b41112b5c82040da855d7394ba8539ac3e215efc00231a33a3e70dc658ccb82a37894493e10f927e9dd
+  checksum: d5ebb052cc21a827eef89f19d107c61b7938d23da98f345a7694fa7ad9a7e5eb83ddcac0edb33cf2503baa8cd96249edfc648d5cc8324fc9b408e975236b6633
   languageName: node
   linkType: hard
 
-"@sentry/replay@npm:7.37.0":
-  version: 7.37.0
-  resolution: "@sentry/replay@npm:7.37.0"
+"@sentry/replay@npm:7.37.2":
+  version: 7.37.2
+  resolution: "@sentry/replay@npm:7.37.2"
   dependencies:
-    "@sentry/core": 7.37.0
-    "@sentry/types": 7.37.0
-    "@sentry/utils": 7.37.0
-  checksum: 547f5c7851d6b5e12158a32b6c06ec2defea7395b6625143d862ec79ad303462e4842044fc212cf81f057af4790b7a0b48093cb401f9291604418d50bd6640f7
+    "@sentry/core": 7.37.2
+    "@sentry/types": 7.37.2
+    "@sentry/utils": 7.37.2
+  checksum: 09484769b8aed4f8257b83e89c18f6150a0f3128f16f4d942c785fbcdf202f86b0ef11014fb275b9a5981b3dcce2035775df668ba8bf3ee888639e7fe85130a6
   languageName: node
   linkType: hard
 
-"@sentry/tracing@npm:7.37.0":
-  version: 7.37.0
-  resolution: "@sentry/tracing@npm:7.37.0"
+"@sentry/tracing@npm:7.37.2":
+  version: 7.37.2
+  resolution: "@sentry/tracing@npm:7.37.2"
   dependencies:
-    "@sentry/core": 7.37.0
-    "@sentry/types": 7.37.0
-    "@sentry/utils": 7.37.0
+    "@sentry/core": 7.37.2
+    "@sentry/types": 7.37.2
+    "@sentry/utils": 7.37.2
     tslib: ^1.9.3
-  checksum: 45a0023a0d0f19b9bb1dc2a686dfd5549c642cbc157c9e69d22893c14dc1803de18da3486389b390b94085e0e92065d53515443e71818fcb28951b539be77b34
+  checksum: 2dea7e63a864717fa23fe1fcdca00653b43e55e8919136cc9d0cdda439a7ad4314a57671b0cb3d3dfb76a9a9b4e3c6ff39e17781ab459b2eaa6854ffdebaefd2
   languageName: node
   linkType: hard
 
@@ -10591,10 +10646,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/types@npm:7.37.0":
-  version: 7.37.0
-  resolution: "@sentry/types@npm:7.37.0"
-  checksum: cb8b71cd6f3332a7a084dd73d3174a99135b1442c3c4467fba84f1fb1f7de755c0f6f53813aeaae1a261e39447e5ad8083e7bf1160e37661baced928522ce7b4
+"@sentry/types@npm:7.37.2":
+  version: 7.37.2
+  resolution: "@sentry/types@npm:7.37.2"
+  checksum: b6f09beba86700083e5014728c474f627063fa253360133e41ca2891b937dd0b11a878a1b4d62b24a56b985abb2aaad7cc1245642a2b75b05395101faa7bc9c3
   languageName: node
   linkType: hard
 
@@ -10608,13 +10663,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/utils@npm:7.37.0":
-  version: 7.37.0
-  resolution: "@sentry/utils@npm:7.37.0"
+"@sentry/utils@npm:7.37.2":
+  version: 7.37.2
+  resolution: "@sentry/utils@npm:7.37.2"
   dependencies:
-    "@sentry/types": 7.37.0
+    "@sentry/types": 7.37.2
     tslib: ^1.9.3
-  checksum: da7825eb743880c7665355c93f93f8201978239eae46eaacf4a08f847efd1d0ee3b6be547c0d658145bf7d6bfdcd5d7def3227f14221cc3e295895b019b25fbe
+  checksum: 1c7b38627e3d52106cc64c610c751265b9e4ff62d9e91d258e0479877fbdda76ba9daf6ed7be74e3c4723d4f0192a8ca1519bbce853520e1c94a168b48351b7c
   languageName: node
   linkType: hard
 
@@ -12818,10 +12873,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/build-utils@npm:6.2.1":
-  version: 6.2.1
-  resolution: "@vercel/build-utils@npm:6.2.1"
-  checksum: c8e144a4a78b0c7b5a2d33b701aa8079d4ad65a35cbcd3367165b79b1aa6178632b8e08ebe7c9f28bfaf89744522f10feaca41cc63f9b4794556c874025f4384
+"@vercel/build-utils@npm:6.2.3":
+  version: 6.2.3
+  resolution: "@vercel/build-utils@npm:6.2.3"
+  checksum: a2f84b21716f8deb57b9843364b1af5c8de8b6517273bfbb430243f14006608c1e01ad6f6676ece5e66a5e00ed781b5b9b9a0341f27d6f665485002f1123f81b
   languageName: node
   linkType: hard
 
@@ -12867,10 +12922,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/node-bridge@npm:3.1.10":
-  version: 3.1.10
-  resolution: "@vercel/node-bridge@npm:3.1.10"
-  checksum: 34ac62765ed544094350345a024914d65781508b15aa2c7a526cbe2cef40527e3ee1b7bf18c32b36ebb9cfbf68138ae47af559a4da24a934b32b50b950376170
+"@vercel/node-bridge@npm:3.1.11":
+  version: 3.1.11
+  resolution: "@vercel/node-bridge@npm:3.1.11"
+  checksum: 57c3e52307dd92a2dcf3b8606023f6be68ecc8dd582af06a89c6673498f6dc28a77a9c170c86b12e2af263385909ac91b3d3d7c9042e83386c7cdd68e4c7b7a0
   languageName: node
   linkType: hard
 
@@ -12886,14 +12941,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/node@npm:^2.9.2":
-  version: 2.9.2
-  resolution: "@vercel/node@npm:2.9.2"
+"@vercel/node@npm:^2.9.4":
+  version: 2.9.4
+  resolution: "@vercel/node@npm:2.9.4"
   dependencies:
     "@edge-runtime/vm": 2.0.0
     "@types/node": 14.18.33
-    "@vercel/build-utils": 6.2.1
-    "@vercel/node-bridge": 3.1.10
+    "@vercel/build-utils": 6.2.3
+    "@vercel/node-bridge": 3.1.11
     "@vercel/static-config": 2.0.12
     edge-runtime: 2.0.0
     esbuild: 0.14.47
@@ -12901,7 +12956,7 @@ __metadata:
     node-fetch: 2.6.7
     ts-node: 10.9.1
     typescript: 4.3.4
-  checksum: 38f78908400a74a4eab5cdf9bda2749b67a8f36a51dc8af3c5ee5206a37cde6d688890c2dd3fec17149b5716fb8d97011e10b71f98e2c73cdc8b09f220fda59c
+  checksum: 687dcb60c82a8844f3ad99077854f4ccbeb26e2371de14cedeee90907b0a20b9ecfeec8592c0e4c2741b3903e954e9d5f48e157880c3287fcd83ecb171720490
   languageName: node
   linkType: hard
 
@@ -16839,10 +16894,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:^3.27.2":
-  version: 3.27.2
-  resolution: "core-js@npm:3.27.2"
-  checksum: 718debd426f55a6b97cf9b757c936be258afd6d4f7052f89d0f96c982d7013e9000b0b006df42831a0cf32adad298e34d6a19052dce9ae1c7ab87162c0c665e0
+"core-js@npm:^3.28.0":
+  version: 3.28.0
+  resolution: "core-js@npm:3.28.0"
+  checksum: 3155fd0ec16d0089106b145e9595280a4ea4bde0d7ff26aa14364cd4f1c203baf6620c3025acd284f363d08b9f21104101692766ca9a36ffeee7307bdf3e1881
   languageName: node
   linkType: hard
 
@@ -16979,7 +17034,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"create-gatsby@npm:^2.24.0, create-gatsby@npm:^2.25.0":
+"create-gatsby@npm:^2.25.0":
   version: 2.25.0
   resolution: "create-gatsby@npm:2.25.0"
   dependencies:
@@ -18995,10 +19050,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dompurify@npm:2.4.3, dompurify@npm:^2.4.3":
+"dompurify@npm:2.4.3":
   version: 2.4.3
   resolution: "dompurify@npm:2.4.3"
   checksum: b440981f2a38cada2085759cc3d1e2f94571afc34343d011a8a6aa1ad91ae6abf651adbfa4994b0e2283f0ce81f7891cdb04b67d0b234c8d190cb70e9691f026
+  languageName: node
+  linkType: hard
+
+"dompurify@npm:^2.4.4":
+  version: 2.4.4
+  resolution: "dompurify@npm:2.4.4"
+  checksum: 6a29c2a1b76c0723564d009a26b9123e23ea61ac5d6f30cdcdd01f4d48b257a99adb5952c7a08390a7323353dbb333ad7d650c7cf3f5b6b5bb81eab5826a7f7c
   languageName: node
   linkType: hard
 
@@ -20546,9 +20608,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:8.33.0":
-  version: 8.33.0
-  resolution: "eslint@npm:8.33.0"
+"eslint@npm:8.34.0":
+  version: 8.34.0
+  resolution: "eslint@npm:8.34.0"
   dependencies:
     "@eslint/eslintrc": ^1.4.1
     "@humanwhocodes/config-array": ^0.11.8
@@ -20591,7 +20653,7 @@ __metadata:
     text-table: ^0.2.0
   bin:
     eslint: bin/eslint.js
-  checksum: 727e63ab8b7acf281442323c5971f6afdd5b656fbcebc4476cf54e35af51b2f180617433fc5e1952f0449ca3f43a905527f9407ea4b8a7ea7562fc9c3f278d4c
+  checksum: 4e13e9eb05ac2248efbb6acae0b2325091235d5c47ba91a4775c7d6760778cbcd358a773ebd42f4629d2ad89e27c02f5d66eb1f737d75d9f5fc411454f83b2e5
   languageName: node
   linkType: hard
 
@@ -21593,7 +21655,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"find-cache-dir@npm:^3.3.1, find-cache-dir@npm:^3.3.2":
+"find-cache-dir@npm:^3.0.0, find-cache-dir@npm:^3.3.1, find-cache-dir@npm:^3.3.2":
   version: 3.3.2
   resolution: "find-cache-dir@npm:3.3.2"
   dependencies:
@@ -22134,59 +22196,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-cli@npm:4.24.0":
-  version: 4.24.0
-  resolution: "gatsby-cli@npm:4.24.0"
-  dependencies:
-    "@babel/code-frame": ^7.14.0
-    "@babel/core": ^7.15.5
-    "@babel/generator": ^7.16.8
-    "@babel/helper-plugin-utils": ^7.16.7
-    "@babel/preset-typescript": ^7.16.7
-    "@babel/runtime": ^7.15.4
-    "@babel/template": ^7.16.7
-    "@babel/types": ^7.16.8
-    "@jridgewell/trace-mapping": ^0.3.13
-    "@types/common-tags": ^1.8.1
-    better-opn: ^2.1.1
-    boxen: ^5.1.2
-    chalk: ^4.1.2
-    clipboardy: ^2.3.0
-    common-tags: ^1.8.2
-    convert-hrtime: ^3.0.0
-    create-gatsby: ^2.24.0
-    envinfo: ^7.8.1
-    execa: ^5.1.1
-    fs-exists-cached: ^1.0.0
-    fs-extra: ^10.1.0
-    gatsby-core-utils: ^3.24.0
-    gatsby-telemetry: ^3.24.0
-    hosted-git-info: ^3.0.8
-    is-valid-path: ^0.1.1
-    joi: ^17.4.2
-    lodash: ^4.17.21
-    node-fetch: ^2.6.6
-    opentracing: ^0.14.5
-    pretty-error: ^2.1.2
-    progress: ^2.0.3
-    prompts: ^2.4.2
-    redux: 4.1.2
-    resolve-cwd: ^3.0.0
-    semver: ^7.3.7
-    signal-exit: ^3.0.6
-    stack-trace: ^0.0.10
-    strip-ansi: ^6.0.1
-    update-notifier: ^5.1.0
-    yargs: ^15.4.1
-    yoga-layout-prebuilt: ^1.10.0
-    yurnalist: ^2.1.0
-  bin:
-    gatsby: cli.js
-  checksum: a47971a89a59b615a701ba6a8211b2733fd37c420d1ba71737c57f8766217e5214df764a6eb901d15e52c91fab8b64410cf634d616ea2828e0e68948249feeda
-  languageName: node
-  linkType: hard
-
-"gatsby-cli@npm:^4.25.0":
+"gatsby-cli@npm:4.25.0, gatsby-cli@npm:^4.25.0":
   version: 4.25.0
   resolution: "gatsby-cli@npm:4.25.0"
   dependencies:
@@ -22731,7 +22741,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-telemetry@npm:^3.24.0, gatsby-telemetry@npm:^3.25.0":
+"gatsby-telemetry@npm:^3.25.0":
   version: 3.25.0
   resolution: "gatsby-telemetry@npm:3.25.0"
   dependencies:
@@ -24915,6 +24925,18 @@ __metadata:
   version: 0.12.2
   resolution: "intersection-observer@npm:0.12.2"
   checksum: d1fa9ebbb1e0baafe88ad95545bbb93f92bdcb8789912a2bd11b2463ab177ef185052c9c79c26187833d633f404acb077d4b1249353c5f6e2ca5cd64f50e216b
+  languageName: node
+  linkType: hard
+
+"intl-messageformat@npm:10.3.0":
+  version: 10.3.0
+  resolution: "intl-messageformat@npm:10.3.0"
+  dependencies:
+    "@formatjs/ecma402-abstract": 1.14.3
+    "@formatjs/fast-memoize": 1.2.8
+    "@formatjs/icu-messageformat-parser": 2.2.0
+    tslib: ^2.4.0
+  checksum: a92b2fec9ed0ba992ecfefbe9968c0f80961d6d23d105b16f3437108c61fe57d6e91e04392c4092335136399e047572996bc45d197ec0899473a3aac3627fed2
   languageName: node
   linkType: hard
 
@@ -28829,11 +28851,11 @@ __metadata:
     "@changesets/changelog-github": 0.4.8
     "@changesets/cli": 2.26.0
     "@commercetools-docs/writing-style": 3.3.2
-    "@commercetools-test-data/core": 4.8.0
+    "@commercetools-test-data/core": 4.9.0
     "@commercetools-uikit/design-system": ^15.11.2
     "@commercetools/github-labels": 1.1.0
-    "@commitlint/cli": 17.4.2
-    "@commitlint/config-conventional": 17.4.2
+    "@commitlint/cli": 17.4.3
+    "@commitlint/config-conventional": 17.4.3
     "@faker-js/faker": 7.6.0
     "@formatjs/cli": 4.8.4
     "@graphql-codegen/add": 3.2.3
@@ -28865,7 +28887,7 @@ __metadata:
     cross-env: 7.0.3
     cypress: 11.2.0
     dotenv: 16.0.3
-    eslint: 8.33.0
+    eslint: 8.34.0
     eslint-formatter-pretty: 4.1.0
     eslint-plugin-graphql: ^4.0.0
     graphql: 16.6.0
@@ -28887,9 +28909,9 @@ __metadata:
     replace: 1.2.2
     rosie: 2.1.0
     shelljs: 0.8.5
-    start-server-and-test: 1.15.3
+    start-server-and-test: 1.15.4
     stylelint: 14.16.1
-    stylelint-config-prettier: 9.0.4
+    stylelint-config-prettier: 9.0.5
     stylelint-config-standard: 26.0.0
     stylelint-order: 5.0.0
     stylelint-value-no-unknown-custom-properties: 4.0.0
@@ -29856,6 +29878,19 @@ __metadata:
   version: 2.24.0
   resolution: "moment-mini@npm:2.24.0"
   checksum: c1162322fd05a305cf5d403107fe702a928e5a72c56a614142fae4882846f66bb21c423cef397fe56802564b0353386f1bca46c8bb080d2097e68cbd687d589e
+  languageName: node
+  linkType: hard
+
+"moment-timezone-data-webpack-plugin@npm:1.5.1":
+  version: 1.5.1
+  resolution: "moment-timezone-data-webpack-plugin@npm:1.5.1"
+  dependencies:
+    find-cache-dir: ^3.0.0
+    make-dir: ^3.0.0
+  peerDependencies:
+    moment-timezone: ">= 0.1.0"
+    webpack: 4.x.x || 5.x.x
+  checksum: 2498cc5530600e0ad7c2f64830d52e3f240eeeb59a35ee84f76d8f675ec626fc9d524cb8866cad7919c1c689427f3cdf6f226594c6ce2a4ffa1b2c7d3bd71ca6
   languageName: node
   linkType: hard
 
@@ -33076,6 +33111,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-intl@npm:^6.2.7":
+  version: 6.2.8
+  resolution: "react-intl@npm:6.2.8"
+  dependencies:
+    "@formatjs/ecma402-abstract": 1.14.3
+    "@formatjs/icu-messageformat-parser": 2.2.0
+    "@formatjs/intl": 2.6.5
+    "@formatjs/intl-displaynames": 6.2.4
+    "@formatjs/intl-listformat": 7.1.7
+    "@types/hoist-non-react-statics": ^3.3.1
+    "@types/react": 16 || 17 || 18
+    hoist-non-react-statics: ^3.3.2
+    intl-messageformat: 10.3.0
+    tslib: ^2.4.0
+  peerDependencies:
+    react: ^16.6.0 || 17 || 18
+    typescript: ^4.7
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: e7e4956e71bc12cc915ff1bbc967ae1a5b9b58af7aef9a8290683c3ec6f785ed7e4917798f5a4cff5d490bfdf43f6249eec401c733819a5d72e8a3af2b119871
+  languageName: node
+  linkType: hard
+
 "react-is@npm:17.0.2, react-is@npm:^17.0.1, react-is@npm:^17.0.2":
   version: 17.0.2
   resolution: "react-is@npm:17.0.2"
@@ -35557,9 +35616,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"start-server-and-test@npm:1.15.3":
-  version: 1.15.3
-  resolution: "start-server-and-test@npm:1.15.3"
+"start-server-and-test@npm:1.15.4":
+  version: 1.15.4
+  resolution: "start-server-and-test@npm:1.15.4"
   dependencies:
     arg: ^5.0.2
     bluebird: 3.7.2
@@ -35573,7 +35632,7 @@ __metadata:
     server-test: src/bin/start.js
     start-server-and-test: src/bin/start.js
     start-test: src/bin/start.js
-  checksum: 3489c5146e26bc3bfa34d12f546f78fa6d883fdd49d0c60cbf4fb76ef627df6cde0a878253f5ca8e2177b938c00f47c613a811f6e7aa519af3be58576fbc2ab0
+  checksum: 0df9a4710ea45ddb1a9f719e0865faa8e26a973beff693dfe244ae2d914bfc6eed4d2db8529cdcad3d53658c4655356e5aca3520485a3ef4d9d9f320956b0e7d
   languageName: node
   linkType: hard
 
@@ -36078,15 +36137,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint-config-prettier@npm:9.0.4":
-  version: 9.0.4
-  resolution: "stylelint-config-prettier@npm:9.0.4"
+"stylelint-config-prettier@npm:9.0.5":
+  version: 9.0.5
+  resolution: "stylelint-config-prettier@npm:9.0.5"
   peerDependencies:
-    stylelint: ">=11.0.0"
+    stylelint: ">= 11.x < 15"
   bin:
     stylelint-config-prettier: bin/check.js
     stylelint-config-prettier-check: bin/check.js
-  checksum: cf94f646f6b1756a9e41940524a8c276ec05be9a2a02907fee6cb4ebdc39e3a9049c96ec97e79cc3f3c0487f5870c81b3d68b0a65d1ee81cd9d7700420788cee
+  checksum: 3d04e463e0bb7e42a5ddec49eea6ef4ea07705d887e8a3ff1fcb82278a5e2bec1a36b8498ea7ed2d24878de29d7c94ac75b1d3ac4f8b19c3a84970595b29261f
   languageName: node
   linkType: hard
 
@@ -38695,10 +38754,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack-bundle-analyzer@npm:4.7.0":
-  version: 4.7.0
-  resolution: "webpack-bundle-analyzer@npm:4.7.0"
+"webpack-bundle-analyzer@npm:4.8.0":
+  version: 4.8.0
+  resolution: "webpack-bundle-analyzer@npm:4.8.0"
   dependencies:
+    "@discoveryjs/json-ext": 0.5.7
     acorn: ^8.0.4
     acorn-walk: ^8.0.0
     chalk: ^4.1.0
@@ -38710,7 +38770,7 @@ __metadata:
     ws: ^7.3.1
   bin:
     webpack-bundle-analyzer: lib/bin/analyzer.js
-  checksum: 4ce3b379c61ce16b2219756843407cc99f2b82cd191f653043f1b705a3e32b3af03834af0dfded98ab852313a892a148bed1a8effaacd6440f028c19f41581f3
+  checksum: acd86f68abb2bcb1a240043c6e2d8e53079499363afed94b96c0ec1abcc4fca2b7a7cbeeb5e13027d02a993c6ea8153194c69e7697faf47528bdaff1e2ce297e
   languageName: node
   linkType: hard
 

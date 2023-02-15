@@ -19,8 +19,8 @@
     "@babel/eslint-parser": "^7.19.1",
     "@commercetools-frontend/babel-preset-mc-app": "^21.23.6",
     "@rushstack/eslint-patch": "^1.2.0",
-    "@typescript-eslint/eslint-plugin": "^5.51.0",
-    "@typescript-eslint/parser": "^5.51.0",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
     "confusing-browser-globals": "^1.0.11",
     "eslint-config-prettier": "^8.6.0",
     "eslint-import-resolver-typescript": "^3.5.3",
@@ -38,7 +38,7 @@
     "eslint": "8.x"
   },
   "devDependencies": {
-    "eslint": "8.33.0"
+    "eslint": "8.34.0"
   },
   "engines": {
     "node": ">=14"

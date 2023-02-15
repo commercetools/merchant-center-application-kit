@@ -14,7 +14,7 @@
     "deploy": "vercel --scope=commercetools --confirm --no-clipboard"
   },
   "dependencies": {
-    "@commercetools-docs/ui-kit": "20.0.0",
+    "@commercetools-docs/ui-kit": "20.2.0",
     "@commercetools-frontend/actions-global": "21.23.6",
     "@commercetools-frontend/application-components": "21.23.6",
     "@commercetools-frontend/application-shell": "21.23.6",
@@ -57,7 +57,7 @@
     "@commercetools-frontend/mc-scripts": "21.23.6",
     "@formatjs/cli": "4.8.4",
     "@types/dotenv-flow": "^3.2.0",
-    "@vercel/node": "^2.9.2",
+    "@vercel/node": "^2.9.4",
     "dotenv-flow": "^3.2.0",
     "express": "4.18.2",
     "ts-node": "^10.9.1",
