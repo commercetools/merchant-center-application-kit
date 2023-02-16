@@ -7,3 +7,57 @@ title: Deployment previews
 Deployment previews let you test your Custom Application features before publishing them to the production environment.
 
 </Subtitle>
+
+This document describes the necessary steps to build and add deployment previews to your Custom Application in the Merchant Center.
+
+The process involves:
+
+1. Building deployment previews for your Custom Application.
+2. Deploying the Custom Application preview to your hosting provider.
+3. [Adding the deployment preview](https://docs.commercetools.com/merchant-center/managing-custom-applications#adding-deployment-previews) to your Custom Application settings.
+
+# Building deployment previews
+
+Each deployment preview has its unique and stable deployment URL. To build a deployment preview, you must set the `env.production.url` value in the `custom-application-config.json` file to the deployed application. You can follow one of the below approaches:
+
+## Using environment variables
+
+To configure your application URL, you can use environment variables. Then, you can assign different values to the specified environment variable in each deployment environment. The Custom Application `build` script will automatically resolve the application URL from the environment variables.
+
+To implement this process, create a `.env` file in your project root with the following content:
+
+```bash
+URL=<stable-deployment-url> # copied from your hosting provider
+```
+
+Then, update the `.env.production.url` value in `custom-application-config.json` file to point to the `URL` environment variable.
+
+```json
+{
+  // ...more configurations
+  "env": {
+    "production": {
+      "url": "${env:URL}",
+    },
+  // ...more configurations
+}
+```
+
+<Info>
+
+You also need to set the `URL` environment variable on your hosting platform.
+
+</Info>
+
+## Using Git branches
+
+If your team is following a branch-based deployment flow where branches are mapping to a deployment environment, you can set different values for the `env.production.url` key in the `custom-application-config.json` file for each branch.
+
+For example, in the `main` branch, you can set the `env.production.url`  to the production deployment URL and the feature testing deployment URL in the `staging` branch.
+
+# Deploying the Custom Application preview
+
+Once you've built your Custom Application using the correct `env.production.url` value. You can deploy the Custom Application preview the same as you deploy your Custom Application.
+The only requirement is that the deployment URL is stable, so you can specify it on the Merchant Center while [Adding the deployment preview](https://docs.commercetools.com/merchant-center/managing-custom-applications#adding-deployment-previews).
+
+See [Deployment Examples](./deployment-examples) to quickly get up and running with some of the common cloud hosting providers.
