@@ -20,6 +20,8 @@
       path: /concepts/merchant-center-api
     - title: Integrate with your own API
       path: /concepts/integrate-with-your-own-api
+    - title: Deployment previews
+      path: /concepts/deployment-previews
 - chapter-title: Development
   pages:
     - title: Overview
@@ -76,8 +78,6 @@
       path: /api-reference/create-mc-app
     - title: Custom Webpack Config
       path: /api-reference/custom-webpack-config
-    - title: Deployment previews
-      path: /api-reference/deployment-previews
     # - title: Security Headers
     #   path: /api-reference/security-headers
     # - title: I18N
