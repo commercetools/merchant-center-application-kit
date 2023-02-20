@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 const SvgWebDeveloper = (props) => (
   <svg
     data-name="Layer 1"
@@ -149,5 +148,4 @@ const SvgWebDeveloper = (props) => (
     <path fill="#2f2e41" d="M6.994 237.065h477v2h-477z" />
   </svg>
 );
-
 export default SvgWebDeveloper;

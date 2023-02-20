@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 const SvgScreenDesignTool = (props) => (
   <svg
     width={32}
@@ -91,5 +90,4 @@ const SvgScreenDesignTool = (props) => (
     </g>
   </svg>
 );
-
 export default SvgScreenDesignTool;
