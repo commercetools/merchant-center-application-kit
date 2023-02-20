@@ -78,7 +78,7 @@ function PageContentWide(props: TPageContentWide) {
 
 const defaultProps: Pick<TPageContentWide, 'columns' | 'gapSize'> = {
   columns: '1',
-  gapSize: '10',
+  gapSize: '20',
 };
 PageContentWide.defaultProps = defaultProps;
 

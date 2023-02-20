@@ -60,11 +60,11 @@ export const Component = () => (
           ),
         },
         {
-          name: 'two columns 1/1 with big gap',
-          path: 'two-columns-half-big-gap',
+          name: 'two columns 1/1 with small gap',
+          path: 'two-columns-half-small-gap',
           spec: (
-            <PageContentWide columns="1/1" gapSize="20">
-              <Box size="l" />
+            <PageContentWide columns="1/1" gapSize="10">
+              <Box size="s" />
               <Box />
             </PageContentWide>
           ),
