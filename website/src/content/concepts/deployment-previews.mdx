@@ -4,13 +4,13 @@ title: Deployment previews
 
 <Subtitle>
 
-Deployment previews let you test your Custom Application features before publishing them to the production environment.
+Deployment previews let you preview your Custom Application changes using a unique URL.
 
 </Subtitle>
 
 To test your Custom Application features before releasing them to the production environment, you can add a deployment preview. For example, you can add a deployment preview to try all the updates in the `staging` branch and another to test some experimental features.
 
-The deployment previews are available on a different URL than the production environment. You must host the deployment previews separately from one another and assign a unique but stable URL. You can add as many deployment previews as you like.
+The deployment previews are available on a different URL than the production environment. You must host the deployment previews separately from one another and assign a unique but static URL. You can add as many deployment previews as you like.
 
 This document describes the necessary steps to build and add deployment previews to your Custom Application in the Merchant Center.
 
@@ -22,7 +22,7 @@ The process involves:
 
 # Building deployment previews
 
-Each deployment preview has its unique and stable deployment URL. To build a deployment preview, you must set the `env.production.url` value in the `custom-application-config.json` file to the deployed application. You can follow one of the below approaches:
+Each deployment preview has its unique and static deployment URL. To build a deployment preview, you must set the `env.production.url` value in the `custom-application-config.json` file to the deployed application. You can follow one of the below approaches:
 
 ## Using environment variables
 
@@ -31,19 +31,17 @@ To configure your application URL, you can use environment variables. Then, you 
 To implement this process, create a `.env` file in your project root with the following content:
 
 ```bash
-URL=<stable-deployment-url> # copied from your hosting provider
+APP_URL=<static-deployment-url> # copied from your hosting provider
 ```
 
-Then, update the `.env.production.url` value in `custom-application-config.json` file to point to the `URL` environment variable.
+Then, update the `.env.production.url` value in `custom-application-config.json` file to point to the `APP_URL` environment variable.
 
 ```json
 {
-  // ...more configurations
   "env": {
     "production": {
-      "url": "${env:URL}",
+      "url": "${env:APP_URL}",
     },
-  // ...more configurations
 }
 ```
 
@@ -62,7 +60,7 @@ For example, in the `main` branch, you can set the `env.production.url`  to the 
 # Deploying the Custom Application preview
 
 Once you've built your Custom Application using the correct `env.production.url` value. You can deploy the Custom Application preview the same as you deploy your Custom Application.
-The only requirement is that the deployment URL is stable, so you can specify it on the Merchant Center while [Adding the deployment preview](https://docs.commercetools.com/merchant-center/managing-custom-applications#adding-deployment-previews).
+The only requirement is that the deployment URL is static, so you can specify it on the Merchant Center while [Adding the deployment preview](https://docs.commercetools.com/merchant-center/managing-custom-applications#adding-deployment-previews).
 
 See [Deployment Examples](./deployment-examples) to get up and running with some of the common cloud hosting providers.
 
