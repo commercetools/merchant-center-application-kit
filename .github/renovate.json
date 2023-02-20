@@ -39,5 +39,6 @@
     "enabled": true
   },
   "labels": ["🤖 Type: Dependencies"],
+  "stopUpdatingLabel": "🖐 Status: On Hold",
   "ignoreDeps": []
 }
