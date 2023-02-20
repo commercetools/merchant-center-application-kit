@@ -28,15 +28,15 @@ yarn add react react-dom react-intl
 npm --save install react react-dom react-intl
 ```
 
-# About page components
+# Page components
 
-Custom Applications typically consist on a variety of pages with different hierarchical levels. For example a page to show a list of products, followed by a detail page to see the product's details.
+Custom Applications typically consist of a variety of pages with different hierarchical levels. For example, a page to show a list of products, followed by a detail page to see the product's details.
 
-Moreover, pages with the similar hierarchical levels might need to fulfill different requirements. For example a detail page with or without a form, or a page with tabs.
+Moreover, pages with similar hierarchical levels might need to fulfill different requirements. For example a detail page with or without a form, or a page with tabs.
 
-We provide several components to cover all the main use cases. We recommend to use them wherever possible to ensure a visual consistency and a simpler development implementation.
+We provide several components that cover the most common use cases. We recommend using them wherever possible to ensure visual consistency and reduce development efforts.
 
-We identified 3 group of components:
+We identified 3 groups of components:
 
 * `Info`
 * `Form` / `CustomForm`
@@ -49,9 +49,9 @@ Additionally, we identified 4 hierarchical levels:
 * `Modal`
 * `Dialog`
 
-# Components (main pages)
+# Components for main pages
 
-The following page components should be used in the landing pages of the Custom Application that hierarchically don't have any parent page. For example, for a products application the main page can show a list of products.
+The following page components should be used in the landing pages of the Custom Application that don't have a parent page in the hierarchy. For example, for a Custom Application for products, the main page can show a list of products.
 
 * [InfoMainPage](#infomainpage)
 * [FormMainPage](#formmainpage)
@@ -188,14 +188,14 @@ const MainPage = () => {
 * `FormMainPage.Intl`
 
   This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
-  The Intl messages can for instance be used for button labels.
+  The Intl messages can, for instance, be used for button labels.
 
 
 ## CustomFormMainPage
 
 <Playground urlPath="custom-form-main-page" />
 
-Custom Form Main page is a variation of the `<FormMainPage>` that allow passing custom control elements via formControls. This is useful in case the main page needs different control elements than the default ones (primary and secondary button).
+Custom Form Main page is a variation of the `<FormMainPage>` that allows passing custom control elements via formControls. This is useful in case the main page needs different control elements than the default ones (primary and secondary buttons).
 
 ### Usage
 
@@ -263,7 +263,7 @@ const AccountPage = () => {
 
 * Form Control Buttons
 
-  Pre-configured form control buttons to easily re-use them in the custom controls.
+  Pre-configured form control buttons to reuse in custom controls.
 
   ```js
   CustomFormMainPage.FormPrimaryButton = FormPrimaryButton;
@@ -292,7 +292,7 @@ Tabular Main pages are controlled components used to render a page with navigati
 
 Tabs must be rendered using the `<TabHeader>` component via the `tabControls` prop. A `<TabHeader>` is rendered as a link and it assumes the "tab content" is controlled and rendered using `<Route>` components.
 
-The `<TabularMainPage>` is supposed to be used in one of the main application landing pages, as the top level component page. From a hierarchy point of view, there should be no parent pages.
+The `<TabularMainPage>` is supposed to be used in one of the main application landing pages, as the top-level component page. The page should have no parent pages in the hierarchy.
 The layout of this page can be recognized by the white background header and the gray content background.
 
 ### Usage
@@ -361,11 +361,11 @@ const MainPage = () => {
 * `TabularMainPage.Intl`
 
   This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
-  The Intl messages can for instance be used for button labels.
+  The Intl messages can, for instance, be used for button labels.
 
-# Components (detail pages)
+# Components for detail pages
 
-The following page components should be used in the pages of the Custom Application that show data of a specific resource. Hierarchically the parent page should be the main page. For example, for a products application the detail page shows the product's data.
+The following page components should be used in the pages of the Custom Application that show data of a specific resource. Hierarchically, the parent page should be the main page. For example, for a Custom Application for products, the detail page shows the product's data.
 
 * [InfoDetailPage](#infodetailpage)
 * [FormDetailPage](#formdetailpage)
@@ -650,8 +650,8 @@ Tabular Detail pages are controlled components used to render a page with naviga
 
 Tabs must be rendered using the `<TabHeader>` component via the `tabControls` prop. A `<TabHeader>` is rendered as a link and it assumes the "tab content" is controlled and rendered using `<Route>` components.
 
-The `<TabularDetailPage>` is supposed to be used as a direct child of one of the main pages. Typically it's used as a detail page with multiple sub-pages (tabs).
-The layout of this page can be recognized by the gray background header and the white content background. A back link in the header section is also required.
+The `<TabularDetailPage>` should be used as a direct child of one of the main pages. Typically it's used as a detail page with multiple sub-pages (tabs).
+The layout of this page can be recognized by the gray background header and the white content background. A backlink in the header section is also required.
 
 ### Usage
 
@@ -727,9 +727,9 @@ const DetailPage = () => {
   This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
   The Intl messages can for instance be used for button labels.
 
-# Components (modal pages)
+# Components for modal pages
 
-The following page components should be used in nested pages of the Custom Application. Hierarchically the parent page should be the detail page. For example, for a products application the modal page shows the product's variants data.
+The following page components should be used in nested pages of the Custom Application. Hierarchically, the parent page should be the detail page. For example, for a Custom Application for products, the modal page shows the product's variants data.
 
 * [InfoModalPage](#infomodalpage)
 * [FormModalPage](#formmodalpage)
@@ -785,7 +785,7 @@ const Example = () => {
 
 <Playground urlPath="form-modal-page" />
 
-Form Modal pages are controlled components used to render a page with a form or something that requires user input, similar to `InfoModalPage` but semantically with a different role. The header includes buttons to control the submission or cancellation of the form. These buttons can be overwritten with custom controls by using the `<CustomFormModalPage>` component.
+Form Modal pages are controlled components used to render a page with a form or something that requires user input. It is similar to `InfoModalPage` but has a semantically different role. The header includes buttons to control the submission or cancellation of the form. These buttons can be overwritten with custom controls by using the `<CustomFormModalPage>` component.
 
 ### Usage
 
@@ -1052,7 +1052,7 @@ const AccountPage = () => {
 
 * Form Control Buttons
 
-  Pre-configured form control buttons to easily re-use them in the custom controls.
+  Pre-configured form control buttons to reuse in custom controls.
 
   ```js
   TabularModalPage.FormPrimaryButton = FormPrimaryButton;
@@ -1077,9 +1077,9 @@ const AccountPage = () => {
   />
   ```
 
-# Components (dialogs)
+# Components for dialogs
 
-The following page components can be used in any page of the Custom Application. For example, showing a confirmation dialog before performing an important action, or showing additional information as an info box.
+The following page components can be used on any page of the Custom Application. For example, showing a confirmation dialog before performing an important action, or showing additional information as an info box.
 
 * [InfoDialog](#infodialog)
 * [ConfirmationDialog](#confirmationdialog)
@@ -1200,7 +1200,7 @@ const ChannelDeletion = () => {
 
 <Playground urlPath="form-dialog" />
 
-Form dialogs are controlled components used to render a form or something that requires user input. They are very similar to Confirmation dialogs but semantically they fulfill a different role.
+Form dialogs are controlled components used to render a form or something that requires user input. They are similar to Confirmation dialogs but fulfill a different role semantically.
 
 ### Usage
 
