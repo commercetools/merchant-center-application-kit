@@ -54,8 +54,8 @@ export const Component = () => (
           path: 'two-columns-half',
           spec: (
             <PageContentWide columns="1/1">
-              <Box />
-              <Box />
+              <Box size="l" />
+              <Box size="l" />
             </PageContentWide>
           ),
         },
@@ -83,7 +83,7 @@ export const Component = () => (
           name: 'two columns 2/1 with big gap',
           path: 'two-columns-two-thirds-big-gap',
           spec: (
-            <PageContentWide columns="2/1" gapSize="20">
+            <PageContentWide columns="2/1" gapSize="10">
               <Box size="l" />
               <Box size="s" />
             </PageContentWide>
