@@ -2,8 +2,7 @@
 export const PORTALS_CONTAINER_ID = 'portals-container';
 
 // Links
-export const SUPPORT_PORTAL_URL =
-  'https://jira.commercetools.com/servicedesk/customer/portal/1/create/167';
+export const SUPPORT_PORTAL_URL = 'https://support.commercetools.com';
 
 // Notification actions
 export const SHOW_LOADING = 'SHOW_LOADING';
