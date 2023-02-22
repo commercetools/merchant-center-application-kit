@@ -80,8 +80,8 @@ export const Component = () => (
           ),
         },
         {
-          name: 'two columns 2/1 with big gap',
-          path: 'two-columns-two-thirds-big-gap',
+          name: 'two columns 2/1 with small gap',
+          path: 'two-columns-two-thirds-small-gap',
           spec: (
             <PageContentWide columns="2/1" gapSize="10">
               <Box size="l" />
