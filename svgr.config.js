@@ -29,6 +29,7 @@ module.exports = {
       'prefixIds',
     ],
   },
+  svgProps: { role: 'img' },
   plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
   indexTemplate,
 };

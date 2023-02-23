@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 const SvgScreenBulb = (props) => (
   <svg
     width={32}
@@ -58,5 +57,4 @@ const SvgScreenBulb = (props) => (
     </g>
   </svg>
 );
-
 export default SvgScreenBulb;
