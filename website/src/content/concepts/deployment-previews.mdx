@@ -24,12 +24,13 @@ Each deployment preview has its unique and static deployment URL. The Merchant C
 
 To build a deployment preview, configure your production URL in the `custom-application-config.json` using the  [environment variables references](./api-reference/application-config#environment-variable-references).
 
-```json
+```json title="custom-application-config.json"
 {
   "env": {
     "production": {
       "url": "${env:APP_URL}",
-    },
+    }
+  }
 }
 ```
 
