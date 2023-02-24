@@ -1,7 +1,7 @@
 import { useState, useCallback, useLayoutEffect } from 'react';
 
 const useWindowHeight = () => {
-  const [height, setHeight] = useState(0);
+  const [height, setHeight] = useState(400);
 
   const updateHeight = useCallback(() => {
     const bodyElement = document?.querySelector('body');
