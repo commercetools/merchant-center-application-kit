@@ -5,12 +5,12 @@
   },
   "rewrites": [
     {
-      "source": "/custom-applications",
-      "destination": "/"
+      "source": "/custom-applications/playground/(.*)",
+      "destination": "/playground/index.html"
     },
     {
-      "source": "/custom-applications/playground/(.*)",
-      "destination": "/playground"
+      "source": "/custom-applications",
+      "destination": "/"
     },
     {
       "source": "/custom-applications/(.*)",
