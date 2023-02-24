@@ -11,10 +11,9 @@ const getIframeUrl = (urlPath, isFullScreen = false) => {
 };
 
 const PlaygroundController = (props) => {
-  const [iframeHeight, setIframeHeight] = useState(0);
+  const [iframeHeight, setIframeHeight] = useState(400);
   useEffect(() => {
     const onReceiveMessage = (event) => {
-      console.log('Received event message', event);
       if (Array.isArray(event.data)) {
         const [eventSource, value] = event.data;
         switch (eventSource) {
