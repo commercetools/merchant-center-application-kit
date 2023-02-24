@@ -1,7 +1,8 @@
 import './globals.css';
 import { lazy } from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
-import history from '@commercetools-frontend/browser-history';
+import { createBrowserHistory } from 'history';
+import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
 import IndexPage from './pages';
 
 const ConfirmationDialog = lazy(() => import('./pages/confirmation-dialog'));
@@ -27,6 +28,11 @@ const CustomFormModalPage = lazy(
 const TabularDetailPage = lazy(() => import('./pages/tabular-detail-page'));
 const TabularMainPage = lazy(() => import('./pages/tabular-main-page'));
 const TabularModalPage = lazy(() => import('./pages/tabular-modal-page'));
+
+const history = createEnhancedHistory(
+  createBrowserHistory({ basename: '/custom-applications/playground' })
+);
+
 const Application = () => (
   <Router history={history}>
     <Switch>
