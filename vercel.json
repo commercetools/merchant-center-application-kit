@@ -9,6 +9,10 @@
       "destination": "/"
     },
     {
+      "source": "/custom-applications/playground/(.*)",
+      "destination": "/playground/$1"
+    },
+    {
       "source": "/custom-applications/(.*)",
       "destination": "/$1"
     }
