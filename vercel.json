@@ -10,7 +10,7 @@
     },
     {
       "source": "/custom-applications/playground/(.*)",
-      "destination": "/playground/$1"
+      "destination": "/playground"
     },
     {
       "source": "/custom-applications/(.*)",
