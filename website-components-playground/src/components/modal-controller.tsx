@@ -10,7 +10,6 @@ type TModalControllerFunctionOptions = {
   setIsOpen: (nextValue: boolean) => void;
 };
 type TModalControllerProps = {
-  containerId: string;
   title: string;
   buttonLabel: string;
   children: (options: TModalControllerFunctionOptions) => ReactNode;
@@ -23,15 +22,11 @@ const GridContainer = styled.div`
   height: 100%;
   width: 100%;
 `;
-const PortalContainer = styled.div`
-  flex: 1;
-`;
 
 const ModalController = (props: TModalControllerProps) => {
   const [isOpen, setIsOpen] = useState(true);
   return (
     <>
-      <PortalContainer id={props.containerId} />
       <div
         css={css`
           height: 100%;
