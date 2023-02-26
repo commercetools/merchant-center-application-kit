@@ -8,8 +8,6 @@ import LayoutApp from '../layouts/layout-app';
 import PlaygroundController from '../components/playground-controller';
 import ModalController from '../components/modal-controller';
 
-const containerId = 'form-dialog';
-
 const FormDialogExample = () => (
   <LayoutApp>
     <PlaygroundController
@@ -36,7 +34,6 @@ const FormDialogExample = () => (
     >
       {({ values }) => (
         <ModalController
-          containerId={containerId}
           title="Open the Form Dialog by clicking on the button"
           buttonLabel="Open Form Dialog"
         >
@@ -66,9 +63,6 @@ const FormDialogExample = () => (
                     formikProps.handleSubmit(
                       event as FormEvent<HTMLFormElement>
                     )
-                  }
-                  getParentSelector={() =>
-                    document.querySelector(`#${containerId}`) as HTMLElement
                   }
                 >
                   <Spacings.Stack scale="m">
