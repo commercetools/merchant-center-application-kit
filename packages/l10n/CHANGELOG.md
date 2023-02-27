@@ -1,5 +1,12 @@
 # @commercetools-frontend/l10n
 
+## 21.23.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@21.23.8
+
 ## 21.23.7
 
 ### Patch Changes

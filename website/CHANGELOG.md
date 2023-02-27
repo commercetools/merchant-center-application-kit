@@ -1,5 +1,11 @@
 # @commercetools-website/custom-applications
 
+## 21.23.8
+
+### Patch Changes
+
+- [#2970](https://github.com/commercetools/merchant-center-application-kit/pull/2970) [`78c6ad44c`](https://github.com/commercetools/merchant-center-application-kit/commit/78c6ad44cd37fd6076c2c0bdfc0e6ddd59465bbc) Thanks [@emmenko](https://github.com/emmenko)! - Update support URL
+
 ## 21.23.7
 
 ### Patch Changes
