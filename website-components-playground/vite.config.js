@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/custom-applications/playground/',
   define: {
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     'process.env.CI': JSON.stringify(process.env.CI),
