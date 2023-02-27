@@ -5,8 +5,6 @@ import LayoutApp from '../layouts/layout-app';
 import PlaygroundController from '../components/playground-controller';
 import ModalController from '../components/modal-controller';
 
-const containerId = 'confirmation-dialog';
-
 const ConfirmationDialogExample = () => (
   <LayoutApp>
     <PlaygroundController
@@ -39,7 +37,6 @@ const ConfirmationDialogExample = () => (
     >
       {({ values }) => (
         <ModalController
-          containerId={containerId}
           title="Open the Confirmation Dialog by clicking on the button"
           buttonLabel="Open Confirmation Dialog"
         >
@@ -56,9 +53,6 @@ const ConfirmationDialogExample = () => (
                 alert('confirmed');
                 setIsOpen(false);
               }}
-              getParentSelector={() =>
-                document.querySelector(`#${containerId}`) as HTMLElement
-              }
             >
               <Spacings.Stack scale="m">
                 {(values.content as string).split('\n').map((text, index) => (

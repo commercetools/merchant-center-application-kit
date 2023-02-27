@@ -5,8 +5,6 @@ import LayoutApp from '../layouts/layout-app';
 import ModalController from '../components/modal-controller';
 import PlaygroundController from '../components/playground-controller';
 
-const containerId = 'info-dialog';
-
 const InfoDialogExample = () => (
   <LayoutApp>
     <PlaygroundController
@@ -39,7 +37,6 @@ const InfoDialogExample = () => (
     >
       {({ values }) => (
         <ModalController
-          containerId={containerId}
           title="Open the Info Dialog by clicking on the button"
           buttonLabel="Open Info Dialog"
         >
@@ -49,9 +46,6 @@ const InfoDialogExample = () => (
               size={values.size as 'm' | 'l' | 'scale'}
               isOpen={isOpen}
               onClose={() => setIsOpen(false)}
-              getParentSelector={() =>
-                document.querySelector(`#${containerId}`) as HTMLElement
-              }
             >
               <Spacings.Stack scale="m">
                 {(values.content as string).split('\n').map((text, index) => (
