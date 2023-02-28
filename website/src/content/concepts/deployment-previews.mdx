@@ -8,7 +8,7 @@ Deployment previews let you preview your Custom Application changes using a uniq
 
 </Subtitle>
 
-To test your Custom Application features before releasing them to the production environment, you can add a deployment preview. For example, you can add a deployment preview to try all the updates in the `staging` branch and another to test some experimental features.
+To test your Custom Application features before releasing them to the production environment, you can add a deployment preview. For example, you can add a deployment preview to try new features in your Custom Applcation's `staging` branch.
 
 You must host the deployment previews separately from one another and assign a unique but static URL. You can add as many deployment previews as you like. In Merchant Center, the deployment previews are available on a unique URL, different than the production environment.
 
@@ -52,7 +52,4 @@ See [Deployment Examples](./deployment-examples) to get up and running with some
 
 To use the Custom Application deployment preview inside the Merchant Center, you must [add the deployment preview](https://docs.commercetools.com/merchant-center/managing-custom-applications#adding-deployment-previews) in your Custom Application settings. When adding the deployment preview, you'll need to fill the `APP_URL` value in the **Application URL** field.
 
-For example, if your Custom Application's production environment is hosted at `https://example.com` and you want to add a deployment preview hosted at `https://staging.example.com`.
-You can do so by setting the `APP_URL` environment variable to `https://example.com` in the production deployment environment and `https://staging.example.com` in the staging deployment environment.
-
-Then you'd add a deployment preview **Alias** `staging` with **Application URL** set to `https://staging.example.com` in the Merchant Center.
+For example, you can add a deployment preview hosted at `https://staging.example.com` by setting the `APP_URL` environment variable to `https://staging.example.com` in the staging deployment environment and using `https://staging.example.com` as the **Application URL** when adding the deployment preview in the Merchant Center.
