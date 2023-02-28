@@ -1,7 +1,13 @@
 import { ThemeProvider } from '@commercetools-uikit/design-system';
+import { useWarning } from '@commercetools-uikit/utils';
 import type { ReactNode } from 'react';
 import { screen, renderComponent } from '../../../test-utils';
 import PageContentWide, { type TPageContentWide } from './page-content-wide';
+
+jest.mock('@commercetools-uikit/utils', () => ({
+  ...jest.requireActual('@commercetools-uikit/utils'),
+  useWarning: jest.fn(),
+}));
 
 const renderPageContent = (
   children: ReactNode | ReactNode[],
@@ -22,7 +28,7 @@ describe('PageContentWide', () => {
 
       screen.getByText('Text content');
     });
-    it('should render single column with several children', () => {
+    it('should only render first children', () => {
       renderPageContent([
         <div key="1">1. Text content</div>,
         <div key="2">2. Text content</div>,
@@ -30,8 +36,13 @@ describe('PageContentWide', () => {
       ]);
 
       screen.getByText('1. Text content');
-      screen.getByText('2. Text content');
-      screen.getByText('3. Text content');
+      expect(screen.queryByText('2. Text content')).not.toBeInTheDocument();
+      expect(screen.queryByText('3. Text content')).not.toBeInTheDocument();
+
+      expect(useWarning).toHaveBeenCalledWith(
+        false,
+        'PageContentWide: This component only renders its first children when using a single column but you provided more that one.'
+      );
     });
   });
 
