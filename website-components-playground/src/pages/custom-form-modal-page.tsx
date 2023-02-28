@@ -7,8 +7,6 @@ import LayoutApp from '../layouts/layout-app';
 import PlaygroundController from '../components/playground-controller';
 import ModalController from '../components/modal-controller';
 
-const containerId = 'custom-form-modal-page';
-
 const CustomFormModalPageExample = () => (
   <LayoutApp>
     <PlaygroundController
@@ -43,7 +41,6 @@ const CustomFormModalPageExample = () => (
         <ModalController
           title="Open the Custom Form Modal Page by clicking on the button"
           buttonLabel="Open Custom Form Modal Page"
-          containerId={containerId}
         >
           {({ isOpen, setIsOpen }) => (
             <Formik<{ email: string }>
@@ -84,9 +81,6 @@ const CustomFormModalPageExample = () => (
                     </>
                   }
                   hideControls={Boolean(values.hideControls)}
-                  getParentSelector={() =>
-                    document.querySelector(`#${containerId}`) as HTMLElement
-                  }
                 >
                   <TextField
                     name="email"

@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 const SvgScreenCog = (props) => (
   <svg
     width={32}
@@ -74,5 +73,4 @@ const SvgScreenCog = (props) => (
     </g>
   </svg>
 );
-
 export default SvgScreenCog;

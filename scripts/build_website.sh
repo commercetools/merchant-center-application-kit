@@ -18,4 +18,4 @@ echo "Merging websites into one folder"
 
 rm -rf vercel-public
 cp -R public/website vercel-public
-cp -R public/website-components-playground vercel-public/playground
+cp -R website-components-playground/dist vercel-public/playground

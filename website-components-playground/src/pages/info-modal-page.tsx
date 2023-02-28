@@ -4,8 +4,6 @@ import LayoutApp from '../layouts/layout-app';
 import PlaygroundController from '../components/playground-controller';
 import ModalController from '../components/modal-controller';
 
-const containerId = 'info-modal-page';
-
 const InfoModalPageExample = () => (
   <LayoutApp>
     <PlaygroundController
@@ -29,7 +27,6 @@ const InfoModalPageExample = () => (
         <ModalController
           title="Open the Info Modal Page by clicking on the button"
           buttonLabel="Open Info Modal Page"
-          containerId={containerId}
         >
           {({ isOpen, setIsOpen }) => (
             <InfoModalPage
@@ -37,14 +34,10 @@ const InfoModalPageExample = () => (
               isOpen={isOpen}
               onClose={() => setIsOpen(false)}
               subtitle={values.subtitle as string}
-              getParentSelector={() =>
-                document.querySelector(`#${containerId}`) as HTMLElement
-              }
             >
               <ModalController
                 title="Open Another Modal Page by clicking the button"
                 buttonLabel="Open Modal Page"
-                containerId={containerId}
               >
                 {/* eslint-disable-next-line no-shadow */}
                 {({ isOpen, setIsOpen }) => (
@@ -53,14 +46,10 @@ const InfoModalPageExample = () => (
                     isOpen={isOpen}
                     subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     onClose={() => setIsOpen(false)}
-                    getParentSelector={() =>
-                      document.querySelector(`#${containerId}`) as HTMLElement
-                    }
                   >
                     <ModalController
                       title="Open Another Modal Page by clicking the button"
                       buttonLabel="Open Modal Page"
-                      containerId={containerId}
                     >
                       {/* eslint-disable-next-line no-shadow */}
                       {({ isOpen, setIsOpen }) => (
@@ -69,16 +58,10 @@ const InfoModalPageExample = () => (
                           isOpen={isOpen}
                           subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                           onClose={() => setIsOpen(false)}
-                          getParentSelector={() =>
-                            document.querySelector(
-                              `#${containerId}`
-                            ) as HTMLElement
-                          }
                         >
                           <ModalController
                             title="Open Another Modal Page by clicking the button"
                             buttonLabel="Open Modal Page"
-                            containerId={containerId}
                           >
                             {/* eslint-disable-next-line no-shadow */}
                             {({ isOpen, setIsOpen }) => (
@@ -87,16 +70,10 @@ const InfoModalPageExample = () => (
                                 isOpen={isOpen}
                                 subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                                 onClose={() => setIsOpen(false)}
-                                getParentSelector={() =>
-                                  document.querySelector(
-                                    `#${containerId}`
-                                  ) as HTMLElement
-                                }
                               >
                                 <ModalController
                                   title="Open Another Modal Page by clicking the button"
                                   buttonLabel="Open Modal Page"
-                                  containerId={containerId}
                                 >
                                   {/* eslint-disable-next-line no-shadow */}
                                   {({ isOpen, setIsOpen }) => (
@@ -105,11 +82,6 @@ const InfoModalPageExample = () => (
                                       isOpen={isOpen}
                                       subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                                       onClose={() => setIsOpen(false)}
-                                      getParentSelector={() =>
-                                        document.querySelector(
-                                          `#${containerId}`
-                                        ) as HTMLElement
-                                      }
                                     >
                                       <Text.Body>
                                         {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec turpis in risus elementum fringilla. Vestibulum nec vulputate metus, fringilla luctus nisl. Vestibulum mattis ultricies augue sagittis vestibulum. Nulla facilisi. Quisque tempor pulvinar efficitur. Praesent interdum ultrices leo. Vivamus non ex maximus justo egestas suscipit eget sed purus. Aliquam ut venenatis nulla. Fusce ac ligula viverra, blandit augue eget, congue turpis. Curabitur a sagittis leo. Nunc sed quam dictum, placerat nunc quis, luctus erat.`}

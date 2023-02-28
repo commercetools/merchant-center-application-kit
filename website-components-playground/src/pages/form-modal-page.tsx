@@ -7,8 +7,6 @@ import LayoutApp from '../layouts/layout-app';
 import PlaygroundController from '../components/playground-controller';
 import ModalController from '../components/modal-controller';
 
-const containerId = 'form-modal-page';
-
 const FormModalPageExample = () => (
   <LayoutApp>
     <PlaygroundController
@@ -55,7 +53,6 @@ const FormModalPageExample = () => (
         <ModalController
           title="Open the Form Modal Page by clicking on the button"
           buttonLabel="Open Form Modal Page"
-          containerId={containerId}
         >
           {({ isOpen, setIsOpen }) => (
             <Formik<{ email: string }>
@@ -86,9 +83,6 @@ const FormModalPageExample = () => (
                     formikProps.handleSubmit(
                       event as FormEvent<HTMLFormElement>
                     )
-                  }
-                  getParentSelector={() =>
-                    document.querySelector(`#${containerId}`) as HTMLElement
                   }
                   hideControls={Boolean(values.hideControls)}
                 >

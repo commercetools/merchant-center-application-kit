@@ -10,8 +10,6 @@ import LayoutApp from '../layouts/layout-app';
 import PlaygroundController from '../components/playground-controller';
 import ModalController from '../components/modal-controller';
 
-const containerId = 'tabular-modal-page';
-
 const exampleCustomTitleRow = (
   <Spacings.Inline scale="m">
     <Spacings.Inline alignItems="center">
@@ -85,16 +83,12 @@ const TabularModalPageExample = () => {
           <ModalController
             title={values.title as string}
             buttonLabel="Open Tabular Modal Page"
-            containerId={containerId}
           >
             {({ isOpen, setIsOpen }) => (
               <TabularModalPage
                 title={values.title as string}
                 isOpen={isOpen}
                 onClose={() => setIsOpen(false)}
-                getParentSelector={() =>
-                  document.querySelector(`#${containerId}`) as HTMLElement
-                }
                 tabControls={
                   <>
                     <TabHeader
