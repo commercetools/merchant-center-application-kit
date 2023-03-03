@@ -1,5 +1,5 @@
 ---
-date: 2023-02-24
+date: 2023-03-03
 title: Custom Applications deployment previews
 description: Introducing deployment previews for Custom Applications.
 type: announcement
@@ -8,8 +8,10 @@ topics:
   - Configuration
 ---
 
-Custom Applications now let you generate [Deployment previews](./concepts/deployment-previews), where you can test new features before publishing your application to the production environment.
+Custom Applications now let you generate [Deployment previews](../concepts/deployment-previews), where you can test new features before publishing your application to the production environment.
 
-You can add a deployment preview in the Merchant Center by deploying your Custom Application to a static URL and using the URL as the Application URL when adding your deployment preview.
+Emulating Custom Application previews with the [legacy workaround](../help-needed#legacy-workaround) required you to create multiple Custom Applications and dynamic configurations using environment variables. Deployment previews work without creating a new Custom Application in the Merchant Center, leading to less maintenance and better developer experience.
+
+We recommend using deployment previews for the upcoming releases of your Custom Applications.
 
 As always, if you have questions or feedback, you can open a [GitHub Discussion](https://github.com/commercetools/merchant-center-application-kit/discussions) or a [GitHub Issue](https://github.com/commercetools/merchant-center-application-kit/issues).
