@@ -294,6 +294,9 @@ describe('notifications', () => {
     );
   });
   it('should display an error notification if an update resulted in an unmapped error', async () => {
+    // Mock error log
+    jest.spyOn(console, 'error').mockImplementation();
+
     useMockServerHandlers([
       fetchChannelDetailsQueryHandler,
       updateChannelDetailsHandlerWithARandomError,
