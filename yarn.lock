@@ -3582,6 +3582,8 @@ __metadata:
   resolution: "@commercetools-applications/merchant-center-template-starter-typescript@workspace:application-templates/starter-typescript"
   dependencies:
     "@apollo/client": 3.7.7
+    "@babel/core": ^7.20.12
+    "@babel/runtime-corejs3": ^7.20.13
     "@commercetools-frontend/actions-global": "workspace:*"
     "@commercetools-frontend/application-components": "workspace:*"
     "@commercetools-frontend/application-config": "workspace:*"
@@ -3592,6 +3594,7 @@ __metadata:
     "@commercetools-frontend/eslint-config-mc-app": "workspace:*"
     "@commercetools-frontend/i18n": "workspace:*"
     "@commercetools-frontend/jest-preset-mc-app": "workspace:*"
+    "@commercetools-frontend/l10n": "workspace:*"
     "@commercetools-frontend/mc-dev-authentication": "workspace:*"
     "@commercetools-frontend/mc-scripts": "workspace:*"
     "@commercetools-frontend/permissions": "workspace:*"
@@ -3616,17 +3619,30 @@ __metadata:
     "@commercetools-uikit/text-field": ^15.11.2
     "@commercetools-uikit/text-input": ^15.11.2
     "@commercetools/sync-actions": ^5.3.1
+    "@emotion/react": 11.10.6
     "@formatjs/cli": 4.8.4
     "@jest/types": 27.5.1
     "@manypkg/cli": 0.19.2
+    "@testing-library/dom": ^8.20.0
+    "@testing-library/jest-dom": ^5.16.5
     "@testing-library/react": 12.1.5
     "@testing-library/react-hooks": 8.0.1
+    "@types/jest": ^27.5.2
+    "@types/react": ^17.0.53
+    "@types/react-dom": ^17.0.19
+    "@types/react-router": ^5.1.20
+    "@types/react-router-dom": ^5.3.3
+    "@types/testing-library__jest-dom": ^5.14.5
     eslint: 8.34.0
     eslint-formatter-pretty: 4.1.0
     eslint-plugin-graphql: ^4.0.0
+    formik: 2.2.9
+    graphql: ^16.6.0
+    graphql-tag: ^2.12.6
     jest: 27.5.1
     jest-runner-eslint: 1.1.0
     jest-watch-typeahead: 1.1.0
+    moment: ^2.29.4
     msw: 0.47.4
     omit-empty-es: 1.1.3
     prettier: 2.8.4
@@ -3645,6 +3661,8 @@ __metadata:
   resolution: "@commercetools-applications/merchant-center-template-starter@workspace:application-templates/starter"
   dependencies:
     "@apollo/client": 3.7.7
+    "@babel/core": ^7.20.12
+    "@babel/runtime-corejs3": ^7.20.13
     "@commercetools-frontend/actions-global": "workspace:*"
     "@commercetools-frontend/application-components": "workspace:*"
     "@commercetools-frontend/application-shell": "workspace:*"
@@ -3654,6 +3672,7 @@ __metadata:
     "@commercetools-frontend/eslint-config-mc-app": "workspace:*"
     "@commercetools-frontend/i18n": "workspace:*"
     "@commercetools-frontend/jest-preset-mc-app": "workspace:*"
+    "@commercetools-frontend/l10n": "workspace:*"
     "@commercetools-frontend/mc-dev-authentication": "workspace:*"
     "@commercetools-frontend/mc-scripts": "workspace:*"
     "@commercetools-frontend/permissions": "workspace:*"
@@ -3678,15 +3697,22 @@ __metadata:
     "@commercetools-uikit/text-field": ^15.11.2
     "@commercetools-uikit/text-input": ^15.11.2
     "@commercetools/sync-actions": ^5.3.1
+    "@emotion/react": 11.10.6
     "@formatjs/cli": 4.8.4
     "@manypkg/cli": 0.19.2
+    "@testing-library/dom": ^8.20.0
+    "@testing-library/jest-dom": ^5.16.5
     "@testing-library/react": 12.1.5
     "@testing-library/react-hooks": 8.0.1
     eslint: 8.34.0
     eslint-formatter-pretty: 4.1.0
+    formik: 2.2.9
+    graphql: ^16.6.0
+    graphql-tag: ^2.12.6
     jest: 27.5.1
     jest-runner-eslint: 1.1.0
     jest-watch-typeahead: 1.1.0
+    moment: ^2.29.4
     msw: 0.47.4
     omit-empty-es: 1.1.3
     prettier: 2.8.4
@@ -4341,7 +4367,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@commercetools-frontend/l10n@21.23.8, @commercetools-frontend/l10n@workspace:packages/l10n":
+"@commercetools-frontend/l10n@21.23.8, @commercetools-frontend/l10n@workspace:*, @commercetools-frontend/l10n@workspace:packages/l10n":
   version: 0.0.0-use.local
   resolution: "@commercetools-frontend/l10n@workspace:packages/l10n"
   dependencies:
@@ -6628,6 +6654,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@emotion/babel-plugin@npm:^11.10.6":
+  version: 11.10.6
+  resolution: "@emotion/babel-plugin@npm:11.10.6"
+  dependencies:
+    "@babel/helper-module-imports": ^7.16.7
+    "@babel/runtime": ^7.18.3
+    "@emotion/hash": ^0.9.0
+    "@emotion/memoize": ^0.8.0
+    "@emotion/serialize": ^1.1.1
+    babel-plugin-macros: ^3.1.0
+    convert-source-map: ^1.5.0
+    escape-string-regexp: ^4.0.0
+    find-root: ^1.1.0
+    source-map: ^0.5.7
+    stylis: 4.1.3
+  checksum: 3eed138932e8edf2598352e69ad949b9db3051a4d6fcff190dacbac9aa838d7ef708b9f3e6c48660625d9311dae82d73477ae4e7a31139feef5eb001a5528421
+  languageName: node
+  linkType: hard
+
 "@emotion/babel-preset-css-prop@npm:^11.10.0, @emotion/babel-preset-css-prop@npm:^11.2.0":
   version: 11.10.0
   resolution: "@emotion/babel-preset-css-prop@npm:11.10.0"
@@ -6732,6 +6777,27 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 32b67b28e9b6d6c53b970072680697f04c2521441050bdeb19a1a7f0164af549b4dad39ff375eda1b6a3cf1cc86ba2c6fa55460ec040e6ebbca3e9ec58353cf7
+  languageName: node
+  linkType: hard
+
+"@emotion/react@npm:11.10.6":
+  version: 11.10.6
+  resolution: "@emotion/react@npm:11.10.6"
+  dependencies:
+    "@babel/runtime": ^7.18.3
+    "@emotion/babel-plugin": ^11.10.6
+    "@emotion/cache": ^11.10.5
+    "@emotion/serialize": ^1.1.1
+    "@emotion/use-insertion-effect-with-fallbacks": ^1.0.0
+    "@emotion/utils": ^1.2.0
+    "@emotion/weak-memoize": ^0.3.0
+    hoist-non-react-statics: ^3.3.1
+  peerDependencies:
+    react: ">=16.8.0"
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 4762042e39126ffaffe76052dc65c9bb0ba6b8893013687ba3cc13ed4dd834c31597f1230684c3c078e90aecc13ab6cd0e3cde0dec8b7761affd2571f4d80019
   languageName: node
   linkType: hard
 
@@ -11265,7 +11331,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/jest-dom@npm:5.16.5":
+"@testing-library/dom@npm:^8.20.0":
+  version: 8.20.0
+  resolution: "@testing-library/dom@npm:8.20.0"
+  dependencies:
+    "@babel/code-frame": ^7.10.4
+    "@babel/runtime": ^7.12.5
+    "@types/aria-query": ^5.0.1
+    aria-query: ^5.0.0
+    chalk: ^4.1.0
+    dom-accessibility-api: ^0.5.9
+    lz-string: ^1.4.4
+    pretty-format: ^27.0.2
+  checksum: 1e599129a2fe91959ce80900a0a4897232b89e2a8e22c1f5950c36d39c97629ea86b4986b60b173b5525a05de33fde1e35836ea597b03de78cc51b122835c6f0
+  languageName: node
+  linkType: hard
+
+"@testing-library/jest-dom@npm:5.16.5, @testing-library/jest-dom@npm:^5.16.5":
   version: 5.16.5
   resolution: "@testing-library/jest-dom@npm:5.16.5"
   dependencies:
@@ -11431,6 +11513,13 @@ __metadata:
   version: 4.2.2
   resolution: "@types/aria-query@npm:4.2.2"
   checksum: 6f2ce11d91e2d665f3873258db19da752d91d85d3679eb5efcdf9c711d14492287e1e4eb52613b28e60375841a9e428594e745b68436c963d8bad4bf72188df3
+  languageName: node
+  linkType: hard
+
+"@types/aria-query@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "@types/aria-query@npm:5.0.1"
+  checksum: 69fd7cceb6113ed370591aef04b3fd0742e9a1b06dd045c43531448847b85de181495e4566f98e776b37c422a12fd71866e0a1dfd904c5ec3f84d271682901de
   languageName: node
   linkType: hard
 
@@ -11863,6 +11952,16 @@ __metadata:
     jest-diff: ^27.0.0
     pretty-format: ^27.0.0
   checksum: d2350267f954f9a2e4a15e5f02fbf19a77abfb9fd9e57a954de1fb0e9a0d3d5f8d3646ac7d9c42aeb4b4d828d2e70624ec149c85bb50a48634a54eed8429e1f8
+  languageName: node
+  linkType: hard
+
+"@types/jest@npm:^27.5.2":
+  version: 27.5.2
+  resolution: "@types/jest@npm:27.5.2"
+  dependencies:
+    jest-matcher-utils: ^27.0.0
+    pretty-format: ^27.0.0
+  checksum: 7e11c6826aa429ad990dc262e4e4b54aa36573287fddf15773e4137f07d11d3105f0dd9f1baff73252160a057df23f5529bb83b1bf83cd3f45f9460a5ca5c22e
   languageName: node
   linkType: hard
 
@@ -12498,6 +12597,15 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: 8af0a5e1896c4d9c6725a7ba41e4d220c1b2cd25a0252872ce12c4c1d939b91ae7d03e074b8afd61bebd363facde89ab3e55123245f7ad273b2837945c6ceeef
+  languageName: node
+  linkType: hard
+
+"@types/testing-library__jest-dom@npm:^5.14.5":
+  version: 5.14.5
+  resolution: "@types/testing-library__jest-dom@npm:5.14.5"
+  dependencies:
+    "@types/jest": "*"
+  checksum: dcb05416758fe88c1f4f3aa97b4699fcb46a5ed8f53c6b81721e66155452a48caf12ecb97dfdfd4130678e65efd66b9fca0ac434b3d63affec84842a84a6bf38
   languageName: node
   linkType: hard
 
@@ -23759,7 +23867,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql@npm:16.6.0, graphql@npm:^15.0.0 || ^16.0.0":
+"graphql@npm:16.6.0, graphql@npm:^15.0.0 || ^16.0.0, graphql@npm:^16.6.0":
   version: 16.6.0
   resolution: "graphql@npm:16.6.0"
   checksum: bf1d9e3c1938ce3c1a81e909bd3ead1ae4707c577f91cff1ca2eca474bfbc7873d5d7b942e1e9777ff5a8304421dba57a4b76d7a29eb19de8711cb70e3c2415e
@@ -26258,7 +26366,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-matcher-utils@npm:^27.5.1":
+"jest-matcher-utils@npm:^27.0.0, jest-matcher-utils@npm:^27.5.1":
   version: 27.5.1
   resolution: "jest-matcher-utils@npm:27.5.1"
   dependencies:
