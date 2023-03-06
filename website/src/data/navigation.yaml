@@ -20,6 +20,8 @@
       path: /concepts/merchant-center-api
     - title: Integrate with your own API
       path: /concepts/integrate-with-your-own-api
+    - title: Deployment previews
+      path: /concepts/deployment-previews
 - chapter-title: Development
   pages:
     - title: Overview
