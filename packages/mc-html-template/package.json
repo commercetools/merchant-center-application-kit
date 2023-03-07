@@ -42,6 +42,6 @@
     "html-webpack-plugin": "5.5.0"
   },
   "engines": {
-    "node": ">=14"
+    "node": "14.x || >=16.0.0"
   }
 }
