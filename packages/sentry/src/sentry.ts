@@ -1,13 +1,18 @@
-import type { Extra, Extras, Event } from '@sentry/types';
+import type { Extra, Extras, Event, Integration } from '@sentry/types';
 import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing'; // Must import after `@sentry/react`
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
-import history from '@commercetools-frontend/browser-history';
 
 declare let window: ApplicationWindow;
 
 type ReportableEvent = ErrorEvent | PromiseRejectionEvent;
 type Reportable = Error | ReportableEvent | string;
+
+const canUseDOM = !!(
+  typeof window !== 'undefined' &&
+  window.document &&
+  window.document.createElement
+);
 
 const makeErrorToCapture = (error: Error | ReportableEvent) => {
   if (error instanceof Error) return error;
@@ -74,24 +79,36 @@ export const redactUnsafeEventFields = (event: Event) => {
 
 export const boot = () => {
   if (window.app.trackingSentry && window.app.trackingSentry !== 'null') {
+    const integrations: Integration[] = [
+      new Sentry.Integrations.GlobalHandlers({
+        onunhandledrejection: false,
+        onerror: false,
+      }),
+    ];
+
+    if (canUseDOM) {
+      // Require the browser history on runtime. This allows the package to be used on SSR.
+      const {
+        default: browserHistory,
+      } = require('@commercetools-frontend/browser-history');
+
+      integrations.push(
+        new BrowserTracing({
+          routingInstrumentation:
+            Sentry.reactRouterV5Instrumentation(browserHistory),
+        })
+      );
+    }
+
     Sentry.init({
       dsn: window.app.trackingSentry,
       release: window.app.revision,
       environment: `${window.app.env}-${window.app.location}`,
-      // in order to reduce the noise in sentry we only track errors that come
+      // In order to reduce the noise in sentry we only track errors that come
       // from our code and ignore errors that come from other services
       // https://blog.sentry.io/2017/03/27/tips-for-reducing-javascript-error-noise.html
       allowUrls: [window.app.cdnUrl, window.app.frontendHost],
-      // we don't need default Sentry's global handlers, because we  add default ones
-      integrations: [
-        new Sentry.Integrations.GlobalHandlers({
-          onunhandledrejection: false,
-          onerror: false,
-        }),
-        new BrowserTracing({
-          routingInstrumentation: Sentry.reactRouterV5Instrumentation(history),
-        }),
-      ],
+      integrations,
       // Sending 5% of transactions. We can adjust that as we see a need to.
       // Generally we need to find a balance between performance and data volume.
       // If we need more flexible and dynamic way of gathering important samples,
