@@ -4,7 +4,7 @@ import type {
   TStatusCode,
   ApplicationWindow,
 } from '@commercetools-frontend/constants';
-
+import history from '@commercetools-frontend/browser-history';
 import {
   STATUS_CODES,
   LOGOUT_REASONS,
@@ -49,11 +49,7 @@ export default function handleActionError(error: ActionError) {
 
     // When unauthorized, log the user out.
     if (error.statusCode === STATUS_CODES.UNAUTHORIZED) {
-      // Require the browser history on runtime. This allows the package to be used on SSR.
-      const {
-        default: browserHistory,
-      } = require('@commercetools-frontend/browser-history');
-      browserHistory.push(`/logout?reason=${LOGOUT_REASONS.UNAUTHORIZED}`);
+      history.push(`/logout?reason=${LOGOUT_REASONS.UNAUTHORIZED}`);
     }
 
     // We need to do the return, because if not we see an error notification
