@@ -88,7 +88,7 @@ const PublicPageLayout: FC<TProps> = (props) => {
             </Text.Headline>
           </ContainerColumn>
         )}
-        <Spacings.Stack scale={themedValue('xs', 'l')}>
+        <Spacings.Stack scale={themedValue('s', 'l')}>
           <PublicPageLayoutContent {...props} />
           <PublicPageLayoutContent contentScale={props.contentScale}>
             <Spacings.Stack
