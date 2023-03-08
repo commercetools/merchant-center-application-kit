@@ -6758,7 +6758,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/react@npm:11.10.5, @emotion/react@npm:^11.10.4, @emotion/react@npm:^11.4.0, @emotion/react@npm:^11.8.1":
+"@emotion/react@npm:11.10.5":
   version: 11.10.5
   resolution: "@emotion/react@npm:11.10.5"
   dependencies:
@@ -6782,7 +6782,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/react@npm:11.10.6, @emotion/react@npm:^11.10.5":
+"@emotion/react@npm:11.10.6, @emotion/react@npm:^11.10.4, @emotion/react@npm:^11.10.5, @emotion/react@npm:^11.4.0, @emotion/react@npm:^11.8.1":
   version: 11.10.6
   resolution: "@emotion/react@npm:11.10.6"
   dependencies:
@@ -6854,7 +6854,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/styled@npm:11.10.5, @emotion/styled@npm:^11.10.4, @emotion/styled@npm:^11.3.0":
+"@emotion/styled@npm:11.10.5":
   version: 11.10.5
   resolution: "@emotion/styled@npm:11.10.5"
   dependencies:
@@ -6877,7 +6877,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/styled@npm:^11.10.5":
+"@emotion/styled@npm:^11.10.4, @emotion/styled@npm:^11.10.5, @emotion/styled@npm:^11.3.0":
   version: 11.10.6
   resolution: "@emotion/styled@npm:11.10.6"
   dependencies:
@@ -6913,14 +6913,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/utils@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@emotion/utils@npm:1.0.0"
-  checksum: 3ce8048441a915447d9ef51eb6d1d4cbcce8c8d1647bc7a23333ce2fb2249e74cf9471670d6f49a716e93ff633c9e7a6633517698e17391aebfc40c9d0cabcc0
-  languageName: node
-  linkType: hard
-
-"@emotion/utils@npm:^1.2.0":
+"@emotion/utils@npm:^1.0.0, @emotion/utils@npm:^1.2.0":
   version: 1.2.0
   resolution: "@emotion/utils@npm:1.2.0"
   checksum: 55457a49ddd4db6a014ea0454dc09eaa23eedfb837095c8ff90470cb26a303f7ceb5fcc1e2190ef64683e64cfd33d3ba3ca3109cd87d12bc9e379e4195c9a4dd
