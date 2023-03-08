@@ -1,5 +1,18 @@
 # @commercetools-frontend/application-components
 
+## 21.23.9
+
+### Patch Changes
+
+- [#2967](https://github.com/commercetools/merchant-center-application-kit/pull/2967) [`8a87d58d4`](https://github.com/commercetools/merchant-center-application-kit/commit/8a87d58d4d20e11630be0acf9fbe7986fd6befe0) Thanks [@ddouglasz](https://github.com/ddouglasz)! - Updated default gap value in `PageContentWide` component from '10' (`32px`) to '20' (`64px`).
+  Also, when used in single columns mode, it will only render its first children and log a warning if more than one child is provided.
+- Updated dependencies [[`6dcd48525`](https://github.com/commercetools/merchant-center-application-kit/commit/6dcd48525a9943ea7348345f32ae218a5154867b)]:
+  - @commercetools-frontend/application-shell-connectors@21.23.9
+  - @commercetools-frontend/i18n@21.23.9
+  - @commercetools-frontend/l10n@21.23.9
+  - @commercetools-frontend/assets@21.23.9
+  - @commercetools-frontend/constants@21.23.9
+
 ## 21.23.8
 
 ### Patch Changes

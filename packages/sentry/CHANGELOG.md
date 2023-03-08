@@ -1,5 +1,15 @@
 # @commercetools-frontend/sentry
 
+## 21.23.9
+
+### Patch Changes
+
+- [#2984](https://github.com/commercetools/merchant-center-application-kit/pull/2984) [`2b9d36a2d`](https://github.com/commercetools/merchant-center-application-kit/commit/2b9d36a2d6b9f6f54fd03a8d7ad13f58436805b5) Thanks [@emmenko](https://github.com/emmenko)! - Make `history` instance compatible with SSR
+
+- Updated dependencies [[`2b9d36a2d`](https://github.com/commercetools/merchant-center-application-kit/commit/2b9d36a2d6b9f6f54fd03a8d7ad13f58436805b5)]:
+  - @commercetools-frontend/browser-history@21.23.9
+  - @commercetools-frontend/constants@21.23.9
+
 ## 21.23.8
 
 ### Patch Changes

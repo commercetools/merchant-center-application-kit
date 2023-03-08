@@ -1,5 +1,14 @@
 # @commercetools-frontend/eslint-config-mc-app
 
+## 21.23.9
+
+### Patch Changes
+
+- [#2979](https://github.com/commercetools/merchant-center-application-kit/pull/2979) [`6dcd48525`](https://github.com/commercetools/merchant-center-application-kit/commit/6dcd48525a9943ea7348345f32ae218a5154867b) Thanks [@emmenko](https://github.com/emmenko)! - Refine engine version requirements for Nodejs to be `14.x || >=16.0.0`
+
+- Updated dependencies [[`6dcd48525`](https://github.com/commercetools/merchant-center-application-kit/commit/6dcd48525a9943ea7348345f32ae218a5154867b)]:
+  - @commercetools-frontend/babel-preset-mc-app@21.23.9
+
 ## 21.23.8
 
 ### Patch Changes
