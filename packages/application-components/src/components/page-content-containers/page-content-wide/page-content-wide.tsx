@@ -2,6 +2,7 @@
 import { Children, type ReactNode } from 'react';
 import styled from '@emotion/styled';
 import { designTokens, useTheme } from '@commercetools-uikit/design-system';
+import { useWarning } from '@commercetools-uikit/utils';
 
 export type TPageContentWide = {
   columns: '1' | '1/1' | '2/1';
@@ -53,14 +54,20 @@ const Container = styled.div`
 
 function PageContentWide(props: TPageContentWide) {
   const { isNewTheme } = useTheme();
+  const [leftChild, rightChild] = Children.toArray(props.children);
+
+  useWarning(
+    props.columns !== '1' || !Boolean(rightChild),
+    'PageContentWide: This component only renders its first children when using a single column but you provided more that one.'
+  );
+
   if (!isNewTheme) return <>{props.children}</>;
 
-  const [leftChild, rightChild] = Children.toArray(props.children);
   return (
     <Container>
       <Content columns={props.columns} gapSize={props.gapSize}>
         {props.columns === '1' ? (
-          <>{props.children}</>
+          <>{leftChild}</>
         ) : (
           <>
             <LeftContentColumn>{leftChild}</LeftContentColumn>
@@ -78,7 +85,7 @@ function PageContentWide(props: TPageContentWide) {
 
 const defaultProps: Pick<TPageContentWide, 'columns' | 'gapSize'> = {
   columns: '1',
-  gapSize: '10',
+  gapSize: '20',
 };
 PageContentWide.defaultProps = defaultProps;
 
