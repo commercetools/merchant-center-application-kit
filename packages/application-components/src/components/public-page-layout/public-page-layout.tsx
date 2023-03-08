@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import CommercetoolsLogoSvg from '@commercetools-frontend/assets/logos/commercetools_primary-logo_horizontal_white-text_RGB.svg';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { customProperties, useTheme } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import { designTokens as appKitDesingTokens } from '../../theming';
@@ -60,6 +60,8 @@ const PublicPageLayoutContent: FC<TProps> = (props) => {
 };
 
 const PublicPageLayout: FC<TProps> = (props) => {
+  const { themedValue } = useTheme();
+
   return (
     <Container>
       <Spacings.Stack scale="xl" alignItems="center">
@@ -78,6 +80,7 @@ const PublicPageLayout: FC<TProps> = (props) => {
               <div
                 css={css`
                   color: ${customProperties.colorSurface};
+                  text-align: ${themedValue('left', 'center')};
                 `}
               >
                 {props.welcomeMessage}
@@ -85,9 +88,8 @@ const PublicPageLayout: FC<TProps> = (props) => {
             </Text.Headline>
           </ContainerColumn>
         )}
-        <Spacings.Stack scale="s">
+        <Spacings.Stack scale={themedValue('xs', 'l')}>
           <PublicPageLayoutContent {...props} />
-
           <PublicPageLayoutContent contentScale={props.contentScale}>
             <Spacings.Stack
               scale="xs"
