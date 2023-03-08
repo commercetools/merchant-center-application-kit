@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/codemod",
-  "version": "21.23.7",
+  "version": "21.23.8",
   "description": "Codemod transformations for Custom Applications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -35,6 +35,6 @@
     "typescript": "4.9.5"
   },
   "engines": {
-    "node": ">=14"
+    "node": "14.x || >=16.0.0"
   }
 }

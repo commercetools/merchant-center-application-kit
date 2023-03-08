@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-applications/merchant-center-template-starter",
-  "version": "21.23.7",
+  "version": "21.23.8",
   "description": "A starter example for the bare minimum setup to develop a Merchant Center Application",
   "private": true,
   "scripts": {
@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "@apollo/client": "3.7.7",
+    "@babel/core": "^7.20.12",
+    "@babel/runtime-corejs3": "^7.20.13",
     "@commercetools-frontend/actions-global": "workspace:*",
     "@commercetools-frontend/application-components": "workspace:*",
     "@commercetools-frontend/application-shell": "workspace:*",
@@ -28,6 +30,7 @@
     "@commercetools-frontend/eslint-config-mc-app": "workspace:*",
     "@commercetools-frontend/i18n": "workspace:*",
     "@commercetools-frontend/jest-preset-mc-app": "workspace:*",
+    "@commercetools-frontend/l10n": "workspace:*",
     "@commercetools-frontend/mc-dev-authentication": "workspace:*",
     "@commercetools-frontend/mc-scripts": "workspace:*",
     "@commercetools-frontend/permissions": "workspace:*",
@@ -52,15 +55,22 @@
     "@commercetools-uikit/text-field": "^15.13.0",
     "@commercetools-uikit/text-input": "^15.13.0",
     "@commercetools/sync-actions": "^5.3.1",
+    "@emotion/react": "11.10.6",
     "@formatjs/cli": "4.8.4",
     "@manypkg/cli": "0.19.2",
+    "@testing-library/dom": "^8.20.0",
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "12.1.5",
     "@testing-library/react-hooks": "8.0.1",
     "eslint": "8.34.0",
     "eslint-formatter-pretty": "4.1.0",
+    "formik": "2.2.9",
+    "graphql": "^16.6.0",
+    "graphql-tag": "^2.12.6",
     "jest": "27.5.1",
     "jest-runner-eslint": "1.1.0",
     "jest-watch-typeahead": "1.1.0",
+    "moment": "^2.29.4",
     "msw": "0.47.4",
     "omit-empty-es": "1.1.3",
     "prettier": "2.8.4",
@@ -71,5 +81,9 @@
     "react-redux": "7.2.9",
     "react-router-dom": "5.3.4",
     "redux": "4.2.1"
+  },
+  "resolutions": {
+    "@emotion/react": "11.10.6",
+    "@emotion/styled": "11.10.6"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/create-mc-app",
-  "version": "21.23.7",
+  "version": "21.23.8",
   "description": "Create Merchant Center applications to quickly get up and running",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -28,6 +28,6 @@
     "semver": "7.3.8"
   },
   "engines": {
-    "node": "14.x || 16.x || 17.x"
+    "node": "14.x || >=16.0.0"
   }
 }

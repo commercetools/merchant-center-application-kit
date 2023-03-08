@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-dev-authentication
 
+## 21.23.8
+
+### Patch Changes
+
+- [#2969](https://github.com/commercetools/merchant-center-application-kit/pull/2969) [`bca4133da`](https://github.com/commercetools/merchant-center-application-kit/commit/bca4133da13688224863e2acfbd6cfd58746f3aa) Thanks [@emmenko](https://github.com/emmenko)! - Remove info message about SSO login
+
 ## 21.23.7
 
 ### Patch Changes

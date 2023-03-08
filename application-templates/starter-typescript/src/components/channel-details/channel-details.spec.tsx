@@ -8,15 +8,12 @@ import {
   mapResourceAccessToAppliedPermissions,
   type TRenderAppWithReduxOptions,
 } from '@commercetools-frontend/application-shell/test-utils';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { buildGraphqlList } from '@commercetools-test-data/core';
 import type { TChannel } from '@commercetools-test-data/channel';
 import * as Channel from '@commercetools-test-data/channel';
 import { LocalizedString } from '@commercetools-test-data/commons';
 import { renderApplicationWithRoutesAndRedux } from '../../test-utils';
 import { entryPointUriPath, PERMISSIONS } from '../../constants';
-
-jest.mock('@commercetools-frontend/sentry');
 
 const mockServer = setupServer();
 afterEach(() => mockServer.resetHandlers());
@@ -297,6 +294,9 @@ describe('notifications', () => {
     );
   });
   it('should display an error notification if an update resulted in an unmapped error', async () => {
+    // Mock error log
+    jest.spyOn(console, 'error').mockImplementation();
+
     useMockServerHandlers([
       fetchChannelDetailsQueryHandler,
       updateChannelDetailsHandlerWithARandomError,
@@ -316,7 +316,5 @@ describe('notifications', () => {
 
     const notification = await screen.findByRole('alertdialog');
     within(notification).getByText(/some fake error message/i);
-
-    expect(reportErrorToSentry).toHaveBeenCalled();
   });
 });

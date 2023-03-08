@@ -1,0 +1,55 @@
+---
+title: Deployment previews
+---
+
+<Subtitle>
+
+Deployment previews let you preview your Custom Application changes using a unique URL.
+
+</Subtitle>
+
+To test your Custom Application features before releasing them to the production environment, you can add a deployment preview. For example, you can add a deployment preview to try new features in your Custom Application's `staging` branch.
+
+You must host the deployment previews separately from one another and assign a unique but static URL. You can add as many deployment previews as you like. In Merchant Center, the deployment previews are available on a unique URL, different than the production environment.
+
+This document describes the necessary steps to build and add deployment previews to your Custom Application. The process involves:
+
+1. Building a deployment preview for your Custom Application.
+2. Deploying a Custom Application preview to your hosting provider.
+3. Adding a deployment preview to the Custom Application settings.
+
+# Building a deployment preview
+
+Each deployment preview has its unique and static deployment URL. The Merchant Center uses this URL to render the deployment preview. Therefore, to build a deployment preview, you must set the `env.production.url` value to deployed application's URL in the `custom-application-config.json` file.
+
+To build a deployment preview, configure your production URL in the `custom-application-config.json` file using the  [environment variables references](/api-reference/application-config#environment-variable-references).
+
+```json title="custom-application-config.json"
+{
+  "env": {
+    "production": {
+      "url": "${env:APP_URL}",
+    }
+  }
+}
+```
+
+With the above setup, you can build deployment previews based on the `APP_URL` environment variable value. How you set the environment is up to you. For example, you could set the `APP_URL` to different values in different hosting environments or create a `.env` file in your project and commit different values for the `APP_URL` variable in different branches.
+
+# Deploying a Custom Application preview
+
+Once you've built your Custom Application using the correct `env.production.url` value. You can deploy the Custom Application preview the same way you deploy your Custom Application. The only requirement is that the deployed application URL (`APP_URL`) is static, so you can specify it in the Merchant Center when [adding the deployment preview](https://docs.commercetools.com/merchant-center/managing-custom-applications#managing-custom-applications-deployment-previews).
+
+<Info>
+
+You must set the `APP_URL` environment variable on your hosting provider.
+
+</Info>
+
+See [Deployment Examples](/deployment-examples) to get up and running with some of the common cloud hosting providers.
+
+# Adding a deployment preview to the Custom Application
+
+To use the Custom Application deployment preview inside the Merchant Center, you must [add the deployment preview](https://docs.commercetools.com/merchant-center/managing-custom-applications#adding-deployment-previews) in your Custom Application settings. When adding the deployment preview, you'll need to fill the `APP_URL` value in the **Application URL** field.
+
+For example, you can add a deployment preview hosted at `https://staging.example.com` by setting the `APP_URL` environment variable to `https://staging.example.com` in the staging deployment environment and using `https://staging.example.com` as the **Application URL** when adding the deployment preview in the Merchant Center.

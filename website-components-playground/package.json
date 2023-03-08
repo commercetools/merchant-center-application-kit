@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-website/components-playground",
-  "version": "21.23.7",
+  "version": "21.23.8",
   "private": true,
   "scripts": {
     "start": "vite --port 8001",
@@ -8,9 +8,9 @@
     "preview": "vite preview --port 8001"
   },
   "dependencies": {
-    "@commercetools-frontend/application-components": "21.23.7",
-    "@commercetools-frontend/browser-history": "21.23.7",
-    "@commercetools-frontend/i18n": "21.23.7",
+    "@commercetools-frontend/application-components": "21.23.8",
+    "@commercetools-frontend/browser-history": "21.23.8",
+    "@commercetools-frontend/i18n": "21.23.8",
     "@commercetools-uikit/design-system": "^15.13.0",
     "@commercetools-uikit/icon-button": "^15.13.0",
     "@commercetools-uikit/icons": "^15.13.0",
