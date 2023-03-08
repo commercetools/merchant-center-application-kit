@@ -1,8 +1,8 @@
 import type { Extra, Extras, Event } from '@sentry/types';
 import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing'; // Must import after `@sentry/react`
-import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import history from '@commercetools-frontend/browser-history';
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
 declare let window: ApplicationWindow;
 
@@ -78,11 +78,10 @@ export const boot = () => {
       dsn: window.app.trackingSentry,
       release: window.app.revision,
       environment: `${window.app.env}-${window.app.location}`,
-      // in order to reduce the noise in sentry we only track errors that come
+      // In order to reduce the noise in sentry we only track errors that come
       // from our code and ignore errors that come from other services
       // https://blog.sentry.io/2017/03/27/tips-for-reducing-javascript-error-noise.html
       allowUrls: [window.app.cdnUrl, window.app.frontendHost],
-      // we don't need default Sentry's global handlers, because we  add default ones
       integrations: [
         new Sentry.Integrations.GlobalHandlers({
           onunhandledrejection: false,
