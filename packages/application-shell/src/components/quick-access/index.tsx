@@ -1,9 +1,9 @@
 import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import * as gtm from '../../utils/gtm';
 import ErrorBoundary from '../error-boundary';
-import trackingEvents from './tracking-events';
 import ButlerContainer from './butler-container';
 import pimIndexerStates from './pim-indexer-states';
+import trackingEvents from './tracking-events';
 
 type Props = {
   onChangeProjectDataLocale?: (locale: string) => void;

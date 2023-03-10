@@ -1,5 +1,5 @@
-import Text from '@commercetools-uikit/text';
 import { InfoDetailPage } from '@commercetools-frontend/application-components';
+import Text from '@commercetools-uikit/text';
 import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/info-detail-page';

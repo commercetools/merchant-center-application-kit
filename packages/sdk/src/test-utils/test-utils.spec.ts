@@ -1,7 +1,6 @@
-import type { TSdkAction, Json } from '../types';
-
 import { getErrorByCode } from '@commercetools/sdk-middleware-http';
 import * as sdkActions from '../actions';
+import type { TSdkAction, Json } from '../types';
 import { createTestMiddleware } from './test-utils';
 
 type FakeStore = {

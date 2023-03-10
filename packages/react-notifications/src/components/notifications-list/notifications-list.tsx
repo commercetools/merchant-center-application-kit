@@ -1,3 +1,4 @@
+import { useSelector, useDispatch } from 'react-redux';
 import type {
   TAppNotificationDomain,
   TAppNotificationGlobal,
@@ -5,9 +6,6 @@ import type {
   TAppNotificationSide,
   TAppNotificationValuesUnexpectedError,
 } from '@commercetools-frontend/constants';
-import type { TAppState } from './types';
-
-import { useSelector, useDispatch } from 'react-redux';
 import {
   NOTIFICATION_DOMAINS,
   NOTIFICATION_KINDS_GLOBAL,
@@ -16,16 +14,17 @@ import {
 } from '@commercetools-frontend/constants';
 import { removeNotification } from '@commercetools-frontend/notifications';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import GenericNotification from '../notification-kinds/generic';
-import ApiErrorNotification from '../notification-kinds/api-error';
-import UnexpectedErrorNotification from '../notification-kinds/unexpected-error';
 import { useCustomNotificationComponent } from '../map-notification-to-component';
+import ApiErrorNotification from '../notification-kinds/api-error';
+import GenericNotification from '../notification-kinds/generic';
+import UnexpectedErrorNotification from '../notification-kinds/unexpected-error';
+import { getStyles } from './notifications-list.styles';
 import {
   selectGlobalNotifications,
   selectPageNotifications,
   selectSideNotifications,
 } from './selectors';
-import { getStyles } from './notifications-list.styles';
+import type { TAppState } from './types';
 
 type Props = {
   domain: TAppNotificationDomain;

@@ -6,6 +6,52 @@ process.env.ENABLE_NEW_JSX_TRANSFORM = 'true';
 module.exports = {
   extends: ['@commercetools-frontend/eslint-config-mc-app'],
   plugins: ['graphql'],
+  rules: {
+    'import/order': [
+      'error',
+      {
+        alphabetize: { order: 'asc', caseInsensitive: true },
+        pathGroups: [
+          {
+            pattern: 'jest-mock',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'msw',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'react',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'prop-types',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '@emotion/**',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '@commercetools-frontend/**',
+            group: 'external',
+            position: 'after',
+          },
+          {
+            pattern: '@commercetools-uikit/**',
+            group: 'external',
+            position: 'after',
+          },
+        ],
+        pathGroupsExcludedImportTypes: ['builtin'],
+      },
+    ],
+  },
   overrides: [
     {
       files: ['**/*.mc.graphql'],

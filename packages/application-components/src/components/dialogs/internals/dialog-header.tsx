@@ -1,13 +1,13 @@
 import type { SyntheticEvent } from 'react';
 import { css } from '@emotion/react';
-import { CloseIcon } from '@commercetools-uikit/icons';
-import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';
-import Text from '@commercetools-uikit/text';
-import Spacings from '@commercetools-uikit/spacings';
 import {
   designTokens as uiKitDesignTokens,
   useTheme,
 } from '@commercetools-uikit/design-system';
+import { CloseIcon } from '@commercetools-uikit/icons';
+import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';
+import Spacings from '@commercetools-uikit/spacings';
+import Text from '@commercetools-uikit/text';
 
 type Props = {
   title: string;

@@ -1,19 +1,19 @@
-import omitEmpty from 'omit-empty-es';
 import { ApolloLink } from '@apollo/client';
 import createHttpUserAgent from '@commercetools/http-user-agent';
+import omitEmpty from 'omit-empty-es';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import type {
   ApplicationWindow,
   TGraphQLTargets,
 } from '@commercetools-frontend/constants';
-import type { TApolloContext } from '../utils/apollo-context';
 import { SUPPORTED_HEADERS } from '../constants';
 import {
   selectProjectKeyFromUrl,
   selectTeamIdFromLocalStorage,
 } from '../utils';
-import * as oidcStorage from '../utils/oidc-storage';
+import type { TApolloContext } from '../utils/apollo-context';
 import { createHttpClientOptions, type THeaders } from '../utils/http-client';
+import * as oidcStorage from '../utils/oidc-storage';
 import version from '../version';
 
 declare let window: ApplicationWindow;

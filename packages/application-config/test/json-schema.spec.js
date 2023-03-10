@@ -4,12 +4,12 @@ import {
   validateSubmenuLinks,
   validateAdditionalOAuthScopes,
 } from '../src/validations';
-import fixtureConfigSimple from './fixtures/config-simple.json';
-import fixtureConfigFull from './fixtures/config-full.json';
-import fixtureConfigOidc from './fixtures/config-oidc.json';
 import fixtureConfigEnvVariables from './fixtures/config-env-variables.json';
-import fixtureConfigIntlVariables from './fixtures/config-intl-variables.json';
 import fixtureConfigFilePathVariables from './fixtures/config-file-path-variables.json';
+import fixtureConfigFull from './fixtures/config-full.json';
+import fixtureConfigIntlVariables from './fixtures/config-intl-variables.json';
+import fixtureConfigOidc from './fixtures/config-oidc.json';
+import fixtureConfigSimple from './fixtures/config-simple.json';
 
 describe.each`
   name                     | config

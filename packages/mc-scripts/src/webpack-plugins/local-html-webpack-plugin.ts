@@ -1,5 +1,5 @@
-import type { Compiler } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import type { Compiler } from 'webpack';
 import { processConfig } from '@commercetools-frontend/application-config';
 import { replaceHtmlPlaceholders } from '@commercetools-frontend/mc-html-template';
 

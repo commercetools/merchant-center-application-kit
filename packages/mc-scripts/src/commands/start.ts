@@ -1,19 +1,19 @@
 import fs from 'fs';
-import webpack, { type Configuration } from 'webpack';
-import WebpackDevServer from 'webpack-dev-server';
 import chalk from 'chalk';
-import clearConsole from 'react-dev-utils/clearConsole';
 import checkRequiredFiles from 'react-dev-utils/checkRequiredFiles';
+import clearConsole from 'react-dev-utils/clearConsole';
+import openBrowser from 'react-dev-utils/openBrowser';
 import {
   choosePort,
   createCompiler,
   prepareUrls,
   type CreateCompilerOptions,
 } from 'react-dev-utils/WebpackDevServerUtils';
-import openBrowser from 'react-dev-utils/openBrowser';
+import webpack, { type Configuration } from 'webpack';
+import WebpackDevServer from 'webpack-dev-server';
+import createWebpackConfigForDevelopment from '../config/create-webpack-config-for-development';
 import paths from '../config/paths';
 import createDevServerConfig from '../config/webpack-dev-server.config';
-import createWebpackConfigForDevelopment from '../config/create-webpack-config-for-development';
 
 async function run() {
   const useYarn = fs.existsSync(paths.yarnLockFile);

@@ -1,6 +1,6 @@
+import { SyntheticEvent, ReactNode, ReactElement } from 'react';
 import type { CSSObject } from '@emotion/react';
 
-import { SyntheticEvent, ReactNode, ReactElement } from 'react';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import CustomFormModalPage from '../custom-form-modal-page';
 

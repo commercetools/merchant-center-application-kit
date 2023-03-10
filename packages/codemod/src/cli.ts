@@ -3,12 +3,12 @@ import cac from 'cac';
 import glob from 'glob';
 // @ts-ignore internal module
 import Runner from 'jscodeshift/src/Runner';
+import pkgJson from '../package.json';
 import type {
   TRunnerOptions,
   TCliGlobalOptions,
   TCliTransformName,
 } from './types';
-import pkgJson from '../package.json';
 
 const cli = cac('mc-codemod');
 

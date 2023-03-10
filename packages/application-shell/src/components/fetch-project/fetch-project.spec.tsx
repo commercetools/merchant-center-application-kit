@@ -1,8 +1,7 @@
-import type { TProjectGraphql } from '../../../../../test-data/project';
-
 import { graphql } from 'msw';
 import { setupServer } from 'msw/node';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import type { TProjectGraphql } from '../../../../../test-data/project';
 import * as ProjectMock from '../../../../../test-data/project';
 import { renderApp, screen, waitForElementToBeRemoved } from '../../test-utils';
 import FetchProject from './fetch-project';

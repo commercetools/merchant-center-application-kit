@@ -1,11 +1,10 @@
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import { STORAGE_KEYS } from '../../constants';
+import { useMcQuery } from '../../hooks/apollo-hooks';
 import type {
   TAmILoggedInQuery,
   TAmILoggedInQueryVariables,
 } from '../../types/generated/mc';
-
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { useMcQuery } from '../../hooks/apollo-hooks';
-import { STORAGE_KEYS } from '../../constants';
 import AmILoggedInQuery from './authenticated.mc.graphql';
 
 type RenderFnArgs = { isAuthenticated: boolean };

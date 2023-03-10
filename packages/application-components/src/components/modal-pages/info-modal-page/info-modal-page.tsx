@@ -1,9 +1,8 @@
-import type { CSSObject } from '@emotion/react';
-
 import { ReactElement, ReactNode, SyntheticEvent } from 'react';
-import ModalPage from '../internals/modal-page';
+import type { CSSObject } from '@emotion/react';
 import PageHeader from '../../internals/page-header';
 import { ContentWrapper } from '../../internals/page.styles';
+import ModalPage from '../internals/modal-page';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin

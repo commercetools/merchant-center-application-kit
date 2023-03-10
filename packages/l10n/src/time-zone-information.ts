@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import moment from 'moment-timezone';
+import { createL10NInjector, createL10NHook } from './create-l10n-injector';
 import type {
   TimeZone,
   TimeZones,
   TimeZoneTranslations,
   TimeZoneTranslationsMap,
 } from './types';
-import { createL10NInjector, createL10NHook } from './create-l10n-injector';
 import { getSupportedLocale, mapLocaleToIntlLocale } from './utils';
 
 type TranslationsData = {

@@ -1,6 +1,6 @@
+import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router';
-import { render } from '@testing-library/react';
 import { waitFor } from '../../test-utils';
 import ApplicationPageTitle from './application-page-title';
 

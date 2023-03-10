@@ -1,8 +1,8 @@
 require('jest-enzyme');
 
-const ShallowWrapper = require('enzyme/ShallowWrapper');
 const configureEnzymeExtensions = require('@commercetools/enzyme-extensions');
 const commerceToolsEnzymeMatchers = require('@commercetools/jest-enzyme-matchers');
+const ShallowWrapper = require('enzyme/ShallowWrapper');
 
 expect.extend({
   toBeComponentWithName(received, actual) {

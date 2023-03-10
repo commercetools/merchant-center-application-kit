@@ -1,14 +1,5 @@
 import type { TBuilder } from '@commercetools-test-data/core';
 import type { TOrganization, TOrganizationGraphql } from '../organization';
-import type { TProjectExpiry, TProjectExpiryGraphql } from './fields/expiry';
-import type {
-  TProjectSuspension,
-  TProjectSuspensionGraphql,
-} from './fields/suspension';
-import type {
-  TPermissions,
-  TAppliedPermissionGraphql,
-} from './fields/applied-permission';
 import type {
   TActionRights,
   TAppliedActionRightsGraphql,
@@ -18,9 +9,18 @@ import type {
   TAppliedMenuVisibilitiesGraphql,
 } from './fields/applied-menu-visibilities';
 import type {
+  TPermissions,
+  TAppliedPermissionGraphql,
+} from './fields/applied-permission';
+import type {
   TStoreDataFences,
   TAppliedStoreDataFencesGraphql,
 } from './fields/applied-store-data-fence';
+import type { TProjectExpiry, TProjectExpiryGraphql } from './fields/expiry';
+import type {
+  TProjectSuspension,
+  TProjectSuspensionGraphql,
+} from './fields/suspension';
 
 export type TCreateProjectBuilder = () => TBuilder<TProject>;
 

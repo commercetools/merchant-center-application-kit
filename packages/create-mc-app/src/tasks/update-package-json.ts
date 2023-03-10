@@ -1,9 +1,9 @@
-import os from 'os';
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
 import type { ListrTask } from 'listr2';
-import { slugify } from '../utils';
 import type { TCliTaskOptions } from '../types';
+import { slugify } from '../utils';
 
 const replaceApplicationKitPackageVersionWith = (
   releaseVersion: string,

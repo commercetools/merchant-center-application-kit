@@ -1,13 +1,12 @@
+import { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import type {
   TNotificationMetaOptions,
   TAddNotificationAction,
   TNotification,
 } from '@commercetools-frontend/notifications';
-import type { TShowNotification } from '../types';
-
-import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
 import { showNotification } from '../actions';
+import type { TShowNotification } from '../types';
 
 type TNotificationHook<Notification extends TShowNotification> = (
   content: Notification,

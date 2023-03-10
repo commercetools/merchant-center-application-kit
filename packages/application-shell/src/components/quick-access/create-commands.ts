@@ -1,16 +1,16 @@
+import { oneLineTrim } from 'common-tags';
 import type { IntlShape } from 'react-intl';
 import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import type { Command } from './types';
 
-import { oneLineTrim } from 'common-tags';
-import { hasSomePermissions } from '@commercetools-frontend/permissions';
 import {
   LOGOUT_REASONS,
   SUPPORT_PORTAL_URL,
 } from '@commercetools-frontend/constants';
+import { hasSomePermissions } from '@commercetools-frontend/permissions';
+import { location } from '../../utils/location';
 import { permissions } from './constants';
 import messages from './messages';
-import { location } from '../../utils/location';
+import type { Command } from './types';
 import { actionTypes } from './types';
 
 function nonNullable<T>(value: T | boolean): value is NonNullable<T> {

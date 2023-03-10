@@ -1,9 +1,8 @@
+import { Transformer } from '@commercetools-test-data/core';
 import type {
   TMenuVisibilities,
   TAppliedMenuVisibilitiesGraphql,
 } from './types';
-
-import { Transformer } from '@commercetools-test-data/core';
 
 const upperFirst = (value: string): string =>
   value.charAt(0).toUpperCase() + value.slice(1);

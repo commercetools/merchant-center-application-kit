@@ -1,7 +1,7 @@
 import { Formik } from 'formik';
 import { useHistory } from 'react-router-dom';
-import TextField from '@commercetools-uikit/text-field';
 import { FormModalPage } from '@commercetools-frontend/application-components';
+import TextField from '@commercetools-uikit/text-field';
 import { NestedPages, Suite } from '../../test-utils';
 
 export const routePath = '/form-modal-page';

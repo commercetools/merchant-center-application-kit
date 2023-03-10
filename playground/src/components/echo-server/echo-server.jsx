@@ -1,15 +1,15 @@
 import { useReducer, useCallback, useState } from 'react';
+import { CodeBlock } from '@commercetools-docs/ui-kit';
 import { useIntl } from 'react-intl';
+import { useOnActionError } from '@commercetools-frontend/actions-global';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { useAsyncDispatch, actions } from '@commercetools-frontend/sdk';
-import { useOnActionError } from '@commercetools-frontend/actions-global';
-import Spacings from '@commercetools-uikit/spacings';
+import CheckboxInput from '@commercetools-uikit/checkbox-input';
 import Constraints from '@commercetools-uikit/constraints';
 import Link from '@commercetools-uikit/link';
-import Text from '@commercetools-uikit/text';
-import CheckboxInput from '@commercetools-uikit/checkbox-input';
 import PrimaryButton from '@commercetools-uikit/primary-button';
-import { CodeBlock } from '@commercetools-docs/ui-kit';
+import Spacings from '@commercetools-uikit/spacings';
+import Text from '@commercetools-uikit/text';
 import messages from './messages';
 
 const initialState = {

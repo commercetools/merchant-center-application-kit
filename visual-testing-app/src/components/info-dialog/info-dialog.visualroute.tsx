@@ -1,6 +1,6 @@
-import Text from '@commercetools-uikit/text';
-import Spacings from '@commercetools-uikit/spacings';
 import { InfoDialog } from '@commercetools-frontend/application-components';
+import Spacings from '@commercetools-uikit/spacings';
+import Text from '@commercetools-uikit/text';
 import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/info-dialog';

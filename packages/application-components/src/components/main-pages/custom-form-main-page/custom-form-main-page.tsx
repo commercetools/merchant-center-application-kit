@@ -1,14 +1,14 @@
 import type { ReactElement, ReactNode } from 'react';
-import { warning } from '@commercetools-uikit/utils';
-import Spacings from '@commercetools-uikit/spacings';
 import { sharedMessages } from '@commercetools-frontend/i18n';
+import Spacings from '@commercetools-uikit/spacings';
+import { warning } from '@commercetools-uikit/utils';
 import {
   FormPrimaryButton,
   FormSecondaryButton,
   FormDeleteButton,
 } from '../../internals/default-form-buttons';
-import { PageWrapper } from '../../internals/page.styles';
 import PageHeaderTitle from '../../internals/page-header-title';
+import { PageWrapper } from '../../internals/page.styles';
 import {
   Divider,
   MainPageContainer,

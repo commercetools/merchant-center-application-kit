@@ -1,6 +1,6 @@
 import { useIntl, FormattedMessage, MessageDescriptor } from 'react-intl';
-import ProjectSuspendedSVG from '@commercetools-frontend/assets/images/doors-closed.svg';
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
+import ProjectSuspendedSVG from '@commercetools-frontend/assets/images/doors-closed.svg';
 import ServicePageProjectSwitcher from '../service-page-project-switcher';
 import messages from './messages';
 

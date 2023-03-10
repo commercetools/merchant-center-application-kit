@@ -1,10 +1,10 @@
+import { SyntheticEvent } from 'react';
 import type {
   TAppNotification,
   TAppNotificationDomain,
   TAppNotificationKindSide,
 } from '@commercetools-frontend/constants';
 
-import { SyntheticEvent } from 'react';
 import Notification from '../../notification';
 
 type Props = {

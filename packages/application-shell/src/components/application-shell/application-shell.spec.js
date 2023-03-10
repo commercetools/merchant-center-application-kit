@@ -1,6 +1,4 @@
-import { encode } from 'qss';
 import { graphql, rest } from 'msw';
-import { setupServer } from 'msw/node';
 import {
   screen,
   render,
@@ -9,18 +7,20 @@ import {
   within,
 } from '@testing-library/react';
 import { AuthenticationError, ApolloError } from 'apollo-server-errors';
-import { useDispatch } from 'react-redux';
 import { createMemoryHistory } from 'history';
-import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
+import { setupServer } from 'msw/node';
+import { encode } from 'qss';
+import { useDispatch } from 'react-redux';
+import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import LockedDiamondSVG from '@commercetools-frontend/assets/images/locked-diamond.svg';
+import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
 import {
   LOGOUT_REASONS,
   SHOW_LOADING,
   HIDE_LOADING,
 } from '@commercetools-frontend/constants';
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
-import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
-import LockedDiamondSVG from '@commercetools-frontend/assets/images/locked-diamond.svg';
 import {
   UserMock,
   ProjectMock,

@@ -1,17 +1,17 @@
-import type { Action, Dispatch, MiddlewareAPI } from 'redux';
+import { createRequestBuilder } from '@commercetools/api-request-builder';
 import type { HttpErrorType } from '@commercetools/sdk-client';
+import type { Action, Dispatch, MiddlewareAPI } from 'redux';
+import {
+  SHOW_LOADING,
+  HIDE_LOADING,
+  STATUS_CODES,
+} from '@commercetools-frontend/constants';
 import type {
   TSdkAction,
   TSdkActionPayload,
   TSdkActionPayloadForUri,
 } from '../types';
 
-import { createRequestBuilder } from '@commercetools/api-request-builder';
-import {
-  SHOW_LOADING,
-  HIDE_LOADING,
-  STATUS_CODES,
-} from '@commercetools-frontend/constants';
 import { logRequest } from '../utils';
 import createClient from './client';
 

@@ -1,11 +1,11 @@
-import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
-import type { LoaderSync } from 'cosmiconfig';
-
+import { execFileSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
-import { execFileSync } from 'child_process';
+import type { LoaderSync } from 'cosmiconfig';
+
 import { cosmiconfigSync, defaultLoaders } from 'cosmiconfig';
 import { MissingOrInvalidConfigError } from './errors';
+import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 
 // Helper function to find the package root path from the current location,
 // for instance in respect to both source files and dist files.

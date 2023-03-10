@@ -1,7 +1,6 @@
-import type { ActionError } from '../actions/handle-action-error';
-
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
+import type { ActionError } from '../actions/handle-action-error';
 import handleActionError from '../actions/handle-action-error';
 
 export default function useOnActionError() {

@@ -1,10 +1,9 @@
-import type { TransformableInfo } from 'logform';
-
-import { format } from 'logform';
 import cloneDeep from 'lodash/cloneDeep';
 import getIn from 'lodash/get';
 import setIn from 'lodash/set';
 import unsetIn from 'lodash/unset';
+import { format } from 'logform';
+import type { TransformableInfo } from 'logform';
 
 type TRewriteField = {
   from: string;

@@ -1,7 +1,7 @@
 import type { ReactElement, ReactNode, SyntheticEvent } from 'react';
 import { sharedMessages } from '@commercetools-frontend/i18n';
-import CustomFormMainPage from '../custom-form-main-page';
 import PageHeaderTitle from '../../internals/page-header-title';
+import CustomFormMainPage from '../custom-form-main-page';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin

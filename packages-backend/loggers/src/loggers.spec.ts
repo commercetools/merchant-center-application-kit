@@ -1,5 +1,5 @@
-import rewriteFieldsFormatter from './formatters/rewrite-fields';
 import createApplicationLogger from './create-application-logger';
+import rewriteFieldsFormatter from './formatters/rewrite-fields';
 
 describe('application logger', () => {
   it('should log and rewrite fields', () => {

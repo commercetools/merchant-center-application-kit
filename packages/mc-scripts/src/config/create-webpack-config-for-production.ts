@@ -1,25 +1,25 @@
+// @ts-ignore
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import MomentLocalesPlugin from 'moment-locales-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
 import webpack, {
   type WebpackPluginInstance,
   type Configuration,
 } from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-// @ts-ignore
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import MomentLocalesPlugin from 'moment-locales-webpack-plugin';
-import TerserPlugin from 'terser-webpack-plugin';
 import type {
   TWebpackConfigToggleFlagsForProduction,
   TWebpackConfigOptions,
 } from '../types';
 import FinalStatsWriterPlugin from '../webpack-plugins/final-stats-writer-plugin';
-import paths from './paths';
-import vendorsToTranspile from './vendors-to-transpile';
 import createPostcssConfig from './create-postcss-config';
 import hasJsxRuntime from './has-jsx-runtime';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import momentLocalesToKeep from /* preval */ './moment-locales';
+import paths from './paths';
+import vendorsToTranspile from './vendors-to-transpile';
 
 const defaultToggleFlags: TWebpackConfigToggleFlagsForProduction = {
   // Allow to disable CSS extraction in case it's not necessary (e.g. for Storybook)

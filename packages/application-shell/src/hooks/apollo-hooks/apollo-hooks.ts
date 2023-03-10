@@ -1,4 +1,3 @@
-import type { DocumentNode } from 'graphql';
 import type {
   OperationVariables,
   QueryResult,
@@ -7,9 +6,9 @@ import type {
   MutationTuple,
   MutationHookOptions,
 } from '@apollo/client';
-import type { TApolloContext } from '../../utils/apollo-context';
-
 import { useQuery, useLazyQuery, useMutation } from '@apollo/client/react';
+import type { DocumentNode } from 'graphql';
+import type { TApolloContext } from '../../utils/apollo-context';
 
 type TQueryOptionsWithContext<
   TData = unknown,

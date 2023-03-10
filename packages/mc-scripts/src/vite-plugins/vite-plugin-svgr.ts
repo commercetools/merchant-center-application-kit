@@ -2,8 +2,8 @@
  * COPIED FROM https://github.com/pd4d10/vite-plugin-svgr
  */
 import fs from 'fs';
-import { transformWithEsbuild, type Plugin } from 'vite';
 import { createFilter } from '@rollup/pluginutils';
+import { transformWithEsbuild, type Plugin } from 'vite';
 
 function vitePluginSvgr(): Plugin {
   const filter = createFilter('**/*.react.svg');

@@ -1,11 +1,3 @@
-import type { Dispatch } from 'redux';
-import type { TFlags } from '@flopflip/types';
-import type { NormalizedCacheObject } from '@apollo/client';
-import type { ApolloError } from '@apollo/client/errors';
-import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
-import type { TrackingList } from '../../utils/gtm';
-
 import {
   type ReactNode,
   type RefObject,
@@ -13,49 +5,56 @@ import {
   useEffect,
   useRef,
 } from 'react';
-import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
-import { ApolloClient } from '@apollo/client';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import type { NormalizedCacheObject } from '@apollo/client';
+import { ApolloClient } from '@apollo/client';
+import type { ApolloError } from '@apollo/client/errors';
+import type { TFlags } from '@flopflip/types';
+import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
+import type { Dispatch } from 'redux';
+import { PortalsContainer } from '@commercetools-frontend/application-components';
+import {
+  ApplicationContextProvider,
+  useApplicationContext,
+  type TApplicationContext,
+} from '@commercetools-frontend/application-shell-connectors';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
+import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
+import { AsyncLocaleData } from '@commercetools-frontend/i18n';
+import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import {
   reportErrorToSentry,
   SentryUserTracker,
 } from '@commercetools-frontend/sentry';
-import {
-  ApplicationContextProvider,
-  useApplicationContext,
-} from '@commercetools-frontend/application-shell-connectors';
-import { PortalsContainer } from '@commercetools-frontend/application-components';
-import { NotificationsList } from '@commercetools-frontend/react-notifications';
-import { AsyncLocaleData } from '@commercetools-frontend/i18n';
-import version from '../../version';
 import internalReduxStore from '../../configure-store';
-import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
 import { DIMENSIONS } from '../../constants';
-import ProjectDataLocale from '../project-data-locale';
+import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
+import type { TrackingList } from '../../utils/gtm';
+import version from '../../version';
+import AppBar from '../app-bar';
+import ApplicationLoader from '../application-loader';
 import ApplicationShellProvider from '../application-shell-provider';
 import { getBrowserLocale } from '../application-shell-provider/utils';
-import FetchUser from '../fetch-user';
-import VersionTracker from '../version-tracker';
-import FetchProject from '../fetch-project';
 import ConfigureIntlProvider from '../configure-intl-provider';
-import AppBar from '../app-bar';
+import ErrorApologizer from '../error-apologizer';
+import FetchProject from '../fetch-project';
+import FetchUser from '../fetch-user';
+import GtmApplicationTracker from '../gtm-application-tracker';
+import GtmUserTracker from '../gtm-user-tracker';
+import NavBar, { LoadingNavBar } from '../navbar';
 import ProjectContainer from '../project-container';
+import ProjectDataLocale from '../project-data-locale';
+import QuickAccess from '../quick-access';
+import RedirectToProjectCreate from '../redirect-to-project-create';
+import RequestsInFlightLoader from '../requests-in-flight-loader';
+import RouteCatchAll from '../route-catch-all';
 import SetupFlopFlipProvider from '../setup-flop-flip-provider';
 import ThemeSwitcher from '../theme-switcher';
-import RequestsInFlightLoader from '../requests-in-flight-loader';
-import GtmUserTracker from '../gtm-user-tracker';
-import GtmApplicationTracker from '../gtm-application-tracker';
-import NavBar, { LoadingNavBar } from '../navbar';
-import ApplicationLoader from '../application-loader';
-import ErrorApologizer from '../error-apologizer';
-import RouteCatchAll from '../route-catch-all';
-import RedirectToProjectCreate from '../redirect-to-project-create';
-import QuickAccess from '../quick-access';
+import VersionTracker from '../version-tracker';
+import GlobalStyles from './global-styles';
 import RedirectToLogin from './redirect-to-login';
 import RedirectToLogout from './redirect-to-logout';
-import GlobalStyles from './global-styles';
 
 type Props<AdditionalEnvironmentProperties extends {}> = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;

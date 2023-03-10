@@ -1,5 +1,5 @@
-import express from 'express';
 import dotenv from 'dotenv-flow';
+import express from 'express';
 dotenv.config();
 // eslint-disable-next-line import/first
 import echoHandler from '../api/echo';

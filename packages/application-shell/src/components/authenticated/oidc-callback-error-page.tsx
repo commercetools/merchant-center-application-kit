@@ -1,18 +1,18 @@
+import styled from '@emotion/styled';
+import { useHistory } from 'react-router-dom';
+import { PublicPageLayout } from '@commercetools-frontend/application-components';
+import FailedAuthenticationSVG from '@commercetools-frontend/assets/images/locked-diamond.svg';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 
-import { useHistory } from 'react-router-dom';
-import styled from '@emotion/styled';
-import FailedAuthenticationSVG from '@commercetools-frontend/assets/images/locked-diamond.svg';
-import { PublicPageLayout } from '@commercetools-frontend/application-components';
-import { customProperties } from '@commercetools-uikit/design-system';
-import { ContentNotification } from '@commercetools-uikit/notifications';
-import Spacings from '@commercetools-uikit/spacings';
-import Constraints from '@commercetools-uikit/constraints';
+import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import Card from '@commercetools-uikit/card';
-import Text from '@commercetools-uikit/text';
+import Constraints from '@commercetools-uikit/constraints';
+import { customProperties } from '@commercetools-uikit/design-system';
 import FlatButton from '@commercetools-uikit/flat-button';
 import { AngleLeftIcon } from '@commercetools-uikit/icons';
-import { AsyncLocaleData } from '@commercetools-frontend/i18n';
+import { ContentNotification } from '@commercetools-uikit/notifications';
+import Spacings from '@commercetools-uikit/spacings';
+import Text from '@commercetools-uikit/text';
 import ConfigureIntlProvider from '../configure-intl-provider';
 
 type TProps = {

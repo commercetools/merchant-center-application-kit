@@ -1,8 +1,8 @@
 import { PublicPageLayout } from '@commercetools-frontend/application-components';
+import Card from '@commercetools-uikit/card';
 import Link from '@commercetools-uikit/link';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import Card from '@commercetools-uikit/card';
 import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/public-page-form';

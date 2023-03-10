@@ -1,6 +1,6 @@
 import { deepEqual } from 'fast-equals';
-import { v4 as uuid } from 'uuid';
 import type { Action, Dispatch } from 'redux';
+import { v4 as uuid } from 'uuid';
 import type { TSdkAction, Json } from '../types';
 
 /**

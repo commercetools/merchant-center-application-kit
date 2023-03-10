@@ -1,10 +1,10 @@
 import { useCallback } from 'react';
 import { Route, Switch, useRouteMatch, useHistory } from 'react-router-dom';
-import StateMachinesList from './components/state-machines-list';
-import StateMachinesDetails from './components/state-machines-details';
-import NotificationsPlayground from './components/notifications-playground';
 import EchoServer from './components/echo-server';
 import FormattersDemo from './components/formatters-demo';
+import NotificationsPlayground from './components/notifications-playground';
+import StateMachinesDetails from './components/state-machines-details';
+import StateMachinesList from './components/state-machines-list';
 
 const ApplicationRoutes = () => {
   const match = useRouteMatch();

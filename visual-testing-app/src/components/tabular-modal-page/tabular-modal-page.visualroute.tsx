@@ -5,8 +5,10 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import Text from '@commercetools-uikit/text';
-import TextInput from '@commercetools-uikit/text-input';
+import {
+  TabularModalPage,
+  TabHeader,
+} from '@commercetools-frontend/application-components';
 import IconButton from '@commercetools-uikit/icon-button';
 import {
   FlameIcon,
@@ -14,10 +16,8 @@ import {
   BinLinearIcon,
 } from '@commercetools-uikit/icons';
 import Spacings from '@commercetools-uikit/spacings';
-import {
-  TabularModalPage,
-  TabHeader,
-} from '@commercetools-frontend/application-components';
+import Text from '@commercetools-uikit/text';
+import TextInput from '@commercetools-uikit/text-input';
 import { NestedPages, Suite } from '../../test-utils';
 
 export const routePath = '/tabular-modal-page';

@@ -1,7 +1,7 @@
 import { Formik } from 'formik';
-import TextField from '@commercetools-uikit/text-field';
-import Spacings from '@commercetools-uikit/spacings';
 import { FormDialog } from '@commercetools-frontend/application-components';
+import Spacings from '@commercetools-uikit/spacings';
+import TextField from '@commercetools-uikit/text-field';
 import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/form-dialog';

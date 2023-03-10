@@ -1,7 +1,6 @@
 import type { Response, NextFunction } from 'express';
-import type { TBaseRequest, TSessionMiddlewareOptions } from '../types';
-
 import { createSessionAuthVerifier } from '../auth';
+import type { TBaseRequest, TSessionMiddlewareOptions } from '../types';
 
 function createSessionMiddleware<Request extends TBaseRequest>(
   options: TSessionMiddlewareOptions<Request>

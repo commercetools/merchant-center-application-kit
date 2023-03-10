@@ -1,12 +1,12 @@
+import { useLocation } from 'react-router-dom';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
-import { useLocation } from 'react-router-dom';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import useIsServedByProxy from '../../hooks/use-is-served-by-proxy';
 import * as oidcStorage from '../../utils/oidc-storage';
 import Redirector from '../redirector';
-import RedirectToLogin from './redirect-to-login';
 import { getMcOrigin } from './helpers';
+import RedirectToLogin from './redirect-to-login';
 
 declare let window: ApplicationWindow;
 

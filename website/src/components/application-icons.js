@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
+import { Markdown } from '@commercetools-docs/ui-kit';
+import { customProperties } from '@commercetools-uikit/design-system';
+import Grid from '@commercetools-uikit/grid';
 import InlineSvg from '@commercetools-uikit/icons/inline-svg';
 import Spacings from '@commercetools-uikit/spacings';
-import Grid from '@commercetools-uikit/grid';
-import { customProperties } from '@commercetools-uikit/design-system';
-import { Markdown } from '@commercetools-docs/ui-kit';
 
 // Cache object to store references so SVG icons.
 const svgIcons = {};

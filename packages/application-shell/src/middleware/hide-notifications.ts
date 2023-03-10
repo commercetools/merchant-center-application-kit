@@ -1,19 +1,19 @@
 import type { Action, Dispatch, MiddlewareAPI } from 'redux';
-import type { TNotificationAction } from '@commercetools-frontend/notifications';
 import type {
   TApiErrorNotification,
   TUnexpectedErrorNotification,
 } from '@commercetools-frontend/actions-global';
+import {
+  HIDE_ALL_PAGE_NOTIFICATIONS,
+  NOTIFICATION_KINDS_PAGE,
+} from '@commercetools-frontend/constants';
+import type { TNotificationAction } from '@commercetools-frontend/notifications';
 
 import {
   removeNotification,
   ADD_NOTIFICATION,
 } from '@commercetools-frontend/notifications';
 import { selectPageNotifications } from '@commercetools-frontend/react-notifications';
-import {
-  HIDE_ALL_PAGE_NOTIFICATIONS,
-  NOTIFICATION_KINDS_PAGE,
-} from '@commercetools-frontend/constants';
 
 type TNotificationActionError =
   | TNotificationAction<TApiErrorNotification>

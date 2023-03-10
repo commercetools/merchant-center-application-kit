@@ -1,10 +1,10 @@
+import { ComponentType, ReactNode } from 'react';
 import type {
   TNormalizedPermissions,
   TNormalizedActionRights,
   TNormalizedDataFences,
 } from '@commercetools-frontend/application-shell-connectors';
 
-import { ComponentType, ReactNode } from 'react';
 import useIsAuthorized from '../../hooks/use-is-authorized';
 import getDisplayName from '../../utils/get-display-name';
 

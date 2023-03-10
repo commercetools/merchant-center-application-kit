@@ -6,8 +6,8 @@ import {
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import TextInput from '@commercetools-uikit/text-input';
-import LayoutApp from '../layouts/layout-app';
 import PlaygroundController from '../components/playground-controller';
+import LayoutApp from '../layouts/layout-app';
 
 const exampleCustomTitleRow = (
   <Spacings.Inline scale="m">

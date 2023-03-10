@@ -1,7 +1,7 @@
 // These exports are deprecated.
 
-import type { Configuration } from 'webpack';
 import type { Config } from 'postcss-load-config';
+import type { Configuration } from 'webpack';
 import type { TWebpackConfigOptions, TPostcssConfigOptions } from './types';
 
 function createWebpackConfigForDevelopment(

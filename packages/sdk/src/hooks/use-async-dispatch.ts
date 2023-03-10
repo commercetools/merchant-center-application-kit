@@ -1,5 +1,5 @@
-import type { Dispatch } from 'redux';
 import { useDispatch } from 'react-redux';
+import type { Dispatch } from 'redux';
 import type { TSdkAction } from '../types';
 
 type TAsyncDispatch<Action extends TSdkAction, Data> = (

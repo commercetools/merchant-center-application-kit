@@ -1,17 +1,17 @@
-import Text from '@commercetools-uikit/text';
-import TextInput from '@commercetools-uikit/text-input';
-import Spacings from '@commercetools-uikit/spacings';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import {
+  TabularDetailPage,
+  TabHeader,
+} from '@commercetools-frontend/application-components';
 import IconButton from '@commercetools-uikit/icon-button';
 import {
   FlameIcon,
   SearchIcon,
   BinLinearIcon,
 } from '@commercetools-uikit/icons';
-import {
-  TabularDetailPage,
-  TabHeader,
-} from '@commercetools-frontend/application-components';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import Spacings from '@commercetools-uikit/spacings';
+import Text from '@commercetools-uikit/text';
+import TextInput from '@commercetools-uikit/text-input';
 import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/tabular-detail-page';

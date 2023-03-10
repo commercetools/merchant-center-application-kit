@@ -1,7 +1,6 @@
-import type { Props } from './sdk-get';
-
 import { fireEvent, render, screen } from '@testing-library/react';
 import * as sdkActions from '../../actions';
+import type { Props } from './sdk-get';
 import { SdkGet } from './sdk-get';
 
 const createTestProps = (custom: Partial<Props> = {}) => ({

@@ -1,15 +1,14 @@
-import type {
-  TNotificationMetaOptions,
-  TNotification,
-} from '@commercetools-frontend/notifications';
-import type { TShowNotification } from '../types';
-
 import isNumber from 'lodash/isNumber';
-import { addNotification } from '@commercetools-frontend/notifications';
 import {
   NOTIFICATION_DOMAINS,
   NOTIFICATION_KINDS_SIDE,
 } from '@commercetools-frontend/constants';
+import type {
+  TNotificationMetaOptions,
+  TNotification,
+} from '@commercetools-frontend/notifications';
+import { addNotification } from '@commercetools-frontend/notifications';
+import type { TShowNotification } from '../types';
 
 export default function showNotification<
   Notification extends TShowNotification

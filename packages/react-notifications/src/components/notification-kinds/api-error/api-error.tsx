@@ -1,9 +1,9 @@
+import { SyntheticEvent } from 'react';
 import type {
   TAppNotification,
   TAppNotificationValuesApiError,
 } from '@commercetools-frontend/constants';
 
-import { SyntheticEvent } from 'react';
 import {
   NOTIFICATION_DOMAINS,
   NOTIFICATION_KINDS_PAGE,

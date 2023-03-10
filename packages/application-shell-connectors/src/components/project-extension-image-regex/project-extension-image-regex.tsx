@@ -1,10 +1,3 @@
-import type {
-  TFetchProjectExtensionImageRegexQuery,
-  TFetchProjectExtensionImageRegexQueryVariables,
-  TImageRegexOptions,
-} from '../../types/generated/settings';
-import warning from 'tiny-warning';
-
 import {
   type ComponentType,
   type ReactNode,
@@ -13,8 +6,14 @@ import {
   useEffect,
 } from 'react';
 import { useQuery } from '@apollo/client/react';
+import warning from 'tiny-warning';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import type {
+  TFetchProjectExtensionImageRegexQuery,
+  TFetchProjectExtensionImageRegexQueryVariables,
+  TImageRegexOptions,
+} from '../../types/generated/settings';
 import getDisplayName from '../../utils/get-display-name';
 import FetchProjectExtensionImageRegex from './fetch-project-extension-image-regex.settings.graphql';
 

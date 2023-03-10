@@ -1,7 +1,7 @@
 import './globals.css';
 import { lazy } from 'react';
-import { Router, Switch, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
+import { Router, Switch, Route } from 'react-router-dom';
 import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
 import IndexPage from './pages';
 

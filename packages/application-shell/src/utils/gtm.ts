@@ -1,9 +1,9 @@
 /**
  * Google Tag Manager (GTM) Tracking Utilities
  */
+import camelcase from 'lodash/camelCase';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
-import camelcase from 'lodash/camelCase';
 import logger from './logger';
 
 declare let window: ApplicationWindow;

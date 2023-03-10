@@ -1,8 +1,8 @@
+import { useEffect } from 'react';
+import { encode } from 'qss';
 import type { RouteComponentProps } from 'react-router-dom';
 import type { TEnhancedLocation } from '@commercetools-frontend/browser-history';
 
-import { useEffect } from 'react';
-import { encode } from 'qss';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import { location } from '../../utils/location';
 

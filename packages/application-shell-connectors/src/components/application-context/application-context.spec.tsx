@@ -1,11 +1,11 @@
+import type { ReactElement } from 'react';
+import { screen, render } from '@testing-library/react';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import type { TProjectGraphql } from '../../../../../test-data/project';
+import * as ProjectMock from '../../../../../test-data/project';
 import type { TUserGraphql } from '../../../../../test-data/user';
 
-import type { ReactElement } from 'react';
-import { screen, render } from '@testing-library/react';
-import * as ProjectMock from '../../../../../test-data/project';
 import * as UserMock from '../../../../../test-data/user';
 import {
   ApplicationContextProvider,

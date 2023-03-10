@@ -1,6 +1,5 @@
-import type { TLoggerOptions } from './types';
-
 import * as winston from 'winston';
+import type { TLoggerOptions } from './types';
 
 const createApplicationLogger = (options: TLoggerOptions = {}) => {
   const formatters = winston.format.combine(

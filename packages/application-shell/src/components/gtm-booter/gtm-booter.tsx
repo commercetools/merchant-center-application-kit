@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useEffect } from 'react';
-import * as gtm from '../../utils/gtm';
 import defaultTrackingEventList from '../../tracking-event-list';
+import * as gtm from '../../utils/gtm';
 
 export type TGtmTrackingEventList = {
   [key: string]: string;

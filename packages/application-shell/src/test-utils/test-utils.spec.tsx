@@ -5,17 +5,17 @@
 // This is a bit different from our usual tests, as we are testing our testing
 // tools here instead of actual components.
 import { graphql } from 'msw';
-import { setupServer } from 'msw/node';
 import { createContext, ReactNode, useContext } from 'react';
 import { gql } from '@apollo/client';
+import { useFeatureToggle } from '@flopflip/react-broadcast';
+import { screen } from '@testing-library/react';
+import { setupServer } from 'msw/node';
 import { useIntl } from 'react-intl';
 import { useSelector, useStore } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
-import { screen } from '@testing-library/react';
-import { useFeatureToggle } from '@flopflip/react-broadcast';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { useMcQuery } from '../hooks/apollo-hooks';
 import {
   type TRenderAppWithReduxOptions,

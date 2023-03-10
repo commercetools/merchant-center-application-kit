@@ -1,7 +1,6 @@
-import type { TAccessLoggerOptions } from '../types';
-
-import winston from 'winston';
 import expressWinston from 'express-winston';
+import winston from 'winston';
+import type { TAccessLoggerOptions } from '../types';
 
 const createAccessLoggerMiddleware = (options: TAccessLoggerOptions = {}) => {
   const ignoreUrls = options.ignoreUrls ?? [];

@@ -1,6 +1,6 @@
-import type { Extra, Extras, Event } from '@sentry/types';
 import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing'; // Must import after `@sentry/react`
+import type { Extra, Extras, Event } from '@sentry/types';
 import history from '@commercetools-frontend/browser-history';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 

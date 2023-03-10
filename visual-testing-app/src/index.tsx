@@ -1,10 +1,10 @@
-import ReactDOM from 'react-dom';
 import { useState } from 'react';
-import { ThemeProvider } from '@commercetools-uikit/design-system';
+import ReactDOM from 'react-dom';
 import {
   PortalsContainer,
   themesOverrides,
 } from '@commercetools-frontend/application-components';
+import { ThemeProvider } from '@commercetools-uikit/design-system';
 import Application from './application';
 import ThemeSwitcher, {
   ThemeName,

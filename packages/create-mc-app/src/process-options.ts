@@ -1,13 +1,13 @@
+import crypto from 'crypto';
 import path from 'path';
 import readline, { type Interface } from 'readline';
-import crypto from 'crypto';
+import type { TCliCommandOptions, TCliTaskOptions } from './types';
+import { isSemVer } from './utils';
 import {
   throwIfTemplateIsNotSupported,
   throwIfProjectDirectoryExists,
   throwIfInitialProjectKeyIsMissing,
 } from './validations';
-import { isSemVer } from './utils';
-import type { TCliCommandOptions, TCliTaskOptions } from './types';
 
 const question = (rl: Interface, value: string) =>
   new Promise<string>((resolve) => rl.question(value, resolve));

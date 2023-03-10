@@ -1,7 +1,7 @@
 import { mocked } from 'jest-mock';
+import { screen, render as rtlRender } from '@testing-library/react';
 import warning from 'tiny-warning';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
-import { screen, render as rtlRender } from '@testing-library/react';
 import useIsAuthorized from './use-is-authorized';
 
 jest.mock('tiny-warning');

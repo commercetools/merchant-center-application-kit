@@ -1,17 +1,17 @@
 // TODO: @redesign cleanup
 import { css } from '@emotion/react';
-import Spacings from '@commercetools-uikit/spacings';
-import { designTokens as uikitDesignTokens } from '@commercetools-uikit/design-system';
-import LogoSVG from '@commercetools-frontend/assets/images/logo.svg';
 import { designTokens as appKitDesignTokens } from '@commercetools-frontend/application-components';
-import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
+import LogoSVG from '@commercetools-frontend/assets/images/logo.svg';
+import { designTokens as uikitDesignTokens } from '@commercetools-uikit/design-system';
+import Spacings from '@commercetools-uikit/spacings';
 import { CONTAINERS, DIMENSIONS } from '../../constants';
+import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 import { getPreviousProjectKey } from '../../utils';
-import UserSettingsMenu from '../user-settings-menu';
-import ProjectSwitcher from '../project-switcher';
 import BackToProject from '../back-to-project';
 import LoadingPlaceholder from '../loading-placeholder';
+import ProjectSwitcher from '../project-switcher';
 import { REQUESTS_IN_FLIGHT_LOADER_DOM_ID } from '../requests-in-flight-loader/constants';
+import UserSettingsMenu from '../user-settings-menu';
 
 type Props = {
   user: TFetchLoggedInUserQuery['user'];

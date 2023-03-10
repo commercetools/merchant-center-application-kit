@@ -1,13 +1,13 @@
 import { useLayoutEffect, useState, type ReactNode } from 'react';
-import styled from '@emotion/styled';
 import { css, Global } from '@emotion/react';
+import styled from '@emotion/styled';
 import { PortalsContainer } from '@commercetools-frontend/application-components';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
-import { AngleRightIcon, AngleDownIcon } from '@commercetools-uikit/icons';
+import { customProperties } from '@commercetools-uikit/design-system';
 import IconButton from '@commercetools-uikit/icon-button';
+import { AngleRightIcon, AngleDownIcon } from '@commercetools-uikit/icons';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import { customProperties } from '@commercetools-uikit/design-system';
 import IntlController from './intl-controller';
 import KnobsController, { type TKnob } from './knobs-controller';
 

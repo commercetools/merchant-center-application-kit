@@ -1,8 +1,8 @@
 // NOTE: This React hook is essentially the same as the [@react-hook/intersection-observer](https://www.npmjs.com/package/@react-hook/intersection-observer)
 // except for the usage of `MutationObserver` instead of `IntersectionObserver`.
+import { useLayoutEffect } from 'react';
 import useLatest from '@react-hook/latest';
 import rafSchd from 'raf-schd';
-import { useLayoutEffect } from 'react';
 
 type TUseMutationObserverCallback = (
   mutationRecord: MutationRecord,

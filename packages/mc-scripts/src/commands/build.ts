@@ -1,14 +1,14 @@
 import path from 'path';
-import fs from 'fs-extra';
-import webpack, { type Configuration, type Stats } from 'webpack';
 import chalk from 'chalk';
+import fs from 'fs-extra';
 import checkRequiredFiles from 'react-dev-utils/checkRequiredFiles';
-import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages';
 import FileSizeReporter from 'react-dev-utils/FileSizeReporter';
+import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages';
 import printBuildError from 'react-dev-utils/printBuildError';
+import webpack, { type Configuration, type Stats } from 'webpack';
 import { packageLocation as applicationStaticAssetsPath } from '@commercetools-frontend/assets';
-import paths from '../config/paths';
 import createWebpackConfigForProduction from '../config/create-webpack-config-for-production';
+import paths from '../config/paths';
 
 const measureFileSizesBeforeBuild =
   FileSizeReporter.measureFileSizesBeforeBuild;

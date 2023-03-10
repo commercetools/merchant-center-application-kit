@@ -1,11 +1,10 @@
+import { ADD_NOTIFICATION, REMOVE_NOTIFICATION } from './action-types';
 import type {
   TNotificationMetaOptions,
   TRemoveNotificationAction,
   TNotification,
   TAddNotificationAction,
 } from './types';
-
-import { ADD_NOTIFICATION, REMOVE_NOTIFICATION } from './action-types';
 
 export function addNotification<Payload extends TNotification>(
   notification: Payload,

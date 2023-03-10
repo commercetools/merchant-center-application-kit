@@ -1,11 +1,10 @@
-import type { TApolloContext } from '../utils/apollo-context';
-
 import { onError } from '@apollo/client/link/error';
+import history from '@commercetools-frontend/browser-history';
 import {
   STATUS_CODES,
   LOGOUT_REASONS,
 } from '@commercetools-frontend/constants';
-import history from '@commercetools-frontend/browser-history';
+import type { TApolloContext } from '../utils/apollo-context';
 import {
   forwardTokenRetryHeader,
   getDoesGraphQLTargetSupportTokenRetry,

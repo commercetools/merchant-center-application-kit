@@ -1,13 +1,13 @@
-import fs from 'fs-extra';
 import path from 'path';
-import { build, type Plugin } from 'vite';
 import pluginGraphql from '@rollup/plugin-graphql';
 import pluginReact from '@vitejs/plugin-react';
-import { generateTemplate } from '@commercetools-frontend/mc-html-template';
+import fs from 'fs-extra';
+import { build, type Plugin } from 'vite';
 import { packageLocation as applicationStaticAssetsPath } from '@commercetools-frontend/assets';
+import { generateTemplate } from '@commercetools-frontend/mc-html-template';
 import paths from '../config/paths';
-import pluginSvgr from '../vite-plugins/vite-plugin-svgr';
 import pluginDynamicBaseAssetsGlobals from '../vite-plugins/vite-plugin-dynamic-base-assets-globals';
+import pluginSvgr from '../vite-plugins/vite-plugin-svgr';
 
 async function run() {
   const DEFAULT_PORT = parseInt(String(process.env.HTTP_PORT), 10) || 3001;

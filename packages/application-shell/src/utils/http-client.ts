@@ -3,16 +3,16 @@
  * with the recommended configuration for the Merchant Center API.
  */
 
-import omitEmpty from 'omit-empty-es';
 import createHttpUserAgent from '@commercetools/http-user-agent';
+import omitEmpty from 'omit-empty-es';
 import {
   type ApplicationWindow,
   STATUS_CODES,
 } from '@commercetools-frontend/constants';
 import { SUPPORTED_HEADERS } from '../constants';
-import * as oidcStorage from './oidc-storage';
-import getMcApiUrl from './get-mc-api-url';
 import getCorrelationId from './get-correlation-id';
+import getMcApiUrl from './get-mc-api-url';
+import * as oidcStorage from './oidc-storage';
 import selectProjectKeyFromUrl from './select-project-key-from-url';
 import selectUserId from './select-user-id';
 

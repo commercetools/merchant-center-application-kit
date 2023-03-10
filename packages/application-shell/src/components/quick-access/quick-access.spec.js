@@ -11,8 +11,8 @@ import {
 } from '../../test-utils';
 import * as gtm from '../../utils/gtm';
 import { location } from '../../utils/location';
-import QuickAccessQuery from './quick-access.ctp.graphql';
 import QuickAccessProductQuery from './quick-access-product.ctp.graphql';
+import QuickAccessQuery from './quick-access.ctp.graphql';
 import QuickAccess from './index';
 
 jest.mock('../../utils/gtm');

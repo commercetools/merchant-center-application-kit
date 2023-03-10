@@ -1,9 +1,9 @@
 import type { SyntheticEvent, ReactNode, ReactElement } from 'react';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import DialogContainer from '../internals/dialog-container';
-import DialogHeader from '../internals/dialog-header';
 import DialogContent from '../internals/dialog-content';
 import DialogFooter from '../internals/dialog-footer';
+import DialogHeader from '../internals/dialog-header';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin

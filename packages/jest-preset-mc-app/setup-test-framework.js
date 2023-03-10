@@ -22,8 +22,8 @@ require('@formatjs/intl-pluralrules/locale-data/es');
 require('@formatjs/intl-pluralrules/locale-data/fr');
 
 const { configure: configureRtl } = require('@testing-library/react');
-const loadConfig = require('./load-config');
 const failOnConsole = require('./fail-on-console');
+const loadConfig = require('./load-config');
 
 const jestConfig = loadConfig();
 

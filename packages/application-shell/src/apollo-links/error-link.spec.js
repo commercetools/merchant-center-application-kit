@@ -1,10 +1,10 @@
 import { ApolloLink, execute, Observable, gql } from '@apollo/client';
 import waitFor from 'wait-for-observables';
+import history from '@commercetools-frontend/browser-history';
 import {
   LOGOUT_REASONS,
   GRAPHQL_TARGETS,
 } from '@commercetools-frontend/constants';
-import history from '@commercetools-frontend/browser-history';
 import errorLink from './error-link';
 
 jest.mock('@commercetools-frontend/browser-history');

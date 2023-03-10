@@ -2,9 +2,9 @@
 /// <reference path="../../../../node_modules/vite/types/importMeta.d.ts" />
 
 import { css } from '@emotion/react';
-import InlineSvg from '@commercetools-uikit/icons/inline-svg';
-import Grid from '@commercetools-uikit/grid';
 import { customProperties } from '@commercetools-uikit/design-system';
+import Grid from '@commercetools-uikit/grid';
+import InlineSvg from '@commercetools-uikit/icons/inline-svg';
 import { Suite, Spec } from '../../test-utils';
 
 const svgIconsModules = import.meta.glob<string>(

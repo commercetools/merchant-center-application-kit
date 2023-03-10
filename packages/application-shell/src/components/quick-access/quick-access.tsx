@@ -1,37 +1,36 @@
-import type { TQuickAccessQuery } from '../../types/generated/ctp';
-import type { ExecGraphQlQuery, Command, HistoryEntry } from './types';
-
 import { useCallback, useEffect, useState } from 'react';
-import { useIntl } from 'react-intl';
-import { useFeatureToggles } from '@flopflip/react-broadcast';
 import { useApolloClient } from '@apollo/client/react';
-import { useHistory } from 'react-router-dom';
-import {
-  actions as sdkActions,
-  useAsyncDispatch,
-} from '@commercetools-frontend/sdk';
+import { useFeatureToggles } from '@flopflip/react-broadcast';
 import { oneLineTrim } from 'common-tags';
 import debounce from 'debounce-async';
+import { useIntl } from 'react-intl';
+import { useHistory } from 'react-router-dom';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   GRAPHQL_TARGETS,
   MC_API_PROXY_TARGETS,
 } from '@commercetools-frontend/constants';
 import { hasSomePermissions } from '@commercetools-frontend/permissions';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import {
+  actions as sdkActions,
+  useAsyncDispatch,
+} from '@commercetools-frontend/sdk';
+import type { TQuickAccessQuery } from '../../types/generated/ctp';
 import { location } from '../../utils/location';
 import Butler from './butler';
-import QuickAccessQuery from './quick-access.ctp.graphql';
+import { permissions } from './constants';
 import createCommands from './create-commands';
-import { sanitize, translate, flattenCommands } from './utils';
+import { saveHistoryEntries, loadHistoryEntries } from './history-entries';
+import messages from './messages';
+import pimIndexerStates from './pim-indexer-states';
+import QuickAccessQuery from './quick-access.ctp.graphql';
 import {
   createProductTabsSubCommands,
   createProductVariantSubCommands,
 } from './sub-commands';
-import messages from './messages';
-import { permissions } from './constants';
-import { saveHistoryEntries, loadHistoryEntries } from './history-entries';
-import pimIndexerStates from './pim-indexer-states';
+import type { ExecGraphQlQuery, Command, HistoryEntry } from './types';
 import { actionTypes } from './types';
+import { sanitize, translate, flattenCommands } from './utils';
 
 const searchProductIdsAction = (
   searchText: string,

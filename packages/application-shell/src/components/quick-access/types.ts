@@ -1,5 +1,5 @@
-import type { DocumentNode } from 'graphql';
 import type { OperationVariables, ApolloQueryResult } from '@apollo/client';
+import type { DocumentNode } from 'graphql';
 import type { TApolloContext } from '../../utils/apollo-context';
 
 export const actionTypes = {

@@ -1,17 +1,16 @@
-import type { ApplicationWindow } from '@commercetools-frontend/constants';
-import type { AuthorizeSessionState } from '../authenticated/types';
-
-import { v4 as uuidv4 } from 'uuid';
 import { useLocation } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
+import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
 } from '@commercetools-frontend/url-utils';
-import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
-import useIsServedByProxy from '../../hooks/use-is-served-by-proxy';
 import { OIDC_RESPONSE_TYPES } from '../../constants';
+import useIsServedByProxy from '../../hooks/use-is-served-by-proxy';
 import { buildOidcScope } from '../../utils/oidc';
 import * as oidcStorage from '../../utils/oidc-storage';
+import type { AuthorizeSessionState } from '../authenticated/types';
 import Redirector from '../redirector';
 import { getMcOrigin } from './helpers';
 

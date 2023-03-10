@@ -1,7 +1,6 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
-import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
-
 import { CLOUD_IDENTIFIERS } from './constants';
+import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 
 export type ConfigOptions = JSONSchemaForCustomApplicationConfigurationFiles;
 

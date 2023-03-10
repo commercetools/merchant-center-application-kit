@@ -1,20 +1,20 @@
 import path from 'path';
-import webpack, { type Configuration } from 'webpack';
-import WebpackBar from 'webpackbar';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MomentLocalesPlugin from 'moment-locales-webpack-plugin';
-import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import webpack, { type Configuration } from 'webpack';
+import WebpackBar from 'webpackbar';
 import type {
   TWebpackConfigToggleFlagsForDevelopment,
   TWebpackConfigOptions,
 } from '../types';
 import LocalHtmlWebpackPlugin from '../webpack-plugins/local-html-webpack-plugin';
-import paths from './paths';
-import vendorsToTranspile from './vendors-to-transpile';
 import createPostcssConfig from './create-postcss-config';
 import hasJsxRuntime from './has-jsx-runtime';
-// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import momentLocalesToKeep from /* preval */ './moment-locales';
+import paths from './paths';
+import vendorsToTranspile from './vendors-to-transpile';
+// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 
 const defaultToggleFlags: TWebpackConfigToggleFlagsForDevelopment = {
   generateIndexHtml: true,

@@ -3,6 +3,10 @@ import { type DocumentNode, print } from 'graphql';
 import { ClientError, GraphQLClient, type Variables } from 'graphql-request';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import type {
+  TFetchMyOrganizationsFromCliQuery,
+  TFetchMyOrganizationsFromCliQueryVariables,
+} from '../generated/core';
+import type {
   TCreateCustomApplicationFromCliMutation,
   TCreateCustomApplicationFromCliMutationVariables,
   TCustomApplicationDraftDataInput,
@@ -11,16 +15,12 @@ import type {
   TUpdateCustomApplicationFromCliMutation,
   TUpdateCustomApplicationFromCliMutationVariables,
 } from '../generated/settings';
-import type {
-  TFetchMyOrganizationsFromCliQuery,
-  TFetchMyOrganizationsFromCliQueryVariables,
-} from '../generated/core';
-import userAgent from './user-agent';
-import FetchCustomApplicationFromCli from './fetch-custom-application.settings.graphql';
-import UpdateCustomApplicationFromCli from './update-custom-application.settings.graphql';
 import CreateCustomApplicationFromCli from './create-custom-application.settings.graphql';
-import FetchMyOrganizationsFromCli from './fetch-user-organizations.core.graphql';
 import CredentialsStorage from './credentials-storage';
+import FetchCustomApplicationFromCli from './fetch-custom-application.settings.graphql';
+import FetchMyOrganizationsFromCli from './fetch-user-organizations.core.graphql';
+import UpdateCustomApplicationFromCli from './update-custom-application.settings.graphql';
+import userAgent from './user-agent';
 
 type TFetchCustomApplicationOptions = {
   mcApiUrl: string;

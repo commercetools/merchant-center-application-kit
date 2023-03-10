@@ -1,11 +1,11 @@
 import { rest } from 'msw';
-import { setupServer } from 'msw/node';
 import type { Handler } from 'express';
-import createSessionMiddleware from './session-middleware';
-import * as fixtureJWTToken from './fixtures/jwt-token';
+import { setupServer } from 'msw/node';
 import { createSessionAuthVerifier } from '../auth';
 import { CLOUD_IDENTIFIERS } from '../constants';
 import { TBaseRequest } from '../types';
+import * as fixtureJWTToken from './fixtures/jwt-token';
+import createSessionMiddleware from './session-middleware';
 
 interface TMockAWSLambdaRequestV2 extends TBaseRequest {
   rawPath: string;

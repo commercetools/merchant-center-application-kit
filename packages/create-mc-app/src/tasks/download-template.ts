@@ -3,8 +3,8 @@ import os from 'os';
 import path from 'path';
 import execa from 'execa';
 import { Listr, type ListrTask } from 'listr2';
-import { throwIfTemplateVersionDoesNotExist } from '../validations';
 import type { TCliTaskOptions } from '../types';
+import { throwIfTemplateVersionDoesNotExist } from '../validations';
 
 const filesToBeRemoved = ['CHANGELOG.md'];
 

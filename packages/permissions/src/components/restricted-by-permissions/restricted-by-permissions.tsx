@@ -1,12 +1,11 @@
+import { ReactNode, Children, ComponentType, createElement } from 'react';
+import isNil from 'lodash/isNil';
+import invariant from 'tiny-invariant';
 import type {
   TNormalizedPermissions,
   TNormalizedActionRights,
   TNormalizedDataFences,
 } from '@commercetools-frontend/application-shell-connectors';
-
-import { ReactNode, Children, ComponentType, createElement } from 'react';
-import invariant from 'tiny-invariant';
-import isNil from 'lodash/isNil';
 import Authorized from '../authorized';
 
 const getHasChildren = (children: ReactNode) => Children.count(children) > 0;

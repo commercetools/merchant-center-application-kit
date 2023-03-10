@@ -1,9 +1,8 @@
-import type { Command } from '../types';
-
 import { MouseEventHandler } from 'react';
 import { css } from '@emotion/react';
-import { AngleThinRightIcon } from '@commercetools-uikit/icons';
 import { customProperties } from '@commercetools-uikit/design-system';
+import { AngleThinRightIcon } from '@commercetools-uikit/icons';
+import type { Command } from '../types';
 
 type Props = {
   command: Command;

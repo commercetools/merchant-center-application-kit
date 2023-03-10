@@ -1,18 +1,18 @@
 import type { ReactElement, ReactNode, MouseEvent, KeyboardEvent } from 'react';
-import { sharedMessages } from '@commercetools-frontend/i18n';
-import { warning } from '@commercetools-uikit/utils';
 import styled from '@emotion/styled';
+import { sharedMessages } from '@commercetools-frontend/i18n';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
+import Spacings from '@commercetools-uikit/spacings';
+import { warning } from '@commercetools-uikit/utils';
+import { designTokens as appKitDesignTokens } from '../../../theming';
 import {
   FormPrimaryButton,
   FormSecondaryButton,
   FormDeleteButton,
 } from '../../internals/default-form-buttons';
-import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
-import Spacings from '@commercetools-uikit/spacings';
 import PageHeaderTitle from '../../internals/page-header-title';
 import PageTopBar from '../../internals/page-top-bar';
 import { ContentWrapper, PageWrapper } from '../../internals/page.styles';
-import { designTokens as appKitDesignTokens } from '../../../theming';
 
 const DetailPageContainer = styled.div`
   background-color: ${appKitDesignTokens.backgroundColorForPageHeader};

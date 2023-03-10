@@ -1,5 +1,3 @@
-import type { ApplicationWindow } from '@commercetools-frontend/constants';
-import mapValues from 'lodash/mapValues';
 import {
   configureStore,
   combineReducers,
@@ -9,18 +7,20 @@ import {
   type Middleware,
   type StoreEnhancer,
 } from '@reduxjs/toolkit';
-import thunk from 'redux-thunk';
+import mapValues from 'lodash/mapValues';
 import omitEmpty from 'omit-empty-es';
+import thunk from 'redux-thunk';
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
+import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-frontend/constants';
 import {
   middleware as notificationsMiddleware,
   reducer as notificationsReducer,
 } from '@commercetools-frontend/notifications';
 import { createMiddleware as createSdkMiddleware } from '@commercetools-frontend/sdk';
-import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-frontend/constants';
+import { requestsInFlightReducer } from './components/requests-in-flight-loader';
 import { SUPPORTED_HEADERS } from './constants';
 import hideNotificationsMiddleware from './middleware/hide-notifications';
 import loggerMiddleware from './middleware/logger';
-import { requestsInFlightReducer } from './components/requests-in-flight-loader';
 import {
   getCorrelationId,
   selectProjectKeyFromUrl,

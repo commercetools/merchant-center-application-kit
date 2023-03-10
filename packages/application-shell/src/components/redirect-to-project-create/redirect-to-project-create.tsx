@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
-import Spacings from '@commercetools-uikit/spacings';
-import { ContentNotification } from '@commercetools-uikit/notifications';
-import Text from '@commercetools-uikit/text';
 import Card from '@commercetools-uikit/card';
 import { customProperties } from '@commercetools-uikit/design-system';
+import { ContentNotification } from '@commercetools-uikit/notifications';
+import Spacings from '@commercetools-uikit/spacings';
+import Text from '@commercetools-uikit/text';
 import useIsServedByProxy from '../../hooks/use-is-served-by-proxy';
 import { location } from '../../utils/location';
 

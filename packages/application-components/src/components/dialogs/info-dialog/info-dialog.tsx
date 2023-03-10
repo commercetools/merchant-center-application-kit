@@ -1,7 +1,7 @@
 import { SyntheticEvent, ReactNode } from 'react';
 import DialogContainer from '../internals/dialog-container';
-import DialogHeader from '../internals/dialog-header';
 import DialogContent from '../internals/dialog-content';
+import DialogHeader from '../internals/dialog-header';
 
 type Props = {
   isOpen: boolean;

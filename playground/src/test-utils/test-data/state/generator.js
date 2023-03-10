@@ -1,5 +1,5 @@
-import { sequence, fake, Generator } from '@commercetools-test-data/core';
 import { LocalizedString } from '@commercetools-test-data/commons';
+import { sequence, fake, Generator } from '@commercetools-test-data/core';
 import { stateRoles, stateTypes } from './constants';
 
 // https://docs.commercetools.com/api/projects/states#state

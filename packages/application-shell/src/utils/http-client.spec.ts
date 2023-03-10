@@ -1,6 +1,6 @@
 // Used from MSW
-import type { Headers } from 'headers-polyfill';
 import { rest } from 'msw';
+import type { Headers } from 'headers-polyfill';
 import { setupServer } from 'msw/node';
 import { SUPPORTED_HEADERS } from '../constants';
 import {

@@ -1,14 +1,14 @@
 import { PureComponent } from 'react';
-import { ReactReduxContext } from 'react-redux';
-import { IntlProvider, FormattedMessage } from 'react-intl';
 import { screen, render, waitFor } from '@testing-library/react';
+import { IntlProvider, FormattedMessage } from 'react-intl';
+import { ReactReduxContext } from 'react-redux';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { GtmContext } from '../gtm-booter';
 // eslint-disable-next-line import/named
 import { __setIsAuthenticated } from '../authenticated/am-i-logged-in';
 import hasCachedAuthenticationState from '../authenticated/has-cached-authentication-state';
-import { getBrowserLocale } from './utils';
+import { GtmContext } from '../gtm-booter';
 import ApplicationShellProvider from './application-shell-provider';
+import { getBrowserLocale } from './utils';
 
 // Need to mock the moment locale we try to load in these tests
 // since those files are ESM and not supported in jest.

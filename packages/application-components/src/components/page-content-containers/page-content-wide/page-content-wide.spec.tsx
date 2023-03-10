@@ -1,6 +1,6 @@
+import type { ReactNode } from 'react';
 import { ThemeProvider } from '@commercetools-uikit/design-system';
 import { useWarning } from '@commercetools-uikit/utils';
-import type { ReactNode } from 'react';
 import { screen, renderComponent } from '../../../test-utils';
 import PageContentWide, { type TPageContentWide } from './page-content-wide';
 

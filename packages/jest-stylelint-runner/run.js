@@ -1,8 +1,8 @@
 const fs = require('fs');
 const { pass, fail } = require('create-jest-runner');
-const stylelint = require('stylelint');
 const postcss = require('postcss');
 const loadPostCssConfig = require('postcss-load-config');
+const stylelint = require('stylelint');
 
 const createLinter = (testPath) => {
   return (options) => {

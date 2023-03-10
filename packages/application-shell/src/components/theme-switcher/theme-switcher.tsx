@@ -1,6 +1,6 @@
-import { ThemeProvider } from '@commercetools-uikit/design-system';
 import { useFeatureToggle } from '@flopflip/react-broadcast';
 import { themesOverrides } from '@commercetools-frontend/application-components';
+import { ThemeProvider } from '@commercetools-uikit/design-system';
 import { UI_REDESIGN } from '../../feature-toggles';
 
 const ThemeSwitcher = () => {

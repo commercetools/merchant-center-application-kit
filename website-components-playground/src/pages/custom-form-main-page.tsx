@@ -3,10 +3,10 @@ import { Formik } from 'formik';
 import { CustomFormMainPage } from '@commercetools-frontend/application-components';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import TextInput from '@commercetools-uikit/text-input';
 import TextField from '@commercetools-uikit/text-field';
-import LayoutApp from '../layouts/layout-app';
+import TextInput from '@commercetools-uikit/text-input';
 import PlaygroundController from '../components/playground-controller';
+import LayoutApp from '../layouts/layout-app';
 
 const exampleCustomTitleRow = (
   <Spacings.Inline scale="m">

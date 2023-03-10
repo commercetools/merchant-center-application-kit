@@ -1,9 +1,9 @@
+import { DOMAINS } from '@commercetools-frontend/constants';
 import type {
   TApiErrorNotification,
   TApiErrorNotificationOptions,
 } from '../types';
 
-import { DOMAINS } from '@commercetools-frontend/constants';
 import showNotification from './show-notification';
 
 export default function showApiErrorNotification({

@@ -1,10 +1,9 @@
+import { SyntheticEvent } from 'react';
+import { FormattedMessage } from 'react-intl';
 import type {
   TAppNotification,
   TAppNotificationValuesUnexpectedError,
 } from '@commercetools-frontend/constants';
-
-import { SyntheticEvent } from 'react';
-import { FormattedMessage } from 'react-intl';
 import {
   NOTIFICATION_DOMAINS,
   NOTIFICATION_KINDS_PAGE,

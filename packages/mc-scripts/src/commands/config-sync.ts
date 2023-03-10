@@ -1,19 +1,19 @@
+import chalk from 'chalk';
 import omit from 'lodash/omit';
 import prompts from 'prompts';
-import chalk from 'chalk';
 import {
   processConfig,
   type CustomApplicationData,
 } from '@commercetools-frontend/application-config';
+import type { TCliCommandConfigSyncOptions } from '../types';
 import CredentialsStorage from '../utils/credentials-storage';
+import getConfigDiff from '../utils/get-config-diff';
 import {
   fetchCustomApplication,
   updateCustomApplication,
   createCustomApplication,
   fetchUserOrganizations,
 } from '../utils/graphql-requests';
-import getConfigDiff from '../utils/get-config-diff';
-import type { TCliCommandConfigSyncOptions } from '../types';
 
 const credentialsStorage = new CredentialsStorage();
 

@@ -1,6 +1,5 @@
-import type { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
-
 import { useEffect, useState } from 'react';
+import type { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
 
 export type TMessageTranslations =
   | Record<string, string>

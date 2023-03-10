@@ -1,5 +1,5 @@
-import { Factory } from 'rosie';
 import { faker } from '@faker-js/faker';
+import { Factory } from 'rosie';
 import LegacyApplicationNavbarMenu from './legacy-application-navbar-menu';
 
 const LegacyCustomApplication = new Factory()
