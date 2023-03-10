@@ -1,5 +1,28 @@
 # @commercetools-frontend/application-shell
 
+## 21.23.10
+
+### Patch Changes
+
+- [#2988](https://github.com/commercetools/merchant-center-application-kit/pull/2988) [`60d8dce37`](https://github.com/commercetools/merchant-center-application-kit/commit/60d8dce3715d19bc15d2083f3f4a9e736627274b) Thanks [@kark](https://github.com/kark)! - Update `ui-kit` dependencies
+
+- Updated dependencies [[`60d8dce37`](https://github.com/commercetools/merchant-center-application-kit/commit/60d8dce3715d19bc15d2083f3f4a9e736627274b), [`7f2ede7a4`](https://github.com/commercetools/merchant-center-application-kit/commit/7f2ede7a49d17299b3955fa521dcfc5bb6c90586), [`7c8754974`](https://github.com/commercetools/merchant-center-application-kit/commit/7c87549749003a6b10014962881d49fcbe0f85d3)]:
+  - @commercetools-frontend/application-components@21.23.10
+  - @commercetools-frontend/react-notifications@21.23.10
+  - @commercetools-frontend/i18n@21.23.10
+  - @commercetools-frontend/actions-global@21.23.10
+  - @commercetools-frontend/application-config@21.23.10
+  - @commercetools-frontend/application-shell-connectors@21.23.10
+  - @commercetools-frontend/assets@21.23.10
+  - @commercetools-frontend/browser-history@21.23.10
+  - @commercetools-frontend/constants@21.23.10
+  - @commercetools-frontend/l10n@21.23.10
+  - @commercetools-frontend/notifications@21.23.10
+  - @commercetools-frontend/permissions@21.23.10
+  - @commercetools-frontend/sdk@21.23.10
+  - @commercetools-frontend/sentry@21.23.10
+  - @commercetools-frontend/url-utils@21.23.10
+
 ## 21.23.9
 
 ### Patch Changes

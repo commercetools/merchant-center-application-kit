@@ -1,5 +1,7 @@
 # @commercetools-frontend/mc-dev-authentication
 
+## 21.23.10
+
 ## 21.23.9
 
 ### Patch Changes
