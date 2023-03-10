@@ -74,7 +74,7 @@ const UserAvatar = (
     <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
       <Spacings.Inline alignItems="center">
         <Avatar
-          size={themedValue('s', 'l')}
+          size={themedValue('s', 'm')}
           gravatarHash={props.gravatarHash}
           firstName={props.firstName}
           lastName={props.lastName}
@@ -249,7 +249,7 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
         <UserSettingsAvatarContainer isNewTheme={isNewTheme}>
           <Spacings.Inline scale={themedValue('xs', 'm')} alignItems="center">
             <Avatar
-              size={themedValue('s', 'l')}
+              size={themedValue('s', 'm')}
               firstName={props.firstName}
               lastName={props.lastName}
               gravatarHash={props.gravatarHash}
