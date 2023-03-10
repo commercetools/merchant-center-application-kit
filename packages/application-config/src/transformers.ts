@@ -1,9 +1,9 @@
-import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
-import type { CustomApplicationData } from './types';
 import {
   entryPointUriPathToResourceAccesses,
   formatEntryPointUriPathToResourceAccessKey,
 } from './formatters';
+import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
+import type { CustomApplicationData } from './types';
 import {
   validateEntryPointUriPath,
   validateSubmenuLinks,

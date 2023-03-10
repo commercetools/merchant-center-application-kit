@@ -1,19 +1,19 @@
+import { useEffect, useState } from 'react';
+import { useApolloClient } from '@apollo/client';
 import type { QueryFunctionOptions } from '@apollo/client/react';
 import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import type {
   ApplicationWindow,
   ApplicationMenuLinksForDevelopmentConfig,
   TLocalizedField,
 } from '@commercetools-frontend/constants';
+import { useMcQuery } from '../../hooks/apollo-hooks';
 import type {
   TFetchApplicationsMenuQuery,
   TFetchApplicationsMenuQueryVariables,
 } from '../../types/generated/proxy';
 
-import { useEffect, useState } from 'react';
-import { useApolloClient } from '@apollo/client';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { useMcQuery } from '../../hooks/apollo-hooks';
 import FetchApplicationsMenu from './fetch-applications-menu.proxy.graphql';
 
 const supportedLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN', 'ja'];

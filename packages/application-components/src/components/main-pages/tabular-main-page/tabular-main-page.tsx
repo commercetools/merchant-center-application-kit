@@ -1,21 +1,21 @@
 import type { ReactElement, ReactNode } from 'react';
-import Spacings from '@commercetools-uikit/spacings';
-import { sharedMessages } from '@commercetools-frontend/i18n';
 import { css } from '@emotion/react';
+import { sharedMessages } from '@commercetools-frontend/i18n';
+import Spacings from '@commercetools-uikit/spacings';
 import { warning } from '@commercetools-uikit/utils';
 import { designTokens as appKitDesignTokens } from '../../../theming';
-import PageHeaderTitle from '../../internals/page-header-title';
-import {
-  ControlsContainter,
-  TabularPageContainer,
-  FormControlsContainer,
-} from '../../internals/tabular-page';
-import { ContentWrapper, PageWrapper } from '../../internals/page.styles';
 import {
   FormPrimaryButton,
   FormSecondaryButton,
   FormDeleteButton,
 } from '../../internals/default-form-buttons';
+import PageHeaderTitle from '../../internals/page-header-title';
+import { ContentWrapper, PageWrapper } from '../../internals/page.styles';
+import {
+  ControlsContainter,
+  TabularPageContainer,
+  FormControlsContainer,
+} from '../../internals/tabular-page';
 
 type TTabularMainPageProps = {
   /**

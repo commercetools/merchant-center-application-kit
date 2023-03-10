@@ -1,11 +1,11 @@
-import fs from 'fs-extra';
 import path from 'path';
-import { createServer, type Plugin } from 'vite';
 import pluginGraphql from '@rollup/plugin-graphql';
 import pluginReact from '@vitejs/plugin-react-swc';
+import fs from 'fs-extra';
+import { createServer, type Plugin } from 'vite';
 import { processConfig } from '@commercetools-frontend/application-config';
-import { generateTemplate } from '@commercetools-frontend/mc-html-template';
 import { packageLocation as applicationStaticAssetsPath } from '@commercetools-frontend/assets';
+import { generateTemplate } from '@commercetools-frontend/mc-html-template';
 import paths from '../config/paths';
 import pluginCustomApplication from '../vite-plugins/vite-plugin-custom-application';
 import pluginSvgr from '../vite-plugins/vite-plugin-svgr';

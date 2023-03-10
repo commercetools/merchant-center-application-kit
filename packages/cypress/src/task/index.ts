@@ -1,8 +1,7 @@
-import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
-
 import fs from 'fs';
 import path from 'path';
 import { getPackages } from '@manypkg/get-packages';
+import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
 import {
   processConfig,
   MissingOrInvalidConfigError,

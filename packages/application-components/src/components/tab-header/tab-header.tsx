@@ -1,12 +1,12 @@
-import { Link, matchPath, useLocation } from 'react-router-dom';
-import startCase from 'lodash/startCase';
-import { useIntl, type MessageDescriptor } from 'react-intl';
 import type { ReactNode } from 'react';
 import type { LocationDescriptor } from 'history';
-import { warning } from '@commercetools-uikit/utils';
-import Text from '@commercetools-uikit/text';
-import { getLinkStyles } from './tab.styles';
+import startCase from 'lodash/startCase';
+import { useIntl, type MessageDescriptor } from 'react-intl';
+import { Link, matchPath, useLocation } from 'react-router-dom';
 import { useTheme } from '@commercetools-uikit/design-system';
+import Text from '@commercetools-uikit/text';
+import { warning } from '@commercetools-uikit/utils';
+import { getLinkStyles } from './tab.styles';
 
 const pathWithoutSearch = (path: TTabHeaderProps['to']) =>
   typeof path === 'string' ? path.split('?')[0] : path.pathname;

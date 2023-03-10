@@ -1,28 +1,28 @@
-import type { NormalizedCacheObject } from '@apollo/client';
-import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
-import type { TrackingList } from '../../utils/gtm';
-
 import '../../track-performance';
 import { Suspense, useEffect, useMemo } from 'react';
-import { Router } from 'react-router-dom';
-import { ApolloClient } from '@apollo/client';
+import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client/react';
 import { Provider as ReduxProvider } from 'react-redux';
+import { Router } from 'react-router-dom';
+import {
+  ApplicationContextProvider,
+  type TApplicationContext,
+} from '@commercetools-frontend/application-shell-connectors';
 import history from '@commercetools-frontend/browser-history';
-import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
+import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
-import { setCachedApolloClient } from '../../utils/apollo-client-runtime-cache';
 import createApolloClient from '../../configure-apollo';
 import internalReduxStore from '../../configure-store';
-import ConfigureIntlProvider from '../configure-intl-provider';
-import Authenticated from '../authenticated';
-import GtmBooter from '../gtm-booter';
-import ApplicationPageTitle from '../application-page-title';
+import { setCachedApolloClient } from '../../utils/apollo-client-runtime-cache';
+import type { TrackingList } from '../../utils/gtm';
 import ApplicationLoader from '../application-loader';
+import ApplicationPageTitle from '../application-page-title';
+import Authenticated from '../authenticated';
+import ConfigureIntlProvider from '../configure-intl-provider';
 import ErrorBoundary from '../error-boundary';
-import { getBrowserLocale } from './utils';
+import GtmBooter from '../gtm-booter';
 import useCoercedEnvironmentValues from './use-coerced-environment-values';
+import { getBrowserLocale } from './utils';
 
 type Props<AdditionalEnvironmentProperties extends {}> = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;

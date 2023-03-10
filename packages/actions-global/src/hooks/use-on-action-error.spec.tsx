@@ -1,7 +1,7 @@
+import { renderHook } from '@testing-library/react-hooks';
+import { Provider } from 'react-redux';
 import type { Action } from 'redux';
 
-import { Provider } from 'react-redux';
-import { renderHook } from '@testing-library/react-hooks';
 import useOnActionError from './use-on-action-error';
 
 jest.mock('../actions/handle-action-error', () => (payload: Error) => ({

@@ -1,6 +1,6 @@
 import { useIntl, FormattedMessage } from 'react-intl';
-import UnexpectedErrorSVG from '@commercetools-frontend/assets/images/icecream.svg';
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
+import UnexpectedErrorSVG from '@commercetools-frontend/assets/images/icecream.svg';
 import messages from './messages';
 
 const ErrorApologizer = () => {

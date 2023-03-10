@@ -1,11 +1,3 @@
-import type {
-  Command,
-  SearchText,
-  SelectedResult,
-  Stack,
-  HistoryEntry,
-} from '../types';
-
 import {
   KeyboardEventHandler,
   ChangeEventHandler,
@@ -16,16 +8,23 @@ import {
   useRef,
   useCallback,
 } from 'react';
-import Fuse from 'fuse.js';
-import { FormattedMessage, useIntl } from 'react-intl';
-import last from 'lodash/last';
 import { css, keyframes, ClassNames } from '@emotion/react';
-import LoadingSpinner from '@commercetools-uikit/loading-spinner';
-import { SearchIcon } from '@commercetools-uikit/icons';
+import Fuse from 'fuse.js';
+import last from 'lodash/last';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { customProperties } from '@commercetools-uikit/design-system';
+import { SearchIcon } from '@commercetools-uikit/icons';
+import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import ButlerCommand from '../butler-command';
 import ButlerContainer from '../butler-container';
 import messages from '../messages';
+import type {
+  Command,
+  SearchText,
+  SelectedResult,
+  Stack,
+  HistoryEntry,
+} from '../types';
 
 const isSelectAllCombo = (event: KeyboardEvent<HTMLInputElement>) =>
   event.key === 'a' &&

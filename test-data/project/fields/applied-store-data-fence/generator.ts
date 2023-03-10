@@ -1,6 +1,5 @@
-import type { TStoreDataFences } from './types';
-
 import { Generator } from '@commercetools-test-data/core';
+import type { TStoreDataFences } from './types';
 
 const generator = Generator<TStoreDataFences>({
   fields: {

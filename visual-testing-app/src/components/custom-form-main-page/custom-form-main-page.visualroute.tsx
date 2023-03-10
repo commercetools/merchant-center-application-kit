@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
-import { RevertIcon } from '@commercetools-uikit/icons';
 import { CustomFormMainPage } from '@commercetools-frontend/application-components';
-import TextField from '@commercetools-uikit/text-field';
+import { RevertIcon } from '@commercetools-uikit/icons';
 import Spacings from '@commercetools-uikit/spacings';
+import TextField from '@commercetools-uikit/text-field';
 import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/custom-form-main-page';

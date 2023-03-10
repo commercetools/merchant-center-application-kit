@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom';
-import Text from '@commercetools-uikit/text';
 import { InfoModalPage } from '@commercetools-frontend/application-components';
+import Text from '@commercetools-uikit/text';
 import { NestedPages, Suite } from '../../test-utils';
 
 export const routePath = '/info-modal-page';

@@ -1,11 +1,11 @@
-import os from 'os';
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
-import prettier from 'prettier';
 import { transformFileSync, types, type PluginItem } from '@babel/core';
 import type { ListrTask } from 'listr2';
-import { wordify, resolveFilePathByExtension } from '../utils';
+import prettier from 'prettier';
 import type { TCliTaskOptions } from '../types';
+import { wordify, resolveFilePathByExtension } from '../utils';
 
 function replaceApplicationInfoInCustomApplicationConfig(
   filePath: string,

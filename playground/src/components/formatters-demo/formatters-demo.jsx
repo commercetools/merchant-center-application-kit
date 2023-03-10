@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import moment from 'moment-timezone';
 import { IntlProvider, useIntl } from 'react-intl';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
-import Spacings from '@commercetools-uikit/spacings';
+import Card from '@commercetools-uikit/card';
 import Constraints from '@commercetools-uikit/constraints';
-import Text from '@commercetools-uikit/text';
 import DateTimeInput from '@commercetools-uikit/date-time-input';
 import Grid from '@commercetools-uikit/grid';
-import Card from '@commercetools-uikit/card';
 import Label from '@commercetools-uikit/label';
+import Spacings from '@commercetools-uikit/spacings';
+import Text from '@commercetools-uikit/text';
 
 import messages from './messages';
 

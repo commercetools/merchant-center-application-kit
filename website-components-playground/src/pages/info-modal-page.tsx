@@ -1,8 +1,8 @@
 import { InfoModalPage } from '@commercetools-frontend/application-components';
 import Text from '@commercetools-uikit/text';
-import LayoutApp from '../layouts/layout-app';
-import PlaygroundController from '../components/playground-controller';
 import ModalController from '../components/modal-controller';
+import PlaygroundController from '../components/playground-controller';
+import LayoutApp from '../layouts/layout-app';
 
 const InfoModalPageExample = () => (
   <LayoutApp>

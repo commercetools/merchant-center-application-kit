@@ -1,5 +1,4 @@
 import { graphql } from 'msw';
-import { setupServer } from 'msw/node';
 import {
   ApolloLink,
   execute,
@@ -7,6 +6,7 @@ import {
   gql,
   createHttpLink,
 } from '@apollo/client';
+import { setupServer } from 'msw/node';
 import waitFor from 'wait-for-observables';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import {

@@ -1,6 +1,6 @@
-const getBabePresetConfigForMcApp = require('@commercetools-frontend/babel-preset-mc-app');
-const getJestBabelPreset = require('babel-preset-jest');
 const babelJest = require('babel-jest');
+const getJestBabelPreset = require('babel-preset-jest');
+const getBabePresetConfigForMcApp = require('@commercetools-frontend/babel-preset-mc-app');
 const hasJsxRuntime = require('./has-jsx-runtime');
 const loadConfig = require('./load-config');
 

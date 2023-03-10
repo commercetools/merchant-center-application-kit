@@ -1,10 +1,9 @@
+import { ElementType, ReactNode, createContext, useContext } from 'react';
 import type {
   TAppNotificationGlobal,
   TAppNotificationPage,
   TAppNotificationSide,
 } from '@commercetools-frontend/constants';
-
-import { ElementType, ReactNode, createContext, useContext } from 'react';
 
 export type Props = {
   mapNotificationToComponent: (

@@ -1,24 +1,23 @@
-import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
-import type {
-  ApplicationRuntimeConfig,
-  CloudIdentifier,
-  LoadingConfigOptions,
-} from './types';
-
 // Loads the configuration file and parse the environment and header values.
 // Most of the resulting values are inferred from the config.
 import fs from 'fs';
 import omitEmpty from 'omit-empty-es';
 import loadConfig from './load-config';
-import { validateConfig } from './validations';
+import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 import substituteVariablePlaceholders from './substitute-variable-placeholders';
+import { transformCustomApplicationConfigToData } from './transformers';
+import type {
+  ApplicationRuntimeConfig,
+  CloudIdentifier,
+  LoadingConfigOptions,
+} from './types';
 import {
   mapCloudIdentifierToApiUrl,
   getUniqueValues,
   getIsProd,
   getOrThrow,
 } from './utils';
-import { transformCustomApplicationConfigToData } from './transformers';
+import { validateConfig } from './validations';
 
 type ProcessConfigOptions = Partial<LoadingConfigOptions> & {
   // Options useful for testing

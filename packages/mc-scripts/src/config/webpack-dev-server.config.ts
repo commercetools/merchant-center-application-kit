@@ -1,7 +1,7 @@
 import type { Configuration, Headers } from 'webpack-dev-server';
 import { processConfig } from '@commercetools-frontend/application-config';
-import { processHeaders } from '@commercetools-frontend/mc-html-template';
 import { createMcDevAuthenticationMiddleware } from '@commercetools-frontend/mc-dev-authentication';
+import { processHeaders } from '@commercetools-frontend/mc-html-template';
 
 const host = process.env.HOST || '0.0.0.0';
 // We support configuring the sockjs pathname during development.

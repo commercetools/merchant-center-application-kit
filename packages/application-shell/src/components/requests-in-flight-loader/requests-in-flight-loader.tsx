@@ -1,11 +1,10 @@
-import type { TRequestsInFlightState } from './types';
-
 import ReactDOM from 'react-dom';
 import { FormattedMessage } from 'react-intl';
 import { useSelector } from 'react-redux';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import { REQUESTS_IN_FLIGHT_LOADER_DOM_ID } from './constants';
 import messages from './messages';
+import type { TRequestsInFlightState } from './types';
 
 const getPortalContainer = () =>
   process.env.NODE_ENV === 'test'

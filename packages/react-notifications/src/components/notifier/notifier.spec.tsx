@@ -1,18 +1,17 @@
-import type {
-  TAddNotificationAction,
-  TNotification,
-} from '@commercetools-frontend/notifications';
-import type { TShowNotification } from '@commercetools-frontend/actions-global';
-
 import { mocked } from 'jest-mock';
 import { useState, ReactNode } from 'react';
 import { screen, render, fireEvent, waitFor } from '@testing-library/react';
-import { ADD_NOTIFICATION } from '@commercetools-frontend/notifications';
+import type { TShowNotification } from '@commercetools-frontend/actions-global';
+import { useShowNotification } from '@commercetools-frontend/actions-global';
 import {
   NOTIFICATION_DOMAINS,
   NOTIFICATION_KINDS_SIDE,
 } from '@commercetools-frontend/constants';
-import { useShowNotification } from '@commercetools-frontend/actions-global';
+import { ADD_NOTIFICATION } from '@commercetools-frontend/notifications';
+import type {
+  TAddNotificationAction,
+  TNotification,
+} from '@commercetools-frontend/notifications';
 import Notifier from './notifier';
 
 jest.mock('@commercetools-frontend/actions-global');

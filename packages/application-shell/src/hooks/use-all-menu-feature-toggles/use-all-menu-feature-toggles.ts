@@ -1,12 +1,11 @@
-import type {
-  TFetchAllMenuFeatureTogglesQuery,
-  TFetchAllMenuFeatureTogglesQueryVariables,
-} from '../../types/generated/proxy';
-
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { useMcQuery } from '../../hooks/apollo-hooks';
 import useIsServedByProxy from '../../hooks/use-is-served-by-proxy';
+import type {
+  TFetchAllMenuFeatureTogglesQuery,
+  TFetchAllMenuFeatureTogglesQueryVariables,
+} from '../../types/generated/proxy';
 import { FetchAllMenuFeatureToggles } from './fetch-all-menu-feature-toggles.proxy.graphql';
 
 const defaultApiUrl = window.location.origin;

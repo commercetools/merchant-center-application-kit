@@ -6,9 +6,10 @@ import {
   useRef,
   useState,
 } from 'react';
-import Modal, { type Props as ModalProps } from 'react-modal';
 import { ClassNames, type CSSObject } from '@emotion/react';
+import Modal, { type Props as ModalProps } from 'react-modal';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
+import ModalPageTopBar from './modal-page-top-bar';
 import {
   TRANSITION_DURATION,
   getOverlayStyles,
@@ -18,7 +19,6 @@ import {
   getBeforeCloseOverlayAnimation,
   getBeforeCloseContainerAnimation,
 } from './modal-page.styles';
-import ModalPageTopBar from './modal-page-top-bar';
 
 // When running tests, we don't render the AppShell. Instead we mock the
 // application context to make the data available to the application under

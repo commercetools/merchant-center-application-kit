@@ -1,11 +1,11 @@
 import type { FormEvent } from 'react';
 import { Formik } from 'formik';
 import { CustomFormModalPage } from '@commercetools-frontend/application-components';
-import TextInput from '@commercetools-uikit/text-input';
 import TextField from '@commercetools-uikit/text-field';
-import LayoutApp from '../layouts/layout-app';
-import PlaygroundController from '../components/playground-controller';
+import TextInput from '@commercetools-uikit/text-input';
 import ModalController from '../components/modal-controller';
+import PlaygroundController from '../components/playground-controller';
+import LayoutApp from '../layouts/layout-app';
 
 const CustomFormModalPageExample = () => (
   <LayoutApp>

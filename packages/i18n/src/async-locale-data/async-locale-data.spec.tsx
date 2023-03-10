@@ -1,11 +1,10 @@
-import type { TRenderFunctionResult, Props } from './async-locale-data';
-import type { TMessageTranslations } from './use-async-intl-messages';
-
 import { mocked } from 'jest-mock';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { render, waitFor } from '@testing-library/react';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import loadI18n from '../load-i18n';
+import type { TRenderFunctionResult, Props } from './async-locale-data';
 import { AsyncLocaleData } from './async-locale-data';
+import type { TMessageTranslations } from './use-async-intl-messages';
 
 jest.mock('@commercetools-frontend/sentry');
 

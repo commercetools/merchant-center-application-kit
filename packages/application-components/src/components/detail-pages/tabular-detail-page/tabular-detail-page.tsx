@@ -1,20 +1,20 @@
 import type { ReactElement, ReactNode, MouseEvent, KeyboardEvent } from 'react';
-import Spacings from '@commercetools-uikit/spacings';
 import { sharedMessages } from '@commercetools-frontend/i18n';
+import Spacings from '@commercetools-uikit/spacings';
 import { warning } from '@commercetools-uikit/utils';
-import PageHeaderTitle from '../../internals/page-header-title';
-import PageTopBar from '../../internals/page-top-bar';
-import {
-  ControlsContainter,
-  TabularPageContainer,
-  FormControlsContainer,
-} from '../../internals/tabular-page';
-import { ContentWrapper, PageWrapper } from '../../internals/page.styles';
 import {
   FormPrimaryButton,
   FormSecondaryButton,
   FormDeleteButton,
 } from '../../internals/default-form-buttons';
+import PageHeaderTitle from '../../internals/page-header-title';
+import PageTopBar from '../../internals/page-top-bar';
+import { ContentWrapper, PageWrapper } from '../../internals/page.styles';
+import {
+  ControlsContainter,
+  TabularPageContainer,
+  FormControlsContainer,
+} from '../../internals/tabular-page';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin

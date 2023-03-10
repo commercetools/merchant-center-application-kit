@@ -1,6 +1,6 @@
 import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
-import Text from '@commercetools-uikit/text';
 import Spacings from '@commercetools-uikit/spacings';
+import Text from '@commercetools-uikit/text';
 import { warning } from '@commercetools-uikit/utils';
 import {
   screen,

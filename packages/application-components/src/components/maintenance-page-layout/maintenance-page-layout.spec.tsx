@@ -1,6 +1,6 @@
+import { screen, renderComponent } from '../../../test-utils';
 import type { Props } from './maintenance-page-layout';
 
-import { screen, renderComponent } from '../../../test-utils';
 import MaintenancePageLayout from './maintenance-page-layout';
 
 const createTestProps = (props: Partial<Props> = {}) => ({

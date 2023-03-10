@@ -1,13 +1,12 @@
+import { ReactNode } from 'react';
 import type { ApolloError } from '@apollo/client/errors';
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import { useMcQuery } from '../../hooks/apollo-hooks';
 import type {
   TFetchLoggedInUserQuery,
   TFetchLoggedInUserQueryVariables,
 } from '../../types/generated/mc';
-
-import { ReactNode } from 'react';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { useMcQuery } from '../../hooks/apollo-hooks';
 import LoggedInUserQuery from './fetch-user.mc.graphql';
 
 type RenderFnArgs = {

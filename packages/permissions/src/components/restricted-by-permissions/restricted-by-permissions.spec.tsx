@@ -1,6 +1,6 @@
 import { ComponentType, ReactElement } from 'react';
-import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { screen, render } from '@testing-library/react';
+import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import RestrictedByPermissions from './restricted-by-permissions';
 
 type TAllAppliedPermission = {

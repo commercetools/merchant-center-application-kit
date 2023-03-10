@@ -1,9 +1,9 @@
 import type { MouseEvent, KeyboardEvent, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import { useIntl } from 'react-intl';
-import { ListIcon } from '@commercetools-uikit/icons';
-import FlatButton from '@commercetools-uikit/flat-button';
 import { customProperties } from '@commercetools-uikit/design-system';
+import FlatButton from '@commercetools-uikit/flat-button';
+import { ListIcon } from '@commercetools-uikit/icons';
 import { designTokens as appKitDesignTokens } from '../../theming';
 import messages from './messages';
 

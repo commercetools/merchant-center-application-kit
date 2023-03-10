@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
 import { Formik } from 'formik';
+import MultilineTextField from '@commercetools-uikit/multiline-text-field';
+import SelectField from '@commercetools-uikit/select-field';
 import Spacings from '@commercetools-uikit/spacings';
 import TextField from '@commercetools-uikit/text-field';
-import SelectField from '@commercetools-uikit/select-field';
-import MultilineTextField from '@commercetools-uikit/multiline-text-field';
 import type { TIntlControllerFunctionOptions } from './intl-controller';
 
 export type TKnob = {

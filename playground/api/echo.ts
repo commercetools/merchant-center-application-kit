@@ -1,8 +1,8 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
 import {
   createSessionAuthVerifier,
   CLOUD_IDENTIFIERS,
 } from '@commercetools-backend/express';
+import { VercelRequest, VercelResponse } from '@vercel/node';
 
 const sessionAuthVerifier = createSessionAuthVerifier({
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

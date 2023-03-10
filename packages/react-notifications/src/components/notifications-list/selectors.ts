@@ -1,12 +1,11 @@
+import { createSelector } from 'reselect';
 import type {
   TAppNotificationGlobal,
   TAppNotificationPage,
   TAppNotificationSide,
 } from '@commercetools-frontend/constants';
-import type { TAppState } from './types';
-
-import { createSelector } from 'reselect';
 import { NOTIFICATION_DOMAINS } from '@commercetools-frontend/constants';
+import type { TAppState } from './types';
 
 // These selectors are okay memoization-wise, but once a single notifications
 // is added or removed the memoization for all domain selectors is reset

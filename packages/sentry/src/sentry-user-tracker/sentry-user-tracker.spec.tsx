@@ -1,7 +1,7 @@
+import * as Sentry from '@sentry/react';
+import { render } from '@testing-library/react';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
-import { render } from '@testing-library/react';
-import * as Sentry from '@sentry/react';
 import SentryUserTracker from './sentry-user-tracker';
 
 declare let window: ApplicationWindow;

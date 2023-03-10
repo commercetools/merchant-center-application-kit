@@ -1,14 +1,13 @@
-import type { TProps } from './authenticated';
+import { mocked } from 'jest-mock';
+import { graphql } from 'msw';
+import { setupServer } from 'msw/node';
+import { STORAGE_KEYS } from '../../constants';
+import { renderApp, waitFor } from '../../test-utils';
 import type {
   TAmILoggedInQuery,
   TAmILoggedInQueryVariables,
 } from '../../types/generated/mc';
-
-import { mocked } from 'jest-mock';
-import { graphql } from 'msw';
-import { setupServer } from 'msw/node';
-import { renderApp, waitFor } from '../../test-utils';
-import { STORAGE_KEYS } from '../../constants';
+import type { TProps } from './authenticated';
 import Authenticated from './authenticated';
 
 const createTestProps = (custom: Partial<TProps> = {}) => ({

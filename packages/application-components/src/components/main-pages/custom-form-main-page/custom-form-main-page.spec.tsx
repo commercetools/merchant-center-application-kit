@@ -1,5 +1,5 @@
-import Text from '@commercetools-uikit/text';
 import Spacings from '@commercetools-uikit/spacings';
+import Text from '@commercetools-uikit/text';
 import { warning } from '@commercetools-uikit/utils';
 import { screen, renderComponent } from '../../../test-utils';
 import CustomFormMainPage from './custom-form-main-page';

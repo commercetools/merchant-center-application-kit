@@ -1,7 +1,7 @@
-import { v4 as uuidv4 } from 'uuid';
 import semver from 'semver';
-import { buildOidcScope } from '@commercetools-frontend/application-shell/ssr';
+import { v4 as uuidv4 } from 'uuid';
 import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
+import { buildOidcScope } from '@commercetools-frontend/application-shell/ssr';
 import { STORAGE_KEYS, OIDC_RESPONSE_TYPES } from '../constants';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks';
-import useCoercedEnvironmentValues from './use-coerced-environment-values';
 import coerceValuesJson from './fixtures/coerce-values.json';
+import useCoercedEnvironmentValues from './use-coerced-environment-values';
 
 describe('given a JSON with stringified values', () => {
   it('should coerce values into their primitives', () => {

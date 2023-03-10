@@ -1,11 +1,11 @@
 import type { ReactElement, SyntheticEvent } from 'react';
-import { useIntl, type IntlShape } from 'react-intl';
 import { css } from '@emotion/react';
-import SecondaryButton from '@commercetools-uikit/secondary-button';
+import { useIntl, type IntlShape } from 'react-intl';
 import PrimaryButton from '@commercetools-uikit/primary-button';
+import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Spacings from '@commercetools-uikit/spacings';
-import filterDataAttributes from '../../../utils/filter-data-attributes';
 import { designTokens as appKitDesignTokens } from '../../../theming';
+import filterDataAttributes from '../../../utils/filter-data-attributes';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin

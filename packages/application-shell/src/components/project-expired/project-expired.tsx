@@ -1,6 +1,6 @@
 import { useIntl, FormattedMessage } from 'react-intl';
-import ProjectExpiredSVG from '@commercetools-frontend/assets/images/hourglass.svg';
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
+import ProjectExpiredSVG from '@commercetools-frontend/assets/images/hourglass.svg';
 import ServicePageProjectSwitcher from '../service-page-project-switcher';
 import messages from './messages';
 

@@ -1,17 +1,17 @@
 import { graphql } from 'msw';
-import { setupServer } from 'msw/node';
 import { buildGraphqlList } from '@commercetools-test-data/core';
+import { setupServer } from 'msw/node';
+import { GtmContext } from '@commercetools-frontend/application-shell';
 import {
   screen,
   waitFor,
   fireEvent,
   within,
 } from '@commercetools-frontend/application-shell/test-utils';
-import { GtmContext } from '@commercetools-frontend/application-shell';
 import { entryPointUriPath } from '../../constants';
+import ApplicationPlaygroundRoutes from '../../routes';
 import { renderApplicationWithRedux } from '../../test-utils';
 import * as StateMock from '../../test-utils/test-data/state';
-import ApplicationPlaygroundRoutes from '../../routes';
 
 const mockServer = setupServer();
 afterEach(() => mockServer.resetHandlers());

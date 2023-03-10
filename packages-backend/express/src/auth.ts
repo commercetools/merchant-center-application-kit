@@ -1,19 +1,18 @@
-import type {
-  TSessionMiddlewareOptions,
-  TSession,
-  TBaseRequest,
-} from './types';
-
-import jwksRsa from 'jwks-rsa';
 import {
   expressjwt as expressJwtMiddleware,
   type GetVerificationKey,
 } from 'express-jwt';
+import jwksRsa from 'jwks-rsa';
 import {
   CLOUD_IDENTIFIERS,
   MC_API_URLS,
   MC_API_PROXY_HEADERS,
 } from './constants';
+import type {
+  TSessionMiddlewareOptions,
+  TSession,
+  TBaseRequest,
+} from './types';
 import { getFirstHeaderValueOrThrow } from './utils';
 
 type TDecodedJWT = {

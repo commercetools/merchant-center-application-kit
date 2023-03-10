@@ -1,7 +1,7 @@
 import execa from 'execa';
 import type { ListrTask } from 'listr2';
-import { shouldUseYarn } from '../utils';
 import type { TCliTaskOptions } from '../types';
+import { shouldUseYarn } from '../utils';
 
 function installDependencies(options: TCliTaskOptions): ListrTask {
   return {

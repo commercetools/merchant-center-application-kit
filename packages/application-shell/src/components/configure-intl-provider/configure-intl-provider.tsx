@@ -1,6 +1,6 @@
+import { ReactNode, useEffect } from 'react';
 import type { IntlConfig } from 'react-intl';
 
-import { ReactNode, useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 
 interface ApplicationWindow extends Window {

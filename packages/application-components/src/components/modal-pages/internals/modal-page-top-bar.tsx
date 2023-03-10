@@ -2,14 +2,14 @@ import { SyntheticEvent } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useIntl } from 'react-intl';
-import { CloseIcon, AngleLeftIcon } from '@commercetools-uikit/icons';
-import FlatButton from '@commercetools-uikit/flat-button';
-import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';
-import Text from '@commercetools-uikit/text';
 import {
   designTokens as uiKitDesignTokens,
   useTheme,
 } from '@commercetools-uikit/design-system';
+import FlatButton from '@commercetools-uikit/flat-button';
+import { CloseIcon, AngleLeftIcon } from '@commercetools-uikit/icons';
+import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';
+import Text from '@commercetools-uikit/text';
 import { designTokens as appKitDesignTokens } from '../../../theming';
 import messages from '../../internals/messages';
 

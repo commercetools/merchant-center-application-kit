@@ -1,11 +1,10 @@
-import type { TProviderProps } from '@commercetools-frontend/application-shell-connectors';
-
 import { Children, ReactNode } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import invariant from 'tiny-invariant';
-import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
 import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-config/ssr';
+import type { TProviderProps } from '@commercetools-frontend/application-shell-connectors';
+import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import RouteCatchAll from '../route-catch-all';
 
 type Props<AdditionalEnvironmentProperties extends {}> = {

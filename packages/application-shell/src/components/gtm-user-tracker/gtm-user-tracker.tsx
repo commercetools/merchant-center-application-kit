@@ -1,6 +1,6 @@
+import { useEffect } from 'react';
 import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 
-import { useEffect } from 'react';
 import * as gtm from '../../utils/gtm';
 
 type TFetchedUser = TFetchLoggedInUserQuery['user'];

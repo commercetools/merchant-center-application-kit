@@ -1,8 +1,7 @@
-import type { TApiErrorNotificationOptions } from '../types';
-
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { showApiErrorNotification } from '../actions';
+import type { TApiErrorNotificationOptions } from '../types';
 
 /**
  * Dispatch an API error notification.

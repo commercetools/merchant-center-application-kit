@@ -1,11 +1,10 @@
+import { useEffect } from 'react';
+import isNumber from 'lodash/isNumber';
+import { useShowNotification } from '@commercetools-frontend/actions-global';
 import type {
   TAppNotificationDomain,
   TAppNotificationKind,
 } from '@commercetools-frontend/constants';
-
-import { useEffect } from 'react';
-import isNumber from 'lodash/isNumber';
-import { useShowNotification } from '@commercetools-frontend/actions-global';
 import {
   NOTIFICATION_DOMAINS,
   NOTIFICATION_KINDS_SIDE,

@@ -1,10 +1,10 @@
-import type { GraphQLError } from 'graphql';
-import type { ErrorResponse } from '@apollo/client/link/error';
 import type { ServerError, ServerParseError } from '@apollo/client';
-import type { TApolloContext } from '../utils/apollo-context';
+import type { ErrorResponse } from '@apollo/client/link/error';
+import type { GraphQLError } from 'graphql';
 
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { SUPPORTED_HEADERS } from '../constants';
+import type { TApolloContext } from '../utils/apollo-context';
 
 type TTokenRetryGraphQlTarget =
   | typeof GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM

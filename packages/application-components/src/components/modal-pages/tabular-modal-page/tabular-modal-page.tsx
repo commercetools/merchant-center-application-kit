@@ -1,22 +1,22 @@
+import { ReactElement, ReactNode, SyntheticEvent } from 'react';
 import type { CSSObject } from '@emotion/react';
 
-import { ReactElement, ReactNode, SyntheticEvent } from 'react';
+import { sharedMessages } from '@commercetools-frontend/i18n';
 import { useTheme } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
-import { sharedMessages } from '@commercetools-frontend/i18n';
-import ModalPage from '../internals/modal-page';
-import PageHeaderTitle from '../../internals/page-header-title';
 import {
   FormPrimaryButton,
   FormSecondaryButton,
   FormDeleteButton,
 } from '../../internals/default-form-buttons';
+import PageHeaderTitle from '../../internals/page-header-title';
+import { ContentWrapper } from '../../internals/page.styles';
 import {
   ControlsContainter,
   TabularPageContainer,
   FormControlsContainer,
 } from '../../internals/tabular-page';
-import { ContentWrapper } from '../../internals/page.styles';
+import ModalPage from '../internals/modal-page';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin

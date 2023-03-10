@@ -1,11 +1,14 @@
+import type { ComponentType } from 'react';
 import type { MockedResponse } from '@apollo/client/testing';
 
+import { MockedProvider as ApolloMockProvider } from '@apollo/client/testing';
 import {
   screen,
   render,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
-import { MockedProvider as ApolloMockProvider } from '@apollo/client/testing';
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import FetchProjectExtensionImageRegex from './fetch-project-extension-image-regex.settings.graphql';
 import {
   ProjectExtensionProviderForImageRegex,
   GetProjectExtensionImageRegex,
@@ -13,9 +16,6 @@ import {
   withProjectExtensionImageRegex,
   TImageRegexContext,
 } from './project-extension-image-regex';
-import FetchProjectExtensionImageRegex from './fetch-project-extension-image-regex.settings.graphql';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import type { ComponentType } from 'react';
 
 jest.mock('@commercetools-frontend/sentry');
 jest.mock('tiny-warning');

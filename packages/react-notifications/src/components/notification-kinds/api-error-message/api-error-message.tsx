@@ -1,9 +1,9 @@
-import type { TAppNotificationApiError } from '@commercetools-frontend/constants';
+import { useEffect } from 'react';
+import has from 'lodash/has';
 import type { IntlShape } from 'react-intl';
 
-import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
-import has from 'lodash/has';
+import type { TAppNotificationApiError } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import messages from './messages';
 

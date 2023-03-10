@@ -1,9 +1,9 @@
 import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
-import sanitizeAppEnvironment from './utils/sanitize-app-environment';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import htmlScripts from /* preval */ './load-html-scripts';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import htmlStyles from /* preval */ './load-html-styles';
+import sanitizeAppEnvironment from './utils/sanitize-app-environment';
 
 type TReplaceHtmlPlaceholdersOptions = {
   env: ApplicationRuntimeConfig['env'];

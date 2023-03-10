@@ -1,5 +1,5 @@
-import SdkGet from './components/sdk-get';
 import * as actions from './actions';
+import SdkGet from './components/sdk-get';
 
 export { default as version } from './version';
 export { default as createMiddleware } from './middleware';

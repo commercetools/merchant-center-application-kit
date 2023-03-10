@@ -1,9 +1,9 @@
 import type { TBuilder } from '@commercetools-test-data/core';
-import type { TPermissions } from './types';
 
 import { Builder } from '@commercetools-test-data/core';
 import generator from './generator';
 import transformers from './transformers';
+import type { TPermissions } from './types';
 
 const AppliedPermission = (): TBuilder<TPermissions> =>
   Builder<TPermissions>({

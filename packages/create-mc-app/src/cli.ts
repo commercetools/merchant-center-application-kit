@@ -1,13 +1,13 @@
 import { cac } from 'cac';
 import { Listr, type ListrTask } from 'listr2';
-import * as tasks from './tasks';
-import { throwIfNodeVersionIsNotSupported } from './validations';
-import { shouldUseYarn } from './utils';
+import pkgJson from '../package.json';
 import getLatestReleaseVersion from './get-latest-release-version';
 import hintOutdatedVersion from './hint-outdated-version';
 import processOptions from './process-options';
+import * as tasks from './tasks';
 import type { TCliCommandOptions } from './types';
-import pkgJson from '../package.json';
+import { shouldUseYarn } from './utils';
+import { throwIfNodeVersionIsNotSupported } from './validations';
 
 throwIfNodeVersionIsNotSupported(process.versions.node, pkgJson.engines.node);
 

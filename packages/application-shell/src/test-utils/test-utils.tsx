@@ -6,40 +6,40 @@ import {
   type ReactNode,
 } from 'react';
 import PropTypes from 'prop-types';
-import { Router } from 'react-router-dom';
-import invariant from 'tiny-invariant';
 import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client/react';
 import {
   MockedProvider as ApolloMockProvider,
   type MockedResponse,
 } from '@apollo/client/testing';
+import { TestProviderFlopFlip } from '@flopflip/react-broadcast';
+import type { TFlags } from '@flopflip/types';
 import * as rtl from '@testing-library/react';
 import * as rtlHooks from '@testing-library/react-hooks';
 import { createMemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
-import { TestProviderFlopFlip } from '@flopflip/react-broadcast';
-import type { TFlags } from '@flopflip/types';
 import { Provider as StoreProvider } from 'react-redux';
-import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
+import { Router } from 'react-router-dom';
+import invariant from 'tiny-invariant';
+import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-config/ssr';
 import {
   ApplicationContextProvider,
   type TProviderProps,
 } from '@commercetools-frontend/application-shell-connectors';
+import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
+import { DOMAINS } from '@commercetools-frontend/constants';
 import {
   NotificationsList,
   NotificationProviderForCustomComponent,
   type TMapNotificationToComponentProps,
 } from '@commercetools-frontend/react-notifications';
-import { DOMAINS } from '@commercetools-frontend/constants';
 import {
   createTestMiddleware as createSdkTestMiddleware,
   type TSdkMock,
 } from '@commercetools-frontend/sdk/test-utils';
-import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-config/ssr';
 import ApplicationEntryPoint from '../components/application-entry-point';
-import { createReduxStore } from '../configure-store';
 import createApolloClient from '../configure-apollo';
+import { createReduxStore } from '../configure-store';
 
 // These default values get merged with the values provided by the test from
 // the call to "render"

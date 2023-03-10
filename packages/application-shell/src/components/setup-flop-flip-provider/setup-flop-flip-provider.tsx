@@ -1,19 +1,18 @@
+import { ReactNode, useMemo } from 'react';
+import { useApolloClient } from '@apollo/client/react';
+import combineAdapters from '@flopflip/combine-adapters';
+import httpAdapter from '@flopflip/http-adapter';
+import ldAdapter from '@flopflip/launchdarkly-adapter';
+import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
 import type { TFlags } from '@flopflip/types';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import { FLAGS } from '../../feature-toggles';
+import useAllMenuFeatureToggles from '../../hooks/use-all-menu-feature-toggles';
 import type {
   TAllFeaturesQuery,
   TFetchLoggedInUserQuery,
 } from '../../types/generated/mc';
-
-import { ReactNode, useMemo } from 'react';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import ldAdapter from '@flopflip/launchdarkly-adapter';
-import httpAdapter from '@flopflip/http-adapter';
-import combineAdapters from '@flopflip/combine-adapters';
-import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
-import { useApolloClient } from '@apollo/client/react';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import useAllMenuFeatureToggles from '../../hooks/use-all-menu-feature-toggles';
-import { FLAGS } from '../../feature-toggles';
 import AllFeaturesQuery from './fetch-all-features.mc.graphql';
 
 type Props = {

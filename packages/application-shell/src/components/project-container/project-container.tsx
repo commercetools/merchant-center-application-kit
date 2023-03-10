@@ -1,27 +1,27 @@
+import { ReactNode, Suspense, useEffect, useState } from 'react';
+import isNil from 'lodash/isNil';
+import ReactDOM from 'react-dom';
+
+import { useIntl } from 'react-intl';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import type { RouteComponentProps } from 'react-router-dom';
 import type { TProviderProps } from '@commercetools-frontend/application-shell-connectors';
-import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
-
-import { ReactNode, Suspense, useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import { Route, Switch, Redirect } from 'react-router-dom';
-import { useIntl } from 'react-intl';
-import isNil from 'lodash/isNil';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import { Notifier } from '@commercetools-frontend/react-notifications';
 import { CONTAINERS, STORAGE_KEYS, SUSPENSION_REASONS } from '../../constants';
+import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
+import ApplicationEntryPoint from '../application-entry-point';
 import ApplicationLoader from '../application-loader';
+import ErrorBoundary from '../error-boundary';
+import FetchProject from '../fetch-project';
 import LocaleSwitcher from '../locale-switcher';
 import ProjectDataLocale from '../project-data-locale';
-import FetchProject from '../fetch-project';
-import ProjectNotFound from '../project-not-found';
 import ProjectExpired from '../project-expired';
+import ProjectNotFound from '../project-not-found';
 import ProjectNotInitialized from '../project-not-initialized';
-import RedirectToProjectCreate from '../redirect-to-project-create';
 import ProjectSuspended from '../project-suspended';
-import ErrorBoundary from '../error-boundary';
-import ApplicationEntryPoint from '../application-entry-point';
+import RedirectToProjectCreate from '../redirect-to-project-create';
 import messages from './messages';
 
 type QueryParams = {

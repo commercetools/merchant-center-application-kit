@@ -1,7 +1,7 @@
+import { MC_API_PROXY_TARGETS } from '@commercetools-frontend/constants';
 import type { Json } from '@commercetools-frontend/sdk';
 
 import { actions as sdkActions } from '@commercetools-frontend/sdk';
-import { MC_API_PROXY_TARGETS } from '@commercetools-frontend/constants';
 
 // eslint-disable-next-line import/prefer-default-export
 export const pushDependencyVersionCounter = ({

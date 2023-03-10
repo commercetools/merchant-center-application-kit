@@ -1,11 +1,11 @@
 import type { ReactNode, SyntheticEvent } from 'react';
-import Modal, { type Props as ModalProps } from 'react-modal';
 import { css, ClassNames } from '@emotion/react';
 import styled from '@emotion/styled';
+import Modal, { type Props as ModalProps } from 'react-modal';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import Card from '@commercetools-uikit/card';
-import { getOverlayStyles, getModalContentStyles } from './dialog.styles';
 import { designTokens as appKitDesignTokens } from '../../../theming';
+import { getOverlayStyles, getModalContentStyles } from './dialog.styles';
 
 // When running tests, we don't render the AppShell. Instead we mock the
 // application context to make the data available to the application under

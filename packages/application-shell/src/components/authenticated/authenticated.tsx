@@ -1,9 +1,9 @@
+import { Route, Switch } from 'react-router-dom';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 
-import { Route, Switch } from 'react-router-dom';
-import hasCachedAuthenticationState from './has-cached-authentication-state';
 import AmILoggedIn from './am-i-logged-in';
+import hasCachedAuthenticationState from './has-cached-authentication-state';
 import OidcCallback from './oidc-callback';
 
 declare let window: ApplicationWindow;

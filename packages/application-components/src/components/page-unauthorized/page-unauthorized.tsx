@@ -1,7 +1,7 @@
 import { useIntl, FormattedMessage } from 'react-intl';
 import FailedAuthorizationSVG from '@commercetools-frontend/assets/images/folder-full-locked.svg';
-import MaintenancePageLayout from '../maintenance-page-layout';
 import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
+import MaintenancePageLayout from '../maintenance-page-layout';
 import messages from './messages';
 
 // eslint-disable-next-line react/display-name

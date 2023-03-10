@@ -1,20 +1,19 @@
+import { ComponentType, createContext, ReactNode, useContext } from 'react';
+import moment from 'moment-timezone';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import type {
   TFetchLoggedInUserQuery,
   TFetchProjectQuery,
   TIdTokenUserInfo,
 } from '../../types/generated/mc';
-
-import { ComponentType, createContext, ReactNode, useContext } from 'react';
-import moment from 'moment-timezone';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import getDisplayName from '../../utils/get-display-name';
+import getMcApiUrl from '../../utils/get-mc-api-url';
 import {
   normalizeAllAppliedActionRights,
   normalizeAllAppliedPermissions,
   normalizeAllAppliedDataFences,
 } from './normalizers';
-import getMcApiUrl from '../../utils/get-mc-api-url';
 
 type TFetchedUser = TFetchLoggedInUserQuery['user'];
 type TFetchedProject = TFetchProjectQuery['project'];

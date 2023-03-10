@@ -1,29 +1,29 @@
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { useMcQuery } from '@commercetools-frontend/application-shell';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import LoadingSpinner from '@commercetools-uikit/loading-spinner';
-import DataTable from '@commercetools-uikit/data-table';
-import Spacings from '@commercetools-uikit/spacings';
-import Text from '@commercetools-uikit/text';
 import {
   MC_API_PROXY_TARGETS,
   NO_VALUE_FALLBACK,
 } from '@commercetools-frontend/constants';
-import { useMcQuery } from '@commercetools-frontend/application-shell';
-import {
-  usePaginationState,
-  useDataTableSortingState,
-} from '@commercetools-uikit/hooks';
 import {
   formatLocalizedString,
   transformLocalizedFieldToLocalizedString,
 } from '@commercetools-frontend/l10n';
-import { Pagination } from '@commercetools-uikit/pagination';
+import DataTable from '@commercetools-uikit/data-table';
+import {
+  usePaginationState,
+  useDataTableSortingState,
+} from '@commercetools-uikit/hooks';
+import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import { ContentNotification } from '@commercetools-uikit/notifications';
+import { Pagination } from '@commercetools-uikit/pagination';
+import Spacings from '@commercetools-uikit/spacings';
+import Text from '@commercetools-uikit/text';
+import { getErrorMessage } from '../../utils/get-error-message';
+import FetchStatesQuery from './fetch-states.ctp.graphql';
 import messages from './messages';
 import styles from './state-machines-list.module.css';
-import FetchStatesQuery from './fetch-states.ctp.graphql';
-import { getErrorMessage } from '../../utils/get-error-message';
 
 export const columnsDefinition = [
   {

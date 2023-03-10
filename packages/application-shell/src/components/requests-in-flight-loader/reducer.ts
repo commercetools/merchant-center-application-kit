@@ -1,12 +1,11 @@
 import type { Action } from 'redux';
+import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-frontend/constants';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import type {
   TRequestsInFlightState,
   TShowRequestInFlightAction,
   THideRequestInFlightAction,
 } from './types';
-
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-frontend/constants';
 
 const isShowRequestInFlightAction = (
   action: Action

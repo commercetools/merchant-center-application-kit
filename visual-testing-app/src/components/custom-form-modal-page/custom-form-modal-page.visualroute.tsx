@@ -1,13 +1,13 @@
 import { Formik } from 'formik';
 import { useHistory } from 'react-router-dom';
+import { CustomFormModalPage } from '@commercetools-frontend/application-components';
+import IconButton from '@commercetools-uikit/icon-button';
 import {
   SearchIcon,
   FlameIcon,
   BinLinearIcon,
 } from '@commercetools-uikit/icons';
 import TextField from '@commercetools-uikit/text-field';
-import IconButton from '@commercetools-uikit/icon-button';
-import { CustomFormModalPage } from '@commercetools-frontend/application-components';
 import { NestedPages, Suite } from '../../test-utils';
 
 export const routePath = '/custom-form-modal-page';

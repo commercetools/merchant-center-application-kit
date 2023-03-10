@@ -1,5 +1,5 @@
-import { Factory } from 'rosie';
 import { faker } from '@faker-js/faker';
+import { Factory } from 'rosie';
 import CustomApplicationMenuLink from './custom-application-menu-link';
 import CustomApplicationSubmenuLink from './custom-application-submenu-link';
 

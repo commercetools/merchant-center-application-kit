@@ -1,12 +1,11 @@
 import type { Action, Dispatch, MiddlewareAPI } from 'redux';
+import { removeNotification } from './action-creators';
+import { ADD_NOTIFICATION, REMOVE_NOTIFICATION } from './action-types';
 import type {
   TNotification,
   TNotificationOnDismiss,
   TNotificationAction,
 } from './types';
-
-import { ADD_NOTIFICATION, REMOVE_NOTIFICATION } from './action-types';
-import { removeNotification } from './action-creators';
 
 // Force TS cast of generic action to TNotificationAction
 const isNotificationAction = <Payload extends TNotification>(

@@ -1,11 +1,18 @@
 // TODO: @redesign cleanup
+import { ReactNode, SyntheticEvent } from 'react';
+import { useIntl } from 'react-intl';
 import type {
   TAppNotificationKind,
   TAppNotificationDomain,
 } from '@commercetools-frontend/constants';
 
-import { ReactNode, SyntheticEvent } from 'react';
-import { useIntl } from 'react-intl';
+import {
+  NOTIFICATION_DOMAINS,
+  NOTIFICATION_KINDS_SIDE,
+} from '@commercetools-frontend/constants';
+import { useTheme } from '@commercetools-uikit/design-system';
+import { useFieldId } from '@commercetools-uikit/hooks';
+import IconButton from '@commercetools-uikit/icon-button';
 import {
   CloseBoldIcon,
   ErrorIcon,
@@ -14,15 +21,8 @@ import {
   InformationIcon,
   CheckBoldIcon,
 } from '@commercetools-uikit/icons';
-import { useTheme } from '@commercetools-uikit/design-system';
-import IconButton from '@commercetools-uikit/icon-button';
 import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';
-import {
-  NOTIFICATION_DOMAINS,
-  NOTIFICATION_KINDS_SIDE,
-} from '@commercetools-frontend/constants';
 import { createSequentialId } from '@commercetools-uikit/utils';
-import { useFieldId } from '@commercetools-uikit/hooks';
 import filterDataAttributes from '../../utils/filter-data-attributes';
 import messages from './messages';
 import {

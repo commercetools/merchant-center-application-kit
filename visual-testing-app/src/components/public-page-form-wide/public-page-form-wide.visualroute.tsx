@@ -1,11 +1,11 @@
 import { css } from '@emotion/react';
 import { PublicPageLayout } from '@commercetools-frontend/application-components';
 import DoorsClosedSvg from '@commercetools-frontend/assets/images/project-not-initialized.svg';
+import Card from '@commercetools-uikit/card';
+import { customProperties } from '@commercetools-uikit/design-system';
 import Link from '@commercetools-uikit/link';
 import Spacings from '@commercetools-uikit/spacings';
-import { customProperties } from '@commercetools-uikit/design-system';
 import Text from '@commercetools-uikit/text';
-import Card from '@commercetools-uikit/card';
 import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/public-page-form-wide';

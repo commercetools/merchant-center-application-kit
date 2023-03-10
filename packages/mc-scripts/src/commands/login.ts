@@ -1,8 +1,8 @@
-import prompts from 'prompts';
 import chalk from 'chalk';
+import prompts from 'prompts';
 import { processConfig } from '@commercetools-frontend/application-config';
-import CredentialsStorage from '../utils/credentials-storage';
 import { getAuthToken } from '../utils/auth';
+import CredentialsStorage from '../utils/credentials-storage';
 
 const credentialsStorage = new CredentialsStorage();
 

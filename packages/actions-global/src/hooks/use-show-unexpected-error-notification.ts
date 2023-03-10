@@ -1,7 +1,6 @@
-import type { TAppNotificationValuesUnexpectedError } from '@commercetools-frontend/constants';
-
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
+import type { TAppNotificationValuesUnexpectedError } from '@commercetools-frontend/constants';
 import { showUnexpectedErrorNotification } from '../actions';
 
 /**

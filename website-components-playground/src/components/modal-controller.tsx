@@ -1,9 +1,9 @@
 import { type ReactNode, useState } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import SecondaryButton from '@commercetools-uikit/secondary-button';
 
 type TModalControllerFunctionOptions = {
   isOpen: boolean;

@@ -1,29 +1,29 @@
 import { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { InfoModalPage } from '@commercetools-frontend/application-components';
 import {
   GtmContext,
   useMcQuery,
 } from '@commercetools-frontend/application-shell';
-import { CheckBoldIcon } from '@commercetools-uikit/icons';
-import LoadingSpinner from '@commercetools-uikit/loading-spinner';
-import Spacings from '@commercetools-uikit/spacings';
-import Text from '@commercetools-uikit/text';
-import Grid from '@commercetools-uikit/grid';
-import Constraints from '@commercetools-uikit/constraints';
-import {
-  formatLocalizedString,
-  transformLocalizedFieldToLocalizedString,
-} from '@commercetools-frontend/l10n';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   GRAPHQL_TARGETS,
   NO_VALUE_FALLBACK,
 } from '@commercetools-frontend/constants';
-import FetchStateQuery from './fetch-state.ctp.graphql';
+import {
+  formatLocalizedString,
+  transformLocalizedFieldToLocalizedString,
+} from '@commercetools-frontend/l10n';
+import Constraints from '@commercetools-uikit/constraints';
+import Grid from '@commercetools-uikit/grid';
+import { CheckBoldIcon } from '@commercetools-uikit/icons';
+import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import { ContentNotification } from '@commercetools-uikit/notifications';
+import Spacings from '@commercetools-uikit/spacings';
+import Text from '@commercetools-uikit/text';
 import { getErrorMessage } from '../../utils/get-error-message';
+import FetchStateQuery from './fetch-state.ctp.graphql';
 
 const getStateName = (state, dataLocale, projectLanguages) =>
   formatLocalizedString(

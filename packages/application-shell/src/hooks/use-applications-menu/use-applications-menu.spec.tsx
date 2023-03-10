@@ -1,13 +1,10 @@
+import { mocked } from 'jest-mock';
+import upperFirst from 'lodash/upperFirst';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import type {
   ApplicationWindow,
   ApplicationMenuLinksForDevelopmentConfig,
 } from '@commercetools-frontend/constants';
-import type { TFetchApplicationsMenuQuery } from '../../types/generated/proxy';
-import type { Config, MenuLoaderResult } from './use-applications-menu';
-
-import { mocked } from 'jest-mock';
-import upperFirst from 'lodash/upperFirst';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { transformLocalizedFieldToLocalizedString } from '@commercetools-frontend/l10n';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import {
@@ -16,7 +13,9 @@ import {
   waitFor,
   waitForElementToBeRemoved,
 } from '../../test-utils';
+import type { TFetchApplicationsMenuQuery } from '../../types/generated/proxy';
 import FetchApplicationsMenu from './fetch-applications-menu.proxy.graphql';
+import type { Config, MenuLoaderResult } from './use-applications-menu';
 import useApplicationsMenu from './use-applications-menu';
 
 jest.mock('@commercetools-frontend/sentry');

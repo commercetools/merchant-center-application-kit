@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
-import LoadingSpinner from '@commercetools-uikit/loading-spinner';
-import { customProperties } from '@commercetools-uikit/design-system';
 import CTLogoSVG from '@commercetools-frontend/assets/images/ct-logo.svg';
+import { customProperties } from '@commercetools-uikit/design-system';
+import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 
 type Props = {
   showLogo?: boolean;

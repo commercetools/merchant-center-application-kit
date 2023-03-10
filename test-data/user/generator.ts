@@ -1,6 +1,5 @@
-import type { TUser } from './types';
-
 import { fake, sequence, Generator } from '@commercetools-test-data/core';
+import type { TUser } from './types';
 
 const generator = Generator<TUser>({
   fields: {

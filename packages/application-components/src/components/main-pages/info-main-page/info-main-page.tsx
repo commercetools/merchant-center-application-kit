@@ -1,7 +1,7 @@
 import type { ReactElement, ReactNode } from 'react';
 import { useTheme } from '@commercetools-uikit/design-system';
-import CustomFormMainPage from '../custom-form-main-page';
 import PageHeaderTitle from '../../internals/page-header-title';
+import CustomFormMainPage from '../custom-form-main-page';
 
 type InfoMainPageProps = {
   /**

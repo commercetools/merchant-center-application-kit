@@ -1,8 +1,7 @@
-import type { ReducersMapObject } from 'redux';
-import type { TEnhancedStore } from '../../configure-store';
-
 import { ReactNode, useEffect, useState } from 'react';
 import { useStore } from 'react-redux';
+import type { ReducersMapObject } from 'redux';
+import type { TEnhancedStore } from '../../configure-store';
 
 type Props = {
   id: string;

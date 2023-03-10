@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from '@commercetools-uikit/design-system';
 import { themesOverrides } from '@commercetools-frontend/application-components';
+import { ThemeProvider } from '@commercetools-uikit/design-system';
 import Application from './application';
 
 const theme = process.env.NODE_ENV === 'production' ? 'default' : 'test';

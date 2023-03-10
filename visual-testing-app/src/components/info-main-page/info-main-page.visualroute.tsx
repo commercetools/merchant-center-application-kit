@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { InfoMainPage } from '@commercetools-frontend/application-components';
-import TextField from '@commercetools-uikit/text-field';
 import Spacings from '@commercetools-uikit/spacings';
+import TextField from '@commercetools-uikit/text-field';
 import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/info-main-page';

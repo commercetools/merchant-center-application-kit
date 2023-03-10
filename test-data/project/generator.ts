@@ -1,5 +1,5 @@
-import { faker } from '@faker-js/faker';
 import { fake, sequence, Generator } from '@commercetools-test-data/core';
+import { faker } from '@faker-js/faker';
 import type { TProject } from './types';
 
 const generator = Generator<TProject>({

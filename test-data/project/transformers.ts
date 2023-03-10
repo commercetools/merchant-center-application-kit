@@ -1,10 +1,9 @@
-import type { TProject, TProjectGraphql } from './types';
-
 import { Transformer } from '@commercetools-test-data/core';
-import * as AppliedPermissionMock from './fields/applied-permission';
 import * as AppliedActionRightMock from './fields/applied-action-right';
 import * as AppliedMenuVisibilitiesMock from './fields/applied-menu-visibilities';
+import * as AppliedPermissionMock from './fields/applied-permission';
 import * as AppliedStoreDataFenceMock from './fields/applied-store-data-fence';
+import type { TProject, TProjectGraphql } from './types';
 
 const transformers = {
   default: Transformer<TProject, TProjectGraphql>('default', {

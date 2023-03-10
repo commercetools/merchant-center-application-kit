@@ -1,10 +1,10 @@
 import type { Plugin, Connect } from 'vite';
 import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
+import { createMcDevAuthenticationMiddleware } from '@commercetools-frontend/mc-dev-authentication';
 import {
   replaceHtmlPlaceholders,
   processHeaders,
 } from '@commercetools-frontend/mc-html-template';
-import { createMcDevAuthenticationMiddleware } from '@commercetools-frontend/mc-dev-authentication';
 
 const vitePluginCustomApplication = (
   applicationConfig: ApplicationRuntimeConfig

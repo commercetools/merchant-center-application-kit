@@ -1,6 +1,5 @@
-import type { TPermissions } from './types';
-
 import { fake, Generator } from '@commercetools-test-data/core';
+import type { TPermissions } from './types';
 
 const generator = Generator<TPermissions>({
   fields: {

@@ -1,11 +1,11 @@
-import type { SingleValueProps, ValueContainerProps } from 'react-select';
 import { useCallback } from 'react';
 import { css } from '@emotion/react';
 import { FormattedMessage } from 'react-intl';
+import type { SingleValueProps, ValueContainerProps } from 'react-select';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
-import SelectInput from '@commercetools-uikit/select-input';
-import { WorldIcon } from '@commercetools-uikit/icons';
 import { designTokens } from '@commercetools-uikit/design-system';
+import { WorldIcon } from '@commercetools-uikit/icons';
+import SelectInput from '@commercetools-uikit/select-input';
 import messages from './messages';
 
 type CustomSingleValueProps = SingleValueProps & {

@@ -1,10 +1,10 @@
 import type { ThunkDispatch } from 'redux-thunk';
+import history from '@commercetools-frontend/browser-history';
 import type {
   TAppNotificationApiError,
   TStatusCode,
   ApplicationWindow,
 } from '@commercetools-frontend/constants';
-import history from '@commercetools-frontend/browser-history';
 import {
   STATUS_CODES,
   LOGOUT_REASONS,

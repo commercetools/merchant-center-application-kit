@@ -1,9 +1,9 @@
 import type { TBuilder } from '@commercetools-test-data/core';
-import type { TMenuVisibilities } from './types';
 
 import { Builder } from '@commercetools-test-data/core';
 import generator from './generator';
 import transformers from './transformers';
+import type { TMenuVisibilities } from './types';
 
 const AppliedMenuVisibilities = (): TBuilder<TMenuVisibilities> =>
   Builder<TMenuVisibilities>({

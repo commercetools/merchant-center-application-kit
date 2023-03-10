@@ -1,5 +1,5 @@
-import { useParams } from 'react-router-dom';
 import styled from '@emotion/styled';
+import { useParams } from 'react-router-dom';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import ProjectSwitcher from '../project-switcher';
 

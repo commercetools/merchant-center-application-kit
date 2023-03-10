@@ -1,6 +1,6 @@
 import type { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
-import { mergeMessages, mapLocaleToIntlLocale } from './utils';
 import loadMomentLocales from './moment-locales';
+import { mergeMessages, mapLocaleToIntlLocale } from './utils';
 
 export type I18NImportData = {
   default: Record<string, string> | Record<string, MessageFormatElement[]>;

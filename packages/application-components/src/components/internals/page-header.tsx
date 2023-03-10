@@ -1,8 +1,8 @@
 import type { ReactElement, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import { useTheme } from '@commercetools-uikit/design-system';
-import PageHeaderTitle from './page-header-title';
 import { designTokens as appKitDesignTokens } from '../../theming';
+import PageHeaderTitle from './page-header-title';
 
 type Props = {
   title: string;

@@ -1,5 +1,5 @@
-import { Factory } from 'rosie';
 import { faker } from '@faker-js/faker';
+import { Factory } from 'rosie';
 
 const CustomApplicationMenuLink = new Factory()
   .sequence('sequenceId')

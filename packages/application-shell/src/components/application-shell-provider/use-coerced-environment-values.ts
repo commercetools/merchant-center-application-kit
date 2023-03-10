@@ -1,6 +1,5 @@
-import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-
 import { useMemo } from 'react';
+import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 
 type ShallowJson = { [key: string]: unknown };
 

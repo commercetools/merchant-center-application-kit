@@ -1,11 +1,10 @@
+import { useEffect } from 'react';
+import warning from 'tiny-warning';
 import type {
   TNormalizedPermissions,
   TNormalizedActionRights,
   TNormalizedDataFences,
 } from '@commercetools-frontend/application-shell-connectors';
-
-import { useEffect } from 'react';
-import warning from 'tiny-warning';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import {

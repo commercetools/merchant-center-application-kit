@@ -1,9 +1,9 @@
+import { ReactNode } from 'react';
 import type { RenderOptions } from '@testing-library/react';
 
-import { ReactNode } from 'react';
 import { render } from '@testing-library/react';
-import { IntlProvider } from 'react-intl';
 import { createMemoryHistory, type MemoryHistory } from 'history';
+import { IntlProvider } from 'react-intl';
 import { Router } from 'react-router-dom';
 
 type CustomRenderOptions = {

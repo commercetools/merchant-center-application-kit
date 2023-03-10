@@ -1,6 +1,5 @@
-import type { TOrganization } from './types';
-
 import { fake, Generator } from '@commercetools-test-data/core';
+import type { TOrganization } from './types';
 
 const generator = Generator<TOrganization>({
   fields: {

@@ -1,9 +1,8 @@
-import type { TNotificationAction, TNotificationState } from './types';
-
 import { createStore, applyMiddleware } from 'redux';
 import { addNotification } from './action-creators';
-import reducer from './reducer';
 import middleware from './middleware';
+import reducer from './reducer';
+import type { TNotificationAction, TNotificationState } from './types';
 
 type FooNotification = {
   id: number;

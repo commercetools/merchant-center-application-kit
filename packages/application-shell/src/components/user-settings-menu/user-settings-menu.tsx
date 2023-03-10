@@ -1,35 +1,35 @@
 // TODO: @redesign cleanup
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useIntl, FormattedMessage } from 'react-intl';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { ToggleFeature } from '@flopflip/react-broadcast';
 import Downshift, {
   type ControllerStateAndHelpers,
   type DownshiftProps,
 } from 'downshift';
-import { ToggleFeature } from '@flopflip/react-broadcast';
-import Avatar from '@commercetools-uikit/avatar';
-import Spacings from '@commercetools-uikit/spacings';
-import Text from '@commercetools-uikit/text';
-import { CaretDownIcon } from '@commercetools-uikit/icons';
-import {
-  designTokens as uikitDesignTokens,
-  useTheme,
-} from '@commercetools-uikit/design-system';
-import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
+import { useIntl, FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
+import { designTokens as appkitDesignTokens } from '@commercetools-frontend/application-components';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   LOGOUT_REASONS,
   NO_VALUE_FALLBACK,
   SUPPORT_PORTAL_URL,
 } from '@commercetools-frontend/constants';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { designTokens as appkitDesignTokens } from '@commercetools-frontend/application-components';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
+import Avatar from '@commercetools-uikit/avatar';
+import {
+  designTokens as uikitDesignTokens,
+  useTheme,
+} from '@commercetools-uikit/design-system';
+import { CaretDownIcon } from '@commercetools-uikit/icons';
+import Spacings from '@commercetools-uikit/spacings';
+import Text from '@commercetools-uikit/text';
+import { DIMENSIONS } from '../../constants';
+import useApplicationsMenu from '../../hooks/use-applications-menu';
 import type { TUser } from '../../types/generated/mc';
 import type { TFetchApplicationsMenuQuery } from '../../types/generated/proxy';
-import useApplicationsMenu from '../../hooks/use-applications-menu';
-import { DIMENSIONS } from '../../constants';
 import messages from './messages';
 
 type Props = Pick<

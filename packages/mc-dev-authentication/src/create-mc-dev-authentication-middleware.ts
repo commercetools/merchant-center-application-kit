@@ -1,8 +1,8 @@
 import type { Request, Response, NextFunction } from 'express';
-import type { TCustomApplicationRuntimeConfig } from './types';
-import { logout } from './routes';
-// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import pages from /* preval */ './pages';
+import { logout } from './routes';
+import type { TCustomApplicationRuntimeConfig } from './types';
+// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 
 const trimTrailingSlash = (value: string) => value.replace(/\/$/, '');
 

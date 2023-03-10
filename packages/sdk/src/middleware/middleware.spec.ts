@@ -1,15 +1,14 @@
-import type { SuccessResult, ClientRequest } from '@commercetools/sdk-client';
-import type { Json, TSdkAction } from '../types';
-
 import { mocked } from 'jest-mock';
+import type { SuccessResult, ClientRequest } from '@commercetools/sdk-client';
 import {
   SHOW_LOADING,
   HIDE_LOADING,
   MC_API_PROXY_TARGETS,
 } from '@commercetools-frontend/constants';
 import * as sdkActions from '../actions';
-import createMiddleware from './middleware';
+import type { Json, TSdkAction } from '../types';
 import createClient from './client';
+import createMiddleware from './middleware';
 
 jest.mock('./client');
 jest.mock('../utils');

@@ -3,8 +3,8 @@ import {
   LOGOUT_REASONS,
   SUPPORT_PORTAL_URL,
 } from '@commercetools-frontend/constants';
-import { screen, renderApp, fireEvent, waitFor } from '../../test-utils';
 import FetchApplicationsMenu from '../../hooks/use-applications-menu/fetch-applications-menu.proxy.graphql';
+import { screen, renderApp, fireEvent, waitFor } from '../../test-utils';
 import UserSettingsMenu from './user-settings-menu';
 
 const createTestProps = (custom = {}) => ({

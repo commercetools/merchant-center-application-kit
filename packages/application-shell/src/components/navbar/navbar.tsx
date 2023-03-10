@@ -1,20 +1,3 @@
-import type { RouteComponentProps } from 'react-router-dom';
-import type {
-  TApplicationContext,
-  TNormalizedMenuVisibilities,
-  TNormalizedPermissions,
-  TNormalizedActionRights,
-  TNormalizedDataFences,
-} from '@commercetools-frontend/application-shell-connectors';
-import type { TFetchProjectQuery } from '../../types/generated/mc';
-import type {
-  TDataFence,
-  TActionRight,
-  TLocalizedField,
-  TNavbarMenu,
-  TBaseMenu,
-} from '../../types/generated/proxy';
-import type { TFlagVariation } from '@flopflip/types';
 import {
   forwardRef,
   lazy,
@@ -26,41 +9,58 @@ import {
   useMemo,
   useRef,
 } from 'react';
-import { FormattedMessage } from 'react-intl';
-import { NavLink, matchPath, useLocation } from 'react-router-dom';
-import { useFlagVariation } from '@flopflip/react-broadcast';
 import { Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { useFlagVariation } from '@flopflip/react-broadcast';
+import type { TFlagVariation } from '@flopflip/types';
 import classnames from 'classnames';
-import {
-  ArrowRightIcon,
-  BackIcon,
-  SupportIcon,
-} from '@commercetools-uikit/icons';
-import InlineSvg from '@commercetools-uikit/icons/inline-svg';
-import MissingImageSvg from '@commercetools-frontend/assets/images/diagonal-line.svg';
-import {
-  NO_VALUE_FALLBACK,
-  SUPPORT_PORTAL_URL,
-} from '@commercetools-frontend/constants';
+import { FormattedMessage } from 'react-intl';
+import { NavLink, matchPath, useLocation } from 'react-router-dom';
+import type { RouteComponentProps } from 'react-router-dom';
+import { designTokens as appkitDesignTokens } from '@commercetools-frontend/application-components';
 import {
   normalizeAllAppliedActionRights,
   normalizeAllAppliedDataFences,
   normalizeAllAppliedMenuVisibilities,
   normalizeAllAppliedPermissions,
 } from '@commercetools-frontend/application-shell-connectors';
-import { designTokens as appkitDesignTokens } from '@commercetools-frontend/application-components';
+import type {
+  TApplicationContext,
+  TNormalizedMenuVisibilities,
+  TNormalizedPermissions,
+  TNormalizedActionRights,
+  TNormalizedDataFences,
+} from '@commercetools-frontend/application-shell-connectors';
+import MissingImageSvg from '@commercetools-frontend/assets/images/diagonal-line.svg';
+import {
+  NO_VALUE_FALLBACK,
+  SUPPORT_PORTAL_URL,
+} from '@commercetools-frontend/constants';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
+import {
+  ArrowRightIcon,
+  BackIcon,
+  SupportIcon,
+} from '@commercetools-uikit/icons';
+import InlineSvg from '@commercetools-uikit/icons/inline-svg';
+import type { TFetchProjectQuery } from '../../types/generated/mc';
+import type {
+  TDataFence,
+  TActionRight,
+  TLocalizedField,
+  TNavbarMenu,
+  TBaseMenu,
+} from '../../types/generated/proxy';
 import { location } from '../../utils/location';
 import { GtmContext } from '../gtm-booter';
 import LoadingPlaceholder from '../loading-placeholder';
 import messages from './messages';
-import useLoadingMenuLayoutEffect from './use-loading-menu-layout-effect';
-import useNavbarStateManager from './use-navbar-state-manager';
-import nonNullable from './non-nullable';
-import trackingEvents from './tracking-events';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import compiledStyles from /* preval */ './navbar.styles';
+import nonNullable from './non-nullable';
+import trackingEvents from './tracking-events';
+import useLoadingMenuLayoutEffect from './use-loading-menu-layout-effect';
+import useNavbarStateManager from './use-navbar-state-manager';
 
 const styles = compiledStyles.jsonMap;
 
