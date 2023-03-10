@@ -14,13 +14,13 @@ type RenderFnArgs = {
   error?: ApolloError;
   project: TFetchProjectQuery['project'];
 };
-type Props = {
-  projectKey: string;
+type TFetchProjectProps = {
+  projectKey?: string;
   skip?: boolean;
   children: (args: RenderFnArgs) => ReactNode;
 };
 
-const FetchProject = (props: Props) => {
+const FetchProject = (props: TFetchProjectProps) => {
   const { loading, data, error } = useMcQuery<
     TFetchProjectQuery,
     TFetchProjectQueryVariables

@@ -56,7 +56,7 @@ import GlobalStyles from './global-styles';
 import RedirectToLogin from './redirect-to-login';
 import RedirectToLogout from './redirect-to-logout';
 
-type Props<AdditionalEnvironmentProperties extends {}> = {
+type TApplicationShellProps = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;
   /**
    * NOTE: the environment value passed here is usually `window.app`.
@@ -75,7 +75,7 @@ type Props<AdditionalEnvironmentProperties extends {}> = {
    * <ApplicationShell environment={window.app} />
    * ```
    */
-  environment: TApplicationContext<AdditionalEnvironmentProperties>['environment'];
+  environment: TApplicationContext<{}>['environment'];
   featureFlags?: TFlags;
   defaultFeatureFlags?: TFlags;
   trackingEventList?: TrackingList;
@@ -139,17 +139,15 @@ export const MainContainer = styled.main`
   position: relative;
 `;
 
-export const RestrictedApplication = <
-  AdditionalEnvironmentProperties extends {}
->(
+export const RestrictedApplication = (
   props: Omit<
-    Props<AdditionalEnvironmentProperties>,
+    TApplicationShellProps,
     'environment' | 'onRegisterErrorListeners'
   >
 ) => {
   const applicationEnvironment = useApplicationContext(
     (context) => context.environment
-  ) as TApplicationContext<AdditionalEnvironmentProperties>['environment'];
+  ) as TApplicationContext<{}>['environment'];
   // TODO: using this hook will subscribe the component to route updates.
   // This is currently useful for detecting a change in the project key
   // from URL ("/" --> "/:projectKey").
@@ -213,7 +211,7 @@ export const RestrictedApplication = <
 
         const projectKeyFromUrl = selectProjectKeyFromUrl(location.pathname);
         return (
-          <ApplicationContextProvider<AdditionalEnvironmentProperties>
+          <ApplicationContextProvider
             user={user}
             environment={applicationEnvironment}
           >
@@ -301,7 +299,7 @@ export const RestrictedApplication = <
                                         locale: dataLocale,
                                         setProjectDataLocale,
                                       }) => (
-                                        <ApplicationContextProvider<AdditionalEnvironmentProperties>
+                                        <ApplicationContextProvider
                                           user={user}
                                           project={project}
                                           projectDataLocale={dataLocale}
@@ -369,7 +367,7 @@ export const RestrictedApplication = <
                                     return <LoadingNavBar />;
 
                                   return (
-                                    <ApplicationContextProvider<AdditionalEnvironmentProperties>
+                                    <ApplicationContextProvider
                                       user={user}
                                       environment={applicationEnvironment}
                                       // NOTE: do not pass the `project` into the application context.
@@ -460,10 +458,8 @@ export const RestrictedApplication = <
                                   }
                                 </Route>
                                 {/* Project routes */}
-                                <Route
-                                  exact={true}
-                                  path="/"
-                                  render={() => {
+                                <Route exact={true} path="/">
+                                  {(() => {
                                     const previousProjectKey =
                                       getPreviousProjectKey(
                                         user?.defaultProjectKey ?? undefined
@@ -483,29 +479,23 @@ export const RestrictedApplication = <
                                     return (
                                       <Redirect to={`/${previousProjectKey}`} />
                                     );
-                                  }}
-                                />
-                                <Route
-                                  exact={false}
-                                  path="/:projectKey"
-                                  render={(routerProps) => (
-                                    <ProjectContainer<AdditionalEnvironmentProperties>
-                                      user={user}
-                                      match={routerProps.match}
-                                      location={routerProps.location}
-                                      environment={applicationEnvironment}
-                                      disableRoutePermissionCheck={
-                                        props.disableRoutePermissionCheck
-                                      }
-                                      // This effectively renders the
-                                      // children, which is the application
-                                      // specific part
-                                      render={props.render}
-                                    >
-                                      {props.children}
-                                    </ProjectContainer>
-                                  )}
-                                />
+                                  })()}
+                                </Route>
+                                <Route exact={false} path="/:projectKey">
+                                  <ProjectContainer
+                                    user={user}
+                                    environment={applicationEnvironment}
+                                    disableRoutePermissionCheck={
+                                      props.disableRoutePermissionCheck
+                                    }
+                                    // This effectively renders the
+                                    // children, which is the application
+                                    // specific part
+                                    render={props.render}
+                                  >
+                                    {props.children}
+                                  </ProjectContainer>
+                                </Route>
                               </Switch>
                             </div>
                           </MainContainer>
@@ -524,9 +514,7 @@ export const RestrictedApplication = <
 };
 RestrictedApplication.displayName = 'RestrictedApplication';
 
-const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
-  props: Props<AdditionalEnvironmentProperties>
-) => {
+const ApplicationShell = (props: TApplicationShellProps) => {
   useEffect(() => {
     props.onRegisterErrorListeners?.({
       dispatch: internalReduxStore.dispatch,
@@ -537,7 +525,7 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
   return (
     <>
       <GlobalStyles />
-      <ApplicationShellProvider<AdditionalEnvironmentProperties>
+      <ApplicationShellProvider
         apolloClient={props.apolloClient}
         environment={props.environment}
         trackingEventList={props.trackingEventList}
@@ -551,7 +539,7 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
                   <RedirectToLogout />
                 </Route>
                 <Route>
-                  <RestrictedApplication<AdditionalEnvironmentProperties>
+                  <RestrictedApplication
                     defaultFeatureFlags={props.defaultFeatureFlags}
                     featureFlags={props.featureFlags}
                     render={props.render}

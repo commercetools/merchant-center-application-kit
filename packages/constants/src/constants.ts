@@ -191,13 +191,9 @@ export interface ApplicationWindow extends Window {
     frontendHost: string;
     servedByProxy: boolean;
     // Optional properties. To use them, pass them to the `additionalEnv` object of the application config.
-    mcProxyApiUrl?: string;
     ldClientSideId?: string;
     trackingSentry?: string;
     trackingGtm?: string;
-    enableSignUp?: boolean;
-    enableLongLivedFeatureFlags?: boolean;
-    useFullRedirectsForLinks?: boolean;
     // Properties for OIDC-like workflow for development
     __DEVELOPMENT__?: {
       oidc?: ApplicationOidcForDevelopmentConfig;
