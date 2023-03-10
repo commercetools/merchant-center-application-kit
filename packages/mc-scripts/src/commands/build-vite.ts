@@ -5,6 +5,7 @@ import fs from 'fs-extra';
 import { build, type Plugin } from 'vite';
 import { packageLocation as applicationStaticAssetsPath } from '@commercetools-frontend/assets';
 import { generateTemplate } from '@commercetools-frontend/mc-html-template';
+import { manualChunks } from '../config/optimizations';
 import paths from '../config/paths';
 import pluginDynamicBaseAssetsGlobals from '../vite-plugins/vite-plugin-dynamic-base-assets-globals';
 import pluginSvgr from '../vite-plugins/vite-plugin-svgr';
@@ -40,6 +41,7 @@ async function run() {
         // NOTE that after the build, Vite will write the `index.html` (template)
         // at the `/public/public/index.html` location. See `fs.renameSync` below.
         input: paths.appIndexHtml,
+        output: { manualChunks },
       },
     },
     server: {
