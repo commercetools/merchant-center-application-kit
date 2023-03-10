@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { FormattedMessage } from 'react-intl';
 import type { SingleValueProps, ValueContainerProps } from 'react-select';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
-import { designTokens } from '@commercetools-uikit/design-system';
+import { designTokens, useTheme } from '@commercetools-uikit/design-system';
 import { WorldIcon } from '@commercetools-uikit/icons';
 import SelectInput from '@commercetools-uikit/select-input';
 import messages from './messages';
@@ -19,41 +19,47 @@ type Props = {
 
 const LOCALE_SWITCHER_LABEL_ID = 'locale-switcher-label';
 
-export const SingleValue = (props: CustomSingleValueProps) => (
-  <div
-    css={css`
-      flex: 1;
-      align-items: center;
-      display: flex;
-    `}
-  >
-    <WorldIcon size="big" />
-    <span
+export const SingleValue = (props: CustomSingleValueProps) => {
+  const { themedValue } = useTheme();
+  return (
+    <div
       css={css`
-        margin-left: 2px;
         flex: 1;
-        color: ${designTokens.colorAccent};
-      `}
-    >
-      {props.children}
-    </span>
-    <span
-      css={css`
-        width: 22px;
-        height: 22px;
-        border-radius: 100%;
-        background: ${designTokens.colorAccent40};
-        color: ${designTokens.colorSurface};
-        font-size: 0.9rem;
-        display: flex;
-        justify-content: center;
         align-items: center;
+        display: flex;
       `}
     >
-      {props.localeCount}
-    </span>
-  </div>
-);
+      <WorldIcon size="big" />
+      <span
+        css={css`
+          margin-left: 2px;
+          flex: 1;
+          color: ${designTokens.colorAccent};
+        `}
+      >
+        {props.children}
+      </span>
+      <span
+        css={css`
+          width: ${themedValue('22px', '26px')};
+          height: ${themedValue('22px', '26px')};
+          border-radius: 100%;
+          background: ${themedValue(
+            designTokens.colorAccent40,
+            designTokens.colorNeutral
+          )};
+          color: ${designTokens.colorSurface};
+          font-size: ${themedValue('0.9rem', '1rem')};
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        `}
+      >
+        {props.localeCount}
+      </span>
+    </div>
+  );
+};
 SingleValue.displayName = 'SingleValue';
 
 const PatchedValueContainer = (props: ValueContainerProps) => (
@@ -65,6 +71,7 @@ const PatchedValueContainer = (props: ValueContainerProps) => (
 PatchedValueContainer.displayName = 'PatchedValueContainer';
 
 const LocaleSwitcher = (props: Props) => {
+  const { themedValue } = useTheme();
   const { setProjectDataLocale } = props;
   const handleSelection = useCallback(
     (event) => {
@@ -76,7 +83,10 @@ const LocaleSwitcher = (props: Props) => {
     <div
       css={css`
         position: relative;
-        width: ${designTokens.constraint3};
+        width: ${themedValue(
+          designTokens.constraint3,
+          designTokens.constraint4
+        )};
       `}
       data-track-component="LocaleSwitch"
     >
