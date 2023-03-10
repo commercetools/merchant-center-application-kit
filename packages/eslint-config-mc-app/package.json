@@ -38,7 +38,7 @@
     "eslint": "8.x"
   },
   "devDependencies": {
-    "eslint": "8.34.0"
+    "eslint": "8.35.0"
   },
   "engines": {
     "node": "14.x || >=16.0.0"
