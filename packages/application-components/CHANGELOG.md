@@ -1,5 +1,22 @@
 # @commercetools-frontend/application-components
 
+## 21.23.10
+
+### Patch Changes
+
+- [#2988](https://github.com/commercetools/merchant-center-application-kit/pull/2988) [`60d8dce37`](https://github.com/commercetools/merchant-center-application-kit/commit/60d8dce3715d19bc15d2083f3f4a9e736627274b) Thanks [@kark](https://github.com/kark)! - Update `ui-kit` dependencies
+
+- [#2987](https://github.com/commercetools/merchant-center-application-kit/pull/2987) [`7f2ede7a4`](https://github.com/commercetools/merchant-center-application-kit/commit/7f2ede7a49d17299b3955fa521dcfc5bb6c90586) Thanks [@kark](https://github.com/kark)! - Add `themeParentSelector` prop to `PageContentWide`
+
+- [#2985](https://github.com/commercetools/merchant-center-application-kit/pull/2985) [`7c8754974`](https://github.com/commercetools/merchant-center-application-kit/commit/7c87549749003a6b10014962881d49fcbe0f85d3) Thanks [@tdeekens](https://github.com/tdeekens)! - Refactor to change spacing on `PublicPageContentLayout` enabled only in new design.
+
+- Updated dependencies [[`60d8dce37`](https://github.com/commercetools/merchant-center-application-kit/commit/60d8dce3715d19bc15d2083f3f4a9e736627274b)]:
+  - @commercetools-frontend/i18n@21.23.10
+  - @commercetools-frontend/application-shell-connectors@21.23.10
+  - @commercetools-frontend/assets@21.23.10
+  - @commercetools-frontend/constants@21.23.10
+  - @commercetools-frontend/l10n@21.23.10
+
 ## 21.23.9
 
 ### Patch Changes

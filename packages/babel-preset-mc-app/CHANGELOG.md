@@ -1,5 +1,7 @@
 # @commercetools-frontend/babel-preset-mc-app
 
+## 21.23.10
+
 ## 21.23.9
 
 ### Patch Changes
