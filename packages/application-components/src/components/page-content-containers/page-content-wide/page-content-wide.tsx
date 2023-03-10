@@ -8,6 +8,7 @@ export type TPageContentWide = {
   columns: '1' | '1/1' | '2/1';
   gapSize: '10' | '20';
   children: ReactNode;
+  themeParentSelector?: () => HTMLElement | null;
 };
 
 const Content = styled.section<
@@ -53,7 +54,7 @@ const Container = styled.div`
 `;
 
 function PageContentWide(props: TPageContentWide) {
-  const { isNewTheme } = useTheme();
+  const { isNewTheme } = useTheme(props.themeParentSelector);
   const [leftChild, rightChild] = Children.toArray(props.children);
 
   useWarning(
