@@ -4442,6 +4442,7 @@ __metadata:
     "@types/prompts": ^2.4.2
     "@types/serve-handler": ^6.1.1
     "@types/svgo": ^2.6.4
+    "@types/webpack-bundle-analyzer": ^4.6.0
     "@vitejs/plugin-react": 3.1.0
     "@vitejs/plugin-react-swc": 3.2.0
     autoprefixer: ^10.4.13
@@ -12691,6 +12692,17 @@ __metadata:
   version: 3.0.0
   resolution: "@types/warning@npm:3.0.0"
   checksum: 120dcf90600d583c68a60872200061eab9318ae15ea898581f8e9a6dc71b7941095dd81d8324e36d2a6006e5e12b6fc1cf8eda00cc514ee12bb39a912cc4e040
+  languageName: node
+  linkType: hard
+
+"@types/webpack-bundle-analyzer@npm:^4.6.0":
+  version: 4.6.0
+  resolution: "@types/webpack-bundle-analyzer@npm:4.6.0"
+  dependencies:
+    "@types/node": "*"
+    tapable: ^2.2.0
+    webpack: ^5
+  checksum: 1cd5baa621a1dbe820bacf981d6e48f3423b733fb5e33c1356347e73d5e3e880ae6ebacf8f43d9e47e135d3ed2653ec5e40e12c6ce187f2eb3f548d9c949f6aa
   languageName: node
   linkType: hard
 
