@@ -14,7 +14,7 @@
  * We neeed to check if at least the first 4 parts (right-to-left) are
  * the same.
  */
-export function getMcOrigin(mcApiUrl: string, actualWindow = window) {
+function getMcOrigin(mcApiUrl: string, actualWindow = window) {
   const mcApiUrlObject = new URL(mcApiUrl);
 
   const [tldMcApi, ctDomainMcApi, providerMcApi, regionMcApi] =
@@ -34,3 +34,5 @@ export function getMcOrigin(mcApiUrl: string, actualWindow = window) {
 
   return mcApiUrlObject.origin.replace('mc-api', 'mc');
 }
+
+export default getMcOrigin;

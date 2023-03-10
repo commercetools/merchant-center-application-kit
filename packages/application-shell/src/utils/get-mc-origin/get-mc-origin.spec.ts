@@ -1,4 +1,4 @@
-import { getMcOrigin } from './helpers';
+import getMcOrigin from './get-mc-origin';
 
 describe.each`
   mcApiUrl                                               | mcUrl                                                   | realMcUrl
