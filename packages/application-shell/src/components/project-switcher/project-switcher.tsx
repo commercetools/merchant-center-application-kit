@@ -1,3 +1,4 @@
+// TODO: @redesign cleanup
 import { css } from '@emotion/react';
 import memoize from 'memoize-one';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -6,7 +7,7 @@ import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
-import { designTokens } from '@commercetools-uikit/design-system';
+import { designTokens, useTheme } from '@commercetools-uikit/design-system';
 import { ErrorIcon } from '@commercetools-uikit/icons';
 import SelectInput from '@commercetools-uikit/select-input';
 import { useMcQuery } from '../../hooks/apollo-hooks';
@@ -37,40 +38,49 @@ const PROJECT_SWITCHER_LABEL_ID = 'project-switcher-label';
 export const ProjectSwitcherValueContainer = ({
   projectCount,
   ...restProps
-}: CustomValueContainerProps) => (
-  <div
-    css={css`
-      display: flex;
-      flex: 1;
-      align-items: center;
-    `}
-  >
+}: CustomValueContainerProps) => {
+  const { themedValue } = useTheme();
+  return (
     <div
       css={css`
-        flex: 1;
-      `}
-    >
-      <SelectInput.ValueContainer {...restProps}>
-        {restProps.children}
-      </SelectInput.ValueContainer>
-    </div>
-    <span
-      css={css`
-        width: 22px;
-        height: 22px;
-        border-radius: 100%;
-        background: ${designTokens.colorAccent40};
-        color: ${designTokens.colorSurface};
-        font-size: 0.9rem;
         display: flex;
-        justify-content: center;
+        flex: 1;
         align-items: center;
       `}
     >
-      {projectCount}
-    </span>
-  </div>
-);
+      <div
+        css={css`
+          flex: 1;
+        `}
+      >
+        <SelectInput.ValueContainer {...restProps}>
+          {restProps.children}
+        </SelectInput.ValueContainer>
+      </div>
+      <span
+        css={css`
+          width: ${themedValue('22px', '26px')};
+          height: ${themedValue('22px', '26px')};
+          border-radius: 100%;
+          background: ${themedValue(
+            designTokens.colorAccent40,
+            designTokens.colorNeutral
+          )};
+          color: ${designTokens.colorSurface};
+          font-size: ${themedValue(
+            designTokens.fontSize15,
+            designTokens.fontSize30
+          )};
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        `}
+      >
+        {projectCount}
+      </span>
+    </div>
+  );
+};
 
 export const ProjectSwitcherOption = (props: OptionProps) => {
   const project = props.data as OptionType;
