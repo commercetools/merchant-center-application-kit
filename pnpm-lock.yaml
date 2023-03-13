@@ -1228,20 +1228,20 @@ importers:
         specifier: 11.11.0
         version: 11.11.0(@emotion/react@11.11.0)(@types/react@17.0.56)(react@17.0.2)
       '@flopflip/combine-adapters':
-        specifier: 12.5.6
-        version: 12.5.6(typescript@4.9.5)
+        specifier: 13.0.0
+        version: 13.0.0(typescript@4.9.5)
       '@flopflip/http-adapter':
-        specifier: 12.5.6
-        version: 12.5.6(typescript@4.9.5)
+        specifier: 13.0.0
+        version: 13.0.0(typescript@4.9.5)
       '@flopflip/launchdarkly-adapter':
-        specifier: 12.5.6
-        version: 12.5.6(typescript@4.9.5)
+        specifier: 13.0.0
+        version: 13.0.0(typescript@4.9.5)
       '@flopflip/react-broadcast':
-        specifier: 12.5.6
-        version: 12.5.6(react-dom@17.0.2)(react@17.0.2)(typescript@4.9.5)
+        specifier: 13.0.0
+        version: 13.0.0(react-dom@17.0.2)(react@17.0.2)(typescript@4.9.5)
       '@flopflip/types':
-        specifier: 12.5.6
-        version: 12.5.6(typescript@4.9.5)
+        specifier: 13.0.0
+        version: 13.0.0(typescript@4.9.5)
       '@reduxjs/toolkit':
         specifier: 1.9.5
         version: 1.9.5(react-redux@7.2.9)(react@17.0.2)
@@ -5631,6 +5631,20 @@ packages:
     dependencies:
       regenerator-runtime: 0.13.11
 
+  /@babel/runtime@7.21.0:
+    resolution: {integrity: sha512-xwII0//EObnq89Ji5AKYQaRYiW/nZ3llSv29d49IuxPhKbtJoLP+9QUUZ4nVragQVtaVGeZrpB+ZtG/Pdy/POw==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.13.11
+    dev: false
+
+  /@babel/runtime@7.21.5:
+    resolution: {integrity: sha512-8jI69toZqqcsnqGGqwGS4Qb1VwLOEp4hz+CXPywcvjs60u3B4Pom/U/7rm4W8tMOYEB+E9wgD0mW1l3r8qlI9Q==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.13.11
+    dev: false
+
   /@babel/runtime@7.22.6:
     resolution: {integrity: sha512-wDb5pWm4WDdF6LFUde3Jl8WzPA+3ZbxYqkC6xAXuD3irdEHN1k0NfTRrJD8ZD378SJ61miMLCqIOXYhd8x+AJQ==}
     engines: {node: '>=6.9.0'}
@@ -6229,7 +6243,7 @@ packages:
   /@commercetools-test-data/utils@4.11.1:
     resolution: {integrity: sha512-Y8NbbSPWht2GAcX7pQiVhjCJwn4FMZpRq6fyCq5ZjPr+gWXkfoO0f+gZncI/1asShs5fAXavyQx+bw1/2CtZng==}
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.6
       '@babel/runtime-corejs3': 7.20.13
       '@faker-js/faker': 7.6.0
     dev: false
@@ -6265,7 +6279,7 @@ packages:
       '@commercetools-uikit/utils': 16.5.0(react@17.0.2)
       '@emotion/react': 11.11.0(@types/react@17.0.56)(react@17.0.2)
       '@emotion/styled': 11.11.0(@emotion/react@11.11.0)(@types/react@17.0.56)(react@17.0.2)
-      '@types/react-is': 17.0.3
+      '@types/react-is': 17.0.4
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
@@ -6285,7 +6299,7 @@ packages:
       '@commercetools-uikit/utils': 16.5.0(react@18.2.0)
       '@emotion/react': 11.11.0(@types/react@17.0.56)(react@18.2.0)
       '@emotion/styled': 11.11.0(@emotion/react@11.11.0)(@types/react@17.0.56)(react@18.2.0)
-      '@types/react-is': 17.0.3
+      '@types/react-is': 17.0.4
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 18.2.0
@@ -6635,7 +6649,7 @@ packages:
       react: 17.x
       react-intl: 6.x
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.6
       '@babel/runtime-corejs3': 7.20.13
       '@commercetools-uikit/messages': 16.4.0(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
       '@emotion/react': 11.11.0(@types/react@17.0.56)(react@17.0.2)
@@ -6672,7 +6686,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.6
       '@babel/runtime-corejs3': 7.20.13
       '@commercetools-uikit/constraints': 16.4.0(@types/react@17.0.56)(react@17.0.2)
       '@commercetools-uikit/design-system': 16.4.0(@types/react@17.0.56)
@@ -6999,7 +7013,7 @@ packages:
       react: 17.x
       react-intl: 6.x
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.6
       '@babel/runtime-corejs3': 7.20.13
       '@commercetools-uikit/design-system': 16.4.0(@types/react@17.0.56)
       '@commercetools-uikit/flat-button': 16.4.0(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
@@ -7266,7 +7280,7 @@ packages:
   /@commercetools-uikit/localized-utils@16.4.0(react@17.0.2):
     resolution: {integrity: sha512-PaZeTu8pBTBoZ1qirYAVHhseJv2InNUZp24h1n6px4Sqiyc7tyj7G55frAnDBd2B5Yu0qvFKyGppGRU9m1cF0Q==}
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.6
       '@babel/runtime-corejs3': 7.20.13
       '@commercetools-uikit/utils': 16.4.0(react@17.0.2)
       lodash: 4.17.21
@@ -7411,7 +7425,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.6
       '@babel/runtime-corejs3': 7.20.13
       '@commercetools-uikit/constraints': 16.4.0(@types/react@17.0.56)(react@17.0.2)
       '@commercetools-uikit/design-system': 16.4.0(@types/react@17.0.56)
@@ -7894,7 +7908,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.6
       '@babel/runtime-corejs3': 7.20.13
       '@commercetools-uikit/design-system': 16.4.0(@types/react@17.0.56)
       '@commercetools-uikit/utils': 16.4.0(react@17.0.2)
@@ -7942,7 +7956,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.6
       '@babel/runtime-corejs3': 7.20.13
       '@commercetools-uikit/design-system': 16.4.0(@types/react@17.0.56)
       '@commercetools-uikit/utils': 16.4.0(react@17.0.2)
@@ -7958,7 +7972,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.6
       '@babel/runtime-corejs3': 7.20.13
       '@commercetools-uikit/design-system': 16.4.0(@types/react@17.0.56)
       '@commercetools-uikit/utils': 16.4.0(react@18.2.0)
@@ -8006,7 +8020,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.6
       '@babel/runtime-corejs3': 7.20.13
       '@commercetools-uikit/design-system': 16.4.0(@types/react@17.0.56)
       '@commercetools-uikit/utils': 16.4.0(react@17.0.2)
@@ -8767,7 +8781,7 @@ packages:
     resolution: {integrity: sha512-m4HEDZleaaCH+XgDDsPF15Ht6wTLsgDTeR3WYj9Q/k76JtWhrJjcP4+/XlG8LGT/Rol9qUfOIztXeA84ATpqPQ==}
     dependencies:
       '@babel/helper-module-imports': 7.21.4
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.6
       '@emotion/hash': 0.9.1
       '@emotion/memoize': 0.8.1
       '@emotion/serialize': 1.1.2
@@ -8899,7 +8913,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.6
       '@emotion/babel-plugin': 11.11.0
       '@emotion/is-prop-valid': 1.2.1
       '@emotion/react': 11.11.0(@types/react@17.0.56)(react@17.0.2)
@@ -8920,7 +8934,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.6
       '@emotion/babel-plugin': 11.11.0
       '@emotion/is-prop-valid': 1.2.1
       '@emotion/react': 11.11.0(@types/react@17.0.56)(react@18.2.0)
@@ -9208,38 +9222,38 @@ packages:
       '@floating-ui/core': 1.2.6
     dev: false
 
-  /@flopflip/adapter-utilities@12.5.6(typescript@4.9.5):
-    resolution: {integrity: sha512-UicU3AknSsTOQtGCey6IALdKFvAIsbqJcPvgZELXT/X36efHq38BaaoBLvUJwcPK9KD9goKqSl8QQdLLImPioQ==}
+  /@flopflip/adapter-utilities@13.0.0(typescript@4.9.5):
+    resolution: {integrity: sha512-Cc1/lM/cE7I4uqhsG5na2PQFXiCWtR9jjnGfsIJCajs9Okn9BHvL00ULh6BCJG3szPsTn+z0Yj5qnU7qOsT2hQ==}
     peerDependencies:
       typescript: 4.x
     dependencies:
-      '@babel/runtime': 7.20.13
-      '@flopflip/types': 12.5.6(typescript@4.9.5)
+      '@babel/runtime': 7.21.0
+      '@flopflip/types': 13.0.0(typescript@4.9.5)
       globalthis: 1.0.3
       lodash: 4.17.21
       typescript: 4.9.5
     dev: false
 
-  /@flopflip/combine-adapters@12.5.6(typescript@4.9.5):
-    resolution: {integrity: sha512-CmnKmyfN90wPUpr5wf3O+U1sv95w4D4UFy/V1em9mFrVxmP8yvShPUiAjUXLV+ouuz3H+VowtO/A8o3P14x+fg==}
+  /@flopflip/combine-adapters@13.0.0(typescript@4.9.5):
+    resolution: {integrity: sha512-xYgUmmw+I1UaHMMh96HNlf6TPzq5/MxKvzo2t9AtdI9DABXsF4B9JQhtd9NOfZKquyzCRUlESrYxGGCmcEVlTg==}
     dependencies:
-      '@babel/runtime': 7.20.13
-      '@flopflip/adapter-utilities': 12.5.6(typescript@4.9.5)
-      '@flopflip/types': 12.5.6(typescript@4.9.5)
+      '@babel/runtime': 7.21.0
+      '@flopflip/adapter-utilities': 13.0.0(typescript@4.9.5)
+      '@flopflip/types': 13.0.0(typescript@4.9.5)
       mitt: 3.0.0
       tiny-warning: 1.0.3
     transitivePeerDependencies:
       - typescript
     dev: false
 
-  /@flopflip/http-adapter@12.5.6(typescript@4.9.5):
-    resolution: {integrity: sha512-ky7w1DwHqAsc6/6OgNUD05YtGyButVxR0PNpq9YglGcXJqGZuYeVBHu+nySjWlRWWqF5nSI9FWZpnLU/c2j6CA==}
+  /@flopflip/http-adapter@13.0.0(typescript@4.9.5):
+    resolution: {integrity: sha512-7XWStAAMiaEzXpHJ6hsBuskm6X2tW7R7+KoRtX1+5CInW0O5SV6BVoBpTOaImWYVD/8s4U4Xb5qv9GpzZxDBsA==}
     dependencies:
-      '@babel/runtime': 7.20.13
-      '@flopflip/adapter-utilities': 12.5.6(typescript@4.9.5)
-      '@flopflip/localstorage-cache': 12.5.6(typescript@4.9.5)
-      '@flopflip/sessionstorage-cache': 12.5.6(typescript@4.9.5)
-      '@flopflip/types': 12.5.6(typescript@4.9.5)
+      '@babel/runtime': 7.21.0
+      '@flopflip/adapter-utilities': 13.0.0(typescript@4.9.5)
+      '@flopflip/localstorage-cache': 13.0.0(typescript@4.9.5)
+      '@flopflip/sessionstorage-cache': 13.0.0(typescript@4.9.5)
+      '@flopflip/types': 13.0.0(typescript@4.9.5)
       lodash: 4.17.21
       mitt: 3.0.0
       tiny-warning: 1.0.3
@@ -9247,12 +9261,12 @@ packages:
       - typescript
     dev: false
 
-  /@flopflip/launchdarkly-adapter@12.5.6(typescript@4.9.5):
-    resolution: {integrity: sha512-VkvlnrBzsPkGCz50GzWuzrLDpIPEoAi7yGnFKRfD5gsVw98C/OXatThM8TZVy6YQPGmFxJZycg2aXYqyBUnx8Q==}
+  /@flopflip/launchdarkly-adapter@13.0.0(typescript@4.9.5):
+    resolution: {integrity: sha512-XdOwxsuHPc2ZVz3ugoV9a0QYOUmsKv6yOxf/6DnMtXY20D0nk4ksRSCkvGEi5QmZstvV5XII9MSMg8aOg4lHtA==}
     dependencies:
-      '@babel/runtime': 7.20.13
-      '@flopflip/adapter-utilities': 12.5.6(typescript@4.9.5)
-      '@flopflip/types': 12.5.6(typescript@4.9.5)
+      '@babel/runtime': 7.21.0
+      '@flopflip/adapter-utilities': 13.0.0(typescript@4.9.5)
+      '@flopflip/types': 13.0.0(typescript@4.9.5)
       debounce-fn: 4.0.0
       launchdarkly-js-client-sdk: 3.1.1
       lodash: 4.17.21
@@ -9263,23 +9277,23 @@ packages:
       - typescript
     dev: false
 
-  /@flopflip/localstorage-cache@12.5.6(typescript@4.9.5):
-    resolution: {integrity: sha512-mBNfOoIH5nbwOQEGvJNWj8FjOel7pATR274xhjKmRJCcLsZhHnXV/rQ0HYb9uCLL0gYxaMqUAh6asENsVbIZ8A==}
+  /@flopflip/localstorage-cache@13.0.0(typescript@4.9.5):
+    resolution: {integrity: sha512-0rM6ZvdnbU0xMssH3PGxuy6Q/sSx2F+PiDoEioloAfR4SSOSPWj7q19I9RirKleMxbibSWu5+ElW00If6T7ppA==}
     dependencies:
-      '@flopflip/types': 12.5.6(typescript@4.9.5)
+      '@flopflip/types': 13.0.0(typescript@4.9.5)
     transitivePeerDependencies:
       - typescript
     dev: false
 
-  /@flopflip/react-broadcast@12.5.6(react-dom@17.0.2)(react@17.0.2)(typescript@4.9.5):
-    resolution: {integrity: sha512-z8MpMSlmRUOL14QSwL5F/eh8b3Z1uNPSmgRe+0uXi+5kY8RnloiVDoI+/UtiVj8x8KcHGw+VfEeLtqAe8maT5A==}
+  /@flopflip/react-broadcast@13.0.0(react-dom@17.0.2)(react@17.0.2)(typescript@4.9.5):
+    resolution: {integrity: sha512-ILX+xRDIE60n6/Lu5BrglfMCeSklWo+ljfL1y7c7GyUbRmcx3MZZkWsX8z+85bZqROWMid9rfQCR23l3vFYU/A==}
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0.0
       react-dom: ^16.8 || ^17.0 || ^18.0.0
     dependencies:
-      '@babel/runtime': 7.20.13
-      '@flopflip/react': 12.5.6(react-dom@17.0.2)(react@17.0.2)(typescript@4.9.5)
-      '@flopflip/types': 12.5.6(typescript@4.9.5)
+      '@babel/runtime': 7.21.0
+      '@flopflip/react': 13.0.2(react-dom@17.0.2)(react@17.0.2)(typescript@4.9.5)
+      '@flopflip/types': 13.0.0(typescript@4.9.5)
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
       use-sync-external-store: 1.2.0(react@17.0.2)
@@ -9287,39 +9301,48 @@ packages:
       - typescript
     dev: false
 
-  /@flopflip/react@12.5.6(react-dom@17.0.2)(react@17.0.2)(typescript@4.9.5):
-    resolution: {integrity: sha512-MK6vp3bfroz4nXyEKASnOmbXyPEUS1zOJ3bJuITeiJNzjyIGMNhbdPxlIfwZncxIKdFCImjXG9zG4qOsnYxKbg==}
+  /@flopflip/react@13.0.2(react-dom@17.0.2)(react@17.0.2)(typescript@4.9.5):
+    resolution: {integrity: sha512-78QG5WQLXSNogaeTWw1dxzJxHwXySTNdzc6rdrZd/urcVZ2soAbVdYYK7CHDYZ09UUxByx5xgNxAAj6OR0TIxA==}
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0.0
       react-dom: ^16.8 || ^17.0 || ^18.0.0
     dependencies:
-      '@babel/runtime': 7.20.13
-      '@flopflip/types': 12.5.6(typescript@4.9.5)
-      '@types/react-is': 17.0.3
+      '@babel/runtime': 7.21.5
+      '@flopflip/types': 13.0.2(typescript@4.9.5)
+      '@types/react-is': 17.0.4
       lodash: 4.17.21
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
       react-is: 18.2.0
       tiny-warning: 1.0.3
-      ts-deepmerge: 5.0.0
+      ts-deepmerge: 6.0.3
     transitivePeerDependencies:
       - typescript
     dev: false
 
-  /@flopflip/sessionstorage-cache@12.5.6(typescript@4.9.5):
-    resolution: {integrity: sha512-7Yx30uYt9qe4Op/iQV+ReOgmX+MaORa3+yoJww7uVGYEFBFgPPeGn63a00ihTPpI5dzOryPyfJKd2jO/QxWiCg==}
+  /@flopflip/sessionstorage-cache@13.0.0(typescript@4.9.5):
+    resolution: {integrity: sha512-PSsgxHa6i1a09IDBPNX4VfCR8ry5/YiCMng+Z1nn5Kxl42dWj+VCzaKN01/6ldWzMfR4r9Tk3dtmSaEymSxDWg==}
     dependencies:
-      '@flopflip/types': 12.5.6(typescript@4.9.5)
+      '@flopflip/types': 13.0.0(typescript@4.9.5)
     transitivePeerDependencies:
       - typescript
     dev: false
 
-  /@flopflip/types@12.5.6(typescript@4.9.5):
-    resolution: {integrity: sha512-+of1HcMlJb9LS+WqYGM+c6aL1Zv6gK3QPi/CBERA15YPBrqemYo7UJJJarKu36P78hLnknPrkn6QkNcl0uZfuw==}
+  /@flopflip/types@13.0.0(typescript@4.9.5):
+    resolution: {integrity: sha512-i2yGXmtAqvJ6S7e2yBCZMXp7uWQX27Y9UR0/5CXmJtIkJOUYs5p8p0IUIZ4X0dX48VG1iMDQENFA1qigmZFsJw==}
     peerDependencies:
       typescript: 4.x
     dependencies:
       launchdarkly-js-client-sdk: 3.1.1
+      typescript: 4.9.5
+    dev: false
+
+  /@flopflip/types@13.0.2(typescript@4.9.5):
+    resolution: {integrity: sha512-PWxuK91hcNERKmSnogGgupQa1p5giKAB1YIFRaf3itlkSUsQainzbBKZcgyoYubqpG1RulVO3o6j5FVGwfCA7g==}
+    peerDependencies:
+      typescript: 4.x || 5.x
+    dependencies:
+      launchdarkly-js-client-sdk: 3.1.3
       typescript: 4.9.5
     dev: false
 
@@ -12741,7 +12764,7 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       '@babel/code-frame': 7.21.4
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.6
       '@types/aria-query': 5.0.1
       aria-query: 5.1.3
       chalk: 4.1.2
@@ -13283,6 +13306,12 @@ packages:
 
   /@types/react-is@17.0.3:
     resolution: {integrity: sha512-aBTIWg1emtu95bLTLx0cpkxwGW3ueZv71nE2YFBpL8k/z5czEW8yYpOo8Dp+UUAFAtKwNaOsh/ioSeQnWlZcfw==}
+    dependencies:
+      '@types/react': 17.0.56
+    dev: false
+
+  /@types/react-is@17.0.4:
+    resolution: {integrity: sha512-FLzd0K9pnaEvKz4D1vYxK9JmgQPiGk1lu23o1kqGsLeT0iPbRSF7b76+S5T9fD8aRa0B8bY7I/3DebEj+1ysBA==}
     dependencies:
       '@types/react': 17.0.56
     dev: false
@@ -23157,8 +23186,23 @@ packages:
       launchdarkly-js-sdk-common: 5.0.2
     dev: false
 
+  /launchdarkly-js-client-sdk@3.1.3:
+    resolution: {integrity: sha512-/JR/ri8z3bEj9RFTTKDjd+con4F1MsWUea1MmBDtFj4gDA0l9NDm1KzhMKiIeoBdmB2rSaeFYe4CaYOEp8IryA==}
+    dependencies:
+      escape-string-regexp: 4.0.0
+      launchdarkly-js-sdk-common: 5.0.3
+    dev: false
+
   /launchdarkly-js-sdk-common@5.0.2:
     resolution: {integrity: sha512-fD4YndDUVWSyAFE2NdzeBSgpjPxyRN8+mz3p+VXKnDAPt3bdzGIEHrvusbY/K8fKZjpo4vRd7soNiA1EejkEPQ==}
+    dependencies:
+      base64-js: 1.5.1
+      fast-deep-equal: 2.0.1
+      uuid: 8.3.2
+    dev: false
+
+  /launchdarkly-js-sdk-common@5.0.3:
+    resolution: {integrity: sha512-wKG8UsVbPVq8+7eavgAm5CVmulQWN6Ddod2ZoA3euZ1zPvJPwIQ2GrOYaCJr3cFrrMIX+nQyBJHBHYxUAPcM+Q==}
     dependencies:
       base64-js: 1.5.1
       fast-deep-equal: 2.0.1
@@ -26934,7 +26978,7 @@ packages:
     peerDependencies:
       react: '>=16.13.1'
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.6
       react: 17.0.2
 
   /react-error-overlay@6.0.11:
@@ -29746,6 +29790,11 @@ packages:
   /ts-deepmerge@5.0.0:
     resolution: {integrity: sha512-K1V6dniogjom+6jsLCysv7y6/Hd04/a9DXiKFSr/7/Y6Ji+9fwFF8DzdncYNQ6VP6to8U9qbztQpIZKqYrtBgQ==}
     engines: {node: '>=14'}
+    dev: false
+
+  /ts-deepmerge@6.0.3:
+    resolution: {integrity: sha512-MBBJL0UK/mMnZRONMz4J1CRu5NsGtsh+gR1nkn8KLE9LXo/PCzeHhQduhNary8m5/m9ryOOyFwVKxq81cPlaow==}
+    engines: {node: '>=14.13.1'}
     dev: false
 
   /ts-invariant@0.10.3:
