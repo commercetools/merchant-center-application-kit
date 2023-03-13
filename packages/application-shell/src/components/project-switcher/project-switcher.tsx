@@ -1,3 +1,4 @@
+// TODO: @redesign cleanup
 import { css } from '@emotion/react';
 import memoize from 'memoize-one';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -66,7 +67,10 @@ export const ProjectSwitcherValueContainer = ({
             designTokens.colorNeutral
           )};
           color: ${designTokens.colorSurface};
-          font-size: ${themedValue('0.9rem', '1rem')};
+          font-size: ${themedValue(
+            designTokens.fontSize15,
+            designTokens.fontSize30
+          )};
           display: flex;
           justify-content: center;
           align-items: center;
