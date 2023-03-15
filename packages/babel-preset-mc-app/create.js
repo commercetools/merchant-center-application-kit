@@ -1,5 +1,10 @@
 // https://jamie.build/last-2-versions
-const browsersTarget = ['>0.25%', 'not ie 11', 'not op_mini all'];
+// https://browsersl.ist/
+const browsersTarget = [
+  'supports es6-module and >0.25%',
+  'not ie 11',
+  'not op_mini all',
+];
 
 const defaultOptions = {
   // Enables new JSX runtime `automatic`.
