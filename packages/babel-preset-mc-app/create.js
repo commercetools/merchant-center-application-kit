@@ -1,3 +1,6 @@
+// https://jamie.build/last-2-versions
+const browsersTarget = ['>0.25%', 'not ie 11', 'not op_mini all'];
+
 const defaultOptions = {
   // Enables new JSX runtime `automatic`.
   runtime: 'classic',
@@ -40,7 +43,7 @@ module.exports = function createBabePresetConfigForMcApp(api, opts = {}, env) {
         require('@babel/preset-env').default,
         {
           targets: {
-            browsers: ['last 2 versions'],
+            browsers: browsersTarget,
             node: 'current',
           },
         },
@@ -50,7 +53,7 @@ module.exports = function createBabePresetConfigForMcApp(api, opts = {}, env) {
         require('@babel/preset-env').default,
         {
           targets: {
-            browsers: ['last 2 versions'],
+            browsers: browsersTarget,
           },
           ...(options.disableCoreJs
             ? {}
