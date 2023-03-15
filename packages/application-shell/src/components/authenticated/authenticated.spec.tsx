@@ -7,10 +7,9 @@ import type {
   TAmILoggedInQuery,
   TAmILoggedInQueryVariables,
 } from '../../types/generated/mc';
-import type { TProps } from './authenticated';
-import Authenticated from './authenticated';
+import Authenticated, { type TAuthenticatedProps } from './authenticated';
 
-const createTestProps = (custom: Partial<TProps> = {}) => ({
+const createTestProps = (custom: Partial<TAuthenticatedProps> = {}) => ({
   render: jest.fn(() => <div />),
   locale: 'en',
   applicationMessages: {},

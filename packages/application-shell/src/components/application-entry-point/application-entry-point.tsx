@@ -7,17 +7,15 @@ import type { TProviderProps } from '@commercetools-frontend/application-shell-c
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import RouteCatchAll from '../route-catch-all';
 
-type Props<AdditionalEnvironmentProperties extends {}> = {
-  environment: TProviderProps<AdditionalEnvironmentProperties>['environment'];
+type TApplicationEntryPointProps = {
+  environment: TProviderProps<{}>['environment'];
   disableRoutePermissionCheck?: boolean;
   render?: () => JSX.Element;
   children?: ReactNode;
 };
 
-const ApplicationRouteWithPermissionCheck = <
-  AdditionalEnvironmentProperties extends {}
->(
-  props: Props<AdditionalEnvironmentProperties>
+const ApplicationRouteWithPermissionCheck = (
+  props: TApplicationEntryPointProps
 ) => {
   const permissionKeys = entryPointUriPathToPermissionKeys(
     props.environment.entryPointUriPath
@@ -33,23 +31,15 @@ const ApplicationRouteWithPermissionCheck = <
   return <PageUnauthorized />;
 };
 
-const ApplicationRoute = <AdditionalEnvironmentProperties extends {}>(
-  props: Props<AdditionalEnvironmentProperties>
-) => {
+const ApplicationRoute = (props: TApplicationEntryPointProps) => {
   if (props.disableRoutePermissionCheck) {
     return <>{Children.only<ReactNode>(props.children)}</>;
   }
 
-  return (
-    <ApplicationRouteWithPermissionCheck<AdditionalEnvironmentProperties>
-      {...props}
-    />
-  );
+  return <ApplicationRouteWithPermissionCheck {...props} />;
 };
 
-const ApplicationEntryPoint = <AdditionalEnvironmentProperties extends {}>(
-  props: Props<AdditionalEnvironmentProperties>
-) => {
+const ApplicationEntryPoint = (props: TApplicationEntryPointProps) => {
   // If the `children` prop is used (instead of the `render` prop),
   // we pre-configure the application entry point routes to avoid
   // users to do so on their own.
@@ -69,7 +59,7 @@ const ApplicationEntryPoint = <AdditionalEnvironmentProperties extends {}>(
           )
         }
         <Route path={`/:projectKey/${entryPointUriPath}`}>
-          <ApplicationRoute<AdditionalEnvironmentProperties> {...props} />
+          <ApplicationRoute {...props} />
         </Route>
         {/* Catch-all route */}
         <RouteCatchAll />

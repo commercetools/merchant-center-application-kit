@@ -116,7 +116,9 @@ const QuickAccess = (props: Props) => {
     customApplications: true,
     canViewDashboard: true,
   });
-  const applicationContext = useApplicationContext();
+  const applicationContext = useApplicationContext<{
+    useFullRedirectsForLinks?: boolean;
+  }>();
 
   // Destructure functions from props to reference them in the hook dependency list
   const { onPimIndexerStateChange: onPimIndexerStateChangeFromParent } = props;

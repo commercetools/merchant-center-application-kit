@@ -10,7 +10,7 @@ import type { AuthorizeSessionState } from './types';
 
 declare let window: ApplicationWindow;
 
-export type TProps = {
+export type TOidcCallbackProps = {
   locale: string;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   children?: never;
@@ -18,7 +18,7 @@ export type TProps = {
 type AuthorizeCallbackFragments = { sessionToken?: string; state: string };
 type SessionToken = { nonce: string };
 
-const OidcCallback = (props: TProps) => {
+const OidcCallback = (props: TOidcCallbackProps) => {
   const location = useLocation();
   let errorMessage: string | undefined;
 

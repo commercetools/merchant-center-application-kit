@@ -7,7 +7,9 @@ describe('rendering', () => {
   describe('when user has access to no projects', () => {
     it('should render nothing', async () => {
       const { container } = renderApp(
-        <Route path={`/:projectKey`} component={ServicePageProjectSwitcher} />,
+        <Route path={`/:projectKey`}>
+          <ServicePageProjectSwitcher />
+        </Route>,
         {
           disableRoutePermissionCheck: true,
           route: '/test-1',
@@ -35,7 +37,9 @@ describe('rendering', () => {
         }),
       ];
       const { container } = renderApp(
-        <Route path={`/:projectKey`} component={ServicePageProjectSwitcher} />,
+        <Route path={`/:projectKey`}>
+          <ServicePageProjectSwitcher />
+        </Route>,
         {
           disableRoutePermissionCheck: true,
           route: '/test-1',

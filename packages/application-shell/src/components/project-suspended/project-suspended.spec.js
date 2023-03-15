@@ -29,10 +29,9 @@ afterAll(() => mockServer.close());
 describe('rendering', () => {
   it('when suspension is temporary it should print correct message', async () => {
     renderApp(
-      <Route
-        path="/:projectKey"
-        render={() => <ProjectSuspended isTemporary={true} />}
-      />,
+      <Route path="/:projectKey">
+        <ProjectSuspended isTemporary={true} />
+      </Route>,
       {
         disableRoutePermissionCheck: true,
         route: '/my-project',

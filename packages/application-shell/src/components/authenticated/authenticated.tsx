@@ -9,14 +9,14 @@ import OidcCallback from './oidc-callback';
 declare let window: ApplicationWindow;
 
 type RenderFnArgs = { isAuthenticated: boolean };
-export type TProps = {
+export type TAuthenticatedProps = {
   render: (args: RenderFnArgs) => JSX.Element;
   locale: string;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   children?: never;
 };
 
-const Authenticated = (props: TProps) => {
+const Authenticated = (props: TAuthenticatedProps) => {
   // We attempt to see if the user was already authenticated by looking
   // at the "cached" flag in local storage.
   const cachedAuthenticationState = hasCachedAuthenticationState();
@@ -36,7 +36,7 @@ const Authenticated = (props: TProps) => {
 };
 Authenticated.displayName = 'Authenticated';
 
-const AuthenticationRoutes = (props: TProps) => (
+const AuthenticationRoutes = (props: TAuthenticatedProps) => (
   <Switch>
     <Route path={`/account/oidc/callback`}>
       <OidcCallback

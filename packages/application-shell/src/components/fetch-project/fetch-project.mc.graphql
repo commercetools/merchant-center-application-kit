@@ -1,4 +1,4 @@
-query FetchProject($projectKey: String!) {
+query FetchProject($projectKey: String) {
   project(key: $projectKey) {
     key
     version
@@ -56,7 +56,6 @@ query FetchProject($projectKey: String!) {
           __typename
         }
       }
-
     }
     owner {
       id

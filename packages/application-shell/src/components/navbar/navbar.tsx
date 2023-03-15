@@ -599,10 +599,10 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
 };
 ApplicationMenu.displayName = 'ApplicationMenu';
 
-type NavBarLayoutProps = {
+type TNavBarLayoutProps = {
   children: ReactNode;
 };
-const NavBarLayout = forwardRef<HTMLElement, NavBarLayoutProps>(
+const NavBarLayout = forwardRef<HTMLElement, TNavBarLayoutProps>(
   (props, ref) => (
     <>
       <Global
@@ -624,16 +624,16 @@ const NavBarLayout = forwardRef<HTMLElement, NavBarLayoutProps>(
 );
 NavBarLayout.displayName = 'NavBarLayout';
 
-type NavbarProps<AdditionalEnvironmentProperties extends {}> = {
+type TNavbarProps = {
   applicationLocale: string;
   projectKey: string;
-  environment: TApplicationContext<AdditionalEnvironmentProperties>['environment'];
+  environment: TApplicationContext<{
+    useFullRedirectsForLinks?: boolean;
+  }>['environment'];
   project: TFetchProjectQuery['project'];
   onMenuItemClick?: MenuItemLinkProps['onClick'];
 };
-const NavBar = <AdditionalEnvironmentProperties extends {}>(
-  props: NavbarProps<AdditionalEnvironmentProperties>
-) => {
+const NavBar = (props: TNavbarProps) => {
   const {
     navBarNode,
     isMenuOpen,
