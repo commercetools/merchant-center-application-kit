@@ -1,7 +1,1 @@
-import { lazy } from 'react';
-
-const LocaleSwitcher = lazy(
-  () => import('./locale-switcher' /* webpackChunkName: "locale-switcher" */)
-);
-
-export default LocaleSwitcher;
+export { default } from './locale-switcher';
