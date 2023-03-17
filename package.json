@@ -86,9 +86,9 @@
     "@babel/core": "^7.20.12",
     "@changesets/changelog-github": "0.4.8",
     "@changesets/cli": "2.26.0",
-    "@commercetools-docs/writing-style": "3.3.2",
+    "@commercetools-docs/writing-style": "3.3.3",
     "@commercetools-frontend/eslint-config-mc-app": "workspace:*",
-    "@commercetools-test-data/core": "4.11.0",
+    "@commercetools-test-data/core": "4.11.1",
     "@commercetools-uikit/design-system": "^15.13.2",
     "@commercetools/github-labels": "1.1.0",
     "@commitlint/cli": "17.4.4",
@@ -102,7 +102,7 @@
     "@graphql-codegen/typescript-graphql-files-modules": "2.2.1",
     "@graphql-codegen/typescript-operations": "2.5.13",
     "@manypkg/cli": "0.20.0",
-    "@percy/cli": "1.20.3",
+    "@percy/cli": "1.21.0",
     "@percy/cypress": "3.1.2",
     "@percy/puppeteer": "2.0.2",
     "@preconstruct/cli": "2.3.0",
@@ -124,7 +124,7 @@
     "cross-env": "7.0.3",
     "cypress": "11.2.0",
     "dotenv": "16.0.3",
-    "eslint": "8.35.0",
+    "eslint": "8.36.0",
     "eslint-formatter-pretty": "4.1.0",
     "eslint-plugin-graphql": "^4.0.0",
     "graphql": "16.6.0",
@@ -177,5 +177,5 @@
     "npm": ">=6",
     "yarn": ">=1.10"
   },
-  "packageManager": "yarn@3.4.1"
+  "packageManager": "yarn@3.5.0"
 }
