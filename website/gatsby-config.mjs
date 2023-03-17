@@ -1,4 +1,5 @@
-import colorPresets from '@commercetools-docs/gatsby-theme-docs/color-presets';
+// eslint-disable-next-line import/extensions
+import colorPresets from '@commercetools-docs/gatsby-theme-docs/color-presets/index.mjs';
 
 /**
  * @type {import('gatsby').GatsbyConfig}
