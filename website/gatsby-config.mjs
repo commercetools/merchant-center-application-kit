@@ -5,12 +5,10 @@ import colorPresets from '@commercetools-docs/gatsby-theme-docs/color-presets/in
  * @type {import('gatsby').GatsbyConfig}
  */
 const config = {
-  // https://www.gatsbyjs.com/docs/reference/release-notes/v2.28/#feature-flags-in-gatsby-configjs
-  // https://www.gatsbyjs.com/docs/reference/release-notes/v2.30
+  // find the flags of the most recent gatsby release here:
+  // https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/src/utils/flags.ts#L79
   flags: {
     DEV_SSR: false, // good for catching bugs when developing, but too slow for productive content authoring
-    FAST_DEV: true,
-    PRESERVE_FILE_DOWNLOAD_CACHE: true,
   },
   pathPrefix: '/custom-applications',
   siteMetadata: {
@@ -18,7 +16,8 @@ const config = {
     description: 'Develop applications for the Merchant Center',
     author: 'commercetools',
     beta: false,
-    betaLink: 'https://docs.commercetools.com/api/contract#public-beta',
+    betaLink:
+      'https://docs.commercetools.com/offering/api-contract#public-beta',
     repositoryUrl:
       'https://github.com/commercetools/merchant-center-application-kit',
     excludeFromSearchIndex: false,
@@ -30,7 +29,8 @@ const config = {
       options: {
         websiteKey: 'custom-applications',
         colorPreset: colorPresets.merchantCenterDeveloperDocs.key,
-        gaTrackingId: 'UA-38285631-3',
+        gaTrackingIds: ['G-XGR7PSLVB2', 'UA-38285631-3'],
+        hubspotTrackingCode: '4784080',
         overrideDefaultConfigurationData: ['**/top-*'],
       },
     },
