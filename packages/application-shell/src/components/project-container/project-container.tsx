@@ -1,10 +1,14 @@
 import { ReactNode, Suspense, useEffect, useState } from 'react';
 import isNil from 'lodash/isNil';
 import ReactDOM from 'react-dom';
-
 import { useIntl } from 'react-intl';
-import { Route, Switch, Redirect } from 'react-router-dom';
-import type { RouteComponentProps } from 'react-router-dom';
+import {
+  Route,
+  Switch,
+  Redirect,
+  useLocation,
+  useRouteMatch,
+} from 'react-router-dom';
 import type { TProviderProps } from '@commercetools-frontend/application-shell-connectors';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
@@ -25,14 +29,11 @@ import RedirectToProjectCreate from '../redirect-to-project-create';
 import messages from './messages';
 
 type QueryParams = {
-  projectKey: string;
+  projectKey?: string;
 };
-type Props<AdditionalEnvironmentProperties extends {}> = Pick<
-  RouteComponentProps<QueryParams>,
-  'match' | 'location'
-> & {
+type TProjectContainerProps = {
   user: TFetchLoggedInUserQuery['user'];
-  environment: TProviderProps<AdditionalEnvironmentProperties>['environment'];
+  environment: TProviderProps<{ enableSignUp?: boolean }>['environment'];
   disableRoutePermissionCheck?: boolean;
   render?: () => JSX.Element;
   children?: ReactNode;
@@ -46,10 +47,10 @@ const shouldShowNotificationForTrialExpired = (daysLeft?: number) =>
   daysLeft <= minDaysToDisplayNotification &&
   daysLeft >= maxDaysToDisplayNotification;
 
-const ProjectContainer = <AdditionalEnvironmentProperties extends {}>(
-  props: Props<AdditionalEnvironmentProperties>
-) => {
+const ProjectContainer = (props: TProjectContainerProps) => {
   const intl = useIntl();
+  const location = useLocation();
+  const match = useRouteMatch<QueryParams>();
   const [localeSwitcherNode, setLocaleSwitcherNode] =
     useState<HTMLElement | null>(null);
 
@@ -75,15 +76,13 @@ const ProjectContainer = <AdditionalEnvironmentProperties extends {}>(
     setLocaleSwitcherNode(document.getElementById(CONTAINERS.LOCALE_SWITCHER));
   }, [setLocaleSwitcherNode]);
 
-  const projectKey = props.match.params.projectKey;
+  const projectKey = match.params.projectKey;
   useEffect(() => {
     // Ensure to sync the `projectKey` from the URL with localStorage.
     if (projectKey) {
       window.localStorage.setItem(STORAGE_KEYS.ACTIVE_PROJECT_KEY, projectKey);
     }
   }, [projectKey]);
-
-  // }
 
   const hasNoProjects = props.user && props.user.projects.total === 0;
   /**
@@ -106,13 +105,15 @@ const ProjectContainer = <AdditionalEnvironmentProperties extends {}>(
   if (hasNoProjects && props.environment.enableSignUp)
     return (
       <Switch>
-        <Route path="/account" render={props.render} />
-        <Route component={RedirectToProjectCreate} />
+        <Route path="/account">{props.render?.()}</Route>
+        <Route>
+          <RedirectToProjectCreate />
+        </Route>
       </Switch>
     );
 
   return (
-    <ErrorBoundary pathname={props.location.pathname}>
+    <ErrorBoundary pathname={location.pathname}>
       <Suspense fallback={<ApplicationLoader />}>
         <FetchProject
           skip={!props.user || !props.user.defaultProjectKey}
@@ -175,7 +176,7 @@ const ProjectContainer = <AdditionalEnvironmentProperties extends {}>(
                        * it's enough to trigger a re-render.
                        * The `locale` can then be read from the localStorage.
                        */}
-                      <ApplicationEntryPoint<AdditionalEnvironmentProperties>
+                      <ApplicationEntryPoint
                         environment={props.environment}
                         disableRoutePermissionCheck={
                           props.disableRoutePermissionCheck

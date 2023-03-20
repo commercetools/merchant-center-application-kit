@@ -24,17 +24,15 @@ import GtmBooter from '../gtm-booter';
 import useCoercedEnvironmentValues from './use-coerced-environment-values';
 import { getBrowserLocale } from './utils';
 
-type Props<AdditionalEnvironmentProperties extends {}> = {
+type TApplicationShellProviderProps = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;
-  environment: TApplicationContext<AdditionalEnvironmentProperties>['environment'];
+  environment: TApplicationContext<{}>['environment'];
   trackingEventList?: TrackingList;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   children: (args: { isAuthenticated: boolean }) => JSX.Element;
 };
 
-const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
-  props: Props<AdditionalEnvironmentProperties>
-) => {
+const ApplicationShellProvider = (props: TApplicationShellProviderProps) => {
   const apolloClient = useMemo(
     () => props.apolloClient ?? createApolloClient(),
     [props.apolloClient]
@@ -42,55 +40,50 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
   useEffect(() => {
     setCachedApolloClient(apolloClient);
   }, [apolloClient]);
-  const coercedEnvironmentValues =
-    useCoercedEnvironmentValues<AdditionalEnvironmentProperties>(
-      props.environment
-    );
+  const coercedEnvironmentValues = useCoercedEnvironmentValues(
+    props.environment
+  );
   const browserLocale = getBrowserLocale(window);
   return (
-    <>
+    <Suspense fallback={<ApplicationLoader />}>
       <ErrorBoundary>
-        <ApplicationContextProvider<AdditionalEnvironmentProperties>
-          environment={coercedEnvironmentValues}
-        >
+        <ApplicationContextProvider environment={coercedEnvironmentValues}>
           <ReduxProvider store={internalReduxStore}>
             <ApolloProvider client={apolloClient}>
-              <Suspense fallback={<ApplicationLoader />}>
-                <Router history={ApplicationShellProvider.history}>
-                  <GtmBooter trackingEventList={props.trackingEventList || {}}>
-                    <ApplicationPageTitle />
-                    <Authenticated
-                      locale={browserLocale}
-                      applicationMessages={props.applicationMessages}
-                      render={({ isAuthenticated }) => {
-                        if (isAuthenticated)
-                          return props.children({ isAuthenticated });
+              <Router history={ApplicationShellProvider.history}>
+                <GtmBooter trackingEventList={props.trackingEventList || {}}>
+                  <ApplicationPageTitle />
+                  <Authenticated
+                    locale={browserLocale}
+                    applicationMessages={props.applicationMessages}
+                    render={({ isAuthenticated }) => {
+                      if (isAuthenticated)
+                        return props.children({ isAuthenticated });
 
-                        return (
-                          <AsyncLocaleData
-                            locale={browserLocale}
-                            applicationMessages={props.applicationMessages}
-                          >
-                            {({ locale, messages }) => (
-                              <ConfigureIntlProvider
-                                locale={locale}
-                                messages={messages}
-                              >
-                                {props.children({ isAuthenticated })}
-                              </ConfigureIntlProvider>
-                            )}
-                          </AsyncLocaleData>
-                        );
-                      }}
-                    />
-                  </GtmBooter>
-                </Router>
-              </Suspense>
+                      return (
+                        <AsyncLocaleData
+                          locale={browserLocale}
+                          applicationMessages={props.applicationMessages}
+                        >
+                          {({ locale, messages }) => (
+                            <ConfigureIntlProvider
+                              locale={locale}
+                              messages={messages}
+                            >
+                              {props.children({ isAuthenticated })}
+                            </ConfigureIntlProvider>
+                          )}
+                        </AsyncLocaleData>
+                      );
+                    }}
+                  />
+                </GtmBooter>
+              </Router>
             </ApolloProvider>
           </ReduxProvider>
         </ApplicationContextProvider>
       </ErrorBoundary>
-    </>
+    </Suspense>
   );
 };
 

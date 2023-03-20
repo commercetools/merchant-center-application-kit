@@ -15,7 +15,7 @@ import type {
 } from '../../types/generated/mc';
 import AllFeaturesQuery from './fetch-all-features.mc.graphql';
 
-type Props = {
+type TSetupFlopFlipProviderProps = {
   projectKey?: string;
   user?: TFetchLoggedInUserQuery['user'];
   flags?: TFlags;
@@ -53,7 +53,7 @@ type TParsedHttpAdapterFlags = Record<
 const ldClientSideIdProduction = '5979d95f6040390cd07b5e01';
 
 function getUserCustomFieldsForLaunchDarklyAdapter(
-  user?: Props['user'],
+  user?: TSetupFlopFlipProviderProps['user'],
   projectKey?: string
 ): TLaunchDarklyUserCustomFields {
   return {
@@ -80,11 +80,16 @@ const parseFlags = (fetchedFlags: TFetchedFlags): TParsedHttpAdapterFlags =>
     ])
   );
 
-export const SetupFlopFlipProvider = (props: Props) => {
+type TAdditionalEnvironmentProperties = {
+  enableLongLivedFeatureFlags?: boolean;
+};
+
+export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
   const apolloClient = useApolloClient();
-  const enableLongLivedFeatureFlags = useApplicationContext(
-    (context) => context.environment.enableLongLivedFeatureFlags
-  );
+  const enableLongLivedFeatureFlags = useApplicationContext<
+    TAdditionalEnvironmentProperties['enableLongLivedFeatureFlags'],
+    TAdditionalEnvironmentProperties
+  >((context) => context.environment.enableLongLivedFeatureFlags);
   const allMenuFeatureToggles = useAllMenuFeatureToggles();
   const flags = useMemo(
     () => ({

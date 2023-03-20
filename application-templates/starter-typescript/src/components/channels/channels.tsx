@@ -1,4 +1,3 @@
-import { lazy } from 'react';
 import { useIntl } from 'react-intl';
 import {
   Link as RouterLink,
@@ -30,8 +29,7 @@ import type { TFetchChannelsQuery } from '../../types/generated/ctp';
 import { useChannelsFetcher } from '../../hooks/use-channels-connector';
 import { getErrorMessage } from '../../helpers';
 import messages from './messages';
-
-const ChannelDetails = lazy(() => import('../channel-details'));
+import ChannelDetails from '../channel-details';
 
 const columns = [
   { key: 'name', label: 'Channel name' },

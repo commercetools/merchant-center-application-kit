@@ -44,16 +44,14 @@ const shallowlyCoerceValues = (uncoercedEnvironmentValues: ShallowJson) =>
     {}
   );
 
-const useCoercedEnvironmentValues = <
-  AdditionalEnvironmentProperties extends {}
->(
+const useCoercedEnvironmentValues = (
   environment: ShallowJson
-): TApplicationContext<AdditionalEnvironmentProperties>['environment'] => {
+): TApplicationContext<{}>['environment'] => {
   const coercedEnvironmentValues = useMemo(
     () =>
       shallowlyCoerceValues(
         environment
-      ) as TApplicationContext<AdditionalEnvironmentProperties>['environment'],
+      ) as TApplicationContext<{}>['environment'],
     [environment]
   );
   return coercedEnvironmentValues;

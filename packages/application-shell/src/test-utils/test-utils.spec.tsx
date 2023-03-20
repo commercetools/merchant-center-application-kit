@@ -329,9 +329,9 @@ describe('ApplicationContext', () => {
 describe('router', () => {
   const TestComponent = () => (
     <Switch>
-      <Route path="/foo/avengers" render={() => 'Foo'} />
+      <Route path="/foo/avengers">{'Foo'}</Route>
       {/* Define a catch-all route */}
-      <Route render={() => 'None'} />
+      <Route>{'None'}</Route>
     </Switch>
   );
   it('should render fallback when no route is provided', async () => {

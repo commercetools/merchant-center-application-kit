@@ -8,6 +8,10 @@ import type {
 } from '../../types/generated/proxy';
 import { FetchAllMenuFeatureToggles } from './fetch-all-menu-feature-toggles.proxy.graphql';
 
+type TAdditionalEnvironmentProperties = {
+  mcProxyApiUrl?: string;
+};
+
 const defaultApiUrl = window.location.origin;
 
 const getDefaultedFeatureToggles = (allFeatureToggles: string[]) =>
@@ -18,11 +22,13 @@ const getDefaultedFeatureToggles = (allFeatureToggles: string[]) =>
     }),
     {}
   );
+
 const useAllMenuFeatureToggles = () => {
   const servedByProxy = useIsServedByProxy();
-  const mcProxyApiUrl = useApplicationContext(
-    (applicationContext) => applicationContext.environment.mcProxyApiUrl
-  );
+  const mcProxyApiUrl = useApplicationContext<
+    TAdditionalEnvironmentProperties['mcProxyApiUrl'],
+    TAdditionalEnvironmentProperties
+  >((applicationContext) => applicationContext.environment.mcProxyApiUrl);
 
   const { data, refetch, loading } = useMcQuery<
     TFetchAllMenuFeatureTogglesQuery,

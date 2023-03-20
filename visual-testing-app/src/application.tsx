@@ -31,22 +31,18 @@ const allSortedComponents = Object.keys(allUniqueVisualRouteComponents)
 const App = () => (
   <Router>
     <Switch>
-      <Route
-        path="/"
-        exact
-        component={() => (
-          <div>
-            <h1>Visual Testing App</h1>
-            <ul>
-              {allSortedComponents.map(({ routePath }) => (
-                <li key={routePath}>
-                  <a href={routePath}>{routePath}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      />
+      <Route path="/" exact>
+        <div>
+          <h1>Visual Testing App</h1>
+          <ul>
+            {allSortedComponents.map(({ routePath }) => (
+              <li key={routePath}>
+                <a href={routePath}>{routePath}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Route>
       {allSortedComponents.map(({ routePath, Component }) => (
         <Route key={routePath} path={routePath}>
           <Suspense fallback={'Loading...'}>

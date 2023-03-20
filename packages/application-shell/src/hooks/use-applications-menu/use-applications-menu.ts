@@ -30,6 +30,9 @@ export type Config = {
     onError?: QueryFunctionOptions['onError'];
   };
 };
+type TAdditionalEnvironmentProperties = {
+  mcProxyApiUrl?: string;
+};
 
 const defaultApiUrl = window.location.origin;
 
@@ -138,9 +141,10 @@ function useApplicationsMenu<Key extends MenuKey>(
   config: Config
 ): MenuLoaderResult<Key> | undefined {
   const apolloClient = useApolloClient();
-  const mcProxyApiUrl = useApplicationContext(
-    (context) => context.environment.mcProxyApiUrl
-  );
+  const mcProxyApiUrl = useApplicationContext<
+    TAdditionalEnvironmentProperties['mcProxyApiUrl'],
+    TAdditionalEnvironmentProperties
+  >((context) => context.environment.mcProxyApiUrl);
 
   const [hasWrittenToCache, setHasWrittenToCache] = useState(false);
 

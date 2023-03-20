@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { lazy } from 'react';
 import { useIntl } from 'react-intl';
 import {
   Link as RouterLink,
@@ -30,8 +29,7 @@ import {
 import messages from './messages';
 import { useChannelsFetcher } from '../../hooks/use-channels-connector';
 import { getErrorMessage } from '../../helpers';
-
-const ChannelDetails = lazy(() => import('../channel-details'));
+import ChannelDetails from '../channel-details';
 
 const columns = [
   { key: 'name', label: 'Channel name' },
