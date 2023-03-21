@@ -88,7 +88,7 @@ jobs:
         uses: ./.github/actions/ci
 
       - name: Testing Starter application development server
-        run: yarn start-server-and-test 'yarn template-starter:start' 3001 'exit 0'
+        run: yarn start-server-and-test 'yarn template-starter:start' http-get://127.0.0.1:3001 'exit 0'
         env:
           HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
           APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
@@ -115,7 +115,7 @@ jobs:
         run: yarn cypress install && yarn cypress cache list
 
       - name: Running End-to-End tests for Starter template application
-        run: yarn start-server-and-test 'yarn template-starter:start:prod:local' 3001 'yarn test:e2e:template-starter'
+        run: yarn start-server-and-test 'yarn template-starter:start:prod:local' http-get://127.0.0.1:3001 'yarn test:e2e:template-starter'
         env:
           NODE_ENV: test
           CYPRESS_CI: "true"
@@ -167,7 +167,7 @@ jobs:
         uses: ./.github/actions/ci
 
       - name: Testing Starter application development server
-        run: yarn start-server-and-test 'yarn template-starter-typescript:start' 3001 'exit 0'
+        run: yarn start-server-and-test 'yarn template-starter-typescript:start' http-get://127.0.0.1:3001 'exit 0'
         env:
           HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
           APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
@@ -197,7 +197,7 @@ jobs:
         run: yarn cypress install && yarn cypress cache list
 
       - name: Running End-to-End tests for Starter template application
-        run: yarn start-server-and-test 'yarn template-starter-typescript:start:prod:local' 3001 'yarn test:e2e:template-starter'
+        run: yarn start-server-and-test 'yarn template-starter-typescript:start:prod:local' http-get://127.0.0.1:3001 'yarn test:e2e:template-starter'
         env:
           NODE_ENV: test
           CYPRESS_CI: "true"
@@ -271,7 +271,7 @@ jobs:
         run: yarn cypress install && yarn cypress cache list
 
       - name: Running End-to-End tests for Playground application
-        run: yarn start-server-and-test 'yarn playground:start:prod:local' 3001 'yarn percy exec -- yarn test:e2e:playground'
+        run: yarn start-server-and-test 'yarn playground:start:prod:local' http-get://127.0.0.1:3001 'yarn percy exec -- yarn test:e2e:playground'
         env:
           NODE_ENV: test
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_E2E_PLAYGROUND }}

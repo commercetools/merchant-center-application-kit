@@ -12,19 +12,19 @@
     "generate-icons": "svgr -d src/icons/generated -- src/icons/svg && prettier --write '**/generated/*.js'"
   },
   "dependencies": {
-    "@commercetools-docs/gatsby-theme-docs": "20.2.0",
-    "@commercetools-docs/ui-kit": "20.2.0",
+    "@commercetools-docs/gatsby-theme-docs": "21.1.2",
+    "@commercetools-docs/ui-kit": "21.1.0",
     "@commercetools-uikit/card": "^15.13.2",
     "@commercetools-uikit/spacings-inline": "^15.13.2",
     "@commercetools-uikit/spacings-stack": "^15.13.2",
     "@emotion/react": "11.10.6",
     "@emotion/styled": "11.10.6",
-    "gatsby": "4.25.5",
-    "gatsby-cli": "4.25.0",
+    "gatsby": "5.7.0",
+    "gatsby-cli": "5.7.0",
     "prop-types": "15.8.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-intl": "^5.25.1"
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-intl": "^6.3.0"
   },
   "devDependencies": {
     "@svgr/cli": "6.5.1",
