@@ -1,13 +1,6 @@
-import type { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
+import type { I18NImportData, MergedMessages } from './export-types';
 import loadMomentLocales from './moment-locales';
 import { mergeMessages, mapLocaleToIntlLocale } from './utils';
-
-export type I18NImportData = {
-  default: Record<string, string> | Record<string, MessageFormatElement[]>;
-};
-export type MergedMessages =
-  | Record<string, string>
-  | Record<string, MessageFormatElement[]>;
 
 const getUiKitChunkImport = (locale: string): Promise<I18NImportData> => {
   const intlLocale = mapLocaleToIntlLocale(locale);

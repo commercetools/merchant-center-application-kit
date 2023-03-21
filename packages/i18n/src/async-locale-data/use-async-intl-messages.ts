@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react';
-import type { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
+import type { MergedMessages } from '../export-types';
 
-export type TMessageTranslations =
-  | Record<string, string>
-  | Record<string, MessageFormatElement[]>;
 export type TMessageTranslationsAsync = (
   locale: string
-) => Promise<TMessageTranslations>;
+) => Promise<MergedMessages>;
 export type TState = {
   isLoading: boolean;
-  messages?: TMessageTranslations;
+  messages?: MergedMessages;
   error?: Error;
 };
 export type THookOptions = {

@@ -1,21 +1,17 @@
 import { useEffect, ReactNode, useCallback } from 'react';
-import type { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
-
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import type { MergedMessages } from '../export-types';
 import loadI18n from '../load-i18n';
 import { extractLanguageTagFromLocale, mergeMessages } from '../utils';
 import useAsyncIntlMessages from './use-async-intl-messages';
 
-export type TMessageTranslations =
-  | Record<string, string>
-  | Record<string, MessageFormatElement[]>;
 export type TMessageTranslationsAsync = (
   locale: string
-) => Promise<TMessageTranslations>;
+) => Promise<MergedMessages>;
 export type TRenderFunctionResult = {
   isLoading: boolean;
   locale?: string;
-  messages?: TMessageTranslations;
+  messages?: MergedMessages;
 };
 export type Props = {
   // The locale is optional, which indicates that we don't know yet
@@ -24,13 +20,13 @@ export type Props = {
   // therefore causing flashing of translated content on subsequent re-renders.
   locale?: string;
   applicationMessages:
-    | { [locale: string]: TMessageTranslations }
+    | { [locale: string]: MergedMessages }
     | TMessageTranslationsAsync;
   children: (state: TRenderFunctionResult) => ReactNode;
 };
 
 const getMessagesForLocale = (
-  data?: { [locale: string]: TMessageTranslations },
+  data?: { [locale: string]: MergedMessages },
   locale?: string
 ) => {
   if (!data || !locale) return {};
