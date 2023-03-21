@@ -42,7 +42,8 @@ const isFilePathVariablePlaceholder = (valueOfPlaceholder: string) =>
 
 const isStructuredJson = (
   message: TMessageKeyValue | TMessageStructuredJson
-): message is TMessageStructuredJson => typeof message !== 'string';
+): message is TMessageStructuredJson =>
+  (message as TMessageStructuredJson)?.string !== undefined;
 
 const substituteEnvVariablePlaceholder = (
   valueOfPlaceholder: string,

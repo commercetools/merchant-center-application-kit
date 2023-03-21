@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import type { MergedMessages } from '../export-types';
+import type { TMessageTranslations } from '../export-types';
 
 export type TMessageTranslationsAsync = (
   locale: string
-) => Promise<MergedMessages>;
+) => Promise<TMessageTranslations>;
 export type TState = {
   isLoading: boolean;
-  messages?: MergedMessages;
+  messages?: TMessageTranslations;
   error?: Error;
 };
 export type THookOptions = {

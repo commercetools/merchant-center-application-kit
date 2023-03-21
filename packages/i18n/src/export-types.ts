@@ -8,15 +8,16 @@ export type TMessageStructuredJson = {
   character_limit?: string;
 };
 
-export type MergedMessages =
+export type TMessageTranslations =
   | Record<string, string>
-  | Record<string, MessageFormatElement[]>
+  | Record<string, MessageFormatElement[]>;
+
+export type TMergedMessages =
+  | TMessageTranslations
   | Record<string, TMessageStructuredJson>;
 
-export type I18NImportData = {
-  default: MergedMessages;
+export type TI18NImportData = {
+  default: TMergedMessages;
 };
 
 export type TAsyncLocaleDataProps = Props;
-export type TI18NImportData = I18NImportData;
-export type TMergedMessages = MergedMessages;
