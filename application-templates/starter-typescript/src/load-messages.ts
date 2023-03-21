@@ -1,6 +1,6 @@
 import {
   type TI18NImportData,
-  type TMergedMessages,
+  type TMessageTranslations,
   parseChunkImport,
 } from '@commercetools-frontend/i18n';
 
@@ -19,7 +19,7 @@ const getChunkImport = (locale: string): Promise<TI18NImportData> => {
   }
 };
 
-const loadMessages = async (locale: string): Promise<TMergedMessages> => {
+const loadMessages = async (locale: string): Promise<TMessageTranslations> => {
   try {
     const chunkImport = await getChunkImport(locale);
     return parseChunkImport(chunkImport);
