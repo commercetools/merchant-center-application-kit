@@ -1,6 +1,15 @@
 import fs from 'fs';
 import type { LoadingConfigOptions } from './types';
 
+type TMessageKeyValue = string;
+// Transifex's Structured JSON format.
+// https://help.transifex.com/en/articles/6220899-structured-json
+type TMessageStructuredJson = {
+  string: string;
+  // ...
+};
+type TMessage = Record<string, TMessageKeyValue | TMessageStructuredJson>;
+
 /**
  * NOTE:
  * Allows variable placeholders. Supported types are:
@@ -30,6 +39,10 @@ const isIntlVariablePlaceholder = (valueOfPlaceholder: string) =>
 
 const isFilePathVariablePlaceholder = (valueOfPlaceholder: string) =>
   Boolean(valueOfPlaceholder.match(filePathRefSyntax));
+
+const isStructuredJson = (
+  message: TMessageKeyValue | TMessageStructuredJson
+): message is TMessageStructuredJson => typeof message !== 'string';
 
 const substituteEnvVariablePlaceholder = (
   valueOfPlaceholder: string,
@@ -67,7 +80,7 @@ const substituteIntlVariablePlaceholder = (
       loadingOptions.applicationPath,
     ],
   });
-  const translations: Record<string, string> = require(translationsFilePath);
+  const translations: TMessage = require(translationsFilePath);
 
   const hasIntlMessage = translations.hasOwnProperty(requestedIntlMessageId);
 
@@ -77,10 +90,15 @@ const substituteIntlVariablePlaceholder = (
     );
   }
 
+  const translation = translations[requestedIntlMessageId];
+  const translationValue = isStructuredJson(translation)
+    ? translation.string
+    : translation;
+
   const escapedMatchedString = matchedString.replace(/[${}:]/g, '\\$&');
   return valueOfEnvConfig.replace(
     new RegExp(`(${escapedMatchedString})+`, 'g'),
-    translations[requestedIntlMessageId]
+    translationValue
   );
 };
 
