@@ -188,7 +188,8 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
                     <div className={styles.text}>
                       <MenuItemLink
                         linkTo={`/${props.projectKey}/${submenu.uriPath}`}
-                        exactMatch={true}
+                        // Allow matching subroutes
+                        exactMatch={false}
                         useFullRedirectsForLinks={
                           props.useFullRedirectsForLinks
                         }
