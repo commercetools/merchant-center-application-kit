@@ -1,3 +1,5 @@
+import { parseChunkImport } from '@commercetools-frontend/i18n';
+
 const getChunkImport = (locale) => {
   switch (locale) {
     case 'de':
@@ -14,9 +16,7 @@ const getChunkImport = (locale) => {
 const loadMessages = async (locale) => {
   try {
     const chunkImport = await getChunkImport(locale);
-    // Prefer loading `default` (for ESM bundles) and
-    // fall back to normal import (for CJS bundles).
-    return chunkImport.default || chunkImport;
+    return parseChunkImport(chunkImport);
   } catch (error) {
     console.warn(
       `Something went wrong while loading the app messages for ${locale}`,
