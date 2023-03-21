@@ -373,7 +373,8 @@
   background-color: var(--background-color-for-navbar-when-active);
 }
 
-.highlighted {
+.highlighted,
+.highlighted .title {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link-when-active) !important;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
