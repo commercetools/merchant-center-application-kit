@@ -6,7 +6,7 @@ import {
   fireEvent,
   within,
 } from '@testing-library/react';
-import { AuthenticationError, ApolloError } from 'apollo-server-errors';
+import { GraphQLError } from 'graphql';
 import { createMemoryHistory } from 'history';
 import { setupServer } from 'msw/node';
 import { encode } from 'qss';
@@ -384,7 +384,7 @@ describe('when loading user fails with an unknown graphql error', () => {
     mockServer.resetHandlers();
     mockServer.use(
       graphql.query('FetchLoggedInUser', (req, res, ctx) =>
-        res(ctx.errors([new ApolloError('Oops')]))
+        res(ctx.errors([new GraphQLError('Oops')]))
       )
     );
   });
@@ -398,7 +398,15 @@ describe('when loading user fails with an unauthorized graphql error', () => {
     mockServer.resetHandlers();
     mockServer.use(
       graphql.query('FetchLoggedInUser', (req, res, ctx) =>
-        res(ctx.errors([new AuthenticationError('User is not authorized')]))
+        res(
+          ctx.errors([
+            new GraphQLError('User is not authorized', {
+              extensions: {
+                code: 'UNAUTHENTICATED',
+              },
+            }),
+          ])
+        )
       )
     );
   });

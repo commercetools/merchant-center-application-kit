@@ -116,7 +116,6 @@
     "@types/node": "^16.18.12",
     "@types/uuid": "8.3.4",
     "@types/webpack-env": "1.18.0",
-    "@apollo/server": "4.0.0",
     "autoprefixer": "^10.4.13",
     "babel-plugin-import-graphql": "^2.8.1",
     "babel-plugin-transform-rename-import": "^2.3.0",
