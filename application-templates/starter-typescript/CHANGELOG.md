@@ -1,5 +1,31 @@
 # merchant-center-application-template-starter-typescript
 
+## 21.24.0
+
+### Patch Changes
+
+- [#2974](https://github.com/commercetools/merchant-center-application-kit/pull/2974) [`007cb8a04`](https://github.com/commercetools/merchant-center-application-kit/commit/007cb8a04d2d4813d6b1bd6001abd5e6b30c0de6) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- [#3012](https://github.com/commercetools/merchant-center-application-kit/pull/3012) [`7074d035c`](https://github.com/commercetools/merchant-center-application-kit/commit/7074d035c1c540b330bd772355ed9e30d522a2c5) Thanks [@emmenko](https://github.com/emmenko)! - Use `parseChunkImport` function
+
+- [#2999](https://github.com/commercetools/merchant-center-application-kit/pull/2999) [`975f3f505`](https://github.com/commercetools/merchant-center-application-kit/commit/975f3f505eb686d77b05e058dd9fea9ccd7f3e5e) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- Updated dependencies [[`e42f8d903`](https://github.com/commercetools/merchant-center-application-kit/commit/e42f8d9037626d51abc2b5611ff5939c549cca73), [`e42f8d903`](https://github.com/commercetools/merchant-center-application-kit/commit/e42f8d9037626d51abc2b5611ff5939c549cca73), [`007cb8a04`](https://github.com/commercetools/merchant-center-application-kit/commit/007cb8a04d2d4813d6b1bd6001abd5e6b30c0de6), [`7074d035c`](https://github.com/commercetools/merchant-center-application-kit/commit/7074d035c1c540b330bd772355ed9e30d522a2c5), [`7074d035c`](https://github.com/commercetools/merchant-center-application-kit/commit/7074d035c1c540b330bd772355ed9e30d522a2c5), [`da89fae2b`](https://github.com/commercetools/merchant-center-application-kit/commit/da89fae2b86a09a1cbb004250141b9cb49ec3da7), [`b3ada0ca5`](https://github.com/commercetools/merchant-center-application-kit/commit/b3ada0ca522b8d56669e252108254a4b1be153db), [`a0de806d9`](https://github.com/commercetools/merchant-center-application-kit/commit/a0de806d9af6ff90948fe59d059aea3714150436), [`4e7962188`](https://github.com/commercetools/merchant-center-application-kit/commit/4e7962188001c1a6f6aa3a806ccd913ed567e6d2), [`0cd9bf7dc`](https://github.com/commercetools/merchant-center-application-kit/commit/0cd9bf7dcb192e87a26ca4ed5b164ff3e1333b9c), [`9b20f5c15`](https://github.com/commercetools/merchant-center-application-kit/commit/9b20f5c1520a85c2f84d700e591e414e98c427e9), [`f23cd303d`](https://github.com/commercetools/merchant-center-application-kit/commit/f23cd303d31a77aa579e5d692e532043ddbf8d29), [`8df5dfc62`](https://github.com/commercetools/merchant-center-application-kit/commit/8df5dfc623a3579299dbba1691886ff9e60bd3c8), [`975f3f505`](https://github.com/commercetools/merchant-center-application-kit/commit/975f3f505eb686d77b05e058dd9fea9ccd7f3e5e)]:
+  - @commercetools-frontend/application-shell-connectors@21.24.0
+  - @commercetools-frontend/application-components@21.24.0
+  - @commercetools-frontend/mc-dev-authentication@21.24.0
+  - @commercetools-frontend/application-config@21.24.0
+  - @commercetools-frontend/jest-preset-mc-app@21.24.0
+  - @commercetools-frontend/application-shell@21.24.0
+  - @commercetools-frontend/actions-global@21.24.0
+  - @commercetools-frontend/permissions@21.24.0
+  - @commercetools-frontend/mc-scripts@21.24.0
+  - @commercetools-frontend/i18n@21.24.0
+  - @commercetools-frontend/l10n@21.24.0
+  - @commercetools-frontend/eslint-config-mc-app@21.24.0
+  - @commercetools-frontend/assets@21.24.0
+  - @commercetools-frontend/constants@21.24.0
+
 ## 21.23.10
 
 ### Patch Changes

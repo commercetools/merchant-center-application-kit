@@ -1,5 +1,20 @@
 # @commercetools-frontend/application-config
 
+## 21.24.0
+
+### Minor Changes
+
+- [#3012](https://github.com/commercetools/merchant-center-application-kit/pull/3012) [`7074d035c`](https://github.com/commercetools/merchant-center-application-kit/commit/7074d035c1c540b330bd772355ed9e30d522a2c5) Thanks [@emmenko](https://github.com/emmenko)! - Support referencing Intl messages `${intl:}` that use [Transifex's Structured JSON format](https://help.transifex.com/en/articles/6220899-structured-json).
+
+### Patch Changes
+
+- [#2992](https://github.com/commercetools/merchant-center-application-kit/pull/2992) [`e42f8d903`](https://github.com/commercetools/merchant-center-application-kit/commit/e42f8d9037626d51abc2b5611ff5939c549cca73) Thanks [@emmenko](https://github.com/emmenko)! - Reorder imports
+
+- [#2974](https://github.com/commercetools/merchant-center-application-kit/pull/2974) [`007cb8a04`](https://github.com/commercetools/merchant-center-application-kit/commit/007cb8a04d2d4813d6b1bd6001abd5e6b30c0de6) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- Updated dependencies [[`a78e9684d`](https://github.com/commercetools/merchant-center-application-kit/commit/a78e9684d038b0c708d52338fc052e9e6d8fe440)]:
+  - @commercetools-frontend/babel-preset-mc-app@21.24.0
+
 ## 21.23.10
 
 ### Patch Changes

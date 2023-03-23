@@ -1,5 +1,11 @@
 # @commercetools-frontend/babel-preset-mc-app
 
+## 21.24.0
+
+### Patch Changes
+
+- [#3003](https://github.com/commercetools/merchant-center-application-kit/pull/3003) [`a78e9684d`](https://github.com/commercetools/merchant-center-application-kit/commit/a78e9684d038b0c708d52338fc052e9e6d8fe440) Thanks [@emmenko](https://github.com/emmenko)! - Refine browser targets
+
 ## 21.23.10
 
 ## 21.23.9
