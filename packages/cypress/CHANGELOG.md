@@ -1,5 +1,15 @@
 # @commercetools-frontend/cypress
 
+## 21.24.0
+
+### Patch Changes
+
+- [#2992](https://github.com/commercetools/merchant-center-application-kit/pull/2992) [`e42f8d903`](https://github.com/commercetools/merchant-center-application-kit/commit/e42f8d9037626d51abc2b5611ff5939c549cca73) Thanks [@emmenko](https://github.com/emmenko)! - Reorder imports
+
+- Updated dependencies [[`e42f8d903`](https://github.com/commercetools/merchant-center-application-kit/commit/e42f8d9037626d51abc2b5611ff5939c549cca73), [`007cb8a04`](https://github.com/commercetools/merchant-center-application-kit/commit/007cb8a04d2d4813d6b1bd6001abd5e6b30c0de6), [`7074d035c`](https://github.com/commercetools/merchant-center-application-kit/commit/7074d035c1c540b330bd772355ed9e30d522a2c5), [`b3ada0ca5`](https://github.com/commercetools/merchant-center-application-kit/commit/b3ada0ca522b8d56669e252108254a4b1be153db), [`4e7962188`](https://github.com/commercetools/merchant-center-application-kit/commit/4e7962188001c1a6f6aa3a806ccd913ed567e6d2), [`9b20f5c15`](https://github.com/commercetools/merchant-center-application-kit/commit/9b20f5c1520a85c2f84d700e591e414e98c427e9), [`f23cd303d`](https://github.com/commercetools/merchant-center-application-kit/commit/f23cd303d31a77aa579e5d692e532043ddbf8d29), [`8df5dfc62`](https://github.com/commercetools/merchant-center-application-kit/commit/8df5dfc623a3579299dbba1691886ff9e60bd3c8)]:
+  - @commercetools-frontend/application-config@21.24.0
+  - @commercetools-frontend/application-shell@21.24.0
+
 ## 21.23.10
 
 ### Patch Changes

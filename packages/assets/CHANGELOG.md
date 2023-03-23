@@ -1,5 +1,13 @@
 # @commercetools-frontend/assets
 
+## 21.24.0
+
+### Patch Changes
+
+- [#2994](https://github.com/commercetools/merchant-center-application-kit/pull/2994) [`da89fae2b`](https://github.com/commercetools/merchant-center-application-kit/commit/da89fae2b86a09a1cbb004250141b9cb49ec3da7) Thanks [@emmenko](https://github.com/emmenko)! - Load background png for public pages from assets
+
+- [#2996](https://github.com/commercetools/merchant-center-application-kit/pull/2996) [`0cd9bf7dc`](https://github.com/commercetools/merchant-center-application-kit/commit/0cd9bf7dcb192e87a26ca4ed5b164ff3e1333b9c) Thanks [@emmenko](https://github.com/emmenko)! - Optimize SVGs
+
 ## 21.23.10
 
 ## 21.23.9

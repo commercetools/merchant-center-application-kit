@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 21.24.0
+
+### Patch Changes
+
+- [#2995](https://github.com/commercetools/merchant-center-application-kit/pull/2995) [`9b20f5c15`](https://github.com/commercetools/merchant-center-application-kit/commit/9b20f5c1520a85c2f84d700e591e414e98c427e9) Thanks [@emmenko](https://github.com/emmenko)! - Cleanup unnecessary props and types, refactor `<Route>` to always render using children.
+
 ## 21.23.10
 
 ## 21.23.9

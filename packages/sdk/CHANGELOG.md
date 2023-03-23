@@ -1,5 +1,14 @@
 # @commercetools-frontend/sdk
 
+## 21.24.0
+
+### Patch Changes
+
+- [#2992](https://github.com/commercetools/merchant-center-application-kit/pull/2992) [`e42f8d903`](https://github.com/commercetools/merchant-center-application-kit/commit/e42f8d9037626d51abc2b5611ff5939c549cca73) Thanks [@emmenko](https://github.com/emmenko)! - Reorder imports
+
+- Updated dependencies [[`9b20f5c15`](https://github.com/commercetools/merchant-center-application-kit/commit/9b20f5c1520a85c2f84d700e591e414e98c427e9)]:
+  - @commercetools-frontend/constants@21.24.0
+
 ## 21.23.10
 
 ### Patch Changes

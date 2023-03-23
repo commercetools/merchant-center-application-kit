@@ -1,5 +1,19 @@
 # @commercetools-frontend/sentry
 
+## 21.24.0
+
+### Patch Changes
+
+- [#2992](https://github.com/commercetools/merchant-center-application-kit/pull/2992) [`e42f8d903`](https://github.com/commercetools/merchant-center-application-kit/commit/e42f8d9037626d51abc2b5611ff5939c549cca73) Thanks [@emmenko](https://github.com/emmenko)! - Reorder imports
+
+- [#2974](https://github.com/commercetools/merchant-center-application-kit/pull/2974) [`007cb8a04`](https://github.com/commercetools/merchant-center-application-kit/commit/007cb8a04d2d4813d6b1bd6001abd5e6b30c0de6) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- [#2999](https://github.com/commercetools/merchant-center-application-kit/pull/2999) [`975f3f505`](https://github.com/commercetools/merchant-center-application-kit/commit/975f3f505eb686d77b05e058dd9fea9ccd7f3e5e) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- Updated dependencies [[`9b20f5c15`](https://github.com/commercetools/merchant-center-application-kit/commit/9b20f5c1520a85c2f84d700e591e414e98c427e9)]:
+  - @commercetools-frontend/constants@21.24.0
+  - @commercetools-frontend/browser-history@21.24.0
+
 ## 21.23.10
 
 ### Patch Changes
