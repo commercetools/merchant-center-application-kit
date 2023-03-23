@@ -1,4 +1,4 @@
 {
-  "Menu.Avengers": "Die Avengers",
-  "Menu.Avengers.New": "Avenger hinzufügen"
+  "Menu.Avengers": { "string": "Die Avengers" },
+  "Menu.Avengers.New": { "string": "Avenger hinzufügen" }
 }

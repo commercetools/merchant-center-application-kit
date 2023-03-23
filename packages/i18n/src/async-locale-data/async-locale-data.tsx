@@ -1,14 +1,10 @@
 import { useEffect, ReactNode, useCallback } from 'react';
-import type { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
-
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import type { TMessageTranslations } from '../export-types';
 import loadI18n from '../load-i18n';
 import { extractLanguageTagFromLocale, mergeMessages } from '../utils';
 import useAsyncIntlMessages from './use-async-intl-messages';
 
-export type TMessageTranslations =
-  | Record<string, string>
-  | Record<string, MessageFormatElement[]>;
 export type TMessageTranslationsAsync = (
   locale: string
 ) => Promise<TMessageTranslations>;

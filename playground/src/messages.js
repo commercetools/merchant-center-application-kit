@@ -1,3 +1,5 @@
+import { parseChunkImport } from '@commercetools-frontend/i18n';
+
 const loadMessages = (lang) => {
   let loadAppI18nPromise;
   switch (lang) {
@@ -18,7 +20,7 @@ const loadMessages = (lang) => {
   }
 
   return loadAppI18nPromise.then(
-    (result) => result.default,
+    (result) => parseChunkImport(result),
     (error) => {
       // eslint-disable-next-line no-console
       console.warn(

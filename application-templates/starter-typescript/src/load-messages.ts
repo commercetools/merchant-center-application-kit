@@ -1,6 +1,7 @@
-import type {
-  TI18NImportData,
-  TMergedMessages,
+import {
+  type TI18NImportData,
+  type TMessageTranslations,
+  parseChunkImport,
 } from '@commercetools-frontend/i18n';
 
 const getChunkImport = (locale: string): Promise<TI18NImportData> => {
@@ -18,13 +19,10 @@ const getChunkImport = (locale: string): Promise<TI18NImportData> => {
   }
 };
 
-const loadMessages = async (locale: string): Promise<TMergedMessages> => {
+const loadMessages = async (locale: string): Promise<TMessageTranslations> => {
   try {
     const chunkImport = await getChunkImport(locale);
-    // Prefer loading `default` (for ESM bundles) and
-    // fall back to normal import (for CJS bundles).
-    // @ts-ignore
-    return chunkImport.default || chunkImport;
+    return parseChunkImport(chunkImport);
   } catch (error) {
     console.warn(
       `Something went wrong while loading the app messages for ${locale}`,

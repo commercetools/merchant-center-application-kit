@@ -62,7 +62,10 @@ const Application = (props) => (
 
 ```js
 import { IntlProvider } from 'react-intl';
-import { AsyncLocaleData } from '@commercetools-frontend/i18n';
+import {
+  AsyncLocaleData,
+  parseChunkImport,
+} from '@commercetools-frontend/i18n';
 
 const loadMessages = (lang) => {
   let loadAppI18nPromise;
@@ -84,7 +87,7 @@ const loadMessages = (lang) => {
   }
 
   return loadAppI18nPromise.then(
-    (result) => result.default,
+    (result) => parseChunkImport(result),
     (error) => {
       // eslint-disable-next-line no-console
       console.warn(

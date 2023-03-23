@@ -1,15 +1,12 @@
-import type { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
+import type { TI18NImportData, TMessageTranslations } from './export-types';
 import loadMomentLocales from './moment-locales';
-import { mergeMessages, mapLocaleToIntlLocale } from './utils';
+import {
+  parseChunkImport,
+  mergeMessages,
+  mapLocaleToIntlLocale,
+} from './utils';
 
-export type I18NImportData = {
-  default: Record<string, string> | Record<string, MessageFormatElement[]>;
-};
-export type MergedMessages =
-  | Record<string, string>
-  | Record<string, MessageFormatElement[]>;
-
-const getUiKitChunkImport = (locale: string): Promise<I18NImportData> => {
+const getUiKitChunkImport = (locale: string): Promise<TI18NImportData> => {
   const intlLocale = mapLocaleToIntlLocale(locale);
   switch (intlLocale) {
     case 'de':
@@ -35,7 +32,7 @@ const getUiKitChunkImport = (locale: string): Promise<I18NImportData> => {
   }
 };
 
-const getAppKitChunkImport = (locale: string): Promise<I18NImportData> => {
+const getAppKitChunkImport = (locale: string): Promise<TI18NImportData> => {
   const intlLocale = mapLocaleToIntlLocale(locale);
   switch (intlLocale) {
     case 'de':
@@ -63,7 +60,7 @@ const getAppKitChunkImport = (locale: string): Promise<I18NImportData> => {
 
 const getCommunityKitChunkImport = async (
   locale: string
-): Promise<I18NImportData> => {
+): Promise<TI18NImportData> => {
   const intlLocale = mapLocaleToIntlLocale(locale);
   switch (intlLocale) {
     case 'de':
@@ -93,7 +90,7 @@ const getCommunityKitChunkImport = async (
 // locale. https://webpack.js.org/api/module-methods/#import-
 export default async function loadI18n(
   locale: string
-): Promise<MergedMessages> {
+): Promise<TMessageTranslations> {
   // Load moment localizations
   await loadMomentLocales(locale);
 
@@ -109,8 +106,8 @@ export default async function loadI18n(
   // Prefer loading `default` (for ESM bundles) and
   // fall back to normal import (for CJS bundles).
   return mergeMessages(
-    uiKitChunkImport.default || uiKitChunkImport,
-    appKitChunkImport.default || appKitChunkImport,
-    communityKitChunkImport.default || communityKitChunkImport
+    parseChunkImport(uiKitChunkImport),
+    parseChunkImport(appKitChunkImport),
+    parseChunkImport(communityKitChunkImport)
   );
 }
