@@ -35,14 +35,18 @@ type TProps = {
   children: ReactNode;
 };
 
-const Container = styled.div`
+// TODO: @redesign cleanup
+type TContainerProps = { showBackground: boolean };
+
+const Container = styled.div<TContainerProps>`
   width: 100%;
   min-height: 100vh;
   display: flex;
   padding: ${customProperties.spacingXl} 0;
   justify-content: center;
   background-size: cover;
-  background-image: url(${publicBackgroundUrl});
+  background-image: ${(props: TContainerProps) =>
+    props.showBackground ? `url(${publicBackgroundUrl})` : 'none'};
   background-position: center;
 `;
 const ContainerColumn = styled.div`
@@ -63,7 +67,7 @@ const PublicPageLayout: FC<TProps> = (props) => {
   const { themedValue } = useTheme();
 
   return (
-    <Container>
+    <Container showBackground={themedValue(true, false)}>
       <Spacings.Stack scale="xl" alignItems="center">
         <ContainerColumn>
           <div>
