@@ -73,7 +73,7 @@ const PublicPageLayout: FC<TProps> = (props) => {
         <ContainerColumn>
           <div>
             <img
-              width="100%"
+              width={themedValue('100%', undefined)}
               src={themedValue(
                 CommercetoolsLogoSvg,
                 CommercetoolsLogoOnWhiteSvg
