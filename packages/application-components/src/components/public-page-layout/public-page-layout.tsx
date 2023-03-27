@@ -82,6 +82,7 @@ const PublicPageLayout: FC<TProps> = (props) => {
             />
           </div>
         </ContainerColumn>
+        {/* TODO: remove `welcomeMessage`` */}
         {props.welcomeMessage && (
           <ContainerColumn>
             <Text.Headline as="h2">
@@ -96,7 +97,7 @@ const PublicPageLayout: FC<TProps> = (props) => {
             </Text.Headline>
           </ContainerColumn>
         )}
-        <Spacings.Stack scale={themedValue('s', 'l')}>
+        <Spacings.Stack scale={themedValue('s', 'xl')}>
           <PublicPageLayoutContent {...props} />
           <PublicPageLayoutContent contentScale={props.contentScale}>
             <Spacings.Stack
