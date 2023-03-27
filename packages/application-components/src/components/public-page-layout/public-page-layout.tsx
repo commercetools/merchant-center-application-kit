@@ -3,7 +3,7 @@ import { FC, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import publicBackgroundUrl from '@commercetools-frontend/assets/images/public-background.png';
-import CommercetoolsLogoOnWhiteSvg from '@commercetools-frontend/assets/logos/commercetools_color-on-white_horizontal_RGB.svg';
+import CommercetoolsLogoOnWhiteSvg from '@commercetools-frontend/assets/logos/color-on-white-horizontal.svg';
 import CommercetoolsLogoSvg from '@commercetools-frontend/assets/logos/commercetools_primary-logo_horizontal_white-text_RGB.svg';
 import { customProperties, useTheme } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
