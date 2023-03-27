@@ -82,7 +82,6 @@ const PublicPageLayout: FC<TProps> = (props) => {
             />
           </div>
         </ContainerColumn>
-        {/* TODO: remove `welcomeMessage`` */}
         {props.welcomeMessage && (
           <ContainerColumn>
             <Text.Headline as="h2">
