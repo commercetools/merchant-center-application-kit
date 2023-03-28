@@ -3,6 +3,7 @@ import { FC, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import publicBackgroundUrl from '@commercetools-frontend/assets/images/public-background.png';
+import CommercetoolsLogoOnWhiteSvg from '@commercetools-frontend/assets/logos/color-on-white-horizontal.svg';
 import CommercetoolsLogoSvg from '@commercetools-frontend/assets/logos/commercetools_primary-logo_horizontal_white-text_RGB.svg';
 import { customProperties, useTheme } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
@@ -35,14 +36,18 @@ type TProps = {
   children: ReactNode;
 };
 
-const Container = styled.div`
+// TODO: @redesign cleanup
+type TContainerProps = { showBackground: boolean };
+
+const Container = styled.div<TContainerProps>`
   width: 100%;
   min-height: 100vh;
   display: flex;
   padding: ${customProperties.spacingXl} 0;
   justify-content: center;
   background-size: cover;
-  background-image: url(${publicBackgroundUrl});
+  background-image: ${(props: TContainerProps) =>
+    props.showBackground ? `url(${publicBackgroundUrl})` : 'none'};
   background-position: center;
 `;
 const ContainerColumn = styled.div`
@@ -63,13 +68,16 @@ const PublicPageLayout: FC<TProps> = (props) => {
   const { themedValue } = useTheme();
 
   return (
-    <Container>
+    <Container showBackground={themedValue(true, false)}>
       <Spacings.Stack scale="xl" alignItems="center">
         <ContainerColumn>
           <div>
             <img
-              width="100%"
-              src={CommercetoolsLogoSvg}
+              width={themedValue('100%', undefined)}
+              src={themedValue(
+                CommercetoolsLogoSvg,
+                CommercetoolsLogoOnWhiteSvg
+              )}
               alt="commercetools logo"
             />
           </div>
@@ -88,7 +96,7 @@ const PublicPageLayout: FC<TProps> = (props) => {
             </Text.Headline>
           </ContainerColumn>
         )}
-        <Spacings.Stack scale={themedValue('s', 'l')}>
+        <Spacings.Stack scale={themedValue('s', 'xl')}>
           <PublicPageLayoutContent {...props} />
           <PublicPageLayoutContent contentScale={props.contentScale}>
             <Spacings.Stack
@@ -96,9 +104,13 @@ const PublicPageLayout: FC<TProps> = (props) => {
               alignItems={props.contentScale === 'wide' ? 'center' : 'stretch'}
             >
               {props.legalMessage && (
-                <Text.Body tone="inverted">{props.legalMessage}</Text.Body>
+                <Text.Body tone={themedValue('inverted', 'secondary')}>
+                  {props.legalMessage}
+                </Text.Body>
               )}
-              <Text.Body tone="inverted">{`${year} © commercetools`}</Text.Body>
+              <Text.Body
+                tone={themedValue('inverted', 'secondary')}
+              >{`${year} © commercetools`}</Text.Body>
             </Spacings.Stack>
           </PublicPageLayoutContent>
         </Spacings.Stack>
