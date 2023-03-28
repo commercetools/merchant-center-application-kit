@@ -1,5 +1,18 @@
 # @commercetools-frontend/application-components
 
+## 21.24.1
+
+### Patch Changes
+
+- [#3015](https://github.com/commercetools/merchant-center-application-kit/pull/3015) [`ec7abe2cb`](https://github.com/commercetools/merchant-center-application-kit/commit/ec7abe2cb61b7b07b485c5e8cce102139353e4c3) Thanks [@jaikamat](https://github.com/jaikamat)! - Include new logo asset and design tweaks to PublicPageLayout
+
+- Updated dependencies [[`ec7abe2cb`](https://github.com/commercetools/merchant-center-application-kit/commit/ec7abe2cb61b7b07b485c5e8cce102139353e4c3)]:
+  - @commercetools-frontend/assets@21.24.1
+  - @commercetools-frontend/application-shell-connectors@21.24.1
+  - @commercetools-frontend/constants@21.24.1
+  - @commercetools-frontend/i18n@21.24.1
+  - @commercetools-frontend/l10n@21.24.1
+
 ## 21.24.0
 
 ### Patch Changes

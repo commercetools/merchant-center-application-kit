@@ -1,5 +1,12 @@
 # @commercetools-frontend/application-config
 
+## 21.24.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@21.24.1
+
 ## 21.24.0
 
 ### Minor Changes
