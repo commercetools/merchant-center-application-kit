@@ -1,5 +1,13 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 21.24.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@21.24.1
+  - @commercetools-frontend/sentry@21.24.1
+
 ## 21.24.0
 
 ### Patch Changes

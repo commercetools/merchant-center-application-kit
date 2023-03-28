@@ -1,5 +1,7 @@
 # @commercetools-frontend/constants
 
+## 21.24.1
+
 ## 21.24.0
 
 ### Patch Changes
