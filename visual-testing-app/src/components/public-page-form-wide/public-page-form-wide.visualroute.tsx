@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import { PublicPageLayout } from '@commercetools-frontend/application-components';
-import DoorsClosedSvg from '@commercetools-frontend/assets/images/project-not-initialized.svg';
+import DoorsClosedSvg from '@commercetools-frontend/assets/images/doors-closed.svg';
 import Card from '@commercetools-uikit/card';
 import { customProperties } from '@commercetools-uikit/design-system';
 import Link from '@commercetools-uikit/link';

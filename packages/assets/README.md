@@ -19,11 +19,11 @@ The `images` folder contains SVG images to be imported and used as `<img src>` U
 ```js
 import React from 'react';
 // Import requires a bundler to deal with SVG files
-import Hourglass from '@commercetools-frontend/assets/images/hourglass.svg';
+import HourglassIllustration from '@commercetools-frontend/assets/images/hourglass.svg';
 
 const Component = () => (
   <div>
-    <img src={Hourglass} />
+    <img src={HourglassIllustration} />
   </div>
 );
 ```
