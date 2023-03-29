@@ -3,7 +3,13 @@ import type {
   API,
   // ASTPath,
   // CallExpression,
+  // ASTPath,
+  // CallExpression,
   FileInfo,
+  // JSXAttribute,
+  // JSXExpressionContainer,
+  // StringLiteral,
+  VariableDeclarator,
   // JSXAttribute,
   // JSXOpeningElement,
   // VariableDeclaration,
@@ -33,20 +39,27 @@ function removeDeprecatedModalLevelProps(
   //   }
   // });
 
-  // 1. Update themedValue usages to always use new theme value
+  // 1. Update props which use `themedValue` helper usages to always use new theme value
+  //  Remove the prop in case the new theme value is undefined
   const themedValueUsages = root.find(j.JSXAttribute, {
     value(attributeValue) {
       return (
         attributeValue?.type === 'JSXExpressionContainer' &&
-        attributeValue?.expression.type === 'CallExpression' &&
-        attributeValue?.expression.callee.type === 'Identifier' &&
-        attributeValue?.expression.callee.name === 'themedValue'
+        // Props using themedValue helper
+        ((attributeValue?.expression.type === 'CallExpression' &&
+          attributeValue?.expression.callee.type === 'Identifier' &&
+          attributeValue?.expression.callee.name === 'themedValue') ||
+          // Styles props using styles component css string template including usages of themedValue helper
+          (attributeValue?.expression.type === 'TaggedTemplateExpression' &&
+            attributeValue?.expression.quasi.expressions.some(
+              (expression) =>
+                expression.type === 'CallExpression' &&
+                expression.callee.type === 'Identifier' &&
+                expression.callee.name === 'themedValue'
+            )))
       );
-
-      // return false;
     },
   });
-  console.log({ themedValueUsages: themedValueUsages.size() });
   themedValueUsages.replaceWith((attribute) => {
     const { node } = attribute;
     // console.log({node});
@@ -62,30 +75,107 @@ function removeDeprecatedModalLevelProps(
 
     if (
       node.value?.type === 'JSXExpressionContainer' &&
+      node.value?.expression.type === 'TaggedTemplateExpression'
+    ) {
+      console.log({ expression: node.value.expression.quasi.expressions });
+
+      // @ts-ignore
+      node.value.expression.quasi.expressions =
+        node.value.expression.quasi.expressions.map((expression) => {
+          if (expression.type === 'CallExpression') {
+            return expression.arguments[1];
+          }
+
+          return expression;
+        });
+    }
+
+    if (
+      node.value?.type === 'JSXExpressionContainer' &&
       node.value?.expression.type === 'CallExpression'
     ) {
       console.log('Expression:', node.value.expression.arguments[1].type);
+      const secondArgument = node.value.expression.arguments[1];
 
-      switch (node.value.expression.arguments[1].type) {
-        case 'StringLiteral':
-          node.value = j.stringLiteral(
-            node.value.expression.arguments[1].value
-          );
-          console.log('Expression updated with String literal!');
-          break;
-        case 'Identifier':
-          node.value = j.jsxExpressionContainer(
-            j.identifier(node.value.expression.arguments[1].name)
-          );
-          break;
+      const secondArgumentValue =
+        'value' in secondArgument
+          ? secondArgument.value
+          : 'name' in secondArgument
+          ? secondArgument.name
+          : undefined;
+
+      // If new theme value is undefined, then we early return null
+      // to actually remove the property altogether from the component
+      if (!secondArgumentValue) {
+        return null;
       }
 
-      // if (node.value.expression.arguments[1].type === 'StringLiteral') {
-      //   console.log('1.', inspect(node.value));
-      //   node.value = j.stringLiteral(node.value.expression.arguments[1].value);
-      //   console.log('2.', inspect(node.value));
-      //   console.log('Changed themeValue attribute signature!');
-      // }
+      switch (secondArgument.type) {
+        case 'StringLiteral':
+          node.value = j.stringLiteral(secondArgument.value);
+          break;
+        case 'NumericLiteral':
+        case 'BigIntLiteral':
+        case 'NullLiteral':
+        case 'BooleanLiteral':
+        case 'RegExpLiteral':
+          // namedTypes.Identifier |
+          // namedTypes.FunctionExpression |
+          // namedTypes.ArrayExpression |
+          // namedTypes.ObjectExpression |
+          // namedTypes.Literal |
+          // namedTypes.MemberExpression |
+          // namedTypes.CallExpression |
+          // namedTypes.TaggedTemplateExpression |
+          // namedTypes.TemplateLiteral |
+          // namedTypes.JSXIdentifier |
+          // namedTypes.JSXExpressionContainer |
+          // namedTypes.JSXElement |
+          // namedTypes.JSXFragment |
+          // namedTypes.JSXMemberExpression |
+          // namedTypes.JSXText |
+          // namedTypes.ParenthesizedExpression |
+
+          // const nodeValue = secondArgument.value;
+          // If new theme value is undefined, then we early return null
+          // to actually remove the property altogether from the component
+          // if (secondArgument.value === 'undefined') {
+          //   return null;
+          // }
+
+          // Replace the prop value with the value from the new theme
+          // (second one passed to the `themedValue` helper)
+          // node.value = j.stringLiteral(
+          //   node.value.expression.arguments[1].value
+          // );
+          node.value = j.jsxExpressionContainer({
+            type: secondArgument.type,
+            // @ts-ignore
+            value:
+              secondArgument.type === 'RegExpLiteral'
+                ? new RegExp(secondArgument.value || '')
+                : secondArgument.value || '',
+          });
+          // console.log('Expression updated with String literal!');
+          break;
+        case 'Identifier':
+          // If new theme value is undefined, then we early return null
+          // to actually remove the property altogether from the component
+          // if (node.value.expression.arguments[1].name === 'undefined') {
+          //   return null;
+          // }
+          if (secondArgument.name === 'undefined') {
+            return null;
+          }
+
+          // Replace the prop value with the value from the new theme
+          // (second one passed to the `themedValue` helper)
+          node.value = j.jsxExpressionContainer(
+            j.identifier(secondArgument.name)
+          );
+          // node.value = node.value.expression.arguments[1];
+          break;
+      }
     }
 
     return attribute.node;
@@ -94,6 +184,8 @@ function removeDeprecatedModalLevelProps(
   // 2. If useHook was used to only consume themedValue,
   // remove it (maybe we're also using "theme" property from the hook)
   // Make sure there are no more "themedValue" usages in the file
+  // TODO: If we were also importing another useTheme hook helper, remove
+  // themedValue from the destructured object
   const useThemeHookUsages = root.find(j.VariableDeclaration, {
     declarations(values) {
       const [declaration] = values;
@@ -105,22 +197,58 @@ function removeDeprecatedModalLevelProps(
         declaration.init?.type === 'CallExpression' &&
         declaration.init.callee.type === 'Identifier' &&
         declaration.init.callee.name === 'useTheme' &&
-        declaration.id.type === 'ObjectPattern' &&
-        declaration.id.properties.length === 1 &&
-        declaration.id.properties[0].type === 'ObjectProperty' &&
-        declaration.id.properties[0].value.type === 'Identifier' &&
-        declaration.id.properties[0].value.name === 'themedValue'
+        declaration.id.type === 'ObjectPattern'
+        // declaration.id.properties.length >= 1 &&
+        // declaration.id.properties[0].type === 'ObjectProperty' &&
+        // declaration.id.properties[0].value.type === 'Identifier' &&
+        // declaration.id.properties[0].value.name === 'themedValue'
       );
     },
   });
   // console.log({ useThemeHookUsages });
   // useThemeHookUsages.remove();
+  useThemeHookUsages.replaceWith((value) => {
+    const declaration = value.node.declarations[0] as VariableDeclarator;
 
-  // 3. If we removed the useHook call, also remove the import
+    if (declaration.id.type === 'ObjectPattern') {
+      // Remove the declaration altogether if we were only getting the `themedValue`
+      // helper from the `useTheme` hook
+      //  Ex: const { themedValue } = useTheme();
+      if (declaration.id.properties.length === 1) {
+        return null;
+      }
+
+      // Update the destructuring of the `useTheme` hook to remove the `themedValue`
+      // const when there were more helpers in the destructuring
+      //  Ex: const { theme, themedValue } = useTheme();
+      const index = declaration.id.properties.findIndex(
+        (prop) =>
+          prop.type === 'ObjectProperty' &&
+          prop.key.type === 'Identifier' &&
+          prop.key.name === 'themedValue'
+      );
+      if (index !== -1) {
+        declaration.id.properties.splice(index, 1);
+      }
+    }
+
+    return value.node;
+  });
+
+  // 3. TODO: If we removed the useHook call, also remove the import
+  // 4. TODO: Remove cleanup TODO comment?
   if (useThemeHookUsages.size() > 0) {
   }
 
-  // 4. Remove cleanup TODO comment?
+  // 5. Clean potentially useless imports
+  // <img
+  //   width={themedValue('100%', undefined)}
+  //   src={themedValue(
+  //     CommercetoolsLogoSvg, <------------------------
+  //     CommercetoolsLogoOnWhiteSvg
+  //   )}
+  //   alt="commercetools logo"
+  // />
 
   return root.toSource();
 
