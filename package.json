@@ -89,7 +89,7 @@
     "@commercetools-docs/writing-style": "3.3.3",
     "@commercetools-frontend/eslint-config-mc-app": "workspace:*",
     "@commercetools-test-data/core": "4.11.1",
-    "@commercetools-uikit/design-system": "^15.13.2",
+    "@commercetools-uikit/design-system": "^15.14.3",
     "@commercetools/github-labels": "1.1.0",
     "@commitlint/cli": "17.4.4",
     "@commitlint/config-conventional": "17.4.4",
