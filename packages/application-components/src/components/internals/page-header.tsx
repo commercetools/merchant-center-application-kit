@@ -11,7 +11,7 @@ type Props = {
 };
 
 const PageHeader = (props: Props) => {
-  const { theme } = useTheme();
+  const { themedValue } = useTheme();
 
   return (
     <div
@@ -30,7 +30,7 @@ const PageHeader = (props: Props) => {
     >
       <PageHeaderTitle
         title={props.title}
-        titleSize={theme === 'default' ? 'small' : 'big'}
+        titleSize={themedValue('small', 'big')}
         subtitle={props.subtitle}
         truncate
       />

@@ -63,7 +63,7 @@ const defaultProps: Pick<Props, 'hideControls'> = {
 };
 
 const TabularModalPage = (props: Props) => {
-  const { theme } = useTheme();
+  const { themedValue } = useTheme();
   return (
     <ModalPage
       title={props.title}
@@ -81,7 +81,7 @@ const TabularModalPage = (props: Props) => {
         {props.customTitleRow || (
           <PageHeaderTitle
             title={props.title}
-            titleSize={theme === 'default' ? 'small' : 'big'}
+            titleSize={themedValue('small', 'big')}
             subtitle={props.subtitle}
             truncate
           />

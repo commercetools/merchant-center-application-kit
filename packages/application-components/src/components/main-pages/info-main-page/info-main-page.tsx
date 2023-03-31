@@ -23,13 +23,13 @@ type InfoMainPageProps = {
 };
 
 const InfoMainPage = (props: InfoMainPageProps) => {
-  const { theme } = useTheme();
+  const { themedValue } = useTheme();
   return (
     <CustomFormMainPage
       title={props.title}
       subtitle={props.subtitle}
       customTitleRow={props.customTitleRow}
-      hideDivider={theme !== 'default'}
+      hideDivider={themedValue(false, true)}
     >
       {props.children}
     </CustomFormMainPage>

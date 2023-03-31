@@ -51,7 +51,7 @@ const defaultProps: Pick<Props, 'color' | 'previousPathLabel'> = {
 
 const ModalPageTopBar = (props: Props) => {
   const intl = useIntl();
-  const { theme } = useTheme();
+  const { themedValue } = useTheme();
   return (
     <div
       css={css`
@@ -114,7 +114,7 @@ const ModalPageTopBar = (props: Props) => {
           onClick={props.onClose}
           icon={
             <LargeIconWrapper>
-              <CloseIcon size={theme === 'default' ? 'medium' : 'big'} />
+              <CloseIcon size={themedValue('medium', 'big')} />
             </LargeIconWrapper>
           }
         />
