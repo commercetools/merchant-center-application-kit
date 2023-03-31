@@ -5,6 +5,7 @@ import type {
   JSCodeshift,
   VariableDeclarator,
 } from 'jscodeshift';
+import prettier from 'prettier';
 // import type { TRunnerOptions } from '../types';
 
 // Update props in components which use `themedValue` helper to always use new theme value
@@ -254,7 +255,7 @@ function removeMigrationCleanupComment(tree: Collection, j: JSCodeshift) {
     .remove();
 }
 
-function themeMigrationCleanup(
+async function themeMigrationCleanup(
   file: FileInfo,
   api: API
   // options: TRunnerOptions
@@ -276,7 +277,15 @@ function themeMigrationCleanup(
     removeMigrationCleanupComment(root, j);
   }
 
-  return root.toSource();
+  // TODO: Do not return anything if no changes were applied
+
+  // Format output code with prettier
+  const prettierConfig = await prettier.resolveConfig(file.path);
+  console.log({ filePath: file.path, prettierConfig });
+  return prettier.format(root.toSource(), {
+    parser: 'typescript',
+    singleQuote: true,
+  });
 }
 
 export default themeMigrationCleanup;
