@@ -1,5 +1,14 @@
 # @commercetools-frontend/i18n
 
+## 21.24.2
+
+### Patch Changes
+
+- [#3020](https://github.com/commercetools/merchant-center-application-kit/pull/3020) [`b509a6b36`](https://github.com/commercetools/merchant-center-application-kit/commit/b509a6b360f9f6532d9716ae7ab0f06a1147df9e) Thanks [@kark](https://github.com/kark)! - Update `ui-kit` dependencies
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@21.24.2
+
 ## 21.24.1
 
 ### Patch Changes
