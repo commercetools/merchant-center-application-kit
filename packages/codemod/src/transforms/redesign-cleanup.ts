@@ -281,11 +281,7 @@ async function themeMigrationCleanup(
 
   // Format output code with prettier
   const prettierConfig = await prettier.resolveConfig(file.path);
-  console.log({ filePath: file.path, prettierConfig });
-  return prettier.format(root.toSource(), {
-    parser: 'typescript',
-    singleQuote: true,
-  });
+  return prettier.format(root.toSource(), prettierConfig!);
 }
 
 export default themeMigrationCleanup;
