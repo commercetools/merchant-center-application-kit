@@ -83,7 +83,7 @@ function updateThemedValueUsages(tree: Collection, j: JSCodeshift) {
 
         // If new theme value is undefined, then we early return null
         // to actually remove the property altogether from the component
-        if (!secondArgumentValue) {
+        if (!secondArgumentValue || secondArgumentValue === 'undefined') {
           return null;
         }
 
