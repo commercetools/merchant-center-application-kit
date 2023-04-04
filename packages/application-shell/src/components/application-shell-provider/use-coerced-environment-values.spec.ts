@@ -8,28 +8,28 @@ describe('given a JSON with stringified values', () => {
       useCoercedEnvironmentValues(coerceValuesJson)
     );
     expect(result.current).toMatchInlineSnapshot(`
-      Object {
-        "arrayAsString": Array [
+      {
+        "arrayAsString": [
           "1",
           "2",
         ],
-        "arrayAsStringWithDoubleEscapedQuotes": Array [
+        "arrayAsStringWithDoubleEscapedQuotes": [
           "1",
           "2",
         ],
-        "arrayOfNumbers": Array [
+        "arrayOfNumbers": [
           1,
           2,
           3,
         ],
-        "arrayOfStrings": Array [
+        "arrayOfStrings": [
           "hello",
           "world",
         ],
         "bool": true,
         "boolAsString": true,
         "empty": "",
-        "emptyArrayAsString": Array [],
+        "emptyArrayAsString": [],
         "null": null,
         "nullAsString": null,
         "number": 1,

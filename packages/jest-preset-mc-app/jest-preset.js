@@ -13,6 +13,10 @@ const defaultSetupTestFramework = resolveRelativePath(
 const defaultTransformBabelJest = resolveRelativePath(
   './transform-babel-jest.js'
 );
+const defaultTransformGraphQL = resolveRelativePath('./transform-graphql.js');
+const defaultModuleExportsResolver = resolveRelativePath(
+  './module-exports-resolver.js'
+);
 
 module.exports = {
   displayName: 'test',
@@ -28,16 +32,19 @@ module.exports = {
       defaultTransformFile,
     '\\.css$': 'identity-obj-proxy',
   },
+  resolver: defaultModuleExportsResolver,
   rootDir: rootPath,
   setupFiles: ['raf/polyfill', defaultSetupTests, 'jest-localstorage-mock'],
   setupFilesAfterEnv: [defaultSetupTestFramework],
   testEnvironment: 'jsdom',
-  testURL: 'https://mc.europe-west1.gcp.commercetools.com/',
+  testEnvironmentOptions: {
+    url: 'https://mc.europe-west1.gcp.commercetools.com/',
+  },
   testPathIgnorePatterns: ['node_modules', 'cypress'],
   testRegex: '\\.spec\\.jsx?$',
   transform: {
     '^.+\\.(js|jsx|mjs|ts|tsx)$': defaultTransformBabelJest,
-    '^.+\\.graphql$': 'jest-transform-graphql',
+    '^.+\\.graphql$': defaultTransformGraphQL,
   },
   watchPlugins: ['jest-watch-typeahead/filename'],
 };

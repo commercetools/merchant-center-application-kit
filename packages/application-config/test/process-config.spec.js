@@ -1290,7 +1290,7 @@ describe('when app URL is malformed', () => {
         })
       )
     ).toThrowErrorMatchingInlineSnapshot(
-      `"Invalid application URL: \\"wrong url\\""`
+      `"Invalid application URL: "wrong url""`
     );
   });
 });
@@ -1346,7 +1346,7 @@ describe('when CDN URL is malformed', () => {
         })
       )
     ).toThrowErrorMatchingInlineSnapshot(
-      `"Invalid application CDN URL: \\"wrong url\\""`
+      `"Invalid application CDN URL: "wrong url""`
     );
   });
 });
@@ -1398,8 +1398,6 @@ describe('when MC API URL is malformed', () => {
   it('should throw', () => {
     expect(() =>
       processConfig(createTestOptions())
-    ).toThrowErrorMatchingInlineSnapshot(
-      `"Invalid MC API URL: \\"wrong url\\""`
-    );
+    ).toThrowErrorMatchingInlineSnapshot(`"Invalid MC API URL: "wrong url""`);
   });
 });

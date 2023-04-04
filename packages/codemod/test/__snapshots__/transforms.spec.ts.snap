@@ -11,27 +11,27 @@ exports[`testing transform "remove-deprecated-modal-level-props" transforms corr
 
 function Modal() {
   return (<>
-    <InfoModalPage isOpen title=\\"Hello\\" onClose={() => {}}>
+    <InfoModalPage isOpen title="Hello" onClose={() => {}}>
       Hello
     </InfoModalPage>
     <FormModalPage
       isOpen
-      title=\\"Hello\\"
+      title="Hello"
       onPrimaryButtonClick={() => {}}
       onSecondaryButtonClick={() => {}}
       onClose={() => {}}>
       Hello
     </FormModalPage>
-    <CustomFormModalPage isOpen title=\\"Hello\\" onClose={() => {}}>
+    <CustomFormModalPage isOpen title="Hello" onClose={() => {}}>
       Hello
     </CustomFormModalPage>
     <TabularModalPage
       isOpen
-      title=\\"Hello\\"
+      title="Hello"
       tabControls={
         <>
-          <TabHeader to=\\"/one\\" label=\\"One\\" />
-          <TabHeader to=\\"/two\\" label=\\"Two\\" />
+          <TabHeader to="/one" label="One" />
+          <TabHeader to="/two" label="Two" />
         </>
       }
       onClose={() => {}}>

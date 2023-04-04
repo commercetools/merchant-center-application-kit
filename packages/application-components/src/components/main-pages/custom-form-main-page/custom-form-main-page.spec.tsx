@@ -81,9 +81,9 @@ describe('rendering', () => {
     });
 
     screen.getByText('Test Secondary Button').click();
-    expect(mockSecondaryOnClick).toBeCalled();
+    expect(mockSecondaryOnClick).toHaveBeenCalled();
 
     screen.getByText('Test Primary Button').click();
-    expect(mockPrimaryOnClick).toBeCalled();
+    expect(mockPrimaryOnClick).toHaveBeenCalled();
   });
 });

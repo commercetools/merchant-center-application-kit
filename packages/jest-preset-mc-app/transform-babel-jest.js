@@ -1,4 +1,4 @@
-const babelJest = require('babel-jest');
+const { createTransformer } = require('babel-jest');
 const getJestBabelPreset = require('babel-preset-jest');
 const getBabePresetConfigForMcApp = require('@commercetools-frontend/babel-preset-mc-app');
 const hasJsxRuntime = require('./has-jsx-runtime');
@@ -17,19 +17,6 @@ const jestBabelConfig = {
   ...mcAppBabelConfig,
   plugins: [...mcAppBabelConfig.plugins, ...getJestBabelPreset().plugins],
 };
-
-/**
- * NOTE:
- *  In `babel-jest` v27 the export has changed
- *  from: `babelJest.createTransformer`
- *  to `babelJest.default.createTransformer`.
- *  In order to remain backwards compatible the
- *  type of the export is checked.
- */
-const createTransformer =
-  typeof babelJest.createTransformer === 'function'
-    ? babelJest.createTransformer
-    : babelJest.default.createTransformer;
 
 const transformer = createTransformer(jestBabelConfig);
 

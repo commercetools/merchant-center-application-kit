@@ -37,10 +37,10 @@ describe('rendering', () => {
     });
 
     screen.getByText('Test Primary Button').click();
-    expect(mockPrimaryOnClick).toBeCalled();
+    expect(mockPrimaryOnClick).toHaveBeenCalled();
 
     screen.getByText('Test Secondary Button').click();
-    expect(mockSecondaryOnClick).toBeCalled();
+    expect(mockSecondaryOnClick).toHaveBeenCalled();
   });
 
   it('should disable form control buttons', () => {
