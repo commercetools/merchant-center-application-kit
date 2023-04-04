@@ -7,7 +7,7 @@ describe('InfoMainPage', () => {
   });
 
   it('Default', async () => {
-    await expect(page).toMatch('InfoMainPage');
+    await page.waitForSelector('text/InfoMainPage');
     await percySnapshot(page, 'InfoMainPage');
   });
 });

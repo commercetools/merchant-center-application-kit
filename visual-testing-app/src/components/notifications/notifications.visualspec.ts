@@ -7,7 +7,7 @@ describe('Notifications', () => {
   });
 
   it('Default', async () => {
-    await expect(page).toMatch('Notification');
+    await page.waitForSelector('text/Notification');
     await percySnapshot(page, 'Notifications');
   });
 });

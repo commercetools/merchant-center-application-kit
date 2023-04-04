@@ -7,7 +7,7 @@ describe('ConfirmationDialog', () => {
   });
 
   it('Default', async () => {
-    await expect(page).toMatch('ConfirmationDialog');
+    await page.waitForSelector('text/ConfirmationDialog');
     await percySnapshot(page, 'ConfirmationDialog');
   });
 });

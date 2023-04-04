@@ -7,7 +7,7 @@ describe('TabularMainPage', () => {
   });
 
   it('Default', async () => {
-    await expect(page).toMatch('TabularMainPage');
+    await page.waitForSelector('text/TabularMainPage');
     await percySnapshot(page, 'TabularMainPage');
   });
 });

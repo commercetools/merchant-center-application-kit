@@ -7,7 +7,7 @@ describe('PageNotFound', () => {
   });
 
   it('Default', async () => {
-    await expect(page).toMatch('PageNotFound');
+    await page.waitForSelector('text/PageNotFound');
     await percySnapshot(page, 'PageNotFound');
   });
 });
