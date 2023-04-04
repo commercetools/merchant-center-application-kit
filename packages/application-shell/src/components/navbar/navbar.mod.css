@@ -348,7 +348,7 @@
 }
 .item_menu-collapsed.list-item.item__active .item-icon-text .title {
   max-height: 44px;
-  overflow-x: hidden;
+  overflow: hidden;
   /* stylelint-disable-next-line value-no-vendor-prefix */
   display: -webkit-box;
   -webkit-line-clamp: 2;
