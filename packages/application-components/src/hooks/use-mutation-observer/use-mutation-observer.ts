@@ -3,6 +3,7 @@
 import { useLayoutEffect } from 'react';
 import useLatest from '@react-hook/latest';
 import rafSchd from 'raf-schd';
+import './polyfill';
 
 type TUseMutationObserverCallback = (
   mutationRecord: MutationRecord,
