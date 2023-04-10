@@ -1,8 +1,11 @@
+// import { inspect } from 'util';
 import type {
   API,
   Collection,
   FileInfo,
+  Identifier,
   JSCodeshift,
+  TSHasOptionalTypeParameterInstantiation,
   VariableDeclarator,
 } from 'jscodeshift';
 import prettier from 'prettier';
@@ -73,14 +76,6 @@ function updateThemedValueUsages(tree: Collection, j: JSCodeshift) {
             ? secondArgument.name
             : undefined;
 
-        // console.log({
-        //   // @ts-ignore
-        //   value: secondArgument.value,
-        //   // @ts-ignore
-        //   name: secondArgument.name,
-        //   secondArgument
-        // });
-
         // If new theme value is undefined, then we early return null
         // to actually remove the property altogether from the component
         if (!secondArgumentValue || secondArgumentValue === 'undefined') {
@@ -146,6 +141,15 @@ function updateThemedValueUsages(tree: Collection, j: JSCodeshift) {
 function processUseThemeHook(tree: Collection, j: JSCodeshift) {
   let wasHookRemoved = false;
 
+  const themedValueCalls = tree.find(j.CallExpression, {
+    callee: {
+      name: 'themedValue',
+    },
+  });
+  if (themedValueCalls.length > 0) {
+    return wasHookRemoved;
+  }
+
   tree
     .find(j.VariableDeclaration, {
       declarations(values) {
@@ -162,6 +166,8 @@ function processUseThemeHook(tree: Collection, j: JSCodeshift) {
     })
     .replaceWith((value) => {
       const declaration = value.node.declarations[0] as VariableDeclarator;
+
+      // console.log({ declaration });
 
       if (declaration.id.type === 'ObjectPattern') {
         // Remove the declaration altogether if we were only getting the `themedValue`
@@ -214,10 +220,103 @@ function removeUnusedImports(tree: Collection, j: JSCodeshift) {
     }
   });
 
+  // Find types annotations
+  tree
+    .find(j.CallExpression)
+    .filter((callExpression) => {
+      return j.TSTypeParameterInstantiation.check(
+        (callExpression.node as TSHasOptionalTypeParameterInstantiation)
+          .typeParameters
+      );
+    })
+    .forEach((callExpression) => {
+      // @ts-ignore
+      // console.log({ callExpression: callExpression.node.callee.name, source: callExpression.node.typeParameters });
+      // @ts-ignore
+      callExpression.node.typeParameters.params.forEach((param) => {
+        // console.log('////', param);
+        if (
+          j.TSTypeReference.check(param) &&
+          j.Identifier.check(param.typeName)
+        ) {
+          const previousCount =
+            usedIdentifiersMap.get(param.typeName.name) || 0;
+          usedIdentifiersMap.set(param.typeName.name, previousCount + 1);
+        }
+
+        if (
+          j.TSArrayType.check(param) &&
+          j.TSTypeReference.check(param.elementType) &&
+          j.Identifier.check(param.elementType.typeName)
+        ) {
+          const name = param.elementType.typeName.name;
+          const previousCount = usedIdentifiersMap.get(name) || 0;
+          usedIdentifiersMap.set(name, previousCount + 1);
+        }
+
+        // Declaration of a custom type for a function parameter
+        if (j.TSTypeLiteral.check(param)) {
+          param.members.forEach((propSignature) => {
+            // console.log({propSignature});
+            // TODO: This is to satisfy TS. Can we do it simpler?
+            if (
+              j.TSPropertySignature.check(propSignature) &&
+              j.TSTypeAnnotation.check(propSignature.typeAnnotation) &&
+              j.TSTypeReference.check(
+                propSignature.typeAnnotation.typeAnnotation
+              ) &&
+              j.Identifier.check(
+                propSignature.typeAnnotation.typeAnnotation.typeName
+              )
+            ) {
+              const previousCount =
+                usedIdentifiersMap.get(
+                  propSignature.typeAnnotation.typeAnnotation.typeName.name
+                ) || 0;
+              usedIdentifiersMap.set(
+                propSignature.typeAnnotation.typeAnnotation.typeName.name,
+                previousCount + 1
+              );
+            }
+          });
+        }
+
+        // Return types in function types
+        if (
+          j.TSFunctionType.check(param) &&
+          j.TSTypeReference.check(param.typeAnnotation?.typeAnnotation)
+        ) {
+          // console.log({ typeAnnotation: param.typeAnnotation?.typeAnnotation.typeName });
+          const typeName = (
+            param.typeAnnotation?.typeAnnotation.typeName as Identifier
+          ).name;
+          const previousCount = usedIdentifiersMap.get(typeName) || 0;
+          usedIdentifiersMap.set(typeName, previousCount + 1);
+
+          param.typeAnnotation?.typeAnnotation.typeParameters?.params.forEach(
+            (annotationParam) => {
+              const annotationParamName =
+                j.TSTypeReference.check(annotationParam) &&
+                (annotationParam.typeName as Identifier).name;
+              if (annotationParamName) {
+                const previousCount =
+                  usedIdentifiersMap.get(annotationParamName) || 0;
+                usedIdentifiersMap.set(annotationParamName, previousCount + 1);
+              }
+            }
+          );
+        }
+      });
+    });
+
+  // console.log({
+  //   usedIdentifiers: usedIdentifiersMap.keys()
+  // });
+
   // Remove unused imports
   tree.find(j.ImportDeclaration).forEach((importDeclaration) => {
     const importSpecifiers = importDeclaration.node.specifiers;
-    if (!importSpecifiers) {
+    if (!importSpecifiers || importSpecifiers.length < 1) {
       return;
     }
     const usedSpecifiers = importSpecifiers.filter(
