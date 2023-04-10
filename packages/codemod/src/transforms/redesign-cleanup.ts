@@ -306,6 +306,45 @@ function removeUnusedImports(tree: Collection, j: JSCodeshift) {
             }
           );
         }
+
+        // Find TS types in function types parameters signatures
+        if (j.TSFunctionType.check(param)) {
+          param.parameters.forEach((fnParam) => {
+            let typeName: string | undefined = undefined;
+            // @ts-ignore
+            // console.log({ fnParam, annotation: fnParam.typeAnnotation.typeAnnotation });
+
+            if (
+              j.Identifier.check(fnParam) &&
+              j.TSTypeReference.check(fnParam.typeAnnotation?.typeAnnotation) &&
+              j.Identifier.check(
+                fnParam.typeAnnotation?.typeAnnotation.typeName
+              )
+            ) {
+              typeName = fnParam.typeAnnotation?.typeAnnotation.typeName.name;
+            }
+
+            if (
+              j.Identifier.check(fnParam) &&
+              j.TSArrayType.check(fnParam.typeAnnotation?.typeAnnotation) &&
+              j.TSTypeReference.check(
+                fnParam.typeAnnotation?.typeAnnotation.elementType
+              ) &&
+              j.Identifier.check(
+                fnParam.typeAnnotation?.typeAnnotation.elementType.typeName
+              )
+            ) {
+              typeName =
+                fnParam.typeAnnotation?.typeAnnotation.elementType.typeName
+                  .name;
+            }
+
+            if (typeName) {
+              const previousCount = usedIdentifiersMap.get(typeName) || 0;
+              usedIdentifiersMap.set(typeName, previousCount + 1);
+            }
+          });
+        }
       });
     });
 
