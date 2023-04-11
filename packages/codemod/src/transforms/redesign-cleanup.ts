@@ -1,11 +1,13 @@
 // import { inspect } from 'util';
 import type {
   API,
+  ASTPath,
   Collection,
   FileInfo,
   Identifier,
   JSCodeshift,
   TSHasOptionalTypeParameterInstantiation,
+  TaggedTemplateExpression,
   VariableDeclarator,
 } from 'jscodeshift';
 import prettier from 'prettier';
@@ -25,43 +27,26 @@ import prettier from 'prettier';
 //   `}
 // >
 function updateThemedValueUsages(tree: Collection, j: JSCodeshift) {
+  // Props using themedValue helper
+  // Example:
+  //   <CheckboxIconWrapper
+  //     width={themedValue('auto', '26px')}
+  //     height={themedValue('auto', '26px')}
+  //     isHovered={canForcedHoverEffect}
+  //   >
   tree
     .find(j.JSXAttribute, {
       value(attributeValue) {
         return (
           attributeValue?.type === 'JSXExpressionContainer' &&
-          // Props using themedValue helper
-          ((attributeValue?.expression.type === 'CallExpression' &&
-            attributeValue?.expression.callee.type === 'Identifier' &&
-            attributeValue?.expression.callee.name === 'themedValue') ||
-            // Styles props using styles component css string template including usages of themedValue helper
-            (attributeValue?.expression.type === 'TaggedTemplateExpression' &&
-              attributeValue?.expression.quasi.expressions.some(
-                (expression) =>
-                  expression.type === 'CallExpression' &&
-                  expression.callee.type === 'Identifier' &&
-                  expression.callee.name === 'themedValue'
-              )))
+          attributeValue?.expression.type === 'CallExpression' &&
+          attributeValue?.expression.callee.type === 'Identifier' &&
+          attributeValue?.expression.callee.name === 'themedValue'
         );
       },
     })
     .replaceWith((attribute) => {
       const { node } = attribute;
-
-      if (
-        node.value?.type === 'JSXExpressionContainer' &&
-        node.value?.expression.type === 'TaggedTemplateExpression'
-      ) {
-        // @ts-ignore
-        node.value.expression.quasi.expressions =
-          node.value.expression.quasi.expressions.map((expression) => {
-            if (expression.type === 'CallExpression') {
-              return expression.arguments[1];
-            }
-
-            return expression;
-          });
-      }
 
       if (
         node.value?.type === 'JSXExpressionContainer' &&
@@ -129,6 +114,32 @@ function updateThemedValueUsages(tree: Collection, j: JSCodeshift) {
 
       return attribute.node;
     });
+
+  // Template literals using themedValue helper
+  // Example:
+  //   <div
+  //     css={[
+  //       css`
+  //         width: ${themedValue('16px', '18px')};
+  //         height: ${themedValue('16px', '18px')};
+  tree
+    .find(j.TaggedTemplateExpression)
+    .forEach((expression: ASTPath<TaggedTemplateExpression>) => {
+      const { node } = expression;
+
+      // @ts-ignore
+      node.quasi.expressions = node.quasi.expressions.map((expression) => {
+        if (
+          j.CallExpression.check(expression) &&
+          j.Identifier.check(expression.callee) &&
+          expression.callee.name === 'themedValue'
+        ) {
+          return expression.arguments[1];
+        } else {
+          return expression;
+        }
+      });
+    });
 }
 
 /**
@@ -166,8 +177,6 @@ function processUseThemeHook(tree: Collection, j: JSCodeshift) {
     })
     .replaceWith((value) => {
       const declaration = value.node.declarations[0] as VariableDeclarator;
-
-      // console.log({ declaration });
 
       if (declaration.id.type === 'ObjectPattern') {
         // Remove the declaration altogether if we were only getting the `themedValue`
