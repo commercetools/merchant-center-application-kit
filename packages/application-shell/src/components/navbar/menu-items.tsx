@@ -141,9 +141,7 @@ const MenuExpander = (props: MenuExpanderProps) => {
       })}
     >
       <div
-        onClick={(event) => {
-          props.onClick(event);
-        }}
+        onClick={props.onClick}
         className={styles['expand-icon']}
         data-testid="menu-expander"
       >
