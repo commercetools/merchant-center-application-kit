@@ -32,8 +32,6 @@ import ConfigureIntlProvider from '../configure-intl-provider';
 import ErrorApologizer from '../error-apologizer';
 import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
-import GtmApplicationTracker from '../gtm-application-tracker';
-import GtmUserTracker from '../gtm-user-tracker';
 import NavBar from '../navbar';
 import LoadingNavBar from '../navbar/loading-navbar';
 import ProjectContainer from '../project-container';
@@ -51,10 +49,7 @@ type TApplicationShellAuthenticationProps = {
   featureFlags?: TFlags;
   defaultFeatureFlags?: TFlags;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
-  onMenuItemClick?: <TrackFn>(
-    event: SyntheticEvent<HTMLAnchorElement>,
-    track: TrackFn
-  ) => void;
+  onMenuItemClick?: (event: SyntheticEvent<HTMLAnchorElement>) => void;
   disableRoutePermissionCheck?: boolean;
   render?: () => JSX.Element;
   children?: ReactNode;
@@ -213,12 +208,6 @@ export const ApplicationShellAuthenticated = (
                       spinner into the AppBar. */}
                       <RequestsInFlightLoader />
                       <SentryUserTracker user={user ?? undefined} />
-                      <GtmUserTracker user={user} />
-                      <GtmApplicationTracker
-                        applicationName={applicationEnvironment.applicationName}
-                        projectKey={projectKeyFromUrl}
-                        userBusinessRole={user?.businessRole ?? undefined}
-                      />
                       <div
                         css={css`
                           height: 100vh;

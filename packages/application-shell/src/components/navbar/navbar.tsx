@@ -1,4 +1,4 @@
-import { MouseEventHandler, useContext, useEffect, useMemo } from 'react';
+import { MouseEventHandler, useEffect, useMemo } from 'react';
 import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { matchPath, useLocation } from 'react-router-dom';
@@ -20,7 +20,6 @@ import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
 import { SupportIcon } from '@commercetools-uikit/icons';
 import type { TFetchProjectQuery } from '../../types/generated/mc';
 import type { TNavbarMenu, TBaseMenu } from '../../types/generated/proxy';
-import { GtmContext } from '../gtm-booter';
 import {
   type MenuItemLinkProps,
   RestrictedMenuItem,
@@ -38,7 +37,6 @@ import messages from './messages';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import compiledStyles from /* preval */ './navbar.styles';
 import nonNullable from './non-nullable';
-import trackingEvents from './tracking-events';
 import useNavbarStateManager from './use-navbar-state-manager';
 
 const styles = compiledStyles.jsonMap;
@@ -240,7 +238,6 @@ const NavBar = (props: TNavbarProps) => {
     props.environment.useFullRedirectsForLinks
   );
   const location = useLocation();
-  const gtmTracking = useContext(GtmContext);
 
   const projectPermissions: TProjectPermissions = useMemo(
     () => ({
@@ -320,11 +317,6 @@ const NavBar = (props: TNavbarProps) => {
             isActive={false}
             isMenuOpen={isMenuOpen}
             onClick={() => {
-              gtmTracking.track(
-                trackingEvents.goToSupport.action,
-                trackingEvents.goToSupport.category,
-                trackingEvents.goToSupport.label
-              );
               handleToggleItem('fixed-support');
             }}
             onMouseEnter={

@@ -9,13 +9,11 @@ import {
   waitFor,
   denormalizePermissions,
 } from '../../test-utils';
-import * as gtm from '../../utils/gtm';
 import { location } from '../../utils/location';
 import QuickAccessProductQuery from './quick-access-product.ctp.graphql';
 import QuickAccessQuery from './quick-access.ctp.graphql';
 import QuickAccess from './index';
 
-jest.mock('../../utils/gtm');
 jest.mock('../../utils/location');
 
 const createMatchlessSearchMock = ({ variables = {}, resultData = {} }) => ({
@@ -205,7 +203,6 @@ const renderQuickAccess = (options = {}, ui) => {
 };
 
 beforeEach(() => {
-  gtm.track.mockReset();
   global.open = jest.fn();
   location.replace.mockClear();
 });
@@ -268,21 +265,6 @@ describe('QuickAccess', () => {
     await waitFor(() => {
       expect(screen.queryByTestId('quick-access')).toBeNull();
     });
-  });
-
-  it('should track when QuickAccess is opened', async () => {
-    renderQuickAccess();
-
-    // open quick-access
-    fireEvent.keyDown(document.body, { key: 'f' });
-    await screen.findByTestId('quick-access-search-input');
-
-    expect(gtm.track).toHaveBeenCalledTimes(1);
-    expect(gtm.track).toHaveBeenCalledWith(
-      'keydown',
-      'QuickAccess',
-      'quick_access_open'
-    );
   });
 
   it('should close when pressing Escape', async () => {

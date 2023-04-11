@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 import type { LocationDescriptor } from 'history';
-import startCase from 'lodash/startCase';
 import { useIntl, type MessageDescriptor } from 'react-intl';
 import { Link, matchPath, useLocation } from 'react-router-dom';
 import { useTheme } from '@commercetools-uikit/design-system';
@@ -88,13 +87,6 @@ export const TabHeader = (props: TTabHeaderProps) => {
     label = intl.formatMessage(props.intlMessage);
   }
 
-  const dataAttributeProps = {
-    'data-track-event': 'click',
-    ...(label && {
-      'data-track-component': startCase(label),
-    }),
-  };
-
   warnIfMissingContent(props);
 
   return (
@@ -104,7 +96,6 @@ export const TabHeader = (props: TTabHeaderProps) => {
       to={props.to}
       css={getLinkStyles(isActive, isDisabled)}
       {...getDisabledLinkAtributes(isDisabled)}
-      {...dataAttributeProps}
     >
       <TabLabel>{label}</TabLabel>
     </Link>

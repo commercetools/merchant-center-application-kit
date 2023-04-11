@@ -1,7 +1,6 @@
 import { graphql } from 'msw';
 import { buildGraphqlList } from '@commercetools-test-data/core';
 import { setupServer } from 'msw/node';
-import { GtmContext } from '@commercetools-frontend/application-shell';
 import {
   screen,
   waitFor,
@@ -24,11 +23,8 @@ afterAll(() => mockServer.close());
 
 const renderApp = (options = {}) => {
   const route = options.route || `/my-project/${entryPointUriPath}`;
-  const gtmMock = { track: jest.fn(), getHierarchy: jest.fn() };
   const { history } = renderApplicationWithRedux(
-    <GtmContext.Provider value={gtmMock}>
-      <ApplicationPlaygroundRoutes />
-    </GtmContext.Provider>,
+    <ApplicationPlaygroundRoutes />,
     {
       route,
       environment: {
@@ -37,7 +33,7 @@ const renderApp = (options = {}) => {
       ...options,
     }
   );
-  return { gtmMock, history };
+  return { history };
 };
 
 const fetchState = () => {
@@ -110,18 +106,12 @@ describe('details view', () => {
     });
     it('should retrigger request if id changes', async () => {
       mockServer.use(fetchAllStates(), fetchState());
-      const { history, gtmMock } = renderApp({
+      const { history } = renderApp({
         route: `/my-project/${entryPointUriPath}/1`,
       });
 
       const dialog = await screen.findByRole('dialog');
       await within(dialog).findByText(/state-key-1/i);
-      await waitFor(() => {
-        expect(gtmMock.track).toHaveBeenCalledWith(
-          'rendered',
-          'State machine details'
-        );
-      });
 
       history.push(`/my-project/${entryPointUriPath}/2`);
       await within(dialog).findByText(/state-key-2/i);

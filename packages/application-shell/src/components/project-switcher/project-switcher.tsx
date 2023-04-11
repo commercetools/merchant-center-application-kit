@@ -175,8 +175,6 @@ const ProjectSwitcher = (props: Props) => {
       css={css`
         width: ${designTokens.constraint6};
       `}
-      data-track-component="ProjectSwitch"
-      data-track-event="click"
     >
       <AccessibleHidden>
         <span id={PROJECT_SWITCHER_LABEL_ID}>

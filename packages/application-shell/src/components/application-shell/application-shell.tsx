@@ -7,7 +7,6 @@ import type { Dispatch } from 'redux';
 import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import internalReduxStore from '../../configure-store';
-import type { TrackingList } from '../../utils/gtm';
 import version from '../../version';
 import ApplicationShellAuthenticated from '../application-shell-authenticated/application-shell-authenticated';
 import ApplicationShellProvider from '../application-shell-provider';
@@ -38,13 +37,9 @@ type TApplicationShellProps = {
   environment: TApplicationContext<{}>['environment'];
   featureFlags?: TFlags;
   defaultFeatureFlags?: TFlags;
-  trackingEventList?: TrackingList;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   onRegisterErrorListeners?: (args: { dispatch: Dispatch }) => void;
-  onMenuItemClick?: <TrackFn>(
-    event: SyntheticEvent<HTMLAnchorElement>,
-    track: TrackFn
-  ) => void;
+  onMenuItemClick?: (event: SyntheticEvent<HTMLAnchorElement>) => void;
   disableRoutePermissionCheck?: boolean;
   render?: () => JSX.Element;
   children?: ReactNode;
@@ -64,7 +59,6 @@ const ApplicationShell = (props: TApplicationShellProps) => {
       <ApplicationShellProvider
         apolloClient={props.apolloClient}
         environment={props.environment}
-        trackingEventList={props.trackingEventList}
         applicationMessages={props.applicationMessages}
       >
         {({ isAuthenticated }) => {

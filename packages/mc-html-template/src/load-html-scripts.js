@@ -22,7 +22,6 @@ const loadScriptAsString = (fileName) => {
 };
 
 module.exports = {
-  dataLayer: loadScriptAsString('data-layer.js'),
   loadingScreen: loadScriptAsString('loading-screen.js'),
   publicPath: loadScriptAsString('public-path.js'),
 };

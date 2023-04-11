@@ -45,8 +45,6 @@ At the moment we define the following placeholders:
 - `__LOADING_SCREEN_CSS__`: (_defined internally_) the CSS for the loading animation in case the page takes longer to load
 - `__LOADING_SCREEN_JS__`: (_defined internally_) the JS for the loading animation in case the page takes longer to load
 - `__APP_ENVIRONMENT__`: the sanitized application config environment, which will be available at the global variable `window.app`
-- `__DATALAYER_JS__`: the initial configuration for GTM, in case the `trackingGtm` is defined in the `additionalEnv` property of the application config
-- `__GTM_SCRIPT__`: the actual GTM script, in case the `trackingGtm` is defined in the `additionalEnv` property of the application config
 - `__CSP__`: the generated `Content-Security-Policy` directives, defined as an HTML meta tag
 
 ```ts

@@ -1,5 +1,4 @@
 declare type HtmlScripts = {
-  dataLayer: string;
   loadingScreen: string;
   publicPath: string;
 };

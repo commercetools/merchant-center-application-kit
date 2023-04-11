@@ -92,7 +92,6 @@ const LocaleSwitcher = (props: Props) => {
           designTokens.constraint4
         )};
       `}
-      data-track-component="LocaleSwitch"
     >
       <AccessibleHidden>
         <span id={LOCALE_SWITCHER_LABEL_ID}>
