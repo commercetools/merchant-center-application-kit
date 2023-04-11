@@ -4178,7 +4178,6 @@ __metadata:
     moment-timezone: ^0.5.40
     msw: 0.49.3
     omit-empty-es: 1.1.3
-    perfume.js: 6.4.0
     prop-types: 15.8.1
     qss: 2.0.3
     react: 17.0.2
@@ -30603,13 +30602,6 @@ __metadata:
   version: 2.1.0
   resolution: "performance-now@npm:2.1.0"
   checksum: 534e641aa8f7cba160f0afec0599b6cecefbb516a2e837b512be0adbe6c1da5550e89c78059c7fabc5c9ffdf6627edabe23eb7c518c4500067a898fa65c2b550
-  languageName: node
-  linkType: hard
-
-"perfume.js@npm:6.4.0":
-  version: 6.4.0
-  resolution: "perfume.js@npm:6.4.0"
-  checksum: 194dda668ac0ea6f6e85bbc7da1181da4f364de404b270af08a4130463bce800e224c980d922172772c2707b18e82c9a5da6ccf023cdde2df4035a374ddb0ce8
   languageName: node
   linkType: hard
 
