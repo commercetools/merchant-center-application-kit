@@ -24,6 +24,7 @@ export {
   useMcLazyQuery,
   useMcMutation,
 } from './hooks/apollo-hooks';
+export { default as useRoutesCreator } from './hooks/use-routes-creator';
 export {
   buildApiUrl,
   createHttpClientOptions,
