@@ -152,12 +152,21 @@ function updateThemedValueUsages(tree: Collection, j: JSCodeshift) {
 function processUseThemeHook(tree: Collection, j: JSCodeshift) {
   let wasHookRemoved = false;
 
+  // Skip if there are calls to "themedValue" function
   const themedValueCalls = tree.find(j.CallExpression, {
     callee: {
       name: 'themedValue',
     },
   });
-  if (themedValueCalls.length > 0) {
+  // Skip if "themeValue" is passed as a parameter to another function
+  const themeValueArguments = tree.find(j.CallExpression, {
+    arguments(values) {
+      return values.some(
+        (value) => j.Identifier.check(value) && value.name === 'themedValue'
+      );
+    },
+  });
+  if (themedValueCalls.length > 0 || themeValueArguments.length > 0) {
     return wasHookRemoved;
   }
 
@@ -398,6 +407,7 @@ async function themeMigrationCleanup(
 ) {
   const j = api.jscodeshift;
   const root = j(file.source, { comment: true });
+  const originalSource = root.toSource();
 
   // 1. Update props which use `themedValue` helper to always use new theme value
   updateThemedValueUsages(root, j);
@@ -413,7 +423,11 @@ async function themeMigrationCleanup(
     removeMigrationCleanupComment(root, j);
   }
 
-  // TODO: Do not return anything if no changes were applied
+  // Do not return anything if no changes were applied
+  // so we don't rewrite the file
+  if (originalSource === root.toSource()) {
+    return null;
+  }
 
   // Format output code with prettier
   const prettierConfig = await prettier.resolveConfig(file.path);
