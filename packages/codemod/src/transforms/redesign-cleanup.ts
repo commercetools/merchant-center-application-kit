@@ -4,7 +4,9 @@ import type {
   Collection,
   FileInfo,
   Identifier,
+  ImportDeclaration,
   JSCodeshift,
+  JSXAttribute,
   TSHasOptionalTypeParameterInstantiation,
   TaggedTemplateExpression,
   VariableDeclarator,
@@ -44,7 +46,7 @@ function updateThemedValueUsages(tree: Collection, j: JSCodeshift) {
         );
       },
     })
-    .replaceWith((attribute) => {
+    .replaceWith((attribute: ASTPath<JSXAttribute>) => {
       const { node } = attribute;
 
       if (
@@ -52,29 +54,19 @@ function updateThemedValueUsages(tree: Collection, j: JSCodeshift) {
         node.value?.expression.type === 'CallExpression'
       ) {
         const secondArgument = node.value.expression.arguments[1];
-
-        const secondArgumentValue =
-          'value' in secondArgument
-            ? secondArgument.value
-            : 'name' in secondArgument
-            ? secondArgument.name
-            : undefined;
-
-        // If new theme value is undefined, then we early return null
-        // to actually remove the property altogether from the component
-        if (!secondArgumentValue || secondArgumentValue === 'undefined') {
-          return null;
-        }
+        let computedArgumentValue: JSXAttribute['value'];
 
         switch (secondArgument.type) {
           case 'StringLiteral':
-            node.value = j.stringLiteral(secondArgument.value);
+            computedArgumentValue = secondArgument;
             break;
           case 'NumericLiteral':
           case 'BigIntLiteral':
           case 'NullLiteral':
           case 'BooleanLiteral':
           case 'RegExpLiteral':
+          case 'Identifier':
+          case 'MemberExpression':
             // namedTypes.Identifier |
             // namedTypes.FunctionExpression |
             // namedTypes.ArrayExpression |
@@ -92,22 +84,21 @@ function updateThemedValueUsages(tree: Collection, j: JSCodeshift) {
             // namedTypes.JSXText |
             // namedTypes.ParenthesizedExpression |
 
-            node.value = j.jsxExpressionContainer({
-              type: secondArgument.type,
-              // @ts-ignore
-              value:
-                secondArgument.type === 'RegExpLiteral'
-                  ? new RegExp(secondArgument.value || '')
-                  : secondArgument.value || '',
-            });
+            computedArgumentValue = j.jsxExpressionContainer(secondArgument);
             break;
-          case 'Identifier':
-            // Replace the prop value with the value from the new theme
-            // (second one passed to the `themedValue` helper)
-            node.value = j.jsxExpressionContainer(
-              j.identifier(secondArgument.name)
-            );
-            break;
+        }
+
+        // If new theme value is undefined, then we return null
+        // to actually remove the property altogether from the component
+        if (
+          !computedArgumentValue ||
+          (j.JSXExpressionContainer.check(computedArgumentValue) &&
+            j.Identifier.check(computedArgumentValue.expression) &&
+            computedArgumentValue.expression.name === 'undefined')
+        ) {
+          return null;
+        } else {
+          attribute.node.value = computedArgumentValue;
         }
       }
 
@@ -141,13 +132,8 @@ function updateThemedValueUsages(tree: Collection, j: JSCodeshift) {
     });
 }
 
-/**
- * Process the useTheme hook to remove it or updated it
- * (maybe we're also using "theme" property from the hook)
- * @param tree
- * @param j
- * @returns boolean indicating whether the hook was removed
- */
+// Process the useTheme hook to remove it or updated it
+// (maybe we're also using "theme" property from the hook)
 function processUseThemeHook(tree: Collection, j: JSCodeshift) {
   let wasHookRemoved = false;
 
@@ -359,30 +345,44 @@ function removeUnusedImports(tree: Collection, j: JSCodeshift) {
     });
 
   // Remove unused imports
-  tree.find(j.ImportDeclaration).forEach((importDeclaration) => {
-    const importSpecifiers = importDeclaration.node.specifiers;
-    if (!importSpecifiers || importSpecifiers.length < 1) {
-      return;
-    }
-    const usedSpecifiers = importSpecifiers.filter(
-      (specifier) =>
-        (usedIdentifiersMap.get(specifier.local?.name || '') || 0) > 0
-    );
+  tree
+    .find(j.ImportDeclaration)
+    .forEach((importDeclaration: ASTPath<ImportDeclaration>) => {
+      const importSpecifiers = importDeclaration.node.specifiers;
 
-    if (usedSpecifiers.length === 0) {
-      // remove the entire import declaration
-      j(importDeclaration).remove();
-      isUseThemeHookRemoved = importSpecifiers.some(
-        (specifier) => specifier.local?.name === 'useTheme'
+      // Skip if this is an import just to auto-initialize any module
+      // or it's a css import
+      // console.log({
+      //   importSource: importDeclaration.node.source.value,
+      //   isCss: (importDeclaration.node.source.value as string).endsWith('.css')
+      // });
+      if (
+        !importSpecifiers ||
+        importSpecifiers.length < 1 ||
+        (importDeclaration.node.source.value as string).endsWith('.css')
+      ) {
+        return;
+      }
+
+      const usedSpecifiers = importSpecifiers.filter(
+        (specifier) =>
+          (usedIdentifiersMap.get(specifier.local?.name || '') || 0) > 0
       );
-    } else if (usedSpecifiers.length < importSpecifiers.length) {
-      // remove unused specifiers from the import declaration
-      importDeclaration.node.specifiers = usedSpecifiers;
-      isUseThemeHookRemoved = importSpecifiers.some(
-        (specifier) => specifier.local?.name === 'useTheme'
-      );
-    }
-  });
+
+      if (usedSpecifiers.length === 0) {
+        // remove the entire import declaration
+        j(importDeclaration).remove();
+        isUseThemeHookRemoved = importSpecifiers.some(
+          (specifier) => specifier.local?.name === 'useTheme'
+        );
+      } else if (usedSpecifiers.length < importSpecifiers.length) {
+        // remove unused specifiers from the import declaration
+        importDeclaration.node.specifiers = usedSpecifiers;
+        isUseThemeHookRemoved = importSpecifiers.some(
+          (specifier) => specifier.local?.name === 'useTheme'
+        );
+      }
+    });
 
   return isUseThemeHookRemoved;
 }
