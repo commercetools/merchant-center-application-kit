@@ -1,4 +1,3 @@
-// import { inspect } from 'util';
 import type {
   API,
   ASTPath,
@@ -11,7 +10,7 @@ import type {
   VariableDeclarator,
 } from 'jscodeshift';
 import prettier from 'prettier';
-// import type { TRunnerOptions } from '../types';
+import type { TRunnerOptions } from '../types';
 
 // Update props in components which use `themedValue` helper to always use new theme value
 // Remove the prop in case the new theme value is undefined
@@ -402,8 +401,8 @@ function removeMigrationCleanupComment(tree: Collection, j: JSCodeshift) {
 
 async function themeMigrationCleanup(
   file: FileInfo,
-  api: API
-  // options: TRunnerOptions
+  api: API,
+  options: TRunnerOptions
 ) {
   const j = api.jscodeshift;
   const root = j(file.source, { comment: true });
@@ -430,8 +429,12 @@ async function themeMigrationCleanup(
   }
 
   // Format output code with prettier
-  const prettierConfig = await prettier.resolveConfig(file.path);
-  return prettier.format(root.toSource(), prettierConfig!);
+  if (!options.dry) {
+    const prettierConfig = await prettier.resolveConfig(file.path);
+    return prettier.format(root.toSource(), prettierConfig!);
+  } else {
+    return null;
+  }
 }
 
 export default themeMigrationCleanup;

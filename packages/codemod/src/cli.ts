@@ -29,7 +29,7 @@ const transforms: { name: TCliTransformName; description: string }[] = [
   {
     name: 'redesign-cleanup',
     description:
-      'Remove React components temporary code used for migration to the new theme. ',
+      'Remove React components temporary code used for migration to the new theme.',
   },
 ];
 
