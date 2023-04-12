@@ -1,18 +1,56 @@
 import type {
   API,
   ASTPath,
+  CallExpression,
   Collection,
   FileInfo,
   Identifier,
   ImportDeclaration,
   JSCodeshift,
   JSXAttribute,
+  JSXElement,
+  Node,
+  StringLiteral,
   TSHasOptionalTypeParameterInstantiation,
-  TaggedTemplateExpression,
   VariableDeclarator,
 } from 'jscodeshift';
 import prettier from 'prettier';
 import type { TRunnerOptions } from '../types';
+
+function getArgumentValue(argument: Node, j: JSCodeshift) {
+  let computedArgumentValue: JSXAttribute['value'];
+
+  switch (argument.type) {
+    case 'StringLiteral':
+      computedArgumentValue = argument as StringLiteral;
+      break;
+    case 'NumericLiteral':
+    case 'BigIntLiteral':
+    case 'NullLiteral':
+    case 'BooleanLiteral':
+    case 'RegExpLiteral':
+    case 'Identifier':
+    case 'MemberExpression':
+    case 'TemplateLiteral':
+    case 'JSXElement':
+      computedArgumentValue = j.jsxExpressionContainer(argument as JSXElement);
+      break;
+  }
+
+  return computedArgumentValue;
+}
+
+function isArgumentValueNullish(argumentValue: unknown, j: JSCodeshift) {
+  return (
+    !argumentValue ||
+    (j.StringLiteral.check(argumentValue) && !argumentValue.value) ||
+    (j.JSXExpressionContainer.check(argumentValue) &&
+      j.Identifier.check(argumentValue.expression) &&
+      argumentValue.expression.name === 'undefined') ||
+    (j.JSXExpressionContainer.check(argumentValue) &&
+      j.NullLiteral.check(argumentValue.expression))
+  );
+}
 
 // Update props in components which use `themedValue` helper to always use new theme value
 // Remove the prop in case the new theme value is undefined
@@ -54,48 +92,12 @@ function updateThemedValueUsages(tree: Collection, j: JSCodeshift) {
         node.value?.expression.type === 'CallExpression'
       ) {
         const secondArgument = node.value.expression.arguments[1];
-        let computedArgumentValue: JSXAttribute['value'];
 
-        switch (secondArgument.type) {
-          case 'StringLiteral':
-            computedArgumentValue = secondArgument;
-            break;
-          case 'NumericLiteral':
-          case 'BigIntLiteral':
-          case 'NullLiteral':
-          case 'BooleanLiteral':
-          case 'RegExpLiteral':
-          case 'Identifier':
-          case 'MemberExpression':
-            // namedTypes.Identifier |
-            // namedTypes.FunctionExpression |
-            // namedTypes.ArrayExpression |
-            // namedTypes.ObjectExpression |
-            // namedTypes.Literal |
-            // namedTypes.MemberExpression |
-            // namedTypes.CallExpression |
-            // namedTypes.TaggedTemplateExpression |
-            // namedTypes.TemplateLiteral |
-            // namedTypes.JSXIdentifier |
-            // namedTypes.JSXExpressionContainer |
-            // namedTypes.JSXElement |
-            // namedTypes.JSXFragment |
-            // namedTypes.JSXMemberExpression |
-            // namedTypes.JSXText |
-            // namedTypes.ParenthesizedExpression |
+        let computedArgumentValue = getArgumentValue(secondArgument, j);
 
-            computedArgumentValue = j.jsxExpressionContainer(secondArgument);
-            break;
-        }
-
-        // If new theme value is undefined, then we return null
-        // to actually remove the property altogether from the component
-        if (
-          !computedArgumentValue ||
-          (j.JSXExpressionContainer.check(computedArgumentValue) &&
-            j.Identifier.check(computedArgumentValue.expression) &&
-            computedArgumentValue.expression.name === 'undefined')
-        ) {
+        // In case the value for the new theme is nullish,
+        // we remove the property altogether
+        if (isArgumentValueNullish(computedArgumentValue, j)) {
           return null;
         } else {
           attribute.node.value = computedArgumentValue;
@@ -105,30 +107,49 @@ function updateThemedValueUsages(tree: Collection, j: JSCodeshift) {
       return attribute.node;
     });
 
-  // Template literals using themedValue helper
-  // Example:
+  // Rest of use cases like template literals or direct JSX
+  // Example 1:
   //   <div
   //     css={[
   //       css`
   //         width: ${themedValue('16px', '18px')};
   //         height: ${themedValue('16px', '18px')};
+  //
+  // Example 2:
+  // <li className={styles['list-item']} key={val.id}>
+  //   {themedValue(
+  //     <Spacings.Inset scale="s">
+  //       <ValueCheckbox
+  //         onSelection={props.onSelection}
+  //         id={val.id}
+  //         obj={val.obj}
+  //         onRenderItemName={props.onRenderItemName}
+  //       />
+  //     </Spacings.Inset>,
+  //     <ValueCheckbox
+  //       onSelection={props.onSelection}
+  //       id={val.id}
+  //       obj={val.obj}
+  //       onRenderItemName={props.onRenderItemName}
+  //     />
+  //   )}
+  // </li>
   tree
-    .find(j.TaggedTemplateExpression)
-    .forEach((expression: ASTPath<TaggedTemplateExpression>) => {
-      const { node } = expression;
+    .find(j.CallExpression, {
+      callee: {
+        name: 'themedValue',
+      },
+    })
+    .replaceWith((callExpression: ASTPath<CallExpression>) => {
+      const secondArgument = callExpression.node.arguments[1];
 
-      // @ts-ignore
-      node.quasi.expressions = node.quasi.expressions.map((expression) => {
-        if (
-          j.CallExpression.check(expression) &&
-          j.Identifier.check(expression.callee) &&
-          expression.callee.name === 'themedValue'
-        ) {
-          return expression.arguments[1];
-        } else {
-          return expression;
-        }
-      });
+      let computedArgumentValue = getArgumentValue(secondArgument, j);
+
+      if (isArgumentValueNullish(computedArgumentValue, j)) {
+        return null;
+      } else {
+        return callExpression.node.arguments[1];
+      }
     });
 }
 
@@ -352,10 +373,6 @@ function removeUnusedImports(tree: Collection, j: JSCodeshift) {
 
       // Skip if this is an import just to auto-initialize any module
       // or it's a css import
-      // console.log({
-      //   importSource: importDeclaration.node.source.value,
-      //   isCss: (importDeclaration.node.source.value as string).endsWith('.css')
-      // });
       if (
         !importSpecifiers ||
         importSpecifiers.length < 1 ||
