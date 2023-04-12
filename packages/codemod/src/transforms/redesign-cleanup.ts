@@ -240,10 +240,7 @@ function removeUnusedImports(tree: Collection, j: JSCodeshift) {
     })
     .forEach((callExpression) => {
       // @ts-ignore
-      // console.log({ callExpression: callExpression.node.callee.name, source: callExpression.node.typeParameters });
-      // @ts-ignore
       callExpression.node.typeParameters.params.forEach((param) => {
-        // console.log('////', param);
         if (
           j.TSTypeReference.check(param) &&
           j.Identifier.check(param.typeName)
@@ -266,7 +263,6 @@ function removeUnusedImports(tree: Collection, j: JSCodeshift) {
         // Declaration of a custom type for a function parameter
         if (j.TSTypeLiteral.check(param)) {
           param.members.forEach((propSignature) => {
-            // console.log({propSignature});
             // TODO: This is to satisfy TS. Can we do it simpler?
             if (
               j.TSPropertySignature.check(propSignature) &&
@@ -295,7 +291,6 @@ function removeUnusedImports(tree: Collection, j: JSCodeshift) {
           j.TSFunctionType.check(param) &&
           j.TSTypeReference.check(param.typeAnnotation?.typeAnnotation)
         ) {
-          // console.log({ typeAnnotation: param.typeAnnotation?.typeAnnotation.typeName });
           const typeName = (
             param.typeAnnotation?.typeAnnotation.typeName as Identifier
           ).name;
@@ -320,8 +315,6 @@ function removeUnusedImports(tree: Collection, j: JSCodeshift) {
         if (j.TSFunctionType.check(param)) {
           param.parameters.forEach((fnParam) => {
             let typeName: string | undefined = undefined;
-            // @ts-ignore
-            // console.log({ fnParam, annotation: fnParam.typeAnnotation.typeAnnotation });
 
             if (
               j.Identifier.check(fnParam) &&
@@ -356,10 +349,6 @@ function removeUnusedImports(tree: Collection, j: JSCodeshift) {
         }
       });
     });
-
-  // console.log({
-  //   usedIdentifiers: usedIdentifiersMap.keys()
-  // });
 
   // Remove unused imports
   tree.find(j.ImportDeclaration).forEach((importDeclaration) => {
