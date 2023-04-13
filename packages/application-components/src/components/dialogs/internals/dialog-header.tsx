@@ -52,7 +52,8 @@ const DialogHeader = (props: Props) => (
         <SecondaryIconButton
           label="Close dialog"
           onClick={props.onClose}
-          icon={<CloseIcon size="medium" />}
+          icon={<CloseIcon />}
+          size="medium"
         />
       )}
     </Spacings.Inline>

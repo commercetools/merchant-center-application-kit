@@ -1,6 +1,5 @@
-import { SyntheticEvent } from 'react';
+import { cloneElement, type SyntheticEvent, type ReactElement } from 'react';
 import { css } from '@emotion/react';
-import styled from '@emotion/styled';
 import { useIntl } from 'react-intl';
 import {
   designTokens as uiKitDesignTokens,
@@ -8,25 +7,38 @@ import {
 } from '@commercetools-uikit/design-system';
 import FlatButton from '@commercetools-uikit/flat-button';
 import { CloseIcon, AngleLeftIcon } from '@commercetools-uikit/icons';
-import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';
+import SecondaryIconButton, {
+  type TSecondaryButtonIconProps,
+} from '@commercetools-uikit/secondary-icon-button';
 import Text from '@commercetools-uikit/text';
 import { designTokens as appKitDesignTokens } from '../../../theming';
 import messages from '../../internals/messages';
 
+type TLargeIconWrapperProps = {
+  children: ReactElement;
+  size?: TSecondaryButtonIconProps['size'];
+};
+
 // Component to have a larger clickable surface
-const LargeIconWrapper = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  &::after {
-    content: '';
-    position: absolute;
-    height: 35px;
-    width: 48px;
-    top: 0;
-    right: 0;
-  }
-`;
+const LargeIconWrapper = (props: TLargeIconWrapperProps) => (
+  <span
+    css={css`
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &::after {
+        content: '';
+        position: absolute;
+        height: 35px;
+        width: 48px;
+        top: 0;
+        right: 0;
+      }
+    `}
+  >
+    {cloneElement(props.children, { size: props.size })}
+  </span>
+);
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin
@@ -114,9 +126,10 @@ const ModalPageTopBar = (props: Props) => {
           onClick={props.onClose}
           icon={
             <LargeIconWrapper>
-              <CloseIcon size={themedValue('medium', 'big')} />
+              <CloseIcon />
             </LargeIconWrapper>
           }
+          size={themedValue('medium', 'big')}
         />
       )}
     </div>

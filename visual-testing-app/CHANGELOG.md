@@ -1,5 +1,29 @@
 # @commercetools-local/visual-testing-app
 
+## 21.24.3
+
+### Patch Changes
+
+- [#3017](https://github.com/commercetools/merchant-center-application-kit/pull/3017) [`dbacb0541`](https://github.com/commercetools/merchant-center-application-kit/commit/dbacb054178a1a27d4d3da1229560cc34fcb8eba) Thanks [@chloe0592](https://github.com/chloe0592)! - Update illustrations. Illustrations that are being depricated - `desert-fox.svg` and `icecream.svg`.
+
+- Updated dependencies [[`dbacb0541`](https://github.com/commercetools/merchant-center-application-kit/commit/dbacb054178a1a27d4d3da1229560cc34fcb8eba)]:
+  - @commercetools-frontend/application-components@21.24.3
+  - @commercetools-frontend/assets@21.24.3
+  - @commercetools-frontend/constants@21.24.3
+  - @commercetools-frontend/react-notifications@21.24.3
+
+## 21.24.2
+
+### Patch Changes
+
+- [#3020](https://github.com/commercetools/merchant-center-application-kit/pull/3020) [`b509a6b36`](https://github.com/commercetools/merchant-center-application-kit/commit/b509a6b360f9f6532d9716ae7ab0f06a1147df9e) Thanks [@kark](https://github.com/kark)! - Update `ui-kit` dependencies
+
+- Updated dependencies [[`daa5f17ee`](https://github.com/commercetools/merchant-center-application-kit/commit/daa5f17ee53fed436e489c75bc644f4ca60f3d45), [`b509a6b36`](https://github.com/commercetools/merchant-center-application-kit/commit/b509a6b360f9f6532d9716ae7ab0f06a1147df9e)]:
+  - @commercetools-frontend/application-components@21.24.2
+  - @commercetools-frontend/react-notifications@21.24.2
+  - @commercetools-frontend/assets@21.24.2
+  - @commercetools-frontend/constants@21.24.2
+
 ## 21.24.1
 
 ### Patch Changes

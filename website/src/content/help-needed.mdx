@@ -32,21 +32,6 @@ It is recommended to always keep your browser up-to-date for **security** reason
 
 </Warning>
 
-
-# Configuration changes to the Custom Application are not reflected immediately
-
-The first time a user visits the Custom Application route in the Merchant Center, the proxy router fetches the configuration of the Custom Application to determine where to proxy the request to.
-
-This configuration is cached for a certain time within the proxy router to reduce potential latency introduced by validating each incoming request. The cache is automatically updated at a regular interval (the default value is **30 minutes**).
-
-This implies that changes to the [Custom Application configuration](https://docs.commercetools.com/merchant-center/managing-custom-applications), for example the **Application URL**, are effectively applied according to the cache interval.
-
-<Info>
-
-If you are interested in more advanced functionalities, let us know and open a [support issue](https://github.com/commercetools/merchant-center-application-kit/issues/new/choose).
-
-</Info>
-
 # Using a test or staging environment for my Custom Application
 
 During the development cycle of new features for a Custom Application, it can be helpful to showcase or test those new features before publishing them to the production environment. This can be accomplished using [deployment previews](/concepts/deployment-previews) which allow you to inspect different versions of a Custom Application.

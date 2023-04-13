@@ -103,14 +103,17 @@ const PublicPageLayout: FC<TProps> = (props) => {
               scale="xs"
               alignItems={props.contentScale === 'wide' ? 'center' : 'stretch'}
             >
-              {props.legalMessage && (
-                <Text.Body tone={themedValue('inverted', 'secondary')}>
-                  {props.legalMessage}
-                </Text.Body>
+              {props.legalMessage &&
+                themedValue(
+                  <Text.Body tone="inverted">{props.legalMessage}</Text.Body>,
+                  <Text.Detail tone="secondary">
+                    {props.legalMessage}
+                  </Text.Detail>
+                )}
+              {themedValue(
+                <Text.Body tone="inverted">{`${year} © commercetools`}</Text.Body>,
+                <Text.Detail tone="secondary">{`${year} © commercetools`}</Text.Detail>
               )}
-              <Text.Body
-                tone={themedValue('inverted', 'secondary')}
-              >{`${year} © commercetools`}</Text.Body>
             </Spacings.Stack>
           </PublicPageLayoutContent>
         </Spacings.Stack>

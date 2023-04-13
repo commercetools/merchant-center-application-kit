@@ -1,6 +1,6 @@
 import { ReactChildren } from 'react';
 import { useIntl, FormattedMessage } from 'react-intl';
-import PageNotFoundSVG from '@commercetools-frontend/assets/images/desert-fox.svg';
+import PageNotFoundIllustration from '@commercetools-frontend/assets/images/page-application-disabled.svg';
 import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
 import MaintenancePageLayout from '../maintenance-page-layout';
 import messages from './messages';
@@ -19,7 +19,7 @@ const PageNotFound = () => {
 
   return (
     <MaintenancePageLayout
-      imageSrc={PageNotFoundSVG}
+      imageSrc={PageNotFoundIllustration}
       title={<FormattedMessage {...messages.title} />}
       label={intl.formatMessage(messages.title)}
       paragraph1={paragraph1Message}

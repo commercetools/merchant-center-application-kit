@@ -252,7 +252,7 @@
 /*  Second level menu */
 
 .sublist {
-  padding: 55px var(--spacing-l) var(--spacing-m);
+  padding: 75px var(--spacing-l) var(--spacing-m);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
@@ -346,6 +346,14 @@
 .list-item.item__active .item-icon-text .title {
   margin-left: 40px;
 }
+.item_menu-collapsed.list-item.item__active .item-icon-text .title {
+  max-height: 44px;
+  overflow: hidden;
+  /* stylelint-disable-next-line value-no-vendor-prefix */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
 
 :global(.body__menu-open) .list-item.item__active .item-icon-text .title {
   margin-left: var(--spacing-m);
@@ -400,6 +408,8 @@
 .scrollable-menu {
   flex: 1 1 0;
   padding-bottom: var(--faded-height);
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .fixed-menu {

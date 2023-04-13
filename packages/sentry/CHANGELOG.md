@@ -1,5 +1,21 @@
 # @commercetools-frontend/sentry
 
+## 21.24.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/browser-history@21.24.3
+  - @commercetools-frontend/constants@21.24.3
+
+## 21.24.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/browser-history@21.24.2
+  - @commercetools-frontend/constants@21.24.2
+
 ## 21.24.1
 
 ### Patch Changes

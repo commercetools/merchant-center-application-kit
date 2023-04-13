@@ -1,6 +1,6 @@
 import { useIntl, FormattedMessage } from 'react-intl';
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
-import ProjectNotInitializedSVG from '@commercetools-frontend/assets/images/hourglass.svg';
+import ProjectNotInitializedIllustration from '@commercetools-frontend/assets/images/hourglass.svg';
 import ServicePageProjectSwitcher from '../service-page-project-switcher';
 import messages from './messages';
 
@@ -20,7 +20,7 @@ const ProjectNotInitialized = () => {
 
   return (
     <MaintenancePageLayout
-      imageSrc={ProjectNotInitializedSVG}
+      imageSrc={ProjectNotInitializedIllustration}
       title={<FormattedMessage {...messages.title} />}
       label={intl.formatMessage(messages.title)}
       paragraph1={

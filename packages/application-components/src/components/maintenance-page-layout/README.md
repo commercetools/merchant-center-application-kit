@@ -8,11 +8,11 @@ This component is used as a template for creating maintenance pages.
 
 ```js
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
-import PageNotFoundSVG from '@commercetools-frontend/assets/images/desert-fox.svg';
+import PageNotFoundIllustration from '@commercetools-frontend/assets/images/page-application-disabled.svg';
 
 const PageNotFound = () => (
   <MaintenancePageLayout
-    imageSrc={PageNotFoundSVG}
+    imageSrc={PageNotFoundIllustration}
     title="Page not found"
     paragraph1="We could not find the page you were looking for."
   />
