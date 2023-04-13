@@ -75,13 +75,12 @@ function updateThemedValueUsages(tree: Collection, j: JSCodeshift) {
   //   >
   tree
     .find(j.JSXAttribute, {
-      value(attributeValue) {
-        return (
-          attributeValue?.type === 'JSXExpressionContainer' &&
-          attributeValue?.expression.type === 'CallExpression' &&
-          attributeValue?.expression.callee.type === 'Identifier' &&
-          attributeValue?.expression.callee.name === 'themedValue'
-        );
+      value: {
+        expression: {
+          callee: {
+            name: 'themedValue',
+          },
+        },
       },
     })
     .replaceWith((attribute: ASTPath<JSXAttribute>) => {
@@ -445,8 +444,8 @@ async function themeMigrationCleanup(
     return null;
   }
 
-  // Format output code with prettier
   if (!options.dry) {
+    // Format output code with prettier
     const prettierConfig = await prettier.resolveConfig(file.path);
     return prettier.format(root.toSource(), prettierConfig!);
   } else {
