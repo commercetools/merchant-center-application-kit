@@ -12,7 +12,6 @@ import {
 } from '@commercetools-frontend/constants';
 import { useTheme } from '@commercetools-uikit/design-system';
 import { useFieldId } from '@commercetools-uikit/hooks';
-import IconButton from '@commercetools-uikit/icon-button';
 import {
   CloseBoldIcon,
   ErrorIcon,
@@ -82,8 +81,8 @@ const defaultProps: Pick<Props, 'fixed'> = {
 const Notification = (props: Props) => {
   const intl = useIntl();
   const id = useFieldId(undefined, sequentialId);
-  const { isNewTheme, themedValue } = useTheme();
-  const Button = themedValue(IconButton, SecondaryIconButton);
+  const { isNewTheme } = useTheme();
+  const Button = SecondaryIconButton;
 
   return (
     <div

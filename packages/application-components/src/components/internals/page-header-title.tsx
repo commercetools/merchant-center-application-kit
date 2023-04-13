@@ -1,7 +1,6 @@
 import { isValidElement, type ReactElement } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { useTheme } from '@commercetools-uikit/design-system';
 import Text from '@commercetools-uikit/text';
 import { designTokens as appKitDesignTokens } from '../../theming';
 
@@ -24,15 +23,10 @@ const SubtitleWrapper = styled.div`
 type TitleProps = Pick<Props, 'titleSize' | 'title' | 'truncate'>;
 
 const Title = (props: TitleProps) => {
-  const { themedValue } = useTheme();
   switch (props.titleSize) {
     case 'big':
       return (
-        <Text.Headline
-          as={themedValue('h2', 'h1')}
-          title={props.title}
-          truncate={props.truncate}
-        >
+        <Text.Headline as="h1" title={props.title} truncate={props.truncate}>
           {props.title}
         </Text.Headline>
       );
@@ -52,7 +46,6 @@ type SubtitleProps = {
 };
 
 const Subtitle = (props: SubtitleProps) => {
-  const { themedValue } = useTheme();
   if (!props.subtitle) {
     return null;
   }
@@ -61,11 +54,7 @@ const Subtitle = (props: SubtitleProps) => {
   }
   return (
     <SubtitleWrapper>
-      <Text.Body
-        title={props.subtitle}
-        truncate={props.truncate}
-        tone={themedValue('secondary', undefined)}
-      >
+      <Text.Body title={props.subtitle} truncate={props.truncate}>
         {props.subtitle}
       </Text.Body>
     </SubtitleWrapper>

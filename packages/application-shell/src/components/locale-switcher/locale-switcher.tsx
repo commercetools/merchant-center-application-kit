@@ -1,10 +1,9 @@
-// TODO: @redesign cleanup
 import { useCallback } from 'react';
 import { css } from '@emotion/react';
 import { FormattedMessage } from 'react-intl';
 import type { SingleValueProps, ValueContainerProps } from 'react-select';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
-import { designTokens, useTheme } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import { WorldIcon } from '@commercetools-uikit/icons';
 import SelectInput from '@commercetools-uikit/select-input';
 import messages from './messages';
@@ -21,7 +20,6 @@ type Props = {
 const LOCALE_SWITCHER_LABEL_ID = 'locale-switcher-label';
 
 export const SingleValue = (props: CustomSingleValueProps) => {
-  const { themedValue } = useTheme();
   return (
     <div
       css={css`
@@ -42,18 +40,12 @@ export const SingleValue = (props: CustomSingleValueProps) => {
       </span>
       <span
         css={css`
-          width: ${themedValue('22px', '26px')};
-          height: ${themedValue('22px', '26px')};
+          width: ${'26px'};
+          height: ${'26px'};
           border-radius: 100%;
-          background: ${themedValue(
-            designTokens.colorAccent40,
-            designTokens.colorNeutral
-          )};
+          background: ${designTokens.colorNeutral};
           color: ${designTokens.colorSurface};
-          font-size: ${themedValue(
-            designTokens.fontSize15,
-            designTokens.fontSize30
-          )};
+          font-size: ${designTokens.fontSize30};
           display: flex;
           justify-content: center;
           align-items: center;
@@ -75,7 +67,6 @@ const PatchedValueContainer = (props: ValueContainerProps) => (
 PatchedValueContainer.displayName = 'PatchedValueContainer';
 
 const LocaleSwitcher = (props: Props) => {
-  const { themedValue } = useTheme();
   const { setProjectDataLocale } = props;
   const handleSelection = useCallback(
     (event) => {
@@ -87,10 +78,7 @@ const LocaleSwitcher = (props: Props) => {
     <div
       css={css`
         position: relative;
-        width: ${themedValue(
-          designTokens.constraint3,
-          designTokens.constraint4
-        )};
+        width: ${designTokens.constraint4};
       `}
       data-track-component="LocaleSwitch"
     >
