@@ -33,6 +33,7 @@ function getArgumentValue(argument: Node, j: JSCodeshift) {
     case 'MemberExpression':
     case 'TemplateLiteral':
     case 'JSXElement':
+    case 'TaggedTemplateExpression':
       computedArgumentValue = j.jsxExpressionContainer(argument as JSXElement);
       break;
   }
@@ -93,6 +94,12 @@ function updateThemedValueUsages(tree: Collection, j: JSCodeshift) {
         const secondArgument = node.value.expression.arguments[1];
 
         let computedArgumentValue = getArgumentValue(secondArgument, j);
+
+        console.log({
+          node,
+          secondArgument,
+          computedArgumentValue,
+        });
 
         // In case the value for the new theme is nullish,
         // we remove the property altogether
