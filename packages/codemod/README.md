@@ -41,3 +41,11 @@ Rename `.mod.css` files to `.module.css` and update imports.
 ```
 $ npx @commercetools-frontend/codemod@latest rename-mod-css-to-module-css 'src/**/*.{js,jsx,ts,tsx}'
 ```
+
+### `redesign-cleanup`
+
+Remove React components temporary code used for migration to the new theme.
+
+```
+$ npx @commercetools-frontend/codemod@latest redesign-cleanup 'src/**/*.{jsx,tsx}'
+```
