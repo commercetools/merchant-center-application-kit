@@ -44,7 +44,7 @@ $ npx @commercetools-frontend/codemod@latest rename-mod-css-to-module-css 'src/*
 
 ### `redesign-cleanup`
 
-Remove React components temporary code used for migration to the new theme.
+Remove code related to the old design when using the `useTheme` hook, for example the usage of `themedValue`.
 
 ```
 $ npx @commercetools-frontend/codemod@latest redesign-cleanup 'src/**/*.{jsx,tsx}'
