@@ -8,8 +8,8 @@
  *
  * Usage:
  *
- * yarn node scripts/gatsby-cache.mjs pre
- * yarn node scripts/gatsby-cache.mjs post
+ * node scripts/gatsby-cache.mjs pre
+ * node scripts/gatsby-cache.mjs post
  *
  * This script requires node.js v14.14.0 or higher
  */
@@ -25,7 +25,7 @@ const commands = flags._;
 
 if (commands.length === 0 || (flags.help && commands.length === 0)) {
   console.log(`
-  Usage: yarn node ./scripts/gatsby-cache.mjs [command]
+  Usage: node ./scripts/gatsby-cache.mjs [command]
 
   Displays help information.
 

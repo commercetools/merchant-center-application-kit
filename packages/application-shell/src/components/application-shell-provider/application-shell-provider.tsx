@@ -83,6 +83,7 @@ const ApplicationShellProvider = (props: TApplicationShellProviderProps) => {
 
 ApplicationShellProvider.displayName = 'ApplicationShellProvider';
 // This is useful to inject a custom history object during tests
+// @ts-nocheck
 ApplicationShellProvider.history = history;
 
 export default ApplicationShellProvider;

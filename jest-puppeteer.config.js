@@ -4,7 +4,7 @@ module.exports = {
     executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
   },
   server: {
-    command: 'yarn visual-testing-app:preview',
+    command: 'pnpm visual-testing-app:preview',
     port: 3000,
     launchTimeout: 10000,
     debug: true,

@@ -3,10 +3,10 @@ module.exports = {
   '*.yaml': ['prettier --write --parser yaml'],
   '*.graphql': ['prettier --write --parser graphql'],
   '*.json': ['prettier --write --parser json'],
-  '*.mc.graphql': () => 'yarn generate-types:mc',
-  '*.ctp.graphql': () => 'yarn generate-types:ctp',
-  '*.settings.graphql': () => 'yarn generate-types:settings',
-  '*.proxy.graphql': () => 'yarn generate-types:proxy',
+  '*.mc.graphql': () => 'pnpm generate-types:mc',
+  '*.ctp.graphql': () => 'pnpm generate-types:ctp',
+  '*.settings.graphql': () => 'pnpm generate-types:settings',
+  '*.proxy.graphql': () => 'pnpm generate-types:proxy',
   '*.{js,jsx}': [
     'prettier --write',
     // NOTE: apparently if you pass some argument that is not a flag AFTER the `reporters`
@@ -17,7 +17,7 @@ module.exports = {
     //   Error: An error occurred while adding the reporter at path "/path/to/file".Reporter is not a constructor
     //
     // For that reason, we move the `--onlyChanged` flag next to it.
-    'yarn lint:js --reporters=jest-silent-reporter --onlyChanged',
+    'pnpm lint:js --reporters=jest-silent-reporter --onlyChanged',
   ],
   '!(cypress)/**/*.{ts,tsx}': [
     'prettier --write',
@@ -29,7 +29,7 @@ module.exports = {
     //   Error: An error occurred while adding the reporter at path "/path/to/file".Reporter is not a constructor
     //
     // For that reason, we move the `--onlyChanged` flag next to it.
-    'yarn lint:js --passWithNoTests --reporters=jest-silent-reporter --onlyChanged',
+    'pnpm lint:js --passWithNoTests --reporters=jest-silent-reporter --onlyChanged',
     // Always include the `client.d.ts` file.
     'tsc-files --noEmit packages/application-config/client.d.ts',
   ],
@@ -43,8 +43,8 @@ module.exports = {
     //   Error: An error occurred while adding the reporter at path "/path/to/file".Reporter is not a constructor
     //
     // For that reason, we move the `--onlyChanged` flag next to it.
-    'yarn lint:js --reporters=jest-silent-reporter --onlyChanged',
-    () => 'yarn typecheck:cypress',
+    'pnpm lint:js --reporters=jest-silent-reporter --onlyChanged',
+    () => 'pnpm typecheck:cypress',
   ],
   '*.css': [
     'prettier --write --parser css',
@@ -56,8 +56,8 @@ module.exports = {
     //   Error: An error occurred while adding the reporter at path "/path/to/file".Reporter is not a constructor
     //
     // For that reason, we move the `--onlyChanged` flag next to it.
-    'yarn lint:css --reporters=jest-silent-reporter --onlyChanged',
+    'pnpm lint:css --reporters=jest-silent-reporter --onlyChanged',
   ],
   'packages/application-config/schema.json': () =>
-    'yarn workspace @commercetools-frontend/application-config build:schema',
+    'pnpm --filter @commercetools-frontend/application-config run build:schema',
 };

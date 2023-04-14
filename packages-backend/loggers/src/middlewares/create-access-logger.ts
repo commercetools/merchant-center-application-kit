@@ -2,7 +2,11 @@ import expressWinston from 'express-winston';
 import winston from 'winston';
 import type { TAccessLoggerOptions } from '../types';
 
-const createAccessLoggerMiddleware = (options: TAccessLoggerOptions = {}) => {
+type TAccessLoggerMiddleware = ReturnType<typeof expressWinston.logger>;
+
+const createAccessLoggerMiddleware = (
+  options: TAccessLoggerOptions = {}
+): TAccessLoggerMiddleware => {
   const ignoreUrls = options.ignoreUrls ?? [];
   const formatters = winston.format.combine(
     winston.format.timestamp(),

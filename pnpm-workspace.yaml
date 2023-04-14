@@ -1,0 +1,8 @@
+packages:
+- packages/*
+- packages-backend/*
+- application-templates/*
+- playground
+- visual-testing-app
+- website
+- website-components-playground

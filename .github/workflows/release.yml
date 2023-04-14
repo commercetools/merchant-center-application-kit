@@ -45,8 +45,8 @@ jobs:
         # uses: changesets/action@v1.3.0
         uses: dotansimha/changesets-action@v1.5.1
         with:
-          publish: yarn changeset publish
-          version: yarn changeset:version-and-format
+          publish: pnpm changeset publish
+          version: pnpm changeset:version-and-format
           commit: 'ci(changesets): version packages'
           createGithubReleases: aggregate
           githubReleaseName: v${{ steps.release_version.outputs.VALUE }}
@@ -60,14 +60,14 @@ jobs:
         if: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
         run: |
           git checkout main
-          yarn changeset version --snapshot canary
-          yarn changeset publish --tag canary
+          pnpm changeset version --snapshot canary
+          pnpm changeset publish --tag canary
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
 
       - name: Building Playground application
         if: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
-        run: yarn playground:build
+        run: pnpm playground:build
         env:
           APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
           MC_API_URL: ${{ secrets.MC_API_URL }}
@@ -77,7 +77,7 @@ jobs:
       - name: Deploying Playground application to Vercel (production)
         if: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
         run: |
-          yarn workspace @commercetools-local/playground run deploy --prod --token="${{ secrets.VERCEL_TOKEN_PLAYGROUND }}"
+          pnpm --filter @commercetools-local/playground run deploy --prod --token="${{ secrets.VERCEL_TOKEN_PLAYGROUND }}"
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID_PLAYGROUND }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_PLAYGROUND }}

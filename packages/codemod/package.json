@@ -21,7 +21,7 @@
   },
   "scripts": {
     "build": "rimraf build && tsc",
-    "build:bundles:watch": "yarn build -w"
+    "build:bundles:watch": "pnpm run build -w"
   },
   "dependencies": {
     "cac": "6.7.14",

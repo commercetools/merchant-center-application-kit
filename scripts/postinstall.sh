@@ -7,11 +7,7 @@ if [ -n "$SKIP_POSTINSTALL_DEV_SETUP" ]; then
 
 else
   echo "Preparing development setup."
-  yarn husky install
-  yarn preconstruct dev
+  pnpm husky install
+  pnpm preconstruct dev
 
 fi
-
-echo "Running prettier on package.json files"
-# We need to run prettier to avoid unnecessary formatting changes to package.json (due to Yarn install).
-yarn prettier --write --parser json '**/package.json' &>/dev/null
