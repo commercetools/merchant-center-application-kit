@@ -37,7 +37,7 @@
     "winston": "3.8.2"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^1.0.3",
+    "@tsconfig/node18": "^1.0.1",
     "express": "4.18.2"
   }
 }

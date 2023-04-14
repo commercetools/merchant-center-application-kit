@@ -44,6 +44,7 @@
     "uuid": "8.3.2"
   },
   "devDependencies": {
+    "@tsconfig/node18": "^1.0.1",
     "cypress": "11.2.0"
   },
   "peerDependencies": {

@@ -33,10 +33,10 @@
     "eslint": "8.x"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^1.0.3",
+    "@tsconfig/node18": "^1.0.1",
     "eslint": "8.36.0"
   },
   "engines": {
-    "node": "14.x || >=16.0.0"
+    "node": ">=18.0.0"
   }
 }

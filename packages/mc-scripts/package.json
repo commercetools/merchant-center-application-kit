@@ -109,7 +109,7 @@
     "webpackbar": "5.0.2"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^1.0.3",
+    "@tsconfig/node18": "^1.0.1",
     "@types/lodash": "^4.14.191",
     "@types/mock-fs": "^4.13.1",
     "@types/moment-locales-webpack-plugin": "^1.2.3",
@@ -120,6 +120,6 @@
     "rimraf": "3.0.2"
   },
   "engines": {
-    "node": "14.x || >=16.0.0"
+    "node": ">=18.0.0"
   }
 }
