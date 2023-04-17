@@ -12,6 +12,7 @@ import type {
   Node,
   StringLiteral,
   TSHasOptionalTypeParameterInstantiation,
+  VariableDeclaration,
   VariableDeclarator,
 } from 'jscodeshift';
 import prettier from 'prettier';
@@ -97,6 +98,87 @@ function updateThemedValueUsages(tree: Collection, j: JSCodeshift) {
 
       return attribute.node;
     });
+
+  // Variables used to proxy a themed value.
+  // This section removes the proxy component and updates its references/
+  //
+  // Example:
+  // const Button = themedValue(IconButton, SecondaryIconButton);
+  // <Button
+  //   label={intl.formatMessage(messages.hideNotification)}
+  //   onClick={props.onCloseClick}
+  //   icon={<CloseBoldIcon />}
+  //   size="medium"
+  // />
+  const variablesToUpdate: VariableDeclarator[] = [];
+  tree
+    .find(j.VariableDeclaration)
+    .filter((nodePath: ASTPath<VariableDeclaration>) => {
+      const declaration = nodePath.node.declarations[0];
+      return (
+        j.VariableDeclarator.check(declaration) &&
+        j.CallExpression.check(declaration.init) &&
+        j.Identifier.check(declaration.init.callee) &&
+        declaration.init.callee.name === 'themedValue'
+      );
+    })
+    .forEach((nodePath: ASTPath<VariableDeclaration>) => {
+      const declaration = nodePath.node.declarations[0] as VariableDeclarator;
+      const variableName = (declaration.id as Identifier).name;
+      const newThemeValue = (declaration.init as CallExpression).arguments[1];
+      variablesToUpdate.push(declaration);
+
+      tree
+        .find(j.JSXElement, {
+          openingElement: {
+            name: {
+              name: variableName,
+            },
+          },
+        })
+        .forEach((nodePath: ASTPath<JSXElement>) => {
+          if (j.Identifier.check(newThemeValue)) {
+            nodePath.node.openingElement.name = j.jsxIdentifier(
+              newThemeValue.name
+            );
+          }
+          if (j.MemberExpression.check(newThemeValue)) {
+            nodePath.node.openingElement.name = j.jsxMemberExpression(
+              j.jsxIdentifier((newThemeValue.object as Identifier).name),
+              j.jsxIdentifier((newThemeValue.property as Identifier).name)
+            );
+          }
+
+          if (nodePath.node.closingElement) {
+            if (j.Identifier.check(newThemeValue)) {
+              nodePath.node.closingElement.name = j.jsxIdentifier(
+                newThemeValue.name
+              );
+            }
+            if (j.MemberExpression.check(newThemeValue)) {
+              nodePath.node.closingElement.name = j.jsxMemberExpression(
+                j.jsxIdentifier((newThemeValue.object as Identifier).name),
+                j.jsxIdentifier((newThemeValue.property as Identifier).name)
+              );
+            }
+          }
+        });
+
+      tree
+        .find(j.Identifier, {
+          name: variableName,
+        })
+        .filter((nodePath: ASTPath<Identifier>) => {
+          return (
+            j.JSXExpressionContainer.check(nodePath.parent.node) ||
+            j.CallExpression.check(nodePath.parent.node)
+          );
+        })
+        .replaceWith(() => {
+          return newThemeValue;
+        });
+    })
+    .remove();
 
   // Rest of use cases like template literals or direct JSX
   // Example 1:
@@ -245,8 +327,9 @@ function removeUnusedImports(tree: Collection, j: JSCodeshift) {
       );
     })
     .forEach((callExpression) => {
-      // @ts-ignore
-      callExpression.node.typeParameters.params.forEach((param) => {
+      (
+        callExpression.node as TSHasOptionalTypeParameterInstantiation
+      ).typeParameters?.params.forEach((param) => {
         if (
           j.TSTypeReference.check(param) &&
           j.Identifier.check(param.typeName)
