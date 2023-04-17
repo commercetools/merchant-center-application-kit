@@ -15,4 +15,4 @@
 '@commercetools-frontend/cypress': major
 ---
 
-Drop support for Node.js `v14` and `v16`. Make sure you use Node.js `>=v18`.
+Drop support for Node.js `v14`. Make sure you use Node.js `v16` or `>=v18`.
