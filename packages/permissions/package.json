@@ -32,6 +32,9 @@
     "tiny-warning": "1.0.3"
   },
   "devDependencies": {
+    "@types/jest": "27.5.2",
+    "jest": "27.5.1",
+    "jest-mock": "^27.5.1",
     "react": "17.0.2"
   },
   "peerDependencies": {

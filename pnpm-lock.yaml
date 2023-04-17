@@ -844,6 +844,9 @@ importers:
         specifier: 2.4.2
         version: 2.4.2(redux@4.2.1)
     devDependencies:
+      '@testing-library/react-hooks':
+        specifier: 8.0.1
+        version: 8.0.1(@types/react@17.0.53)(react-dom@17.0.2)(react@17.0.2)
       react:
         specifier: 17.0.2
         version: 17.0.2
@@ -946,6 +949,9 @@ importers:
       '@types/react-modal':
         specifier: ^3.13.1
         version: 3.13.1
+      '@types/react-router-dom':
+        specifier: ^5.3.3
+        version: 5.3.3
       history:
         specifier: 4.10.1
         version: 4.10.1
@@ -962,9 +968,24 @@ importers:
         specifier: 3.16.1
         version: 3.16.1(react-dom@17.0.2)(react@17.0.2)
     devDependencies:
+      '@testing-library/dom':
+        specifier: ^8.20.0
+        version: 8.20.0
+      '@testing-library/react':
+        specifier: 12.1.5
+        version: 12.1.5(react-dom@17.0.2)(react@17.0.2)
+      '@testing-library/react-hooks':
+        specifier: 8.0.1
+        version: 8.0.1(@types/react@17.0.53)(react-dom@17.0.2)(react@17.0.2)
+      '@types/jest':
+        specifier: 27.5.2
+        version: 27.5.2
       '@types/raf-schd':
         specifier: ^4.0.1
         version: 4.0.1
+      jest:
+        specifier: 27.5.1
+        version: 27.5.1(ts-node@10.9.1)
       react:
         specifier: 17.0.2
         version: 17.0.2
@@ -980,6 +1001,9 @@ importers:
 
   packages/application-config:
     dependencies:
+      '@babel/core':
+        specifier: ^7.20.12
+        version: 7.20.12
       '@babel/register':
         specifier: ^7.18.9
         version: 7.18.9(@babel/core@7.20.12)
@@ -1014,6 +1038,9 @@ importers:
         specifier: 1.1.3
         version: 1.1.3
     devDependencies:
+      '@commercetools-frontend/assets':
+        specifier: workspace:*
+        version: link:../assets
       '@types/jsdom':
         specifier: ^16.2.15
         version: 16.2.15
@@ -1258,6 +1285,15 @@ importers:
       '@testing-library/react-hooks':
         specifier: 8.0.1
         version: 8.0.1(@types/react@17.0.53)(react-dom@17.0.2)(react@17.0.2)
+      '@types/jest':
+        specifier: 27.5.2
+        version: 27.5.2
+      jest:
+        specifier: 27.5.1
+        version: 27.5.1(ts-node@10.9.1)
+      jest-mock:
+        specifier: ^27.5.1
+        version: 27.5.1
       msw:
         specifier: 0.49.3
         version: 0.49.3(typescript@4.9.5)
@@ -1331,6 +1367,15 @@ importers:
       '@testing-library/react':
         specifier: 12.1.5
         version: 12.1.5(react-dom@17.0.2)(react@17.0.2)
+      '@types/jest':
+        specifier: 27.5.2
+        version: 27.5.2
+      jest:
+        specifier: 27.5.1
+        version: 27.5.1(ts-node@10.9.1)
+      jest-mock:
+        specifier: ^27.5.1
+        version: 27.5.1
       react:
         specifier: 17.0.2
         version: 17.0.2
@@ -1438,6 +1483,12 @@ importers:
 
   packages/codemod:
     dependencies:
+      '@babel/core':
+        specifier: ^7.20.12
+        version: 7.20.12
+      '@babel/preset-env':
+        specifier: ^7.20.2
+        version: 7.20.2(@babel/core@7.20.12)
       cac:
         specifier: 6.7.14
         version: 6.7.14
@@ -1448,9 +1499,15 @@ importers:
         specifier: 0.14.0
         version: 0.14.0(@babel/preset-env@7.20.2)
     devDependencies:
+      '@commercetools-frontend/application-components':
+        specifier: workspace:*
+        version: link:../application-components
       '@tsconfig/node16':
         specifier: ^1.0.3
         version: 1.0.3
+      '@types/glob':
+        specifier: 8.1.0
+        version: 8.1.0
       '@types/jscodeshift':
         specifier: 0.11.6
         version: 0.11.6
@@ -1581,6 +1638,12 @@ importers:
       eslint-plugin-testing-library:
         specifier: ^5.10.1
         version: 5.10.1(eslint@8.36.0)(typescript@4.9.5)
+      prettier:
+        specifier: ^2.8.4
+        version: 2.8.4
+      typescript:
+        specifier: ^4.9.5
+        version: 4.9.5
     devDependencies:
       eslint:
         specifier: 8.36.0
@@ -1625,6 +1688,15 @@ importers:
       '@formatjs/cli':
         specifier: 4.8.4
         version: 4.8.4
+      '@types/jest':
+        specifier: 27.5.2
+        version: 27.5.2
+      jest:
+        specifier: 27.5.1
+        version: 27.5.1(ts-node@10.9.1)
+      jest-mock:
+        specifier: ^27.5.1
+        version: 27.5.1
       react:
         specifier: 17.0.2
         version: 17.0.2
@@ -1634,6 +1706,9 @@ importers:
 
   packages/jest-preset-mc-app:
     dependencies:
+      '@babel/core':
+        specifier: ^7.20.12
+        version: 7.20.12
       '@commercetools-frontend/babel-preset-mc-app':
         specifier: 21.24.3
         version: link:../babel-preset-mc-app
@@ -1667,6 +1742,12 @@ importers:
       cosmiconfig:
         specifier: 7.1.0
         version: 7.1.0
+      graphql:
+        specifier: 16.6.0
+        version: 16.6.0
+      graphql-tag:
+        specifier: ^2.12.6
+        version: 2.12.6(graphql@16.6.0)
       identity-obj-proxy:
         specifier: 3.0.0
         version: 3.0.0
@@ -1704,9 +1785,18 @@ importers:
       jest:
         specifier: 27.5.1
         version: 27.5.1(ts-node@10.9.1)
+      react:
+        specifier: 17.0.2
+        version: 17.0.2
+      react-dom:
+        specifier: 17.0.2
+        version: 17.0.2(react@17.0.2)
 
   packages/jest-stylelint-runner:
     dependencies:
+      '@commercetools-frontend/mc-scripts':
+        specifier: workspace:*
+        version: link:../mc-scripts
       create-jest-runner:
         specifier: 0.12.3
         version: 0.12.3
@@ -1757,6 +1847,9 @@ importers:
       '@testing-library/react-hooks':
         specifier: 8.0.1
         version: 8.0.1(@types/react@17.0.53)(react-dom@17.0.2)(react@17.0.2)
+      '@types/jest':
+        specifier: 27.5.2
+        version: 27.5.2
       chalk:
         specifier: 4.1.2
         version: 4.1.2
@@ -1766,6 +1859,9 @@ importers:
       deep-diff:
         specifier: 1.0.2
         version: 1.0.2
+      jest:
+        specifier: 27.5.1
+        version: 27.5.1(ts-node@10.9.1)
       node-fetch:
         specifier: 2.6.9
         version: 2.6.9
@@ -1831,6 +1927,9 @@ importers:
       html-webpack-plugin:
         specifier: 5.5.0
         version: 5.5.0(webpack@5.76.2)
+      webpack:
+        specifier: 5.76.2
+        version: 5.76.2(uglify-js@3.17.4)
 
   packages/mc-scripts:
     dependencies:
@@ -2036,6 +2135,9 @@ importers:
       '@tsconfig/node16':
         specifier: ^1.0.3
         version: 1.0.3
+      '@types/jest':
+        specifier: 27.5.2
+        version: 27.5.2
       '@types/lodash':
         specifier: ^4.14.191
         version: 4.14.191
@@ -2113,6 +2215,15 @@ importers:
         specifier: 1.0.3
         version: 1.0.3
     devDependencies:
+      '@types/jest':
+        specifier: 27.5.2
+        version: 27.5.2
+      jest:
+        specifier: 27.5.1
+        version: 27.5.1(ts-node@10.9.1)
+      jest-mock:
+        specifier: ^27.5.1
+        version: 27.5.1
       react:
         specifier: 17.0.2
         version: 17.0.2
@@ -2207,6 +2318,15 @@ importers:
       '@testing-library/react':
         specifier: 12.1.5
         version: 12.1.5(react-dom@17.0.2)(react@17.0.2)
+      '@types/jest':
+        specifier: 27.5.2
+        version: 27.5.2
+      jest:
+        specifier: 27.5.1
+        version: 27.5.1(ts-node@10.9.1)
+      jest-mock:
+        specifier: ^27.5.1
+        version: 27.5.1
       react:
         specifier: 17.0.2
         version: 17.0.2
@@ -2286,12 +2406,24 @@ importers:
       '@testing-library/react':
         specifier: 12.1.5
         version: 12.1.5(react-dom@17.0.2)(react@17.0.2)
+      '@types/jest':
+        specifier: 27.5.2
+        version: 27.5.2
       '@types/uuid':
         specifier: 8.3.4
         version: 8.3.4
+      jest:
+        specifier: 27.5.1
+        version: 27.5.1(ts-node@10.9.1)
+      jest-mock:
+        specifier: ^27.5.1
+        version: 27.5.1
       react:
         specifier: 17.0.2
         version: 17.0.2
+      react-dom:
+        specifier: 17.0.2
+        version: 17.0.2(react@17.0.2)
       react-redux:
         specifier: 7.2.9
         version: 7.2.9(react-dom@17.0.2)(react@17.0.2)
@@ -2332,6 +2464,12 @@ importers:
         specifier: 15.8.1
         version: 15.8.1
     devDependencies:
+      '@types/jest':
+        specifier: 27.5.2
+        version: 27.5.2
+      jest:
+        specifier: 27.5.1
+        version: 27.5.1(ts-node@10.9.1)
       react:
         specifier: 17.0.2
         version: 17.0.2
@@ -2350,6 +2488,10 @@ importers:
       '@babel/runtime-corejs3':
         specifier: ^7.20.13
         version: 7.20.13
+    devDependencies:
+      '@types/jest':
+        specifier: 27.5.2
+        version: 27.5.2
 
   playground:
     dependencies:
@@ -2407,12 +2549,18 @@ importers:
       '@commercetools-uikit/grid':
         specifier: ^15.14.3
         version: 15.14.3(@types/react@17.0.53)(react@17.0.2)
+      '@commercetools-uikit/hooks':
+        specifier: ^15.14.3
+        version: 15.14.3(react@17.0.2)
       '@commercetools-uikit/icons':
         specifier: ^15.14.3
         version: 15.14.3(@types/react@17.0.53)(react@17.0.2)
       '@commercetools-uikit/label':
         specifier: ^15.14.3
         version: 15.14.3(@types/react@17.0.53)(react-intl@5.25.1)(react@17.0.2)
+      '@commercetools-uikit/link':
+        specifier: ^15.14.3
+        version: 15.14.3(@types/react@17.0.53)(react-intl@5.25.1)(react-router-dom@5.3.4)(react@17.0.2)
       '@commercetools-uikit/loading-spinner':
         specifier: ^15.14.3
         version: 15.14.3(@types/react@17.0.53)(react@17.0.2)(typescript@4.9.5)
@@ -2425,6 +2573,9 @@ importers:
       '@commercetools-uikit/primary-button':
         specifier: ^15.14.3
         version: 15.14.3(@types/react@17.0.53)(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/secondary-button':
+        specifier: ^15.14.3
+        version: 15.14.3(@types/react@17.0.53)(react-intl@5.25.1)(react-router-dom@5.3.4)(react@17.0.2)
       '@commercetools-uikit/spacings':
         specifier: ^15.14.3
         version: 15.14.3(@types/react@17.0.53)(react@17.0.2)
@@ -2433,10 +2584,13 @@ importers:
         version: 15.14.3(@types/react@17.0.53)(react-intl@5.25.1)(react@17.0.2)
       apollo-link-rest:
         specifier: ^0.9.0
-        version: 0.9.0(@apollo/client@3.7.10)(graphql@15.8.0)(qs@6.11.1)
+        version: 0.9.0(@apollo/client@3.7.10)(graphql@16.6.0)(qs@6.11.0)
+      graphql:
+        specifier: 16.6.0
+        version: 16.6.0
       graphql-anywhere:
         specifier: ^4.2.8
-        version: 4.2.8(graphql@15.8.0)
+        version: 4.2.8(graphql@16.6.0)
       moment:
         specifier: ^2.29.4
         version: 2.29.4
@@ -2446,6 +2600,9 @@ importers:
       prop-types:
         specifier: 15.8.1
         version: 15.8.1
+      qs:
+        specifier: ^6.11.0
+        version: 6.11.0
       react:
         specifier: 17.0.2
         version: 17.0.2
@@ -2471,12 +2628,21 @@ importers:
       '@commercetools-frontend/mc-scripts':
         specifier: 21.24.3
         version: link:../packages/mc-scripts
+      '@commercetools-test-data/commons':
+        specifier: 4.9.0
+        version: 4.9.0
       '@formatjs/cli':
         specifier: 4.8.4
         version: 4.8.4
       '@types/dotenv-flow':
         specifier: ^3.2.0
         version: 3.2.0
+      '@types/jest':
+        specifier: 27.5.2
+        version: 27.5.2
+      '@types/node':
+        specifier: ^16.18.12
+        version: 16.18.12
       '@vercel/node':
         specifier: ^2.9.4
         version: 2.9.4
@@ -2486,6 +2652,12 @@ importers:
       express:
         specifier: 4.18.2
         version: 4.18.2
+      jest:
+        specifier: 27.5.1
+        version: 27.5.1(ts-node@10.9.1)
+      msw:
+        specifier: 0.49.3
+        version: 0.49.3(typescript@4.9.5)
       ts-node:
         specifier: ^10.9.1
         version: 10.9.1(@types/node@16.18.12)(typescript@4.9.5)
@@ -2546,9 +2718,33 @@ importers:
       '@emotion/styled':
         specifier: 11.10.6
         version: 11.10.6(@emotion/react@11.10.6)(@types/react@17.0.53)(react@17.0.2)
+      '@types/jest':
+        specifier: 27.5.2
+        version: 27.5.2
+      '@types/react':
+        specifier: ^17.0.53
+        version: 17.0.53
+      '@types/react-dom':
+        specifier: ^17.0.19
+        version: 17.0.19
+      '@types/react-router':
+        specifier: ^5.1.20
+        version: 5.1.20
+      '@types/react-router-dom':
+        specifier: ^5.3.3
+        version: 5.3.3
+      '@vitejs/plugin-react':
+        specifier: 3.1.0
+        version: 3.1.0(vite@4.2.0)
       formik:
         specifier: 2.2.9
         version: 2.2.9(react@17.0.2)
+      jest:
+        specifier: 27.5.1
+        version: 27.5.1(ts-node@10.9.1)
+      jest-each:
+        specifier: 27.5.1
+        version: 27.5.1
       react:
         specifier: 17.0.2
         version: 17.0.2
@@ -2565,15 +2761,15 @@ importers:
         specifier: 5.3.4
         version: 5.3.4(react@17.0.2)
     devDependencies:
-      '@vitejs/plugin-react':
-        specifier: 3.1.0
-        version: 3.1.0(vite@4.2.0)
       vite:
         specifier: 4.2.0
         version: 4.2.0(@types/node@16.18.12)
 
   website:
     dependencies:
+      '@babel/core':
+        specifier: ^7.20.12
+        version: 7.20.12
       '@commercetools-docs/gatsby-theme-docs':
         specifier: 21.1.2
         version: 21.1.2(@babel/core@7.20.12)(gatsby-cli@5.7.0)(gatsby@5.7.0)(graphql@16.6.0)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)(typescript@4.9.5)(webpack@5.76.2)
@@ -2581,6 +2777,12 @@ importers:
         specifier: 21.1.0
         version: 21.1.0(react-dom@18.2.0)(react@18.2.0)(typescript@4.9.5)
       '@commercetools-uikit/card':
+        specifier: ^15.14.3
+        version: 15.14.3(@types/react@17.0.53)(react@17.0.2)
+      '@commercetools-uikit/grid':
+        specifier: ^15.14.3
+        version: 15.14.3(@types/react@17.0.53)(react@17.0.2)
+      '@commercetools-uikit/icons':
         specifier: ^15.14.3
         version: 15.14.3(@types/react@17.0.53)(react@17.0.2)
       '@commercetools-uikit/spacings-inline':
@@ -2601,6 +2803,12 @@ importers:
       gatsby-cli:
         specifier: 5.7.0
         version: 5.7.0
+      graphql:
+        specifier: 16.6.0
+        version: 16.6.0
+      moment:
+        specifier: ^2.29.4
+        version: 2.29.4
       prop-types:
         specifier: 15.8.1
         version: 15.8.1
@@ -2635,6 +2843,9 @@ importers:
       '@commercetools-frontend/browser-history':
         specifier: 21.24.3
         version: link:../packages/browser-history
+      '@commercetools-frontend/constants':
+        specifier: 21.24.3
+        version: link:../packages/constants
       '@commercetools-frontend/i18n':
         specifier: 21.24.3
         version: link:../packages/i18n
@@ -2652,7 +2863,7 @@ importers:
         version: 15.14.3(@types/react@17.0.53)(react-intl@5.25.1)(react-router-dom@5.3.4)(react@17.0.2)
       '@commercetools-uikit/multiline-text-field':
         specifier: ^15.14.3
-        version: 15.14.3(react@17.0.2)(typescript@4.9.5)
+        version: 15.14.3(@types/react@17.0.53)(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/secondary-button':
         specifier: ^15.14.3
         version: 15.14.3(@types/react@17.0.53)(react-intl@5.25.1)(react-router-dom@5.3.4)(react@17.0.2)
@@ -2680,6 +2891,9 @@ importers:
       formik:
         specifier: 2.2.9
         version: 2.2.9(react@17.0.2)
+      history:
+        specifier: 4.10.1
+        version: 4.10.1
       moment:
         specifier: ^2.29.4
         version: 2.29.4
@@ -2698,7 +2912,22 @@ importers:
       react-router-dom:
         specifier: 5.3.4
         version: 5.3.4(react@17.0.2)
+      react-select:
+        specifier: 5.7.0
+        version: 5.7.0(@types/react@17.0.53)(react-dom@17.0.2)(react@17.0.2)
     devDependencies:
+      '@types/react':
+        specifier: ^17.0.53
+        version: 17.0.53
+      '@types/react-dom':
+        specifier: ^17.0.19
+        version: 17.0.19
+      '@types/react-router':
+        specifier: ^5.1.20
+        version: 5.1.20
+      '@types/react-router-dom':
+        specifier: ^5.3.3
+        version: 5.3.3
       '@vitejs/plugin-react':
         specifier: 3.1.0
         version: 3.1.0(vite@4.2.0)
@@ -2722,42 +2951,6 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.18
-
-  /@apollo/client@3.7.10(graphql@15.8.0)(react-dom@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-/k1MfrqPKYiPNdHcOzdxg9cEx96vhAGxAcSorzfBvV29XtFQcYW2cPNQOTjK/fpSMtqVo8UNmu5vwQAWD1gfCg==}
-    peerDependencies:
-      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
-      graphql-ws: ^5.5.5
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-      subscriptions-transport-ws: ^0.9.0 || ^0.11.0
-    peerDependenciesMeta:
-      graphql-ws:
-        optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
-      subscriptions-transport-ws:
-        optional: true
-    dependencies:
-      '@graphql-typed-document-node/core': 3.2.0(graphql@15.8.0)
-      '@wry/context': 0.7.0
-      '@wry/equality': 0.5.3
-      '@wry/trie': 0.3.2
-      graphql: 15.8.0
-      graphql-tag: 2.12.6(graphql@15.8.0)
-      hoist-non-react-statics: 3.3.2
-      optimism: 0.16.2
-      prop-types: 15.8.1
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
-      response-iterator: 0.2.6
-      symbol-observable: 4.0.0
-      ts-invariant: 0.10.3
-      tslib: 2.5.0
-      zen-observable-ts: 1.2.5
-    dev: false
 
   /@apollo/client@3.7.10(graphql@16.6.0)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-/k1MfrqPKYiPNdHcOzdxg9cEx96vhAGxAcSorzfBvV29XtFQcYW2cPNQOTjK/fpSMtqVo8UNmu5vwQAWD1gfCg==}
@@ -3354,7 +3547,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.12.9
-      '@babel/helper-plugin-utils': 7.10.4
+      '@babel/helper-plugin-utils': 7.20.2
       '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.12.9)
       '@babel/plugin-transform-parameters': 7.21.3(@babel/core@7.12.9)
     dev: false
@@ -4298,7 +4491,6 @@ packages:
     dependencies:
       core-js-pure: 3.30.1
       regenerator-runtime: 0.13.11
-    dev: false
 
   /@babel/runtime@7.20.13:
     resolution: {integrity: sha512-gt3PKXs0DBoL9xCvOIIZ2NEqAGZqHjAnmVbfQtB620V0uReIQutpel14KcneZuer7UioY8ALKZ7iocavvzTNFA==}
@@ -4796,6 +4988,19 @@ packages:
       - encoding
     dev: false
 
+  /@commercetools-test-data/commons@4.9.0:
+    resolution: {integrity: sha512-mSXoG6L2iWWsgPDFt88o1mGQ9vt6xNE64lZEbWtxBMH/CCQoTGEF1+WMm7utydJ2ONdyzY/V9mY63g9hD37BJg==}
+    dependencies:
+      '@babel/runtime': 7.20.13
+      '@babel/runtime-corejs3': 7.20.13
+      '@commercetools-test-data/core': 4.9.0
+      '@commercetools/platform-sdk': 4.7.0
+      '@faker-js/faker': 7.6.0
+      lodash: 4.17.21
+    transitivePeerDependencies:
+      - encoding
+    dev: true
+
   /@commercetools-test-data/core@4.11.1:
     resolution: {integrity: sha512-9K/sTN53T65oJ5LkuNpxZN51ZY0a9ivzLeDhPA2f/p9Iay48Sm5eVVX6t1i+kCO5LD3TN7LRQqIA1kHELmcdHA==}
     dependencies:
@@ -4805,6 +5010,16 @@ packages:
       '@types/lodash': 4.14.191
       lodash: 4.17.21
     dev: false
+
+  /@commercetools-test-data/core@4.9.0:
+    resolution: {integrity: sha512-z/XkR6XQ/BzntDO7FvQXyaNFd8fctyGOAHo7Q18njgX3H581RSm1mLDUM6M/zt85RX0PSSasC127gfUixq64sw==}
+    dependencies:
+      '@babel/runtime': 7.20.13
+      '@babel/runtime-corejs3': 7.20.13
+      '@faker-js/faker': 7.6.0
+      '@types/lodash': 4.14.191
+      lodash: 4.17.21
+    dev: true
 
   /@commercetools-test-data/utils@4.11.1:
     resolution: {integrity: sha512-Y8NbbSPWht2GAcX7pQiVhjCJwn4FMZpRq6fyCq5ZjPr+gWXkfoO0f+gZncI/1asShs5fAXavyQx+bw1/2CtZng==}
@@ -4915,7 +5130,7 @@ packages:
       '@commercetools-uikit/secondary-icon-button': 15.14.3(@types/react@17.0.53)(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/spacings-inline': 15.14.3(@types/react@17.0.53)(react@17.0.2)
       '@commercetools-uikit/text': 15.14.3(@types/react@17.0.53)(react-intl@5.25.1)(react@17.0.2)
-      '@commercetools-uikit/tooltip': 15.14.3(react@17.0.2)
+      '@commercetools-uikit/tooltip': 15.14.3(@types/react@17.0.53)(react@17.0.2)
       '@commercetools-uikit/utils': 15.14.3(react@17.0.2)
       '@emotion/react': 11.10.6(@types/react@17.0.53)(react@17.0.2)
       '@emotion/styled': 11.10.6(@emotion/react@11.10.6)(@types/react@17.0.53)(react@17.0.2)
@@ -5108,7 +5323,7 @@ packages:
       '@commercetools-uikit/select-utils': 15.14.3(@types/react@17.0.53)(react-dom@17.0.2)(react-intl@5.25.1)(react@17.0.2)
       '@commercetools-uikit/spacings-inline': 15.14.3(@types/react@17.0.53)(react@17.0.2)
       '@commercetools-uikit/text': 15.14.3(@types/react@17.0.53)(react-intl@5.25.1)(react@17.0.2)
-      '@commercetools-uikit/tooltip': 15.14.3(react@17.0.2)
+      '@commercetools-uikit/tooltip': 15.14.3(@types/react@17.0.53)(react@17.0.2)
       '@commercetools-uikit/utils': 15.14.3(react@17.0.2)
       '@emotion/react': 11.10.6(@types/react@17.0.53)(react@17.0.2)
       '@emotion/styled': 11.10.6(@emotion/react@11.10.6)(@types/react@17.0.53)(react@17.0.2)
@@ -5641,7 +5856,7 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/multiline-text-field@15.14.3(react@17.0.2)(typescript@4.9.5):
+  /@commercetools-uikit/multiline-text-field@15.14.3(@types/react@17.0.53)(react@17.0.2)(typescript@4.9.5):
     resolution: {integrity: sha512-bGG5mWZb1zL7nszZehY6gbbum2pZsVxONMt/GgK6zpJJflvZ0CcYfIQVPi1g6pjRTmuSPdEDAQyq1q9ZxKB1Sw==}
     peerDependencies:
       react: 17.x
@@ -5652,7 +5867,7 @@ packages:
       '@commercetools-uikit/design-system': 15.14.3(@types/react@17.0.53)
       '@commercetools-uikit/field-errors': 15.14.3(@types/react@17.0.53)(react-intl@5.25.1)(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/field-label': 15.14.3(@types/react@17.0.53)(react@17.0.2)(typescript@4.9.5)
-      '@commercetools-uikit/multiline-text-input': 15.14.3(react-intl@5.25.1)(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/multiline-text-input': 15.14.3(@types/react@17.0.53)(react-intl@5.25.1)(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/spacings': 15.14.3(@types/react@17.0.53)(react@17.0.2)
       '@commercetools-uikit/utils': 15.14.3(react@17.0.2)
       '@emotion/react': 11.10.6(@types/react@17.0.53)(react@17.0.2)
@@ -5665,7 +5880,7 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/multiline-text-input@15.14.3(react-intl@5.25.1)(react@17.0.2)(typescript@4.9.5):
+  /@commercetools-uikit/multiline-text-input@15.14.3(@types/react@17.0.53)(react-intl@5.25.1)(react@17.0.2)(typescript@4.9.5):
     resolution: {integrity: sha512-qAz/fGeG4+lMaBkNCcUDfpv+/tQfYkCQ0h+gjjD10zP9zXwdop6NB1IUwuCLOBE9fCvmnIw0gPw6EJv3j9ARMQ==}
     peerDependencies:
       react: 17.x
@@ -5681,7 +5896,7 @@ packages:
       '@commercetools-uikit/input-utils': 15.14.3(@types/react@17.0.53)(react-intl@5.25.1)(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/spacings-inline': 15.14.3(@types/react@17.0.53)(react@17.0.2)
       '@commercetools-uikit/spacings-stack': 15.14.3(@types/react@17.0.53)(react@17.0.2)
-      '@commercetools-uikit/tooltip': 15.14.3(react@17.0.2)
+      '@commercetools-uikit/tooltip': 15.14.3(@types/react@17.0.53)(react@17.0.2)
       '@commercetools-uikit/utils': 15.14.3(react@17.0.2)
       '@emotion/react': 11.10.6(@types/react@17.0.53)(react@17.0.2)
       '@emotion/styled': 11.10.6(@emotion/react@11.10.6)(@types/react@17.0.53)(react@17.0.2)
@@ -6259,7 +6474,7 @@ packages:
       - '@types/react'
     dev: false
 
-  /@commercetools-uikit/tooltip@15.14.3(react@17.0.2):
+  /@commercetools-uikit/tooltip@15.14.3(@types/react@17.0.53)(react@17.0.2):
     resolution: {integrity: sha512-CzuMaMiTb0iaZeOQwDXLGoKNaYC6NK/D0+5GGWgma7qaNxiW1PSqhpH14xTO+fOapBMIqhMQLjutFIPv/+Z8yw==}
     peerDependencies:
       react: 17.x
@@ -6387,7 +6602,6 @@ packages:
       querystring: 0.2.1
     transitivePeerDependencies:
       - encoding
-    dev: false
 
   /@commercetools/sdk-client-v2@2.1.5:
     resolution: {integrity: sha512-coE3c4qpG8u+QR9GmaXIIWfhQgH+n8DA3PSGUJWnDh+tDFxcjqFp1MV8RKRj/nV1/h4KkEkqWuVFzT7pBTDNdQ==}
@@ -6398,7 +6612,6 @@ packages:
       querystring: 0.2.1
     transitivePeerDependencies:
       - encoding
-    dev: false
 
   /@commercetools/sdk-client@3.0.0:
     resolution: {integrity: sha512-N8Eem8aHyxs3xAfscuemERbhH4po/1fMQs0SBfWgLda77qaIGyyfMqwgJNsPBweBsyt5RC9p5tpMDZ0lSPugDA==}
@@ -6412,7 +6625,6 @@ packages:
       node-fetch: 2.6.9
     transitivePeerDependencies:
       - encoding
-    dev: false
 
   /@commercetools/sdk-middleware-correlation-id@3.0.0:
     resolution: {integrity: sha512-Hq6zKEVSZ57jgfh8nfBgYt5LNwJcueAo0udoDhjOQrtFIch2a5bSMR+WY36GKwrkZ78CqnvJA7NPuyBAYWkMjg==}
@@ -6422,12 +6634,10 @@ packages:
   /@commercetools/sdk-middleware-http@7.0.2:
     resolution: {integrity: sha512-flmr1nheZFN/9Uwv1oPpSi5Q6z75QTJFixWCWKirvYKPdzZ33+tCvxlXPVsAUZTvP611XO7ADJrJw/z9LMtUBQ==}
     engines: {node: '>=14'}
-    dev: false
 
   /@commercetools/sdk-middleware-logger@3.0.0:
     resolution: {integrity: sha512-DhMXAA2yIch/AaGxy7st85Z1HFmeLtHWGkr9z5rX4xKjan4PHGB/IE5saAR+SNGHhs6+1Lp8vZEHDo3tFqVLmg==}
     engines: {node: '>=14'}
-    dev: false
 
   /@commercetools/sync-actions@5.3.1:
     resolution: {integrity: sha512-qca3fmw46YweU1cMgmtm/lb8YoINyPo15SEVo8ZLUaXPl8pzXIhR0pXrp+Y6RRrn/oJqgLI7X/8Gj9y2IKAn2Q==}
@@ -7099,7 +7309,6 @@ packages:
   /@faker-js/faker@7.6.0:
     resolution: {integrity: sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw==}
     engines: {node: '>=14.0.0', npm: '>=6.0.0'}
-    dev: false
 
   /@floating-ui/core@1.2.6:
     resolution: {integrity: sha512-EvYTiXet5XqweYGClEmpu3BoxmsQ4hkj3QaYA6qEnigCWffTP3vNRwBReTdrwDwo7OoJ3wM8Uoe9Uk4n+d4hfg==}
@@ -7980,7 +8189,7 @@ packages:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
       graphql: 16.6.0
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: false
 
   /@graphql-tools/prisma-loader@7.2.70(@types/node@16.18.12)(graphql@16.6.0):
@@ -8023,7 +8232,7 @@ packages:
       '@ardatan/relay-compiler': 12.0.0(graphql@16.6.0)
       '@graphql-tools/utils': 9.2.1(graphql@16.6.0)
       graphql: 16.6.0
-      tslib: 2.4.1
+      tslib: 2.5.0
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -8127,7 +8336,7 @@ packages:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
       graphql: 16.6.0
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: false
 
   /@graphql-tools/utils@9.2.1(graphql@16.6.0):
@@ -8164,14 +8373,6 @@ packages:
       graphql: 16.6.0
       tslib: 2.5.0
       value-or-promise: 1.0.12
-    dev: false
-
-  /@graphql-typed-document-node/core@3.2.0(graphql@15.8.0):
-    resolution: {integrity: sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ==}
-    peerDependencies:
-      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-    dependencies:
-      graphql: 15.8.0
     dev: false
 
   /@graphql-typed-document-node/core@3.2.0(graphql@16.6.0):
@@ -10741,7 +10942,7 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.37.0
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
 
   /@types/eslint@8.37.0:
     resolution: {integrity: sha512-Piet7dG2JBuDIfohBngQ3rCt7MgO9xCO4xIMKxBThCq5PNRB91IjlJ10eJVwfoNtvTErmxLzwBZ7rHZtbOMmFQ==}
@@ -10810,6 +11011,12 @@ packages:
       '@types/node': 16.18.12
     dev: true
 
+  /@types/glob@8.1.0:
+    resolution: {integrity: sha512-IO+MJPVhoqz+28h1qLAcBEH2+xHMK6MTyHJc7MTnnYb6wsoLR29POVGJ7LycmVXIqyy/4/2ShP5sUwTXuOwb/w==}
+    dependencies:
+      '@types/minimatch': 5.1.2
+      '@types/node': 16.18.12
+
   /@types/graceful-fs@4.1.6:
     resolution: {integrity: sha512-Sig0SNORX9fdW+bQuTEovKj3uHcUL6LQKbCrrqb1X7J6/ReAbhCXRAhc+SMejhLELFj2QcyuxmUooZ4bt5ReSw==}
     dependencies:
@@ -10823,7 +11030,6 @@ packages:
 
   /@types/history@4.7.11:
     resolution: {integrity: sha512-qjDJRrmvBMiTx+jyLxvLfJU7UznFuokDv4f3WRuriHKERccVpFU+8XMQUAbDzoiJCsmexxRExQeMwwCdamSKDA==}
-    dev: false
 
   /@types/hoist-non-react-statics@3.3.1:
     resolution: {integrity: sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==}
@@ -10876,7 +11082,6 @@ packages:
     dependencies:
       jest-matcher-utils: 27.5.1
       pretty-format: 27.5.1
-    dev: false
 
   /@types/js-levenshtein@1.1.1:
     resolution: {integrity: sha512-qC4bCqYGy1y/NP7dDVr7KJarn+PbX1nSpwA7JXdu0HxT3QYjO8MJ+cntENtHFVy2dRAyBV23OZ6MxsW1AM1L8g==}
@@ -11082,14 +11287,12 @@ packages:
       '@types/history': 4.7.11
       '@types/react': 17.0.53
       '@types/react-router': 5.1.20
-    dev: false
 
   /@types/react-router@5.1.20:
     resolution: {integrity: sha512-jGjmu/ZqS7FjSH6owMcD5qpq19+1RS9DeVRqfl1FeBMxTDQAGwlMWOcs52NDoXaNKyG3d1cYQFMs9rCrb88o9Q==}
     dependencies:
       '@types/history': 4.7.11
       '@types/react': 17.0.53
-    dev: false
 
   /@types/react-transition-group@4.4.5:
     resolution: {integrity: sha512-juKD/eiSM3/xZYzjuzH6ZwpP+/lejltmiS3QEzV/vmb/Q8+HfDmxu+Baga8UEMGBqV88Nbg4l2hY/K2DkyaLLA==}
@@ -11129,7 +11332,7 @@ packages:
   /@types/rimraf@2.0.5:
     resolution: {integrity: sha512-YyP+VfeaqAyFmXoTh3HChxOQMyjByRMsHU7kc5KOJkSlXudhMhQIALbYV7rHh/l8d2lX3VUQzprrcAgWdRuU8g==}
     dependencies:
-      '@types/glob': 5.0.38
+      '@types/glob': 8.1.0
       '@types/node': 16.18.12
     dev: false
 
@@ -12235,26 +12438,26 @@ packages:
       '@apollo/client': 3.7.10(graphql@16.6.0)(react-dom@17.0.2)(react@17.0.2)
     dev: false
 
-  /apollo-link-rest@0.9.0(@apollo/client@3.7.10)(graphql@15.8.0)(qs@6.11.1):
+  /apollo-link-rest@0.9.0(@apollo/client@3.7.10)(graphql@16.6.0)(qs@6.11.0):
     resolution: {integrity: sha512-kuXjR56Y12w0TZcqwVaONKlipB6g3Ya1dAy4NMCaylPpNXq6tO+qzQFPUyDJC7B0JoJPIFjxPV2rAet4uGM4UQ==}
     peerDependencies:
       '@apollo/client': '>=3'
       graphql: '>=0.11'
       qs: '>=6'
     dependencies:
-      '@apollo/client': 3.7.10(graphql@15.8.0)(react-dom@17.0.2)(react@17.0.2)
-      graphql: 15.8.0
-      qs: 6.11.1
+      '@apollo/client': 3.7.10(graphql@16.6.0)(react-dom@17.0.2)(react@17.0.2)
+      graphql: 16.6.0
+      qs: 6.11.0
     dev: false
 
-  /apollo-utilities@1.3.4(graphql@15.8.0):
+  /apollo-utilities@1.3.4(graphql@16.6.0):
     resolution: {integrity: sha512-pk2hiWrCXMAy2fRPwEyhvka+mqwzeP60Jr1tRYi5xru+3ko94HI9o6lK0CT33/w4RDlxWchmdhDCrvdr+pHCig==}
     peerDependencies:
       graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
     dependencies:
       '@wry/equality': 0.1.11
       fast-json-stable-stringify: 2.1.0
-      graphql: 15.8.0
+      graphql: 16.6.0
       ts-invariant: 0.4.4
       tslib: 1.14.1
     dev: false
@@ -13133,7 +13336,6 @@ packages:
     dependencies:
       base64-js: 1.5.1
       ieee754: 1.2.1
-    dev: false
 
   /builtin-modules@3.3.0:
     resolution: {integrity: sha512-zhaCDicdLuWN5UbN5IMnFqNMhNfo919sH85y2/ea+5Yg9TsTkeZxpL+JLbp6cgYFS4sRLp3YV4S6yDuqVWHYOw==}
@@ -13324,7 +13526,7 @@ packages:
     resolution: {integrity: sha512-ds37W8CytHgwnhGGTi88pcPyR15qoNkOpYwmMMfnWqqWgESapLqvDx6huFjQ5vqWSn2Z06173XNA7LtMOeUh1A==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.5.0
       upper-case-first: 2.0.2
     dev: false
 
@@ -13420,7 +13622,7 @@ packages:
       path-case: 3.0.4
       sentence-case: 3.0.4
       snake-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: false
 
   /char-regex@1.0.2:
@@ -13875,7 +14077,7 @@ packages:
     resolution: {integrity: sha512-I2hSBi7Vvs7BEuJDr5dDHfzb/Ruj3FyvFyh7KLilAjNQw3Be+xgqUBA2W6scVEcL0hL1dwPRtIqEPVUCKkSsyQ==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.5.0
       upper-case: 2.0.2
     dev: false
 
@@ -13963,7 +14165,6 @@ packages:
   /core-js-pure@3.30.1:
     resolution: {integrity: sha512-nXBEVpmUnNRhz83cHd9JRQC52cTMcuXAmR56+9dSMpRdpeA4I1PX6yjmhd71Eyc/wXNsdBdUDIj1QTIeZpU5Tg==}
     requiresBuild: true
-    dev: false
 
   /core-js@2.6.12:
     resolution: {integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==}
@@ -18233,13 +18434,13 @@ packages:
   /grapheme-splitter@1.0.4:
     resolution: {integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==}
 
-  /graphql-anywhere@4.2.8(graphql@15.8.0):
+  /graphql-anywhere@4.2.8(graphql@16.6.0):
     resolution: {integrity: sha512-bKeJJoY9JyWMAiz5isKrtYUdIUBOBiXUOrA9CQgs9Drh9itFtxhWndQH4UBuYfrMticum6Oj1uQ6iSvZk94cMQ==}
     peerDependencies:
       graphql: '>= 0.11.0'
     dependencies:
-      apollo-utilities: 1.3.4(graphql@15.8.0)
-      graphql: 15.8.0
+      apollo-utilities: 1.3.4(graphql@16.6.0)
+      graphql: 16.6.0
       ts-invariant: 0.3.3
       tslib: 2.5.0
     dev: false
@@ -18343,16 +18544,6 @@ packages:
       - encoding
     dev: false
 
-  /graphql-tag@2.12.6(graphql@15.8.0):
-    resolution: {integrity: sha512-FdSNcu2QQcWnM2VNvSCCDCVS5PpPqpzgFT8+GXzqJuoDd0CBncxCY278u4mhRO7tMgo2JjgJA5aZ+nWSQ/Z+xg==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      graphql: ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-    dependencies:
-      graphql: 15.8.0
-      tslib: 2.5.0
-    dev: false
-
   /graphql-tag@2.12.6(graphql@16.6.0):
     resolution: {integrity: sha512-FdSNcu2QQcWnM2VNvSCCDCVS5PpPqpzgFT8+GXzqJuoDd0CBncxCY278u4mhRO7tMgo2JjgJA5aZ+nWSQ/Z+xg==}
     engines: {node: '>=10'}
@@ -18386,11 +18577,6 @@ packages:
       graphql: '>=0.11 <=16'
     dependencies:
       graphql: 16.6.0
-    dev: false
-
-  /graphql@15.8.0:
-    resolution: {integrity: sha512-5gghUc24tP9HRznNpV2+FIoq3xKkj5dTQqf4v0CpdPbFVwFkWoxOM+o+2OC9ZSvjEMTjfmG9QT+gcvggTwW1zw==}
-    engines: {node: '>= 10.x'}
     dev: false
 
   /graphql@16.6.0:
@@ -18602,7 +18788,7 @@ packages:
     resolution: {integrity: sha512-H/vuk5TEEVZwrR0lp2zed9OCo1uAILMlx0JEMgC26rzyJJ3N1v6XkwHHXJQdR2doSjcGPM6OKPYoJgf0plJ11Q==}
     dependencies:
       capital-case: 1.0.4
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: false
 
   /headers-polyfill@3.1.2:
@@ -19378,7 +19564,7 @@ packages:
   /is-lower-case@2.0.2:
     resolution: {integrity: sha512-bVcMJy4X5Og6VZfdOZstSexlEy20Sr0k/p/b2IlQJlfdKAQuMpiv5w2Ccxb8sKdRUNAG1PnHVHjFSdRDVS6NlQ==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: false
 
   /is-map@2.0.2:
@@ -19597,7 +19783,7 @@ packages:
   /is-upper-case@2.0.2:
     resolution: {integrity: sha512-44pxmxAvnnAOwBg4tHPnkfvgjPwbc5QIsSstNU+YcJ1ovxVzCWpSGosPJOZh/a1tdl81fbgnLc9LLv+x2ywbPQ==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: false
 
   /is-valid-domain@0.1.6:
@@ -21235,13 +21421,13 @@ packages:
   /lower-case-first@2.0.2:
     resolution: {integrity: sha512-EVm/rR94FJTZi3zefZ82fLWab+GX14LJN4HrWBcuo6Evmsl9hEfnqxgcHCKb9q+mNf6EVdsjx/qucYFIIB84pg==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: false
 
   /lower-case@2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.5.0
 
   /lowercase-keys@1.0.1:
     resolution: {integrity: sha512-G2Lj61tXDnVFFOi8VZds+SoQjtQC3dgokKdDG2mTm1tx4m50NUHBOZSBwQQHyy0V12A0JTG4icfZQH+xPyh8VA==}
@@ -22272,7 +22458,7 @@ packages:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
     dependencies:
       lower-case: 2.0.2
-      tslib: 2.4.1
+      tslib: 2.5.0
 
   /node-abi@3.35.0:
     resolution: {integrity: sha512-jAlSOFR1Bls963NmFwxeQkNTzqjUF0NThm8Le7eRIRGzFUVJuMOFZDLv5Y30W/Oaw+KEebEJLAigwO9gQHoEmw==}
@@ -23050,7 +23236,7 @@ packages:
     resolution: {integrity: sha512-qO4qCFjXqVTrcbPt/hQfhTQ+VhFsqNKOPtytgNKkKxSoEp3XPUQ8ObFuePylOIok5gjn69ry8XiULxCwot3Wfg==}
     dependencies:
       dot-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: false
 
   /path-exists@3.0.0:
@@ -24026,13 +24212,6 @@ packages:
     dependencies:
       side-channel: 1.0.4
 
-  /qs@6.11.1:
-    resolution: {integrity: sha512-0wsrzgTz/kAVIeuxSjnpGC56rzYtr6JT/2BwEvMaPhFIoYa1aGO8LbzuU1R0uUYQkLpWBTOj0l/CLAJB64J6nQ==}
-    engines: {node: '>=0.6'}
-    dependencies:
-      side-channel: 1.0.4
-    dev: false
-
   /qs@6.5.3:
     resolution: {integrity: sha512-qxXIEh4pCGfHICj1mAJQ2/2XVZkjCDTcEgfoSQxc/fYivUZxTkk7L3bDBJSoNrEzXI17oUO5Dp07ktqE5KzczA==}
     engines: {node: '>=0.6'}
@@ -24068,7 +24247,6 @@ packages:
     resolution: {integrity: sha512-wkvS7mL/JMugcup3/rMitHmd9ecIGd2lhFhK9N3UUQ450h66d1r3Y9nvXzQAW1Lq+wyx61k/1pfKS5KuKiyEbg==}
     engines: {node: '>=0.4.x'}
     deprecated: The querystring API is considered Legacy. new code should use the URLSearchParams API instead.
-    dev: false
 
   /querystringify@2.2.0:
     resolution: {integrity: sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==}
@@ -25500,7 +25678,7 @@ packages:
     resolution: {integrity: sha512-8LS0JInaQMCRoQ7YUytAo/xUu5W2XnQxV2HI/6uM6U7CITS1RqPElr30V6uIqyMKM9lJGRVFy5/4CuzcixNYSg==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.5.0
       upper-case-first: 2.0.2
     dev: false
 
@@ -25764,7 +25942,7 @@ packages:
     resolution: {integrity: sha512-LAOh4z89bGQvl9pFfNF8V146i7o7/CqFPbqzYgP+yYzDIDeS9HaNFtXABamRW+AQzEVODcvE79ljJ+8a9YSdMg==}
     dependencies:
       dot-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: false
 
   /socket.io-adapter@2.4.0:
@@ -25932,7 +26110,7 @@ packages:
   /sponge-case@1.0.1:
     resolution: {integrity: sha512-dblb9Et4DAtiZ5YSUZHLl4XhH4uK80GhAZrVXdN4O2P4gQ40Wa5UIOPUHlA/nFd2PLblBZWUioLMMAVrgpoYcA==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: false
 
   /sprintf-js@1.0.3:
@@ -26429,7 +26607,7 @@ packages:
       graphql: 16.6.0
       iterall: 1.3.0
       symbol-observable: 1.2.0
-      ws: 7.4.5
+      ws: 7.5.9
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -26508,7 +26686,7 @@ packages:
   /swap-case@2.0.2:
     resolution: {integrity: sha512-kc6S2YS/2yXbtkSMunBtKdah4VFETZ8Oh6ONSmSd9bRxhqTrtARUCBUiWXH3xVPpvR7tz2CSnkuXVE42EcGnMw==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: false
 
   /swr@1.3.0(react@17.0.2):
@@ -26788,7 +26966,7 @@ packages:
   /title-case@3.0.3:
     resolution: {integrity: sha512-e1zGYRvbffpcHIrnuqT0Dh+gEJtDaxDSoG4JAIpq4oDFyooziLBIiYQv0GBT4FUAnUop5uZ1hiIAj7oAF6sOCA==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: false
 
   /tmp@0.0.33:
@@ -27086,6 +27264,7 @@ packages:
 
   /tslib@2.4.1:
     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
+    dev: false
 
   /tslib@2.5.0:
     resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
@@ -27521,13 +27700,13 @@ packages:
   /upper-case-first@2.0.2:
     resolution: {integrity: sha512-514ppYHBaKwfJRK/pNC6c/OxfGa0obSnAl106u97Ed0I625Nin96KAjttZF6ZL3e1XLtphxnqrOi9iWgm+u+bg==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: false
 
   /upper-case@2.0.2:
     resolution: {integrity: sha512-KgdgDGJt2TpuwBUIjgG6lzw2GWFRCW9Qkfkiv0DxqHHLYJHmtmdUIKcZd8rHgFSjopVTlw6ggzCm1b8MFQwikg==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: false
 
   /uri-js@4.4.1:

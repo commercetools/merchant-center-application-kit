@@ -29,6 +29,8 @@
     "prop-types": "15.8.1"
   },
   "devDependencies": {
+    "@types/jest": "27.5.2",
+    "jest": "27.5.1",
     "react": "17.0.2",
     "sentry-testkit": "5.0.5",
     "wait-for-expect": "3.0.2"

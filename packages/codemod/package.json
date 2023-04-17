@@ -24,13 +24,17 @@
     "build:bundles:watch": "pnpm run build -w"
   },
   "dependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
     "cac": "6.7.14",
     "glob": "8.1.0",
     "jscodeshift": "0.15.0",
     "prettier": "2.8.8"
   },
   "devDependencies": {
+    "@commercetools-frontend/application-components": "workspace:*",
     "@tsconfig/node16": "^1.0.3",
+    "@types/glob": "8.1.0",
     "@types/jscodeshift": "0.11.6",
     "rimraf": "3.0.2",
     "typescript": "5.0.4"
