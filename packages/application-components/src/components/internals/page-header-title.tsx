@@ -62,7 +62,7 @@ const Subtitle = (props: SubtitleProps) => {
   return (
     <SubtitleWrapper>
       <Text.Body
-        title={props.subtitle}
+        title={typeof props.subtitle === 'string' ? props.subtitle : undefined}
         truncate={props.truncate}
         tone={theme !== 'default' ? 'secondary' : undefined}
       >
