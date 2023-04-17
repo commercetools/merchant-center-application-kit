@@ -28,7 +28,7 @@
     "semver": "7.3.8"
   },
   "devDependencies": {
-    "@tsconfig/node18": "^1.0.1"
+    "@tsconfig/node16": "^1.0.3"
   },
   "engines": {
     "node": "16.x || >=18.0.0"
