@@ -1,5 +1,5 @@
 /// <reference types="@emotion/react/types/css-prop" />
-/// <reference path="../../../../node_modules/vite/types/importMeta.d.ts" />
+/// <reference types="vite/types/importMeta" />
 
 import { css } from '@emotion/react';
 import { customProperties } from '@commercetools-uikit/design-system';

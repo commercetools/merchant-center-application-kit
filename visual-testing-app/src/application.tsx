@@ -1,4 +1,4 @@
-/// <reference path="../../node_modules/vite/types/importMeta.d.ts" />
+/// <reference types="vite/types/importMeta" />
 
 import './globals.css';
 import { type ComponentType, Suspense } from 'react';
