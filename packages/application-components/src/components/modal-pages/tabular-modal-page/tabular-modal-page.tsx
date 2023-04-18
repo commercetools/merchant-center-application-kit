@@ -2,6 +2,7 @@ import { ReactElement, ReactNode, SyntheticEvent } from 'react';
 import type { CSSObject } from '@emotion/react';
 
 import { sharedMessages } from '@commercetools-frontend/i18n';
+import { useTheme } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import {
   FormPrimaryButton,
@@ -62,6 +63,7 @@ const defaultProps: Pick<Props, 'hideControls'> = {
 };
 
 const TabularModalPage = (props: Props) => {
+  const { themedValue } = useTheme();
   return (
     <ModalPage
       title={props.title}
@@ -79,7 +81,7 @@ const TabularModalPage = (props: Props) => {
         {props.customTitleRow || (
           <PageHeaderTitle
             title={props.title}
-            titleSize="big"
+            titleSize={themedValue('small', 'big')}
             subtitle={props.subtitle}
             truncate
           />

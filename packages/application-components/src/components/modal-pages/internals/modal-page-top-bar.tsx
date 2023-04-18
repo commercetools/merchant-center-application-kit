@@ -1,7 +1,10 @@
 import { cloneElement, type SyntheticEvent, type ReactElement } from 'react';
 import { css } from '@emotion/react';
 import { useIntl } from 'react-intl';
-import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
+import {
+  designTokens as uiKitDesignTokens,
+  useTheme,
+} from '@commercetools-uikit/design-system';
 import FlatButton from '@commercetools-uikit/flat-button';
 import { CloseIcon, AngleLeftIcon } from '@commercetools-uikit/icons';
 import SecondaryIconButton, {
@@ -60,6 +63,7 @@ const defaultProps: Pick<Props, 'color' | 'previousPathLabel'> = {
 
 const ModalPageTopBar = (props: Props) => {
   const intl = useIntl();
+  const { themedValue } = useTheme();
   return (
     <div
       css={css`
@@ -125,7 +129,7 @@ const ModalPageTopBar = (props: Props) => {
               <CloseIcon />
             </LargeIconWrapper>
           }
-          size="big"
+          size={themedValue('medium', 'big')}
         />
       )}
     </div>

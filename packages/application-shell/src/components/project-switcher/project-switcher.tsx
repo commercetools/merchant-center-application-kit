@@ -1,3 +1,4 @@
+// TODO: @redesign cleanup
 import { css } from '@emotion/react';
 import memoize from 'memoize-one';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -6,7 +7,7 @@ import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
-import { designTokens } from '@commercetools-uikit/design-system';
+import { designTokens, useTheme } from '@commercetools-uikit/design-system';
 import { ErrorIcon } from '@commercetools-uikit/icons';
 import SelectInput from '@commercetools-uikit/select-input';
 import { useMcQuery } from '../../hooks/apollo-hooks';
@@ -38,6 +39,7 @@ export const ProjectSwitcherValueContainer = ({
   projectCount,
   ...restProps
 }: CustomValueContainerProps) => {
+  const { themedValue } = useTheme();
   return (
     <div
       css={css`
@@ -57,12 +59,18 @@ export const ProjectSwitcherValueContainer = ({
       </div>
       <span
         css={css`
-          width: ${'26px'};
-          height: ${'26px'};
+          width: ${themedValue('22px', '26px')};
+          height: ${themedValue('22px', '26px')};
           border-radius: 100%;
-          background: ${designTokens.colorNeutral};
+          background: ${themedValue(
+            designTokens.colorAccent40,
+            designTokens.colorNeutral
+          )};
           color: ${designTokens.colorSurface};
-          font-size: ${designTokens.fontSize30};
+          font-size: ${themedValue(
+            designTokens.fontSize15,
+            designTokens.fontSize30
+          )};
           display: flex;
           justify-content: center;
           align-items: center;

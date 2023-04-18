@@ -69,12 +69,12 @@ const UserAvatar = (
   const handleMouseOut = useCallback(() => {
     setIsMouseOver(false);
   }, []);
-  const { isNewTheme } = useTheme();
+  const { isNewTheme, themedValue } = useTheme();
   return (
     <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
       <Spacings.Inline alignItems="center">
         <Avatar
-          size="m"
+          size={themedValue('s', 'm')}
           gravatarHash={props.gravatarHash}
           firstName={props.firstName}
           lastName={props.lastName}
@@ -216,7 +216,7 @@ const getUserSettingsMenuItemLinkStyles = () => css`
 `;
 
 const UserSettingsMenuBody = (props: MenuBodyProps) => {
-  const { isNewTheme } = useTheme();
+  const { isNewTheme, themedValue } = useTheme();
   // Focus on a menu item when it's opened through keyboard
   const menuElementRef = useRef<HTMLAnchorElement>(null);
   useEffect(() => {
@@ -247,9 +247,9 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
     >
       <div {...props.downshiftProps.getMenuProps()}>
         <UserSettingsAvatarContainer isNewTheme={isNewTheme}>
-          <Spacings.Inline scale="m" alignItems="center">
+          <Spacings.Inline scale={themedValue('xs', 'm')} alignItems="center">
             <Avatar
-              size="m"
+              size={themedValue('s', 'm')}
               firstName={props.firstName}
               lastName={props.lastName}
               gravatarHash={props.gravatarHash}
