@@ -64,7 +64,7 @@ const Subtitle = (props: SubtitleProps) => {
       <Text.Body
         title={props.subtitle}
         truncate={props.truncate}
-        tone={themedValue('secondary', undefined)}
+        tone={themedValue(undefined, 'secondary')}
       >
         {props.subtitle}
       </Text.Body>
