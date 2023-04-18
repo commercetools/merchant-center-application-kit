@@ -41,3 +41,11 @@ Rename `.mod.css` files to `.module.css` and update imports.
 ```
 $ npx @commercetools-frontend/codemod@latest rename-mod-css-to-module-css 'src/**/*.{js,jsx,ts,tsx}'
 ```
+
+### `redesign-cleanup`
+
+Remove code related to the old design when using the `useTheme` hook, for example the usage of `themedValue`.
+
+```
+$ npx @commercetools-frontend/codemod@latest redesign-cleanup 'src/**/*.{jsx,tsx}'
+```

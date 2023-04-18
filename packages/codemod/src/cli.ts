@@ -26,6 +26,11 @@ const transforms: { name: TCliTransformName; description: string }[] = [
     name: 'rename-mod-css-to-module-css',
     description: 'Rename ".mod.css" files to ".module.css" and update imports.',
   },
+  {
+    name: 'redesign-cleanup',
+    description:
+      'Remove code related to the old design when using the "useTheme" hook, for example the usage of "themedValue".',
+  },
 ];
 
 const executeCodemod = async (
@@ -43,6 +48,7 @@ const executeCodemod = async (
     await Runner.run(transformPath, filePaths, options);
   };
   switch (transform) {
+    case 'redesign-cleanup':
     case 'remove-deprecated-modal-level-props':
     case 'rename-js-to-jsx':
     case 'rename-mod-css-to-module-css': {

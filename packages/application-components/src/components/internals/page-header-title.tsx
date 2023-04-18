@@ -24,12 +24,12 @@ const SubtitleWrapper = styled.div`
 type TitleProps = Pick<Props, 'titleSize' | 'title' | 'truncate'>;
 
 const Title = (props: TitleProps) => {
-  const { theme } = useTheme();
+  const { themedValue } = useTheme();
   switch (props.titleSize) {
     case 'big':
       return (
         <Text.Headline
-          as={theme === 'default' ? 'h2' : 'h1'}
+          as={themedValue('h2', 'h1')}
           title={props.title}
           truncate={props.truncate}
         >
@@ -52,7 +52,7 @@ type SubtitleProps = {
 };
 
 const Subtitle = (props: SubtitleProps) => {
-  const { theme } = useTheme();
+  const { themedValue } = useTheme();
   if (!props.subtitle) {
     return null;
   }
@@ -64,7 +64,7 @@ const Subtitle = (props: SubtitleProps) => {
       <Text.Body
         title={typeof props.subtitle === 'string' ? props.subtitle : undefined}
         truncate={props.truncate}
-        tone={theme !== 'default' ? 'secondary' : undefined}
+        tone={themedValue(undefined, 'secondary')}
       >
         {props.subtitle}
       </Text.Body>

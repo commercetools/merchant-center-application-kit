@@ -4268,6 +4268,7 @@ __metadata:
     cac: 6.7.14
     glob: 8.1.0
     jscodeshift: 0.14.0
+    prettier: 2.8.4
     rimraf: 3.0.2
     typescript: 5.0.4
   bin:
