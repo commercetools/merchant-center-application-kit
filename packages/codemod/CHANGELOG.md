@@ -1,5 +1,11 @@
 # @commercetools-frontend/codemod
 
+## 21.25.1
+
+### Patch Changes
+
+- [#3041](https://github.com/commercetools/merchant-center-application-kit/pull/3041) [`abe818527`](https://github.com/commercetools/merchant-center-application-kit/commit/abe8185277e00f713ad0e8325f20bcf3bce217b1) Thanks [@emmenko](https://github.com/emmenko)! - Use TypeScript to v5
+
 ## 21.25.0
 
 ## 21.24.3

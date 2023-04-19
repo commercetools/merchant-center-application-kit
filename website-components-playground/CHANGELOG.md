@@ -1,5 +1,16 @@
 # @commercetools-website/components-playground
 
+## 21.25.1
+
+### Patch Changes
+
+- [#3044](https://github.com/commercetools/merchant-center-application-kit/pull/3044) [`25e1410b4`](https://github.com/commercetools/merchant-center-application-kit/commit/25e1410b4e5e97fccea397f6eb098e4e991b545b) Thanks [@kark](https://github.com/kark)! - Update `ui-kit` dependencies
+
+- Updated dependencies [[`25e1410b4`](https://github.com/commercetools/merchant-center-application-kit/commit/25e1410b4e5e97fccea397f6eb098e4e991b545b), [`abe818527`](https://github.com/commercetools/merchant-center-application-kit/commit/abe8185277e00f713ad0e8325f20bcf3bce217b1), [`bc355a5fa`](https://github.com/commercetools/merchant-center-application-kit/commit/bc355a5fa32a89f6bd48aa16b05d9b76e267d488)]:
+  - @commercetools-frontend/application-components@21.25.1
+  - @commercetools-frontend/i18n@21.25.1
+  - @commercetools-frontend/browser-history@21.25.1
+
 ## 21.25.0
 
 ### Patch Changes
