@@ -425,20 +425,115 @@ describe('rendering', () => {
 
 ### Options
 
-| Argument              | Type          | Concern                                                                                                                                                                                            | Description                                                                                                                                                                                                                                                                                                                                                                        |
-| --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `locale`      | `String`      | Localization                                                                                                                                                                                       | Determines the UI language and number format. Is used to configure `<IntlProvider>`. Only _core_ messages will be available during tests, no matter the `locale`. The locale can be a full [IETF language tag](https://en.wikipedia.org/wiki/IETF_language_tag), although the Merchant Center is currently only available in a limited set of languages.                                          |
-| `dataLocale`  | `String`      | Localization                                                                                                                                                                                       | Sets the locale which is used to display [`LocalizedString`](https://docs.commercetools.com/api/types#localizedstring)s.                                                                                                                                                                                                                                                      |
-| `mocks`       | `Array`       | Apollo                                                                                                                                                                                             | Allows mocking requests made with Apollo. `mocks` is forwarded as the `mocks` argument to [`MockedProvider`](https://www.apollographql.com/docs/react/development-testing/testing/). If `mocks` is not provided or is an empty array, the Apollo `MockedProvider` is not used. This is an opt-in functionality, as the default behavior is to mock requests using [Mock Service Worker](https://mswjs.io/).                                                                                                                                                                              |
-| `apolloClient` | `ApolloClient`     | Apollo                                                                                                                                                                                             | Pass a custom instance of Apollo client, useful when your Custom Application has some custom cache policies. You can use the exported function `createApolloClient` of `@commercetools-frontend/application-shell`.                                                                                                  |
-| `route`       | `String`      | Routing                                                                                                                                                                                            | The route the user is on, like `/test-project/products`. Defaults to `/`.                                                                                                                                                                                                                                                                                                          |
-| `disableAutomaticEntryPointRoutes`       | `Boolean`      | Routing                                                                                                                                                                                            | Pass `true` if you are using the `render` prop for the `<ApplicationShell>` instead of the `children` prop.                                                                                                                                                                                                                                                                                                           |
-| `history`     | `Object`      | Routing                                                                                                                                                                                            | By default a memory-history is generated which has the provided `route` set as its initial history entry. It's possible to pass a custom history as well. In that case, we recommend using the factory function `createEnhancedHistory` from the `@commercetools-frontend/browser-history` package, as it contains the enhanced `location` with the parsed `query` object. |
-| `adapter`     | `Object`      | Feature Toggles                                                                                                                                                                                    | The [FlopFlip](https://github.com/tdeekens/flopflip) adapter to use when configuring `flopflip`. Defaults to [`memoryAdapter`](https://github.com/tdeekens/flopflip/tree/master/packages/memory-adapter).                                                                                                                                                                          |
-| `flags`       | `Object`      | Feature Toggles                                                                                                                                                                                    | An object whose keys are feature-toggle keys and whose values are their toggle state. Use this to test your component with different feature toggle combinations. Example: `{ betaUserProfile: true }`.                                                                                                                                                                            |
-| `environment` | `Object`      | [Runtime configuration](/api-reference/application-config#runtime-application-environment) | Allows to set the `applicationContext.environment`. The passed object gets merged with the tests default environment. Pass `null` to completely remove the `environment`, which renders the `ui` as if no `environment` was given.                                                                                                                                                 |
-| `user`        | `Object`      | [Application Context](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/application-shell-connectors/src/components/application-context/README.md#user)        | Allows to set the `applicationContext.user`. The passed object gets merged with the test's default user. Pass `null` to completely remove the `user`, which renders the `ui` as if no user was authenticated.                                                                                                                                                                       |
-| `project`     | `Object`      | [Application Context](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/application-shell-connectors/src/components/application-context/README.md#project)     | Allows to set the `applicationContext.project`. The passed object gets merged with the tests default project. Pass `null` to completely remove the `project` which renders the `ui` outside of a project context.
+<ChildSectionsNav parent="options" />
+
+
+#### `locale`
+
+`String`
+
+Localization
+
+Determines the UI language and number format. Is used to configure `<IntlProvider>`. Only _core_ messages will be available during tests, no matter the `locale`. The locale can be a full [IETF language tag](https://en.wikipedia.org/wiki/IETF_language_tag), although the Merchant Center is currently only available in a limited set of languages.
+
+
+#### `dataLocale`
+
+`String`
+
+Localization
+
+Sets the locale which is used to display [`LocalizedString`](https://docs.commercetools.com/api/types#localizedstring)s.
+
+
+####  `mocks`
+
+`Array`
+
+Apollo
+
+Allows mocking requests made with Apollo. `mocks` is forwarded as the `mocks` argument to [`MockedProvider`](https://www.apollographql.com/docs/react/development-testing/testing/). If `mocks` is not provided or is an empty array, the Apollo `MockedProvider` is not used. This is an opt-in functionality, as the default behavior is to mock requests using [Mock Service Worker](https://mswjs.io/).
+
+
+####  `apolloClient`
+
+`ApolloClient`
+
+Apollo
+
+Pass a custom instance of Apollo client, useful when your Custom Application has some custom cache policies. You can use the exported function `createApolloClient` of `@commercetools-frontend/application-shell`.
+
+
+####  `route`
+
+`String`
+
+Routing
+
+The route the user is on, like `/test-project/products`. Defaults to `/`.
+
+
+####  `disableAutomaticEntryPointRoutes`
+
+`Boolean`
+
+Routing
+
+Pass `true` if you are using the `render` prop for the `<ApplicationShell>` instead of the `children` prop.
+
+
+####  `history`
+
+`Object`
+
+Routing
+
+By default a memory-history is generated which has the provided `route` set as its initial history entry. It's possible to pass a custom history as well. In that case, we recommend using the factory function `createEnhancedHistory` from the `@commercetools-frontend/browser-history` package, as it contains the enhanced `location` with the parsed `query` object.
+
+
+#### `adapter`
+
+`Object`
+
+Feature Toggles
+
+The [FlopFlip](https://github.com/tdeekens/flopflip) adapter to use when configuring `flopflip`. Defaults to [`memoryAdapter`](https://github.com/tdeekens/flopflip/tree/master/packages/memory-adapter).
+
+
+#### `flags`
+
+`Object`
+
+Feature Toggles
+
+An object whose keys are feature-toggle keys and whose values are their toggle state. Use this to test your component with different feature toggle combinations. Example: `{ betaUserProfile: true }`.
+
+
+#### `environment`
+
+`Object`
+
+[Runtime configuration](/api-reference/application-config#runtime-application-environment)
+
+Allows to set the `applicationContext.environment`. The passed object gets merged with the tests default environment. Pass `null` to completely remove the `environment`, which renders the `ui` as if no `environment` was given.
+
+
+#### `user`
+
+`Object`
+
+[Application Context](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/application-shell-connectors/src/components/application-context/README.md#user)
+
+Allows to set the `applicationContext.user`. The passed object gets merged with the test's default user. Pass `null` to completely remove the `user`, which renders the `ui` as if no user was authenticated.
+
+
+#### `project`
+
+`Object`
+
+[Application Context](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/application-shell-connectors/src/components/application-context/README.md#project)
+
+Allows to set the `applicationContext.project`. The passed object gets merged with the tests default project. Pass `null` to completely remove the `project` which renders the `ui` outside of a project context.
 
 ### Return values
 
