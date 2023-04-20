@@ -1,5 +1,28 @@
 # @commercetools-frontend/application-shell
 
+## 21.25.2
+
+### Patch Changes
+
+- [#3046](https://github.com/commercetools/merchant-center-application-kit/pull/3046) [`b6dcf34c6`](https://github.com/commercetools/merchant-center-application-kit/commit/b6dcf34c6ce0cb1d19b37b5550315f08775da9b5) Thanks [@kark](https://github.com/kark)! - Revert navbar scrolling fix
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@21.25.2
+  - @commercetools-frontend/application-components@21.25.2
+  - @commercetools-frontend/application-config@21.25.2
+  - @commercetools-frontend/application-shell-connectors@21.25.2
+  - @commercetools-frontend/assets@21.25.2
+  - @commercetools-frontend/browser-history@21.25.2
+  - @commercetools-frontend/constants@21.25.2
+  - @commercetools-frontend/i18n@21.25.2
+  - @commercetools-frontend/l10n@21.25.2
+  - @commercetools-frontend/notifications@21.25.2
+  - @commercetools-frontend/permissions@21.25.2
+  - @commercetools-frontend/react-notifications@21.25.2
+  - @commercetools-frontend/sdk@21.25.2
+  - @commercetools-frontend/sentry@21.25.2
+  - @commercetools-frontend/url-utils@21.25.2
+
 ## 21.25.1
 
 ### Patch Changes

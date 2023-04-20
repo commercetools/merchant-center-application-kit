@@ -1,5 +1,7 @@
 # @commercetools-website/custom-applications
 
+## 21.25.2
+
 ## 21.25.1
 
 ### Patch Changes
