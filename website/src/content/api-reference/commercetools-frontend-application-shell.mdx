@@ -65,7 +65,7 @@ export default EntryPoint;
 
 ### Properties
 
-
+<ChildSectionsNav parent="properties" />
 
 #### applicationMessages
 
@@ -135,9 +135,14 @@ Please refer to the [Mapping guidelines](/development/human-readable-page-title#
 
 ### Properties
 
-| Props | Type | Required|  Description |
-| --- | --- | :---: | --- |
-| `additionalParts` | `array` of `string` | ✅ | A list of parts to be prepended to the default page title, separated by `-`. |
+#### additionalParts
+
+Type: `string[]`
+
+Required: ✅
+
+A list of parts to be prepended to the default page title, separated by `-`.
+
 
 # Hooks
 
@@ -596,12 +601,32 @@ In addition to the following options, the method accepts all options from `rende
 
 </Info>
 
-| Argument                             | Type       | Description                                                                                                                                                                                                                                                    |
-| ------------------------------------ | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `store`                      | `Object`   | A custom redux store.                                                                                                                                                                                                                                          |
-| `storeState`                 | `Object`   | Pass an initial state to the default Redux store.                                                                                                                                                                                                              |
-| `sdkMocks`                   | `Array`    | Allows mocking requests made with `@commercetools-frontend/sdk` (Redux). The `sdkMocks` is forwarded as `mocks` to the [SDK `test-utils`](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/sdk/src/test-utils/README.md). |
-| `mapNotificationToComponent` | `Function` | Pass a function to map a notification to a custom component.                                                                                                                                                                                                   |
+<ChildSectionsNav parent="options-1" />
+
+#### store
+
+Type: `Object`
+
+A custom redux store.
+
+#### storeState
+
+Type: `Object`
+
+Pass an initial state to the default Redux store.
+
+#### sdkMocks
+
+Type: `Array`
+
+Allows mocking requests made with `@commercetools-frontend/sdk` (Redux). The `sdkMocks` is forwarded as `mocks` to the [SDK `test-utils`](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/sdk/src/test-utils/README.md).
+
+#### mapNotificationToComponent
+
+Type: `Function`
+
+Pass a function to map a notification to a custom component.
+
 
 <!-- ## renderHook -->
 
