@@ -65,13 +65,43 @@ export default EntryPoint;
 
 ### Properties
 
-| Props                            | Type               |        Required        | Description                                                                                                                                                                                                                                                                                                                                                                      |
-| -------------------------------- | ------------------ | :---------------------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `applicationMessages`            | `object` or `func` |           ✅        | This is either an object containing all the translated messages, grouped by locale (`{ "en": { "Welcome": "Welcome" }, "de": { "Welcome": "Wilkommen" }}`), or a function that returns a Promise that resolves to such an object. The function is called with a `locale` parameter. See [Importing translations](/development/translations#importing-translations).                                                                                                                                                                |
-| `environment`                  | `object`           |           ✅        | The application runtime environment, which is exposed in `window.app`. See [Runtime configuration](/api-reference/application-config#runtime-application-environment).                                                                                                                                                                                                                                                                                                                                                       |
-| `children`                         | `node`             |           ✅        | Instead of using the `render` prop, render your application component as children of `<ApplicationShell>`. By doing so, the `<ApplicationShell>` pre-configures the main application routes according to the `entryPointUriPath` defined in the `custom-application-config.json`. This is an opt-int behavior as a replacement of the `render` prop, to simplify the entry point setup.                                                                                                                                                                                                                                    |
-| `render`                         | `func`             |            (*)       | The render function is called when the `<ApplicationShell>` is ready to render the actual application. This is the case when the required data (user, project) has been fetched and the application context has been initialized. It's **recommended to use the `children`** prop to benefit from a simpler setup.                                                                                                                                                                                                                                  |
-| `apolloClient`         | `ApolloClient`           |                   | An optional instance of [ApolloClient](https://www.apollographql.com/docs/react/) to be used instead of the default one. This is usually the case when you need to configure the Apollo cache. See [`createApolloClient`](#createapolloclient).                                                                                                                                                                                                                                        |
+
+
+#### applicationMessages
+
+Type: `object` or `func`
+
+Required: ✅
+
+This is either an object containing all the translated messages, grouped by locale (`{ "en": { "Welcome": "Welcome" }, "de": { "Welcome": "Wilkommen" }}`), or a function that returns a Promise that resolves to such an object. The function is called with a `locale` parameter. See [Importing translations](/development/translations#importing-translations).
+
+#### environment
+
+Type: `object`
+
+Required: ✅
+
+The application runtime environment, which is exposed in `window.app`. See [Runtime configuration](/api-reference/application-config#runtime-application-environment).
+
+#### children
+
+Type: `node`
+
+Required: ✅
+
+Instead of using the `render` prop, render your application component as children of `<ApplicationShell>`. By doing so, the `<ApplicationShell>` pre-configures the main application routes according to the `entryPointUriPath` defined in the `custom-application-config.json`. This is an opt-int behavior as a replacement of the `render` prop, to simplify the entry point setup.
+
+#### render
+
+Type: `func`
+
+The render function is called when the `<ApplicationShell>` is ready to render the actual application. This is the case when the required data (user, project) has been fetched and the application context has been initialized. It's **recommended to use the `children`** prop to benefit from a simpler setup.
+
+#### apolloClient
+
+Type: `ApolloClient`
+
+An optional instance of [ApolloClient](https://www.apollographql.com/docs/react/) to be used instead of the default one. This is usually the case when you need to configure the Apollo cache. See [`createApolloClient`](#createapolloclient).
 
 
 ## ApplicationPageTitle
