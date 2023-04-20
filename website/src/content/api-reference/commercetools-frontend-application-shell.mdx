@@ -508,12 +508,31 @@ Allows to set the `applicationContext.project`. The passed object gets merged wi
 
 Calling `renderApp` returns the same [Result](https://testing-library.com/docs/react-testing-library/api#render-result) object of React Testing Library, with the addition of the following fields:
 
-| Field         | Type     | Description                                                                                                                                                                                                                                                                                                       |
-| ------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `history`     | `Object` | The history created by `renderApp` which is passed to the router. It can be used to simulate location changes and so on.                                                                                                                                                                                          |
-| `user`        | `Object` | The `user` object used to configure `<ApplicationContextProvider>`, so the result of merging the default user with `options.user`. Note that this is not the same as `applicationContext.user`. Can be `undefined` when no user is authenticated (when `options.user` was `null`).                                  |
-| `project`     | `Object` | The `project` object used to configure `<ApplicationContextProvider>`, so the result of merging the default project with `options.project`. Note that this is not the same as `applicationContext.project`. Can be `undefined` when no project was set (when `options.project` was `null`).                         |
-| `environment` | `Object` | The `environment` object used to configure `<ApplicationContextProvider>`, so the result of merging the default environment with `options.environment`. Note that this is not the same as `applicationContext.environment`. Can be `undefined` when no environment was set (when `options.environment` was `null`). |
+<ChildSectionsNav parent="return-values" />
+
+#### history
+
+Type: `Object`
+
+The history created by `renderApp` which is passed to the router. It can be used to simulate location changes and so on.
+
+#### user
+
+Type: `Object`
+
+The `user` object used to configure `<ApplicationContextProvider>`, so the result of merging the default user with `options.user`. The `user` object is not the same as `applicationContext.user` and can be `undefined` when no user is authenticated (when `options.user` was `null`).
+
+#### project
+
+Type: `Object`
+
+The `project` object used to configure `<ApplicationContextProvider>`, so the result of merging the default project with `options.project`. The `project` object is not the same as `applicationContext.project` and can be `undefined` when no project was set (when `options.project` was `null`).
+
+#### environment
+
+Type: `Object`
+
+The `environment` object used to configure `<ApplicationContextProvider>`, so the result of merging the default environment with `options.environment`. The `environment` object is not the same as `applicationContext.environment` and can be `undefined` when no environment was set (when `options.environment` was `null`).
 
 ## renderAppWithRedux
 
