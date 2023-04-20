@@ -408,8 +408,6 @@
 .scrollable-menu {
   flex: 1 1 0;
   padding-bottom: var(--faded-height);
-  overflow-x: hidden;
-  overflow-y: auto;
 }
 
 .fixed-menu {
