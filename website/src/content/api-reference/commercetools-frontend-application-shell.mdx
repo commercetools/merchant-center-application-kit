@@ -10,7 +10,7 @@ React component that ties together all the main functionalities of the Custom Ap
 
 # Installation
 
-```
+```bash
 yarn add @commercetools-frontend/application-shell
 
 # or
@@ -20,7 +20,7 @@ npm --save install @commercetools-frontend/application-shell
 
 Additionally install the peer dependencies (if not present)
 
-```
+```bash
 yarn add @apollo/client react react-dom react-intl react-redux react-router-dom redux @testing-library/react @testing-library/react-hooks
 
 # or
@@ -65,13 +65,13 @@ export default EntryPoint;
 
 ### Properties
 
-| Props                            | Type               |        Required         | Default | Description                                                                                                                                                                                                                                                                                                                                                                      |
-| -------------------------------- | ------------------ | :---------------------: | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `applicationMessages`            | `object` or `func` |           ✅            | -       | This is either an object containing all the translated messages, grouped by locale (`{ "en": { "Welcome": "Welcome" }, "de": { "Welcome": "Wilkommen" }}`), or a function that returns a Promise that resolves to such an object. The function is called with a `locale` parameter. See [Importing translations](/development/translations#importing-translations).                                                                                                                                                                |
-| `environment`                  | `object`           |           ✅            | -       | The application runtime environment, which is exposed in `window.app`. See [Runtime configuration](/api-reference/application-config#runtime-application-environment).                                                                                                                                                                                                                                                                                                                                                       |
-| `children`                         | `node`             |           ✅ (*)            | -       | Instead of using the `render` prop, render your application component as children of `<ApplicationShell>`. By doing so, the `<ApplicationShell>` pre-configures the main application routes according to the `entryPointUriPath` defined in the `custom-application-config.json`. This is an opt-int behavior as a replacement of the `render` prop, to simplify the entry point setup.                                                                                                                                                                                                                                    |
-| `render`                         | `func`             |            (*)           | -       | The render function is called when the `<ApplicationShell>` is ready to render the actual application. This is the case when the required data (user, project) has been fetched and the application context has been initialized. It's **recommended to use the `children`** prop to benefit from a simpler setup.                                                                                                                                                                                                                                  |
-| `apolloClient`         | `ApolloClient`           |                       | -       | An optional instance of [ApolloClient](https://www.apollographql.com/docs/react/) to be used instead of the default one. This is usually the case when you need to configure the Apollo cache. See [`createApolloClient`](#createapolloclient).                                                                                                                                                                                                                                        |
+| Props                            | Type               |        Required        | Description                                                                                                                                                                                                                                                                                                                                                                      |
+| -------------------------------- | ------------------ | :---------------------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `applicationMessages`            | `object` or `func` |           ✅        | This is either an object containing all the translated messages, grouped by locale (`{ "en": { "Welcome": "Welcome" }, "de": { "Welcome": "Wilkommen" }}`), or a function that returns a Promise that resolves to such an object. The function is called with a `locale` parameter. See [Importing translations](/development/translations#importing-translations).                                                                                                                                                                |
+| `environment`                  | `object`           |           ✅        | The application runtime environment, which is exposed in `window.app`. See [Runtime configuration](/api-reference/application-config#runtime-application-environment).                                                                                                                                                                                                                                                                                                                                                       |
+| `children`                         | `node`             |           ✅        | Instead of using the `render` prop, render your application component as children of `<ApplicationShell>`. By doing so, the `<ApplicationShell>` pre-configures the main application routes according to the `entryPointUriPath` defined in the `custom-application-config.json`. This is an opt-int behavior as a replacement of the `render` prop, to simplify the entry point setup.                                                                                                                                                                                                                                    |
+| `render`                         | `func`             |            (*)       | The render function is called when the `<ApplicationShell>` is ready to render the actual application. This is the case when the required data (user, project) has been fetched and the application context has been initialized. It's **recommended to use the `children`** prop to benefit from a simpler setup.                                                                                                                                                                                                                                  |
+| `apolloClient`         | `ApolloClient`           |                   | An optional instance of [ApolloClient](https://www.apollographql.com/docs/react/) to be used instead of the default one. This is usually the case when you need to configure the Apollo cache. See [`createApolloClient`](#createapolloclient).                                                                                                                                                                                                                                        |
 
 
 ## ApplicationPageTitle
@@ -105,9 +105,9 @@ Please refer to the [Mapping guidelines](/development/human-readable-page-title#
 
 ### Properties
 
-| Props | Type | Required | Default |  Description |
-| --- | --- | :---: | --- | --- |
-| `additionalParts` | `array` of `string` | ✅ | - | A list of parts to be prepended to the default page title, separated by `-`. |
+| Props | Type | Required|  Description |
+| --- | --- | :---: | --- |
+| `additionalParts` | `array` of `string` | ✅ | A list of parts to be prepended to the default page title, separated by `-`. |
 
 # Hooks
 
@@ -428,110 +428,79 @@ describe('rendering', () => {
 <ChildSectionsNav parent="options" />
 
 
-#### `locale`
+#### locale
 
-`String`
-
-Localization
+Type: `String`
 
 Determines the UI language and number format. Is used to configure `<IntlProvider>`. Only _core_ messages will be available during tests, no matter the `locale`. The locale can be a full [IETF language tag](https://en.wikipedia.org/wiki/IETF_language_tag), although the Merchant Center is currently only available in a limited set of languages.
 
 
-#### `dataLocale`
+#### dataLocale
 
-`String`
-
-Localization
+Type: `String`
 
 Sets the locale which is used to display [`LocalizedString`](https://docs.commercetools.com/api/types#localizedstring)s.
 
 
-####  `mocks`
+#### mocks
 
-`Array`
-
-Apollo
+Type: `Array`
 
 Allows mocking requests made with Apollo. `mocks` is forwarded as the `mocks` argument to [`MockedProvider`](https://www.apollographql.com/docs/react/development-testing/testing/). If `mocks` is not provided or is an empty array, the Apollo `MockedProvider` is not used. This is an opt-in functionality, as the default behavior is to mock requests using [Mock Service Worker](https://mswjs.io/).
 
 
-####  `apolloClient`
+#### apolloClient
 
-`ApolloClient`
-
-Apollo
+Type: `ApolloClient`
 
 Pass a custom instance of Apollo client, useful when your Custom Application has some custom cache policies. You can use the exported function `createApolloClient` of `@commercetools-frontend/application-shell`.
 
 
-####  `route`
+#### route
 
-`String`
-
-Routing
+Type: `String`
 
 The route the user is on, like `/test-project/products`. Defaults to `/`.
 
+#### disableAutomaticEntryPointRoutes
 
-####  `disableAutomaticEntryPointRoutes`
-
-`Boolean`
-
-Routing
+Type: `Boolean`
 
 Pass `true` if you are using the `render` prop for the `<ApplicationShell>` instead of the `children` prop.
 
+#### history
 
-####  `history`
-
-`Object`
-
-Routing
+Type: `Object`
 
 By default a memory-history is generated which has the provided `route` set as its initial history entry. It's possible to pass a custom history as well. In that case, we recommend using the factory function `createEnhancedHistory` from the `@commercetools-frontend/browser-history` package, as it contains the enhanced `location` with the parsed `query` object.
 
+#### adapter
 
-#### `adapter`
-
-`Object`
-
-Feature Toggles
+Type: `Object`
 
 The [FlopFlip](https://github.com/tdeekens/flopflip) adapter to use when configuring `flopflip`. Defaults to [`memoryAdapter`](https://github.com/tdeekens/flopflip/tree/master/packages/memory-adapter).
 
+#### flags
 
-#### `flags`
-
-`Object`
-
-Feature Toggles
+Type: `Object`
 
 An object whose keys are feature-toggle keys and whose values are their toggle state. Use this to test your component with different feature toggle combinations. Example: `{ betaUserProfile: true }`.
 
+#### environment
 
-#### `environment`
-
-`Object`
-
-[Runtime configuration](/api-reference/application-config#runtime-application-environment)
+Type: `Object`
 
 Allows to set the `applicationContext.environment`. The passed object gets merged with the tests default environment. Pass `null` to completely remove the `environment`, which renders the `ui` as if no `environment` was given.
 
+#### user
 
-#### `user`
-
-`Object`
-
-[Application Context](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/application-shell-connectors/src/components/application-context/README.md#user)
+Type: `Object`
 
 Allows to set the `applicationContext.user`. The passed object gets merged with the test's default user. Pass `null` to completely remove the `user`, which renders the `ui` as if no user was authenticated.
 
+#### project
 
-#### `project`
-
-`Object`
-
-[Application Context](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/application-shell-connectors/src/components/application-context/README.md#project)
+Type: `Object`
 
 Allows to set the `applicationContext.project`. The passed object gets merged with the tests default project. Pass `null` to completely remove the `project` which renders the `ui` outside of a project context.
 
@@ -578,12 +547,12 @@ In addition to the following options, the method accepts all options from `rende
 
 </Info>
 
-| Argument                             | Type       | Concern | Description                                                                                                                                                                                                                                                    |
-| ------------------------------------ | ---------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `store`                      | `Object`   | Redux   | A custom redux store.                                                                                                                                                                                                                                          |
-| `storeState`                 | `Object`   | Redux   | Pass an initial state to the default Redux store.                                                                                                                                                                                                              |
-| `sdkMocks`                   | `Array`    | Redux   | Allows mocking requests made with `@commercetools-frontend/sdk` (Redux). The `sdkMocks` is forwarded as `mocks` to the [SDK `test-utils`](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/sdk/src/test-utils/README.md). |
-| `mapNotificationToComponent` | `Function` | Redux   | Pass a function to map a notification to a custom component.                                                                                                                                                                                                   |
+| Argument                             | Type       | Description                                                                                                                                                                                                                                                    |
+| ------------------------------------ | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `store`                      | `Object`   | A custom redux store.                                                                                                                                                                                                                                          |
+| `storeState`                 | `Object`   | Pass an initial state to the default Redux store.                                                                                                                                                                                                              |
+| `sdkMocks`                   | `Array`    | Allows mocking requests made with `@commercetools-frontend/sdk` (Redux). The `sdkMocks` is forwarded as `mocks` to the [SDK `test-utils`](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/sdk/src/test-utils/README.md). |
+| `mapNotificationToComponent` | `Function` | Pass a function to map a notification to a custom component.                                                                                                                                                                                                   |
 
 <!-- ## renderHook -->
 
