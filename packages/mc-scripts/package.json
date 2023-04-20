@@ -110,6 +110,7 @@
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3",
+    "@types/fs-extra": "^11.0.1",
     "@types/lodash": "^4.14.191",
     "@types/mock-fs": "^4.13.1",
     "@types/moment-locales-webpack-plugin": "^1.2.3",
