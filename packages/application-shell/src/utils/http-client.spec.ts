@@ -210,8 +210,6 @@ describe('Custom HTTP client (fetch)', () => {
           uri: '',
         },
       })
-    ).toThrowErrorMatchingInlineSnapshot(
-      `"Missing required \\"uri\\" option."`
-    );
+    ).toThrowErrorMatchingInlineSnapshot(`"Missing required "uri" option."`);
   });
 });

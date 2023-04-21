@@ -7,7 +7,7 @@ describe('PublicPageForm', () => {
   });
 
   it('Default', async () => {
-    await expect(page).toMatch('PublicPageForm');
+    await page.waitForSelector('text/PublicPageForm');
     await percySnapshot(page, 'PublicPageForm');
   });
 });

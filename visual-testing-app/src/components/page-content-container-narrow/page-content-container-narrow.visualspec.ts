@@ -7,7 +7,7 @@ describe('PageContentContainerNarrow', () => {
   });
 
   it('Default', async () => {
-    await expect(page).toMatch('Page content container narrow');
+    await page.waitForSelector('text/Page content container narrow');
     await percySnapshot(page, 'PageContentContainerNarrow');
   });
 });

@@ -14,7 +14,7 @@ describe.each`
   });
 
   it('renders page', async () => {
-    await expect(page).toMatch('Lorem ipsum');
+    await page.waitForSelector('text/Lorem ipsum');
     await percySnapshot(page, `FormModalPage/${path}`);
   });
 });

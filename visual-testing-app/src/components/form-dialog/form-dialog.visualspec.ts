@@ -7,7 +7,7 @@ describe('FormDialog', () => {
   });
 
   it('Default', async () => {
-    await expect(page).toMatch('FormDialog');
+    await page.waitForSelector('text/FormDialog');
     await percySnapshot(page, 'FormDialog');
   });
 });

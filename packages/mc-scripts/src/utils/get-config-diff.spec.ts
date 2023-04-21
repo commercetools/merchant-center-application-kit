@@ -34,7 +34,7 @@ describe('when there are changes', () => {
       "name changed: <color-red>test name</color-red> => <color-green>updated test name</color-green>
       description changed: <color-red>test description</color-red> => <color-green>updated description</color-green>
       url changed: <color-red>https://test.com</color-red> => <color-green>https://updated-test.com</color-green>
-      icon changed: <color-red><svg><path fill=\\"#000000\\"></path></svg></color-red> => <color-green><svg><path fill=\\"#ffffff\\"></path></svg></color-green>"
+      icon changed: <color-red><svg><path fill="#000000"></path></svg></color-red> => <color-green><svg><path fill="#ffffff"></path></svg></color-green>"
     `);
   });
   it('should display diff if "description" is removed', () => {
@@ -92,17 +92,17 @@ describe('when there are changes', () => {
 
     expect(getConfigDiff(oldConfig, newConfig)).toMatchInlineSnapshot(`
       "permissions changed
-        \\"viewMyTestApp\\" changed
+        "viewMyTestApp" changed
           oauth scope added: <color-green>view_channel</color-green>
           oauth scope removed: <color-red>view_customers</color-red>
-        \\"manageMyTestApp\\" changed
+        "manageMyTestApp" changed
           oauth scope added: <color-green>manage_channel</color-green>
-        \\"viewMyTestAppMovies\\" changed
+        "viewMyTestAppMovies" changed
           oauth scope added: <color-green>view_channel</color-green>
-        \\"<color-green>viewMyTestAppCharacters</color-green>\\" was added
-        \\"<color-green>manageMyTestAppCharacters</color-green>\\" was added
-        \\"<color-red>viewMyTestAppMerch</color-red>\\" was removed
-        \\"<color-red>manageMyTestAppMerch</color-red>\\" was removed"
+        "<color-green>viewMyTestAppCharacters</color-green>" was added
+        "<color-green>manageMyTestAppCharacters</color-green>" was added
+        "<color-red>viewMyTestAppMerch</color-red>" was removed
+        "<color-red>manageMyTestAppMerch</color-red>" was removed"
     `);
   });
 
@@ -241,7 +241,7 @@ describe('when there are changes', () => {
             applied permission added: <color-green>ManageMyTestApp</color-green>
             applied permission removed: <color-red>ViewMyTestApp</color-red>
           labelAllLocales changed
-            locale \\"de\\" changed: <color-red>Die Avengers</color-red> => <color-green>Die Justice League</color-green>
+            locale "de" changed: <color-red>Die Avengers</color-red> => <color-green>Die Justice League</color-green>
             locale added: <color-green>it</color-green>
             locale removed: <color-red>en</color-red>"
       `);
@@ -344,12 +344,12 @@ describe('when there are changes', () => {
 
       expect(getConfigDiff(oldConfig, newConfig)).toMatchInlineSnapshot(`
         "submenuLink changed
-          menu link \\"my-test-app/new\\" changed
+          menu link "my-test-app/new" changed
             defaultLabel changed: <color-red>New Avenger</color-red> => <color-green>Add Avenger</color-green>
             permissions changed
               applied permission removed: <color-red>ManageMyTestApp</color-red>
             labelAllLocales changed
-              locale \\"de\\" changed: <color-red>Neu Avenger</color-red> => <color-green>Avenger hinzufügen</color-green>
+              locale "de" changed: <color-red>Neu Avenger</color-red> => <color-green>Avenger hinzufügen</color-green>
               locale added: <color-green>it</color-green>
               locale removed: <color-red>en</color-red>"
       `);

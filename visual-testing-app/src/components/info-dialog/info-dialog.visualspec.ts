@@ -7,7 +7,7 @@ describe('InfoDialog', () => {
   });
 
   it('Default', async () => {
-    await expect(page).toMatch('InfoDialog');
+    await page.waitForSelector('text/InfoDialog');
     await percySnapshot(page, 'InfoDialog');
   });
 });

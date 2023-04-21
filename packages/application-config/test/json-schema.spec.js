@@ -21,7 +21,7 @@ describe.each`
   ${'File path variables'} | ${fixtureConfigFilePathVariables}
 `('validating config "$name"', ({ config }) => {
   it('should detect the config as valid', () => {
-    expect(() => validateConfig(config)).not.toThrowError();
+    expect(() => validateConfig(config)).not.toThrow();
   });
 });
 
@@ -40,7 +40,7 @@ describe.each`
         ...fixtureConfigSimple,
         entryPointUriPath,
       })
-    ).not.toThrowError();
+    ).not.toThrow();
   });
 });
 
@@ -106,7 +106,7 @@ describe('invalid configurations', () => {
           ...fixtureConfigSimple,
           entryPointUriPath,
         })
-      ).toThrowError(/The value may be between 2 and 64 characters/);
+      ).toThrow(/The value may be between 2 and 64 characters/);
     });
   });
   it('should validate that "cloudIdentifier" is defined', () => {
@@ -138,7 +138,7 @@ describe('invalid configurations', () => {
         },
       })
     ).toThrowErrorMatchingInlineSnapshot(
-      `"/oAuthScopes/view/1 must match pattern \\"view_(.*)\\""`
+      `"/oAuthScopes/view/1 must match pattern "view_(.*)""`
     );
   });
   it('should validate that "oAuthScopes.manage" contains OAuth Scopes starting with "manage_"', () => {
@@ -150,7 +150,7 @@ describe('invalid configurations', () => {
         },
       })
     ).toThrowErrorMatchingInlineSnapshot(
-      `"/oAuthScopes/manage/0 must match pattern \\"manage_(.*)\\""`
+      `"/oAuthScopes/manage/0 must match pattern "manage_(.*)""`
     );
   });
   it('should validate that "additionalOAuthScopes" is an array', () => {
@@ -192,7 +192,7 @@ describe('invalid configurations', () => {
         ],
       })
     ).toThrowErrorMatchingInlineSnapshot(
-      `"/additionalOAuthScopes/0/view/1 must match pattern \\"view_(.*)\\""`
+      `"/additionalOAuthScopes/0/view/1 must match pattern "view_(.*)""`
     );
   });
   it('should validate that "additionalOAuthScopes[0].manage" contains OAuth Scopes starting with "manage_"', () => {
@@ -207,7 +207,7 @@ describe('invalid configurations', () => {
         ],
       })
     ).toThrowErrorMatchingInlineSnapshot(
-      `"/additionalOAuthScopes/0/manage/0 must match pattern \\"manage_(.*)\\""`
+      `"/additionalOAuthScopes/0/manage/0 must match pattern "manage_(.*)""`
     );
   });
   it('should validate that "icon" is defined', () => {
@@ -272,7 +272,7 @@ describe('invalid configurations', () => {
         ],
       })
     ).toThrowErrorMatchingInlineSnapshot(
-      `"Duplicate additional permission group name \\"movies\\". Every additional permission must have a unique name"`
+      `"Duplicate additional permission group name "movies". Every additional permission must have a unique name"`
     );
   });
   it('should validate the additional permission names match the regex', () => {
@@ -288,7 +288,7 @@ describe('invalid configurations', () => {
         ],
       })
     ).toThrowErrorMatchingInlineSnapshot(
-      `"Additional permission group name \\"-movies\\" is invalid. The value may be between 2 and 64 characters and only contain alphabetic lowercase characters and non-consecutive hyphens. Leading and trailing hyphens are also not allowed"`
+      `"Additional permission group name "-movies" is invalid. The value may be between 2 and 64 characters and only contain alphabetic lowercase characters and non-consecutive hyphens. Leading and trailing hyphens are also not allowed"`
     );
   });
   it('should validate that at least one additional OAuth Scope is defined for a permission group', () => {
@@ -304,7 +304,7 @@ describe('invalid configurations', () => {
         ],
       })
     ).toThrowErrorMatchingInlineSnapshot(
-      `"At least one OAuth Scope for permission group name \\"movies\\" is required"`
+      `"At least one OAuth Scope for permission group name "movies" is required"`
     );
   });
 });

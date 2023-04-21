@@ -7,7 +7,7 @@ describe('Application icons', () => {
   });
 
   it('Default', async () => {
-    await expect(page).toMatch('Application icons');
+    await page.waitForSelector('text/Application icons');
     await percySnapshot(page, 'Application icons');
   });
 });

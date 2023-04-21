@@ -7,7 +7,7 @@ describe(`CustomFormDetailPage`, () => {
   });
 
   it('Default', async () => {
-    await expect(page).toMatch('CustomFormDetailPage');
+    await page.waitForSelector('text/CustomFormDetailPage');
     await percySnapshot(page, `CustomFormDetailPage`);
   });
 });

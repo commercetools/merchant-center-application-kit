@@ -7,7 +7,7 @@ describe('PageUnauthorized', () => {
   });
 
   it('Default', async () => {
-    await expect(page).toMatch('PageUnauthorized');
+    await page.waitForSelector('text/PageUnauthorized');
     await percySnapshot(page, 'PageUnauthorized');
   });
 });

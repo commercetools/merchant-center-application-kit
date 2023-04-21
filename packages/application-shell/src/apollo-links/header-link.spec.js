@@ -90,9 +90,9 @@ describe('configuring header link', () => {
 
   it('should set headers matching snapshot', () => {
     expect(context).toMatchInlineSnapshot(`
-      Object {
+      {
         "credentials": "include",
-        "headers": Object {
+        "headers": {
           "Accept": "application/json",
           "X-Correlation-Id": "test-correlation-id",
           "X-Feature-Flag": "test-feature-a",
@@ -167,9 +167,9 @@ describe('configuring header link', () => {
 
     it('should set headers matching snapshot', () => {
       expect(context).toMatchInlineSnapshot(`
-        Object {
+        {
           "credentials": "include",
-          "headers": Object {
+          "headers": {
             "Accept": "application/json",
             "X-Correlation-Id": "test-correlation-id",
             "X-Graphql-Operation-Name": "Test",
@@ -208,9 +208,9 @@ describe('configuring header link', () => {
 
     it('should set headers matching snapshot', () => {
       expect(context).toMatchInlineSnapshot(`
-        Object {
+        {
           "credentials": "include",
-          "headers": Object {
+          "headers": {
             "Accept": "application/json",
             "X-Correlation-Id": "test-correlation-id",
             "X-Graphql-Operation-Name": "Test",
@@ -249,9 +249,9 @@ describe('configuring header link', () => {
 
     it('should set headers matching snapshot', () => {
       expect(context).toMatchInlineSnapshot(`
-        Object {
+        {
           "credentials": "include",
-          "headers": Object {
+          "headers": {
             "Accept": "application/json",
             "X-Correlation-Id": "test-correlation-id",
             "X-Feature-Flag": "test-feature-flag",
@@ -294,14 +294,14 @@ describe('configuring header link', () => {
 
       it('should set headers matching snapshot', () => {
         expect(context).toMatchInlineSnapshot(`
-          Object {
+          {
             "credentials": "include",
-            "forwardToConfig": Object {
+            "forwardToConfig": {
               "audiencePolicy": "forward-url-origin-full-path",
               "uri": "https://avengers.app",
               "version": "v2",
             },
-            "headers": Object {
+            "headers": {
               "Accept": "application/json",
               "Accept-version": "v2",
               "X-Correlation-Id": "test-correlation-id",
@@ -349,18 +349,18 @@ describe('configuring header link', () => {
 
       it('should set headers matching snapshot', () => {
         expect(context).toMatchInlineSnapshot(`
-          Object {
+          {
             "credentials": "include",
-            "forwardToConfig": Object {
+            "forwardToConfig": {
               "audiencePolicy": "forward-url-origin-full-path",
-              "headers": Object {
+              "headers": {
                 "accept-language": "*",
                 "x-foo": "bar",
               },
               "uri": "https://avengers.app",
               "version": "v2",
             },
-            "headers": Object {
+            "headers": {
               "Accept": "application/json",
               "Accept-version": "v2",
               "X-Correlation-Id": "test-correlation-id",
@@ -406,9 +406,9 @@ describe('configuring header link', () => {
 
     it('should set headers matching snapshot', () => {
       expect(context).toMatchInlineSnapshot(`
-        Object {
+        {
           "credentials": "include",
-          "headers": Object {
+          "headers": {
             "Accept": "application/json",
             "Authorization": "Bearer jwt-token",
             "X-Correlation-Id": "test-correlation-id",

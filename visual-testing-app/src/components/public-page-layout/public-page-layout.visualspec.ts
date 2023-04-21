@@ -7,7 +7,7 @@ describe('PublicPageLayout', () => {
   });
 
   it('Default', async () => {
-    await expect(page).toMatch('PublicPageLayout');
+    await page.waitForSelector('text/PublicPageLayout');
     await percySnapshot(page, 'PublicPageLayout');
   });
 });

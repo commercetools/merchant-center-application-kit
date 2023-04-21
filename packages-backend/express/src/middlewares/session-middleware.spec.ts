@@ -195,7 +195,7 @@ describe.each`
 describe('when audience is missing', () => {
   it('should throw a validation error', () => {
     // @ts-ignore
-    expect(() => createSessionMiddleware({})).toThrowError(
+    expect(() => createSessionMiddleware({})).toThrow(
       'Missing required option "audience"'
     );
   });
@@ -205,7 +205,7 @@ describe('when issuer is missing', () => {
     expect(() =>
       // @ts-ignore
       createSessionMiddleware({ audience: 'http://test-server' })
-    ).toThrowError('Missing required option "issuer"');
+    ).toThrow('Missing required option "issuer"');
   });
 });
 describe('when issuer is not a valid URL', () => {
@@ -215,7 +215,7 @@ describe('when issuer is not a valid URL', () => {
         audience: 'http://test-server',
         issuer: 'invalid url',
       })
-    ).toThrowError('Invalid issuer URL');
+    ).toThrow('Invalid issuer URL');
   });
 });
 describe('when "X-MC-API-Cloud-Identifier" is missing', () => {
