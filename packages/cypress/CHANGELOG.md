@@ -1,5 +1,17 @@
 # @commercetools-frontend/cypress
 
+## 22.0.0
+
+### Major Changes
+
+- [#3039](https://github.com/commercetools/merchant-center-application-kit/pull/3039) [`76ba54c16`](https://github.com/commercetools/merchant-center-application-kit/commit/76ba54c164dbac75ef3e3962292933b06f4843e7) Thanks [@emmenko](https://github.com/emmenko)! - Drop support for Node.js `v14`. Make sure you use Node.js `v16` or `>=v18`.
+
+### Patch Changes
+
+- Updated dependencies [[`968c3c4d2`](https://github.com/commercetools/merchant-center-application-kit/commit/968c3c4d21e0caeb98334f5d905213dbdd9b208d), [`2426a3849`](https://github.com/commercetools/merchant-center-application-kit/commit/2426a3849ac9f3e581e0d3e06df672391c5ce56e), [`2426a3849`](https://github.com/commercetools/merchant-center-application-kit/commit/2426a3849ac9f3e581e0d3e06df672391c5ce56e), [`76ba54c16`](https://github.com/commercetools/merchant-center-application-kit/commit/76ba54c164dbac75ef3e3962292933b06f4843e7), [`1f64ec6bd`](https://github.com/commercetools/merchant-center-application-kit/commit/1f64ec6bd4ad43a1a014b4faca2b2fc118618b84)]:
+  - @commercetools-frontend/application-config@22.0.0
+  - @commercetools-frontend/application-shell@22.0.0
+
 ## 21.25.2
 
 ### Patch Changes

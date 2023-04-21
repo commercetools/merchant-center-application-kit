@@ -1,5 +1,46 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 22.0.0
+
+### Major Changes
+
+- [#3026](https://github.com/commercetools/merchant-center-application-kit/pull/3026) [`968c3c4d2`](https://github.com/commercetools/merchant-center-application-kit/commit/968c3c4d21e0caeb98334f5d905213dbdd9b208d) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade following dependencies to major versions:
+
+  - `jest` to `v29.x`.
+  - `jsdom` to `v21.x`.
+  - `eslint-plugin-jest` to `v27.x`.
+
+  # Migration
+
+  The package `@commercetools-frontend/jest-preset-mc-app` contains most of the updates and migration changes.
+
+  We don't expect any specific migration effort besides updating all Jest dependencies to their latest version (including possible Jest plugins being used).
+
+  However, there are a couple of possible necessary updates to consider:
+
+  - [Jest snapshots format changed a bit](https://jestjs.io/docs/upgrading-to-jest29#snapshot-format). You might need to update your snapshots by passing the option `-u` to the Jest command.
+  - The ESLint plugin for Jest might yield some new errors due to its breaking changes. See [changelog](https://github.com/jest-community/eslint-plugin-jest/blob/main/CHANGELOG.md#2700-2022-08-28).
+
+  For more detailed information about upgrading Jest, please refer to the official guides:
+
+  - [From v27 to v28](https://jestjs.io/docs/28.x/upgrading-to-jest28)
+  - [From v28 to v29](https://jestjs.io/docs/upgrading-to-jest29)
+
+- [#3029](https://github.com/commercetools/merchant-center-application-kit/pull/3029) [`2426a3849`](https://github.com/commercetools/merchant-center-application-kit/commit/2426a3849ac9f3e581e0d3e06df672391c5ce56e) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade `react-intl` to `v6`.
+
+  # Migration
+
+  The peer dependency of `react-intl` should be updated to `v6`. No other migration steps are required.
+
+### Minor Changes
+
+- [#3029](https://github.com/commercetools/merchant-center-application-kit/pull/3029) [`2426a3849`](https://github.com/commercetools/merchant-center-application-kit/commit/2426a3849ac9f3e581e0d3e06df672391c5ce56e) Thanks [@emmenko](https://github.com/emmenko)! - Update UI Kit dependencies to v16
+
+### Patch Changes
+
+- Updated dependencies [[`76ba54c16`](https://github.com/commercetools/merchant-center-application-kit/commit/76ba54c164dbac75ef3e3962292933b06f4843e7)]:
+  - @commercetools-frontend/babel-preset-mc-app@22.0.0
+
 ## 21.25.2
 
 ### Patch Changes

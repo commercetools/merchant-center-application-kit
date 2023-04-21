@@ -1,5 +1,27 @@
 # @commercetools-local/visual-testing-app
 
+## 22.0.0
+
+### Major Changes
+
+- [#3029](https://github.com/commercetools/merchant-center-application-kit/pull/3029) [`2426a3849`](https://github.com/commercetools/merchant-center-application-kit/commit/2426a3849ac9f3e581e0d3e06df672391c5ce56e) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade `react-intl` to `v6`.
+
+  # Migration
+
+  The peer dependency of `react-intl` should be updated to `v6`. No other migration steps are required.
+
+### Minor Changes
+
+- [#3029](https://github.com/commercetools/merchant-center-application-kit/pull/3029) [`2426a3849`](https://github.com/commercetools/merchant-center-application-kit/commit/2426a3849ac9f3e581e0d3e06df672391c5ce56e) Thanks [@emmenko](https://github.com/emmenko)! - Update UI Kit dependencies to v16
+
+### Patch Changes
+
+- Updated dependencies [[`2426a3849`](https://github.com/commercetools/merchant-center-application-kit/commit/2426a3849ac9f3e581e0d3e06df672391c5ce56e), [`2426a3849`](https://github.com/commercetools/merchant-center-application-kit/commit/2426a3849ac9f3e581e0d3e06df672391c5ce56e), [`1f64ec6bd`](https://github.com/commercetools/merchant-center-application-kit/commit/1f64ec6bd4ad43a1a014b4faca2b2fc118618b84)]:
+  - @commercetools-frontend/application-components@22.0.0
+  - @commercetools-frontend/react-notifications@22.0.0
+  - @commercetools-frontend/constants@22.0.0
+  - @commercetools-frontend/assets@22.0.0
+
 ## 21.25.2
 
 ### Patch Changes
