@@ -12,12 +12,6 @@ type TReplaceHtmlPlaceholdersOptions = {
 
 const trimTrailingSlash = (value: string) => value.replace(/\/$/, '');
 
-const getGtmTrackingScript = (gtmId?: string) => {
-  if (!gtmId) return '';
-  const url = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
-  return `<script async fetchpriority="low" type="text/javascript" src="${url}" referrerpolicy="no-referrer"></script>`;
-};
-
 const replaceHtmlPlaceholders = (
   indexHtmlContent: string,
   options: TReplaceHtmlPlaceholdersOptions
@@ -41,14 +35,6 @@ const replaceHtmlPlaceholders = (
     .replace(
       new RegExp('__APPLICATION_ENVIRONMENT__', 'g'),
       sanitizeAppEnvironment(options.env)
-    )
-    .replace(
-      new RegExp('__GTM_SCRIPT__', 'g'),
-      getGtmTrackingScript(options.env.trackingGtm)
-    )
-    .replace(
-      new RegExp('__DATALAYER_JS__', 'g'),
-      `<script>${htmlScripts.dataLayer}</script>`
     )
     .replace(
       new RegExp('__LOADING_SCREEN_JS__', 'g'),

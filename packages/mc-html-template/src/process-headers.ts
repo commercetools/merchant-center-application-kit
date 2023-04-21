@@ -59,7 +59,6 @@ const processHeaders = (
       `window.app = ${sanitizeAppEnvironment(applicationConfig.env)};`
     ),
     createAssetHash(htmlScripts.publicPath),
-    createAssetHash(htmlScripts.dataLayer),
   ];
 
   // // List hashes for injected inline styles.
@@ -73,11 +72,7 @@ const processHeaders = (
   const cspDirectives = Object.assign(
     {
       'default-src': "'none'",
-      'script-src': [
-        "'self'",
-        'www.googletagmanager.com/gtm.js',
-        'www.google-analytics.com/analytics.js',
-      ].concat(
+      'script-src': ["'self'"].concat(
         isMcDevEnv
           ? // Allow webpack to load source maps on runtime when errors occur
             // using script tags
@@ -92,7 +87,6 @@ const processHeaders = (
         'app.getsentry.com',
         // Match all attempts to load from any subdomain of `sentry.io`
         '*.sentry.io',
-        'www.google-analytics.com',
       ].concat(
         isMcDevEnv ? ['ws:', 'localhost:8080', 'webpack-internal:'] : []
       ),
@@ -120,7 +114,7 @@ const processHeaders = (
         }
     // NOTE: we might want to define further policies in the future, for example
     // - `require-sri-for style script` (at the moment not possible because
-    //   GTM and Intercom scripts are apparently not meant for this)
+    //  Intercom scripts are apparently not meant for this)
   );
 
   // Recursively merge the directives

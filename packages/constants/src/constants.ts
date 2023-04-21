@@ -178,7 +178,6 @@ export type ApplicationOidcForDevelopmentConfig = {
 
 // Global application environment on window object
 export interface ApplicationWindow extends Window {
-  dataLayer: unknown[];
   app: {
     applicationId: string;
     applicationName: string;
@@ -193,7 +192,6 @@ export interface ApplicationWindow extends Window {
     // Optional properties. To use them, pass them to the `additionalEnv` object of the application config.
     ldClientSideId?: string;
     trackingSentry?: string;
-    trackingGtm?: string;
     // Properties for OIDC-like workflow for development
     __DEVELOPMENT__?: {
       oidc?: ApplicationOidcForDevelopmentConfig;

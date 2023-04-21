@@ -53,7 +53,6 @@ const createTestProps = (props) => ({
   },
   featureFlags: {},
   defaultFeatureFlags: {},
-  trackingEventList: {},
   onRegisterErrorListeners: jest.fn(),
   onMenuItemClick: jest.fn(),
   applicationMessages: {

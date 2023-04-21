@@ -1,11 +1,7 @@
-import { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { InfoModalPage } from '@commercetools-frontend/application-components';
-import {
-  GtmContext,
-  useMcQuery,
-} from '@commercetools-frontend/application-shell';
+import { useMcQuery } from '@commercetools-frontend/application-shell';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   GRAPHQL_TARGETS,
@@ -51,12 +47,6 @@ const StateMachinesDetails = (props) => {
       target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
     },
   });
-
-  // This tracking is just testing purposes
-  const { track } = useContext(GtmContext);
-  useEffect(() => {
-    track('rendered', 'State machine details');
-  }, [track]);
 
   return (
     <InfoModalPage

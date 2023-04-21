@@ -317,9 +317,6 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
           href={SUPPORT_PORTAL_URL}
           rel="noopener noreferrer"
           target="_blank"
-          data-track-component="Navigation-Support-links"
-          data-track-event="click"
-          data-track-label="support_textlink"
           onClick={() => props.downshiftProps.toggleMenu()}
           data-user-settings-menu
         >

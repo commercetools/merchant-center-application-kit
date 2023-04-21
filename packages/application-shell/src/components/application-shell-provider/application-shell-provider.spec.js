@@ -6,7 +6,6 @@ import { ApplicationContext } from '@commercetools-frontend/application-shell-co
 // eslint-disable-next-line import/named
 import { __setIsAuthenticated } from '../authenticated/am-i-logged-in';
 import hasCachedAuthenticationState from '../authenticated/has-cached-authentication-state';
-import { GtmContext } from '../gtm-booter';
 import ApplicationShellProvider from './application-shell-provider';
 import { getBrowserLocale } from './utils';
 
@@ -33,7 +32,6 @@ const createTestProps = (props) => ({
     cdnUrl: 'http://localhost:3001',
     servedByProxy: 'false',
   },
-  trackingEventList: {},
   children: jest.fn(),
   ...props,
 });
@@ -71,24 +69,6 @@ describe('rendering', () => {
       </ApplicationShellProvider>
     );
     expect(hasStore).toBe(true);
-  });
-  it('should access gtm from context', () => {
-    let hasTracking = false;
-    render(
-      <ApplicationShellProvider {...createTestProps()}>
-        {() => (
-          <GtmContext.Consumer>
-            {({ track }) => {
-              if (track) {
-                hasTracking = true;
-              }
-              return null;
-            }}
-          </GtmContext.Consumer>
-        )}
-      </ApplicationShellProvider>
-    );
-    expect(hasTracking).toBe(true);
   });
   it('should pass isAuthenticated=true if local storage has auth key', () => {
     let isAuth;

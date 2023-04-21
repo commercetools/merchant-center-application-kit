@@ -4,7 +4,6 @@ import {
   MouseEventHandler,
   ReactNode,
   SyntheticEvent,
-  useContext,
 } from 'react';
 import { Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -30,10 +29,8 @@ import type {
   TLocalizedField,
 } from '../../types/generated/proxy';
 import { location } from '../../utils/location';
-import { GtmContext } from '../gtm-booter';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import compiledStyles from /* preval */ './navbar.styles';
-import trackingEvents from './tracking-events';
 
 const styles = compiledStyles.jsonMap;
 
@@ -136,7 +133,6 @@ type MenuExpanderProps = {
   isMenuOpen: boolean;
 };
 const MenuExpander = (props: MenuExpanderProps) => {
-  const gtmTracking = useContext(GtmContext);
   return (
     <li
       key="expander"
@@ -145,14 +141,7 @@ const MenuExpander = (props: MenuExpanderProps) => {
       })}
     >
       <div
-        onClick={(event) => {
-          const { action, category, label } =
-            trackingEvents[
-              props.isMenuOpen ? 'collapseMainNav' : 'expandMainNav'
-            ];
-          gtmTracking.track(action, category, label);
-          props.onClick(event);
-        }}
+        onClick={props.onClick}
         className={styles['expand-icon']}
         data-testid="menu-expander"
       >
@@ -266,17 +255,13 @@ export type MenuItemLinkProps = {
   linkTo?: string;
   exactMatch: boolean;
   children: ReactNode;
-  onClick?: <TrackFn>(
-    event: SyntheticEvent<HTMLAnchorElement>,
-    track: TrackFn
-  ) => void;
+  onClick?: (event: SyntheticEvent<HTMLAnchorElement>) => void;
   useFullRedirectsForLinks?: boolean;
 };
 const menuItemLinkDefaultProps: Pick<MenuItemLinkProps, 'exactMatch'> = {
   exactMatch: false,
 };
 const MenuItemLink = (props: MenuItemLinkProps) => {
-  const gtmTracking = useContext(GtmContext);
   const redirectTo = (targetUrl: string) => location.replace(targetUrl);
   if (props.linkTo) {
     return (
@@ -291,7 +276,7 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
             redirectTo(props.linkTo);
           } else if (props.onClick) {
             event.persist();
-            props.onClick<typeof gtmTracking.track>(event, gtmTracking.track);
+            props.onClick(event);
           }
         }}
       >
@@ -426,7 +411,6 @@ const NavBarLayout = forwardRef<HTMLElement, TNavBarLayoutProps>(
         className={styles['left-navigation']}
         data-test="left-navigation"
         data-testid="left-navigation"
-        data-track-component="Navigation"
       >
         {props.children}
       </nav>

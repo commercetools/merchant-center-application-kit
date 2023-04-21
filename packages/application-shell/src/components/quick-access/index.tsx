@@ -1,9 +1,7 @@
 import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
-import * as gtm from '../../utils/gtm';
 import ErrorBoundary from '../error-boundary';
 import ButlerContainer from './butler-container';
 import pimIndexerStates from './pim-indexer-states';
-import trackingEvents from './tracking-events';
 
 type TQuickAccessProps = {
   onChangeProjectDataLocale?: (locale: string) => void;
@@ -74,15 +72,6 @@ const QuickAccessTrigger = (props: TQuickAccessProps) => {
           // prevent the letter from appearing in the search input when
           // it is the key press that lead to opening Quick Access
           event.preventDefault();
-
-          // We use tracking directly here as it's the easiest
-          // Otherwise we'd have to duplicate injectTracking from core, as we
-          // can't import it from there
-          gtm.track(
-            trackingEvents.openQuickAccess.event,
-            trackingEvents.openQuickAccess.category,
-            trackingEvents.openQuickAccess.label
-          );
         }
         open();
       }

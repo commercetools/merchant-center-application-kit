@@ -10,9 +10,6 @@ import Notification from './notification';
 const TestComponent = () => <div>{'Test'}</div>;
 
 type CustomDataAttributes = {
-  'data-track-component': string;
-  'data-track-label': string;
-  'data-track-event': string;
   'data-test': string;
 };
 

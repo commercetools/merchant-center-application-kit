@@ -91,7 +91,7 @@ describe('csp', () => {
     expect(
       processedApplicationConfig['Content-Security-Policy']
     ).toMatchInlineSnapshot(
-      `"default-src 'none'; script-src 'self' www.googletagmanager.com/gtm.js www.google-analytics.com/analytics.js 'sha256-RACUtlMzZqF+zLJFAGOjaIZxjIlawfiKwgX9HWbQ9yQ=' 'sha256-OvuGL7YLVhPmNp2EH+HLhMJbK4noh/2eIHOhHTshZYk=' 'sha256-K4tyBnwnqF68wrXckWx1ce5+E4534Hv/ZdQEZLf+Z7Y=' 'sha256-j9wVXX+M7R/Q+73Prl2sR1sFWF52/i8TxdhdDkne77o='; connect-src 'self' app.launchdarkly.com clientstream.launchdarkly.com events.launchdarkly.com app.getsentry.com *.sentry.io www.google-analytics.com https://example.com; img-src * data:; style-src 'self' fonts.googleapis.com data: 'unsafe-inline'; font-src 'self' fonts.gstatic.com data:; upgrade-insecure-requests "`
+      `"default-src 'none'; script-src 'self' 'sha256-RACUtlMzZqF+zLJFAGOjaIZxjIlawfiKwgX9HWbQ9yQ=' 'sha256-OvuGL7YLVhPmNp2EH+HLhMJbK4noh/2eIHOhHTshZYk=' 'sha256-K4tyBnwnqF68wrXckWx1ce5+E4534Hv/ZdQEZLf+Z7Y='; connect-src 'self' app.launchdarkly.com clientstream.launchdarkly.com events.launchdarkly.com app.getsentry.com *.sentry.io https://example.com; img-src * data:; style-src 'self' fonts.googleapis.com data: 'unsafe-inline'; font-src 'self' fonts.gstatic.com data:; upgrade-insecure-requests "`
     );
   });
 });
