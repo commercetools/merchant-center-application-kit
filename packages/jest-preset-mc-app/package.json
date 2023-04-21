@@ -42,7 +42,7 @@
     "unfetch": "4.2.0"
   },
   "devDependencies": {
-    "@testing-library/react": "12.1.5",
+    "@testing-library/react": "14.0.0",
     "jest": "29.5.0"
   },
   "peerDependencies": {
