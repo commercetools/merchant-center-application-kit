@@ -94,7 +94,7 @@
     "@commitlint/cli": "17.4.4",
     "@commitlint/config-conventional": "17.4.4",
     "@faker-js/faker": "7.6.0",
-    "@formatjs/cli": "4.8.4",
+    "@formatjs/cli": "6.1.0",
     "@graphql-codegen/add": "3.2.3",
     "@graphql-codegen/cli": "2.16.5",
     "@graphql-codegen/introspection": "2.2.3",
