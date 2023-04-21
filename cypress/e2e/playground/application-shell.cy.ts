@@ -61,4 +61,13 @@ describe('navigation menu', () => {
     );
     cy.percySnapshot();
   });
+  it('should show submenu on hover', () => {
+    cy.findAllByText('Initial').should('exist');
+    cy.findByRole('menu')
+      .get('li')
+      .first()
+      .trigger('mouseover')
+      .findByRole('link', { name: 'Echo Server' })
+      .should('be.visible');
+  });
 });
