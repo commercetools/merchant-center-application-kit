@@ -412,6 +412,8 @@
     FIXME: Make the navbar scrollable in collapsed state.
     NOTE: do not use `overflow-x: hidden; overflow-y: auto;` as this prevents submenus from showing up on hover 
   */
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .fixed-menu {
