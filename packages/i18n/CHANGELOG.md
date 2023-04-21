@@ -1,5 +1,24 @@
 # @commercetools-frontend/i18n
 
+## 22.0.0
+
+### Major Changes
+
+- [#3029](https://github.com/commercetools/merchant-center-application-kit/pull/3029) [`2426a3849`](https://github.com/commercetools/merchant-center-application-kit/commit/2426a3849ac9f3e581e0d3e06df672391c5ce56e) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade `react-intl` to `v6`.
+
+  # Migration
+
+  The peer dependency of `react-intl` should be updated to `v6`. No other migration steps are required.
+
+### Minor Changes
+
+- [#3029](https://github.com/commercetools/merchant-center-application-kit/pull/3029) [`2426a3849`](https://github.com/commercetools/merchant-center-application-kit/commit/2426a3849ac9f3e581e0d3e06df672391c5ce56e) Thanks [@emmenko](https://github.com/emmenko)! - Update UI Kit dependencies to v16
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.0.0
+
 ## 21.25.2
 
 ### Patch Changes

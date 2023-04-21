@@ -1,5 +1,25 @@
 # @commercetools-frontend/mc-html-template
 
+## 22.0.0
+
+### Major Changes
+
+- [#3039](https://github.com/commercetools/merchant-center-application-kit/pull/3039) [`76ba54c16`](https://github.com/commercetools/merchant-center-application-kit/commit/76ba54c164dbac75ef3e3962292933b06f4843e7) Thanks [@emmenko](https://github.com/emmenko)! - Drop support for Node.js `v14`. Make sure you use Node.js `v16` or `>=v18`.
+
+- [#3036](https://github.com/commercetools/merchant-center-application-kit/pull/3036) [`1f64ec6bd`](https://github.com/commercetools/merchant-center-application-kit/commit/1f64ec6bd4ad43a1a014b4faca2b2fc118618b84) Thanks [@YahiaElTai](https://github.com/YahiaElTai)! - Remove Google Analytics tracking.
+  We no longer support tracking events to be sent to Google Analytics in case the `trackingGtm` value was provided to the `additionalEnv` object of the Custom Application config.
+
+  - The `GtmContext` and `GtmUserLogoutTracker` exports have been removed from `@commercetools-frontend/application-shell`.
+  - The `trackingEventList` prop has been removed from the `<ApplicationShell>` component.
+  - The `track` object has been removed from the `onMenuItemClick` prop function signature of the `<ApplicationShell>` component.
+  - The `data-track-*` attributes are not longer supported. If you have been using them please remove them from your components.
+
+### Patch Changes
+
+- Updated dependencies [[`968c3c4d2`](https://github.com/commercetools/merchant-center-application-kit/commit/968c3c4d21e0caeb98334f5d905213dbdd9b208d), [`76ba54c16`](https://github.com/commercetools/merchant-center-application-kit/commit/76ba54c164dbac75ef3e3962292933b06f4843e7), [`1f64ec6bd`](https://github.com/commercetools/merchant-center-application-kit/commit/1f64ec6bd4ad43a1a014b4faca2b2fc118618b84)]:
+  - @commercetools-frontend/application-config@22.0.0
+  - @commercetools-frontend/constants@22.0.0
+
 ## 21.25.2
 
 ### Patch Changes

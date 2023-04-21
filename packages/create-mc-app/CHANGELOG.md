@@ -1,5 +1,11 @@
 # @commercetools-frontend/create-mc-app
 
+## 22.0.0
+
+### Major Changes
+
+- [#3039](https://github.com/commercetools/merchant-center-application-kit/pull/3039) [`76ba54c16`](https://github.com/commercetools/merchant-center-application-kit/commit/76ba54c164dbac75ef3e3962292933b06f4843e7) Thanks [@emmenko](https://github.com/emmenko)! - Drop support for Node.js `v14`. Make sure you use Node.js `v16` or `>=v18`.
+
 ## 21.25.2
 
 ## 21.25.1
