@@ -246,7 +246,7 @@ type MenuItemProps = {
 };
 const MenuItem = (props: MenuItemProps) => (
   <li
-    role="menu-item"
+    role="menuitem"
     className={classnames(styles['list-item'], {
       [styles.item__active]: props.isActive,
       [styles['item_menu__active']]: props.isMainMenuRouteActive ?? false,

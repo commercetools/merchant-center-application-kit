@@ -63,8 +63,7 @@ describe('navigation menu', () => {
   });
   it('should show submenu on hover', () => {
     cy.findAllByText('Initial').should('exist');
-    cy.findByRole('menu')
-      .get('li')
+    cy.findAllByRole('menuitem')
       .first()
       .trigger('mouseover')
       .findByRole('link', { name: 'Echo Server' })
