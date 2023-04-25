@@ -141,10 +141,17 @@ function getSpecialFormattedMessageByErrorCode(
   if (extensionErrorCode === 'insufficient_scope')
     return intl.formatMessage(messages.Forbidden);
 
-  if (extensionErrorCode === 'DuplicateField' && error.field === 'slug')
-    return intl.formatMessage(messages.DuplicateSlug, {
-      slugValue: error.duplicateValue,
-    });
+  if (extensionErrorCode === 'DuplicateField') {
+    if (error.field === 'slug') {
+      return intl.formatMessage(messages.DuplicateSlug, {
+        slugValue: error.duplicateValue,
+      });
+    } else {
+      return intl.formatMessage(messages.DuplicateField, {
+        field: error.field,
+      });
+    }
+  }
 
   // Try to match the error with a custom error message
   if (
