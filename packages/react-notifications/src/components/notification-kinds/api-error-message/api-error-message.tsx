@@ -142,14 +142,15 @@ function getSpecialFormattedMessageByErrorCode(
     return intl.formatMessage(messages.Forbidden);
 
   if (extensionErrorCode === 'DuplicateField') {
-    if (error.field === 'slug')
+    if (error.field === 'slug') {
       return intl.formatMessage(messages.DuplicateSlug, {
         slugValue: error.duplicateValue,
       });
-    else
+    } else {
       return intl.formatMessage(messages.DuplicateField, {
         field: error.field,
       });
+    }
   }
 
   // Try to match the error with a custom error message
