@@ -8,7 +8,7 @@ import {
 import { css, Global } from '@emotion/react';
 import useResizeObserver from '@react-hook/resize-observer';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
-import useMutationObserver from '../../hooks/use-mutation-observer';
+import { useMutationObserver } from '@commercetools-uikit/hooks';
 
 type TLayoutRefs = {
   notificationsGlobalRef: MutableRefObject<HTMLDivElement>;
@@ -129,11 +129,15 @@ const PortalsContainer = forwardRef<TLayoutRefs, TPortalsContainerProps>(
     // The stacking layers are then re-calculated.
     useMutationObserver(
       portalsContainerRef,
-      (mutation) => {
+      (mutationList) => {
+        // We expect only a single element in the mutation list as we configured the
+        // observer to only listen to `data-theme` changes.
+        const [mutationEvent] = mutationList;
+
         let indentationLevel = 0;
         const nextStackingLevels: TStackingLayer[] = [];
 
-        mutation.target.childNodes.forEach((node, index) => {
+        mutationEvent.target.childNodes.forEach((node, index) => {
           if (node instanceof HTMLElement) {
             const stackingLevel = index + 1;
             node.dataset.level = String(stackingLevel);
