@@ -94,6 +94,20 @@ describe('render', () => {
       screen.getByText(/"duplicateValueContent" is already in use/i)
     ).toBeInTheDocument();
   });
+  it('should show message for DuplicateField', () => {
+    const error = {
+      extensions: { code: 'DuplicateField' },
+      message: 'message-content',
+      field: 'key',
+      duplicateValue: 'duplicateValueContent',
+    };
+    renderMessage(<ApiErrorMessage error={error} />);
+    expect(
+      screen.getByText(
+        'The value for the field "key" has already been used. Please choose another value for this field.'
+      )
+    ).toBeInTheDocument();
+  });
   it('should show message for DuplicateAttributeValue', () => {
     const error = {
       extensions: { code: 'DuplicateAttributeValue' },
