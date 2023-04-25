@@ -33,6 +33,22 @@
     {
       "matchPackageNames": ["postcss-custom-properties"],
       "allowedVersions": "<=12.1.4"
+    },
+    {
+      "matchPackageNames": ["history"],
+      "allowedVersions": "<5"
+    },
+    {
+      "matchPackageNames": ["react", "react-dom"],
+      "allowedVersions": "<18"
+    },
+    {
+      "matchPackageNames": ["react-router", "react-router-dom"],
+      "allowedVersions": "<6"
+    },
+    {
+      "matchPackageNames": ["@testing-library/react"],
+      "allowedVersions": "<13"
     }
   ],
   "lockFileMaintenance": {
