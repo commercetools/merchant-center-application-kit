@@ -22,8 +22,8 @@
     "@babel/runtime-corejs3": "^7.20.13",
     "@commercetools-frontend/browser-history": "22.0.0",
     "@commercetools-frontend/constants": "22.0.0",
-    "@sentry/react": "7.43.0",
-    "@sentry/tracing": "7.43.0",
+    "@sentry/react": "7.49.0",
+    "@sentry/tracing": "7.49.0",
     "@types/prop-types": "^15.7.5",
     "@types/react": "^17.0.53",
     "prop-types": "15.8.1"

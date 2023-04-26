@@ -27,7 +27,7 @@
     "cac": "6.7.14",
     "glob": "8.1.0",
     "jscodeshift": "0.14.0",
-    "prettier": "2.8.4"
+    "prettier": "2.8.8"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3",
