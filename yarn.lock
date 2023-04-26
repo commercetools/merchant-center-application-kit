@@ -250,7 +250,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.11.6":
+"@babel/core@npm:^7.11.6, @babel/core@npm:^7.21.4":
   version: 7.21.4
   resolution: "@babel/core@npm:7.21.4"
   dependencies:
@@ -2571,14 +2571,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-react-jsx-self@npm:^7.18.6":
-  version: 7.18.6
-  resolution: "@babel/plugin-transform-react-jsx-self@npm:7.18.6"
+"@babel/plugin-transform-react-jsx-self@npm:^7.21.0":
+  version: 7.21.0
+  resolution: "@babel/plugin-transform-react-jsx-self@npm:7.21.0"
   dependencies:
-    "@babel/helper-plugin-utils": ^7.18.6
+    "@babel/helper-plugin-utils": ^7.20.2
   peerDependencies:
     "@babel/core": ^7.0.0-0
-  checksum: 7d24e29c63869bb23495c163a92678c1c3341ecf74db420a20c6d3db74cbf5000fe908943f6106494e7225c0168945c150e528162274fd8fc7721966ad26930a
+  checksum: 696f74c04a265409ccd46e333ff762e6011d394e6972128b5d97db4c1647289141bc7ebd45ab2bab99b60932f9793e8f89ee9432d3bde19962de2100456f6147
   languageName: node
   linkType: hard
 
@@ -4639,8 +4639,8 @@ __metadata:
     "@types/serve-handler": ^6.1.1
     "@types/svgo": ^2.6.4
     "@types/webpack-bundle-analyzer": ^4.6.0
-    "@vitejs/plugin-react": 3.1.0
-    "@vitejs/plugin-react-swc": 3.2.0
+    "@vitejs/plugin-react": 4.0.0
+    "@vitejs/plugin-react-swc": 3.3.0
     autoprefixer: ^10.4.13
     babel-loader: 8.3.0
     browserslist: ^4.21.5
@@ -4682,7 +4682,7 @@ __metadata:
     terser-webpack-plugin: 5.3.7
     thread-loader: 3.0.4
     url: ^0.11.0
-    vite: 4.2.0
+    vite: 4.3.2
     webpack: 5.76.2
     webpack-bundle-analyzer: 4.8.0
     webpack-dev-server: 4.12.0
@@ -4913,14 +4913,14 @@ __metadata:
     "@commercetools-uikit/text-input": ^16.0.0
     "@emotion/react": 11.10.6
     "@emotion/styled": 11.10.6
-    "@vitejs/plugin-react": 3.1.0
+    "@vitejs/plugin-react": 4.0.0
     formik: 2.2.9
     react: 17.0.2
     react-dom: 17.0.2
     react-intl: ^6.3.2
     react-redux: 7.2.9
     react-router-dom: 5.3.4
-    vite: 4.2.0
+    vite: 4.3.2
   languageName: unknown
   linkType: soft
 
@@ -6359,7 +6359,7 @@ __metadata:
     "@commercetools-uikit/text-input": ^16.0.0
     "@emotion/react": 11.10.6
     "@emotion/styled": 11.10.6
-    "@vitejs/plugin-react": 3.1.0
+    "@vitejs/plugin-react": 4.0.0
     formik: 2.2.9
     moment: ^2.29.4
     moment-timezone: ^0.5.40
@@ -6367,7 +6367,7 @@ __metadata:
     react-dom: 17.0.2
     react-intl: ^6.3.2
     react-router-dom: 5.3.4
-    vite: 4.2.0
+    vite: 4.3.2
   languageName: unknown
   linkType: soft
 
@@ -9230,7 +9230,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jridgewell/sourcemap-codec@npm:1.4.14, @jridgewell/sourcemap-codec@npm:^1.4.13":
+"@jridgewell/sourcemap-codec@npm:1.4.14":
   version: 1.4.14
   resolution: "@jridgewell/sourcemap-codec@npm:1.4.14"
   checksum: 61100637b6d173d3ba786a5dff019e1a74b1f394f323c1fee337ff390239f053b87266c7a948777f4b1ee68c01a8ad0ab61e5ff4abb5a012a0b091bec391ab97
@@ -11268,90 +11268,92 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-arm64@npm:1.3.39":
-  version: 1.3.39
-  resolution: "@swc/core-darwin-arm64@npm:1.3.39"
+"@swc/core-darwin-arm64@npm:1.3.55":
+  version: 1.3.55
+  resolution: "@swc/core-darwin-arm64@npm:1.3.55"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-x64@npm:1.3.39":
-  version: 1.3.39
-  resolution: "@swc/core-darwin-x64@npm:1.3.39"
+"@swc/core-darwin-x64@npm:1.3.55":
+  version: 1.3.55
+  resolution: "@swc/core-darwin-x64@npm:1.3.55"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm-gnueabihf@npm:1.3.39":
-  version: 1.3.39
-  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.3.39"
+"@swc/core-linux-arm-gnueabihf@npm:1.3.55":
+  version: 1.3.55
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.3.55"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-gnu@npm:1.3.39":
-  version: 1.3.39
-  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.39"
+"@swc/core-linux-arm64-gnu@npm:1.3.55":
+  version: 1.3.55
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.55"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-musl@npm:1.3.39":
-  version: 1.3.39
-  resolution: "@swc/core-linux-arm64-musl@npm:1.3.39"
+"@swc/core-linux-arm64-musl@npm:1.3.55":
+  version: 1.3.55
+  resolution: "@swc/core-linux-arm64-musl@npm:1.3.55"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-gnu@npm:1.3.39":
-  version: 1.3.39
-  resolution: "@swc/core-linux-x64-gnu@npm:1.3.39"
+"@swc/core-linux-x64-gnu@npm:1.3.55":
+  version: 1.3.55
+  resolution: "@swc/core-linux-x64-gnu@npm:1.3.55"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-musl@npm:1.3.39":
-  version: 1.3.39
-  resolution: "@swc/core-linux-x64-musl@npm:1.3.39"
+"@swc/core-linux-x64-musl@npm:1.3.55":
+  version: 1.3.55
+  resolution: "@swc/core-linux-x64-musl@npm:1.3.55"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-win32-arm64-msvc@npm:1.3.39":
-  version: 1.3.39
-  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.39"
+"@swc/core-win32-arm64-msvc@npm:1.3.55":
+  version: 1.3.55
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.55"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-win32-ia32-msvc@npm:1.3.39":
-  version: 1.3.39
-  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.39"
+"@swc/core-win32-ia32-msvc@npm:1.3.55":
+  version: 1.3.55
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.55"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@swc/core-win32-x64-msvc@npm:1.3.39":
-  version: 1.3.39
-  resolution: "@swc/core-win32-x64-msvc@npm:1.3.39"
+"@swc/core-win32-x64-msvc@npm:1.3.55":
+  version: 1.3.55
+  resolution: "@swc/core-win32-x64-msvc@npm:1.3.55"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core@npm:^1.3.35":
-  version: 1.3.39
-  resolution: "@swc/core@npm:1.3.39"
+"@swc/core@npm:^1.3.42":
+  version: 1.3.55
+  resolution: "@swc/core@npm:1.3.55"
   dependencies:
-    "@swc/core-darwin-arm64": 1.3.39
-    "@swc/core-darwin-x64": 1.3.39
-    "@swc/core-linux-arm-gnueabihf": 1.3.39
-    "@swc/core-linux-arm64-gnu": 1.3.39
-    "@swc/core-linux-arm64-musl": 1.3.39
-    "@swc/core-linux-x64-gnu": 1.3.39
-    "@swc/core-linux-x64-musl": 1.3.39
-    "@swc/core-win32-arm64-msvc": 1.3.39
-    "@swc/core-win32-ia32-msvc": 1.3.39
-    "@swc/core-win32-x64-msvc": 1.3.39
+    "@swc/core-darwin-arm64": 1.3.55
+    "@swc/core-darwin-x64": 1.3.55
+    "@swc/core-linux-arm-gnueabihf": 1.3.55
+    "@swc/core-linux-arm64-gnu": 1.3.55
+    "@swc/core-linux-arm64-musl": 1.3.55
+    "@swc/core-linux-x64-gnu": 1.3.55
+    "@swc/core-linux-x64-musl": 1.3.55
+    "@swc/core-win32-arm64-msvc": 1.3.55
+    "@swc/core-win32-ia32-msvc": 1.3.55
+    "@swc/core-win32-x64-msvc": 1.3.55
+  peerDependencies:
+    "@swc/helpers": ^0.5.0
   dependenciesMeta:
     "@swc/core-darwin-arm64":
       optional: true
@@ -11373,7 +11375,10 @@ __metadata:
       optional: true
     "@swc/core-win32-x64-msvc":
       optional: true
-  checksum: 2c5376627587302d9146a13670ab88d49d236361f226058625a287e275952a282e46c6f8620ec756917406c2ab801093c28668d95837646e39742d65e193965d
+  peerDependenciesMeta:
+    "@swc/helpers":
+      optional: true
+  checksum: e8ae32e21e78761597b802bd76bb5f0d819441454c4cc5624c077dfa8cf84760eb589e4a1eb6fdc1b1ec65a4b03f7ab42413952b38234f5c13b8b2afb4d453f4
   languageName: node
   linkType: hard
 
@@ -13384,29 +13389,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitejs/plugin-react-swc@npm:3.2.0":
-  version: 3.2.0
-  resolution: "@vitejs/plugin-react-swc@npm:3.2.0"
+"@vitejs/plugin-react-swc@npm:3.3.0":
+  version: 3.3.0
+  resolution: "@vitejs/plugin-react-swc@npm:3.3.0"
   dependencies:
-    "@swc/core": ^1.3.35
+    "@swc/core": ^1.3.42
   peerDependencies:
     vite: ^4
-  checksum: 9df519fee5e6a9d8e7e15d037954d0acd1ee5d408fe7eef9d88f03172eb840b7300fc84b26fd93213b309c376a8712e88d6348179ad91c815d55cb6324f9d4ab
+  checksum: f2a5f4ef47d9200d0bbfd64637b347eaa3acfae7b2294e84afd469941c015fb1bfe8569e1cb9aa9151c7636fd43edbafb177f7903242f5240235b403b3e4a62e
   languageName: node
   linkType: hard
 
-"@vitejs/plugin-react@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@vitejs/plugin-react@npm:3.1.0"
+"@vitejs/plugin-react@npm:4.0.0":
+  version: 4.0.0
+  resolution: "@vitejs/plugin-react@npm:4.0.0"
   dependencies:
-    "@babel/core": ^7.20.12
-    "@babel/plugin-transform-react-jsx-self": ^7.18.6
+    "@babel/core": ^7.21.4
+    "@babel/plugin-transform-react-jsx-self": ^7.21.0
     "@babel/plugin-transform-react-jsx-source": ^7.19.6
-    magic-string: ^0.27.0
     react-refresh: ^0.14.0
   peerDependencies:
-    vite: ^4.1.0-beta.0
-  checksum: 450fac79e67cba9e1581c860f78e687b44108ab4117663ef20db279316e03cd8e87f94fef376e27cc5e200bd52813dcc09b70ea570c7c7cc291fcd47eb260fbc
+    vite: ^4.2.0
+  checksum: 575298f66517c51348892d49b302490c48e15c9ddb0b2c5f710931804e559dceafca1be1e62cb72d0902cba5f3c98e4b1272970d328e3a62d59ecdf976e68d3d
   languageName: node
   linkType: hard
 
@@ -27581,15 +27585,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"magic-string@npm:^0.27.0":
-  version: 0.27.0
-  resolution: "magic-string@npm:0.27.0"
-  dependencies:
-    "@jridgewell/sourcemap-codec": ^1.4.13
-  checksum: 273faaa50baadb7a2df6e442eac34ad611304fc08fe16e24fe2e472fd944bfcb73ffb50d2dc972dc04e92784222002af46868cb9698b1be181c81830fd95a13e
-  languageName: node
-  linkType: hard
-
 "make-dir@npm:^2.0.0, make-dir@npm:^2.1.0":
   version: 2.1.0
   resolution: "make-dir@npm:2.1.0"
@@ -33518,9 +33513,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^3.18.0":
-  version: 3.19.1
-  resolution: "rollup@npm:3.19.1"
+"rollup@npm:^3.21.0":
+  version: 3.21.0
+  resolution: "rollup@npm:3.21.0"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -33528,7 +33523,7 @@ __metadata:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: f78198c6de224b26650c70b16db156762d1fcceeb375d34fb2c76fc5b23a78f712c3c881d3248e6f277a511589e20d50c247bcf5c7920f1ddc0a43cadf9f0140
+  checksum: f3294d712147c0975c59ff81b3010dc08d07743cdad72fbe12879044b3e467139b3c2aeec85768656c4f7ec6a7b3d19354a78fc2050044bf8e90a499e145e31e
   languageName: node
   linkType: hard
 
@@ -37745,15 +37740,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:4.2.0":
-  version: 4.2.0
-  resolution: "vite@npm:4.2.0"
+"vite@npm:4.3.2":
+  version: 4.3.2
+  resolution: "vite@npm:4.3.2"
   dependencies:
     esbuild: ^0.17.5
     fsevents: ~2.3.2
     postcss: ^8.4.21
-    resolve: ^1.22.1
-    rollup: ^3.18.0
+    rollup: ^3.21.0
   peerDependencies:
     "@types/node": ">= 14"
     less: "*"
@@ -37779,7 +37773,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 1088cdc0c89ab835aab07a0a114397b749e8dfb20f4b94241ba179d9c371b72d31e13782b22893860c3d65da596e43b24fce5e023f79cfde427f42549f2e1844
+  checksum: 0194c06c44efa6fc2f81389d16d90cc3da8e7a58d071fe80e787053d604e0ea653e367fc6eb0528058d255c1ae72625396128561301add48b8e480c45343d11c
   languageName: node
   linkType: hard
 
