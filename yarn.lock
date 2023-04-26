@@ -4154,6 +4154,7 @@ __metadata:
     "@commercetools-uikit/constraints": ^16.0.0
     "@commercetools-uikit/design-system": ^16.0.0
     "@commercetools-uikit/flat-button": ^16.0.0
+    "@commercetools-uikit/hooks": ^16.0.0
     "@commercetools-uikit/icon-button": ^16.0.0
     "@commercetools-uikit/icons": ^16.0.0
     "@commercetools-uikit/messages": ^16.0.0
