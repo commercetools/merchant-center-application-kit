@@ -131,7 +131,7 @@ const PortalsContainer = forwardRef<TLayoutRefs, TPortalsContainerProps>(
       portalsContainerRef,
       (mutationList) => {
         // We expect only a single element in the mutation list as we configured the
-        // observer to only listen to `data-theme` changes.
+        // observer to only listen to `childList` changes.
         const [mutationEvent] = mutationList;
 
         let indentationLevel = 0;
