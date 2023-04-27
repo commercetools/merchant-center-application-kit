@@ -43,7 +43,7 @@ jobs:
       - name: Creating release pull request or publishing release to npm registry
         id: changesets
         # uses: changesets/action@v1.3.0
-        uses: dotansimha/changesets-action@v1.4.0
+        uses: dotansimha/changesets-action@v1.3.3
         with:
           publish: yarn changeset publish
           version: yarn changeset:version-and-format
