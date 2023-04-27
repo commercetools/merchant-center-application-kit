@@ -1,5 +1,16 @@
 # @commercetools-website/components-playground
 
+## 22.0.1
+
+### Patch Changes
+
+- [#3060](https://github.com/commercetools/merchant-center-application-kit/pull/3060) [`7b188b153`](https://github.com/commercetools/merchant-center-application-kit/commit/7b188b1536a8f0e715aa126498a9a37d6bc92d7c) Thanks [@emmenko](https://github.com/emmenko)! - Update Vite dependencies
+
+- Updated dependencies [[`6629d8470`](https://github.com/commercetools/merchant-center-application-kit/commit/6629d84708e94cae14df8d1ce3df1eb1f99e2023), [`4da5fa884`](https://github.com/commercetools/merchant-center-application-kit/commit/4da5fa88475a71934f63d4133af371e34c878c2a)]:
+  - @commercetools-frontend/i18n@22.0.1
+  - @commercetools-frontend/application-components@22.0.1
+  - @commercetools-frontend/browser-history@22.0.1
+
 ## 22.0.0
 
 ### Major Changes
