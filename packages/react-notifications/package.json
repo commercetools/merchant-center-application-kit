@@ -45,7 +45,7 @@
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.40",
     "prop-types": "15.8.1",
-    "reselect": "4.1.7"
+    "reselect": "4.1.8"
   },
   "devDependencies": {
     "@testing-library/react": "12.1.5",
