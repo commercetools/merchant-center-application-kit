@@ -49,7 +49,7 @@ Additionally, we identified 4 hierarchical levels:
 * `Modal`
 * `Dialog`
 
-# Components for main pages
+## Components for main pages
 
 The following page components should be used in the landing pages of the Custom Application that don't have a parent page in the hierarchy. For example, for a Custom Application for products, the main page can show a list of products.
 
@@ -58,13 +58,13 @@ The following page components should be used in the landing pages of the Custom 
 * [CustomFormMainPage](#customformmainpage)
 * [TabularMainPage](#tabularmainpage)
 
-## InfoMainPage
+### InfoMainPage
 
 <Playground urlPath="info-main-page" />
 
 Info Main pages are controlled components used to render a page to show more information about a particular feature. Similar to `<InfoModalPage>` but not rendered as a modal.
 
-### Usage
+#### Usage
 
 ```jsx
 import { InfoMainPage } from '@commercetools-frontend/application-components';
@@ -81,7 +81,7 @@ const MainPage = () => {
 }
 ```
 
-### Properties
+#### Properties
 
 | Props                           | Type                            | Required | Default                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ------------------------------- | ------------------------------- | :------: | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -90,7 +90,7 @@ const MainPage = () => {
 | `customTitleRow`                | `node`                          |    -     | -                        | Pass a React.node to be used in place of the `title` and `subtitle`.                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | `children`                      | `node`                          |    ✅    | -                        | Content rendered within the page. It's expected to have its style fully customized.                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 
-### Static properties
+#### Static properties
 
 * Page Header title
 
@@ -101,7 +101,7 @@ const MainPage = () => {
   ```
 
 
-## FormMainPage
+### FormMainPage
 
 <Playground urlPath="form-main-page" />
 
@@ -109,7 +109,7 @@ Form Main pages are controlled components used to render a page with a form or s
 
 If you need to customize these buttons, you will need to use the `<CustomFormMainPage>` component instead.
 
-### Usage
+#### Usage
 
 ```jsx
 import { useFormik } from 'formik';
@@ -156,7 +156,7 @@ const MainPage = () => {
 }
 ```
 
-### Properties
+#### Properties
 
 | Props                           | Type                            | Required | Default                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ------------------------------- | ------------------------------- | :------: | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -175,7 +175,7 @@ const MainPage = () => {
 | `dataAttributesPrimaryButton`   | `object`                        |    -     | -                        | Use this prop to pass `data-` attributes to the primary button.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `hideControls`                  | `boolean`                       |    -     | `false`                  | Hides the form controls.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-### Static properties
+#### Static properties
 
 * Page Header title
 
@@ -191,13 +191,13 @@ const MainPage = () => {
   The Intl messages can, for instance, be used for button labels.
 
 
-## CustomFormMainPage
+### CustomFormMainPage
 
 <Playground urlPath="custom-form-main-page" />
 
 Custom Form Main page is a variation of the `<FormMainPage>` that allows passing custom control elements via formControls. This is useful in case the main page needs different control elements than the default ones (primary and secondary buttons).
 
-### Usage
+#### Usage
 
 ```jsx
 import { useFormik } from 'formik';
@@ -248,7 +248,7 @@ const AccountPage = () => {
 };
 ```
 
-### Properties
+#### Properties
 
 | Props                           | Type                            | Required | Default                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ------------------------------- | ------------------------------- | :------: | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -259,7 +259,7 @@ const AccountPage = () => {
 | `formControls`                  | `node`                          |    -     | -                        | Pass a React.node with form controls. You can use the pre-made form buttons exposed by this component or you can use your own.                                                                                                                                                                                                                                                                                                                                                                                             |
 | `hideControls`                  | `boolean`                       |    -     | `false`                  | Hides the form controls.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-### Static properties
+#### Static properties
 
 * Form Control Buttons
 
@@ -284,7 +284,7 @@ const AccountPage = () => {
   This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
   The Intl messages can for instance be used for button labels.
 
-## TabularMainPage
+### TabularMainPage
 
 <Playground urlPath="tabular-main-page" />
 
@@ -295,7 +295,7 @@ Tabs must be rendered using the `<TabHeader>` component via the `tabControls` pr
 The `<TabularMainPage>` is supposed to be used in one of the main application landing pages, as the top-level component page. The page should have no parent pages in the hierarchy.
 The layout of this page can be recognized by the white background header and the gray content background.
 
-### Usage
+#### Usage
 
 ```jsx
 import { Switch, Route, useRouteMatch } from 'react-router-dom'
@@ -327,7 +327,7 @@ const MainPage = () => {
 }
 ```
 
-### Properties
+#### Properties
 
 | Props                           | Type                            | Required | Default                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ------------------------------- | ------------------------------- | :------: | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -339,7 +339,7 @@ const MainPage = () => {
 | `formControls`                  | `node`                          |    -     | -                        | Pass a React.node with form controls. You can use the pre-made form buttons exposed by this component or you can use your own.                                                                                                                                                                                                                                                                                                                                                                                             |
 | `hideControls`                  | `bool`                          |    -     | `false`                  | Hides the form controls.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-### Static properties
+#### Static properties
 
 * Form Control Buttons
 
@@ -363,7 +363,7 @@ const MainPage = () => {
   This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
   The Intl messages can, for instance, be used for button labels.
 
-# Components for detail pages
+## Components for detail pages
 
 The following page components should be used in the pages of the Custom Application that show data of a specific resource. Hierarchically, the parent page should be the main page. For example, for a Custom Application for products, the detail page shows the product's data.
 
@@ -372,7 +372,7 @@ The following page components should be used in the pages of the Custom Applicat
 * [CustomFormDetailPage](#customformdetailpage)
 * [TabularDetailPage](#tabulardetailpage)
 
-## InfoDetailPage
+### InfoDetailPage
 
 <Playground urlPath="info-detail-page" />
 
@@ -381,7 +381,7 @@ Info Detail pages are controlled components used to render a page to show more i
 The `<InfoDetailPage>` may be used as a direct child of one of the main pages. A back link in the header section is also required.
 The layout of this page can be recognized by the gray background header and the white content background.
 
-### Usage
+#### Usage
 
 ```jsx
 import { useHistory } from 'react-router-dom'
@@ -403,7 +403,7 @@ const DetailPage = () => {
 }
 ```
 
-### Properties
+#### Properties
 
 | Props                           | Type                            | Required | Default                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ------------------------------- | ------------------------------- | :------: | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -414,7 +414,7 @@ const DetailPage = () => {
 | `previousPathLabel`             | `string` or `Intl message`      |    -     | `"Go back"` (translated)           | Label to appear as the previous path of the top bar of the page.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | `onPreviousPathClick`           | `function`                      |    ✅    | -                                  | Called when the back button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 
-### Static properties
+#### Static properties
 
 * Page Header title
 
@@ -424,7 +424,7 @@ const DetailPage = () => {
   InfoDetailPage.PageHeaderTitle = PageHeaderTitle;
   ```
 
-## FormDetailPage
+### FormDetailPage
 
 <Playground urlPath="form-detail-page" />
 
@@ -434,7 +434,7 @@ The header includes buttons to control the submission or cancellation of the for
 The `<FormDetailPage>` may be used as a direct child of one of the main pages. A back link in the header section is also required.
 The layout of this page can be recognized by the gray background header and the white content background.
 
-### Usage
+#### Usage
 
 ```jsx
 import { useHistory } from 'react-router-dom'
@@ -484,7 +484,7 @@ const AccountPage = () => {
 };
 ```
 
-### Properties
+#### Properties
 
 | Props                           | Type                            | Required | Default                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ------------------------------- | ------------------------------- | :------: | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -505,7 +505,7 @@ const AccountPage = () => {
 | `dataAttributesPrimaryButton`   | `object`                        |    -     | -                                  | Use this prop to pass `data-` attributes to the primary button.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `hideControls`                  | `boolean`                       |    -     | `false`                            | Hides the form controls.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-### Static properties
+#### Static properties
 
 * Page Header title
 
@@ -526,7 +526,7 @@ const AccountPage = () => {
   />
   ```
 
-## CustomFormDetailPage
+### CustomFormDetailPage
 
 <Playground urlPath="custom-form-detail-page" />
 
@@ -536,7 +536,7 @@ This is useful in case the detail page needs different control elements than the
 The `<CustomFormDetailPage>` may be used as a direct child of one of the main pages. A back link in the header section is also required.
 The layout of this page can be recognized by the gray background header and the white content background.
 
-### Usage
+#### Usage
 
 ```jsx
 import { useHistory } from 'react-router-dom'
@@ -592,7 +592,7 @@ const AccountPage = () => {
 };
 ```
 
-### Properties
+#### Properties
 
 | Props                           | Type                            | Required | Default                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ------------------------------- | ------------------------------- | :------: | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -605,7 +605,7 @@ const AccountPage = () => {
 | `formControls`                  | `node`                          |    -     | -                                  | Pass a React.node with form controls. You can use the pre-made form buttons exposed by this component or you can use your own.                                                                                                                                                                                                                                                                                                                                                                                             |
 | `hideControls`                  | `boolean`                       |    -     | `false`                            | Hides the form controls.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-### Static properties
+#### Static properties
 
 * Form Control Buttons
 
@@ -642,7 +642,7 @@ const AccountPage = () => {
   />
   ```
 
-## TabularDetailPage
+### TabularDetailPage
 
 <Playground urlPath="tabular-detail-page" />
 
@@ -653,7 +653,7 @@ Tabs must be rendered using the `<TabHeader>` component via the `tabControls` pr
 The `<TabularDetailPage>` should be used as a direct child of one of the main pages. Typically it's used as a detail page with multiple sub-pages (tabs).
 The layout of this page can be recognized by the gray background header and the white content background. A backlink in the header section is also required.
 
-### Usage
+#### Usage
 
 ```jsx
 import { Switch, Route, useRouteMatch, useHistory } from 'react-router-dom'
@@ -688,7 +688,7 @@ const DetailPage = () => {
 }
 ```
 
-### Properties
+#### Properties
 
 | Props                           | Type                            | Required | Default                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ------------------------------- | ------------------------------- | :------: | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -702,7 +702,7 @@ const DetailPage = () => {
 | `previousPathLabel`             | `string` or `Intl message`      |    -     | `"Go back"` (translated)           | Label to appear as the previous path of the top bar of the page.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | `onPreviousPathClick`           | `function`                      |    ✅    | -                                  | Called when the back button is clicked.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
-### Static properties
+#### Static properties
 
 * Form Control Buttons
 
@@ -727,7 +727,7 @@ const DetailPage = () => {
   This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
   The Intl messages can for instance be used for button labels.
 
-# Components for modal pages
+## Components for modal pages
 
 The following page components should be used in nested pages of the Custom Application. Hierarchically, the parent page should be the detail page. For example, for a Custom Application for products, the modal page shows the product's variants data.
 
@@ -736,13 +736,13 @@ The following page components should be used in nested pages of the Custom Appli
 * [CustomFormModalPage](#customformmodalpage)
 * [TabularModalPage](#tabularmodalpage)
 
-## InfoModalPage
+### InfoModalPage
 
 <Playground urlPath="info-modal-page" />
 
 Info Modal pages are controlled components used to render a page using a modal container, which makes it appear on top of the normal page. This is useful to render detailed data that typically requires some space.
 
-### Usage
+#### Usage
 
 ```jsx
 import { InfoModalPage, useModalState } from '@commercetools-frontend/application-components';
@@ -765,7 +765,7 @@ const Example = () => {
 }
 ```
 
-### Properties
+#### Properties
 
 | Props                     | Type               | Required | Default                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ------------------------- | ------------------ | :------: | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -781,13 +781,13 @@ const Example = () => {
 | `shouldDelayOnClose`      | `bool`             |    -     | `true`                   | Sets whether the ModalPage should delay calling its `onClose` function to allow the closing animation time to finish. This can be turned off if the developer is controlling the ModalPage only through the `isOpen` prop, and not abruptly mounting/unmounting it or one of its parent elements. You might also want to turn this off if you need to display a prompt (for example to save changes) on the ModalPage before navigating out of it, as this option makes the Modal close itself before `onClose` is called. |
 | `afterOpenStyles`         | `string` or `object`  |    -  | -                        | Overwrite the default styles of `afterOpen`. You can pass a "class name" or a CSS-in-JS style object. This should be used only in cases the default styles are causing some layout issues.                                                                                                                                                                                                                                                                                                                                 |
 
-## FormModalPage
+### FormModalPage
 
 <Playground urlPath="form-modal-page" />
 
 Form Modal pages are controlled components used to render a page with a form or something that requires user input. It is similar to `InfoModalPage` but has a semantically different role. The header includes buttons to control the submission or cancellation of the form. These buttons can be overwritten with custom controls by using the `<CustomFormModalPage>` component.
 
-### Usage
+#### Usage
 
 ```jsx
 import { useFormik } from 'formik';
@@ -837,7 +837,7 @@ const AccountPage = () => {
 }
 ```
 
-### Properties
+#### Properties
 
 | Props                           | Type                       | Required | Default                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ------------------------------- | -------------------------- | :------: | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -863,7 +863,7 @@ const AccountPage = () => {
 | `shouldDelayOnClose`            | `bool`                     |    -     | `true`                   | Sets whether the ModalPage should delay calling its `onClose` function to allow the closing animation time to finish. This can be turned off if the developer is controlling the ModalPage only through the `isOpen` prop, and not abruptly mounting/unmounting it or one of its parent elements. You might also want to turn this off if you need to display a Prompt (for example to save changes) on the ModalPage before navigating out of it, as this option makes the Modal close itself before `onClose` is called. |
 | `afterOpenStyles`               | `string` or `object`       |    -     | -                        | Overwrite the default styles of `afterOpen`. You can pass a "class name" or a CSS-in-JS style object. This should be used only in cases the default styles are causing some layout issues.                                                                                                                                                                                                                                                                                                                                 |
 
-### Static properties
+#### Static properties
 
 * `FormModalPage.Intl`
 
@@ -877,14 +877,14 @@ const AccountPage = () => {
   />
   ```
 
-## CustomFormModalPage
+### CustomFormModalPage
 
 <Playground urlPath="custom-form-modal-page" />
 
 Custom Form Modal pages are a variation of the `<FormModalPage>` that allow passing custom control elements via `formControls`.
 This is useful in case the modal page needs different control elements than the default ones (primary and secondary buttons).
 
-### Usage
+#### Usage
 
 ```jsx
 import { useFormik } from 'formik';
@@ -938,7 +938,7 @@ const AccountPage = () => {
 }
 ```
 
-### Properties
+#### Properties
 
 | Props                     | Type               | Required | Default                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | ------------------------- | ------------------ | :------: | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -955,7 +955,7 @@ const AccountPage = () => {
 | `hideControls`            | `bool`             |    -     | `false`                  | Hides the form controls.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `shouldDelayOnClose`      | `bool`             |    -     | `true`                   | Sets whether the ModalPage should delay calling its `onClose` function to allow the closing animation time to finish. This can be turned off if the developer is controlling the ModalPage only through the `isOpen` prop, and not abruptly mounting/unmounting it or one of its parent elements. You might also want to turn this off if you need to display a Prompt (for example to save changes) on the ModalPage before navigating out of it, as this option makes the Modal close itself before `onClose` is called. |
 | `afterOpenStyles`         | `string` or `object`  |    -  | -                        | Overwrite the default styles of `afterOpen`. You can pass a "class name" or a CSS-in-JS style object. This should be used only in cases the default styles are causing some layout issues.                                                                                                                                                                                                                                                                                                                          |
-### Static properties
+#### Static properties
 
 * Form Control Buttons
 
@@ -984,7 +984,7 @@ const AccountPage = () => {
   />
   ```
 
-## TabularModalPage
+### TabularModalPage
 
 <Playground urlPath="tabular-modal-page" />
 
@@ -992,7 +992,7 @@ Tabular Modal pages are controlled components used to render a page with navigat
 
 Tabs must be rendered using the `<TabHeader>` component via the `tabControls` prop. A `<TabHeader>` is rendered as a link and it assumes the "tab content" is controlled and rendered using `<Route>` components.
 
-### Usage
+#### Usage
 
 ```jsx
 import { BrowserRouter as Router, Switch, Route, useRouteMatch } from 'react-router-dom'
@@ -1029,7 +1029,7 @@ const AccountPage = () => {
 }
 ```
 
-### Properties
+#### Properties
 
 | Props                           | Type                       | Required | Default                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ------------------------------- | -------------------------- | :------: | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1048,7 +1048,7 @@ const AccountPage = () => {
 | `shouldDelayOnClose`      | `bool`             |    -     | `true`                   | Sets whether the ModalPage should delay calling its `onClose` function to allow the closing animation time to finish. This can be turned off if the developer is controlling the ModalPage only through the `isOpen` prop, and not abruptly mounting/unmounting it or one of its parent elements. You might also want to turn this off if you need to display a Prompt (for example to save changes) on the ModalPage before navigating out of it, as this option makes the Modal close itself before `onClose` is called. |
 | `afterOpenStyles`               | `string` or `object`       |    -     | -                        | Overwrite the default styles of `afterOpen`. You can pass a "class name" or a CSS-in-JS style object. This should be used only in cases the default styles are causing some layout issues.                                                                                                                                                                                                                                                                                                                                 |
 
-### Static properties
+#### Static properties
 
 * Form Control Buttons
 
@@ -1077,7 +1077,7 @@ const AccountPage = () => {
   />
   ```
 
-# Components for dialogs
+## Components for dialogs
 
 The following page components can be used on any page of the Custom Application. For example, showing a confirmation dialog before performing an important action, or showing additional information as an info box.
 
@@ -1085,13 +1085,13 @@ The following page components can be used on any page of the Custom Application.
 * [ConfirmationDialog](#confirmationdialog)
 * [FormDialog](#formdialog)
 
-## InfoDialog
+### InfoDialog
 
 <Playground urlPath="info-dialog" />
 
 Info dialogs are controlled components used to show more information about a particular feature, UI element, etc. They are mainly composed of text paragraphs.
 
-### Usage
+#### Usage
 
 ```jsx
 import { InfoDialog, useModalState } from '@commercetools-frontend/application-components';
@@ -1115,7 +1115,7 @@ const ChannelsInfo = () => {
 }
 ```
 
-### Properties
+#### Properties
 
 | Props               | Type       | Required | Values            | Default | Description                                                                                                                                                                                                                                                                                                     |
 | ------------------- | ---------- | :------: | ----------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1128,13 +1128,13 @@ const ChannelsInfo = () => {
 | `getParentSelector` | `function` |    -     | -                 | -       | The function should return an HTML element that will be used as the parent container to hold the modal DOM tree. If no function is provided, it's expected that an HTML element with the `id="parent-container"` is present in the DOM. In the `NODE_ENV=test` environment, the default HTML element is `body`. |
 
 
-## ConfirmationDialog
+### ConfirmationDialog
 
 <Playground urlPath="confirmation-dialog" />
 
 Confirmation dialogs are controlled components used to prompt the user to confirm an important or destructive action. They are similar to Info dialogs but they have a primary and secondary button in the footer area.
 
-### Usage
+#### Usage
 
 ```jsx
 import { ConfirmationDialog, useModalState } from '@commercetools-frontend/application-components';
@@ -1163,7 +1163,7 @@ const ChannelDeletion = () => {
 }
 ```
 
-### Properties
+#### Properties
 
 | Props                           | Type                       | Required | Values            | Default   | Description                                                                                                                                                                                                                                                                                                     |
 | ------------------------------- | -------------------------- | :------: | ----------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1182,7 +1182,7 @@ const ChannelDeletion = () => {
 | `dataAttributesPrimaryButton`   | `object`                   |    -     | -                 | -         | Use this prop to pass `data-` attributes to the primary button.                                                                                                                                                                                                                                                 |
 | `getParentSelector`             | `function`                 |    -     | -                 | -         | The function should return an HTML element that will be used as the parent container to hold the modal DOM tree. If no function is provided, it's expected that an HTML element with the `id="parent-container"` is present in the DOM. In the `NODE_ENV=test` environment, the default HTML element is `body`. |
 
-### Static properties
+#### Static properties
 
 * `ConfirmationDialog.Intl`
 
@@ -1196,13 +1196,13 @@ const ChannelDeletion = () => {
   />
   ```
 
-## FormDialog
+### FormDialog
 
 <Playground urlPath="form-dialog" />
 
 Form dialogs are controlled components used to render a form or something that requires user input. They are similar to Confirmation dialogs but fulfill a different role semantically.
 
-### Usage
+#### Usage
 
 ```jsx
 import { useFormik } from 'formik';
@@ -1252,7 +1252,7 @@ const EmailForm = () => {
 }
 ```
 
-### Properties
+#### Properties
 
 | Props                           | Type                       | Required | Values            | Default   | Description                                                                                                                                                                                                                                                                                                     |
 | ------------------------------- | -------------------------- | :------: | ----------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1272,7 +1272,7 @@ const EmailForm = () => {
 | `dataAttributesPrimaryButton`   | `object`                   |    -     | -                 | -         | Use this prop to pass `data-` attributes to the primary button.                                                                                                                                                                                                                                                 |
 | `getParentSelector`             | `function`                 |    -     | -                 | -         | The function should return an HTML element that will be used as the parent container to hold the modal DOM tree. If no function is provided, it's expected that an HTML element with the `id="parent-container"` is present in the DOM. In the `NODE_ENV=test` environment, the default HTML element is `body`. |
 
-### Static properties
+#### Static properties
 
 * `FormDialog.Intl`
 
@@ -1286,18 +1286,18 @@ const EmailForm = () => {
   />
   ```
 
-# Other components
+## Other components
 
 * [TabHeader](#tabheader)
 
-## TabHeader
+### TabHeader
 
 Tab Headers facilitate navigation within a tabular page.
 
 In a tabular page, tabs must be rendered using the `<TabHeader>` component via the `tabControls` prop. A `<TabHeader>` is rendered as a link and it assumes the "tab content" is controlled and rendered using `<Route>` components.
 `<TabHeader>` tracks the route changes internally and a tab is active if the `to` prop matches the current route.
 
-### Properties
+#### Properties
 
 | Props                           | Type                             | Required | Default                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ------------------------------- | -------------------------------- | :------: | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1307,7 +1307,124 @@ In a tabular page, tabs must be rendered using the `<TabHeader>` component via t
 | `isDisabled`                    | `boolean`                        |   -      | `false`                  | Indicates whether the tab is deactivated or not.                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | `exactPathMatch`                | `boolean`                        |   -      | `false`                  | If `true`, marks the tab as active if the link matches exactly the route.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                                             |
 
+# Page content components
 
+When displaying the content of a page it is important to structure it in a proper way following the heuristic principles of visual hierarchy.
+
+We provide several components that implements these layout guidelines.
+
+## Components for narrow layout
+
+### PageContentNarrow
+
+A page content layout with narrow size. Refer to [Page content layouts](/development/page-content-layouts) for more information about the guidelines.
+
+#### Usage
+
+```jsx
+import { PageContentNarrow } from '@commercetools-frontend/application-components';
+
+const ChannelsDetails = () => {
+  // ...
+  return (
+    <PageContentNarrow>
+      <Spacings.Stack>
+        <div>Title</div>
+        <ChannelsForm />
+      </Spacings.Stack>
+    </PageContentNarrow>
+  )
+};
+```
+
+#### Properties
+
+| Props | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `children` | `node` | ✅ | - | Content rendered within this layout. |
+
+## Components for wide layout
+
+### PageContentWide
+
+A page content layout with wide size. Refer to [Page content layouts](/development/page-content-layouts) for more information about the guidelines.
+
+#### Usage
+
+```jsx
+import { PageContentWide } from '@commercetools-frontend/application-components';
+
+const ChannelsDetailsSingleColumn = () => {
+  // ...
+  return (
+    <PageContentWide>
+      <Spacings.Stack>
+        <div>Title</div>
+        <ChannelsForm />
+      </Spacings.Stack>
+    </PageContentWide>
+  )
+};
+
+const ChannelsDetailsTwoColumn1_1 = () => {
+  // ...
+  return (
+    <PageContentWide columns="1/1">
+      <div>Left side</div>
+      <div>Right side</div>
+    </PageContentWide>
+  )
+};
+
+const ChannelsDetailsTwoColumn2_1 = () => {
+  // ...
+  return (
+    <PageContentWide columns="2/1">
+      <Spacings.Stack>
+        <ChannelsForm />
+      </Spacings.Stack>
+      <Spacings.Stack>
+        <div>Meta info</div>
+      </Spacings.Stack>
+    </PageContentWide>
+  )
+};
+```
+
+#### Properties
+
+| Props | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `columns` | `enum` <br/>`1`, `1/1`, `2/1` | - | `1` | For single-column layout, use the `1`. For two-columns layout use `1/1` for two columns of the same size and `2/1` for two columns with the left one being wider and the right one being narrower.<br/>When using two-columns layout, the first two children are rendered on the left and right columns respectively. |
+| `gapSize` | `enum` <br/>`10`, `20` | - | `20` | The space between the two columns. |
+| `children` | `node` | ✅ | - | Content rendered within this layout. |
+
+## Components for full layout
+
+### PageContentFull
+
+A page content layout with full size. Refer to [Page content layouts](/development/page-content-layouts) for more information about the guidelines.
+
+#### Usage
+
+```jsx
+import { PageContentFull } from '@commercetools-frontend/application-components';
+
+const ChannelsDetails = () => {
+  // ...
+  return (
+    <PageContentFull>
+      <ChannelsTable />
+    </PageContentFull>
+  )
+};
+```
+
+#### Properties
+
+| Props | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `children` | `node` | ✅ | - | Content rendered within this layout. |
 
 
 # Hooks
@@ -1316,7 +1433,7 @@ In a tabular page, tabs must be rendered using the `<TabHeader>` component via t
 
 Using the dialog or modal page components usually requires having some state to open/close these components.
 
-### Usage
+#### Usage
 
 ```jsx
 import {
@@ -1343,7 +1460,7 @@ const MyComponent = () => {
 }
 ```
 
-### Return type
+#### Return type
 
 The following is the definition of the state object returned by `useModalState`:
 
