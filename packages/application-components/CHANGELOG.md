@@ -1,5 +1,18 @@
 # @commercetools-frontend/application-components
 
+## 22.0.1
+
+### Patch Changes
+
+- [#3058](https://github.com/commercetools/merchant-center-application-kit/pull/3058) [`4da5fa884`](https://github.com/commercetools/merchant-center-application-kit/commit/4da5fa88475a71934f63d4133af371e34c878c2a) Thanks [@emmenko](https://github.com/emmenko)! - Use mutation observer hook from uikit
+
+- Updated dependencies [[`6629d8470`](https://github.com/commercetools/merchant-center-application-kit/commit/6629d84708e94cae14df8d1ce3df1eb1f99e2023)]:
+  - @commercetools-frontend/application-shell-connectors@22.0.1
+  - @commercetools-frontend/i18n@22.0.1
+  - @commercetools-frontend/l10n@22.0.1
+  - @commercetools-frontend/assets@22.0.1
+  - @commercetools-frontend/constants@22.0.1
+
 ## 22.0.0
 
 ### Major Changes

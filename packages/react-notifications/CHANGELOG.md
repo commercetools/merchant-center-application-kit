@@ -1,5 +1,19 @@
 # @commercetools-frontend/react-notifications
 
+## 22.0.1
+
+### Patch Changes
+
+- [#3033](https://github.com/commercetools/merchant-center-application-kit/pull/3033) [`6629d8470`](https://github.com/commercetools/merchant-center-application-kit/commit/6629d84708e94cae14df8d1ce3df1eb1f99e2023) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- [#3059](https://github.com/commercetools/merchant-center-application-kit/pull/3059) [`6a4c6ab76`](https://github.com/commercetools/merchant-center-application-kit/commit/6a4c6ab76b481da60f25898910f8335b39ccc5bd) Thanks [@ragafus](https://github.com/ragafus)! - Adds special formatted message for `DuplicateField` errors
+
+- Updated dependencies [[`6629d8470`](https://github.com/commercetools/merchant-center-application-kit/commit/6629d84708e94cae14df8d1ce3df1eb1f99e2023)]:
+  - @commercetools-frontend/sentry@22.0.1
+  - @commercetools-frontend/actions-global@22.0.1
+  - @commercetools-frontend/constants@22.0.1
+  - @commercetools-frontend/notifications@22.0.1
+
 ## 22.0.0
 
 ### Major Changes
