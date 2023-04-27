@@ -63,81 +63,21 @@ const EntryPoint = () => (
 export default EntryPoint;
 ```
 
-### Properties original
+### Properties
 
-| Props                            | Type               |        Required        | Description                                                                                                                                                                                                                                                                                                                                                                      |
-| -------------------------------- | ------------------ | :---------------------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `applicationMessages`            | `object` or `func` |           ✅        | This is either an object containing all the translated messages, grouped by locale (`{ "en": { "Welcome": "Welcome" }, "de": { "Welcome": "Wilkommen" }}`), or a function that returns a Promise that resolves to such an object. The function is called with a `locale` parameter. See [Importing translations](/development/translations#importing-translations).                                                                                                                                                                |
-| `environment`                  | `object`           |           ✅        | The application runtime environment, which is exposed in `window.app`. See [Runtime configuration](/api-reference/application-config#runtime-application-environment).                                                                                                                                                                                                                                                                                                                                                       |
-| `children`                         | `node`             |           ✅        | Instead of using the `render` prop, render your application component as children of `<ApplicationShell>`. By doing so, the `<ApplicationShell>` pre-configures the main application routes according to the `entryPointUriPath` defined in the `custom-application-config.json`. This is an opt-int behavior as a replacement of the `render` prop, to simplify the entry point setup.                                                                                                                                                                                                                                    |
-| `render`                         | `func`             |            (*)       | The render function is called when the `<ApplicationShell>` is ready to render the actual application. This is the case when the required data (user, project) has been fetched and the application context has been initialized. It's **recommended to use the `children`** prop to benefit from a simpler setup.                                                                                                                                                                                                                                  |
-| `apolloClient`         | `ApolloClient`           |                   | An optional instance of [ApolloClient](https://www.apollographql.com/docs/react/) to be used instead of the default one. This is usually the case when you need to configure the Apollo cache. See [`createApolloClient`](#createapolloclient).                                                                                                                                                                                                                                        |
+<Info>
 
+The properties with an * are required.
 
-### Properties with ChildSectionsNav
+</Info>
 
-<ChildSectionsNav parent="properties-with-childsectionsnav" />
-
-#### applicationMessages
-
-Type: `object` or `func` (Required)
-
-This is either an object containing all the translated messages, grouped by locale (`{ "en": { "Welcome": "Welcome" }, "de": { "Welcome": "Wilkommen" }}`), or a function that returns a Promise that resolves to such an object. The function is called with a `locale` parameter. See [Importing translations](/development/translations#importing-translations).
-
-#### environment
-
-Type: `object` (Required)
-
-The application runtime environment, which is exposed in `window.app`. See [Runtime configuration](/api-reference/application-config#runtime-application-environment).
-
-#### children
-
-Type: `node` (Required)
-
-Instead of using the `render` prop, render your application component as children of `<ApplicationShell>`. By doing so, the `<ApplicationShell>` pre-configures the main application routes according to the `entryPointUriPath` defined in the `custom-application-config.json`. This is an opt-int behavior as a replacement of the `render` prop, to simplify the entry point setup.
-
-#### render
-
-Type: `func`
-
-The render function is called when the `<ApplicationShell>` is ready to render the actual application. This is the case when the required data (user, project) has been fetched and the application context has been initialized. It's **recommended to use the `children`** prop to benefit from a simpler setup.
-
-#### apolloClient
-
-Type: `ApolloClient`
-
-An optional instance of [ApolloClient](https://www.apollographql.com/docs/react/) to be used instead of the default one. This is usually the case when you need to configure the Apollo cache. See [`createApolloClient`](#createapolloclient).
-
-### Properties with Table+description
-
-| Name | Type | Required |
-|------|------|----------|
-| [applicationMessages](#applicationmessages) | `object` or `func` | Yes |
-| [environment](#environment) | `object` | Yes |
-| [children](#children) | `node` | Yes |
-| [render](#render) | `func` | No |
-| [apolloClient](#apolloClient) | `ApolloClient` | No |
-
-#### applicationMessages
-
-This is either an object containing all the translated messages, grouped by locale (`{ "en": { "Welcome": "Welcome" }, "de": { "Welcome": "Wilkommen" }}`), or a function that returns a Promise that resolves to such an object. The function is called with a `locale` parameter. See [Importing translations](/development/translations#importing-translations).
-
-#### environment
-
-The application runtime environment, which is exposed in `window.app`. See [Runtime configuration](/api-reference/application-config#runtime-application-environment).
-
-#### children
-
-Instead of using the `render` prop, render your application component as children of `<ApplicationShell>`. By doing so, the `<ApplicationShell>` pre-configures the main application routes according to the `entryPointUriPath` defined in the `custom-application-config.json`. This is an opt-int behavior as a replacement of the `render` prop, to simplify the entry point setup.
-
-#### render
-
-The render function is called when the `<ApplicationShell>` is ready to render the actual application. This is the case when the required data (user, project) has been fetched and the application context has been initialized. It's **recommended to use the `children`** prop to benefit from a simpler setup.
-
-#### apolloClient
-
-An optional instance of [ApolloClient](https://www.apollographql.com/docs/react/) to be used instead of the default one. This is usually the case when you need to configure the Apollo cache. See [`createApolloClient`](#createapolloclient).
-
+| Name | Description |
+|------|------|
+| `applicationMessages` * of type `object` or `func` | This is either an object containing all the translated messages, grouped by locale (`{ "en": { "Welcome": "Welcome" }, "de": { "Welcome": "Wilkommen" }}`), or a function that returns a Promise that resolves to such an object. The function is called with a `locale` parameter. See [Importing translations](/development/translations#importing-translations).  |
+| `environment` * of type `object` | The application runtime environment, which is exposed in `window.app`. See [Runtime configuration](/api-reference/application-config#runtime-application-environment). |
+| `children` * of type `node` | Instead of using the `render` prop, render your application component as children of `<ApplicationShell>`. By doing so, the `<ApplicationShell>` pre-configures the main application routes according to the `entryPointUriPath` defined in the `custom-application-config.json`. This is an opt-int behavior as a replacement of the `render` prop, to simplify the entry point setup. |
+| `render` of type `func` | The render function is called when the `<ApplicationShell>` is ready to render the actual application. This is the case when the required data (user, project) has been fetched and the application context has been initialized. It's **recommended to use** the `children` prop to benefit from a simpler setup. |
+| `apolloClient` of type `ApolloClient` | An optional instance of [ApolloClient](https://www.apollographql.com/docs/react/) to be used instead of the default one. This is usually the case when you need to configure the Apollo cache. See [`createApolloClient`](#createapolloclient). |
 
 ## ApplicationPageTitle
 
@@ -170,13 +110,15 @@ Please refer to the [Mapping guidelines](/development/human-readable-page-title#
 
 ### Properties
 
-#### additionalParts
+<Info>
 
-Type: `string[]`
+The properties with an * are required.
 
-Required: ✅
+</Info>
 
-A list of parts to be prepended to the default page title, separated by `-`.
+| Props  |  Description |
+| ------ | ------------ |
+| `additionalParts` * of type `string[]` | A list of parts to be prepended to the default page title, separated by `-`. |
 
 
 # Hooks
@@ -495,114 +437,32 @@ describe('rendering', () => {
 
 ### Options
 
-<ChildSectionsNav parent="options" />
+| Argument              |                                                                                                                                                                                      | Description                                                                                                                                                                                                                                                                                                                                                                        |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale` of type `String`      | Determines the UI language and number format. Is used to configure `<IntlProvider>`. Only _core_ messages will be available during tests, no matter the `locale`. The locale can be a full [IETF language tag](https://en.wikipedia.org/wiki/IETF_language_tag), although the Merchant Center is currently only available in a limited set of languages.                                          |
+| `dataLocale` of type `String`                                                                                                                                                                                             | Sets the locale which is used to display [`LocalizedString`](https://docs.commercetools.com/api/types#localizedstring)s.                                                                                                                                                                                                                                                      |
+| `mocks` of type `Array`                                                                                                                                                                                                    | Allows mocking requests made with Apollo. `mocks` is forwarded as the `mocks` argument to [`MockedProvider`](https://www.apollographql.com/docs/react/development-testing/testing/). If `mocks` is not provided or is an empty array, the Apollo `MockedProvider` is not used. This is an opt-in functionality, as the default behavior is to mock requests using [Mock Service Worker](https://mswjs.io/).                                                                                                                                                                              |
+| `apolloClient` of type  `ApolloClient`                                                                                                                                                                        | Pass a custom instance of Apollo client, useful when your Custom Application has some custom cache policies. You can use the exported function `createApolloClient` of `@commercetools-frontend/application-shell`.                                                                                                  |
+| `route` of type `String`                                                                                                                                                                                          | The route the user is on, like `/test-project/products`. Defaults to `/`.                                                                                                                                                                                                                                                                                                          |
+| `disableAutomaticEntryPointRoutes` of type `Boolean`                                                                                                                                                                                               | Pass `true` if you are using the `render` prop for the `<ApplicationShell>` instead of the `children` prop.                                                                                                                                                                                                                                                                                                           |
+| `history` of type `Object`     |  By default a memory-history is generated which has the provided `route` set as its initial history entry. It's possible to pass a custom history as well. In that case, we recommend using the factory function `createEnhancedHistory` from the `@commercetools-frontend/browser-history` package, as it contains the enhanced `location` with the parsed `query` object. |
+| `adapter` of type `Object`                                                                                                                                                                                          | The [FlopFlip](https://github.com/tdeekens/flopflip) adapter to use when configuring `flopflip`. Defaults to [`memoryAdapter`](https://github.com/tdeekens/flopflip/tree/master/packages/memory-adapter).                                                                                                                                                                          |
+| `flags` of type `Object`                                                                                                                                                                                          | An object whose keys are feature-toggle keys and whose values are their toggle state. Use this to test your component with different feature toggle combinations. Example: `{ betaUserProfile: true }`.                                                                                                                                                                            |
+| `environment` of type `Object`    | Allows to set the `applicationContext.environment`. The passed object gets merged with the tests default environment. Pass `null` to completely remove the `environment`, which renders the `ui` as if no `environment` was given.                                                                                                                                                 |
+| `user`  of type `Object`      | Allows to set the `applicationContext.user`. The passed object gets merged with the test's default user. Pass `null` to completely remove the `user`, which renders the `ui` as if no user was authenticated.                                                                                                                                                                       |
+| `project` of type `Object`     | Allows to set the `applicationContext.project`. The passed object gets merged with the tests default project. Pass `null` to completely remove the `project` which renders the `ui` outside of a project context.
 
-
-#### locale
-
-Type: `String`
-
-Determines the UI language and number format. Is used to configure `<IntlProvider>`. Only _core_ messages will be available during tests, no matter the `locale`. The locale can be a full [IETF language tag](https://en.wikipedia.org/wiki/IETF_language_tag), although the Merchant Center is currently only available in a limited set of languages.
-
-
-#### dataLocale
-
-Type: `String`
-
-Sets the locale which is used to display [`LocalizedString`](https://docs.commercetools.com/api/types#localizedstring)s.
-
-
-#### mocks
-
-Type: `Array`
-
-Allows mocking requests made with Apollo. `mocks` is forwarded as the `mocks` argument to [`MockedProvider`](https://www.apollographql.com/docs/react/development-testing/testing/). If `mocks` is not provided or is an empty array, the Apollo `MockedProvider` is not used. This is an opt-in functionality, as the default behavior is to mock requests using [Mock Service Worker](https://mswjs.io/).
-
-
-#### apolloClient
-
-Type: `ApolloClient`
-
-Pass a custom instance of Apollo client, useful when your Custom Application has some custom cache policies. You can use the exported function `createApolloClient` of `@commercetools-frontend/application-shell`.
-
-
-#### route
-
-Type: `String`
-
-The route the user is on, like `/test-project/products`. Defaults to `/`.
-
-#### disableAutomaticEntryPointRoutes
-
-Type: `Boolean`
-
-Pass `true` if you are using the `render` prop for the `<ApplicationShell>` instead of the `children` prop.
-
-#### history
-
-Type: `Object`
-
-By default a memory-history is generated which has the provided `route` set as its initial history entry. It's possible to pass a custom history as well. In that case, we recommend using the factory function `createEnhancedHistory` from the `@commercetools-frontend/browser-history` package, as it contains the enhanced `location` with the parsed `query` object.
-
-#### adapter
-
-Type: `Object`
-
-The [FlopFlip](https://github.com/tdeekens/flopflip) adapter to use when configuring `flopflip`. Defaults to [`memoryAdapter`](https://github.com/tdeekens/flopflip/tree/master/packages/memory-adapter).
-
-#### flags
-
-Type: `Object`
-
-An object whose keys are feature-toggle keys and whose values are their toggle state. Use this to test your component with different feature toggle combinations. Example: `{ betaUserProfile: true }`.
-
-#### environment
-
-Type: `Object`
-
-Allows to set the `applicationContext.environment`. The passed object gets merged with the tests default environment. Pass `null` to completely remove the `environment`, which renders the `ui` as if no `environment` was given.
-
-#### user
-
-Type: `Object`
-
-Allows to set the `applicationContext.user`. The passed object gets merged with the test's default user. Pass `null` to completely remove the `user`, which renders the `ui` as if no user was authenticated.
-
-#### project
-
-Type: `Object`
-
-Allows to set the `applicationContext.project`. The passed object gets merged with the tests default project. Pass `null` to completely remove the `project` which renders the `ui` outside of a project context.
 
 ### Return values
 
 Calling `renderApp` returns the same [Result](https://testing-library.com/docs/react-testing-library/api#render-result) object of React Testing Library, with the addition of the following fields:
 
-<ChildSectionsNav parent="return-values" />
-
-#### history
-
-Type: `Object`
-
-The history created by `renderApp` which is passed to the router. It can be used to simulate location changes and so on.
-
-#### user
-
-Type: `Object`
-
-The `user` object used to configure `<ApplicationContextProvider>`, so the result of merging the default user with `options.user`. The `user` object is not the same as `applicationContext.user` and can be `undefined` when no user is authenticated (when `options.user` was `null`).
-
-#### project
-
-Type: `Object`
-
-The `project` object used to configure `<ApplicationContextProvider>`, so the result of merging the default project with `options.project`. The `project` object is not the same as `applicationContext.project` and can be `undefined` when no project was set (when `options.project` was `null`).
-
-#### environment
-
-Type: `Object`
-
-The `environment` object used to configure `<ApplicationContextProvider>`, so the result of merging the default environment with `options.environment`. The `environment` object is not the same as `applicationContext.environment` and can be `undefined` when no environment was set (when `options.environment` was `null`).
+| Field         | Description                                                                                                                                                                                                                                                                                                       |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `history` of type `Object` | The history created by `renderApp` which is passed to the router. It can be used to simulate location changes and so on.                                                                                                                                                                                          |
+| `user` of type `Object` | The `user` object used to configure `<ApplicationContextProvider>`, so the result of merging the default user with `options.user`. Note that this is not the same as `applicationContext.user`. Can be `undefined` when no user is authenticated (when `options.user` was `null`).                                  |
+| `project` of type `Object` | The `project` object used to configure `<ApplicationContextProvider>`, so the result of merging the default project with `options.project`. Note that this is not the same as `applicationContext.project`. Can be `undefined` when no project was set (when `options.project` was `null`).                         |
+| `environment` of type `Object` | The `environment` object used to configure `<ApplicationContextProvider>`, so the result of merging the default environment with `options.environment`. Note that this is not the same as `applicationContext.environment`. Can be `undefined` when no environment was set (when `options.environment` was `null`). |
 
 ## renderAppWithRedux
 
@@ -636,31 +496,12 @@ In addition to the following options, the method accepts all options from `rende
 
 </Info>
 
-<ChildSectionsNav parent="options-1" />
-
-#### store
-
-Type: `Object`
-
-A custom redux store.
-
-#### storeState
-
-Type: `Object`
-
-Pass an initial state to the default Redux store.
-
-#### sdkMocks
-
-Type: `Array`
-
-Allows mocking requests made with `@commercetools-frontend/sdk` (Redux). The `sdkMocks` is forwarded as `mocks` to the [SDK `test-utils`](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/sdk/src/test-utils/README.md).
-
-#### mapNotificationToComponent
-
-Type: `Function`
-
-Pass a function to map a notification to a custom component.
+| Argument                             | Description                                                                                                                                                                                                                                                    |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `store` of type `Object`   | A custom redux store.                                                                                                                                                                                                                                          |
+| `storeState` of type `Object`   | Pass an initial state to the default Redux store.                                                                                                                                                                                                              |
+| `sdkMocks` of type `Array`    | Allows mocking requests made with `@commercetools-frontend/sdk` (Redux). The `sdkMocks` is forwarded as `mocks` to the [SDK `test-utils`](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/sdk/src/test-utils/README.md). |
+| `mapNotificationToComponent` of type `Function` | Pass a function to map a notification to a custom component.                                                                                                                                                                                                   |
 
 
 <!-- ## renderHook -->
