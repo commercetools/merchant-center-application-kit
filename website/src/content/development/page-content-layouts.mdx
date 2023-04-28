@@ -79,9 +79,10 @@ const ChannelsDetails = () => {
 ### Best practices
 
 This layout should:
-* Be used for normal/complex forms.
-* Be used for content where more space is necessary but does require the full page width.
+* Be used for normal/complex forms. We recommend using a `horizontalConstraint: 15` for form fields.
+* Be used for content where more space is necessary but does not require the full page width. Depending on the type of content, consider also using a `horizontalConstraint: 15` to limit the width.
 * Be used for small/simple tables with a limited number of columns, without using the column manager.
+* Include normal UI elements such as collapsible panels, cards, etc.
 * Not be used for large tables.
 
 
@@ -113,6 +114,7 @@ This layout should:
 * Be used for displaying information next to each other to save vertical space.
 * Group the content of each column to make it clear to the user that the content should be read/consumed vertically.
 * Likely not be used for forms.
+* Not use horizontal constraints and let the content span across the available width.
 * Not be used for tables.
 
 
