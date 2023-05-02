@@ -44,7 +44,11 @@ async function run() {
         // https://github.com/vitejs/vite/issues/2433#issuecomment-1361094727
         cache: false,
       },
-      sourcemap: true,
+      sourcemap:
+        // Generating sourcemaps can increase the memory footprint of the build process,
+        // therefore it's an opt-in option.
+        // TODO: make it a CLI option when Vite support becomes stable.
+        process.env.ENABLE_EXPERIMENTAL_VITE_BUNDLER_SOURCEMAP === 'true',
     },
     server: {
       port: DEFAULT_PORT,
