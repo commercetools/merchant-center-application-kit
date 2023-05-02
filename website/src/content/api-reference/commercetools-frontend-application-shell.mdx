@@ -92,15 +92,6 @@ The render function is called when the `<ApplicationShell>` is ready to render t
 **ApolloClient** *(optional)* \
 An optional instance of [ApolloClient](https://www.apollographql.com/docs/react/) to be used instead of the default one. This is usually the case when you need to configure the Apollo cache. See [`createApolloClient`](#createapolloclient).
 
-
-| Name |
-| --- |
-| `applicationMessages` **object** or **func** <br/><br/>This is either an object containing all the translated messages, grouped by locale<br/>`{ en: { Welcome: "Welcome" }, de: { Welcome: "Wilkommen" } }`<br/>or a function that returns a Promise that resolves to such an object.<br/>The function is called with a `locale` parameter. See [Importing translations](/development/translations#importing-translations).  |
-| `environment` **object** <br/><br/>The application runtime environment, which is exposed in `window.app`. See [Runtime configuration](/api-reference/application-config#runtime-application-environment). |
-| `children` **node** <br/><br/>Instead of using the `render` prop, render your application component as children of `<ApplicationShell>`.<br/>By doing so, the `<ApplicationShell>` pre-configures the main application routes according to the `entryPointUriPath` defined in the `custom-application-config.json`.<br/>This is an opt-int behavior as a replacement of the `render` prop, to simplify the entry point setup. |
-| `render` *(optional)* **func** <br/><br/>The render function is called when the `<ApplicationShell>` is ready to render the actual application. This is the case when the required data (user, project) has been fetched and the application context has been initialized.<br/>It's **recommended to use** the `children` prop to benefit from a simpler setup. |
-| `apolloClient` *(optional)* **ApolloClient** <br/><br/>An optional instance of [ApolloClient](https://www.apollographql.com/docs/react/) to be used instead of the default one. This is usually the case when you need to configure the Apollo cache. See [`createApolloClient`](#createapolloclient). |
-
 ## ApplicationPageTitle
 
 <Info>
@@ -138,10 +129,6 @@ Please refer to the [Mapping guidelines](/development/human-readable-page-title#
 
 **string[]**\
 A list of parts to be prepended to the default page title, separated by `-`.
-
-| Name |
-| ---- |
-| `additionalParts` **string[]** <br/><br/>A list of parts to be prepended to the default page title, separated by `-`. |
 
 
 # Hooks
@@ -523,23 +510,6 @@ Allows to set the `applicationContext.user`. The passed object gets merged with 
 Allows to set the `applicationContext.project`. The passed object gets merged with the tests default project. Pass `null` to completely remove the `project` which renders the `ui` outside of a project context.
 
 
-
-| Name |
-| --- |
-| `locale` **string** <br/><br/>Determines the UI language and number format. Is used to configure `<IntlProvider>`. Only _core_ messages will be available during tests, no matter the `locale`. The locale can be a full [IETF language tag](https://en.wikipedia.org/wiki/IETF_language_tag), although the Merchant Center is currently only available in a limited set of languages. |
-| `dataLocale` **string** <br/><br/>Sets the locale which is used to display [`LocalizedString`](https://docs.commercetools.com/api/types#localizedstring)s. |
-| `mocks` **mock[]** <br/><br/>Allows mocking requests made with Apollo. `mocks` is forwarded as the `mocks` argument to [`MockedProvider`](https://www.apollographql.com/docs/react/development-testing/testing/). If `mocks` is not provided or is an empty array, the Apollo `MockedProvider` is not used. This is an opt-in functionality, as the default behavior is to mock requests using [Mock Service Worker](https://mswjs.io/). |
-| `apolloClient` **ApolloClient** <br/><br/>Pass a custom instance of Apollo client, useful when your Custom Application has some custom cache policies. You can use the exported function `createApolloClient` of `@commercetools-frontend/application-shell`. |
-| `route` **string** <br/><br/>The route the user is on, like `/test-project/products`. Defaults to `/`. |
-| `disableAutomaticEntryPointRoutes` **boolean** <br/><br/>Pass `true` if you are using the `render` prop for the `<ApplicationShell>` instead of the `children` prop. |
-| `history` **object** <br/><br/>By default a memory-history is generated which has the provided `route` set as its initial history entry. It's possible to pass a custom history as well. In that case, we recommend using the factory function `createEnhancedHistory` from the `@commercetools-frontend/browser-history` package, as it contains the enhanced `location` with the parsed `query` object. |
-| `adapter` **object** <br/><br/>The [FlopFlip](https://github.com/tdeekens/flopflip) adapter to use when configuring `flopflip`. Defaults to [`memoryAdapter`](https://github.com/tdeekens/flopflip/tree/master/packages/memory-adapter). |
-| `flags` **object** <br/><br/>An object whose keys are feature-toggle keys and whose values are their toggle state. Use this to test your component with different feature toggle combinations. Example: `{ betaUserProfile: true }`. |
-| `environment` **object** <br/><br/>Allows to set the `applicationContext.environment`. The passed object gets merged with the tests default environment. Pass `null` to completely remove the `environment`, which renders the `ui` as if no `environment` was given. |
-| `user` **object** <br/><br/>Allows to set the `applicationContext.user`. The passed object gets merged with the test's default user. Pass `null` to completely remove the `user`, which renders the `ui` as if no user was authenticated. |
-| `project` **object** <br/><br/>Allows to set the `applicationContext.project`. The passed object gets merged with the tests default project. Pass `null` to completely remove the `project` which renders the `ui` outside of a project context. |
-
-
 ### Return values
 
 Calling `renderApp` returns the same [Result](https://testing-library.com/docs/react-testing-library/api#render-result) object of React Testing Library, with the addition of the following properties:
@@ -565,14 +535,6 @@ The `project` object used to configure `<ApplicationContextProvider>`, so the re
 
 **object**\
 The `environment` object used to configure `<ApplicationContextProvider>`, so the result of merging the default environment with `options.environment`. Note that this is not the same as `applicationContext.environment`. Can be `undefined` when no environment was set (when `options.environment` was `null`).
-
-
-| Name |
-| --- |
-| `history` **object** <br/><br/>The history created by `renderApp` which is passed to the router. It can be used to simulate location changes and so on. |
-| `user` **object** <br/><br/>The `user` object used to configure `<ApplicationContextProvider>`, so the result of merging the default user with `options.user`. Note that this is not the same as `applicationContext.user`. Can be `undefined` when no user is authenticated (when `options.user` was `null`). |
-| `project` **object** <br/><br/>The `project` object used to configure `<ApplicationContextProvider>`, so the result of merging the default project with `options.project`. Note that this is not the same as `applicationContext.project`. Can be `undefined` when no project was set (when `options.project` was `null`). |
-| `environment` **object** <br/><br/>The `environment` object used to configure `<ApplicationContextProvider>`, so the result of merging the default environment with `options.environment`. Note that this is not the same as `applicationContext.environment`. Can be `undefined` when no environment was set (when `options.environment` was `null`). |
 
 ## renderAppWithRedux
 
@@ -627,14 +589,6 @@ Allows mocking requests made with `@commercetools-frontend/sdk` (Redux). The `sd
 
 **func**\
 Pass a function to map a notification to a custom component.
-
-| Name |
-| --- |
-| `store` **object** <br/><br/>A custom redux store. |
-| `storeState` **object** <br/><br/>Pass an initial state to the default Redux store. |
-| `sdkMocks` **mock[]** <br/><br/>Allows mocking requests made with `@commercetools-frontend/sdk` (Redux). The `sdkMocks` is forwarded as `mocks` to the [SDK `test-utils`](https://github.com/commercetools/merchant-center-application-kit/blob/main/packages/sdk/src/test-utils/README.md). |
-| `mapNotificationToComponent` **func** <br/><br/>Pass a function to map a notification to a custom component. |
-
 
 <!-- ## renderHook -->
 
