@@ -2,11 +2,12 @@
 title: Page Content Layouts
 ---
 
-Layouts are the foundation for interactive experiences. They affect the way data is structured and displayed.
+At commercetools, one core design principle is a visual hierarchy, having a clean and usable user interface using spacings. As part of these guidelines, it's essential to properly structure a page's overall content.
 
-At commercetools one of our core design heuristics is about visual hierarchy, to have a clean and usable user interface by making use of spacings. As part of these guidelines it's important to also structure the overall content of a page in a proper way.
+Layouts are the foundation for your page content structure. They provide the necessary flexibility to build beautiful and accessible user interfaces while adding constraints to help you create a familiar user experience.
 
-For example, implementing a details page might require to render form elements as well as additional meta information, while a list page with a large table requires a different type of layout. Which layout is best suited for these use cases?
+For example, implementing a details page might require rendering form elements and additional meta information, while a list page with a large table requires a different layout. Layouts ensure your page content has the correct hierarchy and structure for the best user experience for the given use case.
+
 
 <Info>
 
@@ -16,9 +17,16 @@ This feature is available from version `21.22.0` onwards.
 
 # Layout types
 
-We provide different layout types to choose from, for structuring content on a page. Different layout types set the minimum and maximum width of a container and its position on the page.
+A layout sets the container's minimum and maximum width and position on the page.
+To support various page content requirements, we provide the following layout types:
 
-For single-column layouts we have **narrow**, **wide** and **full** sizes. For two-column layouts we have `1/1` and `2/1` ratio sizes.
+| Layout type | Use case |
+|-------------|----------|
+| [Narrow](#narrow) | Simple forms, collapsible panels, and cards. |
+| [Wide (single column)](#narrow) | Large forms or tables with few columns. |
+| [Wide (Two columns 1:1)](#narrow) | Content grouped together to save vertical space. |
+| [Wide (Two columns 2:1)](#narrow) | Wider tables and some meta information. |
+| [Full](#full) | Horizontal reading flow such as large tables. |
 
 ## Narrow
 
@@ -26,7 +34,7 @@ A narrow layout consists of a single-column with a constrained width size.
 
 ![Layout narrow](/images/page-content-layout-narrow.png)
 
-Implementing this layout can be done using the [`<PageContentNarrow>`](/api-reference/commercetools-frontend-application-components#pagecontentnarrow) component.
+To implement a narrow layout, use the [`<PageContentNarrow>`](/api-reference/commercetools-frontend-application-components#pagecontentnarrow) component.
 
 ```jsx
 import { PageContentNarrow } from '@commercetools-frontend/application-components';
@@ -46,19 +54,17 @@ const ChannelsDetails = () => {
 
 ### Best practices
 
-This layout should:
-* Be used for simple forms where form fields must span across the available width (`horizontalConstraint: scale`).
-* Include normal UI elements such as collapsible panels, cards, etc.
-* Not be used for complex forms and tables.
+* Use a narrow layout for simple forms where form fields must span across the available width (`horizontalConstraint: scale`).
+* Avoid a narrow layout for complex forms and tables.
 
 
-## Wide (single-column)
+## Wide (single column)
 
-A wide layout consists of a single-column with a constrained width size, bigger than the narrow layout.
+A wide layout consists of a single column with a constrained width size, wider than a narrow layout.
 
 ![Layout wide single-column](/images/page-content-layout-wide.png)
 
-Implementing this layout can be done using the [`<PageContentWide>`](/api-reference/commercetools-frontend-application-components#pagecontentwide) component.
+To implement a wide (single column) layout, use the [`<PageContentWide>`](/api-reference/commercetools-frontend-application-components#pagecontentwide) component.
 
 ```jsx
 import { PageContentWide } from '@commercetools-frontend/application-components';
@@ -78,21 +84,18 @@ const ChannelsDetails = () => {
 
 ### Best practices
 
-This layout should:
-* Be used for normal/complex forms. We recommend using a `horizontalConstraint: 15` for form fields.
-* Be used for content where more space is necessary but does not require the full page width. Depending on the type of content, consider also using a `horizontalConstraint: 15` to limit the width.
-* Be used for small/simple tables with a limited number of columns, without using the column manager.
-* Include normal UI elements such as collapsible panels, cards, etc.
-* Not be used for large tables.
+* Use a wide layout for content where more space is necessary but does not require the full page width.
+* Depending on the type of content, consider also using a `horizontalConstraint: 15` to limit the width, for example, with form fields.
+* Avoid a wide layout for large tables.
 
 
-## Wide (two-columns 1/1)
+## Wide (two columns: 1/1)
 
-This variation of the wide layout consists of two-columns of the same size.
+This variation of the wide layout consists of two columns of equal sizes.
 
-![Layout wide two-columns 1/1](/images/page-content-layout-wide-two-columns-1_1.png)
+![Layout wide two columns 1/1](/images/page-content-layout-wide-two-columns-1_1.png)
 
-Implementing this layout can be done using the [`<PageContentWide>`](/api-reference/commercetools-frontend-application-components#pagecontentwide) component with the `columns` property set to `1/1`.
+To implement a wide layout with two columns (1/1), use the [`<PageContentWide>`](/api-reference/commercetools-frontend-application-components#pagecontentwide) component with the `columns` property set to `1/1`.
 
 ```jsx
 import { PageContentWide } from '@commercetools-frontend/application-components';
@@ -110,21 +113,19 @@ const ChannelsDetails = () => {
 
 ### Best practices
 
-This layout should:
-* Be used for displaying information next to each other to save vertical space.
-* Group the content of each column to make it clear to the user that the content should be read/consumed vertically.
-* Likely not be used for forms.
-* Not use horizontal constraints and let the content span across the available width.
-* Not be used for tables.
+* Use a wide layout with two columns for displaying information next to each other to save vertical space.
+* Group the content of each column to indicate to the user that they should view the content vertically.
+* Avoid horizontal constraints. Instead, let the content span across the available width.
+* Avoid this layout for tables and forms.
 
 
-## Wide (two-columns 2/1)
+## Wide (two columns: 2/1)
 
-This variation of the wide layout consists of two-columns of different size, with the left column being wider than the right column.
+This variation of the wide layout consists of two columns of different sizes, with the left column being wider than the right.
 
-![Layout wide two-columns 2/1](/images/page-content-layout-wide-two-columns-2_1.png)
+![Layout wide two columns 2/1](/images/page-content-layout-wide-two-columns-2_1.png)
 
-Implementing this layout can be done using the [`<PageContentWide>`](/api-reference/commercetools-frontend-application-components#pagecontentwide) component with the `columns` property set to `2/1`.
+To implement a wide layout with two columns (2/1), use the [`<PageContentWide>`](/api-reference/commercetools-frontend-application-components#pagecontentwide) component with the `columns` property set to `2/1`.
 
 ```jsx
 import { PageContentWide } from '@commercetools-frontend/application-components';
@@ -146,11 +147,9 @@ const ChannelsDetails = () => {
 
 ### Best practices
 
-This layout should:
-* Be used for forms where form fields must span across the available width (`horizontalConstraint: scale`). The form should be rendered on the left column.
-* Be used to display general information or links about the page, for example meta dates, links to other resources, etc. This should be rendered on the right column. When scrolling, this column is sticky.
-* Not be used for tables.
-
+* Use the left column to render forms where form fields must span across the available width (`horizontalConstraint: scale`).
+* Use the right column to display general information or links about the page, such as meta dates or links to other resources, because the column is sticky on scroll.
+* Avoid this layout for tables.
 
 ## Full
 
@@ -158,7 +157,7 @@ A full layout consists of a container that spans across the width of the page.
 
 ![Layout full](/images/page-content-layout-full.png)
 
-Implementing this layout can be done using the [`<PageContentFull>`](/api-reference/commercetools-frontend-application-components#pagecontentfull) component.
+To implement a full layout, use the [`<PageContentFull>`](/api-reference/commercetools-frontend-application-components#pagecontentfull) component.
 
 ```jsx
 import { PageContentFull } from '@commercetools-frontend/application-components';
@@ -175,20 +174,15 @@ const Channels = () => {
 
 ### Best practices
 
-This layout should:
-* Be used for large tables.
-* Be used in cases where it makes sense to group content horizontally.
-* Group the content in a way that the reading flow is clear and the user knows how to scan through the page easily.
-* Not be used for forms.
-
+* Group the content so that the reading flow is clear and the user can scan through the page easily.
+* Use this layout for horizontally grouped content.
+* Avoid using this layout for forms.
 
 # Layout combinations
 
-It is possible to combine different layout types together in the same page, as long as only max two layout type widths are used.
+You can combine up to two different layout types on the same page. We support the following layout combinations:
 
-The following combinations are allowed.
-
-* Narrow + wide
+* Narrow + wide (single column)
 
   ![Layout combination narrow + wide](/images/page-content-layout-combi-narrow+wide.png)
 
@@ -196,28 +190,34 @@ The following combinations are allowed.
 
   ![Layout combination narrow + full](/images/page-content-layout-combi-narrow+full.png)
 
-* Wide two-columns 1/1 + wide
+* Wide (two columns: 1/1) + wide
 
-  ![Layout combination wide two-columns 1/1 + wide](/images/page-content-layout-combi-1_1+wide.png)
+  ![Layout combination wide (two columns: 1/1) + wide](/images/page-content-layout-combi-1_1+wide.png)
 
-* Wide two-columns 2/1 + wide
+* Wide (two columns: 2/1) + wide
 
-  ![Layout combination wide two-columns 2/1 + wide](/images/page-content-layout-combi-2_1-wide.png)
+  ![Layout combination wide (two columns: 2/1) + wide](/images/page-content-layout-combi-2_1-wide.png)
 
-* Wide two-columns 2/1 + wide two-columns 1/1 + full
+* Wide (two columns: 2/1) + wide (two columns: 1/1) + full
 
-  ![Layout combination wide two-columns 2/1 + wide two-columns 1/1 + full](/images/page-content-layout-combi-2_1+1_1+full.png)
+  ![Layout combination wide (two columns: 2/1) + wide (two columns: 1/1) + full](/images/page-content-layout-combi-2_1+1_1+full.png)
 
-* Wide + full + wide two-columns 2/1
+* Wide + full + wide (two columns: 2/1)
 
-  ![Layout combination wide + full + wide two-columns 2/1](/images/page-content-layout-combi-wide+full+2_1.png)
+  ![Layout combination wide + full + wide (two columns: 2/1)](/images/page-content-layout-combi-wide+full+2_1.png)
+
+
+### Caveats
 
 <Warning>
 
-Combining more than two layout type widths is not allowed.
+You can only use layouts of up to two types on the same page.
+
+</Warning>
+
+For example, the following layout combinations won't work:
 
 ![Layout combination not allowed wide + narrow + full](/images/page-content-layout-combi-no-1.png)
 
-![Layout combination not allowed narrow + wide two-columns 2/1 + full](/images/page-content-layout-combi-no-2.png)
+![Layout combination not allowed narrow + wide (two columns: 2/1) + full](/images/page-content-layout-combi-no-2.png)
 
-</Warning>
