@@ -8,8 +8,6 @@
       path: /maintenance-guidelines
     - title: Help Needed?
       path: /help-needed
-    - title: Migrating from Project-level Custom Applications
-      path: /migrating-from-project-level-custom-applications
 - chapter-title: Concepts
   pages:
     - title: OAuth Scopes and User Permissions
