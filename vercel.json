@@ -29,6 +29,10 @@
     {
       "source": "/custom-applications/getting-started/what-is-a-custom-application",
       "destination": "/custom-applications/what-is-a-custom-application"
+    },
+    {
+      "source": "/custom-applications/migrating-from-project-level-custom-applications",
+      "destination": "/custom-applications/help-needed"
     }
   ]
 }
