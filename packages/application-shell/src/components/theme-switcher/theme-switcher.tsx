@@ -32,7 +32,7 @@ const ThemeSwitcher = () => {
     <>
       <ThemeProvider theme={theme} themeOverrides={themesOverrides[theme]} />
       {!hasUserSeenNewDesignReleaseNotificationDialog ? (
-        <NewDesignReleaseInfoDialog onClose={handleCloseDialog} isOpen={true} />
+        <NewDesignReleaseInfoDialog onClose={handleCloseDialog} />
       ) : null}
     </>
   );

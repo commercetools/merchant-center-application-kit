@@ -6,7 +6,6 @@ import Text from '@commercetools-uikit/text';
 import messages from './messages';
 
 type TNewDesignReleaseInfoDialog = {
-  isOpen: boolean;
   onClose: () => void;
 };
 
@@ -15,13 +14,13 @@ const NewDesignReleaseInfoDialog = (props: TNewDesignReleaseInfoDialog) => {
   return (
     <InfoDialog
       title={intl.formatMessage(messages.title)}
-      isOpen={props.isOpen}
+      isOpen={true}
       onClose={props.onClose}
       size="l"
     >
-      <Spacings.Stack>
+      <Spacings.Stack scale="xl">
         <img
-          style={{ height: '300px', padding: '16px 16px 24px 16px' }}
+          style={{ height: '300px', padding: '16px 16px 0' }}
           src={mcRedesignAnnouncement}
           alt="merchant center redesign announcement"
         />
