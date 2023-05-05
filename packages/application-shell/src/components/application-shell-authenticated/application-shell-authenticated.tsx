@@ -202,13 +202,7 @@ export const ApplicationShellAuthenticated = (
                     defaultFlags={props.defaultFeatureFlags}
                   >
                     <>
-                      <div
-                        id={'staff-bar'}
-                        css={css`
-                          position: relative;
-                          z-index: 30000;
-                        `}
-                      />
+                      <div id="above-top-navigation" />
                       <ThemeSwitcher />
                       <VersionTracker />
                       {/* NOTE: the requests in flight loader will render a loading
