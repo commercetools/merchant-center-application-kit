@@ -1309,17 +1309,15 @@ In a tabular page, tabs must be rendered using the `<TabHeader>` component via t
 
 # Page content components
 
-When displaying the content of a page it is important to structure it in a proper way following the heuristic principles of visual hierarchy.
+When displaying the content of a page, it's important to structure it properly to establish a visual hierarchy and provide the users with a familiar user experience. To learn more about different layouts, see [Page Content Layouts](/development/page-content-layouts).
 
-We provide several components that implements these layout guidelines.
+We provide the following components to help you create page content layouts:
 
-## Components for narrow layout
+## PageContentNarrow
 
-### PageContentNarrow
+Renders the children in a [narrow page content layout](/development/page-content-layouts#narrow).
 
-A page content layout with narrow size. Refer to [Page content layouts](/development/page-content-layouts) for more information about the guidelines.
-
-#### Usage
+### Usage
 
 ```jsx
 import { PageContentNarrow } from '@commercetools-frontend/application-components';
@@ -1339,17 +1337,16 @@ const ChannelsDetails = () => {
 
 #### Properties
 
-| Props | Type | Required | Default | Description |
-| --- | --- | --- | --- | --- |
-| `children` | `node` | ✅ | - | Content rendered within this layout. |
+| Props | Type | Required  | Description |
+| --- | --- | --- | --- |
+| `children` | `node` | ✅ | Content rendered within this layout. |
 
-## Components for wide layout
 
-### PageContentWide
+## PageContentWide
 
-A page content layout with wide size. Refer to [Page content layouts](/development/page-content-layouts) for more information about the guidelines.
+Renders the children in a [wide page content layout](/development/page-content-layouts#wide-single-column).
 
-#### Usage
+### Usage
 
 ```jsx
 import { PageContentWide } from '@commercetools-frontend/application-components';
@@ -1391,21 +1388,26 @@ const ChannelsDetailsTwoColumn2_1 = () => {
 };
 ```
 
-#### Properties
+### Properties
 
 | Props | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
-| `columns` | `enum` <br/>`1`, `1/1`, `2/1` | - | `1` | For single-column layout, use the `1`. For two-columns layout use `1/1` for two columns of the same size and `2/1` for two columns with the left one being wider and the right one being narrower.<br/>When using two-columns layout, the first two children are rendered on the left and right columns respectively. |
-| `gapSize` | `enum` <br/>`10`, `20` | - | `20` | The space between the two columns. |
+| `columns` | `enum` <br/><br/>`1`, `1/1`, `2/1` | - | `1` | For a single-column layout, use the `1`. For a two-column layout with equal widths, use `1/1`.  For a two-column layout with column widths in a 2:1 ratio, use `2/1`. |
+| `gapSize` | `enum` <br/><br/>`10`, `20` | - | `20` | The space between the two columns. |
 | `children` | `node` | ✅ | - | Content rendered within this layout. |
 
-## Components for full layout
 
-### PageContentFull
+<Info>
 
-A page content layout with full size. Refer to [Page content layouts](/development/page-content-layouts) for more information about the guidelines.
+In a two-column layout, the children are rendered from left to right in the order they're used.
 
-#### Usage
+</Info>
+
+## PageContentFull
+
+Renders the children in a [full page content layout](/development/page-content-layouts#wide-single-column).
+
+### Usage
 
 ```jsx
 import { PageContentFull } from '@commercetools-frontend/application-components';
@@ -1420,11 +1422,11 @@ const ChannelsDetails = () => {
 };
 ```
 
-#### Properties
+### Properties
 
-| Props | Type | Required | Default | Description |
-| --- | --- | --- | --- | --- |
-| `children` | `node` | ✅ | - | Content rendered within this layout. |
+| Props | Type | Required | Description |
+| --- | --- | --- | --- |
+| `children` | `node` | ✅ | Content rendered within this layout. |
 
 
 # Hooks
