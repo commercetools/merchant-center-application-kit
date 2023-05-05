@@ -10,7 +10,6 @@ const NewDesignReleaseInfoDialog = lazy(
 );
 const ThemeSwitcher = () => {
   const isNewThemeEnabled = useFeatureToggle(UI_REDESIGN);
-  console.log({ isNewThemeEnabled });
   const theme = isNewThemeEnabled ? 'test' : 'default';
   const [
     hasUserSeenNewDesignReleaseNotificationDialog,
