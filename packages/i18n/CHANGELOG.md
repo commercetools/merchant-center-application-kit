@@ -1,5 +1,16 @@
 # @commercetools-frontend/i18n
 
+## 22.1.0
+
+### Minor Changes
+
+- [#3065](https://github.com/commercetools/merchant-center-application-kit/pull/3065) [`0df1cb8e1`](https://github.com/commercetools/merchant-center-application-kit/commit/0df1cb8e104efc7d6abd075c12d20165af9b4bc8) Thanks [@ddouglasz](https://github.com/ddouglasz)! - Users can now see a dialog on notifying them on new design release. upon closing of the information dialog notification, the message should not be seen again when the user comes back to the site.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.1.0
+
 ## 22.0.1
 
 ### Patch Changes
