@@ -10,6 +10,7 @@ const NewDesignReleaseInfoDialog = lazy(
 );
 const ThemeSwitcher = () => {
   const isNewThemeEnabled = useFeatureToggle(UI_REDESIGN);
+  console.log({ isNewThemeEnabled });
   const theme = isNewThemeEnabled ? 'test' : 'default';
   const [
     hasUserSeenNewDesignReleaseNotificationDialog,
@@ -31,7 +32,7 @@ const ThemeSwitcher = () => {
   return (
     <>
       <ThemeProvider theme={theme} themeOverrides={themesOverrides[theme]} />
-      {!hasUserSeenNewDesignReleaseNotificationDialog ? (
+      {!hasUserSeenNewDesignReleaseNotificationDialog && isNewThemeEnabled ? (
         <NewDesignReleaseInfoDialog onClose={handleCloseDialog} />
       ) : null}
     </>
