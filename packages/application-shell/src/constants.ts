@@ -37,8 +37,8 @@ export const STORAGE_KEYS = {
   SELECTED_DATA_LOCALE: 'selectedDataLocale',
   IS_FORCED_MENU_OPEN: 'isForcedMenuOpen',
   LOGIN_STRATEGY: 'loginStrategy',
-  IS_NEW_DESIGN_RELEASE_NOTIFICATION_DIALOG:
-    'isNewDesignReleaseNotificationDialog',
+  IS_NEW_DESIGN_RELEASE_NOTIFICATION_CLOSED:
+    'isNewDesignReleaseNotificationClosed',
 } as const;
 export const SUSPENSION_REASONS = {
   TEMPORARY_MAINTENANCE: 'TemporaryMaintenance',

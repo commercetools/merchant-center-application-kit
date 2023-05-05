@@ -21,7 +21,7 @@ const NewDesignReleaseInfoDialog = (props: TNewDesignReleaseInfoDialog) => {
     >
       <Spacings.Stack>
         <img
-          style={{ height: '300px' }}
+          style={{ height: '300px', padding: '16px 16px 24px 16px' }}
           src={mcRedesignAnnouncement}
           alt="merchant center redesign announcement"
         />

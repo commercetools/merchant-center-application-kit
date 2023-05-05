@@ -1,34 +1,38 @@
-import { useState } from 'react';
+import { useState, lazy } from 'react';
 import { useFeatureToggle } from '@flopflip/react-broadcast';
 import { themesOverrides } from '@commercetools-frontend/application-components';
 import { ThemeProvider } from '@commercetools-uikit/design-system';
 import { STORAGE_KEYS } from '../../constants';
 import { UI_REDESIGN } from '../../feature-toggles';
-import NewDesignReleaseInfoDialog from './new-design-release-info-dialog';
 
+const NewDesignReleaseInfoDialog = lazy(
+  () => import('./new-design-release-info-dialog')
+);
 const ThemeSwitcher = () => {
   const isNewThemeEnabled = useFeatureToggle(UI_REDESIGN);
   const theme = isNewThemeEnabled ? 'test' : 'default';
-  const [isOpen, setIsOpen] = useState(true);
+  const [
+    hasUserSeenNewDesignReleaseNotificationDialog,
+    setHasUserSeenNewDesignReleaseNotificationDialog,
+  ] = useState(
+    window.localStorage.getItem(
+      STORAGE_KEYS.IS_NEW_DESIGN_RELEASE_NOTIFICATION_CLOSED
+    ) === 'true'
+  );
+
   const handleCloseDialog = () => {
     window.localStorage.setItem(
-      STORAGE_KEYS.IS_NEW_DESIGN_RELEASE_NOTIFICATION_DIALOG,
-      'false'
+      STORAGE_KEYS.IS_NEW_DESIGN_RELEASE_NOTIFICATION_CLOSED,
+      'true'
     );
-    setIsOpen(false);
+    setHasUserSeenNewDesignReleaseNotificationDialog(true);
   };
 
   return (
     <>
       <ThemeProvider theme={theme} themeOverrides={themesOverrides[theme]} />
-      {isNewThemeEnabled &&
-      window.localStorage.getItem(
-        STORAGE_KEYS.IS_NEW_DESIGN_RELEASE_NOTIFICATION_DIALOG
-      ) === 'true' ? (
-        <NewDesignReleaseInfoDialog
-          onClose={handleCloseDialog}
-          isOpen={isOpen}
-        />
+      {!hasUserSeenNewDesignReleaseNotificationDialog ? (
+        <NewDesignReleaseInfoDialog onClose={handleCloseDialog} isOpen={true} />
       ) : null}
     </>
   );
