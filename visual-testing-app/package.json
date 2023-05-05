@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-local/visual-testing-app",
-  "version": "22.0.1",
+  "version": "22.1.0",
   "description": "An app to facilitate visual testing",
   "private": true,
   "scripts": {
@@ -9,10 +9,10 @@
     "preview": "vite preview --port 3000"
   },
   "dependencies": {
-    "@commercetools-frontend/application-components": "22.0.1",
-    "@commercetools-frontend/assets": "22.0.1",
-    "@commercetools-frontend/constants": "22.0.1",
-    "@commercetools-frontend/react-notifications": "22.0.1",
+    "@commercetools-frontend/application-components": "22.1.0",
+    "@commercetools-frontend/assets": "22.1.0",
+    "@commercetools-frontend/constants": "22.1.0",
+    "@commercetools-frontend/react-notifications": "22.1.0",
     "@commercetools-uikit/accessible-button": "^16.0.0",
     "@commercetools-uikit/card": "^16.0.0",
     "@commercetools-uikit/design-system": "^16.0.0",
