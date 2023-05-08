@@ -202,7 +202,6 @@ export const ApplicationShellAuthenticated = (
                     defaultFlags={props.defaultFeatureFlags}
                   >
                     <>
-                      <div id="above-top-navigation" />
                       <ThemeSwitcher />
                       <VersionTracker />
                       {/* NOTE: the requests in flight loader will render a loading
@@ -226,6 +225,7 @@ export const ApplicationShellAuthenticated = (
                             grid-column: 1/3;
                           `}
                         >
+                          <div id="above-top-navigation" />
                           <NotificationsList domain={DOMAINS.GLOBAL} />
                         </div>
 
