@@ -40,7 +40,15 @@ async function run() {
         // NOTE that after the build, Vite will write the `index.html` (template)
         // at the `/public/public/index.html` location. See `fs.renameSync` below.
         input: paths.appIndexHtml,
+        // Reduce the memory footpring when building sourcemaps.
+        // https://github.com/vitejs/vite/issues/2433#issuecomment-1361094727
+        cache: false,
       },
+      sourcemap:
+        // Generating sourcemaps can increase the memory footprint of the build process,
+        // therefore it's an opt-in option.
+        // TODO: make it a CLI option when Vite support becomes stable.
+        process.env.ENABLE_EXPERIMENTAL_VITE_BUNDLER_SOURCEMAP === 'true',
     },
     server: {
       port: DEFAULT_PORT,
