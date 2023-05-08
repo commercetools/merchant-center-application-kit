@@ -1,5 +1,15 @@
 # @commercetools-local/visual-testing-app
 
+## 22.2.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@22.2.0
+  - @commercetools-frontend/assets@22.2.0
+  - @commercetools-frontend/constants@22.2.0
+  - @commercetools-frontend/react-notifications@22.2.0
+
 ## 22.1.0
 
 ### Patch Changes
