@@ -225,6 +225,7 @@ export const ApplicationShellAuthenticated = (
                             grid-column: 1/3;
                           `}
                         >
+                          <div id="above-top-navigation" />
                           <NotificationsList domain={DOMAINS.GLOBAL} />
                         </div>
 
@@ -275,7 +276,6 @@ export const ApplicationShellAuthenticated = (
                             );
                           }}
                         </Route>
-
                         <header
                           css={css`
                             grid-row: 2;
