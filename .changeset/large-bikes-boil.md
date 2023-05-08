@@ -2,4 +2,4 @@
 '@commercetools-frontend/application-shell': minor
 ---
 
-Adds a portal above `top-navigation` to inject `staffbar`
+Adds an empty element above the `top-navigation`. 
