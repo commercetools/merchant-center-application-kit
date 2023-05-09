@@ -574,6 +574,19 @@ For example, given the `entryPointUriPath: avengers`, and the (sub)route `uriPat
 }
 ```
 
+<Info>
+
+About the route matching behavior: links in the Merchant Center main navigation are marked as active based on an **exact matching strategy** with the current page route.
+
+For example, if a sub-link is configured as `new` and the page route is at `/avengers/new`, the link is marked as active. However, if the page route is at `/avengers` or `/avengers/123` the link does not match and is not marked as active.
+
+Be aware of how you configure the sub-links and how they are supposed to match with the application routes:
+
+* Avoid using `/` as the sub-link. While this is technically allowed, you are adding a duplicated menu link as it is the same as the `mainMenuLink`.
+* Avoid links to floating routes. If you have a main page with sub-routes such as `/avengers/config/general` and `/avengers/config/something`, and the routes are configured to redirect from `/avengers/config` to `/avengers/config/general`, defining the sub-link as `/avengers/config` will never match any route because of the redirect.
+
+</Info>
+
 ## `submenuLinks.*.defaultLabel`
 
 The label to be rendered if there is no matching localized label for the user locale.
