@@ -30,6 +30,8 @@
       path: /development/ui-components
     - title: Forms
       path: /development/forms
+    - title: Page Content Layouts
+      path: /development/page-content-layouts
     - title: Notifications
       path: /development/notifications
     - title: Testing
