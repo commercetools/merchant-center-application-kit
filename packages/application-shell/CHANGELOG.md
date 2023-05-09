@@ -1,5 +1,28 @@
 # @commercetools-frontend/application-shell
 
+## 22.2.1
+
+### Patch Changes
+
+- [#3071](https://github.com/commercetools/merchant-center-application-kit/pull/3071) [`75ebaaf2d`](https://github.com/commercetools/merchant-center-application-kit/commit/75ebaaf2dd02ccd609a330d99072d5d1fe0b6051) Thanks [@emmenko](https://github.com/emmenko)! - Fix regression of matching menu links for sub routes.
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.2.1
+  - @commercetools-frontend/application-components@22.2.1
+  - @commercetools-frontend/application-config@22.2.1
+  - @commercetools-frontend/application-shell-connectors@22.2.1
+  - @commercetools-frontend/assets@22.2.1
+  - @commercetools-frontend/browser-history@22.2.1
+  - @commercetools-frontend/constants@22.2.1
+  - @commercetools-frontend/i18n@22.2.1
+  - @commercetools-frontend/l10n@22.2.1
+  - @commercetools-frontend/notifications@22.2.1
+  - @commercetools-frontend/permissions@22.2.1
+  - @commercetools-frontend/react-notifications@22.2.1
+  - @commercetools-frontend/sdk@22.2.1
+  - @commercetools-frontend/sentry@22.2.1
+  - @commercetools-frontend/url-utils@22.2.1
+
 ## 22.2.0
 
 ### Minor Changes
