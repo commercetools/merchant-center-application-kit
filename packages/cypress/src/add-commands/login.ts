@@ -236,6 +236,11 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
               STORAGE_KEYS.SESSION_SCOPE,
               sessionScope
             );
+            // Disable redesign announcement
+            win.localStorage.setItem(
+              'isNewDesignReleaseNotificationClosed',
+              'true'
+            );
 
             if (commandOptions.onBeforeLoad) {
               commandOptions.onBeforeLoad(win);
