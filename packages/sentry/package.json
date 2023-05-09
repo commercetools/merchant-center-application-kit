@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/sentry",
-  "version": "22.1.0",
+  "version": "22.2.0",
   "description": "Components to set up Sentry for a MC application",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -20,8 +20,8 @@
   "dependencies": {
     "@babel/runtime": "^7.20.13",
     "@babel/runtime-corejs3": "^7.20.13",
-    "@commercetools-frontend/browser-history": "22.1.0",
-    "@commercetools-frontend/constants": "22.1.0",
+    "@commercetools-frontend/browser-history": "22.2.0",
+    "@commercetools-frontend/constants": "22.2.0",
     "@sentry/react": "7.49.0",
     "@sentry/tracing": "7.49.0",
     "@types/prop-types": "^15.7.5",

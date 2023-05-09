@@ -1,5 +1,30 @@
 # @commercetools-frontend/application-shell
 
+## 22.2.0
+
+### Minor Changes
+
+- [#3066](https://github.com/commercetools/merchant-center-application-kit/pull/3066) [`bf4a45396`](https://github.com/commercetools/merchant-center-application-kit/commit/bf4a45396a7571f4926567ba7ce091a3fb103a68) Thanks [@jaikumar-tj](https://github.com/jaikumar-tj)! - Adds an empty element above the `top-navigation`.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.2.0
+  - @commercetools-frontend/application-components@22.2.0
+  - @commercetools-frontend/application-config@22.2.0
+  - @commercetools-frontend/application-shell-connectors@22.2.0
+  - @commercetools-frontend/assets@22.2.0
+  - @commercetools-frontend/browser-history@22.2.0
+  - @commercetools-frontend/constants@22.2.0
+  - @commercetools-frontend/i18n@22.2.0
+  - @commercetools-frontend/l10n@22.2.0
+  - @commercetools-frontend/notifications@22.2.0
+  - @commercetools-frontend/permissions@22.2.0
+  - @commercetools-frontend/react-notifications@22.2.0
+  - @commercetools-frontend/sdk@22.2.0
+  - @commercetools-frontend/sentry@22.2.0
+  - @commercetools-frontend/url-utils@22.2.0
+
 ## 22.1.0
 
 ### Minor Changes

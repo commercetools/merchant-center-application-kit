@@ -1,5 +1,19 @@
 # @commercetools-frontend/mc-scripts
 
+## 22.2.0
+
+### Patch Changes
+
+- [#2924](https://github.com/commercetools/merchant-center-application-kit/pull/2924) [`21242a2b9`](https://github.com/commercetools/merchant-center-application-kit/commit/21242a2b97b0122c8e07bec8d7c5420f60579760) Thanks [@emmenko](https://github.com/emmenko)! - Add opt-in support for production sourcemaps when using Vite, by defining the environment variable `ENABLE_EXPERIMENTAL_VITE_BUNDLER_SOURCEMAP=true`.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.2.0
+  - @commercetools-frontend/assets@22.2.0
+  - @commercetools-frontend/babel-preset-mc-app@22.2.0
+  - @commercetools-frontend/constants@22.2.0
+  - @commercetools-frontend/mc-dev-authentication@22.2.0
+  - @commercetools-frontend/mc-html-template@22.2.0
+
 ## 22.1.0
 
 ### Patch Changes
