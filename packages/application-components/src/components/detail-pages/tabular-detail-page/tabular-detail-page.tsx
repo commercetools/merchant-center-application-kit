@@ -30,7 +30,7 @@ type TTabularDetailPageProps = {
   /**
    * The title of the page.
    */
-  title?: string;
+  title?: string | ReactElement;
   /**
    * The subtitle of the page.
    */
