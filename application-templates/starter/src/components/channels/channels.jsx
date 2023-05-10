@@ -109,7 +109,6 @@ const Channels = (props) => {
             itemRenderer={(item, column) =>
               itemRenderer(item, column, dataLocale, projectLanguages)
             }
-            maxHeight={600}
             sortedBy={tableSorting.value.key}
             sortDirection={tableSorting.value.order}
             onSortChange={tableSorting.onChange}

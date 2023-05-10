@@ -115,7 +115,6 @@ const Channels = (props: TChannelsProps) => {
                   return null;
               }
             }}
-            maxHeight={600}
             sortedBy={tableSorting.value.key}
             sortDirection={tableSorting.value.order}
             onSortChange={tableSorting.onChange}
