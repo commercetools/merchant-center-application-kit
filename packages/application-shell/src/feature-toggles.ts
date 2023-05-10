@@ -20,5 +20,5 @@
 export const UI_REDESIGN = 'uiRedesign';
 
 export const FLAGS = {
-  [UI_REDESIGN]: false,
+  [UI_REDESIGN]: true,
 };
