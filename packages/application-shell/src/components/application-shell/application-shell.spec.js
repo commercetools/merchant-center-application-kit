@@ -967,14 +967,6 @@ describe('navbar menu links interactions', () => {
         mainSubmenuLabel: { value: 'Add product' },
       });
 
-      // Check links from (legacy) custom applications menu
-      // await checkLinksInteractions({
-      //   container,
-      //   findByLeftNavigation,
-      //   mainMenuLabel: { value: 'Marvel' },
-      //   mainSubmenuLabel: { value: 'Avengers' },
-      // });
-
       // Check links from custom applications menu
       await checkLinksInteractions({
         container,
