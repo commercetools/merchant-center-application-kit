@@ -7,7 +7,10 @@ export const getErrorMessage = (error) =>
   error.graphQLErrors?.map((e) => e.message).join('\n') || error.message;
 
 export const extractErrorFromGraphQlResponse = (graphQlResponse) => {
-  if (graphQlResponse.networkError?.result?.errors?.length > 0) {
+  if (
+    typeof graphQlResponse.networkError?.result !== 'string' &&
+    graphQlResponse.networkError?.result?.errors?.length > 0
+  ) {
     return graphQlResponse.networkError.result.errors;
   }
 
