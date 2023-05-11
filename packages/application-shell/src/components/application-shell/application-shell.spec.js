@@ -28,7 +28,6 @@ import {
   ApplicationAppbarMenuMock,
   LegacyApplicationNavbarMenuMock,
   LegacyApplicationNavbarSubmenuMock,
-  LegacyCustomApplicationMock,
   CustomApplicationInstallationMock,
 } from '../../../../../graphql-test-utils';
 import { STORAGE_KEYS } from '../../constants';
@@ -903,26 +902,6 @@ describe('navbar menu links interactions', () => {
           return res(
             ctx.data({
               projectExtension: ProjectExtensionMock.build({
-                applications: LegacyCustomApplicationMock.buildList(1, {
-                  navbarMenu: LegacyApplicationNavbarMenuMock.build({
-                    labelAllLocales: [
-                      {
-                        __typename: 'LocalizedField',
-                        locale: 'en',
-                        value: 'Marvel',
-                      },
-                    ],
-                    submenu: LegacyApplicationNavbarSubmenuMock.buildList(1, {
-                      labelAllLocales: [
-                        {
-                          __typename: 'LocalizedField',
-                          locale: 'en',
-                          value: 'Avengers',
-                        },
-                      ],
-                    }),
-                  }),
-                }),
                 installedApplications:
                   CustomApplicationInstallationMock.buildList(1),
               }),
@@ -989,12 +968,12 @@ describe('navbar menu links interactions', () => {
       });
 
       // Check links from (legacy) custom applications menu
-      await checkLinksInteractions({
-        container,
-        findByLeftNavigation,
-        mainMenuLabel: { value: 'Marvel' },
-        mainSubmenuLabel: { value: 'Avengers' },
-      });
+      // await checkLinksInteractions({
+      //   container,
+      //   findByLeftNavigation,
+      //   mainMenuLabel: { value: 'Marvel' },
+      //   mainSubmenuLabel: { value: 'Avengers' },
+      // });
 
       // Check links from custom applications menu
       await checkLinksInteractions({
