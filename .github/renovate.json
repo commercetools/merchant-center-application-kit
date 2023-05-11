@@ -49,6 +49,10 @@
     {
       "matchPackageNames": ["@testing-library/react"],
       "allowedVersions": "<13"
+    },
+    {
+      "matchPackageNames": ["@types/react"],
+      "allowedVersions": "<17.0.57"
     }
   ],
   "lockFileMaintenance": {
