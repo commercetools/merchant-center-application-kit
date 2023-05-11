@@ -23,6 +23,7 @@ export const extractErrorFromGraphQlResponse = (graphQlResponse: unknown) => {
   if (graphQlResponse instanceof ApolloError) {
     if (
       isServerError(graphQlResponse.networkError) &&
+      typeof graphQlResponse.networkError?.result !== 'string' &&
       graphQlResponse.networkError?.result?.errors.length > 0
     ) {
       return graphQlResponse?.networkError?.result.errors;

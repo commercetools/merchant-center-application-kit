@@ -18,7 +18,7 @@
     "versions:uikit": "manypkg upgrade @commercetools-uikit"
   },
   "dependencies": {
-    "@apollo/client": "3.7.12",
+    "@apollo/client": "3.7.14",
     "@babel/core": "^7.20.12",
     "@babel/runtime-corejs3": "^7.20.13",
     "@commercetools-frontend/actions-global": "workspace:*",
@@ -55,14 +55,14 @@
     "@commercetools-uikit/text-field": "^16.0.0",
     "@commercetools-uikit/text-input": "^16.0.0",
     "@commercetools/sync-actions": "^5.3.1",
-    "@emotion/react": "11.10.6",
-    "@formatjs/cli": "6.1.0",
+    "@emotion/react": "11.11.0",
+    "@formatjs/cli": "6.1.1",
     "@manypkg/cli": "0.20.0",
     "@testing-library/dom": "^8.20.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "12.1.5",
     "@testing-library/react-hooks": "8.0.1",
-    "eslint": "8.39.0",
+    "eslint": "8.40.0",
     "eslint-formatter-pretty": "4.1.0",
     "formik": "2.2.9",
     "graphql": "^16.6.0",
@@ -83,7 +83,7 @@
     "redux": "4.2.1"
   },
   "resolutions": {
-    "@emotion/react": "11.10.6",
-    "@emotion/styled": "11.10.6"
+    "@emotion/react": "11.11.0",
+    "@emotion/styled": "11.11.0"
   }
 }
