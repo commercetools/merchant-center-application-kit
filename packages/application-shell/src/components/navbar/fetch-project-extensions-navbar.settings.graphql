@@ -1,32 +1,6 @@
 query FetchProjectExtensionsNavbar {
   projectExtension {
     id
-    applications(where: { isActive: true }) {
-      id
-      navbarMenu {
-        id
-        key
-        uriPath
-        icon
-        labelAllLocales {
-          locale
-          value
-        }
-        featureToggle
-        permissions
-        submenu {
-          id
-          key
-          uriPath
-          labelAllLocales {
-            locale
-            value
-          }
-          permissions
-          featureToggle
-        }
-      }
-    }
     installedApplications {
       application {
         id

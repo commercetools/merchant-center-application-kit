@@ -83,42 +83,8 @@ const useNavbarStateManager = (props: HookProps) => {
     fetchPolicy: 'cache-and-network',
     onError: reportErrorToSentry,
   });
-  const legacyCustomAppsMenu =
-    projectExtensionsQuery &&
-    projectExtensionsQuery.projectExtension &&
-    projectExtensionsQuery.projectExtension.applications
-      ? projectExtensionsQuery.projectExtension.applications
-          .map<TNavbarMenu | undefined>((app) => {
-            // Map the menu properties to match the one from the proxy schema.
-            // This is to ensure that the menu object is the same from the proxy
-            // config and the custom apps config, thus allowing them to be
-            // concatenated and rendered the same way.
-            if (!app.navbarMenu) return;
-            return {
-              key: app.navbarMenu.key,
-              uriPath: app.navbarMenu.uriPath,
-              labelAllLocales: app.navbarMenu.labelAllLocales || [],
-              icon: app.navbarMenu.icon,
-              featureToggle: app.navbarMenu.featureToggle,
-              permissions: app.navbarMenu.permissions as string[],
-              submenu: (app.navbarMenu.submenu || []).map((menu) => ({
-                key: menu.key,
-                uriPath: menu.uriPath,
-                labelAllLocales: menu.labelAllLocales || [],
-                featureToggle: menu.featureToggle,
-                permissions: menu.permissions as string[],
-                menuVisibility: undefined,
-                actionRights: undefined,
-                dataFences: undefined,
-              })),
-              menuVisibility: undefined,
-              actionRights: undefined,
-              dataFences: undefined,
-            };
-          })
-          .filter(nonNullable)
-      : [];
-  const organizationCustomAppsMenu =
+
+  const allCustomApplicationsNavbarMenu =
     projectExtensionsQuery &&
     projectExtensionsQuery.projectExtension &&
     projectExtensionsQuery.projectExtension.installedApplications
@@ -265,9 +231,6 @@ const useNavbarStateManager = (props: HookProps) => {
   }, [state.activeItemIndex, state.isMenuOpen]);
 
   const allInternalApplicationsNavbarMenu = applicationsNavBarMenu || [];
-  const allCustomApplicationsNavbarMenu = legacyCustomAppsMenu.concat(
-    organizationCustomAppsMenu
-  );
 
   return {
     ...state,
