@@ -1,4 +1,4 @@
-import { screen, renderComponent } from '../../../test-utils';
+import { screen, renderComponent } from '../../test-utils';
 import type { Props } from './maintenance-page-layout';
 
 import MaintenancePageLayout from './maintenance-page-layout';
