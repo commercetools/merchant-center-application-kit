@@ -7,7 +7,6 @@ import {
   ApplicationContextProvider,
   type TApplicationContext,
 } from '@commercetools-frontend/application-shell-connectors';
-import history from '@commercetools-frontend/browser-history';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import createApolloClient from '../../configure-apollo';
@@ -19,7 +18,7 @@ import Authenticated from '../authenticated';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import ErrorBoundary from '../error-boundary';
 import useCoercedEnvironmentValues from './use-coerced-environment-values';
-import { getBrowserLocale } from './utils';
+import { getBrowserHistory, getBrowserLocale } from './utils';
 
 type TApplicationShellProviderProps = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;
@@ -46,7 +45,7 @@ const ApplicationShellProvider = (props: TApplicationShellProviderProps) => {
         <ApplicationContextProvider environment={coercedEnvironmentValues}>
           <ReduxProvider store={internalReduxStore}>
             <ApolloProvider client={apolloClient}>
-              <Router history={ApplicationShellProvider.history}>
+              <Router history={getBrowserHistory()}>
                 <ApplicationPageTitle />
                 <Authenticated
                   locale={browserLocale}
@@ -82,8 +81,5 @@ const ApplicationShellProvider = (props: TApplicationShellProviderProps) => {
 };
 
 ApplicationShellProvider.displayName = 'ApplicationShellProvider';
-// This is useful to inject a custom history object during tests
-// @ts-nocheck
-ApplicationShellProvider.history = history;
 
 export default ApplicationShellProvider;
