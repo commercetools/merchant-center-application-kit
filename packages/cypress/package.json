@@ -40,6 +40,7 @@
     "@commercetools-frontend/application-config": "22.2.1",
     "@commercetools-frontend/application-shell": "22.2.1",
     "@manypkg/get-packages": "1.1.3",
+    "@types/semver": "^7.5.0",
     "semver": "7.5.0",
     "uuid": "9.0.0"
   },

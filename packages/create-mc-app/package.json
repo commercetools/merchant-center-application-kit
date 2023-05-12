@@ -21,6 +21,8 @@
     "@babel/core": "^7.20.12",
     "@babel/runtime": "^7.20.13",
     "@babel/runtime-corejs3": "^7.20.13",
+    "@types/babel__core": "^7.20.0",
+    "@types/semver": "^7.5.0",
     "cac": "6.7.14",
     "execa": "5.1.1",
     "listr2": "5.0.8",
