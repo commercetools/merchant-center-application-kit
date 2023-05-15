@@ -349,28 +349,28 @@ importers:
         version: 4.11.1
       '@commercetools-uikit/constraints':
         specifier: ^16.0.0
-        version: 16.0.0(@types/react@17.0.56)(react@18.2.0)
+        version: 16.0.0(@types/react@17.0.56)(react@17.0.2)
       '@commercetools-uikit/data-table':
         specifier: ^16.0.0
         version: 16.0.0(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-uikit/flat-button':
         specifier: ^16.0.0
-        version: 16.0.0(@types/react@17.0.56)(react@18.2.0)(typescript@5.0.4)
+        version: 16.0.0(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-uikit/grid':
         specifier: ^16.0.0
-        version: 16.0.0(@types/react@17.0.56)(react@18.2.0)
+        version: 16.0.0(@types/react@17.0.56)(react@17.0.2)
       '@commercetools-uikit/hooks':
         specifier: ^16.0.0
         version: 16.0.0(react@17.0.2)
       '@commercetools-uikit/icons':
         specifier: ^16.0.0
-        version: 16.0.0(@types/react@17.0.56)(react@18.2.0)
+        version: 16.0.0(@types/react@17.0.56)(react@17.0.2)
       '@commercetools-uikit/link':
         specifier: ^16.0.0
         version: 16.0.0(@types/react@17.0.56)(react-intl@6.4.2)(react-router-dom@5.3.4)(react@17.0.2)
       '@commercetools-uikit/loading-spinner':
         specifier: ^16.0.0
-        version: 16.0.0(@types/react@17.0.56)(react@18.2.0)(typescript@5.0.4)
+        version: 16.0.0(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-uikit/localized-text-field':
         specifier: ^16.0.0
         version: 16.0.0(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
@@ -379,7 +379,7 @@ importers:
         version: 16.0.0(@types/react@17.0.56)(react-intl@6.4.2)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-uikit/notifications':
         specifier: ^16.0.0
-        version: 16.0.0(@types/react@17.0.56)(react-intl@6.4.2)(react@18.2.0)
+        version: 16.0.0(@types/react@17.0.56)(react-intl@6.4.2)(react@17.0.2)
       '@commercetools-uikit/pagination':
         specifier: ^16.0.0
         version: 16.0.0(@types/react@17.0.56)(react-dom@17.0.2)(react-intl@6.4.2)(react@17.0.2)(typescript@5.0.4)
@@ -388,25 +388,28 @@ importers:
         version: 16.0.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-uikit/spacings':
         specifier: ^16.0.0
-        version: 16.0.0(@types/react@17.0.56)(react@18.2.0)
+        version: 16.0.0(@types/react@17.0.56)(react@17.0.2)
       '@commercetools-uikit/text':
         specifier: ^16.0.0
-        version: 16.0.0(@types/react@17.0.56)(react-intl@6.4.2)(react@18.2.0)
+        version: 16.0.0(@types/react@17.0.56)(react-intl@6.4.2)(react@17.0.2)
       '@commercetools-uikit/text-field':
         specifier: ^16.0.0
-        version: 16.0.0(@types/react@17.0.56)(react@18.2.0)(typescript@5.0.4)
+        version: 16.0.0(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-uikit/text-input':
         specifier: ^16.0.0
-        version: 16.0.0(@types/react@17.0.56)(react-intl@6.4.2)(react@18.2.0)(typescript@5.0.4)
+        version: 16.0.0(@types/react@17.0.56)(react-intl@6.4.2)(react@17.0.2)(typescript@5.0.4)
       '@commercetools/sync-actions':
         specifier: ^5.3.1
         version: 5.3.1
       '@emotion/react':
         specifier: 11.11.0
-        version: 11.11.0(@types/react@17.0.56)(react@18.2.0)
+        version: 11.11.0(@types/react@17.0.56)(react@17.0.2)
       '@formatjs/cli':
         specifier: 6.1.1
         version: 6.1.1
+      '@jest/types':
+        specifier: 29.5.0
+        version: 29.5.0
       '@manypkg/cli':
         specifier: 0.20.0
         version: 0.20.0
@@ -422,12 +425,33 @@ importers:
       '@testing-library/react-hooks':
         specifier: 8.0.1
         version: 8.0.1(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
+      '@types/jest':
+        specifier: ^29.5.1
+        version: 29.5.1
+      '@types/react':
+        specifier: 17.0.56
+        version: 17.0.56
+      '@types/react-dom':
+        specifier: 17.0.20
+        version: 17.0.20
+      '@types/react-router':
+        specifier: 5.1.20
+        version: 5.1.20
+      '@types/react-router-dom':
+        specifier: ^5.3.3
+        version: 5.3.3
+      '@types/testing-library__jest-dom':
+        specifier: ^5.14.5
+        version: 5.14.5
       eslint:
         specifier: 8.40.0
         version: 8.40.0
       eslint-formatter-pretty:
         specifier: 4.1.0
         version: 4.1.0
+      eslint-plugin-graphql:
+        specifier: ^4.0.0
+        version: 4.0.0(@types/node@18.15.11)(graphql@16.6.0)(typescript@5.0.4)
       formik:
         specifier: 2.2.9
         version: 2.2.9(react@17.0.2)
@@ -11425,7 +11449,7 @@ packages:
     engines: {node: '>=16.0.0'}
     hasBin: true
     peerDependencies:
-      typescript: '*'
+      typescript: '>= 4.7.4'
     peerDependenciesMeta:
       typescript:
         optional: true
