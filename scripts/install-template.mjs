@@ -1,8 +1,8 @@
 import assert from 'node:assert';
 import fs from 'node:fs';
 import path from 'node:path';
-import shelljs from 'shelljs';
 import { findRootSync } from '@manypkg/find-root';
+import shelljs from 'shelljs';
 
 const applicationName = 'my-starter-app';
 const workspaceRoot = findRootSync(process.cwd());

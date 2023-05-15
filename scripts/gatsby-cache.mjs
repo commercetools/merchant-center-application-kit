@@ -16,9 +16,9 @@
 
 import fs from 'fs';
 import path from 'path';
-import mri from 'mri';
-import { getPackages } from '@manypkg/get-packages';
 import { findRootSync } from '@manypkg/find-root';
+import { getPackages } from '@manypkg/get-packages';
+import mri from 'mri';
 
 const flags = mri(process.argv.slice(2), { alias: { help: ['h'] } });
 const commands = flags._;
