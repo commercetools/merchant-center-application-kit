@@ -49,8 +49,8 @@ switch (command) {
 }
 
 const workspaceRoot = findRootSync(process.cwd());
-const globalPublicPath = path.join(workspaceRoot, 'public');
-const globalCachePath = path.join(workspaceRoot, '.cache');
+const globalPublicPath = path.join(workspaceRoot.rootDir, 'public');
+const globalCachePath = path.join(workspaceRoot.rootDir, '.cache');
 const gatsbyWebsites = ['@commercetools-website/custom-applications'];
 
 const moveFolderFromTo = async (from, to) => {
