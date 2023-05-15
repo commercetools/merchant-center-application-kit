@@ -2866,8 +2866,8 @@ importers:
   website:
     dependencies:
       '@commercetools-docs/gatsby-theme-docs':
-        specifier: 21.4.2
-        version: 21.4.2(@babel/core@7.21.8)(@types/react@17.0.56)(gatsby-cli@5.9.0)(gatsby@5.9.1)(graphql@16.6.0)(moment@2.29.4)(react-dom@18.2.0)(react-router-dom@5.3.4)(react@18.2.0)(typescript@5.0.4)(webpack@5.82.1)
+        specifier: 21.4.3
+        version: 21.4.3(@babel/core@7.21.8)(@types/react@17.0.56)(gatsby-cli@5.9.0)(gatsby@5.9.1)(graphql@16.6.0)(moment@2.29.4)(react-dom@18.2.0)(react-router-dom@5.3.4)(react@18.2.0)(typescript@5.0.4)(webpack@5.82.1)
       '@commercetools-docs/ui-kit':
         specifier: 21.4.0
         version: 21.4.0(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@5.3.4)(react@18.2.0)(typescript@5.0.4)
@@ -5932,8 +5932,8 @@ packages:
       '@babel/runtime-corejs3': 7.20.13
     dev: false
 
-  /@commercetools-docs/gatsby-theme-docs@21.4.2(@babel/core@7.21.8)(@types/react@17.0.56)(gatsby-cli@5.9.0)(gatsby@5.9.1)(graphql@16.6.0)(moment@2.29.4)(react-dom@18.2.0)(react-router-dom@5.3.4)(react@18.2.0)(typescript@5.0.4)(webpack@5.82.1):
-    resolution: {integrity: sha512-WNQ5aBvkhSOSlzOMr1HuDFcRATCPkmOTrBWzQf/KDLty3r6tO8yee6kD6/yLtT1G9FqnKeiHzXt94sSlVAFKPg==}
+  /@commercetools-docs/gatsby-theme-docs@21.4.3(@babel/core@7.21.8)(@types/react@17.0.56)(gatsby-cli@5.9.0)(gatsby@5.9.1)(graphql@16.6.0)(moment@2.29.4)(react-dom@18.2.0)(react-router-dom@5.3.4)(react@18.2.0)(typescript@5.0.4)(webpack@5.82.1):
+    resolution: {integrity: sha512-CdVHsBZeYlPomEakkH5SWU4XXf9LSMdrmyt5ghcT+D+XBxemlKkOKtzxWcrwWPq3XfoOZ2SR090vofk0YOcfBw==}
     engines: {node: '>=16'}
     hasBin: true
     peerDependencies:
@@ -5942,7 +5942,7 @@ packages:
       react: 18.x
       react-dom: 18.x
     dependencies:
-      '@commercetools-docs/gatsby-theme-learning': 21.4.2(@types/react@17.0.56)(gatsby@5.9.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4)
+      '@commercetools-docs/gatsby-theme-learning': 21.4.3(@types/react@17.0.56)(gatsby@5.9.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4)
       '@commercetools-docs/ui-kit': 21.4.0(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@5.3.4)(react@18.2.0)(typescript@5.0.4)
       '@commercetools-uikit/card': 16.0.0(@types/react@17.0.56)(react@18.2.0)
       '@commercetools-uikit/checkbox-input': 16.0.0(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4)
@@ -6034,17 +6034,18 @@ packages:
       - webpack
     dev: false
 
-  /@commercetools-docs/gatsby-theme-learning@21.4.2(@types/react@17.0.56)(gatsby@5.9.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4):
-    resolution: {integrity: sha512-R3DP4FJqxeX4ebs9OKytbu6o22JqSYjzB6A+agXWUe9s2s8+2eTvwy1sMoniuUaXh1CXwv2/+wSXIDx1n4oerA==}
+  /@commercetools-docs/gatsby-theme-learning@21.4.3(@types/react@17.0.56)(gatsby@5.9.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4):
+    resolution: {integrity: sha512-nwY6ptecq21j9H/HBz8dlbNPa8zhsueCNZZ6yaJV82Eb9e00PxyJuewTK3wOCDWWS8IcdDPt5oqxLTs5BjjPbw==}
     peerDependencies:
       gatsby: 5.x
     dependencies:
       '@auth0/auth0-react': 2.0.1(react-dom@18.2.0)(react@18.2.0)
-      '@commercetools-docs/gatsby-theme-sso-ui-kit': 21.4.2(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4)
+      '@commercetools-docs/gatsby-theme-sso-ui-kit': 21.4.3(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4)
       '@commercetools-docs/ui-kit': 21.4.0(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@6.9.0)(react@18.2.0)(typescript@5.0.4)
       '@commercetools-uikit/checkbox-input': 16.0.0(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4)
       '@commercetools-uikit/design-system': 16.0.0(@types/react@17.0.56)
       '@commercetools-uikit/icons': 16.0.0(@types/react@17.0.56)(react@18.2.0)
+      '@commercetools-uikit/link': 16.0.0(@types/react@17.0.56)(react-intl@6.4.2)(react-router-dom@6.9.0)(react@18.2.0)
       '@commercetools-uikit/loading-spinner': 16.0.0(@types/react@17.0.56)(react@18.2.0)(typescript@5.0.4)
       '@commercetools-uikit/messages': 16.0.0(@types/react@17.0.56)(react@18.2.0)(typescript@5.0.4)
       '@commercetools-uikit/notifications': 16.0.0(@types/react@17.0.56)(react-intl@6.4.2)(react@18.2.0)
@@ -6054,6 +6055,7 @@ packages:
       '@commercetools-uikit/spacings': 16.0.0(@types/react@17.0.56)(react@18.2.0)
       '@commercetools-uikit/spacings-stack': 16.0.0(@types/react@17.0.56)(react@18.2.0)
       '@commercetools-uikit/stamp': 16.0.0(@types/react@17.0.56)(react-intl@6.4.2)(react@18.2.0)
+      '@commercetools-uikit/text': 16.0.0(@types/react@17.0.56)(react-intl@6.4.2)(react@18.2.0)
       '@commercetools-uikit/text-field': 16.0.0(@types/react@17.0.56)(react@18.2.0)(typescript@5.0.4)
       '@commercetools-uikit/text-input': 16.0.0(@types/react@17.0.56)(react-intl@6.4.2)(react@18.2.0)(typescript@5.0.4)
       '@emotion/react': 11.11.0(@types/react@17.0.56)(react@18.2.0)
@@ -6073,8 +6075,8 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-docs/gatsby-theme-sso-ui-kit@21.4.2(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4):
-    resolution: {integrity: sha512-RypgdSnxRTD/Sv7dU/TiK+EIoyEdHmacyx4477KaSFzku9CUZycCkh24aU980xBnveKnJvk+l5yRiRcQgUqboA==}
+  /@commercetools-docs/gatsby-theme-sso-ui-kit@21.4.3(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4):
+    resolution: {integrity: sha512-By+/a13Y/XywUzh3nwmD0Q9jp/bZnWqZFQgrHbOY6mvOhVnH9R88iNuKu6tY5Nehfk58BdodY73nhHpYt1HyHA==}
     dependencies:
       '@auth0/auth0-react': 2.0.1(react-dom@18.2.0)(react@18.2.0)
       '@commercetools-docs/ui-kit': 21.4.0(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@6.9.0)(react@18.2.0)(typescript@5.0.4)
@@ -7041,6 +7043,32 @@ packages:
       - '@types/react'
     dev: false
 
+  /@commercetools-uikit/link@16.0.0(@types/react@17.0.56)(react-intl@6.4.2)(react-router-dom@6.9.0)(react@18.2.0):
+    resolution: {integrity: sha512-gfk/lKsZFhULt1q/JR9cfvOByvWke97NpSXm1zGEiVxivEAKtxwWM0Zc4U6Wr+uIKZH447tC8hT3n+btW7wtKA==}
+    peerDependencies:
+      react: 17.x
+      react-intl: 6.x
+      react-router-dom: 5.x
+    dependencies:
+      '@babel/runtime': 7.20.13
+      '@babel/runtime-corejs3': 7.20.13
+      '@commercetools-uikit/design-system': 16.0.0(@types/react@17.0.56)
+      '@commercetools-uikit/icons': 16.0.0(@types/react@17.0.56)(react@18.2.0)
+      '@commercetools-uikit/spacings-inline': 16.0.0(@types/react@17.0.56)(react@18.2.0)
+      '@commercetools-uikit/utils': 16.0.0(react@18.2.0)
+      '@emotion/react': 11.11.0(@types/react@17.0.56)(react@18.2.0)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.0)(@types/react@17.0.56)(react@18.2.0)
+      '@types/history': 4.7.11
+      '@types/react-router-dom': 5.3.3
+      history: 4.10.1
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-intl: 6.4.2(react@18.2.0)(typescript@5.0.4)
+      react-router-dom: 6.9.0(react-dom@18.2.0)(react@18.2.0)
+    transitivePeerDependencies:
+      - '@types/react'
+    dev: false
+
   /@commercetools-uikit/loading-spinner@16.0.0(@types/react@17.0.56)(react@17.0.2)(typescript@4.9.5):
     resolution: {integrity: sha512-fd7FIeGdRHg3rm2DJTdfrHbGZ0Kj2Ta01ffrlubxkCVoVovtuegRfsB8P63DbIJdT3B0Qr/+XYasBcrvUZ5+LA==}
     peerDependencies:
@@ -7397,7 +7425,7 @@ packages:
   /@commercetools-uikit/radio-input@16.0.0(@types/react@17.0.56)(react-intl@6.4.2)(react@18.2.0)(typescript@5.0.4):
     resolution: {integrity: sha512-+/hsnLiShMsxFwFGT0xbTKqQ7Wg8zzznP2Sgz4y7HTgQvmxyqzvC+tn/eNZrYz4fshnPN4K1YIJVqWdj7T7y8w==}
     peerDependencies:
-      react: 17.x
+      react: '*'
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -7807,7 +7835,7 @@ packages:
   /@commercetools-uikit/stamp@16.0.0(@types/react@17.0.56)(react-intl@6.4.2)(react@18.2.0):
     resolution: {integrity: sha512-fMelcVJJc4OvnWhmqGowH85GOqxlLwFHDRrBM8+EVdlAwyYLePNEQuQ5VKF41x2mCt+NaF7ckQljJ0yCwnfiJw==}
     peerDependencies:
-      react: 17.x
+      react: '*'
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
