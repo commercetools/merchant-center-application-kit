@@ -2,6 +2,7 @@ module.exports = {
   launch: {
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
     executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+    headless: 'new',
   },
   server: {
     command: 'pnpm visual-testing-app:preview',
