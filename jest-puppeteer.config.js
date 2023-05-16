@@ -1,7 +1,7 @@
 module.exports = {
   launch: {
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    // headless: 'new',
+    headless: 'new',
   },
   server: {
     command: 'pnpm visual-testing-app:preview',
