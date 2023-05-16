@@ -128,7 +128,10 @@ function loginByForm(commandOptions: CommandLoginOptions) {
     }
 
     // For backwards compatibility.
-    if (Cypress.config('experimentalSessionAndOrigin')) {
+    if (
+      isFeatureSupported('12.0.0') ||
+      Cypress.config('experimentalSessionAndOrigin')
+    ) {
       // https://www.cypress.io/blog/2021/08/04/authenticate-faster-in-tests-cy-session-command/
       cy.session(
         sessionKey,
@@ -144,8 +147,9 @@ function loginByForm(commandOptions: CommandLoginOptions) {
       );
     } else {
       cy.log(
-        `We recommend turning on the flag "experimentalSessionAndOrigin" to be able to use "cy.session" and thus reduce the time to log in between tests.`
+        `We recommend to use "cy.session" to reduce the time to log in between tests. Make sure to have at least Cypress v12 or enable it via "experimentalSessionAndOrigin" for older Cypress versions.`
       );
+
       authCallback();
     }
 
@@ -252,7 +256,10 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
       }
 
       // For backwards compatibility.
-      if (Cypress.config('experimentalSessionAndOrigin')) {
+      if (
+        isFeatureSupported('12.0.0') ||
+        Cypress.config('experimentalSessionAndOrigin')
+      ) {
         // https://www.cypress.io/blog/2021/08/04/authenticate-faster-in-tests-cy-session-command/
         cy.session(
           sessionKey,
@@ -268,7 +275,7 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
         );
       } else {
         cy.log(
-          `We recommend turning on the flag "experimentalSessionAndOrigin" to be able to use "cy.session" and thus reduce the time to log in between tests.`
+          `We recommend to use "cy.session" to reduce the time to log in between tests. Make sure to have at least Cypress v12 or enable it via "experimentalSessionAndOrigin" for older Cypress versions.`
         );
         authCallback();
       }
