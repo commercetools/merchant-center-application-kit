@@ -116,7 +116,7 @@ importers:
         version: 1.24.0
       '@percy/cypress':
         specifier: 3.1.2
-        version: 3.1.2(cypress@11.2.0)
+        version: 3.1.2(cypress@12.12.0)
       '@percy/puppeteer':
         specifier: 2.0.2
         version: 2.0.2(puppeteer@20.2.0)
@@ -134,7 +134,7 @@ importers:
         version: 6.5.1(@svgr/core@6.5.1)
       '@testing-library/cypress':
         specifier: 8.0.7
-        version: 8.0.7(cypress@11.2.0)
+        version: 8.0.7(cypress@12.12.0)
       '@testing-library/dom':
         specifier: ^8.20.0
         version: 8.20.0
@@ -178,8 +178,8 @@ importers:
         specifier: 7.0.3
         version: 7.0.3
       cypress:
-        specifier: 11.2.0
-        version: 11.2.0
+        specifier: 12.12.0
+        version: 12.12.0
       dotenv:
         specifier: 16.0.3
         version: 16.0.3
@@ -1676,8 +1676,8 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3
       cypress:
-        specifier: 11.2.0
-        version: 11.2.0
+        specifier: 12.12.0
+        version: 12.12.0
 
   packages/eslint-config-mc-app:
     dependencies:
@@ -11344,13 +11344,13 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@percy/cypress@3.1.2(cypress@11.2.0):
+  /@percy/cypress@3.1.2(cypress@12.12.0):
     resolution: {integrity: sha512-JXrGDZbqwkzQd2h5T5D7PvqoucNaiMh4ChPp8cLQiEtRuLHta9nf1lEuXH+jnatGL2j+3jJFIHJ0L7XrgVnvQA==}
     peerDependencies:
       cypress: '>=3'
     dependencies:
       '@percy/sdk-utils': 1.23.0
-      cypress: 11.2.0
+      cypress: 12.12.0
     dev: false
 
   /@percy/dom@1.24.0:
@@ -12514,7 +12514,7 @@ packages:
       defer-to-connect: 2.0.1
     dev: false
 
-  /@testing-library/cypress@8.0.7(cypress@11.2.0):
+  /@testing-library/cypress@8.0.7(cypress@12.12.0):
     resolution: {integrity: sha512-3HTV725rOS+YHve/gD9coZp/UcPK5xhr4H0GMnq/ni6USdtzVtSOG9WBFtd8rYnrXk8rrGD+0toRFYouJNIG0Q==}
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
@@ -12522,7 +12522,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.13
       '@testing-library/dom': 8.20.0
-      cypress: 11.2.0
+      cypress: 12.12.0
     dev: false
 
   /@testing-library/dom@8.20.0:
@@ -15797,6 +15797,11 @@ packages:
   /commander@5.1.0:
     resolution: {integrity: sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==}
     engines: {node: '>= 6'}
+    dev: false
+
+  /commander@6.2.1:
+    resolution: {integrity: sha512-U7VdrJFnJgo4xjrHpTzu0yrHPGImdsmD95ZlgYSEajAn2JKzDhDTPG9kBTefmObL2w/ngeZnilk+OV9CG3d7UA==}
+    engines: {node: '>= 6'}
 
   /commander@7.2.0:
     resolution: {integrity: sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==}
@@ -16555,9 +16560,9 @@ packages:
       fs-exists-sync: 0.1.0
     dev: false
 
-  /cypress@11.2.0:
-    resolution: {integrity: sha512-u61UGwtu7lpsNWLUma/FKNOsrjcI6wleNmda/TyKHe0dOBcVjbCPlp1N6uwFZ0doXev7f/91YDpU9bqDCFeBLA==}
-    engines: {node: '>=12.0.0'}
+  /cypress@12.12.0:
+    resolution: {integrity: sha512-UU5wFQ7SMVCR/hyKok/KmzG6fpZgBHHfrXcHzDmPHWrT+UUetxFzQgt7cxCszlwfozckzwkd22dxMwl/vNkWRw==}
+    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     hasBin: true
     requiresBuild: true
     dependencies:
@@ -16575,7 +16580,7 @@ packages:
       check-more-types: 2.24.0
       cli-cursor: 3.1.0
       cli-table3: 0.6.3
-      commander: 5.1.0
+      commander: 6.2.1
       common-tags: 1.8.2
       dayjs: 1.11.7
       debug: 4.3.4(supports-color@8.1.1)
