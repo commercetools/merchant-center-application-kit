@@ -184,5 +184,5 @@
     "npm": ">=6",
     "pnpm": ">=8"
   },
-  "packageManager": "pnpm@8.5.0"
+  "packageManager": "pnpm@8.5.1"
 }
