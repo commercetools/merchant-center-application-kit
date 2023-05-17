@@ -22,8 +22,8 @@ jobs:
         run: |
           package_version=$(node -e "console.log(require('./package.json').dependencies['$PACKAGE_NAME'])")
 
-          echo "Removing package.json and yarn.lock to avoid installation issues"
-          rm package.json yarn.lock
+          echo "Removing package.json and pnpm-lock.yaml to avoid installation issues"
+          rm package.json pnpm-lock.yaml
 
           echo "Installing $PACKAGE_NAME@$package_version"
           npm install --no-save "$PACKAGE_NAME@$package_version"

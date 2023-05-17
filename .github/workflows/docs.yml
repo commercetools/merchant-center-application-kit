@@ -29,35 +29,38 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          run_install: false
+
       - name: Setup Node (uses version in .nvmrc)
         uses: actions/setup-node@v3
         with:
           node-version-file: '.nvmrc'
+          cache: pnpm
 
       - uses: actions/cache@v3
         with:
           path: |
             .cache
             public
-          key: ${{ runner.os }}-yarn-docs-v1-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-gatsby-docs-v1-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-docs-v1-
-
-      - name: Set custom Yarn cache path
-        run: yarn config set cacheFolder .cache/yarn
+            ${{ runner.os }}-gatsby-docs-v1-
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: pnpm install
         env:
           # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L14-L18
           # https://github.com/marketplace/actions/cypress-io#custom-install
           CYPRESS_INSTALL_BINARY: 0
 
       - name: Building packages
-        run: yarn build
+        run: pnpm build
 
       - name: Building docs website
-        run: yarn build:website
+        run: pnpm build:website
         env:
           NODE_OPTIONS: '--max-old-space-size=6144'
           GATSBY_EXPERIMENTAL_QUERY_CONCURRENCY: 32

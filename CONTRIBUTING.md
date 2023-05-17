@@ -118,21 +118,21 @@ This package contains React components to perform requests in a declarative way.
 ## Setting up a local copy
 
 1. Clone the repository
-2. Run `yarn` in the root folder
+2. Run `pnpm install` in the root folder
 
-Once it's done, you can run `yarn test` (`yarn test:watch`) to test your changes.
+Once it's done, you can run `pnpm run test` (`pnpm run test --watch`) to test your changes.
 
 ## Developing locally
 
-To develop locally, you can use the `playground` application to test the changes in some of the packages. Make sure to `yarn build` the packages before starting the `playground` app because the app consumes the packages as normal "transpiled" dependencies.
+To develop locally, you can use the `playground` application to test the changes in some of the packages. Make sure to `pnpm build` the packages before starting the `playground` app because the app consumes the packages as normal "transpiled" dependencies.
 
-You can also run the build in watch mode `yarn build:bundles:watch` alongside with `yarn playground:start` to rebundle and rebuild the application on each change.
+You can also run the build in watch mode `pnpm build:bundles:watch` alongside with `pnpm playground:start` to rebundle and rebuild the application on each change.
 
 ## Adding changesets
 
 commercetools application-kit uses [changesets](https://github.com/atlassian/changesets) to do versioning and creating changelogs.
 
-As a contributor you need to add a changeset by running `yarn changeset`.
+As a contributor you need to add a changeset by running `pnpm changeset`.
 The command will prompt to select the packages that should be bumped, their associated semver bump types and some markdown which will be inserted into the changelogs.
 
 When opening a Pull Request, a `changeset-bot` checks that the Pull Request contains a changeset. A changeset is **NOT required**, as things like documentation or other changes in the repository itself generally don't need a changeset.
@@ -157,7 +157,7 @@ Note that canary releases **will not create git tags and version bump commits**.
 
 In order to be able to validate GraphQL queries and mutations, defined as `.graphql` files, we use the [eslint-plugin-graphql](https://github.com/apollographql/eslint-plugin-graphql), which requires **introspection schemas** from the different GraphQL APIs being used.
 
-To download the remote schemas simply run `yarn generate-types`. The configuration of each schema is defined in the `.graphqlrc.yml` file, in the root directory. Running this script will download the schemas in the `schemas/*.json` files.
+To download the remote schemas simply run `pnpm generate-types`. The configuration of each schema is defined in the `codegen.*.yml` files, in the root directory. Running this script will download the schemas in the `schemas/*.json` files.
 
 > NOTE that you need your user `mcAccessToken` to be defined as an environment variable `MC_ACCESS_TOKEN` in `.env` file. This will be used by the introspection queries to be able to download the schemas from the MC API. Additionally, you also need to specify one of your `CTP_PROJECT_KEY` where you have access to.
 
@@ -167,8 +167,6 @@ Since the MC uses multiple GraphQL APIs, we need to differentiate which queries 
 - **settings**: instead of `.graphql` use `*.settings.graphql` (_graphql target: `settings`_)
 - **ctp**: instead of `.graphql` use `*.ctp.graphql` (_graphql target: `ctp`_)
 - **proxy**: instead of `.graphql` use `*.proxy.graphql` (_API in the MC frontend apps_)
-
-The regex to match the files to each project schema are defined in the `.graphqlrc.yml` file.
 
 ## Visual Studio Code recommended workspace
 

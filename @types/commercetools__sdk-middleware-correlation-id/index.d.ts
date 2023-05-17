@@ -1,6 +1,5 @@
 declare module '@commercetools/sdk-middleware-correlation-id' {
-  import { Middleware, Json } from '@commercetools/sdk-client';
-  import { Request, RequestInit, Response } from 'node-fetch';
+  import type { Middleware } from '@commercetools/sdk-client';
 
   export type CorrelationIdMiddlewareOptions = {
     generate: () => string;

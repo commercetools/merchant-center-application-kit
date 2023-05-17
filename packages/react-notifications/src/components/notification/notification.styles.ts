@@ -1,4 +1,4 @@
-import { css, keyframes } from '@emotion/react';
+import { css, keyframes, type SerializedStyles } from '@emotion/react';
 import type {
   TAppNotificationKind,
   TAppNotificationDomain,
@@ -67,7 +67,9 @@ const showNotificationSideAnimation = keyframes`
   }
 `;
 
-const getStylesForNotificationIcon = (props: StyleProps) => css`
+const getStylesForNotificationIcon = (
+  props: StyleProps
+): SerializedStyles => css`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,7 +83,7 @@ const getStylesForNotificationIcon = (props: StyleProps) => css`
   background: ${getColorByType(props.type)};
 `;
 
-const getStylesForCloseIcon = (props: StyleProps) => css`
+const getStylesForCloseIcon = (props: StyleProps): SerializedStyles => css`
   display: flex;
   justify-content: center;
   ${props.isNewTheme ? '& svg { width: 16px; height: 16px; }' : ''}
@@ -90,7 +92,7 @@ const getStylesForCloseIcon = (props: StyleProps) => css`
     : ''}
 `;
 
-const getStylesForContent = (props: StyleProps) => {
+const getStylesForContent = (props: StyleProps): SerializedStyles => {
   const fontColor =
     props.domain === NOTIFICATION_DOMAINS.SIDE
       ? designTokens.colorSolid
@@ -119,7 +121,7 @@ const getStylesForContent = (props: StyleProps) => {
   `;
 };
 
-const getStylesForNotification = (props: StyleProps) => {
+const getStylesForNotification = (props: StyleProps): SerializedStyles => {
   const baseStyles = css`
     position: relative;
     display: flex;

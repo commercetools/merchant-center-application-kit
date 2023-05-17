@@ -3,7 +3,7 @@ import { Markdown } from '@commercetools-docs/ui-kit';
 import { customProperties } from '@commercetools-uikit/design-system';
 import Grid from '@commercetools-uikit/grid';
 import InlineSvg from '@commercetools-uikit/icons/inline-svg';
-import Spacings from '@commercetools-uikit/spacings';
+import SpacingsStack from '@commercetools-uikit/spacings-stack';
 
 // Cache object to store references so SVG icons.
 const svgIcons = {};
@@ -30,7 +30,7 @@ const ApplicationIcons = () => (
       const data = svgIcons[iconName].default;
       return (
         <Grid.Item key={iconName} justifySelf="center">
-          <Spacings.Stack alignItems="center">
+          <SpacingsStack alignItems="center">
             <div
               css={css`
                 width: calc(${customProperties.spacingXl} * 1.5);
@@ -40,7 +40,7 @@ const ApplicationIcons = () => (
               <InlineSvg data={data} size="scale" color="solid" />
             </div>
             <Markdown.InlineCode>{iconName}</Markdown.InlineCode>
-          </Spacings.Stack>
+          </SpacingsStack>
         </Grid.Item>
       );
     })}

@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css, type SerializedStyles } from '@emotion/react';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { designTokens as appKitDesignTokens } from '../../../theming';
 
@@ -34,7 +34,7 @@ const getConstraintForGridStyle = (size: StyleProps['size']) => {
   }
 };
 
-export const getModalContentStyles = (props: StyleProps) => {
+export const getModalContentStyles = (props: StyleProps): SerializedStyles => {
   const sizeConstraint = getConstraintForGridStyle(props.size);
   const gridStyle =
     props.size === 'scale'
@@ -83,7 +83,7 @@ export const getModalContentStyles = (props: StyleProps) => {
   return baseStyles;
 };
 
-export const getOverlayStyles = (props: StyleProps) => css`
+export const getOverlayStyles = (props: StyleProps): SerializedStyles => css`
   display: flex;
   position: absolute;
   z-index: ${typeof props.zIndex === 'number'

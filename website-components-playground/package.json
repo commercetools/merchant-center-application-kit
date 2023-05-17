@@ -8,9 +8,10 @@
     "preview": "vite preview --port 8001"
   },
   "dependencies": {
-    "@commercetools-frontend/application-components": "22.2.1",
-    "@commercetools-frontend/browser-history": "22.2.1",
-    "@commercetools-frontend/i18n": "22.2.1",
+    "@commercetools-frontend/application-components": "workspace:*",
+    "@commercetools-frontend/browser-history": "workspace:*",
+    "@commercetools-frontend/constants": "workspace:*",
+    "@commercetools-frontend/i18n": "workspace:*",
     "@commercetools-uikit/design-system": "^16.0.0",
     "@commercetools-uikit/icon-button": "^16.0.0",
     "@commercetools-uikit/icons": "^16.0.0",
@@ -25,14 +26,21 @@
     "@emotion/react": "11.11.0",
     "@emotion/styled": "11.11.0",
     "formik": "2.2.9",
+    "history": "4.10.1",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.40",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-intl": "^6.3.2",
-    "react-router-dom": "5.3.4"
+    "react-intl": "^6.4.2",
+    "react-router-dom": "5.3.4",
+    "react-select": "5.7.3"
   },
   "devDependencies": {
+    "@commercetools-frontend/application-config": "workspace:*",
+    "@types/history": "^4.7.11",
+    "@types/react": "^17.0.53",
+    "@types/react-dom": "^17.0.19",
+    "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "4.0.0",
     "vite": "4.3.5"
   }

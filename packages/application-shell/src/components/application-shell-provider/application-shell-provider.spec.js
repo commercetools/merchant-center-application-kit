@@ -15,7 +15,10 @@ import { getBrowserLocale } from './utils';
 jest.mock('moment/dist/locale/de', () => {});
 jest.mock('../authenticated/has-cached-authentication-state');
 jest.mock('../authenticated/am-i-logged-in');
-jest.mock('./utils');
+jest.mock('./utils', () => ({
+  ...jest.requireActual('./utils'),
+  getBrowserLocale: jest.fn(),
+}));
 
 const createTestProps = (props) => ({
   applicationMessages: {

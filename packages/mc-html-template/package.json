@@ -39,7 +39,8 @@
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3",
     "@types/serialize-javascript": "^5.0.2",
-    "html-webpack-plugin": "5.5.1"
+    "html-webpack-plugin": "5.5.1",
+    "webpack": "5.82.1"
   },
   "engines": {
     "node": "16.x || >=18.0.0"

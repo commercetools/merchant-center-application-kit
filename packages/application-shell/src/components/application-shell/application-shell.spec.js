@@ -1,3 +1,4 @@
+import { mocked } from 'jest-mock';
 import { graphql, rest } from 'msw';
 import {
   screen,
@@ -32,11 +33,15 @@ import {
 } from '../../../../../graphql-test-utils';
 import { STORAGE_KEYS } from '../../constants';
 import { location } from '../../utils/location';
-import ApplicationShellProvider from '../application-shell-provider';
+import { getBrowserHistory } from '../application-shell-provider/utils';
 import ApplicationShell from './application-shell';
 
 jest.mock('@commercetools-frontend/sentry');
 jest.mock('../../utils/location');
+jest.mock('../application-shell-provider/utils', () => ({
+  ...jest.requireActual('../application-shell-provider/utils'),
+  getBrowserHistory: jest.fn(),
+}));
 
 const createTestProps = (props) => ({
   environment: {
@@ -109,7 +114,8 @@ const renderApp = (ui, options = {}) => {
   const testHistory = createEnhancedHistory(
     createMemoryHistory({ initialEntries: [initialRoute] })
   );
-  ApplicationShellProvider.history = testHistory;
+  mocked(getBrowserHistory).mockReturnValue(testHistory);
+
   const { container } = render(<ApplicationShell {...props} />);
   const findByLeftNavigation = () => screen.findByTestId('left-navigation');
   const queryByLeftNavigation = () => screen.queryByTestId('left-navigation');

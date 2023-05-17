@@ -3,6 +3,9 @@ declare module 'debounce-async' {
     leading?: boolean;
     cancelObj?: string;
   };
-  function debounceAsync<T>(func: T, wait?: number, options?: Options): T;
-  export default debounceAsync;
+  export default function debounceAsync<T>(
+    func: T,
+    wait?: number,
+    options?: Options
+  ): T;
 }

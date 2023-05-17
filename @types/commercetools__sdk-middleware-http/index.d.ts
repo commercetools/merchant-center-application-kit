@@ -1,5 +1,5 @@
 declare module '@commercetools/sdk-middleware-http' {
-  import { Middleware, Json, HttpErrorType } from '@commercetools/sdk-client';
+  import type { Middleware, HttpErrorType } from '@commercetools/sdk-client';
 
   export type HttpMiddlewareOptions = {
     host: string;

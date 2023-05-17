@@ -26,6 +26,7 @@
     "stylelint": "14.16.1"
   },
   "peerDependencies": {
+    "@commercetools-frontend/mc-scripts": "workspace:*",
     "postcss": "8.x",
     "stylelint": "14.x"
   }

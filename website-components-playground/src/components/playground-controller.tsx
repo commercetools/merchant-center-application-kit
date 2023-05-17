@@ -24,7 +24,10 @@ const PlaygroundContainer = styled.div`
   border: 16px solid ${customProperties.colorNeutral95};
   border-radius: ${customProperties.borderRadius6};
 `;
-const PreviewContainer = styled.div<{ height: string }>`
+type TPreviewContainerProps = {
+  height: string;
+};
+const PreviewContainer = styled.div<TPreviewContainerProps>`
   position: relative;
   width: 100%;
   overflow: hidden;

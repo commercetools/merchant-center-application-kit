@@ -1,16 +1,19 @@
 import assert from 'node:assert';
 import fs from 'node:fs';
 import path from 'node:path';
-import shelljs from 'shelljs';
 import { findRootSync } from '@manypkg/find-root';
+import shelljs from 'shelljs';
 
 const applicationName = 'my-starter-app';
 const workspaceRoot = findRootSync(process.cwd());
 const binaryPath = path.join(
-  workspaceRoot,
+  workspaceRoot.rootDir,
   'packages/create-mc-app/bin/cli.js'
 );
-const sandboxPath = path.join(workspaceRoot, 'sandbox-installation-template');
+const sandboxPath = path.join(
+  workspaceRoot.rootDir,
+  'sandbox-installation-template'
+);
 const applicationPath = path.join(sandboxPath, applicationName);
 
 const templateName = process.env.TEMPLATE_NAME;

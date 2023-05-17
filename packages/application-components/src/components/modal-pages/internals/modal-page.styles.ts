@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css, type SerializedStyles } from '@emotion/react';
 import { customProperties } from '@commercetools-uikit/design-system';
 
 export const TRANSITION_DURATION = 200;
@@ -7,7 +7,7 @@ type StyleProps = {
   zIndex?: number;
 };
 
-export const getContainerStyles = (_props: StyleProps) => css`
+export const getContainerStyles = (_props: StyleProps): SerializedStyles => css`
   position: absolute;
   top: 0;
   right: 0;
@@ -22,7 +22,7 @@ export const getContainerStyles = (_props: StyleProps) => css`
   transition: transform ${TRANSITION_DURATION}ms ease;
 `;
 
-export const getOverlayStyles = (props: StyleProps) => css`
+export const getOverlayStyles = (props: StyleProps): SerializedStyles => css`
   position: absolute;
   z-index: ${typeof props.zIndex === 'number'
     ? // Use `!important` to overwrite the default value assigned by the Stacking Layer System.
@@ -37,18 +37,18 @@ export const getOverlayStyles = (props: StyleProps) => css`
   transition: opacity ${TRANSITION_DURATION}ms ease;
 `;
 
-export const getAfterOpenContainerAnimation = () => css`
+export const getAfterOpenContainerAnimation = (): SerializedStyles => css`
   transform: translate3d(0, 0, 0) !important;
 `;
 
-export const getAfterOpenOverlayAnimation = () => css`
+export const getAfterOpenOverlayAnimation = (): SerializedStyles => css`
   opacity: 1 !important;
 `;
 
-export const getBeforeCloseContainerAnimation = () => css`
+export const getBeforeCloseContainerAnimation = (): SerializedStyles => css`
   transform: translate3d(30px, 0, 0) !important;
 `;
 
-export const getBeforeCloseOverlayAnimation = () => css`
+export const getBeforeCloseOverlayAnimation = (): SerializedStyles => css`
   opacity: 0 !important;
 `;

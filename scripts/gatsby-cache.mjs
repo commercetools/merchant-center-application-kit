@@ -8,24 +8,24 @@
  *
  * Usage:
  *
- * yarn node scripts/gatsby-cache.mjs pre
- * yarn node scripts/gatsby-cache.mjs post
+ * node scripts/gatsby-cache.mjs pre
+ * node scripts/gatsby-cache.mjs post
  *
  * This script requires node.js v14.14.0 or higher
  */
 
 import fs from 'fs';
 import path from 'path';
-import mri from 'mri';
-import { getPackages } from '@manypkg/get-packages';
 import { findRootSync } from '@manypkg/find-root';
+import { getPackages } from '@manypkg/get-packages';
+import mri from 'mri';
 
 const flags = mri(process.argv.slice(2), { alias: { help: ['h'] } });
 const commands = flags._;
 
 if (commands.length === 0 || (flags.help && commands.length === 0)) {
   console.log(`
-  Usage: yarn node ./scripts/gatsby-cache.mjs [command]
+  Usage: node ./scripts/gatsby-cache.mjs [command]
 
   Displays help information.
 
@@ -49,8 +49,8 @@ switch (command) {
 }
 
 const workspaceRoot = findRootSync(process.cwd());
-const globalPublicPath = path.join(workspaceRoot, 'public');
-const globalCachePath = path.join(workspaceRoot, '.cache');
+const globalPublicPath = path.join(workspaceRoot.rootDir, 'public');
+const globalCachePath = path.join(workspaceRoot.rootDir, '.cache');
 const gatsbyWebsites = ['@commercetools-website/custom-applications'];
 
 const moveFolderFromTo = async (from, to) => {

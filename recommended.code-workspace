@@ -6,8 +6,8 @@
   ],
   "settings": {
     // https://vscode.readthedocs.io/en/latest/getstarted/settings/
-    "npm.packageManager": "yarn",
-    "eslint.packageManager": "yarn",
+    "npm.packageManager": "pnpm",
+    "eslint.packageManager": "pnpm",
     "search.exclude": {
       "**/node_modules": true,
       "**/dist": true,

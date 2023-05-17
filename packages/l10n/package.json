@@ -25,6 +25,7 @@
     "@babel/runtime-corejs3": "^7.20.13",
     "@commercetools-frontend/sentry": "22.2.1",
     "@emotion/react": "11.11.0",
+    "@types/lodash": "^4.14.191",
     "@types/prop-types": "^15.7.5",
     "@types/react": "^17.0.53",
     "lodash": "4.17.21",
@@ -34,6 +35,7 @@
   },
   "devDependencies": {
     "@testing-library/react-hooks": "8.0.1",
+    "@types/jest": "^29.5.1",
     "chalk": "4.1.2",
     "cldr": "7.4.0",
     "deep-diff": "1.0.2",

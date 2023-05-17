@@ -46,8 +46,10 @@
   },
   "devDependencies": {
     "@formatjs/cli": "6.1.1",
+    "@types/jest": "^29.5.1",
+    "jest-mock": "29.5.0",
     "react": "17.0.2",
-    "react-intl": "^6.3.2"
+    "react-intl": "^6.4.2"
   },
   "peerDependencies": {
     "react": "17.x",

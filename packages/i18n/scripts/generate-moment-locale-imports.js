@@ -7,7 +7,7 @@
  *
  * Usage:
  *
- * yarn node scripts/generate-moment-locale-imports.js
+ * node scripts/generate-moment-locale-imports.js
  */
 
 const fs = require('fs');

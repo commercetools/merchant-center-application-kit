@@ -2,9 +2,7 @@ import { Suspense } from 'react';
 import { Route, type RouteProps } from 'react-router-dom';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 
-const SuspendedRoute = <Path extends string = string>(
-  props: RouteProps<Path>
-) => (
+const SuspendedRoute = (props: RouteProps) => (
   <Route {...props}>
     <Suspense fallback={<LoadingSpinner />}>{props.children}</Suspense>
   </Route>

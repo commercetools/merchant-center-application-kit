@@ -9,10 +9,11 @@
     "preview": "vite preview --port 3000"
   },
   "dependencies": {
-    "@commercetools-frontend/application-components": "22.2.1",
-    "@commercetools-frontend/assets": "22.2.1",
-    "@commercetools-frontend/constants": "22.2.1",
-    "@commercetools-frontend/react-notifications": "22.2.1",
+    "@commercetools-frontend/application-components": "workspace:*",
+    "@commercetools-frontend/application-config": "workspace:*",
+    "@commercetools-frontend/assets": "workspace:*",
+    "@commercetools-frontend/constants": "workspace:*",
+    "@commercetools-frontend/react-notifications": "workspace:*",
     "@commercetools-uikit/accessible-button": "^16.0.0",
     "@commercetools-uikit/card": "^16.0.0",
     "@commercetools-uikit/design-system": "^16.0.0",
@@ -26,15 +27,18 @@
     "@commercetools-uikit/text-input": "^16.0.0",
     "@emotion/react": "11.11.0",
     "@emotion/styled": "11.11.0",
+    "@types/react": "^17.0.53",
+    "@types/react-dom": "^17.0.19",
+    "@types/react-router-dom": "^5.3.3",
+    "@vitejs/plugin-react": "4.0.0",
     "formik": "2.2.9",
+    "jest": "29.5.0",
+    "jest-each": "29.5.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-intl": "^6.3.2",
+    "react-intl": "^6.4.2",
     "react-redux": "7.2.9",
-    "react-router-dom": "5.3.4"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "4.0.0",
+    "react-router-dom": "5.3.4",
     "vite": "4.3.5"
   }
 }

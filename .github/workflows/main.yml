@@ -30,20 +30,17 @@ jobs:
       - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
 
-      - name: Check for unmet constraints (fix w/ "yarn constraints --fix")
-        run: yarn constraints
-
       - name: Running static type checking
-        run: yarn typecheck
+        run: pnpm typecheck
 
       - name: Running static type checking (Cypress)
-        run: yarn typecheck:cypress
+        run: pnpm typecheck:cypress
 
       - name: Running static type checking (Starter Template)
-        run: yarn typecheck:starter
+        run: pnpm typecheck:starter
 
       - name: Running linters and tests
-        run: yarn jest --projects jest.{eslint,stylelint,test,text}.config.js --reporters jest-silent-reporter
+        run: pnpm jest --projects jest.{eslint,stylelint,test,text}.config.js --reporters jest-silent-reporter
         env:
           CI: true
           RTL_ASYNC_UTIL_TIMEOUT: 5000
@@ -61,10 +58,15 @@ jobs:
         uses: ./.github/actions/ci
 
       - name: Building Visual Regression Tests application for UI components
-        run: yarn visual-testing-app:build
+        run: pnpm visual-testing-app:build
+
+      # Explicitly install the Chrome binary in case it's not available yet.
+      # This workaround is based on the suggestions from https://github.com/puppeteer/puppeteer/issues/9533.
+      - name: Installing Chrome via Puppeteer
+        run: node ./node_modules/puppeteer/install.js
 
       - name: Running Visual Regression Tests for UI components
-        run: "yarn vrt:components"
+        run: pnpm vrt:components
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_UI_COMPONENTS }}
 
@@ -88,7 +90,7 @@ jobs:
         uses: ./.github/actions/ci
 
       - name: Testing Starter application development server
-        run: yarn start-server-and-test 'yarn template-starter:start' http-get://127.0.0.1:3001 'exit 0'
+        run: pnpm start-server-and-test 'pnpm template-starter:start' http-get://127.0.0.1:3001 'exit 0'
         env:
           HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
           APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
@@ -96,7 +98,7 @@ jobs:
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
       - name: Building Starter template application
-        run: yarn template-starter:build
+        run: pnpm template-starter:build
         env:
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
@@ -112,10 +114,10 @@ jobs:
           key: ${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
 
       - name: Installing Cypress binary
-        run: yarn cypress install && yarn cypress cache list
+        run: pnpm cypress install && pnpm cypress cache list
 
       - name: Running End-to-End tests for Starter template application
-        run: yarn start-server-and-test 'yarn template-starter:start:prod:local' http-get://127.0.0.1:3001 'yarn test:e2e:template-starter'
+        run: pnpm start-server-and-test 'pnpm template-starter:start:prod:local' http-get://127.0.0.1:3001 'pnpm test:e2e:template-starter'
         env:
           NODE_ENV: test
           CYPRESS_CI: "true"
@@ -167,7 +169,7 @@ jobs:
         uses: ./.github/actions/ci
 
       - name: Testing Starter application development server
-        run: yarn start-server-and-test 'yarn template-starter-typescript:start' http-get://127.0.0.1:3001 'exit 0'
+        run: pnpm start-server-and-test 'pnpm template-starter-typescript:start' http-get://127.0.0.1:3001 'exit 0'
         env:
           HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
           APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
@@ -175,12 +177,12 @@ jobs:
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
       - name: Building Starter template application
-        run: yarn template-starter-typescript:build
+        run: pnpm template-starter-typescript:build
         env:
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
       - name: Running static type checking
-        run: yarn typecheck:starter
+        run: pnpm typecheck:starter
 
       # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L23-L30
       # https://github.com/marketplace/actions/cypress-io#custom-install
@@ -194,10 +196,10 @@ jobs:
           key: ${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
 
       - name: Installing Cypress binary
-        run: yarn cypress install && yarn cypress cache list
+        run: pnpm cypress install && pnpm cypress cache list
 
       - name: Running End-to-End tests for Starter template application
-        run: yarn start-server-and-test 'yarn template-starter-typescript:start:prod:local' http-get://127.0.0.1:3001 'yarn test:e2e:template-starter'
+        run: pnpm start-server-and-test 'pnpm template-starter-typescript:start:prod:local' http-get://127.0.0.1:3001 'pnpm test:e2e:template-starter'
         env:
           NODE_ENV: test
           CYPRESS_CI: "true"
@@ -249,7 +251,7 @@ jobs:
         uses: ./.github/actions/ci
 
       - name: Building Playground application
-        run: yarn playground:build
+        run: pnpm playground:build
         env:
           NODE_OPTIONS: '--max-old-space-size=6144'
           APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
@@ -269,10 +271,10 @@ jobs:
           key: ${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
 
       - name: Installing Cypress binary
-        run: yarn cypress install && yarn cypress cache list
+        run: pnpm cypress install && pnpm cypress cache list
 
       - name: Running End-to-End tests for Playground application
-        run: yarn start-server-and-test 'yarn playground:start:prod:local' http-get://127.0.0.1:3001 'yarn percy exec -- yarn test:e2e:playground'
+        run: pnpm start-server-and-test 'pnpm playground:start:prod:local' http-get://127.0.0.1:3001 'pnpm percy exec -- pnpm test:e2e:playground'
         env:
           NODE_ENV: test
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_E2E_PLAYGROUND }}

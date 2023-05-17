@@ -3,10 +3,10 @@
 set -e
 
 echo "Compiling i18n data."
-yarn compile-intl
+pnpm compile-intl
 
 echo "Compiling CSS modules."
-yarn compile-css-modules
+pnpm compile-css-modules
 
 if [ "$1" = "--watch" ]; then
 
@@ -25,5 +25,5 @@ else
   fi
 
   echo "Building CLI packages."
-  NODE_ENV=production yarn workspace @commercetools-frontend/codemod build
+  NODE_ENV=production pnpm --filter @commercetools-frontend/codemod run build
 fi
