@@ -49,9 +49,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gatsby-docs-v1-
 
-      - name: Set custom Yarn cache path
-        run: yarn config set cacheFolder .cache/yarn
-
       - name: Install dependencies
         run: pnpm install
         env:

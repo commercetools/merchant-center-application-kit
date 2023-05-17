@@ -23,28 +23,28 @@ $ npx @commercetools-frontend/create-mc-app@latest my-new-custom-application-pro
 
 ## Developing application-kit packages
 
-Install the dependencies (uses yarn workspaces):
+Install the dependencies (uses [pnpm workspaces](https://pnpm.io/workspaces)):
 
 ```bash
-$ yarn
+$ pnpm install
 ```
 
 To run the tests:
 
 ```bash
-$ yarn test
+$ pnpm run test
 
 # or
-$ yarn test:watch
+$ pnpm run test --watch
 ```
 
 Build the application bundles
 
 ```bash
-$ yarn build
+$ pnpm build
 
 # or
-$ yarn build:bundles:watch
+$ pnpm build:bundles:watch
 ```
 
 Start the [playground application](./playground):
@@ -53,10 +53,10 @@ Start the [playground application](./playground):
 
 ```bash
 // Terminal process 1
-$ yarn build:watch
+$ pnpm build:watch
 
 // Terminal process 2
-$ yarn playground:start
+$ pnpm playground:start
 ```
 
 ## Documentation
