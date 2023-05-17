@@ -6,7 +6,7 @@ import hintOutdatedVersion from './hint-outdated-version';
 import processOptions from './process-options';
 import * as tasks from './tasks';
 import type { TCliCommandOptions } from './types';
-import { shouldUseYarn } from './utils';
+import { getPreferredPackageManager } from './utils';
 import { throwIfNodeVersionIsNotSupported } from './validations';
 
 throwIfNodeVersionIsNotSupported(process.versions.node, pkgJson.engines.node);
@@ -55,6 +55,14 @@ const run = () => {
       '--initial-project-key <value>',
       '(optional) A commercetools project key used for the initial login in development. By default, the value is prompted in the terminal.'
     )
+    .option(
+      '--package-manager <value>',
+      '(optional) The preferred package manager to use: npm, yarn, pnpm.'
+    )
+    .option(
+      '--package-manager-version <value>',
+      '(optional) The preferred package manager version to use in the format "x.y.z".'
+    )
     .action(async (projectDirectory, options: TCliCommandOptions) => {
       if (!projectDirectory) {
         cli.outputHelp();
@@ -73,18 +81,23 @@ const run = () => {
 
       const taskOptions = await processOptions(projectDirectory, options);
 
+      const shouldInstallDependencies =
+        !options.skipInstall ||
+        // TODO: remove once we manage to ensure the package manager is installed, for example via Corepack.
+        options.packageManager === 'pnpm';
+
       const taskList = new Listr(
         [
           tasks.downloadTemplate(taskOptions),
           tasks.updatePackageJson(taskOptions, releaseVersion),
           tasks.updateCustomApplicationConfig(taskOptions),
           tasks.updateApplicationConstants(taskOptions),
-          !options.skipInstall && tasks.installDependencies(taskOptions),
+          shouldInstallDependencies && tasks.installDependencies(taskOptions),
         ].filter(Boolean) as ListrTask[]
       );
 
       await taskList.run();
-      const useYarn = shouldUseYarn();
+      const packageManager = getPreferredPackageManager(taskOptions);
 
       console.log('');
       console.log(
@@ -93,10 +106,10 @@ const run = () => {
       console.log('');
       console.log(`To get started:`);
       console.log(`$ cd ${taskOptions.projectDirectoryName}`);
-      if (options.skipInstall) {
-        console.log(`$ ${useYarn ? 'yarn' : 'npm'} install`);
+      if (!shouldInstallDependencies) {
+        console.log(`$ ${packageManager} install`);
       }
-      console.log(`$ ${useYarn ? 'yarn' : 'npm'} start`);
+      console.log(`$ ${packageManager} start`);
       console.log('');
       console.log(
         `Visit https://docs.commercetools.com/custom-applications for more info about developing Custom Applications. Enjoy 🚀`

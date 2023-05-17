@@ -7,6 +7,7 @@ import {
   throwIfTemplateIsNotSupported,
   throwIfProjectDirectoryExists,
   throwIfInitialProjectKeyIsMissing,
+  throwIfPackageManagerVersionIsMissing,
 } from './validations';
 
 const question = (rl: Interface, value: string) =>
@@ -74,6 +75,10 @@ async function processOptions(
   // Validate options
   throwIfProjectDirectoryExists(projectDirectoryName, projectDirectoryPath);
   throwIfTemplateIsNotSupported(templateName);
+  throwIfPackageManagerVersionIsMissing(
+    options.packageManager,
+    options.packageManagerVersion
+  );
 
   // Read prompts
   const rl = readline.createInterface({
@@ -91,6 +96,8 @@ async function processOptions(
     tagOrBranchVersion,
     entryPointUriPath,
     initialProjectKey,
+    packageManager: options.packageManager,
+    packageManagerVersion: options.packageManagerVersion,
   };
 }
 
