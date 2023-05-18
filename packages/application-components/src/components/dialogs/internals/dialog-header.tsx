@@ -1,9 +1,6 @@
 import type { SyntheticEvent } from 'react';
 import { css } from '@emotion/react';
-import {
-  designTokens as uiKitDesignTokens,
-  useTheme,
-} from '@commercetools-uikit/design-system';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { CloseIcon } from '@commercetools-uikit/icons';
 import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';
 import Spacings from '@commercetools-uikit/spacings';
@@ -17,15 +14,6 @@ type Props = {
 
 type TitleProps = Pick<Props, 'title'>;
 const Title = (props: TitleProps) => {
-  const { theme } = useTheme();
-  if (theme === 'default') {
-    return (
-      <Text.Subheadline as="h4" title={props.title} truncate>
-        {props.title}
-      </Text.Subheadline>
-    );
-  }
-
   return (
     <Text.Headline as="h3" title={props.title} truncate>
       {props.title}

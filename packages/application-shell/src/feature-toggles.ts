@@ -17,8 +17,4 @@
  *   them to off until fetched).
  */
 
-export const UI_REDESIGN = 'uiRedesign';
-
-export const FLAGS = {
-  [UI_REDESIGN]: true,
-};
+export const FLAGS = {};

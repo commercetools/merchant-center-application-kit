@@ -14,7 +14,6 @@ type StyleProps = {
   type: TAppNotificationKind;
   domain: TAppNotificationDomain;
   fixed: boolean;
-  isNewTheme?: boolean;
 };
 
 const getColorByType = (value: TAppNotificationKind) => {
@@ -86,8 +85,11 @@ const getStylesForNotificationIcon = (
 const getStylesForCloseIcon = (props: StyleProps): SerializedStyles => css`
   display: flex;
   justify-content: center;
-  ${props.isNewTheme ? '& svg { width: 16px; height: 16px; }' : ''}
-  ${props.isNewTheme && props.domain !== NOTIFICATION_DOMAINS.SIDE
+  & svg {
+    width: 16px;
+    height: 16px;
+  }
+  ${props.domain !== NOTIFICATION_DOMAINS.SIDE
     ? '& svg { fill: ' + designTokens.colorSurface + '; }'
     : ''}
 `;
@@ -100,13 +102,10 @@ const getStylesForContent = (props: StyleProps): SerializedStyles => {
   return css`
     flex-basis: 100%;
     flex-grow: 1;
-    padding: 0
-      ${props.isNewTheme ? designTokens.spacingM : designTokens.spacingS};
+    padding: ${`0 ${designTokens.spacingM}`};
     margin: 0;
     font-size: ${props.domain === NOTIFICATION_DOMAINS.SIDE
-      ? props.isNewTheme
-        ? '1rem'
-        : '0.929rem'
+      ? '1rem'
       : 'inherit'};
 
     color: ${fontColor};
@@ -158,13 +157,8 @@ const getStylesForNotification = (props: StyleProps): SerializedStyles => {
           ${designTokens.spacingM} 50px !important;
         text-align: left;
         background: ${designTokens.colorSurface};
-        border: 1px solid
-          ${props.isNewTheme
-            ? getBorderColor(props.type)
-            : getColorByType(props.type)};
-        box-shadow: ${props.isNewTheme
-          ? '0px 2px 5px 0px rgba(0, 0, 0, 0.15)'
-          : '0 1px 2px rgba(0, 0, 0, 0.24)'};
+        border: 1px solid ${getBorderColor(props.type)};
+        box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
         border-radius: ${designTokens.borderRadius6};
         word-break: break-word;
         hyphens: auto; /* still not supported on Chrome */

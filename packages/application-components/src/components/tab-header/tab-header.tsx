@@ -2,7 +2,6 @@ import type { ReactNode } from 'react';
 import type { LocationDescriptor } from 'history';
 import { useIntl, type MessageDescriptor } from 'react-intl';
 import { Link, matchPath, useLocation } from 'react-router-dom';
-import { useTheme } from '@commercetools-uikit/design-system';
 import Text from '@commercetools-uikit/text';
 import { warning } from '@commercetools-uikit/utils';
 import { getLinkStyles } from './tab.styles';
@@ -52,16 +51,6 @@ export type TTabHeaderProps = {
 };
 
 const TabLabel = ({ children }: { children?: string }) => {
-  const { theme } = useTheme();
-
-  if (theme === 'default') {
-    return (
-      <Text.Subheadline as="h4" truncate={true}>
-        {children}
-      </Text.Subheadline>
-    );
-  }
-
   return (
     <Text.Headline as="h3" truncate={true}>
       {children}

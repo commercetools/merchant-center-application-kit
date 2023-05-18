@@ -1,4 +1,3 @@
-// TODO: @redesign cleanup
 import { ReactNode, SyntheticEvent } from 'react';
 import { useIntl } from 'react-intl';
 import type {
@@ -10,13 +9,11 @@ import {
   NOTIFICATION_DOMAINS,
   NOTIFICATION_KINDS_SIDE,
 } from '@commercetools-frontend/constants';
-import { useTheme } from '@commercetools-uikit/design-system';
 import { useFieldId } from '@commercetools-uikit/hooks';
 import {
   CloseBoldIcon,
   ErrorIcon,
   WarningIcon,
-  InfoIcon,
   InformationIcon,
   CheckBoldIcon,
 } from '@commercetools-uikit/icons';
@@ -45,7 +42,6 @@ type PropsIcon = {
     | 'surface'
     | 'primary'
     | 'primary40';
-  isNewTheme: boolean;
 };
 
 const NotificationIcon = (props: PropsIcon) => {
@@ -53,11 +49,7 @@ const NotificationIcon = (props: PropsIcon) => {
     return <ErrorIcon color={props.color} />;
   }
   if (props.type === NOTIFICATION_KINDS_SIDE.info) {
-    return props.isNewTheme ? (
-      <InformationIcon color={props.color} />
-    ) : (
-      <InfoIcon color={props.color} />
-    );
+    return <InformationIcon color={props.color} />;
   }
   if (props.type === NOTIFICATION_KINDS_SIDE.warning) {
     return <WarningIcon color={props.color} />;
@@ -81,20 +73,19 @@ const defaultProps: Pick<Props, 'fixed'> = {
 const Notification = (props: Props) => {
   const intl = useIntl();
   const id = useFieldId(undefined, sequentialId);
-  const { isNewTheme } = useTheme();
 
   return (
     <div
       role="alertdialog"
       aria-describedby={id}
-      css={getStylesForNotification({ ...props, isNewTheme })}
+      css={getStylesForNotification(props)}
       {...filterDataAttributes(props)}
     >
-      <div id={id} css={getStylesForContent({ ...props, isNewTheme })}>
+      <div id={id} css={getStylesForContent(props)}>
         {props.children}
       </div>
       {props.onCloseClick ? (
-        <div css={getStylesForCloseIcon({ ...props, isNewTheme })}>
+        <div css={getStylesForCloseIcon(props)}>
           <SecondaryIconButton
             label={intl.formatMessage(messages.hideNotification)}
             onClick={props.onCloseClick}
@@ -105,11 +96,7 @@ const Notification = (props: Props) => {
       ) : null}
       {props.domain === NOTIFICATION_DOMAINS.SIDE ? (
         <div css={getStylesForNotificationIcon(props)}>
-          <NotificationIcon
-            type={props.type}
-            color="surface"
-            isNewTheme={isNewTheme}
-          />
+          <NotificationIcon type={props.type} color="surface" />
         </div>
       ) : null}
     </div>

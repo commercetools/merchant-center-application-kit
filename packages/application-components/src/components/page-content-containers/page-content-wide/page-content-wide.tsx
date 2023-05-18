@@ -1,13 +1,13 @@
-// TODO: @redesign cleanup
 import { Children, type ReactNode } from 'react';
 import styled from '@emotion/styled';
-import { designTokens, useTheme } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import { useWarning } from '@commercetools-uikit/utils';
 
 export type TPageContentWide = {
   columns: '1' | '1/1' | '2/1';
   gapSize: '10' | '20';
   children: ReactNode;
+  // @deprecated
   themeParentSelector?: () => HTMLElement | null;
 };
 
@@ -54,15 +54,12 @@ const Container = styled.div`
 `;
 
 function PageContentWide(props: TPageContentWide) {
-  const { isNewTheme } = useTheme(props.themeParentSelector);
   const [leftChild, rightChild] = Children.toArray(props.children);
 
   useWarning(
     props.columns !== '1' || !Boolean(rightChild),
     'PageContentWide: This component only renders its first children when using a single column but you provided more that one.'
   );
-
-  if (!isNewTheme) return <>{props.children}</>;
 
   return (
     <Container>

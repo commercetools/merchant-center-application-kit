@@ -1,4 +1,3 @@
-// TODO: @redesign cleanup
 import { css } from '@emotion/react';
 import { designTokens as appKitDesignTokens } from '@commercetools-frontend/application-components';
 import LogoSVG from '@commercetools-frontend/assets/images/logo.svg';
