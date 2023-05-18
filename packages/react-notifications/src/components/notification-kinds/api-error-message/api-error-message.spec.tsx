@@ -96,10 +96,12 @@ describe('render', () => {
   });
   it('should show message for DuplicateField', () => {
     const error = {
-      extensions: { code: 'DuplicateField' },
+      extensions: {
+        code: 'DuplicateField',
+        field: 'key',
+        duplicateValue: 'duplicateValueContent',
+      },
       message: 'message-content',
-      field: 'key',
-      duplicateValue: 'duplicateValueContent',
     };
     renderMessage(<ApiErrorMessage error={error} />);
     expect(
