@@ -1,5 +1,4 @@
 import type { ReactElement, ReactNode } from 'react';
-import { useTheme } from '@commercetools-uikit/design-system';
 import PageHeaderTitle from '../../internals/page-header-title';
 import CustomFormMainPage from '../custom-form-main-page';
 
@@ -23,13 +22,12 @@ type InfoMainPageProps = {
 };
 
 const InfoMainPage = (props: InfoMainPageProps) => {
-  const { themedValue } = useTheme();
   return (
     <CustomFormMainPage
       title={props.title}
       subtitle={props.subtitle}
       customTitleRow={props.customTitleRow}
-      hideDivider={themedValue(false, true)}
+      hideDivider={true}
     >
       {props.children}
     </CustomFormMainPage>
