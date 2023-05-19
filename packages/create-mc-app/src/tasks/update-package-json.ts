@@ -62,11 +62,6 @@ function updatePackageJson(
             'start:prod:local'
           ].replace('yarn', packageManager),
         },
-        ...(options.packageManager
-          ? {
-              packageManager: `${options.packageManager}@${options.packageManagerVersion}`,
-            }
-          : {}),
       });
 
       fs.writeFileSync(

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import semver from 'semver';
-import type { TPackageManager, TTemplate } from './types';
+import type { TTemplate } from './types';
 import { isSemVer } from './utils';
 
 const availableTemplates = {
@@ -79,22 +79,10 @@ const throwIfNodeVersionIsNotSupported = (
   }
 };
 
-const throwIfPackageManagerVersionIsMissing = (
-  packageManager?: TPackageManager,
-  packageManagerVersion?: string
-) => {
-  if (packageManager && !packageManagerVersion) {
-    throw new Error(
-      `Provide the "--package-manager-version" when using the "--package-manager" option.`
-    );
-  }
-};
-
 export {
   throwIfTemplateIsNotSupported,
   throwIfProjectDirectoryExists,
   throwIfTemplateVersionDoesNotExist,
   throwIfInitialProjectKeyIsMissing,
   throwIfNodeVersionIsNotSupported,
-  throwIfPackageManagerVersionIsMissing,
 };

@@ -59,10 +59,6 @@ const run = () => {
       '--package-manager <value>',
       '(optional) The preferred package manager to use: npm, yarn, pnpm.'
     )
-    .option(
-      '--package-manager-version <value>',
-      '(optional) The preferred package manager version to use in the format "x.y.z".'
-    )
     .action(async (projectDirectory, options: TCliCommandOptions) => {
       if (!projectDirectory) {
         cli.outputHelp();

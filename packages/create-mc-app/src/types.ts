@@ -13,7 +13,6 @@ export type TCliCommandOptions = {
   entryPointUriPath?: string;
   initialProjectKey?: string;
   packageManager?: TPackageManager;
-  packageManagerVersion?: string;
 };
 
 export type TCliTaskOptions = {
@@ -24,6 +23,4 @@ export type TCliTaskOptions = {
   entryPointUriPath: string;
   initialProjectKey: string;
   packageManager: TCliCommandOptions['packageManager'];
-  // Required if `packageManager` is defined.
-  packageManagerVersion: TCliCommandOptions['packageManagerVersion'];
 };
