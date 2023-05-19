@@ -1,5 +1,33 @@
 # merchant-center-application-template-starter-typescript
 
+## 22.3.0
+
+### Minor Changes
+
+- [#2976](https://github.com/commercetools/merchant-center-application-kit/pull/2976) [`9add8f46b`](https://github.com/commercetools/merchant-center-application-kit/commit/9add8f46b668fb95b2c966a087bfb00c807ab55e) Thanks [@emmenko](https://github.com/emmenko)! - We migrate from Yarn to Pnpm as the package manager for the App Kit repository. As a result of it there were several packages that didn't specify all the needed dependencies. This is fixed now.
+
+### Patch Changes
+
+- [#3061](https://github.com/commercetools/merchant-center-application-kit/pull/3061) [`448774957`](https://github.com/commercetools/merchant-center-application-kit/commit/44877495721371ae251e11f6b7d926344cfeae0b) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies.
+
+- [#3078](https://github.com/commercetools/merchant-center-application-kit/pull/3078) [`c21051b3e`](https://github.com/commercetools/merchant-center-application-kit/commit/c21051b3e07ab37da4783999e7f919505929c317) Thanks [@emmenko](https://github.com/emmenko)! - Remove `maxHeight` from tables
+
+- Updated dependencies [[`a7267c306`](https://github.com/commercetools/merchant-center-application-kit/commit/a7267c306c6085ec448701490be7ec7d100cfc2a), [`448774957`](https://github.com/commercetools/merchant-center-application-kit/commit/44877495721371ae251e11f6b7d926344cfeae0b), [`5c3d8268b`](https://github.com/commercetools/merchant-center-application-kit/commit/5c3d8268bf575e1ee79fd1ab6770a042101e9a96), [`9add8f46b`](https://github.com/commercetools/merchant-center-application-kit/commit/9add8f46b668fb95b2c966a087bfb00c807ab55e), [`646b8bf56`](https://github.com/commercetools/merchant-center-application-kit/commit/646b8bf56c01766a924f329c27f63ce0796724ad)]:
+  - @commercetools-frontend/application-shell@22.3.0
+  - @commercetools-frontend/application-shell-connectors@22.3.0
+  - @commercetools-frontend/application-components@22.3.0
+  - @commercetools-frontend/eslint-config-mc-app@22.3.0
+  - @commercetools-frontend/permissions@22.3.0
+  - @commercetools-frontend/mc-scripts@22.3.0
+  - @commercetools-frontend/i18n@22.3.0
+  - @commercetools-frontend/l10n@22.3.0
+  - @commercetools-frontend/mc-dev-authentication@22.3.0
+  - @commercetools-frontend/application-config@22.3.0
+  - @commercetools-frontend/jest-preset-mc-app@22.3.0
+  - @commercetools-frontend/actions-global@22.3.0
+  - @commercetools-frontend/assets@22.3.0
+  - @commercetools-frontend/constants@22.3.0
+
 ## 22.2.1
 
 ### Patch Changes
