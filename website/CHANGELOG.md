@@ -1,5 +1,20 @@
 # @commercetools-website/custom-applications
 
+## 22.3.0
+
+### Minor Changes
+
+- [#3068](https://github.com/commercetools/merchant-center-application-kit/pull/3068) [`14e3270e7`](https://github.com/commercetools/merchant-center-application-kit/commit/14e3270e7fd7e1949f2ef2afcd18ae5835a7a7e9) Thanks [@renovate](https://github.com/apps/renovate)! - Support Cypress v12 for Session general availability. The `experimentalSessionAndOrigin` is no longer needed when using Cypress v12 but we still support it for backwards compatibility.
+
+- [#2976](https://github.com/commercetools/merchant-center-application-kit/pull/2976) [`9add8f46b`](https://github.com/commercetools/merchant-center-application-kit/commit/9add8f46b668fb95b2c966a087bfb00c807ab55e) Thanks [@emmenko](https://github.com/emmenko)! - We migrate from Yarn to Pnpm as the package manager for the App Kit repository. As a result of it there were several packages that didn't specify all the needed dependencies. This is fixed now.
+
+### Patch Changes
+
+- [#3061](https://github.com/commercetools/merchant-center-application-kit/pull/3061) [`448774957`](https://github.com/commercetools/merchant-center-application-kit/commit/44877495721371ae251e11f6b7d926344cfeae0b) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies.
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.3.0
+
 ## 22.2.1
 
 ## 22.2.0

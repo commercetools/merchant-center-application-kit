@@ -1,5 +1,23 @@
 # @commercetools-frontend/react-notifications
 
+## 22.3.0
+
+### Minor Changes
+
+- [#2976](https://github.com/commercetools/merchant-center-application-kit/pull/2976) [`9add8f46b`](https://github.com/commercetools/merchant-center-application-kit/commit/9add8f46b668fb95b2c966a087bfb00c807ab55e) Thanks [@emmenko](https://github.com/emmenko)! - We migrate from Yarn to Pnpm as the package manager for the App Kit repository. As a result of it there were several packages that didn't specify all the needed dependencies. This is fixed now.
+
+### Patch Changes
+
+- [#3061](https://github.com/commercetools/merchant-center-application-kit/pull/3061) [`448774957`](https://github.com/commercetools/merchant-center-application-kit/commit/44877495721371ae251e11f6b7d926344cfeae0b) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies.
+
+- [#3089](https://github.com/commercetools/merchant-center-application-kit/pull/3089) [`08395905f`](https://github.com/commercetools/merchant-center-application-kit/commit/08395905f80fb908dfac1cb2c9873762a2c87f25) Thanks [@ragafus](https://github.com/ragafus)! - Adds support for special formatted message for `DuplicateField` errors from GraphQL
+
+- Updated dependencies [[`448774957`](https://github.com/commercetools/merchant-center-application-kit/commit/44877495721371ae251e11f6b7d926344cfeae0b), [`9add8f46b`](https://github.com/commercetools/merchant-center-application-kit/commit/9add8f46b668fb95b2c966a087bfb00c807ab55e)]:
+  - @commercetools-frontend/sentry@22.3.0
+  - @commercetools-frontend/actions-global@22.3.0
+  - @commercetools-frontend/constants@22.3.0
+  - @commercetools-frontend/notifications@22.3.0
+
 ## 22.2.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @commercetools-frontend/browser-history
 
+## 22.3.0
+
+### Minor Changes
+
+- [#2976](https://github.com/commercetools/merchant-center-application-kit/pull/2976) [`9add8f46b`](https://github.com/commercetools/merchant-center-application-kit/commit/9add8f46b668fb95b2c966a087bfb00c807ab55e) Thanks [@emmenko](https://github.com/emmenko)! - We migrate from Yarn to Pnpm as the package manager for the App Kit repository. As a result of it there were several packages that didn't specify all the needed dependencies. This is fixed now.
+
 ## 22.2.1
 
 ## 22.2.0

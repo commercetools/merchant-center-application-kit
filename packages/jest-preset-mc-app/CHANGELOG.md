@@ -1,5 +1,20 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 22.3.0
+
+### Minor Changes
+
+- [#2976](https://github.com/commercetools/merchant-center-application-kit/pull/2976) [`9add8f46b`](https://github.com/commercetools/merchant-center-application-kit/commit/9add8f46b668fb95b2c966a087bfb00c807ab55e) Thanks [@emmenko](https://github.com/emmenko)! - We migrate from Yarn to Pnpm as the package manager for the App Kit repository. As a result of it there were several packages that didn't specify all the needed dependencies. This is fixed now.
+
+### Patch Changes
+
+- [#3086](https://github.com/commercetools/merchant-center-application-kit/pull/3086) [`646b8bf56`](https://github.com/commercetools/merchant-center-application-kit/commit/646b8bf56c01766a924f329c27f63ce0796724ad) Thanks [@ahmehri](https://github.com/ahmehri)! - Do not fail on console when not on CI.
+
+  This is in order to restore the old behavior when running tests locally. Adding debug `console.log` statements should not fail the tests and clutter the output with false-positive "Expected test not to call console.log()" errors.
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.3.0
+
 ## 22.2.1
 
 ### Patch Changes
