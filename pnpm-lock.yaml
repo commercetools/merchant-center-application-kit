@@ -1885,9 +1885,6 @@ importers:
 
   packages/jest-stylelint-runner:
     dependencies:
-      '@commercetools-frontend/mc-scripts':
-        specifier: workspace:*
-        version: link:../mc-scripts
       create-jest-runner:
         specifier: 0.12.3
         version: 0.12.3
