@@ -2,8 +2,9 @@ import { mocked } from 'jest-mock';
 import { ReactElement } from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
+import { TAppNotificationApiError } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import ApiErrorMessage from './api-error-message';
+import ApiErrorMessage, { ExtraErrorFields } from './api-error-message';
 
 jest.mock('@commercetools-frontend/sentry');
 
@@ -82,33 +83,51 @@ describe('render', () => {
       expect(reportErrorToSentry).not.toHaveBeenCalled();
     });
   });
-  it('should show message for DuplicateSlug', () => {
-    const error = {
-      extensions: { code: 'DuplicateField' },
-      message: 'message-content',
-      field: 'slug',
-      duplicateValue: 'duplicateValueContent',
-    };
-    renderMessage(<ApiErrorMessage error={error} />);
-    expect(
-      screen.getByText(/"duplicateValueContent" is already in use/i)
-    ).toBeInTheDocument();
-  });
-  it('should show message for DuplicateField', () => {
-    const error = {
-      extensions: {
-        code: 'DuplicateField',
-        field: 'key',
-        duplicateValue: 'duplicateValueContent',
-      },
-      message: 'message-content',
-    };
-    renderMessage(<ApiErrorMessage error={error} />);
-    expect(
-      screen.getByText(
-        'The value for the field "key" has already been used. Please choose another value for this field.'
-      )
-    ).toBeInTheDocument();
+  describe.each([
+    ['REST error', false],
+    ['GraphQL error', true],
+  ])('%s', (_, isGraphQL) => {
+    const getTailoredError = (
+      errorBase: TAppNotificationApiError,
+      extraDetails: TAppNotificationApiError<ExtraErrorFields>['extensions']
+    ) => ({
+      ...errorBase,
+      ...(isGraphQL ? { extensions: extraDetails } : extraDetails),
+    });
+    it('should show message for DuplicateSlug', () => {
+      const error = getTailoredError(
+        {
+          message: 'message-content',
+        },
+        {
+          code: 'DuplicateField',
+          field: 'slug',
+          duplicateValue: 'duplicateValueContent',
+        }
+      );
+      renderMessage(<ApiErrorMessage error={error} />);
+      expect(
+        screen.getByText(/"duplicateValueContent" is already in use/i)
+      ).toBeInTheDocument();
+    });
+    it('should show message for DuplicateField', () => {
+      const error = getTailoredError(
+        {
+          message: 'message-content',
+        },
+        {
+          code: 'DuplicateField',
+          field: 'key',
+          duplicateValue: 'duplicateValueContent',
+        }
+      );
+      renderMessage(<ApiErrorMessage error={error} />);
+      expect(
+        screen.getByText(
+          'The value for the field "key" has already been used. Please choose another value for this field.'
+        )
+      ).toBeInTheDocument();
+    });
   });
   it('should show message for DuplicateAttributeValue', () => {
     const error = {
