@@ -10,7 +10,7 @@ import messages from './messages';
 const regexInvalidOperationRequiredAttribute =
   /Required attribute '(.*)' cannot be removed/;
 
-type ExtraErrorFields = {
+export type ExtraErrorFields = {
   errorByExtension?: {
     id: string;
     key?: string;
@@ -30,6 +30,10 @@ type ExtraErrorFields = {
     name: string;
   };
   referencedBy?: string;
+  extensions?: TAppNotificationApiError['extensions'] & {
+    field?: string;
+    duplicateValue?: string;
+  };
 };
 type Props = {
   error: TAppNotificationApiError<ExtraErrorFields>;
@@ -142,13 +146,16 @@ function getSpecialFormattedMessageByErrorCode(
     return intl.formatMessage(messages.Forbidden);
 
   if (extensionErrorCode === 'DuplicateField') {
-    if (error.field === 'slug') {
+    const errorField = error.extensions?.field || error.field;
+    const errorDuplicateValue =
+      error.extensions?.duplicateValue || error.duplicateValue;
+    if (errorField === 'slug') {
       return intl.formatMessage(messages.DuplicateSlug, {
-        slugValue: error.duplicateValue,
+        slugValue: errorDuplicateValue,
       });
     } else {
       return intl.formatMessage(messages.DuplicateField, {
-        field: error.field,
+        field: errorField,
       });
     }
   }
