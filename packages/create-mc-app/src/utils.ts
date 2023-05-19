@@ -1,5 +1,6 @@
 import fs from 'fs';
 import execa from 'execa';
+import type { TCliTaskOptions, TPackageManager } from './types';
 
 const isSemVer = (version: string) => /^(v?)([0-9].[0-9].[0-9])+/.test(version);
 
@@ -10,6 +11,20 @@ const shouldUseYarn = () => {
   } catch (error) {
     return false;
   }
+};
+
+const getPreferredPackageManager = (
+  options: TCliTaskOptions
+): TPackageManager => {
+  if (options.packageManager) {
+    return options.packageManager;
+  }
+  // Attempt to use yarn (backwards compatibility)
+  if (shouldUseYarn()) {
+    return 'yarn';
+  }
+  // Fall back to npm
+  return 'npm';
 };
 
 const slugify = (name: string) => name.toLowerCase().replace(/_/gi, '-');
@@ -38,4 +53,5 @@ export {
   wordify,
   upperFirst,
   resolveFilePathByExtension,
+  getPreferredPackageManager,
 };

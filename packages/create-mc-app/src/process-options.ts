@@ -91,6 +91,7 @@ async function processOptions(
     tagOrBranchVersion,
     entryPointUriPath,
     initialProjectKey,
+    packageManager: options.packageManager,
   };
 }
 

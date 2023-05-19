@@ -2,13 +2,17 @@ export type TCliGlobalOptions = {
   '--'?: string[];
 };
 
+export type TTemplate = 'starter' | 'starter-typescript';
+export type TPackageManager = 'npm' | 'yarn' | 'pnpm';
+
 export type TCliCommandOptions = {
-  template: 'starter' | 'starter-typescript';
+  template: TTemplate;
   templateVersion: string;
   skipInstall: boolean;
   yes: boolean;
   entryPointUriPath?: string;
   initialProjectKey?: string;
+  packageManager?: TPackageManager;
 };
 
 export type TCliTaskOptions = {
@@ -18,4 +22,5 @@ export type TCliTaskOptions = {
   tagOrBranchVersion: string;
   entryPointUriPath: string;
   initialProjectKey: string;
+  packageManager: TCliCommandOptions['packageManager'];
 };

@@ -3,7 +3,7 @@ import os from 'os';
 import path from 'path';
 import type { ListrTask } from 'listr2';
 import type { TCliTaskOptions } from '../types';
-import { slugify } from '../utils';
+import { getPreferredPackageManager, slugify } from '../utils';
 
 const replaceApplicationKitPackageVersionWith = (
   releaseVersion: string,
@@ -37,6 +37,7 @@ function updatePackageJson(
       const appPackageJson = JSON.parse(
         fs.readFileSync(packageJsonPath, { encoding: 'utf8' })
       );
+      const packageManager = getPreferredPackageManager(options);
 
       const updatedAppPackageJson = Object.assign({}, appPackageJson, {
         version: '1.0.0',
@@ -55,6 +56,12 @@ function updatePackageJson(
           releaseVersion,
           appPackageJson.devDependencies
         ),
+        scripts: {
+          ...appPackageJson.scripts,
+          'start:prod:local': appPackageJson.scripts[
+            'start:prod:local'
+          ].replace('yarn', packageManager),
+        },
       });
 
       fs.writeFileSync(

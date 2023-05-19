@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import semver from 'semver';
-import type { TCliCommandOptions } from './types';
+import type { TTemplate } from './types';
 import { isSemVer } from './utils';
 
 const availableTemplates = {
@@ -9,9 +9,7 @@ const availableTemplates = {
   'starter-typescript': 'starter-typescript',
 } as const;
 
-const throwIfTemplateIsNotSupported = (
-  templateName: TCliCommandOptions['template']
-) => {
+const throwIfTemplateIsNotSupported = (templateName: TTemplate) => {
   switch (templateName) {
     case availableTemplates.starter:
     case availableTemplates['starter-typescript']:

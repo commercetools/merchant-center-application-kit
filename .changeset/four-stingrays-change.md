@@ -2,4 +2,4 @@
 '@commercetools-frontend/application-shell': patch
 ---
 
-Redesign is on by default
+Redesign is enabled by default
