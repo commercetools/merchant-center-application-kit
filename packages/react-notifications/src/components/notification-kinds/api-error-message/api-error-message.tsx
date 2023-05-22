@@ -10,14 +10,12 @@ import messages from './messages';
 const regexInvalidOperationRequiredAttribute =
   /Required attribute '(.*)' cannot be removed/;
 
-export type ExtraErrorFields = {
-  errorByExtension?: {
-    id: string;
-    key?: string;
-  };
-  localizedMessage?: { [locale: string]: string };
+// `error` fields for REST errors
+// `error.extensions` fields for GraphQL errors
+type ExtraErrorExtensionsFields = {
   field?: string;
   duplicateValue?: string;
+  referencedBy?: string;
   invalidValue?:
     | string
     | { overlappingPrices: string }
@@ -25,15 +23,19 @@ export type ExtraErrorFields = {
         validFrom: string;
         validUntil: string;
       };
+};
+
+export type ExtraErrorFields = ExtraErrorExtensionsFields & {
+  errorByExtension?: {
+    id: string;
+    key?: string;
+  };
+  localizedMessage?: { [locale: string]: string };
   detailedErrorMessage?: string;
   attribute?: {
     name: string;
   };
-  referencedBy?: string;
-  extensions?: TAppNotificationApiError['extensions'] & {
-    field?: string;
-    duplicateValue?: string;
-  };
+  extensions?: ExtraErrorExtensionsFields;
 };
 type Props = {
   error: TAppNotificationApiError<ExtraErrorFields>;
@@ -44,8 +46,15 @@ type Props = {
 // function. Here we map other possible error properties that can be
 // used in the message.
 const mapErrorFieldsToMessageValues = (error: Props['error']) => {
-  if (error.field) return { field: error.field };
-  if (error.referencedBy) return { referencedBy: error.referencedBy };
+  const errorField = error.extensions?.field || error.field;
+  if (errorField) {
+    return { field: errorField };
+  }
+  const errorReferencedBy =
+    error.extensions?.referencedBy || error.referencedBy;
+  if (errorReferencedBy) {
+    return { referencedBy: errorReferencedBy };
+  }
   return {};
 };
 
