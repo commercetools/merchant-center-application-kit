@@ -1,7 +1,6 @@
 import { FC, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import publicBackgroundUrl from '@commercetools-frontend/assets/images/public-background.png';
 import CommercetoolsLogoOnWhiteSvg from '@commercetools-frontend/assets/logos/color-on-white-horizontal.svg';
 import { customProperties } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
@@ -34,17 +33,13 @@ type TProps = {
   children: ReactNode;
 };
 
-type TContainerProps = { showBackground: boolean };
-
-const Container = styled.div<TContainerProps>`
+const Container = styled.div`
   width: 100%;
   min-height: 100vh;
   display: flex;
   padding: ${customProperties.spacingXl} 0;
   justify-content: center;
   background-size: cover;
-  background-image: ${(props: TContainerProps) =>
-    props.showBackground ? `url(${publicBackgroundUrl})` : 'none'};
   background-position: center;
 `;
 const ContainerColumn = styled.div`
@@ -63,7 +58,7 @@ const PublicPageLayoutContent: FC<TProps> = (props) => {
 
 const PublicPageLayout: FC<TProps> = (props) => {
   return (
-    <Container showBackground={false}>
+    <Container>
       <Spacings.Stack scale="xl" alignItems="center">
         <ContainerColumn>
           <div>
