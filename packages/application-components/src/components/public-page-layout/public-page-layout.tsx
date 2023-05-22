@@ -75,7 +75,7 @@ const PublicPageLayout: FC<TProps> = (props) => {
             <Text.Headline as="h2">
               <div
                 css={css`
-                  color: ${customProperties.colorSurface};
+                  color: ${customProperties.colorSolid};
                   text-align: center;
                 `}
               >
