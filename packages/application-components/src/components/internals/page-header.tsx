@@ -1,6 +1,5 @@
 import type { ReactElement, ReactNode } from 'react';
 import { css } from '@emotion/react';
-import { useTheme } from '@commercetools-uikit/design-system';
 import { designTokens as appKitDesignTokens } from '../../theming';
 import PageHeaderTitle from './page-header-title';
 
@@ -11,8 +10,6 @@ type Props = {
 };
 
 const PageHeader = (props: Props) => {
-  const { themedValue } = useTheme();
-
   return (
     <div
       css={css`
@@ -30,7 +27,7 @@ const PageHeader = (props: Props) => {
     >
       <PageHeaderTitle
         title={props.title}
-        titleSize={themedValue('small', 'big')}
+        titleSize="big"
         subtitle={props.subtitle}
         truncate
       />

@@ -1,10 +1,8 @@
 import { useState, lazy } from 'react';
-import { useFeatureToggle } from '@flopflip/react-broadcast';
 import { themesOverrides } from '@commercetools-frontend/application-components';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { ThemeProvider } from '@commercetools-uikit/design-system';
 import { STORAGE_KEYS } from '../../constants';
-import { UI_REDESIGN } from '../../feature-toggles';
 
 const NewDesignReleaseInfoDialog = lazy(
   () => import('./new-design-release-info-dialog')
@@ -22,9 +20,11 @@ function useDisableRedesignAnnouncement() {
 }
 
 const ThemeSwitcher = () => {
-  const isNewThemeEnabled = useFeatureToggle(UI_REDESIGN);
+  // This helps decoupling app-kit update from ui-kit update
+  // TODO: Remove after ui-kit redesign cleanup has been done
+  const theme = 'test';
   const isRedesignAnnouncementDisabled = useDisableRedesignAnnouncement();
-  const theme = isNewThemeEnabled ? 'test' : 'default';
+
   const [
     hasUserSeenNewDesignReleaseNotificationDialog,
     setHasUserSeenNewDesignReleaseNotificationDialog,
@@ -44,10 +44,9 @@ const ThemeSwitcher = () => {
 
   return (
     <>
-      <ThemeProvider theme={theme} themeOverrides={themesOverrides[theme]} />
+      <ThemeProvider theme={theme} themeOverrides={themesOverrides.default} />
       {!isRedesignAnnouncementDisabled &&
-      !hasUserSeenNewDesignReleaseNotificationDialog &&
-      isNewThemeEnabled ? (
+      !hasUserSeenNewDesignReleaseNotificationDialog ? (
         <NewDesignReleaseInfoDialog onClose={handleCloseDialog} />
       ) : null}
     </>

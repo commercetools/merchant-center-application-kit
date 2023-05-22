@@ -1,4 +1,3 @@
-// TODO: @redesign cleanup
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -19,11 +18,7 @@ import {
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import Avatar from '@commercetools-uikit/avatar';
-import {
-  designTokens as uikitDesignTokens,
-  useTheme,
-} from '@commercetools-uikit/design-system';
-import { CaretDownIcon } from '@commercetools-uikit/icons';
+import { designTokens as uikitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import { DIMENSIONS } from '../../constants';
@@ -45,14 +40,11 @@ type OptionalFeatureToggleProps = {
 };
 type MenuItemProps = {
   hasDivider?: boolean;
-  isNewTheme: boolean;
 };
 type MenuItemLabelProps = {
-  isNewTheme: boolean;
   children: ReactNode;
 };
 type UserSettingsAvatarContainerProps = {
-  isNewTheme: boolean;
   children: ReactNode;
 };
 type MenuConfig = TFetchApplicationsMenuQuery['applicationsMenu']['appBar'][0];
@@ -69,23 +61,16 @@ const UserAvatar = (
   const handleMouseOut = useCallback(() => {
     setIsMouseOver(false);
   }, []);
-  const { isNewTheme, themedValue } = useTheme();
   return (
     <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
       <Spacings.Inline alignItems="center">
         <Avatar
-          size={themedValue('s', 'm')}
+          size="m"
           gravatarHash={props.gravatarHash}
           firstName={props.firstName}
           lastName={props.lastName}
           isHighlighted={isMouseOver}
         />
-        {isNewTheme ? null : (
-          <CaretDownIcon
-            size="small"
-            color={isMouseOver ? 'neutral60' : 'solid'}
-          />
-        )}
       </Spacings.Inline>
     </div>
   );
@@ -150,63 +135,38 @@ const MenuItem = styled.div<MenuItemProps>`
       : ''};
 `;
 
-const MenuItemLabel = (props: MenuItemLabelProps) => {
-  if (props.isNewTheme) {
-    return (
-      <div
-        css={css`
-          padding: ${uikitDesignTokens.spacing20} ${uikitDesignTokens.spacing50};
-        `}
-      >
-        {props.children}
-      </div>
-    );
-  }
-  return <Spacings.Inset scale="s">{props.children}</Spacings.Inset>;
-};
+const MenuItemLabel = (props: MenuItemLabelProps) => (
+  <div
+    css={css`
+      padding: ${uikitDesignTokens.spacing20} ${uikitDesignTokens.spacing50};
+    `}
+  >
+    {props.children}
+  </div>
+);
 
 const UserSettingsAvatarContainer = (
   props: UserSettingsAvatarContainerProps
-) => {
-  if (props.isNewTheme) {
-    return (
-      <div
-        css={css`
-          padding: ${uikitDesignTokens.spacing30} ${uikitDesignTokens.spacing50};
-        `}
-      >
-        {props.children}
-      </div>
-    );
-  }
-  return <Spacings.Inset scale="xs">{props.children}</Spacings.Inset>;
-};
+) => (
+  <div
+    css={css`
+      padding: ${uikitDesignTokens.spacing30} ${uikitDesignTokens.spacing50};
+    `}
+  >
+    {props.children}
+  </div>
+);
 
-const getUserSettingsMenuStyles = (isNewTheme: boolean) => {
-  if (isNewTheme) {
-    return css`
-      position: absolute;
-      background: ${uikitDesignTokens.colorSurface};
-      border-radius: ${uikitDesignTokens.borderRadius2};
-      box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
-      width: ${uikitDesignTokens.constraint9};
-      right: 40px;
-      top: calc(${DIMENSIONS.header} + ${uikitDesignTokens.spacing20});
-      padding: 0 0 ${uikitDesignTokens.spacing10} 0;
-      overflow: hidden;
-    `;
-  }
-
+const getUserSettingsMenuStyles = () => {
   return css`
     position: absolute;
     background: ${uikitDesignTokens.colorSurface};
-    border: 1px ${uikitDesignTokens.colorPrimary40} solid;
-    border-radius: ${uikitDesignTokens.borderRadius6};
-    box-shadow: ${uikitDesignTokens.shadow7};
-    width: ${uikitDesignTokens.constraint7};
-    right: 14px;
+    border-radius: ${uikitDesignTokens.borderRadius2};
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
+    width: ${uikitDesignTokens.constraint9};
+    right: 40px;
     top: calc(${DIMENSIONS.header} + ${uikitDesignTokens.spacing20});
-    padding: ${uikitDesignTokens.spacingXs};
+    padding: 0 0 ${uikitDesignTokens.spacing10} 0;
     overflow: hidden;
   `;
 };
@@ -216,7 +176,6 @@ const getUserSettingsMenuItemLinkStyles = () => css`
 `;
 
 const UserSettingsMenuBody = (props: MenuBodyProps) => {
-  const { isNewTheme, themedValue } = useTheme();
   // Focus on a menu item when it's opened through keyboard
   const menuElementRef = useRef<HTMLAnchorElement>(null);
   useEffect(() => {
@@ -243,39 +202,28 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
           props.downshiftProps.closeMenu();
         }
       }}
-      css={getUserSettingsMenuStyles(isNewTheme)}
+      css={getUserSettingsMenuStyles()}
     >
       <div {...props.downshiftProps.getMenuProps()}>
-        <UserSettingsAvatarContainer isNewTheme={isNewTheme}>
-          <Spacings.Inline scale={themedValue('xs', 'm')} alignItems="center">
+        <UserSettingsAvatarContainer>
+          <Spacings.Inline scale="m" alignItems="center">
             <Avatar
-              size={themedValue('s', 'm')}
+              size="m"
               firstName={props.firstName}
               lastName={props.lastName}
               gravatarHash={props.gravatarHash}
             />
-            {isNewTheme ? (
-              <div>
-                <Text.Subheadline as="h4">
-                  {[props.firstName, props.lastName].join(' ').trim()}
-                </Text.Subheadline>
-                <Text.Detail truncate tone="secondary">
-                  {props.email}
-                </Text.Detail>
-              </div>
-            ) : (
-              <div>
-                <Text.Body isBold>
-                  {[props.firstName, props.lastName].join(' ').trim()}
-                </Text.Body>
-                <Text.Body truncate>{props.email}</Text.Body>
-              </div>
-            )}
+            <div>
+              <Text.Subheadline as="h4">
+                {[props.firstName, props.lastName].join(' ').trim()}
+              </Text.Subheadline>
+              <Text.Detail truncate tone="secondary">
+                {props.email}
+              </Text.Detail>
+            </div>
           </Spacings.Inline>
         </UserSettingsAvatarContainer>
-        {isNewTheme && accountMenuItems.length > 0 ? (
-          <MenuItem hasDivider={true} isNewTheme={isNewTheme} />
-        ) : null}
+        {accountMenuItems.length > 0 ? <MenuItem hasDivider={true} /> : null}
         {accountMenuItems.map((menu) => (
           <OptionalFeatureToggle
             key={menu.key}
@@ -288,15 +236,15 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
               data-user-settings-menu
               ref={menuElementRef}
             >
-              <MenuItem isNewTheme={isNewTheme}>
-                <MenuItemLabel isNewTheme={isNewTheme}>
+              <MenuItem>
+                <MenuItemLabel>
                   <Text.Body>{renderLabel(menu, props.language)}</Text.Body>
                 </MenuItemLabel>
               </MenuItem>
             </Link>
           </OptionalFeatureToggle>
         ))}
-        <MenuItem hasDivider={true} isNewTheme={isNewTheme} />
+        <MenuItem hasDivider={true} />
         <a
           css={getUserSettingsMenuItemLinkStyles()}
           href={`https://commercetools.com/privacy#suppliers`}
@@ -306,8 +254,8 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
           data-user-settings-menu
           ref={!applicationsAppBarMenu ? menuElementRef : undefined}
         >
-          <MenuItem isNewTheme={isNewTheme}>
-            <MenuItemLabel isNewTheme={isNewTheme}>
+          <MenuItem>
+            <MenuItemLabel>
               <Text.Body intlMessage={messages.privacyPolicy} />
             </MenuItemLabel>
           </MenuItem>
@@ -320,13 +268,13 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
           onClick={() => props.downshiftProps.toggleMenu()}
           data-user-settings-menu
         >
-          <MenuItem isNewTheme={isNewTheme}>
-            <MenuItemLabel isNewTheme={isNewTheme}>
+          <MenuItem>
+            <MenuItemLabel>
               <Text.Body intlMessage={messages.support} />
             </MenuItemLabel>
           </MenuItem>
         </a>
-        <MenuItem hasDivider={true} isNewTheme={isNewTheme} />
+        <MenuItem hasDivider={true} />
         <a
           css={getUserSettingsMenuItemLinkStyles()}
           // NOTE: we want to redirect to a new page so that the
@@ -335,8 +283,8 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
           data-test="logout-button"
           data-user-settings-menu
         >
-          <MenuItem isNewTheme={isNewTheme}>
-            <MenuItemLabel isNewTheme={isNewTheme}>
+          <MenuItem>
+            <MenuItemLabel>
               <Text.Body intlMessage={messages.logout} />
             </MenuItemLabel>
           </MenuItem>
