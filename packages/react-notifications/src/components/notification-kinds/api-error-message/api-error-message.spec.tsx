@@ -128,6 +128,21 @@ describe('render', () => {
         )
       ).toBeInTheDocument();
     });
+    it('should show message for InvalidField', () => {
+      const error = getTailoredError(
+        {
+          message: 'message-content',
+        },
+        {
+          code: 'InvalidField',
+          field: 'key',
+        }
+      );
+      renderMessage(<ApiErrorMessage error={error} />);
+      expect(
+        screen.getByText('The value entered is not valid for the field "key".')
+      ).toBeInTheDocument();
+    });
   });
   it('should show message for DuplicateAttributeValue', () => {
     const error = {
