@@ -17,6 +17,7 @@ export const CLOUD_IDENTIFIERS = {
   GCP_US: 'gcp-us',
   AWS_FRA: 'aws-fra',
   AWS_OHIO: 'aws-ohio',
+  AWS_CN: 'aws-cn',
 } as const;
 
 export const MC_API_URLS = {
@@ -25,4 +26,5 @@ export const MC_API_URLS = {
   GCP_US: 'https://mc-api.us-central1.gcp.commercetools.com',
   AWS_FRA: 'https://mc-api.eu-central-1.aws.commercetools.com',
   AWS_OHIO: 'https://mc-api.us-east-2.aws.commercetools.com',
+  AWS_CN: 'https://mc-api.cn-northwest-1.aws.commercetools.cn',
 } as const;
