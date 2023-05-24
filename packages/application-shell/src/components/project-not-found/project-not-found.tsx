@@ -1,6 +1,6 @@
 import { useIntl, FormattedMessage } from 'react-intl';
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
-import FailedAuthorizationIllustration from '@commercetools-frontend/assets/images/folder-full-locked.svg';
+import ProjectNotFoundSVG from '@commercetools-frontend/assets/images/folder-full-locked.svg';
 import ServicePageProjectSwitcher from '../service-page-project-switcher';
 import messages from './messages';
 
@@ -9,7 +9,7 @@ const ProjectNotFound = () => {
 
   return (
     <MaintenancePageLayout
-      imageSrc={FailedAuthorizationIllustration}
+      imageSrc={ProjectNotFoundSVG}
       title={<FormattedMessage {...messages.title} />}
       label={intl.formatMessage(messages.title)}
       paragraph1={<FormattedMessage {...messages.paragraph1} />}
