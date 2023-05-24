@@ -4,7 +4,7 @@ import {
   PublicPageLayout,
   themesOverrides,
 } from '@commercetools-frontend/application-components';
-import FailedAuthenticationSVG from '@commercetools-frontend/assets/images/locked-diamond.svg';
+import FailedAuthenticationSVG from '@commercetools-frontend/assets/images/doors-closed.svg';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';

@@ -1,5 +1,5 @@
 import { useIntl, FormattedMessage } from 'react-intl';
-import FailedAuthorizationIllustration from '@commercetools-frontend/assets/images/folder-full-locked.svg';
+import FailedAuthorizationSVG from '@commercetools-frontend/assets/images/doors-closed.svg';
 import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
 import MaintenancePageLayout from '../maintenance-page-layout';
 import messages from './messages';
@@ -16,7 +16,7 @@ export const PageUnauthorized = () => {
 
   return (
     <MaintenancePageLayout
-      imageSrc={FailedAuthorizationIllustration}
+      imageSrc={FailedAuthorizationSVG}
       title={<FormattedMessage {...messages.title} />}
       label={intl.formatMessage(messages.title)}
       paragraph1={<FormattedMessage {...messages.paragraph1} />}

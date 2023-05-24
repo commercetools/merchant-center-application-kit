@@ -55,7 +55,7 @@ export const Component = () => (
               >
                 <Spacings.Inset>
                   <Spacings.Inline alignItems="center" justifyContent="center">
-                    <img src={DoorsClosedSvg} />
+                    <img width="100%" src={DoorsClosedSvg} />
                   </Spacings.Inline>
                 </Spacings.Inset>
               </div>
