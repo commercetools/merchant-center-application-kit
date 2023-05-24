@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { css } from '@emotion/react';
 import Constraints from '@commercetools-uikit/constraints';
+import { designTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 
@@ -28,7 +29,11 @@ const MaintenancePageLayout = (props: Props) => (
     <Constraints.Horizontal max={10}>
       <Spacings.Stack scale="m">
         <div>
-          <img src={props.imageSrc} alt={props.label} />
+          <img
+            style={{ height: designTokens.constraint7 }}
+            src={props.imageSrc}
+            alt={props.label}
+          />
         </div>
         <Text.Headline as="h2">{props.title}</Text.Headline>
         <Text.Body>{props.paragraph1}</Text.Body>
