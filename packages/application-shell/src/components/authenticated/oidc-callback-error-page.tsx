@@ -1,13 +1,19 @@
 import styled from '@emotion/styled';
 import { useHistory } from 'react-router-dom';
-import { PublicPageLayout } from '@commercetools-frontend/application-components';
+import {
+  PublicPageLayout,
+  themesOverrides,
+} from '@commercetools-frontend/application-components';
 import FailedAuthenticationSVG from '@commercetools-frontend/assets/images/locked-diamond.svg';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import Card from '@commercetools-uikit/card';
 import Constraints from '@commercetools-uikit/constraints';
-import { customProperties } from '@commercetools-uikit/design-system';
+import {
+  ThemeProvider,
+  customProperties,
+} from '@commercetools-uikit/design-system';
 import FlatButton from '@commercetools-uikit/flat-button';
 import { AngleLeftIcon } from '@commercetools-uikit/icons';
 import { ContentNotification } from '@commercetools-uikit/notifications';
@@ -41,6 +47,10 @@ const AuthCallbackErrorPage = (props: TProps) => {
     >
       {({ locale, messages }) => (
         <ConfigureIntlProvider locale={locale} messages={messages}>
+          <ThemeProvider
+            theme="test"
+            themeOverrides={themesOverrides.default}
+          />
           <PublicPageLayout contentScale="wide">
             <Spacings.Inline justifyContent="center">
               <Constraints.Horizontal max={11}>
