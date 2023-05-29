@@ -37,7 +37,7 @@
     "@tsconfig/node16": "^1.0.3",
     "@types/glob": "8.1.0",
     "@types/jscodeshift": "0.11.6",
-    "rimraf": "3.0.2",
+    "rimraf": "5.0.1",
     "typescript": "5.0.4"
   },
   "engines": {
