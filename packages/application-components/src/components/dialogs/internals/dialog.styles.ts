@@ -3,7 +3,7 @@ import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-s
 import { designTokens as appKitDesignTokens } from '../../../theming';
 
 type StyleProps = {
-  size: 'm' | 'l' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 'scale';
+  size: 'm' | 'l' | 'xl' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 'scale';
   zIndex?: number;
 };
 
@@ -27,6 +27,8 @@ const getConstraintForGridStyle = (size: StyleProps['size']) => {
       return uiKitDesignTokens.constraint13;
     case 'l':
       return appKitDesignTokens.widthForDialogAsLarge;
+    case 'xl':
+      return appKitDesignTokens.widthForDialogAsExtraLarge;
     case 'scale':
       return uiKitDesignTokens.constraintScale;
     default:
