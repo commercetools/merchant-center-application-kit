@@ -1,8 +1,5 @@
-import { useState, lazy } from 'react';
 import { themesOverrides } from '@commercetools-frontend/application-components';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { ThemeProvider } from '@commercetools-uikit/design-system';
-import { STORAGE_KEYS } from '../../constants';
 
 const ThemeSwitcher = () => {
   // This helps decoupling app-kit update from ui-kit update
