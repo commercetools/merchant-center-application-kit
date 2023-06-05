@@ -3,4 +3,4 @@
 '@commercetools-local/visual-testing-app': patch
 ---
 
-Introduced a new available size value (`xl`) for the `FormDialog` component.
+Introduced a new available size value (`xl`) for the `FormDialog`, `ConfirmationDialog`, and `InfoDialog` components.
