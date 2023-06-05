@@ -52,6 +52,13 @@ export const Component = () => (
       <ConfirmationDialogExample size="l" portalId="dialog-l" />
     </Spec>
     <Spec
+      label="ConfirmationDialog - Size xl"
+      size="l"
+      contentAlignment="center"
+    >
+      <ConfirmationDialogExample size="xl" portalId="dialog-xl" />
+    </Spec>
+    <Spec
       label="ConfirmationDialog - Size 7"
       size={7}
       contentAlignment="center"

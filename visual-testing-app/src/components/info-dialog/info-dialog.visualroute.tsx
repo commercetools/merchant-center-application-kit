@@ -51,6 +51,9 @@ export const Component = () => (
     >
       <InfoDialogExample size="l" portalId="dialog-l" />
     </Spec>
+    <Spec label="InfoDialog - Size xl" size="l" contentAlignment="center">
+      <InfoDialogExample size="xl" portalId="dialog-xl" />
+    </Spec>
     <Spec label="InfoDialog - Size 7" size={7} contentAlignment="center">
       <InfoDialogExample size={7} portalId="dialog-7" />
     </Spec>
