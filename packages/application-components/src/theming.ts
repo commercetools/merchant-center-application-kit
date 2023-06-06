@@ -57,7 +57,6 @@ export const themesOverrides = {
     shadowForNavbar: 'none',
     widthForDialogAsMedium: uiKitDesignTokens.constraint9,
     widthForDialogAsLarge: uiKitDesignTokens.constraint13,
-    widthForDialogAsExtraLarge: uiKitDesignTokens.constraint16,
     widthForPageLayoutContentColumn: `calc(${uiKitDesignTokens.constraint16} / 2)`,
   },
 };

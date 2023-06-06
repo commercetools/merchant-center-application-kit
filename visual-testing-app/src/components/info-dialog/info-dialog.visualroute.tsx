@@ -51,9 +51,6 @@ export const Component = () => (
     >
       <InfoDialogExample size="l" portalId="dialog-l" />
     </Spec>
-    <Spec label="InfoDialog - Size xl" size="l" contentAlignment="center">
-      <InfoDialogExample size="xl" portalId="dialog-xl" />
-    </Spec>
     <Spec label="InfoDialog - Size 7" size={7} contentAlignment="center">
       <InfoDialogExample size={7} portalId="dialog-7" />
     </Spec>
@@ -74,6 +71,9 @@ export const Component = () => (
     </Spec>
     <Spec label="InfoDialog - Size 13" size={13} contentAlignment="center">
       <InfoDialogExample size={13} portalId="dialog-13" />
+    </Spec>
+    <Spec label="InfoDialog - Size 16" size={13} contentAlignment="center">
+      <InfoDialogExample size={16} portalId="dialog-16" />
     </Spec>
     <Spec label="InfoDialog - Size Scale" size="l" contentAlignment="center">
       <InfoDialogExample size="scale" portalId="dialog-scale" />

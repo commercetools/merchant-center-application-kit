@@ -89,11 +89,11 @@ export const Component = () => (
     <Spec label="FormDialog - Size 13" size={13} contentAlignment="center">
       <FormDialogExample size={13} portalId="dialog-13" />
     </Spec>
+    <Spec label="FormDialog - Size 16" size={13} contentAlignment="center">
+      <FormDialogExample size={16} portalId="dialog-16" />
+    </Spec>
     <Spec label="FormDialog - Size Scale" size="l" contentAlignment="center">
       <FormDialogExample size="scale" portalId="dialog-scale" />
-    </Spec>
-    <Spec label="FormDialog - Size xl" size="l" contentAlignment="center">
-      <FormDialogExample size="xl" portalId="dialog-xl" />
     </Spec>
     <Spec label="FormDialog - Default size" contentAlignment="center">
       <FormDialogExample portalId="dialog-default" />
