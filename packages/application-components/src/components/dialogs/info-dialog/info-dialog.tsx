@@ -6,7 +6,7 @@ import DialogHeader from '../internals/dialog-header';
 type Props = {
   isOpen: boolean;
   onClose?: (event: SyntheticEvent) => void;
-  size?: 'm' | 'l' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 'scale';
+  size?: 'm' | 'l' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 16 | 'scale';
   zIndex?: number;
   title: string;
   children: ReactNode;
