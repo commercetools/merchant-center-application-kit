@@ -18,7 +18,7 @@ type Props = {
   isOpen: boolean;
   onClose?: (event: SyntheticEvent) => void;
   title: string;
-  size?: 'm' | 'l' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 'scale';
+  size?: 'm' | 'l' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 16 | 'scale';
   zIndex?: number;
   children: ReactNode;
   labelSecondary: Label;

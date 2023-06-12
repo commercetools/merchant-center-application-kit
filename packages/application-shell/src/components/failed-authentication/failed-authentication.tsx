@@ -1,6 +1,6 @@
 import { useIntl, FormattedMessage } from 'react-intl';
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
-import FailedAuthenticationSVG from '@commercetools-frontend/assets/images/locked-diamond.svg';
+import FailedAuthenticationSVG from '@commercetools-frontend/assets/images/doors-closed.svg';
 import messages from './messages';
 
 const FailedAuthentication = () => {

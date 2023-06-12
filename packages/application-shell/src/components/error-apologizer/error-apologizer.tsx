@@ -1,6 +1,6 @@
 import { useIntl, FormattedMessage } from 'react-intl';
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
-import UnexpectedErrorIllustration from '@commercetools-frontend/assets/images/unexpected-error.svg';
+import UnexpectedErrorSVG from '@commercetools-frontend/assets/images/unexpected-error.svg';
 import messages from './messages';
 
 const ErrorApologizer = () => {
@@ -8,7 +8,7 @@ const ErrorApologizer = () => {
 
   return (
     <MaintenancePageLayout
-      imageSrc={UnexpectedErrorIllustration}
+      imageSrc={UnexpectedErrorSVG}
       title={<FormattedMessage {...messages.title} />}
       label={intl.formatMessage(messages.title)}
       paragraph1={<FormattedMessage {...messages.notifiedTeam} />}
