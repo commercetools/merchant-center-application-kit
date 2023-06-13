@@ -65,10 +65,10 @@ function shouldNotThrowWarnings(...messages) {
 }
 
 failOnConsole({
-  shouldFailOnLog: process.env.CI,
-  shouldFailOnInfo: process.env.CI,
-  shouldFailOnWarn: process.env.CI,
-  shouldFailOnError: process.env.CI,
+  shouldFailOnLog: !!process.env.CI,
+  shouldFailOnInfo: !!process.env.CI,
+  shouldFailOnWarn: !!process.env.CI,
+  shouldFailOnError: !!process.env.CI,
   silenceMessage: (message) => {
     if (!process.env.CI) {
       return false;
