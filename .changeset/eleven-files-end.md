@@ -2,6 +2,6 @@
 "@commercetools-frontend/jest-preset-mc-app": patch
 ---
 
-test(setupFilesAfterEnv): support undefined use case
+Adds support for `process.env.CI` being `undefined`
 
-Changes in #3086 are not working when `process.env.CI` is evaluated to `undefined`.
+This fixes an issue introduced in #3086 when `process.env.CI` is evaluated to `undefined`.
