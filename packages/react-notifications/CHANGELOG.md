@@ -1,5 +1,19 @@
 # @commercetools-frontend/react-notifications
 
+## 22.3.1
+
+### Patch Changes
+
+- [#3088](https://github.com/commercetools/merchant-center-application-kit/pull/3088) [`e21250f2a`](https://github.com/commercetools/merchant-center-application-kit/commit/e21250f2ae8973a290bc12a0ddb85f077a31f11e) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Remove supporting code for look and feel migration.
+
+- [#3094](https://github.com/commercetools/merchant-center-application-kit/pull/3094) [`8495d95a8`](https://github.com/commercetools/merchant-center-application-kit/commit/8495d95a8e8570528ac207840f17155c4dc71af8) Thanks [@ragafus](https://github.com/ragafus)! - Adds support for special formatted message for `InvalidField` errors from GraphQL
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.3.1
+  - @commercetools-frontend/constants@22.3.1
+  - @commercetools-frontend/notifications@22.3.1
+  - @commercetools-frontend/sentry@22.3.1
+
 ## 22.3.0
 
 ### Minor Changes

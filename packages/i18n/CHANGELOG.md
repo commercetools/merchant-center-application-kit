@@ -1,5 +1,14 @@
 # @commercetools-frontend/i18n
 
+## 22.3.1
+
+### Patch Changes
+
+- [#3106](https://github.com/commercetools/merchant-center-application-kit/pull/3106) [`b38784748`](https://github.com/commercetools/merchant-center-application-kit/commit/b387847485f79c48a1c026a23afb45f5a77877aa) Thanks [@tdeekens](https://github.com/tdeekens)! - Remove redesign announcement banner used only internally.
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.3.1
+
 ## 22.3.0
 
 ### Minor Changes

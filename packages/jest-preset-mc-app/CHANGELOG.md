@@ -1,5 +1,16 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 22.3.1
+
+### Patch Changes
+
+- [#3112](https://github.com/commercetools/merchant-center-application-kit/pull/3112) [`9eb27a31e`](https://github.com/commercetools/merchant-center-application-kit/commit/9eb27a31e96c6648fb8f5c4127493b3098b63342) Thanks [@ahmehri](https://github.com/ahmehri)! - Adds support for `process.env.CI` being `undefined`
+
+  This fixes an issue introduced in #3086 when `process.env.CI` is evaluated to `undefined`.
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.3.1
+
 ## 22.3.0
 
 ### Minor Changes
