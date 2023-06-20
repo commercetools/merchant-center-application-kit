@@ -1,5 +1,7 @@
 # @commercetools-frontend/mc-dev-authentication
 
+## 22.3.1
+
 ## 22.3.0
 
 ### Minor Changes

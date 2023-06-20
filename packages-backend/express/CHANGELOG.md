@@ -1,5 +1,11 @@
 # @commercetools-backend/express
 
+## 22.3.1
+
+### Patch Changes
+
+- [#3098](https://github.com/commercetools/merchant-center-application-kit/pull/3098) [`d8b48486a`](https://github.com/commercetools/merchant-center-application-kit/commit/d8b48486a46bc9638544ca88e1cac588c88e8be9) Thanks [@Rhotimee](https://github.com/Rhotimee)! - Add cloud identifier for CN prod
+
 ## 22.3.0
 
 ### Minor Changes

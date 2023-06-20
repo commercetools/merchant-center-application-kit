@@ -1,5 +1,22 @@
 # @commercetools-frontend/application-components
 
+## 22.3.1
+
+### Patch Changes
+
+- [#3100](https://github.com/commercetools/merchant-center-application-kit/pull/3100) [`8e814adfb`](https://github.com/commercetools/merchant-center-application-kit/commit/8e814adfbc09daadc884dac78be4a5e5c0d5492c) Thanks [@emmenko](https://github.com/emmenko)! - Update illustrations leftovers and use correct illustrations for maintenance pages
+
+- [#3088](https://github.com/commercetools/merchant-center-application-kit/pull/3088) [`e21250f2a`](https://github.com/commercetools/merchant-center-application-kit/commit/e21250f2ae8973a290bc12a0ddb85f077a31f11e) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Remove supporting code for look and feel migration.
+
+- [#3105](https://github.com/commercetools/merchant-center-application-kit/pull/3105) [`0c391fba4`](https://github.com/commercetools/merchant-center-application-kit/commit/0c391fba458c2cf279aa6dbe50ec31386042b6e3) Thanks [@jaikamat](https://github.com/jaikamat)! - Introduced a new available size value (16) for the `FormDialog`, `ConfirmationDialog`, and `InfoDialog` components.
+
+- Updated dependencies [[`8e814adfb`](https://github.com/commercetools/merchant-center-application-kit/commit/8e814adfbc09daadc884dac78be4a5e5c0d5492c), [`b38784748`](https://github.com/commercetools/merchant-center-application-kit/commit/b387847485f79c48a1c026a23afb45f5a77877aa)]:
+  - @commercetools-frontend/assets@22.3.1
+  - @commercetools-frontend/i18n@22.3.1
+  - @commercetools-frontend/application-shell-connectors@22.3.1
+  - @commercetools-frontend/constants@22.3.1
+  - @commercetools-frontend/l10n@22.3.1
+
 ## 22.3.0
 
 ### Minor Changes

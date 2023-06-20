@@ -1,5 +1,13 @@
 # @commercetools-frontend/assets
 
+## 22.3.1
+
+### Patch Changes
+
+- [#3100](https://github.com/commercetools/merchant-center-application-kit/pull/3100) [`8e814adfb`](https://github.com/commercetools/merchant-center-application-kit/commit/8e814adfbc09daadc884dac78be4a5e5c0d5492c) Thanks [@emmenko](https://github.com/emmenko)! - Update illustrations leftovers and use correct illustrations for maintenance pages
+
+- [#3106](https://github.com/commercetools/merchant-center-application-kit/pull/3106) [`b38784748`](https://github.com/commercetools/merchant-center-application-kit/commit/b387847485f79c48a1c026a23afb45f5a77877aa) Thanks [@tdeekens](https://github.com/tdeekens)! - Remove redesign announcement banner used only internally.
+
 ## 22.3.0
 
 ## 22.2.1

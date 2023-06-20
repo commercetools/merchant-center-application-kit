@@ -1,5 +1,7 @@
 # @commercetools-frontend/browser-history
 
+## 22.3.1
+
 ## 22.3.0
 
 ### Minor Changes
