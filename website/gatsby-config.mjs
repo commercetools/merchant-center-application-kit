@@ -34,6 +34,7 @@ const config = {
         overrideDefaultConfigurationData: ['**/top-*'],
       },
     },
+    'gatsby-plugin-pnpm',
   ],
 };
 
