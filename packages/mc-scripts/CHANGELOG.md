@@ -1,5 +1,20 @@
 # @commercetools-frontend/mc-scripts
 
+## 22.3.2
+
+### Patch Changes
+
+- [#3108](https://github.com/commercetools/merchant-center-application-kit/pull/3108) [`276707e12`](https://github.com/commercetools/merchant-center-application-kit/commit/276707e127f4c3c36b4baad8ce101a6bf73bc604) Thanks [@renovate](https://github.com/apps/renovate)! - Update `vite` to `4.3.9`
+
+- Updated dependencies [[`7d2221314`](https://github.com/commercetools/merchant-center-application-kit/commit/7d222131415179fb4cdda81d3841ee61f60b62f4), [`14f31aae4`](https://github.com/commercetools/merchant-center-application-kit/commit/14f31aae4aa55b30c3b46ac670ef711d13461d1e)]:
+  - @commercetools-frontend/application-components@22.3.2
+  - @commercetools-frontend/application-config@22.3.2
+  - @commercetools-frontend/assets@22.3.2
+  - @commercetools-frontend/babel-preset-mc-app@22.3.2
+  - @commercetools-frontend/constants@22.3.2
+  - @commercetools-frontend/mc-dev-authentication@22.3.2
+  - @commercetools-frontend/mc-html-template@22.3.2
+
 ## 22.3.1
 
 ### Patch Changes
