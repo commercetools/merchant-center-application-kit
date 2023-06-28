@@ -1,5 +1,14 @@
 # @commercetools-website/custom-applications
 
+## 22.3.2
+
+### Patch Changes
+
+- [#3121](https://github.com/commercetools/merchant-center-application-kit/pull/3121) [`14f31aae4`](https://github.com/commercetools/merchant-center-application-kit/commit/14f31aae4aa55b30c3b46ac670ef711d13461d1e) Thanks [@chloe0592](https://github.com/chloe0592)! - Update `ui-kit` dependencies
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.3.2
+
 ## 22.3.1
 
 ### Patch Changes
