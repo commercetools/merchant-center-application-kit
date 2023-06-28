@@ -15,7 +15,7 @@ const renderPageContent = (
 ) => {
   renderComponent(
     <>
-      <ThemeProvider theme="test" />
+      <ThemeProvider />
       <PageContentWide columns={columns || '1'}>{children}</PageContentWide>
     </>
   );
