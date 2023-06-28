@@ -4,7 +4,7 @@ import { designTokens as appKitDesignTokens } from '../../theming';
 export const ContentWrapper = styled.div`
   flex: 1;
   flex-basis: 0;
-  padding: ${appKitDesignTokens.paddingForPageContent};
+  margin: ${appKitDesignTokens.marginForPageContent};
   overflow: auto;
 `;
 
