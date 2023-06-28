@@ -147,15 +147,14 @@ When a Custom Application state is changed from **Ready** to **Draft**, it is un
 
 </Info>
 
-## Project access is not automatically updated for newly created Projects
+## Project access is not automatically updated for newly created Projects on AWS
 
 When a new Project is created in the Organization, the Project cannot be accessed despite the **Project access** setting being configured to **Install for all projects of this organization** for an installed Custom Application.
 
 To grant access, [the Project access must be updated manually](https://docs.commercetools.com/merchant-center/managing-custom-applications#updating-projects-access) for the installed Custom Application.
 
-## Custom Applications can have only one set of permissions
+<Warning>
 
-Each Custom Application has a [unique pair of user permissions](/concepts/oauth-scopes-and-user-permissions) assigned to them.
+This limitation applies specifically to Projects in [AWS Regions](https://docs.commercetools.com/api/general-concepts#hosts).
 
-This restriction was an important step in being able to release Org-level Custom Application. For more information, see [OAuth Scopes and user permissions](/migrating-from-project-level-custom-applications#oauth-scopes-and-user-permissions).
-
+</Warning>
