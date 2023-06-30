@@ -24,7 +24,7 @@ import loggerMiddleware from './middleware/logger';
 import {
   getCorrelationId,
   selectProjectKeyFromUrl,
-  selectTeamIdFromLocalStorage,
+  selectTeamIdFromStorage,
   selectUserId,
 } from './utils';
 import * as oidcStorage from './utils/oidc-storage';
@@ -62,7 +62,7 @@ const getAdditionalHeaders = (): Headers | undefined => {
       ? `Bearer ${sessionToken}`
       : undefined,
     [SUPPORTED_HEADERS.X_APPLICATION_ID]: window.app.applicationId,
-    [SUPPORTED_HEADERS.X_TEAM_ID]: selectTeamIdFromLocalStorage(),
+    [SUPPORTED_HEADERS.X_TEAM_ID]: selectTeamIdFromStorage(),
   });
 };
 

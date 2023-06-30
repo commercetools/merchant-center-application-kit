@@ -7,11 +7,7 @@ import type {
   TGraphQLTargets,
 } from '@commercetools-frontend/constants';
 import { SUPPORTED_HEADERS } from '../constants';
-import {
-  selectProjectKeyFromUrl,
-  selectTeamIdFromLocalStorage,
-  selectTeamIdFromSessionStorage,
-} from '../utils';
+import { selectProjectKeyFromUrl, selectTeamIdFromStorage } from '../utils';
 import type { TApolloContext } from '../utils/apollo-context';
 import { createHttpClientOptions, type THeaders } from '../utils/http-client';
 import * as oidcStorage from '../utils/oidc-storage';
@@ -108,10 +104,7 @@ const headerLink = new ApolloLink((operation, forward) => {
     selectProjectKeyFromUrl();
   // Session storage takes precedence due to team switcher in staffbar to simulate permission
   const teamId =
-    selectTeamIdFromSessionStorage() ||
-    apolloContext.teamId ||
-    variables.teamId ||
-    selectTeamIdFromLocalStorage();
+    apolloContext.teamId || variables.teamId || selectTeamIdFromStorage();
   const featureFlag = apolloContext.featureFlag || variables.featureFlag;
 
   operation.setContext(
