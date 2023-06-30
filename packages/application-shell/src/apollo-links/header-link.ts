@@ -102,7 +102,6 @@ const headerLink = new ApolloLink((operation, forward) => {
     apolloContext.projectKey ||
     variables.projectKey ||
     selectProjectKeyFromUrl();
-  // Session storage takes precedence due to team switcher in staffbar to simulate permission
   const teamId =
     apolloContext.teamId || variables.teamId || selectTeamIdFromStorage();
   const featureFlag = apolloContext.featureFlag || variables.featureFlag;
