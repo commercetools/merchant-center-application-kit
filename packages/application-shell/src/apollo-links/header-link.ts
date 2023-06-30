@@ -10,6 +10,7 @@ import { SUPPORTED_HEADERS } from '../constants';
 import {
   selectProjectKeyFromUrl,
   selectTeamIdFromLocalStorage,
+  selectTeamIdFromSessionStorage,
 } from '../utils';
 import type { TApolloContext } from '../utils/apollo-context';
 import { createHttpClientOptions, type THeaders } from '../utils/http-client';
@@ -105,8 +106,12 @@ const headerLink = new ApolloLink((operation, forward) => {
     apolloContext.projectKey ||
     variables.projectKey ||
     selectProjectKeyFromUrl();
+  // Session storage takes precedence due to team switcher in staffbar to simulate permission
   const teamId =
-    apolloContext.teamId || variables.teamId || selectTeamIdFromLocalStorage();
+    selectTeamIdFromSessionStorage() ||
+    apolloContext.teamId ||
+    variables.teamId ||
+    selectTeamIdFromLocalStorage();
   const featureFlag = apolloContext.featureFlag || variables.featureFlag;
 
   operation.setContext(
