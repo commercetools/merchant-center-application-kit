@@ -12,7 +12,7 @@ import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import {
   getCorrelationId,
   selectProjectKeyFromUrl,
-  selectTeamIdFromLocalStorage,
+  selectTeamIdFromStorage,
   selectUserId,
 } from '../utils';
 import * as oidcStorage from '../utils/oidc-storage';
@@ -21,7 +21,7 @@ import headerLink from './header-link';
 jest.mock('@commercetools/http-user-agent', () => jest.fn(() => 'user-agent'));
 jest.mock('../utils/get-correlation-id');
 jest.mock('../utils/select-project-key-from-url');
-jest.mock('../utils/select-team-id-from-local-storage');
+jest.mock('../utils/select-team-id-from-storage');
 jest.mock('../utils/select-user-id');
 jest.mock('../utils/oidc-storage');
 
@@ -35,7 +35,7 @@ const mockServer = setupServer();
 beforeEach(() => {
   getCorrelationId.mockImplementation(() => 'test-correlation-id');
   selectProjectKeyFromUrl.mockImplementation(() => 'project-1');
-  selectTeamIdFromLocalStorage.mockImplementation(() => 'team-1');
+  selectTeamIdFromStorage.mockImplementation(() => 'team-1');
   selectUserId.mockImplementation(() => 'user-1');
 });
 afterEach(() => {
@@ -437,9 +437,9 @@ describe('configuring header link', () => {
 
     beforeEach(async () => {
       selectProjectKeyFromUrl.mockClear();
-      selectTeamIdFromLocalStorage.mockClear();
+      selectTeamIdFromStorage.mockClear();
       selectProjectKeyFromUrl.mockImplementation(() => null);
-      selectTeamIdFromLocalStorage.mockImplementation(() => null);
+      selectTeamIdFromStorage.mockImplementation(() => null);
 
       await waitFor(
         execute(link, {
