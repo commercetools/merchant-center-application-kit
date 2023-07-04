@@ -41,7 +41,7 @@ describe('PageContentWide', () => {
 
       expect(useWarning).toHaveBeenCalledWith(
         false,
-        'PageContentWide: This component only renders its first children when using a single column but you provided more that one.'
+        'PageContentWide: This component has more than 1 child. Only the first child will be rendered.'
       );
     });
   });
