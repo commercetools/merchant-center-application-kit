@@ -55,33 +55,16 @@ const Container = styled.div`
 
 function PageContentWide(props: TPageContentWide) {
   const [leftChild, rightChild] = Children.toArray(props.children);
-  const countChildren = Children.count(props.children);
-
-  // if there's 1 column and more than 1 child
-  const isColumnsOneAndMoreThanOneChild =
-    props.columns === '1' && countChildren > 1;
+  const childrenCount = Children.count(props.children);
 
   useWarning(
-    !isColumnsOneAndMoreThanOneChild,
-    'PageContentWide: This component has more than 1 child. Only the first child will be rendered.'
+    props.columns === '1' && childrenCount > 1,
+    'PageContentWide: This component only renders its first children when using a single column but you provided more that one.'
   );
 
-  // if there's 1/1 or 2/1 columns and only 1 child
-  const isColumnsTwoAndOneChild =
-    (props.columns === '1/1' || props.columns === '2/1') && countChildren === 1;
-
   useWarning(
-    !isColumnsTwoAndOneChild,
-    'PageContentWide: This component has only 1 child. The second child will be ignored.'
-  );
-
-  // if there's 1/1 or 2/1 columns and more than 2 children
-  const isColumnsTwoAndMoreThanTwoChildren =
-    (props.columns === '1/1' || props.columns === '2/1') && countChildren > 2;
-
-  useWarning(
-    !isColumnsTwoAndMoreThanTwoChildren,
-    'PageContentWide: This component has more than 2 children. Only the first 2 children will be rendered.'
+    props.columns !== '1' && childrenCount > 2,
+    'PageContentWide: This component only renders its first two children when using a two columns layout but you provided more that two.'
   );
 
   return (
