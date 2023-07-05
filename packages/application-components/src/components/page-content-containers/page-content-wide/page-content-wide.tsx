@@ -57,13 +57,19 @@ function PageContentWide(props: TPageContentWide) {
   const [leftChild, rightChild] = Children.toArray(props.children);
   const childrenCount = Children.count(props.children);
 
+  const isOneColumnAndMoreThanOneChild =
+    props.columns === '1' && childrenCount > 1;
+
+  const isTwoColumnsAndMoreThanTwoChildren =
+    props.columns !== '1' && childrenCount > 2;
+
   useWarning(
-    props.columns === '1' && childrenCount > 1,
+    !isOneColumnAndMoreThanOneChild,
     'PageContentWide: This component only renders its first children when using a single column but you provided more than one.'
   );
 
   useWarning(
-    props.columns !== '1' && childrenCount > 2,
+    !isTwoColumnsAndMoreThanTwoChildren,
     'PageContentWide: This component only renders its first two children when using a two columns layout but you provided more than two.'
   );
 
