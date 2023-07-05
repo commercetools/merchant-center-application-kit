@@ -1,5 +1,18 @@
 # @commercetools-local/visual-testing-app
 
+## 22.3.3
+
+### Patch Changes
+
+- [#3127](https://github.com/commercetools/merchant-center-application-kit/pull/3127) [`0918b4620`](https://github.com/commercetools/merchant-center-application-kit/commit/0918b46208e60b36f5ed071d65879e2902900da7) Thanks [@chloe0592](https://github.com/chloe0592)! - We included a new warning in the `PageContentWide` component to let consumers know the component will only render its first two children when configured to use two columns even if consumers provided more than two children.
+
+- Updated dependencies [[`0918b4620`](https://github.com/commercetools/merchant-center-application-kit/commit/0918b46208e60b36f5ed071d65879e2902900da7)]:
+  - @commercetools-frontend/application-components@22.3.3
+  - @commercetools-frontend/application-config@22.3.3
+  - @commercetools-frontend/assets@22.3.3
+  - @commercetools-frontend/constants@22.3.3
+  - @commercetools-frontend/react-notifications@22.3.3
+
 ## 22.3.2
 
 ### Patch Changes
