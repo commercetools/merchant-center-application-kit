@@ -1,5 +1,7 @@
 # @commercetools-frontend/create-mc-app
 
+## 22.3.3
+
 ## 22.3.2
 
 ## 22.3.1
