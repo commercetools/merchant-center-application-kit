@@ -59,12 +59,12 @@ function PageContentWide(props: TPageContentWide) {
 
   useWarning(
     props.columns === '1' && childrenCount > 1,
-    'PageContentWide: This component only renders its first children when using a single column but you provided more that one.'
+    'PageContentWide: This component only renders its first children when using a single column but you provided more than one.'
   );
 
   useWarning(
     props.columns !== '1' && childrenCount > 2,
-    'PageContentWide: This component only renders its first two children when using a two columns layout but you provided more that two.'
+    'PageContentWide: This component only renders its first two children when using a two columns layout but you provided more than two.'
   );
 
   return (
