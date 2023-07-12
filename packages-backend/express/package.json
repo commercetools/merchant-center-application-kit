@@ -31,6 +31,6 @@
     "@types/express-unless": "^0.5.3",
     "@types/jsonwebtoken": "^9.0.0",
     "jose": "2.0.6",
-    "msw": "0.49.3"
+    "msw": "1.2.2"
   }
 }
