@@ -120,7 +120,7 @@
     "@types/serve-handler": "^6.1.1",
     "mock-fs": "^5.2.0",
     "msw": "0.49.3",
-    "rimraf": "3.0.2"
+    "rimraf": "5.0.1"
   },
   "engines": {
     "node": "16.x || >=18.0.0"
