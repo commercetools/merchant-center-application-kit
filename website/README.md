@@ -4,7 +4,7 @@ The website is available at https://docs.commercetools.com and is built using th
 
 ## Getting started
 
-To start the website in development mode, execute `yarn start`.
+To start the website in development mode, execute `pnpm start`.
 
 Please refer to the [Gatsby theme documentation](https://github.com/commercetools/commercetools-docs-kit) to how the website is configured and to work with it.
 
