@@ -7,7 +7,10 @@ global.window.app = {
 };
 
 window.MutationObserver = MutationObserver;
-global.Headers = global.Headers || require('node-fetch').Headers;
+const { Headers, Request, Response } = require('node-fetch');
+global.Headers = global.Headers || Headers;
+global.Request = global.Request || Request;
+global.Response = global.Response || Response;
 
 // Fix missing globals when `jsdom` is used in a test environment.
 // See https://github.com/jsdom/jsdom/issues/2524#issuecomment-1108991178.
