@@ -404,11 +404,17 @@ describe('when loading user fails with an unauthorized graphql error', () => {
       graphql.query('FetchLoggedInUser', (req, res, ctx) =>
         res(
           ctx.errors([
-            new GraphQLError('User is not authorized', {
-              extensions: {
+            new GraphQLError(
+              'User is not authorized',
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              {
                 code: 'UNAUTHENTICATED',
-              },
-            }),
+              }
+            ),
           ])
         )
       )
