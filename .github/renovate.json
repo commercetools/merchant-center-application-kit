@@ -53,10 +53,6 @@
     {
       "matchPackageNames": ["@types/react"],
       "allowedVersions": "<17.0.57"
-    },
-    {
-      "matchPackageNames": ["graphql"],
-      "allowedVersions": "<16"
     }
   ],
   "lockFileMaintenance": {
