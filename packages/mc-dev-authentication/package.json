@@ -30,7 +30,7 @@
   "devDependencies": {
     "@commercetools-frontend/application-config": "workspace:*",
     "@types/express": "^4.17.17",
-    "@tsconfig/node16": "^1.0.3",
+    "@tsconfig/node16": "^16.0.0",
     "express": "4.18.2"
   },
   "engines": {

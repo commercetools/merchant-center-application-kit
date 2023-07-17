@@ -45,7 +45,7 @@
     "uuid": "9.0.0"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^1.0.3",
+    "@tsconfig/node16": "^16.0.0",
     "cypress": "12.12.0"
   },
   "peerDependencies": {
