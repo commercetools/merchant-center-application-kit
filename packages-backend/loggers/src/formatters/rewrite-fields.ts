@@ -15,7 +15,7 @@ type TRewriteFieldsFormatterOption = {
   fields: TRewriteField[];
 };
 
-const defaultRewriteField: TRewriteField = {
+const defaultRewriteField: Partial<TRewriteField> = {
   unsetFromField: true,
 };
 function rewriteField(info: TransformableInfo, field: TRewriteField) {

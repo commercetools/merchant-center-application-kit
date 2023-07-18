@@ -26,6 +26,7 @@ describe('application logger', () => {
         meta: { req: { headers: { Accept: 'application/json' } } },
       });
       // Note: that both only headersJsonString is present
+      // @ts-ignore
       expect(console._stdout.write.mock.lastCall).toMatchInlineSnapshot(`
         [
           "{"level":"info","message":"Test log","meta":{"req":{"headersJsonString":"{\\"Accept\\":\\"application/json\\"}"}}}
@@ -60,6 +61,7 @@ describe('application logger', () => {
       });
 
       // Note: that both headers and headersJsonString are present
+      // @ts-ignore
       expect(console._stdout.write.mock.lastCall).toMatchInlineSnapshot(`
         [
           "{"level":"info","message":"Test log","meta":{"req":{"headers":{"Accept":"application/json"},"headersJsonString":"{\\"Accept\\":\\"application/json\\"}"}}}
@@ -112,6 +114,7 @@ describe('application logger', () => {
       },
     });
     // Note that authorization is REDACTED in both headers and headersJsonString
+    // @ts-ignore
     expect(console._stdout.write.mock.lastCall).toMatchInlineSnapshot(`
       [
         "{"level":"info","message":"Test log","meta":{"req":{"headers":{"authorization":"[REDACTED]"},"headersJsonString":"{\\"authorization\\":\\"[REDACTED]\\"}"}}}
