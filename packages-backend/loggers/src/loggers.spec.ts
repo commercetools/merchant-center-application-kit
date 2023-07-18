@@ -47,7 +47,7 @@ describe('application logger', () => {
               {
                 from: 'meta.req.headers',
                 to: 'meta.req.headersJsonString',
-                unsetFromField: false,
+                preserveFromField: true,
                 replaceValue: (value) => {
                   return JSON.stringify(value);
                 },
