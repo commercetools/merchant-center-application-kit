@@ -2,47 +2,73 @@ import createApplicationLogger from './create-application-logger';
 import rewriteFieldsFormatter from './formatters/rewrite-fields';
 
 describe('application logger', () => {
-  it('should log and rewrite fields', () => {
-    // @ts-ignore
-    console._stdout.write = jest.fn();
-    const logger = createApplicationLogger({
-      json: true,
-      formatters: [
-        rewriteFieldsFormatter({
-          fields: [
-            {
-              from: 'meta.req.headers',
-              to: 'meta.req.headersJsonString',
-              replaceValue: (value) => {
-                return JSON.stringify(value);
+  describe('when replacing field', () => {
+    it('should log and replace fields', () => {
+      // @ts-ignore
+      console._stdout.write = jest.fn();
+      const logger = createApplicationLogger({
+        json: true,
+        formatters: [
+          rewriteFieldsFormatter({
+            fields: [
+              {
+                from: 'meta.req.headers',
+                to: 'meta.req.headersJsonString',
+                replaceValue: (value) => {
+                  return JSON.stringify(value);
+                },
               },
-            },
-          ],
-        }),
-      ],
+            ],
+          }),
+        ],
+      });
+      logger.info('Test log', {
+        meta: { req: { headers: { Accept: 'application/json' } } },
+      });
+      // Note: that both only headersJsonString is present
+      expect(console._stdout.write.mock.lastCall).toMatchInlineSnapshot(`
+        [
+          "{"level":"info","message":"Test log","meta":{"req":{"headersJsonString":"{\\"Accept\\":\\"application/json\\"}"}}}
+        ",
+        ]
+      `);
     });
-    logger.info('Test log', {
-      meta: { req: { headers: { Accept: 'application/json' } } },
-    });
-    // @ts-ignore
-    expect(console._stdout.write).toHaveBeenCalledWith(
-      expect.stringContaining(`\"level\":\"info\"`)
-    );
-    // @ts-ignore
-    expect(console._stdout.write).toHaveBeenCalledWith(
-      expect.stringContaining(`\"message\":\"Test log\"`)
-    );
-    // @ts-ignore
-    expect(console._stdout.write).toHaveBeenCalledWith(
-      expect.stringContaining(
-        `\"meta\":${JSON.stringify({
-          req: {
-            headersJsonString: JSON.stringify({ Accept: 'application/json' }),
-          },
-        })}`
-      )
-    );
   });
+  describe('when not replacing field', () => {
+    it('should log and add but not replace fields', () => {
+      // @ts-ignore
+      console._stdout.write = jest.fn();
+      const logger = createApplicationLogger({
+        json: true,
+        formatters: [
+          rewriteFieldsFormatter({
+            fields: [
+              {
+                from: 'meta.req.headers',
+                to: 'meta.req.headersJsonString',
+                unsetFromField: false,
+                replaceValue: (value) => {
+                  return JSON.stringify(value);
+                },
+              },
+            ],
+          }),
+        ],
+      });
+      logger.info('Test log', {
+        meta: { req: { headers: { Accept: 'application/json' } } },
+      });
+
+      // Note: that both headers and headersJsonString are present
+      expect(console._stdout.write.mock.lastCall).toMatchInlineSnapshot(`
+        [
+          "{"level":"info","message":"Test log","meta":{"req":{"headers":{"Accept":"application/json"},"headersJsonString":"{\\"Accept\\":\\"application/json\\"}"}}}
+        ",
+        ]
+      `);
+    });
+  });
+
   it('should not mutate meta object', () => {
     // @ts-ignore
     console._stdout.write = jest.fn();
@@ -85,18 +111,12 @@ describe('application logger', () => {
         authorization: 'Bearer 123',
       },
     });
-    // @ts-ignore
-    expect(console._stdout.write).toHaveBeenCalledWith(
-      expect.stringContaining(
-        `\"meta\":${JSON.stringify({
-          req: {
-            headers: {
-              authorization: '[REDACTED]',
-            },
-            headersJsonString: JSON.stringify({ authorization: '[REDACTED]' }),
-          },
-        })}`
-      )
-    );
+    // Note that authorization is REDACTED in both headers and headersJsonString
+    expect(console._stdout.write.mock.lastCall).toMatchInlineSnapshot(`
+      [
+        "{"level":"info","message":"Test log","meta":{"req":{"headers":{"authorization":"[REDACTED]"},"headersJsonString":"{\\"authorization\\":\\"[REDACTED]\\"}"}}}
+      ",
+      ]
+    `);
   });
 });
