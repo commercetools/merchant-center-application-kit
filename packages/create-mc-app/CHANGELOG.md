@@ -1,5 +1,15 @@
 # @commercetools-frontend/create-mc-app
 
+## 22.4.0
+
+### Minor Changes
+
+- [#3119](https://github.com/commercetools/merchant-center-application-kit/pull/3119) [`5c989899c`](https://github.com/commercetools/merchant-center-application-kit/commit/5c989899c2b80539182d74ab20374304d6709395) Thanks [@renovate](https://github.com/apps/renovate)! - Update `semver` dependency.
+
+### Patch Changes
+
+- [#3138](https://github.com/commercetools/merchant-center-application-kit/pull/3138) [`5f4c47f8f`](https://github.com/commercetools/merchant-center-application-kit/commit/5f4c47f8f98e798ed24ce33b66130a273fa2e25a) Thanks [@emmenko](https://github.com/emmenko)! - Run `npm install` command with `--legacy-peer-deps` option
+
 ## 22.3.4
 
 ## 22.3.3

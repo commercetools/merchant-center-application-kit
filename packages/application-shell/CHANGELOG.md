@@ -1,5 +1,28 @@
 # @commercetools-frontend/application-shell
 
+## 22.4.0
+
+### Patch Changes
+
+- [#3140](https://github.com/commercetools/merchant-center-application-kit/pull/3140) [`d9b3283e5`](https://github.com/commercetools/merchant-center-application-kit/commit/d9b3283e533502b93068a8033f1a77c5cf1e8b00) Thanks [@kark](https://github.com/kark)! - fix: send `teamId` as GraphQL request header in Custom Application local development
+
+- Updated dependencies [[`55e81421c`](https://github.com/commercetools/merchant-center-application-kit/commit/55e81421c10774f991ca70c849179d69c647b547)]:
+  - @commercetools-frontend/l10n@22.4.0
+  - @commercetools-frontend/application-components@22.4.0
+  - @commercetools-frontend/actions-global@22.4.0
+  - @commercetools-frontend/application-config@22.4.0
+  - @commercetools-frontend/application-shell-connectors@22.4.0
+  - @commercetools-frontend/assets@22.4.0
+  - @commercetools-frontend/browser-history@22.4.0
+  - @commercetools-frontend/constants@22.4.0
+  - @commercetools-frontend/i18n@22.4.0
+  - @commercetools-frontend/notifications@22.4.0
+  - @commercetools-frontend/permissions@22.4.0
+  - @commercetools-frontend/react-notifications@22.4.0
+  - @commercetools-frontend/sdk@22.4.0
+  - @commercetools-frontend/sentry@22.4.0
+  - @commercetools-frontend/url-utils@22.4.0
+
 ## 22.3.4
 
 ### Patch Changes

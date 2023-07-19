@@ -1,5 +1,17 @@
 # @commercetools-frontend/cypress
 
+## 22.4.0
+
+### Minor Changes
+
+- [#3119](https://github.com/commercetools/merchant-center-application-kit/pull/3119) [`5c989899c`](https://github.com/commercetools/merchant-center-application-kit/commit/5c989899c2b80539182d74ab20374304d6709395) Thanks [@renovate](https://github.com/apps/renovate)! - Update `semver` dependency.
+
+### Patch Changes
+
+- Updated dependencies [[`d9b3283e5`](https://github.com/commercetools/merchant-center-application-kit/commit/d9b3283e533502b93068a8033f1a77c5cf1e8b00)]:
+  - @commercetools-frontend/application-shell@22.4.0
+  - @commercetools-frontend/application-config@22.4.0
+
 ## 22.3.4
 
 ### Patch Changes
