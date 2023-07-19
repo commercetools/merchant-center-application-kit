@@ -2,15 +2,15 @@
 "@commercetools-backend/loggers": minor
 ---
 
-Support to not unset the original field when rewriting logs.
+Add support to optionally preserve the original field when rewriting log fields with `rewriteFieldsFormatter`.
 
-When rewriting a field you can use the `unsetFromField` option and set it to `false`. For example:
+When rewriting a field you can use the `preserveFromField` option and set it to `true`. For example:
 
 ```js
 {
   from: 'meta.req.statusCode',
   to: 'meta.req.status_code',
-  unsetFromField: false,
+  preserveFromField: true,
 }
 ```
 
