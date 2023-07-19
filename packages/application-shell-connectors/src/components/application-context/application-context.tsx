@@ -16,7 +16,12 @@ import {
 } from './normalizers';
 
 type TFetchedUser = TFetchLoggedInUserQuery['user'];
-type TFetchedProject = TFetchProjectQuery['project'];
+type TFetchedProject = TFetchProjectQuery['project'] & {
+  sampleDataImport: {
+    completed: boolean;
+    dataset: string;
+  }
+};
 
 type TApplicationContextPermissions = { [key: string]: boolean };
 type TActionRight = {
@@ -146,6 +151,7 @@ export const mapProjectToApplicationContextProject = (
     languages: project.languages,
     ownerId: project.owner.id,
     ownerName: project.owner.name,
+    sampleDataImport: project.sampleDataImport,
   };
 };
 
