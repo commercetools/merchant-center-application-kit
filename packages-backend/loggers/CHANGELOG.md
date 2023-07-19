@@ -1,5 +1,23 @@
 # @commercetools-backend/loggers
 
+## 22.4.0
+
+### Minor Changes
+
+- [#3141](https://github.com/commercetools/merchant-center-application-kit/pull/3141) [`e260cb6b5`](https://github.com/commercetools/merchant-center-application-kit/commit/e260cb6b5b9053f7a53c8250a72a8b546aa2e1b7) Thanks [@tdeekens](https://github.com/tdeekens)! - Add support to optionally preserve the original field when rewriting log fields with `rewriteFieldsFormatter`.
+
+  When rewriting a field you can use the `preserveFromField` option and set it to `true`. For example:
+
+  ```js
+  {
+    from: 'meta.req.statusCode',
+    to: 'meta.req.status_code',
+    preserveFromField: true,
+  }
+  ```
+
+  Would add a field `meta.req.status_code` while keeping the original `meta.req.statusCode`. This can be helpful when gracefully migrating fields.
+
 ## 22.3.4
 
 ## 22.3.3

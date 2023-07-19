@@ -1,5 +1,11 @@
 # @commercetools-backend/express
 
+## 22.4.0
+
+### Minor Changes
+
+- [#3107](https://github.com/commercetools/merchant-center-application-kit/pull/3107) [`8800a1718`](https://github.com/commercetools/merchant-center-application-kit/commit/8800a17184671a733fb4fe16c21bf4c0c957c4fe) Thanks [@renovate](https://github.com/apps/renovate)! - Update `jsonwebtoken` dependency types.
+
 ## 22.3.4
 
 ## 22.3.3

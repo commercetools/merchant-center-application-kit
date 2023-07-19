@@ -1,5 +1,22 @@
 # @commercetools-frontend/mc-scripts
 
+## 22.4.0
+
+### Minor Changes
+
+- [#3102](https://github.com/commercetools/merchant-center-application-kit/pull/3102) [`55e81421c`](https://github.com/commercetools/merchant-center-application-kit/commit/55e81421c10774f991ca70c849179d69c647b547) Thanks [@renovate](https://github.com/apps/renovate)! - Update `rimraf` dependency.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@22.4.0
+  - @commercetools-frontend/application-config@22.4.0
+  - @commercetools-frontend/assets@22.4.0
+  - @commercetools-frontend/babel-preset-mc-app@22.4.0
+  - @commercetools-frontend/constants@22.4.0
+  - @commercetools-frontend/mc-dev-authentication@22.4.0
+  - @commercetools-frontend/mc-html-template@22.4.0
+
 ## 22.3.4
 
 ### Patch Changes

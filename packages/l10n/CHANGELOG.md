@@ -1,5 +1,16 @@
 # @commercetools-frontend/l10n
 
+## 22.4.0
+
+### Minor Changes
+
+- [#3102](https://github.com/commercetools/merchant-center-application-kit/pull/3102) [`55e81421c`](https://github.com/commercetools/merchant-center-application-kit/commit/55e81421c10774f991ca70c849179d69c647b547) Thanks [@renovate](https://github.com/apps/renovate)! - Update `rimraf` dependency.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.4.0
+
 ## 22.3.4
 
 ### Patch Changes
