@@ -9,16 +9,26 @@ type TRewriteField = {
   from: string;
   to: string;
   replaceValue?: (value: unknown) => unknown;
+  preserveFromField?: boolean;
 };
 type TRewriteFieldsFormatterOption = {
   fields: TRewriteField[];
 };
 
 function rewriteField(info: TransformableInfo, field: TRewriteField) {
-  const val = getIn(info, field.from);
-  if (val) {
-    unsetIn(info, field.from);
-    setIn(info, field.to, field.replaceValue ? field.replaceValue(val) : val);
+  const fromFieldValue = getIn(info, field.from);
+  const preserveFromField = field.preserveFromField ?? false;
+
+  if (fromFieldValue) {
+    if (!preserveFromField) {
+      unsetIn(info, field.from);
+    }
+
+    setIn(
+      info,
+      field.to,
+      field.replaceValue ? field.replaceValue(fromFieldValue) : fromFieldValue
+    );
   }
 }
 
