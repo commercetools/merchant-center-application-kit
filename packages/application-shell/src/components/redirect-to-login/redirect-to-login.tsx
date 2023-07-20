@@ -60,6 +60,7 @@ const RedirectToLogin = () => {
       additionalOAuthScopes:
         window.app.__DEVELOPMENT__?.oidc?.additionalOAuthScopes,
       teamId: window.app.__DEVELOPMENT__?.oidc?.teamId,
+      applicationId: window.app.__DEVELOPMENT__?.oidc?.applicationId,
     });
 
     // Store session scopes, to be able to detect if requested scopes changed

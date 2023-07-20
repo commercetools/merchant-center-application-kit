@@ -56,6 +56,7 @@ export const OIDC_CLAIMS = {
   OPEN_ID: 'openid',
   PROJECT_KEY: 'project_key',
   TEAM_ID: 'team_id',
+  APPLICATION_ID: 'application_id',
   VIEW: 'view',
   MANAGE: 'manage',
 };

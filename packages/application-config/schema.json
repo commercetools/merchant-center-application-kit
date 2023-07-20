@@ -111,6 +111,9 @@
             },
             "teamId": {
               "type": "string"
+            },
+            "applicationId": {
+              "type": "string"
             }
           },
           "additionalProperties": false,

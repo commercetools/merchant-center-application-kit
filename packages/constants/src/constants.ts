@@ -165,6 +165,7 @@ export type ApplicationOidcForDevelopmentConfig = {
   authorizeUrl: string;
   initialProjectKey?: string;
   teamId?: string;
+  applicationId?: string;
   oAuthScopes?: {
     view: string[];
     manage: string[];
