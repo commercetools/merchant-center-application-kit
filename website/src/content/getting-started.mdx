@@ -26,12 +26,6 @@ npx @commercetools-frontend/create-mc-app@latest \
 
 To start with a [TypeScript](https://www.typescriptlang.org/) project, use the `--template=starter-typescript` flag. Read more about TypeScript in the [Adding TypeScript](/development/adding-typescript) page.
 
-<Info>
-
-Local development and login are only allowed for users being part of the `Administrators` Team of your Organization. Therefore, choose a Project that is part of an Organization where you are an administrator of.
-
-</Info>
-
 After the installation is complete, follow the instructions to start the development server:
 
 ```console
@@ -58,6 +52,19 @@ One of the important parts of a Custom Application is the configuration file: `c
 We recommend making yourself familiar the [Application Config](/api-reference/application-config).
 
 By default the starter template is configured to use the [HTTP APIs in the GCP-EU Region](https://docs.commercetools.com/api/general-concepts#regions). If you plan to run the Custom Application in another environment, change the `cloudIdentifier` accordingly (see [list of cloud identifiers](/concepts/merchant-center-api#cloud-identifiers)).
+
+
+## Custom Application local development
+
+To start developing your Custom Application locally, the quickest way is by being part of the `Administrators` Team of your Organization. In that case, choose a Project that is part of an Organization where you are an administrator of.
+
+<Info>
+
+Local development and login are also allowed for users being part of an another team with more granular permissions assigned. This feature is available from version `22.5.0` onwards.
+
+</Info>
+
+To enable local development of a Custom Application by a user being a member of a team with limited permissions go to [Application Config](/api-reference/application-config).
 
 # Related
 

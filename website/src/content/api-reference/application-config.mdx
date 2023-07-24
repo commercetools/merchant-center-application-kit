@@ -235,11 +235,17 @@ A `projectKey` of a commercetools Project you have access to. To be used as the 
 }
 ```
 
+## `env.development.teamId` and `env.development.applicationId`
+
 <Info>
 
-Local development and login are only allowed for users being part of the `Administrators` Team of your Organization.
+Local development and login are always allowed for users being part of the `Administrators` Team of your Organization. In such case no additional configuration is needed.
 
 </Info>
+
+In case more granular permissions need to be applied for local development of a Custom Application, `teamId` and `applicationId` have to be used.
+
+Please make sure to follow the guidelines of Custom Application [deployment](/deployment-examples) and [configuration in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications). After Custom Application installation and assigning team permissions, provide values for `env.development.teamId` and `env.development.applicationId` respectively.
 
 ## `env.production.applicationId`
 
