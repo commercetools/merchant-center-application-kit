@@ -61,9 +61,6 @@ query FetchProject($projectKey: String) {
       id
       name
     }
-    sampleDataImport {
-      completed
-      dataset
-    }
+    sampleDataImportDataset
   }
 }

@@ -24,11 +24,6 @@ import type {
 
 export type TCreateProjectBuilder = () => TBuilder<TProject>;
 
-type SampleDataImport = {
-  completed: boolean;
-  dataset: string;
-};
-
 type TBaseProject = {
   id: string;
   version: number;
@@ -40,7 +35,7 @@ type TBaseProject = {
   currencies: string[];
   languages: string[];
   initialized: boolean;
-  sampleDataImport?: SampleDataImport;
+  sampleDataImportDataset?: string;
 };
 
 export type TProject = TBaseProject & {

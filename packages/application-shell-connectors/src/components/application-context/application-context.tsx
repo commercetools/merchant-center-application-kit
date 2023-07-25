@@ -17,10 +17,7 @@ import {
 
 type TFetchedUser = TFetchLoggedInUserQuery['user'];
 type TFetchedProject = TFetchProjectQuery['project'] & {
-  sampleDataImport: {
-    completed: boolean;
-    dataset: string;
-  }
+  sampleDataImportDataset?: string;
 };
 
 type TApplicationContextPermissions = { [key: string]: boolean };
@@ -151,7 +148,7 @@ export const mapProjectToApplicationContextProject = (
     languages: project.languages,
     ownerId: project.owner.id,
     ownerName: project.owner.name,
-    sampleDataImport: project.sampleDataImport,
+    sampleDataImportDataset: project.sampleDataImportDataset,
   };
 };
 

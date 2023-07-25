@@ -35,10 +35,6 @@ const Project = new Factory()
     id: faker.datatype.uuid(),
     name: faker.company.name(),
   }))
-  .attr('sampleDataImport', () => ({
-    __typename: 'sampleDataImport',
-    completed: true,
-    dataset: 'FASHION'
-  }))
+  .attr('sampleDataImportDataset', 'FASHION')
 
 export default Project;
