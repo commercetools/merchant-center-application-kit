@@ -5,6 +5,7 @@ import fixtureConfigEnvVariables from './fixtures/config-env-variables.json';
 import fixtureConfigFilePathVariables from './fixtures/config-file-path-variables.json';
 import fixtureConfigFull from './fixtures/config-full.json';
 import fixtureConfigIntlVariables from './fixtures/config-intl-variables.json';
+import fixtureConfigOidcWithTeamId from './fixtures/config-oidc-with-team-id.json';
 import fixtureConfigOidc from './fixtures/config-oidc.json';
 import fixtureConfigSimple from './fixtures/config-simple.json';
 
@@ -1141,7 +1142,6 @@ describe('processing a config with OIDC', () => {
       env: {
         __DEVELOPMENT__: {
           oidc: {
-            applicationId: 'app-id-123',
             authorizeUrl:
               'https://mc.europe-west1.gcp.commercetools.com/login/authorize',
             initialProjectKey: 'project-key',
@@ -1149,7 +1149,6 @@ describe('processing a config with OIDC', () => {
               manage: ['manage_orders'],
               view: ['view_orders', 'view_states'],
             },
-            teamId: 'teamId',
             additionalOAuthScopes: [
               {
                 name: 'movies',
@@ -1322,6 +1321,115 @@ describe('when app URL has non-root path without ending backslash', () => {
     Object.values(result.headers.csp).forEach((cspDirectiveValues) =>
       expect(cspDirectiveValues).toEqual(expect.arrayContaining([`${appUrl}/`]))
     );
+  });
+});
+
+describe('processing a config with OIDC with teamId', () => {
+  beforeEach(() => {
+    loadConfig.mockReturnValue(fixtureConfigOidcWithTeamId);
+  });
+  it('should process the config and prepare the application environment and headers, as well as the __DEVELOPMENT__ object', () => {
+    const result = processConfig(
+      createTestOptions({
+        processEnv: {
+          APP_URL: 'https://avengers.app',
+          CLOUD_IDENTIFIER: 'gcp-eu',
+          NODE_ENV: 'test',
+        },
+      })
+    );
+    expect(result).toEqual({
+      data: {
+        id: 'app-id-123',
+        name: 'avengers-app',
+        description: undefined,
+        entryPointUriPath: 'avengers',
+        url: 'https://avengers.app',
+        permissions: [
+          {
+            name: 'viewAvengers',
+            oAuthScopes: ['view_orders', 'view_states'],
+          },
+          {
+            name: 'manageAvengers',
+            oAuthScopes: ['manage_orders'],
+          },
+          {
+            name: 'viewAvengersMovies',
+            oAuthScopes: ['view_products'],
+          },
+          {
+            name: 'manageAvengersMovies',
+            oAuthScopes: [],
+          },
+          {
+            name: 'viewAvengersMerch',
+            oAuthScopes: [],
+          },
+          {
+            name: 'manageAvengersMerch',
+            oAuthScopes: ['manage_channels'],
+          },
+        ],
+        icon: '<svg><path fill="#000000" /></svg>',
+        mainMenuLink: {
+          defaultLabel: 'Avengers',
+          labelAllLocales: [],
+          permissions: [],
+        },
+        submenuLinks: [],
+      },
+      env: {
+        __DEVELOPMENT__: {
+          oidc: {
+            applicationId: 'app-id-123',
+            authorizeUrl:
+              'https://mc.europe-west1.gcp.commercetools.com/login/authorize',
+            initialProjectKey: 'project-key',
+            oAuthScopes: {
+              manage: ['manage_orders'],
+              view: ['view_orders', 'view_states'],
+            },
+            teamId: 'team-id',
+            additionalOAuthScopes: [
+              {
+                name: 'movies',
+                view: ['view_products'], // mind that `"manage": []` is filtered out by `omitEmpty` as no additional `manage_` scope should be requested for this group
+              },
+              {
+                name: 'merch',
+                manage: ['manage_channels'], // mind that `"view": []` is filtered out by `omitEmpty` as no additional `view_` scope should be requested for this group
+              },
+            ],
+          },
+          accountLinks: undefined,
+          menuLinks: {
+            icon: '<svg><path fill="#000000" /></svg>',
+            defaultLabel: 'Avengers',
+            labelAllLocales: [],
+            permissions: [],
+            submenuLinks: [],
+          },
+        },
+        applicationId: '__local:avengers',
+        applicationName: 'avengers-app',
+        entryPointUriPath: 'avengers',
+        cdnUrl: 'http://localhost:3001/',
+        env: 'test',
+        frontendHost: 'localhost:3001',
+        location: 'gcp-eu',
+        mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
+        revision: '',
+        servedByProxy: false,
+      },
+      headers: {
+        csp: {
+          'connect-src': ['https://mc-api.europe-west1.gcp.commercetools.com'],
+          'script-src': [],
+          'style-src': [],
+        },
+      },
+    });
   });
 });
 

@@ -16,6 +16,7 @@ import {
   getUniqueValues,
   getIsProd,
   getOrThrow,
+  getIfTruthyOrThrow,
 } from './utils';
 import { validateConfig } from './validations';
 
@@ -129,7 +130,12 @@ const processConfig = ({
                 ? undefined
                 : appConfig.env.development.initialProjectKey,
             teamId: appConfig.env.development?.teamId,
-            applicationId: appConfig.env.development?.applicationId,
+            ...(appConfig.env.development?.teamId && {
+              applicationId: getIfTruthyOrThrow(
+                appConfig.env.production?.applicationId,
+                'applicationId must be provided if teamId is used'
+              ),
+            }),
             oAuthScopes: appConfig.oAuthScopes,
             additionalOAuthScopes: appConfig?.additionalOAuthScopes,
           }),

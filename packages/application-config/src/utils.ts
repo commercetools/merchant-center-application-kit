@@ -52,6 +52,13 @@ const getOrThrow = <T>(fn: () => T, errorMessage: string): T => {
   }
 };
 
+const getIfTruthyOrThrow = <T>(value: T, errorMessage: string) => {
+  if (value) {
+    return value;
+  }
+  throw new Error(errorMessage);
+};
+
 const parseJsonFile = <T>(filePath: string): T => {
   let rawData;
   try {
@@ -70,4 +77,5 @@ export {
   getIsProd,
   getOrThrow,
   parseJsonFile,
+  getIfTruthyOrThrow,
 };
