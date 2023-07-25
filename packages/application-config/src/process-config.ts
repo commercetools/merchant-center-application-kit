@@ -129,6 +129,7 @@ const processConfig = ({
                 ? undefined
                 : appConfig.env.development.initialProjectKey,
             teamId: appConfig.env.development?.teamId,
+            applicationId: appConfig.env.development?.applicationId,
             oAuthScopes: appConfig.oAuthScopes,
             additionalOAuthScopes: appConfig?.additionalOAuthScopes,
           }),

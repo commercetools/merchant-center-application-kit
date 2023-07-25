@@ -4,7 +4,9 @@
   "cloudIdentifier": "gcp-eu",
   "env": {
     "development": {
-      "initialProjectKey": "project-key"
+      "initialProjectKey": "project-key",
+      "teamId": "teamId",
+      "applicationId": "app-id-123"
     },
     "production": {
       "applicationId": "app-id-123",

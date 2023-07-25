@@ -1141,6 +1141,7 @@ describe('processing a config with OIDC', () => {
       env: {
         __DEVELOPMENT__: {
           oidc: {
+            applicationId: 'app-id-123',
             authorizeUrl:
               'https://mc.europe-west1.gcp.commercetools.com/login/authorize',
             initialProjectKey: 'project-key',
@@ -1148,6 +1149,7 @@ describe('processing a config with OIDC', () => {
               manage: ['manage_orders'],
               view: ['view_orders', 'view_states'],
             },
+            teamId: 'teamId',
             additionalOAuthScopes: [
               {
                 name: 'movies',
