@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { designTokens } from '@commercetools-uikit/design-system';
 import ModalPage from '../../modal-pages/internals/modal-page';
 
-type TCustoPanelContainerProps = {
+type TCustomPanelProps = {
   title: string;
   size: 'small' | 'large';
   onClose: () => void;
@@ -14,7 +14,7 @@ const ContentWrapper = styled.div`
   padding: ${designTokens.spacing40} 40px;
 `;
 
-function CustomPanelContainer(props: TCustoPanelContainerProps) {
+function CustomPanel(props: TCustomPanelProps) {
   return (
     <ModalPage
       hidePathLabel
@@ -28,4 +28,4 @@ function CustomPanelContainer(props: TCustoPanelContainerProps) {
   );
 }
 
-export default CustomPanelContainer;
+export default CustomPanel;
