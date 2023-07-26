@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { Route, Switch, useRouteMatch, useHistory } from 'react-router-dom';
+import { CustomPanelDemo } from './components/custom-views';
 import EchoServer from './components/echo-server';
 import FormattersDemo from './components/formatters-demo';
 import NotificationsPlayground from './components/notifications-playground';
@@ -29,6 +30,9 @@ const ApplicationRoutes = () => {
       </Route>
       <Route path={`${match.path}/formatters`}>
         <FormattersDemo />
+      </Route>
+      <Route path={`${match.path}/custom-panel`}>
+        <CustomPanelDemo />
       </Route>
       <Route>
         <StateMachinesList goToStateMachineDetail={goToStateMachineDetail}>

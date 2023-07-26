@@ -42,6 +42,8 @@ export type { TPageContentWide } from './components/page-content-containers/page
 export { default as PageContentFull } from './components/page-content-containers/page-content-full';
 export type { TPageContentFull } from './components/page-content-containers/page-content-full';
 
+export { default as CustomPanelContainer } from './components/custom-views/custom-panel-container/custom-panel-container';
+
 // Utilities
 export { default as PortalsContainer } from './components/portals-container';
 export { default as useModalState } from './hooks/use-modal-state';
