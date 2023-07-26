@@ -40,7 +40,7 @@ function CustomPanelDemo() {
             size={panelSize}
             onClose={() => setIsOpen(false)}
           >
-            <p>This is the extension content</p>
+            <p>This is the Custom Panel content</p>
           </CustomPanelContainer>
         )}
       </Spacings.Stack>
