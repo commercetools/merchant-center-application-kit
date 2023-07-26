@@ -65,7 +65,6 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
        */
       initialProjectKey: string;
       teamId?: string;
-      applicationId?: string;
     };
     production: {
       /**
