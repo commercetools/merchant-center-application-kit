@@ -1,14 +1,14 @@
 import { Route, Switch } from 'react-router-dom';
-import { CustomPanelContainer } from '@commercetools-frontend/application-components';
+import { CustomPanel } from '@commercetools-frontend/application-components';
 import { Suite, NestedPages } from '../../test-utils';
 
 export const routePath = '/custom-views/custom-panel';
 
 function TestComponent({ size }: { size: 'small' | 'large' }) {
   return (
-    <CustomPanelContainer onClose={() => {}} size={size} title="Custom Panel">
+    <CustomPanel onClose={() => {}} size={size} title="Custom Panel">
       <p>This is the panel content ({size})</p>
-    </CustomPanelContainer>
+    </CustomPanel>
   );
 }
 
