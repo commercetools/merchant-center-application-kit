@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CustomPanelContainer } from '@commercetools-frontend/application-components';
+import { CustomPanel } from '@commercetools-frontend/application-components';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
@@ -35,13 +35,13 @@ function CustomPanelDemo() {
         </Spacings.Stack>
 
         {isOpen && (
-          <CustomPanelContainer
+          <CustomPanel
             title="Custom Panel"
             size={panelSize}
             onClose={() => setIsOpen(false)}
           >
             <p>This is the Custom Panel content</p>
-          </CustomPanelContainer>
+          </CustomPanel>
         )}
       </Spacings.Stack>
     </Spacings.Inset>
