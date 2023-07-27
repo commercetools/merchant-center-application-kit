@@ -111,6 +111,72 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "AttributeGroupLimits",
+        "description": null,
+        "fields": [
+          {
+            "name": "maxTotalAttributeGroups",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "AwsContainer",
+        "description": "AWS S3 container config",
+        "fields": [
+          {
+            "name": "bucketUrl",
+            "description": "Public bucket url, without the project part",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "projectPrefix",
+            "description": "Project part of the object path on s3",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "SCALAR",
         "name": "Boolean",
         "description": "The `Boolean` scalar type represents `true` or `false`.",
@@ -129,20 +195,8 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "BusinessDevSalesAndAccountManagement",
-            "description": "Business Dev, Sales & Account Management role.",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "BusinessIntelligence",
-            "description": "Business Intelligence role.",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "BuyingPlanningAndInventoryManagement",
-            "description": "Buying, Planning & Inventory Management role.",
+            "name": "Architect",
+            "description": "Architect role.",
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -153,8 +207,8 @@
             "deprecationReason": null
           },
           {
-            "name": "DataQualityAndContentManagement",
-            "description": "Data Quality & Content Management role.",
+            "name": "Engineer",
+            "description": "Engineer role.",
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -165,44 +219,8 @@
             "deprecationReason": null
           },
           {
-            "name": "FinanceAndAccounting",
-            "description": "Finance & Accounting role.",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "FulfillmentAndOperationsManagement",
-            "description": "Fulfillment & Operations Management role.",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "LegalAndPeople",
-            "description": "Legal & People role.",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "LogisticsAndSupplyChain",
-            "description": "Logistics & Supply Chain role.",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "Marketing",
             "description": "Marketing role.",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "OfflineRetailStore",
-            "description": "Offline Retail Store role.",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "OperationsITAndSupportEngineering",
-            "description": "Operations, IT & Support Engineering role.",
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -213,26 +231,14 @@
             "deprecationReason": null
           },
           {
-            "name": "SoftwareDevelopmentAndSolutionsArchitect",
-            "description": "Software Development & Solutions Architect role.",
+            "name": "ProductProjectManagerOrOwner",
+            "description": "ProductProjectManagerOrOwner role.",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "TechProductManagement",
-            "description": "Product Management (Tech) role.",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "TechProjectAndProgramManagement",
-            "description": "Project & Program Management (Tech) role.",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UXUIDesign",
-            "description": "UX/UI Design role.",
+            "name": "SalesAndECommerceManager",
+            "description": "SalesAndECommerceManager role.",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -1758,6 +1764,18 @@
             "deprecationReason": null
           },
           {
+            "name": "associateRef",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Reference",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "clientId",
             "description": null,
             "args": [],
@@ -1895,6 +1913,27 @@
         "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
+      },
+      {
+        "kind": "UNION",
+        "name": "MediaContainer",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "AwsContainer",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "PublicContainer",
+            "ofType": null
+          }
+        ]
       },
       {
         "kind": "OBJECT",
@@ -2231,6 +2270,96 @@
             "type": {
               "kind": "OBJECT",
               "name": "Permission",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "revokeAccessTokensByGroup",
+            "description": null,
+            "args": [
+              {
+                "name": "owner",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "ReferenceInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "permissionGroup",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "RevokedTokens",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "revokeAccessTokensByTeam",
+            "description": null,
+            "args": [
+              {
+                "name": "owner",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "ReferenceInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "teamId",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "RevokedTokens",
               "ofType": null
             },
             "isDeprecated": false,
@@ -3321,8 +3450,8 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "PublicContainer",
+              "kind": "UNION",
+              "name": "MediaContainer",
               "ofType": null
             },
             "isDeprecated": false,
@@ -3805,6 +3934,18 @@
         "description": null,
         "fields": [
           {
+            "name": "attributeGroupLimits",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "AttributeGroupLimits",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "cartDiscounts",
             "description": null,
             "args": [],
@@ -4003,6 +4144,18 @@
             "type": {
               "kind": "OBJECT",
               "name": "StoreLimits",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "subscriptions",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "SubscriptionsLimits",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4498,7 +4651,7 @@
       {
         "kind": "OBJECT",
         "name": "PublicContainer",
-        "description": null,
+        "description": "Rackspace Cloud Files container config",
         "fields": [
           {
             "name": "httpUri",
@@ -5363,6 +5516,73 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "RevokedTokens",
+        "description": null,
+        "fields": [
+          {
+            "name": "owner",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Reference",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "revoked",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Long",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "teams",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "INPUT_OBJECT",
         "name": "SearchIndexingConfigurationInput",
         "description": null,
@@ -5903,6 +6123,29 @@
         "fields": null,
         "inputFields": null,
         "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "SubscriptionsLimits",
+        "description": null,
+        "fields": [
+          {
+            "name": "maxSubscriptions",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -7318,15 +7561,13 @@
         "description": "Marks an element of a GraphQL schema as no longer supported.",
         "isRepeatable": false,
         "locations": [
-          "ARGUMENT_DEFINITION",
           "ENUM_VALUE",
-          "FIELD_DEFINITION",
-          "INPUT_FIELD_DEFINITION"
+          "FIELD_DEFINITION"
         ],
         "args": [
           {
             "name": "reason",
-            "description": "Explains why this element was deprecated, usually also including a suggestion for how to access supported similar data. Formatted using the Markdown syntax, as specified by [CommonMark](https://commonmark.org/).",
+            "description": "Explains why this element was deprecated, usually also including a suggestion for how to access supported similar data. Formatted in [Markdown](https://daringfireball.net/projects/markdown/).",
             "type": {
               "kind": "SCALAR",
               "name": "String",
@@ -7378,39 +7619,13 @@
         "args": [
           {
             "name": "if",
-            "description": "Skipped when true.",
+            "description": "Included when true.",
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
                 "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ]
-      },
-      {
-        "name": "specifiedBy",
-        "description": "Exposes a URL that specifies the behavior of this scalar.",
-        "isRepeatable": false,
-        "locations": [
-          "SCALAR"
-        ],
-        "args": [
-          {
-            "name": "url",
-            "description": "The URL that specifies the behavior of this scalar.",
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
                 "ofType": null
               }
             },
