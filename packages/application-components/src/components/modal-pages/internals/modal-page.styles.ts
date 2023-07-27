@@ -13,7 +13,7 @@ export const getContainerStyles = (_props: StyleProps): SerializedStyles => css`
   top: 0;
   right: 0;
   height: 100%;
-  width: ${_props.size === 'small' ? '562px !important' : '100%'};
+  width: ${_props.size === 'small' ? '600px !important' : '100%'};
   display: flex;
   flex-direction: column;
   background-color: ${customProperties.colorSurface};
