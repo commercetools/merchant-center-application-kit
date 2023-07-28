@@ -291,7 +291,7 @@ export type TOAuthClientQueryResult = TQueryResult & {
 export type TOAuthClientTemplate = {
   __typename?: 'OAuthClientTemplate';
   key: Scalars['String'];
-  oAuthScopes: Array<TPermissionScope>;
+  oAuthScopes: Array<Scalars['String']>;
 };
 
 export type TOrganization = {
@@ -458,13 +458,13 @@ export type TProjectPendingCreation = {
 
 export type TProjectPermission = {
   __typename?: 'ProjectPermission';
-  key: TPermissionScope;
+  key: Scalars['String'];
   projectKey?: Maybe<Scalars['String']>;
   storeKey?: Maybe<Scalars['String']>;
 };
 
 export type TProjectPermissionInput = {
-  key: TPermissionScope;
+  key: Scalars['String'];
   projectKey?: InputMaybe<Scalars['String']>;
   storeKey?: InputMaybe<Scalars['String']>;
 };
@@ -508,7 +508,7 @@ export type TQuery = {
   project?: Maybe<TProject>;
   release?: Maybe<Scalars['String']>;
   releases?: Maybe<TReleaseHistory>;
-  storeOAuthScopes: Array<TPermissionScope>;
+  storeOAuthScopes: Array<Scalars['String']>;
 };
 
 

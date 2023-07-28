@@ -16,9 +16,7 @@ import {
 } from './normalizers';
 
 type TFetchedUser = TFetchLoggedInUserQuery['user'];
-type TFetchedProject = TFetchProjectQuery['project'] & {
-  sampleDataImportDataset?: string;
-};
+type TFetchedProject = TFetchProjectQuery['project'];
 
 type TApplicationContextPermissions = { [key: string]: boolean };
 type TActionRight = {

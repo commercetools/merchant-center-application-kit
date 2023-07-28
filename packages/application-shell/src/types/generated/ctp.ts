@@ -2012,6 +2012,15 @@ export type TCartDiscountValue = {
   type: Scalars['String'];
 };
 
+export type TCartDiscountValueBaseMoneyInput = {
+  /** CurrencyCode and centAmount are deprecated. Please use `Money`(centPrecision) or `HighPrecisionMoney`(highPrecision). */
+  centAmount?: InputMaybe<Scalars['Long']>;
+  centPrecision?: InputMaybe<TMoneyInput>;
+  /** CurrencyCode and centAmount are deprecated. Please use `Money`(centPrecision) or `HighPrecisionMoney`(highPrecision). */
+  currencyCode?: InputMaybe<Scalars['Currency']>;
+  highPrecision?: InputMaybe<THighPrecisionMoneyInput>;
+};
+
 export type TCartDiscountValueInput = {
   absolute?: InputMaybe<TAbsoluteDiscountValueInput>;
   fixed?: InputMaybe<TFixedPriceDiscountValueInput>;
@@ -3429,6 +3438,7 @@ export type TCustomLineItemReturnItem = TReturnItem & {
   custom?: Maybe<TCustomFieldsType>;
   customLineItemId: Scalars['String'];
   id: Scalars['String'];
+  key?: Maybe<Scalars['String']>;
   lastModifiedAt: Scalars['DateTime'];
   paymentState: TReturnPaymentState;
   quantity: Scalars['Long'];
@@ -4537,12 +4547,12 @@ export type TFieldTypeSetTypeDraft = {
 
 export type TFixedPriceDiscountValue = TCartDiscountValue & {
   __typename?: 'FixedPriceDiscountValue';
-  money: Array<TMoney>;
+  money: Array<TBaseMoney>;
   type: Scalars['String'];
 };
 
 export type TFixedPriceDiscountValueInput = {
-  money: Array<TMoneyInput>;
+  money: Array<TCartDiscountValueBaseMoneyInput>;
 };
 
 export type TFreezeCart = {
@@ -5276,6 +5286,7 @@ export type TLineItemReturnItem = TReturnItem & {
   createdAt: Scalars['DateTime'];
   custom?: Maybe<TCustomFieldsType>;
   id: Scalars['String'];
+  key?: Maybe<Scalars['String']>;
   lastModifiedAt: Scalars['DateTime'];
   lineItemId: Scalars['String'];
   paymentState: TReturnPaymentState;
@@ -11002,6 +11013,7 @@ export type TReturnItem = {
   createdAt: Scalars['DateTime'];
   custom?: Maybe<TCustomFieldsType>;
   id: Scalars['String'];
+  key?: Maybe<Scalars['String']>;
   lastModifiedAt: Scalars['DateTime'];
   paymentState: TReturnPaymentState;
   quantity: Scalars['Long'];
@@ -11013,6 +11025,7 @@ export type TReturnItemDraftType = {
   comment?: InputMaybe<Scalars['String']>;
   custom?: InputMaybe<TCustomFieldsDraft>;
   customLineItemId?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
   lineItemId?: InputMaybe<Scalars['String']>;
   quantity: Scalars['Long'];
   shipmentState: TReturnShipmentState;
@@ -11023,6 +11036,7 @@ export type TReturnItemDraftTypeOutput = {
   comment?: Maybe<Scalars['String']>;
   custom?: Maybe<TCustomFieldsCommand>;
   customLineItemId?: Maybe<Scalars['String']>;
+  key?: Maybe<Scalars['String']>;
   lineItemId?: Maybe<Scalars['String']>;
   quantity: Scalars['Long'];
   shipmentState: TReturnShipmentState;
@@ -12354,13 +12368,15 @@ export type TSetOrderReturnInfo = {
 
 export type TSetOrderReturnItemCustomField = {
   name: Scalars['String'];
-  returnItemId: Scalars['String'];
+  returnItemId?: InputMaybe<Scalars['String']>;
+  returnItemKey?: InputMaybe<Scalars['String']>;
   value?: InputMaybe<Scalars['String']>;
 };
 
 export type TSetOrderReturnItemCustomType = {
   fields?: InputMaybe<Array<TCustomFieldInput>>;
-  returnItemId: Scalars['String'];
+  returnItemId?: InputMaybe<Scalars['String']>;
+  returnItemKey?: InputMaybe<Scalars['String']>;
   type?: InputMaybe<TResourceIdentifierInput>;
   typeId?: InputMaybe<Scalars['String']>;
   typeKey?: InputMaybe<Scalars['String']>;
@@ -12368,11 +12384,13 @@ export type TSetOrderReturnItemCustomType = {
 
 export type TSetOrderReturnPaymentState = {
   paymentState: TReturnPaymentState;
-  returnItemId: Scalars['String'];
+  returnItemId?: InputMaybe<Scalars['String']>;
+  returnItemKey?: InputMaybe<Scalars['String']>;
 };
 
 export type TSetOrderReturnShipmentState = {
-  returnItemId: Scalars['String'];
+  returnItemId?: InputMaybe<Scalars['String']>;
+  returnItemKey?: InputMaybe<Scalars['String']>;
   shipmentState: TReturnShipmentState;
 };
 
@@ -13473,21 +13491,24 @@ export type TSetStagedOrderReturnInfoOutput = TStagedOrderUpdateActionOutput & {
 
 export type TSetStagedOrderReturnItemCustomField = {
   name: Scalars['String'];
-  returnItemId: Scalars['String'];
+  returnItemId?: InputMaybe<Scalars['String']>;
+  returnItemKey?: InputMaybe<Scalars['String']>;
   value?: InputMaybe<Scalars['String']>;
 };
 
 export type TSetStagedOrderReturnItemCustomFieldOutput = TStagedOrderUpdateActionOutput & {
   __typename?: 'SetStagedOrderReturnItemCustomFieldOutput';
   name: Scalars['String'];
-  returnItemId: Scalars['String'];
+  returnItemId?: Maybe<Scalars['String']>;
+  returnItemKey?: Maybe<Scalars['String']>;
   type: Scalars['String'];
   value?: Maybe<Scalars['Json']>;
 };
 
 export type TSetStagedOrderReturnItemCustomType = {
   fields?: InputMaybe<Array<TCustomFieldInput>>;
-  returnItemId: Scalars['String'];
+  returnItemId?: InputMaybe<Scalars['String']>;
+  returnItemKey?: InputMaybe<Scalars['String']>;
   type?: InputMaybe<TResourceIdentifierInput>;
   typeId?: InputMaybe<Scalars['String']>;
   typeKey?: InputMaybe<Scalars['String']>;
@@ -13496,30 +13517,35 @@ export type TSetStagedOrderReturnItemCustomType = {
 export type TSetStagedOrderReturnItemCustomTypeOutput = TStagedOrderUpdateActionOutput & {
   __typename?: 'SetStagedOrderReturnItemCustomTypeOutput';
   custom: TCustomFieldsCommand;
-  returnItemId: Scalars['String'];
+  returnItemId?: Maybe<Scalars['String']>;
+  returnItemKey?: Maybe<Scalars['String']>;
   type: Scalars['String'];
 };
 
 export type TSetStagedOrderReturnPaymentState = {
   paymentState: TReturnPaymentState;
-  returnItemId: Scalars['String'];
+  returnItemId?: InputMaybe<Scalars['String']>;
+  returnItemKey?: InputMaybe<Scalars['String']>;
 };
 
 export type TSetStagedOrderReturnPaymentStateOutput = TStagedOrderUpdateActionOutput & {
   __typename?: 'SetStagedOrderReturnPaymentStateOutput';
   paymentState: TReturnPaymentState;
-  returnItemId: Scalars['String'];
+  returnItemId?: Maybe<Scalars['String']>;
+  returnItemKey?: Maybe<Scalars['String']>;
   type: Scalars['String'];
 };
 
 export type TSetStagedOrderReturnShipmentState = {
-  returnItemId: Scalars['String'];
+  returnItemId?: InputMaybe<Scalars['String']>;
+  returnItemKey?: InputMaybe<Scalars['String']>;
   shipmentState: TReturnShipmentState;
 };
 
 export type TSetStagedOrderReturnShipmentStateOutput = TStagedOrderUpdateActionOutput & {
   __typename?: 'SetStagedOrderReturnShipmentStateOutput';
-  returnItemId: Scalars['String'];
+  returnItemId?: Maybe<Scalars['String']>;
+  returnItemKey?: Maybe<Scalars['String']>;
   shipmentState: TReturnShipmentState;
   type: Scalars['String'];
 };
