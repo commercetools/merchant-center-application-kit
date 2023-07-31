@@ -770,8 +770,8 @@ importers:
         version: 4.2.1(eslint-config-prettier@8.6.0)(eslint@8.40.0)(prettier@2.8.8)
     devDependencies:
       '@tsconfig/node16':
-        specifier: ^1.0.3
-        version: 1.0.3
+        specifier: ^16.0.0
+        version: 16.1.0
       eslint:
         specifier: 8.40.0
         version: 8.40.0
@@ -801,8 +801,8 @@ importers:
         version: 2.1.5
     devDependencies:
       '@tsconfig/node16':
-        specifier: ^1.0.3
-        version: 1.0.3
+        specifier: ^16.0.0
+        version: 16.1.0
       '@types/express-unless':
         specifier: ^0.5.3
         version: 0.5.3
@@ -853,8 +853,8 @@ importers:
         version: 3.8.2
     devDependencies:
       '@tsconfig/node16':
-        specifier: ^1.0.3
-        version: 1.0.3
+        specifier: ^16.0.0
+        version: 16.1.0
       express:
         specifier: 4.18.2
         version: 4.18.2
@@ -1584,8 +1584,8 @@ importers:
         specifier: 11.11.0
         version: 11.11.0(@types/react@17.0.56)(react@18.2.0)
       '@tsconfig/node16':
-        specifier: ^1.0.3
-        version: 1.0.3
+        specifier: ^16.0.0
+        version: 16.1.0
       '@types/glob':
         specifier: 8.1.0
         version: 8.1.0
@@ -1642,8 +1642,8 @@ importers:
         version: 7.5.2
     devDependencies:
       '@tsconfig/node16':
-        specifier: ^1.0.3
-        version: 1.0.3
+        specifier: ^16.0.0
+        version: 16.1.0
 
   packages/cypress:
     dependencies:
@@ -1673,8 +1673,8 @@ importers:
         version: 9.0.0
     devDependencies:
       '@tsconfig/node16':
-        specifier: ^1.0.3
-        version: 1.0.3
+        specifier: ^16.0.0
+        version: 16.1.0
       cypress:
         specifier: 12.12.0
         version: 12.12.0
@@ -1976,8 +1976,8 @@ importers:
         specifier: workspace:*
         version: link:../application-config
       '@tsconfig/node16':
-        specifier: ^1.0.3
-        version: 1.0.3
+        specifier: ^16.0.0
+        version: 16.1.0
       '@types/express':
         specifier: ^4.17.17
         version: 4.17.17
@@ -2010,8 +2010,8 @@ importers:
         version: 0.0.29
     devDependencies:
       '@tsconfig/node16':
-        specifier: ^1.0.3
-        version: 1.0.3
+        specifier: ^16.0.0
+        version: 16.1.0
       '@types/serialize-javascript':
         specifier: ^5.0.2
         version: 5.0.2
@@ -2224,8 +2224,8 @@ importers:
         version: 5.0.2(webpack@5.82.1)
     devDependencies:
       '@tsconfig/node16':
-        specifier: ^1.0.3
-        version: 1.0.3
+        specifier: ^16.0.0
+        version: 16.1.0
       '@types/fs-extra':
         specifier: ^11.0.1
         version: 11.0.1
@@ -12910,6 +12910,10 @@ packages:
 
   /@tsconfig/node16@1.0.3:
     resolution: {integrity: sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==}
+
+  /@tsconfig/node16@16.1.0:
+    resolution: {integrity: sha512-cfwhqrdZEKS+Iqu1OPDwmKsOV/eo7q4sPhWzOXc1rU77nnPFV3+77yPg8uKQ2e8eir6mERCvrKnd+EGa4qo4bQ==}
+    dev: true
 
   /@turist/fetch@7.2.0(node-fetch@2.6.11):
     resolution: {integrity: sha512-2x7EGw+6OJ29phunsbGvtxlNmSfcuPcyYudkMbi8gARCP9eJ1CtuMvnVUHL//O9Ixi9SJiug8wNt6lj86pN8XQ==}
