@@ -43,7 +43,7 @@
   "devDependencies": {
     "@svgr/cli": "6.5.1",
     "gatsby-plugin-pnpm": "1.2.10",
-    "linkinator": "4.1.2",
+    "linkinator": "5.0.1",
     "prettier": "2.8.8",
     "start-server-and-test": "2.0.0"
   }
