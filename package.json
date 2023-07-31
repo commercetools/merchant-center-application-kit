@@ -146,7 +146,7 @@
     "postcss": "8.4.23",
     "postcss-load-config": "3.1.4",
     "postcss-modules": "4.3.1",
-    "prettier": "2.8.8",
+    "prettier": "3.0.0",
     "puppeteer": "20.2.0",
     "qss": "2.0.3",
     "react": "17.0.2",
