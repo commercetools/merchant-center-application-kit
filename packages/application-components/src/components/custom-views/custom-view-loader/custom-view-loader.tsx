@@ -1,10 +1,25 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import styled from '@emotion/styled';
+import { useIntl } from 'react-intl';
+import { useShowNotification } from '@commercetools-frontend/actions-global';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import {
+  DOMAINS,
+  NOTIFICATION_KINDS_PAGE,
+} from '@commercetools-frontend/constants';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import CustomPanel from '../custom-panel/custom-panel';
+import messages from './messages';
+
+type TCustomViewIframeMessage = {
+  source: string;
+  destination: string;
+  eventName: string;
+  eventData: Record<string, unknown>;
+};
 
 /*
-  TODO: This types are temporary until we have the proper
+  TODO: These types are temporary until we have the proper
   ones generated from the Settings schema
 */
 export type TPermissionGroup = {
@@ -29,6 +44,17 @@ type TCustomViewLoaderProps = {
   onClose: () => void;
 };
 
+const isIframeReady = (iFrameElementRef: HTMLIFrameElement) => {
+  try {
+    return iFrameElementRef?.contentWindow?.document.readyState === 'complete';
+  } catch {
+    // Trying to access the contentWindow of a cross-origin iFrame will throw an error.
+    // We are not supposed to even get here because the iFrame must use
+    // a URL from our very same domain (the custom view is proxied through our http-proxy service).
+    return false;
+  }
+};
+
 const CustomPanelIframe = styled.iframe`
   height: 100%;
   width: 100%;
@@ -36,64 +62,61 @@ const CustomPanelIframe = styled.iframe`
 `;
 
 function CustomViewLoader(props: TCustomViewLoaderProps) {
-  const iFrameElement = useRef<HTMLIFrameElement>(null);
+  const iFrameElementRef = useRef<HTMLIFrameElement>(null);
   const appContext = useApplicationContext();
   const intercomChannel = useRef(new MessageChannel());
+  const showNotification = useShowNotification();
+  const intl = useIntl();
 
+  const messageFromIFrameHandler = useCallback((event: MessageEvent) => {
+    if (event.data.origin === window.location.origin) {
+      console.log('message received from iframe port: ', event);
+    }
+  }, []);
+
+  // onLoad handler is called from the iFrame even where the URL is not valid
+  // (blocked by CORS, 404, etc.) so we need to make sure the iFrame is ready
   const onLoadSuccessHandler = useCallback(() => {
-    // TODO: Process messages from the right source
-    const messageFromIFrameHandler = (event: MessageEvent) => {
-      if (!event.data.source || !event.data.source.includes('react-devtools')) {
-        console.log('message received from iframe: ', event);
-      }
-    };
+    // Show error and block if the iFrame is not ready
+    // (error loading it)
+    if (!isIframeReady(iFrameElementRef.current!)) {
+      showNotification({
+        domain: DOMAINS.PAGE,
+        kind: NOTIFICATION_KINDS_PAGE.error,
+        text: intl.formatMessage(messages.loadError),
+      });
+      return;
+    }
 
     // Listen for messages from the iFrame
     intercomChannel.current.port1.onmessage = messageFromIFrameHandler;
 
     // Transfer port2 to the iFrame so it can send messages back privately
-    // TODO: Check the right value for the second parameter
-    iFrameElement.current?.contentWindow?.postMessage('mc_init', '*', [
-      intercomChannel.current.port2,
-    ]);
+    iFrameElementRef.current?.contentWindow?.postMessage(
+      'mc_init',
+      window.location.href,
+      [intercomChannel.current.port2]
+    );
 
     // Send the initialization message to the iFrame
     intercomChannel.current.port1.postMessage({
-      source: 'host-application-name',
-      destination: `inapp-extension-${props.customView.id}`,
+      source: 'mc-host-application',
+      destination: `custom-view-${props.customView.id}`,
       eventName: 'hostAcknowledgesIframeLoaded',
       eventData: {
         appContext,
       },
-    });
+    } as TCustomViewIframeMessage);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    const messageFromIFrameHandler = (event: MessageEvent) => {
-      // TODO: Filter messages from the right source
-      if (!event.data.source || !event.data.source.includes('react-devtools')) {
-        console.log('message received from iframe: ', event);
-      }
-    };
-    // Start listening for messages from the iFrame
-    window.addEventListener('message', messageFromIFrameHandler);
-    return () => {
-      window.removeEventListener('message', messageFromIFrameHandler);
-    };
-  }, []);
-
-  const onLoadErrorHandler = useCallback((error: unknown) => {
-    // TODO: Proper error handling
-    console.error('Error loading in-app extension: ', error);
-  }, []);
-
   // Currently we only support custom panels
   if (props.customView.type !== 'custom-panel') {
-    // TODO: Proper error handling
-    console.error(
-      `CustomViewLoader: Provided Custom View has an unsupprted type: ${props.customView.type}`
+    reportErrorToSentry(
+      new Error(
+        `CustomViewLoader: Provided Custom View has an unsupported type: ${props.customView.type}`
+      )
     );
     return null;
   }
@@ -106,11 +129,11 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
     >
       <CustomPanelIframe
         id={`custom-view-${props.customView.id}`}
-        ref={iFrameElement}
+        key={`custom-view-${props.customView.id}`}
+        ref={iFrameElementRef}
         title={`Custom View: ${props.customView.defaultLabel}`}
         src={props.customView.url}
         onLoad={onLoadSuccessHandler}
-        onError={onLoadErrorHandler}
       />
     </CustomPanel>
   );
