@@ -46,6 +46,9 @@ async function run() {
       pluginSvgr(),
       pluginCustomApplication(applicationConfig),
     ],
+    optimizeDeps: {
+      force: true,
+    },
   });
   await server.listen();
 
