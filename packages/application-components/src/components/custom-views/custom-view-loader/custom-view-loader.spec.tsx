@@ -19,7 +19,7 @@ const TEST_CUSTOM_VIEW: TCustomView = {
   defaultLabel: 'Test Custom View',
   labelAllLocales: {},
   url: '/',
-  type: 'custom-panel',
+  type: 'CustomPanel',
   typeConfig: {
     size: 'small',
   },
