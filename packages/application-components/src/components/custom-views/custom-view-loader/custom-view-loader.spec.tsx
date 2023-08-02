@@ -5,7 +5,7 @@ import {
   waitFor,
   fireEvent,
 } from '../../../test-utils';
-import CustomViewLoader from './custom-view-loader';
+import CustomViewLoader, { type TCustomView } from './custom-view-loader';
 
 const mockShowNotification = jest.fn();
 
@@ -14,7 +14,7 @@ jest.mock('@commercetools-frontend/actions-global', () => ({
   useShowNotification: () => mockShowNotification,
 }));
 
-const TEST_CUSTOM_VIEW = {
+const TEST_CUSTOM_VIEW: TCustomView = {
   id: 'd8eafca6-1f89-4a84-b93f-ef94f869abcf',
   defaultLabel: 'Test Custom View',
   labelAllLocales: {},
@@ -33,8 +33,22 @@ describe('CustomViewLoader', () => {
         onmessage: jest.fn(),
         postMessage: jest.fn(),
         close: jest.fn(),
+        onmessageerror: jest.fn(),
+        start: jest.fn(),
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
       },
-      port2: {},
+      port2: {
+        onmessage: jest.fn(),
+        postMessage: jest.fn(),
+        close: jest.fn(),
+        onmessageerror: jest.fn(),
+        start: jest.fn(),
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      },
     }));
   });
 
@@ -84,6 +98,8 @@ describe('CustomViewLoader', () => {
     };
 
     renderComponent(
+      // Ignore the TS error because we want to test an unknown type
+      // @ts-ignore
       <CustomViewLoader customView={customView} onClose={jest.fn()} />
     );
 
