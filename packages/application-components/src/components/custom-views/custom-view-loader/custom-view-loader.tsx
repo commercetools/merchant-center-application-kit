@@ -104,7 +104,11 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
       destination: `custom-view-${props.customView.id}`,
       eventName: 'hostAcknowledgesIframeLoaded',
       eventData: {
-        appContext,
+        context: {
+          userLocale: appContext.user?.locale,
+          dataLocale: appContext.dataLocale,
+          projectKey: appContext.project?.key,
+        },
       },
     } as TCustomViewIframeMessage);
 
