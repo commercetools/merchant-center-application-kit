@@ -14,6 +14,7 @@ jest.mock('@commercetools-frontend/actions-global', () => ({
   useShowNotification: () => mockShowNotification,
 }));
 
+// TODO: We must add this entity to the test data repository
 const TEST_CUSTOM_VIEW: TCustomView = {
   id: 'd8eafca6-1f89-4a84-b93f-ef94f869abcf',
   defaultLabel: 'Test Custom View',
