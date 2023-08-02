@@ -47,7 +47,7 @@ async function run() {
       pluginCustomApplication(applicationConfig),
     ],
     optimizeDeps: {
-      force: true,
+      force: true, // based on https://github.com/storybookjs/storybook/issues/22253#issuecomment-1661092137 TODO: remove when the issue with vite is resolved
     },
   });
   await server.listen();
