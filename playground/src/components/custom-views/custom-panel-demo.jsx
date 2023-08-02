@@ -1,16 +1,8 @@
-<<<<<<< HEAD
 import { useMemo, useState } from 'react';
 import {
   CustomViewLoader,
   useModalState,
 } from '@commercetools-frontend/application-components';
-||||||| parent of b4af45c03 (refactor(application-components): rename custom-panel export name)
-import { useState } from 'react';
-import { CustomPanelContainer } from '@commercetools-frontend/application-components';
-=======
-import { useState } from 'react';
-import { CustomPanel } from '@commercetools-frontend/application-components';
->>>>>>> b4af45c03 (refactor(application-components): rename custom-panel export name)
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
