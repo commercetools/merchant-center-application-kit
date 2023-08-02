@@ -94,7 +94,7 @@ describe('CustomViewLoader', () => {
   it('should render nothing when the custom view type is not known', () => {
     const customView = {
       ...TEST_CUSTOM_VIEW,
-      type: 'dialog',
+      type: 'InvalidType',
     };
 
     renderComponent(

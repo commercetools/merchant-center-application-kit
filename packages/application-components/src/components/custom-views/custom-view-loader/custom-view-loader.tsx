@@ -32,7 +32,7 @@ export type TCustomView = {
   defaultLabel: string;
   labelAllLocales: Record<string, string>;
   url: string;
-  type: 'custom-panel' | 'custom-tab';
+  type: 'CustomView' | 'CustomTab';
   typeConfig?: {
     size?: 'small' | 'large';
   };
@@ -116,7 +116,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
   }, []);
 
   // Currently we only support custom panels
-  if (props.customView.type !== 'custom-panel') {
+  if (props.customView.type !== 'CustomView') {
     reportErrorToSentry(
       new Error(
         `CustomViewLoader: Provided Custom View has an unsupported type: ${props.customView.type}`
