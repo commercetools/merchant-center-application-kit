@@ -14,6 +14,10 @@ export type Scalars = {
   Json: { [key: string]: unknown };
 };
 
+export type TAllPublicCustomApplicationsDevelopedByCommercetoolsQueryInput = {
+  organizationId?: InputMaybe<Scalars['String']>;
+};
+
 export type TApplicationExtension = {
   __typename?: 'ApplicationExtension';
   createdAt: Scalars['DateTime'];
@@ -558,7 +562,9 @@ export type TMutation = {
   setOrganizationExtensionOidcSsoConfig?: Maybe<TOrganizationExtension>;
   setProjectExtensionCategoryRecommendation?: Maybe<TProjectExtension>;
   setProjectExtensionImageRegex?: Maybe<TProjectExtension>;
+  setProjectExtensionImportSampleDataset?: Maybe<TProjectExtension>;
   setProjectExtensionOrderStatesVisibility?: Maybe<TProjectExtension>;
+  setProjectExtensionRichTextEditorSettings?: Maybe<TProjectExtension>;
   uninstallCustomApplication?: Maybe<TRestrictedCustomApplicationInstallationForOrganization>;
   updateCartDiscountsCustomView?: Maybe<TDiscountsCustomView>;
   updateCustomApplication?: Maybe<TRestrictedCustomApplicationForOrganization>;
@@ -825,8 +831,18 @@ export type TMutation_SetProjectExtensionImageRegexArgs = {
 };
 
 
+export type TMutation_SetProjectExtensionImportSampleDatasetArgs = {
+  data?: InputMaybe<TSampleDatasets>;
+};
+
+
 export type TMutation_SetProjectExtensionOrderStatesVisibilityArgs = {
   data?: InputMaybe<Array<InputMaybe<TOrderStatesVisibility>>>;
+};
+
+
+export type TMutation_SetProjectExtensionRichTextEditorSettingsArgs = {
+  data?: InputMaybe<TRichTextEditorSettingsInput>;
 };
 
 
@@ -1166,8 +1182,10 @@ export type TProjectExtension = {
   id: Scalars['ID'];
   imageRegex?: Maybe<TImageRegex>;
   installedApplications?: Maybe<Array<TRestrictedCustomApplicationInstallationForProject>>;
+  isRichTextEditorEnabled: Scalars['Boolean'];
   orderStatesVisibility: Array<TOrderStatesVisibility>;
   projectKey: Scalars['String'];
+  sampleDataImport?: Maybe<TSampleDataImportMetadata>;
   updatedAt: Scalars['DateTime'];
 };
 
@@ -1270,6 +1288,11 @@ export type TQuery_AllFeaturesArgs = {
 
 export type TQuery_AllOrganizationExtensionsArgs = {
   organizationIds?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type TQuery_AllPublicCustomApplicationsDevelopedByCommercetoolsArgs = {
+  params?: InputMaybe<TAllPublicCustomApplicationsDevelopedByCommercetoolsQueryInput>;
 };
 
 
@@ -1444,6 +1467,10 @@ export type TRestrictedCustomApplicationInstallationForProjectWhereInput = {
   entryPointUriPath?: InputMaybe<Scalars['String']>;
 };
 
+export type TRichTextEditorSettingsInput = {
+  isRichTextEditorEnabled: Scalars['Boolean'];
+};
+
 export type TRuleBuilderQuickSelectCreatefunctionsInput = {
   set?: InputMaybe<Array<Scalars['String']>>;
 };
@@ -1493,6 +1520,16 @@ export type TSalesPerformanceConfigurationInput = {
   dateTo?: InputMaybe<Scalars['DateTime']>;
   showPreviousTimeframe: Scalars['Boolean'];
 };
+
+export type TSampleDataImportMetadata = {
+  __typename?: 'SampleDataImportMetadata';
+  completed: Scalars['Boolean'];
+  dataset?: Maybe<TSampleDatasets>;
+};
+
+export enum TSampleDatasets {
+  Fashion = 'FASHION'
+}
 
 export type TSort = {
   __typename?: 'Sort';
