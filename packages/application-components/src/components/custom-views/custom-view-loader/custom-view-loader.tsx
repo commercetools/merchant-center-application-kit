@@ -64,7 +64,7 @@ const CustomPanelIframe = styled.iframe`
 function CustomViewLoader(props: TCustomViewLoaderProps) {
   const iFrameElementRef = useRef<HTMLIFrameElement>(null);
   const appContext = useApplicationContext();
-  const intercomChannel = useRef(new MessageChannel());
+  const iFrameCommunicationChannel = useRef(new MessageChannel());
   const showNotification = useShowNotification();
   const intl = useIntl();
 
@@ -89,17 +89,18 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
     }
 
     // Listen for messages from the iFrame
-    intercomChannel.current.port1.onmessage = messageFromIFrameHandler;
+    iFrameCommunicationChannel.current.port1.onmessage =
+      messageFromIFrameHandler;
 
     // Transfer port2 to the iFrame so it can send messages back privately
     iFrameElementRef.current?.contentWindow?.postMessage(
       'mc_init',
       window.location.href,
-      [intercomChannel.current.port2]
+      [iFrameCommunicationChannel.current.port2]
     );
 
     // Send the initialization message to the iFrame
-    intercomChannel.current.port1.postMessage({
+    iFrameCommunicationChannel.current.port1.postMessage({
       source: 'mc-host-application',
       destination: `custom-view-${props.customView.id}`,
       eventName: 'hostAcknowledgesIframeLoaded',
