@@ -196,6 +196,7 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
       additionalOAuthScopes:
         appConfig.__DEVELOPMENT__?.oidc?.additionalOAuthScopes,
       teamId: appConfig.__DEVELOPMENT__?.oidc?.teamId,
+      applicationId: appConfig.__DEVELOPMENT__?.oidc?.applicationId,
     });
     const userCredentials = commandOptions.login ?? {
       email: Cypress.env('LOGIN_EMAIL') || Cypress.env('LOGIN_USER'),

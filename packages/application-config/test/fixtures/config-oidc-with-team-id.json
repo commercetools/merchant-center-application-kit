@@ -1,0 +1,38 @@
+{
+  "name": "avengers-app",
+  "entryPointUriPath": "avengers",
+  "cloudIdentifier": "gcp-eu",
+  "env": {
+    "development": {
+      "initialProjectKey": "project-key",
+      "teamId": "team-id"
+    },
+    "production": {
+      "applicationId": "app-id-123",
+      "url": "https://avengers.app"
+    }
+  },
+  "oAuthScopes": {
+    "view": ["view_orders", "view_states"],
+    "manage": ["manage_orders"]
+  },
+  "additionalOAuthScopes": [
+    {
+      "name": "movies",
+      "view": ["view_products"],
+      "manage": []
+    },
+    {
+      "name": "merch",
+      "view": [],
+      "manage": ["manage_channels"]
+    }
+  ],
+  "icon": "<svg><path fill=\"#000000\" /></svg>",
+  "mainMenuLink": {
+    "defaultLabel": "Avengers",
+    "labelAllLocales": [],
+    "permissions": []
+  },
+  "submenuLinks": []
+}

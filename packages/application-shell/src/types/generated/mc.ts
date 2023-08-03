@@ -106,6 +106,13 @@ export type TIdTokenUserInfo = {
   sub: Scalars['String'];
 };
 
+export type TImportResponse = {
+  __typename?: 'ImportResponse';
+  hasImportedSampleData?: Maybe<Scalars['Boolean']>;
+  importedSampleData?: Maybe<Scalars['String']>;
+  projectKey?: Maybe<Scalars['String']>;
+};
+
 export type TInvitationInput = {
   emails: Array<Scalars['String']>;
   organization: TInvitationOrganizationInput;
@@ -169,6 +176,7 @@ export type TMutation = {
   createOAuthClient: TOAuthClient;
   deleteAccount: TDeletedUser;
   deleteOAuthClient: TOAuthClient;
+  importSampleData: TImportResponse;
   invite: Array<TInvitationResult>;
   random: Scalars['String'];
   resetPassword: TResetUser;
@@ -203,6 +211,11 @@ export type TMutation_DeleteAccountArgs = {
 
 export type TMutation_DeleteOAuthClientArgs = {
   id: Scalars['ID'];
+};
+
+
+export type TMutation_ImportSampleDataArgs = {
+  projectKey: Scalars['String'];
 };
 
 
@@ -278,7 +291,7 @@ export type TOAuthClientQueryResult = TQueryResult & {
 export type TOAuthClientTemplate = {
   __typename?: 'OAuthClientTemplate';
   key: Scalars['String'];
-  oAuthScopes: Array<TPermissionScope>;
+  oAuthScopes: Array<Scalars['String']>;
 };
 
 export type TOrganization = {
@@ -319,6 +332,8 @@ export enum TPermissionScope {
   ManageCartDiscounts = 'manage_cart_discounts',
   ManageCategories = 'manage_categories',
   ManageChangeHistory = 'manage_change_history',
+  ManageConnectors = 'manage_connectors',
+  ManageConnectorsDeployments = 'manage_connectors_deployments',
   ManageCustomerGroups = 'manage_customer_groups',
   ManageCustomers = 'manage_customers',
   ManageDiscountCodes = 'manage_discount_codes',
@@ -360,6 +375,8 @@ export enum TPermissionScope {
   ViewCartDiscounts = 'view_cart_discounts',
   ViewCategories = 'view_categories',
   ViewChangeHistory = 'view_change_history',
+  ViewConnectors = 'view_connectors',
+  ViewConnectorsDeployments = 'view_connectors_deployments',
   ViewCustomerGroups = 'view_customer_groups',
   ViewCustomers = 'view_customers',
   ViewDiscountCodes = 'view_discount_codes',
@@ -408,6 +425,7 @@ export type TProject = TMetaData & {
   name: Scalars['String'];
   owner: TOrganization;
   plan: Scalars['String'];
+  sampleDataImportDataset?: Maybe<Scalars['String']>;
   shippingRateInputType?: Maybe<TShippingRateInputType>;
   suspension: TProjectSuspension;
   version?: Maybe<Scalars['Int']>;
@@ -440,13 +458,13 @@ export type TProjectPendingCreation = {
 
 export type TProjectPermission = {
   __typename?: 'ProjectPermission';
-  key: TPermissionScope;
+  key: Scalars['String'];
   projectKey?: Maybe<Scalars['String']>;
   storeKey?: Maybe<Scalars['String']>;
 };
 
 export type TProjectPermissionInput = {
-  key: TPermissionScope;
+  key: Scalars['String'];
   projectKey?: InputMaybe<Scalars['String']>;
   storeKey?: InputMaybe<Scalars['String']>;
 };
@@ -490,7 +508,7 @@ export type TQuery = {
   project?: Maybe<TProject>;
   release?: Maybe<Scalars['String']>;
   releases?: Maybe<TReleaseHistory>;
-  storeOAuthScopes: Array<TPermissionScope>;
+  storeOAuthScopes: Array<Scalars['String']>;
 };
 
 
@@ -714,7 +732,7 @@ export type TFetchProjectQueryVariables = Exact<{
 }>;
 
 
-export type TFetchProjectQuery = { __typename?: 'Query', project?: { __typename?: 'Project', key: string, version?: number | null, name: string, countries: Array<string>, currencies: Array<string>, languages: Array<string>, initialized: boolean, expiry: { __typename?: 'ProjectExpiry', isActive: boolean, daysLeft?: number | null }, suspension: { __typename?: 'ProjectSuspension', isActive: boolean, reason?: TProjectSuspensionReason | null }, allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }>, allPermissionsForAllApplications: { __typename?: 'AllPermissionsForAllApplications', allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedMenuVisibilities: Array<{ __typename?: 'AppliedMenuVisibilities', name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }> }, owner: { __typename?: 'Organization', id: string, name: string } } | null };
+export type TFetchProjectQuery = { __typename?: 'Query', project?: { __typename?: 'Project', key: string, version?: number | null, name: string, countries: Array<string>, currencies: Array<string>, languages: Array<string>, initialized: boolean, sampleDataImportDataset?: string | null, expiry: { __typename?: 'ProjectExpiry', isActive: boolean, daysLeft?: number | null }, suspension: { __typename?: 'ProjectSuspension', isActive: boolean, reason?: TProjectSuspensionReason | null }, allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }>, allPermissionsForAllApplications: { __typename?: 'AllPermissionsForAllApplications', allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedMenuVisibilities: Array<{ __typename?: 'AppliedMenuVisibilities', name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }> }, owner: { __typename?: 'Organization', id: string, name: string } } | null };
 
 export type TFetchLoggedInUserQueryVariables = Exact<{ [key: string]: never; }>;
 

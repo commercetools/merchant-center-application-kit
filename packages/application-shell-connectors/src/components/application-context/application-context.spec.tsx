@@ -278,6 +278,7 @@ describe('mapProjectToApplicationContextProject', () => {
       languages: expect.any(Array),
       ownerId: expect.any(String),
       ownerName: expect.any(String),
+      sampleDataImportDataset: expect.any(String),
     });
   });
 });

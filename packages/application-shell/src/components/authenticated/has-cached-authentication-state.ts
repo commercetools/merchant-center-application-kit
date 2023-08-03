@@ -51,6 +51,7 @@ const hasCachedAuthenticationState = (): boolean => {
         additionalOAuthScopes:
           window.app.__DEVELOPMENT__?.oidc?.additionalOAuthScopes,
         teamId: window.app.__DEVELOPMENT__?.oidc?.teamId,
+        applicationId: window.app.__DEVELOPMENT__?.oidc?.applicationId,
       });
       // Omit the project key from the check. This allows to switch projects
       // without having to log in again.
