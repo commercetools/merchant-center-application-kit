@@ -74,7 +74,13 @@ const config = {
       permissions: [PERMISSIONS.View],
       defaultLabel: 'Formatters',
       labelAllLocales: [],
-    }
+    },
+    {
+      uriPath: 'custom-panel',
+      permissions: [PERMISSIONS.View],
+      defaultLabel: 'Custom Panel',
+      labelAllLocales: [],
+    },
   ],
 };
 

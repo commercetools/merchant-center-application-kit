@@ -81,10 +81,16 @@ type Props = {
   topBarColor?: 'surface' | 'neutral';
   currentPathLabel?: string;
   previousPathLabel?: Label;
+  hidePathLabel?: boolean;
+  size?: 'small' | 'large';
 };
-const defaultProps: Pick<Props, 'getParentSelector' | 'shouldDelayOnClose'> = {
+const defaultProps: Pick<
+  Props,
+  'getParentSelector' | 'shouldDelayOnClose' | 'size'
+> = {
   getParentSelector: getDefaultParentSelector,
   shouldDelayOnClose: true,
+  size: 'large',
 };
 
 const ModalPage = (props: Props) => {
@@ -156,6 +162,7 @@ const ModalPage = (props: Props) => {
             onClose={handleClose}
             currentPathLabel={props.currentPathLabel}
             previousPathLabel={props.previousPathLabel}
+            hidePathLabel={props.hidePathLabel}
           />
           {props.children}
         </Modal>
