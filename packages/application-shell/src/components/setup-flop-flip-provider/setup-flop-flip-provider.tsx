@@ -174,6 +174,7 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
       </TestProviderFlopFlip>
     );
   }
+  console.log('flags', flags);
 
   return (
     <ConfigureFlopFlip<typeof combineAdapters>

@@ -7,6 +7,7 @@ import {
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import type { ApolloError } from '@apollo/client/errors';
+import { useFeatureToggle } from '@flopflip/react-broadcast';
 import type { TFlags } from '@flopflip/types';
 import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import { PortalsContainer } from '@commercetools-frontend/application-components';
@@ -24,6 +25,7 @@ import {
   SentryUserTracker,
 } from '@commercetools-frontend/sentry';
 import { DIMENSIONS } from '../../constants';
+import { MAIN_NAVIGATION } from '../../feature-toggles';
 import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
 import AppBar from '../app-bar';
 import ApplicationLoader from '../application-loader';
@@ -126,6 +128,9 @@ export const ApplicationShellAuthenticated = (
     notificationsGlobalRef,
     notificationsPageRef,
   });
+
+  const isMainNavigation = useFeatureToggle(MAIN_NAVIGATION);
+  console.log('isMainNavigation', isMainNavigation);
 
   return (
     <FetchUser>
