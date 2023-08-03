@@ -22,7 +22,7 @@ const TEST_CUSTOM_VIEW: TCustomView = {
   url: '/',
   type: 'CustomPanel',
   typeConfig: {
-    size: 'small',
+    size: 'SMALL',
   },
   locators: ['customers.customer-detail.addresses'],
 };

@@ -34,7 +34,7 @@ export type TCustomView = {
   url: string;
   type: 'CustomPanel' | 'CustomTab';
   typeConfig?: {
-    size?: 'small' | 'large';
+    size?: 'SMALL' | 'LARGE';
   };
   locators: string[];
 };
@@ -67,6 +67,8 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
   const iFrameCommunicationChannel = useRef(new MessageChannel());
   const showNotification = useShowNotification();
   const intl = useIntl();
+  const panelSize = (props.customView.typeConfig?.size?.toLocaleLowerCase() ||
+    'large') as Lowercase<'SMALL' | 'LARGE'>;
 
   const messageFromIFrameHandler = useCallback((event: MessageEvent) => {
     if (event.data.origin === window.location.origin) {
@@ -130,7 +132,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
     <CustomPanel
       title={`Custom View: ${props.customView.defaultLabel}`}
       onClose={props.onClose}
-      size={props.customView.typeConfig?.size || 'large'}
+      size={panelSize}
     >
       <CustomPanelIframe
         id={`custom-view-${props.customView.id}`}
