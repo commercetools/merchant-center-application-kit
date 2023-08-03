@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import { CustomPanel } from '@commercetools-frontend/application-components';
+import {
+  CustomPanel,
+  useModalState,
+} from '@commercetools-frontend/application-components';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 
 function CustomPanelDemo() {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isModalOpen, openModal, closeModal } = useModalState();
   const [panelSize, setPanelSize] = useState('');
   return (
     <Spacings.Inset>
@@ -18,7 +21,7 @@ function CustomPanelDemo() {
               label="Open large Custom Panel"
               onClick={() => {
                 setPanelSize('large');
-                setIsOpen(true);
+                openModal();
               }}
             />
           </Spacings.Inline>
@@ -28,17 +31,17 @@ function CustomPanelDemo() {
               label="Open small Custom Panel"
               onClick={() => {
                 setPanelSize('small');
-                setIsOpen(true);
+                openModal();
               }}
             />
           </Spacings.Inline>
         </Spacings.Stack>
 
-        {isOpen && (
+        {isModalOpen && (
           <CustomPanel
             title="Custom Panel"
             size={panelSize}
-            onClose={() => setIsOpen(false)}
+            onClose={() => closeModal()}
           >
             <p>This is the Custom Panel content</p>
           </CustomPanel>
