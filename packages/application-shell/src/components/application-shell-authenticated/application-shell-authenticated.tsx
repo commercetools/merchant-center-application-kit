@@ -358,6 +358,7 @@ export const ApplicationShellAuthenticated = (
                                       }) => {
                                         // Render the loading navbar as long as all the data
                                         // hasn't been loaded, or if the project does not exist.
+                                        // const isLoading = isLoadingUser || isLoadingLocaleData || isLoadingProject || !locale || !project
                                         if (
                                           isLoadingUser ||
                                           isLoadingLocaleData ||
@@ -378,7 +379,7 @@ export const ApplicationShellAuthenticated = (
                                             {isNewNavigationEnabled ===
                                               false && (
                                               <NavBar
-                                                applicationLocale={locale}
+                                                applicationLocale={locale ?? ''}
                                                 projectKey={projectKeyFromUrl}
                                                 project={project}
                                                 environment={
@@ -387,6 +388,9 @@ export const ApplicationShellAuthenticated = (
                                                 onMenuItemClick={
                                                   props.onMenuItemClick
                                                 }
+                                                // isLoading={isLoading}
+                                                // aria-busy={isLoading}
+                                                isLoading
                                               />
                                             )}
                                           </ApplicationContextProvider>

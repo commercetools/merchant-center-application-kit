@@ -20,6 +20,7 @@ import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
 import { SupportIcon } from '@commercetools-uikit/icons';
 import type { TFetchProjectQuery } from '../../types/generated/mc';
 import type { TNavbarMenu, TBaseMenu } from '../../types/generated/proxy';
+import NavBarSkeleton from '../navbar/navbar-skeleton';
 import {
   type MenuItemLinkProps,
   RestrictedMenuItem,
@@ -220,6 +221,7 @@ type TNavbarProps = {
   }>['environment'];
   project: TFetchProjectQuery['project'];
   onMenuItemClick?: MenuItemLinkProps['onClick'];
+  isLoading: boolean;
 };
 const NavBar = (props: TNavbarProps) => {
   const {
@@ -262,6 +264,10 @@ const NavBar = (props: TNavbarProps) => {
       ),
     [props.project]
   );
+
+  if (props.isLoading) {
+    return <NavBarSkeleton isExpanded={isMenuOpen} />;
+  }
 
   return (
     <NavBarLayout ref={navBarNode}>
