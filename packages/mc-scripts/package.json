@@ -63,7 +63,7 @@
     "@types/prompts": "^2.4.2",
     "@types/svgo": "^2.6.4",
     "@types/webpack-bundle-analyzer": "^4.6.0",
-    "@vitejs/plugin-react": "4.0.0",
+    "@vitejs/plugin-react": "3.1.0",
     "@vitejs/plugin-react-swc": "3.3.1",
     "autoprefixer": "^10.4.13",
     "babel-loader": "8.3.0",

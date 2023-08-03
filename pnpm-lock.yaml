@@ -2085,8 +2085,8 @@ importers:
         specifier: ^4.6.0
         version: 4.6.0
       '@vitejs/plugin-react':
-        specifier: 4.0.0
-        version: 4.0.0(vite@4.1.4)
+        specifier: 3.1.0
+        version: 3.1.0(vite@4.1.4)
       '@vitejs/plugin-react-swc':
         specifier: 3.3.1
         version: 3.3.1(vite@4.1.4)
@@ -2834,8 +2834,8 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3
       '@vitejs/plugin-react':
-        specifier: 4.0.0
-        version: 4.0.0(vite@4.1.4)
+        specifier: 3.1.0
+        version: 3.1.0(vite@4.1.4)
       formik:
         specifier: 2.2.9
         version: 2.2.9(react@17.0.2)
@@ -3061,8 +3061,8 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3
       '@vitejs/plugin-react':
-        specifier: 4.0.0
-        version: 4.0.0(vite@4.1.4)
+        specifier: 3.1.0
+        version: 3.1.0(vite@4.1.4)
       vite:
         specifier: 4.1.4
         version: 4.1.4(@types/node@18.15.11)
@@ -13831,15 +13831,16 @@ packages:
       - '@swc/helpers'
     dev: false
 
-  /@vitejs/plugin-react@4.0.0(vite@4.1.4):
-    resolution: {integrity: sha512-HX0XzMjL3hhOYm+0s95pb0Z7F8O81G7joUHgfDd/9J/ZZf5k4xX6QAMFkKsHFxaHlf6X7GD7+XuaZ66ULiJuhQ==}
+  /@vitejs/plugin-react@3.1.0(vite@4.1.4):
+    resolution: {integrity: sha512-AfgcRL8ZBhAlc3BFdigClmTUMISmmzHn7sB2h9U1odvc5U/MjWXsAaz18b/WoppUTDBzxOJwo2VdClfUcItu9g==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
-      vite: ^4.2.0
+      vite: ^4.1.0-beta.0
     dependencies:
       '@babel/core': 7.21.8
       '@babel/plugin-transform-react-jsx-self': 7.21.0(@babel/core@7.21.8)
       '@babel/plugin-transform-react-jsx-source': 7.19.6(@babel/core@7.21.8)
+      magic-string: 0.27.0
       react-refresh: 0.14.0
       vite: 4.1.4(@types/node@18.15.11)
     transitivePeerDependencies:
@@ -23696,6 +23697,12 @@ packages:
     dependencies:
       sourcemap-codec: 1.4.8
     dev: false
+
+  /magic-string@0.27.0:
+    resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==}
+    engines: {node: '>=12'}
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.4.15
 
   /magic-string@0.30.0:
     resolution: {integrity: sha512-LA+31JYDJLs82r2ScLrlz1GjSgu66ZV518eyWT+S8VhyQn/JL0u9MeBOvQMGYiPk1DBiSN9DDMOcXvigJZaViQ==}
