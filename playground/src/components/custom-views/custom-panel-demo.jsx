@@ -8,7 +8,6 @@ import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 
 function CustomPanelDemo() {
-  // const [isOpen, setIsOpen] = useState(false);
   const { isModalOpen, openModal, closeModal } = useModalState();
   const [panelSize, setPanelSize] = useState('');
   return (
