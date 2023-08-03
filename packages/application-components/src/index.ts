@@ -42,7 +42,8 @@ export type { TPageContentWide } from './components/page-content-containers/page
 export { default as PageContentFull } from './components/page-content-containers/page-content-full';
 export type { TPageContentFull } from './components/page-content-containers/page-content-full';
 
-export { default as CustomPanel } from './components/custom-views/custom-panel/custom-panel';
+// Custom views
+export { default as CustomPanel } from './components/custom-views/custom-panel';
 
 // Utilities
 export { default as PortalsContainer } from './components/portals-container';
