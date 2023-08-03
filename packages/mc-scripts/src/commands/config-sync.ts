@@ -30,7 +30,8 @@ const getMcUrlLink = (
 async function run(options: TCliCommandConfigSyncOptions) {
   const applicationConfig = processConfig();
   const { data: localCustomAppData } = applicationConfig;
-  const { mcApiUrl } = applicationConfig.env;
+  const { mcApiUrl, applicationId, entryPointUriPath } = applicationConfig.env;
+  const applicationIdentifier = `${applicationId}:${entryPointUriPath}`;
 
   console.log(`Using Merchant Center environment "${chalk.green(mcApiUrl)}".`);
   console.log();
@@ -45,10 +46,14 @@ async function run(options: TCliCommandConfigSyncOptions) {
   const fetchedCustomApplication = await fetchCustomApplication({
     mcApiUrl,
     entryPointUriPath: localCustomAppData.entryPointUriPath,
+    applicationIdentifier,
   });
 
   if (!fetchedCustomApplication) {
-    const userOrganizations = await fetchUserOrganizations({ mcApiUrl });
+    const userOrganizations = await fetchUserOrganizations({
+      mcApiUrl,
+      applicationIdentifier,
+    });
 
     let organizationId: string, organizationName: string;
 
@@ -123,6 +128,7 @@ async function run(options: TCliCommandConfigSyncOptions) {
       mcApiUrl,
       organizationId,
       data,
+      applicationIdentifier,
     });
 
     // This check is technically not necessary, as the `graphql-request` client
@@ -215,6 +221,7 @@ async function run(options: TCliCommandConfigSyncOptions) {
     organizationId: fetchedCustomApplication.organizationId,
     data: omit(localCustomAppData, ['id']),
     applicationId: fetchedCustomApplication.application.id,
+    applicationIdentifier,
   });
 
   console.log(chalk.green(`Custom Application updated.`));
