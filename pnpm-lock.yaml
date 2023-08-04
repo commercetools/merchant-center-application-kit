@@ -2086,10 +2086,10 @@ importers:
         version: 4.6.0
       '@vitejs/plugin-react':
         specifier: 3.1.0
-        version: 3.1.0(vite@4.1.4)
+        version: 3.1.0(vite@4.1.5)
       '@vitejs/plugin-react-swc':
         specifier: 3.3.1
-        version: 3.3.1(vite@4.1.4)
+        version: 3.3.1(vite@4.1.5)
       autoprefixer:
         specifier: ^10.4.13
         version: 10.4.13(postcss@8.4.23)
@@ -2208,8 +2208,8 @@ importers:
         specifier: ^0.11.0
         version: 0.11.0
       vite:
-        specifier: 4.1.4
-        version: 4.1.4(@types/node@18.15.11)
+        specifier: 4.1.5
+        version: 4.1.5(@types/node@18.15.11)
       webpack:
         specifier: 5.82.1
         version: 5.82.1(uglify-js@3.17.4)
@@ -2835,7 +2835,7 @@ importers:
         version: 5.3.3
       '@vitejs/plugin-react':
         specifier: 3.1.0
-        version: 3.1.0(vite@4.1.4)
+        version: 3.1.0(vite@4.1.5)
       formik:
         specifier: 2.2.9
         version: 2.2.9(react@17.0.2)
@@ -2861,8 +2861,8 @@ importers:
         specifier: 5.3.4
         version: 5.3.4(react@17.0.2)
       vite:
-        specifier: 4.1.4
-        version: 4.1.4(@types/node@18.15.11)
+        specifier: 4.1.5
+        version: 4.1.5(@types/node@18.15.11)
 
   website:
     dependencies:
@@ -3062,10 +3062,10 @@ importers:
         version: 5.3.3
       '@vitejs/plugin-react':
         specifier: 3.1.0
-        version: 3.1.0(vite@4.1.4)
+        version: 3.1.0(vite@4.1.5)
       vite:
-        specifier: 4.1.4
-        version: 4.1.4(@types/node@18.15.11)
+        specifier: 4.1.5
+        version: 4.1.5(@types/node@18.15.11)
 
 packages:
 
@@ -13820,18 +13820,18 @@ packages:
       postcss-inline-svg: 4.1.0
     dev: false
 
-  /@vitejs/plugin-react-swc@3.3.1(vite@4.1.4):
+  /@vitejs/plugin-react-swc@3.3.1(vite@4.1.5):
     resolution: {integrity: sha512-ZoYjGxMniXP7X+5ry/W1tpY7w0OeLUEsBF5RHFPmAhpgwwNWie8OF4056MRXRi9QgvYYoZPDzdOXGK3wlCoTfQ==}
     peerDependencies:
       vite: ^4
     dependencies:
       '@swc/core': 1.3.57
-      vite: 4.1.4(@types/node@18.15.11)
+      vite: 4.1.5(@types/node@18.15.11)
     transitivePeerDependencies:
       - '@swc/helpers'
     dev: false
 
-  /@vitejs/plugin-react@3.1.0(vite@4.1.4):
+  /@vitejs/plugin-react@3.1.0(vite@4.1.5):
     resolution: {integrity: sha512-AfgcRL8ZBhAlc3BFdigClmTUMISmmzHn7sB2h9U1odvc5U/MjWXsAaz18b/WoppUTDBzxOJwo2VdClfUcItu9g==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -13842,7 +13842,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.19.6(@babel/core@7.21.8)
       magic-string: 0.27.0
       react-refresh: 0.14.0
-      vite: 4.1.4(@types/node@18.15.11)
+      vite: 4.1.5(@types/node@18.15.11)
     transitivePeerDependencies:
       - supports-color
 
@@ -30813,8 +30813,8 @@ packages:
       vfile-message: 3.1.4
     dev: false
 
-  /vite@4.1.4(@types/node@18.15.11):
-    resolution: {integrity: sha512-3knk/HsbSTKEin43zHu7jTwYWv81f8kgAL99G5NWBcA1LKvtvcVAC4JjBH1arBunO9kQka+1oGbrMKOjk4ZrBg==}
+  /vite@4.1.5(@types/node@18.15.11):
+    resolution: {integrity: sha512-zJ0RiVkf61kpd7O+VtU6r766xgnTaIknP/lR6sJTZq3HtVJ3HGnTo5DaJhTUtYoTyS/CQwZ6yEVdc/lrmQT7dQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
