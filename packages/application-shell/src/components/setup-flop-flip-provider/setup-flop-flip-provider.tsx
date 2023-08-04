@@ -52,6 +52,12 @@ type TParsedHttpAdapterFlags = Record<
 // is no need to be concerned about security.
 const ldClientSideIdProduction = '5979d95f6040390cd07b5e01';
 
+// NOTE: use this hardcoded value instead the one above,
+// to have the feature flag enabled in the playground
+// and to test the staging environment in the MC project main-navigation-test
+
+// const ldClientSideIdProduction = '5979d95f6040390cd07b5e00';
+
 function getUserCustomFieldsForLaunchDarklyAdapter(
   user?: TSetupFlopFlipProviderProps['user'],
   projectKey?: string
@@ -174,7 +180,6 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
       </TestProviderFlopFlip>
     );
   }
-  console.log('flags', flags);
 
   return (
     <ConfigureFlopFlip<typeof combineAdapters>
