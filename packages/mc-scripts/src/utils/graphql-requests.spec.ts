@@ -19,6 +19,7 @@ beforeAll(() =>
 afterAll(() => mockServer.close());
 
 const mcApiUrl = 'https://mc-api.europe-west1.gcp.commercetools.com';
+const applicationIdentifier = '__local:test-custom-app';
 
 describe('fetch custom application data', () => {
   beforeEach(() => {
@@ -59,6 +60,7 @@ describe('fetch custom application data', () => {
       await fetchCustomApplication({
         entryPointUriPath: 'test-custom-app',
         mcApiUrl,
+        applicationIdentifier,
       });
     expect(
       organizationExtensionForCustomApplication?.application.entryPointUriPath
@@ -130,6 +132,7 @@ describe('register custom application', () => {
           },
         ],
       },
+      applicationIdentifier,
     });
     expect(createdCustomAppsData?.id).toEqual('application-id');
   });
@@ -177,6 +180,7 @@ describe('update custom application', () => {
           },
         ],
       },
+      applicationIdentifier,
     });
     expect(updatedCustomAppsData?.id).toEqual('application-id');
   });
@@ -205,6 +209,7 @@ describe('fetch user organizations', () => {
   it('should match returned data', async () => {
     const data = await fetchUserOrganizations({
       mcApiUrl,
+      applicationIdentifier,
     });
     expect(data.results[0].id).toEqual('test-organization-id');
     expect(data.results[0].name).toEqual('test-organization-name');

@@ -6,13 +6,18 @@ type TAuthPayload = {
   password: string;
 };
 
-const getAuthToken = async (mcApiUrl: string, payload: TAuthPayload) => {
+const getAuthToken = async (
+  mcApiUrl: string,
+  payload: TAuthPayload,
+  headers?: Record<string, string>
+) => {
   const response = await fetch(`${mcApiUrl}/tokens/cli`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       'x-user-agent': userAgent,
+      ...headers,
     },
     body: JSON.stringify(payload),
   });
