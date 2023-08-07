@@ -1,5 +1,15 @@
 # @commercetools-frontend/mc-html-template
 
+## 22.5.0
+
+### Patch Changes
+
+- [#3135](https://github.com/commercetools/merchant-center-application-kit/pull/3135) [`6c4094e0e`](https://github.com/commercetools/merchant-center-application-kit/commit/6c4094e0e99461b860e3a2eda7b47094858ea329) Thanks [@renovate](https://github.com/apps/renovate)! - Update `@tsconfig/node16` dependency.
+
+- Updated dependencies [[`bcfe23393`](https://github.com/commercetools/merchant-center-application-kit/commit/bcfe23393d3c9ed26fd2e1c36d3c610c359dec2e), [`6b6f15623`](https://github.com/commercetools/merchant-center-application-kit/commit/6b6f15623f06dc7a301bbdddee2757303dd223d9)]:
+  - @commercetools-frontend/application-config@22.5.0
+  - @commercetools-frontend/constants@22.5.0
+
 ## 22.4.0
 
 ### Patch Changes

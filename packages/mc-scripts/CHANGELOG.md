@@ -1,5 +1,24 @@
 # @commercetools-frontend/mc-scripts
 
+## 22.5.0
+
+### Patch Changes
+
+- [#3154](https://github.com/commercetools/merchant-center-application-kit/pull/3154) [`4343c8392`](https://github.com/commercetools/merchant-center-application-kit/commit/4343c83928537fdfaf23b64704f2a93718ebc853) Thanks [@emmenko](https://github.com/emmenko)! - Send the `x-application-id` header when using the MC API
+
+- [#3152](https://github.com/commercetools/merchant-center-application-kit/pull/3152) [`064bb2fa8`](https://github.com/commercetools/merchant-center-application-kit/commit/064bb2fa89f228d11c5b9e03f049084653a7e2c5) Thanks [@kark](https://github.com/kark)! - Fix playground in dev mode by downgrading `vite` to `v4.1.4`
+
+- [#3135](https://github.com/commercetools/merchant-center-application-kit/pull/3135) [`6c4094e0e`](https://github.com/commercetools/merchant-center-application-kit/commit/6c4094e0e99461b860e3a2eda7b47094858ea329) Thanks [@renovate](https://github.com/apps/renovate)! - Update `@tsconfig/node16` dependency.
+
+- Updated dependencies [[`a90891658`](https://github.com/commercetools/merchant-center-application-kit/commit/a90891658959affac8d15dfae446125e69d3ecd4), [`bcfe23393`](https://github.com/commercetools/merchant-center-application-kit/commit/bcfe23393d3c9ed26fd2e1c36d3c610c359dec2e), [`6c4094e0e`](https://github.com/commercetools/merchant-center-application-kit/commit/6c4094e0e99461b860e3a2eda7b47094858ea329), [`6cef91c8e`](https://github.com/commercetools/merchant-center-application-kit/commit/6cef91c8e3e18c7ea4ab55d42a7df2dbf72f5a1e), [`6b6f15623`](https://github.com/commercetools/merchant-center-application-kit/commit/6b6f15623f06dc7a301bbdddee2757303dd223d9)]:
+  - @commercetools-frontend/application-components@22.5.0
+  - @commercetools-frontend/application-config@22.5.0
+  - @commercetools-frontend/mc-dev-authentication@22.5.0
+  - @commercetools-frontend/mc-html-template@22.5.0
+  - @commercetools-frontend/constants@22.5.0
+  - @commercetools-frontend/assets@22.5.0
+  - @commercetools-frontend/babel-preset-mc-app@22.5.0
+
 ## 22.4.0
 
 ### Minor Changes

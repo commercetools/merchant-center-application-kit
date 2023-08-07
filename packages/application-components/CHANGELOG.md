@@ -1,5 +1,24 @@
 # @commercetools-frontend/application-components
 
+## 22.5.0
+
+### Minor Changes
+
+- [#3149](https://github.com/commercetools/merchant-center-application-kit/pull/3149) [`a90891658`](https://github.com/commercetools/merchant-center-application-kit/commit/a90891658959affac8d15dfae446125e69d3ecd4) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - New `CustomPanel` component. It will be used in the upcoming "Custom Views" feature.
+
+### Patch Changes
+
+- [#3092](https://github.com/commercetools/merchant-center-application-kit/pull/3092) [`6cef91c8e`](https://github.com/commercetools/merchant-center-application-kit/commit/6cef91c8e3e18c7ea4ab55d42a7df2dbf72f5a1e) Thanks [@renovate](https://github.com/apps/renovate)! - Update [@testing-library/dom](https://github.com/testing-library/dom-testing-library) dependency
+
+- Updated dependencies [[`91c60f154`](https://github.com/commercetools/merchant-center-application-kit/commit/91c60f154cd874755512691bb7d014acf631afb4), [`6b6f15623`](https://github.com/commercetools/merchant-center-application-kit/commit/6b6f15623f06dc7a301bbdddee2757303dd223d9)]:
+  - @commercetools-frontend/application-shell-connectors@22.5.0
+  - @commercetools-frontend/constants@22.5.0
+  - @commercetools-frontend/actions-global@22.5.0
+  - @commercetools-frontend/sentry@22.5.0
+  - @commercetools-frontend/i18n@22.5.0
+  - @commercetools-frontend/l10n@22.5.0
+  - @commercetools-frontend/assets@22.5.0
+
 ## 22.4.0
 
 ### Patch Changes

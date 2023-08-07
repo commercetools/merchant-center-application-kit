@@ -1,5 +1,17 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 22.5.0
+
+### Minor Changes
+
+- [#3142](https://github.com/commercetools/merchant-center-application-kit/pull/3142) [`91c60f154`](https://github.com/commercetools/merchant-center-application-kit/commit/91c60f154cd874755512691bb7d014acf631afb4) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Add `sampleDataImportDataset` to project query, map value to project context.
+
+### Patch Changes
+
+- Updated dependencies [[`6b6f15623`](https://github.com/commercetools/merchant-center-application-kit/commit/6b6f15623f06dc7a301bbdddee2757303dd223d9)]:
+  - @commercetools-frontend/constants@22.5.0
+  - @commercetools-frontend/sentry@22.5.0
+
 ## 22.4.0
 
 ### Patch Changes

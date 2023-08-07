@@ -1,5 +1,17 @@
 # @commercetools-website/components-playground
 
+## 22.5.0
+
+### Patch Changes
+
+- [#3152](https://github.com/commercetools/merchant-center-application-kit/pull/3152) [`064bb2fa8`](https://github.com/commercetools/merchant-center-application-kit/commit/064bb2fa89f228d11c5b9e03f049084653a7e2c5) Thanks [@kark](https://github.com/kark)! - Fix playground in dev mode by downgrading `vite` to `v4.1.4`
+
+- Updated dependencies [[`a90891658`](https://github.com/commercetools/merchant-center-application-kit/commit/a90891658959affac8d15dfae446125e69d3ecd4), [`6cef91c8e`](https://github.com/commercetools/merchant-center-application-kit/commit/6cef91c8e3e18c7ea4ab55d42a7df2dbf72f5a1e), [`6b6f15623`](https://github.com/commercetools/merchant-center-application-kit/commit/6b6f15623f06dc7a301bbdddee2757303dd223d9)]:
+  - @commercetools-frontend/application-components@22.5.0
+  - @commercetools-frontend/constants@22.5.0
+  - @commercetools-frontend/i18n@22.5.0
+  - @commercetools-frontend/browser-history@22.5.0
+
 ## 22.4.0
 
 ### Patch Changes
