@@ -3,4 +3,4 @@
 '@commercetools-local/playground': patch
 ---
 
-Adding a feature flag for the new navigation
+Render a slightly different root layout using a feature flag. The change is only used internally for now, as we are working on some design updates.
