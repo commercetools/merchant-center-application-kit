@@ -1,11 +1,4 @@
 import { type ReactNode } from 'react';
-import {
-  ApplicationLoader,
-  ConfigureIntlProvider,
-  FetchProject,
-  FetchUser,
-  SetupFlopFlipProvider,
-} from '@commercetools-frontend/application-shell';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { ApplicationWindow } from '@commercetools-frontend/constants';
 import {
@@ -13,6 +6,11 @@ import {
   type TAsyncLocaleDataProps,
 } from '@commercetools-frontend/i18n';
 import { ThemeProvider } from '@commercetools-uikit/design-system';
+import ApplicationLoader from '../application-loader';
+import ConfigureIntlProvider from '../configure-intl-provider';
+import FetchProject from '../fetch-project';
+import FetchUser from '../fetch-user';
+import SetupFlopFlipProvider from '../setup-flop-flip-provider';
 
 type TCustomViewAuthenticatedShellProps = {
   dataLocale: string;
