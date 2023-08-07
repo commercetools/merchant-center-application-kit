@@ -22,7 +22,7 @@ const DEMO_CUSTOM_VIEW = {
   permissions: [
     {
       name: 'ViewProducts',
-      oAuthScopes: ['view_products'],
+      oAuthScopes: ['view_channels'],
     },
   ],
 };
