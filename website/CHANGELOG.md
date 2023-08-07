@@ -1,5 +1,14 @@
 # @commercetools-website/custom-applications
 
+## 22.5.0
+
+### Patch Changes
+
+- [#3136](https://github.com/commercetools/merchant-center-application-kit/pull/3136) [`2aa732d60`](https://github.com/commercetools/merchant-center-application-kit/commit/2aa732d601aa20eb131f3953132f3bb39fada524) Thanks [@renovate](https://github.com/apps/renovate)! - Update [linkinator](https://github.com/commercetools/merchant-center-application-kit/pull/3136) dependency.
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.5.0
+
 ## 22.4.0
 
 ### Minor Changes
