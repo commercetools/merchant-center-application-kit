@@ -5,11 +5,11 @@ import {
   useState,
   type ReactNode,
 } from 'react';
-import { ApplicationShellProvider } from '@commercetools-frontend/application-shell';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
-import CustomViewAuthenticatedShell from '../custom-view-authenticated-shell/custom-view-authenticated-shell';
+import ApplicationShellProvider from '../application-shell-provider';
+import CustomViewAuthenticatedShell from '../custom-view-authenticated-shell';
 
 declare let window: ApplicationWindow;
 

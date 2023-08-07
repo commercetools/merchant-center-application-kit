@@ -4,8 +4,6 @@ export { default as ApplicationShell } from './components/application-shell';
 export { default as ApplicationShellProvider } from './components/application-shell-provider';
 export { default as ApplicationPageTitle } from './components/application-page-title';
 export { default as ApplicationLoader } from './components/application-loader';
-export { default as FetchUser } from './components/fetch-user';
-export { default as FetchProject } from './components/fetch-project';
 export { default as createApolloClient } from './configure-apollo';
 export { applyDefaultMiddlewares } from './configure-store';
 export { default as InjectReducers } from './components/inject-reducers';
