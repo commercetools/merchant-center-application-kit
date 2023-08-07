@@ -109,7 +109,7 @@ describe('CustomViewLoader', () => {
     ).not.toBeInTheDocument();
     expect(reportErrorToSentry).toHaveBeenCalledWith(
       new Error(
-        `CustomViewLoader: Provided Custom View has an unsupported type: ${customView.type}`
+        `CustomViewLoader: Provided Custom View has an unsupported type: ${customView.type}. Supported types: ['CustomPanel'].`
       )
     );
   });

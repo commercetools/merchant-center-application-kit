@@ -127,7 +127,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
   if (props.customView.type !== 'CustomPanel') {
     reportErrorToSentry(
       new Error(
-        `CustomViewLoader: Provided Custom View has an unsupported type: ${props.customView.type}`
+        `CustomViewLoader: Provided Custom View has an unsupported type: ${props.customView.type}. Supported types: ['CustomPanel'].`
       )
     );
     return null;
