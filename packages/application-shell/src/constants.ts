@@ -11,6 +11,7 @@ export const SUPPORTED_HEADERS = {
   AUTHORIZATION: 'Authorization',
   CONTENT_TYPE: 'Content-Type',
   X_APPLICATION_ID: 'X-Application-Id',
+  X_CUSTOM_VIEW_ID: 'X-Custom-View-Id',
   X_CORRELATION_ID: 'X-Correlation-Id',
   X_FEATURE_FLAG: 'X-Feature-Flag',
   X_FORWARD_TO: 'X-Forward-To',

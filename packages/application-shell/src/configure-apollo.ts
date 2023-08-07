@@ -8,7 +8,6 @@ import {
   createHttpLink,
   InMemoryCache,
   ApolloLink,
-  type RequestHandler,
 } from '@apollo/client';
 import {
   errorLink,
@@ -22,7 +21,6 @@ import { isLoggerEnabled } from './utils/logger';
 type TApolloClientOptions = {
   cache?: InMemoryCacheConfig;
   restLink?: ApolloLink;
-  customLinks?: (ApolloLink | RequestHandler)[];
 };
 
 const httpLink = createHttpLink({
@@ -41,8 +39,6 @@ const createApolloLink = (options: TApolloClientOptions = {}) =>
     // See https://www.apollographql.com/docs/react/api/link/apollo-link-rest/#link-order
     // State & context links should happen before (to the left of) `restLink`.
     ...(options.restLink ? [options.restLink] : []),
-    // Consumer provided link should happen after we set the base headers
-    ...(options.customLinks ?? []),
     // Must be before `tokenRetryLink`.
     errorLink,
     // Avoid logging queries in test environment
