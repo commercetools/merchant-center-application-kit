@@ -1,4 +1,4 @@
-// NOTE: this file contains feature flag that will be removed once the new navigation is enabled for all users
+// NOTE: this file contains NewMainNavigationFlagWrapper which is a temporary container to enable the new navigation.
 import {
   type ReactNode,
   type RefObject,
