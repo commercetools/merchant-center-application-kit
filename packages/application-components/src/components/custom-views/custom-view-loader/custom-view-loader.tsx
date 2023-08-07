@@ -112,8 +112,10 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
       eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_INITIALIZATION,
       eventData: {
         context: {
-          userLocale: appContext.user?.locale,
           dataLocale: appContext.dataLocale,
+          customViewConfig: props.customView,
+          hostUrl: window.location.href,
+          userLocale: appContext.user?.locale,
           projectKey: appContext.project?.key,
         },
       },
