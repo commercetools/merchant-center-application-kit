@@ -9,6 +9,10 @@ import {
 } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import CustomPanel from '../custom-panel/custom-panel';
+import {
+  CUSTOM_VIEWS_EVENTS_NAMES,
+  CUSTOM_VIEWS_EVENTS_META,
+} from './constants';
 import messages from './messages';
 
 type TCustomViewIframeMessage = {
@@ -37,7 +41,6 @@ export type TCustomView = {
     size?: 'SMALL' | 'LARGE';
   };
   locators: string[];
-  permissions: TPermissionGroup[];
 };
 
 type TCustomViewLoaderProps = {
@@ -97,16 +100,16 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
 
     // Transfer port2 to the iFrame so it can send messages back privately
     iFrameElementRef.current?.contentWindow?.postMessage(
-      'mc_init',
+      CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_BOOTSTRAP,
       window.location.href,
       [iFrameCommunicationChannel.current.port2]
     );
 
     // Send the initialization message to the iFrame
     iFrameCommunicationChannel.current.port1.postMessage({
-      source: 'mc-host-application',
-      destination: `custom-view-${props.customView.id}`,
-      eventName: 'hostAcknowledgesIframeLoaded',
+      source: CUSTOM_VIEWS_EVENTS_META.SOURCE,
+      destination: `${CUSTOM_VIEWS_EVENTS_META.DESTINATION_PREFIX}${props.customView.id}`,
+      eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_INITIALIZATION,
       eventData: {
         context: {
           userLocale: appContext.user?.locale,
@@ -116,6 +119,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
       },
     } as TCustomViewIframeMessage);
 
+    // We want the effect to run only once so we don't need the dependencies array.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -123,7 +127,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
   if (props.customView.type !== 'CustomPanel') {
     reportErrorToSentry(
       new Error(
-        `CustomViewLoader: Provided Custom View has an unsupported type: ${props.customView.type}`
+        `CustomViewLoader: Provided Custom View has an unsupported type: ${props.customView.type}. Supported types: ['CustomPanel'].`
       )
     );
     return null;

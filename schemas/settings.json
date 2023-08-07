@@ -9,6 +9,29 @@
     "subscriptionType": null,
     "types": [
       {
+        "kind": "INPUT_OBJECT",
+        "name": "AllPublicCustomApplicationsDevelopedByCommercetoolsQueryInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "organizationId",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
         "name": "ApplicationExtension",
         "description": null,
@@ -6536,6 +6559,31 @@
             "deprecationReason": null
           },
           {
+            "name": "setProjectExtensionImportSampleDataset",
+            "description": null,
+            "args": [
+              {
+                "name": "data",
+                "description": null,
+                "type": {
+                  "kind": "ENUM",
+                  "name": "SampleDatasets",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ProjectExtension",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "setProjectExtensionOrderStatesVisibility",
             "description": null,
             "args": [
@@ -6550,6 +6598,31 @@
                     "name": "OrderStatesVisibility",
                     "ofType": null
                   }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ProjectExtension",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "setProjectExtensionRichTextEditorSettings",
+            "description": null,
+            "args": [
+              {
+                "name": "data",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "RichTextEditorSettingsInput",
+                  "ofType": null
                 },
                 "defaultValue": null,
                 "isDeprecated": false,
@@ -9927,6 +10000,22 @@
             "deprecationReason": null
           },
           {
+            "name": "isRichTextEditorEnabled",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "orderStatesVisibility",
             "description": null,
             "args": [],
@@ -9962,6 +10051,18 @@
                 "name": "String",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sampleDataImport",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "SampleDataImportMetadata",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -10528,7 +10629,20 @@
           {
             "name": "allPublicCustomApplicationsDevelopedByCommercetools",
             "description": null,
-            "args": [],
+            "args": [
+              {
+                "name": "params",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "AllPublicCustomApplicationsDevelopedByCommercetoolsQueryInput",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -12193,6 +12307,33 @@
       },
       {
         "kind": "INPUT_OBJECT",
+        "name": "RichTextEditorSettingsInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "isRichTextEditorEnabled",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
         "name": "RuleBuilderQuickSelectCreatefunctionsInput",
         "description": null,
         "fields": null,
@@ -12668,6 +12809,62 @@
         ],
         "interfaces": null,
         "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "SampleDataImportMetadata",
+        "description": null,
+        "fields": [
+          {
+            "name": "completed",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "dataset",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "ENUM",
+              "name": "SampleDatasets",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "SampleDatasets",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "FASHION",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "possibleTypes": null
       },
       {
@@ -14498,7 +14695,7 @@
       },
       {
         "name": "specifiedBy",
-        "description": "Exposes a URL that specifies the behaviour of this scalar.",
+        "description": "Exposes a URL that specifies the behavior of this scalar.",
         "isRepeatable": false,
         "locations": [
           "SCALAR"
@@ -14506,7 +14703,7 @@
         "args": [
           {
             "name": "url",
-            "description": "The URL that specifies the behaviour of this scalar.",
+            "description": "The URL that specifies the behavior of this scalar.",
             "type": {
               "kind": "NON_NULL",
               "name": null,

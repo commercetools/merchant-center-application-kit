@@ -35,6 +35,7 @@ type TBaseProject = {
   currencies: string[];
   languages: string[];
   initialized: boolean;
+  sampleDataImportDataset?: string;
 };
 
 export type TProject = TBaseProject & {

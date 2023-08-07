@@ -34,6 +34,7 @@ const Project = new Factory()
     __typename: 'Organization',
     id: faker.datatype.uuid(),
     name: faker.company.name(),
-  }));
+  }))
+  .attr('sampleDataImportDataset', 'FASHION');
 
 export default Project;
