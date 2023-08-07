@@ -1,4 +1,3 @@
-// NOTE: this file contains NewMainNavigationFlagWrapper which is a temporary container to enable the new navigation.
 import {
   type ReactNode,
   type RefObject,
@@ -215,6 +214,7 @@ export const ApplicationShellAuthenticated = (
                     flags={props.featureFlags}
                     defaultFlags={props.defaultFeatureFlags}
                   >
+                    {/* This is a temporary container. It will be removed once the new navigation is enabled by default. */}
                     <NewMainNavigationFlagWrapper>
                       {(isNewNavigationEnabled: boolean) => {
                         return (
