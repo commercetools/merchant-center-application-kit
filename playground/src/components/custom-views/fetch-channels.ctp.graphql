@@ -1,0 +1,15 @@
+query FetchChannelsQuery(
+  $limit: Int
+  $offset: Int
+  $locale: String
+) {
+  channels(limit: $limit, offset: $offset) {
+    total
+    results {
+      id
+      version
+      key
+      name(locale: $locale)
+    }
+  }
+}

@@ -1,13 +1,13 @@
 import { useMemo, useState } from 'react';
 import {
-  CustomPanel,
   CustomViewLoader,
   useModalState,
 } from '@commercetools-frontend/application-components';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import { CUSTOM_VIEW_ID } from './demo-custom-view';
+
+export const CUSTOM_VIEW_ID = '290f83df-d86d-417c-ab24-41697e33483c';
 
 const DEMO_CUSTOM_VIEW = {
   id: CUSTOM_VIEW_ID,
@@ -22,7 +22,7 @@ const DEMO_CUSTOM_VIEW = {
   permissions: [
     {
       name: 'ViewProducts',
-      oAuthScopes: ['view_products'],
+      oAuthScopes: ['view_channels'],
     },
   ],
 };
