@@ -47,8 +47,21 @@ type TCustomViewShellProps = {
   children: ReactNode;
 };
 
+<<<<<<< HEAD
 const browserLocale = getBrowserLocale(window);
 
+||||||| parent of 2f4cd301f (refactor(application-shell): refactor custom view shell to use the new specialized context)
+// We only want to listen for events coming from the same origin (parent window)
+const isEventAllowed = (
+  event: MessageEvent<THostEventData>,
+  customViewId: string
+) =>
+  event.origin === window.location.origin &&
+  event.data.source === 'mc-host-application' &&
+  event.data.destination === `custom-view-${customViewId}`;
+
+=======
+>>>>>>> 2f4cd301f (refactor(application-shell): refactor custom view shell to use the new specialized context)
 function CustomViewShell(props: TCustomViewShellProps) {
   const [hostContext, setHostContext] = useState<THostContext>();
   const iFrameCommunicationPort = useRef<MessagePort>();
@@ -60,11 +73,20 @@ function CustomViewShell(props: TCustomViewShellProps) {
         CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_INITIALIZATION
       ) {
         setHostContext(event.data.eventData.context);
+<<<<<<< HEAD
       } else {
         console.warn(
           `CustomViewShell: Unknown received event with name: ${event.data.eventName}`,
           { event }
         );
+||||||| parent of 2f4cd301f (refactor(application-shell): refactor custom view shell to use the new specialized context)
+=======
+      } else {
+        console.warn(
+          `CustomViewShell: Unkown received event with name: ${event.data.eventName}`,
+          { event }
+        );
+>>>>>>> 2f4cd301f (refactor(application-shell): refactor custom view shell to use the new specialized context)
       }
     },
     []
@@ -82,12 +104,23 @@ function CustomViewShell(props: TCustomViewShellProps) {
         iFrameCommunicationPort.current.onmessage = hostMessageHandler;
         // Once bootstraped, we don't want to listen for global messages anymore.
         // We will only listen to messages coming through the MessageChannel port.
+<<<<<<< HEAD
         window.removeEventListener('message', bootstrapMessageHandler);
       } else {
         console.warn(
           'CustomViewShell: Received an event that is not allowed.',
           { event }
         );
+||||||| parent of 2f4cd301f (refactor(application-shell): refactor custom view shell to use the new specialized context)
+        window.removeEventListener('message', initializationMessageHandler);
+=======
+        window.removeEventListener('message', initializationMessageHandler);
+      } else {
+        console.warn(
+          `CustomViewShell: Received an event that is not allowed: ${event.data}`,
+          { event }
+        );
+>>>>>>> 2f4cd301f (refactor(application-shell): refactor custom view shell to use the new specialized context)
       }
     };
 
@@ -108,6 +141,7 @@ function CustomViewShell(props: TCustomViewShellProps) {
     >
       {({ isAuthenticated }) => {
         if (isAuthenticated) {
+<<<<<<< HEAD
           return (
             <CustomViewContextProvider config={hostContext.customViewConfig}>
               <CustomViewShellAuthenticated
@@ -120,8 +154,32 @@ function CustomViewShell(props: TCustomViewShellProps) {
               </CustomViewShellAuthenticated>
             </CustomViewContextProvider>
           );
+||||||| parent of 2f4cd301f (refactor(application-shell): refactor custom view shell to use the new specialized context)
+          <CustomViewAuthenticatedShell
+            dataLocale={hostContext.dataLocale}
+            environment={window.app}
+            messages={props.messages}
+            projectKey={hostContext.projectKey}
+          >
+            {props.children}
+          </CustomViewAuthenticatedShell>;
+=======
+          return (
+            <CustomViewContextProvider config={hostContext.customViewConfig}>
+              <CustomViewAuthenticatedShell
+                dataLocale={hostContext.dataLocale}
+                environment={window.app}
+                messages={props.messages}
+                projectKey={hostContext.projectKey}
+              >
+                {props.children}
+              </CustomViewAuthenticatedShell>
+            </CustomViewContextProvider>
+          );
+>>>>>>> 2f4cd301f (refactor(application-shell): refactor custom view shell to use the new specialized context)
         }
 
+<<<<<<< HEAD
         return (
           <AsyncLocaleData
             locale={browserLocale}
@@ -134,6 +192,13 @@ function CustomViewShell(props: TCustomViewShellProps) {
             )}
           </AsyncLocaleData>
         );
+||||||| parent of 2f4cd301f (refactor(application-shell): refactor custom view shell to use the new specialized context)
+        // TODO: Render a proper error view
+        return <h2>Not authenticated</h2>;
+=======
+        // TODO: Render a proper error view
+        return <h2>User not authenticated</h2>;
+>>>>>>> 2f4cd301f (refactor(application-shell): refactor custom view shell to use the new specialized context)
       }}
     </ApplicationShellProvider>
   );
