@@ -46,7 +46,7 @@ const isEventAllowed = (
 
 function CustomViewShell(props: TCustomViewShellProps) {
   const [hostContext, setHostContext] = useState<THostContext>();
-  const iFrameCommunicationPort = useRef(new MessagePort());
+  const iFrameCommunicationPort = useRef<MessagePort>();
 
   const hostMessageHandler = useCallback(
     (event: MessageEvent<THostEventData>) => {

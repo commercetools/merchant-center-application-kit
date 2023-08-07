@@ -20,6 +20,7 @@
     "@commercetools-frontend/application-shell": "22.4.0",
     "@commercetools-frontend/application-shell-connectors": "22.4.0",
     "@commercetools-frontend/assets": "22.4.0",
+    "@commercetools-frontend/browser-history": "22.4.0",
     "@commercetools-frontend/constants": "22.4.0",
     "@commercetools-frontend/i18n": "22.4.0",
     "@commercetools-frontend/l10n": "22.4.0",

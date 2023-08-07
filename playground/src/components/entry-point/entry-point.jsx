@@ -1,10 +1,13 @@
 import { lazy } from 'react';
+import { Router, Switch, Route } from 'react-router-dom';
 import {
   ApplicationShell,
   setupGlobalErrorListener,
 } from '@commercetools-frontend/application-shell';
+import history from '@commercetools-frontend/browser-history';
 import configureApolloClient from '../../apollo-client';
 import loadMessages from '../../messages';
+import DemoCustomView from '../custom-views/demo-custom-view';
 
 // Here we split up the main (app) bundle with the actual application business logic.
 // Splitting by route is usually recommended and you can potentially have a splitting
@@ -20,13 +23,23 @@ setupGlobalErrorListener();
 const apolloClient = configureApolloClient();
 
 const EntryPoint = () => (
-  <ApplicationShell
-    environment={window.app}
-    applicationMessages={loadMessages}
-    apolloClient={apolloClient}
-  >
-    <AsyncPlaygroundRoutes />
-  </ApplicationShell>
+  <Router history={history}>
+    <Switch>
+      <Route path="/custom-view/:id">
+        <DemoCustomView />
+      </Route>
+
+      <Route>
+        <ApplicationShell
+          environment={window.app}
+          applicationMessages={loadMessages}
+          apolloClient={apolloClient}
+        >
+          <AsyncPlaygroundRoutes />
+        </ApplicationShell>
+      </Route>
+    </Switch>
+  </Router>
 );
 EntryPoint.displayName = 'EntryPoint';
 

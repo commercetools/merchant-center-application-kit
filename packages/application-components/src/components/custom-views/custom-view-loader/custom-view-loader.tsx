@@ -37,6 +37,7 @@ export type TCustomView = {
     size?: 'SMALL' | 'LARGE';
   };
   locators: string[];
+  permissions: TPermissionGroup[];
 };
 
 type TCustomViewLoaderProps = {
