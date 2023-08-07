@@ -922,6 +922,9 @@ importers:
       '@babel/runtime-corejs3':
         specifier: ^7.20.13
         version: 7.20.13
+      '@commercetools-frontend/actions-global':
+        specifier: 22.4.0
+        version: link:../actions-global
       '@commercetools-frontend/application-shell-connectors':
         specifier: 22.4.0
         version: link:../application-shell-connectors
@@ -937,6 +940,9 @@ importers:
       '@commercetools-frontend/l10n':
         specifier: 22.4.0
         version: link:../l10n
+      '@commercetools-frontend/sentry':
+        specifier: 22.4.0
+        version: link:../sentry
       '@commercetools-uikit/card':
         specifier: ^16.4.0
         version: 16.4.0(@types/react@17.0.56)(react@17.0.2)
