@@ -146,7 +146,9 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
         key={`custom-view-${props.customView.id}`}
         ref={iFrameElementRef}
         title={`Custom View: ${props.customView.defaultLabel}`}
-        src={props.customView.url}
+        src={`${window.location.origin}/${
+          appContext.project?.key || 'no-project'
+        }/custom-view/${props.customView.id}`}
         onLoad={onLoadSuccessHandler}
       />
     </CustomPanel>
