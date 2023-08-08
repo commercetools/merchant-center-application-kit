@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
-import { CustomViewShell, useMcQuery } from '@commercetools-frontend/application-shell';
+import {
+  CustomViewShell,
+  useMcQuery,
+} from '@commercetools-frontend/application-shell';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import Constraints from '@commercetools-uikit/constraints';
@@ -22,7 +25,7 @@ const channelsColumns = [
 ];
 
 function ChannelsCustomView() {
-  const { projectKey, projectName, locale } = useApplicationContext((context) =>({
+  const { projectName, locale } = useApplicationContext((context) => ({
     projectKey: context.project.key,
     projectName: context.project.name,
     locale: context.user.locale,
@@ -33,7 +36,6 @@ function ChannelsCustomView() {
       limit: 10,
       offset: 0,
       locale,
-      projectKey,
     },
     context: {
       target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
@@ -52,12 +54,11 @@ function ChannelsCustomView() {
   return (
     <Constraints.Horizontal max="scale">
       <Spacings.Stack scale="xl">
-        <Text.Headline as="h1"><i>{projectName}</i> project channels</Text.Headline>
+        <Text.Headline as="h1">
+          <i>{projectName}</i> project channels
+        </Text.Headline>
 
-        <DataTable
-          columns={channelsColumns}
-          rows={data.channels.results}
-        />
+        <DataTable columns={channelsColumns} rows={data.channels.results} />
       </Spacings.Stack>
     </Constraints.Horizontal>
   );
