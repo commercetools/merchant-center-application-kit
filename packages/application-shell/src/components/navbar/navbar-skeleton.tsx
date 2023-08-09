@@ -26,7 +26,6 @@ const NavBarHeader = styled.div`
   justify-content: center;
   align-items: center;
   gap: ${designTokens.spacing20};
-  align-self: stretch;
   background: ${designTokens.colorAccent10};
 `;
 
@@ -60,7 +59,6 @@ const NavBarFooter = styled.div<TNavBarSkeletonProps>`
   padding: 16px ${(props) => (props.isExpanded ? '58px' : '0px')};
   justify-content: center;
   align-items: center;
-  align-self: stretch;
 
   &::before {
     content: '';
@@ -68,8 +66,6 @@ const NavBarFooter = styled.div<TNavBarSkeletonProps>`
     top: 0;
     height: 1px;
     width: calc(100% - 2 * ${designTokens.spacing30});
-    flex-shrink: 0;
-    align-self: center;
     background: rgba(255, 255, 255, 0.5);
   }
 `;

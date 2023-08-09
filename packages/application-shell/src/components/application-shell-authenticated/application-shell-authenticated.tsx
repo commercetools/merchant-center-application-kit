@@ -229,12 +229,8 @@ export const ApplicationShellAuthenticated = (
                               css={css`
                                 height: 100vh;
                                 display: grid;
-                                grid-template-rows: ${isNewNavigationEnabled
-                                  ? `auto ${DIMENSIONS.header} 1fr`
-                                  : `auto ${DIMENSIONS.header} 1fr`};
-                                grid-template-columns: ${isNewNavigationEnabled
-                                  ? 'minmax(80px, 256px) 1fr'
-                                  : 'auto 1fr'};
+                                grid-template-rows: auto ${DIMENSIONS.header} 1fr;
+                                grid-template-columns: auto 1fr;
                               `}
                             >
                               <div
