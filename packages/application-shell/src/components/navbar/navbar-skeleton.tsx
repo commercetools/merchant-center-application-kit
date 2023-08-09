@@ -1,14 +1,25 @@
+import type { FC } from 'react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { designTokens } from '@commercetools-uikit/design-system';
 
-const NavBarLayout = styled.nav<TNavBarSkeletonProps>`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: ${(props) => (props.isExpanded ? '256px' : '80px')};
-`;
+const NavBarLayout: FC<TNavBarSkeletonProps> = (props) => {
+  return (
+    <nav
+      aria-busy={true}
+      css={css`
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: ${props.isExpanded ? '256px' : '80px'};
+      `}
+    >
+      {props.children}
+    </nav>
+  );
+};
 
-const NavBarHeader = styled.h1`
+const NavBarHeader = styled.div`
   display: flex;
   padding: ${designTokens.spacing30};
   height: 58px;

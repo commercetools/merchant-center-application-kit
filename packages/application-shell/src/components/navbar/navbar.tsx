@@ -20,7 +20,6 @@ import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
 import { SupportIcon } from '@commercetools-uikit/icons';
 import type { TFetchProjectQuery } from '../../types/generated/mc';
 import type { TNavbarMenu, TBaseMenu } from '../../types/generated/proxy';
-import NavBarSkeleton from '../navbar/navbar-skeleton';
 import {
   type MenuItemLinkProps,
   RestrictedMenuItem,
@@ -35,6 +34,7 @@ import {
   NavBarLayout,
 } from './menu-items';
 import messages from './messages';
+import NavBarSkeleton from './navbar-skeleton';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import compiledStyles from /* preval */ './navbar.styles';
 import nonNullable from './non-nullable';
