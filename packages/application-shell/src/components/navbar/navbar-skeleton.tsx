@@ -38,7 +38,7 @@ const NavBarBody = styled.div`
   align-items: flex-start;
   gap: ${designTokens.spacing40};
   flex-shrink: 0;
-  background: var(--primary-color-primary-30, #009987); // use new design token
+  background: #009987; // TODO: use new design token color-primary-30
   position: relative;
 
   &::after {
@@ -51,17 +51,19 @@ const NavBarBody = styled.div`
   }
 `;
 
-const NavBarFooter = styled.div`
+const NavBarFooter = styled.div<TNavBarSkeletonProps>`
   position: relative;
   display: flex;
   width: 100%;
-  height: 106px;
   flex-direction: column;
-  align-items: flex-start;
   background: var(
     --footer-gradient,
     linear-gradient(180deg, #009987 0%, #004d44 100%)
   );
+  padding: 16px ${(props) => (props.isExpanded ? '58px' : '0px')};
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
 
   &::before {
     content: '';
@@ -71,8 +73,15 @@ const NavBarFooter = styled.div`
     width: calc(100% - 2 * ${designTokens.spacing30});
     flex-shrink: 0;
     align-self: center;
-    background: rgba(255, 255, 255, 0.5); // use new design token
+    background: rgba(255, 255, 255, 0.5);
   }
+`;
+
+const ExpandIcon = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.2);
 `;
 
 const MenuItemContainer = styled.div<TMenuItem & TNavBarSkeletonProps>`
@@ -81,10 +90,11 @@ const MenuItemContainer = styled.div<TMenuItem & TNavBarSkeletonProps>`
   padding: 12px
     ${(props) => (props.isExpanded ? designTokens.spacing30 : '12px')};
   align-items: center;
+  justify-content: center;
   gap: 12px;
   border-radius: 8px; // is this necessary?
   background: ${(props) =>
-    props.theme === 'light'
+    props.placement === 'body'
       ? 'var(--primary-color-primary-30, #009987)'
       : designTokens.colorAccent10};
 `;
@@ -93,11 +103,19 @@ const MenuItemIcon = styled.div`
   width: 24px;
   height: 24px;
   border-radius: ${designTokens.borderRadius4};
-  background: rgba(255, 255, 255, 0.2); // use new design token
+  background: rgba(255, 255, 255, 0.2);
 `;
-const MenuItemTitle = styled.div`
-  height: 18px;
-  flex: 1;
+const MenuItemTitle = styled.div<TMenuItem>`
+  ${(props) =>
+    props.placement === 'header'
+      ? css`
+          height: 19px;
+          width: 132px;
+        `
+      : css`
+          flex: 1;
+          height: 18px;
+        `};
   border-radius: ${designTokens.borderRadius4};
   background: rgba(255, 255, 255, 0.2);
 `;
@@ -107,19 +125,22 @@ const MenuItemGroup = styled.div`
 `;
 
 type TMenuItem = {
-  theme: 'dark' | 'light';
+  placement: 'header' | 'body';
 };
 
 const MenuItem = (props: TMenuItem & TNavBarSkeletonProps) => {
   return (
-    <MenuItemContainer theme={props.theme} isExpanded={props.isExpanded}>
+    <MenuItemContainer
+      placement={props.placement}
+      isExpanded={props.isExpanded}
+    >
       <MenuItemIcon />
-      {props.isExpanded && <MenuItemTitle />}
+      {props.isExpanded && <MenuItemTitle placement={props.placement} />}
     </MenuItemContainer>
   );
 };
 MenuItem.defaultProps = {
-  theme: 'light',
+  placement: 'body',
 };
 
 type TNavBarSkeletonProps = {
@@ -130,7 +151,7 @@ const NavBarSkeleton = (props: TNavBarSkeletonProps) => {
     <NavBarLayout isExpanded={props.isExpanded}>
       <NavBarHeader>
         <MenuItemGroup>
-          <MenuItem theme="dark" isExpanded={props.isExpanded} />
+          <MenuItem placement="header" isExpanded={props.isExpanded} />
         </MenuItemGroup>
       </NavBarHeader>
       <NavBarBody>
@@ -148,7 +169,9 @@ const NavBarSkeleton = (props: TNavBarSkeletonProps) => {
           <MenuItem isExpanded={props.isExpanded} />
         </MenuItemGroup>
       </NavBarBody>
-      <NavBarFooter />
+      <NavBarFooter isExpanded={props.isExpanded}>
+        <ExpandIcon />
+      </NavBarFooter>
     </NavBarLayout>
   );
 };

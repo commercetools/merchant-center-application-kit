@@ -358,15 +358,19 @@ export const ApplicationShellAuthenticated = (
                                       }) => {
                                         // Render the loading navbar as long as all the data
                                         // hasn't been loaded, or if the project does not exist.
-                                        // const isLoading = isLoadingUser || isLoadingLocaleData || isLoadingProject || !locale || !project
-                                        if (
+                                        const isLoading =
                                           isLoadingUser ||
                                           isLoadingLocaleData ||
                                           isLoadingProject ||
                                           !locale ||
-                                          !project
-                                        )
+                                          !project;
+
+                                        if (
+                                          isLoading &&
+                                          !isNewNavigationEnabled
+                                        ) {
                                           return <LoadingNavBar />;
+                                        }
 
                                         return (
                                           <ApplicationContextProvider
@@ -376,23 +380,22 @@ export const ApplicationShellAuthenticated = (
                                             // The permissions for the Navbar are resolved separately, within
                                             // a different React context.
                                           >
-                                            {isNewNavigationEnabled ===
-                                              false && (
-                                              <NavBar
-                                                applicationLocale={locale ?? ''}
-                                                projectKey={projectKeyFromUrl}
-                                                project={project}
-                                                environment={
-                                                  applicationEnvironment
-                                                }
-                                                onMenuItemClick={
-                                                  props.onMenuItemClick
-                                                }
-                                                // isLoading={isLoading}
-                                                // aria-busy={isLoading}
-                                                isLoading
-                                              />
-                                            )}
+                                            <NavBar
+                                              applicationLocale={locale ?? ''}
+                                              projectKey={projectKeyFromUrl}
+                                              project={project}
+                                              environment={
+                                                applicationEnvironment
+                                              }
+                                              onMenuItemClick={
+                                                props.onMenuItemClick
+                                              }
+                                              // isLoading={isLoading}
+                                              isLoading={
+                                                // isLoading && // TODO: uncomment before merging
+                                                isNewNavigationEnabled
+                                              }
+                                            />
                                           </ApplicationContextProvider>
                                         );
                                       }}
