@@ -56,10 +56,7 @@ const NavBarFooter = styled.div<TNavBarSkeletonProps>`
   display: flex;
   width: 100%;
   flex-direction: column;
-  background: var(
-    --footer-gradient,
-    linear-gradient(180deg, #009987 0%, #004d44 100%)
-  );
+  background: linear-gradient(180deg, #009987 0%, #004d44 100%);
   padding: 16px ${(props) => (props.isExpanded ? '58px' : '0px')};
   justify-content: center;
   align-items: center;
@@ -92,11 +89,10 @@ const MenuItemContainer = styled.div<TMenuItem & TNavBarSkeletonProps>`
   align-items: center;
   justify-content: center;
   gap: 12px;
-  border-radius: 8px; // is this necessary?
-  background: ${(props) =>
-    props.placement === 'body'
-      ? 'var(--primary-color-primary-30, #009987)'
-      : designTokens.colorAccent10};
+  background: ${
+    (props) =>
+      props.placement === 'header' ? designTokens.colorAccent10 : '#009987' // TODO: use new design token color-primary-30
+  };
 `;
 
 const MenuItemIcon = styled.div`

@@ -390,7 +390,6 @@ export const ApplicationShellAuthenticated = (
                                               onMenuItemClick={
                                                 props.onMenuItemClick
                                               }
-                                              // isLoading={isLoading}
                                               isLoading={
                                                 // isLoading && // TODO: uncomment before merging
                                                 isNewNavigationEnabled
