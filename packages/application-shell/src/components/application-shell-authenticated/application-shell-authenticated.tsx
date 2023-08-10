@@ -216,7 +216,7 @@ export const ApplicationShellAuthenticated = (
                   >
                     {/* This is a temporary container. It will be removed once the new navigation is enabled by default. */}
                     <NewMainNavigationFlagWrapper>
-                      {(isNewNavigationEnabled: boolean) => {
+                      {(isNewNavigationEnabled) => {
                         return (
                           <>
                             <ThemeSwitcher />
@@ -352,8 +352,6 @@ export const ApplicationShellAuthenticated = (
                                         isLoading: isLoadingProject,
                                         project,
                                       }) => {
-                                        // Render the loading navbar as long as all the data
-                                        // hasn't been loaded, or if the project does not exist.
                                         const isLoading =
                                           isLoadingUser ||
                                           isLoadingLocaleData ||
@@ -361,13 +359,13 @@ export const ApplicationShellAuthenticated = (
                                           !locale ||
                                           !project;
 
-                                        if (
-                                          isLoading &&
-                                          !isNewNavigationEnabled
-                                        ) {
-                                          return <LoadingNavBar />;
+                                        if (!isNewNavigationEnabled) {
+                                          // Render the loading navbar as long as all the data
+                                          // hasn't been loaded, or if the project does not exist.
+                                          if (isLoading) {
+                                            return <LoadingNavBar />;
+                                          }
                                         }
-
                                         return (
                                           <ApplicationContextProvider
                                             user={user}
@@ -386,8 +384,8 @@ export const ApplicationShellAuthenticated = (
                                               onMenuItemClick={
                                                 props.onMenuItemClick
                                               }
-                                              isLoading={
-                                                // isLoading && // TODO: uncomment before merging
+                                              isLoading={isLoading}
+                                              isNewNavigationEnabled={
                                                 isNewNavigationEnabled
                                               }
                                             />

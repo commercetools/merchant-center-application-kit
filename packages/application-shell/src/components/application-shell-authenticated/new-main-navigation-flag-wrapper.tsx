@@ -2,7 +2,9 @@
 import { useFeatureToggle } from '@flopflip/react-broadcast';
 import { MAIN_NAVIGATION } from '../../feature-toggles';
 
-const NewMainNavigationFlagWrapper = (props: { children: Function }) => {
+const NewMainNavigationFlagWrapper = (props: {
+  children: (isNewNavigationEnabled: boolean) => JSX.Element;
+}) => {
   const isNewNavigationEnabled = useFeatureToggle(MAIN_NAVIGATION);
   return props.children(isNewNavigationEnabled);
 };
