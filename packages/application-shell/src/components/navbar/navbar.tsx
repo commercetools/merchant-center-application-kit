@@ -267,16 +267,15 @@ const NavBar = (props: TNavbarProps) => {
     [props.project]
   );
 
-  // TODO: uncomment before merging
-  // if (props.isLoading) {
-  // Render the loading navbar as long as all the data
-  // hasn't been loaded, or if the project does not exist.
-  return props.isNewNavigationEnabled ? (
-    <NavBarSkeleton isExpanded={isMenuOpen} />
-  ) : (
-    <LoadingNavBar />
-  );
-  // }
+  if (props.isLoading) {
+    // Render the loading navbar as long as all the data
+    // hasn't been loaded, or if the project does not exist.
+    return props.isNewNavigationEnabled ? (
+      <NavBarSkeleton isExpanded={isMenuOpen} />
+    ) : (
+      <LoadingNavBar />
+    );
+  }
 
   return (
     <NavBarLayout ref={navBarNode}>
