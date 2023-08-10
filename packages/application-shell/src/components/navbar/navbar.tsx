@@ -215,7 +215,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
 ApplicationMenu.displayName = 'ApplicationMenu';
 
 type TNavbarProps = {
-  applicationLocale: string;
+  applicationLocale?: string;
   projectKey: string;
   environment: TApplicationContext<{
     useFullRedirectsForLinks?: boolean;
@@ -267,7 +267,9 @@ const NavBar = (props: TNavbarProps) => {
     [props.project]
   );
 
-  if (props.isLoading) {
+  const applicationLocale = props.applicationLocale;
+
+  if (props.isLoading || typeof applicationLocale === 'undefined') {
     // Render the loading navbar as long as all the data
     // hasn't been loaded, or if the project does not exist.
     return props.isNewNavigationEnabled ? (
@@ -295,7 +297,7 @@ const NavBar = (props: TNavbarProps) => {
                 shouldCloseMenuFly={shouldCloseMenuFly}
                 projectPermissions={projectPermissions}
                 menuVisibilities={menuVisibilities}
-                applicationLocale={props.applicationLocale}
+                applicationLocale={applicationLocale}
                 projectKey={props.projectKey}
                 useFullRedirectsForLinks={useFullRedirectsForLinks}
                 onMenuItemClick={props.onMenuItemClick}
@@ -317,7 +319,7 @@ const NavBar = (props: TNavbarProps) => {
                 shouldCloseMenuFly={shouldCloseMenuFly}
                 projectPermissions={projectPermissions}
                 menuVisibilities={menuVisibilities}
-                applicationLocale={props.applicationLocale}
+                applicationLocale={applicationLocale}
                 projectKey={props.projectKey}
                 useFullRedirectsForLinks={useFullRedirectsForLinks}
                 onMenuItemClick={props.onMenuItemClick}

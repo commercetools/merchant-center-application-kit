@@ -367,7 +367,7 @@ export const ApplicationShellAuthenticated = (
                                             // a different React context.
                                           >
                                             <NavBar
-                                              applicationLocale={locale ?? ''}
+                                              applicationLocale={locale}
                                               projectKey={projectKeyFromUrl}
                                               project={project}
                                               environment={
