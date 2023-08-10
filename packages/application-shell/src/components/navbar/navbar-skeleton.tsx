@@ -1,9 +1,11 @@
-import type { FC } from 'react';
+import type { ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { designTokens } from '@commercetools-uikit/design-system';
 
-const NavBarLayout: FC<TNavBarSkeletonProps> = (props) => {
+const NavBarLayout = (
+  props: TNavBarSkeletonProps & { children: ReactNode }
+) => {
   return (
     <nav
       aria-busy={true}
@@ -19,16 +21,6 @@ const NavBarLayout: FC<TNavBarSkeletonProps> = (props) => {
   );
 };
 
-const NavBarHeader = styled.div`
-  display: flex;
-  padding: ${designTokens.spacing30};
-  height: 58px;
-  justify-content: center;
-  align-items: center;
-  gap: ${designTokens.spacing20};
-  background: ${designTokens.colorAccent10};
-`;
-
 const NavBarBody = styled.div`
   display: flex;
   flex: 1;
@@ -40,6 +32,7 @@ const NavBarBody = styled.div`
   background: #009987; // TODO: use new design token color-primary-30
   position: relative;
 
+  // bottom gardient
   &::after {
     content: '';
     position: absolute;
@@ -56,7 +49,8 @@ const NavBarFooter = styled.div<TNavBarSkeletonProps>`
   width: 100%;
   flex-direction: column;
   background: linear-gradient(180deg, #009987 0%, #004d44 100%);
-  padding: 16px ${(props) => (props.isExpanded ? '58px' : '0px')};
+  padding: ${designTokens.spacing30}
+    ${(props) => (props.isExpanded ? '58px' : '0px')};
   justify-content: center;
   align-items: center;
 
@@ -73,7 +67,7 @@ const NavBarFooter = styled.div<TNavBarSkeletonProps>`
 const ExpandIcon = styled.div`
   width: 40px;
   height: 40px;
-  border-radius: 4px;
+  border-radius: ${designTokens.borderRadius4};
   background: rgba(255, 255, 255, 0.2);
 `;
 
@@ -141,11 +135,10 @@ type TNavBarSkeletonProps = {
 const NavBarSkeleton = (props: TNavBarSkeletonProps) => {
   return (
     <NavBarLayout isExpanded={props.isExpanded}>
-      <NavBarHeader>
-        <MenuItemGroup>
-          <MenuItem placement="header" isExpanded={props.isExpanded} />
-        </MenuItemGroup>
-      </NavBarHeader>
+      <MenuItemGroup>
+        <MenuItem placement="header" isExpanded={props.isExpanded} />
+      </MenuItemGroup>
+
       <NavBarBody>
         <MenuItemGroup>
           {[...Array(2).keys()].map((index) => (
