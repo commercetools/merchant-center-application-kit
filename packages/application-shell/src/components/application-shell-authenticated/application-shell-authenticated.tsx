@@ -33,7 +33,6 @@ import ErrorApologizer from '../error-apologizer';
 import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
 import NavBar from '../navbar';
-import LoadingNavBar from '../navbar/loading-navbar';
 import ProjectContainer from '../project-container';
 import ProjectDataLocale from '../project-data-locale';
 import QuickAccess from '../quick-access';
@@ -359,13 +358,6 @@ export const ApplicationShellAuthenticated = (
                                           !locale ||
                                           !project;
 
-                                        if (!isNewNavigationEnabled) {
-                                          // Render the loading navbar as long as all the data
-                                          // hasn't been loaded, or if the project does not exist.
-                                          if (isLoading) {
-                                            return <LoadingNavBar />;
-                                          }
-                                        }
                                         return (
                                           <ApplicationContextProvider
                                             user={user}
