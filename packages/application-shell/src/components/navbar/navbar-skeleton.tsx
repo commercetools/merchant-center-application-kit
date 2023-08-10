@@ -135,9 +135,7 @@ type TNavBarSkeletonProps = {
 const NavBarSkeleton = (props: TNavBarSkeletonProps) => {
   return (
     <NavBarLayout isExpanded={props.isExpanded}>
-      <MenuItemGroup>
-        <MenuItem placement="header" isExpanded={props.isExpanded} />
-      </MenuItemGroup>
+      <MenuItem placement="header" isExpanded={props.isExpanded} />
 
       <NavBarBody>
         <MenuItemGroup>
