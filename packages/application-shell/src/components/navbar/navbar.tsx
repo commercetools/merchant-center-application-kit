@@ -274,7 +274,7 @@ const NavBar = (props: TNavbarProps) => {
     // Render the loading navbar as long as all the data
     // hasn't been loaded, or if the project does not exist.
     if (!props.isNewNavigationEnabledEvaluationReady) {
-      return <></>;
+      return null;
     }
     return props.isNewNavigationEnabled ? (
       <NavBarSkeleton isExpanded={isMenuOpen} />
