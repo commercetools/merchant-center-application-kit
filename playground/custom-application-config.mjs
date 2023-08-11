@@ -26,6 +26,7 @@ const config = {
     trackingSentry:
       'https://327619347ab84c8e9702a1dc16460198@o32365.ingest.sentry.io/1549825',
     echoServerApiUrl: '${env:ECHO_SERVER_URL}',
+    ldClientSideId: '${env:LD_CLIENT_ID_STAGING}',
   },
   headers: {
     csp: {

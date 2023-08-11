@@ -868,16 +868,16 @@ importers:
         specifier: ^7.20.13
         version: 7.20.13
       '@commercetools-frontend/browser-history':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../constants
       '@commercetools-frontend/notifications':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../notifications
       '@commercetools-frontend/sentry':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../sentry
       '@types/lodash':
         specifier: ^4.14.191
@@ -923,25 +923,25 @@ importers:
         specifier: ^7.20.13
         version: 7.20.13
       '@commercetools-frontend/actions-global':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../actions-global
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../application-shell-connectors
       '@commercetools-frontend/assets':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../assets
       '@commercetools-frontend/constants':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../constants
       '@commercetools-frontend/i18n':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../i18n
       '@commercetools-frontend/l10n':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../l10n
       '@commercetools-frontend/sentry':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../sentry
       '@commercetools-uikit/card':
         specifier: ^16.4.0
@@ -1083,7 +1083,7 @@ importers:
         specifier: ^7.20.13
         version: 7.20.13
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../babel-preset-mc-app
       '@types/dompurify':
         specifier: ^2.4.0
@@ -1138,49 +1138,49 @@ importers:
         specifier: ^7.20.13
         version: 7.20.13
       '@commercetools-frontend/actions-global':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../actions-global
       '@commercetools-frontend/application-components':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../application-components
       '@commercetools-frontend/application-config':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../application-config
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../application-shell-connectors
       '@commercetools-frontend/assets':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../assets
       '@commercetools-frontend/browser-history':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../constants
       '@commercetools-frontend/i18n':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../i18n
       '@commercetools-frontend/l10n':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../l10n
       '@commercetools-frontend/notifications':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../notifications
       '@commercetools-frontend/permissions':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../permissions
       '@commercetools-frontend/react-notifications':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../react-notifications
       '@commercetools-frontend/sdk':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../sdk
       '@commercetools-frontend/sentry':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../sentry
       '@commercetools-frontend/url-utils':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../url-utils
       '@commercetools-uikit/accessible-hidden':
         specifier: ^16.4.0
@@ -1409,10 +1409,10 @@ importers:
         specifier: ^7.20.13
         version: 7.20.13
       '@commercetools-frontend/constants':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../constants
       '@commercetools-frontend/sentry':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../sentry
       '@emotion/react':
         specifier: 11.11.0
@@ -1660,10 +1660,10 @@ importers:
         specifier: ^7.20.13
         version: 7.20.13
       '@commercetools-frontend/application-config':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../application-config
       '@commercetools-frontend/application-shell':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../application-shell
       '@manypkg/get-packages':
         specifier: 1.1.3
@@ -1694,7 +1694,7 @@ importers:
         specifier: ^7.19.1
         version: 7.19.1(@babel/core@7.20.12)(eslint@8.40.0)
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: ^22.4.0
+        specifier: ^22.5.0
         version: link:../babel-preset-mc-app
       '@rushstack/eslint-patch':
         specifier: ^1.2.0
@@ -1764,7 +1764,7 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0
       '@commercetools-frontend/sentry':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../sentry
       '@commercetools-uikit/i18n':
         specifier: ^16.4.0
@@ -1810,7 +1810,7 @@ importers:
         specifier: ^7.20.12
         version: 7.20.12
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../babel-preset-mc-app
       '@formatjs/intl-getcanonicallocales':
         specifier: ^2.1.0
@@ -1914,7 +1914,7 @@ importers:
         specifier: ^7.20.13
         version: 7.20.13
       '@commercetools-frontend/sentry':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../sentry
       '@emotion/react':
         specifier: 11.11.0
@@ -2000,10 +2000,10 @@ importers:
         specifier: ^7.20.13
         version: 7.20.13
       '@commercetools-frontend/application-config':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../application-config
       '@commercetools-frontend/constants':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../constants
       serialize-javascript:
         specifier: 6.0.1
@@ -2040,25 +2040,25 @@ importers:
         specifier: ^7.20.13
         version: 7.20.13
       '@commercetools-frontend/application-components':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../application-components
       '@commercetools-frontend/application-config':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../application-config
       '@commercetools-frontend/assets':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../assets
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../babel-preset-mc-app
       '@commercetools-frontend/constants':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../constants
       '@commercetools-frontend/mc-dev-authentication':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../mc-dev-authentication
       '@commercetools-frontend/mc-html-template':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../mc-html-template
       '@commercetools/http-user-agent':
         specifier: 3.0.0
@@ -2282,10 +2282,10 @@ importers:
         specifier: ^7.20.13
         version: 7.20.13
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../application-shell-connectors
       '@commercetools-frontend/sentry':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../sentry
       '@emotion/react':
         specifier: 11.11.0
@@ -2337,16 +2337,16 @@ importers:
         specifier: ^7.20.13
         version: 7.20.13
       '@commercetools-frontend/actions-global':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../actions-global
       '@commercetools-frontend/constants':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../constants
       '@commercetools-frontend/notifications':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../notifications
       '@commercetools-frontend/sentry':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../sentry
       '@commercetools-uikit/design-system':
         specifier: ^16.4.0
@@ -2452,7 +2452,7 @@ importers:
         specifier: ^7.20.13
         version: 7.20.13
       '@commercetools-frontend/constants':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../constants
       '@commercetools/api-request-builder':
         specifier: 6.0.0
@@ -2540,10 +2540,10 @@ importers:
         specifier: ^7.20.13
         version: 7.20.13
       '@commercetools-frontend/browser-history':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../constants
       '@sentry/react':
         specifier: 7.51.2
@@ -2602,37 +2602,37 @@ importers:
         specifier: 22.3.1
         version: 22.3.1(@types/react@17.0.56)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-frontend/actions-global':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../packages/actions-global
       '@commercetools-frontend/application-components':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../packages/application-components
       '@commercetools-frontend/application-shell':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../packages/application-shell
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../packages/application-shell-connectors
       '@commercetools-frontend/assets':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../packages/assets
       '@commercetools-frontend/browser-history':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../packages/browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../packages/constants
       '@commercetools-frontend/i18n':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../packages/i18n
       '@commercetools-frontend/l10n':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../packages/l10n
       '@commercetools-frontend/permissions':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../packages/permissions
       '@commercetools-frontend/sdk':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../packages/sdk
       '@commercetools-uikit/card':
         specifier: 16.4.0
@@ -2729,13 +2729,13 @@ importers:
         version: 24.2.5(react-dom@17.0.2)(react@17.0.2)
     devDependencies:
       '@commercetools-backend/express':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../packages-backend/express
       '@commercetools-frontend/mc-dev-authentication':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../packages/mc-dev-authentication
       '@commercetools-frontend/mc-scripts':
-        specifier: 22.4.0
+        specifier: 22.5.0
         version: link:../packages/mc-scripts
       '@commercetools-test-data/commons':
         specifier: 4.11.1
@@ -6261,7 +6261,7 @@ packages:
   /@commercetools-uikit/accessible-button@16.5.0(@types/react@17.0.56)(react@17.0.2):
     resolution: {integrity: sha512-VdOm2b1DLzyWKlqK0FO6+tMmeYOIkFyoolPROz4tdYNvfGFkav86+SOh6zLNTy1eA1O8ZI8HXfMx7+FI7bQdNA==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -6281,7 +6281,7 @@ packages:
   /@commercetools-uikit/accessible-button@16.5.0(@types/react@17.0.56)(react@18.2.0):
     resolution: {integrity: sha512-VdOm2b1DLzyWKlqK0FO6+tMmeYOIkFyoolPROz4tdYNvfGFkav86+SOh6zLNTy1eA1O8ZI8HXfMx7+FI7bQdNA==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -6772,7 +6772,7 @@ packages:
   /@commercetools-uikit/flat-button@16.5.0(@types/react@17.0.56)(react@18.2.0)(typescript@5.0.4):
     resolution: {integrity: sha512-2i14dm+pS98z6Y6IOlBtT66IggrFZnS+NBtmHUpI+GksnUQY43fYN9kISEcf6OZpjOg6Ux8SxqZ9wiqb9dhfmw==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.22.6
       '@babel/runtime-corejs3': 7.20.13
@@ -6839,7 +6839,7 @@ packages:
   /@commercetools-uikit/hooks@16.5.0(react@17.0.2):
     resolution: {integrity: sha512-lunfJnfkaTvb7xVSrRK4RF0/jSOwyy/63PnwtGsAYl5pX66I8mM1o6g0dDpimVqI0Y+cPA3QlS/7XQflctt1uw==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -6853,7 +6853,7 @@ packages:
   /@commercetools-uikit/hooks@16.5.0(react@18.2.0):
     resolution: {integrity: sha512-lunfJnfkaTvb7xVSrRK4RF0/jSOwyy/63PnwtGsAYl5pX66I8mM1o6g0dDpimVqI0Y+cPA3QlS/7XQflctt1uw==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -6897,7 +6897,7 @@ packages:
   /@commercetools-uikit/icon-button@16.5.0(@types/react@17.0.56)(react@18.2.0)(typescript@5.0.4):
     resolution: {integrity: sha512-aGciaRU/zLlE60tkLZBS3GCLD4FZL6G58apiczLPij7cxFy8mNKHSCMjugjFWoziUrk/tYmQl+0l4JiuthzExQ==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -6960,7 +6960,7 @@ packages:
   /@commercetools-uikit/icons@16.5.0(@types/react@17.0.56)(react@17.0.2):
     resolution: {integrity: sha512-yDiB+DJq19fDHvkMGs18gGedpcVpV3RH/IE9KjFjcIa4PmSCwBskcSeETeja8+GMHhyWdogIo/YvDdvq5WHk/g==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -6980,7 +6980,7 @@ packages:
   /@commercetools-uikit/icons@16.5.0(@types/react@17.0.56)(react@18.2.0):
     resolution: {integrity: sha512-yDiB+DJq19fDHvkMGs18gGedpcVpV3RH/IE9KjFjcIa4PmSCwBskcSeETeja8+GMHhyWdogIo/YvDdvq5WHk/g==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -7022,7 +7022,7 @@ packages:
   /@commercetools-uikit/input-utils@16.5.0(@types/react@17.0.56)(react-intl@6.4.2)(react@18.2.0)(typescript@5.0.4):
     resolution: {integrity: sha512-mevIQd1QWXw1vQ6zZNytUXyAWOfI+3BmAIh/5Ktf/FPQ3fWy6bGoVpa9jQhVrE2/ujDxHwhi7IQ4vd3IO56MGw==}
     peerDependencies:
-      react: '*'
+      react: 17.x
       react-intl: 6.x
     dependencies:
       '@babel/runtime': 7.22.6
@@ -7176,7 +7176,7 @@ packages:
   /@commercetools-uikit/loading-spinner@16.5.0(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-o3PXQBIUpM1AksxkLOOGLjcHtDCdZdIupFET4i3tu2KXTLIOLobd3xUFIW4ieGPp9ixAi/svNkGLiQfo9xxDdw==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -7196,7 +7196,7 @@ packages:
   /@commercetools-uikit/loading-spinner@16.5.0(@types/react@17.0.56)(react@18.2.0)(typescript@5.0.4):
     resolution: {integrity: sha512-o3PXQBIUpM1AksxkLOOGLjcHtDCdZdIupFET4i3tu2KXTLIOLobd3xUFIW4ieGPp9ixAi/svNkGLiQfo9xxDdw==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -7300,7 +7300,7 @@ packages:
   /@commercetools-uikit/messages@16.5.0(@types/react@17.0.56)(react@18.2.0)(typescript@5.0.4):
     resolution: {integrity: sha512-GhDDQXv973Ufd1FlrvrLegZwAm/Q2KLRB6CG3JdidtFSosQcpyTT1U9P3rQYBJ7cRC+WCsBj3WGitqr6tNJggQ==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -7393,7 +7393,7 @@ packages:
   /@commercetools-uikit/notifications@16.5.0(@types/react@17.0.56)(react-intl@6.4.2)(react@18.2.0):
     resolution: {integrity: sha512-QM7OCSLE+akh2ZV7pB+XDdMBQlYZOBYt0EyVCYDs35snf5eVxAGIhp9ikxq2Ehmi81upxIJOD5vTe+SJFgydUw==}
     peerDependencies:
-      react: '*'
+      react: 17.x
       react-intl: 6.x
     dependencies:
       '@babel/runtime': 7.20.13
@@ -7488,7 +7488,7 @@ packages:
   /@commercetools-uikit/primary-button@16.5.0(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-+cmF4mY0bu4mCoaeuB/aGaacJ472CVaYiTVsu7Ifg2FzvsQ0HVEnPAQNib3zgAg3vuRG+iXnkNmt6DKkK05bsg==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -7511,7 +7511,7 @@ packages:
   /@commercetools-uikit/primary-button@16.5.0(@types/react@17.0.56)(react@18.2.0)(typescript@5.0.4):
     resolution: {integrity: sha512-+cmF4mY0bu4mCoaeuB/aGaacJ472CVaYiTVsu7Ifg2FzvsQ0HVEnPAQNib3zgAg3vuRG+iXnkNmt6DKkK05bsg==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -7585,7 +7585,7 @@ packages:
   /@commercetools-uikit/secondary-button@16.5.0(@types/react@17.0.56)(react-intl@6.4.2)(react-router-dom@5.3.4)(react@17.0.2):
     resolution: {integrity: sha512-31Kc7fk3XwicjOl37RPJz5xhpXWs6k/PrB0kl8Rqkri3iZG97lu+a1eCNn17Tw1bAsvrZbrHWoeJPeTUF2WyVQ==}
     peerDependencies:
-      react: '*'
+      react: 17.x
       react-intl: 6.x
       react-router-dom: 5.x
     dependencies:
@@ -7610,7 +7610,7 @@ packages:
   /@commercetools-uikit/secondary-button@16.5.0(@types/react@17.0.56)(react-intl@6.4.2)(react-router-dom@5.3.4)(react@18.2.0):
     resolution: {integrity: sha512-31Kc7fk3XwicjOl37RPJz5xhpXWs6k/PrB0kl8Rqkri3iZG97lu+a1eCNn17Tw1bAsvrZbrHWoeJPeTUF2WyVQ==}
     peerDependencies:
-      react: '*'
+      react: 17.x
       react-intl: 6.x
       react-router-dom: 5.x
     dependencies:
@@ -7635,7 +7635,7 @@ packages:
   /@commercetools-uikit/secondary-button@16.5.0(@types/react@17.0.56)(react-intl@6.4.2)(react-router-dom@6.12.0)(react@18.2.0):
     resolution: {integrity: sha512-31Kc7fk3XwicjOl37RPJz5xhpXWs6k/PrB0kl8Rqkri3iZG97lu+a1eCNn17Tw1bAsvrZbrHWoeJPeTUF2WyVQ==}
     peerDependencies:
-      react: '*'
+      react: 17.x
       react-intl: 6.x
       react-router-dom: 5.x
     dependencies:
@@ -7683,7 +7683,7 @@ packages:
   /@commercetools-uikit/secondary-icon-button@16.5.0(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-OqzGr/LliCA56YpSuJWcKWr3tle7d23F8yorOylcAFYmmTjB6+dE804w0XZjmWIzwKh79qcBvVHxQu33EJIGrg==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -7706,7 +7706,7 @@ packages:
   /@commercetools-uikit/secondary-icon-button@16.5.0(@types/react@17.0.56)(react@18.2.0)(typescript@5.0.4):
     resolution: {integrity: sha512-OqzGr/LliCA56YpSuJWcKWr3tle7d23F8yorOylcAFYmmTjB6+dE804w0XZjmWIzwKh79qcBvVHxQu33EJIGrg==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -7806,7 +7806,7 @@ packages:
   /@commercetools-uikit/select-utils@16.5.0(@types/react@17.0.56)(react-dom@18.2.0)(react-intl@6.4.2)(react@18.2.0):
     resolution: {integrity: sha512-UfnssQchEQMclMmLqFEwASQIJNu6fxEkIviPyppOlwNJrE2HViKPiALPi/8ha8e9Ua3R4JLp/g9l1kn2yWiEHw==}
     peerDependencies:
-      react: '*'
+      react: 17.x
       react-intl: 6.x
     dependencies:
       '@babel/runtime': 7.22.6
@@ -7864,7 +7864,7 @@ packages:
   /@commercetools-uikit/spacings-inline@16.5.0(@types/react@17.0.56)(react@17.0.2):
     resolution: {integrity: sha512-qpW5MT1WRXiLu5dm1mvEy/czQLI99L0DTjGvA62zIIGZDRA8FPb8cQT2UJpqJ/hpw4bujGTNlzT1IyviynVEKA==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -7880,7 +7880,7 @@ packages:
   /@commercetools-uikit/spacings-inline@16.5.0(@types/react@17.0.56)(react@18.2.0):
     resolution: {integrity: sha512-qpW5MT1WRXiLu5dm1mvEy/czQLI99L0DTjGvA62zIIGZDRA8FPb8cQT2UJpqJ/hpw4bujGTNlzT1IyviynVEKA==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -7912,7 +7912,7 @@ packages:
   /@commercetools-uikit/spacings-inset-squish@16.5.0(@types/react@17.0.56)(react@17.0.2):
     resolution: {integrity: sha512-mMo60sjGtoxE5hYiZeohvvhRROsN29wdsAekyTr6VhSwb4iT8rlJiS0yc75f3zAZOsA5RXMeb6WcgB1xbU60oA==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -7928,7 +7928,7 @@ packages:
   /@commercetools-uikit/spacings-inset-squish@16.5.0(@types/react@17.0.56)(react@18.2.0):
     resolution: {integrity: sha512-mMo60sjGtoxE5hYiZeohvvhRROsN29wdsAekyTr6VhSwb4iT8rlJiS0yc75f3zAZOsA5RXMeb6WcgB1xbU60oA==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -7976,7 +7976,7 @@ packages:
   /@commercetools-uikit/spacings-inset@16.5.0(@types/react@17.0.56)(react@17.0.2):
     resolution: {integrity: sha512-rqOchPNu3q1HCtiZhlj4pI6IwVTfPrgwEWwcv8fWWuu8vzL1nJL7V5HhT+HWudPz2B2OZ6ZlJUWCIbE+gL1y+w==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -7992,7 +7992,7 @@ packages:
   /@commercetools-uikit/spacings-inset@16.5.0(@types/react@17.0.56)(react@18.2.0):
     resolution: {integrity: sha512-rqOchPNu3q1HCtiZhlj4pI6IwVTfPrgwEWwcv8fWWuu8vzL1nJL7V5HhT+HWudPz2B2OZ6ZlJUWCIbE+gL1y+w==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -8040,7 +8040,7 @@ packages:
   /@commercetools-uikit/spacings-stack@16.5.0(@types/react@17.0.56)(react@17.0.2):
     resolution: {integrity: sha512-Zlyx2pc+RcN5LTdb+PM8Jw+Msm9JqeFTxGMRw7rI6yNzSo4jaHKO8vXceyJq3Vu5L7vHkO9mbMCtKkoVZYKyRQ==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -8056,7 +8056,7 @@ packages:
   /@commercetools-uikit/spacings-stack@16.5.0(@types/react@17.0.56)(react@18.2.0):
     resolution: {integrity: sha512-Zlyx2pc+RcN5LTdb+PM8Jw+Msm9JqeFTxGMRw7rI6yNzSo4jaHKO8vXceyJq3Vu5L7vHkO9mbMCtKkoVZYKyRQ==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -8249,7 +8249,7 @@ packages:
   /@commercetools-uikit/text@16.5.0(@types/react@17.0.56)(react-intl@6.4.2)(react@17.0.2):
     resolution: {integrity: sha512-SLFqEIAiscOtAOHp7RJaO00KjD5P32KCjytmNBuUH70ew8ycI1deR2ELL+NDqmzLwGl3sqfCzbZgJNdRlXr6ng==}
     peerDependencies:
-      react: '*'
+      react: 17.x
       react-intl: 6.x
     dependencies:
       '@babel/runtime': 7.20.13
@@ -8269,7 +8269,7 @@ packages:
   /@commercetools-uikit/text@16.5.0(@types/react@17.0.56)(react-intl@6.4.2)(react@18.2.0):
     resolution: {integrity: sha512-SLFqEIAiscOtAOHp7RJaO00KjD5P32KCjytmNBuUH70ew8ycI1deR2ELL+NDqmzLwGl3sqfCzbZgJNdRlXr6ng==}
     peerDependencies:
-      react: '*'
+      react: 17.x
       react-intl: 6.x
     dependencies:
       '@babel/runtime': 7.20.13
@@ -8377,7 +8377,7 @@ packages:
   /@commercetools-uikit/utils@16.5.0(react@17.0.2):
     resolution: {integrity: sha512-hNz3x5DQftyesLywivXR9sbDew4lYTswb2+COFQdeBDS207a/6mgIIE3MZlg7NrXm52SFGOaGNQVGHTK23mIbA==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -8388,7 +8388,7 @@ packages:
   /@commercetools-uikit/utils@16.5.0(react@18.2.0):
     resolution: {integrity: sha512-hNz3x5DQftyesLywivXR9sbDew4lYTswb2+COFQdeBDS207a/6mgIIE3MZlg7NrXm52SFGOaGNQVGHTK23mIbA==}
     peerDependencies:
-      react: '*'
+      react: 17.x
     dependencies:
       '@babel/runtime': 7.20.13
       '@babel/runtime-corejs3': 7.20.13
@@ -10719,7 +10719,7 @@ packages:
     resolution: {integrity: sha512-4ySo4CjzStuprMwk35H5pPbkymjv1SF3jGLj6rAHp/xT/RF7TL7bd9CTm1xDY49K2qF7jmR/g7k+SkLETP6opA==}
     hasBin: true
     dependencies:
-      detect-libc: 2.0.1
+      detect-libc: 2.0.2
       https-proxy-agent: 5.0.1
       make-dir: 3.1.0
       node-fetch: 2.6.11
@@ -13398,12 +13398,6 @@ packages:
     dependencies:
       '@types/node': 18.15.11
 
-  /@types/sharp@0.31.1:
-    resolution: {integrity: sha512-5nWwamN9ZFHXaYEincMSuza8nNfOof8nmO+mcI+Agx1uMUk4/pQnNIcix+9rLPXzKrm1pS34+6WRDbDV0Jn7ag==}
-    requiresBuild: true
-    dependencies:
-      '@types/node': 18.15.11
-
   /@types/sinonjs__fake-timers@8.1.1:
     resolution: {integrity: sha512-0kSuKjAS0TrGLJ0M/+8MaFkGsQhZpB6pxOmvS3K8FYI72K//YmdfoW9X2qPsAKh1mkwxGD5zib9s1FIFed6E8g==}
 
@@ -14610,7 +14604,6 @@ packages:
 
   /b4a@1.6.4:
     resolution: {integrity: sha512-fpWrvyVHEKyeEvbKZTVOeZF3VSKKWtJxFIxX/jaVPf+cLbGUSitjb49pHLqPV2BUNNZ0LcoeEGfE/YCpyDYHIw==}
-    dev: false
 
   /babel-core@7.0.0-bridge.0(@babel/core@7.21.8):
     resolution: {integrity: sha512-poPX9mZH/5CSanm50Q+1toVci6pv5KSRv/5TWCwtzQS5XEwn40BcCrgIeMFWP9CKKIniKXNxoIOnOq4VVlGXhg==}
@@ -17058,14 +17051,9 @@ packages:
     engines: {node: '>=0.10'}
     hasBin: true
 
-  /detect-libc@2.0.1:
-    resolution: {integrity: sha512-463v3ZeIrcWtdgIg6vI6XUncguvr2TnGl4SzDXinkt9mSLpBJKXT3mW6xT3VQdDN11+WVs29pgvivTc4Lp8v+w==}
-    engines: {node: '>=8'}
-
   /detect-libc@2.0.2:
     resolution: {integrity: sha512-UX6sGumvvqSaXgdKGUsgZWqcUyIXZ/vZTrlRT/iobiKhGL0zL4d3osHj3uqllWJK+i+sixDS/3COVEOFbupFyw==}
     engines: {node: '>=8'}
-    dev: false
 
   /detect-newline@3.1.0:
     resolution: {integrity: sha512-TLz+x/vEXm/Y7P7wn1EJFNLxYpUD4TgMosxY6fAVJUnJMbupHBOncxyWUG9OpTaH9EBD7uFI5LfEgmMOc54DsA==}
@@ -18768,7 +18756,6 @@ packages:
 
   /fast-fifo@1.3.0:
     resolution: {integrity: sha512-IgfweLvEpwyA4WgiQe9Nx6VV2QkML2NkvZnk1oKnIzXgXdWxuhF7zw4DvLTPZJn6PIUneiAXPF24QmoEqHTjyw==}
-    dev: false
 
   /fast-glob@3.2.12:
     resolution: {integrity: sha512-DVj4CQIYYow0BlaelwK1pHl5n5cRSJfM60UA0zK891sVInoPri2Ekj7+e1CT3/3qxXenpI+nBBmQAcJPJgaj4w==}
@@ -19817,7 +19804,7 @@ packages:
       fs-extra: 11.1.1
       gatsby: 5.9.1(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4)
       gatsby-core-utils: 4.9.0
-      gatsby-sharp: 1.9.0
+      gatsby-sharp: 1.11.0
       graphql: 16.6.0
       graphql-compose: 9.0.10(graphql@16.6.0)
       import-from: 4.0.0
@@ -19922,14 +19909,6 @@ packages:
     engines: {node: '>=18.0.0'}
     dependencies:
       sharp: 0.32.4
-    dev: false
-
-  /gatsby-sharp@1.9.0:
-    resolution: {integrity: sha512-R5uahYWf1vWZJs97n6DMC+yMByWcDFZiYCkghdS4qvFz4MsbtS/jzU8qz/mcgwxQW3G10VlFa2XuxTsKGYdzzQ==}
-    engines: {node: '>=18.0.0'}
-    dependencies:
-      '@types/sharp': 0.31.1
-      sharp: 0.31.3
 
   /gatsby-source-filesystem@5.11.0(gatsby@5.9.1):
     resolution: {integrity: sha512-42CXNzKgGvkZtqmFIIMbEJW5ZpQ5b4TQT7Rk21XsEMkoZT9QchqMG1S2VPK/LPe7LicvGv6zBziGrtn6ttch7w==}
@@ -20189,7 +20168,7 @@ packages:
       xstate: 4.37.1
       yaml-loader: 0.8.0
     optionalDependencies:
-      gatsby-sharp: 1.9.0
+      gatsby-sharp: 1.11.0
     transitivePeerDependencies:
       - '@swc/core'
       - '@types/webpack'
@@ -24983,13 +24962,8 @@ packages:
   /node-addon-api@4.3.0:
     resolution: {integrity: sha512-73sE9+3UaLYYFmDsFZnqCInzPyh3MqIwZO9cw58yIqAZhONrrabrYyYe3TuIqtIiOuTXVhsGau8hcrhhwSsDIQ==}
 
-  /node-addon-api@5.1.0:
-    resolution: {integrity: sha512-eh0GgfEkpnoWDq+VY8OyvYhFEzBk6jIYbRKdIlyTiAXIVJ8PyBaKb0rp7oDtoddbdoHWhq8wwr+XZ81F1rpNdA==}
-    requiresBuild: true
-
   /node-addon-api@6.1.0:
     resolution: {integrity: sha512-+eawOlIgy680F0kBzPUNFhMZGtJ1YmqM6l4+Crf4IkImjYrO/mqPwRMh352g23uIaQKFItcQ64I7KMaJxHgAVA==}
-    dev: false
 
   /node-dir@0.1.17:
     resolution: {integrity: sha512-tmPX422rYgofd4epzrNoOXiE8XFZYOcCq1vD7MAXCDO+O+zndlA2ztdKKMa+EeuBG5tHETpr4ml4RGgpqDCCAg==}
@@ -26420,7 +26394,7 @@ packages:
     hasBin: true
     requiresBuild: true
     dependencies:
-      detect-libc: 2.0.1
+      detect-libc: 2.0.2
       expand-template: 2.0.3
       github-from-package: 0.0.0
       minimist: 1.2.8
@@ -26783,7 +26757,6 @@ packages:
 
   /queue-tick@1.0.1:
     resolution: {integrity: sha512-kJt5qhMxoszgU/62PLP1CJytzd2NKetjSRnyuj31fDd3Rlcz3fzlFdFLD1SItunPwyqEOkca6GbV612BWfaBag==}
-    dev: false
 
   /queue@6.0.2:
     resolution: {integrity: sha512-iHZWu+q3IdFZFX36ro/lKBkSvfkztY5Y7HMiPlOUjhupPcG2JMfst2KKEpu5XndviX/3UhFbRngUPNKtgvtZiA==}
@@ -28284,7 +28257,6 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
-    dev: false
 
   /send@0.18.0:
     resolution: {integrity: sha512-qqWzuOjSFOuqPjFe4NOsMLafToQQwBSOEpS+FwEt3A2V3vKubTquT3vmLTQpFgMXp8AlFWFuP1qKaJZOtPpVXg==}
@@ -28412,20 +28384,6 @@ packages:
   /shallow-compare@1.2.2:
     resolution: {integrity: sha512-LUMFi+RppPlrHzbqmFnINTrazo0lPNwhcgzuAXVVcfy/mqPDrQmHAyz5bvV0gDAuRFrk804V0HpQ6u9sZ0tBeg==}
 
-  /sharp@0.31.3:
-    resolution: {integrity: sha512-XcR4+FCLBFKw1bdB+GEhnUNXNXvnt0tDo4WsBsraKymuo/IAuPuCBVAL2wIkUw2r/dwFW5Q5+g66Kwl2dgDFVg==}
-    engines: {node: '>=14.15.0'}
-    requiresBuild: true
-    dependencies:
-      color: 4.2.3
-      detect-libc: 2.0.1
-      node-addon-api: 5.1.0
-      prebuild-install: 7.1.1
-      semver: 7.5.2
-      simple-get: 4.0.1
-      tar-fs: 2.1.1
-      tunnel-agent: 0.6.0
-
   /sharp@0.32.4:
     resolution: {integrity: sha512-exUnZewqVZC6UXqXuQ8fyJJv0M968feBi04jb9GcUHrWtkRoAKnbJt8IfwT4NJs7FskArbJ14JAFGVuooszoGg==}
     engines: {node: '>=14.15.0'}
@@ -28439,7 +28397,6 @@ packages:
       simple-get: 4.0.1
       tar-fs: 3.0.4
       tunnel-agent: 0.6.0
-    dev: false
 
   /shebang-command@1.2.0:
     resolution: {integrity: sha512-EV3L1+UQWGor21OmnvojK36mhg+TyIKDh3iFBKBohr5xeXIhNBcx8oWdgkTEEQ+BEFFYdLRuqMfd5L84N1V5Vg==}
@@ -28887,7 +28844,6 @@ packages:
     dependencies:
       fast-fifo: 1.3.0
       queue-tick: 1.0.1
-    dev: false
 
   /strict-event-emitter@0.2.8:
     resolution: {integrity: sha512-KDf/ujU8Zud3YaLtMCcTI4xkZlZVIYxTLr+XIULexP+77EEVWixeXroLUXQXiVtH4XH2W7jr/3PT1v3zBuvc3A==}
@@ -29451,7 +29407,6 @@ packages:
       mkdirp-classic: 0.5.3
       pump: 3.0.0
       tar-stream: 3.1.6
-    dev: false
 
   /tar-stream@2.2.0:
     resolution: {integrity: sha512-ujeqbceABgwMZxEJnk2HDY2DlnUZ+9oEcb1KzTVfYHio0UE6dG71n60d8D2I4qNvleWrrXpmjpt7vZeF1LnMZQ==}
@@ -29469,7 +29424,6 @@ packages:
       b4a: 1.6.4
       fast-fifo: 1.3.0
       streamx: 2.15.1
-    dev: false
 
   /tar@4.4.19:
     resolution: {integrity: sha512-a20gEsvHnWe0ygBY8JbxoM4w3SJdhc7ZAuxkLqh+nvNQN2IOt0B5lLgM490X5Hl8FF0dl0tOf2ewFYAlIFgzVA==}

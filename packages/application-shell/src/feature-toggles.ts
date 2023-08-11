@@ -17,4 +17,8 @@
  *   them to off until fetched).
  */
 
-export const FLAGS = {};
+export const MAIN_NAVIGATION = 'newMainNavigationBar';
+
+export const FLAGS = {
+  [MAIN_NAVIGATION]: false,
+};

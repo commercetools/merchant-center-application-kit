@@ -1,5 +1,32 @@
 # @commercetools-frontend/application-shell
 
+## 22.5.0
+
+### Minor Changes
+
+- [#3142](https://github.com/commercetools/merchant-center-application-kit/pull/3142) [`91c60f154`](https://github.com/commercetools/merchant-center-application-kit/commit/91c60f154cd874755512691bb7d014acf631afb4) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Add `sampleDataImportDataset` to project query, map value to project context.
+
+- [#3143](https://github.com/commercetools/merchant-center-application-kit/pull/3143) [`6b6f15623`](https://github.com/commercetools/merchant-center-application-kit/commit/6b6f15623f06dc7a301bbdddee2757303dd223d9) Thanks [@kark](https://github.com/kark)! - Enable reading `applicationId` value from Custom Application config and sending it as a new `application_id` claim (when `team_id` claim is also provided)
+
+### Patch Changes
+
+- Updated dependencies [[`91c60f154`](https://github.com/commercetools/merchant-center-application-kit/commit/91c60f154cd874755512691bb7d014acf631afb4), [`a90891658`](https://github.com/commercetools/merchant-center-application-kit/commit/a90891658959affac8d15dfae446125e69d3ecd4), [`bcfe23393`](https://github.com/commercetools/merchant-center-application-kit/commit/bcfe23393d3c9ed26fd2e1c36d3c610c359dec2e), [`6cef91c8e`](https://github.com/commercetools/merchant-center-application-kit/commit/6cef91c8e3e18c7ea4ab55d42a7df2dbf72f5a1e), [`6b6f15623`](https://github.com/commercetools/merchant-center-application-kit/commit/6b6f15623f06dc7a301bbdddee2757303dd223d9)]:
+  - @commercetools-frontend/application-shell-connectors@22.5.0
+  - @commercetools-frontend/application-components@22.5.0
+  - @commercetools-frontend/application-config@22.5.0
+  - @commercetools-frontend/constants@22.5.0
+  - @commercetools-frontend/permissions@22.5.0
+  - @commercetools-frontend/actions-global@22.5.0
+  - @commercetools-frontend/react-notifications@22.5.0
+  - @commercetools-frontend/sdk@22.5.0
+  - @commercetools-frontend/sentry@22.5.0
+  - @commercetools-frontend/i18n@22.5.0
+  - @commercetools-frontend/l10n@22.5.0
+  - @commercetools-frontend/assets@22.5.0
+  - @commercetools-frontend/browser-history@22.5.0
+  - @commercetools-frontend/notifications@22.5.0
+  - @commercetools-frontend/url-utils@22.5.0
+
 ## 22.4.0
 
 ### Patch Changes

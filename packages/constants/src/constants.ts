@@ -181,6 +181,7 @@ export type ApplicationOidcForDevelopmentConfig = {
 export interface ApplicationWindow extends Window {
   app: {
     applicationId: string;
+    customViewId?: string;
     applicationName: string;
     entryPointUriPath: string;
     revision: string;

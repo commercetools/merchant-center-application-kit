@@ -1,5 +1,18 @@
 # @commercetools-frontend/application-config
 
+## 22.5.0
+
+### Minor Changes
+
+- [#3143](https://github.com/commercetools/merchant-center-application-kit/pull/3143) [`6b6f15623`](https://github.com/commercetools/merchant-center-application-kit/commit/6b6f15623f06dc7a301bbdddee2757303dd223d9) Thanks [@kark](https://github.com/kark)! - Enable reading `applicationId` value from Custom Application config and sending it as a new `application_id` claim (when `team_id` claim is also provided)
+
+### Patch Changes
+
+- [#3147](https://github.com/commercetools/merchant-center-application-kit/pull/3147) [`bcfe23393`](https://github.com/commercetools/merchant-center-application-kit/commit/bcfe23393d3c9ed26fd2e1c36d3c610c359dec2e) Thanks [@kark](https://github.com/kark)! - Read `applicationId` from `env.production` rather than `env.development`
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.5.0
+
 ## 22.4.0
 
 ### Patch Changes

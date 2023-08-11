@@ -1,5 +1,11 @@
 # @commercetools-backend/express
 
+## 22.5.0
+
+### Patch Changes
+
+- [#3135](https://github.com/commercetools/merchant-center-application-kit/pull/3135) [`6c4094e0e`](https://github.com/commercetools/merchant-center-application-kit/commit/6c4094e0e99461b860e3a2eda7b47094858ea329) Thanks [@renovate](https://github.com/apps/renovate)! - Update `@tsconfig/node16` dependency.
+
 ## 22.4.0
 
 ### Minor Changes

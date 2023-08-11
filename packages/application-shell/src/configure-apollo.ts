@@ -9,7 +9,6 @@ import {
   InMemoryCache,
   ApolloLink,
 } from '@apollo/client';
-// import { version as apolloVersion } from '@apollo/client/version';
 import {
   errorLink,
   headerLink,
