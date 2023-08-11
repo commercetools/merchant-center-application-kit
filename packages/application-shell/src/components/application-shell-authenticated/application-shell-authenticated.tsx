@@ -217,7 +217,7 @@ export const ApplicationShellAuthenticated = (
                     <NewMainNavigationFlagWrapper>
                       {({
                         isNewNavigationEnabled,
-                        isNewNavigationEnabledEvaluationPending,
+                        isNewNavigationEnabledEvaluationReady,
                       }) => {
                         return (
                           <>
@@ -383,8 +383,8 @@ export const ApplicationShellAuthenticated = (
                                               isNewNavigationEnabled={
                                                 isNewNavigationEnabled
                                               }
-                                              isNewNavigationEnabledEvaluationPending={
-                                                isNewNavigationEnabledEvaluationPending
+                                              isNewNavigationEnabledEvaluationReady={
+                                                isNewNavigationEnabledEvaluationReady
                                               }
                                             />
                                           </ApplicationContextProvider>

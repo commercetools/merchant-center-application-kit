@@ -4,21 +4,21 @@ import { MAIN_NAVIGATION } from '../../feature-toggles';
 
 type TNewMainNavigationFlagWrapperChildrenProps = {
   isNewNavigationEnabled: boolean;
-  isNewNavigationEnabledEvaluationPending: boolean;
+  isNewNavigationEnabledEvaluationReady: boolean;
 };
 
 const NewMainNavigationFlagWrapper = (props: {
   children: ({
     isNewNavigationEnabled,
-    isNewNavigationEnabledEvaluationPending,
+    isNewNavigationEnabledEvaluationReady,
   }: TNewMainNavigationFlagWrapperChildrenProps) => JSX.Element;
 }) => {
   const isNewNavigationEnabled = useFeatureToggle(MAIN_NAVIGATION);
-  const { isConfiguring } = useAdapterStatus();
+  const { isReady } = useAdapterStatus();
 
   return props.children({
     isNewNavigationEnabled,
-    isNewNavigationEnabledEvaluationPending: isConfiguring,
+    isNewNavigationEnabledEvaluationReady: isReady,
   });
 };
 
