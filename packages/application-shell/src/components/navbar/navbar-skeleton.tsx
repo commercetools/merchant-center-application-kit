@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { designTokens } from '@commercetools-uikit/design-system';
+import { DIMENSIONS } from '../../constants';
 
 const NavBarLayout = (
   props: TNavBarSkeletonProps & { children: ReactNode }
@@ -20,6 +21,15 @@ const NavBarLayout = (
     </nav>
   );
 };
+
+const NavBarHeader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: ${designTokens.spacing30};
+  height: ${DIMENSIONS.header};
+  background: ${designTokens.colorAccent10};
+`;
 
 const NavBarBody = styled.div`
   display: flex;
@@ -54,6 +64,7 @@ const NavBarFooter = styled.div<TNavBarSkeletonProps>`
   justify-content: center;
   align-items: center;
 
+  // divider
   &::before {
     content: '';
     position: absolute;
@@ -71,18 +82,23 @@ const ExpandIcon = styled.div`
   background: rgba(255, 255, 255, 0.2);
 `;
 
+const getPlacementSpecificContainerStyles = (props: TMenuItem) =>
+  props.placement === 'header'
+    ? css`
+        background: ${designTokens.colorAccent10};
+      `
+    : css`
+        padding: 12px;
+        height: 48px;
+        background: #009987; // TODO: use new design token color-primary-30
+      `;
+
 const MenuItemContainer = styled.div<TMenuItem & TNavBarSkeletonProps>`
   display: flex;
-  height: 48px;
-  padding: 12px
-    ${(props) => (props.isExpanded ? designTokens.spacing30 : '12px')};
   align-items: center;
   justify-content: center;
   gap: 12px;
-  background: ${
-    (props) =>
-      props.placement === 'header' ? designTokens.colorAccent10 : '#009987' // TODO: use new design token color-primary-30
-  };
+  ${getPlacementSpecificContainerStyles}
 `;
 
 const MenuItemIcon = styled.div`
@@ -91,19 +107,22 @@ const MenuItemIcon = styled.div`
   border-radius: ${designTokens.borderRadius4};
   background: rgba(255, 255, 255, 0.2);
 `;
+
+const getPlacementSpecificTitleStyles = (props: TMenuItem) =>
+  props.placement === 'header'
+    ? css`
+        height: 19px;
+        width: 132px;
+      `
+    : css`
+        flex: 1;
+        height: 18px;
+      `;
+
 const MenuItemTitle = styled.div<TMenuItem>`
-  ${(props) =>
-    props.placement === 'header'
-      ? css`
-          height: 19px;
-          width: 132px;
-        `
-      : css`
-          flex: 1;
-          height: 18px;
-        `};
   border-radius: ${designTokens.borderRadius4};
   background: rgba(255, 255, 255, 0.2);
+  ${getPlacementSpecificTitleStyles}
 `;
 
 const MenuItemGroup = styled.div`
@@ -135,7 +154,9 @@ type TNavBarSkeletonProps = {
 const NavBarSkeleton = (props: TNavBarSkeletonProps) => {
   return (
     <NavBarLayout isExpanded={props.isExpanded}>
-      <MenuItem placement="header" isExpanded={props.isExpanded} />
+      <NavBarHeader>
+        <MenuItem placement="header" isExpanded={props.isExpanded} />
+      </NavBarHeader>
 
       <NavBarBody>
         <MenuItemGroup>

@@ -269,15 +269,15 @@ const NavBar = (props: TNavbarProps) => {
 
   const applicationLocale = props.applicationLocale;
 
-  if (props.isLoading || typeof applicationLocale === 'undefined') {
-    // Render the loading navbar as long as all the data
-    // hasn't been loaded, or if the project does not exist.
-    return props.isNewNavigationEnabled ? (
-      <NavBarSkeleton isExpanded={isMenuOpen} />
-    ) : (
-      <LoadingNavBar />
-    );
-  }
+  // if (props.isLoading || typeof applicationLocale === 'undefined') {
+  // Render the loading navbar as long as all the data
+  // hasn't been loaded, or if the project does not exist.
+  return props.isNewNavigationEnabled ? (
+    <NavBarSkeleton isExpanded={isMenuOpen} />
+  ) : (
+    <LoadingNavBar />
+  );
+  // }
 
   return (
     <NavBarLayout ref={navBarNode}>
