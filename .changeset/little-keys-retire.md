@@ -2,4 +2,4 @@
 '@commercetools-frontend/application-shell': minor
 ---
 
-Use new NavBar skeleton
+Support a new `NavBar` skeleton ui based on a feature flag.

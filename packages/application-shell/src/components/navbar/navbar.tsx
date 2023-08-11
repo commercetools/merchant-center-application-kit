@@ -224,6 +224,7 @@ type TNavbarProps = {
   onMenuItemClick?: MenuItemLinkProps['onClick'];
   isLoading: boolean;
   isNewNavigationEnabled: boolean;
+  isNewNavigationEnabledEvaluationPending: boolean;
 };
 const NavBar = (props: TNavbarProps) => {
   const {
@@ -272,6 +273,9 @@ const NavBar = (props: TNavbarProps) => {
   if (props.isLoading || typeof applicationLocale === 'undefined') {
     // Render the loading navbar as long as all the data
     // hasn't been loaded, or if the project does not exist.
+    if (props.isNewNavigationEnabledEvaluationPending) {
+      return <></>;
+    }
     return props.isNewNavigationEnabled ? (
       <NavBarSkeleton isExpanded={isMenuOpen} />
     ) : (

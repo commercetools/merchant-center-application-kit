@@ -215,7 +215,10 @@ export const ApplicationShellAuthenticated = (
                   >
                     {/* This is a temporary container. It will be removed once the new navigation is enabled by default. */}
                     <NewMainNavigationFlagWrapper>
-                      {(isNewNavigationEnabled) => {
+                      {({
+                        isNewNavigationEnabled,
+                        isNewNavigationEnabledEvaluationPending,
+                      }) => {
                         return (
                           <>
                             <ThemeSwitcher />
@@ -379,6 +382,9 @@ export const ApplicationShellAuthenticated = (
                                               isLoading={isLoading}
                                               isNewNavigationEnabled={
                                                 isNewNavigationEnabled
+                                              }
+                                              isNewNavigationEnabledEvaluationPending={
+                                                isNewNavigationEnabledEvaluationPending
                                               }
                                             />
                                           </ApplicationContextProvider>
