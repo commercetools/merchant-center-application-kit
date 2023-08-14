@@ -1,4 +1,8 @@
 import { type ReactNode } from 'react';
+import {
+  PageNotFound,
+  PageUnauthorized,
+} from '@commercetools-frontend/application-components';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { ApplicationWindow } from '@commercetools-frontend/constants';
 import {
@@ -26,10 +30,13 @@ function CustomViewAuthenticatedShell(
   return (
     <FetchUser>
       {({ isLoading, error, user }) => {
-        if (isLoading) return <ApplicationLoader />;
+        if (isLoading) {
+          return <ApplicationLoader />;
+        }
 
-        // TODO: Render a proper error view
-        if (error) return <div>Error: {error.message}</div>;
+        if (error) {
+          return <PageUnauthorized />;
+        }
 
         return (
           <AsyncLocaleData
@@ -64,15 +71,12 @@ function CustomViewAuthenticatedShell(
                               error: projectLoadingError,
                               project,
                             }) => {
-                              if (isProjectLoading)
+                              if (isProjectLoading) {
                                 return <ApplicationLoader />;
-                              // TODO: Proper herror handling
-                              if (projectLoadingError)
-                                return (
-                                  <div>
-                                    Error: {projectLoadingError.message}
-                                  </div>
-                                );
+                              }
+                              if (projectLoadingError) {
+                                return <PageNotFound />;
+                              }
                               return (
                                 <ApplicationContextProvider
                                   user={user}
