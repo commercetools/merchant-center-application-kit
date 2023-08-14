@@ -1,8 +1,5 @@
 import { type ReactNode } from 'react';
-import {
-  PageNotFound,
-  PageUnauthorized,
-} from '@commercetools-frontend/application-components';
+import { PageUnauthorized } from '@commercetools-frontend/application-components';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { ApplicationWindow } from '@commercetools-frontend/constants';
 import {
@@ -11,6 +8,7 @@ import {
 } from '@commercetools-frontend/i18n';
 import { ThemeProvider } from '@commercetools-uikit/design-system';
 import ApplicationLoader from '../application-loader';
+import { getBrowserLocale } from '../application-shell-provider/utils';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
@@ -27,27 +25,26 @@ type TCustomViewAuthenticatedShellProps = {
 function CustomViewAuthenticatedShell(
   props: TCustomViewAuthenticatedShellProps
 ) {
+  const browserLocale = getBrowserLocale(window);
+
   return (
     <FetchUser>
-      {({ isLoading, error, user }) => {
+      {({ isLoading, error: fetchUserError, user }) => {
         if (isLoading) {
           return <ApplicationLoader />;
         }
 
-        if (error) {
-          return <PageUnauthorized />;
-        }
-
         return (
           <AsyncLocaleData
-            locale={user!.language}
+            locale={user?.language || browserLocale}
             applicationMessages={props.messages}
           >
-            {({ messages: loadedMessages }) => {
+            {({ isLoading: isLoadingLocaleData, locale, messages }) => {
               return (
                 <ConfigureIntlProvider
-                  locale={user!.language}
-                  messages={loadedMessages}
+                  // We do not want to pass the language as long as the locale data
+                  // is not loaded.
+                  {...(isLoadingLocaleData ? {} : { locale, messages })}
                 >
                   <ApplicationContextProvider
                     user={user}
@@ -66,16 +63,13 @@ function CustomViewAuthenticatedShell(
 
                         {Boolean(props.projectKey) && (
                           <FetchProject projectKey={props.projectKey}>
-                            {({
-                              isLoading: isProjectLoading,
-                              error: projectLoadingError,
-                              project,
-                            }) => {
+                            {({ isLoading: isProjectLoading, project }) => {
+                              if (fetchUserError) {
+                                return <PageUnauthorized />;
+                              }
+
                               if (isProjectLoading) {
                                 return <ApplicationLoader />;
-                              }
-                              if (projectLoadingError) {
-                                return <PageNotFound />;
                               }
                               return (
                                 <ApplicationContextProvider
