@@ -14,7 +14,7 @@ const NewMainNavigationFlagWrapper = (props: {
   }: TNewMainNavigationFlagWrapperChildrenProps) => JSX.Element;
 }) => {
   const isNewNavigationEnabled = useFeatureToggle(MAIN_NAVIGATION);
-  // A temporary workaround for a glitch in computing the aggregated adapter status within useAdapterStatus
+  // TODO: A temporary workaround for a glitch in computing the aggregated adapter status within useAdapterStatus
   const isReady =
     // @ts-ignore
     window?.__flopflip__?.launchdarkly?.getIsConfigurationStatus?.(2);
