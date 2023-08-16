@@ -11,6 +11,7 @@ type TCustomPanelProps = {
 };
 
 const ContentWrapper = styled.div`
+  height: 100%;
   padding: ${designTokens.spacing40} 40px;
 `;
 
