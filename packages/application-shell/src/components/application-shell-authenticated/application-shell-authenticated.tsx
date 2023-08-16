@@ -33,7 +33,6 @@ import ErrorApologizer from '../error-apologizer';
 import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
 import NavBar from '../navbar';
-import LoadingNavBar from '../navbar/loading-navbar';
 import ProjectContainer from '../project-container';
 import ProjectDataLocale from '../project-data-locale';
 import QuickAccess from '../quick-access';
@@ -216,7 +215,10 @@ export const ApplicationShellAuthenticated = (
                   >
                     {/* This is a temporary container. It will be removed once the new navigation is enabled by default. */}
                     <NewMainNavigationFlagWrapper>
-                      {(isNewNavigationEnabled: boolean) => {
+                      {({
+                        isNewNavigationEnabled,
+                        isNewNavigationEnabledEvaluationReady,
+                      }) => {
                         return (
                           <>
                             <ThemeSwitcher />
@@ -229,12 +231,8 @@ export const ApplicationShellAuthenticated = (
                               css={css`
                                 height: 100vh;
                                 display: grid;
-                                grid-template-rows: ${isNewNavigationEnabled
-                                  ? `auto ${DIMENSIONS.header} 1fr`
-                                  : `auto ${DIMENSIONS.header} 1fr`};
-                                grid-template-columns: ${isNewNavigationEnabled
-                                  ? 'minmax(80px, 256px) 1fr'
-                                  : 'auto 1fr'};
+                                grid-template-rows: auto ${DIMENSIONS.header} 1fr;
+                                grid-template-columns: auto 1fr;
                               `}
                             >
                               <div
@@ -356,16 +354,12 @@ export const ApplicationShellAuthenticated = (
                                         isLoading: isLoadingProject,
                                         project,
                                       }) => {
-                                        // Render the loading navbar as long as all the data
-                                        // hasn't been loaded, or if the project does not exist.
-                                        if (
+                                        const isLoading =
                                           isLoadingUser ||
                                           isLoadingLocaleData ||
                                           isLoadingProject ||
                                           !locale ||
-                                          !project
-                                        )
-                                          return <LoadingNavBar />;
+                                          !project;
 
                                         return (
                                           <ApplicationContextProvider
@@ -375,20 +369,24 @@ export const ApplicationShellAuthenticated = (
                                             // The permissions for the Navbar are resolved separately, within
                                             // a different React context.
                                           >
-                                            {isNewNavigationEnabled ===
-                                              false && (
-                                              <NavBar
-                                                applicationLocale={locale}
-                                                projectKey={projectKeyFromUrl}
-                                                project={project}
-                                                environment={
-                                                  applicationEnvironment
-                                                }
-                                                onMenuItemClick={
-                                                  props.onMenuItemClick
-                                                }
-                                              />
-                                            )}
+                                            <NavBar
+                                              applicationLocale={locale}
+                                              projectKey={projectKeyFromUrl}
+                                              project={project}
+                                              environment={
+                                                applicationEnvironment
+                                              }
+                                              onMenuItemClick={
+                                                props.onMenuItemClick
+                                              }
+                                              isLoading={isLoading}
+                                              isNewNavigationEnabled={
+                                                isNewNavigationEnabled
+                                              }
+                                              isNewNavigationEnabledEvaluationReady={
+                                                isNewNavigationEnabledEvaluationReady
+                                              }
+                                            />
                                           </ApplicationContextProvider>
                                         );
                                       }}
