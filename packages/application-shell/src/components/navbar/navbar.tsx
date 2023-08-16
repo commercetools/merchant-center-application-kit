@@ -20,6 +20,7 @@ import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
 import { SupportIcon } from '@commercetools-uikit/icons';
 import type { TFetchProjectQuery } from '../../types/generated/mc';
 import type { TNavbarMenu, TBaseMenu } from '../../types/generated/proxy';
+import LoadingNavBar from './loading-navbar';
 import {
   type MenuItemLinkProps,
   RestrictedMenuItem,
@@ -34,6 +35,7 @@ import {
   NavBarLayout,
 } from './menu-items';
 import messages from './messages';
+import NavBarSkeleton from './navbar-skeleton';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import compiledStyles from /* preval */ './navbar.styles';
 import nonNullable from './non-nullable';
@@ -213,13 +215,16 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
 ApplicationMenu.displayName = 'ApplicationMenu';
 
 type TNavbarProps = {
-  applicationLocale: string;
+  applicationLocale?: string;
   projectKey: string;
   environment: TApplicationContext<{
     useFullRedirectsForLinks?: boolean;
   }>['environment'];
   project: TFetchProjectQuery['project'];
   onMenuItemClick?: MenuItemLinkProps['onClick'];
+  isLoading: boolean;
+  isNewNavigationEnabled: boolean;
+  isNewNavigationEnabledEvaluationReady: boolean;
 };
 const NavBar = (props: TNavbarProps) => {
   const {
@@ -263,6 +268,23 @@ const NavBar = (props: TNavbarProps) => {
     [props.project]
   );
 
+  const applicationLocale = props.applicationLocale;
+
+  // Render the loading navbar as long as all the data
+  // hasn't been loaded, or if the project does not exist.
+  if (props.isLoading || typeof applicationLocale === 'undefined') {
+    // Do not render anything until we have the feature flag remote value fetched so
+    // we avoid a flick effect in case it is 'true' (different value from the default one)
+    if (!props.isNewNavigationEnabledEvaluationReady) {
+      return null;
+    }
+    return props.isNewNavigationEnabled ? (
+      <NavBarSkeleton isExpanded={isMenuOpen} />
+    ) : (
+      <LoadingNavBar />
+    );
+  }
+
   return (
     <NavBarLayout ref={navBarNode}>
       <MenuGroup id="main" level={1}>
@@ -281,7 +303,7 @@ const NavBar = (props: TNavbarProps) => {
                 shouldCloseMenuFly={shouldCloseMenuFly}
                 projectPermissions={projectPermissions}
                 menuVisibilities={menuVisibilities}
-                applicationLocale={props.applicationLocale}
+                applicationLocale={applicationLocale}
                 projectKey={props.projectKey}
                 useFullRedirectsForLinks={useFullRedirectsForLinks}
                 onMenuItemClick={props.onMenuItemClick}
@@ -303,7 +325,7 @@ const NavBar = (props: TNavbarProps) => {
                 shouldCloseMenuFly={shouldCloseMenuFly}
                 projectPermissions={projectPermissions}
                 menuVisibilities={menuVisibilities}
-                applicationLocale={props.applicationLocale}
+                applicationLocale={applicationLocale}
                 projectKey={props.projectKey}
                 useFullRedirectsForLinks={useFullRedirectsForLinks}
                 onMenuItemClick={props.onMenuItemClick}
