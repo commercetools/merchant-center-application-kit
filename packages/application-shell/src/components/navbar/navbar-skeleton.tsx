@@ -15,23 +15,25 @@ import {
 const MenuItem = (props: TMenuItemProps & TNavBarSkeletonProps) => {
   return (
     <MenuItemContainer
-      placement={props.placement}
       isExpanded={props.isExpanded}
+      contentWidth={props.contentWidth}
     >
       <MenuItemIcon />
-      {props.isExpanded && <MenuItemTitle placement={props.placement} />}
+      {props.isExpanded && <MenuItemTitle />}
     </MenuItemContainer>
   );
 };
 MenuItem.defaultProps = {
-  placement: 'body',
+  contentWidth: 'wide',
 };
 
 const NavBarSkeleton = (props: TNavBarSkeletonProps) => {
   return (
     <NavBarLayout isExpanded={props.isExpanded}>
       <NavBarHeader>
-        <MenuItem placement="header" isExpanded={props.isExpanded} />
+        <MenuItemGroup>
+          <MenuItem contentWidth="narrow" isExpanded={props.isExpanded} />
+        </MenuItemGroup>
       </NavBarHeader>
 
       <NavBarBody>

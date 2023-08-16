@@ -9,7 +9,7 @@ type TNavBarSkeletonProps = {
 };
 
 type TMenuItemProps = {
-  placement: 'header' | 'body';
+  contentWidth: 'wide' | 'narrow';
 };
 
 const NavBarLayout = (
@@ -90,23 +90,14 @@ const ExpandIcon = styled.div`
   background: rgba(255, 255, 255, 0.2);
 `;
 
-const getPlacementSpecificContainerStyles = (props: TMenuItemProps) =>
-  props.placement === 'header'
-    ? css`
-        background: ${designTokens.colorAccent10};
-      `
-    : css`
-        padding: 12px;
-        height: 48px;
-        background: #009987; // TODO: use new design token color-primary-30
-      `;
-
 const MenuItemContainer = styled.div<TMenuItemProps & TNavBarSkeletonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  ${getPlacementSpecificContainerStyles}
+  padding: ${(props) =>
+    props.contentWidth === 'wide' || !props.isExpanded ? '12px' : '12px 28px'};
+  height: 48px;
 `;
 
 const MenuItemIcon = styled.div`
@@ -116,21 +107,11 @@ const MenuItemIcon = styled.div`
   background: rgba(255, 255, 255, 0.2);
 `;
 
-const getPlacementSpecificTitleStyles = (props: TMenuItemProps) =>
-  props.placement === 'header'
-    ? css`
-        height: 19px;
-        width: 132px;
-      `
-    : css`
-        flex: 1;
-        height: 18px;
-      `;
-
-const MenuItemTitle = styled.div<TMenuItemProps>`
+const MenuItemTitle = styled.div`
   border-radius: ${designTokens.borderRadius4};
   background: rgba(255, 255, 255, 0.2);
-  ${getPlacementSpecificTitleStyles}
+  flex: 1;
+  height: 18px;
 `;
 
 const MenuItemGroup = styled.div`
