@@ -1,5 +1,12 @@
 # @commercetools-frontend/i18n
 
+## 22.6.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.6.0
+
 ## 22.5.0
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @commercetools-frontend/mc-html-template
 
+## 22.6.0
+
+### Patch Changes
+
+- [#3167](https://github.com/commercetools/merchant-center-application-kit/pull/3167) [`34c2e4e06`](https://github.com/commercetools/merchant-center-application-kit/commit/34c2e4e06db4fcd0e228cc77ccb5c20d0879766f) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Adjust Google Fonts loader URL to not use the `slant` query parameter.
+
+- Updated dependencies [[`2fef66247`](https://github.com/commercetools/merchant-center-application-kit/commit/2fef66247ff08f225dfa03f75f3aaf640659f32b)]:
+  - @commercetools-frontend/constants@22.6.0
+  - @commercetools-frontend/application-config@22.6.0
+
 ## 22.5.0
 
 ### Patch Changes
