@@ -286,7 +286,11 @@ const NavBar = (props: TNavbarProps) => {
   }
 
   return (
-    <NavBarLayout ref={navBarNode}>
+    <NavBarLayout
+      isNewNavigationEnabled={props.isNewNavigationEnabled}
+      ref={navBarNode}
+    >
+      {props.isNewNavigationEnabled && <div>Navigation header</div>}
       <MenuGroup id="main" level={1}>
         <div className={styles['scrollable-menu']}>
           {allInternalApplicationsNavbarMenu.map((menu) => {

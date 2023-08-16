@@ -26,6 +26,15 @@
   background: var(--background-color-for-navbar);
 }
 
+.left-navigation-new {
+  display: grid;
+  width: var(--width-left-navigation);
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  background: var(--background-color-for-navbar);
+  height: 100vh;
+  grid-template-rows: 56px 1fr;
+}
+
 .list {
   margin: 0;
   padding: 0;
@@ -179,6 +188,7 @@
 }
 
 :global(.body__menu-open) .left-navigation,
+:global(.body__menu-open) .left-navigation-new,
 :global(.body__menu-open) .list-item {
   width: var(--width-left-navigation-when-expanded);
 }

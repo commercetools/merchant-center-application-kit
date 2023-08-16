@@ -397,6 +397,7 @@ const MenuLabel = (props: MenuLabelProps) => {
 
 type TNavBarLayoutProps = {
   children: ReactNode;
+  isNewNavigationEnabled?: boolean;
 };
 const NavBarLayout = forwardRef<HTMLElement, TNavBarLayoutProps>(
   (props, ref) => (
@@ -408,7 +409,11 @@ const NavBarLayout = forwardRef<HTMLElement, TNavBarLayoutProps>(
       />
       <nav
         ref={ref}
-        className={styles['left-navigation']}
+        className={
+          props.isNewNavigationEnabled
+            ? styles['left-navigation-new']
+            : styles['left-navigation']
+        }
         data-test="left-navigation"
         data-testid="left-navigation"
       >
