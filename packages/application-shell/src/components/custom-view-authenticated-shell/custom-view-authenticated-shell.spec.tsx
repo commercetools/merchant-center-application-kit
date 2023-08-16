@@ -1,18 +1,10 @@
-import { mocked } from 'jest-mock';
-import { graphql, rest } from 'msw';
-import { screen, render, waitFor } from '@testing-library/react';
+import { Mock } from 'jest-mock';
+import { graphql } from 'msw';
+import { screen, render } from '@testing-library/react';
 import { setupServer } from 'msw/node';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 
-import {
-  UserMock,
-  ProjectMock,
-  // ProjectExtensionMock,
-  // ApplicationAppbarMenuMock,
-  // LegacyApplicationNavbarMenuMock,
-  // LegacyApplicationNavbarSubmenuMock,
-  // CustomApplicationInstallationMock,
-} from '../../../../../graphql-test-utils';
+import { UserMock, ProjectMock } from '../../../../../graphql-test-utils';
 import { STORAGE_KEYS } from '../../constants';
 import ApplicationShellProvider from '../application-shell-provider';
 import CustomViewAuthenticatedShell from './custom-view-authenticated-shell';
@@ -91,7 +83,7 @@ describe('custom-view-authenticated-shell', () => {
   beforeEach(() => {
     jest.clearAllMocks();
 
-    window.localStorage.getItem.mockImplementation((key) => {
+    (window.localStorage.getItem as Mock).mockImplementation((key) => {
       switch (key) {
         case STORAGE_KEYS.IS_AUTHENTICATED:
           return 'true';
