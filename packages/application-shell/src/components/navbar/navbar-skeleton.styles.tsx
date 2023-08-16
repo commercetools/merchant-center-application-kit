@@ -95,7 +95,8 @@ const MenuItemContainer = styled.div<TMenuItemProps & TNavBarSkeletonProps>`
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding: ${(props) => (props.contentWidth === 'wide' ? '12px' : '12px 28px')};
+  padding: ${(props) =>
+    props.contentWidth === 'wide' || !props.isExpanded ? '12px' : '12px 28px'};
   height: 48px;
 `;
 
