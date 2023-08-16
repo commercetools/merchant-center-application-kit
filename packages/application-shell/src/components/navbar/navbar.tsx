@@ -270,9 +270,11 @@ const NavBar = (props: TNavbarProps) => {
 
   const applicationLocale = props.applicationLocale;
 
+  // Render the loading navbar as long as all the data
+  // hasn't been loaded, or if the project does not exist.
   if (props.isLoading || typeof applicationLocale === 'undefined') {
-    // Render the loading navbar as long as all the data
-    // hasn't been loaded, or if the project does not exist.
+    // Do not render anything until we have the feature flag remote value fetched so
+    // we avoid a flick effect in case it is 'true' (different value from the default one)
     if (!props.isNewNavigationEnabledEvaluationReady) {
       return null;
     }
