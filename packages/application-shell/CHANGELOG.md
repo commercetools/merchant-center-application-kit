@@ -1,5 +1,32 @@
 # @commercetools-frontend/application-shell
 
+## 22.6.0
+
+### Minor Changes
+
+- [#3153](https://github.com/commercetools/merchant-center-application-kit/pull/3153) [`2fef66247`](https://github.com/commercetools/merchant-center-application-kit/commit/2fef66247ff08f225dfa03f75f3aaf640659f32b) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Include `X-Custom-View-Id` header in all requests if it is available.
+
+### Patch Changes
+
+- [#3159](https://github.com/commercetools/merchant-center-application-kit/pull/3159) [`ff9af8fc5`](https://github.com/commercetools/merchant-center-application-kit/commit/ff9af8fc51c2f71e4de09179811454fc3761e9e1) Thanks [@chloe0592](https://github.com/chloe0592)! - Render a slightly different root layout using a feature flag. The change is only used internally for now, as we are working on some design updates.
+
+- Updated dependencies [[`2fef66247`](https://github.com/commercetools/merchant-center-application-kit/commit/2fef66247ff08f225dfa03f75f3aaf640659f32b)]:
+  - @commercetools-frontend/constants@22.6.0
+  - @commercetools-frontend/actions-global@22.6.0
+  - @commercetools-frontend/application-components@22.6.0
+  - @commercetools-frontend/application-shell-connectors@22.6.0
+  - @commercetools-frontend/react-notifications@22.6.0
+  - @commercetools-frontend/sdk@22.6.0
+  - @commercetools-frontend/sentry@22.6.0
+  - @commercetools-frontend/permissions@22.6.0
+  - @commercetools-frontend/i18n@22.6.0
+  - @commercetools-frontend/l10n@22.6.0
+  - @commercetools-frontend/application-config@22.6.0
+  - @commercetools-frontend/assets@22.6.0
+  - @commercetools-frontend/browser-history@22.6.0
+  - @commercetools-frontend/notifications@22.6.0
+  - @commercetools-frontend/url-utils@22.6.0
+
 ## 22.5.0
 
 ### Minor Changes
