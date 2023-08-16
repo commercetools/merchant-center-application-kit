@@ -1,5 +1,23 @@
 # playground
 
+## 22.6.0
+
+### Patch Changes
+
+- [#3159](https://github.com/commercetools/merchant-center-application-kit/pull/3159) [`ff9af8fc5`](https://github.com/commercetools/merchant-center-application-kit/commit/ff9af8fc51c2f71e4de09179811454fc3761e9e1) Thanks [@chloe0592](https://github.com/chloe0592)! - Render a slightly different root layout using a feature flag. The change is only used internally for now, as we are working on some design updates.
+
+- Updated dependencies [[`ff9af8fc5`](https://github.com/commercetools/merchant-center-application-kit/commit/ff9af8fc51c2f71e4de09179811454fc3761e9e1), [`2fef66247`](https://github.com/commercetools/merchant-center-application-kit/commit/2fef66247ff08f225dfa03f75f3aaf640659f32b)]:
+  - @commercetools-frontend/application-shell@22.6.0
+  - @commercetools-frontend/constants@22.6.0
+  - @commercetools-frontend/actions-global@22.6.0
+  - @commercetools-frontend/application-components@22.6.0
+  - @commercetools-frontend/application-shell-connectors@22.6.0
+  - @commercetools-frontend/sdk@22.6.0
+  - @commercetools-frontend/permissions@22.6.0
+  - @commercetools-frontend/i18n@22.6.0
+  - @commercetools-frontend/l10n@22.6.0
+  - @commercetools-frontend/assets@22.6.0
+
 ## 22.5.0
 
 ### Patch Changes

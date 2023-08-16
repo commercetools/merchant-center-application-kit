@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 22.6.0
+
+### Minor Changes
+
+- [#3153](https://github.com/commercetools/merchant-center-application-kit/pull/3153) [`2fef66247`](https://github.com/commercetools/merchant-center-application-kit/commit/2fef66247ff08f225dfa03f75f3aaf640659f32b) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Include `X-Custom-View-Id` header in all requests if it is available.
+
 ## 22.5.0
 
 ### Minor Changes
