@@ -68,7 +68,9 @@ describe('CustomViewLoader', () => {
     expect(iFrame.getAttribute('id')).toBe(
       `custom-view-${TEST_CUSTOM_VIEW.id}`
     );
-    expect(iFrame.getAttribute('src')).toBe(TEST_CUSTOM_VIEW.url);
+    expect(iFrame.getAttribute('src')).toContain(
+      `/no-project/custom-view/${TEST_CUSTOM_VIEW.id}`
+    );
   });
 
   it('should show a notification when the custom view fails to load', async () => {
