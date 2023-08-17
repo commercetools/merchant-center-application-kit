@@ -12,10 +12,24 @@ import pluginSvgr from '../vite-plugins/vite-plugin-svgr';
 
 async function run() {
   const DEFAULT_PORT = parseInt(String(process.env.HTTP_PORT), 10) || 3001;
-
-  // Load the Custom Application config file first.
   console.log('----> Loading application config...');
+  // TODO: Load the Custom View config file first.
   const applicationConfig = processConfig();
+  // const applicationConfig = {
+  //   name: 'Custom View Template Starter',
+  //   cloudIdentifier: 'gcp-eu',
+  //   env: {
+  //     mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
+  //     development: {
+  //       initialProjectKey: 'almond-40',
+  //     },
+  //   },
+  //   oAuthScopes: {
+  //     view: ['view_products'],
+  //     manage: ['manage_products'],
+  //   },
+  // };
+  console.log({ applicationConfig });
 
   // Ensure the `/public` folder exists.
   fs.mkdirSync(paths.appBuild, { recursive: true });
@@ -23,6 +37,8 @@ async function run() {
   // Generate `index.html` (template).
   const appEntryPoint = path.relative(paths.appRoot, paths.entryPoint);
   const html = generateTemplate({
+    // type: 'customView',
+    // type: 'application',
     // Define the module entry point (path relative to the `/public` folder).
     // NOTE: that this is different from the production configuration.
     scriptImports: [
@@ -31,7 +47,7 @@ async function run() {
   });
   // Write `index.html` (template) into the `/public` folder.
   fs.writeFileSync(paths.appIndexHtml, html, { encoding: 'utf8' });
-
+  console.log(1);
   const server = await createServer({
     root: paths.appRoot,
     define: {
@@ -48,14 +64,16 @@ async function run() {
       pluginCustomApplication(applicationConfig),
     ],
   });
+  console.log(2);
   await server.listen();
-
+  console.log(3);
   // Copy public assets to `/public` folder (even in development).
   fs.copySync(
     path.join(applicationStaticAssetsPath, 'html-page'),
     paths.appBuild,
     { dereference: true }
   );
+  console.log(4);
 
   server.printUrls();
 }

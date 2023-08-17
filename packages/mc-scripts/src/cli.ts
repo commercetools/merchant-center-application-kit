@@ -54,14 +54,15 @@ async function run() {
       process.env.NODE_ENV = 'development';
 
       const shouldUseExperimentalBundler =
-        process.env.ENABLE_EXPERIMENTAL_VITE_BUNDLER === 'true';
+        process.env.ENABLE_EXPERIMENTAL_VITE_BUNDLER === 'true' || true;
       if (shouldUseExperimentalBundler) {
         console.log('Experimental Vite bundler enabled! 🚀');
         console.log('');
       }
 
+      console.log({ shouldUseExperimentalBundler });
       const startCommand = shouldUseExperimentalBundler
-        ? await import('./commands/start-vite')
+        ? await import('./commands/start-custom-view')
         : await import('./commands/start');
       await startCommand.default();
     });
