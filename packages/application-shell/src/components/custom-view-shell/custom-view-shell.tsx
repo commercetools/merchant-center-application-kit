@@ -6,7 +6,10 @@ import {
   type ReactNode,
 } from 'react';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
-import type { ApplicationWindow } from '@commercetools-frontend/constants';
+import {
+  type ApplicationWindow,
+  CUSTOM_VIEWS_EVENTS_NAMES,
+} from '@commercetools-frontend/constants';
 import {
   AsyncLocaleData,
   type TAsyncLocaleDataProps,
@@ -17,7 +20,6 @@ import { getBrowserLocale } from '../application-shell-provider/utils';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import CustomViewAuthenticatedShell from '../custom-view-authenticated-shell';
 import { CustomViewContextProvider, TCustomView } from '../custom-view-context';
-import { CUSTOM_VIEWS_EVENTS_NAMES } from './constants';
 
 declare let window: ApplicationWindow;
 
