@@ -1,9 +1,14 @@
+import type { JSONSchemaForCustomApplicationConfigurationFiles } from './custom-application.schema';
+import { JSONSchemaForCustomViewConfigurationFiles } from './custom-view.schema';
 import {
   entryPointUriPathToResourceAccesses,
   formatEntryPointUriPathToResourceAccessKey,
 } from './formatters';
-import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
-import type { CustomApplicationData } from './types';
+import {
+  ConfigType,
+  type CustomApplicationData,
+  type CustomViewData,
+} from './types';
 import {
   validateEntryPointUriPath,
   validateSubmenuLinks,
@@ -26,7 +31,9 @@ const computeUriPath = (uriPath: string, entryPointUriPath: string) => {
 };
 
 const getPermissions = (
-  appConfig: JSONSchemaForCustomApplicationConfigurationFiles
+  appConfig:
+    | JSONSchemaForCustomApplicationConfigurationFiles
+    | JSONSchemaForCustomViewConfigurationFiles
 ) => {
   const additionalResourceAccessKeyToOauthScopeMap = (
     appConfig.additionalOAuthScopes || []
@@ -44,7 +51,10 @@ const getPermissions = (
     appConfig.additionalOAuthScopes?.map(({ name }) => name) || [];
 
   const permissionKeys = entryPointUriPathToResourceAccesses(
-    appConfig.entryPointUriPath,
+    (appConfig as JSONSchemaForCustomApplicationConfigurationFiles)
+      .entryPointUriPath ||
+      (appConfig as JSONSchemaForCustomViewConfigurationFiles).env.production
+        .customViewId,
     additionalPermissionNames
   ) as Record<string, string>;
 
@@ -92,4 +102,35 @@ function transformCustomApplicationConfigToData(
   };
 }
 
-export { transformCustomApplicationConfigToData };
+function transformCustomViewConfigToData(
+  customViewConfig: JSONSchemaForCustomViewConfigurationFiles
+): CustomViewData {
+  validateAdditionalOAuthScopes(customViewConfig);
+
+  return {
+    id: customViewConfig.env.production.customViewId,
+    name: customViewConfig.name,
+    description: customViewConfig.description,
+    url: customViewConfig.env.production.url,
+    permissions: getPermissions(customViewConfig),
+  };
+}
+
+export function transformConfigurationToData(
+  configType: ConfigType,
+  configuration:
+    | JSONSchemaForCustomApplicationConfigurationFiles
+    | JSONSchemaForCustomViewConfigurationFiles
+): CustomApplicationData | CustomViewData {
+  if (configType === ConfigType.CUSTOM_APPLICATION) {
+    return transformCustomApplicationConfigToData(
+      configuration as JSONSchemaForCustomApplicationConfigurationFiles
+    );
+  } else if (configType === ConfigType.CUSTOM_VIEW) {
+    return transformCustomViewConfigToData(
+      configuration as JSONSchemaForCustomViewConfigurationFiles
+    );
+  } else {
+    throw new Error(`Invalid config type: ${configType}`);
+  }
+}

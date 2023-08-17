@@ -4,8 +4,8 @@ import path from 'path';
 import type { LoaderSync } from 'cosmiconfig';
 
 import { cosmiconfigSync, defaultLoaders } from 'cosmiconfig';
+import type { JSONSchemaForCustomApplicationConfigurationFiles } from './custom-application.schema';
 import { MissingOrInvalidConfigError } from './errors';
-import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 
 // Helper function to find the package root path from the current location,
 // for instance in respect to both source files and dist files.
@@ -37,52 +37,97 @@ const loadJsModule: LoaderSync = (filePath) => {
   return JSON.parse(output);
 };
 
-const moduleName = 'custom-application-config';
-const explorer = cosmiconfigSync(moduleName, {
-  // Restrict the supported file formats / names
-  searchPlaces: [
-    `.${moduleName}rc`,
-    `.${moduleName}.json`,
-    `.${moduleName}.js`,
-    `.${moduleName}.cjs`,
-    `.${moduleName}.mjs`,
-    `.${moduleName}.ts`,
-    `${moduleName}.json`,
-    `${moduleName}.js`,
-    `${moduleName}.cjs`,
-    `${moduleName}.mjs`,
-    `${moduleName}.ts`,
-  ],
-  loaders: {
-    noExt: defaultLoaders['.json'],
-    '.js': loadJsModule,
-    '.cjs': loadJsModule,
-    '.mjs': loadJsModule,
-    '.ts': loadJsModule,
-  },
-});
+const getExplorer = (configFileName: string) => {
+  return cosmiconfigSync(configFileName, {
+    // Restrict the supported file formats / names
+    searchPlaces: [
+      `.${configFileName}rc`,
+      `.${configFileName}.json`,
+      `.${configFileName}.js`,
+      `.${configFileName}.cjs`,
+      `.${configFileName}.mjs`,
+      `.${configFileName}.ts`,
+      `${configFileName}.json`,
+      `${configFileName}.js`,
+      `${configFileName}.cjs`,
+      `${configFileName}.mjs`,
+      `${configFileName}.ts`,
+    ],
+    loaders: {
+      noExt: defaultLoaders['.json'],
+      '.js': loadJsModule,
+      '.cjs': loadJsModule,
+      '.mjs': loadJsModule,
+      '.ts': loadJsModule,
+    },
+  });
+};
+
+const customApplicationExplorer = getExplorer('custom-application-config');
+const customViewExplorer = getExplorer('custom-view-config');
+
+// const moduleName = 'custom-application-config';
+// const explorer = cosmiconfigSync(moduleName, {
+//   // Restrict the supported file formats / names
+//   searchPlaces: [
+//     `.${moduleName}rc`,
+//     `.${moduleName}.json`,
+//     `.${moduleName}.js`,
+//     `.${moduleName}.cjs`,
+//     `.${moduleName}.mjs`,
+//     `.${moduleName}.ts`,
+//     `${moduleName}.json`,
+//     `${moduleName}.js`,
+//     `${moduleName}.cjs`,
+//     `${moduleName}.mjs`,
+//     `${moduleName}.ts`,
+
+//     'custom-view.config.json',
+//     'custom-view.config.js',
+//     'custom-view.config.cjs',
+//     'custom-view.config.mjs',
+//     'custom-view.config.ts',
+//   ],
+//   loaders: {
+//     noExt: defaultLoaders['.json'],
+//     '.js': loadJsModule,
+//     '.cjs': loadJsModule,
+//     '.mjs': loadJsModule,
+//     '.ts': loadJsModule,
+//   },
+// });
 
 export const getConfigPath = () => {
-  const configFile = explorer.search();
-  if (!configFile) {
-    throw new Error(
-      `Missing or invalid Custom Application configuration file.`
-    );
+  const customApplicationConfigFile = customApplicationExplorer.search();
+  const customViewConfigFile = customViewExplorer.search();
+
+  if (!customApplicationConfigFile && !customViewConfigFile) {
+    throw new Error(`Missing or invalid configuration file.`);
   }
-  return configFile.filepath;
+  return (
+    customApplicationConfigFile?.filepath || customViewConfigFile?.filepath
+  );
 };
 
 const loadConfig = (
   applicationPath: string
-): JSONSchemaForCustomApplicationConfigurationFiles => {
-  const configFile = explorer.search(applicationPath);
+): {
+  filepath: string;
+  config: JSONSchemaForCustomApplicationConfigurationFiles;
+} => {
+  const customApplicationConfigFile =
+    customApplicationExplorer.search(applicationPath);
+  const customViewConfigFile = customViewExplorer.search(applicationPath);
 
-  if (!configFile || !configFile.config) {
+  if (
+    (!customApplicationConfigFile || !customApplicationConfigFile.config) &&
+    (!customViewConfigFile || !customViewConfigFile.config)
+  ) {
     throw new MissingOrInvalidConfigError(
-      `Missing or invalid Custom Application configuration file.`
+      `Missing or invalid configuration file.`
     );
   }
-  return configFile.config;
+  return (customApplicationConfigFile || customViewConfigFile)!;
 };
 
 export default loadConfig;

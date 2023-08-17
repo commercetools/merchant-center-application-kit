@@ -1,8 +1,16 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import { CLOUD_IDENTIFIERS } from './constants';
-import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
+import type { JSONSchemaForCustomApplicationConfigurationFiles } from './custom-application.schema';
+import type { JSONSchemaForCustomViewConfigurationFiles } from './custom-view.schema';
 
-export type ConfigOptions = JSONSchemaForCustomApplicationConfigurationFiles;
+export type ConfigOptions =
+  | JSONSchemaForCustomApplicationConfigurationFiles
+  | JSONSchemaForCustomViewConfigurationFiles;
+
+export enum ConfigType {
+  CUSTOM_APPLICATION = 'custom-application',
+  CUSTOM_VIEW = 'custom-view',
+}
 
 export type CloudIdentifier =
   (typeof CLOUD_IDENTIFIERS)[keyof typeof CLOUD_IDENTIFIERS];
@@ -38,11 +46,19 @@ export type CustomApplicationData = {
   submenuLinks: CustomApplicationSubmenuLinkData[];
 };
 
+export type CustomViewData = {
+  id: string;
+  name: string;
+  description?: string;
+  url: string;
+  permissions: CustomApplicationPermissionData[];
+};
+
 // The object result after processing the config file
 export type ApplicationRuntimeConfig<
   AdditionalEnvironmentProperties extends {} = {}
 > = {
-  data: CustomApplicationData;
+  data: CustomApplicationData | CustomViewData;
   env: AdditionalEnvironmentProperties & ApplicationWindow['app'];
   headers: JSONSchemaForCustomApplicationConfigurationFiles['headers'];
 };
