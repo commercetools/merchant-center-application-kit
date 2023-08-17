@@ -270,6 +270,102 @@ export type TCustomApplicationsPagedQueryResult = {
   total: Scalars['Int'];
 };
 
+export type TCustomView = {
+  __typename?: 'CustomView';
+  createdAt: Scalars['DateTime'];
+  defaultLabel: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  installedBy: Array<TCustomViewInstallation>;
+  labelAllLocales: Scalars['Json'];
+  locators: Array<Scalars['String']>;
+  owner: TOrganizationExtension;
+  ownerId: Scalars['String'];
+  permissions: Array<TCustomViewPermission>;
+  status: TCustomViewStatus;
+  type: TCustomViewType;
+  typeSettings?: Maybe<TCustomViewTypeSettings>;
+  updatedAt: Scalars['DateTime'];
+  url: Scalars['String'];
+};
+
+export type TCustomViewDraftDataInput = {
+  defaultLabel: Scalars['String'];
+  description?: InputMaybe<Scalars['String']>;
+  labelAllLocales: Scalars['Json'];
+  locators: Array<Scalars['String']>;
+  permissions: Array<TCustomViewPermissionDataInput>;
+  type: TCustomViewType;
+  /**
+   * The value of this property depends on the value of the 'type' property value.
+   * In case the `type` value is `CustomPanel`, you are supposed to provide it's size.
+   */
+  typeSettings?: InputMaybe<TCustomViewTypeSettingsInput>;
+  url: Scalars['String'];
+};
+
+export type TCustomViewInstallation = {
+  __typename?: 'CustomViewInstallation';
+  acceptedPermissions: Array<TCustomViewInstallationPermission>;
+  createdAt: Scalars['DateTime'];
+  customView: TCustomView;
+  customViewId: Scalars['String'];
+  id: Scalars['ID'];
+  installInAllProjects: Scalars['Boolean'];
+  owner: TOrganizationExtension;
+  ownerId: Scalars['String'];
+  projects: Array<TProjectExtension>;
+  updatedAt: Scalars['DateTime'];
+};
+
+export type TCustomViewInstallationPermission = {
+  __typename?: 'CustomViewInstallationPermission';
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ID'];
+  installedCustomView: TCustomViewInstallation;
+  installedCustomViewId: Scalars['String'];
+  name: Scalars['String'];
+  oAuthScopes: Array<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+};
+
+export type TCustomViewPermission = {
+  __typename?: 'CustomViewPermission';
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  oAuthScopes: Array<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+};
+
+export type TCustomViewPermissionDataInput = {
+  name: Scalars['String'];
+  oAuthScopes: Array<Scalars['String']>;
+};
+
+export enum TCustomViewSize {
+  Large = 'LARGE',
+  Small = 'SMALL'
+}
+
+export enum TCustomViewStatus {
+  Draft = 'DRAFT',
+  PrivateUsage = 'PRIVATE_USAGE'
+}
+
+export enum TCustomViewType {
+  CustomPanel = 'CustomPanel'
+}
+
+export type TCustomViewTypeSettings = {
+  __typename?: 'CustomViewTypeSettings';
+  size?: Maybe<TCustomViewSize>;
+};
+
+export type TCustomViewTypeSettingsInput = {
+  size?: InputMaybe<TCustomViewSize>;
+};
+
 export type TCustomersListView = {
   __typename?: 'CustomersListView';
   createdAt: Scalars['DateTime'];
@@ -523,9 +619,11 @@ export type TMutation = {
   activateProductDiscountsCustomView?: Maybe<TDiscountsCustomView>;
   activateProductTypeAttributesView?: Maybe<TProductTypeAttributesView>;
   changeCustomApplicationStatus?: Maybe<TRestrictedCustomApplicationForOrganization>;
+  changeCustomViewStatus?: Maybe<TCustomView>;
   createCartDiscountsCustomView: TDiscountsCustomView;
   createCustomApplication?: Maybe<TRestrictedCustomApplicationForOrganization>;
   createCustomApplicationDeploymentPreview: TCustomApplicationDeploymentPreview;
+  createCustomView?: Maybe<TCustomView>;
   createCustomersListView: TCustomersListView;
   createDashboardView: TDashboardView;
   createDiscountCodesCustomView: TDiscountsCustomView;
@@ -570,6 +668,7 @@ export type TMutation = {
   updateCustomApplication?: Maybe<TRestrictedCustomApplicationForOrganization>;
   updateCustomApplicationDeploymentPreview: TCustomApplicationDeploymentPreview;
   updateCustomApplicationProjectsInstallation?: Maybe<TRestrictedCustomApplicationInstallationForOrganization>;
+  updateCustomView?: Maybe<TCustomView>;
   updateCustomersListView?: Maybe<TCustomersListView>;
   updateDashboardView?: Maybe<TDashboardView>;
   updateDiscountCodesCustomView?: Maybe<TDiscountsCustomView>;
@@ -637,6 +736,13 @@ export type TMutation_ChangeCustomApplicationStatusArgs = {
 };
 
 
+export type TMutation_ChangeCustomViewStatusArgs = {
+  customViewId: Scalars['ID'];
+  organizationId: Scalars['String'];
+  status: TCustomViewStatus;
+};
+
+
 export type TMutation_CreateCartDiscountsCustomViewArgs = {
   data: TDiscountsCustomViewInput;
 };
@@ -651,6 +757,12 @@ export type TMutation_CreateCustomApplicationArgs = {
 export type TMutation_CreateCustomApplicationDeploymentPreviewArgs = {
   applicationId: Scalars['ID'];
   data: TCustomApplicationDeploymentPreviewCreateInput;
+  organizationId: Scalars['String'];
+};
+
+
+export type TMutation_CreateCustomViewArgs = {
+  data: TCustomViewDraftDataInput;
   organizationId: Scalars['String'];
 };
 
@@ -876,6 +988,13 @@ export type TMutation_UpdateCustomApplicationProjectsInstallationArgs = {
   installedApplicationId: Scalars['ID'];
   organizationId: Scalars['String'];
   projectKeys?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type TMutation_UpdateCustomViewArgs = {
+  customViewId: Scalars['String'];
+  data: TCustomViewDraftDataInput;
+  organizationId: Scalars['String'];
 };
 
 
@@ -1229,6 +1348,7 @@ export type TQuery = {
   allAppliedCustomApplicationPermissions: Array<TCustomApplicationInstallationPermission>;
   /** @deprecated Experimental feature - For internal usage only */
   allCustomApplications: TCustomApplicationsPagedQueryResult;
+  allCustomViewsByOrganization: Array<Maybe<TCustomView>>;
   allFeatures: Array<TFeature>;
   /** @deprecated Experimental feature - For internal usage only */
   allOrganizationExtensions: Array<TOrganizationExtension>;
@@ -1238,6 +1358,7 @@ export type TQuery = {
   cartDiscountsCustomViews: Array<Maybe<TDiscountsCustomView>>;
   /** @deprecated Experimental feature - For internal usage only */
   customApplication?: Maybe<TCustomApplication>;
+  customView?: Maybe<TCustomView>;
   customersListView?: Maybe<TCustomersListView>;
   customersListViews: Array<Maybe<TCustomersListView>>;
   dashboardView?: Maybe<TDashboardView>;
@@ -1281,6 +1402,11 @@ export type TQuery_AllCustomApplicationsArgs = {
 };
 
 
+export type TQuery_AllCustomViewsByOrganizationArgs = {
+  organizationId: Scalars['ID'];
+};
+
+
 export type TQuery_AllFeaturesArgs = {
   params?: InputMaybe<TFeatureQueryInput>;
 };
@@ -1303,6 +1429,11 @@ export type TQuery_CartDiscountsCustomViewArgs = {
 
 export type TQuery_CustomApplicationArgs = {
   applicationId: Scalars['ID'];
+};
+
+
+export type TQuery_CustomViewArgs = {
+  customViewId: Scalars['ID'];
 };
 
 
