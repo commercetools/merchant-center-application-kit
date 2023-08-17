@@ -5,10 +5,16 @@ import {
   useState,
   type ReactNode,
 } from 'react';
+import { PageUnauthorized } from '@commercetools-frontend/application-components';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
-import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
-import LoadingSpinner from '@commercetools-uikit/loading-spinner';
+import {
+  AsyncLocaleData,
+  type TAsyncLocaleDataProps,
+} from '@commercetools-frontend/i18n';
+import ApplicationLoader from '../application-loader/application-loader';
 import ApplicationShellProvider from '../application-shell-provider';
+import { getBrowserLocale } from '../application-shell-provider/utils';
+import ConfigureIntlProvider from '../configure-intl-provider';
 import CustomViewAuthenticatedShell from '../custom-view-authenticated-shell';
 import { CustomViewContextProvider, TCustomView } from '../custom-view-context';
 import { CUSTOM_VIEWS_EVENTS_NAMES } from './constants';
@@ -38,6 +44,8 @@ type TCustomViewShellProps = {
   children: ReactNode;
 };
 
+const browserLocale = getBrowserLocale(window);
+
 function CustomViewShell(props: TCustomViewShellProps) {
   const [hostContext, setHostContext] = useState<THostContext>();
   const iFrameCommunicationPort = useRef<MessagePort>();
@@ -60,7 +68,7 @@ function CustomViewShell(props: TCustomViewShellProps) {
   );
 
   useEffect(() => {
-    const initializationMessageHandler = (event: MessageEvent) => {
+    const bootstrapMessageHandler = (event: MessageEvent) => {
       console.log('Custom view shell received message', { event });
 
       if (
@@ -69,9 +77,9 @@ function CustomViewShell(props: TCustomViewShellProps) {
       ) {
         iFrameCommunicationPort.current = event.ports[0];
         iFrameCommunicationPort.current.onmessage = hostMessageHandler;
-        // Once initialized, we don't want to listen for global messages anymore.
+        // Once bootstraped, we don't want to listen for global messages anymore.
         // We will only listen to messages coming through the MessageChannel port.
-        window.removeEventListener('message', initializationMessageHandler);
+        window.removeEventListener('message', bootstrapMessageHandler);
       } else {
         console.warn(
           `CustomViewShell: Received an event that is not allowed: ${event.data}`,
@@ -80,25 +88,14 @@ function CustomViewShell(props: TCustomViewShellProps) {
       }
     };
 
-    window.addEventListener('message', initializationMessageHandler);
+    window.addEventListener('message', bootstrapMessageHandler);
     return () => {
-      window.removeEventListener('message', initializationMessageHandler);
+      window.removeEventListener('message', bootstrapMessageHandler);
     };
   }, [hostMessageHandler]);
 
-  // TODO: Render a proper loading indicator
   if (!hostContext) {
-    return (
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <LoadingSpinner />
-      </div>
-    );
+    return <ApplicationLoader showLogo />;
   }
 
   return (
@@ -122,8 +119,18 @@ function CustomViewShell(props: TCustomViewShellProps) {
           );
         }
 
-        // TODO: Render a proper error view
-        return <h2>User not authenticated</h2>;
+        return (
+          <AsyncLocaleData
+            locale={browserLocale}
+            applicationMessages={props.messages}
+          >
+            {({ locale, messages }) => (
+              <ConfigureIntlProvider locale={locale} messages={messages}>
+                <PageUnauthorized />
+              </ConfigureIntlProvider>
+            )}
+          </AsyncLocaleData>
+        );
       }}
     </ApplicationShellProvider>
   );
