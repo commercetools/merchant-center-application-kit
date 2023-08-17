@@ -8,6 +8,7 @@ import {
   NOTIFICATION_KINDS_PAGE,
 } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import { TCustomView } from '../../../types/generated/settings';
 import CustomPanel from '../custom-panel/custom-panel';
 import {
   CUSTOM_VIEWS_EVENTS_NAMES,
@@ -20,27 +21,6 @@ type TCustomViewIframeMessage = {
   destination: string;
   eventName: string;
   eventData: Record<string, unknown>;
-};
-
-/*
-  TODO: These types are temporary until we have the proper
-  ones generated from the Settings schema
-*/
-export type TPermissionGroup = {
-  name: string;
-  oAuthScopes: string[];
-};
-
-export type TCustomView = {
-  id: string;
-  defaultLabel: string;
-  labelAllLocales: Record<string, string>;
-  url: string;
-  type: 'CustomPanel' | 'CustomTab';
-  typeSettings?: {
-    size?: 'SMALL' | 'LARGE';
-  };
-  locators: string[];
 };
 
 type TCustomViewLoaderProps = {

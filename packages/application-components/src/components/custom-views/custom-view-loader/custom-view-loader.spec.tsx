@@ -5,7 +5,8 @@ import {
   waitFor,
   fireEvent,
 } from '../../../test-utils';
-import CustomViewLoader, { type TCustomView } from './custom-view-loader';
+import { TCustomView } from '../../../types/generated/settings';
+import CustomViewLoader from './custom-view-loader';
 
 const mockShowNotification = jest.fn();
 
@@ -21,7 +22,7 @@ const TEST_CUSTOM_VIEW: TCustomView = {
   labelAllLocales: {},
   url: '/',
   type: 'CustomPanel',
-  typeConfig: {
+  typeSettings: {
     size: 'SMALL',
   },
   locators: ['customers.customer-detail.addresses'],
