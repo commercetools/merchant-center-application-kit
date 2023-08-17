@@ -177,8 +177,8 @@ type MenuGroupProps = {
   hasSubmenu?: boolean;
   children?: ReactNode;
   topPosition?: number;
-  scrollTop: number;
-  isNewNavigationEnabled: boolean;
+  scrollTop?: number;
+  isNewNavigationEnabled?: boolean;
 };
 const MenuGroup = (props: MenuGroupProps) => {
   if (
