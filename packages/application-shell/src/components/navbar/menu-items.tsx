@@ -176,6 +176,9 @@ type MenuGroupProps = {
   isExpanded?: boolean;
   hasSubmenu?: boolean;
   children?: ReactNode;
+  topPosition?: number;
+  scrollTop: number;
+  isNewNavigationEnabled: boolean;
 };
 const MenuGroup = (props: MenuGroupProps) => {
   if (
@@ -191,6 +194,11 @@ const MenuGroup = (props: MenuGroupProps) => {
     props.level === 2 && props.isActive && !props.isExpanded;
   return (
     <ul
+      style={{
+        top: props.isNewNavigationEnabled
+          ? `calc(${props.topPosition}px - ${props.scrollTop}px)`
+          : undefined,
+      }}
       id={`group-${props.id}`}
       data-testid={`group-${props.id}`}
       role="menu"
@@ -200,17 +208,33 @@ const MenuGroup = (props: MenuGroupProps) => {
       }
       className={classnames(
         { [styles.list]: props.level === 1 },
-        { [styles.sublist]: props.level === 2 },
+        {
+          [styles['sublist-new']]:
+            props.level === 2 && props.isNewNavigationEnabled,
+        },
+        {
+          [styles['sublist']]:
+            props.level === 2 && !props.isNewNavigationEnabled,
+        },
         {
           [styles['sublist-no-children']]: props.level === 2 && !props.children,
         },
         {
+          [styles['sublist-expanded-new__active']]:
+            isSublistActiveWhileIsMenuExpanded && props.isNewNavigationEnabled,
+        },
+        {
           [styles['sublist-expanded__active']]:
-            isSublistActiveWhileIsMenuExpanded,
+            isSublistActiveWhileIsMenuExpanded && !props.isNewNavigationEnabled,
+        },
+        {
+          [styles['sublist-collapsed-new__active']]:
+            isSublistActiveWhileIsMenuCollapsed && props.isNewNavigationEnabled,
         },
         {
           [styles['sublist-collapsed__active']]:
-            isSublistActiveWhileIsMenuCollapsed,
+            isSublistActiveWhileIsMenuCollapsed &&
+            !props.isNewNavigationEnabled,
         },
         {
           [styles.sublist__inactive]: !isSublistActiveWhileIsMenuCollapsed,
@@ -233,22 +257,27 @@ type MenuItemProps = {
   onMouseLeave?: MouseEventHandler<HTMLElement>;
   children: ReactNode;
 };
-const MenuItem = (props: MenuItemProps) => (
-  <li
-    role="menuitem"
-    className={classnames(styles['list-item'], {
-      [styles.item__active]: props.isActive,
-      [styles['item_menu__active']]: props.isMainMenuRouteActive ?? false,
-      [styles['item_menu-collapsed']]: !props.isMenuOpen,
-      [styles['item__no-submenu']]: !props.hasSubmenu,
-    })}
-    onClick={props.onClick}
-    onMouseEnter={props.onMouseEnter}
-    onMouseLeave={props.onMouseLeave}
-  >
-    <div className={styles['item-link']}>{props.children}</div>
-  </li>
-);
+const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>((props, ref) => {
+  return (
+    <li
+      role="menuitem"
+      className={classnames(styles['list-item'], {
+        [styles.item__active]: props.isActive,
+        [styles['item_menu__active']]: props.isMainMenuRouteActive ?? false,
+        [styles['item_menu-collapsed']]: !props.isMenuOpen,
+        [styles['item__no-submenu']]: !props.hasSubmenu,
+      })}
+      onClick={props.onClick}
+      onMouseEnter={props.onMouseEnter}
+      onMouseLeave={props.onMouseLeave}
+    >
+      <div ref={ref} className={styles['item-link']}>
+        {props.children}
+      </div>
+    </li>
+  );
+});
+
 MenuItem.displayName = 'MenuItem';
 
 export type MenuItemLinkProps = {

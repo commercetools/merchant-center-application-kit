@@ -1,4 +1,4 @@
-import { MouseEventHandler, useEffect, useMemo } from 'react';
+import { MouseEventHandler, useEffect, useMemo, useState, useRef } from 'react';
 import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { matchPath, useLocation } from 'react-router-dom';
@@ -71,6 +71,8 @@ type ApplicationMenuProps = {
   projectKey: string;
   useFullRedirectsForLinks: boolean;
   onMenuItemClick?: MenuItemLinkProps['onClick'];
+  scrollTop: number;
+  isNewNavigationEnabled: boolean;
 };
 
 const getMenuVisibilitiesOfSubmenus = (menu: TNavbarMenu) =>
@@ -79,6 +81,15 @@ const getMenuVisibilityOfMainmenu = (menu: TNavbarMenu) =>
   menu.menuVisibility ? [menu.menuVisibility] : [];
 
 const ApplicationMenu = (props: ApplicationMenuProps) => {
+  const [topPosition, setTopPosition] = useState(0);
+  const elementRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (elementRef.current != null) {
+      setTopPosition(elementRef.current.offsetTop);
+    }
+  }, [elementRef.current]);
+
   const isMainMenuRouteActive = Boolean(
     matchPath(props.location.pathname, {
       path: `/${props.projectKey}/${props.menu.uriPath}`,
@@ -123,6 +134,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
       namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
     >
       <MenuItem
+        ref={elementRef}
         hasSubmenu={hasSubmenu}
         isActive={props.isActive}
         isMainMenuRouteActive={isMainMenuRouteActive}
@@ -166,6 +178,9 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
           isActive={props.isActive}
           isExpanded={props.isMenuOpen}
           hasSubmenu={hasSubmenu}
+          topPosition={topPosition}
+          scrollTop={props.scrollTop}
+          isNewNavigationEnabled={props.isNewNavigationEnabled}
         >
           {hasSubmenu
             ? props.menu.submenu.map((submenu: TSubmenuWithDefaultLabel) => (
@@ -225,6 +240,7 @@ type TNavbarProps = {
   isLoading: boolean;
   isNewNavigationEnabled: boolean;
   isNewNavigationEnabledEvaluationReady: boolean;
+  scrollTop: number;
 };
 const NavBar = (props: TNavbarProps) => {
   const {
@@ -311,6 +327,8 @@ const NavBar = (props: TNavbarProps) => {
                 projectKey={props.projectKey}
                 useFullRedirectsForLinks={useFullRedirectsForLinks}
                 onMenuItemClick={props.onMenuItemClick}
+                scrollTop={props.scrollTop}
+                isNewNavigationEnabled
               />
             );
           })}
@@ -333,6 +351,8 @@ const NavBar = (props: TNavbarProps) => {
                 projectKey={props.projectKey}
                 useFullRedirectsForLinks={useFullRedirectsForLinks}
                 onMenuItemClick={props.onMenuItemClick}
+                scrollTop={props.scrollTop}
+                isNewNavigationEnabled={props.isNewNavigationEnabled}
               />
             );
           })}
