@@ -328,7 +328,7 @@ const NavBar = (props: TNavbarProps) => {
                 useFullRedirectsForLinks={useFullRedirectsForLinks}
                 onMenuItemClick={props.onMenuItemClick}
                 scrollTop={props.scrollTop}
-                isNewNavigationEnabled
+                isNewNavigationEnabled={props.isNewNavigationEnabled}
               />
             );
           })}
