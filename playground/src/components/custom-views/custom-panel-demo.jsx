@@ -50,7 +50,7 @@ function CustomPanelDemo() {
             <SecondaryButton
               label="Open large Custom Panel"
               onClick={() => {
-                setPanelSize('large');
+                setPanelSize('LARGE');
                 openModal();
               }}
             />
@@ -60,7 +60,7 @@ function CustomPanelDemo() {
             <SecondaryButton
               label="Open small Custom Panel"
               onClick={() => {
-                setPanelSize('small');
+                setPanelSize('SMALL');
                 openModal();
               }}
             />
