@@ -14,12 +14,13 @@ import {
   AsyncLocaleData,
   type TAsyncLocaleDataProps,
 } from '@commercetools-frontend/i18n';
+import type { TCustomView } from '../../types/generated/settings';
 import ApplicationLoader from '../application-loader/application-loader';
 import ApplicationShellProvider from '../application-shell-provider';
 import { getBrowserLocale } from '../application-shell-provider/utils';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import CustomViewAuthenticatedShell from '../custom-view-authenticated-shell';
-import { CustomViewContextProvider, TCustomView } from '../custom-view-context';
+import { CustomViewContextProvider } from '../custom-view-context';
 
 declare let window: ApplicationWindow;
 

@@ -1,26 +1,9 @@
 import { createContext, type ReactNode, useContext, useMemo } from 'react';
-
-/*
-  TODO: These types are temporary until we have the proper
-  ones generated from the Settings schema
-*/
-export type TPermissionGroup = {
-  name: string;
-  oAuthScopes: string[];
-};
-
-export type TCustomView = {
-  id: string;
-  defaultLabel: string;
-  labelAllLocales: Record<string, string>;
-  url: string;
-  type: 'CustomPanel' | 'CustomTab';
-  typeConfig?: {
-    size?: 'SMALL' | 'LARGE';
-  };
-  locators: string[];
-  permissions: TPermissionGroup[];
-};
+import {
+  TCustomView,
+  TCustomViewStatus,
+  TCustomViewType,
+} from '../../types/generated/settings';
 
 type TCustomViewContext = {
   config: TCustomView;
@@ -37,9 +20,20 @@ const CustomViewContext = createContext<TCustomViewContext>({
     defaultLabel: '',
     labelAllLocales: {},
     url: '',
-    type: 'CustomPanel',
+    type: TCustomViewType.CustomPanel,
     locators: [],
     permissions: [],
+    createdAt: '',
+    installedBy: [],
+    owner: {
+      createdAt: '',
+      id: '',
+      organizationId: '',
+      updatedAt: '',
+    },
+    ownerId: '',
+    status: TCustomViewStatus.Draft,
+    updatedAt: '',
   },
 });
 
