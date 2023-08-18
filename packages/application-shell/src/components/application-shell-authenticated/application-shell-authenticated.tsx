@@ -122,6 +122,7 @@ export const ApplicationShellAuthenticated = (
 ) => {
   const [scrollTop, setScrollTop] = useState(0);
 
+  // we need this scroll position to set the correct height of the submenu
   const handleScroll = (event: SyntheticEvent) => {
     setScrollTop(event.currentTarget.scrollTop);
   };

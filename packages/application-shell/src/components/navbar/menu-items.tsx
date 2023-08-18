@@ -196,7 +196,8 @@ const MenuGroup = (props: MenuGroupProps) => {
     <ul
       style={{
         top: props.isNewNavigationEnabled
-          ? `calc(${props.topPosition}px - ${props.scrollTop}px)`
+          ? // calculating the submenu position based on the parent's top position and the scroll position
+            `calc(${props.topPosition}px - ${props.scrollTop}px)`
           : undefined,
       }}
       id={`group-${props.id}`}
