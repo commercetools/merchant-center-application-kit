@@ -99,6 +99,8 @@ const processHeaders = (
         // htmlStylesHashes.map(assetHash => `'${assetHash}'`)
       ),
       'font-src': ["'self'", 'fonts.gstatic.com', 'data:'],
+      // Required for Custom Views
+      'frame-src': ["'self'"],
     },
     isMcDevEnv
       ? {
