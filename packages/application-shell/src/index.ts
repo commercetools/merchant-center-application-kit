@@ -9,6 +9,7 @@ export { default as createApolloClient } from './configure-apollo';
 export { applyDefaultMiddlewares } from './configure-store';
 export { default as InjectReducers } from './components/inject-reducers';
 export { default as RouteCatchAll } from './components/route-catch-all';
+export { default as RedirectToLogin } from './components/redirect-to-login';
 export { default as setupGlobalErrorListener } from './utils/setup-global-error-listener';
 export {
   getMcApiUrl,

@@ -16,3 +16,11 @@ export type THttpClientFetcherResponse<Data> = TFetcherResponse<Data>;
 export type THttpClientHeaders = THeaders;
 export type THttpClientConfig = TConfig;
 export type THttpClientOptions = TOptions;
+
+export {
+  type TCustomView,
+  type TCustomViewTypeSettings,
+  TCustomViewSize,
+  TCustomViewType,
+  TCustomViewStatus,
+} from './types/generated/settings';

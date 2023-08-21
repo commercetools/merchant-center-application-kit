@@ -12,6 +12,7 @@ import {
   CloudIdentifier,
   ConfigType,
   CustomApplicationData,
+  CustomViewData,
   LoadingConfigOptions,
 } from './types';
 import {
@@ -176,6 +177,7 @@ const processConfig = ({
       applicationName: configurationData.name,
       entryPointUriPath: (configurationData as CustomApplicationData)
         .entryPointUriPath,
+      customViewId: (configurationData as CustomViewData).id,
       ...(isProd || !developmentConfig
         ? {}
         : { __DEVELOPMENT__: developmentConfig }),

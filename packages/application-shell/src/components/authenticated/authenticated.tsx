@@ -52,6 +52,14 @@ const AuthenticationRoutes = (props: TAuthenticatedProps) => (
         applicationMessages={props.applicationMessages}
       />
     </SuspendedRoute>
+    <SuspendedRoute
+      path={`/:projectKey/${window.app.customViewId}/oidc/callback`}
+    >
+      <OidcCallback
+        locale={props.locale}
+        applicationMessages={props.applicationMessages}
+      />
+    </SuspendedRoute>
     <Route>
       <Authenticated {...props} />
     </Route>
