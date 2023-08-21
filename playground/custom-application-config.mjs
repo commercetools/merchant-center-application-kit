@@ -31,7 +31,6 @@ const config = {
   headers: {
     csp: {
       'connect-src': ['${env:HOST_GCP_STAGING}'],
-      'frame-src': ['${env:LOCAL_HOST}'],
     },
   },
   icon: '${path:@commercetools-frontend/assets/application-icons/rocket.svg}',
