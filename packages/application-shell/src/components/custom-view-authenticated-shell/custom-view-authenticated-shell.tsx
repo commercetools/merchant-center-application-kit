@@ -12,7 +12,6 @@ import { getBrowserLocale } from '../application-shell-provider/utils';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
-import SetupFlopFlipProvider from '../setup-flop-flip-provider';
 
 type TCustomViewAuthenticatedShellProps = {
   dataLocale: string;
@@ -50,42 +49,34 @@ function CustomViewAuthenticatedShell(
                     user={user}
                     environment={props.environment}
                   >
-                    <SetupFlopFlipProvider
-                      user={user}
-                      projectKey={props.projectKey}
-                      ldClientSideId={props.environment.ldClientSideId}
-                      // flags={props.featureFlags}
-                      // defaultFlags={props.defaultFeatureFlags}
-                    >
-                      <>
-                        <ThemeProvider theme="default" />
-                        {!props.projectKey && props.children}
+                    <>
+                      <ThemeProvider theme="default" />
+                      {!props.projectKey && props.children}
 
-                        {Boolean(props.projectKey) && (
-                          <FetchProject projectKey={props.projectKey}>
-                            {({ isLoading: isProjectLoading, project }) => {
-                              if (fetchUserError) {
-                                return <PageUnauthorized />;
-                              }
+                      {Boolean(props.projectKey) && (
+                        <FetchProject projectKey={props.projectKey}>
+                          {({ isLoading: isProjectLoading, project }) => {
+                            if (fetchUserError) {
+                              return <PageUnauthorized />;
+                            }
 
-                              if (isProjectLoading) {
-                                return <ApplicationLoader />;
-                              }
-                              return (
-                                <ApplicationContextProvider
-                                  user={user}
-                                  project={project}
-                                  projectDataLocale={props.dataLocale}
-                                  environment={props.environment}
-                                >
-                                  {props.children}
-                                </ApplicationContextProvider>
-                              );
-                            }}
-                          </FetchProject>
-                        )}
-                      </>
-                    </SetupFlopFlipProvider>
+                            if (isProjectLoading) {
+                              return <ApplicationLoader />;
+                            }
+                            return (
+                              <ApplicationContextProvider
+                                user={user}
+                                project={project}
+                                projectDataLocale={props.dataLocale}
+                                environment={props.environment}
+                              >
+                                {props.children}
+                              </ApplicationContextProvider>
+                            );
+                          }}
+                        </FetchProject>
+                      )}
+                    </>
                   </ApplicationContextProvider>
                 </ConfigureIntlProvider>
               );
