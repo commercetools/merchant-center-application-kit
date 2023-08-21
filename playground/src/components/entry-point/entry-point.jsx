@@ -25,7 +25,7 @@ const apolloClient = configureApolloClient();
 const EntryPoint = () => (
   <Router history={history}>
     <Switch>
-      <Route path="/:projectKey/custom-view/:id">
+      <Route path="/custom-views/:customViewId/projects/:projectKey">
         <DemoCustomView />
       </Route>
 

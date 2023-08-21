@@ -6,7 +6,16 @@ const staticUrlPathsInPositionOfProjectKey = ['login', 'logout', 'account'];
 export default function selectProjectKeyFromUrl(
   locationPath = window.location.pathname
 ) {
-  const possibleProjectKey = locationPath.split('/')[1];
+  let possibleProjectKey = '';
+  const pathParts = locationPath.split('/');
+
+  if (pathParts[1] === 'custom-views') {
+    // Custom Views paths: /custom-views/:customViewId/projects/:projectKey
+    possibleProjectKey = pathParts[4];
+  } else {
+    // Application paths: /:projectKey/:applicationId
+    possibleProjectKey = pathParts[1];
+  }
 
   return staticUrlPathsInPositionOfProjectKey.includes(possibleProjectKey)
     ? undefined
