@@ -83,7 +83,7 @@ function CustomViewShell(props: TCustomViewShellProps) {
 =======
       } else {
         console.warn(
-          `CustomViewShell: Unkown received event with name: ${event.data.eventName}`,
+          `CustomViewShell: Unknown received event with name: ${event.data.eventName}`,
           { event }
         );
 >>>>>>> 2f4cd301f (refactor(application-shell): refactor custom view shell to use the new specialized context)
