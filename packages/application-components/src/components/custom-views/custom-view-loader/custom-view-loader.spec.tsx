@@ -87,7 +87,7 @@ describe('CustomViewLoader', () => {
       `custom-view-${TEST_CUSTOM_VIEW.id}`
     );
     expect(iFrame.getAttribute('src')).toContain(
-      `/no-project/custom-view/${TEST_CUSTOM_VIEW.id}`
+      `/custom-views/${TEST_CUSTOM_VIEW.id}/projects/no-project`
     );
   });
 
