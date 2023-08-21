@@ -10,7 +10,7 @@ import {
   NOTIFICATION_KINDS_PAGE,
 } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { TCustomView } from '../../../types/generated/settings';
+import type { TCustomView } from '../../../types/generated/settings';
 import CustomPanel from '../custom-panel/custom-panel';
 import messages from './messages';
 

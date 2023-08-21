@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
-import { ApplicationWindow } from '@commercetools-frontend/constants';
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import {
   AsyncLocaleData,
   type TAsyncLocaleDataProps,

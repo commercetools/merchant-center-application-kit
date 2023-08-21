@@ -62,7 +62,7 @@ function CustomViewShell(props: TCustomViewShellProps) {
         setHostContext(event.data.eventData.context);
       } else {
         console.warn(
-          `CustomViewShell: Unkown received event with name: ${event.data.eventName}`,
+          `CustomViewShell: Unknown received event with name: ${event.data.eventName}`,
           { event }
         );
       }

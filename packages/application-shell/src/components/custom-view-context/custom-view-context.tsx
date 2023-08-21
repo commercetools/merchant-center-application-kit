@@ -1,6 +1,6 @@
 import { createContext, type ReactNode, useContext, useMemo } from 'react';
 import {
-  TCustomView,
+  type TCustomView,
   TCustomViewStatus,
   TCustomViewType,
 } from '../../types/generated/settings';

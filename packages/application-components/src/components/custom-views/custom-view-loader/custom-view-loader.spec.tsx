@@ -6,7 +6,7 @@ import {
   fireEvent,
 } from '../../../test-utils';
 import {
-  TCustomView,
+  type TCustomView,
   TCustomViewSize,
   TCustomViewStatus,
   TCustomViewType,
