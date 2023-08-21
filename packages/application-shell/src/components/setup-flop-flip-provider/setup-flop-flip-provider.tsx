@@ -26,6 +26,8 @@ type TSetupFlopFlipProviderProps = {
 };
 
 type TLaunchDarklyUserCustomFields = {
+  kind: 'user';
+  key?: string;
   project: string;
   id: string;
   team: string[];
@@ -52,11 +54,13 @@ type TParsedHttpAdapterFlags = Record<
 // is no need to be concerned about security.
 const ldClientSideIdProduction = '5979d95f6040390cd07b5e01';
 
-function getUserCustomFieldsForLaunchDarklyAdapter(
+function getUserContextForLaunchDarklyAdapter(
   user?: TSetupFlopFlipProviderProps['user'],
   projectKey?: string
 ): TLaunchDarklyUserCustomFields {
   return {
+    kind: 'user',
+    key: user?.id,
     project: projectKey ?? '',
     id: user?.launchdarklyTrackingId ?? '',
     team: user?.launchdarklyTrackingTeam ?? [],
@@ -129,13 +133,10 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
           clientSideId: props.ldClientSideId ?? ldClientSideIdProduction,
         },
         flags,
-        user: {
-          key: props.user?.id,
-          custom: getUserCustomFieldsForLaunchDarklyAdapter(
-            props.user,
-            props.projectKey
-          ),
-        },
+        context: getUserContextForLaunchDarklyAdapter(
+          props.user,
+          props.projectKey
+        ),
       },
       http: {
         user: {
