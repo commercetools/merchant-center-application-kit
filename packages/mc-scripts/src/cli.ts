@@ -60,9 +60,8 @@ async function run() {
         console.log('');
       }
 
-      console.log({ shouldUseExperimentalBundler });
       const startCommand = shouldUseExperimentalBundler
-        ? await import('./commands/start-custom-view')
+        ? await import('./commands/start-vite')
         : await import('./commands/start');
       await startCommand.default();
     });
