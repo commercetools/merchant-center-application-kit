@@ -195,6 +195,7 @@ function isSafari() {
 }
 
 const MenuGroup = (props: MenuGroupProps) => {
+  // Fix for Navbar's z-index in Safari
   const menuGroupRef = useRef<HTMLUListElement>(null);
   useLayoutEffect(() => {
     if (isSafari() && menuGroupRef.current) {
@@ -287,6 +288,7 @@ const menuItemLinkDefaultProps: Pick<MenuItemLinkProps, 'exactMatch'> = {
   exactMatch: false,
 };
 const MenuItemLink = (props: MenuItemLinkProps) => {
+  // Fix for Navbar's z-index in Safari
   const menuItemLinkRef = useRef<HTMLAnchorElement>(null);
   useLayoutEffect(() => {
     if (isSafari() && menuItemLinkRef.current) {
