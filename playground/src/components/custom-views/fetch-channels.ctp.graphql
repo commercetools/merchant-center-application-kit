@@ -1,8 +1,4 @@
-query FetchChannelsQuery(
-  $limit: Int
-  $offset: Int
-  $locale: String
-) {
+query FetchChannelsQuery($limit: Int, $offset: Int, $locale: Locale) {
   channels(limit: $limit, offset: $offset) {
     total
     results {

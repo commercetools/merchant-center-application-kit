@@ -10,7 +10,7 @@ const config = {
   cloudIdentifier: '${env:CLOUD_IDENTIFIER}',
   mcApiUrl: '${env:MC_API_URL}',
   oAuthScopes: {
-    view: ['view_orders', 'view_states'],
+    view: ['view_orders', 'view_states', 'view_products'],
     manage: [],
   },
   env: {

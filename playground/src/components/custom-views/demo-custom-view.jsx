@@ -33,7 +33,7 @@ function ChannelsCustomView() {
 
   const { data, error, loading } = useMcQuery(FetchChannelsQuery, {
     variables: {
-      limit: 10,
+      limit: 50,
       offset: 0,
       locale,
     },
