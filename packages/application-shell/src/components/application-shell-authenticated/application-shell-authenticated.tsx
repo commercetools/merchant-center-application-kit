@@ -96,7 +96,6 @@ export const MainContainer = styled.main<MainContainerProps>`
   min-width: 0;
   overflow-x: hidden;
   overflow-y: scroll;
-  z-index: -1;
 
   /*
     layout the children. There will always be the page and side notification

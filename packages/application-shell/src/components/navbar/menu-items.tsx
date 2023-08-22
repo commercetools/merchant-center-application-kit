@@ -4,6 +4,8 @@ import {
   MouseEventHandler,
   ReactNode,
   SyntheticEvent,
+  useRef,
+  useLayoutEffect,
 } from 'react';
 import { Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -177,7 +179,29 @@ type MenuGroupProps = {
   hasSubmenu?: boolean;
   children?: ReactNode;
 };
+
+function agentHas(keyword: string) {
+  return navigator.userAgent.toLowerCase().search(keyword.toLowerCase()) > -1;
+}
+
+function isSafari() {
+  return (
+    // @ts-ignore
+    (!!window.ApplePaySetupFeature || !!window.safari) &&
+    agentHas('Safari') &&
+    !agentHas('Chrome') &&
+    !agentHas('CriOS')
+  );
+}
+
 const MenuGroup = (props: MenuGroupProps) => {
+  const menuGroupRef = useRef<HTMLUListElement>(null);
+  useLayoutEffect(() => {
+    if (isSafari() && menuGroupRef.current) {
+      // @ts-ignore
+      menuGroupRef.current.style.zIndex = 'unset';
+    }
+  });
   if (
     props.isExpanded &&
     ((props.level === 2 && !props.hasSubmenu) ||
@@ -216,6 +240,7 @@ const MenuGroup = (props: MenuGroupProps) => {
           [styles.sublist__inactive]: !isSublistActiveWhileIsMenuCollapsed,
         }
       )}
+      ref={menuGroupRef}
     >
       {props.children}
     </ul>
@@ -262,6 +287,16 @@ const menuItemLinkDefaultProps: Pick<MenuItemLinkProps, 'exactMatch'> = {
   exactMatch: false,
 };
 const MenuItemLink = (props: MenuItemLinkProps) => {
+  const menuItemLinkRef = useRef<HTMLAnchorElement>(null);
+  useLayoutEffect(() => {
+    if (isSafari() && menuItemLinkRef.current) {
+      const title = menuItemLinkRef.current.querySelector(`.${styles.title}`);
+      if (title) {
+        // @ts-ignore
+        title.style.zIndex = '1';
+      }
+    }
+  });
   const redirectTo = (targetUrl: string) => location.replace(targetUrl);
   if (props.linkTo) {
     return (
@@ -279,6 +314,7 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
             props.onClick(event);
           }
         }}
+        ref={menuItemLinkRef}
       >
         {props.children}
       </NavLink>
