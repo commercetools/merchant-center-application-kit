@@ -1,5 +1,6 @@
 import * as Sentry from '@sentry/react';
-import { BrowserTracing } from '@sentry/tracing'; // Must import after `@sentry/react`
+// eslint-disable-next-line import/order
+import { BrowserTracing } from '@sentry/browser'; // Must import after `@sentry/react`
 import type { Extra, Extras, Event } from '@sentry/types';
 import history from '@commercetools-frontend/browser-history';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
