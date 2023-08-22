@@ -452,6 +452,12 @@
   */
 }
 
+.scrollable-menu-new {
+  flex: 1 1 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 .fixed-menu {
   flex: 0 0 0;
   position: relative;

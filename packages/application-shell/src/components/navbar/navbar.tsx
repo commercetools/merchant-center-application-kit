@@ -1,4 +1,11 @@
-import { MouseEventHandler, useEffect, useMemo, useState, useRef } from 'react';
+import {
+  MouseEventHandler,
+  useEffect,
+  useMemo,
+  useState,
+  useRef,
+  SyntheticEvent,
+} from 'react';
 import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { matchPath, useLocation } from 'react-router-dom';
@@ -240,7 +247,6 @@ type TNavbarProps = {
   isLoading: boolean;
   isNewNavigationEnabled: boolean;
   isNewNavigationEnabledEvaluationReady: boolean;
-  scrollTop: number;
 };
 const NavBar = (props: TNavbarProps) => {
   const {
@@ -260,6 +266,13 @@ const NavBar = (props: TNavbarProps) => {
     props.environment.useFullRedirectsForLinks
   );
   const location = useLocation();
+
+  const [scrollTop, setScrollTop] = useState(0);
+
+  // we need this scroll position to set the correct height of the submenu
+  const handleScroll = (event: SyntheticEvent) => {
+    setScrollTop(event.currentTarget.scrollTop);
+  };
 
   const projectPermissions: TProjectPermissions = useMemo(
     () => ({
@@ -308,7 +321,13 @@ const NavBar = (props: TNavbarProps) => {
     >
       {props.isNewNavigationEnabled && <div>Navigation header</div>}
       <MenuGroup id="main" level={1}>
-        <div className={styles['scrollable-menu']}>
+        <div
+          className={classnames(
+            { [styles['scrollable-menu']]: !props.isNewNavigationEnabled },
+            { [styles['scrollable-menu-new']]: props.isNewNavigationEnabled }
+          )}
+          onScroll={handleScroll}
+        >
           {allInternalApplicationsNavbarMenu.map((menu) => {
             const menuType = 'scrollable';
             const itemIndex = `${menuType}-${menu.key}`;
@@ -327,7 +346,7 @@ const NavBar = (props: TNavbarProps) => {
                 projectKey={props.projectKey}
                 useFullRedirectsForLinks={useFullRedirectsForLinks}
                 onMenuItemClick={props.onMenuItemClick}
-                scrollTop={props.scrollTop}
+                scrollTop={scrollTop}
                 isNewNavigationEnabled={props.isNewNavigationEnabled}
               />
             );
@@ -351,7 +370,7 @@ const NavBar = (props: TNavbarProps) => {
                 projectKey={props.projectKey}
                 useFullRedirectsForLinks={useFullRedirectsForLinks}
                 onMenuItemClick={props.onMenuItemClick}
-                scrollTop={props.scrollTop}
+                scrollTop={scrollTop}
                 isNewNavigationEnabled={props.isNewNavigationEnabled}
               />
             );
