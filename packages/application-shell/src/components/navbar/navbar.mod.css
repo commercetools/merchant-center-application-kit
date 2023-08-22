@@ -116,13 +116,14 @@
 }
 
 .expander-new {
-  height: var(--expander-height);
   display: flex;
   align-items: center;
   justify-content: center;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   /* TODO: add design token here */
-  background-color: #009987;
+  background: linear-gradient(180deg, #009987 0%, #004d44 100%);
+  height: 72px;
+  padding: 16px 12px;
 }
 
 .expand-icon {
@@ -134,6 +135,20 @@
   justify-content: center;
   transform: translateX(0) rotateZ(0deg);
   width: var(--icon-size);
+}
+
+.expand-icon-new {
+  height: 40px;
+  width: 40px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.expand-icon-new:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .item--bottom {

@@ -25,6 +25,7 @@ import {
   ArrowRightIcon,
   BackIcon,
   SidebarExpandIcon,
+  SidebarCollapseIcon,
 } from '@commercetools-uikit/icons';
 import InlineSvg from '@commercetools-uikit/icons/inline-svg';
 import type {
@@ -135,7 +136,10 @@ const MenuExpander = (props: MenuExpanderProps) => {
     >
       <div
         onClick={props.onClick}
-        className={styles['expand-icon']}
+        className={classnames({
+          [styles['expand-icon']]: !props.isNewNavigationEnabled,
+          [styles['expand-icon-new']]: props.isNewNavigationEnabled,
+        })}
         data-testid="menu-expander"
       >
         {/*
@@ -143,7 +147,11 @@ const MenuExpander = (props: MenuExpanderProps) => {
           https://github.com/commercetools/merchant-center-frontend/issues/2216
         */}
         {props.isNewNavigationEnabled ? (
-          <SidebarExpandIcon color="surface" size="big" />
+          props.isMenuOpen ? (
+            <SidebarCollapseIcon color="surface" size="big" />
+          ) : (
+            <SidebarExpandIcon color="surface" size="big" />
+          )
         ) : (
           <ArrowRightIcon color="surface" size="big" />
         )}
