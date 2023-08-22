@@ -1979,7 +1979,7 @@ importers:
         version: 7.20.13
     devDependencies:
       '@commercetools-frontend/application-config':
-        specifier: 22.6.0
+        specifier: workspace:*
         version: link:../application-config
       '@tsconfig/node16':
         specifier: ^16.0.0
