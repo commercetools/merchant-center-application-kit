@@ -131,13 +131,16 @@ type MenuExpanderProps = {
   isVisible: boolean;
   onClick: MouseEventHandler<HTMLDivElement>;
   isMenuOpen: boolean;
+  isNewNavigationEnabled: boolean;
 };
 const MenuExpander = (props: MenuExpanderProps) => {
   return (
     <li
       key="expander"
-      className={classnames(styles['list-item'], styles.expander, {
+      className={classnames(styles['list-item'], {
         [styles.hidden]: !props.isVisible,
+        [styles['expander-new']]: props.isNewNavigationEnabled,
+        [styles.expander]: !props.isNewNavigationEnabled,
       })}
     >
       <div
@@ -156,17 +159,21 @@ const MenuExpander = (props: MenuExpanderProps) => {
 };
 MenuExpander.displayName = 'MenuExpander';
 
-const Faded = styled.div`
+type FadedProps = {
+  isNewNavigationEnabled: boolean;
+};
+
+const Faded = styled.div<FadedProps>`
   position: absolute;
   top: -32px;
   height: 32px;
   width: 100%;
-  background: linear-gradient(
-    0deg,
-    ${appkitDesignTokens.backgroundColorForNavbar} 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
   z-index: 1;
+
+  background: ${(props) =>
+    props.isNewNavigationEnabled
+      ? 'linear-gradient(180deg, rgba(0, 153, 135, 0.00) 0%, #009987 100%)'
+      : `linear-gradient(0deg, ${appkitDesignTokens.backgroundColorForNavbar} 0%, rgba(0, 0, 0, 0) 100%)`};
 `;
 
 type MenuGroupProps = {

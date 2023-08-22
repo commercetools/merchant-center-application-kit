@@ -3,7 +3,6 @@ import {
   type RefObject,
   type SyntheticEvent,
   useRef,
-  useState,
 } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -120,13 +119,6 @@ export const MainContainer = styled.main<MainContainerProps>`
 export const ApplicationShellAuthenticated = (
   props: TApplicationShellAuthenticationProps
 ) => {
-  const [scrollTop, setScrollTop] = useState(0);
-
-  // we need this scroll position to set the correct height of the submenu
-  const handleScroll = (event: SyntheticEvent) => {
-    setScrollTop(event.currentTarget.scrollTop);
-  };
-
   const applicationEnvironment = useApplicationContext(
     (context) => context.environment
   ) as TApplicationContext<{}>['environment'];
@@ -341,7 +333,6 @@ export const ApplicationShellAuthenticated = (
                                     grid-row: 2/4;
                                     overflow: hidden auto;`}
                                 `}
-                                onScroll={handleScroll}
                               >
                                 {(() => {
                                   // The <NavBar> should only be rendered within a project
@@ -395,7 +386,6 @@ export const ApplicationShellAuthenticated = (
                                               isNewNavigationEnabledEvaluationReady={
                                                 isNewNavigationEnabledEvaluationReady
                                               }
-                                              scrollTop={scrollTop}
                                             />
                                           </ApplicationContextProvider>
                                         );

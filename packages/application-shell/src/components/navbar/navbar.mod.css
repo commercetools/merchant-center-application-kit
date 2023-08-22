@@ -115,6 +115,16 @@
   background-color: var(--background-color-for-navbar);
 }
 
+.expander-new {
+  height: var(--expander-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  /* TODO: add design token here */
+  background-color: #009987;
+}
+
 .expand-icon {
   align-items: center;
   border-radius: 32px;
@@ -450,6 +460,13 @@
     FIXME: Make the navbar scrollable in collapsed state.
     NOTE: do not use `overflow-x: hidden; overflow-y: auto;` as this prevents submenus from showing up on hover 
   */
+}
+
+.scrollable-menu-new {
+  flex: 1 1 0;
+  /* padding-bottom: var(--faded-height); */
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .fixed-menu {
