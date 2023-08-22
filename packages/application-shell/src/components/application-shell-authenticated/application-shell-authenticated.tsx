@@ -331,7 +331,7 @@ export const ApplicationShellAuthenticated = (
                                   ${isNewNavigationEnabled === true &&
                                   `grid-column: 1/2;
                                     grid-row: 2/4;
-                                    overflow: hidden auto;`}
+                                    overflow: hidden;`}
                                 `}
                               >
                                 {(() => {
