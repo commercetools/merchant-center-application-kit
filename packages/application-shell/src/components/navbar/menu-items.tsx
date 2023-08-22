@@ -21,7 +21,11 @@ import type {
 import MissingImageSvg from '@commercetools-frontend/assets/images/diagonal-line.svg';
 import { NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
-import { ArrowRightIcon, BackIcon } from '@commercetools-uikit/icons';
+import {
+  ArrowRightIcon,
+  BackIcon,
+  SidebarExpandIcon,
+} from '@commercetools-uikit/icons';
 import InlineSvg from '@commercetools-uikit/icons/inline-svg';
 import type {
   TDataFence,
@@ -39,20 +43,6 @@ type TProjectPermissions = {
   actionRights: TNormalizedActionRights | null;
   dataFences: TNormalizedDataFences | null;
 };
-
-/*
-<DataMenu data={[]}>
-  <MenuGroup>
-    <MenuItem>
-      <MenuItemLink linkTo="/foo">(icon) Products</MenuItemLink>
-      <MenuGroup>
-        <MenuItemLink linkTo="/foo/new">Add product</MenuItemLink>
-      </MenuGroup>
-    </MenuItem>
-  </MenuGroup>
-  <MenuExpander/>
-</DataMenu>
-*/
 
 const HeartIcon = lazy(() => import('./legacy-icons/heart'));
 const PaperclipIcon = lazy(() => import('./legacy-icons/paperclip'));
@@ -152,7 +142,11 @@ const MenuExpander = (props: MenuExpanderProps) => {
           FIXME: define hover effect.
           https://github.com/commercetools/merchant-center-frontend/issues/2216
         */}
-        <ArrowRightIcon color="surface" size="big" />
+        {props.isNewNavigationEnabled ? (
+          <SidebarExpandIcon color="surface" size="big" />
+        ) : (
+          <ArrowRightIcon color="surface" size="big" />
+        )}
       </div>
     </li>
   );
