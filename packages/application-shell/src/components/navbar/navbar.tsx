@@ -95,7 +95,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
     if (elementRef.current != null) {
       setTopPosition(elementRef.current.offsetTop);
     }
-  }, [elementRef.current]);
+  }, []);
 
   const isMainMenuRouteActive = Boolean(
     matchPath(props.location.pathname, {
