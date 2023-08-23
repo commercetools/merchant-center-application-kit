@@ -455,7 +455,11 @@
 .scrollable-menu-new {
   flex: 1 1 0;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
+}
+
+.scrollable-menu-new::-webkit-scrollbar {
+  display: none;
 }
 
 .fixed-menu {
