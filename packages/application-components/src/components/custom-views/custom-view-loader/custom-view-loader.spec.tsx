@@ -141,7 +141,7 @@ describe('CustomViewLoader', () => {
       <CustomViewLoader customView={TEST_CUSTOM_VIEW} onClose={onCloseMock} />
     );
 
-    const closeButton = screen.getByLabelText('Close icon');
+    const closeButton = screen.getByLabelText('Close Modal Page');
     fireEvent.click(closeButton);
 
     await waitFor(() => expect(onCloseMock).toHaveBeenCalled());

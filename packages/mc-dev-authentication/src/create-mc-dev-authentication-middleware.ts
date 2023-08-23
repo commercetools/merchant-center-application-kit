@@ -1,8 +1,9 @@
-import type { Request, Response, NextFunction } from 'express';
+import type { ServerResponse } from 'node:http';
+import type { IncomingMessage, NextFunction } from 'connect';
+// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import pages from /* preval */ './pages';
 import { logout } from './routes';
 import type { TCustomApplicationRuntimeConfig } from './types';
-// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 
 const trimTrailingSlash = (value: string) => value.replace(/\/$/, '');
 
@@ -19,11 +20,15 @@ function createMcDevAuthenticationMiddleware(
     String(applicationConfig.env.disableAuthRoutesOfDevServer) === 'true' ||
     applicationConfig.env.servedByProxy;
 
-  return (request: Request, response: Response, next: NextFunction) => {
+  return (
+    request: IncomingMessage,
+    response: ServerResponse,
+    next: NextFunction
+  ) => {
     if (request.originalUrl === '/api/graphql') {
       response.statusCode = 404;
       response.setHeader('Content-Type', 'application/json');
-      response.send(
+      response.end(
         JSON.stringify({
           message: `This GraphQL endpoint is only available in production in the [Merchant Center Proxy Router](https://docs.commercetools.com/custom-applications/concepts/merchant-center-proxy-router). Please check that you are not calling this endpoint in development mode.`,
         })
@@ -38,11 +43,11 @@ function createMcDevAuthenticationMiddleware(
           'http://localhost'
         )
       ) {
-        if (request.originalUrl.startsWith('/login/authorize')) {
+        if (request.originalUrl?.startsWith('/login/authorize')) {
           if (isDevAuthenticationMiddlewareDisabled) {
             next();
           } else {
-            response.send(htmlLogin);
+            response.end(htmlLogin);
           }
           return;
         }
@@ -52,7 +57,7 @@ function createMcDevAuthenticationMiddleware(
         if (isDevAuthenticationMiddlewareDisabled) {
           next();
         } else {
-          response.send(htmlLogin);
+          response.end(htmlLogin);
         }
         return;
       }
@@ -62,7 +67,7 @@ function createMcDevAuthenticationMiddleware(
         if (isDevAuthenticationMiddlewareDisabled) {
           next();
         } else {
-          response.send(htmlLogout);
+          response.end(htmlLogout);
         }
         return;
       }

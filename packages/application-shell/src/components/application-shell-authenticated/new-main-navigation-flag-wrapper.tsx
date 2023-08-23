@@ -1,5 +1,6 @@
 // TODO: Remove this file once the new navigation is enabled for all users
-import { useFeatureToggle } from '@flopflip/react-broadcast';
+import { useFeatureToggle, useAdapterStatus } from '@flopflip/react-broadcast';
+import { adapterIdentifiers } from '@flopflip/types';
 import { MAIN_NAVIGATION } from '../../feature-toggles';
 
 type TNewMainNavigationFlagWrapperChildrenProps = {
@@ -14,10 +15,9 @@ const NewMainNavigationFlagWrapper = (props: {
   }: TNewMainNavigationFlagWrapperChildrenProps) => JSX.Element;
 }) => {
   const isNewNavigationEnabled = useFeatureToggle(MAIN_NAVIGATION);
-  // TODO: A temporary workaround for a glitch in computing the aggregated adapter status within useAdapterStatus
-  const isReady =
-    // @ts-ignore
-    window?.__flopflip__?.launchdarkly?.getIsConfigurationStatus?.(2);
+  const { isReady } = useAdapterStatus({
+    adapterIdentifiers: [adapterIdentifiers.launchdarkly],
+  });
 
   return props.children({
     isNewNavigationEnabled,
