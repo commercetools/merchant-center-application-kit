@@ -194,12 +194,13 @@ const MenuGroup = (props: MenuGroupProps) => {
     props.level === 2 && props.isActive && !props.isExpanded;
   return (
     <ul
-      style={{
-        top: props.isNewNavigationEnabled
-          ? // calculating the submenu position based on the parent's top position and the scroll position
-            `calc(${props.topPosition}px - ${props.scrollTop}px)`
-          : undefined,
-      }}
+      css={
+        props.isNewNavigationEnabled &&
+        css`
+          // calculating the submenu position based on the parent's top position and the scroll position
+          top: calc(${props.topPosition}px - ${props.scrollTop}px);
+        `
+      }
       id={`group-${props.id}`}
       data-testid={`group-${props.id}`}
       role="menu"
