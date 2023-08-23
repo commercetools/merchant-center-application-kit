@@ -37,6 +37,7 @@ describe('Formatters demo', () => {
     ${'es'}    | ${'15/07/2022 9:15'}    | ${'10.362,50 €'}
     ${'es-MX'} | ${'15/07/2022 9:15'}    | ${'EUR 10,362.50'}
     ${'fr-FR'} | ${'15/07/2022 09:15'}   | ${'10 362,50 €'}
+    ${'pt-BR'} | ${'15/07/2022 09:15'}   | ${'10 362,50 €'}
   `(
     'should render examples based on different locales (%s)',
     async ({ locale, expectedDate, expectedMoney }) => {

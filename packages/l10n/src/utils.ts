@@ -1,20 +1,21 @@
+import { SUPPORTED_LOCALES } from '@commercetools-frontend/constants';
 import type { Currencies, LocalizedString } from './types';
 
 export const mapLocaleToIntlLocale = (locale: string) => {
   if (locale.startsWith('de')) return 'de';
   if (locale.startsWith('es')) return 'es';
   if (locale.startsWith('fr')) return 'fr-FR';
+  if (locale === 'pt-BR') return 'pt-BR';
   if (locale === 'zh-CN') return 'zh-CN';
   return 'en';
 };
 
-const supportedLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN'];
 const defaultLocale = 'en';
 
 // Given a locale, return the locale only if it's supported.
 // If not, return a default locale.
 export function getSupportedLocale(locale: string) {
-  const isSupported = supportedLocales.find((supportedLocale) =>
+  const isSupported = SUPPORTED_LOCALES.find((supportedLocale) =>
     locale.startsWith(supportedLocale)
   );
   return isSupported ? locale : defaultLocale;

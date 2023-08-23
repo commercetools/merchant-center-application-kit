@@ -1,3 +1,5 @@
+process.env.NODE_ENV = 'production';
+
 /* eslint-disable no-console */
 const fs = require('fs');
 const path = require('path');
@@ -9,6 +11,7 @@ const isEqual = require('lodash/isEqual');
 const moment = require('moment-timezone');
 const fetch = require('node-fetch');
 const prettier = require('prettier');
+const { SUPPORTED_LOCALES } = require('@commercetools-frontend/constants');
 const parseUnhandledTimeZones = require('./parse-unhandled-time-zones');
 
 const prettierConfig = prettier.resolveConfig.sync();
@@ -19,8 +22,6 @@ const L10N_KEYS = {
   TIMEZONE: 'timezone',
   LANGUAGE: 'language',
 };
-
-const supportedLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN'];
 
 // This are excluded countries since cldr returns them in its list
 // but our API does not allow them. After some investigation with the
@@ -247,6 +248,7 @@ const mapDiffToWarnings = (oldData, newData) => {
   if (!diff) return [];
   return diff
     .map((diffEdit) => {
+      console.log(diffEdit);
       switch (diffEdit.kind) {
         case 'E':
           return `The field "${chalk.cyan(
@@ -389,7 +391,7 @@ function writeTranslatedTimeZonesForLocale(
   );
 }
 
-async function updateTimeZoneData(key, supportedLocales) {
+async function updateTimeZoneData(key) {
   const allTimeZoneIds = moment.tz.names();
   const dataFolderPath = path.join(__dirname, '..', DATA_DIR[key].path);
   const sourceDataFilePath = path.join(dataFolderPath, 'core.json');
@@ -442,7 +444,7 @@ async function updateTimeZoneData(key, supportedLocales) {
       ensureDirectoryExists(dataFolderPath);
       const translationFilePaths = [
         sourceDataFilePath,
-        ...supportedLocales.map((locale) =>
+        ...SUPPORTED_LOCALES.map((locale) =>
           path.join(dataFolderPath, `${locale}.json`)
         ),
       ];
@@ -478,9 +480,9 @@ async function updateTimeZoneData(key, supportedLocales) {
   }
 }
 
-const updateLocaleData = async (key, locales) => {
+const updateLocaleData = async (key) => {
   const results = await Promise.all(
-    locales.map(async (locale) => {
+    SUPPORTED_LOCALES.map(async (locale) => {
       const cldrLocale = mapLocaleToCldrLocale(locale);
       const newLocaleData = await DATA_DIR[key].transform(cldrLocale);
       const targetFolder = path.join(__dirname, '..', DATA_DIR[key].path);
@@ -504,7 +506,7 @@ const updateLocaleData = async (key, locales) => {
     })
   );
 
-  console.log(`[${key}] Updated ${locales.length} locales`);
+  console.log(`[${key}] Updated ${SUPPORTED_LOCALES.length} locales`);
   results.forEach((r) => {
     if (r.warnings.length > 0) {
       console.log(
@@ -515,18 +517,19 @@ const updateLocaleData = async (key, locales) => {
       console.log(r.warnings.join('\n'));
     }
   });
+  console.log('\n\n');
   return Promise.resolve();
 };
 
 const run = async (key) => {
-  await updateLocaleData(key, supportedLocales);
+  await updateLocaleData(key);
 };
 
 Promise.all(
   [L10N_KEYS.COUNTRY, L10N_KEYS.CURRENCY, L10N_KEYS.LANGUAGE].map(run)
 )
   .then(async () => {
-    await updateTimeZoneData(L10N_KEYS.TIMEZONE, supportedLocales);
+    await updateTimeZoneData(L10N_KEYS.TIMEZONE);
   })
   .then(() => {
     console.log('Data generated!');

@@ -1913,6 +1913,9 @@ importers:
       '@babel/runtime-corejs3':
         specifier: ^7.20.13
         version: 7.20.13
+      '@commercetools-frontend/constants':
+        specifier: 22.6.0
+        version: link:../constants
       '@commercetools-frontend/sentry':
         specifier: 22.6.0
         version: link:../sentry

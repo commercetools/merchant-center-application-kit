@@ -23,6 +23,7 @@
   "dependencies": {
     "@babel/runtime": "^7.20.13",
     "@babel/runtime-corejs3": "^7.20.13",
+    "@commercetools-frontend/constants": "22.6.0",
     "@commercetools-frontend/sentry": "22.6.0",
     "@emotion/react": "11.11.0",
     "@types/lodash": "^4.14.191",

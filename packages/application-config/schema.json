@@ -209,7 +209,7 @@
             "properties": {
               "locale": {
                 "type": "string",
-                "enum": ["en", "de", "es", "fr-FR", "zh-CN", "ja"]
+                "enum": ["en", "de", "es", "fr-FR", "pt-BR", "zh-CN"]
               },
               "value": {
                 "type": "string"
@@ -255,7 +255,7 @@
               "properties": {
                 "locale": {
                   "type": "string",
-                  "enum": ["en", "de", "es", "fr-FR", "zh-CN", "ja"]
+                  "enum": ["en", "de", "es", "fr-FR", "pt-BR", "zh-CN"]
                 },
                 "value": {
                   "type": "string"

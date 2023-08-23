@@ -22,6 +22,10 @@ const getImportChunk = (locale: string): Promise<ImportData> => {
       return import(
         /* webpackChunkName: "currency-data-fr-FR" */ '../data/currencies/fr-FR.json'
       );
+    case 'pt-BR':
+      return import(
+        /* webpackChunkName: "currency-data-pt-BR" */ '../data/currencies/pt-BR.json'
+      );
     case 'zh-CN':
       return import(
         /* webpackChunkName: "currency-data-zh-CN" */ '../data/currencies/zh-CN.json'

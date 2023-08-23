@@ -129,7 +129,7 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
      * See https://docs.commercetools.com/custom-applications/api-reference/application-config#mainmenulinklabelalllocales
      */
     labelAllLocales: {
-      locale: 'en' | 'de' | 'es' | 'fr-FR' | 'zh-CN' | 'ja';
+      locale: 'en' | 'de' | 'es' | 'fr-FR' | 'pt-BR' | 'zh-CN';
       value: string;
     }[];
     /**
@@ -154,7 +154,7 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
      * See https://docs.commercetools.com/custom-applications/api-reference/application-config#submenulinkslabelalllocales
      */
     labelAllLocales: {
-      locale: 'en' | 'de' | 'es' | 'fr-FR' | 'zh-CN' | 'ja';
+      locale: 'en' | 'de' | 'es' | 'fr-FR' | 'pt-BR' | 'zh-CN';
       value: string;
     }[];
     /**

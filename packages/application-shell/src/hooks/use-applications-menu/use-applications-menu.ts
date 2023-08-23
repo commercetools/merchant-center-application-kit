@@ -3,10 +3,11 @@ import { useApolloClient } from '@apollo/client';
 import type { QueryFunctionOptions } from '@apollo/client/react';
 import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import type {
-  ApplicationWindow,
-  ApplicationMenuLinksForDevelopmentConfig,
-  TLocalizedField,
+import {
+  type ApplicationWindow,
+  type ApplicationMenuLinksForDevelopmentConfig,
+  type TLocalizedField,
+  SUPPORTED_LOCALES,
 } from '@commercetools-frontend/constants';
 import { useMcQuery } from '../../hooks/apollo-hooks';
 import type {
@@ -15,8 +16,6 @@ import type {
 } from '../../types/generated/proxy';
 
 import FetchApplicationsMenu from './fetch-applications-menu.proxy.graphql';
-
-const supportedLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN', 'ja'];
 
 export type MenuKey = 'appBar' | 'navBar';
 export type MenuLoaderResult<Key extends MenuKey> = Key extends 'appBar'
@@ -45,7 +44,7 @@ const mapLabelAllLocalesWithDefaults = (
     // Map all supported locales with the given localized labels.
     // If a locale is not defined in the config, we use the `default` label as the value.
     // This is only needed for development as we're trying to map two different schemas.
-    mappedLabelAllLocales = supportedLocales.map((supportedLocale) => {
+    mappedLabelAllLocales = SUPPORTED_LOCALES.map((supportedLocale) => {
       const existingField = labelAllLocales.find(
         (field) => field.locale === supportedLocale
       );
