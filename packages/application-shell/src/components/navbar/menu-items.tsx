@@ -176,8 +176,7 @@ type MenuGroupProps = {
   isExpanded?: boolean;
   hasSubmenu?: boolean;
   children?: ReactNode;
-  topPosition?: number;
-  scrollTop?: number;
+  verticalPosition?: number;
   isNewNavigationEnabled?: boolean;
 };
 const MenuGroup = (props: MenuGroupProps) => {
@@ -197,8 +196,7 @@ const MenuGroup = (props: MenuGroupProps) => {
       css={
         props.isNewNavigationEnabled &&
         css`
-          // calculating the submenu position based on the parent's top position and the scroll position
-          top: calc(${props.topPosition}px - ${props.scrollTop}px);
+          top: ${props.verticalPosition}px;
         `
       }
       id={`group-${props.id}`}

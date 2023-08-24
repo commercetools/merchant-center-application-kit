@@ -92,6 +92,10 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
   const [topPosition, setTopPosition] = useState(0);
   const elementRef = useRef<HTMLDivElement>(null);
 
+  // We need to calculate the vertical position of the menu item to be able to
+  // position the submenu correctly.
+  const verticalPosition = topPosition - props.scrollTop;
+
   useEffect(() => {
     if (elementRef.current != null) {
       setTopPosition(elementRef.current.offsetTop);
@@ -186,8 +190,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
           isActive={props.isActive}
           isExpanded={props.isMenuOpen}
           hasSubmenu={hasSubmenu}
-          topPosition={topPosition}
-          scrollTop={props.scrollTop}
+          verticalPosition={verticalPosition}
           isNewNavigationEnabled={props.isNewNavigationEnabled}
         >
           {hasSubmenu
