@@ -109,5 +109,19 @@ export interface JSONSchemaForCustomViewConfigurationFiles {
      */
     strictTransportSecurity?: ('includeSubDomains' | 'preload')[];
   };
+  /**
+   * See https://docs.commercetools.com/
+   */
+  type: 'CustomPanel';
+  /**
+   * See https://docs.commercetools.com/
+   */
+  typeSettings?: {
+    /**
+     * See https://docs.commercetools.com/
+     */
+    size?: 'SMALL' | 'LARGE';
+    [k: string]: unknown;
+  };
   [k: string]: unknown;
 }

@@ -1,17 +1,10 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { Route, Router, Switch } from 'react-router-dom';
-import {
-  CustomViewLoader,
-  PortalsContainer,
-} from '@commercetools-frontend/application-components';
-import {
-  useApplicationContext,
-  type TApplicationContext,
-} from '@commercetools-frontend/application-shell-connectors';
+import { CustomViewLoader } from '@commercetools-frontend/application-components';
+import { type TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import history from '@commercetools-frontend/browser-history';
 import { type TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import Constraints from '@commercetools-uikit/constraints';
-import { ThemeProvider } from '@commercetools-uikit/design-system';
 import PrimaryButton from '@commercetools-uikit/primary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
@@ -24,7 +17,7 @@ import {
 } from '../../types/generated/settings';
 import ApplicationShell from '../application-shell';
 
-const customView: TCustomView = {
+const defaultCustomViewConfig: TCustomView = {
   createdAt: '',
   defaultLabel: '',
   id: Date.now().toString(),
@@ -48,24 +41,25 @@ const customView: TCustomView = {
   url: '',
 };
 
-const LocalCustomViewLauncher = () => {
+const getCustomViewConfig = (customConfig: Partial<TCustomView>) => ({
+  ...defaultCustomViewConfig,
+  typeSettings: customConfig.typeSettings,
+});
+
+type TLocalCustomViewLauncherProps = {
+  customViewSettings?: TCustomView['typeSettings'];
+};
+
+const LocalCustomViewLauncher = (props: TLocalCustomViewLauncherProps) => {
   const [shouldRenderCustomView, setShouldRenderCustomView] = useState(false);
   const [hostUrl, setHostUrl] = useState('');
-  const context = useApplicationContext();
 
-  console.log({ context });
-
-  useEffect(() => {
-    const loaderElement = document.getElementById('app-loader');
-    if (loaderElement) {
-      loaderElement.remove();
-    }
-  }, []);
+  const customViewConfig = getCustomViewConfig({
+    typeSettings: props.customViewSettings,
+  });
 
   return (
     <main>
-      <ThemeProvider theme="default" />
-      <PortalsContainer />
       <Constraints.Horizontal max={12}>
         <Spacings.Inset scale="xl">
           <Spacings.Stack scale="xl">
@@ -76,13 +70,13 @@ const LocalCustomViewLauncher = () => {
                 <TextField
                   title="Host URL"
                   isRequired
-                  description="Type here the URL of the MC page where you want the extension to run"
+                  description="Type here the URL of the MC page where you want the custom view to be run from"
                   placeholder="/<application_name>/<project_key>/<view_path>"
                   value={hostUrl}
                   onChange={(event) => setHostUrl(event.target.value)}
                 />
                 <PrimaryButton
-                  label="Open the In-app Extension"
+                  label="Open the Custom View"
                   onClick={() => setShouldRenderCustomView(true)}
                 />
               </Spacings.Stack>
@@ -91,7 +85,8 @@ const LocalCustomViewLauncher = () => {
 
           {shouldRenderCustomView && (
             <CustomViewLoader
-              customView={customView}
+              customView={customViewConfig}
+              hostUrl={hostUrl}
               onClose={() => setShouldRenderCustomView(false)}
             />
           )}
@@ -104,6 +99,7 @@ const LocalCustomViewLauncher = () => {
 type TCustomViewDevHost = {
   environment: TApplicationContext<{}>['environment'];
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
+  customViewSettings?: TCustomView['typeSettings'];
   children: ReactNode;
 };
 
@@ -118,7 +114,9 @@ const CustomViewDevHost = (props: TCustomViewDevHost) => {
             environment={props.environment}
             applicationMessages={props.applicationMessages}
           >
-            <LocalCustomViewLauncher />
+            <LocalCustomViewLauncher
+              customViewSettings={props.customViewSettings}
+            />
           </ApplicationShell>
         </Route>
       </Switch>

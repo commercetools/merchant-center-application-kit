@@ -166,6 +166,13 @@ const processConfig = ({
                 },
               }
             : {}),
+          ...(configType === ConfigType.CUSTOM_VIEW
+            ? {
+                customViewType: (configurationData as CustomViewData).type,
+                customViewTypeSettings: (configurationData as CustomViewData)
+                  .typeSettings,
+              }
+            : {}),
           accountLinks: appConfig.accountLinks,
         });
 

@@ -23,6 +23,7 @@ type TCustomViewIframeMessage = {
 
 type TCustomViewLoaderProps = {
   customView: TCustomView;
+  hostUrl?: string;
   onClose: () => void;
 };
 
@@ -92,7 +93,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
         context: {
           dataLocale: appContext.dataLocale,
           customViewConfig: props.customView,
-          hostUrl: window.location.href,
+          hostUrl: props.hostUrl || window.location.href,
           userLocale: appContext.user?.locale,
           projectKey: appContext.project?.key,
         },

@@ -198,6 +198,8 @@ export interface ApplicationWindow extends Window {
     __DEVELOPMENT__?: {
       oidc?: ApplicationOidcForDevelopmentConfig;
       menuLinks?: ApplicationMenuLinksForDevelopmentConfig;
+      customViewType?: string;
+      customViewTypeSettings?: Record<string, unknown>;
     };
   };
 }

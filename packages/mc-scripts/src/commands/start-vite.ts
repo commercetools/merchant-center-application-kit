@@ -14,7 +14,6 @@ async function run() {
   const DEFAULT_PORT = parseInt(String(process.env.HTTP_PORT), 10) || 3001;
 
   // Load the Custom Application config file first.
-  console.log('----> Loading application config...');
   const applicationConfig = processConfig();
 
   // Ensure the `/public` folder exists.

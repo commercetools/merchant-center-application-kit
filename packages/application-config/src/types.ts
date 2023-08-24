@@ -52,6 +52,8 @@ export type CustomViewData = {
   description?: string;
   url: string;
   permissions: CustomApplicationPermissionData[];
+  type: string;
+  typeSettings: Record<string, unknown>;
 };
 
 // The object result after processing the config file

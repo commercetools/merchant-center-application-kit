@@ -183,8 +183,24 @@
         }
       },
       "additionalProperties": false
+    },
+    "type": {
+      "description": "See https://docs.commercetools.com/",
+      "type": "string",
+      "enum": ["CustomPanel"]
+    },
+    "typeSettings": {
+      "description": "See https://docs.commercetools.com/",
+      "type": "object",
+      "properties": {
+        "size": {
+          "description": "See https://docs.commercetools.com/",
+          "type": "string",
+          "enum": ["SMALL", "LARGE"]
+        }
+      }
     }
   },
   "additionalProperties": true,
-  "required": ["name", "cloudIdentifier", "env", "oAuthScopes"]
+  "required": ["name", "cloudIdentifier", "env", "oAuthScopes", "type"]
 }
