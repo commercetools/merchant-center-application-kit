@@ -47,6 +47,7 @@ const trimTrailingSlash = (value: string) => value.replace(/\/$/, '');
 const omitDevConfigIfEmpty = (
   devConfig: ApplicationRuntimeConfig['env']['__DEVELOPMENT__']
 ) => {
+  // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
   if (devConfig?.accountLinks || devConfig?.menuLinks || devConfig?.oidc)
     return devConfig;
   return undefined;
@@ -173,6 +174,7 @@ const processConfig = ({
                   .typeSettings,
               }
             : {}),
+          // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
           accountLinks: appConfig.accountLinks,
         });
 

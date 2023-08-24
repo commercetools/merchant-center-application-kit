@@ -29,7 +29,7 @@ const getMcUrlLink = (
 
 async function run(options: TCliCommandConfigSyncOptions) {
   const applicationConfig = processConfig();
-  const { data: localCustomAppData } = applicationConfig;
+  const localCustomAppData = applicationConfig.data as CustomApplicationData;
   const { mcApiUrl, applicationId, entryPointUriPath } = applicationConfig.env;
   const applicationIdentifier = `${applicationId}:${entryPointUriPath}`;
 
