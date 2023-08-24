@@ -409,6 +409,7 @@
   text-align: left;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   background-color: var(--background-color-for-navbar-when-active);
+  /* TODO: add design tokens instead hard-coded values */
   min-height: 50px;
   width: 253px;
   border-radius: 8px;
