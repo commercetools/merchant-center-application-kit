@@ -59,8 +59,8 @@ const Channels = () => {
         <Text.Headline as="h2" intlMessage={messages.title} />
         <Text.Subheadline as="h4">
           {intl.formatMessage(messages.subtitle, {
-            firstName: customViewContext.user.firstName,
-            lastName: customViewContext.user.lastName,
+            firstName: customViewContext.user?.firstName,
+            lastName: customViewContext.user?.lastName,
           })}
         </Text.Subheadline>
       </Spacings.Stack>
