@@ -67,12 +67,14 @@ const LocalCustomViewLauncher = (props: TLocalCustomViewLauncherProps) => {
             <Text.Headline as="h1">Custom View loader</Text.Headline>
 
             <Spacings.Stack scale="l">
-              <Text.Body>
-                This page simulates the Merchant Center context so you can run
-                your Custom View locally.
-                <br />
-                Based on your <i>custom-view-config</i> file, these are the
-                settings that will be used:
+              <Spacings.Stack scale="m">
+                <Text.Body>
+                  This page simulates the Merchant Center context so you can run
+                  your Custom View locally.
+                  <br />
+                  Based on your <i>custom-view-config</i> file, these are the
+                  settings that will be used:
+                </Text.Body>
                 <ul>
                   <li>
                     Custom View type: <b>{customViewConfig.type}</b>
@@ -82,7 +84,7 @@ const LocalCustomViewLauncher = (props: TLocalCustomViewLauncherProps) => {
                     <b>{customViewConfig.typeSettings?.size}</b>
                   </li>
                 </ul>
-              </Text.Body>
+              </Spacings.Stack>
               <Constraints.Horizontal max={10}>
                 <Spacings.Stack scale="l">
                   <TextField
@@ -124,7 +126,9 @@ const CustomViewDevHost = (props: TCustomViewDevHost) => {
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/:projectKey/custom-view/:id">{props.children}</Route>
+        <Route path="/custom-views/:id/projects/:projectKey">
+          {props.children}
+        </Route>
 
         <Route>
           <ApplicationShell

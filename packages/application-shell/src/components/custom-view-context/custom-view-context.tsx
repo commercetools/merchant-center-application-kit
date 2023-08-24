@@ -6,15 +6,18 @@ import {
 } from '../../types/generated/settings';
 
 type TCustomViewContext = {
+  hostUrl: string;
   config: TCustomView;
 };
 
 type TCustomViewContextProviderProps = {
-  config: TCustomView;
+  hostUrl: string;
+  customViewConfig: TCustomView;
   children: ReactNode;
 };
 
 const CustomViewContext = createContext<TCustomViewContext>({
+  hostUrl: '',
   config: {
     id: '',
     defaultLabel: '',
@@ -41,8 +44,11 @@ export const CustomViewContextProvider = (
   props: TCustomViewContextProviderProps
 ) => {
   const contextValue = useMemo<TCustomViewContext>(
-    () => ({ config: props.config }),
-    [props.config]
+    () => ({
+      hostUrl: props.hostUrl,
+      config: props.customViewConfig,
+    }),
+    [props.hostUrl, props.customViewConfig]
   );
   return (
     <CustomViewContext.Provider value={contextValue}>

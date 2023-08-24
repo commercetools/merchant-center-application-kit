@@ -171,7 +171,10 @@ function CustomViewShell(props: TCustomViewShellProps) {
               messages={props.messages}
               projectKey={hostContext.projectKey}
             >
-              <CustomViewContextProvider config={hostContext.customViewConfig}>
+              <CustomViewContextProvider
+                customViewConfig={hostContext.customViewConfig}
+                hostUrl={hostContext.hostUrl}
+              >
                 {props.children}
               </CustomViewContextProvider>
             </CustomViewAuthenticatedShell>
