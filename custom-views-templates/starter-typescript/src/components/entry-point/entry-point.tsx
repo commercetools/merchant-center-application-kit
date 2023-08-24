@@ -22,10 +22,11 @@ const AsyncApplicationRoutes = lazy(
 // in order to catch possible errors on rendering/mounting.
 setupGlobalErrorListener();
 
+const customViewId = window.app.customViewId || Date.now().toString();
 const environment = {
   ...window.app,
-  customViewId: window.app.customViewId || Date.now().toString(),
-  entryPointUriPath: window.app.customViewId || Date.now().toString(),
+  customViewId,
+  entryPointUriPath: customViewId,
 };
 
 type TCustomViewMainProps = {
@@ -45,9 +46,6 @@ const EntryPoint = () => {
       <CustomViewDevHost
         environment={environment}
         applicationMessages={loadMessages}
-        customViewSettings={{
-          size: TCustomViewSize.Large,
-        }}
       >
         <CustomViewMain
           customViewId={environment.customViewId}

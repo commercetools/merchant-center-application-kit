@@ -1,4 +1,5 @@
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { useIntl } from 'react-intl';
+import { useCustomViewContext } from '@commercetools-frontend/application-shell';
 import { NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
 import {
   usePaginationState,
@@ -26,12 +27,10 @@ const columns = [
 ];
 
 const Channels = () => {
+  const intl = useIntl();
+  const customViewContext = useCustomViewContext();
   const { page, perPage } = usePaginationState();
   const tableSorting = useDataTableSortingState({ key: 'key', order: 'asc' });
-  const { dataLocale, projectLanguages } = useApplicationContext((context) => ({
-    dataLocale: context.dataLocale,
-    projectLanguages: context.project?.languages,
-  }));
   const { channelsPaginatedResult, error, loading } = useChannelsFetcher({
     page,
     perPage,
@@ -46,10 +45,24 @@ const Channels = () => {
     );
   }
 
+  if (!loading && channelsPaginatedResult?.total! < 1) {
+    return (
+      <ContentNotification type="info">
+        <Text.Body intlMessage={messages.noResults} />
+      </ContentNotification>
+    );
+  }
+
   return (
     <Spacings.Stack scale="xl">
-      <Spacings.Stack scale="xs">
+      <Spacings.Stack scale="s">
         <Text.Headline as="h2" intlMessage={messages.title} />
+        <Text.Subheadline as="h4">
+          {intl.formatMessage(messages.subtitle, {
+            firstName: customViewContext.user.firstName,
+            lastName: customViewContext.user.lastName,
+          })}
+        </Text.Subheadline>
       </Spacings.Stack>
 
       <Constraints.Horizontal max={13}>
@@ -79,8 +92,8 @@ const Channels = () => {
                     },
                     {
                       key: 'name',
-                      locale: dataLocale,
-                      fallbackOrder: projectLanguages,
+                      locale: customViewContext.dataLocale,
+                      fallbackOrder: customViewContext.project?.languages,
                       fallback: NO_VALUE_FALLBACK,
                     }
                   );

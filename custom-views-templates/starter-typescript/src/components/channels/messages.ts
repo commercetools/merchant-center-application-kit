@@ -5,6 +5,10 @@ export default defineMessages({
     id: 'Channels.title',
     defaultMessage: 'Channels list',
   },
+  subtitle: {
+    id: 'Channels.subtitle',
+    defaultMessage: 'Logged-id user: {firstName} {lastName}',
+  },
   demoHint: {
     id: 'Channels.demoHint',
     defaultMessage:
