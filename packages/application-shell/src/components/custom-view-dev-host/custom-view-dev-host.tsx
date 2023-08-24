@@ -43,11 +43,11 @@ const defaultCustomViewConfig: TCustomView = {
 
 const getCustomViewConfig = (customConfig: Partial<TCustomView>) => ({
   ...defaultCustomViewConfig,
-  typeSettings: customConfig.typeSettings,
+  ...customConfig,
 });
 
 type TLocalCustomViewLauncherProps = {
-  customViewSettings?: TCustomView['typeSettings'];
+  environment: TApplicationContext<{}>['environment'];
 };
 
 const LocalCustomViewLauncher = (props: TLocalCustomViewLauncherProps) => {
@@ -55,7 +55,8 @@ const LocalCustomViewLauncher = (props: TLocalCustomViewLauncherProps) => {
   const [hostUrl, setHostUrl] = useState('');
 
   const customViewConfig = getCustomViewConfig({
-    typeSettings: props.customViewSettings,
+    type: props.environment.__DEVELOPMENT__.customViewType,
+    typeSettings: props.environment.__DEVELOPMENT__.customViewTypeSettings,
   });
 
   return (
@@ -99,7 +100,6 @@ const LocalCustomViewLauncher = (props: TLocalCustomViewLauncherProps) => {
 type TCustomViewDevHost = {
   environment: TApplicationContext<{}>['environment'];
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
-  customViewSettings?: TCustomView['typeSettings'];
   children: ReactNode;
 };
 
@@ -114,9 +114,7 @@ const CustomViewDevHost = (props: TCustomViewDevHost) => {
             environment={props.environment}
             applicationMessages={props.applicationMessages}
           >
-            <LocalCustomViewLauncher
-              customViewSettings={props.customViewSettings}
-            />
+            <LocalCustomViewLauncher environment={props.environment} />
           </ApplicationShell>
         </Route>
       </Switch>

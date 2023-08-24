@@ -165,16 +165,16 @@ function CustomViewShell(props: TCustomViewShellProps) {
           </CustomViewAuthenticatedShell>;
 =======
           return (
-            <CustomViewContextProvider config={hostContext.customViewConfig}>
-              <CustomViewAuthenticatedShell
-                dataLocale={hostContext.dataLocale}
-                environment={window.app}
-                messages={props.messages}
-                projectKey={hostContext.projectKey}
-              >
+            <CustomViewAuthenticatedShell
+              dataLocale={hostContext.dataLocale}
+              environment={window.app}
+              messages={props.messages}
+              projectKey={hostContext.projectKey}
+            >
+              <CustomViewContextProvider config={hostContext.customViewConfig}>
                 {props.children}
-              </CustomViewAuthenticatedShell>
-            </CustomViewContextProvider>
+              </CustomViewContextProvider>
+            </CustomViewAuthenticatedShell>
           );
 >>>>>>> 2f4cd301f (refactor(application-shell): refactor custom view shell to use the new specialized context)
         }
