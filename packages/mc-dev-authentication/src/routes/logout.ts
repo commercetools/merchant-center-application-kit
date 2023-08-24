@@ -1,7 +1,7 @@
-import type { Response } from 'express';
+import type { ServerResponse } from 'node:http';
 
 function logoutRoute(
-  response: Response,
+  response: ServerResponse,
   additionalCookieParameters: string[] = []
 ) {
   // NOTE: removing the cookie only works if your are running the MC API

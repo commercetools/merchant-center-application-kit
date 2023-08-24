@@ -1,4 +1,4 @@
-import type { Plugin, Connect } from 'vite';
+import type { Plugin } from 'vite';
 import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
 import { createMcDevAuthenticationMiddleware } from '@commercetools-frontend/mc-dev-authentication';
 import {
@@ -27,9 +27,7 @@ const vitePluginCustomApplication = (
 
         // Handle auth routes for internal local development.
         server.middlewares.use(
-          createMcDevAuthenticationMiddleware(
-            applicationConfig
-          ) as Connect.NextHandleFunction
+          createMcDevAuthenticationMiddleware(applicationConfig)
         );
       };
     },

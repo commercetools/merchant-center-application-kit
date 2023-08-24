@@ -15,5 +15,5 @@ export const MainPageContent = styled.div`
   flex: 1;
   flex-basis: 0;
   overflow: auto;
-  margin: ${appKitDesignTokens.marginForPageContent};
+  padding: ${appKitDesignTokens.marginForPageContent};
 `;
