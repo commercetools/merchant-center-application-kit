@@ -265,7 +265,7 @@
   z-index: -1;
   list-style: none;
   opacity: 0.01;
-  visibility: hidden;
+  display: none;
 }
 
 .sublist__inactive {
@@ -375,7 +375,7 @@
 .sublist-expanded__active,
 .sublist-collapsed__active {
   opacity: 1;
-  visibility: visible;
+  display: block;
   text-align: left;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   background-color: var(--background-color-for-navbar-when-active);
