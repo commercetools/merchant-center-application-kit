@@ -61,26 +61,43 @@ const LocalCustomViewLauncher = (props: TLocalCustomViewLauncherProps) => {
 
   return (
     <main>
-      <Constraints.Horizontal max={12}>
+      <Constraints.Horizontal max="scale">
         <Spacings.Inset scale="xl">
           <Spacings.Stack scale="xl">
             <Text.Headline as="h1">Custom View loader</Text.Headline>
 
             <Spacings.Stack scale="l">
-              <Spacings.Stack scale="l">
-                <TextField
-                  title="Host URL"
-                  isRequired
-                  description="Type here the URL of the MC page where you want the custom view to be run from"
-                  placeholder="/<application_name>/<project_key>/<view_path>"
-                  value={hostUrl}
-                  onChange={(event) => setHostUrl(event.target.value)}
-                />
-                <PrimaryButton
-                  label="Open the Custom View"
-                  onClick={() => setShouldRenderCustomView(true)}
-                />
-              </Spacings.Stack>
+              <Text.Body>
+                This page simulates the Merchant Center context so you can run
+                your Custom View locally.
+                <br />
+                Based on your <i>custom-view-config</i> file, these are the
+                settings that will be used:
+                <ul>
+                  <li>
+                    Custom View type: <b>{customViewConfig.type}</b>
+                  </li>
+                  <li>
+                    Custom View size:{' '}
+                    <b>{customViewConfig.typeSettings?.size}</b>
+                  </li>
+                </ul>
+              </Text.Body>
+              <Constraints.Horizontal max={10}>
+                <Spacings.Stack scale="l">
+                  <TextField
+                    title="Host URL"
+                    description="The Custom View will receive the URL of the Merchant Center current page in case you need to load data based on it. Populate this field in case you want to simulate a specific URL locally."
+                    placeholder="/<application_name>/<project_key>/<view_path>"
+                    value={hostUrl}
+                    onChange={(event) => setHostUrl(event.target.value)}
+                  />
+                  <PrimaryButton
+                    label="Open the Custom View"
+                    onClick={() => setShouldRenderCustomView(true)}
+                  />
+                </Spacings.Stack>
+              </Constraints.Horizontal>
             </Spacings.Stack>
           </Spacings.Stack>
 
