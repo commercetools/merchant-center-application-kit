@@ -94,8 +94,6 @@ function CustomViewShell(props: TCustomViewShellProps) {
 
   useEffect(() => {
     const bootstrapMessageHandler = (event: MessageEvent) => {
-      console.log('Custom view shell received message', { event });
-
       if (
         event.origin === window.location.origin &&
         event.data === CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_BOOTSTRAP

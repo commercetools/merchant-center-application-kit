@@ -208,7 +208,7 @@ export const HTTP_SECURITY_HEADERS = {
   'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
   'X-XSS-Protection': '1; mode=block',
   'X-Content-Type-Options': 'nosniff',
-  'X-Frame-Options': 'DENY',
+  'X-Frame-Options': 'SAMEORIGIN',
   'Referrer-Policy': 'same-origin',
 } as const;
 
