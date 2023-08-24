@@ -7,6 +7,7 @@ import {
   SyntheticEvent,
 } from 'react';
 import classnames from 'classnames';
+import { debounce } from 'lodash';
 import { FormattedMessage } from 'react-intl';
 import { matchPath, useLocation } from 'react-router-dom';
 import type { RouteComponentProps } from 'react-router-dom';
@@ -270,9 +271,13 @@ const NavBar = (props: TNavbarProps) => {
   const [scrollTop, setScrollTop] = useState(0);
 
   // we need this scroll position to set the correct height of the submenu
-  const handleScroll = (event: SyntheticEvent) => {
-    setScrollTop(event.currentTarget.scrollTop);
-  };
+  const handleScroll = useMemo(
+    () =>
+      debounce((event: SyntheticEvent) => {
+        setScrollTop((event.target as HTMLDivElement).scrollTop);
+      }, 50),
+    []
+  );
 
   const projectPermissions: TProjectPermissions = useMemo(
     () => ({
