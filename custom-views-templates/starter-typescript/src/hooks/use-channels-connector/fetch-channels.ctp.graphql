@@ -5,7 +5,6 @@ query FetchChannels($limit: Int!, $offset: Int!, $sort: [String!]) {
     offset
     results {
       id
-      key
       roles
       nameAllLocales {
         locale

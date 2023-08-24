@@ -3,11 +3,11 @@ import {
   CustomViewDevHost,
   CustomViewShell,
   setupGlobalErrorListener,
+  TCustomViewSize,
 } from '@commercetools-frontend/application-shell';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
-import loadMessages from '../../load-messages';
-import Channels from '../channels';
 import { type TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
+import loadMessages from '../../load-messages';
 
 declare let window: ApplicationWindow;
 
@@ -24,7 +24,8 @@ setupGlobalErrorListener();
 
 const environment = {
   ...window.app,
-  entryPointUriPath: window.app.customViewId,
+  customViewId: window.app.customViewId || Date.now().toString(),
+  entryPointUriPath: window.app.customViewId || Date.now().toString(),
 };
 
 type TCustomViewMainProps = {
@@ -44,9 +45,12 @@ const EntryPoint = () => {
       <CustomViewDevHost
         environment={environment}
         applicationMessages={loadMessages}
+        customViewSettings={{
+          size: TCustomViewSize.Large,
+        }}
       >
         <CustomViewMain
-          customViewId={window.app.customViewId}
+          customViewId={environment.customViewId}
           messages={loadMessages}
         />
       </CustomViewDevHost>
@@ -54,7 +58,7 @@ const EntryPoint = () => {
   }
   return (
     <CustomViewMain
-      customViewId={window.app.customViewId}
+      customViewId={environment.customViewId}
       messages={loadMessages}
     />
   );

@@ -10,8 +10,7 @@ const config = {
       initialProjectKey: 'almond-40',
     },
     production: {
-      // TODO: These should be empty by default
-      customViewId: '0f4cb295-e2f9-4ee2-80e5-271297619f29',
+      customViewId: 'TODO',
       url: 'https://my-custom-view.com',
     }
   },
@@ -19,6 +18,10 @@ const config = {
     view: ['view_products'],
     manage: ['manage_products'],
   },
+  type: 'CustomPanel',
+  typeSettings: {
+    size: 'SMALL',
+  }
 };
 
 export default config;

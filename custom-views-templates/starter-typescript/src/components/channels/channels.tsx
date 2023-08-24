@@ -1,4 +1,3 @@
-import { Switch, useHistory, useRouteMatch } from 'react-router-dom';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
 import {
@@ -12,7 +11,6 @@ import { ContentNotification } from '@commercetools-uikit/notifications';
 import { Pagination } from '@commercetools-uikit/pagination';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import { SuspendedRoute } from '@commercetools-frontend/application-shell';
 import {
   formatLocalizedString,
   transformLocalizedFieldToLocalizedString,
@@ -21,17 +19,13 @@ import type { TFetchChannelsQuery } from '../../types/generated/ctp';
 import { useChannelsFetcher } from '../../hooks/use-channels-connector';
 import { getErrorMessage } from '../../helpers';
 import messages from './messages';
-import ChannelDetails from '../channel-details';
 
 const columns = [
   { key: 'name', label: 'Channel name' },
-  { key: 'key', label: 'Channel key', isSortable: true },
   { key: 'roles', label: 'Roles' },
 ];
 
 const Channels = () => {
-  const match = useRouteMatch();
-  const { push } = useHistory();
   const { page, perPage } = usePaginationState();
   const tableSorting = useDataTableSortingState({ key: 'key', order: 'asc' });
   const { dataLocale, projectLanguages } = useApplicationContext((context) => ({
@@ -74,8 +68,6 @@ const Channels = () => {
             rows={channelsPaginatedResult.results}
             itemRenderer={(item, column) => {
               switch (column.key) {
-                case 'key':
-                  return item.key;
                 case 'roles':
                   return item.roles.join(', ');
                 case 'name':
