@@ -13,6 +13,10 @@
   --width-left-navigation: 64px;
   --width-left-navigation-when-expanded: 245px;
   --width-left-navigation-sublist: 205px;
+
+  /* Active list item with icon text */
+  --left-list-item-icon-text-active: 46px;
+  --width-list-item-icon-text-active: 166px;
 }
 
 /* Left Nav */
@@ -349,8 +353,9 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   position: absolute;
-  left: 46px;
-  width: 166px;
+  /* `left` and `width` required for displaying focus indicator properly */
+  left: var(--left-list-item-icon-text-active);
+  width: var(--width-list-item-icon-text-active);
   z-index: 1;
 }
 
