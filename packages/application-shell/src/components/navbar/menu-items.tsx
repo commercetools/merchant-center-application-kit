@@ -177,6 +177,7 @@ type MenuGroupProps = {
   hasSubmenu?: boolean;
   children?: ReactNode;
 };
+
 const MenuGroup = (props: MenuGroupProps) => {
   if (
     props.isExpanded &&
