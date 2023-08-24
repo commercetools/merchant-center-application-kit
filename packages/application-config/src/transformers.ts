@@ -113,6 +113,8 @@ function transformCustomViewConfigToData(
     description: customViewConfig.description,
     url: customViewConfig.env.production.url,
     permissions: getPermissions(customViewConfig),
+    type: customViewConfig.type,
+    typeSettings: customViewConfig.typeSettings,
   };
 }
 
