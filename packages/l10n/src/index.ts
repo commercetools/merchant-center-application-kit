@@ -1,6 +1,10 @@
 export { default as version } from './version';
 
-export { getSupportedLocale, getSymbolFromCurrency } from './utils';
+export {
+  getSupportedLocales,
+  getSupportedLocale,
+  getSymbolFromCurrency,
+} from './utils';
 
 export {
   useCountries,

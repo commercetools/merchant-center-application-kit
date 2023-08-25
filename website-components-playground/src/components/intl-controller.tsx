@@ -1,8 +1,7 @@
 import { type ReactNode, useState } from 'react';
 import { IntlProvider } from 'react-intl';
 import { useAsyncLocaleData } from '@commercetools-frontend/i18n';
-// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
-import supportedLocales from /* preval */ '@commercetools-frontend/l10n/supported-locales';
+import { getSupportedLocales } from '@commercetools-frontend/l10n';
 
 export type TAvailableLocaleOption = {
   label: string;
@@ -36,7 +35,7 @@ const namifyLocale = (locale: string) => {
   }
 };
 
-const availableLocaleOptions = supportedLocales.map((locale) => ({
+const availableLocaleOptions = getSupportedLocales().map((locale) => ({
   label: namifyLocale(locale),
   value: locale,
 }));

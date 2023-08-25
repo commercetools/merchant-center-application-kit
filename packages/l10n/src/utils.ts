@@ -14,6 +14,10 @@ export const mapLocaleToIntlLocale = (locale: string): TSupportedLocale => {
 
 const defaultLocale = 'en';
 
+export function getSupportedLocales() {
+  return supportedLocales;
+}
+
 // Given a locale, return the locale only if it's supported.
 // If not, return a default locale.
 export function getSupportedLocale(locale: string): TSupportedLocale {

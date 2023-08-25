@@ -16,15 +16,7 @@
   },
   "main": "dist/commercetools-frontend-l10n.cjs.js",
   "module": "dist/commercetools-frontend-l10n.esm.js",
-  "files": [
-    "data",
-    "dist",
-    "package.json",
-    "LICENSE",
-    "README.md",
-    "supported-locales.js",
-    "supported-locales.d.ts"
-  ],
+  "files": ["data", "dist", "package.json", "LICENSE", "README.md"],
   "scripts": {
     "generate-data": "node ./scripts/generate-l10n-data.js"
   },
