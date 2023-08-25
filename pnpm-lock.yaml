@@ -16,6 +16,9 @@ patchedDependencies:
   gatsby-plugin-mdx@3.20.0:
     hash: gnfct6xrlmmxne5piiaxu4y5fq
     path: patches/gatsby-plugin-mdx@3.20.0.patch
+  jsdom@20.0.3:
+    hash: vrej53pkjycecngj3en5m7mmhu
+    path: patches/jsdom@20.0.3.patch
 
 importers:
 
@@ -6332,7 +6335,7 @@ packages:
       history: 4.10.1
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.5(react@17.0.2)(typescript@5.0.4)
+      react-intl: 6.4.5(react@17.0.2)(typescript@5.2.2)
       react-router-dom: 5.3.4(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
@@ -6683,7 +6686,7 @@ packages:
       '@emotion/react': 11.11.0(@types/react@17.0.56)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.5(react@17.0.2)(typescript@5.0.4)
+      react-intl: 6.4.5(react@17.0.2)(typescript@5.2.2)
     transitivePeerDependencies:
       - '@types/react'
     dev: false
@@ -7703,7 +7706,7 @@ packages:
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.5(react@17.0.2)(typescript@5.0.4)
+      react-intl: 6.4.5(react@17.0.2)(typescript@5.2.2)
       warning: 4.0.3
     transitivePeerDependencies:
       - '@types/react'
@@ -22221,7 +22224,7 @@ packages:
       '@types/node': 20.5.9
       jest-mock: 29.6.3
       jest-util: 29.6.3
-      jsdom: 20.0.3
+      jsdom: 20.0.3(patch_hash=vrej53pkjycecngj3en5m7mmhu)
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -22763,7 +22766,7 @@ packages:
       - supports-color
     dev: false
 
-  /jsdom@20.0.3:
+  /jsdom@20.0.3(patch_hash=vrej53pkjycecngj3en5m7mmhu):
     resolution: {integrity: sha512-SYhBvTh89tTfCD/CRdSOm13mOBa42iTaTyfyEWBdKcGdPxPtLFBXuHR8XHb33YNYaP+lLbmSvBTsnoesCNJEsQ==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -22803,6 +22806,7 @@ packages:
       - supports-color
       - utf-8-validate
     dev: false
+    patched: true
 
   /jsdom@21.1.2:
     resolution: {integrity: sha512-sCpFmK2jv+1sjff4u7fzft+pUh2KSUbUrEHYHyfSIbGTIcmnjyp83qg6qLwdJ/I3LpTXx33ACxeRL7Lsyc6lGQ==}

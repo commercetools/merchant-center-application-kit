@@ -177,7 +177,8 @@
     },
     "patchedDependencies": {
       "babel-plugin-typescript-to-proptypes@1.4.2": "patches/babel-plugin-typescript-to-proptypes@1.4.2.patch",
-      "gatsby-plugin-mdx@3.20.0": "patches/gatsby-plugin-mdx@3.20.0.patch"
+      "gatsby-plugin-mdx@3.20.0": "patches/gatsby-plugin-mdx@3.20.0.patch",
+      "jsdom@20.0.3": "patches/jsdom@20.0.3.patch"
     }
   },
   "engines": {
