@@ -1913,9 +1913,6 @@ importers:
       '@babel/runtime-corejs3':
         specifier: ^7.20.13
         version: 7.20.13
-      '@commercetools-frontend/constants':
-        specifier: 22.6.0
-        version: link:../constants
       '@commercetools-frontend/sentry':
         specifier: 22.6.0
         version: link:../sentry
@@ -2987,6 +2984,9 @@ importers:
       '@commercetools-frontend/i18n':
         specifier: workspace:*
         version: link:../packages/i18n
+      '@commercetools-frontend/l10n':
+        specifier: workspace:*
+        version: link:../packages/l10n
       '@commercetools-uikit/design-system':
         specifier: ^16.7.0
         version: 16.7.0(@types/react@17.0.56)
@@ -8764,7 +8764,7 @@ packages:
     dependencies:
       '@babel/core': 7.21.8
       '@babel/plugin-transform-react-jsx': 7.21.0(@babel/core@7.21.8)
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.20.13
       '@emotion/babel-plugin': 11.11.0
       '@emotion/babel-plugin-jsx-pragmatic': 0.2.0(@babel/core@7.21.8)
     dev: false

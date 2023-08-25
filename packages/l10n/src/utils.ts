@@ -1,7 +1,9 @@
-import { SUPPORTED_LOCALES } from '@commercetools-frontend/constants';
+import type { TSupportedLocale } from '../supported-locales';
+// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
+import supportedLocales from /* preval */ '../supported-locales';
 import type { Currencies, LocalizedString } from './types';
 
-export const mapLocaleToIntlLocale = (locale: string) => {
+export const mapLocaleToIntlLocale = (locale: string): TSupportedLocale => {
   if (locale.startsWith('de')) return 'de';
   if (locale.startsWith('es')) return 'es';
   if (locale.startsWith('fr')) return 'fr-FR';
@@ -14,11 +16,11 @@ const defaultLocale = 'en';
 
 // Given a locale, return the locale only if it's supported.
 // If not, return a default locale.
-export function getSupportedLocale(locale: string) {
-  const isSupported = SUPPORTED_LOCALES.find((supportedLocale) =>
+export function getSupportedLocale(locale: string): TSupportedLocale {
+  const isSupported = supportedLocales.find((supportedLocale) =>
     locale.startsWith(supportedLocale)
   );
-  return isSupported ? locale : defaultLocale;
+  return isSupported ? (locale as TSupportedLocale) : defaultLocale;
 }
 
 // given a currenyCode and a list of currencies with the following shape

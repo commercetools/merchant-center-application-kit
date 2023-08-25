@@ -12,6 +12,7 @@
     "@commercetools-frontend/browser-history": "workspace:*",
     "@commercetools-frontend/constants": "workspace:*",
     "@commercetools-frontend/i18n": "workspace:*",
+    "@commercetools-frontend/l10n": "workspace:*",
     "@commercetools-uikit/design-system": "^16.7.0",
     "@commercetools-uikit/icon-button": "^16.7.0",
     "@commercetools-uikit/icons": "^16.7.0",

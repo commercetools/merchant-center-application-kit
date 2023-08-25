@@ -1,5 +1,3 @@
-export const SUPPORTED_LOCALES = ['en', 'de', 'es', 'fr-FR', 'pt-BR', 'zh-CN'];
-
 // DOM elements
 export const PORTALS_CONTAINER_ID = 'portals-container';
 

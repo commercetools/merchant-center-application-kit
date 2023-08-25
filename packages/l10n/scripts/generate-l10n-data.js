@@ -11,7 +11,7 @@ const isEqual = require('lodash/isEqual');
 const moment = require('moment-timezone');
 const fetch = require('node-fetch');
 const prettier = require('prettier');
-const { SUPPORTED_LOCALES } = require('@commercetools-frontend/constants');
+const supportedLocales = require('../supported-locales');
 const parseUnhandledTimeZones = require('./parse-unhandled-time-zones');
 
 const prettierConfig = prettier.resolveConfig.sync();
@@ -444,7 +444,7 @@ async function updateTimeZoneData(key) {
       ensureDirectoryExists(dataFolderPath);
       const translationFilePaths = [
         sourceDataFilePath,
-        ...SUPPORTED_LOCALES.map((locale) =>
+        ...supportedLocales.map((locale) =>
           path.join(dataFolderPath, `${locale}.json`)
         ),
       ];
@@ -482,7 +482,7 @@ async function updateTimeZoneData(key) {
 
 const updateLocaleData = async (key) => {
   const results = await Promise.all(
-    SUPPORTED_LOCALES.map(async (locale) => {
+    supportedLocales.map(async (locale) => {
       const cldrLocale = mapLocaleToCldrLocale(locale);
       const newLocaleData = await DATA_DIR[key].transform(cldrLocale);
       const targetFolder = path.join(__dirname, '..', DATA_DIR[key].path);
@@ -506,7 +506,7 @@ const updateLocaleData = async (key) => {
     })
   );
 
-  console.log(`[${key}] Updated ${SUPPORTED_LOCALES.length} locales`);
+  console.log(`[${key}] Updated ${supportedLocales.length} locales`);
   results.forEach((r) => {
     if (r.warnings.length > 0) {
       console.log(

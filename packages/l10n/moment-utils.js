@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { SUPPORTED_LOCALES } = require('@commercetools-frontend/constants');
+const supportedLocales = require('./supported-locales');
 
 function getListOfAvailableLocalesWithMatchingMomentLocale() {
   // Use the languages data from the `l10n` package to determine which locales
@@ -11,7 +11,7 @@ function getListOfAvailableLocalesWithMatchingMomentLocale() {
   // List of locales that are available in the Merchant Center.
   const allAvailableLocales = Object.keys(languagesData)
     .filter((locale) =>
-      SUPPORTED_LOCALES.some((supportedLocale) => {
+      supportedLocales.some((supportedLocale) => {
         const [language, countryCode] = supportedLocale.split('-');
         if (countryCode) {
           // Use an exact match.
