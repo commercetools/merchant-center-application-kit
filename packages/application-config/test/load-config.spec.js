@@ -1,5 +1,6 @@
 import path from 'path';
 import loadConfig from '../src/load-config';
+import { ConfigType } from '../src/types';
 import { validateConfig } from '../src/validations';
 
 describe.each`
@@ -11,8 +12,8 @@ describe.each`
 `('loading config for file extension "$extension"', ({ fixtureApp }) => {
   it('should load and parse the config', () => {
     const applicationPath = path.join(__dirname, 'fixtures', fixtureApp);
-    const config = loadConfig(applicationPath);
-    validateConfig(config);
+    const { config } = loadConfig(applicationPath);
+    validateConfig(ConfigType.CUSTOM_APPLICATION, config);
     expect(config.entryPointUriPath).toBe('test');
   });
 });
@@ -28,7 +29,7 @@ describe('validation', () => {
       expect(() =>
         loadConfig(applicationPath)
       ).toThrowErrorMatchingInlineSnapshot(
-        `"Missing or invalid Custom Application configuration file."`
+        `"Missing or invalid configuration file."`
       );
     });
   });

@@ -26,7 +26,10 @@ beforeEach(() => {
 
 describe('processing a simple config', () => {
   beforeEach(() => {
-    loadConfig.mockReturnValue(fixtureConfigSimple);
+    loadConfig.mockReturnValue({
+      filepath: '/custom-application-config.js',
+      config: fixtureConfigSimple
+    });
   });
   it('should process the config and prepare the application environment and headers', () => {
     const result = processConfig(createTestOptions());
@@ -294,7 +297,10 @@ describe('processing a simple config', () => {
 
 describe('processing a full config', () => {
   beforeEach(() => {
-    loadConfig.mockReturnValue(fixtureConfigFull);
+    loadConfig.mockReturnValue({
+      filepath: '/custom-application-config.js',
+      config: fixtureConfigFull
+    });
   });
   it('should process the config and prepare the application environment and headers', () => {
     const result = processConfig(createTestOptions());
@@ -610,7 +616,10 @@ describe('processing a full config', () => {
 
 describe('processing a config with environment variable placeholders', () => {
   beforeEach(() => {
-    loadConfig.mockReturnValue(fixtureConfigEnvVariables);
+    loadConfig.mockReturnValue({
+      filepath: '/custom-application-config.js',
+      config: fixtureConfigEnvVariables
+    });
   });
   it('should process the config and prepare the application environment and headers', () => {
     const result = processConfig(
@@ -900,7 +909,10 @@ describe('processing a config with environment variable placeholders', () => {
 
 describe('processing a config with intl variable placeholders', () => {
   beforeEach(() => {
-    loadConfig.mockReturnValue(fixtureConfigIntlVariables);
+    loadConfig.mockReturnValue({
+      filepath: '/custom-application-config.js',
+      config: fixtureConfigIntlVariables
+    });
   });
   it('should process the config and correctly parse the translations', () => {
     const result = processConfig(createTestOptions());
@@ -1004,7 +1016,10 @@ describe('processing a config with intl variable placeholders', () => {
 
 describe('processing a config with file path variable placeholders', () => {
   beforeEach(() => {
-    loadConfig.mockReturnValue(fixtureConfigFilePathVariables);
+    loadConfig.mockReturnValue({
+      filepath: '/custom-application-config.js',
+      config: fixtureConfigFilePathVariables
+    });
   });
   it('should process the config and correctly parse the file content', () => {
     const result = processConfig(createTestOptions());
@@ -1086,7 +1101,10 @@ describe('processing a config with file path variable placeholders', () => {
 
 describe('processing a config with OIDC', () => {
   beforeEach(() => {
-    loadConfig.mockReturnValue(fixtureConfigOidc);
+    loadConfig.mockReturnValue({
+      filepath: '/custom-application-config.js',
+      config: fixtureConfigOidc
+    });
   });
   it('should process the config and prepare the application environment and headers, as well as the __DEVELOPMENT__ object', () => {
     const result = processConfig(
@@ -1271,14 +1289,17 @@ describe('processing a config with OIDC', () => {
 describe('when app URL is malformed', () => {
   beforeEach(() => {
     loadConfig.mockReturnValue({
-      ...fixtureConfigSimple,
-      env: {
-        ...fixtureConfigSimple.env,
-        production: {
-          ...fixtureConfigSimple.env.production,
-          url: 'wrong url',
+      filepath: '/custom-application-config.js',
+      config: {
+        ...fixtureConfigSimple,
+        env: {
+          ...fixtureConfigSimple.env,
+          production: {
+            ...fixtureConfigSimple.env.production,
+            url: 'wrong url',
+          },
         },
-      },
+      }
     });
   });
   it('should throw', () => {
@@ -1299,13 +1320,16 @@ describe('when app URL has non-root path without ending backslash', () => {
   const appUrl = 'https://avengers.app/admin';
   beforeEach(() => {
     loadConfig.mockReturnValue({
-      ...fixtureConfigSimple,
-      env: {
-        ...fixtureConfigSimple.env,
-        production: {
-          ...fixtureConfigSimple.env.production,
-          url: appUrl,
-        },
+      filepath: '/custom-application-config.js',
+      config: {
+        ...fixtureConfigSimple,
+        env: {
+          ...fixtureConfigSimple.env,
+          production: {
+            ...fixtureConfigSimple.env.production,
+            url: appUrl,
+          },
+        }
       },
     });
   });
@@ -1326,7 +1350,10 @@ describe('when app URL has non-root path without ending backslash', () => {
 
 describe('processing a config with OIDC with teamId', () => {
   beforeEach(() => {
-    loadConfig.mockReturnValue(fixtureConfigOidcWithTeamId);
+    loadConfig.mockReturnValue({
+      filepath: '/custom-application-config.js',
+      config: fixtureConfigOidcWithTeamId
+    });
   });
   it('should process the config and prepare the application environment and headers, as well as the __DEVELOPMENT__ object', () => {
     const result = processConfig(
@@ -1436,13 +1463,16 @@ describe('processing a config with OIDC with teamId', () => {
 describe('when CDN URL is malformed', () => {
   beforeEach(() => {
     loadConfig.mockReturnValue({
-      ...fixtureConfigSimple,
-      env: {
-        ...fixtureConfigSimple.env,
-        production: {
-          ...fixtureConfigSimple.env.production,
-          cdnUrl: 'wrong url',
-        },
+      filepath: '/custom-application-config.js',
+      config: {
+        ...fixtureConfigSimple,
+        env: {
+          ...fixtureConfigSimple.env,
+          production: {
+            ...fixtureConfigSimple.env.production,
+            cdnUrl: 'wrong url',
+          },
+        }
       },
     });
   });
@@ -1465,14 +1495,17 @@ describe('when CDN URL has non-root path without ending backslash', () => {
   const cdnUrl = 'https://justice-league.app/inventory';
   beforeEach(() => {
     loadConfig.mockReturnValue({
-      ...fixtureConfigSimple,
-      env: {
-        ...fixtureConfigSimple.env,
-        production: {
-          ...fixtureConfigSimple.env.production,
-          url: appUrl,
-          cdnUrl: cdnUrl,
-        },
+      filepath: '/custom-application-config.js',
+      config: {
+        ...fixtureConfigSimple,
+        env: {
+          ...fixtureConfigSimple.env,
+          production: {
+            ...fixtureConfigSimple.env.production,
+            url: appUrl,
+            cdnUrl: cdnUrl,
+          },
+        }
       },
     });
   });
@@ -1501,8 +1534,11 @@ describe('when CDN URL has non-root path without ending backslash', () => {
 describe('when MC API URL is malformed', () => {
   beforeEach(() => {
     loadConfig.mockReturnValue({
-      ...fixtureConfigSimple,
-      mcApiUrl: 'wrong url',
+      filepath: '/custom-application-config.js',
+      config: {
+        ...fixtureConfigSimple,
+        mcApiUrl: 'wrong url',
+      },
     });
   });
   it('should throw', () => {

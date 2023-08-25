@@ -63,17 +63,15 @@ const processConfig = ({
   applicationPath = fs.realpathSync(process.cwd()),
 }: ProcessConfigOptions = {}): ApplicationRuntimeConfig => {
   if (cachedConfig && !disableCache) return cachedConfig;
-
-  const rawConfig = loadConfig(applicationPath);
+  const { filepath, config: rawConfig } = loadConfig(applicationPath);
   const configType = getConfigurationType(
-    parseFilePath(rawConfig.filepath).name
+    parseFilePath(filepath).name
   );
-  console.log({ configType });
-  validateConfig(configType, rawConfig.config);
 
+  validateConfig(configType, rawConfig);
   const appConfig =
     substituteVariablePlaceholders<JSONSchemaForCustomApplicationConfigurationFiles>(
-      rawConfig.config,
+      rawConfig,
       { applicationPath, processEnv }
     );
 
@@ -186,7 +184,9 @@ const processConfig = ({
       applicationName: configurationData.name,
       entryPointUriPath: (configurationData as CustomApplicationData)
         .entryPointUriPath,
-      customViewId: (configurationData as CustomViewData).id,
+      ...(configType === ConfigType.CUSTOM_VIEW
+        ? { customViewId: (configurationData as CustomViewData).id }
+        : {}),
       ...(isProd || !developmentConfig
         ? {}
         : { __DEVELOPMENT__: developmentConfig }),
