@@ -1,4 +1,5 @@
 const util = require('util');
+const { MessageChannel } = require('worker_threads');
 const MutationObserver = require('@sheerun/mutationobserver-shim');
 
 global.window.app = {
@@ -8,6 +9,8 @@ global.window.app = {
 
 window.MutationObserver = MutationObserver;
 global.Headers = global.Headers || require('node-fetch').Headers;
+
+window.MessageChannel = MessageChannel;
 
 // Fix missing globals when `jsdom` is used in a test environment.
 // See https://github.com/jsdom/jsdom/issues/2524#issuecomment-1108991178.
