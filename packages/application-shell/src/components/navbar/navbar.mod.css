@@ -98,6 +98,7 @@
   transition: all 0.25s ease-in-out;
   text-align: left;
   text-decoration: none;
+  z-index: 1;
 }
 
 .expander {
