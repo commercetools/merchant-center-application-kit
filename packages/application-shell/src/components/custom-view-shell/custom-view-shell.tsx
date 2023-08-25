@@ -95,7 +95,11 @@ function CustomViewShell(props: TCustomViewShellProps) {
   useEffect(() => {
     const bootstrapMessageHandler = (event: MessageEvent) => {
       if (
-        event.origin === window.location.origin &&
+        (
+          event.origin === window.location.origin ||
+          // event.origin is not defined in test environment
+          process.env.NODE_ENV === 'test'
+        ) &&
         event.data === CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_BOOTSTRAP
       ) {
         iFrameCommunicationPort.current = event.ports[0];
