@@ -232,7 +232,9 @@ export const ApplicationShellAuthenticated = (
                                 height: 100vh;
                                 display: grid;
                                 grid-template-rows: auto ${DIMENSIONS.header} 1fr;
-                                grid-template-columns: auto 1fr;
+                                grid-template-columns:
+                                  minmax(${DIMENSIONS.navMenu}, auto)
+                                  1fr;
                               `}
                             >
                               <div
@@ -331,7 +333,7 @@ export const ApplicationShellAuthenticated = (
                                   ${isNewNavigationEnabled === true &&
                                   `grid-column: 1/2;
                                     grid-row: 2/4;
-                                    background-color: beige;`}
+                                    overflow: hidden;`}
                                 `}
                               >
                                 {(() => {

@@ -30,6 +30,15 @@
   background: var(--background-color-for-navbar);
 }
 
+.left-navigation-new {
+  display: grid;
+  width: var(--width-left-navigation);
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  background: var(--background-color-for-navbar);
+  height: 100vh;
+  grid-template-rows: 56px 1fr;
+}
+
 .list {
   margin: 0;
   padding: 0;
@@ -107,11 +116,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: transparent;
-}
-
-.expander:hover {
-  background: transparent !important;
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  background-color: var(--background-color-for-navbar);
 }
 
 .expand-icon {
@@ -184,6 +190,7 @@
 }
 
 :global(.body__menu-open) .left-navigation,
+:global(.body__menu-open) .left-navigation-new,
 :global(.body__menu-open) .list-item {
   width: var(--width-left-navigation-when-expanded);
 }
@@ -269,6 +276,21 @@
   left: 64px;
   list-style: none;
   opacity: 0.01;
+  display: none;
+}
+
+.sublist-new {
+  padding: var(--spacing-m) var(--spacing-l);
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  font-weight: var(--font-weight-for-navbar-link);
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  font-size: var(--font-size-for-navbar-link);
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  background-color: var(--background-color-for-navbar);
+  left: 58px;
+  z-index: -1;
+  list-style: none;
+  position: fixed;
   display: none;
 }
 
@@ -386,6 +408,23 @@
   background-color: var(--background-color-for-navbar-when-active);
 }
 
+.item-link:hover .sublist-collapsed-new__active,
+.item-link:hover .sublist-expanded-new__active {
+  display: block;
+  text-align: left;
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  background-color: var(--background-color-for-navbar-when-active);
+  /* TODO: add design tokens instead hard-coded values */
+  min-height: 50px;
+  width: 253px;
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.item-link:hover .sublist-expanded-new__active {
+  left: 240px;
+}
+
 .highlighted,
 .highlighted .title {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
@@ -417,6 +456,16 @@
     FIXME: Make the navbar scrollable in collapsed state.
     NOTE: do not use `overflow-x: hidden; overflow-y: auto;` as this prevents submenus from showing up on hover
   */
+}
+
+.scrollable-menu-new {
+  flex: 1 1 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.scrollable-menu-new::-webkit-scrollbar {
+  display: none;
 }
 
 .fixed-menu {

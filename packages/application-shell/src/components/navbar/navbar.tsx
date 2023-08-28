@@ -1,5 +1,13 @@
-import { MouseEventHandler, useEffect, useMemo } from 'react';
+import {
+  type MouseEventHandler,
+  useEffect,
+  useMemo,
+  useState,
+  useRef,
+  type SyntheticEvent,
+} from 'react';
 import classnames from 'classnames';
+import debounce from 'lodash/debounce';
 import { FormattedMessage } from 'react-intl';
 import { matchPath, useLocation } from 'react-router-dom';
 import type { RouteComponentProps } from 'react-router-dom';
@@ -71,6 +79,8 @@ type ApplicationMenuProps = {
   projectKey: string;
   useFullRedirectsForLinks: boolean;
   onMenuItemClick?: MenuItemLinkProps['onClick'];
+  scrollTop: number;
+  isNewNavigationEnabled: boolean;
 };
 
 const getMenuVisibilitiesOfSubmenus = (menu: TNavbarMenu) =>
@@ -79,6 +89,19 @@ const getMenuVisibilityOfMainmenu = (menu: TNavbarMenu) =>
   menu.menuVisibility ? [menu.menuVisibility] : [];
 
 const ApplicationMenu = (props: ApplicationMenuProps) => {
+  const [topPosition, setTopPosition] = useState(0);
+  const elementRef = useRef<HTMLDivElement>(null);
+
+  // We need to calculate the vertical position of the menu item to be able to
+  // position the submenu correctly.
+  const verticalPosition = topPosition - props.scrollTop;
+
+  useEffect(() => {
+    if (elementRef.current != null) {
+      setTopPosition(elementRef.current.offsetTop);
+    }
+  }, []);
+
   const isMainMenuRouteActive = Boolean(
     matchPath(props.location.pathname, {
       path: `/${props.projectKey}/${props.menu.uriPath}`,
@@ -123,6 +146,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
       namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
     >
       <MenuItem
+        ref={elementRef}
         hasSubmenu={hasSubmenu}
         isActive={props.isActive}
         isMainMenuRouteActive={isMainMenuRouteActive}
@@ -166,6 +190,8 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
           isActive={props.isActive}
           isExpanded={props.isMenuOpen}
           hasSubmenu={hasSubmenu}
+          verticalPosition={verticalPosition}
+          isNewNavigationEnabled={props.isNewNavigationEnabled}
         >
           {hasSubmenu
             ? props.menu.submenu.map((submenu: TSubmenuWithDefaultLabel) => (
@@ -245,6 +271,17 @@ const NavBar = (props: TNavbarProps) => {
   );
   const location = useLocation();
 
+  const [scrollTop, setScrollTop] = useState(0);
+
+  // we need this scroll position to set the correct height of the submenu
+  const handleScroll = useMemo(
+    () =>
+      debounce((event: SyntheticEvent) => {
+        setScrollTop((event.target as HTMLDivElement).scrollTop);
+      }, 50),
+    []
+  );
+
   const projectPermissions: TProjectPermissions = useMemo(
     () => ({
       permissions: normalizeAllAppliedPermissions(
@@ -286,9 +323,19 @@ const NavBar = (props: TNavbarProps) => {
   }
 
   return (
-    <NavBarLayout ref={navBarNode}>
+    <NavBarLayout
+      isNewNavigationEnabled={props.isNewNavigationEnabled}
+      ref={navBarNode}
+    >
+      {props.isNewNavigationEnabled && <div>Navigation header</div>}
       <MenuGroup id="main" level={1}>
-        <div className={styles['scrollable-menu']}>
+        <div
+          className={classnames(
+            { [styles['scrollable-menu']]: !props.isNewNavigationEnabled },
+            { [styles['scrollable-menu-new']]: props.isNewNavigationEnabled }
+          )}
+          onScroll={handleScroll}
+        >
           {allInternalApplicationsNavbarMenu.map((menu) => {
             const menuType = 'scrollable';
             const itemIndex = `${menuType}-${menu.key}`;
@@ -307,6 +354,8 @@ const NavBar = (props: TNavbarProps) => {
                 projectKey={props.projectKey}
                 useFullRedirectsForLinks={useFullRedirectsForLinks}
                 onMenuItemClick={props.onMenuItemClick}
+                scrollTop={scrollTop}
+                isNewNavigationEnabled={props.isNewNavigationEnabled}
               />
             );
           })}
@@ -329,6 +378,8 @@ const NavBar = (props: TNavbarProps) => {
                 projectKey={props.projectKey}
                 useFullRedirectsForLinks={useFullRedirectsForLinks}
                 onMenuItemClick={props.onMenuItemClick}
+                scrollTop={scrollTop}
+                isNewNavigationEnabled={props.isNewNavigationEnabled}
               />
             );
           })}
