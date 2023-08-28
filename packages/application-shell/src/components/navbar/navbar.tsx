@@ -95,7 +95,7 @@ const getIsSubmenuRouteActive = (
   Boolean(
     matchPath(props.location.pathname, {
       path: `/${props.projectKey}/${uriPath}`,
-      exact: false,
+      exact: true,
       strict: false,
     })
   );
