@@ -1,13 +1,13 @@
 import {
-  MouseEventHandler,
+  type MouseEventHandler,
   useEffect,
   useMemo,
   useState,
   useRef,
-  SyntheticEvent,
+  type SyntheticEvent,
 } from 'react';
 import classnames from 'classnames';
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 import { FormattedMessage } from 'react-intl';
 import { matchPath, useLocation } from 'react-router-dom';
 import type { RouteComponentProps } from 'react-router-dom';
