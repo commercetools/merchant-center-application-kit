@@ -2,4 +2,4 @@
 '@commercetools-frontend/application-shell': patch
 ---
 
-Creating scrollable new navigation
+Creating scroll functionality in the new navigation.
