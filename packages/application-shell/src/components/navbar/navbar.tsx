@@ -1,12 +1,13 @@
 import {
-  MouseEventHandler,
+  type MouseEventHandler,
   useEffect,
   useMemo,
   useState,
   useRef,
-  SyntheticEvent,
+  type SyntheticEvent,
 } from 'react';
 import classnames from 'classnames';
+import debounce from 'lodash/debounce';
 import { FormattedMessage } from 'react-intl';
 import { matchPath, useLocation } from 'react-router-dom';
 import type { RouteComponentProps } from 'react-router-dom';
@@ -78,8 +79,8 @@ type ApplicationMenuProps = {
   projectKey: string;
   useFullRedirectsForLinks: boolean;
   onMenuItemClick?: MenuItemLinkProps['onClick'];
-  isNewNavigationEnabled: boolean;
   scrollTop: number;
+  isNewNavigationEnabled: boolean;
 };
 
 const getMenuVisibilitiesOfSubmenus = (menu: TNavbarMenu) =>
@@ -91,11 +92,15 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
   const [topPosition, setTopPosition] = useState(0);
   const elementRef = useRef<HTMLDivElement>(null);
 
+  // We need to calculate the vertical position of the menu item to be able to
+  // position the submenu correctly.
+  const verticalPosition = topPosition - props.scrollTop;
+
   useEffect(() => {
     if (elementRef.current != null) {
       setTopPosition(elementRef.current.offsetTop);
     }
-  }, [elementRef.current]);
+  }, []);
 
   const isMainMenuRouteActive = Boolean(
     matchPath(props.location.pathname, {
@@ -185,8 +190,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
           isActive={props.isActive}
           isExpanded={props.isMenuOpen}
           hasSubmenu={hasSubmenu}
-          topPosition={topPosition}
-          scrollTop={props.scrollTop}
+          verticalPosition={verticalPosition}
           isNewNavigationEnabled={props.isNewNavigationEnabled}
         >
           {hasSubmenu
@@ -270,9 +274,13 @@ const NavBar = (props: TNavbarProps) => {
   const [scrollTop, setScrollTop] = useState(0);
 
   // we need this scroll position to set the correct height of the submenu
-  const handleScroll = (event: SyntheticEvent) => {
-    setScrollTop(event.currentTarget.scrollTop);
-  };
+  const handleScroll = useMemo(
+    () =>
+      debounce((event: SyntheticEvent) => {
+        setScrollTop((event.target as HTMLDivElement).scrollTop);
+      }, 50),
+    []
+  );
 
   const projectPermissions: TProjectPermissions = useMemo(
     () => ({

@@ -13,6 +13,10 @@
   --width-left-navigation: 64px;
   --width-left-navigation-when-expanded: 245px;
   --width-left-navigation-sublist: 205px;
+
+  /* Active list item with icon text */
+  --left-list-item-icon-text-active: 46px;
+  --width-list-item-icon-text-active: 166px;
 }
 
 /* Left Nav */
@@ -103,6 +107,7 @@
   transition: all 0.25s ease-in-out;
   text-align: left;
   text-decoration: none;
+  z-index: 1;
 }
 
 .expander {
@@ -294,10 +299,24 @@
   background-color: var(--background-color-for-navbar);
   top: 0;
   left: 64px;
-  z-index: -1;
   list-style: none;
   opacity: 0.01;
-  visibility: hidden;
+  display: none;
+}
+
+.sublist-new {
+  padding: var(--spacing-m) var(--spacing-l);
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  font-weight: var(--font-weight-for-navbar-link);
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  font-size: var(--font-size-for-navbar-link);
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  background-color: var(--background-color-for-navbar);
+  left: 58px;
+  z-index: -1;
+  list-style: none;
+  position: fixed;
+  display: none;
 }
 
 .sublist-new {
@@ -364,10 +383,6 @@
 }
 
 .list-item.item__active .item-icon-text {
-  width: calc(
-    var(--width-left-navigation-sublist) + var(--width-left-navigation) -
-      var(--spacing-m) * 2
-  );
   justify-content: flex-start;
 }
 .list-item .icon-container {
@@ -400,6 +415,11 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  position: absolute;
+  /* `left` and `width` required for displaying focus indicator properly */
+  left: var(--left-list-item-icon-text-active);
+  width: var(--width-list-item-icon-text-active);
+  z-index: 1;
 }
 
 :global(.body__menu-open) .list-item.item__active .item-icon-text .title {
@@ -422,7 +442,7 @@
 .sublist-expanded__active,
 .sublist-collapsed__active {
   opacity: 1;
-  visibility: visible;
+  display: block;
   text-align: left;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   background-color: var(--background-color-for-navbar-when-active);
@@ -434,6 +454,7 @@
   text-align: left;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   background-color: var(--background-color-for-navbar-when-active);
+  /* TODO: add design tokens instead hard-coded values */
   min-height: 50px;
   width: 253px;
   border-radius: 8px;
@@ -471,16 +492,20 @@
 .scrollable-menu {
   flex: 1 1 0;
   padding-bottom: var(--faded-height);
-  /* 
+  /*
     FIXME: Make the navbar scrollable in collapsed state.
-    NOTE: do not use `overflow-x: hidden; overflow-y: auto;` as this prevents submenus from showing up on hover 
+    NOTE: do not use `overflow-x: hidden; overflow-y: auto;` as this prevents submenus from showing up on hover
   */
 }
 
 .scrollable-menu-new {
   flex: 1 1 0;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
+}
+
+.scrollable-menu-new::-webkit-scrollbar {
+  display: none;
 }
 
 .fixed-menu {
