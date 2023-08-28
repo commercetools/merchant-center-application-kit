@@ -179,6 +179,7 @@ type MenuGroupProps = {
   verticalPosition?: number;
   isNewNavigationEnabled?: boolean;
 };
+
 const MenuGroup = (props: MenuGroupProps) => {
   if (
     props.isExpanded &&
