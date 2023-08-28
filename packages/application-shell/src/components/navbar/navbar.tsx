@@ -88,6 +88,18 @@ const getMenuVisibilitiesOfSubmenus = (menu: TNavbarMenu) =>
 const getMenuVisibilityOfMainmenu = (menu: TNavbarMenu) =>
   menu.menuVisibility ? [menu.menuVisibility] : [];
 
+const getIsSubmenuRouteActive = (
+  uriPath: ApplicationMenuProps['menu']['submenu'][number]['uriPath'],
+  props: ApplicationMenuProps
+) =>
+  Boolean(
+    matchPath(props.location.pathname, {
+      path: `/${props.projectKey}/${uriPath}`,
+      exact: false,
+      strict: false,
+    })
+  );
+
 const ApplicationMenu = (props: ApplicationMenuProps) => {
   const [topPosition, setTopPosition] = useState(0);
   const elementRef = useRef<HTMLDivElement>(null);
@@ -210,7 +222,16 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
                       : undefined
                   }
                 >
-                  <li className={styles['sublist-item']}>
+                  <li
+                    className={classnames({
+                      [styles['sublist-item']]: !props.isNewNavigationEnabled,
+                      [styles['sublist-item-new']]:
+                        props.isNewNavigationEnabled,
+                      [styles['sublist-item-new__active']]:
+                        props.isNewNavigationEnabled &&
+                        getIsSubmenuRouteActive(submenu.uriPath, props),
+                    })}
+                  >
                     <div className={styles.text}>
                       <MenuItemLink
                         linkTo={`/${props.projectKey}/${submenu.uriPath}`}
@@ -221,6 +242,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
                           props.useFullRedirectsForLinks
                         }
                         onClick={props.onMenuItemClick}
+                        isNewNavigationEnabled={props.isNewNavigationEnabled}
                       >
                         <MenuLabel
                           labelAllLocales={submenu.labelAllLocales}
