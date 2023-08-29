@@ -2984,6 +2984,9 @@ importers:
       '@commercetools-frontend/i18n':
         specifier: workspace:*
         version: link:../packages/i18n
+      '@commercetools-frontend/l10n':
+        specifier: workspace:*
+        version: link:../packages/l10n
       '@commercetools-uikit/design-system':
         specifier: ^16.7.0
         version: 16.7.0(@types/react@17.0.56)
@@ -8796,7 +8799,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.10
       '@emotion/babel-plugin': 11.11.0
       '@emotion/cache': 11.11.0
       '@emotion/serialize': 1.1.2
@@ -8816,7 +8819,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.10
       '@emotion/babel-plugin': 11.11.0
       '@emotion/cache': 11.11.0
       '@emotion/serialize': 1.1.2

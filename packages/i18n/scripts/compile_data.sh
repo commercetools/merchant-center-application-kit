@@ -2,6 +2,8 @@
 
 set -e
 
+export NODE_ENV="production"
+
 echo "Compiling i18n messages data."
 pnpm formatjs compile-folder --format=./transifex-transformer.js --ast data compiled-data
 

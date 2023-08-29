@@ -22,6 +22,7 @@ const DEMO_LOCALES = [
   'es',
   'es-MX',
   'fr-FR',
+  'pt-BR',
 ];
 
 const DEMO_TIMEZONE = 'Europe/Berlin';
