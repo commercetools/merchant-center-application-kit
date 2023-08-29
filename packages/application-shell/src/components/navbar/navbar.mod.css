@@ -1,5 +1,6 @@
 :root {
   --expander-height: 50px;
+  --expander-size-new: 40px;
   --faded-height: 32px;
   --icon-size: 24px;
   --icon-container-offset: 4px;
@@ -64,6 +65,15 @@
   cursor: pointer;
 }
 
+.list-item-new {
+  background: var(--color-primary-30);
+  color: var(--color-surface);
+}
+
+.list-item:hover.list-item-new {
+  background: var(--color-primary);
+}
+
 .item-link {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link);
@@ -125,10 +135,22 @@
   align-items: center;
   justify-content: center;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  /* TODO: add design token here */
-  background: linear-gradient(180deg, #009987 0%, #004d44 100%);
-  height: 72px;
+  background: linear-gradient(
+    180deg,
+    var(--color-primary-30) 0%,
+    var(--color-primary-20) 100%
+  );
   padding: 16px 12px;
+}
+
+/* divider */
+.expander-new::before {
+  content: '';
+  position: absolute;
+  top: 56px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.5);
+  width: calc(100% - 2 * var(--spacing-m));
 }
 
 .expand-icon {
@@ -143,9 +165,9 @@
 }
 
 .expand-icon-new {
-  height: 40px;
-  width: 40px;
-  border-radius: 4px;
+  height: var(--expander-size-new);
+  width: var(--expander-size-new);
+  border-radius: var(--border-radius-4);
   background: rgba(255, 255, 255, 0.2);
   display: flex;
   justify-content: center;

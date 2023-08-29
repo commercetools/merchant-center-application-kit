@@ -381,7 +381,7 @@ const NavBar = (props: TNavbarProps) => {
               />
             );
           })}
-          <MenuItemDivider />
+          {!props.isNewNavigationEnabled && <MenuItemDivider />}
           {allCustomApplicationsNavbarMenu.map((menu) => {
             const menuType = 'scrollable';
             const itemIndex = `${menuType}-${menu.key}`;
@@ -419,6 +419,7 @@ const NavBar = (props: TNavbarProps) => {
               isMenuOpen ? undefined : () => handleToggleItem('fixed-support')
             }
             onMouseLeave={isMenuOpen ? undefined : shouldCloseMenuFly}
+            isNewNavigationEnabled={props.isNewNavigationEnabled}
           >
             <a
               href={SUPPORT_PORTAL_URL}

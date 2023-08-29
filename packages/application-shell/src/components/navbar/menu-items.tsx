@@ -266,6 +266,7 @@ type MenuItemProps = {
   onMouseEnter?: MouseEventHandler<HTMLElement>;
   onMouseLeave?: MouseEventHandler<HTMLElement>;
   children: ReactNode;
+  isNewNavigationEnabled?: boolean;
 };
 const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>((props, ref) => {
   return (
@@ -276,6 +277,7 @@ const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>((props, ref) => {
         [styles['item_menu__active']]: props.isMainMenuRouteActive ?? false,
         [styles['item_menu-collapsed']]: !props.isMenuOpen,
         [styles['item__no-submenu']]: !props.hasSubmenu,
+        [styles['list-item-new']]: props.isNewNavigationEnabled,
       })}
       onClick={props.onClick}
       onMouseEnter={props.onMouseEnter}
