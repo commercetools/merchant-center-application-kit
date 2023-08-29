@@ -7,7 +7,7 @@ import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { UserMock, ProjectMock } from '../../../../../graphql-test-utils';
 import { STORAGE_KEYS } from '../../constants';
 import ApplicationShellProvider from '../application-shell-provider';
-import CustomViewAuthenticatedShell from './custom-view-authenticated-shell';
+import CustomViewAuthenticatedShell from './custom-view-shell-authenticated';
 
 jest.mock('@commercetools-frontend/sentry');
 

@@ -13,7 +13,7 @@ import ConfigureIntlProvider from '../configure-intl-provider';
 import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
 
-type TCustomViewAuthenticatedShellProps = {
+type TCustomViewShellAuthenticatedProps = {
   dataLocale: string;
   environment: ApplicationWindow['app'];
   messages: TAsyncLocaleDataProps['applicationMessages'];
@@ -21,8 +21,8 @@ type TCustomViewAuthenticatedShellProps = {
   children: ReactNode;
 };
 
-function CustomViewAuthenticatedShell(
-  props: TCustomViewAuthenticatedShellProps
+function CustomViewShellAuthenticated(
+  props: TCustomViewShellAuthenticatedProps
 ) {
   const browserLocale = getBrowserLocale(window);
 
@@ -88,4 +88,4 @@ function CustomViewAuthenticatedShell(
   );
 }
 
-export default CustomViewAuthenticatedShell;
+export default CustomViewShellAuthenticated;

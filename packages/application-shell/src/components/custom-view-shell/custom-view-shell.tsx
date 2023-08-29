@@ -19,8 +19,8 @@ import ApplicationLoader from '../application-loader/application-loader';
 import ApplicationShellProvider from '../application-shell-provider';
 import { getBrowserLocale } from '../application-shell-provider/utils';
 import ConfigureIntlProvider from '../configure-intl-provider';
-import CustomViewAuthenticatedShell from '../custom-view-authenticated-shell';
 import { CustomViewContextProvider } from '../custom-view-context';
+import CustomViewShellAuthenticated from '../custom-view-shell-authenticated';
 
 declare let window: ApplicationWindow;
 
@@ -110,14 +110,14 @@ function CustomViewShell(props: TCustomViewShellProps) {
         if (isAuthenticated) {
           return (
             <CustomViewContextProvider config={hostContext.customViewConfig}>
-              <CustomViewAuthenticatedShell
+              <CustomViewShellAuthenticated
                 dataLocale={hostContext.dataLocale}
                 environment={window.app}
                 messages={props.messages}
                 projectKey={hostContext.projectKey}
               >
                 {props.children}
-              </CustomViewAuthenticatedShell>
+              </CustomViewShellAuthenticated>
             </CustomViewContextProvider>
           );
         }
