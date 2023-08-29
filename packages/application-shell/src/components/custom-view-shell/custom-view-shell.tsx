@@ -85,7 +85,7 @@ function CustomViewShell(props: TCustomViewShellProps) {
         window.removeEventListener('message', bootstrapMessageHandler);
       } else {
         console.warn(
-          `CustomViewShell: Received an event that is not allowed: ${event.data}`,
+          'CustomViewShell: Received an event that is not allowed.',
           { event }
         );
       }
