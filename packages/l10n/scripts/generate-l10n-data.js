@@ -248,7 +248,6 @@ const mapDiffToWarnings = (oldData, newData) => {
   if (!diff) return [];
   return diff
     .map((diffEdit) => {
-      console.log(diffEdit);
       switch (diffEdit.kind) {
         case 'E':
           return `The field "${chalk.cyan(

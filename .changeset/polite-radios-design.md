@@ -2,7 +2,6 @@
 '@commercetools-website/components-playground': minor
 '@commercetools-frontend/application-config': minor
 '@commercetools-frontend/application-shell': minor
-'@commercetools-frontend/constants': minor
 '@commercetools-frontend/i18n': minor
 '@commercetools-frontend/l10n': minor
 '@commercetools-local/playground': minor
