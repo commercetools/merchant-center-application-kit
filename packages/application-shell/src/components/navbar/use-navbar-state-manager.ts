@@ -232,26 +232,7 @@ const useNavbarStateManager = (props: HookProps) => {
     );
   }, [state.activeItemIndex, state.isMenuOpen]);
 
-  // const allInternalApplicationsNavbarMenu = applicationsNavBarMenu || [];
-  // TODO klaudija: remove this after finishing working on this branch
-  const allInternalApplicationsNavbarMenu = [];
-
-  if (applicationsNavBarMenu) {
-    for (let i = 15; i > 0; i--) {
-      allInternalApplicationsNavbarMenu.push({
-        ...applicationsNavBarMenu[0],
-        key: applicationsNavBarMenu[0].key + i,
-        uriPath: applicationsNavBarMenu[0].uriPath + i,
-        submenu: applicationsNavBarMenu[0].submenu.map((submenu) => {
-          return {
-            ...submenu,
-            key: submenu.key + i,
-            uriPath: submenu.uriPath + i,
-          };
-        }),
-      });
-    }
-  }
+  const allInternalApplicationsNavbarMenu = applicationsNavBarMenu || [];
 
   return {
     ...state,
