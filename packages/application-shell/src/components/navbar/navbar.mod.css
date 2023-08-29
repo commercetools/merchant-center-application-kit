@@ -345,11 +345,32 @@
   padding: 0;
 }
 
+.sublist-item-new {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+}
+
+.sublist-item-new__active {
+  border-radius: var(--border-radius-4);
+  background: var(--color-accent-30);
+}
+
 .sublist-item:hover {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link-when-hovered);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link-when-hovered);
+}
+
+.sublist-item-new:hover {
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  color: var(--color-for-navbar-link-when-hovered);
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  font-weight: var(--font-weight-for-navbar-link-when-hovered);
+  border-radius: var(--border-radius-4);
+  background: var(--color-primary-95);
 }
 
 .text {
@@ -359,6 +380,8 @@
   font-size: var(--font-size-for-navbar-link);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   line-height: var(--line-height-for-navbar-link);
+  width: 100%;
+  height: 100%;
 }
 
 .text-link {
@@ -366,6 +389,16 @@
   color: var(--color-for-navbar-link);
   text-decoration: none;
   transition: all 0.15s ease;
+}
+
+.text-link-new {
+  display: flex;
+  align-items: flex-start;
+  color: var(--color-solid);
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  font-weight: var(--font-weight-for-navbar-link-when-hovered);
+  text-decoration: none;
+  padding: 12px 12px 12px 16px;
 }
 
 .text-link:hover {
@@ -450,15 +483,19 @@
 
 .item-link:hover .sublist-collapsed-new__active,
 .item-link:hover .sublist-expanded-new__active {
-  display: block;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  background-color: var(--background-color-for-navbar-when-active);
+  background-color: var(--color-surface);
   /* TODO: add design tokens instead hard-coded values */
   min-height: 50px;
   width: 253px;
   border-radius: 8px;
-  z-index: 1;
+  /* z-index value must be higher than AppBar's z-index */
+  z-index: 20001;
+  box-shadow: -2px 4px 25px 0 rgba(89, 89, 89, 0.5);
 }
 
 .item-link:hover .sublist-expanded-new__active {
@@ -471,6 +508,16 @@
   color: var(--color-for-navbar-link-when-active) !important;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link-when-active);
+}
+
+.highlighted-new,
+.highlighted-new .title {
+  color: var(--color-surface);
+}
+
+.sublist-item-new:hover .highlighted-new,
+.sublist-item-new:hover .highlighted-new .title {
+  color: var(--color-solid);
 }
 
 .hidden {

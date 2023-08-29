@@ -296,6 +296,7 @@ export type MenuItemLinkProps = {
   children: ReactNode;
   onClick?: (event: SyntheticEvent<HTMLAnchorElement>) => void;
   useFullRedirectsForLinks?: boolean;
+  isNewNavigationEnabled?: boolean;
 };
 const menuItemLinkDefaultProps: Pick<MenuItemLinkProps, 'exactMatch'> = {
   exactMatch: false,
@@ -307,8 +308,16 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
       <NavLink
         to={props.linkTo}
         exact={props.exactMatch}
-        activeClassName={styles.highlighted}
-        className={styles['text-link']}
+        activeClassName={
+          props.isNewNavigationEnabled
+            ? styles['highlighted-new']
+            : styles.highlighted
+        }
+        className={
+          props.isNewNavigationEnabled
+            ? styles['text-link-new']
+            : styles['text-link']
+        }
         onClick={(event) => {
           if (props.linkTo && props.useFullRedirectsForLinks) {
             event.preventDefault();
