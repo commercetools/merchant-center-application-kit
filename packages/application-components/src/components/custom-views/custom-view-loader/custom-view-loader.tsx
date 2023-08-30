@@ -4,15 +4,14 @@ import { useIntl } from 'react-intl';
 import { useShowNotification } from '@commercetools-frontend/actions-global';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
+  CUSTOM_VIEWS_EVENTS_NAMES,
+  CUSTOM_VIEWS_EVENTS_META,
   DOMAINS,
   NOTIFICATION_KINDS_PAGE,
 } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import type { TCustomView } from '../../../types/generated/settings';
 import CustomPanel from '../custom-panel/custom-panel';
-import {
-  CUSTOM_VIEWS_EVENTS_NAMES,
-  CUSTOM_VIEWS_EVENTS_META,
-} from './constants';
 import messages from './messages';
 
 type TCustomViewIframeMessage = {
@@ -20,27 +19,6 @@ type TCustomViewIframeMessage = {
   destination: string;
   eventName: string;
   eventData: Record<string, unknown>;
-};
-
-/*
-  TODO: These types are temporary until we have the proper
-  ones generated from the Settings schema
-*/
-export type TPermissionGroup = {
-  name: string;
-  oAuthScopes: string[];
-};
-
-export type TCustomView = {
-  id: string;
-  defaultLabel: string;
-  labelAllLocales: Record<string, string>;
-  url: string;
-  type: 'CustomPanel' | 'CustomTab';
-  typeConfig?: {
-    size?: 'SMALL' | 'LARGE';
-  };
-  locators: string[];
 };
 
 type TCustomViewLoaderProps = {
@@ -71,7 +49,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
   const iFrameCommunicationChannel = useRef(new MessageChannel());
   const showNotification = useShowNotification();
   const intl = useIntl();
-  const panelSize = (props.customView.typeConfig?.size?.toLocaleLowerCase() ||
+  const panelSize = (props.customView.typeSettings?.size?.toLocaleLowerCase() ||
     'large') as Lowercase<'SMALL' | 'LARGE'>;
 
   const messageFromIFrameHandler = useCallback((event: MessageEvent) => {
@@ -112,8 +90,10 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
       eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_INITIALIZATION,
       eventData: {
         context: {
-          userLocale: appContext.user?.locale,
           dataLocale: appContext.dataLocale,
+          customViewConfig: props.customView,
+          hostUrl: window.location.href,
+          userLocale: appContext.user?.locale,
           projectKey: appContext.project?.key,
         },
       },
@@ -144,7 +124,9 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
         key={`custom-view-${props.customView.id}`}
         ref={iFrameElementRef}
         title={`Custom View: ${props.customView.defaultLabel}`}
-        src={props.customView.url}
+        src={`${window.location.origin}/custom-views/${
+          props.customView.id
+        }/projects/${appContext.project?.key || 'no-project'}`}
         onLoad={onLoadSuccessHandler}
       />
     </CustomPanel>

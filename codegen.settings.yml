@@ -37,6 +37,16 @@ extensions:
           scalars:
             DateTime: string
             Json: '{ [key: string]: unknown }'
+      packages/application-components/src/types/generated/settings.ts:
+        plugins:
+          - typescript
+          - typescript-operations
+        config:
+          typesPrefix: T
+          addUnderscoreToArgsType: true
+          scalars:
+            DateTime: string
+            Json: '{ [key: string]: unknown }'
       packages/mc-scripts/src/generated/settings.ts:
         plugins:
           - typescript

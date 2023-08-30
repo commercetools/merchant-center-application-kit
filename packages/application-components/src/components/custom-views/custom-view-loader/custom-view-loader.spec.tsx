@@ -5,7 +5,13 @@ import {
   waitFor,
   fireEvent,
 } from '../../../test-utils';
-import CustomViewLoader, { type TCustomView } from './custom-view-loader';
+import {
+  type TCustomView,
+  TCustomViewSize,
+  TCustomViewStatus,
+  TCustomViewType,
+} from '../../../types/generated/settings';
+import CustomViewLoader from './custom-view-loader';
 
 const mockShowNotification = jest.fn();
 
@@ -20,11 +26,23 @@ const TEST_CUSTOM_VIEW: TCustomView = {
   defaultLabel: 'Test Custom View',
   labelAllLocales: {},
   url: '/',
-  type: 'CustomPanel',
-  typeConfig: {
-    size: 'SMALL',
+  type: TCustomViewType.CustomPanel,
+  typeSettings: {
+    size: TCustomViewSize.Small,
   },
   locators: ['customers.customer-detail.addresses'],
+  createdAt: '',
+  installedBy: [],
+  owner: {
+    createdAt: '',
+    id: '',
+    organizationId: '',
+    updatedAt: '',
+  },
+  ownerId: '',
+  permissions: [],
+  status: TCustomViewStatus.Draft,
+  updatedAt: '',
 };
 
 describe('CustomViewLoader', () => {
@@ -68,7 +86,9 @@ describe('CustomViewLoader', () => {
     expect(iFrame.getAttribute('id')).toBe(
       `custom-view-${TEST_CUSTOM_VIEW.id}`
     );
-    expect(iFrame.getAttribute('src')).toBe(TEST_CUSTOM_VIEW.url);
+    expect(iFrame.getAttribute('src')).toContain(
+      `/custom-views/${TEST_CUSTOM_VIEW.id}/projects/no-project`
+    );
   });
 
   it('should show a notification when the custom view fails to load', async () => {
