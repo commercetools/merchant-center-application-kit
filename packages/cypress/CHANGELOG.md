@@ -1,5 +1,13 @@
 # @commercetools-frontend/cypress
 
+## 22.7.0
+
+### Patch Changes
+
+- Updated dependencies [[`a6ebc4d1b`](https://github.com/commercetools/merchant-center-application-kit/commit/a6ebc4d1ba265bf21a1ee33f0311a3eb6fca20c0), [`c3a7893c0`](https://github.com/commercetools/merchant-center-application-kit/commit/c3a7893c07bde119a7874ac56337e3e7720b1b01), [`51deaa6fc`](https://github.com/commercetools/merchant-center-application-kit/commit/51deaa6fc32b3be2439853d952ce8a5ae6db93e3), [`d36fda3d0`](https://github.com/commercetools/merchant-center-application-kit/commit/d36fda3d00534c62ac87acb3c88c36e908732ca9), [`9224192b8`](https://github.com/commercetools/merchant-center-application-kit/commit/9224192b86e3c716d4f2374e011106af35462e84), [`69667013c`](https://github.com/commercetools/merchant-center-application-kit/commit/69667013c73636d0d0ce7ac97da3780a004ff7b6), [`69667013c`](https://github.com/commercetools/merchant-center-application-kit/commit/69667013c73636d0d0ce7ac97da3780a004ff7b6), [`0a100cb41`](https://github.com/commercetools/merchant-center-application-kit/commit/0a100cb415433209310afa014a3eb527b59c76ab), [`6fa0a6adc`](https://github.com/commercetools/merchant-center-application-kit/commit/6fa0a6adc8aa53b9ef5c86e8bd88909370b92c9f), [`f35a1b3ba`](https://github.com/commercetools/merchant-center-application-kit/commit/f35a1b3ba8aa5c869c2b77dd41eaeca5e975bbec), [`0865a7051`](https://github.com/commercetools/merchant-center-application-kit/commit/0865a7051fc47ad0556b472eb8b4712477323847), [`7bfc2ade4`](https://github.com/commercetools/merchant-center-application-kit/commit/7bfc2ade4d8805353f3e1196adacfe3c57d2f387)]:
+  - @commercetools-frontend/application-shell@22.7.0
+  - @commercetools-frontend/application-config@22.7.0
+
 ## 22.6.0
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @commercetools-frontend/sentry
 
+## 22.7.0
+
+### Patch Changes
+
+- [#3179](https://github.com/commercetools/merchant-center-application-kit/pull/3179) [`f3a06a444`](https://github.com/commercetools/merchant-center-application-kit/commit/f3a06a44462768241d4df1cb44f60f294ab28699) Thanks [@emmenko](https://github.com/emmenko)! - Update Sentry dependencies, replace depreacted `@sentry/tracing` with `@sentry/browser`
+
+- Updated dependencies [[`69667013c`](https://github.com/commercetools/merchant-center-application-kit/commit/69667013c73636d0d0ce7ac97da3780a004ff7b6)]:
+  - @commercetools-frontend/constants@22.7.0
+  - @commercetools-frontend/browser-history@22.7.0
+
 ## 22.6.0
 
 ### Patch Changes

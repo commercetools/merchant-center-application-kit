@@ -1,5 +1,22 @@
 # @commercetools-local/visual-testing-app
 
+## 22.7.0
+
+### Patch Changes
+
+- [#3186](https://github.com/commercetools/merchant-center-application-kit/pull/3186) [`c3a7893c0`](https://github.com/commercetools/merchant-center-application-kit/commit/c3a7893c07bde119a7874ac56337e3e7720b1b01) Thanks [@chloe0592](https://github.com/chloe0592)! - Updating Ui-Kit dependencies to v `16.7.0`
+
+- [#3176](https://github.com/commercetools/merchant-center-application-kit/pull/3176) [`9224192b8`](https://github.com/commercetools/merchant-center-application-kit/commit/9224192b86e3c716d4f2374e011106af35462e84) Thanks [@chloe0592](https://github.com/chloe0592)! - Update `ui-kit` dependencies to version `16.6.1`
+
+- [#3181](https://github.com/commercetools/merchant-center-application-kit/pull/3181) [`69667013c`](https://github.com/commercetools/merchant-center-application-kit/commit/69667013c73636d0d0ce7ac97da3780a004ff7b6) Thanks [@emmenko](https://github.com/emmenko)! - Update UI Kit dependencies
+
+- Updated dependencies [[`a6ebc4d1b`](https://github.com/commercetools/merchant-center-application-kit/commit/a6ebc4d1ba265bf21a1ee33f0311a3eb6fca20c0), [`c3a7893c0`](https://github.com/commercetools/merchant-center-application-kit/commit/c3a7893c07bde119a7874ac56337e3e7720b1b01), [`bf2df5683`](https://github.com/commercetools/merchant-center-application-kit/commit/bf2df568398e8b7558405df954166aefd8d1f963), [`9224192b8`](https://github.com/commercetools/merchant-center-application-kit/commit/9224192b86e3c716d4f2374e011106af35462e84), [`69667013c`](https://github.com/commercetools/merchant-center-application-kit/commit/69667013c73636d0d0ce7ac97da3780a004ff7b6), [`69667013c`](https://github.com/commercetools/merchant-center-application-kit/commit/69667013c73636d0d0ce7ac97da3780a004ff7b6)]:
+  - @commercetools-frontend/application-components@22.7.0
+  - @commercetools-frontend/react-notifications@22.7.0
+  - @commercetools-frontend/application-config@22.7.0
+  - @commercetools-frontend/constants@22.7.0
+  - @commercetools-frontend/assets@22.7.0
+
 ## 22.6.0
 
 ### Patch Changes

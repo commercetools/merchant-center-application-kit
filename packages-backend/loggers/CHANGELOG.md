@@ -1,5 +1,11 @@
 # @commercetools-backend/loggers
 
+## 22.7.0
+
+### Patch Changes
+
+- [#3179](https://github.com/commercetools/merchant-center-application-kit/pull/3179) [`f3a06a444`](https://github.com/commercetools/merchant-center-application-kit/commit/f3a06a44462768241d4df1cb44f60f294ab28699) Thanks [@emmenko](https://github.com/emmenko)! - Update Sentry dependencies, replace depreacted `@sentry/tracing` with `@sentry/browser`
+
 ## 22.6.0
 
 ## 22.5.0
