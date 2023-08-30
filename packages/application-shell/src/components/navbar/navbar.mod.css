@@ -358,7 +358,9 @@
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link-when-hovered);
   text-decoration: none;
-  padding: 12px 12px 12px 16px;
+  padding: calc(var(--spacing-20) + var(--spacing-10))
+    calc(var(--spacing-20) + var(--spacing-10))
+    calc(var(--spacing-20) + var(--spacing-10)) var(--spacing-30);
 }
 
 .text-link:hover {

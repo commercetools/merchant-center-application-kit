@@ -2,4 +2,4 @@
 '@commercetools-frontend/application-shell': patch
 ---
 
-Add new submenu styles
+Add new navigation submenus styles
