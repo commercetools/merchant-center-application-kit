@@ -402,7 +402,7 @@
 .sublist-expanded__active,
 .sublist-collapsed__active {
   opacity: 1;
-  display: block;
+  display: unset;
   text-align: left;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   background-color: var(--background-color-for-navbar-when-active);
