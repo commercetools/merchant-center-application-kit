@@ -408,6 +408,10 @@
   background-color: var(--background-color-for-navbar-when-active);
 }
 
+.sublist-expanded__active {
+  display: block;
+}
+
 .item-link:hover .sublist-collapsed-new__active,
 .item-link:hover .sublist-expanded-new__active {
   display: block;
