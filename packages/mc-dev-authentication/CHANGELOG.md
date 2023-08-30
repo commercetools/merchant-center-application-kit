@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-dev-authentication
 
+## 22.7.0
+
+### Patch Changes
+
+- [#3178](https://github.com/commercetools/merchant-center-application-kit/pull/3178) [`e301f79f9`](https://github.com/commercetools/merchant-center-application-kit/commit/e301f79f900d3ffdcfbb9f8064fffddb40a54590) Thanks [@emmenko](https://github.com/emmenko)! - Adjust the dev auth server compat with HTTP request / response options
+
 ## 22.6.0
 
 ## 22.5.0
