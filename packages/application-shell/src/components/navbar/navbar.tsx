@@ -287,6 +287,7 @@ const NavBar = (props: TNavbarProps) => {
     allCustomApplicationsNavbarMenu,
   } = useNavbarStateManager({
     environment: props.environment,
+    isNewNavigationEnabled: props.isNewNavigationEnabled,
   });
   const useFullRedirectsForLinks = Boolean(
     props.environment.useFullRedirectsForLinks
@@ -381,7 +382,7 @@ const NavBar = (props: TNavbarProps) => {
               />
             );
           })}
-          <MenuItemDivider />
+          {!props.isNewNavigationEnabled && <MenuItemDivider />}
           {allCustomApplicationsNavbarMenu.map((menu) => {
             const menuType = 'scrollable';
             const itemIndex = `${menuType}-${menu.key}`;
@@ -407,7 +408,7 @@ const NavBar = (props: TNavbarProps) => {
           })}
         </div>
         <div className={styles['fixed-menu']}>
-          <Faded />
+          <Faded isNewNavigationEnabled={props.isNewNavigationEnabled} />
           <MenuItem
             hasSubmenu={false}
             isActive={false}
@@ -419,6 +420,7 @@ const NavBar = (props: TNavbarProps) => {
               isMenuOpen ? undefined : () => handleToggleItem('fixed-support')
             }
             onMouseLeave={isMenuOpen ? undefined : shouldCloseMenuFly}
+            isNewNavigationEnabled={props.isNewNavigationEnabled}
           >
             <a
               href={SUPPORT_PORTAL_URL}
@@ -446,6 +448,7 @@ const NavBar = (props: TNavbarProps) => {
             isVisible={isExpanderVisible}
             onClick={handleToggleMenu}
             isMenuOpen={isMenuOpen}
+            isNewNavigationEnabled={props.isNewNavigationEnabled}
           />
         </div>
       </MenuGroup>

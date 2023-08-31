@@ -21,7 +21,12 @@ import type {
 import MissingImageSvg from '@commercetools-frontend/assets/images/diagonal-line.svg';
 import { NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
-import { ArrowRightIcon, BackIcon } from '@commercetools-uikit/icons';
+import {
+  ArrowRightIcon,
+  BackIcon,
+  SidebarExpandIcon,
+  SidebarCollapseIcon,
+} from '@commercetools-uikit/icons';
 import InlineSvg from '@commercetools-uikit/icons/inline-svg';
 import type {
   TDataFence,
@@ -39,20 +44,6 @@ type TProjectPermissions = {
   actionRights: TNormalizedActionRights | null;
   dataFences: TNormalizedDataFences | null;
 };
-
-/*
-<DataMenu data={[]}>
-  <MenuGroup>
-    <MenuItem>
-      <MenuItemLink linkTo="/foo">(icon) Products</MenuItemLink>
-      <MenuGroup>
-        <MenuItemLink linkTo="/foo/new">Add product</MenuItemLink>
-      </MenuGroup>
-    </MenuItem>
-  </MenuGroup>
-  <MenuExpander/>
-</DataMenu>
-*/
 
 const HeartIcon = lazy(() => import('./legacy-icons/heart'));
 const PaperclipIcon = lazy(() => import('./legacy-icons/paperclip'));
@@ -131,42 +122,60 @@ type MenuExpanderProps = {
   isVisible: boolean;
   onClick: MouseEventHandler<HTMLDivElement>;
   isMenuOpen: boolean;
+  isNewNavigationEnabled: boolean;
 };
 const MenuExpander = (props: MenuExpanderProps) => {
   return (
     <li
       key="expander"
-      className={classnames(styles['list-item'], styles.expander, {
+      className={classnames(styles['list-item'], {
         [styles.hidden]: !props.isVisible,
+        [styles['expander-new']]: props.isNewNavigationEnabled,
+        [styles.expander]: !props.isNewNavigationEnabled,
       })}
     >
       <div
         onClick={props.onClick}
-        className={styles['expand-icon']}
+        className={classnames({
+          [styles['expand-icon']]: !props.isNewNavigationEnabled,
+          [styles['expand-icon-new']]: props.isNewNavigationEnabled,
+        })}
         data-testid="menu-expander"
       >
         {/*
           FIXME: define hover effect.
           https://github.com/commercetools/merchant-center-frontend/issues/2216
         */}
-        <ArrowRightIcon color="surface" size="big" />
+        {props.isNewNavigationEnabled ? (
+          props.isMenuOpen ? (
+            <SidebarCollapseIcon color="surface" size="big" />
+          ) : (
+            <SidebarExpandIcon color="surface" size="big" />
+          )
+        ) : (
+          <ArrowRightIcon color="surface" size="big" />
+        )}
       </div>
     </li>
   );
 };
 MenuExpander.displayName = 'MenuExpander';
 
-const Faded = styled.div`
+type FadedProps = {
+  isNewNavigationEnabled: boolean;
+};
+
+const Faded = styled.div<FadedProps>`
   position: absolute;
   top: -32px;
   height: 32px;
   width: 100%;
-  background: linear-gradient(
-    0deg,
-    ${appkitDesignTokens.backgroundColorForNavbar} 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
   z-index: 1;
+
+  background: ${(props) =>
+    props.isNewNavigationEnabled
+      ? 'linear-gradient(180deg, rgba(0, 153, 135, 0.00) 0%, #009987 100%)'
+      : `linear-gradient(0deg, ${appkitDesignTokens.backgroundColorForNavbar} 0%, rgba(0, 0, 0, 0) 100%)`};
 `;
 
 type MenuGroupProps = {
@@ -257,6 +266,7 @@ type MenuItemProps = {
   onMouseEnter?: MouseEventHandler<HTMLElement>;
   onMouseLeave?: MouseEventHandler<HTMLElement>;
   children: ReactNode;
+  isNewNavigationEnabled?: boolean;
 };
 const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>((props, ref) => {
   return (
@@ -267,6 +277,7 @@ const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>((props, ref) => {
         [styles['item_menu__active']]: props.isMainMenuRouteActive ?? false,
         [styles['item_menu-collapsed']]: !props.isMenuOpen,
         [styles['item__no-submenu']]: !props.hasSubmenu,
+        [styles['list-item-new']]: props.isNewNavigationEnabled,
       })}
       onClick={props.onClick}
       onMouseEnter={props.onMouseEnter}
