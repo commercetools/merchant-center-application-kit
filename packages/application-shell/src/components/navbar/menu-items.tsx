@@ -124,6 +124,16 @@ type MenuExpanderProps = {
   isMenuOpen: boolean;
   isNewNavigationEnabled: boolean;
 };
+
+const getIcon = ({ isNewNavigationEnabled, isMenuOpen }: MenuExpanderProps) => {
+  const Icon = isNewNavigationEnabled
+    ? isMenuOpen
+      ? SidebarCollapseIcon
+      : SidebarExpandIcon
+    : ArrowRightIcon;
+  return <Icon color="surface" size="big" />;
+};
+
 const MenuExpander = (props: MenuExpanderProps) => {
   return (
     <li
@@ -142,19 +152,7 @@ const MenuExpander = (props: MenuExpanderProps) => {
         })}
         data-testid="menu-expander"
       >
-        {/*
-          FIXME: define hover effect.
-          https://github.com/commercetools/merchant-center-frontend/issues/2216
-        */}
-        {props.isNewNavigationEnabled ? (
-          props.isMenuOpen ? (
-            <SidebarCollapseIcon color="surface" size="big" />
-          ) : (
-            <SidebarExpandIcon color="surface" size="big" />
-          )
-        ) : (
-          <ArrowRightIcon color="surface" size="big" />
-        )}
+        {getIcon(props)}
       </div>
     </li>
   );
