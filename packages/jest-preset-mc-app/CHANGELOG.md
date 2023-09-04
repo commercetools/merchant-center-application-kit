@@ -1,5 +1,12 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 22.7.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.7.1
+
 ## 22.7.0
 
 ### Patch Changes

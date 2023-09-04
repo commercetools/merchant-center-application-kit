@@ -1,5 +1,32 @@
 # @commercetools-frontend/application-shell
 
+## 22.7.1
+
+### Patch Changes
+
+- [#3193](https://github.com/commercetools/merchant-center-application-kit/pull/3193) [`6db7d79b0`](https://github.com/commercetools/merchant-center-application-kit/commit/6db7d79b0a0d94d6bf0a600110a5c63fab459f7c) Thanks [@kark](https://github.com/kark)! - Fix inconsistent Navbar behavior by using the default value for isForcedMenuOpen.
+
+- [#3185](https://github.com/commercetools/merchant-center-application-kit/pull/3185) [`f5893edb6`](https://github.com/commercetools/merchant-center-application-kit/commit/f5893edb6723e274176646926ad9e748b30030ca) Thanks [@kark](https://github.com/kark)! - Add new navigation submenus styles
+
+- [#3194](https://github.com/commercetools/merchant-center-application-kit/pull/3194) [`51a988f4d`](https://github.com/commercetools/merchant-center-application-kit/commit/51a988f4dfa31204799c32db070b88473e4a5ffd) Thanks [@chloe0592](https://github.com/chloe0592)! - Fix the grid columns issue in new Navigation layout
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.7.1
+  - @commercetools-frontend/application-components@22.7.1
+  - @commercetools-frontend/application-config@22.7.1
+  - @commercetools-frontend/application-shell-connectors@22.7.1
+  - @commercetools-frontend/assets@22.7.1
+  - @commercetools-frontend/browser-history@22.7.1
+  - @commercetools-frontend/constants@22.7.1
+  - @commercetools-frontend/i18n@22.7.1
+  - @commercetools-frontend/l10n@22.7.1
+  - @commercetools-frontend/notifications@22.7.1
+  - @commercetools-frontend/permissions@22.7.1
+  - @commercetools-frontend/react-notifications@22.7.1
+  - @commercetools-frontend/sdk@22.7.1
+  - @commercetools-frontend/sentry@22.7.1
+  - @commercetools-frontend/url-utils@22.7.1
+
 ## 22.7.0
 
 ### Minor Changes
