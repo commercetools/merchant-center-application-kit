@@ -3,7 +3,7 @@ const config = {
   cloudIdentifier: 'gcp-eu',
   env: {
     development: {
-      // TODO: This should be read from an environment variable
+      // TODO: This should be populated in the template installation process
       initialProjectKey: 'almond-40',
     },
     production: {

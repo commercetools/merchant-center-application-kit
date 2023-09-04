@@ -66,37 +66,6 @@ const getExplorer = (configFileName: string) => {
 const customApplicationExplorer = getExplorer('custom-application-config');
 const customViewExplorer = getExplorer('custom-view-config');
 
-// const moduleName = 'custom-application-config';
-// const explorer = cosmiconfigSync(moduleName, {
-//   // Restrict the supported file formats / names
-//   searchPlaces: [
-//     `.${moduleName}rc`,
-//     `.${moduleName}.json`,
-//     `.${moduleName}.js`,
-//     `.${moduleName}.cjs`,
-//     `.${moduleName}.mjs`,
-//     `.${moduleName}.ts`,
-//     `${moduleName}.json`,
-//     `${moduleName}.js`,
-//     `${moduleName}.cjs`,
-//     `${moduleName}.mjs`,
-//     `${moduleName}.ts`,
-
-//     'custom-view.config.json',
-//     'custom-view.config.js',
-//     'custom-view.config.cjs',
-//     'custom-view.config.mjs',
-//     'custom-view.config.ts',
-//   ],
-//   loaders: {
-//     noExt: defaultLoaders['.json'],
-//     '.js': loadJsModule,
-//     '.cjs': loadJsModule,
-//     '.mjs': loadJsModule,
-//     '.ts': loadJsModule,
-//   },
-// });
-
 export const getConfigPath = () => {
   const customApplicationConfigFile = customApplicationExplorer.search();
   const customViewConfigFile = customViewExplorer.search();

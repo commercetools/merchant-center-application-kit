@@ -1,45 +1,103 @@
-import type { ReactElement } from 'react';
-import { createApolloClient } from '@commercetools-frontend/application-shell';
-import {
-  renderApp,
-  renderAppWithRedux,
-  type TRenderAppOptions,
-  type TRenderAppWithReduxOptions,
-} from '@commercetools-frontend/application-shell/test-utils';
-import ApplicationRoutes from '../routes';
-import { entryPointUriPath } from '../constants';
+import { graphql } from 'msw';
+import { mapResourceAccessToAppliedPermissions } from '@commercetools-frontend/application-shell/test-utils';
 
-const mergeWithDefaultOptions = (
-  options: Partial<TRenderAppOptions> | Partial<TRenderAppWithReduxOptions> = {}
-): Partial<TRenderAppOptions> | Partial<TRenderAppWithReduxOptions> => ({
-  ...options,
-  environment: {
-    ...(options.environment || {}),
-    entryPointUriPath,
-  },
-  apolloClient: createApolloClient(),
-});
-
-const renderApplication = (
-  ui: ReactElement,
-  options: Partial<TRenderAppOptions>
-) => renderApp(ui, mergeWithDefaultOptions(options));
-
-const renderApplicationWithRedux = (
-  ui: ReactElement,
-  options: Partial<TRenderAppWithReduxOptions>
-) => renderAppWithRedux(ui, mergeWithDefaultOptions(options));
-
-const renderApplicationWithRoutes = (options: Partial<TRenderAppOptions>) =>
-  renderApplication(<ApplicationRoutes />, options);
-
-const renderApplicationWithRoutesAndRedux = (
-  options: Partial<TRenderAppWithReduxOptions>
-) => renderApplicationWithRedux(<ApplicationRoutes />, options);
-
-export {
-  renderApplication,
-  renderApplicationWithRedux,
-  renderApplicationWithRoutes,
-  renderApplicationWithRoutesAndRedux,
-};
+export const getDefaultCustomViewServerMocks = () => [
+  graphql.query('AmILoggedIn', (_req, res, ctx) => {
+    return res(
+      ctx.data({
+        amILoggedIn: {
+          hasRequiredPermissions: true,
+        },
+      })
+    );
+  }),
+  graphql.query('FetchLoggedInUser', (_req, res, ctx) => {
+    return res(
+      ctx.data({
+        user: {
+          id: '123456890',
+          email: 'none@nowhere.com',
+          firstName: 'No',
+          lastName: 'Ne',
+          language: 'en',
+          numberFormat: 'en',
+          timeZone: 'Europe/Berlin',
+          launchdarklyTrackingId: '0987654321',
+          launchdarklyTrackingSubgroup: 'default',
+          launchdarklyTrackingTeam: [],
+          launchdarklyTrackingTenant: 'ctp-eu',
+          defaultProjectKey: 'my-project',
+          businessRole: 'Architect',
+          projects: {
+            total: 1,
+            results: [
+              {
+                key: 'my-project',
+                name: 'My Project',
+                suspension: {
+                  isActive: false,
+                  reason: '',
+                },
+                expiry: {
+                  isActive: false,
+                  daysLeft: 90,
+                },
+              },
+            ],
+          },
+          createdAt: '',
+          gravatarHash: '',
+          launchdarklyTrackingGroup: '',
+          idTokenUserInfo: {
+            iss: 'issuer',
+            sub: 'subject',
+            aud: 'audience',
+            exp: 123456789,
+            iat: 987654321,
+            email: 'p.good@nowhere.com',
+            name: 'Paul Good',
+            additionalClaims: '{"oid":"1234-dfdshjk-1232"}',
+          },
+        },
+      })
+    );
+  }),
+  graphql.query('FetchProject', (_req, res, ctx) => {
+    return res(
+      ctx.data({
+        project: {
+          key: 'my-project',
+          version: 1,
+          name: 'My Project',
+          countries: ['DE'],
+          currencies: ['EUR'],
+          languages: ['en'],
+          owner: {
+            id: '123456890',
+            email: 'none@nowhere.com',
+            name: 'No Ne',
+          },
+          initialized: true,
+          expiry: {
+            isActive: false,
+            daysLeft: 90,
+          },
+          suspension: {
+            isActive: false,
+            reason: '',
+          },
+          allAppliedPermissions: mapResourceAccessToAppliedPermissions([
+            // TODO: replace with the permissions required by your custom view
+            'View12345',
+          ]),
+          allAppliedActionRights: [],
+          allAppliedDataFences: [],
+          allPermissionsForAllApplications: [],
+          sampleDataImportDataset: {},
+          total: 1,
+          results: [],
+        },
+      })
+    );
+  }),
+];

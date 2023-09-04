@@ -3,7 +3,6 @@ import {
   CustomViewDevHost,
   CustomViewShell,
   setupGlobalErrorListener,
-  TCustomViewSize,
 } from '@commercetools-frontend/application-shell';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import { type TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';

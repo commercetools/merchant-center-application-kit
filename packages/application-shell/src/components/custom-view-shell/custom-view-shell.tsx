@@ -132,6 +132,14 @@ function CustomViewShell(props: TCustomViewShellProps) {
     };
   }, [hostMessageHandler]);
 
+  useEffect(
+    () => () => {
+      iFrameCommunicationPort.current?.close();
+      iFrameCommunicationPort.current = undefined;
+    },
+    []
+  );
+
   if (!hostContext) {
     return <ApplicationLoader showLogo />;
   }

@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import { useIntl } from 'react-intl';
 import { useShowNotification } from '@commercetools-frontend/actions-global';
@@ -103,6 +103,14 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
     // We want the effect to run only once so we don't need the dependencies array.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(
+    () => () => {
+      iFrameCommunicationChannel.current.port1.close();
+      iFrameCommunicationChannel.current.port2?.close();
+    },
+    []
+  );
 
   // Currently we only support custom panels
   if (props.customView.type !== 'CustomPanel') {
