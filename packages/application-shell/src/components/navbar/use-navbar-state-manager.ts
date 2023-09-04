@@ -146,6 +146,11 @@ const useNavbarStateManager = (props: HookProps) => {
           // and resets the state to avoid conflicts
           dispatch({ type: 'reset' });
         }
+      } else if (isForcedMenuOpen) {
+        dispatch({
+          type: 'setIsMenuOpenAndMakeExpanderVisible',
+          payload: true,
+        });
       } else if (canExpandMenu && state.isExpanderVisible !== true) {
         dispatch({ type: 'setIsExpanderVisible' });
       } else if (isNil(isForcedMenuOpen) && state.isMenuOpen !== shouldOpen) {
