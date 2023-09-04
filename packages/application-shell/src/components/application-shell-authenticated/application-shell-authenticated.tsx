@@ -232,9 +232,7 @@ export const ApplicationShellAuthenticated = (
                                 height: 100vh;
                                 display: grid;
                                 grid-template-rows: auto ${DIMENSIONS.header} 1fr;
-                                grid-template-columns:
-                                  minmax(${DIMENSIONS.navMenu}, auto)
-                                  1fr;
+                                grid-template-columns: min-content 1fr;
                               `}
                             >
                               <div
