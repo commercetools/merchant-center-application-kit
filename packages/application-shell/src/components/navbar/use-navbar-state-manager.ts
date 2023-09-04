@@ -130,7 +130,7 @@ const useNavbarStateManager = (props: HookProps) => {
     ? isForcedMenuOpenDefaultValue
     : (JSON.parse(cachedIsForcedMenuOpen) as boolean);
 
-  if (!cachedIsForcedMenuOpen) {
+  if (isNil(cachedIsForcedMenuOpen)) {
     window.localStorage.setItem(
       STORAGE_KEYS.IS_FORCED_MENU_OPEN,
       String(isForcedMenuOpen)
