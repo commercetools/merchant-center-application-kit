@@ -76,7 +76,7 @@ const injectAuthorized =
     OwnProps extends {
       isAuthorized?: boolean;
     },
-    InjectedProps extends OwnProps & { [key: string]: boolean }
+    InjectedProps extends OwnProps & { [key: string]: boolean },
   >(
     demandedPermissions: TPermissionName[],
     options: TInjectAuthorizedOptions<OwnProps> = {},

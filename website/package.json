@@ -44,7 +44,7 @@
     "@svgr/cli": "6.5.1",
     "gatsby-plugin-pnpm": "1.2.10",
     "linkinator": "5.0.1",
-    "prettier": "2.8.8",
+    "prettier": "3.0.0",
     "start-server-and-test": "2.0.0"
   }
 }

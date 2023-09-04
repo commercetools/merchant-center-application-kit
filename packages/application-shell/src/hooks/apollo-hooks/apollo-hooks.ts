@@ -12,20 +12,20 @@ import type { TApolloContext } from '../../utils/apollo-context';
 
 type TQueryOptionsWithContext<
   TData = unknown,
-  TVariables extends OperationVariables = OperationVariables
+  TVariables extends OperationVariables = OperationVariables,
 > = QueryHookOptions<TData, TVariables> & {
   context: TApolloContext;
 };
 type TMutationOptionsWithContext<
   TData = unknown,
-  TVariables = OperationVariables
+  TVariables = OperationVariables,
 > = MutationHookOptions<TData, TVariables, TApolloContext> & {
   context: TApolloContext;
 };
 
 function useMcQuery<
   TData = unknown,
-  TVariables extends OperationVariables = OperationVariables
+  TVariables extends OperationVariables = OperationVariables,
 >(
   query: DocumentNode,
   options?: TQueryOptionsWithContext<TData, TVariables>
@@ -35,7 +35,7 @@ function useMcQuery<
 
 function useMcLazyQuery<
   TData = unknown,
-  TVariables extends OperationVariables = OperationVariables
+  TVariables extends OperationVariables = OperationVariables,
 >(
   query: DocumentNode,
   options?: TQueryOptionsWithContext<TData, TVariables>
@@ -45,7 +45,7 @@ function useMcLazyQuery<
 
 function useMcMutation<
   TData = unknown,
-  TVariables extends OperationVariables = OperationVariables
+  TVariables extends OperationVariables = OperationVariables,
 >(
   mutation: DocumentNode,
   options?: TMutationOptionsWithContext<TData, TVariables>

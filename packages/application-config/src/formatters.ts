@@ -2,7 +2,7 @@ import upperFirst from 'lodash/upperFirst';
 import type { CamelCase } from './types';
 
 type TImplicitCustomApplicationResourceAccesses<
-  PermissionGroupName extends string = ''
+  PermissionGroupName extends string = '',
 > = Record<
   | `view`
   | `manage`
@@ -12,7 +12,7 @@ type TImplicitCustomApplicationResourceAccesses<
 >;
 
 type TImplicitCustomApplicationPermissionKeys<
-  PermissionGroupName extends string = ''
+  PermissionGroupName extends string = '',
 > = Record<
   | `View`
   | `Manage`
@@ -77,13 +77,13 @@ function entryPointUriPathToResourceAccesses(
   entryPointUriPath: string
 ): TImplicitCustomApplicationResourceAccesses<''>;
 function entryPointUriPathToResourceAccesses<
-  PermissionGroupName extends string
+  PermissionGroupName extends string,
 >(
   entryPointUriPath: string,
   permissionGroupNames: PermissionGroupName[]
 ): TImplicitCustomApplicationResourceAccesses<PermissionGroupName>;
 function entryPointUriPathToResourceAccesses<
-  PermissionGroupName extends string
+  PermissionGroupName extends string,
 >(
   entryPointUriPath: string,
   permissionGroupNames?: PermissionGroupName[]

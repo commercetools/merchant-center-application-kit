@@ -7,7 +7,7 @@ import prettier from 'prettier';
 import type { TCliTaskOptions } from '../types';
 import { wordify, resolveFilePathByExtension } from '../utils';
 
-function replaceApplicationInfoInCustomApplicationConfig(
+async function replaceApplicationInfoInCustomApplicationConfig(
   filePath: string,
   options: TCliTaskOptions
 ) {
@@ -55,10 +55,10 @@ function replaceApplicationInfoInCustomApplicationConfig(
   });
 
   if (result?.code) {
-    const prettierConfig = prettier.resolveConfig.sync(
+    const prettierConfig = await prettier.resolveConfig(
       options.projectDirectoryPath
     );
-    const formattedData = prettier.format(
+    const formattedData = await prettier.format(
       result.code + os.EOL,
       prettierConfig ?? undefined
     );
@@ -71,11 +71,11 @@ function replaceApplicationInfoInCustomApplicationConfig(
 function updateCustomApplicationConfig(options: TCliTaskOptions): ListrTask {
   return {
     title: 'Updating Custom Applications config',
-    task: () => {
+    task: async () => {
       const customApplicationConfigPath = resolveFilePathByExtension(
         path.join(options.projectDirectoryPath, 'custom-application-config')
       );
-      replaceApplicationInfoInCustomApplicationConfig(
+      await replaceApplicationInfoInCustomApplicationConfig(
         customApplicationConfigPath,
         options
       );

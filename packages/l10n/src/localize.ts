@@ -65,7 +65,7 @@ export const transformLocalizedStringToLocalizedField = (
  */
 export const applyTransformedLocalizedFields = <
   Input extends Record<string, unknown>,
-  Output extends Record<string, unknown>
+  Output extends Record<string, unknown>,
 >(
   objectWithLocalizedFields: Input,
   fieldNames: FieldNameTranformationMapping[]
@@ -107,7 +107,7 @@ export const applyTransformedLocalizedFields = <
  */
 export const applyTransformedLocalizedStrings = <
   Input extends Record<string, unknown>,
-  Output extends Record<string, unknown>
+  Output extends Record<string, unknown>,
 >(
   objectWithLocalizedStrings: Input,
   fieldNames: FieldNameTranformationMapping[]
