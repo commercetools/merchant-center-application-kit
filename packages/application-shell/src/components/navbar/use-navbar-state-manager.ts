@@ -42,6 +42,8 @@ const getInitialState = (isForcedMenuOpen: boolean | null): State => ({
   isMenuOpen: isNil(isForcedMenuOpen) ? false : isForcedMenuOpen,
 });
 
+const isForcedMenuOpenDefaultValue = false;
+
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case 'setActiveItemIndex':
@@ -125,8 +127,15 @@ const useNavbarStateManager = (props: HookProps) => {
     STORAGE_KEYS.IS_FORCED_MENU_OPEN
   );
   const isForcedMenuOpen = isNil(cachedIsForcedMenuOpen)
-    ? null
+    ? isForcedMenuOpenDefaultValue
     : (JSON.parse(cachedIsForcedMenuOpen) as boolean);
+
+  if (isNil(cachedIsForcedMenuOpen)) {
+    window.localStorage.setItem(
+      STORAGE_KEYS.IS_FORCED_MENU_OPEN,
+      String(isForcedMenuOpen)
+    );
+  }
 
   const [state, dispatch] = useReducer<
     (prevState: State, action: Action) => State
