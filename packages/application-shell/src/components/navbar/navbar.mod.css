@@ -341,21 +341,6 @@
   display: none;
 }
 
-.sublist-new {
-  padding: var(--spacing-m) var(--spacing-l);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  font-weight: var(--font-weight-for-navbar-link);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  font-size: var(--font-size-for-navbar-link);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  background-color: var(--background-color-for-navbar);
-  left: 58px;
-  z-index: -1;
-  list-style: none;
-  position: fixed;
-  display: none;
-}
-
 .sublist__inactive {
   /* empty block */
 }
