@@ -1,5 +1,22 @@
 # playground
 
+## 22.7.1
+
+### Patch Changes
+
+- Updated dependencies [[`6db7d79b0`](https://github.com/commercetools/merchant-center-application-kit/commit/6db7d79b0a0d94d6bf0a600110a5c63fab459f7c), [`f5893edb6`](https://github.com/commercetools/merchant-center-application-kit/commit/f5893edb6723e274176646926ad9e748b30030ca), [`51a988f4d`](https://github.com/commercetools/merchant-center-application-kit/commit/51a988f4dfa31204799c32db070b88473e4a5ffd)]:
+  - @commercetools-frontend/application-shell@22.7.1
+  - @commercetools-frontend/actions-global@22.7.1
+  - @commercetools-frontend/application-components@22.7.1
+  - @commercetools-frontend/application-shell-connectors@22.7.1
+  - @commercetools-frontend/assets@22.7.1
+  - @commercetools-frontend/browser-history@22.7.1
+  - @commercetools-frontend/constants@22.7.1
+  - @commercetools-frontend/i18n@22.7.1
+  - @commercetools-frontend/l10n@22.7.1
+  - @commercetools-frontend/permissions@22.7.1
+  - @commercetools-frontend/sdk@22.7.1
+
 ## 22.7.0
 
 ### Minor Changes
