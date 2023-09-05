@@ -27,10 +27,10 @@ import type {
   TDataFence,
   TActionRight,
   TLocalizedField,
-} from '../../types/generated/proxy';
-import { location } from '../../utils/location';
+} from '../../../types/generated/proxy';
+import { location } from '../../../utils/location';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
-import compiledStyles from /* preval */ './navbar.styles';
+import compiledStyles from /* preval */ '../navbar.styles';
 
 const styles = compiledStyles.jsonMap;
 
@@ -54,24 +54,24 @@ type TProjectPermissions = {
 </DataMenu>
 */
 
-const HeartIcon = lazy(() => import('./legacy-icons/heart'));
-const PaperclipIcon = lazy(() => import('./legacy-icons/paperclip'));
-const PluginIcon = lazy(() => import('./legacy-icons/plugin'));
-const RocketIcon = lazy(() => import('./legacy-icons/rocket'));
-const StarIcon = lazy(() => import('./legacy-icons/star'));
+const HeartIcon = lazy(() => import('../legacy-icons/heart'));
+const PaperclipIcon = lazy(() => import('../legacy-icons/paperclip'));
+const PluginIcon = lazy(() => import('../legacy-icons/plugin'));
+const RocketIcon = lazy(() => import('../legacy-icons/rocket'));
+const StarIcon = lazy(() => import('../legacy-icons/star'));
 const ConnectedSquareIcon = lazy(
-  () => import('./legacy-icons/connected-square')
+  () => import('../legacy-icons/connected-square')
 );
-const WorldIcon = lazy(() => import('./legacy-icons/world'));
-const TreeStructureIcon = lazy(() => import('./legacy-icons/tree-structure'));
-const UserFilledIcon = lazy(() => import('./legacy-icons/user-filled'));
-const SpeedometerIcon = lazy(() => import('./legacy-icons/speedometer'));
-const TagMultiIcon = lazy(() => import('./legacy-icons/tag-multi'));
-const CartIcon = lazy(() => import('./legacy-icons/cart'));
-const BoxIcon = lazy(() => import('./legacy-icons/box'));
-const GearIcon = lazy(() => import('./legacy-icons/gear'));
+const WorldIcon = lazy(() => import('../legacy-icons/world'));
+const TreeStructureIcon = lazy(() => import('../legacy-icons/tree-structure'));
+const UserFilledIcon = lazy(() => import('../legacy-icons/user-filled'));
+const SpeedometerIcon = lazy(() => import('../legacy-icons/speedometer'));
+const TagMultiIcon = lazy(() => import('../legacy-icons/tag-multi'));
+const CartIcon = lazy(() => import('../legacy-icons/cart'));
+const BoxIcon = lazy(() => import('../legacy-icons/box'));
+const GearIcon = lazy(() => import('../legacy-icons/gear'));
 const ListWithSearchIcon = lazy(
-  () => import('./legacy-icons/list-with-search')
+  () => import('../legacy-icons/list-with-search')
 );
 
 type IconProps = Parameters<typeof BackIcon>[0];
@@ -177,7 +177,6 @@ type MenuGroupProps = {
   hasSubmenu?: boolean;
   children?: ReactNode;
   verticalPosition?: number;
-  isNewNavigationEnabled?: boolean;
 };
 
 const MenuGroup = (props: MenuGroupProps) => {
@@ -194,12 +193,6 @@ const MenuGroup = (props: MenuGroupProps) => {
     props.level === 2 && props.isActive && !props.isExpanded;
   return (
     <ul
-      css={
-        props.isNewNavigationEnabled &&
-        css`
-          top: ${props.verticalPosition}px;
-        `
-      }
       id={`group-${props.id}`}
       data-testid={`group-${props.id}`}
       role="menu"
@@ -210,32 +203,18 @@ const MenuGroup = (props: MenuGroupProps) => {
       className={classnames(
         { [styles.list]: props.level === 1 },
         {
-          [styles['sublist-new']]:
-            props.level === 2 && props.isNewNavigationEnabled,
-        },
-        {
-          [styles['sublist']]:
-            props.level === 2 && !props.isNewNavigationEnabled,
+          [styles['sublist']]: props.level === 2,
         },
         {
           [styles['sublist-no-children']]: props.level === 2 && !props.children,
         },
         {
-          [styles['sublist-expanded-new__active']]:
-            isSublistActiveWhileIsMenuExpanded && props.isNewNavigationEnabled,
-        },
-        {
           [styles['sublist-expanded__active']]:
-            isSublistActiveWhileIsMenuExpanded && !props.isNewNavigationEnabled,
-        },
-        {
-          [styles['sublist-collapsed-new__active']]:
-            isSublistActiveWhileIsMenuCollapsed && props.isNewNavigationEnabled,
+            isSublistActiveWhileIsMenuExpanded,
         },
         {
           [styles['sublist-collapsed__active']]:
-            isSublistActiveWhileIsMenuCollapsed &&
-            !props.isNewNavigationEnabled,
+            isSublistActiveWhileIsMenuCollapsed,
         },
         {
           [styles.sublist__inactive]: !isSublistActiveWhileIsMenuCollapsed,
@@ -258,7 +237,7 @@ type MenuItemProps = {
   onMouseLeave?: MouseEventHandler<HTMLElement>;
   children: ReactNode;
 };
-const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>((props, ref) => {
+const MenuItem = (props: MenuItemProps) => {
   return (
     <li
       role="menuitem"
@@ -272,12 +251,10 @@ const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>((props, ref) => {
       onMouseEnter={props.onMouseEnter}
       onMouseLeave={props.onMouseLeave}
     >
-      <div ref={ref} className={styles['item-link']}>
-        {props.children}
-      </div>
+      <div className={styles['item-link']}>{props.children}</div>
     </li>
   );
-});
+};
 
 MenuItem.displayName = 'MenuItem';
 
@@ -287,7 +264,6 @@ export type MenuItemLinkProps = {
   children: ReactNode;
   onClick?: (event: SyntheticEvent<HTMLAnchorElement>) => void;
   useFullRedirectsForLinks?: boolean;
-  isNewNavigationEnabled?: boolean;
 };
 const menuItemLinkDefaultProps: Pick<MenuItemLinkProps, 'exactMatch'> = {
   exactMatch: false,
@@ -299,16 +275,8 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
       <NavLink
         to={props.linkTo}
         exact={props.exactMatch}
-        activeClassName={
-          props.isNewNavigationEnabled
-            ? styles['highlighted-new']
-            : styles.highlighted
-        }
-        className={
-          props.isNewNavigationEnabled
-            ? styles['text-link-new']
-            : styles['text-link']
-        }
+        activeClassName={styles.highlighted}
+        className={styles['text-link']}
         onClick={(event) => {
           if (props.linkTo && props.useFullRedirectsForLinks) {
             event.preventDefault();
@@ -436,7 +404,6 @@ const MenuLabel = (props: MenuLabelProps) => {
 
 type TNavBarLayoutProps = {
   children: ReactNode;
-  isNewNavigationEnabled?: boolean;
 };
 const NavBarLayout = forwardRef<HTMLElement, TNavBarLayoutProps>(
   (props, ref) => (
@@ -448,11 +415,7 @@ const NavBarLayout = forwardRef<HTMLElement, TNavBarLayoutProps>(
       />
       <nav
         ref={ref}
-        className={
-          props.isNewNavigationEnabled
-            ? styles['left-navigation-new']
-            : styles['left-navigation']
-        }
+        className={styles['left-navigation']}
         data-test="left-navigation"
         data-testid="left-navigation"
       >
