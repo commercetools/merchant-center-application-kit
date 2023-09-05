@@ -22,7 +22,6 @@ import type { TFetchProjectQuery } from '../../../types/generated/mc';
 import type { TNavbarMenu, TBaseMenu } from '../../../types/generated/proxy';
 import messages from '../messages';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
-import compiledStyles from /* preval */ '../navbar.styles';
 import nonNullable from '../non-nullable';
 import useNavbarStateManager from '../use-navbar-state-manager';
 import LoadingNavBar from './loading-navbar';
@@ -39,6 +38,7 @@ import {
   MenuExpander,
   NavBarLayout,
 } from './menu-items';
+import compiledStyles from /* preval */ './navbar.styles';
 
 const styles = compiledStyles.jsonMap;
 

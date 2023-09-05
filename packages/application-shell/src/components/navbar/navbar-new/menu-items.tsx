@@ -30,7 +30,7 @@ import type {
 } from '../../../types/generated/proxy';
 import { location } from '../../../utils/location';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
-import compiledStyles from /* preval */ '../navbar.styles';
+import compiledStyles from /* preval */ './navbar.styles';
 
 const styles = compiledStyles.jsonMap;
 
@@ -206,17 +206,17 @@ const MenuGroup = (props: MenuGroupProps) => {
       className={classnames(
         { [styles.list]: props.level === 1 },
         {
-          [styles['sublist-new']]: props.level === 2,
+          [styles['sublist']]: props.level === 2,
         },
         {
           [styles['sublist-no-children']]: props.level === 2 && !props.children,
         },
         {
-          [styles['sublist-expanded-new__active']]:
+          [styles['sublist-expanded__active']]:
             isSublistActiveWhileIsMenuExpanded,
         },
         {
-          [styles['sublist-collapsed-new__active']]:
+          [styles['sublist-collapsed__active']]:
             isSublistActiveWhileIsMenuCollapsed,
         },
         {
@@ -282,10 +282,14 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
         to={props.linkTo}
         exact={props.exactMatch}
         activeClassName={
-          props.isSubmenuLink ? styles['highlighted-new'] : styles.highlighted
+          props.isSubmenuLink
+            ? styles['highlighted-sublist']
+            : styles.highlighted
         }
         className={
-          props.isSubmenuLink ? styles['text-link-new'] : styles['text-link']
+          props.isSubmenuLink
+            ? styles['text-link-sublist']
+            : styles['text-link']
         }
         onClick={(event) => {
           if (props.linkTo && props.useFullRedirectsForLinks) {
@@ -425,7 +429,7 @@ const NavBarLayout = forwardRef<HTMLElement, TNavBarLayoutProps>(
       />
       <nav
         ref={ref}
-        className={styles['left-navigation-new']}
+        className={styles['left-navigation']}
         data-test="left-navigation"
         data-testid="left-navigation"
       >

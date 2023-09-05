@@ -30,7 +30,6 @@ import type { TFetchProjectQuery } from '../../../types/generated/mc';
 import type { TNavbarMenu, TBaseMenu } from '../../../types/generated/proxy';
 import messages from '../messages';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
-import compiledStyles from /* preval */ '../navbar.styles';
 import nonNullable from '../non-nullable';
 import useNavbarStateManager from '../use-navbar-state-manager';
 import {
@@ -47,6 +46,7 @@ import {
   NavBarLayout,
 } from './menu-items';
 import NavBarSkeleton from './navbar-skeleton';
+import compiledStyles from /* preval */ './navbar.styles';
 
 const styles = compiledStyles.jsonMap;
 
@@ -220,9 +220,11 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                   }
                 >
                   <li
-                    className={classnames(styles['sublist-item-new'], {
-                      [styles['sublist-item-new__active']]:
-                        getIsSubmenuRouteActive(submenu.uriPath, props),
+                    className={classnames(styles['sublist-item'], {
+                      [styles['sublist-item__active']]: getIsSubmenuRouteActive(
+                        submenu.uriPath,
+                        props
+                      ),
                     })}
                   >
                     <div className={styles.text}>
@@ -336,7 +338,7 @@ const NavBar = (props: TNavbarProps) => {
     <NavBarLayout ref={navBarNode}>
       <div>Navigation header</div>
       <MenuGroup id="main" level={1}>
-        <div className={styles['scrollable-menu-new']} onScroll={handleScroll}>
+        <div className={styles['scrollable-menu']} onScroll={handleScroll}>
           {allInternalApplicationsNavbarMenu.map((menu) => {
             const menuType = 'scrollable';
             const itemIndex = `${menuType}-${menu.key}`;

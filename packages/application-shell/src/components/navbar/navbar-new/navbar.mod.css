@@ -22,15 +22,6 @@
 /* Left Nav */
 
 .left-navigation {
-  display: flex;
-  flex-grow: 1;
-  width: var(--width-left-navigation);
-  z-index: 19999;
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  background: var(--background-color-for-navbar);
-}
-
-.left-navigation-new {
   display: grid;
   width: var(--width-left-navigation);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
@@ -161,12 +152,6 @@
   border-bottom: 0;
 }
 
-.item__no-submenu .sublist {
-  padding-top: 40px;
-}
-
-/* left-nav open */
-
 :global(.body__menu-open) .title {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link);
@@ -190,7 +175,6 @@
 }
 
 :global(.body__menu-open) .left-navigation,
-:global(.body__menu-open) .left-navigation-new,
 :global(.body__menu-open) .list-item {
   width: var(--width-left-navigation-when-expanded);
 }
@@ -224,19 +208,6 @@
   transition: max-height 0.25s ease-in;
 }
 
-:global(.body__menu-open) .sublist {
-  position: relative;
-  z-index: 1;
-  left: 0;
-  margin: 0 0 0 var(--submenu-margin);
-  padding: var(--spacing-m) 0 0;
-  background-color: transparent;
-}
-
-:global(.body__menu-open) .sublist.sublist-no-children {
-  border: 0;
-}
-
 :global(.body__menu-open) .title-copy {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link);
@@ -264,22 +235,6 @@
 /*  Second level menu */
 
 .sublist {
-  padding: 75px var(--spacing-l) var(--spacing-m);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  font-weight: var(--font-weight-for-navbar-link);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  font-size: var(--font-size-for-navbar-link);
-  position: absolute;
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  background-color: var(--background-color-for-navbar);
-  top: 0;
-  left: 64px;
-  list-style: none;
-  opacity: 0.01;
-  display: none;
-}
-
-.sublist-new {
   padding: var(--spacing-m) var(--spacing-l);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link);
@@ -299,32 +254,18 @@
 }
 
 .sublist-item {
-  padding: var(--spacing-s) 0 0;
-}
-.sublist-item:first-of-type {
-  padding: 0;
-}
-
-.sublist-item-new {
   display: flex;
   align-items: center;
   gap: 8px;
   align-self: stretch;
 }
 
-.sublist-item-new__active {
+.sublist-item__active {
   border-radius: var(--border-radius-4);
   background: var(--color-accent-30);
 }
 
 .sublist-item:hover {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  color: var(--color-for-navbar-link-when-hovered);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  font-weight: var(--font-weight-for-navbar-link-when-hovered);
-}
-
-.sublist-item-new:hover {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link-when-hovered);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
@@ -351,7 +292,7 @@
   transition: all 0.15s ease;
 }
 
-.text-link-new {
+.text-link-sublist {
   display: flex;
   align-items: flex-start;
   color: var(--color-solid);
@@ -425,15 +366,6 @@
   margin-left: 0;
 }
 
-.list-item.item__active .sublist {
-  width: var(--width-left-navigation-sublist);
-  min-height: 100%;
-}
-
-:global(.body__menu-open) .list-item.item__active .sublist {
-  width: calc(100% - var(--submenu-margin));
-}
-
 .sublist-expanded__active,
 .sublist-collapsed__active {
   opacity: 1;
@@ -447,8 +379,8 @@
   display: block;
 }
 
-.item-link:hover .sublist-collapsed-new__active,
-.item-link:hover .sublist-expanded-new__active {
+.item-link:hover .sublist-collapsed__active,
+.item-link:hover .sublist-expanded__active {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -464,7 +396,7 @@
   box-shadow: -2px 4px 25px 0 rgba(89, 89, 89, 0.5);
 }
 
-.item-link:hover .sublist-expanded-new__active {
+.item-link:hover .sublist-expanded__active {
   left: 240px;
 }
 
@@ -476,13 +408,13 @@
   font-weight: var(--font-weight-for-navbar-link-when-active);
 }
 
-.highlighted-new,
-.highlighted-new .title {
+.highlighted-sublist,
+.highlighted-sublist .title {
   color: var(--color-surface);
 }
 
-.sublist-item-new:hover .highlighted-new,
-.sublist-item-new:hover .highlighted-new .title {
+.sublist-item:hover .highlighted-sublist,
+.sublist-item:hover .highlighted-sublist .title {
   color: var(--color-solid);
 }
 
@@ -504,20 +436,11 @@
 
 .scrollable-menu {
   flex: 1 1 0;
-  padding-bottom: var(--faded-height);
-  /*
-    FIXME: Make the navbar scrollable in collapsed state.
-    NOTE: do not use `overflow-x: hidden; overflow-y: auto;` as this prevents submenus from showing up on hover
-  */
-}
-
-.scrollable-menu-new {
-  flex: 1 1 0;
   overflow-x: hidden;
   overflow-y: scroll;
 }
 
-.scrollable-menu-new::-webkit-scrollbar {
+.scrollable-menu::-webkit-scrollbar {
   display: none;
 }
 

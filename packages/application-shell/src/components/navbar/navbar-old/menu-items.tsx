@@ -30,7 +30,7 @@ import type {
 } from '../../../types/generated/proxy';
 import { location } from '../../../utils/location';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
-import compiledStyles from /* preval */ '../navbar.styles';
+import compiledStyles from /* preval */ './navbar.styles';
 
 const styles = compiledStyles.jsonMap;
 

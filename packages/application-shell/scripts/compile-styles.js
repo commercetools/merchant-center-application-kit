@@ -5,7 +5,10 @@ const path = require('path');
 const postcss = require('postcss');
 const loadPostCssConfig = require('postcss-load-config');
 
-const filesToCompile = ['src/components/navbar/navbar.mod.css'];
+const filesToCompile = [
+  'src/components/navbar/navbar-old/navbar.mod.css',
+  'src/components/navbar/navbar-new/navbar.mod.css',
+];
 
 function getCompiledPaths(cssFilePath) {
   const fileName = path.basename(cssFilePath);
