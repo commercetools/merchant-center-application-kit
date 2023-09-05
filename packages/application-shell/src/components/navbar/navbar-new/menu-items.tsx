@@ -2,8 +2,8 @@ import {
   forwardRef,
   lazy,
   MouseEventHandler,
-  ReactNode,
-  SyntheticEvent,
+  type ReactNode,
+  type SyntheticEvent,
 } from 'react';
 import { Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
