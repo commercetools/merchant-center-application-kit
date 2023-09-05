@@ -52,7 +52,6 @@ type TLocalCustomViewLauncherProps = {
 
 const LocalCustomViewLauncher = (props: TLocalCustomViewLauncherProps) => {
   const [shouldRenderCustomView, setShouldRenderCustomView] = useState(false);
-  const [hostUrl, setHostUrl] = useState('');
 
   const customViewConfig = getCustomViewConfig({
     type: props.environment.__DEVELOPMENT__?.customViewType as TCustomViewType,
@@ -76,29 +75,28 @@ const LocalCustomViewLauncher = (props: TLocalCustomViewLauncherProps) => {
                   settings that will be used:
                 </Text.Body>
                 <ul>
-                  <li>
-                    Custom View type: <b>{customViewConfig.type}</b>
-                  </li>
-                  <li>
-                    Custom View size:{' '}
-                    <b>{customViewConfig.typeSettings?.size}</b>
-                  </li>
+                  <Spacings.Stack scale="s">
+                    <li>
+                      Custom View type: <b>{customViewConfig.type}</b>
+                    </li>
+                    <li>
+                      Custom View size:{' '}
+                      <b>{customViewConfig.typeSettings?.size}</b>
+                    </li>
+                    <li>
+                      Emulated Host application URL:{' '}
+                      <b>
+                        {props.environment.customViewHostUrl || 'not defined'}
+                      </b>
+                    </li>
+                  </Spacings.Stack>
                 </ul>
               </Spacings.Stack>
               <Constraints.Horizontal max={10}>
-                <Spacings.Stack scale="l">
-                  <TextField
-                    title="Host URL"
-                    description="The Custom View will receive the URL of the Merchant Center current page in case you need to load data based on it. Populate this field in case you want to simulate a specific URL locally."
-                    placeholder="/<application_name>/<project_key>/<view_path>"
-                    value={hostUrl}
-                    onChange={(event) => setHostUrl(event.target.value)}
-                  />
-                  <PrimaryButton
-                    label="Open the Custom View"
-                    onClick={() => setShouldRenderCustomView(true)}
-                  />
-                </Spacings.Stack>
+                <PrimaryButton
+                  label="Open the Custom View"
+                  onClick={() => setShouldRenderCustomView(true)}
+                />
               </Constraints.Horizontal>
             </Spacings.Stack>
           </Spacings.Stack>
@@ -106,7 +104,7 @@ const LocalCustomViewLauncher = (props: TLocalCustomViewLauncherProps) => {
           {shouldRenderCustomView && (
             <CustomViewLoader
               customView={customViewConfig}
-              hostUrl={hostUrl}
+              hostUrl={props.environment.customViewHostUrl}
               onClose={() => setShouldRenderCustomView(false)}
             />
           )}

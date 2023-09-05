@@ -115,6 +115,7 @@ function transformCustomViewConfigToData(
     permissions: getPermissions(customViewConfig),
     type: customViewConfig.type,
     typeSettings: customViewConfig.typeSettings,
+    hostUrl: customViewConfig.env.development.hostUrl,
   };
 }
 

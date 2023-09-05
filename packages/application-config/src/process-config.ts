@@ -64,9 +64,7 @@ const processConfig = ({
 }: ProcessConfigOptions = {}): ApplicationRuntimeConfig => {
   if (cachedConfig && !disableCache) return cachedConfig;
   const { filepath, config: rawConfig } = loadConfig(applicationPath);
-  const configType = getConfigurationType(
-    parseFilePath(filepath).name
-  );
+  const configType = getConfigurationType(parseFilePath(filepath).name);
 
   validateConfig(configType, rawConfig);
   const appConfig =
@@ -185,7 +183,10 @@ const processConfig = ({
       entryPointUriPath: (configurationData as CustomApplicationData)
         .entryPointUriPath,
       ...(configType === ConfigType.CUSTOM_VIEW
-        ? { customViewId: (configurationData as CustomViewData).id }
+        ? {
+            customViewId: (configurationData as CustomViewData).id,
+            customViewHostUrl: (configurationData as CustomViewData).hostUrl,
+          }
         : {}),
       ...(isProd || !developmentConfig
         ? {}

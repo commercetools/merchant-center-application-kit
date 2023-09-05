@@ -22,9 +22,13 @@ const AsyncApplicationRoutes = lazy(
 setupGlobalErrorListener();
 
 const customViewId = window.app.customViewId || Date.now().toString();
+const customViewHostUrl = window.app.customViewHostUrl
+  ? `${window.location.origin}${window.app.customViewHostUrl}`
+  : null;
 const environment = {
   ...window.app,
   customViewId,
+  customViewHostUrl,
   entryPointUriPath: customViewId,
 };
 

@@ -5,6 +5,8 @@ const config = {
     development: {
       // TODO: This should be populated in the template installation process
       initialProjectKey: 'almond-40',
+      // TODO: This should be an optional attribute
+      hostUrl: '/test-project-with-sample-data/products/47741ed1-ae01-4700-a858-45117e2a1730'
     },
     production: {
       customViewId: 'TODO',
@@ -17,7 +19,7 @@ const config = {
   },
   type: 'CustomPanel',
   typeSettings: {
-    size: 'SMALL',
+    size: 'SMALL', // SMALL, LARGE
   }
 };
 

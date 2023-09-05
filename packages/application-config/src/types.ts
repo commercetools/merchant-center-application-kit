@@ -54,6 +54,7 @@ export type CustomViewData = {
   permissions: CustomApplicationPermissionData[];
   type: string;
   typeSettings?: Record<string, unknown>;
+  hostUrl?: string;
 };
 
 // The object result after processing the config file
