@@ -42,7 +42,7 @@ type THostEventData = {
 };
 
 type TCustomViewShellProps = {
-  customViewId: string;
+  customViewId?: string;
   messages: TAsyncLocaleDataProps['applicationMessages'];
   children: ReactNode;
 };

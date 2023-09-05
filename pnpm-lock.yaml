@@ -733,6 +733,225 @@ importers:
         specifier: 5.0.4
         version: 5.0.4
 
+  custom-views-templates/starter-typescript:
+    dependencies:
+      '@apollo/client':
+        specifier: 3.7.14
+        version: 3.7.14(graphql@16.8.0)(react-dom@17.0.2)(react@17.0.2)
+      '@babel/core':
+        specifier: ^7.20.12
+        version: 7.22.17
+      '@babel/runtime-corejs3':
+        specifier: ^7.20.13
+        version: 7.22.15
+      '@commercetools-frontend/actions-global':
+        specifier: workspace:*
+        version: link:../../packages/actions-global
+      '@commercetools-frontend/application-components':
+        specifier: workspace:*
+        version: link:../../packages/application-components
+      '@commercetools-frontend/application-config':
+        specifier: workspace:*
+        version: link:../../packages/application-config
+      '@commercetools-frontend/application-shell':
+        specifier: workspace:*
+        version: link:../../packages/application-shell
+      '@commercetools-frontend/application-shell-connectors':
+        specifier: workspace:*
+        version: link:../../packages/application-shell-connectors
+      '@commercetools-frontend/assets':
+        specifier: workspace:*
+        version: link:../../packages/assets
+      '@commercetools-frontend/constants':
+        specifier: workspace:*
+        version: link:../../packages/constants
+      '@commercetools-frontend/eslint-config-mc-app':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config-mc-app
+      '@commercetools-frontend/i18n':
+        specifier: workspace:*
+        version: link:../../packages/i18n
+      '@commercetools-frontend/jest-preset-mc-app':
+        specifier: workspace:*
+        version: link:../../packages/jest-preset-mc-app
+      '@commercetools-frontend/l10n':
+        specifier: workspace:*
+        version: link:../../packages/l10n
+      '@commercetools-frontend/mc-dev-authentication':
+        specifier: workspace:*
+        version: link:../../packages/mc-dev-authentication
+      '@commercetools-frontend/mc-scripts':
+        specifier: workspace:*
+        version: link:../../packages/mc-scripts
+      '@commercetools-frontend/permissions':
+        specifier: workspace:*
+        version: link:../../packages/permissions
+      '@commercetools-test-data/channel':
+        specifier: 4.11.1
+        version: 4.11.1
+      '@commercetools-test-data/commons':
+        specifier: 4.11.1
+        version: 4.11.1
+      '@commercetools-test-data/core':
+        specifier: 4.11.1
+        version: 4.11.1
+      '@commercetools-uikit/constraints':
+        specifier: ^16.4.0
+        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)
+      '@commercetools-uikit/data-table':
+        specifier: ^16.4.0
+        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/flat-button':
+        specifier: ^16.4.0
+        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/grid':
+        specifier: ^16.4.0
+        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)
+      '@commercetools-uikit/hooks':
+        specifier: ^16.4.0
+        version: 16.7.3(react@17.0.2)
+      '@commercetools-uikit/icons':
+        specifier: ^16.4.0
+        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)
+      '@commercetools-uikit/link':
+        specifier: ^16.4.0
+        version: 16.7.3(@types/react@17.0.56)(react-intl@6.4.5)(react-router-dom@5.3.4)(react@17.0.2)
+      '@commercetools-uikit/loading-spinner':
+        specifier: ^16.4.0
+        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/localized-text-field':
+        specifier: ^16.4.0
+        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/localized-text-input':
+        specifier: ^16.4.0
+        version: 16.7.3(@types/react@17.0.56)(react-intl@6.4.5)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/notifications':
+        specifier: ^16.4.0
+        version: 16.7.3(@types/react@17.0.56)(react-intl@6.4.5)(react@17.0.2)
+      '@commercetools-uikit/pagination':
+        specifier: ^16.4.0
+        version: 16.7.3(@types/react@17.0.56)(react-dom@17.0.2)(react-intl@6.4.5)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/select-field':
+        specifier: ^16.4.0
+        version: 16.7.3(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/spacings':
+        specifier: ^16.4.0
+        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)
+      '@commercetools-uikit/text':
+        specifier: ^16.4.0
+        version: 16.7.3(@types/react@17.0.56)(react-intl@6.4.5)(react@17.0.2)
+      '@commercetools-uikit/text-field':
+        specifier: ^16.4.0
+        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/text-input':
+        specifier: ^16.4.0
+        version: 16.7.3(@types/react@17.0.56)(react-intl@6.4.5)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools/sync-actions':
+        specifier: ^5.3.1
+        version: 5.14.0
+      '@emotion/react':
+        specifier: 11.11.0
+        version: 11.11.0(@types/react@17.0.56)(react@17.0.2)
+      '@formatjs/cli':
+        specifier: 6.1.1
+        version: 6.1.1
+      '@jest/types':
+        specifier: 29.5.0
+        version: 29.5.0
+      '@manypkg/cli':
+        specifier: 0.20.0
+        version: 0.20.0
+      '@testing-library/dom':
+        specifier: ^9.0.0
+        version: 9.3.1
+      '@testing-library/jest-dom':
+        specifier: ^5.16.5
+        version: 5.17.0
+      '@testing-library/react':
+        specifier: 12.1.5
+        version: 12.1.5(react-dom@17.0.2)(react@17.0.2)
+      '@testing-library/react-hooks':
+        specifier: 8.0.1
+        version: 8.0.1(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
+      '@types/jest':
+        specifier: ^29.5.1
+        version: 29.5.4
+      '@types/react':
+        specifier: ^17.0.56
+        version: 17.0.56
+      '@types/react-dom':
+        specifier: 17.0.20
+        version: 17.0.20
+      '@types/react-router':
+        specifier: 5.1.20
+        version: 5.1.20
+      '@types/react-router-dom':
+        specifier: ^5.3.3
+        version: 5.3.3
+      '@types/testing-library__jest-dom':
+        specifier: ^5.14.5
+        version: 5.14.9
+      eslint:
+        specifier: 8.40.0
+        version: 8.40.0
+      eslint-formatter-pretty:
+        specifier: 4.1.0
+        version: 4.1.0
+      eslint-plugin-graphql:
+        specifier: ^4.0.0
+        version: 4.0.0(@types/node@18.17.14)(graphql@16.8.0)(typescript@5.0.4)
+      formik:
+        specifier: 2.2.9
+        version: 2.2.9(react@17.0.2)
+      graphql:
+        specifier: ^16.6.0
+        version: 16.8.0
+      graphql-tag:
+        specifier: ^2.12.6
+        version: 2.12.6(graphql@16.8.0)
+      jest:
+        specifier: 29.5.0
+        version: 29.5.0(@types/node@18.17.14)(ts-node@10.9.1)
+      jest-runner-eslint:
+        specifier: 2.0.0
+        version: 2.0.0(eslint@8.40.0)(jest@29.5.0)
+      jest-watch-typeahead:
+        specifier: 2.2.2
+        version: 2.2.2(jest@29.5.0)
+      moment:
+        specifier: ^2.29.4
+        version: 2.29.4
+      msw:
+        specifier: 0.49.3
+        version: 0.49.3(typescript@5.0.4)
+      omit-empty-es:
+        specifier: 1.1.3
+        version: 1.1.3
+      prettier:
+        specifier: 2.8.8
+        version: 2.8.8
+      react:
+        specifier: 17.0.2
+        version: 17.0.2
+      react-dom:
+        specifier: 17.0.2
+        version: 17.0.2(react@17.0.2)
+      react-intl:
+        specifier: ^6.4.2
+        version: 6.4.5(react@17.0.2)(typescript@5.0.4)
+      react-redux:
+        specifier: 7.2.9
+        version: 7.2.9(react-dom@17.0.2)(react@17.0.2)
+      react-router-dom:
+        specifier: 5.3.4
+        version: 5.3.4(react@17.0.2)
+      redux:
+        specifier: 4.2.1
+        version: 4.2.1
+      typescript:
+        specifier: 5.0.4
+        version: 5.0.4
+
   packages-backend/eslint-config-node:
     dependencies:
       '@babel/core':
@@ -8004,13 +8223,13 @@ packages:
       '@types/node': 18.17.14
       chalk: 4.1.2
       cosmiconfig: 8.1.3
-      cosmiconfig-typescript-loader: 4.3.0(@types/node@18.17.14)(cosmiconfig@8.1.3)(ts-node@10.9.1)(typescript@5.0.4)
+      cosmiconfig-typescript-loader: 4.3.0(@types/node@18.17.14)(cosmiconfig@8.1.3)(ts-node@10.9.1)(typescript@5.2.2)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
       resolve-from: 5.0.0
-      ts-node: 10.9.1(@types/node@18.17.14)(typescript@5.0.4)
-      typescript: 5.0.4
+      ts-node: 10.9.1(@types/node@18.17.14)(typescript@5.2.2)
+      typescript: 5.2.2
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/wasm'
@@ -8614,7 +8833,7 @@ packages:
       ajv: 6.12.6
       debug: 4.3.4(supports-color@8.1.1)
       espree: 9.5.2
-      globals: 13.20.0
+      globals: 13.21.0
       ignore: 5.2.4
       import-fresh: 3.3.0
       js-yaml: 4.1.0
@@ -10121,7 +10340,7 @@ packages:
       jest-validate: 29.5.0
       jest-watcher: 29.5.0
       micromatch: 4.0.5
-      pretty-format: 29.5.0
+      pretty-format: 29.6.3
       slash: 3.0.0
       strip-ansi: 6.0.1
     transitivePeerDependencies:
@@ -12524,9 +12743,9 @@ packages:
     engines: {node: '>=12'}
     peerDependencies:
       '@types/react': ^16.9.0 || ^17.0.0
-      react: ^16.9.0 || ^17.0.0
-      react-dom: ^16.9.0 || ^17.0.0
-      react-test-renderer: ^16.9.0 || ^17.0.0
+      react: 17.0.2
+      react-dom: ^16.9.0 || ^17.0.0 || 17.0.2
+      react-test-renderer: 17.0.2
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -12545,8 +12764,8 @@ packages:
     resolution: {integrity: sha512-OfTXCJUFgjd/digLUuPxa0+/3ZxsQmE7ub9kcbW/wi96Bh3o/p5vrETcBGfP17NWPGqeYYl5LTRpwyGoMC4ysg==}
     engines: {node: '>=12'}
     peerDependencies:
-      react: <18.0.0
-      react-dom: <18.0.0
+      react: 17.0.2
+      react-dom: <18.0.0 || 17.0.2
     dependencies:
       '@babel/runtime': 7.22.15
       '@testing-library/dom': 8.20.1
@@ -15914,7 +16133,7 @@ packages:
       typescript: 5.0.4
     dev: false
 
-  /cosmiconfig-typescript-loader@4.3.0(@types/node@18.17.14)(cosmiconfig@8.1.3)(ts-node@10.9.1)(typescript@5.0.4):
+  /cosmiconfig-typescript-loader@4.3.0(@types/node@18.17.14)(cosmiconfig@8.1.3)(ts-node@10.9.1)(typescript@5.2.2):
     resolution: {integrity: sha512-NTxV1MFfZDLPiBMjxbHRwSh5LaLcPMwNdCutmnHJCKoVnlvldPWlllonKwrsRJ5pYZBIBGRWWU2tfvzxgeSW5Q==}
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
@@ -15925,8 +16144,8 @@ packages:
     dependencies:
       '@types/node': 18.17.14
       cosmiconfig: 8.1.3
-      ts-node: 10.9.1(@types/node@18.17.14)(typescript@5.0.4)
-      typescript: 5.0.4
+      ts-node: 10.9.1(@types/node@18.17.14)(typescript@5.2.2)
+      typescript: 5.2.2
     dev: false
 
   /cosmiconfig@5.2.1:
@@ -22511,7 +22730,7 @@ packages:
       jest-util: 29.6.3
       natural-compare: 1.4.0
       pretty-format: 29.6.3
-      semver: 7.5.4
+      semver: 7.5.2
     transitivePeerDependencies:
       - supports-color
 
@@ -24758,7 +24977,7 @@ packages:
       chalk: 4.1.1
       chokidar: 3.5.3
       cookie: 0.4.2
-      graphql: 16.6.0
+      graphql: 16.8.0
       headers-polyfill: 3.1.2
       inquirer: 8.2.5
       is-node-process: 1.2.0
@@ -24793,7 +25012,7 @@ packages:
       chalk: 4.1.1
       chokidar: 3.5.3
       cookie: 0.4.2
-      graphql: 16.6.0
+      graphql: 16.8.0
       headers-polyfill: 3.1.2
       inquirer: 8.2.5
       is-node-process: 1.2.0
@@ -29947,6 +30166,37 @@ packages:
       typescript: 5.0.4
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
+
+  /ts-node@10.9.1(@types/node@18.17.14)(typescript@5.2.2):
+    resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
+    hasBin: true
+    peerDependencies:
+      '@swc/core': '>=1.2.50'
+      '@swc/wasm': '>=1.2.50'
+      '@types/node': '*'
+      typescript: '>=2.7'
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      '@swc/wasm':
+        optional: true
+    dependencies:
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.9
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.4
+      '@types/node': 18.17.14
+      acorn: 8.8.2
+      acorn-walk: 8.2.0
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      typescript: 5.2.2
+      v8-compile-cache-lib: 3.0.1
+      yn: 3.1.1
+    dev: false
 
   /ts-node@8.9.1(typescript@4.3.4):
     resolution: {integrity: sha512-yrq6ODsxEFTLz0R3BX2myf0WBCSQh9A+py8PBo1dCzWIOcvisbyH6akNKqDHMgXePF2kir5mm5JXJTH3OUJYOQ==}

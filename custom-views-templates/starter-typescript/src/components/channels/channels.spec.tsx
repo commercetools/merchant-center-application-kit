@@ -9,7 +9,6 @@ import { buildGraphqlList } from '@commercetools-test-data/core';
 import type { TChannel } from '@commercetools-test-data/channel';
 import * as Channel from '@commercetools-test-data/channel';
 import { LocalizedString } from '@commercetools-test-data/commons';
-import { getDefaultCustomViewServerMocks } from '../../test-utils';
 import ApplicationRoutes from '../../routes';
 
 const mockServer = setupServer();
@@ -27,40 +26,36 @@ afterAll(() => {
 
 it('should render channels and paginate to second page', async () => {
   mockServer.use(
-    ...[
-      ...getDefaultCustomViewServerMocks(),
-      graphql.query('FetchChannels', (req, res, ctx) => {
-        // Simulate a server side pagination.
-        const { offset } = req.variables;
-        const totalItems = 25; // 2 pages
-        const itemsPerPage = offset === 0 ? 20 : 5;
+    graphql.query('FetchChannels', (req, res, ctx) => {
+      // Simulate a server side pagination.
+      const { offset } = req.variables;
+      const totalItems = 25; // 2 pages
+      const itemsPerPage = offset === 0 ? 20 : 5;
 
-        return res(
-          ctx.data({
-            channels: buildGraphqlList<TChannel>(
-              Array.from({ length: itemsPerPage }).map((_, index) => {
-                const channelNumber = offset === 0 ? index : 20 + index;
-                return Channel.random()
-                  .name(
-                    LocalizedString.presets
-                      .empty()
-                      .en(`Channel no. ${channelNumber}`)
-                  )
-                  .key(`channel-key-${channelNumber}`);
-              }),
-              {
-                name: 'Channel',
-                total: totalItems,
-              }
-            ),
-          })
-        );
-      }),
-    ]
+      return res(
+        ctx.data({
+          channels: buildGraphqlList<TChannel>(
+            Array.from({ length: itemsPerPage }).map((_, index) => {
+              const channelNumber = offset === 0 ? index : 20 + index;
+              return Channel.random()
+                .name(
+                  LocalizedString.presets
+                    .empty()
+                    .en(`Channel no. ${channelNumber}`)
+                )
+                .key(`channel-key-${channelNumber}`);
+            }),
+            {
+              name: 'Channel',
+              total: totalItems,
+            }
+          ),
+        })
+      );
+    })
   );
 
   renderCustomView({
-    customViewId: '12345',
     locale: 'en',
     projectKey: 'my-project',
     children: <ApplicationRoutes />,
