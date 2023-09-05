@@ -182,6 +182,7 @@ export interface ApplicationWindow extends Window {
   app: {
     applicationId: string;
     customViewId?: string;
+    customViewHostUrl?: string;
     applicationName: string;
     entryPointUriPath: string;
     revision: string;

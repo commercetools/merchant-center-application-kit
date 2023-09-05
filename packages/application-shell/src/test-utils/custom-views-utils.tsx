@@ -48,7 +48,9 @@ export const renderCustomView = (
     </CustomViewContextProvider>,
     {
       locale: props.locale,
-      project: props.projectKey,
+      project: {
+        key: props.projectKey,
+      },
     }
   );
 };

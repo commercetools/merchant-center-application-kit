@@ -8,7 +8,6 @@ import Constraints from '@commercetools-uikit/constraints';
 import PrimaryButton from '@commercetools-uikit/primary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import TextField from '@commercetools-uikit/text-field';
 import {
   TCustomView,
   TCustomViewSize,
