@@ -10,7 +10,7 @@ import throttle from 'lodash/throttle';
 import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { STORAGE_KEYS } from '../../constants';
+import { STORAGE_KEYS, WINDOW_SIZES } from '../../constants';
 import { useMcQuery } from '../../hooks/apollo-hooks';
 import useApplicationsMenu from '../../hooks/use-applications-menu';
 import type { TNavbarMenu } from '../../types/generated/proxy';
@@ -135,9 +135,12 @@ const useNavbarStateManager = (props: HookProps) => {
 
   const checkSize = useCallback(
     throttle(() => {
-      const shouldOpen = window.innerWidth > 1024;
+      const shouldOpen = window.innerWidth > WINDOW_SIZES.STANDARD;
       const canExpandMenu =
-        window.innerWidth > (props.isNewNavigationEnabled ? 1200 : 918);
+        window.innerWidth >
+        (props.isNewNavigationEnabled
+          ? WINDOW_SIZES.WIDE
+          : WINDOW_SIZES.NARROW);
 
       // If the screen is small, we should always keep the menu closed,
       // no matter the settings.
