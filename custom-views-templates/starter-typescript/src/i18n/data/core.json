@@ -1,10 +1,6 @@
 {
+  "Channels.demoHint": "This page demonstrates how you can develop a component following some of the Merchant Center UX Guidelines and development best practices. For instance, fetching data using GraphQL, displaying data in a paginated table, writing functional tests, etc.",
   "Channels.noResults": "There are no channels available in this project.",
-  "Channels.title": "Channels list",
   "Channels.subtitle": "Logged-id user: {firstName} {lastName}",
-  "Welcome.aboutContent": "This Custom Application has some built-in functionalities for demo purposes to help you getting started. For example, the <linkchannels>Channels page</linkchannels> fetches channels from the commercetools platform and renders them in a table.",
-  "Welcome.aboutTitle": "About the starter template",
-  "Welcome.gettingStartedContent": "If this is the first time building a Custom Application, we recommend to <linkdocs>read the documentation</linkdocs> and get familiar with the tools and concepts behind it.",
-  "Welcome.gettingStartedTitle": "Read the documentation",
-  "Welcome.title": "Develop applications for the Merchant Center"
+  "Channels.title": "Channels list"
 }
