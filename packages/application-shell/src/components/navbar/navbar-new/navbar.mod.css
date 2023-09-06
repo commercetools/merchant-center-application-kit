@@ -1,5 +1,6 @@
 :root {
   --expander-height: 50px;
+  --expander-size: 40px;
   --faded-height: 32px;
   --icon-size: 24px;
   --icon-container-offset: 4px;
@@ -102,24 +103,41 @@
 }
 
 .expander {
-  border-top: 1px solid var(--color-neutral-40);
-  height: var(--expander-height);
   display: flex;
   align-items: center;
   justify-content: center;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  background-color: var(--background-color-for-navbar);
+  background: linear-gradient(
+    180deg,
+    var(--color-primary-30) 0%,
+    var(--color-primary-20) 100%
+  );
+  padding: 16px 12px;
+}
+
+/* divider */
+.expander::before {
+  content: '';
+  position: absolute;
+  top: 56px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.5);
+  width: calc(100% - 2 * var(--spacing-m));
 }
 
 .expand-icon {
-  align-items: center;
-  border-radius: 32px;
-  cursor: pointer;
+  height: var(--expander-size);
+  width: var(--expander-size);
+  border-radius: var(--border-radius-4);
+  padding: var(--spacing-s);
+  background: rgba(255, 255, 255, 0.2);
   display: flex;
-  height: var(--icon-size);
   justify-content: center;
-  transform: translateX(0) rotateZ(0deg);
-  width: var(--icon-size);
+  align-items: center;
+}
+
+.expand-icon:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .item--bottom {
@@ -128,8 +146,7 @@
 }
 
 .list-item:hover {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  background-color: var(--background-color-for-navbar-when-hovered);
+  background: var(--color-primary);
 }
 
 .item__active .title {
@@ -198,11 +215,6 @@
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link-when-hovered);
 }
-
-:global(.body__menu-open) .expand-icon {
-  transform: translateX(0) rotateZ(180deg);
-}
-
 :global(.body__menu-open) .item__active {
   max-height: 500px;
   transition: max-height 0.25s ease-in;
@@ -224,12 +236,6 @@
   color: var(--color-for-navbar-link-when-hovered);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link-when-hovered);
-}
-
-:global(.body__menu-open) .expander {
-  min-height: 50px;
-  justify-content: flex-end;
-  padding: var(--spacing-m);
 }
 
 /*  Second level menu */

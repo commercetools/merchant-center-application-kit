@@ -10,7 +10,7 @@ import throttle from 'lodash/throttle';
 import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { STORAGE_KEYS } from '../../constants';
+import { STORAGE_KEYS, WINDOW_SIZES } from '../../constants';
 import { useMcQuery } from '../../hooks/apollo-hooks';
 import useApplicationsMenu from '../../hooks/use-applications-menu';
 import type { TNavbarMenu } from '../../types/generated/proxy';
@@ -23,6 +23,7 @@ import nonNullable from './non-nullable';
 
 type HookProps = {
   environment: TApplicationContext<{}>['environment'];
+  newNavigation?: boolean;
 };
 type State = {
   activeItemIndex?: string;
@@ -143,8 +144,10 @@ const useNavbarStateManager = (props: HookProps) => {
 
   const checkSize = useCallback(
     throttle(() => {
-      const shouldOpen = window.innerWidth > 1024;
-      const canExpandMenu = window.innerWidth > 918;
+      const shouldOpen = window.innerWidth > WINDOW_SIZES.STANDARD;
+      const canExpandMenu =
+        window.innerWidth >
+        (props.newNavigation ? WINDOW_SIZES.WIDE : WINDOW_SIZES.NARROW);
 
       // If the screen is small, we should always keep the menu closed,
       // no matter the settings.
@@ -153,6 +156,11 @@ const useNavbarStateManager = (props: HookProps) => {
           // and resets the state to avoid conflicts
           dispatch({ type: 'reset' });
         }
+      } else if (isForcedMenuOpen) {
+        dispatch({
+          type: 'setIsMenuOpenAndMakeExpanderVisible',
+          payload: true,
+        });
       } else if (canExpandMenu && state.isExpanderVisible !== true) {
         dispatch({ type: 'setIsExpanderVisible' });
       } else if (isNil(isForcedMenuOpen) && state.isMenuOpen !== shouldOpen) {

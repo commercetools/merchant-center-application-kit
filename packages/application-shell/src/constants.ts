@@ -5,6 +5,12 @@ export const DIMENSIONS = {
   navMenuExpanded: '245px',
 } as const;
 
+export const WINDOW_SIZES = {
+  NARROW: 918,
+  STANDARD: 1024,
+  WIDE: 1200,
+} as const;
+
 export const SUPPORTED_HEADERS = {
   ACCEPT: 'Accept',
   ACCEPT_VERSION: 'Accept-version',
