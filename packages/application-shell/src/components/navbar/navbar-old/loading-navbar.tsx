@@ -1,9 +1,9 @@
 import { useRef } from 'react';
-import LoadingPlaceholder from '../loading-placeholder';
-import { MenuItem, MenuGroup, NavBarLayout } from './menu-items';
+import LoadingPlaceholder from '../../loading-placeholder';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
+import useLoadingMenuLayoutEffect from '../use-loading-menu-layout-effect';
+import { MenuItem, MenuGroup, NavBarLayout } from './menu-items';
 import compiledStyles from /* preval */ './navbar.styles';
-import useLoadingMenuLayoutEffect from './use-loading-menu-layout-effect';
 
 const styles = compiledStyles.jsonMap;
 
