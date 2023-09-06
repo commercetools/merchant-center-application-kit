@@ -104,13 +104,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(
-    () => () => {
-      iFrameCommunicationChannel.current.port1.close();
-      iFrameCommunicationChannel.current.port2?.close();
-    },
-    []
-  );
+  useEffect(() => () => iFrameCommunicationChannel.current.port1.close(), []);
 
   // Currently we only support custom panels
   if (props.customView.type !== 'CustomPanel') {
