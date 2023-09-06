@@ -209,9 +209,6 @@ const MenuGroup = (props: MenuGroupProps) => {
           [styles['sublist']]: props.level === 2,
         },
         {
-          [styles['sublist-no-children']]: props.level === 2 && !props.children,
-        },
-        {
           [styles['sublist-expanded__active']]:
             isSublistActiveWhileIsMenuExpanded,
         },
