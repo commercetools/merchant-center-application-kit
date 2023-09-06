@@ -16,9 +16,6 @@ patchedDependencies:
   gatsby-plugin-mdx@3.20.0:
     hash: gnfct6xrlmmxne5piiaxu4y5fq
     path: patches/gatsby-plugin-mdx@3.20.0.patch
-  jsdom@20.0.3:
-    hash: vrej53pkjycecngj3en5m7mmhu
-    path: patches/jsdom@20.0.3.patch
 
 importers:
 
@@ -12743,9 +12740,9 @@ packages:
     engines: {node: '>=12'}
     peerDependencies:
       '@types/react': ^16.9.0 || ^17.0.0
-      react: 17.0.2
-      react-dom: ^16.9.0 || ^17.0.0 || 17.0.2
-      react-test-renderer: 17.0.2
+      react: ^16.9.0 || ^17.0.0
+      react-dom: ^16.9.0 || ^17.0.0
+      react-test-renderer: ^16.9.0 || ^17.0.0
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -12764,8 +12761,8 @@ packages:
     resolution: {integrity: sha512-OfTXCJUFgjd/digLUuPxa0+/3ZxsQmE7ub9kcbW/wi96Bh3o/p5vrETcBGfP17NWPGqeYYl5LTRpwyGoMC4ysg==}
     engines: {node: '>=12'}
     peerDependencies:
-      react: 17.0.2
-      react-dom: <18.0.0 || 17.0.2
+      react: <18.0.0
+      react-dom: <18.0.0
     dependencies:
       '@babel/runtime': 7.22.15
       '@testing-library/dom': 8.20.1
@@ -22443,7 +22440,7 @@ packages:
       '@types/node': 20.5.9
       jest-mock: 29.6.3
       jest-util: 29.6.3
-      jsdom: 20.0.3(patch_hash=vrej53pkjycecngj3en5m7mmhu)
+      jsdom: 20.0.3
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -22985,7 +22982,7 @@ packages:
       - supports-color
     dev: false
 
-  /jsdom@20.0.3(patch_hash=vrej53pkjycecngj3en5m7mmhu):
+  /jsdom@20.0.3:
     resolution: {integrity: sha512-SYhBvTh89tTfCD/CRdSOm13mOBa42iTaTyfyEWBdKcGdPxPtLFBXuHR8XHb33YNYaP+lLbmSvBTsnoesCNJEsQ==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -23025,7 +23022,6 @@ packages:
       - supports-color
       - utf-8-validate
     dev: false
-    patched: true
 
   /jsdom@21.1.2:
     resolution: {integrity: sha512-sCpFmK2jv+1sjff4u7fzft+pUh2KSUbUrEHYHyfSIbGTIcmnjyp83qg6qLwdJ/I3LpTXx33ACxeRL7Lsyc6lGQ==}
