@@ -5,7 +5,7 @@
   --icon-container-offset: 4px;
   --item-height: 56px;
   --item-width: 64px;
-  --sublist-new-indentantion: 58px;
+  --sublist-indentantion: 58px;
   --sublist-width: 253px;
   --submenu-margin: calc(
     var(--icon-size) + var(--spacing-m) + var(--icon-container-offset) + 4px
@@ -226,7 +226,7 @@
   font-size: var(--font-size-for-navbar-link);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   background-color: var(--background-color-for-navbar);
-  left: var(--sublist-new-indentantion);
+  left: var(--sublist-indentantion);
   z-index: -1;
   list-style: none;
   position: fixed;
@@ -241,7 +241,7 @@
   width: var(--sublist-width);
   height: var(--item-height);
   top: calc(-1 * var(--item-height));
-  left: calc(var(--sublist-new-indentantion) - var(--width-left-navigation));
+  left: calc(var(--sublist-indentantion) - var(--width-left-navigation));
 }
 
 .sublist__inactive {
