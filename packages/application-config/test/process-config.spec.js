@@ -28,7 +28,7 @@ describe('processing a simple config', () => {
   beforeEach(() => {
     loadConfig.mockReturnValue({
       filepath: '/custom-application-config.js',
-      config: fixtureConfigSimple
+      config: fixtureConfigSimple,
     });
   });
   it('should process the config and prepare the application environment and headers', () => {
@@ -299,7 +299,7 @@ describe('processing a full config', () => {
   beforeEach(() => {
     loadConfig.mockReturnValue({
       filepath: '/custom-application-config.js',
-      config: fixtureConfigFull
+      config: fixtureConfigFull,
     });
   });
   it('should process the config and prepare the application environment and headers', () => {
@@ -618,7 +618,7 @@ describe('processing a config with environment variable placeholders', () => {
   beforeEach(() => {
     loadConfig.mockReturnValue({
       filepath: '/custom-application-config.js',
-      config: fixtureConfigEnvVariables
+      config: fixtureConfigEnvVariables,
     });
   });
   it('should process the config and prepare the application environment and headers', () => {
@@ -911,7 +911,7 @@ describe('processing a config with intl variable placeholders', () => {
   beforeEach(() => {
     loadConfig.mockReturnValue({
       filepath: '/custom-application-config.js',
-      config: fixtureConfigIntlVariables
+      config: fixtureConfigIntlVariables,
     });
   });
   it('should process the config and correctly parse the translations', () => {
@@ -1018,7 +1018,7 @@ describe('processing a config with file path variable placeholders', () => {
   beforeEach(() => {
     loadConfig.mockReturnValue({
       filepath: '/custom-application-config.js',
-      config: fixtureConfigFilePathVariables
+      config: fixtureConfigFilePathVariables,
     });
   });
   it('should process the config and correctly parse the file content', () => {
@@ -1103,7 +1103,7 @@ describe('processing a config with OIDC', () => {
   beforeEach(() => {
     loadConfig.mockReturnValue({
       filepath: '/custom-application-config.js',
-      config: fixtureConfigOidc
+      config: fixtureConfigOidc,
     });
   });
   it('should process the config and prepare the application environment and headers, as well as the __DEVELOPMENT__ object', () => {
@@ -1299,7 +1299,7 @@ describe('when app URL is malformed', () => {
             url: 'wrong url',
           },
         },
-      }
+      },
     });
   });
   it('should throw', () => {
@@ -1329,7 +1329,7 @@ describe('when app URL has non-root path without ending backslash', () => {
             ...fixtureConfigSimple.env.production,
             url: appUrl,
           },
-        }
+        },
       },
     });
   });
@@ -1352,7 +1352,7 @@ describe('processing a config with OIDC with teamId', () => {
   beforeEach(() => {
     loadConfig.mockReturnValue({
       filepath: '/custom-application-config.js',
-      config: fixtureConfigOidcWithTeamId
+      config: fixtureConfigOidcWithTeamId,
     });
   });
   it('should process the config and prepare the application environment and headers, as well as the __DEVELOPMENT__ object', () => {
@@ -1472,7 +1472,7 @@ describe('when CDN URL is malformed', () => {
             ...fixtureConfigSimple.env.production,
             cdnUrl: 'wrong url',
           },
-        }
+        },
       },
     });
   });
@@ -1505,7 +1505,7 @@ describe('when CDN URL has non-root path without ending backslash', () => {
             url: appUrl,
             cdnUrl: cdnUrl,
           },
-        }
+        },
       },
     });
   });
