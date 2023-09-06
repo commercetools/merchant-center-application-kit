@@ -213,6 +213,10 @@ const MenuGroup = (props: MenuGroupProps) => {
             isSublistActiveWhileIsMenuExpanded,
         },
         {
+          [styles['sublist-collapsed__empty']]:
+            isSublistActiveWhileIsMenuCollapsed && !props.hasSubmenu,
+        },
+        {
           [styles['sublist-collapsed__active']]:
             isSublistActiveWhileIsMenuCollapsed,
         },

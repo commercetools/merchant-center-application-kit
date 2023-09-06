@@ -50,6 +50,8 @@ import compiledStyles from /* preval */ './navbar.styles';
 
 const styles = compiledStyles.jsonMap;
 
+const menuItemHeightInPx = 56;
+
 type TProjectPermissions = {
   permissions: TNormalizedPermissions | null;
   actionRights: TNormalizedActionRights | null;
@@ -104,7 +106,8 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
 
   // We need to calculate the vertical position of the menu item to be able to
   // position the submenu correctly.
-  const verticalPosition = topPosition - props.scrollTop;
+  const verticalPosition =
+    topPosition - props.scrollTop + (props.isMenuOpen ? 0 : menuItemHeightInPx);
 
   useEffect(() => {
     if (elementRef.current != null) {
@@ -202,6 +205,20 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
           hasSubmenu={hasSubmenu}
           verticalPosition={verticalPosition}
         >
+          {!props.isMenuOpen && (
+            <div className={styles['tooltip-container']}>
+              <div
+                className={styles['tooltip']}
+                aria-owns={`group-${props.menu.key}`}
+              >
+                <MenuLabel
+                  labelAllLocales={props.menu.labelAllLocales}
+                  defaultLabel={props.menu.defaultLabel}
+                  applicationLocale={props.applicationLocale}
+                />
+              </div>
+            </div>
+          )}
           {hasSubmenu
             ? props.menu.submenu.map((submenu: TSubmenuWithDefaultLabel) => (
                 <RestrictedMenuItem
