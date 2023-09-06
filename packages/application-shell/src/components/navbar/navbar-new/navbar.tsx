@@ -26,6 +26,7 @@ import type {
 } from '@commercetools-frontend/application-shell-connectors';
 import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
 import { SupportIcon } from '@commercetools-uikit/icons';
+import { DIMENSIONS } from '../../../constants';
 import type { TFetchProjectQuery } from '../../../types/generated/mc';
 import type { TNavbarMenu, TBaseMenu } from '../../../types/generated/proxy';
 import messages from '../messages';
@@ -49,8 +50,6 @@ import NavBarSkeleton from './navbar-skeleton';
 import compiledStyles from /* preval */ './navbar.styles';
 
 const styles = compiledStyles.jsonMap;
-
-const menuItemHeightInPx = 56;
 
 type TProjectPermissions = {
   permissions: TNormalizedPermissions | null;
@@ -107,7 +106,9 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   // We need to calculate the vertical position of the menu item to be able to
   // position the submenu correctly.
   const verticalPosition =
-    topPosition - props.scrollTop + (props.isMenuOpen ? 0 : menuItemHeightInPx);
+    topPosition -
+    props.scrollTop +
+    (props.isMenuOpen ? 0 : parseInt(DIMENSIONS.navMenuItemHeight));
 
   useEffect(() => {
     if (elementRef.current != null) {
