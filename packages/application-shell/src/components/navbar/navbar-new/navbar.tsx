@@ -40,7 +40,6 @@ import {
   IconSwitcher,
   MenuGroup,
   MenuLabel,
-  MenuItemDivider,
   Faded,
   MenuExpander,
   NavBarLayout,
@@ -281,6 +280,7 @@ const NavBar = (props: TNavbarProps) => {
     allCustomApplicationsNavbarMenu,
   } = useNavbarStateManager({
     environment: props.environment,
+    newNavigation: true,
   });
   const useFullRedirectsForLinks = Boolean(
     props.environment.useFullRedirectsForLinks
@@ -361,7 +361,6 @@ const NavBar = (props: TNavbarProps) => {
               />
             );
           })}
-          <MenuItemDivider />
           {allCustomApplicationsNavbarMenu.map((menu) => {
             const menuType = 'scrollable';
             const itemIndex = `${menuType}-${menu.key}`;

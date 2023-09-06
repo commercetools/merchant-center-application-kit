@@ -11,7 +11,6 @@ import { useFlagVariation } from '@flopflip/react-broadcast';
 import type { TFlagVariation } from '@flopflip/types';
 import classnames from 'classnames';
 import { NavLink } from 'react-router-dom';
-import { designTokens as appkitDesignTokens } from '@commercetools-frontend/application-components';
 import type {
   TNormalizedMenuVisibilities,
   TNormalizedPermissions,
@@ -21,7 +20,11 @@ import type {
 import MissingImageSvg from '@commercetools-frontend/assets/images/diagonal-line.svg';
 import { NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
-import { ArrowRightIcon, BackIcon } from '@commercetools-uikit/icons';
+import {
+  BackIcon,
+  SidebarExpandIcon,
+  SidebarCollapseIcon,
+} from '@commercetools-uikit/icons';
 import InlineSvg from '@commercetools-uikit/icons/inline-svg';
 import type {
   TDataFence,
@@ -39,20 +42,6 @@ type TProjectPermissions = {
   actionRights: TNormalizedActionRights | null;
   dataFences: TNormalizedDataFences | null;
 };
-
-/*
-<DataMenu data={[]}>
-  <MenuGroup>
-    <MenuItem>
-      <MenuItemLink linkTo="/foo">(icon) Products</MenuItemLink>
-      <MenuGroup>
-        <MenuItemLink linkTo="/foo/new">Add product</MenuItemLink>
-      </MenuGroup>
-    </MenuItem>
-  </MenuGroup>
-  <MenuExpander/>
-</DataMenu>
-*/
 
 const HeartIcon = lazy(() => import('../legacy-icons/heart'));
 const PaperclipIcon = lazy(() => import('../legacy-icons/paperclip'));
@@ -132,6 +121,12 @@ type MenuExpanderProps = {
   onClick: MouseEventHandler<HTMLDivElement>;
   isMenuOpen: boolean;
 };
+
+const getIcon = ({ isMenuOpen }: MenuExpanderProps) => {
+  const Icon = isMenuOpen ? SidebarCollapseIcon : SidebarExpandIcon;
+  return <Icon color="surface" size="big" />;
+};
+
 const MenuExpander = (props: MenuExpanderProps) => {
   return (
     <li
@@ -145,11 +140,7 @@ const MenuExpander = (props: MenuExpanderProps) => {
         className={styles['expand-icon']}
         data-testid="menu-expander"
       >
-        {/*
-          FIXME: define hover effect.
-          https://github.com/commercetools/merchant-center-frontend/issues/2216
-        */}
-        <ArrowRightIcon color="surface" size="big" />
+        {getIcon(props)}
       </div>
     </li>
   );
@@ -161,11 +152,7 @@ const Faded = styled.div`
   top: -32px;
   height: 32px;
   width: 100%;
-  background: linear-gradient(
-    0deg,
-    ${appkitDesignTokens.backgroundColorForNavbar} 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  background: linear-gradient(180deg, rgba(0, 153, 135, 0) 0%, #009987 100%);
   z-index: 1;
 `;
 
