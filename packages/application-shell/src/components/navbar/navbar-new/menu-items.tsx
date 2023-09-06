@@ -40,20 +40,6 @@ type TProjectPermissions = {
   dataFences: TNormalizedDataFences | null;
 };
 
-/*
-<DataMenu data={[]}>
-  <MenuGroup>
-    <MenuItem>
-      <MenuItemLink linkTo="/foo">(icon) Products</MenuItemLink>
-      <MenuGroup>
-        <MenuItemLink linkTo="/foo/new">Add product</MenuItemLink>
-      </MenuGroup>
-    </MenuItem>
-  </MenuGroup>
-  <MenuExpander/>
-</DataMenu>
-*/
-
 const HeartIcon = lazy(() => import('../legacy-icons/heart'));
 const PaperclipIcon = lazy(() => import('../legacy-icons/paperclip'));
 const PluginIcon = lazy(() => import('../legacy-icons/plugin'));
@@ -307,9 +293,6 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
 MenuItemLink.displayName = 'MenuItemLink';
 MenuItemLink.defaultProps = menuItemLinkDefaultProps;
 
-const MenuItemDivider = () => <div className={styles.divider} />;
-MenuItemDivider.displayName = 'MenuItemDivider';
-
 const isEveryMenuVisibilitySetToHidden = (
   menuVisibilities?: TNormalizedMenuVisibilities | null,
   namesOfMenuVisibilities?: string[]
@@ -444,7 +427,6 @@ export {
   IconSwitcher,
   MenuGroup,
   MenuLabel,
-  MenuItemDivider,
   MenuExpander,
   Faded,
   NavBarLayout,

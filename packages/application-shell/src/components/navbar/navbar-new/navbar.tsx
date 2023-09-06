@@ -40,7 +40,6 @@ import {
   IconSwitcher,
   MenuGroup,
   MenuLabel,
-  MenuItemDivider,
   Faded,
   MenuExpander,
   NavBarLayout,
@@ -336,7 +335,7 @@ const NavBar = (props: TNavbarProps) => {
 
   return (
     <NavBarLayout ref={navBarNode}>
-      <div>Navigation header</div>
+      <div className={styles['navigation-header']}>Navigation header</div>
       <MenuGroup id="main" level={1}>
         <div className={styles['scrollable-menu']} onScroll={handleScroll}>
           {allInternalApplicationsNavbarMenu.map((menu) => {
@@ -361,7 +360,6 @@ const NavBar = (props: TNavbarProps) => {
               />
             );
           })}
-          <MenuItemDivider />
           {allCustomApplicationsNavbarMenu.map((menu) => {
             const menuType = 'scrollable';
             const itemIndex = `${menuType}-${menu.key}`;
@@ -387,40 +385,42 @@ const NavBar = (props: TNavbarProps) => {
         </div>
         <div className={styles['fixed-menu']}>
           <Faded />
-          <MenuItem
-            hasSubmenu={false}
-            isActive={false}
-            isMenuOpen={isMenuOpen}
-            onClick={() => {
-              handleToggleItem('fixed-support');
-            }}
-            onMouseEnter={
-              isMenuOpen ? undefined : () => handleToggleItem('fixed-support')
-            }
-            onMouseLeave={isMenuOpen ? undefined : shouldCloseMenuFly}
-          >
-            <a
-              href={SUPPORT_PORTAL_URL}
-              rel="noopener noreferrer"
-              target="_blank"
+          <div className={styles['support-menu']}>
+            <MenuItem
+              hasSubmenu={false}
+              isActive={false}
+              isMenuOpen={isMenuOpen}
+              onClick={() => {
+                handleToggleItem('fixed-support');
+              }}
+              onMouseEnter={
+                isMenuOpen ? undefined : () => handleToggleItem('fixed-support')
+              }
+              onMouseLeave={isMenuOpen ? undefined : shouldCloseMenuFly}
             >
-              <div className={styles['item-icon-text']}>
-                <div className={styles['icon-container']}>
-                  <div
-                    className={classnames(styles.icon, {
-                      [styles.icon__active]:
-                        activeItemIndex === 'fixed-support',
-                    })}
-                  >
-                    <SupportIcon size="scale" />
+              <a
+                href={SUPPORT_PORTAL_URL}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <div className={styles['item-icon-text']}>
+                  <div className={styles['icon-container']}>
+                    <div
+                      className={classnames(styles.icon, {
+                        [styles.icon__active]:
+                          activeItemIndex === 'fixed-support',
+                      })}
+                    >
+                      <SupportIcon size="scale" />
+                    </div>
+                  </div>
+                  <div className={styles.title}>
+                    <FormattedMessage {...messages['NavBar.MCSupport.title']} />
                   </div>
                 </div>
-                <div className={styles.title}>
-                  <FormattedMessage {...messages['NavBar.MCSupport.title']} />
-                </div>
-              </div>
-            </a>
-          </MenuItem>
+              </a>
+            </MenuItem>
+          </div>
           <MenuExpander
             isVisible={isExpanderVisible}
             onClick={handleToggleMenu}
