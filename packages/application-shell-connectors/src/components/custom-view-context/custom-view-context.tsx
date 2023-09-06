@@ -4,6 +4,10 @@ import {
   TCustomViewStatus,
   TCustomViewType,
 } from '../../types/generated/settings';
+import {
+  type TApplicationContext,
+  useApplicationContext,
+} from '../application-context';
 
 type TCustomViewContext = {
   hostUrl: string;

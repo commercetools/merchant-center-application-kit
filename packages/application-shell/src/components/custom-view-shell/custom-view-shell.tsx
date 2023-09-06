@@ -6,6 +6,7 @@ import {
   type ReactNode,
 } from 'react';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
+import { CustomViewContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import {
   type ApplicationWindow,
   CUSTOM_VIEWS_EVENTS_NAMES,
@@ -19,7 +20,6 @@ import ApplicationLoader from '../application-loader/application-loader';
 import ApplicationShellProvider from '../application-shell-provider';
 import { getBrowserLocale } from '../application-shell-provider/utils';
 import ConfigureIntlProvider from '../configure-intl-provider';
-import { CustomViewContextProvider } from '../custom-view-context';
 import CustomViewShellAuthenticated from '../custom-view-shell-authenticated';
 
 declare let window: ApplicationWindow;
@@ -159,6 +159,7 @@ function CustomViewShell(props: TCustomViewShellProps) {
                 environment={window.app}
                 messages={props.messages}
                 projectKey={hostContext.projectKey}
+                customViewConfig={hostContext.customViewConfig}
               >
                 {props.children}
               </CustomViewShellAuthenticated>

@@ -53,6 +53,7 @@ const LocalCustomViewLauncher = (props: TLocalCustomViewLauncherProps) => {
   const [shouldRenderCustomView, setShouldRenderCustomView] = useState(false);
 
   const customViewConfig = getCustomViewConfig({
+    id: props.environment.customViewId,
     type: props.environment.__DEVELOPMENT__?.customViewType as TCustomViewType,
     typeSettings: props.environment.__DEVELOPMENT__?.customViewTypeSettings,
   });

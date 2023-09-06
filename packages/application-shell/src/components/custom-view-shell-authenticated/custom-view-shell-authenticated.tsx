@@ -1,23 +1,48 @@
 import { type ReactNode } from 'react';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
+import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-config/ssr';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import {
   AsyncLocaleData,
   type TAsyncLocaleDataProps,
 } from '@commercetools-frontend/i18n';
+import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import { ThemeProvider } from '@commercetools-uikit/design-system';
+import { TCustomView } from '../../export-types';
 import ApplicationLoader from '../application-loader';
 import { getBrowserLocale } from '../application-shell-provider/utils';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
 
+type TCustomViewWithPermissionCheckProps = {
+  customViewId: string;
+  children?: ReactNode;
+};
+
+const CustomViewWithPermissionCheck = (
+  props: TCustomViewWithPermissionCheckProps
+) => {
+  const permissionKeys = entryPointUriPathToPermissionKeys(props.customViewId);
+
+  // Require View permission to render the application.
+  const canView = useIsAuthorized({
+    demandedPermissions: [permissionKeys.View],
+  });
+
+  if (canView) {
+    return <>{props.children}</>;
+  }
+  return <PageUnauthorized />;
+};
+
 type TCustomViewShellAuthenticatedProps = {
   dataLocale: string;
   environment: ApplicationWindow['app'];
   messages: TAsyncLocaleDataProps['applicationMessages'];
   projectKey?: string;
+  customViewConfig: TCustomView;
   children: ReactNode;
 };
 
@@ -63,6 +88,7 @@ function CustomViewShellAuthenticated(
                             if (isProjectLoading) {
                               return <ApplicationLoader />;
                             }
+
                             return (
                               <ApplicationContextProvider
                                 user={user}
@@ -70,7 +96,11 @@ function CustomViewShellAuthenticated(
                                 projectDataLocale={props.dataLocale}
                                 environment={props.environment}
                               >
-                                {props.children}
+                                <CustomViewWithPermissionCheck
+                                  customViewId={props.customViewConfig.id}
+                                >
+                                  {props.children}
+                                </CustomViewWithPermissionCheck>
                               </ApplicationContextProvider>
                             );
                           }}

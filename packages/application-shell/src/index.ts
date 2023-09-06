@@ -5,7 +5,6 @@ export { default as ApplicationShellProvider } from './components/application-sh
 export { default as ApplicationPageTitle } from './components/application-page-title';
 export { default as CustomViewShell } from './components/custom-view-shell';
 export { default as CustomViewDevHost } from './components/custom-view-dev-host';
-export * from './components/custom-view-context';
 export { default as createApolloClient } from './configure-apollo';
 export { applyDefaultMiddlewares } from './configure-store';
 export { default as InjectReducers } from './components/inject-reducers';

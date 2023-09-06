@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import { useCustomViewContext } from '@commercetools-frontend/application-shell';
+import { useCustomViewContext } from '@commercetools-frontend/application-shell-connectors';
 import { NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
 import {
   usePaginationState,
