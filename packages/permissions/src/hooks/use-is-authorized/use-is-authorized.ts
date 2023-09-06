@@ -55,9 +55,9 @@ const useWarning = (condition: boolean, message: string) => {
 const useResolvePermissionsData = (
   projectPermissions?: TProjectPermissions
 ): {
-  resolvedPermissions: TNormalizedPermissions;
-  resolvedActionRights: TNormalizedActionRights;
-  resolvedDataFences: TNormalizedDataFences;
+  resolvedPermissions: TNormalizedPermissions | null;
+  resolvedActionRights: TNormalizedActionRights | null;
+  resolvedDataFences: TNormalizedDataFences | null;
 } => {
   const customApplicationContext = useApplicationContext();
   const customViewContext = useCustomViewContext();

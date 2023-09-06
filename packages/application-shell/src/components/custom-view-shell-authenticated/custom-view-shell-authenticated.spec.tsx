@@ -6,6 +6,7 @@ import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 
 import { UserMock, ProjectMock } from '../../../../../graphql-test-utils';
 import { STORAGE_KEYS } from '../../constants';
+import { TCustomViewStatus, TCustomViewType } from '../../export-types';
 import ApplicationShellProvider from '../application-shell-provider';
 import CustomViewAuthenticatedShell from './custom-view-shell-authenticated';
 
@@ -34,8 +35,8 @@ const mockedApplicationMessages = {
   },
 };
 const mockedEnvironment = {
-  applicationId: 'my-app-id',
-  applicationName: 'My App Name',
+  applicationId: 'my-custom-view-id',
+  applicationName: 'My Custom View Name',
   entryPointUriPath: '/',
   revision: '1',
   env: 'development',
@@ -46,6 +47,26 @@ const mockedEnvironment = {
   servedByProxy: false,
   ldClientSideId: 'my-ld-client-side-id',
   trackingSentry: 'my-tracking-sentry',
+};
+const mockedCustomViewConfig = {
+  id: 'my-custom-view-id',
+  defaultLabel: '',
+  labelAllLocales: {},
+  url: '',
+  type: TCustomViewType.CustomPanel,
+  locators: [],
+  permissions: [],
+  createdAt: '',
+  installedBy: [],
+  owner: {
+    createdAt: '',
+    id: '',
+    organizationId: '',
+    updatedAt: '',
+  },
+  ownerId: '',
+  status: TCustomViewStatus.Draft,
+  updatedAt: '',
 };
 
 function TestComponent() {
@@ -61,6 +82,7 @@ function TestComponent() {
             environment={mockedEnvironment}
             messages={mockedApplicationMessages}
             projectKey="almond-40"
+            customViewConfig={mockedCustomViewConfig}
           >
             <div>Test children</div>
           </CustomViewAuthenticatedShell>
