@@ -226,10 +226,6 @@
   color: var(--color-for-navbar-link-when-hovered);
 }
 
-.list-item .title:hover {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  color: var(--color-for-navbar-link-when-hovered);
-}
 :global(.body__menu-open) .item__active {
   max-height: 500px;
   transition: max-height 0.25s ease-in;
