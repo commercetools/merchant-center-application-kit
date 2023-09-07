@@ -5,7 +5,7 @@
   --icon-size: 24px;
   --icon-size-hover: 28px;
   --icon-container-offset: 4px;
-  --item-height: 48px;
+  --item-size: 48px;
   --divider-top: 64px;
   --submenu-margin: calc(
     var(--icon-size) + var(--spacing-m) + var(--icon-container-offset) + 4px
@@ -45,7 +45,7 @@
 }
 
 .list-item {
-  min-height: var(--item-height);
+  min-height: var(--item-size);
   background: var(--color-primary-30);
   margin: 0;
   list-style: none;
@@ -55,8 +55,9 @@
 .item-link {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link);
+  /* TODO: add design tokens instead hard-coded values */
   padding: 12px;
-  width: 48px;
+  width: var(--item-size);
   position: relative;
   display: block;
 }
@@ -188,7 +189,7 @@
 
 :global(.body__menu-open) .list-item {
   height: auto;
-  min-height: var(--item-height);
+  min-height: var(--item-size);
   overflow: hidden;
   width: 100%;
 }
@@ -217,8 +218,9 @@
 }
 
 .list-item:not(.item__active):hover .item-link {
+  /* TODO: add design tokens instead hard-coded values */
   padding: 10px;
-  height: var(--item-height);
+  height: var(--item-size);
 }
 
 .list-item:not(.item__active):hover .title {
@@ -332,6 +334,7 @@
 .item__active,
 .item_menu__active {
   background: var(--color-accent-30);
+  /* TODO: add design tokens instead hard-coded values */
   border-radius: 8px;
 }
 
@@ -449,8 +452,8 @@
   flex: 1 1 0;
   overflow-x: hidden;
   overflow-y: hidden;
-  padding: 16px 16px 48px;
-  width: 80px;
+  padding: var(--spacing-m) var(--spacing-m) var(--item-size);
+  width: var(--width-left-navigation);
   box-sizing: border-box;
   /* For Firefox */
   scrollbar-width: thin;
@@ -458,7 +461,7 @@
 }
 
 :global(.body__menu-open) .scrollable-menu {
-  width: 256px;
+  width: var(--width-left-navigation-when-expanded);
 }
 
 .scrollable-menu:hover {
