@@ -5,10 +5,7 @@ import type {
   TNormalizedActionRights,
   TNormalizedDataFences,
 } from '@commercetools-frontend/application-shell-connectors';
-import {
-  useApplicationContext,
-  useCustomViewContext,
-} from '@commercetools-frontend/application-shell-connectors';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import {
   hasSomePermissions,
@@ -52,32 +49,6 @@ const useWarning = (condition: boolean, message: string) => {
   }, []);
 };
 
-const useResolvePermissionsData = (
-  projectPermissions?: TProjectPermissions
-): {
-  resolvedPermissions: TNormalizedPermissions | null;
-  resolvedActionRights: TNormalizedActionRights | null;
-  resolvedDataFences: TNormalizedDataFences | null;
-} => {
-  const customApplicationContext = useApplicationContext();
-  const customViewContext = useCustomViewContext();
-
-  return {
-    resolvedPermissions:
-      projectPermissions?.permissions ||
-      customApplicationContext.permissions ||
-      customViewContext.permissions,
-    resolvedActionRights:
-      projectPermissions?.actionRights ||
-      customApplicationContext.actionRights ||
-      customViewContext.actionRights,
-    resolvedDataFences:
-      projectPermissions?.dataFences ||
-      customApplicationContext.dataFences ||
-      customViewContext.dataFences,
-  };
-};
-
 const useIsAuthorized = ({
   demandedPermissions,
   demandedActionRights,
@@ -114,11 +85,23 @@ const useIsAuthorized = ({
     )}.`
   );
 
-  const { resolvedPermissions, resolvedActionRights, resolvedDataFences } =
-    useResolvePermissionsData(projectPermissions);
+  const actualPermissions =
+    useApplicationContext<TNormalizedPermissions | null>(
+      (applicationContext) =>
+        projectPermissions?.permissions ?? applicationContext.permissions
+    );
+  const actualActionRights =
+    useApplicationContext<TNormalizedActionRights | null>(
+      (applicationContext) =>
+        projectPermissions?.actionRights ?? applicationContext.actionRights
+    );
+  const actualDataFences = useApplicationContext<TNormalizedDataFences | null>(
+    (applicationContext) =>
+      projectPermissions?.dataFences ?? applicationContext.dataFences
+  );
 
   // if the user has no permissions and no dataFences assigned to them, they are not authorized
-  if (!resolvedPermissions && !resolvedDataFences) return false;
+  if (!actualPermissions && !actualDataFences) return false;
 
   let hasDemandedDataFences = false;
   if (demandedDataFences && demandedDataFences.length > 0) {
@@ -130,20 +113,20 @@ const useIsAuthorized = ({
       );
     }
     hasDemandedDataFences = hasSomeDataFence({
-      actualPermissions: resolvedPermissions,
+      actualPermissions,
       demandedDataFences,
-      actualDataFences: resolvedDataFences,
+      actualDataFences,
       selectDataFenceData,
     });
   }
 
   const hasDemandedPermissions = shouldMatchSomePermissions
-    ? hasSomePermissions(demandedPermissions, resolvedPermissions)
-    : hasEveryPermissions(demandedPermissions, resolvedPermissions);
+    ? hasSomePermissions(demandedPermissions, actualPermissions)
+    : hasEveryPermissions(demandedPermissions, actualPermissions);
 
   const hasDemandedActionRights = hasEveryActionRight(
     demandedActionRights || [],
-    resolvedActionRights
+    actualActionRights
   );
 
   return (
