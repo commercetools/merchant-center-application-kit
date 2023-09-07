@@ -6,7 +6,7 @@
   --icon-size-hover: 28px;
   --icon-container-offset: 4px;
   --item-height: 48px;
-  --item-width: 64px;
+  --divider-top: 64px;
   --submenu-margin: calc(
     var(--icon-size) + var(--spacing-m) + var(--icon-container-offset) + 4px
   );
@@ -119,7 +119,7 @@
 .expander::before {
   content: '';
   position: absolute;
-  top: 56px;
+  top: var(--divider-top);
   height: 1px;
   background: rgba(255, 255, 255, 0.5);
   width: calc(100% - 2 * var(--spacing-m));
@@ -357,7 +357,7 @@
 }
 
 .support-menu {
-  padding: 0 var(--spacing-m);
+  padding: var(--spacing-s) var(--spacing-m);
 }
 
 :global(.body__menu-open) .list-item.item__active .item-icon-text {
