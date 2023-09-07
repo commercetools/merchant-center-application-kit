@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://docs.commercetools.com/custom-views/schema.json",
+  "$id": "https://docs.commercetools.com/custom-applications/custom-view.schema.json",
   "title": "JSON schema for Custom View configuration files",
   "type": "object",
   "definitions": {
