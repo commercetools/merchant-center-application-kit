@@ -33,13 +33,10 @@ const developmentPort = 3001;
 const developmentAppUrl = `http://localhost:${developmentPort}`;
 
 const getConfigurationType = (configFileName: string): ConfigType => {
-  if (configFileName.includes('custom-application-config')) {
-    return ConfigType.CUSTOM_APPLICATION;
-  } else if (configFileName.includes('custom-view-config')) {
+  if (configFileName.includes('custom-view-config')) {
     return ConfigType.CUSTOM_VIEW;
-  } else {
-    throw new Error(`Invalid config filename: ${configFileName}`);
   }
+  return ConfigType.CUSTOM_APPLICATION;
 };
 
 const trimTrailingSlash = (value: string) => value.replace(/\/$/, '');
@@ -47,9 +44,14 @@ const trimTrailingSlash = (value: string) => value.replace(/\/$/, '');
 const omitDevConfigIfEmpty = (
   devConfig: ApplicationRuntimeConfig['env']['__DEVELOPMENT__']
 ) => {
-  // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
-  if (devConfig?.accountLinks || devConfig?.menuLinks || devConfig?.oidc)
+  if (
+    // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
+    devConfig?.accountLinks ||
+    devConfig?.menuLinks ||
+    devConfig?.oidc
+  ) {
     return devConfig;
+  }
   return undefined;
 };
 
