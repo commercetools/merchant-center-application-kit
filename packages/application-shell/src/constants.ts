@@ -3,7 +3,11 @@ export const DIMENSIONS = {
   headerItemDivider: '24px',
   navMenu: '64px',
   navMenuExpanded: '245px',
-  navMenuItemHeight: '56px',
+  navMenuItemHeight: '48px',
+  navSubmenuGap: '8px',
+  navSubmenuItemHeight: '46px',
+  navSubmenuItemHeightWithLineClamp: '68px',
+  navSubmenuPadding: '16px',
   newNavMenu: '80px',
   newNavMenuExpanded: '256px',
 } as const;

@@ -5,7 +5,8 @@
   --icon-size-hover: 28px;
   --item-size: 48px;
   --item-height: 56px;
-  --sublist-indentantion: 58px;
+  --sublist-indentantion-when-collapsed: 72px;
+  --sublist-indentantion-when-expanded: 248px;
   --sublist-width: 253px;
 
   /* Left navigation */
@@ -205,22 +206,23 @@
   font-size: var(--font-size-for-navbar-link);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   background-color: var(--background-color-for-navbar);
-  left: var(--sublist-indentantion);
+  left: var(--sublist-indentantion-when-collapsed);
   z-index: -1;
   list-style: none;
   position: fixed;
   display: none;
 }
 
-/* This pseudo-element is required to enable smooth coursor movement from the main menu item to submenu items when tooltip is displayed */
-.sublist-collapsed__active::before {
+/* This pseudo-element is required to enable smooth coursor movement from the main menu item to submenu items with the gap in between */
+.sublist-expanded__active::before,
+.sublist-collapsed__active::before,
+.sublist-collapsed__active__above::before {
   content: '';
   position: absolute;
   display: block;
-  width: var(--sublist-width);
-  height: var(--item-height);
-  top: calc(-1 * var(--item-height));
-  left: calc(var(--sublist-indentantion) - var(--width-left-navigation));
+  width: calc(var(--sublist-width) + var(--spacing-20));
+  height: var(--item-size);
+  left: calc(-1 * var(--spacing-20));
 }
 
 .sublist__inactive {
@@ -273,16 +275,23 @@
   justify-content: start;
 }
 
+.text-link-sublist-wrapper {
+  display: block;
+  overflow: hidden;
+  padding: var(--spacing-25) var(--spacing-25) var(--spacing-25)
+    var(--spacing-30);
+}
+
 .text-link-sublist {
-  display: flex;
-  align-items: flex-start;
+  /* stylelint-disable-next-line value-no-vendor-prefix */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   color: var(--color-solid);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link-when-hovered);
   text-decoration: none;
-  padding: calc(var(--spacing-20) + var(--spacing-10))
-    calc(var(--spacing-20) + var(--spacing-10))
-    calc(var(--spacing-20) + var(--spacing-10)) var(--spacing-30);
 }
 
 /* Item active */
@@ -329,12 +338,11 @@
 
 .tooltip-container {
   position: absolute;
-  top: calc(-1 * var(--item-height));
   left: 0;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  height: var(--item-height);
+  height: var(--item-size);
   visibility: visible;
 }
 
@@ -354,12 +362,13 @@
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link);
   color: var(--color-surface);
-  max-height: var(--item-height);
+  max-height: var(--item-size);
   visibility: inherit;
 }
 
 .sublist-expanded__active,
-.sublist-collapsed__active {
+.sublist-collapsed__active,
+.sublist-collapsed__active__above {
   opacity: 1;
   display: none;
   text-align: left;
@@ -368,6 +377,7 @@
 }
 
 .item-link:hover .sublist-collapsed__active,
+.item-link:hover .sublist-collapsed__active__above,
 .item-link:hover .sublist-expanded__active {
   display: flex;
   flex-direction: column;
@@ -384,12 +394,13 @@
   box-shadow: -2px 4px 25px 0 rgba(89, 89, 89, 0.5);
 }
 
-.item-link:hover .sublist-collapsed__active.sublist-collapsed__empty {
+.item-link:hover .sublist-collapsed__active.sublist-collapsed__empty,
+.item-link:hover .sublist-collapsed__active__above.sublist-collapsed__empty {
   visibility: hidden;
 }
 
 .item-link:hover .sublist-expanded__active {
-  left: 240px;
+  left: var(--sublist-indentantion-when-expanded);
 }
 
 .highlighted,
