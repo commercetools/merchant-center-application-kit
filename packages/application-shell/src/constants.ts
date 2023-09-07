@@ -3,6 +3,7 @@ export const DIMENSIONS = {
   headerItemDivider: '24px',
   navMenu: '64px',
   navMenuExpanded: '245px',
+  navMenuItemHeight: '56px',
 } as const;
 
 export const WINDOW_SIZES = {
