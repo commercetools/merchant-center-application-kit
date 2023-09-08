@@ -94,7 +94,6 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
           dataLocale: appContext.dataLocale,
           customViewConfig: props.customView,
           hostUrl: props.hostUrl || window.location.href,
-          userLocale: appContext.user?.locale,
           projectKey: appContext.project?.key,
         },
       },

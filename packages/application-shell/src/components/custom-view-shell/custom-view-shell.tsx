@@ -26,7 +26,6 @@ declare let window: ApplicationWindow;
 
 type THostContext = {
   hostUrl: string;
-  userLocale: string;
   dataLocale: string;
   customViewConfig: TCustomView;
   projectKey?: string;
