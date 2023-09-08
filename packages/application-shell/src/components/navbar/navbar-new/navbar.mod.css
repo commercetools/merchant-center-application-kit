@@ -152,7 +152,6 @@
 
 .list-item:hover {
   background-color: var(--color-primary);
-  transition: all 0.25s ease-in-out;
   border-radius: 8px;
 }
 
@@ -218,7 +217,6 @@
 .list-item:not(.item__active):hover .icon {
   width: var(--icon-size-hover);
   height: var(--icon-size-hover);
-  transition: all 0.25s ease-in-out;
 }
 
 .list-item:not(.item__active):hover .item-link {
@@ -361,16 +359,8 @@
   width: auto;
 }
 
-.list-item.item__active .item-icon-text .title {
-  margin-left: 40px;
-}
-
 .item_menu-collapsed.list-item.item__active .item-icon-text .title {
   display: none;
-}
-
-:global(.body__menu-open) .list-item.item__active .item-icon-text .title {
-  margin-left: var(--spacing-m);
 }
 
 :global(.body__menu-open) .list-item.item__active .item-icon-text {
