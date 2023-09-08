@@ -28,7 +28,10 @@ const customViewHostUrl = window.app.__DEVELOPMENT__?.customViewHostUrl
 const environment = {
   ...window.app,
   customViewId,
-  customViewHostUrl,
+  __DEVELOPMENT__: {
+    ...window.app.__DEVELOPMENT__,
+    customViewHostUrl,
+  },
   entryPointUriPath: customViewId,
 };
 

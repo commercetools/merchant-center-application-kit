@@ -86,7 +86,8 @@ const LocalCustomViewLauncher = (props: TLocalCustomViewLauncherProps) => {
                     <li>
                       Emulated Host application URL:{' '}
                       <b>
-                        {props.environment.customViewHostUrl || 'not defined'}
+                        {props.environment.__DEVELOPMENT__?.customViewHostUrl ||
+                          'not defined'}
                       </b>
                     </li>
                   </Spacings.Stack>
@@ -104,7 +105,7 @@ const LocalCustomViewLauncher = (props: TLocalCustomViewLauncherProps) => {
           {shouldRenderCustomView && (
             <CustomViewLoader
               customView={customViewConfig}
-              hostUrl={props.environment.customViewHostUrl}
+              hostUrl={props.environment.__DEVELOPMENT__?.customViewHostUrl}
               onClose={() => setShouldRenderCustomView(false)}
             />
           )}
