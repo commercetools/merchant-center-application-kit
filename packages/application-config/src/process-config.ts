@@ -194,8 +194,7 @@ const processConfig = ({
       ...(configType === ConfigType.CUSTOM_VIEW
         ? getCustomViewProductionConfig(configurationData as CustomViewData)
         : getCustomApplicationProductionConfig(
-            configurationData as CustomApplicationData,
-            applicationId
+            configurationData as CustomApplicationData
           )),
     },
     headers: {
