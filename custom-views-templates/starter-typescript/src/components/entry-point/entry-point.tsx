@@ -25,15 +25,6 @@ const customViewId = window.app.customViewId || Date.now().toString();
 const customViewHostUrl = window.app.__DEVELOPMENT__?.customViewHostUrl
   ? `${window.location.origin}${window.app.__DEVELOPMENT__?.customViewHostUrl}`
   : undefined;
-const environment = {
-  ...window.app,
-  customViewId,
-  __DEVELOPMENT__: {
-    ...window.app.__DEVELOPMENT__,
-    customViewHostUrl,
-  },
-  entryPointUriPath: customViewId,
-};
 
 type TCustomViewMainProps = {
   customViewId: string;
@@ -55,12 +46,13 @@ const EntryPoint = () => {
   if (process.env.NODE_ENV === 'development') {
     return (
       <CustomViewDevHost
-        environment={environment}
+        customViewId={customViewId}
+        customViewHostUrl={customViewHostUrl}
         applicationMessages={loadMessages}
       >
         <CustomViewMain
-          customViewId={environment.customViewId}
-          customViewHostUrl={environment.customViewHostUrl}
+          customViewId={customViewId}
+          customViewHostUrl={customViewHostUrl}
           messages={loadMessages}
         />
       </CustomViewDevHost>

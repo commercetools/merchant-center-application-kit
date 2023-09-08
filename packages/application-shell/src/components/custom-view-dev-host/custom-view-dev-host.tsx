@@ -3,6 +3,7 @@ import { Route, Router, Switch } from 'react-router-dom';
 import { CustomViewLoader } from '@commercetools-frontend/application-components';
 import { type TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import history from '@commercetools-frontend/browser-history';
+import { ApplicationWindow } from '@commercetools-frontend/constants';
 import { type TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import Constraints from '@commercetools-uikit/constraints';
 import PrimaryButton from '@commercetools-uikit/primary-button';
@@ -15,6 +16,8 @@ import {
   TCustomViewType,
 } from '../../types/generated/settings';
 import ApplicationShell from '../application-shell';
+
+declare let window: ApplicationWindow;
 
 const defaultCustomViewConfig: TCustomView = {
   createdAt: '',
@@ -39,6 +42,20 @@ const defaultCustomViewConfig: TCustomView = {
   updatedAt: '',
   url: '',
 };
+
+const resolveDevHostEnvironment = (
+  customViewId: string,
+  customViewHostUrl?: string
+) => ({
+  ...window.app,
+  customViewId,
+  __DEVELOPMENT__: {
+    ...window.app.__DEVELOPMENT__,
+    customViewHostUrl,
+  },
+  // This is required by the host application to handle its permissions
+  entryPointUriPath: customViewId,
+});
 
 const getCustomViewConfig = (customConfig: Partial<TCustomView>) => ({
   ...defaultCustomViewConfig,
@@ -116,12 +133,17 @@ const LocalCustomViewLauncher = (props: TLocalCustomViewLauncherProps) => {
 };
 
 type TCustomViewDevHost = {
-  environment: TApplicationContext<{}>['environment'];
+  customViewId: string;
+  customViewHostUrl?: string;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   children: ReactNode;
 };
 
 const CustomViewDevHost = (props: TCustomViewDevHost) => {
+  const environment = resolveDevHostEnvironment(
+    props.customViewId,
+    props.customViewHostUrl
+  );
   return (
     <Router history={history}>
       <Switch>
@@ -131,10 +153,10 @@ const CustomViewDevHost = (props: TCustomViewDevHost) => {
 
         <Route>
           <ApplicationShell
-            environment={props.environment}
+            environment={environment}
             applicationMessages={props.applicationMessages}
           >
-            <LocalCustomViewLauncher environment={props.environment} />
+            <LocalCustomViewLauncher environment={environment} />
           </ApplicationShell>
         </Route>
       </Switch>
