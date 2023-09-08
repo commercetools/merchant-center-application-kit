@@ -219,12 +219,6 @@
   height: var(--icon-size-hover);
 }
 
-.list-item:not(.item__active):hover .item-link {
-  /* TODO: add design tokens instead hard-coded values */
-  padding: 10px;
-  height: var(--item-size);
-}
-
 .list-item:not(.item__active):hover .title {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link-when-hovered);
