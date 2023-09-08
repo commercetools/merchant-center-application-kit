@@ -170,6 +170,8 @@ const processConfig = ({
                 customViewType: (configurationData as CustomViewData).type,
                 customViewTypeSettings: (configurationData as CustomViewData)
                   .typeSettings,
+                customViewHostUrl: (configurationData as CustomViewData)
+                  .hostUrl,
               }
             : {}),
           // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
@@ -187,7 +189,6 @@ const processConfig = ({
       ...(configType === ConfigType.CUSTOM_VIEW
         ? {
             customViewId: (configurationData as CustomViewData).id,
-            customViewHostUrl: (configurationData as CustomViewData).hostUrl,
           }
         : {}),
       ...(isProd || !developmentConfig

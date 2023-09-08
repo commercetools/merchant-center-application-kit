@@ -22,8 +22,8 @@ const AsyncApplicationRoutes = lazy(
 setupGlobalErrorListener();
 
 const customViewId = window.app.customViewId || Date.now().toString();
-const customViewHostUrl = window.app.customViewHostUrl
-  ? `${window.location.origin}${window.app.customViewHostUrl}`
+const customViewHostUrl = window.app.__DEVELOPMENT__?.customViewHostUrl
+  ? `${window.location.origin}${window.app.__DEVELOPMENT__?.customViewHostUrl}`
   : undefined;
 const environment = {
   ...window.app,
@@ -34,11 +34,16 @@ const environment = {
 
 type TCustomViewMainProps = {
   customViewId: string;
+  customViewHostUrl?: string;
   messages: TAsyncLocaleDataProps['applicationMessages'];
 };
 
 const CustomViewMain = (props: TCustomViewMainProps) => (
-  <CustomViewShell customViewId={props.customViewId} messages={props.messages}>
+  <CustomViewShell
+    customViewId={props.customViewId}
+    customViewHostUrl={props.customViewHostUrl}
+    messages={props.messages}
+  >
     <AsyncApplicationRoutes />
   </CustomViewShell>
 );
@@ -52,6 +57,7 @@ const EntryPoint = () => {
       >
         <CustomViewMain
           customViewId={environment.customViewId}
+          customViewHostUrl={environment.customViewHostUrl}
           messages={loadMessages}
         />
       </CustomViewDevHost>

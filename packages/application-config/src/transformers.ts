@@ -116,6 +116,7 @@ function transformCustomViewConfigToData(
     type: customViewConfig.type,
     typeSettings: customViewConfig.typeSettings,
     hostUrl: customViewConfig.env.development.hostUrl,
+    locators: customViewConfig.locators || [],
   };
 }
 

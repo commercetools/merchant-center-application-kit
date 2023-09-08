@@ -182,7 +182,6 @@ export interface ApplicationWindow extends Window {
   app: {
     applicationId: string;
     customViewId?: string;
-    customViewHostUrl?: string;
     applicationName: string;
     entryPointUriPath: string;
     revision: string;
@@ -199,6 +198,7 @@ export interface ApplicationWindow extends Window {
     __DEVELOPMENT__?: {
       oidc?: ApplicationOidcForDevelopmentConfig;
       menuLinks?: ApplicationMenuLinksForDevelopmentConfig;
+      customViewHostUrl?: string;
       customViewType?: string;
       customViewTypeSettings?: Record<string, unknown>;
     };

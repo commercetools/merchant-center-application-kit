@@ -46,15 +46,21 @@ export type CustomApplicationData = {
   submenuLinks: CustomApplicationSubmenuLinkData[];
 };
 
+export type CustomViewPermissionData = {
+  name: string;
+  oAuthScopes: string[];
+};
+
 export type CustomViewData = {
   id: string;
   name: string;
   description?: string;
   url: string;
-  permissions: CustomApplicationPermissionData[];
+  permissions: CustomViewPermissionData[];
   type: string;
   typeSettings?: Record<string, unknown>;
   hostUrl?: string;
+  locators: string[];
 };
 
 // The object result after processing the config file
