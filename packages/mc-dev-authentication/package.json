@@ -24,13 +24,13 @@
     "README.md"
   ],
   "dependencies": {
-    "@babel/runtime": "^7.20.13",
-    "@babel/runtime-corejs3": "^7.20.13"
+    "@babel/runtime": "^7.22.15",
+    "@babel/runtime-corejs3": "^7.22.15"
   },
   "devDependencies": {
     "@commercetools-frontend/application-config": "workspace:*",
-    "@types/connect": "^3.4.35",
-    "@tsconfig/node16": "^16.0.0",
+    "@tsconfig/node16": "^16.1.1",
+    "@types/connect": "^3.4.36",
     "connect": "^3.7.0"
   },
   "engines": {
