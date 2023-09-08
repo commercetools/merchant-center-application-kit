@@ -58,12 +58,7 @@ const EntryPoint = () => {
       </CustomViewDevHost>
     );
   }
-  return (
-    <CustomViewMain
-      customViewId={environment.customViewId}
-      messages={loadMessages}
-    />
-  );
+  return <CustomViewMain customViewId={customViewId} messages={loadMessages} />;
 };
 
 EntryPoint.displayName = 'EntryPoint';
