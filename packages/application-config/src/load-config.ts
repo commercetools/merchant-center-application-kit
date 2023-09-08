@@ -96,7 +96,14 @@ const loadConfig = (
       `Missing or invalid configuration file.`
     );
   }
-  return (customApplicationConfigFile || customViewConfigFile)!;
+
+  if (customApplicationConfigFile && customViewConfigFile) {
+    throw new MissingOrInvalidConfigError(
+      `Found configuration files for both Custom Application and Custom View. Please remove one of them.`
+    );
+  }
+
+  return (customViewConfigFile || customApplicationConfigFile)!;
 };
 
 export default loadConfig;
