@@ -9,7 +9,7 @@ export const getCustomApplicationDevelopmentConfig = (
     submenuLinks: configurationData.submenuLinks,
   },
   // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
-  accountLinks: appConfig.accountLinks,
+  accountLinks: configurationData.accountLinks,
 });
 
 export const getCustomApplicationProductionConfig = (
