@@ -12,7 +12,7 @@
   --sublist-indentantion: 58px;
   --sublist-width: 253px;
   --submenu-margin: calc(
-    var(--icon-size) + var(--spacing-m) + var(--icon-container-offset) + 4px
+    var(--icon-size) + var(--spacing-30) + var(--icon-container-offset) + 4px
   );
 
   /* Left navigation */
@@ -59,8 +59,7 @@
 .item-link {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link);
-  /* TODO: add design tokens instead hard-coded values */
-  padding: 12px;
+  padding: var(--spacing-25);
   width: var(--item-size);
   position: relative;
   display: block;
@@ -117,7 +116,7 @@
     var(--color-primary-30) 0%,
     var(--color-primary-20) 100%
   );
-  padding: 16px 12px;
+  padding: var(--spacing-30) var(--spacing-25);
 }
 
 /* divider */
@@ -127,14 +126,14 @@
   top: var(--divider-top);
   height: 1px;
   background: rgba(255, 255, 255, 0.5);
-  width: calc(100% - 2 * var(--spacing-m));
+  width: calc(100% - 2 * var(--spacing-30));
 }
 
 .expand-icon {
   height: var(--expander-size);
   width: var(--expander-size);
   border-radius: var(--border-radius-4);
-  padding: var(--spacing-s);
+  padding: var(--spacing-20);
   background: rgba(255, 255, 255, 0.2);
   display: flex;
   justify-content: center;
@@ -152,7 +151,7 @@
 
 .list-item:hover {
   background-color: var(--color-primary);
-  border-radius: 8px;
+  border-radius: var(--border-radius-8);
 }
 
 .item__active .title {
@@ -204,7 +203,7 @@
 :global(.body__menu-open) .list-item .title {
   display: block;
   opacity: 1;
-  margin-left: var(--spacing-s);
+  margin-left: var(--spacing-20);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-surface);
 }
@@ -232,7 +231,7 @@
 /*  Second level menu */
 
 .sublist {
-  padding: var(--spacing-m) var(--spacing-l);
+  padding: var(--spacing-30) var(--spacing-40);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
@@ -323,8 +322,7 @@
 .item__active,
 .item_menu__active {
   background: var(--color-accent-30);
-  /* TODO: add design tokens instead hard-coded values */
-  border-radius: 8px;
+  border-radius: var(--border-radius-8);
 }
 
 .list-item.item__active .item-icon-text {
@@ -345,7 +343,7 @@
 }
 
 .support-menu {
-  padding: var(--spacing-s) var(--spacing-m);
+  padding: var(--spacing-20) var(--spacing-30);
 }
 
 :global(.body__menu-open) .list-item.item__active .item-icon-text {
@@ -412,7 +410,7 @@
   /* TODO: add design tokens instead hard-coded values */
   min-height: 50px;
   width: var(--sublist-width);
-  border-radius: 8px;
+  border-radius: var(--border-radius-8);
   /* z-index value must be higher than AppBar's z-index */
   z-index: 20001;
   box-shadow: -2px 4px 25px 0 rgba(89, 89, 89, 0.5);
@@ -464,7 +462,7 @@
   flex: 1 1 0;
   overflow-x: hidden;
   overflow-y: hidden;
-  padding: var(--spacing-m) var(--spacing-m) var(--item-size);
+  padding: var(--spacing-30) var(--spacing-30) var(--item-size);
   width: var(--width-left-navigation);
   box-sizing: border-box;
   /* For Firefox */
@@ -491,7 +489,7 @@
 
 .scrollable-menu::-webkit-scrollbar-thumb {
   background-color: var(--color-primary);
-  border-radius: 8px;
+  border-radius: var(--border-radius-8);
 }
 
 .fixed-menu {
