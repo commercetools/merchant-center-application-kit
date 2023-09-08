@@ -1,11 +1,12 @@
+import { JSONSchemaForCustomViewConfigurationFiles } from './custom-view.schema';
 import { CustomViewData } from './types';
 
 export const getCustomViewDevelopmentConfig = (
-  configurationData: CustomViewData
+  configurationData: CustomViewData,
+  appConfig: JSONSchemaForCustomViewConfigurationFiles
 ) => ({
-  customViewType: configurationData.type,
-  customViewTypeSettings: configurationData.typeSettings,
-  customViewHostUrl: configurationData.hostUrl,
+  customViewConfig: configurationData,
+  customViewHostUrl: appConfig.env.development.hostUrl,
 });
 
 export const getCustomViewProductionConfig = (

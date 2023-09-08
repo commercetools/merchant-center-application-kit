@@ -5,6 +5,12 @@ import {
   formatEntryPointUriPathToResourceAccessKey,
 } from './formatters';
 import {
+  TCustomViewPermission,
+  TCustomViewStatus,
+  TCustomViewType,
+  TCustomViewTypeSettings,
+} from './generated/settings';
+import {
   ConfigType,
   type CustomApplicationData,
   type CustomViewData,
@@ -14,6 +20,27 @@ import {
   validateSubmenuLinks,
   validateAdditionalOAuthScopes,
 } from './validations';
+
+const defaultCustomViewConfig = {
+  id: '',
+  defaultLabel: '',
+  labelAllLocales: {},
+  url: '',
+  type: TCustomViewType.CustomPanel,
+  locators: [],
+  permissions: [],
+  createdAt: '',
+  installedBy: [],
+  owner: {
+    createdAt: '',
+    id: '',
+    organizationId: '',
+    updatedAt: '',
+  },
+  ownerId: '',
+  status: TCustomViewStatus.Draft,
+  updatedAt: '',
+};
 
 // The `uriPath` of each submenu link is supposed to be defined relative
 // to the `entryPointUriPath`. Computing the full path is done internally to keep
@@ -108,14 +135,14 @@ function transformCustomViewConfigToData(
   validateAdditionalOAuthScopes(customViewConfig);
 
   return {
-    id: customViewConfig.env.production.customViewId,
-    name: customViewConfig.name,
+    ...defaultCustomViewConfig,
+    id: customViewConfig.env.production.customViewId || 'todo',
+    defaultLabel: customViewConfig.name,
     description: customViewConfig.description,
     url: customViewConfig.env.production.url,
-    permissions: getPermissions(customViewConfig),
-    type: customViewConfig.type,
-    typeSettings: customViewConfig.typeSettings,
-    hostUrl: customViewConfig.env.development.hostUrl,
+    permissions: getPermissions(customViewConfig) as TCustomViewPermission[],
+    type: customViewConfig.type as TCustomViewType,
+    typeSettings: customViewConfig.typeSettings as TCustomViewTypeSettings,
     locators: customViewConfig.locators || [],
   };
 }

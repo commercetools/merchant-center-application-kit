@@ -9,39 +9,10 @@ import Constraints from '@commercetools-uikit/constraints';
 import PrimaryButton from '@commercetools-uikit/primary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import {
-  TCustomView,
-  TCustomViewSize,
-  TCustomViewStatus,
-  TCustomViewType,
-} from '../../types/generated/settings';
+import { TCustomView } from '../../types/generated/settings';
 import ApplicationShell from '../application-shell';
 
 declare let window: ApplicationWindow;
-
-const defaultCustomViewConfig: TCustomView = {
-  createdAt: '',
-  defaultLabel: '',
-  id: Date.now().toString(),
-  installedBy: [],
-  labelAllLocales: {},
-  locators: [],
-  owner: {
-    createdAt: '',
-    id: '',
-    organizationId: '',
-    updatedAt: '',
-  },
-  ownerId: '',
-  permissions: [],
-  status: TCustomViewStatus.Draft,
-  type: TCustomViewType.CustomPanel,
-  typeSettings: {
-    size: TCustomViewSize.Small,
-  },
-  updatedAt: '',
-  url: '',
-};
 
 const resolveDevHostEnvironment = (
   customViewId: string,
@@ -57,23 +28,14 @@ const resolveDevHostEnvironment = (
   entryPointUriPath: customViewId,
 });
 
-const getCustomViewConfig = (customConfig: Partial<TCustomView>) => ({
-  ...defaultCustomViewConfig,
-  ...customConfig,
-});
-
 type TLocalCustomViewLauncherProps = {
   environment: TApplicationContext<{}>['environment'];
 };
 
 const LocalCustomViewLauncher = (props: TLocalCustomViewLauncherProps) => {
   const [shouldRenderCustomView, setShouldRenderCustomView] = useState(false);
-
-  const customViewConfig = getCustomViewConfig({
-    id: props.environment.customViewId,
-    type: props.environment.__DEVELOPMENT__?.customViewType as TCustomViewType,
-    typeSettings: props.environment.__DEVELOPMENT__?.customViewTypeSettings,
-  });
+  const customViewConfig = props.environment.__DEVELOPMENT__
+    ?.customViewConfig! as TCustomView;
 
   return (
     <main>

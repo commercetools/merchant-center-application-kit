@@ -2,6 +2,7 @@ import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import { CLOUD_IDENTIFIERS } from './constants';
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './custom-application.schema';
 import type { JSONSchemaForCustomViewConfigurationFiles } from './custom-view.schema';
+import { TCustomView } from './generated/settings';
 
 export type ConfigOptions =
   | JSONSchemaForCustomApplicationConfigurationFiles
@@ -51,17 +52,7 @@ export type CustomViewPermissionData = {
   oAuthScopes: string[];
 };
 
-export type CustomViewData = {
-  id: string;
-  name: string;
-  description?: string;
-  url: string;
-  permissions: CustomViewPermissionData[];
-  type: string;
-  typeSettings?: Record<string, unknown>;
-  hostUrl?: string;
-  locators: string[];
-};
+export type CustomViewData = TCustomView;
 
 // The object result after processing the config file
 export type ApplicationRuntimeConfig<

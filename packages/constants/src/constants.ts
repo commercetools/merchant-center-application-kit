@@ -1,3 +1,5 @@
+import { TCustomView } from './generated/settings';
+
 // DOM elements
 export const PORTALS_CONTAINER_ID = 'portals-container';
 
@@ -199,8 +201,7 @@ export interface ApplicationWindow extends Window {
       oidc?: ApplicationOidcForDevelopmentConfig;
       menuLinks?: ApplicationMenuLinksForDevelopmentConfig;
       customViewHostUrl?: string;
-      customViewType?: string;
-      customViewTypeSettings?: Record<string, unknown>;
+      customViewConfig?: TCustomView;
     };
   };
 }

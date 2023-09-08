@@ -4,6 +4,7 @@ import fs from 'fs';
 import { parse as parseFilePath } from 'path';
 import omitEmpty from 'omit-empty-es';
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './custom-application.schema';
+import { JSONSchemaForCustomViewConfigurationFiles } from './custom-view.schema';
 import loadConfig from './load-config';
 import {
   getCustomApplicationDevelopmentConfig,
@@ -77,11 +78,10 @@ const processConfig = ({
   const configType = getConfigurationType(parseFilePath(filepath).name);
 
   validateConfig(configType, rawConfig);
-  const appConfig =
-    substituteVariablePlaceholders<JSONSchemaForCustomApplicationConfigurationFiles>(
-      rawConfig,
-      { applicationPath, processEnv }
-    );
+  const appConfig = substituteVariablePlaceholders<
+    | JSONSchemaForCustomApplicationConfigurationFiles
+    | JSONSchemaForCustomViewConfigurationFiles
+  >(rawConfig, { applicationPath, processEnv });
 
   const configurationData = transformConfigurationToData(configType, appConfig);
 
@@ -159,7 +159,9 @@ const processConfig = ({
                 : appConfig.env.development.initialProjectKey,
             ...(appConfig.env.development?.teamId && {
               teamId: appConfig.env.development.teamId,
-              applicationId: appConfig.env.production.applicationId,
+              applicationId: (
+                appConfig as JSONSchemaForCustomApplicationConfigurationFiles
+              ).env.production.applicationId,
             }),
             oAuthScopes: appConfig.oAuthScopes,
             additionalOAuthScopes: appConfig?.additionalOAuthScopes,
@@ -167,7 +169,8 @@ const processConfig = ({
           // Specific config
           ...(configType === ConfigType.CUSTOM_VIEW
             ? getCustomViewDevelopmentConfig(
-                configurationData as CustomViewData
+                configurationData as CustomViewData,
+                appConfig as JSONSchemaForCustomViewConfigurationFiles
               )
             : getCustomApplicationDevelopmentConfig(
                 configurationData as CustomApplicationData

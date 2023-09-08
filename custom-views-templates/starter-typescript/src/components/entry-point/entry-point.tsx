@@ -21,7 +21,6 @@ const AsyncApplicationRoutes = lazy(
 // in order to catch possible errors on rendering/mounting.
 setupGlobalErrorListener();
 
-const customViewId = window.app.customViewId || Date.now().toString();
 const customViewHostUrl = window.app.__DEVELOPMENT__?.customViewHostUrl
   ? `${window.location.origin}${window.app.__DEVELOPMENT__?.customViewHostUrl}`
   : undefined;
@@ -46,19 +45,24 @@ const EntryPoint = () => {
   if (process.env.NODE_ENV === 'development') {
     return (
       <CustomViewDevHost
-        customViewId={customViewId}
+        customViewId={window.app.customViewId!}
         customViewHostUrl={customViewHostUrl}
         applicationMessages={loadMessages}
       >
         <CustomViewMain
-          customViewId={customViewId}
+          customViewId={window.app.customViewId!}
           customViewHostUrl={customViewHostUrl}
           messages={loadMessages}
         />
       </CustomViewDevHost>
     );
   }
-  return <CustomViewMain customViewId={customViewId} messages={loadMessages} />;
+  return (
+    <CustomViewMain
+      customViewId={window.app.customViewId!}
+      messages={loadMessages}
+    />
+  );
 };
 
 EntryPoint.displayName = 'EntryPoint';
