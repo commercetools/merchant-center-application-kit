@@ -165,8 +165,8 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         isMainMenuRouteActive={isMainMenuRouteActive}
         isMenuOpen={props.isMenuOpen}
         onClick={props.handleToggleItem}
-        onMouseEnter={props.isMenuOpen ? undefined : props.handleToggleItem}
-        onMouseLeave={props.isMenuOpen ? undefined : props.shouldCloseMenuFly}
+        onMouseEnter={props.handleToggleItem}
+        onMouseLeave={props.shouldCloseMenuFly}
       >
         <MenuItemLink
           linkTo={
