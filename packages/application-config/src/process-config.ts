@@ -5,6 +5,14 @@ import { parse as parseFilePath } from 'path';
 import omitEmpty from 'omit-empty-es';
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './custom-application.schema';
 import loadConfig from './load-config';
+import {
+  getCustomApplicationDevelopmentConfig,
+  getCustomApplicationProductionConfig,
+} from './process-custom-application-config';
+import {
+  getCustomViewDevelopmentConfig,
+  getCustomViewProductionConfig,
+} from './process-custom-view-config';
 import substituteVariablePlaceholders from './substitute-variable-placeholders';
 import { transformConfigurationToData } from './transformers';
 import {
@@ -130,6 +138,7 @@ const processConfig = ({
     isProd
       ? undefined
       : omitDevConfigIfEmpty({
+          // Common config
           oidc: omitEmpty({
             authorizeUrl: [
               // In case the MC API url points to localhost, we need to point
@@ -155,42 +164,22 @@ const processConfig = ({
             oAuthScopes: appConfig.oAuthScopes,
             additionalOAuthScopes: appConfig?.additionalOAuthScopes,
           }),
-          ...(configType === ConfigType.CUSTOM_APPLICATION
-            ? {
-                menuLinks: {
-                  icon: (configurationData as CustomApplicationData).icon,
-                  ...(configurationData as CustomApplicationData).mainMenuLink,
-                  submenuLinks: (configurationData as CustomApplicationData)
-                    .submenuLinks,
-                },
-              }
-            : {}),
+          // Specific config
           ...(configType === ConfigType.CUSTOM_VIEW
-            ? {
-                customViewType: (configurationData as CustomViewData).type,
-                customViewTypeSettings: (configurationData as CustomViewData)
-                  .typeSettings,
-                customViewHostUrl: (configurationData as CustomViewData)
-                  .hostUrl,
-              }
-            : {}),
-          // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
-          accountLinks: appConfig.accountLinks,
+            ? getCustomViewDevelopmentConfig(
+                configurationData as CustomViewData
+              )
+            : getCustomApplicationDevelopmentConfig(
+                configurationData as CustomApplicationData
+              )),
         });
 
   cachedConfig = {
     data: configurationData,
     env: {
+      // Common config
       ...omitEmpty(additionalAppEnv),
       applicationId,
-      applicationName: configurationData.name,
-      entryPointUriPath: (configurationData as CustomApplicationData)
-        .entryPointUriPath,
-      ...(configType === ConfigType.CUSTOM_VIEW
-        ? {
-            customViewId: (configurationData as CustomViewData).id,
-          }
-        : {}),
       ...(isProd || !developmentConfig
         ? {}
         : { __DEVELOPMENT__: developmentConfig }),
@@ -201,6 +190,13 @@ const processConfig = ({
       mcApiUrl: mcApiUrl.origin,
       revision,
       servedByProxy: isProd,
+      // Specific config
+      ...(configType === ConfigType.CUSTOM_VIEW
+        ? getCustomViewProductionConfig(configurationData as CustomViewData)
+        : getCustomApplicationProductionConfig(
+            configurationData as CustomApplicationData,
+            applicationId
+          )),
     },
     headers: {
       ...appConfig.headers,
