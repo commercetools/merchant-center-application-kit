@@ -236,13 +236,19 @@ const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>((props, ref) => {
         [styles.item__active]: props.isActive,
         [styles['item_menu__active']]: props.isMainMenuRouteActive ?? false,
         [styles['item_menu-collapsed']]: !props.isMenuOpen,
-        [styles['item__no-submenu']]: !props.hasSubmenu,
       })}
       onClick={props.onClick}
       onMouseEnter={props.onMouseEnter}
       onMouseLeave={props.onMouseLeave}
     >
-      <div ref={ref} className={styles['item-link']}>
+      <div
+        ref={ref}
+        className={
+          props.hasSubmenu
+            ? styles['item-link']
+            : styles['item-link-no-submenu']
+        }
+      >
         {props.children}
       </div>
     </li>

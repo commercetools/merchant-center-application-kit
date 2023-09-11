@@ -6,7 +6,6 @@
   --icon-size-hover: 28px;
   --icon-container-offset: 4px;
   --item-size: 48px;
-  --divider-top: 64px;
   --item-height: 56px;
   --item-width: 64px;
   --sublist-indentantion: 58px;
@@ -63,6 +62,11 @@
   width: var(--item-size);
   position: relative;
   display: block;
+}
+
+.item-link-no-submenu {
+  width: 100%;
+  height: 100%;
 }
 
 :global(.body__menu-open) .item-link {
@@ -123,7 +127,7 @@
 .expander::before {
   content: '';
   position: absolute;
-  top: var(--divider-top);
+  top: var(--item-height);
   height: 1px;
   background: rgba(255, 255, 255, 0.5);
   width: calc(100% - 2 * var(--spacing-30));
@@ -164,14 +168,8 @@
   height: auto !important;
 }
 
-/* NO SUBMENU */
-
 .item_menu-collapsed .item-link {
   text-align: center;
-}
-
-.item__no-submenu .title {
-  border-bottom: 0;
 }
 
 :global(.body__menu-open) .title {
@@ -211,11 +209,6 @@
 .list-item:not(.item__active):hover .icon > svg *:not([fill='none']) {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   fill: var(--color-for-navbar-icon-when-active);
-}
-
-.list-item:not(.item__active):hover .icon {
-  width: var(--icon-size-hover);
-  height: var(--icon-size-hover);
 }
 
 .list-item:not(.item__active):hover .title {
@@ -296,7 +289,14 @@
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link);
   text-decoration: none;
-  transition: all 0.15s ease;
+  display: flex;
+  padding: var(--spacing-25);
+  align-items: center;
+  justify-content: center;
+}
+
+:global(.body__menu-open) .text-link {
+  justify-content: start;
 }
 
 .text-link-sublist {
@@ -309,13 +309,6 @@
   padding: calc(var(--spacing-20) + var(--spacing-10))
     calc(var(--spacing-20) + var(--spacing-10))
     calc(var(--spacing-20) + var(--spacing-10)) var(--spacing-30);
-}
-
-.text-link:hover {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  color: var(--color-for-navbar-link-when-hovered);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  font-weight: var(--font-weight-for-navbar-link-when-hovered);
 }
 
 /* Item active */
@@ -343,7 +336,8 @@
 }
 
 .support-menu {
-  padding: var(--spacing-20) var(--spacing-30);
+  padding: 0 var(--spacing-30) var(--spacing-20) var(--spacing-30);
+  height: calc(var(--item-size) + var(--spacing-20));
 }
 
 :global(.body__menu-open) .list-item.item__active .item-icon-text {

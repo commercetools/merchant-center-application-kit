@@ -28,7 +28,11 @@ import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
 import { SupportIcon } from '@commercetools-uikit/icons';
 import { DIMENSIONS } from '../../../constants';
 import type { TFetchProjectQuery } from '../../../types/generated/mc';
-import type { TNavbarMenu, TBaseMenu } from '../../../types/generated/proxy';
+import type {
+  TNavbarMenu,
+  TBaseMenu,
+  TLocalizedField,
+} from '../../../types/generated/proxy';
 import messages from '../messages';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import nonNullable from '../non-nullable';
@@ -98,6 +102,32 @@ const getIsSubmenuRouteActive = (
     })
   );
 
+type ItemContainerProps = {
+  labelAllLocales: TLocalizedField[];
+  defaultLabel: string | undefined;
+  applicationLocale: string;
+  icon: string;
+};
+
+export const ItemContainer = (props: ItemContainerProps) => {
+  return (
+    <div className={styles['item-icon-text']}>
+      <div className={styles['icon-container']}>
+        <div className={styles.icon}>
+          <IconSwitcher icon={props.icon} size="scale" />
+        </div>
+      </div>
+      <div className={styles.title}>
+        <MenuLabel
+          labelAllLocales={props.labelAllLocales}
+          defaultLabel={props.defaultLabel}
+          applicationLocale={props.applicationLocale}
+        />
+      </div>
+    </div>
+  );
+};
+
 export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const [topPosition, setTopPosition] = useState(0);
   const elementRef = useRef<HTMLDivElement>(null);
@@ -138,14 +168,6 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
     ? getMenuVisibilitiesOfSubmenus(props.menu)
     : getMenuVisibilityOfMainmenu(props.menu);
 
-  const isMainMenuItemALink =
-    // 1. When the navbar is collapsed
-    !props.isMenuOpen ||
-    // 2. When there is no submenu
-    !hasSubmenu ||
-    // 3. When the submenu group is active/visible
-    props.isActive;
-
   return (
     <RestrictedMenuItem
       key={props.menu.key}
@@ -168,35 +190,28 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         onMouseEnter={props.handleToggleItem}
         onMouseLeave={props.shouldCloseMenuFly}
       >
-        <MenuItemLink
-          linkTo={
-            isMainMenuItemALink
-              ? `/${props.projectKey}/${props.menu.uriPath}`
-              : undefined
-          }
-          useFullRedirectsForLinks={props.useFullRedirectsForLinks}
-          onClick={props.onMenuItemClick}
-        >
-          <div className={styles['item-icon-text']}>
-            <div className={styles['icon-container']}>
-              <div
-                className={classnames(styles.icon, {
-                  [styles.icon__active]:
-                    props.isActive || isMainMenuRouteActive,
-                })}
-              >
-                <IconSwitcher icon={props.menu.icon} size="scale" />
-              </div>
-            </div>
-            <div className={styles.title} aria-owns={`group-${props.menu.key}`}>
-              <MenuLabel
-                labelAllLocales={props.menu.labelAllLocales}
-                defaultLabel={props.menu.defaultLabel}
-                applicationLocale={props.applicationLocale}
-              />
-            </div>
-          </div>
-        </MenuItemLink>
+        {/* menu-item should be a link only if it doesn't contain a submenu */}
+        {!hasSubmenu ? (
+          <MenuItemLink
+            linkTo={`/${props.projectKey}/${props.menu.uriPath}`}
+            useFullRedirectsForLinks={props.useFullRedirectsForLinks}
+            onClick={props.onMenuItemClick}
+          >
+            <ItemContainer
+              labelAllLocales={props.menu.labelAllLocales}
+              defaultLabel={props.menu.defaultLabel}
+              applicationLocale={props.applicationLocale}
+              icon={props.menu.icon}
+            />
+          </MenuItemLink>
+        ) : (
+          <ItemContainer
+            labelAllLocales={props.menu.labelAllLocales}
+            defaultLabel={props.menu.defaultLabel}
+            applicationLocale={props.applicationLocale}
+            icon={props.menu.icon}
+          />
+        )}
         <MenuGroup
           id={props.menu.key}
           level={2}
@@ -421,6 +436,7 @@ const NavBar = (props: TNavbarProps) => {
                 href={SUPPORT_PORTAL_URL}
                 rel="noopener noreferrer"
                 target="_blank"
+                className={styles['text-link']}
               >
                 <div className={styles['item-icon-text']}>
                   <div className={styles['icon-container']}>
