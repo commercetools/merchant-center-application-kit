@@ -2602,8 +2602,8 @@ importers:
   playground:
     dependencies:
       '@commercetools-docs/ui-kit':
-        specifier: 22.3.1
-        version: 22.3.1(@types/react@17.0.56)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4)
+        specifier: 22.5.0
+        version: 22.5.0(@types/react@17.0.56)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-frontend/actions-global':
         specifier: 22.7.1
         version: link:../packages/actions-global
@@ -2879,11 +2879,11 @@ importers:
   website:
     dependencies:
       '@commercetools-docs/gatsby-theme-docs':
-        specifier: 22.3.1
-        version: 22.3.1(@babel/core@7.22.17)(@types/react@17.0.56)(gatsby-cli@5.9.0)(gatsby@5.9.1)(graphql@16.8.0)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)(webpack@5.82.1)
+        specifier: 22.5.0
+        version: 22.5.0(@babel/core@7.22.17)(@types/react@17.0.56)(gatsby-cli@5.9.0)(gatsby@5.9.1)(graphql@16.8.0)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)(webpack@5.82.1)
       '@commercetools-docs/ui-kit':
-        specifier: 22.3.1
-        version: 22.3.1(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@5.3.4)(react@18.2.0)(typescript@5.2.2)
+        specifier: 22.5.0
+        version: 22.5.0(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@5.3.4)(react@18.2.0)(typescript@5.2.2)
       '@commercetools-frontend/assets':
         specifier: workspace:*
         version: link:../packages/assets
@@ -3243,19 +3243,19 @@ packages:
       - encoding
     dev: false
 
-  /@auth0/auth0-react@2.1.0(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-+86qLx97BcSwL/ZwIzGq9jFa5SaV5z7goLU5gi+4R9KhzDg9vhmmZ+iQWW0GMiuwjJ8vcfX4hRTD6iF0DbGZWw==}
+  /@auth0/auth0-react@2.2.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-Kqk73HamFDDit9rGlmqUMbZiSuYcAJ0+P3ZS3kek79fsrUTc2od9tTVOjkNbzMLifetevOJ3Mgt/6f/6To4vkg==}
     peerDependencies:
       react: ^16.11.0 || ^17 || ^18
       react-dom: ^16.11.0 || ^17 || ^18
     dependencies:
-      '@auth0/auth0-spa-js': 2.0.4
+      '@auth0/auth0-spa-js': 2.1.2
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@auth0/auth0-spa-js@2.0.4:
-    resolution: {integrity: sha512-NgD6Fkm5Xnbned1VjhEW8irm1/Y8AWtdSLexgLXNwwBVgfnYicCVBu8w75m2t+4QljXkTcI7IXVEFhVmxMuxaA==}
+  /@auth0/auth0-spa-js@2.1.2:
+    resolution: {integrity: sha512-xdA65Z/U7++Y7L9Uwh8Q8OVOs6qgFz+fb7GAzHFjpr1icO37B//xdzLXm7ZRgA19RWrsNe1nme3h896igJSvvw==}
     dev: false
 
   /@babel/cli@7.22.15(@babel/core@7.22.17):
@@ -3835,7 +3835,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.22.17
-      '@babel/helper-plugin-utils': 7.21.5
+      '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-numeric-separator': 7.10.4(@babel/core@7.22.17)
 
   /@babel/plugin-proposal-object-rest-spread@7.12.1(@babel/core@7.12.9):
@@ -3845,7 +3845,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.12.9
-      '@babel/helper-plugin-utils': 7.10.4
+      '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.12.9)
       '@babel/plugin-transform-parameters': 7.22.15(@babel/core@7.12.9)
     dev: false
@@ -5265,8 +5265,8 @@ packages:
       '@babel/runtime-corejs3': 7.22.15
     dev: false
 
-  /@commercetools-docs/gatsby-theme-docs@22.3.1(@babel/core@7.22.17)(@types/react@17.0.56)(gatsby-cli@5.9.0)(gatsby@5.9.1)(graphql@16.8.0)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)(webpack@5.82.1):
-    resolution: {integrity: sha512-mk4v5LamAUwvMnILMGck3JnHuCZiX4w3b6P2z/FhUtVJzThzZWyPwAjTVPAErOJtQSi7rfVpSFcQBEpkASKxYA==}
+  /@commercetools-docs/gatsby-theme-docs@22.5.0(@babel/core@7.22.17)(@types/react@17.0.56)(gatsby-cli@5.9.0)(gatsby@5.9.1)(graphql@16.8.0)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)(webpack@5.82.1):
+    resolution: {integrity: sha512-C+FYHFmFzXkG3h8AUvJbyLECxb3XphCRTbLxrKHFLUGJntMCsMqZpQEjkb44571dsnVKXlWu5BB5WNRAMuwxyw==}
     engines: {node: '>=18'}
     hasBin: true
     peerDependencies:
@@ -5275,20 +5275,20 @@ packages:
       react: 18.x
       react-dom: 18.x
     dependencies:
-      '@auth0/auth0-react': 2.1.0(react-dom@18.2.0)(react@18.2.0)
-      '@commercetools-docs/ui-kit': 22.3.1(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@6.12.0)(react@18.2.0)(typescript@5.2.2)
+      '@auth0/auth0-react': 2.2.0(react-dom@18.2.0)(react@18.2.0)
+      '@commercetools-docs/ui-kit': 22.5.0(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@6.14.2)(react@18.2.0)(typescript@5.2.2)
       '@commercetools-uikit/card': 16.5.0(@types/react@17.0.56)(react@18.2.0)
       '@commercetools-uikit/checkbox-input': 16.5.0(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
       '@commercetools-uikit/design-system': 16.5.0(@types/react@17.0.56)
       '@commercetools-uikit/icon-button': 16.5.0(@types/react@17.0.56)(react@18.2.0)(typescript@5.2.2)
       '@commercetools-uikit/icons': 16.5.0(@types/react@17.0.56)(react@18.2.0)
-      '@commercetools-uikit/link': 16.5.0(@types/react@17.0.56)(react-intl@6.4.5)(react-router-dom@6.12.0)(react@18.2.0)
+      '@commercetools-uikit/link': 16.5.0(@types/react@17.0.56)(react-intl@6.4.5)(react-router-dom@6.14.2)(react@18.2.0)
       '@commercetools-uikit/loading-spinner': 16.5.0(@types/react@17.0.56)(react@18.2.0)(typescript@5.2.2)
       '@commercetools-uikit/messages': 16.5.0(@types/react@17.0.56)(react@18.2.0)(typescript@5.2.2)
       '@commercetools-uikit/notifications': 16.5.0(@types/react@17.0.56)(react-intl@6.4.5)(react@18.2.0)
       '@commercetools-uikit/primary-button': 16.5.0(@types/react@17.0.56)(react@18.2.0)(typescript@5.2.2)
       '@commercetools-uikit/radio-input': 16.5.0(@types/react@17.0.56)(react-intl@6.4.5)(react@18.2.0)(typescript@5.2.2)
-      '@commercetools-uikit/secondary-button': 16.5.0(@types/react@17.0.56)(react-intl@6.4.5)(react-router-dom@6.12.0)(react@18.2.0)
+      '@commercetools-uikit/secondary-button': 16.5.0(@types/react@17.0.56)(react-intl@6.4.5)(react-router-dom@6.14.2)(react@18.2.0)
       '@commercetools-uikit/secondary-icon-button': 16.5.0(@types/react@17.0.56)(react@18.2.0)(typescript@5.2.2)
       '@commercetools-uikit/spacings': 16.5.0(@types/react@17.0.56)(react@18.2.0)
       '@commercetools-uikit/spacings-inline': 16.5.0(@types/react@17.0.56)(react@18.2.0)
@@ -5301,19 +5301,19 @@ packages:
       '@emotion/react': 11.11.0(@types/react@17.0.56)(react@18.2.0)
       '@emotion/server': 11.10.0
       '@emotion/styled': 11.11.0(@emotion/react@11.11.0)(@types/react@17.0.56)(react@18.2.0)
-      '@fontsource/roboto-mono': 5.0.5
+      '@fontsource/roboto-mono': 5.0.8
       '@mdx-js/mdx': 1.6.22
       '@mdx-js/react': 1.6.22(react@18.2.0)
-      '@sentry/browser': 7.54.0
+      '@sentry/browser': 7.61.1
       '@svgr/webpack': 8.0.1
       '@videojs/themes': 1.0.1
       assert: 2.0.0
       docsearch.js: 2.6.3
-      formik: 2.4.1(react@18.2.0)
+      formik: 2.4.3(react@18.2.0)
       gatsby: 5.9.1(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
       gatsby-cli: 5.9.0
-      gatsby-core-utils: 4.10.0
-      gatsby-plugin-emotion: 8.10.0(@babel/core@7.22.17)(@emotion/react@11.11.0)(gatsby@5.9.1)
+      gatsby-core-utils: 4.11.0
+      gatsby-plugin-emotion: 8.11.0(@babel/core@7.22.17)(@emotion/react@11.11.0)(gatsby@5.9.1)
       gatsby-plugin-feed: 5.11.0(gatsby@5.9.1)(graphql@16.8.0)(react-dom@18.2.0)(react@18.2.0)
       gatsby-plugin-google-gtag: 5.11.0(gatsby@5.9.1)(react-dom@18.2.0)(react@18.2.0)
       gatsby-plugin-hubspot: 2.0.0(gatsby@5.9.1)(react-dom@18.2.0)(react@18.2.0)
@@ -5329,20 +5329,20 @@ packages:
       gatsby-transformer-sharp: 5.11.0(gatsby-plugin-sharp@5.11.0)(gatsby@5.9.1)(graphql@16.8.0)
       gatsby-transformer-yaml: 5.11.0(gatsby@5.9.1)
       github-slugger: 2.0.0
-      hast-util-has-property: 2.0.1
-      hast-util-heading: 2.0.1
-      hast-util-heading-rank: 2.1.1
+      hast-util-has-property: 3.0.0
+      hast-util-heading: 3.0.0
+      hast-util-heading-rank: 3.0.0
       hast-util-to-string: 2.0.0
       intersection-observer: 0.12.2
       lodash.throttle: 4.1.1
       md5: 2.3.0
       md5-file: 5.0.0
       mdast-util-to-string: 4.0.0
-      mdast-util-toc: 6.1.1
+      mdast-util-toc: 7.0.0
       moment-locales-webpack-plugin: 1.2.0(moment@2.29.4)(webpack@5.82.1)
       moment-timezone: 0.5.43
       moment-timezone-data-webpack-plugin: 1.5.1(moment-timezone@0.5.43)(webpack@5.82.1)
-      prism-react-renderer: 2.0.4(react@18.2.0)
+      prism-react-renderer: 2.0.6(react@18.2.0)
       prismjs: 1.29.0
       process-top: 1.2.0
       prompts: 2.4.2
@@ -5351,11 +5351,11 @@ packages:
       raw-loader: 4.0.2(webpack@5.82.1)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      react-intersection-observer: 9.4.4(react@18.2.0)
+      react-intersection-observer: 9.5.2(react@18.2.0)
       react-intl: 6.4.5(react@18.2.0)(typescript@5.2.2)
-      react-router-dom: 6.12.0(react-dom@18.2.0)(react@18.2.0)
+      react-router-dom: 6.14.2(react-dom@18.2.0)(react@18.2.0)
       rehype-slug: 5.1.0
-      remark-emoji: 3.1.1
+      remark-emoji: 3.1.2
       remark-frontmatter: 4.0.1
       remark-gfm: 3.0.1
       remark-mdx: 1.6.22
@@ -5363,9 +5363,9 @@ packages:
       remark-parse: 10.0.2
       remark-rehype: 10.1.0
       slugify: 1.6.6
-      swr: 2.1.5(react@18.2.0)
+      swr: 2.2.0(react@18.2.0)
       unified: 10.1.2
-      unist-util-visit: 4.1.2
+      unist-util-visit: 5.0.0
     transitivePeerDependencies:
       - '@babel/core'
       - '@emotion/css'
@@ -5379,8 +5379,8 @@ packages:
       - webpack
     dev: false
 
-  /@commercetools-docs/ui-kit@22.3.1(@types/react@17.0.56)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4):
-    resolution: {integrity: sha512-M996B73AWrxj2rBKLDUhq4zXw+wbv87hwGDT1qaLq7csO6TXBdYkpWXO74wZ1dv+ej9nDQ3EJyCK4BdwNxY1kQ==}
+  /@commercetools-docs/ui-kit@22.5.0(@types/react@17.0.56)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4):
+    resolution: {integrity: sha512-DkvCCKkQlvFsf4kurOGnX2Z8IQoZNm0KYviVsHF8c+KjJigLuwxvmDtUKiDRtZJDBeDi66qnS8988dr8PJnUwQ==}
     peerDependencies:
       react: 18.x
       react-dom: 18.x
@@ -5404,14 +5404,16 @@ packages:
       '@react-hook/latest': 1.0.3(react@17.0.2)
       '@react-hook/resize-observer': 1.2.6(react@17.0.2)
       '@types/lodash.kebabcase': 4.1.7
-      '@types/mdast': 3.0.11
+      '@types/mdast': 4.0.0
       '@types/react-modal': 3.16.0
       '@types/unist': 3.0.0
       lodash.kebabcase: 4.1.1
       lodash.omitby: 4.6.0
       lodash.throttle: 4.1.1
+      lord-icon-element: 4.1.1
+      lottie-web: 5.12.2
       murmurhash: 2.0.1
-      prism-react-renderer: 2.0.4(react@17.0.2)
+      prism-react-renderer: 2.0.6(react@17.0.2)
       prop-types: 15.8.1
       raf-schd: 4.0.3
       react: 17.0.2
@@ -5423,7 +5425,7 @@ packages:
       remark-frontmatter: 4.0.1
       remark-parse: 10.0.2
       remark-rehype: 10.1.0
-      swr: 2.1.5(react@17.0.2)
+      swr: 2.2.0(react@17.0.2)
       tiny-invariant: 1.3.1
       unified: 10.1.2
       unist-util-filter: 5.0.0
@@ -5434,8 +5436,8 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-docs/ui-kit@22.3.1(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@5.3.4)(react@18.2.0)(typescript@5.2.2):
-    resolution: {integrity: sha512-M996B73AWrxj2rBKLDUhq4zXw+wbv87hwGDT1qaLq7csO6TXBdYkpWXO74wZ1dv+ej9nDQ3EJyCK4BdwNxY1kQ==}
+  /@commercetools-docs/ui-kit@22.5.0(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@5.3.4)(react@18.2.0)(typescript@5.2.2):
+    resolution: {integrity: sha512-DkvCCKkQlvFsf4kurOGnX2Z8IQoZNm0KYviVsHF8c+KjJigLuwxvmDtUKiDRtZJDBeDi66qnS8988dr8PJnUwQ==}
     peerDependencies:
       react: 18.x
       react-dom: 18.x
@@ -5459,14 +5461,16 @@ packages:
       '@react-hook/latest': 1.0.3(react@18.2.0)
       '@react-hook/resize-observer': 1.2.6(react@18.2.0)
       '@types/lodash.kebabcase': 4.1.7
-      '@types/mdast': 3.0.11
+      '@types/mdast': 4.0.0
       '@types/react-modal': 3.16.0
       '@types/unist': 3.0.0
       lodash.kebabcase: 4.1.1
       lodash.omitby: 4.6.0
       lodash.throttle: 4.1.1
+      lord-icon-element: 4.1.1
+      lottie-web: 5.12.2
       murmurhash: 2.0.1
-      prism-react-renderer: 2.0.4(react@18.2.0)
+      prism-react-renderer: 2.0.6(react@18.2.0)
       prop-types: 15.8.1
       raf-schd: 4.0.3
       react: 18.2.0
@@ -5478,7 +5482,7 @@ packages:
       remark-frontmatter: 4.0.1
       remark-parse: 10.0.2
       remark-rehype: 10.1.0
-      swr: 2.1.5(react@18.2.0)
+      swr: 2.2.0(react@18.2.0)
       tiny-invariant: 1.3.1
       unified: 10.1.2
       unist-util-filter: 5.0.0
@@ -5489,8 +5493,8 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-docs/ui-kit@22.3.1(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@6.12.0)(react@18.2.0)(typescript@5.2.2):
-    resolution: {integrity: sha512-M996B73AWrxj2rBKLDUhq4zXw+wbv87hwGDT1qaLq7csO6TXBdYkpWXO74wZ1dv+ej9nDQ3EJyCK4BdwNxY1kQ==}
+  /@commercetools-docs/ui-kit@22.5.0(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@6.14.2)(react@18.2.0)(typescript@5.2.2):
+    resolution: {integrity: sha512-DkvCCKkQlvFsf4kurOGnX2Z8IQoZNm0KYviVsHF8c+KjJigLuwxvmDtUKiDRtZJDBeDi66qnS8988dr8PJnUwQ==}
     peerDependencies:
       react: 18.x
       react-dom: 18.x
@@ -5502,7 +5506,7 @@ packages:
       '@commercetools-uikit/icons': 16.5.0(@types/react@17.0.56)(react@18.2.0)
       '@commercetools-uikit/loading-spinner': 16.5.0(@types/react@17.0.56)(react@18.2.0)(typescript@5.2.2)
       '@commercetools-uikit/primary-button': 16.5.0(@types/react@17.0.56)(react@18.2.0)(typescript@5.2.2)
-      '@commercetools-uikit/secondary-button': 16.5.0(@types/react@17.0.56)(react-intl@6.4.5)(react-router-dom@6.12.0)(react@18.2.0)
+      '@commercetools-uikit/secondary-button': 16.5.0(@types/react@17.0.56)(react-intl@6.4.5)(react-router-dom@6.14.2)(react@18.2.0)
       '@commercetools-uikit/secondary-icon-button': 16.5.0(@types/react@17.0.56)(react@18.2.0)(typescript@5.2.2)
       '@commercetools-uikit/spacings': 16.5.0(@types/react@17.0.56)(react@18.2.0)
       '@commercetools-uikit/spacings-inline': 16.5.0(@types/react@17.0.56)(react@18.2.0)
@@ -5514,14 +5518,16 @@ packages:
       '@react-hook/latest': 1.0.3(react@18.2.0)
       '@react-hook/resize-observer': 1.2.6(react@18.2.0)
       '@types/lodash.kebabcase': 4.1.7
-      '@types/mdast': 3.0.11
+      '@types/mdast': 4.0.0
       '@types/react-modal': 3.16.0
       '@types/unist': 3.0.0
       lodash.kebabcase: 4.1.1
       lodash.omitby: 4.6.0
       lodash.throttle: 4.1.1
+      lord-icon-element: 4.1.1
+      lottie-web: 5.12.2
       murmurhash: 2.0.1
-      prism-react-renderer: 2.0.4(react@18.2.0)
+      prism-react-renderer: 2.0.6(react@18.2.0)
       prop-types: 15.8.1
       raf-schd: 4.0.3
       react: 18.2.0
@@ -5533,7 +5539,7 @@ packages:
       remark-frontmatter: 4.0.1
       remark-parse: 10.0.2
       remark-rehype: 10.1.0
-      swr: 2.1.5(react@18.2.0)
+      swr: 2.2.0(react@18.2.0)
       tiny-invariant: 1.3.1
       unified: 10.1.2
       unist-util-filter: 5.0.0
@@ -6555,7 +6561,7 @@ packages:
       - '@types/react'
     dev: false
 
-  /@commercetools-uikit/link@16.5.0(@types/react@17.0.56)(react-intl@6.4.5)(react-router-dom@6.12.0)(react@18.2.0):
+  /@commercetools-uikit/link@16.5.0(@types/react@17.0.56)(react-intl@6.4.5)(react-router-dom@6.14.2)(react@18.2.0):
     resolution: {integrity: sha512-sDFx6d/gqMsEdVU/c2ykYLMIfo7VfYKofpjBMdHHmamDm0bCga2k5OEjueUTeNkfSZ4QV1uHKFQ0yL1N9Ydwvw==}
     peerDependencies:
       react: 17.x
@@ -6576,7 +6582,7 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-intl: 6.4.5(react@18.2.0)(typescript@5.2.2)
-      react-router-dom: 6.12.0(react-dom@18.2.0)(react@18.2.0)
+      react-router-dom: 6.14.2(react-dom@18.2.0)(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
     dev: false
@@ -7206,7 +7212,7 @@ packages:
       - '@types/react'
     dev: false
 
-  /@commercetools-uikit/secondary-button@16.5.0(@types/react@17.0.56)(react-intl@6.4.5)(react-router-dom@6.12.0)(react@18.2.0):
+  /@commercetools-uikit/secondary-button@16.5.0(@types/react@17.0.56)(react-intl@6.4.5)(react-router-dom@6.14.2)(react@18.2.0):
     resolution: {integrity: sha512-31Kc7fk3XwicjOl37RPJz5xhpXWs6k/PrB0kl8Rqkri3iZG97lu+a1eCNn17Tw1bAsvrZbrHWoeJPeTUF2WyVQ==}
     peerDependencies:
       react: 17.x
@@ -7226,7 +7232,7 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-intl: 6.4.5(react@18.2.0)(typescript@5.2.2)
-      react-router-dom: 6.12.0(react-dom@18.2.0)(react@18.2.0)
+      react-router-dom: 6.14.2(react-dom@18.2.0)(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
     dev: false
@@ -9022,8 +9028,8 @@ packages:
       typescript: 5.2.2
     dev: false
 
-  /@fontsource/roboto-mono@5.0.5:
-    resolution: {integrity: sha512-pql1Fl/KX2Fqt3oLWos+WTvLt+oo5eCOT+phlA7iIqRPMpOY7MwgmZWxkb0f/giq8twI51mqpnudXPeq8nzocg==}
+  /@fontsource/roboto-mono@5.0.8:
+    resolution: {integrity: sha512-vjnNX8zQCSp4HadUJ3gpZiizCsK/ROjgGMpd4bcRxuyiTNGGMaznmKbhqdyVeFVap1sX8h2Qu380awaotey/mQ==}
     dev: false
 
   /@formatjs/cli@6.1.1:
@@ -9795,7 +9801,7 @@ packages:
       '@babel/parser': 7.22.16
       '@babel/plugin-syntax-import-assertions': 7.20.0(@babel/core@7.22.17)
       '@babel/traverse': 7.22.17
-      '@babel/types': 7.21.5
+      '@babel/types': 7.22.17
       '@graphql-tools/utils': 9.2.1(graphql@16.8.0)
       graphql: 16.8.0
       tslib: 2.6.2
@@ -11920,13 +11926,8 @@ packages:
       - react-dom
     dev: false
 
-  /@remix-run/router@1.5.0:
-    resolution: {integrity: sha512-bkUDCp8o1MvFO+qxkODcbhSqRa6P2GXgrGZVpt0dCXNW2HCSCqYI0ZoAqEOSAjRWmmlKcYgFvN4B4S+zo/f8kg==}
-    engines: {node: '>=14'}
-    dev: false
-
-  /@remix-run/router@1.6.3:
-    resolution: {integrity: sha512-EXJysQ7J3veRECd0kZFQwYYd5sJMcq2O/m60zu1W2l3oVQ9xtub8jTOtYRE0+M2iomyG/W3Ps7+vp2kna0C27Q==}
+  /@remix-run/router@1.7.2:
+    resolution: {integrity: sha512-7Lcn7IqGMV+vizMPoEl5F0XDshcdDYtMI6uJLQdQz5CfZAwy3vvGKYSUk789qndt5dEC4HfSjviSYlSoHGL2+A==}
     engines: {node: '>=14'}
     dev: false
 
@@ -11941,7 +11942,7 @@ packages:
       jsesc: 3.0.2
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
-      react-router-dom: 6.10.0(react-dom@17.0.2)(react@17.0.2)
+      react-router-dom: 6.14.2(react-dom@17.0.2)(react@17.0.2)
       set-cookie-parser: 2.6.0
       source-map: 0.7.4
     dev: false
@@ -12070,14 +12071,14 @@ packages:
     resolution: {integrity: sha512-0xd7qez0AQ+MbHatZTlI1gu5vkG8r7MYRUJAHPAHJBmGLs16zpkrpAVLvjQKQOqaXPDUBwOiJzNc00znHSCVBw==}
     dev: false
 
-  /@sentry-internal/tracing@7.54.0:
-    resolution: {integrity: sha512-JsyhZ0wWZ+VqbHJg+azqRGdYJDkcI5R9+pnkO6SzbzxrRewqMAIwzkpPee3oI7vG99uhMEkOkMjHu0nQGwkOQw==}
+  /@sentry-internal/tracing@7.61.1:
+    resolution: {integrity: sha512-E8J6ZMXHGdWdmgKBK/ounuUppDK65c4Hphin6iVckDGMEATn0auYAKngeyRUMLof1167DssD8wxcIA4aBvmScA==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry/core': 7.54.0
-      '@sentry/types': 7.54.0
-      '@sentry/utils': 7.54.0
-      tslib: 1.14.1
+      '@sentry/core': 7.61.1
+      '@sentry/types': 7.61.1
+      '@sentry/utils': 7.61.1
+      tslib: 2.6.2
     dev: false
 
   /@sentry-internal/tracing@7.64.0:
@@ -12090,16 +12091,16 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@sentry/browser@7.54.0:
-    resolution: {integrity: sha512-EvLAw03N9WE2m1CMl2/1YMeIs1icw9IEOVJhWmf3uJEysNJOFWXu6ZzdtHEz1E6DiJYhc1HzDya0ExZeJxNARA==}
+  /@sentry/browser@7.61.1:
+    resolution: {integrity: sha512-v6Wv0O/PF+sqji+WWpJmxAlQafsiKmsXQLzKAIntVjl3HbYO5oVS3ubCyqfxSlLxIhM5JuHcEOLn6Zi3DPtpcw==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry-internal/tracing': 7.54.0
-      '@sentry/core': 7.54.0
-      '@sentry/replay': 7.54.0
-      '@sentry/types': 7.54.0
-      '@sentry/utils': 7.54.0
-      tslib: 1.14.1
+      '@sentry-internal/tracing': 7.61.1
+      '@sentry/core': 7.61.1
+      '@sentry/replay': 7.61.1
+      '@sentry/types': 7.61.1
+      '@sentry/utils': 7.61.1
+      tslib: 2.6.2
     dev: false
 
   /@sentry/browser@7.64.0:
@@ -12114,13 +12115,13 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /@sentry/core@7.54.0:
-    resolution: {integrity: sha512-MAn0E2EwgNn1pFQn4qxhU+1kz6edullWg6VE5wCmtpXWOVw6sILBUsQpeIG5djBKMcneJCdOlz5jeqcKPrLvZQ==}
+  /@sentry/core@7.61.1:
+    resolution: {integrity: sha512-WTRt0J33KhUbYuDQZ5G58kdsNeQ5JYrpi6o+Qz+1xTv60DQq/tBGRJ7d86SkmdnGIiTs6W1hsxAtyiLS0y9d2A==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry/types': 7.54.0
-      '@sentry/utils': 7.54.0
-      tslib: 1.14.1
+      '@sentry/types': 7.61.1
+      '@sentry/utils': 7.61.1
+      tslib: 2.6.2
     dev: false
 
   /@sentry/core@7.64.0:
@@ -12162,13 +12163,13 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /@sentry/replay@7.54.0:
-    resolution: {integrity: sha512-C0F0568ybphzGmKGe23duB6n5wJcgM7WLYhoeqW3o2bHeqpj1dGPSka/K3s9KzGaAgzn1zeOUYXJsOs+T/XdsA==}
+  /@sentry/replay@7.61.1:
+    resolution: {integrity: sha512-Nsnnzx8c+DRjnfQ0Md11KGdY21XOPa50T2B3eBEyFAhibvYEc/68PuyVWkMBQ7w9zo/JV+q6HpIXKD0THUtqZA==}
     engines: {node: '>=12'}
     dependencies:
-      '@sentry/core': 7.54.0
-      '@sentry/types': 7.54.0
-      '@sentry/utils': 7.54.0
+      '@sentry/core': 7.61.1
+      '@sentry/types': 7.61.1
+      '@sentry/utils': 7.61.1
     dev: false
 
   /@sentry/replay@7.64.0:
@@ -12180,8 +12181,8 @@ packages:
       '@sentry/utils': 7.64.0
     dev: false
 
-  /@sentry/types@7.54.0:
-    resolution: {integrity: sha512-D+i9xogBeawvQi2r0NOrM7zYcUaPuijeME4O9eOTrDF20tj71hWtJLilK+KTGLYFtpGg1h+9bPaz7OHEIyVopg==}
+  /@sentry/types@7.61.1:
+    resolution: {integrity: sha512-CpPKL+OfwYOduRX9AT3p+Ie1fftgcCPd5WofTVVq7xeWRuerOOf2iJd0v+8yHQ25omgres1YOttDkCcvQRn4Jw==}
     engines: {node: '>=8'}
     dev: false
 
@@ -12190,12 +12191,12 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
-  /@sentry/utils@7.54.0:
-    resolution: {integrity: sha512-3Yf5KlKjIcYLddOexSt2ovu2TWlR4Fi7M+aCK8yUTzwNzf/xwFSWOstHlD/WiDy9HvfhWAOB/ukNTuAeJmtasw==}
+  /@sentry/utils@7.61.1:
+    resolution: {integrity: sha512-pUPXoiuYrTEPcBHjRizFB6eZEGm/6cTBwdWSHUjkGKvt19zuZ1ixFJQV6LrIL/AMeiQbmfQ+kTd/8SR7E9rcTQ==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry/types': 7.54.0
-      tslib: 1.14.1
+      '@sentry/types': 7.61.1
+      tslib: 2.6.2
     dev: false
 
   /@sentry/utils@7.64.0:
@@ -13016,10 +13017,6 @@ packages:
       '@types/qs': 6.9.7
       '@types/serve-static': 1.15.1
 
-  /@types/extend@3.0.1:
-    resolution: {integrity: sha512-R1g/VyKFFI2HLC1QGAeTtCBWCo6n75l41OnsVYNbmKG+kempOESaodf6BeJyUM3Q0rKa/NQcTHbB2+66lNnxLw==}
-    dev: false
-
   /@types/fs-extra@11.0.1:
     resolution: {integrity: sha512-MxObHvNl4A69ofaTRU8DFqvgzzv8s9yRtaPPm5gud9HDNvpB3GPQFvNuTWAI59B9huVGV5jXYJwbCsmBsOGYWA==}
     dependencies:
@@ -13056,6 +13053,12 @@ packages:
 
   /@types/hast@2.3.4:
     resolution: {integrity: sha512-wLEm0QvaoawEDoTRwzTXp4b4jpwiJDvR5KMnFnVodm3scufTlBOWRD6N1OBf9TZMhjlNsSfcO5V+7AF4+Vy+9g==}
+    dependencies:
+      '@types/unist': 3.0.0
+    dev: false
+
+  /@types/hast@3.0.0:
+    resolution: {integrity: sha512-SoytUJRuf68HXYqcXicQIhCrLQjqeYU2anikr4G3p3Iz+OZO5QDQpDj++gv+RenHsnUBwNZ2dumBArF8VLSk2Q==}
     dependencies:
       '@types/unist': 3.0.0
     dev: false
@@ -13460,6 +13463,10 @@ packages:
     resolution: {integrity: sha512-NfQ4gyz38SL8sDNrSixxU2Os1a5xcdFxipAFxYEuLUlvU2uDwS4NUpsImcf1//SlWItCVMMLiylsxbmNMToV/g==}
     dev: false
 
+  /@types/ungap__structured-clone@0.3.0:
+    resolution: {integrity: sha512-eBWREUhVUGPze+bUW22AgUr05k8u+vETzuYdLYSvWqGTUe0KOf+zVnOB1qER5wMcw8V6D9Ar4DfJmVvD1yu0kQ==}
+    dev: false
+
   /@types/unist@2.0.6:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
     dev: false
@@ -13721,6 +13728,10 @@ packages:
     dependencies:
       '@typescript-eslint/types': 5.62.0
       eslint-visitor-keys: 3.4.3
+
+  /@ungap/structured-clone@1.2.0:
+    resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
+    dev: false
 
   /@vercel/build-utils@3.1.1:
     resolution: {integrity: sha512-VmIEG8IdKH9hpVG+lm9h/ksFk5dWsdHinzSHXjekminPdGUUsb6BUHkYY/e10PSNJtg9Cq42c8pnr0kvaDSLew==}
@@ -14863,7 +14874,6 @@ packages:
       '@babel/types': 7.22.17
       gatsby: 5.9.1(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
       gatsby-core-utils: 4.12.0
-    dev: false
 
   /babel-plugin-remove-graphql-queries@5.9.0(@babel/core@7.22.17)(gatsby@5.9.1):
     resolution: {integrity: sha512-moGeKUT+QZ+jZ3/PCUjNitp9ZEqQChm3FUjtoH97UlqbtzlA88SSBq/4uTnCXiXCVy+R6wHu/jhTp6U2dOBOnA==}
@@ -19293,8 +19303,8 @@ packages:
       tslib: 1.14.1
     dev: false
 
-  /formik@2.4.1(react@18.2.0):
-    resolution: {integrity: sha512-ajOB9EmFhXb4PACTlaooVEn7PLtLtBJEZ8fPs+wFZjL5KSGwgAoU+n9DHN8JcqNKcXkloEYYtn1lxrLav18ecQ==}
+  /formik@2.4.3(react@18.2.0):
+    resolution: {integrity: sha512-2Dy79Szw3zlXmZiokUdKsn+n1ow4G8hRrC/n92cOWHNTWXCRpQXlyvz6HcjW7aSQZrldytvDOavYjhfmDnUq8Q==}
     peerDependencies:
       react: '>=16.8.0'
     dependencies:
@@ -19305,7 +19315,7 @@ packages:
       react: 18.2.0
       react-fast-compare: 2.0.4
       tiny-warning: 1.0.3
-      tslib: 1.14.1
+      tslib: 2.6.2
     dev: false
 
   /forwarded@0.2.0:
@@ -19503,8 +19513,8 @@ packages:
       xdg-basedir: 4.0.0
     dev: false
 
-  /gatsby-core-utils@4.10.0:
-    resolution: {integrity: sha512-7wNANRPzxyTsZMnZFyCq1f2D0T6299l1qUew8q8Ax2QJM0kzFY/4uuJaV/fnrC0RdjWnkwGIAiZ1ZnGK4E8HSA==}
+  /gatsby-core-utils@4.11.0:
+    resolution: {integrity: sha512-W7pfrKgBchdk19g802IuPkCA2iJ69lRR1GzkfYjB8d1TuIQqf0l1z0lv7e+2kQqO+uQ5Yt3sGMMN2qMYMWfLXg==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@babel/runtime': 7.22.15
@@ -19604,8 +19614,8 @@ packages:
       '@parcel/transformer-js': 2.8.3(@parcel/core@2.8.3)
       '@parcel/transformer-json': 2.8.3(@parcel/core@2.8.3)
 
-  /gatsby-plugin-emotion@8.10.0(@babel/core@7.22.17)(@emotion/react@11.11.0)(gatsby@5.9.1):
-    resolution: {integrity: sha512-NiJxPllHZZfQewwYDXJjC5gBnsrS/HdG4iKTzIb2vdXTf0uvUVYxslGsvWwkSbLLDmkZBjer2D8WHq8noerfWA==}
+  /gatsby-plugin-emotion@8.11.0(@babel/core@7.22.17)(@emotion/react@11.11.0)(gatsby@5.9.1):
+    resolution: {integrity: sha512-j+JwJLo1pXNA4ydlMki7ueQs0DicYBx5DkFiUGKrKr2NxP+AsWJYv2C6PgHSFf1PftnWlMNQ+ocTiM7fxGjjCA==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       '@babel/core': ^7.11.6
@@ -19797,7 +19807,7 @@ packages:
       gatsby: 5.9.1(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
       gatsby-core-utils: 4.12.0
       gatsby-page-utils: 3.9.0
-      gatsby-plugin-utils: 4.9.0(gatsby@5.9.1)(graphql@16.8.0)
+      gatsby-plugin-utils: 4.11.0(gatsby@5.9.1)(graphql@16.8.0)
       gatsby-telemetry: 4.9.0
       globby: 11.1.0
       lodash: 4.17.21
@@ -19852,7 +19862,7 @@ packages:
       '@babel/plugin-proposal-optional-chaining': 7.21.0(@babel/core@7.22.17)
       '@babel/preset-typescript': 7.22.15(@babel/core@7.22.17)
       '@babel/runtime': 7.22.15
-      babel-plugin-remove-graphql-queries: 5.9.0(@babel/core@7.22.17)(gatsby@5.9.1)
+      babel-plugin-remove-graphql-queries: 5.11.0(@babel/core@7.22.17)(gatsby@5.9.1)
       gatsby: 5.9.1(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
     transitivePeerDependencies:
       - supports-color
@@ -19869,13 +19879,12 @@ packages:
       fs-extra: 11.1.1
       gatsby: 5.9.1(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
       gatsby-core-utils: 4.12.0
-      gatsby-sharp: 1.11.0
+      gatsby-sharp: 1.12.0
       graphql: 16.8.0
       graphql-compose: 9.0.10(graphql@16.8.0)
       import-from: 4.0.0
       joi: 17.9.2
       mime: 3.0.0
-    dev: false
 
   /gatsby-plugin-utils@4.9.0(gatsby@5.9.1)(graphql@16.8.0):
     resolution: {integrity: sha512-JGd6FNjoj2ceb4eCw7xzIELlPwSBxGGkJpy+iQTnLT32aPT0vidjGmiytXpNDvktLrxpmuTDPVfMJTjopu+y2A==}
@@ -19893,7 +19902,7 @@ packages:
       graphql: 16.8.0
       graphql-compose: 9.0.10(graphql@16.8.0)
       import-from: 4.0.0
-      joi: 17.9.1
+      joi: 17.9.2
       mime: 3.0.0
 
   /gatsby-plugin-webpack-bundle-analyser-v2@1.1.31(gatsby@5.9.1):
@@ -19988,13 +19997,6 @@ packages:
       '@gatsbyjs/reach-router': 2.0.1(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-
-  /gatsby-sharp@1.11.0:
-    resolution: {integrity: sha512-zJbN3JVCFur8Ilwn1scf7o8AN69//shpJhYqt3uhuwhhkU6ZMCMmVVNKHSiUiWkVqhwSRJ4y7c/I3Ys9xMxsIw==}
-    engines: {node: '>=18.0.0'}
-    dependencies:
-      sharp: 0.32.4
-    dev: false
 
   /gatsby-sharp@1.12.0:
     resolution: {integrity: sha512-5MbTPKfzkOCtwT74+FZTUFKaul/2UyF10apvMcmIKomq71/jHf6wJx+rHtSdgyq19r4VWL8DGG2CKgSpe0z9GQ==}
@@ -21055,24 +21057,35 @@ packages:
     resolution: {integrity: sha512-X2+RwZIMTMKpXUzlotatPzWj8bspCymtXH3cfG3iQKV+wPF53Vgaqxi/eLqGck0wKq1kS9nvoB1wchbCPEL8sg==}
     dev: false
 
+  /hast-util-has-property@3.0.0:
+    resolution: {integrity: sha512-MNilsvEKLFpV604hwfhVStK0usFY/QmM5zX16bo7EjnAEGofr5YyI37kzopBlZJkHD4t887i+q/C8/tr5Q94cA==}
+    dependencies:
+      '@types/hast': 3.0.0
+    dev: false
+
   /hast-util-heading-rank@2.1.1:
     resolution: {integrity: sha512-iAuRp+ESgJoRFJbSyaqsfvJDY6zzmFoEnL1gtz1+U8gKtGGj1p0CVlysuUAUjq95qlZESHINLThwJzNGmgGZxA==}
     dependencies:
       '@types/hast': 2.3.4
     dev: false
 
-  /hast-util-heading@2.0.1:
-    resolution: {integrity: sha512-nwRggTanShzHRYMUX46lm6pbJ2c1+TUQCETahENb6yR6c8ro8MkE0hRJm8G0IqAZl35ONgJiW8RC8+D3484vYg==}
+  /hast-util-heading-rank@3.0.0:
+    resolution: {integrity: sha512-EJKb8oMUXVHcWZTDepnr+WNbfnXKFNf9duMesmr4S8SXTJBJ9M4Yok08pu9vxdJwdlGRhVumk9mEhkEvKGifwA==}
     dependencies:
-      '@types/hast': 2.3.4
-      hast-util-is-element: 2.1.3
+      '@types/hast': 3.0.0
     dev: false
 
-  /hast-util-is-element@2.1.3:
-    resolution: {integrity: sha512-O1bKah6mhgEq2WtVMk+Ta5K7pPMqsBBlmzysLdcwKVrqzZQ0CHqUPiIVspNhAG1rvxpvJjtGee17XfauZYKqVA==}
+  /hast-util-heading@3.0.0:
+    resolution: {integrity: sha512-SykluYSLOs7z72hUUcztJpPV20alz58pfbi8g/NckXPnJ4OFVwPidNz3XOqgSNu5MTeFvde5c0cFVUk319Qlqw==}
     dependencies:
-      '@types/hast': 2.3.4
-      '@types/unist': 2.0.6
+      '@types/hast': 3.0.0
+      hast-util-is-element: 3.0.0
+    dev: false
+
+  /hast-util-is-element@3.0.0:
+    resolution: {integrity: sha512-Val9mnv2IWpLbNPqc/pUem+a7Ipj2aHacCwgNfTiK0vJKl0LF+4Ba4+v1oPHFpf3bLYmreq0/l3Gud9S5OH42g==}
+    dependencies:
+      '@types/hast': 3.0.0
     dev: false
 
   /hast-util-parse-selector@2.2.5:
@@ -22962,7 +22975,6 @@ packages:
       '@sideway/address': 4.1.4
       '@sideway/formula': 3.0.1
       '@sideway/pinpoint': 2.0.0
-    dev: false
 
   /jose@2.0.6:
     resolution: {integrity: sha512-FVoPY7SflDodE4lknJmbAHSUjLCzE2H1F6MS0RYKMQ8SR+lNccpMf8R4eqkNYyyUjR5qZReOzZo5C5YiHOCjjg==}
@@ -23823,6 +23835,15 @@ packages:
     dependencies:
       js-tokens: 4.0.0
 
+  /lord-icon-element@4.1.1:
+    resolution: {integrity: sha512-cfydpCwB/23GSffD5ewBANr1P8ZBe8tPoJH19kncWcpJBV/VHqqzkml/bgZuoTvsU9DUA50Whk9wUlPmJ4wn6g==}
+    engines: {node: '>=16.0.0'}
+    dev: false
+
+  /lottie-web@5.12.2:
+    resolution: {integrity: sha512-uvhvYPC8kGPjXT3MyKMrL3JitEAmDMp30lVkuq/590Mw9ok6pWcFCwXJveo0t5uqYw1UREQHofD+jVpdjBv8wg==}
+    dev: false
+
   /lower-case-first@1.0.2:
     resolution: {integrity: sha512-UuxaYakO7XeONbKrZf5FEgkantPf5DUqDayzP5VXZrtRPdH86s4kN47I8B3TW10S4QKiE3ziHNf3kRN//okHjA==}
     dependencies:
@@ -24221,16 +24242,16 @@ packages:
       unist-util-visit: 1.4.1
     dev: false
 
-  /mdast-util-toc@6.1.1:
-    resolution: {integrity: sha512-Er21728Kow8hehecK2GZtb7Ny3omcoPUVrmObiSUwmoRYVZaXLR751QROEFjR8W/vAQdHMLj49Lz20J55XaNpw==}
+  /mdast-util-toc@7.0.0:
+    resolution: {integrity: sha512-C28UcSqjmnWuvgT8d97qpaItHKvySqVPAECUzqQ51xuMyNFFJwcFoKW77KoMjtXrclTidLQFDzLUmTmrshRweA==}
     dependencies:
-      '@types/extend': 3.0.1
-      '@types/mdast': 3.0.11
-      extend: 3.0.2
+      '@types/mdast': 4.0.0
+      '@types/ungap__structured-clone': 0.3.0
+      '@ungap/structured-clone': 1.2.0
       github-slugger: 2.0.0
-      mdast-util-to-string: 3.2.0
-      unist-util-is: 5.2.1
-      unist-util-visit: 4.1.2
+      mdast-util-to-string: 4.0.0
+      unist-util-is: 6.0.0
+      unist-util-visit: 5.0.0
     dev: false
 
   /mdn-data@2.0.14:
@@ -26763,8 +26784,8 @@ packages:
     engines: {node: '>=4'}
     dev: false
 
-  /prism-react-renderer@2.0.4(react@17.0.2):
-    resolution: {integrity: sha512-1fcayBPhlGWLjKHeZMA2eJbvLsq1YJsoP3CUOF0BNlobw4knAYS6EWHYawywaZ5zoIxYkgxuqrrkCj7b+135ow==}
+  /prism-react-renderer@2.0.6(react@17.0.2):
+    resolution: {integrity: sha512-ERzmAI5UvrcTw5ivfEG20/dYClAsC84eSED5p9X3oKpm0xPV4A5clFK1mp7lPIdKmbLnQYsPTGiOI7WS6gWigw==}
     peerDependencies:
       react: '>=16.0.0'
     dependencies:
@@ -26773,8 +26794,8 @@ packages:
       react: 17.0.2
     dev: false
 
-  /prism-react-renderer@2.0.4(react@18.2.0):
-    resolution: {integrity: sha512-1fcayBPhlGWLjKHeZMA2eJbvLsq1YJsoP3CUOF0BNlobw4knAYS6EWHYawywaZ5zoIxYkgxuqrrkCj7b+135ow==}
+  /prism-react-renderer@2.0.6(react@18.2.0):
+    resolution: {integrity: sha512-ERzmAI5UvrcTw5ivfEG20/dYClAsC84eSED5p9X3oKpm0xPV4A5clFK1mp7lPIdKmbLnQYsPTGiOI7WS6gWigw==}
     peerDependencies:
       react: '>=16.0.0'
     dependencies:
@@ -27129,7 +27150,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@babel/code-frame': 7.22.13
+      '@babel/code-frame': 7.21.4
       address: 1.2.2
       browserslist: 4.21.10
       chalk: 4.1.2
@@ -27253,8 +27274,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /react-intersection-observer@9.4.4(react@18.2.0):
-    resolution: {integrity: sha512-KQr8ezJscRSQZR0/TjogG4mZttCzdPZj8fhDzAK+xrPYOVvFjabRNy+4EY3UhS3fJaJyIedGjA8y4yKX+nc08w==}
+  /react-intersection-observer@9.5.2(react@18.2.0):
+    resolution: {integrity: sha512-EmoV66/yvksJcGa1rdW0nDNc4I1RifDWkT50gXSFnPLYQ4xUptuDD4V7k+Rj1OgVAlww628KLGcxPXFlOkkU/Q==}
     peerDependencies:
       react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
     dependencies:
@@ -27429,30 +27450,30 @@ packages:
       tiny-warning: 1.0.3
     dev: false
 
-  /react-router-dom@6.10.0(react-dom@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-E5dfxRPuXKJqzwSe/qGcqdwa18QiWC6f3H3cWXM24qj4N0/beCIf/CWTipop2xm7mR0RCS99NnaqPNjHtrAzCg==}
+  /react-router-dom@6.14.2(react-dom@17.0.2)(react@17.0.2):
+    resolution: {integrity: sha512-5pWX0jdKR48XFZBuJqHosX3AAHjRAzygouMTyimnBPOLdY3WjzUSKhus2FVMihUFWzeLebDgr4r8UeQFAct7Bg==}
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=16.8'
       react-dom: '>=16.8'
     dependencies:
-      '@remix-run/router': 1.5.0
+      '@remix-run/router': 1.7.2
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
-      react-router: 6.10.0(react@17.0.2)
+      react-router: 6.14.2(react@17.0.2)
     dev: false
 
-  /react-router-dom@6.12.0(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-UzLwZ3ZVaDr6YV0HdjwxuwtDKgwpJx9o1ea9fU0HV4tTvzdB8WPHzlLFMo5orchpIS84e8G4Erlhu7Rl84XDFQ==}
+  /react-router-dom@6.14.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-5pWX0jdKR48XFZBuJqHosX3AAHjRAzygouMTyimnBPOLdY3WjzUSKhus2FVMihUFWzeLebDgr4r8UeQFAct7Bg==}
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=16.8'
       react-dom: '>=16.8'
     dependencies:
-      '@remix-run/router': 1.6.3
+      '@remix-run/router': 1.7.2
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      react-router: 6.12.0(react@18.2.0)
+      react-router: 6.14.2(react@18.2.0)
     dev: false
 
   /react-router@5.3.4(react@17.0.2):
@@ -27488,23 +27509,23 @@ packages:
       tiny-warning: 1.0.3
     dev: false
 
-  /react-router@6.10.0(react@17.0.2):
-    resolution: {integrity: sha512-Nrg0BWpQqrC3ZFFkyewrflCud9dio9ME3ojHCF/WLsprJVzkq3q3UeEhMCAW1dobjeGbWgjNn/PVF6m46ANxXQ==}
+  /react-router@6.14.2(react@17.0.2):
+    resolution: {integrity: sha512-09Zss2dE2z+T1D03IheqAFtK4UzQyX8nFPWx6jkwdYzGLXd5ie06A6ezS2fO6zJfEb/SpG6UocN2O1hfD+2urQ==}
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=16.8'
     dependencies:
-      '@remix-run/router': 1.5.0
+      '@remix-run/router': 1.7.2
       react: 17.0.2
     dev: false
 
-  /react-router@6.12.0(react@18.2.0):
-    resolution: {integrity: sha512-/tCGtLq9umxRvbYeIx3j94CmpQfue0E3qnetVm9luKhu58cR4t+3O4ZrQXBdXfJrBATOAj+wF/1ihJJQI8AoTw==}
+  /react-router@6.14.2(react@18.2.0):
+    resolution: {integrity: sha512-09Zss2dE2z+T1D03IheqAFtK4UzQyX8nFPWx6jkwdYzGLXd5ie06A6ezS2fO6zJfEb/SpG6UocN2O1hfD+2urQ==}
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=16.8'
     dependencies:
-      '@remix-run/router': 1.6.3
+      '@remix-run/router': 1.7.2
       react: 18.2.0
     dev: false
 
@@ -27942,8 +27963,8 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /remark-emoji@3.1.1:
-    resolution: {integrity: sha512-kVCTaHzX+/ls67mE8JsGd3ZX511p2FlAPmKhdGpRCb5z6GSwp+3sAIB5oTySIetPh7CtqfGf7JBUt5fyMjgOHw==}
+  /remark-emoji@3.1.2:
+    resolution: {integrity: sha512-QwhAzNk27Ol64uV4z/3n55MKrNz9bhr8wg+mO5aGqIYDS+jUarS1d8Y0ZIeEBVhfGkXj6gGYM+727sOgAPvV/A==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       emoticon: 4.0.1
@@ -29673,8 +29694,8 @@ packages:
     dependencies:
       tslib: 2.6.2
 
-  /swr@2.1.5(react@17.0.2):
-    resolution: {integrity: sha512-/OhfZMcEpuz77KavXST5q6XE9nrOBOVcBLWjMT+oAE/kQHyE3PASrevXCtQDZ8aamntOfFkbVJp7Il9tNBQWrw==}
+  /swr@2.2.0(react@17.0.2):
+    resolution: {integrity: sha512-AjqHOv2lAhkuUdIiBu9xbuettzAzWXmCEcLONNKJRba87WAefz8Ca9d6ds/SzrPc235n1IxWYdhJ2zF3MNUaoQ==}
     peerDependencies:
       react: ^16.11.0 || ^17.0.0 || ^18.0.0
     dependencies:
@@ -29682,8 +29703,8 @@ packages:
       use-sync-external-store: 1.2.0(react@17.0.2)
     dev: false
 
-  /swr@2.1.5(react@18.2.0):
-    resolution: {integrity: sha512-/OhfZMcEpuz77KavXST5q6XE9nrOBOVcBLWjMT+oAE/kQHyE3PASrevXCtQDZ8aamntOfFkbVJp7Il9tNBQWrw==}
+  /swr@2.2.0(react@18.2.0):
+    resolution: {integrity: sha512-AjqHOv2lAhkuUdIiBu9xbuettzAzWXmCEcLONNKJRba87WAefz8Ca9d6ds/SzrPc235n1IxWYdhJ2zF3MNUaoQ==}
     peerDependencies:
       react: ^16.11.0 || ^17.0.0 || ^18.0.0
     dependencies:
@@ -30779,6 +30800,14 @@ packages:
       '@types/unist': 2.0.6
       unist-util-is: 5.2.1
       unist-util-visit-parents: 5.1.3
+    dev: false
+
+  /unist-util-visit@5.0.0:
+    resolution: {integrity: sha512-MR04uvD+07cwl/yhVuVWAtw+3GOR/knlL55Nd/wAdblk27GCVt3lqpTivy/tkJcZoNPzTwS1Y+KMojlLDhoTzg==}
+    dependencies:
+      '@types/unist': 3.0.0
+      unist-util-is: 6.0.0
+      unist-util-visit-parents: 6.0.1
     dev: false
 
   /universal-user-agent@4.0.1:
