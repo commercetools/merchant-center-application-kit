@@ -3,18 +3,21 @@
   --expander-size: 40px;
   --faded-height: 32px;
   --icon-size: 24px;
+  --icon-size-hover: 28px;
   --icon-container-offset: 4px;
+  --item-size: 48px;
+  --divider-top: 64px;
   --item-height: 56px;
   --item-width: 64px;
   --sublist-indentantion: 58px;
   --sublist-width: 253px;
   --submenu-margin: calc(
-    var(--icon-size) + var(--spacing-m) + var(--icon-container-offset) + 4px
+    var(--icon-size) + var(--spacing-30) + var(--icon-container-offset) + 4px
   );
 
   /* Left navigation */
-  --width-left-navigation: 64px;
-  --width-left-navigation-when-expanded: 245px;
+  --width-left-navigation: 80px;
+  --width-left-navigation-when-expanded: 256px;
   --width-left-navigation-sublist: 205px;
 
   /* Active list item with icon text */
@@ -27,10 +30,13 @@
 .left-navigation {
   display: grid;
   width: var(--width-left-navigation);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  background: var(--background-color-for-navbar);
+  background: var(--color-primary-30);
   height: 100vh;
   grid-template-rows: 56px 1fr;
+}
+
+.navigation-header {
+  background-color: var(--color-accent-10);
 }
 
 .list {
@@ -42,17 +48,9 @@
   flex: 1 1 0;
 }
 
-:global(.body__menu-open) .scrollable-menu {
-  flex: 1 1 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
 .list-item {
-  width: var(--item-width);
-  min-height: var(--item-height);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  background: var(--background-color-for-navbar);
+  min-height: var(--item-size);
+  background: var(--color-primary-30);
   margin: 0;
   list-style: none;
   cursor: pointer;
@@ -61,10 +59,14 @@
 .item-link {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link);
-  padding: var(--spacing-m);
-  width: 100%;
+  padding: var(--spacing-25);
+  width: var(--item-size);
   position: relative;
   display: block;
+}
+
+:global(.body__menu-open) .item-link {
+  width: 100%;
 }
 
 .list-item .item-icon-text {
@@ -114,24 +116,24 @@
     var(--color-primary-30) 0%,
     var(--color-primary-20) 100%
   );
-  padding: 16px 12px;
+  padding: var(--spacing-30) var(--spacing-25);
 }
 
 /* divider */
 .expander::before {
   content: '';
   position: absolute;
-  top: 56px;
+  top: var(--divider-top);
   height: 1px;
   background: rgba(255, 255, 255, 0.5);
-  width: calc(100% - 2 * var(--spacing-m));
+  width: calc(100% - 2 * var(--spacing-30));
 }
 
 .expand-icon {
   height: var(--expander-size);
   width: var(--expander-size);
   border-radius: var(--border-radius-4);
-  padding: var(--spacing-s);
+  padding: var(--spacing-20);
   background: rgba(255, 255, 255, 0.2);
   display: flex;
   justify-content: center;
@@ -148,7 +150,8 @@
 }
 
 .list-item:hover {
-  background: var(--color-primary);
+  background-color: var(--color-primary);
+  border-radius: var(--border-radius-8);
 }
 
 .item__active .title {
@@ -188,35 +191,38 @@
 
 :global(.body__menu-open) .list-item {
   height: auto;
-  min-height: var(--item-height);
-  transition: max-height 0.15s ease-out;
+  min-height: var(--item-size);
   overflow: hidden;
+  width: 100%;
 }
 
-:global(.body__menu-open) .left-navigation,
-:global(.body__menu-open) .list-item {
+:global(.body__menu-open) .left-navigation {
   width: var(--width-left-navigation-when-expanded);
 }
 
 :global(.body__menu-open) .list-item .title {
   display: block;
   opacity: 1;
-  margin-left: var(--spacing-m);
+  margin-left: var(--spacing-20);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  color: var(--color-for-navbar-link);
+  color: var(--color-surface);
 }
+
 .list-item:not(.item__active):hover .icon > svg *:not([fill='none']) {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   fill: var(--color-for-navbar-icon-when-active);
 }
-.list-item .title:hover {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  color: var(--color-for-navbar-link-when-hovered);
+
+.list-item:not(.item__active):hover .icon {
+  width: var(--icon-size-hover);
+  height: var(--icon-size-hover);
 }
+
 .list-item:not(.item__active):hover .title {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link-when-hovered);
 }
+
 :global(.body__menu-open) .item__active {
   max-height: 500px;
   transition: max-height 0.25s ease-in;
@@ -225,7 +231,7 @@
 /*  Second level menu */
 
 .sublist {
-  padding: var(--spacing-m) var(--spacing-l);
+  padding: var(--spacing-30) var(--spacing-40);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
@@ -315,26 +321,29 @@
 /* Item active */
 .item__active,
 .item_menu__active {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  background: var(--background-color-for-navbar-when-active);
+  background: var(--color-accent-30);
+  border-radius: var(--border-radius-8);
 }
 
 .list-item.item__active .item-icon-text {
   justify-content: flex-start;
 }
+
 .list-item .icon-container {
   width: calc(var(--icon-size) + var(--icon-container-offset) * 2);
   display: flex;
   justify-content: center;
   align-self: flex-start;
 }
+
 .fixed-menu .list-item .item-icon-text {
-  justify-content: flex-start;
+  justify-content: center;
   display: flex;
   width: 100%;
 }
-.fixed-menu .list-item .icon-container {
-  /* empty block */
+
+.support-menu {
+  padding: var(--spacing-20) var(--spacing-30);
 }
 
 :global(.body__menu-open) .list-item.item__active .item-icon-text {
@@ -342,25 +351,8 @@
   width: auto;
 }
 
-.list-item.item__active .item-icon-text .title {
-  margin-left: 40px;
-}
 .item_menu-collapsed.list-item.item__active .item-icon-text .title {
-  max-height: 44px;
-  overflow: hidden;
-  /* stylelint-disable-next-line value-no-vendor-prefix */
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  position: absolute;
-  /* `left` and `width` required for displaying focus indicator properly */
-  left: var(--left-list-item-icon-text-active);
-  width: var(--width-list-item-icon-text-active);
-  z-index: 1;
-}
-
-:global(.body__menu-open) .list-item.item__active .item-icon-text .title {
-  margin-left: var(--spacing-m);
+  display: none;
 }
 
 :global(.body__menu-open) .list-item.item__active .item-icon-text {
@@ -418,7 +410,7 @@
   /* TODO: add design tokens instead hard-coded values */
   min-height: 50px;
   width: var(--sublist-width);
-  border-radius: 8px;
+  border-radius: var(--border-radius-8);
   /* z-index value must be higher than AppBar's z-index */
   z-index: 20001;
   box-shadow: -2px 4px 25px 0 rgba(89, 89, 89, 0.5);
@@ -469,14 +461,42 @@
 .scrollable-menu {
   flex: 1 1 0;
   overflow-x: hidden;
+  overflow-y: hidden;
+  padding: var(--spacing-30) var(--spacing-30) var(--item-size);
+  width: var(--width-left-navigation);
+  box-sizing: border-box;
+  /* For Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) transparent;
+}
+
+:global(.body__menu-open) .scrollable-menu {
+  width: var(--width-left-navigation-when-expanded);
+}
+
+.scrollable-menu:hover {
   overflow-y: scroll;
+  padding-right: 8px;
 }
 
 .scrollable-menu::-webkit-scrollbar {
-  display: none;
+  width: 8px;
+}
+
+.scrollable-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollable-menu::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: var(--border-radius-8);
 }
 
 .fixed-menu {
-  flex: 0 0 0;
   position: relative;
+  width: var(--width-left-navigation);
+}
+
+:global(.body__menu-open) .fixed-menu {
+  width: var(--width-left-navigation-when-expanded);
 }

@@ -298,9 +298,6 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
 MenuItemLink.displayName = 'MenuItemLink';
 MenuItemLink.defaultProps = menuItemLinkDefaultProps;
 
-const MenuItemDivider = () => <div className={styles.divider} />;
-MenuItemDivider.displayName = 'MenuItemDivider';
-
 const isEveryMenuVisibilitySetToHidden = (
   menuVisibilities?: TNormalizedMenuVisibilities | null,
   namesOfMenuVisibilities?: string[]
@@ -435,7 +432,6 @@ export {
   IconSwitcher,
   MenuGroup,
   MenuLabel,
-  MenuItemDivider,
   MenuExpander,
   Faded,
   NavBarLayout,
