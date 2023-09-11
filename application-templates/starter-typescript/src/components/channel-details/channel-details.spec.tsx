@@ -110,8 +110,10 @@ const updateChannelDetailsHandlerWithDuplicateFieldError = graphql.mutation(
       ctx.data({ updateChannel: null }),
       ctx.errors([
         {
+          message: "A duplicate value '\"test-key\"' exists for field 'key'.",
           extensions: {
             code: 'DuplicateField',
+            duplicateValue: 'test-key',
             field: 'key',
           },
         },

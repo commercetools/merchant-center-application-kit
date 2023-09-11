@@ -1,3 +1,4 @@
+import { isApolloError } from '@apollo/client';
 import omitEmpty from 'omit-empty-es';
 
 const DUPLICATE_FIELD_ERROR_CODE = 'DuplicateField';
@@ -5,14 +6,12 @@ const DUPLICATE_FIELD_ERROR_CODE = 'DuplicateField';
 /**
  * TransformedErrors: { unmappedErrors: [], formErrors: {} }
  *
- * @param  Object graphqlError
+ * @param  Object error
  * @return Object TransformedErrors
  */
 
-export const transformErrors = (graphQlErrors) => {
-  const errorsToMap = Array.isArray(graphQlErrors)
-    ? graphQlErrors
-    : [graphQlErrors];
+export const transformErrors = (error) => {
+  const errorsToMap = Array.isArray(error) ? error : [error];
 
   const { formErrors, unmappedErrors } = errorsToMap.reduce(
     (transformedErrors, graphQlError) => {
