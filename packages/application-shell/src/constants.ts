@@ -4,6 +4,8 @@ export const DIMENSIONS = {
   navMenu: '64px',
   navMenuExpanded: '245px',
   navMenuItemHeight: '56px',
+  newNavMenu: '80px',
+  newNavMenuExpanded: '256px',
 } as const;
 
 export const WINDOW_SIZES = {
