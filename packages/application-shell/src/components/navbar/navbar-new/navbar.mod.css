@@ -85,7 +85,6 @@
   height: var(--icon-size);
 }
 .list-item .icon > svg *:not([fill='none']) {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   fill: var(--color-surface);
 }
 
