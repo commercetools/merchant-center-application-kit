@@ -86,11 +86,7 @@
 }
 .list-item .icon > svg *:not([fill='none']) {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  fill: var(--color-for-navbar-icon);
-}
-.list-item .icon__active > svg *:not([fill='none']) {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  fill: var(--color-for-navbar-icon-when-active);
+  fill: var(--color-surface);
 }
 
 .list-item .title {
