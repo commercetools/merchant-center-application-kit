@@ -440,12 +440,7 @@ const NavBar = (props: TNavbarProps) => {
               >
                 <div className={styles['item-icon-text']}>
                   <div className={styles['icon-container']}>
-                    <div
-                      className={classnames(styles.icon, {
-                        [styles.icon__active]:
-                          activeItemIndex === 'fixed-support',
-                      })}
-                    >
+                    <div className={styles['icon']}>
                       <SupportIcon size="scale" />
                     </div>
                   </div>
