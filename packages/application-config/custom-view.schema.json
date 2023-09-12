@@ -14,27 +14,27 @@
   },
   "properties": {
     "name": {
-      "description": "See https://docs.commercetools.com/",
+      "description": "See https://docs.commercetools.com/TODO",
       "type": "string"
     },
     "description": {
-      "description": "See https://docs.commercetools.com/",
+      "description": "See https://docs.commercetools.com/TODO",
       "type": "string"
     },
     "cloudIdentifier": {
-      "description": "See https://docs.commercetools.com/",
+      "description": "See https://docs.commercetools.com/TODO",
       "type": "string"
     },
     "mcApiUrl": {
-      "description": "See https://docs.commercetools.com/",
+      "description": "See https://docs.commercetools.com/TODO",
       "type": "string"
     },
     "oAuthScopes": {
-      "description": "See https://docs.commercetools.com/",
+      "description": "See https://docs.commercetools.com/TODO",
       "type": "object",
       "properties": {
         "view": {
-          "description": "See https://docs.commercetools.com/",
+          "description": "See https://docs.commercetools.com/TODO",
           "type": "array",
           "default": [],
           "items": {
@@ -44,7 +44,7 @@
           "uniqueItems": true
         },
         "manage": {
-          "description": "See https://docs.commercetools.com/",
+          "description": "See https://docs.commercetools.com/TODO",
           "type": "array",
           "default": [],
           "items": {
@@ -58,7 +58,7 @@
       "required": ["view", "manage"]
     },
     "additionalOAuthScopes": {
-      "description": "See https://docs.commercetools.com/",
+      "description": "See https://docs.commercetools.com/TODO",
       "type": "array",
       "default": [],
       "uniqueItems": true,
@@ -66,11 +66,11 @@
         "type": "object",
         "properties": {
           "name": {
-            "description": "See https://docs.commercetools.com/",
+            "description": "See https://docs.commercetools.com/TODO",
             "type": "string"
           },
           "view": {
-            "description": "See https://docs.commercetools.com/",
+            "description": "See https://docs.commercetools.com/TODO",
             "type": "array",
             "default": [],
             "items": {
@@ -80,7 +80,7 @@
             "uniqueItems": true
           },
           "manage": {
-            "description": "See https://docs.commercetools.com/",
+            "description": "See https://docs.commercetools.com/TODO",
             "type": "array",
             "default": [],
             "items": {
@@ -95,20 +95,21 @@
       }
     },
     "env": {
-      "description": "See https://docs.commercetools.com/",
+      "description": "See https://docs.commercetools.com/TODO",
       "type": "object",
       "properties": {
         "development": {
           "type": "object",
           "properties": {
             "initialProjectKey": {
-              "description": "See https://docs.commercetools.com/",
+              "description": "See https://docs.commercetools.com/TODO",
               "type": "string"
             },
             "teamId": {
               "type": "string"
             },
             "hostUrl": {
+              "description": "See https://docs.commercetools.com/TODO",
               "type": "string"
             }
           },
@@ -119,15 +120,15 @@
           "type": "object",
           "properties": {
             "customViewId": {
-              "description": "See https://docs.commercetools.com/",
+              "description": "See https://docs.commercetools.com/TODO",
               "type": "string"
             },
             "url": {
-              "description": "See https://docs.commercetools.com/",
+              "description": "See https://docs.commercetools.com/TODO",
               "type": "string"
             },
             "cdnUrl": {
-              "description": "See https://docs.commercetools.com/",
+              "description": "See https://docs.commercetools.com/TODO",
               "type": "string"
             }
           },
@@ -139,15 +140,15 @@
       "required": ["development", "production"]
     },
     "additionalEnv": {
-      "description": "See https://docs.commercetools.com/",
+      "description": "See https://docs.commercetools.com/TODO",
       "type": "object"
     },
     "headers": {
-      "description": "See https://docs.commercetools.com/",
+      "description": "See https://docs.commercetools.com/TODO",
       "type": "object",
       "properties": {
         "csp": {
-          "description": "See https://docs.commercetools.com/",
+          "description": "See https://docs.commercetools.com/TODO",
           "type": "object",
           "properties": {
             "connect-src": {
@@ -173,11 +174,11 @@
           "required": ["connect-src"]
         },
         "permissionsPolicies": {
-          "description": "See https://docs.commercetools.com/",
+          "description": "See https://docs.commercetools.com/TODO",
           "type": "object"
         },
         "strictTransportSecurity": {
-          "description": "See https://docs.commercetools.com/",
+          "description": "See https://docs.commercetools.com/TODO",
           "type": "array",
           "items": {
             "enum": ["includeSubDomains", "preload"]
@@ -187,24 +188,43 @@
       },
       "additionalProperties": false
     },
+    "labelAllLocales": {
+      "description": "See https://docs.commercetools.com/TODO",
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "locale": {
+            "type": "string",
+            "enum": ["en", "de", "es", "fr-FR", "pt-BR", "zh-CN"]
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": ["locale", "value"]
+      }
+    },
     "type": {
-      "description": "See https://docs.commercetools.com/",
+      "description": "See https://docs.commercetools.com/TODO",
       "type": "string",
       "enum": ["CustomPanel"]
     },
     "typeSettings": {
-      "description": "See https://docs.commercetools.com/",
+      "description": "See https://docs.commercetools.com/TODO",
       "type": "object",
       "properties": {
         "size": {
-          "description": "See https://docs.commercetools.com/",
+          "description": "See https://docs.commercetools.com/TODO",
           "type": "string",
           "enum": ["SMALL", "LARGE"]
         }
       }
     },
     "locators": {
-      "description": "See https://docs.commercetools.com/",
+      "description": "See https://docs.commercetools.com/TODO",
       "type": "array",
       "default": [],
       "items": {
@@ -213,5 +233,13 @@
     }
   },
   "additionalProperties": true,
-  "required": ["name", "cloudIdentifier", "env", "oAuthScopes", "type"]
+  "required": [
+    "name",
+    "cloudIdentifier",
+    "env",
+    "oAuthScopes",
+    "labelAllLocales",
+    "type",
+    "locators"
+  ]
 }

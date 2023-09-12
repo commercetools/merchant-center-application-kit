@@ -1,20 +1,18 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
-import { CLOUD_IDENTIFIERS } from './constants';
+import { CLOUD_IDENTIFIERS, LOADED_CONFIG_TYPES } from './constants';
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './custom-application.schema';
 import type { JSONSchemaForCustomViewConfigurationFiles } from './custom-view.schema';
-import { TCustomView } from './generated/settings';
+import type { TCustomView } from './generated/settings';
 
 export type ConfigOptions =
   | JSONSchemaForCustomApplicationConfigurationFiles
   | JSONSchemaForCustomViewConfigurationFiles;
 
-export enum ConfigType {
-  CUSTOM_APPLICATION = 'custom-application',
-  CUSTOM_VIEW = 'custom-view',
-}
-
 export type CloudIdentifier =
   (typeof CLOUD_IDENTIFIERS)[keyof typeof CLOUD_IDENTIFIERS];
+
+export type LoadedConfigType =
+  (typeof LOADED_CONFIG_TYPES)[keyof typeof LOADED_CONFIG_TYPES];
 
 type LocalizedFieldData = {
   locale: string;
@@ -47,12 +45,18 @@ export type CustomApplicationData = {
   submenuLinks: CustomApplicationSubmenuLinkData[];
 };
 
-export type CustomViewPermissionData = {
-  name: string;
-  oAuthScopes: string[];
+export type CustomViewPermissionData = CustomApplicationPermissionData;
+export type CustomViewData = {
+  id: string;
+  defaultLabel: string;
+  labelAllLocales: LocalizedFieldData[];
+  description?: string;
+  url: string;
+  permissions: CustomViewPermissionData[];
+  locators: string[];
+  type: TCustomView['type'];
+  typeSettings?: TCustomView['typeSettings'];
 };
-
-export type CustomViewData = TCustomView;
 
 // The object result after processing the config file
 export type ApplicationRuntimeConfig<

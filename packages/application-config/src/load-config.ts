@@ -1,9 +1,7 @@
-import { execFileSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
-import type { LoaderSync } from 'cosmiconfig';
-
-import { cosmiconfigSync, defaultLoaders } from 'cosmiconfig';
+import { execFileSync } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
+import { cosmiconfigSync, defaultLoaders, type LoaderSync } from 'cosmiconfig';
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './custom-application.schema';
 import { MissingOrInvalidConfigError } from './errors';
 
@@ -37,7 +35,7 @@ const loadJsModule: LoaderSync = (filePath) => {
   return JSON.parse(output);
 };
 
-const getExplorer = (configFileName: string) => {
+const createExplorerFor = (configFileName: string) => {
   return cosmiconfigSync(configFileName, {
     // Restrict the supported file formats / names
     searchPlaces: [
@@ -63,8 +61,10 @@ const getExplorer = (configFileName: string) => {
   });
 };
 
-const customApplicationExplorer = getExplorer('custom-application-config');
-const customViewExplorer = getExplorer('custom-view-config');
+const customApplicationExplorer = createExplorerFor(
+  'custom-application-config'
+);
+const customViewExplorer = createExplorerFor('custom-view-config');
 
 export const getConfigPath = () => {
   const customApplicationConfigFile = customApplicationExplorer.search();

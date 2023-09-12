@@ -1,4 +1,4 @@
-import { TCustomView } from './generated/settings';
+import type { TCustomView } from './types/generated/settings';
 
 // DOM elements
 export const PORTALS_CONTAINER_ID = 'portals-container';
@@ -151,6 +151,10 @@ export type TLocalizedField = {
   locale: string;
   value: string;
 };
+export type TPermissionData = {
+  name: string;
+  oAuthScopes: string[];
+};
 export type ApplicationMenuLinksForDevelopmentConfig = {
   icon: string;
   defaultLabel: string;
@@ -178,6 +182,17 @@ export type ApplicationOidcForDevelopmentConfig = {
     manage: string[];
   }[];
 };
+export type CustomViewData = {
+  id: string;
+  defaultLabel: string;
+  labelAllLocales: TLocalizedField[];
+  description?: string;
+  url: string;
+  permissions: TPermissionData[];
+  locators: string[];
+  type: TCustomView['type'];
+  typeSettings?: TCustomView['typeSettings'];
+};
 
 // Global application environment on window object
 export interface ApplicationWindow extends Window {
@@ -201,7 +216,7 @@ export interface ApplicationWindow extends Window {
       oidc?: ApplicationOidcForDevelopmentConfig;
       menuLinks?: ApplicationMenuLinksForDevelopmentConfig;
       customViewHostUrl?: string;
-      customViewConfig?: TCustomView;
+      customViewConfig?: CustomViewData;
     };
   };
 }

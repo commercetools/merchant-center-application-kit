@@ -1,52 +1,20 @@
-import { createContext, type ReactNode, useContext, useMemo } from 'react';
-import {
-  type TCustomView,
-  TCustomViewStatus,
-  TCustomViewType,
-} from '../../types/generated/settings';
-import {
-  type TApplicationContext,
-  useApplicationContext,
-} from '../application-context';
+import { createContext, useContext, useMemo, type ReactNode } from 'react';
+import type { CustomViewData } from '@commercetools-frontend/constants';
 
-type TCustomViewContext = {
+export type TCustomViewContext = {
   hostUrl: string;
-  config: TCustomView;
+  config: CustomViewData;
 };
 
-type TCustomViewContextProviderProps = {
+export type TCustomViewContextProviderProps = {
   hostUrl: string;
-  customViewConfig: TCustomView;
+  customViewConfig: CustomViewData;
   children: ReactNode;
 };
 
-const CustomViewContext = createContext<TCustomViewContext>({
-  hostUrl: '',
-  config: {
-    id: '',
-    defaultLabel: '',
-    labelAllLocales: {},
-    url: '',
-    type: TCustomViewType.CustomPanel,
-    locators: [],
-    permissions: [],
-    createdAt: '',
-    installedBy: [],
-    owner: {
-      createdAt: '',
-      id: '',
-      organizationId: '',
-      updatedAt: '',
-    },
-    ownerId: '',
-    status: TCustomViewStatus.Draft,
-    updatedAt: '',
-  },
-});
+const Context = createContext({});
 
-export const CustomViewContextProvider = (
-  props: TCustomViewContextProviderProps
-) => {
+const CustomViewContextProvider = (props: TCustomViewContextProviderProps) => {
   const contextValue = useMemo<TCustomViewContext>(
     () => ({
       hostUrl: props.hostUrl,
@@ -55,18 +23,34 @@ export const CustomViewContextProvider = (
     [props.hostUrl, props.customViewConfig]
   );
   return (
-    <CustomViewContext.Provider value={contextValue}>
-      {props.children}
-    </CustomViewContext.Provider>
+    <Context.Provider value={contextValue}>{props.children}</Context.Provider>
   );
 };
 
-export const useCustomViewContext = (): TCustomViewContext => {
-  const context = useContext(CustomViewContext);
-  if (!context) {
-    throw new Error(
-      'useCustomViewContext must be used within a CustomViewContextProvider'
-    );
-  }
-  return context;
-};
+// Use function overloading to declare two possible signatures with two
+// distict return types, based on the selector function argument.
+function useCustomViewContextHook(): TCustomViewContext;
+function useCustomViewContextHook<SelectedContext>(
+  selector: (context: TCustomViewContext) => SelectedContext
+): SelectedContext;
+
+// Then implement the function. Typescript will pick the appropriate signature
+// based on the function arguments.
+function useCustomViewContextHook<SelectedContext>(
+  selector?: (context: TCustomViewContext) => SelectedContext
+) {
+  const context = useContext(Context);
+  // Because of the way the CustomViewShell configures the Context.Provider,
+  // we ensure that, when we read from the context, we always get actual
+  // context object and not the initial value.
+  // Therefore, we can safely cast the value to be out `TCustomViewContext` type.
+  const customViewContext = context as TCustomViewContext;
+  return selector ? selector(customViewContext) : customViewContext;
+}
+
+// This is a workaround to trick babel/rollup to correctly export the function.
+// Most likely the problem arises with the use of overloading.
+// See related issue: https://github.com/babel/babel/issues/8361
+const useCustomViewContext = useCustomViewContextHook;
+
+export { Context, CustomViewContextProvider, useCustomViewContext };

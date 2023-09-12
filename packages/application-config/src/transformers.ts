@@ -1,46 +1,25 @@
+import { LOADED_CONFIG_TYPES } from './constants';
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './custom-application.schema';
-import { JSONSchemaForCustomViewConfigurationFiles } from './custom-view.schema';
+import type { JSONSchemaForCustomViewConfigurationFiles } from './custom-view.schema';
 import {
   entryPointUriPathToResourceAccesses,
   formatEntryPointUriPathToResourceAccessKey,
 } from './formatters';
-import {
+import type {
   TCustomViewPermission,
-  TCustomViewStatus,
   TCustomViewType,
   TCustomViewTypeSettings,
 } from './generated/settings';
-import {
-  ConfigType,
-  type CustomApplicationData,
-  type CustomViewData,
+import type {
+  LoadedConfigType,
+  CustomApplicationData,
+  CustomViewData,
 } from './types';
 import {
   validateEntryPointUriPath,
   validateSubmenuLinks,
   validateAdditionalOAuthScopes,
 } from './validations';
-
-const defaultCustomViewConfig = {
-  id: '',
-  defaultLabel: '',
-  labelAllLocales: {},
-  url: '',
-  type: TCustomViewType.CustomPanel,
-  locators: [],
-  permissions: [],
-  createdAt: '',
-  installedBy: [],
-  owner: {
-    createdAt: '',
-    id: '',
-    organizationId: '',
-    updatedAt: '',
-  },
-  ownerId: '',
-  status: TCustomViewStatus.Draft,
-  updatedAt: '',
-};
 
 // The `uriPath` of each submenu link is supposed to be defined relative
 // to the `entryPointUriPath`. Computing the full path is done internally to keep
@@ -135,29 +114,29 @@ function transformCustomViewConfigToData(
   validateAdditionalOAuthScopes(customViewConfig);
 
   return {
-    ...defaultCustomViewConfig,
     id: customViewConfig.env.production.customViewId || 'todo',
     defaultLabel: customViewConfig.name,
+    labelAllLocales: customViewConfig.labelAllLocales,
     description: customViewConfig.description,
     url: customViewConfig.env.production.url,
     permissions: getPermissions(customViewConfig) as TCustomViewPermission[],
+    locators: customViewConfig.locators,
     type: customViewConfig.type as TCustomViewType,
     typeSettings: customViewConfig.typeSettings as TCustomViewTypeSettings,
-    locators: customViewConfig.locators || [],
   };
 }
 
 export function transformConfigurationToData(
-  configType: ConfigType,
+  configType: LoadedConfigType,
   configuration:
     | JSONSchemaForCustomApplicationConfigurationFiles
     | JSONSchemaForCustomViewConfigurationFiles
 ): CustomApplicationData | CustomViewData {
-  if (configType === ConfigType.CUSTOM_APPLICATION) {
+  if (configType === LOADED_CONFIG_TYPES.CUSTOM_APPLICATION) {
     return transformCustomApplicationConfigToData(
       configuration as JSONSchemaForCustomApplicationConfigurationFiles
     );
-  } else if (configType === ConfigType.CUSTOM_VIEW) {
+  } else if (configType === LOADED_CONFIG_TYPES.CUSTOM_VIEW) {
     return transformCustomViewConfigToData(
       configuration as JSONSchemaForCustomViewConfigurationFiles
     );

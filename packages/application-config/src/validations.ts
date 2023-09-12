@@ -1,13 +1,14 @@
-import Ajv, { type ErrorObject } from 'ajv';
+import Ajv, { ValidateFunction, type ErrorObject } from 'ajv';
 import customApplicationSchemaJson from '../custom-application.schema.json';
 import customViewSchemaJson from '../custom-view.schema.json';
 import {
   ENTRY_POINT_URI_PATH_REGEX,
+  LOADED_CONFIG_TYPES,
   PERMISSION_GROUP_NAME_REGEX,
 } from './constants';
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './custom-application.schema';
 import { JSONSchemaForCustomViewConfigurationFiles } from './custom-view.schema';
-import { ConfigType } from './types';
+import type { LoadedConfigType } from './types';
 
 type ErrorAdditionalProperty = ErrorObject<
   'additionalProperty',
@@ -51,17 +52,21 @@ const printErrors = (errors?: ErrorObject[] | null) => {
 };
 
 export const validateConfig = (
-  configType: ConfigType,
+  configType: LoadedConfigType,
   config: JSONSchemaForCustomApplicationConfigurationFiles
 ): void => {
-  let validation;
+  let validation: ValidateFunction;
 
-  if (configType === ConfigType.CUSTOM_APPLICATION) {
+  if (configType === LOADED_CONFIG_TYPES.CUSTOM_APPLICATION) {
     validation = validateCustomApplicationConfig;
-  } else if (configType === ConfigType.CUSTOM_VIEW) {
+  } else if (configType === LOADED_CONFIG_TYPES.CUSTOM_VIEW) {
     validation = validateCustomViewConfig;
   } else {
-    throw new Error(`Invalid config type: ${configType}`);
+    throw new Error(
+      `Invalid config type "${configType}", expected ${Object.keys(
+        LOADED_CONFIG_TYPES
+      ).toString()}`
+    );
   }
 
   const isValid = validation(config);

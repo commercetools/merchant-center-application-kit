@@ -1,39 +1,25 @@
-import { ReactNode, useState } from 'react';
+import { type ReactNode, useState } from 'react';
 import { Route, Router, Switch } from 'react-router-dom';
 import { CustomViewLoader } from '@commercetools-frontend/application-components';
-import { type TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import history from '@commercetools-frontend/browser-history';
-import { ApplicationWindow } from '@commercetools-frontend/constants';
-import { type TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
+import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import Constraints from '@commercetools-uikit/constraints';
 import PrimaryButton from '@commercetools-uikit/primary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import { TCustomView } from '../../types/generated/settings';
+import type { TCustomView } from '../../types/generated/settings';
 import ApplicationShell from '../application-shell';
 
 declare let window: ApplicationWindow;
 
-const resolveDevHostEnvironment = (
-  customViewId: string,
-  customViewHostUrl?: string
-) => ({
-  ...window.app,
-  customViewId,
-  __DEVELOPMENT__: {
-    ...window.app.__DEVELOPMENT__,
-    customViewHostUrl,
-  },
-  // This is required by the host application to handle its permissions
-  entryPointUriPath: customViewId,
-});
-
 type TLocalCustomViewLauncherProps = {
-  environment: TApplicationContext<{}>['environment'];
+  environment: ApplicationWindow['app'];
 };
 
 const LocalCustomViewLauncher = (props: TLocalCustomViewLauncherProps) => {
   const [shouldRenderCustomView, setShouldRenderCustomView] = useState(false);
+  // We expect this in development to be defined.
   const customViewConfig = props.environment.__DEVELOPMENT__
     ?.customViewConfig! as TCustomView;
 
@@ -102,23 +88,21 @@ type TCustomViewDevHost = {
 };
 
 const CustomViewDevHost = (props: TCustomViewDevHost) => {
-  const environment = resolveDevHostEnvironment(
-    props.customViewId,
-    props.customViewHostUrl
-  );
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/custom-views/:id/projects/:projectKey">
+        {/* Simulate the rendering of the Custom View as if it would be served
+        from a different host via an iframe. */}
+        <Route path="/custom-views/:customViewId/projects/:projectKey">
           {props.children}
         </Route>
 
         <Route>
           <ApplicationShell
-            environment={environment}
+            environment={window.app}
             applicationMessages={props.applicationMessages}
           >
-            <LocalCustomViewLauncher environment={environment} />
+            <LocalCustomViewLauncher environment={window.app} />
           </ApplicationShell>
         </Route>
       </Switch>

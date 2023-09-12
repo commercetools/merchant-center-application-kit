@@ -1,38 +1,29 @@
 import { type ReactNode } from 'react';
 import { type RenderResult } from '@testing-library/react';
 import { CustomViewContextProvider } from '@commercetools-frontend/application-shell-connectors/src/components/custom-view-context';
-import {
-  type TCustomView,
-  TCustomViewStatus,
-  TCustomViewType,
-} from '../types/generated/settings';
+import type { CustomViewData } from '@commercetools-frontend/constants';
+import { TCustomViewType } from '../types/generated/settings';
 import { renderApp } from './test-utils';
 
-const testCustomViewData = {
-  id: '',
-  defaultLabel: '',
-  labelAllLocales: {},
-  url: '',
+const testCustomViewData: CustomViewData = {
+  id: 'custom-view-id',
+  defaultLabel: 'My View',
+  labelAllLocales: [],
+  url: 'https://my-view.com',
   type: TCustomViewType.CustomPanel,
-  locators: [],
-  permissions: [],
-  createdAt: '',
-  installedBy: [],
-  owner: {
-    createdAt: '',
-    id: '',
-    organizationId: '',
-    updatedAt: '',
-  },
-  ownerId: '',
-  status: TCustomViewStatus.Draft,
-  updatedAt: '',
+  locators: ['products.product_details.general'],
+  permissions: [
+    {
+      name: 'view',
+      oAuthScopes: ['view_products'],
+    },
+  ],
 };
 
 type TRenderCustomViewParams = {
   locale: string;
   projectKey?: string;
-  customViewConfig?: Partial<TCustomView>;
+  customViewConfig?: Partial<CustomViewData>;
   children: ReactNode;
 };
 
@@ -41,7 +32,7 @@ export const renderCustomView = (
 ): RenderResult => {
   return renderApp(
     <CustomViewContextProvider
-      hostUrl=""
+      hostUrl="https://mc.ct.com/custom-views/custom-view-id"
       customViewConfig={{ ...testCustomViewData, ...props.customViewConfig }}
     >
       {props.children}

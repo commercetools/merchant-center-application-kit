@@ -1,4 +1,4 @@
-import { ConfigType } from '../src/types';
+import { LOADED_CONFIG_TYPES } from '../src/constants';
 import {
   validateConfig,
   validateEntryPointUriPath,
@@ -23,7 +23,7 @@ describe.each`
 `('validating config "$name"', ({ config }) => {
   it('should detect the config as valid', () => {
     expect(() =>
-      validateConfig(ConfigType.CUSTOM_APPLICATION, config)
+      validateConfig(LOADED_CONFIG_TYPES.CUSTOM_APPLICATION, config)
     ).not.toThrow();
   });
 });
@@ -50,7 +50,7 @@ describe.each`
 describe('invalid configurations', () => {
   it('should validate that "env" is defined', () => {
     expect(() =>
-      validateConfig(ConfigType.CUSTOM_APPLICATION, {
+      validateConfig(LOADED_CONFIG_TYPES.CUSTOM_APPLICATION, {
         ...fixtureConfigSimple,
         env: undefined,
       })
@@ -60,7 +60,7 @@ describe('invalid configurations', () => {
   });
   it('should validate that "env.development" is defined', () => {
     expect(() =>
-      validateConfig(ConfigType.CUSTOM_APPLICATION, {
+      validateConfig(LOADED_CONFIG_TYPES.CUSTOM_APPLICATION, {
         ...fixtureConfigSimple,
         env: {},
       })
@@ -70,7 +70,7 @@ describe('invalid configurations', () => {
   });
   it('should validate that "env.production" is defined', () => {
     expect(() =>
-      validateConfig(ConfigType.CUSTOM_APPLICATION, {
+      validateConfig(LOADED_CONFIG_TYPES.CUSTOM_APPLICATION, {
         ...fixtureConfigSimple,
         env: {
           development: {
@@ -84,7 +84,7 @@ describe('invalid configurations', () => {
   });
   it('should validate that "entryPointUriPath" is defined', () => {
     expect(() =>
-      validateConfig(ConfigType.CUSTOM_APPLICATION, {
+      validateConfig(LOADED_CONFIG_TYPES.CUSTOM_APPLICATION, {
         ...fixtureConfigSimple,
         entryPointUriPath: undefined,
       })
@@ -114,7 +114,7 @@ describe('invalid configurations', () => {
   });
   it('should validate that "cloudIdentifier" is defined', () => {
     expect(() =>
-      validateConfig(ConfigType.CUSTOM_APPLICATION, {
+      validateConfig(LOADED_CONFIG_TYPES.CUSTOM_APPLICATION, {
         ...fixtureConfigSimple,
         cloudIdentifier: undefined,
       })
@@ -124,7 +124,7 @@ describe('invalid configurations', () => {
   });
   it('should validate that "oAuthScopes" is defined', () => {
     expect(() =>
-      validateConfig(ConfigType.CUSTOM_APPLICATION, {
+      validateConfig(LOADED_CONFIG_TYPES.CUSTOM_APPLICATION, {
         ...fixtureConfigSimple,
         oAuthScopes: undefined,
       })
@@ -134,7 +134,7 @@ describe('invalid configurations', () => {
   });
   it('should validate that "oAuthScopes.view" contains OAuth Scopes starting with "view_"', () => {
     expect(() =>
-      validateConfig(ConfigType.CUSTOM_APPLICATION, {
+      validateConfig(LOADED_CONFIG_TYPES.CUSTOM_APPLICATION, {
         ...fixtureConfigSimple,
         oAuthScopes: {
           view: ['view_products', 'manage_orders'],
@@ -146,7 +146,7 @@ describe('invalid configurations', () => {
   });
   it('should validate that "oAuthScopes.manage" contains OAuth Scopes starting with "manage_"', () => {
     expect(() =>
-      validateConfig(ConfigType.CUSTOM_APPLICATION, {
+      validateConfig(LOADED_CONFIG_TYPES.CUSTOM_APPLICATION, {
         ...fixtureConfigSimple,
         oAuthScopes: {
           manage: ['view_products', 'manage_orders'],
@@ -158,7 +158,7 @@ describe('invalid configurations', () => {
   });
   it('should validate that "additionalOAuthScopes" is an array', () => {
     expect(() =>
-      validateConfig(ConfigType.CUSTOM_APPLICATION, {
+      validateConfig(LOADED_CONFIG_TYPES.CUSTOM_APPLICATION, {
         ...fixtureConfigSimple,
         additionalOAuthScopes: {
           name: 'movies',
@@ -171,7 +171,7 @@ describe('invalid configurations', () => {
   });
   it('should validate that "additionalOAuthScopes[0].name" is provided', () => {
     expect(() =>
-      validateConfig(ConfigType.CUSTOM_APPLICATION, {
+      validateConfig(LOADED_CONFIG_TYPES.CUSTOM_APPLICATION, {
         ...fixtureConfigSimple,
         additionalOAuthScopes: [
           {
@@ -185,7 +185,7 @@ describe('invalid configurations', () => {
   });
   it('should validate that "additionalOAuthScopes[0].view" contains OAuth Scopes starting with "view_"', () => {
     expect(() =>
-      validateConfig(ConfigType.CUSTOM_APPLICATION, {
+      validateConfig(LOADED_CONFIG_TYPES.CUSTOM_APPLICATION, {
         ...fixtureConfigSimple,
         additionalOAuthScopes: [
           {
@@ -200,7 +200,7 @@ describe('invalid configurations', () => {
   });
   it('should validate that "additionalOAuthScopes[0].manage" contains OAuth Scopes starting with "manage_"', () => {
     expect(() =>
-      validateConfig(ConfigType.CUSTOM_APPLICATION, {
+      validateConfig(LOADED_CONFIG_TYPES.CUSTOM_APPLICATION, {
         ...fixtureConfigSimple,
         additionalOAuthScopes: [
           {
@@ -215,7 +215,7 @@ describe('invalid configurations', () => {
   });
   it('should validate that "icon" is defined', () => {
     expect(() =>
-      validateConfig(ConfigType.CUSTOM_APPLICATION, {
+      validateConfig(LOADED_CONFIG_TYPES.CUSTOM_APPLICATION, {
         ...fixtureConfigSimple,
         icon: undefined,
       })
@@ -225,7 +225,7 @@ describe('invalid configurations', () => {
   });
   it('should validate that "mainMenuLink" is defined', () => {
     expect(() =>
-      validateConfig(ConfigType.CUSTOM_APPLICATION, {
+      validateConfig(LOADED_CONFIG_TYPES.CUSTOM_APPLICATION, {
         ...fixtureConfigSimple,
         mainMenuLink: undefined,
       })

@@ -1,6 +1,6 @@
 import path from 'path';
+import { LOADED_CONFIG_TYPES } from '../src/constants';
 import loadConfig from '../src/load-config';
-import { ConfigType } from '../src/types';
 import { validateConfig } from '../src/validations';
 
 describe.each`
@@ -13,7 +13,7 @@ describe.each`
   it('should load and parse the config', () => {
     const applicationPath = path.join(__dirname, 'fixtures', fixtureApp);
     const { config } = loadConfig(applicationPath);
-    validateConfig(ConfigType.CUSTOM_APPLICATION, config);
+    validateConfig(LOADED_CONFIG_TYPES.CUSTOM_APPLICATION, config);
     expect(config.entryPointUriPath).toBe('test');
   });
 });

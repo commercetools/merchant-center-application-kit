@@ -2,11 +2,11 @@ import { Mock } from 'jest-mock';
 import { graphql } from 'msw';
 import { screen, render } from '@testing-library/react';
 import { setupServer } from 'msw/node';
+import type { CustomViewData } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-
 import { UserMock, ProjectMock } from '../../../../../graphql-test-utils';
 import { STORAGE_KEYS } from '../../constants';
-import { TCustomViewStatus, TCustomViewType } from '../../export-types';
+import { TCustomViewType } from '../../export-types';
 import ApplicationShellProvider from '../application-shell-provider';
 import CustomViewAuthenticatedShell from './custom-view-shell-authenticated';
 
@@ -49,25 +49,19 @@ const mockedEnvironment = {
   ldClientSideId: 'my-ld-client-side-id',
   trackingSentry: 'my-tracking-sentry',
 };
-const mockedCustomViewConfig = {
+const mockedCustomViewConfig: CustomViewData = {
   id: 'my-custom-view-id',
-  defaultLabel: '',
-  labelAllLocales: {},
-  url: '',
+  defaultLabel: 'My custom view',
+  labelAllLocales: [],
+  url: 'https://my-view.com',
   type: TCustomViewType.CustomPanel,
-  locators: [],
-  permissions: [],
-  createdAt: '',
-  installedBy: [],
-  owner: {
-    createdAt: '',
-    id: '',
-    organizationId: '',
-    updatedAt: '',
-  },
-  ownerId: '',
-  status: TCustomViewStatus.Draft,
-  updatedAt: '',
+  locators: ['products.product_details.general'],
+  permissions: [
+    {
+      name: 'view',
+      oAuthScopes: ['view_products'],
+    },
+  ],
 };
 
 function TestComponent() {

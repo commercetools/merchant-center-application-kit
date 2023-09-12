@@ -1,10 +1,11 @@
 // Loads the configuration file and parse the environment and header values.
 // Most of the resulting values are inferred from the config.
-import fs from 'fs';
-import { parse as parseFilePath } from 'path';
+import fs from 'node:fs';
+import { parse as parseFilePath } from 'node:path';
 import omitEmpty from 'omit-empty-es';
+import { LOADED_CONFIG_TYPES } from './constants';
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './custom-application.schema';
-import { JSONSchemaForCustomViewConfigurationFiles } from './custom-view.schema';
+import type { JSONSchemaForCustomViewConfigurationFiles } from './custom-view.schema';
 import loadConfig from './load-config';
 import {
   getCustomApplicationDevelopmentConfig,
@@ -16,12 +17,12 @@ import {
 } from './process-custom-view-config';
 import substituteVariablePlaceholders from './substitute-variable-placeholders';
 import { transformConfigurationToData } from './transformers';
-import {
+import type {
   ApplicationRuntimeConfig,
   CloudIdentifier,
-  ConfigType,
   CustomApplicationData,
   CustomViewData,
+  LoadedConfigType,
   LoadingConfigOptions,
 } from './types';
 import {
@@ -41,11 +42,13 @@ type ProcessConfigOptions = Partial<LoadingConfigOptions> & {
 const developmentPort = 3001;
 const developmentAppUrl = `http://localhost:${developmentPort}`;
 
-const getConfigurationType = (configFileName: string): ConfigType => {
+const getLoadedConfigurationType = (
+  configFileName: string
+): LoadedConfigType => {
   if (configFileName.includes('custom-view-config')) {
-    return ConfigType.CUSTOM_VIEW;
+    return LOADED_CONFIG_TYPES.CUSTOM_VIEW;
   }
-  return ConfigType.CUSTOM_APPLICATION;
+  return LOADED_CONFIG_TYPES.CUSTOM_APPLICATION;
 };
 
 const trimTrailingSlash = (value: string) => value.replace(/\/$/, '');
@@ -75,7 +78,7 @@ const processConfig = ({
 }: ProcessConfigOptions = {}): ApplicationRuntimeConfig => {
   if (cachedConfig && !disableCache) return cachedConfig;
   const { filepath, config: rawConfig } = loadConfig(applicationPath);
-  const configType = getConfigurationType(parseFilePath(filepath).name);
+  const configType = getLoadedConfigurationType(parseFilePath(filepath).name);
 
   validateConfig(configType, rawConfig);
   const appConfig = substituteVariablePlaceholders<
@@ -167,7 +170,7 @@ const processConfig = ({
             additionalOAuthScopes: appConfig?.additionalOAuthScopes,
           }),
           // Specific config
-          ...(configType === ConfigType.CUSTOM_VIEW
+          ...(configType === LOADED_CONFIG_TYPES.CUSTOM_VIEW
             ? getCustomViewDevelopmentConfig(
                 configurationData as CustomViewData,
                 appConfig as JSONSchemaForCustomViewConfigurationFiles
@@ -194,7 +197,7 @@ const processConfig = ({
       revision,
       servedByProxy: isProd,
       // Specific config
-      ...(configType === ConfigType.CUSTOM_VIEW
+      ...(configType === LOADED_CONFIG_TYPES.CUSTOM_VIEW
         ? getCustomViewProductionConfig(configurationData as CustomViewData)
         : getCustomApplicationProductionConfig(
             configurationData as CustomApplicationData

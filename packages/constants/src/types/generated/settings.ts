@@ -283,7 +283,7 @@ export type TCustomView = {
   description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   installedBy: Array<TCustomViewInstallation>;
-  labelAllLocales: Array<TLocalizedField>;
+  labelAllLocales: Scalars['Json'];
   locators: Array<Scalars['String']>;
   owner: TOrganizationExtension;
   ownerId: Scalars['String'];
@@ -298,7 +298,7 @@ export type TCustomView = {
 export type TCustomViewDraftDataInput = {
   defaultLabel: Scalars['String'];
   description?: InputMaybe<Scalars['String']>;
-  labelAllLocales: Array<TLocalizedFieldDataInput>;
+  labelAllLocales: Scalars['Json'];
   locators: Array<Scalars['String']>;
   permissions: Array<TCustomViewPermissionDataInput>;
   type: TCustomViewType;
