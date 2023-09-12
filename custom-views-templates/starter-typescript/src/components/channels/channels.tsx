@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import { useCustomViewContext } from '@commercetools-frontend/application-shell-connectors';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
 import {
   usePaginationState,
@@ -28,7 +28,11 @@ const columns = [
 
 const Channels = () => {
   const intl = useIntl();
-  const customViewContext = useCustomViewContext();
+  const user = useApplicationContext((context) => context.user);
+  const dataLocale = useApplicationContext((context) => context.dataLocale);
+  const projectLanguages = useApplicationContext(
+    (context) => context.project?.languages
+  );
   const { page, perPage } = usePaginationState();
   const tableSorting = useDataTableSortingState({ key: 'key', order: 'asc' });
   const { channelsPaginatedResult, error, loading } = useChannelsFetcher({
@@ -59,8 +63,8 @@ const Channels = () => {
         <Text.Headline as="h2" intlMessage={messages.title} />
         <Text.Subheadline as="h4">
           {intl.formatMessage(messages.subtitle, {
-            firstName: customViewContext.user?.firstName,
-            lastName: customViewContext.user?.lastName,
+            firstName: user?.firstName,
+            lastName: user?.lastName,
           })}
         </Text.Subheadline>
       </Spacings.Stack>
@@ -92,8 +96,8 @@ const Channels = () => {
                     },
                     {
                       key: 'name',
-                      locale: customViewContext.dataLocale,
-                      fallbackOrder: customViewContext.project?.languages,
+                      locale: dataLocale,
+                      fallbackOrder: projectLanguages,
                       fallback: NO_VALUE_FALLBACK,
                     }
                   );
