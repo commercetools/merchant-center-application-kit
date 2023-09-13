@@ -179,12 +179,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         >
           <div className={styles['item-icon-text']}>
             <div className={styles['icon-container']}>
-              <div
-                className={classnames(styles.icon, {
-                  [styles.icon__active]:
-                    props.isActive || isMainMenuRouteActive,
-                })}
-              >
+              <div className={styles['icon']}>
                 <IconSwitcher icon={props.menu.icon} size="scale" />
               </div>
             </div>
@@ -424,12 +419,7 @@ const NavBar = (props: TNavbarProps) => {
               >
                 <div className={styles['item-icon-text']}>
                   <div className={styles['icon-container']}>
-                    <div
-                      className={classnames(styles.icon, {
-                        [styles.icon__active]:
-                          activeItemIndex === 'fixed-support',
-                      })}
-                    >
+                    <div className={styles['icon']}>
                       <SupportIcon size="scale" />
                     </div>
                   </div>
