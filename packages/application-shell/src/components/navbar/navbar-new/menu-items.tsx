@@ -236,7 +236,6 @@ const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>((props, ref) => {
         [styles.item__active]: props.isActive,
         [styles['item_menu__active']]: props.isMainMenuRouteActive ?? false,
         [styles['item_menu-collapsed']]: !props.isMenuOpen,
-        [styles['item__no-submenu']]: !props.hasSubmenu,
       })}
       onClick={props.onClick}
       onMouseEnter={props.onMouseEnter}
