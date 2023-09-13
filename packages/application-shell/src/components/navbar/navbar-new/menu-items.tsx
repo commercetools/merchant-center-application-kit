@@ -326,6 +326,17 @@ const NavLinkWrapper = (props: MenuItemLinkProps) => {
   }
   return <>{props.children}</>;
 };
+const NavLinkClickableContentWrapper = (props: MenuItemLinkProps) => {
+  if (props.isSubmenuLink) {
+    return (
+      <div className={styles['navlink-clickable-content']}>
+        {props.children}
+      </div>
+    );
+  }
+  return <>{props.children}</>;
+};
+
 const MenuItemLink = (props: MenuItemLinkProps) => {
   const redirectTo = (targetUrl: string) => location.replace(targetUrl);
   if (props.linkTo) {
@@ -354,7 +365,9 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
             }
           }}
         >
-          {props.children}
+          <NavLinkClickableContentWrapper {...props}>
+            {props.children}
+          </NavLinkClickableContentWrapper>
         </NavLink>
       </NavLinkWrapper>
     );

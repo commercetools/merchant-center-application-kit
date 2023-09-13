@@ -276,8 +276,11 @@
 }
 
 .text-link-sublist-wrapper {
-  display: block;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 0;
   padding: var(--spacing-25) var(--spacing-25) var(--spacing-25)
     var(--spacing-30);
 }
@@ -292,6 +295,12 @@
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link-when-hovered);
   text-decoration: none;
+  flex: 1;
+}
+
+.navlink-clickable-content {
+  height: 100%;
+  width: 100%;
 }
 
 /* Item active */
