@@ -1,28 +1,16 @@
 :root {
   --expander-height: 50px;
   --expander-size: 40px;
-  --faded-height: 32px;
   --icon-size: 24px;
   --icon-size-hover: 28px;
-  --icon-container-offset: 4px;
   --item-size: 48px;
-  --divider-top: 64px;
   --item-height: 56px;
-  --item-width: 64px;
   --sublist-indentantion: 58px;
   --sublist-width: 253px;
-  --submenu-margin: calc(
-    var(--icon-size) + var(--spacing-30) + var(--icon-container-offset) + 4px
-  );
 
   /* Left navigation */
   --width-left-navigation: 80px;
   --width-left-navigation-when-expanded: 256px;
-  --width-left-navigation-sublist: 205px;
-
-  /* Active list item with icon text */
-  --left-list-item-icon-text-active: 46px;
-  --width-list-item-icon-text-active: 166px;
 }
 
 /* Left Nav */
