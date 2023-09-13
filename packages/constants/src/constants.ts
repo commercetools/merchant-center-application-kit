@@ -172,6 +172,7 @@ export type ApplicationOidcForDevelopmentConfig = {
   initialProjectKey?: string;
   teamId?: string;
   applicationId?: string;
+  customViewId?: string;
   oAuthScopes?: {
     view: string[];
     manage: string[];
@@ -194,32 +195,40 @@ export type CustomViewData = {
   typeSettings?: TCustomView['typeSettings'];
 };
 
+export type ApplicationRuntimeEnvironmentForDevelopment = {
+  oidc?: ApplicationOidcForDevelopmentConfig;
+  menuLinks?: ApplicationMenuLinksForDevelopmentConfig;
+  customViewHostUrl?: string;
+  customViewConfig?: CustomViewData;
+};
+
+export type ApplicationRuntimeEnvironment = {
+  // @deprecated: use `applicationIdentifier`
+  applicationId: string;
+  applicationIdentifier: string;
+  applicationName: string;
+  entryPointUriPath: string;
+  revision: string;
+  env: string;
+  location: string;
+  cdnUrl: string;
+  mcApiUrl: string;
+  frontendHost: string;
+  servedByProxy: boolean;
+  // Optional properties. To use them, pass them to the `additionalEnv` object of the application config.
+  ldClientSideId?: string;
+  trackingSentry?: string;
+  // Development-only configuration
+  __DEVELOPMENT__?: ApplicationRuntimeEnvironmentForDevelopment;
+};
+
 // Global application environment on window object
 export interface ApplicationWindow extends Window {
-  app: {
-    applicationId: string;
-    customViewId?: string;
-    applicationName: string;
-    entryPointUriPath: string;
-    revision: string;
-    env: string;
-    location: string;
-    cdnUrl: string;
-    mcApiUrl: string;
-    frontendHost: string;
-    servedByProxy: boolean;
-    // Optional properties. To use them, pass them to the `additionalEnv` object of the application config.
-    ldClientSideId?: string;
-    trackingSentry?: string;
-    // Properties for OIDC-like workflow for development
-    __DEVELOPMENT__?: {
-      oidc?: ApplicationOidcForDevelopmentConfig;
-      menuLinks?: ApplicationMenuLinksForDevelopmentConfig;
-      customViewHostUrl?: string;
-      customViewConfig?: CustomViewData;
-    };
-  };
+  app: ApplicationRuntimeEnvironment;
 }
+
+// Used for Custom Views, as we want to keep the `entryPointUriPath` value required in the runtime config.
+export const UNUSED_ENTRY_POINT_URI_PATH = '@@--unused--@@';
 
 export const HTTP_SECURITY_HEADERS = {
   'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',

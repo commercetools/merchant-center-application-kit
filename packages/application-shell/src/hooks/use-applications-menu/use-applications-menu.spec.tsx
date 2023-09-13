@@ -24,6 +24,7 @@ const createTestEnvironment = (
   custom: Partial<ApplicationWindow['app']> = {}
 ) => ({
   applicationId: 'application-id',
+  applicationIdentifier: 'application-id',
   applicationName: 'Avengers',
   entryPointUriPath: 'avengers',
   revision: '123',

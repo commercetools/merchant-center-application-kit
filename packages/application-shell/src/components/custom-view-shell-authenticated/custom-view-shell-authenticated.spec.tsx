@@ -37,6 +37,7 @@ const mockedApplicationMessages = {
 };
 const mockedEnvironment = {
   applicationId: 'my-custom-view-id',
+  applicationIdentifier: 'my-custom-view-id',
   applicationName: 'My Custom View Name',
   entryPointUriPath: '/',
   revision: '1',

@@ -1,3 +1,4 @@
+import { CustomViewData } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import {
   screen,
@@ -6,9 +7,7 @@ import {
   fireEvent,
 } from '../../../test-utils';
 import {
-  type TCustomView,
   TCustomViewSize,
-  TCustomViewStatus,
   TCustomViewType,
 } from '../../../types/generated/settings';
 import CustomViewLoader from './custom-view-loader';
@@ -21,7 +20,7 @@ jest.mock('@commercetools-frontend/actions-global', () => ({
 }));
 
 // TODO: We must add this entity to the test data repository
-const TEST_CUSTOM_VIEW: TCustomView = {
+const TEST_CUSTOM_VIEW: CustomViewData = {
   id: 'd8eafca6-1f89-4a84-b93f-ef94f869abcf',
   defaultLabel: 'Test Custom View',
   labelAllLocales: [],
@@ -31,18 +30,7 @@ const TEST_CUSTOM_VIEW: TCustomView = {
     size: TCustomViewSize.Small,
   },
   locators: ['customers.customer-detail.addresses'],
-  createdAt: '',
-  installedBy: [],
-  owner: {
-    createdAt: '',
-    id: '',
-    organizationId: '',
-    updatedAt: '',
-  },
-  ownerId: '',
   permissions: [],
-  status: TCustomViewStatus.Draft,
-  updatedAt: '',
 };
 
 describe('CustomViewLoader', () => {

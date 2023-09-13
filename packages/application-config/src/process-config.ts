@@ -3,18 +3,16 @@
 import fs from 'node:fs';
 import { parse as parseFilePath } from 'node:path';
 import omitEmpty from 'omit-empty-es';
+import {
+  type ApplicationOidcForDevelopmentConfig,
+  type ApplicationRuntimeEnvironmentForDevelopment,
+  type ApplicationRuntimeEnvironment,
+  UNUSED_ENTRY_POINT_URI_PATH,
+} from '@commercetools-frontend/constants';
 import { LOADED_CONFIG_TYPES } from './constants';
-import type { JSONSchemaForCustomApplicationConfigurationFiles } from './custom-application.schema';
-import type { JSONSchemaForCustomViewConfigurationFiles } from './custom-view.schema';
+import type { JSONSchemaForCustomApplicationConfigurationFiles } from './generated/custom-application.schema';
+import type { JSONSchemaForCustomViewConfigurationFiles } from './generated/custom-view.schema';
 import loadConfig from './load-config';
-import {
-  getCustomApplicationDevelopmentConfig,
-  getCustomApplicationProductionConfig,
-} from './process-custom-application-config';
-import {
-  getCustomViewDevelopmentConfig,
-  getCustomViewProductionConfig,
-} from './process-custom-view-config';
 import substituteVariablePlaceholders from './substitute-variable-placeholders';
 import { transformConfigurationToData } from './transformers';
 import type {
@@ -53,18 +51,168 @@ const getLoadedConfigurationType = (
 
 const trimTrailingSlash = (value: string) => value.replace(/\/$/, '');
 
-const omitDevConfigIfEmpty = (
-  devConfig: ApplicationRuntimeConfig['env']['__DEVELOPMENT__']
-) => {
+const omitDevConfigIfEmpty = <Config>(devConfig: Config) => {
   if (
-    // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
-    devConfig?.accountLinks ||
-    devConfig?.menuLinks ||
-    devConfig?.oidc
+    devConfig &&
+    (Object.hasOwn(devConfig, 'accountLinks') ||
+      Object.hasOwn(devConfig, 'menuLinks') ||
+      Object.hasOwn(devConfig, 'customViewHostUrl') ||
+      Object.hasOwn(devConfig, 'oidc'))
   ) {
     return devConfig;
   }
   return undefined;
+};
+
+const isCustomViewData = (
+  data: CustomApplicationData | CustomViewData
+): data is CustomViewData =>
+  (data as CustomApplicationData).entryPointUriPath === undefined;
+
+const getApplicationIdentifier = ({
+  isProd,
+  configurationData,
+}: {
+  isProd: boolean;
+  configurationData: CustomApplicationData | CustomViewData;
+}): string => {
+  if (isCustomViewData(configurationData)) {
+    return isProd ? configurationData.id : `__local:${configurationData.id}`;
+  }
+
+  // The real application ID is only used in production.
+  // In development, we prefix the entry point with the "__local" prefix.
+  // This is important to determine to which URL the MC should redirect to
+  // after successful login.
+  return isProd
+    ? `${configurationData.id}:${configurationData.entryPointUriPath}`
+    : `__local:${configurationData.entryPointUriPath}`;
+};
+
+const getRuntimeEnvironmentConfigForDevelopment = ({
+  isProd,
+  configurationData,
+  mcApiUrl,
+  appConfig,
+}: {
+  isProd: boolean;
+  configurationData: CustomApplicationData | CustomViewData;
+  mcApiUrl: URL;
+  appConfig:
+    | JSONSchemaForCustomApplicationConfigurationFiles
+    | JSONSchemaForCustomViewConfigurationFiles;
+}): ApplicationRuntimeEnvironmentForDevelopment | undefined => {
+  if (isProd) {
+    return undefined;
+  }
+
+  const oidcConfig = omitEmpty<ApplicationOidcForDevelopmentConfig>({
+    authorizeUrl: [
+      // In case the MC API url points to localhost, we need to point
+      // to a local running dev login page to handle the workflow properly.
+      mcApiUrl.hostname === 'localhost'
+        ? mcApiUrl.origin.replace(mcApiUrl.port, String(developmentPort))
+        : mcApiUrl.origin.replace('mc-api', 'mc'),
+      '/login/authorize',
+    ].join(''),
+    initialProjectKey:
+      // For the `account` application, we should unset the projectKey.
+      (configurationData as CustomApplicationData).entryPointUriPath ===
+      'account'
+        ? undefined
+        : appConfig.env.development.initialProjectKey,
+    ...(appConfig.env.development?.teamId && {
+      teamId: appConfig.env.development.teamId,
+      // When using a teamId we need to send the actual application of view identifier.
+      ...(isCustomViewData(configurationData)
+        ? { customViewId: configurationData.id }
+        : { applicationId: configurationData.id }),
+    }),
+    oAuthScopes: appConfig.oAuthScopes,
+    additionalOAuthScopes: appConfig?.additionalOAuthScopes,
+  });
+
+  if (isCustomViewData(configurationData)) {
+    return omitDevConfigIfEmpty<ApplicationRuntimeEnvironmentForDevelopment>({
+      oidc: oidcConfig,
+      customViewConfig: configurationData,
+      customViewHostUrl: (
+        appConfig as JSONSchemaForCustomViewConfigurationFiles
+      ).env.development.hostUrl,
+    });
+  }
+
+  return omitDevConfigIfEmpty<ApplicationRuntimeEnvironmentForDevelopment>({
+    oidc: oidcConfig,
+    menuLinks: {
+      icon: configurationData.icon,
+      ...configurationData.mainMenuLink,
+      submenuLinks: configurationData.submenuLinks,
+    },
+    // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
+    accountLinks: configurationData.accountLinks,
+  });
+};
+
+const getRuntimeEnvironmentConfig = ({
+  isProd,
+  configurationData,
+  additionalAppEnv,
+  mcApiUrl,
+  cdnUrl,
+  appUrl,
+  appEnvKey,
+  revision,
+  appConfig,
+}: {
+  isProd: boolean;
+  configurationData: CustomApplicationData | CustomViewData;
+  additionalAppEnv: Record<string, unknown>;
+  mcApiUrl: URL;
+  cdnUrl: URL;
+  appUrl: URL;
+  appEnvKey: string;
+  revision: string;
+  appConfig:
+    | JSONSchemaForCustomApplicationConfigurationFiles
+    | JSONSchemaForCustomViewConfigurationFiles;
+}): ApplicationRuntimeEnvironment => {
+  const identifier = getApplicationIdentifier({
+    isProd,
+    configurationData,
+  });
+
+  const developmentConfig = getRuntimeEnvironmentConfigForDevelopment({
+    isProd,
+    configurationData,
+    mcApiUrl,
+    appConfig,
+  });
+
+  return {
+    // Common config
+    ...omitEmpty<Record<string, unknown>>(additionalAppEnv),
+    cdnUrl: cdnUrl.href,
+    env: appEnvKey,
+    frontendHost: appUrl.host,
+    location: appConfig.cloudIdentifier,
+    mcApiUrl: mcApiUrl.origin,
+    revision,
+    servedByProxy: isProd,
+
+    // Application config
+    applicationId: identifier,
+    applicationIdentifier: identifier,
+    applicationName: isCustomViewData(configurationData)
+      ? configurationData.defaultLabel
+      : configurationData.name,
+    entryPointUriPath: isCustomViewData(configurationData)
+      ? UNUSED_ENTRY_POINT_URI_PATH
+      : configurationData.entryPointUriPath,
+
+    // Development config
+    ...(developmentConfig ? { __DEVELOPMENT__: developmentConfig } : {}),
+  };
 };
 
 // Keep a reference to the config so that requiring the module
@@ -123,86 +271,19 @@ const processConfig = ({
     `Invalid MC API URL: "${appConfig.mcApiUrl}"`
   );
 
-  // The real application ID is only used in production.
-  // In development, we prefix the entry point with the "__local" prefix.
-  // This is important to determine to which URL the MC should redirect to
-  // after successful login.
-  const applicationId = isProd
-    ? `${configurationData.id}:${
-        (configurationData as CustomApplicationData).entryPointUriPath ||
-        'custom-view'
-      }`
-    : `__local:${
-        (configurationData as CustomApplicationData).entryPointUriPath ||
-        configurationData.id
-      }`;
-
-  const developmentConfig: ApplicationRuntimeConfig['env']['__DEVELOPMENT__'] =
-    isProd
-      ? undefined
-      : omitDevConfigIfEmpty({
-          // Common config
-          oidc: omitEmpty({
-            authorizeUrl: [
-              // In case the MC API url points to localhost, we need to point
-              // to a local running dev login page to handle the workflow properly.
-              mcApiUrl.hostname === 'localhost'
-                ? mcApiUrl.origin.replace(
-                    mcApiUrl.port,
-                    String(developmentPort)
-                  )
-                : mcApiUrl.origin.replace('mc-api', 'mc'),
-              '/login/authorize',
-            ].join(''),
-            initialProjectKey:
-              // For the `account` application, we should unset the projectKey.
-              (configurationData as CustomApplicationData).entryPointUriPath ===
-              'account'
-                ? undefined
-                : appConfig.env.development.initialProjectKey,
-            ...(appConfig.env.development?.teamId && {
-              teamId: appConfig.env.development.teamId,
-              applicationId: (
-                appConfig as JSONSchemaForCustomApplicationConfigurationFiles
-              ).env.production.applicationId,
-            }),
-            oAuthScopes: appConfig.oAuthScopes,
-            additionalOAuthScopes: appConfig?.additionalOAuthScopes,
-          }),
-          // Specific config
-          ...(configType === LOADED_CONFIG_TYPES.CUSTOM_VIEW
-            ? getCustomViewDevelopmentConfig(
-                configurationData as CustomViewData,
-                appConfig as JSONSchemaForCustomViewConfigurationFiles
-              )
-            : getCustomApplicationDevelopmentConfig(
-                configurationData as CustomApplicationData
-              )),
-        });
-
   cachedConfig = {
     data: configurationData,
-    env: {
-      // Common config
-      ...omitEmpty(additionalAppEnv),
-      applicationId,
-      ...(isProd || !developmentConfig
-        ? {}
-        : { __DEVELOPMENT__: developmentConfig }),
-      cdnUrl: cdnUrl.href,
-      env: appEnvKey,
-      frontendHost: appUrl.host,
-      location: appConfig.cloudIdentifier,
-      mcApiUrl: mcApiUrl.origin,
+    env: getRuntimeEnvironmentConfig({
+      isProd,
+      configurationData,
+      additionalAppEnv,
+      appConfig,
+      appEnvKey,
+      appUrl,
+      cdnUrl,
+      mcApiUrl,
       revision,
-      servedByProxy: isProd,
-      // Specific config
-      ...(configType === LOADED_CONFIG_TYPES.CUSTOM_VIEW
-        ? getCustomViewProductionConfig(configurationData as CustomViewData)
-        : getCustomApplicationProductionConfig(
-            configurationData as CustomApplicationData
-          )),
-    },
+    }),
     headers: {
       ...appConfig.headers,
       csp: {

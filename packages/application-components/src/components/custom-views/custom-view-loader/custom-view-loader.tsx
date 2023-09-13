@@ -8,9 +8,9 @@ import {
   CUSTOM_VIEWS_EVENTS_META,
   DOMAINS,
   NOTIFICATION_KINDS_PAGE,
+  CustomViewData,
 } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import type { TCustomView } from '../../../types/generated/settings';
 import CustomPanel from '../custom-panel/custom-panel';
 import messages from './messages';
 
@@ -22,7 +22,7 @@ type TCustomViewIframeMessage = {
 };
 
 type TCustomViewLoaderProps = {
-  customView: TCustomView;
+  customView: CustomViewData;
   hostUrl?: string;
   onClose: () => void;
 };

@@ -29,6 +29,7 @@ const defaultApplicationConfig: ApplicationRuntimeConfig = {
   },
   env: {
     applicationId: '__local:avengers',
+    applicationIdentifier: '__local:avengers',
     applicationName: 'avengers-app',
     entryPointUriPath: 'avengers',
     cdnUrl: 'http://localhost:3001/',

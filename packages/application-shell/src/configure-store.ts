@@ -11,7 +11,11 @@ import mapValues from 'lodash/mapValues';
 import omitEmpty from 'omit-empty-es';
 import thunk from 'redux-thunk';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
-import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-frontend/constants';
+import {
+  SHOW_LOADING,
+  HIDE_LOADING,
+  UNUSED_ENTRY_POINT_URI_PATH,
+} from '@commercetools-frontend/constants';
 import {
   middleware as notificationsMiddleware,
   reducer as notificationsReducer,
@@ -61,7 +65,14 @@ const getAdditionalHeaders = (): Headers | undefined => {
     [SUPPORTED_HEADERS.AUTHORIZATION]: sessionToken
       ? `Bearer ${sessionToken}`
       : undefined,
-    [SUPPORTED_HEADERS.X_APPLICATION_ID]: window.app.applicationId,
+    [SUPPORTED_HEADERS.X_APPLICATION_ID]:
+      window.app.entryPointUriPath !== UNUSED_ENTRY_POINT_URI_PATH
+        ? window.app.applicationIdentifier
+        : undefined,
+    [SUPPORTED_HEADERS.X_CUSTOM_VIEW_ID]:
+      window.app.entryPointUriPath === UNUSED_ENTRY_POINT_URI_PATH
+        ? window.app.applicationIdentifier
+        : undefined,
     [SUPPORTED_HEADERS.X_TEAM_ID]: selectTeamIdFromStorage(),
   });
 };

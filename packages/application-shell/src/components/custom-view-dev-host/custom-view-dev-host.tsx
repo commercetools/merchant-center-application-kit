@@ -8,7 +8,6 @@ import Constraints from '@commercetools-uikit/constraints';
 import PrimaryButton from '@commercetools-uikit/primary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import type { TCustomView } from '../../types/generated/settings';
 import ApplicationShell from '../application-shell';
 
 declare let window: ApplicationWindow;
@@ -20,8 +19,7 @@ type TLocalCustomViewLauncherProps = {
 const LocalCustomViewLauncher = (props: TLocalCustomViewLauncherProps) => {
   const [shouldRenderCustomView, setShouldRenderCustomView] = useState(false);
   // We expect this in development to be defined.
-  const customViewConfig = props.environment.__DEVELOPMENT__
-    ?.customViewConfig! as TCustomView;
+  const customViewConfig = props.environment.__DEVELOPMENT__?.customViewConfig!;
 
   return (
     <main>

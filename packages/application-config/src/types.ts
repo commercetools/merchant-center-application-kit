@@ -1,7 +1,7 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import { CLOUD_IDENTIFIERS, LOADED_CONFIG_TYPES } from './constants';
-import type { JSONSchemaForCustomApplicationConfigurationFiles } from './custom-application.schema';
-import type { JSONSchemaForCustomViewConfigurationFiles } from './custom-view.schema';
+import type { JSONSchemaForCustomApplicationConfigurationFiles } from './generated/custom-application.schema';
+import type { JSONSchemaForCustomViewConfigurationFiles } from './generated/custom-view.schema';
 import type { TCustomView } from './generated/settings';
 
 export type ConfigOptions =

@@ -114,7 +114,7 @@
             }
           },
           "additionalProperties": false,
-          "required": ["initialProjectKey"]
+          "required": ["initialProjectKey", "hostUrl"]
         },
         "production": {
           "type": "object",

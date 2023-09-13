@@ -1,10 +1,10 @@
 import { LOADED_CONFIG_TYPES } from './constants';
-import type { JSONSchemaForCustomApplicationConfigurationFiles } from './custom-application.schema';
-import type { JSONSchemaForCustomViewConfigurationFiles } from './custom-view.schema';
 import {
   entryPointUriPathToResourceAccesses,
   formatEntryPointUriPathToResourceAccessKey,
 } from './formatters';
+import type { JSONSchemaForCustomApplicationConfigurationFiles } from './generated/custom-application.schema';
+import type { JSONSchemaForCustomViewConfigurationFiles } from './generated/custom-view.schema';
 import type {
   TCustomViewPermission,
   TCustomViewType,
@@ -114,7 +114,7 @@ function transformCustomViewConfigToData(
   validateAdditionalOAuthScopes(customViewConfig);
 
   return {
-    id: customViewConfig.env.production.customViewId || 'todo',
+    id: customViewConfig.env.production.customViewId,
     defaultLabel: customViewConfig.name,
     labelAllLocales: customViewConfig.labelAllLocales,
     description: customViewConfig.description,

@@ -10,6 +10,12 @@ async function run() {
   const applicationConfig = processConfig();
   const { mcApiUrl, applicationId, entryPointUriPath } = applicationConfig.env;
 
+  if (!applicationId && !entryPointUriPath) {
+    throw new Error(
+      `Missing application identifier and entry point URI path. Make sure you have a Custom Application config file.`
+    );
+  }
+
   console.log(`Using Merchant Center environment "${chalk.green(mcApiUrl)}".`);
   console.log();
 

@@ -31,6 +31,7 @@ async function run(options: TCliCommandConfigSyncOptions) {
   const applicationConfig = processConfig();
   const localCustomAppData = applicationConfig.data as CustomApplicationData;
   const { mcApiUrl, applicationId, entryPointUriPath } = applicationConfig.env;
+
   const applicationIdentifier = `${applicationId}:${entryPointUriPath}`;
 
   console.log(`Using Merchant Center environment "${chalk.green(mcApiUrl)}".`);
