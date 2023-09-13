@@ -104,7 +104,7 @@ const getIsSubmenuRouteActive = (
 
 type ItemContainerProps = {
   labelAllLocales: TLocalizedField[];
-  defaultLabel: string | undefined;
+  defaultLabel?: string;
   applicationLocale: string;
   icon: string;
 };
