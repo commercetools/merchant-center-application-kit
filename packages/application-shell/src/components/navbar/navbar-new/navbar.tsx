@@ -28,11 +28,7 @@ import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
 import { SupportIcon } from '@commercetools-uikit/icons';
 import { DIMENSIONS } from '../../../constants';
 import type { TFetchProjectQuery } from '../../../types/generated/mc';
-import type {
-  TNavbarMenu,
-  TBaseMenu,
-  TLocalizedField,
-} from '../../../types/generated/proxy';
+import type { TNavbarMenu, TBaseMenu } from '../../../types/generated/proxy';
 import messages from '../messages';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import nonNullable from '../non-nullable';
@@ -42,9 +38,9 @@ import {
   RestrictedMenuItem,
   MenuItem,
   MenuItemLink,
-  IconSwitcher,
   MenuGroup,
   MenuLabel,
+  ItemContainer,
   Faded,
   MenuExpander,
   NavBarLayout,
@@ -101,32 +97,6 @@ const getIsSubmenuRouteActive = (
       strict: false,
     })
   );
-
-type ItemContainerProps = {
-  labelAllLocales: TLocalizedField[];
-  defaultLabel?: string;
-  applicationLocale: string;
-  icon: string;
-};
-
-export const ItemContainer = (props: ItemContainerProps) => {
-  return (
-    <div className={styles['item-icon-text']}>
-      <div className={styles['icon-container']}>
-        <div className={styles.icon}>
-          <IconSwitcher icon={props.icon} size="scale" />
-        </div>
-      </div>
-      <div className={styles.title}>
-        <MenuLabel
-          labelAllLocales={props.labelAllLocales}
-          defaultLabel={props.defaultLabel}
-          applicationLocale={props.applicationLocale}
-        />
-      </div>
-    </div>
-  );
-};
 
 export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const [topPosition, setTopPosition] = useState(0);

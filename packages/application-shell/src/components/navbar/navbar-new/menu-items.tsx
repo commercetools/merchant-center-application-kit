@@ -431,6 +431,34 @@ const NavBarLayout = forwardRef<HTMLElement, TNavBarLayoutProps>(
 );
 NavBarLayout.displayName = 'NavBarLayout';
 
+type ItemContainerProps = {
+  labelAllLocales: TLocalizedField[];
+  defaultLabel?: string;
+  applicationLocale: string;
+  icon: string;
+};
+
+const ItemContainer = (props: ItemContainerProps) => {
+  return (
+    <div className={styles['item-icon-text']}>
+      <div className={styles['icon-container']}>
+        <div className={styles.icon}>
+          <IconSwitcher icon={props.icon} size="scale" />
+        </div>
+      </div>
+      <div className={styles.title}>
+        <MenuLabel
+          labelAllLocales={props.labelAllLocales}
+          defaultLabel={props.defaultLabel}
+          applicationLocale={props.applicationLocale}
+        />
+      </div>
+    </div>
+  );
+};
+
+ItemContainer.displayName = 'ItemContainer';
+
 export {
   RestrictedMenuItem,
   MenuItem,
@@ -441,4 +469,5 @@ export {
   MenuExpander,
   Faded,
   NavBarLayout,
+  ItemContainer,
 };
