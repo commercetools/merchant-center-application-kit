@@ -345,11 +345,7 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
         <NavLink
           to={props.linkTo}
           exact={props.exactMatch}
-          activeClassName={
-            props.isSubmenuLink
-              ? styles['highlighted-sublist']
-              : styles.highlighted
-          }
+          activeClassName={styles.highlighted}
           className={
             props.isSubmenuLink
               ? styles['text-link-sublist']

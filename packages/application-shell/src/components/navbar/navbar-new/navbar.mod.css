@@ -241,7 +241,7 @@
   background: var(--color-accent-30);
 }
 
-.sublist-item:hover {
+.sublist-item:not(.sublist-item__active):hover {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link-when-hovered);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
@@ -418,16 +418,6 @@
   color: var(--color-for-navbar-link-when-active) !important;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link-when-active);
-}
-
-.highlighted-sublist,
-.highlighted-sublist .title {
-  color: var(--color-surface);
-}
-
-.sublist-item:hover .highlighted-sublist,
-.sublist-item:hover .highlighted-sublist .title {
-  color: var(--color-solid);
 }
 
 .hidden {
