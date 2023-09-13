@@ -42,8 +42,6 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
-    // https://github.com/yannickcr/eslint-plugin-react
-    'plugin:react/recommended',
     // https://github.com/prettier/prettier-eslint
     // NOTE: this should go last.
     'prettier',
@@ -54,10 +52,6 @@ module.exports = {
     'import',
     // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y
     'jsx-a11y',
-    // https://github.com/yannickcr/eslint-plugin-react
-    'react',
-    // https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks
-    'react-hooks',
     // https://github.com/prettier/prettier-eslint
     'prettier',
   ],
@@ -99,24 +93,6 @@ module.exports = {
     'import/no-named-as-default': statusCode.off,
     'import/no-named-as-default-member': statusCode.off,
     'import/no-unresolved': statusCode.error,
-
-    // React
-    'react/jsx-uses-vars': statusCode.error,
-    'react/no-deprecated': statusCode.error,
-    'react/no-unused-prop-types': statusCode.error,
-    ...(hasJsxRuntime() && {
-      'react/jsx-uses-react': statusCode.off,
-      'react/react-in-jsx-scope': statusCode.off,
-    }),
-    'react/no-unknown-property': [
-      statusCode.error,
-      {
-        ignore: [
-          // To allow using Emotion's `css` prop: https://emotion.sh/docs/css-prop
-          'css',
-        ],
-      },
-    ],
   },
 
   overrides: [
@@ -164,14 +140,11 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.ts?(x)'],
+      files: ['**/*.{ts,tsx}'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
         ecmaVersion: 2018,
         sourceType: 'module',
-        ecmaFeatures: {
-          jsx: true,
-        },
         // typescript-eslint specific options
         warnOnUnsupportedTypeScriptVersion: true,
       },
@@ -199,15 +172,8 @@ module.exports = {
         ],
         '@typescript-eslint/no-require-imports': statusCode.off,
         '@typescript-eslint/promise-function-async': statusCode.off,
-
-        // React
-        'react/no-unused-prop-types': statusCode.off,
-        'react/prop-types': statusCode.off,
       },
       settings: {
-        react: {
-          version: 'detect',
-        },
         'import/parsers': {
           '@typescript-eslint/parser': ['.js', '.jsx', '.ts', '.tsx'],
         },
@@ -218,6 +184,57 @@ module.exports = {
             extensions: allSupportedExtensions,
           },
         },
+      },
+    },
+    {
+      files: ['**/*.{js,jsx,tsx}'],
+      extends: [
+        // https://github.com/yannickcr/eslint-plugin-react
+        'plugin:react/recommended',
+      ],
+      plugins: [
+        // https://github.com/yannickcr/eslint-plugin-react
+        'react',
+        // https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks
+        'react-hooks',
+      ],
+      rules: {
+        // React
+        'react/jsx-uses-vars': statusCode.error,
+        'react/no-deprecated': statusCode.error,
+        'react/no-unused-prop-types': statusCode.error,
+        ...(hasJsxRuntime() && {
+          'react/jsx-uses-react': statusCode.off,
+          'react/react-in-jsx-scope': statusCode.off,
+        }),
+        'react/no-unknown-property': [
+          statusCode.error,
+          {
+            ignore: [
+              // To allow using Emotion's `css` prop: https://emotion.sh/docs/css-prop
+              'css',
+            ],
+          },
+        ],
+      },
+      settings: {
+        react: {
+          version: 'detect',
+        },
+      },
+    },
+    {
+      files: ['**/*.tsx'],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+      rules: {
+        // React
+        'react/no-unused-prop-types': statusCode.off,
+        'react/prop-types': statusCode.off,
       },
     },
     {

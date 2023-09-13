@@ -32,14 +32,14 @@
     "moment-timezone": "^0.5.40",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-intl": "^6.4.2",
+    "react-intl": "^6.4.5",
     "react-router-dom": "5.3.4",
     "react-select": "5.7.3"
   },
   "devDependencies": {
     "@commercetools-frontend/application-config": "workspace:*",
     "@types/history": "^4.7.11",
-    "@types/react": "^17.0.53",
+    "@types/react": "^17.0.56",
     "@types/react-dom": "^17.0.19",
     "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "3.1.0",

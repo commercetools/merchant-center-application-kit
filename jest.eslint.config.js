@@ -7,6 +7,7 @@ module.exports = {
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
   modulePathIgnorePatterns: [
     '.cache',
+    '.vercel',
     'build/',
     'dist/',
     'public/',

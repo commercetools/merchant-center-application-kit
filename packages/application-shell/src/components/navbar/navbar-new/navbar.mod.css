@@ -1,27 +1,16 @@
 :root {
   --expander-height: 50px;
   --expander-size: 40px;
-  --faded-height: 32px;
   --icon-size: 24px;
   --icon-size-hover: 28px;
-  --icon-container-offset: 4px;
   --item-size: 48px;
   --item-height: 56px;
-  --item-width: 64px;
   --sublist-indentantion: 58px;
   --sublist-width: 253px;
-  --submenu-margin: calc(
-    var(--icon-size) + var(--spacing-30) + var(--icon-container-offset) + 4px
-  );
 
   /* Left navigation */
   --width-left-navigation: 80px;
   --width-left-navigation-when-expanded: 256px;
-  --width-left-navigation-sublist: 205px;
-
-  /* Active list item with icon text */
-  --left-list-item-icon-text-active: 46px;
-  --width-list-item-icon-text-active: 166px;
 }
 
 /* Left Nav */
@@ -30,7 +19,7 @@
   display: grid;
   width: var(--width-left-navigation);
   background: var(--color-primary-30);
-  height: 100vh;
+  height: 100%;
   grid-template-rows: 56px 1fr;
 }
 
@@ -90,7 +79,7 @@
 
 .list-item .title {
   flex: 1;
-  font-weight: 500;
+  font-weight: 600;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-size: var(--font-size-for-navbar-link);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
@@ -148,7 +137,7 @@
   bottom: var(--expander-height);
 }
 
-.list-item:hover {
+.list-item:not(.item_menu__active):hover {
   background-color: var(--color-primary);
   border-radius: var(--border-radius-8);
 }
@@ -165,16 +154,6 @@
 
 .item_menu-collapsed .item-link {
   text-align: center;
-}
-
-:global(.body__menu-open) .title {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  color: var(--color-for-navbar-link);
-  font-weight: 500;
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  font-size: var(--font-size-for-navbar-link);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  line-height: var(--line-height-for-navbar-link);
 }
 
 :global(.body__menu-open) .left-navigation {
@@ -318,7 +297,7 @@
 }
 
 .list-item .icon-container {
-  width: calc(var(--icon-size) + var(--icon-container-offset) * 2);
+  width: auto;
   display: flex;
   justify-content: center;
   align-self: flex-start;

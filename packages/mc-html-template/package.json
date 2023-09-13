@@ -28,8 +28,8 @@
     "README.md"
   ],
   "dependencies": {
-    "@babel/runtime": "^7.20.13",
-    "@babel/runtime-corejs3": "^7.20.13",
+    "@babel/runtime": "^7.22.15",
+    "@babel/runtime-corejs3": "^7.22.15",
     "@commercetools-frontend/application-config": "22.7.1",
     "@commercetools-frontend/constants": "22.7.1",
     "serialize-javascript": "6.0.1",
@@ -37,7 +37,7 @@
     "uglifycss": "0.0.29"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^16.0.0",
+    "@tsconfig/node16": "^16.1.1",
     "@types/serialize-javascript": "^5.0.2",
     "html-webpack-plugin": "5.5.1",
     "webpack": "5.82.1"

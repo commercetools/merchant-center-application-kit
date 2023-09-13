@@ -13,6 +13,8 @@ import FetchChannelsQuery from './fetch-channels.ctp.graphql';
 import FetchChannelDetailsQuery from './fetch-channel-details.ctp.graphql';
 import UpdateChannelDetailsMutation from './update-channel-details.ctp.graphql';
 
+const syncStores = createSyncChannels();
+
 export const useChannelsFetcher = ({ page, perPage, tableSorting }) => {
   const { data, error, loading } = useMcQuery(FetchChannelsQuery, {
     variables: {
@@ -54,7 +56,6 @@ export const useChannelDetailsUpdater = () => {
     UpdateChannelDetailsMutation
   );
 
-  const syncStores = createSyncChannels();
   const execute = async ({ originalDraft, nextDraft }) => {
     const actions = syncStores.buildActions(
       nextDraft,

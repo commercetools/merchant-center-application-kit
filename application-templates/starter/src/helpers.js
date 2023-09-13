@@ -1,3 +1,4 @@
+import { isApolloError } from '@apollo/client';
 import {
   transformLocalizedStringToLocalizedField,
   transformLocalizedFieldToLocalizedString,
@@ -7,15 +8,17 @@ export const getErrorMessage = (error) =>
   error.graphQLErrors?.map((e) => e.message).join('\n') || error.message;
 
 export const extractErrorFromGraphQlResponse = (graphQlResponse) => {
-  if (
-    typeof graphQlResponse.networkError?.result !== 'string' &&
-    graphQlResponse.networkError?.result?.errors?.length > 0
-  ) {
-    return graphQlResponse.networkError.result.errors;
-  }
+  if (graphQlResponse instanceof Error && isApolloError(graphQlResponse)) {
+    if (
+      typeof graphQlResponse.networkError?.result !== 'string' &&
+      graphQlResponse.networkError?.result?.errors.length > 0
+    ) {
+      return graphQlResponse?.networkError?.result.errors;
+    }
 
-  if (graphQlResponse.graphQLErrors?.length > 0) {
-    return graphQlResponse.graphQLErrors;
+    if (graphQlResponse.graphQLErrors?.length > 0) {
+      return graphQlResponse.graphQLErrors;
+    }
   }
 
   return graphQlResponse;

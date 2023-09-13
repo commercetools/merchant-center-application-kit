@@ -2,7 +2,7 @@ import {
   transformLocalizedStringToLocalizedField,
   transformLocalizedFieldToLocalizedString,
 } from '@commercetools-frontend/l10n';
-import { ApolloError, type ServerError } from '@apollo/client';
+import { isApolloError, ApolloError, type ServerError } from '@apollo/client';
 import type { TChannel } from './types/generated/ctp';
 import type {
   TGraphqlUpdateAction,
@@ -20,7 +20,7 @@ const isServerError = (
 };
 
 export const extractErrorFromGraphQlResponse = (graphQlResponse: unknown) => {
-  if (graphQlResponse instanceof ApolloError) {
+  if (graphQlResponse instanceof Error && isApolloError(graphQlResponse)) {
     if (
       isServerError(graphQlResponse.networkError) &&
       typeof graphQlResponse.networkError?.result !== 'string' &&

@@ -443,12 +443,16 @@ export const ApplicationShellAuthenticated = (
                                       offsetTop={DIMENSIONS.header}
                                       offsetLeft={
                                         projectKeyFromUrl
-                                          ? DIMENSIONS.navMenu
+                                          ? isNewNavigationEnabled
+                                            ? DIMENSIONS.newNavMenu
+                                            : DIMENSIONS.navMenu
                                           : '0px'
                                       }
                                       offsetLeftOnExpandedMenu={
                                         projectKeyFromUrl
-                                          ? DIMENSIONS.navMenuExpanded
+                                          ? isNewNavigationEnabled
+                                            ? DIMENSIONS.newNavMenuExpanded
+                                            : DIMENSIONS.navMenuExpanded
                                           : '0px'
                                       }
                                     />
