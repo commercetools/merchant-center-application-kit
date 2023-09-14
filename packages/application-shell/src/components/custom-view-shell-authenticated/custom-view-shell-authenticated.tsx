@@ -78,36 +78,33 @@ function CustomViewShellAuthenticated(
                   >
                     <>
                       <ThemeProvider theme="default" />
-                      {!props.projectKey && props.children}
 
-                      {Boolean(props.projectKey) && (
-                        <FetchProject projectKey={props.projectKey}>
-                          {({ isLoading: isProjectLoading, project }) => {
-                            if (fetchUserError) {
-                              return <PageUnauthorized />;
-                            }
+                      <FetchProject projectKey={props.projectKey}>
+                        {({ isLoading: isProjectLoading, project }) => {
+                          if (fetchUserError) {
+                            return <PageUnauthorized />;
+                          }
 
-                            if (isProjectLoading) {
-                              return <ApplicationLoader />;
-                            }
+                          if (isProjectLoading) {
+                            return <ApplicationLoader />;
+                          }
 
-                            return (
-                              <ApplicationContextProvider
-                                user={user}
-                                project={project}
-                                projectDataLocale={props.dataLocale}
-                                environment={props.environment}
+                          return (
+                            <ApplicationContextProvider
+                              user={user}
+                              project={project}
+                              projectDataLocale={props.dataLocale}
+                              environment={props.environment}
+                            >
+                              <CustomViewWithPermissionCheck
+                                customViewId={props.customViewConfig.id}
                               >
-                                <CustomViewWithPermissionCheck
-                                  customViewId={props.customViewConfig.id}
-                                >
-                                  {props.children}
-                                </CustomViewWithPermissionCheck>
-                              </ApplicationContextProvider>
-                            );
-                          }}
-                        </FetchProject>
-                      )}
+                                {props.children}
+                              </CustomViewWithPermissionCheck>
+                            </ApplicationContextProvider>
+                          );
+                        }}
+                      </FetchProject>
                     </>
                   </ApplicationContextProvider>
                 </ConfigureIntlProvider>

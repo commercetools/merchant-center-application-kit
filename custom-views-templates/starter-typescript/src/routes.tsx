@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import { Switch, Route } from 'react-router-dom';
 import Channels from './components/channels';
 
 type ApplicationRoutesProps = {
@@ -12,18 +11,12 @@ const ApplicationRoutes = (_props: ApplicationRoutesProps) => {
    * You can evaluate user permissions using the `useIsAuthorized` hook.
    * For more information see https://docs.commercetools.com/custom-applications/development/permissions
    *
-   * NOTE that by default the Custom Application implicitly checks for a "View" permission,
+   * NOTE that by default the Custom View implicitly checks for a "View" permission,
    * otherwise it won't render. Therefore, checking for "View" permissions here
    * is redundant and not strictly necessary.
    */
 
-  return (
-    <Switch>
-      <Route>
-        <Channels />
-      </Route>
-    </Switch>
-  );
+  return <Channels />;
 };
 ApplicationRoutes.displayName = 'ApplicationRoutes';
 

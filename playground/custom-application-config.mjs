@@ -2,7 +2,7 @@ import { PERMISSIONS, entryPointUriPath } from './src/constants';
 const name = 'AppKit Playground Application';
 
 /**
- * @type {import('@commercetools-frontend/application-config').ConfigOptions}
+ * @type {import('@commercetools-frontend/application-config').ConfigOptionsForCustomApplication}
  */
 const config = {
   name,

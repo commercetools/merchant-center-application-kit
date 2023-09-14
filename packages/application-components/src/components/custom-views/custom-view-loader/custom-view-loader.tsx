@@ -46,7 +46,8 @@ const CustomPanelIframe = styled.iframe`
 
 function CustomViewLoader(props: TCustomViewLoaderProps) {
   const iFrameElementRef = useRef<HTMLIFrameElement>(null);
-  const appContext = useApplicationContext();
+  const dataLocale = useApplicationContext((context) => context.dataLocale);
+  const projectKey = useApplicationContext((context) => context.project?.key);
   const iFrameCommunicationChannel = useRef(new MessageChannel());
   const showNotification = useShowNotification();
   const intl = useIntl();
@@ -89,10 +90,10 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
       eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_INITIALIZATION,
       eventData: {
         context: {
-          dataLocale: appContext.dataLocale,
+          dataLocale,
+          projectKey,
           customViewConfig: props.customView,
           hostUrl: props.hostUrl || window.location.href,
-          projectKey: appContext.project?.key,
         },
       },
     } as TCustomViewIframeMessage);
@@ -119,6 +120,13 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
   }
   const panelSize = (props.customView.typeSettings?.size?.toLocaleLowerCase() ||
     'large') as Lowercase<'SMALL' | 'LARGE'>;
+  const iFrameUrl = [
+    window.location.origin,
+    'custom-views',
+    props.customView.id,
+    'projects',
+    projectKey,
+  ].join('/');
 
   return (
     <CustomPanel
@@ -129,11 +137,9 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
       <CustomPanelIframe
         id={`custom-view-${props.customView.id}`}
         key={`custom-view-${props.customView.id}`}
-        ref={iFrameElementRef}
         title={`Custom View: ${props.customView.defaultLabel}`}
-        src={`${window.location.origin}/custom-views/${
-          props.customView.id
-        }/projects/${appContext.project?.key || 'no-project'}`}
+        ref={iFrameElementRef}
+        src={iFrameUrl}
         onLoad={onLoadSuccessHandler}
       />
     </CustomPanel>
