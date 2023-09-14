@@ -112,28 +112,26 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const menuItemTop = menuItemBoundingClientRect?.top || 0;
   const menuItemBottom = menuItemBoundingClientRect?.bottom || 0;
 
-  const callbackFn: IntersectionObserverCallback = useCallback(
-    (entries) => {
-      const [entry] = entries;
-      // if the submenu does not fit at the bottom of the viewport (below the menu item)
-      if (
-        entry.boundingClientRect.height + menuItemBottom >
-        window.innerHeight
-      ) {
-        setIsSubmenuAboveMenuItem(true);
-        setSubmenuVerticalPosition(
-          window.innerHeight - (props.isMenuOpen ? menuItemBottom : menuItemTop)
-        );
-        // show the submenu above the menu item
-      } else {
-        setIsSubmenuAboveMenuItem(false);
-        setSubmenuVerticalPosition(
-          props.isMenuOpen ? menuItemTop : menuItemBottom
-        );
-      }
-    },
-    [menuItemBottom, menuItemTop, props.isMenuOpen]
-  );
+  const callbackFn: IntersectionObserverCallback = (entries) => {
+    const [entry] = entries;
+    // if the submenu does not fit at the bottom of the viewport (below the menu item)
+    if (
+      entry.boundingClientRect.height +
+        (props.isMenuOpen ? menuItemTop : menuItemBottom) >
+      window.innerHeight
+    ) {
+      setIsSubmenuAboveMenuItem(true);
+      setSubmenuVerticalPosition(
+        window.innerHeight - (props.isMenuOpen ? menuItemBottom : menuItemTop)
+      );
+      // show the submenu above the menu item
+    } else {
+      setIsSubmenuAboveMenuItem(false);
+      setSubmenuVerticalPosition(
+        props.isMenuOpen ? menuItemTop : menuItemBottom
+      );
+    }
+  };
   useLayoutEffect(() => {
     const observer = new IntersectionObserver(callbackFn, {
       root: null,
@@ -150,7 +148,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         observer.unobserve(currentSubmenuRef);
       }
     };
-  }, [callbackFn]);
+  });
 
   const isMainMenuRouteActive = Boolean(
     matchPath(props.location.pathname, {
