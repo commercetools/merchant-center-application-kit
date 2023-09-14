@@ -11,11 +11,7 @@ import mapValues from 'lodash/mapValues';
 import omitEmpty from 'omit-empty-es';
 import thunk from 'redux-thunk';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
-import {
-  SHOW_LOADING,
-  HIDE_LOADING,
-  CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
-} from '@commercetools-frontend/constants';
+import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-frontend/constants';
 import {
   middleware as notificationsMiddleware,
   reducer as notificationsReducer,

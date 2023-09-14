@@ -208,6 +208,7 @@ export type ApplicationRuntimeEnvironment = {
   applicationIdentifier: string;
   applicationName: string;
   entryPointUriPath: string;
+  customViewId?: string;
   revision: string;
   env: string;
   location: string;

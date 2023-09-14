@@ -8,7 +8,6 @@ import omitEmpty from 'omit-empty-es';
 import {
   type ApplicationWindow,
   STATUS_CODES,
-  CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
 } from '@commercetools-frontend/constants';
 import { SUPPORTED_HEADERS } from '../constants';
 import getCorrelationId from './get-correlation-id';
