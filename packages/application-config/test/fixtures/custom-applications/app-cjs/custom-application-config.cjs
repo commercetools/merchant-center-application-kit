@@ -1,9 +1,11 @@
-import type { ConfigOptions } from '../../../src/types';
-import { entryPointUriPath } from './constants';
+const { entryPointUriPath } = require('./constants');
 
 const name = 'Test application';
 
-const config: ConfigOptions = {
+/**
+ * @type {import('../../../../src/types').ConfigOptionsForCustomApplication}
+ */
+const config = {
   name,
   cloudIdentifier: 'gcp-eu',
   entryPointUriPath,
@@ -29,4 +31,4 @@ const config: ConfigOptions = {
   submenuLinks: [],
 };
 
-export default config;
+module.exports = config;

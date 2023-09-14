@@ -53,7 +53,9 @@ const printErrors = (errors?: ErrorObject[] | null) => {
 
 export const validateConfig = (
   configType: LoadedConfigType,
-  config: JSONSchemaForCustomApplicationConfigurationFiles
+  config:
+    | JSONSchemaForCustomApplicationConfigurationFiles
+    | JSONSchemaForCustomViewConfigurationFiles
 ): void => {
   let validation: ValidateFunction;
 

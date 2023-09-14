@@ -1,9 +1,9 @@
-const { entryPointUriPath } = require('./constants');
+import { entryPointUriPath } from './constants';
 
 const name = 'Test application';
 
 /**
- * @type {import('../../../src/types').ConfigOptions}
+ * @type {import('../../../../src/types').ConfigOptionsForCustomApplication}
  */
 const config = {
   name,
@@ -31,4 +31,4 @@ const config = {
   submenuLinks: [],
 };
 
-module.exports = config;
+export default config;

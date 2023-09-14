@@ -1,13 +1,13 @@
 import path from 'path';
 import { processConfig } from '../src';
 import loadConfig from '../src/load-config';
-import fixtureConfigEnvVariables from './fixtures/config-env-variables.json';
-import fixtureConfigFilePathVariables from './fixtures/config-file-path-variables.json';
-import fixtureConfigFull from './fixtures/config-full.json';
-import fixtureConfigIntlVariables from './fixtures/config-intl-variables.json';
-import fixtureConfigOidcWithTeamId from './fixtures/config-oidc-with-team-id.json';
-import fixtureConfigOidc from './fixtures/config-oidc.json';
-import fixtureConfigSimple from './fixtures/config-simple.json';
+import fixtureConfigEnvVariables from './fixtures/custom-applications/config-env-variables.json';
+import fixtureConfigFilePathVariables from './fixtures/custom-applications/config-file-path-variables.json';
+import fixtureConfigFull from './fixtures/custom-applications/config-full.json';
+import fixtureConfigIntlVariables from './fixtures/custom-applications/config-intl-variables.json';
+import fixtureConfigOidcWithTeamId from './fixtures/custom-applications/config-oidc-with-team-id.json';
+import fixtureConfigOidc from './fixtures/custom-applications/config-oidc.json';
+import fixtureConfigSimple from './fixtures/custom-applications/config-simple.json';
 
 jest.mock('../src/load-config');
 
@@ -60,6 +60,7 @@ describe('processing a simple config', () => {
       },
       env: {
         applicationId: '__local:avengers',
+        applicationIdentifier: '__local:avengers',
         applicationName: 'avengers-app',
         entryPointUriPath: 'avengers',
         cdnUrl: 'http://localhost:3001/',
@@ -133,6 +134,7 @@ describe('processing a simple config', () => {
         },
         env: {
           applicationId: 'app-id-123:avengers',
+          applicationIdentifier: 'app-id-123:avengers',
           applicationName: 'avengers-app',
           entryPointUriPath: 'avengers',
           cdnUrl: 'https://avengers.app/',
@@ -193,6 +195,7 @@ describe('processing a simple config', () => {
         },
         env: {
           applicationId: '__local:avengers',
+          applicationIdentifier: '__local:avengers',
           applicationName: 'avengers-app',
           entryPointUriPath: 'avengers',
           cdnUrl: 'http://localhost:3001/',
@@ -270,6 +273,7 @@ describe('processing a simple config', () => {
         },
         env: {
           applicationId: 'app-id-123:avengers',
+          applicationIdentifier: 'app-id-123:avengers',
           applicationName: 'avengers-app',
           entryPointUriPath: 'avengers',
           cdnUrl: 'https://avengers.app/',
@@ -329,6 +333,7 @@ describe('processing a full config', () => {
       },
       env: {
         applicationId: '__local:avengers',
+        applicationIdentifier: '__local:avengers',
         applicationName: 'avengers-app',
         entryPointUriPath: 'avengers',
         cdnUrl: 'http://localhost:3001/',
@@ -419,6 +424,7 @@ describe('processing a full config', () => {
         },
         env: {
           applicationId: 'app-id-123:avengers',
+          applicationIdentifier: 'app-id-123:avengers',
           applicationName: 'avengers-app',
           entryPointUriPath: 'avengers',
           cdnUrl: 'https://cdn.avengers.app/',
@@ -487,6 +493,7 @@ describe('processing a full config', () => {
         },
         env: {
           applicationId: '__local:avengers',
+          applicationIdentifier: '__local:avengers',
           applicationName: 'avengers-app',
           entryPointUriPath: 'avengers',
           cdnUrl: 'http://localhost:3001/',
@@ -579,6 +586,7 @@ describe('processing a full config', () => {
         },
         env: {
           applicationId: 'app-id-123:avengers',
+          applicationIdentifier: 'app-id-123:avengers',
           applicationName: 'avengers-app',
           entryPointUriPath: 'avengers',
           cdnUrl: 'https://cdn.avengers.app/',
@@ -660,6 +668,7 @@ describe('processing a config with environment variable placeholders', () => {
       },
       env: {
         applicationId: '__local:avengers',
+        applicationIdentifier: '__local:avengers',
         applicationName: 'avengers-app',
         entryPointUriPath: 'avengers',
         cdnUrl: 'http://localhost:3001/',
@@ -737,6 +746,7 @@ describe('processing a config with environment variable placeholders', () => {
         },
         env: {
           applicationId: 'app-id-123:avengers',
+          applicationIdentifier: 'app-id-123:avengers',
           applicationName: 'avengers-app',
           entryPointUriPath: 'avengers',
           cdnUrl: 'https://avengers.app/',
@@ -801,6 +811,7 @@ describe('processing a config with environment variable placeholders', () => {
         },
         env: {
           applicationId: '__local:avengers',
+          applicationIdentifier: '__local:avengers',
           applicationName: 'avengers-app',
           entryPointUriPath: 'avengers',
           cdnUrl: 'http://localhost:3001/',
@@ -882,6 +893,7 @@ describe('processing a config with environment variable placeholders', () => {
         },
         env: {
           applicationId: 'app-id-123:avengers',
+          applicationIdentifier: 'app-id-123:avengers',
           applicationName: 'avengers-app',
           entryPointUriPath: 'avengers',
           cdnUrl: 'https://avengers.app/',
@@ -959,6 +971,7 @@ describe('processing a config with intl variable placeholders', () => {
       },
       env: {
         applicationId: '__local:avengers',
+        applicationIdentifier: '__local:avengers',
         applicationName: 'avengers-app',
         entryPointUriPath: 'avengers',
         cdnUrl: 'http://localhost:3001/',
@@ -1055,6 +1068,7 @@ describe('processing a config with file path variable placeholders', () => {
       },
       env: {
         applicationId: '__local:avengers',
+        applicationIdentifier: '__local:avengers',
         applicationName: 'avengers-app',
         entryPointUriPath: 'avengers',
         cdnUrl: 'http://localhost:3001/',
@@ -1188,6 +1202,7 @@ describe('processing a config with OIDC', () => {
           },
         },
         applicationId: '__local:avengers',
+        applicationIdentifier: '__local:avengers',
         applicationName: 'avengers-app',
         entryPointUriPath: 'avengers',
         cdnUrl: 'http://localhost:3001/',
@@ -1261,6 +1276,7 @@ describe('processing a config with OIDC', () => {
         },
         env: {
           applicationId: 'app-id-123:avengers',
+          applicationIdentifier: 'app-id-123:avengers',
           applicationName: 'avengers-app',
           entryPointUriPath: 'avengers',
           cdnUrl: 'https://avengers.app/',
@@ -1439,6 +1455,7 @@ describe('processing a config with OIDC with teamId', () => {
           },
         },
         applicationId: '__local:avengers',
+        applicationIdentifier: '__local:avengers',
         applicationName: 'avengers-app',
         entryPointUriPath: 'avengers',
         cdnUrl: 'http://localhost:3001/',
