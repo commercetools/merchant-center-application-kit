@@ -25,6 +25,29 @@
 
 .navigation-header {
   background-color: var(--color-accent-10);
+  color: var(--color-surface);
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+  padding: var(--spacing-30) var(--spacing-50);
+}
+
+.navigation-header .icon-container {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-self: flex-start;
+}
+
+.navigation-header .title {
+  font-weight: 600;
+  margin-left: var(--spacing-20);
+}
+
+.navigation-header .icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
 }
 
 .list {
