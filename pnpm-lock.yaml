@@ -1147,9 +1147,6 @@ importers:
       '@commercetools-frontend/actions-global':
         specifier: 22.7.1
         version: link:../actions-global
-      '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.7.1
-        version: link:../application-shell-connectors
       '@commercetools-frontend/assets':
         specifier: 22.7.1
         version: link:../assets

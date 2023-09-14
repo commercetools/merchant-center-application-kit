@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import { useIntl } from 'react-intl';
 import { useShowNotification } from '@commercetools-frontend/actions-global';
+import { CustomPanel } from '@commercetools-frontend/application-components';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   CUSTOM_VIEWS_EVENTS_NAMES,
@@ -11,7 +12,6 @@ import {
   CustomViewData,
 } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import CustomPanel from '../custom-panel/custom-panel';
 import messages from './messages';
 
 type TCustomViewIframeMessage = {

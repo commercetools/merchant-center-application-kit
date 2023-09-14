@@ -1,15 +1,10 @@
 import { CustomViewData } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import {
-  screen,
-  renderComponent,
-  waitFor,
-  fireEvent,
-} from '../../../test-utils';
+import { screen, renderApp, waitFor, fireEvent } from '../../../test-utils';
 import {
   TCustomViewSize,
   TCustomViewType,
-} from '../../../types/generated/settings';
+} from '../../types/generated/settings';
 import CustomViewLoader from './custom-view-loader';
 
 const mockShowNotification = jest.fn();
@@ -64,7 +59,7 @@ describe('CustomViewLoader', () => {
   });
 
   it('should render a custom view', async () => {
-    renderComponent(
+    renderApp(
       <CustomViewLoader customView={TEST_CUSTOM_VIEW} onClose={jest.fn()} />
     );
 
@@ -75,7 +70,7 @@ describe('CustomViewLoader', () => {
       `custom-view-${TEST_CUSTOM_VIEW.id}`
     );
     expect(iFrame.getAttribute('src')).toContain(
-      `/custom-views/${TEST_CUSTOM_VIEW.id}/projects/no-project`
+      `/custom-views/${TEST_CUSTOM_VIEW.id}/projects/test-with-big-data`
     );
   });
 
@@ -85,9 +80,7 @@ describe('CustomViewLoader', () => {
       url: 'https://example.com/',
     };
 
-    renderComponent(
-      <CustomViewLoader customView={customView} onClose={jest.fn()} />
-    );
+    renderApp(<CustomViewLoader customView={customView} onClose={jest.fn()} />);
 
     fireEvent.load(
       screen.getByTitle(`Custom View: ${TEST_CUSTOM_VIEW.defaultLabel}`)
@@ -106,10 +99,12 @@ describe('CustomViewLoader', () => {
       type: 'InvalidType',
     };
 
-    renderComponent(
-      // Ignore the TS error because we want to test an unknown type
-      // @ts-ignore
-      <CustomViewLoader customView={customView} onClose={jest.fn()} />
+    renderApp(
+      <CustomViewLoader
+        // @ts-expect-error: we are testing an unknown type
+        customView={customView}
+        onClose={jest.fn()}
+      />
     );
 
     expect(
@@ -125,7 +120,7 @@ describe('CustomViewLoader', () => {
   it('should call onClose when the custom view is closed', async () => {
     const onCloseMock = jest.fn();
 
-    renderComponent(
+    renderApp(
       <CustomViewLoader customView={TEST_CUSTOM_VIEW} onClose={onCloseMock} />
     );
 
