@@ -113,12 +113,12 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
 
   const callbackFn: IntersectionObserverCallback = (entries) => {
     const [entry] = entries;
-    // if the submenu does not fit at the bottom of the viewport (below the menu item)
-    if (
+    const doesSubmenuFitViewportBelowMenuItem =
       entry.boundingClientRect.height +
         (props.isMenuOpen ? menuItemTop : menuItemBottom) >
-      window.innerHeight
-    ) {
+      window.innerHeight;
+    // if the submenu does not fit at the bottom of the viewport (below the menu item)
+    if (doesSubmenuFitViewportBelowMenuItem) {
       setIsSubmenuAboveMenuItem(true);
       setSubmenuVerticalPosition(
         window.innerHeight - (props.isMenuOpen ? menuItemBottom : menuItemTop)
@@ -133,9 +133,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   };
   useLayoutEffect(() => {
     const observer = new IntersectionObserver(callbackFn, {
-      root: null,
       rootMargin: '-100% 0px 0px 0px',
-      threshold: 0,
     });
     const currentSubmenuRef = submenuRef.current;
 
