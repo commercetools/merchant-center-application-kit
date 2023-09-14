@@ -6,9 +6,9 @@
 import createHttpUserAgent from '@commercetools/http-user-agent';
 import omitEmpty from 'omit-empty-es';
 import {
-  STATUS_CODES,
   type ApplicationWindow,
-  UNUSED_ENTRY_POINT_URI_PATH,
+  STATUS_CODES,
+  CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
 } from '@commercetools-frontend/constants';
 import { SUPPORTED_HEADERS } from '../constants';
 import getCorrelationId from './get-correlation-id';
@@ -197,14 +197,8 @@ function createHttpClientOptions(config: TConfig = {}): TOptions {
       [SUPPORTED_HEADERS.AUTHORIZATION]: sessionToken
         ? `Bearer ${sessionToken}`
         : undefined,
-      [SUPPORTED_HEADERS.X_APPLICATION_ID]:
-        window.app.entryPointUriPath !== UNUSED_ENTRY_POINT_URI_PATH
-          ? window.app.applicationIdentifier
-          : undefined,
-      [SUPPORTED_HEADERS.X_CUSTOM_VIEW_ID]:
-        window.app.entryPointUriPath === UNUSED_ENTRY_POINT_URI_PATH
-          ? window.app.applicationIdentifier
-          : undefined,
+      [SUPPORTED_HEADERS.X_APPLICATION_ID]: window.app.applicationIdentifier,
+      [SUPPORTED_HEADERS.X_CUSTOM_VIEW_ID]: window.app.customViewId,
       [SUPPORTED_HEADERS.X_CORRELATION_ID]: getCorrelationId({ userId }),
       [SUPPORTED_HEADERS.X_PROJECT_KEY]: projectKey,
       [SUPPORTED_HEADERS.X_USER_AGENT]: userAgent,

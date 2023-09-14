@@ -21,10 +21,6 @@ const AsyncApplicationRoutes = lazy(
 // in order to catch possible errors on rendering/mounting.
 setupGlobalErrorListener();
 
-const customViewHostUrl = window.app.__DEVELOPMENT__?.customViewHostUrl
-  ? `${window.location.origin}${window.app.__DEVELOPMENT__?.customViewHostUrl}`
-  : undefined;
-
 type TCustomViewMainProps = {
   customViewId: string;
   customViewHostUrl?: string;
@@ -43,14 +39,17 @@ const CustomViewMain = (props: TCustomViewMainProps) => (
 
 const EntryPoint = () => {
   if (process.env.NODE_ENV === 'development') {
+    const customViewId = window.app.__DEVELOPMENT__?.customViewConfig?.id!;
+    const customViewHostUrl = window.app.__DEVELOPMENT__?.customViewHostUrl!;
+
     return (
       <CustomViewDevHost
-        customViewId={window.app.customViewId!}
+        customViewId={customViewId}
         customViewHostUrl={customViewHostUrl}
         applicationMessages={loadMessages}
       >
         <CustomViewMain
-          customViewId={window.app.customViewId!}
+          customViewId={customViewId}
           customViewHostUrl={customViewHostUrl}
           messages={loadMessages}
         />
@@ -59,7 +58,7 @@ const EntryPoint = () => {
   }
   return (
     <CustomViewMain
-      customViewId={window.app.customViewId!}
+      customViewId={window.app.applicationIdentifier}
       messages={loadMessages}
     />
   );

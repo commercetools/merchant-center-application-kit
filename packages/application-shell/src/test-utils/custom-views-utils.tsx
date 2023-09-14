@@ -32,7 +32,7 @@ export const renderCustomView = (
 ): RenderResult => {
   return renderApp(
     <CustomViewContextProvider
-      hostUrl="https://mc.ct.com/custom-views/custom-view-id"
+      hostUrl="https://mc.ct.com/my-project/products/product-id-1"
       customViewConfig={{ ...testCustomViewData, ...props.customViewConfig }}
     >
       {props.children}

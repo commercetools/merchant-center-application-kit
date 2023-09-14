@@ -108,13 +108,13 @@
             "teamId": {
               "type": "string"
             },
-            "hostUrl": {
+            "hostUriPath": {
               "description": "See https://docs.commercetools.com/TODO",
               "type": "string"
             }
           },
           "additionalProperties": false,
-          "required": ["initialProjectKey", "hostUrl"]
+          "required": ["initialProjectKey"]
         },
         "production": {
           "type": "object",

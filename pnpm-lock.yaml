@@ -1307,6 +1307,9 @@ importers:
       '@commercetools-frontend/babel-preset-mc-app':
         specifier: 22.7.1
         version: link:../babel-preset-mc-app
+      '@commercetools-frontend/constants':
+        specifier: 22.7.1
+        version: link:../constants
       '@types/dompurify':
         specifier: ^2.4.0
         version: 2.4.0
@@ -12770,9 +12773,9 @@ packages:
     engines: {node: '>=12'}
     peerDependencies:
       '@types/react': ^16.9.0 || ^17.0.0
-      react: 17.0.2
-      react-dom: ^16.9.0 || ^17.0.0 || 17.0.2
-      react-test-renderer: 17.0.2
+      react: ^16.9.0 || ^17.0.0
+      react-dom: ^16.9.0 || ^17.0.0
+      react-test-renderer: ^16.9.0 || ^17.0.0
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -12791,8 +12794,8 @@ packages:
     resolution: {integrity: sha512-OfTXCJUFgjd/digLUuPxa0+/3ZxsQmE7ub9kcbW/wi96Bh3o/p5vrETcBGfP17NWPGqeYYl5LTRpwyGoMC4ysg==}
     engines: {node: '>=12'}
     peerDependencies:
-      react: 17.0.2
-      react-dom: <18.0.0 || 17.0.2
+      react: <18.0.0
+      react-dom: <18.0.0
     dependencies:
       '@babel/runtime': 7.22.15
       '@testing-library/dom': 8.20.1
@@ -23227,6 +23230,7 @@ packages:
       chalk: 2.4.2
       diff-match-patch: 1.0.5
     dev: false
+    bundledDependencies: []
 
   /jsonfile@4.0.0:
     resolution: {integrity: sha512-m6F1R3z8jjlf2imQHS2Qez5sjKWQzbuuhuJ/FKYFRZvPE3PuHcSMVZzfsLhGVOkfd20obL5SWEBew5ShlquNxg==}

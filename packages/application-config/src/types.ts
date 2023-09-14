@@ -1,12 +1,14 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import { CLOUD_IDENTIFIERS, LOADED_CONFIG_TYPES } from './constants';
-import type { JSONSchemaForCustomApplicationConfigurationFiles } from './generated/custom-application.schema';
-import type { JSONSchemaForCustomViewConfigurationFiles } from './generated/custom-view.schema';
-import type { TCustomView } from './generated/settings';
+import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schemas/generated/custom-application.schema';
+import type { JSONSchemaForCustomViewConfigurationFiles } from './schemas/generated/custom-view.schema';
+import type { TCustomView } from './types/generated/settings';
 
-export type ConfigOptions =
-  | JSONSchemaForCustomApplicationConfigurationFiles
-  | JSONSchemaForCustomViewConfigurationFiles;
+export type ConfigOptions = JSONSchemaForCustomApplicationConfigurationFiles;
+export type ConfigOptionsForCustomApplication =
+  JSONSchemaForCustomApplicationConfigurationFiles;
+export type ConfigOptionsForCustomView =
+  JSONSchemaForCustomViewConfigurationFiles;
 
 export type CloudIdentifier =
   (typeof CLOUD_IDENTIFIERS)[keyof typeof CLOUD_IDENTIFIERS];

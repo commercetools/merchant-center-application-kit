@@ -31,8 +31,8 @@ const LocalCustomViewLauncher = (props: TLocalCustomViewLauncherProps) => {
             <Spacings.Stack scale="l">
               <Spacings.Stack scale="m">
                 <Text.Body>
-                  This page simulates the Merchant Center context so you can run
-                  your Custom View locally.
+                  This page simulates the rendering of your Custom View as if it
+                  was within a page in the Merchant Center:
                   <br />
                   Based on your <i>custom-view-config</i> file, these are the
                   settings that will be used:
@@ -40,18 +40,31 @@ const LocalCustomViewLauncher = (props: TLocalCustomViewLauncherProps) => {
                 <ul>
                   <Spacings.Stack scale="s">
                     <li>
+                      Custom View ID: <b>{customViewConfig.id}</b>
+                    </li>
+                    <li>
+                      Custom View permissions:{' '}
+                      <b>
+                        {customViewConfig.permissions
+                          .map(
+                            (permission) =>
+                              `(${
+                                permission.name
+                              }: ${permission.oAuthScopes.join(', ')})`
+                          )
+                          .join(', ')}
+                      </b>
+                    </li>
+                    <li>
+                      Custom View locators:{' '}
+                      <b>{customViewConfig.locators.join(', ')}</b>
+                    </li>
+                    <li>
                       Custom View type: <b>{customViewConfig.type}</b>
                     </li>
                     <li>
                       Custom View size:{' '}
                       <b>{customViewConfig.typeSettings?.size}</b>
-                    </li>
-                    <li>
-                      Emulated Host application URL:{' '}
-                      <b>
-                        {props.environment.__DEVELOPMENT__?.customViewHostUrl ||
-                          'not defined'}
-                      </b>
                     </li>
                   </Spacings.Stack>
                 </ul>

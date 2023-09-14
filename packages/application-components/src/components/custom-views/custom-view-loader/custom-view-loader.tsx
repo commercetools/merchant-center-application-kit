@@ -50,8 +50,6 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
   const iFrameCommunicationChannel = useRef(new MessageChannel());
   const showNotification = useShowNotification();
   const intl = useIntl();
-  const panelSize = (props.customView.typeSettings?.size?.toLocaleLowerCase() ||
-    'large') as Lowercase<'SMALL' | 'LARGE'>;
 
   const messageFromIFrameHandler = useCallback((event: MessageEvent) => {
     if (event.data.origin === window.location.origin) {
@@ -119,6 +117,8 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
     );
     return null;
   }
+  const panelSize = (props.customView.typeSettings?.size?.toLocaleLowerCase() ||
+    'large') as Lowercase<'SMALL' | 'LARGE'>;
 
   return (
     <CustomPanel

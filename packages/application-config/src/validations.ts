@@ -6,8 +6,8 @@ import {
   LOADED_CONFIG_TYPES,
   PERMISSION_GROUP_NAME_REGEX,
 } from './constants';
-import type { JSONSchemaForCustomApplicationConfigurationFiles } from './generated/custom-application.schema';
-import type { JSONSchemaForCustomViewConfigurationFiles } from './generated/custom-view.schema';
+import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schemas/generated/custom-application.schema';
+import type { JSONSchemaForCustomViewConfigurationFiles } from './schemas/generated/custom-view.schema';
 import type { LoadedConfigType } from './types';
 
 type ErrorAdditionalProperty = ErrorObject<

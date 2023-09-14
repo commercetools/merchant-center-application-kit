@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { cosmiconfigSync, defaultLoaders, type LoaderSync } from 'cosmiconfig';
 import { MissingOrInvalidConfigError } from './errors';
-import type { JSONSchemaForCustomApplicationConfigurationFiles } from './generated/custom-application.schema';
+import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schemas/generated/custom-application.schema';
 
 // Helper function to find the package root path from the current location,
 // for instance in respect to both source files and dist files.

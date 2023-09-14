@@ -7,12 +7,12 @@ import {
   type ApplicationOidcForDevelopmentConfig,
   type ApplicationRuntimeEnvironmentForDevelopment,
   type ApplicationRuntimeEnvironment,
-  UNUSED_ENTRY_POINT_URI_PATH,
+  CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
 } from '@commercetools-frontend/constants';
 import { LOADED_CONFIG_TYPES } from './constants';
-import type { JSONSchemaForCustomApplicationConfigurationFiles } from './generated/custom-application.schema';
-import type { JSONSchemaForCustomViewConfigurationFiles } from './generated/custom-view.schema';
 import loadConfig from './load-config';
+import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schemas/generated/custom-application.schema';
+import type { JSONSchemaForCustomViewConfigurationFiles } from './schemas/generated/custom-view.schema';
 import substituteVariablePlaceholders from './substitute-variable-placeholders';
 import { transformConfigurationToData } from './transformers';
 import type {
@@ -69,31 +69,12 @@ const isCustomViewData = (
 ): data is CustomViewData =>
   (data as CustomApplicationData).entryPointUriPath === undefined;
 
-const getApplicationIdentifier = ({
-  isProd,
-  configurationData,
-}: {
-  isProd: boolean;
-  configurationData: CustomApplicationData | CustomViewData;
-}): string => {
-  if (isCustomViewData(configurationData)) {
-    return isProd ? configurationData.id : `__local:${configurationData.id}`;
-  }
-
-  // The real application ID is only used in production.
-  // In development, we prefix the entry point with the "__local" prefix.
-  // This is important to determine to which URL the MC should redirect to
-  // after successful login.
-  return isProd
-    ? `${configurationData.id}:${configurationData.entryPointUriPath}`
-    : `__local:${configurationData.entryPointUriPath}`;
-};
-
 const getRuntimeEnvironmentConfigForDevelopment = ({
   isProd,
   configurationData,
   mcApiUrl,
   appConfig,
+  entryPointUriPath,
 }: {
   isProd: boolean;
   configurationData: CustomApplicationData | CustomViewData;
@@ -101,6 +82,7 @@ const getRuntimeEnvironmentConfigForDevelopment = ({
   appConfig:
     | JSONSchemaForCustomApplicationConfigurationFiles
     | JSONSchemaForCustomViewConfigurationFiles;
+  entryPointUriPath: string;
 }): ApplicationRuntimeEnvironmentForDevelopment | undefined => {
   if (isProd) {
     return undefined;
@@ -117,8 +99,7 @@ const getRuntimeEnvironmentConfigForDevelopment = ({
     ].join(''),
     initialProjectKey:
       // For the `account` application, we should unset the projectKey.
-      (configurationData as CustomApplicationData).entryPointUriPath ===
-      'account'
+      entryPointUriPath === 'account'
         ? undefined
         : appConfig.env.development.initialProjectKey,
     ...(appConfig.env.development?.teamId && {
@@ -133,12 +114,19 @@ const getRuntimeEnvironmentConfigForDevelopment = ({
   });
 
   if (isCustomViewData(configurationData)) {
+    const hostUriPath = (appConfig as JSONSchemaForCustomViewConfigurationFiles)
+      .env.development.hostUriPath;
+    const defaultHostUriPath = oidcConfig.initialProjectKey
+      ? `/${oidcConfig.initialProjectKey}/${entryPointUriPath}`
+      : `/${entryPointUriPath}`;
+    const hostUrl = new URL(
+      hostUriPath || defaultHostUriPath,
+      'http://localhost:3001'
+    );
     return omitDevConfigIfEmpty<ApplicationRuntimeEnvironmentForDevelopment>({
       oidc: oidcConfig,
       customViewConfig: configurationData,
-      customViewHostUrl: (
-        appConfig as JSONSchemaForCustomViewConfigurationFiles
-      ).env.development.hostUrl,
+      customViewHostUrl: hostUrl.href,
     });
   }
 
@@ -177,16 +165,26 @@ const getRuntimeEnvironmentConfig = ({
     | JSONSchemaForCustomApplicationConfigurationFiles
     | JSONSchemaForCustomViewConfigurationFiles;
 }): ApplicationRuntimeEnvironment => {
-  const identifier = getApplicationIdentifier({
-    isProd,
-    configurationData,
-  });
+  const entryPointUriPath = isCustomViewData(configurationData)
+    ? // When the application acts as the host for Custom Views, there is no real
+      // entry point to be used, therefore we use a special identifier.
+      CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH
+    : configurationData.entryPointUriPath;
+
+  // The real application ID is only used in production.
+  // In development, we prefix the entry point with the "__local" prefix.
+  // This is important to determine to which URL the MC should redirect to
+  // after successful login.
+  const applicationIdentifier = isProd
+    ? `${configurationData.id}:${entryPointUriPath}`
+    : `__local:${entryPointUriPath}`;
 
   const developmentConfig = getRuntimeEnvironmentConfigForDevelopment({
     isProd,
     configurationData,
     mcApiUrl,
     appConfig,
+    entryPointUriPath,
   });
 
   return {
@@ -201,14 +199,17 @@ const getRuntimeEnvironmentConfig = ({
     servedByProxy: isProd,
 
     // Application config
-    applicationId: identifier,
-    applicationIdentifier: identifier,
+    applicationId: applicationIdentifier,
+    applicationIdentifier,
     applicationName: isCustomViewData(configurationData)
       ? configurationData.defaultLabel
       : configurationData.name,
-    entryPointUriPath: isCustomViewData(configurationData)
-      ? UNUSED_ENTRY_POINT_URI_PATH
-      : configurationData.entryPointUriPath,
+    entryPointUriPath,
+
+    // Custom view config
+    ...(isCustomViewData(configurationData)
+      ? { customViewId: configurationData.id }
+      : {}),
 
     // Development config
     ...(developmentConfig ? { __DEVELOPMENT__: developmentConfig } : {}),

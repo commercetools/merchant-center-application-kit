@@ -63,7 +63,7 @@ export interface JSONSchemaForCustomViewConfigurationFiles {
       /**
        * See https://docs.commercetools.com/TODO
        */
-      hostUrl: string;
+      hostUriPath?: string;
     };
     production: {
       /**

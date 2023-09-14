@@ -3,18 +3,18 @@ import {
   entryPointUriPathToResourceAccesses,
   formatEntryPointUriPathToResourceAccessKey,
 } from './formatters';
-import type { JSONSchemaForCustomApplicationConfigurationFiles } from './generated/custom-application.schema';
-import type { JSONSchemaForCustomViewConfigurationFiles } from './generated/custom-view.schema';
-import type {
-  TCustomViewPermission,
-  TCustomViewType,
-  TCustomViewTypeSettings,
-} from './generated/settings';
+import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schemas/generated/custom-application.schema';
+import type { JSONSchemaForCustomViewConfigurationFiles } from './schemas/generated/custom-view.schema';
 import type {
   LoadedConfigType,
   CustomApplicationData,
   CustomViewData,
 } from './types';
+import type {
+  TCustomViewPermission,
+  TCustomViewType,
+  TCustomViewTypeSettings,
+} from './types/generated/settings';
 import {
   validateEntryPointUriPath,
   validateSubmenuLinks,

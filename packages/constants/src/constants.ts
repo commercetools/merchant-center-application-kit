@@ -228,7 +228,7 @@ export interface ApplicationWindow extends Window {
 }
 
 // Used for Custom Views, as we want to keep the `entryPointUriPath` value required in the runtime config.
-export const UNUSED_ENTRY_POINT_URI_PATH = '@@--unused--@@';
+export const CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH = '@@custom-view-host@@';
 
 export const HTTP_SECURITY_HEADERS = {
   'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',

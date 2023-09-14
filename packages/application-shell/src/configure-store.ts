@@ -14,7 +14,7 @@ import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import {
   SHOW_LOADING,
   HIDE_LOADING,
-  UNUSED_ENTRY_POINT_URI_PATH,
+  CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
 } from '@commercetools-frontend/constants';
 import {
   middleware as notificationsMiddleware,
@@ -65,14 +65,8 @@ const getAdditionalHeaders = (): Headers | undefined => {
     [SUPPORTED_HEADERS.AUTHORIZATION]: sessionToken
       ? `Bearer ${sessionToken}`
       : undefined,
-    [SUPPORTED_HEADERS.X_APPLICATION_ID]:
-      window.app.entryPointUriPath !== UNUSED_ENTRY_POINT_URI_PATH
-        ? window.app.applicationIdentifier
-        : undefined,
-    [SUPPORTED_HEADERS.X_CUSTOM_VIEW_ID]:
-      window.app.entryPointUriPath === UNUSED_ENTRY_POINT_URI_PATH
-        ? window.app.applicationIdentifier
-        : undefined,
+    [SUPPORTED_HEADERS.X_APPLICATION_ID]: window.app.applicationIdentifier,
+    [SUPPORTED_HEADERS.X_CUSTOM_VIEW_ID]: window.app.customViewId,
     [SUPPORTED_HEADERS.X_TEAM_ID]: selectTeamIdFromStorage(),
   });
 };
