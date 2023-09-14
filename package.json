@@ -91,6 +91,7 @@
     "@commercetools/github-labels": "1.1.0",
     "@commitlint/cli": "17.6.3",
     "@commitlint/config-conventional": "17.6.3",
+    "@eslint/eslintrc": "2.1.2",
     "@faker-js/faker": "7.6.0",
     "@formatjs/cli": "6.1.1",
     "@graphql-codegen/add": "3.2.3",
