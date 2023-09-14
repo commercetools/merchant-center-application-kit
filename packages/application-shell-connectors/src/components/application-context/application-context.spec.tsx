@@ -295,6 +295,7 @@ describe('mapEnvironmentToApplicationContextEnvironment', () => {
       ).toEqual({
         revision: expect.any(String),
         applicationId: expect.any(String),
+        applicationIdentifier: expect.any(String),
         applicationName: expect.any(String),
         entryPointUriPath: expect.any(String),
         frontendHost: expect.any(String),
@@ -315,6 +316,7 @@ describe('mapEnvironmentToApplicationContextEnvironment', () => {
       ).toEqual({
         revision: expect.any(String),
         applicationId: expect.any(String),
+        applicationIdentifier: expect.any(String),
         applicationName: expect.any(String),
         entryPointUriPath: expect.any(String),
         frontendHost: expect.any(String),

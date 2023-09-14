@@ -16,7 +16,7 @@ const createTestOptions = (options) => ({
   processEnv: {
     NODE_ENV: 'test',
   },
-  applicationPath: path.join(__dirname, 'fixtures'),
+  applicationPath: path.join(__dirname, 'fixtures/custom-applications'),
   ...options,
 });
 
