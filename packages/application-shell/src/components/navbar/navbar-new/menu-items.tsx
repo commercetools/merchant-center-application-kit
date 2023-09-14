@@ -198,7 +198,7 @@ const getContainerPositionBasedOnMenuItemPosition = (
     `,
 ];
 
-const MenuGroup = (props: MenuGroupProps) => {
+const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
   if (
     props.isExpanded &&
     ((props.level === 2 && !props.hasSubmenu) ||
@@ -212,6 +212,7 @@ const MenuGroup = (props: MenuGroupProps) => {
     props.level === 2 && props.isActive && !props.isExpanded;
   return (
     <ul
+      ref={ref}
       css={css`
         ${getSubmenuPositionBasedOnMenuItemPosition(
           props.isSubmenuAboveMenuItem,
@@ -263,7 +264,7 @@ const MenuGroup = (props: MenuGroupProps) => {
       {props.children}
     </ul>
   );
-};
+});
 MenuGroup.displayName = 'MenuGroup';
 
 type MenuItemProps = {

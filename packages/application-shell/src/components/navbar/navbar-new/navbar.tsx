@@ -1,5 +1,6 @@
 import {
   type MouseEventHandler,
+  useCallback,
   useEffect,
   useLayoutEffect,
   useMemo,
@@ -97,67 +98,28 @@ const getIsSubmenuRouteActive = (
     })
   );
 
-const navSubmenuItemHeight = parseInt(DIMENSIONS.navSubmenuItemHeight);
-const navSubmenuItemHeightWithLineClamp = parseInt(
-  DIMENSIONS.navSubmenuItemHeightWithLineClamp
-);
-
-const getSubmenuItemHeight = (subemenuItemHeightCondition: boolean) =>
-  subemenuItemHeightCondition
-    ? navSubmenuItemHeight
-    : navSubmenuItemHeightWithLineClamp;
-
-const approximateNumberOfCharactersThatCauseLineBreak = 20;
-
-const getApproximateSubmenuItemsHeights = (props: ApplicationMenuProps) =>
-  props.menu.submenu.reduce(
-    (totalHeight, submenuItem: TSubmenuWithDefaultLabel) => {
-      const localizedLabel = submenuItem.labelAllLocales.find((loc) =>
-        props.applicationLocale.startsWith(loc.locale)
-      );
-      let submenuItemHeight;
-      if (localizedLabel) {
-        submenuItemHeight = getSubmenuItemHeight(
-          localizedLabel.value.length <
-            approximateNumberOfCharactersThatCauseLineBreak
-        );
-      } else if (submenuItem.defaultLabel) {
-        submenuItemHeight = getSubmenuItemHeight(
-          submenuItem.defaultLabel.length <
-            approximateNumberOfCharactersThatCauseLineBreak
-        );
-      } else {
-        submenuItemHeight = navSubmenuItemHeight; // a single line with NO_VALUE_FALLBACK
-      }
-      return totalHeight + submenuItemHeight;
-    },
-    0
-  );
-
-const getApproximateSubmenuHeight = (props: ApplicationMenuProps) =>
-  getApproximateSubmenuItemsHeights(props) +
-  (props.menu.submenu.length - 1) * parseInt(DIMENSIONS.navSubmenuGap) +
-  2 * parseInt(DIMENSIONS.navSubmenuPadding);
-
 export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const [submenuVerticalPosition, setSubmenuVerticalPosition] = useState(0);
   const [isSubmenuAboveMenuItem, setIsSubmenuAboveMenuItem] = useState(false);
-  const elementRef = useRef<HTMLDivElement>(null);
+  const menuItemRef = useRef<HTMLDivElement>(null);
+  const submenuRef = useRef<HTMLUListElement>(null);
 
   const hasSubmenu =
     Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
 
-  const submenuHeight = hasSubmenu ? getApproximateSubmenuHeight(props) : 0;
-
   const menuItemBoundingClientRect =
-    elementRef.current?.getBoundingClientRect();
+    menuItemRef.current?.getBoundingClientRect();
   const menuItemTop = menuItemBoundingClientRect?.top || 0;
   const menuItemBottom = menuItemBoundingClientRect?.bottom || 0;
 
-  useLayoutEffect(() => {
-    if (elementRef.current) {
+  const callbackFn: IntersectionObserverCallback = useCallback(
+    (entries) => {
+      const [entry] = entries;
       // if the submenu does not fit at the bottom of the viewport (below the menu item)
-      if (hasSubmenu && menuItemBottom + submenuHeight > window.innerHeight) {
+      if (
+        entry.boundingClientRect.height + menuItemBottom >
+        window.innerHeight
+      ) {
         setIsSubmenuAboveMenuItem(true);
         setSubmenuVerticalPosition(
           window.innerHeight - (props.isMenuOpen ? menuItemBottom : menuItemTop)
@@ -169,14 +131,26 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
           props.isMenuOpen ? menuItemTop : menuItemBottom
         );
       }
+    },
+    [menuItemBottom, menuItemTop, props.isMenuOpen]
+  );
+  useLayoutEffect(() => {
+    const observer = new IntersectionObserver(callbackFn, {
+      root: null,
+      rootMargin: '-100% 0px 0px 0px',
+      threshold: 0,
+    });
+    const currentSubmenuRef = submenuRef.current;
+
+    if (currentSubmenuRef) {
+      observer.observe(currentSubmenuRef);
     }
-  }, [
-    hasSubmenu,
-    menuItemBottom,
-    submenuHeight,
-    props.isMenuOpen,
-    menuItemTop,
-  ]);
+    return () => {
+      if (currentSubmenuRef) {
+        observer.unobserve(currentSubmenuRef);
+      }
+    };
+  }, [callbackFn]);
 
   const isMainMenuRouteActive = Boolean(
     matchPath(props.location.pathname, {
@@ -212,7 +186,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
       namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
     >
       <MenuItem
-        ref={elementRef}
+        ref={menuItemRef}
         hasSubmenu={hasSubmenu}
         isActive={props.isActive}
         isMainMenuRouteActive={isMainMenuRouteActive}
@@ -251,6 +225,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
           hasSubmenu={hasSubmenu}
           submenuVerticalPosition={submenuVerticalPosition}
           isSubmenuAboveMenuItem={isSubmenuAboveMenuItem}
+          ref={submenuRef}
         >
           {!props.isMenuOpen && (
             <div
