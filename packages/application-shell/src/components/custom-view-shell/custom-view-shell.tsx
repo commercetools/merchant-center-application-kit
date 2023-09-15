@@ -44,6 +44,7 @@ type THostEventData = {
 
 type TCustomViewShellProps = {
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
+  disableDevHost?: boolean;
   children: ReactNode;
 };
 
@@ -157,7 +158,7 @@ function CustomViewShell(props: TCustomViewShellProps) {
 }
 
 const CustomViewShellWrapper = (props: TCustomViewShellProps) => {
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === 'development' && !props.disableDevHost) {
     return (
       <Suspense fallback={<ApplicationLoader />}>
         <CustomViewDevHost applicationMessages={props.applicationMessages}>
