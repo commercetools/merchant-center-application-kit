@@ -33,7 +33,7 @@ const CustomViewWithPermissionCheck = (
     demandedPermissions: [permissionKeys.View],
   });
 
-  if (true) {
+  if (canView) {
     return <>{props.children}</>;
   }
   return <PageUnauthorized />;
