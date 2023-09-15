@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import {
   CustomViewLoader,
   useModalState,
-} from '@commercetools-frontend/application-components';
+} from '@commercetools-frontend/application-shell';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';

@@ -2,7 +2,7 @@ import { defineMessages } from 'react-intl';
 
 const messages = defineMessages({
   loadError: {
-    id: 'Components.CustomViewLoader.error.load',
+    id: 'CustomViewLoader.error.load',
     defaultMessage:
       'We could not load the Custom View. Please contact your administrator to check its configuration.',
   },
