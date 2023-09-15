@@ -1350,6 +1350,26 @@
             "deprecationReason": null
           },
           {
+            "name": "perMethodExternalTaxRate",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "MethodExternalTaxRateDraft",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": "[]",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "productId",
             "description": null,
             "type": {
@@ -3932,6 +3952,26 @@
             "deprecationReason": null
           },
           {
+            "name": "perMethodExternalTaxRate",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "MethodExternalTaxRateDraft",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": "[]",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "productId",
             "description": null,
             "type": {
@@ -6180,7 +6220,7 @@
       {
         "kind": "OBJECT",
         "name": "ApprovalFlow",
-        "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": [
           {
             "name": "approvals",
@@ -6267,6 +6307,54 @@
             "deprecationReason": null
           },
           {
+            "name": "currentTierPendingApprovers",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "RuleApprover",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "eligibleApprovers",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "RuleApprover",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
             "description": null,
             "args": [],
@@ -6333,6 +6421,30 @@
                 "kind": "OBJECT",
                 "name": "Reference",
                 "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pendingApprovers",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "RuleApprover",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,
@@ -6421,7 +6533,7 @@
       {
         "kind": "OBJECT",
         "name": "ApprovalFlowApproval",
-        "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": [
           {
             "name": "approvedAt",
@@ -6464,7 +6576,7 @@
       {
         "kind": "OBJECT",
         "name": "ApprovalFlowApproved",
-        "description": null,
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": [
           {
             "name": "associate",
@@ -6545,7 +6657,7 @@
       {
         "kind": "OBJECT",
         "name": "ApprovalFlowCompleted",
-        "description": null,
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": [
           {
             "name": "order",
@@ -6618,7 +6730,7 @@
       {
         "kind": "OBJECT",
         "name": "ApprovalFlowCreated",
-        "description": null,
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": [
           {
             "name": "approvalFlow",
@@ -6766,7 +6878,7 @@
       {
         "kind": "OBJECT",
         "name": "ApprovalFlowRejected",
-        "description": null,
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": [
           {
             "name": "associate",
@@ -6859,7 +6971,7 @@
       {
         "kind": "OBJECT",
         "name": "ApprovalFlowRejection",
-        "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": [
           {
             "name": "reason",
@@ -6914,12 +7026,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "ApprovalFlowUpdateAction",
-        "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": null,
         "inputFields": [
           {
             "name": "approve",
-            "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ApproveApprovalFlow",
@@ -6931,7 +7043,7 @@
           },
           {
             "name": "reject",
-            "description": null,
+            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "RejectApprovalFlow",
@@ -6949,7 +7061,7 @@
       {
         "kind": "OBJECT",
         "name": "ApprovalRule",
-        "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": [
           {
             "name": "approvers",
@@ -7196,9 +7308,180 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "ApprovalRuleApproversSet",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "fields": [
+          {
+            "name": "approvers",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ApproverHierarchy",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "oldApprovers",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ApproverHierarchy",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ApprovalRuleCreated",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "fields": [
+          {
+            "name": "approvalRule",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ApprovalRule",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ApprovalRuleDescriptionSet",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "fields": [
+          {
+            "name": "description",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "oldDescription",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "INPUT_OBJECT",
         "name": "ApprovalRuleDraft",
-        "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": null,
         "inputFields": [
           {
@@ -7320,6 +7603,193 @@
       },
       {
         "kind": "OBJECT",
+        "name": "ApprovalRuleKeySet",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "fields": [
+          {
+            "name": "key",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "oldKey",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ApprovalRuleNameSet",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "oldName",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ApprovalRulePredicateSet",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "fields": [
+          {
+            "name": "oldPredicate",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "predicate",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "ApprovalRuleQueryResult",
         "description": null,
         "fields": [
@@ -7418,9 +7888,90 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "ApprovalRuleRequestersSet",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "fields": [
+          {
+            "name": "oldRequesters",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "RuleRequester",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "requesters",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "RuleRequester",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "ENUM",
         "name": "ApprovalRuleStatus",
-        "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -7441,14 +7992,79 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "ApprovalRuleStatusSet",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "fields": [
+          {
+            "name": "oldStatus",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "ApprovalRuleStatus",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "ApprovalRuleStatus",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "INPUT_OBJECT",
         "name": "ApprovalRuleUpdateAction",
-        "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": null,
         "inputFields": [
           {
             "name": "setApprovers",
-            "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "SetApprovalRuleApprovers",
@@ -7460,7 +8076,7 @@
           },
           {
             "name": "setDescription",
-            "description": null,
+            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "SetApprovalRuleDescription",
@@ -7472,7 +8088,7 @@
           },
           {
             "name": "setKey",
-            "description": null,
+            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "SetApprovalRuleKey",
@@ -7484,7 +8100,7 @@
           },
           {
             "name": "setName",
-            "description": null,
+            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "SetApprovalRuleName",
@@ -7496,7 +8112,7 @@
           },
           {
             "name": "setPredicate",
-            "description": null,
+            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "SetApprovalRulePredicate",
@@ -7508,7 +8124,7 @@
           },
           {
             "name": "setRequesters",
-            "description": null,
+            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "SetApprovalRuleRequesters",
@@ -7520,7 +8136,7 @@
           },
           {
             "name": "setStatus",
-            "description": null,
+            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "SetApprovalRuleStatus",
@@ -7538,7 +8154,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "ApproveApprovalFlow",
-        "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": null,
         "inputFields": [
           {
@@ -7561,7 +8177,7 @@
       {
         "kind": "OBJECT",
         "name": "ApproverConjunction",
-        "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": [
           {
             "name": "and",
@@ -7596,7 +8212,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "ApproverConjunctionDraft",
-        "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": null,
         "inputFields": [
           {
@@ -7631,7 +8247,7 @@
       {
         "kind": "OBJECT",
         "name": "ApproverDisjunction",
-        "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": [
           {
             "name": "or",
@@ -7666,7 +8282,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "ApproverDisjunctionDraft",
-        "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": null,
         "inputFields": [
           {
@@ -7701,7 +8317,7 @@
       {
         "kind": "OBJECT",
         "name": "ApproverHierarchy",
-        "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": [
           {
             "name": "tiers",
@@ -7736,7 +8352,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "ApproverHierarchyDraft",
-        "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": null,
         "inputFields": [
           {
@@ -7771,7 +8387,7 @@
       {
         "kind": "OBJECT",
         "name": "AsAssociate",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": [
           {
             "name": "approvalFlow",
@@ -7987,7 +8603,7 @@
           },
           {
             "name": "businessUnit",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [
               {
                 "name": "id",
@@ -8024,7 +8640,7 @@
           },
           {
             "name": "businessUnits",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [
               {
                 "name": "limit",
@@ -8097,7 +8713,7 @@
           },
           {
             "name": "cart",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [
               {
                 "name": "id",
@@ -8126,7 +8742,7 @@
           },
           {
             "name": "carts",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [
               {
                 "name": "limit",
@@ -8199,7 +8815,7 @@
           },
           {
             "name": "order",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [
               {
                 "name": "id",
@@ -8236,7 +8852,7 @@
           },
           {
             "name": "orders",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [
               {
                 "name": "limit",
@@ -8309,7 +8925,7 @@
           },
           {
             "name": "quote",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [
               {
                 "name": "id",
@@ -8346,7 +8962,7 @@
           },
           {
             "name": "quoteRequest",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [
               {
                 "name": "id",
@@ -8383,7 +8999,7 @@
           },
           {
             "name": "quoteRequests",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [
               {
                 "name": "limit",
@@ -8456,7 +9072,7 @@
           },
           {
             "name": "quotes",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [
               {
                 "name": "limit",
@@ -8557,7 +9173,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "AsAssociateArgument",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
@@ -9176,11 +9792,11 @@
       {
         "kind": "OBJECT",
         "name": "Associate",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": [
           {
             "name": "associateRoleAssignments",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -9235,12 +9851,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "AssociateDraft",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "associateRoleAssignments",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "type": {
               "kind": "LIST",
               "name": null,
@@ -9282,7 +9898,7 @@
       {
         "kind": "ENUM",
         "name": "AssociateInheritanceMode",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -9305,7 +9921,7 @@
       {
         "kind": "OBJECT",
         "name": "AssociateRole",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": [
           {
             "name": "buyerAssignable",
@@ -9490,11 +10106,11 @@
       {
         "kind": "OBJECT",
         "name": "AssociateRoleAssignment",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": [
           {
             "name": "associateRole",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -9510,7 +10126,7 @@
           },
           {
             "name": "associateRoleRef",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -9522,7 +10138,7 @@
           },
           {
             "name": "inheritance",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -9545,7 +10161,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "AssociateRoleAssignmentDraft",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
@@ -9566,7 +10182,7 @@
           },
           {
             "name": "inheritance",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "type": {
               "kind": "ENUM",
               "name": "AssociateInheritanceMode",
@@ -9715,7 +10331,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "AssociateRoleDraft",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
@@ -10097,7 +10713,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "AssociateRoleUpdateAction",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
@@ -12475,7 +13091,7 @@
       {
         "kind": "OBJECT",
         "name": "BusinessUnit",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": [
           {
             "name": "addresses",
@@ -12527,7 +13143,7 @@
           },
           {
             "name": "associateMode",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -12731,7 +13347,7 @@
           },
           {
             "name": "inheritedAssociates",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [],
             "type": {
               "kind": "LIST",
@@ -13141,6 +13757,303 @@
       },
       {
         "kind": "OBJECT",
+        "name": "BusinessUnitAddressCustomFieldAdded",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Json",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BusinessUnitAddressCustomFieldChanged",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "oldValue",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Json",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Json",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BusinessUnitAddressCustomFieldRemoved",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BusinessUnitAddressCustomTypeRemoved",
+        "description": null,
+        "fields": [
+          {
+            "name": "oldTypeId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BusinessUnitAddressCustomTypeSet",
+        "description": null,
+        "fields": [
+          {
+            "name": "customFields",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "CustomFieldsType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "oldTypeId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "BusinessUnitAddressRemoved",
         "description": null,
         "fields": [
@@ -13289,7 +14202,7 @@
       {
         "kind": "ENUM",
         "name": "BusinessUnitAssociateMode",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -13744,6 +14657,303 @@
       },
       {
         "kind": "OBJECT",
+        "name": "BusinessUnitCustomFieldAdded",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Json",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BusinessUnitCustomFieldChanged",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "oldValue",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Json",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Json",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BusinessUnitCustomFieldRemoved",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BusinessUnitCustomTypeRemoved",
+        "description": null,
+        "fields": [
+          {
+            "name": "oldTypeId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BusinessUnitCustomTypeSet",
+        "description": null,
+        "fields": [
+          {
+            "name": "customFields",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "CustomFieldsType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "oldTypeId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "BusinessUnitDefaultBillingAddressSet",
         "description": null,
         "fields": [
@@ -13868,7 +15078,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "BusinessUnitDraft",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
@@ -13893,7 +15103,7 @@
           },
           {
             "name": "associateMode",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "type": {
               "kind": "ENUM",
               "name": "BusinessUnitAssociateMode",
@@ -14438,7 +15648,7 @@
       {
         "kind": "ENUM",
         "name": "BusinessUnitStatus",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -14866,7 +16076,7 @@
       {
         "kind": "ENUM",
         "name": "BusinessUnitType",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -14889,7 +16099,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "BusinessUnitUpdateAction",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
@@ -14978,7 +16188,7 @@
           },
           {
             "name": "changeAssociateMode",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ChangeBusinessUnitAssociateMode",
@@ -15493,6 +16703,18 @@
                   }
                 }
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "discountOnTotalPrice",
+            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "DiscountOnTotalPrice",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -17173,6 +18395,11 @@
         "possibleTypes": [
           {
             "kind": "OBJECT",
+            "name": "CartDiscountTotalPriceTarget",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "CustomLineItemsTarget",
             "ofType": null
           },
@@ -17258,6 +18485,74 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ShippingTargetInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "totalPrice",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "CartDiscountTotalPriceTargetInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CartDiscountTotalPriceTarget",
+        "description": null,
+        "fields": [
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "CartDiscountTarget",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "CartDiscountTotalPriceTargetInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "dummy",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null,
@@ -18167,7 +19462,7 @@
           },
           {
             "name": "Quote",
-            "description": "The cart was created by our platform and belongs to a Quote. BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": "The cart was created by our platform and belongs to a Quote.",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -21893,7 +23188,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "ChangeBusinessUnitAssociateMode",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
@@ -31904,6 +33199,303 @@
       },
       {
         "kind": "OBJECT",
+        "name": "CustomerAddressCustomFieldAdded",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Json",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CustomerAddressCustomFieldChanged",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "previousValue",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Json",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Json",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CustomerAddressCustomFieldRemoved",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CustomerAddressCustomTypeRemoved",
+        "description": null,
+        "fields": [
+          {
+            "name": "previousTypeId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CustomerAddressCustomTypeSet",
+        "description": null,
+        "fields": [
+          {
+            "name": "customFields",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "CustomFieldsType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "previousTypeId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "CustomerAddressRemoved",
         "description": null,
         "fields": [
@@ -32013,6 +33605,303 @@
                 "name": "Customer",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CustomerCustomFieldAdded",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Json",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CustomerCustomFieldChanged",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "previousValue",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Json",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Json",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CustomerCustomFieldRemoved",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CustomerCustomTypeRemoved",
+        "description": null,
+        "fields": [
+          {
+            "name": "previousTypeId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CustomerCustomTypeSet",
+        "description": null,
+        "fields": [
+          {
+            "name": "customFields",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "CustomFieldsType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "previousTypeId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -32612,6 +34501,303 @@
           {
             "kind": "INTERFACE",
             "name": "Versioned",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CustomerGroupCustomFieldAdded",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Json",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CustomerGroupCustomFieldChanged",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "oldValue",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Json",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Json",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CustomerGroupCustomFieldRemoved",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CustomerGroupCustomTypeRemoved",
+        "description": null,
+        "fields": [
+          {
+            "name": "oldTypeId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CustomerGroupCustomTypeSet",
+        "description": null,
+        "fields": [
+          {
+            "name": "customFields",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "CustomFieldsType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "oldTypeId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
             "ofType": null
           }
         ],
@@ -37448,6 +39634,81 @@
       },
       {
         "kind": "OBJECT",
+        "name": "DiscountOnTotalPrice",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "fields": [
+          {
+            "name": "discountedAmount",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INTERFACE",
+                "name": "BaseMoney",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "discountedGrossAmount",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "INTERFACE",
+              "name": "BaseMoney",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "discountedNetAmount",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "INTERFACE",
+              "name": "BaseMoney",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "includedDiscounts",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "DiscountedTotalPricePortion",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "DiscountedLineItemPortion",
         "description": null,
         "fields": [
@@ -37818,6 +40079,61 @@
           },
           {
             "name": "value",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INTERFACE",
+                "name": "BaseMoney",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "DiscountedTotalPricePortion",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "fields": [
+          {
+            "name": "discount",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CartDiscount",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "discountRef",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Reference",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "discountedAmount",
             "description": null,
             "args": [],
             "type": {
@@ -43492,7 +45808,7 @@
       {
         "kind": "OBJECT",
         "name": "InheritedAssociate",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": [
           {
             "name": "associateRoleAssignments",
@@ -43551,11 +45867,11 @@
       {
         "kind": "OBJECT",
         "name": "InheritedAssociateRoleAssignment",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": [
           {
             "name": "associateRole",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -43571,7 +45887,7 @@
           },
           {
             "name": "associateRoleRef",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -43587,7 +45903,7 @@
           },
           {
             "name": "source",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -43603,7 +45919,7 @@
           },
           {
             "name": "sourceRef",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -43626,7 +45942,7 @@
       {
         "kind": "OBJECT",
         "name": "InheritedStore",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": [
           {
             "name": "store",
@@ -46080,6 +48396,30 @@
               "kind": "SCALAR",
               "name": "String",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "perMethodExternalTaxRate",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "MethodExternalTaxRateDraftOutput",
+                    "ofType": null
+                  }
+                }
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -49421,6 +51761,46 @@
           },
           {
             "kind": "OBJECT",
+            "name": "ApprovalRuleApproversSet",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ApprovalRuleCreated",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ApprovalRuleDescriptionSet",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ApprovalRuleKeySet",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ApprovalRuleNameSet",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ApprovalRulePredicateSet",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ApprovalRuleRequestersSet",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ApprovalRuleStatusSet",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "AssociateRoleBuyerAssignableChanged",
             "ofType": null
           },
@@ -49462,6 +51842,31 @@
           {
             "kind": "OBJECT",
             "name": "BusinessUnitAddressChanged",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "BusinessUnitAddressCustomFieldAdded",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "BusinessUnitAddressCustomFieldChanged",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "BusinessUnitAddressCustomFieldRemoved",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "BusinessUnitAddressCustomTypeRemoved",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "BusinessUnitAddressCustomTypeSet",
             "ofType": null
           },
           {
@@ -49512,6 +51917,31 @@
           {
             "kind": "OBJECT",
             "name": "BusinessUnitCreated",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "BusinessUnitCustomFieldAdded",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "BusinessUnitCustomFieldChanged",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "BusinessUnitCustomFieldRemoved",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "BusinessUnitCustomTypeRemoved",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "BusinessUnitCustomTypeSet",
             "ofType": null
           },
           {
@@ -49606,6 +52036,31 @@
           },
           {
             "kind": "OBJECT",
+            "name": "CustomerAddressCustomFieldAdded",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "CustomerAddressCustomFieldChanged",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "CustomerAddressCustomFieldRemoved",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "CustomerAddressCustomTypeRemoved",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "CustomerAddressCustomTypeSet",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "CustomerAddressRemoved",
             "ofType": null
           },
@@ -49617,6 +52072,31 @@
           {
             "kind": "OBJECT",
             "name": "CustomerCreated",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "CustomerCustomFieldAdded",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "CustomerCustomFieldChanged",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "CustomerCustomFieldRemoved",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "CustomerCustomTypeRemoved",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "CustomerCustomTypeSet",
             "ofType": null
           },
           {
@@ -49647,6 +52127,31 @@
           {
             "kind": "OBJECT",
             "name": "CustomerFirstNameSet",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "CustomerGroupCustomFieldAdded",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "CustomerGroupCustomFieldChanged",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "CustomerGroupCustomFieldRemoved",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "CustomerGroupCustomTypeRemoved",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "CustomerGroupCustomTypeSet",
             "ofType": null
           },
           {
@@ -50086,6 +52591,26 @@
           },
           {
             "kind": "OBJECT",
+            "name": "QuoteCreated",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "QuoteCustomerChanged",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "QuoteDeleted",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "QuoteRenegotiationRequested",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "QuoteRequestCreated",
             "ofType": null
           },
@@ -50111,6 +52636,16 @@
           },
           {
             "kind": "OBJECT",
+            "name": "QuoteStateChanged",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "QuoteStateTransition",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "ReturnInfoAdded",
             "ofType": null
           },
@@ -50132,6 +52667,36 @@
           {
             "kind": "OBJECT",
             "name": "ReviewStateTransition",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "StagedQuoteCreated",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "StagedQuoteDeleted",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "StagedQuoteSellerCommentSet",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "StagedQuoteStateChanged",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "StagedQuoteStateTransition",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "StagedQuoteValidToSet",
             "ofType": null
           },
           {
@@ -50532,6 +53097,84 @@
           }
         ],
         "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "MethodExternalTaxRateDraft",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "shippingMethodKey",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "taxRate",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ExternalTaxRateDraft",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "MethodExternalTaxRateDraftOutput",
+        "description": null,
+        "fields": [
+          {
+            "name": "shippingMethodKey",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "taxRate",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ExternalTaxRateDraftOutput",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -51502,11 +54145,11 @@
           },
           {
             "name": "createApprovalRule",
-            "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
             "args": [
               {
                 "name": "asAssociate",
-                "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+                "description": "Create/modify entity as an associate in business-unit.",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -51547,7 +54190,7 @@
           },
           {
             "name": "createAssociateRole",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [
               {
                 "name": "draft",
@@ -51609,7 +54252,7 @@
             "args": [
               {
                 "name": "asAssociate",
-                "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+                "description": "Create/modify entity as an associate in business-unit.",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "AsAssociateArgument",
@@ -51650,7 +54293,7 @@
             "args": [
               {
                 "name": "asAssociate",
-                "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+                "description": "Create/modify entity as an associate in business-unit.",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "AsAssociateArgument",
@@ -52215,7 +54858,7 @@
             "args": [
               {
                 "name": "asAssociate",
-                "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+                "description": "Create/modify entity as an associate in business-unit.",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "AsAssociateArgument",
@@ -52268,7 +54911,7 @@
             "args": [
               {
                 "name": "asAssociate",
-                "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+                "description": "Create/modify entity as an associate in business-unit.",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "AsAssociateArgument",
@@ -52483,7 +55126,7 @@
             "args": [
               {
                 "name": "asAssociate",
-                "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+                "description": "Create/modify entity as an associate in business-unit.",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "AsAssociateArgument",
@@ -53568,7 +56211,7 @@
           },
           {
             "name": "deleteAssociateRole",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [
               {
                 "name": "id",
@@ -53755,7 +56398,7 @@
             "args": [
               {
                 "name": "asAssociate",
-                "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+                "description": "Create/modify entity as an associate in business-unit.",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "AsAssociateArgument",
@@ -55778,7 +58421,7 @@
             "args": [
               {
                 "name": "asAssociate",
-                "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+                "description": "Create/modify entity as an associate in business-unit.",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "AsAssociateArgument",
@@ -55901,7 +58544,7 @@
           },
           {
             "name": "updateApprovalFlow",
-            "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
             "args": [
               {
                 "name": "actions",
@@ -55929,7 +58572,7 @@
               },
               {
                 "name": "asAssociate",
-                "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+                "description": "Create/modify entity as an associate in business-unit.",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -55986,7 +58629,7 @@
           },
           {
             "name": "updateApprovalRule",
-            "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
             "args": [
               {
                 "name": "actions",
@@ -56014,7 +58657,7 @@
               },
               {
                 "name": "asAssociate",
-                "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+                "description": "Create/modify entity as an associate in business-unit.",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -56079,7 +58722,7 @@
           },
           {
             "name": "updateAssociateRole",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [
               {
                 "name": "actions",
@@ -56261,7 +58904,7 @@
               },
               {
                 "name": "asAssociate",
-                "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+                "description": "Create/modify entity as an associate in business-unit.",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "AsAssociateArgument",
@@ -56350,7 +58993,7 @@
               },
               {
                 "name": "asAssociate",
-                "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+                "description": "Create/modify entity as an associate in business-unit.",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "AsAssociateArgument",
@@ -57610,7 +60253,7 @@
               },
               {
                 "name": "asAssociate",
-                "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+                "description": "Create/modify entity as an associate in business-unit.",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "AsAssociateArgument",
@@ -58238,7 +60881,7 @@
               },
               {
                 "name": "asAssociate",
-                "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+                "description": "Create/modify entity as an associate in business-unit.",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "AsAssociateArgument",
@@ -58327,7 +60970,7 @@
               },
               {
                 "name": "asAssociate",
-                "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+                "description": "Create/modify entity as an associate in business-unit.",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "AsAssociateArgument",
@@ -61338,12 +63981,6 @@
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "Failed",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "possibleTypes": null
@@ -62409,6 +65046,18 @@
                   }
                 }
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "discountOnTotalPrice",
+            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "DiscountOnTotalPrice",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -70662,7 +73311,7 @@
       {
         "kind": "ENUM",
         "name": "Permission",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -70687,7 +73336,7 @@
           },
           {
             "name": "CreateApprovalRules",
-            "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -70789,13 +73438,13 @@
           },
           {
             "name": "UpdateApprovalFlows",
-            "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "UpdateApprovalRules",
-            "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -83757,7 +86406,7 @@
           },
           {
             "name": "asAssociate",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": "This field gives access to the resources (such as carts) as an associate of a given business unit.",
             "args": [
               {
                 "name": "associateId",
@@ -83806,7 +86455,7 @@
           },
           {
             "name": "associateRole",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [
               {
                 "name": "id",
@@ -83843,7 +86492,7 @@
           },
           {
             "name": "associateRoles",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [
               {
                 "name": "limit",
@@ -84026,7 +86675,7 @@
           },
           {
             "name": "businessUnit",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [
               {
                 "name": "id",
@@ -84063,7 +86712,7 @@
           },
           {
             "name": "businessUnits",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [
               {
                 "name": "limit",
@@ -89299,6 +91948,177 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "QuoteCreated",
+        "description": null,
+        "fields": [
+          {
+            "name": "quote",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Quote",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "QuoteCustomerChanged",
+        "description": null,
+        "fields": [
+          {
+            "name": "customer",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Customer",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerRef",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Reference",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "previousCustomer",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Customer",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "previousCustomerRef",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Reference",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "QuoteDeleted",
+        "description": null,
+        "fields": [
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "INPUT_OBJECT",
         "name": "QuoteDraft",
         "description": null,
@@ -89609,6 +92429,51 @@
       },
       {
         "kind": "OBJECT",
+        "name": "QuoteRenegotiationRequested",
+        "description": null,
+        "fields": [
+          {
+            "name": "buyerComment",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "QuoteRequest",
         "description": null,
         "fields": [
@@ -89643,6 +92508,18 @@
             "type": {
               "kind": "OBJECT",
               "name": "KeyReference",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "cartRef",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Reference",
               "ofType": null
             },
             "isDeprecated": false,
@@ -90972,12 +93849,6 @@
             "deprecationReason": null
           },
           {
-            "name": "Failed",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "Pending",
             "description": null,
             "isDeprecated": false,
@@ -90996,6 +93867,172 @@
             "deprecationReason": null
           }
         ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "QuoteStateChanged",
+        "description": null,
+        "fields": [
+          {
+            "name": "oldQuoteState",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "QuoteState",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "quoteState",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "QuoteState",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "QuoteStateTransition",
+        "description": null,
+        "fields": [
+          {
+            "name": "force",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "oldState",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "State",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "oldStateRef",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Reference",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "state",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "State",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "stateRef",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Reference",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -92721,7 +95758,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "RejectApprovalFlow",
-        "description": null,
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": null,
         "inputFields": [
           {
@@ -97219,7 +100256,7 @@
       {
         "kind": "OBJECT",
         "name": "RuleApprover",
-        "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": [
           {
             "name": "associateRole",
@@ -97262,7 +100299,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "RuleApproverDraft",
-        "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": null,
         "inputFields": [
           {
@@ -97289,7 +100326,7 @@
       {
         "kind": "OBJECT",
         "name": "RuleRequester",
-        "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": [
           {
             "name": "associateRole",
@@ -97332,7 +100369,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "RuleRequesterDraft",
-        "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": null,
         "inputFields": [
           {
@@ -98885,7 +101922,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "SetApprovalRuleApprovers",
-        "description": "CLOSED BETA: This feature is subject to change and should not be used in production. https://docs.commercetools.com/api/contract#closed-beta",
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": null,
         "inputFields": [
           {
@@ -98912,7 +101949,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "SetApprovalRuleDescription",
-        "description": null,
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": null,
         "inputFields": [
           {
@@ -98935,7 +101972,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "SetApprovalRuleKey",
-        "description": null,
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": null,
         "inputFields": [
           {
@@ -98958,7 +101995,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "SetApprovalRuleName",
-        "description": null,
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": null,
         "inputFields": [
           {
@@ -98985,7 +102022,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "SetApprovalRulePredicate",
-        "description": null,
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": null,
         "inputFields": [
           {
@@ -99012,7 +102049,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "SetApprovalRuleRequesters",
-        "description": null,
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": null,
         "inputFields": [
           {
@@ -99047,7 +102084,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "SetApprovalRuleStatus",
-        "description": null,
+        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
         "fields": null,
         "inputFields": [
           {
@@ -99756,7 +102793,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "SetBusinessUnitStoreMode",
-        "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
@@ -125501,6 +128538,88 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "StagedQuoteCreated",
+        "description": null,
+        "fields": [
+          {
+            "name": "stagedQuote",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "StagedQuote",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "StagedQuoteDeleted",
+        "description": null,
+        "fields": [
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "INPUT_OBJECT",
         "name": "StagedQuoteDraft",
         "description": null,
@@ -125683,6 +128802,51 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "StagedQuoteSellerCommentSet",
+        "description": null,
+        "fields": [
+          {
+            "name": "sellerComment",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "ENUM",
         "name": "StagedQuoteState",
         "description": null,
@@ -125709,6 +128873,172 @@
             "deprecationReason": null
           }
         ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "StagedQuoteStateChanged",
+        "description": null,
+        "fields": [
+          {
+            "name": "oldStagedQuoteState",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "StagedQuoteState",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "stagedQuoteState",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "StagedQuoteState",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "StagedQuoteStateTransition",
+        "description": null,
+        "fields": [
+          {
+            "name": "force",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "oldState",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "State",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "oldStateRef",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Reference",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "state",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "State",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "stateRef",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Reference",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -125791,6 +129121,51 @@
           }
         ],
         "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "StagedQuoteValidToSet",
+        "description": null,
+        "fields": [
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "validTo",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MessagePayload",
+            "ofType": null
+          }
+        ],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -126654,6 +130029,18 @@
         "name": "StandalonePriceStagedChangesRemoved",
         "description": null,
         "fields": [
+          {
+            "name": "stagedChanges",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "StagedStandalonePrice",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "type",
             "description": null,
