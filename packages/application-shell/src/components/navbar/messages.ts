@@ -5,8 +5,4 @@ export default defineMessages({
     id: 'NavBar.MCSupport.title',
     defaultMessage: 'Support',
   },
-  navBarHeader: {
-    id: 'NavBar.navBarHeader',
-    defaultMessage: 'Merchant Center',
-  },
 });
