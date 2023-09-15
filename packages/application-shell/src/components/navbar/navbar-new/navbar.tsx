@@ -1,5 +1,6 @@
 import {
   type MouseEventHandler,
+  useCallback,
   useEffect,
   useLayoutEffect,
   useMemo,
@@ -111,29 +112,32 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const menuItemTop = menuItemBoundingClientRect?.top || 0;
   const menuItemBottom = menuItemBoundingClientRect?.bottom || 0;
 
-  const callbackFn: IntersectionObserverCallback = (entries) => {
-    const [entry] = entries;
-    const doesSubmenuFitViewportBelowMenuItem =
-      entry.boundingClientRect.height +
-        (props.isMenuOpen ? menuItemTop : menuItemBottom) >
-      window.innerHeight;
-    // if the submenu does not fit at the bottom of the viewport (below the menu item)
-    if (doesSubmenuFitViewportBelowMenuItem) {
-      setIsSubmenuAboveMenuItem(true);
-      setSubmenuVerticalPosition(
-        window.innerHeight - (props.isMenuOpen ? menuItemBottom : menuItemTop)
-      );
-      // show the submenu above the menu item
-    } else {
-      setIsSubmenuAboveMenuItem(false);
-      setSubmenuVerticalPosition(
-        props.isMenuOpen ? menuItemTop : menuItemBottom
-      );
-    }
-  };
+  const callbackFn: IntersectionObserverCallback = useCallback(
+    (entries) => {
+      const [entry] = entries;
+      const doesSubmenuFitWithinViewportBelowMenuItem =
+        entry.boundingClientRect.height +
+          (props.isMenuOpen ? menuItemTop : menuItemBottom) >
+        window.innerHeight;
+      // if the submenu does not fit at the bottom of the viewport (below the menu item)
+      if (doesSubmenuFitWithinViewportBelowMenuItem) {
+        setIsSubmenuAboveMenuItem(true);
+        setSubmenuVerticalPosition(
+          window.innerHeight - (props.isMenuOpen ? menuItemBottom : menuItemTop)
+        );
+        // show the submenu above the menu item
+      } else {
+        setIsSubmenuAboveMenuItem(false);
+        setSubmenuVerticalPosition(
+          props.isMenuOpen ? menuItemTop : menuItemBottom
+        );
+      }
+    },
+    [menuItemBottom, menuItemTop, props.isMenuOpen]
+  );
   useLayoutEffect(() => {
     const observer = new IntersectionObserver(callbackFn, {
-      rootMargin: '-100% 0px 0px 0px',
+      rootMargin: '-100% 0px 0px 0px', // we want to observe if the submenu crosses the bottom line of the viewport - therefore we set the root element top margin to -100% of the viewport height
     });
     const currentSubmenuRef = submenuRef.current;
 
@@ -145,7 +149,13 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         observer.unobserve(currentSubmenuRef);
       }
     };
-  });
+  }, [
+    menuItemBottom,
+    menuItemTop,
+    props.isMenuOpen,
+    props.handleToggleItem,
+    callbackFn,
+  ]);
 
   const isMainMenuRouteActive = Boolean(
     matchPath(props.location.pathname, {
