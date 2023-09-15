@@ -30,7 +30,7 @@
   justify-content: flex-start;
   flex-direction: row;
   align-items: center;
-  padding: var(--spacing-30) var(--spacing-50);
+  padding: var(--spacing-30);
 }
 
 .navigation-header .icon-container {
@@ -38,6 +38,7 @@
   display: flex;
   justify-content: center;
   align-self: flex-start;
+  padding-left: var(--spacing-25);
 }
 
 .navigation-header .title {

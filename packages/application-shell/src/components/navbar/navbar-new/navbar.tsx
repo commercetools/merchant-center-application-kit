@@ -348,9 +348,7 @@ const NavBar = (props: TNavbarProps) => {
           </div>
         </div>
         {isMenuOpen ? (
-          <div className={styles['title']}>
-            <FormattedMessage {...messages.navBarHeader} />
-          </div>
+          <div className={styles['title']}>Merchant Center</div>
         ) : null}
       </div>
       <MenuGroup id="main" level={1}>
