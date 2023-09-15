@@ -30,9 +30,14 @@ const getMcUrlLink = (
 async function run(options: TCliCommandConfigSyncOptions) {
   const applicationConfig = processConfig();
   const localCustomAppData = applicationConfig.data as CustomApplicationData;
-  const { mcApiUrl, applicationId, entryPointUriPath } = applicationConfig.env;
+  const { mcApiUrl, applicationIdentifier, customViewId } =
+    applicationConfig.env;
 
-  const applicationIdentifier = `${applicationId}:${entryPointUriPath}`;
+  if (customViewId) {
+    throw new Error(
+      `Syncing the configuration for Custom Views is not supported at the moment.`
+    );
+  }
 
   console.log(`Using Merchant Center environment "${chalk.green(mcApiUrl)}".`);
   console.log();

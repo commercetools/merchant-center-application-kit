@@ -8,13 +8,7 @@ const credentialsStorage = new CredentialsStorage();
 
 async function run() {
   const applicationConfig = processConfig();
-  const { mcApiUrl, applicationId, entryPointUriPath } = applicationConfig.env;
-
-  if (!applicationId && !entryPointUriPath) {
-    throw new Error(
-      `Missing application identifier and entry point URI path. Make sure you have a Custom Application config file.`
-    );
-  }
+  const { mcApiUrl } = applicationConfig.env;
 
   console.log(`Using Merchant Center environment "${chalk.green(mcApiUrl)}".`);
   console.log();
@@ -41,11 +35,7 @@ async function run() {
     throw new Error(`Missing email or password values. Aborting.`);
   }
 
-  const credentials = await getAuthToken(
-    mcApiUrl,
-    { email, password },
-    { 'x-application-id': `${applicationId}:${entryPointUriPath}` }
-  );
+  const credentials = await getAuthToken(mcApiUrl, { email, password });
   credentialsStorage.setToken(mcApiUrl, credentials);
 
   console.log(chalk.green(`Login successful.\n`));

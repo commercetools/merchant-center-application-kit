@@ -23,6 +23,7 @@ const testCustomViewData: CustomViewData = {
 type TRenderCustomViewParams = {
   locale: string;
   projectKey?: string;
+  customViewHostUrl?: string;
   customViewConfig?: Partial<CustomViewData>;
   children: ReactNode;
 };
@@ -32,7 +33,10 @@ export const renderCustomView = (
 ): RenderResult => {
   return renderApp(
     <CustomViewContextProvider
-      hostUrl="https://mc.ct.com/my-project/products/product-id-1"
+      hostUrl={
+        props.customViewHostUrl ??
+        'https://mc.ct.com/my-project/products/product-id-1'
+      }
       customViewConfig={{ ...testCustomViewData, ...props.customViewConfig }}
     >
       {props.children}
