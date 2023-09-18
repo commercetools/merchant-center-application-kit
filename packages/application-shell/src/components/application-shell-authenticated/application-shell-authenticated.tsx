@@ -318,6 +318,9 @@ export const ApplicationShellAuthenticated = (
                                 <AppBar
                                   user={user}
                                   projectKeyFromUrl={projectKeyFromUrl}
+                                  isNewNavigationEnabled={
+                                    isNewNavigationEnabled
+                                  }
                                 />
                               </header>
 
