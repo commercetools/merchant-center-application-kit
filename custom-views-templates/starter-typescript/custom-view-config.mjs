@@ -6,8 +6,7 @@ const config = {
   cloudIdentifier: 'gcp-eu',
   env: {
     development: {
-      // TODO: This should be populated in the template installation process
-      initialProjectKey: 'almond-40',
+      initialProjectKey: '${env:CTP_INITIAL_PROJECT_KEY}',
     },
     production: {
       customViewId: 'TODO',
