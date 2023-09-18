@@ -1,9 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useModalState } from '@commercetools-frontend/application-components';
-import {
-  CustomViewLoader,
-  TCustomViewSize,
-} from '@commercetools-frontend/application-shell';
+import { CustomViewLoader } from '@commercetools-frontend/application-shell';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
@@ -11,7 +8,7 @@ import { DEMO_CUSTOM_VIEW } from './constants';
 
 function CustomPanelDemo() {
   const { isModalOpen, openModal, closeModal } = useModalState();
-  const [panelSize, setPanelSize] = useState(TCustomViewSize.Small);
+  const [panelSize, setPanelSize] = useState('SMALL');
   const customView = useMemo(
     () => ({
       ...DEMO_CUSTOM_VIEW,
@@ -32,7 +29,7 @@ function CustomPanelDemo() {
             <SecondaryButton
               label="Open large Custom Panel"
               onClick={() => {
-                setPanelSize(TCustomViewSize.Large);
+                setPanelSize('LARGE');
                 openModal();
               }}
             />
@@ -42,7 +39,7 @@ function CustomPanelDemo() {
             <SecondaryButton
               label="Open small Custom Panel"
               onClick={() => {
-                setPanelSize(TCustomViewSize.Small);
+                setPanelSize('SMALL');
                 openModal();
               }}
             />
