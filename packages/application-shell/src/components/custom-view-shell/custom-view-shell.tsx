@@ -3,32 +3,33 @@ import {
   useEffect,
   useRef,
   useState,
+  Suspense,
   type ReactNode,
 } from 'react';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
+import { CustomViewContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import {
   type ApplicationWindow,
   CUSTOM_VIEWS_EVENTS_NAMES,
+  CustomViewData,
 } from '@commercetools-frontend/constants';
 import {
   AsyncLocaleData,
   type TAsyncLocaleDataProps,
 } from '@commercetools-frontend/i18n';
-import type { TCustomView } from '../../types/generated/settings';
 import ApplicationLoader from '../application-loader/application-loader';
 import ApplicationShellProvider from '../application-shell-provider';
 import { getBrowserLocale } from '../application-shell-provider/utils';
 import ConfigureIntlProvider from '../configure-intl-provider';
-import { CustomViewContextProvider } from '../custom-view-context';
+import CustomViewDevHost from '../custom-view-dev-host';
 import CustomViewShellAuthenticated from '../custom-view-shell-authenticated';
 
 declare let window: ApplicationWindow;
 
 type THostContext = {
   hostUrl: string;
-  userLocale: string;
   dataLocale: string;
-  customViewConfig: TCustomView;
+  customViewConfig: CustomViewData;
   projectKey?: string;
 };
 
@@ -42,8 +43,8 @@ type THostEventData = {
 };
 
 type TCustomViewShellProps = {
-  customViewId: string;
-  messages: TAsyncLocaleDataProps['applicationMessages'];
+  applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
+  disableDevHost?: boolean;
   children: ReactNode;
 };
 
@@ -72,10 +73,10 @@ function CustomViewShell(props: TCustomViewShellProps) {
 
   useEffect(() => {
     const bootstrapMessageHandler = (event: MessageEvent) => {
-      console.log('Custom view shell received message', { event });
-
       if (
-        event.origin === window.location.origin &&
+        (event.origin === window.location.origin ||
+          // event.origin is not defined in test environment
+          process.env.NODE_ENV === 'test') &&
         event.data === CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_BOOTSTRAP
       ) {
         iFrameCommunicationPort.current = event.ports[0];
@@ -97,24 +98,41 @@ function CustomViewShell(props: TCustomViewShellProps) {
     };
   }, [hostMessageHandler]);
 
+  useEffect(() => {
+    // Close the channel when the component unmounts
+    return () => {
+      iFrameCommunicationPort.current?.close();
+      iFrameCommunicationPort.current = undefined;
+    };
+  }, []);
+
   if (!hostContext) {
     return <ApplicationLoader showLogo />;
   }
 
+  const hostUrl =
+    process.env.NODE_ENV === 'development'
+      ? window.app.__DEVELOPMENT__?.customViewHostUrl!
+      : hostContext.hostUrl;
+
   return (
     <ApplicationShellProvider
       environment={window.app}
-      applicationMessages={props.messages}
+      applicationMessages={props.applicationMessages}
     >
       {({ isAuthenticated }) => {
         if (isAuthenticated) {
           return (
-            <CustomViewContextProvider config={hostContext.customViewConfig}>
+            <CustomViewContextProvider
+              hostUrl={hostUrl}
+              customViewConfig={hostContext.customViewConfig}
+            >
               <CustomViewShellAuthenticated
                 dataLocale={hostContext.dataLocale}
                 environment={window.app}
-                messages={props.messages}
+                messages={props.applicationMessages}
                 projectKey={hostContext.projectKey}
+                customViewConfig={hostContext.customViewConfig}
               >
                 {props.children}
               </CustomViewShellAuthenticated>
@@ -125,7 +143,7 @@ function CustomViewShell(props: TCustomViewShellProps) {
         return (
           <AsyncLocaleData
             locale={browserLocale}
-            applicationMessages={props.messages}
+            applicationMessages={props.applicationMessages}
           >
             {({ locale, messages }) => (
               <ConfigureIntlProvider locale={locale} messages={messages}>
@@ -139,4 +157,23 @@ function CustomViewShell(props: TCustomViewShellProps) {
   );
 }
 
-export default CustomViewShell;
+const CustomViewShellWrapper = (props: TCustomViewShellProps) => {
+  if (process.env.NODE_ENV === 'development' && !props.disableDevHost) {
+    return (
+      <Suspense fallback={<ApplicationLoader />}>
+        <CustomViewDevHost applicationMessages={props.applicationMessages}>
+          <CustomViewShell applicationMessages={props.applicationMessages}>
+            {props.children}
+          </CustomViewShell>
+        </CustomViewDevHost>
+      </Suspense>
+    );
+  }
+  return (
+    <CustomViewShell applicationMessages={props.applicationMessages}>
+      {props.children}
+    </CustomViewShell>
+  );
+};
+
+export default CustomViewShellWrapper;

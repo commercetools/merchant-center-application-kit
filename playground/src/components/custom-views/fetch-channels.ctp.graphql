@@ -1,11 +1,11 @@
-query FetchChannelsQuery($limit: Int, $offset: Int, $locale: Locale) {
+query FetchChannelsQuery($limit: Int, $offset: Int, $dataLocale: Locale) {
   channels(limit: $limit, offset: $offset) {
     total
     results {
       id
       version
       key
-      name(locale: $locale)
+      name(locale: $dataLocale)
     }
   }
 }

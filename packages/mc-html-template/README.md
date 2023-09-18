@@ -89,7 +89,7 @@ The return value of the `processHeaders` function contains the following ready-t
   "Strict-Transport-Security": "max-age=31536000",
   "X-XSS-Protection": "1; mode=block",
   "X-Content-Type-Options": "nosniff",
-  "X-Frame-Options": "DENY",
+  "X-Frame-Options": "SAMEORIGIN",
   "Content-Security-Policy": "...",
   "Feature-Policies": "..."
 }

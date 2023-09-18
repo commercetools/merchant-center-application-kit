@@ -1,10 +1,14 @@
-import Ajv, { type ErrorObject } from 'ajv';
-import schemaJson from '../schema.json';
+import Ajv, { ValidateFunction, type ErrorObject } from 'ajv';
+import customApplicationSchemaJson from '../custom-application.schema.json';
+import customViewSchemaJson from '../custom-view.schema.json';
 import {
   ENTRY_POINT_URI_PATH_REGEX,
+  LOADED_CONFIG_TYPES,
   PERMISSION_GROUP_NAME_REGEX,
 } from './constants';
-import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
+import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schemas/generated/custom-application.schema';
+import type { JSONSchemaForCustomViewConfigurationFiles } from './schemas/generated/custom-view.schema';
+import type { LoadedConfigType } from './types';
 
 type ErrorAdditionalProperty = ErrorObject<
   'additionalProperty',
@@ -14,8 +18,14 @@ type ErrorEnum = ErrorObject<'enum', { allowedValues: string[] }>;
 
 const ajv = new Ajv({ strict: true, useDefaults: true });
 
-const validate =
-  ajv.compile<JSONSchemaForCustomApplicationConfigurationFiles>(schemaJson);
+const validateCustomApplicationConfig =
+  ajv.compile<JSONSchemaForCustomApplicationConfigurationFiles>(
+    customApplicationSchemaJson
+  );
+const validateCustomViewConfig =
+  ajv.compile<JSONSchemaForCustomApplicationConfigurationFiles>(
+    customViewSchemaJson
+  );
 
 const printErrors = (errors?: ErrorObject[] | null) => {
   if (!errors) {
@@ -42,11 +52,28 @@ const printErrors = (errors?: ErrorObject[] | null) => {
 };
 
 export const validateConfig = (
-  config: JSONSchemaForCustomApplicationConfigurationFiles
+  configType: LoadedConfigType,
+  config:
+    | JSONSchemaForCustomApplicationConfigurationFiles
+    | JSONSchemaForCustomViewConfigurationFiles
 ): void => {
-  const valid = validate(config);
-  if (!valid) {
-    throw new Error(printErrors(validate.errors));
+  let validation: ValidateFunction;
+
+  if (configType === LOADED_CONFIG_TYPES.CUSTOM_APPLICATION) {
+    validation = validateCustomApplicationConfig;
+  } else if (configType === LOADED_CONFIG_TYPES.CUSTOM_VIEW) {
+    validation = validateCustomViewConfig;
+  } else {
+    throw new Error(
+      `Invalid config type "${configType}", expected ${Object.keys(
+        LOADED_CONFIG_TYPES
+      ).toString()}`
+    );
+  }
+
+  const isValid = validation(config);
+  if (!isValid) {
+    throw new Error(printErrors(validation.errors));
   }
 };
 
@@ -75,7 +102,9 @@ export const validateSubmenuLinks = (
 };
 
 export const validateAdditionalOAuthScopes = (
-  config: JSONSchemaForCustomApplicationConfigurationFiles
+  config:
+    | JSONSchemaForCustomApplicationConfigurationFiles
+    | JSONSchemaForCustomViewConfigurationFiles
 ) => {
   const additionalPermissionNames = new Set();
   config.additionalOAuthScopes?.forEach(({ name, view, manage }) => {

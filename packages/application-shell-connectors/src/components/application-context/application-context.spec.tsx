@@ -26,6 +26,7 @@ const createTestEnvironment = (
 ) => ({
   revision: '1',
   applicationId: '__local:avengers',
+  applicationIdentifier: '__local:avengers',
   applicationName: 'my-app',
   entryPointUriPath: 'avengers',
   frontendHost: 'localhost:3001',
@@ -294,6 +295,7 @@ describe('mapEnvironmentToApplicationContextEnvironment', () => {
       ).toEqual({
         revision: expect.any(String),
         applicationId: expect.any(String),
+        applicationIdentifier: expect.any(String),
         applicationName: expect.any(String),
         entryPointUriPath: expect.any(String),
         frontendHost: expect.any(String),
@@ -314,6 +316,7 @@ describe('mapEnvironmentToApplicationContextEnvironment', () => {
       ).toEqual({
         revision: expect.any(String),
         applicationId: expect.any(String),
+        applicationIdentifier: expect.any(String),
         applicationName: expect.any(String),
         entryPointUriPath: expect.any(String),
         frontendHost: expect.any(String),

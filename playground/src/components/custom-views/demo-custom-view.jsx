@@ -4,13 +4,17 @@ import {
   useMcQuery,
 } from '@commercetools-frontend/application-shell';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import {
+  CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
+  GRAPHQL_TARGETS,
+} from '@commercetools-frontend/constants';
 import Constraints from '@commercetools-uikit/constraints';
 import DataTable from '@commercetools-uikit/data-table';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
+import { ContentNotification } from '@commercetools-uikit/notifications';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import { CUSTOM_VIEW_ID } from './custom-panel-demo';
+import { CUSTOM_VIEW_ID, DEMO_CUSTOM_VIEW } from './constants';
 import FetchChannelsQuery from './fetch-channels.ctp.graphql';
 
 const channelsColumns = [
@@ -25,17 +29,14 @@ const channelsColumns = [
 ];
 
 function ChannelsCustomView() {
-  const { projectName, locale } = useApplicationContext((context) => ({
-    projectKey: context.project.key,
-    projectName: context.project.name,
-    locale: context.user.locale,
-  }));
+  const projectName = useApplicationContext((context) => context.project.name);
+  const dataLocale = useApplicationContext((context) => context.dataLocale);
 
   const { data, error, loading } = useMcQuery(FetchChannelsQuery, {
     variables: {
       limit: 50,
       offset: 0,
-      locale,
+      dataLocale,
     },
     context: {
       target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
@@ -45,10 +46,12 @@ function ChannelsCustomView() {
   if (loading) {
     return <LoadingSpinner />;
   }
-
   if (error) {
-    console.error(error);
-    return <h2>Unexpected Error</h2>;
+    return (
+      <ContentNotification type="error">
+        <Text.Body>{error.toString()}</Text.Body>
+      </ContentNotification>
+    );
   }
 
   return (
@@ -58,7 +61,11 @@ function ChannelsCustomView() {
           <i>{projectName}</i> project channels
         </Text.Headline>
 
-        <DataTable columns={channelsColumns} rows={data.channels.results} />
+        <DataTable
+          columns={channelsColumns}
+          rows={data.channels.results}
+          itemRenderer={(item, column) => item[column.key] ?? ''}
+        />
       </Spacings.Stack>
     </Constraints.Horizontal>
   );
@@ -68,7 +75,10 @@ function DemoCustomView() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    window.app.customViewId = `__local:${CUSTOM_VIEW_ID}`;
+    window.app.applicationIdentifier = `__local:${CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH}`;
+    window.app.customViewId = CUSTOM_VIEW_ID;
+    window.app.__DEVELOPMENT__.customViewConfig = DEMO_CUSTOM_VIEW;
+    window.app.__DEVELOPMENT__.customViewHostUrl = window.location.href;
     document.querySelector('.loading-screen').remove();
     setIsLoading(false);
   }, []);
@@ -78,7 +88,7 @@ function DemoCustomView() {
   }
 
   return (
-    <CustomViewShell customViewId={CUSTOM_VIEW_ID} messages={{}}>
+    <CustomViewShell disableDevHost applicationMessages={{}}>
       <ChannelsCustomView />
     </CustomViewShell>
   );

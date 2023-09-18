@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import type { LoadingConfigOptions } from './types';
 
 type TMessageKeyValue = string;

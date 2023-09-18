@@ -2,7 +2,7 @@
 import path from 'path';
 import substituteVariablePlaceholders from '../src/substitute-variable-placeholders';
 
-const applicationPath = path.join(__dirname, 'fixtures');
+const applicationPath = path.join(__dirname, 'fixtures/custom-applications');
 
 describe('providing a config with env variable placeholders', () => {
   it('should substitute all values', () => {

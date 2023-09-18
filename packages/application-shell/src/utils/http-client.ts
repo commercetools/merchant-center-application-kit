@@ -196,7 +196,7 @@ function createHttpClientOptions(config: TConfig = {}): TOptions {
       [SUPPORTED_HEADERS.AUTHORIZATION]: sessionToken
         ? `Bearer ${sessionToken}`
         : undefined,
-      [SUPPORTED_HEADERS.X_APPLICATION_ID]: window.app.applicationId,
+      [SUPPORTED_HEADERS.X_APPLICATION_ID]: window.app.applicationIdentifier,
       [SUPPORTED_HEADERS.X_CUSTOM_VIEW_ID]: window.app.customViewId,
       [SUPPORTED_HEADERS.X_CORRELATION_ID]: getCorrelationId({ userId }),
       [SUPPORTED_HEADERS.X_PROJECT_KEY]: projectKey,
