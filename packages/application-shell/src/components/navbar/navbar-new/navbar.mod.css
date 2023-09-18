@@ -95,7 +95,14 @@
 .list-item .icon {
   width: var(--icon-size);
   height: var(--icon-size);
+  transition: all 150ms cubic-bezier(1, 0, 0.58, 1);
 }
+
+.list-item:hover .icon {
+  width: var(--icon-size-hover);
+  height: var(--icon-size-hover);
+}
+
 .list-item .icon > svg *:not([fill='none']) {
   fill: var(--color-surface);
 }
