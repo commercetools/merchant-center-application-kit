@@ -1,6 +1,6 @@
-import { type ReactNode } from 'react';
-import { type RenderResult } from '@testing-library/react';
-import { CustomViewContextProvider } from '@commercetools-frontend/application-shell-connectors/src/components/custom-view-context';
+import type { ReactNode } from 'react';
+import type { RenderResult } from '@testing-library/react';
+import { CustomViewContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import type { CustomViewData } from '@commercetools-frontend/constants';
 import { TCustomViewType } from '../types/generated/settings';
 import { renderApp } from './test-utils';

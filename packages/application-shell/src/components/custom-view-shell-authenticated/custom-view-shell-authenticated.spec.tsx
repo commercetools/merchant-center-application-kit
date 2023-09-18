@@ -6,7 +6,7 @@ import type { CustomViewData } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { UserMock, ProjectMock } from '../../../../../graphql-test-utils';
 import { STORAGE_KEYS } from '../../constants';
-import { TCustomViewType } from '../../export-types';
+import { TCustomViewType } from '../../types/generated/settings';
 import ApplicationShellProvider from '../application-shell-provider';
 import CustomViewAuthenticatedShell from './custom-view-shell-authenticated';
 

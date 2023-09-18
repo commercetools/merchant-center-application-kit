@@ -1,7 +1,3 @@
-import {
-  TCustomViewSize,
-  TCustomViewType,
-} from '@commercetools-frontend/application-shell';
 import { entryPointUriPathToResourceAccesses } from '@commercetools-frontend/application-shell/ssr';
 
 export const CUSTOM_VIEW_ID = '290f83df-d86d-417c-ab24-41697e33483c';
@@ -13,9 +9,9 @@ export const DEMO_CUSTOM_VIEW = {
   defaultLabel: 'Demo Custom View',
   labelAllLocales: [],
   url: `http://localhost:3001/custom-view/${CUSTOM_VIEW_ID}`,
-  type: TCustomViewType.CustomPanel,
+  type: 'CustomPanel',
   typeSettings: {
-    size: TCustomViewSize.Small,
+    size: 'SMALL',
   },
   locators: ['products.product_details.general'],
   permissions: [
