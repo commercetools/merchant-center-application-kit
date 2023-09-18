@@ -121,7 +121,7 @@ const getRuntimeEnvironmentConfigForDevelopment = ({
       : `/${entryPointUriPath}`;
     const hostUrl = new URL(
       hostUriPath || defaultHostUriPath,
-      'http://localhost:3001'
+      developmentAppUrl
     );
     return omitDevConfigIfEmpty<ApplicationRuntimeEnvironmentForDevelopment>({
       oidc: oidcConfig,
