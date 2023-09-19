@@ -131,7 +131,7 @@ import ApplicationRoutes from '../../routes';
 
 const renderApp = (options = {}) => {
   const route = options.route || `/my-project/${entryPointUriPath}/channels`;
-  renderApplicationWithRedux(<ApplicationRoutes />, {
+  renderAppWithRedux(<ApplicationRoutes />, {
     route,
     entryPointUriPath,
     // ...
@@ -229,7 +229,7 @@ import ApplicationRoutes from '../../routes';
 
 const renderApp = (options = {}) => {
   const route = options.route || `/my-project/${entryPointUriPath}/channels`;
-  renderApplicationWithRedux(<ApplicationRoutes />, {
+  renderAppWithRedux(<ApplicationRoutes />, {
     route,
     entryPointUriPath,
     project: {
@@ -257,7 +257,7 @@ import { PERMISSIONS } from '../../constants';
 
 const renderApp = (options = {}) => {
   const route = options.route || `/my-project/${entryPointUriPath}/channels`;
-  renderApplicationWithRedux(<ApplicationRoutes />, {
+  renderAppWithRedux(<ApplicationRoutes />, {
     route,
     entryPointUriPath,
     project: {
