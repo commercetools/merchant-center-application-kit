@@ -1,13 +1,14 @@
 import {
   type MouseEventHandler,
+  useCallback,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useState,
   useRef,
-  type SyntheticEvent,
 } from 'react';
+import { css } from '@emotion/react';
 import classnames from 'classnames';
-import debounce from 'lodash/debounce';
 import { FormattedMessage } from 'react-intl';
 import { matchPath, useLocation } from 'react-router-dom';
 import type { RouteComponentProps } from 'react-router-dom';
@@ -80,7 +81,6 @@ type ApplicationMenuProps = {
   projectKey: string;
   useFullRedirectsForLinks: boolean;
   onMenuItemClick?: MenuItemLinkProps['onClick'];
-  scrollTop: number;
 };
 
 const getMenuVisibilitiesOfSubmenus = (menu: TNavbarMenu) =>
@@ -101,21 +101,63 @@ const getIsSubmenuRouteActive = (
   );
 
 export const ApplicationMenu = (props: ApplicationMenuProps) => {
-  const [topPosition, setTopPosition] = useState(0);
-  const elementRef = useRef<HTMLDivElement>(null);
+  const [submenuVerticalPosition, setSubmenuVerticalPosition] = useState(0);
+  const [isSubmenuAboveMenuItem, setIsSubmenuAboveMenuItem] = useState(false);
+  const menuItemRef = useRef<HTMLDivElement>(null);
+  const submenuRef = useRef<HTMLUListElement>(null);
 
-  // We need to calculate the vertical position of the menu item to be able to
-  // position the submenu correctly.
-  const verticalPosition =
-    topPosition -
-    props.scrollTop +
-    (props.isMenuOpen ? 0 : parseInt(DIMENSIONS.navMenuItemHeight));
+  const hasSubmenu =
+    Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
 
-  useEffect(() => {
-    if (elementRef.current != null) {
-      setTopPosition(elementRef.current.offsetTop);
+  const menuItemBoundingClientRect =
+    menuItemRef.current?.getBoundingClientRect();
+  const menuItemTop = menuItemBoundingClientRect?.top || 0;
+  const menuItemBottom = menuItemBoundingClientRect?.bottom || 0;
+
+  const callbackFn: IntersectionObserverCallback = useCallback(
+    (entries) => {
+      const [entry] = entries;
+      const doesSubmenuFitWithinViewportBelowMenuItem =
+        entry.boundingClientRect.height +
+          (props.isMenuOpen ? menuItemTop : menuItemBottom) >
+        window.innerHeight;
+      // if the submenu does not fit at the bottom of the viewport (below the menu item)
+      if (doesSubmenuFitWithinViewportBelowMenuItem) {
+        setIsSubmenuAboveMenuItem(true);
+        setSubmenuVerticalPosition(
+          window.innerHeight - (props.isMenuOpen ? menuItemBottom : menuItemTop)
+        );
+        // show the submenu above the menu item
+      } else {
+        setIsSubmenuAboveMenuItem(false);
+        setSubmenuVerticalPosition(
+          props.isMenuOpen ? menuItemTop : menuItemBottom
+        );
+      }
+    },
+    [menuItemBottom, menuItemTop, props.isMenuOpen]
+  );
+  useLayoutEffect(() => {
+    const observer = new IntersectionObserver(callbackFn, {
+      rootMargin: '-100% 0px 0px 0px', // we want to observe if the submenu crosses the bottom line of the viewport - therefore we set the root element top margin to -100% of the viewport height
+    });
+    const currentSubmenuRef = submenuRef.current;
+
+    if (currentSubmenuRef) {
+      observer.observe(currentSubmenuRef);
     }
-  }, []);
+    return () => {
+      if (currentSubmenuRef) {
+        observer.unobserve(currentSubmenuRef);
+      }
+    };
+  }, [
+    menuItemBottom,
+    menuItemTop,
+    props.isMenuOpen,
+    props.handleToggleItem,
+    callbackFn,
+  ]);
 
   const isMainMenuRouteActive = Boolean(
     matchPath(props.location.pathname, {
@@ -124,8 +166,6 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
       strict: false,
     })
   );
-  const hasSubmenu =
-    Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
 
   useEffect(() => {
     // On first render, check which menu is active for the current application and expand
@@ -153,7 +193,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
       namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
     >
       <MenuItem
-        ref={elementRef}
+        ref={menuItemRef}
         hasSubmenu={hasSubmenu}
         isActive={props.isActive}
         isMainMenuRouteActive={isMainMenuRouteActive}
@@ -190,10 +230,19 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
           isActive={props.isActive}
           isExpanded={props.isMenuOpen}
           hasSubmenu={hasSubmenu}
-          verticalPosition={verticalPosition}
+          submenuVerticalPosition={submenuVerticalPosition}
+          isSubmenuAboveMenuItem={isSubmenuAboveMenuItem}
+          ref={submenuRef}
         >
           {!props.isMenuOpen && (
-            <div className={styles['tooltip-container']}>
+            <div
+              className={styles['tooltip-container']}
+              css={css`
+                ${isSubmenuAboveMenuItem
+                  ? 'bottom'
+                  : 'top'}: -${DIMENSIONS.navMenuItemHeight};
+              `}
+            >
               <div
                 className={styles['tooltip']}
                 aria-owns={`group-${props.menu.key}`}
@@ -292,17 +341,6 @@ const NavBar = (props: TNavbarProps) => {
   );
   const location = useLocation();
 
-  const [scrollTop, setScrollTop] = useState(0);
-
-  // we need this scroll position to set the correct height of the submenu
-  const handleScroll = useMemo(
-    () =>
-      debounce((event: SyntheticEvent) => {
-        setScrollTop((event.target as HTMLDivElement).scrollTop);
-      }, 50),
-    []
-  );
-
   const projectPermissions: TProjectPermissions = useMemo(
     () => ({
       permissions: normalizeAllAppliedPermissions(
@@ -352,7 +390,7 @@ const NavBar = (props: TNavbarProps) => {
         ) : null}
       </div>
       <MenuGroup id="main" level={1}>
-        <div className={styles['scrollable-menu']} onScroll={handleScroll}>
+        <div className={styles['scrollable-menu']}>
           {allInternalApplicationsNavbarMenu.map((menu) => {
             const menuType = 'scrollable';
             const itemIndex = `${menuType}-${menu.key}`;
@@ -371,7 +409,6 @@ const NavBar = (props: TNavbarProps) => {
                 projectKey={props.projectKey}
                 useFullRedirectsForLinks={useFullRedirectsForLinks}
                 onMenuItemClick={props.onMenuItemClick}
-                scrollTop={scrollTop}
               />
             );
           })}
@@ -393,7 +430,6 @@ const NavBar = (props: TNavbarProps) => {
                 projectKey={props.projectKey}
                 useFullRedirectsForLinks={useFullRedirectsForLinks}
                 onMenuItemClick={props.onMenuItemClick}
-                scrollTop={scrollTop}
               />
             );
           })}

@@ -26,6 +26,7 @@ import {
   SidebarCollapseIcon,
 } from '@commercetools-uikit/icons';
 import InlineSvg from '@commercetools-uikit/icons/inline-svg';
+import { DIMENSIONS } from '../../../constants';
 import type {
   TDataFence,
   TActionRight,
@@ -163,10 +164,41 @@ type MenuGroupProps = {
   isExpanded?: boolean;
   hasSubmenu?: boolean;
   children?: ReactNode;
-  verticalPosition?: number;
+  submenuVerticalPosition?: number;
+  isSubmenuAboveMenuItem?: boolean;
 };
 
-const MenuGroup = (props: MenuGroupProps) => {
+const getSubmenuPositionBasedOnMenuItemPosition = (
+  isSubmenuAboveMenuItem?: boolean,
+  submenuVerticalPosition?: number
+) => css`
+  ${isSubmenuAboveMenuItem ? 'bottom' : 'top'}: ${submenuVerticalPosition}px
+`;
+
+const getContainerPositionBasedOnMenuItemPosition = (
+  isSubmenuAboveMenuItem?: boolean,
+  isSublistActiveWhileIsMenuExpanded?: boolean,
+  isSublistActiveWhileIsMenuCollapsed?: boolean
+) => [
+  isSublistActiveWhileIsMenuCollapsed &&
+    css`
+      ${isSubmenuAboveMenuItem
+        ? 'bottom'
+        : 'top'}: -${DIMENSIONS.navMenuItemHeight};
+    `,
+  isSublistActiveWhileIsMenuExpanded &&
+    isSubmenuAboveMenuItem &&
+    css`
+      bottom: 0;
+    `,
+  isSublistActiveWhileIsMenuExpanded &&
+    !isSubmenuAboveMenuItem &&
+    css`
+      top: 0;
+    `,
+];
+
+const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
   if (
     props.isExpanded &&
     ((props.level === 2 && !props.hasSubmenu) ||
@@ -180,8 +212,20 @@ const MenuGroup = (props: MenuGroupProps) => {
     props.level === 2 && props.isActive && !props.isExpanded;
   return (
     <ul
+      ref={ref}
       css={css`
-        top: ${props.verticalPosition}px;
+        ${getSubmenuPositionBasedOnMenuItemPosition(
+          props.isSubmenuAboveMenuItem,
+          props.submenuVerticalPosition
+        )};
+
+        // additional styling of the pseudo-element enabling smooth coursor movement 
+        ::before {
+          ${getContainerPositionBasedOnMenuItemPosition(
+            props.isSubmenuAboveMenuItem,
+            isSublistActiveWhileIsMenuExpanded,
+            isSublistActiveWhileIsMenuCollapsed
+          )}
       `}
       id={`group-${props.id}`}
       data-testid={`group-${props.id}`}
@@ -205,7 +249,12 @@ const MenuGroup = (props: MenuGroupProps) => {
         },
         {
           [styles['sublist-collapsed__active']]:
-            isSublistActiveWhileIsMenuCollapsed,
+            isSublistActiveWhileIsMenuCollapsed &&
+            !props.isSubmenuAboveMenuItem,
+        },
+        {
+          [styles['sublist-collapsed__active__above']]:
+            isSublistActiveWhileIsMenuCollapsed && props.isSubmenuAboveMenuItem,
         },
         {
           [styles.sublist__inactive]: !isSublistActiveWhileIsMenuCollapsed,
@@ -215,7 +264,7 @@ const MenuGroup = (props: MenuGroupProps) => {
       {props.children}
     </ul>
   );
-};
+});
 MenuGroup.displayName = 'MenuGroup';
 
 type MenuItemProps = {
@@ -268,35 +317,56 @@ export type MenuItemLinkProps = {
 const menuItemLinkDefaultProps: Pick<MenuItemLinkProps, 'exactMatch'> = {
   exactMatch: false,
 };
+const NavLinkWrapper = (props: MenuItemLinkProps) => {
+  if (props.isSubmenuLink) {
+    return (
+      <div className={styles['text-link-sublist-wrapper']}>
+        {props.children}
+      </div>
+    );
+  }
+  return <>{props.children}</>;
+};
+const NavLinkClickableContentWrapper = (props: MenuItemLinkProps) => {
+  if (props.isSubmenuLink) {
+    return (
+      <div className={styles['navlink-clickable-content']}>
+        {props.children}
+      </div>
+    );
+  }
+  return <>{props.children}</>;
+};
+
 const MenuItemLink = (props: MenuItemLinkProps) => {
   const redirectTo = (targetUrl: string) => location.replace(targetUrl);
   if (props.linkTo) {
     return (
-      <NavLink
-        to={props.linkTo}
-        exact={props.exactMatch}
-        activeClassName={
-          props.isSubmenuLink
-            ? styles['highlighted-sublist']
-            : styles.highlighted
-        }
-        className={
-          props.isSubmenuLink
-            ? styles['text-link-sublist']
-            : styles['text-link']
-        }
-        onClick={(event) => {
-          if (props.linkTo && props.useFullRedirectsForLinks) {
-            event.preventDefault();
-            redirectTo(props.linkTo);
-          } else if (props.onClick) {
-            event.persist();
-            props.onClick(event);
+      <NavLinkWrapper {...props}>
+        <NavLink
+          to={props.linkTo}
+          exact={props.exactMatch}
+          activeClassName={styles.highlighted}
+          className={
+            props.isSubmenuLink
+              ? styles['text-link-sublist']
+              : styles['text-link']
           }
-        }}
-      >
-        {props.children}
-      </NavLink>
+          onClick={(event) => {
+            if (props.linkTo && props.useFullRedirectsForLinks) {
+              event.preventDefault();
+              redirectTo(props.linkTo);
+            } else if (props.onClick) {
+              event.persist();
+              props.onClick(event);
+            }
+          }}
+        >
+          <NavLinkClickableContentWrapper {...props}>
+            {props.children}
+          </NavLinkClickableContentWrapper>
+        </NavLink>
+      </NavLinkWrapper>
     );
   }
   return <>{props.children}</>;
