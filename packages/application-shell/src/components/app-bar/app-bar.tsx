@@ -15,6 +15,7 @@ import UserSettingsMenu from '../user-settings-menu';
 type Props = {
   user: TFetchLoggedInUserQuery['user'];
   projectKeyFromUrl?: string;
+  isNewNavigationEnabled: boolean;
 };
 
 const AppBar = (props: Props) => {
@@ -47,13 +48,14 @@ const AppBar = (props: Props) => {
             margin-left: 20px;
           `}
         >
-          {!props.user ? (
-            <img src={LogoSVG} width="100%" alt="Logo" />
-          ) : (
-            <a href={`/${previousProjectKey || ''}`}>
+          {!props.isNewNavigationEnabled &&
+            (!props.user ? (
               <img src={LogoSVG} width="100%" alt="Logo" />
-            </a>
-          )}
+            ) : (
+              <a href={`/${previousProjectKey || ''}`}>
+                <img src={LogoSVG} width="100%" alt="Logo" />
+              </a>
+            ))}
         </div>
 
         <div

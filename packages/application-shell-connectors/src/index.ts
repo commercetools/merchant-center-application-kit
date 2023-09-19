@@ -16,6 +16,11 @@ export {
 } from './components/application-context';
 
 export {
+  CustomViewContextProvider,
+  useCustomViewContext,
+} from './components/custom-view-context';
+
+export {
   GetProjectExtensionImageRegex,
   ProjectExtensionProviderForImageRegex,
   withProjectExtensionImageRegex,

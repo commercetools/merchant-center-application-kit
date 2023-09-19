@@ -29,6 +29,7 @@ const defaultApplicationConfig: ApplicationRuntimeConfig = {
   },
   env: {
     applicationId: '__local:avengers',
+    applicationIdentifier: '__local:avengers',
     applicationName: 'avengers-app',
     entryPointUriPath: 'avengers',
     cdnUrl: 'http://localhost:3001/',
@@ -91,7 +92,7 @@ describe('csp', () => {
     expect(
       processedApplicationConfig['Content-Security-Policy']
     ).toMatchInlineSnapshot(
-      `"default-src 'none'; script-src 'self' 'sha256-RACUtlMzZqF+zLJFAGOjaIZxjIlawfiKwgX9HWbQ9yQ=' 'sha256-OvuGL7YLVhPmNp2EH+HLhMJbK4noh/2eIHOhHTshZYk=' 'sha256-K4tyBnwnqF68wrXckWx1ce5+E4534Hv/ZdQEZLf+Z7Y='; connect-src 'self' app.launchdarkly.com clientstream.launchdarkly.com events.launchdarkly.com app.getsentry.com *.sentry.io https://example.com; img-src * data:; style-src 'self' fonts.googleapis.com data: 'unsafe-inline'; font-src 'self' fonts.gstatic.com data:; frame-src 'self'; upgrade-insecure-requests "`
+      `"default-src 'none'; script-src 'self' 'sha256-RACUtlMzZqF+zLJFAGOjaIZxjIlawfiKwgX9HWbQ9yQ=' 'sha256-5kzN9QxmTvcO/1/aYsVEo7hnWU50vwMjy6wviGxCOA0=' 'sha256-K4tyBnwnqF68wrXckWx1ce5+E4534Hv/ZdQEZLf+Z7Y='; connect-src 'self' app.launchdarkly.com clientstream.launchdarkly.com events.launchdarkly.com app.getsentry.com *.sentry.io https://example.com; img-src * data:; style-src 'self' fonts.googleapis.com data: 'unsafe-inline'; font-src 'self' fonts.gstatic.com data:; frame-src 'self'; upgrade-insecure-requests "`
     );
   });
 });

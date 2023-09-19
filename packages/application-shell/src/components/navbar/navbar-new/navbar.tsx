@@ -25,12 +25,14 @@ import type {
   TNormalizedActionRights,
   TNormalizedDataFences,
 } from '@commercetools-frontend/application-shell-connectors';
+import LogoSVG from '@commercetools-frontend/assets/logos/commercetools_small-logo.svg';
 import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
 import { SupportIcon } from '@commercetools-uikit/icons';
 import { DIMENSIONS } from '../../../constants';
 import type { TFetchProjectQuery } from '../../../types/generated/mc';
 import type { TNavbarMenu, TBaseMenu } from '../../../types/generated/proxy';
 import messages from '../messages';
+
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import nonNullable from '../non-nullable';
 import useNavbarStateManager from '../use-navbar-state-manager';
@@ -377,7 +379,16 @@ const NavBar = (props: TNavbarProps) => {
 
   return (
     <NavBarLayout ref={navBarNode}>
-      <div className={styles['navigation-header']}>Navigation header</div>
+      <div className={styles['navigation-header']}>
+        <div className={styles['icon-container']}>
+          <div className={styles['icon']}>
+            <img src={LogoSVG} width="100%" alt="Logo" />
+          </div>
+        </div>
+        {isMenuOpen ? (
+          <div className={styles['title']}>Merchant Center</div>
+        ) : null}
+      </div>
       <MenuGroup id="main" level={1}>
         <div className={styles['scrollable-menu']}>
           {allInternalApplicationsNavbarMenu.map((menu) => {

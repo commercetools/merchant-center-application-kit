@@ -45,7 +45,7 @@
   "AppKit.Shared.revert": "Reverter alterações",
   "AppKit.Shared.save": "Salvar",
   "AppKit.Shared.update": "Atualizar",
-  "Components.CustomViewLoader.error.load": "Não foi possível carregar a Exibição personalizada. Entre em contato com seu administrador para verificar sua configuração.",
+  "CustomViewLoader.error.load": "Não foi possível carregar a Exibição personalizada. Entre em contato com seu administrador para verificar sua configuração.",
   "Components.ModalPage.TopBar.Back": "Voltar",
   "Components.ModalPage.TopBar.Close": "Fechar Página modal",
   "ErrorApologizer.notifiedTeam": "Nossa equipe foi notificada sobre esse problema.",

@@ -28,3 +28,8 @@ export const MC_API_URLS = {
   AWS_OHIO: 'https://mc-api.us-east-2.aws.commercetools.com',
   AWS_CN: 'https://mc-api.cn-northwest-1.aws.commercetools.cn',
 } as const;
+
+export const LOADED_CONFIG_TYPES = {
+  CUSTOM_APPLICATION: 'custom-application',
+  CUSTOM_VIEW: 'custom-view',
+} as const;

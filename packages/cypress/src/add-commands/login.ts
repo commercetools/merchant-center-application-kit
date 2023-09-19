@@ -1,7 +1,7 @@
 import semver from 'semver';
 import { v4 as uuidv4 } from 'uuid';
-import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
 import { buildOidcScope } from '@commercetools-frontend/application-shell/ssr';
+import { ApplicationRuntimeEnvironment } from '@commercetools-frontend/constants';
 import { STORAGE_KEYS, OIDC_RESPONSE_TYPES } from '../constants';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -83,7 +83,7 @@ function loginByForm(commandOptions: CommandLoginOptions) {
     },
     // Do not show log, as it may contain sensible information.
     { log: false }
-  ).then((appConfig: ApplicationRuntimeConfig['env']) => {
+  ).then((appConfig: ApplicationRuntimeEnvironment) => {
     let url = `/${projectKey}/${commandOptions.entryPointUriPath}`;
     if (commandOptions.entryPointUriPath === 'account') {
       url = `/${commandOptions.entryPointUriPath}`;
@@ -181,7 +181,7 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
     },
     // Do not show log, as it may contain sensible information.
     { log: false }
-  ).then((appConfig: ApplicationRuntimeConfig['env']) => {
+  ).then((appConfig: ApplicationRuntimeEnvironment) => {
     // Log loaded application config for debugging purposes.
     Cypress.log({
       displayName: 'task',

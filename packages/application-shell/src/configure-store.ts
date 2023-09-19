@@ -61,7 +61,8 @@ const getAdditionalHeaders = (): Headers | undefined => {
     [SUPPORTED_HEADERS.AUTHORIZATION]: sessionToken
       ? `Bearer ${sessionToken}`
       : undefined,
-    [SUPPORTED_HEADERS.X_APPLICATION_ID]: window.app.applicationId,
+    [SUPPORTED_HEADERS.X_APPLICATION_ID]: window.app.applicationIdentifier,
+    [SUPPORTED_HEADERS.X_CUSTOM_VIEW_ID]: window.app.customViewId,
     [SUPPORTED_HEADERS.X_TEAM_ID]: selectTeamIdFromStorage(),
   });
 };

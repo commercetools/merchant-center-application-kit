@@ -2,10 +2,11 @@ import { Mock } from 'jest-mock';
 import { graphql } from 'msw';
 import { screen, render } from '@testing-library/react';
 import { setupServer } from 'msw/node';
+import type { CustomViewData } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-
 import { UserMock, ProjectMock } from '../../../../../graphql-test-utils';
 import { STORAGE_KEYS } from '../../constants';
+import { TCustomViewType } from '../../types/generated/settings';
 import ApplicationShellProvider from '../application-shell-provider';
 import CustomViewAuthenticatedShell from './custom-view-shell-authenticated';
 
@@ -14,6 +15,7 @@ jest.mock('@commercetools-frontend/sentry');
 const mockedProject = ProjectMock.build({
   key: 'test-1',
   name: 'Test 1',
+  allAppliedPermissions: [{ name: 'canViewMyCustomViewId', value: true }],
 });
 const mockedUser = UserMock.build({
   defaultProjectKey: 'test-1',
@@ -34,8 +36,9 @@ const mockedApplicationMessages = {
   },
 };
 const mockedEnvironment = {
-  applicationId: 'my-app-id',
-  applicationName: 'My App Name',
+  applicationId: 'my-custom-view-id',
+  applicationIdentifier: 'my-custom-view-id',
+  applicationName: 'My Custom View Name',
   entryPointUriPath: '/',
   revision: '1',
   env: 'development',
@@ -46,6 +49,20 @@ const mockedEnvironment = {
   servedByProxy: false,
   ldClientSideId: 'my-ld-client-side-id',
   trackingSentry: 'my-tracking-sentry',
+};
+const mockedCustomViewConfig: CustomViewData = {
+  id: 'my-custom-view-id',
+  defaultLabel: 'My custom view',
+  labelAllLocales: [],
+  url: 'https://my-view.com',
+  type: TCustomViewType.CustomPanel,
+  locators: ['products.product_details.general'],
+  permissions: [
+    {
+      name: 'view',
+      oAuthScopes: ['view_products'],
+    },
+  ],
 };
 
 function TestComponent() {
@@ -61,6 +78,7 @@ function TestComponent() {
             environment={mockedEnvironment}
             messages={mockedApplicationMessages}
             projectKey="almond-40"
+            customViewConfig={mockedCustomViewConfig}
           >
             <div>Test children</div>
           </CustomViewAuthenticatedShell>

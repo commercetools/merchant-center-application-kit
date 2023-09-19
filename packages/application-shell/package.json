@@ -57,6 +57,7 @@
     "@commercetools-uikit/icons": "^16.7.3",
     "@commercetools-uikit/loading-spinner": "^16.7.3",
     "@commercetools-uikit/notifications": "^16.7.3",
+    "@commercetools-uikit/primary-button": "^16.7.3",
     "@commercetools-uikit/select-input": "^16.7.3",
     "@commercetools-uikit/spacings": "^16.7.3",
     "@commercetools-uikit/text": "^16.7.3",

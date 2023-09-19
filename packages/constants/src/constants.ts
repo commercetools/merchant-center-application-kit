@@ -1,3 +1,5 @@
+import type { TCustomView } from './types/generated/settings';
+
 // DOM elements
 export const PORTALS_CONTAINER_ID = 'portals-container';
 
@@ -149,6 +151,10 @@ export type TLocalizedField = {
   locale: string;
   value: string;
 };
+export type TPermissionData = {
+  name: string;
+  oAuthScopes: string[];
+};
 export type ApplicationMenuLinksForDevelopmentConfig = {
   icon: string;
   defaultLabel: string;
@@ -166,6 +172,7 @@ export type ApplicationOidcForDevelopmentConfig = {
   initialProjectKey?: string;
   teamId?: string;
   applicationId?: string;
+  customViewId?: string;
   oAuthScopes?: {
     view: string[];
     manage: string[];
@@ -176,37 +183,59 @@ export type ApplicationOidcForDevelopmentConfig = {
     manage: string[];
   }[];
 };
+export type CustomViewData = {
+  id: string;
+  defaultLabel: string;
+  labelAllLocales: TLocalizedField[];
+  description?: string;
+  url: string;
+  permissions: TPermissionData[];
+  locators: string[];
+  type: TCustomView['type'];
+  typeSettings?: TCustomView['typeSettings'];
+};
+
+export type ApplicationRuntimeEnvironmentForDevelopment = {
+  oidc?: ApplicationOidcForDevelopmentConfig;
+  menuLinks?: ApplicationMenuLinksForDevelopmentConfig;
+  customViewHostUrl?: string;
+  customViewConfig?: CustomViewData;
+};
+
+export type ApplicationRuntimeEnvironment = {
+  // @deprecated: use `applicationIdentifier`
+  applicationId: string;
+  applicationIdentifier: string;
+  applicationName: string;
+  entryPointUriPath: string;
+  customViewId?: string;
+  revision: string;
+  env: string;
+  location: string;
+  cdnUrl: string;
+  mcApiUrl: string;
+  frontendHost: string;
+  servedByProxy: boolean;
+  // Optional properties. To use them, pass them to the `additionalEnv` object of the application config.
+  ldClientSideId?: string;
+  trackingSentry?: string;
+  // Development-only configuration
+  __DEVELOPMENT__?: ApplicationRuntimeEnvironmentForDevelopment;
+};
 
 // Global application environment on window object
 export interface ApplicationWindow extends Window {
-  app: {
-    applicationId: string;
-    customViewId?: string;
-    applicationName: string;
-    entryPointUriPath: string;
-    revision: string;
-    env: string;
-    location: string;
-    cdnUrl: string;
-    mcApiUrl: string;
-    frontendHost: string;
-    servedByProxy: boolean;
-    // Optional properties. To use them, pass them to the `additionalEnv` object of the application config.
-    ldClientSideId?: string;
-    trackingSentry?: string;
-    // Properties for OIDC-like workflow for development
-    __DEVELOPMENT__?: {
-      oidc?: ApplicationOidcForDevelopmentConfig;
-      menuLinks?: ApplicationMenuLinksForDevelopmentConfig;
-    };
-  };
+  app: ApplicationRuntimeEnvironment;
 }
+
+// Used for Custom Views, as we want to keep the `entryPointUriPath` value required in the runtime config.
+export const CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH = '@@custom-view-host@@';
 
 export const HTTP_SECURITY_HEADERS = {
   'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
   'X-XSS-Protection': '1; mode=block',
   'X-Content-Type-Options': 'nosniff',
-  'X-Frame-Options': 'DENY',
+  'X-Frame-Options': 'SAMEORIGIN',
   'Referrer-Policy': 'same-origin',
 } as const;
 

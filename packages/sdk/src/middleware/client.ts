@@ -5,7 +5,6 @@ import type {
   MiddlewareResponse,
   Next,
 } from '@commercetools/sdk-client';
-
 import { createClient as createSdkClient } from '@commercetools/sdk-client';
 import { createCorrelationIdMiddleware as createSdkCorrelationIdMiddleware } from '@commercetools/sdk-middleware-correlation-id';
 import { createHttpMiddleware as createSdkHttpMiddleware } from '@commercetools/sdk-middleware-http';

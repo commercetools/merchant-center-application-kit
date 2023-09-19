@@ -1,0 +1,21 @@
+{
+  "name": "avengers-custom-view",
+  "cloudIdentifier": "gcp-eu",
+  "env": {
+    "development": {
+      "initialProjectKey": "test"
+    },
+    "production": {
+      "customViewId": "custom-view-id-123",
+      "url": "https://avengers.app"
+    }
+  },
+  "oAuthScopes": {
+    "view": ["view_products"],
+    "manage": []
+  },
+  "type": "CustomPanel",
+  "typeSettings": {
+    "size": "LARGE"
+  }
+}
