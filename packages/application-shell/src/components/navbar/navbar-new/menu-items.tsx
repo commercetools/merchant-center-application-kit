@@ -219,7 +219,7 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
           props.submenuVerticalPosition
         )};
 
-        // additional styling of the pseudo-element enabling smooth coursor movement 
+        // additional styling of the pseudo-element enabling smooth coursor movement
         ::before {
           ${getContainerPositionBasedOnMenuItemPosition(
             props.isSubmenuAboveMenuItem,
