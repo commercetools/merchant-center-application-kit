@@ -161,7 +161,7 @@
 }
 
 .list-item:not(.item_menu__active):hover {
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-40);
   border-radius: var(--border-radius-8);
 }
 
@@ -467,7 +467,7 @@
   box-sizing: border-box;
   /* For Firefox */
   scrollbar-width: thin;
-  scrollbar-color: var(--color-primary) transparent;
+  scrollbar-color: var(--color-primary-40) transparent;
 }
 
 :global(.body__menu-open) .scrollable-menu {
@@ -488,7 +488,7 @@
 }
 
 .scrollable-menu::-webkit-scrollbar-thumb {
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-40);
   border-radius: var(--border-radius-8);
 }
 
