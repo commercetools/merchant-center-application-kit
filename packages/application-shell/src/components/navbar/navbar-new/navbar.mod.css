@@ -125,7 +125,7 @@
   background: linear-gradient(
     180deg,
     var(--color-primary) 0%,
-    var(--color-primary-20) 100%
+    var(--color-primary-25) 100%
   );
   padding: var(--spacing-30) var(--spacing-25);
 }
