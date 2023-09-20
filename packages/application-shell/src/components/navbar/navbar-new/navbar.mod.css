@@ -65,12 +65,12 @@
   margin: 0;
   list-style: none;
   cursor: pointer;
+  transition: all 150ms ease-out;
 }
 
 .item-link {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link);
-  padding: var(--spacing-25);
   width: var(--item-size);
   position: relative;
   display: block;
@@ -87,9 +87,12 @@
 
 .list-item .item-icon-text {
   display: flex;
+  position: absolute;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  top: var(--spacing-25);
+  left: var(--spacing-25);
 }
 
 .list-item .icon {
@@ -293,9 +296,9 @@
   color: var(--color-for-navbar-link);
   text-decoration: none;
   display: flex;
-  padding: var(--spacing-25);
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 :global(.body__menu-open) .text-link {
@@ -310,6 +313,14 @@
   min-height: 0;
   padding: var(--spacing-25) var(--spacing-25) var(--spacing-25)
     var(--spacing-30);
+}
+
+.text-link .item-icon-text {
+  /* display: flex; */
+  position: absolute;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .text-link-sublist {
@@ -351,7 +362,6 @@
 .fixed-menu .list-item .item-icon-text {
   justify-content: center;
   display: flex;
-  width: 100%;
 }
 
 .support-menu {
@@ -428,6 +438,7 @@
   /* z-index value must be higher than AppBar's z-index */
   z-index: 20001;
   box-shadow: -2px 4px 25px 0 rgba(89, 89, 89, 0.5);
+  transition: all 150ms ease-out;
 }
 
 .item-link:hover .sublist-collapsed__active.sublist-collapsed__empty,
