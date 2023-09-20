@@ -220,7 +220,7 @@
 /*  Second level menu */
 
 .sublist {
-  padding: var(--spacing-30) var(--spacing-40);
+  padding: var(--spacing-30);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
@@ -253,7 +253,6 @@
 .sublist-item {
   display: flex;
   align-items: center;
-  gap: 8px;
   align-self: stretch;
 }
 
@@ -413,7 +412,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   background-color: var(--color-surface);
   /* TODO: add design tokens instead hard-coded values */
