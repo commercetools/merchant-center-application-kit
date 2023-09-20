@@ -19,7 +19,7 @@
 .left-navigation {
   display: grid;
   width: var(--width-left-navigation);
-  background: var(--color-primary-30);
+  background: var(--color-primary);
   height: 100%;
   grid-template-rows: 56px 1fr;
 }
@@ -61,7 +61,7 @@
 
 .list-item {
   min-height: var(--item-size);
-  background: var(--color-primary-30);
+  background: var(--color-primary);
   margin: 0;
   list-style: none;
   cursor: pointer;
@@ -124,7 +124,7 @@
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   background: linear-gradient(
     180deg,
-    var(--color-primary-30) 0%,
+    var(--color-primary) 0%,
     var(--color-primary-20) 100%
   );
   padding: var(--spacing-30) var(--spacing-25);
