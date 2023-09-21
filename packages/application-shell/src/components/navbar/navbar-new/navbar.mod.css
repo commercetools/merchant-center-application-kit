@@ -5,8 +5,8 @@
   --icon-size-hover: 28px;
   --item-size: 48px;
   --item-height: 56px;
-  --sublist-indentantion-when-collapsed: 72px;
-  --sublist-indentantion-when-expanded: 248px;
+  --sublist-indentation-when-collapsed: 72px;
+  --sublist-indentation-when-expanded: 248px;
   --sublist-width: 253px;
 
   /* Left navigation */
@@ -241,14 +241,14 @@
   font-size: var(--font-size-for-navbar-link);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   background-color: var(--background-color-for-navbar);
-  left: var(--sublist-indentantion-when-collapsed);
+  left: var(--sublist-indentation-when-collapsed);
   z-index: -1;
   list-style: none;
   position: fixed;
   display: none;
 }
 
-/* This pseudo-element is required to enable smooth coursor movement from the main menu item to submenu items with the gap in between */
+/* This pseudo-element is required to enable smooth coursor movement from the main menu item to submenu items when tooltip is displayed */
 .sublist-expanded__active::before,
 .sublist-collapsed__active::before,
 .sublist-collapsed__active__above::before {
@@ -368,6 +368,7 @@
 .fixed-menu .list-item .item-icon-text {
   justify-content: center;
   display: flex;
+  width: 50%;
 }
 
 .support-menu {
@@ -454,7 +455,7 @@
 }
 
 .item-link:hover .sublist-expanded__active {
-  left: var(--sublist-indentantion-when-expanded);
+  left: var(--sublist-indentation-when-expanded);
 }
 
 .highlighted,
@@ -463,6 +464,16 @@
   color: var(--color-for-navbar-link-when-active) !important;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link-when-active);
+}
+
+.highlighted-sublist,
+.highlighted-sublist .title {
+  color: var(--color-surface);
+}
+
+.sublist-item:hover .highlighted-sublist,
+.sublist-item:hover .highlighted-sublist .title {
+  color: var(--color-solid);
 }
 
 .hidden {
