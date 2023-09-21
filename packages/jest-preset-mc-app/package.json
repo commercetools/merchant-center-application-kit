@@ -30,7 +30,7 @@
     "babel-preset-jest": "29.5.0",
     "colors": "1.4.0",
     "cosmiconfig": "7.1.0",
-    "graphql": "16.6.0",
+    "graphql": "16.8.1",
     "graphql-tag": "^2.12.6",
     "identity-obj-proxy": "3.0.0",
     "intl": "1.2.5",
