@@ -1872,9 +1872,9 @@ describe('With new navbar', () => {
 
       fireEvent.focus(input);
       fireEvent.keyDown(input, { key: 'ArrowDown' });
-      screen.getByText('Test 2').click();
 
       await waitFor(() => {
+        screen.getByText('Test 2').click();
         expect(location.replace).toHaveBeenCalledWith(`/test-2`);
       });
     });
@@ -1919,8 +1919,10 @@ describe('With new navbar', () => {
       const input = container.querySelector('[name="locale-switcher"]');
       fireEvent.focus(input);
       fireEvent.keyDown(input, { key: 'ArrowDown' });
-      screen.getByText('de').click();
-      await screen.findByText('Data locale: de');
+      await waitFor(() => {
+        screen.getByText('de').click();
+        screen.getByText('Data locale: de');
+      });
     });
   });
   describe('when project has only one language', () => {
