@@ -153,7 +153,7 @@ const Faded = styled.div`
   top: -32px;
   height: 32px;
   width: 100%;
-  background: linear-gradient(180deg, rgba(0, 153, 135, 0) 0%, #009987 100%);
+  background: linear-gradient(180deg, rgba(0, 153, 135, 0) 0%, #00b39e 100%);
   z-index: 1;
 `;
 

@@ -19,7 +19,7 @@
 .left-navigation {
   display: grid;
   width: var(--width-left-navigation);
-  background: var(--color-primary-30);
+  background: var(--color-primary);
   height: 100%;
   grid-template-rows: 56px 1fr;
 }
@@ -61,7 +61,7 @@
 
 .list-item {
   min-height: var(--item-size);
-  background: var(--color-primary-30);
+  background: var(--color-primary);
   margin: 0;
   list-style: none;
   cursor: pointer;
@@ -124,8 +124,8 @@
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   background: linear-gradient(
     180deg,
-    var(--color-primary-30) 0%,
-    var(--color-primary-20) 100%
+    var(--color-primary) 0%,
+    var(--color-primary-25) 100%
   );
   padding: var(--spacing-30) var(--spacing-25);
 }
@@ -161,7 +161,7 @@
 }
 
 .list-item:not(.item_menu__active):hover {
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-40);
   border-radius: var(--border-radius-8);
 }
 
@@ -198,8 +198,7 @@
 :global(.body__menu-open) .list-item .title {
   display: block;
   opacity: 1;
-  margin-left: var(--spacing-20);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  margin-left: var(--spacing-25);
   color: var(--color-surface);
 }
 
@@ -221,7 +220,7 @@
 /*  Second level menu */
 
 .sublist {
-  padding: var(--spacing-30) var(--spacing-40);
+  padding: var(--spacing-30);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
@@ -254,7 +253,6 @@
 .sublist-item {
   display: flex;
   align-items: center;
-  gap: 8px;
   align-self: stretch;
 }
 
@@ -414,7 +412,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   background-color: var(--color-surface);
   /* TODO: add design tokens instead hard-coded values */
@@ -470,7 +467,7 @@
   box-sizing: border-box;
   /* For Firefox */
   scrollbar-width: thin;
-  scrollbar-color: var(--color-primary) transparent;
+  scrollbar-color: var(--color-primary-40) transparent;
 }
 
 :global(.body__menu-open) .scrollable-menu {
@@ -491,7 +488,7 @@
 }
 
 .scrollable-menu::-webkit-scrollbar-thumb {
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-40);
   border-radius: var(--border-radius-8);
 }
 
