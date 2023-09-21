@@ -246,6 +246,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
               <div
                 className={styles['tooltip']}
                 aria-owns={`group-${props.menu.key}`}
+                data-testid="tooltip"
               >
                 <MenuLabel
                   labelAllLocales={props.menu.labelAllLocales}

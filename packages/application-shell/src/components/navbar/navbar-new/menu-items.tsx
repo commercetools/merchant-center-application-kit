@@ -212,7 +212,7 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
     props.level === 2 && props.isActive && !props.isExpanded;
   return (
     <ul
-      ref={ref}
+      ref={ref && props.level === 2 ? ref : null}
       css={css`
         ${getSubmenuPositionBasedOnMenuItemPosition(
           props.isSubmenuAboveMenuItem,
