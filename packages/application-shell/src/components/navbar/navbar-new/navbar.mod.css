@@ -365,6 +365,7 @@
   align-self: flex-start;
 }
 
+.item_menu-collapsed.list-item.item__active .item-icon-text,
 .fixed-menu .list-item .item-icon-text {
   justify-content: center;
   display: flex;
@@ -379,6 +380,22 @@
 :global(.body__menu-open) .list-item.item__active .item-icon-text {
   position: relative;
   width: auto;
+}
+
+:global(.body__menu-open) .list-item.item__active .item-icon-text::after {
+  content: '';
+  position: absolute;
+  padding: var(--spacing-30);
+  width: var(--width-left-navigation-when-expanded);
+  height: var(--item-height);
+}
+
+.item_menu-collapsed.list-item.item__active .item-icon-text::after {
+  content: '';
+  position: absolute;
+  padding: var(--spacing-30);
+  width: var(--width-left-navigation);
+  height: var(--item-height);
 }
 
 .item_menu-collapsed.list-item.item__active .item-icon-text .title {
