@@ -102,12 +102,12 @@
 .list-item .icon {
   width: var(--icon-size);
   height: var(--icon-size);
-  transition: all 150ms cubic-bezier(1, 0, 0.58, 1);
+  transition: transform 150ms cubic-bezier(1, 0, 0.58, 1);
 }
 
 .list-item:hover .icon {
-  width: var(--icon-size-hover);
-  height: var(--icon-size-hover);
+  /* 1.16 is roughly the ratio of icon-size-hover to --icon-size */
+  transform: scale(1.2);
 }
 
 .list-item .icon > svg *:not([fill='none']) {
@@ -214,6 +214,11 @@
   opacity: 1;
   margin-left: var(--spacing-25);
   color: var(--color-surface);
+  transition: margin-left 150ms cubic-bezier(1, 0, 0.58, 1);
+}
+
+.list-item:hover .title {
+  margin-left: calc(var(--spacing-25) + 2px);
 }
 
 .list-item:not(.item__active):hover .icon > svg *:not([fill='none']) {
