@@ -1,5 +1,16 @@
 # @commercetools-frontend/eslint-config-mc-app
 
+## 22.8.0
+
+### Patch Changes
+
+- [#3082](https://github.com/commercetools/merchant-center-application-kit/pull/3082) [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db) Thanks [@renovate](https://github.com/apps/renovate)! - Refine overrides for React specific configs
+
+- [#3082](https://github.com/commercetools/merchant-center-application-kit/pull/3082) [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies [[`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db), [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db)]:
+  - @commercetools-frontend/babel-preset-mc-app@22.8.0
+
 ## 22.7.1
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @commercetools-backend/loggers
 
+## 22.8.0
+
+### Patch Changes
+
+- [#3225](https://github.com/commercetools/merchant-center-application-kit/pull/3225) [`46464f575`](https://github.com/commercetools/merchant-center-application-kit/commit/46464f5752868108df41b5806e395e5a2aca8d70) Thanks [@emmenko](https://github.com/emmenko)! - Avoid using deprecated methods to parse client IP addresses
+
+- [#3082](https://github.com/commercetools/merchant-center-application-kit/pull/3082) [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
 ## 22.7.1
 
 ## 22.7.0

@@ -1,5 +1,19 @@
 # @commercetools-frontend/mc-html-template
 
+## 22.8.0
+
+### Minor Changes
+
+- [#3175](https://github.com/commercetools/merchant-center-application-kit/pull/3175) [`bd9df94b5`](https://github.com/commercetools/merchant-center-application-kit/commit/bd9df94b565faf308f82bd39d6ca4ebf5892ed9f) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Support loading and parsing of new config for Custom Views
+
+### Patch Changes
+
+- [#3082](https://github.com/commercetools/merchant-center-application-kit/pull/3082) [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies [[`bd9df94b5`](https://github.com/commercetools/merchant-center-application-kit/commit/bd9df94b565faf308f82bd39d6ca4ebf5892ed9f), [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db)]:
+  - @commercetools-frontend/application-config@22.8.0
+  - @commercetools-frontend/constants@22.8.0
+
 ## 22.7.1
 
 ### Patch Changes
