@@ -248,7 +248,7 @@
   display: none;
 }
 
-/* This pseudo-element is required to enable smooth coursor movement from the main menu item to submenu items when tooltip is displayed */
+/* This pseudo-element is required to enable smooth coursor movement from the main menu item to submenu items with the gap in between */
 .sublist-expanded__active::before,
 .sublist-collapsed__active::before,
 .sublist-collapsed__active__above::before {
