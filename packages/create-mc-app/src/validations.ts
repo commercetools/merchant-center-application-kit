@@ -1,24 +1,37 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import semver from 'semver';
-import type { TTemplate } from './types';
+import { applicationTypes, availableTemplates } from './constants';
+import type { TApplicationType, TTemplate } from './types';
 import { isSemVer } from './utils';
 
-const availableTemplates = {
-  starter: 'starter',
-  'starter-typescript': 'starter-typescript',
-} as const;
+const throwIfApplicationTypeIsNotSupported = (
+  applicationType: TApplicationType
+) => {
+  switch (applicationType) {
+    case applicationTypes['custom-application']:
+    case applicationTypes['custom-view']:
+      break;
+    default: {
+      const applicationTypesList = Object.keys(applicationTypes).toString();
+      throw new Error(
+        `The provided application type "${applicationType}" does not exist. Available types are "${applicationTypesList}". Make sure you are also using the latest version of "@commercetools-frontend/create-mc-app".`
+      );
+    }
+  }
+};
 
 const throwIfTemplateIsNotSupported = (templateName: TTemplate) => {
   switch (templateName) {
     case availableTemplates.starter:
     case availableTemplates['starter-typescript']:
       break;
-    default:
+    default: {
       const templateNamesList = Object.keys(availableTemplates).toString();
       throw new Error(
         `The provided template name "${templateName}" does not exist. Available templates are "${templateNamesList}". Make sure you are also using the latest version of "@commercetools-frontend/create-mc-app".`
       );
+    }
   }
 };
 
@@ -80,6 +93,7 @@ const throwIfNodeVersionIsNotSupported = (
 };
 
 export {
+  throwIfApplicationTypeIsNotSupported,
   throwIfTemplateIsNotSupported,
   throwIfProjectDirectoryExists,
   throwIfTemplateVersionDoesNotExist,

@@ -1,12 +1,14 @@
-import crypto from 'crypto';
-import path from 'path';
-import readline, { type Interface } from 'readline';
+import crypto from 'node:crypto';
+import path from 'node:path';
+import readline, { type Interface } from 'node:readline';
+import { applicationTypes } from './constants';
 import type { TCliCommandOptions, TCliTaskOptions } from './types';
 import { isSemVer } from './utils';
 import {
   throwIfTemplateIsNotSupported,
   throwIfProjectDirectoryExists,
   throwIfInitialProjectKeyIsMissing,
+  throwIfApplicationTypeIsNotSupported,
 } from './validations';
 
 const question = (rl: Interface, value: string) =>
@@ -16,6 +18,10 @@ const getEntryPointUriPath = async (
   rl: Interface,
   options: TCliCommandOptions
 ) => {
+  if (options.applicationType === applicationTypes['custom-view']) {
+    return;
+  }
+
   if (options.entryPointUriPath) {
     return options.entryPointUriPath;
   }
@@ -72,6 +78,7 @@ async function processOptions(
   const templateName = options.template;
 
   // Validate options
+  throwIfApplicationTypeIsNotSupported(options.applicationType);
   throwIfProjectDirectoryExists(projectDirectoryName, projectDirectoryPath);
   throwIfTemplateIsNotSupported(templateName);
 
@@ -85,6 +92,7 @@ async function processOptions(
   rl.close();
 
   return {
+    applicationType: options.applicationType,
     projectDirectoryName,
     projectDirectoryPath,
     templateName,

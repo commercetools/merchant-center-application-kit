@@ -1,26 +1,37 @@
-import fs from 'fs';
-import os from 'os';
-import path from 'path';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import { transformFileSync, types, type PluginItem } from '@babel/core';
 import type { ListrTask } from 'listr2';
 import prettier from 'prettier';
+import { applicationTypes } from '../constants';
 import type { TCliTaskOptions } from '../types';
 import { wordify, resolveFilePathByExtension } from '../utils';
 
-function replaceApplicationInfoInCustomApplicationConfig(
+function replaceApplicationInfoInApplicationConfig(
   filePath: string,
   options: TCliTaskOptions
 ) {
-  const appName = wordify(options.entryPointUriPath);
-
   const result = transformFileSync(filePath, {
     plugins: [
-      function replaceCustomApplicationConfig(): PluginItem {
+      function replaceConfig(): PluginItem {
+        const appName = wordify(
+          options.entryPointUriPath ?? options.projectDirectoryName
+        );
         return {
           visitor: {
             Identifier(nodePath) {
               if (
+                options.applicationType ===
+                  applicationTypes['custom-application'] &&
                 nodePath.isIdentifier({ name: 'name' }) &&
+                nodePath.parent.type === 'ObjectProperty'
+              ) {
+                nodePath.parent.value = types.stringLiteral(appName);
+              }
+              if (
+                options.applicationType === applicationTypes['custom-view'] &&
+                nodePath.isIdentifier({ name: 'defaultLabel' }) &&
                 nodePath.parent.type === 'ObjectProperty'
               ) {
                 nodePath.parent.value = types.stringLiteral(appName);
@@ -33,7 +44,11 @@ function replaceApplicationInfoInCustomApplicationConfig(
                   options.initialProjectKey
                 );
               }
-              if (nodePath.isIdentifier({ name: 'defaultLabel' })) {
+              if (
+                options.applicationType ===
+                  applicationTypes['custom-application'] &&
+                nodePath.isIdentifier({ name: 'defaultLabel' })
+              ) {
                 const isMainMenuLinkParent = nodePath.findParent((parentPath) =>
                   parentPath.isIdentifier({
                     name: 'mainMenuLink',
@@ -68,19 +83,30 @@ function replaceApplicationInfoInCustomApplicationConfig(
   }
 }
 
-function updateCustomApplicationConfig(options: TCliTaskOptions): ListrTask {
+function getApplicationConfigName(options: TCliTaskOptions) {
+  switch (options.applicationType) {
+    case applicationTypes['custom-application']:
+      return 'custom-application-config';
+    case applicationTypes['custom-view']:
+      return 'custom-view-config';
+    default:
+      throw new Error(`Unknown application type ${options.applicationType}`);
+  }
+}
+
+function updateApplicationConfig(options: TCliTaskOptions): ListrTask {
   return {
-    title: 'Updating Custom Applications config',
+    title: 'Updating application config file',
     task: () => {
-      const customApplicationConfigPath = resolveFilePathByExtension(
-        path.join(options.projectDirectoryPath, 'custom-application-config')
+      const configPath = resolveFilePathByExtension(
+        path.join(
+          options.projectDirectoryPath,
+          getApplicationConfigName(options)
+        )
       );
-      replaceApplicationInfoInCustomApplicationConfig(
-        customApplicationConfigPath,
-        options
-      );
+      replaceApplicationInfoInApplicationConfig(configPath, options);
     },
   };
 }
 
-export default updateCustomApplicationConfig;
+export default updateApplicationConfig;
