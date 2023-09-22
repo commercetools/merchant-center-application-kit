@@ -1,5 +1,16 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 22.8.0
+
+### Patch Changes
+
+- [#3082](https://github.com/commercetools/merchant-center-application-kit/pull/3082) [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- [#3224](https://github.com/commercetools/merchant-center-application-kit/pull/3224) [`bef02f8ac`](https://github.com/commercetools/merchant-center-application-kit/commit/bef02f8ac0185eb293e0d295f320f753cc0eff18) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency graphql to v16.8.1 [security]
+
+- Updated dependencies [[`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db), [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db)]:
+  - @commercetools-frontend/babel-preset-mc-app@22.8.0
+
 ## 22.7.1
 
 ### Patch Changes

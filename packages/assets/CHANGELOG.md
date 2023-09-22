@@ -1,5 +1,11 @@
 # @commercetools-frontend/assets
 
+## 22.8.0
+
+### Patch Changes
+
+- [#3216](https://github.com/commercetools/merchant-center-application-kit/pull/3216) [`1986d18d1`](https://github.com/commercetools/merchant-center-application-kit/commit/1986d18d1b411013514df21cbb5966ffbe4b6178) Thanks [@ddouglasz](https://github.com/ddouglasz)! - Navigation header redesign.
+
 ## 22.7.1
 
 ## 22.7.0

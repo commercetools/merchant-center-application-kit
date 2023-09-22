@@ -1,5 +1,23 @@
 # @commercetools-frontend/application-components
 
+## 22.8.0
+
+### Patch Changes
+
+- [#3205](https://github.com/commercetools/merchant-center-application-kit/pull/3205) [`cf560fbd4`](https://github.com/commercetools/merchant-center-application-kit/commit/cf560fbd47d284657e06fc27af9387b342557924) Thanks [@chloe0592](https://github.com/chloe0592)! - Updating Ui-Kit dependencies to v `16.7.3`
+
+- [#3175](https://github.com/commercetools/merchant-center-application-kit/pull/3175) [`bd9df94b5`](https://github.com/commercetools/merchant-center-application-kit/commit/bd9df94b565faf308f82bd39d6ca4ebf5892ed9f) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Move `<CustomViewLoader>` component to `application-shell` package
+
+- [#3082](https://github.com/commercetools/merchant-center-application-kit/pull/3082) [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies [[`cf560fbd4`](https://github.com/commercetools/merchant-center-application-kit/commit/cf560fbd47d284657e06fc27af9387b342557924), [`c121508f5`](https://github.com/commercetools/merchant-center-application-kit/commit/c121508f50111c4e9d28b06158ca55af52aac1e2), [`bd9df94b5`](https://github.com/commercetools/merchant-center-application-kit/commit/bd9df94b565faf308f82bd39d6ca4ebf5892ed9f), [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db), [`1986d18d1`](https://github.com/commercetools/merchant-center-application-kit/commit/1986d18d1b411013514df21cbb5966ffbe4b6178)]:
+  - @commercetools-frontend/i18n@22.8.0
+  - @commercetools-frontend/l10n@22.8.0
+  - @commercetools-frontend/constants@22.8.0
+  - @commercetools-frontend/actions-global@22.8.0
+  - @commercetools-frontend/sentry@22.8.0
+  - @commercetools-frontend/assets@22.8.0
+
 ## 22.7.1
 
 ### Patch Changes

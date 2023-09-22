@@ -1,5 +1,22 @@
 # @commercetools-website/components-playground
 
+## 22.8.0
+
+### Patch Changes
+
+- [#3205](https://github.com/commercetools/merchant-center-application-kit/pull/3205) [`cf560fbd4`](https://github.com/commercetools/merchant-center-application-kit/commit/cf560fbd47d284657e06fc27af9387b342557924) Thanks [@chloe0592](https://github.com/chloe0592)! - Updating Ui-Kit dependencies to v `16.7.3`
+
+- [#3157](https://github.com/commercetools/merchant-center-application-kit/pull/3157) [`b920f424c`](https://github.com/commercetools/merchant-center-application-kit/commit/b920f424c109a906cf8db7012fd65d4ec3a8e113) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency vite to v4.1.5 [security]
+
+- [#3082](https://github.com/commercetools/merchant-center-application-kit/pull/3082) [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies [[`cf560fbd4`](https://github.com/commercetools/merchant-center-application-kit/commit/cf560fbd47d284657e06fc27af9387b342557924), [`c121508f5`](https://github.com/commercetools/merchant-center-application-kit/commit/c121508f50111c4e9d28b06158ca55af52aac1e2), [`bd9df94b5`](https://github.com/commercetools/merchant-center-application-kit/commit/bd9df94b565faf308f82bd39d6ca4ebf5892ed9f), [`bd9df94b5`](https://github.com/commercetools/merchant-center-application-kit/commit/bd9df94b565faf308f82bd39d6ca4ebf5892ed9f), [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db)]:
+  - @commercetools-frontend/application-components@22.8.0
+  - @commercetools-frontend/i18n@22.8.0
+  - @commercetools-frontend/l10n@22.8.0
+  - @commercetools-frontend/constants@22.8.0
+  - @commercetools-frontend/browser-history@22.8.0
+
 ## 22.7.1
 
 ### Patch Changes

@@ -1,5 +1,62 @@
 # @commercetools-frontend/application-shell
 
+## 22.8.0
+
+### Minor Changes
+
+- [#3175](https://github.com/commercetools/merchant-center-application-kit/pull/3175) [`bd9df94b5`](https://github.com/commercetools/merchant-center-application-kit/commit/bd9df94b565faf308f82bd39d6ca4ebf5892ed9f) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Define context for Custom Views
+
+- [#3175](https://github.com/commercetools/merchant-center-application-kit/pull/3175) [`bd9df94b5`](https://github.com/commercetools/merchant-center-application-kit/commit/bd9df94b565faf308f82bd39d6ca4ebf5892ed9f) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Support loading and parsing of new config for Custom Views
+
+### Patch Changes
+
+- [#3220](https://github.com/commercetools/merchant-center-application-kit/pull/3220) [`f30cc5ca6`](https://github.com/commercetools/merchant-center-application-kit/commit/f30cc5ca6d9f9f47836b04915ac7233ac1437976) Thanks [@chloe0592](https://github.com/chloe0592)! - small UI changes in new navigation
+
+- [#3210](https://github.com/commercetools/merchant-center-application-kit/pull/3210) [`d5e7303fd`](https://github.com/commercetools/merchant-center-application-kit/commit/d5e7303fd9ca450fabba47c2fdccf1a275852f00) Thanks [@kark](https://github.com/kark)! - Adjust PortalsContainer offsets to accommodate the new Navbar
+
+- [#3205](https://github.com/commercetools/merchant-center-application-kit/pull/3205) [`cf560fbd4`](https://github.com/commercetools/merchant-center-application-kit/commit/cf560fbd47d284657e06fc27af9387b342557924) Thanks [@chloe0592](https://github.com/chloe0592)! - Updating Ui-Kit dependencies to v `16.7.3`
+
+- [#3203](https://github.com/commercetools/merchant-center-application-kit/pull/3203) [`e0a7b5150`](https://github.com/commercetools/merchant-center-application-kit/commit/e0a7b515058a389794d5040cb4b7785708d59cbb) Thanks [@chloe0592](https://github.com/chloe0592)! - Adding new styling to side navigation (colors, scrollbar, spacings)
+
+- [#3200](https://github.com/commercetools/merchant-center-application-kit/pull/3200) [`938f79391`](https://github.com/commercetools/merchant-center-application-kit/commit/938f79391746077eb7b71a64acbf1dd73b3b3d06) Thanks [@chloe0592](https://github.com/chloe0592)! - Updating style of the navigation footer
+
+- [#3175](https://github.com/commercetools/merchant-center-application-kit/pull/3175) [`bd9df94b5`](https://github.com/commercetools/merchant-center-application-kit/commit/bd9df94b565faf308f82bd39d6ca4ebf5892ed9f) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Move `<CustomViewLoader>` component to `application-shell` package
+
+- [#3082](https://github.com/commercetools/merchant-center-application-kit/pull/3082) [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- [#3224](https://github.com/commercetools/merchant-center-application-kit/pull/3224) [`bef02f8ac`](https://github.com/commercetools/merchant-center-application-kit/commit/bef02f8ac0185eb293e0d295f320f753cc0eff18) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency graphql to v16.8.1 [security]
+
+- [#3204](https://github.com/commercetools/merchant-center-application-kit/pull/3204) [`3be9e8719`](https://github.com/commercetools/merchant-center-application-kit/commit/3be9e8719e80f1594490c4861a65a97f5dc403ed) Thanks [@kark](https://github.com/kark)! - Display correct Navbar submenu position
+
+- [#3211](https://github.com/commercetools/merchant-center-application-kit/pull/3211) [`a911ae90d`](https://github.com/commercetools/merchant-center-application-kit/commit/a911ae90de00d0196390b043da51246c2198c143) Thanks [@kark](https://github.com/kark)! - Fix left navigation height when global notification is displayed
+
+- [#3212](https://github.com/commercetools/merchant-center-application-kit/pull/3212) [`da1236982`](https://github.com/commercetools/merchant-center-application-kit/commit/da1236982646042aa13cda3962d24481ec27e546) Thanks [@chloe0592](https://github.com/chloe0592)! - Small navigation layout improvements
+
+- [#3209](https://github.com/commercetools/merchant-center-application-kit/pull/3209) [`4703c830c`](https://github.com/commercetools/merchant-center-application-kit/commit/4703c830c14ce6a0520089eff040afdb1ae86516) Thanks [@chloe0592](https://github.com/chloe0592)! - change the menu-item click behaviour
+
+- [#3198](https://github.com/commercetools/merchant-center-application-kit/pull/3198) [`3da2c956d`](https://github.com/commercetools/merchant-center-application-kit/commit/3da2c956d9feaad710d7445bf520c18b64a588b8) Thanks [@kark](https://github.com/kark)! - Refactor Navbar component to use a single point of feature flag evaluation
+
+- [#3216](https://github.com/commercetools/merchant-center-application-kit/pull/3216) [`1986d18d1`](https://github.com/commercetools/merchant-center-application-kit/commit/1986d18d1b411013514df21cbb5966ffbe4b6178) Thanks [@ddouglasz](https://github.com/ddouglasz)! - Navigation header redesign.
+
+- [#3192](https://github.com/commercetools/merchant-center-application-kit/pull/3192) [`e793cef7c`](https://github.com/commercetools/merchant-center-application-kit/commit/e793cef7cb7fa650a796c668bbfc6d0ea2ef52d6) Thanks [@kark](https://github.com/kark)! - Add tooltip to the new Navbar
+
+- Updated dependencies [[`cf560fbd4`](https://github.com/commercetools/merchant-center-application-kit/commit/cf560fbd47d284657e06fc27af9387b342557924), [`c121508f5`](https://github.com/commercetools/merchant-center-application-kit/commit/c121508f50111c4e9d28b06158ca55af52aac1e2), [`bd9df94b5`](https://github.com/commercetools/merchant-center-application-kit/commit/bd9df94b565faf308f82bd39d6ca4ebf5892ed9f), [`bd9df94b5`](https://github.com/commercetools/merchant-center-application-kit/commit/bd9df94b565faf308f82bd39d6ca4ebf5892ed9f), [`bd9df94b5`](https://github.com/commercetools/merchant-center-application-kit/commit/bd9df94b565faf308f82bd39d6ca4ebf5892ed9f), [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db), [`bef02f8ac`](https://github.com/commercetools/merchant-center-application-kit/commit/bef02f8ac0185eb293e0d295f320f753cc0eff18), [`1986d18d1`](https://github.com/commercetools/merchant-center-application-kit/commit/1986d18d1b411013514df21cbb5966ffbe4b6178)]:
+  - @commercetools-frontend/application-components@22.8.0
+  - @commercetools-frontend/react-notifications@22.8.0
+  - @commercetools-frontend/i18n@22.8.0
+  - @commercetools-frontend/l10n@22.8.0
+  - @commercetools-frontend/application-shell-connectors@22.8.0
+  - @commercetools-frontend/application-config@22.8.0
+  - @commercetools-frontend/permissions@22.8.0
+  - @commercetools-frontend/constants@22.8.0
+  - @commercetools-frontend/sdk@22.8.0
+  - @commercetools-frontend/browser-history@22.8.0
+  - @commercetools-frontend/actions-global@22.8.0
+  - @commercetools-frontend/notifications@22.8.0
+  - @commercetools-frontend/url-utils@22.8.0
+  - @commercetools-frontend/sentry@22.8.0
+  - @commercetools-frontend/assets@22.8.0
+
 ## 22.7.1
 
 ### Patch Changes

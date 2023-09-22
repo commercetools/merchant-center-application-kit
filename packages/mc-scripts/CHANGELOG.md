@@ -1,5 +1,28 @@
 # @commercetools-frontend/mc-scripts
 
+## 22.8.0
+
+### Minor Changes
+
+- [#3175](https://github.com/commercetools/merchant-center-application-kit/pull/3175) [`bd9df94b5`](https://github.com/commercetools/merchant-center-application-kit/commit/bd9df94b565faf308f82bd39d6ca4ebf5892ed9f) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Support loading and parsing of new config for Custom Views
+
+### Patch Changes
+
+- [#3157](https://github.com/commercetools/merchant-center-application-kit/pull/3157) [`b920f424c`](https://github.com/commercetools/merchant-center-application-kit/commit/b920f424c109a906cf8db7012fd65d4ec3a8e113) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency vite to v4.1.5 [security]
+
+- [#3082](https://github.com/commercetools/merchant-center-application-kit/pull/3082) [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- [#3224](https://github.com/commercetools/merchant-center-application-kit/pull/3224) [`bef02f8ac`](https://github.com/commercetools/merchant-center-application-kit/commit/bef02f8ac0185eb293e0d295f320f753cc0eff18) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency graphql to v16.8.1 [security]
+
+- Updated dependencies [[`cf560fbd4`](https://github.com/commercetools/merchant-center-application-kit/commit/cf560fbd47d284657e06fc27af9387b342557924), [`bd9df94b5`](https://github.com/commercetools/merchant-center-application-kit/commit/bd9df94b565faf308f82bd39d6ca4ebf5892ed9f), [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db), [`bd9df94b5`](https://github.com/commercetools/merchant-center-application-kit/commit/bd9df94b565faf308f82bd39d6ca4ebf5892ed9f), [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db), [`1986d18d1`](https://github.com/commercetools/merchant-center-application-kit/commit/1986d18d1b411013514df21cbb5966ffbe4b6178)]:
+  - @commercetools-frontend/application-components@22.8.0
+  - @commercetools-frontend/application-config@22.8.0
+  - @commercetools-frontend/mc-html-template@22.8.0
+  - @commercetools-frontend/constants@22.8.0
+  - @commercetools-frontend/babel-preset-mc-app@22.8.0
+  - @commercetools-frontend/mc-dev-authentication@22.8.0
+  - @commercetools-frontend/assets@22.8.0
+
 ## 22.7.1
 
 ### Patch Changes
