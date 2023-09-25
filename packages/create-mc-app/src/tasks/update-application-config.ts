@@ -22,16 +22,7 @@ function replaceApplicationInfoInApplicationConfig(
           visitor: {
             Identifier(nodePath) {
               if (
-                options.applicationType ===
-                  applicationTypes['custom-application'] &&
                 nodePath.isIdentifier({ name: 'name' }) &&
-                nodePath.parent.type === 'ObjectProperty'
-              ) {
-                nodePath.parent.value = types.stringLiteral(appName);
-              }
-              if (
-                options.applicationType === applicationTypes['custom-view'] &&
-                nodePath.isIdentifier({ name: 'defaultLabel' }) &&
                 nodePath.parent.type === 'ObjectProperty'
               ) {
                 nodePath.parent.value = types.stringLiteral(appName);
