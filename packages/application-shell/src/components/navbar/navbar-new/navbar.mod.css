@@ -23,6 +23,7 @@
   background: var(--color-primary);
   height: 100%;
   grid-template-rows: 56px 1fr;
+  transition: var(--left-navigation-transition);
 }
 
 .navigation-header {
@@ -119,7 +120,7 @@
   color: var(--color-for-navbar-link);
   display: none;
   opacity: 0;
-  transition: all 0.25s ease-in-out;
+  transition: var(--left-navigation-transition);
   text-align: left;
   text-decoration: none;
   z-index: 1;
@@ -201,6 +202,7 @@
 
 :global(.body__menu-open) .left-navigation {
   width: var(--width-left-navigation-when-expanded);
+  transition: var(--left-navigation-transition);
 }
 
 :global(.body__menu-open) .list-item .title {
@@ -374,6 +376,7 @@
 
 .item_menu-collapsed.list-item.item__active .item-icon-text .title {
   display: none;
+  transition: var(--left-navigation-transition);
 }
 
 :global(.body__menu-open) .list-item.item__active .item-icon-text {
