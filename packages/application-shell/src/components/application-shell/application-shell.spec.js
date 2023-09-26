@@ -1385,8 +1385,7 @@ describe('With new navbar', () => {
   function getMenuItemBasedOnTooltipLabel(mainMenuLabel) {
     return (menuItem) =>
       // eslint-disable-next-line testing-library/no-node-access
-      menuItem.querySelector('[data-testid="tooltip"]').innerHTML ===
-      mainMenuLabel.value;
+      menuItem.querySelector('[aria-owns]').innerHTML === mainMenuLabel.value;
   }
 
   beforeEach(() => {
@@ -2031,6 +2030,7 @@ describe('With new navbar', () => {
     });
   });
   describe('navbar menu links interactions', () => {
+    // TODO: Refactor to utilize React Testing Library's query methods after Navbar accessibility improvements
     async function checkLinksInteractions({
       container,
       findByLeftNavigation,
@@ -2038,12 +2038,12 @@ describe('With new navbar', () => {
       mainSubmenuLabel,
     }) {
       // Check the relationships between the menu items of a group
-      const tooltips = within(await findByLeftNavigation()).getAllByTestId(
-        'tooltip'
-      );
-      const submenuTooltip = tooltips.find(
-        (tooltip) => tooltip.innerHTML === mainMenuLabel.value
-      );
+      const leftNavigation = await findByLeftNavigation();
+      const submenuTooltip = Array.from(
+        leftNavigation
+          // eslint-disable-next-line testing-library/no-node-access
+          .querySelectorAll('[aria-owns]')
+      ).find((tooltip) => tooltip.innerHTML === mainMenuLabel.value);
 
       const groupId = submenuTooltip.getAttribute('aria-owns');
 
