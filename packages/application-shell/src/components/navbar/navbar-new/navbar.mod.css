@@ -68,11 +68,6 @@
   cursor: pointer;
 }
 
-.list:not(.item_menu__active) .list-item:not(:hover),
-.list:not(.item__active) .list-item:not(:hover) {
-  transition: all 150ms ease-out;
-}
-
 .item-link {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link);
