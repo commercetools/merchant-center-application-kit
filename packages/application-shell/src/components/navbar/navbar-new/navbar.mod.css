@@ -301,8 +301,6 @@
   flex-direction: column;
   position: relative;
   min-height: 0;
-  padding: var(--spacing-25) var(--spacing-25) var(--spacing-25)
-    var(--spacing-30);
 }
 
 .text-link-sublist {
@@ -316,6 +314,8 @@
   font-weight: var(--font-weight-for-navbar-link-when-hovered);
   text-decoration: none;
   flex: 1;
+  padding: var(--spacing-25) var(--spacing-25) var(--spacing-25)
+    var(--spacing-30);
 }
 
 .navlink-clickable-content {
