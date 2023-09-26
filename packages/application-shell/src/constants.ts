@@ -6,6 +6,7 @@ export const DIMENSIONS = {
   navMenuItemHeight: '48px',
   newNavMenu: '80px',
   newNavMenuExpanded: '256px',
+  subMenuItemVerticalOffset: 48,
 } as const;
 
 export const WINDOW_SIZES = {

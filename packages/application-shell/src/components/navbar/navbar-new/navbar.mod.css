@@ -8,6 +8,7 @@
   --sublist-indentation-when-collapsed: 72px;
   --sublist-indentation-when-expanded: 248px;
   --sublist-width: 253px;
+  --left-navigation-transition: all 150ms cubic-bezier(1, 0, 0.58, 1);
 
   /* Left navigation */
   --width-left-navigation: 80px;
@@ -67,8 +68,8 @@
   cursor: pointer;
 }
 
-.list:not(.item_menu__active) .list-item,
-.list:not(.item__active) .list-item {
+.list:not(.item_menu__active) .list-item:not(:hover),
+.list:not(.item__active) .list-item:not(:hover) {
   transition: all 150ms ease-out;
 }
 
@@ -102,7 +103,7 @@
 .list-item .icon {
   width: var(--icon-size);
   height: var(--icon-size);
-  transition: transform 150ms cubic-bezier(1, 0, 0.58, 1);
+  transition: var(--left-navigation-transition);
 }
 
 .list-item:hover .icon {
@@ -214,7 +215,7 @@
   opacity: 1;
   margin-left: var(--spacing-25);
   color: var(--color-surface);
-  transition: margin-left 150ms cubic-bezier(1, 0, 0.58, 1);
+  transition: var(--left-navigation-transition);
 }
 
 .list-item:hover .title {
