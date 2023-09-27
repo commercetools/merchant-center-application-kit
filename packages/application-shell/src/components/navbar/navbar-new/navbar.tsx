@@ -112,12 +112,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const menuItemBoundingClientRect =
     menuItemRef.current?.getBoundingClientRect();
   const menuItemTop = menuItemBoundingClientRect?.top || 0;
-  const menuItemBottom = menuItemBoundingClientRect
-    ? menuItemBoundingClientRect.bottom +
-      (props.isMenuOpen
-        ? parseInt(DIMENSIONS.navMenuItemHeight) / 2
-        : parseInt(DIMENSIONS.navMenuItemHeight))
-    : 0;
+  const menuItemBottom = menuItemBoundingClientRect?.bottom || 0;
 
   const callbackFn: IntersectionObserverCallback = useCallback(
     (entries) => {

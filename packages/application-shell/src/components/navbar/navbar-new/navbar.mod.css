@@ -71,6 +71,7 @@
 .item-link {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link);
+  padding: var(--spacing-25);
   width: var(--item-size);
   position: relative;
   display: block;
@@ -87,12 +88,9 @@
 
 .list-item .item-icon-text {
   display: flex;
-  position: absolute;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  top: var(--spacing-25);
-  left: var(--spacing-25);
 }
 
 .list-item .icon {
@@ -125,6 +123,11 @@
   text-align: left;
   text-decoration: none;
   z-index: 1;
+}
+
+.list-item:hover .icon {
+  /* 1.16 is roughly the ratio of icon-size-hover to --icon-size */
+  transform: scale(1.2);
 }
 
 .expander {
@@ -303,9 +306,9 @@
   color: var(--color-for-navbar-link);
   text-decoration: none;
   display: flex;
+  padding: var(--spacing-25);
   align-items: center;
   justify-content: center;
-  position: relative;
 }
 
 :global(.body__menu-open) .text-link {
@@ -320,14 +323,6 @@
   min-height: 0;
   padding: var(--spacing-25) var(--spacing-25) var(--spacing-25)
     var(--spacing-30);
-}
-
-.text-link .item-icon-text {
-  display: flex;
-  position: absolute;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 }
 
 .text-link-sublist {
@@ -366,11 +361,10 @@
   align-self: flex-start;
 }
 
-.item_menu-collapsed.list-item.item__active .item-icon-text,
 .fixed-menu .list-item .item-icon-text {
   justify-content: center;
   display: flex;
-  width: 50%;
+  width: 100%;
 }
 
 .support-menu {
@@ -381,20 +375,6 @@
 :global(.body__menu-open) .list-item.item__active .item-icon-text {
   position: relative;
   width: auto;
-}
-
-:global(.body__menu-open) .list-item.item__active .item-icon-text::after {
-  content: '';
-  position: absolute;
-  width: var(--width-left-navigation-when-expanded);
-  height: var(--item-height);
-}
-
-.item_menu-collapsed.list-item.item__active .item-icon-text::after {
-  content: '';
-  position: absolute;
-  width: var(--width-left-navigation);
-  height: var(--item-height);
 }
 
 .item_menu-collapsed.list-item.item__active .item-icon-text .title {
@@ -480,16 +460,6 @@
   color: var(--color-for-navbar-link-when-active) !important;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link-when-active);
-}
-
-.highlighted-sublist,
-.highlighted-sublist .title {
-  color: var(--color-surface);
-}
-
-.sublist-item:hover .highlighted-sublist,
-.sublist-item:hover .highlighted-sublist .title {
-  color: var(--color-solid);
 }
 
 .hidden {
