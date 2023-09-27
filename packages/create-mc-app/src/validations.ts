@@ -9,8 +9,12 @@ const throwIfApplicationTypeIsNotSupported = (
   applicationType: TApplicationType
 ) => {
   switch (applicationType) {
-    case applicationTypes['custom-application']:
     case applicationTypes['custom-view']:
+      if (process.env.ENABLE_EXPERIMENTAL_CUSTOM_VIEWS !== 'true') {
+        throw new Error(`Custom Views generation is not yet supported.`);
+      }
+    // eslint-disable-next-line no-fallthrough
+    case applicationTypes['custom-application']:
       break;
     default: {
       const applicationTypesList = Object.keys(applicationTypes).toString();
