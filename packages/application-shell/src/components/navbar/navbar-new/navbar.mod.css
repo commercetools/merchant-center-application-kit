@@ -125,11 +125,6 @@
   z-index: 1;
 }
 
-.list-item:hover .icon {
-  /* 1.16 is roughly the ratio of icon-size-hover to --icon-size */
-  transform: scale(1.2);
-}
-
 .expander {
   display: flex;
   align-items: center;
