@@ -1,6 +1,7 @@
 import path from 'path';
 import { processConfig } from '../src';
 import loadConfig from '../src/load-config';
+import fixtureConfigAccountLinks from './fixtures/custom-applications/config-account-links.json';
 import fixtureConfigEnvVariables from './fixtures/custom-applications/config-env-variables.json';
 import fixtureConfigFilePathVariables from './fixtures/custom-applications/config-file-path-variables.json';
 import fixtureConfigFull from './fixtures/custom-applications/config-full.json';
@@ -1298,6 +1299,90 @@ describe('processing a config with OIDC', () => {
           },
         },
       });
+    });
+  });
+});
+
+describe('processing a config with account links', () => {
+  beforeEach(() => {
+    loadConfig.mockReturnValue({
+      filepath: '/custom-application-config.js',
+      config: fixtureConfigAccountLinks,
+    });
+  });
+  it('should process the config and correctly parse the file content', () => {
+    const result = processConfig(createTestOptions());
+    expect(result).toEqual({
+      data: {
+        id: 'app-id-123',
+        name: 'avengers-app',
+        description: undefined,
+        entryPointUriPath: 'avengers',
+        url: 'https://avengers.app',
+        permissions: [
+          {
+            name: 'viewAvengers',
+            oAuthScopes: ['view_products'],
+          },
+          {
+            name: 'manageAvengers',
+            oAuthScopes: [],
+          },
+        ],
+        icon: 'unused',
+        mainMenuLink: {
+          defaultLabel: '',
+          labelAllLocales: [],
+          permissions: [],
+        },
+        submenuLinks: [],
+      },
+      env: {
+        applicationId: '__local:avengers',
+        applicationIdentifier: '__local:avengers',
+        applicationName: 'avengers-app',
+        entryPointUriPath: 'avengers',
+        cdnUrl: 'http://localhost:3001/',
+        env: 'test',
+        frontendHost: 'localhost:3001',
+        location: 'gcp-eu',
+        mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
+        revision: '',
+        servedByProxy: false,
+        __DEVELOPMENT__: {
+          accountLinks: undefined,
+          menuLinks: {
+            icon: 'unused',
+            defaultLabel: '',
+            labelAllLocales: [],
+            permissions: [],
+            submenuLinks: [],
+          },
+          accountLinks: [
+            {
+              uriPath: 'profile',
+              defaultLabel: 'Profile',
+              labelAllLocales: [],
+              permissions: [],
+            },
+          ],
+          oidc: {
+            authorizeUrl:
+              'https://mc.europe-west1.gcp.commercetools.com/login/authorize',
+            initialProjectKey: 'test',
+            oAuthScopes: {
+              view: ['view_products'],
+            },
+          },
+        },
+      },
+      headers: {
+        csp: {
+          'connect-src': ['https://mc-api.europe-west1.gcp.commercetools.com'],
+          'script-src': [],
+          'style-src': [],
+        },
+      },
     });
   });
 });

@@ -1,5 +1,13 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 22.8.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@22.8.1
+  - @commercetools-frontend/sentry@22.8.1
+
 ## 22.8.0
 
 ### Minor Changes

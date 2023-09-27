@@ -1,5 +1,15 @@
 # @commercetools-frontend/application-config
 
+## 22.8.1
+
+### Patch Changes
+
+- [#3235](https://github.com/commercetools/merchant-center-application-kit/pull/3235) [`ec2c26677`](https://github.com/commercetools/merchant-center-application-kit/commit/ec2c26677f0aa6119d9f8eff247f620720a4d8ee) Thanks [@emmenko](https://github.com/emmenko)! - Fix regression when parsing links for the account applications
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.8.1
+  - @commercetools-frontend/constants@22.8.1
+
 ## 22.8.0
 
 ### Minor Changes
