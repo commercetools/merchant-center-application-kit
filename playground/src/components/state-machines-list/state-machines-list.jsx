@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { InfoMainPage } from '@commercetools-frontend/application-components';
 import { useMcQuery } from '@commercetools-frontend/application-shell';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
@@ -64,6 +65,7 @@ const StateMachinesList = (props) => {
   );
   const { page, perPage } = usePaginationState();
   const tableSorting = useDataTableSortingState({ key: 'key', order: 'asc' });
+  const intl = useIntl();
 
   const searchParams = new URLSearchParams({
     limit: perPage.value,
@@ -88,9 +90,11 @@ const StateMachinesList = (props) => {
   );
 
   return (
-    <Spacings.Inset scale="m">
+    <InfoMainPage
+      title={intl.formatMessage(messages.title)}
+      customViewLocatorCode="products.product-details.general"
+    >
       <Spacings.Stack scale="m">
-        <Text.Headline as="h2" intlMessage={messages.title} />
         {loading && <LoadingSpinner />}
         {error && (
           <ContentNotification type="error">
@@ -128,7 +132,7 @@ const StateMachinesList = (props) => {
         )}
         {props.children}
       </Spacings.Stack>
-    </Spacings.Inset>
+    </InfoMainPage>
   );
 };
 StateMachinesList.displayName = 'StateMachinesList';

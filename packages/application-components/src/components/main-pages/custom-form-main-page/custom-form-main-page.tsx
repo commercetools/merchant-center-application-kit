@@ -2,6 +2,7 @@ import type { ReactElement, ReactNode } from 'react';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import Spacings from '@commercetools-uikit/spacings';
 import { warning } from '@commercetools-uikit/utils';
+import CustomViewsSelector from '../../custom-views/custom-views-selector';
 import {
   FormPrimaryButton,
   FormSecondaryButton,
@@ -28,6 +29,7 @@ type CustomFormMainPageProps = {
    * Replaces the title/subtitle row with a custom one (for special use cases)
    */
   customTitleRow?: ReactNode;
+  customViewLocatorCode?: string;
   /**
    * Any React node displayed as the content within the page.
    */
@@ -65,6 +67,11 @@ const CustomFormMainPage = (props: CustomFormMainPageProps) => {
 
   return (
     <PageWrapper>
+      {Boolean(props.customViewLocatorCode) && (
+        <CustomViewsSelector
+          customViewLocatorCode={props.customViewLocatorCode}
+        />
+      )}
       <MainPageContainer>
         <Spacings.Stack scale="l">
           {props.customTitleRow || (

@@ -1150,6 +1150,12 @@ importers:
       '@commercetools-frontend/actions-global':
         specifier: 22.8.1
         version: link:../actions-global
+      '@commercetools-frontend/application-config':
+        specifier: 22.8.1
+        version: link:../application-config
+      '@commercetools-frontend/application-shell-connectors':
+        specifier: 22.8.1
+        version: link:../application-shell-connectors
       '@commercetools-frontend/assets':
         specifier: 22.8.1
         version: link:../assets
@@ -1186,6 +1192,9 @@ importers:
       '@commercetools-uikit/icons':
         specifier: ^16.7.3
         version: 16.7.3(@types/react@17.0.56)(react@17.0.2)
+      '@commercetools-uikit/label':
+        specifier: ^16.7.3
+        version: 16.7.3(@types/react@17.0.56)(react-intl@6.4.5)(react@17.0.2)
       '@commercetools-uikit/messages':
         specifier: ^16.7.3
         version: 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
