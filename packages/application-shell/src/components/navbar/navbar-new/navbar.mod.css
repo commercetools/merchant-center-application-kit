@@ -15,6 +15,15 @@
   --width-left-navigation-when-expanded: 256px;
 }
 
+@keyframes visible {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /* Left Nav */
 
 .left-navigation {
@@ -118,7 +127,6 @@
   line-height: var(--line-height-for-navbar-link);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link);
-  display: none;
   opacity: 0;
   transition: var(--left-navigation-transition);
   text-align: left;
@@ -174,12 +182,6 @@
   border-radius: var(--border-radius-8);
 }
 
-.item__active .title {
-  opacity: 1;
-  display: block;
-  transition: all 0.2s ease;
-}
-
 .item_menu-open {
   height: auto !important;
 }
@@ -206,11 +208,11 @@
 }
 
 :global(.body__menu-open) .list-item .title {
-  display: block;
   opacity: 1;
   margin-left: var(--spacing-25);
   color: var(--color-surface);
   transition: var(--left-navigation-transition);
+  animation: visible 150ms cubic-bezier(1, 0, 0.58, 1);
 }
 
 .list-item:hover .title {
@@ -372,11 +374,6 @@
 :global(.body__menu-open) .list-item.item__active .item-icon-text {
   position: relative;
   width: auto;
-}
-
-.item_menu-collapsed.list-item.item__active .item-icon-text .title {
-  display: none;
-  transition: var(--left-navigation-transition);
 }
 
 :global(.body__menu-open) .list-item.item__active .item-icon-text {

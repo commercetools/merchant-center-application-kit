@@ -506,6 +506,7 @@ type ItemContainerProps = {
   defaultLabel?: string;
   applicationLocale: string;
   icon: string;
+  isMenuOpen?: boolean;
 };
 
 const ItemContainer = (props: ItemContainerProps) => {
@@ -516,13 +517,15 @@ const ItemContainer = (props: ItemContainerProps) => {
           <IconSwitcher icon={props.icon} size="scale" />
         </div>
       </div>
-      <div className={styles.title}>
-        <MenuLabel
-          labelAllLocales={props.labelAllLocales}
-          defaultLabel={props.defaultLabel}
-          applicationLocale={props.applicationLocale}
-        />
-      </div>
+      {props.isMenuOpen ? (
+        <div className={styles.title}>
+          <MenuLabel
+            labelAllLocales={props.labelAllLocales}
+            defaultLabel={props.defaultLabel}
+            applicationLocale={props.applicationLocale}
+          />
+        </div>
+      ) : null}
     </div>
   );
 };
