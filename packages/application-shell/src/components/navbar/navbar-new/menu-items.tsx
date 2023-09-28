@@ -212,14 +212,14 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
     props.level === 2 && props.isActive && !props.isExpanded;
   return (
     <ul
-      ref={ref}
+      ref={ref && props.level === 2 ? ref : null}
       css={css`
         ${getSubmenuPositionBasedOnMenuItemPosition(
           props.isSubmenuAboveMenuItem,
           props.submenuVerticalPosition
         )};
 
-        // additional styling of the pseudo-element enabling smooth coursor movement 
+        // additional styling of the pseudo-element enabling smooth coursor movement
         ::before {
           ${getContainerPositionBasedOnMenuItemPosition(
             props.isSubmenuAboveMenuItem,

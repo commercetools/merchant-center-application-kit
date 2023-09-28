@@ -5,9 +5,10 @@
   --icon-size-hover: 28px;
   --item-size: 48px;
   --item-height: 56px;
-  --sublist-indentantion-when-collapsed: 72px;
-  --sublist-indentantion-when-expanded: 248px;
+  --sublist-indentation-when-collapsed: 72px;
+  --sublist-indentation-when-expanded: 248px;
   --sublist-width: 253px;
+  --left-navigation-transition: all 150ms cubic-bezier(1, 0, 0.58, 1);
 
   /* Left navigation */
   --width-left-navigation: 80px;
@@ -95,7 +96,14 @@
 .list-item .icon {
   width: var(--icon-size);
   height: var(--icon-size);
+  transition: var(--left-navigation-transition);
 }
+
+.list-item:hover .icon {
+  /* 1.16 is roughly the ratio of icon-size-hover to --icon-size */
+  transform: scale(1.2);
+}
+
 .list-item .icon > svg *:not([fill='none']) {
   fill: var(--color-surface);
 }
@@ -200,6 +208,11 @@
   opacity: 1;
   margin-left: var(--spacing-25);
   color: var(--color-surface);
+  transition: var(--left-navigation-transition);
+}
+
+.list-item:hover .title {
+  margin-left: calc(var(--spacing-25) + 2px);
 }
 
 .list-item:not(.item__active):hover .icon > svg *:not([fill='none']) {
@@ -227,7 +240,7 @@
   font-size: var(--font-size-for-navbar-link);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   background-color: var(--background-color-for-navbar);
-  left: var(--sublist-indentantion-when-collapsed);
+  left: var(--sublist-indentation-when-collapsed);
   z-index: -1;
   list-style: none;
   position: fixed;
@@ -254,6 +267,7 @@
   display: flex;
   align-items: center;
   align-self: stretch;
+  transition: padding-left 150ms ease-out;
 }
 
 .sublist-item__active {
@@ -268,6 +282,7 @@
   font-weight: var(--font-weight-for-navbar-link-when-hovered);
   border-radius: var(--border-radius-4);
   background: var(--color-primary-95);
+  padding-left: var(--spacing-20);
 }
 
 .text {
@@ -431,7 +446,7 @@
 }
 
 .item-link:hover .sublist-expanded__active {
-  left: var(--sublist-indentantion-when-expanded);
+  left: var(--sublist-indentation-when-expanded);
 }
 
 .highlighted,
