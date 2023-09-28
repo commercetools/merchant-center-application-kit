@@ -119,6 +119,7 @@ const CustomViewDevHost = (props: TCustomViewDevHost) => {
           <ApplicationShell
             environment={window.app}
             applicationMessages={props.applicationMessages}
+            disableRoutePermissionCheck
           >
             <LocalCustomViewLauncher environment={window.app} />
           </ApplicationShell>
