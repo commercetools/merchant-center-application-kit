@@ -9,11 +9,12 @@ const throwIfApplicationTypeIsNotSupported = (
   applicationType: TApplicationType
 ) => {
   switch (applicationType) {
+    // @ts-ignore (temporary disable TS2578: no switch case fallthrough error)
     case applicationTypes['custom-view']:
       if (process.env.ENABLE_EXPERIMENTAL_CUSTOM_VIEWS !== 'true') {
         throw new Error(`Custom Views generation is not yet supported.`);
       }
-    // eslint-disable-next-line no-fallthrough
+    /* falls through */
     case applicationTypes['custom-application']:
       break;
     default: {
