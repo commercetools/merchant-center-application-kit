@@ -1,6 +1,5 @@
 import { type ReactNode, useState } from 'react';
 import { Route, Router, Switch, useRouteMatch } from 'react-router-dom';
-import { CustomViewLoader } from '@commercetools-frontend/application-components';
 import history from '@commercetools-frontend/browser-history';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
@@ -9,6 +8,7 @@ import PrimaryButton from '@commercetools-uikit/primary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import ApplicationShell from '../application-shell';
+import CustomViewLoader from '../custom-view-loader';
 
 declare let window: ApplicationWindow;
 
