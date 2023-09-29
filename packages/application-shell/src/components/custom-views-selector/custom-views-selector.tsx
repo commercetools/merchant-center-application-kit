@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
+import { CustomViewData } from '@commercetools-frontend/constants';
 import Constraints from '@commercetools-uikit/constraints';
 import { designTokens } from '@commercetools-uikit/design-system';
 import { SidebarCollapseIcon } from '@commercetools-uikit/icons';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import { TCustomView } from '../../types/generated/settings';
 import CustomViewLoader from '../custom-view-loader';
 import { useCustomViewsConnector } from './use-custom-views-connector';
 
@@ -14,7 +14,7 @@ const COMPONENT_HEIGHT = '56px';
 
 type TCustmoViewSelectorProps = {
   customViewLocatorCode?: string;
-  onCustomViewsResolved?: (customViews: TCustomView[]) => void;
+  onCustomViewsResolved?: (customViews: CustomViewData[]) => void;
 };
 
 type TWrapperProps = {
@@ -34,7 +34,7 @@ const Container = styled.div`
 function CustomViewSelector(props: TCustmoViewSelectorProps) {
   const { customViewLocatorCode, onCustomViewsResolved } = props;
   const [selectedCustomView, setSelectedCustomView] =
-    useState<TCustomView | null>(null);
+    useState<CustomViewData | null>(null);
   const { customViews, error, loading } = useCustomViewsConnector({
     customViewLocatorCode,
   });
@@ -45,7 +45,7 @@ function CustomViewSelector(props: TCustmoViewSelectorProps) {
     }
   }, [customViews, error, loading, onCustomViewsResolved]);
 
-  const openCustomView = useCallback((customView: TCustomView) => {
+  const openCustomView = useCallback((customView: CustomViewData) => {
     setSelectedCustomView(customView);
   }, []);
 
@@ -89,7 +89,7 @@ function CustomViewSelector(props: TCustmoViewSelectorProps) {
             ))}
           </Spacings.Inline>
 
-          {Boolean(selectedCustomView) && (
+          {selectedCustomView && (
             <CustomViewLoader
               customView={selectedCustomView}
               onClose={onCustomViewClosed}

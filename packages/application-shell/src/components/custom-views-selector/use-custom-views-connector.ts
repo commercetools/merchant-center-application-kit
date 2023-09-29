@@ -1,7 +1,9 @@
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import {
+  CustomViewData,
+  GRAPHQL_TARGETS,
+} from '@commercetools-frontend/constants';
 import { useMcQuery } from '../../hooks/apollo-hooks';
 import type {
-  TCustomView,
   TFetchCustomViewsByLocatorQuery,
   TFetchCustomViewsByLocatorQueryVariables,
 } from '../../types/generated/settings';
@@ -11,7 +13,7 @@ type TUseCustomViewsFetcherParams = {
   customViewLocatorCode?: string;
 };
 type TUseCustomViewsFetcher = (props: TUseCustomViewsFetcherParams) => {
-  customViews: TCustomView[];
+  customViews: CustomViewData[];
   error?: Error;
   loading: boolean;
 };
@@ -35,7 +37,7 @@ export const useCustomViewsConnector: TUseCustomViewsFetcher = ({
   return {
     customViews:
       data?.allCustomViewsInstallationsByLocator?.map(
-        (installation) => installation.customView as TCustomView
+        (installation) => installation.customView as CustomViewData
       ) || [],
     error,
     loading,
