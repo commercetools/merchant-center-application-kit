@@ -37,6 +37,7 @@ export enum TAuthPermission {
   ManageMyOrganizations = 'manageMyOrganizations',
   ManageProjectSettings = 'manageProjectSettings',
   PerformDataCleanups = 'performDataCleanups',
+  ViewBusinessUnits = 'viewBusinessUnits',
   ViewCartDiscounts = 'viewCartDiscounts',
   ViewCustomers = 'viewCustomers',
   ViewDiscountCodes = 'viewDiscountCodes',
@@ -65,6 +66,31 @@ export enum TBestSellingLimit {
   Five = 'FIVE',
   Ten = 'TEN'
 }
+
+export type TBusinessUnitsListMyView = {
+  __typename?: 'BusinessUnitsListMyView';
+  createdAt: Scalars['DateTime'];
+  filters?: Maybe<Array<TFilterValues>>;
+  id: Scalars['ID'];
+  isActive?: Maybe<Scalars['Boolean']>;
+  nameAllLocales?: Maybe<Array<TLocalizedField>>;
+  projectKey: Scalars['String'];
+  sort?: Maybe<TSort>;
+  table?: Maybe<TTable>;
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
+};
+
+export type TBusinessUnitsListMyViewInput = {
+  filters: Array<TFilterValuesCreateInput>;
+  nameAllLocales: Array<TLocalizedFieldCreateInput>;
+  sort: TSortCreateInput;
+  table?: InputMaybe<TBusinessUnitsListMyViewTableInput>;
+};
+
+export type TBusinessUnitsListMyViewTableInput = {
+  visibleColumns: Array<Scalars['String']>;
+};
 
 export enum TCategoryRecommendationSearchProperty {
   Attribute = 'Attribute',
@@ -113,7 +139,7 @@ export type TCustomApplication = {
   owner: TOrganizationExtension;
   ownerId: Scalars['String'];
   permissions: Array<TCustomApplicationPermission>;
-  status?: Maybe<TCustomApplicationStatus>;
+  status: TCustomApplicationStatus;
   submenuLinks: Array<TCustomApplicationSubmenuLink>;
   updatedAt: Scalars['DateTime'];
   url: Scalars['String'];
@@ -165,7 +191,7 @@ export type TCustomApplicationInstallation = {
   installInAllProjects: Scalars['Boolean'];
   owner: TOrganizationExtension;
   ownerId: Scalars['String'];
-  projects?: Maybe<Array<TProjectExtension>>;
+  projects: Array<TProjectExtension>;
   updatedAt: Scalars['DateTime'];
 };
 
@@ -308,8 +334,6 @@ export type TCustomViewInstallation = {
   __typename?: 'CustomViewInstallation';
   acceptedPermissions: Array<TCustomViewInstallationPermission>;
   createdAt: Scalars['DateTime'];
-  customView: TCustomView;
-  customViewId: Scalars['String'];
   id: Scalars['ID'];
   installInAllProjects: Scalars['Boolean'];
   owner: TOrganizationExtension;
@@ -322,11 +346,20 @@ export type TCustomViewInstallationPermission = {
   __typename?: 'CustomViewInstallationPermission';
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
-  installedCustomView: TCustomViewInstallation;
-  installedCustomViewId: Scalars['String'];
   name: Scalars['String'];
   oAuthScopes: Array<Scalars['String']>;
   updatedAt: Scalars['DateTime'];
+};
+
+export type TCustomViewLocator = {
+  __typename?: 'CustomViewLocator';
+  key: Scalars['String'];
+};
+
+export type TCustomViewLocatorGroup = {
+  __typename?: 'CustomViewLocatorGroup';
+  key: Scalars['String'];
+  locators: Array<TCustomViewLocator>;
 };
 
 export type TCustomViewPermission = {
@@ -390,6 +423,31 @@ export type TCustomersListViewInput = {
 };
 
 export type TCustomersListViewTableInput = {
+  visibleColumns: Array<Scalars['String']>;
+};
+
+export type TCustomersSearchListMyView = {
+  __typename?: 'CustomersSearchListMyView';
+  createdAt: Scalars['DateTime'];
+  filters?: Maybe<Array<TFilterValues>>;
+  id: Scalars['ID'];
+  isActive?: Maybe<Scalars['Boolean']>;
+  nameAllLocales?: Maybe<Array<TLocalizedField>>;
+  projectKey: Scalars['String'];
+  sort?: Maybe<TSort>;
+  table?: Maybe<TTable>;
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
+};
+
+export type TCustomersSearchListMyViewInput = {
+  filters: Array<TFilterValuesCreateInput>;
+  nameAllLocales: Array<TLocalizedFieldCreateInput>;
+  sort: TSortCreateInput;
+  table?: InputMaybe<TCustomersSearchListMyViewTableInput>;
+};
+
+export type TCustomersSearchListMyViewTableInput = {
   visibleColumns: Array<Scalars['String']>;
 };
 
@@ -609,8 +667,10 @@ export type TMigrationMatchingScore = {
 
 export type TMutation = {
   __typename?: 'Mutation';
+  activateBusinessUnitsListMyView?: Maybe<TBusinessUnitsListMyView>;
   activateCartDiscountsCustomView?: Maybe<TDiscountsCustomView>;
   activateCustomersListView?: Maybe<TCustomersListView>;
+  activateCustomersSearchListMyView?: Maybe<TCustomersSearchListMyView>;
   activateDashboardView?: Maybe<TDashboardView>;
   activateDiscountCodesCustomView?: Maybe<TDiscountsCustomView>;
   activateOrdersListView?: Maybe<TOrdersListView>;
@@ -620,12 +680,14 @@ export type TMutation = {
   activateProductTypeAttributesView?: Maybe<TProductTypeAttributesView>;
   activateProjectSettingsStoresView?: Maybe<TProjectSettingsStoresView>;
   changeCustomApplicationStatus?: Maybe<TRestrictedCustomApplicationForOrganization>;
-  changeCustomViewStatus?: Maybe<TCustomView>;
+  changeCustomViewStatus?: Maybe<TRestrictedCustomViewForOrganization>;
+  createBusinessUnitsListMyView: TBusinessUnitsListMyView;
   createCartDiscountsCustomView: TDiscountsCustomView;
   createCustomApplication?: Maybe<TRestrictedCustomApplicationForOrganization>;
   createCustomApplicationDeploymentPreview: TCustomApplicationDeploymentPreview;
-  createCustomView?: Maybe<TCustomView>;
+  createCustomView?: Maybe<TRestrictedCustomViewForOrganization>;
   createCustomersListView: TCustomersListView;
+  createCustomersSearchListMyView: TCustomersSearchListMyView;
   createDashboardView: TDashboardView;
   createDiscountCodesCustomView: TDiscountsCustomView;
   createOrdersListView: TOrdersListView;
@@ -634,8 +696,10 @@ export type TMutation = {
   createProductTypeAttributesView: TProductTypeAttributesView;
   createProjectSettingsStoresView: TProjectSettingsStoresView;
   createVariantPricesListView?: Maybe<TVariantPricesListView>;
+  deactivateBusinessUnitsListMyView?: Maybe<TOrdersListView>;
   deactivateCartDiscountsCustomView?: Maybe<TDiscountsCustomView>;
   deactivateCustomersListView?: Maybe<TOrdersListView>;
+  deactivateCustomersSearchListMyView?: Maybe<TOrdersListView>;
   deactivateDashboardView?: Maybe<TDashboardView>;
   deactivateDiscountCodesCustomView?: Maybe<TDiscountsCustomView>;
   deactivateOrdersListView?: Maybe<TOrdersListView>;
@@ -646,10 +710,13 @@ export type TMutation = {
   deactivateProjectSettingsStoresView?: Maybe<TProjectSettingsStoresView>;
   deleteAllDashboardViews: Array<TDashboardView>;
   deleteAllOrdersListViews: Array<TOrdersListView>;
+  deleteBusinessUnitsListMyView?: Maybe<TBusinessUnitsListMyView>;
   deleteCartDiscountsCustomView?: Maybe<TDiscountsCustomView>;
   deleteCustomApplication?: Maybe<TRestrictedCustomApplicationForOrganization>;
   deleteCustomApplicationDeploymentPreview: TCustomApplicationDeploymentPreview;
+  deleteCustomView?: Maybe<TRestrictedCustomViewForOrganization>;
   deleteCustomersListView?: Maybe<TCustomersListView>;
+  deleteCustomersSearchListMyView?: Maybe<TCustomersSearchListMyView>;
   deleteDashboardView?: Maybe<TDashboardView>;
   deleteDiscountCodesCustomView?: Maybe<TDiscountsCustomView>;
   deleteOrdersListView?: Maybe<TOrdersListView>;
@@ -670,13 +737,15 @@ export type TMutation = {
   setProjectExtensionRichTextEditorSettings?: Maybe<TProjectExtension>;
   uninstallCustomApplication?: Maybe<TRestrictedCustomApplicationInstallationForOrganization>;
   uninstallCustomView?: Maybe<TRestrictedCustomViewInstallationForOrganization>;
+  updateBusinessUnitsListMyView?: Maybe<TBusinessUnitsListMyView>;
   updateCartDiscountsCustomView?: Maybe<TDiscountsCustomView>;
   updateCustomApplication?: Maybe<TRestrictedCustomApplicationForOrganization>;
   updateCustomApplicationDeploymentPreview: TCustomApplicationDeploymentPreview;
   updateCustomApplicationProjectsInstallation?: Maybe<TRestrictedCustomApplicationInstallationForOrganization>;
-  updateCustomView?: Maybe<TCustomView>;
+  updateCustomView?: Maybe<TRestrictedCustomViewForOrganization>;
   updateCustomViewProjectsInstallation?: Maybe<TRestrictedCustomViewInstallationForOrganization>;
   updateCustomersListView?: Maybe<TCustomersListView>;
+  updateCustomersSearchListMyView?: Maybe<TCustomersSearchListMyView>;
   updateDashboardView?: Maybe<TDashboardView>;
   updateDiscountCodesCustomView?: Maybe<TDiscountsCustomView>;
   updateOrdersListView?: Maybe<TOrdersListView>;
@@ -690,12 +759,22 @@ export type TMutation = {
 };
 
 
+export type TMutation_ActivateBusinessUnitsListMyViewArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type TMutation_ActivateCartDiscountsCustomViewArgs = {
   id: Scalars['ID'];
 };
 
 
 export type TMutation_ActivateCustomersListViewArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type TMutation_ActivateCustomersSearchListMyViewArgs = {
   id: Scalars['ID'];
 };
 
@@ -756,6 +835,11 @@ export type TMutation_ChangeCustomViewStatusArgs = {
 };
 
 
+export type TMutation_CreateBusinessUnitsListMyViewArgs = {
+  data: TBusinessUnitsListMyViewInput;
+};
+
+
 export type TMutation_CreateCartDiscountsCustomViewArgs = {
   data: TDiscountsCustomViewInput;
 };
@@ -782,6 +866,11 @@ export type TMutation_CreateCustomViewArgs = {
 
 export type TMutation_CreateCustomersListViewArgs = {
   data: TCustomersListViewInput;
+};
+
+
+export type TMutation_CreateCustomersSearchListMyViewArgs = {
+  data: TCustomersSearchListMyViewInput;
 };
 
 
@@ -825,12 +914,22 @@ export type TMutation_CreateVariantPricesListViewArgs = {
 };
 
 
+export type TMutation_DeactivateBusinessUnitsListMyViewArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type TMutation_DeactivateCartDiscountsCustomViewArgs = {
   id: Scalars['ID'];
 };
 
 
 export type TMutation_DeactivateCustomersListViewArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type TMutation_DeactivateCustomersSearchListMyViewArgs = {
   id: Scalars['ID'];
 };
 
@@ -875,6 +974,11 @@ export type TMutation_DeactivateProjectSettingsStoresViewArgs = {
 };
 
 
+export type TMutation_DeleteBusinessUnitsListMyViewArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type TMutation_DeleteCartDiscountsCustomViewArgs = {
   id: Scalars['ID'];
 };
@@ -892,7 +996,18 @@ export type TMutation_DeleteCustomApplicationDeploymentPreviewArgs = {
 };
 
 
+export type TMutation_DeleteCustomViewArgs = {
+  customViewId: Scalars['String'];
+  organizationId: Scalars['String'];
+};
+
+
 export type TMutation_DeleteCustomersListViewArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type TMutation_DeleteCustomersSearchListMyViewArgs = {
   id: Scalars['ID'];
 };
 
@@ -1005,6 +1120,12 @@ export type TMutation_UninstallCustomViewArgs = {
 };
 
 
+export type TMutation_UpdateBusinessUnitsListMyViewArgs = {
+  data: TBusinessUnitsListMyViewInput;
+  id: Scalars['ID'];
+};
+
+
 export type TMutation_UpdateCartDiscountsCustomViewArgs = {
   data: TDiscountsCustomViewInput;
   id: Scalars['ID'];
@@ -1048,6 +1169,12 @@ export type TMutation_UpdateCustomViewProjectsInstallationArgs = {
 
 export type TMutation_UpdateCustomersListViewArgs = {
   data: TCustomersListViewInput;
+  id: Scalars['ID'];
+};
+
+
+export type TMutation_UpdateCustomersSearchListMyViewArgs = {
+  data: TCustomersSearchListMyViewInput;
   id: Scalars['ID'];
 };
 
@@ -1163,6 +1290,7 @@ export type TNavbarSubmenu = {
 };
 
 export enum TOAuthScope {
+  ManageBusinessUnits = 'ManageBusinessUnits',
   ManageCartDiscounts = 'ManageCartDiscounts',
   ManageCategories = 'ManageCategories',
   ManageCustomerGroups = 'ManageCustomerGroups',
@@ -1176,6 +1304,7 @@ export enum TOAuthScope {
   ManageProducts = 'ManageProducts',
   ManageProject = 'ManageProject',
   ManageProjectSettings = 'ManageProjectSettings',
+  ViewBusinessUnits = 'ViewBusinessUnits',
   ViewCartDiscounts = 'ViewCartDiscounts',
   ViewCategories = 'ViewCategories',
   ViewCustomerGroups = 'ViewCustomerGroups',
@@ -1271,10 +1400,12 @@ export type TOrganizationExtension = {
   applicationsMaintainerContactInformation?: Maybe<TContactInformation>;
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
-  installedApplications?: Maybe<Array<TRestrictedCustomApplicationInstallationForOrganization>>;
+  installedApplications: Array<TRestrictedCustomApplicationInstallationForOrganization>;
+  installedCustomViews: Array<TRestrictedCustomViewInstallationForOrganization>;
   oidcSsoConfig?: Maybe<TOidcSsoConfig>;
   organizationId: Scalars['String'];
-  registeredApplications?: Maybe<Array<TRestrictedCustomApplicationForOrganization>>;
+  registeredApplications: Array<TRestrictedCustomApplicationForOrganization>;
+  registeredCustomViews: Array<TRestrictedCustomViewForOrganization>;
   updatedAt: Scalars['DateTime'];
 };
 
@@ -1349,12 +1480,13 @@ export type TProductTypeAttributesViewUpdateInput = {
 export type TProjectExtension = {
   __typename?: 'ProjectExtension';
   /** @deprecated Feature not available anymore */
-  applications?: Maybe<Array<TApplicationExtension>>;
+  applications: Array<TApplicationExtension>;
   categoryRecommendationSettings?: Maybe<TCategoryRecommendationSettings>;
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
   imageRegex?: Maybe<TImageRegex>;
-  installedApplications?: Maybe<Array<TRestrictedCustomApplicationInstallationForProject>>;
+  installedApplications: Array<TRestrictedCustomApplicationInstallationForProject>;
+  installedCustomViews: Array<TRestrictedCustomViewInstallationForProject>;
   isRichTextEditorEnabled: Scalars['Boolean'];
   orderStatesVisibility: Array<TOrderStatesVisibility>;
   projectKey: Scalars['String'];
@@ -1370,6 +1502,11 @@ export type TProjectExtension_ApplicationsArgs = {
 
 export type TProjectExtension_InstalledApplicationsArgs = {
   where?: InputMaybe<TRestrictedCustomApplicationInstallationForProjectWhereInput>;
+};
+
+
+export type TProjectExtension_InstalledCustomViewsArgs = {
+  where?: InputMaybe<TRestrictedCustomViewInstallationForProjectWhereInput>;
 };
 
 export type TProjectSettingsStoresView = {
@@ -1413,33 +1550,42 @@ export type TPublicCustomApplicationDevelopedByCommercetools = {
 
 export type TQuery = {
   __typename?: 'Query';
+  activeBusinessUnitsListMyView?: Maybe<TBusinessUnitsListMyView>;
   activeCartDiscountsCustomView?: Maybe<TDiscountsCustomView>;
   activeCustomersListView?: Maybe<TCustomersListView>;
+  activeCustomersSearchListMyView?: Maybe<TCustomersSearchListMyView>;
   activeDashboardView?: Maybe<TDashboardView>;
   activeDiscountCodesCustomView?: Maybe<TDiscountsCustomView>;
   activeOrdersListView?: Maybe<TOrdersListView>;
   activePimSearchListView?: Maybe<TPimSearchListView>;
   activeProductDiscountsCustomView?: Maybe<TDiscountsCustomView>;
   activeProductTypeAttributesView?: Maybe<TProductTypeAttributesView>;
+  activeProjectSettingsStoresView?: Maybe<TProjectSettingsStoresView>;
   /** @deprecated Experimental feature - For internal usage only */
   allAppliedCustomApplicationPermissions: Array<TCustomApplicationInstallationPermission>;
   /** @deprecated Experimental feature - For internal usage only */
+  allAppliedCustomViewPermissions: Array<TCustomViewInstallationPermission>;
+  /** @deprecated Experimental feature - For internal usage only */
   allCustomApplications: TCustomApplicationsPagedQueryResult;
-  allCustomViewInstallationByOrganization?: Maybe<TCustomViewInstallation>;
-  allCustomViewsByOrganization: Array<Maybe<TCustomView>>;
+  allCustomViewsInstallationsByLocator: Array<TRestrictedCustomViewInstallationForProject>;
+  allCustomViewsLocatorGroups: Array<TCustomViewLocatorGroup>;
   allFeatures: Array<TFeature>;
   /** @deprecated Experimental feature - For internal usage only */
   allOrganizationExtensions: Array<TOrganizationExtension>;
   allProjectExtensions: Array<TProjectExtension>;
   allPublicCustomApplicationsDevelopedByCommercetools: Array<TPublicCustomApplicationDevelopedByCommercetools>;
+  businessUnitsListMyView?: Maybe<TBusinessUnitsListMyView>;
+  businessUnitsListMyViews: Array<Maybe<TBusinessUnitsListMyView>>;
   cartDiscountsCustomView?: Maybe<TDiscountsCustomView>;
   cartDiscountsCustomViews: Array<Maybe<TDiscountsCustomView>>;
   /** @deprecated Experimental feature - For internal usage only */
   customApplication?: Maybe<TCustomApplication>;
+  /** @deprecated Experimental feature - For internal usage only */
   customView?: Maybe<TCustomView>;
-  customViewInstallation?: Maybe<TCustomViewInstallation>;
   customersListView?: Maybe<TCustomersListView>;
   customersListViews: Array<Maybe<TCustomersListView>>;
+  customersSearchListMyView?: Maybe<TCustomersSearchListMyView>;
+  customersSearchListMyViews: Array<Maybe<TCustomersSearchListMyView>>;
   dashboardView?: Maybe<TDashboardView>;
   dashboardViews: Array<Maybe<TDashboardView>>;
   discountCodesCustomView?: Maybe<TDiscountsCustomView>;
@@ -1458,6 +1604,8 @@ export type TQuery = {
   productTypeAttributesView?: Maybe<TProductTypeAttributesView>;
   productTypeAttributesViews?: Maybe<Array<Maybe<TProductTypeAttributesView>>>;
   projectExtension?: Maybe<TProjectExtension>;
+  projectSettingsStoresView?: Maybe<TProjectSettingsStoresView>;
+  projectSettingsStoresViews: Array<Maybe<TProjectSettingsStoresView>>;
   release?: Maybe<Scalars['String']>;
   ruleBuilderQuickSelectionValues?: Maybe<Array<Maybe<TRuleBuilderQuickSelectionValues>>>;
   variantPricesListViews: Array<Maybe<TVariantPricesListView>>;
@@ -1476,18 +1624,18 @@ export type TQuery_AllAppliedCustomApplicationPermissionsArgs = {
 };
 
 
+export type TQuery_AllAppliedCustomViewPermissionsArgs = {
+  customViewId: Scalars['ID'];
+};
+
+
 export type TQuery_AllCustomApplicationsArgs = {
   params?: InputMaybe<TCustomApplicationQueryInput>;
 };
 
 
-export type TQuery_AllCustomViewInstallationByOrganizationArgs = {
-  organizationId: Scalars['ID'];
-};
-
-
-export type TQuery_AllCustomViewsByOrganizationArgs = {
-  organizationId: Scalars['ID'];
+export type TQuery_AllCustomViewsInstallationsByLocatorArgs = {
+  locator: Scalars['String'];
 };
 
 
@@ -1506,6 +1654,11 @@ export type TQuery_AllPublicCustomApplicationsDevelopedByCommercetoolsArgs = {
 };
 
 
+export type TQuery_BusinessUnitsListMyViewArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type TQuery_CartDiscountsCustomViewArgs = {
   id: Scalars['ID'];
 };
@@ -1521,12 +1674,12 @@ export type TQuery_CustomViewArgs = {
 };
 
 
-export type TQuery_CustomViewInstallationArgs = {
-  customViewInstallationId: Scalars['ID'];
+export type TQuery_CustomersListViewArgs = {
+  id: Scalars['ID'];
 };
 
 
-export type TQuery_CustomersListViewArgs = {
+export type TQuery_CustomersSearchListMyViewArgs = {
   id: Scalars['ID'];
 };
 
@@ -1584,6 +1737,11 @@ export type TQuery_ProductTypeAttributesViewArgs = {
 export type TQuery_ProductTypeAttributesViewsArgs = {
   isVariant: Scalars['Boolean'];
   productTypeId: Scalars['String'];
+};
+
+
+export type TQuery_ProjectSettingsStoresViewArgs = {
+  id: Scalars['ID'];
 };
 
 
@@ -1669,7 +1827,7 @@ export type TRestrictedCustomApplicationInstallationForOrganization = {
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
   installInAllProjects: Scalars['Boolean'];
-  projects?: Maybe<Array<TProjectExtension>>;
+  projects: Array<TProjectExtension>;
   updatedAt: Scalars['DateTime'];
 };
 
@@ -1687,15 +1845,61 @@ export type TRestrictedCustomApplicationInstallationForProjectWhereInput = {
   entryPointUriPath?: InputMaybe<Scalars['String']>;
 };
 
+export type TRestrictedCustomViewForOrganization = {
+  __typename?: 'RestrictedCustomViewForOrganization';
+  createdAt: Scalars['DateTime'];
+  defaultLabel: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  labelAllLocales: Array<TLocalizedField>;
+  locators: Array<Scalars['String']>;
+  permissions: Array<TCustomViewPermission>;
+  status: TCustomViewStatus;
+  type: TCustomViewType;
+  typeSettings?: Maybe<TCustomViewTypeSettings>;
+  updatedAt: Scalars['DateTime'];
+  url: Scalars['String'];
+};
+
+export type TRestrictedCustomViewForProject = {
+  __typename?: 'RestrictedCustomViewForProject';
+  createdAt: Scalars['DateTime'];
+  defaultLabel: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  labelAllLocales: Array<TLocalizedField>;
+  locators: Array<Scalars['String']>;
+  permissions: Array<TCustomViewPermission>;
+  status: TCustomViewStatus;
+  type: TCustomViewType;
+  typeSettings?: Maybe<TCustomViewTypeSettings>;
+  updatedAt: Scalars['DateTime'];
+  url: Scalars['String'];
+};
+
 export type TRestrictedCustomViewInstallationForOrganization = {
   __typename?: 'RestrictedCustomViewInstallationForOrganization';
   acceptedPermissions: Array<TCustomViewInstallationPermission>;
   createdAt: Scalars['DateTime'];
-  customView: TCustomView;
+  customView: TRestrictedCustomViewForProject;
   id: Scalars['ID'];
   installInAllProjects: Scalars['Boolean'];
-  projects?: Maybe<Array<TProjectExtension>>;
+  projects: Array<TProjectExtension>;
   updatedAt: Scalars['DateTime'];
+};
+
+export type TRestrictedCustomViewInstallationForProject = {
+  __typename?: 'RestrictedCustomViewInstallationForProject';
+  acceptedPermissions: Array<TCustomViewInstallationPermission>;
+  createdAt: Scalars['DateTime'];
+  customView: TRestrictedCustomViewForProject;
+  id: Scalars['ID'];
+  installInAllProjects: Scalars['Boolean'];
+  updatedAt: Scalars['DateTime'];
+};
+
+export type TRestrictedCustomViewInstallationForProjectWhereInput = {
+  customViewId?: InputMaybe<Scalars['String']>;
 };
 
 export type TRichTextEditorSettingsInput = {
@@ -1849,10 +2053,17 @@ export type TFetchProjectExtensionImageRegexQuery = { __typename?: 'Query', proj
 
 export type TImageRegexFragment = { __typename?: 'ImageRegexOptions', flag?: string | null, search: string, replace: string };
 
+export type TFetchCustomViewsByLocatorQueryVariables = Exact<{
+  customViewLocatorCode: Scalars['String'];
+}>;
+
+
+export type TFetchCustomViewsByLocatorQuery = { __typename?: 'Query', allCustomViewsInstallationsByLocator: Array<{ __typename?: 'RestrictedCustomViewInstallationForProject', id: string, customView: { __typename?: 'RestrictedCustomViewForProject', id: string, defaultLabel: string, url: string, type: TCustomViewType, locators: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }>, typeSettings?: { __typename?: 'CustomViewTypeSettings', size?: TCustomViewSize | null } | null, permissions: Array<{ __typename?: 'CustomViewPermission', name: string, oAuthScopes: Array<string> }> } }> };
+
 export type TFetchProjectExtensionsNavbarQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TFetchProjectExtensionsNavbarQuery = { __typename?: 'Query', projectExtension?: { __typename?: 'ProjectExtension', id: string, installedApplications?: Array<{ __typename?: 'RestrictedCustomApplicationInstallationForProject', application: { __typename?: 'RestrictedCustomApplicationForProject', id: string, entryPointUriPath: string, icon: string, mainMenuLink: { __typename?: 'CustomApplicationMenuLink', id: string, permissions: Array<string>, defaultLabel: string, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }, submenuLinks: Array<{ __typename?: 'CustomApplicationSubmenuLink', id: string, uriPath: string, permissions: Array<string>, defaultLabel: string, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }> } }> | null } | null };
+export type TFetchProjectExtensionsNavbarQuery = { __typename?: 'Query', projectExtension?: { __typename?: 'ProjectExtension', id: string, installedApplications: Array<{ __typename?: 'RestrictedCustomApplicationInstallationForProject', application: { __typename?: 'RestrictedCustomApplicationForProject', id: string, entryPointUriPath: string, icon: string, mainMenuLink: { __typename?: 'CustomApplicationMenuLink', id: string, permissions: Array<string>, defaultLabel: string, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }, submenuLinks: Array<{ __typename?: 'CustomApplicationSubmenuLink', id: string, uriPath: string, permissions: Array<string>, defaultLabel: string, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }> } }> } | null };
 
 export type TCreateCustomApplicationFromCliMutationVariables = Exact<{
   organizationId: Scalars['String'];

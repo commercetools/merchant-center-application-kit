@@ -1,0 +1,23 @@
+query FetchCustomViewsByLocator($customViewLocatorCode: String!) {
+  allCustomViewsInstallationsByLocator(locator: $customViewLocatorCode) @client {
+    id
+    customView {
+      id
+      defaultLabel
+      labelAllLocales {
+        locale
+        value
+      }
+      url
+      type
+      typeSettings {
+        size
+      }
+      locators
+      permissions {
+        name
+        oAuthScopes
+      }
+    }
+  }
+}
