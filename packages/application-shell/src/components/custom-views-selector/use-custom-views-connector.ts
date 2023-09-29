@@ -3,7 +3,7 @@ import { useMcQuery } from '../../hooks/apollo-hooks';
 import type {
   TCustomView,
   TFetchCustomViewsByLocatorQuery,
-  TFetchCustomViewsByLocatorQueryVariables
+  TFetchCustomViewsByLocatorQueryVariables,
 } from '../../types/generated/settings';
 import FetchCustomViewsQuery from './fetch-custom-views-by-locator.settings.graphql';
 
@@ -33,9 +33,10 @@ export const useCustomViewsConnector: TUseCustomViewsFetcher = ({
   });
 
   return {
-    customViews: data?.allCustomViewsInstallationsByLocator?.map(
-      installation => installation.customView as TCustomView
-    ) || [],
+    customViews:
+      data?.allCustomViewsInstallationsByLocator?.map(
+        (installation) => installation.customView as TCustomView
+      ) || [],
     error,
     loading,
   };
