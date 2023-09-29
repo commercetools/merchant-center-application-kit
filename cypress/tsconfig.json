@@ -10,7 +10,8 @@
       "cypress",
       "@commercetools-frontend/cypress/add-commands",
       "@percy/cypress",
-      "@testing-library/cypress"
+      "@testing-library/cypress",
+      "@types/node"
     ]
   },
   "include": ["./**/*.ts"]
