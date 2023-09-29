@@ -24,6 +24,15 @@
   }
 }
 
+@keyframes hidden {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 /* Left Nav */
 
 .left-navigation {
@@ -54,6 +63,8 @@
 .navigation-header .title {
   font-weight: 600;
   margin-left: var(--spacing-20);
+  transition: var(--left-navigation-transition);
+  animation: visible 150ms cubic-bezier(1, 0, 0.58, 1);
 }
 
 .navigation-header .icon {
