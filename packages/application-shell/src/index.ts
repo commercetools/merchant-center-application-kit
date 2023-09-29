@@ -3,6 +3,8 @@ export { default as version } from './version';
 export { default as ApplicationShell } from './components/application-shell';
 export { default as ApplicationShellProvider } from './components/application-shell-provider';
 export { default as ApplicationPageTitle } from './components/application-page-title';
+export { default as CustomViewLoader } from './components/custom-view-loader';
+export { default as CustomViewsSelector } from './components/custom-views-selector';
 export { default as CustomViewShell } from './components/custom-view-shell';
 export { default as createApolloClient } from './configure-apollo';
 export { applyDefaultMiddlewares } from './configure-store';

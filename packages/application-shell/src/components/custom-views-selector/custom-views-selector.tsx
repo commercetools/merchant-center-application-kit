@@ -6,7 +6,7 @@ import { SidebarCollapseIcon } from '@commercetools-uikit/icons';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import { TCustomView } from '../../../types/generated/settings';
+import { TCustomView } from '../../types/generated/settings';
 import CustomViewLoader from '../custom-view-loader';
 import { useCustomViewsConnector } from './use-custom-views-connector';
 

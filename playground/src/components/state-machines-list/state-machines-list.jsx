@@ -92,7 +92,7 @@ const StateMachinesList = (props) => {
   return (
     <InfoMainPage
       title={intl.formatMessage(messages.title)}
-      customViewLocatorCode="products.product-details.general"
+      customViewLocatorCode="products.product_details.general"
     >
       <Spacings.Stack scale="m">
         {loading && <LoadingSpinner />}

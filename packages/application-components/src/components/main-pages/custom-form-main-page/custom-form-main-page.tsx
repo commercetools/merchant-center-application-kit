@@ -1,8 +1,8 @@
 import type { ReactElement, ReactNode } from 'react';
+import { CustomViewsSelector } from '@commercetools-frontend/application-shell';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import Spacings from '@commercetools-uikit/spacings';
 import { warning } from '@commercetools-uikit/utils';
-import CustomViewsSelector from '../../custom-views/custom-views-selector';
 import {
   FormPrimaryButton,
   FormSecondaryButton,

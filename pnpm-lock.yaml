@@ -1153,6 +1153,9 @@ importers:
       '@commercetools-frontend/application-config':
         specifier: 22.8.1
         version: link:../application-config
+      '@commercetools-frontend/application-shell':
+        specifier: 22.8.1
+        version: link:../application-shell
       '@commercetools-frontend/application-shell-connectors':
         specifier: 22.8.1
         version: link:../application-shell-connectors
@@ -1446,6 +1449,9 @@ importers:
       '@commercetools-uikit/primary-button':
         specifier: ^16.7.3
         version: 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.2.2)
+      '@commercetools-uikit/secondary-button':
+        specifier: ^16.7.3
+        version: 16.7.3(@types/react@17.0.56)(react-intl@6.4.5)(react-router-dom@5.3.4)(react@17.0.2)
       '@commercetools-uikit/select-input':
         specifier: ^16.7.3
         version: 16.7.3(@types/react@17.0.56)(react-dom@17.0.2)(react-intl@6.4.5)(react@17.0.2)
