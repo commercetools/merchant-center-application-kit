@@ -1,5 +1,34 @@
 # @commercetools-frontend/application-shell
 
+## 22.8.2
+
+### Patch Changes
+
+- [#3218](https://github.com/commercetools/merchant-center-application-kit/pull/3218) [`b23bd6049`](https://github.com/commercetools/merchant-center-application-kit/commit/b23bd60490be8822549c418fc431825bf0058a5f) Thanks [@ddouglasz](https://github.com/ddouglasz)! - add transition to nav items on hover
+
+- [#3241](https://github.com/commercetools/merchant-center-application-kit/pull/3241) [`2f1956868`](https://github.com/commercetools/merchant-center-application-kit/commit/2f1956868b248161fcaf77c41774f494bb2f9a90) Thanks [@emmenko](https://github.com/emmenko)! - Disable route check for `<CustomViewDevHost>`
+
+- [#3237](https://github.com/commercetools/merchant-center-application-kit/pull/3237) [`ef6aad473`](https://github.com/commercetools/merchant-center-application-kit/commit/ef6aad47368889fe1c69d847a16f092cf591c6d0) Thanks [@ddouglasz](https://github.com/ddouglasz)! - add trantition to navbar, navbar items and submenu items
+
+- [#3221](https://github.com/commercetools/merchant-center-application-kit/pull/3221) [`db0ae5b18`](https://github.com/commercetools/merchant-center-application-kit/commit/db0ae5b18d51fbce7f1527ff202b30832b1a05c5) Thanks [@kark](https://github.com/kark)! - Include tests for ApplicationShell that reflect the changes introduced in the new navbar
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.8.2
+  - @commercetools-frontend/application-components@22.8.2
+  - @commercetools-frontend/application-config@22.8.2
+  - @commercetools-frontend/application-shell-connectors@22.8.2
+  - @commercetools-frontend/assets@22.8.2
+  - @commercetools-frontend/browser-history@22.8.2
+  - @commercetools-frontend/constants@22.8.2
+  - @commercetools-frontend/i18n@22.8.2
+  - @commercetools-frontend/l10n@22.8.2
+  - @commercetools-frontend/notifications@22.8.2
+  - @commercetools-frontend/permissions@22.8.2
+  - @commercetools-frontend/react-notifications@22.8.2
+  - @commercetools-frontend/sdk@22.8.2
+  - @commercetools-frontend/sentry@22.8.2
+  - @commercetools-frontend/url-utils@22.8.2
+
 ## 22.8.1
 
 ### Patch Changes
