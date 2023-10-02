@@ -5,7 +5,8 @@ import {
   ADD_NOTIFICATION,
   REMOVE_NOTIFICATION,
 } from '@commercetools-frontend/notifications';
-import logger from '../utils/logger';
+import { logger } from '@commercetools-frontend/application-shell-connectors';
+// import logger from '../utils/logger';
 
 const loggerMiddleware: Middleware = createLogger({
   logger,

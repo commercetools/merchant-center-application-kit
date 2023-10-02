@@ -1,7 +1,7 @@
 export { default as version } from './version';
 export * from './export-types';
 
-export { default as getMcApiUrl } from './utils/get-mc-api-url';
+// export { default as getMcApiUrl } from './utils/get-mc-api-url';
 
 export {
   Context,
@@ -26,3 +26,27 @@ export {
   withProjectExtensionImageRegex,
   useProjectExtensionImageRegex,
 } from './components/project-extension-image-regex';
+
+export { default as createApolloClient } from './configure-apollo';
+export {
+  getCorrelationId,
+  getMcApiUrl,
+  isLoggerEnabled,
+  logger,
+  selectUserId,
+  selectProjectKeyFromUrl,
+  selectTeamIdFromStorage,
+  createApolloContextForProxyForwardTo,
+} from './utils';
+export {
+  useMcQuery,
+  useMcLazyQuery,
+  useMcMutation,
+} from './hooks/apollo-hooks';
+export {
+  buildApiUrl,
+  createHttpClientOptions,
+  executeHttpClientRequest,
+} from './utils/http-client';
+export * as oidcStorage from './utils/oidc-storage';
+export { setCachedApolloClient, getCachedApolloClient } from './utils/apollo-client-runtime-cache';

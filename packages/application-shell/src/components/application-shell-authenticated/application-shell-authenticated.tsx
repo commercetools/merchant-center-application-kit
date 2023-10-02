@@ -12,6 +12,7 @@ import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import { PortalsContainer } from '@commercetools-frontend/application-components';
 import {
   ApplicationContextProvider,
+  selectProjectKeyFromUrl,
   useApplicationContext,
   type TApplicationContext,
 } from '@commercetools-frontend/application-shell-connectors';
@@ -24,7 +25,8 @@ import {
   SentryUserTracker,
 } from '@commercetools-frontend/sentry';
 import { DIMENSIONS } from '../../constants';
-import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
+// import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
+import { getPreviousProjectKey } from '../../utils';
 import AppBar from '../app-bar';
 import ApplicationLoader from '../application-loader';
 import { getBrowserLocale } from '../application-shell-provider/utils';

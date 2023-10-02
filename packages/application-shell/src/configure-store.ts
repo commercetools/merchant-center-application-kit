@@ -10,8 +10,18 @@ import {
 import mapValues from 'lodash/mapValues';
 import omitEmpty from 'omit-empty-es';
 import thunk from 'redux-thunk';
-import type { ApplicationWindow } from '@commercetools-frontend/constants';
-import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-frontend/constants';
+import {
+  getCorrelationId,
+  selectProjectKeyFromUrl,
+  selectTeamIdFromStorage,
+  selectUserId,
+  oidcStorage,
+} from '@commercetools-frontend/application-shell-connectors';
+import {
+  SHOW_LOADING,
+  HIDE_LOADING,
+  type ApplicationWindow
+} from '@commercetools-frontend/constants';
 import {
   middleware as notificationsMiddleware,
   reducer as notificationsReducer,
@@ -21,13 +31,15 @@ import { requestsInFlightReducer } from './components/requests-in-flight-loader'
 import { SUPPORTED_HEADERS } from './constants';
 import hideNotificationsMiddleware from './middleware/hide-notifications';
 import loggerMiddleware from './middleware/logger';
-import {
-  getCorrelationId,
-  selectProjectKeyFromUrl,
-  selectTeamIdFromStorage,
-  selectUserId,
-} from './utils';
-import * as oidcStorage from './utils/oidc-storage';
+// import {
+  // getCorrelationId,
+  // selectProjectKeyFromUrl,
+  // selectTeamIdFromStorage,
+  // selectUserId,
+// } from './utils';
+// import * as oidcStorage from './utils/oidc-storage';
+
+
 
 interface ApplicationWindowWithDevtools extends ApplicationWindow {
   __REDUX_DEVTOOLS_EXTENSION__: (config?: {

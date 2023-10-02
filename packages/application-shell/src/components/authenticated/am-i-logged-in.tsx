@@ -1,6 +1,7 @@
+import { useMcQuery } from '@commercetools-frontend/application-shell-connectors';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { STORAGE_KEYS } from '../../constants';
-import { useMcQuery } from '../../hooks/apollo-hooks';
+// import { useMcQuery } from '../../hooks/apollo-hooks';
 import type {
   TAmILoggedInQuery,
   TAmILoggedInQueryVariables,

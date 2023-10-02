@@ -13,10 +13,13 @@ import { setupServer } from 'msw/node';
 import { useIntl } from 'react-intl';
 import { useSelector, useStore } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
-import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import {
+  ApplicationContext,
+  useMcQuery,
+} from '@commercetools-frontend/application-shell-connectors';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
-import { useMcQuery } from '../hooks/apollo-hooks';
+// import { useMcQuery } from '../hooks/apollo-hooks';
 import {
   type TRenderAppWithReduxOptions,
   renderApp,
