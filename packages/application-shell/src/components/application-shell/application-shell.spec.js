@@ -124,7 +124,7 @@ const renderApp = (ui, options = {}) => {
   const waitForLeftNavigationToBeLoaded = async () => {
     await findByLeftNavigation();
     // Wait for the loading navbar to disappear. Instead of using `waitForElementToBeRemoved`,
-    // which seems not stable enough, we wait to find the "Support" link, which is present
+    // which seems not stable enough, we wait to find the "navigation" role, which is present
     // when the navbar is loaded.
     await screen.findByRole('navigation');
   };

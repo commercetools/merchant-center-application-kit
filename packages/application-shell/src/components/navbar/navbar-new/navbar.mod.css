@@ -24,15 +24,6 @@
   }
 }
 
-@keyframes hidden {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
 /* Left Nav */
 
 .left-navigation {
@@ -156,6 +147,7 @@
     var(--color-primary-25) 100%
   );
   padding: var(--spacing-30) var(--spacing-25);
+  animation: hidden 150ms cubic-bezier(1, 0, 0.58, 1);
 }
 
 /* divider */
@@ -204,6 +196,8 @@
 :global(.body__menu-open) .left-navigation {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   box-shadow: var(--shadow-for-navbar);
+  width: var(--width-left-navigation-when-expanded);
+  transition: var(--left-navigation-transition);
 }
 
 :global(.body__menu-open) .list-item {
