@@ -26,9 +26,12 @@ type CustomFormMainPageProps = {
    */
   subtitle?: string | ReactElement;
   /**
-   * Replaces the title/subtitle row with a custom one (for special use cases)
+   * Replaces the title/subtitle row with a custom one (for special use cases).
    */
   customTitleRow?: ReactNode;
+  /**
+   * This code is used to configure which Custom Views are available for this page.
+   */
   customViewLocatorCode?: string;
   /**
    * Any React node displayed as the content within the page.
@@ -37,7 +40,7 @@ type CustomFormMainPageProps = {
 
   // Controls Props
   /**
-   * Any React node to be rendered as the form controls
+   * Any React node to be rendered as the form controls.
    */
   formControls?: ReactNode;
   /**

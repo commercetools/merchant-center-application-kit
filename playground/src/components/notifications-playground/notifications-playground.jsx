@@ -84,6 +84,7 @@ const NotificationsPlayground = (props) => {
           <InfoModalPage
             isOpen
             title={`Modal page ${props.level}`}
+            customViewLocatorCode="products.product_details.variants"
             onClose={() => {
               history.push(route.url);
             }}

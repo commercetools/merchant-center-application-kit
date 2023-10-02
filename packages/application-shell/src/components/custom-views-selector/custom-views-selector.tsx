@@ -67,7 +67,7 @@ function CustomViewSelector(props: TCustmoViewSelectorProps) {
   }
 
   return (
-    <Wrapper shouldRender={customViews.length > 1}>
+    <Wrapper shouldRender={customViews.length > 0}>
       <Container>
         <Constraints.Horizontal max="scale">
           <Spacings.Inline
