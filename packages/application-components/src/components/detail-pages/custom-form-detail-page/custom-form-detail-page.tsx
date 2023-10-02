@@ -1,5 +1,6 @@
 import type { ReactElement, ReactNode, MouseEvent, KeyboardEvent } from 'react';
 import styled from '@emotion/styled';
+import { CustomViewsSelector } from '@commercetools-frontend/application-shell';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
@@ -66,6 +67,10 @@ type CustomFormDetailPageProps = {
    */
   previousPathLabel?: string | MessageDescriptor;
   /**
+   * This code is used to configure which Custom Views are available for this page.
+   */
+  customViewLocatorCode?: string;
+  /**
    * Function called when back button is pressed.
    */
   onPreviousPathClick: (
@@ -85,6 +90,11 @@ const CustomFormDetailPage = (props: CustomFormDetailPageProps) => {
 
   return (
     <PageWrapper>
+      {Boolean(props.customViewLocatorCode) && (
+        <CustomViewsSelector
+          customViewLocatorCode={props.customViewLocatorCode}
+        />
+      )}
       <DetailPageContainer>
         <PageTopBar
           color="neutral"

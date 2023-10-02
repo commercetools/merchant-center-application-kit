@@ -1,5 +1,6 @@
 import { SyntheticEvent, ReactNode, ReactElement } from 'react';
 import type { CSSObject } from '@emotion/react';
+import { CustomViewsSelector } from '@commercetools-frontend/application-shell';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import Spacings from '@commercetools-uikit/spacings';
 import {
@@ -27,6 +28,10 @@ type Props = {
   level?: number;
   title: string;
   isOpen: boolean;
+  /**
+   * This code is used to configure which Custom Views are available for this page.
+   */
+  customViewLocatorCode?: string;
   onClose?: (event: SyntheticEvent) => void;
   children: ReactNode;
   zIndex?: number;
@@ -58,6 +63,7 @@ const CustomFormModalPage = (props: Props) => (
     getParentSelector={props.getParentSelector}
     shouldDelayOnClose={props.shouldDelayOnClose}
     afterOpenStyles={props.afterOpenStyles}
+    customViewLocatorCode={props.customViewLocatorCode}
   >
     <PageHeader title={props.title} subtitle={props.subtitle}>
       {!props.hideControls && props.formControls && (
