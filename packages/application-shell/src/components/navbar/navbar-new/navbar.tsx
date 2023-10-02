@@ -214,6 +214,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
               defaultLabel={props.menu.defaultLabel}
               applicationLocale={props.applicationLocale}
               icon={props.menu.icon}
+              isMenuOpen={props.isMenuOpen}
             />
           </MenuItemLink>
         ) : (
@@ -222,6 +223,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
             defaultLabel={props.menu.defaultLabel}
             applicationLocale={props.applicationLocale}
             icon={props.menu.icon}
+            isMenuOpen={props.isMenuOpen}
           />
         )}
         <MenuGroup
@@ -461,9 +463,13 @@ const NavBar = (props: TNavbarProps) => {
                       <SupportIcon size="scale" />
                     </div>
                   </div>
-                  <div className={styles.title}>
-                    <FormattedMessage {...messages['NavBar.MCSupport.title']} />
-                  </div>
+                  {isMenuOpen ? (
+                    <div className={styles.title}>
+                      <FormattedMessage
+                        {...messages['NavBar.MCSupport.title']}
+                      />
+                    </div>
+                  ) : null}
                 </div>
               </a>
             </MenuItem>

@@ -1,8 +1,9 @@
-import fs from 'fs';
-import os from 'os';
-import path from 'path';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import execa from 'execa';
 import { Listr, type ListrTask } from 'listr2';
+import { applicationTypes } from '../constants';
 import type { TCliTaskOptions } from '../types';
 import { throwIfTemplateVersionDoesNotExist } from '../validations';
 
@@ -26,7 +27,9 @@ function downloadTemplate(options: TCliTaskOptions): ListrTask {
       );
       const templateFolderPath = path.join(
         clonedRepositoryPath,
-        'application-templates',
+        options.applicationType === applicationTypes['custom-view']
+          ? 'custom-views-templates'
+          : 'application-templates',
         options.templateName
       );
       return new Listr([

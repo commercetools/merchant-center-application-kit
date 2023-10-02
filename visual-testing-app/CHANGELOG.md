@@ -1,5 +1,18 @@
 # @commercetools-local/visual-testing-app
 
+## 22.8.2
+
+### Patch Changes
+
+- [#3238](https://github.com/commercetools/merchant-center-application-kit/pull/3238) [`11a7cdecd`](https://github.com/commercetools/merchant-center-application-kit/commit/11a7cdecde958096c46cde8f53102784e5831044) Thanks [@kark](https://github.com/kark)! - Upgrade `vite` to `v4.4.9` fix issues with local development mode in the playground app
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@22.8.2
+  - @commercetools-frontend/application-config@22.8.2
+  - @commercetools-frontend/assets@22.8.2
+  - @commercetools-frontend/constants@22.8.2
+  - @commercetools-frontend/react-notifications@22.8.2
+
 ## 22.8.1
 
 ### Patch Changes

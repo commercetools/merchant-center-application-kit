@@ -1,6 +1,10 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import execa from 'execa';
-import type { TCliTaskOptions, TPackageManager } from './types';
+import type {
+  TApplicationType,
+  TCliTaskOptions,
+  TPackageManager,
+} from './types';
 
 const isSemVer = (version: string) => /^(v?)([0-9].[0-9].[0-9])+/.test(version);
 
@@ -57,6 +61,9 @@ const resolveFilePathByExtension = (requestedModule: string) => {
   return `${requestedModule}${fileExtension}`;
 };
 
+const isCustomView = (applicationType: TApplicationType) =>
+  applicationType === 'custom-view';
+
 export {
   isSemVer,
   shouldUseYarn,
@@ -66,4 +73,5 @@ export {
   resolveFilePathByExtension,
   getPreferredPackageManager,
   getInstallCommand,
+  isCustomView,
 };
