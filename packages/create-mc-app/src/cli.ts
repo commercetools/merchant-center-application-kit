@@ -1,6 +1,7 @@
 import { cac } from 'cac';
 import { Listr, type ListrTask } from 'listr2';
 import pkgJson from '../package.json';
+import { applicationTypes, availableTemplates } from './constants';
 import getLatestReleaseVersion from './get-latest-release-version';
 import hintOutdatedVersion from './hint-outdated-version';
 import processOptions from './process-options';
@@ -28,9 +29,14 @@ const run = () => {
       '[project-directory]\n\n  Bootstraps a new Custom Application project using one of the predefined templates.'
     )
     .option(
+      '--application-type <type>',
+      '(optional) The type of the application to create: custom-application (default) or custom-view.',
+      { default: applicationTypes['custom-application'] }
+    )
+    .option(
       '--template <name>',
       '(optional) The name of the template to install.',
-      { default: 'starter' }
+      { default: availableTemplates.starter }
     )
     .option(
       '--template-version <version>',
@@ -71,6 +77,7 @@ const run = () => {
 
       console.log('');
       console.log(
+        // TODO: Use link based on the application type
         `Documentation available at https://docs.commercetools.com/custom-applications`
       );
       console.log('');
@@ -86,7 +93,7 @@ const run = () => {
         [
           tasks.downloadTemplate(taskOptions),
           tasks.updatePackageJson(taskOptions, releaseVersion),
-          tasks.updateCustomApplicationConfig(taskOptions),
+          tasks.updateApplicationConfig(taskOptions),
           tasks.updateApplicationConstants(taskOptions),
           shouldInstallDependencies && tasks.installDependencies(taskOptions),
         ].filter(Boolean) as ListrTask[]
@@ -97,7 +104,7 @@ const run = () => {
 
       console.log('');
       console.log(
-        `🎉 🎉 🎉 The Custom Application has been created in the "${taskOptions.projectDirectoryName}" folder.`
+        `🎉 🎉 🎉 The application has been created in the "${taskOptions.projectDirectoryName}" folder.`
       );
       console.log('');
       console.log(`To get started:`);
@@ -108,6 +115,7 @@ const run = () => {
       console.log(`$ ${packageManager} start`);
       console.log('');
       console.log(
+        // TODO: Use link based on the application type
         `Visit https://docs.commercetools.com/custom-applications for more info about developing Custom Applications. Enjoy 🚀`
       );
     });
